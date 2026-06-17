@@ -36,7 +36,16 @@ export interface SolverClient {
     request: SolverCausalRootBatchF64Request
   ): Promise<SolverCausalRootBatchF64Response>;
   solveRootsAndHitsF64(request: SolverCausalRootsF64Request): Promise<SolverRootsAndHitsF64Response>;
+  buildRootLedgerDetailF64(
+    request: SolverRootLedgerDetailF64Request
+  ): Promise<SolverRootLedgerDetailF64Response>;
   computePhaseAtHitF64(request: SolverPhaseAtHitF64Request): Promise<SolverPhaseAtHitF64Response>;
+  computeSharedGeometryF64(request: SolverSharedGeometryF64Request): Promise<SolverSharedGeometryF64Response>;
+  detectAssemblyMembershipEventsF64(
+    request: SolverAssemblyMembershipEventsF64Request
+  ): Promise<SolverAssemblyMembershipEventsF64Response>;
+  buildSpaceTimeIndexF64(request: SolverBuildSpaceTimeIndexF64Request): Promise<SolverSpaceTimeIndexF64Response>;
+  querySpaceTimeIndexF64(request: SolverQuerySpaceTimeIndexF64Request): Promise<SolverSpaceTimeIndexF64Response>;
   sampleLinearMotionF64(request: SolverLinearMotionSampleF64Request): Promise<SolverLinearMotionSampleF64Response>;
   cancelRun(request: SolverCancelRequest): Promise<SolverStatusRecord>;
   openStream(request: SolverOpenStreamRequest): Promise<SolverStreamHandle>;
@@ -71,6 +80,7 @@ export interface SolverLinearMotionSampleF64Request {
   endTime: number;
   step: number;
   stateFlags?: number;
+  maxFrames?: number;
 }
 
 export interface SolverLinearMotionSampleF64Response {
@@ -89,6 +99,164 @@ export interface SolverMotionFrameF64 {
   stateFlags: number;
 }
 
+export interface SolverSharedGeometryF64Request {
+  pathBounds?: SolverPathBoundsF64Request[];
+  spherePointIntersections?: SolverSpherePointIntersectionF64Request[];
+}
+
+export interface SolverPathBoundsF64Request {
+  segment: SolverLinearPathSegmentF64;
+  pathKey?: number;
+}
+
+export interface SolverSpherePointIntersectionF64Request {
+  center: SolverVector3F64;
+  radius: number;
+  point: SolverVector3F64;
+  tolerance?: number;
+}
+
+export interface SolverSharedGeometryF64Response {
+  pathBounds: SolverPathBoundsF64[];
+  spherePointIntersections: SolverSpherePointIntersectionF64[];
+  status: SolverStatusRecord;
+}
+
+export interface SolverPathBoundsF64 {
+  itemIndex: number;
+  statusCode: number;
+  pathKey: number;
+  min: SolverVector3F64;
+  max: SolverVector3F64;
+}
+
+export interface SolverSpherePointIntersectionF64 {
+  itemIndex: number;
+  intersects: boolean;
+  centerDistance: number;
+  signedDistance: number;
+}
+
+export interface SolverAssemblyMembershipEventsF64Request {
+  memberships: SolverAssemblyMembershipF64[];
+  maxEvents?: number;
+}
+
+export interface SolverAssemblyMembershipEventsF64Response {
+  events: SolverAssemblyEventF64[];
+  buffers: SolverBufferDescriptor[];
+  status: SolverStatusRecord;
+}
+
+export interface SolverAssemblyMembershipF64 {
+  membershipKey: number;
+  pathKey: number;
+  assemblyKey: number;
+  assemblyStateKey: number;
+  timeStart: number;
+  timeEnd: number;
+  confidence: number;
+  localRole?: number;
+  bindingState?: number;
+  membershipVersion?: number;
+  eventKind?: number;
+  statusFlags?: number;
+}
+
+export interface SolverAssemblyEventF64 {
+  eventKey: number;
+  primaryId: number;
+  secondaryId: number;
+  priorStateKey: number;
+  nextStateKey: number;
+  relatedPathKey: number;
+  relatedAssemblyKey: number;
+  branchTransitionKey: number;
+  eventTime: number;
+  eventKind: number;
+  speedRegime: number;
+  statusFlags: number;
+}
+
+export interface SolverBuildSpaceTimeIndexF64Request {
+  pathRows?: SolverPathHistoryRowF64[];
+  assemblyStates?: SolverAssemblyStateF64[];
+  options: SolverSpaceTimeIndexOptionsF64;
+  maxRows?: number;
+}
+
+export interface SolverQuerySpaceTimeIndexF64Request {
+  rows: SolverSpaceTimeIndexRowF64[];
+  query: SolverSpaceTimeQueryF64;
+  options: SolverSpaceTimeIndexOptionsF64;
+  maxRows?: number;
+}
+
+export interface SolverSpaceTimeIndexF64Response {
+  rows: SolverSpaceTimeIndexRowF64[];
+  buffers: SolverBufferDescriptor[];
+  overflowEntryCount: number;
+  status: SolverStatusRecord;
+}
+
+export interface SolverPathHistoryRowF64 {
+  pathKey: number;
+  segmentIndex: number;
+  startTime: number;
+  endTime: number;
+  start: SolverVector3F64;
+  velocity: SolverVector3F64;
+  errorBound?: number;
+  stateFlags?: number;
+}
+
+export interface SolverAssemblyStateF64 {
+  assemblyKey: number;
+  assemblyStateKey: number;
+  timeStart: number;
+  timeEnd: number;
+  center: SolverVector3F64;
+  velocity: SolverVector3F64;
+  phase?: number;
+  cycleIndex?: number;
+  modelVersion?: number;
+  statusFlags?: number;
+  fidelityFlags?: number;
+}
+
+export interface SolverSpaceTimeIndexOptionsF64 {
+  spatialCellSize: number;
+  timeBinSize: number;
+  maxCellsPerItem: number;
+}
+
+export interface SolverSpaceTimeQueryF64 {
+  bounds: SolverSpaceTimeBoundsF64;
+  filterSpace?: boolean;
+  filterTime?: boolean;
+  subjectKind?: number;
+  subjectKey?: number;
+}
+
+export interface SolverSpaceTimeBoundsF64 {
+  min: SolverVector3F64;
+  max: SolverVector3F64;
+  timeStart: number;
+  timeEnd: number;
+}
+
+export interface SolverSpaceTimeIndexRowF64 extends SolverSpaceTimeBoundsF64 {
+  cellX: number;
+  cellY: number;
+  cellZ: number;
+  cellT: number;
+  subjectKey: number;
+  rowOffset: number;
+  subjectKind: number;
+  sourceLayout: number;
+  stateFlags: number;
+}
+
 export interface SolverCausalRootsF64Request {
   source: SolverLinearPathSegmentF64;
   receiver: SolverLinearPathSegmentF64;
@@ -101,8 +269,18 @@ export interface SolverCausalRootsF64Request {
   maxHits?: number;
 }
 
+export interface SolverRootLedgerDetailF64Request extends SolverCausalRootsF64Request {
+  maxRows?: number;
+}
+
 export interface SolverCausalRootsF64Response {
   roots: SolverCausalRootF64[];
+  status: SolverStatusRecord;
+}
+
+export interface SolverRootLedgerDetailF64Response {
+  rows: SolverRootLedgerDetailF64[];
+  buffers: SolverBufferDescriptor[];
   status: SolverStatusRecord;
 }
 
@@ -112,6 +290,8 @@ export interface SolverPrecisionDiagnosticF64Response {
   recommendedNumericType: SolverNumericType;
   scaleNormalizationRecommended: boolean;
   extendedPrecisionRecommended: boolean;
+  scaleResolutionLimited: boolean;
+  timeResolutionLimited: boolean;
   timeScale: SolverMagnitudeSummary;
   geometryScale: SolverMagnitudeSummary;
   speedScale: Omit<SolverMagnitudeSummary, "minNonzeroMagnitude">;
@@ -200,6 +380,32 @@ export interface SolverCausalRootF64 {
   receiverPoint: SolverVector3F64;
 }
 
+export interface SolverRootLedgerDetailF64 {
+  ledgerKey: number;
+  sourceKey: number;
+  receiverKey: number;
+  rootKey: number;
+  intervalStart: number;
+  intervalEnd: number;
+  emissionTime: number;
+  hitTime: number;
+  delay: number;
+  residual: number;
+  jacobian: number;
+  branchWeight: number;
+  bracketStart: number;
+  bracketEnd: number;
+  sourcePoint: SolverVector3F64;
+  receiverPoint: SolverVector3F64;
+  entryKind: number;
+  rootKind: number;
+  statusCode: number;
+  jacobianSignStratum: number;
+  sequenceIndex: number;
+  iterationCount: number;
+  stateFlags: number;
+}
+
 export interface SolverDelayedHitF64 {
   eventId: number;
   rootId: number;
@@ -286,6 +492,7 @@ export interface SolverErrorBudget {
 
 export type SolverRunConfig =
   | CausalRootsSolverConfig
+  | MotionSimulationSolverConfig
   | AnimatorSolverConfig
   | PhotonSolverConfig
   | IdealSwarmSolverConfig
@@ -294,6 +501,11 @@ export type SolverRunConfig =
 export interface CausalRootsSolverConfig {
   appId: SolverAppId;
   rootRequest: SolverCausalRootsF64Request;
+}
+
+export interface MotionSimulationSolverConfig {
+  appId: SolverAppId;
+  motionRequest: SolverLinearMotionSampleF64Request;
 }
 
 export interface SolverRunHandle {
@@ -366,6 +578,7 @@ export interface SolverRunResponse {
   buffers: SolverBufferDescriptor[];
   streams: SolverStreamDescriptor[];
   diagnostics: SolverDiagnosticRecord[];
+  frames?: SolverMotionFrameF64[];
   roots?: SolverCausalRootF64[];
   hits?: SolverDelayedHitF64[];
   status: SolverStatusRecord;
@@ -379,6 +592,40 @@ export interface SolverBufferDescriptor {
   rowCount: number;
   numericType: SolverNumericType;
   buffer: ArrayBuffer;
+}
+
+export interface SolverWorkPacketHeader {
+  schema: "solver-work-packet.v1";
+  packetId: string;
+  runId: string;
+  modelId: string;
+  precisionPath: Exclude<SolverPrecisionPath, "auto">;
+  sourceBlock: SolverWorkPacketIndexRange;
+  receiverBlock: SolverWorkPacketIndexRange;
+  pathBlock: SolverWorkPacketIndexRange;
+  timeRange: SolverRange;
+  expectedOutputs: SolverBinaryLayoutId[];
+  inputBuffers: SolverWorkPacketBufferRef[];
+  mergeOrder: number;
+  mergeKey: string;
+  headerChecksum?: string;
+}
+
+export interface SolverWorkPacketIndexRange {
+  enabled: boolean;
+  start: number;
+  end: number;
+}
+
+export interface SolverWorkPacketBufferRef {
+  bufferId: string;
+  layout: SolverBinaryLayoutId;
+  numericType: SolverNumericType;
+  byteOffset: number;
+  byteLength: number;
+  rowOffset: number;
+  rowCount: number;
+  checksum: string;
 }
 
 export interface SolverStreamDescriptor {
@@ -398,9 +645,10 @@ export type SolverBinaryLayoutId =
   | "assembly_events.v1"
   | "path_chunk.v1"
   | "root_ledger.v1"
+  | "root_ledger_detail.v1"
   | "delayed_hit_events.v1"
   | "phase_at_hit.v1"
-  | "geometry_buffer.v1"
+  | "spacetime_index.v1"
   | "stream_index.v1";
 
 export type SolverNumericType =
@@ -473,6 +721,41 @@ export interface SolverAbiInfo {
   rootRequestF64Bytes: number;
   rootRowF64Bytes: number;
   delayedHitRowF64Bytes: number;
+  motionSampleRequestF64Bytes: number;
+  motionFrameRowF64Bytes: number;
+  phaseClockF64Bytes: number;
+  phaseAtHitRowF64Bytes: number;
+  boundsRowF64Bytes: number;
+  spherePointRequestF64Bytes: number;
+  spherePointRowF64Bytes: number;
+  assemblyStateRowF64Bytes: number;
+  assemblyMembershipRowF64Bytes: number;
+  assemblyHierarchyRowF64Bytes: number;
+  assemblyEventRowF64Bytes: number;
+  pathHistoryRowF64Bytes: number;
+  spaceTimeIndexRowF64Bytes: number;
+  rootLedgerDetailRowF64Bytes: number;
+}
+
+export interface SolverNumericSerializationDescriptor {
+  numericType: SolverNumericType;
+  byteOrder: "little-endian";
+  scalarSizeBytes: number;
+  signedness: "signed" | "unsigned" | "not-applicable";
+  scaleFactor: string;
+  exponentLayout: string;
+  limbOrder: string;
+  intervalEndpointConvention: string;
+  roundingMode: string;
+  comparisonSemantics: string;
+  textExport: string;
+  appBufferSafe: boolean;
+  authoritativeStorageSafe: boolean;
+}
+
+export interface SolverNumericSerializationContract {
+  schema: "solver-numeric-serialization.v1";
+  descriptors: SolverNumericSerializationDescriptor[];
 }
 
 export interface SolverStoragePolicy {

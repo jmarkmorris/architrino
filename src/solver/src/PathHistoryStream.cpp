@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <fstream>
+#include <iomanip>
 #include <limits>
 #include <sstream>
 #include <stdexcept>
@@ -10,6 +11,7 @@
 
 static_assert(sizeof(architrino::solver::PathHistoryRowF64) == 96);
 static_assert(sizeof(architrino::solver::PathHistoryIndexRow) == 64);
+static_assert(sizeof(architrino::solver::PathHistoryChunkRow) == 104);
 
 namespace architrino::solver {
 namespace {
@@ -63,6 +65,26 @@ std::uint64_t checked_file_size(std::ifstream& stream, std::string_view path) {
   }
   stream.seekg(0, std::ios::beg);
   return static_cast<std::uint64_t>(size);
+}
+
+std::uint64_t fnv1a64_update(std::uint64_t seed, const void* data, std::size_t byteLength) {
+  std::uint64_t hash = seed;
+  const auto* bytes = static_cast<const unsigned char*>(data);
+  for (std::size_t index = 0; index < byteLength; ++index) {
+    hash ^= bytes[index];
+    hash *= kFnvPrime;
+  }
+  return hash;
+}
+
+std::uint64_t fnv1a64_bytes(const void* data, std::size_t byteLength) {
+  return fnv1a64_update(kFnvOffsetBasis, data, byteLength);
+}
+
+std::string hex_u64(std::uint64_t value) {
+  std::ostringstream output;
+  output << "0x" << std::hex << std::setw(16) << std::setfill('0') << value;
+  return output.str();
 }
 
 template <typename Row>
@@ -154,6 +176,7 @@ PathHistoryStreamWriter::PathHistoryStreamWriter(PathHistoryStreamOptions option
           "solver-stream-manifest.v1",
           BinaryLayoutId::PathSegmentV1,
           BinaryLayoutId::StreamIndexV1,
+          BinaryLayoutId::PathChunkV1,
           NumericType::F64,
           sizeof(PathHistoryRowF64),
           0,
@@ -163,12 +186,32 @@ PathHistoryStreamWriter::PathHistoryStreamWriter(PathHistoryStreamOptions option
           0.0,
           false,
           options_.durable,
+          options_.runId,
+          options_.datasetId,
+          options_.modelId,
+          options_.configHash,
+          options_.engineId,
+          options_.engineVersion,
+          options_.precisionPath,
+          options_.unitConvention,
+          options_.coordinateFrame,
+          options_.scaleNormalization,
+          options_.interpolationRule,
+          options_.streamEncodingTolerance,
+          options_.readbackTolerance,
+          kFnvOffsetBasis,
+          kFnvOffsetBasis,
+          kFnvOffsetBasis,
           options_.dataPath,
           options_.indexPath,
+          options_.chunkPath,
           options_.metadataPath,
       },
       dataStream_(options_.dataPath, std::ios::binary | std::ios::trunc),
-      indexStream_(options_.indexPath, std::ios::binary | std::ios::trunc) {
+      indexStream_(options_.indexPath, std::ios::binary | std::ios::trunc),
+      chunkStream_(options_.chunkPath.empty()
+                       ? std::ofstream()
+                       : std::ofstream(options_.chunkPath, std::ios::binary | std::ios::trunc)) {
   if (options_.dataPath.empty() || options_.indexPath.empty() || options_.metadataPath.empty()) {
     throw std::invalid_argument("path-history stream data, index, and metadata paths are required");
   }
@@ -177,6 +220,9 @@ PathHistoryStreamWriter::PathHistoryStreamWriter(PathHistoryStreamOptions option
   }
   ensure_open(dataStream_, options_.dataPath, "path-history data");
   ensure_open(indexStream_, options_.indexPath, "path-history index");
+  if (!options_.chunkPath.empty()) {
+    ensure_open(chunkStream_, options_.chunkPath, "path-history chunk");
+  }
   chunkRows_.reserve(options_.rowsPerIndexChunk);
 }
 
@@ -233,7 +279,10 @@ void PathHistoryStreamWriter::flush() {
   flush_chunk();
   dataStream_.flush();
   indexStream_.flush();
-  if (!dataStream_ || !indexStream_) {
+  if (chunkStream_.is_open()) {
+    chunkStream_.flush();
+  }
+  if (!dataStream_ || !indexStream_ || (chunkStream_.is_open() && !chunkStream_)) {
     throw std::runtime_error("failed to flush path-history stream");
   }
 }
@@ -245,6 +294,9 @@ PathHistoryStreamMetadata PathHistoryStreamWriter::close() {
   flush();
   dataStream_.close();
   indexStream_.close();
+  if (chunkStream_.is_open()) {
+    chunkStream_.close();
+  }
   write_manifest();
   closed_ = true;
   return metadata_;
@@ -263,6 +315,7 @@ void PathHistoryStreamWriter::flush_chunk() {
   const std::uint64_t rowCount = static_cast<std::uint64_t>(chunkRows_.size());
   const std::uint64_t byteOffset = metadata_.byteLength;
   const std::uint64_t byteLength = rowCount * sizeof(PathHistoryRowF64);
+  const std::uint64_t checksum64 = fnv1a64_bytes(chunkRows_.data(), static_cast<std::size_t>(byteLength));
   const PathHistoryIndexRow indexRow{
       chunkPathKey_,
       metadata_.chunkCount,
@@ -273,12 +326,38 @@ void PathHistoryStreamWriter::flush_chunk() {
       byteOffset,
       byteLength,
   };
+  const PathHistoryChunkRow chunkRow{
+      metadata_.chunkCount,
+      chunkPathKey_,
+      chunkPathKey_,
+      rowOffset,
+      rowCount,
+      chunkRows_.front().segmentIndex,
+      chunkRows_.back().segmentIndex,
+      chunkHasRange_ ? chunkTimeStart_ : 0.0,
+      chunkHasRange_ ? chunkTimeEnd_ : 0.0,
+      byteOffset,
+      byteLength,
+      checksum64,
+      0,
+      0,
+  };
+  metadata_.dataChecksum64 =
+      fnv1a64_update(metadata_.dataChecksum64, chunkRows_.data(), static_cast<std::size_t>(byteLength));
+  metadata_.indexChecksum64 =
+      fnv1a64_update(metadata_.indexChecksum64, &indexRow, sizeof(indexRow));
+  metadata_.chunkChecksum64 =
+      fnv1a64_update(metadata_.chunkChecksum64, &chunkRow, sizeof(chunkRow));
 
   dataStream_.write(reinterpret_cast<const char*>(chunkRows_.data()),
                     static_cast<std::streamsize>(byteLength));
   indexStream_.write(reinterpret_cast<const char*>(&indexRow),
                      static_cast<std::streamsize>(sizeof(indexRow)));
-  if (!dataStream_ || !indexStream_) {
+  if (chunkStream_.is_open()) {
+    chunkStream_.write(reinterpret_cast<const char*>(&chunkRow),
+                       static_cast<std::streamsize>(sizeof(chunkRow)));
+  }
+  if (!dataStream_ || !indexStream_ || (chunkStream_.is_open() && !chunkStream_)) {
     throw std::runtime_error("failed to write path-history stream chunk");
   }
 
@@ -302,6 +381,9 @@ void PathHistoryStreamWriter::write_manifest() const {
   output << "  \"manifestVersion\": \"" << json_escape(metadata_.manifestVersion) << "\",\n";
   output << "  \"layout\": \"" << to_string(metadata_.layoutId) << "\",\n";
   output << "  \"indexLayout\": \"" << to_string(metadata_.indexLayoutId) << "\",\n";
+  if (!metadata_.chunkPath.empty()) {
+    output << "  \"chunkLayout\": \"" << to_string(metadata_.chunkLayoutId) << "\",\n";
+  }
   output << "  \"numericType\": \"" << to_string(metadata_.numericType) << "\",\n";
   output << "  \"byteOrder\": \"little-endian\",\n";
   output << "  \"rowSizeBytes\": " << metadata_.rowSizeBytes << ",\n";
@@ -314,9 +396,52 @@ void PathHistoryStreamWriter::write_manifest() const {
   } else {
     output << "null,\n";
   }
+  output << "  \"run\": {\n";
+  output << "    \"runId\": \"" << json_escape(metadata_.runId) << "\",\n";
+  output << "    \"datasetId\": \"" << json_escape(metadata_.datasetId) << "\"\n";
+  output << "  },\n";
+  output << "  \"engine\": {\n";
+  output << "    \"id\": \"" << json_escape(metadata_.engineId) << "\",\n";
+  output << "    \"version\": \"" << json_escape(metadata_.engineVersion) << "\"\n";
+  output << "  },\n";
+  output << "  \"model\": {\n";
+  output << "    \"modelId\": \"" << json_escape(metadata_.modelId) << "\",\n";
+  output << "    \"configHash\": \"" << json_escape(metadata_.configHash) << "\"\n";
+  output << "  },\n";
+  output << "  \"precision\": {\n";
+  output << "    \"path\": \"" << json_escape(metadata_.precisionPath) << "\",\n";
+  output << "    \"numericType\": \"" << to_string(metadata_.numericType) << "\",\n";
+  output << "    \"unitConvention\": \"" << json_escape(metadata_.unitConvention) << "\",\n";
+  output << "    \"coordinateFrame\": \"" << json_escape(metadata_.coordinateFrame) << "\",\n";
+  output << "    \"scaleNormalization\": \"" << json_escape(metadata_.scaleNormalization) << "\",\n";
+  output << "    \"streamEncodingTolerance\": " << metadata_.streamEncodingTolerance << ",\n";
+  output << "    \"readbackTolerance\": " << metadata_.readbackTolerance << "\n";
+  output << "  },\n";
+  output << "  \"interpolation\": {\n";
+  output << "    \"rule\": \"" << json_escape(metadata_.interpolationRule) << "\",\n";
+  output << "    \"errorBoundColumn\": \"error_bound\"\n";
+  output << "  },\n";
+  output << "  \"checksums\": {\n";
+  output << "    \"algorithm\": \"fnv1a64\",\n";
+  output << "    \"data\": \"" << hex_u64(metadata_.dataChecksum64) << "\",\n";
+  output << "    \"index\": \"" << hex_u64(metadata_.indexChecksum64) << "\",\n";
+  output << "    \"chunk\": \"" << hex_u64(metadata_.chunkChecksum64) << "\"\n";
+  output << "  },\n";
+  output << "  \"diagnosticSummary\": {\n";
+  output << "    \"rowCount\": " << metadata_.rowCount << ",\n";
+  output << "    \"chunkCount\": " << metadata_.chunkCount << ",\n";
+  output << "    \"byteLength\": " << metadata_.byteLength << ",\n";
+  output << "    \"hasTimeRange\": " << (metadata_.hasTimeRange ? "true" : "false") << "\n";
+  output << "  },\n";
   output << "  \"durable\": " << (metadata_.durable ? "true" : "false") << ",\n";
   output << "  \"dataPath\": \"" << json_escape(metadata_.dataPath) << "\",\n";
-  output << "  \"indexPath\": \"" << json_escape(metadata_.indexPath) << "\"\n";
+  output << "  \"indexPath\": \"" << json_escape(metadata_.indexPath) << "\"";
+  if (!metadata_.chunkPath.empty()) {
+    output << ",\n";
+    output << "  \"chunkPath\": \"" << json_escape(metadata_.chunkPath) << "\"\n";
+  } else {
+    output << "\n";
+  }
   output << "}\n";
 
   if (!output) {
@@ -344,6 +469,22 @@ std::vector<PathHistoryIndexRow> read_path_history_index(std::string_view indexP
   const std::size_t rowCount = static_cast<std::size_t>(fileBytes / sizeof(PathHistoryIndexRow));
   input.close();
   return read_rows<PathHistoryIndexRow>(indexPath, 0, rowCount, "path-history index");
+}
+
+std::vector<PathHistoryChunkRow> read_path_history_chunks(std::string_view chunkPath) {
+  std::ifstream input(std::string(chunkPath), std::ios::binary);
+  if (!input.is_open()) {
+    std::ostringstream message;
+    message << "failed to open path-history chunk file at " << chunkPath;
+    throw std::runtime_error(message.str());
+  }
+  const std::uint64_t fileBytes = checked_file_size(input, chunkPath);
+  if (fileBytes % sizeof(PathHistoryChunkRow) != 0) {
+    throw std::runtime_error("path-history chunk file size is not a whole-row multiple");
+  }
+  const std::size_t rowCount = static_cast<std::size_t>(fileBytes / sizeof(PathHistoryChunkRow));
+  input.close();
+  return read_rows<PathHistoryChunkRow>(chunkPath, 0, rowCount, "path-history chunk");
 }
 
 std::vector<PathHistoryIndexRow> query_path_history_index(

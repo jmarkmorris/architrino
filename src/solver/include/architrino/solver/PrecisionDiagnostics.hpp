@@ -22,6 +22,8 @@ struct PrecisionDiagnostic {
   NumericType recommendedNumericType = NumericType::F64;
   bool scaleNormalizationRecommended = false;
   bool extendedPrecisionRecommended = false;
+  bool scaleResolutionLimited = false;
+  bool timeResolutionLimited = false;
   ValidationReport validation;
 };
 

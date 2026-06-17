@@ -19,14 +19,42 @@ const DEFAULT_OUTPUT_LAYOUTS = [
   "assembly_events.v1",
   "path_chunk.v1",
   "root_ledger.v1",
+  "root_ledger_detail.v1",
   "delayed_hit_events.v1",
   "phase_at_hit.v1",
-  "geometry_buffer.v1",
+  "spacetime_index.v1",
   "stream_index.v1",
 ];
 
 const PRECISION_PATH_BY_ID = DEFAULT_PRECISION_PATHS;
 const NUMERIC_TYPE_BY_ID = ["f64", "scaled_i64", "interval_f64_pair", "decimal128", "mp_limb_block"];
+const STATUS_CODE_BY_ID = [
+  "ok",
+  "cancelled",
+  "baseline_within_tolerance",
+  "baseline_refined_result",
+  "baseline_model_boundary_difference",
+  "baseline_investigation_required_mismatch",
+  "precision_escalated",
+  "precision_failed",
+  "simulation_envelope_exceeded",
+  "insufficient_history_depth",
+  "insufficient_scale_resolution",
+  "time_resolution_insufficient",
+  "root_not_bracketed",
+  "root_unresolved",
+  "small_jacobian",
+  "transversality_floor_failed",
+  "ledger_rerun_required",
+  "stream_memory_pressure",
+  "stream_write_failed",
+  "stream_read_failed",
+  "unsupported_browser_storage",
+  "unsupported_wasm_threads",
+  "validation_replay_mismatch",
+  "app_contract_error",
+  "internal_solver_error",
+];
 const DEFAULT_CAPABILITY_ENVELOPE = {
   maxInteractiveEntities: 2048,
   maxBatchEntities: 200000,
@@ -36,13 +64,30 @@ const DEFAULT_CAPABILITY_ENVELOPE = {
 };
 const CAUSAL_ROOT_REQUEST_F64_BYTES = 176;
 const CAUSAL_ROOT_ROW_F64_BYTES = 112;
+const ROOT_LEDGER_DETAIL_ROW_F64_BYTES = 192;
 const DELAYED_HIT_ROW_F64_BYTES = 128;
 const CAUSAL_ROOT_BATCH_ITEM_ROW_F64_BYTES = 24;
 const PRECISION_DIAGNOSTIC_ROW_F64_BYTES = 96;
+const MOTION_SAMPLE_REQUEST_F64_BYTES = 112;
+const PHASE_CLOCK_F64_BYTES = 24;
 const PHASE_AT_HIT_ROW_F64_BYTES = 72;
 const FRAME_BUFFER_ROW_F64_BYTES = 88;
+const GEOMETRY_BOUNDS_ROW_F64_BYTES = 64;
+const SPHERE_POINT_INTERSECTION_REQUEST_F64_BYTES = 64;
+const SPHERE_POINT_INTERSECTION_ROW_F64_BYTES = 24;
+const ASSEMBLY_STATE_ROW_F64_BYTES = 112;
+const ASSEMBLY_MEMBERSHIP_ROW_F64_BYTES = 80;
+const ASSEMBLY_HIERARCHY_ROW_F64_BYTES = 56;
+const ASSEMBLY_EVENT_ROW_F64_BYTES = 88;
+const PATH_HISTORY_ROW_F64_BYTES = 96;
+const SPACETIME_INDEX_OPTIONS_F64_BYTES = 24;
+const SPACETIME_INDEX_ROW_F64_BYTES = 128;
+const SPACETIME_QUERY_F64_BYTES = 96;
 const DEFAULT_MAX_CAUSAL_ROOTS = 64;
-const ABI_INFO_BYTES = 24;
+const DEFAULT_MAX_ROOT_LEDGER_DETAIL_ROWS = 4096;
+const DEFAULT_MAX_MOTION_FRAMES = 65536;
+const DEFAULT_MAX_SPACETIME_INDEX_ROWS = 65536;
+const ABI_INFO_BYTES = 80;
 
 export class SolverBridgeError extends Error {
   constructor(status) {
@@ -141,14 +186,50 @@ export function createSolverAppBridgeClient(options = {}) {
       return response;
     },
 
+    async buildRootLedgerDetailF64(request) {
+      assertNotDisposed(state);
+      const module = await requireWasmModule(state);
+      return buildRootLedgerDetailF64WithModule(module, request, state.abiInfo || defaultAbiInfo());
+    },
+
     async computePhaseAtHitF64(request) {
       assertNotDisposed(state);
-      return computePhaseAtHitF64(request);
+      const module = await requireWasmModule(state);
+      return computePhaseAtHitF64WithModule(module, request, state.abiInfo || defaultAbiInfo());
+    },
+
+    async computeSharedGeometryF64(request) {
+      assertNotDisposed(state);
+      const module = await requireWasmModule(state);
+      return computeSharedGeometryF64WithModule(module, request, state.abiInfo || defaultAbiInfo());
+    },
+
+    async detectAssemblyMembershipEventsF64(request) {
+      assertNotDisposed(state);
+      const module = await requireWasmModule(state);
+      return detectAssemblyMembershipEventsF64WithModule(
+        module,
+        request,
+        state.abiInfo || defaultAbiInfo()
+      );
+    },
+
+    async buildSpaceTimeIndexF64(request) {
+      assertNotDisposed(state);
+      const module = await requireWasmModule(state);
+      return buildSpaceTimeIndexF64WithModule(module, request, state.abiInfo || defaultAbiInfo());
+    },
+
+    async querySpaceTimeIndexF64(request) {
+      assertNotDisposed(state);
+      const module = await requireWasmModule(state);
+      return querySpaceTimeIndexF64WithModule(module, request, state.abiInfo || defaultAbiInfo());
     },
 
     async sampleLinearMotionF64(request) {
       assertNotDisposed(state);
-      return sampleLinearMotionF64(request);
+      const module = await requireWasmModule(state);
+      return sampleLinearMotionF64WithModule(module, request, state.abiInfo || defaultAbiInfo());
     },
 
     async cancelRun(request = {}) {
@@ -553,49 +634,64 @@ function runSimulationWithModule(state, module, request, abiInfo) {
       })
     );
   }
-  if (request.runKind !== "causalRoots") {
+
+  const requestId = request.requestId || `${request.appId}-${request.runKind}-${state.nextRunSequence}`;
+  const runId = request.runId || `solver-run-${state.nextRunSequence}`;
+  const datasetId = request.datasetId || `${runId}-dataset`;
+  state.nextRunSequence += 1;
+
+  let completedResponse;
+  if (request.runKind === "causalRoots") {
+    const rootRequest = request.config.rootRequest;
+    const rootsAndHits = solveRootsAndHitsF64WithModule(module, rootRequest, abiInfo);
+    const streams = rootsAndHits.streams.map((stream) => ({
+      ...stream,
+      streamId: `${runId}:${stream.streamId}`,
+    }));
+    completedResponse = {
+      runId,
+      datasetId,
+      summary: {
+        runId,
+        claimLevel: request.claimLevel,
+        precisionPath: admission.selectedPrecisionPath,
+        status: createStatus("ok", "ok", "causal-root simulation completed", { runId, requestId }),
+        rootCount: rootsAndHits.roots.length,
+        eventCount: rootsAndHits.hits.length,
+      },
+      buffers: rootsAndHits.buffers,
+      streams,
+      diagnostics: admission.statuses.map(toDiagnosticRecord),
+      roots: rootsAndHits.roots,
+      hits: rootsAndHits.hits,
+      status: createStatus("ok", "ok", "causal-root simulation completed", { runId, requestId }),
+    };
+  } else if (request.runKind === "motionSimulation") {
+    const motion = sampleLinearMotionF64WithModule(module, request.config.motionRequest, abiInfo);
+    completedResponse = {
+      runId,
+      datasetId,
+      summary: {
+        runId,
+        claimLevel: request.claimLevel,
+        precisionPath: admission.selectedPrecisionPath,
+        status: createStatus("ok", "ok", "motion simulation completed", { runId, requestId }),
+        frameCount: motion.frames.length,
+        pathCount: motion.frames.length > 0 ? 1 : 0,
+      },
+      buffers: motion.buffers,
+      streams: [],
+      diagnostics: admission.statuses.map(toDiagnosticRecord),
+      frames: motion.frames,
+      status: createStatus("ok", "ok", "motion simulation completed", { runId, requestId }),
+    };
+  } else {
     throw new SolverBridgeError(
       createStatus("app_contract_error", "halt", `run kind is not implemented: ${request.runKind}`, {
         recoverable: false,
       })
     );
   }
-
-  const rootRequest = request.config.rootRequest;
-  const rootsAndHits = solveRootsAndHitsF64WithModule(module, rootRequest, abiInfo);
-  const requestId = request.requestId || `${request.appId}-${request.runKind}-${state.nextRunSequence}`;
-  const runId = request.runId || `solver-run-${state.nextRunSequence}`;
-  const datasetId = request.datasetId || `${runId}-dataset`;
-  state.nextRunSequence += 1;
-
-  const streams = rootsAndHits.streams.map((stream) => ({
-    ...stream,
-    streamId: `${runId}:${stream.streamId}`,
-  }));
-  const completedResponse = {
-    runId,
-    datasetId,
-    summary: {
-      runId,
-      claimLevel: request.claimLevel,
-      precisionPath: admission.selectedPrecisionPath,
-      status: createStatus("ok", "ok", "causal-root simulation completed", { runId, requestId }),
-      rootCount: rootsAndHits.roots.length,
-      eventCount: rootsAndHits.hits.length,
-    },
-    buffers: rootsAndHits.buffers,
-    streams,
-    diagnostics: admission.statuses.map((status) => ({
-      code: status.code,
-      severity: status.severity,
-      message: status.message,
-      stage: status.stage,
-      details: status.details,
-    })),
-    roots: rootsAndHits.roots,
-    hits: rootsAndHits.hits,
-    status: createStatus("ok", "ok", "causal-root simulation completed", { runId, requestId }),
-  };
 
   state.runs.set(runId, completedResponse);
   registerResponseStreams(state, completedResponse);
@@ -612,41 +708,91 @@ function runSimulationWithModule(state, module, request, abiInfo) {
   };
 }
 
-function computePhaseAtHitF64(request) {
-  validatePhaseAtHitRequest(request);
-  const rows = request.roots.map((root) => {
-    const sourceCyclePosition = rawCyclePosition(root.emissionTime, request.sourceClock);
-    const receiverCyclePosition = rawCyclePosition(root.hitTime, request.receiverClock);
-    const sourcePhase = normalizedPhase(sourceCyclePosition);
-    const receiverPhase = normalizedPhase(receiverCyclePosition);
-    const phaseDelta = signedPhaseDelta(sourcePhase, receiverPhase);
-    return {
-      rootId: root.rootId,
-      statusCode: root.statusCode,
-      sourceCycleIndex: Math.floor(sourceCyclePosition),
-      receiverCycleIndex: Math.floor(receiverCyclePosition),
-      emissionTime: root.emissionTime,
-      hitTime: root.hitTime,
-      sourcePhase,
-      receiverPhase,
-      phaseDelta,
-      phaseSpread: Math.abs(phaseDelta),
-    };
-  });
-  const buffer = writePhaseAtHitRowsF64(rows);
+function toDiagnosticRecord(status) {
   return {
-    rows,
-    buffers: [
-      createBufferDescriptor(
-        "phase-at-hit",
-        "phase_at_hit.v1",
-        rows.length,
-        PHASE_AT_HIT_ROW_F64_BYTES,
-        buffer
-      ),
-    ],
-    status: createStatus("ok", "ok", "phase-at-hit diagnostics computed"),
+    code: status.code,
+    severity: status.severity,
+    message: status.message,
+    stage: status.stage,
+    details: status.details,
   };
+}
+
+function computePhaseAtHitF64WithModule(module, request, abiInfo) {
+  validatePhaseAtHitRequest(request);
+  if (typeof module._malloc !== "function" || typeof module._free !== "function") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "WebAssembly allocator exports are required", {
+        recoverable: false,
+      })
+    );
+  }
+
+  const rootCount = request.roots.length;
+  const rootsPtr = module._malloc(abiInfo.rootRowF64Bytes * rootCount);
+  const sourceClockPtr = module._malloc(abiInfo.phaseClockF64Bytes);
+  const receiverClockPtr = module._malloc(abiInfo.phaseClockF64Bytes);
+  const rowsPtr = module._malloc(abiInfo.phaseAtHitRowF64Bytes * rootCount);
+  const outRowCountPtr = module._malloc(4);
+  try {
+    request.roots.forEach((root, index) => {
+      writeCausalRootRowF64(module, rootsPtr + index * abiInfo.rootRowF64Bytes, root);
+    });
+    writePhaseClockF64(module, sourceClockPtr, request.sourceClock);
+    writePhaseClockF64(module, receiverClockPtr, request.receiverClock);
+    module.setValue(outRowCountPtr, 0, "i32");
+    const compute = module.cwrap("architrino_solver_compute_phase_at_hit_f64", "number", [
+      "number",
+      "number",
+      "number",
+      "number",
+      "number",
+      "number",
+      "number",
+    ]);
+    const status = compute(
+      rootsPtr,
+      rootCount,
+      sourceClockPtr,
+      receiverClockPtr,
+      rowsPtr,
+      rootCount,
+      outRowCountPtr
+    );
+    const rowCount = module.getValue(outRowCountPtr, "i32");
+    if (status !== 0) {
+      throw new SolverBridgeError(
+        createStatus("internal_solver_error", "halt", `phase-at-hit C ABI returned ${status}`, {
+          recoverable: status === -3,
+          details: { status, rowCount, rootCount },
+        })
+      );
+    }
+    const rows = [];
+    for (let index = 0; index < rowCount; index += 1) {
+      rows.push(readPhaseAtHitRowF64(module, rowsPtr + index * abiInfo.phaseAtHitRowF64Bytes));
+    }
+    const buffer = copyWasmBytes(module, rowsPtr, rowCount * abiInfo.phaseAtHitRowF64Bytes);
+    return {
+      rows,
+      buffers: [
+        createBufferDescriptor(
+          "phase-at-hit",
+          "phase_at_hit.v1",
+          rowCount,
+          abiInfo.phaseAtHitRowF64Bytes,
+          buffer
+        ),
+      ],
+      status: createStatus("ok", "ok", "phase-at-hit diagnostics computed"),
+    };
+  } finally {
+    module._free(rootsPtr);
+    module._free(sourceClockPtr);
+    module._free(receiverClockPtr);
+    module._free(rowsPtr);
+    module._free(outRowCountPtr);
+  }
 }
 
 function validatePhaseAtHitRequest(request) {
@@ -691,80 +837,72 @@ function validatePhaseClock(clock, label) {
   }
 }
 
-function rawCyclePosition(time, clock) {
-  return (time - (clock.epoch ?? 0)) / clock.period + (clock.phaseOffset ?? 0);
-}
-
-function normalizedPhase(value) {
-  const phase = value % 1;
-  return phase < 0 ? phase + 1 : phase;
-}
-
-function signedPhaseDelta(sourcePhase, receiverPhase) {
-  let delta = receiverPhase - sourcePhase;
-  while (delta > 0.5) {
-    delta -= 1;
-  }
-  while (delta < -0.5) {
-    delta += 1;
-  }
-  return delta;
-}
-
-function writePhaseAtHitRowsF64(rows) {
-  const buffer = new ArrayBuffer(rows.length * PHASE_AT_HIT_ROW_F64_BYTES);
-  const view = new DataView(buffer);
-  rows.forEach((row, index) => {
-    const ptr = index * PHASE_AT_HIT_ROW_F64_BYTES;
-    view.setInt32(ptr, row.rootId, true);
-    view.setInt32(ptr + 4, row.statusCode, true);
-    view.setBigInt64(ptr + 8, BigInt(row.sourceCycleIndex), true);
-    view.setBigInt64(ptr + 16, BigInt(row.receiverCycleIndex), true);
-    view.setFloat64(ptr + 24, row.emissionTime, true);
-    view.setFloat64(ptr + 32, row.hitTime, true);
-    view.setFloat64(ptr + 40, row.sourcePhase, true);
-    view.setFloat64(ptr + 48, row.receiverPhase, true);
-    view.setFloat64(ptr + 56, row.phaseDelta, true);
-    view.setFloat64(ptr + 64, row.phaseSpread, true);
-  });
-  return buffer;
-}
-
-function sampleLinearMotionF64(request) {
+function sampleLinearMotionF64WithModule(module, request, abiInfo) {
   validateLinearMotionSampleRequest(request);
-  const rows = [];
-  let frameIndex = 0;
-  for (let time = request.startTime; time <= request.endTime + request.step * 1e-9; time += request.step) {
-    const clampedTime = time > request.endTime ? request.endTime : time;
-    const position = positionAt(request.segment, clampedTime);
-    rows.push({
-      pathKey: request.pathKey,
-      frameIndex,
-      time: clampedTime,
-      position,
-      velocity: { ...request.segment.velocity },
-      errorBound: request.segment.errorBound ?? 0,
-      stateFlags: request.stateFlags ?? 0,
-    });
-    frameIndex += 1;
-    if (clampedTime === request.endTime) {
-      break;
-    }
+  if (typeof module._malloc !== "function" || typeof module._free !== "function") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "WebAssembly allocator exports are required", {
+        recoverable: false,
+      })
+    );
   }
-  const buffer = writeMotionFrameRowsF64(rows);
-  return {
-    frames: rows,
-    buffers: [
-      createBufferDescriptor(
-        "frame-buffer",
-        "frame_buffer.v1",
-        rows.length,
-        FRAME_BUFFER_ROW_F64_BYTES,
-        buffer
-      ),
-    ],
-    status: createStatus("ok", "ok", "linear motion sampled"),
-  };
+
+  const estimatedFrames = estimateLinearMotionFrameCount(request);
+  const maxFrames = request.maxFrames ?? Math.min(estimatedFrames, DEFAULT_MAX_MOTION_FRAMES);
+  if (estimatedFrames > maxFrames) {
+    throw new SolverBridgeError(
+      createStatus("stream_memory_pressure", "halt", "motion frame request exceeds frame buffer cap", {
+        recoverable: true,
+        details: { estimatedFrames, maxFrames },
+      })
+    );
+  }
+
+  const requestPtr = module._malloc(abiInfo.motionSampleRequestF64Bytes);
+  const framesPtr = module._malloc(abiInfo.motionFrameRowF64Bytes * maxFrames);
+  const outFrameCountPtr = module._malloc(4);
+  try {
+    writeMotionSampleRequestF64(module, requestPtr, request);
+    module.setValue(outFrameCountPtr, 0, "i32");
+    const sample = module.cwrap("architrino_solver_sample_linear_motion_f64", "number", [
+      "number",
+      "number",
+      "number",
+      "number",
+    ]);
+    const status = sample(requestPtr, framesPtr, maxFrames, outFrameCountPtr);
+    const frameCount = module.getValue(outFrameCountPtr, "i32");
+    if (status !== 0) {
+      throw new SolverBridgeError(
+        createStatus("internal_solver_error", "halt", `motion sampler C ABI returned ${status}`, {
+          recoverable: status === -3,
+          details: { status, frameCount, maxFrames },
+        })
+      );
+    }
+    const frames = [];
+    for (let index = 0; index < frameCount; index += 1) {
+      frames.push(readMotionFrameRowF64(module, framesPtr + index * abiInfo.motionFrameRowF64Bytes));
+    }
+    const buffer = copyWasmBytes(module, framesPtr, frameCount * abiInfo.motionFrameRowF64Bytes);
+    return {
+      frames,
+      buffers: [
+        createBufferDescriptor(
+          "frame-buffer",
+          "frame_buffer.v1",
+          frameCount,
+          abiInfo.motionFrameRowF64Bytes,
+          buffer
+        ),
+      ],
+      status: createStatus("ok", "ok", "linear motion sampled"),
+    };
+  } finally {
+    module._free(requestPtr);
+    module._free(framesPtr);
+    module._free(outFrameCountPtr);
+  }
 }
 
 function validateLinearMotionSampleRequest(request) {
@@ -775,7 +913,7 @@ function validateLinearMotionSampleRequest(request) {
       })
     );
   }
-  requireNonnegativeInteger(request.pathKey, "pathKey");
+  requireSafeUint64(request.pathKey, "pathKey");
   validateSegment(request.segment, "segment");
   requireFiniteNumber(request.startTime, "startTime");
   requireFiniteNumber(request.endTime, "endTime");
@@ -795,38 +933,667 @@ function validateLinearMotionSampleRequest(request) {
     );
   }
   if (request.stateFlags != null) {
-    requireNonnegativeInteger(request.stateFlags, "stateFlags");
+    requireUint32(request.stateFlags, "stateFlags");
+  }
+  if (request.maxFrames != null) {
+    requirePositiveInteger(request.maxFrames, "maxFrames");
   }
 }
 
-function positionAt(segment, time) {
-  const dt = time - segment.startTime;
+function estimateLinearMotionFrameCount(request) {
+  const duration = request.endTime - request.startTime;
+  return Math.floor((duration + request.step * 1e-9) / request.step) + 1;
+}
+
+function computeSharedGeometryF64WithModule(module, request, abiInfo) {
+  validateSharedGeometryRequest(request);
+  if (typeof module._malloc !== "function" || typeof module._free !== "function") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "WebAssembly allocator exports are required", {
+        recoverable: false,
+      })
+    );
+  }
+
+  const pathBounds = computePathBoundsF64WithModule(module, request.pathBounds ?? [], abiInfo);
+  const spherePointIntersections = computeSpherePointIntersectionsF64WithModule(
+    module,
+    request.spherePointIntersections ?? [],
+    abiInfo
+  );
   return {
-    x: segment.positionAtStart.x + segment.velocity.x * dt,
-    y: segment.positionAtStart.y + segment.velocity.y * dt,
-    z: segment.positionAtStart.z + segment.velocity.z * dt,
+    pathBounds,
+    spherePointIntersections,
+    status: createStatus("ok", "ok", "shared geometry computed"),
   };
 }
 
-function writeMotionFrameRowsF64(rows) {
-  const buffer = new ArrayBuffer(rows.length * FRAME_BUFFER_ROW_F64_BYTES);
-  const view = new DataView(buffer);
-  rows.forEach((row, index) => {
-    const ptr = index * FRAME_BUFFER_ROW_F64_BYTES;
-    view.setBigUint64(ptr, BigInt(row.pathKey), true);
-    view.setBigUint64(ptr + 8, BigInt(row.frameIndex), true);
-    view.setFloat64(ptr + 16, row.time, true);
-    view.setFloat64(ptr + 24, row.position.x, true);
-    view.setFloat64(ptr + 32, row.position.y, true);
-    view.setFloat64(ptr + 40, row.position.z, true);
-    view.setFloat64(ptr + 48, row.velocity.x, true);
-    view.setFloat64(ptr + 56, row.velocity.y, true);
-    view.setFloat64(ptr + 64, row.velocity.z, true);
-    view.setFloat64(ptr + 72, row.errorBound, true);
-    view.setUint32(ptr + 80, row.stateFlags, true);
-    view.setUint32(ptr + 84, 0, true);
+function computePathBoundsF64WithModule(module, requests, abiInfo) {
+  if (requests.length === 0) {
+    return [];
+  }
+  const segmentBytes = 72;
+  const segmentsPtr = module._malloc(segmentBytes * requests.length);
+  const pathKeysPtr = module._malloc(8 * requests.length);
+  const rowsPtr = module._malloc(abiInfo.boundsRowF64Bytes * requests.length);
+  const outRowCountPtr = module._malloc(4);
+  try {
+    requests.forEach((item, index) => {
+      writeSegment(module, segmentsPtr + index * segmentBytes, item.segment);
+      writeUint64(module, pathKeysPtr + index * 8, item.pathKey ?? index);
+    });
+    module.setValue(outRowCountPtr, 0, "i32");
+    const compute = module.cwrap("architrino_solver_compute_path_bounds_f64", "number", [
+      "number",
+      "number",
+      "number",
+      "number",
+      "number",
+      "number",
+    ]);
+    const status = compute(
+      segmentsPtr,
+      pathKeysPtr,
+      requests.length,
+      rowsPtr,
+      requests.length,
+      outRowCountPtr
+    );
+    const rowCount = module.getValue(outRowCountPtr, "i32");
+    if (status !== 0) {
+      throw new SolverBridgeError(
+        createStatus("internal_solver_error", "halt", `path-bounds C ABI returned ${status}`, {
+          recoverable: status === -3,
+          details: { status, rowCount },
+        })
+      );
+    }
+    const rows = [];
+    for (let index = 0; index < rowCount; index += 1) {
+      rows.push(readBoundsRowF64(module, rowsPtr + index * abiInfo.boundsRowF64Bytes));
+    }
+    return rows;
+  } finally {
+    module._free(segmentsPtr);
+    module._free(pathKeysPtr);
+    module._free(rowsPtr);
+    module._free(outRowCountPtr);
+  }
+}
+
+function computeSpherePointIntersectionsF64WithModule(module, requests, abiInfo) {
+  if (requests.length === 0) {
+    return [];
+  }
+  const requestsPtr = module._malloc(abiInfo.spherePointRequestF64Bytes * requests.length);
+  const rowsPtr = module._malloc(abiInfo.spherePointRowF64Bytes * requests.length);
+  const outRowCountPtr = module._malloc(4);
+  try {
+    requests.forEach((item, index) => {
+      writeSpherePointIntersectionRequestF64(
+        module,
+        requestsPtr + index * abiInfo.spherePointRequestF64Bytes,
+        item
+      );
+    });
+    module.setValue(outRowCountPtr, 0, "i32");
+    const intersect = module.cwrap("architrino_solver_intersect_sphere_points_f64", "number", [
+      "number",
+      "number",
+      "number",
+      "number",
+      "number",
+    ]);
+    const status = intersect(requestsPtr, requests.length, rowsPtr, requests.length, outRowCountPtr);
+    const rowCount = module.getValue(outRowCountPtr, "i32");
+    if (status !== 0) {
+      throw new SolverBridgeError(
+        createStatus("internal_solver_error", "halt", `sphere-point C ABI returned ${status}`, {
+          recoverable: status === -3,
+          details: { status, rowCount },
+        })
+      );
+    }
+    const rows = [];
+    for (let index = 0; index < rowCount; index += 1) {
+      rows.push(readSpherePointIntersectionRowF64(module, rowsPtr + index * abiInfo.spherePointRowF64Bytes));
+    }
+    return rows;
+  } finally {
+    module._free(requestsPtr);
+    module._free(rowsPtr);
+    module._free(outRowCountPtr);
+  }
+}
+
+function validateSharedGeometryRequest(request) {
+  if (!request || typeof request !== "object") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "shared geometry request object is required", {
+        recoverable: false,
+      })
+    );
+  }
+  if (request.pathBounds != null && !Array.isArray(request.pathBounds)) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "pathBounds must be an array", {
+        recoverable: false,
+      })
+    );
+  }
+  if (request.spherePointIntersections != null && !Array.isArray(request.spherePointIntersections)) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "spherePointIntersections must be an array", {
+        recoverable: false,
+      })
+    );
+  }
+  (request.pathBounds ?? []).forEach((item, index) => {
+    if (!item || typeof item !== "object") {
+      throw new SolverBridgeError(
+        createStatus("app_contract_error", "error", `pathBounds[${index}] is required`, {
+          recoverable: false,
+        })
+      );
+    }
+    validateSegment(item.segment, `pathBounds[${index}].segment`);
+    if (item.pathKey != null) {
+      requireSafeUint64(item.pathKey, `pathBounds[${index}].pathKey`);
+    }
   });
-  return buffer;
+  (request.spherePointIntersections ?? []).forEach((item, index) => {
+    if (!item || typeof item !== "object") {
+      throw new SolverBridgeError(
+        createStatus("app_contract_error", "error", `spherePointIntersections[${index}] is required`, {
+          recoverable: false,
+        })
+      );
+    }
+    validateVector(item.center, `spherePointIntersections[${index}].center`);
+    requireNonnegativeFiniteNumber(item.radius, `spherePointIntersections[${index}].radius`);
+    validateVector(item.point, `spherePointIntersections[${index}].point`);
+    if (item.tolerance != null) {
+      requireNonnegativeFiniteNumber(item.tolerance, `spherePointIntersections[${index}].tolerance`);
+    }
+  });
+}
+
+function detectAssemblyMembershipEventsF64WithModule(module, request, abiInfo) {
+  validateAssemblyMembershipEventsRequest(request);
+  if (typeof module._malloc !== "function" || typeof module._free !== "function") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "WebAssembly allocator exports are required", {
+        recoverable: false,
+      })
+    );
+  }
+
+  const memberships = request.memberships;
+  const membershipCount = memberships.length;
+  const maxEvents = request.maxEvents ?? Math.max(1, membershipCount);
+  if (membershipCount === 0) {
+    return {
+      events: [],
+      buffers: [
+        createBufferDescriptor(
+          "assembly-events",
+          "assembly_events.v1",
+          0,
+          abiInfo.assemblyEventRowF64Bytes,
+          new ArrayBuffer(0)
+        ),
+      ],
+      status: createStatus("ok", "ok", "assembly membership events detected"),
+    };
+  }
+
+  const membershipsPtr = module._malloc(abiInfo.assemblyMembershipRowF64Bytes * membershipCount);
+  const eventsPtr = module._malloc(abiInfo.assemblyEventRowF64Bytes * maxEvents);
+  const outEventCountPtr = module._malloc(4);
+  try {
+    memberships.forEach((membership, index) => {
+      writeAssemblyMembershipRowF64(
+        module,
+        membershipsPtr + index * abiInfo.assemblyMembershipRowF64Bytes,
+        membership
+      );
+    });
+    module.setValue(outEventCountPtr, 0, "i32");
+    const detect = module.cwrap("architrino_solver_detect_assembly_membership_events_f64", "number", [
+      "number",
+      "number",
+      "number",
+      "number",
+      "number",
+    ]);
+    const status = detect(membershipsPtr, membershipCount, eventsPtr, maxEvents, outEventCountPtr);
+    const eventCount = module.getValue(outEventCountPtr, "i32");
+    if (status !== 0) {
+      throw new SolverBridgeError(
+        createStatus("internal_solver_error", "halt", `assembly membership C ABI returned ${status}`, {
+          recoverable: status === -3,
+          details: { status, eventCount },
+        })
+      );
+    }
+
+    const events = [];
+    for (let index = 0; index < eventCount; index += 1) {
+      events.push(readAssemblyEventRowF64(module, eventsPtr + index * abiInfo.assemblyEventRowF64Bytes));
+    }
+    const buffer = copyWasmBytes(module, eventsPtr, eventCount * abiInfo.assemblyEventRowF64Bytes);
+    return {
+      events,
+      buffers: [
+        createBufferDescriptor(
+          "assembly-events",
+          "assembly_events.v1",
+          eventCount,
+          abiInfo.assemblyEventRowF64Bytes,
+          buffer
+        ),
+      ],
+      status: createStatus("ok", "ok", "assembly membership events detected"),
+    };
+  } finally {
+    module._free(membershipsPtr);
+    module._free(eventsPtr);
+    module._free(outEventCountPtr);
+  }
+}
+
+function validateAssemblyMembershipEventsRequest(request) {
+  if (!request || typeof request !== "object") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "assembly membership event request object is required", {
+        recoverable: false,
+      })
+    );
+  }
+  if (!Array.isArray(request.memberships)) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "memberships must be an array", {
+        recoverable: false,
+      })
+    );
+  }
+  request.memberships.forEach((membership, index) => {
+    if (!membership || typeof membership !== "object") {
+      throw new SolverBridgeError(
+        createStatus("app_contract_error", "error", `memberships[${index}] is required`, {
+          recoverable: false,
+        })
+      );
+    }
+    requireSafeUint64(membership.membershipKey, `memberships[${index}].membershipKey`);
+    requireSafeUint64(membership.pathKey, `memberships[${index}].pathKey`);
+    requireSafeUint64(membership.assemblyKey, `memberships[${index}].assemblyKey`);
+    requireSafeUint64(membership.assemblyStateKey, `memberships[${index}].assemblyStateKey`);
+    requireFiniteNumber(membership.timeStart, `memberships[${index}].timeStart`);
+    requireFiniteNumber(membership.timeEnd, `memberships[${index}].timeEnd`);
+    if (membership.timeEnd < membership.timeStart) {
+      throw new SolverBridgeError(
+        createStatus("app_contract_error", "error", `memberships[${index}] time bounds are not ordered`, {
+          recoverable: false,
+        })
+      );
+    }
+    requireFiniteNumber(membership.confidence, `memberships[${index}].confidence`);
+    if (membership.confidence < 0 || membership.confidence > 1) {
+      throw new SolverBridgeError(
+        createStatus("app_contract_error", "error", `memberships[${index}].confidence must be in [0, 1]`, {
+          recoverable: false,
+        })
+      );
+    }
+    requireUint32(membership.localRole ?? 0, `memberships[${index}].localRole`);
+    requireUint32(membership.bindingState ?? 0, `memberships[${index}].bindingState`);
+    requireUint32(membership.membershipVersion ?? 1, `memberships[${index}].membershipVersion`);
+    requireUint32(membership.eventKind ?? 0, `memberships[${index}].eventKind`);
+    requireUint32(membership.statusFlags ?? 0, `memberships[${index}].statusFlags`);
+  });
+  if (request.maxEvents != null) {
+    requirePositiveInteger(request.maxEvents, "maxEvents");
+  }
+}
+
+function buildSpaceTimeIndexF64WithModule(module, request, abiInfo) {
+  validateBuildSpaceTimeIndexRequest(request);
+  if (typeof module._malloc !== "function" || typeof module._free !== "function") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "WebAssembly allocator exports are required", {
+        recoverable: false,
+      })
+    );
+  }
+
+  const pathRows = request.pathRows ?? [];
+  const assemblyStates = request.assemblyStates ?? [];
+  const maxRows = request.maxRows ?? DEFAULT_MAX_SPACETIME_INDEX_ROWS;
+  if (pathRows.length === 0 && assemblyStates.length === 0) {
+    return createSpaceTimeIndexResponse([], 0, abiInfo, "space-time index built");
+  }
+
+  const pathRowsPtr =
+    pathRows.length > 0 ? module._malloc(abiInfo.pathHistoryRowF64Bytes * pathRows.length) : 0;
+  const assemblyRowsPtr =
+    assemblyStates.length > 0
+      ? module._malloc(abiInfo.assemblyStateRowF64Bytes * assemblyStates.length)
+      : 0;
+  const optionsPtr = module._malloc(SPACETIME_INDEX_OPTIONS_F64_BYTES);
+  const rowsPtr = module._malloc(abiInfo.spaceTimeIndexRowF64Bytes * maxRows);
+  const outRowCountPtr = module._malloc(4);
+  const outOverflowCountPtr = module._malloc(4);
+  try {
+    pathRows.forEach((row, index) => {
+      writePathHistoryRowF64(module, pathRowsPtr + index * abiInfo.pathHistoryRowF64Bytes, row);
+    });
+    assemblyStates.forEach((row, index) => {
+      writeAssemblyStateRowF64(module, assemblyRowsPtr + index * abiInfo.assemblyStateRowF64Bytes, row);
+    });
+    writeSpaceTimeIndexOptionsF64(module, optionsPtr, request.options);
+    module.setValue(outRowCountPtr, 0, "i32");
+    module.setValue(outOverflowCountPtr, 0, "i32");
+    const build = module.cwrap("architrino_solver_build_spacetime_index_f64", "number", [
+      "number",
+      "number",
+      "number",
+      "number",
+      "number",
+      "number",
+      "number",
+      "number",
+      "number",
+    ]);
+    const status = build(
+      pathRowsPtr,
+      pathRows.length,
+      assemblyRowsPtr,
+      assemblyStates.length,
+      optionsPtr,
+      rowsPtr,
+      maxRows,
+      outRowCountPtr,
+      outOverflowCountPtr
+    );
+    const rowCount = module.getValue(outRowCountPtr, "i32");
+    const overflowEntryCount = module.getValue(outOverflowCountPtr, "i32");
+    if (status !== 0) {
+      throw new SolverBridgeError(
+        createStatus("internal_solver_error", "halt", `space-time index C ABI returned ${status}`, {
+          recoverable: status === -3,
+          details: { status, rowCount, overflowEntryCount },
+        })
+      );
+    }
+    const rows = readSpaceTimeIndexRows(module, rowsPtr, rowCount, abiInfo);
+    const buffer = copyWasmBytes(module, rowsPtr, rowCount * abiInfo.spaceTimeIndexRowF64Bytes);
+    return createSpaceTimeIndexResponse(rows, overflowEntryCount, abiInfo, "space-time index built", buffer);
+  } finally {
+    if (pathRowsPtr) {
+      module._free(pathRowsPtr);
+    }
+    if (assemblyRowsPtr) {
+      module._free(assemblyRowsPtr);
+    }
+    module._free(optionsPtr);
+    module._free(rowsPtr);
+    module._free(outRowCountPtr);
+    module._free(outOverflowCountPtr);
+  }
+}
+
+function querySpaceTimeIndexF64WithModule(module, request, abiInfo) {
+  validateQuerySpaceTimeIndexRequest(request);
+  if (typeof module._malloc !== "function" || typeof module._free !== "function") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "WebAssembly allocator exports are required", {
+        recoverable: false,
+      })
+    );
+  }
+
+  const rows = request.rows;
+  const maxRows = request.maxRows ?? Math.max(1, rows.length);
+  if (rows.length === 0) {
+    return createSpaceTimeIndexResponse([], 0, abiInfo, "space-time index queried");
+  }
+
+  const inputRowsPtr = module._malloc(abiInfo.spaceTimeIndexRowF64Bytes * rows.length);
+  const queryPtr = module._malloc(SPACETIME_QUERY_F64_BYTES);
+  const optionsPtr = module._malloc(SPACETIME_INDEX_OPTIONS_F64_BYTES);
+  const outputRowsPtr = module._malloc(abiInfo.spaceTimeIndexRowF64Bytes * maxRows);
+  const outRowCountPtr = module._malloc(4);
+  try {
+    rows.forEach((row, index) => {
+      writeSpaceTimeIndexRowF64(module, inputRowsPtr + index * abiInfo.spaceTimeIndexRowF64Bytes, row);
+    });
+    writeSpaceTimeQueryF64(module, queryPtr, request.query);
+    writeSpaceTimeIndexOptionsF64(module, optionsPtr, request.options);
+    module.setValue(outRowCountPtr, 0, "i32");
+    const query = module.cwrap("architrino_solver_query_spacetime_index_f64", "number", [
+      "number",
+      "number",
+      "number",
+      "number",
+      "number",
+      "number",
+      "number",
+    ]);
+    const status = query(
+      inputRowsPtr,
+      rows.length,
+      queryPtr,
+      optionsPtr,
+      outputRowsPtr,
+      maxRows,
+      outRowCountPtr
+    );
+    const rowCount = module.getValue(outRowCountPtr, "i32");
+    if (status !== 0) {
+      throw new SolverBridgeError(
+        createStatus("internal_solver_error", "halt", `space-time query C ABI returned ${status}`, {
+          recoverable: status === -3,
+          details: { status, rowCount },
+        })
+      );
+    }
+    const matches = readSpaceTimeIndexRows(module, outputRowsPtr, rowCount, abiInfo);
+    const buffer = copyWasmBytes(module, outputRowsPtr, rowCount * abiInfo.spaceTimeIndexRowF64Bytes);
+    return createSpaceTimeIndexResponse(matches, 0, abiInfo, "space-time index queried", buffer);
+  } finally {
+    module._free(inputRowsPtr);
+    module._free(queryPtr);
+    module._free(optionsPtr);
+    module._free(outputRowsPtr);
+    module._free(outRowCountPtr);
+  }
+}
+
+function createSpaceTimeIndexResponse(rows, overflowEntryCount, abiInfo, message, buffer = new ArrayBuffer(0)) {
+  return {
+    rows,
+    buffers: [
+      createBufferDescriptor(
+        "spacetime-index",
+        "spacetime_index.v1",
+        rows.length,
+        abiInfo.spaceTimeIndexRowF64Bytes,
+        buffer
+      ),
+    ],
+    overflowEntryCount,
+    status: createStatus("ok", "ok", message),
+  };
+}
+
+function validateBuildSpaceTimeIndexRequest(request) {
+  if (!request || typeof request !== "object") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "space-time index request object is required", {
+        recoverable: false,
+      })
+    );
+  }
+  if (request.pathRows != null && !Array.isArray(request.pathRows)) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "pathRows must be an array", {
+        recoverable: false,
+      })
+    );
+  }
+  if (request.assemblyStates != null && !Array.isArray(request.assemblyStates)) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "assemblyStates must be an array", {
+        recoverable: false,
+      })
+    );
+  }
+  (request.pathRows ?? []).forEach(validatePathHistoryRowF64);
+  (request.assemblyStates ?? []).forEach(validateAssemblyStateRowF64);
+  validateSpaceTimeIndexOptions(request.options);
+  if (request.maxRows != null) {
+    requirePositiveInteger(request.maxRows, "maxRows");
+  }
+}
+
+function validateQuerySpaceTimeIndexRequest(request) {
+  if (!request || typeof request !== "object") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "space-time query request object is required", {
+        recoverable: false,
+      })
+    );
+  }
+  if (!Array.isArray(request.rows)) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "rows must be an array", {
+        recoverable: false,
+      })
+    );
+  }
+  request.rows.forEach(validateSpaceTimeIndexRowF64);
+  validateSpaceTimeQuery(request.query);
+  validateSpaceTimeIndexOptions(request.options);
+  if (request.maxRows != null) {
+    requirePositiveInteger(request.maxRows, "maxRows");
+  }
+}
+
+function validatePathHistoryRowF64(row, index) {
+  if (!row || typeof row !== "object") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", `pathRows[${index}] is required`, {
+        recoverable: false,
+      })
+    );
+  }
+  requireSafeUint64(row.pathKey, `pathRows[${index}].pathKey`);
+  requireSafeUint64(row.segmentIndex, `pathRows[${index}].segmentIndex`);
+  requireFiniteNumber(row.startTime, `pathRows[${index}].startTime`);
+  requireFiniteNumber(row.endTime, `pathRows[${index}].endTime`);
+  validateVector(row.start, `pathRows[${index}].start`);
+  validateVector(row.velocity, `pathRows[${index}].velocity`);
+  requireNonnegativeFiniteNumber(row.errorBound ?? 0, `pathRows[${index}].errorBound`);
+  requireUint32(row.stateFlags ?? 0, `pathRows[${index}].stateFlags`);
+}
+
+function validateAssemblyStateRowF64(row, index) {
+  if (!row || typeof row !== "object") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", `assemblyStates[${index}] is required`, {
+        recoverable: false,
+      })
+    );
+  }
+  requireSafeUint64(row.assemblyKey, `assemblyStates[${index}].assemblyKey`);
+  requireSafeUint64(row.assemblyStateKey, `assemblyStates[${index}].assemblyStateKey`);
+  requireFiniteNumber(row.timeStart, `assemblyStates[${index}].timeStart`);
+  requireFiniteNumber(row.timeEnd, `assemblyStates[${index}].timeEnd`);
+  validateVector(row.center, `assemblyStates[${index}].center`);
+  validateVector(row.velocity, `assemblyStates[${index}].velocity`);
+  requireFiniteNumber(row.phase ?? 0, `assemblyStates[${index}].phase`);
+  requireSafeInt64(row.cycleIndex ?? 0, `assemblyStates[${index}].cycleIndex`);
+  requireUint32(row.modelVersion ?? 1, `assemblyStates[${index}].modelVersion`);
+  requireUint32(row.statusFlags ?? 0, `assemblyStates[${index}].statusFlags`);
+  requireUint32(row.fidelityFlags ?? 0, `assemblyStates[${index}].fidelityFlags`);
+}
+
+function validateSpaceTimeIndexOptions(options) {
+  if (!options || typeof options !== "object") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "space-time index options are required", {
+        recoverable: false,
+      })
+    );
+  }
+  requirePositiveFiniteNumber(options.spatialCellSize, "options.spatialCellSize");
+  requirePositiveFiniteNumber(options.timeBinSize, "options.timeBinSize");
+  requirePositiveInteger(options.maxCellsPerItem, "options.maxCellsPerItem");
+  requireUint32(options.maxCellsPerItem, "options.maxCellsPerItem");
+}
+
+function validateSpaceTimeQuery(query) {
+  if (!query || typeof query !== "object") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "space-time query is required", {
+        recoverable: false,
+      })
+    );
+  }
+  validateSpaceTimeBounds(query.bounds, "query.bounds");
+  if (query.subjectKind != null) {
+    requireUint32(query.subjectKind, "query.subjectKind");
+  }
+  if (query.subjectKey != null) {
+    requireSafeUint64(query.subjectKey, "query.subjectKey");
+  }
+}
+
+function validateSpaceTimeIndexRowF64(row, index) {
+  if (!row || typeof row !== "object") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", `rows[${index}] is required`, {
+        recoverable: false,
+      })
+    );
+  }
+  requireSafeInt64(row.cellX, `rows[${index}].cellX`);
+  requireSafeInt64(row.cellY, `rows[${index}].cellY`);
+  requireSafeInt64(row.cellZ, `rows[${index}].cellZ`);
+  requireSafeInt64(row.cellT, `rows[${index}].cellT`);
+  requireSafeUint64(row.subjectKey, `rows[${index}].subjectKey`);
+  requireSafeUint64(row.rowOffset, `rows[${index}].rowOffset`);
+  validateSpaceTimeBounds(row, `rows[${index}]`);
+  requireUint32(row.subjectKind, `rows[${index}].subjectKind`);
+  requireUint32(row.sourceLayout, `rows[${index}].sourceLayout`);
+  requireUint32(row.stateFlags ?? 0, `rows[${index}].stateFlags`);
+}
+
+function validateSpaceTimeBounds(bounds, label) {
+  if (!bounds || typeof bounds !== "object") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", `${label} bounds are required`, {
+        recoverable: false,
+      })
+    );
+  }
+  validateVector(bounds.min, `${label}.min`);
+  validateVector(bounds.max, `${label}.max`);
+  requireFiniteNumber(bounds.timeStart, `${label}.timeStart`);
+  requireFiniteNumber(bounds.timeEnd, `${label}.timeEnd`);
+  if (
+    bounds.max.x < bounds.min.x ||
+    bounds.max.y < bounds.min.y ||
+    bounds.max.z < bounds.min.z ||
+    bounds.timeEnd < bounds.timeStart
+  ) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", `${label} bounds are not ordered`, {
+        recoverable: false,
+      })
+    );
+  }
 }
 
 function validateRunSimulationRequest(request) {
@@ -860,6 +1627,8 @@ function validateRunSimulationRequest(request) {
   }
   if (request.runKind === "causalRoots") {
     validateCausalRootsRunConfig(request.config);
+  } else if (request.runKind === "motionSimulation") {
+    validateMotionSimulationRunConfig(request.config);
   }
 }
 
@@ -872,6 +1641,17 @@ function validateCausalRootsRunConfig(config) {
     );
   }
   validateCausalRootF64Request(config.rootRequest);
+}
+
+function validateMotionSimulationRunConfig(config) {
+  if (!config || typeof config !== "object") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "motion simulation run config is required", {
+        recoverable: false,
+      })
+    );
+  }
+  validateLinearMotionSampleRequest(config.motionRequest);
 }
 
 async function loadWasmModule(state) {
@@ -916,12 +1696,20 @@ function runExportedSmoke(module, exportName) {
   }
 }
 
-export function hasCausalRootCAbi(module) {
+export function hasSolverCAbi(module) {
   return (
     typeof module?._architrino_solver_solve_causal_roots_f64 === "function" &&
     typeof module?._architrino_solver_solve_roots_and_hits_f64 === "function" &&
+    typeof module?._architrino_solver_build_root_ledger_detail_f64 === "function" &&
     typeof module?._architrino_solver_solve_causal_root_batch_f64 === "function" &&
     typeof module?._architrino_solver_diagnose_precision_f64 === "function" &&
+    typeof module?._architrino_solver_sample_linear_motion_f64 === "function" &&
+    typeof module?._architrino_solver_compute_phase_at_hit_f64 === "function" &&
+    typeof module?._architrino_solver_compute_path_bounds_f64 === "function" &&
+    typeof module?._architrino_solver_intersect_sphere_points_f64 === "function" &&
+    typeof module?._architrino_solver_detect_assembly_membership_events_f64 === "function" &&
+    typeof module?._architrino_solver_build_spacetime_index_f64 === "function" &&
+    typeof module?._architrino_solver_query_spacetime_index_f64 === "function" &&
     typeof module?._architrino_solver_get_abi_info === "function"
   );
 }
@@ -945,6 +1733,20 @@ function readAbiInfo(module) {
       rootRequestF64Bytes: module.getValue(ptr + 12, "i32"),
       rootRowF64Bytes: module.getValue(ptr + 16, "i32"),
       delayedHitRowF64Bytes: module.getValue(ptr + 20, "i32"),
+      motionSampleRequestF64Bytes: module.getValue(ptr + 24, "i32"),
+      motionFrameRowF64Bytes: module.getValue(ptr + 28, "i32"),
+      phaseClockF64Bytes: module.getValue(ptr + 32, "i32"),
+      phaseAtHitRowF64Bytes: module.getValue(ptr + 36, "i32"),
+      boundsRowF64Bytes: module.getValue(ptr + 40, "i32"),
+      spherePointRequestF64Bytes: module.getValue(ptr + 44, "i32"),
+      spherePointRowF64Bytes: module.getValue(ptr + 48, "i32"),
+      assemblyStateRowF64Bytes: module.getValue(ptr + 52, "i32"),
+      assemblyMembershipRowF64Bytes: module.getValue(ptr + 56, "i32"),
+      assemblyHierarchyRowF64Bytes: module.getValue(ptr + 60, "i32"),
+      assemblyEventRowF64Bytes: module.getValue(ptr + 64, "i32"),
+      pathHistoryRowF64Bytes: module.getValue(ptr + 68, "i32"),
+      spaceTimeIndexRowF64Bytes: module.getValue(ptr + 72, "i32"),
+      rootLedgerDetailRowF64Bytes: module.getValue(ptr + 76, "i32"),
     };
   } finally {
     module._free(ptr);
@@ -959,6 +1761,20 @@ function defaultAbiInfo() {
     rootRequestF64Bytes: CAUSAL_ROOT_REQUEST_F64_BYTES,
     rootRowF64Bytes: CAUSAL_ROOT_ROW_F64_BYTES,
     delayedHitRowF64Bytes: DELAYED_HIT_ROW_F64_BYTES,
+    motionSampleRequestF64Bytes: MOTION_SAMPLE_REQUEST_F64_BYTES,
+    motionFrameRowF64Bytes: FRAME_BUFFER_ROW_F64_BYTES,
+    phaseClockF64Bytes: PHASE_CLOCK_F64_BYTES,
+    phaseAtHitRowF64Bytes: PHASE_AT_HIT_ROW_F64_BYTES,
+    boundsRowF64Bytes: GEOMETRY_BOUNDS_ROW_F64_BYTES,
+    spherePointRequestF64Bytes: SPHERE_POINT_INTERSECTION_REQUEST_F64_BYTES,
+    spherePointRowF64Bytes: SPHERE_POINT_INTERSECTION_ROW_F64_BYTES,
+    assemblyStateRowF64Bytes: ASSEMBLY_STATE_ROW_F64_BYTES,
+    assemblyMembershipRowF64Bytes: ASSEMBLY_MEMBERSHIP_ROW_F64_BYTES,
+    assemblyHierarchyRowF64Bytes: ASSEMBLY_HIERARCHY_ROW_F64_BYTES,
+    assemblyEventRowF64Bytes: ASSEMBLY_EVENT_ROW_F64_BYTES,
+    pathHistoryRowF64Bytes: PATH_HISTORY_ROW_F64_BYTES,
+    spaceTimeIndexRowF64Bytes: SPACETIME_INDEX_ROW_F64_BYTES,
+    rootLedgerDetailRowF64Bytes: ROOT_LEDGER_DETAIL_ROW_F64_BYTES,
   };
 }
 
@@ -966,7 +1782,21 @@ function assertAbiInfo(abiInfo) {
   if (
     abiInfo.rootRequestF64Bytes !== CAUSAL_ROOT_REQUEST_F64_BYTES ||
     abiInfo.rootRowF64Bytes !== CAUSAL_ROOT_ROW_F64_BYTES ||
-    abiInfo.delayedHitRowF64Bytes !== DELAYED_HIT_ROW_F64_BYTES
+    abiInfo.delayedHitRowF64Bytes !== DELAYED_HIT_ROW_F64_BYTES ||
+    abiInfo.motionSampleRequestF64Bytes !== MOTION_SAMPLE_REQUEST_F64_BYTES ||
+    abiInfo.motionFrameRowF64Bytes !== FRAME_BUFFER_ROW_F64_BYTES ||
+    abiInfo.phaseClockF64Bytes !== PHASE_CLOCK_F64_BYTES ||
+    abiInfo.phaseAtHitRowF64Bytes !== PHASE_AT_HIT_ROW_F64_BYTES ||
+    abiInfo.boundsRowF64Bytes !== GEOMETRY_BOUNDS_ROW_F64_BYTES ||
+    abiInfo.spherePointRequestF64Bytes !== SPHERE_POINT_INTERSECTION_REQUEST_F64_BYTES ||
+    abiInfo.spherePointRowF64Bytes !== SPHERE_POINT_INTERSECTION_ROW_F64_BYTES ||
+    abiInfo.assemblyStateRowF64Bytes !== ASSEMBLY_STATE_ROW_F64_BYTES ||
+    abiInfo.assemblyMembershipRowF64Bytes !== ASSEMBLY_MEMBERSHIP_ROW_F64_BYTES ||
+    abiInfo.assemblyHierarchyRowF64Bytes !== ASSEMBLY_HIERARCHY_ROW_F64_BYTES ||
+    abiInfo.assemblyEventRowF64Bytes !== ASSEMBLY_EVENT_ROW_F64_BYTES ||
+    abiInfo.pathHistoryRowF64Bytes !== PATH_HISTORY_ROW_F64_BYTES ||
+    abiInfo.spaceTimeIndexRowF64Bytes !== SPACETIME_INDEX_ROW_F64_BYTES ||
+    abiInfo.rootLedgerDetailRowF64Bytes !== ROOT_LEDGER_DETAIL_ROW_F64_BYTES
   ) {
     throw new SolverBridgeError(
       createStatus("app_contract_error", "error", "solver ABI row sizes do not match bridge layout", {
@@ -1025,6 +1855,67 @@ function solveCausalRootsF64WithModule(module, request, abiInfo) {
   }
 }
 
+function buildRootLedgerDetailF64WithModule(module, request, abiInfo) {
+  validateCausalRootF64Request(request);
+  if (request.maxRows != null) {
+    requirePositiveInteger(request.maxRows, "maxRows");
+  }
+  if (typeof module._malloc !== "function" || typeof module._free !== "function") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "WebAssembly allocator exports are required", {
+        recoverable: false,
+      })
+    );
+  }
+  const maxRows = request.maxRows ?? DEFAULT_MAX_ROOT_LEDGER_DETAIL_ROWS;
+  const requestPtr = module._malloc(abiInfo.rootRequestF64Bytes);
+  const rowsPtr = module._malloc(abiInfo.rootLedgerDetailRowF64Bytes * maxRows);
+  const outCountPtr = module._malloc(4);
+
+  try {
+    writeCausalRootRequestF64(module, requestPtr, request);
+    module.setValue(outCountPtr, 0, "i32");
+    const buildLedger = module.cwrap("architrino_solver_build_root_ledger_detail_f64", "number", [
+      "number",
+      "number",
+      "number",
+      "number",
+    ]);
+    const status = buildLedger(requestPtr, rowsPtr, maxRows, outCountPtr);
+    const rowCount = module.getValue(outCountPtr, "i32");
+    if (status !== 0) {
+      throw new SolverBridgeError(
+        createStatus("internal_solver_error", "halt", `root-ledger detail C ABI returned ${status}`, {
+          recoverable: status === -3,
+          details: { status, rowCount, maxRows },
+        })
+      );
+    }
+    const rows = [];
+    for (let index = 0; index < rowCount; index += 1) {
+      rows.push(readRootLedgerDetailRowF64(module, rowsPtr + index * abiInfo.rootLedgerDetailRowF64Bytes));
+    }
+    const buffer = copyWasmBytes(module, rowsPtr, rowCount * abiInfo.rootLedgerDetailRowF64Bytes);
+    return {
+      rows,
+      buffers: [
+        createBufferDescriptor(
+          "root-ledger-detail",
+          "root_ledger_detail.v1",
+          rowCount,
+          abiInfo.rootLedgerDetailRowF64Bytes,
+          buffer
+        ),
+      ],
+      status: createStatus("ok", "ok", "root-ledger detail built"),
+    };
+  } finally {
+    module._free(requestPtr);
+    module._free(rowsPtr);
+    module._free(outCountPtr);
+  }
+}
+
 function diagnosePrecisionF64WithModule(module, request, abiInfo) {
   validateCausalRootF64Request(request);
   if (typeof module._malloc !== "function" || typeof module._free !== "function") {
@@ -1055,12 +1946,28 @@ function diagnosePrecisionF64WithModule(module, request, abiInfo) {
     }
     return {
       ...diagnostic,
-      status: createStatus("ok", "ok", "precision diagnostic complete"),
+      status: createPrecisionDiagnosticStatus(diagnostic),
     };
   } finally {
     module._free(requestPtr);
     module._free(diagnosticPtr);
   }
+}
+
+function createPrecisionDiagnosticStatus(diagnostic) {
+  const code = STATUS_CODE_BY_ID[diagnostic.statusCode] || "precision_failed";
+  if (code === "ok") {
+    return createStatus("ok", "ok", "precision diagnostic complete");
+  }
+  return createStatus(code, "warning", "precision diagnostic completed with warnings", {
+    details: {
+      statusCode: diagnostic.statusCode,
+      scaleResolutionLimited: diagnostic.scaleResolutionLimited,
+      timeResolutionLimited: diagnostic.timeResolutionLimited,
+      scaleNormalizationRecommended: diagnostic.scaleNormalizationRecommended,
+      extendedPrecisionRecommended: diagnostic.extendedPrecisionRecommended,
+    },
+  });
 }
 
 function solveCausalRootBatchF64WithModule(module, request, abiInfo) {
@@ -1413,6 +2320,36 @@ function requireNonnegativeInteger(value, label) {
   }
 }
 
+function requireSafeUint64(value, label) {
+  if (!Number.isSafeInteger(value) || value < 0) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", `${label} must be a nonnegative safe integer`, {
+        recoverable: false,
+      })
+    );
+  }
+}
+
+function requireSafeInt64(value, label) {
+  if (!Number.isSafeInteger(value)) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", `${label} must be a safe integer`, {
+        recoverable: false,
+      })
+    );
+  }
+}
+
+function requireUint32(value, label) {
+  if (!Number.isInteger(value) || value < 0 || value > 0xffffffff) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", `${label} must fit uint32`, {
+        recoverable: false,
+      })
+    );
+  }
+}
+
 function writeCausalRootRequestF64(module, ptr, request) {
   writeSegment(module, ptr, request.source);
   writeSegment(module, ptr + 72, request.receiver);
@@ -1421,6 +2358,128 @@ function writeCausalRootRequestF64(module, ptr, request) {
   module.setValue(ptr + 160, request.rootTolerance ?? 1e-12, "double");
   module.setValue(ptr + 168, request.maxIterations ?? 96, "i32");
   module.setValue(ptr + 172, request.scanSubdivisions ?? 64, "i32");
+}
+
+function writeCausalRootRowF64(module, ptr, root) {
+  module.setValue(ptr, root.rootId, "i32");
+  module.setValue(ptr + 4, root.statusCode, "i32");
+  module.setValue(ptr + 8, root.emissionTime, "double");
+  module.setValue(ptr + 16, root.hitTime, "double");
+  module.setValue(ptr + 24, root.delay ?? 0, "double");
+  module.setValue(ptr + 32, root.distance ?? 0, "double");
+  module.setValue(ptr + 40, root.residual ?? 0, "double");
+  module.setValue(ptr + 48, root.jacobian ?? 0, "double");
+  module.setValue(ptr + 56, root.branchWeight ?? 0, "double");
+  writeVector(module, ptr + 64, root.sourcePoint ?? { x: 0, y: 0, z: 0 });
+  writeVector(module, ptr + 88, root.receiverPoint ?? { x: 0, y: 0, z: 0 });
+}
+
+function writePhaseClockF64(module, ptr, clock) {
+  module.setValue(ptr, clock.period, "double");
+  module.setValue(ptr + 8, clock.epoch ?? 0, "double");
+  module.setValue(ptr + 16, clock.phaseOffset ?? 0, "double");
+}
+
+function writeSpherePointIntersectionRequestF64(module, ptr, request) {
+  writeVector(module, ptr, request.center);
+  module.setValue(ptr + 24, request.radius, "double");
+  writeVector(module, ptr + 32, request.point);
+  module.setValue(ptr + 56, request.tolerance ?? 0, "double");
+}
+
+function writeMotionSampleRequestF64(module, ptr, request) {
+  writeSegment(module, ptr, request.segment);
+  writeUint64(module, ptr + 72, request.pathKey);
+  module.setValue(ptr + 80, request.startTime, "double");
+  module.setValue(ptr + 88, request.endTime, "double");
+  module.setValue(ptr + 96, request.step, "double");
+  module.setValue(ptr + 104, request.stateFlags ?? 0, "i32");
+  module.setValue(ptr + 108, 0, "i32");
+}
+
+function writeAssemblyMembershipRowF64(module, ptr, membership) {
+  writeUint64(module, ptr, membership.membershipKey);
+  writeUint64(module, ptr + 8, membership.pathKey);
+  writeUint64(module, ptr + 16, membership.assemblyKey);
+  writeUint64(module, ptr + 24, membership.assemblyStateKey);
+  module.setValue(ptr + 32, membership.timeStart, "double");
+  module.setValue(ptr + 40, membership.timeEnd, "double");
+  module.setValue(ptr + 48, membership.confidence, "double");
+  module.setValue(ptr + 56, membership.localRole ?? 0, "i32");
+  module.setValue(ptr + 60, membership.bindingState ?? 0, "i32");
+  module.setValue(ptr + 64, membership.membershipVersion ?? 1, "i32");
+  module.setValue(ptr + 68, membership.eventKind ?? 0, "i32");
+  module.setValue(ptr + 72, membership.statusFlags ?? 0, "i32");
+  module.setValue(ptr + 76, 0, "i32");
+}
+
+function writePathHistoryRowF64(module, ptr, row) {
+  writeUint64(module, ptr, row.pathKey);
+  writeUint64(module, ptr + 8, row.segmentIndex);
+  module.setValue(ptr + 16, row.startTime, "double");
+  module.setValue(ptr + 24, row.endTime, "double");
+  writeVector(module, ptr + 32, row.start);
+  writeVector(module, ptr + 56, row.velocity);
+  module.setValue(ptr + 80, row.errorBound ?? 0, "double");
+  module.setValue(ptr + 88, row.stateFlags ?? 0, "i32");
+  module.setValue(ptr + 92, 0, "i32");
+}
+
+function writeAssemblyStateRowF64(module, ptr, row) {
+  writeUint64(module, ptr, row.assemblyKey);
+  writeUint64(module, ptr + 8, row.assemblyStateKey);
+  module.setValue(ptr + 16, row.timeStart, "double");
+  module.setValue(ptr + 24, row.timeEnd, "double");
+  writeVector(module, ptr + 32, row.center);
+  writeVector(module, ptr + 56, row.velocity);
+  module.setValue(ptr + 80, row.phase ?? 0, "double");
+  writeInt64(module, ptr + 88, row.cycleIndex ?? 0);
+  module.setValue(ptr + 96, row.modelVersion ?? 1, "i32");
+  module.setValue(ptr + 100, row.statusFlags ?? 0, "i32");
+  module.setValue(ptr + 104, row.fidelityFlags ?? 0, "i32");
+  module.setValue(ptr + 108, 0, "i32");
+}
+
+function writeSpaceTimeIndexOptionsF64(module, ptr, options) {
+  module.setValue(ptr, options.spatialCellSize, "double");
+  module.setValue(ptr + 8, options.timeBinSize, "double");
+  module.setValue(ptr + 16, options.maxCellsPerItem, "i32");
+  module.setValue(ptr + 20, 0, "i32");
+}
+
+function writeSpaceTimeQueryF64(module, ptr, query) {
+  writeSpaceTimeBoundsF64(module, ptr, query.bounds);
+  module.setValue(ptr + 64, query.filterSpace === false ? 0 : 1, "i32");
+  module.setValue(ptr + 68, query.filterTime === false ? 0 : 1, "i32");
+  module.setValue(ptr + 72, query.subjectKind == null ? 0 : 1, "i32");
+  module.setValue(ptr + 76, query.subjectKind ?? 1, "i32");
+  module.setValue(ptr + 80, query.subjectKey == null ? 0 : 1, "i32");
+  module.setValue(ptr + 84, 0, "i32");
+  writeUint64(module, ptr + 88, query.subjectKey ?? 0);
+}
+
+function writeSpaceTimeBoundsF64(module, ptr, bounds) {
+  writeVector(module, ptr, bounds.min);
+  writeVector(module, ptr + 24, bounds.max);
+  module.setValue(ptr + 48, bounds.timeStart, "double");
+  module.setValue(ptr + 56, bounds.timeEnd, "double");
+}
+
+function writeSpaceTimeIndexRowF64(module, ptr, row) {
+  writeInt64(module, ptr, row.cellX);
+  writeInt64(module, ptr + 8, row.cellY);
+  writeInt64(module, ptr + 16, row.cellZ);
+  writeInt64(module, ptr + 24, row.cellT);
+  writeUint64(module, ptr + 32, row.subjectKey);
+  writeUint64(module, ptr + 40, row.rowOffset);
+  writeVector(module, ptr + 48, row.min);
+  writeVector(module, ptr + 72, row.max);
+  module.setValue(ptr + 96, row.timeStart, "double");
+  module.setValue(ptr + 104, row.timeEnd, "double");
+  module.setValue(ptr + 112, row.subjectKind, "i32");
+  module.setValue(ptr + 116, row.sourceLayout, "i32");
+  module.setValue(ptr + 120, row.stateFlags ?? 0, "i32");
+  module.setValue(ptr + 124, 0, "i32");
 }
 
 function writeSegment(module, ptr, segment) {
@@ -1450,6 +2509,34 @@ function readCausalRootRowF64(module, ptr) {
     branchWeight: module.getValue(ptr + 56, "double"),
     sourcePoint: readVector(module, ptr + 64),
     receiverPoint: readVector(module, ptr + 88),
+  };
+}
+
+function readRootLedgerDetailRowF64(module, ptr) {
+  return {
+    ledgerKey: readUint64(module, ptr),
+    sourceKey: readUint64(module, ptr + 8),
+    receiverKey: readUint64(module, ptr + 16),
+    rootKey: readUint64(module, ptr + 24),
+    intervalStart: module.getValue(ptr + 32, "double"),
+    intervalEnd: module.getValue(ptr + 40, "double"),
+    emissionTime: module.getValue(ptr + 48, "double"),
+    hitTime: module.getValue(ptr + 56, "double"),
+    delay: module.getValue(ptr + 64, "double"),
+    residual: module.getValue(ptr + 72, "double"),
+    jacobian: module.getValue(ptr + 80, "double"),
+    branchWeight: module.getValue(ptr + 88, "double"),
+    bracketStart: module.getValue(ptr + 96, "double"),
+    bracketEnd: module.getValue(ptr + 104, "double"),
+    sourcePoint: readVector(module, ptr + 112),
+    receiverPoint: readVector(module, ptr + 136),
+    entryKind: module.getValue(ptr + 160, "i32") >>> 0,
+    rootKind: module.getValue(ptr + 164, "i32") >>> 0,
+    statusCode: module.getValue(ptr + 168, "i32") >>> 0,
+    jacobianSignStratum: module.getValue(ptr + 172, "i32") >>> 0,
+    sequenceIndex: module.getValue(ptr + 176, "i32") >>> 0,
+    iterationCount: module.getValue(ptr + 180, "i32") >>> 0,
+    stateFlags: module.getValue(ptr + 184, "i32") >>> 0,
   };
 }
 
@@ -1486,6 +2573,8 @@ function readPrecisionDiagnosticRowF64(module, ptr) {
     recommendedNumericType: NUMERIC_TYPE_BY_ID[module.getValue(ptr + 8, "i32")] || "f64",
     scaleNormalizationRecommended: Boolean(flags & 1),
     extendedPrecisionRecommended: Boolean(flags & 2),
+    scaleResolutionLimited: Boolean(flags & 4),
+    timeResolutionLimited: Boolean(flags & 8),
     timeScale: {
       ordersOfMagnitude: module.getValue(ptr + 16, "double"),
       maxMagnitude: module.getValue(ptr + 48, "double"),
@@ -1507,12 +2596,162 @@ function readPrecisionDiagnosticRowF64(module, ptr) {
   };
 }
 
+function readPhaseAtHitRowF64(module, ptr) {
+  return {
+    rootId: module.getValue(ptr, "i32"),
+    statusCode: module.getValue(ptr + 4, "i32"),
+    sourceCycleIndex: readInt64(module, ptr + 8),
+    receiverCycleIndex: readInt64(module, ptr + 16),
+    emissionTime: module.getValue(ptr + 24, "double"),
+    hitTime: module.getValue(ptr + 32, "double"),
+    sourcePhase: module.getValue(ptr + 40, "double"),
+    receiverPhase: module.getValue(ptr + 48, "double"),
+    phaseDelta: module.getValue(ptr + 56, "double"),
+    phaseSpread: module.getValue(ptr + 64, "double"),
+  };
+}
+
+function readBoundsRowF64(module, ptr) {
+  return {
+    itemIndex: module.getValue(ptr, "i32"),
+    statusCode: module.getValue(ptr + 4, "i32"),
+    pathKey: readUint64(module, ptr + 8),
+    min: readVector(module, ptr + 16),
+    max: readVector(module, ptr + 40),
+  };
+}
+
+function readSpherePointIntersectionRowF64(module, ptr) {
+  return {
+    itemIndex: module.getValue(ptr, "i32"),
+    intersects: module.getValue(ptr + 4, "i32") !== 0,
+    centerDistance: module.getValue(ptr + 8, "double"),
+    signedDistance: module.getValue(ptr + 16, "double"),
+  };
+}
+
+function readMotionFrameRowF64(module, ptr) {
+  return {
+    pathKey: readUint64(module, ptr),
+    frameIndex: readUint64(module, ptr + 8),
+    time: module.getValue(ptr + 16, "double"),
+    position: readVector(module, ptr + 24),
+    velocity: readVector(module, ptr + 48),
+    errorBound: module.getValue(ptr + 72, "double"),
+    stateFlags: module.getValue(ptr + 80, "i32") >>> 0,
+  };
+}
+
+function readAssemblyEventRowF64(module, ptr) {
+  return {
+    eventKey: readUint64(module, ptr),
+    primaryId: readUint64(module, ptr + 8),
+    secondaryId: readUint64(module, ptr + 16),
+    priorStateKey: readUint64(module, ptr + 24),
+    nextStateKey: readUint64(module, ptr + 32),
+    relatedPathKey: readUint64(module, ptr + 40),
+    relatedAssemblyKey: readUint64(module, ptr + 48),
+    branchTransitionKey: readUint64(module, ptr + 56),
+    eventTime: module.getValue(ptr + 64, "double"),
+    eventKind: module.getValue(ptr + 72, "i32") >>> 0,
+    speedRegime: module.getValue(ptr + 76, "i32") >>> 0,
+    statusFlags: module.getValue(ptr + 80, "i32") >>> 0,
+  };
+}
+
+function readSpaceTimeIndexRows(module, ptr, rowCount, abiInfo) {
+  const rows = [];
+  for (let index = 0; index < rowCount; index += 1) {
+    rows.push(readSpaceTimeIndexRowF64(module, ptr + index * abiInfo.spaceTimeIndexRowF64Bytes));
+  }
+  return rows;
+}
+
+function readSpaceTimeIndexRowF64(module, ptr) {
+  return {
+    cellX: readInt64(module, ptr),
+    cellY: readInt64(module, ptr + 8),
+    cellZ: readInt64(module, ptr + 16),
+    cellT: readInt64(module, ptr + 24),
+    subjectKey: readUint64(module, ptr + 32),
+    rowOffset: readUint64(module, ptr + 40),
+    min: readVector(module, ptr + 48),
+    max: readVector(module, ptr + 72),
+    timeStart: module.getValue(ptr + 96, "double"),
+    timeEnd: module.getValue(ptr + 104, "double"),
+    subjectKind: module.getValue(ptr + 112, "i32") >>> 0,
+    sourceLayout: module.getValue(ptr + 116, "i32") >>> 0,
+    stateFlags: module.getValue(ptr + 120, "i32") >>> 0,
+  };
+}
+
 function readVector(module, ptr) {
   return {
     x: module.getValue(ptr, "double"),
     y: module.getValue(ptr + 8, "double"),
     z: module.getValue(ptr + 16, "double"),
   };
+}
+
+function writeUint64(module, ptr, value) {
+  const encoded = BigInt(value);
+  const low = Number(encoded & 0xffffffffn);
+  const high = Number((encoded >> 32n) & 0xffffffffn);
+  if (module.HEAPU32 && ptr % 4 === 0) {
+    const index = ptr >>> 2;
+    module.HEAPU32[index] = low;
+    module.HEAPU32[index + 1] = high;
+    return;
+  }
+  module.setValue(ptr, low, "i32");
+  module.setValue(ptr + 4, high, "i32");
+}
+
+function writeInt64(module, ptr, value) {
+  let encoded = BigInt(value);
+  if (encoded < 0) {
+    encoded = (1n << 64n) + encoded;
+  }
+  const low = Number(encoded & 0xffffffffn);
+  const high = Number((encoded >> 32n) & 0xffffffffn);
+  if (module.HEAPU32 && ptr % 4 === 0) {
+    const index = ptr >>> 2;
+    module.HEAPU32[index] = low;
+    module.HEAPU32[index + 1] = high;
+    return;
+  }
+  module.setValue(ptr, low, "i32");
+  module.setValue(ptr + 4, high, "i32");
+}
+
+function readUint64(module, ptr) {
+  let low;
+  let high;
+  if (module.HEAPU32 && ptr % 4 === 0) {
+    const index = ptr >>> 2;
+    low = module.HEAPU32[index];
+    high = module.HEAPU32[index + 1];
+  } else {
+    low = module.getValue(ptr, "i32") >>> 0;
+    high = module.getValue(ptr + 4, "i32") >>> 0;
+  }
+  return Number((BigInt(high) << 32n) + BigInt(low));
+}
+
+function readInt64(module, ptr) {
+  let low;
+  let high;
+  if (module.HEAPU32 && ptr % 4 === 0) {
+    const index = ptr >>> 2;
+    low = module.HEAPU32[index];
+    high = module.HEAPU32[index + 1];
+  } else {
+    low = module.getValue(ptr, "i32") >>> 0;
+    high = module.getValue(ptr + 4, "i32") >>> 0;
+  }
+  const unsigned = (BigInt(high) << 32n) + BigInt(low);
+  const signed = high & 0x80000000 ? unsigned - (1n << 64n) : unsigned;
+  return Number(signed);
 }
 
 function copyWasmBytes(module, ptr, byteLength) {

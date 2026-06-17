@@ -8,7 +8,7 @@ import {
   SOLVER_APP_BRIDGE_API_VERSION,
   SolverBridgeError,
   createSolverAppBridgeClient,
-  hasCausalRootCAbi,
+  hasSolverCAbi,
 } from "../src/solver/app/SolverAppBridge.mjs";
 import { classifySolverBaselineResponse } from "../src/solver/app/SolverBaselineComparison.mjs";
 
@@ -45,19 +45,71 @@ assert(initResponse.status.code === "ok", "expected init status ok");
 assert(initResponse.capabilities.wasmModuleFactory === true, "expected wasm-backed capabilities");
 assert(initResponse.capabilities.abiInfo?.rootRowF64Bytes === 112, "expected root row ABI size");
 assert(
+  initResponse.capabilities.abiInfo?.rootLedgerDetailRowF64Bytes === 192,
+  "expected root-ledger detail row ABI size"
+);
+assert(
   initResponse.capabilities.abiInfo?.delayedHitRowF64Bytes === 128,
   "expected delayed-hit row ABI size"
+);
+assert(
+  initResponse.capabilities.abiInfo?.motionSampleRequestF64Bytes === 112,
+  "expected motion sample request ABI size"
+);
+assert(
+  initResponse.capabilities.abiInfo?.motionFrameRowF64Bytes === 88,
+  "expected motion frame row ABI size"
+);
+assert(initResponse.capabilities.abiInfo?.phaseClockF64Bytes === 24, "expected phase clock ABI size");
+assert(
+  initResponse.capabilities.abiInfo?.phaseAtHitRowF64Bytes === 72,
+  "expected phase-at-hit row ABI size"
+);
+assert(initResponse.capabilities.abiInfo?.boundsRowF64Bytes === 64, "expected bounds row ABI size");
+assert(
+  initResponse.capabilities.abiInfo?.spherePointRequestF64Bytes === 64,
+  "expected sphere-point request ABI size"
+);
+assert(
+  initResponse.capabilities.abiInfo?.spherePointRowF64Bytes === 24,
+  "expected sphere-point row ABI size"
+);
+assert(
+  initResponse.capabilities.abiInfo?.assemblyStateRowF64Bytes === 112,
+  "expected assembly state row ABI size"
+);
+assert(
+  initResponse.capabilities.abiInfo?.assemblyMembershipRowF64Bytes === 80,
+  "expected assembly membership row ABI size"
+);
+assert(
+  initResponse.capabilities.abiInfo?.assemblyHierarchyRowF64Bytes === 56,
+  "expected assembly hierarchy row ABI size"
+);
+assert(
+  initResponse.capabilities.abiInfo?.assemblyEventRowF64Bytes === 88,
+  "expected assembly event row ABI size"
+);
+assert(
+  initResponse.capabilities.abiInfo?.pathHistoryRowF64Bytes === 96,
+  "expected path-history row ABI size"
+);
+assert(
+  initResponse.capabilities.abiInfo?.spaceTimeIndexRowF64Bytes === 128,
+  "expected space-time index row ABI size"
 );
 const wasmModule = await createWasmModule({
   locateFile: (fileName) => path.join(wasmDir, fileName),
 });
-assert(hasCausalRootCAbi(wasmModule), "expected causal-root C ABI export");
+assert(hasSolverCAbi(wasmModule), "expected solver C ABI exports");
 
 const capabilities = await client.capabilities();
 assert(
   capabilities.outputLayouts.includes("root_ledger.v1") &&
-    capabilities.outputLayouts.includes("delayed_hit_events.v1"),
-  "expected root and delayed-hit layouts"
+    capabilities.outputLayouts.includes("root_ledger_detail.v1") &&
+    capabilities.outputLayouts.includes("delayed_hit_events.v1") &&
+    capabilities.outputLayouts.includes("spacetime_index.v1"),
+  "expected root, root-detail, delayed-hit, and spacetime index layouts"
 );
 
 const cancelStatus = await client.cancelRun({ runId: "smoke", reason: "smoke complete" });
@@ -109,6 +161,186 @@ assert(motionResponse.frames[2].position.z === 1, "expected final motion z");
 const frameBuffer = findBuffer(motionResponse, "frame_buffer.v1");
 assert(frameBuffer.buffer.byteLength === 264, "expected frame buffer byte length");
 
+const geometryResponse = await client.computeSharedGeometryF64({
+  pathBounds: [
+    {
+      pathKey: 99,
+      segment: {
+        startTime: 2,
+        endTime: 6,
+        positionAtStart: { x: 10, y: -2, z: 1 },
+        velocity: { x: -1, y: 3, z: 0.5 },
+      },
+    },
+  ],
+  spherePointIntersections: [
+    {
+      center: { x: 0, y: 0, z: 0 },
+      radius: 5,
+      point: { x: 3, y: 4, z: 0 },
+      tolerance: 1e-12,
+    },
+    {
+      center: { x: 0, y: 0, z: 0 },
+      radius: 4,
+      point: { x: 3, y: 4, z: 0 },
+      tolerance: 1e-12,
+    },
+  ],
+});
+assert(geometryResponse.status.code === "ok", "expected shared geometry status ok");
+assert(geometryResponse.pathBounds.length === 1, "expected one path bounds row");
+assert(geometryResponse.pathBounds[0].pathKey === 99, "expected path bounds key");
+assert(geometryResponse.pathBounds[0].min.x === 6, "expected path bounds min x");
+assert(geometryResponse.pathBounds[0].max.y === 10, "expected path bounds max y");
+assert(geometryResponse.spherePointIntersections.length === 2, "expected two sphere rows");
+assert(geometryResponse.spherePointIntersections[0].intersects, "expected first sphere intersection");
+assert(!geometryResponse.spherePointIntersections[1].intersects, "expected second sphere miss");
+assert(
+  Math.abs(geometryResponse.spherePointIntersections[1].signedDistance - 1) <= 1e-10,
+  "expected second sphere signed distance"
+);
+
+const assemblyEventsResponse = await client.detectAssemblyMembershipEventsF64({
+  memberships: [
+    {
+      membershipKey: 1001,
+      pathKey: 5001,
+      assemblyKey: 7001,
+      assemblyStateKey: 7101,
+      timeStart: 0,
+      timeEnd: 5,
+      confidence: 1,
+      localRole: 1,
+      bindingState: 1,
+      membershipVersion: 1,
+    },
+    {
+      membershipKey: 1002,
+      pathKey: 5001,
+      assemblyKey: 7001,
+      assemblyStateKey: 7102,
+      timeStart: 5,
+      timeEnd: 8,
+      confidence: 1,
+      localRole: 2,
+      bindingState: 1,
+      membershipVersion: 1,
+    },
+    {
+      membershipKey: 1003,
+      pathKey: 5001,
+      assemblyKey: 0,
+      assemblyStateKey: 0,
+      timeStart: 8,
+      timeEnd: 10,
+      confidence: 1,
+      localRole: 0,
+      bindingState: 0,
+      membershipVersion: 1,
+    },
+  ],
+});
+assert(assemblyEventsResponse.status.code === "ok", "expected assembly event status ok");
+assert(assemblyEventsResponse.events.length === 2, "expected two assembly membership events");
+assert(assemblyEventsResponse.events[0].eventKind === 3, "expected membership changed event");
+assert(assemblyEventsResponse.events[0].priorStateKey === 7101, "expected prior assembly state");
+assert(assemblyEventsResponse.events[0].nextStateKey === 7102, "expected next assembly state");
+assert(assemblyEventsResponse.events[1].eventKind === 2, "expected membership leave event");
+assert(assemblyEventsResponse.events[1].eventTime === 8, "expected membership leave time");
+const assemblyEventBuffer = findBuffer(assemblyEventsResponse, "assembly_events.v1");
+assert(assemblyEventBuffer.rowCount === 2, "expected two assembly event buffer rows");
+assert(assemblyEventBuffer.buffer.byteLength === 176, "expected assembly event buffer byte length");
+
+const spaceTimeIndexResponse = await client.buildSpaceTimeIndexF64({
+  pathRows: [
+    {
+      pathKey: 5001,
+      segmentIndex: 0,
+      startTime: 0,
+      endTime: 2,
+      start: { x: 0, y: 0, z: 0 },
+      velocity: { x: 1, y: 0, z: 0 },
+      errorBound: 0,
+      stateFlags: 0,
+    },
+    {
+      pathKey: 5002,
+      segmentIndex: 0,
+      startTime: 0,
+      endTime: 2,
+      start: { x: 20, y: 0, z: 0 },
+      velocity: { x: 1, y: 0, z: 0 },
+      errorBound: 0,
+      stateFlags: 0,
+    },
+  ],
+  assemblyStates: [
+    {
+      assemblyKey: 7001,
+      assemblyStateKey: 7101,
+      timeStart: 0,
+      timeEnd: 2,
+      center: { x: 1, y: 1, z: 0 },
+      velocity: { x: 0, y: 0.5, z: 0 },
+      phase: 0.25,
+      cycleIndex: 3,
+      modelVersion: 1,
+      statusFlags: 0,
+      fidelityFlags: 0,
+    },
+  ],
+  options: { spatialCellSize: 1, timeBinSize: 1, maxCellsPerItem: 128 },
+  maxRows: 64,
+});
+assert(spaceTimeIndexResponse.status.code === "ok", "expected space-time index build status ok");
+assert(spaceTimeIndexResponse.rows.length > 0, "expected space-time index rows");
+assert(spaceTimeIndexResponse.overflowEntryCount === 0, "expected no space-time index overflow");
+const spaceTimeIndexBuffer = findBuffer(spaceTimeIndexResponse, "spacetime_index.v1");
+assert(spaceTimeIndexBuffer.rowCount === spaceTimeIndexResponse.rows.length, "expected space-time row count");
+assert(
+  spaceTimeIndexBuffer.buffer.byteLength === spaceTimeIndexResponse.rows.length * 128,
+  "expected space-time index buffer byte length"
+);
+const pathQueryResponse = await client.querySpaceTimeIndexF64({
+  rows: spaceTimeIndexResponse.rows,
+  query: {
+    bounds: {
+      min: { x: 0.5, y: -0.5, z: -0.5 },
+      max: { x: 1.5, y: 0.5, z: 0.5 },
+      timeStart: 0.5,
+      timeEnd: 1.5,
+    },
+    subjectKind: 1,
+  },
+  options: { spatialCellSize: 1, timeBinSize: 1, maxCellsPerItem: 128 },
+  maxRows: 8,
+});
+assert(pathQueryResponse.status.code === "ok", "expected space-time path query status ok");
+assert(pathQueryResponse.rows.length === 1, "expected one matching path index row");
+assert(pathQueryResponse.rows[0].subjectKey === 5001, "expected path index query to return path 5001");
+assert(pathQueryResponse.rows[0].sourceLayout === 1, "expected path index query source layout");
+const pathQueryBuffer = findBuffer(pathQueryResponse, "spacetime_index.v1");
+assert(pathQueryBuffer.buffer.byteLength === 128, "expected one space-time query row payload");
+const assemblyQueryResponse = await client.querySpaceTimeIndexF64({
+  rows: spaceTimeIndexResponse.rows,
+  query: {
+    bounds: {
+      min: { x: 0.5, y: 0.5, z: -0.5 },
+      max: { x: 1.5, y: 2.5, z: 0.5 },
+      timeStart: 0.5,
+      timeEnd: 1.5,
+    },
+    subjectKind: 2,
+  },
+  options: { spatialCellSize: 1, timeBinSize: 1, maxCellsPerItem: 128 },
+  maxRows: 8,
+});
+assert(assemblyQueryResponse.status.code === "ok", "expected space-time assembly query status ok");
+assert(assemblyQueryResponse.rows.length === 1, "expected one matching assembly index row");
+assert(assemblyQueryResponse.rows[0].subjectKey === 7001, "expected assembly index query to return assembly 7001");
+assert(assemblyQueryResponse.rows[0].sourceLayout === 2, "expected assembly index query source layout");
+
 const rootsResponse = await client.solveCausalRootsF64(fixtureRequest.request);
 assert(rootsResponse.status.code === "ok", "expected causal root bridge status ok");
 assert(rootsResponse.roots.length === 1, "expected one bridged causal root");
@@ -118,8 +350,43 @@ assert(
   "expected bridged causal root values"
 );
 
+const rootLedgerDetailResponse = await client.buildRootLedgerDetailF64({
+  ...fixtureRequest.request,
+  maxRows: 16,
+});
+assert(rootLedgerDetailResponse.status.code === "ok", "expected root-ledger detail status ok");
+assert(rootLedgerDetailResponse.rows.length >= 1, "expected root-ledger detail rows");
+assert(rootLedgerDetailResponse.rows[0].entryKind === 1, "expected active root detail row");
+assert(rootLedgerDetailResponse.rows[0].rootKind === 1, "expected partner root detail row");
+assert(rootLedgerDetailResponse.rows[0].jacobianSignStratum === 3, "expected positive Jacobian stratum");
+assert(rootLedgerDetailResponse.rows[0].rootKey > 0, "expected stable root detail key");
+assert(Math.abs(rootLedgerDetailResponse.rows[0].delay - 10) <= 1e-10, "expected root detail delay");
+assert(Math.abs(rootLedgerDetailResponse.rows[0].jacobian - 1) <= 1e-10, "expected root detail Jacobian");
+const rootLedgerDetailBuffer = findBuffer(rootLedgerDetailResponse, "root_ledger_detail.v1");
+assert(
+  rootLedgerDetailBuffer.rowCount === rootLedgerDetailResponse.rows.length,
+  "expected root-ledger detail buffer row count"
+);
+assert(
+  rootLedgerDetailBuffer.buffer.byteLength === rootLedgerDetailResponse.rows.length * 192,
+  "expected root-ledger detail payload rows"
+);
+const rootLedgerFailureDetailResponse = await client.buildRootLedgerDetailF64({
+  ...fixtureRequest.request,
+  hitTime: fixtureRequest.request.receiver.endTime + 1,
+  maxRows: 16,
+});
+assert(rootLedgerFailureDetailResponse.status.code === "ok", "expected root-ledger failure detail status ok");
+assert(rootLedgerFailureDetailResponse.rows.length >= 1, "expected root-ledger failure row");
+assert(rootLedgerFailureDetailResponse.rows[0].entryKind === 5, "expected root-ledger failure entry");
+assert(rootLedgerFailureDetailResponse.rows[0].statusCode === 9, "expected insufficient-history failure status");
+
 const precisionResponse = await client.diagnosePrecisionF64(makePrecisionRequest());
-assert(precisionResponse.status.code === "ok", "expected precision diagnostic status ok");
+assert(
+  precisionResponse.status.code === "insufficient_scale_resolution" &&
+    precisionResponse.status.severity === "warning",
+  "expected precision diagnostic resolution warning"
+);
 assert(
   precisionResponse.recommendedPath === "extended_precision",
   "expected high-dynamic-range request to select extended precision"
@@ -131,6 +398,8 @@ assert(
 assert(
   precisionResponse.scaleNormalizationRecommended &&
     precisionResponse.extendedPrecisionRecommended &&
+    precisionResponse.scaleResolutionLimited &&
+    precisionResponse.timeResolutionLimited &&
     precisionResponse.geometryScale.ordersOfMagnitude >= 12,
   "expected precision scale diagnostics"
 );
@@ -295,6 +564,25 @@ const runStreamRead = await client.readStreamRange({
 assert(runStreamRead.status.code === "ok", "expected run-scoped stream read status ok");
 assert(runStreamRead.buffers.length === 2, "expected run-scoped stream buffers");
 
+const motionRunHandle = await client.runSimulation(makeMotionRunSimulationRequest());
+assert(motionRunHandle.status.code === "ok", "expected motion runSimulation status ok");
+assert(motionRunHandle.requestId === "smoke-motion-run-request", "expected motion run request id");
+assert(motionRunHandle.runId === "smoke-motion-run", "expected motion run id");
+assert(motionRunHandle.response.summary.frameCount === 3, "expected motion run frame count");
+assert(motionRunHandle.response.frames.length === 3, "expected motion run frames");
+assert(motionRunHandle.response.buffers.length === 1, "expected motion run frame buffer");
+assert(
+  motionRunHandle.response.buffers[0].layout === "frame_buffer.v1" &&
+    motionRunHandle.response.buffers[0].buffer.byteLength === 264,
+  "expected motion run frame buffer payload"
+);
+assert(
+  motionRunHandle.response.frames[2].position.x === 5 &&
+    motionRunHandle.response.frames[2].position.y === 3 &&
+    motionRunHandle.response.frames[2].position.z === 1,
+  "expected motion run final position"
+);
+
 let invalidRootRejected = false;
 try {
   await client.solveCausalRootsF64({
@@ -431,6 +719,47 @@ function makeRunSimulationRequest() {
     },
     output: {
       outputs: ["rootLedger", "delayedHitEvents", "diagnostics"],
+      streamTarget: "caller-buffer",
+      memoryBudgetBytes: 64 * 1024 * 1024,
+      deterministic: true,
+    },
+  };
+}
+
+function makeMotionRunSimulationRequest() {
+  const admission = makeAdmissionRequest();
+  return {
+    requestId: "smoke-motion-run-request",
+    runId: "smoke-motion-run",
+    datasetId: "smoke-motion-run-dataset",
+    appId: "animator",
+    runKind: "motionSimulation",
+    claimLevel: "interactive-preview",
+    precisionPath: "auto",
+    configVersion: "solver-motion-run-smoke.v1",
+    configHash: "solver-motion-run-smoke",
+    model: admission.model,
+    envelope: admission.envelope,
+    errorBudget: admission.errorBudget,
+    config: {
+      appId: "animator",
+      motionRequest: {
+        pathKey: 1234,
+        segment: {
+          startTime: 0,
+          endTime: 2,
+          positionAtStart: { x: 1, y: 2, z: 3 },
+          velocity: { x: 2, y: 0.5, z: -1 },
+          errorBound: 1e-12,
+        },
+        startTime: 0,
+        endTime: 2,
+        step: 1,
+        stateFlags: 9,
+      },
+    },
+    output: {
+      outputs: ["frameBuffer", "diagnostics"],
       streamTarget: "caller-buffer",
       memoryBudgetBytes: 64 * 1024 * 1024,
       deterministic: true,

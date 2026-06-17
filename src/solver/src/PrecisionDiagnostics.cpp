@@ -4,6 +4,7 @@
 
 #include <algorithm>
 #include <cmath>
+#include <limits>
 
 namespace architrino::solver {
 namespace {
@@ -31,6 +32,13 @@ bool has_nonfinite(const std::vector<double>& values) {
   return std::any_of(values.begin(), values.end(), [](double value) {
     return !std::isfinite(value);
   });
+}
+
+double f64_resolution_floor(const MagnitudeSummary& summary) {
+  if (!summary.hasNonzeroMagnitude || !std::isfinite(summary.maxMagnitude)) {
+    return 0.0;
+  }
+  return summary.maxMagnitude * std::numeric_limits<double>::epsilon();
 }
 
 PrecisionPath choose_path(const PrecisionDiagnostic& diagnostic) {
@@ -136,6 +144,32 @@ PrecisionDiagnostic diagnose_precision(const CausalRootRequest& request) {
   diagnostic.recommendedNumericType = diagnostic.extendedPrecisionRecommended
                                           ? NumericType::Decimal128
                                           : NumericType::F64;
+
+  const double toleranceTarget = diagnostic.toleranceScale.minNonzeroMagnitude;
+  const double geometryResolutionFloor = f64_resolution_floor(diagnostic.geometryScale);
+  const double speedForTimeResolution =
+      std::max(std::abs(request.signalSpeed), diagnostic.speedScale.maxMagnitude);
+  const double timeResolutionFloor =
+      f64_resolution_floor(diagnostic.timeScale) * speedForTimeResolution;
+  diagnostic.scaleResolutionLimited =
+      toleranceTarget > 0.0 && geometryResolutionFloor > toleranceTarget;
+  diagnostic.timeResolutionLimited =
+      toleranceTarget > 0.0 && timeResolutionFloor > toleranceTarget;
+
+  if (diagnostic.scaleResolutionLimited) {
+    diagnostic.validation.add(
+        StatusCode::InsufficientScaleResolution,
+        StatusSeverity::Warning,
+        "absolute geometry scale is too coarse for the requested tolerance; use local coordinate normalization or a higher-precision input representation",
+        "precision-diagnostics");
+  }
+  if (diagnostic.timeResolutionLimited) {
+    diagnostic.validation.add(
+        StatusCode::TimeResolutionInsufficient,
+        StatusSeverity::Warning,
+        "absolute time scale is too coarse for the requested tolerance at the modeled speed",
+        "precision-diagnostics");
+  }
 
   if (diagnostic.validation.ok) {
     diagnostic.validation.add(StatusCode::Ok,

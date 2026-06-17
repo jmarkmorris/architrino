@@ -9,6 +9,7 @@ struct ContentView: View {
     @State private var tocNotice: String?
     @State private var showAbout = false
     @State private var didPresentInitialToc = false
+    @State private var dismissTOCAfterRender = false
 
     private var isRegularWidth: Bool {
         horizontalSizeClass == .regular
@@ -27,7 +28,7 @@ struct ContentView: View {
                 readerDetail
             }
         }
-        .sheet(isPresented: $showToc) {
+        .fullScreenCover(isPresented: $showToc) {
             NavigationStack {
                 tocSidebar
                     .navigationTitle("Table of Contents")
@@ -35,11 +36,12 @@ struct ContentView: View {
                     .toolbar {
                         ToolbarItem(placement: .cancellationAction) {
                             Button("Done") {
-                                showToc = false
+                                dismissTOCImmediately()
                             }
                         }
                     }
             }
+            .background(Color(.systemGroupedBackground).ignoresSafeArea())
         }
         .sheet(isPresented: $viewModel.isSearchPresented) {
             SearchSheet(viewModel: viewModel)
@@ -84,11 +86,17 @@ struct ContentView: View {
                     }
                     .padding()
                 } else if viewModel.renderCommand != nil {
-                    ReaderWebView(renderCommand: $viewModel.renderCommand) { payload in
-                        if let url = viewModel.handleWebLink(message: payload) {
-                            openURL(url)
+                    ReaderWebView(
+                        renderCommand: $viewModel.renderCommand,
+                        onLinkTap: { payload in
+                            if let url = viewModel.handleWebLink(message: payload) {
+                                openURL(url)
+                            }
+                        },
+                        onRenderComplete: {
+                            handleReaderRenderComplete()
                         }
-                    }
+                    )
                     .background(Color(.systemBackground))
                 } else {
                     VStack {
@@ -186,8 +194,9 @@ struct ContentView: View {
                         if package.tocPackage.tocRoot.resolvedChildren.isEmpty {
                             ForEach(Array(package.manifest.chapters.enumerated()), id: \.offset) { index, chapter in
                                 Button {
-                                    viewModel.openChapter(by: chapter.id, anchor: nil)
-                                    showToc = false
+                                    navigateFromTOC {
+                                        viewModel.openChapter(by: chapter.id, anchor: nil)
+                                    }
                                 } label: {
                                     tocRowLabel(title: chapter.title, depth: 0)
                                     Spacer()
@@ -220,8 +229,9 @@ struct ContentView: View {
                     }
 
                     Button {
-                        viewModel.openGlossary()
-                        showToc = false
+                        navigateFromTOC {
+                            viewModel.openGlossary()
+                        }
                     } label: {
                         Label("Glossary", systemImage: "book.pages")
                     }
@@ -237,12 +247,31 @@ struct ContentView: View {
         guard !didPresentInitialToc,
               !isRegularWidth,
               viewModel.isReady,
-              viewModel.hasAnyContent(),
-              !viewModel.restoredReadingState else {
+              viewModel.hasAnyContent() else {
             return
         }
         didPresentInitialToc = true
         showToc = true
+    }
+
+    private func navigateFromTOC(_ action: () -> Void) {
+        tocNotice = nil
+        viewModel.readerNotice = nil
+        if !isRegularWidth && showToc {
+            dismissTOCAfterRender = true
+        }
+        action()
+    }
+
+    private func dismissTOCImmediately() {
+        dismissTOCAfterRender = false
+        showToc = false
+    }
+
+    private func handleReaderRenderComplete() {
+        guard dismissTOCAfterRender else { return }
+        dismissTOCAfterRender = false
+        showToc = false
     }
 
     private func tocHierarchyRow(_ node: TextbookTOCNode, depth: Int) -> AnyView {
@@ -277,7 +306,7 @@ struct ContentView: View {
                                 openURL(externalURL)
                             }
                             if !isRegularWidth {
-                                showToc = false
+                                dismissTOCImmediately()
                             }
                         } label: {
                             Image(systemName: "safari")
@@ -300,19 +329,26 @@ struct ContentView: View {
                         viewModel.readerNotice = nil
                         tocNotice = "“\(node.title)” is a web-app scene. Open in Safari to view the interactive version."
                         if !isRegularWidth {
-                            showToc = false
+                            dismissTOCImmediately()
                         }
                     }
                     .background(Color.clear)
                 } else {
                     Button {
-                        tocNotice = nil
-                        viewModel.readerNotice = nil
-                        if let external = viewModel.performTOCAction(for: node) {
+                        switch route {
+                        case .chapter(let chapterId, let anchor):
+                            navigateFromTOC {
+                                viewModel.openChapter(by: chapterId, anchor: anchor)
+                            }
+                        case .external(let external):
+                            tocNotice = nil
+                            viewModel.readerNotice = nil
                             openURL(external)
-                        }
-                        if !isRegularWidth {
-                            showToc = false
+                            if !isRegularWidth {
+                                dismissTOCImmediately()
+                            }
+                        case .none:
+                            break
                         }
                     } label: {
                         HStack(spacing: 10) {

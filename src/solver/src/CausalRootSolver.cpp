@@ -17,6 +17,9 @@ using Real = boost::multiprecision::cpp_dec_float_50;
 struct EvalState {
   Real residual = 0;
   Real distance = 0;
+  Real dx = 0;
+  Real dy = 0;
+  Real dz = 0;
 };
 
 Real to_real(double value) {
@@ -67,7 +70,7 @@ EvalState evaluate_root_function(const CausalRootRequest& request, Real emission
   const Real dz = rz - sz;
   const Real distance = sqrt(dx * dx + dy * dy + dz * dz);
   const Real residual = distance - signalSpeed * (hitTime - emissionTime);
-  return EvalState{residual, distance};
+  return EvalState{residual, distance, dx, dy, dz};
 }
 
 bool near_zero(const Real& value, double tolerance) {
@@ -86,19 +89,21 @@ CausalRoot make_root(const CausalRootRequest& request,
                      int rootId) {
   const Vector3 sourcePoint = position_at(request.source, emissionTime);
   const Vector3 receiverPoint = position_at(request.receiver, request.hitTime);
-  const Vector3 displacement = subtract(receiverPoint, sourcePoint);
-  const double distance = norm(displacement);
+  const EvalState eval = evaluate_root_function(request, to_real(emissionTime));
+  const double distance = eval.distance.convert_to<double>();
   const double delay = request.hitTime - emissionTime;
-  const double residual = distance - request.signalSpeed * delay;
-  const double jacobian =
-      distance > 0.0
-          ? request.signalSpeed - dot(Vector3{displacement.x / distance,
-                                              displacement.y / distance,
-                                              displacement.z / distance},
-                                      request.source.velocity)
-          : std::numeric_limits<double>::infinity();
+  const double residual = eval.residual.convert_to<double>();
+  Real jacobianReal = std::numeric_limits<double>::infinity();
+  if (eval.distance > 0) {
+    jacobianReal = to_real(request.signalSpeed) -
+                   (eval.dx * to_real(request.source.velocity.x) +
+                    eval.dy * to_real(request.source.velocity.y) +
+                    eval.dz * to_real(request.source.velocity.z)) /
+                       eval.distance;
+  }
+  const double jacobian = jacobianReal.convert_to<double>();
   const double branchWeight = std::isfinite(jacobian) && std::abs(jacobian) > 0.0
-                                  ? 1.0 / std::abs(jacobian)
+                                  ? (Real(1) / abs(jacobianReal)).convert_to<double>()
                                   : std::numeric_limits<double>::infinity();
 
   return CausalRoot{

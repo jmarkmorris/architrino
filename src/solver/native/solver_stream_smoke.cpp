@@ -58,19 +58,33 @@ int main() {
 
   const std::string dataPath = (outputDir / "path-history.bin").string();
   const std::string indexPath = (outputDir / "path-history.idx").string();
+  const std::string chunkPath = (outputDir / "path-history.chunks").string();
   const std::string metadataPath = (outputDir / "path-history.meta.json").string();
   const std::uint64_t pathKey = architrino::solver::stable_path_key("path-a");
   const std::uint64_t pathBKey = architrino::solver::stable_path_key("path-b");
 
-  architrino::solver::PathHistoryStreamWriter writer(
-      architrino::solver::PathHistoryStreamOptions{
-          "stream-smoke",
-          dataPath,
-          indexPath,
-          metadataPath,
-          2,
-          true,
-      });
+  architrino::solver::PathHistoryStreamOptions options;
+  options.streamId = "stream-smoke";
+  options.dataPath = dataPath;
+  options.indexPath = indexPath;
+  options.chunkPath = chunkPath;
+  options.metadataPath = metadataPath;
+  options.rowsPerIndexChunk = 2;
+  options.durable = true;
+  options.runId = "run-stream-smoke";
+  options.datasetId = "dataset-stream-smoke";
+  options.modelId = "aaa.stream-smoke";
+  options.configHash = "config:stream-smoke";
+  options.engineVersion = "0.1.0";
+  options.precisionPath = "scaled_f64_strict";
+  options.unitConvention = "solver-si";
+  options.coordinateFrame = "absolute";
+  options.scaleNormalization = "local-path-origin";
+  options.interpolationRule = "linear_segment";
+  options.streamEncodingTolerance = 1e-12;
+  options.readbackTolerance = 1e-12;
+
+  architrino::solver::PathHistoryStreamWriter writer(options);
   writer.append("path-a", make_segment(0), 0, 7);
   writer.append("path-a", make_segment(1), 1, 7);
   writer.append("path-a", make_segment(2), 2, 7);
@@ -79,6 +93,7 @@ int main() {
 
   const auto rows = architrino::solver::read_path_history_rows(dataPath, 1, 2);
   const auto indexRows = architrino::solver::read_path_history_index(indexPath);
+  const auto chunkRows = architrino::solver::read_path_history_chunks(chunkPath);
   const auto pathAChunks = architrino::solver::query_path_history_index(
       indexRows,
       architrino::solver::PathHistoryQuery{
@@ -116,6 +131,20 @@ int main() {
       metadata.rowCount == 4 &&
       metadata.chunkCount == 3 &&
       metadata.byteLength == 4 * sizeof(architrino::solver::PathHistoryRowF64) &&
+      metadata.runId == "run-stream-smoke" &&
+      metadata.datasetId == "dataset-stream-smoke" &&
+      metadata.modelId == "aaa.stream-smoke" &&
+      metadata.configHash == "config:stream-smoke" &&
+      metadata.engineId == "architrino_solver" &&
+      metadata.engineVersion == "0.1.0" &&
+      metadata.precisionPath == "scaled_f64_strict" &&
+      metadata.unitConvention == "solver-si" &&
+      metadata.coordinateFrame == "absolute" &&
+      metadata.scaleNormalization == "local-path-origin" &&
+      metadata.interpolationRule == "linear_segment" &&
+      metadata.dataChecksum64 != 0 &&
+      metadata.indexChecksum64 != 0 &&
+      metadata.chunkChecksum64 != 0 &&
       metadata.hasTimeRange &&
       nearly_equal(metadata.timeStart, 0.0) &&
       nearly_equal(metadata.timeEnd, 13.0) &&
@@ -126,6 +155,18 @@ int main() {
       nearly_equal(rows[0].startX, 1.0) &&
       nearly_equal(rows[1].endTime, 2.5) &&
       indexRows.size() == 3 &&
+      chunkRows.size() == 3 &&
+      chunkRows[0].chunkIndex == 0 &&
+      chunkRows[0].pathKeyStart == pathKey &&
+      chunkRows[0].pathKeyEnd == pathKey &&
+      chunkRows[0].rowOffset == 0 &&
+      chunkRows[0].rowCount == 2 &&
+      chunkRows[0].frameStart == 0 &&
+      chunkRows[0].frameEnd == 1 &&
+      chunkRows[0].byteOffset == 0 &&
+      chunkRows[0].byteLength == 2 * sizeof(architrino::solver::PathHistoryRowF64) &&
+      chunkRows[0].checksum64 != 0 &&
+      chunkRows[2].pathKeyStart == pathBKey &&
       indexRows[0].pathKey == pathKey &&
       indexRows[0].rowOffset == 0 &&
       indexRows[0].rowCount == 2 &&
@@ -140,7 +181,18 @@ int main() {
       pathBRows.size() == 1 &&
       pathBRows[0].pathKey == pathBKey &&
       contains(manifest, "\"layout\": \"path_segment.v1\"") &&
-      contains(manifest, "\"indexLayout\": \"stream_index.v1\"");
+      contains(manifest, "\"indexLayout\": \"stream_index.v1\"") &&
+      contains(manifest, "\"chunkLayout\": \"path_chunk.v1\"") &&
+      contains(manifest, "\"runId\": \"run-stream-smoke\"") &&
+      contains(manifest, "\"datasetId\": \"dataset-stream-smoke\"") &&
+      contains(manifest, "\"modelId\": \"aaa.stream-smoke\"") &&
+      contains(manifest, "\"configHash\": \"config:stream-smoke\"") &&
+      contains(manifest, "\"path\": \"scaled_f64_strict\"") &&
+      contains(manifest, "\"scaleNormalization\": \"local-path-origin\"") &&
+      contains(manifest, "\"rule\": \"linear_segment\"") &&
+      contains(manifest, "\"algorithm\": \"fnv1a64\"") &&
+      contains(manifest, "\"diagnosticSummary\":") &&
+      contains(manifest, "\"chunkPath\":");
 
   if (!ok) {
     std::cerr << "path-history stream smoke failed\n";

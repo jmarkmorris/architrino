@@ -314,18 +314,6 @@ final class ReaderViewModel: ObservableObject {
         return .none
     }
 
-    func performTOCAction(for node: TextbookTOCNode) -> URL? {
-        switch resolveTOCTarget(for: node) {
-        case .chapter(let chapterId, let anchor):
-            openChapter(by: chapterId, anchor: anchor)
-            return nil
-        case .external(let url):
-            return url
-        case .none:
-            return nil
-        }
-    }
-
     func handleWebLink(message: Any) -> URL? {
         guard let payload = parseWebPayload(from: message) else {
             if let value = message as? String, let url = URL(string: value) {

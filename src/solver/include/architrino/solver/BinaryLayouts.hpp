@@ -17,9 +17,10 @@ enum class BinaryLayoutId {
   AssemblyEventsV1,
   PathChunkV1,
   RootLedgerV1,
+  RootLedgerDetailV1,
   DelayedHitEventsV1,
   PhaseAtHitV1,
-  GeometryBufferV1,
+  SpaceTimeIndexV1,
   StreamIndexV1,
 };
 

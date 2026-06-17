@@ -16,11 +16,55 @@ const response = readJson(responsePath);
 
 assert(schema.$id === "https://architrino.local/contracts/solver-app-bridge/v1/schema.json", "schema id mismatch");
 assert(schema.$defs?.causalRootsF64Request, "request schema missing");
+assert(schema.$defs?.rootLedgerDetailF64Request, "root-ledger detail request schema missing");
+assert(schema.$defs?.rootLedgerDetailF64Response, "root-ledger detail response schema missing");
+assert(schema.$defs?.rootLedgerDetailF64, "root-ledger detail row schema missing");
+assert(schema.$defs?.precisionDiagnosticF64Request, "precision diagnostic request schema missing");
+assert(schema.$defs?.precisionDiagnosticF64Response, "precision diagnostic response schema missing");
+assert(schema.$defs?.precisionPathId, "precision path schema missing");
+assert(schema.$defs?.numericTypeId, "numeric type schema missing");
+assert(schema.$defs?.numericSerializationDescriptor, "numeric serialization descriptor schema missing");
+assert(schema.$defs?.numericSerializationContract, "numeric serialization contract schema missing");
+assert(schema.$defs?.magnitudeSummary, "magnitude summary schema missing");
 assert(schema.$defs?.causalRootBatchF64Request, "batch request schema missing");
 assert(schema.$defs?.causalRootBatchF64Response, "batch response schema missing");
+assert(schema.$defs?.linearMotionSampleF64Request, "motion sample request schema missing");
+assert(schema.$defs?.linearMotionSampleF64Response, "motion sample response schema missing");
+assert(schema.$defs?.phaseAtHitF64Request, "phase-at-hit request schema missing");
+assert(schema.$defs?.phaseAtHitF64Response, "phase-at-hit response schema missing");
+assert(schema.$defs?.sharedGeometryF64Request, "shared geometry request schema missing");
+assert(schema.$defs?.sharedGeometryF64Response, "shared geometry response schema missing");
+assert(schema.$defs?.assemblyMembershipEventsF64Request, "assembly membership events request schema missing");
+assert(schema.$defs?.assemblyMembershipEventsF64Response, "assembly membership events response schema missing");
+assert(schema.$defs?.assemblyMembershipF64, "assembly membership row schema missing");
+assert(schema.$defs?.assemblyEventF64, "assembly event row schema missing");
+assert(schema.$defs?.buildSpaceTimeIndexF64Request, "space-time index build request schema missing");
+assert(schema.$defs?.querySpaceTimeIndexF64Request, "space-time index query request schema missing");
+assert(schema.$defs?.spaceTimeIndexF64Response, "space-time index response schema missing");
+assert(schema.$defs?.pathHistoryRowF64, "path-history row schema missing");
+assert(schema.$defs?.assemblyStateF64, "assembly state row schema missing");
+assert(schema.$defs?.spaceTimeIndexRowF64, "space-time index row schema missing");
+assert(schema.$defs?.workPacketHeader, "work packet header schema missing");
+assert(schema.$defs?.workPacketBufferRef, "work packet buffer ref schema missing");
 assert(schema.$defs?.rootsAndHitsF64Response, "response schema missing");
 assert(schema.$defs?.bufferDescriptor, "buffer descriptor schema missing");
 assert(schema.$defs?.streamDescriptor, "stream descriptor schema missing");
+assertCoreBinaryLayouts([
+  "frame_buffer.v1",
+  "path_segment.v1",
+  "assembly_state.v1",
+  "assembly_membership.v1",
+  "assembly_hierarchy.v1",
+  "assembly_events.v1",
+  "path_chunk.v1",
+  "root_ledger.v1",
+  "root_ledger_detail.v1",
+  "delayed_hit_events.v1",
+  "phase_at_hit.v1",
+  "spacetime_index.v1",
+  "stream_index.v1",
+]);
+assertNumericTypes(["f64", "scaled_i64", "interval_f64_pair", "decimal128", "mp_limb_block"]);
 
 validateRequestEnvelope(request);
 validateBatchResponseEnvelope(batchResponse);
@@ -112,6 +156,20 @@ function assertBuffer(value, bufferId, layout, byteLength, rowCount) {
   assert(value.rowCount === rowCount, `${bufferId} row count mismatch`);
   assert(value.byteLength === byteLength, `${bufferId} byte length mismatch`);
   assert(value.numericType === "f64", `${bufferId} numeric type mismatch`);
+}
+
+function assertCoreBinaryLayouts(expectedLayouts) {
+  const actualLayouts = schema.$defs.coreBinaryLayoutId?.enum || [];
+  for (const layout of expectedLayouts) {
+    assert(actualLayouts.includes(layout), `core binary layout missing ${layout}`);
+  }
+}
+
+function assertNumericTypes(expectedTypes) {
+  const actualTypes = schema.$defs.numericTypeId?.enum || [];
+  for (const numericType of expectedTypes) {
+    assert(actualTypes.includes(numericType), `numeric type missing ${numericType}`);
+  }
 }
 
 function assertNonemptyString(value, label) {

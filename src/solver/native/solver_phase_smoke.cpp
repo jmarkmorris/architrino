@@ -1,6 +1,7 @@
 #include "architrino/solver/BinaryLayouts.hpp"
 #include "architrino/solver/CausalRootSolver.hpp"
 #include "architrino/solver/PhaseDiagnostics.hpp"
+#include "architrino/solver/SolverCAbi.hpp"
 
 #include <cmath>
 #include <iostream>
@@ -40,6 +41,36 @@ int main() {
           architrino::solver::PhaseClock{5.0, 0.0, 0.0});
   const architrino::solver::BinaryLayoutDescriptor layout =
       architrino::solver::binary_layout_descriptor(architrino::solver::BinaryLayoutId::PhaseAtHitV1);
+  ArchitrinoSolverCausalRootRowF64 abiRoot{
+      7,
+      static_cast<int>(architrino::solver::StatusCode::Ok),
+      3.0,
+      7.0,
+      4.0,
+      4.0,
+      0.0,
+      1.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      4.0,
+      0.0,
+      0.0,
+  };
+  const ArchitrinoSolverPhaseClockF64 sourceClock{2.0, 0.0, 0.0};
+  const ArchitrinoSolverPhaseClockF64 receiverClock{5.0, 0.0, 0.0};
+  ArchitrinoSolverPhaseAtHitRowF64 abiRows[1]{};
+  int abiRowCount = 0;
+  const int abiStatus =
+      architrino_solver_compute_phase_at_hit_f64(
+          &abiRoot,
+          1,
+          &sourceClock,
+          &receiverClock,
+          abiRows,
+          1,
+          &abiRowCount);
 
   const bool ok =
       phases.validation.ok &&
@@ -52,7 +83,16 @@ int main() {
       nearly_equal(phases.rows[0].phaseDelta, -0.1) &&
       nearly_equal(phases.rows[0].phaseSpread, 0.1) &&
       layout.rowSizeBytes == 72 &&
-      layout.name == "phase_at_hit.v1";
+      layout.name == "phase_at_hit.v1" &&
+      abiStatus == 0 &&
+      abiRowCount == 1 &&
+      abiRows[0].root_id == 7 &&
+      abiRows[0].source_cycle_index == 1 &&
+      abiRows[0].receiver_cycle_index == 1 &&
+      nearly_equal(abiRows[0].source_phase, 0.5) &&
+      nearly_equal(abiRows[0].receiver_phase, 0.4) &&
+      nearly_equal(abiRows[0].phase_delta, -0.1) &&
+      nearly_equal(abiRows[0].phase_spread, 0.1);
 
   if (!ok) {
     std::cerr << "solver phase smoke failed\n";

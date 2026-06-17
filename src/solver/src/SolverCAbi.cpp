@@ -1,32 +1,88 @@
 #include "architrino/solver/SolverCAbi.hpp"
 
+#include "architrino/solver/AssemblyGraph.hpp"
 #include "architrino/solver/CausalRootBatchSolver.hpp"
 #include "architrino/solver/CausalRootSolver.hpp"
+#include "architrino/solver/Geometry.hpp"
+#include "architrino/solver/MotionSampler.hpp"
+#include "architrino/solver/PhaseDiagnostics.hpp"
 #include "architrino/solver/PrecisionDiagnostics.hpp"
+#include "architrino/solver/RootLedger.hpp"
+#include "architrino/solver/SpaceTimeIndex.hpp"
 
 #include <algorithm>
 #include <cstddef>
 #include <limits>
 #include <string>
+#include <utility>
+#include <vector>
 
 static_assert(sizeof(ArchitrinoSolverVector3F64) == 24);
 static_assert(sizeof(ArchitrinoSolverLinearPathSegmentF64) == 72);
 static_assert(sizeof(ArchitrinoSolverCausalRootRequestF64) == 176);
 static_assert(sizeof(ArchitrinoSolverCausalRootRowF64) == 112);
+static_assert(sizeof(ArchitrinoSolverRootLedgerDetailRowF64) == 192);
 static_assert(sizeof(ArchitrinoSolverDelayedHitRowF64) == 128);
 static_assert(sizeof(ArchitrinoSolverCausalRootBatchItemRowF64) == 24);
 static_assert(sizeof(ArchitrinoSolverPrecisionDiagnosticRowF64) == 96);
-static_assert(sizeof(ArchitrinoSolverAbiInfo) == 24);
+static_assert(sizeof(ArchitrinoSolverPhaseClockF64) == 24);
+static_assert(sizeof(ArchitrinoSolverPhaseAtHitRowF64) == 72);
+static_assert(sizeof(ArchitrinoSolverMotionSampleRequestF64) == 112);
+static_assert(sizeof(ArchitrinoSolverMotionFrameRowF64) == 88);
+static_assert(sizeof(ArchitrinoSolverPathHistoryRowF64) == 96);
+static_assert(sizeof(ArchitrinoSolverBoundsRowF64) == 64);
+static_assert(sizeof(ArchitrinoSolverSpherePointIntersectionRequestF64) == 64);
+static_assert(sizeof(ArchitrinoSolverSpherePointIntersectionRowF64) == 24);
+static_assert(sizeof(ArchitrinoSolverAssemblyStateRowF64) == 112);
+static_assert(sizeof(ArchitrinoSolverAssemblyMembershipRowF64) == 80);
+static_assert(sizeof(ArchitrinoSolverAssemblyHierarchyRowF64) == 56);
+static_assert(sizeof(ArchitrinoSolverAssemblyEventRowF64) == 88);
+static_assert(sizeof(ArchitrinoSolverSpaceTimeBoundsF64) == 64);
+static_assert(sizeof(ArchitrinoSolverSpaceTimeIndexOptionsF64) == 24);
+static_assert(sizeof(ArchitrinoSolverSpaceTimeIndexRowF64) == 128);
+static_assert(sizeof(ArchitrinoSolverSpaceTimeQueryF64) == 96);
+static_assert(sizeof(ArchitrinoSolverAbiInfo) == 80);
 static_assert(offsetof(ArchitrinoSolverCausalRootRequestF64, hit_time) == 144);
 static_assert(offsetof(ArchitrinoSolverCausalRootRequestF64, max_iterations) == 168);
 static_assert(offsetof(ArchitrinoSolverCausalRootRowF64, emission_time) == 8);
 static_assert(offsetof(ArchitrinoSolverCausalRootRowF64, receiver_z) == 104);
+static_assert(offsetof(ArchitrinoSolverRootLedgerDetailRowF64, interval_start) == 32);
+static_assert(offsetof(ArchitrinoSolverRootLedgerDetailRowF64, source_x) == 112);
+static_assert(offsetof(ArchitrinoSolverRootLedgerDetailRowF64, entry_kind) == 160);
+static_assert(offsetof(ArchitrinoSolverRootLedgerDetailRowF64, state_flags) == 184);
 static_assert(offsetof(ArchitrinoSolverDelayedHitRowF64, emission_time) == 16);
 static_assert(offsetof(ArchitrinoSolverDelayedHitRowF64, unit_z) == 120);
 static_assert(offsetof(ArchitrinoSolverCausalRootBatchItemRowF64, root_offset) == 8);
 static_assert(offsetof(ArchitrinoSolverCausalRootBatchItemRowF64, root_count) == 12);
 static_assert(offsetof(ArchitrinoSolverPrecisionDiagnosticRowF64, time_orders) == 16);
 static_assert(offsetof(ArchitrinoSolverPrecisionDiagnosticRowF64, geometry_min) == 88);
+static_assert(offsetof(ArchitrinoSolverPhaseAtHitRowF64, source_cycle_index) == 8);
+static_assert(offsetof(ArchitrinoSolverPhaseAtHitRowF64, emission_time) == 24);
+static_assert(offsetof(ArchitrinoSolverPhaseAtHitRowF64, phase_spread) == 64);
+static_assert(offsetof(ArchitrinoSolverMotionSampleRequestF64, path_key) == 72);
+static_assert(offsetof(ArchitrinoSolverMotionSampleRequestF64, state_flags) == 104);
+static_assert(offsetof(ArchitrinoSolverMotionFrameRowF64, time) == 16);
+static_assert(offsetof(ArchitrinoSolverMotionFrameRowF64, state_flags) == 80);
+static_assert(offsetof(ArchitrinoSolverPathHistoryRowF64, start_time) == 16);
+static_assert(offsetof(ArchitrinoSolverPathHistoryRowF64, velocity_z) == 72);
+static_assert(offsetof(ArchitrinoSolverBoundsRowF64, min_x) == 16);
+static_assert(offsetof(ArchitrinoSolverBoundsRowF64, max_z) == 56);
+static_assert(offsetof(ArchitrinoSolverSpherePointIntersectionRequestF64, radius) == 24);
+static_assert(offsetof(ArchitrinoSolverSpherePointIntersectionRequestF64, tolerance) == 56);
+static_assert(offsetof(ArchitrinoSolverSpherePointIntersectionRowF64, center_distance) == 8);
+static_assert(offsetof(ArchitrinoSolverAssemblyStateRowF64, center_x) == 32);
+static_assert(offsetof(ArchitrinoSolverAssemblyStateRowF64, cycle_index) == 88);
+static_assert(offsetof(ArchitrinoSolverAssemblyMembershipRowF64, time_start) == 32);
+static_assert(offsetof(ArchitrinoSolverAssemblyMembershipRowF64, local_role) == 56);
+static_assert(offsetof(ArchitrinoSolverAssemblyHierarchyRowF64, relation_type) == 40);
+static_assert(offsetof(ArchitrinoSolverAssemblyEventRowF64, event_time) == 64);
+static_assert(offsetof(ArchitrinoSolverAssemblyEventRowF64, event_kind) == 72);
+static_assert(offsetof(ArchitrinoSolverSpaceTimeIndexOptionsF64, max_cells_per_item) == 16);
+static_assert(offsetof(ArchitrinoSolverSpaceTimeIndexRowF64, subject_key) == 32);
+static_assert(offsetof(ArchitrinoSolverSpaceTimeIndexRowF64, min_x) == 48);
+static_assert(offsetof(ArchitrinoSolverSpaceTimeIndexRowF64, subject_kind) == 112);
+static_assert(offsetof(ArchitrinoSolverSpaceTimeQueryF64, filter_space) == 64);
+static_assert(offsetof(ArchitrinoSolverSpaceTimeQueryF64, subject_key) == 88);
 
 namespace {
 
@@ -84,6 +140,62 @@ ArchitrinoSolverCausalRootRowF64 to_row(const architrino::solver::CausalRoot& ro
   };
 }
 
+ArchitrinoSolverRootLedgerDetailRowF64 to_root_ledger_detail_row(
+    const architrino::solver::RootLedgerDetailRowF64& row) {
+  return ArchitrinoSolverRootLedgerDetailRowF64{
+      row.ledgerKey,
+      row.sourceKey,
+      row.receiverKey,
+      row.rootKey,
+      row.intervalStart,
+      row.intervalEnd,
+      row.emissionTime,
+      row.hitTime,
+      row.delay,
+      row.residual,
+      row.jacobian,
+      row.branchWeight,
+      row.bracketStart,
+      row.bracketEnd,
+      row.sourceX,
+      row.sourceY,
+      row.sourceZ,
+      row.receiverX,
+      row.receiverY,
+      row.receiverZ,
+      row.entryKind,
+      row.rootKind,
+      row.statusCode,
+      row.jacobianSignStratum,
+      row.sequenceIndex,
+      row.iterationCount,
+      row.stateFlags,
+      row.reserved0,
+  };
+}
+
+architrino::solver::CausalRoot to_root(const ArchitrinoSolverCausalRootRowF64& row) {
+  return architrino::solver::CausalRoot{
+      "receiver",
+      "source",
+      row.root_id,
+      "partner",
+      row.emission_time,
+      row.hit_time,
+      row.delay,
+      row.distance,
+      row.residual,
+      row.jacobian,
+      row.branch_weight,
+      0.0,
+      0.0,
+      0,
+      architrino::solver::Vector3{row.source_x, row.source_y, row.source_z},
+      architrino::solver::Vector3{row.receiver_x, row.receiver_y, row.receiver_z},
+      static_cast<architrino::solver::StatusCode>(row.status_code),
+  };
+}
+
 ArchitrinoSolverDelayedHitRowF64 to_row(const architrino::solver::DelayedHitEvent& hit,
                                         int eventId) {
   return ArchitrinoSolverDelayedHitRowF64{
@@ -108,6 +220,249 @@ ArchitrinoSolverDelayedHitRowF64 to_row(const architrino::solver::DelayedHitEven
   };
 }
 
+architrino::solver::MotionSampleRequest to_motion_request(
+    const ArchitrinoSolverMotionSampleRequestF64* request) {
+  return architrino::solver::MotionSampleRequest{
+      to_segment(request->segment, "motion-path"),
+      request->path_key,
+      request->start_time,
+      request->end_time,
+      request->step,
+      request->state_flags,
+  };
+}
+
+ArchitrinoSolverMotionFrameRowF64 to_motion_row(
+    const architrino::solver::MotionFrameRowF64& frame) {
+  return ArchitrinoSolverMotionFrameRowF64{
+      frame.pathKey,
+      frame.frameIndex,
+      frame.time,
+      frame.positionX,
+      frame.positionY,
+      frame.positionZ,
+      frame.velocityX,
+      frame.velocityY,
+      frame.velocityZ,
+      frame.errorBound,
+      frame.stateFlags,
+      frame.reserved0,
+  };
+}
+
+architrino::solver::PhaseClock to_phase_clock(const ArchitrinoSolverPhaseClockF64& clock) {
+  return architrino::solver::PhaseClock{
+      clock.period,
+      clock.epoch,
+      clock.phase_offset,
+  };
+}
+
+ArchitrinoSolverPhaseAtHitRowF64 to_phase_row(const architrino::solver::PhaseAtHit& row) {
+  return ArchitrinoSolverPhaseAtHitRowF64{
+      row.rootId,
+      static_cast<int>(row.statusCode),
+      row.sourceCycleIndex,
+      row.receiverCycleIndex,
+      row.emissionTime,
+      row.hitTime,
+      row.sourcePhase,
+      row.receiverPhase,
+      row.phaseDelta,
+      row.phaseSpread,
+  };
+}
+
+ArchitrinoSolverBoundsRowF64 to_bounds_row(architrino::solver::AxisAlignedBounds bounds,
+                                           int itemIndex,
+                                           std::uint64_t pathKey) {
+  return ArchitrinoSolverBoundsRowF64{
+      itemIndex,
+      static_cast<int>(architrino::solver::StatusCode::Ok),
+      pathKey,
+      bounds.min.x,
+      bounds.min.y,
+      bounds.min.z,
+      bounds.max.x,
+      bounds.max.y,
+      bounds.max.z,
+  };
+}
+
+ArchitrinoSolverSpherePointIntersectionRowF64 to_sphere_point_row(
+    architrino::solver::SpherePointIntersection intersection,
+    int itemIndex) {
+  return ArchitrinoSolverSpherePointIntersectionRowF64{
+      itemIndex,
+      intersection.intersects ? 1 : 0,
+      intersection.centerDistance,
+      intersection.signedDistance,
+  };
+}
+
+architrino::solver::AssemblyMembershipRowF64 to_membership_row(
+    const ArchitrinoSolverAssemblyMembershipRowF64& row) {
+  return architrino::solver::AssemblyMembershipRowF64{
+      row.membership_key,
+      row.path_key,
+      row.assembly_key,
+      row.assembly_state_key,
+      row.time_start,
+      row.time_end,
+      row.confidence,
+      row.local_role,
+      row.binding_state,
+      row.membership_version,
+      row.event_kind,
+      row.status_flags,
+      row.reserved0,
+  };
+}
+
+ArchitrinoSolverAssemblyEventRowF64 to_assembly_event_row(
+    const architrino::solver::AssemblyEventRowF64& row) {
+  return ArchitrinoSolverAssemblyEventRowF64{
+      row.eventKey,
+      row.primaryId,
+      row.secondaryId,
+      row.priorStateKey,
+      row.nextStateKey,
+      row.relatedPathKey,
+      row.relatedAssemblyKey,
+      row.branchTransitionKey,
+      row.eventTime,
+      row.eventKind,
+      row.speedRegime,
+      row.statusFlags,
+      row.reserved0,
+  };
+}
+
+architrino::solver::PathHistoryRowF64 to_path_history_row(
+    const ArchitrinoSolverPathHistoryRowF64& row) {
+  return architrino::solver::PathHistoryRowF64{
+      row.path_key,
+      row.segment_index,
+      row.start_time,
+      row.end_time,
+      row.start_x,
+      row.start_y,
+      row.start_z,
+      row.velocity_x,
+      row.velocity_y,
+      row.velocity_z,
+      row.error_bound,
+      row.state_flags,
+      row.reserved0,
+  };
+}
+
+architrino::solver::AssemblyStateRowF64 to_assembly_state_row(
+    const ArchitrinoSolverAssemblyStateRowF64& row) {
+  return architrino::solver::AssemblyStateRowF64{
+      row.assembly_key,
+      row.assembly_state_key,
+      row.time_start,
+      row.time_end,
+      row.center_x,
+      row.center_y,
+      row.center_z,
+      row.velocity_x,
+      row.velocity_y,
+      row.velocity_z,
+      row.phase,
+      row.cycle_index,
+      row.model_version,
+      row.status_flags,
+      row.fidelity_flags,
+      row.reserved0,
+  };
+}
+
+architrino::solver::SpaceTimeIndexOptions to_spacetime_options(
+    const ArchitrinoSolverSpaceTimeIndexOptionsF64& options) {
+  return architrino::solver::SpaceTimeIndexOptions{
+      options.spatial_cell_size,
+      options.time_bin_size,
+      static_cast<std::size_t>(options.max_cells_per_item),
+  };
+}
+
+architrino::solver::SpaceTimeBounds to_spacetime_bounds(
+    const ArchitrinoSolverSpaceTimeBoundsF64& bounds) {
+  return architrino::solver::SpaceTimeBounds{
+      bounds.min_x,
+      bounds.min_y,
+      bounds.min_z,
+      bounds.max_x,
+      bounds.max_y,
+      bounds.max_z,
+      bounds.time_start,
+      bounds.time_end,
+  };
+}
+
+architrino::solver::SpaceTimeIndexRowF64 to_spacetime_index_row(
+    const ArchitrinoSolverSpaceTimeIndexRowF64& row) {
+  return architrino::solver::SpaceTimeIndexRowF64{
+      row.cell_x,
+      row.cell_y,
+      row.cell_z,
+      row.cell_t,
+      row.subject_key,
+      row.row_offset,
+      row.min_x,
+      row.min_y,
+      row.min_z,
+      row.max_x,
+      row.max_y,
+      row.max_z,
+      row.time_start,
+      row.time_end,
+      row.subject_kind,
+      row.source_layout,
+      row.state_flags,
+      row.reserved0,
+  };
+}
+
+ArchitrinoSolverSpaceTimeIndexRowF64 to_spacetime_index_row(
+    const architrino::solver::SpaceTimeIndexRowF64& row) {
+  return ArchitrinoSolverSpaceTimeIndexRowF64{
+      row.cellX,
+      row.cellY,
+      row.cellZ,
+      row.cellT,
+      row.subjectKey,
+      row.rowOffset,
+      row.minX,
+      row.minY,
+      row.minZ,
+      row.maxX,
+      row.maxY,
+      row.maxZ,
+      row.timeStart,
+      row.timeEnd,
+      row.subjectKind,
+      row.sourceLayout,
+      row.stateFlags,
+      row.reserved0,
+  };
+}
+
+architrino::solver::SpaceTimeIndexQuery to_spacetime_query(
+    const ArchitrinoSolverSpaceTimeQueryF64& query) {
+  return architrino::solver::SpaceTimeIndexQuery{
+      to_spacetime_bounds(query.bounds),
+      query.filter_space != 0,
+      query.filter_time != 0,
+      query.filter_subject_kind != 0,
+      static_cast<architrino::solver::SpaceTimeSubjectKind>(query.subject_kind),
+      query.filter_subject_key != 0,
+      query.subject_key,
+  };
+}
+
 bool root_count_overflows(std::size_t count) {
   return count > static_cast<std::size_t>(std::numeric_limits<int>::max());
 }
@@ -126,6 +481,12 @@ int precision_flags(const architrino::solver::PrecisionDiagnostic& diagnostic) {
   }
   if (diagnostic.extendedPrecisionRecommended) {
     flags |= 2;
+  }
+  if (diagnostic.scaleResolutionLimited) {
+    flags |= 4;
+  }
+  if (diagnostic.timeResolutionLimited) {
+    flags |= 8;
   }
   return flags;
 }
@@ -149,6 +510,30 @@ int copy_roots(const std::vector<architrino::solver::CausalRoot>& source,
   }
   for (int index = 0; index < requiredRoots; ++index) {
     roots[index] = to_row(source[static_cast<std::size_t>(index)]);
+  }
+  return 0;
+}
+
+int copy_root_ledger_detail_rows(
+    const std::vector<architrino::solver::RootLedgerDetailRowF64>& source,
+    ArchitrinoSolverRootLedgerDetailRowF64* rows,
+    int maxRows,
+    int* outRowCount) {
+  if (root_count_overflows(source.size())) {
+    *outRowCount = 0;
+    return -4;
+  }
+
+  const int requiredRows = static_cast<int>(source.size());
+  *outRowCount = requiredRows;
+  if (rows == nullptr || maxRows == 0) {
+    return requiredRows == 0 ? 0 : -3;
+  }
+  if (maxRows < requiredRows) {
+    return -3;
+  }
+  for (int index = 0; index < requiredRows; ++index) {
+    rows[index] = to_root_ledger_detail_row(source[static_cast<std::size_t>(index)]);
   }
   return 0;
 }
@@ -182,6 +567,28 @@ extern "C" int architrino_solver_diagnose_precision_f64(
   return diagnostic.validation.ok ? 0 : -2;
 }
 
+extern "C" int architrino_solver_build_root_ledger_detail_f64(
+    const ArchitrinoSolverCausalRootRequestF64* request,
+    ArchitrinoSolverRootLedgerDetailRowF64* rows,
+    int max_rows,
+    int* out_row_count) {
+  if (request == nullptr || out_row_count == nullptr || max_rows < 0) {
+    return -1;
+  }
+
+  const architrino::solver::CausalRootRequest cppRequest = to_request(request);
+  const architrino::solver::CausalRootResult roots =
+      architrino::solver::solve_causal_roots(cppRequest);
+  const std::vector<architrino::solver::RootLedgerDetailRowF64> detailRows =
+      architrino::solver::build_root_ledger_detail(cppRequest, roots);
+  const int copyStatus =
+      copy_root_ledger_detail_rows(detailRows, rows, max_rows, out_row_count);
+  if (copyStatus != 0) {
+    return copyStatus;
+  }
+  return 0;
+}
+
 int copy_hits(const std::vector<architrino::solver::DelayedHitEvent>& source,
               ArchitrinoSolverDelayedHitRowF64* hits,
               int maxHits,
@@ -205,6 +612,75 @@ int copy_hits(const std::vector<architrino::solver::DelayedHitEvent>& source,
   return 0;
 }
 
+int copy_motion_frames(const std::vector<architrino::solver::MotionFrameRowF64>& source,
+                       ArchitrinoSolverMotionFrameRowF64* frames,
+                       int maxFrames,
+                       int* outFrameCount) {
+  if (root_count_overflows(source.size())) {
+    *outFrameCount = 0;
+    return -4;
+  }
+
+  const int requiredFrames = static_cast<int>(source.size());
+  *outFrameCount = requiredFrames;
+  if (frames == nullptr || maxFrames == 0) {
+    return requiredFrames == 0 ? 0 : -3;
+  }
+  if (maxFrames < requiredFrames) {
+    return -3;
+  }
+  for (int index = 0; index < requiredFrames; ++index) {
+    frames[index] = to_motion_row(source[static_cast<std::size_t>(index)]);
+  }
+  return 0;
+}
+
+int copy_phase_rows(const std::vector<architrino::solver::PhaseAtHit>& source,
+                    ArchitrinoSolverPhaseAtHitRowF64* rows,
+                    int maxRows,
+                    int* outRowCount) {
+  if (root_count_overflows(source.size())) {
+    *outRowCount = 0;
+    return -4;
+  }
+
+  const int requiredRows = static_cast<int>(source.size());
+  *outRowCount = requiredRows;
+  if (rows == nullptr || maxRows == 0) {
+    return requiredRows == 0 ? 0 : -3;
+  }
+  if (maxRows < requiredRows) {
+    return -3;
+  }
+  for (int index = 0; index < requiredRows; ++index) {
+    rows[index] = to_phase_row(source[static_cast<std::size_t>(index)]);
+  }
+  return 0;
+}
+
+int copy_spacetime_index_rows(const std::vector<architrino::solver::SpaceTimeIndexRowF64>& source,
+                              ArchitrinoSolverSpaceTimeIndexRowF64* rows,
+                              int maxRows,
+                              int* outRowCount) {
+  if (root_count_overflows(source.size())) {
+    *outRowCount = 0;
+    return -4;
+  }
+
+  const int requiredRows = static_cast<int>(source.size());
+  *outRowCount = requiredRows;
+  if (rows == nullptr || maxRows == 0) {
+    return requiredRows == 0 ? 0 : -3;
+  }
+  if (maxRows < requiredRows) {
+    return -3;
+  }
+  for (int index = 0; index < requiredRows; ++index) {
+    rows[index] = to_spacetime_index_row(source[static_cast<std::size_t>(index)]);
+  }
+  return 0;
+}
+
 }  // namespace
 
 extern "C" ArchitrinoSolverAbiInfo architrino_solver_abi_info() {
@@ -215,6 +691,20 @@ extern "C" ArchitrinoSolverAbiInfo architrino_solver_abi_info() {
       static_cast<int>(sizeof(ArchitrinoSolverCausalRootRequestF64)),
       static_cast<int>(sizeof(ArchitrinoSolverCausalRootRowF64)),
       static_cast<int>(sizeof(ArchitrinoSolverDelayedHitRowF64)),
+      static_cast<int>(sizeof(ArchitrinoSolverMotionSampleRequestF64)),
+      static_cast<int>(sizeof(ArchitrinoSolverMotionFrameRowF64)),
+      static_cast<int>(sizeof(ArchitrinoSolverPhaseClockF64)),
+      static_cast<int>(sizeof(ArchitrinoSolverPhaseAtHitRowF64)),
+      static_cast<int>(sizeof(ArchitrinoSolverBoundsRowF64)),
+      static_cast<int>(sizeof(ArchitrinoSolverSpherePointIntersectionRequestF64)),
+      static_cast<int>(sizeof(ArchitrinoSolverSpherePointIntersectionRowF64)),
+      static_cast<int>(sizeof(ArchitrinoSolverAssemblyStateRowF64)),
+      static_cast<int>(sizeof(ArchitrinoSolverAssemblyMembershipRowF64)),
+      static_cast<int>(sizeof(ArchitrinoSolverAssemblyHierarchyRowF64)),
+      static_cast<int>(sizeof(ArchitrinoSolverAssemblyEventRowF64)),
+      static_cast<int>(sizeof(ArchitrinoSolverPathHistoryRowF64)),
+      static_cast<int>(sizeof(ArchitrinoSolverSpaceTimeIndexRowF64)),
+      static_cast<int>(sizeof(ArchitrinoSolverRootLedgerDetailRowF64)),
   };
 }
 
@@ -363,4 +853,231 @@ extern "C" int architrino_solver_solve_causal_root_batch_f64(
   }
 
   return 0;
+}
+
+extern "C" int architrino_solver_sample_linear_motion_f64(
+    const ArchitrinoSolverMotionSampleRequestF64* request,
+    ArchitrinoSolverMotionFrameRowF64* frames,
+    int max_frames,
+    int* out_frame_count) {
+  if (request == nullptr || out_frame_count == nullptr || max_frames < 0) {
+    return -1;
+  }
+
+  const architrino::solver::MotionSampleResult result =
+      architrino::solver::sample_linear_motion(to_motion_request(request));
+  if (!result.validation.ok) {
+    *out_frame_count = 0;
+    return -2;
+  }
+
+  return copy_motion_frames(result.frames, frames, max_frames, out_frame_count);
+}
+
+extern "C" int architrino_solver_compute_phase_at_hit_f64(
+    const ArchitrinoSolverCausalRootRowF64* roots,
+    int root_count,
+    const ArchitrinoSolverPhaseClockF64* source_clock,
+    const ArchitrinoSolverPhaseClockF64* receiver_clock,
+    ArchitrinoSolverPhaseAtHitRowF64* rows,
+    int max_rows,
+    int* out_row_count) {
+  if (roots == nullptr || source_clock == nullptr || receiver_clock == nullptr ||
+      out_row_count == nullptr || root_count < 0 || max_rows < 0) {
+    return -1;
+  }
+
+  std::vector<architrino::solver::CausalRoot> cppRoots;
+  cppRoots.reserve(static_cast<std::size_t>(root_count));
+  for (int index = 0; index < root_count; ++index) {
+    cppRoots.push_back(to_root(roots[index]));
+  }
+
+  const architrino::solver::PhaseAtHitResult result =
+      architrino::solver::compute_phase_at_hits(
+          cppRoots,
+          to_phase_clock(*source_clock),
+          to_phase_clock(*receiver_clock));
+  if (!result.validation.ok) {
+    *out_row_count = 0;
+    return -2;
+  }
+
+  return copy_phase_rows(result.rows, rows, max_rows, out_row_count);
+}
+
+extern "C" int architrino_solver_compute_path_bounds_f64(
+    const ArchitrinoSolverLinearPathSegmentF64* segments,
+    const std::uint64_t* path_keys,
+    int segment_count,
+    ArchitrinoSolverBoundsRowF64* rows,
+    int max_rows,
+    int* out_row_count) {
+  if (segments == nullptr || out_row_count == nullptr || segment_count < 0 || max_rows < 0) {
+    return -1;
+  }
+
+  *out_row_count = segment_count;
+  if (rows == nullptr || max_rows < segment_count) {
+    return segment_count == 0 ? 0 : -3;
+  }
+
+  for (int index = 0; index < segment_count; ++index) {
+    const std::uint64_t pathKey =
+        path_keys == nullptr ? static_cast<std::uint64_t>(index) : path_keys[index];
+    rows[index] = to_bounds_row(
+        architrino::solver::path_segment_bounds(to_segment(segments[index], "geometry-path")),
+        index,
+        pathKey);
+  }
+  return 0;
+}
+
+extern "C" int architrino_solver_intersect_sphere_points_f64(
+    const ArchitrinoSolverSpherePointIntersectionRequestF64* requests,
+    int request_count,
+    ArchitrinoSolverSpherePointIntersectionRowF64* rows,
+    int max_rows,
+    int* out_row_count) {
+  if (requests == nullptr || out_row_count == nullptr || request_count < 0 || max_rows < 0) {
+    return -1;
+  }
+
+  *out_row_count = request_count;
+  if (rows == nullptr || max_rows < request_count) {
+    return request_count == 0 ? 0 : -3;
+  }
+
+  for (int index = 0; index < request_count; ++index) {
+    const ArchitrinoSolverSpherePointIntersectionRequestF64& request = requests[index];
+    rows[index] = to_sphere_point_row(
+        architrino::solver::sphere_point_intersection(
+            to_vector(request.center),
+            request.radius,
+            to_vector(request.point),
+            request.tolerance),
+        index);
+  }
+  return 0;
+}
+
+extern "C" int architrino_solver_detect_assembly_membership_events_f64(
+    const ArchitrinoSolverAssemblyMembershipRowF64* memberships,
+    int membership_count,
+    ArchitrinoSolverAssemblyEventRowF64* events,
+    int max_events,
+    int* out_event_count) {
+  if (memberships == nullptr || out_event_count == nullptr || membership_count < 0 ||
+      max_events < 0) {
+    return -1;
+  }
+
+  std::vector<architrino::solver::AssemblyMembershipRowF64> cppMemberships;
+  cppMemberships.reserve(static_cast<std::size_t>(membership_count));
+  for (int index = 0; index < membership_count; ++index) {
+    cppMemberships.push_back(to_membership_row(memberships[index]));
+  }
+
+  const std::vector<architrino::solver::AssemblyEventRowF64> cppEvents =
+      architrino::solver::detect_membership_change_events(std::move(cppMemberships));
+  if (root_count_overflows(cppEvents.size())) {
+    *out_event_count = 0;
+    return -4;
+  }
+
+  const int requiredEvents = static_cast<int>(cppEvents.size());
+  *out_event_count = requiredEvents;
+  if (events == nullptr || max_events < requiredEvents) {
+    return requiredEvents == 0 ? 0 : -3;
+  }
+
+  for (int index = 0; index < requiredEvents; ++index) {
+    events[index] = to_assembly_event_row(cppEvents[static_cast<std::size_t>(index)]);
+  }
+  return 0;
+}
+
+extern "C" int architrino_solver_build_spacetime_index_f64(
+    const ArchitrinoSolverPathHistoryRowF64* path_rows,
+    int path_row_count,
+    const ArchitrinoSolverAssemblyStateRowF64* assembly_state_rows,
+    int assembly_state_row_count,
+    const ArchitrinoSolverSpaceTimeIndexOptionsF64* options,
+    ArchitrinoSolverSpaceTimeIndexRowF64* rows,
+    int max_rows,
+    int* out_row_count,
+    int* out_overflow_count) {
+  if (options == nullptr || out_row_count == nullptr || out_overflow_count == nullptr ||
+      path_row_count < 0 || assembly_state_row_count < 0 || max_rows < 0 ||
+      (path_row_count > 0 && path_rows == nullptr) ||
+      (assembly_state_row_count > 0 && assembly_state_rows == nullptr)) {
+    return -1;
+  }
+
+  try {
+    std::vector<architrino::solver::PathHistoryRowF64> cppPathRows;
+    cppPathRows.reserve(static_cast<std::size_t>(path_row_count));
+    for (int index = 0; index < path_row_count; ++index) {
+      cppPathRows.push_back(to_path_history_row(path_rows[index]));
+    }
+
+    std::vector<architrino::solver::AssemblyStateRowF64> cppAssemblyRows;
+    cppAssemblyRows.reserve(static_cast<std::size_t>(assembly_state_row_count));
+    for (int index = 0; index < assembly_state_row_count; ++index) {
+      cppAssemblyRows.push_back(to_assembly_state_row(assembly_state_rows[index]));
+    }
+
+    const architrino::solver::SpaceTimeIndexOptions cppOptions =
+        to_spacetime_options(*options);
+    architrino::solver::SpaceTimeIndexBuildResult pathResult =
+        architrino::solver::build_path_history_spacetime_index(cppPathRows, cppOptions);
+    architrino::solver::SpaceTimeIndexBuildResult assemblyResult =
+        architrino::solver::build_assembly_state_spacetime_index(cppAssemblyRows, cppOptions);
+    const architrino::solver::SpaceTimeIndexBuildResult merged =
+        architrino::solver::merge_spacetime_index_results({pathResult, assemblyResult});
+    *out_overflow_count = static_cast<int>(
+        std::min<std::size_t>(merged.overflowEntryCount,
+                              static_cast<std::size_t>(std::numeric_limits<int>::max())));
+    if (!merged.validation.ok) {
+      *out_row_count = 0;
+      return -2;
+    }
+    return copy_spacetime_index_rows(merged.rows, rows, max_rows, out_row_count);
+  } catch (...) {
+    *out_row_count = 0;
+    *out_overflow_count = 0;
+    return -2;
+  }
+}
+
+extern "C" int architrino_solver_query_spacetime_index_f64(
+    const ArchitrinoSolverSpaceTimeIndexRowF64* index_rows,
+    int index_row_count,
+    const ArchitrinoSolverSpaceTimeQueryF64* query,
+    const ArchitrinoSolverSpaceTimeIndexOptionsF64* options,
+    ArchitrinoSolverSpaceTimeIndexRowF64* rows,
+    int max_rows,
+    int* out_row_count) {
+  if (query == nullptr || options == nullptr || out_row_count == nullptr ||
+      index_row_count < 0 || max_rows < 0 || (index_row_count > 0 && index_rows == nullptr)) {
+    return -1;
+  }
+
+  try {
+    std::vector<architrino::solver::SpaceTimeIndexRowF64> cppRows;
+    cppRows.reserve(static_cast<std::size_t>(index_row_count));
+    for (int index = 0; index < index_row_count; ++index) {
+      cppRows.push_back(to_spacetime_index_row(index_rows[index]));
+    }
+
+    const std::vector<architrino::solver::SpaceTimeIndexRowF64> matches =
+        architrino::solver::query_spacetime_index(
+            cppRows,
+            to_spacetime_query(*query),
+            to_spacetime_options(*options));
+    return copy_spacetime_index_rows(matches, rows, max_rows, out_row_count);
+  } catch (...) {
+    *out_row_count = 0;
+    return -2;
+  }
 }

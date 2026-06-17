@@ -35,20 +35,27 @@ if(
 endif()
 
 add_library(architrino_solver_core STATIC
+  src/AssemblyGraph.cpp
+  src/AssemblyGraphStore.cpp
   src/BinaryLayouts.cpp
   src/CausalRootBatchSolver.cpp
   src/CausalRootSolver.cpp
   src/Geometry.cpp
   src/MotionSampler.cpp
+  src/NumericSerialization.cpp
   src/PathHistoryStream.cpp
+  src/ParallelExecution.cpp
   src/PhaseDiagnostics.cpp
   src/PrecisionDiagnostics.cpp
+  src/RootLedger.cpp
   src/SolverCAbi.cpp
   src/SolverContract.cpp
   src/SolverSelfTest.cpp
   src/SolverTypes.cpp
   src/SolverVersion.cpp
+  src/SpaceTimeIndex.cpp
   src/StreamMetadata.cpp
+  src/WorkPacket.cpp
 )
 
 target_include_directories(architrino_solver_core
@@ -76,6 +83,30 @@ elseif(MSVC)
 endif()
 
 if(NOT EMSCRIPTEN)
+  add_executable(architrino_solver_assembly_graph_smoke
+    native/solver_assembly_graph_smoke.cpp
+  )
+
+  target_link_libraries(architrino_solver_assembly_graph_smoke
+    PRIVATE architrino_solver_core
+  )
+
+  add_executable(architrino_solver_assembly_graph_store_smoke
+    native/solver_assembly_graph_store_smoke.cpp
+  )
+
+  target_link_libraries(architrino_solver_assembly_graph_store_smoke
+    PRIVATE architrino_solver_core
+  )
+
+  add_executable(architrino_solver_analytic_smoke
+    native/solver_analytic_smoke.cpp
+  )
+
+  target_link_libraries(architrino_solver_analytic_smoke
+    PRIVATE architrino_solver_core
+  )
+
   add_executable(architrino_solver_smoke
     native/solver_smoke.cpp
   )
@@ -116,11 +147,43 @@ if(NOT EMSCRIPTEN)
     PRIVATE architrino_solver_core
   )
 
+  add_executable(architrino_solver_numeric_serialization_smoke
+    native/solver_numeric_serialization_smoke.cpp
+  )
+
+  target_link_libraries(architrino_solver_numeric_serialization_smoke
+    PRIVATE architrino_solver_core
+  )
+
+  add_executable(architrino_solver_parallel_smoke
+    native/solver_parallel_smoke.cpp
+  )
+
+  target_link_libraries(architrino_solver_parallel_smoke
+    PRIVATE architrino_solver_core
+  )
+
   add_executable(architrino_solver_phase_smoke
     native/solver_phase_smoke.cpp
   )
 
   target_link_libraries(architrino_solver_phase_smoke
+    PRIVATE architrino_solver_core
+  )
+
+  add_executable(architrino_solver_root_ledger_smoke
+    native/solver_root_ledger_smoke.cpp
+  )
+
+  target_link_libraries(architrino_solver_root_ledger_smoke
+    PRIVATE architrino_solver_core
+  )
+
+  add_executable(architrino_solver_spacetime_index_smoke
+    native/solver_spacetime_index_smoke.cpp
+  )
+
+  target_link_libraries(architrino_solver_spacetime_index_smoke
     PRIVATE architrino_solver_core
   )
 
@@ -137,6 +200,14 @@ if(NOT EMSCRIPTEN)
   )
 
   target_link_libraries(architrino_solver_stream_smoke
+    PRIVATE architrino_solver_core
+  )
+
+  add_executable(architrino_solver_work_packet_smoke
+    native/solver_work_packet_smoke.cpp
+  )
+
+  target_link_libraries(architrino_solver_work_packet_smoke
     PRIVATE architrino_solver_core
   )
 endif()
@@ -156,7 +227,7 @@ if(ARCHITRINO_SOLVER_BUILD_WASM)
       "SHELL:-sMODULARIZE=1"
       "SHELL:-sEXPORT_NAME=createArchitrinoSolverSmoke"
       "SHELL:-sENVIRONMENT=web,worker,node"
-      "SHELL:-sEXPORTED_FUNCTIONS=['_malloc','_free','_architrino_solver_get_abi_info','_architrino_solver_smoke','_architrino_solver_contract_smoke','_architrino_solver_root_smoke','_architrino_solver_solve_causal_roots_f64','_architrino_solver_solve_roots_and_hits_f64','_architrino_solver_solve_causal_root_batch_f64','_architrino_solver_diagnose_precision_f64']"
+      "SHELL:-sEXPORTED_FUNCTIONS=['_malloc','_free','_architrino_solver_get_abi_info','_architrino_solver_smoke','_architrino_solver_contract_smoke','_architrino_solver_root_smoke','_architrino_solver_solve_causal_roots_f64','_architrino_solver_solve_roots_and_hits_f64','_architrino_solver_build_root_ledger_detail_f64','_architrino_solver_solve_causal_root_batch_f64','_architrino_solver_diagnose_precision_f64','_architrino_solver_sample_linear_motion_f64','_architrino_solver_compute_phase_at_hit_f64','_architrino_solver_compute_path_bounds_f64','_architrino_solver_intersect_sphere_points_f64','_architrino_solver_detect_assembly_membership_events_f64','_architrino_solver_build_spacetime_index_f64','_architrino_solver_query_spacetime_index_f64']"
       "SHELL:-sEXPORTED_RUNTIME_METHODS=['cwrap','getValue','setValue']"
     )
   endif()

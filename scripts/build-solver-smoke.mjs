@@ -32,14 +32,22 @@ runChecked("node", ["scripts/check-solver-contract-fixtures.mjs"], { env });
 if (target === "native" || target === "all") {
   configureNative();
   build("native");
+  runChecked(path.join(buildRoot, "native", "architrino_solver_assembly_graph_smoke"), [], { env });
+  runChecked(path.join(buildRoot, "native", "architrino_solver_assembly_graph_store_smoke"), [], { env });
+  runChecked(path.join(buildRoot, "native", "architrino_solver_analytic_smoke"), [], { env });
   runChecked(path.join(buildRoot, "native", "architrino_solver_smoke"), [], { env });
   runChecked(path.join(buildRoot, "native", "architrino_solver_contract_smoke"), [], { env });
   runChecked(path.join(buildRoot, "native", "architrino_solver_batch_smoke"), [], { env });
   runChecked(path.join(buildRoot, "native", "architrino_solver_geometry_smoke"), [], { env });
   runChecked(path.join(buildRoot, "native", "architrino_solver_motion_smoke"), [], { env });
+  runChecked(path.join(buildRoot, "native", "architrino_solver_numeric_serialization_smoke"), [], { env });
+  runChecked(path.join(buildRoot, "native", "architrino_solver_parallel_smoke"), [], { env });
   runChecked(path.join(buildRoot, "native", "architrino_solver_phase_smoke"), [], { env });
   runChecked(path.join(buildRoot, "native", "architrino_solver_precision_smoke"), [], { env });
+  runChecked(path.join(buildRoot, "native", "architrino_solver_root_ledger_smoke"), [], { env });
+  runChecked(path.join(buildRoot, "native", "architrino_solver_spacetime_index_smoke"), [], { env });
   runChecked(path.join(buildRoot, "native", "architrino_solver_stream_smoke"), [], { env });
+  runChecked(path.join(buildRoot, "native", "architrino_solver_work_packet_smoke"), [], { env });
 }
 
 if (target === "wasm" || target === "all") {

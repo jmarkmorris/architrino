@@ -1,15 +1,11 @@
 #include "architrino/solver/CausalRootBatchSolver.hpp"
+#include "architrino/solver/ParallelExecution.hpp"
 
 #include <algorithm>
-#include <atomic>
 #include <exception>
 #include <sstream>
 #include <string>
 #include <utility>
-
-#ifndef __EMSCRIPTEN__
-#include <thread>
-#endif
 
 namespace architrino::solver {
 namespace {
@@ -45,21 +41,14 @@ void record_unknown_exception(CausalRootBatchItemResult& itemResult, std::uint64
 
 std::size_t recommended_batch_worker_count(std::size_t itemCount,
                                            std::size_t requestedWorkerCount) {
-  if (itemCount == 0) {
-    return 0;
-  }
-
-#ifdef __EMSCRIPTEN__
-  (void)requestedWorkerCount;
-  return 1;
-#else
-  std::size_t hardwareCount = std::thread::hardware_concurrency();
-  if (hardwareCount == 0) {
-    hardwareCount = 1;
-  }
-  const std::size_t requestedCount = requestedWorkerCount == 0 ? hardwareCount : requestedWorkerCount;
-  return std::max<std::size_t>(1, std::min(itemCount, std::min(requestedCount, hardwareCount)));
-#endif
+  return plan_parallel_execution(
+             itemCount,
+             ParallelExecutionOptions{
+                 requestedWorkerCount,
+                 1,
+                 true,
+             })
+      .workerCount;
 }
 
 CausalRootBatchResult solve_causal_roots_batch(const std::vector<CausalRootBatchItem>& items,
@@ -87,35 +76,14 @@ CausalRootBatchResult solve_causal_roots_batch(const std::vector<CausalRootBatch
     }
   };
 
-#ifdef __EMSCRIPTEN__
-  for (std::size_t index = 0; index < items.size(); ++index) {
-    solve_one(index);
-  }
-#else
-  if (batchResult.workerCountUsed <= 1) {
-    for (std::size_t index = 0; index < items.size(); ++index) {
-      solve_one(index);
-    }
-  } else {
-    std::atomic<std::size_t> nextIndex{0};
-    std::vector<std::thread> workers;
-    workers.reserve(batchResult.workerCountUsed);
-    for (std::size_t workerIndex = 0; workerIndex < batchResult.workerCountUsed; ++workerIndex) {
-      workers.emplace_back([&nextIndex, &items, &solve_one]() {
-        while (true) {
-          const std::size_t index = nextIndex.fetch_add(1, std::memory_order_relaxed);
-          if (index >= items.size()) {
-            break;
-          }
-          solve_one(index);
-        }
-      });
-    }
-    for (std::thread& worker : workers) {
-      worker.join();
-    }
-  }
-#endif
+  parallel_for_index_range(
+      items.size(),
+      ParallelExecutionOptions{
+          options.workerCount,
+          1,
+          options.deterministicOrder,
+      },
+      solve_one);
 
   for (const CausalRootBatchItemResult& itemResult : batchResult.items) {
     merge_validation(batchResult.validation, itemResult.result.validation);
@@ -124,7 +92,6 @@ CausalRootBatchResult solve_causal_roots_batch(const std::vector<CausalRootBatch
                              StatusSeverity::Ok,
                              "causal-root batch solved",
                              "causal-root-batch");
-  (void)options.deterministicOrder;
   return batchResult;
 }
 

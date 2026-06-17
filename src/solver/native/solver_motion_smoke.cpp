@@ -1,5 +1,6 @@
 #include "architrino/solver/BinaryLayouts.hpp"
 #include "architrino/solver/MotionSampler.hpp"
+#include "architrino/solver/SolverCAbi.hpp"
 
 #include <cmath>
 #include <iostream>
@@ -46,6 +47,25 @@ int main() {
   };
   const architrino::solver::MotionSampleResult invalid =
       architrino::solver::sample_linear_motion(invalidRequest);
+  ArchitrinoSolverMotionSampleRequestF64 abiRequest{
+      ArchitrinoSolverLinearPathSegmentF64{
+          0.0,
+          2.0,
+          ArchitrinoSolverVector3F64{1.0, 2.0, 3.0},
+          ArchitrinoSolverVector3F64{2.0, 0.5, -1.0},
+          1e-12,
+      },
+      1234,
+      0.0,
+      2.0,
+      1.0,
+      9,
+      0,
+  };
+  ArchitrinoSolverMotionFrameRowF64 abiFrames[3]{};
+  int abiFrameCount = 0;
+  const int abiStatus =
+      architrino_solver_sample_linear_motion_f64(&abiRequest, abiFrames, 3, &abiFrameCount);
 
   const bool ok =
       result.validation.ok &&
@@ -61,7 +81,14 @@ int main() {
       nearly_equal(result.frames[2].velocityX, 2.0) &&
       layout.rowSizeBytes == 88 &&
       layout.name == "frame_buffer.v1" &&
-      !invalid.validation.ok;
+      !invalid.validation.ok &&
+      abiStatus == 0 &&
+      abiFrameCount == 3 &&
+      abiFrames[2].path_key == 1234 &&
+      abiFrames[2].state_flags == 9 &&
+      nearly_equal(abiFrames[2].position_x, 5.0) &&
+      nearly_equal(abiFrames[2].position_y, 3.0) &&
+      nearly_equal(abiFrames[2].position_z, 1.0);
 
   if (!ok) {
     std::cerr << "solver motion smoke failed\n";

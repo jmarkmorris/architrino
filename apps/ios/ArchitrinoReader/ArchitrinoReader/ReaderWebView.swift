@@ -4,6 +4,7 @@ import WebKit
 struct ReaderWebView: UIViewRepresentable {
     @Binding var renderCommand: ReaderViewModel.ReaderRenderCommand?
     let onLinkTap: (Any) -> Void
+    let onRenderComplete: () -> Void
 
     func makeUIView(context: Context) -> WKWebView {
         let configuration = WKWebViewConfiguration()
@@ -11,6 +12,7 @@ struct ReaderWebView: UIViewRepresentable {
         let controller = WKUserContentController()
         controller.add(context.coordinator, name: "readerLinkHandler")
         controller.add(context.coordinator, name: "readerReady")
+        controller.add(context.coordinator, name: "readerRenderComplete")
         configuration.userContentController = controller
 
         let view = WKWebView(frame: .zero, configuration: configuration)
@@ -70,11 +72,18 @@ struct ReaderWebView: UIViewRepresentable {
                 return
             }
 
+            if message.name == "readerRenderComplete" {
+                DispatchQueue.main.async {
+                    self.parent.onRenderComplete()
+                }
+                return
+            }
+
             if message.name == "readerLinkHandler" {
                 DispatchQueue.main.async {
-                self.parent.onLinkTap(message.body)
+                    self.parent.onLinkTap(message.body)
+                }
             }
-        }
         }
 
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
@@ -121,6 +130,7 @@ struct ReaderWebView: UIViewRepresentable {
             if let controller = webView?.configuration.userContentController {
                 controller.removeScriptMessageHandler(forName: "readerLinkHandler")
                 controller.removeScriptMessageHandler(forName: "readerReady")
+                controller.removeScriptMessageHandler(forName: "readerRenderComplete")
             }
         }
     }

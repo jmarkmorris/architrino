@@ -39,13 +39,44 @@ struct PathHistoryIndexRow {
   std::uint64_t byteLength = 0;
 };
 
+struct PathHistoryChunkRow {
+  std::uint64_t chunkIndex = 0;
+  std::uint64_t pathKeyStart = 0;
+  std::uint64_t pathKeyEnd = 0;
+  std::uint64_t rowOffset = 0;
+  std::uint64_t rowCount = 0;
+  std::uint64_t frameStart = 0;
+  std::uint64_t frameEnd = 0;
+  double timeStart = 0.0;
+  double timeEnd = 0.0;
+  std::uint64_t byteOffset = 0;
+  std::uint64_t byteLength = 0;
+  std::uint64_t checksum64 = 0;
+  std::uint32_t stateFlags = 0;
+  std::uint32_t reserved0 = 0;
+};
+
 struct PathHistoryStreamOptions {
   std::string streamId = "path-history";
   std::string dataPath;
   std::string indexPath;
+  std::string chunkPath;
   std::string metadataPath;
   std::size_t rowsPerIndexChunk = 4096;
   bool durable = true;
+  std::string runId;
+  std::string datasetId;
+  std::string modelId;
+  std::string configHash;
+  std::string engineId = "architrino_solver";
+  std::string engineVersion;
+  std::string precisionPath = "scaled_f64_fast";
+  std::string unitConvention = "solver-si";
+  std::string coordinateFrame = "absolute";
+  std::string scaleNormalization = "none";
+  std::string interpolationRule = "linear_segment";
+  double streamEncodingTolerance = 0.0;
+  double readbackTolerance = 0.0;
 };
 
 struct PathHistoryStreamMetadata {
@@ -53,6 +84,7 @@ struct PathHistoryStreamMetadata {
   std::string manifestVersion = "solver-stream-manifest.v1";
   BinaryLayoutId layoutId = BinaryLayoutId::PathSegmentV1;
   BinaryLayoutId indexLayoutId = BinaryLayoutId::StreamIndexV1;
+  BinaryLayoutId chunkLayoutId = BinaryLayoutId::PathChunkV1;
   NumericType numericType = NumericType::F64;
   std::size_t rowSizeBytes = sizeof(PathHistoryRowF64);
   std::uint64_t rowCount = 0;
@@ -62,8 +94,25 @@ struct PathHistoryStreamMetadata {
   double timeEnd = 0.0;
   bool hasTimeRange = false;
   bool durable = true;
+  std::string runId;
+  std::string datasetId;
+  std::string modelId;
+  std::string configHash;
+  std::string engineId;
+  std::string engineVersion;
+  std::string precisionPath;
+  std::string unitConvention;
+  std::string coordinateFrame;
+  std::string scaleNormalization;
+  std::string interpolationRule;
+  double streamEncodingTolerance = 0.0;
+  double readbackTolerance = 0.0;
+  std::uint64_t dataChecksum64 = 0;
+  std::uint64_t indexChecksum64 = 0;
+  std::uint64_t chunkChecksum64 = 0;
   std::string dataPath;
   std::string indexPath;
+  std::string chunkPath;
   std::string metadataPath;
 };
 
@@ -115,12 +164,14 @@ class PathHistoryStreamWriter {
   bool closed_ = false;
   std::ofstream dataStream_;
   std::ofstream indexStream_;
+  std::ofstream chunkStream_;
 };
 
 std::vector<PathHistoryRowF64> read_path_history_rows(std::string_view dataPath,
                                                       std::uint64_t rowOffset,
                                                       std::size_t rowCount);
 std::vector<PathHistoryIndexRow> read_path_history_index(std::string_view indexPath);
+std::vector<PathHistoryChunkRow> read_path_history_chunks(std::string_view chunkPath);
 std::vector<PathHistoryIndexRow> query_path_history_index(const std::vector<PathHistoryIndexRow>& indexRows,
                                                           const PathHistoryQuery& query);
 std::vector<PathHistoryRowF64> read_path_history_query(std::string_view dataPath,

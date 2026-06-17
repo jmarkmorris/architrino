@@ -1,6 +1,7 @@
 #include "architrino/solver/PrecisionDiagnostics.hpp"
 #include "architrino/solver/SolverCAbi.hpp"
 
+#include <cmath>
 #include <iostream>
 
 namespace {
@@ -72,17 +73,27 @@ int main() {
       architrino::solver::diagnose_precision(make_request(0.0, 10.0, 10.0, 1e-10));
   const architrino::solver::PrecisionDiagnostic large =
       architrino::solver::diagnose_precision(make_request(1e15, 1e3, 1e12, 1e-16));
+  const architrino::solver::CausalRootResult largeRoots =
+      architrino::solver::solve_causal_roots(make_request(1e15, 1e3, 1e12, 1e-16));
 
   const bool ok =
       ordinary.validation.ok &&
       large.validation.ok &&
+      largeRoots.validation.ok &&
+      largeRoots.roots.size() == 1 &&
+      std::abs(largeRoots.roots[0].distance - 1e3) <= 1e-9 &&
+      std::abs(largeRoots.roots[0].residual) <= 1e-9 &&
       ordinary.recommendedPath == architrino::solver::PrecisionPath::ScaledF64Fast &&
       ordinary.recommendedNumericType == architrino::solver::NumericType::F64 &&
       !ordinary.scaleNormalizationRecommended &&
+      !ordinary.scaleResolutionLimited &&
+      !ordinary.timeResolutionLimited &&
       large.recommendedPath == architrino::solver::PrecisionPath::ExtendedPrecision &&
       large.recommendedNumericType == architrino::solver::NumericType::Decimal128 &&
       large.scaleNormalizationRecommended &&
       large.extendedPrecisionRecommended &&
+      large.scaleResolutionLimited &&
+      large.timeResolutionLimited &&
       large.geometryScale.ordersOfMagnitude >= 12.0;
 
   ArchitrinoSolverCausalRootRequestF64 cRequest = make_c_request(1e15, 1e3, 1e12, 1e-16);
@@ -94,8 +105,12 @@ int main() {
           static_cast<int>(architrino::solver::PrecisionPath::ExtendedPrecision) &&
       cDiagnostic.recommended_numeric_type ==
           static_cast<int>(architrino::solver::NumericType::Decimal128) &&
+      cDiagnostic.status_code ==
+          static_cast<int>(architrino::solver::StatusCode::InsufficientScaleResolution) &&
       (cDiagnostic.flags & 1) != 0 &&
       (cDiagnostic.flags & 2) != 0 &&
+      (cDiagnostic.flags & 4) != 0 &&
+      (cDiagnostic.flags & 8) != 0 &&
       cDiagnostic.geometry_orders >= 12.0;
 
   if (!ok || !cAbiOk) {
