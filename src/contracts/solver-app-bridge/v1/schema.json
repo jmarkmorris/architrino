@@ -31,6 +31,9 @@
       "$ref": "#/$defs/causalRootsF64RequestEnvelope"
     },
     {
+      "$ref": "#/$defs/causalRootsF64ResponseEnvelope"
+    },
+    {
       "$ref": "#/$defs/rootLedgerDetailF64RequestEnvelope"
     },
     {
@@ -371,6 +374,26 @@
         },
         "request": {
           "$ref": "#/$defs/causalRootsF64Request"
+        }
+      }
+    },
+    "causalRootsF64ResponseEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "response"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "causal-roots-f64-response"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "response": {
+          "$ref": "#/$defs/causalRootsF64Response"
         }
       }
     },
@@ -3530,6 +3553,22 @@
         }
       }
     },
+    "causalRootsF64Response": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["roots", "status"],
+      "properties": {
+        "roots": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/causalRootF64"
+          }
+        },
+        "status": {
+          "$ref": "#/$defs/statusRecord"
+        }
+      }
+    },
     "rootsAndHitsF64Response": {
       "type": "object",
       "additionalProperties": false,
@@ -4542,6 +4581,15 @@
         "packetMergeKey": {
           "type": "string",
           "minLength": 1
+        },
+        "packetResult": {
+          "$ref": "#/$defs/workPacketResultRef"
+        },
+        "packetResults": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/workPacketResultRef"
+          }
         },
         "streamId": {
           "type": "string",

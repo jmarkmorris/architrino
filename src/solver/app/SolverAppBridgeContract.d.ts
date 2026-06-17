@@ -489,6 +489,8 @@ export interface SolverEmissionShellCandidateF64Response {
   packetId?: string;
   packetMergeOrder?: number;
   packetMergeKey?: string;
+  packetResult?: SolverWorkPacketResultRef;
+  packetResults?: SolverWorkPacketResultRef[];
   streamId: string;
   signalSpeed: number;
   tolerance: number;

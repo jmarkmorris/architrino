@@ -21,6 +21,7 @@ const threadingPlanRequest = createThreadingPlanRequestEnvelope();
 const threadingPlanResponse = createThreadingPlanResponseEnvelope();
 const admissionRequest = createAdmissionRequestEnvelope();
 const admissionResponse = createAdmissionResponseEnvelope();
+const causalRootsResponse = createCausalRootsResponseEnvelope();
 const pathHistoryStreamRequest = createPathHistoryStreamRequestEnvelope();
 const pathHistoryStreamResponse = createPathHistoryStreamResponseEnvelope();
 const runSimulationRequest = createRunSimulationRequestEnvelope();
@@ -39,7 +40,27 @@ const readStreamRangeRequest = createReadStreamRangeRequestEnvelope();
 const readStreamRangeResponse = createReadStreamRangeResponseEnvelope();
 
 assert(schema.$id === "https://architrino.local/contracts/solver-app-bridge/v1/schema.json", "schema id mismatch");
+assert(schema.$defs?.initRequest, "init request schema missing");
+assert(schema.$defs?.initResponse, "init response schema missing");
+assert(schema.$defs?.solverCapabilities, "solver capabilities schema missing");
+assert(schema.$defs?.solverStoragePolicy, "solver storage policy schema missing");
+assert(schema.$defs?.solverStorageCapability, "solver storage capability schema missing");
+assert(schema.$defs?.solverThreadingCapability, "solver threading capability schema missing");
+assert(schema.$defs?.appBridgeCapability, "app bridge capability schema missing");
+assert(schema.$defs?.appAdapterCapability, "app adapter capability schema missing");
+assert(schema.$defs?.streamQueryCapability, "stream query capability schema missing");
+assert(schema.$defs?.workPacketCapability, "work packet capability schema missing");
+assert(schema.$defs?.solverValidationCapability, "solver validation capability schema missing");
+assert(schema.$defs?.solverAbiInfo, "solver ABI info schema missing");
+assert(schema.$defs?.threadingPolicy, "threading policy schema missing");
+assert(schema.$defs?.threadingWorkload, "threading workload schema missing");
+assert(schema.$defs?.threadingPlanRequest, "threading plan request schema missing");
+assert(schema.$defs?.threadingPlanResponse, "threading plan response schema missing");
+assert(schema.$defs?.capabilityEnvelope, "capability envelope schema missing");
+assert(schema.$defs?.admissionRequest, "admission request schema missing");
+assert(schema.$defs?.admissionResponse, "admission response schema missing");
 assert(schema.$defs?.causalRootsF64Request, "request schema missing");
+assert(schema.$defs?.causalRootsF64Response, "causal roots response schema missing");
 assert(schema.$defs?.rootLedgerDetailF64Request, "root-ledger detail request schema missing");
 assert(schema.$defs?.rootLedgerDetailF64Response, "root-ledger detail response schema missing");
 assert(schema.$defs?.rootLedgerDetailF64, "root-ledger detail row schema missing");
@@ -210,6 +231,15 @@ assertErrorBudgetStages([
 assertValueAuthorities(["authoritative", "approximate", "display-only", "rejected"]);
 
 validateRequestEnvelope(request);
+validateInitRequestEnvelope(initRequest);
+validateInitResponseEnvelope(initResponse);
+validateCapabilitiesRequestEnvelope(capabilitiesRequest);
+validateCapabilitiesResponseEnvelope(capabilitiesResponse);
+validateThreadingPlanRequestEnvelope(threadingPlanRequest);
+validateThreadingPlanResponseEnvelope(threadingPlanResponse);
+validateAdmissionRequestEnvelope(admissionRequest);
+validateAdmissionResponseEnvelope(admissionResponse);
+validateCausalRootsResponseEnvelope(causalRootsResponse);
 validateBatchResponseEnvelope(batchResponse);
 validateResponseEnvelope(response);
 validateRunSimulationRequestEnvelope(runSimulationRequest);
@@ -249,6 +279,109 @@ function validateRequestEnvelope(value) {
   assertPositiveInteger(requestValue.scanSubdivisions, "scan subdivisions");
   assertPositiveInteger(requestValue.maxRoots, "max roots");
   assertPositiveInteger(requestValue.maxHits, "max hits");
+}
+
+function validateCausalRootsResponseEnvelope(value) {
+  assert(value.schema === "solver-app-bridge/v1", "causal roots response schema tag mismatch");
+  assert(value.kind === "causal-roots-f64-response", "causal roots response kind mismatch");
+  assertNonemptyString(value.requestId, "causal roots response request id");
+  const responseValue = value.response;
+  assert(responseValue.roots.length === 1, "causal roots response root count mismatch");
+  assertClose(responseValue.roots[0].emissionTime, 0, "causal roots response emission time");
+  assertClose(responseValue.roots[0].distance, 10, "causal roots response distance");
+  assert(responseValue.status.code === "ok", "causal roots response status mismatch");
+}
+
+function validateInitRequestEnvelope(value) {
+  assert(value.schema === "solver-app-bridge/v1", "init request schema tag mismatch");
+  assert(value.kind === "init-request", "init request kind mismatch");
+  assertNonemptyString(value.requestId, "init request id");
+  assert(value.request.appId === "animator", "init app id mismatch");
+  assert(value.request.apiVersion === "solver-app-bridge.v1", "init api version mismatch");
+  assert(value.request.storagePolicy.target === "caller-buffer", "init storage target mismatch");
+  assert(value.request.threadingPolicy.mode === "single-thread", "init threading mode mismatch");
+}
+
+function validateInitResponseEnvelope(value) {
+  assert(value.schema === "solver-app-bridge/v1", "init response schema tag mismatch");
+  assert(value.kind === "init-response", "init response kind mismatch");
+  assertNonemptyString(value.requestId, "init response request id");
+  assert(value.response.apiVersion === "solver-app-bridge.v1", "init response api version mismatch");
+  assert(value.response.solverVersion === "0.1.0", "init response solver version mismatch");
+  assert(value.response.status.code === "ok", "init response status mismatch");
+  assertCapabilities(value.response.capabilities, "init capabilities");
+}
+
+function validateCapabilitiesRequestEnvelope(value) {
+  assert(value.schema === "solver-app-bridge/v1", "capabilities request schema tag mismatch");
+  assert(value.kind === "capabilities-request", "capabilities request kind mismatch");
+  assertNonemptyString(value.requestId, "capabilities request id");
+}
+
+function validateCapabilitiesResponseEnvelope(value) {
+  assert(value.schema === "solver-app-bridge/v1", "capabilities response schema tag mismatch");
+  assert(value.kind === "capabilities-response", "capabilities response kind mismatch");
+  assertNonemptyString(value.requestId, "capabilities response request id");
+  assertCapabilities(value.response, "capabilities response");
+}
+
+function validateThreadingPlanRequestEnvelope(value) {
+  assert(value.schema === "solver-app-bridge/v1", "threading plan request schema tag mismatch");
+  assert(value.kind === "threading-plan-request", "threading plan request kind mismatch");
+  assertNonemptyString(value.requestId, "threading plan request id");
+  assert(value.request.policy.mode === "fixed", "threading plan mode mismatch");
+  assert(value.request.policy.maxThreads === 4, "threading plan max threads mismatch");
+  assert(value.request.workload.itemCount === 16, "threading plan item count mismatch");
+}
+
+function validateThreadingPlanResponseEnvelope(value) {
+  assert(value.schema === "solver-app-bridge/v1", "threading plan response schema tag mismatch");
+  assert(value.kind === "threading-plan-response", "threading plan response kind mismatch");
+  assertNonemptyString(value.requestId, "threading plan response request id");
+  const responseValue = value.response;
+  assert(responseValue.schema === "solver-threading-plan.v1", "threading plan schema mismatch");
+  assert(responseValue.requestedWorkerCount === 4, "threading plan requested workers mismatch");
+  assert(responseValue.activeWorkerCount === 1, "threading plan active workers mismatch");
+  assert(responseValue.fallbackReason === "wasm_threads_unavailable", "threading plan fallback mismatch");
+  assert(responseValue.status.code === "unsupported_wasm_threads", "threading plan status mismatch");
+}
+
+function validateAdmissionRequestEnvelope(value) {
+  assert(value.schema === "solver-app-bridge/v1", "admission request schema tag mismatch");
+  assert(value.kind === "admission-request", "admission request kind mismatch");
+  assertNonemptyString(value.requestId, "admission request id");
+  assert(value.request.model.modelId === "aaa.central-solver", "admission model mismatch");
+  assert(value.request.errorBudget.globalTolerance === 1e-13, "admission error budget mismatch");
+  assert(value.request.envelope.entityCount === 16, "admission entity count mismatch");
+}
+
+function validateAdmissionResponseEnvelope(value) {
+  assert(value.schema === "solver-app-bridge/v1", "admission response schema tag mismatch");
+  assert(value.kind === "admission-response", "admission response kind mismatch");
+  assertNonemptyString(value.requestId, "admission response request id");
+  assert(value.response.decision === "escalate_precision", "admission decision mismatch");
+  assert(value.response.selectedPrecisionPath === "extended_precision", "admission precision mismatch");
+  assert(value.response.admitted === true, "admission admitted mismatch");
+  assert(value.response.stressSummary.dominantStress === "precision", "admission dominant stress mismatch");
+  assert(value.response.status.code === "precision_escalated", "admission status mismatch");
+}
+
+function assertCapabilities(value, label) {
+  assert(value.precisionPaths.includes("extended_precision"), `${label} precision path mismatch`);
+  assert(value.outputLayouts.includes("path_segment.v1"), `${label} output layouts mismatch`);
+  assert(value.storage.supportsCallerBuffer === true, `${label} caller-buffer storage mismatch`);
+  assert(value.threading.crossOriginIsolationRequired === true, `${label} threading isolation mismatch`);
+  assert(value.appBridge.schema === "solver-app-bridge-capabilities.v1", `${label} app bridge schema mismatch`);
+  assert(value.appBridge.denseDataTransport.includes("stream-handle"), `${label} dense transport mismatch`);
+  assert(value.appBridge.workerModel.appsRequireCppHandling === false, `${label} worker model mismatch`);
+  assert(value.appBridge.streamQueries.helpers.includes("readStreamRange"), `${label} stream query helper mismatch`);
+  assert(value.appBridge.workPackets.helpers.includes("planPathHistoryWorkPackets"), `${label} work packet helper mismatch`);
+  assert(value.numericSerialization.descriptors.length >= 1, `${label} numeric descriptors mismatch`);
+  assert(value.errorBudgetPropagation.stages.length >= 1, `${label} error budget propagation mismatch`);
+  assert(value.validation.invariantChecks.includes("root_hit_f64"), `${label} validation capability mismatch`);
+  assert(value.maxTransferBytes === 67108864, `${label} max transfer mismatch`);
+  assert(value.wasmModuleFactory === true, `${label} wasm factory mismatch`);
+  assert(value.abiInfo.rootRowF64Bytes === 112, `${label} ABI root row mismatch`);
 }
 
 function validateBatchResponseEnvelope(value) {
@@ -599,6 +732,374 @@ function assertValueAuthorities(expectedAuthorities) {
   for (const authority of expectedAuthorities) {
     assert(actualAuthorities.includes(authority), `value authority missing ${authority}`);
   }
+}
+
+function createCausalRootsResponseEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "causal-roots-f64-response",
+    requestId: "causal-roots-f64-smoke",
+    response: {
+      roots: response.response.roots,
+      status: createStatusFixture("ok", "ok", "causal roots solved"),
+    },
+  };
+}
+
+function createInitRequestEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "init-request",
+    requestId: "init-contract-request",
+    request: {
+      appId: "animator",
+      apiVersion: "solver-app-bridge.v1",
+      requestedCapabilities: ["causalRoots", "pathHistory", "sharedGeometry"],
+      storagePolicy: {
+        target: "caller-buffer",
+        durable: false,
+        maxBytes: 67108864,
+      },
+      threadingPolicy: {
+        mode: "single-thread",
+        deterministic: true,
+      },
+    },
+  };
+}
+
+function createInitResponseEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "init-response",
+    requestId: "init-contract-request",
+    response: {
+      apiVersion: "solver-app-bridge.v1",
+      solverVersion: "0.1.0",
+      capabilities: createCapabilitiesFixture(),
+      status: createStatusFixture("ok", "ok", "solver bridge initialized"),
+    },
+  };
+}
+
+function createCapabilitiesRequestEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "capabilities-request",
+    requestId: "capabilities-contract-request",
+  };
+}
+
+function createCapabilitiesResponseEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "capabilities-response",
+    requestId: "capabilities-contract-request",
+    response: createCapabilitiesFixture(),
+  };
+}
+
+function createThreadingPlanRequestEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "threading-plan-request",
+    requestId: "threading-plan-contract-request",
+    request: {
+      policy: {
+        mode: "fixed",
+        maxThreads: 4,
+        deterministic: true,
+      },
+      workload: {
+        stage: "emission_shell_candidates",
+        itemCount: 16,
+        minItemsPerWorker: 4,
+        deterministicRequired: true,
+      },
+    },
+  };
+}
+
+function createThreadingPlanResponseEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "threading-plan-response",
+    requestId: "threading-plan-contract-request",
+    response: {
+      schema: "solver-threading-plan.v1",
+      stage: "emission_shell_candidates",
+      itemCount: 16,
+      minItemsPerWorker: 4,
+      requestedWorkerCount: 4,
+      activeWorkerCount: 1,
+      schedulingMode: "sequential",
+      backend: "single-thread",
+      deterministicReduction: true,
+      browserWorkerAvailable: true,
+      wasmThreadsAvailable: false,
+      nativeThreadsAvailable: false,
+      fallbackReason: "wasm_threads_unavailable",
+      speedupBaselineWorkerCount: 1,
+      statuses: [
+        createStatusFixture("unsupported_wasm_threads", "warning", "threaded execution fell back to sequential bridge execution", {
+          stage: "threading_plan",
+        }),
+      ],
+      status: createStatusFixture("unsupported_wasm_threads", "warning", "threading plan selected sequential fallback", {
+        stage: "threading_plan",
+      }),
+    },
+  };
+}
+
+function createAdmissionRequestEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "admission-request",
+    requestId: "admission-contract-request",
+    request: {
+      model: createRunModel(),
+      errorBudget: createRunErrorBudget(),
+      envelope: createRunEnvelope(),
+      capability: {
+        maxInteractiveEntities: 2048,
+        maxBatchEntities: 65536,
+        minMemoryBudgetBytes: 1048576,
+        minStorageBudgetBytesForStreaming: 1048576,
+        minimumPositiveTolerance: 1e-18,
+        maxInteractiveStepCount: 100000,
+      },
+    },
+  };
+}
+
+function createAdmissionResponseEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "admission-response",
+    requestId: "admission-contract-request",
+    response: {
+      decision: "escalate_precision",
+      selectedPrecisionPath: "extended_precision",
+      admitted: true,
+      stressSummary: createAdmissionStressSummary(),
+      statuses: [createStatusFixture("precision_escalated", "info", "selected extended precision for strict global tolerance", {
+        stage: "admission",
+      })],
+      status: createStatusFixture("precision_escalated", "info", "simulation admitted with precision escalation", {
+        stage: "admission",
+      }),
+    },
+  };
+}
+
+function createCapabilitiesFixture() {
+  return {
+    precisionPaths: [
+      "auto",
+      "scaled_f64_fast",
+      "scaled_f64_strict",
+      "adaptive_multirate",
+      "event_root_focused",
+      "extended_precision",
+      "validation_replay",
+    ],
+    outputLayouts: [
+      "frame_buffer.v1",
+      "path_segment.v1",
+      "assembly_state.v1",
+      "assembly_membership.v1",
+      "assembly_hierarchy.v1",
+      "assembly_events.v1",
+      "path_chunk.v1",
+      "root_ledger.v1",
+      "root_ledger_detail.v1",
+      "delayed_hit_events.v1",
+      "phase_at_hit.v1",
+      "spacetime_index.v1",
+      "emission_shell_candidate.v1",
+      "emission_shell_narrow_phase.v1",
+      "stream_index.v1",
+    ],
+    storage: {
+      supportsOpfs: false,
+      supportsNativeFile: false,
+      supportsCallerBuffer: true,
+      maxRecommendedBytes: 67108864,
+    },
+    threading: {
+      nativeThreads: false,
+      wasmThreads: false,
+      browserWorker: true,
+      crossOriginIsolationRequired: true,
+    },
+    appBridge: {
+      schema: "solver-app-bridge-capabilities.v1",
+      apiVersion: "solver-app-bridge.v1",
+      adapterVersion: "solver-app-adapters.v1",
+      appAdapters: [
+        {
+          appId: "animator",
+          runKinds: ["motionSimulation", "pathHistory", "appPlayback", "sharedGeometry", "validationReplay"],
+        },
+        {
+          appId: "photon",
+          runKinds: ["causalRoots", "phaseDiagnostics", "pathHistory", "sharedGeometry", "validationReplay"],
+        },
+        {
+          appId: "ideal-swarm",
+          runKinds: ["delayedHits", "pathHistory", "sharedGeometry", "validationReplay"],
+        },
+      ],
+      denseDataTransport: ["array-buffer", "stream-handle"],
+      workerModel: {
+        bridgeOwnsWasmLifecycle: true,
+        appsRequireCppHandling: false,
+        longRunningRunsOffUiThreadRequired: true,
+        browserWorkerAvailable: true,
+        wasmInternalThreadsAvailable: false,
+        fallback: "single-solver-worker-or-batch",
+      },
+      storageFallbacks: {
+        preferredDurableBrowserTarget: "opfs",
+        durableBrowserTargetAvailable: false,
+        transientTarget: "caller-buffer",
+        unsupportedStorageStatusCode: "unsupported_browser_storage",
+      },
+      streamQueries: {
+        schema: "solver-stream-query-capabilities.v1",
+        helpers: [
+          "createPathHistoryStreamF64",
+          "describeStream",
+          "readStreamRange",
+          "queryEmissionShellCandidatesF64",
+          "queryEmissionShellCandidatePacketF64",
+          "queryEmissionShellCandidatePacketsF64",
+        ],
+        pathHistoryLayouts: ["path_segment.v1"],
+        indexedFilters: ["pathKeys", "chunkIndices", "timeRange", "frameRange", "byteRange"],
+        broadPhaseQueries: [
+          createBroadPhaseCapability("queryEmissionShellCandidatesF64"),
+          createBroadPhaseCapability("queryEmissionShellCandidatePacketF64"),
+          createBroadPhaseCapability("queryEmissionShellCandidatePacketsF64"),
+        ],
+      },
+      workPackets: {
+        schema: "solver-work-packet-capabilities.v1",
+        headerSchema: "solver-work-packet.v1",
+        helpers: [
+          "prepareWorkPacketHeader",
+          "orderWorkPacketResults",
+          "planPathHistoryWorkPackets",
+          "mergeEmissionShellCandidatePacketResponsesF64",
+        ],
+        pathHistoryPlanFilters: [
+          "sourcePathKeys",
+          "receiverPathKeys",
+          "sourceChunkIndices",
+          "receiverChunkIndices",
+          "timeRange",
+        ],
+        deterministicMergeOrder: ["mergeKey", "mergeOrder", "packetId"],
+        rowSizeValidation: true,
+      },
+    },
+    numericSerialization: {
+      schema: "solver-numeric-serialization.v1",
+      descriptors: [
+        {
+          numericType: "f64",
+          byteOrder: "little-endian",
+          scalarSizeBytes: 8,
+          signedness: "not-applicable",
+          scaleFactor: "1",
+          exponentLayout: "ieee754-binary64",
+          limbOrder: "not-applicable",
+          intervalEndpointConvention: "not-applicable",
+          roundingMode: "nearest-even",
+          comparisonSemantics: "total-order-with-nan-rejected",
+          textExport: "decimal-roundtrip",
+          appBufferSafe: true,
+          authoritativeStorageSafe: true,
+        },
+      ],
+    },
+    errorBudgetPropagation: {
+      schema: "solver-error-budget-propagation.v1",
+      stages: [
+        {
+          stage: "root_isolation",
+          budgetField: "rootIsolationTolerance",
+          cumulative: true,
+        },
+      ],
+      authorityLevels: ["authoritative", "approximate", "display-only", "rejected"],
+    },
+    validation: {
+      invariantChecks: ["root_hit_f64"],
+      transitionClassifiers: ["root_ledger_f64"],
+      baselineClassifications: [
+        "baseline_within_tolerance",
+        "baseline_refined_result",
+        "baseline_model_boundary_difference",
+        "baseline_investigation_required_mismatch",
+      ],
+    },
+    maxTransferBytes: 67108864,
+    wasmModuleFactory: true,
+    abiInfo: createAbiInfoFixture(),
+  };
+}
+
+function createBroadPhaseCapability(method) {
+  return {
+    method,
+    responseSchema: "solver-emission-shell-candidates.v1",
+    candidateKind: "broad_phase_possible",
+    estimateMethod: "sampled_linear_segment_bisection.v1",
+    narrowPhaseAuthorities: ["solveCausalRootsF64", "solveRootsAndHitsF64"],
+  };
+}
+
+function createAbiInfoFixture() {
+  return {
+    abiMajor: 0,
+    abiMinor: 3,
+    abiPatch: 0,
+    rootRequestF64Bytes: 176,
+    rootRowF64Bytes: 112,
+    delayedHitRowF64Bytes: 128,
+    motionSampleRequestF64Bytes: 112,
+    motionFrameRowF64Bytes: 88,
+    phaseClockF64Bytes: 24,
+    phaseAtHitRowF64Bytes: 72,
+    boundsRowF64Bytes: 64,
+    spherePointRequestF64Bytes: 64,
+    spherePointRowF64Bytes: 24,
+    delayedPotentialRequestF64Bytes: 144,
+    delayedPotentialRowF64Bytes: 112,
+    circularSelfHitRequestF64Bytes: 48,
+    circularSelfHitRowF64Bytes: 72,
+    assemblyStateRowF64Bytes: 112,
+    assemblyMembershipRowF64Bytes: 80,
+    assemblyHierarchyRowF64Bytes: 56,
+    assemblyEventRowF64Bytes: 88,
+    pathHistoryRowF64Bytes: 96,
+    pathHistoryChunkRowBytes: 104,
+    storageLifecyclePolicyBytes: 56,
+    pathHistoryLifecycleDecisionRowBytes: 32,
+    spaceTimeIndexRowF64Bytes: 128,
+    emissionShellBroadPhaseOptionsF64Bytes: 48,
+    emissionShellCandidateRowF64Bytes: 112,
+    emissionShellBroadPhaseSummaryBytes: 32,
+    emissionShellNarrowPhaseRequestF64Bytes: 208,
+    emissionShellNarrowPhaseRowF64Bytes: 40,
+    rootLedgerDetailRowF64Bytes: 192,
+    errorBudgetF64Bytes: 64,
+    errorBudgetStageInputF64Bytes: 16,
+    errorBudgetStageRowF64Bytes: 40,
+    errorBudgetSummaryF64Bytes: 32,
+  };
 }
 
 function createRunSimulationRequestEnvelope() {

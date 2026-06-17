@@ -1010,6 +1010,7 @@ function mergeEmissionShellCandidatePacketResponsesF64(request) {
     responses.map((response) => response.falsePositiveEstimate)
   );
   const truncated = responses.some((response) => response.truncated);
+  const packetResults = responses.map((response) => response.packetResult);
   const scanSummary = mergeEmissionShellScanSummaries(
     responses.map((response) => response.scanSummary),
     buffers,
@@ -1031,6 +1032,7 @@ function mergeEmissionShellCandidatePacketResponsesF64(request) {
     truncated,
     candidates,
     buffers,
+    packetResults,
     status: createStatus(
       truncated ? "stream_memory_pressure" : "ok",
       truncated ? "warning" : "ok",
@@ -1070,6 +1072,26 @@ function normalizeEmissionShellPacketResponse(response, label) {
   requireNonemptyString(response.packetId, `${label}.packetId`);
   requireSafeUint64(response.packetMergeOrder, `${label}.packetMergeOrder`);
   requireNonemptyString(response.packetMergeKey, `${label}.packetMergeKey`);
+  const packetResult = normalizeWorkPacketResultRef(response.packetResult, `${label}.packetResult`);
+  if (
+    packetResult.packetId !== response.packetId ||
+    packetResult.mergeOrder !== response.packetMergeOrder ||
+    packetResult.mergeKey !== response.packetMergeKey
+  ) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", `${label}.packetResult does not match packet merge metadata`, {
+        recoverable: false,
+        details: {
+          packetId: response.packetId,
+          resultPacketId: packetResult.packetId,
+          packetMergeOrder: response.packetMergeOrder,
+          resultMergeOrder: packetResult.mergeOrder,
+          packetMergeKey: response.packetMergeKey,
+          resultMergeKey: packetResult.mergeKey,
+        },
+      })
+    );
+  }
   requireNonemptyString(response.streamId, `${label}.streamId`);
   requirePositiveFiniteNumber(response.signalSpeed, `${label}.signalSpeed`);
   requireNonnegativeFiniteNumber(response.tolerance, `${label}.tolerance`);
@@ -1099,7 +1121,10 @@ function normalizeEmissionShellPacketResponse(response, label) {
       })
     );
   }
-  return response;
+  return {
+    ...response,
+    packetResult,
+  };
 }
 
 function compareEmissionShellPacketResponses(left, right) {
@@ -1617,6 +1642,56 @@ function normalizeWorkPacketResultRef(result, label) {
     outputs: result.outputs.map((buffer, index) =>
       normalizeWorkPacketBufferRef(buffer, `${label}.outputs[${index}]`)
     ),
+  };
+}
+
+function createPacketScopedOutputBuffers(packetId, buffers) {
+  requireNonemptyString(packetId, "packetId");
+  requireArray(buffers, "buffers");
+  return buffers.map((buffer, index) => {
+    if (!buffer || typeof buffer !== "object" || Array.isArray(buffer)) {
+      throw new SolverBridgeError(
+        createStatus("app_contract_error", "error", `buffers[${index}] is required`, {
+          recoverable: false,
+        })
+      );
+    }
+    const scopedBuffer = {
+      ...buffer,
+      bufferId: `${packetId}:${buffer.bufferId}`,
+    };
+    if (scopedBuffer.checksum == null && scopedBuffer.buffer instanceof ArrayBuffer) {
+      scopedBuffer.checksum = fnv1a64ArrayBufferHex(scopedBuffer.buffer);
+    }
+    return scopedBuffer;
+  });
+}
+
+function createWorkPacketResultRef(packet, buffers) {
+  return normalizeWorkPacketResultRef(
+    {
+      packetId: packet.packetId,
+      mergeOrder: packet.mergeOrder,
+      mergeKey: packet.mergeKey,
+      outputs: buffers.map(createWorkPacketOutputBufferRef),
+    },
+    "packetResult"
+  );
+}
+
+function createWorkPacketOutputBufferRef(buffer) {
+  const checksum =
+    buffer.checksum ??
+    (buffer.buffer instanceof ArrayBuffer ? fnv1a64ArrayBufferHex(buffer.buffer) : "");
+  return {
+    bufferId: buffer.bufferId,
+    layout: buffer.layout,
+    numericType: buffer.numericType,
+    byteOffset: buffer.byteOffset ?? 0,
+    byteLength: buffer.byteLength,
+    rowOffset: buffer.rowOffset ?? 0,
+    rowCount: buffer.rowCount,
+    checksum,
   };
 }
 
@@ -6966,11 +7041,15 @@ function queryEmissionShellCandidatePacketF64(state, request, module = null, abi
     module,
     abiInfo
   );
+  const buffers = createPacketScopedOutputBuffers(packet.packetId, response.buffers);
+  const packetResult = createWorkPacketResultRef(packet, buffers);
   return {
     ...response,
     packetId: packet.packetId,
     packetMergeOrder: packet.mergeOrder,
     packetMergeKey: packet.mergeKey,
+    buffers,
+    packetResult,
   };
 }
 

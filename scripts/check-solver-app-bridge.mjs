@@ -1233,6 +1233,7 @@ assert(
     packetQueryEmissionShellCandidates.packetMergeKey === pathHistoryPacketPlan.packets[0].mergeKey,
   "expected packet query emission-shell packet merge metadata"
 );
+assertEmissionShellPacketResult(packetQueryEmissionShellCandidates, pathHistoryPacketPlan.packets[0]);
 assert(
   packetQueryEmissionShellCandidates.status.code === "ok" &&
     packetQueryEmissionShellCandidates.pairCount === 1 &&
@@ -1277,6 +1278,7 @@ assert(
     packetQueryEmissionShellEmpty.candidateCount === 0,
   "expected empty packet query emission-shell response"
 );
+assertEmissionShellPacketResult(packetQueryEmissionShellEmpty, pathHistoryPacketPlan.packets[1]);
 const mergedPacketEmissionShellCandidates = await client.mergeEmissionShellCandidatePacketResponsesF64({
   responses: [packetQueryEmissionShellEmpty, packetQueryEmissionShellCandidates],
 });
@@ -1290,6 +1292,11 @@ assert(
   mergedPacketEmissionShellCandidates.candidates[0].sourceChunkIndex === 0 &&
     mergedPacketEmissionShellCandidates.candidates[0].receiverChunkIndex === 1,
   "expected merged packet emission-shell deterministic candidate order"
+);
+assert(
+  mergedPacketEmissionShellCandidates.packetResults.map((result) => result.packetId).join(",") ===
+    `${pathHistoryPacketPlan.packets[0].packetId},${pathHistoryPacketPlan.packets[1].packetId}`,
+  "expected merged packet emission-shell ordered result refs"
 );
 assertEmissionShellScanSummary(
   mergedPacketEmissionShellCandidates.scanSummary,
@@ -1337,6 +1344,11 @@ assert(
   batchPacketEmissionShellCandidates.candidates[0].sourceChunkIndex === 0 &&
     batchPacketEmissionShellCandidates.candidates[0].receiverChunkIndex === 1,
   "expected packet-batch emission-shell deterministic candidate order"
+);
+assert(
+  batchPacketEmissionShellCandidates.packetResults.map((result) => result.packetId).join(",") ===
+    `${pathHistoryPacketPlan.packets[0].packetId},${pathHistoryPacketPlan.packets[1].packetId}`,
+  "expected packet-batch emission-shell ordered result refs"
 );
 assertEmissionShellScanSummary(
   batchPacketEmissionShellCandidates.scanSummary,
@@ -2415,6 +2427,27 @@ function assertEmissionShellScanSummary(summary, expected, executionPath = "nati
   for (const [key, value] of Object.entries(expected)) {
     assert(summary[key] === value, `expected emission-shell scan summary ${key}=${value}`);
   }
+}
+
+function assertEmissionShellPacketResult(response, packet) {
+  assert(
+    response.packetResult.packetId === packet.packetId &&
+      response.packetResult.mergeOrder === packet.mergeOrder &&
+      response.packetResult.mergeKey === packet.mergeKey,
+    "expected emission-shell packet result ref to match packet metadata"
+  );
+  assert(response.packetResult.outputs.length === 2, "expected two emission-shell packet output refs");
+  response.packetResult.outputs.forEach((output, index) => {
+    const buffer = response.buffers[index];
+    assert(output.bufferId === buffer.bufferId, "expected packet output ref buffer id to match response buffer");
+    assert(output.layout === buffer.layout, "expected packet output ref layout to match response buffer");
+    assert(output.numericType === buffer.numericType, "expected packet output ref numeric type to match response buffer");
+    assert(output.byteOffset === buffer.byteOffset, "expected packet output ref byte offset to match response buffer");
+    assert(output.byteLength === buffer.byteLength, "expected packet output ref byte length to match response buffer");
+    assert(output.rowOffset === 0, "expected packet output ref row offset zero");
+    assert(output.rowCount === buffer.rowCount, "expected packet output ref row count to match response buffer");
+    assert(output.checksum === fnv1a64ArrayBufferHex(buffer.buffer), "expected packet output checksum");
+  });
 }
 
 function assertDeepEqual(actual, expected, message) {

@@ -7325,6 +7325,8 @@ where $\Gamma_{\mathcal{Q},W(t)}$ is the set of complete microhistories compatib
 
 Plain language: entropy is not counted over reality in the abstract. It is counted over the alternatives left unresolved after the record map, measure, coarse-graining, and access window have been specified.
 
+The exact-record limit is useful as a guardrail. If the retained partition distinguishes one complete deterministic history from every other complete deterministic history, then the active cell has probability one and the corresponding entropy is zero. That does not mean thermodynamics has disappeared from the world. It means the record has been refined until it no longer asks a thermodynamic question. A thermodynamic macrostate is a physically declared grouping of histories: a pressure, temperature, density, spectral, boundary, apparatus, or control-relevant record that a real system can retain and use.
+
 #### Work Availability And Energy Spread
 
 Traditional thermodynamics often introduces entropy as a measure of energy spread. In this chapter that is the work-availability face of record coarse-graining. A hot reservoir, chemical store, coherent photon-channel stream, or gravitational potential gradient is low entropy only relative to a work channel and comparison record that can use the concentration. After the same energy is distributed among many thermal, boundary, or wake-history microrecords, the total energy ledger may still close, but the retained record supports less extractable work.
@@ -7355,6 +7357,15 @@ W_{\max}\!\left(\theta_W;\mathcal{C}^{\mathrm{ctrl}}_W,R_f\right)
 \Delta E_{\mathrm{weight}}\!\left[\alpha:\theta_W\to R_f\right]
 $$
 The value can change when the apparatus record contains which pressure side, molecule class, isotope channel, or other controllable distinction is present. That is not a psychological addition to physics. It is a different physical record and a different control/readout channel. In $\mathbb{A}\mathbb{A}\mathbb{A}$, an entropy that claims to measure available work must therefore declare $\theta_W$, $\mathcal{C}^{\mathrm{ctrl}}_W$, and $R_f$ together.
+
+This also disciplines heat-death language. A claim that a universe window has no usable work left is not a bare statement about the complete microstate; it is a statement about a declared class of controls, readouts, reservoirs, and final records. For a control family $\mathcal{C}^{\mathrm{ctrl}}$ over admissible windows, the remaining work-availability envelope can be written schematically as
+$$
+\mathcal{A}_{\mathrm{use}}(t;\mathcal{C}^{\mathrm{ctrl}})
+=
+\sup_{W,R_f}
+W_{\max}\!\left(\theta_W(t);\mathcal{C}^{\mathrm{ctrl}}_W,R_f\right)
+$$
+A heat-death statement for that control family means $\mathcal{A}_{\mathrm{use}}$ tends to zero or below the declared operational threshold. It does not prove that every possible future record system, assembly class, or Noether sea access channel has no usable distinction. It proves only the exhaustion of usable gradients for the stated comparison class.
 
 For open windows, the same point must be stated with boundary records. A planetary, biological, or engineered window may receive and emit nearly equal total energy while still being driven by low-entropy input. The relevant record distinguishes incoming concentrated photon-channel packets, chemical gradients, or potential-gradient data from outgoing lower-frequency radiation, heat, and boundary-wake history:
 $$
@@ -7495,6 +7506,8 @@ for the declared record. The phrase "entropy of the universe" is not a complete 
 #### Second Law And Same-Record Monotonicity
 
 The traditional second law has several equivalent-looking forms only after the comparison class has been fixed. Clausius uses a cycle or reversible-comparison statement, Kelvin-Planck forbids a cyclic device from converting heat from one reservoir wholly into work, Boltzmann says overwhelmingly many compatible microstates lie in larger macrostates, and Maxwell-demon analyses require memory and reset costs to be included. These are not four independent substances called entropy. They are four projections of the same discipline: the complete thermodynamic packet must not shrink the retained compatible-history record for free.
+
+The traditional slogan that entropy increases is therefore a shorthand. The safer statement is that, for an admissible isolated comparison with fixed record class and no hidden boundary or apparatus reset, the retained entropy must not decrease beyond the allowed finite-window fluctuation. It can remain constant in an ideal reversible comparison, and it can be exactly zero for a singleton exact-history partition that has stopped asking a thermodynamic question. Irreversibility enters when the retained macrostate loses access to distinctions that the complete deterministic history still contains.
 
 In $\mathbb{A}\mathbb{A}\mathbb{A}$, the second law is therefore not the source of absolute time and not a primitive command that a substance called entropy must always rise. It is a finite-window typicality and bookkeeping claim over a declared record. For a fixed window, coarse-graining, boundary record, and apparatus/control class, the same-record second-law diagnostic is
 $$
@@ -7681,6 +7694,8 @@ A seventh failure mode is record circularity. If a packet uses retained records 
 An eighth failure mode is treating "entropy never decreases" as a primitive second law. Clausius entropy depends on a reversible-cycle integrability condition, statistical entropy can fluctuate in small or finite windows, and resource entropy depends on the declared control/readout class. A packet must state which second-law form it is invoking before monotonicity has content.
 
 A ninth failure mode is quoting entanglement entropy without declaring the factorization and access cut. A subsystem entropy is not automatically entropy of the whole universe. It is a statement about what remains after a complement has been excluded from the retained record.
+
+A tenth failure mode is promoting present human or laboratory macrostates into the final state-space partition of the universe. Heat-death claims, order claims, and "maximum entropy" claims must declare the manipulation class and record system for which usable gradients are exhausted. Otherwise they have converted a useful thermodynamic extrapolation into an unsupported ontology of all future access.
 
 #### Interfaces
 
@@ -68149,7 +68164,7 @@ The arrow problem also separates dynamical relaxation from measure-based typical
 
 #### Theory Mapping
 
-This chapter is a comparative reader for the inherited modern-physics stack viewed from a substrate-first architecture. It is meant to orient readers quickly: what each major theory claims, what it explains well, and whether $\mathbb{A}\mathbb{A}\mathbb{A}$ intends to recover it, reinterpret it, or reject its ontology while preserving some effective structure. For the repo's deeper conceptual framing of where inherited theories break or remain useful, compare [Theory Differentials](../../../../markdown/aaa/philosophy-history/theory-differentials.md), [Crisis in Physics](../../../../markdown/aaa/philosophy-history/crisis-in-physics.md), [Substance, Structure, and the Plenum of Potential](../../../../markdown/aaa/philosophy-history/substance-structure-and-potential.md), and [Unknowns and Paradoxes](../../../../markdown/aaa/philosophy-history/unknowns-paradoxes.md). For long-form mathematical mappings between inherited frameworks and the $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation layer, see [Theory Bridges](../../../../markdown/aaa/philosophy-history/theory-bridges/README.md).
+This chapter is a comparative reader for the inherited modern-physics stack viewed from a substrate-first architecture. It is meant to orient readers quickly: what each major theory claims, what it explains well, and whether $\mathbb{A}\mathbb{A}\mathbb{A}$ intends to recover it, reinterpret it, or reject its ontology while preserving some effective structure. For the repo's deeper conceptual framing of where inherited theories break or remain useful, compare [Theory Inheritance Discipline](../../../../markdown/aaa/philosophy-history/theory-inheritance-discipline.md), [Theory Differentials](../../../../markdown/aaa/philosophy-history/theory-differentials.md), [Crisis in Physics](../../../../markdown/aaa/philosophy-history/crisis-in-physics.md), [Substance, Structure, and the Plenum of Potential](../../../../markdown/aaa/philosophy-history/substance-structure-and-potential.md), and [Unknowns and Paradoxes](../../../../markdown/aaa/philosophy-history/unknowns-paradoxes.md). For long-form mathematical mappings between inherited frameworks and the $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation layer, see [Theory Bridges](../../../../markdown/aaa/philosophy-history/theory-bridges/README.md).
 
 The document is organized as a matrix rather than a linear history. The first sections explain the comparison method; the later layers then group theories by assembly, spacetime, cosmology, and epistemic-observation roles.
 
@@ -69291,7 +69306,7 @@ $$
 
 This document defines the modern ontological network above $\mathbb{A}\mathbb{A}\mathbb{A}$, assuming $\mathbb{A}\mathbb{A}\mathbb{A}$ is substantially correct at substrate level.
 
-It is the catalog companion to [Theory Mapping](../../../../markdown/aaa/philosophy-history/theory-mapping.md), [Crisis in Physics](../../../../markdown/aaa/philosophy-history/crisis-in-physics.md), [Unknowns and Paradoxes](../../../../markdown/aaa/philosophy-history/unknowns-paradoxes.md), [Parameter Ledger](../../../../markdown/aaa/validation/parameter-ledger.md), and [No-Go Theorems](../../../../markdown/aaa/validation/no-go-theorems.md).
+It is the catalog companion to [Theory Mapping](../../../../markdown/aaa/philosophy-history/theory-mapping.md), [Theory Inheritance Discipline](../../../../markdown/aaa/philosophy-history/theory-inheritance-discipline.md), [Crisis in Physics](../../../../markdown/aaa/philosophy-history/crisis-in-physics.md), [Unknowns and Paradoxes](../../../../markdown/aaa/philosophy-history/unknowns-paradoxes.md), [Parameter Ledger](../../../../markdown/aaa/validation/parameter-ledger.md), and [No-Go Theorems](../../../../markdown/aaa/validation/no-go-theorems.md).
 
 Its purpose is differential classification, not sociological ranking. The chapter is meant to function as a reference catalog: each entry makes the stack placement, retained strength, and limiting tension explicit even when the prose remains more schematic than in the longer overview chapters. Each entry is judged by layer placement, ontological commitments, empirical carryover, and reclassification outcome under $\mathbb{A}\mathbb{A}\mathbb{A}$.
 

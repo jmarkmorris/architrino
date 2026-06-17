@@ -127,6 +127,64 @@ chapters still own their local details.
 | Information and computation | State distinction, encoding, measurement records, reset cost, algorithmic scaling, and simulation discipline | Directional comparison and methodological language | Useful for records and models, but not a substrate ontology |
 | Holography, AdS/CFT, islands, MOND-like fits, string/LQG/SUSY/inflationary programs | Comparison pressure, candidate analogies, and boundary checks | Directional comparison | They may sharpen constraints, but they are not closure targets unless a tested observable or hard consistency condition requires them |
 
+## Foundational Formula Audit
+
+The foundational layer uses a short list of formulas directly, but they do not
+all have the same status. Some are substrate commitments, some are formal tools
+used to state the substrate, some are accepted native dynamics, and some are
+bookkeeping or proof scaffolds that remain subordinate to the native branch law.
+
+The important correction is the status of the familiar $1/r$ potential. The
+accepted primitive dynamics is not "a static $1/r$ field." The accepted
+primitive dynamics is the causal-root, inverse-square, Jacobian-weighted
+acceleration law. A $1/r$ expression appears as a stationary/path-history
+potential calibration and as a partial Fokker-type variational scaffold, but it
+does not by itself relieve the burden of deriving or certifying the Master EOM.
+
+| Formula family | Foundational expression | Current status | What it does not license |
+| --- | --- | --- | --- |
+| Product background | $\mathcal{M}=\mathbb{R}\times\mathbb{R}^3$, $\Sigma_t=\{t\}\times\mathbb{R}^3$ | Native substrate commitment | A fundamental 4D metric, spacetime curvature, or relativistic interval |
+| Substrate clock and Euclidean metric | $dt$, $h_{ij}=\delta_{ij}$, $\nabla dt=0$, $\nabla h=0$ | Native substrate commitment plus direct mathematical tool | Curvature of the Euclidean void or observer proper time as a substrate interval |
+| Worldline kinematics | $\mathbf{s}_a(t)$, $\mathbf{v}_a=d\mathbf{s}_a/dt$, $\mathbf{a}_a=d\mathbf{v}_a/dt$ | Native absolute-time kinematics | Particle-specific inertial mass or $\mathbf{F}=m\mathbf{a}$ as primitive law |
+| Complete state and path history | $\mathbb{U}_{\text{now}}\equiv S(t)$ with history ledger $H_t$ and branch data $\mathcal{B}_t$ | Native bookkeeping requirement for deterministic delayed dynamics | A history-free Markov state or observer-accessible complete state |
+| Polarity and sign bookkeeping | $q_a=\sigma_a\epsilon$, $\sigma_a\in\{-1,+1\}$, $\sigma_{ij}=\mathrm{sign}(q_iq_j)$ | Native polarity bookkeeping with observer-charge calibration | A completed derivation of electric, weak, color, or generation structure |
+| Causal wake support | $\lVert\mathbf{x}-\mathbf{x}_0\rVert=c_f(t-t_0)$ with $t>t_0$ | Native causal support rule | A filled light cone, Lorentzian metric cone, or instantaneous action |
+| Causal-root set | $F_{ij}(t,s)=\lVert\mathbf{x}_i(t)-\mathbf{x}_j(s)\rVert-c_f(t-s)$ and $\mathcal{C}_{ij}(t)=\{\,s<t:F_{ij}(t,s)=0\,\}$ | Native branch-selection geometry | Treating all past source points as active, or treating root existence as stability proof |
+| Causal surface density | $\rho(t,\mathbf{x})=\dfrac{q}{4\pi r^2}\delta(r-c_f\tau)H(\tau)$ | Distributional representation of causal wake support | A permanent filled $1/r$ near field or autonomous field substance |
+| Heaviside endpoint rule | $H(0)=0$ and $t_0<t$ in the causal-root set | Native endpoint convention | Instantaneous self-kick or zero-delay self-force |
+| Root Jacobian and transversality | $J_{ij}=1-\mathbf{v}_j(s)\cdot\hat{\mathbf{r}}_{ij}/c_f$ with positive branch floor | Direct branch-analysis tool in the native law | Replacing the branch factor by speed magnitude, or ignoring caustic/fold regimes |
+| Per-hit acceleration | $\mathbf{a}_{ij}=\kappa\sigma_{ij}\dfrac{\lvert q_iq_j\rvert}{r_{ij}^2\lvert J_{ij}\rvert}\hat{\mathbf{r}}_{ij}$ | Accepted native dynamical law on certified branch charts | Cross-product forces, primitive magnetic fields, or a mass-based force ontology |
+| Total acceleration | $\ddot{\mathbf{x}}_i(t)=\sum_j\sum_{t_0\in\mathcal{C}_{ij}(t)}\mathbf{a}_{ij}(t;t_0)$ | Accepted native branch sum | Bulk equations, convergence for infinite populations, or assembly stability without added branch records |
+| Superposition | Source contributions add linearly on the declared branch chart | Native source-addition rule and effective reconstruction tool | Wake-wake interaction as an independent substance law |
+| Regularized wake surface | $\delta(r-c_f\tau)\to\delta_\eta(r-c_f\tau)$, with optional core scale $\epsilon_c$ in proof models | Formal regularization and simulation/proof tool | A new substrate substance, a hidden fit parameter, or a completed $\eta\to0$ proof |
+| Potential reconstruction | $\Phi_{\text{net}}(\mathbf{x},t)=\sum_o\Phi_o(\mathbf{x},t)$ and $U_{o'}=q_{o'}\Phi_{\text{net}}[\text{history}]$ | Fixed-history bookkeeping and effective diagnostic | Static electrostatic ontology or source-position-only potential |
+| Gradient force identity | $\mathbf{F}_{o'}=-\nabla_{\mathbf{s}_{o'}}U_{o'}$ for mollified fixed-history channels | Conditional diagnostic equivalent after normalization and fixed-history convention | Replacement of the Master EOM by an unrestricted potential theory |
+| Work and kinetic bookkeeping | $dK/dt=\mu_K(\lVert\mathbf{v}\rVert)\mathbf{a}\cdot\mathbf{v}$ and optional $\mathbf{F}=\mu_{\text{arch}}\mathbf{a}$ | Energy bookkeeping after a kinetic proxy is declared | Primitive particle-specific mass or universal quadratic kinetic energy by assumption |
+| $1/r$ potential/action scaffold | $\delta(g_{ij})/r_{ij}$ in path-history or Fokker-type action calculations | Calibration and partial variational scaffold | A universal proof that the scalar $1/r$ action alone derives the Master EOM |
+
+The $1/r$ item therefore belongs below the accepted acceleration law in the
+trust gradient. In a stationary emitter calibration, the path-history potential
+may take the familiar form
+$$
+\phi(r,t)=\frac{q_0}{4\pi r}
+$$
+and taking a spatial gradient connects that amplitude to inverse-square force
+scaling. In the full delayed dynamics, however, the accepted branch law remains
+$$
+\frac{d^2 \mathbf{x}_i}{dt^2}
+=
+\sum_j\sum_{t_0\in\mathcal{C}_{ij}(t)}
+\kappa\sigma_{ij}
+\frac{\lvert q_iq_j\rvert}{r_{ij}^2(t;t_0)\lvert J_{ij}(t;t_0)\rvert}
+\hat{\mathbf{r}}_{ij}(t;t_0).
+$$
+
+The pure scalar $1/r$ action scaffold is not yet an unconditional foundation
+because its variation leaves a receiver-side constraint residual on generic
+branches unless a stationarity condition or invariant counterterm closes the
+Euler derivative. That failure does not demote the Master EOM. It demotes the
+claim that the scalar $1/r$ scaffold alone explains the Master EOM.
+
 ## Regime And Scale Chart
 
 The corpus should read inherited accuracy by regime, not by reputation.

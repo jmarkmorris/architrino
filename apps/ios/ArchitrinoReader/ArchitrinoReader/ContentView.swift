@@ -42,7 +42,7 @@ struct ContentView: View {
                         }
                     }
             }
-            .background(Color(.systemGroupedBackground).ignoresSafeArea())
+            .background(viewModel.theme.readerBackgroundColor.ignoresSafeArea())
         }
         .sheet(isPresented: $viewModel.isSearchPresented) {
             SearchSheet(viewModel: viewModel)
@@ -189,12 +189,15 @@ struct ContentView: View {
                     VStack(alignment: .leading, spacing: 6) {
                         Text("Architrino Assembly Architecture Textbook")
                             .font(.headline)
+                            .foregroundStyle(viewModel.theme.readerPrimaryTextColor)
                     }
                     .padding(.vertical, 4)
                 }
+                .listRowBackground(Color.clear)
+                .listRowSeparatorTint(viewModel.theme.readerSeparatorColor)
 
                 if let package = viewModel.package {
-                    Section("Textbook") {
+                    Section {
                         if package.tocPackage.tocRoot.resolvedChildren.isEmpty {
                             ForEach(Array(package.manifest.chapters.enumerated()), id: \.offset) { index, chapter in
                                 Button {
@@ -206,7 +209,7 @@ struct ContentView: View {
                                     Spacer()
                                     Text(String(index + 1))
                                         .font(.caption)
-                                        .foregroundStyle(.secondary)
+                                        .foregroundStyle(viewModel.theme.readerSecondaryTextColor)
                                 }
                                 .buttonStyle(.plain)
                             }
@@ -215,21 +218,27 @@ struct ContentView: View {
                                 tocHierarchyRow(node, depth: 0)
                             }
                         }
+                    } header: {
+                        tocSectionHeader("Textbook")
                     }
+                    .listRowBackground(Color.clear)
+                    .listRowSeparatorTint(viewModel.theme.readerSeparatorColor)
                 }
 
-                Section("Actions") {
+                Section {
                     Button {
                         viewModel.isSearchPresented = true
                         viewModel.clearSearch()
                     } label: {
                         Label("Search", systemImage: "magnifyingglass")
+                            .foregroundStyle(viewModel.theme.readerPrimaryTextColor)
                     }
 
                     Button {
                         viewModel.isBookmarksPresented = true
                     } label: {
                         Label("Bookmarks", systemImage: "list.bullet.rectangle")
+                            .foregroundStyle(viewModel.theme.readerPrimaryTextColor)
                     }
 
                     Button {
@@ -238,13 +247,36 @@ struct ContentView: View {
                         }
                     } label: {
                         Label("Glossary", systemImage: "book.pages")
+                            .foregroundStyle(
+                                viewModel.canOpenGlossary
+                                    ? viewModel.theme.readerPrimaryTextColor
+                                    : viewModel.theme.readerSecondaryTextColor
+                            )
                     }
                     .disabled(!viewModel.canOpenGlossary)
+                } header: {
+                    tocSectionHeader("Actions")
                 }
+                .listRowBackground(Color.clear)
+                .listRowSeparatorTint(viewModel.theme.readerSeparatorColor)
             }
             .listStyle(.insetGrouped)
+            .scrollContentBackground(.hidden)
+            .background(viewModel.theme.readerBackgroundColor.ignoresSafeArea())
         }
         .navigationTitle("Textbook")
+        .toolbarBackground(viewModel.theme.readerBackgroundColor, for: .navigationBar)
+        .toolbarBackground(.visible, for: .navigationBar)
+        .toolbarColorScheme(viewModel.theme.readerToolbarColorScheme, for: .navigationBar)
+        .tint(viewModel.theme.readerAccentColor)
+    }
+
+    private func tocSectionHeader(_ title: String) -> some View {
+        Text(title)
+            .font(.caption)
+            .fontWeight(.semibold)
+            .foregroundStyle(viewModel.theme.readerSecondaryTextColor)
+            .textCase(.uppercase)
     }
 
     private func presentInitialTOCIfNeeded() {
@@ -314,7 +346,7 @@ struct ContentView: View {
                             }
                         } label: {
                             Image(systemName: "safari")
-                                .foregroundStyle(.blue)
+                                .foregroundStyle(viewModel.theme.readerAccentColor)
                                 .imageScale(.small)
                                 .accessibilityLabel("Open scene in web app")
                         }
@@ -323,7 +355,7 @@ struct ContentView: View {
                         if isCurrentChapter {
                             Image(systemName: "checkmark")
                                 .font(.caption)
-                                .foregroundStyle(.secondary)
+                                .foregroundStyle(viewModel.theme.readerSecondaryTextColor)
                         }
                     }
                     .contentShape(Rectangle())
@@ -365,7 +397,7 @@ struct ContentView: View {
                             if isCurrentChapter {
                                 Image(systemName: "checkmark")
                                     .font(.caption)
-                                    .foregroundStyle(.secondary)
+                                    .foregroundStyle(viewModel.theme.readerSecondaryTextColor)
                             }
                         }
                         .contentShape(Rectangle())
@@ -388,7 +420,7 @@ struct ContentView: View {
     private func tocRouteIcon(for route: ReaderViewModel.TOCRoute) -> some View {
         Image(systemName: tocRouteIconName(for: route))
             .font(.caption)
-            .foregroundStyle(.secondary)
+            .foregroundStyle(viewModel.theme.readerSecondaryTextColor)
             .frame(width: 22, height: 18, alignment: .center)
     }
 
@@ -407,7 +439,7 @@ struct ContentView: View {
         HStack(spacing: 4) {
             Text(title)
                 .font(.custom("HelveticaNeue", size: 17, relativeTo: .body))
-                .foregroundStyle(.primary)
+                .foregroundStyle(viewModel.theme.readerPrimaryTextColor)
                 .lineLimit(2)
                 .multilineTextAlignment(.leading)
                 .padding(.leading, CGFloat(depth * 14))
@@ -429,7 +461,7 @@ struct ContentView: View {
 
             Text(viewModel.readingProgressLabel)
                 .font(.caption2)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(viewModel.theme.readerControlBarSecondaryTextColor)
                 .lineLimit(1)
                 .minimumScaleFactor(0.75)
                 .frame(maxWidth: 92, alignment: .leading)
@@ -452,8 +484,9 @@ struct ContentView: View {
             .disabled(!viewModel.canGoNextChapter())
         }
         .font(.subheadline)
+        .tint(viewModel.theme.readerControlBarAccentColor)
         .padding(10)
-        .background(.regularMaterial)
+        .background(viewModel.theme.readerControlBarBackgroundColor.ignoresSafeArea(edges: .bottom))
     }
 
     private var readerSettingsControl: some View {
@@ -490,7 +523,7 @@ struct ContentView: View {
 
             Text("A")
                 .font(.system(size: 18, weight: .semibold))
-                .foregroundStyle(.secondary)
+                .foregroundStyle(viewModel.theme.readerControlBarSecondaryTextColor)
                 .frame(width: 20, height: 28)
                 .accessibilityHidden(true)
 
@@ -537,6 +570,86 @@ private extension ReaderTheme {
 
     var readerBackgroundColor: Color {
         swatchColor
+    }
+
+    var readerPrimaryTextColor: Color {
+        switch self {
+        case .architrinoPurple, .dark:
+            return .white
+        case .light, .warm:
+            return .primary
+        }
+    }
+
+    var readerSecondaryTextColor: Color {
+        switch self {
+        case .architrinoPurple, .dark:
+            return .white.opacity(0.72)
+        case .light, .warm:
+            return .secondary
+        }
+    }
+
+    var readerAccentColor: Color {
+        switch self {
+        case .architrinoPurple, .dark:
+            return .white
+        case .light, .warm:
+            return .blue
+        }
+    }
+
+    var readerSeparatorColor: Color {
+        switch self {
+        case .architrinoPurple, .dark:
+            return .white.opacity(0.18)
+        case .light, .warm:
+            return Color(.separator)
+        }
+    }
+
+    var readerToolbarColorScheme: ColorScheme? {
+        switch self {
+        case .architrinoPurple, .dark:
+            return .dark
+        case .light, .warm:
+            return .light
+        }
+    }
+
+    var readerControlBarBackgroundColor: Color {
+        switch self {
+        case .architrinoPurple:
+            return Color(red: 232 / 255, green: 220 / 255, blue: 255 / 255)
+        case .light:
+            return Color(.systemBackground)
+        case .warm:
+            return Color(red: 248 / 255, green: 241 / 255, blue: 225 / 255)
+        case .dark:
+            return Color(red: 24 / 255, green: 31 / 255, blue: 48 / 255)
+        }
+    }
+
+    var readerControlBarAccentColor: Color {
+        switch self {
+        case .architrinoPurple:
+            return Color(red: 75 / 255, green: 0, blue: 130 / 255)
+        case .light, .warm:
+            return .blue
+        case .dark:
+            return .white
+        }
+    }
+
+    var readerControlBarSecondaryTextColor: Color {
+        switch self {
+        case .architrinoPurple:
+            return Color(red: 75 / 255, green: 0, blue: 130 / 255).opacity(0.58)
+        case .light, .warm:
+            return .secondary
+        case .dark:
+            return .white.opacity(0.65)
+        }
     }
 }
 

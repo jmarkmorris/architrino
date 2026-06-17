@@ -247,6 +247,37 @@ This priority-only note tracks the current operator-supplied video batch for ent
 | Disorder language tracks the number of compatible microstates, not a primitive visual property. | Effective summary | Already promoted from earlier videos; logged as duplicate support. |
 | Macroscopic thermodynamic entropy and microstate-count entropy entered historically through different formulations. | Effective summary | Already covered by Clausius and Boltzmann separation; logged for the rollup report without a new corpus edit. |
 
+## Video 9
+
+| Field | Value |
+| --- | --- |
+| Source | Sabine Hossenfelder, [I don't believe the 2nd law of thermodynamics. (The most uplifting video I'll ever make.)](https://www.youtube.com/watch?v=89Mq6gmPo0s) |
+| Date mined | June 17, 2026 |
+| Transcript artifact | `/tmp/89Mq6gmPo0s.en-GB.json3`; timestamped TSV at `/tmp/entropy-89Mq6gmPo0s.transcript.tsv` |
+| Corpus action | Promoted the exact-record/singleton-partition guardrail, the non-decrease rather than naive-increase reading of the second law, and heat-death dependence on a declared manipulation/control/readout class into `entropy.md`. |
+
+### High-Signal Timestamp Map
+
+- `0:00-2:55` - The ordinary arrow-of-time puzzle is framed by time-reversible equations plus special initial states.
+- `2:55-6:48` - Entropy is explained as microstates per macrostate, with high-entropy equilibrium as the overwhelmingly likely coarse record.
+- `6:49-8:13` - The Past Hypothesis is named as the unexplained low-entropy boundary condition behind ordinary entropy increase.
+- `8:13-10:58` - Local entropy decrease is paid for by low-entropy reservoirs such as sunlight or fossil fuels; this supports open-window boundary accounting.
+- `10:59-13:45` - Order language is criticized as perception-dependent; early and late uniform-looking universes differ because the gravitational macrostate and density regime differ.
+- `13:45-15:24` - Entropy and information are tied through lost microstate access, while the exact universe microstate remains one definite state.
+- `15:24-16:55` - Macrostate choice is described as purpose-relative; heat-death extrapolation is challenged because future complex systems might use macrostates inaccessible to us.
+- `16:55-17:18` - Quantum mechanics is treated as leaving the complete universe in one microstate/comparison state, not changing the macrostate-dependence of entropy.
+
+### Claim Routing
+
+| Source signal | Claim bucket | Routing |
+| --- | --- | --- |
+| Entropy increase depends on the initial low-entropy boundary condition and time-reversible dynamics do not supply it by themselves. | Derivation/closure target | Already present through the Past Hypothesis and record-circularity sections; retained as support. |
+| The exact complete microstate is a singleton record with zero entropy, but that is not a useful thermodynamic macrostate. | Ontology guardrail / effective summary | Promoted into `entropy.md` as the exact-record limit after the core definition. |
+| The second law is safer as non-decrease for a declared comparison class, with equality in reversible or singleton-record limits. | Effective summary / derivation scaffold | Promoted into `entropy.md` as a clarification of the same-record second-law diagnostic. |
+| Heat-death claims depend on which macrostates, controls, and readout systems remain available. | Comparison pressure / effective summary | Promoted into `entropy.md` as a work-availability envelope indexed by the control family. |
+| Future complex systems might exploit records or macrostates humans cannot use. | Speculation / comparison pressure | Routed as a cautious heat-death guardrail only; no doctrine of indefinite life or cosmological renewal was canonized. |
+| Quantum mechanics does not remove macrostate/access dependence. | Effective summary | Logged as duplicate support for the existing access-cut and full-comparison-state discussion. |
+
 ## Batch Synthesis: Second Law Bridge
 
 | Field | Value |
@@ -261,6 +292,7 @@ This priority-only note tracks the current operator-supplied video batch for ent
 | --- | --- | --- |
 | Sabine / Rovelli circularity discussion | Present records and inferred low-entropy past can become mutually justifying. | The second law cannot certify its own boundary condition; same-record path-history measure and Boltzmann-brain residual must be declared. |
 | Wayne Myrvold resource-theory discussion | Second-law statements depend on which thermodynamic notion and manipulation class is being used. | The $\mathbb{A}\mathbb{A}\mathbb{A}$ version indexes entropy by window, coarse-graining, boundary record, apparatus/control class, and final record. |
+| Sabine heat-death / macrostate-choice discussion | A complete microstate and a useful macrostate are different records, and heat-death claims depend on the declared manipulation class. | The $\mathbb{A}\mathbb{A}\mathbb{A}$ version treats second-law monotonicity and heat-death extrapolation as same-record/control-class claims rather than bare ontology. |
 | Veritasium / Sean Carroll open-window examples | Local organization can persist by exporting entropy. | The same-record inequality must include boundary/environment entropy, not only internal entropy. |
 | Parth / TED-Ed microstate examples | Boltzmann counting depends on compatible microstates and equal weighting assumptions. | Cardinality alone is not enough; the measure and preparation record license $S=k_B\log\Omega$. |
 | PBS quantum-entanglement example | Subsystem entropy can rise while the full comparison state remains closed. | Monotonicity is a retained-record projection effect, not evidence that entropy generates absolute time or that information is substrate ontology. |
