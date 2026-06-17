@@ -294,6 +294,7 @@
         "checkRootHitInvariantsF64",
         "classifyRootLedgerTransitionsF64",
         "solveCausalRootsF64",
+        "solveCircularSourceCausalRootsF64",
         "solveCausalRootsNormalizedF64",
         "solveCausalRootBatchF64",
         "solveRootsAndHitsF64",
@@ -2779,7 +2780,9 @@
         "errorBudgetSummaryF64Bytes",
         "precisionSolveOptionsBytes",
         "precisionSolveSummaryF64Bytes",
-        "motionIntegrationRequestF64Bytes"
+        "motionIntegrationRequestF64Bytes",
+        "circularPathSegmentF64Bytes",
+        "circularSourceRootRequestF64Bytes"
       ],
       "properties": {
         "abiMajor": { "type": "integer", "minimum": 0 },
@@ -2820,7 +2823,9 @@
         "errorBudgetSummaryF64Bytes": { "type": "integer", "minimum": 1 },
         "precisionSolveOptionsBytes": { "type": "integer", "minimum": 1 },
         "precisionSolveSummaryF64Bytes": { "type": "integer", "minimum": 1 },
-        "motionIntegrationRequestF64Bytes": { "type": "integer", "minimum": 1 }
+        "motionIntegrationRequestF64Bytes": { "type": "integer", "minimum": 1 },
+        "circularPathSegmentF64Bytes": { "type": "integer", "minimum": 1 },
+        "circularSourceRootRequestF64Bytes": { "type": "integer", "minimum": 1 }
       }
     },
     "threadingPolicy": {

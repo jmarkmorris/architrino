@@ -2,7 +2,7 @@
 
 This directory is the first C++/WebAssembly scaffold for the central architrino motion and geometry solver.
 
-The first implementation target is a minimal causal-root and delayed-hit core behind a shared app bridge. The current files establish the toolchain, package boundary, native smoke targets, WebAssembly smoke target, app-facing TypeScript contract, first app-facing request adapters, shared geometry helpers, first shared-geometry ABI, first precision diagnostics, first precision-path execution wrapper, first error-budget propagation contract, first deterministic batch solver, first central native parallel execution policy, first motion-frame sampler, first work-packet contract, first temporal assembly graph rows, dataset packaging, durable app store, and native store, first detailed root-ledger rows, first root-transition classifier, first invariant checks, first Photon phase-diagnostics run path, first path-history run path, and first native path-history stream.
+The first implementation target is a minimal causal-root and delayed-hit core behind a shared app bridge. The current files establish the toolchain, package boundary, native smoke targets, WebAssembly smoke target, app-facing TypeScript contract, first app-facing request adapters, shared geometry helpers, first shared-geometry ABI, first precision diagnostics, first precision-path execution wrapper, first error-budget propagation contract, first deterministic batch solver, first central native parallel execution policy, first motion-frame sampler, first work-packet contract, first temporal assembly graph rows, dataset packaging, durable app store, native store, first detailed root-ledger rows, first root-transition classifier, first invariant checks, first analytic circular-source causal-root primitive, first Photon phase-diagnostics run path, first path-history run path, and first native path-history stream.
 
 ## Toolchain
 
@@ -87,12 +87,14 @@ The smoke command verifies:
 - baseline response comparison with migration status classifications.
 - isolated baseline sandbox artifacts for Animator, Photon causal-root, Photon phase-diagnostics, Animator path-history, Animator motion dynamic replay, and Ideal Swarm smoke cases.
 - manufactured analytic causal-root validation for a moving-source delayed-hit case with known root, Jacobian, branch weight, and unit direction.
+- manufactured analytic circular-source causal-root validation for a constant-radius source observed from a fixed receiver, with known emission time, delay, distance, and Jacobian.
 
 ## First ABI Surface
 
 The first checked ABI is intentionally narrow:
 
 - `architrino_solver_solve_causal_roots_f64`
+- `architrino_solver_solve_circular_source_causal_roots_f64`
 - `architrino_solver_solve_roots_and_hits_f64`
 - `architrino_solver_build_root_ledger_detail_f64`
 - `architrino_solver_solve_causal_root_batch_f64`
@@ -130,6 +132,7 @@ The first checked ABI is intentionally narrow:
 - `architrino_solver_query_path_history_stream_index`
 - `architrino_solver_read_path_history_stream_query_f64`
 - fixed-layout source and receiver linear path segments;
+- fixed-layout circular source path segments for analytic circular-source causal roots;
 - fixed-layout root rows that correspond to the first `root_ledger.v1` fields;
 - fixed-layout detailed root-ledger rows that correspond to the first `root_ledger_detail.v1` fields;
 - fixed-layout batch item rows that map each request to a root offset and root count;
@@ -148,7 +151,7 @@ The first checked ABI is intentionally narrow:
 - fixed-layout emission-shell broad-phase options, candidate rows, and summary rows for path-history candidate queries;
 - fixed-layout emission-shell narrow-phase request and estimate rows for sampled candidate classification;
 - ABI metadata for row sizes and ABI version;
-- app bridge methods `diagnosePrecisionF64`, `solveCausalRootsPrecisionF64`, `solveRootsAndHitsPrecisionF64`, `propagateErrorBudgetF64`, `checkRootHitInvariantsF64`, `classifyRootLedgerTransitionsF64`, `prepareWorkPacketHeader`, `orderWorkPacketResults`, `planPathHistoryWorkPackets`, `solveCausalRootsF64`, `solveCausalRootsNormalizedF64`, `buildRootLedgerDetailF64`, `solveCausalRootBatchF64`, `solveRootsAndHitsF64`, `sampleLinearMotionF64`, `integrateConstantAccelerationMotionF64`, `computePhaseAtHitF64`, `summarizePhaseAtHitsF64`, `computeSharedGeometryF64`, `detectAssemblyMembershipEventsF64`, `buildAssemblyGraphDatasetF64`, `createAssemblyGraphStoreF64`, `describeAssemblyGraphStoreF64`, `readAssemblyGraphStoreRangeF64`, `createPathHistoryStreamF64`, `validatePathHistoryDynamicReplayF64`, `planPathHistoryStorageLifecycleF64`, `buildSpaceTimeIndexF64`, `buildPathHistoryStreamSpaceTimeIndexF64`, `querySpaceTimeIndexF64`, `queryEmissionShellCandidatesF64`, `queryEmissionShellCandidatePacketF64`, `queryEmissionShellCandidatePacketsF64`, and `refineEmissionShellCandidateRootsF64`.
+- app bridge methods `diagnosePrecisionF64`, `solveCausalRootsPrecisionF64`, `solveRootsAndHitsPrecisionF64`, `propagateErrorBudgetF64`, `checkRootHitInvariantsF64`, `classifyRootLedgerTransitionsF64`, `prepareWorkPacketHeader`, `orderWorkPacketResults`, `planPathHistoryWorkPackets`, `solveCausalRootsF64`, `solveCircularSourceCausalRootsF64`, `solveCausalRootsNormalizedF64`, `buildRootLedgerDetailF64`, `solveCausalRootBatchF64`, `solveRootsAndHitsF64`, `sampleLinearMotionF64`, `integrateConstantAccelerationMotionF64`, `computePhaseAtHitF64`, `summarizePhaseAtHitsF64`, `computeSharedGeometryF64`, `detectAssemblyMembershipEventsF64`, `buildAssemblyGraphDatasetF64`, `createAssemblyGraphStoreF64`, `describeAssemblyGraphStoreF64`, `readAssemblyGraphStoreRangeF64`, `createPathHistoryStreamF64`, `validatePathHistoryDynamicReplayF64`, `planPathHistoryStorageLifecycleF64`, `buildSpaceTimeIndexF64`, `buildPathHistoryStreamSpaceTimeIndexF64`, `querySpaceTimeIndexF64`, `queryEmissionShellCandidatesF64`, `queryEmissionShellCandidatePacketF64`, `queryEmissionShellCandidatePacketsF64`, and `refineEmissionShellCandidateRootsF64`.
 
 ## First Shared Geometry API
 

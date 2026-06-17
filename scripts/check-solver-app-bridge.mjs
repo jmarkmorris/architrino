@@ -248,6 +248,14 @@ assert(
   "expected circular self-hit row ABI size"
 );
 assert(
+  initResponse.capabilities.abiInfo?.circularPathSegmentF64Bytes === 120,
+  "expected circular path segment ABI size"
+);
+assert(
+  initResponse.capabilities.abiInfo?.circularSourceRootRequestF64Bytes === 224,
+  "expected circular-source root request ABI size"
+);
+assert(
   initResponse.capabilities.abiInfo?.assemblyStateRowF64Bytes === 112,
   "expected assembly state row ABI size"
 );
@@ -446,6 +454,9 @@ assert(
     workerRootResponse.roots[0].distance === 10,
   "expected worker causal-root solve response"
 );
+const workerCircularSourceRootResponse =
+  await workerClient.solveCircularSourceCausalRootsF64(makeCircularSourceCausalRootRequest());
+assertCircularSourceRootResponse(workerCircularSourceRootResponse, "worker circular-source");
 const workerNormalizedRootResponse = await workerClient.solveCausalRootsNormalizedF64(
   makeNormalizedCausalRootRequest()
 );
@@ -1253,6 +1264,9 @@ assert(
     Math.abs(rootsResponse.roots[0].distance - 10) <= 1e-10,
   "expected bridged causal root values"
 );
+const circularSourceRootResponse =
+  await client.solveCircularSourceCausalRootsF64(makeCircularSourceCausalRootRequest());
+assertCircularSourceRootResponse(circularSourceRootResponse, "direct circular-source");
 const normalizedRootsResponse = await client.solveCausalRootsNormalizedF64(makeNormalizedCausalRootRequest());
 assert(
   normalizedRootsResponse.schema === "solver-causal-roots-normalized-f64.v1" &&
@@ -3359,6 +3373,49 @@ function makeBatchRequest(distance) {
   request.receiver.positionAtStart.x = distance;
   request.hitTime = distance;
   return request;
+}
+
+function makeCircularSourceCausalRootRequest() {
+  return {
+    source: {
+      startTime: -2,
+      endTime: 10,
+      center: { x: 0, y: 0, z: 0 },
+      radiusU: { x: 0, y: 1, z: 0 },
+      radiusV: { x: 0, y: 0, z: 1 },
+      angularVelocity: 1,
+      phaseAtEpoch: 0,
+      epochTime: 0,
+      errorBound: 1e-15,
+    },
+    receiver: {
+      startTime: 0,
+      endTime: 10,
+      positionAtStart: { x: 10, y: 0, z: 0 },
+      velocity: { x: 0, y: 0, z: 0 },
+      errorBound: 1e-15,
+    },
+    hitTime: 10,
+    signalSpeed: 1,
+    rootTolerance: 1e-13,
+    maxIterations: 96,
+    scanSubdivisions: 256,
+    maxRoots: 4,
+  };
+}
+
+function assertCircularSourceRootResponse(response, label) {
+  const expectedDelay = Math.sqrt(101);
+  const expectedEmissionTime = 10 - expectedDelay;
+  assert(response.status.code === "ok", `expected ${label} status ok`);
+  assert(response.roots.length === 1, `expected one ${label} causal root`);
+  assert(
+    Math.abs(response.roots[0].emissionTime - expectedEmissionTime) <= 1e-10 &&
+      Math.abs(response.roots[0].delay - expectedDelay) <= 1e-10 &&
+      Math.abs(response.roots[0].distance - expectedDelay) <= 1e-10 &&
+      Math.abs(response.roots[0].jacobian - 1) <= 1e-10,
+    `expected ${label} closed-form circular-source causal root`
+  );
 }
 
 function makeNormalizedCausalRootRequest() {

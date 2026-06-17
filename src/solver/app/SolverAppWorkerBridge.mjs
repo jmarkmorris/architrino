@@ -22,6 +22,7 @@ export const SOLVER_APP_WORKER_METHODS = Object.freeze([
   "checkRootHitInvariantsF64",
   "classifyRootLedgerTransitionsF64",
   "solveCausalRootsF64",
+  "solveCircularSourceCausalRootsF64",
   "solveCausalRootsNormalizedF64",
   "solveCausalRootBatchF64",
   "solveRootsAndHitsF64",

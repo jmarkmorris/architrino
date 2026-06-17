@@ -218,6 +218,11 @@ struct ContentView: View {
                     .frame(height: max(proxy.safeAreaInsets.top + 8, 44))
 
                 tocSidebar
+
+                Divider()
+                    .overlay(viewModel.theme.readerSeparatorColor)
+
+                tocControlBar
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(viewModel.theme.readerBackgroundColor.ignoresSafeArea())
@@ -340,6 +345,13 @@ struct ContentView: View {
 
     private func dismissTOCImmediately() {
         showToc = false
+    }
+
+    private func openFirstChapterFromTOC() {
+        guard let chapter = viewModel.chapter(at: 0) else { return }
+        navigateFromTOC {
+            viewModel.openChapter(by: chapter.id, anchor: nil)
+        }
     }
 
     private func tocHierarchyRow(_ node: TextbookTOCNode, depth: Int) -> AnyView {
@@ -472,41 +484,65 @@ struct ContentView: View {
     }
 
     private var controlBar: some View {
+        readerControlBar(isTOC: false)
+    }
+
+    private var tocControlBar: some View {
+        readerControlBar(isTOC: true)
+    }
+
+    private func readerControlBar(isTOC: Bool) -> some View {
         HStack {
             fontSizeControl
             readerSettingsControl
 
-            Button {
-                viewModel.toggleCurrentBookmark()
-            } label: {
-                Image(systemName: viewModel.isCurrentPositionBookmarked ? "bookmark.fill" : "bookmark")
-            }
-            .disabled(viewModel.currentChapter == nil)
-            .accessibilityLabel(viewModel.isCurrentPositionBookmarked ? "Remove bookmark" : "Add bookmark")
+            if isTOC {
+                Text("TOC")
+                    .font(.caption2)
+                    .foregroundStyle(viewModel.theme.readerControlBarSecondaryTextColor)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.75)
+                    .frame(maxWidth: 72, alignment: .leading)
+                    .accessibilityLabel("Table of contents")
+            } else {
+                Button {
+                    viewModel.toggleCurrentBookmark()
+                } label: {
+                    Image(systemName: viewModel.isCurrentPositionBookmarked ? "bookmark.fill" : "bookmark")
+                }
+                .disabled(viewModel.currentChapter == nil)
+                .accessibilityLabel(viewModel.isCurrentPositionBookmarked ? "Remove bookmark" : "Add bookmark")
 
-            Text(viewModel.readingProgressLabel)
-                .font(.caption2)
-                .foregroundStyle(viewModel.theme.readerControlBarSecondaryTextColor)
-                .lineLimit(1)
-                .minimumScaleFactor(0.75)
-                .frame(maxWidth: 72, alignment: .leading)
-                .accessibilityLabel("Reading location \(viewModel.readingProgressLabel)")
+                Text(viewModel.readingProgressLabel)
+                    .font(.caption2)
+                    .foregroundStyle(viewModel.theme.readerControlBarSecondaryTextColor)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.75)
+                    .frame(maxWidth: 72, alignment: .leading)
+                    .accessibilityLabel("Reading location \(viewModel.readingProgressLabel)")
+            }
 
             Spacer()
 
-            Button {
-                viewModel.goToPreviousChapter()
-            } label: {
-                Label("Previous", systemImage: "chevron.left")
+            if !isTOC {
+                Button {
+                    viewModel.goToPreviousChapter()
+                } label: {
+                    Label("Previous", systemImage: "chevron.left")
+                }
+                .disabled(!viewModel.canGoPreviousChapter())
             }
-            .disabled(!viewModel.canGoPreviousChapter())
 
             Button {
-                viewModel.goToNextChapter()
+                if isTOC {
+                    openFirstChapterFromTOC()
+                } else {
+                    viewModel.goToNextChapter()
+                }
             } label: {
                 Label("Next", systemImage: "chevron.right")
             }
-            .disabled(!viewModel.canGoNextChapter())
+            .disabled(isTOC ? viewModel.chapter(at: 0) == nil : !viewModel.canGoNextChapter())
         }
         .font(.subheadline)
         .tint(viewModel.theme.readerControlBarAccentColor)

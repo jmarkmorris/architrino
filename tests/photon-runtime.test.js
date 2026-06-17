@@ -48,8 +48,11 @@ import {
   computePhotonDelayedEmissionField,
   computePhotonFormulaSummary,
   computePhotonObserverField,
+  createPhotonCircularSourceCausalRootRequest,
   createPhotonCausalRootsSolverRunRequest,
   fitPhotonPolarizationFromSamples,
+  getPhotonArchitrinoKinematics,
+  solvePhotonCircularSourceCausalRootsWithSolverBridge,
   solvePhotonCausalRootsWithSolverBridge,
   solvePhotonCausalRoots,
 } from "../src/apps/photon/PhotonFormulaRuntime.js";
@@ -75,6 +78,15 @@ import {
 
 function assertNear(actual, expected, epsilon = 1e-12) {
   assert.ok(Math.abs(actual - expected) < epsilon, `${actual} should be near ${expected}`);
+}
+
+function evaluateCircularSourceRequestPosition(segment, time) {
+  const phase = segment.phaseAtEpoch + segment.angularVelocity * (time - segment.epochTime);
+  return {
+    x: segment.center.x + segment.radiusU.x * Math.cos(phase) + segment.radiusV.x * Math.sin(phase),
+    y: segment.center.y + segment.radiusU.y * Math.cos(phase) + segment.radiusV.y * Math.sin(phase),
+    z: segment.center.z + segment.radiusU.z * Math.cos(phase) + segment.radiusV.z * Math.sin(phase),
+  };
 }
 
 function buildSyntheticPolarizationSamples({ ampY = 1, ampZ = 0, phaseLag = 0, count = 144 } = {}) {
@@ -378,6 +390,75 @@ test("Photon causal roots can be routed through the solver app bridge for linear
 
   assert.equal(roots.length, 1);
   assert.equal(roots[0].delay, 10);
+  assert.equal(roots[0].residual, 0);
+});
+
+test("Photon circular-source solver request preserves source orbit geometry", () => {
+  const state = createDefaultPhotonState();
+  const sourceRef = { swarmId: "left", layerId: "O", chargeType: "electrino" };
+  const observationTime = 0.75;
+  const request = createPhotonCircularSourceCausalRootRequest(state, sourceRef, observationTime);
+  const emissionTime = 0.25;
+  const requestPosition = evaluateCircularSourceRequestPosition(request.source, emissionTime);
+  const kinematics = getPhotonArchitrinoKinematics(
+    state,
+    sourceRef.swarmId,
+    sourceRef.layerId,
+    sourceRef.chargeType,
+    emissionTime
+  );
+
+  assert.ok(request.source.startTime <= emissionTime, "expected request source history before sample");
+  assert.equal(request.source.endTime, observationTime);
+  assert.equal(request.receiver.endTime, observationTime);
+  assert.equal(request.hitTime, observationTime);
+  assert.equal(request.signalSpeed, 1);
+  assertNear(requestPosition.x, kinematics.position.x);
+  assertNear(requestPosition.y, kinematics.position.y);
+  assertNear(requestPosition.z, kinematics.position.z);
+  assertNear(request.source.angularVelocity, kinematics.angularVelocity);
+});
+
+test("Photon circular-source causal roots can be routed through the solver app bridge", async () => {
+  const state = createDefaultPhotonState();
+  const sourceRef = { swarmId: "left", layerId: "O", chargeType: "positrino" };
+  const observationTime = 0.75;
+  const roots = await solvePhotonCircularSourceCausalRootsWithSolverBridge(
+    state,
+    sourceRef,
+    observationTime,
+    {
+      solverClient: {
+        async solveCircularSourceCausalRootsF64(request) {
+          assert.equal(request.hitTime, observationTime);
+          assert.equal(request.receiver.positionAtStart.x, state.measurement.virtualObserver.x);
+          assert.equal(request.source.center.x < 0, true);
+          assert.ok(request.scanSubdivisions >= 48);
+          return {
+            roots: [
+              {
+                rootId: 0,
+                statusCode: 0,
+                emissionTime: 0.5,
+                hitTime: observationTime,
+                delay: 0.25,
+                distance: 0.25,
+                residual: 0,
+                jacobian: 1,
+                branchWeight: 1,
+                sourcePoint: { x: -1, y: 0, z: 0 },
+                receiverPoint: state.measurement.virtualObserver,
+              },
+            ],
+            status: { code: "ok", severity: "ok", message: "circular-source causal roots solved" },
+          };
+        },
+      },
+    }
+  );
+
+  assert.equal(roots.length, 1);
+  assert.equal(roots[0].hitTime, observationTime);
   assert.equal(roots[0].residual, 0);
 });
 

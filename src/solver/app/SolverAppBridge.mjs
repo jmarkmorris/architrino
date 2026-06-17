@@ -296,6 +296,8 @@ const DELAYED_POTENTIAL_REQUEST_F64_BYTES = 144;
 const DELAYED_POTENTIAL_ROW_F64_BYTES = 112;
 const CIRCULAR_SELF_HIT_REQUEST_F64_BYTES = 48;
 const CIRCULAR_SELF_HIT_ROW_F64_BYTES = 72;
+const CIRCULAR_PATH_SEGMENT_F64_BYTES = 120;
+const CIRCULAR_SOURCE_ROOT_REQUEST_F64_BYTES = 224;
 const ASSEMBLY_STATE_ROW_F64_BYTES = 112;
 const ASSEMBLY_MEMBERSHIP_ROW_F64_BYTES = 80;
 const ASSEMBLY_HIERARCHY_ROW_F64_BYTES = 56;
@@ -317,7 +319,7 @@ const DEFAULT_MAX_ROOT_LEDGER_DETAIL_ROWS = 4096;
 const DEFAULT_MAX_MOTION_FRAMES = 65536;
 const DEFAULT_MAX_MOTION_PATH_ROWS = DEFAULT_MAX_MOTION_FRAMES;
 const DEFAULT_MAX_SPACETIME_INDEX_ROWS = 65536;
-const ABI_INFO_BYTES = 156;
+const ABI_INFO_BYTES = 164;
 
 export class SolverBridgeError extends Error {
   constructor(status) {
@@ -529,6 +531,16 @@ export function createSolverAppBridgeClient(options = {}) {
       assertNotDisposed(state);
       const module = await requireWasmModule(state);
       return solveCausalRootsF64WithModule(module, request, state.abiInfo || defaultAbiInfo());
+    },
+
+    async solveCircularSourceCausalRootsF64(request) {
+      assertNotDisposed(state);
+      const module = await requireWasmModule(state);
+      return solveCircularSourceCausalRootsF64WithModule(
+        module,
+        request,
+        state.abiInfo || defaultAbiInfo()
+      );
     },
 
     async solveCausalRootsNormalizedF64(request) {
@@ -6193,6 +6205,7 @@ function runExportedSmoke(module, exportName) {
 export function hasSolverCAbi(module) {
   return (
     typeof module?._architrino_solver_solve_causal_roots_f64 === "function" &&
+    typeof module?._architrino_solver_solve_circular_source_causal_roots_f64 === "function" &&
     typeof module?._architrino_solver_solve_roots_and_hits_f64 === "function" &&
     typeof module?._architrino_solver_build_root_ledger_detail_f64 === "function" &&
     typeof module?._architrino_solver_solve_causal_root_batch_f64 === "function" &&
@@ -6272,6 +6285,8 @@ function readAbiInfo(module) {
       precisionSolveOptionsBytes: module.getValue(ptr + 144, "i32"),
       precisionSolveSummaryF64Bytes: module.getValue(ptr + 148, "i32"),
       motionIntegrationRequestF64Bytes: module.getValue(ptr + 152, "i32"),
+      circularPathSegmentF64Bytes: module.getValue(ptr + 156, "i32"),
+      circularSourceRootRequestF64Bytes: module.getValue(ptr + 160, "i32"),
     };
   } finally {
     module._free(ptr);
@@ -6281,7 +6296,7 @@ function readAbiInfo(module) {
 function defaultAbiInfo() {
   return {
     abiMajor: 0,
-    abiMinor: 6,
+    abiMinor: 7,
     abiPatch: 0,
     rootRequestF64Bytes: CAUSAL_ROOT_REQUEST_F64_BYTES,
     rootRowF64Bytes: CAUSAL_ROOT_ROW_F64_BYTES,
@@ -6319,6 +6334,8 @@ function defaultAbiInfo() {
     precisionSolveOptionsBytes: PRECISION_SOLVE_OPTIONS_BYTES,
     precisionSolveSummaryF64Bytes: PRECISION_SOLVE_SUMMARY_F64_BYTES,
     motionIntegrationRequestF64Bytes: MOTION_INTEGRATION_REQUEST_F64_BYTES,
+    circularPathSegmentF64Bytes: CIRCULAR_PATH_SEGMENT_F64_BYTES,
+    circularSourceRootRequestF64Bytes: CIRCULAR_SOURCE_ROOT_REQUEST_F64_BYTES,
   };
 }
 
@@ -6359,7 +6376,9 @@ function assertAbiInfo(abiInfo) {
     abiInfo.errorBudgetSummaryF64Bytes !== ERROR_BUDGET_SUMMARY_F64_BYTES ||
     abiInfo.precisionSolveOptionsBytes !== PRECISION_SOLVE_OPTIONS_BYTES ||
     abiInfo.precisionSolveSummaryF64Bytes !== PRECISION_SOLVE_SUMMARY_F64_BYTES ||
-    abiInfo.motionIntegrationRequestF64Bytes !== MOTION_INTEGRATION_REQUEST_F64_BYTES
+    abiInfo.motionIntegrationRequestF64Bytes !== MOTION_INTEGRATION_REQUEST_F64_BYTES ||
+    abiInfo.circularPathSegmentF64Bytes !== CIRCULAR_PATH_SEGMENT_F64_BYTES ||
+    abiInfo.circularSourceRootRequestF64Bytes !== CIRCULAR_SOURCE_ROOT_REQUEST_F64_BYTES
   ) {
     throw new SolverBridgeError(
       createStatus("app_contract_error", "error", "solver ABI row sizes do not match bridge layout", {
@@ -6367,6 +6386,59 @@ function assertAbiInfo(abiInfo) {
         details: abiInfo,
       })
     );
+  }
+}
+
+function solveCircularSourceCausalRootsF64WithModule(module, request, abiInfo) {
+  validateCircularSourceCausalRootF64Request(request);
+  if (typeof module._malloc !== "function" || typeof module._free !== "function") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "WebAssembly allocator exports are required", {
+        recoverable: false,
+      })
+    );
+  }
+  const maxRoots = request.maxRoots ?? DEFAULT_MAX_CAUSAL_ROOTS;
+  const requestPtr = module._malloc(abiInfo.circularSourceRootRequestF64Bytes);
+  const rootsPtr = module._malloc(abiInfo.rootRowF64Bytes * maxRoots);
+  const outCountPtr = module._malloc(4);
+
+  try {
+    writeCircularSourceCausalRootRequestF64(module, requestPtr, request);
+    module.setValue(outCountPtr, 0, "i32");
+    const solve = module.cwrap("architrino_solver_solve_circular_source_causal_roots_f64", "number", [
+      "number",
+      "number",
+      "number",
+      "number",
+    ]);
+    const status = solve(requestPtr, rootsPtr, maxRoots, outCountPtr);
+    const rootCount = module.getValue(outCountPtr, "i32");
+    if (status !== 0) {
+      throw new SolverBridgeError(
+        createStatus(
+          "internal_solver_error",
+          "halt",
+          `circular-source causal root C ABI returned ${status}`,
+          {
+            recoverable: false,
+            details: { status, rootCount },
+          }
+        )
+      );
+    }
+    const roots = [];
+    for (let index = 0; index < rootCount; index += 1) {
+      roots.push(readCausalRootRowF64(module, rootsPtr + index * abiInfo.rootRowF64Bytes));
+    }
+    return {
+      roots,
+      status: createStatus("ok", "ok", "circular-source causal roots solved"),
+    };
+  } finally {
+    module._free(requestPtr);
+    module._free(rootsPtr);
+    module._free(outCountPtr);
   }
 }
 
@@ -7276,6 +7348,39 @@ function validateCausalRootF64Request(request) {
   }
 }
 
+function validateCircularSourceCausalRootF64Request(request) {
+  if (!request || typeof request !== "object") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "circular-source causal-root request object is required", {
+        recoverable: false,
+      })
+    );
+  }
+  if (!request.source || !request.receiver) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "circular source and receiver segment are required", {
+        recoverable: false,
+      })
+    );
+  }
+  validateCircularSegment(request.source, "source");
+  validateSegment(request.receiver, "receiver");
+  requireFiniteNumber(request.hitTime, "hitTime");
+  requirePositiveFiniteNumber(request.signalSpeed, "signalSpeed");
+  if (request.rootTolerance != null) {
+    requirePositiveFiniteNumber(request.rootTolerance, "rootTolerance");
+  }
+  if (request.maxIterations != null) {
+    requirePositiveInt32(request.maxIterations, "maxIterations");
+  }
+  if (request.scanSubdivisions != null) {
+    requirePositiveInt32(request.scanSubdivisions, "scanSubdivisions");
+  }
+  if (request.maxRoots != null) {
+    requirePositiveInt32(request.maxRoots, "maxRoots");
+  }
+}
+
 function validateCausalRootBatchF64Request(request) {
   if (!request || typeof request !== "object") {
     throw new SolverBridgeError(
@@ -7407,6 +7512,27 @@ function validateSegment(segment, label) {
   }
   validateVector(segment.positionAtStart, `${label}.positionAtStart`);
   validateVector(segment.velocity, `${label}.velocity`);
+  if (segment.errorBound != null) {
+    requireNonnegativeFiniteNumber(segment.errorBound, `${label}.errorBound`);
+  }
+}
+
+function validateCircularSegment(segment, label) {
+  requireFiniteNumber(segment.startTime, `${label}.startTime`);
+  requireFiniteNumber(segment.endTime, `${label}.endTime`);
+  if (segment.endTime < segment.startTime) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", `${label} time bounds are not ordered`, {
+        recoverable: false,
+      })
+    );
+  }
+  validateVector(segment.center, `${label}.center`);
+  validateVector(segment.radiusU, `${label}.radiusU`);
+  validateVector(segment.radiusV, `${label}.radiusV`);
+  requireFiniteNumber(segment.angularVelocity, `${label}.angularVelocity`);
+  requireFiniteNumber(segment.phaseAtEpoch ?? 0, `${label}.phaseAtEpoch`);
+  requireFiniteNumber(segment.epochTime ?? 0, `${label}.epochTime`);
   if (segment.errorBound != null) {
     requireNonnegativeFiniteNumber(segment.errorBound, `${label}.errorBound`);
   }
@@ -7655,6 +7781,28 @@ function writeCircularSelfHitSpanRequestF64(module, ptr, request) {
   );
   module.setValue(ptr + 40, 0, "i32");
   module.setValue(ptr + 44, 0, "i32");
+}
+
+function writeCircularPathSegmentF64(module, ptr, segment) {
+  module.setValue(ptr, segment.startTime, "double");
+  module.setValue(ptr + 8, segment.endTime, "double");
+  writeVector(module, ptr + 16, segment.center);
+  writeVector(module, ptr + 40, segment.radiusU);
+  writeVector(module, ptr + 64, segment.radiusV);
+  module.setValue(ptr + 88, segment.angularVelocity, "double");
+  module.setValue(ptr + 96, segment.phaseAtEpoch ?? 0, "double");
+  module.setValue(ptr + 104, segment.epochTime ?? 0, "double");
+  module.setValue(ptr + 112, segment.errorBound ?? 0, "double");
+}
+
+function writeCircularSourceCausalRootRequestF64(module, ptr, request) {
+  writeCircularPathSegmentF64(module, ptr, request.source);
+  writeSegment(module, ptr + CIRCULAR_PATH_SEGMENT_F64_BYTES, request.receiver);
+  module.setValue(ptr + 192, request.hitTime, "double");
+  module.setValue(ptr + 200, request.signalSpeed, "double");
+  module.setValue(ptr + 208, request.rootTolerance ?? 1e-12, "double");
+  module.setValue(ptr + 216, request.maxIterations ?? 96, "i32");
+  module.setValue(ptr + 220, request.scanSubdivisions ?? 128, "i32");
 }
 
 function writeMotionSampleRequestF64(module, ptr, request) {

@@ -277,6 +277,87 @@ export async function solvePhotonCausalRootsWithSolverBridge(rootRequest, option
   return Array.isArray(runHandle.response?.roots) ? runHandle.response.roots : [];
 }
 
+export function createPhotonCircularSourceCausalRootRequest(
+  state,
+  sourceRef,
+  observationTime,
+  options = {}
+) {
+  const measurement = options.measurement ?? resolvePhotonMeasurementParameters(state);
+  const layer = getPhotonLayer(state, sourceRef.swarmId, sourceRef.layerId);
+  const hitTime = Number(observationTime) || 0;
+  const maxDelay = normalizeNonnegativeSolverNumber(
+    options.maxDelay,
+    getPhotonSourceMaxDelay(state, sourceRef, measurement)
+  );
+  const sourceEndTime = Number.isFinite(Number(options.sourceEndTime))
+    ? Number(options.sourceEndTime)
+    : hitTime;
+  const sourceStartTime = Number.isFinite(Number(options.sourceStartTime))
+    ? Number(options.sourceStartTime)
+    : sourceEndTime - maxDelay;
+  const frequency = Math.max(0, Math.abs(Number(layer.frequencyHz) || 0));
+  const scanSubdivisions = normalizePositiveSolverInteger(
+    options.scanSubdivisions,
+    Math.min(
+      ROOT_SCAN_MAX_STEPS,
+      Math.max(ROOT_SCAN_MIN_STEPS, Math.ceil(maxDelay * frequency * ROOT_SCAN_STEPS_PER_CYCLE))
+    )
+  );
+  const radius = Number(layer.radius) || 0;
+  const centerX = getPhotonSwarmCenterX(state, sourceRef.swarmId);
+  const angularVelocity = getPhotonDirectionSign(state, sourceRef.swarmId) *
+    TWO_PI *
+    (Number(layer.frequencyHz) || 0);
+
+  return {
+    source: {
+      startTime: sourceStartTime,
+      endTime: sourceEndTime,
+      center: { x: centerX, y: 0, z: 0 },
+      radiusU: { x: 0, y: radius, z: 0 },
+      radiusV: { x: 0, y: 0, z: radius },
+      angularVelocity,
+      phaseAtEpoch: getPhotonLayerAngleRadians(
+        state,
+        sourceRef.swarmId,
+        sourceRef.layerId,
+        0,
+        sourceRef.chargeType
+      ),
+      epochTime: 0,
+      errorBound: options.sourceErrorBound ?? 0,
+    },
+    receiver: {
+      startTime: Math.min(sourceStartTime, hitTime),
+      endTime: Math.max(sourceEndTime, hitTime),
+      positionAtStart: measurement.virtualObserver,
+      velocity: { x: 0, y: 0, z: 0 },
+      errorBound: options.receiverErrorBound ?? 0,
+    },
+    hitTime,
+    signalSpeed: measurement.emissionSpeedCf,
+    rootTolerance: options.rootTolerance ?? DEFAULT_PHOTON_ROOT_TOLERANCE,
+    maxIterations: options.maxIterations ?? 96,
+    scanSubdivisions,
+    maxRoots: normalizePositiveSolverInteger(options.maxRoots, Math.max(16, scanSubdivisions + 1)),
+  };
+}
+
+export async function solvePhotonCircularSourceCausalRootsWithSolverBridge(
+  state,
+  sourceRef,
+  observationTime,
+  options = {}
+) {
+  const request = options.request ??
+    createPhotonCircularSourceCausalRootRequest(state, sourceRef, observationTime, options);
+  const response = typeof options.solveCircularSourceCausalRoots === "function"
+    ? await options.solveCircularSourceCausalRoots(request)
+    : await runPhotonCircularSourceSolverBridgeClient(options.solverClient, request);
+  return Array.isArray(response?.roots) ? response.roots : [];
+}
+
 export async function runPhotonCausalRootsWithSolverBridge(rootRequest, options = {}) {
   const runRequest =
     options.runRequest ?? createPhotonCausalRootsSolverRunRequest(rootRequest, options);
@@ -294,6 +375,13 @@ async function runPhotonSolverBridgeClient(client, runRequest) {
     throw new Error("Photon solver bridge request requires a solver client or runSolverBridge option.");
   }
   return client.runSimulation(runRequest);
+}
+
+async function runPhotonCircularSourceSolverBridgeClient(client, request) {
+  if (!client || typeof client.solveCircularSourceCausalRootsF64 !== "function") {
+    throw new Error("Photon circular-source solver bridge request requires a solver client or solveCircularSourceCausalRoots option.");
+  }
+  return client.solveCircularSourceCausalRootsF64(request);
 }
 
 function createDefaultPhotonCausalRootsModel() {

@@ -74,7 +74,7 @@ static_assert(sizeof(ArchitrinoSolverEmissionShellCandidateRowF64) == 112);
 static_assert(sizeof(ArchitrinoSolverEmissionShellBroadPhaseSummary) == 32);
 static_assert(sizeof(ArchitrinoSolverEmissionShellNarrowPhaseRequestF64) == 208);
 static_assert(sizeof(ArchitrinoSolverEmissionShellNarrowPhaseRowF64) == 40);
-static_assert(sizeof(ArchitrinoSolverAbiInfo) == 156);
+static_assert(sizeof(ArchitrinoSolverAbiInfo) == 164);
 static_assert(offsetof(ArchitrinoSolverCausalRootRequestF64, hit_time) == 144);
 static_assert(offsetof(ArchitrinoSolverCausalRootRequestF64, max_iterations) == 168);
 static_assert(offsetof(ArchitrinoSolverCircularPathSegmentF64, radius_v) == 64);

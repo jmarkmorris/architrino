@@ -64,6 +64,9 @@ export interface SolverClient {
     request: SolverRootLedgerTransitionF64Request
   ): Promise<SolverRootLedgerTransitionF64Response>;
   solveCausalRootsF64(request: SolverCausalRootsF64Request): Promise<SolverCausalRootsF64Response>;
+  solveCircularSourceCausalRootsF64(
+    request: SolverCircularSourceCausalRootsF64Request
+  ): Promise<SolverCausalRootsF64Response>;
   solveCausalRootsPrecisionF64(
     request: SolverCausalRootsPrecisionF64Request
   ): Promise<SolverCausalRootsPrecisionF64Response>;
@@ -144,6 +147,18 @@ export interface SolverLinearPathSegmentF64 {
   endTime: number;
   positionAtStart: SolverVector3F64;
   velocity: SolverVector3F64;
+  errorBound?: number;
+}
+
+export interface SolverCircularPathSegmentF64 {
+  startTime: number;
+  endTime: number;
+  center: SolverVector3F64;
+  radiusU: SolverVector3F64;
+  radiusV: SolverVector3F64;
+  angularVelocity: number;
+  phaseAtEpoch?: number;
+  epochTime?: number;
   errorBound?: number;
 }
 
@@ -999,6 +1014,17 @@ export interface SolverCausalRootsF64Request {
   scanSubdivisions?: number;
   maxRoots?: number;
   maxHits?: number;
+}
+
+export interface SolverCircularSourceCausalRootsF64Request {
+  source: SolverCircularPathSegmentF64;
+  receiver: SolverLinearPathSegmentF64;
+  hitTime: number;
+  signalSpeed: number;
+  rootTolerance?: number;
+  maxIterations?: number;
+  scanSubdivisions?: number;
+  maxRoots?: number;
 }
 
 export interface SolverRootLedgerDetailF64Request extends SolverCausalRootsF64Request {
@@ -2031,6 +2057,8 @@ export interface SolverAbiInfo {
   precisionSolveOptionsBytes: number;
   precisionSolveSummaryF64Bytes: number;
   motionIntegrationRequestF64Bytes: number;
+  circularPathSegmentF64Bytes: number;
+  circularSourceRootRequestF64Bytes: number;
 }
 
 export interface SolverNumericSerializationDescriptor {
