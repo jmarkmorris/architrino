@@ -421,6 +421,17 @@ export function createSolverAppBridgeClient(options = {}) {
       return describeStream(state, request);
     },
 
+    async validatePathHistoryDynamicReplayF64(request) {
+      assertNotDisposed(state);
+      const module = await requireWasmModule(state);
+      return validatePathHistoryDynamicReplayF64(
+        state,
+        module,
+        request,
+        state.abiInfo || defaultAbiInfo()
+      );
+    },
+
     async createPathHistoryStreamF64(request) {
       assertNotDisposed(state);
       return createPathHistoryStreamF64(state, request, state.abiInfo || defaultAbiInfo());
@@ -742,6 +753,7 @@ function createCapabilities(hasWasmModuleFactory) {
           "createPathHistoryStreamF64",
           "describeStream",
           "readStreamRange",
+          "validatePathHistoryDynamicReplayF64",
           "buildPathHistoryStreamSpaceTimeIndexF64",
           "queryEmissionShellCandidatesF64",
           "queryEmissionShellCandidatePacketF64",
@@ -2795,6 +2807,7 @@ function runSimulationWithModule(state, module, request, abiInfo) {
                   runKind: "motionSimulation",
                   source: motionPathHistory.source,
                 },
+                dynamicReplay: createMotionSimulationDynamicReplayMetadata(request.config),
               },
             },
             abiInfo
@@ -2862,43 +2875,73 @@ function createMotionSimulationPathHistoryRowsWithModule(module, config, abiInfo
     };
   }
 
-  const pathRows = createLinearMotionPathHistoryRows(config.motionRequest);
+  const result = sampleLinearPathHistoryF64WithModule(module, config.motionRequest, abiInfo);
   return {
-    pathRows,
-    buffers: [],
-    status: createStatus("ok", "ok", "linear motion path history prepared"),
+    ...result,
     source: "linear-motion-sample-request",
   };
 }
 
-function createLinearMotionPathHistoryRows(request) {
-  if (request.endTime <= request.startTime) {
-    return [];
-  }
-  const start = positionAtLinearMotionTime(request.segment, request.startTime);
-  return [
-    {
+function createMotionSimulationDynamicReplayMetadata(config) {
+  if (config.motionIntegrationRequest) {
+    const request = normalizeMotionIntegrationReplayRequest(config.motionIntegrationRequest);
+    return {
+      schema: "solver-path-history-dynamic-replay.v1",
+      replayKind: "constant-acceleration-motion-integration",
       pathKey: request.pathKey,
-      segmentIndex: 0,
       startTime: request.startTime,
       endTime: request.endTime,
-      start,
-      velocity: copyVector(request.segment.velocity),
-      errorBound: request.segment.errorBound ?? 0,
-      stateFlags: request.stateFlags ?? 0,
-      chunkIndex: 0,
-      rowOffset: 0,
-    },
-  ];
+      step: request.step,
+      stateFlags: request.stateFlags,
+      integrationMethod: request.integrationMethod,
+      integrationTolerance: request.integrationTolerance,
+      motionIntegrationRequest: request,
+    };
+  }
+
+  const request = normalizeLinearMotionReplayRequest(config.motionRequest);
+  return {
+    schema: "solver-path-history-dynamic-replay.v1",
+    replayKind: "linear-motion-sample",
+    pathKey: request.pathKey,
+    startTime: request.startTime,
+    endTime: request.endTime,
+    step: request.step,
+    stateFlags: request.stateFlags,
+    motionRequest: request,
+  };
 }
 
-function positionAtLinearMotionTime(segment, time) {
-  const dt = time - segment.startTime;
-  return {
-    x: segment.positionAtStart.x + segment.velocity.x * dt,
-    y: segment.positionAtStart.y + segment.velocity.y * dt,
-    z: segment.positionAtStart.z + segment.velocity.z * dt,
-  };
+function normalizeLinearMotionReplayRequest(request) {
+  return dropUndefinedProperties({
+    pathKey: request.pathKey,
+    segment: {
+      startTime: request.segment.startTime,
+      endTime: request.segment.endTime,
+      positionAtStart: copyVector(request.segment.positionAtStart),
+      velocity: copyVector(request.segment.velocity),
+      errorBound: request.segment.errorBound ?? 0,
+    },
+    startTime: request.startTime,
+    endTime: request.endTime,
+    step: request.step,
+    stateFlags: request.stateFlags,
+  });
+}
+
+function normalizeMotionIntegrationReplayRequest(request) {
+  return dropUndefinedProperties({
+    pathKey: request.pathKey,
+    startTime: request.startTime,
+    endTime: request.endTime,
+    step: request.step,
+    initialPosition: copyVector(request.initialPosition),
+    initialVelocity: copyVector(request.initialVelocity),
+    acceleration: copyVector(request.acceleration),
+    integrationTolerance: request.integrationTolerance ?? 0,
+    integrationMethod: request.integrationMethod ?? 1,
+    stateFlags: request.stateFlags,
+  });
 }
 
 function solveRunRootsAndHitsF64WithModule(module, config, abiInfo, ids = {}) {
@@ -3105,6 +3148,10 @@ function precisionReplayStatusFor(precision) {
 
 function deepCloneJson(value) {
   return value == null ? value : JSON.parse(JSON.stringify(value));
+}
+
+function dropUndefinedProperties(value) {
+  return Object.fromEntries(Object.entries(value).filter(([, entry]) => entry !== undefined));
 }
 
 function copyStatusRecord(status) {
@@ -3865,6 +3912,72 @@ function sampleLinearMotionF64WithModule(module, request, abiInfo) {
     module._free(requestPtr);
     module._free(framesPtr);
     module._free(outFrameCountPtr);
+  }
+}
+
+function sampleLinearPathHistoryF64WithModule(module, request, abiInfo) {
+  validateLinearMotionSampleRequest(request);
+  if (typeof module._malloc !== "function" || typeof module._free !== "function") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "WebAssembly allocator exports are required", {
+        recoverable: false,
+      })
+    );
+  }
+
+  const maxRows = request.endTime > request.startTime ? 1 : 0;
+  const requestPtr = module._malloc(abiInfo.motionSampleRequestF64Bytes);
+  const rowsPtr =
+    maxRows > 0 ? module._malloc(abiInfo.pathHistoryRowF64Bytes * maxRows) : 0;
+  const outRowCountPtr = module._malloc(4);
+  try {
+    writeMotionSampleRequestF64(module, requestPtr, request);
+    module.setValue(outRowCountPtr, 0, "i32");
+    const samplePathHistory = module.cwrap("architrino_solver_sample_linear_path_history_f64", "number", [
+      "number",
+      "number",
+      "number",
+      "number",
+    ]);
+    const status = samplePathHistory(requestPtr, rowsPtr, maxRows, outRowCountPtr);
+    const rowCount = module.getValue(outRowCountPtr, "i32");
+    if (status !== 0) {
+      throw new SolverBridgeError(
+        createStatus("internal_solver_error", "halt", `linear path-history C ABI returned ${status}`, {
+          recoverable: status === -3,
+          details: { status, rowCount, maxRows },
+        })
+      );
+    }
+    const buffer = rowCount > 0
+      ? copyWasmBytes(module, rowsPtr, rowCount * abiInfo.pathHistoryRowF64Bytes)
+      : new ArrayBuffer(0);
+    const view = new DataView(buffer);
+    const pathRows = [];
+    for (let index = 0; index < rowCount; index += 1) {
+      pathRows.push(
+        readPathHistoryRowFromView(view, index * abiInfo.pathHistoryRowF64Bytes, 0, index)
+      );
+    }
+    return {
+      pathRows,
+      buffers: [
+        createBufferDescriptor(
+          "linear-motion-path-history",
+          "path_segment.v1",
+          rowCount,
+          abiInfo.pathHistoryRowF64Bytes,
+          buffer
+        ),
+      ],
+      status: createStatus("ok", "ok", "linear motion path history sampled"),
+    };
+  } finally {
+    module._free(requestPtr);
+    if (rowsPtr !== 0) {
+      module._free(rowsPtr);
+    }
+    module._free(outRowCountPtr);
   }
 }
 
@@ -6085,6 +6198,7 @@ export function hasSolverCAbi(module) {
     typeof module?._architrino_solver_solve_roots_hits_ledger_precision_f64 === "function" &&
     typeof module?._architrino_solver_propagate_error_budget_f64 === "function" &&
     typeof module?._architrino_solver_sample_linear_motion_f64 === "function" &&
+    typeof module?._architrino_solver_sample_linear_path_history_f64 === "function" &&
     typeof module?._architrino_solver_integrate_constant_acceleration_motion_f64 === "function" &&
     typeof module?._architrino_solver_integrate_constant_acceleration_path_history_f64 === "function" &&
     typeof module?._architrino_solver_compute_phase_at_hit_f64 === "function" &&
@@ -6163,7 +6277,7 @@ function readAbiInfo(module) {
 function defaultAbiInfo() {
   return {
     abiMajor: 0,
-    abiMinor: 5,
+    abiMinor: 6,
     abiPatch: 0,
     rootRequestF64Bytes: CAUSAL_ROOT_REQUEST_F64_BYTES,
     rootRowF64Bytes: CAUSAL_ROOT_ROW_F64_BYTES,
@@ -8740,6 +8854,235 @@ function describeStream(state, request) {
         streamId: streamEntry.stream.streamId,
       },
     }),
+  };
+}
+
+function validatePathHistoryDynamicReplayF64(state, module, request, abiInfo) {
+  validatePathHistoryDynamicReplayValidationRequest(request);
+  const streamEntry = findStreamEntry(state, request.streamId);
+  const dynamicReplay = streamEntry.stream.metadata?.dynamicReplay;
+  if (!dynamicReplay) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "path-history stream has no dynamic replay metadata", {
+        recoverable: false,
+        details: { streamId: request.streamId },
+      })
+    );
+  }
+
+  const replay = normalizePathHistoryDynamicReplayMetadata(dynamicReplay);
+  const selection = selectStreamRanges(streamEntry, { streamId: request.streamId });
+  const actualRowCount = selection.items.reduce((sum, item) => sum + item.rowCount, 0);
+  const maxRows = request.maxRows ?? DEFAULT_MAX_MOTION_PATH_ROWS;
+  if (actualRowCount > maxRows) {
+    throw new SolverBridgeError(
+      createStatus("stream_memory_pressure", "halt", "path-history replay validation exceeds maxRows", {
+        recoverable: true,
+        details: { streamId: request.streamId, actualRowCount, maxRows },
+      })
+    );
+  }
+
+  const actualRows = decodePathHistoryRowsFromStreamSelection(selection.items);
+  const expectedRows = regeneratePathHistoryRowsFromDynamicReplay(module, replay, abiInfo);
+  if (expectedRows.length > maxRows) {
+    throw new SolverBridgeError(
+      createStatus("stream_memory_pressure", "halt", "path-history replay regeneration exceeds maxRows", {
+        recoverable: true,
+        details: { streamId: request.streamId, expectedRowCount: expectedRows.length, maxRows },
+      })
+    );
+  }
+
+  const tolerance = request.tolerance ?? 0;
+  const comparison = comparePathHistoryRowsForDynamicReplay(actualRows, expectedRows, tolerance);
+  const status = comparison.matched
+    ? createStatus("ok", "ok", "path-history dynamic replay matched", {
+        details: {
+          streamId: request.streamId,
+          replayKind: replay.replayKind,
+          actualRowCount: actualRows.length,
+          expectedRowCount: expectedRows.length,
+        },
+      })
+    : createStatus("validation_replay_mismatch", "error", "path-history dynamic replay mismatch", {
+        recoverable: false,
+        details: {
+          streamId: request.streamId,
+          replayKind: replay.replayKind,
+          mismatchCount: comparison.mismatchCount,
+          firstMismatch: comparison.firstMismatch,
+        },
+      });
+
+  return {
+    schema: "solver-path-history-dynamic-replay-validation.v1",
+    streamId: request.streamId,
+    replayKind: replay.replayKind,
+    tolerance,
+    actualRowCount: actualRows.length,
+    expectedRowCount: expectedRows.length,
+    selectedRangeCount: selection.items.length,
+    selectedByteLength: selection.items.reduce((sum, item) => sum + item.buffer.byteLength, 0),
+    matched: comparison.matched,
+    mismatchCount: comparison.mismatchCount,
+    maxTimeDifference: comparison.maxTimeDifference,
+    maxPositionDifference: comparison.maxPositionDifference,
+    maxVelocityDifference: comparison.maxVelocityDifference,
+    maxErrorBoundDifference: comparison.maxErrorBoundDifference,
+    firstMismatch: comparison.firstMismatch,
+    diagnostics: selection.diagnostics,
+    status,
+  };
+}
+
+function validatePathHistoryDynamicReplayValidationRequest(request) {
+  if (!request || typeof request !== "object") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "path-history dynamic replay request object is required", {
+        recoverable: false,
+      })
+    );
+  }
+  requireNonemptyString(request.streamId, "streamId");
+  if (request.tolerance != null) {
+    requireNonnegativeFiniteNumber(request.tolerance, "tolerance");
+  }
+  if (request.maxRows != null) {
+    requirePositiveInteger(request.maxRows, "maxRows");
+  }
+}
+
+function regeneratePathHistoryRowsFromDynamicReplay(module, replay, abiInfo) {
+  if (replay.replayKind === "linear-motion-sample") {
+    return sampleLinearPathHistoryF64WithModule(module, replay.motionRequest, abiInfo).pathRows;
+  }
+  if (replay.replayKind === "constant-acceleration-motion-integration") {
+    return integrateConstantAccelerationPathHistoryF64WithModule(
+      module,
+      replay.motionIntegrationRequest,
+      abiInfo
+    ).pathRows;
+  }
+  throw new SolverBridgeError(
+    createStatus("app_contract_error", "error", "path-history dynamic replay kind is invalid", {
+      recoverable: false,
+    })
+  );
+}
+
+function comparePathHistoryRowsForDynamicReplay(actualRows, expectedRows, tolerance) {
+  let mismatchCount = actualRows.length === expectedRows.length ? 0 : 1;
+  let firstMismatch =
+    actualRows.length === expectedRows.length
+      ? null
+      : {
+          rowIndex: Math.min(actualRows.length, expectedRows.length),
+          field: "rowCount",
+          actual: actualRows.length,
+          expected: expectedRows.length,
+          difference: Math.abs(actualRows.length - expectedRows.length),
+        };
+  let maxTimeDifference = 0;
+  let maxPositionDifference = 0;
+  let maxVelocityDifference = 0;
+  let maxErrorBoundDifference = 0;
+  const sharedRowCount = Math.min(actualRows.length, expectedRows.length);
+
+  const noteMismatch = (rowIndex, field, actual, expected, difference) => {
+    mismatchCount += 1;
+    if (!firstMismatch) {
+      firstMismatch = { rowIndex, field, actual, expected, difference };
+    }
+  };
+
+  for (let index = 0; index < sharedRowCount; index += 1) {
+    const actual = actualRows[index];
+    const expected = expectedRows[index];
+    if (actual.pathKey !== expected.pathKey) {
+      noteMismatch(
+        index,
+        "pathKey",
+        actual.pathKey,
+        expected.pathKey,
+        Math.abs(actual.pathKey - expected.pathKey)
+      );
+    }
+    if (actual.segmentIndex !== expected.segmentIndex) {
+      noteMismatch(
+        index,
+        "segmentIndex",
+        actual.segmentIndex,
+        expected.segmentIndex,
+        Math.abs(actual.segmentIndex - expected.segmentIndex)
+      );
+    }
+    if ((actual.stateFlags ?? 0) !== (expected.stateFlags ?? 0)) {
+      noteMismatch(
+        index,
+        "stateFlags",
+        actual.stateFlags ?? 0,
+        expected.stateFlags ?? 0,
+        Math.abs((actual.stateFlags ?? 0) - (expected.stateFlags ?? 0))
+      );
+    }
+
+    const startDiff = Math.abs(actual.startTime - expected.startTime);
+    const endDiff = Math.abs(actual.endTime - expected.endTime);
+    maxTimeDifference = Math.max(maxTimeDifference, startDiff, endDiff);
+    if (startDiff > tolerance) {
+      noteMismatch(index, "startTime", actual.startTime, expected.startTime, startDiff);
+    }
+    if (endDiff > tolerance) {
+      noteMismatch(index, "endTime", actual.endTime, expected.endTime, endDiff);
+    }
+
+    for (const axis of ["x", "y", "z"]) {
+      const positionDiff = Math.abs(actual.start[axis] - expected.start[axis]);
+      maxPositionDifference = Math.max(maxPositionDifference, positionDiff);
+      if (positionDiff > tolerance) {
+        noteMismatch(
+          index,
+          `start.${axis}`,
+          actual.start[axis],
+          expected.start[axis],
+          positionDiff
+        );
+      }
+      const velocityDiff = Math.abs(actual.velocity[axis] - expected.velocity[axis]);
+      maxVelocityDifference = Math.max(maxVelocityDifference, velocityDiff);
+      if (velocityDiff > tolerance) {
+        noteMismatch(
+          index,
+          `velocity.${axis}`,
+          actual.velocity[axis],
+          expected.velocity[axis],
+          velocityDiff
+        );
+      }
+    }
+
+    const errorBoundDiff = Math.abs((actual.errorBound ?? 0) - (expected.errorBound ?? 0));
+    maxErrorBoundDifference = Math.max(maxErrorBoundDifference, errorBoundDiff);
+    if (errorBoundDiff > tolerance) {
+      noteMismatch(
+        index,
+        "errorBound",
+        actual.errorBound ?? 0,
+        expected.errorBound ?? 0,
+        errorBoundDiff
+      );
+    }
+  }
+
+  return {
+    matched: mismatchCount === 0,
+    mismatchCount,
+    firstMismatch,
+    maxTimeDifference,
+    maxPositionDifference,
+    maxVelocityDifference,
+    maxErrorBoundDifference,
   };
 }
 
@@ -12488,7 +12831,7 @@ function normalizePathHistoryStreamMetadata(metadata = {}) {
     requireArray(metadata.diagnostics, "metadata.diagnostics");
     metadata.diagnostics.forEach(validateDiagnosticRecord);
   }
-  return {
+  const normalized = {
     schema: "solver-path-history-stream-metadata.v1",
     precisionPath,
     units: normalizeMetadataString(metadata.units, "solver-units", "metadata.units"),
@@ -12506,6 +12849,132 @@ function normalizePathHistoryStreamMetadata(metadata = {}) {
     provenance: metadata.provenance == null ? {} : deepCloneJson(metadata.provenance),
     diagnostics: metadata.diagnostics == null ? [] : metadata.diagnostics.map(deepCloneJson),
   };
+  if (metadata.dynamicReplay != null) {
+    normalized.dynamicReplay = normalizePathHistoryDynamicReplayMetadata(metadata.dynamicReplay);
+  }
+  return normalized;
+}
+
+function normalizePathHistoryDynamicReplayMetadata(replay) {
+  if (!replay || typeof replay !== "object" || Array.isArray(replay)) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "path-history dynamic replay metadata must be an object", {
+        recoverable: false,
+      })
+    );
+  }
+  if (replay.schema !== "solver-path-history-dynamic-replay.v1") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "path-history dynamic replay schema is invalid", {
+        recoverable: false,
+      })
+    );
+  }
+  requireSafeUint64(replay.pathKey, "dynamicReplay.pathKey");
+  requireFiniteNumber(replay.startTime, "dynamicReplay.startTime");
+  requireFiniteNumber(replay.endTime, "dynamicReplay.endTime");
+  requirePositiveFiniteNumber(replay.step, "dynamicReplay.step");
+  if (replay.endTime < replay.startTime) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "dynamicReplay time bounds are not ordered", {
+        recoverable: false,
+      })
+    );
+  }
+  if (replay.stateFlags != null) {
+    requireUint32(replay.stateFlags, "dynamicReplay.stateFlags");
+  }
+
+  if (replay.replayKind === "linear-motion-sample") {
+    if (replay.motionRequest == null || replay.motionIntegrationRequest != null) {
+      throw new SolverBridgeError(
+        createStatus("app_contract_error", "error", "linear dynamic replay requires only motionRequest", {
+          recoverable: false,
+        })
+      );
+    }
+    validateLinearMotionSampleRequest(replay.motionRequest);
+    const motionRequest = normalizeLinearMotionReplayRequest(replay.motionRequest);
+    validateDynamicReplayCommonFields(replay, motionRequest, "motionRequest");
+    return dropUndefinedProperties({
+      schema: "solver-path-history-dynamic-replay.v1",
+      replayKind: "linear-motion-sample",
+      pathKey: replay.pathKey,
+      startTime: replay.startTime,
+      endTime: replay.endTime,
+      step: replay.step,
+      stateFlags: replay.stateFlags,
+      motionRequest,
+    });
+  }
+
+  if (replay.replayKind === "constant-acceleration-motion-integration") {
+    if (replay.motionIntegrationRequest == null || replay.motionRequest != null) {
+      throw new SolverBridgeError(
+        createStatus(
+          "app_contract_error",
+          "error",
+          "constant-acceleration dynamic replay requires only motionIntegrationRequest",
+          { recoverable: false }
+        )
+      );
+    }
+    if (replay.integrationMethod !== 1) {
+      throw new SolverBridgeError(
+        createStatus("app_contract_error", "error", "dynamicReplay integration method is not supported", {
+          recoverable: false,
+        })
+      );
+    }
+    requireNonnegativeFiniteNumber(replay.integrationTolerance, "dynamicReplay.integrationTolerance");
+    validateMotionIntegrationRequest(replay.motionIntegrationRequest);
+    const motionIntegrationRequest = normalizeMotionIntegrationReplayRequest(
+      replay.motionIntegrationRequest
+    );
+    validateDynamicReplayCommonFields(replay, motionIntegrationRequest, "motionIntegrationRequest");
+    if (replay.integrationMethod !== motionIntegrationRequest.integrationMethod ||
+        replay.integrationTolerance !== motionIntegrationRequest.integrationTolerance) {
+      throw new SolverBridgeError(
+        createStatus("app_contract_error", "error", "dynamicReplay integration fields do not match request", {
+          recoverable: false,
+        })
+      );
+    }
+    return dropUndefinedProperties({
+      schema: "solver-path-history-dynamic-replay.v1",
+      replayKind: "constant-acceleration-motion-integration",
+      pathKey: replay.pathKey,
+      startTime: replay.startTime,
+      endTime: replay.endTime,
+      step: replay.step,
+      stateFlags: replay.stateFlags,
+      integrationMethod: replay.integrationMethod,
+      integrationTolerance: replay.integrationTolerance,
+      motionIntegrationRequest,
+    });
+  }
+
+  throw new SolverBridgeError(
+    createStatus("app_contract_error", "error", "path-history dynamic replay kind is invalid", {
+      recoverable: false,
+    })
+  );
+}
+
+function validateDynamicReplayCommonFields(replay, request, requestLabel) {
+  if (
+    replay.pathKey !== request.pathKey ||
+    replay.startTime !== request.startTime ||
+    replay.endTime !== request.endTime ||
+    replay.step !== request.step ||
+    (replay.stateFlags ?? undefined) !== (request.stateFlags ?? undefined)
+  ) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", `dynamicReplay fields do not match ${requestLabel}`, {
+        recoverable: false,
+      })
+    );
+  }
 }
 
 function normalizeMetadataString(value, fallback, label) {

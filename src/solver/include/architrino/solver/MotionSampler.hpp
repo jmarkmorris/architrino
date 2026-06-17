@@ -56,6 +56,7 @@ struct MotionIntegrationRequest {
 };
 
 MotionSampleResult sample_linear_motion(const MotionSampleRequest& request);
+MotionPathHistoryResult sample_linear_path_history(const MotionSampleRequest& request);
 MotionSampleResult integrate_constant_acceleration_motion(const MotionIntegrationRequest& request);
 MotionPathHistoryResult integrate_constant_acceleration_path_history(
     const MotionIntegrationRequest& request);

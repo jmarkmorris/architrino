@@ -14,6 +14,7 @@ export const SOLVER_APP_WORKER_METHODS = Object.freeze([
   "runSimulation",
   "describeRun",
   "describeStream",
+  "validatePathHistoryDynamicReplayF64",
   "diagnosePrecisionF64",
   "solveCausalRootsPrecisionF64",
   "solveRootsAndHitsPrecisionF64",

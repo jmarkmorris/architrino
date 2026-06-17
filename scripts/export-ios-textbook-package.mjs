@@ -1174,6 +1174,7 @@ function writeBundleFiles() {
       ...manifest,
       package_version: `${PACKAGE_VERSION_PREFIX}-${manifest.textbook_toc.sha256.slice(0, 8)}`,
       files: sortedFiles,
+      links: [],
     };
     fs.writeFileSync(packageTocPath, readText(path.join(ROOT_DIR, TEXTBOOK_TOC_PATH), TEXTBOOK_TOC_PATH), "utf8");
     fs.writeFileSync(manifestPath, `${JSON.stringify(bundleManifest, null, 2)}\n`, "utf8");
@@ -1208,6 +1209,7 @@ function writeBundleFiles() {
       ...manifest,
       package_version: `${PACKAGE_VERSION_PREFIX}-${manifest.textbook_toc.sha256.slice(0, 8)}`,
       files: [...manifest.files].sort((a, b) => a.path.localeCompare(b.path)),
+      links: [],
     };
 
     const expectedChapters = expectedManifest.chapters.length;

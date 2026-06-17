@@ -772,6 +772,12 @@ int architrino_solver_sample_linear_motion_f64(
     int max_frames,
     int* out_frame_count);
 
+int architrino_solver_sample_linear_path_history_f64(
+    const ArchitrinoSolverMotionSampleRequestF64* request,
+    ArchitrinoSolverPathHistoryRowF64* rows,
+    int max_rows,
+    int* out_row_count);
+
 int architrino_solver_integrate_constant_acceleration_motion_f64(
     const ArchitrinoSolverMotionIntegrationRequestF64* request,
     ArchitrinoSolverMotionFrameRowF64* frames,

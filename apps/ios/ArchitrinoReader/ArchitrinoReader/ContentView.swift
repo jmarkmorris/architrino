@@ -101,10 +101,12 @@ struct ContentView: View {
                         }
                     }
                     .background(viewModel.theme.readerBackgroundColor)
+                } else if viewModel.isReady && viewModel.hasAnyContent() {
+                    readerSelectionPlaceholder
                 } else {
                     VStack {
                         ProgressView()
-                        Text("Loading chapter…")
+                        Text("Loading chapter...")
                             .font(.footnote)
                             .foregroundStyle(.secondary)
                     }
@@ -157,8 +159,7 @@ struct ContentView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     HStack {
                         Button {
-                            viewModel.isSearchPresented = true
-                            viewModel.clearSearch()
+                            viewModel.presentSearch()
                         } label: {
                             Image(systemName: "magnifyingglass")
                         }
@@ -186,6 +187,18 @@ struct ContentView: View {
         .preferredColorScheme(viewModel.theme.readerToolbarColorScheme)
     }
 
+    private var readerSelectionPlaceholder: some View {
+        ZStack {
+            viewModel.theme.readerBackgroundColor.ignoresSafeArea()
+            Text("Select a section from the table of contents.")
+                .font(.footnote)
+                .foregroundStyle(viewModel.theme.readerSecondaryTextColor)
+                .multilineTextAlignment(.center)
+                .padding()
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+
     private var readerRenderOverlay: some View {
         ZStack {
             viewModel.theme.readerBackgroundColor
@@ -203,7 +216,7 @@ struct ContentView: View {
                         .font(.headline)
                         .foregroundStyle(viewModel.theme.readerPrimaryTextColor)
                         .padding(.vertical, 2)
-                        .listRowInsets(EdgeInsets(top: 0, leading: 34, bottom: 8, trailing: 20))
+                        .listRowInsets(EdgeInsets(top: 0, leading: 10, bottom: 8, trailing: 10))
 
                     if let package = viewModel.package {
                         if package.tocPackage.tocRoot.resolvedChildren.isEmpty {
@@ -230,11 +243,11 @@ struct ContentView: View {
                 }
                 .listRowBackground(Color.clear)
                 .listRowSeparatorTint(viewModel.theme.readerSeparatorColor)
+                .listRowInsets(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
 
                 Section {
                     Button {
-                        viewModel.isSearchPresented = true
-                        viewModel.clearSearch()
+                        viewModel.presentSearch()
                     } label: {
                         Label("Search", systemImage: "magnifyingglass")
                             .foregroundStyle(viewModel.theme.readerPrimaryTextColor)
@@ -265,10 +278,12 @@ struct ContentView: View {
                 }
                 .listRowBackground(Color.clear)
                 .listRowSeparatorTint(viewModel.theme.readerSeparatorColor)
+                .listRowInsets(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
             }
-            .listStyle(.insetGrouped)
+            .listStyle(.plain)
             .listSectionSpacing(8)
             .contentMargins(.top, 8, for: .scrollContent)
+            .contentMargins(.horizontal, 0, for: .scrollContent)
             .scrollContentBackground(.hidden)
             .background(viewModel.theme.readerBackgroundColor.ignoresSafeArea())
         }
@@ -312,85 +327,39 @@ struct ContentView: View {
 
     private func tocHierarchyRow(_ node: TextbookTOCNode, depth: Int) -> AnyView {
         let route = viewModel.resolveTOCTarget(for: node)
-        let isExternalRoute = {
-            if case .external = route { return true }
-            return false
-        }()
-        let externalURL: URL? = {
-            if case .external(let url) = route { return url }
-            return nil
-        }()
 
         return AnyView(
             VStack(alignment: .leading, spacing: 0) {
-                if isExternalRoute {
-                    HStack(spacing: 10) {
+                Button {
+                    switch route {
+                    case .chapter(let chapterId, let anchor):
+                        navigateFromTOC {
+                            viewModel.openChapter(by: chapterId, anchor: anchor)
+                        }
+                    case .external(let external):
+                        tocNotice = nil
+                        viewModel.readerNotice = nil
+                        openURL(external)
+                        if !isRegularWidth {
+                            dismissTOCImmediately()
+                        }
+                    case .none:
+                        break
+                    }
+                } label: {
+                    HStack(spacing: 8) {
                         tocRouteIcon(for: route)
 
                         tocRowLabel(title: node.title, depth: depth)
 
                         Spacer()
-
-                        Button {
-                            if let externalURL {
-                                openURL(externalURL)
-                            }
-                            if !isRegularWidth {
-                                dismissTOCImmediately()
-                            }
-                        } label: {
-                            Image(systemName: "safari")
-                                .foregroundStyle(viewModel.theme.readerAccentColor)
-                                .imageScale(.small)
-                                .accessibilityLabel("Open scene in web app")
-                        }
-                        .buttonStyle(.plain)
                     }
                     .contentShape(Rectangle())
                     .padding(.vertical, 2)
-                    .padding(.horizontal, 2)
-                    .onTapGesture {
-                        viewModel.readerNotice = nil
-                        tocNotice = "“\(node.title)” is a web-app scene. Open in Safari to view the interactive version."
-                        if !isRegularWidth {
-                            dismissTOCImmediately()
-                        }
-                    }
-                    .background(Color.clear)
-                } else {
-                    Button {
-                        switch route {
-                        case .chapter(let chapterId, let anchor):
-                            navigateFromTOC {
-                                viewModel.openChapter(by: chapterId, anchor: anchor)
-                            }
-                        case .external(let external):
-                            tocNotice = nil
-                            viewModel.readerNotice = nil
-                            openURL(external)
-                            if !isRegularWidth {
-                                dismissTOCImmediately()
-                            }
-                        case .none:
-                            break
-                        }
-                    } label: {
-                        HStack(spacing: 10) {
-                            tocRouteIcon(for: route)
-
-                            tocRowLabel(title: node.title, depth: depth)
-
-                            Spacer()
-                        }
-                        .contentShape(Rectangle())
-                        .padding(.vertical, 2)
-                        .padding(.horizontal, 2)
-                    }
-                    .contentShape(Rectangle())
-                    .padding(.vertical, 2)
-                    .padding(.horizontal, 2)
-                    .buttonStyle(.plain)
                 }
+                .contentShape(Rectangle())
+                .padding(.vertical, 2)
+                .buttonStyle(.plain)
 
                 ForEach(node.resolvedChildren) { child in
                     tocHierarchyRow(child, depth: depth + 1)
@@ -403,7 +372,7 @@ struct ContentView: View {
         Image(systemName: tocRouteIconName(for: route))
             .font(.caption)
             .foregroundStyle(viewModel.theme.readerSecondaryTextColor)
-            .frame(width: 22, height: 18, alignment: .center)
+            .frame(width: 20, height: 18, alignment: .center)
     }
 
     private func tocRouteIconName(for route: ReaderViewModel.TOCRoute) -> String {
@@ -411,7 +380,7 @@ struct ContentView: View {
         case .chapter:
             return "book"
         case .external:
-            return "safari"
+            return "link"
         case .none:
             return "link"
         }
@@ -424,7 +393,7 @@ struct ContentView: View {
                 .foregroundStyle(viewModel.theme.readerPrimaryTextColor)
                 .lineLimit(2)
                 .multilineTextAlignment(.leading)
-                .padding(.leading, CGFloat(depth * 14))
+                .padding(.leading, CGFloat(depth * 12))
         }
     }
 
@@ -500,7 +469,6 @@ struct ContentView: View {
                     .font(.system(size: 13, weight: .semibold))
                     .frame(width: 20, height: 28)
             }
-            .disabled(viewModel.fontScale <= 0.85)
             .accessibilityLabel("Decrease text size")
 
             Text("A")
@@ -516,7 +484,6 @@ struct ContentView: View {
                     .font(.system(size: 24, weight: .semibold))
                     .frame(width: 20, height: 28)
             }
-            .disabled(viewModel.fontScale >= 1.45)
             .accessibilityLabel("Increase text size")
         }
         .frame(width: 78, alignment: .leading)
@@ -711,7 +678,6 @@ private struct ReaderSettingsSheet: View {
                                 .font(.system(size: 15, weight: .semibold))
                                 .frame(width: 36, height: 36)
                         }
-                        .disabled(viewModel.fontScale <= 0.85)
                         .accessibilityLabel("Decrease text size")
 
                         Slider(
@@ -730,7 +696,6 @@ private struct ReaderSettingsSheet: View {
                                 .font(.system(size: 24, weight: .semibold))
                                 .frame(width: 36, height: 36)
                         }
-                        .disabled(viewModel.fontScale >= 1.45)
                         .accessibilityLabel("Increase text size")
                     }
                 }
@@ -791,7 +756,10 @@ private struct SearchSheet: View {
     var body: some View {
         NavigationStack {
             List {
-                if viewModel.searchResults.isEmpty && !query.isEmpty {
+                if viewModel.isSearchIndexLoading {
+                    Text("Preparing search...")
+                        .foregroundStyle(.secondary)
+                } else if viewModel.searchResults.isEmpty && !query.isEmpty {
                     Text("No matching sections.")
                         .foregroundStyle(.secondary)
                 }

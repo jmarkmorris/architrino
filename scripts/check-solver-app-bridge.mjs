@@ -325,9 +325,10 @@ assert(
   "expected app bridge worker fallback capability"
 );
 assert(
-    capabilities.appBridge.streamQueries.schema === "solver-stream-query-capabilities.v1" &&
+  capabilities.appBridge.streamQueries.schema === "solver-stream-query-capabilities.v1" &&
     capabilities.appBridge.streamQueries.helpers.includes("createPathHistoryStreamF64") &&
     capabilities.appBridge.streamQueries.helpers.includes("describeStream") &&
+    capabilities.appBridge.streamQueries.helpers.includes("validatePathHistoryDynamicReplayF64") &&
     capabilities.appBridge.streamQueries.helpers.includes("readStreamRange") &&
     capabilities.appBridge.streamQueries.helpers.includes("buildPathHistoryStreamSpaceTimeIndexF64") &&
     capabilities.appBridge.streamQueries.helpers.includes("queryEmissionShellCandidatesF64") &&
@@ -2816,14 +2817,31 @@ assert(motionRunHandle.response.summary.frameCount === 3, "expected motion run f
 assert(
   motionRunHandle.response.manifest.runKind === "motionSimulation" &&
     motionRunHandle.response.manifest.appId === "animator" &&
-    motionRunHandle.response.manifest.buffers[0].layout === "frame_buffer.v1",
+    motionRunHandle.response.manifest.buffers[0].layout === "frame_buffer.v1" &&
+    motionRunHandle.response.manifest.streams[0].streamId ===
+      "smoke-motion-run:motion-path-history",
   "expected motion run manifest"
 );
 assert(motionRunHandle.response.frames.length === 3, "expected motion run frames");
-assert(motionRunHandle.response.buffers.length === 1, "expected motion run frame buffer");
+assert(motionRunHandle.response.streams.length === 1, "expected motion run path stream");
 assert(
-  motionRunHandle.response.buffers[0].layout === "frame_buffer.v1" &&
-    motionRunHandle.response.buffers[0].buffer.byteLength === 264,
+  motionRunHandle.response.pathHistory.rowCount === 1 &&
+    motionRunHandle.response.pathHistory.chunkCount === 1,
+  "expected motion run path-history summary"
+);
+assert(
+  motionRunHandle.response.pathHistory.metadata.dynamicReplay.replayKind === "linear-motion-sample" &&
+    motionRunHandle.response.pathHistory.metadata.dynamicReplay.pathKey === 1234 &&
+    motionRunHandle.response.pathHistory.metadata.dynamicReplay.motionRequest.segment.velocity.y === 0.5,
+  "expected motion run dynamic replay metadata"
+);
+const motionRunFrameBuffer = motionRunHandle.response.buffers.find(
+  (buffer) => buffer.layout === "frame_buffer.v1"
+);
+assert(motionRunFrameBuffer, "expected motion run frame buffer");
+assert(
+  motionRunFrameBuffer.layout === "frame_buffer.v1" &&
+    motionRunFrameBuffer.buffer.byteLength === 264,
   "expected motion run frame buffer payload"
 );
 assert(
@@ -2831,6 +2849,33 @@ assert(
     motionRunHandle.response.frames[2].position.y === 3 &&
     motionRunHandle.response.frames[2].position.z === 1,
   "expected motion run final position"
+);
+const motionRunPathRead = await client.readStreamRange({
+  streamId: "smoke-motion-run:motion-path-history",
+  frameRange: { start: 0, end: 0 },
+});
+assert(motionRunPathRead.status.code === "ok", "expected motion run path read status ok");
+assert(motionRunPathRead.buffers.length === 1, "expected one motion run path chunk");
+const motionRunPathView = new DataView(motionRunPathRead.buffers[0].buffer);
+assert(Number(motionRunPathView.getBigUint64(0, true)) === 1234, "expected motion run path key");
+assert(
+  motionRunPathView.getFloat64(56, true) === 2 &&
+    motionRunPathView.getFloat64(64, true) === 0.5 &&
+    motionRunPathView.getFloat64(72, true) === -1,
+  "expected motion run path velocity"
+);
+const motionRunReplayValidation = await client.validatePathHistoryDynamicReplayF64({
+  streamId: "smoke-motion-run:motion-path-history",
+  tolerance: 0,
+});
+assert(
+  motionRunReplayValidation.schema === "solver-path-history-dynamic-replay-validation.v1" &&
+    motionRunReplayValidation.status.code === "ok" &&
+    motionRunReplayValidation.replayKind === "linear-motion-sample" &&
+    motionRunReplayValidation.matched &&
+    motionRunReplayValidation.actualRowCount === 1 &&
+    motionRunReplayValidation.expectedRowCount === 1,
+  "expected motion dynamic replay validation match"
 );
 const integratedMotionRunHandle = await client.runSimulation(makeIntegratedMotionRunSimulationRequest());
 assert(integratedMotionRunHandle.status.code === "ok", "expected integrated motion run status ok");
@@ -2849,6 +2894,14 @@ assert(
   integratedMotionRunHandle.response.pathHistory.rowCount === 2 &&
     integratedMotionRunHandle.response.pathHistory.chunkCount === 2,
   "expected integrated motion path-history summary"
+);
+assert(
+  integratedMotionRunHandle.response.pathHistory.metadata.dynamicReplay.replayKind ===
+    "constant-acceleration-motion-integration" &&
+    integratedMotionRunHandle.response.pathHistory.metadata.dynamicReplay.pathKey === 4321 &&
+    integratedMotionRunHandle.response.pathHistory.metadata.dynamicReplay.integrationTolerance === 1e-11 &&
+    integratedMotionRunHandle.response.pathHistory.metadata.dynamicReplay.motionIntegrationRequest.acceleration.z === 2,
+  "expected integrated motion dynamic replay metadata"
 );
 assert(
   integratedMotionRunHandle.response.frames[2].position.x === 6 &&
@@ -2872,6 +2925,19 @@ assert(
     integratedMotionPathView.getFloat64(64, true) === 0.5 &&
     integratedMotionPathView.getFloat64(72, true) === 0,
   "expected integrated motion path chord velocity"
+);
+const integratedMotionReplayValidation = await client.validatePathHistoryDynamicReplayF64({
+  streamId: "smoke-integrated-motion-run:motion-path-history",
+  tolerance: 0,
+});
+assert(
+  integratedMotionReplayValidation.schema === "solver-path-history-dynamic-replay-validation.v1" &&
+    integratedMotionReplayValidation.status.code === "ok" &&
+    integratedMotionReplayValidation.replayKind === "constant-acceleration-motion-integration" &&
+    integratedMotionReplayValidation.matched &&
+    integratedMotionReplayValidation.actualRowCount === 2 &&
+    integratedMotionReplayValidation.expectedRowCount === 2,
+  "expected integrated motion dynamic replay validation match"
 );
 
 const appPlaybackRunHandle = await client.runSimulation(
@@ -3358,8 +3424,10 @@ function makeMotionRunSimulationRequest() {
       step: 1,
       stateFlags: 9,
     },
+    streamId: "smoke-motion-run:motion-path-history",
+    rowsPerChunk: 1,
     output: {
-      outputs: ["frameBuffer", "diagnostics"],
+      outputs: ["frameBuffer", "pathStream", "diagnostics"],
       streamTarget: "caller-buffer",
       memoryBudgetBytes: 64 * 1024 * 1024,
       deterministic: true,

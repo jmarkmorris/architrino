@@ -15,6 +15,52 @@ bool finite_segment(const LinearPathSegment& segment) {
          std::isfinite(segment.errorBound) && segment.errorBound >= 0.0;
 }
 
+bool validate_linear_motion_sample_request(const MotionSampleRequest& request,
+                                           ValidationReport& validation) {
+  if (!finite_segment(request.segment)) {
+    validation.add(StatusCode::AppContractError,
+                   StatusSeverity::Error,
+                   "motion segment numeric fields must be finite",
+                   "motion-sampler",
+                   false);
+    return false;
+  }
+  if (request.segment.endTime < request.segment.startTime) {
+    validation.add(StatusCode::AppContractError,
+                   StatusSeverity::Error,
+                   "motion segment time bounds are not ordered",
+                   "motion-sampler",
+                   false);
+    return false;
+  }
+  if (!std::isfinite(request.startTime) || !std::isfinite(request.endTime) ||
+      request.endTime < request.startTime) {
+    validation.add(StatusCode::AppContractError,
+                   StatusSeverity::Error,
+                   "motion sample time bounds must be finite and ordered",
+                   "motion-sampler",
+                   false);
+    return false;
+  }
+  if (!std::isfinite(request.step) || request.step <= 0.0) {
+    validation.add(StatusCode::TimeResolutionInsufficient,
+                   StatusSeverity::Error,
+                   "motion sample step must be positive and finite",
+                   "motion-sampler",
+                   false);
+    return false;
+  }
+  if (request.startTime < request.segment.startTime || request.endTime > request.segment.endTime) {
+    validation.add(StatusCode::InsufficientHistoryDepth,
+                   StatusSeverity::Halt,
+                   "motion sample window is outside the retained segment",
+                   "motion-sampler",
+                   false);
+    return false;
+  }
+  return true;
+}
+
 double norm(Vector3 value) {
   return std::sqrt(value.x * value.x + value.y * value.y + value.z * value.z);
 }
@@ -107,6 +153,25 @@ MotionFrameRowF64 make_frame(const MotionSampleRequest& request,
   };
 }
 
+PathHistoryRowF64 make_linear_path_history_row(const MotionSampleRequest& request) {
+  const Vector3 start = position_at(request.segment, request.startTime);
+  return PathHistoryRowF64{
+      request.pathKey,
+      0,
+      request.startTime,
+      request.endTime,
+      start.x,
+      start.y,
+      start.z,
+      request.segment.velocity.x,
+      request.segment.velocity.y,
+      request.segment.velocity.z,
+      request.segment.errorBound,
+      request.stateFlags,
+      0,
+  };
+}
+
 MotionFrameRowF64 make_integrated_frame(const MotionIntegrationRequest& request,
                                         std::uint64_t frameIndex,
                                         double time) {
@@ -163,45 +228,7 @@ PathHistoryRowF64 make_integrated_path_history_row(const MotionIntegrationReques
 
 MotionSampleResult sample_linear_motion(const MotionSampleRequest& request) {
   MotionSampleResult result;
-  if (!finite_segment(request.segment)) {
-    result.validation.add(StatusCode::AppContractError,
-                          StatusSeverity::Error,
-                          "motion segment numeric fields must be finite",
-                          "motion-sampler",
-                          false);
-    return result;
-  }
-  if (request.segment.endTime < request.segment.startTime) {
-    result.validation.add(StatusCode::AppContractError,
-                          StatusSeverity::Error,
-                          "motion segment time bounds are not ordered",
-                          "motion-sampler",
-                          false);
-    return result;
-  }
-  if (!std::isfinite(request.startTime) || !std::isfinite(request.endTime) ||
-      request.endTime < request.startTime) {
-    result.validation.add(StatusCode::AppContractError,
-                          StatusSeverity::Error,
-                          "motion sample time bounds must be finite and ordered",
-                          "motion-sampler",
-                          false);
-    return result;
-  }
-  if (!std::isfinite(request.step) || request.step <= 0.0) {
-    result.validation.add(StatusCode::TimeResolutionInsufficient,
-                          StatusSeverity::Error,
-                          "motion sample step must be positive and finite",
-                          "motion-sampler",
-                          false);
-    return result;
-  }
-  if (request.startTime < request.segment.startTime || request.endTime > request.segment.endTime) {
-    result.validation.add(StatusCode::InsufficientHistoryDepth,
-                          StatusSeverity::Halt,
-                          "motion sample window is outside the retained segment",
-                          "motion-sampler",
-                          false);
+  if (!validate_linear_motion_sample_request(request, result.validation)) {
     return result;
   }
 
@@ -219,6 +246,22 @@ MotionSampleResult sample_linear_motion(const MotionSampleRequest& request) {
   result.validation.add(StatusCode::Ok,
                         StatusSeverity::Ok,
                         "linear motion sampled",
+                        "motion-sampler");
+  return result;
+}
+
+MotionPathHistoryResult sample_linear_path_history(const MotionSampleRequest& request) {
+  MotionPathHistoryResult result;
+  if (!validate_linear_motion_sample_request(request, result.validation)) {
+    return result;
+  }
+  if (request.endTime > request.startTime) {
+    result.rows.push_back(make_linear_path_history_row(request));
+  }
+
+  result.validation.add(StatusCode::Ok,
+                        StatusSeverity::Ok,
+                        "linear motion path history sampled",
                         "motion-sampler");
   return result;
 }

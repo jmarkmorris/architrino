@@ -386,7 +386,7 @@
     const title = payload.chapterTitle || chapter;
     let rendered = null;
     try {
-      const htmlText = await fetchRenderedHTML(payload);
+      const htmlText = payload.htmlText || await fetchRenderedHTML(payload);
       if (activeRenderId !== renderId) {
         return;
       }

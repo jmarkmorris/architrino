@@ -43,6 +43,8 @@ const closeRunRequest = createCloseRunRequestEnvelope();
 const closeRunResponse = createCloseRunResponseEnvelope();
 const describeStreamRequest = createDescribeStreamRequestEnvelope();
 const describeStreamResponse = createDescribeStreamResponseEnvelope();
+const pathHistoryDynamicReplayValidationRequest = createPathHistoryDynamicReplayValidationRequestEnvelope();
+const pathHistoryDynamicReplayValidationResponse = createPathHistoryDynamicReplayValidationResponseEnvelope();
 const openStreamRequest = createOpenStreamRequestEnvelope();
 const openStreamResponse = createOpenStreamResponseEnvelope();
 const readStreamRangeRequest = createReadStreamRangeRequestEnvelope();
@@ -204,6 +206,10 @@ assert(schema.$defs?.pathHistoryStreamF64Request, "path-history stream request s
 assert(schema.$defs?.pathHistoryStreamF64Response, "path-history stream response schema missing");
 assert(schema.$defs?.pathHistoryStreamSummary, "path-history stream summary schema missing");
 assert(schema.$defs?.pathHistoryStreamMetadata, "path-history stream metadata schema missing");
+assert(schema.$defs?.pathHistoryDynamicReplayMetadata, "path-history dynamic replay metadata schema missing");
+assert(schema.$defs?.pathHistoryDynamicReplayValidationRequest, "path-history dynamic replay request schema missing");
+assert(schema.$defs?.pathHistoryDynamicReplayValidationResponse, "path-history dynamic replay response schema missing");
+assert(schema.$defs?.pathHistoryDynamicReplayValidationMismatch, "path-history dynamic replay mismatch schema missing");
 assert(schema.$defs?.describeStreamRequest, "describe stream request schema missing");
 assert(schema.$defs?.streamDescription, "stream description schema missing");
 assert(schema.$defs?.streamIndexDescription, "stream index description schema missing");
@@ -328,6 +334,7 @@ assertWorkerMethods([
   "buildPathHistoryStreamSpaceTimeIndexF64",
   "integrateConstantAccelerationMotionF64",
   "createPathHistoryStreamF64",
+  "validatePathHistoryDynamicReplayF64",
   "queryEmissionShellCandidatePacketsF64",
   "refineEmissionShellCandidateRootsF64",
   "readStreamRange",
@@ -371,6 +378,8 @@ validatePathHistoryStreamRequestEnvelope(pathHistoryStreamRequest);
 validatePathHistoryStreamResponseEnvelope(pathHistoryStreamResponse);
 validateDescribeStreamRequestEnvelope(describeStreamRequest);
 validateDescribeStreamResponseEnvelope(describeStreamResponse);
+validatePathHistoryDynamicReplayValidationRequestEnvelope(pathHistoryDynamicReplayValidationRequest);
+validatePathHistoryDynamicReplayValidationResponseEnvelope(pathHistoryDynamicReplayValidationResponse);
 validateOpenStreamRequestEnvelope(openStreamRequest);
 validateOpenStreamResponseEnvelope(openStreamResponse);
 validateReadStreamRangeRequestEnvelope(readStreamRangeRequest);
@@ -618,6 +627,10 @@ function assertCapabilities(value, label) {
   assert(
     value.appBridge.streamQueries.helpers.includes("refineEmissionShellCandidateRootsF64"),
     `${label} emission-shell refinement helper mismatch`
+  );
+  assert(
+    value.appBridge.streamQueries.helpers.includes("validatePathHistoryDynamicReplayF64"),
+    `${label} dynamic replay validation helper mismatch`
   );
   assert(value.appBridge.workPackets.helpers.includes("planPathHistoryWorkPackets"), `${label} work packet helper mismatch`);
   assert(value.numericSerialization.descriptors.length >= 1, `${label} numeric descriptors mismatch`);
@@ -905,6 +918,38 @@ function validateDescribeStreamResponseEnvelope(value) {
   assertRange(responseValue.index.pathIndexRows[1].byteRange, 96, 192, "stream index second byte range");
 }
 
+function validatePathHistoryDynamicReplayValidationRequestEnvelope(value) {
+  assert(value.schema === "solver-app-bridge/v1", "dynamic replay request schema tag mismatch");
+  assert(value.kind === "path-history-dynamic-replay-validation-request", "dynamic replay request kind mismatch");
+  assertNonemptyString(value.requestId, "dynamic replay request id");
+  const requestValue = value.request;
+  assert(requestValue.streamId === "fixture-path-history-stream", "dynamic replay stream id mismatch");
+  assert(requestValue.tolerance === 0, "dynamic replay tolerance mismatch");
+  assert(requestValue.maxRows === 16, "dynamic replay max rows mismatch");
+}
+
+function validatePathHistoryDynamicReplayValidationResponseEnvelope(value) {
+  assert(value.schema === "solver-app-bridge/v1", "dynamic replay response schema tag mismatch");
+  assert(value.kind === "path-history-dynamic-replay-validation-response", "dynamic replay response kind mismatch");
+  assertNonemptyString(value.requestId, "dynamic replay response id");
+  const responseValue = value.response;
+  assert(
+    responseValue.schema === "solver-path-history-dynamic-replay-validation.v1",
+    "dynamic replay response schema mismatch"
+  );
+  assert(responseValue.streamId === "fixture-path-history-stream", "dynamic replay response stream mismatch");
+  assert(responseValue.replayKind === "linear-motion-sample", "dynamic replay kind mismatch");
+  assert(responseValue.tolerance === 0, "dynamic replay response tolerance mismatch");
+  assert(responseValue.actualRowCount === 1, "dynamic replay actual row count mismatch");
+  assert(responseValue.expectedRowCount === 1, "dynamic replay expected row count mismatch");
+  assert(responseValue.selectedRangeCount === 1, "dynamic replay range count mismatch");
+  assert(responseValue.selectedByteLength === 96, "dynamic replay byte length mismatch");
+  assert(responseValue.matched === true, "dynamic replay match flag mismatch");
+  assert(responseValue.mismatchCount === 0, "dynamic replay mismatch count mismatch");
+  assert(responseValue.firstMismatch === null, "dynamic replay first mismatch mismatch");
+  assert(responseValue.status.code === "ok", "dynamic replay status mismatch");
+}
+
 function validateOpenStreamRequestEnvelope(value) {
   assert(value.schema === "solver-app-bridge/v1", "open stream request schema tag mismatch");
   assert(value.kind === "open-stream-request", "open stream request kind mismatch");
@@ -1081,6 +1126,10 @@ function assertPathHistoryMetadata(metadata, label) {
   assert(metadata.coordinateFrame === "absolute-lab-frame", `${label} coordinate frame mismatch`);
   assert(metadata.scaleNormalization === "unit-test-scale", `${label} scale normalization mismatch`);
   assert(metadata.interpolationRule === "linear-segment", `${label} interpolation rule mismatch`);
+  assert(metadata.dynamicReplay.schema === "solver-path-history-dynamic-replay.v1", `${label} replay schema mismatch`);
+  assert(metadata.dynamicReplay.replayKind === "linear-motion-sample", `${label} replay kind mismatch`);
+  assert(metadata.dynamicReplay.pathKey === 2000, `${label} replay path key mismatch`);
+  assert(metadata.dynamicReplay.motionRequest.pathKey === 2000, `${label} replay request path key mismatch`);
   assert(metadata.provenance.fixture === "path-history-contract-fixture", `${label} provenance mismatch`);
   assert(Array.isArray(metadata.diagnostics), `${label} diagnostics must be an array`);
   assert(metadata.diagnostics[0].code === "ok", `${label} diagnostic code mismatch`);
@@ -1652,6 +1701,7 @@ function createCapabilitiesFixture() {
         helpers: [
           "createPathHistoryStreamF64",
           "describeStream",
+          "validatePathHistoryDynamicReplayF64",
           "readStreamRange",
           "buildPathHistoryStreamSpaceTimeIndexF64",
           "queryEmissionShellCandidatesF64",
@@ -1754,7 +1804,7 @@ function createBroadPhaseCapability(method) {
 function createAbiInfoFixture() {
   return {
     abiMajor: 0,
-    abiMinor: 5,
+    abiMinor: 6,
     abiPatch: 0,
     rootRequestF64Bytes: 176,
     rootRowF64Bytes: 112,
@@ -2285,6 +2335,7 @@ function createPathHistoryStreamRequestEnvelope() {
         coordinateFrame: "absolute-lab-frame",
         scaleNormalization: "unit-test-scale",
         interpolationRule: "linear-segment",
+        dynamicReplay: createPathHistoryDynamicReplayMetadata(),
         provenance: { fixture: "path-history-contract-fixture" },
         diagnostics: [
           {
@@ -2388,6 +2439,7 @@ function createPathHistoryStreamMetadata() {
     coordinateFrame: "absolute-lab-frame",
     scaleNormalization: "unit-test-scale",
     interpolationRule: "linear-segment",
+    dynamicReplay: createPathHistoryDynamicReplayMetadata(),
     provenance: { fixture: "path-history-contract-fixture" },
     diagnostics: [
       {
@@ -2396,6 +2448,32 @@ function createPathHistoryStreamMetadata() {
         message: "path history contract fixture",
       },
     ],
+  };
+}
+
+function createPathHistoryDynamicReplayMetadata() {
+  return {
+    schema: "solver-path-history-dynamic-replay.v1",
+    replayKind: "linear-motion-sample",
+    pathKey: 2000,
+    startTime: 0,
+    endTime: 1,
+    step: 1,
+    stateFlags: 1,
+    motionRequest: {
+      pathKey: 2000,
+      segment: {
+        startTime: 0,
+        endTime: 3,
+        positionAtStart: { x: 0, y: 0, z: 0 },
+        velocity: { x: 1, y: 0, z: 0 },
+        errorBound: 1e-12,
+      },
+      startTime: 0,
+      endTime: 1,
+      step: 1,
+      stateFlags: 1,
+    },
   };
 }
 
@@ -2502,6 +2580,52 @@ function createDescribeStreamResponseEnvelope() {
         message: "stream description read",
         recoverable: true,
       },
+    },
+  };
+}
+
+function createPathHistoryDynamicReplayValidationRequestEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "path-history-dynamic-replay-validation-request",
+    requestId: "path-history-dynamic-replay-validation-contract-request",
+    request: {
+      streamId: "fixture-path-history-stream",
+      tolerance: 0,
+      maxRows: 16,
+    },
+  };
+}
+
+function createPathHistoryDynamicReplayValidationResponseEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "path-history-dynamic-replay-validation-response",
+    requestId: "path-history-dynamic-replay-validation-contract-request",
+    response: {
+      schema: "solver-path-history-dynamic-replay-validation.v1",
+      streamId: "fixture-path-history-stream",
+      replayKind: "linear-motion-sample",
+      tolerance: 0,
+      actualRowCount: 1,
+      expectedRowCount: 1,
+      selectedRangeCount: 1,
+      selectedByteLength: 96,
+      matched: true,
+      mismatchCount: 0,
+      maxTimeDifference: 0,
+      maxPositionDifference: 0,
+      maxVelocityDifference: 0,
+      maxErrorBoundDifference: 0,
+      firstMismatch: null,
+      diagnostics: [
+        {
+          code: "ok",
+          severity: "ok",
+          message: "dynamic replay matched fixture path history",
+        },
+      ],
+      status: createStatusFixture("ok", "ok", "path-history dynamic replay matched"),
     },
   };
 }

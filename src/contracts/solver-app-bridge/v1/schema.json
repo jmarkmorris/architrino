@@ -196,6 +196,12 @@
       "$ref": "#/$defs/describeStreamResponseEnvelope"
     },
     {
+      "$ref": "#/$defs/pathHistoryDynamicReplayValidationRequestEnvelope"
+    },
+    {
+      "$ref": "#/$defs/pathHistoryDynamicReplayValidationResponseEnvelope"
+    },
+    {
       "$ref": "#/$defs/openStreamRequestEnvelope"
     },
     {
@@ -280,6 +286,7 @@
         "runSimulation",
         "describeRun",
         "describeStream",
+        "validatePathHistoryDynamicReplayF64",
         "diagnosePrecisionF64",
         "solveCausalRootsPrecisionF64",
         "solveRootsAndHitsPrecisionF64",
@@ -1720,6 +1727,46 @@
         }
       }
     },
+    "pathHistoryDynamicReplayValidationRequestEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "request"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "path-history-dynamic-replay-validation-request"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "request": {
+          "$ref": "#/$defs/pathHistoryDynamicReplayValidationRequest"
+        }
+      }
+    },
+    "pathHistoryDynamicReplayValidationResponseEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "response"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "path-history-dynamic-replay-validation-response"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "response": {
+          "$ref": "#/$defs/pathHistoryDynamicReplayValidationResponse"
+        }
+      }
+    },
     "openStreamRequestEnvelope": {
       "type": "object",
       "additionalProperties": false,
@@ -2535,6 +2582,7 @@
             "enum": [
               "createPathHistoryStreamF64",
               "describeStream",
+              "validatePathHistoryDynamicReplayF64",
               "readStreamRange",
               "buildPathHistoryStreamSpaceTimeIndexF64",
               "queryEmissionShellCandidatesF64",
@@ -6125,6 +6173,147 @@
         }
       }
     },
+    "pathHistoryDynamicReplayValidationRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["streamId"],
+      "properties": {
+        "streamId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "tolerance": {
+          "type": "number",
+          "minimum": 0
+        },
+        "maxRows": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "pathHistoryDynamicReplayValidationMismatch": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["rowIndex", "field", "actual", "expected", "difference"],
+      "properties": {
+        "rowIndex": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "field": {
+          "type": "string",
+          "minLength": 1
+        },
+        "actual": {
+          "type": "number"
+        },
+        "expected": {
+          "type": "number"
+        },
+        "difference": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "pathHistoryDynamicReplayValidationResponse": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "streamId",
+        "replayKind",
+        "tolerance",
+        "actualRowCount",
+        "expectedRowCount",
+        "selectedRangeCount",
+        "selectedByteLength",
+        "matched",
+        "mismatchCount",
+        "maxTimeDifference",
+        "maxPositionDifference",
+        "maxVelocityDifference",
+        "maxErrorBoundDifference",
+        "firstMismatch",
+        "diagnostics",
+        "status"
+      ],
+      "properties": {
+        "schema": {
+          "const": "solver-path-history-dynamic-replay-validation.v1"
+        },
+        "streamId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "replayKind": {
+          "enum": ["linear-motion-sample", "constant-acceleration-motion-integration"]
+        },
+        "tolerance": {
+          "type": "number",
+          "minimum": 0
+        },
+        "actualRowCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "expectedRowCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "selectedRangeCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "selectedByteLength": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "matched": {
+          "type": "boolean"
+        },
+        "mismatchCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "maxTimeDifference": {
+          "type": "number",
+          "minimum": 0
+        },
+        "maxPositionDifference": {
+          "type": "number",
+          "minimum": 0
+        },
+        "maxVelocityDifference": {
+          "type": "number",
+          "minimum": 0
+        },
+        "maxErrorBoundDifference": {
+          "type": "number",
+          "minimum": 0
+        },
+        "firstMismatch": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/pathHistoryDynamicReplayValidationMismatch"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "diagnostics": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/diagnosticRecord"
+          }
+        },
+        "status": {
+          "$ref": "#/$defs/statusRecord"
+        }
+      }
+    },
     "streamIndexDescription": {
       "type": "object",
       "additionalProperties": false,
@@ -6496,6 +6685,9 @@
           "type": "string",
           "minLength": 1
         },
+        "dynamicReplay": {
+          "$ref": "#/$defs/pathHistoryDynamicReplayMetadata"
+        },
         "provenance": {
           "type": "object"
         },
@@ -6504,6 +6696,70 @@
           "items": {
             "$ref": "#/$defs/diagnosticRecord"
           }
+        }
+      }
+    },
+    "pathHistoryDynamicReplayMetadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "replayKind", "pathKey", "startTime", "endTime", "step"],
+      "oneOf": [
+        {
+          "required": ["motionRequest"],
+          "properties": {
+            "replayKind": {
+              "const": "linear-motion-sample"
+            }
+          }
+        },
+        {
+          "required": ["integrationMethod", "integrationTolerance", "motionIntegrationRequest"],
+          "properties": {
+            "replayKind": {
+              "const": "constant-acceleration-motion-integration"
+            }
+          }
+        }
+      ],
+      "properties": {
+        "schema": {
+          "const": "solver-path-history-dynamic-replay.v1"
+        },
+        "replayKind": {
+          "enum": ["linear-motion-sample", "constant-acceleration-motion-integration"]
+        },
+        "pathKey": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "startTime": {
+          "type": "number"
+        },
+        "endTime": {
+          "type": "number"
+        },
+        "step": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "stateFlags": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4294967295
+        },
+        "integrationMethod": {
+          "const": 1
+        },
+        "integrationTolerance": {
+          "type": "number",
+          "minimum": 0
+        },
+        "motionRequest": {
+          "$ref": "#/$defs/linearMotionSampleF64Request"
+        },
+        "motionIntegrationRequest": {
+          "$ref": "#/$defs/motionIntegrationF64Request"
         }
       }
     },

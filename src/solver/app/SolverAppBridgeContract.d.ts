@@ -54,6 +54,9 @@ export interface SolverClient {
   runSimulation(request: SolverRunRequest): Promise<SolverRunHandle>;
   describeRun(request: SolverDescribeRunRequest): Promise<SolverRunDescription>;
   describeStream(request: SolverDescribeStreamRequest): Promise<SolverStreamDescription>;
+  validatePathHistoryDynamicReplayF64(
+    request: SolverPathHistoryDynamicReplayValidationRequest
+  ): Promise<SolverPathHistoryDynamicReplayValidationResponse>;
   diagnosePrecisionF64(request: SolverCausalRootsF64Request): Promise<SolverPrecisionDiagnosticF64Response>;
   propagateErrorBudgetF64(request: SolverErrorBudgetPropagationRequest): Promise<SolverErrorBudgetPropagationResponse>;
   checkRootHitInvariantsF64(request: SolverRootHitInvariantF64Request): Promise<SolverRootHitInvariantF64Response>;
@@ -688,8 +691,67 @@ export interface SolverPathHistoryStreamMetadata {
   coordinateFrame: string;
   scaleNormalization: string;
   interpolationRule: string;
+  dynamicReplay?: SolverPathHistoryDynamicReplayMetadata;
   provenance: Record<string, unknown>;
   diagnostics: SolverDiagnosticRecord[];
+}
+
+export type SolverPathHistoryDynamicReplayMetadata =
+  | {
+      schema: "solver-path-history-dynamic-replay.v1";
+      replayKind: "linear-motion-sample";
+      pathKey: number;
+      startTime: number;
+      endTime: number;
+      step: number;
+      stateFlags?: number;
+      motionRequest: SolverLinearMotionSampleF64Request;
+    }
+  | {
+      schema: "solver-path-history-dynamic-replay.v1";
+      replayKind: "constant-acceleration-motion-integration";
+      pathKey: number;
+      startTime: number;
+      endTime: number;
+      step: number;
+      stateFlags?: number;
+      integrationMethod: 1;
+      integrationTolerance: number;
+      motionIntegrationRequest: SolverMotionIntegrationF64Request;
+    };
+
+export interface SolverPathHistoryDynamicReplayValidationRequest {
+  streamId: string;
+  tolerance?: number;
+  maxRows?: number;
+}
+
+export interface SolverPathHistoryDynamicReplayValidationMismatch {
+  rowIndex: number;
+  field: string;
+  actual: number;
+  expected: number;
+  difference: number;
+}
+
+export interface SolverPathHistoryDynamicReplayValidationResponse {
+  schema: "solver-path-history-dynamic-replay-validation.v1";
+  streamId: string;
+  replayKind: SolverPathHistoryDynamicReplayMetadata["replayKind"];
+  tolerance: number;
+  actualRowCount: number;
+  expectedRowCount: number;
+  selectedRangeCount: number;
+  selectedByteLength: number;
+  matched: boolean;
+  mismatchCount: number;
+  maxTimeDifference: number;
+  maxPositionDifference: number;
+  maxVelocityDifference: number;
+  maxErrorBoundDifference: number;
+  firstMismatch: SolverPathHistoryDynamicReplayValidationMismatch | null;
+  diagnostics: SolverDiagnosticRecord[];
+  status: SolverStatusRecord;
 }
 
 export interface SolverEmissionShellCandidateF64Request {
@@ -1870,6 +1932,7 @@ export interface SolverStreamQueryCapability {
   helpers: (
     | "createPathHistoryStreamF64"
     | "describeStream"
+    | "validatePathHistoryDynamicReplayF64"
     | "readStreamRange"
     | "buildPathHistoryStreamSpaceTimeIndexF64"
     | "queryEmissionShellCandidatesF64"

@@ -9,7 +9,6 @@ struct TextbookBundleManifest: Decodable {
     let chapters: [TextbookChapter]
     let references: [TextbookReferenceDocument]
     let files: [TextbookBundleFile]
-    let links: [TextbookLinkMetadata]
 }
 
 struct TextbookBundleTOC: Decodable {
@@ -300,6 +299,17 @@ final class ReaderTextbookLoader {
         return try String(contentsOf: url, encoding: .utf8)
     }
 
+    func bundledData(relativePath: String) throws -> Data {
+        let bundledPath = packageRelativePath(relativePath)
+        guard let url = resourceURL(bundledPath) else {
+            throw ReaderLoadError.missingBundleRoot
+        }
+        guard FileManager.default.fileExists(atPath: url.path) else {
+            throw ReaderLoadError.missingChapterText(bundledPath)
+        }
+        return try Data(contentsOf: url)
+    }
+
     struct TextbookLinkMetadataFile: Decodable {
         let schemaVersion: Int?
         let totalLinks: Int?
@@ -309,11 +319,9 @@ final class ReaderTextbookLoader {
 
 struct ReaderPackageData {
     let manifest: TextbookBundleManifest
-    let searchIndex: TextbookSearchIndex
     let tocPackage: TextbookTOCPackage
     let tocChapterByNodeId: [String: String]
     let tocNodeByMarkdownPath: [String: TextbookTOCNode]
-    let linksBySourcePath: [String: [TextbookLinkMetadata]]
     let chapterBySourcePath: [String: TextbookChapter]
     let chapterById: [String: TextbookChapter]
     let chapterByBasename: [String: TextbookChapter]
@@ -326,8 +334,6 @@ struct ReaderPackageData {
 extension ReaderTextbookLoader {
     func loadPackage() throws -> ReaderPackageData {
         let manifest = try loadManifest()
-        let searchIndex = try loadSearchIndex()
-        let links = (try? loadLinks()) ?? []
         let tocPackage = try readJson(relativePath: "GeneratedTextbookPackage/graph/textbook_toc.json", as: TextbookTOCPackage.self)
         let chapterIds = Set(manifest.chapters.map(\.id))
         let tocChapterByNodeId = buildTOCChapterLookup(
@@ -387,19 +393,11 @@ extension ReaderTextbookLoader {
             }
         }
 
-        var grouped: [String: [TextbookLinkMetadata]] = [:]
-        for link in links {
-            let source = normalizePath(link.sourcePath)
-            grouped[source, default: []].append(link)
-        }
-
         return ReaderPackageData(
             manifest: manifest,
-            searchIndex: searchIndex,
             tocPackage: tocPackage,
             tocChapterByNodeId: tocChapterByNodeId,
             tocNodeByMarkdownPath: tocNodeByMarkdownPath,
-            linksBySourcePath: grouped,
             chapterBySourcePath: bySourcePath,
             chapterById: byId,
             chapterByBasename: byBasename,

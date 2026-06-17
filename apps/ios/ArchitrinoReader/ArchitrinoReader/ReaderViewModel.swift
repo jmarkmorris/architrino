@@ -14,6 +14,7 @@ final class ReaderViewModel: ObservableObject {
     @Published var isReady: Bool = false
     @Published var searchText: String = ""
     @Published var searchResults: [TextbookSearchEntry] = []
+    @Published private(set) var isSearchIndexLoading: Bool = false
     @Published var bookmarks: [ReaderBookmark] = []
     @Published var isSearchPresented: Bool = false
     @Published var isBookmarksPresented: Bool = false
@@ -37,7 +38,14 @@ final class ReaderViewModel: ObservableObject {
     private let webappTOCKinds: Set<String> = ["diagram", "markdown-tree", "markdown-split"]
 
     private var markdownCache: [String: String] = [:]
+    private var htmlCache: [String: String] = [:]
+    private var searchIndexEntries: [TextbookSearchEntry] = []
+    private var isSearchIndexLoaded = false
+    private var linksBySourcePath: [String: [TextbookLinkMetadata]] = [:]
     private var activeRenderCommandId: UUID?
+    private var searchIndexTask: Task<Void, Never>?
+    private var postLaunchWarmupTask: Task<Void, Never>?
+    private var deferredRestoreRenderTask: Task<Void, Never>?
 
     struct ReaderRenderCommand: Identifiable, Codable {
         let id: UUID
@@ -45,6 +53,7 @@ final class ReaderViewModel: ObservableObject {
         let chapterTitle: String
         let sourcePath: String
         let htmlPath: String?
+        let htmlText: String
         let markdownText: String
         let linkMap: [String: ReaderPayloadChapterLink]
         let initialAnchor: String?
@@ -114,26 +123,50 @@ final class ReaderViewModel: ObservableObject {
 
     func load() async {
         do {
-            let data = try loader.loadPackage()
             isReady = false
+            searchIndexTask?.cancel()
+            searchIndexTask = nil
+            postLaunchWarmupTask?.cancel()
+            postLaunchWarmupTask = nil
+            deferredRestoreRenderTask?.cancel()
+            deferredRestoreRenderTask = nil
+            linksBySourcePath = [:]
+            searchIndexEntries = []
+            searchResults = []
+            isSearchIndexLoaded = false
+            isSearchIndexLoading = false
+            let data = try loader.loadPackage()
             package = data
             markdownCache.removeAll(keepingCapacity: false)
+            htmlCache.removeAll(keepingCapacity: false)
             restoredReadingState = restoreReadingState()
             buildBootstrapContext()
             errorMessage = nil
-
-            if currentChapterId == nil {
-                currentChapterId = data.manifest.chapters.first?.id
-            }
-            emitRenderCommand()
+            renderCommand = nil
+            anchorCommand = nil
+            activeRenderCommandId = nil
+            isRendering = false
             isReady = true
+            scheduleDeferredRestoredRenderIfNeeded()
+            schedulePostLaunchWarmup()
         } catch {
+            searchIndexTask?.cancel()
+            searchIndexTask = nil
+            postLaunchWarmupTask?.cancel()
+            postLaunchWarmupTask = nil
+            deferredRestoreRenderTask?.cancel()
+            deferredRestoreRenderTask = nil
             errorMessage = error.localizedDescription
             isReady = false
             package = nil
             renderCommand = nil
             anchorCommand = nil
             bootstrapContext = nil
+            linksBySourcePath = [:]
+            searchIndexEntries = []
+            searchResults = []
+            isSearchIndexLoaded = false
+            isSearchIndexLoading = false
             isRendering = false
             activeRenderCommandId = nil
             restoredReadingState = false
@@ -293,6 +326,12 @@ final class ReaderViewModel: ObservableObject {
         isSearchPresented = false
     }
 
+    func presentSearch() {
+        isSearchPresented = true
+        clearSearch()
+        ensureSearchIndexLoaded()
+    }
+
     func openAnchor(_ anchor: String?) {
         guard let currentChapterId else { return }
         openDocument(by: currentChapterId, anchor: anchor)
@@ -304,13 +343,17 @@ final class ReaderViewModel: ObservableObject {
 
     func search(_ query: String) {
         searchText = query
-        guard let package,
-              !query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
+        guard !query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
             searchResults = []
             return
         }
+        guard isSearchIndexLoaded else {
+            searchResults = []
+            ensureSearchIndexLoaded()
+            return
+        }
         let normalized = query.lowercased()
-        searchResults = package.searchIndex.entries.filter { entry in
+        searchResults = searchIndexEntries.filter { entry in
             let haystack = "\(entry.chapterTitle) \(entry.sectionTitle) \(entry.text) \(entry.snippet)".lowercased()
             return haystack.contains(normalized)
         }
@@ -325,6 +368,29 @@ final class ReaderViewModel: ObservableObject {
     func clearSearch() {
         searchText = ""
         searchResults = []
+    }
+
+    private func ensureSearchIndexLoaded() {
+        guard !isSearchIndexLoaded, searchIndexTask == nil else { return }
+        isSearchIndexLoading = true
+        searchIndexTask = Task { [weak self] in
+            let index = await Task.detached(priority: .userInitiated) {
+                (try? ReaderTextbookLoader().loadSearchIndex())
+                    ?? TextbookSearchIndex(schemaVersion: 1, totalEntries: 0, entries: [])
+            }.value
+            guard !Task.isCancelled else { return }
+            self?.applyLoadedSearchIndex(index)
+        }
+    }
+
+    private func applyLoadedSearchIndex(_ index: TextbookSearchIndex) {
+        searchIndexEntries = index.entries
+        isSearchIndexLoaded = true
+        isSearchIndexLoading = false
+        searchIndexTask = nil
+        if !searchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            search(searchText)
+        }
     }
 
     func addBookmark() {
@@ -448,6 +514,8 @@ final class ReaderViewModel: ObservableObject {
         guard package?.chapterById[id] != nil || package?.referenceById[id] != nil else {
             return
         }
+        deferredRestoreRenderTask?.cancel()
+        deferredRestoreRenderTask = nil
         readerNotice = nil
         let isSameDocument = currentChapterId == id && renderCommand != nil
         currentAnchor = anchor
@@ -462,8 +530,7 @@ final class ReaderViewModel: ObservableObject {
     }
 
     private func emitRenderCommand() {
-        guard let package,
-              let chapterId = currentChapterId,
+        guard let chapterId = currentChapterId,
               let document = readerDocument(by: chapterId),
               let bootstrapContext else {
             renderCommand = nil
@@ -473,10 +540,11 @@ final class ReaderViewModel: ObservableObject {
             return
         }
 
-        let markdownText = document.htmlPath == nil ? loadDocumentText(document) : ""
+        let htmlText = loadDocumentHTML(document)
+        let markdownText = htmlText.isEmpty ? loadDocumentText(document) : ""
 
         var linkMap: [String: ReaderPayloadChapterLink] = [:]
-        for link in package.linksBySourcePath[normalizePath(document.sourcePath)] ?? [] {
+        for link in linksBySourcePath[normalizePath(document.sourcePath)] ?? [] {
             linkMap[link.target] = ReaderPayloadChapterLink(
                 target: link.target,
                 kind: link.kind,
@@ -495,6 +563,7 @@ final class ReaderViewModel: ObservableObject {
             chapterTitle: document.title,
             sourcePath: document.sourcePath,
             htmlPath: document.htmlPath,
+            htmlText: htmlText,
             markdownText: markdownText,
             linkMap: linkMap,
             initialAnchor: currentAnchor,
@@ -624,6 +693,90 @@ final class ReaderViewModel: ObservableObject {
         } catch {
             return "# Failed to load document\n\n\(error.localizedDescription)"
         }
+    }
+
+    private func loadDocumentHTML(_ document: ReaderDocument) -> String {
+        guard let htmlPath = document.htmlPath else { return "" }
+        let cacheKey = "html::\(document.id)"
+        if let cached = htmlCache[cacheKey] {
+            return cached
+        }
+        do {
+            let text = try loader.bundledText(relativePath: htmlPath)
+            htmlCache[cacheKey] = text
+            return text
+        } catch {
+            return ""
+        }
+    }
+
+    private func scheduleDeferredRestoredRenderIfNeeded() {
+        guard restoredReadingState,
+              let restoredDocumentId = currentChapterId else {
+            return
+        }
+        deferredRestoreRenderTask?.cancel()
+        deferredRestoreRenderTask = Task { [weak self] in
+            try? await Task.sleep(nanoseconds: 350_000_000)
+            guard !Task.isCancelled else { return }
+            await MainActor.run {
+                guard let self,
+                      self.currentChapterId == restoredDocumentId,
+                      self.renderCommand == nil else {
+                    return
+                }
+                self.emitRenderCommand()
+                self.deferredRestoreRenderTask = nil
+            }
+        }
+    }
+
+    private func schedulePostLaunchWarmup() {
+        let warmupPaths = postLaunchWarmupPaths()
+        postLaunchWarmupTask?.cancel()
+        postLaunchWarmupTask = Task { [weak self] in
+            try? await Task.sleep(nanoseconds: 450_000_000)
+            guard !Task.isCancelled else { return }
+
+            let grouped = await Task.detached(priority: .utility) {
+                let loader = ReaderTextbookLoader()
+                let links = (try? loader.loadLinks()) ?? []
+                for path in warmupPaths {
+                    _ = try? loader.bundledData(relativePath: path)
+                }
+
+                var grouped: [String: [TextbookLinkMetadata]] = [:]
+                for link in links {
+                    grouped[normalizePath(link.sourcePath), default: []].append(link)
+                }
+                return grouped
+            }.value
+
+            guard !Task.isCancelled else { return }
+            self?.applyPostLaunchWarmupLinks(grouped)
+        }
+    }
+
+    private func postLaunchWarmupPaths() -> [String] {
+        guard let package else { return [] }
+        var seen: Set<String> = []
+        return package.manifest.chapters.compactMap { chapter in
+            readerDocument(by: chapter.id)
+        }
+        .map { document in
+            document.htmlPath ?? document.bundlePath
+        }
+        .filter { path in
+            let normalized = normalizePath(path)
+            guard !seen.contains(normalized) else { return false }
+            seen.insert(normalized)
+            return true
+        }
+    }
+
+    private func applyPostLaunchWarmupLinks(_ grouped: [String: [TextbookLinkMetadata]]) {
+        linksBySourcePath = grouped
+        postLaunchWarmupTask = nil
     }
 
     private func saveReadingState() {
@@ -807,12 +960,11 @@ final class ReaderViewModel: ObservableObject {
     }
 
     private func resolveTOCAnchor(for node: TextbookTOCNode, chapterId: String?) -> String? {
-        guard let package,
-              let chapterId else {
+        guard let chapterId else {
             return nil
         }
 
-        let chapterEntries = package.searchIndex.entries.filter { $0.chapterId == chapterId }
+        let chapterEntries = searchIndexEntries.filter { $0.chapterId == chapterId }
         var primaryCandidates: [String] = []
         appendTOCAnchorCandidate(node.title, to: &primaryCandidates)
         appendTOCAnchorCandidate(node.markdownSection, to: &primaryCandidates)
