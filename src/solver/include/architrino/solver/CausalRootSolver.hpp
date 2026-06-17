@@ -23,10 +23,36 @@ struct LinearPathSegment {
   double errorBound = 0.0;
 };
 
+struct CircularPathSegment {
+  std::string pathId;
+  double startTime = 0.0;
+  double endTime = 0.0;
+  Vector3 center;
+  Vector3 radiusU;
+  Vector3 radiusV;
+  double angularVelocity = 0.0;
+  double phaseAtEpoch = 0.0;
+  double epochTime = 0.0;
+  NumericType numericType = NumericType::F64;
+  double errorBound = 0.0;
+};
+
 struct CausalRootRequest {
   std::string receiverId;
   std::string sourceId;
   LinearPathSegment source;
+  LinearPathSegment receiver;
+  double hitTime = 0.0;
+  double signalSpeed = 1.0;
+  double rootTolerance = 1e-12;
+  int maxIterations = 96;
+  int scanSubdivisions = 64;
+};
+
+struct CircularSourceCausalRootRequest {
+  std::string receiverId;
+  std::string sourceId;
+  CircularPathSegment source;
   LinearPathSegment receiver;
   double hitTime = 0.0;
   double signalSpeed = 1.0;
@@ -83,7 +109,11 @@ struct DelayedHitResult {
 };
 
 Vector3 position_at(const LinearPathSegment& segment, double time);
+Vector3 position_at(const CircularPathSegment& segment, double time);
+Vector3 velocity_at(const CircularPathSegment& segment, double time);
 CausalRootResult solve_causal_roots(const CausalRootRequest& request);
+CausalRootResult solve_circular_source_causal_roots(
+    const CircularSourceCausalRootRequest& request);
 DelayedHitResult solve_delayed_hits(const CausalRootRequest& request);
 
 }  // namespace architrino::solver

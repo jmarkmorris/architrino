@@ -1,7 +1,14 @@
+import { createIdealSwarmSharedGeometryRunRequest } from "../../solver/app/SolverAppAdapters.mjs";
+
 const QUARTER_TURN = Math.PI / 2;
 const NO_FORWARD_SPAN = 0;
 const FIELD_SPEED_TOLERANCE = 0.015;
 const SELF_HIT_SOLVE_ITERATIONS = 28;
+const SELF_HIT_SCAN_SUBDIVISIONS = 72;
+const SELF_HIT_TOLERANCE = 1e-12;
+const SELF_HIT_MAX_ANGLE = Math.PI * 1.96;
+const DEFAULT_SOLVER_MEMORY_BUDGET_BYTES = 64 * 1024 * 1024;
+const IDEAL_SWARM_SOLVER_BRIDGE_ENGINE_ID = "architrino-solver-app-bridge";
 const DEFAULT_PATH_SPEED_PRODUCTS = Object.freeze({
   inner: 0.5 * 0.42,
   middle: 0.7 * 0.26,
@@ -94,6 +101,161 @@ export function solveCircularSelfHitSpan(fieldSpeedRatio) {
   }
 
   return (low + high) / 2;
+}
+
+export function createIdealSwarmCircularSelfHitSpanRunRequest(fieldSpeedRatio, options = {}) {
+  const ratio = normalizeFieldSpeedRatio(fieldSpeedRatio);
+  const tolerance = normalizeNonnegativeNumber(options.tolerance, SELF_HIT_TOLERANCE);
+  const fieldSpeedTolerance = normalizeNonnegativeNumber(
+    options.fieldSpeedTolerance,
+    FIELD_SPEED_TOLERANCE
+  );
+  const maxAngle = normalizePositiveNumber(options.maxAngle, SELF_HIT_MAX_ANGLE);
+  const maxIterations = normalizePositiveInteger(options.maxIterations, SELF_HIT_SOLVE_ITERATIONS);
+  const scanSubdivisions = normalizePositiveInteger(
+    options.scanSubdivisions,
+    SELF_HIT_SCAN_SUBDIVISIONS
+  );
+  const memoryBudgetBytes = normalizePositiveInteger(
+    options.memoryBudgetBytes,
+    DEFAULT_SOLVER_MEMORY_BUDGET_BYTES
+  );
+  const runId = options.runId ?? `ideal-swarm-self-hit-${ratio.toString().replaceAll(".", "_")}`;
+  return createIdealSwarmSharedGeometryRunRequest({
+    requestId: options.requestId ?? `${runId}-request`,
+    runId,
+    datasetId: options.datasetId ?? `${runId}-dataset`,
+    claimLevel: options.claimLevel ?? "interactive-preview",
+    precisionPath: options.precisionPath ?? "auto",
+    configVersion: options.configVersion ?? "ideal-swarm-circular-self-hit-adapter.v1",
+    configHash: options.configHash ?? `ideal-swarm-circular-self-hit:${ratio}`,
+    model: options.model ?? createDefaultIdealSwarmGeometryModel(),
+    envelope: options.envelope ?? createDefaultIdealSwarmGeometryEnvelope({
+      fieldSpeedRatio: ratio,
+      memoryBudgetBytes,
+    }),
+    errorBudget: options.errorBudget ?? createDefaultIdealSwarmGeometryErrorBudget(tolerance),
+    geometryRequest: {
+      circularSelfHitSpans: [
+        {
+          fieldSpeedRatio: ratio,
+          fieldSpeedTolerance,
+          tolerance,
+          maxIterations,
+          scanSubdivisions,
+          maxAngle,
+        },
+      ],
+    },
+    output: options.output ?? {
+      outputs: ["geometryBuffer", "diagnostics"],
+      streamTarget: options.streamTarget ?? "caller-buffer",
+      memoryBudgetBytes,
+      deterministic: options.deterministic ?? true,
+    },
+  });
+}
+
+export async function solveCircularSelfHitSpanWithSolverBridge(fieldSpeedRatio, options = {}) {
+  const row = await solveCircularSelfHitSpanRowWithSolverBridge(fieldSpeedRatio, options);
+  return Number(row.span) || 0;
+}
+
+export async function solveCircularSelfHitSpanRowWithSolverBridge(fieldSpeedRatio, options = {}) {
+  const runRequest =
+    options.runRequest ?? createIdealSwarmCircularSelfHitSpanRunRequest(fieldSpeedRatio, options);
+  const runHandle = typeof options.runSolverBridge === "function"
+    ? await options.runSolverBridge(runRequest)
+    : await runIdealSwarmSolverBridgeClient(options.solverClient, runRequest);
+  return extractCircularSelfHitSpanRow(runHandle);
+}
+
+async function runIdealSwarmSolverBridgeClient(client, runRequest) {
+  if (!client || typeof client.runSimulation !== "function") {
+    throw new Error("Ideal Swarm solver bridge request requires a solver client or runSolverBridge option.");
+  }
+  return client.runSimulation(runRequest);
+}
+
+function extractCircularSelfHitSpanRow(runHandle = {}) {
+  const response = runHandle.response ?? runHandle;
+  const geometry = response.geometry ?? response;
+  const rows = Array.isArray(geometry.circularSelfHitSpans) ? geometry.circularSelfHitSpans : [];
+  if (rows.length === 0) {
+    throw new Error("Ideal Swarm solver bridge response did not include a circular self-hit span row.");
+  }
+  return {
+    solverEngineId: IDEAL_SWARM_SOLVER_BRIDGE_ENGINE_ID,
+    runId: response.runId ?? runHandle.runId ?? "",
+    datasetId: response.datasetId ?? runHandle.datasetId ?? "",
+    ...rows[0],
+  };
+}
+
+function createDefaultIdealSwarmGeometryModel() {
+  return {
+    modelId: "aaa.ideal-swarm",
+    equationVersion: "circular-self-hit-v1",
+    forceLawVersion: "causal-delay-v1",
+    constantsHash: "constants:ideal-swarm",
+    causalSpeedPolicy: "field-speed-ratio",
+    branchPolicy: "first-positive-self-hit",
+    unitConvention: "dimensionless-ratio",
+    compatiblePrecisionPaths: ["scaled_f64_strict", "event_root_focused", "extended_precision"],
+  };
+}
+
+function createDefaultIdealSwarmGeometryEnvelope({
+  fieldSpeedRatio,
+  memoryBudgetBytes,
+} = {}) {
+  return {
+    entityCount: 1,
+    assemblyCount: 1,
+    timeWindow: {
+      start: 0,
+      end: SELF_HIT_MAX_ANGLE / (Math.PI * 2),
+      stepHint: 1 / (SELF_HIT_SCAN_SUBDIVISIONS * 2),
+      units: "cycles",
+    },
+    timeResolutionHint: 1 / (SELF_HIT_SCAN_SUBDIVISIONS * 2),
+    interactionPolicy: "single-path-self-hit",
+    expectedBranchComplexity:
+      normalizeFieldSpeedRatio(fieldSpeedRatio) > 1 + FIELD_SPEED_TOLERANCE ? "medium" : "low",
+    outputDetail: "geometry",
+    memoryBudgetBytes,
+    storageBudgetBytes: memoryBudgetBytes,
+    latencyTarget: "interactive",
+    simplificationPolicy: "none",
+  };
+}
+
+function createDefaultIdealSwarmGeometryErrorBudget(tolerance = SELF_HIT_TOLERANCE) {
+  return {
+    globalTolerance: tolerance,
+    rootIsolationTolerance: tolerance,
+    delayedHitTolerance: tolerance,
+    integrationTolerance: tolerance,
+    streamEncodingTolerance: tolerance,
+    readbackTolerance: tolerance,
+    projectionTolerance: 1e-9,
+    displayTolerance: 1e-6,
+  };
+}
+
+function normalizePositiveNumber(value, fallback) {
+  const number = Number(value);
+  return Number.isFinite(number) && number > 0 ? number : fallback;
+}
+
+function normalizeNonnegativeNumber(value, fallback) {
+  const number = Number(value);
+  return Number.isFinite(number) && number >= 0 ? number : fallback;
+}
+
+function normalizePositiveInteger(value, fallback) {
+  const number = Number(value);
+  return Number.isFinite(number) && number > 0 ? Math.max(1, Math.round(number)) : fallback;
 }
 
 function createSubFieldProfile(fieldSpeedRatio) {

@@ -58,6 +58,10 @@ body {
   line-height: 1.2;
 }
 
+.reader-article > h1:first-child {
+  margin-top: 0.35em;
+}
+
 .reader-article p,
 .reader-article ul,
 .reader-article ol,

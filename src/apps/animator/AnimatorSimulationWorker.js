@@ -1,17 +1,17 @@
 import {
   createAnimatorSimulationWorkerFailureMessage,
   createAnimatorSimulationWorkerStartedMessage,
-  runAnimatorSimulationWorkerRequest,
+  runAnimatorSimulationWorkerRequestAsync,
 } from "./AnimatorSimulationWorkerCoreRuntime.js";
 import { getAnimatorSimulationFrameBufferTransferList } from "./AnimatorSimulationFrameBufferRuntime.js";
 
 const workerScope = globalThis.self ?? globalThis;
 
-workerScope.addEventListener("message", (event) => {
+workerScope.addEventListener("message", async (event) => {
   const request = event?.data ?? {};
   try {
     workerScope.postMessage(createAnimatorSimulationWorkerStartedMessage(request));
-    const response = runAnimatorSimulationWorkerRequest(request);
+    const response = await runAnimatorSimulationWorkerRequestAsync(request);
     workerScope.postMessage(
       response,
       getAnimatorSimulationFrameBufferTransferList(response.frameBuffer)

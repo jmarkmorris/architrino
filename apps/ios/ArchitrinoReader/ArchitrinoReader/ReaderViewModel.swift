@@ -42,6 +42,7 @@ final class ReaderViewModel: ObservableObject {
     private var searchIndexEntries: [TextbookSearchEntry] = []
     private var isSearchIndexLoaded = false
     private var linksBySourcePath: [String: [TextbookLinkMetadata]] = [:]
+    private var linksMetadataLoaded = false
     private var activeRenderCommandId: UUID?
     private var searchIndexTask: Task<Void, Never>?
     private var postLaunchWarmupTask: Task<Void, Never>?
@@ -132,6 +133,7 @@ final class ReaderViewModel: ObservableObject {
             deferredRestoreRenderTask?.cancel()
             deferredRestoreRenderTask = nil
             linksBySourcePath = [:]
+            linksMetadataLoaded = false
             searchIndexEntries = []
             searchResults = []
             isSearchIndexLoaded = false
@@ -142,6 +144,7 @@ final class ReaderViewModel: ObservableObject {
             htmlCache.removeAll(keepingCapacity: false)
             restoredReadingState = restoreReadingState()
             buildBootstrapContext()
+            loadLinkMetadataIfNeeded()
             errorMessage = nil
             renderCommand = nil
             anchorCommand = nil
@@ -164,6 +167,7 @@ final class ReaderViewModel: ObservableObject {
             anchorCommand = nil
             bootstrapContext = nil
             linksBySourcePath = [:]
+            linksMetadataLoaded = false
             searchIndexEntries = []
             searchResults = []
             isSearchIndexLoaded = false
@@ -216,9 +220,95 @@ final class ReaderViewModel: ObservableObject {
             return ""
         }
         if let index = package.manifest.chapters.firstIndex(where: { $0.id == currentChapterId }) {
-            return "\(index + 1)/\(package.manifest.chapters.count)"
+            if let location = currentTopicLocation(in: currentChapterId, anchor: currentAnchor) {
+                if let sectionIndex = location.sectionIndex {
+                    return "Ch \(index + 1).\(location.topicIndex + 1).\(sectionIndex + 1)"
+                }
+                return "Ch \(index + 1).\(location.topicIndex + 1)"
+            }
+            return "Ch \(index + 1)"
         }
         return currentReferenceDocument?.title ?? ""
+    }
+
+    private struct ReadingLocation {
+        let topicIndex: Int
+        let sectionIndex: Int?
+    }
+
+    private func currentTopicLocation(in chapterId: String, anchor: String?) -> ReadingLocation? {
+        guard let package,
+              let normalizedAnchor = normalizeAnchor(anchor),
+              let chapterNode = package.tocPackage.tocRoot.resolvedChildren.first(where: {
+                  package.tocChapterByNodeId[$0.id] == chapterId
+              }) else {
+            return nil
+        }
+
+        for (topicIndex, topic) in chapterNode.resolvedChildren.enumerated() {
+            if tocNodeOwnAnchor(topic, containsAnchor: normalizedAnchor) {
+                return ReadingLocation(topicIndex: topicIndex, sectionIndex: nil)
+            }
+            if let sectionIndex = sectionIndex(in: topic, matching: normalizedAnchor) {
+                return ReadingLocation(topicIndex: topicIndex, sectionIndex: sectionIndex)
+            }
+            if tocNode(topic, containsAnchor: normalizedAnchor) {
+                return ReadingLocation(topicIndex: topicIndex, sectionIndex: nil)
+            }
+        }
+        return nil
+    }
+
+    private func sectionIndex(in topic: TextbookTOCNode, matching anchor: String) -> Int? {
+        for (sectionIndex, section) in topic.resolvedSections.enumerated() where tocSection(section, containsAnchor: anchor) {
+            return sectionIndex
+        }
+
+        let childOffset = topic.resolvedSections.count
+        for (childIndex, child) in topic.resolvedChildren.enumerated() where tocNode(child, containsAnchor: anchor) {
+            return childOffset + childIndex
+        }
+        return nil
+    }
+
+    private func tocNode(_ node: TextbookTOCNode, containsAnchor anchor: String) -> Bool {
+        if tocNodeOwnAnchor(node, containsAnchor: anchor) {
+            return true
+        }
+        if node.resolvedSections.contains(where: { tocSection($0, containsAnchor: anchor) }) {
+            return true
+        }
+        return node.resolvedChildren.contains { tocNode($0, containsAnchor: anchor) }
+    }
+
+    private func tocNodeOwnAnchor(_ node: TextbookTOCNode, containsAnchor anchor: String) -> Bool {
+        tocAnchorCandidates(title: node.title, markdownSection: node.markdownSection, sectionKey: node.sectionKey)
+            .contains(anchor)
+    }
+
+    private func tocSection(_ section: TextbookTOCSection, containsAnchor anchor: String) -> Bool {
+        if tocAnchorCandidates(title: section.title, markdownSection: section.markdownSection, sectionKey: section.sectionKey)
+            .contains(anchor) {
+            return true
+        }
+        return section.resolvedChildren.contains { tocSection($0, containsAnchor: anchor) }
+    }
+
+    private func tocAnchorCandidates(title: String?, markdownSection: String?, sectionKey: String?) -> Set<String> {
+        Set([title, markdownSection, sectionKey].compactMap { value in
+            guard let trimmed = value?.trimmingCharacters(in: .whitespacesAndNewlines),
+                  !trimmed.isEmpty else {
+                return nil
+            }
+            return normalizeAnchor(anchorFromHeadingTitle(trimmed))
+        })
+    }
+
+    private func normalizeAnchor(_ value: String?) -> String? {
+        let trimmed = (value?.removingPercentEncoding ?? value ?? "")
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+            .lowercased()
+        return trimmed.isEmpty ? nil : trimmed
     }
 
     func chapter(at index: Int) -> TextbookChapter? {
@@ -574,6 +664,13 @@ final class ReaderViewModel: ObservableObject {
             return external
         }
 
+        if payload.type == "external",
+           !isExternalTarget(payload.href),
+           let localTarget = resolveDocumentTarget(from: payload.href, defaultAnchor: payload.anchor) {
+            openDocument(by: localTarget.documentId, anchor: localTarget.anchor)
+            return nil
+        }
+
         if let fallback = fallbackExternalURL(for: payload.href, anchor: payload.anchor) {
             return fallback
         }
@@ -626,6 +723,7 @@ final class ReaderViewModel: ObservableObject {
             return
         }
 
+        loadLinkMetadataIfNeeded()
         let htmlText = loadDocumentHTML(document)
         let markdownText = htmlText.isEmpty ? loadDocumentText(document) : ""
 
@@ -824,22 +922,15 @@ final class ReaderViewModel: ObservableObject {
             try? await Task.sleep(nanoseconds: 450_000_000)
             guard !Task.isCancelled else { return }
 
-            let grouped = await Task.detached(priority: .utility) {
+            await Task.detached(priority: .utility) {
                 let loader = ReaderTextbookLoader()
-                let links = (try? loader.loadLinks()) ?? []
                 for path in warmupPaths {
                     _ = try? loader.bundledData(relativePath: path)
                 }
-
-                var grouped: [String: [TextbookLinkMetadata]] = [:]
-                for link in links {
-                    grouped[normalizePath(link.sourcePath), default: []].append(link)
-                }
-                return grouped
             }.value
 
             guard !Task.isCancelled else { return }
-            self?.applyPostLaunchWarmupLinks(grouped)
+            self?.postLaunchWarmupTask = nil
         }
     }
 
@@ -860,9 +951,18 @@ final class ReaderViewModel: ObservableObject {
         }
     }
 
-    private func applyPostLaunchWarmupLinks(_ grouped: [String: [TextbookLinkMetadata]]) {
-        linksBySourcePath = grouped
-        postLaunchWarmupTask = nil
+    private func loadLinkMetadataIfNeeded() {
+        guard !linksMetadataLoaded else { return }
+        linksBySourcePath = groupLinksBySourcePath((try? loader.loadLinks()) ?? [])
+        linksMetadataLoaded = true
+    }
+
+    private func groupLinksBySourcePath(_ links: [TextbookLinkMetadata]) -> [String: [TextbookLinkMetadata]] {
+        var grouped: [String: [TextbookLinkMetadata]] = [:]
+        for link in links {
+            grouped[normalizePath(link.sourcePath), default: []].append(link)
+        }
+        return grouped
     }
 
     private func saveReadingState() {
@@ -1007,6 +1107,14 @@ final class ReaderViewModel: ObservableObject {
         }
 
         return nil
+    }
+
+    private func isExternalTarget(_ rawTarget: String) -> Bool {
+        let target = rawTarget.trimmingCharacters(in: .whitespacesAndNewlines)
+        if target.hasPrefix("//") {
+            return true
+        }
+        return URL(string: target)?.scheme != nil
     }
 
     private func resolveTOCMarkdownTarget(

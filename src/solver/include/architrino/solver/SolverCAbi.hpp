@@ -18,8 +18,30 @@ struct ArchitrinoSolverLinearPathSegmentF64 {
   double error_bound;
 };
 
+struct ArchitrinoSolverCircularPathSegmentF64 {
+  double start_time;
+  double end_time;
+  ArchitrinoSolverVector3F64 center;
+  ArchitrinoSolverVector3F64 radius_u;
+  ArchitrinoSolverVector3F64 radius_v;
+  double angular_velocity;
+  double phase_at_epoch;
+  double epoch_time;
+  double error_bound;
+};
+
 struct ArchitrinoSolverCausalRootRequestF64 {
   ArchitrinoSolverLinearPathSegmentF64 source;
+  ArchitrinoSolverLinearPathSegmentF64 receiver;
+  double hit_time;
+  double signal_speed;
+  double root_tolerance;
+  int max_iterations;
+  int scan_subdivisions;
+};
+
+struct ArchitrinoSolverCircularSourceCausalRootRequestF64 {
+  ArchitrinoSolverCircularPathSegmentF64 source;
   ArchitrinoSolverLinearPathSegmentF64 receiver;
   double hit_time;
   double signal_speed;
@@ -670,6 +692,8 @@ struct ArchitrinoSolverAbiInfo {
   int precision_solve_options_bytes;
   int precision_solve_summary_f64_bytes;
   int motion_integration_request_f64_bytes;
+  int circular_path_segment_f64_bytes;
+  int circular_source_root_request_f64_bytes;
 };
 
 ArchitrinoSolverAbiInfo architrino_solver_abi_info();
@@ -677,6 +701,12 @@ int architrino_solver_get_abi_info(ArchitrinoSolverAbiInfo* out_info);
 
 int architrino_solver_solve_causal_roots_f64(
     const ArchitrinoSolverCausalRootRequestF64* request,
+    ArchitrinoSolverCausalRootRowF64* roots,
+    int max_roots,
+    int* out_root_count);
+
+int architrino_solver_solve_circular_source_causal_roots_f64(
+    const ArchitrinoSolverCircularSourceCausalRootRequestF64* request,
     ArchitrinoSolverCausalRootRowF64* roots,
     int max_roots,
     int* out_root_count);

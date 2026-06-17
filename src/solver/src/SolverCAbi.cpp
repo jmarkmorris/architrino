@@ -25,7 +25,9 @@
 
 static_assert(sizeof(ArchitrinoSolverVector3F64) == 24);
 static_assert(sizeof(ArchitrinoSolverLinearPathSegmentF64) == 72);
+static_assert(sizeof(ArchitrinoSolverCircularPathSegmentF64) == 120);
 static_assert(sizeof(ArchitrinoSolverCausalRootRequestF64) == 176);
+static_assert(sizeof(ArchitrinoSolverCircularSourceCausalRootRequestF64) == 224);
 static_assert(sizeof(ArchitrinoSolverCausalRootRowF64) == 112);
 static_assert(sizeof(ArchitrinoSolverRootLedgerDetailRowF64) == 192);
 static_assert(sizeof(ArchitrinoSolverDelayedHitRowF64) == 128);
@@ -75,6 +77,8 @@ static_assert(sizeof(ArchitrinoSolverEmissionShellNarrowPhaseRowF64) == 40);
 static_assert(sizeof(ArchitrinoSolverAbiInfo) == 156);
 static_assert(offsetof(ArchitrinoSolverCausalRootRequestF64, hit_time) == 144);
 static_assert(offsetof(ArchitrinoSolverCausalRootRequestF64, max_iterations) == 168);
+static_assert(offsetof(ArchitrinoSolverCircularPathSegmentF64, radius_v) == 64);
+static_assert(offsetof(ArchitrinoSolverCircularSourceCausalRootRequestF64, hit_time) == 192);
 static_assert(offsetof(ArchitrinoSolverCausalRootRowF64, emission_time) == 8);
 static_assert(offsetof(ArchitrinoSolverCausalRootRowF64, receiver_z) == 104);
 static_assert(offsetof(ArchitrinoSolverRootLedgerDetailRowF64, interval_start) == 32);
@@ -171,6 +175,24 @@ architrino::solver::LinearPathSegment to_segment(ArchitrinoSolverLinearPathSegme
   };
 }
 
+architrino::solver::CircularPathSegment to_segment(
+    ArchitrinoSolverCircularPathSegmentF64 value,
+    const char* pathId) {
+  return architrino::solver::CircularPathSegment{
+      pathId,
+      value.start_time,
+      value.end_time,
+      to_vector(value.center),
+      to_vector(value.radius_u),
+      to_vector(value.radius_v),
+      value.angular_velocity,
+      value.phase_at_epoch,
+      value.epoch_time,
+      architrino::solver::NumericType::F64,
+      value.error_bound,
+  };
+}
+
 architrino::solver::CausalRootRequest to_request(
     const ArchitrinoSolverCausalRootRequestF64* request,
     int itemIndex = -1) {
@@ -179,6 +201,21 @@ architrino::solver::CausalRootRequest to_request(
       "receiver" + suffix,
       "source" + suffix,
       to_segment(request->source, "source"),
+      to_segment(request->receiver, "receiver"),
+      request->hit_time,
+      request->signal_speed,
+      request->root_tolerance,
+      request->max_iterations,
+      request->scan_subdivisions,
+  };
+}
+
+architrino::solver::CircularSourceCausalRootRequest to_request(
+    const ArchitrinoSolverCircularSourceCausalRootRequestF64* request) {
+  return architrino::solver::CircularSourceCausalRootRequest{
+      "receiver",
+      "circular-source",
+      to_segment(request->source, "circular-source"),
       to_segment(request->receiver, "receiver"),
       request->hit_time,
       request->signal_speed,
@@ -1838,7 +1875,7 @@ int copy_assembly_graph_store_index_rows(
 extern "C" ArchitrinoSolverAbiInfo architrino_solver_abi_info() {
   return ArchitrinoSolverAbiInfo{
       0,
-      6,
+      7,
       0,
       static_cast<int>(sizeof(ArchitrinoSolverCausalRootRequestF64)),
       static_cast<int>(sizeof(ArchitrinoSolverCausalRootRowF64)),
@@ -1876,6 +1913,8 @@ extern "C" ArchitrinoSolverAbiInfo architrino_solver_abi_info() {
       static_cast<int>(sizeof(ArchitrinoSolverPrecisionSolveOptions)),
       static_cast<int>(sizeof(ArchitrinoSolverPrecisionSolveSummaryF64)),
       static_cast<int>(sizeof(ArchitrinoSolverMotionIntegrationRequestF64)),
+      static_cast<int>(sizeof(ArchitrinoSolverCircularPathSegmentF64)),
+      static_cast<int>(sizeof(ArchitrinoSolverCircularSourceCausalRootRequestF64)),
   };
 }
 
@@ -1900,6 +1939,27 @@ extern "C" int architrino_solver_solve_causal_roots_f64(
 
   const architrino::solver::CausalRootResult result =
       architrino::solver::solve_causal_roots(cppRequest);
+  if (!result.validation.ok) {
+    *out_root_count = 0;
+    return -2;
+  }
+
+  return copy_roots(result.roots, roots, max_roots, out_root_count);
+}
+
+extern "C" int architrino_solver_solve_circular_source_causal_roots_f64(
+    const ArchitrinoSolverCircularSourceCausalRootRequestF64* request,
+    ArchitrinoSolverCausalRootRowF64* roots,
+    int max_roots,
+    int* out_root_count) {
+  if (request == nullptr || out_root_count == nullptr || max_roots < 0) {
+    return -1;
+  }
+
+  const architrino::solver::CircularSourceCausalRootRequest cppRequest = to_request(request);
+
+  const architrino::solver::CausalRootResult result =
+      architrino::solver::solve_circular_source_causal_roots(cppRequest);
   if (!result.validation.ok) {
     *out_root_count = 0;
     return -2;

@@ -253,7 +253,7 @@
       cache: "force-cache",
     });
     const html = await response.text();
-    if (!html && !response.ok) {
+    if (!response.ok) {
       throw new Error(`Unable to read rendered HTML for ${payload.htmlPath}`);
     }
     return html;
@@ -285,8 +285,9 @@
     const href = ev.currentTarget.getAttribute("href") || "";
     const anchor = extractAnchor(href);
     if (anchor) {
-      scrollToAnchor(anchor);
-      sendPayload(buildPayload(href, null, anchor));
+      if (scrollToAnchor(anchor)) {
+        sendPayload(buildPayload(href, null, anchor));
+      }
       return;
     }
   }

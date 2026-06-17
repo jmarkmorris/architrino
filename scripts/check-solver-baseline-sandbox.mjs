@@ -6,8 +6,16 @@ import fs from "node:fs";
 import path from "node:path";
 
 import * as THREE from "../vendor/three/three.module.js";
-import { computePotentialContribution } from "../src/apps/ideal-swarm/IdealSwarmRuntime.js";
-import { solveCircularSelfHitSpan } from "../src/apps/ideal-swarm/IdealSwarmPathPotentialProfile.js";
+import {
+  computePotentialContribution,
+  solveFlightTime,
+  solveFlightTimeRowWithSolverBridge,
+} from "../src/apps/ideal-swarm/IdealSwarmRuntime.js";
+import { runPhotonCausalRootsWithSolverBridge } from "../src/apps/photon/PhotonFormulaRuntime.js";
+import {
+  solveCircularSelfHitSpan,
+  solveCircularSelfHitSpanRowWithSolverBridge,
+} from "../src/apps/ideal-swarm/IdealSwarmPathPotentialProfile.js";
 import {
   SOLVER_APP_BRIDGE_API_VERSION,
   createSolverAppBridgeClient,
@@ -100,9 +108,66 @@ for (const testCase of cases) {
 });
 }
 
+const photonFacadeCase = createPhotonCausalRootsFacadeCase();
+const photonFacadeRunHandle = await runPhotonCausalRootsWithSolverBridge(
+  photonFacadeCase.request,
+  {
+    solverClient: client,
+    runId: `${photonFacadeCase.caseId}-run`,
+  }
+);
+const photonFacadeNormalizedResponse = stripRuntimeBuffers(photonFacadeRunHandle.response);
+const photonFacadeComparison = classifySolverBaselineResponse({
+  baseline: projectRootHitResponseForBaseline(photonFacadeCase.baseline),
+  candidate: projectRootHitResponseForBaseline(photonFacadeNormalizedResponse),
+  tolerance: photonFacadeCase.tolerance,
+  refinementTolerance: photonFacadeCase.refinementTolerance,
+});
+assert(
+  photonFacadeComparison.classification === "baseline_within_tolerance",
+  `${photonFacadeCase.caseId} baseline classification was ${photonFacadeComparison.classification}`
+);
+const photonFacadeArtifact = {
+  schema: "solver-baseline-sandbox/v1",
+  caseId: photonFacadeCase.caseId,
+  appId: photonFacadeCase.appId,
+  seedPolicy: "fixed-no-randomness",
+  resourceCaps: photonFacadeCase.resourceCaps,
+  tolerancePolicy: createTolerancePolicy(photonFacadeCase),
+  provenance: createSandboxProvenance(photonFacadeCase),
+  workingDirectory: outputDir,
+  outputPolicy: "artifact-only",
+  writesToAppSource: false,
+  comparison: photonFacadeComparison,
+  runManifest: photonFacadeNormalizedResponse.manifest,
+  response: photonFacadeNormalizedResponse,
+};
+const photonFacadeArtifactPath = path.join(outputDir, `${photonFacadeCase.caseId}.json`);
+const photonFacadeArtifactSha256 = writeJsonArtifact(photonFacadeArtifactPath, photonFacadeArtifact);
+artifacts.push({
+  caseId: photonFacadeCase.caseId,
+  appId: photonFacadeCase.appId,
+  path: photonFacadeArtifactPath,
+  artifactSha256: photonFacadeArtifactSha256,
+  tolerancePolicy: createTolerancePolicy(photonFacadeCase),
+  classification: photonFacadeComparison.classification,
+  manifestHash: photonFacadeNormalizedResponse.manifest.manifestHash,
+});
+
 const idealSwarmGeometryCase = createIdealSwarmGeometryCase();
 const idealSwarmGeometryCandidate = await client.computeSharedGeometryF64(
   idealSwarmGeometryCase.geometryRequest
+);
+const idealSwarmFacadeSelfHit = await solveCircularSelfHitSpanRowWithSolverBridge(1.2, {
+  solverClient: client,
+  runId: `${idealSwarmGeometryCase.caseId}-facade-run`,
+});
+const idealSwarmBaselineSelfHitSpan =
+  idealSwarmGeometryCase.baseline.geometry.circularSelfHitSpans[0].span;
+assert(
+  Math.abs(idealSwarmFacadeSelfHit.span - idealSwarmBaselineSelfHitSpan) <=
+    idealSwarmGeometryCase.tolerance,
+  `${idealSwarmGeometryCase.caseId} facade self-hit span drifted from baseline`
 );
 const idealSwarmGeometryComparable = {
   geometry: projectIdealSwarmGeometryForBaseline(idealSwarmGeometryCandidate),
@@ -134,6 +199,7 @@ const idealSwarmGeometryArtifact = {
   response: idealSwarmGeometryComparable,
   fullResponse: {
     geometry: idealSwarmGeometryCandidate,
+    appFacadeSelfHit: idealSwarmFacadeSelfHit,
     status: idealSwarmGeometryCandidate.status,
   },
 };
@@ -150,6 +216,73 @@ artifacts.push({
   tolerancePolicy: createTolerancePolicy(idealSwarmGeometryCase),
   classification: idealSwarmGeometryComparison.classification,
   manifestHash: "geometry-direct-bridge",
+});
+
+const idealSwarmFlightTimeCase = createIdealSwarmFlightTimeCase();
+const idealSwarmFlightTimeRow = await solveFlightTimeRowWithSolverBridge(
+  idealSwarmFlightTimeCase.samplePoint,
+  idealSwarmFlightTimeCase.architrino,
+  idealSwarmFlightTimeCase.observationTime,
+  {
+    ...idealSwarmFlightTimeCase.options,
+    solverClient: client,
+    runId: `${idealSwarmFlightTimeCase.caseId}-facade-run`,
+  }
+);
+const idealSwarmFlightTimeCandidate = {
+  geometry: {
+    delayedPotentials: [
+      projectDelayedPotentialRowForBaseline(idealSwarmFlightTimeRow),
+    ],
+  },
+  status: {
+    code: "ok",
+    severity: "ok",
+    message: "shared geometry computed",
+    recoverable: true,
+  },
+};
+const idealSwarmFlightTimeComparison = classifySolverBaselineResponse({
+  baseline: idealSwarmFlightTimeCase.baseline,
+  candidate: idealSwarmFlightTimeCandidate,
+  tolerance: idealSwarmFlightTimeCase.tolerance,
+  refinementTolerance: idealSwarmFlightTimeCase.refinementTolerance,
+});
+assert(
+  idealSwarmFlightTimeComparison.classification === "baseline_within_tolerance",
+  `${idealSwarmFlightTimeCase.caseId} baseline classification was ${idealSwarmFlightTimeComparison.classification}`
+);
+const idealSwarmFlightTimeArtifact = {
+  schema: "solver-baseline-sandbox/v1",
+  caseId: idealSwarmFlightTimeCase.caseId,
+  appId: idealSwarmFlightTimeCase.appId,
+  seedPolicy: "fixed-no-randomness",
+  resourceCaps: idealSwarmFlightTimeCase.resourceCaps,
+  tolerancePolicy: createTolerancePolicy(idealSwarmFlightTimeCase),
+  provenance: createSandboxProvenance(idealSwarmFlightTimeCase),
+  workingDirectory: outputDir,
+  outputPolicy: "artifact-only",
+  writesToAppSource: false,
+  comparison: idealSwarmFlightTimeComparison,
+  baseline: idealSwarmFlightTimeCase.baseline,
+  response: idealSwarmFlightTimeCandidate,
+  fullResponse: {
+    appFacadeFlightTime: idealSwarmFlightTimeRow,
+  },
+};
+const idealSwarmFlightTimeArtifactPath = path.join(outputDir, `${idealSwarmFlightTimeCase.caseId}.json`);
+const idealSwarmFlightTimeArtifactSha256 = writeJsonArtifact(
+  idealSwarmFlightTimeArtifactPath,
+  idealSwarmFlightTimeArtifact
+);
+artifacts.push({
+  caseId: idealSwarmFlightTimeCase.caseId,
+  appId: idealSwarmFlightTimeCase.appId,
+  path: idealSwarmFlightTimeArtifactPath,
+  artifactSha256: idealSwarmFlightTimeArtifactSha256,
+  tolerancePolicy: createTolerancePolicy(idealSwarmFlightTimeCase),
+  classification: idealSwarmFlightTimeComparison.classification,
+  manifestHash: "ideal-swarm-flight-time-facade",
 });
 
 const photonPhaseCase = createPhotonPhaseDiagnosticsCase();
@@ -322,6 +455,24 @@ function createCase(caseId, appId) {
   };
 }
 
+function createPhotonCausalRootsFacadeCase() {
+  return {
+    caseId: "photon-causal-root-facade-smoke",
+    appId: "photon",
+    request: fixtureRequest.request,
+    baseline: fixtureResponse.response,
+    tolerance: 1e-10,
+    refinementTolerance: 1e-6,
+    resourceCaps: {
+      maxBytes: 64 * 1024 * 1024,
+      maxRoots: fixtureRequest.request.maxRoots,
+      maxHits: fixtureRequest.request.maxHits,
+      network: "disabled",
+      sourceWrites: "disabled",
+    },
+  };
+}
+
 function createIdealSwarmGeometryCase() {
   const samplePoint = new THREE.Vector3(6, 0, 0);
   const architrino = {
@@ -394,6 +545,75 @@ function createIdealSwarmGeometryCase() {
             resultKind: "root_solved",
             span: selfHitSpan,
             rootFound: true,
+          },
+        ],
+      },
+      status: {
+        code: "ok",
+        severity: "ok",
+        message: "shared geometry computed",
+        recoverable: true,
+      },
+    },
+  };
+}
+
+function createIdealSwarmFlightTimeCase() {
+  const sourceStart = new THREE.Vector3(1, -0.5, 0.25);
+  const sourceVelocity = new THREE.Vector3(0.2, 0.1, -0.05);
+  const samplePoint = new THREE.Vector3(3.4, 1.2, -0.7);
+  const observationTime = 2.5;
+  const architrino = {
+    q: 2,
+    positionAt(timeSeconds) {
+      return sourceStart.clone().add(sourceVelocity.clone().multiplyScalar(timeSeconds));
+    },
+    velocityAt() {
+      return sourceVelocity.clone();
+    },
+  };
+  const options = {
+    fieldSpeed: 6,
+    iterations: 6,
+    sourceStartTime: 0,
+    sourceEndTime: observationTime,
+    normalization: 2,
+    sourceCharge: 2,
+    useCausalDenominator: true,
+  };
+  const potentialBaseline = computePotentialContribution(
+    samplePoint,
+    architrino,
+    observationTime,
+    options
+  );
+  const tauBaseline = solveFlightTime(samplePoint, architrino, observationTime, options);
+  return {
+    caseId: "ideal-swarm-flight-time-smoke",
+    appId: "ideal-swarm",
+    samplePoint,
+    architrino,
+    observationTime,
+    options,
+    tolerance: 1e-10,
+    refinementTolerance: 1e-6,
+    resourceCaps: {
+      maxBytes: 64 * 1024 * 1024,
+      network: "disabled",
+      sourceWrites: "disabled",
+    },
+    baseline: {
+      geometry: {
+        delayedPotentials: [
+          {
+            itemIndex: 0,
+            statusCode: 0,
+            tau: tauBaseline,
+            emissionTime: potentialBaseline.emissionTime,
+            distance: potentialBaseline.distance,
+            potential: potentialBaseline.potential,
+            iterations: options.iterations,
+            usedCausalDenominator: true,
           },
         ],
       },
@@ -652,6 +872,19 @@ function projectIdealSwarmGeometryForBaseline(geometry) {
       span: row.span,
       rootFound: row.rootFound,
     })),
+  };
+}
+
+function projectDelayedPotentialRowForBaseline(row) {
+  return {
+    itemIndex: row.itemIndex,
+    statusCode: row.statusCode,
+    tau: row.tau,
+    emissionTime: row.emissionTime,
+    distance: row.distance,
+    potential: row.potential,
+    iterations: row.iterations,
+    usedCausalDenominator: row.usedCausalDenominator,
   };
 }
 

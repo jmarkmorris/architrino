@@ -48,7 +48,9 @@ import {
   computePhotonDelayedEmissionField,
   computePhotonFormulaSummary,
   computePhotonObserverField,
+  createPhotonCausalRootsSolverRunRequest,
   fitPhotonPolarizationFromSamples,
+  solvePhotonCausalRootsWithSolverBridge,
   solvePhotonCausalRoots,
 } from "../src/apps/photon/PhotonFormulaRuntime.js";
 import {
@@ -306,6 +308,77 @@ test("causal-root solver returns branch roots with Jacobian-weighted contributio
   });
   assert.ok(field.contributions.every((contribution) => Number.isFinite(contribution.jacobianWeight)));
   assert.ok(field.contributions.every((contribution) => contribution.jacobianWeight > 0));
+});
+
+test("Photon causal roots can be routed through the solver app bridge for linear segments", async () => {
+  const rootRequest = {
+    source: {
+      startTime: 0,
+      endTime: 10,
+      positionAtStart: { x: 0, y: 0, z: 0 },
+      velocity: { x: 0, y: 0, z: 0 },
+    },
+    receiver: {
+      startTime: 0,
+      endTime: 10,
+      positionAtStart: { x: 10, y: 0, z: 0 },
+      velocity: { x: 0, y: 0, z: 0 },
+    },
+    hitTime: 10,
+    signalSpeed: 1,
+    rootTolerance: 1e-13,
+    maxIterations: 128,
+    scanSubdivisions: 64,
+    maxRoots: 4,
+    maxHits: 4,
+  };
+  const runRequest = createPhotonCausalRootsSolverRunRequest(rootRequest, {
+    requestId: "photon_bridge_request",
+    runId: "photon_bridge_run",
+    datasetId: "photon_bridge_dataset",
+  });
+
+  assert.equal(runRequest.appId, "photon");
+  assert.equal(runRequest.runKind, "causalRoots");
+  assert.equal(runRequest.envelope.timeWindow.units, "seconds");
+  assert.equal(runRequest.config.rootRequest.hitTime, 10);
+
+  const roots = await solvePhotonCausalRootsWithSolverBridge(rootRequest, {
+    runRequest,
+    async runSolverBridge(request) {
+      assert.equal(request.requestId, "photon_bridge_request");
+      return {
+        requestId: request.requestId,
+        runId: request.runId,
+        datasetId: request.datasetId,
+        status: { code: "ok", severity: "ok", message: "causal roots solved" },
+        response: {
+          runId: request.runId,
+          datasetId: request.datasetId,
+          roots: [
+            {
+              rootId: 0,
+              statusCode: 0,
+              emissionTime: 0,
+              hitTime: 10,
+              delay: 10,
+              distance: 10,
+              residual: 0,
+              jacobian: 1,
+              branchWeight: 1,
+              sourcePoint: { x: 0, y: 0, z: 0 },
+              receiverPoint: { x: 10, y: 0, z: 0 },
+            },
+          ],
+          status: { code: "ok", severity: "ok", message: "causal roots solved" },
+        },
+      };
+    },
+  });
+
+  assert.equal(roots.length, 1);
+  assert.equal(roots[0].delay, 10);
+  assert.equal(roots[0].residual, 0);
 });
 
 test("large Sep/r still uses the full causal-root scanner", () => {

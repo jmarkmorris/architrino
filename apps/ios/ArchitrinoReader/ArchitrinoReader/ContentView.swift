@@ -38,7 +38,7 @@ struct ContentView: View {
             BookmarksSheet(viewModel: viewModel)
         }
         .sheet(isPresented: $showAbout) {
-            AboutSheet(packageVersion: viewModel.packageVersionLabel)
+            AboutSheet(packageVersion: viewModel.packageVersionLabel, theme: viewModel.theme)
         }
         .sheet(isPresented: $showReaderSettings) {
             ReaderSettingsSheet(viewModel: viewModel)
@@ -60,20 +60,21 @@ struct ContentView: View {
                 if !viewModel.hasAnyContent() && viewModel.isReady {
                     VStack(spacing: 10) {
                         Text("No content available in this app bundle.")
-                            .foregroundStyle(.secondary)
+                            .foregroundStyle(viewModel.theme.readerPrimaryTextColor)
                             .multilineTextAlignment(.center)
                         Text("Expected chapter content files were not found in GeneratedTextbookPackage.")
                             .font(.footnote)
-                            .foregroundStyle(.secondary)
+                            .foregroundStyle(viewModel.theme.readerSecondaryTextColor)
                     }
                     .padding()
                 } else if let error = viewModel.errorMessage, viewModel.package == nil {
                     VStack(spacing: 10) {
                         Text("Reader startup failed")
                             .font(.headline)
+                            .foregroundStyle(viewModel.theme.readerPrimaryTextColor)
                         Text(error)
                             .font(.footnote)
-                            .foregroundStyle(.secondary)
+                            .foregroundStyle(viewModel.theme.readerSecondaryTextColor)
                     }
                     .padding()
                 } else if viewModel.renderCommand != nil {
@@ -105,9 +106,10 @@ struct ContentView: View {
                 } else {
                     VStack {
                         ProgressView()
+                            .tint(viewModel.theme.readerPrimaryTextColor)
                         Text("Loading chapter...")
                             .font(.footnote)
-                            .foregroundStyle(.secondary)
+                            .foregroundStyle(viewModel.theme.readerSecondaryTextColor)
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
@@ -115,12 +117,12 @@ struct ContentView: View {
                 if let notice = viewModel.readerNotice ?? tocNotice {
                     HStack(alignment: .top, spacing: 10) {
                         Image(systemName: "info.circle")
-                            .foregroundStyle(.blue)
+                            .foregroundStyle(viewModel.theme.readerAccentColor)
                             .padding(.top, 2)
 
                         Text(notice)
                             .font(.footnote)
-                            .foregroundStyle(.primary)
+                            .foregroundStyle(viewModel.theme.readerPrimaryTextColor)
                             .multilineTextAlignment(.leading)
 
                         Spacer()
@@ -130,19 +132,21 @@ struct ContentView: View {
                             tocNotice = nil
                         } label: {
                             Image(systemName: "xmark.circle.fill")
-                                .foregroundStyle(.secondary)
+                                .foregroundStyle(viewModel.theme.readerSecondaryTextColor)
                                 .imageScale(.small)
                         }
                         .buttonStyle(.plain)
                     }
                     .padding(10)
-                    .background(Color(.systemFill))
+                    .background(viewModel.theme.readerSearchResultBackgroundColor)
                 }
 
                 Divider()
+                    .overlay(viewModel.theme.readerSeparatorColor)
 
                 controlBar
             }
+            .background(viewModel.theme.readerBackgroundColor.ignoresSafeArea())
             .navigationTitle(viewModel.currentDocumentTitle)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -485,8 +489,8 @@ struct ContentView: View {
                 .foregroundStyle(viewModel.theme.readerControlBarSecondaryTextColor)
                 .lineLimit(1)
                 .minimumScaleFactor(0.75)
-                .frame(maxWidth: 92, alignment: .leading)
-                .accessibilityLabel("Reading progress \(viewModel.readingProgressLabel)")
+                .frame(maxWidth: 72, alignment: .leading)
+                .accessibilityLabel("Reading location \(viewModel.readingProgressLabel)")
 
             Spacer()
 
@@ -708,6 +712,15 @@ private extension ReaderTheme {
             return Color(.separator)
         }
     }
+
+    var readerDestructiveColor: Color {
+        switch self {
+        case .architrinoPurple, .dark:
+            return Color(red: 255 / 255, green: 194 / 255, blue: 194 / 255)
+        case .light, .warm:
+            return .red
+        }
+    }
 }
 
 private extension ReaderLineSpacing {
@@ -742,110 +755,144 @@ private struct ReaderSettingsSheet: View {
 
     var body: some View {
         NavigationStack {
-            List {
-                Section("Theme") {
-                    HStack(spacing: 14) {
-                        ForEach(ReaderTheme.allCases) { theme in
-                            Button {
-                                viewModel.setTheme(theme)
-                            } label: {
-                                VStack(spacing: 6) {
-                                    ZStack(alignment: .bottomTrailing) {
-                                        Circle()
-                                            .fill(theme.swatchColor)
-                                            .overlay(
-                                                Circle()
-                                                    .stroke(.primary.opacity(0.22), lineWidth: 1)
-                                            )
-                                            .frame(width: 34, height: 34)
-                                        if viewModel.theme == theme {
-                                            Image(systemName: "checkmark.circle.fill")
-                                                .font(.caption)
-                                                .foregroundStyle(.blue)
-                                                .background(Circle().fill(Color(.systemBackground)))
+            ZStack {
+                viewModel.theme.readerBackgroundColor.ignoresSafeArea()
+
+                List {
+                    Section {
+                        HStack(spacing: 14) {
+                            ForEach(ReaderTheme.allCases) { theme in
+                                Button {
+                                    viewModel.setTheme(theme)
+                                } label: {
+                                    VStack(spacing: 6) {
+                                        ZStack(alignment: .bottomTrailing) {
+                                            Circle()
+                                                .fill(theme.swatchColor)
+                                                .overlay(
+                                                    Circle()
+                                                        .stroke(viewModel.theme.readerSeparatorColor, lineWidth: 1)
+                                                )
+                                                .frame(width: 34, height: 34)
+                                            if viewModel.theme == theme {
+                                                Image(systemName: "checkmark.circle.fill")
+                                                    .font(.caption)
+                                                    .foregroundStyle(viewModel.theme.readerControlBarAccentColor)
+                                                    .background(Circle().fill(viewModel.theme.readerControlBarBackgroundColor))
+                                            }
                                         }
+                                        Text(theme.displayName)
+                                            .font(.caption2)
+                                            .foregroundStyle(viewModel.theme.readerPrimaryTextColor)
+                                            .lineLimit(1)
                                     }
-                                    Text(theme.displayName)
-                                        .font(.caption2)
-                                        .lineLimit(1)
+                                    .frame(width: 58)
                                 }
-                                .frame(width: 58)
+                                .buttonStyle(.plain)
                             }
-                            .buttonStyle(.plain)
                         }
+                        .padding(.vertical, 4)
+                    } header: {
+                        Text("Theme")
+                            .foregroundStyle(viewModel.theme.readerSecondaryTextColor)
                     }
-                    .padding(.vertical, 4)
-                }
+                    .listRowBackground(viewModel.theme.readerSearchResultBackgroundColor)
 
-                Section("Text") {
-                    HStack(spacing: 16) {
-                        Button {
-                            viewModel.decreaseFont()
-                        } label: {
-                            Text("A")
-                                .font(.system(size: 15, weight: .semibold))
-                                .frame(width: 36, height: 36)
+                    Section {
+                        HStack(spacing: 16) {
+                            Button {
+                                viewModel.decreaseFont()
+                            } label: {
+                                Text("A")
+                                    .font(.system(size: 15, weight: .semibold))
+                                    .foregroundStyle(viewModel.theme.readerAccentColor)
+                                    .frame(width: 36, height: 36)
+                            }
+                            .accessibilityLabel("Decrease text size")
+
+                            Slider(
+                                value: Binding(
+                                    get: { viewModel.fontScale },
+                                    set: { viewModel.setFontScale($0) }
+                                ),
+                                in: 0.85...1.45,
+                                step: 0.04
+                            )
+                            .tint(viewModel.theme.readerAccentColor)
+
+                            Button {
+                                viewModel.increaseFont()
+                            } label: {
+                                Text("A")
+                                    .font(.system(size: 24, weight: .semibold))
+                                    .foregroundStyle(viewModel.theme.readerAccentColor)
+                                    .frame(width: 36, height: 36)
+                            }
+                            .accessibilityLabel("Increase text size")
                         }
-                        .accessibilityLabel("Decrease text size")
+                    } header: {
+                        Text("Text")
+                            .foregroundStyle(viewModel.theme.readerSecondaryTextColor)
+                    }
+                    .listRowBackground(viewModel.theme.readerSearchResultBackgroundColor)
 
-                        Slider(
-                            value: Binding(
-                                get: { viewModel.fontScale },
-                                set: { viewModel.setFontScale($0) }
-                            ),
-                            in: 0.85...1.45,
-                            step: 0.04
-                        )
-
-                        Button {
-                            viewModel.increaseFont()
-                        } label: {
-                            Text("A")
-                                .font(.system(size: 24, weight: .semibold))
-                                .frame(width: 36, height: 36)
+                    Section {
+                        Picker(
+                            "Line Spacing",
+                            selection: Binding(
+                                get: { viewModel.lineSpacing },
+                                set: { viewModel.setLineSpacing($0) }
+                            )
+                        ) {
+                            ForEach(ReaderLineSpacing.allCases) { spacing in
+                                Text(spacing.displayName).tag(spacing)
+                            }
                         }
-                        .accessibilityLabel("Increase text size")
+                        .pickerStyle(.segmented)
+                        .tint(viewModel.theme.readerAccentColor)
+                    } header: {
+                        Text("Line Spacing")
+                            .foregroundStyle(viewModel.theme.readerSecondaryTextColor)
                     }
-                }
+                    .listRowBackground(viewModel.theme.readerSearchResultBackgroundColor)
 
-                Section("Line Spacing") {
-                    Picker(
-                        "Line Spacing",
-                        selection: Binding(
-                            get: { viewModel.lineSpacing },
-                            set: { viewModel.setLineSpacing($0) }
-                        )
-                    ) {
-                        ForEach(ReaderLineSpacing.allCases) { spacing in
-                            Text(spacing.displayName).tag(spacing)
+                    Section {
+                        Picker(
+                            "Margins",
+                            selection: Binding(
+                                get: { viewModel.marginWidth },
+                                set: { viewModel.setMarginWidth($0) }
+                            )
+                        ) {
+                            ForEach(ReaderMarginWidth.allCases) { margin in
+                                Text(margin.displayName).tag(margin)
+                            }
                         }
+                        .pickerStyle(.segmented)
+                        .tint(viewModel.theme.readerAccentColor)
+                    } header: {
+                        Text("Margins")
+                            .foregroundStyle(viewModel.theme.readerSecondaryTextColor)
                     }
-                    .pickerStyle(.segmented)
-                }
+                    .listRowBackground(viewModel.theme.readerSearchResultBackgroundColor)
 
-                Section("Margins") {
-                    Picker(
-                        "Margins",
-                        selection: Binding(
-                            get: { viewModel.marginWidth },
-                            set: { viewModel.setMarginWidth($0) }
-                        )
-                    ) {
-                        ForEach(ReaderMarginWidth.allCases) { margin in
-                            Text(margin.displayName).tag(margin)
+                    Section {
+                        Button("Reset Reading Settings") {
+                            viewModel.resetReaderAppearance()
                         }
+                        .foregroundStyle(viewModel.theme.readerAccentColor)
                     }
-                    .pickerStyle(.segmented)
+                    .listRowBackground(viewModel.theme.readerSearchResultBackgroundColor)
                 }
-
-                Section {
-                    Button("Reset Reading Settings") {
-                        viewModel.resetReaderAppearance()
-                    }
-                }
+                .scrollContentBackground(.hidden)
+                .background(viewModel.theme.readerBackgroundColor.ignoresSafeArea())
             }
             .navigationTitle("Reading")
             .navigationBarTitleDisplayMode(.inline)
+            .toolbarBackground(viewModel.theme.readerBackgroundColor, for: .navigationBar)
+            .toolbarBackground(.visible, for: .navigationBar)
+            .toolbarColorScheme(viewModel.theme.readerToolbarColorScheme, for: .navigationBar)
+            .tint(viewModel.theme.readerAccentColor)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Done") {
@@ -854,6 +901,7 @@ private struct ReaderSettingsSheet: View {
                 }
             }
         }
+        .preferredColorScheme(viewModel.theme.readerToolbarColorScheme)
     }
 }
 
@@ -1002,41 +1050,43 @@ private struct BookmarksSheet: View {
 
     var body: some View {
         NavigationStack {
-            List {
-                if viewModel.bookmarks.isEmpty {
-                    Text("No bookmarks yet.")
-                        .foregroundStyle(.secondary)
-                }
+            ZStack {
+                viewModel.theme.readerBackgroundColor.ignoresSafeArea()
 
-                ForEach(viewModel.bookmarks) { bookmark in
-                    HStack {
-                        Button {
-                            viewModel.openBookmark(bookmark)
-                        } label: {
-                            VStack(alignment: .leading, spacing: 4) {
-                                Text(bookmark.chapterTitle)
-                                    .font(.subheadline)
-                                    .fontWeight(.medium)
-                                Text(bookmark.displayLabel)
-                                    .font(.caption)
-                                    .foregroundStyle(.secondary)
+                List {
+                    if viewModel.bookmarks.isEmpty {
+                        Text("No bookmarks yet.")
+                            .foregroundStyle(viewModel.theme.readerSecondaryTextColor)
+                            .listRowBackground(Color.clear)
+                            .listRowSeparator(.hidden)
+                    }
+
+                    ForEach(viewModel.bookmarks) { bookmark in
+                        BookmarkRow(
+                            bookmark: bookmark,
+                            theme: viewModel.theme,
+                            open: {
+                                viewModel.openBookmark(bookmark)
+                            },
+                            delete: {
+                                viewModel.removeBookmark(bookmark)
                             }
-                        }
-                        .buttonStyle(.plain)
-
-                        Spacer()
-
-                        Button(role: .destructive) {
-                            viewModel.removeBookmark(bookmark)
-                        } label: {
-                            Image(systemName: "trash")
-                                .foregroundStyle(.red)
-                        }
+                        )
+                        .listRowBackground(Color.clear)
+                        .listRowSeparator(.hidden)
+                        .listRowInsets(EdgeInsets(top: 6, leading: 14, bottom: 6, trailing: 14))
                     }
                 }
+                .listStyle(.plain)
+                .scrollContentBackground(.hidden)
+                .background(viewModel.theme.readerBackgroundColor.ignoresSafeArea())
             }
             .navigationTitle("Bookmarks")
             .navigationBarTitleDisplayMode(.inline)
+            .toolbarBackground(viewModel.theme.readerBackgroundColor, for: .navigationBar)
+            .toolbarBackground(.visible, for: .navigationBar)
+            .toolbarColorScheme(viewModel.theme.readerToolbarColorScheme, for: .navigationBar)
+            .tint(viewModel.theme.readerAccentColor)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Done") {
@@ -1045,11 +1095,53 @@ private struct BookmarksSheet: View {
                 }
             }
         }
+        .preferredColorScheme(viewModel.theme.readerToolbarColorScheme)
+    }
+}
+
+private struct BookmarkRow: View {
+    let bookmark: ReaderBookmark
+    let theme: ReaderTheme
+    let open: () -> Void
+    let delete: () -> Void
+
+    var body: some View {
+        HStack(spacing: 12) {
+            Button(action: open) {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(bookmark.chapterTitle)
+                        .font(.subheadline)
+                        .fontWeight(.semibold)
+                        .foregroundStyle(theme.readerPrimaryTextColor)
+
+                    Text(bookmark.displayLabel)
+                        .font(.caption)
+                        .foregroundStyle(theme.readerSecondaryTextColor)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .contentShape(Rectangle())
+            }
+            .buttonStyle(.plain)
+
+            Button(role: .destructive, action: delete) {
+                Image(systemName: "trash")
+                    .font(.system(size: 17, weight: .semibold))
+                    .foregroundStyle(theme.readerDestructiveColor)
+                    .frame(width: 34, height: 34)
+            }
+            .accessibilityLabel("Delete bookmark")
+        }
+        .padding(.horizontal, 14)
+        .padding(.vertical, 12)
+        .background(theme.readerSearchResultBackgroundColor)
+        .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+        .contentShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
     }
 }
 
 private struct AboutSheet: View {
     let packageVersion: String
+    let theme: ReaderTheme
 
     @Environment(\.dismiss) private var dismiss
 
@@ -1058,34 +1150,59 @@ private struct AboutSheet: View {
 
     var body: some View {
         NavigationStack {
-            List {
-                Section {
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("Architrino Assembly Architecture Textbook")
-                            .font(.headline)
-                        Text("Reader for the bundled textbook package.")
-                            .font(.subheadline)
-                            .foregroundStyle(.secondary)
-                    }
-                    .padding(.vertical, 4)
-                }
+            ZStack {
+                theme.readerBackgroundColor.ignoresSafeArea()
 
-                Section("Links") {
-                    Link(destination: websiteURL) {
-                        Label("architrino.com", systemImage: "safari")
+                List {
+                    Section {
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("Architrino Assembly Architecture Textbook")
+                                .font(.headline)
+                                .foregroundStyle(theme.readerPrimaryTextColor)
+                            Text("Reader for the bundled textbook package.")
+                                .font(.subheadline)
+                                .foregroundStyle(theme.readerSecondaryTextColor)
+                        }
+                        .padding(.vertical, 4)
                     }
+                    .listRowBackground(theme.readerSearchResultBackgroundColor)
 
-                    Link(destination: repositoryURL) {
-                        Label("GitHub repository", systemImage: "chevron.left.forwardslash.chevron.right")
+                    Section {
+                        Link(destination: websiteURL) {
+                            Label("architrino.com", systemImage: "safari")
+                                .foregroundStyle(theme.readerAccentColor)
+                        }
+
+                        Link(destination: repositoryURL) {
+                            Label("GitHub repository", systemImage: "chevron.left.forwardslash.chevron.right")
+                                .foregroundStyle(theme.readerAccentColor)
+                        }
+                    } header: {
+                        Text("Links")
+                            .foregroundStyle(theme.readerSecondaryTextColor)
                     }
-                }
+                    .listRowBackground(theme.readerSearchResultBackgroundColor)
 
-                Section {
-                    LabeledContent("Package version", value: packageVersion)
+                    Section {
+                        HStack {
+                            Text("Package version")
+                                .foregroundStyle(theme.readerPrimaryTextColor)
+                            Spacer()
+                            Text(packageVersion)
+                                .foregroundStyle(theme.readerSecondaryTextColor)
+                        }
+                    }
+                    .listRowBackground(theme.readerSearchResultBackgroundColor)
                 }
+                .scrollContentBackground(.hidden)
+                .background(theme.readerBackgroundColor.ignoresSafeArea())
             }
             .navigationTitle("About")
             .navigationBarTitleDisplayMode(.inline)
+            .toolbarBackground(theme.readerBackgroundColor, for: .navigationBar)
+            .toolbarBackground(.visible, for: .navigationBar)
+            .toolbarColorScheme(theme.readerToolbarColorScheme, for: .navigationBar)
+            .tint(theme.readerAccentColor)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Done") {
@@ -1094,6 +1211,7 @@ private struct AboutSheet: View {
                 }
             }
         }
+        .preferredColorScheme(theme.readerToolbarColorScheme)
     }
 }
 

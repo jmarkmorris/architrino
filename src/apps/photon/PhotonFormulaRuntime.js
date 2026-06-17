@@ -1,4 +1,7 @@
 import {
+  createPhotonCausalRootsRunRequest,
+} from "../../solver/app/SolverAppAdapters.mjs";
+import {
   PHOTON_LAYER_ORDER,
   getPhotonDirectionSign,
   getPhotonLayer,
@@ -23,6 +26,9 @@ const ROOT_DEDUP_DELAY_TOLERANCE = 1e-4;
 const JACOBIAN_FLOOR = 1e-4;
 const DEFAULT_ANALYZER_AVERAGE_SAMPLES = 48;
 const DEFAULT_POLARIZATION_FIT_SAMPLES = 144;
+const DEFAULT_SOLVER_MEMORY_BUDGET_BYTES = 64 * 1024 * 1024;
+const DEFAULT_PHOTON_ROOT_TOLERANCE = 1e-12;
+const PHOTON_SOLVER_BRIDGE_ENGINE_ID = "architrino-solver-app-bridge";
 const POLARIZATION_LINEAR_S3_TOLERANCE = 0.12;
 const POLARIZATION_CIRCULAR_S3_MIN = 0.82;
 const POLARIZATION_CIRCULAR_TRANSVERSE_TOLERANCE = 0.35;
@@ -232,6 +238,133 @@ export function solvePhotonCausalRoots(state, sourceRef, observationTime, measur
   }
 
   return roots.sort((a, b) => a.delay - b.delay);
+}
+
+export function createPhotonCausalRootsSolverRunRequest(rootRequest, options = {}) {
+  const memoryBudgetBytes = normalizePositiveSolverInteger(
+    options.memoryBudgetBytes,
+    DEFAULT_SOLVER_MEMORY_BUDGET_BYTES
+  );
+  const runId = options.runId ?? `photon-causal-roots-${formatSolverIdNumber(rootRequest?.hitTime)}`;
+  return createPhotonCausalRootsRunRequest({
+    requestId: options.requestId ?? `${runId}-request`,
+    runId,
+    datasetId: options.datasetId ?? `${runId}-dataset`,
+    claimLevel: options.claimLevel ?? "migration-parity",
+    precisionPath: options.precisionPath ?? "auto",
+    configVersion: options.configVersion ?? "photon-causal-roots-linear-adapter.v1",
+    configHash: options.configHash ?? `photon-causal-roots:${formatSolverIdNumber(rootRequest?.hitTime)}`,
+    model: options.model ?? createDefaultPhotonCausalRootsModel(),
+    envelope: options.envelope ?? createDefaultPhotonCausalRootsEnvelope({
+      rootRequest,
+      memoryBudgetBytes,
+    }),
+    errorBudget: options.errorBudget ?? createDefaultPhotonCausalRootsErrorBudget(
+      rootRequest?.rootTolerance ?? options.tolerance
+    ),
+    rootRequest,
+    output: options.output ?? {
+      outputs: ["rootLedger", "delayedHitEvents", "diagnostics"],
+      streamTarget: options.streamTarget ?? "caller-buffer",
+      memoryBudgetBytes,
+      deterministic: options.deterministic ?? true,
+    },
+  });
+}
+
+export async function solvePhotonCausalRootsWithSolverBridge(rootRequest, options = {}) {
+  const runHandle = await runPhotonCausalRootsWithSolverBridge(rootRequest, options);
+  return Array.isArray(runHandle.response?.roots) ? runHandle.response.roots : [];
+}
+
+export async function runPhotonCausalRootsWithSolverBridge(rootRequest, options = {}) {
+  const runRequest =
+    options.runRequest ?? createPhotonCausalRootsSolverRunRequest(rootRequest, options);
+  const runHandle = typeof options.runSolverBridge === "function"
+    ? await options.runSolverBridge(runRequest)
+    : await runPhotonSolverBridgeClient(options.solverClient, runRequest);
+  return {
+    solverEngineId: PHOTON_SOLVER_BRIDGE_ENGINE_ID,
+    ...runHandle,
+  };
+}
+
+async function runPhotonSolverBridgeClient(client, runRequest) {
+  if (!client || typeof client.runSimulation !== "function") {
+    throw new Error("Photon solver bridge request requires a solver client or runSolverBridge option.");
+  }
+  return client.runSimulation(runRequest);
+}
+
+function createDefaultPhotonCausalRootsModel() {
+  return {
+    modelId: "aaa.photon",
+    equationVersion: "causal-root-linear-source-v1",
+    forceLawVersion: "causal-delay-v1",
+    constantsHash: "constants:photon",
+    causalSpeedPolicy: "fixed-field-speed",
+    branchPolicy: "all-positive-roots",
+    unitConvention: "relative",
+    compatiblePrecisionPaths: ["scaled_f64_strict", "event_root_focused", "extended_precision"],
+  };
+}
+
+function createDefaultPhotonCausalRootsEnvelope({
+  rootRequest,
+  memoryBudgetBytes,
+} = {}) {
+  const sourceStart = Number(rootRequest?.source?.startTime) || 0;
+  const receiverStart = Number(rootRequest?.receiver?.startTime) || 0;
+  const hitTime = Number(rootRequest?.hitTime) || 0;
+  const start = Math.min(sourceStart, receiverStart, hitTime);
+  const end = Math.max(
+    Number(rootRequest?.source?.endTime) || hitTime,
+    Number(rootRequest?.receiver?.endTime) || hitTime,
+    hitTime
+  );
+  const duration = Math.max(0, end - start);
+  const stepHint = duration > 0 ? duration / 64 : 1;
+  return {
+    entityCount: 2,
+    assemblyCount: 0,
+    timeWindow: { start, end, stepHint, units: "seconds" },
+    timeResolutionHint: stepHint,
+    interactionPolicy: "single-source-receiver-causal-root",
+    expectedBranchComplexity: "low",
+    outputDetail: "root-ledger",
+    memoryBudgetBytes,
+    storageBudgetBytes: memoryBudgetBytes,
+    latencyTarget: "interactive",
+    simplificationPolicy: "linear-source-and-receiver-segments",
+  };
+}
+
+function createDefaultPhotonCausalRootsErrorBudget(tolerance = DEFAULT_PHOTON_ROOT_TOLERANCE) {
+  const normalizedTolerance = normalizeNonnegativeSolverNumber(tolerance, DEFAULT_PHOTON_ROOT_TOLERANCE);
+  return {
+    globalTolerance: normalizedTolerance,
+    rootIsolationTolerance: normalizedTolerance,
+    delayedHitTolerance: normalizedTolerance,
+    integrationTolerance: normalizedTolerance,
+    streamEncodingTolerance: normalizedTolerance,
+    readbackTolerance: normalizedTolerance,
+    projectionTolerance: 1e-9,
+    displayTolerance: 1e-6,
+  };
+}
+
+function normalizePositiveSolverInteger(value, fallback) {
+  const number = Number(value);
+  return Number.isFinite(number) && number > 0 ? Math.max(1, Math.round(number)) : fallback;
+}
+
+function normalizeNonnegativeSolverNumber(value, fallback) {
+  const number = Number(value);
+  return Number.isFinite(number) && number >= 0 ? number : fallback;
+}
+
+function formatSolverIdNumber(value) {
+  return String(Number(value) || 0).replaceAll(".", "_").replaceAll("-", "neg_");
 }
 
 export function getPhotonArchitrinoKinematics(state, swarmId, layerId, chargeType, timeSeconds) {
