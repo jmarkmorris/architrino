@@ -19,6 +19,13 @@ import {
   dispatchSolverAppWorkerMessage,
 } from "../src/solver/app/SolverAppWorkerBridge.mjs";
 import {
+  SOLVER_APP_WORKER_RUNTIME_VERSION,
+  createSolverWasmLocateFile,
+  installSolverAppWorkerRuntime,
+  resolveSolverWasmModuleFactory,
+  shouldAutoInstallSolverAppWorkerRuntime,
+} from "../src/solver/app/SolverAppWorkerRuntime.mjs";
+import {
   SOLVER_APP_ADAPTERS_VERSION,
   createAnimatorAppPlaybackRunRequest,
   createAnimatorMotionSimulationRunRequest,
@@ -353,6 +360,32 @@ assert(
     invalidWorkerResponse.status.code === "app_contract_error",
   "expected invalid worker method contract error"
 );
+assert(
+  SOLVER_APP_WORKER_RUNTIME_VERSION === "solver-app-worker-runtime.v1",
+  "expected worker runtime version"
+);
+const runtimeFactoryScope = { createArchitrinoSolverSmoke: createWasmModule };
+assert(
+  resolveSolverWasmModuleFactory(runtimeFactoryScope) === createWasmModule,
+  "expected worker runtime to resolve packaged wasm factory"
+);
+const runtimeLocateFile = createSolverWasmLocateFile(
+  { location: { href: "https://architrino.local/solver/solver-worker.js" } },
+  { wasmBaseUrl: "https://architrino.local/solver/" }
+);
+assert(
+  runtimeLocateFile("architrino_solver_wasm_smoke.wasm") ===
+    "https://architrino.local/solver/architrino_solver_wasm_smoke.wasm",
+  "expected worker runtime locateFile helper"
+);
+assert(
+  shouldAutoInstallSolverAppWorkerRuntime({
+    postMessage() {},
+    addEventListener() {},
+    createArchitrinoSolverSmoke: createWasmModule,
+  }),
+  "expected worker runtime auto-install readiness"
+);
 const workerClient = createInProcessSolverAppWorkerClient({
   createWasmModule,
   locateFile: (fileName) => path.join(wasmDir, fileName),
@@ -414,6 +447,52 @@ try {
     error instanceof SolverBridgeError && error.status.code === "app_contract_error";
 }
 assert(disposedWorkerRejected, "expected disposed worker client rejection");
+const runtimeScope = createManualSolverWorkerScope();
+const runtimeInstall = installSolverAppWorkerRuntime(runtimeScope, {
+  createWasmModule,
+  locateFile: (fileName) => path.join(wasmDir, fileName),
+});
+runtimeScope.dispatchMessage({
+  schema: SOLVER_APP_WORKER_PROTOCOL_VERSION,
+  type: "request",
+  requestId: "runtime-worker-init",
+  method: "init",
+  request: {
+    appId: "photon",
+    apiVersion: SOLVER_APP_BRIDGE_API_VERSION,
+    requestedCapabilities: ["causalRoots", "delayedHits"],
+    storagePolicy: {
+      target: "caller-buffer",
+      durable: false,
+      maxBytes: 64 * 1024 * 1024,
+    },
+    threadingPolicy: {
+      mode: "single-thread",
+      deterministic: true,
+    },
+  },
+});
+const runtimeInitMessage = await runtimeScope.nextPostedMessage();
+assert(
+  runtimeInitMessage.type === "response" &&
+    runtimeInitMessage.response.status.code === "ok",
+  "expected installed worker runtime init response"
+);
+runtimeScope.dispatchMessage({
+  schema: SOLVER_APP_WORKER_PROTOCOL_VERSION,
+  type: "request",
+  requestId: "runtime-worker-roots",
+  method: "solveRootsAndHitsF64",
+  request: fixtureRequest.request,
+});
+const runtimeRootsMessage = await runtimeScope.nextPostedMessage();
+assert(
+  runtimeRootsMessage.type === "response" &&
+    runtimeRootsMessage.response.buffers[0].buffer instanceof ArrayBuffer &&
+    runtimeScope.postedTransferCounts.some((count) => count >= 2),
+  "expected installed worker runtime dense response with transferables"
+);
+await runtimeInstall.dispose();
 const transferProbe = new ArrayBuffer(8);
 assert(
   collectTransferables({
@@ -2655,6 +2734,46 @@ function createLoopbackSolverWorker(options) {
       this.terminated = true;
       listeners.clear();
       void handler.dispose();
+    },
+  };
+}
+
+function createManualSolverWorkerScope() {
+  const listeners = new Set();
+  const postedMessages = [];
+  const pendingResolvers = [];
+  return {
+    location: { href: "https://architrino.local/solver/solver-worker.js" },
+    postedTransferCounts: [],
+    postMessage(message, transferables = []) {
+      this.postedTransferCounts.push(transferables.length);
+      const resolver = pendingResolvers.shift();
+      if (resolver) {
+        resolver(message);
+      } else {
+        postedMessages.push(message);
+      }
+    },
+    addEventListener(type, listener) {
+      if (type === "message") {
+        listeners.add(listener);
+      }
+    },
+    removeEventListener(type, listener) {
+      if (type === "message") {
+        listeners.delete(listener);
+      }
+    },
+    dispatchMessage(message) {
+      for (const listener of Array.from(listeners)) {
+        listener({ data: message });
+      }
+    },
+    nextPostedMessage() {
+      if (postedMessages.length > 0) {
+        return Promise.resolve(postedMessages.shift());
+      }
+      return new Promise((resolve) => pendingResolvers.push(resolve));
     },
   };
 }

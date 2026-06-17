@@ -29,11 +29,19 @@ node scripts/build-solver-smoke.mjs all
 ```
 
 Native and WebAssembly build outputs live under `.tmp/solver-build/`.
+The WebAssembly smoke path also writes `.tmp/solver-build/solver-package-manifest.json`.
+That manifest lists the app-runtime artifacts, byte sizes, SHA-256 checksums,
+API versions, build metadata, and packaging policy. It intentionally excludes
+object files, static libraries, CMake scratch files, and Ninja scratch files.
 
 The smoke command verifies:
 
 - C++20 native build through Clang/LLVM and Ninja;
 - Boost.Multiprecision availability;
+- app-runtime package manifest creation and check for the WebAssembly loader,
+  WebAssembly binary, app bridge modules, worker bridge module, worker runtime
+  module, adapters, declarations, schema, checksums, transitive app-module
+  imports, and no-intermediate-artifact policy;
 - model-contract, error-budget, simulation-envelope, admission validation, and native admission stress summaries;
 - app bridge admission preflight for admit, batch, precision-escalation, and reject decisions with stress diagnostics;
 - app-facing run manifests with model, envelope, error-budget, precision, output, admission, provenance, buffer, stream, diagnostic, and status metadata;
@@ -128,7 +136,7 @@ The first checked ABI is intentionally narrow:
 
 `runSimulation` now supports the first `causalRoots`, `phaseDiagnostics`, `pathHistory`, `delayedHits`, `sharedGeometry`, `validationReplay`, `appPlayback`, and `motionSimulation` run shapes through the shared app bridge. The direct bridge admits the request, runs the WebAssembly causal-root, phase-diagnostics, path-history, delayed-hit, shared-geometry, validation-replay, app-playback, or motion-frame path, returns a run handle with an attached completed response, registers run-scoped streams when a run emits streams, and exposes the same stream readback path used by direct root/hit calls. `SolverAppWorkerBridge.mjs` adds the first worker request/response protocol over that same client surface, with structured responses, normalized errors, dense-buffer transfer collection, stream readback, cancellation, and disposal. The JSON schema now includes `solver-app-worker/v1` request, response, and error messages with the supported bridge method set. Later native and browser-worker implementations can preserve the handle and message shape while moving more execution off the immediate call path.
 
-`SolverAppAdapters.mjs` defines the first app-facing request builders on top of the run, stream, work-packet, and emission-shell query shapes. The current adapters build Photon causal-root and phase-diagnostics requests, path-history requests, Ideal Swarm delayed-hit and shared-geometry requests, Animator motion-simulation requests, Animator app-playback requests, generic shared-geometry requests, validation-replay requests, path-history stream and readback requests, storage-lifecycle requests, path-history work-packet plan requests, and emission-shell query, packet, batch, and merge requests. These builders centralize IDs, claim level, precision path, config version, output defaults, app labels, stream storage defaults, packet defaults, and dense-response preservation so migrating app code does not hand-roll solver request envelopes.
+`SolverAppAdapters.mjs` defines the first app-facing request builders on top of the run, stream, work-packet, and emission-shell query shapes. The current adapters build Photon causal-root and phase-diagnostics requests, path-history requests, Ideal Swarm delayed-hit and shared-geometry requests, Animator motion-simulation requests, Animator app-playback requests, generic shared-geometry requests, validation-replay requests, path-history stream and readback requests, storage-lifecycle requests, path-history work-packet plan requests, and emission-shell query, packet, batch, and merge requests. These builders centralize IDs, claim level, precision path, config version, output defaults, app labels, stream storage defaults, packet defaults, and dense-response preservation so migrating app code does not hand-roll solver request envelopes. `SolverAppWorkerRuntime.mjs` is the first packaged worker entry helper; it resolves the packaged WASM module factory, installs the worker bridge on a worker scope, and keeps app code on the same request/response protocol instead of requiring C++ or Emscripten handling in app modules.
 
 The bridge capabilities include `solver-app-bridge-capabilities.v1`, which reports the available app adapters, dense-data transport modes, stream-query helpers, worker fallback posture, and browser storage fallback status. This lets apps negotiate bridge support before a run without knowing C++ exports, WebAssembly lifecycle details, or stream-file internals.
 

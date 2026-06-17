@@ -1,0 +1,322 @@
+#!/usr/bin/env node
+
+import crypto from "node:crypto";
+import fs from "node:fs";
+import path from "node:path";
+
+const args = process.argv.slice(2);
+const allowedArgs = new Set(["--write", "--check", "--print", "--help"]);
+const unknownArgs = args.filter((arg) => !allowedArgs.has(arg));
+
+if (args.includes("--help")) {
+  printUsage(0);
+}
+if (unknownArgs.length) {
+  console.error(`Unknown argument(s): ${unknownArgs.join(", ")}`);
+  printUsage(2);
+}
+
+const wantsWrite = args.includes("--write");
+const wantsPrint = args.includes("--print");
+const wantsCheck = args.includes("--check") || (!wantsWrite && !wantsPrint);
+
+const rootDir = process.cwd();
+const buildRoot = path.join(rootDir, ".tmp", "solver-build");
+const manifestPath = path.join(buildRoot, "solver-package-manifest.json");
+const manifestRelPath = ".tmp/solver-build/solver-package-manifest.json";
+
+const packageArtifacts = [
+  {
+    role: "wasm-loader",
+    kind: "emscripten-modularized-loader",
+    path: ".tmp/solver-build/wasm/architrino_solver_wasm_smoke.js",
+    packageTarget: "browser-app-runtime",
+  },
+  {
+    role: "wasm-binary",
+    kind: "webassembly-binary",
+    path: ".tmp/solver-build/wasm/architrino_solver_wasm_smoke.wasm",
+    packageTarget: "browser-app-runtime",
+  },
+  {
+    role: "app-bridge-runtime",
+    kind: "javascript-module",
+    path: "src/solver/app/SolverAppBridge.mjs",
+    packageTarget: "browser-app-runtime",
+  },
+  {
+    role: "app-adapters-runtime",
+    kind: "javascript-module",
+    path: "src/solver/app/SolverAppAdapters.mjs",
+    packageTarget: "browser-app-runtime",
+  },
+  {
+    role: "baseline-comparison-runtime",
+    kind: "javascript-module",
+    path: "src/solver/app/SolverBaselineComparison.mjs",
+    packageTarget: "browser-app-runtime",
+  },
+  {
+    role: "worker-bridge-runtime",
+    kind: "javascript-module",
+    path: "src/solver/app/SolverAppWorkerBridge.mjs",
+    packageTarget: "browser-app-runtime",
+  },
+  {
+    role: "worker-runtime",
+    kind: "javascript-module",
+    path: "src/solver/app/SolverAppWorkerRuntime.mjs",
+    packageTarget: "browser-app-runtime",
+  },
+  {
+    role: "app-bridge-types",
+    kind: "typescript-declarations",
+    path: "src/solver/app/SolverAppBridgeContract.d.ts",
+    packageTarget: "browser-app-runtime",
+  },
+  {
+    role: "app-adapters-types",
+    kind: "typescript-declarations",
+    path: "src/solver/app/SolverAppAdapters.d.ts",
+    packageTarget: "browser-app-runtime",
+  },
+  {
+    role: "worker-bridge-types",
+    kind: "typescript-declarations",
+    path: "src/solver/app/SolverAppWorkerBridge.d.ts",
+    packageTarget: "browser-app-runtime",
+  },
+  {
+    role: "worker-runtime-types",
+    kind: "typescript-declarations",
+    path: "src/solver/app/SolverAppWorkerRuntime.d.ts",
+    packageTarget: "browser-app-runtime",
+  },
+  {
+    role: "app-bridge-schema",
+    kind: "json-schema",
+    path: "src/contracts/solver-app-bridge/v1/schema.json",
+    packageTarget: "browser-app-runtime",
+  },
+];
+
+const bannedPackagePathPatterns = [
+  /\.o$/u,
+  /\.obj$/u,
+  /\.bc$/u,
+  /\.wasm\.o$/u,
+  /(^|\/)CMakeFiles(\/|$)/u,
+  /(^|\/)CMakeCache\.txt$/u,
+  /(^|\/)cmake_install\.cmake$/u,
+  /(^|\/)build\.ninja$/u,
+  /(^|\/)\.ninja_/u,
+  /(^|\/)compile_commands\.json$/u,
+  /(^|\/)libarchitrino_solver_core\.a$/u,
+];
+
+const manifest = buildManifest();
+const renderedManifest = `${JSON.stringify(manifest, null, 2)}\n`;
+
+if (wantsWrite) {
+  fs.mkdirSync(path.dirname(manifestPath), { recursive: true });
+  fs.writeFileSync(manifestPath, renderedManifest);
+  console.log(`wrote ${manifestRelPath}`);
+}
+
+if (wantsCheck) {
+  if (!fs.existsSync(manifestPath)) {
+    fail(`Package manifest missing: ${manifestRelPath}. Run with --write first.`);
+  }
+  const currentManifest = fs.readFileSync(manifestPath, "utf8");
+  if (currentManifest !== renderedManifest) {
+    fail(`Package manifest is stale: ${manifestRelPath}. Run with --write.`);
+  }
+  console.log(`checked ${manifestRelPath}`);
+}
+
+if (wantsPrint) {
+  process.stdout.write(renderedManifest);
+}
+
+function buildManifest() {
+  const roles = new Set();
+  const artifactPaths = new Set();
+  const artifacts = packageArtifacts.map((artifact) => {
+    if (roles.has(artifact.role)) {
+      fail(`Duplicate package artifact role: ${artifact.role}`);
+    }
+    roles.add(artifact.role);
+    if (artifactPaths.has(artifact.path)) {
+      fail(`Duplicate package artifact path: ${artifact.path}`);
+    }
+    artifactPaths.add(artifact.path);
+    assertPackagePathAllowed(artifact.path);
+    const absolutePath = path.join(rootDir, artifact.path);
+    if (!fs.existsSync(absolutePath)) {
+      fail(`Package artifact missing: ${artifact.path}`);
+    }
+    const stat = fs.statSync(absolutePath);
+    if (!stat.isFile()) {
+      fail(`Package artifact is not a file: ${artifact.path}`);
+    }
+    if (stat.size <= 0) {
+      fail(`Package artifact is empty: ${artifact.path}`);
+    }
+    return {
+      role: artifact.role,
+      kind: artifact.kind,
+      path: artifact.path,
+      packageTarget: artifact.packageTarget,
+      bytes: stat.size,
+      sha256: sha256File(absolutePath),
+    };
+  });
+
+  assertRuntimeModuleDependenciesIncluded(artifacts);
+
+  const wasmCache = readCmakeCache(path.join(buildRoot, "wasm", "CMakeCache.txt"));
+  const nativeCache = readCmakeCache(path.join(buildRoot, "native", "CMakeCache.txt"));
+  const solverVersion = wasmCache.CMAKE_PROJECT_VERSION || nativeCache.CMAKE_PROJECT_VERSION || "unknown";
+
+  return {
+    schema: "architrino-solver-package-manifest.v1",
+    packageName: "architrino-solver",
+    packageTarget: "browser-app-runtime",
+    packageStatus: "smoke-runtime-artifact-set",
+    solverVersion,
+    apiVersions: {
+      appBridge: readJsExportedString(
+        "src/solver/app/SolverAppBridge.mjs",
+        "SOLVER_APP_BRIDGE_API_VERSION"
+      ),
+      appAdapters: readJsExportedString(
+        "src/solver/app/SolverAppAdapters.mjs",
+        "SOLVER_APP_ADAPTERS_VERSION"
+      ),
+      appWorker: readJsExportedString(
+        "src/solver/app/SolverAppWorkerBridge.mjs",
+        "SOLVER_APP_WORKER_PROTOCOL_VERSION"
+      ),
+      workerRuntime: readJsExportedString(
+        "src/solver/app/SolverAppWorkerRuntime.mjs",
+        "SOLVER_APP_WORKER_RUNTIME_VERSION"
+      ),
+      contractSchema: readJson("src/contracts/solver-app-bridge/v1/schema.json").$id,
+    },
+    build: {
+      buildRoot: ".tmp/solver-build",
+      emCache: process.env.EM_CACHE || ".tmp/solver-emcache",
+      wasmBuildType: wasmCache.CMAKE_BUILD_TYPE || null,
+      nativeBuildType: nativeCache.CMAKE_BUILD_TYPE || null,
+      nativeCxxCompiler: nativeCache.CMAKE_CXX_COMPILER || null,
+      boostIncludeDir:
+        wasmCache.ARCHITRINO_SOLVER_BOOST_INCLUDE_DIR ||
+        nativeCache.ARCHITRINO_SOLVER_BOOST_INCLUDE_DIR ||
+        null,
+      wasmEnabled: wasmCache.ARCHITRINO_SOLVER_BUILD_WASM === "ON",
+    },
+    packagingPolicy: {
+      finalRuntimeArtifactsOnly: true,
+      packageObjectFiles: false,
+      packageStaticLibraries: false,
+      packageCmakeScratch: false,
+      intermediateArtifactPatterns: bannedPackagePathPatterns.map((pattern) => pattern.source),
+    },
+    entrypoints: {
+      wasmLoader: ".tmp/solver-build/wasm/architrino_solver_wasm_smoke.js",
+      wasmBinary: ".tmp/solver-build/wasm/architrino_solver_wasm_smoke.wasm",
+      appBridgeModule: "src/solver/app/SolverAppBridge.mjs",
+      workerBridgeModule: "src/solver/app/SolverAppWorkerBridge.mjs",
+      workerRuntimeModule: "src/solver/app/SolverAppWorkerRuntime.mjs",
+      appAdaptersModule: "src/solver/app/SolverAppAdapters.mjs",
+      contractSchema: "src/contracts/solver-app-bridge/v1/schema.json",
+    },
+    artifacts,
+  };
+}
+
+function assertRuntimeModuleDependenciesIncluded(artifacts) {
+  const artifactPathSet = new Set(artifacts.map((artifact) => artifact.path));
+  for (const artifact of artifacts) {
+    if (artifact.kind !== "javascript-module") {
+      continue;
+    }
+    const imports = findRelativeRuntimeImports(artifact.path);
+    for (const importedPath of imports) {
+      if (!artifactPathSet.has(importedPath)) {
+        fail(`${artifact.path} imports ${importedPath}, but it is not listed in the package manifest`);
+      }
+    }
+  }
+}
+
+function findRelativeRuntimeImports(relPath) {
+  const source = fs.readFileSync(path.join(rootDir, relPath), "utf8");
+  const imports = [];
+  const importPattern = /\b(?:import|export)\s+(?:[^"'()]*?\s+from\s+)?["'](\.[^"']+)["']/gu;
+  for (const match of source.matchAll(importPattern)) {
+    const resolved = normalizeRelPath(path.join(path.dirname(relPath), match[1]));
+    if (resolved.startsWith("src/solver/app/") && resolved.endsWith(".mjs")) {
+      imports.push(resolved);
+    }
+  }
+  return imports;
+}
+
+function assertPackagePathAllowed(relPath) {
+  for (const pattern of bannedPackagePathPatterns) {
+    if (pattern.test(relPath)) {
+      fail(`Intermediate build artifact cannot be packaged: ${relPath}`);
+    }
+  }
+}
+
+function readCmakeCache(cachePath) {
+  if (!fs.existsSync(cachePath)) {
+    return {};
+  }
+  const values = {};
+  const text = fs.readFileSync(cachePath, "utf8");
+  for (const line of text.split(/\r?\n/u)) {
+    const match = line.match(/^([^:#=]+):[^=]*=(.*)$/u);
+    if (match) {
+      values[match[1]] = match[2];
+    }
+  }
+  return values;
+}
+
+function readJsExportedString(relPath, exportName) {
+  const source = fs.readFileSync(path.join(rootDir, relPath), "utf8");
+  const pattern = new RegExp(`export\\s+const\\s+${exportName}\\s*=\\s*"([^"]+)"`, "u");
+  const match = source.match(pattern);
+  if (!match) {
+    fail(`Unable to read exported string ${exportName} from ${relPath}`);
+  }
+  return match[1];
+}
+
+function readJson(relPath) {
+  return JSON.parse(fs.readFileSync(path.join(rootDir, relPath), "utf8"));
+}
+
+function sha256File(filePath) {
+  const hash = crypto.createHash("sha256");
+  hash.update(fs.readFileSync(filePath));
+  return hash.digest("hex");
+}
+
+function normalizeRelPath(relPath) {
+  return relPath.split(path.sep).join("/");
+}
+
+function printUsage(exitCode) {
+  console.log("Usage: node scripts/build-solver-package-manifest.mjs [--write|--check|--print]");
+  console.log("  Writes or checks the app-runtime solver package manifest under .tmp/solver-build/.");
+  process.exit(exitCode);
+}
+
+function fail(message) {
+  console.error(message);
+  process.exit(1);
+}

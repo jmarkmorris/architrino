@@ -58,6 +58,8 @@ if (target === "wasm" || target === "all") {
   configureWasm();
   build("wasm");
   await verifyWasmSmoke();
+  runChecked("node", ["scripts/build-solver-package-manifest.mjs", "--write"], { env });
+  runChecked("node", ["scripts/build-solver-package-manifest.mjs", "--check"], { env });
   runChecked("node", ["scripts/check-solver-app-bridge.mjs"], { env });
   runChecked("node", ["scripts/check-solver-baseline-sandbox.mjs"], { env });
 }

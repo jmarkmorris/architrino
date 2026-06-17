@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
   "manifest_schema": "textbook_bundle_schema_v1",
-  "generated_at": "2026-06-16T21:11:04.190Z",
-  "package_version": "1.0.0-74a8f952",
+  "generated_at": "2026-06-17T06:26:36.550Z",
+  "package_version": "1.0.0-7a98d746",
   "schema_version_note": "content_bundle_schema_v1",
   "textbook_toc": {
     "path": "content/graph/textbook_toc.json",
-    "sha256": "74a8f952435669eeee3c2dc48f1ac816ed12ea21e9c4572231842d88d24f9182",
-    "size": 595842
+    "sha256": "7a98d74611278365cc594efc9b05fad18d1672873912aa75ae095b20c3536459",
+    "size": 601078
   },
   "chapters": [
     {
@@ -148,8 +148,8 @@
       "sourcePath": "content/graph/textbook_toc.json",
       "role": "toc",
       "type": "json",
-      "size": 596296,
-      "sha256": "74a8f952435669eeee3c2dc48f1ac816ed12ea21e9c4572231842d88d24f9182"
+      "size": 601532,
+      "sha256": "7a98d74611278365cc594efc9b05fad18d1672873912aa75ae095b20c3536459"
     },
     {
       "path": "reading-copies/atomic-and-nuclear-assemblies.md",
@@ -172,8 +172,8 @@
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 1086220,
-      "sha256": "b7af8094e2007a66f4fc313022c77bf72fc11e8e76350371faff642d0e1c509a"
+      "size": 1133692,
+      "sha256": "d22b9049d56c3077c3bc2a49053615c9e27ee811dcf4e51edb9ba038db1505a8"
     },
     {
       "path": "reading-copies/foundations.md",
@@ -204,8 +204,8 @@
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 1429130,
-      "sha256": "89d9bd43a7e279766c2376ad6acb36cdfaf2ee1918a3bc601651cfce98986a3a"
+      "size": 1431235,
+      "sha256": "98669c935b4759837dc1d9755cf5d461762c01ed9ca73f9e1dac001037372285"
     },
     {
       "path": "reading-copies/quantum.md",
@@ -284,8 +284,8 @@
       "sourcePath": "__generated__/textbook_bundle_search_index.json",
       "role": "search",
       "type": "json",
-      "size": 8093454,
-      "sha256": "df994bb056323995cf10f03e28872ef964962a5b3a292df78a908a3d80808511"
+      "size": 8156686,
+      "sha256": "86cbda3f13c37e485139c1c51b66a4bdcf1bf1bdf85a7d6e4b4ca410930cfc40"
     }
   ],
   "links": [
@@ -1532,6 +1532,14 @@
     {
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/dynamics/entropy.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/entropy.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "target": "../../../../markdown/aaa/assemblies/particle-masses.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -1592,6 +1600,70 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/dynamics/energy.md#entropy-free-energy-and-coarse-residuals",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/energy.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/foundations/absolute-time.md#time-orientation",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/foundations/absolute-time.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/quantum/measurement-ontology.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/quantum/measurement-ontology.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/philosophy-history/information-computation.md#thermodynamic-cost-of-computation",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/information-computation.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/spacetime/emergent-metric.md#local-horizon-recovery-target",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/emergent-metric.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/validation/simulations/thermodynamic-residual.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/validation/simulations/thermodynamic-residual.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/spacetime/black-holes.md#horizon-interface",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/black-holes.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md#terminal-alignment-label-count-target",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md"
     },
     {
       "sourceChapterId": "dynamics",
@@ -9660,6 +9732,14 @@
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-inheritance-discipline.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-inheritance-discipline.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "target": "../../../../markdown/aaa/philosophy-history/theory-differentials.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -9808,6 +9888,14 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-mapping.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-inheritance-discipline.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-inheritance-discipline.md"
     },
     {
       "sourceChapterId": "philosophy_history",

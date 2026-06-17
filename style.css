@@ -917,6 +917,8 @@ body {
 #markdown-panel.multi-columns #markdown-content blockquote,
 #markdown-panel.multi-columns #markdown-content table,
 #markdown-panel.multi-columns #markdown-content .math-block,
+#markdown-panel.multi-columns #markdown-content .markdown-math-block,
+#markdown-panel.multi-columns #markdown-content .katex-display,
 #markdown-panel.multi-columns #markdown-content mjx-container {
   break-inside: avoid;
 }
@@ -1092,6 +1094,23 @@ body {
 
 #markdown-content mjx-container[display="true"] {
   margin: 8px 0;
+}
+
+#markdown-content .markdown-math-block {
+  margin: 1rem 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 0.15rem;
+}
+
+#markdown-content .markdown-math-inline {
+  white-space: nowrap;
+}
+
+#markdown-content .markdown-math-segment:not(.is-rendered) {
+  color: rgba(219, 234, 254, 0.92);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
 }
 
 #animator-overlay {
