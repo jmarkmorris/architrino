@@ -195,6 +195,7 @@
       return;
     }
     window.webkit.messageHandlers.readerRenderComplete.postMessage({
+      commandId: payload && payload.id ? payload.id : null,
       chapterId: payload && payload.chapterId ? payload.chapterId : null,
       anchor: payload && payload.initialAnchor ? payload.initialAnchor : null,
     });
@@ -374,8 +375,21 @@
       }
       render(payload);
     },
-    setAnchor(anchor) {
-      scrollToAnchor(anchor);
+    updateAppearance(rawPayload) {
+      const payload = parseRenderPayload(rawPayload);
+      if (!payload) {
+        return;
+      }
+      hydrateScale(payload.fontScale);
+      hydrateTheme(payload.theme);
+      hydrateReaderLayout(payload);
+    },
+    setAnchor(rawPayload) {
+      const payload = parseRenderPayload(rawPayload);
+      const anchor = payload && typeof payload === "object" ? payload.anchor : payload;
+      if (!anchor || !scrollToAnchor(anchor)) {
+        scrollToTop();
+      }
     },
   };
 

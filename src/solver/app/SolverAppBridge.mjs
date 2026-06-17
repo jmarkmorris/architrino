@@ -1010,7 +1010,7 @@ function mergeEmissionShellCandidatePacketResponsesF64(request) {
     responses.map((response) => response.falsePositiveEstimate)
   );
   const truncated = responses.some((response) => response.truncated);
-  const packetResults = responses.map((response) => response.packetResult);
+  const packetResults = createMergedEmissionShellPacketResults(responses, buffers);
   const scanSummary = mergeEmissionShellScanSummaries(
     responses.map((response) => response.scanSummary),
     buffers,
@@ -1181,6 +1181,51 @@ function mergeEmissionShellResponseBuffers(responses, bufferId, layout, rowSizeB
     byteOffset += part.byteLength;
   }
   return createBufferDescriptor(bufferId, layout, rowCount, rowSizeBytes, merged.buffer);
+}
+
+function createMergedEmissionShellPacketResults(responses, buffers) {
+  const rowOffsetsByLayout = new Map();
+  return responses.map((response) => {
+    const outputs = response.packetResult.outputs.map((output) => {
+      const mergedBuffer = buffers.find((buffer) => buffer.layout === output.layout);
+      if (!mergedBuffer) {
+        throw new SolverBridgeError(
+          createStatus("app_contract_error", "error", `merged buffer missing ${output.layout}`, {
+            recoverable: false,
+          })
+        );
+      }
+      const rowSizeBytes = BINARY_LAYOUT_ROW_SIZE_BYTES.get(output.layout) ?? 0;
+      if (rowSizeBytes === 0) {
+        throw new SolverBridgeError(
+          createStatus("app_contract_error", "error", `merged output layout is not implemented: ${output.layout}`, {
+            recoverable: false,
+          })
+        );
+      }
+      const rowOffset = rowOffsetsByLayout.get(output.layout) ?? 0;
+      rowOffsetsByLayout.set(output.layout, rowOffset + output.rowCount);
+      return {
+        bufferId: mergedBuffer.bufferId,
+        layout: output.layout,
+        numericType: output.numericType,
+        byteOffset: rowOffset * rowSizeBytes,
+        byteLength: output.rowCount * rowSizeBytes,
+        rowOffset,
+        rowCount: output.rowCount,
+        checksum: output.checksum,
+      };
+    });
+    return normalizeWorkPacketResultRef(
+      {
+        packetId: response.packetId,
+        mergeOrder: response.packetMergeOrder,
+        mergeKey: response.packetMergeKey,
+        outputs,
+      },
+      `packetResults[${response.packetId}]`
+    );
+  });
 }
 
 function mergeEmissionShellFalsePositiveEstimates(estimates) {

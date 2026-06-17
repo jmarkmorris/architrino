@@ -38,9 +38,17 @@ const openStreamRequest = createOpenStreamRequestEnvelope();
 const openStreamResponse = createOpenStreamResponseEnvelope();
 const readStreamRangeRequest = createReadStreamRangeRequestEnvelope();
 const readStreamRangeResponse = createReadStreamRangeResponseEnvelope();
+const emissionShellCandidateResponse = createEmissionShellCandidateResponseEnvelope();
+const workerRequestMessage = createWorkerRequestMessage();
+const workerResponseMessage = createWorkerResponseMessage();
+const workerErrorMessage = createWorkerErrorMessage();
 
 assert(schema.$id === "https://architrino.local/contracts/solver-app-bridge/v1/schema.json", "schema id mismatch");
 assert(schema.$defs?.initRequest, "init request schema missing");
+assert(schema.$defs?.solverAppWorkerMethod, "worker method schema missing");
+assert(schema.$defs?.solverAppWorkerRequestMessage, "worker request message schema missing");
+assert(schema.$defs?.solverAppWorkerResponseMessage, "worker response message schema missing");
+assert(schema.$defs?.solverAppWorkerErrorMessage, "worker error message schema missing");
 assert(schema.$defs?.initResponse, "init response schema missing");
 assert(schema.$defs?.solverCapabilities, "solver capabilities schema missing");
 assert(schema.$defs?.solverStoragePolicy, "solver storage policy schema missing");
@@ -183,7 +191,20 @@ assert(
   schema.$defs?.emissionShellCandidatePacketMergeF64Request,
   "emission-shell candidate packet merge request schema missing"
 );
+assert(
+  schema.$defs?.emissionShellCandidateF64ResponseEnvelope,
+  "emission-shell candidate response envelope schema missing"
+);
 assert(schema.$defs?.emissionShellCandidateF64Response, "emission-shell candidate response schema missing");
+assert(
+  schema.$defs.emissionShellCandidateF64Response.properties.packetResult.$ref === "#/$defs/workPacketResultRef",
+  "emission-shell packet result response schema mismatch"
+);
+assert(
+  schema.$defs.emissionShellCandidateF64Response.properties.packetResults.items.$ref ===
+    "#/$defs/workPacketResultRef",
+  "emission-shell packet results response schema mismatch"
+);
 assert(schema.$defs?.emissionShellCandidateF64, "emission-shell candidate row schema missing");
 assert(schema.$defs?.emissionShellScanSummary, "emission-shell scan summary schema missing");
 assert(schema.$defs?.emissionShellFalsePositiveEstimate, "emission-shell false-positive estimate schema missing");
@@ -229,7 +250,20 @@ assertErrorBudgetStages([
   "app_buffer",
 ]);
 assertValueAuthorities(["authoritative", "approximate", "display-only", "rejected"]);
+assertWorkerMethods([
+  "init",
+  "capabilities",
+  "runSimulation",
+  "createPathHistoryStreamF64",
+  "queryEmissionShellCandidatePacketsF64",
+  "readStreamRange",
+  "cancelRun",
+  "dispose",
+]);
 
+validateWorkerRequestMessage(workerRequestMessage);
+validateWorkerResponseMessage(workerResponseMessage);
+validateWorkerErrorMessage(workerErrorMessage);
 validateRequestEnvelope(request);
 validateInitRequestEnvelope(initRequest);
 validateInitResponseEnvelope(initResponse);
@@ -258,6 +292,7 @@ validateOpenStreamRequestEnvelope(openStreamRequest);
 validateOpenStreamResponseEnvelope(openStreamResponse);
 validateReadStreamRangeRequestEnvelope(readStreamRangeRequest);
 validateReadStreamRangeResponseEnvelope(readStreamRangeResponse);
+validateEmissionShellCandidateResponseEnvelope(emissionShellCandidateResponse);
 
 console.log("solver contract fixtures check passed.");
 
@@ -279,6 +314,31 @@ function validateRequestEnvelope(value) {
   assertPositiveInteger(requestValue.scanSubdivisions, "scan subdivisions");
   assertPositiveInteger(requestValue.maxRoots, "max roots");
   assertPositiveInteger(requestValue.maxHits, "max hits");
+}
+
+function validateWorkerRequestMessage(value) {
+  assert(value.schema === "solver-app-worker/v1", "worker request schema tag mismatch");
+  assert(value.type === "request", "worker request type mismatch");
+  assertNonemptyString(value.requestId, "worker request id");
+  assert(value.method === "runSimulation", "worker request method mismatch");
+  assert(value.request.runId === "run-contract", "worker request payload mismatch");
+}
+
+function validateWorkerResponseMessage(value) {
+  assert(value.schema === "solver-app-worker/v1", "worker response schema tag mismatch");
+  assert(value.type === "response", "worker response type mismatch");
+  assertNonemptyString(value.requestId, "worker response id");
+  assert(value.method === "capabilities", "worker response method mismatch");
+  assertCapabilities(value.response, "worker response capabilities");
+}
+
+function validateWorkerErrorMessage(value) {
+  assert(value.schema === "solver-app-worker/v1", "worker error schema tag mismatch");
+  assert(value.type === "error", "worker error type mismatch");
+  assertNonemptyString(value.requestId, "worker error id");
+  assert(value.method === "missingMethod", "worker error method mismatch");
+  assert(value.status.code === "app_contract_error", "worker error status code mismatch");
+  assert(value.status.severity === "error", "worker error status severity mismatch");
 }
 
 function validateCausalRootsResponseEnvelope(value) {
@@ -645,6 +705,51 @@ function validateReadStreamRangeResponseEnvelope(value) {
   assert(responseValue.diagnostics[0].details.selectedRowCount === 1, "read stream selected rows mismatch");
 }
 
+function validateEmissionShellCandidateResponseEnvelope(value) {
+  assert(value.schema === "solver-app-bridge/v1", "emission-shell response schema tag mismatch");
+  assert(value.kind === "emission-shell-candidate-f64-response", "emission-shell response kind mismatch");
+  assertNonemptyString(value.requestId, "emission-shell response request id");
+  const responseValue = value.response;
+  assert(responseValue.schema === "solver-emission-shell-candidates.v1", "emission-shell schema mismatch");
+  assert(responseValue.packetId === "packet-a", "emission-shell packet id mismatch");
+  assert(responseValue.packetMergeOrder === 0, "emission-shell packet merge order mismatch");
+  assert(responseValue.packetMergeKey === "source:0:receiver:1", "emission-shell packet merge key mismatch");
+  assertWorkPacketResultRef(responseValue.packetResult, "packet-a", 0, "source:0:receiver:1");
+  assert(responseValue.packetResults.length === 2, "emission-shell packet result count mismatch");
+  assertWorkPacketResultRef(responseValue.packetResults[0], "packet-a", 0, "source:0:receiver:1");
+  assertWorkPacketResultRef(responseValue.packetResults[1], "packet-b", 1, "source:1:receiver:2");
+  assert(responseValue.streamId === "fixture-path-history-stream", "emission-shell stream id mismatch");
+  assert(responseValue.signalSpeed === 1, "emission-shell signal speed mismatch");
+  assert(responseValue.tolerance === 1e-12, "emission-shell tolerance mismatch");
+  assert(responseValue.pairCount === 1, "emission-shell pair count mismatch");
+  assert(responseValue.rejectedPairCount === 0, "emission-shell rejected pair count mismatch");
+  assert(responseValue.candidateCount === 1, "emission-shell candidate count mismatch");
+  assert(responseValue.falsePositiveEstimate.method === "sampled_linear_segment_bisection.v1", "emission-shell false-positive method mismatch");
+  assert(responseValue.scanSummary.executionPath === "packet_merge", "emission-shell scan execution path mismatch");
+  assert(responseValue.scanSummary.outputBufferCount === 2, "emission-shell scan output buffer count mismatch");
+  assert(responseValue.truncated === false, "emission-shell truncated mismatch");
+  assert(responseValue.candidates.length === 1, "emission-shell candidate row count mismatch");
+  assert(responseValue.candidates[0].candidateKind === "broad_phase_possible", "emission-shell candidate kind mismatch");
+  assert(responseValue.candidates[0].narrowPhaseEstimate.classification === "sampled_hit", "emission-shell narrow phase mismatch");
+  assertBuffer(responseValue.buffers[0], "packet-a:emission-shell-candidates", "emission_shell_candidate.v1", 112, 1);
+  assertBuffer(responseValue.buffers[1], "packet-a:emission-shell-narrow-phase", "emission_shell_narrow_phase.v1", 40, 1);
+  assert(responseValue.status.code === "ok", "emission-shell response status mismatch");
+}
+
+function assertWorkPacketResultRef(result, packetId, mergeOrder, mergeKey) {
+  assert(result.packetId === packetId, `${packetId} result packet id mismatch`);
+  assert(result.mergeOrder === mergeOrder, `${packetId} result merge order mismatch`);
+  assert(result.mergeKey === mergeKey, `${packetId} result merge key mismatch`);
+  assert(result.outputs.length === 2, `${packetId} result output count mismatch`);
+  assert(
+    result.outputs[0].layout === "emission_shell_candidate.v1" &&
+      result.outputs[1].layout === "emission_shell_narrow_phase.v1",
+    `${packetId} result output layout mismatch`
+  );
+  assert(result.outputs[0].checksum.length === 16, `${packetId} candidate output checksum mismatch`);
+  assert(result.outputs[1].checksum.length === 16, `${packetId} narrow-phase output checksum mismatch`);
+}
+
 function assertSegment(value, label) {
   assertFinite(value.startTime, `${label} start time`);
   assertFinite(value.endTime, `${label} end time`);
@@ -734,6 +839,13 @@ function assertValueAuthorities(expectedAuthorities) {
   }
 }
 
+function assertWorkerMethods(expectedMethods) {
+  const actualMethods = schema.$defs.solverAppWorkerMethod?.enum || [];
+  for (const method of expectedMethods) {
+    assert(actualMethods.includes(method), `worker method missing ${method}`);
+  }
+}
+
 function createCausalRootsResponseEnvelope() {
   return {
     schema: "solver-app-bridge/v1",
@@ -743,6 +855,38 @@ function createCausalRootsResponseEnvelope() {
       roots: response.response.roots,
       status: createStatusFixture("ok", "ok", "causal roots solved"),
     },
+  };
+}
+
+function createWorkerRequestMessage() {
+  return {
+    schema: "solver-app-worker/v1",
+    type: "request",
+    requestId: "worker-run-contract-request",
+    method: "runSimulation",
+    request: createSolverRunRequest(),
+  };
+}
+
+function createWorkerResponseMessage() {
+  return {
+    schema: "solver-app-worker/v1",
+    type: "response",
+    requestId: "worker-capabilities-contract-request",
+    method: "capabilities",
+    response: createCapabilitiesFixture(),
+  };
+}
+
+function createWorkerErrorMessage() {
+  return {
+    schema: "solver-app-worker/v1",
+    type: "error",
+    requestId: "worker-invalid-method-request",
+    method: "missingMethod",
+    status: createStatusFixture("app_contract_error", "error", "solver worker method is not supported", {
+      method: "missingMethod",
+    }),
   };
 }
 
@@ -1794,6 +1938,145 @@ function createReadStreamRangeResponseEnvelope() {
         recoverable: true,
       },
     },
+  };
+}
+
+function createEmissionShellCandidateResponseEnvelope() {
+  const packetAResult = createEmissionShellPacketResult("packet-a", 0, "source:0:receiver:1", 1);
+  const packetBResult = createEmissionShellPacketResult("packet-b", 1, "source:1:receiver:2", 0);
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "emission-shell-candidate-f64-response",
+    requestId: "emission-shell-candidate-contract-response",
+    response: {
+      schema: "solver-emission-shell-candidates.v1",
+      packetId: "packet-a",
+      packetMergeOrder: 0,
+      packetMergeKey: "source:0:receiver:1",
+      packetResult: packetAResult,
+      packetResults: [packetAResult, packetBResult],
+      streamId: "fixture-path-history-stream",
+      signalSpeed: 1,
+      tolerance: 1e-12,
+      pairCount: 1,
+      rejectedPairCount: 0,
+      candidateCount: 1,
+      rejectionRate: 0,
+      candidateRate: 1,
+      falsePositiveEstimate: {
+        method: "sampled_linear_segment_bisection.v1",
+        testedCandidateCount: 1,
+        estimatedTruePositiveCount: 1,
+        estimatedFalsePositiveCount: 0,
+        estimatedFalsePositiveRate: 0,
+      },
+      scanSummary: {
+        schema: "solver-emission-shell-scan-summary.v1",
+        executionPath: "packet_merge",
+        streamChunkCount: 2,
+        skippedChunkCount: 0,
+        prunedByTimeChunkCount: 0,
+        prunedByPathChunkCount: 0,
+        pathIndexRowCount: 2,
+        pathIndexedChunkCount: 2,
+        indexSkippedRowCount: 0,
+        scannedRowCount: 2,
+        skippedRowCount: 0,
+        uniqueMaterializedRowCount: 2,
+        materializedRoleRowCount: 2,
+        sourceRowCount: 1,
+        receiverRowCount: 1,
+        possiblePairUpperBound: 1,
+        testedPairCount: 1,
+        skippedPairCount: 0,
+        rejectedPairCount: 0,
+        candidateCount: 1,
+        outputBufferCount: 2,
+        outputByteLength: 152,
+        requestedWorkerCount: 2,
+        plannedWorkerCount: 1,
+        truncated: false,
+      },
+      truncated: false,
+      candidates: [
+        {
+          sourcePathKey: 2000,
+          receiverPathKey: 2001,
+          sourceSegmentIndex: 0,
+          receiverSegmentIndex: 1,
+          sourceChunkIndex: 0,
+          receiverChunkIndex: 1,
+          sourceRowOffset: 0,
+          receiverRowOffset: 1,
+          sourceTimeRange: { start: 0, end: 1 },
+          receiverTimeRange: { start: 1, end: 2 },
+          distanceLowerBound: 0,
+          distanceUpperBound: 1,
+          radiusLowerBound: 0,
+          radiusUpperBound: 1,
+          candidateKind: "broad_phase_possible",
+          narrowPhaseEstimate: {
+            method: "sampled_linear_segment_bisection.v1",
+            classification: "sampled_hit",
+            sampleCount: 16,
+            hitTime: 1,
+            emissionTime: 0,
+            residual: 0,
+          },
+        },
+      ],
+      buffers: [
+        {
+          bufferId: "packet-a:emission-shell-candidates",
+          layout: "emission_shell_candidate.v1",
+          byteOffset: 0,
+          byteLength: 112,
+          rowCount: 1,
+          numericType: "f64",
+          checksum: "aaaaaaaaaaaaaaaa",
+        },
+        {
+          bufferId: "packet-a:emission-shell-narrow-phase",
+          layout: "emission_shell_narrow_phase.v1",
+          byteOffset: 0,
+          byteLength: 40,
+          rowCount: 1,
+          numericType: "f64",
+          checksum: "bbbbbbbbbbbbbbbb",
+        },
+      ],
+      status: createStatusFixture("ok", "ok", "emission-shell packet response fixture"),
+    },
+  };
+}
+
+function createEmissionShellPacketResult(packetId, mergeOrder, mergeKey, rowCount) {
+  return {
+    packetId,
+    mergeOrder,
+    mergeKey,
+    outputs: [
+      {
+        bufferId: `${packetId}:emission-shell-candidates`,
+        layout: "emission_shell_candidate.v1",
+        numericType: "f64",
+        byteOffset: 0,
+        byteLength: rowCount * 112,
+        rowOffset: 0,
+        rowCount,
+        checksum: rowCount === 0 ? "cbf29ce484222325" : "aaaaaaaaaaaaaaaa",
+      },
+      {
+        bufferId: `${packetId}:emission-shell-narrow-phase`,
+        layout: "emission_shell_narrow_phase.v1",
+        numericType: "f64",
+        byteOffset: 0,
+        byteLength: rowCount * 40,
+        rowOffset: 0,
+        rowCount,
+        checksum: rowCount === 0 ? "cbf29ce484222325" : "bbbbbbbbbbbbbbbb",
+      },
+    ],
   };
 }
 

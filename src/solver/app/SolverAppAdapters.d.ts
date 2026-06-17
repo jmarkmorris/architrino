@@ -5,24 +5,39 @@ import type {
   SolverCausalRootsF64Request,
   SolverClaimLevel,
   SolverComparableResponse,
+  SolverCreatePathHistoryStreamF64Request,
   SolverDelayedHitF64,
+  SolverDescribeStreamRequest,
   SolverDiagnosticRecord,
+  SolverEmissionShellCandidateF64Request,
+  SolverEmissionShellCandidateF64Response,
+  SolverEmissionShellCandidatePacketF64Request,
+  SolverEmissionShellCandidatePacketMergeF64Request,
+  SolverEmissionShellCandidatePacketsF64Request,
   SolverErrorBudget,
   SolverLinearMotionSampleF64Request,
   SolverModelContract,
   SolverMotionFrameF64,
+  SolverOpenStreamRequest,
   SolverOutputRequest,
   SolverPhaseAtHitF64Request,
   SolverPrecisionPath,
   SolverPathHistoryRowF64,
+  SolverPathHistoryStorageLifecyclePolicy,
+  SolverPathHistoryChunkMetadata,
+  SolverPathHistoryStorageLifecycleRequest,
   SolverRunConfig,
   SolverRunKind,
   SolverRunRequest,
+  SolverReadStreamRangeRequest,
+  SolverRange,
   SolverSharedGeometryF64Request,
   SolverSharedGeometryF64Response,
   SolverSimulationEnvelope,
   SolverStoragePolicy,
   SolverPathHistoryStreamMetadata,
+  SolverPathHistoryWorkPacketPlanRequest,
+  SolverWorkPacketHeader,
 } from "./SolverAppBridgeContract";
 
 export declare const SOLVER_APP_ADAPTERS_VERSION: "solver-app-adapters.v1";
@@ -106,6 +121,93 @@ export interface ValidationReplayRunAdapterInput extends SolverRunAdapterBaseInp
   refinementTolerance?: number;
 }
 
+export interface PathHistoryStreamAdapterInput {
+  runId: string;
+  datasetId?: string;
+  streamId: string;
+  pathRows: SolverPathHistoryRowF64[];
+  rowsPerChunk?: number;
+  storagePolicy?: SolverStoragePolicy;
+  metadata?: Partial<SolverPathHistoryStreamMetadata>;
+  memoryBudgetBytes?: number;
+}
+
+export interface OpenStreamAdapterInput {
+  runId?: string;
+  datasetId?: string;
+  streamId?: string;
+  purpose?: SolverOpenStreamRequest["purpose"];
+}
+
+export interface DescribeStreamAdapterInput {
+  streamId: string;
+}
+
+export interface ReadStreamRangeAdapterInput {
+  streamId: string;
+  pathIds?: string[];
+  pathKeys?: number[];
+  timeRange?: SolverRange;
+  frameRange?: SolverRange;
+  byteRange?: SolverRange;
+  eventKinds?: string[];
+  maxBytes?: number;
+}
+
+export interface PathHistoryStorageLifecycleAdapterInput {
+  streamId?: string;
+  policy: SolverPathHistoryStorageLifecyclePolicy;
+  chunks?: SolverPathHistoryChunkMetadata[];
+}
+
+export interface PathHistoryWorkPacketPlanAdapterInput {
+  streamId: string;
+  runId: string;
+  modelId: string;
+  precisionPath?: Exclude<SolverPrecisionPath, "auto">;
+  packetIdPrefix?: string;
+  timeRange?: SolverRange;
+  expectedOutputs?: SolverBinaryLayoutId[];
+  sourcePathKeys?: number[];
+  receiverPathKeys?: number[];
+  sourceChunkIndices?: number[];
+  receiverChunkIndices?: number[];
+  includeSameChunk?: boolean;
+  maxPacketCount?: number;
+}
+
+export type EmissionShellCandidateQueryAdapterInput = SolverEmissionShellCandidateF64Request;
+
+export interface EmissionShellCandidatePacketQueryAdapterInput {
+  streamId: string;
+  packet: SolverWorkPacketHeader;
+  signalSpeed: number;
+  tolerance?: number;
+  maxCandidates?: number;
+  sourcePathKeys?: number[];
+  receiverPathKeys?: number[];
+  allowSamePath?: boolean;
+  workerCount?: number;
+  timeRange?: SolverRange;
+}
+
+export interface EmissionShellCandidatePacketBatchQueryAdapterInput {
+  streamId: string;
+  packets: SolverWorkPacketHeader[];
+  signalSpeed: number;
+  tolerance?: number;
+  maxCandidatesPerPacket?: number;
+  sourcePathKeys?: number[];
+  receiverPathKeys?: number[];
+  allowSamePath?: boolean;
+  workerCount?: number;
+  timeRange?: SolverRange;
+}
+
+export interface EmissionShellCandidatePacketMergeAdapterInput {
+  responses: SolverEmissionShellCandidateF64Response[];
+}
+
 export declare function createSolverRunRequest(input: SolverGenericRunAdapterInput): SolverRunRequest;
 
 export declare function createPhotonCausalRootsRunRequest(
@@ -139,3 +241,41 @@ export declare function createSharedGeometryRunRequest(input: SharedGeometryRunA
 export declare function createValidationReplayRunRequest(
   input: ValidationReplayRunAdapterInput
 ): SolverRunRequest;
+
+export declare function createPathHistoryStreamRequest(
+  input: PathHistoryStreamAdapterInput
+): SolverCreatePathHistoryStreamF64Request;
+
+export declare function createOpenStreamRequest(input: OpenStreamAdapterInput): SolverOpenStreamRequest;
+
+export declare function createDescribeStreamRequest(
+  input: DescribeStreamAdapterInput
+): SolverDescribeStreamRequest;
+
+export declare function createReadStreamRangeRequest(
+  input: ReadStreamRangeAdapterInput
+): SolverReadStreamRangeRequest;
+
+export declare function createPathHistoryStorageLifecycleRequest(
+  input: PathHistoryStorageLifecycleAdapterInput
+): SolverPathHistoryStorageLifecycleRequest;
+
+export declare function createPathHistoryWorkPacketPlanRequest(
+  input: PathHistoryWorkPacketPlanAdapterInput
+): SolverPathHistoryWorkPacketPlanRequest;
+
+export declare function createEmissionShellCandidateQueryRequest(
+  input: EmissionShellCandidateQueryAdapterInput
+): SolverEmissionShellCandidateF64Request;
+
+export declare function createEmissionShellCandidatePacketQueryRequest(
+  input: EmissionShellCandidatePacketQueryAdapterInput
+): SolverEmissionShellCandidatePacketF64Request;
+
+export declare function createEmissionShellCandidatePacketBatchQueryRequest(
+  input: EmissionShellCandidatePacketBatchQueryAdapterInput
+): SolverEmissionShellCandidatePacketsF64Request;
+
+export declare function createEmissionShellCandidatePacketMergeRequest(
+  input: EmissionShellCandidatePacketMergeAdapterInput
+): SolverEmissionShellCandidatePacketMergeF64Request;

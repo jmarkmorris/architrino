@@ -3,8 +3,13 @@ import WebKit
 
 struct ReaderWebView: UIViewRepresentable {
     @Binding var renderCommand: ReaderViewModel.ReaderRenderCommand?
+    @Binding var anchorCommand: ReaderViewModel.ReaderAnchorCommand?
+    let fontScale: Double
+    let theme: ReaderTheme
+    let lineSpacing: ReaderLineSpacing
+    let marginWidth: ReaderMarginWidth
     let onLinkTap: (Any) -> Void
-    let onRenderComplete: () -> Void
+    let onRenderComplete: (Any) -> Void
 
     func makeUIView(context: Context) -> WKWebView {
         let configuration = WKWebViewConfiguration()
@@ -36,16 +41,32 @@ struct ReaderWebView: UIViewRepresentable {
     }
 
     func updateUIView(_ uiView: WKWebView, context: Context) {
-        guard let command = renderCommand else { return }
-        if context.coordinator.lastRenderedCommandID == command.id {
-            return
-        }
-        uiView.backgroundColor = UIColor.readerBackground(for: command.theme)
-        uiView.scrollView.backgroundColor = UIColor.readerBackground(for: command.theme)
-        context.coordinator.pendingRenderCommand = command
+        let appearance = ReaderAppearancePayload(
+            fontScale: fontScale,
+            theme: theme,
+            lineSpacing: lineSpacing,
+            marginWidth: marginWidth
+        )
+        uiView.backgroundColor = UIColor.readerBackground(for: theme)
+        uiView.scrollView.backgroundColor = UIColor.readerBackground(for: theme)
         context.coordinator.webView = uiView
+        context.coordinator.pendingAppearance = appearance
+        if let anchorCommand,
+           context.coordinator.lastAppliedAnchorCommandID != anchorCommand.id {
+            context.coordinator.pendingAnchorCommand = anchorCommand
+        } else if anchorCommand == nil {
+            context.coordinator.pendingAnchorCommand = nil
+        }
+        if let command = renderCommand,
+           context.coordinator.lastRenderedCommandID != command.id {
+            context.coordinator.pendingRenderCommand = command
+        } else if renderCommand == nil {
+            context.coordinator.pendingRenderCommand = nil
+        }
         if context.coordinator.isReaderReady {
+            context.coordinator.flushAppearance()
             context.coordinator.flushRenderCommand()
+            context.coordinator.flushAnchorCommand()
         }
     }
 
@@ -58,7 +79,11 @@ struct ReaderWebView: UIViewRepresentable {
         weak var webView: WKWebView?
         var isReaderReady = false
         var pendingRenderCommand: ReaderViewModel.ReaderRenderCommand?
+        var pendingAppearance: ReaderAppearancePayload?
+        var pendingAnchorCommand: ReaderViewModel.ReaderAnchorCommand?
+        var lastAppliedAppearance: ReaderAppearancePayload?
         var lastRenderedCommandID: UUID?
+        var lastAppliedAnchorCommandID: UUID?
 
         init(parent: ReaderWebView) {
             self.parent = parent
@@ -70,13 +95,17 @@ struct ReaderWebView: UIViewRepresentable {
         ) {
             if message.name == "readerReady" {
                 isReaderReady = true
-                DispatchQueue.main.async { self.flushRenderCommand() }
+                DispatchQueue.main.async {
+                    self.flushAppearance()
+                    self.flushRenderCommand()
+                    self.flushAnchorCommand()
+                }
                 return
             }
 
             if message.name == "readerRenderComplete" {
                 DispatchQueue.main.async {
-                    self.parent.onRenderComplete()
+                    self.parent.onRenderComplete(message.body)
                 }
                 return
             }
@@ -90,7 +119,9 @@ struct ReaderWebView: UIViewRepresentable {
 
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
             isReaderReady = true
+            flushAppearance()
             flushRenderCommand()
+            flushAnchorCommand()
         }
 
         func flushRenderCommand() {
@@ -99,6 +130,26 @@ struct ReaderWebView: UIViewRepresentable {
                 return
             }
             sendRenderCommand(command, to: webView)
+        }
+
+        func flushAppearance() {
+            guard let appearance = pendingAppearance,
+                  let webView,
+                  appearance != lastAppliedAppearance else {
+                pendingAppearance = nil
+                return
+            }
+            sendAppearance(appearance, to: webView)
+        }
+
+        func flushAnchorCommand() {
+            guard let command = pendingAnchorCommand,
+                  let webView,
+                  command.id != lastAppliedAnchorCommandID else {
+                pendingAnchorCommand = nil
+                return
+            }
+            sendAnchorCommand(command, to: webView)
         }
 
         func sendRenderCommand(_ command: ReaderViewModel.ReaderRenderCommand, to webView: WKWebView) {
@@ -116,15 +167,65 @@ struct ReaderWebView: UIViewRepresentable {
                 }
                 pendingRenderCommand = nil
                 lastRenderedCommandID = command.id
+                lastAppliedAppearance = ReaderAppearancePayload(
+                    fontScale: command.fontScale,
+                    theme: command.theme,
+                    lineSpacing: command.lineSpacing,
+                    marginWidth: command.marginWidth
+                )
             } catch {
                 // non-fatal: command encoding is handled entirely locally
+            }
+        }
+
+        func sendAppearance(_ appearance: ReaderAppearancePayload, to webView: WKWebView) {
+            do {
+                let jsonData = try JSONEncoder().encode(appearance)
+                let jsonString = String(data: jsonData, encoding: .utf8) ?? "{}"
+                let script = """
+                window.ReaderBridge && window.ReaderBridge.updateAppearance(\(readerJavaScriptStringLiteral(jsonString)));
+                """
+                webView.evaluateJavaScript(script) { _, error in
+                    if let error {
+                        // Keep diagnostics available during local testing.
+                        _ = error
+                    }
+                }
+                pendingAppearance = nil
+                lastAppliedAppearance = appearance
+            } catch {
+                // non-fatal: appearance changes will be reflected by the next render
+            }
+        }
+
+        func sendAnchorCommand(_ command: ReaderViewModel.ReaderAnchorCommand, to webView: WKWebView) {
+            do {
+                let jsonData = try JSONEncoder().encode(command)
+                let jsonString = String(data: jsonData, encoding: .utf8) ?? "{}"
+                let script = """
+                window.ReaderBridge && window.ReaderBridge.setAnchor(\(readerJavaScriptStringLiteral(jsonString)));
+                """
+                webView.evaluateJavaScript(script) { _, error in
+                    if let error {
+                        // Keep diagnostics available during local testing.
+                        _ = error
+                    }
+                }
+                pendingAnchorCommand = nil
+                lastAppliedAnchorCommandID = command.id
+            } catch {
+                // non-fatal: anchor changes will be reflected by the next render
             }
         }
 
         func resetReaderState() {
             isReaderReady = false
             pendingRenderCommand = nil
+            pendingAppearance = nil
+            pendingAnchorCommand = nil
+            lastAppliedAppearance = nil
             lastRenderedCommandID = nil
+            lastAppliedAnchorCommandID = nil
         }
 
         deinit {
@@ -136,6 +237,13 @@ struct ReaderWebView: UIViewRepresentable {
             }
         }
     }
+}
+
+struct ReaderAppearancePayload: Codable, Equatable {
+    let fontScale: Double
+    let theme: ReaderTheme
+    let lineSpacing: ReaderLineSpacing
+    let marginWidth: ReaderMarginWidth
 }
 
 struct SearchSnippetPreview: UIViewRepresentable {

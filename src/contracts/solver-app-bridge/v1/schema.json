@@ -197,9 +197,125 @@
     },
     {
       "$ref": "#/$defs/rootsAndHitsF64ResponseEnvelope"
+    },
+    {
+      "$ref": "#/$defs/solverAppWorkerRequestMessage"
+    },
+    {
+      "$ref": "#/$defs/solverAppWorkerResponseMessage"
+    },
+    {
+      "$ref": "#/$defs/solverAppWorkerErrorMessage"
     }
   ],
   "$defs": {
+    "solverAppWorkerMethod": {
+      "type": "string",
+      "enum": [
+        "init",
+        "capabilities",
+        "planThreadingPolicy",
+        "prepareWorkPacketHeader",
+        "orderWorkPacketResults",
+        "mergeEmissionShellCandidatePacketResponsesF64",
+        "planPathHistoryWorkPackets",
+        "admitSimulationEnvelope",
+        "runSimulation",
+        "describeRun",
+        "describeStream",
+        "diagnosePrecisionF64",
+        "propagateErrorBudgetF64",
+        "checkRootHitInvariantsF64",
+        "classifyRootLedgerTransitionsF64",
+        "solveCausalRootsF64",
+        "solveCausalRootBatchF64",
+        "solveRootsAndHitsF64",
+        "buildRootLedgerDetailF64",
+        "computePhaseAtHitF64",
+        "summarizePhaseAtHitsF64",
+        "computeSharedGeometryF64",
+        "detectAssemblyMembershipEventsF64",
+        "buildSpaceTimeIndexF64",
+        "querySpaceTimeIndexF64",
+        "sampleLinearMotionF64",
+        "createPathHistoryStreamF64",
+        "planPathHistoryStorageLifecycleF64",
+        "queryEmissionShellCandidatesF64",
+        "queryEmissionShellCandidatePacketF64",
+        "queryEmissionShellCandidatePacketsF64",
+        "cancelRun",
+        "openStream",
+        "readStreamRange",
+        "closeRun",
+        "dispose"
+      ]
+    },
+    "solverAppWorkerRequestMessage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "type", "requestId", "method"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-worker/v1"
+        },
+        "type": {
+          "const": "request"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "method": {
+          "$ref": "#/$defs/solverAppWorkerMethod"
+        },
+        "request": true
+      }
+    },
+    "solverAppWorkerResponseMessage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "type", "requestId", "method", "response"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-worker/v1"
+        },
+        "type": {
+          "const": "response"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "method": {
+          "$ref": "#/$defs/solverAppWorkerMethod"
+        },
+        "response": true
+      }
+    },
+    "solverAppWorkerErrorMessage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "type", "requestId", "method", "status"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-worker/v1"
+        },
+        "type": {
+          "const": "error"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "method": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "$ref": "#/$defs/statusRecord"
+        }
+      }
+    },
     "initRequestEnvelope": {
       "type": "object",
       "additionalProperties": false,

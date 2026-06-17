@@ -221,6 +221,137 @@ export function createValidationReplayRunRequest(input) {
   });
 }
 
+export function createPathHistoryStreamRequest(input) {
+  requireObject(input, "path-history stream adapter input");
+  return {
+    runId: normalizeOptionalId(input.runId, undefined, "runId"),
+    datasetId: cloneOptionalString(input.datasetId, "datasetId"),
+    streamId: normalizeOptionalId(input.streamId, undefined, "streamId"),
+    pathRows: cloneRequiredArray(input.pathRows, "pathRows"),
+    rowsPerChunk: cloneOptionalPositiveInteger(input.rowsPerChunk, "rowsPerChunk"),
+    storagePolicy: normalizeStreamStoragePolicy(input.storagePolicy, input),
+    metadata: cloneOptionalObject(input.metadata, "metadata"),
+  };
+}
+
+export function createOpenStreamRequest(input) {
+  requireObject(input, "open stream adapter input");
+  return {
+    runId: cloneOptionalString(input.runId, "runId"),
+    datasetId: cloneOptionalString(input.datasetId, "datasetId"),
+    streamId: cloneOptionalString(input.streamId, "streamId"),
+    purpose: normalizeOptionalString(input.purpose, "playback", "purpose"),
+  };
+}
+
+export function createDescribeStreamRequest(input) {
+  requireObject(input, "describe stream adapter input");
+  return {
+    streamId: normalizeOptionalId(input.streamId, undefined, "streamId"),
+  };
+}
+
+export function createReadStreamRangeRequest(input) {
+  requireObject(input, "read stream range adapter input");
+  return {
+    streamId: normalizeOptionalId(input.streamId, undefined, "streamId"),
+    pathIds: cloneOptionalArray(input.pathIds, "pathIds"),
+    pathKeys: cloneOptionalArray(input.pathKeys, "pathKeys"),
+    timeRange: cloneOptionalRange(input.timeRange, "timeRange"),
+    frameRange: cloneOptionalRange(input.frameRange, "frameRange"),
+    byteRange: cloneOptionalRange(input.byteRange, "byteRange"),
+    eventKinds: cloneOptionalArray(input.eventKinds, "eventKinds"),
+    maxBytes: cloneOptionalPositiveInteger(input.maxBytes, "maxBytes"),
+  };
+}
+
+export function createPathHistoryStorageLifecycleRequest(input) {
+  requireObject(input, "path-history storage lifecycle adapter input");
+  return {
+    streamId: cloneOptionalString(input.streamId, "streamId"),
+    policy: cloneRequiredObject(input.policy, "policy"),
+    chunks: cloneOptionalArray(input.chunks, "chunks"),
+  };
+}
+
+export function createPathHistoryWorkPacketPlanRequest(input) {
+  requireObject(input, "path-history work-packet plan adapter input");
+  return {
+    streamId: normalizeOptionalId(input.streamId, undefined, "streamId"),
+    runId: normalizeOptionalId(input.runId, undefined, "runId"),
+    modelId: normalizeOptionalId(input.modelId, undefined, "modelId"),
+    precisionPath: normalizeConcretePrecisionPath(input.precisionPath ?? "event_root_focused"),
+    packetIdPrefix: cloneOptionalString(input.packetIdPrefix, "packetIdPrefix"),
+    timeRange: cloneOptionalRange(input.timeRange, "timeRange"),
+    expectedOutputs: cloneOptionalArray(input.expectedOutputs, "expectedOutputs"),
+    sourcePathKeys: cloneOptionalArray(input.sourcePathKeys, "sourcePathKeys"),
+    receiverPathKeys: cloneOptionalArray(input.receiverPathKeys, "receiverPathKeys"),
+    sourceChunkIndices: cloneOptionalArray(input.sourceChunkIndices, "sourceChunkIndices"),
+    receiverChunkIndices: cloneOptionalArray(input.receiverChunkIndices, "receiverChunkIndices"),
+    includeSameChunk: cloneOptionalBoolean(input.includeSameChunk, "includeSameChunk"),
+    maxPacketCount: cloneOptionalPositiveInteger(input.maxPacketCount, "maxPacketCount"),
+  };
+}
+
+export function createEmissionShellCandidateQueryRequest(input) {
+  requireObject(input, "emission-shell candidate query adapter input");
+  return {
+    streamId: normalizeOptionalId(input.streamId, undefined, "streamId"),
+    signalSpeed: requirePositiveFiniteNumber(input.signalSpeed, "signalSpeed"),
+    tolerance: cloneOptionalNonnegativeFiniteNumber(input.tolerance, "tolerance"),
+    maxCandidates: cloneOptionalPositiveInteger(input.maxCandidates, "maxCandidates"),
+    sourcePathKeys: cloneOptionalArray(input.sourcePathKeys, "sourcePathKeys"),
+    receiverPathKeys: cloneOptionalArray(input.receiverPathKeys, "receiverPathKeys"),
+    sourceChunkIndices: cloneOptionalArray(input.sourceChunkIndices, "sourceChunkIndices"),
+    receiverChunkIndices: cloneOptionalArray(input.receiverChunkIndices, "receiverChunkIndices"),
+    allowSamePath: cloneOptionalBoolean(input.allowSamePath, "allowSamePath"),
+    workerCount: cloneOptionalNonnegativeInteger(input.workerCount, "workerCount"),
+    timeRange: cloneOptionalRange(input.timeRange, "timeRange"),
+  };
+}
+
+export function createEmissionShellCandidatePacketQueryRequest(input) {
+  requireObject(input, "emission-shell candidate packet query adapter input");
+  return {
+    streamId: normalizeOptionalId(input.streamId, undefined, "streamId"),
+    packet: cloneRequiredObject(input.packet, "packet"),
+    signalSpeed: requirePositiveFiniteNumber(input.signalSpeed, "signalSpeed"),
+    tolerance: cloneOptionalNonnegativeFiniteNumber(input.tolerance, "tolerance"),
+    maxCandidates: cloneOptionalPositiveInteger(input.maxCandidates, "maxCandidates"),
+    sourcePathKeys: cloneOptionalArray(input.sourcePathKeys, "sourcePathKeys"),
+    receiverPathKeys: cloneOptionalArray(input.receiverPathKeys, "receiverPathKeys"),
+    allowSamePath: cloneOptionalBoolean(input.allowSamePath, "allowSamePath"),
+    workerCount: cloneOptionalNonnegativeInteger(input.workerCount, "workerCount"),
+    timeRange: cloneOptionalRange(input.timeRange, "timeRange"),
+  };
+}
+
+export function createEmissionShellCandidatePacketBatchQueryRequest(input) {
+  requireObject(input, "emission-shell candidate packet batch query adapter input");
+  return {
+    streamId: normalizeOptionalId(input.streamId, undefined, "streamId"),
+    packets: cloneRequiredArray(input.packets, "packets"),
+    signalSpeed: requirePositiveFiniteNumber(input.signalSpeed, "signalSpeed"),
+    tolerance: cloneOptionalNonnegativeFiniteNumber(input.tolerance, "tolerance"),
+    maxCandidatesPerPacket: cloneOptionalPositiveInteger(
+      input.maxCandidatesPerPacket,
+      "maxCandidatesPerPacket"
+    ),
+    sourcePathKeys: cloneOptionalArray(input.sourcePathKeys, "sourcePathKeys"),
+    receiverPathKeys: cloneOptionalArray(input.receiverPathKeys, "receiverPathKeys"),
+    allowSamePath: cloneOptionalBoolean(input.allowSamePath, "allowSamePath"),
+    workerCount: cloneOptionalNonnegativeInteger(input.workerCount, "workerCount"),
+    timeRange: cloneOptionalRange(input.timeRange, "timeRange"),
+  };
+}
+
+export function createEmissionShellCandidatePacketMergeRequest(input) {
+  requireObject(input, "emission-shell candidate packet merge adapter input");
+  return {
+    responses: copyRequiredArray(input.responses, "responses"),
+  };
+}
+
 function createDefaultPlaybackOutput(input) {
   const outputs = ["summary", "diagnostics"];
   if (Array.isArray(input.frames) && input.frames.length > 0) {
@@ -290,6 +421,13 @@ function cloneOptionalObject(value, label) {
   return cloneRequiredObject(value, label);
 }
 
+function cloneOptionalString(value, label) {
+  if (value == null) {
+    return undefined;
+  }
+  return normalizeOptionalString(value, undefined, label);
+}
+
 function cloneRequiredArray(value, label) {
   if (!Array.isArray(value)) {
     throw new TypeError(`${label} must be an array`);
@@ -302,6 +440,105 @@ function cloneOptionalArray(value, label) {
     return undefined;
   }
   return cloneRequiredArray(value, label);
+}
+
+function copyRequiredArray(value, label) {
+  if (!Array.isArray(value)) {
+    throw new TypeError(`${label} must be an array`);
+  }
+  return value.slice();
+}
+
+function cloneOptionalRange(value, label) {
+  if (value == null) {
+    return undefined;
+  }
+  requireObject(value, label);
+  requireFiniteNumber(value.start, `${label}.start`);
+  requireFiniteNumber(value.end, `${label}.end`);
+  if (value.end < value.start) {
+    throw new TypeError(`${label}.end must be greater than or equal to ${label}.start`);
+  }
+  return cloneJson(value);
+}
+
+function cloneOptionalBoolean(value, label) {
+  if (value == null) {
+    return undefined;
+  }
+  if (typeof value !== "boolean") {
+    throw new TypeError(`${label} must be a boolean`);
+  }
+  return value;
+}
+
+function cloneOptionalPositiveInteger(value, label) {
+  if (value == null) {
+    return undefined;
+  }
+  requirePositiveInteger(value, label);
+  return value;
+}
+
+function cloneOptionalNonnegativeInteger(value, label) {
+  if (value == null) {
+    return undefined;
+  }
+  if (!Number.isInteger(value) || value < 0) {
+    throw new TypeError(`${label} must be a nonnegative integer`);
+  }
+  return value;
+}
+
+function cloneOptionalNonnegativeFiniteNumber(value, label) {
+  if (value == null) {
+    return undefined;
+  }
+  requireFiniteNumber(value, label);
+  if (value < 0) {
+    throw new TypeError(`${label} must be nonnegative`);
+  }
+  return value;
+}
+
+function normalizeStreamStoragePolicy(storagePolicy, input) {
+  if (storagePolicy != null) {
+    return cloneRequiredObject(storagePolicy, "storagePolicy");
+  }
+  return {
+    target: DEFAULT_STREAM_TARGET,
+    durable: false,
+    maxBytes: input.memoryBudgetBytes ?? DEFAULT_MEMORY_BUDGET_BYTES,
+  };
+}
+
+function normalizeConcretePrecisionPath(value) {
+  const precisionPath = normalizeOptionalString(value, undefined, "precisionPath");
+  if (precisionPath === "auto") {
+    throw new TypeError("precisionPath must be concrete for work-packet planning");
+  }
+  return precisionPath;
+}
+
+function requirePositiveFiniteNumber(value, label) {
+  requireFiniteNumber(value, label);
+  if (value <= 0) {
+    throw new TypeError(`${label} must be greater than zero`);
+  }
+  return value;
+}
+
+function requireFiniteNumber(value, label) {
+  if (!Number.isFinite(value)) {
+    throw new TypeError(`${label} must be a finite number`);
+  }
+  return value;
+}
+
+function requirePositiveInteger(value, label) {
+  if (!Number.isInteger(value) || value <= 0) {
+    throw new TypeError(`${label} must be a positive integer`);
+  }
 }
 
 function requireObject(value, label) {

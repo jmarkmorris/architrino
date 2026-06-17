@@ -11,14 +11,32 @@ import {
   hasSolverCAbi,
 } from "../src/solver/app/SolverAppBridge.mjs";
 import {
+  SOLVER_APP_WORKER_PROTOCOL_VERSION,
+  collectTransferables,
+  createInProcessSolverAppWorkerClient,
+  createSolverAppWorkerHandler,
+  createSolverAppWorkerClient,
+  dispatchSolverAppWorkerMessage,
+} from "../src/solver/app/SolverAppWorkerBridge.mjs";
+import {
   SOLVER_APP_ADAPTERS_VERSION,
   createAnimatorAppPlaybackRunRequest,
   createAnimatorMotionSimulationRunRequest,
+  createDescribeStreamRequest,
+  createEmissionShellCandidatePacketBatchQueryRequest,
+  createEmissionShellCandidatePacketMergeRequest,
+  createEmissionShellCandidatePacketQueryRequest,
+  createEmissionShellCandidateQueryRequest,
   createIdealSwarmDelayedHitsRunRequest,
   createIdealSwarmSharedGeometryRunRequest,
+  createOpenStreamRequest,
   createPhotonCausalRootsRunRequest,
   createPhotonPhaseDiagnosticsRunRequest,
   createPathHistoryRunRequest,
+  createPathHistoryStorageLifecycleRequest,
+  createPathHistoryStreamRequest,
+  createPathHistoryWorkPacketPlanRequest,
+  createReadStreamRangeRequest,
   createValidationReplayRunRequest,
 } from "../src/solver/app/SolverAppAdapters.mjs";
 import { classifySolverBaselineResponse } from "../src/solver/app/SolverBaselineComparison.mjs";
@@ -320,6 +338,140 @@ assert(
   ),
   "expected packet-batch emission-shell broad-phase capability metadata"
 );
+const invalidWorkerResponse = await dispatchSolverAppWorkerMessage(
+  {},
+  {
+    schema: SOLVER_APP_WORKER_PROTOCOL_VERSION,
+    type: "request",
+    requestId: "invalid-worker-method",
+    method: "missingMethod",
+    request: {},
+  }
+);
+assert(
+  invalidWorkerResponse.type === "error" &&
+    invalidWorkerResponse.status.code === "app_contract_error",
+  "expected invalid worker method contract error"
+);
+const workerClient = createInProcessSolverAppWorkerClient({
+  createWasmModule,
+  locateFile: (fileName) => path.join(wasmDir, fileName),
+});
+const workerInitResponse = await workerClient.init({
+  appId: "photon",
+  apiVersion: SOLVER_APP_BRIDGE_API_VERSION,
+  requestedCapabilities: ["causalRoots", "delayedHits"],
+  storagePolicy: {
+    target: "caller-buffer",
+    durable: false,
+    maxBytes: 64 * 1024 * 1024,
+  },
+  threadingPolicy: {
+    mode: "single-thread",
+    deterministic: true,
+  },
+});
+assert(workerInitResponse.status.code === "ok", "expected worker init status ok");
+const workerCapabilities = await workerClient.capabilities();
+assert(
+  workerCapabilities.appBridge.workerModel.bridgeOwnsWasmLifecycle,
+  "expected worker bridge capabilities"
+);
+const workerRootResponse = await workerClient.solveCausalRootsF64(fixtureRequest.request);
+assert(
+  workerRootResponse.roots.length === 1 &&
+    workerRootResponse.roots[0].distance === 10,
+  "expected worker causal-root solve response"
+);
+const workerRootsAndHitsResponse = await workerClient.solveRootsAndHitsF64(fixtureRequest.request);
+assert(
+  workerRootsAndHitsResponse.streams.length === 1 &&
+    workerRootsAndHitsResponse.buffers[0].buffer instanceof ArrayBuffer,
+  "expected worker roots/hits dense response"
+);
+const workerStreamRead = await workerClient.readStreamRange({
+  streamId: "causal-root-transient",
+  timeRange: { start: 10, end: 10 },
+  maxBytes: 240,
+});
+assert(
+  workerStreamRead.status.code === "ok" &&
+    workerStreamRead.buffers.length === 2 &&
+    workerStreamRead.buffers[0].buffer instanceof ArrayBuffer,
+  "expected worker stream readback"
+);
+const workerCancelStatus = await workerClient.cancelRun({
+  runId: "worker-smoke",
+  reason: "worker smoke complete",
+});
+assert(workerCancelStatus.code === "cancelled", "expected worker cancellation status");
+await workerClient.dispose();
+let disposedWorkerRejected = false;
+try {
+  await workerClient.capabilities();
+} catch (error) {
+  disposedWorkerRejected =
+    error instanceof SolverBridgeError && error.status.code === "app_contract_error";
+}
+assert(disposedWorkerRejected, "expected disposed worker client rejection");
+const transferProbe = new ArrayBuffer(8);
+assert(
+  collectTransferables({
+    buffers: [transferProbe, new Uint8Array(transferProbe)],
+  }).length === 1,
+  "expected transferable collection to deduplicate shared buffers"
+);
+const loopbackWorker = createLoopbackSolverWorker({
+  createWasmModule,
+  locateFile: (fileName) => path.join(wasmDir, fileName),
+});
+const transportWorkerClient = createSolverAppWorkerClient(loopbackWorker, {
+  requestIdPrefix: "transport-worker",
+  requestTimeoutMs: 10000,
+  terminateOnDispose: true,
+});
+const transportWorkerInitResponse = await transportWorkerClient.init({
+  appId: "photon",
+  apiVersion: SOLVER_APP_BRIDGE_API_VERSION,
+  requestedCapabilities: ["causalRoots", "delayedHits"],
+  storagePolicy: {
+    target: "caller-buffer",
+    durable: false,
+    maxBytes: 64 * 1024 * 1024,
+  },
+  threadingPolicy: {
+    mode: "single-thread",
+    deterministic: true,
+  },
+});
+assert(transportWorkerInitResponse.status.code === "ok", "expected transport worker init status ok");
+const transportWorkerRootsAndHits = await transportWorkerClient.solveRootsAndHitsF64(fixtureRequest.request);
+assert(
+  transportWorkerRootsAndHits.buffers[0].buffer instanceof ArrayBuffer &&
+    loopbackWorker.responseTransferCounts.some((count) => count >= 2),
+  "expected transport worker dense response and transfer list"
+);
+const transportWorkerRead = await transportWorkerClient.readStreamRange({
+  streamId: "causal-root-transient",
+  timeRange: { start: 10, end: 10 },
+  maxBytes: 240,
+});
+assert(
+  transportWorkerRead.status.code === "ok" &&
+    transportWorkerRead.buffers.length === 2 &&
+    loopbackWorker.responseTransferCounts.at(-1) >= 2,
+  "expected transport worker stream readback with transfer list"
+);
+await transportWorkerClient.dispose();
+assert(loopbackWorker.terminated, "expected transport worker termination after dispose");
+let transportDisposedRejected = false;
+try {
+  await transportWorkerClient.capabilities();
+} catch (error) {
+  transportDisposedRejected =
+    error instanceof SolverBridgeError && error.status.code === "app_contract_error";
+}
+assert(transportDisposedRejected, "expected disposed transport worker client rejection");
 const singleThreadPlan = await client.planThreadingPolicy({
   policy: { mode: "single-thread", deterministic: true },
   workload: {
@@ -885,11 +1037,13 @@ assert(
     rootsAndHitsResponse.streams[0].availableRanges.length === 2,
   "expected transient stream descriptor"
 );
-const streamHandle = await client.openStream({
-  runId: "smoke",
-  streamId: "causal-root-transient",
-  purpose: "diagnostics",
-});
+const streamHandle = await client.openStream(
+  createOpenStreamRequest({
+    runId: "smoke",
+    streamId: "causal-root-transient",
+    purpose: "diagnostics",
+  })
+);
 assert(streamHandle.streamId === "causal-root-transient", "expected opened transient stream id");
 assert(
   streamHandle.readableLayouts.includes("root_ledger.v1") &&
@@ -897,20 +1051,24 @@ assert(
   "expected stream readable layouts"
 );
 assert(streamHandle.availableRanges.length === 2, "expected opened stream ranges");
-const streamRead = await client.readStreamRange({
-  streamId: "causal-root-transient",
-  timeRange: { start: 10, end: 10 },
-  maxBytes: 240,
-});
+const streamRead = await client.readStreamRange(
+  createReadStreamRangeRequest({
+    streamId: "causal-root-transient",
+    timeRange: { start: 10, end: 10 },
+    maxBytes: 240,
+  })
+);
 assert(streamRead.status.code === "ok", "expected stream range read status ok");
 assert(streamRead.buffers.length === 2, "expected both transient stream buffers");
 assert(streamRead.buffers[0].buffer.byteLength === 112, "expected root stream payload");
 assert(streamRead.buffers[1].buffer.byteLength === 128, "expected delayed-hit stream payload");
 assertReadbackChecksums(streamRead, "transient stream read");
-const delayedHitOnlyRead = await client.readStreamRange({
-  streamId: "causal-root-transient",
-  byteRange: { start: 112, end: 240 },
-});
+const delayedHitOnlyRead = await client.readStreamRange(
+  createReadStreamRangeRequest({
+    streamId: "causal-root-transient",
+    byteRange: { start: 112, end: 240 },
+  })
+);
 assert(delayedHitOnlyRead.buffers.length === 1, "expected one byte-range-selected stream buffer");
 assert(
   delayedHitOnlyRead.buffers[0].layout === "delayed_hit_events.v1" &&
@@ -930,35 +1088,37 @@ try {
     error instanceof SolverBridgeError && error.status.code === "stream_memory_pressure";
 }
 assert(streamPressureRejected, "expected stream maxBytes pressure rejection");
-const pathHistoryStream = await client.createPathHistoryStreamF64({
-  runId: "smoke-path-history-run",
-  datasetId: "smoke-path-history-dataset",
-  streamId: "smoke-path-history",
-  pathRows: makePathHistoryRows(),
-  rowsPerChunk: 1,
-  storagePolicy: {
-    target: "caller-buffer",
-    durable: false,
-    maxBytes: 1024,
-  },
-  metadata: {
-    precisionPath: "scaled_f64_strict",
-    units: "solver-si",
-    coordinateFrame: "absolute-lab-frame",
-    scaleNormalization: "unit-test-scale",
-    interpolationRule: "linear-segment",
-    provenance: {
-      fixture: "path-history-smoke",
+const pathHistoryStream = await client.createPathHistoryStreamF64(
+  createPathHistoryStreamRequest({
+    runId: "smoke-path-history-run",
+    datasetId: "smoke-path-history-dataset",
+    streamId: "smoke-path-history",
+    pathRows: makePathHistoryRows(),
+    rowsPerChunk: 1,
+    storagePolicy: {
+      target: "caller-buffer",
+      durable: false,
+      maxBytes: 1024,
     },
-    diagnostics: [
-      {
-        code: "ok",
-        severity: "ok",
-        message: "path history fixture accepted",
+    metadata: {
+      precisionPath: "scaled_f64_strict",
+      units: "solver-si",
+      coordinateFrame: "absolute-lab-frame",
+      scaleNormalization: "unit-test-scale",
+      interpolationRule: "linear-segment",
+      provenance: {
+        fixture: "path-history-smoke",
       },
-    ],
-  },
-});
+      diagnostics: [
+        {
+          code: "ok",
+          severity: "ok",
+          message: "path history fixture accepted",
+        },
+      ],
+    },
+  })
+);
 assert(pathHistoryStream.schema === "solver-path-history-stream.v1", "expected path-history stream schema");
 assert(pathHistoryStream.status.code === "ok", "expected path-history stream status ok");
 assert(pathHistoryStream.summary.rowCount === 3, "expected path-history row count");
@@ -975,13 +1135,17 @@ assert(pathHistoryStream.buffers.length === 3, "expected path-history buffer des
 assert(pathHistoryStream.buffers[0].layout === "path_segment.v1", "expected path-history layout");
 assert(pathHistoryStream.buffers[0].checksum.length === 16, "expected path-history buffer checksum");
 assert(!("buffer" in pathHistoryStream.buffers[0]), "expected path-history response to omit dense payloads");
-const pathHistoryHandle = await client.openStream({
-  runId: "smoke-path-history-run",
-  streamId: "smoke-path-history",
-  purpose: "playback",
-});
+const pathHistoryHandle = await client.openStream(
+  createOpenStreamRequest({
+    runId: "smoke-path-history-run",
+    streamId: "smoke-path-history",
+    purpose: "playback",
+  })
+);
 assert(pathHistoryHandle.readableLayouts.includes("path_segment.v1"), "expected path-history readable layout");
-const pathHistoryDescription = await client.describeStream({ streamId: "smoke-path-history" });
+const pathHistoryDescription = await client.describeStream(
+  createDescribeStreamRequest({ streamId: "smoke-path-history" })
+);
 assert(pathHistoryDescription.schema === "solver-stream-description.v1", "expected stream description schema");
 assert(pathHistoryDescription.status.code === "ok", "expected stream description status ok");
 assert(
@@ -1000,10 +1164,12 @@ assert(
     pathHistoryDescription.index.pathIndexRows[1].byteRange.start === 96,
   "expected path-history index row byte range"
 );
-const pathHistoryFrameRead = await client.readStreamRange({
-  streamId: "smoke-path-history",
-  frameRange: { start: 1, end: 1 },
-});
+const pathHistoryFrameRead = await client.readStreamRange(
+  createReadStreamRangeRequest({
+    streamId: "smoke-path-history",
+    frameRange: { start: 1, end: 1 },
+  })
+);
 assert(pathHistoryFrameRead.status.code === "ok", "expected path-history frame read status ok");
 assert(pathHistoryFrameRead.buffers.length === 1, "expected one selected path-history chunk");
 assert(pathHistoryFrameRead.buffers[0].rowCount === 1, "expected one selected path-history row");
@@ -1016,13 +1182,15 @@ assert(
 const pathHistoryView = new DataView(pathHistoryFrameRead.buffers[0].buffer);
 assert(Number(pathHistoryView.getBigUint64(0, true)) === 2001, "expected path-history path key readback");
 assert(pathHistoryView.getFloat64(16, true) === 1, "expected path-history start time readback");
-const pathHistoryLifecyclePlan = await client.planPathHistoryStorageLifecycleF64({
-  streamId: "smoke-path-history",
-  policy: {
-    activeWindow: { start: 0.5, end: 1.5 },
-    deepIndexEnabled: true,
-  },
-});
+const pathHistoryLifecyclePlan = await client.planPathHistoryStorageLifecycleF64(
+  createPathHistoryStorageLifecycleRequest({
+    streamId: "smoke-path-history",
+    policy: {
+      activeWindow: { start: 0.5, end: 1.5 },
+      deepIndexEnabled: true,
+    },
+  })
+);
 assert(
   pathHistoryLifecyclePlan.schema === "solver-path-history-storage-lifecycle.v1",
   "expected path-history lifecycle schema"
@@ -1041,48 +1209,50 @@ assert(
     pathHistoryLifecyclePlan.decisions[2].safeToAgeOut === false,
   "expected pinned path-history chunk to block aging"
 );
-const explicitLifecyclePlan = await client.planPathHistoryStorageLifecycleF64({
-  policy: {
-    activeWindow: { start: 0, end: 1 },
-    deepIndexEnabled: true,
-  },
-  chunks: [
-    {
-      chunkIndex: 0,
-      pathKeyStart: 3000,
-      pathKeyEnd: 3000,
-      rowOffset: 0,
-      rowCount: 1,
-      timeRange: { start: 0, end: 1 },
-      frameRange: { start: 0, end: 0 },
-      byteRange: { start: 0, end: 96 },
-      checksum64: "1",
+const explicitLifecyclePlan = await client.planPathHistoryStorageLifecycleF64(
+  createPathHistoryStorageLifecycleRequest({
+    policy: {
+      activeWindow: { start: 0, end: 1 },
+      deepIndexEnabled: true,
     },
-    {
-      chunkIndex: 1,
-      pathKeyStart: 3001,
-      pathKeyEnd: 3001,
-      rowOffset: 1,
-      rowCount: 1,
-      timeRange: { start: 2, end: 3 },
-      frameRange: { start: 1, end: 1 },
-      byteRange: { start: 96, end: 192 },
-      checksum64: "2",
-    },
-    {
-      chunkIndex: 2,
-      pathKeyStart: 3002,
-      pathKeyEnd: 3002,
-      rowOffset: 2,
-      rowCount: 1,
-      timeRange: { start: 3, end: 4 },
-      frameRange: { start: 2, end: 2 },
-      byteRange: { start: 192, end: 288 },
-      checksum64: "3",
-      stateFlags: 2,
-    },
-  ],
-});
+    chunks: [
+      {
+        chunkIndex: 0,
+        pathKeyStart: 3000,
+        pathKeyEnd: 3000,
+        rowOffset: 0,
+        rowCount: 1,
+        timeRange: { start: 0, end: 1 },
+        frameRange: { start: 0, end: 0 },
+        byteRange: { start: 0, end: 96 },
+        checksum64: "1",
+      },
+      {
+        chunkIndex: 1,
+        pathKeyStart: 3001,
+        pathKeyEnd: 3001,
+        rowOffset: 1,
+        rowCount: 1,
+        timeRange: { start: 2, end: 3 },
+        frameRange: { start: 1, end: 1 },
+        byteRange: { start: 96, end: 192 },
+        checksum64: "2",
+      },
+      {
+        chunkIndex: 2,
+        pathKeyStart: 3002,
+        pathKeyEnd: 3002,
+        rowOffset: 2,
+        rowCount: 1,
+        timeRange: { start: 3, end: 4 },
+        frameRange: { start: 2, end: 2 },
+        byteRange: { start: 192, end: 288 },
+        checksum64: "3",
+        stateFlags: 2,
+      },
+    ],
+  })
+);
 assert(explicitLifecyclePlan.decisions[1].action === "build_deep_index", "expected deep-index build action");
 assert(
   explicitLifecyclePlan.decisions[1].requiresDeepIndex &&
@@ -1094,16 +1264,18 @@ assert(
     explicitLifecyclePlan.decisions[2].reason === "deep_index_already_built",
   "expected deep-indexed chunk to archive cold"
 );
-const pathHistoryPacketPlan = await client.planPathHistoryWorkPackets({
-  streamId: "smoke-path-history",
-  runId: "smoke-path-history-packet-run",
-  modelId: "aaa.central-solver",
-  precisionPath: "event_root_focused",
-  packetIdPrefix: "smoke-path-history-packet",
-  sourceChunkIndices: [0, 1],
-  receiverChunkIndices: [1, 2],
-  includeSameChunk: false,
-});
+const pathHistoryPacketPlan = await client.planPathHistoryWorkPackets(
+  createPathHistoryWorkPacketPlanRequest({
+    streamId: "smoke-path-history",
+    runId: "smoke-path-history-packet-run",
+    modelId: "aaa.central-solver",
+    precisionPath: "event_root_focused",
+    packetIdPrefix: "smoke-path-history-packet",
+    sourceChunkIndices: [0, 1],
+    receiverChunkIndices: [1, 2],
+    includeSameChunk: false,
+  })
+);
 assert(
   pathHistoryPacketPlan.schema === "solver-path-history-work-packet-plan.v1",
   "expected path-history work-packet plan schema"
@@ -1139,16 +1311,18 @@ assert(
   orderedPlannedPackets.results[0].packetId === pathHistoryPacketPlan.packets[0].packetId,
   "expected planned packets to sort by deterministic merge order"
 );
-const pathKeyFilteredPacketPlan = await client.planPathHistoryWorkPackets({
-  streamId: "smoke-path-history",
-  runId: "smoke-path-history-packet-run-path-keys",
-  modelId: "aaa.central-solver",
-  precisionPath: "event_root_focused",
-  packetIdPrefix: "smoke-path-history-path-key-packet",
-  sourcePathKeys: [2000],
-  receiverPathKeys: [2001],
-  includeSameChunk: false,
-});
+const pathKeyFilteredPacketPlan = await client.planPathHistoryWorkPackets(
+  createPathHistoryWorkPacketPlanRequest({
+    streamId: "smoke-path-history",
+    runId: "smoke-path-history-packet-run-path-keys",
+    modelId: "aaa.central-solver",
+    precisionPath: "event_root_focused",
+    packetIdPrefix: "smoke-path-history-path-key-packet",
+    sourcePathKeys: [2000],
+    receiverPathKeys: [2001],
+    includeSameChunk: false,
+  })
+);
 assert(pathKeyFilteredPacketPlan.status.code === "ok", "expected path-key packet plan status ok");
 assert(pathKeyFilteredPacketPlan.sourceChunkCount === 2, "expected path-key source chunks");
 assert(pathKeyFilteredPacketPlan.receiverChunkCount === 1, "expected path-key receiver chunks");
@@ -1156,31 +1330,35 @@ assert(pathKeyFilteredPacketPlan.sourcePathPrunedChunkCount === 1, "expected sou
 assert(pathKeyFilteredPacketPlan.receiverPathPrunedChunkCount === 2, "expected receiver path-pruned chunks");
 assert(pathKeyFilteredPacketPlan.chunkPairCount === 2, "expected path-key chunk pairs");
 assert(pathKeyFilteredPacketPlan.packetCount === 2, "expected path-key packet count");
-const truncatedPathHistoryPacketPlan = await client.planPathHistoryWorkPackets({
-  streamId: "smoke-path-history",
-  runId: "smoke-path-history-packet-run-truncated",
-  modelId: "aaa.central-solver",
-  precisionPath: "event_root_focused",
-  sourceChunkIndices: [0, 1],
-  receiverChunkIndices: [1, 2],
-  maxPacketCount: 2,
-});
+const truncatedPathHistoryPacketPlan = await client.planPathHistoryWorkPackets(
+  createPathHistoryWorkPacketPlanRequest({
+    streamId: "smoke-path-history",
+    runId: "smoke-path-history-packet-run-truncated",
+    modelId: "aaa.central-solver",
+    precisionPath: "event_root_focused",
+    sourceChunkIndices: [0, 1],
+    receiverChunkIndices: [1, 2],
+    maxPacketCount: 2,
+  })
+);
 assert(
   truncatedPathHistoryPacketPlan.status.code === "stream_memory_pressure" &&
     truncatedPathHistoryPacketPlan.chunkPairCount === 4 &&
     truncatedPathHistoryPacketPlan.packetCount === 2,
   "expected truncated path-history work-packet plan"
 );
-const packetScopedEmissionShellCandidates = await client.queryEmissionShellCandidatesF64({
-  streamId: "smoke-path-history",
-  sourcePathKeys: [2000],
-  receiverPathKeys: [2001],
-  sourceChunkIndices: [0],
-  receiverChunkIndices: [1],
-  signalSpeed: 1,
-  tolerance: 1e-12,
-  workerCount: 2,
-});
+const packetScopedEmissionShellCandidates = await client.queryEmissionShellCandidatesF64(
+  createEmissionShellCandidateQueryRequest({
+    streamId: "smoke-path-history",
+    sourcePathKeys: [2000],
+    receiverPathKeys: [2001],
+    sourceChunkIndices: [0],
+    receiverChunkIndices: [1],
+    signalSpeed: 1,
+    tolerance: 1e-12,
+    workerCount: 2,
+  })
+);
 assert(
   packetScopedEmissionShellCandidates.status.code === "ok",
   "expected packet-scoped emission-shell status ok"
@@ -1218,15 +1396,17 @@ assertEmissionShellScanSummary(packetScopedEmissionShellCandidates.scanSummary, 
   requestedWorkerCount: 2,
   plannedWorkerCount: 1,
 });
-const packetQueryEmissionShellCandidates = await client.queryEmissionShellCandidatePacketF64({
-  streamId: "smoke-path-history",
-  packet: pathHistoryPacketPlan.packets[0],
-  sourcePathKeys: [2000],
-  receiverPathKeys: [2001],
-  signalSpeed: 1,
-  tolerance: 1e-12,
-  workerCount: 2,
-});
+const packetQueryEmissionShellCandidates = await client.queryEmissionShellCandidatePacketF64(
+  createEmissionShellCandidatePacketQueryRequest({
+    streamId: "smoke-path-history",
+    packet: pathHistoryPacketPlan.packets[0],
+    sourcePathKeys: [2000],
+    receiverPathKeys: [2001],
+    signalSpeed: 1,
+    tolerance: 1e-12,
+    workerCount: 2,
+  })
+);
 assert(
   packetQueryEmissionShellCandidates.packetId === pathHistoryPacketPlan.packets[0].packetId &&
     packetQueryEmissionShellCandidates.packetMergeOrder === pathHistoryPacketPlan.packets[0].mergeOrder &&
@@ -1263,15 +1443,17 @@ assertEmissionShellScanSummary(packetQueryEmissionShellCandidates.scanSummary, {
   requestedWorkerCount: 2,
   plannedWorkerCount: 1,
 });
-const packetQueryEmissionShellEmpty = await client.queryEmissionShellCandidatePacketF64({
-  streamId: "smoke-path-history",
-  packet: pathHistoryPacketPlan.packets[1],
-  sourcePathKeys: [2000],
-  receiverPathKeys: [2001],
-  signalSpeed: 1,
-  tolerance: 1e-12,
-  workerCount: 2,
-});
+const packetQueryEmissionShellEmpty = await client.queryEmissionShellCandidatePacketF64(
+  createEmissionShellCandidatePacketQueryRequest({
+    streamId: "smoke-path-history",
+    packet: pathHistoryPacketPlan.packets[1],
+    sourcePathKeys: [2000],
+    receiverPathKeys: [2001],
+    signalSpeed: 1,
+    tolerance: 1e-12,
+    workerCount: 2,
+  })
+);
 assert(
   packetQueryEmissionShellEmpty.packetId === pathHistoryPacketPlan.packets[1].packetId &&
     packetQueryEmissionShellEmpty.status.code === "ok" &&
@@ -1279,9 +1461,11 @@ assert(
   "expected empty packet query emission-shell response"
 );
 assertEmissionShellPacketResult(packetQueryEmissionShellEmpty, pathHistoryPacketPlan.packets[1]);
-const mergedPacketEmissionShellCandidates = await client.mergeEmissionShellCandidatePacketResponsesF64({
-  responses: [packetQueryEmissionShellEmpty, packetQueryEmissionShellCandidates],
-});
+const mergedPacketEmissionShellCandidates = await client.mergeEmissionShellCandidatePacketResponsesF64(
+  createEmissionShellCandidatePacketMergeRequest({
+    responses: [packetQueryEmissionShellEmpty, packetQueryEmissionShellCandidates],
+  })
+);
 assert(
   mergedPacketEmissionShellCandidates.status.code === "ok" &&
     mergedPacketEmissionShellCandidates.pairCount === 1 &&
@@ -1298,6 +1482,10 @@ assert(
     `${pathHistoryPacketPlan.packets[0].packetId},${pathHistoryPacketPlan.packets[1].packetId}`,
   "expected merged packet emission-shell ordered result refs"
 );
+assertMergedEmissionShellPacketResults(mergedPacketEmissionShellCandidates, [
+  pathHistoryPacketPlan.packets[0],
+  pathHistoryPacketPlan.packets[1],
+]);
 assertEmissionShellScanSummary(
   mergedPacketEmissionShellCandidates.scanSummary,
   {
@@ -1325,15 +1513,17 @@ assertEmissionShellScanSummary(
   },
   "packet_merge"
 );
-const batchPacketEmissionShellCandidates = await client.queryEmissionShellCandidatePacketsF64({
-  streamId: "smoke-path-history",
-  packets: [pathHistoryPacketPlan.packets[1], pathHistoryPacketPlan.packets[0]],
-  sourcePathKeys: [2000],
-  receiverPathKeys: [2001],
-  signalSpeed: 1,
-  tolerance: 1e-12,
-  workerCount: 2,
-});
+const batchPacketEmissionShellCandidates = await client.queryEmissionShellCandidatePacketsF64(
+  createEmissionShellCandidatePacketBatchQueryRequest({
+    streamId: "smoke-path-history",
+    packets: [pathHistoryPacketPlan.packets[1], pathHistoryPacketPlan.packets[0]],
+    sourcePathKeys: [2000],
+    receiverPathKeys: [2001],
+    signalSpeed: 1,
+    tolerance: 1e-12,
+    workerCount: 2,
+  })
+);
 assert(
   batchPacketEmissionShellCandidates.status.code === "ok" &&
     batchPacketEmissionShellCandidates.pairCount === 1 &&
@@ -1350,6 +1540,10 @@ assert(
     `${pathHistoryPacketPlan.packets[0].packetId},${pathHistoryPacketPlan.packets[1].packetId}`,
   "expected packet-batch emission-shell ordered result refs"
 );
+assertMergedEmissionShellPacketResults(batchPacketEmissionShellCandidates, [
+  pathHistoryPacketPlan.packets[0],
+  pathHistoryPacketPlan.packets[1],
+]);
 assertEmissionShellScanSummary(
   batchPacketEmissionShellCandidates.scanSummary,
   {
@@ -2429,6 +2623,42 @@ function assertEmissionShellScanSummary(summary, expected, executionPath = "nati
   }
 }
 
+function createLoopbackSolverWorker(options) {
+  const handler = createSolverAppWorkerHandler(options);
+  const listeners = new Set();
+  return {
+    requestTransferCounts: [],
+    responseTransferCounts: [],
+    terminated: false,
+    postMessage(message, transferables = []) {
+      this.requestTransferCounts.push(transferables.length);
+      setTimeout(async () => {
+        const response = await handler.handleMessage(message);
+        const responseTransferables = collectTransferables(response);
+        this.responseTransferCounts.push(responseTransferables.length);
+        for (const listener of Array.from(listeners)) {
+          listener({ data: response });
+        }
+      }, 0);
+    },
+    addEventListener(type, listener) {
+      if (type === "message") {
+        listeners.add(listener);
+      }
+    },
+    removeEventListener(type, listener) {
+      if (type === "message") {
+        listeners.delete(listener);
+      }
+    },
+    terminate() {
+      this.terminated = true;
+      listeners.clear();
+      void handler.dispose();
+    },
+  };
+}
+
 function assertEmissionShellPacketResult(response, packet) {
   assert(
     response.packetResult.packetId === packet.packetId &&
@@ -2448,6 +2678,33 @@ function assertEmissionShellPacketResult(response, packet) {
     assert(output.rowCount === buffer.rowCount, "expected packet output ref row count to match response buffer");
     assert(output.checksum === fnv1a64ArrayBufferHex(buffer.buffer), "expected packet output checksum");
   });
+}
+
+function assertMergedEmissionShellPacketResults(response, packets) {
+  assert(response.packetResults.length === packets.length, "expected merged packet result count");
+  const candidateBuffer = findBuffer(response, "emission_shell_candidate.v1");
+  const narrowPhaseBuffer = findBuffer(response, "emission_shell_narrow_phase.v1");
+  let candidateRowOffset = 0;
+  let narrowPhaseRowOffset = 0;
+  response.packetResults.forEach((result, index) => {
+    const packet = packets[index];
+    assert(
+      result.packetId === packet.packetId &&
+        result.mergeOrder === packet.mergeOrder &&
+        result.mergeKey === packet.mergeKey,
+      "expected merged packet result metadata to match packet"
+    );
+    const candidateOutput = result.outputs.find((output) => output.layout === "emission_shell_candidate.v1");
+    const narrowPhaseOutput = result.outputs.find((output) => output.layout === "emission_shell_narrow_phase.v1");
+    assert(candidateOutput.bufferId === candidateBuffer.bufferId, "expected merged candidate output buffer id");
+    assert(narrowPhaseOutput.bufferId === narrowPhaseBuffer.bufferId, "expected merged narrow-phase output buffer id");
+    assert(candidateOutput.rowOffset === candidateRowOffset, "expected merged candidate output row offset");
+    assert(narrowPhaseOutput.rowOffset === narrowPhaseRowOffset, "expected merged narrow-phase output row offset");
+    candidateRowOffset += candidateOutput.rowCount;
+    narrowPhaseRowOffset += narrowPhaseOutput.rowCount;
+  });
+  assert(candidateRowOffset === candidateBuffer.rowCount, "expected merged candidate row span coverage");
+  assert(narrowPhaseRowOffset === narrowPhaseBuffer.rowCount, "expected merged narrow-phase row span coverage");
 }
 
 function assertDeepEqual(actual, expected, message) {

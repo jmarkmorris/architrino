@@ -18,8 +18,10 @@ final class ReaderViewModel: ObservableObject {
     @Published var isSearchPresented: Bool = false
     @Published var isBookmarksPresented: Bool = false
     @Published var renderCommand: ReaderRenderCommand?
+    @Published var anchorCommand: ReaderAnchorCommand?
     @Published var bootstrapContext: ReaderBootstrapContext?
     @Published var readerNotice: String?
+    @Published var isRendering: Bool = false
     @Published private(set) var restoredReadingState: Bool = false
 
     private let loader = ReaderTextbookLoader()
@@ -35,6 +37,7 @@ final class ReaderViewModel: ObservableObject {
     private let webappTOCKinds: Set<String> = ["diagram", "markdown-tree", "markdown-split"]
 
     private var markdownCache: [String: String] = [:]
+    private var activeRenderCommandId: UUID?
 
     struct ReaderRenderCommand: Identifiable, Codable {
         let id: UUID
@@ -49,6 +52,11 @@ final class ReaderViewModel: ObservableObject {
         let lineSpacing: ReaderLineSpacing
         let marginWidth: ReaderMarginWidth
         let bootstrapContext: ReaderBootstrapContext
+    }
+
+    struct ReaderAnchorCommand: Identifiable, Codable {
+        let id: UUID
+        let anchor: String?
     }
 
     struct ReaderWebLinkPayload: Equatable {
@@ -122,7 +130,10 @@ final class ReaderViewModel: ObservableObject {
             isReady = false
             package = nil
             renderCommand = nil
+            anchorCommand = nil
             bootstrapContext = nil
+            isRendering = false
+            activeRenderCommandId = nil
             restoredReadingState = false
         }
     }
@@ -225,25 +236,21 @@ final class ReaderViewModel: ObservableObject {
         let clamped = max(0.85, min(1.45, value))
         fontScale = clamped
         defaults.set(clamped, forKey: fontScaleKey)
-        emitRenderCommand()
     }
 
     func setTheme(_ value: ReaderTheme) {
         theme = value
         defaults.set(value.rawValue, forKey: themeKey)
-        emitRenderCommand()
     }
 
     func setLineSpacing(_ value: ReaderLineSpacing) {
         lineSpacing = value
         defaults.set(value.rawValue, forKey: lineSpacingKey)
-        emitRenderCommand()
     }
 
     func setMarginWidth(_ value: ReaderMarginWidth) {
         marginWidth = value
         defaults.set(value.rawValue, forKey: marginWidthKey)
-        emitRenderCommand()
     }
 
     func resetReaderAppearance() {
@@ -255,7 +262,6 @@ final class ReaderViewModel: ObservableObject {
         defaults.set(theme.rawValue, forKey: themeKey)
         defaults.set(lineSpacing.rawValue, forKey: lineSpacingKey)
         defaults.set(marginWidth.rawValue, forKey: marginWidthKey)
-        emitRenderCommand()
     }
 
     func increaseFont() {
@@ -387,7 +393,6 @@ final class ReaderViewModel: ObservableObject {
 
         if payload.kind == "anchor" || payload.type == "anchor" {
             currentAnchor = payload.anchor
-            emitRenderCommand()
             saveReadingState()
             return nil
         }
@@ -422,6 +427,17 @@ final class ReaderViewModel: ObservableObject {
         return nil
     }
 
+    func markRenderComplete(message: Any?) {
+        if let message,
+           let commandId = renderCommandId(from: message),
+           let activeRenderCommandId,
+           commandId != activeRenderCommandId {
+            return
+        }
+        isRendering = false
+        activeRenderCommandId = nil
+    }
+
     func hasAnyContent() -> Bool {
         !(package?.manifest.chapters.isEmpty ?? true)
     }
@@ -431,8 +447,14 @@ final class ReaderViewModel: ObservableObject {
             return
         }
         readerNotice = nil
+        let isSameDocument = currentChapterId == id && renderCommand != nil
         currentAnchor = anchor
         currentChapterId = id
+        if isSameDocument {
+            anchorCommand = ReaderAnchorCommand(id: UUID(), anchor: anchor)
+            saveReadingState()
+            return
+        }
         emitRenderCommand()
         saveReadingState()
     }
@@ -443,6 +465,9 @@ final class ReaderViewModel: ObservableObject {
               let document = readerDocument(by: chapterId),
               let bootstrapContext else {
             renderCommand = nil
+            anchorCommand = nil
+            isRendering = false
+            activeRenderCommandId = nil
             return
         }
 
@@ -458,8 +483,12 @@ final class ReaderViewModel: ObservableObject {
             )
         }
 
+        let commandId = UUID()
+        activeRenderCommandId = commandId
+        isRendering = true
+        anchorCommand = nil
         renderCommand = ReaderRenderCommand(
-            id: UUID(),
+            id: commandId,
             chapterId: document.id,
             chapterTitle: document.title,
             sourcePath: document.sourcePath,
@@ -472,6 +501,18 @@ final class ReaderViewModel: ObservableObject {
             marginWidth: marginWidth,
             bootstrapContext: bootstrapContext
         )
+    }
+
+    private func renderCommandId(from message: Any) -> UUID? {
+        if let dictionary = message as? [String: Any],
+           let id = dictionary["commandId"] as? String {
+            return UUID(uuidString: id)
+        }
+        if let dictionary = message as? [String: String],
+           let id = dictionary["commandId"] {
+            return UUID(uuidString: id)
+        }
+        return nil
     }
 
     private func buildBootstrapContext() {

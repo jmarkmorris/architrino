@@ -36,6 +36,7 @@ recovered, but it cannot tell the program what the world is made of.
 
 For an inherited concept $C$, the comparison is disciplined only when the
 corpus can state a transfer record
+
 $$
 \mathcal{T}_{\mathrm{inherit}}(C)
 =
@@ -67,6 +68,7 @@ keep ontology, effective description, and inference separated while the theory
 is being built.
 
 A typical residual has the schematic form
+
 $$
 \mathcal{R}_C(\theta)
 =
@@ -75,6 +77,7 @@ B_C\!\left(\Pi_C^{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta)\right),
 B_C^{\mathrm{obs}}
 \right)
 $$
+
 where $\theta$ is the candidate $\mathbb{A}\mathbb{A}\mathbb{A}$ branch record,
 $d_C$ is the comparison metric appropriate to the inherited concept, and
 $B_C^{\mathrm{obs}}$ is the validated observer-level benchmark.
@@ -165,11 +168,14 @@ does not by itself relieve the burden of deriving or certifying the Master EOM.
 The $1/r$ item therefore belongs below the accepted acceleration law in the
 trust gradient. In a stationary emitter calibration, the path-history potential
 may take the familiar form
+
 $$
 \phi(r,t)=\frac{q_0}{4\pi r}
 $$
+
 and taking a spatial gradient connects that amplitude to inverse-square force
 scaling. In the full delayed dynamics, however, the accepted branch law remains
+
 $$
 \frac{d^2 \mathbf{x}_i}{dt^2}
 =
@@ -184,6 +190,50 @@ because its variation leaves a receiver-side constraint residual on generic
 branches unless a stationarity condition or invariant counterterm closes the
 Euler derivative. That failure does not demote the Master EOM. It demotes the
 claim that the scalar $1/r$ scaffold alone explains the Master EOM.
+
+### Reliance-Risk Rating
+
+Risk here means the risk of relying on the formula as foundational before its
+scope, proof status, and failure mode are controlled. It is not a measure of
+importance. A formula can be central and still carry high reliance risk because
+the branch, convergence, regularization, or recovery burden is heavy.
+
+Risk scores:
+
+- 1: low risk; mostly definitional or purely formal.
+- 2: controlled risk; explicit postulate or convention with clear boundaries.
+- 3: medium risk; usable, but easy to overextend into a stronger claim.
+- 4: high risk; requires branch, regularization, or recovery discipline before
+  broad use.
+- 5: very high risk; should not be treated as foundational without a narrow
+  certificate or separate proof.
+
+| Formula family | Risk score | Main reliance risk | Required discipline |
+| --- | --- | --- | --- |
+| Product background | 2 | It is an explicit ontology postulate with total-theory consequences if effective relativistic recovery fails | Keep curvature, expansion, and Lorentz behavior at the recovered-effect layer |
+| Substrate clock and Euclidean metric | 2 | The formulas are stable substrate data, but overuse can turn observer proper time or effective metric behavior into background structure | Keep $dt$ and $h_{ij}$ separate from $\tau$ and $g_{\mu\nu}^{\text{eff}}$ |
+| Worldline kinematics | 2 | The definitions are direct, but smoothness assumptions can exceed the branch or mollified regime | State regularity, impulse, and mollification assumptions before differentiating freely |
+| Complete state and path history | 4 | The object is necessary but large; omitting path-history or branch data makes the state falsely Markovian | Specify retained history, provenance ledger, Noether sea sample, and branch chart |
+| Polarity and sign bookkeeping | 3 | Polarity is native, but electric charge, $\epsilon=|e|/6$, and gauge labels are not fully derived here | Treat charge labels as observer bookkeeping until assembly closure supplies the map |
+| Causal wake support | 3 | The equality surface can be misread as a filled cone, light cone, or effective metric primitive | Keep support on causal wake surfaces and distinguish $c_f$ from observer-channel speeds |
+| Causal-root set | 4 | Root existence is exact but branch completeness, multiplicity, and fold handling are hard | Record active roots, inactive gaps, memory depth, and branch-chart boundaries |
+| Causal surface density | 4 | The $1/r^2$ surface law can be mistaken for a permanent filled field and does not by itself solve convergence in large populations | Use it as distributional wake support with normalization, screening, or cancellation conditions |
+| Heaviside endpoint rule | 2 | Endpoint exclusion is clear, but regulator choices can reintroduce ambiguous self-contact behavior | Keep $H(0)=0$ and match any mollified endpoint convention to the same branch packet |
+| Root Jacobian and transversality | 4 | The Jacobian is essential and easy to misread as speed weighting; small denominators mark branch failure, not ordinary force amplification | Use $\lvert J_{ij}\rvert^{-1}$ only with transversality floors, caustic routing, and root diagnostics |
+| Per-hit acceleration | 4 | This is the accepted native law, but relying on it globally without branch certification overclaims exact closure | Attach use to certified causal roots, Jacobian floors, endpoint rules, and regularization status |
+| Total acceleration | 5 | The branch sum can hide missing roots, divergent far populations, or unproved infinite-system convergence | Declare finite horizons, summation prescriptions, cancellation estimates, or convergence proof targets |
+| Superposition | 4 | Linear source addition is native on a branch chart, but far-field accumulation and incoherent cancellation are nontrivial | Pair superposition with convergence, screening, finite-window, or mean-field controls |
+| Regularized wake surface | 4 | A regulator can stabilize calculations while changing the branch behavior being claimed | State $\eta$, any core scale, refinement behavior, and whether the claim is finite-regulator only |
+| Potential reconstruction | 4 | Potential notation can smuggle in static-field ontology or source-position-only dependence | Treat $\Phi_{\text{net}}$ and $U$ as fixed-history diagnostics unless a stronger action proof is supplied |
+| Gradient force identity | 4 | The identity is conditional and can incorrectly replace the receiver-local Master EOM | Use only on mollified, fixed-history channels with declared normalization |
+| Work and kinetic bookkeeping | 4 | Primitive mass and quadratic kinetic energy are not native; energy bookkeeping depends on the chosen kinetic proxy and wake term | Declare $K$, $\mu_K$, or $\mu_{\text{arch}}$ and keep observer mass as an assembly-level recovery |
+| $1/r$ potential/action scaffold | 5 | It is useful for calibration and variational scaffolding, but the scalar scaffold alone does not generically derive the Master EOM | Treat it as conditional until the receiver-side residual, counterterm, or stationarity condition closes |
+
+The highest-risk rows are not rejected. They are the rows where the formula is
+too valuable to use casually. The correct response is narrower authority:
+branch certificates for root formulas, convergence controls for sums,
+finite-regulator labels for regularized claims, and explicit diagnostic status
+for potential and action scaffolds.
 
 ## Regime And Scale Chart
 
@@ -275,6 +325,7 @@ window $W$. Let $\mathcal{A}_W$ be the assembly family sampled by that window,
 and let $\mathcal{P}_{\mathcal{Q},W}$ be the declared projection that keeps only
 the observables $\mathcal{Q}$ relevant to the inherited comparison. A bulk
 variable has the schematic form
+
 $$
 Y_{\mathcal{Q},W}(t)
 =
@@ -284,17 +335,21 @@ Y_{\mathcal{Q},W}(t)
 \rho_{\text{NS}}(\mathbf{x},t)
 \right),
 $$
+
 where $\rho_{\text{NS}}$ is the Noether sea state sampled by the same window.
 In residuals below, $\Gamma(t)$ abbreviates the full sampled collection of
 assembly states, path histories, and Noether sea state.
 
 A proposed bulk equation
+
 $$
 \dot{Y}_{\mathcal{Q},W}
 =
 F_{\mathrm{bulk}}\!\left(Y_{\mathcal{Q},W}\right)
 $$
+
 is credible only as a bulk equation until its projection residual is controlled:
+
 $$
 \mathcal{R}_{\mathrm{bulk}}
 =
@@ -307,6 +362,7 @@ $$
 
 It becomes credible as an individual-assembly guide only after a separate
 assembly-level residual is controlled:
+
 $$
 \mathcal{R}_{\mathrm{assembly}}
 =
@@ -317,6 +373,7 @@ $$
 \Pi_A^{\mathrm{bulk}}\!\left(Y_{\mathcal{Q},W}(t)\right)
 \right\|_A.
 $$
+
 Here $\varphi_t$ is the native evolution of the assembly record, $\Pi_A$ is the
 assembly-level observable projection, and $\Pi_A^{\mathrm{bulk}}$ is the
 individual-assembly value inferred from the bulk equation. If

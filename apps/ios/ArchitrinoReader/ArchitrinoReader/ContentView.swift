@@ -10,7 +10,6 @@ struct ContentView: View {
     @State private var showAbout = false
     @State private var showReaderSettings = false
     @State private var didPresentInitialToc = false
-    @State private var dismissTOCAfterRender = false
 
     private var isRegularWidth: Bool {
         horizontalSizeClass == .regular
@@ -34,13 +33,6 @@ struct ContentView: View {
                 tocSidebar
                     .navigationTitle("Table of Contents")
                     .navigationBarTitleDisplayMode(.inline)
-                    .toolbar {
-                        ToolbarItem(placement: .cancellationAction) {
-                            Button("Done") {
-                                dismissTOCImmediately()
-                            }
-                        }
-                    }
             }
             .background(viewModel.theme.readerBackgroundColor.ignoresSafeArea())
         }
@@ -90,17 +82,28 @@ struct ContentView: View {
                     }
                     .padding()
                 } else if viewModel.renderCommand != nil {
-                    ReaderWebView(
-                        renderCommand: $viewModel.renderCommand,
-                        onLinkTap: { payload in
-                            if let url = viewModel.handleWebLink(message: payload) {
-                                openURL(url)
+                    ZStack {
+                        ReaderWebView(
+                            renderCommand: $viewModel.renderCommand,
+                            anchorCommand: $viewModel.anchorCommand,
+                            fontScale: viewModel.fontScale,
+                            theme: viewModel.theme,
+                            lineSpacing: viewModel.lineSpacing,
+                            marginWidth: viewModel.marginWidth,
+                            onLinkTap: { payload in
+                                if let url = viewModel.handleWebLink(message: payload) {
+                                    openURL(url)
+                                }
+                            },
+                            onRenderComplete: { payload in
+                                viewModel.markRenderComplete(message: payload)
                             }
-                        },
-                        onRenderComplete: {
-                            handleReaderRenderComplete()
+                        )
+
+                        if viewModel.isRendering {
+                            readerRenderOverlay
                         }
-                    )
+                    }
                     .background(viewModel.theme.readerBackgroundColor)
                 } else {
                     VStack {
@@ -180,6 +183,15 @@ struct ContentView: View {
                 }
             }
         }
+    }
+
+    private var readerRenderOverlay: some View {
+        ZStack {
+            viewModel.theme.readerBackgroundColor
+            ProgressView()
+                .tint(viewModel.theme.readerPrimaryTextColor)
+        }
+        .ignoresSafeArea(edges: .top)
     }
 
     private var tocSidebar: some View {
@@ -293,20 +305,13 @@ struct ContentView: View {
     private func navigateFromTOC(_ action: () -> Void) {
         tocNotice = nil
         viewModel.readerNotice = nil
-        if !isRegularWidth && showToc {
-            dismissTOCAfterRender = true
-        }
         action()
+        if !isRegularWidth && showToc {
+            dismissTOCImmediately()
+        }
     }
 
     private func dismissTOCImmediately() {
-        dismissTOCAfterRender = false
-        showToc = false
-    }
-
-    private func handleReaderRenderComplete() {
-        guard dismissTOCAfterRender else { return }
-        dismissTOCAfterRender = false
         showToc = false
     }
 
@@ -494,8 +499,8 @@ struct ContentView: View {
             showReaderSettings = true
         } label: {
             HStack(spacing: 4) {
-                Text("Aa")
-                    .font(.system(size: 16, weight: .semibold))
+                Image(systemName: "gearshape")
+                    .font(.system(size: 17, weight: .semibold))
                 Circle()
                     .fill(viewModel.theme.swatchColor)
                     .overlay(
@@ -620,7 +625,7 @@ private extension ReaderTheme {
     var readerControlBarBackgroundColor: Color {
         switch self {
         case .architrinoPurple:
-            return Color(red: 232 / 255, green: 220 / 255, blue: 255 / 255)
+            return Color(red: 216 / 255, green: 196 / 255, blue: 255 / 255)
         case .light:
             return Color(.systemBackground)
         case .warm:
