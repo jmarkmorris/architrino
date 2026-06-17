@@ -16,6 +16,7 @@ export function classifySolverBaselineResponse(options = {}) {
 
   compareArrayLengths(differences, "roots", baseline.roots, candidate.roots);
   compareArrayLengths(differences, "hits", baseline.hits, candidate.hits);
+  compareArrayLengths(differences, "rootLedgerDetails", baseline.rootLedgerDetails, candidate.rootLedgerDetails);
   compareArrayLengths(differences, "frames", baseline.frames, candidate.frames);
   compareArrayLengths(differences, "phaseRows", baseline.phaseRows, candidate.phaseRows);
   compareArrayLengths(differences, "buffers", baseline.buffers, candidate.buffers);
@@ -25,6 +26,7 @@ export function classifySolverBaselineResponse(options = {}) {
 
   compareValue(differences, "roots", baseline.roots, candidate.roots);
   compareValue(differences, "hits", baseline.hits, candidate.hits);
+  compareValue(differences, "rootLedgerDetails", baseline.rootLedgerDetails, candidate.rootLedgerDetails);
   compareValue(differences, "frames", baseline.frames, candidate.frames);
   compareValue(differences, "phaseRows", baseline.phaseRows, candidate.phaseRows);
   compareValue(differences, "phaseSummary", baseline.phaseSummary, candidate.phaseSummary);

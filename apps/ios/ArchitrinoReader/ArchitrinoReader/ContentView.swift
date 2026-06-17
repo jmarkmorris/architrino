@@ -38,7 +38,11 @@ struct ContentView: View {
             BookmarksSheet(viewModel: viewModel)
         }
         .sheet(isPresented: $showAbout) {
-            AboutSheet(packageVersion: viewModel.packageVersionLabel, theme: viewModel.theme)
+            AboutSheet(
+                packageVersion: viewModel.packageVersionLabel,
+                packageDate: viewModel.packageDateLabel,
+                theme: viewModel.theme
+            )
         }
         .sheet(isPresented: $showReaderSettings) {
             ReaderSettingsSheet(viewModel: viewModel)
@@ -1177,6 +1181,7 @@ private struct BookmarkRow: View {
 
 private struct AboutSheet: View {
     let packageVersion: String
+    let packageDate: String
     let theme: ReaderTheme
 
     @Environment(\.dismiss) private var dismiss
@@ -1191,15 +1196,31 @@ private struct AboutSheet: View {
 
                 List {
                     Section {
-                        VStack(alignment: .leading, spacing: 8) {
-                            Text("Architrino Assembly Architecture Textbook")
+                        VStack(alignment: .leading, spacing: 12) {
+                            Text("Architrino Assembly Architecture")
                                 .font(.headline)
                                 .foregroundStyle(theme.readerPrimaryTextColor)
-                            Text("Reader for the bundled textbook package.")
-                                .font(.subheadline)
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.72)
+                                .accessibilityAddTraits(.isHeader)
+
+                            Text("Architrino Assembly Architecture (AAA) begins from a deliberately spare ontology: point-like architrinos moving through a three-dimensional Euclidean void in absolute time, exchanging influence through causal wakes, and assembling into the structures we observe.")
+                                .font(.body)
+                                .foregroundStyle(theme.readerSecondaryTextColor)
+
+                            Text("The goal of the theory is to provide a common foundation for general relativity and quantum theory. Instead of starting with separate primitives for spacetime, particles, fields, and measurement, AAA asks how much can be recovered from one underlying causal layer and the bookkeeping of its wakes.")
+                                .font(.body)
+                                .foregroundStyle(theme.readerSecondaryTextColor)
+
+                            Text("This textbook is an invitation into that architecture. Its promise is parsimony: fewer starting assumptions, clearer causal accounting, and a path from substrate events to effective physical law.")
+                                .font(.body)
+                                .foregroundStyle(theme.readerSecondaryTextColor)
+
+                            Text("The textbook is in active development at the GitHub repository linked below.")
+                                .font(.body)
                                 .foregroundStyle(theme.readerSecondaryTextColor)
                         }
-                        .padding(.vertical, 4)
+                        .padding(.vertical, 6)
                     }
                     .listRowBackground(theme.readerSearchResultBackgroundColor)
 
@@ -1227,13 +1248,21 @@ private struct AboutSheet: View {
                             Text(packageVersion)
                                 .foregroundStyle(theme.readerSecondaryTextColor)
                         }
+
+                        HStack {
+                            Text("Package date")
+                                .foregroundStyle(theme.readerPrimaryTextColor)
+                            Spacer()
+                            Text(packageDate)
+                                .foregroundStyle(theme.readerSecondaryTextColor)
+                        }
                     }
                     .listRowBackground(theme.readerSearchResultBackgroundColor)
                 }
                 .scrollContentBackground(.hidden)
                 .background(theme.readerBackgroundColor.ignoresSafeArea())
             }
-            .navigationTitle("About")
+            .navigationTitle("About the Textbook")
             .navigationBarTitleDisplayMode(.inline)
             .toolbarBackground(theme.readerBackgroundColor, for: .navigationBar)
             .toolbarBackground(.visible, for: .navigationBar)

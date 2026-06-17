@@ -1,6 +1,7 @@
 #include "architrino/solver/PathHistoryStream.hpp"
 
 #include <algorithm>
+#include <cmath>
 #include <fstream>
 #include <iomanip>
 #include <limits>
@@ -119,6 +120,24 @@ std::string hex_u64(std::uint64_t value) {
   return output.str();
 }
 
+bool finite_vector(const architrino::solver::Vector3& vector) {
+  return std::isfinite(vector.x) && std::isfinite(vector.y) && std::isfinite(vector.z);
+}
+
+void validate_path_history_segment(const architrino::solver::LinearPathSegment& segment) {
+  if (!std::isfinite(segment.startTime) || !std::isfinite(segment.endTime) ||
+      !finite_vector(segment.positionAtStart) || !finite_vector(segment.velocity) ||
+      !std::isfinite(segment.errorBound)) {
+    throw std::invalid_argument("path-history segment numeric fields must be finite");
+  }
+  if (segment.endTime < segment.startTime) {
+    throw std::invalid_argument("path-history segment end time must be greater than or equal to start time");
+  }
+  if (segment.errorBound < 0.0) {
+    throw std::invalid_argument("path-history segment error bound must be nonnegative");
+  }
+}
+
 template <typename Row>
 std::vector<Row> read_rows(std::string_view path,
                            std::uint64_t rowOffset,
@@ -184,6 +203,7 @@ PathHistoryRowF64 make_path_history_row(const LinearPathSegment& segment,
                                         std::uint64_t pathKey,
                                         std::uint64_t segmentIndex,
                                         std::uint32_t stateFlags) {
+  validate_path_history_segment(segment);
   return PathHistoryRowF64{
       pathKey,
       segmentIndex,

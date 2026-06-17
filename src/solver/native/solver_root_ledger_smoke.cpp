@@ -4,11 +4,23 @@
 
 #include <cmath>
 #include <iostream>
+#include <vector>
 
 namespace {
 
 bool nearly_equal(double left, double right, double tolerance = 1e-10) {
   return std::abs(left - right) <= tolerance;
+}
+
+bool has_entry_kind(const std::vector<architrino::solver::RootLedgerDetailRowF64>& rows,
+                    architrino::solver::RootLedgerEntryKind kind) {
+  const std::uint32_t encoded = static_cast<std::uint32_t>(kind);
+  for (const architrino::solver::RootLedgerDetailRowF64& row : rows) {
+    if (row.entryKind == encoded) {
+      return true;
+    }
+  }
+  return false;
 }
 
 architrino::solver::CausalRootRequest make_request() {
@@ -127,14 +139,16 @@ int main() {
       nearly_equal(ledger[0].hitTime, 10.0) &&
       nearly_equal(ledger[0].delay, 10.0) &&
       nearly_equal(ledger[0].jacobian, 1.0) &&
+      has_entry_kind(ledger, architrino::solver::RootLedgerEntryKind::TailBoundary) &&
       noRoots.validation.ok &&
-      noRootLedger.size() == 1 &&
+      noRootLedger.size() == 2 &&
       noRootLedger[0].entryKind ==
           static_cast<std::uint32_t>(architrino::solver::RootLedgerEntryKind::InactiveGap) &&
       noRootLedger[0].statusCode ==
           static_cast<std::uint32_t>(architrino::solver::StatusCode::RootNotBracketed) &&
       nearly_equal(noRootLedger[0].intervalStart, 6.0) &&
       nearly_equal(noRootLedger[0].intervalEnd, 10.0) &&
+      has_entry_kind(noRootLedger, architrino::solver::RootLedgerEntryKind::TailBoundary) &&
       !invalidRoots.validation.ok &&
       !failureLedger.empty() &&
       failureLedger[0].entryKind ==
@@ -142,6 +156,7 @@ int main() {
       failureLedger[0].statusCode ==
           static_cast<std::uint32_t>(architrino::solver::StatusCode::InsufficientHistoryDepth) &&
       (failureLedger[0].stateFlags & architrino::solver::kRootLedgerFirstFailureFlag) != 0 &&
+      has_entry_kind(failureLedger, architrino::solver::RootLedgerEntryKind::TailBoundary) &&
       abiInfo.root_ledger_detail_row_f64_bytes == 192 &&
       abiStatus == 0 &&
       abiRowCount == static_cast<int>(ledger.size()) &&

@@ -123,6 +123,28 @@ final class ReaderViewModel: ObservableObject {
         }
     }
 
+    private static func packageDateLabel(from generatedAt: String) -> String {
+        guard let date = packageDateParser.date(from: generatedAt) else {
+            return generatedAt
+        }
+        return packageDateFormatter.string(from: date)
+    }
+
+    private static let packageDateParser: ISO8601DateFormatter = {
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+        return formatter
+    }()
+
+    private static let packageDateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .none
+        return formatter
+    }()
+
     func load() async {
         do {
             isReady = false
@@ -204,6 +226,13 @@ final class ReaderViewModel: ObservableObject {
 
     var packageVersionLabel: String {
         package?.manifest.packageVersion ?? "unavailable"
+    }
+
+    var packageDateLabel: String {
+        guard let generatedAt = package?.manifest.generatedAt else {
+            return "unavailable"
+        }
+        return Self.packageDateLabel(from: generatedAt)
     }
 
     var canOpenGlossary: Bool {

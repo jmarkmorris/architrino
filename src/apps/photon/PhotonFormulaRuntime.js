@@ -310,7 +310,7 @@ export function createPhotonCircularSourceCausalRootRequest(
     TWO_PI *
     (Number(layer.frequencyHz) || 0);
 
-  return {
+  const request = {
     source: {
       startTime: sourceStartTime,
       endTime: sourceEndTime,
@@ -342,6 +342,27 @@ export function createPhotonCircularSourceCausalRootRequest(
     scanSubdivisions,
     maxRoots: normalizePositiveSolverInteger(options.maxRoots, Math.max(16, scanSubdivisions + 1)),
   };
+  if (typeof options.streamId === "string" && options.streamId.length > 0) {
+    request.streamId = options.streamId;
+  }
+  return request;
+}
+
+export async function solvePhotonCircularSourceRootsHitsLedgerWithSolverBridge(
+  state,
+  sourceRef,
+  observationTime,
+  options = {}
+) {
+  const request = options.request ??
+    createPhotonCircularSourceCausalRootRequest(state, sourceRef, observationTime, options);
+  const response = typeof options.solveCircularSourceRootsHitsLedger === "function"
+    ? await options.solveCircularSourceRootsHitsLedger(request)
+    : await runPhotonCircularSourceSolverBridgeClient(options.solverClient, request);
+  return {
+    solverEngineId: PHOTON_SOLVER_BRIDGE_ENGINE_ID,
+    ...response,
+  };
 }
 
 export async function solvePhotonCircularSourceCausalRootsWithSolverBridge(
@@ -350,11 +371,12 @@ export async function solvePhotonCircularSourceCausalRootsWithSolverBridge(
   observationTime,
   options = {}
 ) {
-  const request = options.request ??
-    createPhotonCircularSourceCausalRootRequest(state, sourceRef, observationTime, options);
-  const response = typeof options.solveCircularSourceCausalRoots === "function"
-    ? await options.solveCircularSourceCausalRoots(request)
-    : await runPhotonCircularSourceSolverBridgeClient(options.solverClient, request);
+  const response = await solvePhotonCircularSourceRootsHitsLedgerWithSolverBridge(
+    state,
+    sourceRef,
+    observationTime,
+    options
+  );
   return Array.isArray(response?.roots) ? response.roots : [];
 }
 
@@ -378,10 +400,10 @@ async function runPhotonSolverBridgeClient(client, runRequest) {
 }
 
 async function runPhotonCircularSourceSolverBridgeClient(client, request) {
-  if (!client || typeof client.solveCircularSourceCausalRootsF64 !== "function") {
-    throw new Error("Photon circular-source solver bridge request requires a solver client or solveCircularSourceCausalRoots option.");
+  if (!client || typeof client.solveCircularSourceRootsHitsLedgerF64 !== "function") {
+    throw new Error("Photon circular-source solver bridge request requires a solver client or solveCircularSourceRootsHitsLedger option.");
   }
-  return client.solveCircularSourceCausalRootsF64(request);
+  return client.solveCircularSourceRootsHitsLedgerF64(request);
 }
 
 function createDefaultPhotonCausalRootsModel() {

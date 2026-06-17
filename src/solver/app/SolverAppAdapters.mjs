@@ -104,7 +104,9 @@ export function createIdealSwarmDelayedHitsRunRequest(input) {
     configVersion: input.configVersion ?? "ideal-swarm-delayed-hits-adapter.v1",
     config: {
       appId: "ideal-swarm",
-      ...cloneRootRequestConfig(input, "ideal swarm delayed-hit adapter input"),
+      ...cloneRootRequestConfig(input, "ideal swarm delayed-hit adapter input", {
+        allowCircularSource: true,
+      }),
     },
   });
 }
@@ -493,16 +495,29 @@ function cloneRootRequestConfig(input, label, options = {}) {
   const hasRootRequest = input.rootRequest != null;
   const hasNormalizedRootRequest = input.normalizedRootRequest != null;
   const hasCircularSourceRootRequest = input.circularSourceRootRequest != null;
+  const hasNormalizedCircularSourceRootRequest = input.normalizedCircularSourceRootRequest != null;
   const requestCount = Number(hasRootRequest) +
     Number(hasNormalizedRootRequest) +
-    Number(hasCircularSourceRootRequest);
-  if (requestCount !== 1 || (hasCircularSourceRootRequest && !options.allowCircularSource)) {
+    Number(hasCircularSourceRootRequest) +
+    Number(hasNormalizedCircularSourceRootRequest);
+  const hasUnsupportedCircularSource =
+    (hasCircularSourceRootRequest || hasNormalizedCircularSourceRootRequest) &&
+    !options.allowCircularSource;
+  if (requestCount !== 1 || hasUnsupportedCircularSource) {
     const allowed = options.allowCircularSource
-      ? "rootRequest, normalizedRootRequest, or circularSourceRootRequest"
+      ? "rootRequest, normalizedRootRequest, circularSourceRootRequest, or normalizedCircularSourceRootRequest"
       : "rootRequest or normalizedRootRequest";
     throw new TypeError(
       `${label} must include exactly one of ${allowed}`
     );
+  }
+  if (hasNormalizedCircularSourceRootRequest) {
+    return {
+      normalizedCircularSourceRootRequest: cloneRequiredObject(
+        input.normalizedCircularSourceRootRequest,
+        "normalizedCircularSourceRootRequest"
+      ),
+    };
   }
   if (hasCircularSourceRootRequest) {
     return {

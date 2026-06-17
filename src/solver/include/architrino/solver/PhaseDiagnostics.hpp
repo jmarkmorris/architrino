@@ -13,6 +13,17 @@ struct PhaseClock {
   double phaseOffset = 0.0;
 };
 
+struct PhaseAtHitMetadata {
+  std::uint32_t rootKind = 0;
+  std::uint32_t sourceLayerCode = 0;
+  std::uint32_t receiverLayerCode = 0;
+  std::uint32_t sourceRoleCode = 0;
+  std::uint32_t receiverRoleCode = 0;
+  int sourceChargeSign = 0;
+  int receiverChargeSign = 0;
+  std::uint32_t stateFlags = 0;
+};
+
 struct PhaseAtHit {
   int rootId = 0;
   StatusCode statusCode = StatusCode::Ok;
@@ -24,6 +35,7 @@ struct PhaseAtHit {
   double receiverPhase = 0.0;
   double phaseDelta = 0.0;
   double phaseSpread = 0.0;
+  PhaseAtHitMetadata metadata;
 };
 
 struct PhaseAtHitResult {
@@ -33,6 +45,7 @@ struct PhaseAtHitResult {
 
 PhaseAtHitResult compute_phase_at_hits(const std::vector<CausalRoot>& roots,
                                        PhaseClock sourceClock,
-                                       PhaseClock receiverClock);
+                                       PhaseClock receiverClock,
+                                       const std::vector<PhaseAtHitMetadata>& metadata = {});
 
 }  // namespace architrino::solver

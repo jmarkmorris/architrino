@@ -270,7 +270,15 @@ std::vector<RootLedgerDetailRowF64> build_root_ledger_detail(
                                   code == StatusCode::Ok ? StatusCode::RootNotBracketed : code,
                                   searchStart,
                                   searchEnd));
+    ++sequenceIndex;
   }
+
+  rows.push_back(make_empty_row(request,
+                                RootLedgerEntryKind::TailBoundary,
+                                sequenceIndex++,
+                                StatusCode::Ok,
+                                searchStart,
+                                searchStart));
 
   std::stable_sort(rows.begin(), rows.end(), [](const RootLedgerDetailRowF64& left,
                                                 const RootLedgerDetailRowF64& right) {

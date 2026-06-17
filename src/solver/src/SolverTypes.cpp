@@ -229,6 +229,8 @@ std::string_view to_string(AdmissionStressDimension value) {
       return "interaction_graph";
     case AdmissionStressDimension::Memory:
       return "memory";
+    case AdmissionStressDimension::Storage:
+      return "storage";
     case AdmissionStressDimension::TimeSteps:
       return "time_steps";
     case AdmissionStressDimension::OutputDetail:

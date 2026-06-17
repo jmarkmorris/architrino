@@ -209,10 +209,91 @@ struct ArchitrinoSolverErrorBudgetSummaryF64 {
   double cumulative_budget_ratio;
 };
 
+struct ArchitrinoSolverModelContract {
+  std::uint32_t model_id_present;
+  std::uint32_t equation_version_present;
+  std::uint32_t force_law_version_present;
+  std::uint32_t constants_hash_present;
+  std::uint32_t causal_speed_policy_present;
+  std::uint32_t branch_policy_present;
+  std::uint32_t unit_convention_present;
+  std::uint32_t compatible_precision_path_mask;
+};
+
+struct ArchitrinoSolverSimulationEnvelopeF64 {
+  std::uint64_t entity_count;
+  std::uint64_t assembly_count;
+  std::uint64_t memory_budget_bytes;
+  std::uint64_t storage_budget_bytes;
+  double time_start;
+  double time_end;
+  double time_step_hint;
+  double time_resolution_hint;
+  int interaction_policy;
+  int expected_branch_complexity;
+  int output_detail;
+  int latency_target;
+  int simplification_policy;
+  int time_units;
+};
+
+struct ArchitrinoSolverCapabilityEnvelopeF64 {
+  std::uint64_t max_interactive_entities;
+  std::uint64_t max_batch_entities;
+  std::uint64_t min_memory_budget_bytes;
+  std::uint64_t min_storage_budget_bytes_for_streaming;
+  double minimum_positive_tolerance;
+  double max_interactive_step_count;
+};
+
+struct ArchitrinoSolverAdmissionStressSummaryF64 {
+  std::uint64_t entity_count;
+  std::uint64_t estimated_pair_count;
+  double entity_pressure;
+  double interaction_pressure;
+  double memory_pressure;
+  double storage_pressure;
+  double time_step_count_estimate;
+  double time_step_pressure;
+  double output_pressure;
+  double precision_pressure;
+  double pressure_score;
+  int has_time_step_count_estimate;
+  int dominant_stress;
+};
+
+struct ArchitrinoSolverStatusRow {
+  int status_code;
+  int status_severity;
+  int recoverable;
+  int stage;
+  int message_id;
+  int reserved0;
+};
+
+struct ArchitrinoSolverAdmissionReportF64 {
+  int decision;
+  int selected_precision_path;
+  int admitted;
+  int validation_ok;
+  ArchitrinoSolverAdmissionStressSummaryF64 stress_summary;
+};
+
 struct ArchitrinoSolverPhaseClockF64 {
   double period;
   double epoch;
   double phase_offset;
+};
+
+struct ArchitrinoSolverPhaseAtHitMetadataF64 {
+  std::uint32_t root_kind;
+  std::uint32_t source_layer_code;
+  std::uint32_t receiver_layer_code;
+  std::uint32_t source_role_code;
+  std::uint32_t receiver_role_code;
+  int source_charge_sign;
+  int receiver_charge_sign;
+  std::uint32_t state_flags;
 };
 
 struct ArchitrinoSolverPhaseAtHitRowF64 {
@@ -226,6 +307,14 @@ struct ArchitrinoSolverPhaseAtHitRowF64 {
   double receiver_phase;
   double phase_delta;
   double phase_spread;
+  std::uint32_t root_kind;
+  std::uint32_t source_layer_code;
+  std::uint32_t receiver_layer_code;
+  std::uint32_t source_role_code;
+  std::uint32_t receiver_role_code;
+  int source_charge_sign;
+  int receiver_charge_sign;
+  std::uint32_t state_flags;
 };
 
 struct ArchitrinoSolverMotionSampleRequestF64 {
@@ -694,10 +783,26 @@ struct ArchitrinoSolverAbiInfo {
   int motion_integration_request_f64_bytes;
   int circular_path_segment_f64_bytes;
   int circular_source_root_request_f64_bytes;
+  int model_contract_bytes;
+  int simulation_envelope_f64_bytes;
+  int capability_envelope_f64_bytes;
+  int admission_stress_summary_f64_bytes;
+  int status_row_bytes;
+  int admission_report_f64_bytes;
 };
 
 ArchitrinoSolverAbiInfo architrino_solver_abi_info();
 int architrino_solver_get_abi_info(ArchitrinoSolverAbiInfo* out_info);
+
+int architrino_solver_admit_simulation_envelope_f64(
+    const ArchitrinoSolverModelContract* model,
+    const ArchitrinoSolverErrorBudgetF64* error_budget,
+    const ArchitrinoSolverSimulationEnvelopeF64* envelope,
+    const ArchitrinoSolverCapabilityEnvelopeF64* capability,
+    ArchitrinoSolverAdmissionReportF64* out_report,
+    ArchitrinoSolverStatusRow* status_rows,
+    int max_status_rows,
+    int* out_status_count);
 
 int architrino_solver_solve_causal_roots_f64(
     const ArchitrinoSolverCausalRootRequestF64* request,
@@ -710,6 +815,18 @@ int architrino_solver_solve_circular_source_causal_roots_f64(
     ArchitrinoSolverCausalRootRowF64* roots,
     int max_roots,
     int* out_root_count);
+
+int architrino_solver_solve_circular_source_roots_hits_ledger_f64(
+    const ArchitrinoSolverCircularSourceCausalRootRequestF64* request,
+    ArchitrinoSolverCausalRootRowF64* roots,
+    int max_roots,
+    int* out_root_count,
+    ArchitrinoSolverDelayedHitRowF64* hits,
+    int max_hits,
+    int* out_hit_count,
+    ArchitrinoSolverRootLedgerDetailRowF64* ledger_rows,
+    int max_ledger_rows,
+    int* out_ledger_row_count);
 
 int architrino_solver_solve_roots_and_hits_f64(
     const ArchitrinoSolverCausalRootRequestF64* request,
@@ -825,6 +942,7 @@ int architrino_solver_compute_phase_at_hit_f64(
     int root_count,
     const ArchitrinoSolverPhaseClockF64* source_clock,
     const ArchitrinoSolverPhaseClockF64* receiver_clock,
+    const ArchitrinoSolverPhaseAtHitMetadataF64* metadata,
     ArchitrinoSolverPhaseAtHitRowF64* rows,
     int max_rows,
     int* out_row_count);

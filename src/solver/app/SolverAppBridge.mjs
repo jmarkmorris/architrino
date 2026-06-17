@@ -12,6 +12,54 @@ const DEFAULT_PRECISION_PATHS = [
   "extended_precision",
   "validation_replay",
 ];
+const ADMISSION_DECISION_BY_ID = ["admit", "batch", "escalate_precision", "reject"];
+const ADMISSION_STRESS_DIMENSION_BY_ID = [
+  "entity_count",
+  "interaction_graph",
+  "memory",
+  "storage",
+  "time_steps",
+  "output_detail",
+  "precision",
+];
+const INTERACTION_POLICY_BY_ID = ["sparse", "neighbor-pruned", "all-to-all", "same-source-enabled"];
+const BRANCH_COMPLEXITY_BY_ID = ["low", "moderate", "high", "unknown"];
+const OUTPUT_DETAIL_BY_ID = ["preview", "playback", "export", "validation"];
+const LATENCY_TARGET_BY_ID = ["interactive", "background", "batch", "validation"];
+const SIMPLIFICATION_POLICY_BY_ID = ["none", "explicit-reduced-model"];
+const TIME_WINDOW_UNITS_BY_ID = ["solver-time", "seconds", "cycles", ""];
+const ADMISSION_STAGE_BY_ID = [undefined, "model", "error-budget", "simulation-envelope", "admission"];
+const ADMISSION_STATUS_MESSAGE_BY_ID = [
+  undefined,
+  "model id is required",
+  "equation version is required",
+  "constants hash is required",
+  "causal speed policy is required",
+  "branch policy is required",
+  "unit convention is required",
+  "at least one compatible precision path is required",
+  "global tolerance must be positive and finite",
+  "root isolation tolerance must be positive and finite",
+  "delayed hit tolerance must be positive and finite",
+  "integration tolerance must be positive and finite",
+  "stream encoding tolerance must be positive and finite",
+  "readback tolerance must be positive and finite",
+  "projection tolerance must be nonnegative and finite",
+  "display tolerance must be nonnegative and finite",
+  "root isolation tolerance is looser than the global tolerance",
+  "entity count must be greater than zero",
+  "time window must have finite start and end with end greater than start",
+  "time window units must be solver-time, seconds, or cycles",
+  "time window step hint must be positive when specified",
+  "time resolution hint must be positive when specified",
+  "memory budget must be greater than zero",
+  "requested tolerance requires a stricter precision path",
+  "memory budget is below the minimum solver active-window budget",
+  "dense interaction graph exceeds the supported batch envelope",
+  "selected extended precision for strict global tolerance",
+  "storage budget must be greater than zero",
+  "storage budget is below the minimum solver streaming budget",
+];
 
 const DEFAULT_OUTPUT_LAYOUTS = [
   "frame_buffer.v1",
@@ -43,12 +91,36 @@ const BINARY_LAYOUT_ROW_SIZE_BYTES = new Map([
   ["root_ledger.v1", 112],
   ["root_ledger_detail.v1", 192],
   ["delayed_hit_events.v1", 128],
-  ["phase_at_hit.v1", 72],
+  ["phase_at_hit.v1", 104],
   ["spacetime_index.v1", 128],
   ["emission_shell_candidate.v1", 112],
   ["emission_shell_narrow_phase.v1", 40],
   ["stream_index.v1", 64],
   ["assembly_graph_index.v1", 72],
+]);
+const BINARY_LAYOUT_ROLE_BY_ID = {
+  "frame_buffer.v1": "motion-frame",
+  "path_segment.v1": "path-history",
+  "assembly_state.v1": "assembly-graph",
+  "assembly_membership.v1": "assembly-graph",
+  "assembly_hierarchy.v1": "assembly-graph",
+  "assembly_events.v1": "assembly-graph",
+  "path_chunk.v1": "path-history-index",
+  "root_ledger.v1": "root-ledger",
+  "root_ledger_detail.v1": "root-ledger",
+  "delayed_hit_events.v1": "delayed-hit",
+  "phase_at_hit.v1": "phase-diagnostic",
+  "spacetime_index.v1": "spacetime-index",
+  "emission_shell_candidate.v1": "emission-shell",
+  "emission_shell_narrow_phase.v1": "emission-shell",
+  "stream_index.v1": "path-history-index",
+  "assembly_graph_index.v1": "assembly-graph-index",
+};
+const STREAMABLE_BINARY_LAYOUTS = new Set([
+  "path_segment.v1",
+  "path_chunk.v1",
+  "stream_index.v1",
+  "assembly_graph_index.v1",
 ]);
 
 const ASSEMBLY_GRAPH_INDEX_ROW_V1_BYTES = 72;
@@ -144,6 +216,57 @@ const CLAIM_LEVEL_BY_ID = [
   "exported-dataset",
   "validation-evidence",
 ];
+const PRECISION_PATH_RANK = new Map(DEFAULT_PRECISION_PATHS.map((path, index) => [path, index]));
+const CLAIM_LEVEL_MINIMUM_PRECISION_PATH = {
+  "interactive-preview": "scaled_f64_fast",
+  "migration-parity": "scaled_f64_strict",
+  "exported-dataset": "scaled_f64_strict",
+  "validation-evidence": "validation_replay",
+};
+const CIRCULAR_SOURCE_PRECISION_CONTROLS = {
+  auto: {
+    rootTolerance: 1e-12,
+    maxIterations: 96,
+    scanSubdivisions: 128,
+    controlNumericType: "f64",
+  },
+  scaled_f64_fast: {
+    rootTolerance: 1e-12,
+    maxIterations: 96,
+    scanSubdivisions: 128,
+    controlNumericType: "f64",
+  },
+  scaled_f64_strict: {
+    rootTolerance: 1e-12,
+    maxIterations: 128,
+    scanSubdivisions: 128,
+    controlNumericType: "f64",
+  },
+  adaptive_multirate: {
+    rootTolerance: 5e-13,
+    maxIterations: 160,
+    scanSubdivisions: 192,
+    controlNumericType: "f64",
+  },
+  event_root_focused: {
+    rootTolerance: 1e-13,
+    maxIterations: 192,
+    scanSubdivisions: 256,
+    controlNumericType: "f64",
+  },
+  extended_precision: {
+    rootTolerance: 1e-15,
+    maxIterations: 256,
+    scanSubdivisions: 512,
+    controlNumericType: "decimal128",
+  },
+  validation_replay: {
+    rootTolerance: 1e-15,
+    maxIterations: 320,
+    scanSubdivisions: 768,
+    controlNumericType: "decimal128",
+  },
+};
 const NUMERIC_TYPE_BY_ID = ["f64", "scaled_i64", "interval_f64_pair", "decimal128", "mp_limb_block"];
 const ERROR_BUDGET_STAGE_BY_ID = DEFAULT_ERROR_BUDGET_STAGES.map((stage) => stage.stage);
 const ERROR_BUDGET_STAGE_TO_ID = new Map(
@@ -263,6 +386,184 @@ const STATUS_CODE_BY_ID = [
   "internal_solver_error",
 ];
 const STATUS_SEVERITY_BY_ID = ["ok", "info", "warning", "halt", "error"];
+const STATUS_TAXONOMY_METADATA = {
+  ok: {
+    category: "success",
+    defaultSeverity: "ok",
+    recoverableByDefault: true,
+    stageHints: ["all"],
+    description: "Operation completed without solver warnings or errors.",
+  },
+  cancelled: {
+    category: "control",
+    defaultSeverity: "info",
+    recoverableByDefault: true,
+    stageHints: ["run_control"],
+    description: "Run was cancelled by caller request or lifecycle cleanup.",
+  },
+  baseline_within_tolerance: {
+    category: "baseline-comparison",
+    defaultSeverity: "ok",
+    recoverableByDefault: true,
+    stageHints: ["baseline_comparison"],
+    description: "New solver output matches the isolated baseline within the declared tolerance.",
+  },
+  baseline_refined_result: {
+    category: "baseline-comparison",
+    defaultSeverity: "info",
+    recoverableByDefault: true,
+    stageHints: ["baseline_comparison"],
+    description: "New solver output differs from the baseline in an expected refinement direction.",
+  },
+  baseline_model_boundary_difference: {
+    category: "baseline-comparison",
+    defaultSeverity: "warning",
+    recoverableByDefault: true,
+    stageHints: ["baseline_comparison"],
+    description: "Baseline divergence is tied to a model-boundary or legacy-solver difference.",
+  },
+  baseline_investigation_required_mismatch: {
+    category: "baseline-comparison",
+    defaultSeverity: "error",
+    recoverableByDefault: false,
+    stageHints: ["baseline_comparison"],
+    description: "Baseline divergence needs investigation before migration.",
+  },
+  precision_escalated: {
+    category: "precision",
+    defaultSeverity: "info",
+    recoverableByDefault: true,
+    stageHints: ["precision_selection", "admission"],
+    description: "Solver selected a stricter precision path than the caller requested.",
+  },
+  precision_failed: {
+    category: "precision",
+    defaultSeverity: "error",
+    recoverableByDefault: false,
+    stageHints: ["precision_selection", "root_solving", "validation_replay"],
+    description: "Requested precision could not be satisfied for the declared claim level.",
+  },
+  simulation_envelope_exceeded: {
+    category: "admission",
+    defaultSeverity: "error",
+    recoverableByDefault: true,
+    stageHints: ["admission", "simulation_envelope"],
+    description: "Declared simulation envelope exceeds the current solver capability envelope.",
+  },
+  insufficient_history_depth: {
+    category: "history",
+    defaultSeverity: "halt",
+    recoverableByDefault: true,
+    stageHints: ["path_history", "root_solving"],
+    description: "Available path history does not reach the needed causal window.",
+  },
+  insufficient_scale_resolution: {
+    category: "precision",
+    defaultSeverity: "error",
+    recoverableByDefault: true,
+    stageHints: ["precision_selection", "scale_normalization"],
+    description: "Current numeric representation cannot preserve the required scale separation.",
+  },
+  time_resolution_insufficient: {
+    category: "admission",
+    defaultSeverity: "error",
+    recoverableByDefault: true,
+    stageHints: ["simulation_envelope", "time_resolution"],
+    description: "Declared time resolution is too coarse for the requested claim level.",
+  },
+  root_not_bracketed: {
+    category: "root-solving",
+    defaultSeverity: "warning",
+    recoverableByDefault: true,
+    stageHints: ["root_solving"],
+    description: "A candidate root interval did not bracket a sign change.",
+  },
+  root_unresolved: {
+    category: "root-solving",
+    defaultSeverity: "halt",
+    recoverableByDefault: true,
+    stageHints: ["root_solving", "root_ledger"],
+    description: "Solver could not resolve a required causal root within the active controls.",
+  },
+  small_jacobian: {
+    category: "root-solving",
+    defaultSeverity: "warning",
+    recoverableByDefault: true,
+    stageHints: ["root_solving", "delayed_hits"],
+    description: "Causal-root Jacobian is small enough to require special handling or diagnostics.",
+  },
+  transversality_floor_failed: {
+    category: "root-solving",
+    defaultSeverity: "warning",
+    recoverableByDefault: true,
+    stageHints: ["root_solving", "delayed_hits"],
+    description: "Root or hit failed the configured transversality floor.",
+  },
+  ledger_rerun_required: {
+    category: "root-solving",
+    defaultSeverity: "warning",
+    recoverableByDefault: true,
+    stageHints: ["root_ledger"],
+    description: "Root-ledger completeness requires a deeper or different replay window.",
+  },
+  stream_memory_pressure: {
+    category: "stream-storage",
+    defaultSeverity: "warning",
+    recoverableByDefault: true,
+    stageHints: ["path_stream", "storage_lifecycle"],
+    description: "Path-history streaming reached a memory pressure threshold.",
+  },
+  stream_write_failed: {
+    category: "stream-storage",
+    defaultSeverity: "halt",
+    recoverableByDefault: true,
+    stageHints: ["path_stream", "storage_lifecycle"],
+    description: "Solver could not write a requested stream chunk or sidecar.",
+  },
+  stream_read_failed: {
+    category: "stream-storage",
+    defaultSeverity: "halt",
+    recoverableByDefault: true,
+    stageHints: ["path_stream", "stream_readback"],
+    description: "Solver could not read a requested stream chunk, manifest, or sidecar.",
+  },
+  unsupported_browser_storage: {
+    category: "runtime-support",
+    defaultSeverity: "warning",
+    recoverableByDefault: true,
+    stageHints: ["storage_lifecycle", "app_bridge"],
+    description: "Requested browser storage backend is unavailable in the current runtime.",
+  },
+  unsupported_wasm_threads: {
+    category: "runtime-support",
+    defaultSeverity: "warning",
+    recoverableByDefault: true,
+    stageHints: ["threading_plan", "app_bridge"],
+    description: "Requested WebAssembly internal threading is unavailable in the current runtime.",
+  },
+  validation_replay_mismatch: {
+    category: "validation",
+    defaultSeverity: "error",
+    recoverableByDefault: false,
+    stageHints: ["validation_replay"],
+    description: "Validation replay did not reproduce the accepted result within tolerance.",
+  },
+  app_contract_error: {
+    category: "app-contract",
+    defaultSeverity: "error",
+    recoverableByDefault: true,
+    stageHints: ["app_bridge", "request_validation"],
+    description: "App request or bridge message violates the solver contract.",
+  },
+  internal_solver_error: {
+    category: "internal",
+    defaultSeverity: "error",
+    recoverableByDefault: false,
+    stageHints: ["solver_core"],
+    description: "Solver encountered an internal error outside caller-correctable contract input.",
+  },
+};
+const STATUS_TAXONOMY = createStatusTaxonomy();
 const DEFAULT_CAPABILITY_ENVELOPE = {
   maxInteractiveEntities: 2048,
   maxBatchEntities: 200000,
@@ -272,6 +573,12 @@ const DEFAULT_CAPABILITY_ENVELOPE = {
   maxInteractiveStepCount: 100000,
 };
 const ADMISSION_INTERACTIVE_STEP_COUNT = 100000;
+const MODEL_CONTRACT_BYTES = 32;
+const SIMULATION_ENVELOPE_F64_BYTES = 88;
+const CAPABILITY_ENVELOPE_F64_BYTES = 48;
+const ADMISSION_STRESS_SUMMARY_F64_BYTES = 96;
+const STATUS_ROW_BYTES = 24;
+const ADMISSION_REPORT_F64_BYTES = 112;
 const CAUSAL_ROOT_REQUEST_F64_BYTES = 176;
 const CAUSAL_ROOT_ROW_F64_BYTES = 112;
 const ROOT_LEDGER_DETAIL_ROW_F64_BYTES = 192;
@@ -287,7 +594,8 @@ const ERROR_BUDGET_SUMMARY_F64_BYTES = 32;
 const MOTION_SAMPLE_REQUEST_F64_BYTES = 112;
 const MOTION_INTEGRATION_REQUEST_F64_BYTES = 120;
 const PHASE_CLOCK_F64_BYTES = 24;
-const PHASE_AT_HIT_ROW_F64_BYTES = 72;
+const PHASE_AT_HIT_ROW_F64_BYTES = 104;
+const PHASE_AT_HIT_METADATA_F64_BYTES = 32;
 const FRAME_BUFFER_ROW_F64_BYTES = 88;
 const GEOMETRY_BOUNDS_ROW_F64_BYTES = 64;
 const SPHERE_POINT_INTERSECTION_REQUEST_F64_BYTES = 64;
@@ -319,7 +627,7 @@ const DEFAULT_MAX_ROOT_LEDGER_DETAIL_ROWS = 4096;
 const DEFAULT_MAX_MOTION_FRAMES = 65536;
 const DEFAULT_MAX_MOTION_PATH_ROWS = DEFAULT_MAX_MOTION_FRAMES;
 const DEFAULT_MAX_SPACETIME_INDEX_ROWS = 65536;
-const ABI_INFO_BYTES = 164;
+const ABI_INFO_BYTES = 188;
 
 export class SolverBridgeError extends Error {
   constructor(status) {
@@ -488,6 +796,9 @@ export function createSolverAppBridgeClient(options = {}) {
 
     async admitSimulationEnvelope(request) {
       assertNotDisposed(state);
+      if (state.module && typeof state.module._architrino_solver_admit_simulation_envelope_f64 === "function") {
+        return admitSimulationEnvelopeWithModule(state.module, request, state.abiInfo || defaultAbiInfo());
+      }
       return admitSimulationEnvelope(request);
     },
 
@@ -541,6 +852,30 @@ export function createSolverAppBridgeClient(options = {}) {
         request,
         state.abiInfo || defaultAbiInfo()
       );
+    },
+
+    async solveCircularSourceRootsHitsLedgerF64(request) {
+      assertNotDisposed(state);
+      const module = await requireWasmModule(state);
+      const response = solveCircularSourceRootsHitsLedgerF64WithModule(
+        module,
+        request,
+        state.abiInfo || defaultAbiInfo()
+      );
+      registerResponseStreams(state, response);
+      return response;
+    },
+
+    async solveCircularSourceRootsHitsLedgerNormalizedF64(request) {
+      assertNotDisposed(state);
+      const module = await requireWasmModule(state);
+      const response = solveCircularSourceRootsHitsLedgerNormalizedF64WithModule(
+        module,
+        request,
+        state.abiInfo || defaultAbiInfo()
+      );
+      registerResponseStreams(state, response);
+      return response;
     },
 
     async solveCausalRootsNormalizedF64(request) {
@@ -712,6 +1047,7 @@ function createCapabilities(hasWasmModuleFactory) {
   return {
     precisionPaths: DEFAULT_PRECISION_PATHS,
     outputLayouts: DEFAULT_OUTPUT_LAYOUTS,
+    binaryLayouts: createBinaryLayoutCatalog(),
     storage: {
       supportsOpfs,
       supportsNativeFile,
@@ -759,6 +1095,30 @@ function createCapabilities(hasWasmModuleFactory) {
         transientTarget: "caller-buffer",
         unsupportedStorageStatusCode: "unsupported_browser_storage",
       },
+      precisionRouting: {
+        schema: "solver-precision-routing-capabilities.v1",
+        routes: [
+          {
+            routeFamily: "linear-root",
+            runConfigKeys: ["rootRequest", "normalizedRootRequest"],
+            precisionEngine: "native-precision-path",
+            precisionSummary: "native-precision-solve-summary-f64",
+            fullPrecisionPathSelector: true,
+            normalizedCoordinatesSupported: true,
+            selectedNumericTypes: ["f64", "decimal128"],
+          },
+          {
+            routeFamily: "circular-source",
+            runConfigKeys: ["circularSourceRootRequest", "normalizedCircularSourceRootRequest"],
+            precisionEngine: "analytic-circular-source-f64",
+            precisionSummary: "analytic-circular-source-run-summary-f64",
+            fullPrecisionPathSelector: true,
+            normalizedCoordinatesSupported: true,
+            selectedNumericTypes: ["f64"],
+          },
+        ],
+      },
+      statusTaxonomy: deepCloneJson(STATUS_TAXONOMY),
       streamQueries: {
         schema: "solver-stream-query-capabilities.v1",
         helpers: [
@@ -774,6 +1134,7 @@ function createCapabilities(hasWasmModuleFactory) {
         ],
         pathHistoryLayouts: ["path_segment.v1"],
         indexedFilters: ["pathKeys", "chunkIndices", "timeRange", "frameRange", "byteRange"],
+        rangeMetadata: ["timeRange", "frameRange", "byteRange", "bounds"],
         broadPhaseQueries: [
           {
             method: "queryEmissionShellCandidatesF64",
@@ -784,6 +1145,8 @@ function createCapabilities(hasWasmModuleFactory) {
               "solveCausalRootsF64",
               "solveCausalRootsPrecisionF64",
               "solveCausalRootsNormalizedF64",
+              "solveCircularSourceRootsHitsLedgerF64",
+              "solveCircularSourceRootsHitsLedgerNormalizedF64",
               "solveRootsAndHitsPrecisionF64",
               "solveRootsAndHitsF64",
               "refineEmissionShellCandidateRootsF64",
@@ -798,6 +1161,8 @@ function createCapabilities(hasWasmModuleFactory) {
               "solveCausalRootsF64",
               "solveCausalRootsPrecisionF64",
               "solveCausalRootsNormalizedF64",
+              "solveCircularSourceRootsHitsLedgerF64",
+              "solveCircularSourceRootsHitsLedgerNormalizedF64",
               "solveRootsAndHitsPrecisionF64",
               "solveRootsAndHitsF64",
               "refineEmissionShellCandidateRootsF64",
@@ -812,6 +1177,8 @@ function createCapabilities(hasWasmModuleFactory) {
               "solveCausalRootsF64",
               "solveCausalRootsPrecisionF64",
               "solveCausalRootsNormalizedF64",
+              "solveCircularSourceRootsHitsLedgerF64",
+              "solveCircularSourceRootsHitsLedgerNormalizedF64",
               "solveRootsAndHitsPrecisionF64",
               "solveRootsAndHitsF64",
               "refineEmissionShellCandidateRootsF64",
@@ -871,6 +1238,48 @@ function cloneErrorBudgetPropagationContract() {
   };
 }
 
+function createStatusTaxonomy() {
+  return {
+    schema: "solver-status-taxonomy.v1",
+    severities: STATUS_SEVERITY_BY_ID,
+    codes: STATUS_CODE_BY_ID.map((code, id) => {
+      const metadata = STATUS_TAXONOMY_METADATA[code];
+      if (!metadata) {
+        throw new Error(`missing solver status taxonomy metadata for ${code}`);
+      }
+      return {
+        id,
+        code,
+        ...metadata,
+      };
+    }),
+  };
+}
+
+function createBinaryLayoutCatalog() {
+  return {
+    schema: "solver-binary-layout-catalog.v1",
+    byteOrder: "little-endian",
+    layouts: DEFAULT_OUTPUT_LAYOUTS.map((layout) => {
+      const rowSizeBytes = BINARY_LAYOUT_ROW_SIZE_BYTES.get(layout);
+      const role = BINARY_LAYOUT_ROLE_BY_ID[layout];
+      if (!rowSizeBytes || !role) {
+        throw new Error(`missing solver binary layout catalog metadata for ${layout}`);
+      }
+      return {
+        layout,
+        role,
+        numericType: "f64",
+        rowSizeBytes,
+        fixedRowSize: true,
+        denseBufferSafe: true,
+        authoritativeStorageSafe: true,
+        streamable: STREAMABLE_BINARY_LAYOUTS.has(layout),
+      };
+    }),
+  };
+}
+
 function validateInitRequest(request) {
   if (!request || typeof request !== "object") {
     return createStatus("app_contract_error", "error", "init request object is required", {
@@ -902,6 +1311,7 @@ function planThreadingPolicy(request, capabilities) {
   validateThreadingPlanRequest(request);
   const policy = request.policy;
   const workload = request.workload;
+  const observations = workload.observations ?? null;
   const minItemsPerWorker = Math.max(1, workload.minItemsPerWorker ?? 1);
   const maxWorkersByItems =
     workload.itemCount === 0 ? 0 : Math.max(1, Math.ceil(workload.itemCount / minItemsPerWorker));
@@ -952,6 +1362,17 @@ function planThreadingPolicy(request, capabilities) {
     );
   }
 
+  const chunkPlan = createThreadingChunkPlan(workload.itemCount, minItemsPerWorker, activeWorkerCount);
+  const determinismStatus = resolveThreadingDeterminismStatus(policy, workload, deterministicReduction);
+  const contention = summarizeThreadingContention({
+    observations,
+    requestedWorkerCount,
+    activeWorkerCount,
+    queueDepth: chunkPlan.queueDepth,
+    fallbackReason,
+  });
+  const chunkTimings = summarizeThreadingChunkTimings(observations?.chunkDurationsMs ?? []);
+  const stageSpeedup = summarizeThreadingStageSpeedup(observations, activeWorkerCount);
   const status = summarizeThreadingPlanStatus(statuses);
   return {
     schema: "solver-threading-plan.v1",
@@ -967,6 +1388,14 @@ function planThreadingPolicy(request, capabilities) {
     wasmThreadsAvailable: capabilities.threading.wasmThreads,
     nativeThreadsAvailable: capabilities.threading.nativeThreads,
     fallbackReason,
+    plannedChunkCount: chunkPlan.plannedChunkCount,
+    plannedChunkItemCount: chunkPlan.plannedChunkItemCount,
+    tailChunkItemCount: chunkPlan.tailChunkItemCount,
+    queueDepth: chunkPlan.queueDepth,
+    determinismStatus,
+    contention,
+    chunkTimings,
+    stageSpeedup,
     speedupBaselineWorkerCount: activeWorkerCount <= 1 ? 1 : activeWorkerCount,
     statuses,
     status,
@@ -1009,7 +1438,41 @@ function validateThreadingPlanRequest(request) {
   if (request.workload.minItemsPerWorker != null) {
     requirePositiveInteger(request.workload.minItemsPerWorker, "workload.minItemsPerWorker");
   }
+  if (request.workload.observations != null) {
+    validateThreadingWorkloadObservations(request.workload.observations);
+  }
   requireNonemptyString(request.workload.stage, "workload.stage");
+}
+
+function validateThreadingWorkloadObservations(observations) {
+  if (!observations || typeof observations !== "object") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "workload.observations must be an object", {
+        recoverable: false,
+      })
+    );
+  }
+  if (observations.chunkDurationsMs != null) {
+    if (!Array.isArray(observations.chunkDurationsMs)) {
+      throw new SolverBridgeError(
+        createStatus("app_contract_error", "error", "workload.observations.chunkDurationsMs must be an array", {
+          recoverable: false,
+        })
+      );
+    }
+    observations.chunkDurationsMs.forEach((duration, index) => {
+      requireNonnegativeFiniteNumber(duration, `workload.observations.chunkDurationsMs[${index}]`);
+    });
+  }
+  if (observations.singleThreadElapsedMs != null) {
+    requirePositiveFiniteNumber(observations.singleThreadElapsedMs, "workload.observations.singleThreadElapsedMs");
+  }
+  if (observations.activeElapsedMs != null) {
+    requirePositiveFiniteNumber(observations.activeElapsedMs, "workload.observations.activeElapsedMs");
+  }
+  if (observations.contentionWaitMs != null) {
+    requireNonnegativeFiniteNumber(observations.contentionWaitMs, "workload.observations.contentionWaitMs");
+  }
 }
 
 function resolveRequestedWorkerCount(policy, workload, maxWorkersByItems) {
@@ -1018,6 +1481,111 @@ function resolveRequestedWorkerCount(policy, workload, maxWorkersByItems) {
   }
   const maxThreads = policy.maxThreads ?? maxWorkersByItems;
   return Math.max(1, Math.min(maxThreads, maxWorkersByItems));
+}
+
+function createThreadingChunkPlan(itemCount, minItemsPerWorker, activeWorkerCount) {
+  if (itemCount === 0) {
+    return {
+      plannedChunkCount: 0,
+      plannedChunkItemCount: 0,
+      tailChunkItemCount: 0,
+      queueDepth: 0,
+    };
+  }
+  const plannedChunkCount = Math.ceil(itemCount / minItemsPerWorker);
+  const tailRemainder = itemCount % minItemsPerWorker;
+  return {
+    plannedChunkCount,
+    plannedChunkItemCount: minItemsPerWorker,
+    tailChunkItemCount: tailRemainder === 0 ? minItemsPerWorker : tailRemainder,
+    queueDepth: Math.max(0, plannedChunkCount - activeWorkerCount),
+  };
+}
+
+function resolveThreadingDeterminismStatus(policy, workload, deterministicReduction) {
+  if (workload.deterministicRequired && !policy.deterministic) {
+    return "required-but-not-requested";
+  }
+  return deterministicReduction ? "deterministic" : "relaxed";
+}
+
+function summarizeThreadingContention({
+  observations,
+  requestedWorkerCount,
+  activeWorkerCount,
+  queueDepth,
+  fallbackReason,
+}) {
+  const observedWaitMs = observations?.contentionWaitMs ?? null;
+  return {
+    source: observedWaitMs == null ? "policy-estimate" : "caller-observed",
+    risk: classifyThreadingContentionRisk(activeWorkerCount, queueDepth, fallbackReason, observedWaitMs),
+    queueDepth,
+    oversubscribedWorkerCount: Math.max(0, requestedWorkerCount - activeWorkerCount),
+    observedWaitMs,
+  };
+}
+
+function classifyThreadingContentionRisk(activeWorkerCount, queueDepth, fallbackReason, observedWaitMs) {
+  if (observedWaitMs != null) {
+    if (observedWaitMs === 0) {
+      return "none";
+    }
+    if (observedWaitMs < 1) {
+      return "low";
+    }
+    if (observedWaitMs < 10) {
+      return "medium";
+    }
+    return "high";
+  }
+  if (fallbackReason || activeWorkerCount <= 1) {
+    return "none";
+  }
+  if (queueDepth === 0) {
+    return "low";
+  }
+  if (queueDepth <= activeWorkerCount * 2) {
+    return "medium";
+  }
+  return "high";
+}
+
+function summarizeThreadingChunkTimings(chunkDurationsMs) {
+  if (chunkDurationsMs.length === 0) {
+    return {
+      source: "not-measured",
+      observedChunkCount: 0,
+      minMs: null,
+      maxMs: null,
+      meanMs: null,
+      totalMs: null,
+    };
+  }
+  const totalMs = chunkDurationsMs.reduce((sum, value) => sum + value, 0);
+  return {
+    source: "caller-observed",
+    observedChunkCount: chunkDurationsMs.length,
+    minMs: Math.min(...chunkDurationsMs),
+    maxMs: Math.max(...chunkDurationsMs),
+    meanMs: totalMs / chunkDurationsMs.length,
+    totalMs,
+  };
+}
+
+function summarizeThreadingStageSpeedup(observations, activeWorkerCount) {
+  const baselineMs = observations?.singleThreadElapsedMs ?? null;
+  const activeMs = observations?.activeElapsedMs ?? null;
+  const hasObservedSpeedup = baselineMs != null && activeMs != null;
+  const speedupRatio = hasObservedSpeedup ? baselineMs / activeMs : null;
+  return {
+    source: hasObservedSpeedup ? "caller-observed" : "not-measured",
+    baselineWorkerCount: 1,
+    comparedWorkerCount: activeWorkerCount,
+    speedupRatio,
+    parallelEfficiency:
+      speedupRatio == null || activeWorkerCount <= 0 ? null : speedupRatio / activeWorkerCount,
+  };
 }
 
 function summarizeThreadingPlanStatus(statuses) {
@@ -2064,10 +2632,7 @@ function admitSimulationEnvelope(request) {
     );
   }
 
-  const capability = {
-    ...DEFAULT_CAPABILITY_ENVELOPE,
-    ...(request.capability || {}),
-  };
+  const capability = resolveCapabilityEnvelope(request.capability);
   const statuses = [
     ...validateModelContract(request.model),
     ...validateErrorBudget(request.errorBudget),
@@ -2094,6 +2659,14 @@ function admitSimulationEnvelope(request) {
   } else if (request.envelope.memoryBudgetBytes < capability.minMemoryBudgetBytes) {
     statuses.push(
       createStatus("stream_memory_pressure", "halt", "memory budget is below the minimum solver active-window budget", {
+        stage: "admission",
+        recoverable: false,
+      })
+    );
+    decision = "reject";
+  } else if (request.envelope.storageBudgetBytes < capability.minStorageBudgetBytesForStreaming) {
+    statuses.push(
+      createStatus("stream_memory_pressure", "halt", "storage budget is below the minimum solver streaming budget", {
         stage: "admission",
         recoverable: false,
       })
@@ -2153,8 +2726,100 @@ function admitSimulationEnvelope(request) {
       ? createStatus("ok", "ok", "simulation envelope admission complete")
       : createStatus("simulation_envelope_exceeded", "halt", "simulation envelope rejected", {
           recoverable: false,
-        }),
+    }),
   };
+}
+
+function admitSimulationEnvelopeWithModule(module, request, abiInfo) {
+  if (!request || typeof request !== "object") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "admission request object is required", {
+        recoverable: false,
+      })
+    );
+  }
+  if (!request.model || !request.errorBudget || !request.envelope) {
+    return admitSimulationEnvelope(request);
+  }
+  if (
+    Array.isArray(request.model.compatiblePrecisionPaths) &&
+    request.model.compatiblePrecisionPaths.some((path) => !DEFAULT_PRECISION_PATHS.includes(path))
+  ) {
+    return admitSimulationEnvelope(request);
+  }
+  if (typeof module._malloc !== "function" || typeof module._free !== "function") {
+    return admitSimulationEnvelope(request);
+  }
+
+  const capability = resolveCapabilityEnvelope(request.capability);
+  const maxStatusRows = 32;
+  const modelPtr = module._malloc(abiInfo.modelContractBytes);
+  const budgetPtr = module._malloc(abiInfo.errorBudgetF64Bytes);
+  const envelopePtr = module._malloc(abiInfo.simulationEnvelopeF64Bytes);
+  const capabilityPtr = module._malloc(abiInfo.capabilityEnvelopeF64Bytes);
+  const reportPtr = module._malloc(abiInfo.admissionReportF64Bytes);
+  const statusesPtr = module._malloc(abiInfo.statusRowBytes * maxStatusRows);
+  const outStatusCountPtr = module._malloc(4);
+  try {
+    writeAdmissionModelContract(module, modelPtr, request.model);
+    writeErrorBudgetF64(module, budgetPtr, request.errorBudget);
+    writeSimulationEnvelopeF64(module, envelopePtr, request.envelope);
+    writeCapabilityEnvelopeF64(module, capabilityPtr, capability);
+    module.setValue(outStatusCountPtr, 0, "i32");
+
+    const admit = module.cwrap("architrino_solver_admit_simulation_envelope_f64", "number", [
+      "number",
+      "number",
+      "number",
+      "number",
+      "number",
+      "number",
+      "number",
+      "number",
+    ]);
+    const status = admit(
+      modelPtr,
+      budgetPtr,
+      envelopePtr,
+      capabilityPtr,
+      reportPtr,
+      statusesPtr,
+      maxStatusRows,
+      outStatusCountPtr
+    );
+    const statusCount = module.getValue(outStatusCountPtr, "i32");
+    if (status !== 0) {
+      throw new SolverBridgeError(
+        createStatus("internal_solver_error", "error", `admission C ABI returned ${status}`, {
+          recoverable: status === -3,
+          details: { status, statusCount },
+        })
+      );
+    }
+    const report = readAdmissionReportF64(module, reportPtr);
+    const statuses = readAdmissionStatusRows(module, statusesPtr, statusCount, abiInfo);
+    const ok = report.validationOk && !hasHaltOrError(statuses);
+    return {
+      decision: report.decision,
+      selectedPrecisionPath: report.selectedPrecisionPath,
+      admitted: report.admitted,
+      stressSummary: report.stressSummary,
+      statuses,
+      status: ok
+        ? createStatus("ok", "ok", "simulation envelope admission complete")
+        : createStatus("simulation_envelope_exceeded", "halt", "simulation envelope rejected", {
+            recoverable: false,
+          }),
+    };
+  } finally {
+    module._free(modelPtr);
+    module._free(budgetPtr);
+    module._free(envelopePtr);
+    module._free(capabilityPtr);
+    module._free(reportPtr);
+    module._free(statusesPtr);
+    module._free(outStatusCountPtr);
+  }
 }
 
 function summarizeAdmissionStress(request, capability) {
@@ -2168,6 +2833,10 @@ function summarizeAdmissionStress(request, capability) {
     ? positiveRatio(entityCount, capability.maxBatchEntities)
     : entityPressure;
   const memoryPressure = positiveRatio(capability.minMemoryBudgetBytes, envelope.memoryBudgetBytes);
+  const storagePressure = positiveRatio(
+    capability.minStorageBudgetBytesForStreaming,
+    envelope.storageBudgetBytes
+  );
   const timeStepPressure =
     timeStepCountEstimate == null
       ? 0
@@ -2184,6 +2853,7 @@ function summarizeAdmissionStress(request, capability) {
     ["entity_count", entityPressure],
     ["interaction_graph", interactionPressure],
     ["memory", memoryPressure],
+    ["storage", storagePressure],
     ["time_steps", timeStepPressure],
     ["output_detail", outputPressure],
     ["precision", precisionPressure],
@@ -2199,6 +2869,7 @@ function summarizeAdmissionStress(request, capability) {
     entityPressure,
     interactionPressure,
     memoryPressure,
+    storagePressure,
     timeStepCountEstimate,
     timeStepPressure,
     outputPressure,
@@ -2206,6 +2877,23 @@ function summarizeAdmissionStress(request, capability) {
     dominantStress,
     pressureScore,
   };
+}
+
+function resolveCapabilityEnvelope(capability) {
+  const resolved = {
+    ...DEFAULT_CAPABILITY_ENVELOPE,
+    ...(capability || {}),
+  };
+  requirePositiveInteger(resolved.maxInteractiveEntities, "capability.maxInteractiveEntities");
+  requirePositiveInteger(resolved.maxBatchEntities, "capability.maxBatchEntities");
+  requireSafeUint64(resolved.minMemoryBudgetBytes, "capability.minMemoryBudgetBytes");
+  requireSafeUint64(
+    resolved.minStorageBudgetBytesForStreaming,
+    "capability.minStorageBudgetBytesForStreaming"
+  );
+  requirePositiveFiniteNumber(resolved.minimumPositiveTolerance, "capability.minimumPositiveTolerance");
+  requirePositiveInteger(resolved.maxInteractiveStepCount, "capability.maxInteractiveStepCount");
+  return resolved;
 }
 
 function estimateAdmissionPairCount(entityCount, interactionPolicy) {
@@ -2480,6 +3168,14 @@ function validateSimulationEnvelope(envelope) {
       })
     );
   }
+  if (!Number.isInteger(envelope.storageBudgetBytes) || envelope.storageBudgetBytes <= 0) {
+    statuses.push(
+      createStatus("simulation_envelope_exceeded", "error", "storage budget must be greater than zero", {
+        stage: "simulation-envelope",
+        recoverable: false,
+      })
+    );
+  }
   return statuses;
 }
 
@@ -2496,6 +3192,81 @@ function requireNonemptyStringStatus(statuses, value, message, stage) {
 
 function hasCompatiblePrecisionPath(model, path) {
   return Array.isArray(model?.compatiblePrecisionPaths) && model.compatiblePrecisionPaths.includes(path);
+}
+
+function requireModelCompatiblePrecisionPath(model, path, label, details = {}) {
+  if (path === "auto") {
+    return;
+  }
+  if (hasCompatiblePrecisionPath(model, path)) {
+    return;
+  }
+  throw new SolverBridgeError(
+    createStatus("precision_failed", "halt", `${label} is not compatible with the declared model contract`, {
+      stage: "model",
+      recoverable: false,
+      details: {
+        ...details,
+        precisionPath: path,
+        compatiblePrecisionPaths: Array.isArray(model?.compatiblePrecisionPaths)
+          ? [...model.compatiblePrecisionPaths]
+          : [],
+      },
+    })
+  );
+}
+
+function resolveRunPrecisionSelection(request, admission) {
+  const requestedPrecisionPath = normalizePrecisionPath(request.precisionPath, "auto");
+  const admissionPrecisionPath = normalizePrecisionPath(admission.selectedPrecisionPath, "auto");
+  const claimLevel = normalizeClaimLevel(request.claimLevel);
+  const claimMinimumPrecisionPath =
+    CLAIM_LEVEL_MINIMUM_PRECISION_PATH[claimLevel] ??
+    CLAIM_LEVEL_MINIMUM_PRECISION_PATH["interactive-preview"];
+  requireModelCompatiblePrecisionPath(
+    request.model,
+    requestedPrecisionPath,
+    "requested precision path",
+    { requestedPrecisionPath }
+  );
+  const selectedPrecisionPath = maxPrecisionPath(
+    maxPrecisionPath(admissionPrecisionPath, requestedPrecisionPath),
+    claimMinimumPrecisionPath
+  );
+  requireModelCompatiblePrecisionPath(
+    request.model,
+    selectedPrecisionPath,
+    "selected precision path",
+    {
+      requestedPrecisionPath,
+      admissionPrecisionPath,
+      claimMinimumPrecisionPath,
+      selectedPrecisionPath,
+    }
+  );
+  const statuses = admission.statuses.map(copyStatusRecord);
+  if (selectedPrecisionPath !== admissionPrecisionPath) {
+    statuses.push(
+      createStatus("precision_escalated", "info", "selected precision path raised by run contract", {
+        stage: "admission",
+        details: {
+          requestedPrecisionPath,
+          admissionPrecisionPath,
+          claimMinimumPrecisionPath,
+          selectedPrecisionPath,
+        },
+      })
+    );
+  }
+  return {
+    requestedPrecisionPath,
+    selectedPrecisionPath,
+    admission: {
+      ...admission,
+      selectedPrecisionPath,
+      statuses,
+    },
+  };
 }
 
 function hasHaltOrError(statuses) {
@@ -2516,11 +3287,25 @@ function isNonnegativeFinite(value) {
 
 function runSimulationWithModule(state, module, request, abiInfo) {
   validateRunSimulationRequest(request);
-  const admission = admitSimulationEnvelope({
-    model: request.model,
-    errorBudget: request.errorBudget,
-    envelope: request.envelope,
-  });
+  const capability = resolveCapabilityEnvelope(request.capability);
+  const admission =
+    module && typeof module._architrino_solver_admit_simulation_envelope_f64 === "function"
+      ? admitSimulationEnvelopeWithModule(
+          module,
+          {
+            model: request.model,
+            errorBudget: request.errorBudget,
+            envelope: request.envelope,
+            capability,
+          },
+          abiInfo
+        )
+      : admitSimulationEnvelope({
+          model: request.model,
+          errorBudget: request.errorBudget,
+          envelope: request.envelope,
+          capability,
+        });
   if (!admission.admitted) {
     throw new SolverBridgeError(
       createStatus("simulation_envelope_exceeded", "halt", "simulation run was not admitted", {
@@ -2529,23 +3314,32 @@ function runSimulationWithModule(state, module, request, abiInfo) {
       })
     );
   }
+  const precisionSelection = resolveRunPrecisionSelection(request, admission);
+  const runAdmission = precisionSelection.admission;
 
   const requestId = request.requestId || `${request.appId}-${request.runKind}-${state.nextRunSequence}`;
   const runId = request.runId || `solver-run-${state.nextRunSequence}`;
   const datasetId = request.datasetId || `${runId}-dataset`;
   state.nextRunSequence += 1;
-  const manifestBase = createRunManifestBase(request, admission, {
-    requestId,
-    runId,
-    datasetId,
-  });
+  const threading = createRunThreadingPlan(request, state.capabilities);
+  const manifestBase = createRunManifestBase(
+    request,
+    runAdmission,
+    {
+      requestId,
+      runId,
+      datasetId,
+    },
+    threading
+  );
 
   let completedResponse;
   if (request.runKind === "causalRoots") {
     const rootsAndHits = solveRunRootsAndHitsF64WithModule(module, request.config, abiInfo, {
       runId,
       requestId,
-      precisionPath: admission.selectedPrecisionPath,
+      requestedPrecisionPath: precisionSelection.requestedPrecisionPath,
+      precisionPath: precisionSelection.selectedPrecisionPath,
       claimLevel: request.claimLevel,
     });
     const streams = rootsAndHits.streams.map((stream) => ({
@@ -2569,6 +3363,10 @@ function runSimulationWithModule(state, module, request, abiInfo) {
       roots: rootsAndHits.roots,
       hits: rootsAndHits.hits,
       rootLedgerDetails: rootsAndHits.rootLedgerDetails,
+      coordinateFrame: rootsAndHits.coordinateFrame,
+      coordinateOrigin: rootsAndHits.coordinateOrigin,
+      localRequest: rootsAndHits.localRequest,
+      absoluteRoots: rootsAndHits.absoluteRoots,
       precision: deepCloneJson(rootsAndHits.precision),
       status: createStatus("ok", "ok", "causal-root simulation completed", { runId, requestId }),
     };
@@ -2577,6 +3375,7 @@ function runSimulationWithModule(state, module, request, abiInfo) {
     const rootsAndHits = solveRunRootsAndHitsF64WithModule(module, request.config, abiInfo, {
       runId,
       requestId,
+      requestedPrecisionPath: request.precisionPath,
       precisionPath: admission.selectedPrecisionPath,
       claimLevel: request.claimLevel,
     });
@@ -2601,6 +3400,10 @@ function runSimulationWithModule(state, module, request, abiInfo) {
       roots: rootsAndHits.roots,
       hits: rootsAndHits.hits,
       rootLedgerDetails: rootsAndHits.rootLedgerDetails,
+      coordinateFrame: rootsAndHits.coordinateFrame,
+      coordinateOrigin: rootsAndHits.coordinateOrigin,
+      localRequest: rootsAndHits.localRequest,
+      absoluteRoots: rootsAndHits.absoluteRoots,
       precision: deepCloneJson(rootsAndHits.precision),
       status: createStatus("ok", "ok", "delayed-hit simulation completed", { runId, requestId }),
     };
@@ -2869,7 +3672,7 @@ function runSimulationWithModule(state, module, request, abiInfo) {
     runId,
     datasetId,
     cancellationToken: `cancel-${runId}`,
-    acceptedPrecisionPath: admission.selectedPrecisionPath,
+    acceptedPrecisionPath: precisionSelection.selectedPrecisionPath,
     expectedOutputs: request.output.outputs,
     response: completedResponse,
     status: createStatus("ok", "ok", "simulation run completed", { runId, requestId }),
@@ -2959,13 +3762,32 @@ function normalizeMotionIntegrationReplayRequest(request) {
 }
 
 function solveRunRootsAndHitsF64WithModule(module, config, abiInfo, ids = {}) {
-  if (config.circularSourceRootRequest != null) {
-    return solveRunCircularSourceRootsF64WithModule(
+  if (config.normalizedCircularSourceRootRequest != null) {
+    const precisionRequest = createRunCircularSourcePrecisionRequest(
+      config.normalizedCircularSourceRootRequest.localRequest,
+      ids
+    );
+    const normalizedCircularSourceRequest = {
+      ...config.normalizedCircularSourceRootRequest,
+      localRequest: precisionRequest.rootRequest,
+    };
+    const response = solveCircularSourceRootsHitsLedgerNormalizedF64WithModule(
       module,
-      config.circularSourceRootRequest,
+      normalizedCircularSourceRequest,
       abiInfo,
       ids
     );
+    return withCircularSourceRunPrecisionMetadata(response, precisionRequest, ids);
+  }
+  if (config.circularSourceRootRequest != null) {
+    const precisionRequest = createRunCircularSourcePrecisionRequest(config.circularSourceRootRequest, ids);
+    const response = solveCircularSourceRootsHitsLedgerF64WithModule(
+      module,
+      precisionRequest.rootRequest,
+      abiInfo,
+      ids
+    );
+    return withCircularSourceRunPrecisionMetadata(response, precisionRequest, ids);
   }
   if (config.normalizedRootRequest != null) {
     const normalizedRequest = config.normalizedRootRequest;
@@ -3007,7 +3829,110 @@ function solveRunRootsAndHitsF64WithModule(module, config, abiInfo, ids = {}) {
   };
 }
 
-function solveRunCircularSourceRootsF64WithModule(module, request, abiInfo, ids = {}) {
+function createRunCircularSourcePrecisionRequest(rootRequest, ids = {}) {
+  const requestedPrecisionPath = normalizePrecisionPath(ids.requestedPrecisionPath, "auto");
+  const admissionPrecisionPath = normalizePrecisionPath(ids.precisionPath, "scaled_f64_strict");
+  const claimLevel = normalizeClaimLevel(ids.claimLevel);
+  const claimMinimumPath =
+    CLAIM_LEVEL_MINIMUM_PRECISION_PATH[claimLevel] ?? CLAIM_LEVEL_MINIMUM_PRECISION_PATH["interactive-preview"];
+  const selectedPrecisionPath = maxPrecisionPath(
+    maxPrecisionPath(requestedPrecisionPath, admissionPrecisionPath),
+    claimMinimumPath
+  );
+  const controls = CIRCULAR_SOURCE_PRECISION_CONTROLS[selectedPrecisionPath] ??
+    CIRCULAR_SOURCE_PRECISION_CONTROLS.scaled_f64_strict;
+  return {
+    rootRequest: {
+      ...deepCloneJson(rootRequest),
+      rootTolerance: Math.min(rootRequest?.rootTolerance ?? controls.rootTolerance, controls.rootTolerance),
+      maxIterations: Math.max(rootRequest?.maxIterations ?? 0, controls.maxIterations),
+      scanSubdivisions: Math.max(rootRequest?.scanSubdivisions ?? 0, controls.scanSubdivisions),
+    },
+    requestedPrecisionPath,
+    diagnosticPrecisionPath: admissionPrecisionPath,
+    selectedPrecisionPath,
+    claimLevel,
+    controlNumericType: controls.controlNumericType,
+    outputNumericType: "f64",
+  };
+}
+
+function normalizePrecisionPath(path, fallback) {
+  return DEFAULT_PRECISION_PATHS.includes(path) ? path : fallback;
+}
+
+function normalizeClaimLevel(claimLevel) {
+  return CLAIM_LEVEL_BY_ID.includes(claimLevel) ? claimLevel : "interactive-preview";
+}
+
+function maxPrecisionPath(left, right) {
+  return (PRECISION_PATH_RANK.get(left) ?? 0) >= (PRECISION_PATH_RANK.get(right) ?? 0)
+    ? left
+    : right;
+}
+
+function withCircularSourceRunPrecisionMetadata(response, precisionRequest, ids = {}) {
+  const precision = createCircularSourceRunPrecisionSummary(response, precisionRequest);
+  const precisionStatus = createStatus(
+    "ok",
+    "info",
+    "circular-source precision controls applied to analytic f64 solver",
+    {
+      runId: ids.runId,
+      requestId: ids.requestId,
+      details: {
+        precisionEngine: "analytic-circular-source-f64",
+        precisionPathSelector: "applied-to-circular-source-controls",
+        requestedPrecisionPath: precision.requestedPrecisionPath,
+        diagnosticPrecisionPath: precision.diagnosticPrecisionPath,
+        selectedPrecisionPath: precision.selectedPrecisionPath,
+        selectedNumericType: precision.selectedNumericType,
+        controlNumericType: precisionRequest.controlNumericType,
+        outputNumericTypeAuthority: "f64-cabi-output",
+        validationReplayAuthority: "not-run-for-circular-source",
+        rootTolerance: precision.rootTolerance,
+        maxIterations: precision.maxIterations,
+        scanSubdivisions: precision.scanSubdivisions,
+        maxResidual: precision.maxResidual,
+        minAbsJacobian: precision.minAbsJacobian,
+      },
+    }
+  );
+  return {
+    ...response,
+    precision,
+    statuses: [...(response.statuses ?? []), precisionStatus],
+  };
+}
+
+function createCircularSourceRunPrecisionSummary(response, precisionRequest) {
+  const request = precisionRequest.rootRequest;
+  const roots = response.roots ?? [];
+  const residuals = roots.map((root) => Math.abs(root.residual)).filter(Number.isFinite);
+  const jacobians = roots.map((root) => Math.abs(root.jacobian)).filter(Number.isFinite);
+  return {
+    requestedPrecisionPath: precisionRequest.requestedPrecisionPath,
+    diagnosticPrecisionPath: precisionRequest.diagnosticPrecisionPath,
+    selectedPrecisionPath: precisionRequest.selectedPrecisionPath,
+    selectedNumericType: "f64",
+    claimLevel: precisionRequest.claimLevel,
+    statusCode: "ok",
+    statusSeverity: "info",
+    rootCount: roots.length,
+    rootTolerance: request.rootTolerance ?? 1e-12,
+    maxResidual: residuals.length > 0 ? Math.max(...residuals) : 0,
+    minAbsJacobian: jacobians.length > 0 ? Math.min(...jacobians) : 0,
+    maxIterations: request.maxIterations ?? 0,
+    scanSubdivisions: request.scanSubdivisions ?? 0,
+    escalated:
+      precisionRequest.selectedPrecisionPath !== precisionRequest.requestedPrecisionPath &&
+      precisionRequest.selectedPrecisionPath !== "auto",
+    validationReplayRun: false,
+    validationReplayMatched: false,
+  };
+}
+
+function solveCircularSourceRootsHitsLedgerF64WithModule(module, request, abiInfo, ids = {}) {
   validateCircularSourceCausalRootF64Request(request);
   if (typeof module._malloc !== "function" || typeof module._free !== "function") {
     throw new SolverBridgeError(
@@ -3017,42 +3942,98 @@ function solveRunCircularSourceRootsF64WithModule(module, request, abiInfo, ids 
     );
   }
   const maxRoots = request.maxRoots ?? DEFAULT_MAX_CAUSAL_ROOTS;
+  const maxHits = maxRoots;
+  const maxLedgerRows = Math.max(DEFAULT_MAX_ROOT_LEDGER_DETAIL_ROWS, maxRoots * 3 + 3);
   const requestPtr = module._malloc(abiInfo.circularSourceRootRequestF64Bytes);
   const rootsPtr = module._malloc(abiInfo.rootRowF64Bytes * maxRoots);
-  const outCountPtr = module._malloc(4);
+  const hitsPtr = module._malloc(abiInfo.delayedHitRowF64Bytes * maxHits);
+  const ledgerRowsPtr = module._malloc(abiInfo.rootLedgerDetailRowF64Bytes * maxLedgerRows);
+  const outRootCountPtr = module._malloc(4);
+  const outHitCountPtr = module._malloc(4);
+  const outLedgerRowCountPtr = module._malloc(4);
 
   try {
     writeCircularSourceCausalRootRequestF64(module, requestPtr, request);
-    module.setValue(outCountPtr, 0, "i32");
-    const solve = module.cwrap("architrino_solver_solve_circular_source_causal_roots_f64", "number", [
+    module.setValue(outRootCountPtr, 0, "i32");
+    module.setValue(outHitCountPtr, 0, "i32");
+    module.setValue(outLedgerRowCountPtr, 0, "i32");
+    const solve = module.cwrap(
+      "architrino_solver_solve_circular_source_roots_hits_ledger_f64",
       "number",
-      "number",
-      "number",
-      "number",
-    ]);
-    const status = solve(requestPtr, rootsPtr, maxRoots, outCountPtr);
-    const rootCount = module.getValue(outCountPtr, "i32");
+      [
+        "number",
+        "number",
+        "number",
+        "number",
+        "number",
+        "number",
+        "number",
+        "number",
+        "number",
+        "number",
+      ]
+    );
+    const status = solve(
+      requestPtr,
+      rootsPtr,
+      maxRoots,
+      outRootCountPtr,
+      hitsPtr,
+      maxHits,
+      outHitCountPtr,
+      ledgerRowsPtr,
+      maxLedgerRows,
+      outLedgerRowCountPtr
+    );
+    const rootCount = module.getValue(outRootCountPtr, "i32");
+    const hitCount = module.getValue(outHitCountPtr, "i32");
+    const ledgerRowCount = module.getValue(outLedgerRowCountPtr, "i32");
     if (status !== 0) {
       throw new SolverBridgeError(
         createStatus(
           "internal_solver_error",
           "halt",
-          `circular-source causal root C ABI returned ${status}`,
+          `circular-source roots-hits-ledger C ABI returned ${status}`,
           {
-            recoverable: false,
-            details: { status, rootCount, maxRoots },
+            recoverable: status === -3,
+            details: {
+              status,
+              rootCount,
+              hitCount,
+              ledgerRowCount,
+              maxRoots,
+              maxHits,
+              maxLedgerRows,
+            },
           }
         )
       );
     }
 
     const roots = [];
+    const hits = [];
+    const rootLedgerDetails = [];
     for (let index = 0; index < rootCount; index += 1) {
       roots.push(readCausalRootRowF64(module, rootsPtr + index * abiInfo.rootRowF64Bytes));
     }
+    for (let index = 0; index < hitCount; index += 1) {
+      hits.push(readDelayedHitRowF64(module, hitsPtr + index * abiInfo.delayedHitRowF64Bytes));
+    }
+    for (let index = 0; index < ledgerRowCount; index += 1) {
+      rootLedgerDetails.push(
+        readRootLedgerDetailRowF64(
+          module,
+          ledgerRowsPtr + index * abiInfo.rootLedgerDetailRowF64Bytes
+        )
+      );
+    }
     const rootBuffer = copyWasmBytes(module, rootsPtr, rootCount * abiInfo.rootRowF64Bytes);
-    const hitBuffer = new ArrayBuffer(0);
-    const rootLedgerBuffer = new ArrayBuffer(0);
+    const hitBuffer = copyWasmBytes(module, hitsPtr, hitCount * abiInfo.delayedHitRowF64Bytes);
+    const rootLedgerBuffer = copyWasmBytes(
+      module,
+      ledgerRowsPtr,
+      ledgerRowCount * abiInfo.rootLedgerDetailRowF64Bytes
+    );
     const rootBufferDescriptor = createBufferDescriptor(
       "circular-source-root-ledger",
       "root_ledger.v1",
@@ -3063,45 +4044,47 @@ function solveRunCircularSourceRootsF64WithModule(module, request, abiInfo, ids 
     const hitBufferDescriptor = createBufferDescriptor(
       "circular-source-delayed-hit-events",
       "delayed_hit_events.v1",
-      0,
+      hits.length,
       abiInfo.delayedHitRowF64Bytes,
       hitBuffer
     );
     const rootLedgerDetailBuffer = createBufferDescriptor(
       "circular-source-root-ledger-detail",
       "root_ledger_detail.v1",
-      0,
+      rootLedgerDetails.length,
       abiInfo.rootLedgerDetailRowF64Bytes,
       rootLedgerBuffer
     );
     const circularStatus = createStatus(
       "ok",
       "info",
-      "circular-source causal-root run used root-only projection",
+      "circular-source roots, delayed hits, and ledger rows solved natively",
       {
         runId: ids.runId,
         requestId: ids.requestId,
         details: {
           sourceModel: "circular-source",
-          delayedHitProjection: "not-yet-implemented",
-          rootLedgerDetailProjection: "not-yet-implemented",
+          delayedHitProjection: "native-root-derived",
+          rootLedgerDetailProjection: "native-circular-source-ledger",
+          rootBracketAuthority: "native-root-bracket",
         },
       }
     );
     return {
+      schema: "solver-circular-source-roots-hits-ledger-f64.v1",
       roots,
-      hits: [],
-      rootLedgerDetails: [],
+      hits,
+      rootLedgerDetails,
       buffers: [rootBufferDescriptor, hitBufferDescriptor, rootLedgerDetailBuffer],
       streams: [
-        createTransientStreamDescriptor("causal-root-transient", request.hitTime, [
+        createTransientStreamDescriptor(request.streamId ?? "causal-root-transient", request.hitTime, [
           rootBufferDescriptor,
           hitBufferDescriptor,
           rootLedgerDetailBuffer,
         ]),
       ],
       statuses: [circularStatus],
-      status: createStatus("ok", "ok", "circular-source causal roots solved", {
+      status: createStatus("ok", "ok", "circular-source roots, delayed hits, and ledger rows solved", {
         runId: ids.runId,
         requestId: ids.requestId,
       }),
@@ -3109,8 +4092,60 @@ function solveRunCircularSourceRootsF64WithModule(module, request, abiInfo, ids 
   } finally {
     module._free(requestPtr);
     module._free(rootsPtr);
-    module._free(outCountPtr);
+    module._free(hitsPtr);
+    module._free(ledgerRowsPtr);
+    module._free(outRootCountPtr);
+    module._free(outHitCountPtr);
+    module._free(outLedgerRowCountPtr);
   }
+}
+
+function solveCircularSourceRootsHitsLedgerNormalizedF64WithModule(module, request, abiInfo, ids = {}) {
+  validateNormalizedCircularSourceRootsHitsLedgerF64Request(request);
+  const localRequest = deepCloneJson(request.localRequest);
+  const localResponse = solveCircularSourceRootsHitsLedgerF64WithModule(module, localRequest, abiInfo, ids);
+  const coordinateOrigin = copyVector(request.coordinateOrigin);
+  const roots = localResponse.roots.map((root) => ({
+    ...root,
+    coordinateFrame: "origin-normalized",
+  }));
+  const absoluteRoots = request.restoreAbsolutePoints === false
+    ? undefined
+    : roots.map((root) => restoreCausalRootAbsolutePoints(root, coordinateOrigin));
+  const normalizedStatus = createStatus(
+    "ok",
+    "ok",
+    "origin-normalized circular-source roots, hits, and ledger rows solved",
+    {
+      runId: ids.runId,
+      requestId: ids.requestId,
+      details: {
+        coordinateFrame: "origin-normalized",
+        coordinateOrigin,
+        localRootCount: roots.length,
+        localHitCount: localResponse.hits.length,
+        localRootLedgerDetailCount: localResponse.rootLedgerDetails.length,
+        absolutePointAuthority: request.restoreAbsolutePoints === false ? "omitted" : "display-only",
+        localRootAuthority: "authoritative",
+        localHitAuthority: "authoritative",
+        localRootLedgerDetailAuthority: "authoritative",
+      },
+    }
+  );
+  return {
+    schema: "solver-circular-source-roots-hits-ledger-normalized-f64.v1",
+    coordinateFrame: "origin-normalized",
+    coordinateOrigin,
+    localRequest,
+    roots,
+    hits: localResponse.hits,
+    rootLedgerDetails: localResponse.rootLedgerDetails,
+    absoluteRoots,
+    buffers: localResponse.buffers,
+    streams: localResponse.streams,
+    statuses: [...(localResponse.statuses ?? []), normalizedStatus],
+    status: normalizedStatus,
+  };
 }
 
 function createRunPrecisionRootsAndHitsRequest(rootRequest, ids = {}) {
@@ -3162,7 +4197,7 @@ function countPlaybackPaths(frames) {
   return new Set(frames.map((frame) => frame.pathKey)).size;
 }
 
-function createRunManifestBase(request, admission, ids) {
+function createRunManifestBase(request, admission, ids, threading) {
   const configHash = request.configHash || stableHashHex({
     configVersion: request.configVersion,
     config: request.config,
@@ -3179,10 +4214,12 @@ function createRunManifestBase(request, admission, ids) {
     configHash,
     model: deepCloneJson(request.model),
     envelope: deepCloneJson(request.envelope),
+    capability: resolveCapabilityEnvelope(request.capability),
     errorBudget: deepCloneJson(request.errorBudget),
     requestedPrecisionPath: request.precisionPath,
     selectedPrecisionPath: admission.selectedPrecisionPath,
     output: deepCloneJson(request.output),
+    threading: deepCloneJson(threading),
     admission: {
       decision: admission.decision,
       admitted: admission.admitted,
@@ -3205,6 +4242,40 @@ function createRunManifestBase(request, admission, ids) {
       requestId: ids.requestId,
     }),
   };
+}
+
+function createRunThreadingPlan(request, capabilities) {
+  return planThreadingPolicy(
+    {
+      policy: request.threadingPolicy ?? {
+        mode: "single-thread",
+        deterministic: request.output?.deterministic !== false,
+      },
+      workload: {
+        stage: request.runKind,
+        itemCount: estimateRunThreadingItemCount(request),
+        minItemsPerWorker: 16,
+        deterministicRequired: request.output?.deterministic !== false,
+      },
+    },
+    capabilities
+  );
+}
+
+function estimateRunThreadingItemCount(request) {
+  if (request.runKind === "pathHistory" && Array.isArray(request.config?.pathRows)) {
+    return request.config.pathRows.length;
+  }
+  if (request.runKind === "motionSimulation") {
+    const motionRequest = request.config?.motionRequest ?? request.config?.motionIntegrationRequest;
+    const start = motionRequest?.startTime;
+    const end = motionRequest?.endTime;
+    const step = motionRequest?.step;
+    if (Number.isFinite(start) && Number.isFinite(end) && Number.isFinite(step) && step > 0 && end >= start) {
+      return Math.max(1, Math.floor((end - start) / step) + 1);
+    }
+  }
+  return Math.max(1, request.envelope?.entityCount ?? 1);
 }
 
 function finalizeRunManifest(manifest, response) {
@@ -3258,12 +4329,35 @@ function createRunValidationArtifacts(manifest, response) {
     toleranceVector: deepCloneJson(manifest.errorBudget),
     artifactHashes: {
       configHash: manifest.configHash,
+      schemaVersionHash: stableHashHex(createRunSchemaVersionSummary(manifest)),
+      statusTaxonomyHash: stableHashHex(STATUS_TAXONOMY),
+      binaryLayoutHash: stableHashHex(createBinaryLayoutCatalog()),
+      modelContractHash: stableHashHex(manifest.model),
+      simulationEnvelopeHash: stableHashHex(manifest.envelope),
+      capabilityEnvelopeHash: stableHashHex(manifest.capability),
+      errorBudgetHash: stableHashHex(manifest.errorBudget),
+      outputContractHash: stableHashHex(manifest.output),
+      threadingHash: stableHashHex(manifest.threading),
+      admissionHash: stableHashHex(manifest.admission),
+      provenanceHash: stableHashHex(manifest.provenance),
       bufferHashes: manifest.buffers.map((buffer) => buffer.checksum),
       streamHashes: manifest.streams.map((stream) => stableHashHex(stream)),
       diagnosticHash: stableHashHex(manifest.diagnostics),
       summaryHash: stableHashHex(response.summary),
       responseStatusHash: stableHashHex(response.status),
     },
+  };
+}
+
+function createRunSchemaVersionSummary(manifest) {
+  return {
+    runManifest: manifest.schema,
+    validationArtifacts: "solver-run-validation-artifacts.v1",
+    appBridgeApi: manifest.provenance.apiVersion,
+    solverVersion: manifest.provenance.solverVersion,
+    bufferLayouts: manifest.buffers.map((buffer) => buffer.layout),
+    streamManifestVersions: manifest.streams.map((stream) => stream.manifestVersion),
+    statusTaxonomy: STATUS_TAXONOMY.schema,
   };
 }
 
@@ -3746,16 +4840,25 @@ function computePhaseAtHitF64WithModule(module, request, abiInfo) {
   const rootsPtr = module._malloc(abiInfo.rootRowF64Bytes * rootCount);
   const sourceClockPtr = module._malloc(abiInfo.phaseClockF64Bytes);
   const receiverClockPtr = module._malloc(abiInfo.phaseClockF64Bytes);
+  const metadataPtr = rootCount > 0 ? module._malloc(PHASE_AT_HIT_METADATA_F64_BYTES * rootCount) : 0;
   const rowsPtr = module._malloc(abiInfo.phaseAtHitRowF64Bytes * rootCount);
   const outRowCountPtr = module._malloc(4);
   try {
     request.roots.forEach((root, index) => {
       writeCausalRootRowF64(module, rootsPtr + index * abiInfo.rootRowF64Bytes, root);
     });
+    for (let index = 0; index < rootCount; index += 1) {
+      writePhaseAtHitMetadataF64(
+        module,
+        metadataPtr + index * PHASE_AT_HIT_METADATA_F64_BYTES,
+        request.metadata?.[index]
+      );
+    }
     writePhaseClockF64(module, sourceClockPtr, request.sourceClock);
     writePhaseClockF64(module, receiverClockPtr, request.receiverClock);
     module.setValue(outRowCountPtr, 0, "i32");
     const compute = module.cwrap("architrino_solver_compute_phase_at_hit_f64", "number", [
+      "number",
       "number",
       "number",
       "number",
@@ -3769,6 +4872,7 @@ function computePhaseAtHitF64WithModule(module, request, abiInfo) {
       rootCount,
       sourceClockPtr,
       receiverClockPtr,
+      metadataPtr,
       rowsPtr,
       rootCount,
       outRowCountPtr
@@ -3804,6 +4908,9 @@ function computePhaseAtHitF64WithModule(module, request, abiInfo) {
     module._free(rootsPtr);
     module._free(sourceClockPtr);
     module._free(receiverClockPtr);
+    if (metadataPtr) {
+      module._free(metadataPtr);
+    }
     module._free(rowsPtr);
     module._free(outRowCountPtr);
   }
@@ -3826,6 +4933,24 @@ function validatePhaseAtHitRequest(request) {
   }
   validatePhaseClock(request.sourceClock, "sourceClock");
   validatePhaseClock(request.receiverClock, "receiverClock");
+  if (request.metadata != null) {
+    if (!Array.isArray(request.metadata)) {
+      throw new SolverBridgeError(
+        createStatus("app_contract_error", "error", "phase-at-hit metadata must be an array", {
+          recoverable: false,
+        })
+      );
+    }
+    if (request.metadata.length !== request.roots.length) {
+      throw new SolverBridgeError(
+        createStatus("app_contract_error", "error", "phase-at-hit metadata must align with roots", {
+          recoverable: false,
+          details: { rootCount: request.roots.length, metadataCount: request.metadata.length },
+        })
+      );
+    }
+    request.metadata.forEach((metadata, index) => validatePhaseAtHitMetadata(metadata, `metadata[${index}]`));
+  }
   request.roots.forEach((root, index) => {
     requireFiniteNumber(root.rootId, `roots[${index}].rootId`);
     requireFiniteNumber(root.statusCode, `roots[${index}].statusCode`);
@@ -3848,6 +4973,34 @@ function validatePhaseClock(clock, label) {
   }
   if (clock.phaseOffset != null) {
     requireFiniteNumber(clock.phaseOffset, `${label}.phaseOffset`);
+  }
+}
+
+function validatePhaseAtHitMetadata(metadata, label) {
+  if (!metadata || typeof metadata !== "object" || Array.isArray(metadata)) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", `${label} must be an object`, {
+        recoverable: false,
+      })
+    );
+  }
+  requireUint32(metadata.rootKind ?? 0, `${label}.rootKind`);
+  requireUint32(metadata.sourceLayerCode ?? 0, `${label}.sourceLayerCode`);
+  requireUint32(metadata.receiverLayerCode ?? 0, `${label}.receiverLayerCode`);
+  requireUint32(metadata.sourceRoleCode ?? 0, `${label}.sourceRoleCode`);
+  requireUint32(metadata.receiverRoleCode ?? 0, `${label}.receiverRoleCode`);
+  requireChargeSign(metadata.sourceChargeSign ?? 0, `${label}.sourceChargeSign`);
+  requireChargeSign(metadata.receiverChargeSign ?? 0, `${label}.receiverChargeSign`);
+  requireUint32(metadata.stateFlags ?? 0, `${label}.stateFlags`);
+}
+
+function requireChargeSign(value, label) {
+  if (!Number.isInteger(value) || value < -1 || value > 1) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", `${label} must be -1, 0, or 1`, {
+        recoverable: false,
+      })
+    );
   }
 }
 
@@ -3937,6 +5090,14 @@ function validatePhaseAtHitRow(row, label) {
   requireFiniteNumber(row.receiverPhase, `${label}.receiverPhase`);
   requireFiniteNumber(row.phaseDelta, `${label}.phaseDelta`);
   requireFiniteNumber(row.phaseSpread, `${label}.phaseSpread`);
+  requireUint32(row.rootKind, `${label}.rootKind`);
+  requireUint32(row.sourceLayerCode, `${label}.sourceLayerCode`);
+  requireUint32(row.receiverLayerCode, `${label}.receiverLayerCode`);
+  requireUint32(row.sourceRoleCode, `${label}.sourceRoleCode`);
+  requireUint32(row.receiverRoleCode, `${label}.receiverRoleCode`);
+  requireChargeSign(row.sourceChargeSign, `${label}.sourceChargeSign`);
+  requireChargeSign(row.receiverChargeSign, `${label}.receiverChargeSign`);
+  requireUint32(row.stateFlags, `${label}.stateFlags`);
   if (row.phaseSpread < 0) {
     throw new SolverBridgeError(
       createStatus("app_contract_error", "error", `${label}.phaseSpread must be nonnegative`, {
@@ -5631,6 +6792,18 @@ function validatePathHistoryRowF64(row, index) {
   requireSafeUint64(row.segmentIndex, `pathRows[${index}].segmentIndex`);
   requireFiniteNumber(row.startTime, `pathRows[${index}].startTime`);
   requireFiniteNumber(row.endTime, `pathRows[${index}].endTime`);
+  if (row.endTime < row.startTime) {
+    throw new SolverBridgeError(
+      createStatus(
+        "app_contract_error",
+        "error",
+        `pathRows[${index}].endTime must be greater than or equal to startTime`,
+        {
+          recoverable: false,
+        }
+      )
+    );
+  }
   validateVector(row.start, `pathRows[${index}].start`);
   validateVector(row.velocity, `pathRows[${index}].velocity`);
   requireNonnegativeFiniteNumber(row.errorBound ?? 0, `pathRows[${index}].errorBound`);
@@ -5962,19 +7135,24 @@ function validateDelayedHitsRunConfig(config) {
       })
     );
   }
-  validateRunRootRequestConfig(config, "delayed-hit");
+  validateRunRootRequestConfig(config, "delayed-hit", { allowCircularSource: true });
 }
 
 function validateRunRootRequestConfig(config, label, options = {}) {
   const hasRootRequest = config.rootRequest != null;
   const hasNormalizedRootRequest = config.normalizedRootRequest != null;
   const hasCircularSourceRootRequest = config.circularSourceRootRequest != null;
+  const hasNormalizedCircularSourceRootRequest = config.normalizedCircularSourceRootRequest != null;
   const requestCount = Number(hasRootRequest) +
     Number(hasNormalizedRootRequest) +
-    Number(hasCircularSourceRootRequest);
-  if (requestCount !== 1 || (hasCircularSourceRootRequest && !options.allowCircularSource)) {
+    Number(hasCircularSourceRootRequest) +
+    Number(hasNormalizedCircularSourceRootRequest);
+  const hasUnsupportedCircularSource =
+    (hasCircularSourceRootRequest || hasNormalizedCircularSourceRootRequest) &&
+    !options.allowCircularSource;
+  if (requestCount !== 1 || hasUnsupportedCircularSource) {
     const allowed = options.allowCircularSource
-      ? "rootRequest, normalizedRootRequest, or circularSourceRootRequest"
+      ? "rootRequest, normalizedRootRequest, circularSourceRootRequest, or normalizedCircularSourceRootRequest"
       : "rootRequest or normalizedRootRequest";
     throw new SolverBridgeError(
       createStatus(
@@ -5985,7 +7163,9 @@ function validateRunRootRequestConfig(config, label, options = {}) {
       )
     );
   }
-  if (hasCircularSourceRootRequest) {
+  if (hasNormalizedCircularSourceRootRequest) {
+    validateNormalizedCircularSourceRootsHitsLedgerF64Request(config.normalizedCircularSourceRootRequest);
+  } else if (hasCircularSourceRootRequest) {
     validateCircularSourceCausalRootF64Request(config.circularSourceRootRequest);
   } else if (hasNormalizedRootRequest) {
     validateNormalizedCausalRootF64Request(config.normalizedRootRequest);
@@ -6327,8 +7507,10 @@ function runExportedSmoke(module, exportName) {
 
 export function hasSolverCAbi(module) {
   return (
+    typeof module?._architrino_solver_admit_simulation_envelope_f64 === "function" &&
     typeof module?._architrino_solver_solve_causal_roots_f64 === "function" &&
     typeof module?._architrino_solver_solve_circular_source_causal_roots_f64 === "function" &&
+    typeof module?._architrino_solver_solve_circular_source_roots_hits_ledger_f64 === "function" &&
     typeof module?._architrino_solver_solve_roots_and_hits_f64 === "function" &&
     typeof module?._architrino_solver_build_root_ledger_detail_f64 === "function" &&
     typeof module?._architrino_solver_solve_causal_root_batch_f64 === "function" &&
@@ -6410,6 +7592,12 @@ function readAbiInfo(module) {
       motionIntegrationRequestF64Bytes: module.getValue(ptr + 152, "i32"),
       circularPathSegmentF64Bytes: module.getValue(ptr + 156, "i32"),
       circularSourceRootRequestF64Bytes: module.getValue(ptr + 160, "i32"),
+      modelContractBytes: module.getValue(ptr + 164, "i32"),
+      simulationEnvelopeF64Bytes: module.getValue(ptr + 168, "i32"),
+      capabilityEnvelopeF64Bytes: module.getValue(ptr + 172, "i32"),
+      admissionStressSummaryF64Bytes: module.getValue(ptr + 176, "i32"),
+      statusRowBytes: module.getValue(ptr + 180, "i32"),
+      admissionReportF64Bytes: module.getValue(ptr + 184, "i32"),
     };
   } finally {
     module._free(ptr);
@@ -6419,7 +7607,7 @@ function readAbiInfo(module) {
 function defaultAbiInfo() {
   return {
     abiMajor: 0,
-    abiMinor: 7,
+    abiMinor: 11,
     abiPatch: 0,
     rootRequestF64Bytes: CAUSAL_ROOT_REQUEST_F64_BYTES,
     rootRowF64Bytes: CAUSAL_ROOT_ROW_F64_BYTES,
@@ -6459,6 +7647,12 @@ function defaultAbiInfo() {
     motionIntegrationRequestF64Bytes: MOTION_INTEGRATION_REQUEST_F64_BYTES,
     circularPathSegmentF64Bytes: CIRCULAR_PATH_SEGMENT_F64_BYTES,
     circularSourceRootRequestF64Bytes: CIRCULAR_SOURCE_ROOT_REQUEST_F64_BYTES,
+    modelContractBytes: MODEL_CONTRACT_BYTES,
+    simulationEnvelopeF64Bytes: SIMULATION_ENVELOPE_F64_BYTES,
+    capabilityEnvelopeF64Bytes: CAPABILITY_ENVELOPE_F64_BYTES,
+    admissionStressSummaryF64Bytes: ADMISSION_STRESS_SUMMARY_F64_BYTES,
+    statusRowBytes: STATUS_ROW_BYTES,
+    admissionReportF64Bytes: ADMISSION_REPORT_F64_BYTES,
   };
 }
 
@@ -6501,7 +7695,13 @@ function assertAbiInfo(abiInfo) {
     abiInfo.precisionSolveSummaryF64Bytes !== PRECISION_SOLVE_SUMMARY_F64_BYTES ||
     abiInfo.motionIntegrationRequestF64Bytes !== MOTION_INTEGRATION_REQUEST_F64_BYTES ||
     abiInfo.circularPathSegmentF64Bytes !== CIRCULAR_PATH_SEGMENT_F64_BYTES ||
-    abiInfo.circularSourceRootRequestF64Bytes !== CIRCULAR_SOURCE_ROOT_REQUEST_F64_BYTES
+    abiInfo.circularSourceRootRequestF64Bytes !== CIRCULAR_SOURCE_ROOT_REQUEST_F64_BYTES ||
+    abiInfo.modelContractBytes !== MODEL_CONTRACT_BYTES ||
+    abiInfo.simulationEnvelopeF64Bytes !== SIMULATION_ENVELOPE_F64_BYTES ||
+    abiInfo.capabilityEnvelopeF64Bytes !== CAPABILITY_ENVELOPE_F64_BYTES ||
+    abiInfo.admissionStressSummaryF64Bytes !== ADMISSION_STRESS_SUMMARY_F64_BYTES ||
+    abiInfo.statusRowBytes !== STATUS_ROW_BYTES ||
+    abiInfo.admissionReportF64Bytes !== ADMISSION_REPORT_F64_BYTES
   ) {
     throw new SolverBridgeError(
       createStatus("app_contract_error", "error", "solver ABI row sizes do not match bridge layout", {
@@ -7571,6 +8771,32 @@ function validateNormalizedCausalRootF64Request(request) {
   }
 }
 
+function validateNormalizedCircularSourceRootsHitsLedgerF64Request(request) {
+  if (!request || typeof request !== "object" || Array.isArray(request)) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "normalized circular-source roots/hits/ledger request object is required", {
+        recoverable: false,
+      })
+    );
+  }
+  validateVector(request.coordinateOrigin, "coordinateOrigin");
+  if (!request.localRequest || typeof request.localRequest !== "object" || Array.isArray(request.localRequest)) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "localRequest is required", {
+        recoverable: false,
+      })
+    );
+  }
+  validateCircularSourceCausalRootF64Request(request.localRequest);
+  if (request.restoreAbsolutePoints != null && typeof request.restoreAbsolutePoints !== "boolean") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "restoreAbsolutePoints must be boolean", {
+        recoverable: false,
+      })
+    );
+  }
+}
+
 function validateCausalRootsPrecisionF64Request(request) {
   if (!request || typeof request !== "object" || Array.isArray(request)) {
     throw new SolverBridgeError(
@@ -7855,6 +9081,17 @@ function writePhaseClockF64(module, ptr, clock) {
   module.setValue(ptr + 16, clock.phaseOffset ?? 0, "double");
 }
 
+function writePhaseAtHitMetadataF64(module, ptr, metadata = {}) {
+  module.setValue(ptr, metadata.rootKind ?? 0, "i32");
+  module.setValue(ptr + 4, metadata.sourceLayerCode ?? 0, "i32");
+  module.setValue(ptr + 8, metadata.receiverLayerCode ?? 0, "i32");
+  module.setValue(ptr + 12, metadata.sourceRoleCode ?? 0, "i32");
+  module.setValue(ptr + 16, metadata.receiverRoleCode ?? 0, "i32");
+  module.setValue(ptr + 20, metadata.sourceChargeSign ?? 0, "i32");
+  module.setValue(ptr + 24, metadata.receiverChargeSign ?? 0, "i32");
+  module.setValue(ptr + 28, metadata.stateFlags ?? 0, "i32");
+}
+
 function writeErrorBudgetF64(module, ptr, budget) {
   module.setValue(ptr, budget.globalTolerance, "double");
   module.setValue(ptr + 8, budget.rootIsolationTolerance, "double");
@@ -7864,6 +9101,65 @@ function writeErrorBudgetF64(module, ptr, budget) {
   module.setValue(ptr + 40, budget.readbackTolerance, "double");
   module.setValue(ptr + 48, budget.projectionTolerance ?? 0, "double");
   module.setValue(ptr + 56, budget.displayTolerance ?? 0, "double");
+}
+
+function writeAdmissionModelContract(module, ptr, model) {
+  module.setValue(ptr, model?.modelId ? 1 : 0, "i32");
+  module.setValue(ptr + 4, model?.equationVersion ? 1 : 0, "i32");
+  module.setValue(ptr + 8, model?.forceLawVersion ? 1 : 0, "i32");
+  module.setValue(ptr + 12, model?.constantsHash ? 1 : 0, "i32");
+  module.setValue(ptr + 16, model?.causalSpeedPolicy ? 1 : 0, "i32");
+  module.setValue(ptr + 20, model?.branchPolicy ? 1 : 0, "i32");
+  module.setValue(ptr + 24, model?.unitConvention ? 1 : 0, "i32");
+  module.setValue(ptr + 28, precisionPathMask(model?.compatiblePrecisionPaths), "i32");
+}
+
+function precisionPathMask(paths) {
+  if (!Array.isArray(paths)) {
+    return 0;
+  }
+  return paths.reduce((mask, path) => {
+    const id = DEFAULT_PRECISION_PATHS.indexOf(path);
+    return id < 0 ? mask : mask | (1 << id);
+  }, 0);
+}
+
+function enumId(values, value, fallback = 0) {
+  const id = values.indexOf(value);
+  return id < 0 ? fallback : id;
+}
+
+function timeWindowUnitsId(units) {
+  if (units == null || units === "") {
+    return 3;
+  }
+  return enumId(TIME_WINDOW_UNITS_BY_ID, units, -1);
+}
+
+function writeSimulationEnvelopeF64(module, ptr, envelope) {
+  writeUint64(module, ptr, envelope?.entityCount ?? 0);
+  writeUint64(module, ptr + 8, envelope?.assemblyCount ?? 0);
+  writeUint64(module, ptr + 16, envelope?.memoryBudgetBytes ?? 0);
+  writeUint64(module, ptr + 24, envelope?.storageBudgetBytes ?? 0);
+  module.setValue(ptr + 32, envelope?.timeWindow?.start ?? 0, "double");
+  module.setValue(ptr + 40, envelope?.timeWindow?.end ?? 0, "double");
+  module.setValue(ptr + 48, envelope?.timeWindow?.stepHint ?? 0, "double");
+  module.setValue(ptr + 56, envelope?.timeResolutionHint ?? 0, "double");
+  module.setValue(ptr + 64, enumId(INTERACTION_POLICY_BY_ID, envelope?.interactionPolicy), "i32");
+  module.setValue(ptr + 68, enumId(BRANCH_COMPLEXITY_BY_ID, envelope?.expectedBranchComplexity, 3), "i32");
+  module.setValue(ptr + 72, enumId(OUTPUT_DETAIL_BY_ID, envelope?.outputDetail), "i32");
+  module.setValue(ptr + 76, enumId(LATENCY_TARGET_BY_ID, envelope?.latencyTarget), "i32");
+  module.setValue(ptr + 80, enumId(SIMPLIFICATION_POLICY_BY_ID, envelope?.simplificationPolicy), "i32");
+  module.setValue(ptr + 84, timeWindowUnitsId(envelope?.timeWindow?.units), "i32");
+}
+
+function writeCapabilityEnvelopeF64(module, ptr, capability) {
+  writeUint64(module, ptr, capability.maxInteractiveEntities);
+  writeUint64(module, ptr + 8, capability.maxBatchEntities);
+  writeUint64(module, ptr + 16, capability.minMemoryBudgetBytes);
+  writeUint64(module, ptr + 24, capability.minStorageBudgetBytesForStreaming);
+  module.setValue(ptr + 32, capability.minimumPositiveTolerance, "double");
+  module.setValue(ptr + 40, capability.maxInteractiveStepCount, "double");
 }
 
 function writeErrorBudgetStageInputF64(module, ptr, stage) {
@@ -8261,6 +9557,58 @@ function readErrorBudgetSummaryF64(module, ptr) {
   };
 }
 
+function readAdmissionReportF64(module, ptr) {
+  return {
+    decision: ADMISSION_DECISION_BY_ID[module.getValue(ptr, "i32")] ?? "reject",
+    selectedPrecisionPath: DEFAULT_PRECISION_PATHS[module.getValue(ptr + 4, "i32")] ?? "auto",
+    admitted: module.getValue(ptr + 8, "i32") !== 0,
+    validationOk: module.getValue(ptr + 12, "i32") !== 0,
+    stressSummary: readAdmissionStressSummaryF64(module, ptr + 16),
+  };
+}
+
+function readAdmissionStressSummaryF64(module, ptr) {
+  const hasTimeStepCountEstimate = module.getValue(ptr + 88, "i32") !== 0;
+  const dominantStressId = module.getValue(ptr + 92, "i32");
+  return {
+    schema: "solver-admission-stress-summary.v1",
+    entityCount: readUint64(module, ptr),
+    estimatedPairCount: readUint64(module, ptr + 8),
+    entityPressure: module.getValue(ptr + 16, "double"),
+    interactionPressure: module.getValue(ptr + 24, "double"),
+    memoryPressure: module.getValue(ptr + 32, "double"),
+    storagePressure: module.getValue(ptr + 40, "double"),
+    timeStepCountEstimate: hasTimeStepCountEstimate ? module.getValue(ptr + 48, "double") : null,
+    timeStepPressure: module.getValue(ptr + 56, "double"),
+    outputPressure: module.getValue(ptr + 64, "double"),
+    precisionPressure: module.getValue(ptr + 72, "double"),
+    dominantStress: ADMISSION_STRESS_DIMENSION_BY_ID[dominantStressId] ?? "entity_count",
+    pressureScore: module.getValue(ptr + 80, "double"),
+  };
+}
+
+function readAdmissionStatusRows(module, ptr, rowCount, abiInfo) {
+  const rows = [];
+  for (let index = 0; index < rowCount; ++index) {
+    rows.push(readAdmissionStatusRow(module, ptr + index * abiInfo.statusRowBytes));
+  }
+  return rows;
+}
+
+function readAdmissionStatusRow(module, ptr) {
+  const code = STATUS_CODE_BY_ID[module.getValue(ptr, "i32")] ?? "internal_solver_error";
+  const severity = STATUS_SEVERITY_BY_ID[module.getValue(ptr + 4, "i32")] ?? "error";
+  const recoverable = module.getValue(ptr + 8, "i32") !== 0;
+  const stage = ADMISSION_STAGE_BY_ID[module.getValue(ptr + 12, "i32")];
+  const message =
+    ADMISSION_STATUS_MESSAGE_BY_ID[module.getValue(ptr + 16, "i32")] ??
+    `${code} during solver admission`;
+  return createStatus(code, severity, message, {
+    stage,
+    recoverable,
+  });
+}
+
 function readPhaseAtHitRowF64(module, ptr) {
   return {
     rootId: module.getValue(ptr, "i32"),
@@ -8273,6 +9621,14 @@ function readPhaseAtHitRowF64(module, ptr) {
     receiverPhase: module.getValue(ptr + 48, "double"),
     phaseDelta: module.getValue(ptr + 56, "double"),
     phaseSpread: module.getValue(ptr + 64, "double"),
+    rootKind: module.getValue(ptr + 72, "i32") >>> 0,
+    sourceLayerCode: module.getValue(ptr + 76, "i32") >>> 0,
+    receiverLayerCode: module.getValue(ptr + 80, "i32") >>> 0,
+    sourceRoleCode: module.getValue(ptr + 84, "i32") >>> 0,
+    receiverRoleCode: module.getValue(ptr + 88, "i32") >>> 0,
+    sourceChargeSign: module.getValue(ptr + 92, "i32"),
+    receiverChargeSign: module.getValue(ptr + 96, "i32"),
+    stateFlags: module.getValue(ptr + 100, "i32") >>> 0,
   };
 }
 
@@ -8732,6 +10088,7 @@ function createPathHistoryStreamF64(state, request, abiInfo) {
     ranges.push({
       timeRange: chunkStats.timeRange,
       frameRange: chunkStats.frameRange,
+      bounds: chunkStats.bounds,
       byteRange,
     });
   }
@@ -8976,6 +10333,7 @@ function normalizePathHistoryChunkRow(chunk, label) {
     start: chunk.byteOffset,
     end: chunk.byteOffset + chunk.byteLength,
   };
+  const bounds = chunk.bounds == null ? undefined : normalizeSpaceTimeBounds(chunk.bounds, `${label}.bounds`);
   validateRange(timeRange, `${label}.timeRange`);
   validateRange(frameRange, `${label}.frameRange`);
   validateRange(byteRange, `${label}.byteRange`);
@@ -9008,6 +10366,7 @@ function normalizePathHistoryChunkRow(chunk, label) {
     frameEnd: frameRange.end,
     timeStart: timeRange.start,
     timeEnd: timeRange.end,
+    bounds,
     byteOffset: byteRange.start,
     byteLength: byteRange.end - byteRange.start,
     checksum64: normalizeChecksum64(chunk.checksum64 ?? 0),
@@ -9029,6 +10388,7 @@ function derivePathHistoryLifecycleChunksFromStream(streamEntry) {
           rowCount: descriptor.rowCount ?? 0,
           timeRange: range?.timeRange ?? { start: 0, end: 0 },
           frameRange: range?.frameRange ?? { start: 0, end: 0 },
+          bounds: range?.bounds,
           byteRange: range?.byteRange ?? { start: descriptor.byteOffset ?? 0, end: descriptor.byteLength ?? 0 },
           checksum64: descriptor.checksum ?? 0,
           stateFlags: 0,
@@ -9044,6 +10404,7 @@ function derivePathHistoryLifecycleChunksFromStream(streamEntry) {
     }
     const pathKeys = rows.map((row) => row.pathKey);
     const range = streamEntry.stream.availableRanges[chunkIndex];
+    const rowSummary = summarizePathHistoryRows(rows);
     return normalizePathHistoryChunkRow(
       {
         chunkIndex,
@@ -9051,8 +10412,9 @@ function derivePathHistoryLifecycleChunksFromStream(streamEntry) {
         pathKeyEnd: Math.max(...pathKeys),
         rowOffset: rows[0]?.rowOffset ?? 0,
         rowCount: rows.length,
-        timeRange: range?.timeRange ?? summarizePathHistoryRows(rows).timeRange,
-        frameRange: range?.frameRange ?? summarizePathHistoryRows(rows).frameRange,
+        timeRange: range?.timeRange ?? rowSummary.timeRange,
+        frameRange: range?.frameRange ?? rowSummary.frameRange,
+        bounds: range?.bounds ?? rowSummary.bounds,
         byteRange: range?.byteRange ?? {
           start: descriptor.byteOffset ?? 0,
           end: (descriptor.byteOffset ?? 0) + descriptor.byteLength,
@@ -10545,8 +11907,7 @@ function readEmissionShellPathHistoryRowsFromStream(
   scanMetrics.pathIndexRowCount = pathIndexSummary.pathIndexRowCount;
   scanMetrics.pathIndexedChunkCount = pathIndexSummary.pathIndexedChunkCount;
   streamEntry.buffers.forEach((descriptor, chunkIndex) => {
-    const buffer = getBufferDescriptorArrayBuffer(descriptor);
-    if (descriptor.layout !== "path_segment.v1" || !buffer || descriptor.rowCount === 0) {
+    if (descriptor.layout !== "path_segment.v1" || descriptor.rowCount === 0) {
       return;
     }
     const chunkRange = streamEntry.stream.availableRanges[chunkIndex];
@@ -10573,6 +11934,10 @@ function readEmissionShellPathHistoryRowsFromStream(
       } else if (sourceChunkRole.reason === "path" && receiverChunkRole.reason === "path") {
         scanMetrics.prunedByPathChunkCount += 1;
       }
+      return;
+    }
+    const buffer = getBufferDescriptorArrayBuffer(descriptor);
+    if (!buffer) {
       return;
     }
     scanMetrics.streamChunkCount += 1;
@@ -13516,15 +14881,40 @@ function summarizePathHistoryRows(rows) {
   let timeEnd = Number.NEGATIVE_INFINITY;
   let frameStart = Number.POSITIVE_INFINITY;
   let frameEnd = Number.NEGATIVE_INFINITY;
+  let minX = Number.POSITIVE_INFINITY;
+  let minY = Number.POSITIVE_INFINITY;
+  let minZ = Number.POSITIVE_INFINITY;
+  let maxX = Number.NEGATIVE_INFINITY;
+  let maxY = Number.NEGATIVE_INFINITY;
+  let maxZ = Number.NEGATIVE_INFINITY;
   rows.forEach((row) => {
     timeStart = Math.min(timeStart, row.startTime);
     timeEnd = Math.max(timeEnd, row.endTime);
     frameStart = Math.min(frameStart, row.segmentIndex);
     frameEnd = Math.max(frameEnd, row.segmentIndex);
+    const duration = row.endTime - row.startTime;
+    const end = {
+      x: row.start.x + row.velocity.x * duration,
+      y: row.start.y + row.velocity.y * duration,
+      z: row.start.z + row.velocity.z * duration,
+    };
+    const errorBound = row.errorBound ?? 0;
+    minX = Math.min(minX, Math.min(row.start.x, end.x) - errorBound);
+    minY = Math.min(minY, Math.min(row.start.y, end.y) - errorBound);
+    minZ = Math.min(minZ, Math.min(row.start.z, end.z) - errorBound);
+    maxX = Math.max(maxX, Math.max(row.start.x, end.x) + errorBound);
+    maxY = Math.max(maxY, Math.max(row.start.y, end.y) + errorBound);
+    maxZ = Math.max(maxZ, Math.max(row.start.z, end.z) + errorBound);
   });
   return {
     timeRange: { start: timeStart, end: timeEnd },
     frameRange: { start: frameStart, end: frameEnd },
+    bounds: {
+      min: { x: minX, y: minY, z: minZ },
+      max: { x: maxX, y: maxY, z: maxZ },
+      timeStart,
+      timeEnd,
+    },
   };
 }
 
@@ -13570,10 +14960,6 @@ function selectStreamRanges(streamEntry, request) {
     if (!descriptor) {
       return;
     }
-    const buffer = getBufferDescriptorArrayBuffer(descriptor);
-    if (!buffer) {
-      return;
-    }
     if (!rangeMatchesRequest(range, request)) {
       return;
     }
@@ -13581,6 +14967,10 @@ function selectStreamRanges(streamEntry, request) {
       ? intersectRange(range.byteRange, request.byteRange)
       : { ...range.byteRange };
     if (!sliceRange) {
+      return;
+    }
+    const buffer = getBufferDescriptorArrayBuffer(descriptor);
+    if (!buffer) {
       return;
     }
     const localStart = Math.max(0, sliceRange.start - range.byteRange.start);
@@ -13603,6 +14993,7 @@ function selectStreamRanges(streamEntry, request) {
         range: {
           timeRange: filtered.timeRange,
           frameRange: filtered.frameRange,
+          bounds: filtered.bounds,
           byteRange: { start: 0, end: filtered.buffer.byteLength },
         },
         descriptor,
@@ -13658,14 +15049,14 @@ function filterPathHistoryRows(streamEntry, chunkIndex, buffer, descriptor, loca
   const inputBytes = new Uint8Array(buffer);
   const view = new DataView(buffer);
   const selectedOffsets = [];
-  const selectedSummaries = [];
+  const selectedRows = [];
   for (let rowOffset = localStart; rowOffset < localEnd; rowOffset += rowSize) {
     const summary = readPathHistoryRowSummary(view, rowOffset);
     if (!pathHistoryRowMatches(summary, pathKeySet, request)) {
       continue;
     }
     selectedOffsets.push(rowOffset);
-    selectedSummaries.push(summary);
+    selectedRows.push(readPathHistoryRowFromView(view, rowOffset, chunkIndex, rowOffset / rowSize));
   }
   if (selectedOffsets.length === 0) {
     return emptyPathHistoryFilterResult();
@@ -13683,7 +15074,7 @@ function filterPathHistoryRows(streamEntry, chunkIndex, buffer, descriptor, loca
         selectedRowCount: selectedOffsets.length,
       }),
     ],
-    ...summarizePathHistoryRowSummaries(selectedSummaries),
+    ...summarizePathHistoryRows(selectedRows),
   };
 }
 
@@ -13738,14 +15129,14 @@ function filterPathHistoryRowsWithIndex(
   }
   const view = new DataView(buffer);
   const selectedOffsets = [];
-  const selectedSummaries = [];
+  const selectedRows = [];
   for (const rowOffset of plannedOffsets) {
     const summary = readPathHistoryRowSummary(view, rowOffset);
     if (!pathHistoryRowMatches(summary, pathKeySet, request)) {
       continue;
     }
     selectedOffsets.push(rowOffset);
-    selectedSummaries.push(summary);
+    selectedRows.push(readPathHistoryRowFromView(view, rowOffset, chunkIndex, rowOffset / rowSize));
   }
   if (selectedOffsets.length === 0) {
     return emptyPathHistoryFilterResult([
@@ -13775,7 +15166,7 @@ function filterPathHistoryRowsWithIndex(
         indexSkippedRowCount,
       }),
     ],
-    ...summarizePathHistoryRowSummaries(selectedSummaries),
+    ...summarizePathHistoryRows(selectedRows),
   };
 }
 
@@ -13830,23 +15221,6 @@ function pathHistoryRowMatches(summary, pathKeySet, request) {
     return false;
   }
   return true;
-}
-
-function summarizePathHistoryRowSummaries(summaries) {
-  let timeStart = Number.POSITIVE_INFINITY;
-  let timeEnd = Number.NEGATIVE_INFINITY;
-  let frameStart = Number.POSITIVE_INFINITY;
-  let frameEnd = Number.NEGATIVE_INFINITY;
-  summaries.forEach((summary) => {
-    timeStart = Math.min(timeStart, summary.startTime);
-    timeEnd = Math.max(timeEnd, summary.endTime);
-    frameStart = Math.min(frameStart, summary.segmentIndex);
-    frameEnd = Math.max(frameEnd, summary.segmentIndex);
-  });
-  return {
-    timeRange: { start: timeStart, end: timeEnd },
-    frameRange: { start: frameStart, end: frameEnd },
-  };
 }
 
 function rowCountForSlice(descriptor, localStart, localEnd) {
@@ -13936,8 +15310,23 @@ function copyStreamRange(range) {
   return {
     timeRange: range.timeRange ? { ...range.timeRange } : undefined,
     frameRange: range.frameRange ? { ...range.frameRange } : undefined,
+    bounds: range.bounds ? normalizeSpaceTimeBounds(range.bounds, "streamRange.bounds") : undefined,
     byteRange: { ...range.byteRange },
   };
+}
+
+function copySpaceTimeBounds(bounds) {
+  return {
+    min: copyVector(bounds.min),
+    max: copyVector(bounds.max),
+    timeStart: bounds.timeStart,
+    timeEnd: bounds.timeEnd,
+  };
+}
+
+function normalizeSpaceTimeBounds(bounds, label) {
+  validateSpaceTimeBounds(bounds, label);
+  return copySpaceTimeBounds(bounds);
 }
 
 function sliceArrayBuffer(buffer, start, end) {

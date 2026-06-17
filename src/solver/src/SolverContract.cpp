@@ -98,6 +98,9 @@ AdmissionStressSummary summarize_admission_stress(const ErrorBudget& budget,
           : summary.entityPressure;
   summary.memoryPressure = positive_ratio(static_cast<double>(capability.minMemoryBudgetBytes),
                                           static_cast<double>(envelope.memoryBudgetBytes));
+  summary.storagePressure =
+      positive_ratio(static_cast<double>(capability.minStorageBudgetBytesForStreaming),
+                     static_cast<double>(envelope.storageBudgetBytes));
   const double step = envelope.timeResolutionHint != 0.0 ? envelope.timeResolutionHint : envelope.timeWindow.stepHint;
   if (std::isfinite(envelope.timeWindow.start) && std::isfinite(envelope.timeWindow.end) &&
       envelope.timeWindow.end > envelope.timeWindow.start && is_positive_finite(step)) {
@@ -112,6 +115,7 @@ AdmissionStressSummary summarize_admission_stress(const ErrorBudget& budget,
       {AdmissionStressDimension::EntityCount, summary.entityPressure},
       {AdmissionStressDimension::InteractionGraph, summary.interactionPressure},
       {AdmissionStressDimension::Memory, summary.memoryPressure},
+      {AdmissionStressDimension::Storage, summary.storagePressure},
       {AdmissionStressDimension::TimeSteps, summary.timeStepPressure},
       {AdmissionStressDimension::OutputDetail, summary.outputPressure},
       {AdmissionStressDimension::Precision, summary.precisionPressure},
@@ -246,6 +250,12 @@ ValidationReport validate_simulation_envelope(const SimulationEnvelope& envelope
                "memory budget must be greater than zero",
                "simulation-envelope");
   }
+  if (envelope.storageBudgetBytes == 0) {
+    report.add(StatusCode::SimulationEnvelopeExceeded,
+               StatusSeverity::Error,
+               "storage budget must be greater than zero",
+               "simulation-envelope");
+  }
   return report;
 }
 
@@ -280,6 +290,16 @@ AdmissionReport admit_simulation_envelope(const ModelContract& model,
     admission.validation.add(StatusCode::StreamMemoryPressure,
                              StatusSeverity::Halt,
                              "memory budget is below the minimum solver active-window budget",
+                             "admission",
+                             false);
+    admission.decision = AdmissionDecision::Reject;
+    return admission;
+  }
+
+  if (envelope.storageBudgetBytes < capability.minStorageBudgetBytesForStreaming) {
+    admission.validation.add(StatusCode::StreamMemoryPressure,
+                             StatusSeverity::Halt,
+                             "storage budget is below the minimum solver streaming budget",
                              "admission",
                              false);
     admission.decision = AdmissionDecision::Reject;

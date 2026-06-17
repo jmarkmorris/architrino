@@ -11,7 +11,10 @@ import {
   solveFlightTime,
   solveFlightTimeRowWithSolverBridge,
 } from "../src/apps/ideal-swarm/IdealSwarmRuntime.js";
-import { runPhotonCausalRootsWithSolverBridge } from "../src/apps/photon/PhotonFormulaRuntime.js";
+import {
+  runPhotonCausalRootsWithSolverBridge,
+  solvePhotonCircularSourceRootsHitsLedgerWithSolverBridge,
+} from "../src/apps/photon/PhotonFormulaRuntime.js";
 import {
   solveCircularSelfHitSpan,
   solveCircularSelfHitSpanRowWithSolverBridge,
@@ -152,6 +155,168 @@ artifacts.push({
   tolerancePolicy: createTolerancePolicy(photonFacadeCase),
   classification: photonFacadeComparison.classification,
   manifestHash: photonFacadeNormalizedResponse.manifest.manifestHash,
+});
+
+const photonCircularFacadeCase = createPhotonCircularSourceFacadeCase();
+const photonCircularFacadeResponse = await solvePhotonCircularSourceRootsHitsLedgerWithSolverBridge(
+  null,
+  null,
+  photonCircularFacadeCase.request.hitTime,
+  {
+    request: photonCircularFacadeCase.request,
+    solverClient: client,
+  }
+);
+const photonCircularFacadeNormalizedResponse = stripRuntimeBuffers(photonCircularFacadeResponse);
+const photonCircularFacadeComparison = classifySolverBaselineResponse({
+  baseline: projectCircularSourceRootsHitsLedgerForBaseline(photonCircularFacadeCase.baseline),
+  candidate: projectCircularSourceRootsHitsLedgerForBaseline(photonCircularFacadeNormalizedResponse),
+  tolerance: photonCircularFacadeCase.tolerance,
+  refinementTolerance: photonCircularFacadeCase.refinementTolerance,
+});
+assert(
+  photonCircularFacadeComparison.classification === "baseline_within_tolerance",
+  `${photonCircularFacadeCase.caseId} baseline classification was ${photonCircularFacadeComparison.classification}`
+);
+const photonCircularFacadeArtifact = {
+  schema: "solver-baseline-sandbox/v1",
+  caseId: photonCircularFacadeCase.caseId,
+  appId: photonCircularFacadeCase.appId,
+  seedPolicy: "fixed-no-randomness",
+  resourceCaps: photonCircularFacadeCase.resourceCaps,
+  tolerancePolicy: createTolerancePolicy(photonCircularFacadeCase),
+  provenance: createSandboxProvenance(photonCircularFacadeCase),
+  workingDirectory: outputDir,
+  outputPolicy: "artifact-only",
+  writesToAppSource: false,
+  comparison: photonCircularFacadeComparison,
+  baseline: projectCircularSourceRootsHitsLedgerForBaseline(photonCircularFacadeCase.baseline),
+  response: projectCircularSourceRootsHitsLedgerForBaseline(photonCircularFacadeNormalizedResponse),
+  fullResponse: photonCircularFacadeNormalizedResponse,
+};
+const photonCircularFacadeArtifactPath = path.join(outputDir, `${photonCircularFacadeCase.caseId}.json`);
+const photonCircularFacadeArtifactSha256 = writeJsonArtifact(
+  photonCircularFacadeArtifactPath,
+  photonCircularFacadeArtifact
+);
+artifacts.push({
+  caseId: photonCircularFacadeCase.caseId,
+  appId: photonCircularFacadeCase.appId,
+  path: photonCircularFacadeArtifactPath,
+  artifactSha256: photonCircularFacadeArtifactSha256,
+  tolerancePolicy: createTolerancePolicy(photonCircularFacadeCase),
+  classification: photonCircularFacadeComparison.classification,
+  manifestHash: "circular-source-direct-bridge",
+});
+
+const photonNormalizedCircularFacadeCase = createPhotonNormalizedCircularSourceFacadeCase();
+const photonNormalizedCircularFacadeResponse =
+  await client.solveCircularSourceRootsHitsLedgerNormalizedF64(photonNormalizedCircularFacadeCase.request);
+const photonNormalizedCircularFacadeNormalizedResponse = stripRuntimeBuffers(
+  photonNormalizedCircularFacadeResponse
+);
+const photonNormalizedCircularFacadeComparison = classifySolverBaselineResponse({
+  baseline: projectCircularSourceRootsHitsLedgerForBaseline(photonNormalizedCircularFacadeCase.baseline),
+  candidate: projectCircularSourceRootsHitsLedgerForBaseline(
+    photonNormalizedCircularFacadeNormalizedResponse
+  ),
+  tolerance: photonNormalizedCircularFacadeCase.tolerance,
+  refinementTolerance: photonNormalizedCircularFacadeCase.refinementTolerance,
+});
+assert(
+  photonNormalizedCircularFacadeComparison.classification === "baseline_within_tolerance",
+  `${photonNormalizedCircularFacadeCase.caseId} baseline classification was ${photonNormalizedCircularFacadeComparison.classification}`
+);
+const photonNormalizedCircularFacadeArtifact = {
+  schema: "solver-baseline-sandbox/v1",
+  caseId: photonNormalizedCircularFacadeCase.caseId,
+  appId: photonNormalizedCircularFacadeCase.appId,
+  seedPolicy: "fixed-no-randomness",
+  resourceCaps: photonNormalizedCircularFacadeCase.resourceCaps,
+  tolerancePolicy: createTolerancePolicy(photonNormalizedCircularFacadeCase),
+  provenance: createSandboxProvenance(photonNormalizedCircularFacadeCase),
+  workingDirectory: outputDir,
+  outputPolicy: "artifact-only",
+  writesToAppSource: false,
+  comparison: photonNormalizedCircularFacadeComparison,
+  baseline: projectCircularSourceRootsHitsLedgerForBaseline(photonNormalizedCircularFacadeCase.baseline),
+  response: projectCircularSourceRootsHitsLedgerForBaseline(
+    photonNormalizedCircularFacadeNormalizedResponse
+  ),
+  fullResponse: photonNormalizedCircularFacadeNormalizedResponse,
+};
+const photonNormalizedCircularFacadeArtifactPath = path.join(
+  outputDir,
+  `${photonNormalizedCircularFacadeCase.caseId}.json`
+);
+const photonNormalizedCircularFacadeArtifactSha256 = writeJsonArtifact(
+  photonNormalizedCircularFacadeArtifactPath,
+  photonNormalizedCircularFacadeArtifact
+);
+artifacts.push({
+  caseId: photonNormalizedCircularFacadeCase.caseId,
+  appId: photonNormalizedCircularFacadeCase.appId,
+  path: photonNormalizedCircularFacadeArtifactPath,
+  artifactSha256: photonNormalizedCircularFacadeArtifactSha256,
+  tolerancePolicy: createTolerancePolicy(photonNormalizedCircularFacadeCase),
+  classification: photonNormalizedCircularFacadeComparison.classification,
+  manifestHash: "circular-source-normalized-direct-bridge",
+});
+
+const photonNormalizedCircularRunCase = createPhotonNormalizedCircularSourceRunCase();
+const photonNormalizedCircularRunHandle = await client.runSimulation(
+  createNormalizedCircularSourceRunSimulationRequest(photonNormalizedCircularRunCase)
+);
+const photonNormalizedCircularRunNormalizedResponse = stripRuntimeBuffers(
+  photonNormalizedCircularRunHandle.response
+);
+const photonNormalizedCircularRunComparison = classifySolverBaselineResponse({
+  baseline: projectCircularSourceRootsHitsLedgerForBaseline(photonNormalizedCircularRunCase.baseline),
+  candidate: projectCircularSourceRootsHitsLedgerForBaseline(
+    photonNormalizedCircularRunNormalizedResponse
+  ),
+  tolerance: photonNormalizedCircularRunCase.tolerance,
+  refinementTolerance: photonNormalizedCircularRunCase.refinementTolerance,
+});
+assert(
+  photonNormalizedCircularRunComparison.classification === "baseline_within_tolerance",
+  `${photonNormalizedCircularRunCase.caseId} baseline classification was ${photonNormalizedCircularRunComparison.classification}`
+);
+const photonNormalizedCircularRunArtifact = {
+  schema: "solver-baseline-sandbox/v1",
+  caseId: photonNormalizedCircularRunCase.caseId,
+  appId: photonNormalizedCircularRunCase.appId,
+  seedPolicy: "fixed-no-randomness",
+  resourceCaps: photonNormalizedCircularRunCase.resourceCaps,
+  tolerancePolicy: createTolerancePolicy(photonNormalizedCircularRunCase),
+  provenance: createSandboxProvenance(photonNormalizedCircularRunCase),
+  workingDirectory: outputDir,
+  outputPolicy: "artifact-only",
+  writesToAppSource: false,
+  comparison: photonNormalizedCircularRunComparison,
+  baseline: projectCircularSourceRootsHitsLedgerForBaseline(photonNormalizedCircularRunCase.baseline),
+  runManifest: photonNormalizedCircularRunNormalizedResponse.manifest,
+  response: projectCircularSourceRootsHitsLedgerForBaseline(
+    photonNormalizedCircularRunNormalizedResponse
+  ),
+  fullResponse: photonNormalizedCircularRunNormalizedResponse,
+};
+const photonNormalizedCircularRunArtifactPath = path.join(
+  outputDir,
+  `${photonNormalizedCircularRunCase.caseId}.json`
+);
+const photonNormalizedCircularRunArtifactSha256 = writeJsonArtifact(
+  photonNormalizedCircularRunArtifactPath,
+  photonNormalizedCircularRunArtifact
+);
+artifacts.push({
+  caseId: photonNormalizedCircularRunCase.caseId,
+  appId: photonNormalizedCircularRunCase.appId,
+  path: photonNormalizedCircularRunArtifactPath,
+  artifactSha256: photonNormalizedCircularRunArtifactSha256,
+  tolerancePolicy: createTolerancePolicy(photonNormalizedCircularRunCase),
+  classification: photonNormalizedCircularRunComparison.classification,
+  manifestHash: photonNormalizedCircularRunNormalizedResponse.manifest.manifestHash,
 });
 
 const idealSwarmGeometryCase = createIdealSwarmGeometryCase();
@@ -473,6 +638,127 @@ function createPhotonCausalRootsFacadeCase() {
   };
 }
 
+function createPhotonCircularSourceFacadeCase() {
+  const hitTime = 10;
+  const distance = Math.sqrt(101);
+  const emissionTime = hitTime - distance;
+  const sourcePoint = {
+    x: 0,
+    y: Math.cos(emissionTime),
+    z: Math.sin(emissionTime),
+  };
+  const receiverPoint = { x: 10, y: 0, z: 0 };
+  return {
+    caseId: "photon-circular-source-roots-hits-ledger-facade-smoke",
+    appId: "photon",
+    request: {
+      source: {
+        startTime: -2,
+        endTime: hitTime,
+        center: { x: 0, y: 0, z: 0 },
+        radiusU: { x: 0, y: 1, z: 0 },
+        radiusV: { x: 0, y: 0, z: 1 },
+        angularVelocity: 1,
+        phaseAtEpoch: 0,
+        epochTime: 0,
+        errorBound: 1e-15,
+      },
+      receiver: {
+        startTime: 0,
+        endTime: hitTime,
+        positionAtStart: receiverPoint,
+        velocity: { x: 0, y: 0, z: 0 },
+        errorBound: 1e-15,
+      },
+      hitTime,
+      signalSpeed: 1,
+      rootTolerance: 1e-13,
+      maxIterations: 96,
+      scanSubdivisions: 256,
+      maxRoots: 4,
+      streamId: "baseline-photon-circular-source",
+    },
+    baseline: {
+      roots: [
+        {
+          statusCode: 0,
+          emissionTime,
+          hitTime,
+          delay: distance,
+          distance,
+          residual: 0,
+          sourcePoint,
+          receiverPoint,
+        },
+      ],
+      hits: [
+        {
+          emissionTime,
+          hitTime,
+          distance,
+          emissionPoint: sourcePoint,
+          receiverPoint,
+        },
+      ],
+      rootLedgerDetails: [
+        {
+          entryKind: 1,
+          statusCode: 0,
+          emissionTime,
+          hitTime,
+          residual: 0,
+        },
+      ],
+      buffers: [
+        { layout: "root_ledger.v1", byteLength: 112, rowCount: 1 },
+        { layout: "delayed_hit_events.v1", byteLength: 128, rowCount: 1 },
+        { layout: "root_ledger_detail.v1", byteLength: 768, rowCount: 4 },
+      ],
+      status: { code: "ok" },
+    },
+    tolerance: 1e-10,
+    refinementTolerance: 1e-6,
+    resourceCaps: {
+      maxBytes: 64 * 1024 * 1024,
+      maxRoots: 4,
+      maxHits: 4,
+      network: "disabled",
+      sourceWrites: "disabled",
+    },
+  };
+}
+
+function createPhotonNormalizedCircularSourceFacadeCase() {
+  const baseCase = createPhotonCircularSourceFacadeCase();
+  return {
+    ...baseCase,
+    caseId: "photon-normalized-circular-source-roots-hits-ledger-smoke",
+    request: {
+      coordinateOrigin: { x: 1e18, y: -2e18, z: 3e18 },
+      localRequest: {
+        ...baseCase.request,
+        streamId: "baseline-photon-normalized-circular-source",
+      },
+      restoreAbsolutePoints: true,
+    },
+  };
+}
+
+function createPhotonNormalizedCircularSourceRunCase() {
+  const baseCase = createPhotonNormalizedCircularSourceFacadeCase();
+  return {
+    ...baseCase,
+    caseId: "photon-normalized-circular-source-run-smoke",
+    request: {
+      ...baseCase.request,
+      localRequest: {
+        ...baseCase.request.localRequest,
+        streamId: "baseline-photon-normalized-circular-source-run",
+      },
+    },
+  };
+}
+
 function createIdealSwarmGeometryCase() {
   const samplePoint = new THREE.Vector3(6, 0, 0);
   const architrino = {
@@ -660,6 +946,14 @@ function createPhotonPhaseDiagnosticsCase() {
           receiverPhase,
           phaseDelta,
           phaseSpread,
+          rootKind: 0,
+          sourceLayerCode: 0,
+          receiverLayerCode: 0,
+          sourceRoleCode: 0,
+          receiverRoleCode: 0,
+          sourceChargeSign: 0,
+          receiverChargeSign: 0,
+          stateFlags: 0,
         },
       ],
       phaseSummary: {
@@ -684,7 +978,7 @@ function createPhotonPhaseDiagnosticsCase() {
           bufferId: "phase-at-hit",
           layout: "phase_at_hit.v1",
           byteOffset: 0,
-          byteLength: 72,
+          byteLength: 104,
           rowCount: 1,
           numericType: "f64",
         },
@@ -907,6 +1201,49 @@ function projectRootHitResponseForBaseline(response) {
   };
 }
 
+function projectCircularSourceRootsHitsLedgerForBaseline(response) {
+  return {
+    roots: response.roots.map((root) => ({
+      statusCode: root.statusCode,
+      emissionTime: root.emissionTime,
+      hitTime: root.hitTime,
+      delay: root.delay,
+      distance: root.distance,
+      residual: root.residual,
+      sourcePoint: root.sourcePoint,
+      receiverPoint: root.receiverPoint,
+    })),
+    hits: response.hits.map((hit) => ({
+      emissionTime: hit.emissionTime,
+      hitTime: hit.hitTime,
+      distance: hit.distance,
+      emissionPoint: hit.emissionPoint,
+      receiverPoint: hit.receiverPoint,
+    })),
+    rootLedgerDetails: response.rootLedgerDetails
+      .filter((row) => row.entryKind === 1)
+      .map((row) => ({
+        entryKind: row.entryKind,
+        statusCode: row.statusCode,
+        emissionTime: row.emissionTime,
+        hitTime: row.hitTime,
+        residual: row.residual,
+      })),
+    buffers: response.buffers
+      .filter((buffer) =>
+        ["root_ledger.v1", "delayed_hit_events.v1", "root_ledger_detail.v1"].includes(buffer.layout)
+      )
+      .map((buffer) => ({
+        layout: buffer.layout,
+        byteLength: buffer.byteLength,
+        rowCount: buffer.rowCount,
+      })),
+    status: {
+      code: response.status?.code,
+    },
+  };
+}
+
 function projectPhotonPhaseResponseForBaseline(response) {
   return {
     phaseRows: response.phaseRows,
@@ -1075,6 +1412,20 @@ function createRunSimulationRequest(testCase) {
       streamTarget: "caller-buffer",
       memoryBudgetBytes: testCase.resourceCaps.maxBytes,
       deterministic: true,
+    },
+  };
+}
+
+function createNormalizedCircularSourceRunSimulationRequest(testCase) {
+  const request = createRunSimulationRequest({
+    ...testCase,
+    request: testCase.request.localRequest,
+  });
+  return {
+    ...request,
+    config: {
+      appId: testCase.appId,
+      normalizedCircularSourceRootRequest: testCase.request,
     },
   };
 }

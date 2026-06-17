@@ -25,7 +25,7 @@ The queue favors app concepts that make the theory's native mechanisms visible: 
 
 ## Priority Queue
 
-1. `causal_delay_mirror_hall` - Causal Delay Mirror Hall. Status: `idea`.
+1. [Causal Delay Feedback Depth](../causal-delay-feedback-app/causal-delay-feedback-app.md). Status: `promoted`.
 2. `path_history_ledger` - Path-History Ledger. Status: `idea`.
 3. `self_hit_near_cf` - Self-Hit Near $c_f$. Status: `idea`.
 4. `branch_geometry_explorer` - Branch Geometry Explorer. Status: `idea`.
@@ -43,21 +43,11 @@ The queue favors app concepts that make the theory's native mechanisms visible: 
 
 ## App Ideas
 
-### 1. Causal Delay Mirror Hall
+### 1. [Causal Delay Feedback Depth](../causal-delay-feedback-app/causal-delay-feedback-app.md)
 
-Description:
-
-- Animate a source, receiver, and repeated mirror-like causal returns so the operator can see that the present interaction depends on emissions from earlier positions.
-- Use a barbershop-mirror visual metaphor carefully: repeated visible images stand for multiple causal returns, not literal optical reflections unless the app enters an optical mode.
-- Emphasize that deeper returns may still matter when the path-history, distance, and coupling keep them above the active contribution threshold.
-
-Requirements:
-
-- Show `now`, emission time, hit time, and round-trip time for every visible return.
-- Let the user adjust field speed, source speed, separation, reflection depth, and contribution fade.
-- Draw each active causal path as a time-stamped arc or ray with depth index.
-- Include a contribution stack that shows how shallow and deep returns add to the receiver state.
-- Make invalid or inactive returns visually distinct instead of silently hiding them.
+- Status: `promoted`.
+- The dedicated app packet owns the description, visualization, controls, diagnostics, and first-build requirements.
+- Summary: one main canvas shows a moving source, receiver probe, retained causal-delay paths, arriving pulses, and a contribution stack so users can see how active path-history changes the present receiver state.
 
 ### 2. Path-History Ledger
 
@@ -66,6 +56,14 @@ Description:
 - Show that the current force or potential is not determined only by current positions.
 - Let the user scrub time and see which old source path segments are causally active at the receiver.
 - Make path-history feel like a live ledger: old data can be irrelevant, active, or decisive depending on the causal-root geometry.
+
+Visualization:
+
+- Split the canvas into a large spatial track on top and a horizontal path-history timeline below.
+- Draw the source trail as a fading ribbon; active causal-root segments glow where old emissions reach the receiver now.
+- Animate a `now` cursor sweeping across the receiver while small hit markers jump from the timeline to the spatial view.
+- Keep inactive history gray, active history bright, and rejected roots dashed with an accept/reject label.
+- Let selecting a row in the ledger table trace the corresponding source segment, causal path, and receiver contribution on the canvas.
 
 Requirements:
 
@@ -83,6 +81,14 @@ Description:
 - Compare sub-$c_f$, exactly-$c_f$, and super-$c_f$ regimes using the same source path.
 - Show why a same-source root can be absent, degenerate, unstable, or active depending on path curvature and transversality.
 
+Visualization:
+
+- Use a central path canvas with the source moving along a controllable line or curve.
+- Draw expanding emission shells from earlier source positions and highlight shell intersections with the later source path.
+- Show the three regimes as side-by-side mini panels or as selectable overlays using the same coordinate scale.
+- Animate shell/path tangencies in slow motion so degenerate and accepted branches can be distinguished visually.
+- Add a small Jacobian strip chart under the canvas that moves in sync with the selected root.
+
 Requirements:
 
 - Provide speed, curvature, and perturbation controls.
@@ -98,6 +104,14 @@ Description:
 - Show that one source-receiver pair can have multiple delayed-hit branches.
 - Let users toggle branches and see how the net potential changes.
 - Make branch acceptance visible as geometry plus diagnostics, not a hidden solver result.
+
+Visualization:
+
+- Draw the source path as a continuous curve and the receiver as a probe with a live summed vector.
+- Render each branch as a colored ribbon from emission point to receiver, with thickness proportional to contribution magnitude.
+- Animate branches appearing, splitting, weakening, or failing as source motion and receiver position change.
+- Keep a selected branch pinned with a label, emission dot, hit dot, and contribution vector.
+- Show the net potential as a vector fan that collapses into one summed arrow at the receiver.
 
 Requirements:
 
@@ -115,6 +129,14 @@ Description:
 - Show how continuous deterministic motion can produce a fast coarse-grained state change.
 - Connect resonance-band transitions, self-hit onset, and measurement-like threshold behavior as examples of the same structural idea.
 
+Visualization:
+
+- Use a phase-space canvas with basin regions drawn as calm background colors and the separatrix as a crisp boundary curve.
+- Draw the assembly state as a moving point with a short tail showing recent deterministic motion.
+- Animate delayed-wake inputs as arrows or ripples that nudge the moving point toward or away from the separatrix.
+- When the point crosses, transition the coarse-grained label quickly while the underlying point motion remains continuous.
+- In batch mode, draw many faint trajectories so the basin outcome pattern becomes visible.
+
 Requirements:
 
 - Draw basins of attraction with a visible separatrix and moving state point.
@@ -130,6 +152,14 @@ Description:
 - Teach outcome frequencies as basin measures of deterministic threshold dynamics.
 - Show many near-identical trajectories entering an unresolved threshold region.
 - Make the observer-level probability emerge from counted basin outcomes rather than from a primitive random choice.
+
+Visualization:
+
+- Use a wide basin canvas where many small trajectory dots stream from a narrow initial packet into colored outcome regions.
+- Draw the initial uncertainty as an adjustable source cloud rather than as a random-choice symbol.
+- Animate trials accumulating into outcome bins at the edge of the canvas.
+- Show a live histogram beside the canvas with basin area estimate, observed count, and convergence trace.
+- Let users zoom into one dot to see that it follows a deterministic path through the same field.
 
 Requirements:
 
@@ -147,6 +177,14 @@ Description:
 - Use a double-slit-like or two-channel setup where unresolved path-history still affects the later record.
 - Show how a durable record changes the retained state and allows a later restart approximation.
 
+Visualization:
+
+- Use a two-channel canvas with source, channel region, optional record device, and final screen.
+- Draw retained variables as solid objects and unresolved path-history influence as translucent wake bands.
+- Animate the same intermediate visible state branching into different later records when hidden history is not retained.
+- When a durable record is inserted, snap the retained record channel into a visibly stable marker.
+- Plot the restartability diagnostic as a line that drops when record autonomy becomes valid.
+
 Requirements:
 
 - Provide modes for `no path record`, `weak path disturbance`, and `durable path record`.
@@ -162,6 +200,14 @@ Description:
 - Show a stable assembly moving through a responsive Noether sea without ordinary dissipative drag below threshold.
 - Animate medium stress building and returning as reversible retuning.
 - Teach the distinction between inertial response, reversible transport, and logged loss channels.
+
+Visualization:
+
+- Use a canvas filled with a quiet Noether sea field, with the moving assembly passing through it left to right.
+- Draw local medium deformation as elastic contour lines or vector glyphs that bend around the assembly and then relax.
+- Animate stored stress flowing back into the assembly below threshold rather than trailing away as heat.
+- When the transport residual crosses threshold, open explicit visible channels for excitation, heating, radiation-like shedding, or branch transition.
+- Keep a threshold gauge fixed near the canvas so users can connect the visual mode change to $\mathcal{R}_{\text{tr}}$.
 
 Requirements:
 
@@ -179,6 +225,14 @@ Description:
 - Contrast a 3D nested shell swarm envelope with a strongly oblated coherent planar-channel regime.
 - Teach the proposed geometry distinction between fermionic effective exclusion and bosonic effective shared-state behavior.
 
+Visualization:
+
+- Use a central canvas with two nested shell swarm assemblies approaching the same effective state from opposite sides.
+- Draw each nested shell as layered orbit traces inside a translucent dynamic exclusion envelope.
+- Animate overlap pressure by brightening the intersection volume and pushing the assemblies apart in volumetric mode.
+- Add an oblation slider that visibly flattens the orbital support toward a coherent planar channel.
+- In planar mode, show shared coherent bands instead of volumetric overlap pressure.
+
 Requirements:
 
 - Show two nested shell swarm assemblies approaching the same effective state.
@@ -195,9 +249,17 @@ Description:
 - Show that a material surface is not a hard wall; it routes the incoming ledger through available material branches.
 - Compare coherent re-release, capture, scattering, heat, recoil, and retained excitation.
 
+Visualization:
+
+- Use a side-view canvas with an incoming planar-pair object approaching a material surface cell.
+- Draw the material surface as active lattice/electron-envelope components rather than a flat wall.
+- Animate route selection by lighting one or more outgoing channels: coherent re-release, capture, scattering, heat, recoil, retained excitation.
+- Show the incoming and outgoing ledger quantities as small moving bars attached to the planar-pair and material branch.
+- Provide surface presets that visibly change the internal routing geometry, not only the final outcome label.
+
 Requirements:
 
-- Provide surface presets such as mirror-like metal, absorber, transparent medium, rough surface, and high-capture surface.
+- Provide surface presets such as high-reflection metal, absorber, transparent medium, rough surface, and high-capture surface.
 - Show incoming planar-pair ledger, selected material branch, outgoing channel, recoil, and heat/excitation channels.
 - Preserve nuclear inventory unless a separate reaction mode is explicitly supplied.
 - Display the local surface residual and selected routing reason.
@@ -210,6 +272,14 @@ Description:
 - Show identical assemblies placed in different Noether sea states with different local delay and response conditions.
 - Make effective clock readout a consequence of internal cadence retuning rather than an arbitrary visual slowdown.
 - Tie clock behavior to local medium response, branch stability, and path-history effects.
+
+Visualization:
+
+- Use two or three side-by-side clock lanes with identical assembly clocks placed in different local Noether sea backgrounds.
+- Draw each clock as a nested orbit or cycle indicator whose phase advances according to the local cadence.
+- Animate the surrounding medium state with density, strain, and response glyphs so the clock difference has a visible cause.
+- Show accumulated readout difference as aligned tick marks drifting apart over time.
+- If a branch becomes unstable, fade the clock lane into an invalid-state overlay instead of continuing the comparison.
 
 Requirements:
 
@@ -227,9 +297,17 @@ Description:
 - Animate one-way and two-way signal timing in a moving apparatus.
 - Show why clock, ruler, and two-way signal recovery must be solved together rather than tuned independently.
 
+Visualization:
+
+- Use a moving-apparatus canvas with an emitter, reflector, receiver, onboard ruler, and onboard clock.
+- Animate outbound and return pulses as colored packets traveling through the apparatus while it moves.
+- Draw one-way timing, return timing, and round-trip timing as synchronized strips below the spatial view.
+- Show clock and ruler retuning with small deformation and cadence markers attached to the apparatus.
+- Highlight mismatched recovery settings by making the timing triangle fail to close cleanly.
+
 Requirements:
 
-- Show emitter, mirror, and receiver on a moving apparatus.
+- Show emitter, reflector, and receiver on a moving apparatus.
 - Provide controls for apparatus velocity, local signal speed, delay factor, and clock-cadence response.
 - Display outbound time, return time, round-trip time, and inferred two-way signal speed.
 - Include a mismatch warning when clock, ruler, and signal parameters are tuned independently.
@@ -242,6 +320,14 @@ Description:
 - Make every interaction close visible energy, momentum, angular momentum, and record channels.
 - Teach that heat, recoil, radiation-like transport, branch transition, and retained excitation are ledger routes, not vague losses.
 - Turn conservation accounting into an interactive animation instead of a table.
+
+Visualization:
+
+- Use a central interaction canvas with incoming objects on the left, outgoing objects on the right, and ledger channels below.
+- Draw ledger channels as colored flow bars that carry energy, momentum, angular momentum, and record state through the event.
+- Animate each preset event by routing the bars into elastic output, heat, recoil, radiation-like transport, retained excitation, or branch transition.
+- Keep an always-visible balance meter that settles to zero only when all channels close.
+- When a channel is missing, leave a red residual block attached to the event center with the missing quantity named.
 
 Requirements:
 
@@ -259,6 +345,14 @@ Description:
 - Show how anisotropic medium response affects local transport, clock cadence, signal timing, and branch stability.
 - Make tensor-like behavior visible through deformation ellipses, response arrows, and directional probes.
 
+Visualization:
+
+- Use a canvas centered on one local Noether sea region with a rotatable response ellipse or ellipsoid.
+- Draw a movable probe that can push, signal, or oscillate along selectable directions.
+- Animate response arrows whose length, delay, and phase change with direction.
+- Show transport, clock, and branch-stability readouts updating from the same local response object.
+- Let the user rotate the response basis and see the ellipse, arrows, and diagnostics rotate together.
+
 Requirements:
 
 - Provide a probe that can push or signal in different directions through the same local Noether sea state.
@@ -275,6 +369,14 @@ Description:
 - Show how branch geometry, shielding, Noether sea coupling, and path-history depth can change the exposed response.
 - Give the mass-map workstream a visual diagnostic app for comparing branch candidates.
 
+Visualization:
+
+- Use a side-by-side comparison canvas with two candidate branch assemblies shown as layered component maps.
+- Color exposed components brightly, shielded components dimly, and partially exposed components with a gradient.
+- Animate path-history depth as expanding causal shells or retained-history bands that reveal which components contribute.
+- Show Noether sea coupling as local response halos around exposed components.
+- Keep total exposed response and residual bars beneath each candidate so visual geometry and mass-map readout stay linked.
+
 Requirements:
 
 - Show assembly components with exposed, shielded, and partially exposed contribution states.
@@ -285,7 +387,7 @@ Requirements:
 
 ## Immediate Next Build Candidates
 
-1. `causal_delay_mirror_hall` - Best teaching bridge from the operator's mirror-depth intuition into causal-delay mechanics.
+1. [Causal Delay Feedback Depth](../causal-delay-feedback-app/causal-delay-feedback-app.md) - Best teaching bridge from causal-delay intuition into active path-history mechanics.
 2. `path_history_ledger` - Best reusable substrate for later delayed-hit, solver, photon, and self-hit apps.
 3. `self_hit_near_cf` - Best single-page correction for the common misconception that self-hit is decided by speed alone.
 4. `branch_geometry_explorer` - Best bridge from visual teaching into solver diagnostics.

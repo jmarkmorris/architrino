@@ -95,6 +95,25 @@ int main() {
   options.streamEncodingTolerance = 1e-12;
   options.readbackTolerance = 1e-12;
 
+  bool invalidSegmentRejected = false;
+  try {
+    (void)architrino::solver::make_path_history_row(
+        architrino::solver::LinearPathSegment{
+            "invalid-path",
+            2.0,
+            1.0,
+            architrino::solver::Vector3{0.0, 0.0, 0.0},
+            architrino::solver::Vector3{1.0, 0.0, 0.0},
+            architrino::solver::NumericType::F64,
+            1e-12,
+        },
+        pathKey,
+        99,
+        0);
+  } catch (const std::invalid_argument&) {
+    invalidSegmentRejected = true;
+  }
+
   architrino::solver::PathHistoryStreamWriter writer(options);
   writer.append("path-a", make_segment(0), 0, 7);
   writer.append("path-a", make_segment(1), 1, 7);
@@ -318,6 +337,7 @@ int main() {
       &cCorruptReadCount);
 
   const bool ok =
+      invalidSegmentRejected &&
       metadata.streamId == "stream-smoke" &&
       metadata.rowSizeBytes == sizeof(architrino::solver::PathHistoryRowF64) &&
       metadata.rowCount == 4 &&

@@ -493,7 +493,7 @@ export interface SolverSimulationEnvelope {
   expectedBranchComplexity: "low" | "moderate" | "high" | "unknown";
   outputDetail: "preview" | "playback" | "export" | "validation";
   memoryBudgetBytes: number;
-  storageBudgetBytes?: number;
+  storageBudgetBytes: number;
   latencyTarget: "interactive" | "background" | "batch" | "validation";
   simplificationPolicy: "none" | "explicit-reduced-model";
 }
@@ -1079,6 +1079,8 @@ Compiled object files are intermediate build artifacts. They should not be packa
 
 Every packaged solver build should include a small manifest with solver version, API version, binary schema version, build target, compiler/toolchain versions, enabled precision paths, threading support, storage support, and checksums for packaged artifacts.
 
+Current implementation note: the app-runtime package manifest records artifact checksums, API versions, schema versions, toolchain versions, build-host runtime capability probes, enabled precision paths, output layouts, threading support, storage support, numeric types, status taxonomy summary, and the no-intermediate-artifact policy. Run validation artifacts also hash schema-version, status-taxonomy, and binary-layout surfaces for replay and migration review.
+
 ## Geometry Centralization Target
 
 The central solver is the preferred home for geometry calculations that are currently duplicated or implied in app-local code. The target is not a generic geometry library. The target is solver-owned geometry for architrino motion and causal interaction:
@@ -1167,6 +1169,7 @@ The following decisions define the current design contract:
 | Virtual observer | The virtual observer is solver instrumentation. Its minimal path record is segment-level kinematic data with interpolation and error bounds; dynamic replay and potential audit data are normalized extra layers. |
 | Temporal assembly graph | Assembly state, membership, hierarchy, threshold events, and self-action events live in normalized graph streams keyed by ids and time intervals, with explicit identity lifecycle, split/merge, ambiguity, and versioning rules. |
 | App communication | Apps call one shared JavaScript or TypeScript adapter backed by a WebAssembly worker. Apps do not handle C++ or WebAssembly directly. |
+| Status taxonomy | Apps discover canonical solver status codes through the bridge, including category, default severity, recoverability default, stage hints, and description. |
 | Data movement | Metadata uses structured records; dense path, frame, root, hit, phase, geometry, and index outputs use typed buffers or stream handles. Inexpensive derived geometry should be captured when it can feed future fast queries. |
 | Work packets | Solver work should be divisible into transport-ready packets with explicit ranges, buffer references, checksums, expected outputs, and deterministic merge keys. The same packet layout should serve workers, threads, services, and future GPU backends. |
 | Canonical encodings | Hot-path data structures use compact canonical encodings, dictionaries, structure-of-arrays columns, flags, span rows, and chunk-local deltas where they simplify implementation and reduce storage. Heavy compression is post-run/export by default. |
@@ -1238,7 +1241,7 @@ After the first solver design lands, create a migration plan for Photon, Ideal S
 9. `work_packet_transport_contract` - Define transport-ready packet headers, binary payload references, checksums, output layout declarations, range ownership, and deterministic merge keys so solver work can move across workers, threads, processes, future services, and future GPU backends without a second data model. Status: `active`. Depends on: `path_history_stream_contract`, `simulation_envelope_contract`.
 10. `spatiotemporal_query_algorithm_survey` - Prototype and benchmark broad-phase / narrow-phase query approaches for space blocks, time blocks, combined spacetime blocks, path-vs-emission-shell, path-vs-path, all-to-all, same-source, speed-regime transition, and candidate causal-root searches. Candidate families include bounding-volume hierarchies, interval trees, spatial hashing, k-d trees, R-trees, sweep-and-prune, and special-purpose emission-shell indices. Status: `active`. Depends on: `path_history_stream_contract`, `work_packet_transport_contract`, `storage_lifecycle_policy`, `simulation_envelope_contract`.
 11. `app_bridge_contract` - Convert the chosen shared JavaScript adapter with TypeScript declarations and WebAssembly worker into a typed request/response, cancellation, stream-handle, diagnostics, normalized-error, model-contract, and error-budget contract. Status: `active`. Depends on: `precision_dynamic_range_contract`, `path_history_stream_contract`, `simulation_envelope_contract`.
-12. `threading_execution_policy` - Implement the chosen native bounded task pool, browser worker baseline, deterministic mode, WebAssembly-thread gating, thread-count controls, diagnostics, and GPU-ready work partitioning where it also benefits CPU execution. Status: `active`. Depends on: `app_bridge_contract`, `work_packet_transport_contract`.
+12. `threading_execution_policy` - Implement the chosen native bounded task pool, browser worker baseline, deterministic mode, WebAssembly-thread gating, thread-count controls, diagnostics, and GPU-ready work partitioning where it also benefits CPU execution. Status: `active-first-plan-diagnostics`. Depends on: `app_bridge_contract`, `work_packet_transport_contract`.
 13. `cpp_clang_runtime_validation` - Build and benchmark the selected C++20/Clang path against representative causal-root, source-history, precision, dynamic-range, simulation-envelope, virtual-observer path-record, temporal-assembly-graph, streaming-write, indexed-read, app-bridge, and thread-scaling workloads. Status: `active-toolchain-setup-needed`. Depends on: `threading_execution_policy`.
 14. `solver_contract` - Implement the central solver inputs, outputs, dataset schema, model schema, simulation-envelope schema, virtual-observer path-record schema, assembly-state schema, assembly-membership schema, assembly-hierarchy schema, path-history stream schema, numeric serialization schema, app bridge schema, threading metadata, diagnostics, halt statuses, precision-path metadata, storage metadata, API boundaries, root-ledger completeness rows, phase-at-hit metadata, failure-code taxonomy, and provenance artifacts. Status: `active`. Depends on: `cpp_clang_runtime_validation`.
 15. `analytic_and_invariant_validation` - Define manufactured causal-root cases, closed-form geometry cases, root-count invariants, residual checks, conservation or bounded-drift checks where the model provides them, and stream replay invariants. Status: `active`. Depends on: `solver_contract`.

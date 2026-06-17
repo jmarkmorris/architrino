@@ -114,6 +114,7 @@ enum class AdmissionStressDimension {
   EntityCount,
   InteractionGraph,
   Memory,
+  Storage,
   TimeSteps,
   OutputDetail,
   Precision,
@@ -196,6 +197,7 @@ struct AdmissionStressSummary {
   double entityPressure = 0.0;
   double interactionPressure = 0.0;
   double memoryPressure = 0.0;
+  double storagePressure = 0.0;
   double timeStepCountEstimate = 0.0;
   bool hasTimeStepCountEstimate = false;
   double timeStepPressure = 0.0;

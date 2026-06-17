@@ -1,4 +1,5 @@
 #include "architrino/solver/CausalRootSolver.hpp"
+#include "architrino/solver/SolverCAbi.hpp"
 
 #include <cmath>
 #include <iostream>
@@ -86,6 +87,48 @@ int main() {
   const architrino::solver::CausalRootResult circularRoots =
       architrino::solver::solve_circular_source_causal_roots(circularRequest);
   const double expectedCircularEmissionTime = 10.0 - std::sqrt(101.0);
+  const ArchitrinoSolverCircularSourceCausalRootRequestF64 cCircularRequest{
+      ArchitrinoSolverCircularPathSegmentF64{
+          -2.0,
+          10.0,
+          ArchitrinoSolverVector3F64{0.0, 0.0, 0.0},
+          ArchitrinoSolverVector3F64{0.0, 1.0, 0.0},
+          ArchitrinoSolverVector3F64{0.0, 0.0, 1.0},
+          1.0,
+          0.0,
+          0.0,
+          1e-13,
+      },
+      ArchitrinoSolverLinearPathSegmentF64{
+          0.0,
+          10.0,
+          ArchitrinoSolverVector3F64{10.0, 0.0, 0.0},
+          ArchitrinoSolverVector3F64{0.0, 0.0, 0.0},
+          1e-13,
+      },
+      10.0,
+      1.0,
+      1e-13,
+      128,
+      96,
+  };
+  ArchitrinoSolverCausalRootRowF64 abiRoots[4]{};
+  ArchitrinoSolverDelayedHitRowF64 abiHits[4]{};
+  ArchitrinoSolverRootLedgerDetailRowF64 abiLedgerRows[8]{};
+  int abiRootCount = 0;
+  int abiHitCount = 0;
+  int abiLedgerRowCount = 0;
+  const int abiStatus = architrino_solver_solve_circular_source_roots_hits_ledger_f64(
+      &cCircularRequest,
+      abiRoots,
+      4,
+      &abiRootCount,
+      abiHits,
+      4,
+      &abiHitCount,
+      abiLedgerRows,
+      8,
+      &abiLedgerRowCount);
 
   const bool ok =
       roots.validation.ok &&
@@ -116,7 +159,19 @@ int main() {
       nearly_equal(circularRoots.roots[0].distance, std::sqrt(101.0)) &&
       nearly_equal(circularRoots.roots[0].jacobian, 1.0) &&
       std::abs(circularRoots.roots[0].residual) <= 1e-10 &&
-      circularRoots.roots[0].statusCode == architrino::solver::StatusCode::Ok;
+      circularRoots.roots[0].statusCode == architrino::solver::StatusCode::Ok &&
+      abiStatus == 0 &&
+      abiRootCount == 1 &&
+      abiHitCount == 1 &&
+      abiLedgerRowCount >= 1 &&
+      nearly_equal(abiRoots[0].emission_time, expectedCircularEmissionTime) &&
+      nearly_equal(abiHits[0].distance, std::sqrt(101.0)) &&
+      nearly_equal(abiHits[0].strength, 1.0) &&
+      abiLedgerRows[0].entry_kind == 1 &&
+      abiLedgerRows[0].root_kind == 1 &&
+      abiLedgerRows[0].bracket_start <= expectedCircularEmissionTime &&
+      abiLedgerRows[0].bracket_end >= expectedCircularEmissionTime &&
+      abiLedgerRows[0].iteration_count > 0;
 
   if (!ok) {
     std::cerr << "solver analytic smoke failed\n";

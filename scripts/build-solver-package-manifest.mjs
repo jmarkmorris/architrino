@@ -1,8 +1,10 @@
 #!/usr/bin/env node
 
 import crypto from "node:crypto";
+import { spawnSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
+import { createSolverAppBridgeClient } from "../src/solver/app/SolverAppBridge.mjs";
 
 const args = process.argv.slice(2);
 const allowedArgs = new Set(["--write", "--check", "--print", "--help"]);
@@ -114,7 +116,8 @@ const bannedPackagePathPatterns = [
   /(^|\/)libarchitrino_solver_core\.a$/u,
 ];
 
-const manifest = buildManifest();
+const packageCapabilitySummary = await readPackageCapabilitySummary();
+const manifest = buildManifest(packageCapabilitySummary);
 const renderedManifest = `${JSON.stringify(manifest, null, 2)}\n`;
 
 if (wantsWrite) {
@@ -138,7 +141,7 @@ if (wantsPrint) {
   process.stdout.write(renderedManifest);
 }
 
-function buildManifest() {
+function buildManifest(packageCapabilities) {
   const roles = new Set();
   const artifactPaths = new Set();
   const artifacts = packageArtifacts.map((artifact) => {
@@ -177,6 +180,9 @@ function buildManifest() {
   const wasmCache = readCmakeCache(path.join(buildRoot, "wasm", "CMakeCache.txt"));
   const nativeCache = readCmakeCache(path.join(buildRoot, "native", "CMakeCache.txt"));
   const solverVersion = wasmCache.CMAKE_PROJECT_VERSION || nativeCache.CMAKE_PROJECT_VERSION || "unknown";
+  const contractSchema = readJson("src/contracts/solver-app-bridge/v1/schema.json");
+  const schemaVersions = createSchemaVersionSummary(contractSchema, packageCapabilities);
+  assertPackageCapabilitySummary(packageCapabilities);
 
   return {
     schema: "architrino-solver-package-manifest.v1",
@@ -201,8 +207,9 @@ function buildManifest() {
         "src/solver/app/SolverAppWorkerRuntime.mjs",
         "SOLVER_APP_WORKER_RUNTIME_VERSION"
       ),
-      contractSchema: readJson("src/contracts/solver-app-bridge/v1/schema.json").$id,
+      contractSchema: contractSchema.$id,
     },
+    schemaVersions,
     build: {
       buildRoot: ".tmp/solver-build",
       emCache: process.env.EM_CACHE || ".tmp/solver-emcache",
@@ -215,6 +222,8 @@ function buildManifest() {
         null,
       wasmEnabled: wasmCache.ARCHITRINO_SOLVER_BUILD_WASM === "ON",
     },
+    toolchain: createToolchainSummary({ nativeCache, wasmCache }),
+    runtimeCapabilities: packageCapabilities,
     packagingPolicy: {
       finalRuntimeArtifactsOnly: true,
       packageObjectFiles: false,
@@ -233,6 +242,117 @@ function buildManifest() {
     },
     artifacts,
   };
+}
+
+async function readPackageCapabilitySummary() {
+  const client = createSolverAppBridgeClient();
+  try {
+    const capabilities = await client.capabilities();
+    return summarizePackageCapabilities(capabilities);
+  } finally {
+    await client.dispose();
+  }
+}
+
+function summarizePackageCapabilities(capabilities) {
+  return {
+    probeRuntime: "build-host-node",
+    browserDependentFlags: [
+      "storageSupport.supportsOpfs",
+      "threadingSupport.browserWorker",
+      "appBridge.workerModel.browserWorkerAvailable",
+      "appBridge.storageFallbacks.durableBrowserTargetAvailable",
+    ],
+    enabledPrecisionPaths: capabilities.precisionPaths,
+    outputLayouts: capabilities.outputLayouts,
+    storageSupport: capabilities.storage,
+    threadingSupport: capabilities.threading,
+    appBridge: {
+      schema: capabilities.appBridge.schema,
+      denseDataTransport: capabilities.appBridge.denseDataTransport,
+      workerModel: capabilities.appBridge.workerModel,
+      storageFallbacks: capabilities.appBridge.storageFallbacks,
+      appAdapters: capabilities.appBridge.appAdapters.map((adapter) => ({
+        appId: adapter.appId,
+        runKinds: adapter.runKinds,
+      })),
+    },
+    schemas: {
+      appBridgeCapabilities: capabilities.appBridge.schema,
+      precisionRouting: capabilities.appBridge.precisionRouting.schema,
+      statusTaxonomy: capabilities.appBridge.statusTaxonomy.schema,
+      streamQueries: capabilities.appBridge.streamQueries.schema,
+      workPackets: capabilities.appBridge.workPackets.schema,
+      numericSerialization: capabilities.numericSerialization.schema,
+      errorBudgetPropagation: capabilities.errorBudgetPropagation.schema,
+      validation: capabilities.validation.schema,
+    },
+    numericTypes: capabilities.numericSerialization.descriptors.map((descriptor) => ({
+      numericType: descriptor.numericType,
+      appBufferSafe: descriptor.appBufferSafe,
+      authoritativeStorageSafe: descriptor.authoritativeStorageSafe,
+    })),
+    errorBudgetStages: capabilities.errorBudgetPropagation.stages.map((stage) => stage.stage),
+    statusTaxonomy: {
+      schema: capabilities.appBridge.statusTaxonomy.schema,
+      codeCount: capabilities.appBridge.statusTaxonomy.codes.length,
+      severities: capabilities.appBridge.statusTaxonomy.severities,
+      categories: uniqueSorted(capabilities.appBridge.statusTaxonomy.codes.map((entry) => entry.category)),
+    },
+  };
+}
+
+function createSchemaVersionSummary(contractSchema, packageCapabilities) {
+  return {
+    packageManifest: "architrino-solver-package-manifest.v1",
+    contractSchema: contractSchema.$id,
+    appBridgeCapabilities: packageCapabilities.schemas.appBridgeCapabilities,
+    precisionRouting: packageCapabilities.schemas.precisionRouting,
+    statusTaxonomy: packageCapabilities.schemas.statusTaxonomy,
+    streamQueries: packageCapabilities.schemas.streamQueries,
+    workPackets: packageCapabilities.schemas.workPackets,
+    numericSerialization: packageCapabilities.schemas.numericSerialization,
+    errorBudgetPropagation: packageCapabilities.schemas.errorBudgetPropagation,
+    validation: packageCapabilities.schemas.validation,
+    binaryLayouts: "solver-output-layouts.v1",
+  };
+}
+
+function createToolchainSummary({ nativeCache, wasmCache }) {
+  const nativeCxxCompiler = nativeCache.CMAKE_CXX_COMPILER || null;
+  return {
+    generator: nativeCache.CMAKE_GENERATOR || wasmCache.CMAKE_GENERATOR || null,
+    makeProgram: nativeCache.CMAKE_MAKE_PROGRAM || wasmCache.CMAKE_MAKE_PROGRAM || null,
+    nativeCxxCompiler,
+    nativeCxxCompilerAr: nativeCache.CMAKE_CXX_COMPILER_AR || null,
+    nativeCxxCompilerRanlib: nativeCache.CMAKE_CXX_COMPILER_RANLIB || null,
+    versions: {
+      nativeCxxCompiler: nativeCxxCompiler ? readCommandVersion(nativeCxxCompiler, ["--version"]) : null,
+      cmake: readCommandVersion(["/opt/homebrew/bin/cmake", "cmake"], ["--version"]),
+      ninja: readCommandVersion(["/opt/homebrew/bin/ninja", "ninja"], ["--version"]),
+      emcc: readCommandVersion(["/opt/homebrew/bin/emcc", "emcc"], ["--version"]),
+      emxx: readCommandVersion(["/opt/homebrew/bin/em++", "em++"], ["--version"]),
+      emcmake: readCommandVersion(["/opt/homebrew/bin/emcmake", "emcmake"], ["cmake", "--version"]),
+    },
+  };
+}
+
+function assertPackageCapabilitySummary(packageCapabilities) {
+  if (!packageCapabilities.enabledPrecisionPaths.includes("extended_precision")) {
+    fail("Package manifest must include enabled precision paths");
+  }
+  if (!packageCapabilities.outputLayouts.includes("path_segment.v1")) {
+    fail("Package manifest must include binary output layouts");
+  }
+  if (!packageCapabilities.threadingSupport || !("browserWorker" in packageCapabilities.threadingSupport)) {
+    fail("Package manifest must include threading support");
+  }
+  if (!packageCapabilities.storageSupport || !packageCapabilities.storageSupport.supportsCallerBuffer) {
+    fail("Package manifest must include storage support");
+  }
+  if (packageCapabilities.statusTaxonomy.codeCount < 1) {
+    fail("Package manifest must include status taxonomy metadata");
+  }
 }
 
 function assertRuntimeModuleDependenciesIncluded(artifacts) {
@@ -300,6 +420,32 @@ function readJson(relPath) {
   return JSON.parse(fs.readFileSync(path.join(rootDir, relPath), "utf8"));
 }
 
+function readCommandVersion(commands, commandArgs) {
+  const candidates = Array.isArray(commands) ? commands : [commands];
+  for (const command of candidates) {
+    const result = spawnSync(command, commandArgs, {
+      cwd: rootDir,
+      encoding: "utf8",
+      env: {
+        ...process.env,
+        EM_CACHE: process.env.EM_CACHE || path.join(rootDir, ".tmp", "solver-emcache"),
+      },
+    });
+    if (result.error || result.status !== 0) {
+      continue;
+    }
+    const output = `${result.stdout || ""}\n${result.stderr || ""}`;
+    const firstLine = output
+      .split(/\r?\n/u)
+      .map((line) => line.trim())
+      .find(Boolean);
+    if (firstLine) {
+      return firstLine;
+    }
+  }
+  return null;
+}
+
 function sha256File(filePath) {
   const hash = crypto.createHash("sha256");
   hash.update(fs.readFileSync(filePath));
@@ -308,6 +454,10 @@ function sha256File(filePath) {
 
 function normalizeRelPath(relPath) {
   return relPath.split(path.sep).join("/");
+}
+
+function uniqueSorted(values) {
+  return Array.from(new Set(values)).sort();
 }
 
 function printUsage(exitCode) {

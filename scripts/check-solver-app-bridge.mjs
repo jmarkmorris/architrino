@@ -134,6 +134,24 @@ assert(
       "unsupported_browser_storage",
   "expected app bridge storage fallback capabilities"
 );
+const linearPrecisionRoute = findPrecisionRoute(initResponse.capabilities.appBridge, "linear-root");
+const circularPrecisionRoute = findPrecisionRoute(initResponse.capabilities.appBridge, "circular-source");
+assert(
+  initResponse.capabilities.appBridge.precisionRouting.schema ===
+    "solver-precision-routing-capabilities.v1" &&
+    linearPrecisionRoute.precisionEngine === "native-precision-path" &&
+    linearPrecisionRoute.fullPrecisionPathSelector === true &&
+    linearPrecisionRoute.selectedNumericTypes.includes("decimal128"),
+  "expected linear precision routing capability"
+);
+assert(
+  circularPrecisionRoute.precisionEngine === "analytic-circular-source-f64" &&
+    circularPrecisionRoute.fullPrecisionPathSelector === true &&
+    circularPrecisionRoute.runConfigKeys.includes("normalizedCircularSourceRootRequest") &&
+    circularPrecisionRoute.selectedNumericTypes.length === 1 &&
+    circularPrecisionRoute.selectedNumericTypes[0] === "f64",
+  "expected circular-source precision routing capability"
+);
 assert(
   initResponse.capabilities.appBridge.workPackets.headerSchema === "solver-work-packet.v1" &&
     initResponse.capabilities.appBridge.workPackets.helpers.includes("prepareWorkPacketHeader") &&
@@ -219,7 +237,7 @@ assert(
 );
 assert(initResponse.capabilities.abiInfo?.phaseClockF64Bytes === 24, "expected phase clock ABI size");
 assert(
-  initResponse.capabilities.abiInfo?.phaseAtHitRowF64Bytes === 72,
+  initResponse.capabilities.abiInfo?.phaseAtHitRowF64Bytes === 104,
   "expected phase-at-hit row ABI size"
 );
 assert(initResponse.capabilities.abiInfo?.boundsRowF64Bytes === 64, "expected bounds row ABI size");
@@ -311,6 +329,24 @@ assert(
   initResponse.capabilities.abiInfo?.emissionShellNarrowPhaseRowF64Bytes === 40,
   "expected emission-shell narrow-phase row ABI size"
 );
+assert(initResponse.capabilities.abiInfo?.modelContractBytes === 32, "expected model contract ABI size");
+assert(
+  initResponse.capabilities.abiInfo?.simulationEnvelopeF64Bytes === 88,
+  "expected simulation envelope ABI size"
+);
+assert(
+  initResponse.capabilities.abiInfo?.capabilityEnvelopeF64Bytes === 48,
+  "expected capability envelope ABI size"
+);
+assert(
+  initResponse.capabilities.abiInfo?.admissionStressSummaryF64Bytes === 96,
+  "expected admission stress summary ABI size"
+);
+assert(initResponse.capabilities.abiInfo?.statusRowBytes === 24, "expected status row ABI size");
+assert(
+  initResponse.capabilities.abiInfo?.admissionReportF64Bytes === 112,
+  "expected admission report ABI size"
+);
 const wasmModule = await createWasmModule({
   locateFile: (fileName) => path.join(wasmDir, fileName),
 });
@@ -329,9 +365,64 @@ assert(
   "expected root, root-detail, delayed-hit, spacetime, emission-shell, and assembly graph index layouts"
 );
 assert(
+  capabilities.binaryLayouts.schema === "solver-binary-layout-catalog.v1" &&
+    capabilities.binaryLayouts.byteOrder === "little-endian" &&
+    capabilities.binaryLayouts.layouts.length === capabilities.outputLayouts.length,
+  "expected binary layout catalog capability"
+);
+assert(
+  capabilities.binaryLayouts.layouts.some(
+    (layout) =>
+      layout.layout === "path_segment.v1" &&
+      layout.role === "path-history" &&
+      layout.rowSizeBytes === 96 &&
+      layout.numericType === "f64" &&
+      layout.streamable === true
+  ),
+  "expected path segment binary layout catalog row"
+);
+assert(
+  capabilities.binaryLayouts.layouts.some(
+    (layout) =>
+      layout.layout === "root_ledger_detail.v1" &&
+      layout.role === "root-ledger" &&
+      layout.rowSizeBytes === 192 &&
+      layout.fixedRowSize === true
+  ),
+  "expected root ledger detail binary layout catalog row"
+);
+assert(
   capabilities.appBridge.apiVersion === SOLVER_APP_BRIDGE_API_VERSION &&
     capabilities.appBridge.workerModel.fallback === "single-solver-worker-or-batch",
   "expected app bridge worker fallback capability"
+);
+assert(
+  capabilities.appBridge.statusTaxonomy.schema === "solver-status-taxonomy.v1" &&
+    capabilities.appBridge.statusTaxonomy.severities.includes("halt"),
+  "expected app bridge status taxonomy capability"
+);
+assert(
+  capabilities.appBridge.statusTaxonomy.codes.length >= 25 &&
+    capabilities.appBridge.statusTaxonomy.codes[0].code === "ok",
+  "expected complete app bridge status taxonomy code list"
+);
+assert(
+  capabilities.appBridge.statusTaxonomy.codes.some(
+    (entry) =>
+      entry.code === "precision_failed" &&
+      entry.category === "precision" &&
+      entry.defaultSeverity === "error"
+  ),
+  "expected precision failure status taxonomy"
+);
+assert(
+  capabilities.appBridge.statusTaxonomy.codes.some(
+    (entry) =>
+      entry.code === "unsupported_wasm_threads" &&
+      entry.category === "runtime-support" &&
+      entry.stageHints.includes("threading_plan")
+  ),
+  "expected wasm threading status taxonomy"
 );
 assert(
   capabilities.appBridge.streamQueries.schema === "solver-stream-query-capabilities.v1" &&
@@ -351,6 +442,10 @@ assert(
   "expected app bridge chunk-index stream-query filter"
 );
 assert(
+  capabilities.appBridge.streamQueries.rangeMetadata.includes("bounds"),
+  "expected app bridge stream range bounds metadata capability"
+);
+assert(
   capabilities.appBridge.streamQueries.broadPhaseQueries[0].method === "queryEmissionShellCandidatesF64" &&
     capabilities.appBridge.streamQueries.broadPhaseQueries[0].responseSchema ===
       "solver-emission-shell-candidates.v1" &&
@@ -362,6 +457,9 @@ assert(
     ) &&
     capabilities.appBridge.streamQueries.broadPhaseQueries[0].narrowPhaseAuthorities.includes(
       "solveCausalRootsNormalizedF64"
+    ) &&
+    capabilities.appBridge.streamQueries.broadPhaseQueries[0].narrowPhaseAuthorities.includes(
+      "solveCircularSourceRootsHitsLedgerNormalizedF64"
     ) &&
     capabilities.appBridge.streamQueries.broadPhaseQueries[0].narrowPhaseAuthorities.includes(
       "solveRootsAndHitsPrecisionF64"
@@ -457,6 +555,33 @@ assert(
 const workerCircularSourceRootResponse =
   await workerClient.solveCircularSourceCausalRootsF64(makeCircularSourceCausalRootRequest());
 assertCircularSourceRootResponse(workerCircularSourceRootResponse, "worker circular-source");
+const workerCircularSourceRootsHitsLedgerResponse =
+  await workerClient.solveCircularSourceRootsHitsLedgerF64(
+    makeCircularSourceCausalRootRequest({ streamId: "worker-circular-source-roots-hits-ledger" })
+  );
+assert(
+  workerCircularSourceRootsHitsLedgerResponse.schema ===
+    "solver-circular-source-roots-hits-ledger-f64.v1" &&
+    workerCircularSourceRootsHitsLedgerResponse.roots.length === 1 &&
+    workerCircularSourceRootsHitsLedgerResponse.hits.length === 1 &&
+    workerCircularSourceRootsHitsLedgerResponse.rootLedgerDetails.some((row) => row.entryKind === 1),
+  "expected worker circular-source roots/hits/ledger response"
+);
+const workerNormalizedCircularSourceRootsHitsLedgerResponse =
+  await workerClient.solveCircularSourceRootsHitsLedgerNormalizedF64(
+    makeNormalizedCircularSourceRootsHitsLedgerRequest({
+      streamId: "worker-normalized-circular-source-roots-hits-ledger",
+    })
+  );
+assert(
+  workerNormalizedCircularSourceRootsHitsLedgerResponse.schema ===
+    "solver-circular-source-roots-hits-ledger-normalized-f64.v1" &&
+    workerNormalizedCircularSourceRootsHitsLedgerResponse.roots.length === 1 &&
+    workerNormalizedCircularSourceRootsHitsLedgerResponse.roots[0].coordinateFrame === "origin-normalized" &&
+    workerNormalizedCircularSourceRootsHitsLedgerResponse.hits.length === 1 &&
+    workerNormalizedCircularSourceRootsHitsLedgerResponse.rootLedgerDetails.some((row) => row.entryKind === 1),
+  "expected worker normalized circular-source roots/hits/ledger response"
+);
 const workerNormalizedRootResponse = await workerClient.solveCausalRootsNormalizedF64(
   makeNormalizedCausalRootRequest()
 );
@@ -666,6 +791,14 @@ assert(singleThreadPlan.status.code === "ok", "expected single-thread plan statu
 assert(singleThreadPlan.activeWorkerCount === 1, "expected single-thread active worker count");
 assert(singleThreadPlan.schedulingMode === "sequential", "expected sequential scheduling mode");
 assert(singleThreadPlan.deterministicReduction, "expected deterministic threading reduction");
+assert(singleThreadPlan.plannedChunkCount === 4, "expected planned chunk count");
+assert(singleThreadPlan.plannedChunkItemCount === 4, "expected planned chunk item count");
+assert(singleThreadPlan.tailChunkItemCount === 4, "expected tail chunk item count");
+assert(singleThreadPlan.queueDepth === 3, "expected sequential queue depth");
+assert(singleThreadPlan.determinismStatus === "deterministic", "expected deterministic status");
+assert(singleThreadPlan.contention.risk === "none", "expected no sequential contention risk");
+assert(singleThreadPlan.chunkTimings.source === "not-measured", "expected unmeasured chunk timings");
+assert(singleThreadPlan.stageSpeedup.source === "not-measured", "expected unmeasured stage speedup");
 const threadedFallbackPlan = await client.planThreadingPolicy({
   policy: { mode: "fixed", maxThreads: 4, deterministic: true },
   workload: {
@@ -678,11 +811,38 @@ const threadedFallbackPlan = await client.planThreadingPolicy({
 assert(threadedFallbackPlan.requestedWorkerCount === 4, "expected requested worker count");
 assert(threadedFallbackPlan.activeWorkerCount === 1, "expected sequential fallback worker count");
 assert(threadedFallbackPlan.fallbackReason === "wasm_threads_unavailable", "expected wasm-thread fallback reason");
+assert(threadedFallbackPlan.queueDepth === 7, "expected threaded fallback queue depth");
+assert(
+  threadedFallbackPlan.contention.oversubscribedWorkerCount === 3,
+  "expected threaded fallback oversubscribed worker count"
+);
 assert(
   threadedFallbackPlan.status.code === "unsupported_wasm_threads" &&
     threadedFallbackPlan.status.severity === "warning",
   "expected recoverable threading fallback warning"
 );
+const observedThreadingPlan = await client.planThreadingPolicy({
+  policy: { mode: "single-thread", deterministic: false },
+  workload: {
+    stage: "threading-observation",
+    itemCount: 5,
+    minItemsPerWorker: 2,
+    observations: {
+      chunkDurationsMs: [2, 3, 4],
+      singleThreadElapsedMs: 12,
+      activeElapsedMs: 12,
+      contentionWaitMs: 0.5,
+    },
+  },
+});
+assert(observedThreadingPlan.determinismStatus === "relaxed", "expected relaxed threading determinism");
+assert(observedThreadingPlan.plannedChunkCount === 3, "expected observed planned chunk count");
+assert(observedThreadingPlan.tailChunkItemCount === 1, "expected observed tail chunk size");
+assert(observedThreadingPlan.contention.source === "caller-observed", "expected observed contention source");
+assert(observedThreadingPlan.contention.risk === "low", "expected low observed contention risk");
+assert(observedThreadingPlan.chunkTimings.totalMs === 9, "expected observed chunk timing total");
+assert(observedThreadingPlan.chunkTimings.meanMs === 3, "expected observed chunk timing mean");
+assert(observedThreadingPlan.stageSpeedup.speedupRatio === 1, "expected observed speedup ratio");
 const workPacketHeader = makeWorkPacketHeader();
 const preparedWorkPacket = await client.prepareWorkPacketHeader(workPacketHeader);
 assert(preparedWorkPacket.schema === "solver-work-packet-header.v1", "expected work-packet header schema");
@@ -736,6 +896,7 @@ assert(
 assert(
   escalatedAdmission.stressSummary.schema === "solver-admission-stress-summary.v1" &&
     escalatedAdmission.stressSummary.dominantStress === "precision" &&
+    escalatedAdmission.stressSummary.storagePressure === 0.125 &&
     escalatedAdmission.stressSummary.timeStepCountEstimate === 1000,
   "expected strict admission stress summary"
 );
@@ -764,6 +925,25 @@ assert(
   rejectedAdmission.stressSummary.dominantStress === "memory" &&
     rejectedAdmission.stressSummary.memoryPressure > 1,
   "expected low-memory admission stress summary"
+);
+const lowStorageAdmission = await client.admitSimulationEnvelope(
+  makeAdmissionRequest({
+    envelope: { storageBudgetBytes: 1024 },
+  })
+);
+assert(
+  !lowStorageAdmission.admitted && lowStorageAdmission.decision === "reject",
+  "expected low-storage admission rejection"
+);
+assert(
+  lowStorageAdmission.stressSummary.dominantStress === "storage" &&
+    lowStorageAdmission.stressSummary.storagePressure > 1 &&
+    lowStorageAdmission.statuses.some(
+      (status) =>
+        status.code === "stream_memory_pressure" &&
+        status.message === "storage budget is below the minimum solver streaming budget"
+    ),
+  "expected low-storage admission stress summary"
 );
 
 const motionResponse = await client.sampleLinearMotionF64({
@@ -1267,6 +1447,59 @@ assert(
 const circularSourceRootResponse =
   await client.solveCircularSourceCausalRootsF64(makeCircularSourceCausalRootRequest());
 assertCircularSourceRootResponse(circularSourceRootResponse, "direct circular-source");
+const circularSourceRootsHitsLedgerResponse =
+  await client.solveCircularSourceRootsHitsLedgerF64(
+    makeCircularSourceCausalRootRequest({ streamId: "direct-circular-source-roots-hits-ledger" })
+  );
+assertCircularSourceRootResponse(circularSourceRootsHitsLedgerResponse, "direct circular-source roots/hits/ledger");
+const directCircularSourceActiveLedger = circularSourceRootsHitsLedgerResponse.rootLedgerDetails.find(
+  (row) => row.entryKind === 1
+);
+assert(
+  circularSourceRootsHitsLedgerResponse.schema === "solver-circular-source-roots-hits-ledger-f64.v1" &&
+    circularSourceRootsHitsLedgerResponse.hits.length === 1 &&
+    directCircularSourceActiveLedger &&
+    directCircularSourceActiveLedger.iterationCount > 0 &&
+    directCircularSourceActiveLedger.bracketStart <=
+      circularSourceRootsHitsLedgerResponse.roots[0].emissionTime &&
+    directCircularSourceActiveLedger.bracketEnd >= circularSourceRootsHitsLedgerResponse.roots[0].emissionTime,
+  "expected direct circular-source roots/hits/ledger rows"
+);
+const circularSourceRootsHitsLedgerInvariant = await client.checkRootHitInvariantsF64({
+  roots: circularSourceRootsHitsLedgerResponse.roots,
+  hits: circularSourceRootsHitsLedgerResponse.hits,
+});
+assert(
+  circularSourceRootsHitsLedgerInvariant.status.code === "ok",
+  "expected direct circular-source roots/hits/ledger invariants"
+);
+const normalizedCircularSourceRootsHitsLedgerResponse =
+  await client.solveCircularSourceRootsHitsLedgerNormalizedF64(
+    makeNormalizedCircularSourceRootsHitsLedgerRequest({
+      streamId: "direct-normalized-circular-source-roots-hits-ledger",
+    })
+  );
+assert(
+  normalizedCircularSourceRootsHitsLedgerResponse.schema ===
+    "solver-circular-source-roots-hits-ledger-normalized-f64.v1" &&
+    normalizedCircularSourceRootsHitsLedgerResponse.coordinateFrame === "origin-normalized" &&
+    normalizedCircularSourceRootsHitsLedgerResponse.roots.length === 1 &&
+    normalizedCircularSourceRootsHitsLedgerResponse.hits.length === 1 &&
+    normalizedCircularSourceRootsHitsLedgerResponse.rootLedgerDetails.some((row) => row.entryKind === 1),
+  "expected normalized circular-source roots/hits/ledger response"
+);
+assert(
+  Math.abs(normalizedCircularSourceRootsHitsLedgerResponse.roots[0].distance - Math.sqrt(101)) <= 1e-10 &&
+    normalizedCircularSourceRootsHitsLedgerResponse.roots[0].sourcePoint.x === 0 &&
+    normalizedCircularSourceRootsHitsLedgerResponse.roots[0].receiverPoint.x === 10 &&
+    normalizedCircularSourceRootsHitsLedgerResponse.roots[0].coordinateFrame === "origin-normalized",
+  "expected normalized circular-source local root precision"
+);
+assert(
+  normalizedCircularSourceRootsHitsLedgerResponse.absoluteRoots[0].absolutePointAuthority === "display-only" &&
+    normalizedCircularSourceRootsHitsLedgerResponse.absoluteRoots[0].localReceiverPoint.x === 10,
+  "expected normalized circular-source absolute display metadata"
+);
 const normalizedRootsResponse = await client.solveCausalRootsNormalizedF64(makeNormalizedCausalRootRequest());
 assert(
   normalizedRootsResponse.schema === "solver-causal-roots-normalized-f64.v1" &&
@@ -1299,6 +1532,12 @@ assert(rootLedgerDetailResponse.rows[0].jacobianSignStratum === 3, "expected pos
 assert(rootLedgerDetailResponse.rows[0].rootKey > 0, "expected stable root detail key");
 assert(Math.abs(rootLedgerDetailResponse.rows[0].delay - 10) <= 1e-10, "expected root detail delay");
 assert(Math.abs(rootLedgerDetailResponse.rows[0].jacobian - 1) <= 1e-10, "expected root detail Jacobian");
+assert(
+  rootLedgerDetailResponse.rows.some(
+    (row) => row.entryKind === 3 && row.intervalStart === fixtureRequest.request.source.startTime
+  ),
+  "expected root-ledger retained-history tail boundary"
+);
 const rootLedgerDetailBuffer = findBuffer(rootLedgerDetailResponse, "root_ledger_detail.v1");
 assert(
   rootLedgerDetailBuffer.rowCount === rootLedgerDetailResponse.rows.length,
@@ -1325,6 +1564,12 @@ const noRootLedgerDetailResponse = await client.buildRootLedgerDetailF64({
   maxRows: 16,
 });
 assert(noRootLedgerDetailResponse.rows[0].entryKind === 2, "expected no-root inactive gap row");
+assert(
+  noRootLedgerDetailResponse.rows.some(
+    (row) => row.entryKind === 3 && row.intervalStart === noRootLedgerRequest.source.startTime
+  ),
+  "expected no-root tail-boundary detail row"
+);
 const retainedTransitionResponse = await client.classifyRootLedgerTransitionsF64({
   priorRows: rootLedgerDetailResponse.rows,
   nextRows: rootLedgerDetailResponse.rows,
@@ -1649,10 +1894,46 @@ assert(
     pathHistoryStream.summary.metadata.coordinateFrame === "absolute-lab-frame",
   "expected path-history stream metadata"
 );
+assertBounds(
+  pathHistoryStream.stream.availableRanges[0].bounds,
+  {
+    min: { x: -1e-12, y: -1e-12, z: -1e-12 },
+    max: { x: 1 + 1e-12, y: 1e-12, z: 1e-12 },
+    timeStart: 0,
+    timeEnd: 1,
+  },
+  "path-history first chunk bounds"
+);
 assert(pathHistoryStream.buffers.length === 3, "expected path-history buffer descriptors");
 assert(pathHistoryStream.buffers[0].layout === "path_segment.v1", "expected path-history layout");
 assert(pathHistoryStream.buffers[0].checksum.length === 16, "expected path-history buffer checksum");
 assert(!("buffer" in pathHistoryStream.buffers[0]), "expected path-history response to omit dense payloads");
+let reversedPathSegmentRejected = false;
+try {
+  await client.createPathHistoryStreamF64({
+    runId: "smoke-path-history-invalid-run",
+    streamId: "smoke-path-history-invalid",
+    pathRows: [
+      {
+        ...makePathHistoryRows()[0],
+        startTime: 2,
+        endTime: 1,
+      },
+    ],
+    rowsPerChunk: 1,
+    storagePolicy: {
+      target: "caller-buffer",
+      durable: false,
+      maxBytes: 1024,
+    },
+  });
+} catch (error) {
+  reversedPathSegmentRejected =
+    error instanceof SolverBridgeError &&
+    error.status.code === "app_contract_error" &&
+    error.status.message.includes("endTime");
+}
+assert(reversedPathSegmentRejected, "expected reversed path-history segment to be rejected");
 const pathHistoryHandle = await client.openStream(
   createOpenStreamRequest({
     runId: "smoke-path-history-run",
@@ -1670,6 +1951,16 @@ assert(
   pathHistoryDescription.stream.metadata.precisionPath === "scaled_f64_strict" &&
     pathHistoryDescription.stream.metadata.provenance.fixture === "path-history-smoke",
   "expected stream description metadata"
+);
+assertBounds(
+  pathHistoryDescription.stream.availableRanges[1].bounds,
+  {
+    min: { x: 1 - 2e-12, y: -2e-12, z: -2e-12 },
+    max: { x: 2 + 2e-12, y: 1 + 2e-12, z: 2e-12 },
+    timeStart: 1,
+    timeEnd: 2,
+  },
+  "path-history second chunk description bounds"
 );
 assert(pathHistoryDescription.buffers.length === 3, "expected stream description buffer metadata");
 assert(pathHistoryDescription.buffers[1].checksum.length === 16, "expected stream description checksum");
@@ -1691,6 +1982,16 @@ const pathHistoryFrameRead = await client.readStreamRange(
 assert(pathHistoryFrameRead.status.code === "ok", "expected path-history frame read status ok");
 assert(pathHistoryFrameRead.buffers.length === 1, "expected one selected path-history chunk");
 assert(pathHistoryFrameRead.buffers[0].rowCount === 1, "expected one selected path-history row");
+assertBounds(
+  pathHistoryFrameRead.ranges[0].bounds,
+  {
+    min: { x: 1 - 2e-12, y: -2e-12, z: -2e-12 },
+    max: { x: 2 + 2e-12, y: 1 + 2e-12, z: 2e-12 },
+    timeStart: 1,
+    timeEnd: 2,
+  },
+  "path-history filtered read bounds"
+);
 assertReadbackChecksums(pathHistoryFrameRead, "path-history frame read");
 assert(
   pathHistoryFrameRead.diagnostics[0].code === "path_history_indexed_readback" &&
@@ -1794,6 +2095,16 @@ assert(
     nativeFileManifest.index.pathIndexRows.length === 3,
   "expected native-file path-history manifest index rows and sidecar"
 );
+assertBounds(
+  nativeFileManifest.stream.availableRanges[0].bounds,
+  {
+    min: { x: -1e-12, y: -2e-12, z: -2e-12 },
+    max: { x: 2 + 2e-12, y: 1 + 2e-12, z: 2e-12 },
+    timeStart: 0,
+    timeEnd: 2,
+  },
+  "native-file first chunk manifest bounds"
+);
 const nativeFileIndexBytes = fs.readFileSync(nativeFileManifest.index.sidecar.filePath);
 assert(nativeFileIndexBytes.byteLength === 192, "expected native-file binary index sidecar bytes");
 const nativeFileIndexView = new DataView(
@@ -1836,6 +2147,33 @@ assert(
 );
 const nativeFileView = new DataView(nativeFileRead.buffers[0].buffer);
 assert(Number(nativeFileView.getBigUint64(0, true)) === 2001, "expected native-file path key readback");
+const skippedNativeFileChunkPath = nativeFilePathHistoryStream.buffers[1].filePath;
+const skippedNativeFileChunkBytes = fs.readFileSync(skippedNativeFileChunkPath);
+try {
+  const corruptedSkippedChunkBytes = Buffer.from(skippedNativeFileChunkBytes);
+  corruptedSkippedChunkBytes[0] = corruptedSkippedChunkBytes[0] ^ 0xff;
+  fs.writeFileSync(skippedNativeFileChunkPath, corruptedSkippedChunkBytes);
+  const nativeFileMetadataPrunedRead = await client.readStreamRange(
+    createReadStreamRangeRequest({
+      streamId: "smoke-native-file-path-history",
+      timeRange: { start: 0, end: 0.5 },
+      maxBytes: 96,
+    })
+  );
+  assert(
+    nativeFileMetadataPrunedRead.status.code === "ok" &&
+      nativeFileMetadataPrunedRead.buffers.length === 1 &&
+      nativeFileMetadataPrunedRead.buffers[0].buffer instanceof ArrayBuffer,
+    "expected native-file metadata-pruned readback to skip excluded chunk payloads"
+  );
+  const nativeFileMetadataPrunedView = new DataView(nativeFileMetadataPrunedRead.buffers[0].buffer);
+  assert(
+    Number(nativeFileMetadataPrunedView.getBigUint64(0, true)) === 2000,
+    "expected native-file metadata-pruned path key"
+  );
+} finally {
+  fs.writeFileSync(skippedNativeFileChunkPath, skippedNativeFileChunkBytes);
+}
 const reopenedNativeFileClient = createSolverAppBridgeClient();
 const reopenedNativeFileHandle = await reopenedNativeFileClient.openStream(
   createOpenStreamRequest({
@@ -1848,6 +2186,16 @@ assert(
     reopenedNativeFileHandle.readableLayouts.includes("path_segment.v1") &&
     reopenedNativeFileHandle.availableRanges.length === 2,
   "expected native-file manifest reopen handle"
+);
+assertBounds(
+  reopenedNativeFileHandle.availableRanges[1].bounds,
+  {
+    min: { x: 2 - 3e-12, y: 1 - 3e-12, z: -3e-12 },
+    max: { x: 2 + 3e-12, y: 2 + 3e-12, z: 1 + 3e-12 },
+    timeStart: 2,
+    timeEnd: 3,
+  },
+  "reopened native-file second chunk bounds"
 );
 const reopenedNativeFileDescription = await reopenedNativeFileClient.describeStream(
   createDescribeStreamRequest({ streamId: reopenedNativeFileHandle.streamId })
@@ -2744,6 +3092,18 @@ const phaseResponse = await client.computePhaseAtHitF64({
   roots: rootsAndHitsResponse.roots,
   sourceClock: { period: 2, epoch: 0, phaseOffset: 0 },
   receiverClock: { period: 6, epoch: 0, phaseOffset: 0 },
+  metadata: [
+    {
+      rootKind: 1,
+      sourceLayerCode: 3,
+      receiverLayerCode: 4,
+      sourceRoleCode: 5,
+      receiverRoleCode: 6,
+      sourceChargeSign: 1,
+      receiverChargeSign: -1,
+      stateFlags: 17,
+    },
+  ],
 });
 assert(phaseResponse.status.code === "ok", "expected phase-at-hit status ok");
 assert(phaseResponse.rows.length === 1, "expected one phase-at-hit row");
@@ -2754,8 +3114,19 @@ assert(
   Math.abs(phaseResponse.rows[0].receiverPhase - 2 / 3) <= 1e-10,
   "expected receiver phase"
 );
+assert(
+  phaseResponse.rows[0].rootKind === 1 &&
+    phaseResponse.rows[0].sourceLayerCode === 3 &&
+    phaseResponse.rows[0].receiverLayerCode === 4 &&
+    phaseResponse.rows[0].sourceRoleCode === 5 &&
+    phaseResponse.rows[0].receiverRoleCode === 6 &&
+    phaseResponse.rows[0].sourceChargeSign === 1 &&
+    phaseResponse.rows[0].receiverChargeSign === -1 &&
+    phaseResponse.rows[0].stateFlags === 17,
+  "expected phase-at-hit metadata round trip"
+);
 const phaseBuffer = findBuffer(phaseResponse, "phase_at_hit.v1");
-assert(phaseBuffer.buffer.byteLength === 72, "expected phase-at-hit buffer byte length");
+assert(phaseBuffer.buffer.byteLength === 104, "expected phase-at-hit buffer byte length");
 const phaseSummaryResponse = await client.summarizePhaseAtHitsF64({
   rows: phaseResponse.rows,
 });
@@ -2866,6 +3237,18 @@ assert(
   "expected run manifest error budget"
 );
 assert(
+  runHandle.response.manifest.capability.minStorageBudgetBytesForStreaming === 64 * 1024 * 1024,
+  "expected run manifest effective capability envelope"
+);
+assert(
+  runHandle.response.manifest.threading.schema === "solver-threading-plan.v1" &&
+    runHandle.response.manifest.threading.stage === "causalRoots" &&
+    runHandle.response.manifest.threading.activeWorkerCount === 1 &&
+    runHandle.response.manifest.threading.schedulingMode === "sequential" &&
+    runHandle.response.manifest.threading.deterministicReduction === true,
+  "expected run manifest threading diagnostics"
+);
+assert(
   runHandle.response.manifest.validationArtifacts.schema === "solver-run-validation-artifacts.v1" &&
     runHandle.response.manifest.validationArtifacts.precisionReplayStatus === "not-run" &&
     runHandle.response.manifest.validationArtifacts.migrationParityStatus === "not-run" &&
@@ -2874,16 +3257,107 @@ assert(
     runHandle.response.manifest.validationArtifacts.artifactHashes.streamHashes.length === 1,
   "expected run manifest validation artifacts"
 );
+const runArtifactHashes = runHandle.response.manifest.validationArtifacts.artifactHashes;
+assert(
+  [
+    runArtifactHashes.schemaVersionHash,
+    runArtifactHashes.statusTaxonomyHash,
+    runArtifactHashes.binaryLayoutHash,
+    runArtifactHashes.modelContractHash,
+    runArtifactHashes.simulationEnvelopeHash,
+    runArtifactHashes.capabilityEnvelopeHash,
+    runArtifactHashes.errorBudgetHash,
+    runArtifactHashes.outputContractHash,
+    runArtifactHashes.threadingHash,
+    runArtifactHashes.admissionHash,
+    runArtifactHashes.provenanceHash,
+  ].every((hash) => /^[0-9a-f]{16}$/.test(hash)),
+  "expected run manifest contract-surface artifact hashes"
+);
 assert(
   runHandle.response.manifest.admission.stressSummary.dominantStress === "precision" &&
     runHandle.response.manifest.admission.stressSummary.timeStepCountEstimate === 1000,
   "expected run manifest admission stress summary"
 );
+const explicitPrecisionBase = makeRunSimulationRequest();
+const explicitPrecisionRun = await client.runSimulation({
+  ...explicitPrecisionBase,
+  requestId: "smoke-explicit-precision-run-request",
+  runId: "smoke-explicit-precision-run",
+  datasetId: "smoke-explicit-precision-run-dataset",
+  precisionPath: "extended_precision",
+  configHash: "solver-explicit-precision-run-smoke",
+  errorBudget: {
+    ...explicitPrecisionBase.errorBudget,
+    globalTolerance: 1e-9,
+    rootIsolationTolerance: 1e-9,
+    delayedHitTolerance: 1e-9,
+    integrationTolerance: 1e-9,
+    streamEncodingTolerance: 1e-9,
+    readbackTolerance: 1e-9,
+  },
+});
+assert(
+  explicitPrecisionRun.acceptedPrecisionPath === "extended_precision" &&
+    explicitPrecisionRun.response.manifest.requestedPrecisionPath === "extended_precision" &&
+    explicitPrecisionRun.response.manifest.selectedPrecisionPath === "extended_precision" &&
+    explicitPrecisionRun.response.precision.selectedPrecisionPath === "extended_precision",
+  "expected explicit compatible precision path to be honored"
+);
+assert(
+  explicitPrecisionRun.response.manifest.admission.statuses.some(
+    (status) =>
+      status.code === "precision_escalated" &&
+      status.details?.selectedPrecisionPath === "extended_precision"
+  ),
+  "expected explicit precision selection diagnostic"
+);
+let incompatibleRunPrecisionRejected = false;
+try {
+  const incompatiblePrecisionBase = makeRunSimulationRequest();
+  await client.runSimulation({
+    ...incompatiblePrecisionBase,
+    requestId: "smoke-incompatible-precision-run-request",
+    runId: "smoke-incompatible-precision-run",
+    datasetId: "smoke-incompatible-precision-run-dataset",
+    precisionPath: "validation_replay",
+    model: {
+      ...incompatiblePrecisionBase.model,
+      compatiblePrecisionPaths: ["scaled_f64_strict", "event_root_focused", "extended_precision"],
+    },
+  });
+} catch (error) {
+  incompatibleRunPrecisionRejected =
+    error instanceof SolverBridgeError &&
+    error.status.code === "precision_failed" &&
+    error.status.details?.precisionPath === "validation_replay";
+}
+assert(incompatibleRunPrecisionRejected, "expected incompatible run precision path to be rejected");
 assert(runHandle.response.manifest.buffers.length === 3, "expected run manifest buffer summaries");
 assert(
   runHandle.response.manifest.streams[0].streamId === "smoke-run:causal-root-transient",
   "expected run manifest stream summary"
 );
+let runCapabilityRejected = false;
+try {
+  await client.runSimulation({
+    ...makeRunSimulationRequest(),
+    requestId: "smoke-run-capability-reject-request",
+    runId: "smoke-run-capability-reject",
+    capability: {
+      minStorageBudgetBytesForStreaming: 1024 * 1024 * 1024,
+    },
+  });
+} catch (error) {
+  runCapabilityRejected =
+    error instanceof SolverBridgeError &&
+    error.status.details?.statuses?.some(
+      (status) =>
+        status.code === "stream_memory_pressure" &&
+        status.message === "storage budget is below the minimum solver streaming budget"
+    );
+}
+assert(runCapabilityRejected, "expected runSimulation to honor run-level capability envelope");
 assert(runHandle.response.buffers.length === 3, "expected runSimulation buffers");
 assert(runHandle.response.streams[0].streamId === "smoke-run:causal-root-transient", "expected run-scoped stream id");
 const runStreamRead = await client.readStreamRange({
@@ -2912,33 +3386,74 @@ const circularSourceRunHandle = await client.runSimulation(makeCircularSourceRun
 assert(circularSourceRunHandle.status.code === "ok", "expected circular-source runSimulation status ok");
 assert(
   circularSourceRunHandle.response.summary.rootCount === 1 &&
-    circularSourceRunHandle.response.summary.eventCount === 0,
-  "expected circular-source run root-only summary"
+    circularSourceRunHandle.response.summary.eventCount === 1,
+  "expected circular-source run root and delayed-hit summary"
 );
 assertCircularSourceRootResponse(circularSourceRunHandle.response, "circular-source run");
-assert(circularSourceRunHandle.response.hits.length === 0, "expected no circular-source delayed-hit rows yet");
+assert(circularSourceRunHandle.response.hits.length === 1, "expected circular-source delayed-hit row");
+const circularSourceRunActiveLedger = circularSourceRunHandle.response.rootLedgerDetails.find(
+  (row) => row.entryKind === 1
+);
 assert(
-  circularSourceRunHandle.response.rootLedgerDetails.length === 0,
-  "expected no circular-source detailed ledger rows yet"
+  circularSourceRunActiveLedger &&
+    circularSourceRunActiveLedger.rootKind === 1 &&
+    circularSourceRunActiveLedger.iterationCount > 0 &&
+    circularSourceRunActiveLedger.bracketStart <= circularSourceRunHandle.response.roots[0].emissionTime &&
+    circularSourceRunActiveLedger.bracketEnd >= circularSourceRunHandle.response.roots[0].emissionTime,
+  "expected circular-source detailed ledger row"
 );
 assert(
   findBuffer(circularSourceRunHandle.response, "root_ledger.v1").rowCount === 1 &&
-    findBuffer(circularSourceRunHandle.response, "delayed_hit_events.v1").rowCount === 0 &&
-    findBuffer(circularSourceRunHandle.response, "root_ledger_detail.v1").rowCount === 0,
+    findBuffer(circularSourceRunHandle.response, "delayed_hit_events.v1").rowCount === 1 &&
+    findBuffer(circularSourceRunHandle.response, "root_ledger_detail.v1").rowCount ===
+      circularSourceRunHandle.response.rootLedgerDetails.length,
   "expected circular-source run buffers"
 );
 assert(
   circularSourceRunHandle.response.diagnostics.some(
     (diagnostic) =>
       diagnostic.message.includes("circular-source") &&
-      diagnostic.details?.delayedHitProjection === "not-yet-implemented"
+      diagnostic.details?.delayedHitProjection === "native-root-derived" &&
+      diagnostic.details?.rootLedgerDetailProjection === "native-circular-source-ledger"
   ),
   "expected circular-source run diagnostic"
 );
+const circularSourceRunInvariants = await client.checkRootHitInvariantsF64({
+  roots: circularSourceRunHandle.response.roots,
+  hits: circularSourceRunHandle.response.hits,
+});
+assert(circularSourceRunInvariants.status.code === "ok", "expected circular-source run invariants");
 assert(
   circularSourceRunHandle.response.manifest.buffers.length === 3 &&
     circularSourceRunHandle.response.manifest.validationArtifacts.artifactHashes.bufferHashes.length === 3,
   "expected circular-source run manifest buffers"
+);
+assert(
+  circularSourceRunHandle.response.precision.requestedPrecisionPath === "auto" &&
+    circularSourceRunHandle.response.precision.selectedPrecisionPath === "extended_precision" &&
+    circularSourceRunHandle.response.precision.diagnosticPrecisionPath === "extended_precision" &&
+    circularSourceRunHandle.response.precision.selectedNumericType === "f64" &&
+    circularSourceRunHandle.response.precision.rootCount === 1 &&
+    circularSourceRunHandle.response.precision.rootTolerance <= 1e-15 &&
+    circularSourceRunHandle.response.precision.maxIterations >= 256 &&
+    circularSourceRunHandle.response.precision.scanSubdivisions >= 512,
+  "expected circular-source run controlled analytic f64 precision summary"
+);
+assert(
+  circularSourceRunHandle.response.manifest.precision.selectedNumericType === "f64" &&
+    circularSourceRunHandle.response.manifest.precision.validationReplayRun === false,
+  "expected circular-source run manifest precision summary"
+);
+assert(
+  circularSourceRunHandle.response.diagnostics.some(
+    (diagnostic) =>
+      diagnostic.message.includes("precision controls") &&
+      diagnostic.details?.precisionEngine === "analytic-circular-source-f64" &&
+      diagnostic.details?.precisionPathSelector === "applied-to-circular-source-controls" &&
+      diagnostic.details?.controlNumericType === "decimal128" &&
+      diagnostic.details?.outputNumericTypeAuthority === "f64-cabi-output"
+  ),
+  "expected circular-source run applied precision diagnostic"
 );
 const circularSourceRunStreamRead = await client.readStreamRange({
   streamId: "smoke-circular-source-run:causal-root-transient",
@@ -2948,6 +3463,86 @@ assert(
   circularSourceRunStreamRead.status.code === "ok" &&
     circularSourceRunStreamRead.buffers.length === 3,
   "expected circular-source run stream readback"
+);
+
+const normalizedCircularSourceRunHandle = await client.runSimulation(
+  makeNormalizedCircularSourceRunSimulationRequest()
+);
+assert(
+  normalizedCircularSourceRunHandle.status.code === "ok",
+  "expected normalized circular-source runSimulation status ok"
+);
+assert(
+  normalizedCircularSourceRunHandle.requestId === "smoke-normalized-circular-source-run-request" &&
+    normalizedCircularSourceRunHandle.runId === "smoke-normalized-circular-source-run",
+  "expected normalized circular-source run ids"
+);
+assert(
+  normalizedCircularSourceRunHandle.response.coordinateFrame === "origin-normalized" &&
+    normalizedCircularSourceRunHandle.response.coordinateOrigin.x === 1e18 &&
+    normalizedCircularSourceRunHandle.response.localRequest.streamId === "normalized-circular-source-run",
+  "expected normalized circular-source run coordinate metadata"
+);
+assert(
+  Math.abs(normalizedCircularSourceRunHandle.response.roots[0].distance - Math.sqrt(101)) <= 1e-10 &&
+    normalizedCircularSourceRunHandle.response.roots[0].sourcePoint.x === 0 &&
+    normalizedCircularSourceRunHandle.response.roots[0].receiverPoint.x === 10 &&
+    normalizedCircularSourceRunHandle.response.roots[0].coordinateFrame === "origin-normalized",
+  "expected normalized circular-source run roots to remain in local authoritative coordinates"
+);
+assert(
+  normalizedCircularSourceRunHandle.response.absoluteRoots[0].absolutePointAuthority === "display-only" &&
+    normalizedCircularSourceRunHandle.response.absoluteRoots[0].localReceiverPoint.x === 10,
+  "expected normalized circular-source run absolute display metadata"
+);
+assert(
+  normalizedCircularSourceRunHandle.response.hits.length === 1 &&
+    normalizedCircularSourceRunHandle.response.rootLedgerDetails.some((row) => row.entryKind === 1) &&
+    findBuffer(normalizedCircularSourceRunHandle.response, "root_ledger_detail.v1").rowCount ===
+      normalizedCircularSourceRunHandle.response.rootLedgerDetails.length,
+  "expected normalized circular-source run hits and detailed ledger"
+);
+assert(
+  normalizedCircularSourceRunHandle.response.diagnostics.some(
+    (diagnostic) =>
+      diagnostic.message.includes("origin-normalized circular-source") &&
+      diagnostic.details?.localRootAuthority === "authoritative" &&
+      diagnostic.details?.localHitAuthority === "authoritative" &&
+      diagnostic.details?.localRootLedgerDetailAuthority === "authoritative"
+  ),
+  "expected normalized circular-source run coordinate authority diagnostic"
+);
+assert(
+  normalizedCircularSourceRunHandle.response.manifest.buffers.length === 3 &&
+    normalizedCircularSourceRunHandle.response.manifest.validationArtifacts.artifactHashes.bufferHashes.length === 3,
+  "expected normalized circular-source run manifest buffers"
+);
+assert(
+  normalizedCircularSourceRunHandle.response.precision.selectedPrecisionPath === "extended_precision" &&
+    normalizedCircularSourceRunHandle.response.precision.diagnosticPrecisionPath === "extended_precision" &&
+    normalizedCircularSourceRunHandle.response.precision.selectedNumericType === "f64" &&
+    normalizedCircularSourceRunHandle.response.precision.rootTolerance <= 1e-15 &&
+    normalizedCircularSourceRunHandle.response.precision.maxIterations >= 256 &&
+    normalizedCircularSourceRunHandle.response.precision.scanSubdivisions >= 512 &&
+    normalizedCircularSourceRunHandle.response.manifest.precision.selectedNumericType === "f64",
+  "expected normalized circular-source run controlled analytic f64 precision summary"
+);
+const normalizedCircularSourceRunInvariants = await client.checkRootHitInvariantsF64({
+  roots: normalizedCircularSourceRunHandle.response.roots,
+  hits: normalizedCircularSourceRunHandle.response.hits,
+});
+assert(
+  normalizedCircularSourceRunInvariants.status.code === "ok",
+  "expected normalized circular-source run invariants"
+);
+const normalizedCircularSourceRunStreamRead = await client.readStreamRange({
+  streamId: "smoke-normalized-circular-source-run:normalized-circular-source-run",
+  maxBytes: 2048,
+});
+assert(
+  normalizedCircularSourceRunStreamRead.status.code === "ok" &&
+    normalizedCircularSourceRunStreamRead.buffers.length === 3,
+  "expected normalized circular-source run stream readback"
 );
 
 const normalizedRunHandle = await client.runSimulation(makeNormalizedRunSimulationRequest());
@@ -2984,6 +3579,14 @@ assert(phaseRunHandle.requestId === "smoke-phase-diagnostics-run-request", "expe
 assert(phaseRunHandle.response.summary.rootCount === 1, "expected phase-diagnostics root count");
 assert(phaseRunHandle.response.summary.phaseRowCount === 1, "expected phase-diagnostics row count");
 assert(phaseRunHandle.response.phaseRows.length === 1, "expected phase-diagnostics rows");
+assert(
+  phaseRunHandle.response.phaseRows[0].rootKind === 1 &&
+    phaseRunHandle.response.phaseRows[0].sourceLayerCode === 7 &&
+    phaseRunHandle.response.phaseRows[0].receiverLayerCode === 8 &&
+    phaseRunHandle.response.phaseRows[0].sourceChargeSign === 1 &&
+    phaseRunHandle.response.phaseRows[0].receiverChargeSign === -1,
+  "expected phase-diagnostics metadata rows"
+);
 assert(
   Math.abs(phaseRunHandle.response.phaseSummary.phaseSpreadRange.start - 1 / 3) <= 1e-10,
   "expected phase-diagnostics phase spread summary"
@@ -3278,7 +3881,7 @@ const normalizedDelayedHitRunHandle = await client.runSimulation(
   makeNormalizedDelayedHitRunSimulationRequest()
 );
 assert(
-    normalizedDelayedHitRunHandle.status.code === "ok" &&
+  normalizedDelayedHitRunHandle.status.code === "ok" &&
     normalizedDelayedHitRunHandle.response.summary.eventCount === 1 &&
     normalizedDelayedHitRunHandle.response.rootLedgerDetails.length >= 1 &&
     Math.abs(normalizedDelayedHitRunHandle.response.hits[0].distance - 1) <= 1e-12,
@@ -3291,6 +3894,69 @@ assert(
       diagnostic.details?.localHitAuthority === "authoritative"
   ),
   "expected normalized delayed-hit coordinate authority diagnostic"
+);
+const circularSourceDelayedHitRunHandle = await client.runSimulation(
+  makeCircularSourceDelayedHitRunSimulationRequest()
+);
+assert(
+  circularSourceDelayedHitRunHandle.status.code === "ok" &&
+    circularSourceDelayedHitRunHandle.response.summary.eventCount === 1 &&
+    circularSourceDelayedHitRunHandle.response.hits.length === 1,
+  "expected circular-source delayed-hit run response"
+);
+assert(
+  circularSourceDelayedHitRunHandle.response.manifest.runKind === "delayedHits" &&
+    circularSourceDelayedHitRunHandle.response.rootLedgerDetails.some((row) => row.entryKind === 1) &&
+    findBuffer(circularSourceDelayedHitRunHandle.response, "delayed_hit_events.v1").rowCount === 1 &&
+    circularSourceDelayedHitRunHandle.response.manifest.precision.selectedNumericType === "f64",
+  "expected circular-source delayed-hit run manifest and buffers"
+);
+assert(
+  circularSourceDelayedHitRunHandle.response.diagnostics.some(
+    (diagnostic) =>
+      diagnostic.message.includes("circular-source") &&
+      diagnostic.details?.delayedHitProjection === "native-root-derived"
+  ),
+  "expected circular-source delayed-hit projection diagnostic"
+);
+const circularSourceDelayedHitInvariants = await client.checkRootHitInvariantsF64({
+  roots: circularSourceDelayedHitRunHandle.response.roots,
+  hits: circularSourceDelayedHitRunHandle.response.hits,
+});
+assert(
+  circularSourceDelayedHitInvariants.status.code === "ok",
+  "expected circular-source delayed-hit run invariants"
+);
+const normalizedCircularSourceDelayedHitRunHandle = await client.runSimulation(
+  makeNormalizedCircularSourceDelayedHitRunSimulationRequest()
+);
+assert(
+  normalizedCircularSourceDelayedHitRunHandle.status.code === "ok" &&
+    normalizedCircularSourceDelayedHitRunHandle.response.summary.eventCount === 1 &&
+    normalizedCircularSourceDelayedHitRunHandle.response.hits.length === 1,
+  "expected normalized circular-source delayed-hit run response"
+);
+assert(
+  normalizedCircularSourceDelayedHitRunHandle.response.coordinateFrame === "origin-normalized" &&
+    normalizedCircularSourceDelayedHitRunHandle.response.roots[0].coordinateFrame === "origin-normalized" &&
+    normalizedCircularSourceDelayedHitRunHandle.response.absoluteRoots[0].absolutePointAuthority === "display-only",
+  "expected normalized circular-source delayed-hit coordinate metadata"
+);
+assert(
+  normalizedCircularSourceDelayedHitRunHandle.response.diagnostics.some(
+    (diagnostic) =>
+      diagnostic.message.includes("origin-normalized circular-source") &&
+      diagnostic.details?.localHitAuthority === "authoritative" &&
+      diagnostic.details?.localRootLedgerDetailAuthority === "authoritative"
+  ),
+  "expected normalized circular-source delayed-hit coordinate authority diagnostic"
+);
+assert(
+  normalizedCircularSourceDelayedHitRunHandle.response.manifest.runKind === "delayedHits" &&
+    normalizedCircularSourceDelayedHitRunHandle.response.manifest.appId === "ideal-swarm" &&
+    findBuffer(normalizedCircularSourceDelayedHitRunHandle.response, "delayed_hit_events.v1").rowCount === 1 &&
+    normalizedCircularSourceDelayedHitRunHandle.response.manifest.precision.selectedNumericType === "f64",
+  "expected normalized circular-source delayed-hit manifest and buffers"
 );
 
 const sharedGeometryRunHandle = await client.runSimulation(makeSharedGeometryRunSimulationRequest());
@@ -3329,7 +3995,7 @@ assert(
 );
 assert(
   validationReplayRunHandle.response.manifest.runKind === "validationReplay" &&
-    validationReplayRunHandle.response.manifest.selectedPrecisionPath === "extended_precision" &&
+    validationReplayRunHandle.response.manifest.selectedPrecisionPath === "validation_replay" &&
     validationReplayRunHandle.response.manifest.validationArtifacts.migrationParityStatus ===
       "baseline_within_tolerance",
   "expected validation replay run manifest"
@@ -3417,8 +4083,8 @@ function makeBatchRequest(distance) {
   return request;
 }
 
-function makeCircularSourceCausalRootRequest() {
-  return {
+function makeCircularSourceCausalRootRequest(options = {}) {
+  const request = {
     source: {
       startTime: -2,
       endTime: 10,
@@ -3444,6 +4110,10 @@ function makeCircularSourceCausalRootRequest() {
     scanSubdivisions: 256,
     maxRoots: 4,
   };
+  if (options.streamId != null) {
+    request.streamId = options.streamId;
+  }
+  return request;
 }
 
 function assertCircularSourceRootResponse(response, label) {
@@ -3479,6 +4149,14 @@ function makeNormalizedCausalRootRequest() {
       rootTolerance: 1e-15,
       maxRoots: 4,
     },
+    restoreAbsolutePoints: true,
+  };
+}
+
+function makeNormalizedCircularSourceRootsHitsLedgerRequest(options = {}) {
+  return {
+    coordinateOrigin: { x: 1e18, y: -2e18, z: 3e18 },
+    localRequest: makeCircularSourceCausalRootRequest(options),
     restoreAbsolutePoints: true,
   };
 }
@@ -3704,6 +4382,31 @@ function makeCircularSourceRunSimulationRequest() {
   });
 }
 
+function makeNormalizedCircularSourceRunSimulationRequest() {
+  const admission = makeAdmissionRequest();
+  return createPhotonCausalRootsRunRequest({
+    requestId: "smoke-normalized-circular-source-run-request",
+    runId: "smoke-normalized-circular-source-run",
+    datasetId: "smoke-normalized-circular-source-run-dataset",
+    claimLevel: "interactive-preview",
+    precisionPath: "auto",
+    configVersion: "solver-normalized-circular-source-run-smoke.v1",
+    configHash: "solver-normalized-circular-source-run-smoke",
+    model: admission.model,
+    envelope: admission.envelope,
+    errorBudget: admission.errorBudget,
+    normalizedCircularSourceRootRequest: makeNormalizedCircularSourceRootsHitsLedgerRequest({
+      streamId: "normalized-circular-source-run",
+    }),
+    output: {
+      outputs: ["rootLedger", "delayedHitEvents", "diagnostics", "validationArtifacts"],
+      streamTarget: "caller-buffer",
+      memoryBudgetBytes: 64 * 1024 * 1024,
+      deterministic: true,
+    },
+  });
+}
+
 function makePhaseDiagnosticsRunSimulationRequest(roots) {
   const admission = makeAdmissionRequest();
   return createPhotonPhaseDiagnosticsRunRequest({
@@ -3721,6 +4424,16 @@ function makePhaseDiagnosticsRunSimulationRequest(roots) {
       roots,
       sourceClock: { period: 2, epoch: 0, phaseOffset: 0 },
       receiverClock: { period: 6, epoch: 0, phaseOffset: 0 },
+      metadata: roots.map(() => ({
+        rootKind: 1,
+        sourceLayerCode: 7,
+        receiverLayerCode: 8,
+        sourceRoleCode: 9,
+        receiverRoleCode: 10,
+        sourceChargeSign: 1,
+        receiverChargeSign: -1,
+        stateFlags: 19,
+      })),
     },
     output: {
       outputs: ["phaseAtHit", "diagnostics"],
@@ -3966,6 +4679,54 @@ function makeNormalizedDelayedHitRunSimulationRequest() {
   });
 }
 
+function makeCircularSourceDelayedHitRunSimulationRequest() {
+  const admission = makeAdmissionRequest();
+  return createIdealSwarmDelayedHitsRunRequest({
+    requestId: "smoke-circular-source-delayed-hit-run-request",
+    runId: "smoke-circular-source-delayed-hit-run",
+    datasetId: "smoke-circular-source-delayed-hit-run-dataset",
+    claimLevel: "interactive-preview",
+    precisionPath: "auto",
+    configVersion: "solver-circular-source-delayed-hit-run-smoke.v1",
+    configHash: "solver-circular-source-delayed-hit-run-smoke",
+    model: admission.model,
+    envelope: admission.envelope,
+    errorBudget: admission.errorBudget,
+    circularSourceRootRequest: makeCircularSourceCausalRootRequest(),
+    output: {
+      outputs: ["delayedHitEvents", "rootLedger", "diagnostics"],
+      streamTarget: "caller-buffer",
+      memoryBudgetBytes: 64 * 1024 * 1024,
+      deterministic: true,
+    },
+  });
+}
+
+function makeNormalizedCircularSourceDelayedHitRunSimulationRequest() {
+  const admission = makeAdmissionRequest();
+  return createIdealSwarmDelayedHitsRunRequest({
+    requestId: "smoke-normalized-circular-source-delayed-hit-run-request",
+    runId: "smoke-normalized-circular-source-delayed-hit-run",
+    datasetId: "smoke-normalized-circular-source-delayed-hit-run-dataset",
+    claimLevel: "interactive-preview",
+    precisionPath: "auto",
+    configVersion: "solver-normalized-circular-source-delayed-hit-run-smoke.v1",
+    configHash: "solver-normalized-circular-source-delayed-hit-run-smoke",
+    model: admission.model,
+    envelope: admission.envelope,
+    errorBudget: admission.errorBudget,
+    normalizedCircularSourceRootRequest: makeNormalizedCircularSourceRootsHitsLedgerRequest({
+      streamId: "normalized-circular-source-delayed-hit-run",
+    }),
+    output: {
+      outputs: ["delayedHitEvents", "rootLedger", "diagnostics", "validationArtifacts"],
+      streamTarget: "caller-buffer",
+      memoryBudgetBytes: 64 * 1024 * 1024,
+      deterministic: true,
+    },
+  });
+}
+
 function makeSharedGeometryRunSimulationRequest() {
   const admission = makeAdmissionRequest();
   return createIdealSwarmSharedGeometryRunRequest({
@@ -4037,15 +4798,18 @@ function makeValidationReplayRunSimulationRequest(candidateResponse) {
     datasetId: "smoke-validation-replay-run-dataset",
     appId: "animator",
     claimLevel: "validation-evidence",
-    precisionPath: "auto",
+    precisionPath: "validation_replay",
     configVersion: "solver-validation-replay-run-smoke.v1",
     configHash: "solver-validation-replay-run-smoke",
-    model: admission.model,
+    model: {
+      ...admission.model,
+      compatiblePrecisionPaths: [...admission.model.compatiblePrecisionPaths, "validation_replay"],
+    },
     envelope: admission.envelope,
     errorBudget: admission.errorBudget,
     baselineRunId: "fixture-roots-and-hits",
     baselineArtifactHash: "roots-and-hits-f64-smoke",
-    replayPrecisionPath: "extended_precision",
+    replayPrecisionPath: "validation_replay",
     compareLayouts: ["root_ledger.v1", "delayed_hit_events.v1"],
     baselineResponse: fixtureResponse.response,
     candidateResponse,
@@ -4111,6 +4875,15 @@ function findAppAdapter(appBridge, appId) {
     process.exit(1);
   }
   return adapter;
+}
+
+function findPrecisionRoute(appBridge, routeFamily) {
+  const route = appBridge.precisionRouting.routes.find((candidate) => candidate.routeFamily === routeFamily);
+  if (!route) {
+    console.error(`Missing precision route capability ${routeFamily}`);
+    process.exit(1);
+  }
+  return route;
 }
 
 function stripRuntimeBuffers(response) {
@@ -4255,6 +5028,28 @@ function assertMergedEmissionShellPacketResults(response, packets) {
   });
   assert(candidateRowOffset === candidateBuffer.rowCount, "expected merged candidate row span coverage");
   assert(narrowPhaseRowOffset === narrowPhaseBuffer.rowCount, "expected merged narrow-phase row span coverage");
+}
+
+function assertBounds(actual, expected, label) {
+  assert(actual && typeof actual === "object", `${label}: expected bounds object`);
+  assertVectorClose(actual.min, expected.min, `${label} min`);
+  assertVectorClose(actual.max, expected.max, `${label} max`);
+  assertClose(actual.timeStart, expected.timeStart, `${label} timeStart`);
+  assertClose(actual.timeEnd, expected.timeEnd, `${label} timeEnd`);
+}
+
+function assertVectorClose(actual, expected, label) {
+  assertClose(actual?.x, expected.x, `${label}.x`);
+  assertClose(actual?.y, expected.y, `${label}.y`);
+  assertClose(actual?.z, expected.z, `${label}.z`);
+}
+
+function assertClose(actual, expected, label) {
+  const tolerance = 1e-18 * Math.max(1, Math.abs(expected));
+  assert(
+    Number.isFinite(actual) && Math.abs(actual - expected) <= tolerance,
+    `${label}: expected ${expected}, got ${actual}`
+  );
 }
 
 function assertDeepEqual(actual, expected, message) {

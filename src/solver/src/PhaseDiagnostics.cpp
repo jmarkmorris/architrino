@@ -44,7 +44,8 @@ double raw_cycle_position(double time, PhaseClock clock) {
 
 PhaseAtHitResult compute_phase_at_hits(const std::vector<CausalRoot>& roots,
                                        PhaseClock sourceClock,
-                                       PhaseClock receiverClock) {
+                                       PhaseClock receiverClock,
+                                       const std::vector<PhaseAtHitMetadata>& metadata) {
   PhaseAtHitResult result;
   if (!valid_clock(sourceClock) || !valid_clock(receiverClock)) {
     result.validation.add(StatusCode::AppContractError,
@@ -56,12 +57,15 @@ PhaseAtHitResult compute_phase_at_hits(const std::vector<CausalRoot>& roots,
   }
 
   result.rows.reserve(roots.size());
-  for (const CausalRoot& root : roots) {
+  for (std::size_t index = 0; index < roots.size(); ++index) {
+    const CausalRoot& root = roots[index];
     const double sourceCyclePosition = raw_cycle_position(root.emissionTime, sourceClock);
     const double receiverCyclePosition = raw_cycle_position(root.hitTime, receiverClock);
     const double sourcePhase = normalized_phase(sourceCyclePosition);
     const double receiverPhase = normalized_phase(receiverCyclePosition);
     const double delta = signed_phase_delta(sourcePhase, receiverPhase);
+    const PhaseAtHitMetadata rowMetadata =
+        index < metadata.size() ? metadata[index] : PhaseAtHitMetadata{};
     result.rows.push_back(PhaseAtHit{
         root.rootId,
         root.statusCode,
@@ -73,6 +77,7 @@ PhaseAtHitResult compute_phase_at_hits(const std::vector<CausalRoot>& roots,
         receiverPhase,
         delta,
         std::abs(delta),
+        rowMetadata,
     });
   }
 

@@ -67,6 +67,12 @@ export interface SolverClient {
   solveCircularSourceCausalRootsF64(
     request: SolverCircularSourceCausalRootsF64Request
   ): Promise<SolverCausalRootsF64Response>;
+  solveCircularSourceRootsHitsLedgerF64(
+    request: SolverCircularSourceCausalRootsF64Request
+  ): Promise<SolverCircularSourceRootsHitsLedgerF64Response>;
+  solveCircularSourceRootsHitsLedgerNormalizedF64(
+    request: SolverCircularSourceRootsHitsLedgerNormalizedF64Request
+  ): Promise<SolverCircularSourceRootsHitsLedgerNormalizedF64Response>;
   solveCausalRootsPrecisionF64(
     request: SolverCausalRootsPrecisionF64Request
   ): Promise<SolverCausalRootsPrecisionF64Response>;
@@ -660,6 +666,7 @@ export interface SolverPathHistoryChunkMetadata {
   rowCount: number;
   timeRange?: SolverRange;
   frameRange?: SolverRange;
+  bounds?: SolverSpaceTimeBoundsF64;
   byteRange?: SolverRange;
   timeStart?: number;
   timeEnd?: number;
@@ -1025,6 +1032,7 @@ export interface SolverCircularSourceCausalRootsF64Request {
   maxIterations?: number;
   scanSubdivisions?: number;
   maxRoots?: number;
+  streamId?: string;
 }
 
 export interface SolverRootLedgerDetailF64Request extends SolverCausalRootsF64Request {
@@ -1076,6 +1084,12 @@ export interface SolverPrecisionSolveSummaryF64 {
 export interface SolverCausalRootsNormalizedF64Request {
   coordinateOrigin: SolverVector3F64;
   localRequest: SolverCausalRootsF64Request;
+  restoreAbsolutePoints?: boolean;
+}
+
+export interface SolverCircularSourceRootsHitsLedgerNormalizedF64Request {
+  coordinateOrigin: SolverVector3F64;
+  localRequest: SolverCircularSourceCausalRootsF64Request;
   restoreAbsolutePoints?: boolean;
 }
 
@@ -1163,6 +1177,23 @@ export interface SolverRootsAndHitsPrecisionF64Response extends SolverRootsAndHi
   precision: SolverPrecisionSolveSummaryF64;
 }
 
+export interface SolverCircularSourceRootsHitsLedgerF64Response extends SolverRootsAndHitsF64Response {
+  schema: "solver-circular-source-roots-hits-ledger-f64.v1";
+  rootLedgerDetails: SolverRootLedgerDetailF64[];
+  statuses: SolverStatusRecord[];
+}
+
+export interface SolverCircularSourceRootsHitsLedgerNormalizedF64Response extends SolverRootsAndHitsF64Response {
+  schema: "solver-circular-source-roots-hits-ledger-normalized-f64.v1";
+  coordinateFrame: "origin-normalized";
+  coordinateOrigin: SolverVector3F64;
+  localRequest: SolverCircularSourceCausalRootsF64Request;
+  roots: SolverNormalizedCausalRootF64[];
+  rootLedgerDetails: SolverRootLedgerDetailF64[];
+  absoluteRoots?: SolverAbsoluteDisplayCausalRootF64[];
+  statuses: SolverStatusRecord[];
+}
+
 export interface SolverPhaseClockF64 {
   period: number;
   epoch?: number;
@@ -1173,6 +1204,7 @@ export interface SolverPhaseAtHitF64Request {
   roots: SolverCausalRootF64[];
   sourceClock: SolverPhaseClockF64;
   receiverClock: SolverPhaseClockF64;
+  metadata?: SolverPhaseAtHitMetadataF64[];
 }
 
 export interface SolverPhaseAtHitF64Response {
@@ -1224,6 +1256,25 @@ export interface SolverPhaseAtHitF64 {
   receiverPhase: number;
   phaseDelta: number;
   phaseSpread: number;
+  rootKind: number;
+  sourceLayerCode: number;
+  receiverLayerCode: number;
+  sourceRoleCode: number;
+  receiverRoleCode: number;
+  sourceChargeSign: -1 | 0 | 1;
+  receiverChargeSign: -1 | 0 | 1;
+  stateFlags: number;
+}
+
+export interface SolverPhaseAtHitMetadataF64 {
+  rootKind?: number;
+  sourceLayerCode?: number;
+  receiverLayerCode?: number;
+  sourceRoleCode?: number;
+  receiverRoleCode?: number;
+  sourceChargeSign?: -1 | 0 | 1;
+  receiverChargeSign?: -1 | 0 | 1;
+  stateFlags?: number;
 }
 
 export interface SolverCausalRootF64 {
@@ -1300,7 +1351,9 @@ export interface SolverRunRequest {
   configHash?: string;
   model: SolverModelContract;
   envelope: SolverSimulationEnvelope;
+  capability?: SolverCapabilityEnvelope;
   errorBudget: SolverErrorBudget;
+  threadingPolicy?: SolverThreadingPolicy;
   config: SolverRunConfig;
   output: SolverOutputRequest;
 }
@@ -1325,6 +1378,7 @@ export type SolverAdmissionStressDimension =
   | "entity_count"
   | "interaction_graph"
   | "memory"
+  | "storage"
   | "time_steps"
   | "output_detail"
   | "precision";
@@ -1336,6 +1390,7 @@ export interface SolverAdmissionStressSummary {
   entityPressure: number;
   interactionPressure: number;
   memoryPressure: number;
+  storagePressure: number;
   timeStepCountEstimate: number | null;
   timeStepPressure: number;
   outputPressure: number;
@@ -1417,7 +1472,7 @@ export interface SolverRootHitInvariantOptions {
 }
 
 export interface SolverRootHitInvariantF64Request {
-  roots?: SolverCausalRootF64[];
+  roots?: Array<SolverCausalRootF64 | SolverNormalizedCausalRootF64>;
   hits?: SolverDelayedHitF64[];
   options?: SolverRootHitInvariantOptions;
 }
@@ -1481,22 +1536,31 @@ export type SolverRunConfig =
 
 export type CausalRootsSolverConfig = { appId: SolverAppId } &
   (
-    | {
-        rootRequest: SolverCausalRootsF64Request;
-        normalizedRootRequest?: never;
-        circularSourceRootRequest?: never;
-      }
-    | {
-        rootRequest?: never;
-        normalizedRootRequest: SolverCausalRootsNormalizedF64Request;
-        circularSourceRootRequest?: never;
-      }
-    | {
-        rootRequest?: never;
-        normalizedRootRequest?: never;
-        circularSourceRootRequest: SolverCircularSourceCausalRootsF64Request;
-      }
-  );
+	    | {
+	        rootRequest: SolverCausalRootsF64Request;
+	        normalizedRootRequest?: never;
+	        circularSourceRootRequest?: never;
+	        normalizedCircularSourceRootRequest?: never;
+	      }
+	    | {
+	        rootRequest?: never;
+	        normalizedRootRequest: SolverCausalRootsNormalizedF64Request;
+	        circularSourceRootRequest?: never;
+	        normalizedCircularSourceRootRequest?: never;
+	      }
+	    | {
+	        rootRequest?: never;
+	        normalizedRootRequest?: never;
+	        circularSourceRootRequest: SolverCircularSourceCausalRootsF64Request;
+	        normalizedCircularSourceRootRequest?: never;
+	      }
+	    | {
+	        rootRequest?: never;
+	        normalizedRootRequest?: never;
+	        circularSourceRootRequest?: never;
+	        normalizedCircularSourceRootRequest: SolverCircularSourceRootsHitsLedgerNormalizedF64Request;
+	      }
+	  );
 
 export interface PhaseDiagnosticsSolverConfig {
   appId: SolverAppId;
@@ -1514,9 +1578,31 @@ export interface PathHistorySolverConfig {
 
 export type DelayedHitsSolverConfig = { appId: SolverAppId } &
   (
-    | { rootRequest: SolverCausalRootsF64Request; normalizedRootRequest?: never }
-    | { rootRequest?: never; normalizedRootRequest: SolverCausalRootsNormalizedF64Request }
-  );
+	    | {
+	        rootRequest: SolverCausalRootsF64Request;
+	        normalizedRootRequest?: never;
+	        circularSourceRootRequest?: never;
+	        normalizedCircularSourceRootRequest?: never;
+	      }
+	    | {
+	        rootRequest?: never;
+	        normalizedRootRequest: SolverCausalRootsNormalizedF64Request;
+	        circularSourceRootRequest?: never;
+	        normalizedCircularSourceRootRequest?: never;
+	      }
+	    | {
+	        rootRequest?: never;
+	        normalizedRootRequest?: never;
+	        circularSourceRootRequest: SolverCircularSourceCausalRootsF64Request;
+	        normalizedCircularSourceRootRequest?: never;
+	      }
+	    | {
+	        rootRequest?: never;
+	        normalizedRootRequest?: never;
+	        circularSourceRootRequest?: never;
+	        normalizedCircularSourceRootRequest: SolverCircularSourceRootsHitsLedgerNormalizedF64Request;
+	      }
+	  );
 
 export interface SharedGeometrySolverConfig {
   appId: SolverAppId;
@@ -1590,7 +1676,7 @@ export interface SolverSimulationEnvelope {
   expectedBranchComplexity: "low" | "moderate" | "high" | "unknown";
   outputDetail: "preview" | "playback" | "export" | "validation";
   memoryBudgetBytes: number;
-  storageBudgetBytes?: number;
+  storageBudgetBytes: number;
   latencyTarget: "interactive" | "background" | "batch" | "validation";
   simplificationPolicy: "none" | "explicit-reduced-model";
 }
@@ -1622,6 +1708,10 @@ export interface SolverRunResponse {
   roots?: SolverCausalRootF64[];
   hits?: SolverDelayedHitF64[];
   rootLedgerDetails?: SolverRootLedgerDetailF64[];
+  coordinateFrame?: "origin-normalized";
+  coordinateOrigin?: SolverVector3F64;
+  localRequest?: SolverCausalRootsF64Request | SolverCircularSourceCausalRootsF64Request;
+  absoluteRoots?: SolverAbsoluteDisplayCausalRootF64[];
   phaseRows?: SolverPhaseAtHitF64[];
   phaseSummary?: SolverPhaseAtHitSummaryF64;
   pathHistory?: SolverPathHistoryStreamSummary;
@@ -1660,10 +1750,12 @@ export interface SolverRunManifest {
   configHash: string;
   model: SolverModelContract;
   envelope: SolverSimulationEnvelope;
+  capability: SolverCapabilityEnvelope;
   errorBudget: SolverErrorBudget;
   requestedPrecisionPath: SolverPrecisionPath;
   selectedPrecisionPath: SolverPrecisionPath;
   output: SolverOutputRequest;
+  threading: SolverThreadingPlanResponse;
   admission: SolverRunManifestAdmission;
   provenance: SolverRunManifestProvenance;
   deterministic: boolean;
@@ -1686,6 +1778,17 @@ export type SolverMigrationParityStatus =
 
 export interface SolverRunArtifactHashes {
   configHash: string;
+  schemaVersionHash: string;
+  statusTaxonomyHash: string;
+  binaryLayoutHash: string;
+  modelContractHash: string;
+  simulationEnvelopeHash: string;
+  capabilityEnvelopeHash: string;
+  errorBudgetHash: string;
+  outputContractHash: string;
+  threadingHash: string;
+  admissionHash: string;
+  provenanceHash: string;
   bufferHashes: string[];
   streamHashes: string[];
   diagnosticHash: string;
@@ -1930,6 +2033,7 @@ export interface SolverInitResponse {
 export interface SolverCapabilities {
   precisionPaths: SolverPrecisionPath[];
   outputLayouts: SolverBinaryLayoutId[];
+  binaryLayouts: SolverBinaryLayoutCatalog;
   storage: SolverStorageCapability;
   threading: SolverThreadingCapability;
   appBridge: SolverAppBridgeCapability;
@@ -1941,6 +2045,35 @@ export interface SolverCapabilities {
   abiInfo?: SolverAbiInfo;
 }
 
+export interface SolverBinaryLayoutCatalog {
+  schema: "solver-binary-layout-catalog.v1";
+  byteOrder: "little-endian";
+  layouts: SolverBinaryLayoutDescriptor[];
+}
+
+export type SolverBinaryLayoutRole =
+  | "motion-frame"
+  | "path-history"
+  | "path-history-index"
+  | "assembly-graph"
+  | "assembly-graph-index"
+  | "root-ledger"
+  | "delayed-hit"
+  | "phase-diagnostic"
+  | "spacetime-index"
+  | "emission-shell";
+
+export interface SolverBinaryLayoutDescriptor {
+  layout: SolverBinaryLayoutId;
+  role: SolverBinaryLayoutRole;
+  numericType: SolverNumericType;
+  rowSizeBytes: number;
+  fixedRowSize: boolean;
+  denseBufferSafe: boolean;
+  authoritativeStorageSafe: boolean;
+  streamable: boolean;
+}
+
 export interface SolverAppBridgeCapability {
   schema: "solver-app-bridge-capabilities.v1";
   apiVersion: string;
@@ -1949,6 +2082,8 @@ export interface SolverAppBridgeCapability {
   denseDataTransport: ("array-buffer" | "stream-handle")[];
   workerModel: SolverBridgeWorkerModelCapability;
   storageFallbacks: SolverBridgeStorageFallbackCapability;
+  precisionRouting: SolverPrecisionRoutingCapability;
+  statusTaxonomy: SolverStatusTaxonomyCapability;
   streamQueries: SolverStreamQueryCapability;
   workPackets: SolverWorkPacketCapability;
 }
@@ -1974,6 +2109,85 @@ export interface SolverBridgeStorageFallbackCapability {
   unsupportedStorageStatusCode: "unsupported_browser_storage";
 }
 
+export interface SolverPrecisionRoutingCapability {
+  schema: "solver-precision-routing-capabilities.v1";
+  routes: SolverPrecisionRouteCapability[];
+}
+
+export interface SolverPrecisionRouteCapability {
+  routeFamily: "linear-root" | "circular-source";
+  runConfigKeys: (
+    | "rootRequest"
+    | "normalizedRootRequest"
+    | "circularSourceRootRequest"
+    | "normalizedCircularSourceRootRequest"
+  )[];
+  precisionEngine: "native-precision-path" | "analytic-circular-source-f64";
+  precisionSummary:
+    | "native-precision-solve-summary-f64"
+    | "analytic-circular-source-run-summary-f64";
+  fullPrecisionPathSelector: boolean;
+  normalizedCoordinatesSupported: boolean;
+  selectedNumericTypes: SolverNumericType[];
+}
+
+export interface SolverStatusTaxonomyCapability {
+  schema: "solver-status-taxonomy.v1";
+  severities: SolverStatusSeverity[];
+  codes: SolverStatusTaxonomyCode[];
+}
+
+export type SolverStatusCategory =
+  | "success"
+  | "control"
+  | "baseline-comparison"
+  | "precision"
+  | "admission"
+  | "history"
+  | "root-solving"
+  | "stream-storage"
+  | "runtime-support"
+  | "validation"
+  | "app-contract"
+  | "internal";
+
+export type SolverStatusCode =
+  | "ok"
+  | "cancelled"
+  | "baseline_within_tolerance"
+  | "baseline_refined_result"
+  | "baseline_model_boundary_difference"
+  | "baseline_investigation_required_mismatch"
+  | "precision_escalated"
+  | "precision_failed"
+  | "simulation_envelope_exceeded"
+  | "insufficient_history_depth"
+  | "insufficient_scale_resolution"
+  | "time_resolution_insufficient"
+  | "root_not_bracketed"
+  | "root_unresolved"
+  | "small_jacobian"
+  | "transversality_floor_failed"
+  | "ledger_rerun_required"
+  | "stream_memory_pressure"
+  | "stream_write_failed"
+  | "stream_read_failed"
+  | "unsupported_browser_storage"
+  | "unsupported_wasm_threads"
+  | "validation_replay_mismatch"
+  | "app_contract_error"
+  | "internal_solver_error";
+
+export interface SolverStatusTaxonomyCode {
+  id: number;
+  code: SolverStatusCode;
+  category: SolverStatusCategory;
+  defaultSeverity: SolverStatusSeverity;
+  recoverableByDefault: boolean;
+  stageHints: string[];
+  description: string;
+}
+
 export interface SolverStreamQueryCapability {
   schema: "solver-stream-query-capabilities.v1";
   helpers: (
@@ -1989,6 +2203,7 @@ export interface SolverStreamQueryCapability {
   )[];
   pathHistoryLayouts: Array<Extract<SolverBinaryLayoutId, "path_segment.v1">>;
   indexedFilters: ("pathKeys" | "chunkIndices" | "timeRange" | "frameRange" | "byteRange")[];
+  rangeMetadata: ("timeRange" | "frameRange" | "byteRange" | "bounds")[];
   broadPhaseQueries: SolverBroadPhaseQueryCapability[];
 }
 
@@ -2004,6 +2219,8 @@ export interface SolverBroadPhaseQueryCapability {
     | "solveCausalRootsF64"
     | "solveCausalRootsPrecisionF64"
     | "solveCausalRootsNormalizedF64"
+    | "solveCircularSourceRootsHitsLedgerF64"
+    | "solveCircularSourceRootsHitsLedgerNormalizedF64"
     | "solveRootsAndHitsPrecisionF64"
     | "solveRootsAndHitsF64"
     | "refineEmissionShellCandidateRootsF64"
@@ -2072,6 +2289,12 @@ export interface SolverAbiInfo {
   motionIntegrationRequestF64Bytes: number;
   circularPathSegmentF64Bytes: number;
   circularSourceRootRequestF64Bytes: number;
+  modelContractBytes: number;
+  simulationEnvelopeF64Bytes: number;
+  capabilityEnvelopeF64Bytes: number;
+  admissionStressSummaryF64Bytes: number;
+  statusRowBytes: number;
+  admissionReportF64Bytes: number;
 }
 
 export interface SolverNumericSerializationDescriptor {
@@ -2147,6 +2370,14 @@ export interface SolverThreadingWorkload {
   itemCount: number;
   minItemsPerWorker?: number;
   deterministicRequired?: boolean;
+  observations?: SolverThreadingWorkloadObservations;
+}
+
+export interface SolverThreadingWorkloadObservations {
+  chunkDurationsMs?: number[];
+  singleThreadElapsedMs?: number;
+  activeElapsedMs?: number;
+  contentionWaitMs?: number;
 }
 
 export interface SolverThreadingPlanResponse {
@@ -2163,9 +2394,42 @@ export interface SolverThreadingPlanResponse {
   wasmThreadsAvailable: boolean;
   nativeThreadsAvailable: boolean;
   fallbackReason?: "wasm_threads_unavailable" | null;
+  plannedChunkCount: number;
+  plannedChunkItemCount: number;
+  tailChunkItemCount: number;
+  queueDepth: number;
+  determinismStatus: "deterministic" | "relaxed" | "required-but-not-requested";
+  contention: SolverThreadingContentionDiagnostics;
+  chunkTimings: SolverThreadingChunkTimingSummary;
+  stageSpeedup: SolverThreadingStageSpeedupSummary;
   speedupBaselineWorkerCount: number;
   statuses: SolverStatusRecord[];
   status: SolverStatusRecord;
+}
+
+export interface SolverThreadingContentionDiagnostics {
+  source: "policy-estimate" | "caller-observed";
+  risk: "none" | "low" | "medium" | "high";
+  queueDepth: number;
+  oversubscribedWorkerCount: number;
+  observedWaitMs: number | null;
+}
+
+export interface SolverThreadingChunkTimingSummary {
+  source: "not-measured" | "caller-observed";
+  observedChunkCount: number;
+  minMs: number | null;
+  maxMs: number | null;
+  meanMs: number | null;
+  totalMs: number | null;
+}
+
+export interface SolverThreadingStageSpeedupSummary {
+  source: "not-measured" | "caller-observed";
+  baselineWorkerCount: number;
+  comparedWorkerCount: number;
+  speedupRatio: number | null;
+  parallelEfficiency: number | null;
 }
 
 export interface SolverThreadingCapability {
@@ -2274,6 +2538,7 @@ export interface SolverRange {
 export interface SolverStreamRange {
   timeRange?: SolverRange;
   frameRange?: SolverRange;
+  bounds?: SolverSpaceTimeBoundsF64;
   byteRange: SolverRange;
 }
 

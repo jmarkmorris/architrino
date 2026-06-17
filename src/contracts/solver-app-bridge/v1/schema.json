@@ -40,6 +40,24 @@
       "$ref": "#/$defs/causalRootsNormalizedF64ResponseEnvelope"
     },
     {
+      "$ref": "#/$defs/circularSourceCausalRootsF64RequestEnvelope"
+    },
+    {
+      "$ref": "#/$defs/circularSourceCausalRootsF64ResponseEnvelope"
+    },
+    {
+      "$ref": "#/$defs/circularSourceRootsHitsLedgerF64RequestEnvelope"
+    },
+    {
+      "$ref": "#/$defs/circularSourceRootsHitsLedgerF64ResponseEnvelope"
+    },
+    {
+      "$ref": "#/$defs/circularSourceRootsHitsLedgerNormalizedF64RequestEnvelope"
+    },
+    {
+      "$ref": "#/$defs/circularSourceRootsHitsLedgerNormalizedF64ResponseEnvelope"
+    },
+    {
       "$ref": "#/$defs/rootLedgerDetailF64RequestEnvelope"
     },
     {
@@ -295,6 +313,8 @@
         "classifyRootLedgerTransitionsF64",
         "solveCausalRootsF64",
         "solveCircularSourceCausalRootsF64",
+        "solveCircularSourceRootsHitsLedgerF64",
+        "solveCircularSourceRootsHitsLedgerNormalizedF64",
         "solveCausalRootsNormalizedF64",
         "solveCausalRootBatchF64",
         "solveRootsAndHitsF64",
@@ -625,6 +645,126 @@
         },
         "response": {
           "$ref": "#/$defs/causalRootsNormalizedF64Response"
+        }
+      }
+    },
+    "circularSourceCausalRootsF64RequestEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "request"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "circular-source-causal-roots-f64-request"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "request": {
+          "$ref": "#/$defs/circularSourceCausalRootsF64Request"
+        }
+      }
+    },
+    "circularSourceCausalRootsF64ResponseEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "response"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "circular-source-causal-roots-f64-response"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "response": {
+          "$ref": "#/$defs/causalRootsF64Response"
+        }
+      }
+    },
+    "circularSourceRootsHitsLedgerF64RequestEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "request"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "circular-source-roots-hits-ledger-f64-request"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "request": {
+          "$ref": "#/$defs/circularSourceCausalRootsF64Request"
+        }
+      }
+    },
+    "circularSourceRootsHitsLedgerF64ResponseEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "response"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "circular-source-roots-hits-ledger-f64-response"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "response": {
+          "$ref": "#/$defs/circularSourceRootsHitsLedgerF64Response"
+        }
+      }
+    },
+    "circularSourceRootsHitsLedgerNormalizedF64RequestEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "request"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "circular-source-roots-hits-ledger-normalized-f64-request"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "request": {
+          "$ref": "#/$defs/circularSourceRootsHitsLedgerNormalizedF64Request"
+        }
+      }
+    },
+    "circularSourceRootsHitsLedgerNormalizedF64ResponseEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "response"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "circular-source-roots-hits-ledger-normalized-f64-response"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "response": {
+          "$ref": "#/$defs/circularSourceRootsHitsLedgerNormalizedF64Response"
         }
       }
     },
@@ -2188,6 +2328,10 @@
           "type": "integer",
           "minimum": 1,
           "maximum": 2147483647
+        },
+        "streamId": {
+          "type": "string",
+          "minLength": 1
         }
       }
     },
@@ -2201,6 +2345,22 @@
         },
         "localRequest": {
           "$ref": "#/$defs/causalRootsF64Request"
+        },
+        "restoreAbsolutePoints": {
+          "type": "boolean"
+        }
+      }
+    },
+    "circularSourceRootsHitsLedgerNormalizedF64Request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["coordinateOrigin", "localRequest"],
+      "properties": {
+        "coordinateOrigin": {
+          "$ref": "#/$defs/vector3F64"
+        },
+        "localRequest": {
+          "$ref": "#/$defs/circularSourceCausalRootsF64Request"
         },
         "restoreAbsolutePoints": {
           "type": "boolean"
@@ -2343,6 +2503,7 @@
       "required": [
         "precisionPaths",
         "outputLayouts",
+        "binaryLayouts",
         "storage",
         "threading",
         "appBridge",
@@ -2366,6 +2527,9 @@
           "items": {
             "$ref": "#/$defs/coreBinaryLayoutId"
           }
+        },
+        "binaryLayouts": {
+          "$ref": "#/$defs/binaryLayoutCatalog"
         },
         "storage": {
           "$ref": "#/$defs/solverStorageCapability"
@@ -2394,6 +2558,79 @@
         },
         "abiInfo": {
           "$ref": "#/$defs/solverAbiInfo"
+        }
+      }
+    },
+    "binaryLayoutCatalog": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "byteOrder", "layouts"],
+      "properties": {
+        "schema": {
+          "const": "solver-binary-layout-catalog.v1"
+        },
+        "byteOrder": {
+          "const": "little-endian"
+        },
+        "layouts": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/binaryLayoutDescriptor"
+          }
+        }
+      }
+    },
+    "binaryLayoutDescriptor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "layout",
+        "role",
+        "numericType",
+        "rowSizeBytes",
+        "fixedRowSize",
+        "denseBufferSafe",
+        "authoritativeStorageSafe",
+        "streamable"
+      ],
+      "properties": {
+        "layout": {
+          "$ref": "#/$defs/coreBinaryLayoutId"
+        },
+        "role": {
+          "type": "string",
+          "enum": [
+            "motion-frame",
+            "path-history",
+            "path-history-index",
+            "assembly-graph",
+            "assembly-graph-index",
+            "root-ledger",
+            "delayed-hit",
+            "phase-diagnostic",
+            "spacetime-index",
+            "emission-shell"
+          ]
+        },
+        "numericType": {
+          "$ref": "#/$defs/numericTypeId"
+        },
+        "rowSizeBytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "fixedRowSize": {
+          "type": "boolean"
+        },
+        "denseBufferSafe": {
+          "type": "boolean"
+        },
+        "authoritativeStorageSafe": {
+          "type": "boolean"
+        },
+        "streamable": {
+          "type": "boolean"
         }
       }
     },
@@ -2485,6 +2722,8 @@
         "denseDataTransport",
         "workerModel",
         "storageFallbacks",
+        "precisionRouting",
+        "statusTaxonomy",
         "streamQueries",
         "workPackets"
       ],
@@ -2519,11 +2758,198 @@
         "storageFallbacks": {
           "$ref": "#/$defs/bridgeStorageFallbackCapability"
         },
+        "precisionRouting": {
+          "$ref": "#/$defs/precisionRoutingCapability"
+        },
+        "statusTaxonomy": {
+          "$ref": "#/$defs/statusTaxonomyCapability"
+        },
         "streamQueries": {
           "$ref": "#/$defs/streamQueryCapability"
         },
         "workPackets": {
           "$ref": "#/$defs/workPacketCapability"
+        }
+      }
+    },
+    "statusTaxonomyCapability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "severities", "codes"],
+      "properties": {
+        "schema": {
+          "const": "solver-status-taxonomy.v1"
+        },
+        "severities": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["ok", "info", "warning", "halt", "error"]
+          }
+        },
+        "codes": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/statusTaxonomyCode"
+          }
+        }
+      }
+    },
+    "statusTaxonomyCode": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "code",
+        "category",
+        "defaultSeverity",
+        "recoverableByDefault",
+        "stageHints",
+        "description"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "code": {
+          "type": "string",
+          "enum": [
+            "ok",
+            "cancelled",
+            "baseline_within_tolerance",
+            "baseline_refined_result",
+            "baseline_model_boundary_difference",
+            "baseline_investigation_required_mismatch",
+            "precision_escalated",
+            "precision_failed",
+            "simulation_envelope_exceeded",
+            "insufficient_history_depth",
+            "insufficient_scale_resolution",
+            "time_resolution_insufficient",
+            "root_not_bracketed",
+            "root_unresolved",
+            "small_jacobian",
+            "transversality_floor_failed",
+            "ledger_rerun_required",
+            "stream_memory_pressure",
+            "stream_write_failed",
+            "stream_read_failed",
+            "unsupported_browser_storage",
+            "unsupported_wasm_threads",
+            "validation_replay_mismatch",
+            "app_contract_error",
+            "internal_solver_error"
+          ]
+        },
+        "category": {
+          "type": "string",
+          "enum": [
+            "success",
+            "control",
+            "baseline-comparison",
+            "precision",
+            "admission",
+            "history",
+            "root-solving",
+            "stream-storage",
+            "runtime-support",
+            "validation",
+            "app-contract",
+            "internal"
+          ]
+        },
+        "defaultSeverity": {
+          "type": "string",
+          "enum": ["ok", "info", "warning", "halt", "error"]
+        },
+        "recoverableByDefault": {
+          "type": "boolean"
+        },
+        "stageHints": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "precisionRoutingCapability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "routes"],
+      "properties": {
+        "schema": {
+          "const": "solver-precision-routing-capabilities.v1"
+        },
+        "routes": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/precisionRouteCapability"
+          }
+        }
+      }
+    },
+    "precisionRouteCapability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "routeFamily",
+        "runConfigKeys",
+        "precisionEngine",
+        "precisionSummary",
+        "fullPrecisionPathSelector",
+        "normalizedCoordinatesSupported",
+        "selectedNumericTypes"
+      ],
+      "properties": {
+        "routeFamily": {
+          "type": "string",
+          "enum": ["linear-root", "circular-source"]
+        },
+        "runConfigKeys": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "enum": [
+              "rootRequest",
+              "normalizedRootRequest",
+              "circularSourceRootRequest",
+              "normalizedCircularSourceRootRequest"
+            ]
+          }
+        },
+        "precisionEngine": {
+          "type": "string",
+          "enum": ["native-precision-path", "analytic-circular-source-f64"]
+        },
+        "precisionSummary": {
+          "type": "string",
+          "enum": [
+            "native-precision-solve-summary-f64",
+            "analytic-circular-source-run-summary-f64"
+          ]
+        },
+        "fullPrecisionPathSelector": {
+          "type": "boolean"
+        },
+        "normalizedCoordinatesSupported": {
+          "type": "boolean"
+        },
+        "selectedNumericTypes": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/numericTypeId"
+          }
         }
       }
     },
@@ -2610,7 +3036,14 @@
     "streamQueryCapability": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["schema", "helpers", "pathHistoryLayouts", "indexedFilters", "broadPhaseQueries"],
+      "required": [
+        "schema",
+        "helpers",
+        "pathHistoryLayouts",
+        "indexedFilters",
+        "rangeMetadata",
+        "broadPhaseQueries"
+      ],
       "properties": {
         "schema": {
           "const": "solver-stream-query-capabilities.v1"
@@ -2643,6 +3076,13 @@
           "items": {
             "type": "string",
             "enum": ["pathKeys", "chunkIndices", "timeRange", "frameRange", "byteRange"]
+          }
+        },
+        "rangeMetadata": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["timeRange", "frameRange", "byteRange", "bounds"]
           }
         },
         "broadPhaseQueries": {
@@ -2683,6 +3123,8 @@
               "solveCausalRootsF64",
               "solveCausalRootsPrecisionF64",
               "solveCausalRootsNormalizedF64",
+              "solveCircularSourceRootsHitsLedgerF64",
+              "solveCircularSourceRootsHitsLedgerNormalizedF64",
               "solveRootsAndHitsPrecisionF64",
               "solveRootsAndHitsF64",
               "refineEmissionShellCandidateRootsF64"
@@ -2821,7 +3263,13 @@
         "precisionSolveSummaryF64Bytes",
         "motionIntegrationRequestF64Bytes",
         "circularPathSegmentF64Bytes",
-        "circularSourceRootRequestF64Bytes"
+        "circularSourceRootRequestF64Bytes",
+        "modelContractBytes",
+        "simulationEnvelopeF64Bytes",
+        "capabilityEnvelopeF64Bytes",
+        "admissionStressSummaryF64Bytes",
+        "statusRowBytes",
+        "admissionReportF64Bytes"
       ],
       "properties": {
         "abiMajor": { "type": "integer", "minimum": 0 },
@@ -2864,7 +3312,13 @@
         "precisionSolveSummaryF64Bytes": { "type": "integer", "minimum": 1 },
         "motionIntegrationRequestF64Bytes": { "type": "integer", "minimum": 1 },
         "circularPathSegmentF64Bytes": { "type": "integer", "minimum": 1 },
-        "circularSourceRootRequestF64Bytes": { "type": "integer", "minimum": 1 }
+        "circularSourceRootRequestF64Bytes": { "type": "integer", "minimum": 1 },
+        "modelContractBytes": { "type": "integer", "minimum": 1 },
+        "simulationEnvelopeF64Bytes": { "type": "integer", "minimum": 1 },
+        "capabilityEnvelopeF64Bytes": { "type": "integer", "minimum": 1 },
+        "admissionStressSummaryF64Bytes": { "type": "integer", "minimum": 1 },
+        "statusRowBytes": { "type": "integer", "minimum": 1 },
+        "admissionReportF64Bytes": { "type": "integer", "minimum": 1 }
       }
     },
     "threadingPolicy": {
@@ -2904,6 +3358,34 @@
         },
         "deterministicRequired": {
           "type": "boolean"
+        },
+        "observations": {
+          "$ref": "#/$defs/threadingWorkloadObservations"
+        }
+      }
+    },
+    "threadingWorkloadObservations": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "chunkDurationsMs": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "singleThreadElapsedMs": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "activeElapsedMs": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "contentionWaitMs": {
+          "type": "number",
+          "minimum": 0
         }
       }
     },
@@ -2936,6 +3418,14 @@
         "browserWorkerAvailable",
         "wasmThreadsAvailable",
         "nativeThreadsAvailable",
+        "plannedChunkCount",
+        "plannedChunkItemCount",
+        "tailChunkItemCount",
+        "queueDepth",
+        "determinismStatus",
+        "contention",
+        "chunkTimings",
+        "stageSpeedup",
         "speedupBaselineWorkerCount",
         "statuses",
         "status"
@@ -2988,6 +3478,35 @@
           "type": ["string", "null"],
           "enum": ["wasm_threads_unavailable", null]
         },
+        "plannedChunkCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "plannedChunkItemCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "tailChunkItemCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "queueDepth": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "determinismStatus": {
+          "type": "string",
+          "enum": ["deterministic", "relaxed", "required-but-not-requested"]
+        },
+        "contention": {
+          "$ref": "#/$defs/threadingContentionDiagnostics"
+        },
+        "chunkTimings": {
+          "$ref": "#/$defs/threadingChunkTimingSummary"
+        },
+        "stageSpeedup": {
+          "$ref": "#/$defs/threadingStageSpeedupSummary"
+        },
         "speedupBaselineWorkerCount": {
           "type": "integer",
           "minimum": 1
@@ -3000,6 +3519,91 @@
         },
         "status": {
           "$ref": "#/$defs/statusRecord"
+        }
+      }
+    },
+    "threadingContentionDiagnostics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source", "risk", "queueDepth", "oversubscribedWorkerCount", "observedWaitMs"],
+      "properties": {
+        "source": {
+          "type": "string",
+          "enum": ["policy-estimate", "caller-observed"]
+        },
+        "risk": {
+          "type": "string",
+          "enum": ["none", "low", "medium", "high"]
+        },
+        "queueDepth": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "oversubscribedWorkerCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "observedWaitMs": {
+          "type": ["number", "null"],
+          "minimum": 0
+        }
+      }
+    },
+    "threadingChunkTimingSummary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source", "observedChunkCount", "minMs", "maxMs", "meanMs", "totalMs"],
+      "properties": {
+        "source": {
+          "type": "string",
+          "enum": ["not-measured", "caller-observed"]
+        },
+        "observedChunkCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "minMs": {
+          "type": ["number", "null"],
+          "minimum": 0
+        },
+        "maxMs": {
+          "type": ["number", "null"],
+          "minimum": 0
+        },
+        "meanMs": {
+          "type": ["number", "null"],
+          "minimum": 0
+        },
+        "totalMs": {
+          "type": ["number", "null"],
+          "minimum": 0
+        }
+      }
+    },
+    "threadingStageSpeedupSummary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source", "baselineWorkerCount", "comparedWorkerCount", "speedupRatio", "parallelEfficiency"],
+      "properties": {
+        "source": {
+          "type": "string",
+          "enum": ["not-measured", "caller-observed"]
+        },
+        "baselineWorkerCount": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "comparedWorkerCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "speedupRatio": {
+          "type": ["number", "null"],
+          "minimum": 0
+        },
+        "parallelEfficiency": {
+          "type": ["number", "null"],
+          "minimum": 0
         }
       }
     },
@@ -3076,6 +3680,9 @@
         },
         {
           "required": ["circularSourceRootRequest"]
+        },
+        {
+          "required": ["normalizedCircularSourceRootRequest"]
         }
       ],
       "properties": {
@@ -3090,6 +3697,9 @@
         },
         "circularSourceRootRequest": {
           "$ref": "#/$defs/circularSourceCausalRootsF64Request"
+        },
+        "normalizedCircularSourceRootRequest": {
+          "$ref": "#/$defs/circularSourceRootsHitsLedgerNormalizedF64Request"
         }
       }
     },
@@ -3147,6 +3757,12 @@
         },
         {
           "required": ["normalizedRootRequest"]
+        },
+        {
+          "required": ["circularSourceRootRequest"]
+        },
+        {
+          "required": ["normalizedCircularSourceRootRequest"]
         }
       ],
       "properties": {
@@ -3158,6 +3774,12 @@
         },
         "normalizedRootRequest": {
           "$ref": "#/$defs/causalRootsNormalizedF64Request"
+        },
+        "circularSourceRootRequest": {
+          "$ref": "#/$defs/circularSourceCausalRootsF64Request"
+        },
+        "normalizedCircularSourceRootRequest": {
+          "$ref": "#/$defs/circularSourceRootsHitsLedgerNormalizedF64Request"
         }
       }
     },
@@ -3418,8 +4040,14 @@
         "envelope": {
           "$ref": "#/$defs/solverSimulationEnvelope"
         },
+        "capability": {
+          "$ref": "#/$defs/capabilityEnvelope"
+        },
         "errorBudget": {
           "$ref": "#/$defs/solverErrorBudget"
+        },
+        "threadingPolicy": {
+          "$ref": "#/$defs/threadingPolicy"
         },
         "config": {
           "$ref": "#/$defs/solverRunConfig"
@@ -3516,7 +4144,10 @@
         "roots": {
           "type": "array",
           "items": {
-            "$ref": "#/$defs/causalRootF64"
+            "oneOf": [
+              { "$ref": "#/$defs/causalRootF64" },
+              { "$ref": "#/$defs/normalizedCausalRootF64" }
+            ]
           }
         },
         "hits": {
@@ -3529,6 +4160,24 @@
           "type": "array",
           "items": {
             "$ref": "#/$defs/rootLedgerDetailF64"
+          }
+        },
+        "coordinateFrame": {
+          "const": "origin-normalized"
+        },
+        "coordinateOrigin": {
+          "$ref": "#/$defs/vector3F64"
+        },
+        "localRequest": {
+          "oneOf": [
+            { "$ref": "#/$defs/causalRootsF64Request" },
+            { "$ref": "#/$defs/circularSourceCausalRootsF64Request" }
+          ]
+        },
+        "absoluteRoots": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/absoluteDisplayCausalRootF64"
           }
         },
         "phaseRows": {
@@ -4232,6 +4881,58 @@
         },
         "receiverClock": {
           "$ref": "#/$defs/phaseClockF64"
+        },
+        "metadata": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/phaseAtHitMetadataF64"
+          }
+        }
+      }
+    },
+    "phaseAtHitMetadataF64": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "rootKind": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4294967295
+        },
+        "sourceLayerCode": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4294967295
+        },
+        "receiverLayerCode": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4294967295
+        },
+        "sourceRoleCode": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4294967295
+        },
+        "receiverRoleCode": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4294967295
+        },
+        "sourceChargeSign": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 1
+        },
+        "receiverChargeSign": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 1
+        },
+        "stateFlags": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4294967295
         }
       }
     },
@@ -4646,6 +5347,140 @@
         },
         "absolutePointAuthority": {
           "const": "display-only"
+        }
+      }
+    },
+    "circularSourceRootsHitsLedgerNormalizedF64Response": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "coordinateFrame",
+        "coordinateOrigin",
+        "localRequest",
+        "roots",
+        "hits",
+        "rootLedgerDetails",
+        "buffers",
+        "streams",
+        "statuses",
+        "status"
+      ],
+      "properties": {
+        "schema": {
+          "const": "solver-circular-source-roots-hits-ledger-normalized-f64.v1"
+        },
+        "coordinateFrame": {
+          "const": "origin-normalized"
+        },
+        "coordinateOrigin": {
+          "$ref": "#/$defs/vector3F64"
+        },
+        "localRequest": {
+          "$ref": "#/$defs/circularSourceCausalRootsF64Request"
+        },
+        "roots": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/normalizedCausalRootF64"
+          }
+        },
+        "hits": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/delayedHitF64"
+          }
+        },
+        "rootLedgerDetails": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/rootLedgerDetailF64"
+          }
+        },
+        "absoluteRoots": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/absoluteDisplayCausalRootF64"
+          }
+        },
+        "buffers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/bufferDescriptor"
+          }
+        },
+        "streams": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/streamDescriptor"
+          }
+        },
+        "statuses": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/statusRecord"
+          }
+        },
+        "status": {
+          "$ref": "#/$defs/statusRecord"
+        }
+      }
+    },
+    "circularSourceRootsHitsLedgerF64Response": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "roots",
+        "hits",
+        "rootLedgerDetails",
+        "buffers",
+        "streams",
+        "statuses",
+        "status"
+      ],
+      "properties": {
+        "schema": {
+          "const": "solver-circular-source-roots-hits-ledger-f64.v1"
+        },
+        "roots": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/causalRootF64"
+          }
+        },
+        "hits": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/delayedHitF64"
+          }
+        },
+        "rootLedgerDetails": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/rootLedgerDetailF64"
+          }
+        },
+        "buffers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/bufferDescriptor"
+          }
+        },
+        "streams": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/streamDescriptor"
+          }
+        },
+        "statuses": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/statusRecord"
+          }
+        },
+        "status": {
+          "$ref": "#/$defs/statusRecord"
         }
       }
     },
@@ -6504,6 +7339,9 @@
         "frameRange": {
           "$ref": "#/$defs/range"
         },
+        "bounds": {
+          "$ref": "#/$defs/spaceTimeBoundsF64"
+        },
         "byteRange": {
           "$ref": "#/$defs/range"
         }
@@ -6608,6 +7446,9 @@
         },
         "frameRange": {
           "$ref": "#/$defs/range"
+        },
+        "bounds": {
+          "$ref": "#/$defs/spaceTimeBoundsF64"
         },
         "byteRange": {
           "$ref": "#/$defs/range"
@@ -8388,7 +9229,15 @@
         "sourcePhase",
         "receiverPhase",
         "phaseDelta",
-        "phaseSpread"
+        "phaseSpread",
+        "rootKind",
+        "sourceLayerCode",
+        "receiverLayerCode",
+        "sourceRoleCode",
+        "receiverRoleCode",
+        "sourceChargeSign",
+        "receiverChargeSign",
+        "stateFlags"
       ],
       "properties": {
         "rootId": {
@@ -8421,6 +9270,46 @@
         "phaseSpread": {
           "type": "number",
           "minimum": 0
+        },
+        "rootKind": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4294967295
+        },
+        "sourceLayerCode": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4294967295
+        },
+        "receiverLayerCode": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4294967295
+        },
+        "sourceRoleCode": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4294967295
+        },
+        "receiverRoleCode": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4294967295
+        },
+        "sourceChargeSign": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 1
+        },
+        "receiverChargeSign": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 1
+        },
+        "stateFlags": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4294967295
         }
       }
     },
@@ -9429,6 +10318,7 @@
         "expectedBranchComplexity",
         "outputDetail",
         "memoryBudgetBytes",
+        "storageBudgetBytes",
         "latencyTarget",
         "simplificationPolicy"
       ],
@@ -9466,7 +10356,7 @@
         },
         "storageBudgetBytes": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 1
         },
         "latencyTarget": {
           "type": "string",
@@ -9701,6 +10591,7 @@
         "entityPressure",
         "interactionPressure",
         "memoryPressure",
+        "storagePressure",
         "timeStepCountEstimate",
         "timeStepPressure",
         "outputPressure",
@@ -9732,6 +10623,10 @@
           "type": "number",
           "minimum": 0
         },
+        "storagePressure": {
+          "type": "number",
+          "minimum": 0
+        },
         "timeStepCountEstimate": {
           "type": ["number", "null"],
           "minimum": 0
@@ -9750,7 +10645,7 @@
         },
         "dominantStress": {
           "type": "string",
-          "enum": ["entity_count", "interaction_graph", "memory", "time_steps", "output_detail", "precision"]
+          "enum": ["entity_count", "interaction_graph", "memory", "storage", "time_steps", "output_detail", "precision"]
         },
         "pressureScore": {
           "type": "number",
@@ -9813,6 +10708,17 @@
       "additionalProperties": false,
       "required": [
         "configHash",
+        "schemaVersionHash",
+        "statusTaxonomyHash",
+        "binaryLayoutHash",
+        "modelContractHash",
+        "simulationEnvelopeHash",
+        "capabilityEnvelopeHash",
+        "errorBudgetHash",
+        "outputContractHash",
+        "threadingHash",
+        "admissionHash",
+        "provenanceHash",
         "bufferHashes",
         "streamHashes",
         "diagnosticHash",
@@ -9823,6 +10729,50 @@
         "configHash": {
           "type": "string",
           "minLength": 1
+        },
+        "schemaVersionHash": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{16}$"
+        },
+        "statusTaxonomyHash": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{16}$"
+        },
+        "binaryLayoutHash": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{16}$"
+        },
+        "modelContractHash": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{16}$"
+        },
+        "simulationEnvelopeHash": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{16}$"
+        },
+        "capabilityEnvelopeHash": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{16}$"
+        },
+        "errorBudgetHash": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{16}$"
+        },
+        "outputContractHash": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{16}$"
+        },
+        "threadingHash": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{16}$"
+        },
+        "admissionHash": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{16}$"
+        },
+        "provenanceHash": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{16}$"
         },
         "bufferHashes": {
           "type": "array",
@@ -9913,9 +10863,11 @@
         "model",
         "envelope",
         "errorBudget",
+        "capability",
         "requestedPrecisionPath",
         "selectedPrecisionPath",
         "output",
+        "threading",
         "admission",
         "provenance",
         "deterministic",
@@ -9971,6 +10923,9 @@
         "errorBudget": {
           "$ref": "#/$defs/solverErrorBudget"
         },
+        "capability": {
+          "$ref": "#/$defs/capabilityEnvelope"
+        },
         "requestedPrecisionPath": {
           "$ref": "#/$defs/precisionPathId"
         },
@@ -9979,6 +10934,9 @@
         },
         "output": {
           "$ref": "#/$defs/solverOutputRequest"
+        },
+        "threading": {
+          "$ref": "#/$defs/threadingPlanResponse"
         },
         "admission": {
           "$ref": "#/$defs/runManifestAdmission"

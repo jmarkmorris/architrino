@@ -33,6 +33,7 @@ Decision 1 (locked): `Xcode` scaffold for v1 lives at `apps/ios/ArchitrinoReader
 12. TOC entries that point to web-app scene nodes (for example `diagram`, `markdown-tree`, `markdown-split`) do not open chapter content in-app. They display a local banner notice and require an explicit Safari handoff action.
 13. Glossary access is provided through an explicit reader action and opens through browser handoff using the existing comparative glossary destination.
 14. Reader-facing UI text and notices avoid equation-style symbols; keep labels and helper copy as plain words.
+15. The first public release target is Unlisted App Store distribution. The app still ships through App Store Connect and ordinary App Review, but the post-approval install path is a direct App Store link rather than App Store search, categories, recommendations, charts, or other listings.
 
 ## Design Thesis
 
@@ -58,6 +59,31 @@ The app should consume generated artifacts rather than infer reading order from 
 | [foundations.md](../../../content/generated/markdown/textbook/reading-copies/foundations.md) and sibling chapter reading copies | Chapter-level reading-copy markdown bundles used by the app runtime, referenced from TOC. |
 
 The app package should be generated after the existing scene graph and textbook reading-copy checks pass, then copied into the app bundle for the first prototype. The iOS app should not become a new canonical source for textbook prose.
+
+## Distribution Requirements
+
+The v1 distribution plan is Unlisted App Store distribution through Apple's standard App Store pipeline. Per Apple's current [Unlisted App Distribution](https://developer.apple.com/support/unlisted-app-distribution/) guidance, the app must be on the App Store or ready for final distribution and submitted to App Review before requesting the unlisted direct link. Beta and prerelease builds remain TestFlight-only.
+
+Release requirements:
+
+- Maintain the app record under bundle identifier `com.architrino.reader`.
+- Use TestFlight for private pre-release testing and Unlisted App Store distribution for the first public install path.
+- Add an App Review note stating that Architrino Reader is intended for unlisted distribution.
+- After approval, publish the generated direct App Store link from `architrino.com` and the GitHub repository documentation.
+- Treat GitHub as the source-code, release-note, and support-documentation home, not as the iPhone install channel.
+- Keep user data local-only for v1: theme, font size, bookmarks, and reading position persist on device, with no account system or cloud sync.
+- State App Store privacy metadata as no data collection unless future features add analytics, accounts, cloud sync, crash reporting, or network services that change that claim.
+- Do not add account gates or link-based authorization in v1; the bundled textbook app is public to anyone who has the unlisted link.
+- Defer EU alternative marketplace distribution, direct web distribution, custom app distribution, and Apple Business Manager private distribution unless a separate release need appears.
+
+Release-prep checklist:
+
+- Finalize the app icon and screenshots before the first App Store Connect submission.
+- Refresh the bundled textbook package from canonical repo artifacts before each archive.
+- Verify package version and package date in the app About screen before upload.
+- Run strict package validation before archive: `node scripts/export-ios-textbook-package.mjs --check --strict`.
+- Archive from Xcode with a signed Release build and upload through App Store Connect.
+- Smoke-test the TestFlight build on a physical iPhone before App Review submission.
 
 ## First Prototype Target
 

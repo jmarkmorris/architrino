@@ -38,7 +38,8 @@ int main() {
       architrino::solver::compute_phase_at_hits(
           {root},
           architrino::solver::PhaseClock{2.0, 0.0, 0.0},
-          architrino::solver::PhaseClock{5.0, 0.0, 0.0});
+          architrino::solver::PhaseClock{5.0, 0.0, 0.0},
+          {architrino::solver::PhaseAtHitMetadata{1, 3, 4, 5, 6, 1, -1, 17}});
   const architrino::solver::BinaryLayoutDescriptor layout =
       architrino::solver::binary_layout_descriptor(architrino::solver::BinaryLayoutId::PhaseAtHitV1);
   ArchitrinoSolverCausalRootRowF64 abiRoot{
@@ -60,6 +61,7 @@ int main() {
   };
   const ArchitrinoSolverPhaseClockF64 sourceClock{2.0, 0.0, 0.0};
   const ArchitrinoSolverPhaseClockF64 receiverClock{5.0, 0.0, 0.0};
+  const ArchitrinoSolverPhaseAtHitMetadataF64 metadata{1, 3, 4, 5, 6, 1, -1, 17};
   ArchitrinoSolverPhaseAtHitRowF64 abiRows[1]{};
   int abiRowCount = 0;
   const int abiStatus =
@@ -68,6 +70,7 @@ int main() {
           1,
           &sourceClock,
           &receiverClock,
+          &metadata,
           abiRows,
           1,
           &abiRowCount);
@@ -82,7 +85,11 @@ int main() {
       nearly_equal(phases.rows[0].receiverPhase, 0.4) &&
       nearly_equal(phases.rows[0].phaseDelta, -0.1) &&
       nearly_equal(phases.rows[0].phaseSpread, 0.1) &&
-      layout.rowSizeBytes == 72 &&
+      phases.rows[0].metadata.rootKind == 1 &&
+      phases.rows[0].metadata.sourceLayerCode == 3 &&
+      phases.rows[0].metadata.receiverChargeSign == -1 &&
+      phases.rows[0].metadata.stateFlags == 17 &&
+      layout.rowSizeBytes == 104 &&
       layout.name == "phase_at_hit.v1" &&
       abiStatus == 0 &&
       abiRowCount == 1 &&
@@ -92,7 +99,11 @@ int main() {
       nearly_equal(abiRows[0].source_phase, 0.5) &&
       nearly_equal(abiRows[0].receiver_phase, 0.4) &&
       nearly_equal(abiRows[0].phase_delta, -0.1) &&
-      nearly_equal(abiRows[0].phase_spread, 0.1);
+      nearly_equal(abiRows[0].phase_spread, 0.1) &&
+      abiRows[0].root_kind == 1 &&
+      abiRows[0].source_layer_code == 3 &&
+      abiRows[0].receiver_charge_sign == -1 &&
+      abiRows[0].state_flags == 17;
 
   if (!ok) {
     std::cerr << "solver phase smoke failed\n";

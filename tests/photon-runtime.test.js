@@ -53,6 +53,7 @@ import {
   fitPhotonPolarizationFromSamples,
   getPhotonArchitrinoKinematics,
   solvePhotonCircularSourceCausalRootsWithSolverBridge,
+  solvePhotonCircularSourceRootsHitsLedgerWithSolverBridge,
   solvePhotonCausalRootsWithSolverBridge,
   solvePhotonCausalRoots,
 } from "../src/apps/photon/PhotonFormulaRuntime.js";
@@ -419,22 +420,23 @@ test("Photon circular-source solver request preserves source orbit geometry", ()
   assertNear(request.source.angularVelocity, kinematics.angularVelocity);
 });
 
-test("Photon circular-source causal roots can be routed through the solver app bridge", async () => {
+test("Photon circular-source roots, hits, and ledger rows can be routed through the solver app bridge", async () => {
   const state = createDefaultPhotonState();
   const sourceRef = { swarmId: "left", layerId: "O", chargeType: "positrino" };
   const observationTime = 0.75;
-  const roots = await solvePhotonCircularSourceCausalRootsWithSolverBridge(
+  const response = await solvePhotonCircularSourceRootsHitsLedgerWithSolverBridge(
     state,
     sourceRef,
     observationTime,
     {
       solverClient: {
-        async solveCircularSourceCausalRootsF64(request) {
+        async solveCircularSourceRootsHitsLedgerF64(request) {
           assert.equal(request.hitTime, observationTime);
           assert.equal(request.receiver.positionAtStart.x, state.measurement.virtualObserver.x);
           assert.equal(request.source.center.x < 0, true);
           assert.ok(request.scanSubdivisions >= 48);
           return {
+            schema: "solver-circular-source-roots-hits-ledger-f64.v1",
             roots: [
               {
                 rootId: 0,
@@ -450,6 +452,39 @@ test("Photon circular-source causal roots can be routed through the solver app b
                 receiverPoint: state.measurement.virtualObserver,
               },
             ],
+            hits: [
+              {
+                hitId: 0,
+                rootId: 0,
+                sourcePathKey: 0,
+                receiverPathKey: 0,
+                emissionTime: 0.5,
+                hitTime: observationTime,
+                delay: 0.25,
+                distance: 0.25,
+                sourcePoint: { x: -1, y: 0, z: 0 },
+                receiverPoint: state.measurement.virtualObserver,
+                signalSpeed: 1,
+                branchWeight: 1,
+                jacobian: 1,
+              },
+            ],
+            rootLedgerDetails: [
+              {
+                rowId: 0,
+                rootId: 0,
+                entryKind: 1,
+                statusCode: 0,
+                iterationCount: 8,
+                bracketStart: 0.4,
+                bracketEnd: 0.6,
+                emissionTime: 0.5,
+                hitTime: observationTime,
+                residual: 0,
+                jacobian: 1,
+                branchWeight: 1,
+              },
+            ],
             status: { code: "ok", severity: "ok", message: "circular-source causal roots solved" },
           };
         },
@@ -457,6 +492,22 @@ test("Photon circular-source causal roots can be routed through the solver app b
     }
   );
 
+  assert.equal(response.solverEngineId, "architrino-solver-app-bridge");
+  assert.equal(response.schema, "solver-circular-source-roots-hits-ledger-f64.v1");
+  assert.equal(response.hits.length, 1);
+  assert.equal(response.rootLedgerDetails.length, 1);
+  assert.equal(response.rootLedgerDetails[0].entryKind, 1);
+  const roots = await solvePhotonCircularSourceCausalRootsWithSolverBridge(
+    state,
+    sourceRef,
+    observationTime,
+    {
+      async solveCircularSourceRootsHitsLedger(request) {
+        assert.equal(request.hitTime, observationTime);
+        return response;
+      },
+    }
+  );
   assert.equal(roots.length, 1);
   assert.equal(roots[0].hitTime, observationTime);
   assert.equal(roots[0].residual, 0);

@@ -12,6 +12,7 @@
 #include "architrino/solver/PrecisionDiagnostics.hpp"
 #include "architrino/solver/PrecisionPathSolver.hpp"
 #include "architrino/solver/RootLedger.hpp"
+#include "architrino/solver/SolverContract.hpp"
 #include "architrino/solver/SpaceTimeIndex.hpp"
 #include "architrino/solver/StorageLifecycle.hpp"
 
@@ -39,8 +40,15 @@ static_assert(sizeof(ArchitrinoSolverErrorBudgetF64) == 64);
 static_assert(sizeof(ArchitrinoSolverErrorBudgetStageInputF64) == 16);
 static_assert(sizeof(ArchitrinoSolverErrorBudgetStageRowF64) == 40);
 static_assert(sizeof(ArchitrinoSolverErrorBudgetSummaryF64) == 32);
+static_assert(sizeof(ArchitrinoSolverModelContract) == 32);
+static_assert(sizeof(ArchitrinoSolverSimulationEnvelopeF64) == 88);
+static_assert(sizeof(ArchitrinoSolverCapabilityEnvelopeF64) == 48);
+static_assert(sizeof(ArchitrinoSolverAdmissionStressSummaryF64) == 96);
+static_assert(sizeof(ArchitrinoSolverStatusRow) == 24);
+static_assert(sizeof(ArchitrinoSolverAdmissionReportF64) == 112);
 static_assert(sizeof(ArchitrinoSolverPhaseClockF64) == 24);
-static_assert(sizeof(ArchitrinoSolverPhaseAtHitRowF64) == 72);
+static_assert(sizeof(ArchitrinoSolverPhaseAtHitMetadataF64) == 32);
+static_assert(sizeof(ArchitrinoSolverPhaseAtHitRowF64) == 104);
 static_assert(sizeof(ArchitrinoSolverMotionSampleRequestF64) == 112);
 static_assert(sizeof(ArchitrinoSolverMotionIntegrationRequestF64) == 120);
 static_assert(sizeof(ArchitrinoSolverMotionFrameRowF64) == 88);
@@ -74,7 +82,7 @@ static_assert(sizeof(ArchitrinoSolverEmissionShellCandidateRowF64) == 112);
 static_assert(sizeof(ArchitrinoSolverEmissionShellBroadPhaseSummary) == 32);
 static_assert(sizeof(ArchitrinoSolverEmissionShellNarrowPhaseRequestF64) == 208);
 static_assert(sizeof(ArchitrinoSolverEmissionShellNarrowPhaseRowF64) == 40);
-static_assert(sizeof(ArchitrinoSolverAbiInfo) == 164);
+static_assert(sizeof(ArchitrinoSolverAbiInfo) == 188);
 static_assert(offsetof(ArchitrinoSolverCausalRootRequestF64, hit_time) == 144);
 static_assert(offsetof(ArchitrinoSolverCausalRootRequestF64, max_iterations) == 168);
 static_assert(offsetof(ArchitrinoSolverCircularPathSegmentF64, radius_v) == 64);
@@ -98,9 +106,20 @@ static_assert(offsetof(ArchitrinoSolverErrorBudgetStageInputF64, estimated_absol
 static_assert(offsetof(ArchitrinoSolverErrorBudgetStageRowF64, estimated_absolute_error) == 16);
 static_assert(offsetof(ArchitrinoSolverErrorBudgetStageRowF64, tolerance_ratio) == 32);
 static_assert(offsetof(ArchitrinoSolverErrorBudgetSummaryF64, cumulative_error) == 16);
+static_assert(offsetof(ArchitrinoSolverSimulationEnvelopeF64, time_start) == 32);
+static_assert(offsetof(ArchitrinoSolverSimulationEnvelopeF64, time_units) == 84);
+static_assert(offsetof(ArchitrinoSolverCapabilityEnvelopeF64, minimum_positive_tolerance) == 32);
+static_assert(offsetof(ArchitrinoSolverAdmissionStressSummaryF64, entity_pressure) == 16);
+static_assert(offsetof(ArchitrinoSolverAdmissionStressSummaryF64, dominant_stress) == 92);
+static_assert(offsetof(ArchitrinoSolverStatusRow, message_id) == 16);
+static_assert(offsetof(ArchitrinoSolverAdmissionReportF64, stress_summary) == 16);
+static_assert(offsetof(ArchitrinoSolverPhaseAtHitMetadataF64, source_layer_code) == 4);
+static_assert(offsetof(ArchitrinoSolverPhaseAtHitMetadataF64, state_flags) == 28);
 static_assert(offsetof(ArchitrinoSolverPhaseAtHitRowF64, source_cycle_index) == 8);
 static_assert(offsetof(ArchitrinoSolverPhaseAtHitRowF64, emission_time) == 24);
 static_assert(offsetof(ArchitrinoSolverPhaseAtHitRowF64, phase_spread) == 64);
+static_assert(offsetof(ArchitrinoSolverPhaseAtHitRowF64, root_kind) == 72);
+static_assert(offsetof(ArchitrinoSolverPhaseAtHitRowF64, state_flags) == 100);
 static_assert(offsetof(ArchitrinoSolverMotionSampleRequestF64, path_key) == 72);
 static_assert(offsetof(ArchitrinoSolverMotionSampleRequestF64, state_flags) == 104);
 static_assert(offsetof(ArchitrinoSolverMotionIntegrationRequestF64, initial_position) == 32);
@@ -222,6 +241,33 @@ architrino::solver::CircularSourceCausalRootRequest to_request(
       request->root_tolerance,
       request->max_iterations,
       request->scan_subdivisions,
+  };
+}
+
+architrino::solver::CausalRootRequest to_ledger_request(
+    const architrino::solver::CircularSourceCausalRootRequest& request) {
+  const architrino::solver::Vector3 sourceStart =
+      architrino::solver::position_at(request.source, request.source.startTime);
+  const architrino::solver::Vector3 sourceVelocity =
+      architrino::solver::velocity_at(request.source, request.source.startTime);
+  return architrino::solver::CausalRootRequest{
+      request.receiverId,
+      request.sourceId,
+      architrino::solver::LinearPathSegment{
+          request.source.pathId,
+          request.source.startTime,
+          request.source.endTime,
+          sourceStart,
+          sourceVelocity,
+          request.source.numericType,
+          request.source.errorBound,
+      },
+      request.receiver,
+      request.hitTime,
+      request.signalSpeed,
+      request.rootTolerance,
+      request.maxIterations,
+      request.scanSubdivisions,
   };
 }
 
@@ -409,6 +455,20 @@ architrino::solver::PhaseClock to_phase_clock(const ArchitrinoSolverPhaseClockF6
   };
 }
 
+architrino::solver::PhaseAtHitMetadata to_phase_metadata(
+    const ArchitrinoSolverPhaseAtHitMetadataF64& metadata) {
+  return architrino::solver::PhaseAtHitMetadata{
+      metadata.root_kind,
+      metadata.source_layer_code,
+      metadata.receiver_layer_code,
+      metadata.source_role_code,
+      metadata.receiver_role_code,
+      metadata.source_charge_sign,
+      metadata.receiver_charge_sign,
+      metadata.state_flags,
+  };
+}
+
 ArchitrinoSolverPhaseAtHitRowF64 to_phase_row(const architrino::solver::PhaseAtHit& row) {
   return ArchitrinoSolverPhaseAtHitRowF64{
       row.rootId,
@@ -421,6 +481,14 @@ ArchitrinoSolverPhaseAtHitRowF64 to_phase_row(const architrino::solver::PhaseAtH
       row.receiverPhase,
       row.phaseDelta,
       row.phaseSpread,
+      row.metadata.rootKind,
+      row.metadata.sourceLayerCode,
+      row.metadata.receiverLayerCode,
+      row.metadata.sourceRoleCode,
+      row.metadata.receiverRoleCode,
+      row.metadata.sourceChargeSign,
+      row.metadata.receiverChargeSign,
+      row.metadata.stateFlags,
   };
 }
 
@@ -1256,6 +1324,273 @@ architrino::solver::ErrorBudget to_error_budget(const ArchitrinoSolverErrorBudge
   };
 }
 
+architrino::solver::PrecisionPath to_precision_path_id(int value) {
+  if (value < static_cast<int>(architrino::solver::PrecisionPath::Auto) ||
+      value > static_cast<int>(architrino::solver::PrecisionPath::ValidationReplay)) {
+    return architrino::solver::PrecisionPath::Auto;
+  }
+  return static_cast<architrino::solver::PrecisionPath>(value);
+}
+
+std::vector<architrino::solver::PrecisionPath> to_precision_paths(std::uint32_t mask) {
+  std::vector<architrino::solver::PrecisionPath> paths;
+  for (int id = static_cast<int>(architrino::solver::PrecisionPath::Auto);
+       id <= static_cast<int>(architrino::solver::PrecisionPath::ValidationReplay);
+       ++id) {
+    if ((mask & (1U << static_cast<std::uint32_t>(id))) != 0U) {
+      paths.push_back(to_precision_path_id(id));
+    }
+  }
+  return paths;
+}
+
+architrino::solver::ModelContract to_model_contract(const ArchitrinoSolverModelContract& model) {
+  return architrino::solver::ModelContract{
+      model.model_id_present != 0U ? "app-model" : "",
+      model.equation_version_present != 0U ? "app-equation" : "",
+      model.force_law_version_present != 0U ? "app-force-law" : "",
+      model.constants_hash_present != 0U ? "app-constants" : "",
+      model.causal_speed_policy_present != 0U ? "app-causal-speed" : "",
+      model.branch_policy_present != 0U ? "app-branch-policy" : "",
+      model.unit_convention_present != 0U ? "app-units" : "",
+      to_precision_paths(model.compatible_precision_path_mask),
+  };
+}
+
+architrino::solver::InteractionPolicy to_interaction_policy(int value) {
+  if (value < static_cast<int>(architrino::solver::InteractionPolicy::Sparse) ||
+      value > static_cast<int>(architrino::solver::InteractionPolicy::SameSourceEnabled)) {
+    return architrino::solver::InteractionPolicy::Sparse;
+  }
+  return static_cast<architrino::solver::InteractionPolicy>(value);
+}
+
+architrino::solver::BranchComplexity to_branch_complexity(int value) {
+  if (value < static_cast<int>(architrino::solver::BranchComplexity::Low) ||
+      value > static_cast<int>(architrino::solver::BranchComplexity::Unknown)) {
+    return architrino::solver::BranchComplexity::Unknown;
+  }
+  return static_cast<architrino::solver::BranchComplexity>(value);
+}
+
+architrino::solver::OutputDetail to_output_detail(int value) {
+  if (value < static_cast<int>(architrino::solver::OutputDetail::Preview) ||
+      value > static_cast<int>(architrino::solver::OutputDetail::Validation)) {
+    return architrino::solver::OutputDetail::Preview;
+  }
+  return static_cast<architrino::solver::OutputDetail>(value);
+}
+
+architrino::solver::LatencyTarget to_latency_target(int value) {
+  if (value < static_cast<int>(architrino::solver::LatencyTarget::Interactive) ||
+      value > static_cast<int>(architrino::solver::LatencyTarget::Validation)) {
+    return architrino::solver::LatencyTarget::Interactive;
+  }
+  return static_cast<architrino::solver::LatencyTarget>(value);
+}
+
+architrino::solver::SimplificationPolicy to_simplification_policy(int value) {
+  if (value < static_cast<int>(architrino::solver::SimplificationPolicy::None) ||
+      value > static_cast<int>(architrino::solver::SimplificationPolicy::ExplicitReducedModel)) {
+    return architrino::solver::SimplificationPolicy::None;
+  }
+  return static_cast<architrino::solver::SimplificationPolicy>(value);
+}
+
+std::string time_units_from_id(int value) {
+  switch (value) {
+    case 0:
+      return "solver-time";
+    case 1:
+      return "seconds";
+    case 2:
+      return "cycles";
+    case 3:
+      return "";
+    default:
+      return "invalid";
+  }
+}
+
+architrino::solver::SimulationEnvelope to_simulation_envelope(
+    const ArchitrinoSolverSimulationEnvelopeF64& envelope) {
+  return architrino::solver::SimulationEnvelope{
+      envelope.entity_count,
+      envelope.assembly_count,
+      architrino::solver::TimeWindow{
+          envelope.time_start,
+          envelope.time_end,
+          envelope.time_step_hint,
+          time_units_from_id(envelope.time_units),
+      },
+      envelope.time_resolution_hint,
+      to_interaction_policy(envelope.interaction_policy),
+      to_branch_complexity(envelope.expected_branch_complexity),
+      to_output_detail(envelope.output_detail),
+      envelope.memory_budget_bytes,
+      envelope.storage_budget_bytes,
+      to_latency_target(envelope.latency_target),
+      to_simplification_policy(envelope.simplification_policy),
+  };
+}
+
+architrino::solver::SolverCapabilityEnvelope to_capability_envelope(
+    const ArchitrinoSolverCapabilityEnvelopeF64& capability) {
+  return architrino::solver::SolverCapabilityEnvelope{
+      capability.max_interactive_entities,
+      capability.max_batch_entities,
+      capability.min_memory_budget_bytes,
+      capability.min_storage_budget_bytes_for_streaming,
+      capability.minimum_positive_tolerance,
+      capability.max_interactive_step_count,
+  };
+}
+
+ArchitrinoSolverAdmissionStressSummaryF64 to_admission_stress_summary(
+    const architrino::solver::AdmissionStressSummary& summary) {
+  return ArchitrinoSolverAdmissionStressSummaryF64{
+      summary.entityCount,
+      summary.estimatedPairCount,
+      summary.entityPressure,
+      summary.interactionPressure,
+      summary.memoryPressure,
+      summary.storagePressure,
+      summary.hasTimeStepCountEstimate ? summary.timeStepCountEstimate : 0.0,
+      summary.timeStepPressure,
+      summary.outputPressure,
+      summary.precisionPressure,
+      summary.pressureScore,
+      summary.hasTimeStepCountEstimate ? 1 : 0,
+      static_cast<int>(summary.dominantStress),
+  };
+}
+
+ArchitrinoSolverAdmissionReportF64 to_admission_report(
+    const architrino::solver::AdmissionReport& report) {
+  return ArchitrinoSolverAdmissionReportF64{
+      static_cast<int>(report.decision),
+      static_cast<int>(report.selectedPrecisionPath),
+      report.validation.ok && report.decision != architrino::solver::AdmissionDecision::Reject ? 1 : 0,
+      report.validation.ok ? 1 : 0,
+      to_admission_stress_summary(report.stressSummary),
+  };
+}
+
+int admission_stage_id(std::string_view stage) {
+  if (stage == "model") {
+    return 1;
+  }
+  if (stage == "error-budget") {
+    return 2;
+  }
+  if (stage == "simulation-envelope") {
+    return 3;
+  }
+  if (stage == "admission") {
+    return 4;
+  }
+  return 0;
+}
+
+int admission_message_id(std::string_view message) {
+  if (message == "model id is required") {
+    return 1;
+  }
+  if (message == "equation version is required") {
+    return 2;
+  }
+  if (message == "constants hash is required") {
+    return 3;
+  }
+  if (message == "causal speed policy is required") {
+    return 4;
+  }
+  if (message == "branch policy is required") {
+    return 5;
+  }
+  if (message == "unit convention is required") {
+    return 6;
+  }
+  if (message == "at least one compatible precision path is required") {
+    return 7;
+  }
+  if (message == "global tolerance must be positive and finite") {
+    return 8;
+  }
+  if (message == "root isolation tolerance must be positive and finite") {
+    return 9;
+  }
+  if (message == "delayed hit tolerance must be positive and finite") {
+    return 10;
+  }
+  if (message == "integration tolerance must be positive and finite") {
+    return 11;
+  }
+  if (message == "stream encoding tolerance must be positive and finite") {
+    return 12;
+  }
+  if (message == "readback tolerance must be positive and finite") {
+    return 13;
+  }
+  if (message == "projection tolerance must be nonnegative and finite") {
+    return 14;
+  }
+  if (message == "display tolerance must be nonnegative and finite") {
+    return 15;
+  }
+  if (message == "root isolation tolerance is looser than the global tolerance") {
+    return 16;
+  }
+  if (message == "entity count must be greater than zero") {
+    return 17;
+  }
+  if (message == "time window must have finite start and end with end greater than start") {
+    return 18;
+  }
+  if (message == "time window units must be solver-time, seconds, or cycles") {
+    return 19;
+  }
+  if (message == "time window step hint must be positive when specified") {
+    return 20;
+  }
+  if (message == "time resolution hint must be positive when specified") {
+    return 21;
+  }
+  if (message == "memory budget must be greater than zero") {
+    return 22;
+  }
+  if (message == "requested tolerance requires a stricter precision path") {
+    return 23;
+  }
+  if (message == "memory budget is below the minimum solver active-window budget") {
+    return 24;
+  }
+  if (message == "dense interaction graph exceeds the supported batch envelope") {
+    return 25;
+  }
+  if (message == "selected extended precision for strict global tolerance") {
+    return 26;
+  }
+  if (message == "storage budget must be greater than zero") {
+    return 27;
+  }
+  if (message == "storage budget is below the minimum solver streaming budget") {
+    return 28;
+  }
+  return 0;
+}
+
+ArchitrinoSolverStatusRow to_status_row(const architrino::solver::StatusRecord& status) {
+  return ArchitrinoSolverStatusRow{
+      static_cast<int>(status.code),
+      static_cast<int>(status.severity),
+      status.recoverable ? 1 : 0,
+      admission_stage_id(status.stage),
+      admission_message_id(status.message),
+      0,
+  };
+}
+
 architrino::solver::ErrorBudgetStageInput to_error_budget_stage_input(
     const ArchitrinoSolverErrorBudgetStageInputF64& row) {
   return architrino::solver::ErrorBudgetStageInput{
@@ -1325,6 +1660,31 @@ int copy_root_ledger_detail_rows(
   }
   for (int index = 0; index < requiredRows; ++index) {
     rows[index] = to_root_ledger_detail_row(source[static_cast<std::size_t>(index)]);
+  }
+  return 0;
+}
+
+int copy_delayed_hit_rows_from_roots(const std::vector<architrino::solver::CausalRoot>& roots,
+                                     ArchitrinoSolverDelayedHitRowF64* hits,
+                                     int maxHits,
+                                     int* outHitCount) {
+  if (root_count_overflows(roots.size())) {
+    *outHitCount = 0;
+    return -4;
+  }
+
+  const int requiredHits = static_cast<int>(roots.size());
+  *outHitCount = requiredHits;
+  if (hits == nullptr || maxHits == 0) {
+    return requiredHits == 0 ? 0 : -3;
+  }
+  if (maxHits < requiredHits) {
+    return -3;
+  }
+  for (int index = 0; index < requiredHits; ++index) {
+    hits[index] = to_delayed_hit_row_from_root(
+        roots[static_cast<std::size_t>(index)],
+        index);
   }
   return 0;
 }
@@ -1875,7 +2235,7 @@ int copy_assembly_graph_store_index_rows(
 extern "C" ArchitrinoSolverAbiInfo architrino_solver_abi_info() {
   return ArchitrinoSolverAbiInfo{
       0,
-      7,
+      11,
       0,
       static_cast<int>(sizeof(ArchitrinoSolverCausalRootRequestF64)),
       static_cast<int>(sizeof(ArchitrinoSolverCausalRootRowF64)),
@@ -1915,6 +2275,12 @@ extern "C" ArchitrinoSolverAbiInfo architrino_solver_abi_info() {
       static_cast<int>(sizeof(ArchitrinoSolverMotionIntegrationRequestF64)),
       static_cast<int>(sizeof(ArchitrinoSolverCircularPathSegmentF64)),
       static_cast<int>(sizeof(ArchitrinoSolverCircularSourceCausalRootRequestF64)),
+      static_cast<int>(sizeof(ArchitrinoSolverModelContract)),
+      static_cast<int>(sizeof(ArchitrinoSolverSimulationEnvelopeF64)),
+      static_cast<int>(sizeof(ArchitrinoSolverCapabilityEnvelopeF64)),
+      static_cast<int>(sizeof(ArchitrinoSolverAdmissionStressSummaryF64)),
+      static_cast<int>(sizeof(ArchitrinoSolverStatusRow)),
+      static_cast<int>(sizeof(ArchitrinoSolverAdmissionReportF64)),
   };
 }
 
@@ -1923,6 +2289,48 @@ extern "C" int architrino_solver_get_abi_info(ArchitrinoSolverAbiInfo* out_info)
     return -1;
   }
   *out_info = architrino_solver_abi_info();
+  return 0;
+}
+
+extern "C" int architrino_solver_admit_simulation_envelope_f64(
+    const ArchitrinoSolverModelContract* model,
+    const ArchitrinoSolverErrorBudgetF64* error_budget,
+    const ArchitrinoSolverSimulationEnvelopeF64* envelope,
+    const ArchitrinoSolverCapabilityEnvelopeF64* capability,
+    ArchitrinoSolverAdmissionReportF64* out_report,
+    ArchitrinoSolverStatusRow* status_rows,
+    int max_status_rows,
+    int* out_status_count) {
+  if (model == nullptr || error_budget == nullptr || envelope == nullptr || out_report == nullptr ||
+      out_status_count == nullptr || max_status_rows < 0) {
+    return -1;
+  }
+
+  const architrino::solver::SolverCapabilityEnvelope cppCapability =
+      capability == nullptr ? architrino::solver::SolverCapabilityEnvelope{} : to_capability_envelope(*capability);
+  const architrino::solver::AdmissionReport report =
+      architrino::solver::admit_simulation_envelope(
+          to_model_contract(*model),
+          to_error_budget(*error_budget),
+          to_simulation_envelope(*envelope),
+          cppCapability);
+
+  *out_report = to_admission_report(report);
+  if (root_count_overflows(report.validation.statuses.size())) {
+    *out_status_count = 0;
+    return -4;
+  }
+  const int requiredStatuses = static_cast<int>(report.validation.statuses.size());
+  *out_status_count = requiredStatuses;
+  if (status_rows == nullptr || max_status_rows == 0) {
+    return requiredStatuses == 0 ? 0 : -3;
+  }
+  if (max_status_rows < requiredStatuses) {
+    return -3;
+  }
+  for (int index = 0; index < requiredStatuses; ++index) {
+    status_rows[index] = to_status_row(report.validation.statuses[static_cast<std::size_t>(index)]);
+  }
   return 0;
 }
 
@@ -1966,6 +2374,54 @@ extern "C" int architrino_solver_solve_circular_source_causal_roots_f64(
   }
 
   return copy_roots(result.roots, roots, max_roots, out_root_count);
+}
+
+extern "C" int architrino_solver_solve_circular_source_roots_hits_ledger_f64(
+    const ArchitrinoSolverCircularSourceCausalRootRequestF64* request,
+    ArchitrinoSolverCausalRootRowF64* roots,
+    int max_roots,
+    int* out_root_count,
+    ArchitrinoSolverDelayedHitRowF64* hits,
+    int max_hits,
+    int* out_hit_count,
+    ArchitrinoSolverRootLedgerDetailRowF64* ledger_rows,
+    int max_ledger_rows,
+    int* out_ledger_row_count) {
+  if (request == nullptr || out_root_count == nullptr || out_hit_count == nullptr ||
+      out_ledger_row_count == nullptr || max_roots < 0 || max_hits < 0 ||
+      max_ledger_rows < 0) {
+    return -1;
+  }
+
+  const architrino::solver::CircularSourceCausalRootRequest cppRequest = to_request(request);
+  const architrino::solver::CausalRootResult result =
+      architrino::solver::solve_circular_source_causal_roots(cppRequest);
+  if (!result.validation.ok) {
+    *out_root_count = 0;
+    *out_hit_count = 0;
+    *out_ledger_row_count = 0;
+    return -2;
+  }
+
+  const architrino::solver::CausalRootRequest ledgerRequest = to_ledger_request(cppRequest);
+  const std::vector<architrino::solver::RootLedgerDetailRowF64> detailRows =
+      architrino::solver::build_root_ledger_detail(ledgerRequest, result);
+
+  const int rootStatus = copy_roots(result.roots, roots, max_roots, out_root_count);
+  const int hitStatus =
+      copy_delayed_hit_rows_from_roots(result.roots, hits, max_hits, out_hit_count);
+  const int ledgerStatus = copy_root_ledger_detail_rows(
+      detailRows,
+      ledger_rows,
+      max_ledger_rows,
+      out_ledger_row_count);
+  if (rootStatus != 0) {
+    return rootStatus;
+  }
+  if (hitStatus != 0) {
+    return hitStatus;
+  }
+  return ledgerStatus;
 }
 
 extern "C" int architrino_solver_solve_roots_and_hits_f64(
@@ -2258,6 +2714,7 @@ extern "C" int architrino_solver_compute_phase_at_hit_f64(
     int root_count,
     const ArchitrinoSolverPhaseClockF64* source_clock,
     const ArchitrinoSolverPhaseClockF64* receiver_clock,
+    const ArchitrinoSolverPhaseAtHitMetadataF64* metadata,
     ArchitrinoSolverPhaseAtHitRowF64* rows,
     int max_rows,
     int* out_row_count) {
@@ -2271,12 +2728,20 @@ extern "C" int architrino_solver_compute_phase_at_hit_f64(
   for (int index = 0; index < root_count; ++index) {
     cppRoots.push_back(to_root(roots[index]));
   }
+  std::vector<architrino::solver::PhaseAtHitMetadata> cppMetadata;
+  if (metadata != nullptr) {
+    cppMetadata.reserve(static_cast<std::size_t>(root_count));
+    for (int index = 0; index < root_count; ++index) {
+      cppMetadata.push_back(to_phase_metadata(metadata[index]));
+    }
+  }
 
   const architrino::solver::PhaseAtHitResult result =
       architrino::solver::compute_phase_at_hits(
           cppRoots,
           to_phase_clock(*source_clock),
-          to_phase_clock(*receiver_clock));
+          to_phase_clock(*receiver_clock),
+          cppMetadata);
   if (!result.validation.ok) {
     *out_row_count = 0;
     return -2;

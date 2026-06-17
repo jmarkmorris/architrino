@@ -146,8 +146,8 @@ BinaryLayoutDescriptor binary_layout_descriptor(BinaryLayoutId layoutId) {
           to_string(layoutId),
           NumericType::F64,
           ByteOrder::LittleEndian,
-          72,
-          "root id, status, source/receiver cycle indices, emission/hit time, source/receiver phase, phase delta/spread",
+          104,
+          "root id, status, source/receiver cycle indices, emission/hit time, source/receiver phase, phase delta/spread, root/layer/role/charge metadata, flags",
       };
     case BinaryLayoutId::SpaceTimeIndexV1:
       return BinaryLayoutDescriptor{
