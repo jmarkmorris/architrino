@@ -315,6 +315,7 @@ const EMISSION_SHELL_NARROW_PHASE_ROW_F64_BYTES = 40;
 const DEFAULT_MAX_CAUSAL_ROOTS = 64;
 const DEFAULT_MAX_ROOT_LEDGER_DETAIL_ROWS = 4096;
 const DEFAULT_MAX_MOTION_FRAMES = 65536;
+const DEFAULT_MAX_MOTION_PATH_ROWS = DEFAULT_MAX_MOTION_FRAMES;
 const DEFAULT_MAX_SPACETIME_INDEX_ROWS = 65536;
 const ABI_INFO_BYTES = 156;
 
@@ -2765,6 +2766,40 @@ function runSimulationWithModule(state, module, request, abiInfo) {
     const motion = request.config.motionIntegrationRequest
       ? integrateConstantAccelerationMotionF64WithModule(module, request.config.motionIntegrationRequest, abiInfo)
       : sampleLinearMotionF64WithModule(module, request.config.motionRequest, abiInfo);
+    const motionPathHistory = request.output.outputs.includes("pathStream")
+      ? createMotionSimulationPathHistoryRowsWithModule(module, request.config, abiInfo)
+      : null;
+    const pathHistory =
+      motionPathHistory && motionPathHistory.pathRows.length > 0
+        ? createPathHistoryStreamF64(
+            state,
+            {
+              runId,
+              datasetId,
+              streamId: request.config.streamId || `${runId}:motion-path-history`,
+              pathRows: motionPathHistory.pathRows,
+              rowsPerChunk: request.config.rowsPerChunk,
+              storagePolicy: request.config.storagePolicy ?? {
+                target: request.output.streamTarget ?? "caller-buffer",
+                durable: false,
+                maxBytes: request.output.memoryBudgetBytes,
+              },
+              metadata: {
+                ...request.config.metadata,
+                precisionPath:
+                  request.config.metadata?.precisionPath ?? admission.selectedPrecisionPath,
+                interpolationRule:
+                  request.config.metadata?.interpolationRule ?? "linear-segment-chord",
+                provenance: {
+                  ...request.config.metadata?.provenance,
+                  runKind: "motionSimulation",
+                  source: motionPathHistory.source,
+                },
+              },
+            },
+            abiInfo
+          )
+        : null;
     completedResponse = {
       runId,
       datasetId,
@@ -2774,12 +2809,20 @@ function runSimulationWithModule(state, module, request, abiInfo) {
         precisionPath: admission.selectedPrecisionPath,
         status: createStatus("ok", "ok", "motion simulation completed", { runId, requestId }),
         frameCount: motion.frames.length,
-        pathCount: motion.frames.length > 0 ? 1 : 0,
+        pathCount: motion.frames.length > 0 || motionPathHistory?.pathRows.length > 0 ? 1 : 0,
+        pathRowCount: motionPathHistory?.pathRows.length ?? 0,
+        chunkCount: pathHistory?.summary.chunkCount ?? 0,
       },
-      buffers: motion.buffers,
-      streams: [],
-      diagnostics: admission.statuses.map(toDiagnosticRecord),
+      buffers: [...motion.buffers, ...(pathHistory?.buffers ?? [])],
+      streams: pathHistory ? [pathHistory.stream] : [],
+      diagnostics: [
+        ...admission.statuses.map(toDiagnosticRecord),
+        toDiagnosticRecord(motion.status),
+        ...(motionPathHistory ? [toDiagnosticRecord(motionPathHistory.status)] : []),
+        ...(pathHistory ? [toDiagnosticRecord(pathHistory.status)] : []),
+      ],
       frames: motion.frames,
+      pathHistory: pathHistory?.summary,
       status: createStatus("ok", "ok", "motion simulation completed", { runId, requestId }),
     };
     completedResponse.manifest = finalizeRunManifest(manifestBase, completedResponse);
@@ -2803,6 +2846,58 @@ function runSimulationWithModule(state, module, request, abiInfo) {
     expectedOutputs: request.output.outputs,
     response: completedResponse,
     status: createStatus("ok", "ok", "simulation run completed", { runId, requestId }),
+  };
+}
+
+function createMotionSimulationPathHistoryRowsWithModule(module, config, abiInfo) {
+  if (config.motionIntegrationRequest) {
+    const result = integrateConstantAccelerationPathHistoryF64WithModule(
+      module,
+      config.motionIntegrationRequest,
+      abiInfo
+    );
+    return {
+      ...result,
+      source: "constant-acceleration-motion-integration",
+    };
+  }
+
+  const pathRows = createLinearMotionPathHistoryRows(config.motionRequest);
+  return {
+    pathRows,
+    buffers: [],
+    status: createStatus("ok", "ok", "linear motion path history prepared"),
+    source: "linear-motion-sample-request",
+  };
+}
+
+function createLinearMotionPathHistoryRows(request) {
+  if (request.endTime <= request.startTime) {
+    return [];
+  }
+  const start = positionAtLinearMotionTime(request.segment, request.startTime);
+  return [
+    {
+      pathKey: request.pathKey,
+      segmentIndex: 0,
+      startTime: request.startTime,
+      endTime: request.endTime,
+      start,
+      velocity: copyVector(request.segment.velocity),
+      errorBound: request.segment.errorBound ?? 0,
+      stateFlags: request.stateFlags ?? 0,
+      chunkIndex: 0,
+      rowOffset: 0,
+    },
+  ];
+}
+
+function positionAtLinearMotionTime(segment, time) {
+  const dt = time - segment.startTime;
+  return {
+    x: segment.positionAtStart.x + segment.velocity.x * dt,
+    y: segment.positionAtStart.y + segment.velocity.y * dt,
+    z: segment.positionAtStart.z + segment.velocity.z * dt,
   };
 }
 
@@ -3841,6 +3936,81 @@ function integrateConstantAccelerationMotionF64WithModule(module, request, abiIn
   }
 }
 
+function integrateConstantAccelerationPathHistoryF64WithModule(module, request, abiInfo) {
+  validateMotionIntegrationRequest(request);
+  if (typeof module._malloc !== "function" || typeof module._free !== "function") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "WebAssembly allocator exports are required", {
+        recoverable: false,
+      })
+    );
+  }
+
+  const estimatedRows = estimateMotionPathSegmentCount(request);
+  const maxRows = Math.min(estimatedRows, DEFAULT_MAX_MOTION_PATH_ROWS);
+  if (estimatedRows > maxRows) {
+    throw new SolverBridgeError(
+      createStatus("stream_memory_pressure", "halt", "motion path-history request exceeds row buffer cap", {
+        recoverable: true,
+        details: { estimatedRows, maxRows },
+      })
+    );
+  }
+
+  const requestPtr = module._malloc(abiInfo.motionIntegrationRequestF64Bytes);
+  const rowsPtr =
+    maxRows > 0 ? module._malloc(abiInfo.pathHistoryRowF64Bytes * maxRows) : 0;
+  const outRowCountPtr = module._malloc(4);
+  try {
+    writeMotionIntegrationRequestF64(module, requestPtr, request);
+    module.setValue(outRowCountPtr, 0, "i32");
+    const integratePathHistory = module.cwrap(
+      "architrino_solver_integrate_constant_acceleration_path_history_f64",
+      "number",
+      ["number", "number", "number", "number"]
+    );
+    const status = integratePathHistory(requestPtr, rowsPtr, maxRows, outRowCountPtr);
+    const rowCount = module.getValue(outRowCountPtr, "i32");
+    if (status !== 0) {
+      throw new SolverBridgeError(
+        createStatus("internal_solver_error", "halt", `motion path-history C ABI returned ${status}`, {
+          recoverable: status === -3,
+          details: { status, rowCount, maxRows },
+        })
+      );
+    }
+    const buffer = rowCount > 0
+      ? copyWasmBytes(module, rowsPtr, rowCount * abiInfo.pathHistoryRowF64Bytes)
+      : new ArrayBuffer(0);
+    const view = new DataView(buffer);
+    const pathRows = [];
+    for (let index = 0; index < rowCount; index += 1) {
+      pathRows.push(
+        readPathHistoryRowFromView(view, index * abiInfo.pathHistoryRowF64Bytes, 0, index)
+      );
+    }
+    return {
+      pathRows,
+      buffers: [
+        createBufferDescriptor(
+          "motion-path-history",
+          "path_segment.v1",
+          rowCount,
+          abiInfo.pathHistoryRowF64Bytes,
+          buffer
+        ),
+      ],
+      status: createStatus("ok", "ok", "constant-acceleration path history integrated"),
+    };
+  } finally {
+    module._free(requestPtr);
+    if (rowsPtr !== 0) {
+      module._free(rowsPtr);
+    }
+    module._free(outRowCountPtr);
+  }
+}
+
 function validateLinearMotionSampleRequest(request) {
   if (!request || typeof request !== "object") {
     throw new SolverBridgeError(
@@ -3883,6 +4053,14 @@ function estimateLinearMotionFrameCount(request) {
 function estimateMotionFrameCount(request) {
   const duration = request.endTime - request.startTime;
   return Math.floor((duration + request.step * 1e-9) / request.step) + 1;
+}
+
+function estimateMotionPathSegmentCount(request) {
+  const duration = request.endTime - request.startTime;
+  if (duration <= 0) {
+    return 0;
+  }
+  return Math.ceil(duration / request.step);
 }
 
 function validateMotionIntegrationRequest(request) {
@@ -5701,6 +5879,18 @@ function validateMotionSimulationRunConfig(config) {
   } else {
     validateLinearMotionSampleRequest(config.motionRequest);
   }
+  if (config.streamId != null) {
+    requireNonemptyString(config.streamId, "motionSimulation.streamId");
+  }
+  if (config.rowsPerChunk != null) {
+    requirePositiveInteger(config.rowsPerChunk, "motionSimulation.rowsPerChunk");
+  }
+  if (config.storagePolicy != null) {
+    normalizePathHistoryStreamStoragePolicy(config.storagePolicy);
+  }
+  if (config.metadata != null) {
+    normalizePathHistoryStreamMetadata(config.metadata);
+  }
 }
 
 function requireArray(value, label) {
@@ -5896,6 +6086,7 @@ export function hasSolverCAbi(module) {
     typeof module?._architrino_solver_propagate_error_budget_f64 === "function" &&
     typeof module?._architrino_solver_sample_linear_motion_f64 === "function" &&
     typeof module?._architrino_solver_integrate_constant_acceleration_motion_f64 === "function" &&
+    typeof module?._architrino_solver_integrate_constant_acceleration_path_history_f64 === "function" &&
     typeof module?._architrino_solver_compute_phase_at_hit_f64 === "function" &&
     typeof module?._architrino_solver_compute_path_bounds_f64 === "function" &&
     typeof module?._architrino_solver_intersect_sphere_points_f64 === "function" &&
@@ -5972,7 +6163,7 @@ function readAbiInfo(module) {
 function defaultAbiInfo() {
   return {
     abiMajor: 0,
-    abiMinor: 4,
+    abiMinor: 5,
     abiPatch: 0,
     rootRequestF64Bytes: CAUSAL_ROOT_REQUEST_F64_BYTES,
     rootRowF64Bytes: CAUSAL_ROOT_ROW_F64_BYTES,
@@ -8087,12 +8278,19 @@ function registerResponseStreams(state, response) {
     }
     state.streams.set(
       stream.streamId,
-      createStreamEntry(stream, response.buffers.map(copyBufferDescriptor), {
+      createStreamEntry(stream, selectResponseBuffersForStream(response, stream), {
         runId: response.runId ?? null,
         datasetId: response.datasetId ?? null,
       })
     );
   });
+}
+
+function selectResponseBuffersForStream(response, stream) {
+  const buffers = response.buffers.map(copyBufferDescriptor);
+  const streamPrefix = `${stream.streamId}:`;
+  const prefixedBuffers = buffers.filter((buffer) => buffer.bufferId.startsWith(streamPrefix));
+  return prefixedBuffers.length > 0 ? prefixedBuffers : buffers;
 }
 
 function createPathHistoryStreamF64(state, request, abiInfo) {

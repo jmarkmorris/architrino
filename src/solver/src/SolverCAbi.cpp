@@ -1838,7 +1838,7 @@ int copy_assembly_graph_store_index_rows(
 extern "C" ArchitrinoSolverAbiInfo architrino_solver_abi_info() {
   return ArchitrinoSolverAbiInfo{
       0,
-      4,
+      5,
       0,
       static_cast<int>(sizeof(ArchitrinoSolverCausalRootRequestF64)),
       static_cast<int>(sizeof(ArchitrinoSolverCausalRootRowF64)),
@@ -2152,6 +2152,26 @@ extern "C" int architrino_solver_integrate_constant_acceleration_motion_f64(
   }
 
   return copy_motion_frames(result.frames, frames, max_frames, out_frame_count);
+}
+
+extern "C" int architrino_solver_integrate_constant_acceleration_path_history_f64(
+    const ArchitrinoSolverMotionIntegrationRequestF64* request,
+    ArchitrinoSolverPathHistoryRowF64* rows,
+    int max_rows,
+    int* out_row_count) {
+  if (request == nullptr || out_row_count == nullptr || max_rows < 0) {
+    return -1;
+  }
+
+  const architrino::solver::MotionPathHistoryResult result =
+      architrino::solver::integrate_constant_acceleration_path_history(
+          to_motion_integration_request(request));
+  if (!result.validation.ok) {
+    *out_row_count = 0;
+    return -2;
+  }
+
+  return copy_path_history_rows(result.rows, rows, max_rows, out_row_count);
 }
 
 extern "C" int architrino_solver_compute_phase_at_hit_f64(

@@ -144,6 +144,10 @@ export function createAnimatorMotionSimulationRunRequest(input) {
       ...(hasMotionIntegrationRequest
         ? { motionIntegrationRequest: cloneRequiredObject(input.motionIntegrationRequest, "motionIntegrationRequest") }
         : { motionRequest: cloneRequiredObject(input.motionRequest, "motionRequest") }),
+      streamId: cloneOptionalString(input.streamId, "streamId"),
+      rowsPerChunk: cloneOptionalPositiveInteger(input.rowsPerChunk, "rowsPerChunk"),
+      storagePolicy: cloneOptionalObject(input.storagePolicy, "storagePolicy"),
+      metadata: cloneOptionalObject(input.metadata, "metadata"),
     },
   });
 }

@@ -2839,8 +2839,16 @@ assert(integratedMotionRunHandle.response.summary.frameCount === 3, "expected in
 assert(
   integratedMotionRunHandle.response.manifest.runKind === "motionSimulation" &&
     integratedMotionRunHandle.response.manifest.configVersion === "solver-integrated-motion-run-smoke.v1" &&
-    integratedMotionRunHandle.response.manifest.buffers[0].layout === "frame_buffer.v1",
+    integratedMotionRunHandle.response.manifest.buffers[0].layout === "frame_buffer.v1" &&
+    integratedMotionRunHandle.response.manifest.streams[0].streamId ===
+      "smoke-integrated-motion-run:motion-path-history",
   "expected integrated motion run manifest"
+);
+assert(integratedMotionRunHandle.response.streams.length === 1, "expected integrated motion path stream");
+assert(
+  integratedMotionRunHandle.response.pathHistory.rowCount === 2 &&
+    integratedMotionRunHandle.response.pathHistory.chunkCount === 2,
+  "expected integrated motion path-history summary"
 );
 assert(
   integratedMotionRunHandle.response.frames[2].position.x === 6 &&
@@ -2850,6 +2858,20 @@ assert(
     integratedMotionRunHandle.response.frames[2].velocity.y === 2 &&
     integratedMotionRunHandle.response.frames[2].velocity.z === 3,
   "expected integrated motion run final state"
+);
+const integratedMotionPathRead = await client.readStreamRange({
+  streamId: "smoke-integrated-motion-run:motion-path-history",
+  frameRange: { start: 0, end: 0 },
+});
+assert(integratedMotionPathRead.status.code === "ok", "expected integrated motion path read status ok");
+assert(integratedMotionPathRead.buffers.length === 1, "expected one integrated motion path chunk");
+const integratedMotionPathView = new DataView(integratedMotionPathRead.buffers[0].buffer);
+assert(Number(integratedMotionPathView.getBigUint64(0, true)) === 4321, "expected integrated motion path key");
+assert(
+  integratedMotionPathView.getFloat64(56, true) === 2.25 &&
+    integratedMotionPathView.getFloat64(64, true) === 0.5 &&
+    integratedMotionPathView.getFloat64(72, true) === 0,
+  "expected integrated motion path chord velocity"
 );
 
 const appPlaybackRunHandle = await client.runSimulation(
@@ -3370,8 +3392,10 @@ function makeIntegratedMotionRunSimulationRequest() {
       integrationMethod: 1,
       stateFlags: 11,
     },
+    streamId: "smoke-integrated-motion-run:motion-path-history",
+    rowsPerChunk: 1,
     output: {
-      outputs: ["frameBuffer", "diagnostics"],
+      outputs: ["frameBuffer", "pathStream", "diagnostics"],
       streamTarget: "caller-buffer",
       memoryBudgetBytes: 64 * 1024 * 1024,
       deterministic: true,

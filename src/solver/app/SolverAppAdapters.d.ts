@@ -94,6 +94,12 @@ export interface IdealSwarmSharedGeometryRunAdapterInput extends SolverRunAdapte
 }
 
 export type AnimatorMotionSimulationRunAdapterInput = SolverRunAdapterBaseInput &
+  {
+    streamId?: string;
+    rowsPerChunk?: number;
+    storagePolicy?: SolverStoragePolicy;
+    metadata?: Partial<SolverPathHistoryStreamMetadata>;
+  } &
   (
     | { motionRequest: SolverLinearMotionSampleF64Request; motionIntegrationRequest?: never }
     | { motionRequest?: never; motionIntegrationRequest: SolverMotionIntegrationF64Request }

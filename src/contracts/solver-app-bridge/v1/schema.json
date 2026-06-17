@@ -3221,6 +3221,20 @@
         },
         "motionIntegrationRequest": {
           "$ref": "#/$defs/motionIntegrationF64Request"
+        },
+        "streamId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "rowsPerChunk": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "storagePolicy": {
+          "$ref": "#/$defs/storagePolicy"
+        },
+        "metadata": {
+          "type": "object"
         }
       }
     },

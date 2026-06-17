@@ -29,9 +29,7 @@ struct ContentView: View {
             }
         }
         .fullScreenCover(isPresented: $showToc) {
-            NavigationStack {
-                tocSidebar
-            }
+            tocSidebar
             .background(viewModel.theme.readerBackgroundColor.ignoresSafeArea())
         }
         .sheet(isPresented: $viewModel.isSearchPresented) {
@@ -201,18 +199,13 @@ struct ContentView: View {
         VStack(alignment: .leading, spacing: 0) {
             List {
                 Section {
-                    VStack(alignment: .leading, spacing: 6) {
-                        Text("Architrino Assembly Architecture Textbook")
-                            .font(.headline)
-                            .foregroundStyle(viewModel.theme.readerPrimaryTextColor)
-                    }
-                    .padding(.vertical, 4)
-                }
-                .listRowBackground(Color.clear)
-                .listRowSeparatorTint(viewModel.theme.readerSeparatorColor)
+                    Text("Architrino Assembly Architecture Textbook")
+                        .font(.headline)
+                        .foregroundStyle(viewModel.theme.readerPrimaryTextColor)
+                        .padding(.vertical, 2)
+                        .listRowInsets(EdgeInsets(top: 0, leading: 34, bottom: 8, trailing: 20))
 
-                if let package = viewModel.package {
-                    Section {
+                    if let package = viewModel.package {
                         if package.tocPackage.tocRoot.resolvedChildren.isEmpty {
                             ForEach(Array(package.manifest.chapters.enumerated()), id: \.offset) { index, chapter in
                                 Button {
@@ -234,9 +227,9 @@ struct ContentView: View {
                             }
                         }
                     }
-                    .listRowBackground(Color.clear)
-                    .listRowSeparatorTint(viewModel.theme.readerSeparatorColor)
                 }
+                .listRowBackground(Color.clear)
+                .listRowSeparatorTint(viewModel.theme.readerSeparatorColor)
 
                 Section {
                     Button {
@@ -274,6 +267,8 @@ struct ContentView: View {
                 .listRowSeparatorTint(viewModel.theme.readerSeparatorColor)
             }
             .listStyle(.insetGrouped)
+            .listSectionSpacing(8)
+            .contentMargins(.top, 8, for: .scrollContent)
             .scrollContentBackground(.hidden)
             .background(viewModel.theme.readerBackgroundColor.ignoresSafeArea())
         }

@@ -778,6 +778,12 @@ int architrino_solver_integrate_constant_acceleration_motion_f64(
     int max_frames,
     int* out_frame_count);
 
+int architrino_solver_integrate_constant_acceleration_path_history_f64(
+    const ArchitrinoSolverMotionIntegrationRequestF64* request,
+    ArchitrinoSolverPathHistoryRowF64* rows,
+    int max_rows,
+    int* out_row_count);
+
 int architrino_solver_compute_phase_at_hit_f64(
     const ArchitrinoSolverCausalRootRowF64* roots,
     int root_count,

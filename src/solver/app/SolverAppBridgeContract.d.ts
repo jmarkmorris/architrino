@@ -1415,7 +1415,13 @@ export interface SharedGeometrySolverConfig {
   geometryRequest: SolverSharedGeometryF64Request;
 }
 
-export type MotionSimulationSolverConfig = { appId: SolverAppId } &
+export type MotionSimulationSolverConfig = {
+  appId: SolverAppId;
+  streamId?: string;
+  rowsPerChunk?: number;
+  storagePolicy?: SolverStoragePolicy;
+  metadata?: Partial<SolverPathHistoryStreamMetadata>;
+} &
   (
     | { motionRequest: SolverLinearMotionSampleF64Request; motionIntegrationRequest?: never }
     | { motionRequest?: never; motionIntegrationRequest: SolverMotionIntegrationF64Request }
