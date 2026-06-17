@@ -33,7 +33,8 @@ struct ReaderWebView: UIViewRepresentable {
             withExtension: "html",
             subdirectory: "ReaderAssets"
         ) {
-            view.loadFileURL(shellURL, allowingReadAccessTo: shellURL.deletingLastPathComponent())
+            let readAccessURL = Bundle.main.resourceURL ?? shellURL.deletingLastPathComponent()
+            view.loadFileURL(shellURL, allowingReadAccessTo: readAccessURL)
         }
         context.coordinator.webView = view
 

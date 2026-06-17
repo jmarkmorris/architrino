@@ -285,6 +285,7 @@ const ERROR_BUDGET_STAGE_INPUT_F64_BYTES = 16;
 const ERROR_BUDGET_STAGE_ROW_F64_BYTES = 40;
 const ERROR_BUDGET_SUMMARY_F64_BYTES = 32;
 const MOTION_SAMPLE_REQUEST_F64_BYTES = 112;
+const MOTION_INTEGRATION_REQUEST_F64_BYTES = 120;
 const PHASE_CLOCK_F64_BYTES = 24;
 const PHASE_AT_HIT_ROW_F64_BYTES = 72;
 const FRAME_BUFFER_ROW_F64_BYTES = 88;
@@ -315,7 +316,7 @@ const DEFAULT_MAX_CAUSAL_ROOTS = 64;
 const DEFAULT_MAX_ROOT_LEDGER_DETAIL_ROWS = 4096;
 const DEFAULT_MAX_MOTION_FRAMES = 65536;
 const DEFAULT_MAX_SPACETIME_INDEX_ROWS = 65536;
-const ABI_INFO_BYTES = 152;
+const ABI_INFO_BYTES = 156;
 
 export class SolverBridgeError extends Error {
   constructor(status) {
@@ -624,6 +625,16 @@ export function createSolverAppBridgeClient(options = {}) {
       assertNotDisposed(state);
       const module = await requireWasmModule(state);
       return sampleLinearMotionF64WithModule(module, request, state.abiInfo || defaultAbiInfo());
+    },
+
+    async integrateConstantAccelerationMotionF64(request) {
+      assertNotDisposed(state);
+      const module = await requireWasmModule(state);
+      return integrateConstantAccelerationMotionF64WithModule(
+        module,
+        request,
+        state.abiInfo || defaultAbiInfo()
+      );
     },
 
     async cancelRun(request = {}) {
@@ -2751,7 +2762,9 @@ function runSimulationWithModule(state, module, request, abiInfo) {
     };
     completedResponse.manifest = finalizeRunManifest(manifestBase, completedResponse);
   } else if (request.runKind === "motionSimulation") {
-    const motion = sampleLinearMotionF64WithModule(module, request.config.motionRequest, abiInfo);
+    const motion = request.config.motionIntegrationRequest
+      ? integrateConstantAccelerationMotionF64WithModule(module, request.config.motionIntegrationRequest, abiInfo)
+      : sampleLinearMotionF64WithModule(module, request.config.motionRequest, abiInfo);
     completedResponse = {
       runId,
       datasetId,
@@ -3760,6 +3773,74 @@ function sampleLinearMotionF64WithModule(module, request, abiInfo) {
   }
 }
 
+function integrateConstantAccelerationMotionF64WithModule(module, request, abiInfo) {
+  validateMotionIntegrationRequest(request);
+  if (typeof module._malloc !== "function" || typeof module._free !== "function") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "WebAssembly allocator exports are required", {
+        recoverable: false,
+      })
+    );
+  }
+
+  const estimatedFrames = estimateMotionFrameCount(request);
+  const maxFrames = request.maxFrames ?? Math.min(estimatedFrames, DEFAULT_MAX_MOTION_FRAMES);
+  if (estimatedFrames > maxFrames) {
+    throw new SolverBridgeError(
+      createStatus("stream_memory_pressure", "halt", "motion integration request exceeds frame buffer cap", {
+        recoverable: true,
+        details: { estimatedFrames, maxFrames },
+      })
+    );
+  }
+
+  const requestPtr = module._malloc(abiInfo.motionIntegrationRequestF64Bytes);
+  const framesPtr = module._malloc(abiInfo.motionFrameRowF64Bytes * maxFrames);
+  const outFrameCountPtr = module._malloc(4);
+  try {
+    writeMotionIntegrationRequestF64(module, requestPtr, request);
+    module.setValue(outFrameCountPtr, 0, "i32");
+    const integrate = module.cwrap("architrino_solver_integrate_constant_acceleration_motion_f64", "number", [
+      "number",
+      "number",
+      "number",
+      "number",
+    ]);
+    const status = integrate(requestPtr, framesPtr, maxFrames, outFrameCountPtr);
+    const frameCount = module.getValue(outFrameCountPtr, "i32");
+    if (status !== 0) {
+      throw new SolverBridgeError(
+        createStatus("internal_solver_error", "halt", `motion integrator C ABI returned ${status}`, {
+          recoverable: status === -3,
+          details: { status, frameCount, maxFrames },
+        })
+      );
+    }
+    const frames = [];
+    for (let index = 0; index < frameCount; index += 1) {
+      frames.push(readMotionFrameRowF64(module, framesPtr + index * abiInfo.motionFrameRowF64Bytes));
+    }
+    const buffer = copyWasmBytes(module, framesPtr, frameCount * abiInfo.motionFrameRowF64Bytes);
+    return {
+      frames,
+      buffers: [
+        createBufferDescriptor(
+          "frame-buffer",
+          "frame_buffer.v1",
+          frameCount,
+          abiInfo.motionFrameRowF64Bytes,
+          buffer
+        ),
+      ],
+      status: createStatus("ok", "ok", "constant-acceleration motion integrated"),
+    };
+  } finally {
+    module._free(requestPtr);
+    module._free(framesPtr);
+    module._free(outFrameCountPtr);
+  }
+}
+
 function validateLinearMotionSampleRequest(request) {
   if (!request || typeof request !== "object") {
     throw new SolverBridgeError(
@@ -3796,8 +3877,63 @@ function validateLinearMotionSampleRequest(request) {
 }
 
 function estimateLinearMotionFrameCount(request) {
+  return estimateMotionFrameCount(request);
+}
+
+function estimateMotionFrameCount(request) {
   const duration = request.endTime - request.startTime;
   return Math.floor((duration + request.step * 1e-9) / request.step) + 1;
+}
+
+function validateMotionIntegrationRequest(request) {
+  if (!request || typeof request !== "object") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "motion integration request object is required", {
+        recoverable: false,
+      })
+    );
+  }
+  requireSafeUint64(request.pathKey, "pathKey");
+  requireFiniteNumber(request.startTime, "startTime");
+  requireFiniteNumber(request.endTime, "endTime");
+  requirePositiveFiniteNumber(request.step, "step");
+  if (request.endTime < request.startTime) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "motion integration time bounds are not ordered", {
+        recoverable: false,
+      })
+    );
+  }
+  validateVector(request.initialPosition, "initialPosition");
+  validateVector(request.initialVelocity, "initialVelocity");
+  validateVector(request.acceleration, "acceleration");
+  if (request.integrationTolerance != null) {
+    requireFiniteNumber(request.integrationTolerance, "integrationTolerance");
+    if (request.integrationTolerance < 0) {
+      throw new SolverBridgeError(
+        createStatus("app_contract_error", "error", "integrationTolerance must be nonnegative", {
+          recoverable: false,
+        })
+      );
+    }
+  }
+  if (request.integrationMethod != null) {
+    requireUint32(request.integrationMethod, "integrationMethod");
+    if (request.integrationMethod !== 1) {
+      throw new SolverBridgeError(
+        createStatus("app_contract_error", "error", "motion integration method is not supported", {
+          recoverable: false,
+          details: { integrationMethod: request.integrationMethod },
+        })
+      );
+    }
+  }
+  if (request.stateFlags != null) {
+    requireUint32(request.stateFlags, "stateFlags");
+  }
+  if (request.maxFrames != null) {
+    requirePositiveInt32(request.maxFrames, "maxFrames");
+  }
 }
 
 function computeSharedGeometryF64WithModule(module, request, abiInfo) {
@@ -5548,7 +5684,23 @@ function validateMotionSimulationRunConfig(config) {
       })
     );
   }
-  validateLinearMotionSampleRequest(config.motionRequest);
+  const hasSampleRequest = config.motionRequest != null;
+  const hasIntegrationRequest = config.motionIntegrationRequest != null;
+  if (hasSampleRequest === hasIntegrationRequest) {
+    throw new SolverBridgeError(
+      createStatus(
+        "app_contract_error",
+        "error",
+        "motion simulation requires exactly one of motionRequest or motionIntegrationRequest",
+        { recoverable: false }
+      )
+    );
+  }
+  if (hasIntegrationRequest) {
+    validateMotionIntegrationRequest(config.motionIntegrationRequest);
+  } else {
+    validateLinearMotionSampleRequest(config.motionRequest);
+  }
 }
 
 function requireArray(value, label) {
@@ -5743,6 +5895,7 @@ export function hasSolverCAbi(module) {
     typeof module?._architrino_solver_solve_roots_hits_ledger_precision_f64 === "function" &&
     typeof module?._architrino_solver_propagate_error_budget_f64 === "function" &&
     typeof module?._architrino_solver_sample_linear_motion_f64 === "function" &&
+    typeof module?._architrino_solver_integrate_constant_acceleration_motion_f64 === "function" &&
     typeof module?._architrino_solver_compute_phase_at_hit_f64 === "function" &&
     typeof module?._architrino_solver_compute_path_bounds_f64 === "function" &&
     typeof module?._architrino_solver_intersect_sphere_points_f64 === "function" &&
@@ -5809,6 +5962,7 @@ function readAbiInfo(module) {
       errorBudgetSummaryF64Bytes: module.getValue(ptr + 140, "i32"),
       precisionSolveOptionsBytes: module.getValue(ptr + 144, "i32"),
       precisionSolveSummaryF64Bytes: module.getValue(ptr + 148, "i32"),
+      motionIntegrationRequestF64Bytes: module.getValue(ptr + 152, "i32"),
     };
   } finally {
     module._free(ptr);
@@ -5818,7 +5972,7 @@ function readAbiInfo(module) {
 function defaultAbiInfo() {
   return {
     abiMajor: 0,
-    abiMinor: 3,
+    abiMinor: 4,
     abiPatch: 0,
     rootRequestF64Bytes: CAUSAL_ROOT_REQUEST_F64_BYTES,
     rootRowF64Bytes: CAUSAL_ROOT_ROW_F64_BYTES,
@@ -5855,6 +6009,7 @@ function defaultAbiInfo() {
     errorBudgetSummaryF64Bytes: ERROR_BUDGET_SUMMARY_F64_BYTES,
     precisionSolveOptionsBytes: PRECISION_SOLVE_OPTIONS_BYTES,
     precisionSolveSummaryF64Bytes: PRECISION_SOLVE_SUMMARY_F64_BYTES,
+    motionIntegrationRequestF64Bytes: MOTION_INTEGRATION_REQUEST_F64_BYTES,
   };
 }
 
@@ -5894,7 +6049,8 @@ function assertAbiInfo(abiInfo) {
     abiInfo.errorBudgetStageRowF64Bytes !== ERROR_BUDGET_STAGE_ROW_F64_BYTES ||
     abiInfo.errorBudgetSummaryF64Bytes !== ERROR_BUDGET_SUMMARY_F64_BYTES ||
     abiInfo.precisionSolveOptionsBytes !== PRECISION_SOLVE_OPTIONS_BYTES ||
-    abiInfo.precisionSolveSummaryF64Bytes !== PRECISION_SOLVE_SUMMARY_F64_BYTES
+    abiInfo.precisionSolveSummaryF64Bytes !== PRECISION_SOLVE_SUMMARY_F64_BYTES ||
+    abiInfo.motionIntegrationRequestF64Bytes !== MOTION_INTEGRATION_REQUEST_F64_BYTES
   ) {
     throw new SolverBridgeError(
       createStatus("app_contract_error", "error", "solver ABI row sizes do not match bridge layout", {
@@ -7200,6 +7356,19 @@ function writeMotionSampleRequestF64(module, ptr, request) {
   module.setValue(ptr + 96, request.step, "double");
   module.setValue(ptr + 104, request.stateFlags ?? 0, "i32");
   module.setValue(ptr + 108, 0, "i32");
+}
+
+function writeMotionIntegrationRequestF64(module, ptr, request) {
+  writeUint64(module, ptr, request.pathKey);
+  module.setValue(ptr + 8, request.startTime, "double");
+  module.setValue(ptr + 16, request.endTime, "double");
+  module.setValue(ptr + 24, request.step, "double");
+  writeVector(module, ptr + 32, request.initialPosition);
+  writeVector(module, ptr + 56, request.initialVelocity);
+  writeVector(module, ptr + 80, request.acceleration);
+  module.setValue(ptr + 104, request.integrationTolerance ?? 0, "double");
+  module.setValue(ptr + 112, request.integrationMethod ?? 1, "i32");
+  module.setValue(ptr + 116, request.stateFlags ?? 0, "i32");
 }
 
 function writeAssemblyMembershipRowF64(module, ptr, membership) {

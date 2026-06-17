@@ -69,6 +69,9 @@
           "bundlePath": {
             "type": "string"
           },
+          "htmlPath": {
+            "type": "string"
+          },
           "heading": {
             "type": "string"
           },
@@ -102,6 +105,9 @@
           },
           "bundlePath": {
             "type": "string"
+          },
+          "htmlPath": {
+            "type": "string"
           }
         }
       }
@@ -124,7 +130,7 @@
           },
           "type": {
             "type": "string",
-            "enum": ["json", "markdown", "binary"]
+            "enum": ["json", "markdown", "html", "binary"]
           },
           "size": {
             "type": "integer",

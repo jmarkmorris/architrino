@@ -28,6 +28,8 @@ const causalRootsPrecisionRequest = createCausalRootsPrecisionRequestEnvelope();
 const causalRootsPrecisionResponse = createCausalRootsPrecisionResponseEnvelope();
 const rootsAndHitsPrecisionRequest = createRootsAndHitsPrecisionRequestEnvelope();
 const rootsAndHitsPrecisionResponse = createRootsAndHitsPrecisionResponseEnvelope();
+const motionIntegrationRequest = createMotionIntegrationRequestEnvelope();
+const motionIntegrationResponse = createMotionIntegrationResponseEnvelope();
 const pathHistoryStreamRequest = createPathHistoryStreamRequestEnvelope();
 const pathHistoryStreamResponse = createPathHistoryStreamResponseEnvelope();
 const runSimulationRequest = createRunSimulationRequestEnvelope();
@@ -151,6 +153,8 @@ assert(schema.$defs?.causalRootBatchF64Request, "batch request schema missing");
 assert(schema.$defs?.causalRootBatchF64Response, "batch response schema missing");
 assert(schema.$defs?.linearMotionSampleF64Request, "motion sample request schema missing");
 assert(schema.$defs?.linearMotionSampleF64Response, "motion sample response schema missing");
+assert(schema.$defs?.motionIntegrationF64Request, "motion integration request schema missing");
+assert(schema.$defs?.motionIntegrationF64Response, "motion integration response schema missing");
 assert(schema.$defs?.phaseAtHitF64Request, "phase-at-hit request schema missing");
 assert(schema.$defs?.phaseAtHitF64Response, "phase-at-hit response schema missing");
 assert(schema.$defs?.phaseAtHitSummaryF64Request, "phase-at-hit summary request schema missing");
@@ -322,6 +326,7 @@ assertWorkerMethods([
   "describeAssemblyGraphStoreF64",
   "readAssemblyGraphStoreRangeF64",
   "buildPathHistoryStreamSpaceTimeIndexF64",
+  "integrateConstantAccelerationMotionF64",
   "createPathHistoryStreamF64",
   "queryEmissionShellCandidatePacketsF64",
   "refineEmissionShellCandidateRootsF64",
@@ -349,6 +354,8 @@ validateCausalRootsPrecisionRequestEnvelope(causalRootsPrecisionRequest);
 validateCausalRootsPrecisionResponseEnvelope(causalRootsPrecisionResponse);
 validateRootsAndHitsPrecisionRequestEnvelope(rootsAndHitsPrecisionRequest);
 validateRootsAndHitsPrecisionResponseEnvelope(rootsAndHitsPrecisionResponse);
+validateMotionIntegrationRequestEnvelope(motionIntegrationRequest);
+validateMotionIntegrationResponseEnvelope(motionIntegrationResponse);
 validateBatchResponseEnvelope(batchResponse);
 validateResponseEnvelope(response);
 validateRunSimulationRequestEnvelope(runSimulationRequest);
@@ -619,6 +626,7 @@ function assertCapabilities(value, label) {
   assert(value.maxTransferBytes === 67108864, `${label} max transfer mismatch`);
   assert(value.wasmModuleFactory === true, `${label} wasm factory mismatch`);
   assert(value.abiInfo.rootRowF64Bytes === 112, `${label} ABI root row mismatch`);
+  assert(value.abiInfo.motionIntegrationRequestF64Bytes === 120, `${label} ABI motion integration mismatch`);
 }
 
 function validateBatchResponseEnvelope(value) {
@@ -640,6 +648,34 @@ function validateBatchResponseEnvelope(value) {
   assertClose(responseValue.items[1].roots[0].distance, 6, "second batch root distance");
   assertBuffer(responseValue.buffers[0], "batch-root-ledger", "root_ledger.v1", 224, 2);
   assert(responseValue.status.code === "ok", "batch status code mismatch");
+}
+
+function validateMotionIntegrationRequestEnvelope(value) {
+  assert(value.schema === "solver-app-bridge/v1", "motion integration request schema tag mismatch");
+  assert(value.kind === "motion-integration-f64-request", "motion integration request kind mismatch");
+  assertNonemptyString(value.requestId, "motion integration request id");
+  const requestValue = value.request;
+  assertPositiveInteger(requestValue.pathKey, "motion integration path key");
+  assertFinite(requestValue.startTime, "motion integration start time");
+  assertFinite(requestValue.endTime, "motion integration end time");
+  assertPositiveFinite(requestValue.step, "motion integration step");
+  assertVector(requestValue.initialPosition, "motion integration initial position");
+  assertVector(requestValue.initialVelocity, "motion integration initial velocity");
+  assertVector(requestValue.acceleration, "motion integration acceleration");
+  assertFinite(requestValue.integrationTolerance, "motion integration tolerance");
+  assert(requestValue.integrationMethod === 1, "motion integration method mismatch");
+}
+
+function validateMotionIntegrationResponseEnvelope(value) {
+  assert(value.schema === "solver-app-bridge/v1", "motion integration response schema tag mismatch");
+  assert(value.kind === "motion-integration-f64-response", "motion integration response kind mismatch");
+  assertNonemptyString(value.requestId, "motion integration response id");
+  const responseValue = value.response;
+  assert(responseValue.frames.length === 3, "motion integration frame count mismatch");
+  assert(responseValue.frames[2].position.x === 6, "motion integration final x mismatch");
+  assert(responseValue.frames[2].velocity.z === 3, "motion integration final z velocity mismatch");
+  assertBuffer(responseValue.buffers[0], "frame-buffer", "frame_buffer.v1", 264, 3);
+  assert(responseValue.status.code === "ok", "motion integration status mismatch");
 }
 
 function validateResponseEnvelope(value) {
@@ -1718,7 +1754,7 @@ function createBroadPhaseCapability(method) {
 function createAbiInfoFixture() {
   return {
     abiMajor: 0,
-    abiMinor: 3,
+    abiMinor: 4,
     abiPatch: 0,
     rootRequestF64Bytes: 176,
     rootRowF64Bytes: 112,
@@ -1755,6 +1791,67 @@ function createAbiInfoFixture() {
     errorBudgetSummaryF64Bytes: 32,
     precisionSolveOptionsBytes: 16,
     precisionSolveSummaryF64Bytes: 80,
+    motionIntegrationRequestF64Bytes: 120,
+  };
+}
+
+function createMotionIntegrationRequestEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "motion-integration-f64-request",
+    requestId: "motion-integration-contract",
+    request: {
+      pathKey: 4321,
+      startTime: 0,
+      endTime: 2,
+      step: 1,
+      initialPosition: { x: 1, y: 1, z: 1 },
+      initialVelocity: { x: 2, y: 0, z: -1 },
+      acceleration: { x: 0.5, y: 1, z: 2 },
+      integrationTolerance: 1e-11,
+      integrationMethod: 1,
+      stateFlags: 11,
+      maxFrames: 3,
+    },
+  };
+}
+
+function createMotionIntegrationResponseEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "motion-integration-f64-response",
+    requestId: "motion-integration-contract",
+    response: {
+      frames: [
+        createMotionFrameFixture({ pathKey: 4321, frameIndex: 0, time: 0, x: 1, y: 1, z: 1 }),
+        createMotionFrameFixture({ pathKey: 4321, frameIndex: 1, time: 1, x: 3.25, y: 1.5, z: 1 }),
+        createMotionFrameFixture({ pathKey: 4321, frameIndex: 2, time: 2, x: 6, y: 3, z: 3, vx: 3, vy: 2, vz: 3 }),
+      ],
+      buffers: [
+        {
+          bufferId: "frame-buffer",
+          layout: "frame_buffer.v1",
+          byteOffset: 0,
+          byteLength: 264,
+          rowCount: 3,
+          numericType: "f64",
+          buffer: {},
+        },
+      ],
+      status: createStatusFixture("ok", "ok", "constant-acceleration motion integrated"),
+    },
+  };
+}
+
+function createMotionFrameFixture(input) {
+  return {
+    pathKey: input.pathKey,
+    frameIndex: input.frameIndex,
+    time: input.time,
+    position: { x: input.x, y: input.y, z: input.z },
+    velocity: { x: input.vx ?? 2, y: input.vy ?? 0, z: input.vz ?? -1 },
+    errorBound: input.errorBound ?? 1e-11,
+    stateFlags: input.stateFlags ?? 11,
   };
 }
 

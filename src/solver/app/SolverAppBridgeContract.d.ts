@@ -103,6 +103,9 @@ export interface SolverClient {
   ): Promise<SolverSpaceTimeIndexF64Response>;
   querySpaceTimeIndexF64(request: SolverQuerySpaceTimeIndexF64Request): Promise<SolverSpaceTimeIndexF64Response>;
   sampleLinearMotionF64(request: SolverLinearMotionSampleF64Request): Promise<SolverLinearMotionSampleF64Response>;
+  integrateConstantAccelerationMotionF64(
+    request: SolverMotionIntegrationF64Request
+  ): Promise<SolverMotionIntegrationF64Response>;
   createPathHistoryStreamF64(
     request: SolverCreatePathHistoryStreamF64Request
   ): Promise<SolverPathHistoryStreamF64Response>;
@@ -158,6 +161,26 @@ export interface SolverLinearMotionSampleF64Request {
 }
 
 export interface SolverLinearMotionSampleF64Response {
+  frames: SolverMotionFrameF64[];
+  buffers: SolverBufferDescriptor[];
+  status: SolverStatusRecord;
+}
+
+export interface SolverMotionIntegrationF64Request {
+  pathKey: number;
+  startTime: number;
+  endTime: number;
+  step: number;
+  initialPosition: SolverVector3F64;
+  initialVelocity: SolverVector3F64;
+  acceleration: SolverVector3F64;
+  integrationTolerance?: number;
+  integrationMethod?: 1;
+  stateFlags?: number;
+  maxFrames?: number;
+}
+
+export interface SolverMotionIntegrationF64Response {
   frames: SolverMotionFrameF64[];
   buffers: SolverBufferDescriptor[];
   status: SolverStatusRecord;
@@ -1392,10 +1415,11 @@ export interface SharedGeometrySolverConfig {
   geometryRequest: SolverSharedGeometryF64Request;
 }
 
-export interface MotionSimulationSolverConfig {
-  appId: SolverAppId;
-  motionRequest: SolverLinearMotionSampleF64Request;
-}
+export type MotionSimulationSolverConfig = { appId: SolverAppId } &
+  (
+    | { motionRequest: SolverLinearMotionSampleF64Request; motionIntegrationRequest?: never }
+    | { motionRequest?: never; motionIntegrationRequest: SolverMotionIntegrationF64Request }
+  );
 
 export interface AppPlaybackSolverConfig {
   appId: SolverAppId;
@@ -1929,6 +1953,7 @@ export interface SolverAbiInfo {
   errorBudgetSummaryF64Bytes: number;
   precisionSolveOptionsBytes: number;
   precisionSolveSummaryF64Bytes: number;
+  motionIntegrationRequestF64Bytes: number;
 }
 
 export interface SolverNumericSerializationDescriptor {

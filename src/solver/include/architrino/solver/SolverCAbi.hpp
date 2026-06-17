@@ -216,6 +216,19 @@ struct ArchitrinoSolverMotionSampleRequestF64 {
   std::uint32_t reserved0;
 };
 
+struct ArchitrinoSolverMotionIntegrationRequestF64 {
+  std::uint64_t path_key;
+  double start_time;
+  double end_time;
+  double step;
+  ArchitrinoSolverVector3F64 initial_position;
+  ArchitrinoSolverVector3F64 initial_velocity;
+  ArchitrinoSolverVector3F64 acceleration;
+  double integration_tolerance;
+  std::uint32_t integration_method;
+  std::uint32_t state_flags;
+};
+
 struct ArchitrinoSolverMotionFrameRowF64 {
   std::uint64_t path_key;
   std::uint64_t frame_index;
@@ -656,6 +669,7 @@ struct ArchitrinoSolverAbiInfo {
   int error_budget_summary_f64_bytes;
   int precision_solve_options_bytes;
   int precision_solve_summary_f64_bytes;
+  int motion_integration_request_f64_bytes;
 };
 
 ArchitrinoSolverAbiInfo architrino_solver_abi_info();
@@ -754,6 +768,12 @@ int architrino_solver_propagate_error_budget_f64(
 
 int architrino_solver_sample_linear_motion_f64(
     const ArchitrinoSolverMotionSampleRequestF64* request,
+    ArchitrinoSolverMotionFrameRowF64* frames,
+    int max_frames,
+    int* out_frame_count);
+
+int architrino_solver_integrate_constant_acceleration_motion_f64(
+    const ArchitrinoSolverMotionIntegrationRequestF64* request,
     ArchitrinoSolverMotionFrameRowF64* frames,
     int max_frames,
     int* out_frame_count);

@@ -209,6 +209,10 @@ assert(
   "expected motion sample request ABI size"
 );
 assert(
+  initResponse.capabilities.abiInfo?.motionIntegrationRequestF64Bytes === 120,
+  "expected motion integration request ABI size"
+);
+assert(
   initResponse.capabilities.abiInfo?.motionFrameRowF64Bytes === 88,
   "expected motion frame row ABI size"
 );
@@ -752,6 +756,29 @@ assert(motionResponse.frames[2].position.y === 3, "expected final motion y");
 assert(motionResponse.frames[2].position.z === 1, "expected final motion z");
 const frameBuffer = findBuffer(motionResponse, "frame_buffer.v1");
 assert(frameBuffer.buffer.byteLength === 264, "expected frame buffer byte length");
+const integratedMotionResponse = await client.integrateConstantAccelerationMotionF64({
+  pathKey: 4321,
+  startTime: 0,
+  endTime: 2,
+  step: 1,
+  initialPosition: { x: 1, y: 1, z: 1 },
+  initialVelocity: { x: 2, y: 0, z: -1 },
+  acceleration: { x: 0.5, y: 1, z: 2 },
+  integrationTolerance: 1e-11,
+  integrationMethod: 1,
+  stateFlags: 11,
+});
+assert(integratedMotionResponse.status.code === "ok", "expected motion integration status ok");
+assert(integratedMotionResponse.frames.length === 3, "expected three integrated motion frames");
+assert(integratedMotionResponse.frames[2].pathKey === 4321, "expected integrated motion path key");
+assert(integratedMotionResponse.frames[2].stateFlags === 11, "expected integrated motion state flags");
+assert(integratedMotionResponse.frames[2].position.x === 6, "expected integrated final motion x");
+assert(integratedMotionResponse.frames[2].position.y === 3, "expected integrated final motion y");
+assert(integratedMotionResponse.frames[2].position.z === 3, "expected integrated final motion z");
+assert(integratedMotionResponse.frames[2].velocity.x === 3, "expected integrated final motion vx");
+assert(integratedMotionResponse.frames[2].velocity.y === 2, "expected integrated final motion vy");
+assert(integratedMotionResponse.frames[2].velocity.z === 3, "expected integrated final motion vz");
+assert(integratedMotionResponse.buffers[0].buffer.byteLength === 264, "expected integrated frame buffer bytes");
 
 const geometryResponse = await client.computeSharedGeometryF64({
   pathBounds: [
@@ -2805,6 +2832,25 @@ assert(
     motionRunHandle.response.frames[2].position.z === 1,
   "expected motion run final position"
 );
+const integratedMotionRunHandle = await client.runSimulation(makeIntegratedMotionRunSimulationRequest());
+assert(integratedMotionRunHandle.status.code === "ok", "expected integrated motion run status ok");
+assert(integratedMotionRunHandle.requestId === "smoke-integrated-motion-run-request", "expected integrated motion request id");
+assert(integratedMotionRunHandle.response.summary.frameCount === 3, "expected integrated motion run frame count");
+assert(
+  integratedMotionRunHandle.response.manifest.runKind === "motionSimulation" &&
+    integratedMotionRunHandle.response.manifest.configVersion === "solver-integrated-motion-run-smoke.v1" &&
+    integratedMotionRunHandle.response.manifest.buffers[0].layout === "frame_buffer.v1",
+  "expected integrated motion run manifest"
+);
+assert(
+  integratedMotionRunHandle.response.frames[2].position.x === 6 &&
+    integratedMotionRunHandle.response.frames[2].position.y === 3 &&
+    integratedMotionRunHandle.response.frames[2].position.z === 3 &&
+    integratedMotionRunHandle.response.frames[2].velocity.x === 3 &&
+    integratedMotionRunHandle.response.frames[2].velocity.y === 2 &&
+    integratedMotionRunHandle.response.frames[2].velocity.z === 3,
+  "expected integrated motion run final state"
+);
 
 const appPlaybackRunHandle = await client.runSimulation(
   makeAppPlaybackRunSimulationRequest(motionRunHandle.response)
@@ -3289,6 +3335,40 @@ function makeMotionRunSimulationRequest() {
       endTime: 2,
       step: 1,
       stateFlags: 9,
+    },
+    output: {
+      outputs: ["frameBuffer", "diagnostics"],
+      streamTarget: "caller-buffer",
+      memoryBudgetBytes: 64 * 1024 * 1024,
+      deterministic: true,
+    },
+  });
+}
+
+function makeIntegratedMotionRunSimulationRequest() {
+  const admission = makeAdmissionRequest();
+  return createAnimatorMotionSimulationRunRequest({
+    requestId: "smoke-integrated-motion-run-request",
+    runId: "smoke-integrated-motion-run",
+    datasetId: "smoke-integrated-motion-run-dataset",
+    claimLevel: "interactive-preview",
+    precisionPath: "auto",
+    configVersion: "solver-integrated-motion-run-smoke.v1",
+    configHash: "solver-integrated-motion-run-smoke",
+    model: admission.model,
+    envelope: admission.envelope,
+    errorBudget: admission.errorBudget,
+    motionIntegrationRequest: {
+      pathKey: 4321,
+      startTime: 0,
+      endTime: 2,
+      step: 1,
+      initialPosition: { x: 1, y: 1, z: 1 },
+      initialVelocity: { x: 2, y: 0, z: -1 },
+      acceleration: { x: 0.5, y: 1, z: 2 },
+      integrationTolerance: 1e-11,
+      integrationMethod: 1,
+      stateFlags: 11,
     },
     output: {
       outputs: ["frameBuffer", "diagnostics"],

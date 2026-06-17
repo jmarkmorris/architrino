@@ -2,12 +2,14 @@
 
 import crypto from "node:crypto";
 import fs from "node:fs";
+import { createRequire } from "node:module";
 import path from "node:path";
 
 const ROOT_DIR = process.cwd();
 const TEXTBOOK_TOC_PATH = "content/graph/textbook_toc.json";
 const READING_COPY_DIR = "content/generated/markdown/textbook/reading-copies";
 const APP_ROOT = "apps/ios/ArchitrinoReader";
+const READER_ASSET_DIR = `${APP_ROOT}/ArchitrinoReader/ReaderAssets`;
 const DEFAULT_OUTPUT_DIR = `${APP_ROOT}/GeneratedTextbookPackage`;
 const SCHEMA_PATH = `${APP_ROOT}/textbook_bundle_schema_v1.json`;
 const MANIFEST_FILE = "textbook_bundle.json";
@@ -69,6 +71,16 @@ const ASSET_EXTENSIONS = new Set([
   ".svg",
   ".webp",
 ]);
+
+const require = createRequire(import.meta.url);
+const MarkdownIt = require(path.join(ROOT_DIR, READER_ASSET_DIR, "markdown-it.min.js"));
+const katex = require(path.join(ROOT_DIR, READER_ASSET_DIR, "katex/katex.min.js"));
+const renderedMarkdownParser = MarkdownIt({
+  html: true,
+  breaks: true,
+  linkify: true,
+  typographer: true,
+});
 
 const parsed = parseArgs(process.argv.slice(2));
 const mode = parsed.write ? "write" : "check";
@@ -245,6 +257,7 @@ function addChapterRecord({ entry, sectionKeys }) {
   const slug = slugFromTitle(entry.title);
   const sourcePath = `${READING_COPY_DIR}/${slug}.md`;
   const bundlePath = `reading-copies/${slug}.md`;
+  const htmlPath = `reading-copies/${slug}.html`;
 
   const absoluteSource = path.join(ROOT_DIR, sourcePath);
   if (!fs.existsSync(absoluteSource)) {
@@ -253,11 +266,13 @@ function addChapterRecord({ entry, sectionKeys }) {
   }
 
   const buffer = fs.readFileSync(absoluteSource);
+  const markdownText = buffer.toString("utf8");
   const record = {
     id: entry.id || slug,
     title: entry.title,
     markdownPath: sourcePath,
     bundlePath,
+    htmlPath,
     heading: entry.kind === "markdown-view" ? "markdown-view" : "scene-index",
     sectionCount: sectionKeys.length,
     sectionKeys: sectionKeys,
@@ -278,9 +293,16 @@ function addChapterRecord({ entry, sectionKeys }) {
     sha256: chapterBytes,
   });
   seenBundlePaths.add(bundlePath);
+  addGeneratedFileRecord({
+    bundlePath: htmlPath,
+    type: "html",
+    role: "chapter",
+    payload: renderMarkdownHTMLFragment(markdownText),
+  });
   return {
     sourcePath,
     bundlePath,
+    htmlPath,
     chapterId: record.id,
     sourceChapterId: record.id,
     id: record.id,
@@ -292,6 +314,7 @@ function addChapterRecord({ entry, sectionKeys }) {
 function addReferenceDocumentRecord(document) {
   const sourcePath = normalizeRelPath(document.sourcePath);
   const bundlePath = normalizeRelPath(document.bundlePath);
+  const htmlPath = bundlePath.replace(/\.md$/i, ".html");
   const absoluteSource = path.join(ROOT_DIR, sourcePath);
 
   if (!fs.existsSync(absoluteSource)) {
@@ -300,6 +323,7 @@ function addReferenceDocumentRecord(document) {
   }
 
   const buffer = fs.readFileSync(absoluteSource);
+  const markdownText = buffer.toString("utf8");
   if (seenBundlePaths.has(bundlePath)) {
     errors.push(`Duplicate reference bundle path: ${bundlePath}`);
     return null;
@@ -310,6 +334,7 @@ function addReferenceDocumentRecord(document) {
     title: document.title,
     sourcePath,
     bundlePath,
+    htmlPath,
   };
 
   manifest.references.push(record);
@@ -322,10 +347,17 @@ function addReferenceDocumentRecord(document) {
     sha256: sha256Buffer(buffer),
   });
   seenBundlePaths.add(bundlePath);
+  addGeneratedFileRecord({
+    bundlePath: htmlPath,
+    type: "html",
+    role: "reference",
+    payload: renderMarkdownHTMLFragment(markdownText),
+  });
 
   return {
     sourcePath,
     bundlePath,
+    htmlPath,
     sourceChapterId: record.id,
     id: record.id,
     title: record.title,
@@ -379,6 +411,307 @@ function anchorFromTitle(title) {
     .replace(/-+/g, "-")
     .replace(/^-+/, "")
     .replace(/-+$/, "") || "section";
+}
+
+function installHeadingAnchorRenderer(markdownParser) {
+  const defaultHeadingOpen =
+    markdownParser.renderer.rules.heading_open ||
+    ((tokens, idx, options, env, self) => self.renderToken(tokens, idx, options));
+
+  markdownParser.renderer.rules.heading_open = (tokens, idx, options, env, self) => {
+    const token = tokens[idx];
+    const level = Number(String(token.tag || "").replace(/^h/i, ""));
+    if (level >= 2 && level <= 6) {
+      const inlineToken = tokens[idx + 1];
+      const baseAnchor = anchorFromTitle(inlineToken?.content || "");
+      env.headingAnchorCounts = env.headingAnchorCounts || new Map();
+      const prior = env.headingAnchorCounts.get(baseAnchor) || 0;
+      token.attrSet("id", prior === 0 ? baseAnchor : `${baseAnchor}-${prior}`);
+      env.headingAnchorCounts.set(baseAnchor, prior + 1);
+    }
+    return defaultHeadingOpen(tokens, idx, options, env, self);
+  };
+}
+
+installHeadingAnchorRenderer(renderedMarkdownParser);
+
+function escapeHTML(value) {
+  return String(value || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+function isEscapedDelimiter(text, index) {
+  let slashCount = 0;
+  for (let cursor = index - 1; cursor >= 0 && text[cursor] === "\\"; cursor -= 1) {
+    slashCount += 1;
+  }
+  return slashCount % 2 === 1;
+}
+
+function findClosingDelimiter(text, delimiter, fromIndex) {
+  let index = fromIndex;
+  while (index < text.length) {
+    const candidate = text.indexOf(delimiter, index);
+    if (candidate < 0) {
+      return -1;
+    }
+    if (!isEscapedDelimiter(text, candidate)) {
+      return candidate;
+    }
+    index = candidate + delimiter.length;
+  }
+  return -1;
+}
+
+function nextMathDelimiter(text, fromIndex) {
+  const delimiters = [
+    { open: "$$", close: "$$", display: true },
+    { open: "\\[", close: "\\]", display: true },
+    { open: "\\(", close: "\\)", display: false },
+    { open: "$", close: "$", display: false },
+  ];
+  let best = null;
+  for (const delimiter of delimiters) {
+    let index = text.indexOf(delimiter.open, fromIndex);
+    while (index >= 0 && isEscapedDelimiter(text, index)) {
+      index = text.indexOf(delimiter.open, index + delimiter.open.length);
+    }
+    if (index >= 0 && (!best || index < best.index || delimiter.open.length > best.delimiter.open.length)) {
+      best = { index, delimiter };
+    }
+  }
+  return best;
+}
+
+function renderedMathHTML(math, displayMode, fallbackText) {
+  const internalTokenPattern = /@@ARCHITRINO_(?:DISPLAY|INLINE)_MATH_\d+@@/g;
+  const cleanFallbackText = String(fallbackText || "").replace(internalTokenPattern, "");
+  if (/@@ARCHITRINO_(?:DISPLAY|INLINE)_MATH_\d+@@/.test(String(math || ""))) {
+    return escapeHTML(cleanFallbackText);
+  }
+  try {
+    return katex.renderToString(math, {
+      displayMode,
+      throwOnError: false,
+      strict: "ignore",
+    });
+  } catch {
+    return escapeHTML(cleanFallbackText);
+  }
+}
+
+function isFenceStart(trimmedLine) {
+  if (trimmedLine.startsWith("```")) {
+    return "```";
+  }
+  if (trimmedLine.startsWith("~~~")) {
+    return "~~~";
+  }
+  return null;
+}
+
+function displayMathOpenForLine(line) {
+  const match = /^(\s*(?:>\s*)?(?:(?:[-*+]|\d+\.)\s+)?)(\$\$|\\\[)\s*$/.exec(line);
+  if (!match) {
+    return null;
+  }
+  return {
+    prefix: match[1] || "",
+    closeDelimiter: match[2] === "$$" ? "$$" : "\\]",
+  };
+}
+
+function isDisplayMathCloseLine(line, closeDelimiter) {
+  const escaped = closeDelimiter === "$$" ? "\\$\\$" : "\\\\\\]";
+  return new RegExp(`^\\s*(?:>\\s*)?${escaped}\\s*$`).test(line);
+}
+
+function stripDisplayMathContentPrefix(line, displayOpen) {
+  if (String(displayOpen.prefix || "").includes(">")) {
+    return line.replace(/^\s*>\s?/, "");
+  }
+  return line;
+}
+
+function extractDisplayMathBlocks(markdownText) {
+  const displayBlocks = [];
+  const outputLines = [];
+  const lines = String(markdownText || "").split(/\r?\n/);
+  let fence = null;
+
+  for (let index = 0; index < lines.length; index += 1) {
+    const line = lines[index];
+    const trimmed = line.trim();
+
+    if (fence) {
+      outputLines.push(line);
+      if (trimmed.startsWith(fence)) {
+        fence = null;
+      }
+      continue;
+    }
+
+    const fenceStart = isFenceStart(trimmed);
+    if (fenceStart) {
+      fence = fenceStart;
+      outputLines.push(line);
+      continue;
+    }
+
+    const displayOpen = displayMathOpenForLine(line);
+    if (!displayOpen) {
+      outputLines.push(line);
+      continue;
+    }
+
+    const mathLines = [];
+    let closeIndex = -1;
+    for (let cursor = index + 1; cursor < lines.length; cursor += 1) {
+      if (isDisplayMathCloseLine(lines[cursor], displayOpen.closeDelimiter)) {
+        closeIndex = cursor;
+        break;
+      }
+      mathLines.push(stripDisplayMathContentPrefix(lines[cursor], displayOpen));
+    }
+
+    if (closeIndex < 0) {
+      outputLines.push(line);
+      continue;
+    }
+
+    const blockIndex = displayBlocks.length;
+    displayBlocks.push({
+      math: mathLines.join("\n"),
+      fallbackText: `${trimmed}\n${mathLines.join("\n")}\n${displayOpen.closeDelimiter}`,
+    });
+    outputLines.push(`${displayOpen.prefix}@@ARCHITRINO_DISPLAY_MATH_${blockIndex}@@`);
+    index = closeIndex;
+  }
+
+  return {
+    markdownText: outputLines.join("\n"),
+    displayBlocks,
+  };
+}
+
+function backtickRunAt(text, index) {
+  let cursor = index;
+  while (cursor < text.length && text[cursor] === "`") {
+    cursor += 1;
+  }
+  return text.slice(index, cursor);
+}
+
+function extractInlineMathFromText(text, inlineBlocks) {
+  let output = "";
+  let cursor = 0;
+
+  while (cursor < text.length) {
+    const match = nextMathDelimiter(text, cursor);
+    const codeStart = text.indexOf("`", cursor);
+
+    if (!match) {
+      output += text.slice(cursor);
+      break;
+    }
+
+    if (codeStart >= 0 && codeStart < match.index) {
+      const tickRun = backtickRunAt(text, codeStart);
+      const closeIndex = text.indexOf(tickRun, codeStart + tickRun.length);
+      const codeEnd = closeIndex >= 0 ? closeIndex + tickRun.length : codeStart + tickRun.length;
+      output += text.slice(cursor, codeEnd);
+      cursor = codeEnd;
+      continue;
+    }
+
+    const { index, delimiter } = match;
+    const contentStart = index + delimiter.open.length;
+    const contentEnd = findClosingDelimiter(text, delimiter.close, contentStart);
+    if (contentEnd < 0) {
+      output += text.slice(cursor, contentStart);
+      cursor = contentStart;
+      continue;
+    }
+
+    const fallbackText = text.slice(index, contentEnd + delimiter.close.length);
+    const mathIndex = inlineBlocks.length;
+    inlineBlocks.push({
+      math: text.slice(contentStart, contentEnd),
+      display: delimiter.display,
+      fallbackText,
+    });
+    output += text.slice(cursor, index);
+    output += `@@ARCHITRINO_INLINE_MATH_${mathIndex}@@`;
+    cursor = contentEnd + delimiter.close.length;
+  }
+
+  return output;
+}
+
+function extractInlineMathSpans(markdownText) {
+  const inlineBlocks = [];
+  const outputLines = [];
+  const lines = String(markdownText || "").split(/\r?\n/);
+  let fence = null;
+
+  for (const line of lines) {
+    const trimmed = line.trim();
+
+    if (fence) {
+      outputLines.push(line);
+      if (trimmed.startsWith(fence)) {
+        fence = null;
+      }
+      continue;
+    }
+
+    const fenceStart = isFenceStart(trimmed);
+    if (fenceStart) {
+      fence = fenceStart;
+      outputLines.push(line);
+      continue;
+    }
+
+    outputLines.push(extractInlineMathFromText(line, inlineBlocks));
+  }
+
+  return {
+    markdownText: outputLines.join("\n"),
+    inlineBlocks,
+  };
+}
+
+function replaceDisplayMathPlaceholders(html, displayBlocks) {
+  return displayBlocks.reduce((result, block, index) => {
+    const token = `@@ARCHITRINO_DISPLAY_MATH_${index}@@`;
+    const rendered = renderedMathHTML(block.math, true, block.fallbackText);
+    return result
+      .replaceAll(`<p>${token}</p>`, rendered)
+      .replaceAll(token, rendered);
+  }, html);
+}
+
+function replaceInlineMathPlaceholders(html, inlineBlocks) {
+  return inlineBlocks.reduce((result, block, index) => {
+    const token = `@@ARCHITRINO_INLINE_MATH_${index}@@`;
+    return result.replaceAll(token, renderedMathHTML(block.math, block.display, block.fallbackText));
+  }, html);
+}
+
+function renderMarkdownHTMLFragment(markdownText) {
+  const displayPrepared = extractDisplayMathBlocks(markdownText || "");
+  const inlinePrepared = extractInlineMathSpans(displayPrepared.markdownText);
+  const html = renderedMarkdownParser.render(inlinePrepared.markdownText, {
+    headingAnchorCounts: new Map(),
+  });
+  return replaceInlineMathPlaceholders(
+    replaceDisplayMathPlaceholders(html, displayPrepared.displayBlocks),
+    inlinePrepared.inlineBlocks,
+  );
 }
 
 function normalizeSearchText(value) {

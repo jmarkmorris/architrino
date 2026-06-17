@@ -94,6 +94,12 @@
       "$ref": "#/$defs/linearMotionSampleF64ResponseEnvelope"
     },
     {
+      "$ref": "#/$defs/motionIntegrationF64RequestEnvelope"
+    },
+    {
+      "$ref": "#/$defs/motionIntegrationF64ResponseEnvelope"
+    },
+    {
       "$ref": "#/$defs/phaseAtHitF64RequestEnvelope"
     },
     {
@@ -297,6 +303,7 @@
         "buildPathHistoryStreamSpaceTimeIndexF64",
         "querySpaceTimeIndexF64",
         "sampleLinearMotionF64",
+        "integrateConstantAccelerationMotionF64",
         "createPathHistoryStreamF64",
         "planPathHistoryStorageLifecycleF64",
         "queryEmissionShellCandidatesF64",
@@ -970,6 +977,46 @@
         },
         "response": {
           "$ref": "#/$defs/linearMotionSampleF64Response"
+        }
+      }
+    },
+    "motionIntegrationF64RequestEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "request"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "motion-integration-f64-request"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "request": {
+          "$ref": "#/$defs/motionIntegrationF64Request"
+        }
+      }
+    },
+    "motionIntegrationF64ResponseEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "response"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "motion-integration-f64-response"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "response": {
+          "$ref": "#/$defs/motionIntegrationF64Response"
         }
       }
     },
@@ -2683,7 +2730,8 @@
         "errorBudgetStageRowF64Bytes",
         "errorBudgetSummaryF64Bytes",
         "precisionSolveOptionsBytes",
-        "precisionSolveSummaryF64Bytes"
+        "precisionSolveSummaryF64Bytes",
+        "motionIntegrationRequestF64Bytes"
       ],
       "properties": {
         "abiMajor": { "type": "integer", "minimum": 0 },
@@ -2723,7 +2771,8 @@
         "errorBudgetStageRowF64Bytes": { "type": "integer", "minimum": 1 },
         "errorBudgetSummaryF64Bytes": { "type": "integer", "minimum": 1 },
         "precisionSolveOptionsBytes": { "type": "integer", "minimum": 1 },
-        "precisionSolveSummaryF64Bytes": { "type": "integer", "minimum": 1 }
+        "precisionSolveSummaryF64Bytes": { "type": "integer", "minimum": 1 },
+        "motionIntegrationRequestF64Bytes": { "type": "integer", "minimum": 1 }
       }
     },
     "threadingPolicy": {
@@ -3148,13 +3197,30 @@
     "motionSimulationRunConfig": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["appId", "motionRequest"],
+      "required": ["appId"],
+      "oneOf": [
+        {
+          "required": ["motionRequest"],
+          "not": {
+            "required": ["motionIntegrationRequest"]
+          }
+        },
+        {
+          "required": ["motionIntegrationRequest"],
+          "not": {
+            "required": ["motionRequest"]
+          }
+        }
+      ],
       "properties": {
         "appId": {
           "$ref": "#/$defs/solverAppId"
         },
         "motionRequest": {
           "$ref": "#/$defs/linearMotionSampleF64Request"
+        },
+        "motionIntegrationRequest": {
+          "$ref": "#/$defs/motionIntegrationF64Request"
         }
       }
     },
@@ -3982,6 +4048,62 @@
         }
       }
     },
+    "motionIntegrationF64Request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "pathKey",
+        "startTime",
+        "endTime",
+        "step",
+        "initialPosition",
+        "initialVelocity",
+        "acceleration"
+      ],
+      "properties": {
+        "pathKey": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "startTime": {
+          "type": "number"
+        },
+        "endTime": {
+          "type": "number"
+        },
+        "step": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "initialPosition": {
+          "$ref": "#/$defs/vector3F64"
+        },
+        "initialVelocity": {
+          "$ref": "#/$defs/vector3F64"
+        },
+        "acceleration": {
+          "$ref": "#/$defs/vector3F64"
+        },
+        "integrationTolerance": {
+          "type": "number",
+          "minimum": 0
+        },
+        "integrationMethod": {
+          "const": 1
+        },
+        "stateFlags": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4294967295
+        },
+        "maxFrames": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2147483647
+        }
+      }
+    },
     "phaseAtHitF64Request": {
       "type": "object",
       "additionalProperties": false,
@@ -4648,6 +4770,28 @@
       }
     },
     "linearMotionSampleF64Response": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["frames", "buffers", "status"],
+      "properties": {
+        "frames": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/motionFrameF64"
+          }
+        },
+        "buffers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/bufferDescriptor"
+          }
+        },
+        "status": {
+          "$ref": "#/$defs/statusRecord"
+        }
+      }
+    },
+    "motionIntegrationF64Response": {
       "type": "object",
       "additionalProperties": false,
       "required": ["frames", "buffers", "status"],

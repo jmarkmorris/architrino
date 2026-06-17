@@ -40,6 +40,7 @@ static_assert(sizeof(ArchitrinoSolverErrorBudgetSummaryF64) == 32);
 static_assert(sizeof(ArchitrinoSolverPhaseClockF64) == 24);
 static_assert(sizeof(ArchitrinoSolverPhaseAtHitRowF64) == 72);
 static_assert(sizeof(ArchitrinoSolverMotionSampleRequestF64) == 112);
+static_assert(sizeof(ArchitrinoSolverMotionIntegrationRequestF64) == 120);
 static_assert(sizeof(ArchitrinoSolverMotionFrameRowF64) == 88);
 static_assert(sizeof(ArchitrinoSolverPathHistoryRowF64) == 96);
 static_assert(sizeof(ArchitrinoSolverPathHistoryIndexRow) == 64);
@@ -71,7 +72,7 @@ static_assert(sizeof(ArchitrinoSolverEmissionShellCandidateRowF64) == 112);
 static_assert(sizeof(ArchitrinoSolverEmissionShellBroadPhaseSummary) == 32);
 static_assert(sizeof(ArchitrinoSolverEmissionShellNarrowPhaseRequestF64) == 208);
 static_assert(sizeof(ArchitrinoSolverEmissionShellNarrowPhaseRowF64) == 40);
-static_assert(sizeof(ArchitrinoSolverAbiInfo) == 152);
+static_assert(sizeof(ArchitrinoSolverAbiInfo) == 156);
 static_assert(offsetof(ArchitrinoSolverCausalRootRequestF64, hit_time) == 144);
 static_assert(offsetof(ArchitrinoSolverCausalRootRequestF64, max_iterations) == 168);
 static_assert(offsetof(ArchitrinoSolverCausalRootRowF64, emission_time) == 8);
@@ -98,6 +99,8 @@ static_assert(offsetof(ArchitrinoSolverPhaseAtHitRowF64, emission_time) == 24);
 static_assert(offsetof(ArchitrinoSolverPhaseAtHitRowF64, phase_spread) == 64);
 static_assert(offsetof(ArchitrinoSolverMotionSampleRequestF64, path_key) == 72);
 static_assert(offsetof(ArchitrinoSolverMotionSampleRequestF64, state_flags) == 104);
+static_assert(offsetof(ArchitrinoSolverMotionIntegrationRequestF64, initial_position) == 32);
+static_assert(offsetof(ArchitrinoSolverMotionIntegrationRequestF64, integration_method) == 112);
 static_assert(offsetof(ArchitrinoSolverMotionFrameRowF64, time) == 16);
 static_assert(offsetof(ArchitrinoSolverMotionFrameRowF64, state_flags) == 80);
 static_assert(offsetof(ArchitrinoSolverPathHistoryRowF64, start_time) == 16);
@@ -323,6 +326,22 @@ architrino::solver::MotionSampleRequest to_motion_request(
       request->start_time,
       request->end_time,
       request->step,
+      request->state_flags,
+  };
+}
+
+architrino::solver::MotionIntegrationRequest to_motion_integration_request(
+    const ArchitrinoSolverMotionIntegrationRequestF64* request) {
+  return architrino::solver::MotionIntegrationRequest{
+      request->path_key,
+      request->start_time,
+      request->end_time,
+      request->step,
+      to_vector(request->initial_position),
+      to_vector(request->initial_velocity),
+      to_vector(request->acceleration),
+      request->integration_tolerance,
+      request->integration_method,
       request->state_flags,
   };
 }
@@ -1819,7 +1838,7 @@ int copy_assembly_graph_store_index_rows(
 extern "C" ArchitrinoSolverAbiInfo architrino_solver_abi_info() {
   return ArchitrinoSolverAbiInfo{
       0,
-      3,
+      4,
       0,
       static_cast<int>(sizeof(ArchitrinoSolverCausalRootRequestF64)),
       static_cast<int>(sizeof(ArchitrinoSolverCausalRootRowF64)),
@@ -1856,6 +1875,7 @@ extern "C" ArchitrinoSolverAbiInfo architrino_solver_abi_info() {
       static_cast<int>(sizeof(ArchitrinoSolverErrorBudgetSummaryF64)),
       static_cast<int>(sizeof(ArchitrinoSolverPrecisionSolveOptions)),
       static_cast<int>(sizeof(ArchitrinoSolverPrecisionSolveSummaryF64)),
+      static_cast<int>(sizeof(ArchitrinoSolverMotionIntegrationRequestF64)),
   };
 }
 
@@ -2106,6 +2126,26 @@ extern "C" int architrino_solver_sample_linear_motion_f64(
 
   const architrino::solver::MotionSampleResult result =
       architrino::solver::sample_linear_motion(to_motion_request(request));
+  if (!result.validation.ok) {
+    *out_frame_count = 0;
+    return -2;
+  }
+
+  return copy_motion_frames(result.frames, frames, max_frames, out_frame_count);
+}
+
+extern "C" int architrino_solver_integrate_constant_acceleration_motion_f64(
+    const ArchitrinoSolverMotionIntegrationRequestF64* request,
+    ArchitrinoSolverMotionFrameRowF64* frames,
+    int max_frames,
+    int* out_frame_count) {
+  if (request == nullptr || out_frame_count == nullptr || max_frames < 0) {
+    return -1;
+  }
+
+  const architrino::solver::MotionSampleResult result =
+      architrino::solver::integrate_constant_acceleration_motion(
+          to_motion_integration_request(request));
   if (!result.validation.ok) {
     *out_frame_count = 0;
     return -2;

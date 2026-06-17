@@ -15,6 +15,7 @@ bool nearly_equal(double left, double right, double tolerance = 1e-12) {
 
 int main() {
   static_assert(sizeof(architrino::solver::MotionFrameRowF64) == 88);
+  static_assert(sizeof(ArchitrinoSolverMotionIntegrationRequestF64) == 120);
 
   const architrino::solver::LinearPathSegment segment{
       "motion-path",
@@ -66,6 +67,40 @@ int main() {
   int abiFrameCount = 0;
   const int abiStatus =
       architrino_solver_sample_linear_motion_f64(&abiRequest, abiFrames, 3, &abiFrameCount);
+  const architrino::solver::MotionSampleResult integrated =
+      architrino::solver::integrate_constant_acceleration_motion(
+          architrino::solver::MotionIntegrationRequest{
+              4321,
+              0.0,
+              2.0,
+              1.0,
+              architrino::solver::Vector3{1.0, 1.0, 1.0},
+              architrino::solver::Vector3{2.0, 0.0, -1.0},
+              architrino::solver::Vector3{0.5, 1.0, 2.0},
+              1e-11,
+              1,
+              11,
+          });
+  ArchitrinoSolverMotionIntegrationRequestF64 abiIntegrationRequest{
+      4321,
+      0.0,
+      2.0,
+      1.0,
+      ArchitrinoSolverVector3F64{1.0, 1.0, 1.0},
+      ArchitrinoSolverVector3F64{2.0, 0.0, -1.0},
+      ArchitrinoSolverVector3F64{0.5, 1.0, 2.0},
+      1e-11,
+      1,
+      11,
+  };
+  ArchitrinoSolverMotionFrameRowF64 abiIntegratedFrames[3]{};
+  int abiIntegratedFrameCount = 0;
+  const int abiIntegrationStatus = architrino_solver_integrate_constant_acceleration_motion_f64(
+      &abiIntegrationRequest,
+      abiIntegratedFrames,
+      3,
+      &abiIntegratedFrameCount);
+  const ArchitrinoSolverAbiInfo abiInfo = architrino_solver_abi_info();
 
   const bool ok =
       result.validation.ok &&
@@ -88,7 +123,31 @@ int main() {
       abiFrames[2].state_flags == 9 &&
       nearly_equal(abiFrames[2].position_x, 5.0) &&
       nearly_equal(abiFrames[2].position_y, 3.0) &&
-      nearly_equal(abiFrames[2].position_z, 1.0);
+      nearly_equal(abiFrames[2].position_z, 1.0) &&
+      integrated.validation.ok &&
+      integrated.frames.size() == 3 &&
+      integrated.frames[2].pathKey == 4321 &&
+      integrated.frames[2].stateFlags == 11 &&
+      integrated.frames[2].reserved0 == 1 &&
+      nearly_equal(integrated.frames[2].positionX, 6.0) &&
+      nearly_equal(integrated.frames[2].positionY, 3.0) &&
+      nearly_equal(integrated.frames[2].positionZ, 3.0) &&
+      nearly_equal(integrated.frames[2].velocityX, 3.0) &&
+      nearly_equal(integrated.frames[2].velocityY, 2.0) &&
+      nearly_equal(integrated.frames[2].velocityZ, 3.0) &&
+      nearly_equal(integrated.frames[2].errorBound, 1e-11) &&
+      abiIntegrationStatus == 0 &&
+      abiIntegratedFrameCount == 3 &&
+      abiIntegratedFrames[2].path_key == 4321 &&
+      abiIntegratedFrames[2].state_flags == 11 &&
+      abiIntegratedFrames[2].reserved0 == 1 &&
+      nearly_equal(abiIntegratedFrames[2].position_x, 6.0) &&
+      nearly_equal(abiIntegratedFrames[2].position_y, 3.0) &&
+      nearly_equal(abiIntegratedFrames[2].position_z, 3.0) &&
+      nearly_equal(abiIntegratedFrames[2].velocity_x, 3.0) &&
+      nearly_equal(abiIntegratedFrames[2].velocity_y, 2.0) &&
+      nearly_equal(abiIntegratedFrames[2].velocity_z, 3.0) &&
+      abiInfo.motion_integration_request_f64_bytes == 120;
 
   if (!ok) {
     std::cerr << "solver motion smoke failed\n";

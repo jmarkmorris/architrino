@@ -89,6 +89,7 @@
   let currentChapterId = null;
   let linkMap = {};
   let shellRoot = null;
+  let activeRenderId = null;
 
   function isExternalLinkTarget(href) {
     return /^(?:[a-z][a-z0-9+.-]*:)?\/\//i.test(href) || /^(?:mailto|tel|sms):/i.test(href);
@@ -210,6 +211,45 @@
     return template.content;
   }
 
+  function escapeHTML(value) {
+    return String(value || "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
+
+  function bundleHTMLURL(bundlePath) {
+    const normalized = normalizeTarget(bundlePath)
+      .replace(/^GeneratedTextbookPackage\//, "")
+      .split("/")
+      .filter(Boolean)
+      .map(encodeURIComponent)
+      .join("/");
+    return `../GeneratedTextbookPackage/${normalized}`;
+  }
+
+  async function fetchRenderedHTML(payload) {
+    if (!payload || !payload.htmlPath) {
+      return null;
+    }
+    const response = await fetch(bundleHTMLURL(payload.htmlPath), {
+      cache: "force-cache",
+    });
+    const html = await response.text();
+    if (!html && !response.ok) {
+      throw new Error(`Unable to read rendered HTML for ${payload.htmlPath}`);
+    }
+    return html;
+  }
+
+  function renderHTMLContent(htmlText) {
+    const template = document.createElement("template");
+    template.innerHTML = htmlText || "";
+    return template.content;
+  }
+
   function normalizeHeadingText(value) {
     return String(value || "")
       .replace(/\s+/g, " ")
@@ -325,11 +365,13 @@
     });
   }
 
-  function render(payload) {
+  async function render(payload) {
     if (!payload) {
       return;
     }
 
+    const renderId = payload.id || `${Date.now()}`;
+    activeRenderId = renderId;
     const chapter = String(payload.chapterId || "chapter");
     currentChapterId = chapter;
     linkMap = payload.linkMap || {};
@@ -342,7 +384,23 @@
       return;
     }
     const title = payload.chapterTitle || chapter;
-    const rendered = renderMarkdownContent(payload.markdownText || "");
+    let rendered = null;
+    try {
+      const htmlText = await fetchRenderedHTML(payload);
+      if (activeRenderId !== renderId) {
+        return;
+      }
+      rendered = htmlText ? renderHTMLContent(htmlText) : renderMarkdownContent(payload.markdownText || "");
+    } catch (error) {
+      if (activeRenderId !== renderId) {
+        return;
+      }
+      if (payload.markdownText) {
+        rendered = renderMarkdownContent(payload.markdownText);
+      } else {
+        rendered = renderHTMLContent(`<p>Failed to load rendered document.</p><pre>${escapeHTML(error.message)}</pre>`);
+      }
+    }
     shellRoot.innerHTML = `<article class="reader-article"></article>`;
 
     const article = shellRoot.querySelector("article");

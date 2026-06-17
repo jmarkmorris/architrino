@@ -24,6 +24,7 @@ import type {
   SolverErrorBudget,
   SolverLinearMotionSampleF64Request,
   SolverModelContract,
+  SolverMotionIntegrationF64Request,
   SolverMotionFrameF64,
   SolverOpenStreamRequest,
   SolverOutputRequest,
@@ -92,9 +93,11 @@ export interface IdealSwarmSharedGeometryRunAdapterInput extends SolverRunAdapte
   geometryRequest: SolverSharedGeometryF64Request;
 }
 
-export interface AnimatorMotionSimulationRunAdapterInput extends SolverRunAdapterBaseInput {
-  motionRequest: SolverLinearMotionSampleF64Request;
-}
+export type AnimatorMotionSimulationRunAdapterInput = SolverRunAdapterBaseInput &
+  (
+    | { motionRequest: SolverLinearMotionSampleF64Request; motionIntegrationRequest?: never }
+    | { motionRequest?: never; motionIntegrationRequest: SolverMotionIntegrationF64Request }
+  );
 
 export interface PathHistoryRunAdapterInput extends SolverRunAdapterBaseInput {
   appId?: SolverAppId;

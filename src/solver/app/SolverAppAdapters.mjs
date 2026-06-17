@@ -126,6 +126,13 @@ export function createIdealSwarmSharedGeometryRunRequest(input) {
 
 export function createAnimatorMotionSimulationRunRequest(input) {
   requireObject(input, "animator motion-simulation adapter input");
+  const hasMotionRequest = input.motionRequest != null;
+  const hasMotionIntegrationRequest = input.motionIntegrationRequest != null;
+  if (hasMotionRequest === hasMotionIntegrationRequest) {
+    throw new TypeError(
+      "animator motion-simulation adapter input requires exactly one of motionRequest or motionIntegrationRequest"
+    );
+  }
   return createSolverRunRequest({
     ...input,
     appId: "animator",
@@ -134,7 +141,9 @@ export function createAnimatorMotionSimulationRunRequest(input) {
     configVersion: input.configVersion ?? "animator-motion-simulation-adapter.v1",
     config: {
       appId: "animator",
-      motionRequest: cloneRequiredObject(input.motionRequest, "motionRequest"),
+      ...(hasMotionIntegrationRequest
+        ? { motionIntegrationRequest: cloneRequiredObject(input.motionIntegrationRequest, "motionIntegrationRequest") }
+        : { motionRequest: cloneRequiredObject(input.motionRequest, "motionRequest") }),
     },
   });
 }

@@ -23,6 +23,7 @@ struct TextbookChapter: Decodable, Identifiable, Equatable, Hashable {
     let title: String
     let markdownPath: String
     let bundlePath: String
+    let htmlPath: String?
     let heading: String?
     let sectionCount: Int
     let sectionKeys: [String]
@@ -44,6 +45,7 @@ struct TextbookReferenceDocument: Decodable, Identifiable, Equatable, Hashable {
     let title: String
     let sourcePath: String
     let bundlePath: String
+    let htmlPath: String?
 }
 
 struct TextbookLinkMetadata: Decodable, Equatable, Hashable {
@@ -284,6 +286,10 @@ final class ReaderTextbookLoader {
     }
 
     func chapterMarkdown(relativePath: String) throws -> String {
+        return try bundledText(relativePath: relativePath)
+    }
+
+    func bundledText(relativePath: String) throws -> String {
         let bundledPath = packageRelativePath(relativePath)
         guard let url = resourceURL(bundledPath) else {
             throw ReaderLoadError.missingBundleRoot
@@ -344,11 +350,20 @@ extension ReaderTextbookLoader {
             byId[chapter.id] = chapter
             byBasename[URL(fileURLWithPath: chapter.markdownPath).deletingPathExtension().lastPathComponent.lowercased()] = chapter
             byBasename[URL(fileURLWithPath: chapter.bundlePath).deletingPathExtension().lastPathComponent.lowercased()] = chapter
+            if let htmlPath = chapter.htmlPath {
+                bySourcePath[normalizePath(htmlPath)] = chapter
+                bySourcePath[normalizePath("GeneratedTextbookPackage/\(htmlPath)")] = chapter
+                byBasename[URL(fileURLWithPath: htmlPath).deletingPathExtension().lastPathComponent.lowercased()] = chapter
+            }
         }
 
         for reference in manifest.references {
             referenceBySourcePath[normalizePath(reference.sourcePath)] = reference
             referenceByBundlePath[normalizePath(reference.bundlePath)] = reference
+            if let htmlPath = reference.htmlPath {
+                referenceByBundlePath[normalizePath(htmlPath)] = reference
+                referenceByBundlePath[normalizePath("GeneratedTextbookPackage/\(htmlPath)")] = reference
+            }
             referenceById[reference.id] = reference
             referenceByBasename[
                 URL(fileURLWithPath: reference.sourcePath)
@@ -362,6 +377,14 @@ extension ReaderTextbookLoader {
                     .lastPathComponent
                     .lowercased()
             ] = reference
+            if let htmlPath = reference.htmlPath {
+                referenceByBasename[
+                    URL(fileURLWithPath: htmlPath)
+                        .deletingPathExtension()
+                        .lastPathComponent
+                        .lowercased()
+                ] = reference
+            }
         }
 
         var grouped: [String: [TextbookLinkMetadata]] = [:]

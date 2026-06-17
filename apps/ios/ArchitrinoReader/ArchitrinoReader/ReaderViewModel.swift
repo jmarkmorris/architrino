@@ -44,6 +44,7 @@ final class ReaderViewModel: ObservableObject {
         let chapterId: String
         let chapterTitle: String
         let sourcePath: String
+        let htmlPath: String?
         let markdownText: String
         let linkMap: [String: ReaderPayloadChapterLink]
         let initialAnchor: String?
@@ -81,6 +82,7 @@ final class ReaderViewModel: ObservableObject {
         let title: String
         let sourcePath: String
         let bundlePath: String
+        let htmlPath: String?
     }
 
     init() {
@@ -471,7 +473,7 @@ final class ReaderViewModel: ObservableObject {
             return
         }
 
-        let markdownText = loadDocumentText(document)
+        let markdownText = document.htmlPath == nil ? loadDocumentText(document) : ""
 
         var linkMap: [String: ReaderPayloadChapterLink] = [:]
         for link in package.linksBySourcePath[normalizePath(document.sourcePath)] ?? [] {
@@ -492,6 +494,7 @@ final class ReaderViewModel: ObservableObject {
             chapterId: document.id,
             chapterTitle: document.title,
             sourcePath: document.sourcePath,
+            htmlPath: document.htmlPath,
             markdownText: markdownText,
             linkMap: linkMap,
             initialAnchor: currentAnchor,
@@ -526,6 +529,10 @@ final class ReaderViewModel: ObservableObject {
         for chapter in package.manifest.chapters {
             bySource[normalizePath(chapter.markdownPath)] = chapter.id
             bySource[normalizePath(chapter.bundlePath)] = chapter.id
+            if let htmlPath = chapter.htmlPath {
+                bySource[normalizePath(htmlPath)] = chapter.id
+                bySource[normalizePath("GeneratedTextbookPackage/\(htmlPath)")] = chapter.id
+            }
             byBasename[
                 URL(fileURLWithPath: chapter.markdownPath)
                     .deletingPathExtension()
@@ -538,11 +545,23 @@ final class ReaderViewModel: ObservableObject {
                     .lastPathComponent
                     .lowercased()
             ] = chapter.id
+            if let htmlPath = chapter.htmlPath {
+                byBasename[
+                    URL(fileURLWithPath: htmlPath)
+                        .deletingPathExtension()
+                        .lastPathComponent
+                        .lowercased()
+                ] = chapter.id
+            }
         }
 
         for reference in package.manifest.references {
             bySource[normalizePath(reference.sourcePath)] = reference.id
             bySource[normalizePath(reference.bundlePath)] = reference.id
+            if let htmlPath = reference.htmlPath {
+                bySource[normalizePath(htmlPath)] = reference.id
+                bySource[normalizePath("GeneratedTextbookPackage/\(htmlPath)")] = reference.id
+            }
             byBasename[
                 URL(fileURLWithPath: reference.sourcePath)
                     .deletingPathExtension()
@@ -555,6 +574,14 @@ final class ReaderViewModel: ObservableObject {
                     .lastPathComponent
                     .lowercased()
             ] = reference.id
+            if let htmlPath = reference.htmlPath {
+                byBasename[
+                    URL(fileURLWithPath: htmlPath)
+                        .deletingPathExtension()
+                        .lastPathComponent
+                        .lowercased()
+                ] = reference.id
+            }
         }
 
         bootstrapContext = ReaderBootstrapContext(
@@ -570,7 +597,8 @@ final class ReaderViewModel: ObservableObject {
                 id: chapter.id,
                 title: chapter.title,
                 sourcePath: chapter.markdownPath,
-                bundlePath: chapter.bundlePath
+                bundlePath: chapter.bundlePath,
+                htmlPath: chapter.htmlPath
             )
         }
         if let reference = package.referenceById[id] {
@@ -578,7 +606,8 @@ final class ReaderViewModel: ObservableObject {
                 id: reference.id,
                 title: reference.title,
                 sourcePath: reference.sourcePath,
-                bundlePath: reference.bundlePath
+                bundlePath: reference.bundlePath,
+                htmlPath: reference.htmlPath
             )
         }
         return nil
