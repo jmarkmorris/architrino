@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 159,
-      "sections": 1264
+      "sections": 1265
     }
   },
   "tocRoot": {
@@ -981,6 +981,14 @@
                 "markdownPath": "content/markdown/aaa/dynamics/entropy.md",
                 "markdownSection": "Core Definition",
                 "sectionKey": "core definition",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Minimum Specification",
+                "markdownPath": "content/markdown/aaa/dynamics/entropy.md",
+                "markdownSection": "Minimum Specification",
+                "sectionKey": "minimum specification",
                 "headingLevel": 2
               },
               {

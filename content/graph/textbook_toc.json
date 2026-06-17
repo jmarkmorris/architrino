@@ -8,8 +8,8 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 159,
-      "sections": 1264
+      "entries": 165,
+      "sections": 1323
     }
   },
   "tocRoot": {
@@ -981,6 +981,14 @@
                 "markdownPath": "content/markdown/aaa/dynamics/entropy.md",
                 "markdownSection": "Core Definition",
                 "sectionKey": "core definition",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Minimum Specification",
+                "markdownPath": "content/markdown/aaa/dynamics/entropy.md",
+                "markdownSection": "Minimum Specification",
+                "sectionKey": "minimum specification",
                 "headingLevel": 2
               },
               {
@@ -4968,6 +4976,202 @@
             ]
           },
           {
+            "id": "reactions__radiation",
+            "title": "Radiation",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/reactions/radiation.json",
+            "markdownPath": "content/markdown/aaa/reactions/radiation.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Foundation-Up Mechanism",
+                "markdownPath": "content/markdown/aaa/reactions/radiation.md",
+                "markdownSection": "Foundation-Up Mechanism",
+                "sectionKey": "foundation up mechanism",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Closure Residuals",
+                "markdownPath": "content/markdown/aaa/reactions/radiation.md",
+                "markdownSection": "Closure Residuals",
+                "sectionKey": "closure residuals",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Excitation Basins",
+                "markdownPath": "content/markdown/aaa/reactions/radiation.md",
+                "markdownSection": "Excitation Basins",
+                "sectionKey": "excitation basins",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Planar-Mode Nucleation",
+                "markdownPath": "content/markdown/aaa/reactions/radiation.md",
+                "markdownSection": "Planar-Mode Nucleation",
+                "sectionKey": "planar mode nucleation",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Non-Radiative Shedding",
+                "markdownPath": "content/markdown/aaa/reactions/radiation.md",
+                "markdownSection": "Non-Radiative Shedding",
+                "sectionKey": "non radiative shedding",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Path Frequency Exchange",
+                "markdownPath": "content/markdown/aaa/reactions/radiation.md",
+                "markdownSection": "Path Frequency Exchange",
+                "sectionKey": "path frequency exchange",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Radiation Event-Record Schema",
+                "markdownPath": "content/markdown/aaa/reactions/radiation.md",
+                "markdownSection": "Radiation Event-Record Schema",
+                "sectionKey": "radiation event record schema",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Scattering and Reaction-Ledger Grammar",
+                "markdownPath": "content/markdown/aaa/reactions/radiation.md",
+                "markdownSection": "Scattering and Reaction-Ledger Grammar",
+                "sectionKey": "scattering and reaction ledger grammar",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Photon-Material Surface Routing",
+                "markdownPath": "content/markdown/aaa/reactions/radiation.md",
+                "markdownSection": "Photon-Material Surface Routing",
+                "sectionKey": "photon material surface routing",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Ensemble Temperature",
+                "markdownPath": "content/markdown/aaa/reactions/radiation.md",
+                "markdownSection": "Ensemble Temperature",
+                "sectionKey": "ensemble temperature",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Blackbody Limit",
+                "markdownPath": "content/markdown/aaa/reactions/radiation.md",
+                "markdownSection": "Blackbody Limit",
+                "sectionKey": "blackbody limit",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Channel Routing",
+                "markdownPath": "content/markdown/aaa/reactions/radiation.md",
+                "markdownSection": "Channel Routing",
+                "sectionKey": "channel routing",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Radiation Closure-Target Ledger",
+                "markdownPath": "content/markdown/aaa/reactions/radiation.md",
+                "markdownSection": "Radiation Closure-Target Ledger",
+                "sectionKey": "radiation closure target ledger",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Closure Targets",
+                "markdownPath": "content/markdown/aaa/reactions/radiation.md",
+                "markdownSection": "Closure Targets",
+                "sectionKey": "closure targets",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "reactions__atomic_transition_radiation",
+            "title": "Atomic Transition Radiation",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/reactions/atomic_transition_radiation.json",
+            "markdownPath": "content/markdown/aaa/reactions/atomic-transition-radiation.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Basin Transition",
+                "markdownPath": "content/markdown/aaa/reactions/atomic-transition-radiation.md",
+                "markdownSection": "Basin Transition",
+                "sectionKey": "basin transition",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Hydrogen Line Benchmark Record",
+                "markdownPath": "content/markdown/aaa/reactions/atomic-transition-radiation.md",
+                "markdownSection": "Hydrogen Line Benchmark Record",
+                "sectionKey": "hydrogen line benchmark record",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Planar-Mode Gate",
+                "markdownPath": "content/markdown/aaa/reactions/atomic-transition-radiation.md",
+                "markdownSection": "Planar-Mode Gate",
+                "sectionKey": "planar mode gate",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Event Ledger",
+                "markdownPath": "content/markdown/aaa/reactions/atomic-transition-radiation.md",
+                "markdownSection": "Event Ledger",
+                "sectionKey": "event ledger",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Absorption and Stimulated Channels",
+                "markdownPath": "content/markdown/aaa/reactions/atomic-transition-radiation.md",
+                "markdownSection": "Absorption and Stimulated Channels",
+                "sectionKey": "absorption and stimulated channels",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Gate C Rate Target",
+                "markdownPath": "content/markdown/aaa/reactions/atomic-transition-radiation.md",
+                "markdownSection": "Gate C Rate Target",
+                "sectionKey": "gate c rate target",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Observer-Level Recovery",
+                "markdownPath": "content/markdown/aaa/reactions/atomic-transition-radiation.md",
+                "markdownSection": "Observer-Level Recovery",
+                "sectionKey": "observer level recovery",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Closure Status",
+                "markdownPath": "content/markdown/aaa/reactions/atomic-transition-radiation.md",
+                "markdownSection": "Closure Status",
+                "sectionKey": "closure status",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
             "id": "reactions__bremsstrahlung",
             "title": "Bremsstrahlung",
             "kind": "markdown-view",
@@ -6973,6 +7177,80 @@
             ]
           },
           {
+            "id": "validation__reaction_cosmology_provenance_ledger",
+            "title": "Reaction-Cosmology Provenance Ledger",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/validation/reaction_cosmology_provenance_ledger.json",
+            "markdownPath": "content/markdown/aaa/validation/reaction-cosmology-provenance-ledger.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Purpose",
+                "markdownPath": "content/markdown/aaa/validation/reaction-cosmology-provenance-ledger.md",
+                "markdownSection": "Purpose",
+                "sectionKey": "purpose",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Leap Opportunity Record",
+                "markdownPath": "content/markdown/aaa/validation/reaction-cosmology-provenance-ledger.md",
+                "markdownSection": "Leap Opportunity Record",
+                "sectionKey": "leap opportunity record",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Shared Provenance Fields",
+                "markdownPath": "content/markdown/aaa/validation/reaction-cosmology-provenance-ledger.md",
+                "markdownSection": "Shared Provenance Fields",
+                "sectionKey": "shared provenance fields",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Photon Closure Gates",
+                "markdownPath": "content/markdown/aaa/validation/reaction-cosmology-provenance-ledger.md",
+                "markdownSection": "Photon Closure Gates",
+                "sectionKey": "photon closure gates",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Channel Map",
+                "markdownPath": "content/markdown/aaa/validation/reaction-cosmology-provenance-ledger.md",
+                "markdownSection": "Channel Map",
+                "sectionKey": "channel map",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Minimum Records by Channel",
+                "markdownPath": "content/markdown/aaa/validation/reaction-cosmology-provenance-ledger.md",
+                "markdownSection": "Minimum Records by Channel",
+                "sectionKey": "minimum records by channel",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Closure Targets",
+                "markdownPath": "content/markdown/aaa/validation/reaction-cosmology-provenance-ledger.md",
+                "markdownSection": "Closure Targets",
+                "sectionKey": "closure targets",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Failure Modes",
+                "markdownPath": "content/markdown/aaa/validation/reaction-cosmology-provenance-ledger.md",
+                "markdownSection": "Failure Modes",
+                "sectionKey": "failure modes",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
             "id": "validation__constraint_ledger",
             "title": "Constraint Ledger",
             "kind": "markdown-view",
@@ -7160,6 +7438,96 @@
                 "markdownPath": "content/markdown/aaa/validation/known-tensions.md",
                 "markdownSection": "Related Chapters",
                 "sectionKey": "related chapters",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "validation__massive_superposition_gravity",
+            "title": "Massive Superposition Gravity",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/validation/massive_superposition_gravity.json",
+            "markdownPath": "content/markdown/aaa/validation/massive-superposition-gravity.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Comparison Boundary",
+                "markdownPath": "content/markdown/aaa/validation/massive-superposition-gravity.md",
+                "markdownSection": "Comparison Boundary",
+                "sectionKey": "comparison boundary",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Experiment-Family Classification",
+                "markdownPath": "content/markdown/aaa/validation/massive-superposition-gravity.md",
+                "markdownSection": "Experiment-Family Classification",
+                "sectionKey": "experiment family classification",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Observable Target",
+                "markdownPath": "content/markdown/aaa/validation/massive-superposition-gravity.md",
+                "markdownSection": "Observable Target",
+                "sectionKey": "observable target",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Minimal Response Model",
+                "markdownPath": "content/markdown/aaa/validation/massive-superposition-gravity.md",
+                "markdownSection": "Minimal Response Model",
+                "sectionKey": "minimal response model",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Mediated Entanglement Comparison",
+                "markdownPath": "content/markdown/aaa/validation/massive-superposition-gravity.md",
+                "markdownSection": "Mediated Entanglement Comparison",
+                "sectionKey": "mediated entanglement comparison",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Input Record Schema",
+                "markdownPath": "content/markdown/aaa/validation/massive-superposition-gravity.md",
+                "markdownSection": "Input Record Schema",
+                "sectionKey": "input record schema",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Evaluation Protocol",
+                "markdownPath": "content/markdown/aaa/validation/massive-superposition-gravity.md",
+                "markdownSection": "Evaluation Protocol",
+                "sectionKey": "evaluation protocol",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Worked Acceleration Bound",
+                "markdownPath": "content/markdown/aaa/validation/massive-superposition-gravity.md",
+                "markdownSection": "Worked Acceleration Bound",
+                "sectionKey": "worked acceleration bound",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Acceptance Criteria",
+                "markdownPath": "content/markdown/aaa/validation/massive-superposition-gravity.md",
+                "markdownSection": "Acceptance Criteria",
+                "sectionKey": "acceptance criteria",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Simulation Target",
+                "markdownPath": "content/markdown/aaa/validation/massive-superposition-gravity.md",
+                "markdownSection": "Simulation Target",
+                "sectionKey": "simulation target",
                 "headingLevel": 2
               }
             ]
@@ -9811,6 +10179,104 @@
                 ]
               },
               {
+                "id": "philosophy_history__theory_inheritance_discipline",
+                "title": "Theory Inheritance Discipline",
+                "kind": "markdown-view",
+                "sceneType": "Scene-Markdown-View",
+                "scenePath": "content/scenes/philosophy_history/theory_inheritance_discipline.json",
+                "markdownPath": "content/markdown/aaa/philosophy-history/theory-inheritance-discipline.md",
+                "sections": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Core Claim",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/theory-inheritance-discipline.md",
+                    "markdownSection": "Core Claim",
+                    "sectionKey": "core claim",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Transfer Record",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/theory-inheritance-discipline.md",
+                    "markdownSection": "Transfer Record",
+                    "sectionKey": "transfer record",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Transfer Classes",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/theory-inheritance-discipline.md",
+                    "markdownSection": "Transfer Classes",
+                    "sectionKey": "transfer classes",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Canonical Direct-Use Audit",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/theory-inheritance-discipline.md",
+                    "markdownSection": "Canonical Direct-Use Audit",
+                    "sectionKey": "canonical direct use audit",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Foundational Formula Audit",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/theory-inheritance-discipline.md",
+                    "markdownSection": "Foundational Formula Audit",
+                    "sectionKey": "foundational formula audit",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Regime And Scale Chart",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/theory-inheritance-discipline.md",
+                    "markdownSection": "Regime And Scale Chart",
+                    "sectionKey": "regime and scale chart",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Non-Relief Lemma",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/theory-inheritance-discipline.md",
+                    "markdownSection": "Non-Relief Lemma",
+                    "sectionKey": "non relief lemma",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Reasoning Provenance Below Existing Theory",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/theory-inheritance-discipline.md",
+                    "markdownSection": "Reasoning Provenance Below Existing Theory",
+                    "sectionKey": "reasoning provenance below existing theory",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Bulk Versus Individual Assembly Behavior",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/theory-inheritance-discipline.md",
+                    "markdownSection": "Bulk Versus Individual Assembly Behavior",
+                    "sectionKey": "bulk versus individual assembly behavior",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Use With Existing Comparison Documents",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/theory-inheritance-discipline.md",
+                    "markdownSection": "Use With Existing Comparison Documents",
+                    "sectionKey": "use with existing comparison documents",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Writing Rule",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/theory-inheritance-discipline.md",
+                    "markdownSection": "Writing Rule",
+                    "sectionKey": "writing rule",
+                    "headingLevel": 2
+                  }
+                ]
+              },
+              {
                 "id": "theory_bridges",
                 "title": "Theory Bridges",
                 "kind": "scene-index",
@@ -10758,6 +11224,72 @@
                     ]
                   }
                 ]
+              }
+            ]
+          },
+          {
+            "id": "philosophy_history__geometry_and_ontology",
+            "title": "Geometry and Ontology",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/philosophy_history/geometry_and_ontology.json",
+            "markdownPath": "content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Overview",
+                "markdownPath": "content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
+                "markdownSection": "Overview",
+                "sectionKey": "overview",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "The Geometry Question",
+                "markdownPath": "content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
+                "markdownSection": "The Geometry Question",
+                "sectionKey": "the geometry question",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Geometry-Layer Map",
+                "markdownPath": "content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
+                "markdownSection": "Geometry-Layer Map",
+                "sectionKey": "geometry layer map",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "What General Relativity Gets Right",
+                "markdownPath": "content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
+                "markdownSection": "What General Relativity Gets Right",
+                "sectionKey": "what general relativity gets right",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "What $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Adds",
+                "markdownPath": "content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
+                "markdownSection": "What $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Adds",
+                "sectionKey": "what mathbb a mathbb a mathbb a adds",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "The Correct Critique",
+                "markdownPath": "content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
+                "markdownSection": "The Correct Critique",
+                "sectionKey": "the correct critique",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Methodological Use",
+                "markdownPath": "content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
+                "markdownSection": "Methodological Use",
+                "sectionKey": "methodological use",
+                "headingLevel": 2
               }
             ]
           },

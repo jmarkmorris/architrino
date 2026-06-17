@@ -31,8 +31,6 @@ struct ContentView: View {
         .fullScreenCover(isPresented: $showToc) {
             NavigationStack {
                 tocSidebar
-                    .navigationTitle("Table of Contents")
-                    .navigationBarTitleDisplayMode(.inline)
             }
             .background(viewModel.theme.readerBackgroundColor.ignoresSafeArea())
         }
@@ -182,7 +180,12 @@ struct ContentView: View {
                     }
                 }
             }
+            .toolbarBackground(viewModel.theme.readerBackgroundColor, for: .navigationBar)
+            .toolbarBackground(.visible, for: .navigationBar)
+            .toolbarColorScheme(viewModel.theme.readerToolbarColorScheme, for: .navigationBar)
+            .tint(viewModel.theme.readerAccentColor)
         }
+        .preferredColorScheme(viewModel.theme.readerToolbarColorScheme)
     }
 
     private var readerRenderOverlay: some View {
@@ -230,8 +233,6 @@ struct ContentView: View {
                                 tocHierarchyRow(node, depth: 0)
                             }
                         }
-                    } header: {
-                        tocSectionHeader("Textbook")
                     }
                     .listRowBackground(Color.clear)
                     .listRowSeparatorTint(viewModel.theme.readerSeparatorColor)
@@ -276,7 +277,6 @@ struct ContentView: View {
             .scrollContentBackground(.hidden)
             .background(viewModel.theme.readerBackgroundColor.ignoresSafeArea())
         }
-        .navigationTitle("Textbook")
         .toolbarBackground(viewModel.theme.readerBackgroundColor, for: .navigationBar)
         .toolbarBackground(.visible, for: .navigationBar)
         .toolbarColorScheme(viewModel.theme.readerToolbarColorScheme, for: .navigationBar)
@@ -317,12 +317,6 @@ struct ContentView: View {
 
     private func tocHierarchyRow(_ node: TextbookTOCNode, depth: Int) -> AnyView {
         let route = viewModel.resolveTOCTarget(for: node)
-        let isCurrentChapter = {
-            if case .chapter(let chapterId, _) = route {
-                return chapterId == viewModel.currentChapterId
-            }
-            return false
-        }()
         let isExternalRoute = {
             if case .external = route { return true }
             return false
@@ -356,12 +350,6 @@ struct ContentView: View {
                                 .accessibilityLabel("Open scene in web app")
                         }
                         .buttonStyle(.plain)
-
-                        if isCurrentChapter {
-                            Image(systemName: "checkmark")
-                                .font(.caption)
-                                .foregroundStyle(viewModel.theme.readerSecondaryTextColor)
-                        }
                     }
                     .contentShape(Rectangle())
                     .padding(.vertical, 2)
@@ -398,12 +386,6 @@ struct ContentView: View {
                             tocRowLabel(title: node.title, depth: depth)
 
                             Spacer()
-
-                            if isCurrentChapter {
-                                Image(systemName: "checkmark")
-                                    .font(.caption)
-                                    .foregroundStyle(viewModel.theme.readerSecondaryTextColor)
-                            }
                         }
                         .contentShape(Rectangle())
                         .padding(.vertical, 2)

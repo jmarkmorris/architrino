@@ -28,6 +28,10 @@
         "scenePath": "content/scenes/philosophy_history/inherited_theory_interface.json"
       },
       {
+        "nodeId": "geometry_and_ontology",
+        "scenePath": "content/scenes/philosophy_history/geometry_and_ontology.json"
+      },
+      {
         "nodeId": "substance_structure_potential",
         "scenePath": "content/scenes/philosophy_history/substance_structure_potential.json"
       },
@@ -132,6 +136,23 @@
         "type": "fixed"
       },
       "labelTitle": "Substance / Structure",
+      "labelBadge": "doc",
+      "fixedPosition": true
+    },
+    {
+      "id": "geometry_and_ontology",
+      "title": "Geometry and Ontology",
+      "radius": 2.688,
+      "color": "#4b5e2f",
+      "position": [
+        15,
+        -2,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Geometry and Ontology",
       "labelBadge": "doc",
       "fixedPosition": true
     },

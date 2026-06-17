@@ -26,6 +26,8 @@ const causalRootsNormalizedRequest = createCausalRootsNormalizedRequestEnvelope(
 const causalRootsNormalizedResponse = createCausalRootsNormalizedResponseEnvelope();
 const causalRootsPrecisionRequest = createCausalRootsPrecisionRequestEnvelope();
 const causalRootsPrecisionResponse = createCausalRootsPrecisionResponseEnvelope();
+const rootsAndHitsPrecisionRequest = createRootsAndHitsPrecisionRequestEnvelope();
+const rootsAndHitsPrecisionResponse = createRootsAndHitsPrecisionResponseEnvelope();
 const pathHistoryStreamRequest = createPathHistoryStreamRequestEnvelope();
 const pathHistoryStreamResponse = createPathHistoryStreamResponseEnvelope();
 const runSimulationRequest = createRunSimulationRequestEnvelope();
@@ -82,6 +84,7 @@ assert(schema.$defs?.normalizedCausalRootF64, "normalized causal root schema mis
 assert(schema.$defs?.absoluteDisplayCausalRootF64, "absolute-display causal root schema missing");
 assert(schema.$defs?.causalRootsPrecisionF64Request, "precision causal roots request schema missing");
 assert(schema.$defs?.causalRootsPrecisionF64Response, "precision causal roots response schema missing");
+assert(schema.$defs?.rootsAndHitsPrecisionF64Response, "precision roots-and-hits response schema missing");
 assert(schema.$defs?.precisionSolveSummaryF64, "precision solve summary schema missing");
 assert(schema.$defs?.rootLedgerDetailF64Request, "root-ledger detail request schema missing");
 assert(schema.$defs?.rootLedgerDetailF64Response, "root-ledger detail response schema missing");
@@ -133,6 +136,8 @@ assert(schema.$defs?.streamIndexSidecar, "stream index sidecar schema missing");
 assert(schema.$defs?.runManifest, "run manifest schema missing");
 assert(schema.$defs?.runManifestBuffer, "run manifest buffer schema missing");
 assert(schema.$defs?.runManifestStream, "run manifest stream schema missing");
+assert(schema.$defs?.runValidationArtifacts, "run validation artifacts schema missing");
+assert(schema.$defs?.runArtifactHashes, "run artifact hashes schema missing");
 assert(schema.$defs?.admissionStressSummary, "admission stress summary schema missing");
 assert(schema.$defs?.runManifestAdmission, "run manifest admission schema missing");
 assert(schema.$defs?.runManifestProvenance, "run manifest provenance schema missing");
@@ -262,6 +267,8 @@ assert(schema.$defs?.emissionShellScanSummary, "emission-shell scan summary sche
 assert(schema.$defs?.emissionShellFalsePositiveEstimate, "emission-shell false-positive estimate schema missing");
 assert(schema.$defs?.emissionShellNarrowPhaseEstimate, "emission-shell narrow-phase estimate schema missing");
 assert(schema.$defs?.rootsAndHitsF64Response, "response schema missing");
+assert(schema.$defs?.rootsAndHitsPrecisionF64RequestEnvelope, "precision roots-and-hits request envelope missing");
+assert(schema.$defs?.rootsAndHitsPrecisionF64ResponseEnvelope, "precision roots-and-hits response envelope missing");
 assert(schema.$defs?.bufferDescriptor, "buffer descriptor schema missing");
 assert(schema.$defs?.streamDescriptor, "stream descriptor schema missing");
 assertCoreBinaryLayouts([
@@ -308,6 +315,7 @@ assertWorkerMethods([
   "capabilities",
   "runSimulation",
   "solveCausalRootsPrecisionF64",
+  "solveRootsAndHitsPrecisionF64",
   "solveCausalRootsNormalizedF64",
   "buildAssemblyGraphDatasetF64",
   "createAssemblyGraphStoreF64",
@@ -339,6 +347,8 @@ validateCausalRootsNormalizedRequestEnvelope(causalRootsNormalizedRequest);
 validateCausalRootsNormalizedResponseEnvelope(causalRootsNormalizedResponse);
 validateCausalRootsPrecisionRequestEnvelope(causalRootsPrecisionRequest);
 validateCausalRootsPrecisionResponseEnvelope(causalRootsPrecisionResponse);
+validateRootsAndHitsPrecisionRequestEnvelope(rootsAndHitsPrecisionRequest);
+validateRootsAndHitsPrecisionResponseEnvelope(rootsAndHitsPrecisionResponse);
 validateBatchResponseEnvelope(batchResponse);
 validateResponseEnvelope(response);
 validateRunSimulationRequestEnvelope(runSimulationRequest);
@@ -476,6 +486,39 @@ function validateCausalRootsPrecisionResponseEnvelope(value) {
   assert(responseValue.precision.validationReplayMatched === true, "precision replay matched mismatch");
   assert(responseValue.buffers[0].layout === "root_ledger.v1", "precision buffer layout mismatch");
   assert(responseValue.status.code === "insufficient_scale_resolution", "precision response status mismatch");
+}
+
+function validateRootsAndHitsPrecisionRequestEnvelope(value) {
+  assert(value.schema === "solver-app-bridge/v1", "precision roots-and-hits request schema tag mismatch");
+  assert(value.kind === "roots-and-hits-precision-f64-request", "precision roots-and-hits request kind mismatch");
+  assertNonemptyString(value.requestId, "precision roots-and-hits request id");
+  const requestValue = value.request;
+  assert(requestValue.rootRequest.hitTime === request.request.hitTime, "precision roots-and-hits hit time mismatch");
+  assert(requestValue.requestedPrecisionPath === "scaled_f64_strict", "precision roots-and-hits path mismatch");
+  assert(requestValue.claimLevel === "exported-dataset", "precision roots-and-hits claim level mismatch");
+  assert(requestValue.allowEscalation === true, "precision roots-and-hits escalation mismatch");
+  assert(requestValue.runValidationReplay === true, "precision roots-and-hits replay mismatch");
+  assert(requestValue.maxRoots === 4, "precision roots-and-hits max roots mismatch");
+  assert(requestValue.maxHits === 4, "precision roots-and-hits max hits mismatch");
+}
+
+function validateRootsAndHitsPrecisionResponseEnvelope(value) {
+  assert(value.schema === "solver-app-bridge/v1", "precision roots-and-hits response schema tag mismatch");
+  assert(value.kind === "roots-and-hits-precision-f64-response", "precision roots-and-hits response kind mismatch");
+  assertNonemptyString(value.requestId, "precision roots-and-hits response request id");
+  const responseValue = value.response;
+  assert(responseValue.schema === "solver-roots-and-hits-precision-f64.v1", "precision roots-and-hits schema mismatch");
+  assert(responseValue.roots.length === 1, "precision roots-and-hits root count mismatch");
+  assert(responseValue.hits.length === 1, "precision roots-and-hits hit count mismatch");
+  assert(responseValue.rootLedgerDetails.length >= 1, "precision roots-and-hits detail rows mismatch");
+  assert(responseValue.rootLedgerDetails[0].entryKind === 1, "precision roots-and-hits detail entry mismatch");
+  assert(responseValue.precision.selectedPrecisionPath === "extended_precision", "precision roots-and-hits path mismatch");
+  assert(responseValue.precision.selectedNumericType === "decimal128", "precision roots-and-hits numeric type mismatch");
+  assert(responseValue.buffers[0].layout === "root_ledger.v1", "precision roots-and-hits root buffer mismatch");
+  assert(responseValue.buffers[1].layout === "delayed_hit_events.v1", "precision roots-and-hits hit buffer mismatch");
+  assert(responseValue.buffers[2].layout === "root_ledger_detail.v1", "precision roots-and-hits detail buffer mismatch");
+  assert(responseValue.streams[0].indexLayout === "stream_index.v1", "precision roots-and-hits stream mismatch");
+  assert(responseValue.status.code === "insufficient_scale_resolution", "precision roots-and-hits status mismatch");
 }
 
 function validateInitRequestEnvelope(value) {
@@ -675,7 +718,24 @@ function validateRunSimulationResponseEnvelope(value) {
   assert(responseValue.response.runId === "run-contract", "run response id mismatch");
   assert(responseValue.response.summary.rootCount === 1, "run response root count mismatch");
   assert(responseValue.response.manifest.manifestHash === "4444444444444444", "run manifest hash mismatch");
-  assert(responseValue.response.buffers.length === 2, "run response buffer count mismatch");
+  assert(
+    responseValue.response.precision.selectedPrecisionPath === "extended_precision",
+    "run response precision summary mismatch"
+  );
+  assert(
+    responseValue.response.manifest.precision.selectedNumericType === "decimal128",
+    "run manifest precision summary mismatch"
+  );
+  assert(
+    responseValue.response.manifest.validationArtifacts.toleranceVector.rootIsolationTolerance === 1e-14,
+    "run manifest validation tolerance mismatch"
+  );
+  assert(
+    responseValue.response.manifest.validationArtifacts.artifactHashes.bufferHashes.length === 3,
+    "run manifest artifact hash count mismatch"
+  );
+  assert(responseValue.response.rootLedgerDetails[0].entryKind === 1, "run response detail row mismatch");
+  assert(responseValue.response.buffers.length === 3, "run response buffer count mismatch");
 }
 
 function validateDescribeRunRequestEnvelope(value) {
@@ -694,7 +754,8 @@ function validateDescribeRunResponseEnvelope(value) {
   assert(responseValue.runId === "run-contract", "run description id mismatch");
   assert(responseValue.manifest.requestId === "run-contract-request", "run description manifest mismatch");
   assert(responseValue.summary.eventCount === 1, "run description event count mismatch");
-  assert(responseValue.buffers.length === 2, "run description buffer count mismatch");
+  assert(responseValue.precision.rootCount === 1, "run description precision summary mismatch");
+  assert(responseValue.buffers.length === 3, "run description buffer count mismatch");
   assert(responseValue.streams.length === 1, "run description stream count mismatch");
   assert(responseValue.status.code === "ok", "run description status mismatch");
 }
@@ -1126,6 +1187,55 @@ function createCausalRootsPrecisionRequestEnvelope() {
   };
 }
 
+function createPrecisionSummaryFixture() {
+  return {
+    requestedPrecisionPath: "scaled_f64_strict",
+    diagnosticPrecisionPath: "extended_precision",
+    selectedPrecisionPath: "extended_precision",
+    selectedNumericType: "decimal128",
+    claimLevel: "exported-dataset",
+    statusCode: "insufficient_scale_resolution",
+    statusSeverity: "warning",
+    rootCount: 1,
+    rootTolerance: 1e-16,
+    maxResidual: 0,
+    minAbsJacobian: 1,
+    maxIterations: 256,
+    scanSubdivisions: 512,
+    escalated: true,
+    validationReplayRun: true,
+    validationReplayMatched: true,
+  };
+}
+
+function createRootLedgerDetailFixture() {
+  return {
+    ledgerKey: 1001,
+    sourceKey: 2001,
+    receiverKey: 3001,
+    rootKey: 4001,
+    intervalStart: 0,
+    intervalEnd: 10,
+    emissionTime: 0,
+    hitTime: 10,
+    delay: 10,
+    residual: 0,
+    jacobian: 1,
+    branchWeight: 1,
+    bracketStart: 0,
+    bracketEnd: 0,
+    sourcePoint: { x: 0, y: 0, z: 0 },
+    receiverPoint: { x: 10, y: 0, z: 0 },
+    entryKind: 1,
+    rootKind: 1,
+    statusCode: 0,
+    jacobianSignStratum: 3,
+    sequenceIndex: 0,
+    iterationCount: 1,
+    stateFlags: 0,
+  };
+}
+
 function createCausalRootsPrecisionResponseEnvelope() {
   return {
     schema: "solver-app-bridge/v1",
@@ -1134,24 +1244,7 @@ function createCausalRootsPrecisionResponseEnvelope() {
     response: {
       schema: "solver-causal-roots-precision-f64.v1",
       roots: response.response.roots,
-      precision: {
-        requestedPrecisionPath: "scaled_f64_strict",
-        diagnosticPrecisionPath: "extended_precision",
-        selectedPrecisionPath: "extended_precision",
-        selectedNumericType: "decimal128",
-        claimLevel: "exported-dataset",
-        statusCode: "insufficient_scale_resolution",
-        statusSeverity: "warning",
-        rootCount: 1,
-        rootTolerance: 1e-16,
-        maxResidual: 0,
-        minAbsJacobian: 1,
-        maxIterations: 256,
-        scanSubdivisions: 512,
-        escalated: true,
-        validationReplayRun: true,
-        validationReplayMatched: true,
-      },
+      precision: createPrecisionSummaryFixture(),
       buffers: [
         {
           bufferId: "precision-root-ledger",
@@ -1166,6 +1259,98 @@ function createCausalRootsPrecisionResponseEnvelope() {
         "insufficient_scale_resolution",
         "warning",
         "precision causal roots solved with diagnostics"
+      ),
+    },
+  };
+}
+
+function createRootsAndHitsPrecisionRequestEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "roots-and-hits-precision-f64-request",
+    requestId: "roots-and-hits-precision-contract-request",
+    request: {
+      rootRequest: request.request,
+      requestedPrecisionPath: "scaled_f64_strict",
+      claimLevel: "exported-dataset",
+      allowEscalation: true,
+      runValidationReplay: true,
+      maxRoots: 4,
+      maxHits: 4,
+    },
+  };
+}
+
+function createRootsAndHitsPrecisionResponseEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "roots-and-hits-precision-f64-response",
+    requestId: "roots-and-hits-precision-contract-request",
+    response: {
+      schema: "solver-roots-and-hits-precision-f64.v1",
+      roots: response.response.roots,
+      hits: response.response.hits,
+      rootLedgerDetails: [createRootLedgerDetailFixture()],
+      precision: createPrecisionSummaryFixture(),
+      buffers: [
+        {
+          bufferId: "precision-root-ledger",
+          layout: "root_ledger.v1",
+          byteOffset: 0,
+          byteLength: 112,
+          rowCount: 1,
+          numericType: "f64",
+        },
+        {
+          bufferId: "precision-delayed-hit-events",
+          layout: "delayed_hit_events.v1",
+          byteOffset: 0,
+          byteLength: 128,
+          rowCount: 1,
+          numericType: "f64",
+        },
+        {
+          bufferId: "precision-root-ledger-detail",
+          layout: "root_ledger_detail.v1",
+          byteOffset: 0,
+          byteLength: 192,
+          rowCount: 1,
+          numericType: "f64",
+        },
+      ],
+      streams: [
+        {
+          streamId: "causal-root-transient",
+          manifestVersion: "solver-stream-manifest.v1",
+          indexLayout: "stream_index.v1",
+          availableRanges: [
+            {
+              timeRange: { start: 10, end: 10 },
+              frameRange: { start: 0, end: 0 },
+              byteRange: { start: 0, end: 112 },
+            },
+            {
+              timeRange: { start: 10, end: 10 },
+              frameRange: { start: 0, end: 0 },
+              byteRange: { start: 112, end: 240 },
+            },
+            {
+              timeRange: { start: 10, end: 10 },
+              frameRange: { start: 0, end: 0 },
+              byteRange: { start: 240, end: 432 },
+            },
+          ],
+          storagePolicy: {
+            target: "caller-buffer",
+            durable: false,
+            maxBytes: 432,
+          },
+        },
+      ],
+      status: createStatusFixture(
+        "insufficient_scale_resolution",
+        "warning",
+        "precision causal roots and delayed hits solved with diagnostics"
       ),
     },
   };
@@ -1523,6 +1708,7 @@ function createBroadPhaseCapability(method) {
       "solveCausalRootsF64",
       "solveCausalRootsPrecisionF64",
       "solveCausalRootsNormalizedF64",
+      "solveRootsAndHitsPrecisionF64",
       "solveRootsAndHitsF64",
       "refineEmissionShellCandidateRootsF64",
     ],
@@ -1646,6 +1832,7 @@ function createDescribeRunResponseEnvelope() {
       summary: runResponse.summary,
       buffers: runResponse.buffers,
       streams: runResponse.streams,
+      precision: runResponse.precision,
       diagnostics: runResponse.diagnostics,
       status: createStatusFixture("ok", "ok", "run description read"),
     },
@@ -1731,6 +1918,7 @@ function createSolverRunResponse() {
     summary: createRunSummary(),
     buffers: createRunBuffers(),
     streams: createRunStreams(),
+    precision: createPrecisionSummaryFixture(),
     diagnostics: [
       {
         code: "ok",
@@ -1740,6 +1928,7 @@ function createSolverRunResponse() {
     ],
     roots: response.response.roots,
     hits: response.response.hits,
+    rootLedgerDetails: [createRootLedgerDetailFixture()],
     status: createStatusFixture("ok", "ok", "run response ready"),
   };
 }
@@ -1778,6 +1967,8 @@ function createRunManifest() {
     deterministic: true,
     buffers: createRunManifestBuffers(),
     streams: createRunManifestStreams(),
+    precision: createPrecisionSummaryFixture(),
+    validationArtifacts: createRunValidationArtifactsFixture(),
     diagnostics: [
       {
         code: "ok",
@@ -1786,6 +1977,25 @@ function createRunManifest() {
       },
     ],
     status: createStatusFixture("ok", "ok", "run manifest ready"),
+  };
+}
+
+function createRunValidationArtifactsFixture() {
+  return {
+    schema: "solver-run-validation-artifacts.v1",
+    claimLevel: "interactive-preview",
+    selectedPrecisionPath: "extended_precision",
+    precisionReplayStatus: "matched",
+    migrationParityStatus: "not-run",
+    toleranceVector: createRunErrorBudget(),
+    artifactHashes: {
+      configHash: "solver-run-contract",
+      bufferHashes: ["5555555555555555", "6666666666666666", "7777777777777777"],
+      streamHashes: ["8888888888888888"],
+      diagnosticHash: "9999999999999999",
+      summaryHash: "aaaaaaaaaaaaaaaa",
+      responseStatusHash: "bbbbbbbbbbbbbbbb",
+    },
   };
 }
 
@@ -1888,6 +2098,15 @@ function createRunBuffers() {
       numericType: "f64",
       checksum: "6666666666666666",
     },
+    {
+      bufferId: "run-contract:root-ledger-detail",
+      layout: "root_ledger_detail.v1",
+      byteOffset: 0,
+      byteLength: 192,
+      rowCount: 1,
+      numericType: "f64",
+      checksum: "7777777777777777",
+    },
   ];
 }
 
@@ -1912,11 +2131,16 @@ function createRunStreams() {
           frameRange: { start: 0, end: 0 },
           byteRange: { start: 112, end: 240 },
         },
+        {
+          timeRange: { start: 10, end: 10 },
+          frameRange: { start: 0, end: 0 },
+          byteRange: { start: 240, end: 432 },
+        },
       ],
       storagePolicy: {
         target: "caller-buffer",
         durable: false,
-        maxBytes: 240,
+        maxBytes: 432,
       },
     },
   ];

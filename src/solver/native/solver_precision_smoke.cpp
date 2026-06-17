@@ -103,6 +103,15 @@ int main() {
               true,
               false,
           });
+  const architrino::solver::PrecisionRootsAndHitsResult precisionRootsAndHits =
+      architrino::solver::solve_roots_and_hits_with_precision(
+          make_request(1e15, 1e3, 1e12, 1e-16),
+          architrino::solver::PrecisionSolveOptions{
+              architrino::solver::PrecisionPath::ScaledF64Strict,
+              architrino::solver::ClaimLevel::ExportedDataset,
+              true,
+              true,
+          });
 
   const bool ok =
       ordinary.validation.ok &&
@@ -143,7 +152,17 @@ int main() {
       strictPath.precision.selectedPath == architrino::solver::PrecisionPath::ScaledF64Strict &&
       strictPath.precision.selectedNumericType == architrino::solver::NumericType::F64 &&
       strictPath.precision.scanSubdivisions >= 128 &&
-      strictPath.precision.maxIterations >= 128;
+      strictPath.precision.maxIterations >= 128 &&
+      precisionRootsAndHits.roots.validation.ok &&
+      precisionRootsAndHits.hits.validation.ok &&
+      precisionRootsAndHits.roots.roots.size() == 1 &&
+      precisionRootsAndHits.hits.events.size() == 1 &&
+      precisionRootsAndHits.hits.events[0].rootId == precisionRootsAndHits.roots.roots[0].rootId &&
+      std::abs(precisionRootsAndHits.hits.events[0].distance -
+               precisionRootsAndHits.roots.roots[0].distance) <= 1e-9 &&
+      precisionRootsAndHits.precision.selectedPath ==
+          architrino::solver::PrecisionPath::ExtendedPrecision &&
+      precisionRootsAndHits.precision.validationReplayMatched;
 
   ArchitrinoSolverCausalRootRequestF64 cRequest = make_c_request(1e15, 1e3, 1e12, 1e-16);
   ArchitrinoSolverPrecisionDiagnosticRowF64 cDiagnostic = {};
@@ -193,6 +212,41 @@ int main() {
       2,
       &rejectedRootCount,
       &rejectedSummary);
+  ArchitrinoSolverCausalRootRowF64 precisionCombinedRoots[2] = {};
+  ArchitrinoSolverDelayedHitRowF64 precisionHits[2] = {};
+  int precisionCombinedRootCount = 0;
+  int precisionHitCount = 0;
+  ArchitrinoSolverPrecisionSolveSummaryF64 precisionCombinedSummary = {};
+  const int precisionCombinedStatus = architrino_solver_solve_roots_and_hits_precision_f64(
+      &cRequest,
+      &precisionOptions,
+      precisionCombinedRoots,
+      2,
+      &precisionCombinedRootCount,
+      precisionHits,
+      2,
+      &precisionHitCount,
+      &precisionCombinedSummary);
+  ArchitrinoSolverCausalRootRowF64 precisionLedgerRoots[2] = {};
+  ArchitrinoSolverDelayedHitRowF64 precisionLedgerHits[2] = {};
+  ArchitrinoSolverRootLedgerDetailRowF64 precisionLedgerRows[8] = {};
+  int precisionLedgerRootCount = 0;
+  int precisionLedgerHitCount = 0;
+  int precisionLedgerRowCount = 0;
+  ArchitrinoSolverPrecisionSolveSummaryF64 precisionLedgerSummary = {};
+  const int precisionLedgerStatus = architrino_solver_solve_roots_hits_ledger_precision_f64(
+      &cRequest,
+      &precisionOptions,
+      precisionLedgerRoots,
+      2,
+      &precisionLedgerRootCount,
+      precisionLedgerHits,
+      2,
+      &precisionLedgerHitCount,
+      precisionLedgerRows,
+      8,
+      &precisionLedgerRowCount,
+      &precisionLedgerSummary);
   const bool cAbiPrecisionOk =
       precisionStatus == 0 &&
       precisionRootCount == 1 &&
@@ -211,7 +265,24 @@ int main() {
       rejectedSummary.selected_precision_path ==
           static_cast<int>(architrino::solver::PrecisionPath::ValidationReplay) &&
       rejectedSummary.status_code ==
-          static_cast<int>(architrino::solver::StatusCode::PrecisionFailed);
+          static_cast<int>(architrino::solver::StatusCode::PrecisionFailed) &&
+      precisionCombinedStatus == 0 &&
+      precisionCombinedRootCount == 1 &&
+      precisionHitCount == 1 &&
+      precisionCombinedSummary.selected_precision_path ==
+          static_cast<int>(architrino::solver::PrecisionPath::ExtendedPrecision) &&
+      precisionCombinedSummary.validation_replay_matched == 1 &&
+      precisionCombinedRoots[0].root_id == precisionHits[0].root_id &&
+      std::abs(precisionCombinedRoots[0].distance - precisionHits[0].distance) <= 1e-9 &&
+      precisionLedgerStatus == 0 &&
+      precisionLedgerRootCount == 1 &&
+      precisionLedgerHitCount == 1 &&
+      precisionLedgerRowCount >= 1 &&
+      precisionLedgerRows[0].entry_kind == 1 &&
+      precisionLedgerSummary.selected_precision_path ==
+          static_cast<int>(architrino::solver::PrecisionPath::ExtendedPrecision) &&
+      precisionLedgerSummary.root_tolerance == precisionCombinedSummary.root_tolerance &&
+      precisionLedgerRoots[0].root_id == precisionLedgerHits[0].root_id;
 
   if (!ok || !cAbiOk || !cAbiPrecisionOk) {
     std::cerr << "solver precision smoke failed\n";

@@ -730,6 +730,20 @@ int architrino_solver_solve_roots_and_hits_precision_f64(
     int* out_hit_count,
     ArchitrinoSolverPrecisionSolveSummaryF64* out_summary);
 
+int architrino_solver_solve_roots_hits_ledger_precision_f64(
+    const ArchitrinoSolverCausalRootRequestF64* request,
+    const ArchitrinoSolverPrecisionSolveOptions* options,
+    ArchitrinoSolverCausalRootRowF64* roots,
+    int max_roots,
+    int* out_root_count,
+    ArchitrinoSolverDelayedHitRowF64* hits,
+    int max_hits,
+    int* out_hit_count,
+    ArchitrinoSolverRootLedgerDetailRowF64* ledger_rows,
+    int max_ledger_rows,
+    int* out_ledger_row_count,
+    ArchitrinoSolverPrecisionSolveSummaryF64* out_summary);
+
 int architrino_solver_propagate_error_budget_f64(
     const ArchitrinoSolverErrorBudgetF64* budget,
     const ArchitrinoSolverErrorBudgetStageInputF64* observed_stages,

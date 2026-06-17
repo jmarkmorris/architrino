@@ -748,6 +748,7 @@ function createCapabilities(hasWasmModuleFactory) {
               "solveCausalRootsF64",
               "solveCausalRootsPrecisionF64",
               "solveCausalRootsNormalizedF64",
+              "solveRootsAndHitsPrecisionF64",
               "solveRootsAndHitsF64",
               "refineEmissionShellCandidateRootsF64",
             ],
@@ -761,6 +762,7 @@ function createCapabilities(hasWasmModuleFactory) {
               "solveCausalRootsF64",
               "solveCausalRootsPrecisionF64",
               "solveCausalRootsNormalizedF64",
+              "solveRootsAndHitsPrecisionF64",
               "solveRootsAndHitsF64",
               "refineEmissionShellCandidateRootsF64",
             ],
@@ -774,6 +776,7 @@ function createCapabilities(hasWasmModuleFactory) {
               "solveCausalRootsF64",
               "solveCausalRootsPrecisionF64",
               "solveCausalRootsNormalizedF64",
+              "solveRootsAndHitsPrecisionF64",
               "solveRootsAndHitsF64",
               "refineEmissionShellCandidateRootsF64",
             ],
@@ -2527,6 +2530,8 @@ function runSimulationWithModule(state, module, request, abiInfo) {
       diagnostics: [...admission.statuses, ...rootsAndHits.statuses].map(toDiagnosticRecord),
       roots: rootsAndHits.roots,
       hits: rootsAndHits.hits,
+      rootLedgerDetails: rootsAndHits.rootLedgerDetails,
+      precision: deepCloneJson(rootsAndHits.precision),
       status: createStatus("ok", "ok", "causal-root simulation completed", { runId, requestId }),
     };
     completedResponse.manifest = finalizeRunManifest(manifestBase, completedResponse);
@@ -2557,6 +2562,8 @@ function runSimulationWithModule(state, module, request, abiInfo) {
       diagnostics: [...admission.statuses, ...rootsAndHits.statuses].map(toDiagnosticRecord),
       roots: rootsAndHits.roots,
       hits: rootsAndHits.hits,
+      rootLedgerDetails: rootsAndHits.rootLedgerDetails,
+      precision: deepCloneJson(rootsAndHits.precision),
       status: createStatus("ok", "ok", "delayed-hit simulation completed", { runId, requestId }),
     };
     completedResponse.manifest = finalizeRunManifest(manifestBase, completedResponse);
@@ -2945,16 +2952,47 @@ function finalizeRunManifest(manifest, response) {
       rangeCount: stream.availableRanges.length,
       storagePolicy: { ...stream.storagePolicy },
     })),
+    precision: response.precision == null ? undefined : deepCloneJson(response.precision),
     diagnostics: response.diagnostics.map((diagnostic) => ({ ...diagnostic })),
     status: copyStatusRecord(response.status),
   };
-  return {
+  const withValidationArtifacts = {
     ...finalized,
+    validationArtifacts: createRunValidationArtifacts(finalized, response),
+  };
+  return {
+    ...withValidationArtifacts,
     manifestHash: stableHashHex({
-      ...finalized,
+      ...withValidationArtifacts,
       manifestHash: undefined,
     }),
   };
+}
+
+function createRunValidationArtifacts(manifest, response) {
+  return {
+    schema: "solver-run-validation-artifacts.v1",
+    claimLevel: manifest.claimLevel,
+    selectedPrecisionPath: manifest.selectedPrecisionPath,
+    precisionReplayStatus: precisionReplayStatusFor(response.precision),
+    migrationParityStatus: response.validationReplay?.classification ?? "not-run",
+    toleranceVector: deepCloneJson(manifest.errorBudget),
+    artifactHashes: {
+      configHash: manifest.configHash,
+      bufferHashes: manifest.buffers.map((buffer) => buffer.checksum),
+      streamHashes: manifest.streams.map((stream) => stableHashHex(stream)),
+      diagnosticHash: stableHashHex(manifest.diagnostics),
+      summaryHash: stableHashHex(response.summary),
+      responseStatusHash: stableHashHex(response.status),
+    },
+  };
+}
+
+function precisionReplayStatusFor(precision) {
+  if (precision?.validationReplayRun !== true) {
+    return "not-run";
+  }
+  return precision.validationReplayMatched ? "matched" : "mismatch";
 }
 
 function deepCloneJson(value) {
@@ -5702,6 +5740,7 @@ export function hasSolverCAbi(module) {
     typeof module?._architrino_solver_diagnose_precision_f64 === "function" &&
     typeof module?._architrino_solver_solve_causal_roots_precision_f64 === "function" &&
     typeof module?._architrino_solver_solve_roots_and_hits_precision_f64 === "function" &&
+    typeof module?._architrino_solver_solve_roots_hits_ledger_precision_f64 === "function" &&
     typeof module?._architrino_solver_propagate_error_budget_f64 === "function" &&
     typeof module?._architrino_solver_sample_linear_motion_f64 === "function" &&
     typeof module?._architrino_solver_compute_phase_at_hit_f64 === "function" &&
@@ -6005,6 +6044,22 @@ function buildRootLedgerDetailF64WithModule(module, request, abiInfo) {
   }
 }
 
+function createEmptyRootLedgerDetailF64Response(abiInfo) {
+  return {
+    rows: [],
+    buffers: [
+      createBufferDescriptor(
+        "precision-root-ledger-detail",
+        "root_ledger_detail.v1",
+        0,
+        abiInfo.rootLedgerDetailRowF64Bytes,
+        new ArrayBuffer(0)
+      ),
+    ],
+    status: createStatus("ok", "ok", "root-ledger detail empty"),
+  };
+}
+
 function diagnosePrecisionF64WithModule(module, request, abiInfo) {
   validateCausalRootF64Request(request);
   if (typeof module._malloc !== "function" || typeof module._free !== "function") {
@@ -6130,12 +6185,15 @@ function solveRootsAndHitsPrecisionF64WithModule(module, request, abiInfo) {
 
   const maxRoots = request.maxRoots ?? request.rootRequest.maxRoots ?? DEFAULT_MAX_CAUSAL_ROOTS;
   const maxHits = request.maxHits ?? request.rootRequest.maxHits ?? maxRoots;
+  const maxLedgerRows = Math.max(DEFAULT_MAX_ROOT_LEDGER_DETAIL_ROWS, maxRoots * 3 + 3);
   const requestPtr = module._malloc(abiInfo.rootRequestF64Bytes);
   const optionsPtr = module._malloc(abiInfo.precisionSolveOptionsBytes);
   const rootsPtr = module._malloc(abiInfo.rootRowF64Bytes * maxRoots);
   const hitsPtr = module._malloc(abiInfo.delayedHitRowF64Bytes * maxHits);
+  const ledgerRowsPtr = module._malloc(abiInfo.rootLedgerDetailRowF64Bytes * maxLedgerRows);
   const outRootCountPtr = module._malloc(4);
   const outHitCountPtr = module._malloc(4);
+  const outLedgerRowCountPtr = module._malloc(4);
   const summaryPtr = module._malloc(abiInfo.precisionSolveSummaryF64Bytes);
 
   try {
@@ -6143,7 +6201,11 @@ function solveRootsAndHitsPrecisionF64WithModule(module, request, abiInfo) {
     writePrecisionSolveOptions(module, optionsPtr, request);
     module.setValue(outRootCountPtr, 0, "i32");
     module.setValue(outHitCountPtr, 0, "i32");
-    const solve = module.cwrap("architrino_solver_solve_roots_and_hits_precision_f64", "number", [
+    module.setValue(outLedgerRowCountPtr, 0, "i32");
+    const solve = module.cwrap("architrino_solver_solve_roots_hits_ledger_precision_f64", "number", [
+      "number",
+      "number",
+      "number",
       "number",
       "number",
       "number",
@@ -6163,22 +6225,27 @@ function solveRootsAndHitsPrecisionF64WithModule(module, request, abiInfo) {
       hitsPtr,
       maxHits,
       outHitCountPtr,
+      ledgerRowsPtr,
+      maxLedgerRows,
+      outLedgerRowCountPtr,
       summaryPtr
     );
     const rootCount = module.getValue(outRootCountPtr, "i32");
     const hitCount = module.getValue(outHitCountPtr, "i32");
+    const ledgerRowCount = module.getValue(outLedgerRowCountPtr, "i32");
     const precision = readPrecisionSolveSummaryF64(module, summaryPtr);
     if (status !== 0 && status !== -2) {
       throw new SolverBridgeError(
         createStatus("internal_solver_error", "halt", `precision roots-and-hits C ABI returned ${status}`, {
           recoverable: status === -3,
-          details: { status, rootCount, hitCount, maxRoots, maxHits, precision },
+          details: { status, rootCount, hitCount, ledgerRowCount, maxRoots, maxHits, maxLedgerRows, precision },
         })
       );
     }
 
     const roots = [];
     const hits = [];
+    const rootLedgerDetails = [];
     if (status === 0) {
       for (let index = 0; index < rootCount; index += 1) {
         roots.push(readCausalRootRowF64(module, rootsPtr + index * abiInfo.rootRowF64Bytes));
@@ -6186,12 +6253,20 @@ function solveRootsAndHitsPrecisionF64WithModule(module, request, abiInfo) {
       for (let index = 0; index < hitCount; index += 1) {
         hits.push(readDelayedHitRowF64(module, hitsPtr + index * abiInfo.delayedHitRowF64Bytes));
       }
+      for (let index = 0; index < ledgerRowCount; index += 1) {
+        rootLedgerDetails.push(
+          readRootLedgerDetailRowF64(module, ledgerRowsPtr + index * abiInfo.rootLedgerDetailRowF64Bytes)
+        );
+      }
     }
     const rootBuffer = status === 0
       ? copyWasmBytes(module, rootsPtr, rootCount * abiInfo.rootRowF64Bytes)
       : new ArrayBuffer(0);
     const hitBuffer = status === 0
       ? copyWasmBytes(module, hitsPtr, hitCount * abiInfo.delayedHitRowF64Bytes)
+      : new ArrayBuffer(0);
+    const ledgerBuffer = status === 0
+      ? copyWasmBytes(module, ledgerRowsPtr, ledgerRowCount * abiInfo.rootLedgerDetailRowF64Bytes)
       : new ArrayBuffer(0);
     const rootBufferDescriptor = createBufferDescriptor(
       "precision-root-ledger",
@@ -6212,16 +6287,27 @@ function solveRootsAndHitsPrecisionF64WithModule(module, request, abiInfo) {
       precision,
       "causal roots and delayed hits"
     );
+    const rootLedgerDetailBuffer = status === 0
+      ? createBufferDescriptor(
+          "precision-root-ledger-detail",
+          "root_ledger_detail.v1",
+          rootLedgerDetails.length,
+          abiInfo.rootLedgerDetailRowF64Bytes,
+          ledgerBuffer
+        )
+      : createEmptyRootLedgerDetailF64Response(abiInfo).buffers[0];
     return {
       schema: "solver-roots-and-hits-precision-f64.v1",
       roots,
       hits,
+      rootLedgerDetails,
       precision,
-      buffers: [rootBufferDescriptor, hitBufferDescriptor],
+      buffers: [rootBufferDescriptor, hitBufferDescriptor, rootLedgerDetailBuffer],
       streams: [
         createTransientStreamDescriptor("causal-root-transient", request.rootRequest.hitTime, [
           rootBufferDescriptor,
           hitBufferDescriptor,
+          rootLedgerDetailBuffer,
         ]),
       ],
       status: responseStatus,
@@ -6231,8 +6317,10 @@ function solveRootsAndHitsPrecisionF64WithModule(module, request, abiInfo) {
     module._free(optionsPtr);
     module._free(rootsPtr);
     module._free(hitsPtr);
+    module._free(ledgerRowsPtr);
     module._free(outRootCountPtr);
     module._free(outHitCountPtr);
+    module._free(outLedgerRowCountPtr);
     module._free(summaryPtr);
   }
 }
@@ -8258,6 +8346,7 @@ function describeRun(state, request) {
     summary: deepCloneJson(response.summary),
     buffers: response.buffers.map(copyBufferDescriptorWithoutPayload),
     streams: response.streams.map(copyStreamDescriptor),
+    precision: response.precision == null ? undefined : deepCloneJson(response.precision),
     diagnostics: response.diagnostics.map(deepCloneJson),
     status: createStatus("ok", "ok", "run description read", {
       runId: response.runId,

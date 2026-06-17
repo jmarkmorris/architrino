@@ -1041,6 +1041,7 @@ export interface SolverRootsAndHitsF64Response {
 
 export interface SolverRootsAndHitsPrecisionF64Response extends SolverRootsAndHitsF64Response {
   schema: "solver-roots-and-hits-precision-f64.v1";
+  rootLedgerDetails: SolverRootLedgerDetailF64[];
   precision: SolverPrecisionSolveSummaryF64;
 }
 
@@ -1478,9 +1479,11 @@ export interface SolverRunResponse {
   buffers: SolverBufferDescriptor[];
   streams: SolverStreamDescriptor[];
   diagnostics: SolverDiagnosticRecord[];
+  precision?: SolverPrecisionSolveSummaryF64;
   frames?: SolverMotionFrameF64[];
   roots?: SolverCausalRootF64[];
   hits?: SolverDelayedHitF64[];
+  rootLedgerDetails?: SolverRootLedgerDetailF64[];
   phaseRows?: SolverPhaseAtHitF64[];
   phaseSummary?: SolverPhaseAtHitSummaryF64;
   pathHistory?: SolverPathHistoryStreamSummary;
@@ -1502,6 +1505,7 @@ export interface SolverRunDescription {
   buffers: SolverBufferMetadata[];
   streams: SolverStreamDescriptor[];
   diagnostics: SolverDiagnosticRecord[];
+  precision?: SolverPrecisionSolveSummaryF64;
   status: SolverStatusRecord;
 }
 
@@ -1528,7 +1532,37 @@ export interface SolverRunManifest {
   buffers: SolverRunManifestBuffer[];
   streams: SolverRunManifestStream[];
   diagnostics: SolverDiagnosticRecord[];
+  precision?: SolverPrecisionSolveSummaryF64;
+  validationArtifacts: SolverRunValidationArtifacts;
   status: SolverStatusRecord;
+}
+
+export type SolverPrecisionReplayStatus = "not-run" | "matched" | "mismatch";
+
+export type SolverMigrationParityStatus =
+  | "not-run"
+  | "baseline_within_tolerance"
+  | "baseline_refined_result"
+  | "baseline_model_boundary_difference"
+  | "baseline_investigation_required_mismatch";
+
+export interface SolverRunArtifactHashes {
+  configHash: string;
+  bufferHashes: string[];
+  streamHashes: string[];
+  diagnosticHash: string;
+  summaryHash: string;
+  responseStatusHash: string;
+}
+
+export interface SolverRunValidationArtifacts {
+  schema: "solver-run-validation-artifacts.v1";
+  claimLevel: SolverClaimLevel;
+  selectedPrecisionPath: SolverPrecisionPath;
+  precisionReplayStatus: SolverPrecisionReplayStatus;
+  migrationParityStatus: SolverMigrationParityStatus;
+  toleranceVector: SolverErrorBudget;
+  artifactHashes: SolverRunArtifactHashes;
 }
 
 export interface SolverRunManifestAdmission {

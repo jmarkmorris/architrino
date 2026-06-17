@@ -350,6 +350,9 @@ assert(
       "solveCausalRootsNormalizedF64"
     ) &&
     capabilities.appBridge.streamQueries.broadPhaseQueries[0].narrowPhaseAuthorities.includes(
+      "solveRootsAndHitsPrecisionF64"
+    ) &&
+    capabilities.appBridge.streamQueries.broadPhaseQueries[0].narrowPhaseAuthorities.includes(
       "refineEmissionShellCandidateRootsF64"
     ),
   "expected emission-shell broad-phase capability metadata"
@@ -476,6 +479,25 @@ assert(
     workerStreamRead.buffers.length === 2 &&
     workerStreamRead.buffers[0].buffer instanceof ArrayBuffer,
   "expected worker stream readback"
+);
+const workerPrecisionRootsAndHitsResponse = await workerClient.solveRootsAndHitsPrecisionF64({
+  rootRequest: makePrecisionRequest(),
+  requestedPrecisionPath: "scaled_f64_strict",
+  claimLevel: "exported-dataset",
+  allowEscalation: true,
+  runValidationReplay: true,
+  maxRoots: 4,
+  maxHits: 4,
+});
+assert(
+  workerPrecisionRootsAndHitsResponse.schema === "solver-roots-and-hits-precision-f64.v1" &&
+    workerPrecisionRootsAndHitsResponse.roots.length === 1 &&
+    workerPrecisionRootsAndHitsResponse.hits.length === 1 &&
+    workerPrecisionRootsAndHitsResponse.rootLedgerDetails.length >= 1 &&
+    workerPrecisionRootsAndHitsResponse.rootLedgerDetails[0].entryKind === 1 &&
+    workerPrecisionRootsAndHitsResponse.precision.selectedPrecisionPath === "extended_precision" &&
+    workerPrecisionRootsAndHitsResponse.precision.validationReplayMatched,
+  "expected worker precision roots-and-hits solve response"
 );
 const workerCancelStatus = await workerClient.cancelRun({
   runId: "worker-smoke",
@@ -1493,6 +1515,36 @@ try {
     error instanceof SolverBridgeError && error.status.code === "stream_memory_pressure";
 }
 assert(streamPressureRejected, "expected stream maxBytes pressure rejection");
+const precisionRootsAndHitsResponse = await client.solveRootsAndHitsPrecisionF64({
+  rootRequest: makePrecisionRequest(),
+  requestedPrecisionPath: "scaled_f64_strict",
+  claimLevel: "exported-dataset",
+  allowEscalation: true,
+  runValidationReplay: true,
+  maxRoots: 4,
+  maxHits: 4,
+});
+assert(
+  precisionRootsAndHitsResponse.schema === "solver-roots-and-hits-precision-f64.v1" &&
+    precisionRootsAndHitsResponse.roots.length === 1 &&
+    precisionRootsAndHitsResponse.hits.length === 1 &&
+    precisionRootsAndHitsResponse.rootLedgerDetails.length >= 1 &&
+    precisionRootsAndHitsResponse.precision.selectedPrecisionPath === "extended_precision",
+  "expected precision roots-and-hits solve response"
+);
+assert(
+  precisionRootsAndHitsResponse.precision.selectedNumericType === "decimal128" &&
+    precisionRootsAndHitsResponse.precision.validationReplayRun &&
+    precisionRootsAndHitsResponse.precision.validationReplayMatched &&
+    precisionRootsAndHitsResponse.streams.length === 1,
+  "expected precision roots-and-hits summary and stream"
+);
+assert(
+  findBuffer(precisionRootsAndHitsResponse, "root_ledger.v1").rowCount === 1 &&
+    findBuffer(precisionRootsAndHitsResponse, "delayed_hit_events.v1").rowCount === 1 &&
+    findBuffer(precisionRootsAndHitsResponse, "root_ledger_detail.v1").rowCount >= 1,
+  "expected precision roots-and-hits buffers"
+);
 const pathHistoryStream = await client.createPathHistoryStreamF64(
   createPathHistoryStreamRequest({
     runId: "smoke-path-history-run",
@@ -2561,16 +2613,33 @@ assert(runHandle.datasetId === "smoke-run-dataset", "expected runSimulation data
 assert(runHandle.acceptedPrecisionPath === "extended_precision", "expected runSimulation precision selection");
 assert(runHandle.response.summary.rootCount === 1, "expected runSimulation root count");
 assert(runHandle.response.summary.eventCount === 1, "expected runSimulation event count");
-const runPrecisionControlDiagnostic = runHandle.response.diagnostics.find(
-  (diagnostic) => diagnostic.message === "precision path controls applied to causal-root solve"
+const runPrecisionSolveDiagnostic = runHandle.response.diagnostics.find(
+  (diagnostic) =>
+    diagnostic.details?.selectedPrecisionPath === "extended_precision" &&
+    diagnostic.details?.selectedNumericType === "decimal128"
 );
-assert(runPrecisionControlDiagnostic, "expected runSimulation precision-control diagnostic");
+assert(runPrecisionSolveDiagnostic, "expected runSimulation precision solve diagnostic");
 assert(
-  runPrecisionControlDiagnostic.details.precisionPath === "extended_precision" &&
-    runPrecisionControlDiagnostic.details.rootTolerance <= 1e-15 &&
-    runPrecisionControlDiagnostic.details.maxIterations >= 256 &&
-    runPrecisionControlDiagnostic.details.scanSubdivisions >= 512,
-  "expected runSimulation to apply extended-precision root controls"
+  runPrecisionSolveDiagnostic.details.selectedPrecisionPath === "extended_precision" &&
+    runPrecisionSolveDiagnostic.details.selectedNumericType === "decimal128" &&
+    runPrecisionSolveDiagnostic.details.rootTolerance <= 1e-15 &&
+    runPrecisionSolveDiagnostic.details.maxIterations >= 256 &&
+    runPrecisionSolveDiagnostic.details.scanSubdivisions >= 512 &&
+    runPrecisionSolveDiagnostic.details.rootCount === 1 &&
+    runPrecisionSolveDiagnostic.details.hitCount === 1,
+  "expected runSimulation to use native extended-precision roots-and-hits controls"
+);
+assert(
+  runHandle.response.precision.selectedPrecisionPath === "extended_precision" &&
+    runHandle.response.precision.selectedNumericType === "decimal128" &&
+    runHandle.response.precision.rootCount === 1,
+  "expected runSimulation response precision summary"
+);
+assert(
+  runHandle.response.rootLedgerDetails.length >= 1 &&
+    runHandle.response.rootLedgerDetails[0].entryKind === 1 &&
+    findBuffer(runHandle.response, "root_ledger_detail.v1").rowCount >= 1,
+  "expected runSimulation detailed root ledger"
 );
 assert(runHandle.response.manifest.schema === "solver-run-manifest.v1", "expected run manifest schema");
 assert(runHandle.response.manifest.manifestHash.length === 16, "expected run manifest hash");
@@ -2584,27 +2653,41 @@ assert(
   "expected run manifest selected precision path"
 );
 assert(
+  runHandle.response.manifest.precision.selectedPrecisionPath === "extended_precision" &&
+    runHandle.response.manifest.precision.selectedNumericType === "decimal128",
+  "expected run manifest precision summary"
+);
+assert(
   runHandle.response.manifest.errorBudget.globalTolerance === 1e-13,
   "expected run manifest error budget"
+);
+assert(
+  runHandle.response.manifest.validationArtifacts.schema === "solver-run-validation-artifacts.v1" &&
+    runHandle.response.manifest.validationArtifacts.precisionReplayStatus === "not-run" &&
+    runHandle.response.manifest.validationArtifacts.migrationParityStatus === "not-run" &&
+    runHandle.response.manifest.validationArtifacts.toleranceVector.rootIsolationTolerance === 1e-14 &&
+    runHandle.response.manifest.validationArtifacts.artifactHashes.bufferHashes.length === 3 &&
+    runHandle.response.manifest.validationArtifacts.artifactHashes.streamHashes.length === 1,
+  "expected run manifest validation artifacts"
 );
 assert(
   runHandle.response.manifest.admission.stressSummary.dominantStress === "precision" &&
     runHandle.response.manifest.admission.stressSummary.timeStepCountEstimate === 1000,
   "expected run manifest admission stress summary"
 );
-assert(runHandle.response.manifest.buffers.length === 2, "expected run manifest buffer summaries");
+assert(runHandle.response.manifest.buffers.length === 3, "expected run manifest buffer summaries");
 assert(
   runHandle.response.manifest.streams[0].streamId === "smoke-run:causal-root-transient",
   "expected run manifest stream summary"
 );
-assert(runHandle.response.buffers.length === 2, "expected runSimulation buffers");
+assert(runHandle.response.buffers.length === 3, "expected runSimulation buffers");
 assert(runHandle.response.streams[0].streamId === "smoke-run:causal-root-transient", "expected run-scoped stream id");
 const runStreamRead = await client.readStreamRange({
   streamId: "smoke-run:causal-root-transient",
-  maxBytes: 240,
+  maxBytes: 2048,
 });
 assert(runStreamRead.status.code === "ok", "expected run-scoped stream read status ok");
-assert(runStreamRead.buffers.length === 2, "expected run-scoped stream buffers");
+assert(runStreamRead.buffers.length === 3, "expected run-scoped stream buffers");
 const runDescription = await client.describeRun({ runId: "smoke-run" });
 assert(runDescription.schema === "solver-run-description.v1", "expected run description schema");
 assert(runDescription.status.code === "ok", "expected run description status ok");
@@ -2612,14 +2695,23 @@ assert(
   runDescription.manifest.manifestHash === runHandle.response.manifest.manifestHash,
   "expected run description manifest"
 );
-assert(runDescription.buffers.length === 2, "expected run description buffer metadata");
+assert(runDescription.buffers.length === 3, "expected run description buffer metadata");
 assert(!("buffer" in runDescription.buffers[0]), "expected run description to omit dense buffer payload");
-assert(runDescription.streams[0].availableRanges.length === 2, "expected run description stream ranges");
+assert(runDescription.streams[0].availableRanges.length === 3, "expected run description stream ranges");
+assert(
+  runDescription.precision.selectedPrecisionPath === "extended_precision" &&
+    runDescription.precision.validationReplayRun === false,
+  "expected run description precision summary"
+);
 
 const normalizedRunHandle = await client.runSimulation(makeNormalizedRunSimulationRequest());
 assert(normalizedRunHandle.status.code === "ok", "expected normalized runSimulation status ok");
 assert(normalizedRunHandle.requestId === "smoke-normalized-run-request", "expected normalized run request id");
 assert(normalizedRunHandle.runId === "smoke-normalized-run", "expected normalized run id");
+assert(
+  normalizedRunHandle.response.precision.selectedPrecisionPath === "extended_precision",
+  "expected normalized run precision summary"
+);
 assert(normalizedRunHandle.response.summary.rootCount === 1, "expected normalized run root count");
 assert(
   Math.abs(normalizedRunHandle.response.roots[0].distance - 1) <= 1e-12 &&
@@ -2735,17 +2827,24 @@ assert(delayedHitRunHandle.status.code === "ok", "expected delayed-hit runSimula
 assert(delayedHitRunHandle.response.summary.eventCount === 1, "expected delayed-hit run event count");
 assert(delayedHitRunHandle.response.hits.length === 1, "expected delayed-hit run rows");
 assert(
+  delayedHitRunHandle.response.precision.selectedPrecisionPath === "extended_precision" &&
+    delayedHitRunHandle.response.manifest.precision.selectedNumericType === "decimal128",
+  "expected delayed-hit run precision summary"
+);
+assert(
   delayedHitRunHandle.response.manifest.runKind === "delayedHits" &&
     delayedHitRunHandle.response.manifest.appId === "ideal-swarm" &&
-    delayedHitRunHandle.response.manifest.buffers.length === 2,
+    delayedHitRunHandle.response.rootLedgerDetails.length >= 1 &&
+    delayedHitRunHandle.response.manifest.buffers.length === 3,
   "expected delayed-hit run manifest"
 );
 const normalizedDelayedHitRunHandle = await client.runSimulation(
   makeNormalizedDelayedHitRunSimulationRequest()
 );
 assert(
-  normalizedDelayedHitRunHandle.status.code === "ok" &&
+    normalizedDelayedHitRunHandle.status.code === "ok" &&
     normalizedDelayedHitRunHandle.response.summary.eventCount === 1 &&
+    normalizedDelayedHitRunHandle.response.rootLedgerDetails.length >= 1 &&
     Math.abs(normalizedDelayedHitRunHandle.response.hits[0].distance - 1) <= 1e-12,
   "expected normalized delayed-hit run response"
 );
@@ -2794,7 +2893,9 @@ assert(
 );
 assert(
   validationReplayRunHandle.response.manifest.runKind === "validationReplay" &&
-    validationReplayRunHandle.response.manifest.selectedPrecisionPath === "extended_precision",
+    validationReplayRunHandle.response.manifest.selectedPrecisionPath === "extended_precision" &&
+    validationReplayRunHandle.response.manifest.validationArtifacts.migrationParityStatus ===
+      "baseline_within_tolerance",
   "expected validation replay run manifest"
 );
 

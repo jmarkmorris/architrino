@@ -1176,6 +1176,17 @@ ArchitrinoSolverPrecisionSolveSummaryF64 to_precision_solve_summary(
   };
 }
 
+architrino::solver::CausalRootRequest apply_precision_solve_report_controls(
+    architrino::solver::CausalRootRequest request,
+    const architrino::solver::PrecisionSolveReport& report) {
+  request.rootTolerance = report.rootTolerance;
+  request.maxIterations = report.maxIterations;
+  request.scanSubdivisions = report.scanSubdivisions;
+  request.source.numericType = report.selectedNumericType;
+  request.receiver.numericType = report.selectedNumericType;
+  return request;
+}
+
 architrino::solver::ErrorBudget to_error_budget(const ArchitrinoSolverErrorBudgetF64& budget) {
   return architrino::solver::ErrorBudget{
       budget.global_tolerance,
@@ -1232,6 +1243,11 @@ int copy_roots(const std::vector<architrino::solver::CausalRoot>& source,
   }
   return 0;
 }
+
+int copy_hits(const std::vector<architrino::solver::DelayedHitEvent>& source,
+              ArchitrinoSolverDelayedHitRowF64* hits,
+              int maxHits,
+              int* outHitCount);
 
 int copy_root_ledger_detail_rows(
     const std::vector<architrino::solver::RootLedgerDetailRowF64>& source,
@@ -1359,6 +1375,63 @@ extern "C" int architrino_solver_solve_roots_and_hits_precision_f64(
     return rootStatus;
   }
   return hitStatus;
+}
+
+extern "C" int architrino_solver_solve_roots_hits_ledger_precision_f64(
+    const ArchitrinoSolverCausalRootRequestF64* request,
+    const ArchitrinoSolverPrecisionSolveOptions* options,
+    ArchitrinoSolverCausalRootRowF64* roots,
+    int max_roots,
+    int* out_root_count,
+    ArchitrinoSolverDelayedHitRowF64* hits,
+    int max_hits,
+    int* out_hit_count,
+    ArchitrinoSolverRootLedgerDetailRowF64* ledger_rows,
+    int max_ledger_rows,
+    int* out_ledger_row_count,
+    ArchitrinoSolverPrecisionSolveSummaryF64* out_summary) {
+  if (request == nullptr || out_root_count == nullptr || out_hit_count == nullptr ||
+      out_ledger_row_count == nullptr || out_summary == nullptr || max_roots < 0 ||
+      max_hits < 0 || max_ledger_rows < 0) {
+    return -1;
+  }
+  *out_root_count = 0;
+  *out_hit_count = 0;
+  *out_ledger_row_count = 0;
+  if (options != nullptr &&
+      (!valid_precision_path_id(options->requested_precision_path) ||
+       !valid_claim_level_id(options->claim_level))) {
+    return -1;
+  }
+
+  const architrino::solver::CausalRootRequest baseRequest = to_request(request);
+  const architrino::solver::PrecisionRootsAndHitsResult result =
+      architrino::solver::solve_roots_and_hits_with_precision(
+          baseRequest,
+          to_precision_solve_options(options));
+  *out_summary = to_precision_solve_summary(result.precision);
+
+  if (!result.precision.validation.ok || !result.roots.validation.ok ||
+      !result.hits.validation.ok) {
+    return -2;
+  }
+
+  const architrino::solver::CausalRootRequest ledgerRequest =
+      apply_precision_solve_report_controls(baseRequest, result.precision);
+  const std::vector<architrino::solver::RootLedgerDetailRowF64> detailRows =
+      architrino::solver::build_root_ledger_detail(ledgerRequest, result.roots);
+
+  const int rootStatus = copy_roots(result.roots.roots, roots, max_roots, out_root_count);
+  const int hitStatus = copy_hits(result.hits.events, hits, max_hits, out_hit_count);
+  const int ledgerStatus =
+      copy_root_ledger_detail_rows(detailRows, ledger_rows, max_ledger_rows, out_ledger_row_count);
+  if (rootStatus != 0) {
+    return rootStatus;
+  }
+  if (hitStatus != 0) {
+    return hitStatus;
+  }
+  return ledgerStatus;
 }
 
 extern "C" int architrino_solver_propagate_error_budget_f64(

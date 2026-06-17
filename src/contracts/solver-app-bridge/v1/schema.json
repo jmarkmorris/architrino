@@ -3326,6 +3326,9 @@
             "$ref": "#/$defs/diagnosticRecord"
           }
         },
+        "precision": {
+          "$ref": "#/$defs/precisionSolveSummaryF64"
+        },
         "frames": {
           "type": "array",
           "items": {
@@ -3342,6 +3345,12 @@
           "type": "array",
           "items": {
             "$ref": "#/$defs/delayedHitF64"
+          }
+        },
+        "rootLedgerDetails": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/rootLedgerDetailF64"
           }
         },
         "phaseRows": {
@@ -3469,6 +3478,9 @@
           "items": {
             "$ref": "#/$defs/diagnosticRecord"
           }
+        },
+        "precision": {
+          "$ref": "#/$defs/precisionSolveSummaryF64"
         },
         "status": {
           "$ref": "#/$defs/statusRecord"
@@ -4405,7 +4417,7 @@
     "rootsAndHitsPrecisionF64Response": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["schema", "roots", "hits", "precision", "buffers", "streams", "status"],
+      "required": ["schema", "roots", "hits", "rootLedgerDetails", "precision", "buffers", "streams", "status"],
       "properties": {
         "schema": {
           "const": "solver-roots-and-hits-precision-f64.v1"
@@ -4420,6 +4432,12 @@
           "type": "array",
           "items": {
             "$ref": "#/$defs/delayedHitF64"
+          }
+        },
+        "rootLedgerDetails": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/rootLedgerDetailF64"
           }
         },
         "precision": {
@@ -8276,6 +8294,9 @@
             "type": "object"
           }
         },
+        "precision": {
+          "$ref": "#/$defs/precisionSolveSummaryF64"
+        },
         "status": {
           "$ref": "#/$defs/statusRecord"
         }
@@ -9288,6 +9309,94 @@
         }
       }
     },
+    "runArtifactHashes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "configHash",
+        "bufferHashes",
+        "streamHashes",
+        "diagnosticHash",
+        "summaryHash",
+        "responseStatusHash"
+      ],
+      "properties": {
+        "configHash": {
+          "type": "string",
+          "minLength": 1
+        },
+        "bufferHashes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{16}$"
+          }
+        },
+        "streamHashes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{16}$"
+          }
+        },
+        "diagnosticHash": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{16}$"
+        },
+        "summaryHash": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{16}$"
+        },
+        "responseStatusHash": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{16}$"
+        }
+      }
+    },
+    "runValidationArtifacts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "claimLevel",
+        "selectedPrecisionPath",
+        "precisionReplayStatus",
+        "migrationParityStatus",
+        "toleranceVector",
+        "artifactHashes"
+      ],
+      "properties": {
+        "schema": {
+          "const": "solver-run-validation-artifacts.v1"
+        },
+        "claimLevel": {
+          "$ref": "#/$defs/solverClaimLevel"
+        },
+        "selectedPrecisionPath": {
+          "$ref": "#/$defs/precisionPathId"
+        },
+        "precisionReplayStatus": {
+          "type": "string",
+          "enum": ["not-run", "matched", "mismatch"]
+        },
+        "migrationParityStatus": {
+          "type": "string",
+          "enum": [
+            "not-run",
+            "baseline_within_tolerance",
+            "baseline_refined_result",
+            "baseline_model_boundary_difference",
+            "baseline_investigation_required_mismatch"
+          ]
+        },
+        "toleranceVector": {
+          "$ref": "#/$defs/solverErrorBudget"
+        },
+        "artifactHashes": {
+          "$ref": "#/$defs/runArtifactHashes"
+        }
+      }
+    },
     "runManifest": {
       "type": "object",
       "additionalProperties": false,
@@ -9314,6 +9423,7 @@
         "buffers",
         "streams",
         "diagnostics",
+        "validationArtifacts",
         "status"
       ],
       "properties": {
@@ -9397,6 +9507,12 @@
           "items": {
             "type": "object"
           }
+        },
+        "precision": {
+          "$ref": "#/$defs/precisionSolveSummaryF64"
+        },
+        "validationArtifacts": {
+          "$ref": "#/$defs/runValidationArtifacts"
         },
         "status": {
           "$ref": "#/$defs/statusRecord"

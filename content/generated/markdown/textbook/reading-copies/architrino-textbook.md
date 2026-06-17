@@ -7273,11 +7273,11 @@ This chapter collects the entropy rule used across time, energy, measurement, co
 
 #### Plain-Language Reading
 
-A simple way to read entropy is: entropy scores how many hidden detailed stories could produce the same thing a record can see. A room does not contain an entropy substance. Rather, there are many exact arrangements of dust, air, books, and clothing that a coarse observer would still record as the same messy room. Entropy counts or measures those compatible detailed arrangements after the level of detail has been fixed.
+A simple way to read entropy is: entropy measures how many hidden detailed stories could produce the same thing a record can see. A room does not contain an entropy substance. Rather, there are many exact arrangements of dust, air, books, and clothing that a coarse observer would still record as the same messy room. Entropy counts or measures those compatible detailed arrangements after the level of detail has been fixed.
 
 This is also why visible disorder is only a shortcut, not the definition. A jagged, broken, or visually mixed object can still have lower entropy than a smoother thermal state if fewer complete histories are compatible with its retained record. In this chapter, disorder language is acceptable only when it tracks the declared measure, macrostate partition, and unresolved history count.
 
-If $\mathbb{A}\mathbb{A}\mathbb{A}$ holds, older entropy language was usually measuring unresolved path history without naming it that way. Heat spreading, phase scrambling, apparatus irreversibility, and horizon bookkeeping all express the same pressure: a finite record no longer retains enough exact architrino, assembly, causal-wake, boundary, and Noether sea history to reconstruct one unique detailed past.
+In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, inherited entropy language usually measures unresolved path history without naming it that way. Heat spreading, phase scrambling, apparatus irreversibility, and horizon bookkeeping all express the same pressure: a finite record no longer retains enough exact architrino, assembly, causal-wake, boundary, and Noether sea history to reconstruct one unique detailed past.
 
 Entropy remains useful because it audits coarse descriptions. It asks whether a measurement record is really stable, whether heat and work bookkeeping close, whether computation or memory reset has a physical cost, whether a horizon label count comes from real boundary records, and whether a packet is using one hidden record for entropy while using another for temperature, flux, or probability. In that sense, entropy is not fundamental ontology, but it is a powerful test of whether an effective description is physically honest.
 
@@ -7297,7 +7297,7 @@ $$
 \Pi_{\mathcal{Q},W}:\Gamma_t\longrightarrow \mathcal{Z}_{\mathcal{Q},W}
 $$
 
-maps complete histories into retained record variables. The pushed-forward record measure is
+maps complete histories into retained record variables. Here $\Gamma_t$ is the preparation-conditioned complete-history space at time $t$, and $\mathcal{Z}_{\mathcal{Q},W}$ is the retained record-state space selected by the coarse-graining and access window. The pushed-forward record measure is
 
 $$
 \nu_{\mathcal{Q},W,t}
@@ -7336,6 +7336,12 @@ where $\Gamma_{\mathcal{Q},W(t)}$ is the set of complete microhistories compatib
 Plain language: entropy is not counted over reality in the abstract. It is counted over the alternatives left unresolved after the record map, measure, coarse-graining, and access window have been specified.
 
 The exact-record limit is useful as a guardrail. If the retained partition distinguishes one complete deterministic history from every other complete deterministic history, then the active cell has probability one and the corresponding entropy is zero. That does not mean thermodynamics has disappeared from the world. It means the record has been refined until it no longer asks a thermodynamic question. A thermodynamic macrostate is a physically declared grouping of histories: a pressure, temperature, density, spectral, boundary, apparatus, or control-relevant record that a real system can retain and use.
+
+#### Minimum Specification
+
+Every entropy statement in $\mathbb{A}\mathbb{A}\mathbb{A}$ should declare five ingredients before the number is treated as physical. First, it should name the preparation and measure $\mu_t$ on compatible deterministic histories. Second, it should name the access window $W(t)$ and retained record carrier: apparatus state, boundary wake data, Noether sea state, Physical Observer record, or simulation packet. Third, it should name the coarse-graining $\mathcal{Q}$ and the projection $\Pi_{\mathcal{Q},W}$. Fourth, it should state the comparison job: work availability, heat flow, coding, measurement locking, horizon label counting, cosmology, or another defined use. Fifth, for open windows, it should include boundary flux and record-change residuals rather than silently treating the window as isolated.
+
+This checklist is not extra ontology. It is the minimum context needed for an entropy claim to say something definite. Without these ingredients, a phrase such as "the entropy increased," "the system is maximally entropic," or "information was lost" has not yet specified which alternatives were unresolved, which record retained them, or which comparison class made the claim meaningful.
 
 #### Work Availability And Energy Spread
 
@@ -7569,7 +7575,7 @@ Here $\Delta S_{\mathcal{Q},W}$ is the retained entropy change inside the window
 
 This formula explains how the familiar readings fit together. For an isolated macroscopic packet with fixed coarse-graining and no boundary term, it reduces to the usual effective statement $\Delta S\gtrsim0$. For a refrigerator, cell, planet, or reaction network, $\Delta S_{\mathcal{Q},W}$ may be negative while the boundary and environment term is larger and positive. For an ideal reversible comparison, the inequality is saturated. For an irreversible comparison, the residual is positive. For a Maxwell-demon packet, the memory, actuator, partition, target, and reset channel must all be included in the same $\theta_W$, or the apparent violation is a split-record error.
 
-Sabine-style record-circularity pressure lands exactly here. The second law does not by itself prove that a present record descends from a low-entropy past; it uses a low-defect boundary condition and ordinary history-backed records to make the second-law inference trustworthy. In this chapter that burden is not hidden. The path-history measure, boundary-condition prior, and observer record all belong in $\theta_W$, and the Boltzmann-brain residual $\mathcal{R}_{\mathrm{BB}}(\theta)$ below is the extreme test of whether isolated observer-fluctuation records have been suppressed relative to shared history-backed records.
+Record-circularity pressure lands exactly here. The second law does not by itself prove that a present record descends from a low-entropy past; it uses a low-defect boundary condition and ordinary history-backed records to make the second-law inference trustworthy. In this chapter that burden is not hidden. The path-history measure, boundary-condition prior, and observer record all belong in $\theta_W$, and the Boltzmann-brain residual $\mathcal{R}_{\mathrm{BB}}(\theta)$ below is the extreme test of whether isolated observer-fluctuation records have been suppressed relative to shared history-backed records.
 
 What survives from the traditional interpretation is strong: thermodynamics is not being rejected. Heat engines, irreversible mixing, work availability, macrostate dominance, memory reset, decoherence, and horizon bookkeeping remain real effective constraints. What changes is the level assignment. The second law is a theorem target about projected deterministic histories and declared records, not an ontological rival to the substrate dynamics.
 

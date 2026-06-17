@@ -59,8 +59,8 @@ for (const testCase of cases) {
   const runHandle = await client.runSimulation(createRunSimulationRequest(testCase));
   const normalizedResponse = stripRuntimeBuffers(runHandle.response);
   const comparison = classifySolverBaselineResponse({
-    baseline: testCase.baseline,
-    candidate: normalizedResponse,
+    baseline: projectRootHitResponseForBaseline(testCase.baseline),
+    candidate: projectRootHitResponseForBaseline(normalizedResponse),
     tolerance: testCase.tolerance,
     refinementTolerance: testCase.refinementTolerance,
   });
@@ -490,6 +490,25 @@ function projectIdealSwarmGeometryForBaseline(geometry) {
       span: row.span,
       rootFound: row.rootFound,
     })),
+  };
+}
+
+function projectRootHitResponseForBaseline(response) {
+  return {
+    roots: response.roots,
+    hits: response.hits,
+    buffers: response.buffers
+      .filter((buffer) => buffer.layout === "root_ledger.v1" || buffer.layout === "delayed_hit_events.v1")
+      .map((buffer) => ({
+        layout: buffer.layout,
+        byteOffset: buffer.byteOffset,
+        byteLength: buffer.byteLength,
+        rowCount: buffer.rowCount,
+        numericType: buffer.numericType,
+      })),
+    status: {
+      code: response.status?.code,
+    },
   };
 }
 

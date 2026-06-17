@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
   "manifest_schema": "textbook_bundle_schema_v1",
-  "generated_at": "2026-06-17T06:26:36.550Z",
-  "package_version": "1.0.0-7a98d746",
+  "generated_at": "2026-06-17T18:41:01.968Z",
+  "package_version": "1.0.0-45ad8038",
   "schema_version_note": "content_bundle_schema_v1",
   "textbook_toc": {
     "path": "content/graph/textbook_toc.json",
-    "sha256": "7a98d74611278365cc594efc9b05fad18d1672873912aa75ae095b20c3536459",
-    "size": 601078
+    "sha256": "45ad8038a83c5de1ccd028767c53913eacbd405a3e82a5af15e5e5bed6b37ccb",
+    "size": 601430
   },
   "chapters": [
     {
@@ -148,8 +148,8 @@
       "sourcePath": "content/graph/textbook_toc.json",
       "role": "toc",
       "type": "json",
-      "size": 601532,
-      "sha256": "7a98d74611278365cc594efc9b05fad18d1672873912aa75ae095b20c3536459"
+      "size": 601884,
+      "sha256": "45ad8038a83c5de1ccd028767c53913eacbd405a3e82a5af15e5e5bed6b37ccb"
     },
     {
       "path": "reading-copies/atomic-and-nuclear-assemblies.md",
@@ -172,8 +172,8 @@
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 1133692,
-      "sha256": "d22b9049d56c3077c3bc2a49053615c9e27ee811dcf4e51edb9ba038db1505a8"
+      "size": 1135112,
+      "sha256": "85e104df9542081ff95668bc65ff2fde1e64b0cea6a4393062638836bd71f607"
     },
     {
       "path": "reading-copies/foundations.md",
@@ -284,8 +284,8 @@
       "sourcePath": "__generated__/textbook_bundle_search_index.json",
       "role": "search",
       "type": "json",
-      "size": 8156686,
-      "sha256": "86cbda3f13c37e485139c1c51b66a4bdcf1bf1bdf85a7d6e4b4ca410930cfc40"
+      "size": 8159164,
+      "sha256": "859cd3aa35ffd107f8bce0c5d6743a9824a126aa57389d902bc0c8eb4abcf926"
     }
   ],
   "links": [
