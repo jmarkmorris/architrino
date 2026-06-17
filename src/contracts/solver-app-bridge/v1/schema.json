@@ -34,6 +34,12 @@
       "$ref": "#/$defs/causalRootsF64ResponseEnvelope"
     },
     {
+      "$ref": "#/$defs/causalRootsNormalizedF64RequestEnvelope"
+    },
+    {
+      "$ref": "#/$defs/causalRootsNormalizedF64ResponseEnvelope"
+    },
+    {
       "$ref": "#/$defs/rootLedgerDetailF64RequestEnvelope"
     },
     {
@@ -44,6 +50,18 @@
     },
     {
       "$ref": "#/$defs/precisionDiagnosticF64ResponseEnvelope"
+    },
+    {
+      "$ref": "#/$defs/causalRootsPrecisionF64RequestEnvelope"
+    },
+    {
+      "$ref": "#/$defs/causalRootsPrecisionF64ResponseEnvelope"
+    },
+    {
+      "$ref": "#/$defs/rootsAndHitsPrecisionF64RequestEnvelope"
+    },
+    {
+      "$ref": "#/$defs/rootsAndHitsPrecisionF64ResponseEnvelope"
     },
     {
       "$ref": "#/$defs/errorBudgetPropagationF64RequestEnvelope"
@@ -100,7 +118,34 @@
       "$ref": "#/$defs/assemblyMembershipEventsF64ResponseEnvelope"
     },
     {
+      "$ref": "#/$defs/assemblyGraphDatasetF64RequestEnvelope"
+    },
+    {
+      "$ref": "#/$defs/assemblyGraphDatasetF64ResponseEnvelope"
+    },
+    {
+      "$ref": "#/$defs/assemblyGraphStoreF64RequestEnvelope"
+    },
+    {
+      "$ref": "#/$defs/assemblyGraphStoreF64ResponseEnvelope"
+    },
+    {
+      "$ref": "#/$defs/describeAssemblyGraphStoreF64RequestEnvelope"
+    },
+    {
+      "$ref": "#/$defs/assemblyGraphStoreDescriptionF64ResponseEnvelope"
+    },
+    {
+      "$ref": "#/$defs/assemblyGraphStoreReadF64RequestEnvelope"
+    },
+    {
+      "$ref": "#/$defs/assemblyGraphStoreReadF64ResponseEnvelope"
+    },
+    {
       "$ref": "#/$defs/buildSpaceTimeIndexF64RequestEnvelope"
+    },
+    {
+      "$ref": "#/$defs/buildPathHistoryStreamSpaceTimeIndexF64RequestEnvelope"
     },
     {
       "$ref": "#/$defs/spaceTimeIndexF64ResponseEnvelope"
@@ -193,7 +238,13 @@
       "$ref": "#/$defs/emissionShellCandidatePacketsF64RequestEnvelope"
     },
     {
+      "$ref": "#/$defs/emissionShellRootRefinementF64RequestEnvelope"
+    },
+    {
       "$ref": "#/$defs/emissionShellCandidateF64ResponseEnvelope"
+    },
+    {
+      "$ref": "#/$defs/emissionShellRootRefinementF64ResponseEnvelope"
     },
     {
       "$ref": "#/$defs/rootsAndHitsF64ResponseEnvelope"
@@ -224,10 +275,13 @@
         "describeRun",
         "describeStream",
         "diagnosePrecisionF64",
+        "solveCausalRootsPrecisionF64",
+        "solveRootsAndHitsPrecisionF64",
         "propagateErrorBudgetF64",
         "checkRootHitInvariantsF64",
         "classifyRootLedgerTransitionsF64",
         "solveCausalRootsF64",
+        "solveCausalRootsNormalizedF64",
         "solveCausalRootBatchF64",
         "solveRootsAndHitsF64",
         "buildRootLedgerDetailF64",
@@ -235,7 +289,12 @@
         "summarizePhaseAtHitsF64",
         "computeSharedGeometryF64",
         "detectAssemblyMembershipEventsF64",
+        "buildAssemblyGraphDatasetF64",
+        "createAssemblyGraphStoreF64",
+        "describeAssemblyGraphStoreF64",
+        "readAssemblyGraphStoreRangeF64",
         "buildSpaceTimeIndexF64",
+        "buildPathHistoryStreamSpaceTimeIndexF64",
         "querySpaceTimeIndexF64",
         "sampleLinearMotionF64",
         "createPathHistoryStreamF64",
@@ -243,6 +302,7 @@
         "queryEmissionShellCandidatesF64",
         "queryEmissionShellCandidatePacketF64",
         "queryEmissionShellCandidatePacketsF64",
+        "refineEmissionShellCandidateRootsF64",
         "cancelRun",
         "openStream",
         "readStreamRange",
@@ -513,6 +573,46 @@
         }
       }
     },
+    "causalRootsNormalizedF64RequestEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "request"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "causal-roots-normalized-f64-request"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "request": {
+          "$ref": "#/$defs/causalRootsNormalizedF64Request"
+        }
+      }
+    },
+    "causalRootsNormalizedF64ResponseEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "response"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "causal-roots-normalized-f64-response"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "response": {
+          "$ref": "#/$defs/causalRootsNormalizedF64Response"
+        }
+      }
+    },
     "rootLedgerDetailF64RequestEnvelope": {
       "type": "object",
       "additionalProperties": false,
@@ -590,6 +690,86 @@
         },
         "response": {
           "$ref": "#/$defs/precisionDiagnosticF64Response"
+        }
+      }
+    },
+    "causalRootsPrecisionF64RequestEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "request"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "causal-roots-precision-f64-request"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "request": {
+          "$ref": "#/$defs/causalRootsPrecisionF64Request"
+        }
+      }
+    },
+    "causalRootsPrecisionF64ResponseEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "response"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "causal-roots-precision-f64-response"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "response": {
+          "$ref": "#/$defs/causalRootsPrecisionF64Response"
+        }
+      }
+    },
+    "rootsAndHitsPrecisionF64RequestEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "request"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "roots-and-hits-precision-f64-request"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "request": {
+          "$ref": "#/$defs/causalRootsPrecisionF64Request"
+        }
+      }
+    },
+    "rootsAndHitsPrecisionF64ResponseEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "response"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "roots-and-hits-precision-f64-response"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "response": {
+          "$ref": "#/$defs/rootsAndHitsPrecisionF64Response"
         }
       }
     },
@@ -1033,6 +1213,166 @@
         }
       }
     },
+    "assemblyGraphDatasetF64RequestEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "request"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "assembly-graph-dataset-f64-request"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "request": {
+          "$ref": "#/$defs/assemblyGraphDatasetF64Request"
+        }
+      }
+    },
+    "assemblyGraphDatasetF64ResponseEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "response"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "assembly-graph-dataset-f64-response"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "response": {
+          "$ref": "#/$defs/assemblyGraphDatasetF64Response"
+        }
+      }
+    },
+    "assemblyGraphStoreF64RequestEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "request"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "assembly-graph-store-f64-request"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "request": {
+          "$ref": "#/$defs/assemblyGraphStoreF64Request"
+        }
+      }
+    },
+    "assemblyGraphStoreF64ResponseEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "response"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "assembly-graph-store-f64-response"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "response": {
+          "$ref": "#/$defs/assemblyGraphStoreF64Response"
+        }
+      }
+    },
+    "describeAssemblyGraphStoreF64RequestEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "request"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "describe-assembly-graph-store-f64-request"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "request": {
+          "$ref": "#/$defs/describeAssemblyGraphStoreF64Request"
+        }
+      }
+    },
+    "assemblyGraphStoreDescriptionF64ResponseEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "response"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "assembly-graph-store-description-f64-response"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "response": {
+          "$ref": "#/$defs/assemblyGraphStoreDescriptionF64Response"
+        }
+      }
+    },
+    "assemblyGraphStoreReadF64RequestEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "request"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "assembly-graph-store-read-f64-request"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "request": {
+          "$ref": "#/$defs/assemblyGraphStoreReadF64Request"
+        }
+      }
+    },
+    "assemblyGraphStoreReadF64ResponseEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "response"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "assembly-graph-store-read-f64-response"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "response": {
+          "$ref": "#/$defs/assemblyGraphStoreReadF64Response"
+        }
+      }
+    },
     "buildSpaceTimeIndexF64RequestEnvelope": {
       "type": "object",
       "additionalProperties": false,
@@ -1050,6 +1390,26 @@
         },
         "request": {
           "$ref": "#/$defs/buildSpaceTimeIndexF64Request"
+        }
+      }
+    },
+    "buildPathHistoryStreamSpaceTimeIndexF64RequestEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "request"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "build-path-history-stream-spacetime-index-f64-request"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "request": {
+          "$ref": "#/$defs/buildPathHistoryStreamSpaceTimeIndexF64Request"
         }
       }
     },
@@ -1553,6 +1913,46 @@
         }
       }
     },
+    "emissionShellRootRefinementF64RequestEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "request"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "emission-shell-root-refinement-f64-request"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "request": {
+          "$ref": "#/$defs/emissionShellRootRefinementF64Request"
+        }
+      }
+    },
+    "emissionShellRootRefinementF64ResponseEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "response"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "emission-shell-root-refinement-f64-response"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "response": {
+          "$ref": "#/$defs/emissionShellRootRefinementF64Response"
+        }
+      }
+    },
     "emissionShellCandidatePacketF64RequestEnvelope": {
       "type": "object",
       "additionalProperties": false,
@@ -1637,19 +2037,39 @@
         },
         "maxIterations": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 2147483647
         },
         "scanSubdivisions": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 2147483647
         },
         "maxRoots": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 2147483647
         },
         "maxHits": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 2147483647
+        }
+      }
+    },
+    "causalRootsNormalizedF64Request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["coordinateOrigin", "localRequest"],
+      "properties": {
+        "coordinateOrigin": {
+          "$ref": "#/$defs/vector3F64"
+        },
+        "localRequest": {
+          "$ref": "#/$defs/causalRootsF64Request"
+        },
+        "restoreAbsolutePoints": {
+          "type": "boolean"
         }
       }
     },
@@ -1677,11 +2097,53 @@
         },
         "maxIterations": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 2147483647
         },
         "scanSubdivisions": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 2147483647
+        },
+        "maxRoots": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2147483647
+        },
+        "maxHits": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2147483647
+        },
+        "maxRows": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2147483647
+        }
+      }
+    },
+    "precisionDiagnosticF64Request": {
+      "$ref": "#/$defs/causalRootsF64Request"
+    },
+    "causalRootsPrecisionF64Request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["rootRequest"],
+      "properties": {
+        "rootRequest": {
+          "$ref": "#/$defs/causalRootsF64Request"
+        },
+        "requestedPrecisionPath": {
+          "$ref": "#/$defs/precisionPathId"
+        },
+        "claimLevel": {
+          "$ref": "#/$defs/solverClaimLevel"
+        },
+        "allowEscalation": {
+          "type": "boolean"
+        },
+        "runValidationReplay": {
+          "type": "boolean"
         },
         "maxRoots": {
           "type": "integer",
@@ -1690,15 +2152,8 @@
         "maxHits": {
           "type": "integer",
           "minimum": 1
-        },
-        "maxRows": {
-          "type": "integer",
-          "minimum": 1
         }
       }
-    },
-    "precisionDiagnosticF64Request": {
-      "$ref": "#/$defs/causalRootsF64Request"
     },
     "initRequest": {
       "type": "object",
@@ -1823,6 +2278,26 @@
         "maxBytes": {
           "type": "integer",
           "minimum": 0
+        },
+        "basePath": {
+          "type": "string",
+          "minLength": 1
+        },
+        "streamPath": {
+          "type": "string",
+          "minLength": 1
+        },
+        "storePath": {
+          "type": "string",
+          "minLength": 1
+        },
+        "indexPath": {
+          "type": "string",
+          "minLength": 1
+        },
+        "manifestPath": {
+          "type": "string",
+          "minLength": 1
         }
       }
     },
@@ -1972,6 +2447,8 @@
       "required": [
         "preferredDurableBrowserTarget",
         "durableBrowserTargetAvailable",
+        "preferredNativeFileTarget",
+        "nativeFileTargetAvailable",
         "transientTarget",
         "unsupportedStorageStatusCode"
       ],
@@ -1980,6 +2457,12 @@
           "const": "opfs"
         },
         "durableBrowserTargetAvailable": {
+          "type": "boolean"
+        },
+        "preferredNativeFileTarget": {
+          "const": "native-file"
+        },
+        "nativeFileTargetAvailable": {
           "type": "boolean"
         },
         "transientTarget": {
@@ -2006,9 +2489,11 @@
               "createPathHistoryStreamF64",
               "describeStream",
               "readStreamRange",
+              "buildPathHistoryStreamSpaceTimeIndexF64",
               "queryEmissionShellCandidatesF64",
               "queryEmissionShellCandidatePacketF64",
-              "queryEmissionShellCandidatePacketsF64"
+              "queryEmissionShellCandidatePacketsF64",
+              "refineEmissionShellCandidateRootsF64"
             ]
           }
         },
@@ -2059,7 +2544,14 @@
           "type": "array",
           "items": {
             "type": "string",
-            "enum": ["solveCausalRootsF64", "solveRootsAndHitsF64"]
+            "enum": [
+              "solveCausalRootsF64",
+              "solveCausalRootsPrecisionF64",
+              "solveCausalRootsNormalizedF64",
+              "solveRootsAndHitsPrecisionF64",
+              "solveRootsAndHitsF64",
+              "refineEmissionShellCandidateRootsF64"
+            ]
           }
         }
       }
@@ -2189,7 +2681,9 @@
         "errorBudgetF64Bytes",
         "errorBudgetStageInputF64Bytes",
         "errorBudgetStageRowF64Bytes",
-        "errorBudgetSummaryF64Bytes"
+        "errorBudgetSummaryF64Bytes",
+        "precisionSolveOptionsBytes",
+        "precisionSolveSummaryF64Bytes"
       ],
       "properties": {
         "abiMajor": { "type": "integer", "minimum": 0 },
@@ -2227,7 +2721,9 @@
         "errorBudgetF64Bytes": { "type": "integer", "minimum": 1 },
         "errorBudgetStageInputF64Bytes": { "type": "integer", "minimum": 1 },
         "errorBudgetStageRowF64Bytes": { "type": "integer", "minimum": 1 },
-        "errorBudgetSummaryF64Bytes": { "type": "integer", "minimum": 1 }
+        "errorBudgetSummaryF64Bytes": { "type": "integer", "minimum": 1 },
+        "precisionSolveOptionsBytes": { "type": "integer", "minimum": 1 },
+        "precisionSolveSummaryF64Bytes": { "type": "integer", "minimum": 1 }
       }
     },
     "threadingPolicy": {
@@ -2429,13 +2925,24 @@
     "causalRootsRunConfig": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["appId", "rootRequest"],
+      "required": ["appId"],
+      "oneOf": [
+        {
+          "required": ["rootRequest"]
+        },
+        {
+          "required": ["normalizedRootRequest"]
+        }
+      ],
       "properties": {
         "appId": {
           "$ref": "#/$defs/solverAppId"
         },
         "rootRequest": {
           "$ref": "#/$defs/causalRootsF64Request"
+        },
+        "normalizedRootRequest": {
+          "$ref": "#/$defs/causalRootsNormalizedF64Request"
         }
       }
     },
@@ -2486,13 +2993,24 @@
     "delayedHitsRunConfig": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["appId", "rootRequest"],
+      "required": ["appId"],
+      "oneOf": [
+        {
+          "required": ["rootRequest"]
+        },
+        {
+          "required": ["normalizedRootRequest"]
+        }
+      ],
       "properties": {
         "appId": {
           "$ref": "#/$defs/solverAppId"
         },
         "rootRequest": {
           "$ref": "#/$defs/causalRootsF64Request"
+        },
+        "normalizedRootRequest": {
+          "$ref": "#/$defs/causalRootsNormalizedF64Request"
         }
       }
     },
@@ -2641,7 +3159,7 @@
       }
     },
     "solverRunConfig": {
-      "oneOf": [
+      "anyOf": [
         {
           "$ref": "#/$defs/causalRootsRunConfig"
         },
@@ -3343,7 +3861,8 @@
         },
         "maxRows": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 2147483647
         }
       }
     },
@@ -3401,15 +3920,18 @@
         },
         "maxItems": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 2147483647
         },
         "maxRoots": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 2147483647
         },
         "workerCount": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 2147483647
         }
       }
     },
@@ -3443,7 +3965,8 @@
         },
         "maxFrames": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 2147483647
         }
       }
     },
@@ -3581,11 +4104,13 @@
         },
         "maxIterations": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 2147483647
         },
         "scanSubdivisions": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 2147483647
         },
         "maxAngle": {
           "type": "number",
@@ -3685,6 +4210,164 @@
         }
       }
     },
+    "causalRootsNormalizedF64Response": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "coordinateFrame", "coordinateOrigin", "localRequest", "roots", "status"],
+      "properties": {
+        "schema": {
+          "const": "solver-causal-roots-normalized-f64.v1"
+        },
+        "coordinateFrame": {
+          "const": "origin-normalized"
+        },
+        "coordinateOrigin": {
+          "$ref": "#/$defs/vector3F64"
+        },
+        "localRequest": {
+          "$ref": "#/$defs/causalRootsF64Request"
+        },
+        "roots": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/normalizedCausalRootF64"
+          }
+        },
+        "absoluteRoots": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/absoluteDisplayCausalRootF64"
+          }
+        },
+        "status": {
+          "$ref": "#/$defs/statusRecord"
+        }
+      }
+    },
+    "normalizedCausalRootF64": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "rootId",
+        "statusCode",
+        "emissionTime",
+        "hitTime",
+        "delay",
+        "distance",
+        "residual",
+        "jacobian",
+        "branchWeight",
+        "sourcePoint",
+        "receiverPoint",
+        "coordinateFrame"
+      ],
+      "properties": {
+        "rootId": {
+          "type": "integer"
+        },
+        "statusCode": {
+          "type": "integer"
+        },
+        "emissionTime": {
+          "type": "number"
+        },
+        "hitTime": {
+          "type": "number"
+        },
+        "delay": {
+          "type": "number"
+        },
+        "distance": {
+          "type": "number"
+        },
+        "residual": {
+          "type": "number"
+        },
+        "jacobian": {
+          "type": "number"
+        },
+        "branchWeight": {
+          "type": "number"
+        },
+        "sourcePoint": {
+          "$ref": "#/$defs/vector3F64"
+        },
+        "receiverPoint": {
+          "$ref": "#/$defs/vector3F64"
+        },
+        "coordinateFrame": {
+          "const": "origin-normalized"
+        }
+      }
+    },
+    "absoluteDisplayCausalRootF64": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "rootId",
+        "statusCode",
+        "emissionTime",
+        "hitTime",
+        "delay",
+        "distance",
+        "residual",
+        "jacobian",
+        "branchWeight",
+        "sourcePoint",
+        "receiverPoint",
+        "coordinateFrame",
+        "localSourcePoint",
+        "localReceiverPoint",
+        "absolutePointAuthority"
+      ],
+      "properties": {
+        "rootId": {
+          "type": "integer"
+        },
+        "statusCode": {
+          "type": "integer"
+        },
+        "emissionTime": {
+          "type": "number"
+        },
+        "hitTime": {
+          "type": "number"
+        },
+        "delay": {
+          "type": "number"
+        },
+        "distance": {
+          "type": "number"
+        },
+        "residual": {
+          "type": "number"
+        },
+        "jacobian": {
+          "type": "number"
+        },
+        "branchWeight": {
+          "type": "number"
+        },
+        "sourcePoint": {
+          "$ref": "#/$defs/vector3F64"
+        },
+        "receiverPoint": {
+          "$ref": "#/$defs/vector3F64"
+        },
+        "coordinateFrame": {
+          "const": "absolute-display"
+        },
+        "localSourcePoint": {
+          "$ref": "#/$defs/vector3F64"
+        },
+        "localReceiverPoint": {
+          "$ref": "#/$defs/vector3F64"
+        },
+        "absolutePointAuthority": {
+          "const": "display-only"
+        }
+      }
+    },
     "rootsAndHitsF64Response": {
       "type": "object",
       "additionalProperties": false,
@@ -3701,6 +4384,46 @@
           "items": {
             "$ref": "#/$defs/delayedHitF64"
           }
+        },
+        "buffers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/bufferDescriptor"
+          }
+        },
+        "streams": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/streamDescriptor"
+          }
+        },
+        "status": {
+          "$ref": "#/$defs/statusRecord"
+        }
+      }
+    },
+    "rootsAndHitsPrecisionF64Response": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "roots", "hits", "precision", "buffers", "streams", "status"],
+      "properties": {
+        "schema": {
+          "const": "solver-roots-and-hits-precision-f64.v1"
+        },
+        "roots": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/causalRootF64"
+          }
+        },
+        "hits": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/delayedHitF64"
+          }
+        },
+        "precision": {
+          "$ref": "#/$defs/precisionSolveSummaryF64"
         },
         "buffers": {
           "type": "array",
@@ -3795,6 +4518,114 @@
         },
         "status": {
           "$ref": "#/$defs/statusRecord"
+        }
+      }
+    },
+    "causalRootsPrecisionF64Response": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "roots", "precision", "buffers", "status"],
+      "properties": {
+        "schema": {
+          "const": "solver-causal-roots-precision-f64.v1"
+        },
+        "roots": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/causalRootF64"
+          }
+        },
+        "precision": {
+          "$ref": "#/$defs/precisionSolveSummaryF64"
+        },
+        "buffers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/bufferDescriptor"
+          }
+        },
+        "status": {
+          "$ref": "#/$defs/statusRecord"
+        }
+      }
+    },
+    "precisionSolveSummaryF64": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "requestedPrecisionPath",
+        "diagnosticPrecisionPath",
+        "selectedPrecisionPath",
+        "selectedNumericType",
+        "claimLevel",
+        "statusCode",
+        "statusSeverity",
+        "rootCount",
+        "rootTolerance",
+        "maxResidual",
+        "minAbsJacobian",
+        "maxIterations",
+        "scanSubdivisions",
+        "escalated",
+        "validationReplayRun",
+        "validationReplayMatched"
+      ],
+      "properties": {
+        "requestedPrecisionPath": {
+          "$ref": "#/$defs/precisionPathId"
+        },
+        "diagnosticPrecisionPath": {
+          "$ref": "#/$defs/precisionPathId"
+        },
+        "selectedPrecisionPath": {
+          "$ref": "#/$defs/precisionPathId"
+        },
+        "selectedNumericType": {
+          "$ref": "#/$defs/numericTypeId"
+        },
+        "claimLevel": {
+          "$ref": "#/$defs/solverClaimLevel"
+        },
+        "statusCode": {
+          "type": "string",
+          "minLength": 1
+        },
+        "statusSeverity": {
+          "type": "string",
+          "enum": ["ok", "info", "warning", "halt", "error"]
+        },
+        "rootCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "rootTolerance": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "maxResidual": {
+          "type": "number",
+          "minimum": 0
+        },
+        "minAbsJacobian": {
+          "type": "number",
+          "minimum": 0
+        },
+        "maxIterations": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "scanSubdivisions": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "escalated": {
+          "type": "boolean"
+        },
+        "validationReplayRun": {
+          "type": "boolean"
+        },
+        "validationReplayMatched": {
+          "type": "boolean"
         }
       }
     },
@@ -3908,7 +4739,8 @@
         },
         "maxEvents": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 2147483647
         }
       }
     },
@@ -3933,6 +4765,756 @@
           "$ref": "#/$defs/statusRecord"
         }
       }
+    },
+    "assemblyGraphDatasetF64Request": {
+      "type": "object",
+      "additionalProperties": false,
+      "anyOf": [
+        {
+          "required": ["assemblyStates"],
+          "properties": {
+            "assemblyStates": {
+              "minItems": 1
+            }
+          }
+        },
+        {
+          "required": ["memberships"],
+          "properties": {
+            "memberships": {
+              "minItems": 1
+            }
+          }
+        },
+        {
+          "required": ["hierarchy"],
+          "properties": {
+            "hierarchy": {
+              "minItems": 1
+            }
+          }
+        },
+        {
+          "required": ["events"],
+          "properties": {
+            "events": {
+              "minItems": 1
+            }
+          }
+        }
+      ],
+      "properties": {
+        "assemblyStates": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/assemblyStateF64"
+          }
+        },
+        "memberships": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/assemblyMembershipF64"
+          }
+        },
+        "hierarchy": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/assemblyHierarchyF64"
+          }
+        },
+        "events": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/assemblyEventF64"
+          }
+        },
+        "deriveMembershipEvents": {
+          "type": "boolean"
+        },
+        "maxEvents": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2147483647
+        }
+      }
+    },
+    "assemblyGraphDatasetF64Response": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "summary",
+        "assemblyStates",
+        "memberships",
+        "hierarchy",
+        "events",
+        "buffers",
+        "status"
+      ],
+      "properties": {
+        "schema": {
+          "const": "solver-assembly-graph-dataset.v1"
+        },
+        "summary": {
+          "$ref": "#/$defs/assemblyGraphDatasetF64Summary"
+        },
+        "assemblyStates": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/assemblyStateF64"
+          }
+        },
+        "memberships": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/assemblyMembershipF64"
+          }
+        },
+        "hierarchy": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/assemblyHierarchyF64"
+          }
+        },
+        "events": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/assemblyEventF64"
+          }
+        },
+        "buffers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/bufferDescriptor"
+          }
+        },
+        "status": {
+          "$ref": "#/$defs/statusRecord"
+        }
+      }
+    },
+    "assemblyGraphDatasetF64Summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "assemblyStateCount",
+        "membershipCount",
+        "hierarchyCount",
+        "eventCount",
+        "derivedEventCount",
+        "explicitEventCount",
+        "assemblyCount",
+        "pathCount",
+        "bufferCount",
+        "eventSource",
+        "timeRange"
+      ],
+      "properties": {
+        "schema": {
+          "const": "solver-assembly-graph-summary.v1"
+        },
+        "assemblyStateCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "membershipCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "hierarchyCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "eventCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "derivedEventCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "explicitEventCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "assemblyCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pathCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "bufferCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "eventSource": {
+          "enum": ["derived", "explicit", "none"]
+        },
+        "timeRange": {
+          "$ref": "#/$defs/range"
+        }
+      }
+    },
+    "assemblyGraphStoreF64Request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["storeId"],
+      "anyOf": [
+        {
+          "required": ["assemblyStates"],
+          "properties": {
+            "assemblyStates": {
+              "minItems": 1
+            }
+          }
+        },
+        {
+          "required": ["memberships"],
+          "properties": {
+            "memberships": {
+              "minItems": 1
+            }
+          }
+        },
+        {
+          "required": ["hierarchy"],
+          "properties": {
+            "hierarchy": {
+              "minItems": 1
+            }
+          }
+        },
+        {
+          "required": ["events"],
+          "properties": {
+            "events": {
+              "minItems": 1
+            }
+          }
+        }
+      ],
+      "properties": {
+        "storeId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "assemblyStates": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/assemblyStateF64"
+          }
+        },
+        "memberships": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/assemblyMembershipF64"
+          }
+        },
+        "hierarchy": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/assemblyHierarchyF64"
+          }
+        },
+        "events": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/assemblyEventF64"
+          }
+        },
+        "deriveMembershipEvents": {
+          "type": "boolean"
+        },
+        "maxEvents": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2147483647
+        },
+        "storagePolicy": {
+          "$ref": "#/$defs/storagePolicy"
+        }
+      }
+    },
+    "describeAssemblyGraphStoreF64Request": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "storeId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "manifestPath": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "anyOf": [{ "required": ["storeId"] }, { "required": ["manifestPath"] }]
+    },
+    "assemblyGraphStoreReadF64Request": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "storeId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "manifestPath": {
+          "type": "string",
+          "minLength": 1
+        },
+        "layouts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/assemblyGraphLayoutId"
+          }
+        },
+        "rowOffset": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "rowCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pathKey": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "assemblyKey": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "timeRange": {
+          "$ref": "#/$defs/range"
+        },
+        "byteRange": {
+          "$ref": "#/$defs/range"
+        },
+        "maxBytes": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "anyOf": [{ "required": ["storeId"] }, { "required": ["manifestPath"] }]
+    },
+    "assemblyGraphStoreF64Response": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "store", "summary", "buffers", "status"],
+      "properties": {
+        "schema": {
+          "const": "solver-assembly-graph-store.v1"
+        },
+        "store": {
+          "$ref": "#/$defs/assemblyGraphStoreManifest"
+        },
+        "summary": {
+          "$ref": "#/$defs/assemblyGraphDatasetF64Summary"
+        },
+        "buffers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/bufferDescriptor"
+          }
+        },
+        "status": {
+          "$ref": "#/$defs/statusRecord"
+        }
+      }
+    },
+    "assemblyGraphStoreDescriptionF64Response": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "store", "buffers", "status"],
+      "properties": {
+        "schema": {
+          "const": "solver-assembly-graph-store-description.v1"
+        },
+        "store": {
+          "$ref": "#/$defs/assemblyGraphStoreManifest"
+        },
+        "buffers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/bufferDescriptor"
+          }
+        },
+        "status": {
+          "$ref": "#/$defs/statusRecord"
+        }
+      }
+    },
+    "assemblyGraphStoreReadF64Response": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "storeId",
+        "manifestVersion",
+        "readSummary",
+        "assemblyStates",
+        "memberships",
+        "hierarchy",
+        "events",
+        "buffers",
+        "status"
+      ],
+      "properties": {
+        "schema": {
+          "const": "solver-assembly-graph-read.v1"
+        },
+        "storeId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "manifestVersion": {
+          "const": "solver-assembly-graph-manifest.v1"
+        },
+        "readSummary": {
+          "$ref": "#/$defs/assemblyGraphStoreReadSummary"
+        },
+        "assemblyStates": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/assemblyStateF64"
+          }
+        },
+        "memberships": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/assemblyMembershipF64"
+          }
+        },
+        "hierarchy": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/assemblyHierarchyF64"
+          }
+        },
+        "events": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/assemblyEventF64"
+          }
+        },
+        "buffers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/bufferDescriptor"
+          }
+        },
+        "status": {
+          "$ref": "#/$defs/statusRecord"
+        }
+      }
+    },
+    "assemblyGraphStoreReadSummary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "assemblyStateCount",
+        "membershipCount",
+        "hierarchyCount",
+        "eventCount",
+        "bufferCount",
+        "byteLength",
+        "indexed",
+        "indexedLayoutCount",
+        "indexRowCount",
+        "indexSkippedRowCount"
+      ],
+      "properties": {
+        "schema": {
+          "const": "solver-assembly-graph-read-summary.v1"
+        },
+        "assemblyStateCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "membershipCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "hierarchyCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "eventCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "bufferCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "byteLength": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "indexed": {
+          "type": "boolean"
+        },
+        "indexedLayoutCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "indexRowCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "indexSkippedRowCount": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "assemblyGraphStoreManifest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "storeId",
+        "manifestVersion",
+        "numericType",
+        "byteOrder",
+        "timeRange",
+        "durable",
+        "metadataPath",
+        "storagePolicy",
+        "index",
+        "datasets"
+      ],
+      "properties": {
+        "storeId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "manifestVersion": {
+          "const": "solver-assembly-graph-manifest.v1"
+        },
+        "numericType": {
+          "const": "f64"
+        },
+        "byteOrder": {
+          "const": "little-endian"
+        },
+        "timeRange": {
+          "anyOf": [{ "$ref": "#/$defs/range" }, { "type": "null" }]
+        },
+        "durable": {
+          "type": "boolean"
+        },
+        "metadataPath": {
+          "type": "string",
+          "minLength": 1
+        },
+        "storagePolicy": {
+          "$ref": "#/$defs/storagePolicy"
+        },
+        "summary": {
+          "$ref": "#/$defs/assemblyGraphDatasetF64Summary"
+        },
+        "index": {
+          "$ref": "#/$defs/assemblyGraphStoreIndex"
+        },
+        "datasets": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["states", "memberships", "hierarchy", "events"],
+          "properties": {
+            "states": {
+              "$ref": "#/$defs/assemblyGraphStoreDataset"
+            },
+            "memberships": {
+              "$ref": "#/$defs/assemblyGraphStoreDataset"
+            },
+            "hierarchy": {
+              "$ref": "#/$defs/assemblyGraphStoreDataset"
+            },
+            "events": {
+              "$ref": "#/$defs/assemblyGraphStoreDataset"
+            }
+          }
+        }
+      }
+    },
+    "assemblyGraphStoreIndex": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "indexedFilters", "rowCount", "rows", "summary"],
+      "properties": {
+        "schema": {
+          "const": "solver-assembly-graph-index.v1"
+        },
+        "indexedFilters": {
+          "type": "array",
+          "items": {
+            "enum": ["pathKey", "assemblyKey", "timeRange", "rowRange", "byteRange"]
+          }
+        },
+        "rowCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/assemblyGraphStoreIndexRow"
+          }
+        },
+        "summary": {
+          "$ref": "#/$defs/assemblyGraphStoreIndexSummary"
+        },
+        "sidecar": {
+          "$ref": "#/$defs/assemblyGraphStoreIndexSidecar"
+        }
+      }
+    },
+    "assemblyGraphStoreIndexSidecar": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "indexLayout",
+        "numericType",
+        "byteOrder",
+        "rowSizeBytes",
+        "rowCount",
+        "byteLength",
+        "filePath",
+        "checksum"
+      ],
+      "properties": {
+        "schema": {
+          "const": "solver-assembly-graph-index-sidecar.v1"
+        },
+        "indexLayout": {
+          "const": "assembly_graph_index.v1"
+        },
+        "numericType": {
+          "$ref": "#/$defs/numericTypeId"
+        },
+        "byteOrder": {
+          "const": "little-endian"
+        },
+        "rowSizeBytes": {
+          "const": 72
+        },
+        "rowCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "byteLength": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "filePath": {
+          "type": "string",
+          "minLength": 1
+        },
+        "checksum": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "assemblyGraphStoreIndexSummary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "rowCount", "countsByLayout", "countsByKeyKind"],
+      "properties": {
+        "schema": {
+          "const": "solver-assembly-graph-index-summary.v1"
+        },
+        "rowCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "countsByLayout": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "countsByKeyKind": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      }
+    },
+    "assemblyGraphStoreIndexRow": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["layout", "keyKind", "key", "rowOffset", "rowCount", "timeRange", "byteRange"],
+      "properties": {
+        "layout": {
+          "$ref": "#/$defs/assemblyGraphLayoutId"
+        },
+        "keyKind": {
+          "$ref": "#/$defs/assemblyGraphIndexKeyKind"
+        },
+        "key": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "rowOffset": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "rowCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "timeRange": {
+          "$ref": "#/$defs/range"
+        },
+        "byteRange": {
+          "$ref": "#/$defs/range"
+        }
+      }
+    },
+    "assemblyGraphIndexKeyKind": {
+      "enum": ["path", "assembly", "parent-assembly", "child-assembly"]
+    },
+    "assemblyGraphStoreDataset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["layout", "rowSizeBytes", "rowCount", "byteLength", "path"],
+      "properties": {
+        "layout": {
+          "$ref": "#/$defs/assemblyGraphLayoutId"
+        },
+        "rowSizeBytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "rowCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "byteLength": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "checksum": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "assemblyGraphLayoutId": {
+      "enum": ["assembly_state.v1", "assembly_membership.v1", "assembly_hierarchy.v1", "assembly_events.v1"]
     },
     "assemblyMembershipF64": {
       "type": "object",
@@ -3987,6 +5569,49 @@
           "minimum": 0
         },
         "eventKind": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "statusFlags": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "assemblyHierarchyF64": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "hierarchyKey",
+        "parentAssemblyKey",
+        "childAssemblyKey",
+        "timeStart",
+        "timeEnd"
+      ],
+      "properties": {
+        "hierarchyKey": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "parentAssemblyKey": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "childAssemblyKey": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "timeStart": {
+          "type": "number"
+        },
+        "timeEnd": {
+          "type": "number"
+        },
+        "relationType": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "hierarchyVersion": {
           "type": "integer",
           "minimum": 0
         },
@@ -4085,7 +5710,60 @@
         },
         "maxRows": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 2147483647
+        }
+      }
+    },
+    "buildPathHistoryStreamSpaceTimeIndexF64Request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["streamId", "options"],
+      "properties": {
+        "streamId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pathKeys": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "chunkIndices": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "timeRange": {
+          "$ref": "#/$defs/range"
+        },
+        "frameRange": {
+          "$ref": "#/$defs/range"
+        },
+        "byteRange": {
+          "$ref": "#/$defs/range"
+        },
+        "assemblyStates": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/assemblyStateF64"
+          }
+        },
+        "options": {
+          "$ref": "#/$defs/spaceTimeIndexOptionsF64"
+        },
+        "maxRows": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2147483647
+        },
+        "maxBytes": {
+          "type": "integer",
+          "minimum": 0
         }
       }
     },
@@ -4108,7 +5786,8 @@
         },
         "maxRows": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 2147483647
         }
       }
     },
@@ -4289,11 +5968,62 @@
           "type": "integer",
           "minimum": 0
         },
+        "sidecar": {
+          "$ref": "#/$defs/streamIndexSidecar"
+        },
         "pathIndexRows": {
           "type": "array",
           "items": {
             "$ref": "#/$defs/pathHistoryIndexMetadata"
           }
+        }
+      }
+    },
+    "streamIndexSidecar": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "indexLayout",
+        "numericType",
+        "byteOrder",
+        "rowSizeBytes",
+        "rowCount",
+        "byteLength",
+        "filePath",
+        "checksum"
+      ],
+      "properties": {
+        "schema": {
+          "const": "solver-stream-index-sidecar.v1"
+        },
+        "indexLayout": {
+          "const": "stream_index.v1"
+        },
+        "numericType": {
+          "$ref": "#/$defs/numericTypeId"
+        },
+        "byteOrder": {
+          "const": "little-endian"
+        },
+        "rowSizeBytes": {
+          "const": 64
+        },
+        "rowCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "byteLength": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "filePath": {
+          "type": "string",
+          "minLength": 1
+        },
+        "checksum": {
+          "type": "string",
+          "minLength": 1
         }
       }
     },
@@ -4337,6 +6067,14 @@
       "type": "object",
       "additionalProperties": false,
       "required": ["purpose"],
+      "anyOf": [
+        {
+          "required": ["streamId"]
+        },
+        {
+          "required": ["manifestPath"]
+        }
+      ],
       "properties": {
         "runId": {
           "type": "string",
@@ -4347,6 +6085,10 @@
           "minLength": 1
         },
         "streamId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "manifestPath": {
           "type": "string",
           "minLength": 1
         },
@@ -4398,6 +6140,13 @@
           }
         },
         "pathKeys": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "chunkIndices": {
           "type": "array",
           "items": {
             "type": "integer",
@@ -4620,7 +6369,8 @@
         },
         "maxCandidates": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 2147483647
         },
         "sourcePathKeys": {
           "type": "array",
@@ -4655,7 +6405,8 @@
         },
         "workerCount": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 2147483647
         },
         "timeRange": {
           "$ref": "#/$defs/range"
@@ -4765,6 +6516,233 @@
         }
       }
     },
+    "emissionShellRootRefinementF64Request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["streamId", "candidates", "signalSpeed"],
+      "properties": {
+        "streamId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "candidates": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/emissionShellCandidateF64"
+          }
+        },
+        "signalSpeed": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "tolerance": {
+          "type": "number",
+          "minimum": 0
+        },
+        "rootTolerance": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "maxCandidates": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2147483647
+        },
+        "maxIterations": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2147483647
+        },
+        "scanSubdivisions": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2147483647
+        },
+        "maxRootsPerCandidate": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2147483647
+        },
+        "maxHitsPerCandidate": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2147483647
+        },
+        "workerCount": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 2147483647
+        }
+      }
+    },
+    "emissionShellRootRefinementF64Response": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "streamId",
+        "signalSpeed",
+        "tolerance",
+        "candidateCount",
+        "processedCandidateCount",
+        "attemptedCandidateCount",
+        "skippedCandidateCount",
+        "rootCount",
+        "hitCount",
+        "truncated",
+        "items",
+        "roots",
+        "hits",
+        "buffers",
+        "status"
+      ],
+      "properties": {
+        "schema": {
+          "const": "solver-emission-shell-root-refinement.v1"
+        },
+        "streamId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "signalSpeed": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "tolerance": {
+          "type": "number",
+          "minimum": 0
+        },
+        "candidateCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "processedCandidateCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "attemptedCandidateCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "skippedCandidateCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "rootCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "hitCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "truncated": {
+          "type": "boolean"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/emissionShellRootRefinementItemF64"
+          }
+        },
+        "roots": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/causalRootF64"
+          }
+        },
+        "hits": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/delayedHitF64"
+          }
+        },
+        "buffers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/bufferDescriptor"
+          }
+        },
+        "status": {
+          "$ref": "#/$defs/statusRecord"
+        }
+      }
+    },
+    "emissionShellRootRefinementItemF64": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "candidateIndex",
+        "sourcePathKey",
+        "receiverPathKey",
+        "sourceChunkIndex",
+        "receiverChunkIndex",
+        "sourceRowOffset",
+        "receiverRowOffset",
+        "hitTime",
+        "sampledEmissionTime",
+        "rootOffset",
+        "rootCount",
+        "hitOffset",
+        "hitCount",
+        "status"
+      ],
+      "properties": {
+        "candidateIndex": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "sourcePathKey": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "receiverPathKey": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "sourceChunkIndex": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "receiverChunkIndex": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "sourceRowOffset": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "receiverRowOffset": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "hitTime": {
+          "type": ["number", "null"]
+        },
+        "sampledEmissionTime": {
+          "type": ["number", "null"]
+        },
+        "rootOffset": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "rootCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "hitOffset": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "hitCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "status": {
+          "$ref": "#/$defs/statusRecord"
+        }
+      }
+    },
     "emissionShellCandidatePacketF64Request": {
       "type": "object",
       "additionalProperties": false,
@@ -4787,7 +6765,8 @@
         },
         "maxCandidates": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 2147483647
         },
         "sourcePathKeys": {
           "type": "array",
@@ -4808,7 +6787,8 @@
         },
         "workerCount": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 2147483647
         },
         "timeRange": {
           "$ref": "#/$defs/range"
@@ -4841,7 +6821,8 @@
         },
         "maxCandidatesPerPacket": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 2147483647
         },
         "sourcePathKeys": {
           "type": "array",
@@ -4862,7 +6843,8 @@
         },
         "workerCount": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 2147483647
         },
         "timeRange": {
           "$ref": "#/$defs/range"
@@ -6495,7 +8477,8 @@
         },
         "maxPacketCount": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 2147483647
         }
       }
     },
@@ -7087,7 +9070,8 @@
         "spacetime_index.v1",
         "emission_shell_candidate.v1",
         "emission_shell_narrow_phase.v1",
-        "stream_index.v1"
+        "stream_index.v1",
+        "assembly_graph_index.v1"
       ]
     },
     "bufferDescriptor": {
@@ -7120,6 +9104,14 @@
         "checksum": {
           "type": "string",
           "pattern": "^[0-9a-f]{16}$"
+        },
+        "storageTarget": {
+          "type": "string",
+          "enum": ["caller-buffer", "native-file"]
+        },
+        "filePath": {
+          "type": "string",
+          "minLength": 1
         }
       }
     },
@@ -7475,14 +9467,31 @@
       "required": ["target", "durable", "maxBytes"],
       "properties": {
         "target": {
-          "const": "caller-buffer"
+          "type": "string",
+          "enum": ["caller-buffer", "native-file"]
         },
         "durable": {
-          "const": false
+          "type": "boolean"
         },
         "maxBytes": {
           "type": "integer",
           "minimum": 0
+        },
+        "basePath": {
+          "type": "string",
+          "minLength": 1
+        },
+        "streamPath": {
+          "type": "string",
+          "minLength": 1
+        },
+        "indexPath": {
+          "type": "string",
+          "minLength": 1
+        },
+        "manifestPath": {
+          "type": "string",
+          "minLength": 1
         }
       }
     },

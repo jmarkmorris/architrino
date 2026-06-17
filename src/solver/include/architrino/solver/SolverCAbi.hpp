@@ -124,6 +124,33 @@ struct ArchitrinoSolverPrecisionDiagnosticRowF64 {
   double geometry_min;
 };
 
+struct ArchitrinoSolverPrecisionSolveOptions {
+  int requested_precision_path;
+  int claim_level;
+  std::uint32_t allow_escalation;
+  std::uint32_t run_validation_replay;
+};
+
+struct ArchitrinoSolverPrecisionSolveSummaryF64 {
+  int requested_precision_path;
+  int diagnostic_precision_path;
+  int selected_precision_path;
+  int selected_numeric_type;
+  int claim_level;
+  int status_code;
+  int status_severity;
+  int root_count;
+  double root_tolerance;
+  double max_residual;
+  double min_abs_jacobian;
+  int max_iterations;
+  int scan_subdivisions;
+  std::uint32_t escalated;
+  std::uint32_t validation_replay_run;
+  std::uint32_t validation_replay_matched;
+  std::uint32_t reserved0;
+};
+
 struct ArchitrinoSolverErrorBudgetF64 {
   double global_tolerance;
   double root_isolation_tolerance;
@@ -220,6 +247,17 @@ struct ArchitrinoSolverPathHistoryRowF64 {
   std::uint32_t reserved0;
 };
 
+struct ArchitrinoSolverPathHistoryIndexRow {
+  std::uint64_t path_key;
+  std::uint64_t chunk_index;
+  std::uint64_t row_offset;
+  std::uint64_t row_count;
+  double time_start;
+  double time_end;
+  std::uint64_t byte_offset;
+  std::uint64_t byte_length;
+};
+
 struct ArchitrinoSolverPathHistoryChunkRow {
   std::uint64_t chunk_index;
   std::uint64_t path_key_start;
@@ -235,6 +273,29 @@ struct ArchitrinoSolverPathHistoryChunkRow {
   std::uint64_t checksum64;
   std::uint32_t state_flags;
   std::uint32_t reserved0;
+};
+
+struct ArchitrinoSolverPathHistoryQuery {
+  std::uint64_t path_key;
+  double time_start;
+  double time_end;
+  std::uint32_t filter_path;
+  std::uint32_t filter_time;
+  std::uint32_t verify_checksums;
+  std::uint32_t reserved0;
+};
+
+struct ArchitrinoSolverPathHistoryStreamSummary {
+  std::uint64_t row_count;
+  std::uint64_t chunk_count;
+  std::uint64_t byte_length;
+  std::uint64_t data_checksum64;
+  std::uint64_t index_checksum64;
+  std::uint64_t chunk_checksum64;
+  double time_start;
+  double time_end;
+  std::uint32_t has_time_range;
+  std::uint32_t durable;
 };
 
 struct ArchitrinoSolverStorageLifecyclePolicy {
@@ -406,6 +467,53 @@ struct ArchitrinoSolverAssemblyEventRowF64 {
   std::uint32_t reserved0;
 };
 
+struct ArchitrinoSolverAssemblyGraphStoreIndexRowF64 {
+  std::uint32_t layout_code;
+  std::uint32_t key_kind;
+  std::uint64_t key;
+  std::uint64_t row_offset;
+  std::uint64_t row_count;
+  double time_start;
+  double time_end;
+  std::uint64_t byte_offset;
+  std::uint64_t byte_length;
+  std::uint32_t state_flags;
+  std::uint32_t reserved0;
+};
+
+struct ArchitrinoSolverAssemblyGraphStoreIndexQuery {
+  std::uint32_t layout_code;
+  std::uint32_t key_kind;
+  std::uint32_t filter_layout;
+  std::uint32_t filter_key_kind;
+  std::uint32_t filter_key;
+  std::uint32_t filter_time;
+  std::uint32_t filter_byte_range;
+  std::uint32_t reserved0;
+  std::uint64_t key;
+  double time_start;
+  double time_end;
+  std::uint64_t byte_start;
+  std::uint64_t byte_end;
+};
+
+struct ArchitrinoSolverAssemblyGraphStoreSummary {
+  std::uint64_t state_count;
+  std::uint64_t membership_count;
+  std::uint64_t hierarchy_count;
+  std::uint64_t event_count;
+  std::uint64_t index_count;
+  std::uint64_t state_byte_length;
+  std::uint64_t membership_byte_length;
+  std::uint64_t hierarchy_byte_length;
+  std::uint64_t event_byte_length;
+  std::uint64_t index_byte_length;
+  double time_start;
+  double time_end;
+  std::uint32_t has_time_range;
+  std::uint32_t durable;
+};
+
 struct ArchitrinoSolverSpaceTimeBoundsF64 {
   double min_x;
   double min_y;
@@ -546,6 +654,8 @@ struct ArchitrinoSolverAbiInfo {
   int error_budget_stage_input_f64_bytes;
   int error_budget_stage_row_f64_bytes;
   int error_budget_summary_f64_bytes;
+  int precision_solve_options_bytes;
+  int precision_solve_summary_f64_bytes;
 };
 
 ArchitrinoSolverAbiInfo architrino_solver_abi_info();
@@ -583,9 +693,42 @@ int architrino_solver_solve_causal_root_batch_f64(
     int* out_item_count,
     int* out_root_count);
 
+int architrino_solver_solve_roots_and_hits_batch_f64(
+    const ArchitrinoSolverCausalRootRequestF64* requests,
+    int request_count,
+    int worker_count,
+    ArchitrinoSolverCausalRootBatchItemRowF64* items,
+    int max_items,
+    ArchitrinoSolverCausalRootRowF64* roots,
+    int max_roots,
+    ArchitrinoSolverDelayedHitRowF64* hits,
+    int max_hits,
+    int* out_item_count,
+    int* out_root_count,
+    int* out_hit_count);
+
 int architrino_solver_diagnose_precision_f64(
     const ArchitrinoSolverCausalRootRequestF64* request,
     ArchitrinoSolverPrecisionDiagnosticRowF64* out_diagnostic);
+
+int architrino_solver_solve_causal_roots_precision_f64(
+    const ArchitrinoSolverCausalRootRequestF64* request,
+    const ArchitrinoSolverPrecisionSolveOptions* options,
+    ArchitrinoSolverCausalRootRowF64* roots,
+    int max_roots,
+    int* out_root_count,
+    ArchitrinoSolverPrecisionSolveSummaryF64* out_summary);
+
+int architrino_solver_solve_roots_and_hits_precision_f64(
+    const ArchitrinoSolverCausalRootRequestF64* request,
+    const ArchitrinoSolverPrecisionSolveOptions* options,
+    ArchitrinoSolverCausalRootRowF64* roots,
+    int max_roots,
+    int* out_root_count,
+    ArchitrinoSolverDelayedHitRowF64* hits,
+    int max_hits,
+    int* out_hit_count,
+    ArchitrinoSolverPrecisionSolveSummaryF64* out_summary);
 
 int architrino_solver_propagate_error_budget_f64(
     const ArchitrinoSolverErrorBudgetF64* budget,
@@ -646,6 +789,73 @@ int architrino_solver_detect_assembly_membership_events_f64(
     int max_events,
     int* out_event_count);
 
+int architrino_solver_write_assembly_graph_store_f64(
+    const char* store_id,
+    const char* state_path,
+    const char* membership_path,
+    const char* hierarchy_path,
+    const char* event_path,
+    const char* index_path,
+    const char* metadata_path,
+    const ArchitrinoSolverAssemblyStateRowF64* states,
+    int state_count,
+    const ArchitrinoSolverAssemblyMembershipRowF64* memberships,
+    int membership_count,
+    const ArchitrinoSolverAssemblyHierarchyRowF64* hierarchy,
+    int hierarchy_count,
+    const ArchitrinoSolverAssemblyEventRowF64* events,
+    int event_count,
+    std::uint32_t durable,
+    ArchitrinoSolverAssemblyGraphStoreSummary* out_summary);
+
+int architrino_solver_read_assembly_graph_store_states_f64(
+    const char* state_path,
+    std::uint64_t row_offset,
+    int row_count,
+    ArchitrinoSolverAssemblyStateRowF64* rows,
+    int max_rows,
+    int* out_row_count);
+
+int architrino_solver_read_assembly_graph_store_memberships_f64(
+    const char* membership_path,
+    std::uint64_t row_offset,
+    int row_count,
+    ArchitrinoSolverAssemblyMembershipRowF64* rows,
+    int max_rows,
+    int* out_row_count);
+
+int architrino_solver_read_assembly_graph_store_hierarchy_f64(
+    const char* hierarchy_path,
+    std::uint64_t row_offset,
+    int row_count,
+    ArchitrinoSolverAssemblyHierarchyRowF64* rows,
+    int max_rows,
+    int* out_row_count);
+
+int architrino_solver_read_assembly_graph_store_events_f64(
+    const char* event_path,
+    std::uint64_t row_offset,
+    int row_count,
+    ArchitrinoSolverAssemblyEventRowF64* rows,
+    int max_rows,
+    int* out_row_count);
+
+int architrino_solver_read_assembly_graph_store_index(
+    const char* index_path,
+    std::uint64_t row_offset,
+    int row_count,
+    ArchitrinoSolverAssemblyGraphStoreIndexRowF64* rows,
+    int max_rows,
+    int* out_row_count);
+
+int architrino_solver_query_assembly_graph_store_index(
+    const ArchitrinoSolverAssemblyGraphStoreIndexRowF64* index_rows,
+    int index_row_count,
+    const ArchitrinoSolverAssemblyGraphStoreIndexQuery* query,
+    ArchitrinoSolverAssemblyGraphStoreIndexRowF64* rows,
+    int max_rows,
+    int* out_row_count);
+
 int architrino_solver_build_spacetime_index_f64(
     const ArchitrinoSolverPathHistoryRowF64* path_rows,
     int path_row_count,
@@ -680,6 +890,57 @@ int architrino_solver_estimate_emission_shell_narrow_phase_f64(
     const ArchitrinoSolverEmissionShellNarrowPhaseRequestF64* requests,
     int request_count,
     ArchitrinoSolverEmissionShellNarrowPhaseRowF64* rows,
+    int max_rows,
+    int* out_row_count);
+
+int architrino_solver_write_path_history_stream_f64(
+    const char* stream_id,
+    const char* data_path,
+    const char* index_path,
+    const char* chunk_path,
+    const char* metadata_path,
+    const ArchitrinoSolverPathHistoryRowF64* path_rows,
+    int path_row_count,
+    std::uint64_t rows_per_index_chunk,
+    std::uint32_t durable,
+    ArchitrinoSolverPathHistoryStreamSummary* out_summary);
+
+int architrino_solver_read_path_history_stream_rows_f64(
+    const char* data_path,
+    std::uint64_t row_offset,
+    int row_count,
+    ArchitrinoSolverPathHistoryRowF64* rows,
+    int max_rows,
+    int* out_row_count);
+
+int architrino_solver_read_path_history_stream_index(
+    const char* index_path,
+    ArchitrinoSolverPathHistoryIndexRow* rows,
+    int max_rows,
+    int* out_row_count);
+
+int architrino_solver_read_path_history_stream_chunks(
+    const char* chunk_path,
+    ArchitrinoSolverPathHistoryChunkRow* rows,
+    int max_rows,
+    int* out_row_count);
+
+int architrino_solver_query_path_history_stream_index(
+    const ArchitrinoSolverPathHistoryIndexRow* index_rows,
+    int index_row_count,
+    const ArchitrinoSolverPathHistoryQuery* query,
+    ArchitrinoSolverPathHistoryIndexRow* rows,
+    int max_rows,
+    int* out_row_count);
+
+int architrino_solver_read_path_history_stream_query_f64(
+    const char* data_path,
+    const ArchitrinoSolverPathHistoryIndexRow* index_rows,
+    int index_row_count,
+    const ArchitrinoSolverPathHistoryChunkRow* chunk_rows,
+    int chunk_row_count,
+    const ArchitrinoSolverPathHistoryQuery* query,
+    ArchitrinoSolverPathHistoryRowF64* rows,
     int max_rows,
     int* out_row_count);
 

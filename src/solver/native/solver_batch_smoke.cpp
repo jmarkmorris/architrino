@@ -137,6 +137,42 @@ int main() {
     return 1;
   }
 
+  ArchitrinoSolverCausalRootBatchItemRowF64 hitItemRows[2] = {};
+  ArchitrinoSolverCausalRootRowF64 hitRootRows[4] = {};
+  ArchitrinoSolverDelayedHitRowF64 hitRows[4] = {};
+  int outHitItemCount = 0;
+  int outHitRootCount = 0;
+  int outHitCount = 0;
+  const int cHitStatus = architrino_solver_solve_roots_and_hits_batch_f64(
+      cRequests,
+      2,
+      2,
+      hitItemRows,
+      2,
+      hitRootRows,
+      4,
+      hitRows,
+      4,
+      &outHitItemCount,
+      &outHitRootCount,
+      &outHitCount);
+  const bool cHitAbiOk =
+      cHitStatus == 0 &&
+      outHitItemCount == 2 &&
+      outHitRootCount == 2 &&
+      outHitCount == 2 &&
+      hitItemRows[0].root_offset == 0 &&
+      hitItemRows[1].root_offset == 1 &&
+      nearly_equal(hitRootRows[0].distance, 3.0) &&
+      nearly_equal(hitRows[0].distance, 3.0) &&
+      nearly_equal(hitRows[0].strength, 1.0) &&
+      nearly_equal(hitRows[0].unit_x, 1.0) &&
+      nearly_equal(hitRows[1].hit_time, 6.0);
+  if (!cHitAbiOk) {
+    std::cerr << "roots-and-hits batch C ABI smoke failed\n";
+    return 1;
+  }
+
   std::cout << "causal-root batch=ok items=" << result.items.size()
             << " workers=" << result.workerCountUsed << '\n';
   return 0;

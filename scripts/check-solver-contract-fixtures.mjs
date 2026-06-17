@@ -22,9 +22,14 @@ const threadingPlanResponse = createThreadingPlanResponseEnvelope();
 const admissionRequest = createAdmissionRequestEnvelope();
 const admissionResponse = createAdmissionResponseEnvelope();
 const causalRootsResponse = createCausalRootsResponseEnvelope();
+const causalRootsNormalizedRequest = createCausalRootsNormalizedRequestEnvelope();
+const causalRootsNormalizedResponse = createCausalRootsNormalizedResponseEnvelope();
+const causalRootsPrecisionRequest = createCausalRootsPrecisionRequestEnvelope();
+const causalRootsPrecisionResponse = createCausalRootsPrecisionResponseEnvelope();
 const pathHistoryStreamRequest = createPathHistoryStreamRequestEnvelope();
 const pathHistoryStreamResponse = createPathHistoryStreamResponseEnvelope();
 const runSimulationRequest = createRunSimulationRequestEnvelope();
+const runSimulationNormalizedRequest = createRunSimulationNormalizedRequestEnvelope();
 const runSimulationResponse = createRunSimulationResponseEnvelope();
 const describeRunRequest = createDescribeRunRequestEnvelope();
 const describeRunResponse = createDescribeRunResponseEnvelope();
@@ -39,6 +44,8 @@ const openStreamResponse = createOpenStreamResponseEnvelope();
 const readStreamRangeRequest = createReadStreamRangeRequestEnvelope();
 const readStreamRangeResponse = createReadStreamRangeResponseEnvelope();
 const emissionShellCandidateResponse = createEmissionShellCandidateResponseEnvelope();
+const emissionShellRootRefinementRequest = createEmissionShellRootRefinementRequestEnvelope();
+const emissionShellRootRefinementResponse = createEmissionShellRootRefinementResponseEnvelope();
 const workerRequestMessage = createWorkerRequestMessage();
 const workerResponseMessage = createWorkerResponseMessage();
 const workerErrorMessage = createWorkerErrorMessage();
@@ -69,6 +76,13 @@ assert(schema.$defs?.admissionRequest, "admission request schema missing");
 assert(schema.$defs?.admissionResponse, "admission response schema missing");
 assert(schema.$defs?.causalRootsF64Request, "request schema missing");
 assert(schema.$defs?.causalRootsF64Response, "causal roots response schema missing");
+assert(schema.$defs?.causalRootsNormalizedF64Request, "normalized causal roots request schema missing");
+assert(schema.$defs?.causalRootsNormalizedF64Response, "normalized causal roots response schema missing");
+assert(schema.$defs?.normalizedCausalRootF64, "normalized causal root schema missing");
+assert(schema.$defs?.absoluteDisplayCausalRootF64, "absolute-display causal root schema missing");
+assert(schema.$defs?.causalRootsPrecisionF64Request, "precision causal roots request schema missing");
+assert(schema.$defs?.causalRootsPrecisionF64Response, "precision causal roots response schema missing");
+assert(schema.$defs?.precisionSolveSummaryF64, "precision solve summary schema missing");
 assert(schema.$defs?.rootLedgerDetailF64Request, "root-ledger detail request schema missing");
 assert(schema.$defs?.rootLedgerDetailF64Response, "root-ledger detail response schema missing");
 assert(schema.$defs?.rootLedgerDetailF64, "root-ledger detail row schema missing");
@@ -115,6 +129,7 @@ assert(schema.$defs?.describeRunRequest, "describe run request schema missing");
 assert(schema.$defs?.solverRunDescription, "solver run description schema missing");
 assert(schema.$defs?.cancelRunRequest, "cancel run request schema missing");
 assert(schema.$defs?.closeRunRequest, "close run request schema missing");
+assert(schema.$defs?.streamIndexSidecar, "stream index sidecar schema missing");
 assert(schema.$defs?.runManifest, "run manifest schema missing");
 assert(schema.$defs?.runManifestBuffer, "run manifest buffer schema missing");
 assert(schema.$defs?.runManifestStream, "run manifest stream schema missing");
@@ -145,9 +160,34 @@ assert(schema.$defs?.circularSelfHitSpanF64Request, "circular self-hit span requ
 assert(schema.$defs?.circularSelfHitSpanF64, "circular self-hit span row schema missing");
 assert(schema.$defs?.assemblyMembershipEventsF64Request, "assembly membership events request schema missing");
 assert(schema.$defs?.assemblyMembershipEventsF64Response, "assembly membership events response schema missing");
+assert(schema.$defs?.assemblyGraphDatasetF64Request, "assembly graph dataset request schema missing");
+assert(schema.$defs?.assemblyGraphDatasetF64Response, "assembly graph dataset response schema missing");
+assert(schema.$defs?.assemblyGraphDatasetF64Summary, "assembly graph dataset summary schema missing");
+assert(schema.$defs?.assemblyGraphStoreF64Request, "assembly graph store request schema missing");
+assert(schema.$defs?.assemblyGraphStoreF64Response, "assembly graph store response schema missing");
+assert(schema.$defs?.describeAssemblyGraphStoreF64Request, "assembly graph store describe request schema missing");
+assert(
+  schema.$defs?.assemblyGraphStoreDescriptionF64Response,
+  "assembly graph store description response schema missing"
+);
+assert(schema.$defs?.assemblyGraphStoreReadF64Request, "assembly graph store read request schema missing");
+assert(schema.$defs?.assemblyGraphStoreReadF64Response, "assembly graph store read response schema missing");
+assert(schema.$defs?.assemblyGraphStoreManifest, "assembly graph store manifest schema missing");
+assert(schema.$defs?.assemblyGraphStoreDataset, "assembly graph store dataset schema missing");
+assert(schema.$defs?.assemblyGraphStoreIndex, "assembly graph store index schema missing");
+assert(schema.$defs?.assemblyGraphStoreIndexSummary, "assembly graph store index summary schema missing");
+assert(schema.$defs?.assemblyGraphStoreIndexRow, "assembly graph store index row schema missing");
+assert(schema.$defs?.assemblyGraphIndexKeyKind, "assembly graph index key kind schema missing");
+assert(schema.$defs?.assemblyGraphStoreIndexSidecar, "assembly graph store index sidecar schema missing");
+assert(schema.$defs?.assemblyGraphLayoutId, "assembly graph layout id schema missing");
 assert(schema.$defs?.assemblyMembershipF64, "assembly membership row schema missing");
+assert(schema.$defs?.assemblyHierarchyF64, "assembly hierarchy row schema missing");
 assert(schema.$defs?.assemblyEventF64, "assembly event row schema missing");
 assert(schema.$defs?.buildSpaceTimeIndexF64Request, "space-time index build request schema missing");
+assert(
+  schema.$defs?.buildPathHistoryStreamSpaceTimeIndexF64Request,
+  "stream-backed space-time index build request schema missing"
+);
 assert(schema.$defs?.querySpaceTimeIndexF64Request, "space-time index query request schema missing");
 assert(schema.$defs?.spaceTimeIndexF64Response, "space-time index response schema missing");
 assert(schema.$defs?.pathHistoryRowF64, "path-history row schema missing");
@@ -197,6 +237,18 @@ assert(
 );
 assert(schema.$defs?.emissionShellCandidateF64Response, "emission-shell candidate response schema missing");
 assert(
+  schema.$defs?.emissionShellRootRefinementF64Request,
+  "emission-shell root refinement request schema missing"
+);
+assert(
+  schema.$defs?.emissionShellRootRefinementF64Response,
+  "emission-shell root refinement response schema missing"
+);
+assert(
+  schema.$defs?.emissionShellRootRefinementItemF64,
+  "emission-shell root refinement item schema missing"
+);
+assert(
   schema.$defs.emissionShellCandidateF64Response.properties.packetResult.$ref === "#/$defs/workPacketResultRef",
   "emission-shell packet result response schema mismatch"
 );
@@ -228,6 +280,7 @@ assertCoreBinaryLayouts([
   "emission_shell_candidate.v1",
   "emission_shell_narrow_phase.v1",
   "stream_index.v1",
+  "assembly_graph_index.v1",
 ]);
 assertEnumValues("solverRunKind", [
   "motionSimulation",
@@ -254,8 +307,16 @@ assertWorkerMethods([
   "init",
   "capabilities",
   "runSimulation",
+  "solveCausalRootsPrecisionF64",
+  "solveCausalRootsNormalizedF64",
+  "buildAssemblyGraphDatasetF64",
+  "createAssemblyGraphStoreF64",
+  "describeAssemblyGraphStoreF64",
+  "readAssemblyGraphStoreRangeF64",
+  "buildPathHistoryStreamSpaceTimeIndexF64",
   "createPathHistoryStreamF64",
   "queryEmissionShellCandidatePacketsF64",
+  "refineEmissionShellCandidateRootsF64",
   "readStreamRange",
   "cancelRun",
   "dispose",
@@ -274,9 +335,14 @@ validateThreadingPlanResponseEnvelope(threadingPlanResponse);
 validateAdmissionRequestEnvelope(admissionRequest);
 validateAdmissionResponseEnvelope(admissionResponse);
 validateCausalRootsResponseEnvelope(causalRootsResponse);
+validateCausalRootsNormalizedRequestEnvelope(causalRootsNormalizedRequest);
+validateCausalRootsNormalizedResponseEnvelope(causalRootsNormalizedResponse);
+validateCausalRootsPrecisionRequestEnvelope(causalRootsPrecisionRequest);
+validateCausalRootsPrecisionResponseEnvelope(causalRootsPrecisionResponse);
 validateBatchResponseEnvelope(batchResponse);
 validateResponseEnvelope(response);
 validateRunSimulationRequestEnvelope(runSimulationRequest);
+validateRunSimulationNormalizedRequestEnvelope(runSimulationNormalizedRequest);
 validateRunSimulationResponseEnvelope(runSimulationResponse);
 validateDescribeRunRequestEnvelope(describeRunRequest);
 validateDescribeRunResponseEnvelope(describeRunResponse);
@@ -293,6 +359,8 @@ validateOpenStreamResponseEnvelope(openStreamResponse);
 validateReadStreamRangeRequestEnvelope(readStreamRangeRequest);
 validateReadStreamRangeResponseEnvelope(readStreamRangeResponse);
 validateEmissionShellCandidateResponseEnvelope(emissionShellCandidateResponse);
+validateEmissionShellRootRefinementRequestEnvelope(emissionShellRootRefinementRequest);
+validateEmissionShellRootRefinementResponseEnvelope(emissionShellRootRefinementResponse);
 
 console.log("solver contract fixtures check passed.");
 
@@ -350,6 +418,64 @@ function validateCausalRootsResponseEnvelope(value) {
   assertClose(responseValue.roots[0].emissionTime, 0, "causal roots response emission time");
   assertClose(responseValue.roots[0].distance, 10, "causal roots response distance");
   assert(responseValue.status.code === "ok", "causal roots response status mismatch");
+}
+
+function validateCausalRootsNormalizedRequestEnvelope(value) {
+  assert(value.schema === "solver-app-bridge/v1", "normalized causal roots request schema tag mismatch");
+  assert(value.kind === "causal-roots-normalized-f64-request", "normalized causal roots request kind mismatch");
+  assertNonemptyString(value.requestId, "normalized causal roots request id");
+  const requestValue = value.request;
+  assertClose(requestValue.coordinateOrigin.x, 1e18, "normalized coordinate origin x");
+  assert(requestValue.localRequest.source.positionAtStart.x === 0, "normalized source local x mismatch");
+  assert(requestValue.localRequest.receiver.positionAtStart.x === 1, "normalized receiver local x mismatch");
+  assert(requestValue.restoreAbsolutePoints === true, "normalized restore absolute flag mismatch");
+}
+
+function validateCausalRootsNormalizedResponseEnvelope(value) {
+  assert(value.schema === "solver-app-bridge/v1", "normalized causal roots response schema tag mismatch");
+  assert(value.kind === "causal-roots-normalized-f64-response", "normalized causal roots response kind mismatch");
+  assertNonemptyString(value.requestId, "normalized causal roots response request id");
+  const responseValue = value.response;
+  assert(responseValue.schema === "solver-causal-roots-normalized-f64.v1", "normalized response schema mismatch");
+  assert(responseValue.coordinateFrame === "origin-normalized", "normalized coordinate frame mismatch");
+  assertClose(responseValue.coordinateOrigin.x, 1e18, "normalized response origin x");
+  assert(responseValue.roots.length === 1, "normalized response root count mismatch");
+  assert(responseValue.roots[0].coordinateFrame === "origin-normalized", "normalized root frame mismatch");
+  assertClose(responseValue.roots[0].distance, 1, "normalized root distance");
+  assert(responseValue.absoluteRoots.length === 1, "absolute-display root count mismatch");
+  assert(responseValue.absoluteRoots[0].coordinateFrame === "absolute-display", "absolute-display frame mismatch");
+  assert(responseValue.absoluteRoots[0].absolutePointAuthority === "display-only", "absolute-display authority mismatch");
+  assertClose(responseValue.absoluteRoots[0].localReceiverPoint.x, 1, "absolute-display local receiver x");
+  assert(responseValue.status.code === "ok", "normalized causal roots response status mismatch");
+}
+
+function validateCausalRootsPrecisionRequestEnvelope(value) {
+  assert(value.schema === "solver-app-bridge/v1", "precision causal roots request schema tag mismatch");
+  assert(value.kind === "causal-roots-precision-f64-request", "precision causal roots request kind mismatch");
+  assertNonemptyString(value.requestId, "precision causal roots request id");
+  const requestValue = value.request;
+  assert(requestValue.rootRequest.hitTime === request.request.hitTime, "precision root request hit time mismatch");
+  assert(requestValue.requestedPrecisionPath === "scaled_f64_strict", "precision requested path mismatch");
+  assert(requestValue.claimLevel === "exported-dataset", "precision claim level mismatch");
+  assert(requestValue.allowEscalation === true, "precision allow escalation mismatch");
+  assert(requestValue.runValidationReplay === true, "precision replay flag mismatch");
+  assert(requestValue.maxRoots === 4, "precision max roots mismatch");
+}
+
+function validateCausalRootsPrecisionResponseEnvelope(value) {
+  assert(value.schema === "solver-app-bridge/v1", "precision causal roots response schema tag mismatch");
+  assert(value.kind === "causal-roots-precision-f64-response", "precision causal roots response kind mismatch");
+  assertNonemptyString(value.requestId, "precision causal roots response request id");
+  const responseValue = value.response;
+  assert(responseValue.schema === "solver-causal-roots-precision-f64.v1", "precision response schema mismatch");
+  assert(responseValue.roots.length === 1, "precision response root count mismatch");
+  assert(responseValue.precision.selectedPrecisionPath === "extended_precision", "precision selected path mismatch");
+  assert(responseValue.precision.selectedNumericType === "decimal128", "precision numeric type mismatch");
+  assert(responseValue.precision.escalated === true, "precision escalation mismatch");
+  assert(responseValue.precision.validationReplayRun === true, "precision replay run mismatch");
+  assert(responseValue.precision.validationReplayMatched === true, "precision replay matched mismatch");
+  assert(responseValue.buffers[0].layout === "root_ledger.v1", "precision buffer layout mismatch");
+  assert(responseValue.status.code === "insufficient_scale_resolution", "precision response status mismatch");
 }
 
 function validateInitRequestEnvelope(value) {
@@ -435,6 +561,14 @@ function assertCapabilities(value, label) {
   assert(value.appBridge.denseDataTransport.includes("stream-handle"), `${label} dense transport mismatch`);
   assert(value.appBridge.workerModel.appsRequireCppHandling === false, `${label} worker model mismatch`);
   assert(value.appBridge.streamQueries.helpers.includes("readStreamRange"), `${label} stream query helper mismatch`);
+  assert(
+    value.appBridge.streamQueries.helpers.includes("buildPathHistoryStreamSpaceTimeIndexF64"),
+    `${label} stream space-time helper mismatch`
+  );
+  assert(
+    value.appBridge.streamQueries.helpers.includes("refineEmissionShellCandidateRootsF64"),
+    `${label} emission-shell refinement helper mismatch`
+  );
   assert(value.appBridge.workPackets.helpers.includes("planPathHistoryWorkPackets"), `${label} work packet helper mismatch`);
   assert(value.numericSerialization.descriptors.length >= 1, `${label} numeric descriptors mismatch`);
   assert(value.errorBudgetPropagation.stages.length >= 1, `${label} error budget propagation mismatch`);
@@ -502,6 +636,29 @@ function validateRunSimulationRequestEnvelope(value) {
   assert(requestValue.precisionPath === "auto", "run precision path mismatch");
   assert(requestValue.config.rootRequest.hitTime === 10, "run root request mismatch");
   assert(requestValue.output.outputs.includes("rootLedger"), "run output request mismatch");
+}
+
+function validateRunSimulationNormalizedRequestEnvelope(value) {
+  assert(value.schema === "solver-app-bridge/v1", "normalized run simulation request schema tag mismatch");
+  assert(value.kind === "run-simulation-request", "normalized run simulation request kind mismatch");
+  assertNonemptyString(value.requestId, "normalized run simulation request id");
+  const requestValue = value.request;
+  assert(requestValue.requestId === "run-normalized-contract-request", "normalized run request id mismatch");
+  assert(requestValue.runId === "run-normalized-contract", "normalized run id mismatch");
+  assert(requestValue.appId === "photon", "normalized run app id mismatch");
+  assert(requestValue.runKind === "causalRoots", "normalized run kind mismatch");
+  assert(requestValue.config.normalizedRootRequest.coordinateFrame == null, "normalized request should not duplicate response frame");
+  assertClose(
+    requestValue.config.normalizedRootRequest.coordinateOrigin.x,
+    1e18,
+    "normalized run coordinate origin x"
+  );
+  assert(requestValue.config.normalizedRootRequest.localRequest.hitTime === 1, "normalized run local hit time mismatch");
+  assert(
+    requestValue.config.normalizedRootRequest.localRequest.receiver.positionAtStart.x === 1,
+    "normalized run local receiver x mismatch"
+  );
+  assert(requestValue.config.rootRequest == null, "normalized run should not include absolute rootRequest");
 }
 
 function validateRunSimulationResponseEnvelope(value) {
@@ -658,6 +815,7 @@ function validateOpenStreamRequestEnvelope(value) {
   const requestValue = value.request;
   assert(requestValue.purpose === "diagnostics", "open stream purpose mismatch");
   assert(requestValue.streamId === "fixture-path-history-stream", "open stream id mismatch");
+  assert(requestValue.manifestPath === ".tmp/fixture-path-history-stream/stream-manifest.json", "open stream manifest path mismatch");
 }
 
 function validateOpenStreamResponseEnvelope(value) {
@@ -734,6 +892,41 @@ function validateEmissionShellCandidateResponseEnvelope(value) {
   assertBuffer(responseValue.buffers[0], "packet-a:emission-shell-candidates", "emission_shell_candidate.v1", 112, 1);
   assertBuffer(responseValue.buffers[1], "packet-a:emission-shell-narrow-phase", "emission_shell_narrow_phase.v1", 40, 1);
   assert(responseValue.status.code === "ok", "emission-shell response status mismatch");
+}
+
+function validateEmissionShellRootRefinementRequestEnvelope(value) {
+  assert(value.schema === "solver-app-bridge/v1", "emission-shell refinement request schema tag mismatch");
+  assert(value.kind === "emission-shell-root-refinement-f64-request", "emission-shell refinement request kind mismatch");
+  assertNonemptyString(value.requestId, "emission-shell refinement request id");
+  const requestValue = value.request;
+  assert(requestValue.streamId === "fixture-path-history-stream", "emission-shell refinement stream id mismatch");
+  assert(requestValue.signalSpeed === 1, "emission-shell refinement signal speed mismatch");
+  assert(requestValue.rootTolerance === 1e-12, "emission-shell refinement root tolerance mismatch");
+  assert(requestValue.candidates.length === 1, "emission-shell refinement candidate count mismatch");
+  assert(requestValue.candidates[0].narrowPhaseEstimate.classification === "sampled_hit", "emission-shell refinement candidate hit mismatch");
+}
+
+function validateEmissionShellRootRefinementResponseEnvelope(value) {
+  assert(value.schema === "solver-app-bridge/v1", "emission-shell refinement response schema tag mismatch");
+  assert(value.kind === "emission-shell-root-refinement-f64-response", "emission-shell refinement response kind mismatch");
+  assertNonemptyString(value.requestId, "emission-shell refinement response id");
+  const responseValue = value.response;
+  assert(responseValue.schema === "solver-emission-shell-root-refinement.v1", "emission-shell refinement schema mismatch");
+  assert(responseValue.streamId === "fixture-path-history-stream", "emission-shell refinement response stream mismatch");
+  assert(responseValue.candidateCount === 1, "emission-shell refinement candidate count mismatch");
+  assert(responseValue.processedCandidateCount === 1, "emission-shell refinement processed count mismatch");
+  assert(responseValue.attemptedCandidateCount === 1, "emission-shell refinement attempted count mismatch");
+  assert(responseValue.skippedCandidateCount === 0, "emission-shell refinement skipped count mismatch");
+  assert(responseValue.rootCount === 1, "emission-shell refinement root count mismatch");
+  assert(responseValue.hitCount === 1, "emission-shell refinement hit count mismatch");
+  assert(responseValue.items[0].candidateIndex === 0, "emission-shell refinement item index mismatch");
+  assert(responseValue.items[0].rootOffset === 0, "emission-shell refinement root offset mismatch");
+  assert(responseValue.items[0].hitOffset === 0, "emission-shell refinement hit offset mismatch");
+  assert(responseValue.roots.length === 1, "emission-shell refinement roots mismatch");
+  assert(responseValue.hits.length === 1, "emission-shell refinement hits mismatch");
+  assertBuffer(responseValue.buffers[0], "emission-shell-refined-root-ledger", "root_ledger.v1", 112, 1);
+  assertBuffer(responseValue.buffers[1], "emission-shell-refined-delayed-hits", "delayed_hit_events.v1", 128, 1);
+  assert(responseValue.status.code === "ok", "emission-shell refinement status mismatch");
 }
 
 function assertWorkPacketResultRef(result, packetId, mergeOrder, mergeKey) {
@@ -854,6 +1047,126 @@ function createCausalRootsResponseEnvelope() {
     response: {
       roots: response.response.roots,
       status: createStatusFixture("ok", "ok", "causal roots solved"),
+    },
+  };
+}
+
+function createCausalRootsNormalizedRequestEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "causal-roots-normalized-f64-request",
+    requestId: "causal-roots-normalized-contract-request",
+    request: {
+      coordinateOrigin: { x: 1e18, y: -2e18, z: 3e18 },
+      localRequest: {
+        ...request.request,
+        source: {
+          ...request.request.source,
+          positionAtStart: { x: 0, y: 0, z: 0 },
+        },
+        receiver: {
+          ...request.request.receiver,
+          positionAtStart: { x: 1, y: 0, z: 0 },
+        },
+        hitTime: 1,
+        rootTolerance: 1e-15,
+      },
+      restoreAbsolutePoints: true,
+    },
+  };
+}
+
+function createCausalRootsNormalizedResponseEnvelope() {
+  const root = {
+    ...response.response.roots[0],
+    distance: 1,
+    coordinateFrame: "origin-normalized",
+    sourcePoint: { x: 0, y: 0, z: 0 },
+    receiverPoint: { x: 1, y: 0, z: 0 },
+  };
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "causal-roots-normalized-f64-response",
+    requestId: "causal-roots-normalized-contract-request",
+    response: {
+      schema: "solver-causal-roots-normalized-f64.v1",
+      coordinateFrame: "origin-normalized",
+      coordinateOrigin: { x: 1e18, y: -2e18, z: 3e18 },
+      localRequest: causalRootsNormalizedRequest.request.localRequest,
+      roots: [root],
+      absoluteRoots: [
+        {
+          ...root,
+          coordinateFrame: "absolute-display",
+          sourcePoint: { x: 1e18, y: -2e18, z: 3e18 },
+          receiverPoint: { x: 1e18, y: -2e18, z: 3e18 },
+          localSourcePoint: { x: 0, y: 0, z: 0 },
+          localReceiverPoint: { x: 1, y: 0, z: 0 },
+          absolutePointAuthority: "display-only",
+        },
+      ],
+      status: createStatusFixture("ok", "ok", "origin-normalized causal roots solved"),
+    },
+  };
+}
+
+function createCausalRootsPrecisionRequestEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "causal-roots-precision-f64-request",
+    requestId: "causal-roots-precision-contract-request",
+    request: {
+      rootRequest: request.request,
+      requestedPrecisionPath: "scaled_f64_strict",
+      claimLevel: "exported-dataset",
+      allowEscalation: true,
+      runValidationReplay: true,
+      maxRoots: 4,
+    },
+  };
+}
+
+function createCausalRootsPrecisionResponseEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "causal-roots-precision-f64-response",
+    requestId: "causal-roots-precision-contract-request",
+    response: {
+      schema: "solver-causal-roots-precision-f64.v1",
+      roots: response.response.roots,
+      precision: {
+        requestedPrecisionPath: "scaled_f64_strict",
+        diagnosticPrecisionPath: "extended_precision",
+        selectedPrecisionPath: "extended_precision",
+        selectedNumericType: "decimal128",
+        claimLevel: "exported-dataset",
+        statusCode: "insufficient_scale_resolution",
+        statusSeverity: "warning",
+        rootCount: 1,
+        rootTolerance: 1e-16,
+        maxResidual: 0,
+        minAbsJacobian: 1,
+        maxIterations: 256,
+        scanSubdivisions: 512,
+        escalated: true,
+        validationReplayRun: true,
+        validationReplayMatched: true,
+      },
+      buffers: [
+        {
+          bufferId: "precision-root-ledger",
+          layout: "root_ledger.v1",
+          byteOffset: 0,
+          byteLength: 112,
+          rowCount: 1,
+          numericType: "f64",
+        },
+      ],
+      status: createStatusFixture(
+        "insufficient_scale_resolution",
+        "warning",
+        "precision causal roots solved with diagnostics"
+      ),
     },
   };
 }
@@ -1064,10 +1377,11 @@ function createCapabilitiesFixture() {
       "emission_shell_candidate.v1",
       "emission_shell_narrow_phase.v1",
       "stream_index.v1",
+      "assembly_graph_index.v1",
     ],
     storage: {
       supportsOpfs: false,
-      supportsNativeFile: false,
+      supportsNativeFile: true,
       supportsCallerBuffer: true,
       maxRecommendedBytes: 67108864,
     },
@@ -1107,6 +1421,8 @@ function createCapabilitiesFixture() {
       storageFallbacks: {
         preferredDurableBrowserTarget: "opfs",
         durableBrowserTargetAvailable: false,
+        preferredNativeFileTarget: "native-file",
+        nativeFileTargetAvailable: true,
         transientTarget: "caller-buffer",
         unsupportedStorageStatusCode: "unsupported_browser_storage",
       },
@@ -1116,9 +1432,11 @@ function createCapabilitiesFixture() {
           "createPathHistoryStreamF64",
           "describeStream",
           "readStreamRange",
+          "buildPathHistoryStreamSpaceTimeIndexF64",
           "queryEmissionShellCandidatesF64",
           "queryEmissionShellCandidatePacketF64",
           "queryEmissionShellCandidatePacketsF64",
+          "refineEmissionShellCandidateRootsF64",
         ],
         pathHistoryLayouts: ["path_segment.v1"],
         indexedFilters: ["pathKeys", "chunkIndices", "timeRange", "frameRange", "byteRange"],
@@ -1201,7 +1519,13 @@ function createBroadPhaseCapability(method) {
     responseSchema: "solver-emission-shell-candidates.v1",
     candidateKind: "broad_phase_possible",
     estimateMethod: "sampled_linear_segment_bisection.v1",
-    narrowPhaseAuthorities: ["solveCausalRootsF64", "solveRootsAndHitsF64"],
+    narrowPhaseAuthorities: [
+      "solveCausalRootsF64",
+      "solveCausalRootsPrecisionF64",
+      "solveCausalRootsNormalizedF64",
+      "solveRootsAndHitsF64",
+      "refineEmissionShellCandidateRootsF64",
+    ],
   };
 }
 
@@ -1243,11 +1567,34 @@ function createAbiInfoFixture() {
     errorBudgetStageInputF64Bytes: 16,
     errorBudgetStageRowF64Bytes: 40,
     errorBudgetSummaryF64Bytes: 32,
+    precisionSolveOptionsBytes: 16,
+    precisionSolveSummaryF64Bytes: 80,
   };
 }
 
 function createRunSimulationRequestEnvelope() {
   const runRequest = createSolverRunRequest();
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "run-simulation-request",
+    requestId: runRequest.requestId,
+    request: runRequest,
+  };
+}
+
+function createRunSimulationNormalizedRequestEnvelope() {
+  const runRequest = {
+    ...createSolverRunRequest(),
+    requestId: "run-normalized-contract-request",
+    runId: "run-normalized-contract",
+    datasetId: "run-normalized-contract-dataset",
+    configVersion: "solver-run-normalized-contract.v1",
+    configHash: "solver-run-normalized-contract",
+    config: {
+      appId: "photon",
+      normalizedRootRequest: causalRootsNormalizedRequest.request,
+    },
+  };
   return {
     schema: "solver-app-bridge/v1",
     kind: "run-simulation-request",
@@ -1845,6 +2192,7 @@ function createOpenStreamRequestEnvelope() {
     requestId: "open-stream-contract-request",
     request: {
       streamId: "fixture-path-history-stream",
+      manifestPath: ".tmp/fixture-path-history-stream/stream-manifest.json",
       purpose: "diagnostics",
     },
   };
@@ -1882,6 +2230,7 @@ function createReadStreamRangeRequestEnvelope() {
     requestId: "read-stream-range-contract-request",
     request: {
       streamId: "fixture-path-history-stream",
+      chunkIndices: [0],
       pathKeys: [2000],
       timeRange: { start: 0, end: 3 },
       maxBytes: 96,
@@ -1937,6 +2286,34 @@ function createReadStreamRangeResponseEnvelope() {
         message: "stream range read",
         recoverable: true,
       },
+    },
+  };
+}
+
+function createEmissionShellCandidateFixture() {
+  return {
+    sourcePathKey: 2000,
+    receiverPathKey: 2001,
+    sourceSegmentIndex: 0,
+    receiverSegmentIndex: 1,
+    sourceChunkIndex: 0,
+    receiverChunkIndex: 1,
+    sourceRowOffset: 0,
+    receiverRowOffset: 1,
+    sourceTimeRange: { start: 0, end: 1 },
+    receiverTimeRange: { start: 1, end: 2 },
+    distanceLowerBound: 0,
+    distanceUpperBound: 1,
+    radiusLowerBound: 0,
+    radiusUpperBound: 1,
+    candidateKind: "broad_phase_possible",
+    narrowPhaseEstimate: {
+      method: "sampled_linear_segment_bisection.v1",
+      classification: "sampled_hit",
+      sampleCount: 16,
+      hitTime: 1,
+      emissionTime: 0,
+      residual: 0,
     },
   };
 }
@@ -1998,33 +2375,7 @@ function createEmissionShellCandidateResponseEnvelope() {
         truncated: false,
       },
       truncated: false,
-      candidates: [
-        {
-          sourcePathKey: 2000,
-          receiverPathKey: 2001,
-          sourceSegmentIndex: 0,
-          receiverSegmentIndex: 1,
-          sourceChunkIndex: 0,
-          receiverChunkIndex: 1,
-          sourceRowOffset: 0,
-          receiverRowOffset: 1,
-          sourceTimeRange: { start: 0, end: 1 },
-          receiverTimeRange: { start: 1, end: 2 },
-          distanceLowerBound: 0,
-          distanceUpperBound: 1,
-          radiusLowerBound: 0,
-          radiusUpperBound: 1,
-          candidateKind: "broad_phase_possible",
-          narrowPhaseEstimate: {
-            method: "sampled_linear_segment_bisection.v1",
-            classification: "sampled_hit",
-            sampleCount: 16,
-            hitTime: 1,
-            emissionTime: 0,
-            residual: 0,
-          },
-        },
-      ],
+      candidates: [createEmissionShellCandidateFixture()],
       buffers: [
         {
           bufferId: "packet-a:emission-shell-candidates",
@@ -2046,6 +2397,89 @@ function createEmissionShellCandidateResponseEnvelope() {
         },
       ],
       status: createStatusFixture("ok", "ok", "emission-shell packet response fixture"),
+    },
+  };
+}
+
+function createEmissionShellRootRefinementRequestEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "emission-shell-root-refinement-f64-request",
+    requestId: "emission-shell-root-refinement-contract-request",
+    request: {
+      streamId: "fixture-path-history-stream",
+      candidates: [createEmissionShellCandidateFixture()],
+      signalSpeed: 1,
+      tolerance: 1e-12,
+      rootTolerance: 1e-12,
+      maxCandidates: 1,
+      maxIterations: 96,
+      scanSubdivisions: 64,
+      maxRootsPerCandidate: 4,
+      maxHitsPerCandidate: 4,
+      workerCount: 2,
+    },
+  };
+}
+
+function createEmissionShellRootRefinementResponseEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "emission-shell-root-refinement-f64-response",
+    requestId: "emission-shell-root-refinement-contract-request",
+    response: {
+      schema: "solver-emission-shell-root-refinement.v1",
+      streamId: "fixture-path-history-stream",
+      signalSpeed: 1,
+      tolerance: 1e-12,
+      candidateCount: 1,
+      processedCandidateCount: 1,
+      attemptedCandidateCount: 1,
+      skippedCandidateCount: 0,
+      rootCount: 1,
+      hitCount: 1,
+      truncated: false,
+      items: [
+        {
+          candidateIndex: 0,
+          sourcePathKey: 2000,
+          receiverPathKey: 2001,
+          sourceChunkIndex: 0,
+          receiverChunkIndex: 1,
+          sourceRowOffset: 0,
+          receiverRowOffset: 1,
+          hitTime: 1,
+          sampledEmissionTime: 0,
+          rootOffset: 0,
+          rootCount: 1,
+          hitOffset: 0,
+          hitCount: 1,
+          status: createStatusFixture("ok", "ok", "emission-shell candidate root refined"),
+        },
+      ],
+      roots: [response.response.roots[0]],
+      hits: [response.response.hits[0]],
+      buffers: [
+        {
+          bufferId: "emission-shell-refined-root-ledger",
+          layout: "root_ledger.v1",
+          byteOffset: 0,
+          byteLength: 112,
+          rowCount: 1,
+          numericType: "f64",
+          checksum: "cccccccccccccccc",
+        },
+        {
+          bufferId: "emission-shell-refined-delayed-hits",
+          layout: "delayed_hit_events.v1",
+          byteOffset: 0,
+          byteLength: 128,
+          rowCount: 1,
+          numericType: "f64",
+          checksum: "dddddddddddddddd",
+        },
+      ],
+      status: createStatusFixture("ok", "ok", "emission-shell root refinement completed"),
     },
   };
 }

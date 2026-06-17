@@ -34,6 +34,8 @@ std::string_view to_string(BinaryLayoutId value) {
       return "emission_shell_narrow_phase.v1";
     case BinaryLayoutId::StreamIndexV1:
       return "stream_index.v1";
+    case BinaryLayoutId::AssemblyGraphIndexV1:
+      return "assembly_graph_index.v1";
   }
   return "unknown";
 }
@@ -183,6 +185,15 @@ BinaryLayoutDescriptor binary_layout_descriptor(BinaryLayoutId layoutId) {
           64,
           "path key, chunk index, row offset/count, time span, byte offset/length",
       };
+    case BinaryLayoutId::AssemblyGraphIndexV1:
+      return BinaryLayoutDescriptor{
+          layoutId,
+          to_string(layoutId),
+          NumericType::F64,
+          ByteOrder::LittleEndian,
+          72,
+          "assembly graph source layout, key kind, key, row offset/count, time span, byte offset/length, flags",
+      };
     default:
       return BinaryLayoutDescriptor{
           layoutId,
@@ -212,6 +223,7 @@ std::vector<BinaryLayoutDescriptor> core_solver_layouts() {
       binary_layout_descriptor(BinaryLayoutId::EmissionShellCandidateV1),
       binary_layout_descriptor(BinaryLayoutId::EmissionShellNarrowPhaseV1),
       binary_layout_descriptor(BinaryLayoutId::StreamIndexV1),
+      binary_layout_descriptor(BinaryLayoutId::AssemblyGraphIndexV1),
   };
 }
 

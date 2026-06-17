@@ -29,6 +29,7 @@ const DEFAULT_OUTPUT_LAYOUTS = [
   "emission_shell_candidate.v1",
   "emission_shell_narrow_phase.v1",
   "stream_index.v1",
+  "assembly_graph_index.v1",
 ];
 
 const BINARY_LAYOUT_ROW_SIZE_BYTES = new Map([
@@ -47,7 +48,23 @@ const BINARY_LAYOUT_ROW_SIZE_BYTES = new Map([
   ["emission_shell_candidate.v1", 112],
   ["emission_shell_narrow_phase.v1", 40],
   ["stream_index.v1", 64],
+  ["assembly_graph_index.v1", 72],
 ]);
+
+const ASSEMBLY_GRAPH_INDEX_ROW_V1_BYTES = 72;
+const ASSEMBLY_GRAPH_INDEX_LAYOUT_CODES = new Map([
+  ["assembly_state.v1", 1],
+  ["assembly_membership.v1", 2],
+  ["assembly_hierarchy.v1", 3],
+  ["assembly_events.v1", 4],
+]);
+const ASSEMBLY_GRAPH_INDEX_KEY_KIND_CODES = new Map([
+  ["path", 1],
+  ["assembly", 2],
+  ["parent-assembly", 3],
+  ["child-assembly", 4],
+]);
+const INT32_MAX = 0x7fffffff;
 
 const DEFAULT_ERROR_BUDGET_STAGES = [
   { stage: "root_isolation", budgetField: "rootIsolationTolerance", cumulative: true },
@@ -116,8 +133,17 @@ const STORAGE_LIFECYCLE_REASON_BY_ID = [
   "deep_index_already_built",
   "aged_out_of_active_window",
 ];
+const DEFAULT_NATIVE_FILE_STREAM_BASE_PATH = ".tmp/solver-app-streams";
+const DEFAULT_NATIVE_FILE_ASSEMBLY_GRAPH_BASE_PATH = ".tmp/solver-app-assembly-graphs";
+const STREAM_INDEX_ROW_V1_BYTES = 64;
 
 const PRECISION_PATH_BY_ID = DEFAULT_PRECISION_PATHS;
+const CLAIM_LEVEL_BY_ID = [
+  "interactive-preview",
+  "migration-parity",
+  "exported-dataset",
+  "validation-evidence",
+];
 const NUMERIC_TYPE_BY_ID = ["f64", "scaled_i64", "interval_f64_pair", "decimal128", "mp_limb_block"];
 const ERROR_BUDGET_STAGE_BY_ID = DEFAULT_ERROR_BUDGET_STAGES.map((stage) => stage.stage);
 const ERROR_BUDGET_STAGE_TO_ID = new Map(
@@ -252,6 +278,8 @@ const ROOT_LEDGER_DETAIL_ROW_F64_BYTES = 192;
 const DELAYED_HIT_ROW_F64_BYTES = 128;
 const CAUSAL_ROOT_BATCH_ITEM_ROW_F64_BYTES = 24;
 const PRECISION_DIAGNOSTIC_ROW_F64_BYTES = 96;
+const PRECISION_SOLVE_OPTIONS_BYTES = 16;
+const PRECISION_SOLVE_SUMMARY_F64_BYTES = 80;
 const ERROR_BUDGET_F64_BYTES = 64;
 const ERROR_BUDGET_STAGE_INPUT_F64_BYTES = 16;
 const ERROR_BUDGET_STAGE_ROW_F64_BYTES = 40;
@@ -287,7 +315,7 @@ const DEFAULT_MAX_CAUSAL_ROOTS = 64;
 const DEFAULT_MAX_ROOT_LEDGER_DETAIL_ROWS = 4096;
 const DEFAULT_MAX_MOTION_FRAMES = 65536;
 const DEFAULT_MAX_SPACETIME_INDEX_ROWS = 65536;
-const ABI_INFO_BYTES = 144;
+const ABI_INFO_BYTES = 152;
 
 export class SolverBridgeError extends Error {
   constructor(status) {
@@ -307,6 +335,7 @@ export function createSolverAppBridgeClient(options = {}) {
     module: null,
     abiInfo: null,
     streams: new Map(),
+    assemblyGraphStores: new Map(),
     runs: new Map(),
     nextRunSequence: 1,
     disposed: false,
@@ -431,6 +460,17 @@ export function createSolverAppBridgeClient(options = {}) {
       );
     },
 
+    async refineEmissionShellCandidateRootsF64(request) {
+      assertNotDisposed(state);
+      const module = await requireWasmModule(state);
+      return refineEmissionShellCandidateRootsF64(
+        state,
+        module,
+        request,
+        state.abiInfo || defaultAbiInfo()
+      );
+    },
+
     async admitSimulationEnvelope(request) {
       assertNotDisposed(state);
       return admitSimulationEnvelope(request);
@@ -440,6 +480,20 @@ export function createSolverAppBridgeClient(options = {}) {
       assertNotDisposed(state);
       const module = await requireWasmModule(state);
       return diagnosePrecisionF64WithModule(module, request, state.abiInfo || defaultAbiInfo());
+    },
+
+    async solveCausalRootsPrecisionF64(request) {
+      assertNotDisposed(state);
+      const module = await requireWasmModule(state);
+      return solveCausalRootsPrecisionF64WithModule(module, request, state.abiInfo || defaultAbiInfo());
+    },
+
+    async solveRootsAndHitsPrecisionF64(request) {
+      assertNotDisposed(state);
+      const module = await requireWasmModule(state);
+      const response = solveRootsAndHitsPrecisionF64WithModule(module, request, state.abiInfo || defaultAbiInfo());
+      registerResponseStreams(state, response);
+      return response;
     },
 
     async propagateErrorBudgetF64(request) {
@@ -462,6 +516,12 @@ export function createSolverAppBridgeClient(options = {}) {
       assertNotDisposed(state);
       const module = await requireWasmModule(state);
       return solveCausalRootsF64WithModule(module, request, state.abiInfo || defaultAbiInfo());
+    },
+
+    async solveCausalRootsNormalizedF64(request) {
+      assertNotDisposed(state);
+      const module = await requireWasmModule(state);
+      return solveCausalRootsNormalizedF64WithModule(module, request, state.abiInfo || defaultAbiInfo());
     },
 
     async solveCausalRootBatchF64(request) {
@@ -511,10 +571,47 @@ export function createSolverAppBridgeClient(options = {}) {
       );
     },
 
+    async buildAssemblyGraphDatasetF64(request) {
+      assertNotDisposed(state);
+      const module = await requireWasmModule(state);
+      return buildAssemblyGraphDatasetF64WithModule(
+        module,
+        request,
+        state.abiInfo || defaultAbiInfo()
+      );
+    },
+
+    async createAssemblyGraphStoreF64(request) {
+      assertNotDisposed(state);
+      const module = await requireWasmModule(state);
+      return createAssemblyGraphStoreF64(state, module, request, state.abiInfo || defaultAbiInfo());
+    },
+
+    async describeAssemblyGraphStoreF64(request = {}) {
+      assertNotDisposed(state);
+      return describeAssemblyGraphStoreF64(state, request);
+    },
+
+    async readAssemblyGraphStoreRangeF64(request = {}) {
+      assertNotDisposed(state);
+      return readAssemblyGraphStoreRangeF64(state, request);
+    },
+
     async buildSpaceTimeIndexF64(request) {
       assertNotDisposed(state);
       const module = await requireWasmModule(state);
       return buildSpaceTimeIndexF64WithModule(module, request, state.abiInfo || defaultAbiInfo());
+    },
+
+    async buildPathHistoryStreamSpaceTimeIndexF64(request) {
+      assertNotDisposed(state);
+      const module = await requireWasmModule(state);
+      return buildPathHistoryStreamSpaceTimeIndexF64WithModule(
+        state,
+        module,
+        request,
+        state.abiInfo || defaultAbiInfo()
+      );
     },
 
     async querySpaceTimeIndexF64(request) {
@@ -549,20 +646,25 @@ export function createSolverAppBridgeClient(options = {}) {
 
     async closeRun(request = {}) {
       assertNotDisposed(state);
+      let releaseSummary = { releasedStreamCount: 0, deletedNativeFileStreamCount: 0 };
       if (request.releaseStreams) {
-        state.streams.clear();
-        state.runs.delete(request.runId);
+        releaseSummary = releaseRunStreams(state, request.runId);
+        if (request.runId != null) {
+          state.runs.delete(request.runId);
+        }
       }
       return createStatus("ok", "ok", "run resources released", {
         runId: request.runId,
+        details: releaseSummary,
       });
     },
 
     async dispose() {
+      releaseAllStreams(state);
+      state.assemblyGraphStores.clear();
       state.disposed = true;
       state.module = null;
       state.modulePromise = null;
-      state.streams.clear();
       state.runs.clear();
     },
   };
@@ -571,12 +673,13 @@ export function createSolverAppBridgeClient(options = {}) {
 function createCapabilities(hasWasmModuleFactory) {
   const supportsOpfs = typeof navigator !== "undefined" && Boolean(navigator.storage?.getDirectory);
   const browserWorkerAvailable = typeof Worker !== "undefined";
+  const supportsNativeFile = hasNodeFileStorage();
   return {
     precisionPaths: DEFAULT_PRECISION_PATHS,
     outputLayouts: DEFAULT_OUTPUT_LAYOUTS,
     storage: {
       supportsOpfs,
-      supportsNativeFile: false,
+      supportsNativeFile,
       supportsCallerBuffer: true,
       maxRecommendedBytes: 64 * 1024 * 1024,
     },
@@ -616,6 +719,8 @@ function createCapabilities(hasWasmModuleFactory) {
       storageFallbacks: {
         preferredDurableBrowserTarget: "opfs",
         durableBrowserTargetAvailable: supportsOpfs,
+        preferredNativeFileTarget: "native-file",
+        nativeFileTargetAvailable: supportsNativeFile,
         transientTarget: "caller-buffer",
         unsupportedStorageStatusCode: "unsupported_browser_storage",
       },
@@ -625,9 +730,11 @@ function createCapabilities(hasWasmModuleFactory) {
           "createPathHistoryStreamF64",
           "describeStream",
           "readStreamRange",
+          "buildPathHistoryStreamSpaceTimeIndexF64",
           "queryEmissionShellCandidatesF64",
           "queryEmissionShellCandidatePacketF64",
           "queryEmissionShellCandidatePacketsF64",
+          "refineEmissionShellCandidateRootsF64",
         ],
         pathHistoryLayouts: ["path_segment.v1"],
         indexedFilters: ["pathKeys", "chunkIndices", "timeRange", "frameRange", "byteRange"],
@@ -637,21 +744,39 @@ function createCapabilities(hasWasmModuleFactory) {
             responseSchema: "solver-emission-shell-candidates.v1",
             candidateKind: "broad_phase_possible",
             estimateMethod: "sampled_linear_segment_bisection.v1",
-            narrowPhaseAuthorities: ["solveCausalRootsF64", "solveRootsAndHitsF64"],
+            narrowPhaseAuthorities: [
+              "solveCausalRootsF64",
+              "solveCausalRootsPrecisionF64",
+              "solveCausalRootsNormalizedF64",
+              "solveRootsAndHitsF64",
+              "refineEmissionShellCandidateRootsF64",
+            ],
           },
           {
             method: "queryEmissionShellCandidatePacketF64",
             responseSchema: "solver-emission-shell-candidates.v1",
             candidateKind: "broad_phase_possible",
             estimateMethod: "sampled_linear_segment_bisection.v1",
-            narrowPhaseAuthorities: ["solveCausalRootsF64", "solveRootsAndHitsF64"],
+            narrowPhaseAuthorities: [
+              "solveCausalRootsF64",
+              "solveCausalRootsPrecisionF64",
+              "solveCausalRootsNormalizedF64",
+              "solveRootsAndHitsF64",
+              "refineEmissionShellCandidateRootsF64",
+            ],
           },
           {
             method: "queryEmissionShellCandidatePacketsF64",
             responseSchema: "solver-emission-shell-candidates.v1",
             candidateKind: "broad_phase_possible",
             estimateMethod: "sampled_linear_segment_bisection.v1",
-            narrowPhaseAuthorities: ["solveCausalRootsF64", "solveRootsAndHitsF64"],
+            narrowPhaseAuthorities: [
+              "solveCausalRootsF64",
+              "solveCausalRootsPrecisionF64",
+              "solveCausalRootsNormalizedF64",
+              "solveRootsAndHitsF64",
+              "refineEmissionShellCandidateRootsF64",
+            ],
           },
         ],
       },
@@ -1433,7 +1558,7 @@ function normalizePathHistoryWorkPacketPlanRequest(request) {
   const receiverPathKeys =
     request.receiverPathKeys == null ? null : normalizePathKeySelection(request.receiverPathKeys, "receiverPathKeys");
   if (request.maxPacketCount != null) {
-    requirePositiveInteger(request.maxPacketCount, "maxPacketCount");
+    requirePositiveInt32(request.maxPacketCount, "maxPacketCount");
   }
   return {
     streamId: request.streamId,
@@ -2214,7 +2339,7 @@ function validateErrorBudgetPropagationRequest(request) {
   }
   request.stages.forEach((stage, index) => validateErrorBudgetStageInput(stage, index));
   if (request.maxRows != null) {
-    requirePositiveInteger(request.maxRows, "maxRows");
+    requirePositiveInt32(request.maxRows, "maxRows");
     if (request.maxRows < request.stages.length) {
       throw new SolverBridgeError(
         createStatus("app_contract_error", "error", "maxRows must cover all error-budget stages", {
@@ -2376,8 +2501,12 @@ function runSimulationWithModule(state, module, request, abiInfo) {
 
   let completedResponse;
   if (request.runKind === "causalRoots") {
-    const rootRequest = request.config.rootRequest;
-    const rootsAndHits = solveRootsAndHitsF64WithModule(module, rootRequest, abiInfo);
+    const rootsAndHits = solveRunRootsAndHitsF64WithModule(module, request.config, abiInfo, {
+      runId,
+      requestId,
+      precisionPath: admission.selectedPrecisionPath,
+      claimLevel: request.claimLevel,
+    });
     const streams = rootsAndHits.streams.map((stream) => ({
       ...stream,
       streamId: `${runId}:${stream.streamId}`,
@@ -2395,15 +2524,19 @@ function runSimulationWithModule(state, module, request, abiInfo) {
       },
       buffers: rootsAndHits.buffers,
       streams,
-      diagnostics: admission.statuses.map(toDiagnosticRecord),
+      diagnostics: [...admission.statuses, ...rootsAndHits.statuses].map(toDiagnosticRecord),
       roots: rootsAndHits.roots,
       hits: rootsAndHits.hits,
       status: createStatus("ok", "ok", "causal-root simulation completed", { runId, requestId }),
     };
     completedResponse.manifest = finalizeRunManifest(manifestBase, completedResponse);
   } else if (request.runKind === "delayedHits") {
-    const rootRequest = request.config.rootRequest;
-    const rootsAndHits = solveRootsAndHitsF64WithModule(module, rootRequest, abiInfo);
+    const rootsAndHits = solveRunRootsAndHitsF64WithModule(module, request.config, abiInfo, {
+      runId,
+      requestId,
+      precisionPath: admission.selectedPrecisionPath,
+      claimLevel: request.claimLevel,
+    });
     const streams = rootsAndHits.streams.map((stream) => ({
       ...stream,
       streamId: `${runId}:${stream.streamId}`,
@@ -2421,7 +2554,7 @@ function runSimulationWithModule(state, module, request, abiInfo) {
       },
       buffers: rootsAndHits.buffers,
       streams,
-      diagnostics: admission.statuses.map(toDiagnosticRecord),
+      diagnostics: [...admission.statuses, ...rootsAndHits.statuses].map(toDiagnosticRecord),
       roots: rootsAndHits.roots,
       hits: rootsAndHits.hits,
       status: createStatus("ok", "ok", "delayed-hit simulation completed", { runId, requestId }),
@@ -2651,6 +2784,80 @@ function runSimulationWithModule(state, module, request, abiInfo) {
     response: completedResponse,
     status: createStatus("ok", "ok", "simulation run completed", { runId, requestId }),
   };
+}
+
+function solveRunRootsAndHitsF64WithModule(module, config, abiInfo, ids = {}) {
+  if (config.normalizedRootRequest != null) {
+    const normalizedRequest = config.normalizedRootRequest;
+    const rootsAndHits = solveRootsAndHitsPrecisionF64WithModule(
+      module,
+      createRunPrecisionRootsAndHitsRequest(normalizedRequest.localRequest, ids),
+      abiInfo
+    );
+    const normalizedStatus = createStatus(
+      "ok",
+      "info",
+      "origin-normalized root rows are authoritative local coordinates",
+      {
+        runId: ids.runId,
+        requestId: ids.requestId,
+        details: {
+          coordinateFrame: "origin-normalized",
+          coordinateOrigin: copyVector(normalizedRequest.coordinateOrigin),
+          localRootAuthority: "authoritative",
+          localHitAuthority: "authoritative",
+          absolutePointAuthority: "display-only",
+          restoreAbsolutePoints: Boolean(normalizedRequest.restoreAbsolutePoints),
+        },
+      }
+    );
+    return {
+      ...rootsAndHits,
+      statuses: [normalizedStatus, createPrecisionSolveRunStatus(rootsAndHits, ids)],
+    };
+  }
+  const rootsAndHits = solveRootsAndHitsPrecisionF64WithModule(
+    module,
+    createRunPrecisionRootsAndHitsRequest(config.rootRequest, ids),
+    abiInfo
+  );
+  return {
+    ...rootsAndHits,
+    statuses: [createPrecisionSolveRunStatus(rootsAndHits, ids)],
+  };
+}
+
+function createRunPrecisionRootsAndHitsRequest(rootRequest, ids = {}) {
+  const requestedPrecisionPath =
+    ids.precisionPath && DEFAULT_PRECISION_PATHS.includes(ids.precisionPath)
+      ? ids.precisionPath
+      : "auto";
+  const claimLevel =
+    ids.claimLevel && CLAIM_LEVEL_BY_ID.includes(ids.claimLevel)
+      ? ids.claimLevel
+      : "interactive-preview";
+  return {
+    rootRequest: deepCloneJson(rootRequest),
+    requestedPrecisionPath,
+    claimLevel,
+    allowEscalation: true,
+    runValidationReplay:
+      requestedPrecisionPath === "validation_replay" || claimLevel === "validation-evidence",
+    maxRoots: rootRequest?.maxRoots ?? DEFAULT_MAX_CAUSAL_ROOTS,
+    maxHits: rootRequest?.maxHits ?? rootRequest?.maxRoots ?? DEFAULT_MAX_CAUSAL_ROOTS,
+  };
+}
+
+function createPrecisionSolveRunStatus(rootsAndHits, ids = {}) {
+  return createStatus(rootsAndHits.status.code, rootsAndHits.status.severity, rootsAndHits.status.message, {
+    runId: ids.runId,
+    requestId: ids.requestId,
+    details: {
+      ...rootsAndHits.precision,
+      rootCount: rootsAndHits.roots.length,
+      hitCount: rootsAndHits.hits.length,
+    },
+  });
 }
 
 function countSharedGeometryEvents(geometry) {
@@ -3546,7 +3753,7 @@ function validateLinearMotionSampleRequest(request) {
     requireUint32(request.stateFlags, "stateFlags");
   }
   if (request.maxFrames != null) {
-    requirePositiveInteger(request.maxFrames, "maxFrames");
+    requirePositiveInt32(request.maxFrames, "maxFrames");
   }
 }
 
@@ -3989,6 +4196,292 @@ function detectAssemblyMembershipEventsF64WithModule(module, request, abiInfo) {
   }
 }
 
+function buildAssemblyGraphDatasetF64WithModule(module, request, abiInfo) {
+  validateAssemblyGraphDatasetRequest(request);
+  const assemblyStates = request.assemblyStates ?? [];
+  const memberships = request.memberships ?? [];
+  const hierarchy = request.hierarchy ?? [];
+  const explicitEvents = request.events ?? null;
+  const eventResponse = explicitEvents
+    ? createAssemblyGraphExplicitEventsResponse(explicitEvents, abiInfo)
+    : request.deriveMembershipEvents === false
+      ? createAssemblyGraphEmptyEventsResponse(abiInfo, "not_requested")
+      : detectAssemblyMembershipEventsF64WithModule(
+          module,
+          { memberships, maxEvents: request.maxEvents },
+          abiInfo
+        );
+  const eventSource = explicitEvents ? "explicit" : request.deriveMembershipEvents === false ? "none" : "derived";
+  const events = eventResponse.events;
+  const buffers = [
+    createAssemblyGraphBufferDescriptor(
+      "assembly-states",
+      "assembly_state.v1",
+      assemblyStates,
+      abiInfo.assemblyStateRowF64Bytes,
+      writeAssemblyStateRowF64ToView
+    ),
+    createAssemblyGraphBufferDescriptor(
+      "assembly-memberships",
+      "assembly_membership.v1",
+      memberships,
+      abiInfo.assemblyMembershipRowF64Bytes,
+      writeAssemblyMembershipRowF64ToView
+    ),
+    createAssemblyGraphBufferDescriptor(
+      "assembly-hierarchy",
+      "assembly_hierarchy.v1",
+      hierarchy,
+      abiInfo.assemblyHierarchyRowF64Bytes,
+      writeAssemblyHierarchyRowF64ToView
+    ),
+    eventResponse.buffers[0],
+  ];
+
+  return {
+    schema: "solver-assembly-graph-dataset.v1",
+    summary: summarizeAssemblyGraphDatasetF64(
+      assemblyStates,
+      memberships,
+      hierarchy,
+      events,
+      eventSource,
+      buffers.length
+    ),
+    assemblyStates,
+    memberships,
+    hierarchy,
+    events,
+    buffers,
+    status: createStatus("ok", "ok", "assembly graph dataset built", {
+      details: { eventSource },
+    }),
+  };
+}
+
+function createAssemblyGraphStoreF64(state, module, request, abiInfo) {
+  validateCreateAssemblyGraphStoreRequest(request);
+  const storagePolicy = normalizeAssemblyGraphStoreStoragePolicy(request.storagePolicy);
+  const dataset = buildAssemblyGraphDatasetF64WithModule(module, request, abiInfo);
+  const expectedTotalBytes = dataset.buffers.reduce((sum, buffer) => sum + buffer.byteLength, 0);
+  if (storagePolicy.maxBytes > 0 && expectedTotalBytes > storagePolicy.maxBytes) {
+    throw new SolverBridgeError(
+      createStatus("stream_memory_pressure", "halt", "assembly graph store exceeds storage budget", {
+        recoverable: true,
+        details: {
+          storeId: request.storeId,
+          requestedBytes: expectedTotalBytes,
+          maxBytes: storagePolicy.maxBytes,
+          storageTarget: storagePolicy.target,
+        },
+      })
+    );
+  }
+  const storage = prepareNativeFileAssemblyGraphStoreStorage(request.storeId, storagePolicy);
+  const storedBuffers = dataset.buffers.map((descriptor) =>
+    writeNativeFileAssemblyGraphDataset(storage, descriptor)
+  );
+  const store = createAssemblyGraphStoreManifest(
+    request.storeId,
+    storage,
+    storagePolicy,
+    dataset,
+    dataset.summary,
+    storedBuffers
+  );
+  writeNativeFileAssemblyGraphManifest(storage, store);
+  state.assemblyGraphStores.set(request.storeId, {
+    store,
+    buffers: storedBuffers.map(copyBufferDescriptor),
+  });
+  return {
+    schema: "solver-assembly-graph-store.v1",
+    store: copyAssemblyGraphStoreManifest(store),
+    summary: deepCloneJson(dataset.summary),
+    buffers: storedBuffers.map(copyBufferDescriptor),
+    status: createStatus("ok", "ok", "assembly graph store written"),
+  };
+}
+
+function describeAssemblyGraphStoreF64(state, request) {
+  const entry = resolveAssemblyGraphStoreEntry(state, request);
+  return {
+    schema: "solver-assembly-graph-store-description.v1",
+    store: copyAssemblyGraphStoreManifest(entry.store),
+    buffers: entry.buffers.map(copyBufferDescriptor),
+    status: createStatus("ok", "ok", "assembly graph store described"),
+  };
+}
+
+function readAssemblyGraphStoreRangeF64(state, request) {
+  validateAssemblyGraphStoreReadRequest(request);
+  const entry = resolveAssemblyGraphStoreEntry(state, request);
+  const layouts = normalizeAssemblyGraphStoreReadLayouts(request.layouts);
+  const output = {
+    assemblyStates: [],
+    memberships: [],
+    hierarchy: [],
+    events: [],
+    buffers: [],
+  };
+  for (const layout of layouts) {
+    const dataset = getAssemblyGraphStoreDatasetForLayout(entry.store, layout);
+    const readResult = readAssemblyGraphStoreRows(dataset, entry.store.index, request);
+    const filteredRows = filterAssemblyGraphRows(layout, readResult.rows, request);
+    const descriptor = createAssemblyGraphBufferDescriptor(
+      `assembly-graph-read:${layout}`,
+      layout,
+      filteredRows,
+      dataset.rowSizeBytes,
+      getAssemblyGraphRowWriterForLayout(layout)
+    );
+    descriptor.checksum = fnv1a64ArrayBufferHex(descriptor.buffer);
+    output.buffers.push(descriptor);
+    output.indexedLayoutCount = (output.indexedLayoutCount ?? 0) + (readResult.indexed ? 1 : 0);
+    output.indexRowCount = (output.indexRowCount ?? 0) + readResult.indexRowCount;
+    output.indexSkippedRowCount = (output.indexSkippedRowCount ?? 0) + readResult.indexSkippedRowCount;
+    if (layout === "assembly_state.v1") {
+      output.assemblyStates = filteredRows;
+    } else if (layout === "assembly_membership.v1") {
+      output.memberships = filteredRows;
+    } else if (layout === "assembly_hierarchy.v1") {
+      output.hierarchy = filteredRows;
+    } else if (layout === "assembly_events.v1") {
+      output.events = filteredRows;
+    }
+  }
+  const totalBytes = output.buffers.reduce((sum, buffer) => sum + buffer.byteLength, 0);
+  if (request.maxBytes != null && totalBytes > request.maxBytes) {
+    throw new SolverBridgeError(
+      createStatus("stream_memory_pressure", "halt", "assembly graph read exceeds maxBytes", {
+        recoverable: true,
+        details: { requestedBytes: totalBytes, maxBytes: request.maxBytes },
+      })
+    );
+  }
+  return {
+    schema: "solver-assembly-graph-read.v1",
+    storeId: entry.store.storeId,
+    manifestVersion: entry.store.manifestVersion,
+    readSummary: {
+      schema: "solver-assembly-graph-read-summary.v1",
+      assemblyStateCount: output.assemblyStates.length,
+      membershipCount: output.memberships.length,
+      hierarchyCount: output.hierarchy.length,
+      eventCount: output.events.length,
+      bufferCount: output.buffers.length,
+      byteLength: totalBytes,
+      indexed: (output.indexedLayoutCount ?? 0) > 0,
+      indexedLayoutCount: output.indexedLayoutCount ?? 0,
+      indexRowCount: output.indexRowCount ?? 0,
+      indexSkippedRowCount: output.indexSkippedRowCount ?? 0,
+    },
+    assemblyStates: output.assemblyStates,
+    memberships: output.memberships,
+    hierarchy: output.hierarchy,
+    events: output.events,
+    buffers: output.buffers,
+    status: createStatus("ok", "ok", "assembly graph store range read"),
+  };
+}
+
+function createAssemblyGraphExplicitEventsResponse(events, abiInfo) {
+  return {
+    events,
+    buffers: [
+      createAssemblyGraphBufferDescriptor(
+        "assembly-events",
+        "assembly_events.v1",
+        events,
+        abiInfo.assemblyEventRowF64Bytes,
+        writeAssemblyEventRowF64ToView
+      ),
+    ],
+    status: createStatus("ok", "ok", "explicit assembly events accepted"),
+  };
+}
+
+function createAssemblyGraphEmptyEventsResponse(abiInfo, eventSource) {
+  return {
+    events: [],
+    buffers: [
+      createBufferDescriptor(
+        "assembly-events",
+        "assembly_events.v1",
+        0,
+        abiInfo.assemblyEventRowF64Bytes,
+        new ArrayBuffer(0)
+      ),
+    ],
+    status: createStatus("ok", "ok", "assembly event derivation skipped", {
+      details: { eventSource },
+    }),
+  };
+}
+
+function summarizeAssemblyGraphDatasetF64(
+  assemblyStates,
+  memberships,
+  hierarchy,
+  events,
+  eventSource,
+  bufferCount
+) {
+  const assemblyKeys = new Set();
+  const pathKeys = new Set();
+  let timeStart = Number.POSITIVE_INFINITY;
+  let timeEnd = Number.NEGATIVE_INFINITY;
+  const addAssemblyKey = (key) => {
+    if (key > 0) {
+      assemblyKeys.add(key);
+    }
+  };
+  const addPathKey = (key) => {
+    if (key > 0) {
+      pathKeys.add(key);
+    }
+  };
+  const addTimeRange = (start, end) => {
+    timeStart = Math.min(timeStart, start);
+    timeEnd = Math.max(timeEnd, end);
+  };
+
+  assemblyStates.forEach((row) => {
+    addAssemblyKey(row.assemblyKey);
+    addTimeRange(row.timeStart, row.timeEnd);
+  });
+  memberships.forEach((row) => {
+    addPathKey(row.pathKey);
+    addAssemblyKey(row.assemblyKey);
+    addTimeRange(row.timeStart, row.timeEnd);
+  });
+  hierarchy.forEach((row) => {
+    addAssemblyKey(row.parentAssemblyKey);
+    addAssemblyKey(row.childAssemblyKey);
+    addTimeRange(row.timeStart, row.timeEnd);
+  });
+  events.forEach((row) => {
+    addPathKey(row.relatedPathKey);
+    addAssemblyKey(row.relatedAssemblyKey);
+    addTimeRange(row.eventTime, row.eventTime);
+  });
+
+  return {
+    schema: "solver-assembly-graph-summary.v1",
+    assemblyStateCount: assemblyStates.length,
+    membershipCount: memberships.length,
+    hierarchyCount: hierarchy.length,
+    eventCount: events.length,
+    derivedEventCount: eventSource === "derived" ? events.length : 0,
+    explicitEventCount: eventSource === "explicit" ? events.length : 0,
+    assemblyCount: assemblyKeys.size,
+    pathCount: pathKeys.size,
+    bufferCount,
+    eventSource,
+    timeRange: { start: timeStart, end: timeEnd },
+  };
+}
+
 function validateAssemblyMembershipEventsRequest(request) {
   if (!request || typeof request !== "object") {
     throw new SolverBridgeError(
@@ -4004,44 +4497,195 @@ function validateAssemblyMembershipEventsRequest(request) {
       })
     );
   }
-  request.memberships.forEach((membership, index) => {
-    if (!membership || typeof membership !== "object") {
-      throw new SolverBridgeError(
-        createStatus("app_contract_error", "error", `memberships[${index}] is required`, {
-          recoverable: false,
-        })
-      );
-    }
-    requireSafeUint64(membership.membershipKey, `memberships[${index}].membershipKey`);
-    requireSafeUint64(membership.pathKey, `memberships[${index}].pathKey`);
-    requireSafeUint64(membership.assemblyKey, `memberships[${index}].assemblyKey`);
-    requireSafeUint64(membership.assemblyStateKey, `memberships[${index}].assemblyStateKey`);
-    requireFiniteNumber(membership.timeStart, `memberships[${index}].timeStart`);
-    requireFiniteNumber(membership.timeEnd, `memberships[${index}].timeEnd`);
-    if (membership.timeEnd < membership.timeStart) {
-      throw new SolverBridgeError(
-        createStatus("app_contract_error", "error", `memberships[${index}] time bounds are not ordered`, {
-          recoverable: false,
-        })
-      );
-    }
-    requireFiniteNumber(membership.confidence, `memberships[${index}].confidence`);
-    if (membership.confidence < 0 || membership.confidence > 1) {
-      throw new SolverBridgeError(
-        createStatus("app_contract_error", "error", `memberships[${index}].confidence must be in [0, 1]`, {
-          recoverable: false,
-        })
-      );
-    }
-    requireUint32(membership.localRole ?? 0, `memberships[${index}].localRole`);
-    requireUint32(membership.bindingState ?? 0, `memberships[${index}].bindingState`);
-    requireUint32(membership.membershipVersion ?? 1, `memberships[${index}].membershipVersion`);
-    requireUint32(membership.eventKind ?? 0, `memberships[${index}].eventKind`);
-    requireUint32(membership.statusFlags ?? 0, `memberships[${index}].statusFlags`);
-  });
+  request.memberships.forEach(validateAssemblyMembershipRowF64);
   if (request.maxEvents != null) {
-    requirePositiveInteger(request.maxEvents, "maxEvents");
+    requirePositiveInt32(request.maxEvents, "maxEvents");
   }
+}
+
+function validateAssemblyGraphDatasetRequest(request) {
+  if (!request || typeof request !== "object") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "assembly graph dataset request object is required", {
+        recoverable: false,
+      })
+    );
+  }
+  validateOptionalArray(request.assemblyStates, "assemblyStates");
+  validateOptionalArray(request.memberships, "memberships");
+  validateOptionalArray(request.hierarchy, "hierarchy");
+  validateOptionalArray(request.events, "events");
+  if (
+    (request.assemblyStates ?? []).length === 0 &&
+    (request.memberships ?? []).length === 0 &&
+    (request.hierarchy ?? []).length === 0 &&
+    (request.events ?? []).length === 0
+  ) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "assembly graph dataset requires at least one row", {
+        recoverable: false,
+      })
+    );
+  }
+  (request.assemblyStates ?? []).forEach(validateAssemblyStateRowF64);
+  (request.memberships ?? []).forEach(validateAssemblyMembershipRowF64);
+  (request.hierarchy ?? []).forEach(validateAssemblyHierarchyRowF64);
+  (request.events ?? []).forEach(validateAssemblyEventRowF64);
+  if (request.deriveMembershipEvents != null && typeof request.deriveMembershipEvents !== "boolean") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "deriveMembershipEvents must be boolean", {
+        recoverable: false,
+      })
+    );
+  }
+  if (request.maxEvents != null) {
+    requirePositiveInt32(request.maxEvents, "maxEvents");
+  }
+}
+
+function validateCreateAssemblyGraphStoreRequest(request) {
+  validateAssemblyGraphDatasetRequest(request);
+  requireNonemptyString(request.storeId, "storeId");
+}
+
+function validateAssemblyGraphStoreReadRequest(request) {
+  if (!request || typeof request !== "object") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "assembly graph store read request object is required", {
+        recoverable: false,
+      })
+    );
+  }
+  if (request.storeId == null && request.manifestPath == null) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "assembly graph store read requires storeId or manifestPath", {
+        recoverable: false,
+      })
+    );
+  }
+  if (request.layouts != null && !Array.isArray(request.layouts)) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "layouts must be an array", {
+        recoverable: false,
+      })
+    );
+  }
+  if (request.rowOffset != null) {
+    requireSafeUint64(request.rowOffset, "rowOffset");
+  }
+  if (request.rowCount != null) {
+    requireSafeUint64(request.rowCount, "rowCount");
+  }
+  if (request.pathKey != null) {
+    requireSafeUint64(request.pathKey, "pathKey");
+  }
+  if (request.assemblyKey != null) {
+    requireSafeUint64(request.assemblyKey, "assemblyKey");
+  }
+  if (request.timeRange != null) {
+    validateRange(request.timeRange, "timeRange");
+  }
+  if (request.byteRange != null) {
+    validateRange(request.byteRange, "byteRange");
+    requireSafeUint64(request.byteRange.start, "byteRange.start");
+    requireSafeUint64(request.byteRange.end, "byteRange.end");
+  }
+  if (request.maxBytes != null) {
+    requireNonnegativeInteger(request.maxBytes, "maxBytes");
+  }
+}
+
+function validateOptionalArray(value, label) {
+  if (value != null && !Array.isArray(value)) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", `${label} must be an array`, {
+        recoverable: false,
+      })
+    );
+  }
+}
+
+function validateAssemblyMembershipRowF64(membership, index) {
+  if (!membership || typeof membership !== "object") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", `memberships[${index}] is required`, {
+        recoverable: false,
+      })
+    );
+  }
+  requireSafeUint64(membership.membershipKey, `memberships[${index}].membershipKey`);
+  requireSafeUint64(membership.pathKey, `memberships[${index}].pathKey`);
+  requireSafeUint64(membership.assemblyKey, `memberships[${index}].assemblyKey`);
+  requireSafeUint64(membership.assemblyStateKey, `memberships[${index}].assemblyStateKey`);
+  requireFiniteNumber(membership.timeStart, `memberships[${index}].timeStart`);
+  requireFiniteNumber(membership.timeEnd, `memberships[${index}].timeEnd`);
+  if (membership.timeEnd < membership.timeStart) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", `memberships[${index}] time bounds are not ordered`, {
+        recoverable: false,
+      })
+    );
+  }
+  requireFiniteNumber(membership.confidence, `memberships[${index}].confidence`);
+  if (membership.confidence < 0 || membership.confidence > 1) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", `memberships[${index}].confidence must be in [0, 1]`, {
+        recoverable: false,
+      })
+    );
+  }
+  requireUint32(membership.localRole ?? 0, `memberships[${index}].localRole`);
+  requireUint32(membership.bindingState ?? 0, `memberships[${index}].bindingState`);
+  requireUint32(membership.membershipVersion ?? 1, `memberships[${index}].membershipVersion`);
+  requireUint32(membership.eventKind ?? 0, `memberships[${index}].eventKind`);
+  requireUint32(membership.statusFlags ?? 0, `memberships[${index}].statusFlags`);
+}
+
+function validateAssemblyHierarchyRowF64(row, index) {
+  if (!row || typeof row !== "object") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", `hierarchy[${index}] is required`, {
+        recoverable: false,
+      })
+    );
+  }
+  requireSafeUint64(row.hierarchyKey, `hierarchy[${index}].hierarchyKey`);
+  requireSafeUint64(row.parentAssemblyKey, `hierarchy[${index}].parentAssemblyKey`);
+  requireSafeUint64(row.childAssemblyKey, `hierarchy[${index}].childAssemblyKey`);
+  requireFiniteNumber(row.timeStart, `hierarchy[${index}].timeStart`);
+  requireFiniteNumber(row.timeEnd, `hierarchy[${index}].timeEnd`);
+  if (row.timeEnd < row.timeStart) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", `hierarchy[${index}] time bounds are not ordered`, {
+        recoverable: false,
+      })
+    );
+  }
+  requireUint32(row.relationType ?? 0, `hierarchy[${index}].relationType`);
+  requireUint32(row.hierarchyVersion ?? 1, `hierarchy[${index}].hierarchyVersion`);
+  requireUint32(row.statusFlags ?? 0, `hierarchy[${index}].statusFlags`);
+}
+
+function validateAssemblyEventRowF64(row, index) {
+  if (!row || typeof row !== "object") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", `events[${index}] is required`, {
+        recoverable: false,
+      })
+    );
+  }
+  requireSafeUint64(row.eventKey, `events[${index}].eventKey`);
+  requireSafeUint64(row.primaryId, `events[${index}].primaryId`);
+  requireSafeUint64(row.secondaryId, `events[${index}].secondaryId`);
+  requireSafeUint64(row.priorStateKey, `events[${index}].priorStateKey`);
+  requireSafeUint64(row.nextStateKey, `events[${index}].nextStateKey`);
+  requireSafeUint64(row.relatedPathKey, `events[${index}].relatedPathKey`);
+  requireSafeUint64(row.relatedAssemblyKey, `events[${index}].relatedAssemblyKey`);
+  requireSafeUint64(row.branchTransitionKey, `events[${index}].branchTransitionKey`);
+  requireFiniteNumber(row.eventTime, `events[${index}].eventTime`);
+  requireUint32(row.eventKind, `events[${index}].eventKind`);
+  requireUint32(row.speedRegime, `events[${index}].speedRegime`);
+  requireUint32(row.statusFlags, `events[${index}].statusFlags`);
 }
 
 function buildSpaceTimeIndexF64WithModule(module, request, abiInfo) {
@@ -4128,6 +4772,84 @@ function buildSpaceTimeIndexF64WithModule(module, request, abiInfo) {
     module._free(outRowCountPtr);
     module._free(outOverflowCountPtr);
   }
+}
+
+function buildPathHistoryStreamSpaceTimeIndexF64WithModule(state, module, request, abiInfo) {
+  validateBuildPathHistoryStreamSpaceTimeIndexRequest(request);
+  const streamEntry = findStreamEntry(state, request.streamId);
+  const selectionRequest = {
+    streamId: request.streamId,
+    chunkIndices: request.chunkIndices,
+    pathKeys: request.pathKeys,
+    timeRange: request.timeRange,
+    frameRange: request.frameRange,
+    byteRange: request.byteRange,
+  };
+  const selection = selectStreamRanges(streamEntry, selectionRequest);
+  const selectedByteLength = selection.items.reduce((sum, item) => sum + item.buffer.byteLength, 0);
+  if (request.maxBytes != null && selectedByteLength > request.maxBytes) {
+    throw new SolverBridgeError(
+      createStatus("stream_memory_pressure", "halt", "stream-backed space-time index exceeds maxBytes", {
+        recoverable: true,
+        details: {
+          streamId: request.streamId,
+          requestedBytes: selectedByteLength,
+          maxBytes: request.maxBytes,
+        },
+      })
+    );
+  }
+  const pathRows = decodePathHistoryRowsFromStreamSelection(selection.items);
+  const response = buildSpaceTimeIndexF64WithModule(
+    module,
+    {
+      pathRows,
+      assemblyStates: request.assemblyStates ?? [],
+      options: request.options,
+      maxRows: request.maxRows,
+    },
+    abiInfo
+  );
+  return {
+    ...response,
+    status: createStatus("ok", "ok", "stream-backed space-time index built", {
+      details: {
+        streamId: request.streamId,
+        selectedRangeCount: selection.items.length,
+        selectedPathRowCount: pathRows.length,
+        selectedByteLength,
+        overflowEntryCount: response.overflowEntryCount,
+        diagnosticCount: selection.diagnostics.length,
+      },
+    }),
+  };
+}
+
+function decodePathHistoryRowsFromStreamSelection(items) {
+  const rows = [];
+  items.forEach((item, itemIndex) => {
+    if (item.descriptor.layout !== "path_segment.v1" || item.rowCount === 0) {
+      return;
+    }
+    const rowSize = item.buffer.byteLength / item.rowCount;
+    if (!Number.isInteger(rowSize) || rowSize <= 0) {
+      throw new SolverBridgeError(
+        createStatus("stream_read_failed", "halt", "path-history stream selection has invalid row size", {
+          recoverable: false,
+          details: {
+            bufferId: item.descriptor.bufferId,
+            byteLength: item.buffer.byteLength,
+            rowCount: item.rowCount,
+          },
+        })
+      );
+    }
+    const view = new DataView(item.buffer);
+    for (let rowIndex = 0; rowIndex < item.rowCount; rowIndex += 1) {
+      rows.push(readPathHistoryRowFromView(view, rowIndex * rowSize, itemIndex, rowIndex));
+    }
+  });
+  return rows;
 }
 
 function querySpaceTimeIndexF64WithModule(module, request, abiInfo) {
@@ -4240,7 +4962,42 @@ function validateBuildSpaceTimeIndexRequest(request) {
   (request.assemblyStates ?? []).forEach(validateAssemblyStateRowF64);
   validateSpaceTimeIndexOptions(request.options);
   if (request.maxRows != null) {
-    requirePositiveInteger(request.maxRows, "maxRows");
+    requirePositiveInt32(request.maxRows, "maxRows");
+  }
+}
+
+function validateBuildPathHistoryStreamSpaceTimeIndexRequest(request) {
+  if (!request || typeof request !== "object") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "stream-backed space-time index request object is required", {
+        recoverable: false,
+      })
+    );
+  }
+  requireNonemptyString(request.streamId, "streamId");
+  if (request.pathKeys != null) {
+    validateOptionalPathKeyArray(request.pathKeys, "pathKeys");
+  }
+  if (request.chunkIndices != null) {
+    normalizeChunkIndexSelection(request.chunkIndices, "chunkIndices");
+  }
+  if (request.timeRange != null) {
+    validateRange(request.timeRange, "timeRange");
+  }
+  if (request.frameRange != null) {
+    validateRange(request.frameRange, "frameRange");
+  }
+  if (request.byteRange != null) {
+    validateRange(request.byteRange, "byteRange");
+  }
+  validateOptionalArray(request.assemblyStates, "assemblyStates");
+  (request.assemblyStates ?? []).forEach(validateAssemblyStateRowF64);
+  validateSpaceTimeIndexOptions(request.options);
+  if (request.maxRows != null) {
+    requirePositiveInt32(request.maxRows, "maxRows");
+  }
+  if (request.maxBytes != null) {
+    requireNonnegativeInteger(request.maxBytes, "maxBytes");
   }
 }
 
@@ -4263,7 +5020,7 @@ function validateQuerySpaceTimeIndexRequest(request) {
   validateSpaceTimeQuery(request.query);
   validateSpaceTimeIndexOptions(request.options);
   if (request.maxRows != null) {
-    requirePositiveInteger(request.maxRows, "maxRows");
+    requirePositiveInt32(request.maxRows, "maxRows");
   }
 }
 
@@ -4544,7 +5301,7 @@ function validateCausalRootsRunConfig(config) {
       })
     );
   }
-  validateCausalRootF64Request(config.rootRequest);
+  validateRunRootRequestConfig(config, "causal-root");
 }
 
 function validatePhaseDiagnosticsRunConfig(config) {
@@ -4595,7 +5352,7 @@ function validatePathHistoryRunConfig(config) {
     requirePositiveInteger(config.rowsPerChunk, "pathHistory.rowsPerChunk");
   }
   if (config.storagePolicy != null) {
-    normalizeTransientPathHistoryStoragePolicy(config.storagePolicy);
+    normalizePathHistoryStreamStoragePolicy(config.storagePolicy);
   }
   if (config.metadata != null) {
     normalizePathHistoryStreamMetadata(config.metadata);
@@ -4610,7 +5367,27 @@ function validateDelayedHitsRunConfig(config) {
       })
     );
   }
-  validateCausalRootF64Request(config.rootRequest);
+  validateRunRootRequestConfig(config, "delayed-hit");
+}
+
+function validateRunRootRequestConfig(config, label) {
+  const hasRootRequest = config.rootRequest != null;
+  const hasNormalizedRootRequest = config.normalizedRootRequest != null;
+  if (hasRootRequest === hasNormalizedRootRequest) {
+    throw new SolverBridgeError(
+      createStatus(
+        "app_contract_error",
+        "error",
+        `${label} run config must include exactly one of rootRequest or normalizedRootRequest`,
+        { recoverable: false }
+      )
+    );
+  }
+  if (hasNormalizedRootRequest) {
+    validateNormalizedCausalRootF64Request(config.normalizedRootRequest);
+  } else {
+    validateCausalRootF64Request(config.rootRequest);
+  }
 }
 
 function validateSharedGeometryRunConfig(config) {
@@ -4923,6 +5700,8 @@ export function hasSolverCAbi(module) {
     typeof module?._architrino_solver_build_root_ledger_detail_f64 === "function" &&
     typeof module?._architrino_solver_solve_causal_root_batch_f64 === "function" &&
     typeof module?._architrino_solver_diagnose_precision_f64 === "function" &&
+    typeof module?._architrino_solver_solve_causal_roots_precision_f64 === "function" &&
+    typeof module?._architrino_solver_solve_roots_and_hits_precision_f64 === "function" &&
     typeof module?._architrino_solver_propagate_error_budget_f64 === "function" &&
     typeof module?._architrino_solver_sample_linear_motion_f64 === "function" &&
     typeof module?._architrino_solver_compute_phase_at_hit_f64 === "function" &&
@@ -4989,6 +5768,8 @@ function readAbiInfo(module) {
       errorBudgetStageInputF64Bytes: module.getValue(ptr + 132, "i32"),
       errorBudgetStageRowF64Bytes: module.getValue(ptr + 136, "i32"),
       errorBudgetSummaryF64Bytes: module.getValue(ptr + 140, "i32"),
+      precisionSolveOptionsBytes: module.getValue(ptr + 144, "i32"),
+      precisionSolveSummaryF64Bytes: module.getValue(ptr + 148, "i32"),
     };
   } finally {
     module._free(ptr);
@@ -5033,6 +5814,8 @@ function defaultAbiInfo() {
     errorBudgetStageInputF64Bytes: ERROR_BUDGET_STAGE_INPUT_F64_BYTES,
     errorBudgetStageRowF64Bytes: ERROR_BUDGET_STAGE_ROW_F64_BYTES,
     errorBudgetSummaryF64Bytes: ERROR_BUDGET_SUMMARY_F64_BYTES,
+    precisionSolveOptionsBytes: PRECISION_SOLVE_OPTIONS_BYTES,
+    precisionSolveSummaryF64Bytes: PRECISION_SOLVE_SUMMARY_F64_BYTES,
   };
 }
 
@@ -5070,7 +5853,9 @@ function assertAbiInfo(abiInfo) {
     abiInfo.errorBudgetF64Bytes !== ERROR_BUDGET_F64_BYTES ||
     abiInfo.errorBudgetStageInputF64Bytes !== ERROR_BUDGET_STAGE_INPUT_F64_BYTES ||
     abiInfo.errorBudgetStageRowF64Bytes !== ERROR_BUDGET_STAGE_ROW_F64_BYTES ||
-    abiInfo.errorBudgetSummaryF64Bytes !== ERROR_BUDGET_SUMMARY_F64_BYTES
+    abiInfo.errorBudgetSummaryF64Bytes !== ERROR_BUDGET_SUMMARY_F64_BYTES ||
+    abiInfo.precisionSolveOptionsBytes !== PRECISION_SOLVE_OPTIONS_BYTES ||
+    abiInfo.precisionSolveSummaryF64Bytes !== PRECISION_SOLVE_SUMMARY_F64_BYTES
   ) {
     throw new SolverBridgeError(
       createStatus("app_contract_error", "error", "solver ABI row sizes do not match bridge layout", {
@@ -5129,10 +5914,40 @@ function solveCausalRootsF64WithModule(module, request, abiInfo) {
   }
 }
 
+function solveCausalRootsNormalizedF64WithModule(module, request, abiInfo) {
+  validateNormalizedCausalRootF64Request(request);
+  const localRequest = deepCloneJson(request.localRequest);
+  const localResponse = solveCausalRootsF64WithModule(module, localRequest, abiInfo);
+  const coordinateOrigin = copyVector(request.coordinateOrigin);
+  const roots = localResponse.roots.map((root) => ({
+    ...root,
+    coordinateFrame: "origin-normalized",
+  }));
+  const absoluteRoots = request.restoreAbsolutePoints === false
+    ? undefined
+    : roots.map((root) => restoreCausalRootAbsolutePoints(root, coordinateOrigin));
+  const status = createStatus("ok", "ok", "origin-normalized causal roots solved", {
+    details: {
+      coordinateFrame: "origin-normalized",
+      localRootCount: roots.length,
+      absolutePointAuthority: request.restoreAbsolutePoints === false ? "omitted" : "display-only",
+    },
+  });
+  return {
+    schema: "solver-causal-roots-normalized-f64.v1",
+    coordinateFrame: "origin-normalized",
+    coordinateOrigin,
+    localRequest,
+    roots,
+    absoluteRoots,
+    status,
+  };
+}
+
 function buildRootLedgerDetailF64WithModule(module, request, abiInfo) {
   validateCausalRootF64Request(request);
   if (request.maxRows != null) {
-    requirePositiveInteger(request.maxRows, "maxRows");
+    requirePositiveInt32(request.maxRows, "maxRows");
   }
   if (typeof module._malloc !== "function" || typeof module._free !== "function") {
     throw new SolverBridgeError(
@@ -5228,6 +6043,200 @@ function diagnosePrecisionF64WithModule(module, request, abiInfo) {
   }
 }
 
+function solveCausalRootsPrecisionF64WithModule(module, request, abiInfo) {
+  validateCausalRootsPrecisionF64Request(request);
+  if (typeof module._malloc !== "function" || typeof module._free !== "function") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "WebAssembly allocator exports are required", {
+        recoverable: false,
+      })
+    );
+  }
+
+  const maxRoots = request.maxRoots ?? request.rootRequest.maxRoots ?? DEFAULT_MAX_CAUSAL_ROOTS;
+  const requestPtr = module._malloc(abiInfo.rootRequestF64Bytes);
+  const optionsPtr = module._malloc(abiInfo.precisionSolveOptionsBytes);
+  const rootsPtr = module._malloc(abiInfo.rootRowF64Bytes * maxRoots);
+  const outCountPtr = module._malloc(4);
+  const summaryPtr = module._malloc(abiInfo.precisionSolveSummaryF64Bytes);
+
+  try {
+    writeCausalRootRequestF64(module, requestPtr, request.rootRequest);
+    writePrecisionSolveOptions(module, optionsPtr, request);
+    module.setValue(outCountPtr, 0, "i32");
+    const solve = module.cwrap("architrino_solver_solve_causal_roots_precision_f64", "number", [
+      "number",
+      "number",
+      "number",
+      "number",
+      "number",
+      "number",
+    ]);
+    const status = solve(requestPtr, optionsPtr, rootsPtr, maxRoots, outCountPtr, summaryPtr);
+    const rootCount = module.getValue(outCountPtr, "i32");
+    const precision = readPrecisionSolveSummaryF64(module, summaryPtr);
+    if (status !== 0 && status !== -2) {
+      throw new SolverBridgeError(
+        createStatus("internal_solver_error", "halt", `precision causal-root C ABI returned ${status}`, {
+          recoverable: status === -3,
+          details: { status, rootCount, maxRoots, precision },
+        })
+      );
+    }
+
+    const roots = [];
+    if (status === 0) {
+      for (let index = 0; index < rootCount; index += 1) {
+        roots.push(readCausalRootRowF64(module, rootsPtr + index * abiInfo.rootRowF64Bytes));
+      }
+    }
+    const buffer = status === 0
+      ? copyWasmBytes(module, rootsPtr, rootCount * abiInfo.rootRowF64Bytes)
+      : new ArrayBuffer(0);
+    const responseStatus = createPrecisionSolveStatus(status, precision);
+    return {
+      schema: "solver-causal-roots-precision-f64.v1",
+      roots,
+      precision,
+      buffers: [
+        createBufferDescriptor(
+          "precision-root-ledger",
+          "root_ledger.v1",
+          roots.length,
+          abiInfo.rootRowF64Bytes,
+          buffer
+        ),
+      ],
+      status: responseStatus,
+    };
+  } finally {
+    module._free(requestPtr);
+    module._free(optionsPtr);
+    module._free(rootsPtr);
+    module._free(outCountPtr);
+    module._free(summaryPtr);
+  }
+}
+
+function solveRootsAndHitsPrecisionF64WithModule(module, request, abiInfo) {
+  validateCausalRootsPrecisionF64Request(request);
+  if (typeof module._malloc !== "function" || typeof module._free !== "function") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "WebAssembly allocator exports are required", {
+        recoverable: false,
+      })
+    );
+  }
+
+  const maxRoots = request.maxRoots ?? request.rootRequest.maxRoots ?? DEFAULT_MAX_CAUSAL_ROOTS;
+  const maxHits = request.maxHits ?? request.rootRequest.maxHits ?? maxRoots;
+  const requestPtr = module._malloc(abiInfo.rootRequestF64Bytes);
+  const optionsPtr = module._malloc(abiInfo.precisionSolveOptionsBytes);
+  const rootsPtr = module._malloc(abiInfo.rootRowF64Bytes * maxRoots);
+  const hitsPtr = module._malloc(abiInfo.delayedHitRowF64Bytes * maxHits);
+  const outRootCountPtr = module._malloc(4);
+  const outHitCountPtr = module._malloc(4);
+  const summaryPtr = module._malloc(abiInfo.precisionSolveSummaryF64Bytes);
+
+  try {
+    writeCausalRootRequestF64(module, requestPtr, request.rootRequest);
+    writePrecisionSolveOptions(module, optionsPtr, request);
+    module.setValue(outRootCountPtr, 0, "i32");
+    module.setValue(outHitCountPtr, 0, "i32");
+    const solve = module.cwrap("architrino_solver_solve_roots_and_hits_precision_f64", "number", [
+      "number",
+      "number",
+      "number",
+      "number",
+      "number",
+      "number",
+      "number",
+      "number",
+      "number",
+    ]);
+    const status = solve(
+      requestPtr,
+      optionsPtr,
+      rootsPtr,
+      maxRoots,
+      outRootCountPtr,
+      hitsPtr,
+      maxHits,
+      outHitCountPtr,
+      summaryPtr
+    );
+    const rootCount = module.getValue(outRootCountPtr, "i32");
+    const hitCount = module.getValue(outHitCountPtr, "i32");
+    const precision = readPrecisionSolveSummaryF64(module, summaryPtr);
+    if (status !== 0 && status !== -2) {
+      throw new SolverBridgeError(
+        createStatus("internal_solver_error", "halt", `precision roots-and-hits C ABI returned ${status}`, {
+          recoverable: status === -3,
+          details: { status, rootCount, hitCount, maxRoots, maxHits, precision },
+        })
+      );
+    }
+
+    const roots = [];
+    const hits = [];
+    if (status === 0) {
+      for (let index = 0; index < rootCount; index += 1) {
+        roots.push(readCausalRootRowF64(module, rootsPtr + index * abiInfo.rootRowF64Bytes));
+      }
+      for (let index = 0; index < hitCount; index += 1) {
+        hits.push(readDelayedHitRowF64(module, hitsPtr + index * abiInfo.delayedHitRowF64Bytes));
+      }
+    }
+    const rootBuffer = status === 0
+      ? copyWasmBytes(module, rootsPtr, rootCount * abiInfo.rootRowF64Bytes)
+      : new ArrayBuffer(0);
+    const hitBuffer = status === 0
+      ? copyWasmBytes(module, hitsPtr, hitCount * abiInfo.delayedHitRowF64Bytes)
+      : new ArrayBuffer(0);
+    const rootBufferDescriptor = createBufferDescriptor(
+      "precision-root-ledger",
+      "root_ledger.v1",
+      roots.length,
+      abiInfo.rootRowF64Bytes,
+      rootBuffer
+    );
+    const hitBufferDescriptor = createBufferDescriptor(
+      "precision-delayed-hit-events",
+      "delayed_hit_events.v1",
+      hits.length,
+      abiInfo.delayedHitRowF64Bytes,
+      hitBuffer
+    );
+    const responseStatus = createPrecisionSolveStatus(
+      status,
+      precision,
+      "causal roots and delayed hits"
+    );
+    return {
+      schema: "solver-roots-and-hits-precision-f64.v1",
+      roots,
+      hits,
+      precision,
+      buffers: [rootBufferDescriptor, hitBufferDescriptor],
+      streams: [
+        createTransientStreamDescriptor("causal-root-transient", request.rootRequest.hitTime, [
+          rootBufferDescriptor,
+          hitBufferDescriptor,
+        ]),
+      ],
+      status: responseStatus,
+    };
+  } finally {
+    module._free(requestPtr);
+    module._free(optionsPtr);
+    module._free(rootsPtr);
+    module._free(hitsPtr);
+    module._free(outRootCountPtr);
+    module._free(outHitCountPtr);
+    module._free(summaryPtr);
+  }
+}
+
 function propagateErrorBudgetF64WithModule(module, request, abiInfo) {
   validateErrorBudgetPropagationRequest(request);
   if (typeof module._malloc !== "function" || typeof module._free !== "function") {
@@ -5320,6 +6329,33 @@ function createPrecisionDiagnosticStatus(diagnostic) {
   });
 }
 
+function createPrecisionSolveStatus(cAbiStatus, precision, subject = "causal roots") {
+  if (cAbiStatus === -2) {
+    return createStatus(
+      precision.statusCode,
+      precision.statusSeverity === "ok" ? "error" : precision.statusSeverity,
+      `precision ${subject} solve rejected`,
+      {
+        recoverable: false,
+        details: precision,
+      }
+    );
+  }
+  if (precision.statusCode === "ok") {
+    return createStatus("ok", "ok", `precision ${subject} solved`, {
+      details: precision,
+    });
+  }
+  return createStatus(
+    precision.statusCode,
+    precision.statusSeverity,
+    `precision ${subject} solved with diagnostics`,
+    {
+      details: precision,
+    }
+  );
+}
+
 function solveCausalRootBatchF64WithModule(module, request, abiInfo) {
   validateCausalRootBatchF64Request(request);
   if (typeof module._malloc !== "function" || typeof module._free !== "function") {
@@ -5334,6 +6370,9 @@ function solveCausalRootBatchF64WithModule(module, request, abiInfo) {
   const maxItems = request.maxItems ?? requestCount;
   const maxRoots = request.maxRoots ?? requestCount * DEFAULT_MAX_CAUSAL_ROOTS;
   const workerCount = request.workerCount ?? 0;
+  requirePositiveInt32(maxItems, "maxItems");
+  requirePositiveInt32(maxRoots, "maxRoots");
+  requireNonnegativeInt32(workerCount, "workerCount");
   const requestsPtr = module._malloc(abiInfo.rootRequestF64Bytes * requestCount);
   const itemRowsPtr = module._malloc(CAUSAL_ROOT_BATCH_ITEM_ROW_F64_BYTES * maxItems);
   const rootsPtr = module._malloc(abiInfo.rootRowF64Bytes * maxRoots);
@@ -5415,6 +6454,140 @@ function solveCausalRootBatchF64WithModule(module, request, abiInfo) {
     module._free(rootsPtr);
     module._free(outItemCountPtr);
     module._free(outRootCountPtr);
+  }
+}
+
+function solveRootsAndHitsBatchF64WithModule(module, request, abiInfo) {
+  validateCausalRootBatchF64Request(request);
+  if (request.maxHits != null) {
+    requirePositiveInt32(request.maxHits, "maxHits");
+  }
+  if (typeof module._malloc !== "function" || typeof module._free !== "function") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "WebAssembly allocator exports are required", {
+        recoverable: false,
+      })
+    );
+  }
+
+  const requestCount = request.requests.length;
+  const maxItems = request.maxItems ?? requestCount;
+  const maxRoots = request.maxRoots ?? requestCount * DEFAULT_MAX_CAUSAL_ROOTS;
+  const maxHits = request.maxHits ?? maxRoots;
+  const workerCount = request.workerCount ?? 0;
+  requirePositiveInt32(maxItems, "maxItems");
+  requirePositiveInt32(maxRoots, "maxRoots");
+  requirePositiveInt32(maxHits, "maxHits");
+  requireNonnegativeInt32(workerCount, "workerCount");
+  const requestsPtr = module._malloc(abiInfo.rootRequestF64Bytes * requestCount);
+  const itemRowsPtr = module._malloc(CAUSAL_ROOT_BATCH_ITEM_ROW_F64_BYTES * maxItems);
+  const rootsPtr = module._malloc(abiInfo.rootRowF64Bytes * maxRoots);
+  const hitsPtr = module._malloc(abiInfo.delayedHitRowF64Bytes * maxHits);
+  const outItemCountPtr = module._malloc(4);
+  const outRootCountPtr = module._malloc(4);
+  const outHitCountPtr = module._malloc(4);
+
+  try {
+    request.requests.forEach((itemRequest, index) => {
+      writeCausalRootRequestF64(module, requestsPtr + index * abiInfo.rootRequestF64Bytes, itemRequest);
+    });
+    module.setValue(outItemCountPtr, 0, "i32");
+    module.setValue(outRootCountPtr, 0, "i32");
+    module.setValue(outHitCountPtr, 0, "i32");
+    const solveBatch = module.cwrap("architrino_solver_solve_roots_and_hits_batch_f64", "number", [
+      "number",
+      "number",
+      "number",
+      "number",
+      "number",
+      "number",
+      "number",
+      "number",
+      "number",
+      "number",
+      "number",
+      "number",
+    ]);
+    const status = solveBatch(
+      requestsPtr,
+      requestCount,
+      workerCount,
+      itemRowsPtr,
+      maxItems,
+      rootsPtr,
+      maxRoots,
+      hitsPtr,
+      maxHits,
+      outItemCountPtr,
+      outRootCountPtr,
+      outHitCountPtr
+    );
+    const itemCount = module.getValue(outItemCountPtr, "i32");
+    const rootCount = module.getValue(outRootCountPtr, "i32");
+    const hitCount = module.getValue(outHitCountPtr, "i32");
+    if (status !== 0) {
+      throw new SolverBridgeError(
+        createStatus("internal_solver_error", "halt", `roots-and-hits batch C ABI returned ${status}`, {
+          recoverable: status === -3,
+          details: { status, itemCount, rootCount, hitCount },
+        })
+      );
+    }
+
+    const roots = [];
+    for (let index = 0; index < rootCount; index += 1) {
+      roots.push(readCausalRootRowF64(module, rootsPtr + index * abiInfo.rootRowF64Bytes));
+    }
+    const hits = [];
+    for (let index = 0; index < hitCount; index += 1) {
+      hits.push(readDelayedHitRowF64(module, hitsPtr + index * abiInfo.delayedHitRowF64Bytes));
+    }
+    const items = [];
+    for (let index = 0; index < itemCount; index += 1) {
+      const item = readCausalRootBatchItemRowF64(
+        module,
+        itemRowsPtr + index * CAUSAL_ROOT_BATCH_ITEM_ROW_F64_BYTES
+      );
+      items.push({
+        ...item,
+        hitOffset: item.rootOffset,
+        hitCount: item.rootCount,
+        roots: roots.slice(item.rootOffset, item.rootOffset + item.rootCount),
+        hits: hits.slice(item.rootOffset, item.rootOffset + item.rootCount),
+      });
+    }
+    const rootBuffer = copyWasmBytes(module, rootsPtr, rootCount * abiInfo.rootRowF64Bytes);
+    const hitBuffer = copyWasmBytes(module, hitsPtr, hitCount * abiInfo.delayedHitRowF64Bytes);
+    return {
+      items,
+      roots,
+      hits,
+      buffers: [
+        createBufferDescriptor(
+          "batch-root-ledger",
+          "root_ledger.v1",
+          rootCount,
+          abiInfo.rootRowF64Bytes,
+          rootBuffer
+        ),
+        createBufferDescriptor(
+          "batch-delayed-hit-events",
+          "delayed_hit_events.v1",
+          hitCount,
+          abiInfo.delayedHitRowF64Bytes,
+          hitBuffer
+        ),
+      ],
+      status: createStatus("ok", "ok", "causal roots and delayed hits batch solved"),
+    };
+  } finally {
+    module._free(requestsPtr);
+    module._free(itemRowsPtr);
+    module._free(rootsPtr);
+    module._free(hitsPtr);
+    module._free(outItemCountPtr);
+    module._free(outRootCountPtr);
+    module._free(outHitCountPtr);
   }
 }
 
@@ -5537,16 +6710,16 @@ function validateCausalRootF64Request(request) {
     requirePositiveFiniteNumber(request.rootTolerance, "rootTolerance");
   }
   if (request.maxIterations != null) {
-    requirePositiveInteger(request.maxIterations, "maxIterations");
+    requirePositiveInt32(request.maxIterations, "maxIterations");
   }
   if (request.scanSubdivisions != null) {
-    requirePositiveInteger(request.scanSubdivisions, "scanSubdivisions");
+    requirePositiveInt32(request.scanSubdivisions, "scanSubdivisions");
   }
   if (request.maxRoots != null) {
-    requirePositiveInteger(request.maxRoots, "maxRoots");
+    requirePositiveInt32(request.maxRoots, "maxRoots");
   }
   if (request.maxHits != null) {
-    requirePositiveInteger(request.maxHits, "maxHits");
+    requirePositiveInt32(request.maxHits, "maxHits");
   }
 }
 
@@ -5565,9 +6738,16 @@ function validateCausalRootBatchF64Request(request) {
       })
     );
   }
+  if (request.requests.length > INT32_MAX) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "causal-root batch request count must fit int32", {
+        recoverable: false,
+      })
+    );
+  }
   request.requests.forEach(validateCausalRootF64Request);
   if (request.maxItems != null) {
-    requirePositiveInteger(request.maxItems, "maxItems");
+    requirePositiveInt32(request.maxItems, "maxItems");
     if (request.maxItems < request.requests.length) {
       throw new SolverBridgeError(
         createStatus("app_contract_error", "error", "maxItems must cover all batch requests", {
@@ -5577,14 +6757,88 @@ function validateCausalRootBatchF64Request(request) {
     }
   }
   if (request.maxRoots != null) {
-    requirePositiveInteger(request.maxRoots, "maxRoots");
+    requirePositiveInt32(request.maxRoots, "maxRoots");
   }
-  if (request.workerCount != null && (!Number.isInteger(request.workerCount) || request.workerCount < 0)) {
+  if (request.workerCount != null) {
+    requireNonnegativeInt32(request.workerCount, "workerCount");
+  }
+}
+
+function validateNormalizedCausalRootF64Request(request) {
+  if (!request || typeof request !== "object" || Array.isArray(request)) {
     throw new SolverBridgeError(
-      createStatus("app_contract_error", "error", "workerCount must be a nonnegative integer", {
+      createStatus("app_contract_error", "error", "normalized causal-root request object is required", {
         recoverable: false,
       })
     );
+  }
+  validateVector(request.coordinateOrigin, "coordinateOrigin");
+  if (!request.localRequest || typeof request.localRequest !== "object" || Array.isArray(request.localRequest)) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "localRequest is required", {
+        recoverable: false,
+      })
+    );
+  }
+  validateCausalRootF64Request(request.localRequest);
+  if (request.restoreAbsolutePoints != null && typeof request.restoreAbsolutePoints !== "boolean") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "restoreAbsolutePoints must be boolean", {
+        recoverable: false,
+      })
+    );
+  }
+}
+
+function validateCausalRootsPrecisionF64Request(request) {
+  if (!request || typeof request !== "object" || Array.isArray(request)) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "precision causal-root request object is required", {
+        recoverable: false,
+      })
+    );
+  }
+  if (!request.rootRequest || typeof request.rootRequest !== "object" || Array.isArray(request.rootRequest)) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "rootRequest is required", {
+        recoverable: false,
+      })
+    );
+  }
+  validateCausalRootF64Request(request.rootRequest);
+  if (request.requestedPrecisionPath != null && !DEFAULT_PRECISION_PATHS.includes(request.requestedPrecisionPath)) {
+    throw new SolverBridgeError(
+      createStatus("precision_failed", "error", "requestedPrecisionPath must be a known precision path", {
+        recoverable: false,
+      })
+    );
+  }
+  if (request.claimLevel != null && !CLAIM_LEVEL_BY_ID.includes(request.claimLevel)) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "claimLevel must be a known claim level", {
+        recoverable: false,
+      })
+    );
+  }
+  if (request.allowEscalation != null && typeof request.allowEscalation !== "boolean") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "allowEscalation must be boolean", {
+        recoverable: false,
+      })
+    );
+  }
+  if (request.runValidationReplay != null && typeof request.runValidationReplay !== "boolean") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "runValidationReplay must be boolean", {
+        recoverable: false,
+      })
+    );
+  }
+  if (request.maxRoots != null) {
+    requirePositiveInt32(request.maxRoots, "maxRoots");
+  }
+  if (request.maxHits != null) {
+    requirePositiveInt32(request.maxHits, "maxHits");
   }
 }
 
@@ -5616,6 +6870,34 @@ function validateVector(vector, label) {
   requireFiniteNumber(vector.x, `${label}.x`);
   requireFiniteNumber(vector.y, `${label}.y`);
   requireFiniteNumber(vector.z, `${label}.z`);
+}
+
+function copyVector(vector) {
+  return {
+    x: vector.x,
+    y: vector.y,
+    z: vector.z,
+  };
+}
+
+function restoreCausalRootAbsolutePoints(root, origin) {
+  return {
+    ...root,
+    coordinateFrame: "absolute-display",
+    sourcePoint: addVector(root.sourcePoint, origin),
+    receiverPoint: addVector(root.receiverPoint, origin),
+    localSourcePoint: copyVector(root.sourcePoint),
+    localReceiverPoint: copyVector(root.receiverPoint),
+    absolutePointAuthority: "display-only",
+  };
+}
+
+function addVector(left, right) {
+  return {
+    x: left.x + right.x,
+    y: left.y + right.y,
+    z: left.z + right.z,
+  };
 }
 
 function requireFiniteNumber(value, label) {
@@ -5660,10 +6942,32 @@ function requirePositiveInteger(value, label) {
   }
 }
 
+function requirePositiveInt32(value, label) {
+  requirePositiveInteger(value, label);
+  if (value > INT32_MAX) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", `${label} must fit int32`, {
+        recoverable: false,
+      })
+    );
+  }
+}
+
 function requireNonnegativeInteger(value, label) {
   if (!Number.isInteger(value) || value < 0) {
     throw new SolverBridgeError(
       createStatus("app_contract_error", "error", `${label} must be a nonnegative integer`, {
+        recoverable: false,
+      })
+    );
+  }
+}
+
+function requireNonnegativeInt32(value, label) {
+  requireNonnegativeInteger(value, label);
+  if (value > INT32_MAX) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", `${label} must fit int32`, {
         recoverable: false,
       })
     );
@@ -5718,6 +7022,15 @@ function writeCausalRootRequestF64(module, ptr, request) {
   module.setValue(ptr + 160, request.rootTolerance ?? 1e-12, "double");
   module.setValue(ptr + 168, request.maxIterations ?? 96, "i32");
   module.setValue(ptr + 172, request.scanSubdivisions ?? 64, "i32");
+}
+
+function writePrecisionSolveOptions(module, ptr, request) {
+  const requestedPrecisionPath = request.requestedPrecisionPath ?? "auto";
+  const claimLevel = request.claimLevel ?? "interactive-preview";
+  module.setValue(ptr, PRECISION_PATH_BY_ID.indexOf(requestedPrecisionPath), "i32");
+  module.setValue(ptr + 4, CLAIM_LEVEL_BY_ID.indexOf(claimLevel), "i32");
+  module.setValue(ptr + 8, request.allowEscalation === false ? 0 : 1, "i32");
+  module.setValue(ptr + 12, request.runValidationReplay === true ? 1 : 0, "i32");
 }
 
 function writeCausalRootRowF64(module, ptr, root) {
@@ -6053,6 +7366,27 @@ function readPrecisionDiagnosticRowF64(module, ptr) {
       ordersOfMagnitude: module.getValue(ptr + 40, "double"),
       minNonzeroMagnitude: module.getValue(ptr + 72, "double"),
     },
+  };
+}
+
+function readPrecisionSolveSummaryF64(module, ptr) {
+  return {
+    requestedPrecisionPath: PRECISION_PATH_BY_ID[module.getValue(ptr, "i32")] || "auto",
+    diagnosticPrecisionPath: PRECISION_PATH_BY_ID[module.getValue(ptr + 4, "i32")] || "auto",
+    selectedPrecisionPath: PRECISION_PATH_BY_ID[module.getValue(ptr + 8, "i32")] || "auto",
+    selectedNumericType: NUMERIC_TYPE_BY_ID[module.getValue(ptr + 12, "i32")] || "f64",
+    claimLevel: CLAIM_LEVEL_BY_ID[module.getValue(ptr + 16, "i32")] || "interactive-preview",
+    statusCode: STATUS_CODE_BY_ID[module.getValue(ptr + 20, "i32")] || "precision_failed",
+    statusSeverity: STATUS_SEVERITY_BY_ID[module.getValue(ptr + 24, "i32")] || "error",
+    rootCount: module.getValue(ptr + 28, "i32"),
+    rootTolerance: module.getValue(ptr + 32, "double"),
+    maxResidual: module.getValue(ptr + 40, "double"),
+    minAbsJacobian: module.getValue(ptr + 48, "double"),
+    maxIterations: module.getValue(ptr + 56, "i32"),
+    scanSubdivisions: module.getValue(ptr + 60, "i32"),
+    escalated: module.getValue(ptr + 64, "i32") !== 0,
+    validationReplayRun: module.getValue(ptr + 68, "i32") !== 0,
+    validationReplayMatched: module.getValue(ptr + 72, "i32") !== 0,
   };
 }
 
@@ -6469,11 +7803,16 @@ function createTransientStreamDescriptor(streamId, hitTime, buffers) {
   };
 }
 
-function createStreamEntry(stream, buffers) {
+function createStreamEntry(stream, buffers, options = {}) {
   const entry = {
     stream,
     buffers,
-    pathIndexRows: null,
+    runId: options.runId ?? null,
+    datasetId: options.datasetId ?? null,
+    pathIndexRows: Array.isArray(options.pathIndexRows)
+      ? options.pathIndexRows.map(copyPathHistoryIndexRow)
+      : null,
+    indexSidecar: options.indexSidecar ? copyStreamIndexSidecar(options.indexSidecar) : null,
     pathIndexRowsByChunk: null,
     pathIndexSummary: null,
   };
@@ -6489,14 +7828,39 @@ function registerResponseStreams(state, response) {
     if (state.streams.has(stream.streamId)) {
       return;
     }
-    state.streams.set(stream.streamId, createStreamEntry(stream, response.buffers.map(copyBufferDescriptor)));
+    state.streams.set(
+      stream.streamId,
+      createStreamEntry(stream, response.buffers.map(copyBufferDescriptor), {
+        runId: response.runId ?? null,
+        datasetId: response.datasetId ?? null,
+      })
+    );
   });
 }
 
 function createPathHistoryStreamF64(state, request, abiInfo) {
   validateCreatePathHistoryStreamRequest(request);
   const rowsPerChunk = request.rowsPerChunk ?? 1024;
-  const storagePolicy = normalizeTransientPathHistoryStoragePolicy(request.storagePolicy);
+  const storagePolicy = normalizePathHistoryStreamStoragePolicy(request.storagePolicy);
+  const expectedTotalBytes = request.pathRows.length * abiInfo.pathHistoryRowF64Bytes;
+  if (storagePolicy.maxBytes > 0 && expectedTotalBytes > storagePolicy.maxBytes) {
+    throw new SolverBridgeError(
+      createStatus("stream_memory_pressure", "halt", "path-history stream exceeds storage budget", {
+        recoverable: true,
+        runId: request.runId,
+        details: {
+          streamId: request.streamId,
+          requestedBytes: expectedTotalBytes,
+          maxBytes: storagePolicy.maxBytes,
+          storageTarget: storagePolicy.target,
+        },
+      })
+    );
+  }
+  const nativeFileStorage =
+    storagePolicy.target === "native-file"
+      ? prepareNativeFileStreamStorage(request.streamId, storagePolicy)
+      : null;
   const buffers = [];
   const ranges = [];
   let totalBytes = 0;
@@ -6511,46 +7875,53 @@ function createPathHistoryStreamF64(state, request, abiInfo) {
       buffer
     );
     descriptor.checksum = fnv1a64ArrayBufferHex(buffer);
+    const storedDescriptor = nativeFileStorage
+      ? writeNativeFileStreamChunk(nativeFileStorage, buffers.length, descriptor, buffer)
+      : descriptor;
     const chunkStats = summarizePathHistoryRows(chunkRows);
     const byteRange = {
       start: totalBytes,
       end: totalBytes + descriptor.byteLength,
     };
     totalBytes += descriptor.byteLength;
-    buffers.push(descriptor);
+    buffers.push(storedDescriptor);
     ranges.push({
       timeRange: chunkStats.timeRange,
       frameRange: chunkStats.frameRange,
       byteRange,
     });
   }
-  if (storagePolicy.maxBytes > 0 && totalBytes > storagePolicy.maxBytes) {
-    throw new SolverBridgeError(
-      createStatus("stream_memory_pressure", "halt", "path-history stream exceeds transient storage budget", {
-        recoverable: true,
-        runId: request.runId,
-        details: {
-          streamId: request.streamId,
-          requestedBytes: totalBytes,
-          maxBytes: storagePolicy.maxBytes,
-        },
-      })
-    );
-  }
+  const streamStoragePolicy = nativeFileStorage
+    ? {
+        ...storagePolicy,
+        basePath: nativeFileStorage.basePath,
+        streamPath: nativeFileStorage.streamPath,
+        indexPath: nativeFileStorage.indexPath,
+        manifestPath: nativeFileStorage.manifestPath,
+      }
+    : {
+        ...storagePolicy,
+        maxBytes: totalBytes,
+      };
 
   const stream = {
     streamId: request.streamId,
     manifestVersion: "solver-stream-manifest.v1",
     indexLayout: "stream_index.v1",
     availableRanges: ranges,
-    storagePolicy: {
-      ...storagePolicy,
-      maxBytes: totalBytes,
-    },
+    storagePolicy: streamStoragePolicy,
     metadata: normalizePathHistoryStreamMetadata(request.metadata),
   };
-  const streamEntry = createStreamEntry(stream, buffers.map(copyBufferDescriptor));
+  const streamEntry = createStreamEntry(stream, buffers.map(copyBufferDescriptor), {
+    runId: request.runId,
+    datasetId: request.datasetId ?? null,
+  });
   state.streams.set(stream.streamId, streamEntry);
+  const pathIndex = buildStreamIndexDescription(streamEntry);
+  if (nativeFileStorage) {
+    streamEntry.indexSidecar = writeNativeFileStreamIndexSidecar(nativeFileStorage, pathIndex);
+    writeNativeFileStreamManifest(nativeFileStorage, stream, buffers, buildStreamIndexDescription(streamEntry));
+  }
   const pathIndexSummary = getPathHistoryIndexSummary(streamEntry);
   const summary = {
     schema: "solver-path-history-stream-summary.v1",
@@ -6794,7 +8165,8 @@ function normalizePathHistoryChunkRow(chunk, label) {
 
 function derivePathHistoryLifecycleChunksFromStream(streamEntry) {
   return streamEntry.buffers.map((descriptor, chunkIndex) => {
-    if (descriptor.layout !== "path_segment.v1" || !descriptor.buffer || descriptor.rowCount === 0) {
+    const buffer = getBufferDescriptorArrayBuffer(descriptor);
+    if (descriptor.layout !== "path_segment.v1" || !buffer || descriptor.rowCount === 0) {
       const range = streamEntry.stream.availableRanges[chunkIndex];
       return normalizePathHistoryChunkRow(
         {
@@ -6814,7 +8186,7 @@ function derivePathHistoryLifecycleChunksFromStream(streamEntry) {
     }
     const rows = [];
     const rowSize = descriptor.byteLength / descriptor.rowCount;
-    const view = new DataView(descriptor.buffer);
+    const view = new DataView(buffer);
     for (let rowOffset = 0; rowOffset < descriptor.rowCount; rowOffset += 1) {
       rows.push(readPathHistoryRowFromView(view, rowOffset * rowSize, chunkIndex, rowOffset));
     }
@@ -7142,6 +8514,351 @@ function queryEmissionShellCandidatePacketsF64(state, request, module = null, ab
   };
 }
 
+function refineEmissionShellCandidateRootsF64(state, module, request, abiInfo) {
+  validateEmissionShellRootRefinementRequest(request);
+  const streamEntry = findStreamEntry(state, request.streamId);
+  const maxCandidates = request.maxCandidates ?? request.candidates.length;
+  const maxRootsPerCandidate = request.maxRootsPerCandidate ?? Math.max(DEFAULT_MAX_CAUSAL_ROOTS, 128);
+  const maxHitsPerCandidate = request.maxHitsPerCandidate ?? maxRootsPerCandidate;
+  const items = [];
+  const attempted = [];
+  let attemptedCandidateCount = 0;
+  let skippedCandidateCount = 0;
+  let truncated = false;
+
+  for (let candidateIndex = 0; candidateIndex < request.candidates.length; candidateIndex += 1) {
+    if (items.length >= maxCandidates) {
+      truncated = true;
+      break;
+    }
+    const candidate = request.candidates[candidateIndex];
+    const estimate = candidate.narrowPhaseEstimate;
+    if (
+      estimate.classification !== "sampled_hit" ||
+      !Number.isFinite(estimate.hitTime) ||
+      !Number.isFinite(estimate.emissionTime)
+    ) {
+      skippedCandidateCount += 1;
+      items.push(
+        createEmissionShellRootRefinementSkippedItem(candidateIndex, candidate, 0, 0)
+      );
+      continue;
+    }
+
+    const source = readCandidatePathHistoryRow(streamEntry, candidate, "source", candidateIndex);
+    const receiver = readCandidatePathHistoryRow(streamEntry, candidate, "receiver", candidateIndex);
+    assertCandidatePathHistoryRowMatches(source, candidate, "source", candidateIndex);
+    assertCandidatePathHistoryRowMatches(receiver, candidate, "receiver", candidateIndex);
+
+    const rootRequest = {
+      source: pathHistoryRowToCausalSegment(source),
+      receiver: pathHistoryRowToCausalSegment(receiver),
+      hitTime: estimate.hitTime,
+      signalSpeed: request.signalSpeed,
+      rootTolerance: request.rootTolerance ?? request.tolerance ?? undefined,
+      maxIterations: request.maxIterations,
+      scanSubdivisions: request.scanSubdivisions,
+    };
+    attemptedCandidateCount += 1;
+    items.push(null);
+    attempted.push({
+      itemSlot: items.length - 1,
+      candidateIndex,
+      candidate,
+      estimate,
+      rootRequest,
+    });
+  }
+
+  const batchResponse = attempted.length === 0
+    ? {
+        items: [],
+        roots: [],
+        hits: [],
+        buffers: [
+          createBufferDescriptor(
+            "emission-shell-refined-root-ledger",
+            "root_ledger.v1",
+            0,
+            abiInfo.rootRowF64Bytes,
+            new ArrayBuffer(0)
+          ),
+          createBufferDescriptor(
+            "emission-shell-refined-delayed-hits",
+            "delayed_hit_events.v1",
+            0,
+            abiInfo.delayedHitRowF64Bytes,
+            new ArrayBuffer(0)
+          ),
+        ],
+      }
+    : solveRootsAndHitsBatchF64WithModule(
+        module,
+        {
+          requests: attempted.map((entry) => entry.rootRequest),
+          maxItems: attempted.length,
+          maxRoots: attempted.length * Math.min(maxRootsPerCandidate, maxHitsPerCandidate),
+          maxHits: attempted.length * Math.min(maxRootsPerCandidate, maxHitsPerCandidate),
+          workerCount: request.workerCount ?? 0,
+        },
+        abiInfo
+      );
+  const roots = batchResponse.roots;
+  const hits = batchResponse.hits;
+  const rootBuffer = {
+    ...findResponseBufferDescriptor(batchResponse, "root_ledger.v1"),
+    bufferId: "emission-shell-refined-root-ledger",
+  };
+  const hitBuffer = {
+    ...findResponseBufferDescriptor(batchResponse, "delayed_hit_events.v1"),
+    bufferId: "emission-shell-refined-delayed-hits",
+  };
+  for (let attemptedIndex = 0; attemptedIndex < attempted.length; attemptedIndex += 1) {
+    const entry = attempted[attemptedIndex];
+    const candidate = entry.candidate;
+    const estimate = entry.estimate;
+    const batchItem = batchResponse.items[attemptedIndex] ?? {
+      rootOffset: roots.length,
+      rootCount: 0,
+    };
+    items[entry.itemSlot] = {
+      candidateIndex: entry.candidateIndex,
+      sourcePathKey: candidate.sourcePathKey,
+      receiverPathKey: candidate.receiverPathKey,
+      sourceChunkIndex: candidate.sourceChunkIndex,
+      receiverChunkIndex: candidate.receiverChunkIndex,
+      sourceRowOffset: candidate.sourceRowOffset,
+      receiverRowOffset: candidate.receiverRowOffset,
+      hitTime: estimate.hitTime,
+      sampledEmissionTime: estimate.emissionTime,
+      rootOffset: batchItem.rootOffset,
+      rootCount: batchItem.rootCount,
+      hitOffset: batchItem.rootOffset,
+      hitCount: batchItem.rootCount,
+      status: createStatus(
+        batchItem.rootCount > 0 ? "ok" : "causal_root_not_found",
+        batchItem.rootCount > 0 ? "ok" : "warning",
+        batchItem.rootCount > 0
+          ? "emission-shell candidate root refined"
+          : "emission-shell candidate produced no exact fixed-hit root",
+        {
+          details: {
+            candidateIndex: entry.candidateIndex,
+            sourcePathKey: candidate.sourcePathKey,
+            receiverPathKey: candidate.receiverPathKey,
+            hitTime: estimate.hitTime,
+            sampledEmissionTime: estimate.emissionTime,
+          },
+        }
+      ),
+    };
+  }
+  return {
+    schema: "solver-emission-shell-root-refinement.v1",
+    streamId: streamEntry.stream.streamId,
+    signalSpeed: request.signalSpeed,
+    tolerance: request.tolerance ?? 0,
+    candidateCount: request.candidates.length,
+    processedCandidateCount: items.length,
+    attemptedCandidateCount,
+    skippedCandidateCount,
+    rootCount: roots.length,
+    hitCount: hits.length,
+    truncated,
+    items,
+    roots,
+    hits,
+    buffers: [rootBuffer, hitBuffer],
+    status: createStatus(
+      truncated ? "stream_memory_pressure" : skippedCandidateCount > 0 ? "candidate_refinement_partial" : "ok",
+      truncated || skippedCandidateCount > 0 ? "warning" : "ok",
+      truncated
+        ? "emission-shell root refinement truncated"
+        : skippedCandidateCount > 0
+          ? "emission-shell root refinement completed with skipped candidates"
+          : "emission-shell root refinement completed",
+      {
+        details: {
+          streamId: streamEntry.stream.streamId,
+          candidateCount: request.candidates.length,
+          processedCandidateCount: items.length,
+          attemptedCandidateCount,
+          skippedCandidateCount,
+          rootCount: roots.length,
+          hitCount: hits.length,
+          maxCandidates,
+          maxRootsPerCandidate,
+          maxHitsPerCandidate,
+          workerCount: request.workerCount ?? 0,
+        },
+      }
+    ),
+  };
+}
+
+function createEmissionShellRootRefinementSkippedItem(candidateIndex, candidate, rootOffset, hitOffset) {
+  return {
+    candidateIndex,
+    sourcePathKey: candidate.sourcePathKey,
+    receiverPathKey: candidate.receiverPathKey,
+    sourceChunkIndex: candidate.sourceChunkIndex,
+    receiverChunkIndex: candidate.receiverChunkIndex,
+    sourceRowOffset: candidate.sourceRowOffset,
+    receiverRowOffset: candidate.receiverRowOffset,
+    hitTime: null,
+    sampledEmissionTime: null,
+    rootOffset,
+    rootCount: 0,
+    hitOffset,
+    hitCount: 0,
+    status: createStatus(
+      "candidate_refinement_skipped",
+      "warning",
+      "emission-shell candidate has no sampled hit to refine",
+      {
+        recoverable: true,
+        details: {
+          candidateIndex,
+          sourcePathKey: candidate.sourcePathKey,
+          receiverPathKey: candidate.receiverPathKey,
+        },
+      }
+    ),
+  };
+}
+
+function readCandidatePathHistoryRow(streamEntry, candidate, role, candidateIndex) {
+  const chunkIndex = role === "source" ? candidate.sourceChunkIndex : candidate.receiverChunkIndex;
+  const rowOffset = role === "source" ? candidate.sourceRowOffset : candidate.receiverRowOffset;
+  return readPathHistoryRowByChunkOffset(streamEntry, chunkIndex, rowOffset, `${role} candidate[${candidateIndex}]`);
+}
+
+function readPathHistoryRowByChunkOffset(streamEntry, chunkIndex, rowOffset, label) {
+  requireSafeUint64(chunkIndex, `${label}.chunkIndex`);
+  requireSafeUint64(rowOffset, `${label}.rowOffset`);
+  const descriptor = streamEntry.buffers[chunkIndex];
+  if (!descriptor || descriptor.layout !== "path_segment.v1") {
+    throw new SolverBridgeError(
+      createStatus("stream_read_failed", "halt", `${label} does not reference a path-history chunk`, {
+        recoverable: false,
+        details: { streamId: streamEntry.stream.streamId, chunkIndex, rowOffset },
+      })
+    );
+  }
+  const buffer = getBufferDescriptorArrayBuffer(descriptor);
+  if (!buffer) {
+    throw new SolverBridgeError(
+      createStatus("stream_read_failed", "halt", `${label} path-history chunk is not readable`, {
+        recoverable: false,
+        details: { streamId: streamEntry.stream.streamId, chunkIndex, rowOffset },
+      })
+    );
+  }
+  const rowSize = descriptor.byteLength / descriptor.rowCount;
+  if (!Number.isInteger(rowSize) || rowSize <= 0 || rowOffset >= descriptor.rowCount) {
+    throw new SolverBridgeError(
+      createStatus("stream_read_failed", "halt", `${label} row offset is outside the path-history chunk`, {
+        recoverable: false,
+        details: {
+          streamId: streamEntry.stream.streamId,
+          chunkIndex,
+          rowOffset,
+          rowCount: descriptor.rowCount,
+        },
+      })
+    );
+  }
+  return readPathHistoryRowFromView(new DataView(buffer), rowOffset * rowSize, chunkIndex, rowOffset);
+}
+
+function assertCandidatePathHistoryRowMatches(row, candidate, role, candidateIndex) {
+  const expectedPathKey = role === "source" ? candidate.sourcePathKey : candidate.receiverPathKey;
+  const expectedSegmentIndex = role === "source" ? candidate.sourceSegmentIndex : candidate.receiverSegmentIndex;
+  const expectedTimeRange = role === "source" ? candidate.sourceTimeRange : candidate.receiverTimeRange;
+  if (
+    row.pathKey !== expectedPathKey ||
+    row.segmentIndex !== expectedSegmentIndex ||
+    row.startTime !== expectedTimeRange.start ||
+    row.endTime !== expectedTimeRange.end
+  ) {
+    throw new SolverBridgeError(
+      createStatus(
+        "app_contract_error",
+        "error",
+        `emission-shell ${role} candidate[${candidateIndex}] does not match stream row`,
+        {
+          recoverable: false,
+          details: {
+            candidateIndex,
+            role,
+            expectedPathKey,
+            actualPathKey: row.pathKey,
+            expectedSegmentIndex,
+            actualSegmentIndex: row.segmentIndex,
+            expectedTimeRange,
+            actualTimeRange: { start: row.startTime, end: row.endTime },
+          },
+        }
+      )
+    );
+  }
+}
+
+function pathHistoryRowToCausalSegment(row) {
+  return {
+    startTime: row.startTime,
+    endTime: row.endTime,
+    positionAtStart: copyVector(row.start),
+    velocity: copyVector(row.velocity),
+    errorBound: row.errorBound,
+  };
+}
+
+function findResponseBufferDescriptor(response, layout) {
+  const descriptor = response.buffers.find((buffer) => buffer.layout === layout);
+  if (!descriptor) {
+    throw new SolverBridgeError(
+      createStatus("internal_solver_error", "halt", `solver response missing ${layout} buffer`, {
+        recoverable: false,
+      })
+    );
+  }
+  return descriptor;
+}
+
+function mergeBufferDescriptors(parts, bufferId, layout, rowSizeBytes) {
+  const rowCount = sumBy(parts, (part) => part.rowCount);
+  const byteLength = rowCount * rowSizeBytes;
+  const merged = new Uint8Array(byteLength);
+  let byteOffset = 0;
+  for (const part of parts) {
+    if (!(part.buffer instanceof ArrayBuffer)) {
+      throw new SolverBridgeError(
+        createStatus("internal_solver_error", "halt", `${layout} merge requires dense buffer payloads`, {
+          recoverable: false,
+        })
+      );
+    }
+    if (part.byteLength !== part.rowCount * rowSizeBytes || part.buffer.byteLength !== part.byteLength) {
+      throw new SolverBridgeError(
+        createStatus("internal_solver_error", "halt", `${layout} merge buffer size mismatch`, {
+          recoverable: false,
+          details: {
+            bufferId: part.bufferId,
+            byteLength: part.byteLength,
+            rowCount: part.rowCount,
+            rowSizeBytes,
+            payloadByteLength: part.buffer.byteLength,
+          },
+        })
+      );
+    }
+    merged.set(new Uint8Array(part.buffer), byteOffset);
+    byteOffset += part.byteLength;
+  }
+  return createBufferDescriptor(bufferId, layout, rowCount, rowSizeBytes, merged.buffer);
+}
+
 function queryEmissionShellCandidatesF64WithModule(
   module,
   streamId,
@@ -7427,13 +9144,12 @@ function validateEmissionShellCandidateRequest(request) {
     requireNonnegativeFiniteNumber(request.tolerance, "tolerance");
   }
   if (request.maxCandidates != null) {
-    requirePositiveInteger(request.maxCandidates, "maxCandidates");
-    requireUint32(request.maxCandidates, "maxCandidates");
+    requirePositiveInt32(request.maxCandidates, "maxCandidates");
   }
   validateOptionalPathKeyArray(request.sourcePathKeys, "sourcePathKeys");
   validateOptionalPathKeyArray(request.receiverPathKeys, "receiverPathKeys");
   if (request.workerCount != null) {
-    requireUint32(request.workerCount, "workerCount");
+    requireNonnegativeInt32(request.workerCount, "workerCount");
   }
   if (request.sourceChunkIndices != null) {
     normalizeChunkIndexSelection(request.sourceChunkIndices, "sourceChunkIndices");
@@ -7443,6 +9159,115 @@ function validateEmissionShellCandidateRequest(request) {
   }
   if (request.timeRange != null) {
     validateRange(request.timeRange, "timeRange");
+  }
+}
+
+function validateEmissionShellRootRefinementRequest(request) {
+  if (!request || typeof request !== "object") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "emission-shell root-refinement request object is required", {
+        recoverable: false,
+      })
+    );
+  }
+  requireNonemptyString(request.streamId, "streamId");
+  requirePositiveFiniteNumber(request.signalSpeed, "signalSpeed");
+  if (!Array.isArray(request.candidates)) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "candidates must be an array", {
+        recoverable: false,
+      })
+    );
+  }
+  request.candidates.forEach(validateEmissionShellCandidateForRefinement);
+  if (request.tolerance != null) {
+    requireNonnegativeFiniteNumber(request.tolerance, "tolerance");
+  }
+  if (request.rootTolerance != null) {
+    requirePositiveFiniteNumber(request.rootTolerance, "rootTolerance");
+  }
+  if (request.maxCandidates != null) {
+    requirePositiveInt32(request.maxCandidates, "maxCandidates");
+  }
+  if (request.maxIterations != null) {
+    requirePositiveInt32(request.maxIterations, "maxIterations");
+  }
+  if (request.scanSubdivisions != null) {
+    requirePositiveInt32(request.scanSubdivisions, "scanSubdivisions");
+  }
+  if (request.maxRootsPerCandidate != null) {
+    requirePositiveInt32(request.maxRootsPerCandidate, "maxRootsPerCandidate");
+  }
+  if (request.maxHitsPerCandidate != null) {
+    requirePositiveInt32(request.maxHitsPerCandidate, "maxHitsPerCandidate");
+  }
+  if (request.workerCount != null) {
+    requireNonnegativeInt32(request.workerCount, "workerCount");
+  }
+}
+
+function validateEmissionShellCandidateForRefinement(candidate, index) {
+  const label = `candidates[${index}]`;
+  if (!candidate || typeof candidate !== "object") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", `${label} must be an object`, {
+        recoverable: false,
+      })
+    );
+  }
+  requireSafeUint64(candidate.sourcePathKey, `${label}.sourcePathKey`);
+  requireSafeUint64(candidate.receiverPathKey, `${label}.receiverPathKey`);
+  requireSafeUint64(candidate.sourceSegmentIndex, `${label}.sourceSegmentIndex`);
+  requireSafeUint64(candidate.receiverSegmentIndex, `${label}.receiverSegmentIndex`);
+  requireSafeUint64(candidate.sourceChunkIndex, `${label}.sourceChunkIndex`);
+  requireSafeUint64(candidate.receiverChunkIndex, `${label}.receiverChunkIndex`);
+  requireSafeUint64(candidate.sourceRowOffset, `${label}.sourceRowOffset`);
+  requireSafeUint64(candidate.receiverRowOffset, `${label}.receiverRowOffset`);
+  validateRange(candidate.sourceTimeRange, `${label}.sourceTimeRange`);
+  validateRange(candidate.receiverTimeRange, `${label}.receiverTimeRange`);
+  requireNonnegativeFiniteNumber(candidate.distanceLowerBound, `${label}.distanceLowerBound`);
+  requireNonnegativeFiniteNumber(candidate.distanceUpperBound, `${label}.distanceUpperBound`);
+  requireNonnegativeFiniteNumber(candidate.radiusLowerBound, `${label}.radiusLowerBound`);
+  requireNonnegativeFiniteNumber(candidate.radiusUpperBound, `${label}.radiusUpperBound`);
+  if (candidate.candidateKind !== "broad_phase_possible") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", `${label}.candidateKind is not supported`, {
+        recoverable: false,
+      })
+    );
+  }
+  validateEmissionShellNarrowPhaseEstimateForRefinement(candidate.narrowPhaseEstimate, `${label}.narrowPhaseEstimate`);
+}
+
+function validateEmissionShellNarrowPhaseEstimateForRefinement(estimate, label) {
+  if (!estimate || typeof estimate !== "object") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", `${label} must be an object`, {
+        recoverable: false,
+      })
+    );
+  }
+  if (estimate.method !== "sampled_linear_segment_bisection.v1") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", `${label}.method is not supported`, {
+        recoverable: false,
+      })
+    );
+  }
+  if (!["sampled_hit", "sampled_miss"].includes(estimate.classification)) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", `${label}.classification is not supported`, {
+        recoverable: false,
+      })
+    );
+  }
+  requireNonnegativeInteger(estimate.sampleCount, `${label}.sampleCount`);
+  if (estimate.classification === "sampled_hit") {
+    requireFiniteNumber(estimate.hitTime, `${label}.hitTime`);
+    requireFiniteNumber(estimate.emissionTime, `${label}.emissionTime`);
+  }
+  if (estimate.residual != null) {
+    requireNonnegativeFiniteNumber(estimate.residual, `${label}.residual`);
   }
 }
 
@@ -7472,13 +9297,12 @@ function validateEmissionShellCandidatePacketRequest(request) {
     requireNonnegativeFiniteNumber(request.tolerance, "tolerance");
   }
   if (request.maxCandidates != null) {
-    requirePositiveInteger(request.maxCandidates, "maxCandidates");
-    requireUint32(request.maxCandidates, "maxCandidates");
+    requirePositiveInt32(request.maxCandidates, "maxCandidates");
   }
   validateOptionalPathKeyArray(request.sourcePathKeys, "sourcePathKeys");
   validateOptionalPathKeyArray(request.receiverPathKeys, "receiverPathKeys");
   if (request.workerCount != null) {
-    requireUint32(request.workerCount, "workerCount");
+    requireNonnegativeInt32(request.workerCount, "workerCount");
   }
   if (request.timeRange != null) {
     validateRange(request.timeRange, "timeRange");
@@ -7521,13 +9345,12 @@ function validateEmissionShellCandidatePacketsRequest(request) {
     requireNonnegativeFiniteNumber(request.tolerance, "tolerance");
   }
   if (request.maxCandidatesPerPacket != null) {
-    requirePositiveInteger(request.maxCandidatesPerPacket, "maxCandidatesPerPacket");
-    requireUint32(request.maxCandidatesPerPacket, "maxCandidatesPerPacket");
+    requirePositiveInt32(request.maxCandidatesPerPacket, "maxCandidatesPerPacket");
   }
   validateOptionalPathKeyArray(request.sourcePathKeys, "sourcePathKeys");
   validateOptionalPathKeyArray(request.receiverPathKeys, "receiverPathKeys");
   if (request.workerCount != null) {
-    requireUint32(request.workerCount, "workerCount");
+    requireNonnegativeInt32(request.workerCount, "workerCount");
   }
   if (request.timeRange != null) {
     validateRange(request.timeRange, "timeRange");
@@ -7635,7 +9458,8 @@ function readEmissionShellPathHistoryRowsFromStream(
   scanMetrics.pathIndexRowCount = pathIndexSummary.pathIndexRowCount;
   scanMetrics.pathIndexedChunkCount = pathIndexSummary.pathIndexedChunkCount;
   streamEntry.buffers.forEach((descriptor, chunkIndex) => {
-    if (descriptor.layout !== "path_segment.v1" || !descriptor.buffer || descriptor.rowCount === 0) {
+    const buffer = getBufferDescriptorArrayBuffer(descriptor);
+    if (descriptor.layout !== "path_segment.v1" || !buffer || descriptor.rowCount === 0) {
       return;
     }
     const chunkRange = streamEntry.stream.availableRanges[chunkIndex];
@@ -7669,7 +9493,7 @@ function readEmissionShellPathHistoryRowsFromStream(
     if (!Number.isInteger(rowSize) || rowSize <= 0) {
       return;
     }
-    const view = new DataView(descriptor.buffer);
+    const view = new DataView(buffer);
     const rowPlans = collectEmissionShellPathHistoryRowPlans(
       pathIndexRowsByChunk.get(chunkIndex) ?? [],
       sourceChunkRole,
@@ -8227,13 +10051,17 @@ function aabbDistanceUpperBound(left, right) {
 
 function buildStreamIndexDescription(streamEntry) {
   const pathIndexRows = getPathHistoryIndexRows(streamEntry);
-  return {
+  const description = {
     schema: "solver-stream-index.v1",
     streamId: streamEntry.stream.streamId,
     indexLayout: streamEntry.stream.indexLayout,
     chunkCount: streamEntry.stream.availableRanges.length,
     pathIndexRows,
   };
+  if (streamEntry.indexSidecar) {
+    description.sidecar = copyStreamIndexSidecar(streamEntry.indexSidecar);
+  }
+  return description;
 }
 
 function getPathHistoryIndexRows(streamEntry) {
@@ -8274,7 +10102,8 @@ function ensurePathHistoryIndexCache(streamEntry) {
 function buildPathHistoryIndexRows(streamEntry) {
   const rows = [];
   streamEntry.buffers.forEach((descriptor, chunkIndex) => {
-    if (descriptor.layout !== "path_segment.v1" || !descriptor.buffer || descriptor.rowCount === 0) {
+    const buffer = getBufferDescriptorArrayBuffer(descriptor);
+    if (descriptor.layout !== "path_segment.v1" || !buffer || descriptor.rowCount === 0) {
       return;
     }
     const range = streamEntry.stream.availableRanges[chunkIndex];
@@ -8282,7 +10111,7 @@ function buildPathHistoryIndexRows(streamEntry) {
     if (!Number.isInteger(rowSize) || rowSize <= 0) {
       return;
     }
-    const view = new DataView(descriptor.buffer);
+    const view = new DataView(buffer);
     let run = null;
     for (let rowOffset = 0; rowOffset < descriptor.rowCount; rowOffset += 1) {
       const summary = readPathHistoryRowSummary(view, rowOffset * rowSize);
@@ -8333,6 +10162,32 @@ function finalizePathHistoryIndexRun(run, rowSize, range) {
   };
 }
 
+function copyPathHistoryIndexRow(row) {
+  return {
+    pathKey: row.pathKey,
+    chunkIndex: row.chunkIndex,
+    rowOffset: row.rowOffset,
+    rowCount: row.rowCount,
+    timeRange: { ...row.timeRange },
+    frameRange: { ...row.frameRange },
+    byteRange: { ...row.byteRange },
+  };
+}
+
+function copyStreamIndexSidecar(sidecar) {
+  return {
+    schema: sidecar.schema,
+    indexLayout: sidecar.indexLayout,
+    numericType: sidecar.numericType,
+    byteOrder: sidecar.byteOrder,
+    rowSizeBytes: sidecar.rowSizeBytes,
+    rowCount: sidecar.rowCount,
+    byteLength: sidecar.byteLength,
+    filePath: sidecar.filePath,
+    checksum: sidecar.checksum,
+  };
+}
+
 function openRegisteredStream(state, request) {
   if (!request || typeof request !== "object") {
     throw new SolverBridgeError(
@@ -8348,7 +10203,14 @@ function openRegisteredStream(state, request) {
       })
     );
   }
-  const streamEntry = findStreamEntry(state, request.streamId);
+  if (request.streamId == null && request.manifestPath == null) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "stream open requires streamId or manifestPath", {
+        recoverable: false,
+      })
+    );
+  }
+  const streamEntry = resolveOpenStreamEntry(state, request);
   const readableLayouts = [...new Set(streamEntry.buffers.map((buffer) => buffer.layout))];
   return {
     streamId: streamEntry.stream.streamId,
@@ -8356,6 +10218,16 @@ function openRegisteredStream(state, request) {
     readableLayouts,
     availableRanges: streamEntry.stream.availableRanges.map(copyStreamRange),
   };
+}
+
+function resolveOpenStreamEntry(state, request) {
+  if (request.streamId != null && state.streams.has(request.streamId)) {
+    return findStreamEntry(state, request.streamId);
+  }
+  if (request.manifestPath != null) {
+    return registerNativeFileStreamManifest(state, request);
+  }
+  return findStreamEntry(state, request.streamId);
 }
 
 function readRegisteredStreamRange(state, request) {
@@ -8382,6 +10254,9 @@ function readRegisteredStreamRange(state, request) {
       );
     }
     request.pathKeys.forEach((pathKey, index) => requireSafeUint64(pathKey, `pathKeys[${index}]`));
+  }
+  if (request.chunkIndices != null) {
+    normalizeChunkIndexSelection(request.chunkIndices, "chunkIndices");
   }
   const streamEntry = findStreamEntry(state, request.streamId);
   const selection = selectStreamRanges(streamEntry, request);
@@ -8455,7 +10330,7 @@ function validateCreatePathHistoryStreamRequest(request) {
   }
 }
 
-function normalizeTransientPathHistoryStoragePolicy(storagePolicy) {
+function normalizePathHistoryStreamStoragePolicy(storagePolicy) {
   if (storagePolicy == null) {
     return {
       target: "caller-buffer",
@@ -8463,12 +10338,39 @@ function normalizeTransientPathHistoryStoragePolicy(storagePolicy) {
       maxBytes: 0,
     };
   }
-  if (storagePolicy.target !== "caller-buffer" || storagePolicy.durable) {
+  if (storagePolicy.target === "caller-buffer" && !storagePolicy.durable) {
+    requireNonnegativeInteger(storagePolicy.maxBytes, "storagePolicy.maxBytes");
+    return {
+      target: "caller-buffer",
+      durable: false,
+      maxBytes: storagePolicy.maxBytes,
+    };
+  }
+  if (storagePolicy.target === "native-file" && storagePolicy.durable) {
+    requireNonnegativeInteger(storagePolicy.maxBytes, "storagePolicy.maxBytes");
+    if (storagePolicy.basePath != null) {
+      requireNonemptyString(storagePolicy.basePath, "storagePolicy.basePath");
+    }
+    return {
+      target: "native-file",
+      durable: true,
+      maxBytes: storagePolicy.maxBytes,
+      basePath: storagePolicy.basePath,
+    };
+  }
+  if (storagePolicy.target === "native-file") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "native-file storage must be durable", {
+        recoverable: false,
+      })
+    );
+  }
+  if (storagePolicy.target === "opfs" || storagePolicy.target === "worker-memory") {
     throw new SolverBridgeError(
       createStatus(
         "unsupported_browser_storage",
         "halt",
-        "path-history bridge stream currently supports transient caller-buffer storage only",
+        "path-history bridge stream storage target is not available in this bridge",
         {
           recoverable: true,
           details: {
@@ -8479,12 +10381,1635 @@ function normalizeTransientPathHistoryStoragePolicy(storagePolicy) {
       )
     );
   }
-  requireNonnegativeInteger(storagePolicy.maxBytes, "storagePolicy.maxBytes");
+  throw new SolverBridgeError(
+    createStatus("app_contract_error", "error", "path-history storage target is invalid", {
+      recoverable: false,
+      details: { requestedTarget: storagePolicy.target },
+    })
+  );
+}
+
+function hasNodeFileStorage() {
+  return Boolean(
+    globalThis.process?.getBuiltinModule?.("fs") &&
+      globalThis.process?.getBuiltinModule?.("path")
+  );
+}
+
+function requireNativeFileStorageModules() {
+  const fs = globalThis.process?.getBuiltinModule?.("fs");
+  const path = globalThis.process?.getBuiltinModule?.("path");
+  if (!fs || !path) {
+    throw new SolverBridgeError(
+      createStatus("unsupported_browser_storage", "halt", "native-file stream storage is not available", {
+        recoverable: true,
+      })
+    );
+  }
+  return { fs, path };
+}
+
+function prepareNativeFileStreamStorage(streamId, storagePolicy) {
+  const { fs, path } = requireNativeFileStorageModules();
+  const basePath = path.resolve(
+    storagePolicy.basePath ?? path.join(getNativeProcessCwd(), DEFAULT_NATIVE_FILE_STREAM_BASE_PATH)
+  );
+  const streamPath = path.join(basePath, sanitizeStoragePathSegment(streamId));
+  fs.rmSync(streamPath, { recursive: true, force: true });
+  fs.mkdirSync(streamPath, { recursive: true });
   return {
-    target: "caller-buffer",
-    durable: false,
-    maxBytes: storagePolicy.maxBytes,
+    fs,
+    path,
+    basePath,
+    streamPath,
+    indexPath: path.join(streamPath, "stream-index.stream_index.v1.bin"),
+    manifestPath: path.join(streamPath, "stream-manifest.json"),
   };
+}
+
+function normalizeAssemblyGraphStoreStoragePolicy(storagePolicy) {
+  const policy = storagePolicy ?? {
+    target: "native-file",
+    durable: true,
+    maxBytes: 0,
+  };
+  if (policy.target === "native-file" && policy.durable) {
+    requireNonnegativeInteger(policy.maxBytes, "storagePolicy.maxBytes");
+    if (policy.basePath != null) {
+      requireNonemptyString(policy.basePath, "storagePolicy.basePath");
+    }
+    return {
+      target: "native-file",
+      durable: true,
+      maxBytes: policy.maxBytes,
+      basePath: policy.basePath,
+    };
+  }
+  if (policy.target === "native-file") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "assembly graph native-file storage must be durable", {
+        recoverable: false,
+      })
+    );
+  }
+  if (policy.target === "caller-buffer") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "assembly graph store requires durable storage", {
+        recoverable: false,
+      })
+    );
+  }
+  if (policy.target === "opfs" || policy.target === "worker-memory") {
+    throw new SolverBridgeError(
+      createStatus(
+        "unsupported_browser_storage",
+        "halt",
+        "assembly graph store storage target is not available in this bridge",
+        {
+          recoverable: true,
+          details: {
+            requestedTarget: policy.target,
+            requestedDurable: policy.durable,
+          },
+        }
+      )
+    );
+  }
+  throw new SolverBridgeError(
+    createStatus("app_contract_error", "error", "assembly graph store storage target is invalid", {
+      recoverable: false,
+      details: { requestedTarget: policy.target },
+    })
+  );
+}
+
+function prepareNativeFileAssemblyGraphStoreStorage(storeId, storagePolicy) {
+  const { fs, path } = requireNativeFileStorageModules();
+  const basePath = path.resolve(
+    storagePolicy.basePath ?? path.join(getNativeProcessCwd(), DEFAULT_NATIVE_FILE_ASSEMBLY_GRAPH_BASE_PATH)
+  );
+  const storePath = path.join(basePath, sanitizeStoragePathSegment(storeId));
+  fs.rmSync(storePath, { recursive: true, force: true });
+  fs.mkdirSync(storePath, { recursive: true });
+  return {
+    fs,
+    path,
+    basePath,
+    storePath,
+    indexPath: path.join(storePath, "assembly-graph-index.assembly_graph_index.v1.bin"),
+    manifestPath: path.join(storePath, "assembly-graph.meta.json"),
+  };
+}
+
+function writeNativeFileAssemblyGraphDataset(storage, descriptor) {
+  const filePath = storage.path.join(
+    storage.storePath,
+    `${descriptor.bufferId}.${descriptor.layout}.bin`
+  );
+  const buffer = getBufferDescriptorArrayBuffer(descriptor);
+  storage.fs.writeFileSync(filePath, new Uint8Array(buffer));
+  return {
+    ...copyBufferDescriptorWithoutPayload(descriptor),
+    storageTarget: "native-file",
+    filePath,
+    checksum: fnv1a64ArrayBufferHex(buffer),
+  };
+}
+
+function createAssemblyGraphStoreManifest(storeId, storage, storagePolicy, dataset, summary, buffers) {
+  const datasetByLayout = new Map(buffers.map((buffer) => [buffer.layout, buffer]));
+  const datasetForLayout = (layout) => {
+    const descriptor = datasetByLayout.get(layout);
+    return {
+      layout,
+      rowSizeBytes: descriptor?.rowSizeBytes ?? BINARY_LAYOUT_ROW_SIZE_BYTES.get(layout),
+      rowCount: descriptor?.rowCount ?? 0,
+      byteLength: descriptor?.byteLength ?? 0,
+      path: descriptor?.filePath,
+      checksum: descriptor?.checksum,
+    };
+  };
+  const index = buildAssemblyGraphStoreIndex(dataset, datasetByLayout);
+  index.sidecar = writeNativeFileAssemblyGraphIndexSidecar(storage, index);
+  return {
+    storeId,
+    manifestVersion: "solver-assembly-graph-manifest.v1",
+    numericType: "f64",
+    byteOrder: "little-endian",
+    timeRange: deepCloneJson(summary.timeRange),
+    durable: true,
+    metadataPath: storage.manifestPath,
+    storagePolicy: {
+      ...storagePolicy,
+      basePath: storage.basePath,
+      storePath: storage.storePath,
+      manifestPath: storage.manifestPath,
+    },
+    summary: deepCloneJson(summary),
+    datasets: {
+      states: datasetForLayout("assembly_state.v1"),
+      memberships: datasetForLayout("assembly_membership.v1"),
+      hierarchy: datasetForLayout("assembly_hierarchy.v1"),
+      events: datasetForLayout("assembly_events.v1"),
+    },
+    index,
+  };
+}
+
+function buildAssemblyGraphStoreIndex(dataset, datasetByLayout) {
+  const rows = [];
+  const addIndexRow = (layout, keyKind, key, rowOffset, timeStart, timeEnd) => {
+    if (key == null || key <= 0) {
+      return;
+    }
+    const rowSizeBytes = datasetByLayout.get(layout)?.rowSizeBytes ?? BINARY_LAYOUT_ROW_SIZE_BYTES.get(layout);
+    const byteStart = rowOffset * rowSizeBytes;
+    rows.push({
+      layout,
+      keyKind,
+      key,
+      rowOffset,
+      rowCount: 1,
+      timeRange: { start: timeStart, end: timeEnd },
+      byteRange: { start: byteStart, end: byteStart + rowSizeBytes },
+    });
+  };
+  dataset.assemblyStates.forEach((row, rowOffset) => {
+    addIndexRow("assembly_state.v1", "assembly", row.assemblyKey, rowOffset, row.timeStart, row.timeEnd);
+  });
+  dataset.memberships.forEach((row, rowOffset) => {
+    addIndexRow("assembly_membership.v1", "path", row.pathKey, rowOffset, row.timeStart, row.timeEnd);
+    addIndexRow("assembly_membership.v1", "assembly", row.assemblyKey, rowOffset, row.timeStart, row.timeEnd);
+  });
+  dataset.hierarchy.forEach((row, rowOffset) => {
+    addIndexRow(
+      "assembly_hierarchy.v1",
+      "parent-assembly",
+      row.parentAssemblyKey,
+      rowOffset,
+      row.timeStart,
+      row.timeEnd
+    );
+    addIndexRow(
+      "assembly_hierarchy.v1",
+      "child-assembly",
+      row.childAssemblyKey,
+      rowOffset,
+      row.timeStart,
+      row.timeEnd
+    );
+  });
+  dataset.events.forEach((row, rowOffset) => {
+    addIndexRow("assembly_events.v1", "path", row.relatedPathKey, rowOffset, row.eventTime, row.eventTime);
+    addIndexRow(
+      "assembly_events.v1",
+      "assembly",
+      row.relatedAssemblyKey,
+      rowOffset,
+      row.eventTime,
+      row.eventTime
+    );
+  });
+  return {
+    schema: "solver-assembly-graph-index.v1",
+    indexedFilters: ["pathKey", "assemblyKey", "timeRange", "rowRange", "byteRange"],
+    rowCount: rows.length,
+    rows,
+    summary: summarizeAssemblyGraphStoreIndex(rows),
+  };
+}
+
+function summarizeAssemblyGraphStoreIndex(rows) {
+  const countsByLayout = {};
+  const countsByKeyKind = {};
+  rows.forEach((row) => {
+    countsByLayout[row.layout] = (countsByLayout[row.layout] ?? 0) + 1;
+    countsByKeyKind[row.keyKind] = (countsByKeyKind[row.keyKind] ?? 0) + 1;
+  });
+  return {
+    schema: "solver-assembly-graph-index-summary.v1",
+    rowCount: rows.length,
+    countsByLayout,
+    countsByKeyKind,
+  };
+}
+
+function writeNativeFileAssemblyGraphIndexSidecar(storage, index) {
+  const buffer = encodeAssemblyGraphIndexRowsV1(index.rows);
+  storage.fs.writeFileSync(storage.indexPath, new Uint8Array(buffer));
+  return {
+    schema: "solver-assembly-graph-index-sidecar.v1",
+    indexLayout: "assembly_graph_index.v1",
+    numericType: "f64",
+    byteOrder: "little-endian",
+    rowSizeBytes: ASSEMBLY_GRAPH_INDEX_ROW_V1_BYTES,
+    rowCount: index.rows.length,
+    byteLength: buffer.byteLength,
+    filePath: storage.indexPath,
+    checksum: fnv1a64ArrayBufferHex(buffer),
+  };
+}
+
+function encodeAssemblyGraphIndexRowsV1(rows) {
+  const buffer = new ArrayBuffer(rows.length * ASSEMBLY_GRAPH_INDEX_ROW_V1_BYTES);
+  const view = new DataView(buffer);
+  rows.forEach((row, index) => {
+    const offset = index * ASSEMBLY_GRAPH_INDEX_ROW_V1_BYTES;
+    view.setUint32(offset, requireAssemblyGraphIndexLayoutCode(row.layout), true);
+    view.setUint32(offset + 4, requireAssemblyGraphIndexKeyKindCode(row.keyKind), true);
+    view.setBigUint64(offset + 8, BigInt(row.key), true);
+    view.setBigUint64(offset + 16, BigInt(row.rowOffset), true);
+    view.setBigUint64(offset + 24, BigInt(row.rowCount), true);
+    view.setFloat64(offset + 32, row.timeRange.start, true);
+    view.setFloat64(offset + 40, row.timeRange.end, true);
+    view.setBigUint64(offset + 48, BigInt(row.byteRange.start), true);
+    view.setBigUint64(offset + 56, BigInt(row.byteRange.end - row.byteRange.start), true);
+    view.setUint32(offset + 64, row.stateFlags ?? 0, true);
+    view.setUint32(offset + 68, 0, true);
+  });
+  return buffer;
+}
+
+function requireAssemblyGraphIndexLayoutCode(layout) {
+  const code = ASSEMBLY_GRAPH_INDEX_LAYOUT_CODES.get(layout);
+  if (code == null) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "assembly graph index layout is invalid", {
+        recoverable: false,
+        details: { layout },
+      })
+    );
+  }
+  return code;
+}
+
+function requireAssemblyGraphIndexKeyKindCode(keyKind) {
+  const code = ASSEMBLY_GRAPH_INDEX_KEY_KIND_CODES.get(keyKind);
+  if (code == null) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "assembly graph index key kind is invalid", {
+        recoverable: false,
+        details: { keyKind },
+      })
+    );
+  }
+  return code;
+}
+
+function writeNativeFileAssemblyGraphManifest(storage, store) {
+  storage.fs.writeFileSync(storage.manifestPath, `${JSON.stringify(store, null, 2)}\n`);
+}
+
+function getNativeProcessCwd() {
+  return typeof globalThis.process?.cwd === "function" ? globalThis.process.cwd() : ".";
+}
+
+function sanitizeStoragePathSegment(value) {
+  const sanitized = String(value).replace(/[^A-Za-z0-9._-]+/gu, "_").replace(/^_+|_+$/gu, "");
+  return sanitized || "stream";
+}
+
+function writeNativeFileStreamChunk(storage, chunkIndex, descriptor, buffer) {
+  const chunkName = `chunk-${String(chunkIndex).padStart(6, "0")}.path_segment.v1.bin`;
+  const filePath = storage.path.join(storage.streamPath, chunkName);
+  storage.fs.writeFileSync(filePath, new Uint8Array(buffer));
+  return {
+    ...copyBufferDescriptorWithoutPayload(descriptor),
+    storageTarget: "native-file",
+    filePath,
+  };
+}
+
+function writeNativeFileStreamIndexSidecar(storage, index) {
+  const buffer = encodeStreamIndexRowsV1(index.pathIndexRows);
+  storage.fs.writeFileSync(storage.indexPath, new Uint8Array(buffer));
+  return {
+    schema: "solver-stream-index-sidecar.v1",
+    indexLayout: "stream_index.v1",
+    numericType: "f64",
+    byteOrder: "little-endian",
+    rowSizeBytes: STREAM_INDEX_ROW_V1_BYTES,
+    rowCount: index.pathIndexRows.length,
+    byteLength: buffer.byteLength,
+    filePath: storage.indexPath,
+    checksum: fnv1a64ArrayBufferHex(buffer),
+  };
+}
+
+function encodeStreamIndexRowsV1(rows) {
+  const buffer = new ArrayBuffer(rows.length * STREAM_INDEX_ROW_V1_BYTES);
+  const view = new DataView(buffer);
+  rows.forEach((row, index) => {
+    const offset = index * STREAM_INDEX_ROW_V1_BYTES;
+    view.setBigUint64(offset, BigInt(row.pathKey), true);
+    view.setBigUint64(offset + 8, BigInt(row.chunkIndex), true);
+    view.setBigUint64(offset + 16, BigInt(row.rowOffset), true);
+    view.setBigUint64(offset + 24, BigInt(row.rowCount), true);
+    view.setFloat64(offset + 32, row.timeRange.start, true);
+    view.setFloat64(offset + 40, row.timeRange.end, true);
+    view.setBigUint64(offset + 48, BigInt(row.byteRange.start), true);
+    view.setBigUint64(offset + 56, BigInt(row.byteRange.end - row.byteRange.start), true);
+  });
+  return buffer;
+}
+
+function writeNativeFileStreamManifest(storage, stream, buffers, index = null) {
+  const manifest = {
+    schema: "solver-native-file-stream-manifest.v1",
+    stream: copyStreamDescriptor(stream),
+    chunks: buffers.map(copyBufferDescriptorWithoutPayload),
+  };
+  if (index) {
+    manifest.index = {
+      ...index,
+      pathIndexRows: index.pathIndexRows.map(copyPathHistoryIndexRow),
+    };
+  }
+  storage.fs.writeFileSync(storage.manifestPath, `${JSON.stringify(manifest, null, 2)}\n`);
+}
+
+function resolveAssemblyGraphStoreEntry(state, request) {
+  if (request.storeId != null && state.assemblyGraphStores.has(request.storeId)) {
+    return state.assemblyGraphStores.get(request.storeId);
+  }
+  if (request.manifestPath != null) {
+    return registerNativeFileAssemblyGraphStoreManifest(state, request);
+  }
+  if (request.storeId != null) {
+    throw new SolverBridgeError(
+      createStatus("stream_read_failed", "halt", "assembly graph store not found", {
+        recoverable: false,
+        details: { storeId: request.storeId },
+      })
+    );
+  }
+  throw new SolverBridgeError(
+    createStatus("app_contract_error", "error", "assembly graph store request requires storeId or manifestPath", {
+      recoverable: false,
+    })
+  );
+}
+
+function registerNativeFileAssemblyGraphStoreManifest(state, request) {
+  requireNonemptyString(request.manifestPath, "manifestPath");
+  const { fs, path } = requireNativeFileStorageModules();
+  const manifestPath = path.resolve(request.manifestPath);
+  const manifestText = fs.readFileSync(manifestPath, "utf8");
+  let manifest;
+  try {
+    manifest = JSON.parse(manifestText);
+  } catch (error) {
+    throw new SolverBridgeError(
+      createStatus("stream_read_failed", "halt", "assembly graph manifest is not valid JSON", {
+        recoverable: false,
+        details: { manifestPath, error: error instanceof Error ? error.message : String(error) },
+      })
+    );
+  }
+  const store = normalizeAssemblyGraphStoreManifest(manifest, manifestPath);
+  if (request.storeId != null && request.storeId !== store.storeId) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "storeId does not match assembly graph manifest", {
+        recoverable: false,
+        details: { requestedStoreId: request.storeId, manifestStoreId: store.storeId },
+      })
+    );
+  }
+  const buffers = [
+    createAssemblyGraphStoreBufferDescriptor("assembly-states", store.datasets.states),
+    createAssemblyGraphStoreBufferDescriptor("assembly-memberships", store.datasets.memberships),
+    createAssemblyGraphStoreBufferDescriptor("assembly-hierarchy", store.datasets.hierarchy),
+    createAssemblyGraphStoreBufferDescriptor("assembly-events", store.datasets.events),
+  ];
+  const entry = { store, buffers };
+  state.assemblyGraphStores.set(store.storeId, entry);
+  return entry;
+}
+
+function normalizeAssemblyGraphStoreManifest(manifest, manifestPath) {
+  if (manifest?.manifestVersion !== "solver-assembly-graph-manifest.v1") {
+    throw new SolverBridgeError(
+      createStatus("stream_read_failed", "halt", "assembly graph manifest version is not supported", {
+        recoverable: false,
+        details: { manifestPath, manifestVersion: manifest?.manifestVersion },
+      })
+    );
+  }
+  requireNonemptyString(manifest.storeId, "manifest.storeId");
+  if (manifest.numericType !== "f64" || manifest.byteOrder !== "little-endian") {
+    throw new SolverBridgeError(
+      createStatus("stream_read_failed", "halt", "assembly graph manifest numeric format is not supported", {
+        recoverable: false,
+        details: {
+          storeId: manifest.storeId,
+          numericType: manifest.numericType,
+          byteOrder: manifest.byteOrder,
+        },
+      })
+    );
+  }
+  const { fs, path } = requireNativeFileStorageModules();
+  const manifestDir = path.dirname(manifestPath);
+  const storagePolicy = manifest.storagePolicy || {};
+  if (storagePolicy.target !== "native-file") {
+    throw new SolverBridgeError(
+      createStatus("stream_read_failed", "halt", "assembly graph manifest does not describe native-file storage", {
+        recoverable: false,
+        details: { storeId: manifest.storeId, storageTarget: storagePolicy.target },
+      })
+    );
+  }
+  const storePath = path.resolve(storagePolicy.storePath ?? manifestDir);
+  const datasets = {
+    states: normalizeAssemblyGraphStoreDataset(
+      manifest.datasets?.states,
+      "states",
+      "assembly_state.v1",
+      manifestDir,
+      fs,
+      path
+    ),
+    memberships: normalizeAssemblyGraphStoreDataset(
+      manifest.datasets?.memberships,
+      "memberships",
+      "assembly_membership.v1",
+      manifestDir,
+      fs,
+      path
+    ),
+    hierarchy: normalizeAssemblyGraphStoreDataset(
+      manifest.datasets?.hierarchy,
+      "hierarchy",
+      "assembly_hierarchy.v1",
+      manifestDir,
+      fs,
+      path
+    ),
+    events: normalizeAssemblyGraphStoreDataset(
+      manifest.datasets?.events,
+      "events",
+      "assembly_events.v1",
+      manifestDir,
+      fs,
+      path
+    ),
+  };
+  return {
+    storeId: manifest.storeId,
+    manifestVersion: manifest.manifestVersion,
+    numericType: manifest.numericType,
+    byteOrder: manifest.byteOrder,
+    timeRange: manifest.timeRange ? { ...manifest.timeRange } : null,
+    durable: manifest.durable !== false,
+    metadataPath: manifestPath,
+    storagePolicy: {
+      ...storagePolicy,
+      target: "native-file",
+      durable: true,
+      maxBytes: storagePolicy.maxBytes ?? 0,
+      basePath: storagePolicy.basePath ? path.resolve(storagePolicy.basePath) : path.dirname(storePath),
+      storePath,
+      manifestPath,
+    },
+    summary: deepCloneJson(manifest.summary),
+    datasets,
+    index: normalizeAssemblyGraphStoreIndex(manifest.index, datasets, manifestDir, fs, path),
+  };
+}
+
+function normalizeAssemblyGraphStoreIndex(index, datasets, manifestDir, fs, path) {
+  if (index == null) {
+    return null;
+  }
+  if (index?.schema !== "solver-assembly-graph-index.v1" || !Array.isArray(index.rows)) {
+    throw new SolverBridgeError(
+      createStatus("stream_read_failed", "halt", "assembly graph index schema is not supported", {
+        recoverable: false,
+        details: { schema: index?.schema },
+      })
+    );
+  }
+  if (index.rowCount !== index.rows.length) {
+    throw new SolverBridgeError(
+      createStatus("stream_read_failed", "halt", "assembly graph index row count mismatch", {
+        recoverable: false,
+        details: { declaredRowCount: index.rowCount, actualRowCount: index.rows.length },
+      })
+    );
+  }
+  const rows = index.rows.map((row, rowIndex) => normalizeAssemblyGraphIndexRow(row, rowIndex, datasets));
+  const sidecar = index.sidecar
+    ? normalizeAssemblyGraphStoreIndexSidecar(index.sidecar, manifestDir, fs, path, rows)
+    : null;
+  return {
+    schema: "solver-assembly-graph-index.v1",
+    indexedFilters: Array.isArray(index.indexedFilters) ? [...index.indexedFilters] : [],
+    rowCount: rows.length,
+    rows,
+    summary: summarizeAssemblyGraphStoreIndex(rows),
+    ...(sidecar ? { sidecar } : {}),
+  };
+}
+
+function normalizeAssemblyGraphIndexRow(row, rowIndex, datasets) {
+  if (!row || typeof row !== "object" || Array.isArray(row)) {
+    throw new SolverBridgeError(
+      createStatus("stream_read_failed", "halt", "assembly graph index row is invalid", {
+        recoverable: false,
+        details: { rowIndex },
+      })
+    );
+  }
+  const dataset = getAssemblyGraphStoreDatasetForLayout({ datasets }, row.layout);
+  if (!["path", "assembly", "parent-assembly", "child-assembly"].includes(row.keyKind)) {
+    throw new SolverBridgeError(
+      createStatus("stream_read_failed", "halt", "assembly graph index key kind is invalid", {
+        recoverable: false,
+        details: { rowIndex, keyKind: row.keyKind },
+      })
+    );
+  }
+  requireSafeUint64(row.key, `index.rows[${rowIndex}].key`);
+  requireSafeUint64(row.rowOffset, `index.rows[${rowIndex}].rowOffset`);
+  requireSafeUint64(row.rowCount, `index.rows[${rowIndex}].rowCount`);
+  validateRange(row.timeRange, `index.rows[${rowIndex}].timeRange`);
+  validateRange(row.byteRange, `index.rows[${rowIndex}].byteRange`);
+  if (row.rowOffset + row.rowCount > dataset.rowCount) {
+    throw new SolverBridgeError(
+      createStatus("stream_read_failed", "halt", "assembly graph index row points outside dataset", {
+        recoverable: false,
+        details: { rowIndex, layout: row.layout, rowOffset: row.rowOffset, rowCount: row.rowCount },
+      })
+    );
+  }
+  return {
+    layout: row.layout,
+    keyKind: row.keyKind,
+    key: row.key,
+    rowOffset: row.rowOffset,
+    rowCount: row.rowCount,
+    timeRange: { ...row.timeRange },
+    byteRange: { ...row.byteRange },
+  };
+}
+
+function normalizeAssemblyGraphStoreIndexSidecar(sidecar, manifestDir, fs, path, rows) {
+  if (!sidecar || typeof sidecar !== "object" || Array.isArray(sidecar)) {
+    throw new SolverBridgeError(
+      createStatus("stream_read_failed", "halt", "assembly graph index sidecar is invalid", {
+        recoverable: false,
+      })
+    );
+  }
+  if (
+    sidecar.schema !== "solver-assembly-graph-index-sidecar.v1" ||
+    sidecar.indexLayout !== "assembly_graph_index.v1" ||
+    sidecar.numericType !== "f64" ||
+    sidecar.byteOrder !== "little-endian" ||
+    sidecar.rowSizeBytes !== ASSEMBLY_GRAPH_INDEX_ROW_V1_BYTES
+  ) {
+    throw new SolverBridgeError(
+      createStatus("stream_read_failed", "halt", "assembly graph index sidecar schema is not supported", {
+        recoverable: false,
+        details: {
+          schema: sidecar.schema,
+          indexLayout: sidecar.indexLayout,
+          numericType: sidecar.numericType,
+          byteOrder: sidecar.byteOrder,
+          rowSizeBytes: sidecar.rowSizeBytes,
+        },
+      })
+    );
+  }
+  requireSafeUint64(sidecar.rowCount, "index.sidecar.rowCount");
+  requireSafeUint64(sidecar.byteLength, "index.sidecar.byteLength");
+  requireNonemptyString(sidecar.filePath, "index.sidecar.filePath");
+  requireNonemptyString(sidecar.checksum, "index.sidecar.checksum");
+  if (sidecar.rowCount !== rows.length) {
+    throw new SolverBridgeError(
+      createStatus("stream_read_failed", "halt", "assembly graph index sidecar row count mismatch", {
+        recoverable: false,
+        details: { sidecarRowCount: sidecar.rowCount, indexRowCount: rows.length },
+      })
+    );
+  }
+  if (sidecar.byteLength !== sidecar.rowCount * ASSEMBLY_GRAPH_INDEX_ROW_V1_BYTES) {
+    throw new SolverBridgeError(
+      createStatus("stream_read_failed", "halt", "assembly graph index sidecar byte length mismatch", {
+        recoverable: false,
+        details: { rowCount: sidecar.rowCount, byteLength: sidecar.byteLength },
+      })
+    );
+  }
+  const filePath = path.isAbsolute(sidecar.filePath)
+    ? sidecar.filePath
+    : path.resolve(manifestDir, sidecar.filePath);
+  let bytes;
+  try {
+    bytes = fs.readFileSync(filePath);
+  } catch (error) {
+    throw new SolverBridgeError(
+      createStatus("stream_read_failed", "halt", "assembly graph index sidecar file is missing", {
+        recoverable: false,
+        details: { filePath, error: error instanceof Error ? error.message : String(error) },
+      })
+    );
+  }
+  if (bytes.byteLength !== sidecar.byteLength) {
+    throw new SolverBridgeError(
+      createStatus("stream_read_failed", "halt", "assembly graph index sidecar file size mismatch", {
+        recoverable: false,
+        details: {
+          filePath,
+          expectedBytes: sidecar.byteLength,
+          actualBytes: bytes.byteLength,
+        },
+      })
+    );
+  }
+  const buffer = bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength);
+  const checksum = fnv1a64ArrayBufferHex(buffer);
+  if (checksum !== sidecar.checksum) {
+    throw new SolverBridgeError(
+      createStatus("stream_read_failed", "halt", "assembly graph index sidecar checksum mismatch", {
+        recoverable: false,
+        details: { filePath, expectedChecksum: sidecar.checksum, actualChecksum: checksum },
+      })
+    );
+  }
+  validateAssemblyGraphIndexSidecarRows(buffer, rows);
+  return {
+    schema: sidecar.schema,
+    indexLayout: sidecar.indexLayout,
+    numericType: sidecar.numericType,
+    byteOrder: sidecar.byteOrder,
+    rowSizeBytes: sidecar.rowSizeBytes,
+    rowCount: sidecar.rowCount,
+    byteLength: sidecar.byteLength,
+    filePath,
+    checksum: sidecar.checksum,
+  };
+}
+
+function validateAssemblyGraphIndexSidecarRows(buffer, rows) {
+  const view = new DataView(buffer);
+  rows.forEach((row, index) => {
+    const offset = index * ASSEMBLY_GRAPH_INDEX_ROW_V1_BYTES;
+    const sidecarRow = {
+      layoutCode: view.getUint32(offset, true),
+      keyKind: view.getUint32(offset + 4, true),
+      key: Number(view.getBigUint64(offset + 8, true)),
+      rowOffset: Number(view.getBigUint64(offset + 16, true)),
+      rowCount: Number(view.getBigUint64(offset + 24, true)),
+      timeStart: view.getFloat64(offset + 32, true),
+      timeEnd: view.getFloat64(offset + 40, true),
+      byteOffset: Number(view.getBigUint64(offset + 48, true)),
+      byteLength: Number(view.getBigUint64(offset + 56, true)),
+      stateFlags: view.getUint32(offset + 64, true),
+    };
+    const expectedByteLength = row.byteRange.end - row.byteRange.start;
+    if (
+      sidecarRow.layoutCode !== requireAssemblyGraphIndexLayoutCode(row.layout) ||
+      sidecarRow.keyKind !== requireAssemblyGraphIndexKeyKindCode(row.keyKind) ||
+      sidecarRow.key !== row.key ||
+      sidecarRow.rowOffset !== row.rowOffset ||
+      sidecarRow.rowCount !== row.rowCount ||
+      sidecarRow.timeStart !== row.timeRange.start ||
+      sidecarRow.timeEnd !== row.timeRange.end ||
+      sidecarRow.byteOffset !== row.byteRange.start ||
+      sidecarRow.byteLength !== expectedByteLength
+    ) {
+      throw new SolverBridgeError(
+        createStatus("stream_read_failed", "halt", "assembly graph index sidecar row mismatch", {
+          recoverable: false,
+          details: { rowIndex: index, sidecarRow, manifestRow: row },
+        })
+      );
+    }
+  });
+}
+
+function normalizeAssemblyGraphStoreDataset(dataset, name, layout, manifestDir, fs, path) {
+  if (!dataset || typeof dataset !== "object" || Array.isArray(dataset)) {
+    throw new SolverBridgeError(
+      createStatus("stream_read_failed", "halt", `assembly graph manifest is missing ${name} dataset`, {
+        recoverable: false,
+      })
+    );
+  }
+  if (dataset.layout !== layout) {
+    throw new SolverBridgeError(
+      createStatus("stream_read_failed", "halt", `assembly graph ${name} layout is invalid`, {
+        recoverable: false,
+        details: { expectedLayout: layout, actualLayout: dataset.layout },
+      })
+    );
+  }
+  const expectedRowSize = BINARY_LAYOUT_ROW_SIZE_BYTES.get(layout);
+  if (dataset.rowSizeBytes !== expectedRowSize) {
+    throw new SolverBridgeError(
+      createStatus("stream_read_failed", "halt", `assembly graph ${name} row size is invalid`, {
+        recoverable: false,
+        details: { expectedRowSize, actualRowSize: dataset.rowSizeBytes },
+      })
+    );
+  }
+  requireSafeUint64(dataset.rowCount, `datasets.${name}.rowCount`);
+  requireSafeUint64(dataset.byteLength, `datasets.${name}.byteLength`);
+  requireNonemptyString(dataset.path, `datasets.${name}.path`);
+  const filePath = path.isAbsolute(dataset.path)
+    ? dataset.path
+    : path.resolve(manifestDir, dataset.path);
+  let stats;
+  try {
+    stats = fs.statSync(filePath);
+  } catch (error) {
+    throw new SolverBridgeError(
+      createStatus("stream_read_failed", "halt", `assembly graph ${name} file is missing`, {
+        recoverable: false,
+        details: { filePath, error: error instanceof Error ? error.message : String(error) },
+      })
+    );
+  }
+  if (!stats.isFile() || stats.size !== dataset.byteLength) {
+    throw new SolverBridgeError(
+      createStatus("stream_read_failed", "halt", `assembly graph ${name} file size does not match manifest`, {
+        recoverable: false,
+        details: {
+          filePath,
+          expectedBytes: dataset.byteLength,
+          actualBytes: stats.size,
+        },
+      })
+    );
+  }
+  if (dataset.byteLength !== dataset.rowCount * dataset.rowSizeBytes) {
+    throw new SolverBridgeError(
+      createStatus("stream_read_failed", "halt", `assembly graph ${name} byte length is not a whole-row range`, {
+        recoverable: false,
+      })
+    );
+  }
+  if (dataset.checksum != null) {
+    const fileBuffer = fs.readFileSync(filePath);
+    const checksum = fnv1a64ArrayBufferHex(
+      fileBuffer.buffer.slice(fileBuffer.byteOffset, fileBuffer.byteOffset + fileBuffer.byteLength)
+    );
+    if (checksum !== dataset.checksum) {
+      throw new SolverBridgeError(
+        createStatus("stream_read_failed", "halt", `assembly graph ${name} checksum mismatch`, {
+          recoverable: false,
+          details: { filePath, expectedChecksum: dataset.checksum, actualChecksum: checksum },
+        })
+      );
+    }
+  }
+  return {
+    layout,
+    rowSizeBytes: dataset.rowSizeBytes,
+    rowCount: dataset.rowCount,
+    byteLength: dataset.byteLength,
+    path: filePath,
+    checksum: dataset.checksum,
+  };
+}
+
+function createAssemblyGraphStoreBufferDescriptor(bufferId, dataset) {
+  return {
+    bufferId,
+    layout: dataset.layout,
+    byteOffset: 0,
+    byteLength: dataset.byteLength,
+    rowCount: dataset.rowCount,
+    numericType: "f64",
+    storageTarget: "native-file",
+    filePath: dataset.path,
+    checksum: dataset.checksum,
+  };
+}
+
+function normalizeAssemblyGraphStoreReadLayouts(layouts) {
+  if (layouts == null || layouts.length === 0) {
+    return ["assembly_state.v1", "assembly_membership.v1", "assembly_hierarchy.v1", "assembly_events.v1"];
+  }
+  const allowed = new Set([
+    "assembly_state.v1",
+    "assembly_membership.v1",
+    "assembly_hierarchy.v1",
+    "assembly_events.v1",
+  ]);
+  return [...new Set(layouts)].map((layout, index) => {
+    if (!allowed.has(layout)) {
+      throw new SolverBridgeError(
+        createStatus("app_contract_error", "error", `layouts[${index}] is not an assembly graph layout`, {
+          recoverable: false,
+          details: { layout },
+        })
+      );
+    }
+    return layout;
+  });
+}
+
+function getAssemblyGraphStoreDatasetForLayout(store, layout) {
+  if (layout === "assembly_state.v1") {
+    return store.datasets.states;
+  }
+  if (layout === "assembly_membership.v1") {
+    return store.datasets.memberships;
+  }
+  if (layout === "assembly_hierarchy.v1") {
+    return store.datasets.hierarchy;
+  }
+  if (layout === "assembly_events.v1") {
+    return store.datasets.events;
+  }
+  throw new SolverBridgeError(
+    createStatus("app_contract_error", "error", "assembly graph layout is not supported", {
+      recoverable: false,
+      details: { layout },
+    })
+  );
+}
+
+function readAssemblyGraphStoreRows(dataset, index, request) {
+  const rowOffset = request.rowOffset ?? 0;
+  if (rowOffset > dataset.rowCount) {
+    throw new SolverBridgeError(
+      createStatus("stream_read_failed", "halt", "assembly graph read rowOffset is outside dataset", {
+        recoverable: false,
+        details: { layout: dataset.layout, rowOffset, rowCount: dataset.rowCount },
+      })
+    );
+  }
+  const rowWindow = computeAssemblyGraphStoreReadRowWindow(dataset, request);
+  const indexedOffsets = planAssemblyGraphStoreReadOffsets(dataset, index, request);
+  if (indexedOffsets) {
+    return {
+      rows: readAssemblyGraphStoreRowsByOffsets(dataset, indexedOffsets),
+      indexed: true,
+      indexRowCount: indexedOffsets.length,
+      indexSkippedRowCount: Math.max(0, dataset.rowCount - indexedOffsets.length),
+    };
+  }
+  return {
+    rows: readAssemblyGraphStoreRowsByRange(dataset, rowWindow.rowOffset, rowWindow.rowCount),
+    indexed: false,
+    indexRowCount: 0,
+    indexSkippedRowCount: 0,
+  };
+}
+
+function planAssemblyGraphStoreReadOffsets(dataset, index, request) {
+  if (!index?.rows || !assemblyGraphStoreReadCanUseIndex(request)) {
+    return null;
+  }
+  const rowWindow = computeAssemblyGraphStoreReadRowWindow(dataset, request);
+  const intersect = (left, right) => new Set([...left].filter((value) => right.has(value)));
+  const collect = (predicate) => collectAssemblyGraphStoreIndexOffsets(index, dataset.layout, predicate, rowWindow);
+  let candidates = null;
+  const applyFilter = (offsets) => {
+    candidates = candidates == null ? offsets : intersect(candidates, offsets);
+  };
+  if (request.pathKey != null) {
+    applyFilter(collect((row) => row.keyKind === "path" && row.key === request.pathKey));
+  }
+  if (request.assemblyKey != null) {
+    applyFilter(
+      collect(
+        (row) =>
+          ["assembly", "parent-assembly", "child-assembly"].includes(row.keyKind) && row.key === request.assemblyKey
+      )
+    );
+  }
+  if (request.timeRange != null) {
+    applyFilter(collect((row) => rangeOverlapsOptional(row.timeRange, request.timeRange)));
+  }
+  if (request.byteRange != null) {
+    applyFilter(collect((row) => byteRangeOverlapsOptional(row.byteRange, request.byteRange)));
+  }
+  return [...(candidates ?? new Set())].sort((left, right) => left - right);
+}
+
+function assemblyGraphStoreReadCanUseIndex(request) {
+  return (
+    request.pathKey != null ||
+    request.assemblyKey != null ||
+    request.timeRange != null ||
+    request.byteRange != null
+  );
+}
+
+function collectAssemblyGraphStoreIndexOffsets(index, layout, predicate, rowWindow) {
+  const offsets = new Set();
+  for (const row of index.rows) {
+    if (row.layout !== layout || !predicate(row)) {
+      continue;
+    }
+    for (let offset = row.rowOffset; offset < row.rowOffset + row.rowCount; offset += 1) {
+      if (offset >= rowWindow.rowOffset && offset < rowWindow.rowEnd) {
+        offsets.add(offset);
+      }
+    }
+  }
+  return offsets;
+}
+
+function computeAssemblyGraphStoreReadRowWindow(dataset, request) {
+  const requestedStart = request.rowOffset ?? 0;
+  const requestedEnd =
+    request.rowCount == null ? dataset.rowCount : Math.min(dataset.rowCount, requestedStart + request.rowCount);
+  let rowStart = Math.min(dataset.rowCount, requestedStart);
+  let rowEnd = Math.max(rowStart, requestedEnd);
+  if (request.byteRange != null) {
+    const byteStart = Math.max(0, Math.min(dataset.byteLength, request.byteRange.start));
+    const byteEnd = Math.max(byteStart, Math.min(dataset.byteLength, request.byteRange.end));
+    const byteRowStart = Math.min(dataset.rowCount, Math.floor(byteStart / dataset.rowSizeBytes));
+    const byteRowEnd = Math.min(dataset.rowCount, Math.ceil(byteEnd / dataset.rowSizeBytes));
+    rowStart = Math.max(rowStart, byteRowStart);
+    rowEnd = Math.min(rowEnd, byteRowEnd);
+  }
+  rowEnd = Math.max(rowStart, rowEnd);
+  return {
+    rowOffset: rowStart,
+    rowEnd,
+    rowCount: Math.max(0, rowEnd - rowStart),
+  };
+}
+
+function readAssemblyGraphStoreRowsByRange(dataset, rowOffset, rowCount) {
+  const { fs } = requireNativeFileStorageModules();
+  const byteOffset = rowOffset * dataset.rowSizeBytes;
+  const byteLength = rowCount * dataset.rowSizeBytes;
+  const fileBuffer = fs.readFileSync(dataset.path);
+  const source = fileBuffer.buffer.slice(
+    fileBuffer.byteOffset + byteOffset,
+    fileBuffer.byteOffset + byteOffset + byteLength
+  );
+  const view = new DataView(source);
+  const rows = [];
+  const reader = getAssemblyGraphRowReaderForLayout(dataset.layout);
+  for (let index = 0; index < rowCount; index += 1) {
+    rows.push(reader(view, index * dataset.rowSizeBytes));
+  }
+  return rows;
+}
+
+function readAssemblyGraphStoreRowsByOffsets(dataset, offsets) {
+  if (offsets.length === 0) {
+    return [];
+  }
+  if (offsets.some((offset) => offset < 0 || offset >= dataset.rowCount)) {
+    throw new SolverBridgeError(
+      createStatus("stream_read_failed", "halt", "assembly graph indexed read points outside dataset", {
+        recoverable: false,
+        details: { layout: dataset.layout, rowCount: dataset.rowCount },
+      })
+    );
+  }
+  const { fs } = requireNativeFileStorageModules();
+  const reader = getAssemblyGraphRowReaderForLayout(dataset.layout);
+  const rows = [];
+  const fd = fs.openSync(dataset.path, "r");
+  try {
+    for (const run of groupContiguousOffsets(offsets)) {
+      const byteOffset = run.start * dataset.rowSizeBytes;
+      const byteLength = run.count * dataset.rowSizeBytes;
+      const bytes = globalThis.Buffer?.allocUnsafe
+        ? globalThis.Buffer.allocUnsafe(byteLength)
+        : new Uint8Array(byteLength);
+      const bytesRead = fs.readSync(fd, bytes, 0, byteLength, byteOffset);
+      if (bytesRead !== byteLength) {
+        throw new SolverBridgeError(
+          createStatus("stream_read_failed", "halt", "assembly graph indexed read returned a short row range", {
+            recoverable: false,
+            details: { layout: dataset.layout, byteOffset, byteLength, bytesRead },
+          })
+        );
+      }
+      const source = bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength);
+      const view = new DataView(source);
+      for (let index = 0; index < run.count; index += 1) {
+        rows.push(reader(view, index * dataset.rowSizeBytes));
+      }
+    }
+  } finally {
+    fs.closeSync(fd);
+  }
+  return rows;
+}
+
+function groupContiguousOffsets(offsets) {
+  const runs = [];
+  for (const offset of offsets) {
+    const last = runs[runs.length - 1];
+    if (last && last.start + last.count === offset) {
+      last.count += 1;
+    } else {
+      runs.push({ start: offset, count: 1 });
+    }
+  }
+  return runs;
+}
+
+function filterAssemblyGraphRows(layout, rows, request) {
+  return rows.filter((row) => assemblyGraphRowMatches(layout, row, request));
+}
+
+function assemblyGraphRowMatches(layout, row, request) {
+  if (request.pathKey != null) {
+    if (layout === "assembly_membership.v1" && row.pathKey !== request.pathKey) {
+      return false;
+    }
+    if (layout === "assembly_events.v1" && row.relatedPathKey !== request.pathKey) {
+      return false;
+    }
+    if (layout === "assembly_state.v1" || layout === "assembly_hierarchy.v1") {
+      return false;
+    }
+  }
+  if (request.assemblyKey != null) {
+    if (layout === "assembly_state.v1" && row.assemblyKey !== request.assemblyKey) {
+      return false;
+    }
+    if (layout === "assembly_membership.v1" && row.assemblyKey !== request.assemblyKey) {
+      return false;
+    }
+    if (
+      layout === "assembly_hierarchy.v1" &&
+      row.parentAssemblyKey !== request.assemblyKey &&
+      row.childAssemblyKey !== request.assemblyKey
+    ) {
+      return false;
+    }
+    if (layout === "assembly_events.v1" && row.relatedAssemblyKey !== request.assemblyKey) {
+      return false;
+    }
+  }
+  if (request.timeRange != null) {
+    if (layout === "assembly_events.v1") {
+      return rangeContainsPoint(request.timeRange, row.eventTime);
+    }
+    return rangeOverlapsOptional({ start: row.timeStart, end: row.timeEnd }, request.timeRange);
+  }
+  return true;
+}
+
+function rangeContainsPoint(range, point) {
+  return range.start <= point && point <= range.end;
+}
+
+function getAssemblyGraphRowReaderForLayout(layout) {
+  if (layout === "assembly_state.v1") {
+    return readAssemblyStateRowF64FromView;
+  }
+  if (layout === "assembly_membership.v1") {
+    return readAssemblyMembershipRowF64FromView;
+  }
+  if (layout === "assembly_hierarchy.v1") {
+    return readAssemblyHierarchyRowF64FromView;
+  }
+  if (layout === "assembly_events.v1") {
+    return readAssemblyEventRowF64FromView;
+  }
+  throw new SolverBridgeError(
+    createStatus("app_contract_error", "error", "assembly graph layout is not readable", {
+      recoverable: false,
+      details: { layout },
+    })
+  );
+}
+
+function getAssemblyGraphRowWriterForLayout(layout) {
+  if (layout === "assembly_state.v1") {
+    return writeAssemblyStateRowF64ToView;
+  }
+  if (layout === "assembly_membership.v1") {
+    return writeAssemblyMembershipRowF64ToView;
+  }
+  if (layout === "assembly_hierarchy.v1") {
+    return writeAssemblyHierarchyRowF64ToView;
+  }
+  if (layout === "assembly_events.v1") {
+    return writeAssemblyEventRowF64ToView;
+  }
+  throw new SolverBridgeError(
+    createStatus("app_contract_error", "error", "assembly graph layout is not writable", {
+      recoverable: false,
+      details: { layout },
+    })
+  );
+}
+
+function copyAssemblyGraphStoreManifest(store) {
+  return deepCloneJson(store);
+}
+
+function registerNativeFileStreamManifest(state, request) {
+  requireNonemptyString(request.manifestPath, "manifestPath");
+  const { fs, path } = requireNativeFileStorageModules();
+  const manifestPath = path.resolve(request.manifestPath);
+  const manifestText = fs.readFileSync(manifestPath, "utf8");
+  let manifest;
+  try {
+    manifest = JSON.parse(manifestText);
+  } catch (error) {
+    throw new SolverBridgeError(
+      createStatus("stream_read_failed", "halt", "native-file stream manifest is not valid JSON", {
+        recoverable: false,
+        details: { manifestPath, error: error instanceof Error ? error.message : String(error) },
+      })
+    );
+  }
+  if (manifest?.schema !== "solver-native-file-stream-manifest.v1") {
+    throw new SolverBridgeError(
+      createStatus("stream_read_failed", "halt", "native-file stream manifest schema is not supported", {
+        recoverable: false,
+        details: { manifestPath, schema: manifest?.schema },
+      })
+    );
+  }
+  if (!manifest.stream || typeof manifest.stream !== "object" || Array.isArray(manifest.stream)) {
+    throw new SolverBridgeError(
+      createStatus("stream_read_failed", "halt", "native-file stream manifest is missing stream metadata", {
+        recoverable: false,
+        details: { manifestPath },
+      })
+    );
+  }
+  const manifestDir = path.dirname(manifestPath);
+  const stream = normalizeNativeFileManifestStream(manifest.stream, manifestPath, manifestDir);
+  if (request.streamId != null && request.streamId !== stream.streamId) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "streamId does not match native-file manifest", {
+        recoverable: false,
+        details: { requestedStreamId: request.streamId, manifestStreamId: stream.streamId },
+      })
+    );
+  }
+  const chunks = normalizeNativeFileManifestChunks(manifest.chunks, manifestDir, fs);
+  const nativeFileIndex = normalizeNativeFileManifestIndex(manifest.index, stream, manifestDir, fs);
+  const entry = createStreamEntry(stream, chunks, {
+    runId: request.runId ?? null,
+    datasetId: request.datasetId ?? null,
+    pathIndexRows: nativeFileIndex.pathIndexRows,
+    indexSidecar: nativeFileIndex.sidecar,
+  });
+  state.streams.set(stream.streamId, entry);
+  return entry;
+}
+
+function normalizeNativeFileManifestStream(stream, manifestPath, manifestDir) {
+  requireNonemptyString(stream.streamId, "manifest.stream.streamId");
+  if (stream.manifestVersion !== "solver-stream-manifest.v1") {
+    throw new SolverBridgeError(
+      createStatus("stream_read_failed", "halt", "native-file stream manifest has invalid stream version", {
+        recoverable: false,
+        details: { streamId: stream.streamId, manifestVersion: stream.manifestVersion },
+      })
+    );
+  }
+  if (stream.indexLayout !== "stream_index.v1") {
+    throw new SolverBridgeError(
+      createStatus("stream_read_failed", "halt", "native-file stream manifest has invalid index layout", {
+        recoverable: false,
+        details: { streamId: stream.streamId, indexLayout: stream.indexLayout },
+      })
+    );
+  }
+  if (!Array.isArray(stream.availableRanges)) {
+    throw new SolverBridgeError(
+      createStatus("stream_read_failed", "halt", "native-file stream manifest is missing ranges", {
+        recoverable: false,
+        details: { streamId: stream.streamId },
+      })
+    );
+  }
+  const storagePolicy = stream.storagePolicy || {};
+  if (storagePolicy.target !== "native-file") {
+    throw new SolverBridgeError(
+      createStatus("stream_read_failed", "halt", "native-file stream manifest does not describe native-file storage", {
+        recoverable: false,
+        details: { streamId: stream.streamId, storageTarget: storagePolicy.target },
+      })
+    );
+  }
+  const { path } = requireNativeFileStorageModules();
+  const streamPath = path.resolve(storagePolicy.streamPath ?? manifestDir);
+  return {
+    streamId: stream.streamId,
+    manifestVersion: stream.manifestVersion,
+    indexLayout: stream.indexLayout,
+    availableRanges: stream.availableRanges.map(copyStreamRange),
+    storagePolicy: {
+      ...storagePolicy,
+      target: "native-file",
+      durable: true,
+      maxBytes: storagePolicy.maxBytes ?? 0,
+      basePath: storagePolicy.basePath ? path.resolve(storagePolicy.basePath) : path.dirname(streamPath),
+      streamPath,
+      indexPath: storagePolicy.indexPath
+        ? path.resolve(storagePolicy.indexPath)
+        : path.join(streamPath, "stream-index.stream_index.v1.bin"),
+      manifestPath,
+    },
+    metadata: deepCloneJson(stream.metadata),
+  };
+}
+
+function normalizeNativeFileManifestChunks(chunks, manifestDir, fs) {
+  if (!Array.isArray(chunks)) {
+    throw new SolverBridgeError(
+      createStatus("stream_read_failed", "halt", "native-file stream manifest is missing chunks", {
+        recoverable: false,
+      })
+    );
+  }
+  const { path } = requireNativeFileStorageModules();
+  return chunks.map((chunk, index) => {
+    if (!chunk || typeof chunk !== "object" || Array.isArray(chunk)) {
+      throw new SolverBridgeError(
+        createStatus("stream_read_failed", "halt", "native-file stream manifest chunk is invalid", {
+          recoverable: false,
+          details: { chunkIndex: index },
+        })
+      );
+    }
+    requireNonemptyString(chunk.bufferId, `chunks[${index}].bufferId`);
+    requireNonemptyString(chunk.layout, `chunks[${index}].layout`);
+    requireSafeUint64(chunk.byteLength, `chunks[${index}].byteLength`);
+    requireSafeUint64(chunk.rowCount, `chunks[${index}].rowCount`);
+    requireNonemptyString(chunk.filePath, `chunks[${index}].filePath`);
+    const filePath = path.isAbsolute(chunk.filePath)
+      ? chunk.filePath
+      : path.resolve(manifestDir, chunk.filePath);
+    let stats;
+    try {
+      stats = fs.statSync(filePath);
+    } catch (error) {
+      throw new SolverBridgeError(
+        createStatus("stream_read_failed", "halt", "native-file stream chunk file is missing", {
+          recoverable: false,
+          details: {
+            chunkIndex: index,
+            filePath,
+            error: error instanceof Error ? error.message : String(error),
+          },
+        })
+      );
+    }
+    if (!stats.isFile() || stats.size !== chunk.byteLength) {
+      throw new SolverBridgeError(
+        createStatus("stream_read_failed", "halt", "native-file stream chunk size does not match manifest", {
+          recoverable: false,
+          details: {
+            chunkIndex: index,
+            filePath,
+            expectedBytes: chunk.byteLength,
+            actualBytes: stats.size,
+          },
+        })
+      );
+    }
+    return {
+      ...copyBufferDescriptorWithoutPayload(chunk),
+      storageTarget: "native-file",
+      filePath,
+    };
+  });
+}
+
+function normalizeNativeFileManifestIndex(index, stream, manifestDir, fs) {
+  if (index == null) {
+    return { pathIndexRows: null, sidecar: null };
+  }
+  if (!index || typeof index !== "object" || Array.isArray(index)) {
+    throw new SolverBridgeError(
+      createStatus("stream_read_failed", "halt", "native-file stream manifest index is invalid", {
+        recoverable: false,
+        details: { streamId: stream.streamId },
+      })
+    );
+  }
+  if (index.schema !== "solver-stream-index.v1" || index.indexLayout !== "stream_index.v1") {
+    throw new SolverBridgeError(
+      createStatus("stream_read_failed", "halt", "native-file stream manifest index schema is not supported", {
+        recoverable: false,
+        details: {
+          streamId: stream.streamId,
+          schema: index.schema,
+          indexLayout: index.indexLayout,
+        },
+      })
+    );
+  }
+  if (index.streamId !== stream.streamId) {
+    throw new SolverBridgeError(
+      createStatus("stream_read_failed", "halt", "native-file stream manifest index streamId mismatch", {
+        recoverable: false,
+        details: {
+          streamId: stream.streamId,
+          indexStreamId: index.streamId,
+        },
+      })
+    );
+  }
+  if (!Array.isArray(index.pathIndexRows)) {
+    throw new SolverBridgeError(
+      createStatus("stream_read_failed", "halt", "native-file stream manifest index rows are missing", {
+        recoverable: false,
+        details: { streamId: stream.streamId },
+      })
+    );
+  }
+  const chunkCount = stream.availableRanges.length;
+  const pathIndexRows = index.pathIndexRows.map((row, rowIndex) =>
+    normalizeNativeFileManifestIndexRow(row, rowIndex, chunkCount)
+  );
+  const sidecar = index.sidecar
+    ? normalizeNativeFileManifestIndexSidecar(index.sidecar, manifestDir, fs, stream, pathIndexRows)
+    : null;
+  return { pathIndexRows, sidecar };
+}
+
+function normalizeNativeFileManifestIndexSidecar(sidecar, manifestDir, fs, stream, pathIndexRows) {
+  if (!sidecar || typeof sidecar !== "object" || Array.isArray(sidecar)) {
+    throw new SolverBridgeError(
+      createStatus("stream_read_failed", "halt", "native-file stream index sidecar is invalid", {
+        recoverable: false,
+        details: { streamId: stream.streamId },
+      })
+    );
+  }
+  if (
+    sidecar.schema !== "solver-stream-index-sidecar.v1" ||
+    sidecar.indexLayout !== "stream_index.v1" ||
+    sidecar.rowSizeBytes !== STREAM_INDEX_ROW_V1_BYTES
+  ) {
+    throw new SolverBridgeError(
+      createStatus("stream_read_failed", "halt", "native-file stream index sidecar schema is not supported", {
+        recoverable: false,
+        details: {
+          streamId: stream.streamId,
+          schema: sidecar.schema,
+          indexLayout: sidecar.indexLayout,
+          rowSizeBytes: sidecar.rowSizeBytes,
+        },
+      })
+    );
+  }
+  requireSafeUint64(sidecar.rowCount, "index.sidecar.rowCount");
+  requireSafeUint64(sidecar.byteLength, "index.sidecar.byteLength");
+  requireNonemptyString(sidecar.filePath, "index.sidecar.filePath");
+  requireNonemptyString(sidecar.checksum, "index.sidecar.checksum");
+  if (sidecar.rowCount !== pathIndexRows.length) {
+    throw new SolverBridgeError(
+      createStatus("stream_read_failed", "halt", "native-file stream index sidecar row count mismatch", {
+        recoverable: false,
+        details: {
+          streamId: stream.streamId,
+          sidecarRowCount: sidecar.rowCount,
+          manifestRowCount: pathIndexRows.length,
+        },
+      })
+    );
+  }
+  if (sidecar.byteLength !== sidecar.rowCount * STREAM_INDEX_ROW_V1_BYTES) {
+    throw new SolverBridgeError(
+      createStatus("stream_read_failed", "halt", "native-file stream index sidecar byte length mismatch", {
+        recoverable: false,
+        details: {
+          streamId: stream.streamId,
+          rowCount: sidecar.rowCount,
+          byteLength: sidecar.byteLength,
+        },
+      })
+    );
+  }
+  const { path } = requireNativeFileStorageModules();
+  const filePath = path.isAbsolute(sidecar.filePath)
+    ? sidecar.filePath
+    : path.resolve(manifestDir, sidecar.filePath);
+  let bytes;
+  try {
+    bytes = fs.readFileSync(filePath);
+  } catch (error) {
+    throw new SolverBridgeError(
+      createStatus("stream_read_failed", "halt", "native-file stream index sidecar file is missing", {
+        recoverable: false,
+        details: {
+          streamId: stream.streamId,
+          filePath,
+          error: error instanceof Error ? error.message : String(error),
+        },
+      })
+    );
+  }
+  if (bytes.byteLength !== sidecar.byteLength) {
+    throw new SolverBridgeError(
+      createStatus("stream_read_failed", "halt", "native-file stream index sidecar file size mismatch", {
+        recoverable: false,
+        details: {
+          streamId: stream.streamId,
+          filePath,
+          expectedBytes: sidecar.byteLength,
+          actualBytes: bytes.byteLength,
+        },
+      })
+    );
+  }
+  const buffer = bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength);
+  const checksum = fnv1a64ArrayBufferHex(buffer);
+  if (checksum !== sidecar.checksum) {
+    throw new SolverBridgeError(
+      createStatus("stream_read_failed", "halt", "native-file stream index sidecar checksum mismatch", {
+        recoverable: false,
+        details: {
+          streamId: stream.streamId,
+          filePath,
+          expectedChecksum: sidecar.checksum,
+          actualChecksum: checksum,
+        },
+      })
+    );
+  }
+  validateStreamIndexSidecarRows(buffer, pathIndexRows, stream.streamId);
+  return copyStreamIndexSidecar({ ...sidecar, filePath });
+}
+
+function normalizeNativeFileManifestIndexRow(row, rowIndex, chunkCount) {
+  if (!row || typeof row !== "object" || Array.isArray(row)) {
+    throw new SolverBridgeError(
+      createStatus("stream_read_failed", "halt", "native-file stream manifest index row is invalid", {
+        recoverable: false,
+        details: { rowIndex },
+      })
+    );
+  }
+  requireSafeUint64(row.pathKey, `index.pathIndexRows[${rowIndex}].pathKey`);
+  requireSafeUint64(row.chunkIndex, `index.pathIndexRows[${rowIndex}].chunkIndex`);
+  requireSafeUint64(row.rowOffset, `index.pathIndexRows[${rowIndex}].rowOffset`);
+  requireSafeUint64(row.rowCount, `index.pathIndexRows[${rowIndex}].rowCount`);
+  validateRange(row.timeRange, `index.pathIndexRows[${rowIndex}].timeRange`);
+  validateRange(row.frameRange, `index.pathIndexRows[${rowIndex}].frameRange`);
+  validateRange(row.byteRange, `index.pathIndexRows[${rowIndex}].byteRange`);
+  if (row.chunkIndex >= chunkCount) {
+    throw new SolverBridgeError(
+      createStatus("stream_read_failed", "halt", "native-file stream manifest index row points outside chunks", {
+        recoverable: false,
+        details: { rowIndex, chunkIndex: row.chunkIndex, chunkCount },
+      })
+    );
+  }
+  return copyPathHistoryIndexRow(row);
+}
+
+function validateStreamIndexSidecarRows(buffer, pathIndexRows, streamId) {
+  const view = new DataView(buffer);
+  pathIndexRows.forEach((row, index) => {
+    const offset = index * STREAM_INDEX_ROW_V1_BYTES;
+    const sidecarRow = {
+      pathKey: Number(view.getBigUint64(offset, true)),
+      chunkIndex: Number(view.getBigUint64(offset + 8, true)),
+      rowOffset: Number(view.getBigUint64(offset + 16, true)),
+      rowCount: Number(view.getBigUint64(offset + 24, true)),
+      timeStart: view.getFloat64(offset + 32, true),
+      timeEnd: view.getFloat64(offset + 40, true),
+      byteOffset: Number(view.getBigUint64(offset + 48, true)),
+      byteLength: Number(view.getBigUint64(offset + 56, true)),
+    };
+    const expectedByteLength = row.byteRange.end - row.byteRange.start;
+    if (
+      sidecarRow.pathKey !== row.pathKey ||
+      sidecarRow.chunkIndex !== row.chunkIndex ||
+      sidecarRow.rowOffset !== row.rowOffset ||
+      sidecarRow.rowCount !== row.rowCount ||
+      sidecarRow.timeStart !== row.timeRange.start ||
+      sidecarRow.timeEnd !== row.timeRange.end ||
+      sidecarRow.byteOffset !== row.byteRange.start ||
+      sidecarRow.byteLength !== expectedByteLength
+    ) {
+      throw new SolverBridgeError(
+        createStatus("stream_read_failed", "halt", "native-file stream index sidecar row mismatch", {
+          recoverable: false,
+          details: { streamId, rowIndex: index, sidecarRow, manifestRow: row },
+        })
+      );
+    }
+  });
+}
+
+function getBufferDescriptorArrayBuffer(descriptor) {
+  if (descriptor?.buffer instanceof ArrayBuffer) {
+    return descriptor.buffer;
+  }
+  if (descriptor?.filePath) {
+    const { fs } = requireNativeFileStorageModules();
+    const bytes = fs.readFileSync(descriptor.filePath);
+    const buffer = bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength);
+    if (descriptor.checksum && fnv1a64ArrayBufferHex(buffer) !== descriptor.checksum) {
+      throw new SolverBridgeError(
+        createStatus("stream_read_failed", "halt", "native-file stream chunk checksum mismatch", {
+          recoverable: false,
+          details: {
+            bufferId: descriptor.bufferId,
+            filePath: descriptor.filePath,
+          },
+        })
+      );
+    }
+    return buffer;
+  }
+  return null;
+}
+
+function releaseRunStreams(state, runId) {
+  if (runId == null) {
+    return releaseAllStreams(state);
+  }
+  const ownedStreamIds = [];
+  const ownerlessStreamIds = [];
+  for (const [streamId, streamEntry] of state.streams.entries()) {
+    if (streamEntry.runId === runId) {
+      ownedStreamIds.push(streamId);
+    } else if (streamEntry.runId == null) {
+      ownerlessStreamIds.push(streamId);
+    }
+  }
+  return releaseStreamsById(state, ownedStreamIds.length > 0 ? ownedStreamIds : ownerlessStreamIds);
+}
+
+function releaseAllStreams(state) {
+  return releaseStreamsById(state, [...state.streams.keys()]);
+}
+
+function releaseStreamsById(state, streamIds) {
+  const summary = {
+    releasedStreamCount: 0,
+    deletedNativeFileStreamCount: 0,
+  };
+  for (const streamId of streamIds) {
+    const streamEntry = state.streams.get(streamId);
+    if (!streamEntry) {
+      continue;
+    }
+    if (cleanupNativeFileStreamEntry(streamEntry)) {
+      summary.deletedNativeFileStreamCount += 1;
+    }
+    state.streams.delete(streamId);
+    summary.releasedStreamCount += 1;
+  }
+  return summary;
+}
+
+function cleanupNativeFileStreamEntry(streamEntry) {
+  const streamPath = streamEntry?.stream?.storagePolicy?.streamPath;
+  if (streamEntry?.stream?.storagePolicy?.target !== "native-file" || !streamPath) {
+    return false;
+  }
+  const { fs } = requireNativeFileStorageModules();
+  fs.rmSync(streamPath, { recursive: true, force: true });
+  return true;
 }
 
 function normalizePathHistoryStreamMetadata(metadata = {}) {
@@ -8542,6 +12067,25 @@ function encodePathHistoryRowsF64(rows, rowSizeBytes) {
   return buffer;
 }
 
+function createAssemblyGraphBufferDescriptor(bufferId, layout, rows, rowSizeBytes, writeRow) {
+  return createBufferDescriptor(
+    bufferId,
+    layout,
+    rows.length,
+    rowSizeBytes,
+    encodeAssemblyGraphRowsF64(rows, rowSizeBytes, writeRow)
+  );
+}
+
+function encodeAssemblyGraphRowsF64(rows, rowSizeBytes, writeRow) {
+  const buffer = new ArrayBuffer(rows.length * rowSizeBytes);
+  const view = new DataView(buffer);
+  rows.forEach((row, index) => {
+    writeRow(view, index * rowSizeBytes, row);
+  });
+  return buffer;
+}
+
 function fnv1a64ArrayBufferHex(buffer) {
   let hash = 0xcbf29ce484222325n;
   const prime = 0x100000001b3n;
@@ -8565,10 +12109,148 @@ function writePathHistoryRowF64ToView(view, offset, row) {
   view.setUint32(offset + 92, 0, true);
 }
 
+function writeAssemblyStateRowF64ToView(view, offset, row) {
+  writeUint64ToView(view, offset, row.assemblyKey);
+  writeUint64ToView(view, offset + 8, row.assemblyStateKey);
+  view.setFloat64(offset + 16, row.timeStart, true);
+  view.setFloat64(offset + 24, row.timeEnd, true);
+  writeVectorToView(view, offset + 32, row.center);
+  writeVectorToView(view, offset + 56, row.velocity);
+  view.setFloat64(offset + 80, row.phase ?? 0, true);
+  writeInt64ToView(view, offset + 88, row.cycleIndex ?? 0);
+  view.setUint32(offset + 96, row.modelVersion ?? 1, true);
+  view.setUint32(offset + 100, row.statusFlags ?? 0, true);
+  view.setUint32(offset + 104, row.fidelityFlags ?? 0, true);
+  view.setUint32(offset + 108, 0, true);
+}
+
+function writeAssemblyMembershipRowF64ToView(view, offset, row) {
+  writeUint64ToView(view, offset, row.membershipKey);
+  writeUint64ToView(view, offset + 8, row.pathKey);
+  writeUint64ToView(view, offset + 16, row.assemblyKey);
+  writeUint64ToView(view, offset + 24, row.assemblyStateKey);
+  view.setFloat64(offset + 32, row.timeStart, true);
+  view.setFloat64(offset + 40, row.timeEnd, true);
+  view.setFloat64(offset + 48, row.confidence, true);
+  view.setUint32(offset + 56, row.localRole ?? 0, true);
+  view.setUint32(offset + 60, row.bindingState ?? 0, true);
+  view.setUint32(offset + 64, row.membershipVersion ?? 1, true);
+  view.setUint32(offset + 68, row.eventKind ?? 0, true);
+  view.setUint32(offset + 72, row.statusFlags ?? 0, true);
+  view.setUint32(offset + 76, 0, true);
+}
+
+function writeAssemblyHierarchyRowF64ToView(view, offset, row) {
+  writeUint64ToView(view, offset, row.hierarchyKey);
+  writeUint64ToView(view, offset + 8, row.parentAssemblyKey);
+  writeUint64ToView(view, offset + 16, row.childAssemblyKey);
+  view.setFloat64(offset + 24, row.timeStart, true);
+  view.setFloat64(offset + 32, row.timeEnd, true);
+  view.setUint32(offset + 40, row.relationType ?? 0, true);
+  view.setUint32(offset + 44, row.hierarchyVersion ?? 1, true);
+  view.setUint32(offset + 48, row.statusFlags ?? 0, true);
+  view.setUint32(offset + 52, 0, true);
+}
+
+function writeAssemblyEventRowF64ToView(view, offset, row) {
+  writeUint64ToView(view, offset, row.eventKey);
+  writeUint64ToView(view, offset + 8, row.primaryId);
+  writeUint64ToView(view, offset + 16, row.secondaryId);
+  writeUint64ToView(view, offset + 24, row.priorStateKey);
+  writeUint64ToView(view, offset + 32, row.nextStateKey);
+  writeUint64ToView(view, offset + 40, row.relatedPathKey);
+  writeUint64ToView(view, offset + 48, row.relatedAssemblyKey);
+  writeUint64ToView(view, offset + 56, row.branchTransitionKey);
+  view.setFloat64(offset + 64, row.eventTime, true);
+  view.setUint32(offset + 72, row.eventKind, true);
+  view.setUint32(offset + 76, row.speedRegime, true);
+  view.setUint32(offset + 80, row.statusFlags, true);
+  view.setUint32(offset + 84, 0, true);
+}
+
+function readAssemblyStateRowF64FromView(view, offset) {
+  return {
+    assemblyKey: readUint64FromView(view, offset),
+    assemblyStateKey: readUint64FromView(view, offset + 8),
+    timeStart: view.getFloat64(offset + 16, true),
+    timeEnd: view.getFloat64(offset + 24, true),
+    center: readVectorFromView(view, offset + 32),
+    velocity: readVectorFromView(view, offset + 56),
+    phase: view.getFloat64(offset + 80, true),
+    cycleIndex: readInt64FromView(view, offset + 88),
+    modelVersion: view.getUint32(offset + 96, true),
+    statusFlags: view.getUint32(offset + 100, true),
+    fidelityFlags: view.getUint32(offset + 104, true),
+  };
+}
+
+function readAssemblyMembershipRowF64FromView(view, offset) {
+  return {
+    membershipKey: readUint64FromView(view, offset),
+    pathKey: readUint64FromView(view, offset + 8),
+    assemblyKey: readUint64FromView(view, offset + 16),
+    assemblyStateKey: readUint64FromView(view, offset + 24),
+    timeStart: view.getFloat64(offset + 32, true),
+    timeEnd: view.getFloat64(offset + 40, true),
+    confidence: view.getFloat64(offset + 48, true),
+    localRole: view.getUint32(offset + 56, true),
+    bindingState: view.getUint32(offset + 60, true),
+    membershipVersion: view.getUint32(offset + 64, true),
+    eventKind: view.getUint32(offset + 68, true),
+    statusFlags: view.getUint32(offset + 72, true),
+  };
+}
+
+function readAssemblyHierarchyRowF64FromView(view, offset) {
+  return {
+    hierarchyKey: readUint64FromView(view, offset),
+    parentAssemblyKey: readUint64FromView(view, offset + 8),
+    childAssemblyKey: readUint64FromView(view, offset + 16),
+    timeStart: view.getFloat64(offset + 24, true),
+    timeEnd: view.getFloat64(offset + 32, true),
+    relationType: view.getUint32(offset + 40, true),
+    hierarchyVersion: view.getUint32(offset + 44, true),
+    statusFlags: view.getUint32(offset + 48, true),
+  };
+}
+
+function readAssemblyEventRowF64FromView(view, offset) {
+  return {
+    eventKey: readUint64FromView(view, offset),
+    primaryId: readUint64FromView(view, offset + 8),
+    secondaryId: readUint64FromView(view, offset + 16),
+    priorStateKey: readUint64FromView(view, offset + 24),
+    nextStateKey: readUint64FromView(view, offset + 32),
+    relatedPathKey: readUint64FromView(view, offset + 40),
+    relatedAssemblyKey: readUint64FromView(view, offset + 48),
+    branchTransitionKey: readUint64FromView(view, offset + 56),
+    eventTime: view.getFloat64(offset + 64, true),
+    eventKind: view.getUint32(offset + 72, true),
+    speedRegime: view.getUint32(offset + 76, true),
+    statusFlags: view.getUint32(offset + 80, true),
+  };
+}
+
 function writeVectorToView(view, offset, vector) {
   view.setFloat64(offset, vector.x, true);
   view.setFloat64(offset + 8, vector.y, true);
   view.setFloat64(offset + 16, vector.z, true);
+}
+
+function writeUint64ToView(view, offset, value) {
+  view.setBigUint64(offset, BigInt(value), true);
+}
+
+function writeInt64ToView(view, offset, value) {
+  view.setBigInt64(offset, BigInt(value), true);
+}
+
+function readUint64FromView(view, offset) {
+  return Number(view.getBigUint64(offset, true));
+}
+
+function readInt64FromView(view, offset) {
+  return Number(view.getBigInt64(offset, true));
 }
 
 function summarizePathHistoryRows(rows) {
@@ -8621,9 +12303,17 @@ function findStreamEntry(state, streamId) {
 function selectStreamRanges(streamEntry, request) {
   const results = [];
   const diagnostics = [];
+  const chunkIndexSet = request.chunkIndices == null ? null : new Set(request.chunkIndices);
   streamEntry.stream.availableRanges.forEach((range, index) => {
+    if (chunkIndexSet && !chunkIndexSet.has(index)) {
+      return;
+    }
     const descriptor = streamEntry.buffers[index];
-    if (!descriptor || !descriptor.buffer) {
+    if (!descriptor) {
+      return;
+    }
+    const buffer = getBufferDescriptorArrayBuffer(descriptor);
+    if (!buffer) {
       return;
     }
     if (!rangeMatchesRequest(range, request)) {
@@ -8641,7 +12331,7 @@ function selectStreamRanges(streamEntry, request) {
       const filtered = filterPathHistoryRows(
         streamEntry,
         index,
-        descriptor.buffer,
+        buffer,
         descriptor,
         localStart,
         localEnd,
@@ -8670,7 +12360,7 @@ function selectStreamRanges(streamEntry, request) {
       },
       descriptor,
       rowCount: rowCountForSlice(descriptor, localStart, localEnd),
-      buffer: sliceArrayBuffer(descriptor.buffer, localStart, localEnd),
+      buffer: sliceArrayBuffer(buffer, localStart, localEnd),
     });
   });
   return { items: results, diagnostics };

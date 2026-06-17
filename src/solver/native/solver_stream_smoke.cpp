@@ -1,4 +1,5 @@
 #include "architrino/solver/PathHistoryStream.hpp"
+#include "architrino/solver/SolverCAbi.hpp"
 
 #include <cmath>
 #include <filesystem>
@@ -169,6 +170,153 @@ int main() {
   }
   const std::string manifest = read_text(metadataPath);
 
+  const std::string cDataPath = (outputDir / "path-history-cabi.bin").string();
+  const std::string cIndexPath = (outputDir / "path-history-cabi.idx").string();
+  const std::string cChunkPath = (outputDir / "path-history-cabi.chunks").string();
+  const std::string cMetadataPath = (outputDir / "path-history-cabi.meta.json").string();
+  const ArchitrinoSolverPathHistoryRowF64 cInputRows[4] = {
+      ArchitrinoSolverPathHistoryRowF64{
+          pathKey,
+          0,
+          0.0,
+          0.5,
+          0.0,
+          1.0,
+          2.0,
+          0.25,
+          0.5,
+          0.75,
+          1e-12,
+          7,
+          0,
+      },
+      ArchitrinoSolverPathHistoryRowF64{
+          pathKey,
+          1,
+          1.0,
+          1.5,
+          1.0,
+          2.0,
+          3.0,
+          0.25,
+          0.5,
+          0.75,
+          1e-12,
+          7,
+          0,
+      },
+      ArchitrinoSolverPathHistoryRowF64{
+          pathKey,
+          2,
+          2.0,
+          2.5,
+          2.0,
+          3.0,
+          4.0,
+          0.25,
+          0.5,
+          0.75,
+          1e-12,
+          7,
+          0,
+      },
+      ArchitrinoSolverPathHistoryRowF64{
+          pathBKey,
+          0,
+          12.0,
+          13.0,
+          20.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          1e-12,
+          3,
+          0,
+      },
+  };
+  ArchitrinoSolverPathHistoryStreamSummary cSummary{};
+  const int cWriteStatus = architrino_solver_write_path_history_stream_f64(
+      "stream-smoke-cabi",
+      cDataPath.c_str(),
+      cIndexPath.c_str(),
+      cChunkPath.c_str(),
+      cMetadataPath.c_str(),
+      cInputRows,
+      4,
+      2,
+      1,
+      &cSummary);
+
+  ArchitrinoSolverPathHistoryIndexRow cIndexRows[3] = {};
+  ArchitrinoSolverPathHistoryChunkRow cChunkRows[3] = {};
+  ArchitrinoSolverPathHistoryRowF64 cReadRows[4] = {};
+  ArchitrinoSolverPathHistoryIndexRow cQueryRows[3] = {};
+  int cIndexCount = 0;
+  int cChunkCount = 0;
+  int cReadCount = 0;
+  int cQueryCount = 0;
+  int cProbeIndexCount = 0;
+  const int cProbeIndexStatus = architrino_solver_read_path_history_stream_index(
+      cIndexPath.c_str(),
+      nullptr,
+      0,
+      &cProbeIndexCount);
+  const int cIndexStatus = architrino_solver_read_path_history_stream_index(
+      cIndexPath.c_str(),
+      cIndexRows,
+      3,
+      &cIndexCount);
+  const int cChunkStatus = architrino_solver_read_path_history_stream_chunks(
+      cChunkPath.c_str(),
+      cChunkRows,
+      3,
+      &cChunkCount);
+  const ArchitrinoSolverPathHistoryQuery cQuery{
+      pathKey,
+      1.25,
+      2.25,
+      1,
+      1,
+      1,
+      0,
+  };
+  const int cQueryStatus = architrino_solver_query_path_history_stream_index(
+      cIndexRows,
+      cIndexCount,
+      &cQuery,
+      cQueryRows,
+      3,
+      &cQueryCount);
+  const int cReadStatus = architrino_solver_read_path_history_stream_query_f64(
+      cDataPath.c_str(),
+      cIndexRows,
+      cIndexCount,
+      cChunkRows,
+      cChunkCount,
+      &cQuery,
+      cReadRows,
+      4,
+      &cReadCount);
+  const std::string cCorruptDataPath = (outputDir / "path-history-cabi-corrupt.bin").string();
+  std::filesystem::copy_file(
+      cDataPath,
+      cCorruptDataPath,
+      std::filesystem::copy_options::overwrite_existing);
+  corrupt_first_byte(cCorruptDataPath);
+  int cCorruptReadCount = 0;
+  const int cCorruptStatus = architrino_solver_read_path_history_stream_query_f64(
+      cCorruptDataPath.c_str(),
+      cIndexRows,
+      cIndexCount,
+      cChunkRows,
+      cChunkCount,
+      &cQuery,
+      cReadRows,
+      4,
+      &cCorruptReadCount);
+
   const bool ok =
       metadata.streamId == "stream-smoke" &&
       metadata.rowSizeBytes == sizeof(architrino::solver::PathHistoryRowF64) &&
@@ -238,7 +386,39 @@ int main() {
       contains(manifest, "\"rule\": \"linear_segment\"") &&
       contains(manifest, "\"algorithm\": \"fnv1a64\"") &&
       contains(manifest, "\"diagnosticSummary\":") &&
-      contains(manifest, "\"chunkPath\":");
+      contains(manifest, "\"chunkPath\":") &&
+      cWriteStatus == 0 &&
+      cSummary.row_count == 4 &&
+      cSummary.chunk_count == 3 &&
+      cSummary.byte_length == 4 * sizeof(ArchitrinoSolverPathHistoryRowF64) &&
+      cSummary.data_checksum64 != 0 &&
+      cSummary.index_checksum64 != 0 &&
+      cSummary.chunk_checksum64 != 0 &&
+      cSummary.has_time_range == 1 &&
+      cSummary.durable == 1 &&
+      nearly_equal(cSummary.time_start, 0.0) &&
+      nearly_equal(cSummary.time_end, 13.0) &&
+      cProbeIndexStatus == -3 &&
+      cProbeIndexCount == 3 &&
+      cIndexStatus == 0 &&
+      cIndexCount == 3 &&
+      cIndexRows[0].path_key == pathKey &&
+      cIndexRows[0].row_offset == 0 &&
+      cIndexRows[0].row_count == 2 &&
+      cChunkStatus == 0 &&
+      cChunkCount == 3 &&
+      cChunkRows[0].checksum64 != 0 &&
+      cChunkRows[2].path_key_start == pathBKey &&
+      cQueryStatus == 0 &&
+      cQueryCount == 2 &&
+      cQueryRows[0].chunk_index == 0 &&
+      cReadStatus == 0 &&
+      cReadCount == 3 &&
+      cReadRows[0].path_key == pathKey &&
+      cReadRows[0].segment_index == 0 &&
+      cReadRows[2].segment_index == 2 &&
+      cCorruptStatus == -2 &&
+      cCorruptReadCount == 0;
 
   if (!ok) {
     std::cerr << "path-history stream smoke failed\n";

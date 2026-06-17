@@ -24,6 +24,7 @@ enum class BinaryLayoutId {
   EmissionShellCandidateV1,
   EmissionShellNarrowPhaseV1,
   StreamIndexV1,
+  AssemblyGraphIndexV1,
 };
 
 enum class ByteOrder {

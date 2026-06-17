@@ -74,7 +74,7 @@ export function createPhotonCausalRootsRunRequest(input) {
     configVersion: input.configVersion ?? "photon-causal-roots-adapter.v1",
     config: {
       appId: "photon",
-      rootRequest: cloneRequiredObject(input.rootRequest, "rootRequest"),
+      ...cloneRootRequestConfig(input, "photon causal-root adapter input"),
     },
   });
 }
@@ -104,7 +104,7 @@ export function createIdealSwarmDelayedHitsRunRequest(input) {
     configVersion: input.configVersion ?? "ideal-swarm-delayed-hits-adapter.v1",
     config: {
       appId: "ideal-swarm",
-      rootRequest: cloneRequiredObject(input.rootRequest, "rootRequest"),
+      ...cloneRootRequestConfig(input, "ideal swarm delayed-hit adapter input"),
     },
   });
 }
@@ -234,12 +234,77 @@ export function createPathHistoryStreamRequest(input) {
   };
 }
 
+export function createAssemblyGraphDatasetRequest(input) {
+  requireObject(input, "assembly graph dataset adapter input");
+  return {
+    assemblyStates: cloneOptionalArray(input.assemblyStates, "assemblyStates"),
+    memberships: cloneOptionalArray(input.memberships, "memberships"),
+    hierarchy: cloneOptionalArray(input.hierarchy, "hierarchy"),
+    events: cloneOptionalArray(input.events, "events"),
+    deriveMembershipEvents: cloneOptionalBoolean(
+      input.deriveMembershipEvents,
+      "deriveMembershipEvents"
+    ),
+    maxEvents: cloneOptionalPositiveInteger(input.maxEvents, "maxEvents"),
+  };
+}
+
+export function createAssemblyGraphStoreRequest(input) {
+  requireObject(input, "assembly graph store adapter input");
+  return {
+    storeId: normalizeOptionalId(input.storeId, undefined, "storeId"),
+    ...createAssemblyGraphDatasetRequest(input),
+    storagePolicy: normalizeAssemblyGraphStoreStoragePolicy(input.storagePolicy, input),
+  };
+}
+
+export function createDescribeAssemblyGraphStoreRequest(input) {
+  requireObject(input, "describe assembly graph store adapter input");
+  return {
+    storeId: cloneOptionalString(input.storeId, "storeId"),
+    manifestPath: cloneOptionalString(input.manifestPath, "manifestPath"),
+  };
+}
+
+export function createAssemblyGraphStoreReadRequest(input) {
+  requireObject(input, "assembly graph store read adapter input");
+  return {
+    storeId: cloneOptionalString(input.storeId, "storeId"),
+    manifestPath: cloneOptionalString(input.manifestPath, "manifestPath"),
+    layouts: cloneOptionalArray(input.layouts, "layouts"),
+    rowOffset: cloneOptionalNonnegativeInteger(input.rowOffset, "rowOffset"),
+    rowCount: cloneOptionalNonnegativeInteger(input.rowCount, "rowCount"),
+    pathKey: cloneOptionalNonnegativeInteger(input.pathKey, "pathKey"),
+    assemblyKey: cloneOptionalNonnegativeInteger(input.assemblyKey, "assemblyKey"),
+    timeRange: cloneOptionalRange(input.timeRange, "timeRange"),
+    byteRange: cloneOptionalRange(input.byteRange, "byteRange"),
+    maxBytes: cloneOptionalPositiveInteger(input.maxBytes, "maxBytes"),
+  };
+}
+
+export function createPathHistoryStreamSpaceTimeIndexRequest(input) {
+  requireObject(input, "path-history stream space-time index adapter input");
+  return {
+    streamId: normalizeOptionalId(input.streamId, undefined, "streamId"),
+    chunkIndices: cloneOptionalArray(input.chunkIndices, "chunkIndices"),
+    pathKeys: cloneOptionalArray(input.pathKeys, "pathKeys"),
+    timeRange: cloneOptionalRange(input.timeRange, "timeRange"),
+    frameRange: cloneOptionalRange(input.frameRange, "frameRange"),
+    byteRange: cloneOptionalRange(input.byteRange, "byteRange"),
+    assemblyStates: cloneOptionalArray(input.assemblyStates, "assemblyStates"),
+    options: cloneRequiredObject(input.options, "options"),
+    maxRows: cloneOptionalPositiveInteger(input.maxRows, "maxRows"),
+    maxBytes: cloneOptionalPositiveInteger(input.maxBytes, "maxBytes"),
+  };
+}
+
 export function createOpenStreamRequest(input) {
   requireObject(input, "open stream adapter input");
   return {
     runId: cloneOptionalString(input.runId, "runId"),
     datasetId: cloneOptionalString(input.datasetId, "datasetId"),
     streamId: cloneOptionalString(input.streamId, "streamId"),
+    manifestPath: cloneOptionalString(input.manifestPath, "manifestPath"),
     purpose: normalizeOptionalString(input.purpose, "playback", "purpose"),
   };
 }
@@ -257,6 +322,7 @@ export function createReadStreamRangeRequest(input) {
     streamId: normalizeOptionalId(input.streamId, undefined, "streamId"),
     pathIds: cloneOptionalArray(input.pathIds, "pathIds"),
     pathKeys: cloneOptionalArray(input.pathKeys, "pathKeys"),
+    chunkIndices: cloneOptionalArray(input.chunkIndices, "chunkIndices"),
     timeRange: cloneOptionalRange(input.timeRange, "timeRange"),
     frameRange: cloneOptionalRange(input.frameRange, "frameRange"),
     byteRange: cloneOptionalRange(input.byteRange, "byteRange"),
@@ -307,6 +373,23 @@ export function createEmissionShellCandidateQueryRequest(input) {
     allowSamePath: cloneOptionalBoolean(input.allowSamePath, "allowSamePath"),
     workerCount: cloneOptionalNonnegativeInteger(input.workerCount, "workerCount"),
     timeRange: cloneOptionalRange(input.timeRange, "timeRange"),
+  };
+}
+
+export function createEmissionShellRootRefinementRequest(input) {
+  requireObject(input, "emission-shell root-refinement adapter input");
+  return {
+    streamId: normalizeOptionalId(input.streamId, undefined, "streamId"),
+    candidates: copyRequiredArray(input.candidates, "candidates"),
+    signalSpeed: requirePositiveFiniteNumber(input.signalSpeed, "signalSpeed"),
+    tolerance: cloneOptionalNonnegativeFiniteNumber(input.tolerance, "tolerance"),
+    rootTolerance: cloneOptionalPositiveFiniteNumber(input.rootTolerance, "rootTolerance"),
+    maxCandidates: cloneOptionalPositiveInteger(input.maxCandidates, "maxCandidates"),
+    maxIterations: cloneOptionalPositiveInteger(input.maxIterations, "maxIterations"),
+    scanSubdivisions: cloneOptionalPositiveInteger(input.scanSubdivisions, "scanSubdivisions"),
+    maxRootsPerCandidate: cloneOptionalPositiveInteger(input.maxRootsPerCandidate, "maxRootsPerCandidate"),
+    maxHitsPerCandidate: cloneOptionalPositiveInteger(input.maxHitsPerCandidate, "maxHitsPerCandidate"),
+    workerCount: cloneOptionalNonnegativeInteger(input.workerCount, "workerCount"),
   };
 }
 
@@ -371,6 +454,22 @@ function createDefaultPlaybackOutput(input) {
     streamTarget: DEFAULT_STREAM_TARGET,
     memoryBudgetBytes: input.memoryBudgetBytes ?? DEFAULT_MEMORY_BUDGET_BYTES,
     deterministic: input.deterministic ?? true,
+  };
+}
+
+function cloneRootRequestConfig(input, label) {
+  const hasRootRequest = input.rootRequest != null;
+  const hasNormalizedRootRequest = input.normalizedRootRequest != null;
+  if (hasRootRequest === hasNormalizedRootRequest) {
+    throw new TypeError(`${label} must include exactly one of rootRequest or normalizedRootRequest`);
+  }
+  if (hasNormalizedRootRequest) {
+    return {
+      normalizedRootRequest: cloneRequiredObject(input.normalizedRootRequest, "normalizedRootRequest"),
+    };
+  }
+  return {
+    rootRequest: cloneRequiredObject(input.rootRequest, "rootRequest"),
   };
 }
 
@@ -501,6 +600,13 @@ function cloneOptionalNonnegativeFiniteNumber(value, label) {
   return value;
 }
 
+function cloneOptionalPositiveFiniteNumber(value, label) {
+  if (value == null) {
+    return undefined;
+  }
+  return requirePositiveFiniteNumber(value, label);
+}
+
 function normalizeStreamStoragePolicy(storagePolicy, input) {
   if (storagePolicy != null) {
     return cloneRequiredObject(storagePolicy, "storagePolicy");
@@ -509,6 +615,17 @@ function normalizeStreamStoragePolicy(storagePolicy, input) {
     target: DEFAULT_STREAM_TARGET,
     durable: false,
     maxBytes: input.memoryBudgetBytes ?? DEFAULT_MEMORY_BUDGET_BYTES,
+  };
+}
+
+function normalizeAssemblyGraphStoreStoragePolicy(storagePolicy, input) {
+  if (storagePolicy != null) {
+    return cloneRequiredObject(storagePolicy, "storagePolicy");
+  }
+  return {
+    target: "native-file",
+    durable: true,
+    maxBytes: input.memoryBudgetBytes ?? 0,
   };
 }
 

@@ -27,13 +27,18 @@ import {
 } from "../src/solver/app/SolverAppWorkerRuntime.mjs";
 import {
   SOLVER_APP_ADAPTERS_VERSION,
+  createAssemblyGraphDatasetRequest,
+  createAssemblyGraphStoreReadRequest,
+  createAssemblyGraphStoreRequest,
   createAnimatorAppPlaybackRunRequest,
   createAnimatorMotionSimulationRunRequest,
+  createDescribeAssemblyGraphStoreRequest,
   createDescribeStreamRequest,
   createEmissionShellCandidatePacketBatchQueryRequest,
   createEmissionShellCandidatePacketMergeRequest,
   createEmissionShellCandidatePacketQueryRequest,
   createEmissionShellCandidateQueryRequest,
+  createEmissionShellRootRefinementRequest,
   createIdealSwarmDelayedHitsRunRequest,
   createIdealSwarmSharedGeometryRunRequest,
   createOpenStreamRequest,
@@ -42,6 +47,7 @@ import {
   createPathHistoryRunRequest,
   createPathHistoryStorageLifecycleRequest,
   createPathHistoryStreamRequest,
+  createPathHistoryStreamSpaceTimeIndexRequest,
   createPathHistoryWorkPacketPlanRequest,
   createReadStreamRangeRequest,
   createValidationReplayRunRequest,
@@ -121,6 +127,8 @@ assert(
 );
 assert(
   initResponse.capabilities.appBridge.storageFallbacks.transientTarget === "caller-buffer" &&
+    initResponse.capabilities.appBridge.storageFallbacks.preferredNativeFileTarget === "native-file" &&
+    initResponse.capabilities.appBridge.storageFallbacks.nativeFileTargetAvailable === true &&
     initResponse.capabilities.appBridge.storageFallbacks.unsupportedStorageStatusCode ===
       "unsupported_browser_storage",
   "expected app bridge storage fallback capabilities"
@@ -296,14 +304,16 @@ const wasmModule = await createWasmModule({
 assert(hasSolverCAbi(wasmModule), "expected solver C ABI exports");
 
 const capabilities = await client.capabilities();
+assert(capabilities.storage.supportsNativeFile === true, "expected native-file storage capability");
 assert(
   capabilities.outputLayouts.includes("root_ledger.v1") &&
     capabilities.outputLayouts.includes("root_ledger_detail.v1") &&
     capabilities.outputLayouts.includes("delayed_hit_events.v1") &&
     capabilities.outputLayouts.includes("spacetime_index.v1") &&
     capabilities.outputLayouts.includes("emission_shell_candidate.v1") &&
-    capabilities.outputLayouts.includes("emission_shell_narrow_phase.v1"),
-  "expected root, root-detail, delayed-hit, spacetime, and emission-shell layouts"
+    capabilities.outputLayouts.includes("emission_shell_narrow_phase.v1") &&
+    capabilities.outputLayouts.includes("assembly_graph_index.v1"),
+  "expected root, root-detail, delayed-hit, spacetime, emission-shell, and assembly graph index layouts"
 );
 assert(
   capabilities.appBridge.apiVersion === SOLVER_APP_BRIDGE_API_VERSION &&
@@ -315,9 +325,11 @@ assert(
     capabilities.appBridge.streamQueries.helpers.includes("createPathHistoryStreamF64") &&
     capabilities.appBridge.streamQueries.helpers.includes("describeStream") &&
     capabilities.appBridge.streamQueries.helpers.includes("readStreamRange") &&
+    capabilities.appBridge.streamQueries.helpers.includes("buildPathHistoryStreamSpaceTimeIndexF64") &&
     capabilities.appBridge.streamQueries.helpers.includes("queryEmissionShellCandidatesF64") &&
     capabilities.appBridge.streamQueries.helpers.includes("queryEmissionShellCandidatePacketF64") &&
-    capabilities.appBridge.streamQueries.helpers.includes("queryEmissionShellCandidatePacketsF64"),
+    capabilities.appBridge.streamQueries.helpers.includes("queryEmissionShellCandidatePacketsF64") &&
+    capabilities.appBridge.streamQueries.helpers.includes("refineEmissionShellCandidateRootsF64"),
   "expected app bridge stream-query capabilities"
 );
 assert(
@@ -330,6 +342,15 @@ assert(
       "solver-emission-shell-candidates.v1" &&
     capabilities.appBridge.streamQueries.broadPhaseQueries[0].narrowPhaseAuthorities.includes(
       "solveCausalRootsF64"
+    ) &&
+    capabilities.appBridge.streamQueries.broadPhaseQueries[0].narrowPhaseAuthorities.includes(
+      "solveCausalRootsPrecisionF64"
+    ) &&
+    capabilities.appBridge.streamQueries.broadPhaseQueries[0].narrowPhaseAuthorities.includes(
+      "solveCausalRootsNormalizedF64"
+    ) &&
+    capabilities.appBridge.streamQueries.broadPhaseQueries[0].narrowPhaseAuthorities.includes(
+      "refineEmissionShellCandidateRootsF64"
     ),
   "expected emission-shell broad-phase capability metadata"
 );
@@ -415,6 +436,29 @@ assert(
   workerRootResponse.roots.length === 1 &&
     workerRootResponse.roots[0].distance === 10,
   "expected worker causal-root solve response"
+);
+const workerNormalizedRootResponse = await workerClient.solveCausalRootsNormalizedF64(
+  makeNormalizedCausalRootRequest()
+);
+assert(
+  workerNormalizedRootResponse.roots.length === 1 &&
+    workerNormalizedRootResponse.roots[0].coordinateFrame === "origin-normalized" &&
+    Math.abs(workerNormalizedRootResponse.roots[0].distance - 1) <= 1e-12,
+  "expected worker normalized causal-root solve response"
+);
+const workerPrecisionRootResponse = await workerClient.solveCausalRootsPrecisionF64({
+  rootRequest: makePrecisionRequest(),
+  requestedPrecisionPath: "scaled_f64_strict",
+  claimLevel: "exported-dataset",
+  allowEscalation: true,
+  runValidationReplay: true,
+  maxRoots: 4,
+});
+assert(
+  workerPrecisionRootResponse.schema === "solver-causal-roots-precision-f64.v1" &&
+    workerPrecisionRootResponse.precision.selectedPrecisionPath === "extended_precision" &&
+    workerPrecisionRootResponse.precision.validationReplayMatched,
+  "expected worker precision causal-root solve response"
 );
 const workerRootsAndHitsResponse = await workerClient.solveRootsAndHitsF64(fixtureRequest.request);
 assert(
@@ -775,45 +819,46 @@ assert(
   "expected below-threshold circular self-hit span"
 );
 
+const assemblyMembershipRows = [
+  {
+    membershipKey: 1001,
+    pathKey: 5001,
+    assemblyKey: 7001,
+    assemblyStateKey: 7101,
+    timeStart: 0,
+    timeEnd: 5,
+    confidence: 1,
+    localRole: 1,
+    bindingState: 1,
+    membershipVersion: 1,
+  },
+  {
+    membershipKey: 1002,
+    pathKey: 5001,
+    assemblyKey: 7001,
+    assemblyStateKey: 7102,
+    timeStart: 5,
+    timeEnd: 8,
+    confidence: 1,
+    localRole: 2,
+    bindingState: 1,
+    membershipVersion: 1,
+  },
+  {
+    membershipKey: 1003,
+    pathKey: 5001,
+    assemblyKey: 0,
+    assemblyStateKey: 0,
+    timeStart: 8,
+    timeEnd: 10,
+    confidence: 1,
+    localRole: 0,
+    bindingState: 0,
+    membershipVersion: 1,
+  },
+];
 const assemblyEventsResponse = await client.detectAssemblyMembershipEventsF64({
-  memberships: [
-    {
-      membershipKey: 1001,
-      pathKey: 5001,
-      assemblyKey: 7001,
-      assemblyStateKey: 7101,
-      timeStart: 0,
-      timeEnd: 5,
-      confidence: 1,
-      localRole: 1,
-      bindingState: 1,
-      membershipVersion: 1,
-    },
-    {
-      membershipKey: 1002,
-      pathKey: 5001,
-      assemblyKey: 7001,
-      assemblyStateKey: 7102,
-      timeStart: 5,
-      timeEnd: 8,
-      confidence: 1,
-      localRole: 2,
-      bindingState: 1,
-      membershipVersion: 1,
-    },
-    {
-      membershipKey: 1003,
-      pathKey: 5001,
-      assemblyKey: 0,
-      assemblyStateKey: 0,
-      timeStart: 8,
-      timeEnd: 10,
-      confidence: 1,
-      localRole: 0,
-      bindingState: 0,
-      membershipVersion: 1,
-    },
-  ],
+  memberships: assemblyMembershipRows,
 });
 assert(assemblyEventsResponse.status.code === "ok", "expected assembly event status ok");
 assert(assemblyEventsResponse.events.length === 2, "expected two assembly membership events");
@@ -825,6 +870,222 @@ assert(assemblyEventsResponse.events[1].eventTime === 8, "expected membership le
 const assemblyEventBuffer = findBuffer(assemblyEventsResponse, "assembly_events.v1");
 assert(assemblyEventBuffer.rowCount === 2, "expected two assembly event buffer rows");
 assert(assemblyEventBuffer.buffer.byteLength === 176, "expected assembly event buffer byte length");
+
+const assemblyGraphResponse = await client.buildAssemblyGraphDatasetF64(createAssemblyGraphDatasetRequest({
+  assemblyStates: [
+    {
+      assemblyKey: 7001,
+      assemblyStateKey: 7101,
+      timeStart: 0,
+      timeEnd: 5,
+      center: { x: 0.5, y: 0, z: 0 },
+      velocity: { x: 0.1, y: 0, z: 0 },
+      phase: 0.25,
+      cycleIndex: 1,
+      modelVersion: 1,
+      statusFlags: 0,
+      fidelityFlags: 1,
+    },
+    {
+      assemblyKey: 7001,
+      assemblyStateKey: 7102,
+      timeStart: 5,
+      timeEnd: 8,
+      center: { x: 1, y: 0, z: 0 },
+      velocity: { x: 0.2, y: 0, z: 0 },
+      phase: 0.5,
+      cycleIndex: 2,
+      modelVersion: 1,
+      statusFlags: 0,
+      fidelityFlags: 1,
+    },
+  ],
+  memberships: assemblyMembershipRows,
+  hierarchy: [
+    {
+      hierarchyKey: 9001,
+      parentAssemblyKey: 7001,
+      childAssemblyKey: 7002,
+      timeStart: 0,
+      timeEnd: 8,
+      relationType: 1,
+      hierarchyVersion: 1,
+      statusFlags: 0,
+    },
+  ],
+}));
+assert(assemblyGraphResponse.status.code === "ok", "expected assembly graph dataset status ok");
+assert(
+  assemblyGraphResponse.schema === "solver-assembly-graph-dataset.v1",
+  "expected assembly graph dataset schema"
+);
+assert(
+  assemblyGraphResponse.summary.schema === "solver-assembly-graph-summary.v1",
+  "expected assembly graph summary schema"
+);
+assert(assemblyGraphResponse.summary.assemblyStateCount === 2, "expected assembly graph state count");
+assert(assemblyGraphResponse.summary.membershipCount === 3, "expected assembly graph membership count");
+assert(assemblyGraphResponse.summary.hierarchyCount === 1, "expected assembly graph hierarchy count");
+assert(assemblyGraphResponse.summary.eventCount === 2, "expected assembly graph event count");
+assert(assemblyGraphResponse.summary.derivedEventCount === 2, "expected derived assembly graph events");
+assert(assemblyGraphResponse.summary.eventSource === "derived", "expected derived assembly graph event source");
+assert(assemblyGraphResponse.summary.assemblyCount === 2, "expected two assembly keys in summary");
+assert(assemblyGraphResponse.summary.pathCount === 1, "expected one path key in summary");
+assert(assemblyGraphResponse.summary.timeRange.start === 0, "expected assembly graph time start");
+assert(assemblyGraphResponse.summary.timeRange.end === 10, "expected assembly graph time end");
+const assemblyStateBuffer = findBuffer(assemblyGraphResponse, "assembly_state.v1");
+const assemblyMembershipBuffer = findBuffer(assemblyGraphResponse, "assembly_membership.v1");
+const assemblyHierarchyBuffer = findBuffer(assemblyGraphResponse, "assembly_hierarchy.v1");
+const assemblyGraphEventBuffer = findBuffer(assemblyGraphResponse, "assembly_events.v1");
+assert(assemblyStateBuffer.rowCount === 2, "expected two assembly state buffer rows");
+assert(assemblyStateBuffer.buffer.byteLength === 224, "expected assembly state buffer byte length");
+assert(assemblyMembershipBuffer.rowCount === 3, "expected three assembly membership buffer rows");
+assert(assemblyMembershipBuffer.buffer.byteLength === 240, "expected assembly membership buffer byte length");
+assert(assemblyHierarchyBuffer.rowCount === 1, "expected one assembly hierarchy buffer row");
+assert(assemblyHierarchyBuffer.buffer.byteLength === 56, "expected assembly hierarchy buffer byte length");
+assert(assemblyGraphEventBuffer.rowCount === 2, "expected two assembly graph event buffer rows");
+assert(assemblyGraphEventBuffer.buffer.byteLength === 176, "expected assembly graph event buffer byte length");
+
+const assemblyGraphStoreBasePath = path.join(rootDir, ".tmp", "solver-app-bridge-assembly-graphs");
+fs.rmSync(assemblyGraphStoreBasePath, { recursive: true, force: true });
+const assemblyGraphStoreResponse = await client.createAssemblyGraphStoreF64(
+  createAssemblyGraphStoreRequest({
+    storeId: "smoke-assembly-graph",
+    assemblyStates: assemblyGraphResponse.assemblyStates,
+    memberships: assemblyMembershipRows,
+    hierarchy: assemblyGraphResponse.hierarchy,
+    storagePolicy: {
+      target: "native-file",
+      durable: true,
+      maxBytes: 4096,
+      basePath: assemblyGraphStoreBasePath,
+    },
+  })
+);
+assert(
+  assemblyGraphStoreResponse.schema === "solver-assembly-graph-store.v1",
+  "expected assembly graph store response schema"
+);
+assert(
+  assemblyGraphStoreResponse.store.manifestVersion === "solver-assembly-graph-manifest.v1" &&
+    assemblyGraphStoreResponse.store.storagePolicy.target === "native-file" &&
+    assemblyGraphStoreResponse.store.storagePolicy.durable === true,
+  "expected native-file assembly graph store manifest"
+);
+assert(
+  fs.existsSync(assemblyGraphStoreResponse.store.metadataPath) &&
+    fs.existsSync(assemblyGraphStoreResponse.store.datasets.states.path) &&
+    fs.existsSync(assemblyGraphStoreResponse.store.datasets.memberships.path) &&
+    fs.existsSync(assemblyGraphStoreResponse.store.datasets.hierarchy.path) &&
+    fs.existsSync(assemblyGraphStoreResponse.store.datasets.events.path) &&
+    fs.existsSync(assemblyGraphStoreResponse.store.index.sidecar.filePath),
+  "expected assembly graph store files"
+);
+assert(
+  assemblyGraphStoreResponse.store.datasets.memberships.rowCount === 3 &&
+    assemblyGraphStoreResponse.store.datasets.events.rowCount === 2 &&
+    assemblyGraphStoreResponse.store.datasets.events.byteLength === 176,
+  "expected assembly graph store dataset metadata"
+);
+assert(
+  assemblyGraphStoreResponse.store.index.schema === "solver-assembly-graph-index.v1" &&
+    assemblyGraphStoreResponse.store.index.rowCount >= 8 &&
+    assemblyGraphStoreResponse.store.index.summary.countsByKeyKind.path >= 5 &&
+    assemblyGraphStoreResponse.store.index.sidecar.indexLayout === "assembly_graph_index.v1" &&
+    assemblyGraphStoreResponse.store.index.sidecar.rowSizeBytes === 72 &&
+    assemblyGraphStoreResponse.store.index.sidecar.rowCount === assemblyGraphStoreResponse.store.index.rowCount &&
+    assemblyGraphStoreResponse.store.index.sidecar.checksum.length === 16,
+  "expected assembly graph store manifest index"
+);
+const assemblyGraphStoreManifest = JSON.parse(
+  fs.readFileSync(assemblyGraphStoreResponse.store.metadataPath, "utf8")
+);
+assert(
+  assemblyGraphStoreManifest.manifestVersion === "solver-assembly-graph-manifest.v1" &&
+    assemblyGraphStoreManifest.datasets.events.checksum.length === 16 &&
+    assemblyGraphStoreManifest.index.rows.length === assemblyGraphStoreResponse.store.index.rowCount &&
+    assemblyGraphStoreManifest.index.sidecar.byteLength ===
+      assemblyGraphStoreResponse.store.index.rowCount * 72,
+  "expected assembly graph store manifest JSON"
+);
+const assemblyGraphStoreDescription = await client.describeAssemblyGraphStoreF64(
+  createDescribeAssemblyGraphStoreRequest({ storeId: "smoke-assembly-graph" })
+);
+assert(
+  assemblyGraphStoreDescription.schema === "solver-assembly-graph-store-description.v1" &&
+    assemblyGraphStoreDescription.buffers.length === 4 &&
+    assemblyGraphStoreDescription.buffers.every((buffer) => buffer.storageTarget === "native-file"),
+  "expected assembly graph store description"
+);
+const assemblyGraphStoreRead = await client.readAssemblyGraphStoreRangeF64(
+  createAssemblyGraphStoreReadRequest({
+    storeId: "smoke-assembly-graph",
+    layouts: ["assembly_membership.v1", "assembly_events.v1"],
+    rowOffset: 1,
+    rowCount: 2,
+    pathKey: 5001,
+    maxBytes: 512,
+  })
+);
+assert(
+  assemblyGraphStoreRead.schema === "solver-assembly-graph-read.v1" &&
+    assemblyGraphStoreRead.memberships.length === 2 &&
+    assemblyGraphStoreRead.events.length === 1 &&
+    assemblyGraphStoreRead.readSummary.indexed &&
+    assemblyGraphStoreRead.readSummary.indexedLayoutCount === 2 &&
+    assemblyGraphStoreRead.readSummary.indexSkippedRowCount > 0,
+  "expected assembly graph store filtered readback"
+);
+assert(
+  assemblyGraphStoreRead.memberships[0].membershipKey === 1002 &&
+    assemblyGraphStoreRead.events[0].eventKind === 2,
+  "expected assembly graph store row-range read values"
+);
+const assemblyGraphMembershipRowSize = assemblyGraphStoreResponse.store.datasets.memberships.rowSizeBytes;
+const assemblyGraphStoreByteRead = await client.readAssemblyGraphStoreRangeF64(
+  createAssemblyGraphStoreReadRequest({
+    storeId: "smoke-assembly-graph",
+    layouts: ["assembly_membership.v1"],
+    byteRange: { start: assemblyGraphMembershipRowSize, end: assemblyGraphMembershipRowSize * 2 },
+    maxBytes: 256,
+  })
+);
+assert(
+  assemblyGraphStoreByteRead.schema === "solver-assembly-graph-read.v1" &&
+    assemblyGraphStoreByteRead.memberships.length === 1 &&
+    assemblyGraphStoreByteRead.memberships[0].membershipKey === 1002 &&
+    assemblyGraphStoreByteRead.readSummary.indexed &&
+    assemblyGraphStoreByteRead.readSummary.indexedLayoutCount === 1 &&
+    assemblyGraphStoreByteRead.readSummary.indexRowCount === 1,
+  "expected assembly graph store byte-range indexed readback"
+);
+const reopenedAssemblyGraphStoreDescription = await client.describeAssemblyGraphStoreF64(
+  createDescribeAssemblyGraphStoreRequest({
+    manifestPath: assemblyGraphStoreResponse.store.metadataPath,
+  })
+);
+assert(
+  reopenedAssemblyGraphStoreDescription.store.storeId === "smoke-assembly-graph" &&
+    reopenedAssemblyGraphStoreDescription.store.datasets.states.checksum.length === 16 &&
+    reopenedAssemblyGraphStoreDescription.store.index.rowCount === assemblyGraphStoreResponse.store.index.rowCount &&
+    reopenedAssemblyGraphStoreDescription.store.index.sidecar.checksum ===
+      assemblyGraphStoreResponse.store.index.sidecar.checksum,
+  "expected assembly graph store manifest reopen"
+);
+const reopenedAssemblyGraphStoreByteRead = await client.readAssemblyGraphStoreRangeF64(
+  createAssemblyGraphStoreReadRequest({
+    manifestPath: assemblyGraphStoreResponse.store.metadataPath,
+    layouts: ["assembly_membership.v1"],
+    byteRange: { start: assemblyGraphMembershipRowSize, end: assemblyGraphMembershipRowSize * 2 },
+    maxBytes: 256,
+  })
+);
+assert(
+  reopenedAssemblyGraphStoreByteRead.memberships.length === 1 &&
+    reopenedAssemblyGraphStoreByteRead.memberships[0].membershipKey === 1002 &&
+    reopenedAssemblyGraphStoreByteRead.readSummary.indexed,
+  "expected reopened assembly graph store byte-range readback"
+);
 
 const spaceTimeIndexResponse = await client.buildSpaceTimeIndexF64({
   pathRows: [
@@ -922,6 +1183,25 @@ assert(
   Math.abs(rootsResponse.roots[0].emissionTime) <= 1e-10 &&
     Math.abs(rootsResponse.roots[0].distance - 10) <= 1e-10,
   "expected bridged causal root values"
+);
+const normalizedRootsResponse = await client.solveCausalRootsNormalizedF64(makeNormalizedCausalRootRequest());
+assert(
+  normalizedRootsResponse.schema === "solver-causal-roots-normalized-f64.v1" &&
+    normalizedRootsResponse.coordinateFrame === "origin-normalized" &&
+    normalizedRootsResponse.roots.length === 1,
+  "expected normalized causal-root response"
+);
+assert(
+  Math.abs(normalizedRootsResponse.roots[0].emissionTime) <= 1e-12 &&
+    Math.abs(normalizedRootsResponse.roots[0].distance - 1) <= 1e-12 &&
+    normalizedRootsResponse.roots[0].sourcePoint.x === 0 &&
+    normalizedRootsResponse.roots[0].receiverPoint.x === 1,
+  "expected normalized causal-root local precision"
+);
+assert(
+  normalizedRootsResponse.absoluteRoots[0].absolutePointAuthority === "display-only" &&
+    normalizedRootsResponse.absoluteRoots[0].localReceiverPoint.x === 1,
+  "expected normalized causal-root absolute display metadata"
 );
 
 const rootLedgerDetailResponse = await client.buildRootLedgerDetailF64({
@@ -1031,6 +1311,52 @@ assert(
     precisionResponse.timeResolutionLimited &&
     precisionResponse.geometryScale.ordersOfMagnitude >= 12,
   "expected precision scale diagnostics"
+);
+const precisionSolveResponse = await client.solveCausalRootsPrecisionF64({
+  rootRequest: makePrecisionRequest(),
+  requestedPrecisionPath: "scaled_f64_strict",
+  claimLevel: "exported-dataset",
+  allowEscalation: true,
+  runValidationReplay: true,
+  maxRoots: 4,
+});
+assert(
+  precisionSolveResponse.schema === "solver-causal-roots-precision-f64.v1" &&
+    precisionSolveResponse.roots.length === 1 &&
+    precisionSolveResponse.precision.selectedPrecisionPath === "extended_precision",
+  "expected precision causal-root solve response"
+);
+assert(
+  precisionSolveResponse.precision.selectedNumericType === "decimal128" &&
+    precisionSolveResponse.precision.escalated &&
+    precisionSolveResponse.precision.validationReplayRun &&
+    precisionSolveResponse.precision.validationReplayMatched &&
+    precisionSolveResponse.precision.rootTolerance <= 1e-16 &&
+    precisionSolveResponse.precision.maxIterations >= 256 &&
+    precisionSolveResponse.precision.scanSubdivisions >= 512,
+  "expected precision solve summary controls"
+);
+assert(
+  precisionSolveResponse.status.code === "insufficient_scale_resolution" &&
+    precisionSolveResponse.status.severity === "warning",
+  "expected precision solve to preserve diagnostic warning"
+);
+const precisionSolveBuffer = findBuffer(precisionSolveResponse, "root_ledger.v1");
+assert(precisionSolveBuffer.rowCount === 1, "expected precision solve root buffer");
+const rejectedPrecisionSolveResponse = await client.solveCausalRootsPrecisionF64({
+  rootRequest: makePrecisionRequest(),
+  requestedPrecisionPath: "scaled_f64_fast",
+  claimLevel: "validation-evidence",
+  allowEscalation: false,
+  runValidationReplay: false,
+  maxRoots: 4,
+});
+assert(
+  rejectedPrecisionSolveResponse.roots.length === 0 &&
+    rejectedPrecisionSolveResponse.precision.selectedPrecisionPath === "validation_replay" &&
+    rejectedPrecisionSolveResponse.precision.statusCode === "precision_failed" &&
+    rejectedPrecisionSolveResponse.status.code === "precision_failed",
+  "expected precision solve to reject disallowed weakening"
 );
 
 const errorBudgetResponse = await client.propagateErrorBudgetF64({
@@ -1261,6 +1587,20 @@ assert(
 const pathHistoryView = new DataView(pathHistoryFrameRead.buffers[0].buffer);
 assert(Number(pathHistoryView.getBigUint64(0, true)) === 2001, "expected path-history path key readback");
 assert(pathHistoryView.getFloat64(16, true) === 1, "expected path-history start time readback");
+const pathHistoryChunkRead = await client.readStreamRange(
+  createReadStreamRangeRequest({
+    streamId: "smoke-path-history",
+    chunkIndices: [2],
+    maxBytes: 96,
+  })
+);
+assert(pathHistoryChunkRead.status.code === "ok", "expected path-history chunk read status ok");
+assert(pathHistoryChunkRead.buffers.length === 1, "expected one chunk-selected path-history buffer");
+assert(pathHistoryChunkRead.ranges[0].byteRange.start === 192, "expected chunk-selected byte range");
+assertReadbackChecksums(pathHistoryChunkRead, "path-history chunk-index read");
+const pathHistoryChunkView = new DataView(pathHistoryChunkRead.buffers[0].buffer);
+assert(Number(pathHistoryChunkView.getBigUint64(0, true)) === 2000, "expected chunk-selected path key");
+assert(pathHistoryChunkView.getFloat64(16, true) === 2, "expected chunk-selected start time");
 const pathHistoryLifecyclePlan = await client.planPathHistoryStorageLifecycleF64(
   createPathHistoryStorageLifecycleRequest({
     streamId: "smoke-path-history",
@@ -1288,6 +1628,194 @@ assert(
     pathHistoryLifecyclePlan.decisions[2].safeToAgeOut === false,
   "expected pinned path-history chunk to block aging"
 );
+const nativeFileBasePath = path.join(rootDir, ".tmp", "solver-app-bridge-native-streams");
+fs.rmSync(nativeFileBasePath, { recursive: true, force: true });
+const nativeFilePathHistoryStream = await client.createPathHistoryStreamF64(
+  createPathHistoryStreamRequest({
+    runId: "smoke-native-file-path-history-run",
+    datasetId: "smoke-native-file-path-history-dataset",
+    streamId: "smoke-native-file-path-history",
+    pathRows: makePathHistoryRows(),
+    rowsPerChunk: 2,
+    storagePolicy: {
+      target: "native-file",
+      durable: true,
+      maxBytes: 4096,
+      basePath: nativeFileBasePath,
+    },
+    metadata: {
+      precisionPath: "scaled_f64_strict",
+      units: "solver-si",
+      coordinateFrame: "absolute-lab-frame",
+      scaleNormalization: "native-file-smoke",
+      interpolationRule: "linear-segment",
+    },
+  })
+);
+assert(
+  nativeFilePathHistoryStream.stream.storagePolicy.target === "native-file" &&
+    nativeFilePathHistoryStream.stream.storagePolicy.durable === true,
+  "expected native-file path-history storage policy"
+);
+assert(
+  nativeFilePathHistoryStream.buffers.length === 2 &&
+    nativeFilePathHistoryStream.buffers[0].storageTarget === "native-file" &&
+    nativeFilePathHistoryStream.buffers[0].filePath &&
+    !("buffer" in nativeFilePathHistoryStream.buffers[0]),
+  "expected native-file path-history chunk descriptors without payloads"
+);
+assert(
+  fs.existsSync(nativeFilePathHistoryStream.stream.storagePolicy.manifestPath) &&
+    fs.existsSync(nativeFilePathHistoryStream.stream.storagePolicy.indexPath) &&
+    fs.existsSync(nativeFilePathHistoryStream.buffers[0].filePath),
+  "expected native-file path-history manifest, index, and chunk files"
+);
+const nativeFileManifest = JSON.parse(
+  fs.readFileSync(nativeFilePathHistoryStream.stream.storagePolicy.manifestPath, "utf8")
+);
+assert(
+  nativeFileManifest.index?.schema === "solver-stream-index.v1" &&
+    nativeFileManifest.index.sidecar?.schema === "solver-stream-index-sidecar.v1" &&
+    nativeFileManifest.index.sidecar.rowSizeBytes === 64 &&
+    nativeFileManifest.index.sidecar.rowCount === 3 &&
+    nativeFileManifest.index.pathIndexRows.length === 3,
+  "expected native-file path-history manifest index rows and sidecar"
+);
+const nativeFileIndexBytes = fs.readFileSync(nativeFileManifest.index.sidecar.filePath);
+assert(nativeFileIndexBytes.byteLength === 192, "expected native-file binary index sidecar bytes");
+const nativeFileIndexView = new DataView(
+  nativeFileIndexBytes.buffer.slice(
+    nativeFileIndexBytes.byteOffset,
+    nativeFileIndexBytes.byteOffset + nativeFileIndexBytes.byteLength
+  )
+);
+assert(
+  Number(nativeFileIndexView.getBigUint64(0, true)) === 2000 &&
+    Number(nativeFileIndexView.getBigUint64(8, true)) === 0 &&
+    Number(nativeFileIndexView.getBigUint64(16, true)) === 0 &&
+    Number(nativeFileIndexView.getBigUint64(24, true)) === 1 &&
+    nativeFileIndexView.getFloat64(32, true) === 0 &&
+    nativeFileIndexView.getFloat64(40, true) === 1 &&
+    Number(nativeFileIndexView.getBigUint64(48, true)) === 0 &&
+    Number(nativeFileIndexView.getBigUint64(56, true)) === 96,
+  "expected first native-file binary index sidecar row"
+);
+const nativeFileDescription = await client.describeStream(
+  createDescribeStreamRequest({ streamId: "smoke-native-file-path-history" })
+);
+assert(
+  nativeFileDescription.index.pathIndexRows.length === 3 &&
+    nativeFileDescription.index.sidecar?.filePath === nativeFileManifest.index.sidecar.filePath &&
+    nativeFileDescription.buffers[0].storageTarget === "native-file",
+  "expected native-file stream description, index, and sidecar"
+);
+const nativeFileRead = await client.readStreamRange(
+  createReadStreamRangeRequest({
+    streamId: "smoke-native-file-path-history",
+    frameRange: { start: 1, end: 1 },
+  })
+);
+assert(
+  nativeFileRead.status.code === "ok" &&
+    nativeFileRead.buffers.length === 1 &&
+    nativeFileRead.buffers[0].buffer instanceof ArrayBuffer,
+  "expected native-file stream readback with dense selected payload"
+);
+const nativeFileView = new DataView(nativeFileRead.buffers[0].buffer);
+assert(Number(nativeFileView.getBigUint64(0, true)) === 2001, "expected native-file path key readback");
+const reopenedNativeFileClient = createSolverAppBridgeClient();
+const reopenedNativeFileHandle = await reopenedNativeFileClient.openStream(
+  createOpenStreamRequest({
+    manifestPath: nativeFilePathHistoryStream.stream.storagePolicy.manifestPath,
+    purpose: "diagnostics",
+  })
+);
+assert(
+  reopenedNativeFileHandle.streamId === "smoke-native-file-path-history" &&
+    reopenedNativeFileHandle.readableLayouts.includes("path_segment.v1") &&
+    reopenedNativeFileHandle.availableRanges.length === 2,
+  "expected native-file manifest reopen handle"
+);
+const reopenedNativeFileDescription = await reopenedNativeFileClient.describeStream(
+  createDescribeStreamRequest({ streamId: reopenedNativeFileHandle.streamId })
+);
+assert(
+  reopenedNativeFileDescription.index.pathIndexRows.length === nativeFileDescription.index.pathIndexRows.length &&
+    reopenedNativeFileDescription.index.sidecar?.checksum === nativeFileDescription.index.sidecar.checksum &&
+    reopenedNativeFileDescription.buffers[0].storageTarget === "native-file",
+  "expected reopened native-file stream index sidecar"
+);
+const reopenedNativeFileRead = await reopenedNativeFileClient.readStreamRange(
+  createReadStreamRangeRequest({
+    streamId: reopenedNativeFileHandle.streamId,
+    pathKeys: [2001],
+    maxBytes: 96,
+  })
+);
+assert(
+  reopenedNativeFileRead.status.code === "ok" &&
+    reopenedNativeFileRead.buffers.length === 1 &&
+    reopenedNativeFileRead.buffers[0].buffer instanceof ArrayBuffer,
+  "expected reopened native-file stream readback"
+);
+const reopenedNativeFileView = new DataView(reopenedNativeFileRead.buffers[0].buffer);
+assert(Number(reopenedNativeFileView.getBigUint64(0, true)) === 2001, "expected reopened native-file path key");
+const reopenedNativeFileChunkRead = await reopenedNativeFileClient.readStreamRange(
+  createReadStreamRangeRequest({
+    streamId: reopenedNativeFileHandle.streamId,
+    chunkIndices: [1],
+    maxBytes: 96,
+  })
+);
+assert(
+  reopenedNativeFileChunkRead.status.code === "ok" &&
+    reopenedNativeFileChunkRead.buffers.length === 1 &&
+    reopenedNativeFileChunkRead.buffers[0].buffer instanceof ArrayBuffer,
+  "expected reopened native-file chunk-index stream readback"
+);
+const reopenedNativeFileChunkView = new DataView(reopenedNativeFileChunkRead.buffers[0].buffer);
+assert(Number(reopenedNativeFileChunkView.getBigUint64(0, true)) === 2000, "expected reopened chunk path key");
+assert(reopenedNativeFileChunkView.getFloat64(16, true) === 2, "expected reopened chunk start time");
+const nativeFileLifecyclePlan = await client.planPathHistoryStorageLifecycleF64(
+  createPathHistoryStorageLifecycleRequest({
+    streamId: "smoke-native-file-path-history",
+    policy: {
+      activeWindow: { start: 0.5, end: 1.5 },
+      deepIndexEnabled: true,
+    },
+  })
+);
+assert(
+  nativeFileLifecyclePlan.status.code === "ok" &&
+    nativeFileLifecyclePlan.chunkCount === 2,
+  "expected native-file lifecycle planning from file-backed chunks"
+);
+const nativeFileStreamPath = nativeFilePathHistoryStream.stream.storagePolicy.streamPath;
+const nativeFileChunkPath = nativeFilePathHistoryStream.buffers[0].filePath;
+const nativeFileCloseStatus = await client.closeRun({
+  runId: "smoke-native-file-path-history-run",
+  releaseStreams: true,
+});
+assert(
+  nativeFileCloseStatus.code === "ok" &&
+    nativeFileCloseStatus.details.releasedStreamCount === 1 &&
+    nativeFileCloseStatus.details.deletedNativeFileStreamCount === 1,
+  "expected native-file closeRun cleanup status"
+);
+assert(
+  !fs.existsSync(nativeFileStreamPath) &&
+    !fs.existsSync(nativeFileChunkPath),
+  "expected native-file stream files to be deleted on closeRun"
+);
+let closedNativeFileStreamRejected = false;
+try {
+  await client.describeStream(createDescribeStreamRequest({ streamId: "smoke-native-file-path-history" }));
+} catch (error) {
+  closedNativeFileStreamRejected =
+    error instanceof SolverBridgeError && error.status.code === "stream_read_failed";
+}
+assert(closedNativeFileStreamRejected, "expected closed native-file stream to be unavailable");
+await reopenedNativeFileClient.dispose();
 const explicitLifecyclePlan = await client.planPathHistoryStorageLifecycleF64(
   createPathHistoryStorageLifecycleRequest({
     policy: {
@@ -1669,6 +2197,32 @@ assert(
     pathHistoryWideDescription.index.pathIndexRows[2].byteRange.start === 192,
   "expected second path 2000 span"
 );
+const streamSpaceTimeIndex = await client.buildPathHistoryStreamSpaceTimeIndexF64(
+  createPathHistoryStreamSpaceTimeIndexRequest({
+    streamId: "smoke-path-history-wide",
+    chunkIndices: [0],
+    pathKeys: [2000],
+    timeRange: { start: 0, end: 1.5 },
+    options: { spatialCellSize: 1, timeBinSize: 1, maxCellsPerItem: 128 },
+    maxRows: 64,
+    maxBytes: 512,
+  })
+);
+assert(streamSpaceTimeIndex.status.code === "ok", "expected stream-backed space-time index status ok");
+assert(streamSpaceTimeIndex.rows.length > 0, "expected stream-backed space-time index rows");
+assert(streamSpaceTimeIndex.rows.every((row) => row.subjectKey === 2000), "expected stream-backed path filter");
+assert(streamSpaceTimeIndex.overflowEntryCount === 0, "expected no stream-backed space-time index overflow");
+assert(
+  streamSpaceTimeIndex.status.details.selectedRangeCount === 1 &&
+    streamSpaceTimeIndex.status.details.selectedPathRowCount === 1,
+  "expected chunk-scoped stream-backed index selection details"
+);
+const streamSpaceTimeIndexBuffer = findBuffer(streamSpaceTimeIndex, "spacetime_index.v1");
+assert(
+  streamSpaceTimeIndexBuffer.rowCount === streamSpaceTimeIndex.rows.length &&
+    streamSpaceTimeIndexBuffer.byteLength === streamSpaceTimeIndex.rows.length * 128,
+  "expected stream-backed space-time index buffer"
+);
 const emissionShellCandidates = await client.queryEmissionShellCandidatesF64({
   streamId: "smoke-path-history-wide",
   sourcePathKeys: [2000],
@@ -1760,6 +2314,52 @@ assert(
     emissionNarrowPhaseView.getUint32(12, true) === 1 &&
     emissionNarrowPhaseView.getFloat64(32, true) === 0,
   "expected emission-shell narrow-phase buffer sampled hit"
+);
+const emissionShellRootRefinement = await client.refineEmissionShellCandidateRootsF64(
+  createEmissionShellRootRefinementRequest({
+    streamId: "smoke-path-history-wide",
+    candidates: emissionShellCandidates.candidates,
+    signalSpeed: 1,
+    tolerance: 1e-12,
+    rootTolerance: 1e-12,
+    workerCount: 2,
+  })
+);
+assert(
+  emissionShellRootRefinement.schema === "solver-emission-shell-root-refinement.v1",
+  "expected emission-shell root-refinement schema"
+);
+assert(emissionShellRootRefinement.status.code === "ok", "expected emission-shell root refinement status ok");
+assert(emissionShellRootRefinement.candidateCount === 1, "expected one candidate refined");
+assert(emissionShellRootRefinement.processedCandidateCount === 1, "expected one processed refinement item");
+assert(emissionShellRootRefinement.attemptedCandidateCount === 1, "expected one attempted refinement");
+assert(emissionShellRootRefinement.skippedCandidateCount === 0, "expected no skipped refinement candidates");
+assert(emissionShellRootRefinement.status.details.workerCount === 2, "expected refinement worker-count detail");
+assert(emissionShellRootRefinement.rootCount >= 1, "expected refined exact root");
+assert(
+  emissionShellRootRefinement.hitCount === emissionShellRootRefinement.rootCount,
+  "expected refined delayed hits for each root"
+);
+assert(
+  emissionShellRootRefinement.items[0].candidateIndex === 0 &&
+    emissionShellRootRefinement.items[0].rootOffset === 0 &&
+    emissionShellRootRefinement.items[0].rootCount === emissionShellRootRefinement.rootCount &&
+    emissionShellRootRefinement.items[0].hitCount === emissionShellRootRefinement.hitCount,
+  "expected refinement item offsets and counts"
+);
+const refinedRootBuffer = findBuffer(emissionShellRootRefinement, "root_ledger.v1");
+const refinedHitBuffer = findBuffer(emissionShellRootRefinement, "delayed_hit_events.v1");
+assert(
+  refinedRootBuffer.rowCount === emissionShellRootRefinement.rootCount &&
+    refinedRootBuffer.byteLength === emissionShellRootRefinement.rootCount * 112 &&
+    refinedRootBuffer.buffer.byteLength === refinedRootBuffer.byteLength,
+  "expected refined root dense buffer"
+);
+assert(
+  refinedHitBuffer.rowCount === emissionShellRootRefinement.hitCount &&
+    refinedHitBuffer.byteLength === emissionShellRootRefinement.hitCount * 128 &&
+    refinedHitBuffer.buffer.byteLength === refinedHitBuffer.byteLength,
+  "expected refined delayed-hit dense buffer"
 );
 await client.createPathHistoryStreamF64({
   runId: "smoke-emission-shell-benchmark-run",
@@ -1961,6 +2561,17 @@ assert(runHandle.datasetId === "smoke-run-dataset", "expected runSimulation data
 assert(runHandle.acceptedPrecisionPath === "extended_precision", "expected runSimulation precision selection");
 assert(runHandle.response.summary.rootCount === 1, "expected runSimulation root count");
 assert(runHandle.response.summary.eventCount === 1, "expected runSimulation event count");
+const runPrecisionControlDiagnostic = runHandle.response.diagnostics.find(
+  (diagnostic) => diagnostic.message === "precision path controls applied to causal-root solve"
+);
+assert(runPrecisionControlDiagnostic, "expected runSimulation precision-control diagnostic");
+assert(
+  runPrecisionControlDiagnostic.details.precisionPath === "extended_precision" &&
+    runPrecisionControlDiagnostic.details.rootTolerance <= 1e-15 &&
+    runPrecisionControlDiagnostic.details.maxIterations >= 256 &&
+    runPrecisionControlDiagnostic.details.scanSubdivisions >= 512,
+  "expected runSimulation to apply extended-precision root controls"
+);
 assert(runHandle.response.manifest.schema === "solver-run-manifest.v1", "expected run manifest schema");
 assert(runHandle.response.manifest.manifestHash.length === 16, "expected run manifest hash");
 assert(runHandle.response.manifest.runId === "smoke-run", "expected run manifest run id");
@@ -2004,6 +2615,30 @@ assert(
 assert(runDescription.buffers.length === 2, "expected run description buffer metadata");
 assert(!("buffer" in runDescription.buffers[0]), "expected run description to omit dense buffer payload");
 assert(runDescription.streams[0].availableRanges.length === 2, "expected run description stream ranges");
+
+const normalizedRunHandle = await client.runSimulation(makeNormalizedRunSimulationRequest());
+assert(normalizedRunHandle.status.code === "ok", "expected normalized runSimulation status ok");
+assert(normalizedRunHandle.requestId === "smoke-normalized-run-request", "expected normalized run request id");
+assert(normalizedRunHandle.runId === "smoke-normalized-run", "expected normalized run id");
+assert(normalizedRunHandle.response.summary.rootCount === 1, "expected normalized run root count");
+assert(
+  Math.abs(normalizedRunHandle.response.roots[0].distance - 1) <= 1e-12 &&
+    normalizedRunHandle.response.roots[0].sourcePoint.x === 0 &&
+    normalizedRunHandle.response.roots[0].receiverPoint.x === 1,
+  "expected normalized run roots to remain in local authoritative coordinates"
+);
+assert(
+  normalizedRunHandle.response.diagnostics.some(
+    (diagnostic) =>
+      diagnostic.message.includes("origin-normalized") &&
+      diagnostic.details?.absolutePointAuthority === "display-only"
+  ),
+  "expected normalized run coordinate authority diagnostic"
+);
+assert(
+  normalizedRunHandle.response.manifest.configHash === "solver-normalized-run-smoke",
+  "expected normalized run manifest config hash"
+);
 
 const phaseRunHandle = await client.runSimulation(makePhaseDiagnosticsRunSimulationRequest(runHandle.response.roots));
 assert(phaseRunHandle.status.code === "ok", "expected phase-diagnostics runSimulation status ok");
@@ -2105,6 +2740,23 @@ assert(
     delayedHitRunHandle.response.manifest.buffers.length === 2,
   "expected delayed-hit run manifest"
 );
+const normalizedDelayedHitRunHandle = await client.runSimulation(
+  makeNormalizedDelayedHitRunSimulationRequest()
+);
+assert(
+  normalizedDelayedHitRunHandle.status.code === "ok" &&
+    normalizedDelayedHitRunHandle.response.summary.eventCount === 1 &&
+    Math.abs(normalizedDelayedHitRunHandle.response.hits[0].distance - 1) <= 1e-12,
+  "expected normalized delayed-hit run response"
+);
+assert(
+  normalizedDelayedHitRunHandle.response.diagnostics.some(
+    (diagnostic) =>
+      diagnostic.message.includes("origin-normalized") &&
+      diagnostic.details?.localHitAuthority === "authoritative"
+  ),
+  "expected normalized delayed-hit coordinate authority diagnostic"
+);
 
 const sharedGeometryRunHandle = await client.runSimulation(makeSharedGeometryRunSimulationRequest());
 assert(sharedGeometryRunHandle.status.code === "ok", "expected shared-geometry runSimulation status ok");
@@ -2194,7 +2846,27 @@ try {
 }
 assert(releasedStreamRejected, "expected released stream to be unavailable");
 
+const disposeNativeFileBasePath = path.join(rootDir, ".tmp", "solver-app-bridge-dispose-streams");
+fs.rmSync(disposeNativeFileBasePath, { recursive: true, force: true });
+const disposeNativeFilePathHistoryStream = await client.createPathHistoryStreamF64(
+  createPathHistoryStreamRequest({
+    runId: "smoke-dispose-native-file-run",
+    datasetId: "smoke-dispose-native-file-dataset",
+    streamId: "smoke-dispose-native-file-path-history",
+    pathRows: makePathHistoryRows(),
+    rowsPerChunk: 3,
+    storagePolicy: {
+      target: "native-file",
+      durable: true,
+      maxBytes: 4096,
+      basePath: disposeNativeFileBasePath,
+    },
+  })
+);
+const disposeNativeFileStreamPath = disposeNativeFilePathHistoryStream.stream.storagePolicy.streamPath;
+assert(fs.existsSync(disposeNativeFileStreamPath), "expected dispose native-file stream before dispose");
 await client.dispose();
+assert(!fs.existsSync(disposeNativeFileStreamPath), "expected dispose to delete native-file stream files");
 console.log("solver app bridge check passed.");
 
 function readJson(relativePath) {
@@ -2206,6 +2878,29 @@ function makeBatchRequest(distance) {
   request.receiver.positionAtStart.x = distance;
   request.hitTime = distance;
   return request;
+}
+
+function makeNormalizedCausalRootRequest() {
+  return {
+    coordinateOrigin: { x: 1e18, y: -2e18, z: 3e18 },
+    localRequest: {
+      ...normalizeJson(fixtureRequest.request),
+      source: {
+        ...normalizeJson(fixtureRequest.request.source),
+        positionAtStart: { x: 0, y: 0, z: 0 },
+        endTime: 1,
+      },
+      receiver: {
+        ...normalizeJson(fixtureRequest.request.receiver),
+        positionAtStart: { x: 1, y: 0, z: 0 },
+        endTime: 1,
+      },
+      hitTime: 1,
+      rootTolerance: 1e-15,
+      maxRoots: 4,
+    },
+    restoreAbsolutePoints: true,
+  };
 }
 
 function makePrecisionRequest() {
@@ -2383,6 +3078,29 @@ function makeRunSimulationRequest() {
   });
 }
 
+function makeNormalizedRunSimulationRequest() {
+  const admission = makeAdmissionRequest();
+  return createPhotonCausalRootsRunRequest({
+    requestId: "smoke-normalized-run-request",
+    runId: "smoke-normalized-run",
+    datasetId: "smoke-normalized-run-dataset",
+    claimLevel: "interactive-preview",
+    precisionPath: "auto",
+    configVersion: "solver-normalized-run-smoke.v1",
+    configHash: "solver-normalized-run-smoke",
+    model: admission.model,
+    envelope: admission.envelope,
+    errorBudget: admission.errorBudget,
+    normalizedRootRequest: makeNormalizedCausalRootRequest(),
+    output: {
+      outputs: ["rootLedger", "delayedHitEvents", "diagnostics"],
+      streamTarget: "caller-buffer",
+      memoryBudgetBytes: 64 * 1024 * 1024,
+      deterministic: true,
+    },
+  });
+}
+
 function makePhaseDiagnosticsRunSimulationRequest(roots) {
   const admission = makeAdmissionRequest();
   return createPhotonPhaseDiagnosticsRunRequest({
@@ -2526,6 +3244,29 @@ function makeDelayedHitRunSimulationRequest() {
     envelope: admission.envelope,
     errorBudget: admission.errorBudget,
     rootRequest: fixtureRequest.request,
+    output: {
+      outputs: ["delayedHitEvents", "diagnostics"],
+      streamTarget: "caller-buffer",
+      memoryBudgetBytes: 64 * 1024 * 1024,
+      deterministic: true,
+    },
+  });
+}
+
+function makeNormalizedDelayedHitRunSimulationRequest() {
+  const admission = makeAdmissionRequest();
+  return createIdealSwarmDelayedHitsRunRequest({
+    requestId: "smoke-normalized-delayed-hit-run-request",
+    runId: "smoke-normalized-delayed-hit-run",
+    datasetId: "smoke-normalized-delayed-hit-run-dataset",
+    claimLevel: "interactive-preview",
+    precisionPath: "auto",
+    configVersion: "solver-normalized-delayed-hit-run-smoke.v1",
+    configHash: "solver-normalized-delayed-hit-run-smoke",
+    model: admission.model,
+    envelope: admission.envelope,
+    errorBudget: admission.errorBudget,
+    normalizedRootRequest: makeNormalizedCausalRootRequest(),
     output: {
       outputs: ["delayedHitEvents", "diagnostics"],
       streamTarget: "caller-buffer",

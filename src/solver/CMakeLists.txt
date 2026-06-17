@@ -49,6 +49,7 @@ add_library(architrino_solver_core STATIC
   src/ParallelExecution.cpp
   src/PhaseDiagnostics.cpp
   src/PrecisionDiagnostics.cpp
+  src/PrecisionPathSolver.cpp
   src/RootLedger.cpp
   src/RootLedgerTransition.cpp
   src/SolverCAbi.cpp
@@ -246,6 +247,14 @@ if(NOT EMSCRIPTEN)
   target_link_libraries(architrino_solver_work_packet_smoke
     PRIVATE architrino_solver_core
   )
+
+  add_executable(architrino_solver_benchmark
+    native/solver_benchmark.cpp
+  )
+
+  target_link_libraries(architrino_solver_benchmark
+    PRIVATE architrino_solver_core
+  )
 endif()
 
 if(ARCHITRINO_SOLVER_BUILD_WASM)
@@ -263,7 +272,7 @@ if(ARCHITRINO_SOLVER_BUILD_WASM)
       "SHELL:-sMODULARIZE=1"
       "SHELL:-sEXPORT_NAME=createArchitrinoSolverSmoke"
       "SHELL:-sENVIRONMENT=web,worker,node"
-      "SHELL:-sEXPORTED_FUNCTIONS=['_malloc','_free','_architrino_solver_get_abi_info','_architrino_solver_smoke','_architrino_solver_contract_smoke','_architrino_solver_root_smoke','_architrino_solver_solve_causal_roots_f64','_architrino_solver_solve_roots_and_hits_f64','_architrino_solver_build_root_ledger_detail_f64','_architrino_solver_solve_causal_root_batch_f64','_architrino_solver_diagnose_precision_f64','_architrino_solver_propagate_error_budget_f64','_architrino_solver_sample_linear_motion_f64','_architrino_solver_compute_phase_at_hit_f64','_architrino_solver_compute_path_bounds_f64','_architrino_solver_intersect_sphere_points_f64','_architrino_solver_compute_delayed_potentials_f64','_architrino_solver_solve_circular_self_hit_spans_f64','_architrino_solver_detect_assembly_membership_events_f64','_architrino_solver_build_spacetime_index_f64','_architrino_solver_query_spacetime_index_f64','_architrino_solver_query_emission_shell_broad_phase_f64','_architrino_solver_estimate_emission_shell_narrow_phase_f64','_architrino_solver_plan_path_history_storage_lifecycle']"
+      "SHELL:-sEXPORTED_FUNCTIONS=['_malloc','_free','_architrino_solver_get_abi_info','_architrino_solver_smoke','_architrino_solver_contract_smoke','_architrino_solver_root_smoke','_architrino_solver_solve_causal_roots_f64','_architrino_solver_solve_roots_and_hits_f64','_architrino_solver_build_root_ledger_detail_f64','_architrino_solver_solve_causal_root_batch_f64','_architrino_solver_solve_roots_and_hits_batch_f64','_architrino_solver_diagnose_precision_f64','_architrino_solver_solve_causal_roots_precision_f64','_architrino_solver_solve_roots_and_hits_precision_f64','_architrino_solver_propagate_error_budget_f64','_architrino_solver_sample_linear_motion_f64','_architrino_solver_compute_phase_at_hit_f64','_architrino_solver_compute_path_bounds_f64','_architrino_solver_intersect_sphere_points_f64','_architrino_solver_compute_delayed_potentials_f64','_architrino_solver_solve_circular_self_hit_spans_f64','_architrino_solver_detect_assembly_membership_events_f64','_architrino_solver_write_assembly_graph_store_f64','_architrino_solver_read_assembly_graph_store_states_f64','_architrino_solver_read_assembly_graph_store_memberships_f64','_architrino_solver_read_assembly_graph_store_hierarchy_f64','_architrino_solver_read_assembly_graph_store_events_f64','_architrino_solver_read_assembly_graph_store_index','_architrino_solver_query_assembly_graph_store_index','_architrino_solver_build_spacetime_index_f64','_architrino_solver_query_spacetime_index_f64','_architrino_solver_query_emission_shell_broad_phase_f64','_architrino_solver_estimate_emission_shell_narrow_phase_f64','_architrino_solver_write_path_history_stream_f64','_architrino_solver_read_path_history_stream_rows_f64','_architrino_solver_read_path_history_stream_index','_architrino_solver_read_path_history_stream_chunks','_architrino_solver_query_path_history_stream_index','_architrino_solver_read_path_history_stream_query_f64','_architrino_solver_plan_path_history_storage_lifecycle']"
       "SHELL:-sEXPORTED_RUNTIME_METHODS=['cwrap','getValue','setValue']"
     )
   endif()

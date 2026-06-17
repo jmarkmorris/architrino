@@ -20,6 +20,35 @@ struct AssemblyGraphStoreOptions {
   std::string eventPath;
   std::string metadataPath;
   bool durable = true;
+  std::string indexPath;
+};
+
+enum class AssemblyGraphStoreIndexLayout : std::uint32_t {
+  AssemblyState = 1,
+  AssemblyMembership = 2,
+  AssemblyHierarchy = 3,
+  AssemblyEvents = 4,
+};
+
+enum class AssemblyGraphStoreIndexKeyKind : std::uint32_t {
+  Path = 1,
+  Assembly = 2,
+  ParentAssembly = 3,
+  ChildAssembly = 4,
+};
+
+struct AssemblyGraphStoreIndexRowF64 {
+  std::uint32_t layoutCode = 0;
+  std::uint32_t keyKind = 0;
+  std::uint64_t key = 0;
+  std::uint64_t rowOffset = 0;
+  std::uint64_t rowCount = 0;
+  double timeStart = 0.0;
+  double timeEnd = 0.0;
+  std::uint64_t byteOffset = 0;
+  std::uint64_t byteLength = 0;
+  std::uint32_t stateFlags = 0;
+  std::uint32_t reserved0 = 0;
 };
 
 struct AssemblyGraphDatasetMetadata {
@@ -42,6 +71,7 @@ struct AssemblyGraphStoreMetadata {
   AssemblyGraphDatasetMetadata memberships;
   AssemblyGraphDatasetMetadata hierarchy;
   AssemblyGraphDatasetMetadata events;
+  AssemblyGraphDatasetMetadata index;
   std::string metadataPath;
 };
 
@@ -53,6 +83,21 @@ struct AssemblyGraphQuery {
   bool filterPath = false;
   bool filterAssembly = false;
   bool filterTime = false;
+};
+
+struct AssemblyGraphStoreIndexQuery {
+  AssemblyGraphStoreIndexLayout layoutCode = AssemblyGraphStoreIndexLayout::AssemblyState;
+  AssemblyGraphStoreIndexKeyKind keyKind = AssemblyGraphStoreIndexKeyKind::Assembly;
+  std::uint64_t key = 0;
+  double timeStart = 0.0;
+  double timeEnd = 0.0;
+  std::uint64_t byteStart = 0;
+  std::uint64_t byteEnd = 0;
+  bool filterLayout = false;
+  bool filterKeyKind = false;
+  bool filterKey = false;
+  bool filterTime = false;
+  bool filterByteRange = false;
 };
 
 class AssemblyGraphStoreWriter {
@@ -73,6 +118,16 @@ class AssemblyGraphStoreWriter {
 
  private:
   void include_time_range(double start, double end);
+  void append_index(AssemblyGraphStoreIndexLayout layoutCode,
+                    AssemblyGraphStoreIndexKeyKind keyKind,
+                    std::uint64_t key,
+                    std::uint64_t rowOffset,
+                    std::uint64_t rowCount,
+                    double timeStart,
+                    double timeEnd,
+                    std::uint64_t byteOffset,
+                    std::uint64_t byteLength,
+                    std::uint32_t stateFlags = 0);
   void write_manifest() const;
 
   AssemblyGraphStoreOptions options_;
@@ -82,6 +137,7 @@ class AssemblyGraphStoreWriter {
   std::ofstream membershipStream_;
   std::ofstream hierarchyStream_;
   std::ofstream eventStream_;
+  std::ofstream indexStream_;
 };
 
 std::vector<AssemblyStateRowF64> read_assembly_state_rows(std::string_view path,
@@ -96,6 +152,10 @@ std::vector<AssemblyHierarchyRowF64> read_assembly_hierarchy_rows(std::string_vi
 std::vector<AssemblyEventRowF64> read_assembly_event_rows(std::string_view path,
                                                           std::uint64_t rowOffset,
                                                           std::size_t rowCount);
+std::vector<AssemblyGraphStoreIndexRowF64> read_assembly_graph_store_index_rows(
+    std::string_view path,
+    std::uint64_t rowOffset,
+    std::size_t rowCount);
 
 std::vector<AssemblyStateRowF64> query_assembly_states(
     const std::vector<AssemblyStateRowF64>& rows,
@@ -109,5 +169,8 @@ std::vector<AssemblyHierarchyRowF64> query_assembly_hierarchy(
 std::vector<AssemblyEventRowF64> query_assembly_events(
     const std::vector<AssemblyEventRowF64>& rows,
     const AssemblyGraphQuery& query);
+std::vector<AssemblyGraphStoreIndexRowF64> query_assembly_graph_store_index(
+    const std::vector<AssemblyGraphStoreIndexRowF64>& rows,
+    const AssemblyGraphStoreIndexQuery& query);
 
 }  // namespace architrino::solver

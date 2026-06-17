@@ -1,8 +1,14 @@
 import type {
   SolverAppId,
+  SolverAssemblyGraphDatasetF64Request,
+  SolverAssemblyGraphStoreF64Request,
+  SolverAssemblyGraphStoreReadF64Request,
+  SolverBuildPathHistoryStreamSpaceTimeIndexF64Request,
+  SolverDescribeAssemblyGraphStoreF64Request,
   SolverBinaryLayoutId,
   SolverCausalRootF64,
   SolverCausalRootsF64Request,
+  SolverCausalRootsNormalizedF64Request,
   SolverClaimLevel,
   SolverComparableResponse,
   SolverCreatePathHistoryStreamF64Request,
@@ -14,6 +20,7 @@ import type {
   SolverEmissionShellCandidatePacketF64Request,
   SolverEmissionShellCandidatePacketMergeF64Request,
   SolverEmissionShellCandidatePacketsF64Request,
+  SolverEmissionShellRootRefinementF64Request,
   SolverErrorBudget,
   SolverLinearMotionSampleF64Request,
   SolverModelContract,
@@ -65,17 +72,21 @@ export interface SolverGenericRunAdapterInput extends SolverRunAdapterBaseInput 
   config: SolverRunConfig;
 }
 
-export interface PhotonCausalRootsRunAdapterInput extends SolverRunAdapterBaseInput {
-  rootRequest: SolverCausalRootsF64Request;
-}
+export type PhotonCausalRootsRunAdapterInput = SolverRunAdapterBaseInput &
+  (
+    | { rootRequest: SolverCausalRootsF64Request; normalizedRootRequest?: never }
+    | { rootRequest?: never; normalizedRootRequest: SolverCausalRootsNormalizedF64Request }
+  );
 
 export interface PhotonPhaseDiagnosticsRunAdapterInput extends SolverRunAdapterBaseInput {
   phaseRequest: SolverPhaseAtHitF64Request;
 }
 
-export interface IdealSwarmDelayedHitsRunAdapterInput extends SolverRunAdapterBaseInput {
-  rootRequest: SolverCausalRootsF64Request;
-}
+export type IdealSwarmDelayedHitsRunAdapterInput = SolverRunAdapterBaseInput &
+  (
+    | { rootRequest: SolverCausalRootsF64Request; normalizedRootRequest?: never }
+    | { rootRequest?: never; normalizedRootRequest: SolverCausalRootsNormalizedF64Request }
+  );
 
 export interface IdealSwarmSharedGeometryRunAdapterInput extends SolverRunAdapterBaseInput {
   geometryRequest: SolverSharedGeometryF64Request;
@@ -132,10 +143,22 @@ export interface PathHistoryStreamAdapterInput {
   memoryBudgetBytes?: number;
 }
 
+export type AssemblyGraphDatasetAdapterInput = SolverAssemblyGraphDatasetF64Request;
+
+export type AssemblyGraphStoreAdapterInput = SolverAssemblyGraphStoreF64Request;
+
+export type DescribeAssemblyGraphStoreAdapterInput = SolverDescribeAssemblyGraphStoreF64Request;
+
+export type AssemblyGraphStoreReadAdapterInput = SolverAssemblyGraphStoreReadF64Request;
+
+export type PathHistoryStreamSpaceTimeIndexAdapterInput =
+  SolverBuildPathHistoryStreamSpaceTimeIndexF64Request;
+
 export interface OpenStreamAdapterInput {
   runId?: string;
   datasetId?: string;
   streamId?: string;
+  manifestPath?: string;
   purpose?: SolverOpenStreamRequest["purpose"];
 }
 
@@ -147,6 +170,7 @@ export interface ReadStreamRangeAdapterInput {
   streamId: string;
   pathIds?: string[];
   pathKeys?: number[];
+  chunkIndices?: number[];
   timeRange?: SolverRange;
   frameRange?: SolverRange;
   byteRange?: SolverRange;
@@ -177,6 +201,8 @@ export interface PathHistoryWorkPacketPlanAdapterInput {
 }
 
 export type EmissionShellCandidateQueryAdapterInput = SolverEmissionShellCandidateF64Request;
+
+export type EmissionShellRootRefinementAdapterInput = SolverEmissionShellRootRefinementF64Request;
 
 export interface EmissionShellCandidatePacketQueryAdapterInput {
   streamId: string;
@@ -246,6 +272,26 @@ export declare function createPathHistoryStreamRequest(
   input: PathHistoryStreamAdapterInput
 ): SolverCreatePathHistoryStreamF64Request;
 
+export declare function createAssemblyGraphDatasetRequest(
+  input: AssemblyGraphDatasetAdapterInput
+): SolverAssemblyGraphDatasetF64Request;
+
+export declare function createAssemblyGraphStoreRequest(
+  input: AssemblyGraphStoreAdapterInput
+): SolverAssemblyGraphStoreF64Request;
+
+export declare function createDescribeAssemblyGraphStoreRequest(
+  input: DescribeAssemblyGraphStoreAdapterInput
+): SolverDescribeAssemblyGraphStoreF64Request;
+
+export declare function createAssemblyGraphStoreReadRequest(
+  input: AssemblyGraphStoreReadAdapterInput
+): SolverAssemblyGraphStoreReadF64Request;
+
+export declare function createPathHistoryStreamSpaceTimeIndexRequest(
+  input: PathHistoryStreamSpaceTimeIndexAdapterInput
+): SolverBuildPathHistoryStreamSpaceTimeIndexF64Request;
+
 export declare function createOpenStreamRequest(input: OpenStreamAdapterInput): SolverOpenStreamRequest;
 
 export declare function createDescribeStreamRequest(
@@ -267,6 +313,10 @@ export declare function createPathHistoryWorkPacketPlanRequest(
 export declare function createEmissionShellCandidateQueryRequest(
   input: EmissionShellCandidateQueryAdapterInput
 ): SolverEmissionShellCandidateF64Request;
+
+export declare function createEmissionShellRootRefinementRequest(
+  input: EmissionShellRootRefinementAdapterInput
+): SolverEmissionShellRootRefinementF64Request;
 
 export declare function createEmissionShellCandidatePacketQueryRequest(
   input: EmissionShellCandidatePacketQueryAdapterInput

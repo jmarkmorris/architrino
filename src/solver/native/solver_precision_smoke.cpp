@@ -1,4 +1,5 @@
 #include "architrino/solver/PrecisionDiagnostics.hpp"
+#include "architrino/solver/PrecisionPathSolver.hpp"
 #include "architrino/solver/SolverCAbi.hpp"
 
 #include <cmath>
@@ -75,6 +76,33 @@ int main() {
       architrino::solver::diagnose_precision(make_request(1e15, 1e3, 1e12, 1e-16));
   const architrino::solver::CausalRootResult largeRoots =
       architrino::solver::solve_causal_roots(make_request(1e15, 1e3, 1e12, 1e-16));
+  const architrino::solver::PrecisionCausalRootResult autoPrecision =
+      architrino::solver::solve_causal_roots_with_precision(
+          make_request(1e15, 1e3, 1e12, 1e-16),
+          architrino::solver::PrecisionSolveOptions{
+              architrino::solver::PrecisionPath::ScaledF64Strict,
+              architrino::solver::ClaimLevel::ExportedDataset,
+              true,
+              true,
+          });
+  const architrino::solver::PrecisionCausalRootResult rejectedWeakPath =
+      architrino::solver::solve_causal_roots_with_precision(
+          make_request(1e15, 1e3, 1e12, 1e-16),
+          architrino::solver::PrecisionSolveOptions{
+              architrino::solver::PrecisionPath::ScaledF64Fast,
+              architrino::solver::ClaimLevel::ValidationEvidence,
+              false,
+              false,
+          });
+  const architrino::solver::PrecisionCausalRootResult strictPath =
+      architrino::solver::solve_causal_roots_with_precision(
+          make_request(0.0, 10.0, 10.0, 1e-10),
+          architrino::solver::PrecisionSolveOptions{
+              architrino::solver::PrecisionPath::ScaledF64Strict,
+              architrino::solver::ClaimLevel::MigrationParity,
+              true,
+              false,
+          });
 
   const bool ok =
       ordinary.validation.ok &&
@@ -94,7 +122,28 @@ int main() {
       large.extendedPrecisionRecommended &&
       large.scaleResolutionLimited &&
       large.timeResolutionLimited &&
-      large.geometryScale.ordersOfMagnitude >= 12.0;
+      large.geometryScale.ordersOfMagnitude >= 12.0 &&
+      autoPrecision.roots.validation.ok &&
+      autoPrecision.precision.validation.ok &&
+      autoPrecision.roots.roots.size() == 1 &&
+      autoPrecision.precision.selectedPath == architrino::solver::PrecisionPath::ExtendedPrecision &&
+      autoPrecision.precision.selectedNumericType == architrino::solver::NumericType::Decimal128 &&
+      autoPrecision.precision.escalated &&
+      autoPrecision.precision.validationReplayRun &&
+      autoPrecision.precision.validationReplayMatched &&
+      autoPrecision.precision.scanSubdivisions >= 512 &&
+      autoPrecision.precision.maxIterations >= 256 &&
+      autoPrecision.precision.rootTolerance <= 1e-16 &&
+      rejectedWeakPath.roots.roots.empty() &&
+      !rejectedWeakPath.precision.validation.ok &&
+      rejectedWeakPath.precision.selectedPath == architrino::solver::PrecisionPath::ValidationReplay &&
+      rejectedWeakPath.precision.escalated &&
+      strictPath.roots.validation.ok &&
+      strictPath.precision.validation.ok &&
+      strictPath.precision.selectedPath == architrino::solver::PrecisionPath::ScaledF64Strict &&
+      strictPath.precision.selectedNumericType == architrino::solver::NumericType::F64 &&
+      strictPath.precision.scanSubdivisions >= 128 &&
+      strictPath.precision.maxIterations >= 128;
 
   ArchitrinoSolverCausalRootRequestF64 cRequest = make_c_request(1e15, 1e3, 1e12, 1e-16);
   ArchitrinoSolverPrecisionDiagnosticRowF64 cDiagnostic = {};
@@ -113,13 +162,67 @@ int main() {
       (cDiagnostic.flags & 8) != 0 &&
       cDiagnostic.geometry_orders >= 12.0;
 
-  if (!ok || !cAbiOk) {
+  ArchitrinoSolverCausalRootRowF64 precisionRoots[2] = {};
+  int precisionRootCount = 0;
+  ArchitrinoSolverPrecisionSolveSummaryF64 precisionSummary = {};
+  const ArchitrinoSolverPrecisionSolveOptions precisionOptions{
+      static_cast<int>(architrino::solver::PrecisionPath::ScaledF64Strict),
+      static_cast<int>(architrino::solver::ClaimLevel::ExportedDataset),
+      1,
+      1,
+  };
+  const int precisionStatus = architrino_solver_solve_causal_roots_precision_f64(
+      &cRequest,
+      &precisionOptions,
+      precisionRoots,
+      2,
+      &precisionRootCount,
+      &precisionSummary);
+  const ArchitrinoSolverPrecisionSolveOptions rejectedOptions{
+      static_cast<int>(architrino::solver::PrecisionPath::ScaledF64Fast),
+      static_cast<int>(architrino::solver::ClaimLevel::ValidationEvidence),
+      0,
+      0,
+  };
+  int rejectedRootCount = -1;
+  ArchitrinoSolverPrecisionSolveSummaryF64 rejectedSummary = {};
+  const int rejectedStatus = architrino_solver_solve_causal_roots_precision_f64(
+      &cRequest,
+      &rejectedOptions,
+      precisionRoots,
+      2,
+      &rejectedRootCount,
+      &rejectedSummary);
+  const bool cAbiPrecisionOk =
+      precisionStatus == 0 &&
+      precisionRootCount == 1 &&
+      precisionSummary.selected_precision_path ==
+          static_cast<int>(architrino::solver::PrecisionPath::ExtendedPrecision) &&
+      precisionSummary.selected_numeric_type ==
+          static_cast<int>(architrino::solver::NumericType::Decimal128) &&
+      precisionSummary.escalated == 1 &&
+      precisionSummary.validation_replay_run == 1 &&
+      precisionSummary.validation_replay_matched == 1 &&
+      precisionSummary.scan_subdivisions >= 512 &&
+      precisionSummary.max_iterations >= 256 &&
+      precisionSummary.root_tolerance <= 1e-16 &&
+      rejectedStatus == -2 &&
+      rejectedRootCount == 0 &&
+      rejectedSummary.selected_precision_path ==
+          static_cast<int>(architrino::solver::PrecisionPath::ValidationReplay) &&
+      rejectedSummary.status_code ==
+          static_cast<int>(architrino::solver::StatusCode::PrecisionFailed);
+
+  if (!ok || !cAbiOk || !cAbiPrecisionOk) {
     std::cerr << "solver precision smoke failed\n";
     return 1;
   }
 
   std::cout << "solver precision=ok ordinary="
             << architrino::solver::to_string(ordinary.recommendedPath)
-            << " large=" << architrino::solver::to_string(large.recommendedPath) << '\n';
+            << " large=" << architrino::solver::to_string(large.recommendedPath)
+            << " selected="
+            << architrino::solver::to_string(autoPrecision.precision.selectedPath)
+            << " replay=" << autoPrecision.precision.validationReplayMatched << '\n';
   return 0;
 }
