@@ -81,6 +81,38 @@ std::uint64_t fnv1a64_bytes(const void* data, std::size_t byteLength) {
   return fnv1a64_update(kFnvOffsetBasis, data, byteLength);
 }
 
+std::uint64_t fnv1a64_file_range(std::ifstream& input,
+                                 std::string_view path,
+                                 std::uint64_t byteOffset,
+                                 std::uint64_t byteLength) {
+  const std::uint64_t fileBytes = checked_file_size(input, path);
+  if (byteOffset > fileBytes || byteLength > fileBytes - byteOffset) {
+    std::ostringstream message;
+    message << "checksum byte range is outside the file for " << path;
+    throw std::runtime_error(message.str());
+  }
+
+  input.seekg(static_cast<std::streamoff>(byteOffset), std::ios::beg);
+  std::uint64_t remaining = byteLength;
+  std::uint64_t hash = kFnvOffsetBasis;
+  char buffer[8192]{};
+  while (remaining > 0) {
+    const std::size_t step = static_cast<std::size_t>(
+        std::min<std::uint64_t>(remaining, sizeof(buffer)));
+    input.read(buffer, static_cast<std::streamsize>(step));
+    if (!input) {
+      std::ostringstream message;
+      message << "failed to read checksum byte range for " << path;
+      throw std::runtime_error(message.str());
+    }
+    hash = fnv1a64_update(hash, buffer, step);
+    remaining -= static_cast<std::uint64_t>(step);
+  }
+  input.clear();
+  input.seekg(0, std::ios::beg);
+  return hash;
+}
+
 std::string hex_u64(std::uint64_t value) {
   std::ostringstream output;
   output << "0x" << std::hex << std::setw(16) << std::setfill('0') << value;
@@ -507,6 +539,33 @@ std::vector<PathHistoryIndexRow> query_path_history_index(
   return matches;
 }
 
+bool verify_path_history_chunk_checksum(std::string_view dataPath,
+                                        const PathHistoryChunkRow& chunkRow) {
+  std::ifstream input(std::string(dataPath), std::ios::binary);
+  if (!input.is_open()) {
+    std::ostringstream message;
+    message << "failed to open path-history data file at " << dataPath;
+    throw std::runtime_error(message.str());
+  }
+  if (chunkRow.byteLength != chunkRow.rowCount * sizeof(PathHistoryRowF64)) {
+    throw std::runtime_error("path-history chunk byte length does not match row count");
+  }
+  const std::uint64_t actual =
+      fnv1a64_file_range(input, dataPath, chunkRow.byteOffset, chunkRow.byteLength);
+  return actual == chunkRow.checksum64;
+}
+
+void verify_path_history_chunk_checksums(std::string_view dataPath,
+                                         const std::vector<PathHistoryChunkRow>& chunkRows) {
+  for (const PathHistoryChunkRow& chunkRow : chunkRows) {
+    if (!verify_path_history_chunk_checksum(dataPath, chunkRow)) {
+      std::ostringstream message;
+      message << "path-history chunk checksum mismatch at chunk " << chunkRow.chunkIndex;
+      throw std::runtime_error(message.str());
+    }
+  }
+}
+
 std::vector<PathHistoryRowF64> read_path_history_query(
     std::string_view dataPath,
     const std::vector<PathHistoryIndexRow>& indexRows,
@@ -517,6 +576,39 @@ std::vector<PathHistoryRowF64> read_path_history_query(
     const std::vector<PathHistoryRowF64> chunkRows =
         read_path_history_rows(dataPath, match.rowOffset, static_cast<std::size_t>(match.rowCount));
     rows.insert(rows.end(), chunkRows.begin(), chunkRows.end());
+  }
+  return rows;
+}
+
+std::vector<PathHistoryRowF64> read_path_history_query_checked(
+    std::string_view dataPath,
+    const std::vector<PathHistoryIndexRow>& indexRows,
+    const std::vector<PathHistoryChunkRow>& chunkRows,
+    const PathHistoryQuery& query) {
+  const std::vector<PathHistoryIndexRow> matches = query_path_history_index(indexRows, query);
+  std::vector<PathHistoryRowF64> rows;
+  for (const PathHistoryIndexRow& match : matches) {
+    const auto chunkIt = std::find_if(
+        chunkRows.begin(),
+        chunkRows.end(),
+        [&match](const PathHistoryChunkRow& chunkRow) {
+          return chunkRow.chunkIndex == match.chunkIndex &&
+                 chunkRow.rowOffset == match.rowOffset &&
+                 chunkRow.rowCount == match.rowCount &&
+                 chunkRow.byteOffset == match.byteOffset &&
+                 chunkRow.byteLength == match.byteLength;
+        });
+    if (chunkIt == chunkRows.end()) {
+      throw std::runtime_error("path-history query index row has no matching chunk row");
+    }
+    if (!verify_path_history_chunk_checksum(dataPath, *chunkIt)) {
+      std::ostringstream message;
+      message << "path-history query checksum mismatch at chunk " << chunkIt->chunkIndex;
+      throw std::runtime_error(message.str());
+    }
+    const std::vector<PathHistoryRowF64> chunkRowsRead =
+        read_path_history_rows(dataPath, match.rowOffset, static_cast<std::size_t>(match.rowCount));
+    rows.insert(rows.end(), chunkRowsRead.begin(), chunkRowsRead.end());
   }
   return rows;
 }

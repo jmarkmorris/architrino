@@ -1,6 +1,17 @@
 :root {
   --reader-font-size: 18px;
   --reader-line-height: 1.65;
+  --reader-background: #4b0082;
+  --reader-text: #ffffff;
+  --reader-heading: #ffffff;
+  --reader-muted: #ede9fe;
+  --reader-link: #bfdbfe;
+  --reader-internal-link: #99f6e4;
+  --reader-border: rgba(255, 255, 255, 0.28);
+  --reader-quote-background: rgba(255, 255, 255, 0.1);
+  --reader-table-header-background: rgba(255, 255, 255, 0.12);
+  --reader-code-background: rgba(15, 23, 42, 0.88);
+  --reader-code-text: #f8fafc;
 }
 
 * {
@@ -13,8 +24,8 @@ body {
   padding: 0;
   width: 100%;
   min-height: 100%;
-  background: #fdfdfd;
-  color: #101828;
+  background: var(--reader-background);
+  color: var(--reader-text);
 }
 
 body {
@@ -41,6 +52,7 @@ body {
 .reader-article h6 {
   margin-top: 1.6em;
   margin-bottom: 0.4em;
+  color: var(--reader-heading);
   line-height: 1.2;
 }
 
@@ -57,8 +69,8 @@ body {
   overflow-x: auto;
   padding: 0.85em;
   border-radius: 8px;
-  background: #0f172a;
-  color: #e2e8f0;
+  background: var(--reader-code-background);
+  color: var(--reader-code-text);
 }
 
 .reader-article code {
@@ -79,8 +91,8 @@ body {
 .reader-article blockquote {
   margin: 0.7em 0;
   padding: 0.7em 0.9em;
-  border-left: 4px solid #cbd5e1;
-  background: #f8fafc;
+  border-left: 4px solid var(--reader-border);
+  background: var(--reader-quote-background);
 }
 
 .reader-article table {
@@ -90,13 +102,13 @@ body {
 
 .reader-article th,
 .reader-article td {
-  border: 1px solid #cbd5e1;
+  border: 1px solid var(--reader-border);
   padding: 0.45em 0.6em;
   vertical-align: top;
 }
 
 .reader-article th {
-  background: #f1f5f9;
+  background: var(--reader-table-header-background);
 }
 
 .reader-article img {
@@ -105,17 +117,17 @@ body {
 }
 
 .reader-status {
-  color: #64748b;
+  color: var(--reader-muted);
   text-align: center;
   padding-top: 3rem;
 }
 
 a {
-  color: #1d4ed8;
+  color: var(--reader-link);
 }
 
 a.app-internal-link {
-  color: #0f766e;
+  color: var(--reader-internal-link);
 }
 
 html {

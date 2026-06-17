@@ -43,6 +43,24 @@ const initResponse = await client.init({
 
 assert(initResponse.status.code === "ok", "expected init status ok");
 assert(initResponse.capabilities.wasmModuleFactory === true, "expected wasm-backed capabilities");
+assert(
+  initResponse.capabilities.numericSerialization?.schema === "solver-numeric-serialization.v1",
+  "expected numeric serialization capability schema"
+);
+assert(
+  initResponse.capabilities.numericSerialization.descriptors.length === 5,
+  "expected five numeric serialization descriptors"
+);
+assert(
+  findNumericDescriptor(initResponse.capabilities, "f64").appBufferSafe &&
+    findNumericDescriptor(initResponse.capabilities, "f64").authoritativeStorageSafe,
+  "expected f64 app and storage descriptor"
+);
+assert(
+  !findNumericDescriptor(initResponse.capabilities, "decimal128").appBufferSafe &&
+    findNumericDescriptor(initResponse.capabilities, "decimal128").authoritativeStorageSafe,
+  "expected decimal128 storage-only descriptor"
+);
 assert(initResponse.capabilities.abiInfo?.rootRowF64Bytes === 112, "expected root row ABI size");
 assert(
   initResponse.capabilities.abiInfo?.rootLedgerDetailRowF64Bytes === 192,
@@ -778,6 +796,17 @@ function findBuffer(response, layout) {
     process.exit(1);
   }
   return buffer;
+}
+
+function findNumericDescriptor(capabilities, numericType) {
+  const descriptor = capabilities.numericSerialization.descriptors.find(
+    (candidate) => candidate.numericType === numericType
+  );
+  if (!descriptor) {
+    console.error(`Missing numeric descriptor ${numericType}`);
+    process.exit(1);
+  }
+  return descriptor;
 }
 
 function stripRuntimeBuffers(response) {

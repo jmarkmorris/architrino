@@ -54,6 +54,7 @@ add_library(architrino_solver_core STATIC
   src/SolverTypes.cpp
   src/SolverVersion.cpp
   src/SpaceTimeIndex.cpp
+  src/StorageLifecycle.cpp
   src/StreamMetadata.cpp
   src/WorkPacket.cpp
 )
@@ -184,6 +185,14 @@ if(NOT EMSCRIPTEN)
   )
 
   target_link_libraries(architrino_solver_spacetime_index_smoke
+    PRIVATE architrino_solver_core
+  )
+
+  add_executable(architrino_solver_storage_lifecycle_smoke
+    native/solver_storage_lifecycle_smoke.cpp
+  )
+
+  target_link_libraries(architrino_solver_storage_lifecycle_smoke
     PRIVATE architrino_solver_core
   )
 

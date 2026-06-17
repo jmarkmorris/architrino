@@ -5,6 +5,7 @@
 #include <fstream>
 #include <iostream>
 #include <sstream>
+#include <stdexcept>
 #include <string>
 #include <string_view>
 
@@ -48,6 +49,15 @@ architrino::solver::LinearPathSegment make_path_b_segment() {
 
 bool contains(std::string_view haystack, std::string_view needle) {
   return haystack.find(needle) != std::string_view::npos;
+}
+
+void corrupt_first_byte(const std::string& path) {
+  std::fstream stream(path, std::ios::binary | std::ios::in | std::ios::out);
+  char value = 0;
+  stream.read(&value, 1);
+  value = static_cast<char>(value ^ 0x1);
+  stream.seekp(0, std::ios::beg);
+  stream.write(&value, 1);
 }
 
 }  // namespace
@@ -113,6 +123,17 @@ int main() {
           true,
           true,
       });
+  const auto checkedPathARows = architrino::solver::read_path_history_query_checked(
+      dataPath,
+      indexRows,
+      chunkRows,
+      architrino::solver::PathHistoryQuery{
+          pathKey,
+          1.25,
+          2.25,
+          true,
+          true,
+      });
   const auto pathBRows = architrino::solver::read_path_history_query(
       dataPath,
       indexRows,
@@ -123,6 +144,29 @@ int main() {
           true,
           true,
       });
+  architrino::solver::verify_path_history_chunk_checksums(dataPath, chunkRows);
+  const std::string corruptDataPath = (outputDir / "path-history-corrupt.bin").string();
+  std::filesystem::copy_file(
+      dataPath,
+      corruptDataPath,
+      std::filesystem::copy_options::overwrite_existing);
+  corrupt_first_byte(corruptDataPath);
+  bool checksumFaultDetected = false;
+  try {
+    (void)architrino::solver::read_path_history_query_checked(
+        corruptDataPath,
+        indexRows,
+        chunkRows,
+        architrino::solver::PathHistoryQuery{
+            pathKey,
+            0.0,
+            0.25,
+            true,
+            true,
+        });
+  } catch (const std::runtime_error&) {
+    checksumFaultDetected = true;
+  }
   const std::string manifest = read_text(metadataPath);
 
   const bool ok =
@@ -177,9 +221,11 @@ int main() {
       indexRows[2].rowOffset == 3 &&
       pathAChunks.size() == 2 &&
       pathARows.size() == 3 &&
+      checkedPathARows.size() == pathARows.size() &&
       pathARows[0].pathKey == pathKey &&
       pathBRows.size() == 1 &&
       pathBRows[0].pathKey == pathBKey &&
+      checksumFaultDetected &&
       contains(manifest, "\"layout\": \"path_segment.v1\"") &&
       contains(manifest, "\"indexLayout\": \"stream_index.v1\"") &&
       contains(manifest, "\"chunkLayout\": \"path_chunk.v1\"") &&

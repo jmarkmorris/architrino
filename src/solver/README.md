@@ -52,6 +52,7 @@ The smoke command verifies:
 - native space-time index construction and query behavior for path-history segments and assembly-state intervals, with durable fixed-row sidecar write/read and overflow handling;
 - native work-packet header validation, canonical serialization, checksum, and deterministic merge ordering;
 - native numeric serialization descriptors for every declared solver numeric type;
+- native path-history storage lifecycle decisions for active-window retention, warm spill, cold archive, delete, and deep-index preparation;
 - native temporal assembly graph rows for assembly state, path membership, assembly hierarchy, and membership-change events;
 - native temporal assembly graph store write/read behavior with fixed binary datasets, query helpers, and metadata manifest;
 - the first fixed-layout `f64` causal-root C ABI;
@@ -123,7 +124,7 @@ This is a bootstrap ABI, not the final app migration API. It exists so the share
 
 ## First Numeric Serialization Contract
 
-`NumericSerialization.hpp` defines the first canonical serialization descriptors for `f64`, `scaled_i64`, `interval_f64_pair`, `decimal128`, and `mp_limb_block`. Each descriptor records byte order, scalar size, signedness, scale-factor policy, exponent or limb layout, interval endpoint convention, rounding mode, comparison semantics, text export form, and whether the type is safe for app buffers or authoritative storage. The JSON schema mirrors this contract as `solver-numeric-serialization.v1` so manifests can distinguish app-facing projected `f64` buffers from stricter stored values.
+`NumericSerialization.hpp` defines the first canonical serialization descriptors for `f64`, `scaled_i64`, `interval_f64_pair`, `decimal128`, and `mp_limb_block`. Each descriptor records byte order, scalar size, signedness, scale-factor policy, exponent or limb layout, interval endpoint convention, rounding mode, comparison semantics, text export form, and whether the type is safe for app buffers or authoritative storage. The JSON schema mirrors this contract as `solver-numeric-serialization.v1`, and the app bridge exposes the same descriptor list through solver capabilities so apps can distinguish app-facing projected `f64` buffers from stricter stored values.
 
 ## First Temporal Assembly Graph
 
@@ -144,11 +145,15 @@ These rows are the first solver-owned data structure for assembly-local state at
 - buffer descriptors with row counts, byte lengths, numeric type, layout id, and copied `ArrayBuffer` payloads;
 - one transient stream descriptor using `stream_index.v1` ranges.
 
-The native `PathHistoryStreamWriter` writes fixed-layout `path_segment.v1` rows to a binary data file, fixed-layout `stream_index.v1` chunk rows to a companion index file, optional fixed-layout `path_chunk.v1` rows to a checksummed chunk sidecar, and a metadata manifest. The manifest records run and dataset ids, engine and model provenance, precision path, units, coordinate frame, scale normalization, interpolation rule, stream and readback tolerances, checksums, and a diagnostic summary. It is the first durable storage slice for path histories; it is intentionally narrow and will grow toward larger per-path datasets, range queries, and app-facing durable stream reads.
+The native `PathHistoryStreamWriter` writes fixed-layout `path_segment.v1` rows to a binary data file, fixed-layout `stream_index.v1` chunk rows to a companion index file, optional fixed-layout `path_chunk.v1` rows to a checksummed chunk sidecar, and a metadata manifest. The manifest records run and dataset ids, engine and model provenance, precision path, units, coordinate frame, scale normalization, interpolation rule, stream and readback tolerances, checksums, and a diagnostic summary. Readback can verify chunk checksums and fail on corrupted chunk data before returning checked query rows. This is the first durable storage slice for path histories; it is intentionally narrow and will grow toward larger per-path datasets, range queries, and app-facing durable stream reads.
 
 The app bridge can also open and range-read the first transient caller-buffer stream produced by `solveRootsAndHitsF64`. This gives apps one stable stream handle path for root and delayed-hit buffers before OPFS or native-file stream storage is exposed through the bridge.
 
 Native path-history readback now includes chunk-level index queries by path key and time window. The first query helper returns matching `stream_index.v1` rows and reads the corresponding `path_segment.v1` chunks, which is the first range-query layer for larger stream-backed runs.
+
+## First Storage Lifecycle Policy
+
+`StorageLifecycle.hpp` defines the first deterministic planner for path-history chunk retention. Given a policy and chunk rows, it marks chunks to remain active, spill to warm storage, archive cold, build a deep index, delete, or stay blocked in active memory when a chunk is pinned unsafe. This is a planning layer only; file movement and browser/native quota handling will use these decisions in later storage slices.
 
 ## First Space-Time Index
 

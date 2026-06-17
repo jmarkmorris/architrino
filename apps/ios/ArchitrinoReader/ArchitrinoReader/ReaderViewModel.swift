@@ -8,6 +8,7 @@ final class ReaderViewModel: ObservableObject {
     @Published var currentChapterId: String?
     @Published var currentAnchor: String?
     @Published var fontScale: Double = 1.0
+    @Published var theme: ReaderTheme = .architrinoPurple
     @Published var isReady: Bool = false
     @Published var searchText: String = ""
     @Published var searchResults: [TextbookSearchEntry] = []
@@ -24,6 +25,7 @@ final class ReaderViewModel: ObservableObject {
     private let stateKey = "architrino.reader.position"
     private let bookmarksKey = "architrino.reader.bookmarks"
     private let fontScaleKey = "architrino.reader.fontScale"
+    private let themeKey = "architrino.reader.theme"
     private let appWebBaseURL = "https://architrino.com"
     private let inAppTOCKinds: Set<String> = ["scene-index", "markdown-view"]
     private let webappTOCKinds: Set<String> = ["diagram", "markdown-tree", "markdown-split"]
@@ -39,6 +41,7 @@ final class ReaderViewModel: ObservableObject {
         let linkMap: [String: ReaderPayloadChapterLink]
         let initialAnchor: String?
         let fontScale: Double
+        let theme: ReaderTheme
         let bootstrapContext: ReaderBootstrapContext
     }
 
@@ -74,6 +77,10 @@ final class ReaderViewModel: ObservableObject {
         fontScale = defaults.double(forKey: fontScaleKey)
         if fontScale == 0 {
             fontScale = 1.0
+        }
+        if let storedTheme = defaults.string(forKey: themeKey),
+           let resolvedTheme = ReaderTheme(rawValue: storedTheme) {
+            theme = resolvedTheme
         }
         loadBookmarks()
         Task {
@@ -192,6 +199,12 @@ final class ReaderViewModel: ObservableObject {
         let clamped = max(0.85, min(1.45, value))
         fontScale = clamped
         defaults.set(clamped, forKey: fontScaleKey)
+        emitRenderCommand()
+    }
+
+    func setTheme(_ value: ReaderTheme) {
+        theme = value
+        defaults.set(value.rawValue, forKey: themeKey)
         emitRenderCommand()
     }
 
@@ -404,6 +417,7 @@ final class ReaderViewModel: ObservableObject {
             linkMap: linkMap,
             initialAnchor: currentAnchor,
             fontScale: fontScale,
+            theme: theme,
             bootstrapContext: bootstrapContext
         )
     }

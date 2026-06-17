@@ -8,8 +8,8 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 158,
-      "sections": 1251
+      "entries": 159,
+      "sections": 1260
     }
   },
   "tocRoot": {
@@ -955,6 +955,88 @@
                 "markdownPath": "content/markdown/aaa/dynamics/energy.md",
                 "markdownSection": "Appendix A: Energy Zero and Bookkeeping",
                 "sectionKey": "appendix a energy zero and bookkeeping",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "dynamics__entropy_and_record_coarse_graining",
+            "title": "Entropy and Record Coarse-Graining",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/dynamics/entropy_and_record_coarse_graining.json",
+            "markdownPath": "content/markdown/aaa/dynamics/entropy.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Core Definition",
+                "markdownPath": "content/markdown/aaa/dynamics/entropy.md",
+                "markdownSection": "Core Definition",
+                "sectionKey": "core definition",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Mapping In From Standard Entropies",
+                "markdownPath": "content/markdown/aaa/dynamics/entropy.md",
+                "markdownSection": "Mapping In From Standard Entropies",
+                "sectionKey": "mapping in from standard entropies",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Mapping Out To Effective Physics",
+                "markdownPath": "content/markdown/aaa/dynamics/entropy.md",
+                "markdownSection": "Mapping Out To Effective Physics",
+                "sectionKey": "mapping out to effective physics",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Same-Record Closure Rule",
+                "markdownPath": "content/markdown/aaa/dynamics/entropy.md",
+                "markdownSection": "Same-Record Closure Rule",
+                "sectionKey": "same record closure rule",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Entropy And Absolute Time",
+                "markdownPath": "content/markdown/aaa/dynamics/entropy.md",
+                "markdownSection": "Entropy And Absolute Time",
+                "sectionKey": "entropy and absolute time",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Measurement And Computation",
+                "markdownPath": "content/markdown/aaa/dynamics/entropy.md",
+                "markdownSection": "Measurement And Computation",
+                "sectionKey": "measurement and computation",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Horizons And Emergent Gravity",
+                "markdownPath": "content/markdown/aaa/dynamics/entropy.md",
+                "markdownSection": "Horizons And Emergent Gravity",
+                "sectionKey": "horizons and emergent gravity",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Failure Modes",
+                "markdownPath": "content/markdown/aaa/dynamics/entropy.md",
+                "markdownSection": "Failure Modes",
+                "sectionKey": "failure modes",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Interfaces",
+                "markdownPath": "content/markdown/aaa/dynamics/entropy.md",
+                "markdownSection": "Interfaces",
+                "sectionKey": "interfaces",
                 "headingLevel": 2
               }
             ]

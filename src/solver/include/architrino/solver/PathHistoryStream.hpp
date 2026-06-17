@@ -174,8 +174,17 @@ std::vector<PathHistoryIndexRow> read_path_history_index(std::string_view indexP
 std::vector<PathHistoryChunkRow> read_path_history_chunks(std::string_view chunkPath);
 std::vector<PathHistoryIndexRow> query_path_history_index(const std::vector<PathHistoryIndexRow>& indexRows,
                                                           const PathHistoryQuery& query);
+bool verify_path_history_chunk_checksum(std::string_view dataPath,
+                                        const PathHistoryChunkRow& chunkRow);
+void verify_path_history_chunk_checksums(std::string_view dataPath,
+                                         const std::vector<PathHistoryChunkRow>& chunkRows);
 std::vector<PathHistoryRowF64> read_path_history_query(std::string_view dataPath,
                                                        const std::vector<PathHistoryIndexRow>& indexRows,
                                                        const PathHistoryQuery& query);
+std::vector<PathHistoryRowF64> read_path_history_query_checked(
+    std::string_view dataPath,
+    const std::vector<PathHistoryIndexRow>& indexRows,
+    const std::vector<PathHistoryChunkRow>& chunkRows,
+    const PathHistoryQuery& query);
 
 }  // namespace architrino::solver

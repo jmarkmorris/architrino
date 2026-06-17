@@ -17,6 +17,10 @@
         "scenePath": "content/scenes/dynamics/kinetic_and_potential_energy.json"
       },
       {
+        "nodeId": "entropy_and_record_coarse_graining",
+        "scenePath": "content/scenes/dynamics/entropy_and_record_coarse_graining.json"
+      },
+      {
         "nodeId": "binary_dynamics",
         "scenePath": "content/scenes/dynamics/binary_dynamics.json"
       },
@@ -138,6 +142,23 @@
         "type": "fixed"
       },
       "labelTitle": "Effective Lagrangian",
+      "labelBadge": "doc",
+      "fixedPosition": true
+    },
+    {
+      "id": "entropy_and_record_coarse_graining",
+      "title": "Entropy and Record Coarse-Graining",
+      "radius": 2.688,
+      "color": "#7a4b2a",
+      "position": [
+        -12,
+        0,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Entropy and Record Coarse-Graining",
       "labelBadge": "doc",
       "fixedPosition": true
     },

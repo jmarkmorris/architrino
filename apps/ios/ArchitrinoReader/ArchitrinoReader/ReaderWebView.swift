@@ -16,10 +16,10 @@ struct ReaderWebView: UIViewRepresentable {
         configuration.userContentController = controller
 
         let view = WKWebView(frame: .zero, configuration: configuration)
-        view.backgroundColor = UIColor.systemBackground
+        view.backgroundColor = UIColor.readerBackground(for: .architrinoPurple)
         view.isOpaque = false
         view.navigationDelegate = context.coordinator
-        view.scrollView.backgroundColor = UIColor.systemBackground
+        view.scrollView.backgroundColor = UIColor.readerBackground(for: .architrinoPurple)
         view.scrollView.keyboardDismissMode = .onDrag
         view.scrollView.bounces = false
 
@@ -40,6 +40,8 @@ struct ReaderWebView: UIViewRepresentable {
         if context.coordinator.lastRenderedCommandID == command.id {
             return
         }
+        uiView.backgroundColor = UIColor.readerBackground(for: command.theme)
+        uiView.scrollView.backgroundColor = UIColor.readerBackground(for: command.theme)
         context.coordinator.pendingRenderCommand = command
         context.coordinator.webView = uiView
         if context.coordinator.isReaderReady {
@@ -232,4 +234,19 @@ private func readerJavaScriptStringLiteral(_ value: String) -> String {
         return "\"{}\""
     }
     return literal
+}
+
+private extension UIColor {
+    static func readerBackground(for theme: ReaderTheme) -> UIColor {
+        switch theme {
+        case .architrinoPurple:
+            return UIColor(red: 75 / 255, green: 0, blue: 130 / 255, alpha: 1)
+        case .light:
+            return UIColor(red: 253 / 255, green: 253 / 255, blue: 253 / 255, alpha: 1)
+        case .warm:
+            return UIColor(red: 244 / 255, green: 236 / 255, blue: 216 / 255, alpha: 1)
+        case .dark:
+            return UIColor(red: 15 / 255, green: 23 / 255, blue: 42 / 255, alpha: 1)
+        }
+    }
 }

@@ -96,6 +96,15 @@ struct ReaderPosition: Codable {
     let isExplicit: Bool?
 }
 
+enum ReaderTheme: String, Codable, CaseIterable, Identifiable {
+    case architrinoPurple
+    case light
+    case warm
+    case dark
+
+    var id: String { rawValue }
+}
+
 struct ReaderBookmark: Codable, Identifiable, Equatable {
     let id: UUID
     let chapterId: String

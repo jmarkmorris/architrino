@@ -710,6 +710,7 @@ export interface SolverCapabilities {
   outputLayouts: SolverBinaryLayoutId[];
   storage: SolverStorageCapability;
   threading: SolverThreadingCapability;
+  numericSerialization: SolverNumericSerializationContract;
   maxTransferBytes: number;
   abiInfo?: SolverAbiInfo;
 }

@@ -97,7 +97,7 @@ struct ContentView: View {
                             handleReaderRenderComplete()
                         }
                     )
-                    .background(Color(.systemBackground))
+                    .background(viewModel.theme.readerBackgroundColor)
                 } else {
                     VStack {
                         ProgressView()
@@ -413,6 +413,7 @@ struct ContentView: View {
     private var controlBar: some View {
         HStack {
             fontSizeControl
+            themeControl
 
             Button {
                 viewModel.toggleCurrentBookmark()
@@ -441,6 +442,36 @@ struct ContentView: View {
         .font(.subheadline)
         .padding(10)
         .background(.regularMaterial)
+    }
+
+    private var themeControl: some View {
+        Menu {
+            ForEach(ReaderTheme.allCases) { theme in
+                Button {
+                    viewModel.setTheme(theme)
+                } label: {
+                    HStack {
+                        Circle()
+                            .fill(theme.swatchColor)
+                            .frame(width: 12, height: 12)
+                        Text(theme.displayName)
+                        if viewModel.theme == theme {
+                            Image(systemName: "checkmark")
+                        }
+                    }
+                }
+            }
+        } label: {
+            Circle()
+                .fill(viewModel.theme.swatchColor)
+                .overlay(
+                    Circle()
+                        .stroke(.primary.opacity(0.25), lineWidth: 1)
+                )
+                .frame(width: 24, height: 24)
+        }
+        .frame(width: 34, height: 28)
+        .accessibilityLabel("Reader background")
     }
 
     private var fontSizeControl: some View {
@@ -472,6 +503,38 @@ struct ContentView: View {
             .accessibilityLabel("Increase text size")
         }
         .frame(width: 78, alignment: .leading)
+    }
+}
+
+private extension ReaderTheme {
+    var displayName: String {
+        switch self {
+        case .architrinoPurple:
+            return "Purple"
+        case .light:
+            return "Light"
+        case .warm:
+            return "Warm"
+        case .dark:
+            return "Dark"
+        }
+    }
+
+    var swatchColor: Color {
+        switch self {
+        case .architrinoPurple:
+            return Color(red: 75 / 255, green: 0, blue: 130 / 255)
+        case .light:
+            return Color(red: 253 / 255, green: 253 / 255, blue: 253 / 255)
+        case .warm:
+            return Color(red: 244 / 255, green: 236 / 255, blue: 216 / 255)
+        case .dark:
+            return Color(red: 15 / 255, green: 23 / 255, blue: 42 / 255)
+        }
+    }
+
+    var readerBackgroundColor: Color {
+        swatchColor
     }
 }
 

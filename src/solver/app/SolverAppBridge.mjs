@@ -28,6 +28,86 @@ const DEFAULT_OUTPUT_LAYOUTS = [
 
 const PRECISION_PATH_BY_ID = DEFAULT_PRECISION_PATHS;
 const NUMERIC_TYPE_BY_ID = ["f64", "scaled_i64", "interval_f64_pair", "decimal128", "mp_limb_block"];
+const NUMERIC_SERIALIZATION_CONTRACT = {
+  schema: "solver-numeric-serialization.v1",
+  descriptors: [
+    {
+      numericType: "f64",
+      byteOrder: "little-endian",
+      scalarSizeBytes: 8,
+      signedness: "signed",
+      scaleFactor: "identity",
+      exponentLayout: "ieee-754-binary64",
+      limbOrder: "none",
+      intervalEndpointConvention: "not-interval",
+      roundingMode: "nearest-ties-to-even",
+      comparisonSemantics: "ordered finite values; NaN is invalid in solver storage",
+      textExport: "round-trip decimal with 17 significant digits",
+      appBufferSafe: true,
+      authoritativeStorageSafe: true,
+    },
+    {
+      numericType: "scaled_i64",
+      byteOrder: "little-endian",
+      scalarSizeBytes: 8,
+      signedness: "signed",
+      scaleFactor: "manifest-declared power-of-ten or power-of-two scale",
+      exponentLayout: "twos-complement-i64",
+      limbOrder: "none",
+      intervalEndpointConvention: "not-interval",
+      roundingMode: "exact integer storage; scaled conversion rounds toward nearest with explicit tie policy",
+      comparisonSemantics: "compare after applying the declared scale factor",
+      textExport: "integer literal plus manifest scale",
+      appBufferSafe: false,
+      authoritativeStorageSafe: true,
+    },
+    {
+      numericType: "interval_f64_pair",
+      byteOrder: "little-endian",
+      scalarSizeBytes: 16,
+      signedness: "signed",
+      scaleFactor: "identity per endpoint",
+      exponentLayout: "two ieee-754-binary64 endpoints",
+      limbOrder: "none",
+      intervalEndpointConvention: "closed interval [lower, upper] with lower stored before upper",
+      roundingMode: "directed outward rounding required when values are produced",
+      comparisonSemantics: "interval overlap/containment; point comparison requires an explicit projection",
+      textExport: "[lower, upper] with 17 significant digits per endpoint",
+      appBufferSafe: false,
+      authoritativeStorageSafe: true,
+    },
+    {
+      numericType: "decimal128",
+      byteOrder: "little-endian",
+      scalarSizeBytes: 16,
+      signedness: "signed",
+      scaleFactor: "decimal exponent carried by encoded value",
+      exponentLayout: "decimal128 finite coefficient/exponent encoding",
+      limbOrder: "least-significant decimal limb first when limb materialization is used",
+      intervalEndpointConvention: "not-interval",
+      roundingMode: "nearest-ties-to-even unless a stage declares directed rounding",
+      comparisonSemantics: "decimal numeric order after canonicalization",
+      textExport: "canonical decimal scientific notation",
+      appBufferSafe: false,
+      authoritativeStorageSafe: true,
+    },
+    {
+      numericType: "mp_limb_block",
+      byteOrder: "little-endian",
+      scalarSizeBytes: 0,
+      signedness: "signed",
+      scaleFactor: "explicit exponent and limb count in the owning row or manifest",
+      exponentLayout: "sign, exponent, limb-count, little-endian fixed-width limbs",
+      limbOrder: "least-significant limb first",
+      intervalEndpointConvention: "not-interval unless wrapped by an interval layout",
+      roundingMode: "producer-declared; validation replay must record the rounding mode",
+      comparisonSemantics: "arbitrary-precision numeric order after canonicalization",
+      textExport: "significand and exponent with exact limb checksum",
+      appBufferSafe: false,
+      authoritativeStorageSafe: true,
+    },
+  ],
+};
 const STATUS_CODE_BY_ID = [
   "ok",
   "cancelled",
@@ -287,8 +367,16 @@ function createCapabilities(hasWasmModuleFactory) {
       browserWorker: typeof Worker !== "undefined",
       crossOriginIsolationRequired: true,
     },
+    numericSerialization: cloneNumericSerializationContract(),
     maxTransferBytes: 64 * 1024 * 1024,
     wasmModuleFactory: hasWasmModuleFactory,
+  };
+}
+
+function cloneNumericSerializationContract() {
+  return {
+    schema: NUMERIC_SERIALIZATION_CONTRACT.schema,
+    descriptors: NUMERIC_SERIALIZATION_CONTRACT.descriptors.map((descriptor) => ({ ...descriptor })),
   };
 }
 

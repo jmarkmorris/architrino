@@ -10,6 +10,61 @@
     typographer: true,
   });
 
+  const readerThemes = {
+    architrinoPurple: {
+      background: "#4b0082",
+      text: "#ffffff",
+      heading: "#ffffff",
+      muted: "#ede9fe",
+      link: "#bfdbfe",
+      internalLink: "#99f6e4",
+      border: "rgba(255, 255, 255, 0.28)",
+      quoteBackground: "rgba(255, 255, 255, 0.1)",
+      tableHeaderBackground: "rgba(255, 255, 255, 0.12)",
+      codeBackground: "rgba(15, 23, 42, 0.88)",
+      codeText: "#f8fafc",
+    },
+    light: {
+      background: "#fdfdfd",
+      text: "#101828",
+      heading: "#101828",
+      muted: "#64748b",
+      link: "#1d4ed8",
+      internalLink: "#0f766e",
+      border: "#cbd5e1",
+      quoteBackground: "#f8fafc",
+      tableHeaderBackground: "#f1f5f9",
+      codeBackground: "#0f172a",
+      codeText: "#e2e8f0",
+    },
+    warm: {
+      background: "#f4ecd8",
+      text: "#2b2118",
+      heading: "#24180f",
+      muted: "#6b5b45",
+      link: "#6d28d9",
+      internalLink: "#047857",
+      border: "#d7c4a4",
+      quoteBackground: "rgba(111, 78, 55, 0.09)",
+      tableHeaderBackground: "rgba(111, 78, 55, 0.11)",
+      codeBackground: "#2b2118",
+      codeText: "#fff7ed",
+    },
+    dark: {
+      background: "#0f172a",
+      text: "#e5e7eb",
+      heading: "#f8fafc",
+      muted: "#cbd5e1",
+      link: "#93c5fd",
+      internalLink: "#5eead4",
+      border: "rgba(203, 213, 225, 0.24)",
+      quoteBackground: "rgba(255, 255, 255, 0.06)",
+      tableHeaderBackground: "rgba(255, 255, 255, 0.08)",
+      codeBackground: "#020617",
+      codeText: "#e2e8f0",
+    },
+  };
+
   let currentChapterId = null;
   let linkMap = {};
   let shellRoot = null;
@@ -47,6 +102,22 @@
     const value = Number(scale) || 1.0;
     const clamped = Math.max(0.85, Math.min(1.5, value));
     document.documentElement.style.setProperty("--reader-font-size", `${16 * clamped}px`);
+  }
+
+  function hydrateTheme(themeName) {
+    const theme = readerThemes[themeName] || readerThemes.architrinoPurple;
+    const rootStyle = document.documentElement.style;
+    rootStyle.setProperty("--reader-background", theme.background);
+    rootStyle.setProperty("--reader-text", theme.text);
+    rootStyle.setProperty("--reader-heading", theme.heading);
+    rootStyle.setProperty("--reader-muted", theme.muted);
+    rootStyle.setProperty("--reader-link", theme.link);
+    rootStyle.setProperty("--reader-internal-link", theme.internalLink);
+    rootStyle.setProperty("--reader-border", theme.border);
+    rootStyle.setProperty("--reader-quote-background", theme.quoteBackground);
+    rootStyle.setProperty("--reader-table-header-background", theme.tableHeaderBackground);
+    rootStyle.setProperty("--reader-code-background", theme.codeBackground);
+    rootStyle.setProperty("--reader-code-text", theme.codeText);
   }
 
   function buildPayload(href, mapping, rawAnchor) {
@@ -232,6 +303,7 @@
     currentChapterId = chapter;
     linkMap = payload.linkMap || {};
     hydrateScale(payload.fontScale);
+    hydrateTheme(payload.theme);
 
     shellRoot = document.getElementById("reader-root");
     if (!shellRoot) {

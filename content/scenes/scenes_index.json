@@ -1634,6 +1634,11 @@
       "id": "molecule",
       "name": "Molecule Visualization",
       "path": "content/scenes/archie/molecule.json"
+    },
+    {
+      "id": "dynamics__entropy_and_record_coarse_graining",
+      "name": "Entropy and Record Coarse-Graining",
+      "path": "content/scenes/dynamics/entropy_and_record_coarse_graining.json"
     }
   ]
 }

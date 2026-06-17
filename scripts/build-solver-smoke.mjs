@@ -46,6 +46,7 @@ if (target === "native" || target === "all") {
   runChecked(path.join(buildRoot, "native", "architrino_solver_precision_smoke"), [], { env });
   runChecked(path.join(buildRoot, "native", "architrino_solver_root_ledger_smoke"), [], { env });
   runChecked(path.join(buildRoot, "native", "architrino_solver_spacetime_index_smoke"), [], { env });
+  runChecked(path.join(buildRoot, "native", "architrino_solver_storage_lifecycle_smoke"), [], { env });
   runChecked(path.join(buildRoot, "native", "architrino_solver_stream_smoke"), [], { env });
   runChecked(path.join(buildRoot, "native", "architrino_solver_work_packet_smoke"), [], { env });
 }
