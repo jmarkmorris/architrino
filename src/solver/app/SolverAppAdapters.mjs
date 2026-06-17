@@ -298,7 +298,8 @@ export function createAssemblyGraphStoreReadRequest(input) {
 export function createPathHistoryStreamSpaceTimeIndexRequest(input) {
   requireObject(input, "path-history stream space-time index adapter input");
   return {
-    streamId: normalizeOptionalId(input.streamId, undefined, "streamId"),
+    streamId: cloneOptionalString(input.streamId, "streamId"),
+    manifestPath: cloneOptionalString(input.manifestPath, "manifestPath"),
     chunkIndices: cloneOptionalArray(input.chunkIndices, "chunkIndices"),
     pathKeys: cloneOptionalArray(input.pathKeys, "pathKeys"),
     timeRange: cloneOptionalRange(input.timeRange, "timeRange"),
@@ -325,14 +326,26 @@ export function createOpenStreamRequest(input) {
 export function createDescribeStreamRequest(input) {
   requireObject(input, "describe stream adapter input");
   return {
-    streamId: normalizeOptionalId(input.streamId, undefined, "streamId"),
+    streamId: cloneOptionalString(input.streamId, "streamId"),
+    manifestPath: cloneOptionalString(input.manifestPath, "manifestPath"),
+  };
+}
+
+export function createPathHistoryDynamicReplayValidationRequest(input) {
+  requireObject(input, "path-history dynamic replay validation adapter input");
+  return {
+    streamId: cloneOptionalString(input.streamId, "streamId"),
+    manifestPath: cloneOptionalString(input.manifestPath, "manifestPath"),
+    tolerance: cloneOptionalNonnegativeFiniteNumber(input.tolerance, "tolerance"),
+    maxRows: cloneOptionalPositiveInteger(input.maxRows, "maxRows"),
   };
 }
 
 export function createReadStreamRangeRequest(input) {
   requireObject(input, "read stream range adapter input");
   return {
-    streamId: normalizeOptionalId(input.streamId, undefined, "streamId"),
+    streamId: cloneOptionalString(input.streamId, "streamId"),
+    manifestPath: cloneOptionalString(input.manifestPath, "manifestPath"),
     pathIds: cloneOptionalArray(input.pathIds, "pathIds"),
     pathKeys: cloneOptionalArray(input.pathKeys, "pathKeys"),
     chunkIndices: cloneOptionalArray(input.chunkIndices, "chunkIndices"),
@@ -348,6 +361,7 @@ export function createPathHistoryStorageLifecycleRequest(input) {
   requireObject(input, "path-history storage lifecycle adapter input");
   return {
     streamId: cloneOptionalString(input.streamId, "streamId"),
+    manifestPath: cloneOptionalString(input.manifestPath, "manifestPath"),
     policy: cloneRequiredObject(input.policy, "policy"),
     chunks: cloneOptionalArray(input.chunks, "chunks"),
   };
@@ -356,7 +370,8 @@ export function createPathHistoryStorageLifecycleRequest(input) {
 export function createPathHistoryWorkPacketPlanRequest(input) {
   requireObject(input, "path-history work-packet plan adapter input");
   return {
-    streamId: normalizeOptionalId(input.streamId, undefined, "streamId"),
+    streamId: cloneOptionalString(input.streamId, "streamId"),
+    manifestPath: cloneOptionalString(input.manifestPath, "manifestPath"),
     runId: normalizeOptionalId(input.runId, undefined, "runId"),
     modelId: normalizeOptionalId(input.modelId, undefined, "modelId"),
     precisionPath: normalizeConcretePrecisionPath(input.precisionPath ?? "event_root_focused"),
@@ -375,7 +390,8 @@ export function createPathHistoryWorkPacketPlanRequest(input) {
 export function createEmissionShellCandidateQueryRequest(input) {
   requireObject(input, "emission-shell candidate query adapter input");
   return {
-    streamId: normalizeOptionalId(input.streamId, undefined, "streamId"),
+    streamId: cloneOptionalString(input.streamId, "streamId"),
+    manifestPath: cloneOptionalString(input.manifestPath, "manifestPath"),
     signalSpeed: requirePositiveFiniteNumber(input.signalSpeed, "signalSpeed"),
     tolerance: cloneOptionalNonnegativeFiniteNumber(input.tolerance, "tolerance"),
     maxCandidates: cloneOptionalPositiveInteger(input.maxCandidates, "maxCandidates"),
@@ -392,7 +408,8 @@ export function createEmissionShellCandidateQueryRequest(input) {
 export function createEmissionShellRootRefinementRequest(input) {
   requireObject(input, "emission-shell root-refinement adapter input");
   return {
-    streamId: normalizeOptionalId(input.streamId, undefined, "streamId"),
+    streamId: cloneOptionalString(input.streamId, "streamId"),
+    manifestPath: cloneOptionalString(input.manifestPath, "manifestPath"),
     candidates: copyRequiredArray(input.candidates, "candidates"),
     signalSpeed: requirePositiveFiniteNumber(input.signalSpeed, "signalSpeed"),
     tolerance: cloneOptionalNonnegativeFiniteNumber(input.tolerance, "tolerance"),
@@ -409,7 +426,8 @@ export function createEmissionShellRootRefinementRequest(input) {
 export function createEmissionShellCandidatePacketQueryRequest(input) {
   requireObject(input, "emission-shell candidate packet query adapter input");
   return {
-    streamId: normalizeOptionalId(input.streamId, undefined, "streamId"),
+    streamId: cloneOptionalString(input.streamId, "streamId"),
+    manifestPath: cloneOptionalString(input.manifestPath, "manifestPath"),
     packet: cloneRequiredObject(input.packet, "packet"),
     signalSpeed: requirePositiveFiniteNumber(input.signalSpeed, "signalSpeed"),
     tolerance: cloneOptionalNonnegativeFiniteNumber(input.tolerance, "tolerance"),
@@ -425,7 +443,8 @@ export function createEmissionShellCandidatePacketQueryRequest(input) {
 export function createEmissionShellCandidatePacketBatchQueryRequest(input) {
   requireObject(input, "emission-shell candidate packet batch query adapter input");
   return {
-    streamId: normalizeOptionalId(input.streamId, undefined, "streamId"),
+    streamId: cloneOptionalString(input.streamId, "streamId"),
+    manifestPath: cloneOptionalString(input.manifestPath, "manifestPath"),
     packets: cloneRequiredArray(input.packets, "packets"),
     signalSpeed: requirePositiveFiniteNumber(input.signalSpeed, "signalSpeed"),
     tolerance: cloneOptionalNonnegativeFiniteNumber(input.tolerance, "tolerance"),

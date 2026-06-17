@@ -44,6 +44,7 @@ import {
   createOpenStreamRequest,
   createPhotonCausalRootsRunRequest,
   createPhotonPhaseDiagnosticsRunRequest,
+  createPathHistoryDynamicReplayValidationRequest,
   createPathHistoryRunRequest,
   createPathHistoryStorageLifecycleRequest,
   createPathHistoryStreamRequest,
@@ -503,6 +504,24 @@ assert(
     workerPrecisionRootsAndHitsResponse.precision.selectedPrecisionPath === "extended_precision" &&
     workerPrecisionRootsAndHitsResponse.precision.validationReplayMatched,
   "expected worker precision roots-and-hits solve response"
+);
+const workerMotionRunHandle = await workerClient.runSimulation(makeMotionRunSimulationRequest());
+assert(
+  workerMotionRunHandle.status.code === "ok" &&
+    workerMotionRunHandle.response.pathHistory.metadata.dynamicReplay.replayKind === "linear-motion-sample",
+  "expected worker motion run with dynamic replay metadata"
+);
+const workerMotionReplayValidation = await workerClient.validatePathHistoryDynamicReplayF64(
+  createPathHistoryDynamicReplayValidationRequest({
+    streamId: "smoke-motion-run:motion-path-history",
+    tolerance: 0,
+  })
+);
+assert(
+  workerMotionReplayValidation.status.code === "ok" &&
+    workerMotionReplayValidation.matched &&
+    workerMotionReplayValidation.replayKind === "linear-motion-sample",
+  "expected worker dynamic replay validation match"
 );
 const workerCancelStatus = await workerClient.cancelRun({
   runId: "worker-smoke",
@@ -1856,6 +1875,148 @@ assert(
 const reopenedNativeFileChunkView = new DataView(reopenedNativeFileChunkRead.buffers[0].buffer);
 assert(Number(reopenedNativeFileChunkView.getBigUint64(0, true)) === 2000, "expected reopened chunk path key");
 assert(reopenedNativeFileChunkView.getFloat64(16, true) === 2, "expected reopened chunk start time");
+const directNativeFileQueryClient = createSolverAppBridgeClient({
+  createWasmModule,
+  locateFile: (fileName) => path.join(wasmDir, fileName),
+});
+const directNativeFileDescription = await directNativeFileQueryClient.describeStream(
+  createDescribeStreamRequest({
+    manifestPath: nativeFilePathHistoryStream.stream.storagePolicy.manifestPath,
+  })
+);
+assert(
+  directNativeFileDescription.stream.streamId === "smoke-native-file-path-history" &&
+    directNativeFileDescription.index.pathIndexRows.length === nativeFileDescription.index.pathIndexRows.length &&
+    directNativeFileDescription.buffers[0].storageTarget === "native-file",
+  "expected direct-manifest native-file stream description"
+);
+const directNativeFileRead = await directNativeFileQueryClient.readStreamRange(
+  createReadStreamRangeRequest({
+    manifestPath: nativeFilePathHistoryStream.stream.storagePolicy.manifestPath,
+    pathKeys: [2001],
+    maxBytes: 96,
+  })
+);
+assert(
+  directNativeFileRead.status.code === "ok" &&
+    directNativeFileRead.streamId === "smoke-native-file-path-history" &&
+    directNativeFileRead.buffers.length === 1 &&
+    directNativeFileRead.buffers[0].buffer instanceof ArrayBuffer,
+  "expected direct-manifest native-file stream readback"
+);
+const directNativeFileReadView = new DataView(directNativeFileRead.buffers[0].buffer);
+assert(Number(directNativeFileReadView.getBigUint64(0, true)) === 2001, "expected direct native-file path key");
+const directNativeFileSpaceTimeIndex = await directNativeFileQueryClient.buildPathHistoryStreamSpaceTimeIndexF64(
+  createPathHistoryStreamSpaceTimeIndexRequest({
+    manifestPath: nativeFilePathHistoryStream.stream.storagePolicy.manifestPath,
+    pathKeys: [2000],
+    timeRange: { start: 0, end: 3 },
+    options: { spatialCellSize: 1, timeBinSize: 1, maxCellsPerItem: 128 },
+    maxRows: 64,
+    maxBytes: 512,
+  })
+);
+assert(
+  directNativeFileSpaceTimeIndex.status.code === "ok" &&
+    directNativeFileSpaceTimeIndex.status.details.streamId === "smoke-native-file-path-history" &&
+    directNativeFileSpaceTimeIndex.rows.length > 0 &&
+    directNativeFileSpaceTimeIndex.rows.every((row) => row.subjectKey === 2000),
+  "expected direct-manifest native-file space-time index"
+);
+const directNativeFileEmissionShellCandidates =
+  await directNativeFileQueryClient.queryEmissionShellCandidatesF64(
+    createEmissionShellCandidateQueryRequest({
+      manifestPath: nativeFilePathHistoryStream.stream.storagePolicy.manifestPath,
+      sourcePathKeys: [2000],
+      receiverPathKeys: [2001],
+      signalSpeed: 1,
+      tolerance: 1e-12,
+      workerCount: 2,
+      timeRange: { start: 0, end: 2 },
+      maxCandidates: 8,
+    })
+  );
+assert(
+  directNativeFileEmissionShellCandidates.status.code === "ok" &&
+    directNativeFileEmissionShellCandidates.streamId === "smoke-native-file-path-history" &&
+    directNativeFileEmissionShellCandidates.pairCount === 2 &&
+    directNativeFileEmissionShellCandidates.candidateCount === 2,
+  "expected direct-manifest native-file emission-shell candidates"
+);
+const directNativeFileEmissionShellRefinement =
+  await directNativeFileQueryClient.refineEmissionShellCandidateRootsF64(
+    createEmissionShellRootRefinementRequest({
+      manifestPath: nativeFilePathHistoryStream.stream.storagePolicy.manifestPath,
+      candidates: directNativeFileEmissionShellCandidates.candidates,
+      signalSpeed: 1,
+      tolerance: 1e-12,
+      rootTolerance: 1e-12,
+      workerCount: 2,
+    })
+  );
+assert(
+  directNativeFileEmissionShellRefinement.status.code === "ok" &&
+    directNativeFileEmissionShellRefinement.streamId === "smoke-native-file-path-history" &&
+    directNativeFileEmissionShellRefinement.attemptedCandidateCount === 2 &&
+    directNativeFileEmissionShellRefinement.rootCount >= 1,
+  "expected direct-manifest native-file emission-shell root refinement"
+);
+const directNativeFileLifecyclePlan = await directNativeFileQueryClient.planPathHistoryStorageLifecycleF64(
+  createPathHistoryStorageLifecycleRequest({
+    manifestPath: nativeFilePathHistoryStream.stream.storagePolicy.manifestPath,
+    policy: {
+      activeWindow: { start: 0.5, end: 1.5 },
+      deepIndexEnabled: true,
+    },
+  })
+);
+assert(
+  directNativeFileLifecyclePlan.status.code === "ok" &&
+    directNativeFileLifecyclePlan.streamId === "smoke-native-file-path-history" &&
+    directNativeFileLifecyclePlan.chunkCount === 2,
+  "expected direct-manifest native-file lifecycle planning"
+);
+const directNativeFilePacketPlan = await directNativeFileQueryClient.planPathHistoryWorkPackets(
+  createPathHistoryWorkPacketPlanRequest({
+    manifestPath: nativeFilePathHistoryStream.stream.storagePolicy.manifestPath,
+    runId: "smoke-native-file-direct-packet-run",
+    modelId: "architrino-solver-smoke",
+    precisionPath: "event_root_focused",
+    sourcePathKeys: [2000],
+    receiverPathKeys: [2001],
+    includeSameChunk: false,
+    maxPacketCount: 8,
+  })
+);
+assert(
+  directNativeFilePacketPlan.status.code === "ok" &&
+    directNativeFilePacketPlan.streamId === "smoke-native-file-path-history" &&
+    directNativeFilePacketPlan.packetCount >= 1 &&
+    directNativeFilePacketPlan.packets[0].packetId.startsWith(
+      "smoke-native-file-path-history:work-packet-"
+    ),
+  "expected direct-manifest native-file work-packet planning"
+);
+const directNativeFilePacketCandidates =
+  await directNativeFileQueryClient.queryEmissionShellCandidatePacketsF64(
+    createEmissionShellCandidatePacketBatchQueryRequest({
+      manifestPath: nativeFilePathHistoryStream.stream.storagePolicy.manifestPath,
+      packets: directNativeFilePacketPlan.packets,
+      signalSpeed: 1,
+      tolerance: 1e-12,
+      workerCount: 2,
+      maxCandidatesPerPacket: 8,
+      sourcePathKeys: [2000],
+      receiverPathKeys: [2001],
+    })
+  );
+assert(
+  directNativeFilePacketCandidates.status.code === "ok" &&
+    directNativeFilePacketCandidates.streamId === "smoke-native-file-path-history" &&
+    directNativeFilePacketCandidates.packetResults.length === directNativeFilePacketPlan.packetCount &&
+    directNativeFilePacketCandidates.candidateCount >= 1,
+  "expected direct-manifest native-file packet candidate query"
+);
 const nativeFileLifecyclePlan = await client.planPathHistoryStorageLifecycleF64(
   createPathHistoryStorageLifecycleRequest({
     streamId: "smoke-native-file-path-history",
@@ -1895,6 +2056,7 @@ try {
     error instanceof SolverBridgeError && error.status.code === "stream_read_failed";
 }
 assert(closedNativeFileStreamRejected, "expected closed native-file stream to be unavailable");
+await directNativeFileQueryClient.dispose();
 await reopenedNativeFileClient.dispose();
 const explicitLifecyclePlan = await client.planPathHistoryStorageLifecycleF64(
   createPathHistoryStorageLifecycleRequest({
@@ -2865,8 +3027,10 @@ assert(
   "expected motion run path velocity"
 );
 const motionRunReplayValidation = await client.validatePathHistoryDynamicReplayF64({
-  streamId: "smoke-motion-run:motion-path-history",
-  tolerance: 0,
+  ...createPathHistoryDynamicReplayValidationRequest({
+    streamId: "smoke-motion-run:motion-path-history",
+    tolerance: 0,
+  }),
 });
 assert(
   motionRunReplayValidation.schema === "solver-path-history-dynamic-replay-validation.v1" &&
@@ -2927,8 +3091,10 @@ assert(
   "expected integrated motion path chord velocity"
 );
 const integratedMotionReplayValidation = await client.validatePathHistoryDynamicReplayF64({
-  streamId: "smoke-integrated-motion-run:motion-path-history",
-  tolerance: 0,
+  ...createPathHistoryDynamicReplayValidationRequest({
+    streamId: "smoke-integrated-motion-run:motion-path-history",
+    tolerance: 0,
+  }),
 });
 assert(
   integratedMotionReplayValidation.schema === "solver-path-history-dynamic-replay-validation.v1" &&
@@ -2939,6 +3105,86 @@ assert(
     integratedMotionReplayValidation.expectedRowCount === 2,
   "expected integrated motion dynamic replay validation match"
 );
+let replayValidationPressureRejected = false;
+try {
+  await client.validatePathHistoryDynamicReplayF64(
+    createPathHistoryDynamicReplayValidationRequest({
+      streamId: "smoke-integrated-motion-run:motion-path-history",
+      tolerance: 0,
+      maxRows: 1,
+    })
+  );
+} catch (error) {
+  replayValidationPressureRejected =
+    error instanceof SolverBridgeError && error.status.code === "stream_memory_pressure";
+}
+assert(replayValidationPressureRejected, "expected dynamic replay validation maxRows pressure rejection");
+
+const nativeFileMotionBasePath = path.join(rootDir, ".tmp", "solver-app-bridge-native-motion-streams");
+fs.rmSync(nativeFileMotionBasePath, { recursive: true, force: true });
+const nativeFileMotionRunHandle = await client.runSimulation(
+  makeNativeFileIntegratedMotionRunSimulationRequest(nativeFileMotionBasePath)
+);
+assert(nativeFileMotionRunHandle.status.code === "ok", "expected native-file motion run status ok");
+assert(
+  nativeFileMotionRunHandle.response.pathHistory.metadata.dynamicReplay.replayKind ===
+    "constant-acceleration-motion-integration" &&
+    nativeFileMotionRunHandle.response.pathHistory.rowCount === 2 &&
+    nativeFileMotionRunHandle.response.pathHistory.chunkCount === 2,
+  "expected native-file motion dynamic replay metadata"
+);
+const nativeFileMotionStream = nativeFileMotionRunHandle.response.streams[0];
+const nativeFileMotionManifestPath = nativeFileMotionStream.storagePolicy.manifestPath;
+const nativeFileMotionStreamPath = nativeFileMotionStream.storagePolicy.streamPath;
+assert(
+  nativeFileMotionStream.storagePolicy.target === "native-file" &&
+    fs.existsSync(nativeFileMotionManifestPath),
+  "expected native-file motion manifest"
+);
+const nativeFileMotionReplayValidation = await client.validatePathHistoryDynamicReplayF64(
+  createPathHistoryDynamicReplayValidationRequest({
+    streamId: "smoke-native-file-motion-run:motion-path-history",
+    tolerance: 0,
+  })
+);
+assert(
+  nativeFileMotionReplayValidation.status.code === "ok" &&
+    nativeFileMotionReplayValidation.matched &&
+    nativeFileMotionReplayValidation.actualRowCount === 2 &&
+    nativeFileMotionReplayValidation.expectedRowCount === 2,
+  "expected native-file motion dynamic replay validation match"
+);
+const reopenedNativeFileMotionClient = createSolverAppBridgeClient({
+  createWasmModule,
+  locateFile: (fileName) => path.join(wasmDir, fileName),
+});
+const reopenedNativeFileMotionReplayValidation =
+  await reopenedNativeFileMotionClient.validatePathHistoryDynamicReplayF64(
+    createPathHistoryDynamicReplayValidationRequest({
+      manifestPath: nativeFileMotionManifestPath,
+      tolerance: 0,
+    })
+  );
+assert(
+  reopenedNativeFileMotionReplayValidation.status.code === "ok" &&
+    reopenedNativeFileMotionReplayValidation.streamId ===
+      "smoke-native-file-motion-run:motion-path-history" &&
+    reopenedNativeFileMotionReplayValidation.matched &&
+    reopenedNativeFileMotionReplayValidation.actualRowCount === 2 &&
+    reopenedNativeFileMotionReplayValidation.expectedRowCount === 2,
+  "expected reopened native-file motion dynamic replay validation match"
+);
+const nativeFileMotionCloseStatus = await client.closeRun({
+  runId: "smoke-native-file-motion-run",
+  releaseStreams: true,
+});
+assert(
+  nativeFileMotionCloseStatus.code === "ok" &&
+    nativeFileMotionCloseStatus.details.deletedNativeFileStreamCount === 1,
+  "expected native-file motion closeRun cleanup status"
+);
+assert(!fs.existsSync(nativeFileMotionStreamPath), "expected native-file motion stream files to be deleted");
+await reopenedNativeFileMotionClient.dispose();
 
 const appPlaybackRunHandle = await client.runSimulation(
   makeAppPlaybackRunSimulationRequest(motionRunHandle.response)
@@ -3465,6 +3711,55 @@ function makeIntegratedMotionRunSimulationRequest() {
     output: {
       outputs: ["frameBuffer", "pathStream", "diagnostics"],
       streamTarget: "caller-buffer",
+      memoryBudgetBytes: 64 * 1024 * 1024,
+      deterministic: true,
+    },
+  });
+}
+
+function makeNativeFileIntegratedMotionRunSimulationRequest(basePath) {
+  const admission = makeAdmissionRequest();
+  return createAnimatorMotionSimulationRunRequest({
+    requestId: "smoke-native-file-motion-run-request",
+    runId: "smoke-native-file-motion-run",
+    datasetId: "smoke-native-file-motion-run-dataset",
+    claimLevel: "interactive-preview",
+    precisionPath: "auto",
+    configVersion: "solver-native-file-motion-run-smoke.v1",
+    configHash: "solver-native-file-motion-run-smoke",
+    model: admission.model,
+    envelope: admission.envelope,
+    errorBudget: admission.errorBudget,
+    motionIntegrationRequest: {
+      pathKey: 5432,
+      startTime: 0,
+      endTime: 2,
+      step: 1,
+      initialPosition: { x: 1, y: 1, z: 1 },
+      initialVelocity: { x: 2, y: 0, z: -1 },
+      acceleration: { x: 0.5, y: 1, z: 2 },
+      integrationTolerance: 1e-11,
+      integrationMethod: 1,
+      stateFlags: 13,
+    },
+    streamId: "smoke-native-file-motion-run:motion-path-history",
+    rowsPerChunk: 1,
+    storagePolicy: {
+      target: "native-file",
+      durable: true,
+      maxBytes: 4096,
+      basePath,
+    },
+    metadata: {
+      units: "solver-si",
+      coordinateFrame: "absolute-lab-frame",
+      scaleNormalization: "native-file-motion-smoke",
+      interpolationRule: "linear-segment-chord",
+      provenance: { fixture: "native-file-motion-run-smoke" },
+    },
+    output: {
+      outputs: ["frameBuffer", "pathStream", "diagnostics"],
+      streamTarget: "native-file",
       memoryBudgetBytes: 64 * 1024 * 1024,
       deterministic: true,
     },

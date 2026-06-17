@@ -46,6 +46,7 @@ final class ReaderViewModel: ObservableObject {
     private var searchIndexTask: Task<Void, Never>?
     private var postLaunchWarmupTask: Task<Void, Never>?
     private var deferredRestoreRenderTask: Task<Void, Never>?
+    private var fontScalePersistenceTask: Task<Void, Never>?
 
     struct ReaderRenderCommand: Identifiable, Codable {
         let id: UUID
@@ -215,8 +216,7 @@ final class ReaderViewModel: ObservableObject {
             return ""
         }
         if let index = package.manifest.chapters.firstIndex(where: { $0.id == currentChapterId }) {
-            let percent = Int(((Double(index) + 1.0) / Double(max(1, package.manifest.chapters.count)) * 100).rounded())
-            return "\(index + 1)/\(package.manifest.chapters.count) · \(percent)%"
+            return "\(index + 1)/\(package.manifest.chapters.count)"
         }
         return currentReferenceDocument?.title ?? ""
     }
@@ -269,8 +269,9 @@ final class ReaderViewModel: ObservableObject {
 
     func setFontScale(_ value: Double) {
         let clamped = max(0.85, min(1.45, value))
+        guard fontScale != clamped else { return }
         fontScale = clamped
-        defaults.set(clamped, forKey: fontScaleKey)
+        persistFontScaleSoon(clamped)
     }
 
     func setTheme(_ value: ReaderTheme) {
@@ -289,6 +290,8 @@ final class ReaderViewModel: ObservableObject {
     }
 
     func resetReaderAppearance() {
+        fontScalePersistenceTask?.cancel()
+        fontScalePersistenceTask = nil
         fontScale = 1.0
         theme = .architrinoPurple
         lineSpacing = .standard
@@ -307,8 +310,21 @@ final class ReaderViewModel: ObservableObject {
         setFontScale(fontScale - 0.08)
     }
 
+    private func persistFontScaleSoon(_ value: Double) {
+        fontScalePersistenceTask?.cancel()
+        fontScalePersistenceTask = Task { [weak self] in
+            try? await Task.sleep(nanoseconds: 300_000_000)
+            guard !Task.isCancelled else { return }
+            await MainActor.run { [weak self] in
+                guard let self else { return }
+                defaults.set(value, forKey: fontScaleKey)
+                fontScalePersistenceTask = nil
+            }
+        }
+    }
+
     func openChapter(by id: String, anchor: String?) {
-        guard package?.chapterById[id] != nil else { return }
+        guard package?.chapterById[id] != nil || package?.referenceById[id] != nil else { return }
         openDocument(by: id, anchor: anchor)
     }
 
@@ -433,6 +449,10 @@ final class ReaderViewModel: ObservableObject {
         let chapterId = package.tocChapterByNodeId[node.id]
         let kind = node.nodeKind
 
+        if let inAppTarget = resolveTOCInAppTarget(for: node, inheritedChapterId: chapterId) {
+            return .chapter(id: inAppTarget.documentId, anchor: inAppTarget.anchor)
+        }
+
         if inAppTOCKinds.contains(kind), let targetChapter = chapterId {
             let anchor = resolveTOCAnchor(for: node, chapterId: targetChapter)
             return .chapter(id: targetChapter, anchor: anchor)
@@ -449,6 +469,72 @@ final class ReaderViewModel: ObservableObject {
             return .external(fallback)
         }
         return .none
+    }
+
+    func resolveTOCSectionTarget(_ section: TextbookTOCSection, in node: TextbookTOCNode) -> TOCRoute {
+        guard let package else {
+            return .none
+        }
+
+        let inheritedChapterId = package.tocChapterByNodeId[node.id]
+        var targetPaths: [String] = []
+        if let markdownPath = section.markdownPath?.trimmingCharacters(in: .whitespacesAndNewlines),
+           !markdownPath.isEmpty {
+            targetPaths.append(markdownPath)
+        }
+        if let markdownPath = node.markdownPath?.trimmingCharacters(in: .whitespacesAndNewlines),
+           !markdownPath.isEmpty {
+            targetPaths.append(markdownPath)
+        }
+
+        for targetPath in targetPaths {
+            if let target = resolveDocumentTarget(from: targetPath, defaultAnchor: nil) {
+                let anchor = resolveTOCAnchor(for: section, chapterId: target.documentId) ?? target.anchor
+                return .chapter(id: target.documentId, anchor: anchor)
+            }
+        }
+
+        if let inheritedChapterId {
+            return .chapter(id: inheritedChapterId, anchor: resolveTOCAnchor(for: section, chapterId: inheritedChapterId))
+        }
+
+        if let fallback = fallbackExternalURL(
+            for: section.markdownPath ?? node.markdownPath ?? node.scenePath ?? node.id,
+            anchor: resolveTOCAnchor(for: section, chapterId: inheritedChapterId)
+        ) {
+            return .external(fallback)
+        }
+
+        return .none
+    }
+
+    private func resolveTOCInAppTarget(
+        for node: TextbookTOCNode,
+        inheritedChapterId: String?
+    ) -> (documentId: String, anchor: String?)? {
+        let defaultAnchor = resolveTOCAnchor(for: node, chapterId: inheritedChapterId)
+        var targetPaths: [String] = []
+
+        if let markdownPath = node.markdownPath?.trimmingCharacters(in: .whitespacesAndNewlines),
+           !markdownPath.isEmpty {
+            targetPaths.append(markdownPath)
+        }
+
+        for section in node.resolvedSections {
+            guard let markdownPath = section.markdownPath?.trimmingCharacters(in: .whitespacesAndNewlines),
+                  !markdownPath.isEmpty else {
+                continue
+            }
+            targetPaths.append(markdownPath)
+        }
+
+        for targetPath in targetPaths {
+            if let target = resolveDocumentTarget(from: targetPath, defaultAnchor: defaultAnchor) {
+                return target
+            }
+        }
+
+        return nil
     }
 
     func handleWebLink(message: Any) -> URL? {
@@ -1002,6 +1088,29 @@ final class ReaderViewModel: ObservableObject {
         }
 
         return fallbackCandidates.first.map(anchorFromHeadingTitle)
+    }
+
+    private func resolveTOCAnchor(for section: TextbookTOCSection, chapterId: String?) -> String? {
+        var candidates: [String] = []
+        appendTOCAnchorCandidate(section.title, to: &candidates)
+        appendTOCAnchorCandidate(section.markdownSection, to: &candidates)
+        appendTOCAnchorCandidate(section.sectionKey, to: &candidates)
+
+        if let chapterId {
+            let chapterEntries = searchIndexEntries.filter { $0.chapterId == chapterId }
+            for candidate in candidates {
+                if let match = searchEntryAnchor(matching: candidate, in: chapterEntries) {
+                    return match
+                }
+            }
+            if let requested = section.sectionKey?.trimmingCharacters(in: .whitespacesAndNewlines),
+               !requested.isEmpty,
+               let match = chapterEntries.first(where: { $0.sectionKey == requested }) {
+                return match.sectionAnchor
+            }
+        }
+
+        return candidates.first.map(anchorFromHeadingTitle)
     }
 
     private func appendTOCAnchorCandidate(_ value: String?, to candidates: inout [String]) {

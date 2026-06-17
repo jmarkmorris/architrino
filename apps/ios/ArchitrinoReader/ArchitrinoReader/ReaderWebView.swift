@@ -48,8 +48,10 @@ struct ReaderWebView: UIViewRepresentable {
             lineSpacing: lineSpacing,
             marginWidth: marginWidth
         )
-        uiView.backgroundColor = UIColor.readerBackground(for: theme)
-        uiView.scrollView.backgroundColor = UIColor.readerBackground(for: theme)
+        if context.coordinator.lastAppliedAppearance?.theme != theme {
+            uiView.backgroundColor = UIColor.readerBackground(for: theme)
+            uiView.scrollView.backgroundColor = UIColor.readerBackground(for: theme)
+        }
         context.coordinator.webView = uiView
         context.coordinator.pendingAppearance = appearance
         if let anchorCommand,
@@ -140,7 +142,15 @@ struct ReaderWebView: UIViewRepresentable {
                 pendingAppearance = nil
                 return
             }
-            sendAppearance(appearance, to: webView)
+            if let lastAppliedAppearance,
+               lastAppliedAppearance.theme == appearance.theme,
+               lastAppliedAppearance.lineSpacing == appearance.lineSpacing,
+               lastAppliedAppearance.marginWidth == appearance.marginWidth,
+               lastAppliedAppearance.fontScale != appearance.fontScale {
+                sendFontScale(appearance, to: webView)
+            } else {
+                sendAppearance(appearance, to: webView)
+            }
         }
 
         func flushAnchorCommand() {
@@ -199,6 +209,27 @@ struct ReaderWebView: UIViewRepresentable {
             }
         }
 
+        func sendFontScale(_ appearance: ReaderAppearancePayload, to webView: WKWebView) {
+            do {
+                let payload = ReaderFontScalePayload(fontScale: appearance.fontScale)
+                let jsonData = try JSONEncoder().encode(payload)
+                let jsonString = String(data: jsonData, encoding: .utf8) ?? "{}"
+                let script = """
+                window.ReaderBridge && window.ReaderBridge.updateFontScale(\(readerJavaScriptStringLiteral(jsonString)));
+                """
+                webView.evaluateJavaScript(script) { _, error in
+                    if let error {
+                        // Keep diagnostics available during local testing.
+                        _ = error
+                    }
+                }
+                pendingAppearance = nil
+                lastAppliedAppearance = appearance
+            } catch {
+                // non-fatal: font changes will be reflected by the next appearance update
+            }
+        }
+
         func sendAnchorCommand(_ command: ReaderViewModel.ReaderAnchorCommand, to webView: WKWebView) {
             do {
                 let jsonData = try JSONEncoder().encode(command)
@@ -247,8 +278,13 @@ struct ReaderAppearancePayload: Codable, Equatable {
     let marginWidth: ReaderMarginWidth
 }
 
+private struct ReaderFontScalePayload: Codable {
+    let fontScale: Double
+}
+
 struct SearchSnippetPreview: UIViewRepresentable {
     let markdownText: String
+    let theme: ReaderTheme
 
     func makeUIView(context: Context) -> WKWebView {
         let configuration = WKWebViewConfiguration()
@@ -280,6 +316,7 @@ struct SearchSnippetPreview: UIViewRepresentable {
     func updateUIView(_ uiView: WKWebView, context: Context) {
         context.coordinator.webView = uiView
         context.coordinator.pendingMarkdownText = markdownText
+        context.coordinator.pendingTheme = theme
         if context.coordinator.isReady {
             context.coordinator.flushRenderCommand()
         }
@@ -291,13 +328,16 @@ struct SearchSnippetPreview: UIViewRepresentable {
 
     private struct SearchSnippetPayload: Encodable {
         let markdownText: String
+        let theme: ReaderTheme
     }
 
     final class Coordinator: NSObject, WKNavigationDelegate {
         weak var webView: WKWebView?
         var isReady = false
         var pendingMarkdownText: String?
+        var pendingTheme: ReaderTheme?
         var lastRenderedMarkdownText: String?
+        var lastRenderedTheme: ReaderTheme?
 
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
             isReady = true
@@ -306,16 +346,18 @@ struct SearchSnippetPreview: UIViewRepresentable {
 
         func flushRenderCommand() {
             guard let markdownText = pendingMarkdownText,
+                  let theme = pendingTheme,
                   let webView else {
                 return
             }
-            if lastRenderedMarkdownText == markdownText {
+            if lastRenderedMarkdownText == markdownText, lastRenderedTheme == theme {
                 pendingMarkdownText = nil
+                pendingTheme = nil
                 return
             }
 
             do {
-                let payload = SearchSnippetPayload(markdownText: markdownText)
+                let payload = SearchSnippetPayload(markdownText: markdownText, theme: theme)
                 let jsonData = try JSONEncoder().encode(payload)
                 let jsonString = String(data: jsonData, encoding: .utf8) ?? "{}"
                 let script = """
@@ -328,7 +370,9 @@ struct SearchSnippetPreview: UIViewRepresentable {
                     }
                 }
                 pendingMarkdownText = nil
+                pendingTheme = nil
                 lastRenderedMarkdownText = markdownText
+                lastRenderedTheme = theme
             } catch {
                 // non-fatal: snippet rendering falls back to an empty preview
             }

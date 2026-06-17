@@ -145,10 +145,16 @@ struct ReaderBookmark: Codable, Identifiable, Equatable {
 
 struct TextbookTOCSection: Decodable, Equatable {
     let kind: String?
+    let title: String?
     let markdownPath: String?
     let markdownSection: String?
     let sectionKey: String?
     let headingLevel: Int?
+    let children: [TextbookTOCSection]?
+
+    var resolvedChildren: [TextbookTOCSection] {
+        children ?? []
+    }
 }
 
 struct TextbookTOCNode: Decodable, Identifiable {
@@ -444,13 +450,7 @@ extension ReaderTextbookLoader {
             byPath[normalizePath(markdownPath)] = node
         }
 
-        for section in node.resolvedSections {
-            guard let markdownPath = section.markdownPath?.trimmingCharacters(in: .whitespacesAndNewlines),
-                  !markdownPath.isEmpty else {
-                continue
-            }
-            byPath[normalizePath(markdownPath), default: node] = node
-        }
+        addTOCSectionMarkdownPaths(node.resolvedSections, owner: node, to: &byPath)
 
         for child in node.resolvedChildren {
             let childMap = buildTOCMarkdownPathLookup(node: child)
@@ -458,6 +458,20 @@ extension ReaderTextbookLoader {
         }
 
         return byPath
+    }
+
+    private func addTOCSectionMarkdownPaths(
+        _ sections: [TextbookTOCSection],
+        owner node: TextbookTOCNode,
+        to byPath: inout [String: TextbookTOCNode]
+    ) {
+        for section in sections {
+            if let markdownPath = section.markdownPath?.trimmingCharacters(in: .whitespacesAndNewlines),
+               !markdownPath.isEmpty {
+                byPath[normalizePath(markdownPath), default: node] = node
+            }
+            addTOCSectionMarkdownPaths(section.resolvedChildren, owner: node, to: &byPath)
+        }
     }
 }
 

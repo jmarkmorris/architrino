@@ -29,8 +29,7 @@ struct ContentView: View {
             }
         }
         .fullScreenCover(isPresented: $showToc) {
-            tocSidebar
-            .background(viewModel.theme.readerBackgroundColor.ignoresSafeArea())
+            tocFullScreen
         }
         .sheet(isPresented: $viewModel.isSearchPresented) {
             SearchSheet(viewModel: viewModel)
@@ -208,6 +207,20 @@ struct ContentView: View {
         .ignoresSafeArea(edges: .top)
     }
 
+    private var tocFullScreen: some View {
+        GeometryReader { proxy in
+            VStack(spacing: 0) {
+                Color.clear
+                    .frame(height: max(proxy.safeAreaInsets.top + 8, 44))
+
+                tocSidebar
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(viewModel.theme.readerBackgroundColor.ignoresSafeArea())
+        }
+        .preferredColorScheme(viewModel.theme.readerToolbarColorScheme)
+    }
+
     private var tocSidebar: some View {
         VStack(alignment: .leading, spacing: 0) {
             List {
@@ -361,11 +374,68 @@ struct ContentView: View {
                 .padding(.vertical, 2)
                 .buttonStyle(.plain)
 
+                ForEach(Array(node.resolvedSections.enumerated()), id: \.offset) { _, section in
+                    tocSectionRow(section, in: node, depth: depth + 1)
+                }
+
                 ForEach(node.resolvedChildren) { child in
                     tocHierarchyRow(child, depth: depth + 1)
                 }
             }
         )
+    }
+
+    private func tocSectionRow(_ section: TextbookTOCSection, in node: TextbookTOCNode, depth: Int) -> AnyView {
+        let route = viewModel.resolveTOCSectionTarget(section, in: node)
+
+        return AnyView(
+            VStack(alignment: .leading, spacing: 0) {
+                Button {
+                    switch route {
+                    case .chapter(let chapterId, let anchor):
+                        navigateFromTOC {
+                            viewModel.openChapter(by: chapterId, anchor: anchor)
+                        }
+                    case .external(let external):
+                        tocNotice = nil
+                        viewModel.readerNotice = nil
+                        openURL(external)
+                        if !isRegularWidth {
+                            dismissTOCImmediately()
+                        }
+                    case .none:
+                        break
+                    }
+                } label: {
+                    HStack(spacing: 8) {
+                        tocRouteIcon(for: route)
+
+                        tocRowLabel(title: tocSectionTitle(section), depth: depth)
+
+                        Spacer()
+                    }
+                    .contentShape(Rectangle())
+                    .padding(.vertical, 2)
+                }
+                .contentShape(Rectangle())
+                .padding(.vertical, 2)
+                .buttonStyle(.plain)
+
+                ForEach(Array(section.resolvedChildren.enumerated()), id: \.offset) { _, child in
+                    tocSectionRow(child, in: node, depth: depth + 1)
+                }
+            }
+        )
+    }
+
+    private func tocSectionTitle(_ section: TextbookTOCSection) -> String {
+        for value in [section.title, section.markdownSection, section.sectionKey] {
+            if let title = value?.trimmingCharacters(in: .whitespacesAndNewlines),
+               !title.isEmpty {
+                return title
+            }
+        }
+        return "Section"
     }
 
     private func tocRouteIcon(for route: ReaderViewModel.TOCRoute) -> some View {
@@ -471,11 +541,14 @@ struct ContentView: View {
             }
             .accessibilityLabel("Decrease text size")
 
-            Text("A")
-                .font(.system(size: 18, weight: .semibold))
-                .foregroundStyle(viewModel.theme.readerControlBarSecondaryTextColor)
-                .frame(width: 20, height: 28)
-                .accessibilityHidden(true)
+            Button {
+                viewModel.setFontScale(1.0)
+            } label: {
+                Text("A")
+                    .font(.system(size: 18, weight: .semibold))
+                    .frame(width: 20, height: 28)
+            }
+            .accessibilityLabel("Reset text size")
 
             Button {
                 viewModel.increaseFont()
@@ -598,6 +671,41 @@ private extension ReaderTheme {
             return .secondary
         case .dark:
             return .white.opacity(0.65)
+        }
+    }
+
+    var readerSearchResultBackgroundColor: Color {
+        switch self {
+        case .architrinoPurple:
+            return .white.opacity(0.12)
+        case .light:
+            return Color(red: 245 / 255, green: 247 / 255, blue: 251 / 255)
+        case .warm:
+            return Color(red: 255 / 255, green: 248 / 255, blue: 232 / 255)
+        case .dark:
+            return .white.opacity(0.08)
+        }
+    }
+
+    var readerSearchControlBackgroundColor: Color {
+        switch self {
+        case .architrinoPurple:
+            return .white.opacity(0.12)
+        case .light:
+            return Color(red: 245 / 255, green: 247 / 255, blue: 251 / 255)
+        case .warm:
+            return Color(red: 255 / 255, green: 248 / 255, blue: 232 / 255)
+        case .dark:
+            return .white.opacity(0.08)
+        }
+    }
+
+    var readerSearchControlBorderColor: Color {
+        switch self {
+        case .architrinoPurple, .dark:
+            return .white.opacity(0.22)
+        case .light, .warm:
+            return Color(.separator)
         }
     }
 }
@@ -752,50 +860,140 @@ private struct ReaderSettingsSheet: View {
 private struct SearchSheet: View {
     @ObservedObject var viewModel: ReaderViewModel
     @State private var query = ""
+    @FocusState private var isSearchFieldFocused: Bool
 
     var body: some View {
-        NavigationStack {
-            List {
+        ZStack {
+            viewModel.theme.readerBackgroundColor.ignoresSafeArea()
+
+            VStack(spacing: 0) {
+                searchHeader
+                searchResults
+            }
+        }
+        .preferredColorScheme(viewModel.theme.readerToolbarColorScheme)
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                isSearchFieldFocused = true
+            }
+        }
+        .onChange(of: query) { _, newValue in
+            viewModel.search(newValue)
+        }
+    }
+
+    private var searchHeader: some View {
+        HStack(spacing: 12) {
+            HStack(spacing: 10) {
+                Image(systemName: "magnifyingglass")
+                    .font(.system(size: 22, weight: .regular))
+                    .foregroundStyle(viewModel.theme.readerPrimaryTextColor)
+
+                TextField("Find section", text: $query)
+                    .textInputAutocapitalization(.never)
+                    .autocorrectionDisabled(true)
+                    .submitLabel(.search)
+                    .focused($isSearchFieldFocused)
+                    .foregroundStyle(viewModel.theme.readerPrimaryTextColor)
+                    .tint(viewModel.theme.readerPrimaryTextColor)
+
+                if !query.isEmpty {
+                    Button {
+                        query = ""
+                    } label: {
+                        Image(systemName: "xmark.circle.fill")
+                            .font(.system(size: 18, weight: .semibold))
+                            .foregroundStyle(viewModel.theme.readerPrimaryTextColor)
+                    }
+                    .accessibilityLabel("Clear search")
+                }
+            }
+            .padding(.horizontal, 14)
+            .frame(height: 50)
+            .background(viewModel.theme.readerSearchControlBackgroundColor)
+            .overlay(
+                Capsule()
+                    .stroke(viewModel.theme.readerSearchControlBorderColor, lineWidth: 1)
+            )
+            .clipShape(Capsule())
+
+            Button {
+                viewModel.isSearchPresented = false
+            } label: {
+                Image(systemName: "xmark")
+                    .font(.system(size: 28, weight: .regular))
+                    .frame(width: 50, height: 50)
+                    .foregroundStyle(viewModel.theme.readerPrimaryTextColor)
+                    .background(viewModel.theme.readerSearchControlBackgroundColor)
+                    .overlay(
+                        Circle()
+                            .stroke(viewModel.theme.readerSearchControlBorderColor, lineWidth: 1)
+                    )
+                    .clipShape(Circle())
+            }
+            .accessibilityLabel("Close search")
+        }
+        .padding(.horizontal, 14)
+        .padding(.top, 14)
+        .padding(.bottom, 16)
+    }
+
+    private var searchResults: some View {
+        ScrollView {
+            LazyVStack(spacing: 12) {
                 if viewModel.isSearchIndexLoading {
-                    Text("Preparing search...")
-                        .foregroundStyle(.secondary)
+                    searchStatusText("Preparing search...")
                 } else if viewModel.searchResults.isEmpty && !query.isEmpty {
-                    Text("No matching sections.")
-                        .foregroundStyle(.secondary)
+                    searchStatusText("No matching sections.")
                 }
 
                 ForEach(viewModel.searchResults) { result in
                     Button {
                         viewModel.openSearchResult(result)
                     } label: {
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text(result.chapterTitle)
-                                .font(.subheadline)
-                                .fontWeight(.medium)
-                            SearchSnippetPreview(markdownText: result.renderedPreviewMarkdown)
-                                .frame(height: 74)
-                                .clipped()
-                                .allowsHitTesting(false)
-                        }
-                        .padding(.vertical, 2)
+                        SearchResultRow(result: result, theme: viewModel.theme)
                     }
                     .buttonStyle(.plain)
                 }
             }
-            .searchable(text: $query, placement: .navigationBarDrawer(displayMode: .always), prompt: "Find section")
-            .onChange(of: query) { _, newValue in
-                viewModel.search(newValue)
-            }
-            .navigationTitle("Search")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button("Done") {
-                        viewModel.isSearchPresented = false
-                    }
-                }
-            }
+            .padding(.horizontal, 14)
+            .padding(.bottom, 24)
         }
+        .scrollDismissesKeyboard(.interactively)
+    }
+
+    private func searchStatusText(_ value: String) -> some View {
+        Text(value)
+            .font(.subheadline)
+            .foregroundStyle(viewModel.theme.readerSecondaryTextColor)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.horizontal, 14)
+            .padding(.vertical, 12)
+    }
+}
+
+private struct SearchResultRow: View {
+    let result: TextbookSearchEntry
+    let theme: ReaderTheme
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            Text(result.chapterTitle)
+                .font(.subheadline)
+                .fontWeight(.semibold)
+                .foregroundStyle(theme.readerPrimaryTextColor)
+
+            SearchSnippetPreview(markdownText: result.renderedPreviewMarkdown, theme: theme)
+                .frame(height: 78)
+                .clipped()
+                .allowsHitTesting(false)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.horizontal, 14)
+        .padding(.vertical, 12)
+        .background(theme.readerSearchResultBackgroundColor)
+        .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+        .contentShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
     }
 }
 

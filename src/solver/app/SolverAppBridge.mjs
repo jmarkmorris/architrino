@@ -1441,7 +1441,8 @@ function maxBy(values, selector) {
 
 function planPathHistoryWorkPackets(state, request) {
   const normalizedRequest = normalizePathHistoryWorkPacketPlanRequest(request);
-  const streamEntry = findStreamEntry(state, normalizedRequest.streamId);
+  const streamEntry = resolveStreamEntryByIdOrManifest(state, normalizedRequest);
+  const packetIdPrefix = normalizedRequest.packetIdPrefix ?? `${streamEntry.stream.streamId}:work-packet`;
   const pathIndexRowsByChunk = getPathHistoryIndexRowsByChunk(streamEntry);
   const pathIndexSummary = getPathHistoryIndexSummary(streamEntry);
   const chunks = collectPathHistoryPacketChunks(streamEntry, normalizedRequest);
@@ -1479,7 +1480,7 @@ function planPathHistoryWorkPackets(state, request) {
         truncated = true;
         continue;
       }
-      const packetId = `${normalizedRequest.packetIdPrefix}-${String(packets.length).padStart(6, "0")}`;
+      const packetId = `${packetIdPrefix}-${String(packets.length).padStart(6, "0")}`;
       const mergeKey = `${normalizedRequest.runId}:time-${String(packets.length).padStart(
         6,
         "0"
@@ -1554,10 +1555,10 @@ function normalizePathHistoryWorkPacketPlanRequest(request) {
       })
     );
   }
-  requireNonemptyString(request.streamId, "streamId");
   requireNonemptyString(request.runId, "runId");
   requireNonemptyString(request.modelId, "modelId");
   requireNonemptyString(request.precisionPath, "precisionPath");
+  validateStreamIdOrManifestPathRequest(request, "path-history work-packet plan");
   if (!DEFAULT_PRECISION_PATHS.includes(request.precisionPath) || request.precisionPath === "auto") {
     throw new SolverBridgeError(
       createStatus("precision_failed", "error", "path-history work packets require a concrete precision path", {
@@ -1589,10 +1590,11 @@ function normalizePathHistoryWorkPacketPlanRequest(request) {
   }
   return {
     streamId: request.streamId,
+    manifestPath: request.manifestPath,
     runId: request.runId,
     modelId: request.modelId,
     precisionPath: request.precisionPath,
-    packetIdPrefix: request.packetIdPrefix ?? `${request.streamId}:work-packet`,
+    packetIdPrefix: request.packetIdPrefix ?? null,
     timeRange: request.timeRange == null ? null : { ...request.timeRange },
     expectedOutputs,
     sourceChunkIndices,
@@ -4049,7 +4051,7 @@ function integrateConstantAccelerationMotionF64WithModule(module, request, abiIn
   }
 }
 
-function integrateConstantAccelerationPathHistoryF64WithModule(module, request, abiInfo) {
+function integrateConstantAccelerationPathHistoryF64WithModule(module, request, abiInfo, options = {}) {
   validateMotionIntegrationRequest(request);
   if (typeof module._malloc !== "function" || typeof module._free !== "function") {
     throw new SolverBridgeError(
@@ -4060,12 +4062,13 @@ function integrateConstantAccelerationPathHistoryF64WithModule(module, request, 
   }
 
   const estimatedRows = estimateMotionPathSegmentCount(request);
-  const maxRows = Math.min(estimatedRows, DEFAULT_MAX_MOTION_PATH_ROWS);
+  const rowCap = options.maxRows ?? DEFAULT_MAX_MOTION_PATH_ROWS;
+  const maxRows = Math.min(estimatedRows, rowCap);
   if (estimatedRows > maxRows) {
     throw new SolverBridgeError(
       createStatus("stream_memory_pressure", "halt", "motion path-history request exceeds row buffer cap", {
         recoverable: true,
-        details: { estimatedRows, maxRows },
+        details: { estimatedRows, maxRows, rowCap },
       })
     );
   }
@@ -5241,9 +5244,10 @@ function buildSpaceTimeIndexF64WithModule(module, request, abiInfo) {
 
 function buildPathHistoryStreamSpaceTimeIndexF64WithModule(state, module, request, abiInfo) {
   validateBuildPathHistoryStreamSpaceTimeIndexRequest(request);
-  const streamEntry = findStreamEntry(state, request.streamId);
+  const streamEntry = resolveStreamEntryByIdOrManifest(state, request);
+  const streamId = streamEntry.stream.streamId;
   const selectionRequest = {
-    streamId: request.streamId,
+    streamId,
     chunkIndices: request.chunkIndices,
     pathKeys: request.pathKeys,
     timeRange: request.timeRange,
@@ -5257,7 +5261,7 @@ function buildPathHistoryStreamSpaceTimeIndexF64WithModule(state, module, reques
       createStatus("stream_memory_pressure", "halt", "stream-backed space-time index exceeds maxBytes", {
         recoverable: true,
         details: {
-          streamId: request.streamId,
+          streamId,
           requestedBytes: selectedByteLength,
           maxBytes: request.maxBytes,
         },
@@ -5279,7 +5283,7 @@ function buildPathHistoryStreamSpaceTimeIndexF64WithModule(state, module, reques
     ...response,
     status: createStatus("ok", "ok", "stream-backed space-time index built", {
       details: {
-        streamId: request.streamId,
+        streamId,
         selectedRangeCount: selection.items.length,
         selectedPathRowCount: pathRows.length,
         selectedByteLength,
@@ -5439,7 +5443,7 @@ function validateBuildPathHistoryStreamSpaceTimeIndexRequest(request) {
       })
     );
   }
-  requireNonemptyString(request.streamId, "streamId");
+  validateStreamIdOrManifestPathRequest(request, "stream-backed space-time index request");
   if (request.pathKeys != null) {
     validateOptionalPathKeyArray(request.pathKeys, "pathKeys");
   }
@@ -8602,10 +8606,15 @@ function planPathHistoryStorageLifecycleF64WithModule(state, module, request, ab
 
 function normalizePathHistoryStorageLifecycleRequest(state, request) {
   validatePathHistoryStorageLifecycleRequest(request);
-  const streamId = request.streamId;
-  const chunks = request.chunks
-    ? request.chunks.map((chunk, index) => normalizePathHistoryChunkRow(chunk, `chunks[${index}]`))
-    : derivePathHistoryLifecycleChunksFromStream(findStreamEntry(state, streamId));
+  let streamId = request.streamId;
+  let chunks;
+  if (request.chunks) {
+    chunks = request.chunks.map((chunk, index) => normalizePathHistoryChunkRow(chunk, `chunks[${index}]`));
+  } else {
+    const streamEntry = resolveStreamEntryByIdOrManifest(state, request);
+    streamId = streamEntry.stream.streamId;
+    chunks = derivePathHistoryLifecycleChunksFromStream(streamEntry);
+  }
   return {
     streamId,
     policy: normalizeStorageLifecyclePolicy(request.policy),
@@ -8624,9 +8633,12 @@ function validatePathHistoryStorageLifecycleRequest(request) {
   if (request.streamId != null) {
     requireNonemptyString(request.streamId, "streamId");
   }
-  if (request.chunks == null && request.streamId == null) {
+  if (request.manifestPath != null) {
+    requireNonemptyString(request.manifestPath, "manifestPath");
+  }
+  if (request.chunks == null && request.streamId == null && request.manifestPath == null) {
     throw new SolverBridgeError(
-      createStatus("app_contract_error", "error", "path-history lifecycle requires chunks or streamId", {
+      createStatus("app_contract_error", "error", "path-history lifecycle requires chunks, streamId, or manifestPath", {
         recoverable: false,
       })
     );
@@ -8843,7 +8855,8 @@ function describeStream(state, request) {
       })
     );
   }
-  const streamEntry = findStreamEntry(state, request.streamId);
+  validateStreamIdOrManifestPathRequest(request, "stream description request");
+  const streamEntry = resolveStreamEntryByIdOrManifest(state, request);
   return {
     schema: "solver-stream-description.v1",
     stream: copyStreamDescriptor(streamEntry.stream),
@@ -8859,37 +8872,38 @@ function describeStream(state, request) {
 
 function validatePathHistoryDynamicReplayF64(state, module, request, abiInfo) {
   validatePathHistoryDynamicReplayValidationRequest(request);
-  const streamEntry = findStreamEntry(state, request.streamId);
+  const streamEntry = resolveStreamEntryByIdOrManifest(state, request);
+  const streamId = streamEntry.stream.streamId;
   const dynamicReplay = streamEntry.stream.metadata?.dynamicReplay;
   if (!dynamicReplay) {
     throw new SolverBridgeError(
       createStatus("app_contract_error", "error", "path-history stream has no dynamic replay metadata", {
         recoverable: false,
-        details: { streamId: request.streamId },
+        details: { streamId },
       })
     );
   }
 
   const replay = normalizePathHistoryDynamicReplayMetadata(dynamicReplay);
-  const selection = selectStreamRanges(streamEntry, { streamId: request.streamId });
+  const selection = selectStreamRanges(streamEntry, { streamId });
   const actualRowCount = selection.items.reduce((sum, item) => sum + item.rowCount, 0);
   const maxRows = request.maxRows ?? DEFAULT_MAX_MOTION_PATH_ROWS;
   if (actualRowCount > maxRows) {
     throw new SolverBridgeError(
       createStatus("stream_memory_pressure", "halt", "path-history replay validation exceeds maxRows", {
         recoverable: true,
-        details: { streamId: request.streamId, actualRowCount, maxRows },
+        details: { streamId, actualRowCount, maxRows },
       })
     );
   }
 
   const actualRows = decodePathHistoryRowsFromStreamSelection(selection.items);
-  const expectedRows = regeneratePathHistoryRowsFromDynamicReplay(module, replay, abiInfo);
+  const expectedRows = regeneratePathHistoryRowsFromDynamicReplay(module, replay, abiInfo, maxRows);
   if (expectedRows.length > maxRows) {
     throw new SolverBridgeError(
       createStatus("stream_memory_pressure", "halt", "path-history replay regeneration exceeds maxRows", {
         recoverable: true,
-        details: { streamId: request.streamId, expectedRowCount: expectedRows.length, maxRows },
+        details: { streamId, expectedRowCount: expectedRows.length, maxRows },
       })
     );
   }
@@ -8899,7 +8913,7 @@ function validatePathHistoryDynamicReplayF64(state, module, request, abiInfo) {
   const status = comparison.matched
     ? createStatus("ok", "ok", "path-history dynamic replay matched", {
         details: {
-          streamId: request.streamId,
+          streamId,
           replayKind: replay.replayKind,
           actualRowCount: actualRows.length,
           expectedRowCount: expectedRows.length,
@@ -8908,7 +8922,7 @@ function validatePathHistoryDynamicReplayF64(state, module, request, abiInfo) {
     : createStatus("validation_replay_mismatch", "error", "path-history dynamic replay mismatch", {
         recoverable: false,
         details: {
-          streamId: request.streamId,
+          streamId,
           replayKind: replay.replayKind,
           mismatchCount: comparison.mismatchCount,
           firstMismatch: comparison.firstMismatch,
@@ -8917,7 +8931,7 @@ function validatePathHistoryDynamicReplayF64(state, module, request, abiInfo) {
 
   return {
     schema: "solver-path-history-dynamic-replay-validation.v1",
-    streamId: request.streamId,
+    streamId,
     replayKind: replay.replayKind,
     tolerance,
     actualRowCount: actualRows.length,
@@ -8944,7 +8958,7 @@ function validatePathHistoryDynamicReplayValidationRequest(request) {
       })
     );
   }
-  requireNonemptyString(request.streamId, "streamId");
+  validateStreamIdOrManifestPathRequest(request, "path-history dynamic replay validation");
   if (request.tolerance != null) {
     requireNonnegativeFiniteNumber(request.tolerance, "tolerance");
   }
@@ -8953,7 +8967,7 @@ function validatePathHistoryDynamicReplayValidationRequest(request) {
   }
 }
 
-function regeneratePathHistoryRowsFromDynamicReplay(module, replay, abiInfo) {
+function regeneratePathHistoryRowsFromDynamicReplay(module, replay, abiInfo, maxRows) {
   if (replay.replayKind === "linear-motion-sample") {
     return sampleLinearPathHistoryF64WithModule(module, replay.motionRequest, abiInfo).pathRows;
   }
@@ -8961,7 +8975,8 @@ function regeneratePathHistoryRowsFromDynamicReplay(module, replay, abiInfo) {
     return integrateConstantAccelerationPathHistoryF64WithModule(
       module,
       replay.motionIntegrationRequest,
-      abiInfo
+      abiInfo,
+      { maxRows }
     ).pathRows;
   }
   throw new SolverBridgeError(
@@ -9088,7 +9103,7 @@ function comparePathHistoryRowsForDynamicReplay(actualRows, expectedRows, tolera
 
 function queryEmissionShellCandidatesF64(state, request, module = null, abiInfo = defaultAbiInfo()) {
   validateEmissionShellCandidateRequest(request);
-  const streamEntry = findStreamEntry(state, request.streamId);
+  const streamEntry = resolveStreamEntryByIdOrManifest(state, request);
   const sourceKeySet = request.sourcePathKeys == null ? null : new Set(request.sourcePathKeys);
   const receiverKeySet = request.receiverPathKeys == null ? null : new Set(request.receiverPathKeys);
   const sourceChunkSet =
@@ -9243,6 +9258,7 @@ function queryEmissionShellCandidatePacketF64(state, request, module = null, abi
     state,
     {
       streamId: request.streamId,
+      manifestPath: request.manifestPath,
       signalSpeed: request.signalSpeed,
       tolerance: request.tolerance,
       maxCandidates: request.maxCandidates,
@@ -9276,6 +9292,7 @@ function queryEmissionShellCandidatePacketsF64(state, request, module = null, ab
       state,
       {
         streamId: request.streamId,
+        manifestPath: request.manifestPath,
         packet,
         signalSpeed: request.signalSpeed,
         tolerance: request.tolerance,
@@ -9302,7 +9319,7 @@ function queryEmissionShellCandidatePacketsF64(state, request, module = null, ab
       {
         stage: "work_packet",
         details: {
-          streamId: request.streamId,
+          streamId: merged.streamId ?? request.streamId,
           packetCount: request.packets.length,
           pairCount: merged.pairCount,
           rejectedPairCount: merged.rejectedPairCount,
@@ -9315,7 +9332,7 @@ function queryEmissionShellCandidatePacketsF64(state, request, module = null, ab
 
 function refineEmissionShellCandidateRootsF64(state, module, request, abiInfo) {
   validateEmissionShellRootRefinementRequest(request);
-  const streamEntry = findStreamEntry(state, request.streamId);
+  const streamEntry = resolveStreamEntryByIdOrManifest(state, request);
   const maxCandidates = request.maxCandidates ?? request.candidates.length;
   const maxRootsPerCandidate = request.maxRootsPerCandidate ?? Math.max(DEFAULT_MAX_CAUSAL_ROOTS, 128);
   const maxHitsPerCandidate = request.maxHitsPerCandidate ?? maxRootsPerCandidate;
@@ -9937,7 +9954,7 @@ function validateEmissionShellCandidateRequest(request) {
       })
     );
   }
-  requireNonemptyString(request.streamId, "streamId");
+  validateStreamIdOrManifestPathRequest(request, "emission-shell candidate request");
   requirePositiveFiniteNumber(request.signalSpeed, "signalSpeed");
   if (request.tolerance != null) {
     requireNonnegativeFiniteNumber(request.tolerance, "tolerance");
@@ -9969,7 +9986,7 @@ function validateEmissionShellRootRefinementRequest(request) {
       })
     );
   }
-  requireNonemptyString(request.streamId, "streamId");
+  validateStreamIdOrManifestPathRequest(request, "emission-shell root-refinement request");
   requirePositiveFiniteNumber(request.signalSpeed, "signalSpeed");
   if (!Array.isArray(request.candidates)) {
     throw new SolverBridgeError(
@@ -10083,7 +10100,7 @@ function validateEmissionShellCandidatePacketRequest(request) {
       )
     );
   }
-  requireNonemptyString(request.streamId, "streamId");
+  validateStreamIdOrManifestPathRequest(request, "emission-shell candidate packet request");
   if (!request.packet || typeof request.packet !== "object" || Array.isArray(request.packet)) {
     throw new SolverBridgeError(
       createStatus("app_contract_error", "error", "packet is required", {
@@ -10121,7 +10138,7 @@ function validateEmissionShellCandidatePacketsRequest(request) {
       )
     );
   }
-  requireNonemptyString(request.streamId, "streamId");
+  validateStreamIdOrManifestPathRequest(request, "emission-shell candidate packet batch request");
   requireArray(request.packets, "packets");
   if (request.packets.length === 0) {
     throw new SolverBridgeError(
@@ -11029,6 +11046,29 @@ function resolveOpenStreamEntry(state, request) {
   return findStreamEntry(state, request.streamId);
 }
 
+function resolveStreamEntryByIdOrManifest(state, request) {
+  if (request.manifestPath != null) {
+    return registerNativeFileStreamManifest(state, request);
+  }
+  return findStreamEntry(state, request.streamId);
+}
+
+function validateStreamIdOrManifestPathRequest(request, label) {
+  if (request.streamId == null && request.manifestPath == null) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", `${label} requires streamId or manifestPath`, {
+        recoverable: false,
+      })
+    );
+  }
+  if (request.streamId != null) {
+    requireNonemptyString(request.streamId, "streamId");
+  }
+  if (request.manifestPath != null) {
+    requireNonemptyString(request.manifestPath, "manifestPath");
+  }
+}
+
 function readRegisteredStreamRange(state, request) {
   if (!request || typeof request !== "object") {
     throw new SolverBridgeError(
@@ -11057,8 +11097,13 @@ function readRegisteredStreamRange(state, request) {
   if (request.chunkIndices != null) {
     normalizeChunkIndexSelection(request.chunkIndices, "chunkIndices");
   }
-  const streamEntry = findStreamEntry(state, request.streamId);
-  const selection = selectStreamRanges(streamEntry, request);
+  validateStreamIdOrManifestPathRequest(request, "stream range request");
+  const streamEntry = resolveStreamEntryByIdOrManifest(state, request);
+  const selectionRequest = {
+    ...request,
+    streamId: streamEntry.stream.streamId,
+  };
+  const selection = selectStreamRanges(streamEntry, selectionRequest);
   const selected = selection.items;
   const totalBytes = selected.reduce((sum, item) => sum + item.buffer.byteLength, 0);
   if (request.maxBytes != null) {
@@ -12383,6 +12428,23 @@ function registerNativeFileStreamManifest(state, request) {
       createStatus("app_contract_error", "error", "streamId does not match native-file manifest", {
         recoverable: false,
         details: { requestedStreamId: request.streamId, manifestStreamId: stream.streamId },
+      })
+    );
+  }
+  const existingEntry = state.streams.get(stream.streamId);
+  if (existingEntry) {
+    const existingManifestPath = existingEntry.stream.storagePolicy?.manifestPath;
+    if (existingManifestPath === manifestPath) {
+      return existingEntry;
+    }
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "native-file stream manifest conflicts with an existing stream", {
+        recoverable: false,
+        details: {
+          streamId: stream.streamId,
+          existingManifestPath,
+          manifestPath,
+        },
       })
     );
   }

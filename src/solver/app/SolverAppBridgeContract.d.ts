@@ -530,7 +530,8 @@ export interface SolverBuildSpaceTimeIndexF64Request {
 }
 
 export interface SolverBuildPathHistoryStreamSpaceTimeIndexF64Request {
-  streamId: string;
+  streamId?: string;
+  manifestPath?: string;
   chunkIndices?: number[];
   pathKeys?: number[];
   timeRange?: SolverRange;
@@ -657,6 +658,7 @@ export interface SolverPathHistoryChunkMetadata {
 
 export interface SolverPathHistoryStorageLifecycleRequest {
   streamId?: string;
+  manifestPath?: string;
   policy: SolverPathHistoryStorageLifecyclePolicy;
   chunks?: SolverPathHistoryChunkMetadata[];
 }
@@ -721,7 +723,8 @@ export type SolverPathHistoryDynamicReplayMetadata =
     };
 
 export interface SolverPathHistoryDynamicReplayValidationRequest {
-  streamId: string;
+  streamId?: string;
+  manifestPath?: string;
   tolerance?: number;
   maxRows?: number;
 }
@@ -755,7 +758,8 @@ export interface SolverPathHistoryDynamicReplayValidationResponse {
 }
 
 export interface SolverEmissionShellCandidateF64Request {
-  streamId: string;
+  streamId?: string;
+  manifestPath?: string;
   signalSpeed: number;
   tolerance?: number;
   maxCandidates?: number;
@@ -769,7 +773,8 @@ export interface SolverEmissionShellCandidateF64Request {
 }
 
 export interface SolverEmissionShellCandidatePacketF64Request {
-  streamId: string;
+  streamId?: string;
+  manifestPath?: string;
   packet: SolverWorkPacketHeader;
   signalSpeed: number;
   tolerance?: number;
@@ -782,7 +787,8 @@ export interface SolverEmissionShellCandidatePacketF64Request {
 }
 
 export interface SolverEmissionShellCandidatePacketsF64Request {
-  streamId: string;
+  streamId?: string;
+  manifestPath?: string;
   packets: SolverWorkPacketHeader[];
   signalSpeed: number;
   tolerance?: number;
@@ -822,7 +828,8 @@ export interface SolverEmissionShellCandidateF64Response {
 }
 
 export interface SolverEmissionShellRootRefinementF64Request {
-  streamId: string;
+  streamId?: string;
+  manifestPath?: string;
   candidates: SolverEmissionShellCandidateF64[];
   signalSpeed: number;
   tolerance?: number;
@@ -1765,7 +1772,8 @@ export interface SolverWorkPacketResultOrderResponse {
 }
 
 export interface SolverPathHistoryWorkPacketPlanRequest {
-  streamId: string;
+  streamId?: string;
+  manifestPath?: string;
   runId: string;
   modelId: string;
   precisionPath: Exclude<SolverPrecisionPath, "auto">;
@@ -2146,7 +2154,8 @@ export interface SolverOpenStreamRequest {
 }
 
 export interface SolverDescribeStreamRequest {
-  streamId: string;
+  streamId?: string;
+  manifestPath?: string;
 }
 
 export interface SolverStreamDescription {
@@ -2196,7 +2205,8 @@ export interface SolverStreamHandle {
 }
 
 export interface SolverReadStreamRangeRequest {
-  streamId: string;
+  streamId?: string;
+  manifestPath?: string;
   pathIds?: string[];
   pathKeys?: number[];
   chunkIndices?: number[];

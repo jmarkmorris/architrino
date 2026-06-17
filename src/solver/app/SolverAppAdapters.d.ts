@@ -31,6 +31,7 @@ import type {
   SolverPhaseAtHitF64Request,
   SolverPrecisionPath,
   SolverPathHistoryRowF64,
+  SolverPathHistoryDynamicReplayValidationRequest,
   SolverPathHistoryStorageLifecyclePolicy,
   SolverPathHistoryChunkMetadata,
   SolverPathHistoryStorageLifecycleRequest,
@@ -172,11 +173,20 @@ export interface OpenStreamAdapterInput {
 }
 
 export interface DescribeStreamAdapterInput {
-  streamId: string;
+  streamId?: string;
+  manifestPath?: string;
+}
+
+export interface PathHistoryDynamicReplayValidationAdapterInput {
+  streamId?: string;
+  manifestPath?: string;
+  tolerance?: number;
+  maxRows?: number;
 }
 
 export interface ReadStreamRangeAdapterInput {
-  streamId: string;
+  streamId?: string;
+  manifestPath?: string;
   pathIds?: string[];
   pathKeys?: number[];
   chunkIndices?: number[];
@@ -189,12 +199,14 @@ export interface ReadStreamRangeAdapterInput {
 
 export interface PathHistoryStorageLifecycleAdapterInput {
   streamId?: string;
+  manifestPath?: string;
   policy: SolverPathHistoryStorageLifecyclePolicy;
   chunks?: SolverPathHistoryChunkMetadata[];
 }
 
 export interface PathHistoryWorkPacketPlanAdapterInput {
-  streamId: string;
+  streamId?: string;
+  manifestPath?: string;
   runId: string;
   modelId: string;
   precisionPath?: Exclude<SolverPrecisionPath, "auto">;
@@ -214,7 +226,8 @@ export type EmissionShellCandidateQueryAdapterInput = SolverEmissionShellCandida
 export type EmissionShellRootRefinementAdapterInput = SolverEmissionShellRootRefinementF64Request;
 
 export interface EmissionShellCandidatePacketQueryAdapterInput {
-  streamId: string;
+  streamId?: string;
+  manifestPath?: string;
   packet: SolverWorkPacketHeader;
   signalSpeed: number;
   tolerance?: number;
@@ -227,7 +240,8 @@ export interface EmissionShellCandidatePacketQueryAdapterInput {
 }
 
 export interface EmissionShellCandidatePacketBatchQueryAdapterInput {
-  streamId: string;
+  streamId?: string;
+  manifestPath?: string;
   packets: SolverWorkPacketHeader[];
   signalSpeed: number;
   tolerance?: number;
@@ -306,6 +320,10 @@ export declare function createOpenStreamRequest(input: OpenStreamAdapterInput): 
 export declare function createDescribeStreamRequest(
   input: DescribeStreamAdapterInput
 ): SolverDescribeStreamRequest;
+
+export declare function createPathHistoryDynamicReplayValidationRequest(
+  input: PathHistoryDynamicReplayValidationAdapterInput
+): SolverPathHistoryDynamicReplayValidationRequest;
 
 export declare function createReadStreamRangeRequest(
   input: ReadStreamRangeAdapterInput

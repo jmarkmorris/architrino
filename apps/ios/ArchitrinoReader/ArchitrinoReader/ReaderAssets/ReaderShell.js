@@ -90,6 +90,8 @@
   let linkMap = {};
   let shellRoot = null;
   let activeRenderId = null;
+  let pendingScale = null;
+  let pendingScaleFrame = null;
 
   function isExternalLinkTarget(href) {
     return /^(?:[a-z][a-z0-9+.-]*:)?\/\//i.test(href) || /^(?:mailto|tel|sms):/i.test(href);
@@ -124,6 +126,19 @@
     const value = Number(scale) || 1.0;
     const clamped = Math.max(0.85, Math.min(1.5, value));
     document.documentElement.style.setProperty("--reader-font-size", `${16 * clamped}px`);
+  }
+
+  function scheduleScale(scale) {
+    pendingScale = scale;
+    if (pendingScaleFrame) {
+      return;
+    }
+    pendingScaleFrame = window.requestAnimationFrame(() => {
+      const scaleToApply = pendingScale;
+      pendingScale = null;
+      pendingScaleFrame = null;
+      hydrateScale(scaleToApply);
+    });
   }
 
   function hydrateTheme(themeName) {
@@ -441,6 +456,13 @@
       hydrateScale(payload.fontScale);
       hydrateTheme(payload.theme);
       hydrateReaderLayout(payload);
+    },
+    updateFontScale(rawPayload) {
+      const payload = parseRenderPayload(rawPayload);
+      if (!payload) {
+        return;
+      }
+      scheduleScale(payload.fontScale);
     },
     setAnchor(rawPayload) {
       const payload = parseRenderPayload(rawPayload);

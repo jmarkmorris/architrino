@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import { createRequire } from "node:module";
+import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 
@@ -12,6 +13,8 @@ import {
   createSolverAppBridgeClient,
 } from "../src/solver/app/SolverAppBridge.mjs";
 import {
+  createAnimatorMotionSimulationRunRequest,
+  createPathHistoryDynamicReplayValidationRequest,
   createPathHistoryRunRequest,
   createPhotonPhaseDiagnosticsRunRequest,
 } from "../src/solver/app/SolverAppAdapters.mjs";
@@ -36,7 +39,7 @@ const client = createSolverAppBridgeClient({
 await client.init({
   appId: "animator",
   apiVersion: SOLVER_APP_BRIDGE_API_VERSION,
-  requestedCapabilities: ["causalRoots", "delayedHits", "validationReplay"],
+  requestedCapabilities: ["causalRoots", "delayedHits", "motionSimulation", "pathHistory", "validationReplay"],
   storagePolicy: {
     target: "caller-buffer",
     durable: false,
@@ -75,6 +78,8 @@ for (const testCase of cases) {
     appId: testCase.appId,
     seedPolicy: "fixed-no-randomness",
     resourceCaps: testCase.resourceCaps,
+    tolerancePolicy: createTolerancePolicy(testCase),
+    provenance: createSandboxProvenance(testCase),
     workingDirectory: outputDir,
     outputPolicy: "artifact-only",
     writesToAppSource: false,
@@ -83,15 +88,16 @@ for (const testCase of cases) {
     response: normalizedResponse,
   };
   const artifactPath = path.join(outputDir, `${testCase.caseId}.json`);
-  assertInsideOutputDir(artifactPath);
-  fs.writeFileSync(artifactPath, `${JSON.stringify(artifact, null, 2)}\n`);
+  const artifactSha256 = writeJsonArtifact(artifactPath, artifact);
   artifacts.push({
-    caseId: testCase.caseId,
-    appId: testCase.appId,
-    path: artifactPath,
-    classification: comparison.classification,
-    manifestHash: normalizedResponse.manifest.manifestHash,
-  });
+  caseId: testCase.caseId,
+  appId: testCase.appId,
+  path: artifactPath,
+  artifactSha256,
+  tolerancePolicy: createTolerancePolicy(testCase),
+  classification: comparison.classification,
+  manifestHash: normalizedResponse.manifest.manifestHash,
+});
 }
 
 const idealSwarmGeometryCase = createIdealSwarmGeometryCase();
@@ -118,6 +124,8 @@ const idealSwarmGeometryArtifact = {
   appId: idealSwarmGeometryCase.appId,
   seedPolicy: "fixed-no-randomness",
   resourceCaps: idealSwarmGeometryCase.resourceCaps,
+  tolerancePolicy: createTolerancePolicy(idealSwarmGeometryCase),
+  provenance: createSandboxProvenance(idealSwarmGeometryCase),
   workingDirectory: outputDir,
   outputPolicy: "artifact-only",
   writesToAppSource: false,
@@ -130,12 +138,16 @@ const idealSwarmGeometryArtifact = {
   },
 };
 const idealSwarmGeometryArtifactPath = path.join(outputDir, `${idealSwarmGeometryCase.caseId}.json`);
-assertInsideOutputDir(idealSwarmGeometryArtifactPath);
-fs.writeFileSync(idealSwarmGeometryArtifactPath, `${JSON.stringify(idealSwarmGeometryArtifact, null, 2)}\n`);
+const idealSwarmGeometryArtifactSha256 = writeJsonArtifact(
+  idealSwarmGeometryArtifactPath,
+  idealSwarmGeometryArtifact
+);
 artifacts.push({
   caseId: idealSwarmGeometryCase.caseId,
   appId: idealSwarmGeometryCase.appId,
   path: idealSwarmGeometryArtifactPath,
+  artifactSha256: idealSwarmGeometryArtifactSha256,
+  tolerancePolicy: createTolerancePolicy(idealSwarmGeometryCase),
   classification: idealSwarmGeometryComparison.classification,
   manifestHash: "geometry-direct-bridge",
 });
@@ -161,6 +173,8 @@ const photonPhaseArtifact = {
   appId: photonPhaseCase.appId,
   seedPolicy: "fixed-no-randomness",
   resourceCaps: photonPhaseCase.resourceCaps,
+  tolerancePolicy: createTolerancePolicy(photonPhaseCase),
+  provenance: createSandboxProvenance(photonPhaseCase),
   workingDirectory: outputDir,
   outputPolicy: "artifact-only",
   writesToAppSource: false,
@@ -170,12 +184,13 @@ const photonPhaseArtifact = {
   response: photonPhaseNormalizedResponse,
 };
 const photonPhaseArtifactPath = path.join(outputDir, `${photonPhaseCase.caseId}.json`);
-assertInsideOutputDir(photonPhaseArtifactPath);
-fs.writeFileSync(photonPhaseArtifactPath, `${JSON.stringify(photonPhaseArtifact, null, 2)}\n`);
+const photonPhaseArtifactSha256 = writeJsonArtifact(photonPhaseArtifactPath, photonPhaseArtifact);
 artifacts.push({
   caseId: photonPhaseCase.caseId,
   appId: photonPhaseCase.appId,
   path: photonPhaseArtifactPath,
+  artifactSha256: photonPhaseArtifactSha256,
+  tolerancePolicy: createTolerancePolicy(photonPhaseCase),
   classification: photonPhaseComparison.classification,
   manifestHash: photonPhaseNormalizedResponse.manifest.manifestHash,
 });
@@ -199,6 +214,8 @@ const pathHistoryArtifact = {
   appId: pathHistoryCase.appId,
   seedPolicy: "fixed-no-randomness",
   resourceCaps: pathHistoryCase.resourceCaps,
+  tolerancePolicy: createTolerancePolicy(pathHistoryCase),
+  provenance: createSandboxProvenance(pathHistoryCase),
   workingDirectory: outputDir,
   outputPolicy: "artifact-only",
   writesToAppSource: false,
@@ -208,31 +225,81 @@ const pathHistoryArtifact = {
   response: pathHistoryNormalizedResponse,
 };
 const pathHistoryArtifactPath = path.join(outputDir, `${pathHistoryCase.caseId}.json`);
-assertInsideOutputDir(pathHistoryArtifactPath);
-fs.writeFileSync(pathHistoryArtifactPath, `${JSON.stringify(pathHistoryArtifact, null, 2)}\n`);
+const pathHistoryArtifactSha256 = writeJsonArtifact(pathHistoryArtifactPath, pathHistoryArtifact);
 artifacts.push({
   caseId: pathHistoryCase.caseId,
   appId: pathHistoryCase.appId,
   path: pathHistoryArtifactPath,
+  artifactSha256: pathHistoryArtifactSha256,
+  tolerancePolicy: createTolerancePolicy(pathHistoryCase),
   classification: pathHistoryComparison.classification,
   manifestHash: pathHistoryNormalizedResponse.manifest.manifestHash,
 });
 
-const manifestPath = path.join(outputDir, "manifest.json");
-assertInsideOutputDir(manifestPath);
-fs.writeFileSync(
-  manifestPath,
-  `${JSON.stringify(
-    {
-      schema: "solver-baseline-sandbox-manifest/v1",
-      caseCount: artifacts.length,
-      outputDirectory: outputDir,
-      artifacts,
-    },
-    null,
-    2
-  )}\n`
+const animatorMotionCase = createAnimatorMotionCase();
+const animatorMotionRunHandle = await client.runSimulation(
+  createAnimatorMotionRunSimulationRequest(animatorMotionCase)
 );
+const animatorMotionReplayValidation = await client.validatePathHistoryDynamicReplayF64(
+  createPathHistoryDynamicReplayValidationRequest({
+    streamId: `${animatorMotionCase.caseId}-run:motion-path-history`,
+    tolerance: 0,
+  })
+);
+const animatorMotionNormalizedResponse = stripRuntimeBuffers(animatorMotionRunHandle.response);
+const animatorMotionCandidate = projectAnimatorMotionResponseForBaseline(
+  animatorMotionNormalizedResponse,
+  animatorMotionReplayValidation
+);
+const animatorMotionComparison = classifySolverBaselineResponse({
+  baseline: animatorMotionCase.baseline,
+  candidate: animatorMotionCandidate,
+  tolerance: animatorMotionCase.tolerance,
+  refinementTolerance: animatorMotionCase.refinementTolerance,
+});
+assert(
+  animatorMotionComparison.classification === "baseline_within_tolerance",
+  `${animatorMotionCase.caseId} baseline classification was ${animatorMotionComparison.classification}`
+);
+const animatorMotionArtifact = {
+  schema: "solver-baseline-sandbox/v1",
+  caseId: animatorMotionCase.caseId,
+  appId: animatorMotionCase.appId,
+  seedPolicy: "fixed-no-randomness",
+  resourceCaps: animatorMotionCase.resourceCaps,
+  tolerancePolicy: createTolerancePolicy(animatorMotionCase),
+  provenance: createSandboxProvenance(animatorMotionCase),
+  workingDirectory: outputDir,
+  outputPolicy: "artifact-only",
+  writesToAppSource: false,
+  comparison: animatorMotionComparison,
+  baseline: animatorMotionCase.baseline,
+  dynamicReplayValidation: animatorMotionReplayValidation,
+  runManifest: animatorMotionNormalizedResponse.manifest,
+  response: animatorMotionCandidate,
+  fullResponse: animatorMotionNormalizedResponse,
+};
+const animatorMotionArtifactPath = path.join(outputDir, `${animatorMotionCase.caseId}.json`);
+const animatorMotionArtifactSha256 = writeJsonArtifact(animatorMotionArtifactPath, animatorMotionArtifact);
+artifacts.push({
+  caseId: animatorMotionCase.caseId,
+  appId: animatorMotionCase.appId,
+  path: animatorMotionArtifactPath,
+  artifactSha256: animatorMotionArtifactSha256,
+  tolerancePolicy: createTolerancePolicy(animatorMotionCase),
+  classification: animatorMotionComparison.classification,
+  manifestHash: animatorMotionNormalizedResponse.manifest.manifestHash,
+});
+
+const manifestPath = path.join(outputDir, "manifest.json");
+writeJsonArtifact(manifestPath, {
+  schema: "solver-baseline-sandbox-manifest/v1",
+  caseCount: artifacts.length,
+  outputDirectory: outputDir,
+  hashAlgorithm: "sha256",
+  artifacts,
+});
+verifyArtifactHashes(artifacts);
 
 await client.dispose();
 console.log(`solver baseline sandbox check passed: ${artifacts.length} case(s)`);
@@ -466,6 +533,101 @@ function createPathHistoryCase() {
   };
 }
 
+function createAnimatorMotionCase() {
+  return {
+    caseId: "animator-motion-dynamic-replay-smoke",
+    appId: "animator",
+    tolerance: 1e-10,
+    refinementTolerance: 1e-6,
+    resourceCaps: {
+      maxBytes: 64 * 1024 * 1024,
+      network: "disabled",
+      sourceWrites: "disabled",
+    },
+    motionRequest: {
+      pathKey: 1234,
+      segment: {
+        startTime: 0,
+        endTime: 2,
+        positionAtStart: { x: 1, y: 2, z: 3 },
+        velocity: { x: 2, y: 0.5, z: -1 },
+        errorBound: 1e-12,
+      },
+      startTime: 0,
+      endTime: 2,
+      step: 1,
+      stateFlags: 9,
+    },
+    baseline: {
+      frames: [
+        createMotionFrameBaseline(0, 0, { x: 1, y: 2, z: 3 }),
+        createMotionFrameBaseline(1, 1, { x: 3, y: 2.5, z: 2 }),
+        createMotionFrameBaseline(2, 2, { x: 5, y: 3, z: 1 }),
+      ],
+      pathHistory: {
+        schema: "solver-path-history-stream-summary.v1",
+        runId: "animator-motion-dynamic-replay-smoke-run",
+        datasetId: "animator-motion-dynamic-replay-smoke-dataset",
+        streamId: "animator-motion-dynamic-replay-smoke-run:motion-path-history",
+        rowCount: 1,
+        chunkCount: 1,
+        pathCount: 1,
+        byteLength: 96,
+        rowSizeBytes: 96,
+        pathIndexRowCount: 1,
+        pathIndexedChunkCount: 1,
+        timeRange: { start: 0, end: 2 },
+        frameRange: { start: 0, end: 0 },
+        storagePolicy: {
+          target: "caller-buffer",
+          durable: false,
+          maxBytes: 96,
+        },
+        dynamicReplay: {
+          replayKind: "linear-motion-sample",
+          pathKey: 1234,
+          startTime: 0,
+          endTime: 2,
+          step: 1,
+          stateFlags: 9,
+        },
+      },
+      dynamicReplayValidation: {
+        schema: "solver-path-history-dynamic-replay-validation.v1",
+        streamId: "animator-motion-dynamic-replay-smoke-run:motion-path-history",
+        replayKind: "linear-motion-sample",
+        tolerance: 0,
+        actualRowCount: 1,
+        expectedRowCount: 1,
+        selectedRangeCount: 1,
+        selectedByteLength: 96,
+        matched: true,
+        mismatchCount: 0,
+        maxTimeDifference: 0,
+        maxPositionDifference: 0,
+        maxVelocityDifference: 0,
+        maxErrorBoundDifference: 0,
+        status: { code: "ok" },
+      },
+      status: {
+        code: "ok",
+      },
+    },
+  };
+}
+
+function createMotionFrameBaseline(frameIndex, time, position) {
+  return {
+    pathKey: 1234,
+    frameIndex,
+    time,
+    position,
+    velocity: { x: 2, y: 0.5, z: -1 },
+    errorBound: 1e-12,
+    stateFlags: 9,
+  };
+}
+
 function projectIdealSwarmGeometryForBaseline(geometry) {
   return {
     pathBounds: [],
@@ -525,6 +687,70 @@ function projectPathHistoryResponseForBaseline(response) {
   return {
     pathHistory: response.pathHistory,
     status: response.status,
+  };
+}
+
+function projectAnimatorMotionResponseForBaseline(response, dynamicReplayValidation) {
+  return {
+    frames: response.frames.map((frame) => ({
+      pathKey: frame.pathKey,
+      frameIndex: frame.frameIndex,
+      time: frame.time,
+      position: frame.position,
+      velocity: frame.velocity,
+      errorBound: frame.errorBound,
+      stateFlags: frame.stateFlags,
+    })),
+    pathHistory: {
+      schema: response.pathHistory.schema,
+      runId: response.pathHistory.runId,
+      datasetId: response.pathHistory.datasetId,
+      streamId: response.pathHistory.streamId,
+      rowCount: response.pathHistory.rowCount,
+      chunkCount: response.pathHistory.chunkCount,
+      pathCount: response.pathHistory.pathCount,
+      byteLength: response.pathHistory.byteLength,
+      rowSizeBytes: response.pathHistory.rowSizeBytes,
+      pathIndexRowCount: response.pathHistory.pathIndexRowCount,
+      pathIndexedChunkCount: response.pathHistory.pathIndexedChunkCount,
+      timeRange: response.pathHistory.timeRange,
+      frameRange: response.pathHistory.frameRange,
+      storagePolicy: response.pathHistory.storagePolicy,
+      dynamicReplay: {
+        replayKind: response.pathHistory.metadata.dynamicReplay.replayKind,
+        pathKey: response.pathHistory.metadata.dynamicReplay.pathKey,
+        startTime: response.pathHistory.metadata.dynamicReplay.startTime,
+        endTime: response.pathHistory.metadata.dynamicReplay.endTime,
+        step: response.pathHistory.metadata.dynamicReplay.step,
+        stateFlags: response.pathHistory.metadata.dynamicReplay.stateFlags,
+      },
+    },
+    dynamicReplayValidation: projectDynamicReplayValidationForBaseline(dynamicReplayValidation),
+    status: {
+      code: response.status?.code,
+    },
+  };
+}
+
+function projectDynamicReplayValidationForBaseline(validation) {
+  return {
+    schema: validation.schema,
+    streamId: validation.streamId,
+    replayKind: validation.replayKind,
+    tolerance: validation.tolerance,
+    actualRowCount: validation.actualRowCount,
+    expectedRowCount: validation.expectedRowCount,
+    selectedRangeCount: validation.selectedRangeCount,
+    selectedByteLength: validation.selectedByteLength,
+    matched: validation.matched,
+    mismatchCount: validation.mismatchCount,
+    maxTimeDifference: validation.maxTimeDifference,
+    maxPositionDifference: validation.maxPositionDifference,
+    maxVelocityDifference: validation.maxVelocityDifference,
+    maxErrorBoundDifference: validation.maxErrorBoundDifference,
+    status: {
+      code: validation.status?.code,
+    },
   };
 }
 
@@ -735,6 +961,68 @@ function createPathHistoryRunSimulationRequest(testCase) {
   });
 }
 
+function createAnimatorMotionRunSimulationRequest(testCase) {
+  return createAnimatorMotionSimulationRunRequest({
+    requestId: `${testCase.caseId}-request`,
+    runId: `${testCase.caseId}-run`,
+    datasetId: `${testCase.caseId}-dataset`,
+    claimLevel: "migration-parity",
+    precisionPath: "auto",
+    configVersion: "solver-baseline-sandbox.v1",
+    configHash: `${testCase.caseId}-config`,
+    model: {
+      modelId: "aaa.central-solver",
+      equationVersion: "motion-root-v1",
+      forceLawVersion: "causal-delay-v1",
+      constantsHash: "constants:test",
+      causalSpeedPolicy: "fixed-field-speed",
+      branchPolicy: "all-positive-roots",
+      unitConvention: "solver-si",
+      compatiblePrecisionPaths: ["scaled_f64_strict", "event_root_focused", "extended_precision"],
+    },
+    envelope: {
+      entityCount: 16,
+      assemblyCount: 1,
+      timeWindow: { start: 0, end: 10, stepHint: 0.01, units: "solver-time" },
+      timeResolutionHint: 0.01,
+      interactionPolicy: "neighbor-pruned",
+      expectedBranchComplexity: "low",
+      outputDetail: "playback",
+      memoryBudgetBytes: testCase.resourceCaps.maxBytes * 2,
+      storageBudgetBytes: testCase.resourceCaps.maxBytes * 4,
+      latencyTarget: "background",
+      simplificationPolicy: "none",
+    },
+    errorBudget: {
+      globalTolerance: 1e-12,
+      rootIsolationTolerance: 1e-13,
+      delayedHitTolerance: 1e-13,
+      integrationTolerance: 1e-12,
+      streamEncodingTolerance: 1e-12,
+      readbackTolerance: 1e-12,
+      projectionTolerance: 1e-9,
+      displayTolerance: 1e-6,
+    },
+    motionRequest: testCase.motionRequest,
+    streamId: `${testCase.caseId}-run:motion-path-history`,
+    rowsPerChunk: 1,
+    metadata: {
+      precisionPath: "scaled_f64_strict",
+      units: "solver-si",
+      coordinateFrame: "absolute-lab-frame",
+      scaleNormalization: "unit-test-scale",
+      interpolationRule: "linear-segment",
+      provenance: { fixture: "animator-motion-dynamic-replay-baseline-smoke" },
+    },
+    output: {
+      outputs: ["frameBuffer", "pathStream", "diagnostics", "validationArtifacts"],
+      streamTarget: "caller-buffer",
+      memoryBudgetBytes: testCase.resourceCaps.maxBytes,
+      deterministic: true,
+    },
+  });
+}
+
 function stripRuntimeBuffers(response) {
   return {
     ...response,
@@ -749,6 +1037,49 @@ function readJson(relativePath) {
 function assertInsideOutputDir(filePath) {
   const relative = path.relative(outputDir, filePath);
   assert(relative && !relative.startsWith("..") && !path.isAbsolute(relative), "artifact path escaped output dir");
+}
+
+function createTolerancePolicy(testCase) {
+  return {
+    tolerance: testCase.tolerance,
+    refinementTolerance: testCase.refinementTolerance,
+    classificationVocabulary: [
+      "baseline_within_tolerance",
+      "baseline_refined_result",
+      "baseline_model_boundary_difference",
+      "baseline_investigation_required_mismatch",
+    ],
+  };
+}
+
+function createSandboxProvenance(testCase) {
+  return {
+    apiVersion: SOLVER_APP_BRIDGE_API_VERSION,
+    caseId: testCase.caseId,
+    appId: testCase.appId,
+    wasmLoaderPath,
+    fixtureRequestPath: "src/solver/fixtures/causal-roots-f64-smoke.request.json",
+    fixtureResponsePath: "src/solver/fixtures/roots-and-hits-f64-smoke.response.json",
+  };
+}
+
+function writeJsonArtifact(filePath, value) {
+  assertInsideOutputDir(filePath);
+  const payload = `${JSON.stringify(value, null, 2)}\n`;
+  fs.writeFileSync(filePath, payload);
+  return crypto.createHash("sha256").update(payload).digest("hex");
+}
+
+function verifyArtifactHashes(artifactRows) {
+  for (const artifact of artifactRows) {
+    assertInsideOutputDir(artifact.path);
+    const payload = fs.readFileSync(artifact.path);
+    const actualSha256 = crypto.createHash("sha256").update(payload).digest("hex");
+    assert(
+      actualSha256 === artifact.artifactSha256,
+      `${artifact.caseId} artifact hash mismatch`
+    );
+  }
 }
 
 function assert(condition, message) {

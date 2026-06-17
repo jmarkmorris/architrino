@@ -16,6 +16,7 @@ export function classifySolverBaselineResponse(options = {}) {
 
   compareArrayLengths(differences, "roots", baseline.roots, candidate.roots);
   compareArrayLengths(differences, "hits", baseline.hits, candidate.hits);
+  compareArrayLengths(differences, "frames", baseline.frames, candidate.frames);
   compareArrayLengths(differences, "phaseRows", baseline.phaseRows, candidate.phaseRows);
   compareArrayLengths(differences, "buffers", baseline.buffers, candidate.buffers);
   if (differences.some((difference) => difference.kind === "length")) {
@@ -24,9 +25,16 @@ export function classifySolverBaselineResponse(options = {}) {
 
   compareValue(differences, "roots", baseline.roots, candidate.roots);
   compareValue(differences, "hits", baseline.hits, candidate.hits);
+  compareValue(differences, "frames", baseline.frames, candidate.frames);
   compareValue(differences, "phaseRows", baseline.phaseRows, candidate.phaseRows);
   compareValue(differences, "phaseSummary", baseline.phaseSummary, candidate.phaseSummary);
   compareValue(differences, "pathHistory", baseline.pathHistory, candidate.pathHistory);
+  compareValue(
+    differences,
+    "dynamicReplayValidation",
+    baseline.dynamicReplayValidation,
+    candidate.dynamicReplayValidation
+  );
   compareValue(differences, "buffers", baseline.buffers, candidate.buffers);
   compareValue(differences, "geometry", baseline.geometry, candidate.geometry);
   compareValue(differences, "status.code", baseline.status?.code, candidate.status?.code);
