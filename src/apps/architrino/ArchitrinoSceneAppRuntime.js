@@ -66,6 +66,11 @@ import {
   resolveAnimatorShotInterval,
   resolveAnimatorViewportFramingState,
 } from "../../runtime/AnimatorViewportFramingRuntime.js";
+import {
+  DEFAULT_SCENE_VIEWPORT_FIT_MARGIN,
+  computeBoundsSceneFitZoom,
+  computeCenteredSceneFitZoom,
+} from "../../runtime/SceneViewportFitRuntime.js";
 import { createSceneGraphRuntime } from "../../runtime/SceneGraphRuntime.js";
 import { createTransitionEngine } from "../../runtime/TransitionEngine.js";
 import { SceneRepository } from "../../services/SceneRepository.js";
@@ -6525,6 +6530,10 @@ const transitionEngine = createTransitionEngine(transitionState, {
     const center = getLevelFrameCenter(level);
     worldGroup.position.set(-center.x, -center.y, 0);
   },
+  fitLevelInFrame: (level) => {
+    layoutLevelForViewport(level);
+    fitCameraToLevel(level);
+  },
   now: () => performance.now(),
 });
 
@@ -7367,7 +7376,7 @@ function layoutRootLevel(level) {
 
   const { safeWidth, safeHeight } = getSafeViewportWorld();
   const safeRadius = Math.max(1, Math.min(safeWidth, safeHeight) / 2);
-  const frameMargin = 0.94;
+  const frameMargin = DEFAULT_SCENE_VIEWPORT_FIT_MARGIN;
   const baseCenter = new THREE.Vector3();
   const basePositions = new Map();
   nodes.forEach((node) => {
@@ -7470,7 +7479,14 @@ function computeFitZoomForLevel(level) {
     if (extentRadius <= 0) {
       return camera.zoom;
     }
-    return clampZoom(safeRadius / extentRadius);
+    return clampZoom(
+      computeCenteredSceneFitZoom({
+        safeRadius,
+        extentRadius,
+        margin: DEFAULT_SCENE_VIEWPORT_FIT_MARGIN,
+        fallbackZoom: camera.zoom,
+      })
+    );
   }
 
   const { size } = getLevelBoundsFromNodes(level);
@@ -7479,10 +7495,16 @@ function computeFitZoomForLevel(level) {
   }
 
   const { safeWidth, safeHeight } = getSafeViewportWorld();
-  const marginFactor = 1.0;
-  const zoomX = (safeWidth * marginFactor) / Math.max(size.x, 0.01);
-  const zoomY = (safeHeight * marginFactor) / Math.max(size.y, 0.01);
-  return clampZoom(Math.min(zoomX, zoomY));
+  return clampZoom(
+    computeBoundsSceneFitZoom({
+      safeWidth,
+      safeHeight,
+      sizeX: size.x,
+      sizeY: size.y,
+      margin: DEFAULT_SCENE_VIEWPORT_FIT_MARGIN,
+      fallbackZoom: camera.zoom,
+    })
+  );
 }
 
 function fitCameraToLevel(level) {
@@ -7498,6 +7520,10 @@ function fitCameraToLevel(level) {
   panTween.active = false;
   worldGroup.position.set(-center.x, -center.y, 0);
   applyZoom(nextZoom);
+}
+
+function layoutLevelForViewport(level) {
+  layoutRootLevel(level);
 }
 
 function updateCamera() {

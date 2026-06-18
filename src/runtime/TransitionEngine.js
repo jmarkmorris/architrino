@@ -27,6 +27,18 @@ export function createTransitionEngine(transitionState, deps) {
     }
   }
 
+  function fitFinalLevelInFrame(level, fallbackZoom) {
+    if (!level) {
+      return;
+    }
+    if (typeof deps.fitLevelInFrame === "function") {
+      deps.fitLevelInFrame(level);
+      return;
+    }
+    maybeCenterLevelInFrame(level);
+    deps.applyZoom(fallbackZoom ?? deps.camera.zoom);
+  }
+
   function getTransitionFocusNode(level) {
     if (!level) {
       return null;
@@ -136,10 +148,9 @@ export function createTransitionEngine(transitionState, deps) {
         deps.setLevelLinkOpacity(toLevel, 1);
 
         deps.setCurrentLevel(toLevel);
-        maybeCenterLevelInFrame(toLevel);
         deps.zoomState.active = false;
         deps.panTween.active = false;
-        deps.applyZoom(payload.zoomTarget ?? deps.camera.zoom);
+        fitFinalLevelInFrame(toLevel, payload.zoomTarget);
         deps.labelFadeState.active = true;
         deps.labelFadeState.level = deps.getCurrentLevel();
         deps.labelFadeState.startTime = deps.now();
@@ -212,11 +223,10 @@ export function createTransitionEngine(transitionState, deps) {
         deps.setLevelLinkOpacity(fromLevel, 0);
 
         deps.setCurrentLevel(toLevel);
-        maybeCenterLevelInFrame(toLevel);
         deps.navigationStack.pop();
         deps.zoomState.active = false;
         deps.panTween.active = false;
-        deps.applyZoom(payload.zoomTarget ?? deps.camera.zoom);
+        fitFinalLevelInFrame(toLevel, payload.zoomTarget);
         deps.labelFadeState.active = true;
         deps.labelFadeState.level = deps.getCurrentLevel();
         deps.labelFadeState.startTime = deps.now();
@@ -273,8 +283,7 @@ export function createTransitionEngine(transitionState, deps) {
           deps.worldGroup.position.copy(payload.worldPanTarget);
         }
         deps.setCurrentLevel(toLevel);
-        maybeCenterLevelInFrame(toLevel);
-        deps.applyZoom(payload.zoomTarget ?? deps.camera.zoom);
+        fitFinalLevelInFrame(toLevel, payload.zoomTarget);
         deps.labelFadeState.active = true;
         deps.labelFadeState.level = deps.getCurrentLevel();
         deps.labelFadeState.startTime = deps.now();
