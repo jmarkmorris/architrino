@@ -122,20 +122,14 @@ test("Archie hub keeps authored colors from the standard sphere palette", async 
   );
 });
 
-test("textbook PDF snapshot spheres open rendered markdown for PDF export", async () => {
+test("textbook PDF review spheres expose generated PDF files", async () => {
   const sceneData = JSON.parse(
     await readFile(
       new URL("../content/scenes/archie/textbook_pdf_snapshots.json", import.meta.url),
       "utf8"
     )
   );
-  const repository = createRepositoryWithScenes(
-    {},
-    {
-      resolveMarkdownFileSize: async () => 4096,
-      resolveMarkdownFileCharacterCount: async () => 4096,
-    }
-  );
+  const repository = createRepositoryWithScenes({});
 
   const config = await repository.createConfigFromSceneData(
     "content/scenes/archie/textbook_pdf_snapshots.json",
@@ -145,12 +139,14 @@ test("textbook PDF snapshot spheres open rendered markdown for PDF export", asyn
     (node) => node.id.startsWith("pdf_snapshot_") && node.id !== "pdf_snapshot_overview"
   );
 
-  assert.equal(readingCopyNodes.length, 14);
+  assert.equal(readingCopyNodes.length, 12);
   for (const node of readingCopyNodes) {
-    assert.equal(node.markdownColumns, 1);
-    assert.equal(node.markdownAutoOpen, true);
-    assert.equal(node.markdownDownloadOnly, false);
-    assert.equal(node.markdownOpenEligible, true);
+    assert.equal(node.markdownPath, null);
+    assert.equal(node.fileSourceType, "pdf");
+    assert.equal(node.fileOpenMode, "new-tab");
+    assert.equal(node.fileDownload, false);
+    assert.equal(node.fileOpenEligible, true);
+    assert.match(node.filePath, /^content\/generated\/pdf\/textbook\/review-copies\/.+\.pdf$/);
   }
 });
 

@@ -1,4 +1,4 @@
-# Architrino Reader (v1 Textbook-Only Scaffold)
+# Architrino (v1 Textbook-Only Scaffold)
 
 Path: `apps/ios/ArchitrinoReader/`
 
@@ -6,6 +6,7 @@ Status:
 - SwiftUI source scaffold: present
 - Xcode project file: present and build-validated in-repo at `ArchitrinoReader.xcodeproj/project.pbxproj`
 - Bundle identifier: `com.architrino.reader` (set in `.xcodeproj` scaffold).
+- App display/product name: `Architrino`
 - Textbook-only packaging: implemented via `scripts/export-ios-textbook-package.mjs`
 
 The goal is to keep v1 focused on chapter-bundled offline textbook reading.
@@ -14,7 +15,7 @@ The goal is to keep v1 focused on chapter-bundled offline textbook reading.
 
 1. `ios_project_scaffold`
    - Source scaffold files and `.xcodeproj` are in place under `ArchitrinoReader.xcodeproj/`.
-   - Default scheme: `ArchitrinoReader`.
+   - Default scheme: `ArchitrinoReader`; generated app product: `Architrino.app`.
    - Local no-signing validation command:
      `xcodebuild -project apps/ios/ArchitrinoReader/ArchitrinoReader.xcodeproj -scheme ArchitrinoReader -configuration Debug -destination generic/platform=iOS -derivedDataPath /tmp/architrino-reader-derived-data CODE_SIGNING_ALLOWED=NO build`
 2. `content_bundle_schema_v1`

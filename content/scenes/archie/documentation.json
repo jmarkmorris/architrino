@@ -100,10 +100,10 @@
     },
     {
       "id": "textbook_pdf_snapshots",
-      "title": "Textbook Markdown to PDF",
+      "title": "Textbook PDF Review Copies",
       "radius": 2.2,
       "color": "#7a5a2f",
-      "labelTitle": "Textbook Markdown to PDF",
+      "labelTitle": "Textbook PDF Review Copies",
       "labelBadge": "doc"
     },
     {

@@ -235,8 +235,24 @@ function markdownDocNodeId(markdownPath) {
   return `markdown_doc:${markdownPath}`;
 }
 
+function assetNodeId(assetPath) {
+  return `asset:${assetPath}`;
+}
+
 function resolveAuthoredMarkdownPath(entry) {
   if (entry?.source?.type === "markdown" && typeof entry?.source?.path === "string") {
+    return entry.source.path;
+  }
+  return null;
+}
+
+function resolveAuthoredAssetPath(entry) {
+  if (
+    (entry?.source?.type === "pdf" ||
+      entry?.source?.type === "file" ||
+      entry?.source?.type === "asset") &&
+    typeof entry?.source?.path === "string"
+  ) {
     return entry.source.path;
   }
   return null;
@@ -538,9 +554,14 @@ const generatedMarkdownFiles = walkFiles(
   GENERATED_MARKDOWN_DIR,
   (name) => name.toLowerCase().endsWith(".md")
 );
+const generatedPdfFiles = walkFiles(
+  "content/generated/pdf",
+  (name) => name.toLowerCase().endsWith(".pdf")
+);
 const servedMarkdownFiles = [...markdownFiles, ...generatedMarkdownFiles];
 const servedMarkdownFileSet = new Set(servedMarkdownFiles);
 servedMarkdownFileSet.add(TEXTBOOK_TOC_MARKDOWN_PATH);
+const servedAssetFileSet = new Set(generatedPdfFiles);
 
 for (const sceneEntry of sceneEntries) {
   const parsed = readJson(sceneEntry.path);
@@ -662,6 +683,31 @@ function ensureMarkdownDocNode(markdownPath) {
   return nodeId;
 }
 
+function inferAssetName(assetPath) {
+  const leaf = String(assetPath || "").split("/").filter(Boolean).pop() || "";
+  return titleFromSlug(leaf.replace(/\.[^.]+$/, ""));
+}
+
+function ensureAssetNode(assetPath) {
+  const normalizedPath = normalizePath(assetPath);
+  if (!normalizedPath) {
+    return null;
+  }
+  const nodeId = assetNodeId(normalizedPath);
+  if (!nodeById.has(nodeId)) {
+    addNode({
+      nodeId,
+      nodeType: "asset",
+      id: normalizedPath,
+      name: inferAssetName(normalizedPath),
+      path: normalizedPath,
+      searchTarget: normalizedPath,
+      implicit: !servedAssetFileSet.has(normalizedPath),
+    });
+  }
+  return nodeId;
+}
+
 function addEdge({ from, to, edgeType, source, field }) {
   if (!from || !to || !edgeType) {
     return;
@@ -695,6 +741,27 @@ function addMarkdownDocEdge(scenePath, markdownPath, field) {
     from,
     to,
     edgeType: "markdown_doc",
+    source: scenePath,
+    field,
+  });
+}
+
+function addAssetEdge(scenePath, assetPath, field) {
+  const normalizedAssetPath = normalizePath(assetPath);
+  if (!normalizedAssetPath) {
+    return;
+  }
+  if (!servedAssetFileSet.has(normalizedAssetPath)) {
+    warnings.push(
+      `${scenePath} -> ${field}: asset file is not generated (${normalizedAssetPath})`
+    );
+  }
+  const from = ensureSceneNode(scenePath);
+  const to = ensureAssetNode(normalizedAssetPath);
+  addEdge({
+    from,
+    to,
+    edgeType: "asset",
     source: scenePath,
     field,
   });
@@ -753,6 +820,11 @@ for (const sceneEntry of sceneEntries) {
     if (typeof objectMarkdownPath === "string") {
       const objectId = asText(obj.id) || `objects[${objectIndex}]`;
       addMarkdownDocEdge(scenePath, objectMarkdownPath, `${objectId}.source.path`);
+    }
+    const objectAssetPath = resolveAuthoredAssetPath(obj);
+    if (typeof objectAssetPath === "string") {
+      const objectId = asText(obj.id) || `objects[${objectIndex}]`;
+      addAssetEdge(scenePath, objectAssetPath, `${objectId}.source.path`);
     }
   });
 }

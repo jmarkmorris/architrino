@@ -7,6 +7,7 @@ import path from "node:path";
 const SCENES_DIR = "content/scenes";
 const MARKDOWN_DIR = "content/markdown";
 const GENERATED_MARKDOWN_DIR = "content/generated/markdown";
+const GENERATED_PDF_DIR = "content/generated/pdf";
 const SCENES_INDEX_PATH = "content/scenes/scenes_index.json";
 const MARKDOWN_INDEX_PATH = "content/markdown/markdown_index.json";
 const ROOT_SCENE_PATH = "content/scenes/architrino_assembly_architecture.json";
@@ -78,6 +79,13 @@ function asText(value) {
 
 function resolveAuthoredMarkdownPath(entry) {
   if (entry?.source?.type === "markdown" && typeof entry?.source?.path === "string") {
+    return entry.source.path;
+  }
+  return null;
+}
+
+function resolveAuthoredPdfPath(entry) {
+  if (entry?.source?.type === "pdf" && typeof entry?.source?.path === "string") {
     return entry.source.path;
   }
   return null;
@@ -895,8 +903,13 @@ const generatedMarkdownFiles = walkFiles(
   GENERATED_MARKDOWN_DIR,
   (name) => name.toLowerCase().endsWith(".md")
 );
+const generatedPdfFiles = walkFiles(
+  GENERATED_PDF_DIR,
+  (name) => name.toLowerCase().endsWith(".pdf")
+);
 const indexableMarkdownFiles = allMarkdownFiles;
 const referencableMarkdownFiles = [...allMarkdownFiles, ...generatedMarkdownFiles];
+const referencablePdfFiles = generatedPdfFiles;
 const repoMarkdownAuditFiles = walkFiles(".", (name) => name.toLowerCase().endsWith(".md"), {
   ignoreDirNames: REPO_MARKDOWN_AUDIT_IGNORED_DIRS,
   shouldIgnorePath: (relativePath) => shouldIgnoreRepoMarkdownAuditPath(relativePath),
@@ -1106,6 +1119,8 @@ const sceneConfigSet = new Set(sceneConfigs);
 const sceneConfigLower = createLowerMap(sceneConfigs);
 const markdownFileSet = new Set(referencableMarkdownFiles);
 const markdownFileLower = createLowerMap(referencableMarkdownFiles);
+const pdfFileSet = new Set(referencablePdfFiles);
+const pdfFileLower = createLowerMap(referencablePdfFiles);
 const markdownContext = {
   markdownFiles: allMarkdownFiles,
   markdownTextByPath,
@@ -1272,6 +1287,7 @@ for (const scenePath of sceneConfigs) {
     }
     const objectMarkdownPath = resolveAuthoredMarkdownPath(obj);
     const objectMarkdownSection = resolveAuthoredMarkdownSection(obj);
+    const objectPdfPath = resolveAuthoredPdfPath(obj);
     if (typeof objectMarkdownPath === "string") {
       validateFileReference(
         scenePath,
@@ -1279,6 +1295,15 @@ for (const scenePath of sceneConfigs) {
         objectMarkdownPath,
         markdownFileSet,
         markdownFileLower
+      );
+    }
+    if (typeof objectPdfPath === "string") {
+      validateFileReference(
+        scenePath,
+        `${objectLabel}.source.path`,
+        objectPdfPath,
+        pdfFileSet,
+        pdfFileLower
       );
     }
     if (typeof objectMarkdownPath === "string" && typeof objectMarkdownSection === "string") {

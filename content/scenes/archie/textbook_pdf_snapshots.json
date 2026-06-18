@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "archie__textbook_pdf_snapshots",
-    "title": "Textbook Markdown to PDF",
+    "title": "Textbook PDF Review Copies",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,
@@ -48,14 +48,13 @@
       "motion": { "type": "fixed" },
       "fixedPosition": true,
       "labelTitle": "Full Textbook",
-      "labelBadge": "doc",
+      "labelBadge": "pdf",
       "source": {
-        "type": "markdown",
-        "path": "content/generated/markdown/textbook/reading-copies/architrino-textbook.md"
+        "type": "pdf",
+        "path": "content/generated/pdf/textbook/review-copies/architrino-textbook.pdf"
       },
       "view": {
-        "columns": 1,
-        "autoOpen": true
+        "openMode": "new-tab"
       }
     },
     {
@@ -63,18 +62,17 @@
       "title": "Foundations",
       "radius": 1.55,
       "color": "#3a5f9f",
-      "position": [-4.08, 8.47, 0],
+      "position": [-4.7, 8.14, 0],
       "motion": { "type": "fixed" },
       "fixedPosition": true,
       "labelTitle": "Foundations",
-      "labelBadge": "doc",
+      "labelBadge": "pdf",
       "source": {
-        "type": "markdown",
-        "path": "content/generated/markdown/textbook/reading-copies/foundations.md"
+        "type": "pdf",
+        "path": "content/generated/pdf/textbook/review-copies/foundations.pdf"
       },
       "view": {
-        "columns": 1,
-        "autoOpen": true
+        "openMode": "new-tab"
       }
     },
     {
@@ -82,18 +80,17 @@
       "title": "Dynamics",
       "radius": 1.55,
       "color": "#355c9a",
-      "position": [-7.35, 5.86, 0],
+      "position": [-8.14, 4.7, 0],
       "motion": { "type": "fixed" },
       "fixedPosition": true,
       "labelTitle": "Dynamics",
-      "labelBadge": "doc",
+      "labelBadge": "pdf",
       "source": {
-        "type": "markdown",
-        "path": "content/generated/markdown/textbook/reading-copies/dynamics.md"
+        "type": "pdf",
+        "path": "content/generated/pdf/textbook/review-copies/dynamics.pdf"
       },
       "view": {
-        "columns": 1,
-        "autoOpen": true
+        "openMode": "new-tab"
       }
     },
     {
@@ -101,18 +98,17 @@
       "title": "Noether Sea and Effective Spacetime",
       "radius": 1.55,
       "color": "#2f6b6f",
-      "position": [-9.16, 2.09, 0],
+      "position": [-9.4, 0, 0],
       "motion": { "type": "fixed" },
       "fixedPosition": true,
       "labelTitle": "Noether Sea and Effective Spacetime",
-      "labelBadge": "doc",
+      "labelBadge": "pdf",
       "source": {
-        "type": "markdown",
-        "path": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md"
+        "type": "pdf",
+        "path": "content/generated/pdf/textbook/review-copies/noether-sea-and-effective-spacetime.pdf"
       },
       "view": {
-        "columns": 1,
-        "autoOpen": true
+        "openMode": "new-tab"
       }
     },
     {
@@ -120,18 +116,17 @@
       "title": "Noether Swarm",
       "radius": 1.55,
       "color": "#2f6b6f",
-      "position": [-9.16, -2.09, 0],
+      "position": [-8.14, -4.7, 0],
       "motion": { "type": "fixed" },
       "fixedPosition": true,
       "labelTitle": "Noether Swarm",
-      "labelBadge": "doc",
+      "labelBadge": "pdf",
       "source": {
-        "type": "markdown",
-        "path": "content/generated/markdown/textbook/reading-copies/noether-swarm.md"
+        "type": "pdf",
+        "path": "content/generated/pdf/textbook/review-copies/noether-swarm.pdf"
       },
       "view": {
-        "columns": 1,
-        "autoOpen": true
+        "openMode": "new-tab"
       }
     },
     {
@@ -139,18 +134,17 @@
       "title": "Standard Model Assemblies",
       "radius": 1.55,
       "color": "#6a3c3c",
-      "position": [-7.35, -5.86, 0],
+      "position": [-4.7, -8.14, 0],
       "motion": { "type": "fixed" },
       "fixedPosition": true,
       "labelTitle": "Standard Model Assemblies",
-      "labelBadge": "doc",
+      "labelBadge": "pdf",
       "source": {
-        "type": "markdown",
-        "path": "content/generated/markdown/textbook/reading-copies/standard-model-assemblies.md"
+        "type": "pdf",
+        "path": "content/generated/pdf/textbook/review-copies/standard-model-assemblies.pdf"
       },
       "view": {
-        "columns": 1,
-        "autoOpen": true
+        "openMode": "new-tab"
       }
     },
     {
@@ -158,18 +152,17 @@
       "title": "Atomic and Nuclear Assemblies",
       "radius": 1.55,
       "color": "#2f4f7a",
-      "position": [-4.08, -8.47, 0],
+      "position": [0, -9.4, 0],
       "motion": { "type": "fixed" },
       "fixedPosition": true,
       "labelTitle": "Atomic and Nuclear Assemblies",
-      "labelBadge": "doc",
+      "labelBadge": "pdf",
       "source": {
-        "type": "markdown",
-        "path": "content/generated/markdown/textbook/reading-copies/atomic-and-nuclear-assemblies.md"
+        "type": "pdf",
+        "path": "content/generated/pdf/textbook/review-copies/atomic-and-nuclear-assemblies.pdf"
       },
       "view": {
-        "columns": 1,
-        "autoOpen": true
+        "openMode": "new-tab"
       }
     },
     {
@@ -177,18 +170,17 @@
       "title": "Reactions",
       "radius": 1.55,
       "color": "#7a4a1f",
-      "position": [0, -9.4, 0],
+      "position": [4.7, -8.14, 0],
       "motion": { "type": "fixed" },
       "fixedPosition": true,
       "labelTitle": "Reactions",
-      "labelBadge": "doc",
+      "labelBadge": "pdf",
       "source": {
-        "type": "markdown",
-        "path": "content/generated/markdown/textbook/reading-copies/reactions.md"
+        "type": "pdf",
+        "path": "content/generated/pdf/textbook/review-copies/reactions.pdf"
       },
       "view": {
-        "columns": 1,
-        "autoOpen": true
+        "openMode": "new-tab"
       }
     },
     {
@@ -196,37 +188,17 @@
       "title": "Quantum",
       "radius": 1.55,
       "color": "#5a1f2e",
-      "position": [4.08, -8.47, 0],
+      "position": [8.14, -4.7, 0],
       "motion": { "type": "fixed" },
       "fixedPosition": true,
       "labelTitle": "Quantum",
-      "labelBadge": "doc",
+      "labelBadge": "pdf",
       "source": {
-        "type": "markdown",
-        "path": "content/generated/markdown/textbook/reading-copies/quantum.md"
+        "type": "pdf",
+        "path": "content/generated/pdf/textbook/review-copies/quantum.pdf"
       },
       "view": {
-        "columns": 1,
-        "autoOpen": true
-      }
-    },
-    {
-      "id": "pdf_snapshot_theory_bridges",
-      "title": "Theory Bridges",
-      "radius": 1.55,
-      "color": "#2f6b6f",
-      "position": [7.35, -5.86, 0],
-      "motion": { "type": "fixed" },
-      "fixedPosition": true,
-      "labelTitle": "Theory Bridges",
-      "labelBadge": "doc",
-      "source": {
-        "type": "markdown",
-        "path": "content/generated/markdown/textbook/reading-copies/theory-bridges.md"
-      },
-      "view": {
-        "columns": 1,
-        "autoOpen": true
+        "openMode": "new-tab"
       }
     },
     {
@@ -234,18 +206,17 @@
       "title": "Cosmology",
       "radius": 1.55,
       "color": "#4b0082",
-      "position": [9.16, -2.09, 0],
+      "position": [9.4, 0, 0],
       "motion": { "type": "fixed" },
       "fixedPosition": true,
       "labelTitle": "Cosmology",
-      "labelBadge": "doc",
+      "labelBadge": "pdf",
       "source": {
-        "type": "markdown",
-        "path": "content/generated/markdown/textbook/reading-copies/cosmology.md"
+        "type": "pdf",
+        "path": "content/generated/pdf/textbook/review-copies/cosmology.pdf"
       },
       "view": {
-        "columns": 1,
-        "autoOpen": true
+        "openMode": "new-tab"
       }
     },
     {
@@ -253,37 +224,17 @@
       "title": "Validation",
       "radius": 1.55,
       "color": "#2246a3",
-      "position": [9.16, 2.09, 0],
+      "position": [8.14, 4.7, 0],
       "motion": { "type": "fixed" },
       "fixedPosition": true,
       "labelTitle": "Validation",
-      "labelBadge": "doc",
+      "labelBadge": "pdf",
       "source": {
-        "type": "markdown",
-        "path": "content/generated/markdown/textbook/reading-copies/validation.md"
+        "type": "pdf",
+        "path": "content/generated/pdf/textbook/review-copies/validation.pdf"
       },
       "view": {
-        "columns": 1,
-        "autoOpen": true
-      }
-    },
-    {
-      "id": "pdf_snapshot_proof_programs",
-      "title": "Proof Programs",
-      "radius": 1.55,
-      "color": "#6a2f8f",
-      "position": [7.35, 5.86, 0],
-      "motion": { "type": "fixed" },
-      "fixedPosition": true,
-      "labelTitle": "Proof Programs",
-      "labelBadge": "doc",
-      "source": {
-        "type": "markdown",
-        "path": "content/generated/markdown/textbook/reading-copies/proof-programs.md"
-      },
-      "view": {
-        "columns": 1,
-        "autoOpen": true
+        "openMode": "new-tab"
       }
     },
     {
@@ -291,18 +242,17 @@
       "title": "Philosophy-History",
       "radius": 1.55,
       "color": "#8b6f3a",
-      "position": [4.08, 8.47, 0],
+      "position": [4.7, 8.14, 0],
       "motion": { "type": "fixed" },
       "fixedPosition": true,
       "labelTitle": "Philosophy-History",
-      "labelBadge": "doc",
+      "labelBadge": "pdf",
       "source": {
-        "type": "markdown",
-        "path": "content/generated/markdown/textbook/reading-copies/philosophy-history.md"
+        "type": "pdf",
+        "path": "content/generated/pdf/textbook/review-copies/philosophy-history.pdf"
       },
       "view": {
-        "columns": 1,
-        "autoOpen": true
+        "openMode": "new-tab"
       }
     }
   ]

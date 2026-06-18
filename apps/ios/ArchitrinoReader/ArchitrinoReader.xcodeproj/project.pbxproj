@@ -18,7 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8A1F1F0A2D0A2B0D0073C001 /* ArchitrinoReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; path = ArchitrinoReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8A1F1F0A2D0A2B0D0073C001 /* Architrino.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; path = Architrino.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A1F1F0B2D0A2B0D0073C001 /* GeneratedTextbookPackage */ = {isa = PBXFileReference; lastKnownFileType = folder; path = GeneratedTextbookPackage; sourceTree = SOURCE_ROOT; };
 		8A1F1F0C2D0A2B0D0073C001 /* ArchitrinoReader/ArchitrinoReaderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchitrinoReader/ArchitrinoReaderApp.swift; sourceTree = SOURCE_ROOT; };
 		8A1F1F0D2D0A2B0D0073C001 /* ArchitrinoReader/ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchitrinoReader/ContentView.swift; sourceTree = SOURCE_ROOT; };
@@ -51,7 +51,7 @@
 		8A1F1F142D0A2B0D0073C001 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8A1F1F0A2D0A2B0D0073C001 /* ArchitrinoReader.app */,
+				8A1F1F0A2D0A2B0D0073C001 /* Architrino.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -88,8 +88,8 @@
 			dependencies = (
 			);
 			name = ArchitrinoReader;
-			productName = ArchitrinoReader;
-			productReference = 8A1F1F0A2D0A2B0D0073C001 /* ArchitrinoReader.app */;
+			productName = Architrino;
+			productReference = 8A1F1F0A2D0A2B0D0073C001 /* Architrino.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -184,7 +184,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Architrino Reader";
+				INFOPLIST_KEY_CFBundleDisplayName = Architrino;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -202,7 +202,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.architrino.reader;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Architrino;
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.10;
@@ -219,7 +219,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Architrino Reader";
+				INFOPLIST_KEY_CFBundleDisplayName = Architrino;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -237,7 +237,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.architrino.reader;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Architrino;
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.10;

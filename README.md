@@ -30,6 +30,7 @@ serving those paths again.
 - Textbook TOC data is generated into `content/graph/textbook_toc.json`.
 - Textbook TOC scene markdown is generated into `content/generated/markdown/textbook/toc.md`.
 - Textbook reading-copy markdown moved from the old generated markdown tree is generated into `content/generated/markdown/textbook/reading-copies/`.
+- Textbook PDF review copies are generated into `content/generated/pdf/textbook/review-copies/`.
 - Keep the manifest up to date after content changes.
 
 ## Authoring Contract (Explicit Scene Network)
@@ -46,10 +47,12 @@ serving those paths again.
   - `content/graph/textbook_toc.json`
   - `content/generated/markdown/textbook/toc.md`
   - moved textbook reading copies under `content/generated/markdown/textbook/reading-copies/`
+  - textbook PDF review copies under `content/generated/pdf/textbook/review-copies/`
 - After scene/markdown edits, regenerate artifacts before commit:
   - `node scripts/validate-content.mjs --write`
   - `node scripts/build-scene-graph.mjs --write`
   - `node scripts/build-textbook-md-pdf.mjs --write`
+  - `node scripts/build-textbook-review-pdfs.mjs --write`
 
 ## Content Validation
 Run these from the repo root:
@@ -61,6 +64,8 @@ node scripts/build-scene-graph.mjs --check
 node scripts/build-scene-graph.mjs --write
 node scripts/build-textbook-md-pdf.mjs --check
 node scripts/build-textbook-md-pdf.mjs --write
+node scripts/build-textbook-review-pdfs.mjs --check
+node scripts/build-textbook-review-pdfs.mjs --write
 node scripts/smoke-option3.mjs
 ```
 
