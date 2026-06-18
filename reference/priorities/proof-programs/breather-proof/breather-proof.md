@@ -1070,7 +1070,7 @@ Only after all five rows are verified on the same certified domain does the cond
 
 - [master-equation-closure](../../master-equation-closure/master-equation-closure.md)
 - [simulations](../../simulations/simulations.md)
-- [chapter-authoring](../../chapter-authoring/chapter-authoring.md)
+- [source-mining](../../source-mining/source-mining.md)
 
 ## Related $\mathbb{A}\mathbb{A}\mathbb{A}$ Notes
 

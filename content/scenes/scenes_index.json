@@ -1634,6 +1634,41 @@
       "id": "molecule",
       "name": "Molecule Visualization",
       "path": "content/scenes/archie/molecule.json"
+    },
+    {
+      "id": "dynamics__entropy_and_record_coarse_graining",
+      "name": "Entropy and Record Coarse-Graining",
+      "path": "content/scenes/dynamics/entropy_and_record_coarse_graining.json"
+    },
+    {
+      "id": "philosophy_history__geometry_and_ontology",
+      "name": "Geometry and Ontology",
+      "path": "content/scenes/philosophy_history/geometry_and_ontology.json"
+    },
+    {
+      "id": "philosophy_history__theory_inheritance_discipline",
+      "name": "Theory Inheritance Discipline",
+      "path": "content/scenes/philosophy_history/theory_inheritance_discipline.json"
+    },
+    {
+      "id": "reactions__atomic_transition_radiation",
+      "name": "Atomic Transition Radiation",
+      "path": "content/scenes/reactions/atomic_transition_radiation.json"
+    },
+    {
+      "id": "reactions__radiation",
+      "name": "Radiation",
+      "path": "content/scenes/reactions/radiation.json"
+    },
+    {
+      "id": "validation__massive_superposition_gravity",
+      "name": "Massive Superposition Gravity",
+      "path": "content/scenes/validation/massive_superposition_gravity.json"
+    },
+    {
+      "id": "validation__reaction_cosmology_provenance_ledger",
+      "name": "Reaction-Cosmology Provenance Ledger",
+      "path": "content/scenes/validation/reaction_cosmology_provenance_ledger.json"
     }
   ]
 }

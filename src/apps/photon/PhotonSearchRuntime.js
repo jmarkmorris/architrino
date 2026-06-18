@@ -1,0 +1,599 @@
+import {
+  PHOTON_LAYER_ORDER,
+  clonePhotonState,
+  getPhotonLayer,
+  getPhotonSeparationLog10Ratio,
+  normalizePhotonDegrees,
+  normalizePhotonState,
+  setPhotonLayerEnabled,
+  setPhotonLayerValue,
+  setPhotonPairSeparationLog10Ratio,
+} from "./PhotonStateRuntime.js";
+import {
+  PHOTON_NAMED_PRESETS,
+  createPhotonPresetState,
+} from "./PhotonPresetRuntime.js";
+import { computePhotonDiagnostics } from "./PhotonDiagnosticsRuntime.js";
+import { computePhotonFormulaSummary } from "./PhotonFormulaRuntime.js";
+
+const PHOTON_SEARCH_RESULT_LIMIT = 12;
+const PHOTON_SEARCH_SUMMARY_OPTIONS = Object.freeze({
+  polarizationSampleCount: 48,
+  analyzerSampleCount: 18,
+});
+const PHOTON_SEARCH_PERTURB_OPTIONS = Object.freeze({
+  polarizationSampleCount: 24,
+  analyzerSampleCount: 10,
+});
+const PHOTON_SEARCH_EXPORT_KIND = "photon-configuration-search-results";
+const PHOTON_SEARCH_EXPORT_VERSION = 1;
+const EPSILON = 1e-9;
+
+function normalizeSearchName(value, fallback = "Configuration") {
+  const text = String(value ?? "").replace(/\s+/g, " ").trim();
+  return text || fallback;
+}
+
+function cloneNormalizedPhotonState(state) {
+  return normalizePhotonState(clonePhotonState(normalizePhotonState(state)));
+}
+
+function getEnabledMask(state) {
+  return ["left", "right"]
+    .map((swarmId) =>
+      PHOTON_LAYER_ORDER.map((layerId) =>
+        getPhotonLayer(state, swarmId, layerId).enabled !== false ? layerId : "-"
+      ).join("")
+    )
+    .join("/");
+}
+
+function getStateSearchKey(state) {
+  const normalized = normalizePhotonState(state);
+  return JSON.stringify({
+    pair: {
+      separation: Number(normalized.pair.pairSeparation).toPrecision(10),
+      left: normalized.pair.left.layers,
+      right: normalized.pair.right.layers,
+    },
+    observer: normalized.measurement.virtualObserver,
+    analyzer: normalized.polarization.analyzerAngleDeg,
+    view: normalized.view,
+  });
+}
+
+function setEnabledLayers(state, enabledLayers) {
+  const enabledSet = new Set(enabledLayers);
+  ["left", "right"].forEach((swarmId) => {
+    PHOTON_LAYER_ORDER.forEach((layerId) => {
+      setPhotonLayerEnabled(state, swarmId, layerId, enabledSet.has(layerId));
+    });
+  });
+}
+
+function setPhases(state, phaseMap) {
+  ["left", "right"].forEach((swarmId) => {
+    PHOTON_LAYER_ORDER.forEach((layerId) => {
+      const phase = phaseMap?.[swarmId]?.[layerId] ?? phaseMap?.[layerId];
+      if (Number.isFinite(Number(phase))) {
+        state.pair[swarmId].layers[layerId].phaseDeg = normalizePhotonDegrees(phase);
+      }
+    });
+  });
+}
+
+function setAnalyzerAngle(state, angleDeg) {
+  if (Number.isFinite(Number(angleDeg))) {
+    state.polarization.analyzerAngleDeg = Number(angleDeg);
+  }
+}
+
+function setVirtualObserver(state, observer) {
+  state.measurement.virtualObserver = {
+    ...state.measurement.virtualObserver,
+    ...observer,
+  };
+}
+
+function mutateCandidateState(baseState, mutate) {
+  const state = clonePhotonState(baseState);
+  mutate(state);
+  return normalizePhotonState(state);
+}
+
+function buildPhotonSearchCandidates(baseState) {
+  const base = normalizePhotonState(baseState);
+  const candidates = [];
+  const seen = new Set();
+
+  const pushCandidate = (name, state, source = "search") => {
+    const normalized = normalizePhotonState(state);
+    const key = getStateSearchKey(normalized);
+    if (seen.has(key)) {
+      return;
+    }
+    seen.add(key);
+    candidates.push({
+      name,
+      source,
+      state: normalized,
+    });
+  };
+
+  pushCandidate("Current settings", base, "current");
+  PHOTON_NAMED_PRESETS.forEach((preset) => {
+    pushCandidate(preset.name, createPhotonPresetState(preset.id), "preset");
+  });
+
+  [
+    ["Outer only", ["O"]],
+    ["Middle only", ["M"]],
+    ["Inner only", ["I"]],
+    ["Middle and Outer", ["M", "O"]],
+    ["All layers", ["I", "M", "O"]],
+  ].forEach(([name, enabledLayers]) => {
+    pushCandidate(
+      name,
+      mutateCandidateState(base, (state) => setEnabledLayers(state, enabledLayers)),
+      "enabled-layers"
+    );
+  });
+
+  [
+    ["Zero phase alignment", { I: 0, M: 0, O: 0 }],
+    ["Shared 120 degree spread", { I: 0, M: 120, O: 240 }],
+    [
+      "Mirror 120 degree spread",
+      {
+        left: { I: 0, M: 120, O: 240 },
+        right: { I: 0, M: 240, O: 120 },
+      },
+    ],
+    [
+      "Leading quadrature offset",
+      {
+        left: { I: 0, M: 0, O: 0 },
+        right: { I: 90, M: 90, O: 90 },
+      },
+    ],
+  ].forEach(([name, phases]) => {
+    pushCandidate(
+      name,
+      mutateCandidateState(base, (state) => setPhases(state, phases)),
+      "phase"
+    );
+  });
+
+  [-4, -2, -1, 0, 1].forEach((log10Ratio) => {
+    if (Math.abs(getPhotonSeparationLog10Ratio(base) - log10Ratio) <= 1e-8) {
+      return;
+    }
+    pushCandidate(
+      `Delta x 10^${log10Ratio} r`,
+      mutateCandidateState(base, (state) => setPhotonPairSeparationLog10Ratio(state, log10Ratio)),
+      "delta-x"
+    );
+  });
+
+  [
+    ["Observer center", { x: 0, y: 0, z: 0 }],
+    ["Observer y +1", { x: 0, y: 1, z: 0 }],
+    ["Observer z +1", { x: 0, y: 0, z: 1 }],
+    ["Observer diagonal", { x: 0, y: 1, z: 1 }],
+    ["Observer y edge", { x: 0, y: 4, z: 0 }],
+  ].forEach(([name, observer]) => {
+    pushCandidate(
+      name,
+      mutateCandidateState(base, (state) => setVirtualObserver(state, observer)),
+      "observer"
+    );
+  });
+
+  [0, 45, 90, 135].forEach((angleDeg) => {
+    if (Math.abs(Number(base.polarization.analyzerAngleDeg) - angleDeg) <= 1e-8) {
+      return;
+    }
+    pushCandidate(
+      `Analyzer ${angleDeg} deg`,
+      mutateCandidateState(base, (state) => setAnalyzerAngle(state, angleDeg)),
+      "analyzer"
+    );
+  });
+
+  pushCandidate(
+    "Outer-only transverse observer",
+    mutateCandidateState(base, (state) => {
+      setEnabledLayers(state, ["O"]);
+      setVirtualObserver(state, { x: 0, y: 4, z: 0 });
+      setPhases(state, { I: 0, M: 0, O: 0 });
+    }),
+    "combined"
+  );
+  pushCandidate(
+    "Small-gap phase stress",
+    mutateCandidateState(base, (state) => {
+      setPairAndPhaseStress(state);
+    }),
+    "combined"
+  );
+  pushCandidate(
+    "Quadrature analyzer stress",
+    mutateCandidateState(base, (state) => {
+      setPhases(state, {
+        left: { I: 0, M: 0, O: 0 },
+        right: { I: 90, M: 90, O: 90 },
+      });
+      setAnalyzerAngle(state, 45);
+    }),
+    "combined"
+  );
+
+  return candidates;
+}
+
+function setPairAndPhaseStress(state) {
+  setPhotonPairSeparationLog10Ratio(state, -2);
+  setVirtualObserver(state, { x: 0.5, y: 1.25, z: -0.75 });
+  setPhases(state, {
+    left: { I: 0, M: 90, O: 180 },
+    right: { I: 45, M: 135, O: 315 },
+  });
+}
+
+function pushReason(reasons, tag, label, detail, score) {
+  reasons.push({ tag, label, detail, score });
+  return score;
+}
+
+function getPolarizationStrength(summary) {
+  return Math.hypot(
+    summary.polarization.amplitudes.y,
+    summary.polarization.amplitudes.z
+  );
+}
+
+function getSignedDegreeDelta(a, b) {
+  const delta = ((((Number(a) - Number(b) + 180) % 360) + 360) % 360) - 180;
+  return Math.abs(delta);
+}
+
+function perturbPhotonSearchState(state) {
+  const perturbed = clonePhotonState(state);
+  const layer = perturbed.pair?.right?.layers?.O ?? perturbed.pair?.left?.layers?.O;
+  if (layer) {
+    layer.phaseDeg = normalizePhotonDegrees((Number(layer.phaseDeg) || 0) + 5);
+  }
+  return normalizePhotonState(perturbed);
+}
+
+function evaluatePhotonSearchPerturbation(state, summary) {
+  const perturbed = perturbPhotonSearchState(state);
+  const nextSummary = computePhotonFormulaSummary(perturbed, 0, PHOTON_SEARCH_PERTURB_OPTIONS);
+  const previousStrength = Math.max(EPSILON, getPolarizationStrength(summary));
+  const nextStrength = getPolarizationStrength(nextSummary);
+  const strengthDelta = Math.abs(nextStrength - previousStrength) / previousStrength;
+  const phaseDelta = summary.polarization.phaseLagDefined && nextSummary.polarization.phaseLagDefined
+    ? getSignedDegreeDelta(
+        nextSummary.polarization.phaseLagDeg,
+        summary.polarization.phaseLagDeg
+      )
+    : 0;
+  const classificationChanged =
+    nextSummary.polarization.classification !== summary.polarization.classification;
+  return {
+    classificationChanged,
+    strengthDelta,
+    phaseDelta,
+    fitDelta: Math.abs(nextSummary.fitResidual - summary.fitResidual),
+  };
+}
+
+function countEnabledLayers(state) {
+  return ["left", "right"].reduce((sum, swarmId) => (
+    sum + PHOTON_LAYER_ORDER.filter(
+      (layerId) => getPhotonLayer(state, swarmId, layerId).enabled !== false
+    ).length
+  ), 0);
+}
+
+function hasSimplePhases(state) {
+  return ["left", "right"].every((swarmId) =>
+    PHOTON_LAYER_ORDER.every((layerId) => {
+      const phase = Number(getPhotonLayer(state, swarmId, layerId).phaseDeg) || 0;
+      return Math.abs(phase - Math.round(phase / 45) * 45) <= 1e-6;
+    })
+  );
+}
+
+function evaluatePhotonSearchCandidate(candidate, index) {
+  const state = cloneNormalizedPhotonState(candidate.state);
+  const summary = computePhotonFormulaSummary(state, 0, PHOTON_SEARCH_SUMMARY_OPTIONS);
+  const diagnostics = computePhotonDiagnostics(state, 0, summary);
+  const reasons = [];
+  const components = {};
+  const polarization = summary.polarization;
+  const classification = polarization.classification;
+  const strength = getPolarizationStrength(summary);
+  const enabledCount = countEnabledLayers(state);
+  const suspect =
+    diagnostics.unresolvedSourceCount > 0 ||
+    diagnostics.delaySolveGapMax > 0.05 ||
+    diagnostics.jacobianAbsMin <= 1e-4 ||
+    diagnostics.unstableSourceCount > 0;
+
+  if (classification !== "weak" && summary.fitResidual <= 0.08 && strength > 0.05) {
+    components.cleanPolarization = pushReason(
+      reasons,
+      "clean-polarization",
+      "Clean polarization",
+      `${polarization.classificationLabel}, fit residual ${summary.fitResidual.toFixed(4)}`,
+      24 * (1 - Math.min(1, summary.fitResidual / 0.08))
+    );
+  }
+
+  const absS3 = Math.abs(polarization.normalizedStokes.s3 || 0);
+  if (
+    (classification === "right_circular" || classification === "left_circular" || absS3 >= 0.7) &&
+    polarization.amplitudes.relative > 0.55 &&
+    polarization.amplitudes.relative < 1.85
+  ) {
+    components.circularBalance = pushReason(
+      reasons,
+      "near-circular",
+      "Near circular balance",
+      `handed component ${absS3.toFixed(2)}, E_z/E_y ${polarization.amplitudes.relative.toFixed(2)}`,
+      18 * Math.min(1, absS3)
+    );
+  }
+
+  const transversePerSource = diagnostics.transverseAmplitude / Math.max(1, diagnostics.sourceCount);
+  if (diagnostics.sourceCount >= 8 && transversePerSource <= 0.22) {
+    components.cancellation = pushReason(
+      reasons,
+      "strong-cancellation",
+      "Strong cancellation",
+      `${diagnostics.sourceCount} sources with ${diagnostics.transverseAmplitude.toFixed(3)} net transverse field`,
+      14 * (1 - Math.min(1, transversePerSource / 0.22))
+    );
+  }
+
+  if (
+    diagnostics.unresolvedSourceCount === 0 &&
+    diagnostics.delaySolveGapMax <= 0.01 &&
+    diagnostics.jacobianAbsMin >= 0.05
+  ) {
+    components.causalRoots = pushReason(
+      reasons,
+      "healthy-roots",
+      "Healthy causal roots",
+      `${diagnostics.rootCount} roots, min |J| ${diagnostics.jacobianAbsMin.toFixed(3)}`,
+      8
+    );
+  }
+
+  if (diagnostics.rootCount > diagnostics.sourceCount && diagnostics.sourceCount > 0) {
+    components.rootFamily = pushReason(
+      reasons,
+      "root-family",
+      "Multiple-root family",
+      `${diagnostics.rootCount} roots for ${diagnostics.sourceCount} sources`,
+      6
+    );
+  }
+
+  const perturbation = evaluatePhotonSearchPerturbation(state, summary);
+  if (
+    perturbation.classificationChanged ||
+    perturbation.phaseDelta >= 25 ||
+    perturbation.strengthDelta >= 0.35 ||
+    perturbation.fitDelta >= 0.12
+  ) {
+    components.transition = pushReason(
+      reasons,
+      "sharp-transition",
+      "Sharp transition",
+      `5 deg nudge changes mode/lag/strength noticeably`,
+      10
+    );
+  } else if (classification !== "weak" && summary.fitResidual <= 0.12) {
+    components.robust = pushReason(
+      reasons,
+      "robust-pattern",
+      "Robust pattern",
+      `5 deg nudge keeps the same polarization family`,
+      7
+    );
+  }
+
+  if (enabledCount <= 4 || hasSimplePhases(state)) {
+    components.simple = pushReason(
+      reasons,
+      "simple-explanation",
+      "Simple explanation",
+      `${enabledCount} enabled binaries with phase values on 45 deg steps`,
+      5
+    );
+  }
+
+  if (suspect) {
+    components.suspect = pushReason(
+      reasons,
+      "suspect-numerics",
+      "Suspect numerics",
+      `missed ${diagnostics.unresolvedSourceCount}, gap ${diagnostics.delaySolveGapMax.toFixed(3)}, min |J| ${diagnostics.jacobianAbsMin.toFixed(4)}`,
+      -12
+    );
+  }
+
+  if (reasons.length === 0) {
+    components.reference = pushReason(
+      reasons,
+      "reference",
+      "Reference state",
+      "Useful for comparison against nearby search variants",
+      1
+    );
+  }
+
+  const rawScore = reasons.reduce((sum, reason) => sum + reason.score, 0);
+  const score = suspect ? rawScore * 0.55 : rawScore;
+  return {
+    id: `search-candidate-${index + 1}`,
+    name: buildPhotonSearchResultName(candidate.name, polarization.classificationLabel, reasons),
+    source: candidate.source,
+    selected: true,
+    promotedPresetId: "",
+    state,
+    score,
+    scoreComponents: components,
+    reasons,
+    suspect,
+    polarization: {
+      classification,
+      classificationLabel: polarization.classificationLabel,
+      fitResidual: summary.fitResidual,
+      phaseLagDeg: polarization.phaseLagDeg,
+      phaseLagDefined: polarization.phaseLagDefined,
+      amplitudeY: polarization.amplitudes.y,
+      amplitudeZ: polarization.amplitudes.z,
+      amplitudeRatio: polarization.amplitudes.relative,
+      normalizedStokes: polarization.normalizedStokes,
+    },
+    diagnostics: {
+      transverseAmplitude: diagnostics.transverseAmplitude,
+      longitudinalLeakage: diagnostics.longitudinalLeakage,
+      analyzerResidual: summary.analyzerResidual,
+      analyzerTarget: summary.analyzerTarget,
+      averageAnalyzerFraction: summary.averageAnalyzerFraction,
+      sourceCount: diagnostics.sourceCount,
+      rootCount: diagnostics.rootCount,
+      unresolvedSourceCount: diagnostics.unresolvedSourceCount,
+      unstableSourceCount: diagnostics.unstableSourceCount,
+      delaySolveGapMax: diagnostics.delaySolveGapMax,
+      jacobianAbsMin: diagnostics.jacobianAbsMin,
+      averageDelay: diagnostics.averageDelay,
+    },
+    plot: {
+      runDuration: summary.runDuration,
+      middleCycleStart: summary.middleCycle.start,
+      middleCycleEnd: summary.middleCycle.end,
+      maxE: Math.max(
+        Math.abs(polarization.amplitudes.y),
+        Math.abs(polarization.amplitudes.z)
+      ),
+    },
+  };
+}
+
+function buildPhotonSearchResultName(candidateName, classificationLabel, reasons) {
+  const primary = reasons.find((reason) => reason.score > 0)?.label ?? "Reference";
+  return normalizeSearchName(`${primary}: ${classificationLabel} (${candidateName})`);
+}
+
+function selectDiversePhotonSearchResults(evaluatedResults, limit = PHOTON_SEARCH_RESULT_LIMIT) {
+  const sorted = evaluatedResults
+    .slice()
+    .sort((a, b) => b.score - a.score);
+  const selected = [];
+  const signatures = new Set();
+
+  sorted.forEach((result) => {
+    if (selected.length >= limit) {
+      return;
+    }
+    const primaryTag = result.reasons.find((reason) => reason.score > 0)?.tag ?? "reference";
+    const signature = [
+      result.polarization.classification,
+      primaryTag,
+      getEnabledMask(result.state),
+      result.suspect ? "suspect" : "clean",
+    ].join("|");
+    if (signatures.has(signature) && selected.length >= Math.max(4, Math.floor(limit / 2))) {
+      return;
+    }
+    signatures.add(signature);
+    selected.push(result);
+  });
+
+  sorted.forEach((result) => {
+    if (selected.length >= limit || selected.includes(result)) {
+      return;
+    }
+    selected.push(result);
+  });
+
+  return selected.slice(0, limit).map((result, index) => ({
+    ...result,
+    id: `photon-search-${String(index + 1).padStart(2, "0")}`,
+  }));
+}
+
+export function createPhotonConfigurationSearchResults(baseState, options = {}) {
+  const candidates = buildPhotonSearchCandidates(baseState).slice(
+    0,
+    options.maxCandidates ?? Number.POSITIVE_INFINITY
+  );
+  const evaluated = candidates.map((candidate, index) =>
+    evaluatePhotonSearchCandidate(candidate, index)
+  );
+  return selectDiversePhotonSearchResults(
+    evaluated,
+    options.limit ?? PHOTON_SEARCH_RESULT_LIMIT
+  );
+}
+
+function serializePhotonSearchResult(result) {
+  return {
+    id: result.id,
+    name: normalizeSearchName(result.name),
+    source: result.source ?? "imported",
+    selected: result.selected !== false,
+    promotedPresetId: result.promotedPresetId ?? "",
+    state: cloneNormalizedPhotonState(result.state),
+    score: Number(result.score) || 0,
+    scoreComponents: result.scoreComponents ?? {},
+    reasons: Array.isArray(result.reasons) ? result.reasons : [],
+    suspect: !!result.suspect,
+    polarization: result.polarization ?? {},
+    diagnostics: result.diagnostics ?? {},
+    plot: result.plot ?? {},
+  };
+}
+
+export function createPhotonSearchExportPayload(results) {
+  return {
+    app: "photon",
+    kind: PHOTON_SEARCH_EXPORT_KIND,
+    version: PHOTON_SEARCH_EXPORT_VERSION,
+    exportedAt: new Date().toISOString(),
+    results: (Array.isArray(results) ? results : []).map(serializePhotonSearchResult),
+  };
+}
+
+export function serializePhotonSearchResults(results) {
+  return JSON.stringify(createPhotonSearchExportPayload(results), null, 2);
+}
+
+export function normalizePhotonSearchResult(rawResult, index = 0) {
+  const raw = rawResult && typeof rawResult === "object" ? rawResult : {};
+  const state = normalizePhotonState(raw.state ?? raw.settings ?? raw);
+  return {
+    ...serializePhotonSearchResult({
+      ...raw,
+      id: raw.id || `photon-import-${String(index + 1).padStart(2, "0")}`,
+      name: raw.name || `Imported ${index + 1}`,
+      state,
+    }),
+    id: raw.id || `photon-import-${String(index + 1).padStart(2, "0")}`,
+  };
+}
+
+export function parsePhotonSearchResultsJson(jsonText) {
+  const parsed = JSON.parse(String(jsonText ?? ""));
+  const rawResults = Array.isArray(parsed)
+    ? parsed
+    : Array.isArray(parsed?.results)
+      ? parsed.results
+      : [];
+  return rawResults.map((result, index) => normalizePhotonSearchResult(result, index));
+}

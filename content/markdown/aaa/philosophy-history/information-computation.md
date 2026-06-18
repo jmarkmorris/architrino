@@ -73,6 +73,10 @@ The primary ontological commitment of informational ontology is that distinction
 
 What this subject gets right is substantial. Physics really does depend on distinguishable configuration, channel limitation, compression, correlation, and entropy accounting. Many observables are inseparable from informational structure because measurement itself compares alternatives. The language of information also disciplines loose metaphysical talk by forcing questions such as: information of what, encoded where, recoverable by which interaction, and degraded under which dynamics? These are genuine strengths, not rhetorical ones.
 
+The strongest technical version of that strength is the coding-theorem reading of Shannon entropy. Once a source distribution, coding alphabet, and decoding rule are declared, entropy gives the lower bound on average code length, and cross-entropy measures the cost of using the wrong predictive model. That is why next-symbol prediction, text compression, and modern cross-entropy training objectives are mathematically connected. The result is a powerful effective-language and model-assessment tool, not evidence that symbols or compression are the substrate of the world.
+
+Quantum-information entropy sharpens the same distinction. A reduced density matrix, von Neumann entropy, or entanglement entropy becomes meaningful only after a factorization, access region, and complement have been declared. The fact that a subsystem can look mixed while the complete comparison state remains closed is a strong access-limit diagnostic. It is not by itself evidence that information has outranked the physical carrier, path history, apparatus record, or medium response.
+
 ### Internal Tensions
 
 The main overstatement enters when the descriptive necessity of information is turned into ontological priority. Information is never bare. It is always information in a state, across an ensemble, through a medium, or relative to a decoding interaction. Once the carrier disappears from the story, the concept begins to hover above the physical process that makes it meaningful. The phrase "information is fundamental" then risks saying less than it appears to say, because it can quietly depend on unspoken assumptions about storage, transmission, and causal update.
@@ -157,6 +161,8 @@ What this subject gets right is that reliable symbolic update has physical cost.
 
 What it gets wrong or overstates, when careless, is the inference from logical irreversibility to a universal device-independent cost. The Shannon expression for uncertainty over symbols is not automatically a Clausius, Boltzmann, Gibbs, or device entropy. A Maxwell-demon analysis that counts the target molecule while idealizing away the partition, actuator, sensor, memory, and suppressed fluctuations has not closed the thermodynamic ledger. It has selected one part of the physical record and treated the rest as free.
 
+The demon case has a useful two-way split. If the device never resets, it consumes a low-entropy blank-memory record and turns that record into a pressure, temperature, or sorting resource. No law has been escaped; one resource has been converted into another. If the device must operate cyclically, then the memory, actuator, partition, target system, and environment must all return to the same physical record. In classical comparison language, a cyclic many-to-one sorting map would shrink phase-space volume; in quantum comparison language, it would compress a broad Hilbert-space subspace into a smaller one under isolated evolution. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, the same mistake is a split-record error: the target record is narrowed while the memory and boundary costs are silently excluded.
+
 ### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **aligned as a constraint and corrective as ontology**. The framework should preserve the thermodynamic pressure: records, measurement, memory reset, and computation require physical work and entropy accounting. It should not promote bit logic, Shannon entropy, or computational description into substrate ontology.
@@ -232,6 +238,25 @@ What this subject gets right is decisive. It keeps open the possibility that fin
 The main overstatement arises when discreteness is too quickly equated with digitality. A discrete substrate need not behave like a register of symbolic bits, and it need not inherit the semantic baggage of computer architecture. Likewise, a graph is not yet a physical ontology unless one can say what its nodes and links are, how delayed influence propagates through them, and why effective symmetries arise. The subject therefore risks replacing one abstraction with another if its combinatorial objects are left physically underinterpreted.
 
 The same caution applies to deterministic cellular-automaton programs. A reversible local update rule can be a useful comparison model because it forces the theory to state a microstate, an update law, and a recovery burden. It does not follow that the physical substrate is a literal grid, a register, or an integer-only state table. To become physics rather than representation, such a model must identify the entities being updated, the Noether sea through which influence propagates, the conservation ledgers it preserves, and the route by which quantum statistics, Standard Model parameters, GR-like behavior, and strong-field thermodynamics are recovered.
+
+This is the right place to absorb 't Hooft's strongest discrete-substrate pressure. The claim that real-number continua may be effective rather than fundamental is a useful warning against treating differential form as ontology. The excess is the further inference that only integer cellular-automaton states can be physical. $\mathbb{A}\mathbb{A}\mathbb{A}$ can accept continuum suspicion while choosing a different substrate: architrinos in a Euclidean void, causal wakes at finite speed, and Noether sea organization whose observer-level summaries may be continuous even when assembly records are discrete.
+
+A discrete or digital comparison program earns transition relevance only if its recovery residuals close as a vector, not one observable at a time:
+
+$$
+\mathcal{R}_{\mathrm{disc}}
+=
+\max\left(
+\mathcal{R}_{\mathrm{Born}},
+\mathcal{R}_{\mathrm{SM}},
+\mathcal{R}_{\mathrm{GR}},
+\mathcal{R}_{\mathrm{BH}},
+\mathcal{R}_{\mathrm{NS}}
+\right)
+\le 1
+$$
+
+Here the terms represent Born-rule statistics, Standard Model parameter and scattering recovery, relativistic/gravitational benchmarks, black-hole thermodynamic or information constraints, and no-signaling behavior. This residual is not a new gate; it states why continuum criticism alone is insufficient. The proposed substrate must recover the mature effective stack.
 
 Another tension concerns empirical recovery. Many discrete programs excel at conceptual resistance to the continuum, but fewer provide a compelling, fully worked derivation of the observed low-energy world. What they get wrong or overstate is sometimes not the discrete hypothesis itself, but the ease with which metric behavior, quantum statistics, relativistic invariance, and cosmological structure are supposed to descend from a chosen microscopic scaffold. Discreteness is a direction of repair, not a completed ontology.
 

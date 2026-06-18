@@ -43,6 +43,10 @@ export function createMarkdownRuntime(deps) {
       .replace(/>/g, "&gt;");
   }
 
+  function escapeHtmlAttribute(text) {
+    return escapeHtml(text).replace(/"/g, "&quot;");
+  }
+
   function normalizeRepoPath(value) {
     return String(value)
       .replace(/\\/g, "/")
@@ -119,25 +123,39 @@ export function createMarkdownRuntime(deps) {
     const protectedSegments = [];
     let protectedIndex = 0;
     const makeToken = () => `MATHSEGMENTTOKEN${protectedIndex++}X`;
-    const stash = (raw) => {
+    const stash = (raw, math, display) => {
       const token = makeToken();
-      protectedSegments.push({ token, raw });
+      protectedSegments.push({ token, raw, math, display });
       return token;
     };
 
     let output = markdown;
-    output = output.replace(/\$\$[\s\S]*?\$\$/g, (match) => stash(match));
-    output = output.replace(/\\\[[\s\S]*?\\\]/g, (match) => stash(match));
-    output = output.replace(/\\\([\s\S]*?\\\)/g, (match) => stash(match));
+    output = output.replace(/\$\$([\s\S]*?)\$\$/g, (match, math) => `\n\n${stash(match, math, true)}\n\n`);
+    output = output.replace(/\\\[([\s\S]*?)\\\]/g, (match, math) => `\n\n${stash(match, math, true)}\n\n`);
+    output = output.replace(/\\\(([\s\S]*?)\\\)/g, (match, math) =>
+      stash(match, math, false)
+    );
     output = output.replace(
       /(^|[^\\$])\$(?!\$)([^$\n]|\\\$)+?\$(?!\$)/g,
       (match, prefix) => {
         const math = match.slice(prefix.length);
-        return `${prefix}${stash(math)}`;
+        return `${prefix}${stash(math, math.slice(1, -1), false)}`;
       }
     );
 
     return { markdown: output, protectedSegments };
+  }
+
+  function renderMathSegmentFallback(segment) {
+    return escapeHtml(segment.math || segment.raw || "");
+  }
+
+  function renderMathSegmentHtml(segment) {
+    const tagName = segment.display ? "div" : "span";
+    const className = segment.display
+      ? "markdown-math-segment markdown-math-block"
+      : "markdown-math-segment markdown-math-inline";
+    return `<${tagName} class="${className}" data-math-display="${segment.display ? "true" : "false"}" data-math-tex="${escapeHtmlAttribute(segment.math || "")}">${renderMathSegmentFallback(segment)}</${tagName}>`;
   }
 
   function restoreMathSegments(html, protectedSegments) {
@@ -145,8 +163,12 @@ export function createMarkdownRuntime(deps) {
       return html;
     }
     let restored = html;
-    protectedSegments.forEach(({ token, raw }) => {
-      restored = restored.split(token).join(raw);
+    protectedSegments.forEach((segment) => {
+      const { token } = segment;
+      const segmentHtml = renderMathSegmentHtml(segment);
+      const paragraphPattern = new RegExp(`<p>\\s*${token}\\s*</p>`, "g");
+      restored = restored.replace(paragraphPattern, segmentHtml);
+      restored = restored.split(token).join(segmentHtml);
     });
     return restored;
   }
@@ -316,8 +338,51 @@ export function createMarkdownRuntime(deps) {
     if (!markdownBody) {
       return false;
     }
+    if (
+      typeof markdownBody.querySelectorAll === "function" &&
+      markdownBody.querySelectorAll(".markdown-math-segment:not(.is-rendered)").length > 0
+    ) {
+      return true;
+    }
     const text = `${markdownBody.textContent ?? ""}\n${markdownBody.innerHTML ?? ""}`;
-    return text.includes("$") || text.includes("\\[") || text.includes("\\(");
+    return (
+      text.includes("$") ||
+      text.includes("\\[") ||
+      text.includes("\\(") ||
+      (text.includes("markdown-math-segment") && !text.includes("is-rendered"))
+    );
+  }
+
+  function renderProtectedMathSegments() {
+    if (!markdownBody || typeof markdownBody.querySelectorAll !== "function") {
+      return true;
+    }
+    const pendingSegments = [
+      ...markdownBody.querySelectorAll(".markdown-math-segment:not(.is-rendered)"),
+    ];
+    if (!pendingSegments.length) {
+      return true;
+    }
+    const katexRenderer = getBrowserWindow()?.katex;
+    if (!katexRenderer || typeof katexRenderer.renderToString !== "function") {
+      return false;
+    }
+    pendingSegments.forEach((segment) => {
+      const math = segment.dataset.mathTex || "";
+      const displayMode = segment.dataset.mathDisplay === "true";
+      try {
+        segment.innerHTML = katexRenderer.renderToString(math, {
+          displayMode,
+          throwOnError: false,
+          strict: "ignore",
+        });
+        segment.classList.add("is-rendered");
+      } catch (error) {
+        segment.textContent = math;
+        segment.classList.add("is-rendered", "has-render-error");
+      }
+    });
+    return true;
   }
 
   function typesetMarkdown() {
@@ -327,9 +392,13 @@ export function createMarkdownRuntime(deps) {
     if (!markdownBodyNeedsMathTypesetting()) {
       return true;
     }
+    const protectedMathRendered = renderProtectedMathSegments();
+    if (!protectedMathRendered) {
+      return false;
+    }
     const katexRender = getBrowserWindow()?.renderMathInElement;
     if (typeof katexRender !== "function") {
-      return false;
+      return !markdownBodyNeedsMathTypesetting();
     }
     try {
       katexRender(markdownBody, {

@@ -145,6 +145,36 @@ $$
 $$
 Otherwise the effective chart has hidden a record-bearing basin behind a coordinate choice.
 
+## Transition-Record Matrix Recovery
+
+Heisenberg-style matrix mechanics is retained here as a record-channel lesson, not as substrate ontology. A matrix entry should be read as a transition record between calibrated effective states under a declared apparatus channel. The underlying object remains the deterministic assembly, causal-wake, apparatus, and Noether sea flow; the matrix is the observer-level compression that survives after the basins, access region, and record window have been fixed.
+
+For a declared setup $\theta=(\mathcal{Q},\mathcal{K},W,T)$, let $\{B_m\}_{m\in\mathcal I_\theta}$ be the recordable basin family in the retained coarse state space, and let $R_{mn}$ be the calibrated transition record that reports a move from basin $B_m$ at $t_0$ to basin $B_n$ at $t_1\in T$. The transition-record matrix is
+$$
+M^\theta_{mn}
+=
+\mu_{*,T}\!\left(
+\left\{\gamma\mid
+\gamma(t_0)\in B_m,\ \gamma(t_1)\in B_n,\ R_{mn}(\gamma)=1
+\right\}
+\right)
+$$
+with $\widehat M_\theta=(M^\theta_{mn})_{m,n\in\mathcal I_\theta}$. This is not a primitive probability table. It is the pushed-forward finite-window basin measure for the same apparatus kernel, retained path-history data, and record-autonomy criteria used elsewhere in this chapter.
+
+Sequential noncommutativity is then an order-dependence claim about physical record channels. For two calibrated apparatus operations $A$ and $B$, define
+$$
+\Delta_{\mathrm{seq}}(A,B;\theta)
+=
+\left\|
+M^\theta_{B\circ A}
+-
+M^\theta_{A\circ B}
+\right\|_{\mathcal{K},W,T}
+$$
+where $M^\theta_{B\circ A}$ is extracted from the same substrate flow after the apparatus kernel for $A$ is applied and recorded before $B$, and $M^\theta_{A\circ B}$ reverses that sequence. A nonzero residual can recover the effective meaning of noncommuting observables: the two sequences couple to different basin boundaries, path-history records, or apparatus recoil channels. If this residual vanishes in a benchmark where standard quantum mechanics requires order dependence, the operator reconstruction has compressed away physically relevant record-channel structure.
+
+This recovery target connects to the locality, representation, quantization-domain, and apparatus-context residuals above. It does not add a separate validation bureaucracy; it states the mathematical object that must be extracted before a Heisenberg-style matrix is treated as a valid effective operator rather than as an assumed formal layer.
+
 ## Subsystem-Partition Guardrail
 
 Entanglement and subsystem claims require the same discipline. In relativistic quantum-field descriptions, a change of observer, access region, or mode decomposition can change the effective subsystem split and therefore the entanglement assigned to the record. That dependence is useful comparison mathematics, but it is not a license to promote the chosen tensor factorization into substrate ontology.
@@ -410,6 +440,7 @@ Decoherence is the continuous loss of path-history coherence due to unresolved f
 
 * **Gate Latency Scaling:** Because any newly established causal-wake coupling is limited by $c_f$, a two-qubit gate such as CNOT should acquire a distance-dependent setup or fidelity timescale with a lower bound of order $\Delta t \ge d/c_f$. Existing correlations inherited from a shared preparation event are a separate case and should not be described as newly transmitted during the gate.
 * **QFT Locality Residual:** In any regime claimed to recover local QFT, the normalized commutator residual $\Delta_{\mathrm{loc}}(A,B;I)$ must remain below $\epsilon_{\mathrm{loc}}$ for calibrated record regions outside the recovered effective causal cone. Passing this test is an effective-algebra result, not a promotion of continuum-field ontology.
+* **Transition-Record Matrix Recovery:** A Heisenberg-style matrix $\widehat M_\theta$ is admissible only when its entries are recovered as finite-window basin measures for calibrated transition records. The sequence residual $\Delta_{\mathrm{seq}}(A,B;\theta)$ should reproduce order dependence for benchmark noncommuting observables without importing matrix ontology as a primitive layer.
 * **Quantization-Domain Residual:** In any regime claimed to recover quantum operators from a classical or coarse-grained chart, the admissible observable set $\mathcal{A}_{\mathcal{Q},\mathcal{K},W,T}$ and residual $\Delta_{\mathrm{qmap}}$ must be reported. A global bracket-to-commutator claim over all smooth functions is rejected by the no-go ledger rather than treated as an open $\mathbb{A}\mathbb{A}\mathbb{A}$ obligation.
 * **Observable-Domain Residual:** When two effective descriptions are claimed to be equivalent, the declared observable set and residual $\Delta_{\mathrm{obs}}$ must be reported. A small value licenses only record-channel equivalence on that apparatus window, not a substrate claim about auxiliary dimensions or continuum field objects.
 * **Coherence Limits:** The model predicts a medium-dependent contribution to coherence loss, scaling with the legacy physical density variable $\rho_{\text{NS}}(\mathbf{x},t)$ or normalized density $n(\mathbf{x},t)$. This is a closure target alongside standard thermal, electromagnetic, and apparatus-noise channels, not an already-derived absolute bound.

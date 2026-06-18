@@ -1,12 +1,19 @@
 import {
+  clonePhotonState,
   normalizePhotonState,
   wrapPhotonTime,
 } from "./PhotonStateRuntime.js";
 import {
   PHOTON_DEFAULT_PRESET_ID,
+  PHOTON_NAMED_PRESETS,
   createPhotonPresetState,
   getPhotonPreset,
 } from "./PhotonPresetRuntime.js";
+import {
+  createPhotonConfigurationSearchResults,
+  parsePhotonSearchResultsJson,
+  serializePhotonSearchResults,
+} from "./PhotonSearchRuntime.js";
 import { createMarkdownRuntime } from "../../runtime/MarkdownRuntime.js";
 import { extractMarkdownSection } from "../../services/MarkdownPolicyService.js";
 import { createPhotonControlsRuntime } from "./PhotonControlsRuntime.js";
@@ -268,6 +275,43 @@ function createPhotonMarkdownRuntime({
   return markdownRuntime;
 }
 
+function cloneRuntimePhotonState(state) {
+  return normalizePhotonState(clonePhotonState(normalizePhotonState(state)));
+}
+
+function createPhotonSlug(value, fallback = "configuration") {
+  const slug = String(value ?? "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 42);
+  return slug || fallback;
+}
+
+function createPhotonDownload(documentLike, windowLike, filename, text) {
+  const BlobCtor = windowLike?.Blob ?? globalThis.Blob;
+  const urlApi = windowLike?.URL ?? globalThis.URL;
+  if (!BlobCtor || !urlApi?.createObjectURL || !documentLike?.createElement) {
+    return false;
+  }
+  const blob = new BlobCtor([text], { type: "application/json" });
+  const url = urlApi.createObjectURL(blob);
+  const link = documentLike.createElement("a");
+  link.href = url;
+  link.download = filename;
+  link.hidden = true;
+  documentLike.body?.append(link);
+  link.click();
+  link.remove();
+  const revoke = () => urlApi.revokeObjectURL?.(url);
+  if (typeof windowLike?.setTimeout === "function") {
+    windowLike.setTimeout(revoke, 0);
+  } else {
+    revoke();
+  }
+  return true;
+}
+
 export function createPhotonRuntime({
   documentLike = globalThis.document,
   windowLike = globalThis.window,
@@ -304,6 +348,11 @@ export function createPhotonRuntime({
 
   let loadedPresetId = PHOTON_DEFAULT_PRESET_ID;
   let state = createPhotonPresetState(loadedPresetId);
+  let sessionPresets = [];
+  let searchResults = [];
+  let searchStatus = "";
+  let searchPreviewSnapshot = null;
+  let promotedPresetCounter = 1;
   let modelTime = 0;
   let lastFrame = 0;
   let controlsRuntime = null;
@@ -339,7 +388,210 @@ export function createPhotonRuntime({
     controlsRuntime?.sync(state);
   }
 
+  function getPresetOptions() {
+    return [
+      ...PHOTON_NAMED_PRESETS,
+      ...sessionPresets.map((preset) => ({ id: preset.id, name: preset.name })),
+    ];
+  }
+
+  function findSessionPreset(presetId) {
+    return sessionPresets.find((preset) => preset.id === presetId);
+  }
+
+  function createStateForPresetId(presetId) {
+    const sessionPreset = findSessionPreset(presetId);
+    if (sessionPreset) {
+      return cloneRuntimePhotonState(sessionPreset.state);
+    }
+    return createPhotonPresetState(getPhotonPreset(presetId).id);
+  }
+
+  function clearSearchPreview() {
+    searchPreviewSnapshot = null;
+  }
+
+  function findSearchResult(resultId) {
+    return searchResults.find((result) => result.id === resultId);
+  }
+
+  function setSearchStatus(nextStatus) {
+    searchStatus = String(nextStatus ?? "");
+    syncControls();
+  }
+
+  function setStateFromSearchResult(result, { play = false, preview = false } = {}) {
+    if (!result) {
+      return;
+    }
+    if (preview && !searchPreviewSnapshot) {
+      searchPreviewSnapshot = {
+        state: cloneRuntimePhotonState(state),
+        loadedPresetId,
+        modelTime,
+      };
+    }
+    if (!preview) {
+      clearSearchPreview();
+    }
+    state = cloneRuntimePhotonState(result.state);
+    state.time.paused = !play;
+    modelTime = 0;
+    syncControls();
+    draw();
+  }
+
+  function runConfigurationSearch() {
+    clearSearchPreview();
+    setSearchStatus("Searching configurations...");
+    const schedule =
+      typeof windowLike?.setTimeout === "function"
+        ? windowLike.setTimeout.bind(windowLike)
+        : setTimeout;
+    schedule(() => {
+      try {
+        searchResults = createPhotonConfigurationSearchResults(state);
+        searchStatus = `${searchResults.length} configurations found.`;
+      } catch (error) {
+        searchStatus = `Search failed: ${error?.message ?? "unknown error"}`;
+      }
+      syncControls();
+      draw();
+    });
+  }
+
+  function restoreSearchPreview() {
+    if (!searchPreviewSnapshot) {
+      return;
+    }
+    state = cloneRuntimePhotonState(searchPreviewSnapshot.state);
+    loadedPresetId = searchPreviewSnapshot.loadedPresetId;
+    modelTime = searchPreviewSnapshot.modelTime;
+    clearSearchPreview();
+    syncControls();
+    draw();
+  }
+
+  function previewSearchResult(resultId) {
+    setStateFromSearchResult(findSearchResult(resultId), { preview: true });
+    setSearchStatus("Previewing search result.");
+  }
+
+  function loadSearchResult(resultId) {
+    setStateFromSearchResult(findSearchResult(resultId), { preview: false });
+    setSearchStatus("Loaded search result as editable settings.");
+  }
+
+  function playSearchResult(resultId) {
+    setStateFromSearchResult(findSearchResult(resultId), { play: true });
+    setSearchStatus("Loaded and playing search result.");
+  }
+
+  function renameSearchResult(resultId, name) {
+    const result = findSearchResult(resultId);
+    if (!result) {
+      return;
+    }
+    result.name = String(name ?? "").trim() || result.name;
+    const promotedPreset = findSessionPreset(result.promotedPresetId);
+    if (promotedPreset) {
+      promotedPreset.name = result.name;
+    }
+    syncControls();
+  }
+
+  function toggleSearchResultSelected(resultId, selected) {
+    const result = findSearchResult(resultId);
+    if (!result) {
+      return;
+    }
+    result.selected = !!selected;
+    syncControls();
+  }
+
+  function deleteSearchResult(resultId) {
+    searchResults = searchResults.filter((result) => result.id !== resultId);
+    if (searchResults.length === 0) {
+      searchStatus = "No search results.";
+    }
+    syncControls();
+  }
+
+  function promoteSearchResult(resultId) {
+    const result = findSearchResult(resultId);
+    if (!result) {
+      return;
+    }
+    if (result.promotedPresetId && findSessionPreset(result.promotedPresetId)) {
+      loadedPresetId = result.promotedPresetId;
+      state = createStateForPresetId(loadedPresetId);
+      modelTime = 0;
+      clearSearchPreview();
+      syncControls();
+      draw();
+      return;
+    }
+    const id = `search_preset_${promotedPresetCounter}_${createPhotonSlug(result.name)}`;
+    promotedPresetCounter += 1;
+    sessionPresets.push({
+      id,
+      name: result.name,
+      state: cloneRuntimePhotonState(result.state),
+    });
+    result.promotedPresetId = id;
+    loadedPresetId = id;
+    state = createStateForPresetId(id);
+    modelTime = 0;
+    clearSearchPreview();
+    searchStatus = `Promoted ${result.name} to presets.`;
+    syncControls();
+    draw();
+  }
+
+  function exportSearchResults(resultsToExport = searchResults) {
+    const safeResults = Array.isArray(resultsToExport) ? resultsToExport : [];
+    const json = serializePhotonSearchResults(safeResults);
+    if (safeResults.length > 0) {
+      createPhotonDownload(
+        documentLike,
+        windowLike,
+        `photon-search-results-${safeResults.length}.json`,
+        json
+      );
+    }
+    searchStatus = safeResults.length > 0
+      ? `Exported ${safeResults.length} configuration${safeResults.length === 1 ? "" : "s"}.`
+      : "No search results to export.";
+    syncControls();
+    return json;
+  }
+
+  function exportSelectedSearchResults() {
+    return exportSearchResults(searchResults.filter((result) => result.selected !== false));
+  }
+
+  async function importSearchResults(fileOrText) {
+    try {
+      const text = typeof fileOrText === "string"
+        ? fileOrText
+        : await fileOrText.text();
+      const imported = parsePhotonSearchResultsJson(text).map((result, index) => ({
+        ...result,
+        id: `imported-${Date.now()}-${index + 1}`,
+        selected: true,
+        promotedPresetId: "",
+      }));
+      searchResults = [...imported, ...searchResults];
+      searchStatus = `Imported ${imported.length} configuration${imported.length === 1 ? "" : "s"}.`;
+    } catch (error) {
+      searchStatus = `Import failed: ${error?.message ?? "invalid file"}`;
+    }
+    syncControls();
+    draw();
+  }
+
   function setState(nextState) {
+    clearSearchPreview();
     state = normalizePhotonState(nextState);
     syncControls();
     draw();
@@ -351,6 +603,7 @@ export function createPhotonRuntime({
   }
 
   function resetParameters() {
+    clearSearchPreview();
     loadedPresetId = PHOTON_DEFAULT_PRESET_ID;
     state = createPhotonPresetState(loadedPresetId);
     modelTime = 0;
@@ -359,15 +612,18 @@ export function createPhotonRuntime({
   }
 
   function applyPreset(presetId) {
-    loadedPresetId = getPhotonPreset(presetId).id;
-    state = createPhotonPresetState(loadedPresetId);
+    clearSearchPreview();
+    const hasPreset = getPresetOptions().some((preset) => preset.id === presetId);
+    loadedPresetId = hasPreset ? presetId : PHOTON_DEFAULT_PRESET_ID;
+    state = createStateForPresetId(loadedPresetId);
     modelTime = 0;
     syncControls();
     draw();
   }
 
   function resetPreset() {
-    state = createPhotonPresetState(loadedPresetId);
+    clearSearchPreview();
+    state = createStateForPresetId(loadedPresetId);
     modelTime = 0;
     syncControls();
     draw();
@@ -421,8 +677,24 @@ export function createPhotonRuntime({
       onResetParameters: resetParameters,
       onTogglePause: togglePause,
       getPresetId: () => loadedPresetId,
+      getPresetOptions,
       onPresetChange: applyPreset,
       onResetPreset: resetPreset,
+      getSearchResults: () => searchResults,
+      getSearchStatus: () => searchStatus,
+      isPreviewingSearchResult: () => Boolean(searchPreviewSnapshot),
+      onSearchConfigurations: runConfigurationSearch,
+      onRestoreSearchPreview: restoreSearchPreview,
+      onPreviewSearchResult: previewSearchResult,
+      onLoadSearchResult: loadSearchResult,
+      onPlaySearchResult: playSearchResult,
+      onPromoteSearchResult: promoteSearchResult,
+      onDeleteSearchResult: deleteSearchResult,
+      onRenameSearchResult: renameSearchResult,
+      onToggleSearchResultSelected: toggleSearchResultSelected,
+      onExportSearchResults: () => exportSearchResults(searchResults),
+      onExportSelectedSearchResults: exportSelectedSearchResults,
+      onImportSearchResults: importSearchResults,
     });
     homeButton.addEventListener("click", () => {
       windowLike.location.assign(homeHref);
@@ -472,6 +744,20 @@ export function createPhotonRuntime({
     getLoadedPresetId: () => loadedPresetId,
     applyPreset,
     resetPreset,
+    getPresetOptions,
+    getSearchResults: () => searchResults,
+    runConfigurationSearch,
+    previewSearchResult,
+    restoreSearchPreview,
+    loadSearchResult,
+    playSearchResult,
+    promoteSearchResult,
+    renameSearchResult,
+    toggleSearchResultSelected,
+    deleteSearchResult,
+    exportSearchResults,
+    exportSelectedSearchResults,
+    importSearchResults,
     getModelTime: () => modelTime,
     resetAnimation,
     resetParameters,

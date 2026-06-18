@@ -46,6 +46,26 @@ Presets are starting points for inspection, not certified photon branches. They 
 | Phase-offset stress | All binaries enabled, nonzero observer position, small $\Delta x$, and nontrivial phase offsets. | A stress test for the causal-root solver and polarization fit. |
 | Layer-radius stress | All binaries enabled with deliberately uneven I/M/O radii. | A stress test for radius sensitivity and side-view scaling. |
 
+## Configuration Search
+
+The Search configurations button looks for photon settings that are worth inspecting more closely. It starts from the current app settings, then tries nearby or systematic variations of the enabled binaries, I/M/O frequency powers, radius lanes, phase offsets, $\Delta x$, Virtual Observer position, Analyzer angle, and available speed mode.
+
+The search generates a results list for the current session. Each result should include a short name, the full settings snapshot, the main plot and polarization summary, the diagnostics that made it stand out, and a plain-language reason to inspect it. Loading a result applies its settings to the app so it can be viewed, played, edited, or compared against a named preset.
+
+Useful results can be exported as JSON. Exported settings can later be reviewed and, when they are worth keeping, incorporated into the named preset set. Until a result is promoted that way, treat it as a session finding rather than a durable app preset.
+
+The search should flag a configuration as interesting when it has one or more of these traits:
+
+- Clean polarization behavior: strong linear, circular, or elliptical fit, low fit residual, and stable phase lag across cycles.
+- Strong cancellation: many active binaries but a small net transverse field at the Virtual Observer.
+- Sharp transitions: small changes in phase, $\Delta x$, Virtual Observer position, or radius produce a large change in the fitted polarization.
+- Robust patterns: the same behavior survives small nudges to the settings instead of depending on one exact slider position.
+- Causal-root structure: low missed-source count, healthy Jacobian values, repeatable phase-at-hit families, or organized same-source and partner-hit roots.
+- Simple explanations: fewer active binaries, integer frequency ratios, simple phase offsets, or clean leading/trailing symmetry are preferred when the diagnostic quality is similar.
+- Diversity: the results list should avoid many tiny variations of the same pattern and keep representative examples from different pattern families.
+
+The search should mark numerically suspect cases as suspect rather than good. Missed roots, very small Jacobian values, large delay-solve gaps, or unstable diagnostics can still be useful clues, but they should not be confused with clean polarization evidence.
+
 ## Geometry Controls
 
 The $\Delta x$ control changes the center-to-center distance between the two vertical traces in the side view as a ratio relative to the current reference radius $r_{\mathrm{ref}}$. The reference radius is the largest enabled binary radius, or the largest configured binary radius if every binary is disabled. The range is $10^{-10}r$ to $10^5r$, with selectable `1` through `9` coefficients in each decade. The absolute separation is $s = r_{\mathrm{ref}} 10^q$, where $q$ is the selected log value. The swarm centers sit at $x = -s/2$ and $x = +s/2$. The control does not change the spacing between the two face-on circular swarm views.

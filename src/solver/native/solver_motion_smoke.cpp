@@ -1,0 +1,243 @@
+#include "architrino/solver/BinaryLayouts.hpp"
+#include "architrino/solver/MotionSampler.hpp"
+#include "architrino/solver/SolverCAbi.hpp"
+
+#include <cmath>
+#include <iostream>
+
+namespace {
+
+bool nearly_equal(double left, double right, double tolerance = 1e-12) {
+  return std::abs(left - right) <= tolerance;
+}
+
+}  // namespace
+
+int main() {
+  static_assert(sizeof(architrino::solver::MotionFrameRowF64) == 88);
+  static_assert(sizeof(ArchitrinoSolverMotionIntegrationRequestF64) == 120);
+
+  const architrino::solver::LinearPathSegment segment{
+      "motion-path",
+      0.0,
+      2.0,
+      architrino::solver::Vector3{1.0, 2.0, 3.0},
+      architrino::solver::Vector3{2.0, 0.5, -1.0},
+      architrino::solver::NumericType::F64,
+      1e-12,
+  };
+  const architrino::solver::MotionSampleResult result =
+      architrino::solver::sample_linear_motion(architrino::solver::MotionSampleRequest{
+          segment,
+          1234,
+          0.0,
+          2.0,
+          1.0,
+          9,
+      });
+  const architrino::solver::MotionPathHistoryResult linearPathHistory =
+      architrino::solver::sample_linear_path_history(architrino::solver::MotionSampleRequest{
+          segment,
+          1234,
+          0.0,
+          2.0,
+          1.0,
+          9,
+      });
+  const architrino::solver::BinaryLayoutDescriptor layout =
+      architrino::solver::binary_layout_descriptor(architrino::solver::BinaryLayoutId::FrameBufferV1);
+
+  architrino::solver::MotionSampleRequest invalidRequest{
+      segment,
+      1234,
+      -1.0,
+      2.0,
+      1.0,
+      0,
+  };
+  const architrino::solver::MotionSampleResult invalid =
+      architrino::solver::sample_linear_motion(invalidRequest);
+  ArchitrinoSolverMotionSampleRequestF64 abiRequest{
+      ArchitrinoSolverLinearPathSegmentF64{
+          0.0,
+          2.0,
+          ArchitrinoSolverVector3F64{1.0, 2.0, 3.0},
+          ArchitrinoSolverVector3F64{2.0, 0.5, -1.0},
+          1e-12,
+      },
+      1234,
+      0.0,
+      2.0,
+      1.0,
+      9,
+      0,
+  };
+  ArchitrinoSolverMotionFrameRowF64 abiFrames[3]{};
+  int abiFrameCount = 0;
+  const int abiStatus =
+      architrino_solver_sample_linear_motion_f64(&abiRequest, abiFrames, 3, &abiFrameCount);
+  ArchitrinoSolverPathHistoryRowF64 abiLinearPathRows[1]{};
+  int abiLinearPathRowCount = 0;
+  const int abiLinearPathStatus = architrino_solver_sample_linear_path_history_f64(
+      &abiRequest,
+      abiLinearPathRows,
+      1,
+      &abiLinearPathRowCount);
+  const architrino::solver::MotionSampleResult integrated =
+      architrino::solver::integrate_constant_acceleration_motion(
+          architrino::solver::MotionIntegrationRequest{
+              4321,
+              0.0,
+              2.0,
+              1.0,
+              architrino::solver::Vector3{1.0, 1.0, 1.0},
+              architrino::solver::Vector3{2.0, 0.0, -1.0},
+              architrino::solver::Vector3{0.5, 1.0, 2.0},
+              1e-11,
+              1,
+              11,
+          });
+  const architrino::solver::MotionPathHistoryResult integratedPathHistory =
+      architrino::solver::integrate_constant_acceleration_path_history(
+          architrino::solver::MotionIntegrationRequest{
+              4321,
+              0.0,
+              2.0,
+              1.0,
+              architrino::solver::Vector3{1.0, 1.0, 1.0},
+              architrino::solver::Vector3{2.0, 0.0, -1.0},
+              architrino::solver::Vector3{0.5, 1.0, 2.0},
+              1e-11,
+              1,
+              11,
+          });
+  ArchitrinoSolverMotionIntegrationRequestF64 abiIntegrationRequest{
+      4321,
+      0.0,
+      2.0,
+      1.0,
+      ArchitrinoSolverVector3F64{1.0, 1.0, 1.0},
+      ArchitrinoSolverVector3F64{2.0, 0.0, -1.0},
+      ArchitrinoSolverVector3F64{0.5, 1.0, 2.0},
+      1e-11,
+      1,
+      11,
+  };
+  ArchitrinoSolverMotionFrameRowF64 abiIntegratedFrames[3]{};
+  int abiIntegratedFrameCount = 0;
+  const int abiIntegrationStatus = architrino_solver_integrate_constant_acceleration_motion_f64(
+      &abiIntegrationRequest,
+      abiIntegratedFrames,
+      3,
+      &abiIntegratedFrameCount);
+  ArchitrinoSolverPathHistoryRowF64 abiIntegratedPathRows[2]{};
+  int abiIntegratedPathRowCount = 0;
+  const int abiIntegrationPathStatus =
+      architrino_solver_integrate_constant_acceleration_path_history_f64(
+          &abiIntegrationRequest,
+          abiIntegratedPathRows,
+          2,
+          &abiIntegratedPathRowCount);
+  const ArchitrinoSolverAbiInfo abiInfo = architrino_solver_abi_info();
+  const double expectedPathInterpolationBound = 1e-11 + 0.125 * std::sqrt(5.25);
+
+  const bool ok =
+      result.validation.ok &&
+      result.frames.size() == 3 &&
+      result.frames[0].pathKey == 1234 &&
+      result.frames[0].frameIndex == 0 &&
+      result.frames[0].stateFlags == 9 &&
+      nearly_equal(result.frames[0].positionX, 1.0) &&
+      nearly_equal(result.frames[1].positionX, 3.0) &&
+      nearly_equal(result.frames[2].positionX, 5.0) &&
+      nearly_equal(result.frames[2].positionY, 3.0) &&
+      nearly_equal(result.frames[2].positionZ, 1.0) &&
+      nearly_equal(result.frames[2].velocityX, 2.0) &&
+      layout.rowSizeBytes == 88 &&
+      layout.name == "frame_buffer.v1" &&
+      !invalid.validation.ok &&
+      linearPathHistory.validation.ok &&
+      linearPathHistory.rows.size() == 1 &&
+      linearPathHistory.rows[0].pathKey == 1234 &&
+      linearPathHistory.rows[0].stateFlags == 9 &&
+      nearly_equal(linearPathHistory.rows[0].startTime, 0.0) &&
+      nearly_equal(linearPathHistory.rows[0].endTime, 2.0) &&
+      nearly_equal(linearPathHistory.rows[0].startX, 1.0) &&
+      nearly_equal(linearPathHistory.rows[0].startY, 2.0) &&
+      nearly_equal(linearPathHistory.rows[0].startZ, 3.0) &&
+      nearly_equal(linearPathHistory.rows[0].velocityX, 2.0) &&
+      nearly_equal(linearPathHistory.rows[0].velocityY, 0.5) &&
+      nearly_equal(linearPathHistory.rows[0].velocityZ, -1.0) &&
+      abiStatus == 0 &&
+      abiFrameCount == 3 &&
+      abiFrames[2].path_key == 1234 &&
+      abiFrames[2].state_flags == 9 &&
+      nearly_equal(abiFrames[2].position_x, 5.0) &&
+      nearly_equal(abiFrames[2].position_y, 3.0) &&
+      nearly_equal(abiFrames[2].position_z, 1.0) &&
+      abiLinearPathStatus == 0 &&
+      abiLinearPathRowCount == 1 &&
+      abiLinearPathRows[0].path_key == 1234 &&
+      abiLinearPathRows[0].state_flags == 9 &&
+      nearly_equal(abiLinearPathRows[0].velocity_x, 2.0) &&
+      nearly_equal(abiLinearPathRows[0].velocity_y, 0.5) &&
+      nearly_equal(abiLinearPathRows[0].velocity_z, -1.0) &&
+      integrated.validation.ok &&
+      integrated.frames.size() == 3 &&
+      integrated.frames[2].pathKey == 4321 &&
+      integrated.frames[2].stateFlags == 11 &&
+      integrated.frames[2].reserved0 == 1 &&
+      nearly_equal(integrated.frames[2].positionX, 6.0) &&
+      nearly_equal(integrated.frames[2].positionY, 3.0) &&
+      nearly_equal(integrated.frames[2].positionZ, 3.0) &&
+      nearly_equal(integrated.frames[2].velocityX, 3.0) &&
+      nearly_equal(integrated.frames[2].velocityY, 2.0) &&
+      nearly_equal(integrated.frames[2].velocityZ, 3.0) &&
+      nearly_equal(integrated.frames[2].errorBound, 1e-11) &&
+      integratedPathHistory.validation.ok &&
+      integratedPathHistory.rows.size() == 2 &&
+      integratedPathHistory.rows[0].pathKey == 4321 &&
+      integratedPathHistory.rows[0].segmentIndex == 0 &&
+      integratedPathHistory.rows[0].stateFlags == 11 &&
+      integratedPathHistory.rows[0].reserved0 == 1 &&
+      nearly_equal(integratedPathHistory.rows[0].startTime, 0.0) &&
+      nearly_equal(integratedPathHistory.rows[0].endTime, 1.0) &&
+      nearly_equal(integratedPathHistory.rows[0].startX, 1.0) &&
+      nearly_equal(integratedPathHistory.rows[0].startY, 1.0) &&
+      nearly_equal(integratedPathHistory.rows[0].startZ, 1.0) &&
+      nearly_equal(integratedPathHistory.rows[0].velocityX, 2.25) &&
+      nearly_equal(integratedPathHistory.rows[0].velocityY, 0.5) &&
+      nearly_equal(integratedPathHistory.rows[0].velocityZ, 0.0) &&
+      nearly_equal(integratedPathHistory.rows[0].errorBound, expectedPathInterpolationBound) &&
+      abiIntegrationStatus == 0 &&
+      abiIntegratedFrameCount == 3 &&
+      abiIntegratedFrames[2].path_key == 4321 &&
+      abiIntegratedFrames[2].state_flags == 11 &&
+      abiIntegratedFrames[2].reserved0 == 1 &&
+      nearly_equal(abiIntegratedFrames[2].position_x, 6.0) &&
+      nearly_equal(abiIntegratedFrames[2].position_y, 3.0) &&
+      nearly_equal(abiIntegratedFrames[2].position_z, 3.0) &&
+      nearly_equal(abiIntegratedFrames[2].velocity_x, 3.0) &&
+      nearly_equal(abiIntegratedFrames[2].velocity_y, 2.0) &&
+      nearly_equal(abiIntegratedFrames[2].velocity_z, 3.0) &&
+      abiIntegrationPathStatus == 0 &&
+      abiIntegratedPathRowCount == 2 &&
+      abiIntegratedPathRows[0].path_key == 4321 &&
+      abiIntegratedPathRows[0].segment_index == 0 &&
+      abiIntegratedPathRows[0].state_flags == 11 &&
+      abiIntegratedPathRows[0].reserved0 == 1 &&
+      nearly_equal(abiIntegratedPathRows[0].start_x, 1.0) &&
+      nearly_equal(abiIntegratedPathRows[0].velocity_x, 2.25) &&
+      nearly_equal(abiIntegratedPathRows[0].velocity_y, 0.5) &&
+      nearly_equal(abiIntegratedPathRows[0].velocity_z, 0.0) &&
+      nearly_equal(abiIntegratedPathRows[0].error_bound, expectedPathInterpolationBound) &&
+      abiInfo.motion_integration_request_f64_bytes == 120;
+
+  if (!ok) {
+    std::cerr << "solver motion smoke failed\n";
+    return 1;
+  }
+
+  std::cout << "solver motion=ok frames=" << result.frames.size() << '\n';
+  return 0;
+}

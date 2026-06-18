@@ -1,4 +1,5 @@
 import { getAnimatorSimulationDataset } from "./AnimatorSimulationPlaybackRuntime.js";
+import { ANIMATOR_SOLVER_BRIDGE_ENGINE_ID } from "./AnimatorSimulationWorkerProtocolRuntime.js";
 
 export const DEFAULT_ANIMATOR_SIMULATION_AUTHORING_DRAFT = Object.freeze({
   duration: 6,
@@ -18,6 +19,8 @@ export const DEFAULT_ANIMATOR_SIMULATION_AUTHORING_DRAFT = Object.freeze({
   rootHaltPolicy: "all",
   claimLevel: "solver-derived-diagnostic",
   datasetId: "",
+  solverEngine: "",
+  solverBridge: null,
 });
 
 const HISTORY_MODES = Object.freeze(["adaptive", "deep", "fixed"]);
@@ -51,6 +54,39 @@ function normalizeString(value, fallback = "") {
 function normalizeChoice(value, allowedValues, fallback) {
   const normalized = normalizeString(value, fallback);
   return allowedValues.includes(normalized) ? normalized : fallback;
+}
+
+function normalizeSolverEngine(value, fallback = "") {
+  const normalized = normalizeString(value, fallback);
+  if (
+    normalized === ANIMATOR_SOLVER_BRIDGE_ENGINE_ID ||
+    normalized === "solver-app-bridge"
+  ) {
+    return ANIMATOR_SOLVER_BRIDGE_ENGINE_ID;
+  }
+  return "";
+}
+
+function normalizeSolverBridgeConfig(config = {}, defaults = {}) {
+  const bridge = config.solverBridge && typeof config.solverBridge === "object"
+    ? config.solverBridge
+    : {};
+  const defaultBridge = defaults.solverBridge && typeof defaults.solverBridge === "object"
+    ? defaults.solverBridge
+    : {};
+  const solverEngine = normalizeSolverEngine(config.solverEngine, defaults.solverEngine);
+  const requestedEnabled =
+    bridge.enabled === true ||
+    (bridge.enabled !== false && defaultBridge.enabled === true) ||
+    (bridge.enabled !== false && solverEngine === ANIMATOR_SOLVER_BRIDGE_ENGINE_ID);
+  if (!requestedEnabled) {
+    return null;
+  }
+  return {
+    ...defaultBridge,
+    ...bridge,
+    enabled: true,
+  };
 }
 
 function getSceneId(documentData = {}) {
@@ -147,6 +183,8 @@ export function createAnimatorSimulationAuthoringDraft(documentData = {}, overri
   );
   const inferredSteps = dt > 0 ? Math.max(1, Math.ceil(duration / dt)) : defaults.steps;
   const datasetIdFallback = `${getSceneId(documentData)}_worker_dataset`;
+  const solverEngine = normalizeSolverEngine(config.solverEngine, defaults.solverEngine);
+  const solverBridge = normalizeSolverBridgeConfig(config, defaults);
 
   return {
     duration,
@@ -193,6 +231,8 @@ export function createAnimatorSimulationAuthoringDraft(documentData = {}, overri
     ),
     claimLevel: normalizeString(datasetOptions.claimLevel, defaults.claimLevel),
     datasetId: normalizeString(datasetOptions.id, datasetIdFallback),
+    solverEngine: solverBridge ? solverEngine || ANIMATOR_SOLVER_BRIDGE_ENGINE_ID : "",
+    solverBridge,
   };
 }
 
@@ -224,23 +264,28 @@ export function normalizeAnimatorSimulationAuthoringDraft(draft = {}, documentDa
 
 export function buildAnimatorSimulationAuthoringWorkerPayload(draft = {}, documentData = {}) {
   const normalized = normalizeAnimatorSimulationAuthoringDraft(draft, documentData);
+  const config = {
+    steps: normalized.steps,
+    dt: normalized.dt,
+    stride: normalized.stride,
+    particles: normalized.particles,
+    radius: normalized.radius,
+    radialSpeed: normalized.radialSpeed,
+    tangentialSpeed: normalized.tangentialSpeed,
+    driftX: normalized.driftX,
+    driftY: normalized.driftY,
+    cf: normalized.cf,
+    kappa: normalized.kappa,
+    shellK: 0,
+    historyMode: normalized.historyMode,
+    rootHaltPolicy: normalized.rootHaltPolicy,
+  };
+  if (normalized.solverBridge) {
+    config.solverEngine = normalized.solverEngine || ANIMATOR_SOLVER_BRIDGE_ENGINE_ID;
+    config.solverBridge = normalized.solverBridge;
+  }
   return {
-    config: {
-      steps: normalized.steps,
-      dt: normalized.dt,
-      stride: normalized.stride,
-      particles: normalized.particles,
-      radius: normalized.radius,
-      radialSpeed: normalized.radialSpeed,
-      tangentialSpeed: normalized.tangentialSpeed,
-      driftX: normalized.driftX,
-      driftY: normalized.driftY,
-      cf: normalized.cf,
-      kappa: normalized.kappa,
-      shellK: 0,
-      historyMode: normalized.historyMode,
-      rootHaltPolicy: normalized.rootHaltPolicy,
-    },
+    config,
     datasetOptions: {
       id: normalized.datasetId,
       claimLevel: normalized.claimLevel,

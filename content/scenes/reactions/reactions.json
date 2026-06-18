@@ -15,6 +15,14 @@
         "scenePath": "content/scenes/reactions/mode_taxonomy.json"
       },
       {
+        "nodeId": "radiation",
+        "scenePath": "content/scenes/reactions/radiation.json"
+      },
+      {
+        "nodeId": "atomic_transition_radiation",
+        "scenePath": "content/scenes/reactions/atomic_transition_radiation.json"
+      },
+      {
         "nodeId": "bremsstrahlung",
         "scenePath": "content/scenes/reactions/bremsstrahlung.json"
       },
@@ -39,6 +47,40 @@
         "type": "fixed"
       },
       "labelTitle": "Mode Taxonomy",
+      "labelBadge": "doc",
+      "fixedPosition": true
+    },
+    {
+      "id": "radiation",
+      "title": "Radiation",
+      "radius": 2.688,
+      "color": "#4b5e2f",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Radiation",
+      "labelBadge": "doc",
+      "fixedPosition": true
+    },
+    {
+      "id": "atomic_transition_radiation",
+      "title": "Atomic Transition Radiation",
+      "radius": 2.688,
+      "color": "#2f6b6f",
+      "position": [
+        0,
+        -10.5,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Atomic Transition Radiation",
       "labelBadge": "doc",
       "fixedPosition": true
     },

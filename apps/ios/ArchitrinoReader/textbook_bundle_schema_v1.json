@@ -1,0 +1,174 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Architrino Reader Textbook Bundle v1",
+  "description": "Manifest schema for the v1 app-bundled, chapter-first textbook package",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "manifest_schema",
+    "generated_at",
+    "package_version",
+    "textbook_toc",
+    "chapters",
+    "references",
+    "files",
+    "links"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "manifest_schema": {
+      "type": "string",
+      "const": "textbook_bundle_schema_v1"
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "package_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "schema_version_note": {
+      "type": "string"
+    },
+    "textbook_toc": {
+      "type": "object",
+      "required": ["path", "sha256", "size"],
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "size": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "chapters": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "markdownPath", "bundlePath", "sectionCount", "sectionKeys"],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "markdownPath": {
+            "type": "string"
+          },
+          "bundlePath": {
+            "type": "string"
+          },
+          "htmlPath": {
+            "type": "string"
+          },
+          "heading": {
+            "type": "string"
+          },
+          "sectionCount": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "sectionKeys": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "references": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "sourcePath", "bundlePath"],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "sourcePath": {
+            "type": "string"
+          },
+          "bundlePath": {
+            "type": "string"
+          },
+          "htmlPath": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["path", "sourcePath", "role", "type", "size", "sha256"],
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "sourcePath": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string",
+            "enum": ["toc", "chapter", "reference", "asset", "search"]
+          },
+          "type": {
+            "type": "string",
+            "enum": ["json", "markdown", "html", "binary"]
+          },
+          "size": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          }
+        }
+      }
+    },
+    "links": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["sourceChapterId", "sourcePath", "target", "kind", "status"],
+        "properties": {
+          "sourceChapterId": {
+            "type": "string"
+          },
+          "sourcePath": {
+            "type": "string"
+          },
+          "target": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "targetBundlePath": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

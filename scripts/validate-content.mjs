@@ -14,6 +14,9 @@ const NO_INCOMING_LINK_REPORT_LIMIT = 25;
 const SCENE_SCHEMA_PATH = "scripts/schema/scene.schema.json";
 const STABLE_ID_LABEL_LOCK_PATH = "scripts/config/stable-scene-id-label-lock.json";
 const REPO_MARKDOWN_AUDIT_IGNORED_DIRS = new Set([".git", "node_modules", "__pycache__"]);
+const REPO_MARKDOWN_AUDIT_IGNORED_PATH_PREFIXES = [
+  "apps/ios/ArchitrinoReader/GeneratedTextbookPackage/",
+];
 const ALLOWED_SCENE_TYPES = new Set([
   "Scene-Index",
   "Scene-Markdown-View",
@@ -162,6 +165,14 @@ function isGitIgnored(relativePath) {
   const ignored = result.status === 0;
   gitIgnoreCache.set(normalized, ignored);
   return ignored;
+}
+
+function shouldIgnoreRepoMarkdownAuditPath(relativePath) {
+  const normalized = normalizePath(relativePath);
+  return (
+    isGitIgnored(normalized) ||
+    REPO_MARKDOWN_AUDIT_IGNORED_PATH_PREFIXES.some((prefix) => normalized.startsWith(prefix))
+  );
 }
 
 function createLowerMap(paths) {
@@ -888,7 +899,7 @@ const indexableMarkdownFiles = allMarkdownFiles;
 const referencableMarkdownFiles = [...allMarkdownFiles, ...generatedMarkdownFiles];
 const repoMarkdownAuditFiles = walkFiles(".", (name) => name.toLowerCase().endsWith(".md"), {
   ignoreDirNames: REPO_MARKDOWN_AUDIT_IGNORED_DIRS,
-  shouldIgnorePath: (relativePath) => isGitIgnored(relativePath),
+  shouldIgnorePath: (relativePath) => shouldIgnoreRepoMarkdownAuditPath(relativePath),
 });
 
 const sceneConfigs = [];

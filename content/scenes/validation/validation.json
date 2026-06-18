@@ -28,6 +28,10 @@
         "scenePath": "content/scenes/validation/reaction_ledger.json"
       },
       {
+        "nodeId": "reaction_cosmology_provenance_ledger",
+        "scenePath": "content/scenes/validation/reaction_cosmology_provenance_ledger.json"
+      },
+      {
         "nodeId": "constraint_ledger",
         "scenePath": "content/scenes/validation/constraint_ledger.json"
       },
@@ -42,6 +46,10 @@
       {
         "nodeId": "known_tensions",
         "scenePath": "content/scenes/validation/known_tensions.json"
+      },
+      {
+        "nodeId": "massive_superposition_gravity",
+        "scenePath": "content/scenes/validation/massive_superposition_gravity.json"
       },
       {
         "nodeId": "validation_simulations",
@@ -123,6 +131,23 @@
       "fixedPosition": true
     },
     {
+      "id": "reaction_cosmology_provenance_ledger",
+      "title": "Reaction-Cosmology Provenance Ledger",
+      "radius": 2.688,
+      "color": "#4b5e2f",
+      "position": [
+        13.3,
+        9,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Reaction-Cosmology Provenance",
+      "labelBadge": "doc",
+      "fixedPosition": true
+    },
+    {
       "id": "constraint_ledger",
       "title": "Constraint Ledger",
       "radius": 2.688,
@@ -186,6 +211,23 @@
         "type": "fixed"
       },
       "labelTitle": "Known Tensions",
+      "fixedPosition": true
+    },
+    {
+      "id": "massive_superposition_gravity",
+      "title": "Massive Superposition Gravity",
+      "radius": 2.688,
+      "color": "#7a5430",
+      "position": [
+        -6.8,
+        -14.5,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Massive Superposition Gravity",
+      "labelBadge": "doc",
       "fixedPosition": true
     },
     {

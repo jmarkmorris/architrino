@@ -1,0 +1,436 @@
+{
+  "schema_version": 1,
+  "manifest_schema": "textbook_bundle_schema_v1",
+  "generated_at": "2026-06-18T03:01:10.624Z",
+  "package_version": "1.0.0-8a808c39",
+  "schema_version_note": "content_bundle_schema_v1",
+  "textbook_toc": {
+    "path": "content/graph/textbook_toc.json",
+    "sha256": "8a808c3921d5af942f95b20e4da3dc6dcf3f443776132bcbfd0a43fa15b752b4",
+    "size": 626253
+  },
+  "chapters": [
+    {
+      "id": "foundations",
+      "title": "Foundations",
+      "markdownPath": "content/generated/markdown/textbook/reading-copies/foundations.md",
+      "bundlePath": "reading-copies/foundations.md",
+      "htmlPath": "reading-copies/foundations.html",
+      "heading": "scene-index",
+      "sectionCount": 0,
+      "sectionKeys": []
+    },
+    {
+      "id": "dynamics",
+      "title": "Dynamics",
+      "markdownPath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "bundlePath": "reading-copies/dynamics.md",
+      "htmlPath": "reading-copies/dynamics.html",
+      "heading": "scene-index",
+      "sectionCount": 0,
+      "sectionKeys": []
+    },
+    {
+      "id": "noether_swarm",
+      "title": "Noether Swarm",
+      "markdownPath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "bundlePath": "reading-copies/noether-swarm.md",
+      "htmlPath": "reading-copies/noether-swarm.html",
+      "heading": "scene-index",
+      "sectionCount": 0,
+      "sectionKeys": []
+    },
+    {
+      "id": "spacetime",
+      "title": "Noether Sea and Effective Spacetime",
+      "markdownPath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
+      "bundlePath": "reading-copies/noether-sea-and-effective-spacetime.md",
+      "htmlPath": "reading-copies/noether-sea-and-effective-spacetime.html",
+      "heading": "scene-index",
+      "sectionCount": 0,
+      "sectionKeys": []
+    },
+    {
+      "id": "assemblies",
+      "title": "Standard Model Assemblies",
+      "markdownPath": "content/generated/markdown/textbook/reading-copies/standard-model-assemblies.md",
+      "bundlePath": "reading-copies/standard-model-assemblies.md",
+      "htmlPath": "reading-copies/standard-model-assemblies.html",
+      "heading": "scene-index",
+      "sectionCount": 0,
+      "sectionKeys": []
+    },
+    {
+      "id": "nuclear_atomic",
+      "title": "Atomic and Nuclear Assemblies",
+      "markdownPath": "content/generated/markdown/textbook/reading-copies/atomic-and-nuclear-assemblies.md",
+      "bundlePath": "reading-copies/atomic-and-nuclear-assemblies.md",
+      "htmlPath": "reading-copies/atomic-and-nuclear-assemblies.html",
+      "heading": "scene-index",
+      "sectionCount": 0,
+      "sectionKeys": []
+    },
+    {
+      "id": "reactions",
+      "title": "Reactions",
+      "markdownPath": "content/generated/markdown/textbook/reading-copies/reactions.md",
+      "bundlePath": "reading-copies/reactions.md",
+      "htmlPath": "reading-copies/reactions.html",
+      "heading": "scene-index",
+      "sectionCount": 0,
+      "sectionKeys": []
+    },
+    {
+      "id": "quantum",
+      "title": "Quantum",
+      "markdownPath": "content/generated/markdown/textbook/reading-copies/quantum.md",
+      "bundlePath": "reading-copies/quantum.md",
+      "htmlPath": "reading-copies/quantum.html",
+      "heading": "scene-index",
+      "sectionCount": 0,
+      "sectionKeys": []
+    },
+    {
+      "id": "cosmology",
+      "title": "Cosmology",
+      "markdownPath": "content/generated/markdown/textbook/reading-copies/cosmology.md",
+      "bundlePath": "reading-copies/cosmology.md",
+      "htmlPath": "reading-copies/cosmology.html",
+      "heading": "scene-index",
+      "sectionCount": 0,
+      "sectionKeys": []
+    },
+    {
+      "id": "validation",
+      "title": "Validation",
+      "markdownPath": "content/generated/markdown/textbook/reading-copies/validation.md",
+      "bundlePath": "reading-copies/validation.md",
+      "htmlPath": "reading-copies/validation.html",
+      "heading": "scene-index",
+      "sectionCount": 0,
+      "sectionKeys": []
+    },
+    {
+      "id": "philosophy_history",
+      "title": "Philosophy-History",
+      "markdownPath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "bundlePath": "reading-copies/philosophy-history.md",
+      "htmlPath": "reading-copies/philosophy-history.html",
+      "heading": "scene-index",
+      "sectionCount": 0,
+      "sectionKeys": []
+    }
+  ],
+  "references": [
+    {
+      "id": "archie-terminology-usage",
+      "title": "Terminology Usage",
+      "sourcePath": "content/markdown/aaa/archie/terminology-usage.md",
+      "bundlePath": "references/terminology-usage.md",
+      "htmlPath": "references/terminology-usage.html"
+    },
+    {
+      "id": "archie-comparative-glossary",
+      "title": "Comparative Glossary",
+      "sourcePath": "content/markdown/aaa/archie/comparative-glossary.md",
+      "bundlePath": "references/comparative-glossary.md",
+      "htmlPath": "references/comparative-glossary.html"
+    },
+    {
+      "id": "archie-mathematics-terminology",
+      "title": "Mathematics Terminology",
+      "sourcePath": "content/markdown/aaa/archie/mathematics-terminology.md",
+      "bundlePath": "references/mathematics-terminology.md",
+      "htmlPath": "references/mathematics-terminology.html"
+    },
+    {
+      "id": "archie-academic-style-guide",
+      "title": "Academic Style Guide",
+      "sourcePath": "content/markdown/aaa/archie/academic-style-guide.md",
+      "bundlePath": "references/academic-style-guide.md",
+      "htmlPath": "references/academic-style-guide.html"
+    },
+    {
+      "id": "archie-mathematics-style-guide",
+      "title": "Mathematics Style Guide",
+      "sourcePath": "content/markdown/aaa/archie/mathematics-style-guide.md",
+      "bundlePath": "references/mathematics-style-guide.md",
+      "htmlPath": "references/mathematics-style-guide.html"
+    }
+  ],
+  "files": [
+    {
+      "path": "graph/textbook_toc.json",
+      "sourcePath": "content/graph/textbook_toc.json",
+      "role": "toc",
+      "type": "json",
+      "size": 626707,
+      "sha256": "8a808c3921d5af942f95b20e4da3dc6dcf3f443776132bcbfd0a43fa15b752b4"
+    },
+    {
+      "path": "reading-copies/atomic-and-nuclear-assemblies.html",
+      "sourcePath": "__generated__/reading-copies/atomic-and-nuclear-assemblies.html",
+      "role": "chapter",
+      "type": "html",
+      "size": 1535246,
+      "sha256": "7a17b3482c9133c2c41d6be6e4bf65d07626af2d093f5cd0494a785f6a788618"
+    },
+    {
+      "path": "reading-copies/atomic-and-nuclear-assemblies.md",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/atomic-and-nuclear-assemblies.md",
+      "role": "chapter",
+      "type": "markdown",
+      "size": 127448,
+      "sha256": "aedcaaa75bc18d60ac02b428c70a096610f2a92fbcbac78a3d036ce78e6964f3"
+    },
+    {
+      "path": "reading-copies/cosmology.html",
+      "sourcePath": "__generated__/reading-copies/cosmology.html",
+      "role": "chapter",
+      "type": "html",
+      "size": 4490965,
+      "sha256": "8d8f2346c97e5f53d0863cfa4b48944ef6b8a24ad1cee256ec4e04b02fd85120"
+    },
+    {
+      "path": "reading-copies/cosmology.md",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/cosmology.md",
+      "role": "chapter",
+      "type": "markdown",
+      "size": 328537,
+      "sha256": "21450d1d4f27f104cc1c9b8dede2fb03746594b86c548d80c8fec0e9ca0d3fb9"
+    },
+    {
+      "path": "reading-copies/dynamics.html",
+      "sourcePath": "__generated__/reading-copies/dynamics.html",
+      "role": "chapter",
+      "type": "html",
+      "size": 20981831,
+      "sha256": "3bf07023413ac47f6ba83b1ceb33c51710b7bba5fa02ead006d4421e13f7f6b3"
+    },
+    {
+      "path": "reading-copies/dynamics.md",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "role": "chapter",
+      "type": "markdown",
+      "size": 1135112,
+      "sha256": "85e104df9542081ff95668bc65ff2fde1e64b0cea6a4393062638836bd71f607"
+    },
+    {
+      "path": "reading-copies/foundations.html",
+      "sourcePath": "__generated__/reading-copies/foundations.html",
+      "role": "chapter",
+      "type": "html",
+      "size": 1621909,
+      "sha256": "a856c1e076b33ddd60e22f44d24f5c8f18c180c030240155f5911d63d4942643"
+    },
+    {
+      "path": "reading-copies/foundations.md",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
+      "role": "chapter",
+      "type": "markdown",
+      "size": 184470,
+      "sha256": "5fc1c43f4950a15d132af1739df7fccae6ccd9b7572b16b472452daeda130aee"
+    },
+    {
+      "path": "reading-copies/noether-sea-and-effective-spacetime.html",
+      "sourcePath": "__generated__/reading-copies/noether-sea-and-effective-spacetime.html",
+      "role": "chapter",
+      "type": "html",
+      "size": 6480467,
+      "sha256": "927d620ee84884472cdb794cfd96aa6653e022db63f333e0b6100cba38b22af4"
+    },
+    {
+      "path": "reading-copies/noether-sea-and-effective-spacetime.md",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
+      "role": "chapter",
+      "type": "markdown",
+      "size": 415096,
+      "sha256": "36cbc3172a315790ab1d06ecafe71e6fa81e714b0fc1627bdadbc84aa8183bb1"
+    },
+    {
+      "path": "reading-copies/noether-swarm.html",
+      "sourcePath": "__generated__/reading-copies/noether-swarm.html",
+      "role": "chapter",
+      "type": "html",
+      "size": 3342497,
+      "sha256": "99c42a0799d1021eb611a5882efc62eaa7cf587e527d5e71b38a22728381dbc8"
+    },
+    {
+      "path": "reading-copies/noether-swarm.md",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "role": "chapter",
+      "type": "markdown",
+      "size": 167027,
+      "sha256": "468b2f39e1675c147bc6052eb09ca9e8d086f319112a492fe1fbfe6255b82c18"
+    },
+    {
+      "path": "reading-copies/philosophy-history.html",
+      "sourcePath": "__generated__/reading-copies/philosophy-history.html",
+      "role": "chapter",
+      "type": "html",
+      "size": 6961412,
+      "sha256": "42114e40116d3efec15de880617c0aa431254c68b02ef93913071be70a357975"
+    },
+    {
+      "path": "reading-copies/philosophy-history.md",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "role": "chapter",
+      "type": "markdown",
+      "size": 1475477,
+      "sha256": "48577f84ea150298cac92d999bf771cd03ec917316dc9a9848432bd9214015b6"
+    },
+    {
+      "path": "reading-copies/quantum.html",
+      "sourcePath": "__generated__/reading-copies/quantum.html",
+      "role": "chapter",
+      "type": "html",
+      "size": 1746021,
+      "sha256": "f59ce2f2eadd7a9392cb4e2dae6ace84750219e1f3a5b5aaf418b948ce426ca8"
+    },
+    {
+      "path": "reading-copies/quantum.md",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/quantum.md",
+      "role": "chapter",
+      "type": "markdown",
+      "size": 164460,
+      "sha256": "9f4d10c2081fbeb8cfbfa1a256e3f9fff6bcf1f858b2c97ba69ef650a55f8188"
+    },
+    {
+      "path": "reading-copies/reactions.html",
+      "sourcePath": "__generated__/reading-copies/reactions.html",
+      "role": "chapter",
+      "type": "html",
+      "size": 1976765,
+      "sha256": "8d3e5aeda22e91d519990ad04cff08acf233c0501db636d034673830f8b9c6b9"
+    },
+    {
+      "path": "reading-copies/reactions.md",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/reactions.md",
+      "role": "chapter",
+      "type": "markdown",
+      "size": 159714,
+      "sha256": "78c07d638af0c0ce6f1c87cecfb4917870f89e5c2790619b643d6a42a0638ab8"
+    },
+    {
+      "path": "reading-copies/standard-model-assemblies.html",
+      "sourcePath": "__generated__/reading-copies/standard-model-assemblies.html",
+      "role": "chapter",
+      "type": "html",
+      "size": 3858282,
+      "sha256": "1cb5325552b7720cc3952772e21a0dde737d3cd33731a4f42f785bca3958f555"
+    },
+    {
+      "path": "reading-copies/standard-model-assemblies.md",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/standard-model-assemblies.md",
+      "role": "chapter",
+      "type": "markdown",
+      "size": 330580,
+      "sha256": "a91b2dbc3654d59fb3b29d96e421f16d96aa8d080bdda53ca84c7ad774029f1c"
+    },
+    {
+      "path": "reading-copies/validation.html",
+      "sourcePath": "__generated__/reading-copies/validation.html",
+      "role": "chapter",
+      "type": "html",
+      "size": 5130919,
+      "sha256": "ed6b46ce34a6ca15ac1de3e3eb552e0ce41645c5c4ef9c1440e86235bec178c2"
+    },
+    {
+      "path": "reading-copies/validation.md",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/validation.md",
+      "role": "chapter",
+      "type": "markdown",
+      "size": 450273,
+      "sha256": "4d92613f96fc4fab666af339c8905b03e3e09b62e3fe91f62247346e862cae48"
+    },
+    {
+      "path": "references/academic-style-guide.html",
+      "sourcePath": "__generated__/references/academic-style-guide.html",
+      "role": "reference",
+      "type": "html",
+      "size": 23835,
+      "sha256": "597ba122b8d6bc5f0813dc326711834ef868301792a2355f8836f497a147ad2d"
+    },
+    {
+      "path": "references/academic-style-guide.md",
+      "sourcePath": "content/markdown/aaa/archie/academic-style-guide.md",
+      "role": "reference",
+      "type": "markdown",
+      "size": 14964,
+      "sha256": "143f40648d6d6d1c1ba3aca50ddfa19fd58486d2e200f249ed23c5eca1275c2e"
+    },
+    {
+      "path": "references/comparative-glossary.html",
+      "sourcePath": "__generated__/references/comparative-glossary.html",
+      "role": "reference",
+      "type": "html",
+      "size": 176819,
+      "sha256": "d868c47ca1176fd5679b2c019ebdc15eb8f97ad196ad02535e6bbc120977f0f3"
+    },
+    {
+      "path": "references/comparative-glossary.md",
+      "sourcePath": "content/markdown/aaa/archie/comparative-glossary.md",
+      "role": "reference",
+      "type": "markdown",
+      "size": 71354,
+      "sha256": "223f6ac8e20f5fb3ecd98dafc2be81c039b980ee264e6388098276321da568ba"
+    },
+    {
+      "path": "references/mathematics-style-guide.html",
+      "sourcePath": "__generated__/references/mathematics-style-guide.html",
+      "role": "reference",
+      "type": "html",
+      "size": 230622,
+      "sha256": "4a9da4ae011146ba7efc3d3c128551980037274fb452a3b33e41abe6040aae42"
+    },
+    {
+      "path": "references/mathematics-style-guide.md",
+      "sourcePath": "content/markdown/aaa/archie/mathematics-style-guide.md",
+      "role": "reference",
+      "type": "markdown",
+      "size": 10869,
+      "sha256": "b58017d5a522d2b8ca8910e1db8583e5941ca23a97b7183c0bfe0bfbe8421bca"
+    },
+    {
+      "path": "references/mathematics-terminology.html",
+      "sourcePath": "__generated__/references/mathematics-terminology.html",
+      "role": "reference",
+      "type": "html",
+      "size": 433039,
+      "sha256": "c41b0b167a414a5dec6f3d8ee074972b106f74b6ba457c6068bcf2bc9af7d04f"
+    },
+    {
+      "path": "references/mathematics-terminology.md",
+      "sourcePath": "content/markdown/aaa/archie/mathematics-terminology.md",
+      "role": "reference",
+      "type": "markdown",
+      "size": 31489,
+      "sha256": "cde204617214ce30b71a9b45d9d7b9adc3e1b31371d8f431e2b255c74644225b"
+    },
+    {
+      "path": "references/terminology-usage.html",
+      "sourcePath": "__generated__/references/terminology-usage.html",
+      "role": "reference",
+      "type": "html",
+      "size": 79179,
+      "sha256": "ecbd38899a10845413dbdae24b35205719dca53ef42312e128ea6760e2ae6270"
+    },
+    {
+      "path": "references/terminology-usage.md",
+      "sourcePath": "content/markdown/aaa/archie/terminology-usage.md",
+      "role": "reference",
+      "type": "markdown",
+      "size": 38714,
+      "sha256": "9d8daea55710a9d078c79fbb10aa53078f7c5716fcdc1d103128cacfb4e1eefa"
+    },
+    {
+      "path": "textbook_bundle_search_index.json",
+      "sourcePath": "__generated__/textbook_bundle_search_index.json",
+      "role": "search",
+      "type": "json",
+      "size": 8384829,
+      "sha256": "6127a7aa04769f354be9a298897dff6eda80fb6330e542435fac0c264ab80bba"
+    }
+  ],
+  "links": []
+}

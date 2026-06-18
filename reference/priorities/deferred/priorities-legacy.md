@@ -24,7 +24,7 @@ Scoring system:
 | 7 | Simulations, regularization, and shell numerics | 8 | 5 | 1.60 |
 | 8 | Remaining black-hole / strong-field quantitative closure | 4 | 5 | 0.80 |
 | 9 | Preserve strong-field / tri-binary hypotheses | 2 | 3 | 0.67 |
-| 10 | Unified chapter authoring queue and legacy-material recovery | 3 | 5 | 0.60 |
+| 10 | Source mining queue and legacy-material recovery | 3 | 5 | 0.60 |
 | 11 | Born-rule / quantum closure with hard tests | 4 | 8 | 0.50 |
 | 12 | Cosmology transfer-function closure | 2 | 9 | 0.22 |
 | 13 | Deferred product / outlook work | 1 | 6 | 0.17 |
@@ -365,9 +365,9 @@ Scoring system:
   - maybe the internal radius can enter self-hit first as the tri-binary rides the rail;
   - maybe Stacy's gravity / MOND intuition is somehow related to the inner binary crossing $c_f$, though that seems doubtful.
 
-### 10. Run the chapter authoring queue and recover useful old material
+### 10. Run the source mining queue and recover useful old material
 - Value `3`, Cost `5`, ROI `0.60`.
-- This item is the ranked queue for chapter-writing work.
+- This item is the ranked queue for source-mining work.
 - This is also now the home of the old material-recovery task. Item `13` is no longer separate.
 - For scorecard purposes, this is the main Coverage bucket.
 - If the goal is fastest total-score increase, pair this item with item `2` for Coverage + Parameter Closure first.

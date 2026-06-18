@@ -11,7 +11,6 @@ const ignoredHtmlScanDirectories = new Set([".git", "node_modules"]);
 const requiredKatexAssetNames = [
   "katex.min.css",
   "katex.min.js",
-  "auto-render.min.js",
 ];
 
 function collectHtmlFiles(directory = repoRoot) {
@@ -142,7 +141,7 @@ function createFakeDocument() {
   };
 }
 
-test("markdown document HTML entrypoints load KaTeX auto-render assets", () => {
+test("markdown document HTML entrypoints load local KaTeX assets", () => {
   const markdownEntrypoints = collectHtmlFiles()
     .map((file) => {
       const html = readFileSync(file, "utf8");
@@ -210,7 +209,7 @@ test("one-column markdown documents can toggle to a two-column layout", async (t
   assert.equal(markdownLayoutToggle.attributes.get("aria-label"), "Switch to single column");
 });
 
-test("markdown math typesetting retries when KaTeX auto-render loads late", async (t) => {
+test("markdown math placeholders retry when the renderer loads late", async (t) => {
   const originalFetch = globalThis.fetch;
   const originalWindow = globalThis.window;
   const retryCallbacks = [];
@@ -258,11 +257,16 @@ test("markdown math typesetting retries when KaTeX auto-render loads late", asyn
   });
 
   assert.equal(retryCallbacks.length, 1);
-  assert.match(markdownBody.innerHTML, /\$x\$/);
+  assert.match(markdownBody.innerHTML, /class="markdown-math-segment markdown-math-inline"/);
+  assert.match(markdownBody.innerHTML, /data-math-tex="x"/);
+  assert.doesNotMatch(markdownBody.innerHTML, /\$x\$/);
 
   globalThis.window.renderMathInElement = (element, options) => {
     renderCalls.push(options);
-    element.innerHTML = element.innerHTML.replace("$x$", '<span class="katex">x</span>');
+    element.innerHTML = element.innerHTML.replace(
+      /<span class="markdown-math-segment markdown-math-inline"([^>]*)>x<\/span>/,
+      '<span class="markdown-math-segment markdown-math-inline is-rendered"$1><span class="katex">x</span></span>'
+    );
   };
 
   retryCallbacks.shift()();

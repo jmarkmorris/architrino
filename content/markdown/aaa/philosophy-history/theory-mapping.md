@@ -1,6 +1,6 @@
 # Theory Mapping: Major Physics Theories (Core Idea, Intuition, Math)
 
-This chapter is a comparative reader for the inherited modern-physics stack viewed from a substrate-first architecture. It is meant to orient readers quickly: what each major theory claims, what it explains well, and whether $\mathbb{A}\mathbb{A}\mathbb{A}$ intends to recover it, reinterpret it, or reject its ontology while preserving some effective structure. For the repo's deeper conceptual framing of where inherited theories break or remain useful, compare [Theory Differentials](./theory-differentials.md), [Crisis in Physics](./crisis-in-physics.md), [Substance, Structure, and the Plenum of Potential](./substance-structure-and-potential.md), and [Unknowns and Paradoxes](./unknowns-paradoxes.md). For long-form mathematical mappings between inherited frameworks and the $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation layer, see [Theory Bridges](theory-bridges/README.md).
+This chapter is a comparative reader for the inherited modern-physics stack viewed from a substrate-first architecture. It is meant to orient readers quickly: what each major theory claims, what it explains well, and whether $\mathbb{A}\mathbb{A}\mathbb{A}$ intends to recover it, reinterpret it, or reject its ontology while preserving some effective structure. For the repo's deeper conceptual framing of where inherited theories break or remain useful, compare [Theory Inheritance Discipline](./theory-inheritance-discipline.md), [Theory Differentials](./theory-differentials.md), [Crisis in Physics](./crisis-in-physics.md), [Substance, Structure, and the Plenum of Potential](./substance-structure-and-potential.md), and [Unknowns and Paradoxes](./unknowns-paradoxes.md). For long-form mathematical mappings between inherited frameworks and the $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation layer, see [Theory Bridges](theory-bridges/README.md).
 
 The document is organized as a matrix rather than a linear history. The first sections explain the comparison method; the later layers then group theories by assembly, spacetime, cosmology, and epistemic-observation roles.
 
@@ -747,6 +747,8 @@ $$
 
 **Conceptual View:** A slow contracting phase smooths and flattens the universe, then
 a bounce leads to expansion.
+
+The current Turok--Boyle CPT-symmetric cosmology line should be tracked separately from this older Steinhardt--Turok ekpyrotic/cyclic entry. Its useful pressure is boundary-condition discipline: can a cosmology state a symmetric continuation, entropy-arrow account, particle-sector content, and CMB/BBN/growth residuals with fewer adjustable interpretive commitments? For $\mathbb{A}\mathbb{A}\mathbb{A}$, that is a comparison question rather than an import of CPT-mirror ontology or a right-handed-neutrino dark sector by default.
 
 **Key Equation:** Contracting equation-of-state:
 $$

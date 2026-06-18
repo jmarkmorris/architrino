@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 507,
-      "edges": 1249,
-      "scenes": 327,
+      "nodes": 516,
+      "edges": 1263,
+      "scenes": 334,
       "markdownIndexes": 0,
-      "markdownDocs": 180,
+      "markdownDocs": 182,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -2111,6 +2111,48 @@
       "nodeType": "scene"
     },
     {
+      "id": "dynamics__entropy_and_record_coarse_graining",
+      "name": "Entropy and Record Coarse-Graining",
+      "path": "content/scenes/dynamics/entropy_and_record_coarse_graining.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "philosophy_history__geometry_and_ontology",
+      "name": "Geometry and Ontology",
+      "path": "content/scenes/philosophy_history/geometry_and_ontology.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "philosophy_history__theory_inheritance_discipline",
+      "name": "Theory Inheritance Discipline",
+      "path": "content/scenes/philosophy_history/theory_inheritance_discipline.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "reactions__atomic_transition_radiation",
+      "name": "Atomic Transition Radiation",
+      "path": "content/scenes/reactions/atomic_transition_radiation.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "reactions__radiation",
+      "name": "Radiation",
+      "path": "content/scenes/reactions/radiation.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "validation__massive_superposition_gravity",
+      "name": "Massive Superposition Gravity",
+      "path": "content/scenes/validation/massive_superposition_gravity.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "validation__reaction_cosmology_provenance_ledger",
+      "name": "Reaction-Cosmology Provenance Ledger",
+      "path": "content/scenes/validation/reaction_cosmology_provenance_ledger.json",
+      "nodeType": "scene"
+    },
+    {
       "id": "content/generated/markdown/textbook/reading-copies/architrino-textbook.md",
       "name": "Architrino Textbook",
       "path": "content/generated/markdown/textbook/reading-copies/architrino-textbook.md",
@@ -2459,6 +2501,12 @@
       "nodeType": "markdown_doc"
     },
     {
+      "id": "content/markdown/aaa/dynamics/entropy.md",
+      "name": "Entropy and Record Coarse-Graining",
+      "path": "content/markdown/aaa/dynamics/entropy.md",
+      "nodeType": "markdown_doc"
+    },
+    {
       "id": "content/markdown/aaa/dynamics/master-equation.md",
       "name": "Master Equation of Motion",
       "path": "content/markdown/aaa/dynamics/master-equation.md",
@@ -2744,6 +2792,12 @@
       "id": "content/markdown/aaa/philosophy-history/theory-differentials.md",
       "name": "Theory Differentials",
       "path": "content/markdown/aaa/philosophy-history/theory-differentials.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/philosophy-history/theory-inheritance-discipline.md",
+      "name": "Theory Inheritance Discipline",
+      "path": "content/markdown/aaa/philosophy-history/theory-inheritance-discipline.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -3793,6 +3847,15 @@
       "name": "Effective Lagrangian",
       "path": "content/scenes/dynamics/effective_lagrangian.json",
       "searchTarget": "content/scenes/dynamics/effective_lagrangian.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/dynamics/entropy_and_record_coarse_graining.json",
+      "nodeType": "scene",
+      "id": "dynamics__entropy_and_record_coarse_graining",
+      "name": "Entropy and Record Coarse-Graining",
+      "path": "content/scenes/dynamics/entropy_and_record_coarse_graining.json",
+      "searchTarget": "content/scenes/dynamics/entropy_and_record_coarse_graining.json",
       "implicit": false
     },
     {
@@ -5173,6 +5236,15 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/philosophy_history/geometry_and_ontology.json",
+      "nodeType": "scene",
+      "id": "philosophy_history__geometry_and_ontology",
+      "name": "Geometry and Ontology",
+      "path": "content/scenes/philosophy_history/geometry_and_ontology.json",
+      "searchTarget": "content/scenes/philosophy_history/geometry_and_ontology.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/philosophy_history/historical_context_missed_opportunities.json",
       "nodeType": "scene",
       "id": "philosophy_history__historical_context_missed_opportunities",
@@ -5371,6 +5443,15 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/philosophy_history/theory_inheritance_discipline.json",
+      "nodeType": "scene",
+      "id": "philosophy_history__theory_inheritance_discipline",
+      "name": "Theory Inheritance Discipline",
+      "path": "content/scenes/philosophy_history/theory_inheritance_discipline.json",
+      "searchTarget": "content/scenes/philosophy_history/theory_inheritance_discipline.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/philosophy_history/theory_mapping.json",
       "nodeType": "scene",
       "id": "philosophy_history__theory_mapping",
@@ -5497,6 +5578,15 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/reactions/atomic_transition_radiation.json",
+      "nodeType": "scene",
+      "id": "reactions__atomic_transition_radiation",
+      "name": "Atomic Transition Radiation",
+      "path": "content/scenes/reactions/atomic_transition_radiation.json",
+      "searchTarget": "content/scenes/reactions/atomic_transition_radiation.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/reactions/bremsstrahlung.json",
       "nodeType": "scene",
       "id": "reactions__bremsstrahlung",
@@ -5512,6 +5602,15 @@
       "name": "Mode Taxonomy",
       "path": "content/scenes/reactions/mode_taxonomy.json",
       "searchTarget": "content/scenes/reactions/mode_taxonomy.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/reactions/radiation.json",
+      "nodeType": "scene",
+      "id": "reactions__radiation",
+      "name": "Radiation",
+      "path": "content/scenes/reactions/radiation.json",
+      "searchTarget": "content/scenes/reactions/radiation.json",
       "implicit": false
     },
     {
@@ -5929,6 +6028,15 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/validation/massive_superposition_gravity.json",
+      "nodeType": "scene",
+      "id": "validation__massive_superposition_gravity",
+      "name": "Massive Superposition Gravity",
+      "path": "content/scenes/validation/massive_superposition_gravity.json",
+      "searchTarget": "content/scenes/validation/massive_superposition_gravity.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/validation/no_go_theorems.json",
       "nodeType": "scene",
       "id": "validation__no_go_theorems",
@@ -5962,6 +6070,15 @@
       "name": "Radial Attraction",
       "path": "content/scenes/validation/radial_attraction.json",
       "searchTarget": "content/scenes/validation/radial_attraction.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/validation/reaction_cosmology_provenance_ledger.json",
+      "nodeType": "scene",
+      "id": "validation__reaction_cosmology_provenance_ledger",
+      "name": "Reaction-Cosmology Provenance Ledger",
+      "path": "content/scenes/validation/reaction_cosmology_provenance_ledger.json",
+      "searchTarget": "content/scenes/validation/reaction_cosmology_provenance_ledger.json",
       "implicit": false
     },
     {
@@ -6658,6 +6775,15 @@
       "implicit": false
     },
     {
+      "nodeId": "markdown_doc:content/markdown/aaa/dynamics/entropy.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/dynamics/entropy.md",
+      "name": "Entropy and Record Coarse-Graining",
+      "path": "content/markdown/aaa/dynamics/entropy.md",
+      "searchTarget": "content/markdown/aaa/dynamics/entropy.md",
+      "implicit": false
+    },
+    {
       "nodeId": "markdown_doc:content/markdown/aaa/dynamics/master-equation.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/dynamics/master-equation.md",
@@ -7087,6 +7213,15 @@
       "name": "Theory Differentials",
       "path": "content/markdown/aaa/philosophy-history/theory-differentials.md",
       "searchTarget": "content/markdown/aaa/philosophy-history/theory-differentials.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/theory-inheritance-discipline.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/philosophy-history/theory-inheritance-discipline.md",
+      "name": "Theory Inheritance Discipline",
+      "path": "content/markdown/aaa/philosophy-history/theory-inheritance-discipline.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/theory-inheritance-discipline.md",
       "implicit": false
     },
     {
@@ -8364,28 +8499,35 @@
       "to": "scene:content/scenes/dynamics/binary_dynamics.json",
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[2]"
+      "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
       "to": "scene:content/scenes/dynamics/causal_action_functional.json",
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[4]"
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
       "to": "scene:content/scenes/dynamics/dyadic_resonance_lock.json",
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[3]"
+      "field": "scene.children[4]"
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
       "to": "scene:content/scenes/dynamics/effective_lagrangian.json",
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[5]"
+      "field": "scene.children[6]"
+    },
+    {
+      "from": "scene:content/scenes/dynamics/dynamics.json",
+      "to": "scene:content/scenes/dynamics/entropy_and_record_coarse_graining.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/dynamics/dynamics.json",
+      "field": "scene.children[2]"
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
@@ -8406,7 +8548,7 @@
       "to": "scene:content/scenes/proof-programs/proof_programs.json",
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/elements/ac.json",
@@ -11150,7 +11292,7 @@
       "to": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/inherited_theory_interface.json",
-      "field": "scene.children[2]"
+      "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/inherited_theory_interface.json",
@@ -11158,6 +11300,13 @@
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/inherited_theory_interface.json",
       "field": "scene.children[1]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/inherited_theory_interface.json",
+      "to": "scene:content/scenes/philosophy_history/theory_inheritance_discipline.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/inherited_theory_interface.json",
+      "field": "scene.children[2]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/inherited_theory_interface.json",
@@ -11171,7 +11320,7 @@
       "to": "scene:content/scenes/philosophy_history/agency_and_internal_causation.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[9]"
+      "field": "scene.children[10]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -11182,17 +11331,24 @@
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
+      "to": "scene:content/scenes/philosophy_history/geometry_and_ontology.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/philosophy_history.json",
+      "field": "scene.children[4]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/historical_context_missed_opportunities.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[5]"
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/information_computation.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[8]"
+      "field": "scene.children[9]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -11206,7 +11362,7 @@
       "to": "scene:content/scenes/philosophy_history/major_thinkers.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -11220,14 +11376,14 @@
       "to": "scene:content/scenes/philosophy_history/religious_ontologies.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[7]"
+      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/substance_structure_potential.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[4]"
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -11392,10 +11548,17 @@
     },
     {
       "from": "scene:content/scenes/reactions/reactions.json",
+      "to": "scene:content/scenes/reactions/atomic_transition_radiation.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/reactions/reactions.json",
+      "field": "scene.children[2]"
+    },
+    {
+      "from": "scene:content/scenes/reactions/reactions.json",
       "to": "scene:content/scenes/reactions/bremsstrahlung.json",
       "edgeType": "subscene",
       "source": "content/scenes/reactions/reactions.json",
-      "field": "scene.children[1]"
+      "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/reactions/reactions.json",
@@ -11406,10 +11569,17 @@
     },
     {
       "from": "scene:content/scenes/reactions/reactions.json",
+      "to": "scene:content/scenes/reactions/radiation.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/reactions/reactions.json",
+      "field": "scene.children[1]"
+    },
+    {
+      "from": "scene:content/scenes/reactions/reactions.json",
       "to": "scene:content/scenes/reactions/synchrotron_cascades.json",
       "edgeType": "subscene",
       "source": "content/scenes/reactions/reactions.json",
-      "field": "scene.children[2]"
+      "field": "scene.children[4]"
     },
     {
       "from": "scene:content/scenes/spacetime/effective_metric.json",
@@ -11955,35 +12125,42 @@
       "to": "scene:content/scenes/validation/closure_scorecard.json",
       "edgeType": "subscene",
       "source": "content/scenes/validation/validation.json",
-      "field": "scene.children[9]"
+      "field": "scene.children[11]"
     },
     {
       "from": "scene:content/scenes/validation/validation.json",
       "to": "scene:content/scenes/validation/constraint_ledger.json",
       "edgeType": "subscene",
       "source": "content/scenes/validation/validation.json",
-      "field": "scene.children[4]"
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/validation/validation.json",
       "to": "scene:content/scenes/validation/failure_criteria.json",
       "edgeType": "subscene",
       "source": "content/scenes/validation/validation.json",
-      "field": "scene.children[5]"
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/validation/validation.json",
       "to": "scene:content/scenes/validation/known_tensions.json",
       "edgeType": "subscene",
       "source": "content/scenes/validation/validation.json",
-      "field": "scene.children[7]"
+      "field": "scene.children[8]"
+    },
+    {
+      "from": "scene:content/scenes/validation/validation.json",
+      "to": "scene:content/scenes/validation/massive_superposition_gravity.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/validation/validation.json",
+      "field": "scene.children[9]"
     },
     {
       "from": "scene:content/scenes/validation/validation.json",
       "to": "scene:content/scenes/validation/no_go_theorems.json",
       "edgeType": "subscene",
       "source": "content/scenes/validation/validation.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/validation/validation.json",
@@ -11991,6 +12168,13 @@
       "edgeType": "subscene",
       "source": "content/scenes/validation/validation.json",
       "field": "scene.children[2]"
+    },
+    {
+      "from": "scene:content/scenes/validation/validation.json",
+      "to": "scene:content/scenes/validation/reaction_cosmology_provenance_ledger.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/validation/validation.json",
+      "field": "scene.children[4]"
     },
     {
       "from": "scene:content/scenes/validation/validation.json",
@@ -12004,7 +12188,7 @@
       "to": "scene:content/scenes/validation/simulations.json",
       "edgeType": "subscene",
       "source": "content/scenes/validation/validation.json",
-      "field": "scene.children[8]"
+      "field": "scene.children[10]"
     },
     {
       "from": "scene:content/scenes/validation/validation.json",
@@ -12427,6 +12611,13 @@
       "field": "scene.source.path"
     },
     {
+      "from": "scene:content/scenes/dynamics/entropy_and_record_coarse_graining.json",
+      "to": "markdown_doc:content/markdown/aaa/dynamics/entropy.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/dynamics/entropy_and_record_coarse_graining.json",
+      "field": "scene.source.path"
+    },
+    {
       "from": "scene:content/scenes/dynamics/kinetic_and_potential_energy.json",
       "to": "markdown_doc:content/markdown/aaa/dynamics/energy.md",
       "edgeType": "markdown_doc",
@@ -12588,6 +12779,13 @@
       "field": "scene.source.path"
     },
     {
+      "from": "scene:content/scenes/philosophy_history/geometry_and_ontology.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/geometry_and_ontology.json",
+      "field": "scene.source.path"
+    },
+    {
       "from": "scene:content/scenes/philosophy_history/historical_context_missed_opportunities.json",
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
       "edgeType": "markdown_doc",
@@ -12721,6 +12919,13 @@
       "field": "scene.source.path"
     },
     {
+      "from": "scene:content/scenes/philosophy_history/theory_inheritance_discipline.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/theory-inheritance-discipline.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/theory_inheritance_discipline.json",
+      "field": "scene.source.path"
+    },
+    {
       "from": "scene:content/scenes/philosophy_history/theory_mapping.json",
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/theory-mapping.md",
       "edgeType": "markdown_doc",
@@ -12805,6 +13010,13 @@
       "field": "scene.source.path"
     },
     {
+      "from": "scene:content/scenes/reactions/atomic_transition_radiation.json",
+      "to": "markdown_doc:content/markdown/aaa/reactions/atomic-transition-radiation.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/reactions/atomic_transition_radiation.json",
+      "field": "scene.source.path"
+    },
+    {
       "from": "scene:content/scenes/reactions/bremsstrahlung.json",
       "to": "markdown_doc:content/markdown/aaa/reactions/bremsstrahlung.md",
       "edgeType": "markdown_doc",
@@ -12816,6 +13028,13 @@
       "to": "markdown_doc:content/markdown/aaa/interactions/mode-taxonomy.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/reactions/mode_taxonomy.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/reactions/radiation.json",
+      "to": "markdown_doc:content/markdown/aaa/reactions/radiation.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/reactions/radiation.json",
       "field": "scene.source.path"
     },
     {
@@ -13022,6 +13241,13 @@
       "field": "scene.source.path"
     },
     {
+      "from": "scene:content/scenes/validation/massive_superposition_gravity.json",
+      "to": "markdown_doc:content/markdown/aaa/validation/massive-superposition-gravity.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/validation/massive_superposition_gravity.json",
+      "field": "scene.source.path"
+    },
+    {
       "from": "scene:content/scenes/validation/no_go_theorems.json",
       "to": "markdown_doc:content/markdown/aaa/validation/no-go-theorems.md",
       "edgeType": "markdown_doc",
@@ -13047,6 +13273,13 @@
       "to": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/radial-attraction.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/validation/radial_attraction.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/validation/reaction_cosmology_provenance_ledger.json",
+      "to": "markdown_doc:content/markdown/aaa/validation/reaction-cosmology-provenance-ledger.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/validation/reaction_cosmology_provenance_ledger.json",
       "field": "scene.source.path"
     },
     {

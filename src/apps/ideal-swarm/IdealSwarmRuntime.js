@@ -3,6 +3,10 @@ import { createMarkdownRuntime } from "../../runtime/MarkdownRuntime.js";
 import { extractMarkdownSection } from "../../services/MarkdownPolicyService.js";
 import { createAnimatorDefaultCoreSpec } from "../animator/AnimatorDraftScaffoldRuntime.js";
 import { createAnimatorStructureGeometryRuntime } from "../animator/AnimatorStructureGeometryRuntime.js";
+import { createIdealSwarmSharedGeometryRunRequest } from "../../solver/app/SolverAppAdapters.mjs";
+import {
+  runSolverAppBridgeRequest,
+} from "../../solver/app/SolverAppBridgeClientResolver.mjs";
 import {
   getFieldSpeedRegimeLabel,
   getOrbitPathBranchGain,
@@ -48,6 +52,10 @@ const TWO_PI = Math.PI * 2;
 const LORENTZ_BETA_MAX = 1;
 const LORENTZ_CHART_GAMMA_CAP = 6;
 const FIELD_SPEED_REFERENCE_BINARY_INDEX = 1;
+const DEFAULT_SOLVER_MEMORY_BUDGET_BYTES = 64 * 1024 * 1024;
+const DEFAULT_FLIGHT_TIME_TOLERANCE = 1e-12;
+const DEFAULT_FLIGHT_TIME_SOURCE_HISTORY_DEPTH = 10;
+const IDEAL_SWARM_SOLVER_BRIDGE_ENGINE_ID = "architrino-solver-app-bridge";
 const SHELL_SURFACE_BASE_OPACITY = 0.007;
 const SHELL_SURFACE_RIM_OPACITY = 0.16;
 const SHELL_SURFACE_RIM_POWER = 3.2;
@@ -427,6 +435,252 @@ export function solveFlightTime(samplePoint, architrino, observationTime, option
     tau = samplePoint.distanceTo(emittedPosition) / fieldSpeed;
   }
   return tau;
+}
+
+export function createIdealSwarmFlightTimeRunRequest(
+  samplePoint,
+  architrino,
+  observationTime,
+  options = {}
+) {
+  const fieldSpeed = Math.max(0.001, Number(options.fieldSpeed ?? 6) || 6);
+  const iterations = Math.max(1, Math.round(Number(options.iterations ?? 4) || 4));
+  const tolerance = normalizeNonnegativeSolverNumber(
+    options.tolerance,
+    DEFAULT_FLIGHT_TIME_TOLERANCE
+  );
+  const memoryBudgetBytes = normalizePositiveSolverInteger(
+    options.memoryBudgetBytes,
+    DEFAULT_SOLVER_MEMORY_BUDGET_BYTES
+  );
+  const source = createIdealSwarmFlightTimeSourceSegment(
+    architrino,
+    observationTime,
+    options
+  );
+  const runId = options.runId ?? `ideal-swarm-flight-time-${formatSolverIdNumber(observationTime)}`;
+  return createIdealSwarmSharedGeometryRunRequest({
+    requestId: options.requestId ?? `${runId}-request`,
+    runId,
+    datasetId: options.datasetId ?? `${runId}-dataset`,
+    claimLevel: options.claimLevel ?? "interactive-preview",
+    precisionPath: options.precisionPath ?? "auto",
+    configVersion: options.configVersion ?? "ideal-swarm-flight-time-adapter.v1",
+    configHash: options.configHash ?? `ideal-swarm-flight-time:${formatSolverIdNumber(observationTime)}`,
+    model: options.model ?? createDefaultIdealSwarmFlightTimeModel(),
+    envelope: options.envelope ?? createDefaultIdealSwarmFlightTimeEnvelope({
+      source,
+      observationTime,
+      memoryBudgetBytes,
+    }),
+    errorBudget: options.errorBudget ?? createDefaultIdealSwarmFlightTimeErrorBudget(tolerance),
+    geometryRequest: {
+      delayedPotentials: [
+        {
+          source,
+          samplePoint: vectorToSolverBridge(samplePoint),
+          observationTime: Number(observationTime) || 0,
+          fieldSpeed,
+          normalization: Number(options.normalization ?? 1) || 1,
+          softening: Math.max(0.0001, Number(options.softening ?? 0.08) || 0.08),
+          sourceCharge: Number(options.sourceCharge ?? architrino?.q ?? 1) || 1,
+          iterations,
+          useCausalDenominator: options.useCausalDenominator === true,
+        },
+      ],
+    },
+    output: options.output ?? {
+      outputs: ["geometryBuffer", "diagnostics"],
+      streamTarget: options.streamTarget ?? "caller-buffer",
+      memoryBudgetBytes,
+      deterministic: options.deterministic ?? true,
+    },
+  });
+}
+
+export async function solveFlightTimeWithSolverBridge(
+  samplePoint,
+  architrino,
+  observationTime,
+  options = {}
+) {
+  const row = await solveFlightTimeRowWithSolverBridge(
+    samplePoint,
+    architrino,
+    observationTime,
+    options
+  );
+  return Number(row.tau) || 0;
+}
+
+export async function solveFlightTimeRowWithSolverBridge(
+  samplePoint,
+  architrino,
+  observationTime,
+  options = {}
+) {
+  const runRequest =
+    options.runRequest ??
+    createIdealSwarmFlightTimeRunRequest(samplePoint, architrino, observationTime, options);
+  const runHandle = typeof options.runSolverBridge === "function"
+    ? await options.runSolverBridge(runRequest)
+    : await runIdealSwarmSolverBridgeClient(options, {
+        factoryRequest: { samplePoint, architrino, observationTime },
+        runRequest,
+      });
+  return extractIdealSwarmFlightTimeRow(runHandle);
+}
+
+async function runIdealSwarmSolverBridgeClient(options, { factoryRequest, runRequest }) {
+  return runSolverAppBridgeRequest({
+    appId: "ideal-swarm",
+    request: runRequest,
+    options,
+    factoryRequest,
+    requestedCapabilities: ["sharedGeometry", "delayedHits"],
+    storagePolicy: {
+      target: options.streamTarget ?? "caller-buffer",
+      durable: options.streamTarget === "native-file",
+      maxBytes: options.memoryBudgetBytes ?? DEFAULT_SOLVER_MEMORY_BUDGET_BYTES,
+    },
+    threadingPolicy: {
+      mode: options.threadingMode ?? "single-thread",
+      deterministic: options.deterministic ?? true,
+    },
+    missingClientMessage:
+      "Ideal Swarm solver bridge request requires a solver client, runSolverBridge option, client factory, worker, or solver WASM module factory.",
+  });
+}
+
+function extractIdealSwarmFlightTimeRow(runHandle = {}) {
+  const response = runHandle.response ?? runHandle;
+  const geometry = response.geometry ?? response;
+  const rows = Array.isArray(geometry.delayedPotentials) ? geometry.delayedPotentials : [];
+  if (rows.length === 0) {
+    throw new Error("Ideal Swarm solver bridge response did not include a delayed-potential row.");
+  }
+  return {
+    solverEngineId: IDEAL_SWARM_SOLVER_BRIDGE_ENGINE_ID,
+    runId: response.runId ?? runHandle.runId ?? "",
+    datasetId: response.datasetId ?? runHandle.datasetId ?? "",
+    ...rows[0],
+  };
+}
+
+function createIdealSwarmFlightTimeSourceSegment(architrino, observationTime, options = {}) {
+  if (options.sourceSegment && typeof options.sourceSegment === "object") {
+    return cloneSolverSegment(options.sourceSegment);
+  }
+  const endTime = Number.isFinite(Number(options.sourceEndTime))
+    ? Number(options.sourceEndTime)
+    : Number(observationTime) || 0;
+  const historyDepth = normalizePositiveSolverNumber(
+    options.sourceHistoryDepth,
+    DEFAULT_FLIGHT_TIME_SOURCE_HISTORY_DEPTH
+  );
+  const startTime = Number.isFinite(Number(options.sourceStartTime))
+    ? Number(options.sourceStartTime)
+    : endTime - historyDepth;
+  const positionAtStart = typeof architrino?.positionAt === "function"
+    ? vectorToSolverBridge(architrino.positionAt(startTime))
+    : vectorToSolverBridge(architrino?.position ?? architrino);
+  const velocity = typeof architrino?.velocityAt === "function"
+    ? vectorToSolverBridge(architrino.velocityAt(startTime))
+    : vectorToSolverBridge(architrino?.velocity);
+  return {
+    startTime,
+    endTime,
+    positionAtStart,
+    velocity,
+    errorBound: normalizeNonnegativeSolverNumber(options.sourceErrorBound, 0),
+  };
+}
+
+function cloneSolverSegment(segment = {}) {
+  return {
+    startTime: Number(segment.startTime) || 0,
+    endTime: Number(segment.endTime) || 0,
+    positionAtStart: vectorToSolverBridge(segment.positionAtStart ?? segment.start),
+    velocity: vectorToSolverBridge(segment.velocity),
+    errorBound: normalizeNonnegativeSolverNumber(segment.errorBound, 0),
+  };
+}
+
+function createDefaultIdealSwarmFlightTimeModel() {
+  return {
+    modelId: "aaa.ideal-swarm",
+    equationVersion: "delayed-potential-flight-time-v1",
+    forceLawVersion: "causal-delay-v1",
+    constantsHash: "constants:ideal-swarm",
+    causalSpeedPolicy: "field-speed",
+    branchPolicy: "fixed-point-flight-time",
+    unitConvention: "relative",
+    compatiblePrecisionPaths: ["scaled_f64_strict", "event_root_focused", "extended_precision"],
+  };
+}
+
+function createDefaultIdealSwarmFlightTimeEnvelope({
+  source,
+  observationTime,
+  memoryBudgetBytes,
+} = {}) {
+  const startTime = Number(source?.startTime) || 0;
+  const endTime = Number.isFinite(Number(observationTime)) ? Number(observationTime) : startTime;
+  const duration = Math.max(0, endTime - startTime);
+  const stepHint = duration > 0 ? duration / 64 : 1;
+  return {
+    entityCount: 1,
+    assemblyCount: 1,
+    timeWindow: { start: startTime, end: endTime, stepHint, units: "seconds" },
+    timeResolutionHint: stepHint,
+    interactionPolicy: "single-source-delayed-potential",
+    expectedBranchComplexity: "low",
+    outputDetail: "geometry",
+    memoryBudgetBytes,
+    storageBudgetBytes: memoryBudgetBytes,
+    latencyTarget: "interactive",
+    simplificationPolicy: "linear-source-segment",
+  };
+}
+
+function createDefaultIdealSwarmFlightTimeErrorBudget(tolerance = DEFAULT_FLIGHT_TIME_TOLERANCE) {
+  return {
+    globalTolerance: tolerance,
+    rootIsolationTolerance: tolerance,
+    delayedHitTolerance: tolerance,
+    integrationTolerance: tolerance,
+    streamEncodingTolerance: tolerance,
+    readbackTolerance: tolerance,
+    projectionTolerance: 1e-9,
+    displayTolerance: 1e-6,
+  };
+}
+
+function vectorToSolverBridge(value = {}) {
+  return {
+    x: Number(value?.x) || 0,
+    y: Number(value?.y) || 0,
+    z: Number(value?.z) || 0,
+  };
+}
+
+function normalizePositiveSolverNumber(value, fallback) {
+  const number = Number(value);
+  return Number.isFinite(number) && number > 0 ? number : fallback;
+}
+
+function normalizeNonnegativeSolverNumber(value, fallback) {
+  const number = Number(value);
+  return Number.isFinite(number) && number >= 0 ? number : fallback;
+}
+
+function normalizePositiveSolverInteger(value, fallback) {
+  const number = Number(value);
+  return Number.isFinite(number) && number > 0 ? Math.max(1, Math.round(number)) : fallback;
+}
+
+function formatSolverIdNumber(value) {
+  return String(Number(value) || 0).replaceAll(".", "_").replaceAll("-", "neg_");
 }
 
 export function computePotentialContribution(samplePoint, architrino, observationTime, options = {}) {

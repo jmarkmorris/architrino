@@ -194,6 +194,16 @@ This effective unpredictability should not be collapsed into formal undecidabili
 
 Those statistics must stay tied to the same coarse-graining that carries thermodynamic cost. A probability law for threshold outcomes is not closed if the Born-style basin weights use one unresolved-history measure while the entropy, irreversibility, or apparatus-noise summaries use another. The valid target is one deterministic ensemble measure whose projections recover both the outcome frequencies and the thermodynamic summaries of the record-making interaction.
 
+This is the retained content of hidden-variable language, stripped of the misleading suggestion that the missing variables are an added nonphysical layer. The relevant hidden structure is the ordinary complete state plus path history:
+
+$$
+\Gamma_T
+=
+\left(\Gamma(t_0),\{\mathbf{x}_i(t),\mathbf{v}_i(t),q_i\}_{t\in[t_0,t_1]},\mathcal{K}_{\mathrm{app}}\right)
+$$
+
+where $\mathcal{K}_{\mathrm{app}}$ is the apparatus kernel retained for the declared record channel. Quantum randomness is closed only if pushing $\Gamma_T$ through the deterministic flow yields the same record frequencies, restartability behavior, and thermodynamic ledger used by the effective probability description.
+
 ---
 
 ### Agency and Decision
@@ -500,6 +510,8 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$, the wavefunction $\psi(\mathbf{x}, t)$ is n
 
 The universe at the ontic level, as represented by the $\mathbb{U}_{\text{now}}$ universe-state perspective, consists of point-like architrinos executing definite trajectories $\mathbf{x}_i(t)$ in a 3D Euclidean void, interacting via a continuous superposition of causal wake surfaces. Because Physical Observers (assemblies) cannot access the exact microstate or the full path-history of the Noether sea, they must rely on statistical descriptions.
 
+This requires a two-layer use of the word superposition. Substrate superposition means linear addition of causal-wake contributions and accelerations; it is part of the deterministic dynamics. Quantum superposition of mutually exclusive outcomes is different: it is an effective branch envelope used by a Physical Observer before a record has selected a basin. A deterministic substrate can therefore reject ontic superposition of mutually exclusive macroscopic states without rejecting the wake addition that produces the effective landscape.
+
 The wavefunction encodes:
 *   **The superposed potential landscape:** A coarse-grained representation of the ambient causal wake intersections.
 *   **Informational ambiguity:** The integrated ignorance of exact source identities, distances, and path-history emission times.
@@ -724,6 +736,8 @@ Assemblies such as Noether swarms possess internal slow variables that dictate t
 Once the accumulated path-history forces push the assembly's action across the $h$-scale separatrix, the system falls into a new, distinct basin of attraction (e.g., transitioning from an excited orbital resonance to a ground state, or locking into a specific spatial trajectory).
 
 For spin measurements, the corresponding basin program is the Stern-Gerlach-like response model in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md#stern-gerlach-like-measurement-response), where the apparatus couples to the full nested shell swarm spin ledger rather than to a preassigned spin label.
+
+The stronger deterministic statement is not that the formal wavefunction disappears from calculation. It is that a complete substrate state would already contain the realized path-history branch. The effective state must carry multiple amplitudes only because the retained observer chart has lost enough source identity, emission-time, and apparatus-kernel detail that several basin outcomes remain unresolved.
 
 *   **Before the transition:** For the declared apparatus kernel and coarse-graining, the wavefunction models the probability amplitudes of the system navigating the metastable region.
 *   **During the transition:** The discrete state changes sharply, breaking the linear approximation of the Schrödinger equation.
@@ -1041,10 +1055,29 @@ $$
 $$
 whose apparatus kernel, coarse-graining, access region, record window, record classes, and finite-time basin measure all belong to the same coupled flow. The observer-level probability is then a record statistic,
 $$
-p_k(\theta)
-=
-\mu_{*,T}\!\left(\pi^{-1}(R_k)\right)
+p_k(\theta)=\mu_{*,T}\!\left(\pi^{-1}(R_k)\right)
 $$
+is valid only after a branch has earned a record. A record is not every formal correlation, only a branch that closes the full physical transition:
+
+$$
+\mathsf R_\theta(\gamma_i,T)
+=
+\mathsf C_\theta(\gamma_i,T)\,
+\mathsf L_\theta(\gamma_i,T)\,
+\mathsf P_\theta(\gamma_i,T)\,
+\mathsf N_\theta(\gamma_i,T)
+$$
+
+where $\mathsf C_\theta$ is a genuine detector-target coupling, $\mathsf L_\theta$ is ledger closure for conservation and recoil transfer, $\mathsf P_\theta$ is persistence over the record window, and $\mathsf N_\theta$ is no-signaling consistency.
+
+For a declared packet the weighted outcome is the normalized eligible-measure:
+
+$$
+p_k^{\mathrm{rec}}(\theta)=
+\frac{\mu_{*,T}\!\left(\pi^{-1}(R_k)\cap \mathsf R_\theta^{-1}(1)\right)}
+{\sum_j\mu_{*,T}\!\left(\pi^{-1}(R_j)\cap \mathsf R_\theta^{-1}(1)\right)}
+$$
+
 not an extra rule assigned after the dynamics. This keeps the empirical measurement formalism intact while forcing the words "measurement," "outcome," and "probability" to earn a physical record channel.
 
 #### Transfer-Operator Measure Contract

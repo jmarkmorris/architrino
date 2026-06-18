@@ -14,6 +14,8 @@ import {
 const APPLICATIONS_SCENE_PATH = "content/scenes/archie/applications.json";
 const DEFAULT_PRESET_ID = "water";
 const BOND_RADIUS = 0.055;
+const MULTI_BOND_RADIUS = 0.036;
+const MULTI_BOND_OFFSET = 0.082;
 const CAMERA_FOV_DEG = 42;
 const MIN_CAMERA_DISTANCE = 3.4;
 const MAX_CAMERA_DISTANCE = 32;
@@ -255,6 +257,11 @@ function getDistanceSquared(left, right) {
   return dx * dx + dy * dy + dz * dz;
 }
 
+function normalizeBondOrder(value) {
+  const order = Number(value);
+  return Number.isInteger(order) && order >= 1 && order <= 4 ? order : 1;
+}
+
 function createSessionMoleculeBonds(atoms) {
   const bonds = [];
   for (let index = 1; index < atoms.length; index += 1) {
@@ -273,7 +280,7 @@ function createSessionMoleculeBonds(atoms) {
       },
       { candidateIndex: 0, distance: Infinity }
     );
-    bonds.push([nearest.candidateIndex, index]);
+    bonds.push([nearest.candidateIndex, index, 1]);
   }
   return bonds;
 }
@@ -323,6 +330,7 @@ function parseSdfMolecule(sdfText) {
     const parts = lines[bondStartIndex + index]?.trim().split(/\s+/u) ?? [];
     const start = Number(parts[0]) - 1;
     const end = Number(parts[1]) - 1;
+    const order = normalizeBondOrder(parts[2]);
     if (
       Number.isInteger(start) &&
       Number.isInteger(end) &&
@@ -332,7 +340,7 @@ function parseSdfMolecule(sdfText) {
       end < atomCount &&
       start !== end
     ) {
-      bonds.push([start, end]);
+      bonds.push([start, end, order]);
     }
   }
 
@@ -365,6 +373,7 @@ function normalizePreset(rawPreset) {
         .map((bond) => {
           const a = Number(bond?.[0]);
           const b = Number(bond?.[1]);
+          const order = normalizeBondOrder(bond?.[2]);
           if (
             !Number.isInteger(a) ||
             !Number.isInteger(b) ||
@@ -376,7 +385,7 @@ function normalizePreset(rawPreset) {
           ) {
             return null;
           }
-          return [a, b];
+          return [a, b, order];
         })
         .filter(Boolean)
     : [];
@@ -412,15 +421,70 @@ function getMoleculeRadius(atoms) {
   }, 1);
 }
 
-function createBondMesh(Three, start, end, material) {
-  const direction = end.clone().sub(start);
+function createBondCylinderMesh(Three, start, end, material, { radius = BOND_RADIUS, offset = null } = {}) {
+  const startPoint = offset ? start.clone().add(offset) : start;
+  const endPoint = offset ? end.clone().add(offset) : end;
+  const direction = endPoint.clone().sub(startPoint);
   const length = direction.length();
-  const geometry = new Three.CylinderGeometry(BOND_RADIUS, BOND_RADIUS, length, 18);
+  const geometry = new Three.CylinderGeometry(radius, radius, length, 18);
   const mesh = new Three.Mesh(geometry, material);
-  mesh.position.copy(start).add(end).multiplyScalar(0.5);
+  mesh.position.copy(startPoint).add(endPoint).multiplyScalar(0.5);
   mesh.quaternion.setFromUnitVectors(new Three.Vector3(0, 1, 0), direction.normalize());
   mesh.userData.kind = "bond";
   return mesh;
+}
+
+function getBondOffsetVector(Three, start, end) {
+  const direction = end.clone().sub(start).normalize();
+  const reference =
+    Math.abs(direction.y) < 0.82
+      ? new Three.Vector3(0, 1, 0)
+      : new Three.Vector3(1, 0, 0);
+  return new Three.Vector3().crossVectors(direction, reference).normalize();
+}
+
+function createBondMesh(Three, start, end, order, material, aromaticMaterial) {
+  const normalizedOrder = normalizeBondOrder(order);
+  if (normalizedOrder === 1) {
+    return createBondCylinderMesh(Three, start, end, material);
+  }
+
+  const group = new Three.Group();
+  group.userData.kind = "bond";
+  const perpendicular = getBondOffsetVector(Three, start, end);
+
+  if (normalizedOrder === 2) {
+    [-1, 1].forEach((offsetMultiplier) => {
+      group.add(
+        createBondCylinderMesh(Three, start, end, material, {
+          radius: MULTI_BOND_RADIUS,
+          offset: perpendicular.clone().multiplyScalar(MULTI_BOND_OFFSET * offsetMultiplier),
+        })
+      );
+    });
+    return group;
+  }
+
+  if (normalizedOrder === 3) {
+    [-1, 0, 1].forEach((offsetMultiplier) => {
+      group.add(
+        createBondCylinderMesh(Three, start, end, material, {
+          radius: MULTI_BOND_RADIUS,
+          offset: perpendicular.clone().multiplyScalar(MULTI_BOND_OFFSET * offsetMultiplier),
+        })
+      );
+    });
+    return group;
+  }
+
+  group.add(createBondCylinderMesh(Three, start, end, material));
+  group.add(
+    createBondCylinderMesh(Three, start, end, aromaticMaterial, {
+      radius: MULTI_BOND_RADIUS,
+      offset: perpendicular.clone().multiplyScalar(MULTI_BOND_OFFSET),
+    })
+  );
+  return group;
 }
 
 function disposeObject(object) {
@@ -484,6 +548,7 @@ export function createMoleculeRuntime(options = {}) {
     readout: queryMoleculeElement(documentLike, ".molecule-readout"),
     title: queryMoleculeElement(documentLike, "#molecule-title"),
     subtitle: queryMoleculeElement(documentLike, "#molecule-subtitle"),
+    atomLegend: queryMoleculeElement(documentLike, "#molecule-atom-legend"),
     formula: queryMoleculeElement(documentLike, "#molecule-formula"),
     atomCount: queryMoleculeElement(documentLike, "#molecule-atom-count"),
     bondCount: queryMoleculeElement(documentLike, "#molecule-bond-count"),
@@ -553,6 +618,13 @@ export function createMoleculeRuntime(options = {}) {
     color: 0xc9d1c9,
     metalness: 0.08,
     roughness: 0.45,
+  });
+  const aromaticBondMaterial = new THREE.MeshStandardMaterial({
+    color: 0xdde5dd,
+    metalness: 0.06,
+    opacity: 0.64,
+    roughness: 0.5,
+    transparent: true,
   });
 
   function render() {
@@ -668,11 +740,49 @@ export function createMoleculeRuntime(options = {}) {
     setText(dom.architrinoCount, formatLedgerNumber(ledger.architrinos));
   }
 
+  function updateAtomLegend(preset) {
+    const counts = new Map();
+    const atoms = Array.isArray(preset?.atoms) ? preset.atoms : [];
+    atoms.forEach((atom) => {
+      const symbol = normalizeElementSymbol(atom?.element);
+      if (!symbol) {
+        return;
+      }
+      counts.set(symbol, (counts.get(symbol) ?? 0) + 1);
+    });
+
+    dom.atomLegend.textContent = "";
+    [...counts.entries()]
+      .sort(([leftSymbol, leftCount], [rightSymbol, rightCount]) => {
+        if (leftCount !== rightCount) {
+          return rightCount - leftCount;
+        }
+        return leftSymbol.localeCompare(rightSymbol);
+      })
+      .forEach(([symbol, count]) => {
+        const style = getElementRenderStyle(symbol);
+        const chip = documentLike.createElement("span");
+        chip.className = "molecule-atom-legend-chip";
+        chip.title = `${style.name || symbol} ${symbol}`;
+
+        const swatch = documentLike.createElement("span");
+        swatch.className = "molecule-atom-legend-swatch";
+        swatch.style.backgroundColor = style.color;
+        swatch.style.borderColor = style.edgeColor;
+
+        const label = documentLike.createElement("span");
+        label.textContent = count > 1 ? `${symbol} ${count}` : symbol;
+        chip.append(swatch, label);
+        dom.atomLegend.append(chip);
+      });
+  }
+
   function updateReadout(preset) {
     const ledger = calculateMoleculeLedger(preset);
     dom.readout.classList.remove("is-atom-hover");
     setText(dom.title, preset.name);
     setText(dom.subtitle, preset.isSession ? `Session molecule · ${preset.formula}` : preset.formula);
+    updateAtomLegend(preset);
     setText(dom.formula, preset.formula || "-");
     setText(dom.atomCount, `${preset.atoms.length}`);
     setText(dom.bondCount, `${preset.bonds.length}`);
@@ -700,13 +810,22 @@ export function createMoleculeRuntime(options = {}) {
     state.activePreset = preset;
     clearMolecule();
 
-    preset.bonds.forEach(([startIndex, endIndex]) => {
+    preset.bonds.forEach(([startIndex, endIndex, order]) => {
       const startAtom = preset.atoms[startIndex];
       const endAtom = preset.atoms[endIndex];
       if (!startAtom || !endAtom) {
         return;
       }
-      moleculeGroup.add(createBondMesh(THREE, startAtom.position, endAtom.position, bondMaterial));
+      moleculeGroup.add(
+        createBondMesh(
+          THREE,
+          startAtom.position,
+          endAtom.position,
+          order,
+          bondMaterial,
+          aromaticBondMaterial
+        )
+      );
     });
 
     preset.atoms.forEach((atom) => {
@@ -756,6 +875,51 @@ export function createMoleculeRuntime(options = {}) {
     dom.sessionAddButton.disabled = isPending;
     dom.sessionFormulaInput.disabled = isPending;
     dom.sessionNameInput.disabled = isPending;
+  }
+
+  function getCurrentUrl() {
+    try {
+      return new URL(windowLike.location.href);
+    } catch {
+      return null;
+    }
+  }
+
+  function updateSharedMoleculeUrl({ formula, name = "" }) {
+    const url = getCurrentUrl();
+    if (!url || typeof windowLike.history?.replaceState !== "function") {
+      return;
+    }
+    url.searchParams.set("formula", formula);
+    const normalizedName = formatMoleculeDisplayName(name);
+    if (normalizedName) {
+      url.searchParams.set("name", normalizedName);
+    } else {
+      url.searchParams.delete("name");
+    }
+    windowLike.history.replaceState(windowLike.history.state, "", url.href);
+  }
+
+  function clearSharedMoleculeUrl() {
+    const url = getCurrentUrl();
+    if (!url || typeof windowLike.history?.replaceState !== "function") {
+      return;
+    }
+    url.searchParams.delete("formula");
+    url.searchParams.delete("name");
+    windowLike.history.replaceState(windowLike.history.state, "", url.href);
+  }
+
+  function getSharedMoleculeRequest() {
+    const url = getCurrentUrl();
+    const formula = url?.searchParams?.get("formula")?.trim() ?? "";
+    if (!formula) {
+      return null;
+    }
+    return {
+      formula,
+      name: url.searchParams.get("name") ?? "",
+    };
   }
 
   async function fetchPubChemResource(url, readResponse) {
@@ -927,6 +1091,11 @@ export function createMoleculeRuntime(options = {}) {
     button.append(label, meta);
     button.addEventListener("click", () => {
       selectPreset(preset.id);
+      if (preset.isSession) {
+        updateSharedMoleculeUrl({ formula: preset.formula });
+      } else {
+        clearSharedMoleculeUrl();
+      }
       setSessionStatus("");
     });
     presetButtons.set(preset.id, button);
@@ -980,23 +1149,28 @@ export function createMoleculeRuntime(options = {}) {
     });
   }
 
-  function addSessionMolecule(sessionMolecule) {
+  function addSessionMolecule(sessionMolecule, { shareName = "" } = {}) {
     sessionMolecules.push(sessionMolecule);
     sessionById.set(sessionMolecule.id, sessionMolecule);
     renderSessionButtons();
     selectPreset(sessionMolecule.id);
+    updateSharedMoleculeUrl({ formula: sessionMolecule.formula, name: shareName });
     dom.sessionFormulaInput.value = "";
     dom.sessionNameInput.value = "";
   }
 
-  async function handleSessionSubmit(event) {
-    event.preventDefault();
-    const parsedFormula = parseFormulaInput(dom.sessionFormulaInput.value);
+  async function resolveSessionMoleculeRequest({
+    formulaInput,
+    nameInput = "",
+    pendingMessage = "Looking up molecule...",
+    presetMatchPrefix = "Matched preset",
+  }) {
+    const parsedFormula = parseFormulaInput(formulaInput);
     if (!parsedFormula.ok) {
       setSessionStatus(parsedFormula.message, { isError: true });
-      return;
+      return false;
     }
-    const requestedName = formatMoleculeDisplayName(dom.sessionNameInput.value);
+    const requestedName = formatMoleculeDisplayName(nameInput);
 
     const presetMatches = presetMatchesByFormulaKey.get(parsedFormula.formulaKey) ?? [];
     if (presetMatches.length) {
@@ -1004,23 +1178,26 @@ export function createMoleculeRuntime(options = {}) {
         left.name.localeCompare(right.name, undefined, { sensitivity: "base" })
       )[0];
       selectPreset(matchedPreset.id);
+      updateSharedMoleculeUrl({ formula: parsedFormula.formula, name: requestedName });
       setSessionStatus(
         presetMatches.length > 1
-          ? `Matched ${presetMatches.length} presets; opened ${matchedPreset.name}.`
-          : `Matched preset: ${matchedPreset.name}.`
+          ? `${presetMatchPrefix}: opened ${matchedPreset.name}.`
+          : `${presetMatchPrefix}: ${matchedPreset.name}.`
       );
-      return;
+      dom.sessionFormulaInput.value = "";
+      dom.sessionNameInput.value = "";
+      return true;
     }
 
     const lookupRequestNumber = state.sessionLookupRequestNumber + 1;
     state.sessionLookupRequestNumber = lookupRequestNumber;
     setSessionLookupPending(true);
-    setSessionStatus("Looking up molecule...");
+    setSessionStatus(pendingMessage);
 
     try {
       const pubChemMatch = await lookupPubChemMolecule(parsedFormula);
       if (lookupRequestNumber !== state.sessionLookupRequestNumber) {
-        return;
+        return false;
       }
 
       if (pubChemMatch?.atoms?.length) {
@@ -1033,9 +1210,9 @@ export function createMoleculeRuntime(options = {}) {
           cid: pubChemMatch.cid,
           recordType: pubChemMatch.recordType,
         });
-        addSessionMolecule(sessionMolecule);
+        addSessionMolecule(sessionMolecule, { shareName: requestedName });
         setSessionStatus(`PubChem match: ${pubChemMatch.name} (CID ${pubChemMatch.cid}).`);
-        return;
+        return true;
       }
 
       const fallbackMolecule = createSessionMolecule({
@@ -1046,15 +1223,16 @@ export function createMoleculeRuntime(options = {}) {
           ? `PubChem CID ${pubChemMatch.cid}; ${SESSION_MOLECULE_SOURCE}`
           : SESSION_MOLECULE_SOURCE,
       });
-      addSessionMolecule(fallbackMolecule);
+      addSessionMolecule(fallbackMolecule, { shareName: requestedName });
       setSessionStatus(
         pubChemMatch?.name
           ? `Found name: ${pubChemMatch.name}; rendered formula composition.`
           : `Added session molecule: ${fallbackMolecule.name}.`
       );
+      return true;
     } catch (error) {
       if (lookupRequestNumber !== state.sessionLookupRequestNumber) {
-        return;
+        return false;
       }
       console.warn("[MoleculeRuntime] PubChem lookup failed", error);
       const fallbackMolecule = createSessionMolecule({
@@ -1062,13 +1240,35 @@ export function createMoleculeRuntime(options = {}) {
         formula: parsedFormula.formula,
         counts: parsedFormula.counts,
       });
-      addSessionMolecule(fallbackMolecule);
+      addSessionMolecule(fallbackMolecule, { shareName: requestedName });
       setSessionStatus(`Lookup unavailable; added session molecule: ${fallbackMolecule.name}.`);
+      return true;
     } finally {
       if (lookupRequestNumber === state.sessionLookupRequestNumber) {
         setSessionLookupPending(false);
       }
     }
+  }
+
+  async function handleSessionSubmit(event) {
+    event.preventDefault();
+    await resolveSessionMoleculeRequest({
+      formulaInput: dom.sessionFormulaInput.value,
+      nameInput: dom.sessionNameInput.value,
+    });
+  }
+
+  async function loadSharedMoleculeFromUrl() {
+    const sharedRequest = getSharedMoleculeRequest();
+    if (!sharedRequest) {
+      return;
+    }
+    await resolveSessionMoleculeRequest({
+      formulaInput: sharedRequest.formula,
+      nameInput: sharedRequest.name,
+      pendingMessage: "Loading shared molecule...",
+      presetMatchPrefix: "Shared molecule matched preset",
+    });
   }
 
   function setPointerNdc(event) {
@@ -1319,6 +1519,9 @@ export function createMoleculeRuntime(options = {}) {
     windowLike.addEventListener("resize", resize);
     resize();
     selectPreset(presetById.has(DEFAULT_PRESET_ID) ? DEFAULT_PRESET_ID : presets[0].id);
+    loadSharedMoleculeFromUrl().catch((error) => {
+      console.warn("[MoleculeRuntime] Failed to load shared molecule", error);
+    });
   }
 
   function destroy() {
@@ -1341,6 +1544,9 @@ export function createMoleculeRuntime(options = {}) {
     resetView,
     getState: () => ({
       activePresetId: state.activePreset?.id ?? null,
+      activeBondOrders: Array.isArray(state.activePreset?.bonds)
+        ? state.activePreset.bonds.map((bond) => normalizeBondOrder(bond?.[2]))
+        : [],
       cameraDistance: state.cameraDistance,
       presetCount: presets.length,
       sessionMoleculeCount: sessionMolecules.length,

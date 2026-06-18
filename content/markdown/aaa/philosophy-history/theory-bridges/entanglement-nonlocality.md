@@ -275,6 +275,8 @@ The Bohmian comparison also gives a warning about where the proof burden sits. A
 
 **Measurement independence** is preserved: the choice of measurement settings at $A$ and $B$ can be freely varied without correlation with the hidden variables $\lambda$ established at the source event. The theory does not invoke superdeterminism.
 
+The contrast with 't Hooft-style superdeterminism is exact. $\mathbb{A}\mathbb{A}\mathbb{A}$ accepts that the complete universe state is deterministic in absolute time, including the physical histories of detector-setting devices. It does not treat that global determinism as license to make the source-provenance distribution depend on the later chosen settings. The retained closure burden is instead a nonseparable pair-provenance law whose setting dependence enters only through the two local apparatus kernels and whose marginals remain no-signaling.
+
 ### The Absolute-Time Framework and Nonlocality
 
 The existence of absolute time $t$ is essential to the consistency of this picture. In the standard relativistic framework, the absence of a preferred foliation means that "which measurement happened first" is frame-dependent for spacelike-separated events. This makes it difficult to tell a coherent story about how correlations are maintained without invoking some form of action at a distance.

@@ -19,6 +19,10 @@
         "scenePath": "content/scenes/philosophy_history/theory_differentials.json"
       },
       {
+        "nodeId": "theory_inheritance_discipline",
+        "scenePath": "content/scenes/philosophy_history/theory_inheritance_discipline.json"
+      },
+      {
         "nodeId": "theory_bridges",
         "scenePath": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json"
       }
@@ -55,6 +59,23 @@
         "type": "fixed"
       },
       "labelTitle": "Theory Differentials",
+      "fixedPosition": true
+    },
+    {
+      "id": "theory_inheritance_discipline",
+      "title": "Theory Inheritance Discipline",
+      "radius": 2.25,
+      "color": "#4b5e2f",
+      "position": [
+        0,
+        -8.5,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Theory Inheritance",
+      "labelBadge": "doc",
       "fixedPosition": true
     },
     {

@@ -1,4 +1,10 @@
 import {
+  createPhotonCausalRootsRunRequest,
+} from "../../solver/app/SolverAppAdapters.mjs";
+import {
+  runSolverAppBridgeRequest,
+} from "../../solver/app/SolverAppBridgeClientResolver.mjs";
+import {
   PHOTON_LAYER_ORDER,
   getPhotonDirectionSign,
   getPhotonLayer,
@@ -23,6 +29,9 @@ const ROOT_DEDUP_DELAY_TOLERANCE = 1e-4;
 const JACOBIAN_FLOOR = 1e-4;
 const DEFAULT_ANALYZER_AVERAGE_SAMPLES = 48;
 const DEFAULT_POLARIZATION_FIT_SAMPLES = 144;
+const DEFAULT_SOLVER_MEMORY_BUDGET_BYTES = 64 * 1024 * 1024;
+const DEFAULT_PHOTON_ROOT_TOLERANCE = 1e-12;
+const PHOTON_SOLVER_BRIDGE_ENGINE_ID = "architrino-solver-app-bridge";
 const POLARIZATION_LINEAR_S3_TOLERANCE = 0.12;
 const POLARIZATION_CIRCULAR_S3_MIN = 0.82;
 const POLARIZATION_CIRCULAR_TRANSVERSE_TOLERANCE = 0.35;
@@ -232,6 +241,272 @@ export function solvePhotonCausalRoots(state, sourceRef, observationTime, measur
   }
 
   return roots.sort((a, b) => a.delay - b.delay);
+}
+
+export function createPhotonCausalRootsSolverRunRequest(rootRequest, options = {}) {
+  const memoryBudgetBytes = normalizePositiveSolverInteger(
+    options.memoryBudgetBytes,
+    DEFAULT_SOLVER_MEMORY_BUDGET_BYTES
+  );
+  const runId = options.runId ?? `photon-causal-roots-${formatSolverIdNumber(rootRequest?.hitTime)}`;
+  return createPhotonCausalRootsRunRequest({
+    requestId: options.requestId ?? `${runId}-request`,
+    runId,
+    datasetId: options.datasetId ?? `${runId}-dataset`,
+    claimLevel: options.claimLevel ?? "migration-parity",
+    precisionPath: options.precisionPath ?? "auto",
+    configVersion: options.configVersion ?? "photon-causal-roots-linear-adapter.v1",
+    configHash: options.configHash ?? `photon-causal-roots:${formatSolverIdNumber(rootRequest?.hitTime)}`,
+    model: options.model ?? createDefaultPhotonCausalRootsModel(),
+    envelope: options.envelope ?? createDefaultPhotonCausalRootsEnvelope({
+      rootRequest,
+      memoryBudgetBytes,
+    }),
+    errorBudget: options.errorBudget ?? createDefaultPhotonCausalRootsErrorBudget(
+      rootRequest?.rootTolerance ?? options.tolerance
+    ),
+    rootRequest,
+    output: options.output ?? {
+      outputs: ["rootLedger", "delayedHitEvents", "diagnostics"],
+      streamTarget: options.streamTarget ?? "caller-buffer",
+      memoryBudgetBytes,
+      deterministic: options.deterministic ?? true,
+    },
+  });
+}
+
+export async function solvePhotonCausalRootsWithSolverBridge(rootRequest, options = {}) {
+  const runHandle = await runPhotonCausalRootsWithSolverBridge(rootRequest, options);
+  return Array.isArray(runHandle.response?.roots) ? runHandle.response.roots : [];
+}
+
+export function createPhotonCircularSourceCausalRootRequest(
+  state,
+  sourceRef,
+  observationTime,
+  options = {}
+) {
+  const measurement = options.measurement ?? resolvePhotonMeasurementParameters(state);
+  const layer = getPhotonLayer(state, sourceRef.swarmId, sourceRef.layerId);
+  const hitTime = Number(observationTime) || 0;
+  const maxDelay = normalizeNonnegativeSolverNumber(
+    options.maxDelay,
+    getPhotonSourceMaxDelay(state, sourceRef, measurement)
+  );
+  const sourceEndTime = Number.isFinite(Number(options.sourceEndTime))
+    ? Number(options.sourceEndTime)
+    : hitTime;
+  const sourceStartTime = Number.isFinite(Number(options.sourceStartTime))
+    ? Number(options.sourceStartTime)
+    : sourceEndTime - maxDelay;
+  const frequency = Math.max(0, Math.abs(Number(layer.frequencyHz) || 0));
+  const scanSubdivisions = normalizePositiveSolverInteger(
+    options.scanSubdivisions,
+    Math.min(
+      ROOT_SCAN_MAX_STEPS,
+      Math.max(ROOT_SCAN_MIN_STEPS, Math.ceil(maxDelay * frequency * ROOT_SCAN_STEPS_PER_CYCLE))
+    )
+  );
+  const radius = Number(layer.radius) || 0;
+  const centerX = getPhotonSwarmCenterX(state, sourceRef.swarmId);
+  const angularVelocity = getPhotonDirectionSign(state, sourceRef.swarmId) *
+    TWO_PI *
+    (Number(layer.frequencyHz) || 0);
+
+  const request = {
+    source: {
+      startTime: sourceStartTime,
+      endTime: sourceEndTime,
+      center: { x: centerX, y: 0, z: 0 },
+      radiusU: { x: 0, y: radius, z: 0 },
+      radiusV: { x: 0, y: 0, z: radius },
+      angularVelocity,
+      phaseAtEpoch: getPhotonLayerAngleRadians(
+        state,
+        sourceRef.swarmId,
+        sourceRef.layerId,
+        0,
+        sourceRef.chargeType
+      ),
+      epochTime: 0,
+      errorBound: options.sourceErrorBound ?? 0,
+    },
+    receiver: {
+      startTime: Math.min(sourceStartTime, hitTime),
+      endTime: Math.max(sourceEndTime, hitTime),
+      positionAtStart: measurement.virtualObserver,
+      velocity: { x: 0, y: 0, z: 0 },
+      errorBound: options.receiverErrorBound ?? 0,
+    },
+    hitTime,
+    signalSpeed: measurement.emissionSpeedCf,
+    rootTolerance: options.rootTolerance ?? DEFAULT_PHOTON_ROOT_TOLERANCE,
+    maxIterations: options.maxIterations ?? 96,
+    scanSubdivisions,
+    maxRoots: normalizePositiveSolverInteger(options.maxRoots, Math.max(16, scanSubdivisions + 1)),
+  };
+  if (typeof options.streamId === "string" && options.streamId.length > 0) {
+    request.streamId = options.streamId;
+  }
+  return request;
+}
+
+export async function solvePhotonCircularSourceRootsHitsLedgerWithSolverBridge(
+  state,
+  sourceRef,
+  observationTime,
+  options = {}
+) {
+  const request = options.request ??
+    createPhotonCircularSourceCausalRootRequest(state, sourceRef, observationTime, options);
+  const response = typeof options.solveCircularSourceRootsHitsLedger === "function"
+    ? await options.solveCircularSourceRootsHitsLedger(request)
+    : await runPhotonCircularSourceSolverBridgeClient(options, request);
+  return {
+    solverEngineId: PHOTON_SOLVER_BRIDGE_ENGINE_ID,
+    ...response,
+  };
+}
+
+export async function solvePhotonCircularSourceCausalRootsWithSolverBridge(
+  state,
+  sourceRef,
+  observationTime,
+  options = {}
+) {
+  const response = await solvePhotonCircularSourceRootsHitsLedgerWithSolverBridge(
+    state,
+    sourceRef,
+    observationTime,
+    options
+  );
+  return Array.isArray(response?.roots) ? response.roots : [];
+}
+
+export async function runPhotonCausalRootsWithSolverBridge(rootRequest, options = {}) {
+  const runRequest =
+    options.runRequest ?? createPhotonCausalRootsSolverRunRequest(rootRequest, options);
+  const runHandle = typeof options.runSolverBridge === "function"
+    ? await options.runSolverBridge(runRequest)
+    : await runPhotonSolverBridgeClient(options, rootRequest, runRequest);
+  return {
+    solverEngineId: PHOTON_SOLVER_BRIDGE_ENGINE_ID,
+    ...runHandle,
+  };
+}
+
+async function runPhotonSolverBridgeClient(options, rootRequest, runRequest) {
+  return runSolverAppBridgeRequest({
+    appId: "photon",
+    request: runRequest,
+    options,
+    factoryRequest: rootRequest,
+    requestedCapabilities: ["causalRoots", "delayedHits"],
+    storagePolicy: {
+      target: options.streamTarget ?? "caller-buffer",
+      durable: options.streamTarget === "native-file",
+      maxBytes: options.memoryBudgetBytes ?? DEFAULT_SOLVER_MEMORY_BUDGET_BYTES,
+    },
+    threadingPolicy: {
+      mode: options.threadingMode ?? "single-thread",
+      deterministic: options.deterministic ?? true,
+    },
+    missingClientMessage:
+      "Photon solver bridge request requires a solver client, runSolverBridge option, client factory, worker, or solver WASM module factory.",
+  });
+}
+
+async function runPhotonCircularSourceSolverBridgeClient(options, request) {
+  return runSolverAppBridgeRequest({
+    appId: "photon",
+    methodName: "solveCircularSourceRootsHitsLedgerF64",
+    request,
+    options,
+    factoryRequest: request,
+    requestedCapabilities: ["causalRoots", "delayedHits"],
+    storagePolicy: {
+      target: options.streamTarget ?? "caller-buffer",
+      durable: options.streamTarget === "native-file",
+      maxBytes: options.memoryBudgetBytes ?? DEFAULT_SOLVER_MEMORY_BUDGET_BYTES,
+    },
+    threadingPolicy: {
+      mode: options.threadingMode ?? "single-thread",
+      deterministic: options.deterministic ?? true,
+    },
+    missingClientMessage:
+      "Photon circular-source solver bridge request requires a solver client, solveCircularSourceRootsHitsLedger option, client factory, worker, or solver WASM module factory.",
+  });
+}
+
+function createDefaultPhotonCausalRootsModel() {
+  return {
+    modelId: "aaa.photon",
+    equationVersion: "causal-root-linear-source-v1",
+    forceLawVersion: "causal-delay-v1",
+    constantsHash: "constants:photon",
+    causalSpeedPolicy: "fixed-field-speed",
+    branchPolicy: "all-positive-roots",
+    unitConvention: "relative",
+    compatiblePrecisionPaths: ["scaled_f64_strict", "event_root_focused", "extended_precision"],
+  };
+}
+
+function createDefaultPhotonCausalRootsEnvelope({
+  rootRequest,
+  memoryBudgetBytes,
+} = {}) {
+  const sourceStart = Number(rootRequest?.source?.startTime) || 0;
+  const receiverStart = Number(rootRequest?.receiver?.startTime) || 0;
+  const hitTime = Number(rootRequest?.hitTime) || 0;
+  const start = Math.min(sourceStart, receiverStart, hitTime);
+  const end = Math.max(
+    Number(rootRequest?.source?.endTime) || hitTime,
+    Number(rootRequest?.receiver?.endTime) || hitTime,
+    hitTime
+  );
+  const duration = Math.max(0, end - start);
+  const stepHint = duration > 0 ? duration / 64 : 1;
+  return {
+    entityCount: 2,
+    assemblyCount: 0,
+    timeWindow: { start, end, stepHint, units: "seconds" },
+    timeResolutionHint: stepHint,
+    interactionPolicy: "single-source-receiver-causal-root",
+    expectedBranchComplexity: "low",
+    outputDetail: "root-ledger",
+    memoryBudgetBytes,
+    storageBudgetBytes: memoryBudgetBytes,
+    latencyTarget: "interactive",
+    simplificationPolicy: "linear-source-and-receiver-segments",
+  };
+}
+
+function createDefaultPhotonCausalRootsErrorBudget(tolerance = DEFAULT_PHOTON_ROOT_TOLERANCE) {
+  const normalizedTolerance = normalizeNonnegativeSolverNumber(tolerance, DEFAULT_PHOTON_ROOT_TOLERANCE);
+  return {
+    globalTolerance: normalizedTolerance,
+    rootIsolationTolerance: normalizedTolerance,
+    delayedHitTolerance: normalizedTolerance,
+    integrationTolerance: normalizedTolerance,
+    streamEncodingTolerance: normalizedTolerance,
+    readbackTolerance: normalizedTolerance,
+    projectionTolerance: 1e-9,
+    displayTolerance: 1e-6,
+  };
+}
+
+function normalizePositiveSolverInteger(value, fallback) {
+  const number = Number(value);
+  return Number.isFinite(number) && number > 0 ? Math.max(1, Math.round(number)) : fallback;
+}
+
+function normalizeNonnegativeSolverNumber(value, fallback) {
+  const number = Number(value);
+  return Number.isFinite(number) && number >= 0 ? number : fallback;
+}
+
+function formatSolverIdNumber(value) {
+  return String(Number(value) || 0).replaceAll(".", "_").replaceAll("-", "neg_");
 }
 
 export function getPhotonArchitrinoKinematics(state, swarmId, layerId, chargeType, timeSeconds) {
@@ -681,12 +956,19 @@ export function computePhotonAverageAnalyzerFraction(
   return fractionSum / count;
 }
 
-export function computePhotonFormulaSummary(state, timeSeconds) {
+export function computePhotonFormulaSummary(state, timeSeconds, options = {}) {
   const wrappedTime = wrapPhotonTime(state, timeSeconds);
   const field = computePhotonObserverField(state, wrappedTime);
-  const polarization = buildPhotonDerivedPolarizationTrace(state, wrappedTime);
+  const polarization = buildPhotonDerivedPolarizationTrace(
+    state,
+    wrappedTime,
+    options.polarizationSampleCount ?? DEFAULT_POLARIZATION_FIT_SAMPLES
+  );
   const stokes = polarization.stokes;
-  const averageAnalyzerFraction = computePhotonAverageAnalyzerFraction(state);
+  const averageAnalyzerFraction = computePhotonAverageAnalyzerFraction(
+    state,
+    options.analyzerSampleCount ?? DEFAULT_ANALYZER_AVERAGE_SAMPLES
+  );
   const analyzerTarget = polarization.analyzerFractionTarget;
   const analyzerResidual = averageAnalyzerFraction - analyzerTarget;
   return {

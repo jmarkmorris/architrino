@@ -287,7 +287,7 @@ The $\mathbb{A}\mathbb{A}\mathbb{A}$ lesson is not the historical numerical valu
 
 A compact residual for this pressure is
 $$
-\mathcal{R}_{T,\mathrm{eq,grow}}(\theta)
+\mathcal{R}_{\mathrm{T,eq,grow}}(\theta)
 =
 \frac{(T_0^\theta-T_0^{\mathrm{obs}})^2}{\sigma_{T_0}^2}
 +
@@ -459,51 +459,62 @@ Use the comparison parameterization
 $$
 \mathcal{P}_{\mathcal{R}}^{\theta}(k)
 =
-A_s^{\theta}
+A_{\mathrm{s}}^{\theta}
 \left(\frac{k}{k_*}\right)^{
-n_s^{\theta}-1+\frac12\alpha_s^{\theta}\ln(k/k_*)
+n_{\mathrm{s}}^{\theta} - 1 + \frac{1}{2}\alpha_{\mathrm{s}}^{\theta}\ln(k/k_*)
 },
 \qquad
 r^{\theta}(k_*)
 =
-\frac{\mathcal{P}_{T}^{\theta}(k_*)}{\mathcal{P}_{\mathcal{R}}^{\theta}(k_*)}
+\frac{\mathcal{P}_{\mathrm{T}}^{\theta}(k_*)}{\mathcal{P}_{\mathcal{R}}^{\theta}(k_*)}
 $$
 
-Here $A_s^{\theta}$ is the scalar amplitude, $n_s^{\theta}$ the scalar tilt, $\alpha_s^{\theta}$ an optional running term, and $r^{\theta}$ the tensor-to-scalar comparison ratio. The tensor condition is a bound,
+Here $A_{\mathrm{s}}^{\theta}$ is the scalar amplitude, $n_{\mathrm{s}}^{\theta}$ the scalar tilt, $\alpha_{\mathrm{s}}^{\theta}$ an optional running term, and $r^{\theta}$ the tensor-to-scalar comparison ratio. The tensor condition is a bound,
 $$
-r^{\theta}(k_*)\le r_{\max}
+r^{\theta}(k_*) \le r_{\max}
 $$
 with $r_{\max}$ supplied by the current observational analysis being used for the comparison. This keeps tensor non-detection as a pressure on source models without turning any particular inflationary or anti-inflationary interpretation into corpus doctrine.
 
-Finite-range or medium-compliance gravity comparisons enter this same tensor gate. They do not add a massive-graviton ontology; they add the requirement that the same Noether sea record which weakens the large-scale response also predicts the tensor and B-mode data products. A compact comparison residual is
+The tensor row should not collapse all early sources into a single inflation signal. Split the tensor-to-scalar comparison into vacuum-like and causal-source components,
 $$
-\mathcal{R}_{T,\mathrm{range}}(\theta)
+r_{\mathrm{tot}}^\theta(k_*)
 =
-\sum_{\ell\in\mathcal{L}_{BB}}
+r_{\mathrm{vac}}^\theta(k_*)
++r_{\mathrm{causal}}^\theta(k_*)
+$$
+where $r_{\mathrm{vac}}^\theta$ is the vacuum-like tensor contribution and $r_{\mathrm{causal}}^\theta$ is any tensor power sourced by phase-transition-like, defect-like, strong-release, recycling, or other causal-source processes. Finite-range or medium-compliance gravity comparisons enter this same tensor gate. They do not add a massive-graviton ontology; they add the requirement that the same Noether sea record which weakens the large-scale response also predicts the tensor and B-mode data products. A compact comparison residual is
+$$
+\mathcal{R}_{\mathrm{T,split}}(\theta)
+=
+\sum_{\ell \in \mathcal{L}_{\mathrm{BB}}}
 \frac{
-\left(C_{\ell,BB}^{\theta}-C_{\ell,BB}^{\mathrm{obs}}\right)^2
+\left(C_{\ell,\mathrm{BB}}^{\theta} - C_{\ell,\mathrm{BB}}^{\mathrm{obs}}\right)^2
 }{
-\sigma_{\ell,BB}^2
+\sigma_{\ell,\mathrm{BB}}^2
 }
 +
-\lambda_r\max(0,r^{\theta}-r_{\max})^2
+\lambda_{\mathrm{vac}}
+\max\!\left(0, r_{\mathrm{vac}}^\theta - r_{\mathrm{vac},\max}\right)^2
++
+\lambda_{\mathrm{causal}}
+\max\!\left(0, r_{\mathrm{causal}}^\theta - r_{\mathrm{causal},\max}\right)^2
 +
 \lambda_{\mathrm{low}}\mathcal{R}_{\mathrm{GW,low}}(\theta)
 $$
-where $\mathcal{L}_{BB}$ is the declared B-mode comparison window and $\mathcal{R}_{\mathrm{GW,low}}$ is the low-frequency dispersion forecast from [Gravitational Waves](../spacetime/gravitational-waves.md#linear-wave-equation). This keeps the CMB tensor bound and gravitational-wave dispersion gate tied to one comparison record rather than allowing a finite-range branch to fit them separately.
+where $\mathcal{L}_{\mathrm{BB}}$ is the declared B-mode comparison window, $r_{\mathrm{vac},\max}$ and $r_{\mathrm{causal},\max}$ are supplied by the data product or simulation protocol, and $\mathcal{R}_{\mathrm{GW,low}}$ is the low-frequency dispersion forecast from [Gravitational Waves](../spacetime/gravitational-waves.md#linear-wave-equation). This keeps the CMB tensor bound, causal-source tensor bound, and gravitational-wave dispersion gate tied to one comparison record rather than allowing a finite-range branch to fit them separately.
 
 A compact residual for CMB closure is
 $$
 \mathcal{R}_{\mathrm{CMB}}(\theta)
 =
-\sum_{X\in\{TT,TE,EE\}}\sum_{\ell}
+\sum_{X\in\{\mathrm{TT},\mathrm{TE},\mathrm{EE}\}}\sum_{\ell}
 \frac{(C_{\ell,X}^{\theta}-C_{\ell,X}^{\mathrm{obs}})^2}{\sigma_{\ell,X}^2}
 +
-\frac{(A_s^{\theta}-A_s^{\mathrm{obs}})^2}{\sigma_{A_s}^2}
+\frac{(A_{\mathrm{s}}^{\theta}-A_{\mathrm{s}}^{\mathrm{obs}})^2}{\sigma_{A_{\mathrm{s}}}^2}
 +
-\frac{(n_s^{\theta}-n_s^{\mathrm{obs}})^2}{\sigma_{n_s}^2}
+\frac{(n_{\mathrm{s}}^{\theta}-n_{\mathrm{s}}^{\mathrm{obs}})^2}{\sigma_{n_{\mathrm{s}}}^2}
 +
-\lambda_T\max(0,r^{\theta}-r_{\max})^2
+\lambda_{\mathrm{T}}\max\!\left(0, r^{\theta}-r_{\max}\right)^2
 $$
 
 The closure target is one medium-and-assembly model with bounded $\mathcal{R}_{\mathrm{CMB}}$, not a separate fit for each observable family.
@@ -512,7 +523,7 @@ The same scalar sector must also recover the acoustic phase record rather than o
 $$
 \mathcal{R}_{\mathrm{phase}}(\theta)
 =
-\sum_{X\in\{TT,TE,EE\}}\sum_{p}
+\sum_{X\in\{\mathrm{TT},\mathrm{TE},\mathrm{EE}\}}\sum_{p}
 \frac{
 \left(\ell_{p,X}^{\theta}-\ell_{p,X}^{\mathrm{obs}}\right)^2
 }{
@@ -536,13 +547,13 @@ $$
 $$
 Here $\delta_{\gamma}^{\theta}$ is the photon-channel density contrast in the observer-level reconstruction. The numerator tests effective vector/vorticity content; the denominator normalizes it against the scalar contrast being recovered. A successful CMB history must keep this residual small in the same state record that fits TT/TE/EE.
 
-The CMB-lensing sector adds a late-time integrated-mass reconstruction gate. In standard comparison language, lensing remaps the primary CMB by an effective lensing potential $\phi$ and yields a lensing-potential spectrum $C_L^{\phi\phi}$. For a candidate history $\theta$, use
+The CMB-lensing sector adds a late-time integrated-mass reconstruction gate. In standard comparison language, lensing remaps the primary CMB by an effective lensing potential $\phi$ and yields a lensing-potential spectrum $C_{L}^{\phi\phi}$. For a candidate history $\theta$, use
 $$
 \mathcal{R}_{\mathrm{lens}}(\theta)
 =
 \sum_L
 \frac{
-\left(C_L^{\phi\phi,\theta}-C_L^{\phi\phi,\mathrm{obs}}\right)^2
+\left(C_{L}^{\phi\phi,\theta}-C_{L}^{\phi\phi,\mathrm{obs}}\right)^2
 }{
 \sigma_{L,\phi}^2
 }
@@ -569,7 +580,7 @@ This is not a statement that the Euclidean void is curved. It is an observer-lev
 $$
 \mathcal{R}_{\mathrm{CMB}}(\theta)
 +
-\lambda_{T,\mathrm{eq,grow}}\mathcal{R}_{T,\mathrm{eq,grow}}(\theta)
+\lambda_{\mathrm{T,eq,grow}}\mathcal{R}_{\mathrm{T,eq,grow}}(\theta)
 +
 \lambda_{\mathrm{phase}}\mathcal{R}_{\mathrm{phase}}(\theta)
 +
@@ -579,11 +590,11 @@ $$
 +
 \lambda_{\mathrm{smooth}}\mathcal{R}_{\mathrm{smooth}}(\theta)
 +
-\lambda_{\mathrm{range}}\mathcal{R}_{T,\mathrm{range}}(\theta)
+\lambda_{\mathrm{T,split}}\mathcal{R}_{\mathrm{T,split}}(\theta)
 \le
 \varepsilon_{\mathrm{CMB}}
 $$
-with $\lambda_{T,\mathrm{eq,grow}}$, $\lambda_{\mathrm{phase}}$, $\lambda_V$, $\lambda_{\mathrm{lens}}$, $\lambda_{\mathrm{smooth}}$, $\lambda_{\mathrm{range}}$, and $\varepsilon_{\mathrm{CMB}}$ declared by the data release or simulation protocol. Passing this test would mean that the same Noether sea and assembly history recovers TT/TE/EE, blackbody behavior, radiation-temperature/equality/growth consistency, scalar/tensor bounds, acoustic phase coherence, vector-mode suppression, CMB-lensing reconstruction, the low effective gravitational free-mode budget, and any declared finite-range comparison branch without changing ontology between modules.
+with $\lambda_{\mathrm{T,eq,grow}}$, $\lambda_{\mathrm{phase}}$, $\lambda_V$, $\lambda_{\mathrm{lens}}$, $\lambda_{\mathrm{smooth}}$, $\lambda_{\mathrm{T,split}}$, and $\varepsilon_{\mathrm{CMB}}$ declared by the data release or simulation protocol. Passing this test would mean that the same Noether sea and assembly history recovers TT/TE/EE, blackbody behavior, radiation-temperature/equality/growth consistency, scalar/tensor bounds, causal-source tensor limits, acoustic phase coherence, vector-mode suppression, CMB-lensing reconstruction, the low effective gravitational free-mode budget, and any declared finite-range comparison branch without changing ontology between modules.
 
 ### Forward Prediction Map
 

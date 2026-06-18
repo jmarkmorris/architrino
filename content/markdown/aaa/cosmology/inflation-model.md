@@ -62,18 +62,38 @@ Inflationary comparison remains useful only where it supplies disciplined observ
 
 For a candidate high-curvature release record $\theta$, require
 $$
-\left(A_s^{\theta},n_s^{\theta},\alpha_s^{\theta},r^{\theta}\right)
+\left(A_{\mathrm{s}}^{\theta},n_{\mathrm{s}}^{\theta},\alpha_{\mathrm{s}}^{\theta},r^{\theta}\right)
 \to
-\left(A_s^{\mathrm{obs}},n_s^{\mathrm{obs}},\alpha_s^{\mathrm{obs}},r_{\max}\right)
+\left(A_{\mathrm{s}}^{\mathrm{obs}},n_{\mathrm{s}}^{\mathrm{obs}},\alpha_{\mathrm{s}}^{\mathrm{obs}},r_{\max}\right)
 $$
 within the declared observational tolerances, with
 $$
-r^{\theta}(k_*)\le r_{\max}
+r^{\theta}(k_*) \le r_{\max}
 $$
 
 The scalar/tensor gate should be read as a closure burden on the high-curvature transfer channel. If $\mathbb{A}\mathbb{A}\mathbb{A}$ uses SMBH-core or horizon-interface dynamics to explain inflation-like behavior, those dynamics must supply the same near-Gaussian scalar spectrum and allowed tensor sector without retuning the CMB, BBN, and expansion interfaces separately.
 
-Smoothness is a separate benchmark from scalar amplitude and tensor suppression. Inflationary language is often credited with explaining why the early effective record has low gravitational free-mode content, while generic strong-field collapse is expected to develop complicated anisotropic curvature. In this framework that pressure becomes a medium-history constraint, not an inflaton ontology. The high-curvature release channel must therefore deliver the CMB-facing smoothness residual defined in [CMB](./CMB.md) using the same Noether sea variables that supply $\left(A_s^{\theta},n_s^{\theta},\alpha_s^{\theta},r^{\theta}\right)$.
+Smoothness is a separate benchmark from scalar amplitude and tensor suppression. Inflationary language is often credited with explaining why the early effective record has low gravitational free-mode content, while generic strong-field collapse is expected to develop complicated anisotropic curvature. In this framework that pressure becomes a medium-history constraint, not an inflaton ontology. The high-curvature release channel must therefore deliver the CMB-facing smoothness residual defined in [CMB](./CMB.md) using the same Noether sea variables that supply $\left(A_{\mathrm{s}}^{\theta},n_{\mathrm{s}}^{\theta},\alpha_{\mathrm{s}}^{\theta},r^{\theta}\right)$.
+
+### Predictive Restriction and Initial Conditions
+
+The inflation comparison also carries a predictiveness burden. A high-curvature release record is not promoted because it can reproduce the observed CMB packet after the source function, starting branch, or projection map is widened. It must narrow the allowed-output set and report the initial-basin cost defined in [Cosmology Ontology](./cosmology-ontology.md#prediction-narrowness-and-initial-basin-burden).
+
+For this module, the local version is
+$$
+\mathcal{O}_{\epsilon}^{\mathrm{infl}}(\theta)
+=
+\left\{
+o \in \mathcal{O}_{\mathrm{CMB,near}}
+:
+\mathcal{R}_{\mathrm{CMB}}(\theta;o)
++\mathcal{R}_{\mathrm{smooth}}(\theta;o)
++\mathcal{R}_{\mathrm{T,split}}(\theta;o)
+\le
+\epsilon_{\mathrm{infl}}
+\right\}
+$$
+The branch is predictive only when this set is narrow under the declared CMB comparison measure. The companion initial-basin burden is $\mathcal{S}_{\mathrm{init}}$: if the release channel succeeds only for a tiny set of pre-release Noether sea states, then the smoothing explanation has been moved into the starting chart rather than derived from the high-curvature dynamics.
 
 ### Slow-Roll Comparison Dictionary
 
@@ -92,7 +112,7 @@ $$
 \equiv
 -\frac{d\ln H_\theta}{dN_\theta},
 \qquad
-\varepsilon_\theta<1
+\varepsilon_\theta < 1
 $$
 for an inflation-like effective interval, and the second coordinate is
 $$
@@ -135,7 +155,7 @@ $$
 $$
 so that
 $$
-n_s^\theta-1
+n_{\mathrm{s}}^\theta - 1
 =
 \frac{d\ln \Delta_{\mathrm{s}}^{2,\theta}}{d\ln k},
 \qquad
@@ -145,7 +165,7 @@ r^\theta
 \approx
 16\varepsilon_\theta
 $$
-A branch that claims a slow-roll-like scalar/tensor match should therefore supply $\{\varepsilon_\theta,\eta_\theta,N_\theta,\Delta_{\mathrm{s}}^{2,\theta},\Delta_{\mathrm{t}}^{2,\theta},n_s^\theta,r^\theta\}$ from one high-curvature release record. If it also predicts a bispectrum, the single-field slow-roll comparison target is $f_{\mathrm{NL}}^\theta=O(\varepsilon_\theta,\eta_\theta)$; a large non-Gaussian residual requires an explicit additional interaction, branch, or source-measure record.
+A branch that claims a slow-roll-like scalar/tensor match should therefore supply $\{\varepsilon_\theta,\eta_\theta,N_\theta,\Delta_{\mathrm{s}}^{2,\theta},\Delta_{\mathrm{t}}^{2,\theta},n_{\mathrm{s}}^\theta,r^\theta\}$ from one high-curvature release record. If it also predicts a bispectrum, the single-field slow-roll comparison target is $f_{\mathrm{NL}}^\theta=O(\varepsilon_\theta,\eta_\theta)$; a large non-Gaussian residual requires an explicit additional interaction, branch, or source-measure record.
 
 Eternal-inflation and landscape language add no ontology by themselves. They become useful only when they nominate data products that can be tested without assuming the multiverse interpretation. Two examples are the effective spatial-curvature channel and localized CMB residuals. For a candidate high-curvature release record $\theta$, define a comparison-only residual
 $$
