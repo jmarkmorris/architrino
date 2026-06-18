@@ -52631,6 +52631,1207 @@ If these are not maintained, standard QED/SM transport language is authoritative
 - [Bremsstrahlung](../../../../markdown/aaa/reactions/bremsstrahlung.md)
 - [Synchrotron](../../../../markdown/aaa/reactions/synchrotron.md)
 
+### Radiation
+
+Radiation is the $\mathbb{A}\mathbb{A}\mathbb{A}$ workstream for energy shedding by assemblies. A radiative event is not defined merely by acceleration or by the presence of excess energy. It is the routed relaxation of a driven assembly or local Noether sea state into one or more allowed channels: photon output, medium excitation, recoil, residual internal energy, or reaction products. Photon output is described through planar-mode nucleation, while non-radiative channels remain explicit when the available energy does not lock into a stable photon assembly.
+
+The detailed channel pages remain [Bremsstrahlung](../../../../markdown/aaa/reactions/bremsstrahlung.md), [Synchrotron Cascades](../../../../markdown/aaa/reactions/synchrotron.md), and [Atomic Transition Radiation](../../../../markdown/aaa/reactions/atomic-transition-radiation.md). Photon assembly ontology belongs in [Electroweak Bosons](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md), while channel vocabulary follows [Mode Taxonomy](../../../../markdown/aaa/interactions/mode-taxonomy.md). Event-level conservation uses [Reaction Ledger](../../../../markdown/aaa/validation/reaction-ledger.md), and cosmology-facing radiation provenance is tracked in [Reaction-Cosmology Provenance Ledger](../../../../markdown/aaa/validation/reaction-cosmology-provenance-ledger.md).
+
+This page is a foundation-up overview. It states the shared mechanism and the closure targets that individual channel pages must specialize. It does not by itself prove blackbody radiation, photon spin, atomic spectra, or QED cross sections.
+
+#### Foundation-Up Mechanism
+
+The foundation-up radiation question is whether rapid transport changes can leave a Noether swarm internally mismatched relative to its nearest stable closure class. A moving Noether swarm has a velocity-deformed causal envelope, while a gravitational gradient skews its delay loops and phase closure. If a reaction suddenly decelerates the assembly, if curved transport changes too quickly, or if the assembly crosses a sharp Noether sea gradient, the external transport state can change faster than the inner, middle, and outer binary ledgers can adiabatically retune.
+
+The resulting residual is first a closure mismatch, not yet a photon. For layer $a\in\{I,M,O\}$,
+
+$$
+\delta\Theta_a
+=
+\Theta_a(T;\mathbf{V}_{\text{before}},G_{\text{grad}})
+-
+\Theta_a(T;\mathbf{V}_{\text{after}},G_{\text{grad}})
+$$
+
+Here $\Theta_a$ denotes the layer's phase-closure ledger over the comparison interval $T$, $\mathbf{V}$ denotes the transport state being retuned, and $G_{\text{grad}}$ denotes the local gradient data that modifies the delay loops. The notation $\{I,M,O\}$ refers to the same inner, middle, and outer nested shell swarm roles that ordered-axis chapters often write as $(H,M,L)$.
+
+A compact residual magnitude can be treated as a derivation target:
+
+$$
+\mathcal{R}_{\Theta}
+=
+\left(\sum_{a\in\{I,M,O\}} w_a\,\delta\Theta_a^2\right)^{1/2},
+\qquad
+w_a>0
+$$
+
+The weights $w_a$ are not free phenomenology in the completed theory. They must be derived from the layer hierarchy, active causal-root branches, and local Noether sea coupling. At this overview level, $\mathcal{R}_{\Theta}$ is only a bookkeeping norm for how far the post-drive assembly has been pushed away from the nearest closure class.
+
+#### Closure Residuals
+
+A closure residual becomes radiatively relevant only when it cannot be absorbed by ordinary adiabatic retuning. The useful comparison is between the retuning time of the core and the driving time of the disturbance:
+
+$$
+\epsilon_{\text{ad}}
+\equiv
+\frac{\tau_{\text{retune}}}{\tau_{\text{drive}}}
+$$
+
+When $\epsilon_{\text{ad}}\ll 1$, the inner, middle, and outer ledgers remain near their stable return map, and the disturbance appears as smooth transport or small local heating. When $\epsilon_{\text{ad}}\gtrsim 1$, the post-drive state can carry a finite closure residual after the external impulse has passed. Radiation begins only if that residual is routed through an allowed shedding channel.
+
+Astrophysical jets add a useful macroscopic stress test for this same split. A supersonic working surface can create a large closure residual, but the outgoing observer-level channel depends on how quickly the shocked material can cool relative to its propagation time. A compact comparison diagnostic is
+
+$$
+\mathcal{R}_{\mathrm{cool}}
+\equiv
+\frac{t_{\mathrm{cool}}}{t_{\mathrm{dyn}}},
+\qquad
+t_{\mathrm{dyn}}\sim\frac{\ell_j}{v_j}
+$$
+
+with an observer-level thermal-plasma estimate
+
+$$
+t_{\mathrm{cool}}
+=
+\frac{(n_e+n_H)k_B T_s}
+{(\gamma_{\mathrm{gas}}-1)n_e n_H\Lambda(T_s)}
+$$
+
+Here $v_j$ and $\ell_j$ are the effective jet speed and propagation scale, $T_s$ is the post-shock temperature, and $\Lambda(T_s)$ is the standard cooling function. These variables do not become substrate ontology. They define an observational closure target: when $\mathcal{R}_{\mathrm{cool}}\ll1$, shocked material should route a large fraction of $E_{\text{exc}}$ into thermal line, free-free, and medium-heating rows; when $\mathcal{R}_{\mathrm{cool}}\gg1$, the same shock geometry may remain adiabatic enough for non-thermal acceleration, synchrotron emission, inverse-Compton output, and cocoon/lobe energy storage to dominate. A radiation map that uses the same shock residual for both cases must therefore expose the branch decision rather than treating "shock" as a single radiative outcome.
+
+The residual ledger should track at least four quantities:
+
+| Ledger entry | Required meaning |
+| --- | --- |
+| $\delta\Theta_a$ | phase-closure mismatch of each nested shell swarm layer |
+| $\Delta E_{\text{int}}$ | excess internal energy above the nearest stable rung |
+| $\Delta \mathbf{p}_{\text{asm}}$ | change in assembly momentum during the drive |
+| $\Delta \mathcal{J}_{\text{wake}}$ | angular-momentum and causal-wake ledger imbalance to be closed |
+
+This is the point where the radiation page connects to the Master Equation: the residual must be computed from delayed causal-wake hits and branch Jacobians, rather than appended as a phenomenological "radiation reaction" term. The theorem target is a residual functional
+
+$$
+\mathcal{R}_{\Theta}
+=
+\mathcal{R}_{\Theta}\!\left(\Gamma(t),\mathcal{C}_{o'j}(t),J_{o'j},\rho_{\text{NS}}(\mathbf{x},t),\chi_{\text{sea}}(\mathbf{x},t)\right)
+$$
+
+where $\Gamma(t)$ is the assembly microstate and the other inputs are the causal-root, Jacobian, density, and delay data already used elsewhere in the corpus.
+
+The classical point-charge comparison sharpens this requirement. A singular charged source makes the near-field energy formally divergent, so the observed inertial mass cannot be identified with electromagnetic field energy alone without adding a compensating internal term. In $\mathbb{A}\mathbb{A}\mathbb{A}$ language, that pathology is a warning against treating radiation damping as a separate force law attached after the motion has been chosen. The event record must instead expose the finite balance
+
+$$
+\mathcal{D}_{\mathrm{rad}}
+\equiv
+\Delta P^\mu_{\mathrm{asm}}
++
+\Delta P^\mu_{\gamma}
++
+\Delta P^\mu_{\mathrm{near}}
++
+\Delta P^\mu_{\mathrm{wake}}
++
+\Delta P^\mu_{\mathrm{mass/rem}}
+=0
+$$
+
+where $\Delta P^\mu_{\mathrm{near}}$ is the reversible near-field or acceleration-energy comparison row, $\Delta P^\mu_{\mathrm{wake}}$ is the causal-wake branch exchange computed from delayed path-history data, and $\Delta P^\mu_{\mathrm{mass/rem}}$ is the finite internal mass or remnant ledger that prevents electromagnetic self-energy from being mistaken for the whole mass story. A completed radiation-reaction derivation must show that the observer-level damping term is the irreversible part of this conservation residual after the reversible near-field row is separated, not an independently appended self-force.
+
+Classical decompositions that compare outgoing and incoming field pieces can be used only as effective recovery tools. In the corpus notation their role is to test whether the same causal-wake history yields a finite $\mathcal{D}_{\mathrm{rad}}$ when the comparison tube around the source is shrunk. They do not license acausal substrate dynamics: any nonlocal-looking term must be re-expressed as branch accounting over the event window, with delayed path-history provenance and a named residual row for every unmatched energy-momentum component.
+
+#### Excitation Basins
+
+If $\delta\Theta_a$ remains within the local basin, the core retunes without a resolved radiative event. If the mismatch crosses a separatrix, the Noether swarm enters an internally excited, closure-mismatched, or metastable state above its nearest stable rung. The excess energy is then a state-space gap:
+
+$$
+E_{\text{exc}}
+=
+E_C(\Gamma_{\text{post shock}})
+-
+E_C(\Gamma_{\text{nearest stable rung}})
+$$
+
+An excitation basin is the set of post-drive states that share the same available relaxation routes. The simplest basin classification is:
+
+| Basin | Condition | Radiation meaning |
+| --- | --- | --- |
+| Retuning basin | $\mathcal{R}_{\Theta}<\mathcal{R}_{\text{retune}}$ | no resolved event; the core returns to the same rung |
+| Excited basin | $\mathcal{R}_{\text{retune}}\le\mathcal{R}_{\Theta}<\mathcal{R}_{\gamma}$ | excess energy exists, but stable photon output is not guaranteed |
+| Planar-mode basin | $\mathcal{R}_{\Theta}\ge\mathcal{R}_{\gamma}$ with sufficient channel geometry | photon-channel nucleation is allowed |
+| Dissociation or reaction basin | closure residual destabilizes assembly identity | energy routes into products, recoil, and medium excitation |
+
+The thresholds in this table are names for proof targets, not asserted universal constants. A completed derivation must compute the relevant separatrices from the local return map of the driven assembly. The same external energy transfer can therefore be radiative in one geometry and non-radiative in another if the basin boundary is different.
+
+#### Planar-Mode Nucleation
+
+Photon output is modeled as the lock-in of a coaxial contra-rotating pro/anti planar pair. In the language of [Mode Taxonomy](../../../../markdown/aaa/interactions/mode-taxonomy.md), the photon branch is a planar-mode nucleation event: shed energy, wake stress, and Noether sea state jointly cross the stability boundary for a propagating photon assembly.
+
+A minimal nucleation gate can be written as a two-condition target:
+
+$$
+\mathcal{S}_{\gamma}(\Gamma,\rho_{\text{NS}},\chi_{\text{sea}},J_{\text{loc}})
+\ge
+\mathcal{S}_{\gamma,*},
+\qquad
+E_{\text{exc}}\ge E_{\gamma,\min}
+$$
+
+Here $\mathcal{S}_{\gamma}$ is the local photon-channel drive, $\mathcal{S}_{\gamma,*}$ is the planar-mode stability boundary, and $E_{\gamma,\min}$ is the minimum stable planar-mode cost if such a floor survives the derivation. This form is only a scaffold. The burden is to derive $\mathcal{S}_{\gamma}$ from wake-strain geometry, causal-root branch data, and Noether sea coupling, then recover the validated limits used by bremsstrahlung, synchrotron emission, atomic transitions, Compton-like scattering, pair channels, and thermal radiation.
+
+Once the planar mode nucleates, the event record must carry the photon Gate A and Gate B data without treating those gates as locally proven. Gate A supplies kinematics and optics: $E_\gamma$, $\mathbf{p}_{\gamma}$, direction, phase frequency, and local photon-channel speed $c_\gamma$. Gate B supplies transverse angular-momentum, polarization, helicity, and capture/rejection ledgers. This radiation overview uses those records as requirements; their proofs remain in the photon and angular-momentum workstreams.
+
+#### Non-Radiative Shedding
+
+Radiation is one possible relaxation channel for $E_{\text{exc}}$, not the only one. If the planar-mode gate is not crossed, the residual must still go somewhere. A minimal shedding ledger is
+
+$$
+E_{\text{exc}}
+=
+E_\gamma
++
+\Delta E_{\text{med}}
++
+\Delta E_{\text{recoil}}
++
+\Delta E_{\text{rem}}
++
+\Delta E_{\text{rxn}}
+$$
+
+The pure radiative limit has $\Delta E_{\text{rxn}}=0$. A sub-threshold transport event has $E_\gamma=0$ and routes energy into $\Delta E_{\text{med}}$, $\Delta E_{\text{recoil}}$, or $\Delta E_{\text{rem}}$. A reaction event has nonzero $\Delta E_{\text{rxn}}$ and must use the full reaction provenance ledger.
+
+In weak-coupling comparison limits, the same ledger must also recover the standard rate and scattering normalizations. A finite event window should reduce to
+$$
+\Gamma_{\mathbb{A}\mathbb{A}\mathbb{A}\to f}
+\rightarrow
+2\pi\,
+\left|\mathcal{M}_{\mathrm{eff}}\right|^2
+\rho_f
+$$
+after unit conventions are declared, with $\rho_f$ the density of accepted final records. For scattering channels, cross sections must be the same transition probability divided by incoming flux and integrated over the outgoing phase-space ledger. Thus amplitudes, decay widths, and cross sections are comparison-layer summaries of one provenance record, not independent event ontologies.
+
+Momentum and angular momentum must close at the same vertex:
+
+$$
+\Delta \mathbf{p}_{\text{asm}}
++
+\mathbf{p}_{\gamma}
++
+\Delta \mathbf{p}_{\text{med}}
++
+\Delta \mathbf{p}_{\text{recoil}}
++
+\Delta \mathbf{p}_{\text{rxn}}
+=
+0
+$$
+
+The corresponding polarity, architrino-inventory, identity-routing, and path-history ledgers must also close. Non-radiative shedding is therefore not a discard bin. It is the required accounting for medium heating, turbulence, phonon/plasmon-like excitations, unresolved causal-wake stress, recoil, and residual internal excitation when no stable photon assembly leaves the event.
+
+#### Path Frequency Exchange
+
+A photon-channel packet can also change frequency during transport without being replaced by a newly emitted photon. In standard comparison language, Compton and Sunyaev-Zeldovich processes are the important calibration family: a photon scatters from an intervening electron population and leaves with a shifted frequency. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is a transport exchange row. It belongs between photon propagation and reaction bookkeeping, not under ordinary source emission alone.
+
+For a packet entering a local segment with frequency $\nu^-$ and leaving with frequency $\nu^+$, the event record must close
+
+$$
+\mathcal{R}_{\nu\text{-}\mathrm{ex}}
+=
+\frac{
+\left|
+h(\nu^+-\nu^-)
++\Delta E_{\mathrm{target}}
++\Delta E_{\mathrm{med}}
++\Delta E_{\mathrm{recoil}}
++\Delta E_{\mathrm{rem}}
+\right|
+}{\epsilon_E}
+$$
+
+The signs of the $\Delta E$ terms are ledger signs. A frequency boost has $h(\nu^+-\nu^-)>0$ and therefore requires a corresponding loss from the target or medium rows. A frequency depletion requires a named gain in target, medium, recoil, remnant, or thermalization rows. The photon Gate A and Gate B records also persist through the segment: the outgoing packet must retain a valid photon-channel kinematic and polarization handoff, or else the process becomes absorption plus re-emission, pair production, or another reaction channel with a different event record.
+
+This distinction is cosmologically important. A redshift or blueshift accumulated along a path is not an unexplained energy loss or gain if the path-frequency exchange ledger closes. It is also not automatically evidence of geometric expansion. The corresponding cosmology pages must consume this radiation record before promoting redshift-distance, CMB temperature, or SZ/kSZ data products into expansion, dark-energy, or growth claims.
+
+**Effective electromagnetic energy-momentum gate.** Standard electromagnetic energy and momentum bookkeeping supplies a useful recovery ledger for radiation, but only at the observer/channel level. The fields $\mathbf{E}_{\mathrm{eff}}$ and $\mathbf{B}_{\mathrm{eff}}$ in this subsection are effective comparison variables reconstructed from the channel map. They are not substrate objects added to the Euclidean void or to the Noether sea.
+
+For a declared standard-limit comparison, define
+
+$$
+u_{\mathrm{EM}}
+=
+\frac{\epsilon_0}{2}\|\mathbf{E}_{\mathrm{eff}}\|^2
++
+\frac{1}{2\mu_0}\|\mathbf{B}_{\mathrm{eff}}\|^2,
+\qquad
+\mathbf{S}_{\mathrm{EM}}
+=
+\frac{1}{\mu_0}\mathbf{E}_{\mathrm{eff}}\times\mathbf{B}_{\mathrm{eff}}
+$$
+
+and
+
+$$
+\mathbf{g}_{\mathrm{EM}}
+=
+\frac{1}{c^2}\mathbf{S}_{\mathrm{EM}}
+=
+\epsilon_0\mathbf{E}_{\mathrm{eff}}\times\mathbf{B}_{\mathrm{eff}}
+$$
+
+The corresponding Maxwell-stress comparison tensor is
+
+$$
+\sigma_{\mathrm{EM}}^{ij}
+=
+\epsilon_0
+\left(
+\frac{1}{2}\delta^{ij}\|\mathbf{E}_{\mathrm{eff}}\|^2
+-
+E_{\mathrm{eff}}^iE_{\mathrm{eff}}^j
+\right)
++
+\frac{1}{\mu_0}
+\left(
+\frac{1}{2}\delta^{ij}\|\mathbf{B}_{\mathrm{eff}}\|^2
+-
+B_{\mathrm{eff}}^iB_{\mathrm{eff}}^j
+\right)
+$$
+
+For a control volume $V$ with outward unit normal $\hat{\mathbf{n}}$, the effective energy residual is
+
+$$
+\Delta_E^{\mathrm{EM}}(V)
+=
+\frac{d}{dt}\int_V u_{\mathrm{EM}}\,d^3x
++
+\int_{\partial V}\mathbf{S}_{\mathrm{EM}}\cdot\hat{\mathbf{n}}\,dA
++
+\int_V\mathbf{J}_{\mathrm{eff}}\cdot\mathbf{E}_{\mathrm{eff}}\,d^3x
+$$
+
+The effective Lorentz-force density is
+
+$$
+f_{\mathrm{L}}^i
+=
+\rho_{\mathrm{eff}}E_{\mathrm{eff}}^i
++
+\left(\mathbf{J}_{\mathrm{eff}}\times\mathbf{B}_{\mathrm{eff}}\right)^i
+$$
+
+and the momentum residual is
+
+$$
+\Delta_{p,i}^{\mathrm{EM}}(V)
+=
+\frac{d}{dt}\int_V g_{\mathrm{EM}}^i\,d^3x
++
+\int_{\partial V}\sigma_{\mathrm{EM}}^{ij}\hat n_j\,dA
++
+\int_V f_{\mathrm{L}}^i\,d^3x
+$$
+
+The angular-momentum residual is the corresponding moment of the momentum ledger:
+
+$$
+\Delta_{\mathbf{J}}^{\mathrm{EM}}(V)
+=
+\frac{d}{dt}\int_V \mathbf{x}\times\mathbf{g}_{\mathrm{EM}}\,d^3x
++
+\int_{\partial V}\mathbf{x}\times(\sigma_{\mathrm{EM}}\hat{\mathbf{n}})\,dA
++
+\int_V\mathbf{x}\times\mathbf{f}_{\mathrm{L}}\,d^3x
+$$
+
+The tensor $\sigma_{\mathrm{EM}}^{ij}$ is symmetric, so this effective comparison ledger carries the standard angular-momentum closure condition. A radiation, scattering, or material-capture event may use this gate only as a benchmark: the $\mathbb{A}\mathbb{A}\mathbb{A}$ event record must still name the source assembly, causal-root history, medium rows, recoil, and identity routing that generate the effective quantities.
+
+For an outgoing photon packet in a far-field comparison zone, the flux version of the Gate A handoff is
+
+$$
+\Delta_{\gamma,\mathrm{flux}}
+=
+\left(
+E_\gamma
+-
+\int_{t_i}^{t_f}\int_{\partial V}
+\mathbf{S}_{\mathrm{EM}}\cdot\hat{\mathbf{n}}\,dA\,dt,
+\quad
+\mathbf{p}_\gamma
+-
+\frac{1}{c^2}
+\int_{t_i}^{t_f}\int_{\partial V}
+(\mathbf{S}_{\mathrm{EM}}\cdot\hat{\mathbf{n}})\hat{\mathbf{n}}\,dA\,dt
+\right)
+$$
+
+The photon event closes this check only when $\Delta_{\gamma,\mathrm{flux}}=0$ in the declared standard-limit comparison, or when the residual is explicitly routed into material, recoil, remnant, or unresolved wake rows. This is the radiation energy-momentum closure check used by the channel pages.
+
+#### Radiation Event-Record Schema
+
+Every resolved radiation, sub-threshold shedding, photon-capture, or radiation-coupled reaction record should use the same event schema. The record is required even when no photon leaves the event; in that case $E_\gamma=0$, the polarization handoff is marked not applicable, and the energy closes through recoil, medium excitation, residual internal energy, or reaction products.
+
+| Required field | Required content | Closure role |
+| --- | --- | --- |
+| Source assembly | Identity and pre/post state of the driven assembly, photon assembly, or resolved local Noether sea excitation whose residual is being routed | Prevents treating radiation as free energy detached from an assembly or medium source |
+| Source depletion row | $\Delta\mathcal Q_{\mathrm{src}}^{0}=\mathcal Q_{\mathrm{src}}^{-}-\mathcal Q_{\mathrm{src}}^{+}$ for $\mathcal Q\in\{E,\mathbf p,\mathbf J\}$, with the source branch and event window named | Keeps photon output tied to what the driven source lost rather than to an isolated outgoing quantum |
+| Trigger geometry | Deceleration, curved transport, gradient crossing, photon overlap, capture geometry, or medium-relaxation geometry, including local $\rho_{\text{NS}}(\mathbf{x},t)$, $n(\mathbf{x},t)$, and $\chi_{\text{sea}}(\mathbf{x},t)$ when they affect the channel | Identifies why this event entered a retuning, excitation, planar-mode, or reaction basin |
+| $\delta\Theta_a$ | Phase-closure mismatch for each active layer $a\in\{I,M,O\}$, or an explicit reason the channel uses a reduced assembly ledger | Keeps the event tied to the closure-residual mechanism rather than to acceleration language alone |
+| $E_{\text{exc}}$ | Excess internal or medium excitation energy above the nearest stable rung before routing | Supplies the left side of the shedding ledger |
+| $E_\gamma$ | Photon energy for each emitted, absorbed, shifted, or captured photon assembly, with $E_\gamma=0$ for non-photon shedding | Carries the Gate A energy-frequency and momentum handoff without proving it locally |
+| Recoil | $\Delta E_{\text{recoil}}$, $\Delta \mathbf{p}_{\text{recoil}}$, and the assembly or medium component receiving recoil | Closes local momentum and energy at the event vertex |
+| Medium excitation | $\Delta E_{\text{med}}$, $\Delta \mathbf{p}_{\text{med}}$, excitation type, and returned or retained Noether sea content | Prevents unresolved medium heating or turbulence from becoming an implicit loss term |
+| Polarization handoff | Gate B acceptance data when $E_\gamma\ne0$: transverse basis, analyzer or transport basis if present, helicity label, accepted/rejected capture channel, and transverse angular-momentum ledger | Records inherited photon Gate B requirements; it is not a local derivation of photon spin |
+| Photon Gate B event residual | $\mathcal R_{\gamma B}^{\mathrm{event}}$ or the channel-local equivalent naming source, recoil, medium, wake, handoff, remnant, helicity, and balance rows when $E_\gamma\ne0$ | Prevents a clean transverse ledger from being promoted before the event ledger closes |
+| Causal-wake ledger | Source identities, emission times, active causal-root branches, branch Jacobians, path-history provenance, and $\Delta \mathcal{J}_{\text{wake}}$ | Makes deterministic replay and angular-momentum balance depend on delayed wake history |
+| Identity routing | Bijection or equivalent route for participating architrino identities after named Noether sea reservoir terms are included | Prevents photon output, causal wakes, or unresolved medium terms from being treated as sources of new substrate identities |
+| Closure status | Baseline, provisional map, derivation target, failed map, or inherited gate, with any unresolved Gate A, Gate B, Gate C, reaction, or cosmology handoff named explicitly | Prevents a local channel record from being promoted to completed doctrine before its inherited gates close |
+
+For photon-capture records, $E_\gamma$ names the incoming, outgoing, shifted, or captured photon ledger; it is not an identity source for different outgoing assemblies unless the channel is explicitly a reaction or pair-production record. In those cases, the same schema must add the recruited target or Noether sea inventory to the identity-routing field.
+
+The event-balance lemma used by the schema is the source-depletion identity
+
+$$
+\Delta\mathcal Q_{\mathrm{src}}^{0}
+=
+\mathcal Q_{\gamma}^{\mathrm{sub}}
++
+\mathcal Q_{\mathrm{recoil}}^{0}
++
+\mathcal Q_{\mathrm{med}}^{0}
++
+\mathcal Q_{\mathrm{wake}}^{0}
++
+\mathcal Q_{\mathrm{handoff}}^{0}
++
+\mathcal Q_{\mathrm{rem}}^{0},
+\qquad
+\mathcal Q\in\{E,\mathbf p,\mathbf J\}
+$$
+
+For Gate B, the $\mathcal Q=\mathbf J$ component is the transverse angular-momentum balance. Photon polarization, helicity, and analyzer handoff are therefore not detached labels; they are the photon-side component of one event-window conservation record.
+
+The event-window helicity projection is the $\hat{\mathbf e}$ component of that same balance. Define
+
+$$
+\mathbf B_{\gamma}^{0}
+=
+\Delta\mathbf J_{\mathrm{src}}^{0}
+-
+\mathbf J_{\gamma}^{\mathrm{sub}}
+-
+\mathbf J_{\mathrm{recoil}}^{0}
+-
+\mathbf J_{\mathrm{med}}^{0}
+-
+\mathbf J_{\mathrm{wake}}^{0}
+-
+\mathbf J_{\mathrm{handoff}}^{0}
+-
+\mathbf J_{\mathrm{rem}}^{0}
+$$
+
+Then
+
+$$
+\lambda_{\mathrm{hel}}
+=
+\frac{\hat{\mathbf e}\cdot\mathbf J_{\gamma}^{\mathrm{sub}}}{\hbar}
+=
+\frac{
+\hat{\mathbf e}\cdot
+\left(
+\Delta\mathbf J_{\mathrm{src}}^{0}
+-
+\mathbf J_{\mathrm{recoil}}^{0}
+-
+\mathbf J_{\mathrm{med}}^{0}
+-
+\mathbf J_{\mathrm{wake}}^{0}
+-
+\mathbf J_{\mathrm{handoff}}^{0}
+-
+\mathbf J_{\mathrm{rem}}^{0}
+\right)
+}{\hbar},
+\qquad
+\lambda_{\mathrm{hel}}\in\{+1,-1\}
+$$
+
+when $\mathbf B_{\gamma}^{0}=\mathbf 0$ and the photon substrate row has no transverse leakage. If the balance defect is nonzero, the projection error is bounded by $\|\mathbf B_{\gamma}^{0}\|/\hbar$.
+
+The common energy closure for the schema is
+
+$$
+E_{\text{exc}}
+=
+E_\gamma
++
+\Delta E_{\text{med}}
++
+\Delta E_{\text{recoil}}
++
+\Delta E_{\text{rem}}
++
+\Delta E_{\text{rxn}}
+$$
+
+Channel pages may add specialized variables, but they should not remove these fields. The polarization handoff remains inherited from photon Gate B; radiation records carry the fields needed by that gate, while the photon-spin and polarization proof remains outside the local radiation event record.
+
+#### Scattering and Reaction-Ledger Grammar
+
+Scattering, relativistic collision, pair-channel, and radiation-coupled reaction records should refine the same event schema rather than introduce a separate bookkeeping language. A compact event-ledger grammar is
+
+$$
+\mathcal{E}_{\mathrm{scat/rxn}}
+=
+\left(
+\mathfrak{L}_{\mathrm{in}},
+W_{\mathrm{int}},
+\mathfrak{T}_{\mathrm{cons}},
+\mathfrak{L}_{\mathrm{out}},
+\mathfrak{R}_{\mathrm{res}}
+\right)
+$$
+
+The five entries are theorem-target data, not a completed QFT scattering derivation:
+
+| Grammar entry | Required content | Validation role |
+| --- | --- | --- |
+| $\mathfrak{L}_{\mathrm{in}}$ | incoming assembly, photon, medium, and Noether sea ledgers: identities, $E$, $\mathbf{p}$, $\mathbf{J}$, polarity, architrino inventory, causal-root branches, and path-history provenance | fixes what enters the event before any channel assignment is made |
+| $W_{\mathrm{int}}$ | finite interaction window $[t_i,t_f]$ with the resolved local geometry, branch Jacobians, transient assembly or resonance record, and recruited or returned Noether sea content | prevents replacing the local collision or channel window by an instantaneous black box |
+| $\mathfrak{T}_{\mathrm{cons}}$ | conserved transfers through the window: energy, momentum, angular momentum, polarity, identity routing, recoil, medium excitation, and wake ledger exchange | states which balances must close together at the same event, including hidden recoil and medium rows |
+| $\mathfrak{L}_{\mathrm{out}}$ | outgoing stable or metastable ledgers: photons, shifted photons, scattered assemblies, reaction products, residual bound states, heat channel, recoil carrier, and remaining Noether sea record | records products without treating observer-level particle-creation language as creation from nothing |
+| $\mathfrak{R}_{\mathrm{res}}$ | residual checks for conservation, identity routing, threshold recovery, cross-section or rate benchmark, unresolved remnant energy, and explicit failure modes | marks the event as baseline, derivation target, failed map, or validated limit |
+
+The minimal residual check can be written as
+
+$$
+\mathfrak{R}_{\mathrm{res}}
+=
+\left(
+\Delta E_{\mathrm{tot}},
+\Delta\mathbf{p}_{\mathrm{tot}},
+\Delta\mathbf{J}_{\mathrm{tot}},
+\Delta\mathcal{N}_{\mathrm{id}},
+\Delta_{\mathrm{bench}}
+\right)
+$$
+
+with every component required to vanish, or to be assigned to a named residual row, before the channel can be used as a completed scattering or reaction ledger. Here $\Delta\mathcal{N}_{\mathrm{id}}$ is the identity-routing residual after explicit Noether sea reservoir terms are included, and $\Delta_{\mathrm{bench}}$ is the observer-level benchmark residual for the declared regime. At validated relativistic collision limits, this grammar must reproduce the standard incoming/outgoing state accounting, thresholds, and conservation laws. It does not by itself derive amplitudes, cross sections, or particle-creation rates.
+
+#### Photon-Material Surface Routing
+
+A material surface interaction is the near-field Gate C version of the same event schema. It should not be pictured as a small projectile striking a hard wall. At atomic resolution the incoming photon is a coaxial contra-rotating pro/anti planar pair with Gate A and Gate B ledgers, while the material supplies an electron-envelope branch, a nuclear source envelope, a bonding or lattice branch, and a local Noether sea response record. The local event state can be written as
+
+$$
+X_{\mathrm{surf}}
+=
+\left(
+\gamma_{\mathrm{in}},
+\mathcal B_e,
+\mathcal A_{\mathrm{nuc}}^{Z,N},
+\mathcal B_{\mathrm{lat}},
+\Theta_E^{(\ell)},
+\mathcal H_{\gamma\to\Omega}
+\right)
+$$
+
+where $\gamma_{\mathrm{in}}$ carries $E_{\gamma,\mathrm{in}}$, $\mathbf{p}_{\gamma,\mathrm{in}}$, direction, phase frequency, local $c_\gamma$, and transverse ledger data; $\mathcal B_e$ is the realized electron-envelope branch; $\mathcal A_{\mathrm{nuc}}^{Z,N}$ is the nuclear assembly ledger; $\mathcal B_{\mathrm{lat}}$ is the realized material bonding or lattice branch; $\Theta_E^{(\ell)}$ is the coarse Noether sea response record in the surface cell; and $\mathcal H_{\gamma\to\Omega}$ is the causal-wake and path-history ledger for the incoming packet and local material window.
+
+The route decision selects a finite channel set
+
+$$
+I_{\mathrm{surf}}
+\subset
+\{
+B_{\mathrm{refl}},
+B_{\mathrm{cap}},
+B_{\mathrm{scat}},
+B_{\mathrm{heat}},
+B_{\mathrm{recoil}},
+B_{\mathrm{rem}}
+\}
+$$
+
+The selected route must close the scalar ledger
+
+$$
+E_{\gamma,\mathrm{in}}
+=
+E_{\gamma,\mathrm{out}}
++
+\Delta E_{e\text{-env}}
++
+\Delta E_{\mathrm{lat}}
++
+\Delta E_{\mathrm{sea}}
++
+\Delta E_{\mathrm{recoil}}
++
+\Delta E_{\mathrm{rem}}
+$$
+
+with corresponding momentum and angular-momentum rows
+
+$$
+\mathbf{p}_{\gamma,\mathrm{in}}
+=
+\mathbf{p}_{\gamma,\mathrm{out}}
++
+\Delta \mathbf{p}_{e\text{-env}}
++
+\Delta \mathbf{p}_{\mathrm{lat}}
++
+\Delta \mathbf{p}_{\mathrm{sea}}
++
+\Delta \mathbf{p}_{\mathrm{recoil}}
+$$
+
+$$
+\mathcal J_{\gamma,\mathrm{in}}^{\perp}
+=
+\mathcal J_{\gamma,\mathrm{out}}^{\perp}
++
+\Delta \mathcal J_{e\text{-env}}
++
+\Delta \mathcal J_{\mathrm{lat}}
++
+\Delta \mathcal J_{\mathrm{sea}}
++
+\Delta \mathcal J_{\mathrm{wake}}
+$$
+
+Here $E_{\gamma,\mathrm{out}}=0$ when no free photon leaves the cell. In that case the photon branch has been captured or dephased as a free planar-pair mode, but the event has not lost energy; the electron-envelope, lattice, Noether sea, recoil, remnant, and wake rows carry the balance. For ordinary optical or infrared surface events, the nuclear inventory remains fixed: $\Delta Z=0$ and $\Delta A=0$ unless a separate nuclear-reaction gate is explicitly supplied.
+
+| Route | Material meaning | Required closure target |
+| --- | --- | --- |
+| $B_{\mathrm{refl}}$ | coherent re-release of an outgoing planar-pair branch, typically supported by a collective surface-electron response in a metal-like branch | recover phase, angle, polarization, and skin-depth behavior without treating reflection as a hard bounce |
+| $B_{\mathrm{cap}}$ | capture of the incoming planar-pair ledger into electron-envelope excitation or a higher material basin | close energy, momentum, transverse angular momentum, and remnant rows when $E_{\gamma,\mathrm{out}}=0$ |
+| $B_{\mathrm{scat}}$ | outgoing photon branch survives with changed direction, phase, frequency, or polarization record | close shifted photon provenance together with recoil and material update |
+| $B_{\mathrm{heat}}$ | captured action thermalizes through electron, lattice, and Noether sea updates | derive the route from material return dynamics rather than inserting untracked heat |
+| $B_{\mathrm{recoil}}$ | lattice, nuclear source envelope, or medium component receives momentum balance | keep recoil even when its energy is small |
+| $B_{\mathrm{rem}}$ | retained bound excitation or dephased surface state remains after the event window | record the remnant state instead of hiding it in attenuation |
+
+A Vantablack-like absorber is then not a special photon ontology. It is a material branch with high geometric and electronic capture depth: many surface cells route the incoming planar-pair ledger into $B_{\mathrm{cap}}$, $B_{\mathrm{heat}}$, $B_{\mathrm{recoil}}$, and $B_{\mathrm{rem}}$ before a coherent $B_{\mathrm{refl}}$ escape channel can survive. A metal surface is the opposite limiting case: the conduction-electron branch supports a coherent surface-current response, so a large part of the incoming ledger reappears as $E_{\gamma,\mathrm{out}}$ with an organized phase relation, while absorption loss remains in the electron-envelope, lattice, Noether sea, and recoil rows.
+
+The worked surface case is still a derivation target. It fails if reflection is modeled as a hard geometric bounce with no electron-envelope response, if absorption becomes annihilation or untracked heat, if the same material requires separate Noether sea variables for reflection and absorption, if a hidden longitudinal free-photon channel is used, or if ordinary optical events change nuclear inventory without a separate reaction provenance ledger.
+
+**Causal material response and skin-depth ledger.** Photon-material routing needs a constitutive response target in addition to the event ledger. In the effective material description, a local response kernel $\mathcal X_\Omega$ maps the applied channel field to the coarse material polarization,
+
+$$
+\mathbf{P}_\Omega(t,\mathbf{x})
+=
+\int_{-\infty}^{+\infty}
+\mathcal X_\Omega(t-t';\mathbf{x})\,
+\mathbf{E}_{\Omega}(t',\mathbf{x})\,dt'
+$$
+
+with causality requiring
+
+$$
+\mathcal X_\Omega(\Delta t;\mathbf{x})=0
+\qquad
+\text{for}\quad
+\Delta t<0
+$$
+
+Therefore the frequency-domain response $\mathcal X_\Omega(\omega;\mathbf{x})$ must be analytic for $\operatorname{Im}\omega>0$ in the validated linear-response regime. The Noether sea dressing map for material response must recover the Kramers-Kronig residuals
+
+$$
+\Delta_{\mathrm{KK}}^{\operatorname{Re}}(\omega)
+=
+\operatorname{Re}\mathcal X_\Omega(\omega)
+-
+\mathcal P\int_{-\infty}^{+\infty}
+\frac{d\omega'}{\pi}
+\frac{\operatorname{Im}\mathcal X_\Omega(\omega')}{\omega'-\omega}
+$$
+
+$$
+\Delta_{\mathrm{KK}}^{\operatorname{Im}}(\omega)
+=
+\operatorname{Im}\mathcal X_\Omega(\omega)
++
+\mathcal P\int_{-\infty}^{+\infty}
+\frac{d\omega'}{\pi}
+\frac{\operatorname{Re}\mathcal X_\Omega(\omega')}{\omega'-\omega}
+$$
+
+and pass only when both residuals vanish, up to declared coarse-graining error. This is a causality test for Noether sea dressing, not a claim that the effective response kernel is the substrate ontology.
+
+For absorption, reflection, and skin-depth comparisons, use the effective material response
+
+$$
+\epsilon_{\mathrm{eff}}(\omega)
+=
+\epsilon_{\Omega}(\omega)
++
+\frac{i\sigma_{\Omega}(\omega)}{\omega},
+\qquad
+k^2(\omega)
+=
+\mu_{\Omega}(\omega)\epsilon_{\mathrm{eff}}(\omega)\omega^2,
+\qquad
+k(\omega)=k_1(\omega)+ik_2(\omega)
+$$
+
+The attenuation and phase rows are
+
+$$
+\delta_{\mathrm{skin}}(\omega)=\frac{1}{k_2(\omega)},
+\qquad
+\phi_{EB}(\omega)=\tan^{-1}\!\left(\frac{k_2(\omega)}{k_1(\omega)}\right)
+$$
+
+In the low-frequency Drude conductor limit,
+
+$$
+\sigma_\Omega(\omega)
+=
+\frac{\sigma_{\mathrm{DC}}}{1-i\omega\tau},
+\qquad
+\delta_{\mathrm{skin}}(\omega)
+\rightarrow
+\left(\frac{2}{\mu_\Omega\omega\sigma_{\mathrm{DC}}}\right)^{1/2}
+$$
+
+In the high-frequency plasma limit, with carrier density $n_{\mathrm{car}}$,
+
+$$
+\omega_p^2
+=
+\frac{n_{\mathrm{car}}q^2}{m\epsilon_0},
+\qquad
+\epsilon_{\mathrm{eff}}(\omega)
+\rightarrow
+\epsilon_0\left(1-\frac{\omega_p^2}{\omega^2}\right)
+$$
+
+The transparent branch must recover
+
+$$
+\omega^2=\omega_p^2+c^2k^2
+\qquad
+(\omega>\omega_p)
+$$
+
+while $\omega<\omega_p$ routes to an evanescent reflection/skin-depth row rather than to an untracked disappearance of the photon ledger. If $\epsilon_{\mathrm{eff}}(\omega)=0$ supports a longitudinal plasma oscillation, that excitation belongs in the medium-excitation row; it is not a hidden longitudinal free-photon branch.
+
+For a surface event normalized by incoming flux and polarization branch $b\in\{\perp,\parallel\}$, the material-response ledger is
+
+$$
+\mathcal M_{\mathrm{surf}}(\omega,\theta,b)
+=
+\left(
+R_b,
+T_b,
+A_b,
+Q_b^{\mathrm{rem}},
+\delta_{\mathrm{skin}},
+k_1,
+k_2,
+\phi_{EB},
+\Delta_{\mathrm{KK}}^{\operatorname{Re}},
+\Delta_{\mathrm{KK}}^{\operatorname{Im}},
+\Delta_E^{\mathrm{EM}},
+\Delta_{\mathbf{p}}^{\mathrm{EM}}
+\right)
+$$
+
+with scalar routing condition
+
+$$
+R_b+T_b+A_b+Q_b^{\mathrm{rem}}=1
+$$
+
+Here $R_b$ is coherent reflected flux, $T_b$ is transmitted flux, $A_b$ is thermalized or dephased absorption, and $Q_b^{\mathrm{rem}}$ is retained bound excitation. In transparent interface limits the same ledger must recover Snell and Brewster behavior,
+
+$$
+n_1\sin\theta_I=n_2\sin\theta_T,
+\qquad
+\tan\theta_B=\frac{n_2}{n_1}
+$$
+
+with the polarization branch $b$ selecting the relevant Fresnel amplitude. In absorbing or conducting limits, the ledger must recover attenuation through $k_2$ and $\delta_{\mathrm{skin}}$ while keeping energy, momentum, and transverse angular momentum assigned to the same event record.
+
+#### Ensemble Temperature
+
+The term "hot" should be used with care. A single excited Noether swarm is not hot in the full thermodynamic or blackbody sense. It is better described as internally excited, closure-mismatched, or metastable above a local stable rung. Temperature is an ensemble-level effective variable: many assemblies must exchange energy, emit, absorb, scatter, and thermalize so that a stable distribution can be assigned.
+
+At the ensemble level, the relevant object is not one value of $E_{\text{exc}}$ but a distribution over assembly states and photon modes. A disciplined temperature definition should come from an entropy-energy relation for the ensemble,
+
+$$
+\frac{1}{k_B T_{\text{ens}}}
+=
+\left(\frac{\partial S_{\text{ens}}}{\partial E_{\text{ens}}}\right)_{\mathcal{N},\mathcal{V}}
+$$
+
+or from an equivalent kinetic distribution that has already been shown to thermalize under the local interaction rules. The symbols $\mathcal{N}$ and $\mathcal{V}$ denote the conserved inventory and effective volume variables held fixed in the chosen coarse-graining; they are bookkeeping variables, not new ontology.
+
+For radiation channels, local thermodynamic equilibrium is a timescale claim. Reusing the diagnostic from bremsstrahlung,
+
+$$
+\mathcal{R}_{\mathrm{LTE}}
+\equiv
+\frac{\tau_{\mathrm{couple}}}{\tau_{\mathrm{cool}}}
+$$
+
+When $\mathcal{R}_{\mathrm{LTE}}\ll 1$, assembly-medium coupling is fast enough that local emissivity may be computed from instantaneous ensemble variables. When $\mathcal{R}_{\mathrm{LTE}}\gtrsim 1$, the channel remains non-equilibrium, and a single local temperature is not a sufficient state description.
+
+#### Blackbody Limit
+
+Blackbody behavior is a stronger claim than radiation. It requires repeated emission, absorption, scattering, and mode exchange until the photon bath approaches detailed balance with the material or Noether sea ensemble. In the weak homogeneous validated limit, the closure target is the usual Planck occupation form,
+
+$$
+\bar n_\gamma(\nu)
+=
+\frac{1}{\exp(h\nu/(k_B T))-1}
+$$
+
+with effective photon chemical potential driven to zero in the fully thermalized photon bath. This is an observer-level recovery target. The foundation-up task is to show how planar-mode nucleation, planar-mode capture, Compton-like redistribution, pair channels, and non-radiative medium exchange jointly produce the same limit.
+
+The minimum detailed-balance condition is schematic but useful:
+
+$$
+\Gamma_{i\to j+\gamma}\,f_i\,(1+\bar n_\gamma)
+=
+\Gamma_{j+\gamma\to i}\,f_j\,\bar n_\gamma
+$$
+
+Here $f_i$ and $f_j$ are ensemble occupation weights for material or assembly states, while $\Gamma$ denotes the effective transition rate after the underlying assembly dynamics have been coarse-grained. This equation is not a proof of blackbody behavior. It states the rate symmetry that the completed Gate C radiation derivation must recover.
+
+The detailed-balance theorem target is more specific than the schematic equation. For a transition with $E_i-E_j=h\nu$, Gate C must derive an ensemble weight ratio
+
+$$
+\frac{f_i}{f_j}
+=
+\frac{g_i}{g_j}\exp\!\left(-\frac{h\nu}{k_B T_{\text{ens}}}\right)
+$$
+
+from the thermalized assembly ensemble, together with a rate-degeneracy relation
+
+$$
+\Gamma_{i\to j+\gamma}\,g_i
+=
+\Gamma_{j+\gamma\to i}\,g_j
+$$
+
+Those two conditions make the detailed-balance equation imply
+
+$$
+\frac{\bar n_\gamma}{1+\bar n_\gamma}
+=
+\exp\!\left(-\frac{h\nu}{k_B T_{\text{ens}}}\right)
+$$
+
+and therefore recover the Planck occupation. The point is not to postulate these relations at the substrate level; the point is to identify exactly what the assembly return map, planar-mode capture/release rates, and coarse-grained ensemble measure must prove before blackbody language becomes available.
+
+For cosmology-facing claims, thermalization depth is a diagnostic rather than a new ontology term. A useful provisional target is
+
+$$
+\mathcal{D}_{\mathrm{th}}(\nu;t_a,t_b)
+=
+\int_{t_a}^{t_b}
+\left[
+\tau_{\mathrm{cap}}^{-1}
++
+\tau_{\mathrm{scat}}^{-1}
++
+\tau_{\mathrm{pair}}^{-1}
++
+\tau_{\mathrm{med}}^{-1}
+\right](\nu,t)\,dt
+$$
+
+where the terms respectively summarize planar-mode capture/release, Compton-like redistribution, pair channels, and non-radiative medium exchange after those channels have been tied to event records. The condition $\mathcal{D}_{\mathrm{th}}\gg1$ is necessary for a source population to approach a blackbody photon bath, but it is not sufficient unless the same provenance record also closes Gate A kinematics, Gate B transverse handoff, Gate C transition rates, and the Noether sea state map used for redshift and damping.
+
+For cosmology-facing use, the blackbody limit also requires thermalization depth, damping, anisotropy, polarization, and redshift handoff to remain consistent with the same provenance record. The CMB claim is therefore not "many photons exist." The claim to prove is that source channels plus Noether sea transport can generate and preserve a near-blackbody photon bath within observational limits.
+
+#### Channel Routing
+
+Channel routing is the event-level decision tree that sends the closure residual into allowed outputs. It should be recorded before a channel is used in a larger reaction or cosmology argument.
+
+| Channel family | Trigger geometry | Primary output | Required closure target |
+| --- | --- | --- | --- |
+| Bremsstrahlung | charged-assembly deceleration near a target assembly | planar-mode photon, recoil, medium excitation | recover $d\sigma/dk$, screening, form-factor, and free-free emissivity limits |
+| Synchrotron | curved charged-assembly transport in an anisotropic Noether sea state | repeated planar-mode photon output | recover $\nu_c\propto\gamma^2B$, $P_{\mathrm{syn}}\propto U_B\gamma^2$, cooling breaks, and polarization limits |
+| [Atomic transition](../../../../markdown/aaa/reactions/atomic-transition-radiation.md) | electron-assembly envelope moves between effective resonance basins | line photon plus recoil and residual atomic state | recover spectral line frequencies after local clock/rate conversion |
+| Pair association and neutral relock radiation | photon overlap, charged pair association, or charged pair relock | photons, $e^+e^-$ assemblies, recoil, and recruited or returned Noether swarm content | recover threshold, cross-section, and inventory plus identity-routing conservation in validated regimes |
+| Thermal free-free | ensemble of screened charged encounters | continuum photon bath plus medium heating | recover LTE emissivity when $\mathcal{R}_{\mathrm{LTE}}\ll 1$ and non-equilibrium corrections otherwise |
+| Compton-like scattering | photon assembly captured and re-released by a charged assembly | shifted photon, recoil, and possible heat channel | recover energy-momentum transfer and standard scattering limits |
+| Medium relaxation | Noether sea or material excitation relaxes without a resolved source-particle event | photon output if planar-mode gate opens; otherwise medium heat or turbulence | keep source, transport, and thermalization provenance explicit |
+
+Every row in this table has the same routing skeleton:
+
+$$
+\text{closure residual}
+\longrightarrow
+\text{excitation basin}
+\longrightarrow
+\text{planar-mode photon, medium excitation, recoil, residual internal energy, or reaction products}
+$$
+
+The channel pages specialize the skeleton. This overview supplies the shared rule: no radiation claim is complete until the event record identifies the source assembly, trigger geometry, $\delta\Theta_a$, $E_{\text{exc}}$, $E_\gamma$, recoil, medium excitation, polarization handoff, causal-wake ledger, closure status, and observer-level recovery limit.
+
+The routing skeleton is a theorem-target contract, not a completed event-routing theorem. Radiation-coupled reaction and pair channels remain open worked sector cases until they satisfy the event-ledger contract in [Reaction Ledger](../../../../markdown/aaa/validation/reaction-ledger.md#residual-routing-event-ledger-contract): a replayable residual, a stated channel boundary, a selected output assignment, a closed $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ ledger, benchmark recovery, and explicit failure modes.
+
+#### Radiation Closure-Target Ledger
+
+The routing skeleton above becomes useful only if each benchmark is carried as a classified closure item. In this ledger, `ontology` names what the theory treats as real at the substrate or assembly level; `derivation target` names a result that must be recovered from dynamics, symmetry, simulation, or constitutive closure; `effective summary` names an observer-level formula retained as a recovery target; and `speculation` names a possible extension that cannot be used to repair a failed benchmark.
+
+| Target | Class | Concrete closure requirement | Validation check | Failure condition |
+| --- | --- | --- | --- | --- |
+| Radiative event ontology | ontology | A radiative event is a routed closure residual. Photon output is a planar-mode nucleation event whose photon branch is the coaxial contra-rotating pro/anti planar pair; medium excitation, recoil, residual internal energy, and reaction products remain explicit non-photon channels. | Every channel event record identifies the source assembly, trigger geometry, local Noether sea state, $\mathcal{R}_{\Theta}$, $E_{\text{exc}}$, photon or non-photon outputs, and conservation ledgers. | If radiation is treated as primitive acceleration-field output or as untracked energy loss, the ontology has been bypassed. |
+| Scattering/reaction event grammar | derivation target | Express every scattering, relativistic collision, pair-channel, and radiation-coupled reaction as $\mathcal{E}_{\mathrm{scat/rxn}}=(\mathfrak{L}_{\mathrm{in}},W_{\mathrm{int}},\mathfrak{T}_{\mathrm{cons}},\mathfrak{L}_{\mathrm{out}},\mathfrak{R}_{\mathrm{res}})$, with incoming ledgers, a finite interaction window, conserved transfers, outgoing ledgers, and residual checks all present. | A completed channel must drive $\mathfrak{R}_{\mathrm{res}}$ to zero within tolerance or assign every nonzero term to a named remnant, medium, recoil, wake, or benchmark-failure row. | If products are listed without incoming provenance, if the interaction window is hidden, if observer-level creation language bypasses identity routing, or if standard scattering limits are asserted without residual checks, the event grammar has failed. |
+| Larmor/Lienard recovery | derivation target | Coarse-grain repeated planar-mode nucleation from smooth weak-field charged-assembly acceleration so that the nonrelativistic power scales as $P\propto\|\mathbf{a}\|^2$ and the relativistic observer-level limit recovers the Larmor/Lienard class after clock and rate conversion. | Sweep smooth acceleration histories at fixed weak homogeneous Noether sea state and recover the standard power and angular limits before claiming channel-specific deviations. | If the low-speed limit is not quadratic in acceleration, or if the relativistic limit requires a separately fitted radiation threshold, the radiation map is not closed. |
+| Bremsstrahlung emissivity | derivation target | Integrate the charged-assembly deceleration event record over impact parameters, screening, target geometry, and ensemble distributions to recover free-free emissivity, including $\epsilon_{\nu}^{\mathrm{ff}}\propto Z^2 n_e n_i T^{-1/2}e^{-h\nu/(k_B T)}g_{\mathrm{ff}}$ and $\epsilon_{\mathrm{ff}}\propto Z^2 n_e n_i T^{1/2}$ in the LTE limit. | In regimes with $\mathcal{R}_{\mathrm{LTE}}\ll 1$, recover $d\sigma/dk$, screening, form-factor, and emissivity limits from the same channel record used by [Bremsstrahlung](../../../../markdown/aaa/reactions/bremsstrahlung.md). | If cross-section and emissivity closure require different Noether sea state variables or hidden per-plasma fits, the channel fails as a derivation. |
+| Shock cooling branch selection | derivation target | For jet heads, knots, dense gas impacts, and other supersonic working surfaces, route the same closure residual according to $\mathcal{R}_{\mathrm{cool}}=t_{\mathrm{cool}}/t_{\mathrm{dyn}}$: fast-cooling shocks feed thermal line, free-free, and heat rows; adiabatic shocks feed particle-acceleration, synchrotron, inverse-Compton, cocoon, or lobe rows. | Compare synthetic source records against thermal-line YSO shocks and non-thermal AGN/microquasar shocks using the same source, recoil, medium, and photon ledgers. | If the model predicts the correct morphology but cannot decide whether the shock emits thermally, non-thermally, or mostly stores energy in the Noether sea, the radiation branch has not closed. |
+| Synchrotron $\gamma^2B$ scaling | derivation target | Map anisotropic Noether sea state to effective magnetic transport and recover $\nu_c\propto\gamma^2B$, $P_{\mathrm{syn}}\propto U_B\gamma^2$, and cooling-break behavior from curved charged-assembly routing. | Sweep $\gamma$, $B$, and pitch geometry while holding the same $B\leftrightarrow\mathcal{V}_{\mathrm{NS}}$ mapping; recover the standard scaling before using synchrotron cascades in source or cosmology arguments. | If the factor-of-$\gamma^2$ frequency scaling is absent, or if the $B$ map must be redefined between trajectory curvature and emission, the synchrotron branch fails. |
+| Pair thresholds and pair-channel provenance | derivation target | Recover the standard pair thresholds while preserving architrino inventory: for photon-photon pair production, the Gate C target includes $s\ge 4m_e^2c^4$ and $E_1E_2(1-\cos\theta_{12})\ge 2(m_ec^2)^2$ in the validated limit. | The event record must identify incoming photon assemblies, recruited or returned Noether swarm content, outgoing $e^+e^-$ assemblies, recoil or medium terms, and the standard threshold/cross-section limit. | If pair production is described as creation from nothing, violates inventory conservation, or shifts the threshold without a controlled new-physics claim, the pair channel is not closed. |
+| Compton-like scattering | derivation target | Treat photon capture and re-release by a charged assembly as a Gate C vertex and recover the observer-level Compton shift $\lambda'-\lambda=(h/(m_ec))(1-\cos\theta)$, the Thomson low-energy limit, and the Klein-Nishina high-energy correction. | The same vertex record must close incoming photon data, charged-assembly recoil, shifted outgoing photon data, heat or residual excitation, and energy-momentum transfer. | If scattering is modeled only as phenomenological frequency loss, or if recoil and shifted photon provenance cannot close together, the Compton-like branch fails. |
+| Effective EM Gate residual | derivation target | Any use of Maxwell-level variables must satisfy $\mathcal{G}_{\mathrm{EM}}=(\Delta_{\mathrm{cont}},\Delta_E^{\mathrm{EM}},\Delta_{\mathbf{p}}^{\mathrm{EM}},\Delta_{\mathbf{J}}^{\mathrm{EM}},\Delta_{\mathrm{gauge}})$ in the declared standard-limit regime, with nonzero residuals routed into named event rows. | Evaluate the effective continuity, Poynting-flux, Maxwell-stress, angular-momentum, and gauge-invariance residuals on the same event record used for photon or material routing. | If the channel recovers a spectrum while hiding charge continuity, stress recoil, gauge dependence, or energy-momentum mismatch in the effective field layer, the EM comparison gate has failed. |
+| Causal response-function analyticity | derivation target | Material and Noether sea dressing response kernels must obey $\mathcal X_\Omega(\Delta t)=0$ for $\Delta t<0$, analyticity for $\operatorname{Im}\omega>0$, and $\Delta_{\mathrm{KK}}^{\operatorname{Re}}=\Delta_{\mathrm{KK}}^{\operatorname{Im}}=0$ in the linear-response regime. | Check that absorption and dispersion are paired by the same response kernel rather than fitted independently, and that response poles remain outside the upper-half $\omega$ plane. | If a material map tunes attenuation without the corresponding dispersion, or uses an acausal response kernel, the surface or medium-routing derivation is invalid. |
+| Material absorption/reflection/skin-depth ledger | derivation target | Surface events must use one ledger $\mathcal M_{\mathrm{surf}}(\omega,\theta,b)$ for reflection, transmission, absorption, remnant excitation, skin depth, complex wavenumber, response analyticity, and EM energy-momentum residuals. | Recover Fresnel/Snell/Brewster behavior in transparent limits, $\delta_{\mathrm{skin}}\rightarrow(2/(\mu\omega\sigma_{\mathrm{DC}}))^{1/2}$ in low-frequency Drude conductors, and plasma cutoff behavior near $\omega_p$. | If reflection is a hard bounce, absorption is untracked heat, skin depth is detached from conductivity, or longitudinal plasma oscillation is treated as a free photon mode, the material route fails. |
+| Blackbody recovery | derivation target | Show that repeated emission, absorption, Compton-like redistribution, pair channels, and non-radiative exchange reach detailed balance with Planck occupation $\bar n_\gamma(\nu)=1/(\exp(h\nu/(k_B T))-1)$ and effective photon chemical potential driven to zero. | Recover the Planck spectrum, thermalization depth, damping, anisotropy, polarization handoff, and redshift handoff using one provenance record and one Noether sea state map. | If blackbody recovery needs per-observable retuning, unbalanced photon loading, or a different transport map from the source channels, the thermal branch fails. |
+| Free photon polarization boundary | derivation target | Radiation pages may record polarization basis, transverse angular-momentum ledger, and observer-level polarization recoveries as downstream requirements, but free photon polarization, helicity, Malus' law, and analyzer statistics are Gate B results. | Every radiation, scattering, pair, or cosmology use of photon polarization must point back to the Gate B handoff instead of deriving new free-photon polarization rules locally. | If a channel page invents its own free photon polarization derivation, adds a longitudinal free mode, or treats Gate B as already proven inside radiation, the closure boundary is violated. |
+| Noether sea-dependent radiation deviations | speculation | Deviations tied to $\rho_{\text{NS}}(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, anisotropy, threshold floors, or source-history transport are candidate predictions only after the validated limits above are recovered. | A proposed deviation must state the benchmark-preserving limit, the residual term, and the measurable regime before being used in a source model. | If a deviation is used to rescue a failed standard recovery or is fitted independently per observable, it is not accepted as radiation closure. |
+
+#### Closure Targets
+
+The first proof burden is to derive the separatrix condition and planar-mode threshold from the Master Equation and the Noether swarm ledger. The second burden is to show that the same routing record recovers known radiation channels in validated limits. The third burden is to show that ensemble thermalization can reach the blackbody limit without changing ontology or re-fitting Noether sea state variables for each observable.
+
+In compact form, the radiation program is:
+
+$$
+\text{rapid transport or gradient change}
+\longrightarrow
+\text{Noether swarm closure residual}
+\longrightarrow
+\text{excitation basin}
+\longrightarrow
+\text{photon output, medium excitation, recoil, residual internal energy, or reaction products}
+\longrightarrow
+\text{observer-level spectrum or thermal bath}
+$$
+
+This is a radiative closure program, not yet a completed derivation of blackbody radiation. It keeps strong source insights in play while preserving the distinction between ontology, derivation targets, effective summaries, and speculative extensions.
+
+### Atomic Transition Radiation
+
+Atomic transition radiation is the line-emission and line-absorption channel in which an electron-assembly envelope moves between effective atomic resonance basins and the excess action is routed through a photon planar-mode channel, recoil, medium excitation, or residual atomic energy.
+
+This page specializes the shared routing skeleton in [Radiation](../../../../markdown/aaa/reactions/radiation.md). The envelope energies and spectral labels are inherited from [Atomic Spectra](../../../../markdown/aaa/nuclear-atomic/atomic-spectra.md), while photon ontology and Gate A/B/C closure requirements are inherited from [Electroweak Bosons](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md#photon-closure-interface). Reaction provenance follows [Reaction Ledger](../../../../markdown/aaa/validation/reaction-ledger.md), and cosmology-facing photon records remain downstream of [Reaction-Cosmology Provenance Ledger](../../../../markdown/aaa/validation/reaction-cosmology-provenance-ledger.md).
+
+This chapter is not a completed derivation of atomic transition rates. Its role is to state the first event record for the Gate C vertex: how a bound atomic envelope sheds or captures a coaxial contra-rotating pro/anti planar pair while preserving energy, momentum, angular momentum, local Noether sea state, and path-history provenance.
+
+#### Basin Transition
+
+Atomic spectra describe effective electron-assembly envelope basins around a nuclear causal-wake envelope. Let $a$ and $b$ denote two such basins for the same atomic assembly, with $a$ the higher-energy basin in an emission event. The local envelope gap is
+
+$$
+\Delta E_{a\to b}^{\mathrm{env}}
+=
+E_{\mathrm{env}}\!\left(a;\mathcal W_{\mathrm{nuc}},\rho_{\text{NS}},n,\chi_{\text{sea}}\right)
+-
+E_{\mathrm{env}}\!\left(b;\mathcal W_{\mathrm{nuc}},\rho_{\text{NS}},n,\chi_{\text{sea}}\right)
+>0
+$$
+
+Here $\mathcal W_{\mathrm{nuc}}$ is the effective nuclear causal-wake envelope, $\rho_{\text{NS}}(\mathbf{x},t)$ is the physical Noether swarm density, $n(\mathbf{x},t)$ is the normalized Noether swarm density, and $\chi_{\text{sea}}(\mathbf{x},t)$ is the Noether sea delay factor. The gap is an effective atomic quantity, not a proof that the underlying Noether swarm ledgers of the nucleus or electron have already been derived.
+
+The observer-level line frequency is recovered only after local clock/rate conversion:
+
+$$
+h\nu_{a\to b}^{\mathrm{loc}}
+\simeq
+\Delta E_{a\to b}^{\mathrm{env}}
+-
+\Delta E_{\mathrm{recoil}}
+-
+\Delta E_{\mathrm{med}}
+-
+\Delta E_{\mathrm{rem}}
+$$
+
+In the ideal isolated line limit, the non-photon terms are negligible and $E_\gamma\simeq h\nu_{a\to b}^{\mathrm{loc}}$. In dense media, strong gradients, or unresolved recoil regimes, those terms must remain in the ledger rather than being silently absorbed into the line frequency.
+
+#### Hydrogen Line Benchmark Record
+
+The hydrogen Rydberg benchmark in [Atomic Spectra](../../../../markdown/aaa/nuclear-atomic/atomic-spectra.md#hydrogen-rydberg-benchmark-target) supplies the line-gap side of the test. This page supplies the event-record side. For an isolated weak-homogeneous hydrogen transition $a\to b$, the same envelope gap must close as a routed event:
+
+$$
+\Delta E_{a\to b}^{\mathrm{env}}
+=
+E_\gamma
++
+\Delta E_{\mathrm{recoil}}
++
+\Delta E_{\mathrm{med}}
++
+\Delta E_{\mathrm{rem}}
+$$
+
+with $\Delta E_{\mathrm{med}}$ and $\Delta E_{\mathrm{rem}}$ bounded by the declared isolated-line tolerance rather than hidden in the fitted line frequency. A compact event residual is
+
+$$
+\mathcal E_{ab}^{\mathrm{evt}}
+=
+\frac{
+\left|
+\Delta E_{a\to b}^{\mathrm{env}}
+-
+E_\gamma
+-
+\Delta E_{\mathrm{recoil}}
+-
+\Delta E_{\mathrm{med}}
+-
+\Delta E_{\mathrm{rem}}
+\right|
+}{
+\left|
+\Delta E_{a\to b}^{\mathrm{env}}
+\right|
++
+\varepsilon_{\mathrm{evt}}
+}
+\le
+\Delta_{\mathrm{evt}}^{\mathrm{tol}}
+$$
+
+The frequency readout must then agree with the local photon record:
+
+$$
+\mathcal E_{ab}^{\gamma}
+=
+\frac{
+\left|
+E_\gamma
+-
+h\nu_{\gamma}^{\mathrm{loc}}
+\right|
+}{
+\left|
+E_\gamma
+\right|
++
+\varepsilon_{\gamma}
+}
+\le
+\Delta_{\gamma}^{\mathrm{tol}}
+$$
+
+The benchmark fails if a Rydberg-consistent line can be obtained only by dropping recoil, medium excitation, or residual atomic energy from the ledger; if the planar-mode gate is changed between hydrogen lines; if the photon-channel speed used by the spectral comparison differs from the emitted photon record; or if path-history provenance is not sufficient to replay which envelope transition produced the coaxial contra-rotating pro/anti planar pair.
+
+#### Planar-Mode Gate
+
+A basin transition is not automatically photon emission. It becomes atomic transition radiation only when the available gap and the local channel geometry cross the planar-mode nucleation gate inherited from the radiation program:
+
+$$
+\mathcal S_{\gamma}^{\mathrm{at}}
+\!\left(
+\Gamma_a,\Gamma_b,\mathcal W_{\mathrm{nuc}},
+\rho_{\text{NS}},n,\chi_{\text{sea}},J_{\mathrm{loc}}
+\right)
+\ge
+\mathcal S_{\gamma,*},
+\qquad
+\Delta E_{a\to b}^{\mathrm{env}}\ge E_{\gamma,\min}
+$$
+
+The symbol $\mathcal S_{\gamma}^{\mathrm{at}}$ denotes the atomic-transition specialization of the photon-channel drive. Its arguments record the pre/post atomic microstates $\Gamma_a,\Gamma_b$, the nuclear causal-wake envelope, local Noether sea density and delay state, and the local causal-root/Jacobian data. This is a derivation target: the completed Gate C account must compute this drive from the assembly return map and delayed causal-wake ledger, not fit it separately for each line.
+
+If the gate is not crossed, the same basin transition may still route energy into recoil, medium excitation, internal remnant energy, or a non-radiative material update. The channel distinction is therefore:
+
+$$
+\text{envelope basin transition}
+\longrightarrow
+\begin{cases}
+\text{planar-mode photon output}, & \mathcal S_{\gamma}^{\mathrm{at}}\ge\mathcal S_{\gamma,*},\\
+\text{non-radiative shedding or retained excitation}, & \mathcal S_{\gamma}^{\mathrm{at}}<\mathcal S_{\gamma,*}.
+\end{cases}
+$$
+
+#### Event Ledger
+
+A resolved emission event should close the local energy record
+
+$$
+\Delta E_{a\to b}^{\mathrm{env}}
+=
+E_\gamma
++
+\Delta E_{\mathrm{recoil}}
++
+\Delta E_{\mathrm{med}}
++
+\Delta E_{\mathrm{rem}}
+$$
+
+The corresponding momentum ledger is
+
+$$
+\Delta \mathbf p_{\mathrm{atom}}
++
+\mathbf p_{\gamma}
++
+\Delta \mathbf p_{\mathrm{recoil}}
++
+\Delta \mathbf p_{\mathrm{med}}
+=
+\mathbf 0
+$$
+
+Angular momentum and wake-carried angular momentum must close at the same vertex:
+
+$$
+\Delta \mathcal J_{\mathrm{atom}}
++
+\mathcal J_{\gamma}^{\perp}
++
+\Delta \mathcal J_{\mathrm{recoil}}
++
+\Delta \mathcal J_{\mathrm{wake}}
++
+\Delta \mathcal J_{\mathrm{handoff}}
++
+\Delta \mathcal J_{\mathrm{med}}
++
+\Delta \mathcal J_{\mathrm{rem}}
+=
+0
+$$
+
+The photon term $\mathcal J_{\gamma}^{\perp}$ is a Gate B handoff. Recoil, wake, material handoff, medium, and remnant rows are shown explicitly because a clean photon transverse ledger is not enough to close the event. This page records that an emitted or absorbed photon assembly must carry the transverse angular-momentum ledger, polarization basis, helicity label where applicable, accepted/rejected handoff where applicable, and no-longitudinal-mode status. It does not locally prove photon spin, Malus' law, or the squared-amplitude capture rule.
+
+The minimum event record is:
+
+| Field | Required content |
+| --- | --- |
+| Atomic state | Pre/post atomic envelope basins $a,b$, nuclear causal-wake envelope $\mathcal W_{\mathrm{nuc}}$, and closure status of the orbital labels used |
+| Local Noether sea state | $\rho_{\text{NS}}(\mathbf{x},t)$, $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, anisotropy if relevant, and local causal-root/Jacobian data |
+| Transition gap | $\Delta E_{a\to b}^{\mathrm{env}}$ and the clock/rate conversion used for observer comparison |
+| Channel decision | Planar-mode gate status, non-radiative alternatives, and whether $E_{\gamma,\min}$ is active in the chosen model |
+| Photon output or capture | $E_\gamma$, $\mathbf p_\gamma$, direction, phase frequency, local photon-channel speed $c_\gamma$, and Gate A null-branch status |
+| Polarization handoff | Transverse basis, helicity label where applicable, accepted/rejected capture channel, Gate B event-residual status, and closure status |
+| Recoil and medium terms | $\Delta E_{\mathrm{recoil}}$, $\Delta \mathbf p_{\mathrm{recoil}}$, $\Delta E_{\mathrm{med}}$, $\Delta \mathbf p_{\mathrm{med}}$, and any residual atomic excitation |
+| Path-history provenance | Source identities, emission times, active causal-root branches, branch Jacobians, and delayed wake history needed for deterministic replay |
+| Closure status | Baseline, provisional map, derivation target, failed map, or inherited gate |
+
+#### Absorption and Stimulated Channels
+
+Absorption is the inverse Gate C vertex: an incoming coaxial contra-rotating pro/anti planar pair is captured by the atomic assembly and folded into a higher envelope basin when the capture geometry and gap condition match. In compact form,
+
+$$
+b+\gamma \to a,
+\qquad
+E_\gamma+\Delta E_{\mathrm{med}}+\Delta E_{\mathrm{recoil}}
+\simeq
+\Delta E_{a\to b}^{\mathrm{env}}
+$$
+
+This is ordinary photon capture by the same atomic assembly. It changes the assembly's envelope basin and closes the incoming photon ledger, but it is not a general particle-production rule. If the event has different outgoing Standard Model assemblies, the channel must be written as a reaction or pair channel with a separate identity-routing row for the target or Noether sea content that supplies those outgoing inventories.
+
+The same event record must decide whether the photon is absorbed, re-emitted, scattered, reflected, or routed into medium excitation. A failed capture is not an ontology failure; it is a channel-routing outcome whose energy and momentum must still close.
+
+The material-surface version replaces a single isolated atomic pair of basins with a resolved surface cell. For a cell with electron-envelope branch $\mathcal B_e$, nuclear assembly ledger $\mathcal A_{\mathrm{nuc}}^{Z,N}$, bonding or lattice branch $\mathcal B_{\mathrm{lat}}$, local Noether sea record $\Theta_E^{(\ell)}$, and incoming photon ledger $\gamma_{\mathrm{in}}$, the capture question is whether the material return map sends the local state into an absorbed, re-emitted, scattered, reflected, heated, or retained-excitation basin. Its energy row is
+
+$$
+E_{\gamma,\mathrm{in}}
+=
+E_{\gamma,\mathrm{out}}
++
+\Delta E_{e\text{-env}}
++
+\Delta E_{\mathrm{lat}}
++
+\Delta E_{\mathrm{sea}}
++
+\Delta E_{\mathrm{recoil}}
++
+\Delta E_{\mathrm{rem}}
+$$
+
+This is the same Gate C vertex as atomic absorption, but with the final state distributed over the material branch rather than one isolated envelope label. A Vantablack-like branch is a high-depth repeated-capture limit with $E_{\gamma,\mathrm{out}}\approx0$ after many cells. A metal-like branch is a coherent re-release limit in which the conduction-electron response carries most of the incoming ledger back into an outgoing planar-pair mode. Both limits remain provisional until the same basin-measure and event-ledger program recovers standard absorption, reflection, scattering, and thermalization behavior.
+
+Stimulated emission and absorption belong to the same Gate C rate program. In the weak homogeneous validated limit, the coarse-grained transition ledger must recover the usual detailed-balance relation:
+
+$$
+\Gamma_{a\to b+\gamma}\,f_a\,(1+\bar n_\gamma)
+=
+\Gamma_{b+\gamma\to a}\,f_b\,\bar n_\gamma
+$$
+
+Here $f_a$ and $f_b$ are ensemble occupation weights for the atomic basins and $\bar n_\gamma$ is the effective photon occupation. This is an observer-level recovery target, not a substrate postulate.
+
+#### Gate C Rate Target
+
+The native rate target should be a basin-measure statement over deterministic atomic, photon, and local Noether sea microstates. For a record window $T$, a schematic form is
+
+$$
+\Gamma_{a\to b+\gamma}^{\mathbb{A}\mathbb{A}\mathbb{A}}
+=
+\frac{1}{T}\,
+\mu_T\!\left\{
+\zeta\in\mathcal B_a:
+\Phi_T(\zeta)\in\mathcal B_{b+\gamma}
+\right\}
+$$
+
+The set $\mathcal B_a$ denotes the resolved microstate basin corresponding to the effective atomic state $a$, $\mathcal B_{b+\gamma}$ denotes the basin in which the lower atomic state and outgoing photon assembly are accepted, $\Phi_T$ is the deterministic return map across the record window, and $\mu_T$ is the unresolved-material measure induced by the local ensemble and path-history distribution.
+
+In the validated weak-coupling limit, this rate must reduce to the familiar transition-rate structure:
+
+$$
+\Gamma_{a\to b+\gamma}^{\mathbb{A}\mathbb{A}\mathbb{A}}
+\longrightarrow
+\frac{2\pi}{\hbar}
+\left|
+\langle b;\gamma|\widehat V_{\mathrm{eff}}|a;0\rangle
+\right|^2
+\rho_\gamma(\Delta E)
+$$
+
+The operator $\widehat V_{\mathrm{eff}}$ is only an effective comparison object. The foundation-up burden is to show that its matrix-element behavior emerges from overlap and capture probabilities between the atomic assembly and the photon planar-mode branch. The same passage must recover the effective electromagnetic coupling scale $\alpha$ without treating $\alpha$ as a separate ontology.
+
+The finite-window definition above supplies the provenance version of the same limit: for long windows and weak coupling, the basin-measure rate must factor into an effective amplitude squared and a final-state density. Equivalently,
+$$
+\Gamma_{a\to f}^{\mathbb{A}\mathbb{A}\mathbb{A}}
+\rightarrow
+2\pi\,
+\left|\mathcal{M}_{a\to f}^{\mathrm{eff}}\right|^2
+\rho_f
+$$
+after unit conventions are fixed. The important closure is not the symbol $\mathcal{M}$ itself; it is that the same event window, source basin, accepted photon branch, recoil row, and residual row generate both the discrete line rate and the continuum final-state density used by the comparison formula.
+
+Selection rules should be carried as Gate C closure targets. In this framing, an allowed line corresponds to a nonzero basin measure for the accepted photon channel after energy, momentum, transverse angular momentum, parity-like geometry, and local Noether sea constraints are applied. A forbidden or suppressed line corresponds to zero or small basin measure in the leading channel, with possible recovery through higher-order routing, medium coupling, or multi-photon channels only when the event ledger closes.
+
+#### Observer-Level Recovery
+
+The benchmark recoveries for this page are:
+
+- spectral line frequencies after local clock/rate conversion;
+- absorption and emission rates in the Fermi's Golden Rule limit;
+- Einstein coefficient relations and detailed balance in thermalized ensembles;
+- natural line widths as a recovery target for transition-time and basin-escape statistics;
+- recoil, Doppler, pressure, Zeeman, Stark, fine-structure, and hyperfine corrections only after the relevant transport, medium, and spin-ledger dependencies are supplied.
+
+Spin-sensitive line structure remains downstream of the angular-momentum proof program. This page may record the event ledger for such lines, but fine-structure, spin-orbit, Zeeman, and hyperfine interpretations must inherit the completed internal spinor ledger and measurement-response model rather than being derived from atomic spectra alone.
+
+Cosmology-facing use of any line should keep source-branch changes separate from propagation. In the redshift factorization of [Expansion Mechanism](../../../../markdown/aaa/cosmology/expansion-mechanism.md#observable-frequency-form), an altered transition gap belongs in $B_X(E)$, while endpoint cadence, launch motion, and Noether sea path accumulation belong in their own factors. The [21 cm hydrogen line example](../../../../markdown/aaa/cosmology/expansion-mechanism.md#21-cm-hydrogen-line-example) applies this rule to hyperfine emission without treating the hyperfine splitting as closed here.
+
+#### Closure Status
+
+Accepted ontology: a photon emitted or captured in this channel is a coaxial contra-rotating pro/anti planar pair, and atomic line radiation is a routed assembly-level transition rather than excitation of a separate fundamental electromagnetic field.
+
+Derivation targets: compute $\mathcal S_{\gamma}^{\mathrm{at}}$, recover the weak-coupling transition-rate limit, derive selection-rule basin measures, close recoil and medium ledgers, and recover detailed balance without changing the Noether sea state map between emission, absorption, and thermal ensembles.
+
+Effective summaries: orbital labels, line frequencies, Einstein coefficients, oscillator strengths, and effective operators remain useful comparison objects when their closure status is stated.
+
+Speculative extensions: minimum stable photon energy, Noether sea-dependent line deviations, and basin-escape explanations of linewidths should remain provisional until the standard isolated-atom limits are recovered.
+
 ### Bremsstrahlung
 
 Bremsstrahlung ("braking radiation") is electromagnetic emission generated when a charged particle is accelerated by another charge, typically an electron deflected by an ion or nucleus. Because the acceleration history spans many scattering angles and impact parameters, bremsstrahlung produces a broad continuum rather than a line spectrum. In practice it is a core process in nuclear and particle experiments, hot-plasma diagnostics, and high-energy astrophysical source modeling.
@@ -62545,6 +63746,232 @@ Radiative or photon-coupled channels also need the shared radiation event-record
 - Radiative and pair-production provenance should use [Synchrotron Cascades](../../../../markdown/aaa/reactions/synchrotron.md), [Bremsstrahlung](../../../../markdown/aaa/reactions/bremsstrahlung.md), and [Reaction-Cosmology Provenance Ledger](../../../../markdown/aaa/validation/reaction-cosmology-provenance-ledger.md).
 - Parameter closure belongs in [Parameter Ledger](../../../../markdown/aaa/validation/parameter-ledger.md).
 
+### Reaction-Cosmology Provenance Ledger
+
+This ledger connects local reaction provenance to cosmology-facing radiation, thermalization, and source-history claims. It is the bridge record for channels where synchrotron cascades, bremsstrahlung, pair production, BBN photon loading, and CMB thermalization all depend on the same underlying bookkeeping.
+
+Use it with [Reaction Ledger](../../../../markdown/aaa/validation/reaction-ledger.md), [Radiation](../../../../markdown/aaa/reactions/radiation.md#radiation-event-record-schema), [Synchrotron Cascades](../../../../markdown/aaa/reactions/synchrotron.md), [Bremsstrahlung](../../../../markdown/aaa/reactions/bremsstrahlung.md), [BBN Constraints](../../../../markdown/aaa/cosmology/BBN-constraints.md), and [CMB](../../../../markdown/aaa/cosmology/CMB.md).
+
+#### Purpose
+
+Cosmology-facing reaction claims need more than a source story. They need a record of what enters and exits each channel at the substrate level, and how those local channels become observer-level background quantities such as photon bath temperature, $N_{\text{eff}}$, light-element yields, redshift, and TT/TE/EE spectra.
+
+This ledger separates four levels:
+
+- **Ontology:** architrinos, Noether swarms, axial layers, photon assemblies, and Noether sea state variables.
+- **Reaction mechanics:** association, dissociation, planar-mode nucleation, pair production, recoil, and medium excitation.
+- **Transport and thermalization:** opacity, scattering, cascade depth, diffusion, cooling, path-history redshift, and signed photon-frequency exchange.
+- **Effective observables:** emissivity, light-element yield, blackbody spectrum, anisotropy, polarization, and inferred cosmological parameters.
+
+#### Leap Opportunity Record
+
+The opportunity tracked here is a possible unification of four previously separate bookkeeping problems: radiative planar-mode nucleation, pair-production provenance, BBN photon loading, and CMB thermalization. The shared claim is not that these channels are already derived from one equation. The disciplined claim is that they may need one common provenance ledger because each asks the same question at a different scale: which assemblies, Noether swarm material, energy-momentum terms, and Noether sea state variables enter and exit the channel?
+
+##### Current Claim Status
+
+| Claim | Bucket | Status | Decision gate |
+| --- | --- | --- | --- |
+| Bremsstrahlung and synchrotron both require planar-mode nucleation from assembly stress or wake concentration | Derivation-closure target | Provisional map | A common threshold condition must recover standard emissivity scalings in validated regimes |
+| Pair production reorganizes local substrate content rather than creating charged assemblies from nothing | Ontology plus derivation-closure target | Accepted as ontology framing, open as quantitative derivation | Event records must balance architrino inventory, energy-momentum, and Breit-Wheeler rate behavior |
+| BBN photon loading can be supplied by the same radiation and pair channels used in high-energy transport | Speculation promoted to closure target | Open | The source-zone photon ledger must preserve D, $^4$He, Li, and $N_{\text{eff}}$ constraints without per-source retuning |
+| CMB blackbody recovery can be treated as source-to-transport-to-decoupling provenance rather than as an isolated source story | Derivation-closure target | Open | Thermalization depth, damping, anisotropy, polarization, and redshift handoff must all survive one shared parameter map |
+
+##### Discussion Gate
+
+Before this bridge is promoted from ledger opportunity to mainline cosmology doctrine, the corpus needs a first quantitative record for at least one full path:
+
+$$
+\text{source channel}
+\rightarrow
+\text{photon or pair assembly output}
+\rightarrow
+\text{thermalization path}
+\rightarrow
+\text{observer-level background variable}
+$$
+
+The minimal useful first path is BBN photon loading: identify a source-zone radiation channel, record its event-level provenance, propagate it through the local thermalization assumptions, and show whether it can support effective $\eta\approx6\times10^{-10}$ during the deuterium bottleneck window.
+
+#### Shared Provenance Fields
+
+| Field | What must be recorded | Why it matters |
+| --- | --- | --- |
+| Architrino inventory | $E/P$ counts, swarm/axial-layer separation, and identity routing for recruited or returned substrate content | Prevents creation-from-nothing wording in pair and weak channels |
+| Noether sea state | $\rho_{\text{NS}}(\mathbf{x},t)$, $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, anisotropy, and excitation state | Keeps density, delay, and transport variables distinct |
+| Radiation event record | Source assembly, trigger geometry, $\delta\Theta_a$, $E_{\text{exc}}$, $E_\gamma$, recoil, medium excitation, polarization handoff, causal-wake ledger, and closure status | Provides the local event schema that can be propagated into source-zone, transport, and observer-level cosmology claims |
+| Photon assembly channel | Planar-mode nucleation threshold, emitted energy, direction, polarization basis, and transverse angular-momentum ledger | Links bremsstrahlung, synchrotron, and CMB photon-bath claims |
+| Pair channel | Incoming photon assemblies, identity-routed recruited Noether swarm content, final $e^+e^-$ assemblies, and recoil/medium excitation | Keeps pair production as association from local substrate content, not ex nihilo creation |
+| Energy-momentum ledger | Internal energy, kinetic energy, recoil, emitted assemblies, and medium excitation | Required for observer-rate and spectrum recovery |
+| Thermalization path | scattering depth, coupling time, cooling time, and escape time | Determines when local reactions can feed BBN or CMB background claims |
+| Observer handoff | emissivity, opacity, redshift kernel, effective temperature, $N_{\text{eff}}$, and $C_\ell$ inputs | Keeps standard comparison variables useful without treating them as ontology |
+
+#### Photon Closure Gates
+
+Photon-channel records should be sorted into three gates before they are used in cosmology-facing arguments.
+
+The chapter-level source for the photon ontology and Gate A theorem scaffold is [Electroweak Bosons](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md#photon-closure-interface). This ledger records what a reaction or cosmology channel must carry forward from that scaffold before it uses photon propagation, polarization, pair production, or thermal radiation as settled input. Gate B is downstream of [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md); the fields below are acceptance records, not an independent derivation of photon spin or polarization statistics. Photon-pair Bell/CHSH claims and CMB polarization-transfer claims must therefore inherit Gate B and the pair-provenance measure rather than being closed by cosmology bookkeeping alone.
+
+| Gate | Claim bucket | What the ledger must track | Closure test |
+| --- | --- | --- | --- |
+| Gate A: kinematics and optics | Derivation-closure target | $c_f$, $c_\gamma$, $\delta_\gamma\equiv1-c_\gamma/c_f$, planar-pair spacing $d$, phase frequency $\omega$, geometric phase, and medium delay state | Recover $E_\gamma=h\nu$, $p=h/\lambda$, masslessness, no rest proper-time branch, nondispersion, and no unacceptable preferred-frame leakage |
+| Gate B: polarization and spin | Derivation-closure target | transverse ledger orientation, analyzer basis, helicity, projection/capture geometry, accepted/rejected channel outcomes, source depletion, recoil, causal-wake, handoff, and event-balance rows | Recover exactly two transverse modes, no longitudinal mode, Malus' law, helicity $\pm1$, single-photon statistics, no-signaling constraints, and $\mathcal R_{\gamma B}^{\mathrm{event}}$ below tolerance |
+| Gate C: vertices and transitions | Derivation-closure target | emission, absorption, pair production, recoil, medium excitation, transition rates, and overlap/capture probabilities | Recover QED/Maxwell limits, Breit-Wheeler thresholds and rates, blackbody behavior, Compton-like scattering, photon-photon limits, and the effective coupling scale $\alpha$ |
+
+These gates are not separate ontologies. They are bookkeeping filters that prevent a local photon-source story from being used as cosmology doctrine before the same event record also closes photon transport, polarization, pair conversion, and observer-level comparison variables. The shared radiation event record is the carrier for those gate handoffs; Gate B remains inherited and is not re-derived by this cosmology ledger.
+
+#### Channel Map
+
+| Channel | Source document | Provenance target | Current status |
+| --- | --- | --- | --- |
+| Bremsstrahlung planar-mode nucleation | [Bremsstrahlung](../../../../markdown/aaa/reactions/bremsstrahlung.md) | Record electron assembly energy loss, target recoil, photon assembly output, and medium excitation | Provisional map |
+| Synchrotron planar-mode nucleation | [Synchrotron Cascades](../../../../markdown/aaa/reactions/synchrotron.md) | Derive photon output from curved charged-assembly transport in anisotropic Noether sea states | Provisional map |
+| Breit-Wheeler pair channel | [Synchrotron Cascades](../../../../markdown/aaa/reactions/synchrotron.md) | Record incoming photon assemblies, recruited Noether swarm content, and final $e^+e^-$ assemblies | Derivation target |
+| BBN photon bath | [BBN Constraints](../../../../markdown/aaa/cosmology/BBN-constraints.md) | Show that pair, bremsstrahlung, synchrotron, and related channels maintain effective $\eta\approx6\times10^{-10}$ during the bottleneck window | Closure target |
+| CMB thermal spectrum | [CMB](../../../../markdown/aaa/cosmology/CMB.md) | Show that source emission, transport, and thermalization produce a near-blackbody photon bath with allowed anisotropy and damping structure | Closure target |
+| Redshift and clock handoff | [Expansion Mechanism](../../../../markdown/aaa/cosmology/expansion-mechanism.md) | Map photon transport through $\rho_{\text{NS}}$, $n$, $\chi_{\text{sea}}$, and clock-rate comparison | Effective summary with open derivation |
+| Sunyaev-Zeldovich / Compton-like frequency exchange | [CMB](../../../../markdown/aaa/cosmology/CMB.md#sunyaev-zeldovich-path-history-calibration) and [Radiation](../../../../markdown/aaa/reactions/radiation.md#path-frequency-exchange) | Record incoming photon packet, intervening electron or medium state, outgoing frequency, recoil, medium energy change, and thermalization side effects | Calibration row and closure target |
+
+#### Minimum Records by Channel
+
+Each minimum record below specializes the shared event schema in [Radiation](../../../../markdown/aaa/reactions/radiation.md#radiation-event-record-schema). Additional cosmology variables may be added, but the source assembly, source-depletion row, trigger geometry, $\delta\Theta_a$, $E_{\text{exc}}$, $E_\gamma$, recoil, medium excitation, polarization handoff, photon Gate B event residual when $E_\gamma\ne0$, causal-wake ledger, identity routing, and closure status fields remain required.
+
+##### Bremsstrahlung
+
+The minimum event record is:
+
+$$
+E_{\text{exc}}^{\mathrm{br}}
+=
+E_\gamma
++
+\Delta E_{\text{recoil}}
++
+\Delta E_{\text{med}}
++
+\Delta E_{\text{rem}}
+$$
+
+The provenance record must also include the source electron assembly, target assembly, source-depletion row, trigger geometry, $\delta\Theta_a$, local $\rho_{\text{NS}}(\mathbf{x},t)$, $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, planar-mode threshold status, emitted photon assembly direction, recoil, medium excitation, causal-wake ledger, identity routing, closure status, and whether the event occurs in a regime where standard free-free emissivity remains the observer-level scaffold. Its polarization handoff inherits photon Gate B rather than deriving photon spin locally, and the record remains provisional until the event residual routes source, recoil, medium, wake, handoff, and remnant rows.
+
+##### Synchrotron Emission
+
+The event record must connect charged-assembly curvature, the effective magnetic-field map, source depletion, trigger geometry, $\delta\Theta_a$, $E_{\text{exc}}$, photon assembly output $E_\gamma$, recoil, medium excitation, causal-wake ledger, identity routing, and photon Gate B event residual. The closure target is to derive the standard $\nu_c \propto \gamma^2 B$ and $P_{\mathrm{syn}}\propto U_B\gamma^2$ scalings from Noether sea anisotropy and wake-strain threshold conditions rather than fitting a separate emission rule. Synchrotron polarization records inherit Gate B, so this ledger carries the transverse handoff without proving photon helicity locally.
+
+##### Pair Production
+
+The event record must avoid creation-from-nothing wording. Incoming photon assemblies trigger association of local substrate content into $e^+e^-$ assemblies when the observer-level threshold is satisfied. The incoming photons supply energy, momentum, polarization handoff, and trigger geometry; they do not supply new architrino identities. The incoming photons should preserve their radiation event records through the pair vertex. The pair-channel record must include:
+
+- incoming photon assembly energies and directions,
+- incoming photon polarization handoffs as inherited Gate B records,
+- local Noether swarm material recruited or reconfigured, including identity routing for the architrinos assigned to the final charged assemblies,
+- final charged assembly inventories,
+- recoil and medium-excitation terms,
+- causal-wake ledger and closure status,
+- and the standard-limit cross-section target.
+
+This is the ledger distinction that ordinary absorption does not need: atomic or material capture closes the photon ledger into an existing target or medium record, while pair production closes the photon ledger and separately recruits identity-routed substrate content into new charged assemblies.
+
+##### BBN Photon Loading
+
+The BBN module needs a source-zone photon ledger. It must identify which radiation channels supply the effective photon-dominated environment and whether they preserve deuterium survival, helium clustering, and $N_{\text{eff}}$ compatibility without per-source retuning.
+
+##### Matter-Asymmetry Provenance
+
+The observed baryon-to-photon ratio is a data-product constraint, not permission to import an external baryogenesis mechanism as doctrine. Any matter-asymmetry story used by the cosmology program must be rewritten as a reaction provenance record over a declared source window $W$. Let $N_B(W)$, $N_{\bar B}(W)$, and $N_\gamma(W)$ be the baryon, antibaryon, and photon counts after the event records have been transported to the BBN comparison surface. Define
+$$
+\eta_B^{\mathrm{ledger}}(W)
+=
+\frac{N_B(W)-N_{\bar B}(W)}{N_\gamma(W)}
+$$
+For leptogenesis-like source routes, the ledger must also carry a neutrino/antineutrino CP-asymmetry comparison term rather than assuming the external mechanism. Source leads for this row are primary neutrino-oscillation and leptogenesis sources: long-baseline $\nu/\bar\nu$ transition measurements, PMNS CP-phase summaries, and baryogenesis/leptogenesis rate calculations. The comparison term is
+$$
+\Delta_{\nu\bar\nu}^{\mathrm{CP}}(E,L;\alpha,\beta)
+=
+P_{\nu_\alpha\to\nu_\beta}(E,L)
+-
+P_{\bar\nu_\alpha\to\bar\nu_\beta}(E,L)
+$$
+where $E$ is neutrino energy, $L$ is baseline, and $\alpha,\beta$ label flavor channels. The source-window ledger may report $\Delta_{\nu\bar\nu}^{\mathrm{ledger}}(W)$ as the event-record-weighted version of this comparison over $W$, but that reported value is only an input constraint on the matter-asymmetry closure. It is not an established $\mathbb{A}\mathbb{A}\mathbb{A}$ derivation of baryon excess.
+
+The acceptance residual should be reported as
+$$
+\mathcal{R}_{B/\gamma}(W)
+=
+\max\left(
+\frac{|\eta_B^{\mathrm{ledger}}(W)-\eta_B^{\mathrm{obs}}|}{\varepsilon_\eta},
+\frac{|\Delta_{\nu\bar\nu}^{\mathrm{ledger}}(W)-\Delta_{\nu\bar\nu}^{\mathrm{obs}}(W)|}{\varepsilon_{\nu\bar\nu}},
+\frac{|\Delta B_{\mathrm{unrec}}(W)|}{\varepsilon_B},
+\frac{|\Delta Q_{\mathrm{unrec}}(W)|}{\varepsilon_Q},
+\frac{|\Delta E_{\mathrm{unrec}}(W)|}{\varepsilon_E}
+\right)
+$$
+Here $\Delta_{\nu\bar\nu}^{\mathrm{ledger}}$, $\Delta B_{\mathrm{unrec}}$, $\Delta Q_{\mathrm{unrec}}$, and $\Delta E_{\mathrm{unrec}}$ are not new ontology. They are comparison or failure counters for CP-asymmetric neutrino/antineutrino transition rates, baryon-number bookkeeping, electric-charge bookkeeping, and energy balance after all declared reaction, recoil, medium, and escape channels have been included. A leptogenesis-like source model may remain in the comparison ledger only when $\mathcal{R}_{B/\gamma}\le1$ and the same event record also passes the BBN photon-loading and CMB thermalization checks below.
+
+##### CMB Thermalization
+
+The CMB module needs a source-to-transport-to-decoupling ledger. It must track:
+
+- source-channel selection from SMBH-local release, medium relaxation, and conversion/dissociation pathways,
+- thermalization depth and blackbody recovery,
+- anisotropy and polarization transfer, with the polarization handoff inherited from Gate B,
+- redshift and clock-rate handoff,
+- and separation between source interpretation and the shared prediction target $C_\ell$.
+
+The thermalization-depth record is a diagnostic field, not a new substrate entity. For each modeled source-to-decoupling path, the ledger should record
+
+$$
+\mathcal{D}_{\mathrm{th}}(\nu;t_a,t_b)
+=
+\int_{t_a}^{t_b}\tau_{\mathrm{th}}^{-1}(\nu,t)\,dt
+$$
+
+with $\tau_{\mathrm{th}}^{-1}$ decomposed into the specific event-recorded channels being used: planar-mode capture/release, Compton-like redistribution, pair channels, and non-radiative medium exchange. A CMB blackbody claim requires $\mathcal{D}_{\mathrm{th}}\gg1$ before decoupling, effective photon chemical potential driven to zero, and a post-decoupling transport map that preserves the already-generated spectrum while carrying anisotropy, polarization, damping, and redshift information.
+
+##### Path Frequency Exchange
+
+Post-emission photon frequency changes are not automatically new photon emission events. A photon packet may exchange energy with an intervening electron population, plasma, or Noether sea state and continue as the same transported packet. For each such event or coarse segment, the ledger must record incoming frequency $\nu^-$, outgoing frequency $\nu^+$, the local medium state, recoil or target momentum, and the residual
+
+$$
+\mathcal{R}_{\nu\text{-}\mathrm{ex}}
+=
+\frac{
+\left|
+h(\nu^+-\nu^-)
++\Delta E_{\mathrm{med}}
++\Delta E_{\mathrm{recoil}}
++\Delta E_{\mathrm{rem}}
+\right|
+}{\epsilon_E}
+$$
+
+The same row must state whether the exchange is thermalizing, spectrally distorting, or coherently transported. A Sunyaev-Zeldovich-type boost is admissible only when the electron or medium record supplies the photon energy increase and when the side effects remain compatible with the CMB spectrum, anisotropy, polarization, and kSZ/tSZ observable rows. A depletion row is admissible only when the lost photon energy is routed into a named medium, recoil, remnant, or thermalization channel.
+
+#### Closure Targets
+
+1. **Planar-mode threshold closure:** derive a shared threshold condition for bremsstrahlung and synchrotron photon assembly output.
+2. **Pair-production provenance closure:** prove that local Noether sea recruitment can satisfy architrino inventory, energy-momentum, and Breit-Wheeler rate constraints in the same event record.
+3. **Photon-bath closure:** show that the relevant radiation channels can maintain BBN-compatible photon loading during the deuterium bottleneck window.
+4. **Matter-asymmetry closure:** derive $\eta_B^{\mathrm{ledger}}$ from event-level reaction provenance without hidden baryon inventory, charge, or energy sources; for leptogenesis-like routes, also recover $\Delta_{\nu\bar\nu}^{\mathrm{ledger}}$ from primary-source neutrino CP-asymmetry comparisons without promoting leptogenesis to doctrine.
+5. **Detailed-balance closure:** derive the rate symmetry and ensemble weight relation that make emission, absorption, and stimulated terms recover Planck occupation with zero effective photon chemical potential.
+6. **Blackbody closure:** show that distributed source channels plus Noether sea transport can generate and preserve the CMB blackbody spectrum within observational limits.
+7. **Clock/redshift closure:** use one Noether sea state map for photon propagation, endpoint clock comparison, and redshift-distance inference.
+
+#### Failure Modes
+
+The provenance program fails for a channel if a source story cannot survive the same ledger used for reaction, transport, thermalization, and observer handoff.
+
+| Failure mode | What fails | Diagnostic consequence |
+| --- | --- | --- |
+| Single Noether swarm temperature mistake | A single excited Noether swarm is treated as thermodynamically hot rather than internally excited, closure-mismatched, or metastable | Temperature is being used before an ensemble distribution or entropy-energy relation has been established |
+| Inventory gap | Architrino inventory, Noether swarm recruitment, recoil, or returned medium content cannot be balanced without unrecorded substrate creation | Pair and radiation channels cannot be promoted beyond provisional maps |
+| Per-observable refit | The same Noether sea state variables must be re-fit independently for photon loading, blackbody recovery, damping, redshift, or growth observables | The cosmology interpretation loses its shared Noether sea state map |
+| Standard-limit violation | Pair, Compton-like, bremsstrahlung, synchrotron, or photon propagation channels violate validated limits in regimes where those limits are already measured | The proposed substrate route fails before it can claim new deviations |
+| Insufficient thermalization depth | $\mathcal{D}_{\mathrm{th}}$ is too small, or its channel decomposition is not tied to event records | Source photons need not relax to a Planck bath, and a nonzero effective photon chemical potential or spectral distortion remains |
+| Matter-asymmetry ledger failure | $\eta_B^{\mathrm{ledger}}$ cannot match the observed baryon-to-photon ratio, or $\Delta_{\nu\bar\nu}^{\mathrm{ledger}}$ is imported without event-record support; the source route then relies on unrecorded baryon inventory, charge imbalance, or energy imbalance | A baryogenesis-like or leptogenesis-like source story cannot be promoted into cosmology provenance |
+| BBN photon-loading failure | Source-zone photon production cannot preserve deuterium survival, helium clustering, lithium constraints, and $N_{\text{eff}}$ compatibility | The BBN local-reactor mapping cannot replace the standard photon-to-baryon environment |
+| CMB handoff failure | Blackbody precision, damping behavior, anisotropy, polarization, or TT/TE/EE coherence cannot be carried through the same transport and redshift map | CMB thermalization cannot be treated as a successful source-to-observer provenance path |
+| Frequency-exchange ledger failure | A path segment changes photon frequency without a closed medium, recoil, remnant, or side-effect row | Redshift, blueshift, SZ, or distance-ladder claims are being used without photon provenance |
+
 ### Constraint Ledger
 
 Notes collected here document the falsification criteria, ordering priorities, and supporting mechanisms for the architrino framework. Keep this page focused on observable constraints so each model version can be checked against experimental scrutiny.
@@ -63370,6 +64797,335 @@ If that intersection becomes empty after quantitative work is done, the present 
 - [../assemblies/fermions/quantum-number-mapping.md](../../../../markdown/aaa/assemblies/fermions/quantum-number-mapping.md)
 - [../spacetime/gr-phenomenology.md](../../../../markdown/aaa/spacetime/gr-phenomenology.md)
 - [../quantum/measurement-ontology.md](../../../../markdown/aaa/quantum/measurement-ontology.md)
+
+### Massive Superposition Gravity
+
+This packet turns massive-superposition gravity experiments into concrete validation targets. It belongs to the observable and inference layer: the task is to preserve the branch mass histories, coherence data, detector response, entanglement data, and record criteria without importing any external collapse ontology or quantum-metric ontology.
+
+Related homes are [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md#external-gravitational-which-path-benchmark), [Observer Framework](../../../../markdown/aaa/spacetime/observer-framework.md#boundary-wake-covariance-scaffold), and [Constraint Ledger](../../../../markdown/aaa/validation/constraint-ledger.md#massive-superposition-gravitational-distinguishability).
+
+#### Comparison Boundary
+
+The packet may use external classical-quantum gravity proposals as comparison pressure, but only at the level of observables and inference. The comparison rows are:
+
+| External comparison | Retained pressure | $\mathbb{A}\mathbb{A}\mathbb{A}$ use | Not imported |
+| --- | --- | --- | --- |
+| Oppenheim-style classical-quantum gravity | A classical or effective gravity readout must not reveal branch information while the quantum branch description still shows interference. | Bound $\mathcal{D}_{\mathrm{grav}}$, constrain $N_{AB}$, and require a Physical Observer record before treating gravity-side branch information as a measurement. | Stochastic-metric ontology, fundamental collapse, external terminology, or the claim that gravity must remain classical at the substrate level. |
+| Gravitationally induced entanglement | Two isolated massive probes can acquire branch-dependent correlations through gravity alone. | Require the same effective-metric record $\theta$ to generate the branch interaction phase and to keep which-path leakage below the retained weak-probe threshold. | Constructor-theory doctrine, `Q-number` terminology, fundamental graviton ontology, or the claim that spacetime geometry itself has been prepared in superposition. |
+
+Every averaged quantity in this packet is a run-record summary. A covariance matrix, branch expectation value, or correlation function may be used only after the Physical Observer access region, detector channel, boundary-data model, and persistence criterion have been declared. It may not be promoted into a primitive gravity state or collapse mechanism merely because it appears in a successful inference pipeline.
+
+#### Experiment-Family Classification
+
+Different laboratory proposals enter this packet at different levels. The classification below keeps the observable pressure while preventing passive phase tests, active branch-mass tests, and mediated-entanglement tests from being treated as one result.
+
+| Experiment family | Retained observable | Packet status | Interpretation guardrail |
+| --- | --- | --- | --- |
+| guided/free-fall atom-interferometer phase tests | fitted cubic-time phase coefficient $\widehat{\beta}_{T^3}$, fringe visibility, and control-phase record | passive external-field phase benchmark | Confirms or constrains the weak-field phase map; does not by itself test active self-gravity or fundamental collapse. |
+| BEC, solid, nanoparticle, nanodiamond, membrane, or cantilever massive-superposition tests | branch mass histories $\rho_1,\rho_2$, visibility $\mathcal{V}(T)$, $\tau_{\text{meas}}$, $\Delta E_G$, and $\mathcal{D}_{\mathrm{grav}}$ | active branch-mass-history benchmark | Tests whether finite-time threshold resolution, ordinary decoherence, and Penrose-Diosi-like collapse scales remain quantitatively distinguishable. |
+| two-probe gravitationally induced entanglement tests | cross-branch phase $\Delta\Phi_{\mathrm{ent}}$, entanglement witness $C_{\mathrm{obs}}$, and non-gravitational residual $\mathcal{R}_{\mathrm{nongrav}}$ | mediated-entanglement benchmark | Tests the shared gravity-side constitutive record without importing fundamental graviton ontology or a quantum-metric substrate. |
+
+The packet should classify a run by the strongest observable it actually carries. A passive phase benchmark may constrain $\theta$ for later active-mass tests, but it cannot be used as evidence that gravity has or has not selected a branch. Conversely, an active branch-mass run that loses visibility must still show a record-forming separatrix crossing before the loss is interpreted as measurement rather than uncontrolled environmental decoherence.
+
+#### Observable Target
+
+The target experiment compares two branch-level mass-density histories over a coherence window $T$:
+$$
+\rho_1(\mathbf{x},t),
+\qquad
+\rho_2(\mathbf{x},t)
+$$
+The branch pair is interference-preserving only if the apparatus and environment have not produced an autonomous which-path record. The gravitational or effective-metric channel therefore becomes a constraint through the response difference
+$$
+\Delta h_A(t)
+=
+h_A(t;\rho_1,\theta)-h_A(t;\rho_2,\theta)
+$$
+where $A$ labels the resolved detector response channel and $\theta$ is the shared effective-metric constitutive record.
+
+The which-path diagnostic is
+$$
+\mathcal{D}_{\mathrm{grav}}(T;\theta)
+=
+\int_0^T\!\!\int_0^T
+\Delta h_A(t)\,
+N^{-1}_{AB}(t,t';\theta)\,
+\Delta h_B(t')\,dt\,dt'
+$$
+Here $N_{AB}$ is the observer-level covariance decomposed in [Observer Framework](../../../../markdown/aaa/spacetime/observer-framework.md#boundary-wake-covariance-scaffold). It summarizes unresolved deterministic boundary histories and calibrated detector/environment residuals; it is not an ontological randomness postulate.
+
+#### Minimal Response Model
+
+A concrete first packet can use a displaced normalized mass packet. Let $\varphi_\sigma$ be normalized by
+$$
+\int_{\Sigma_t}
+\varphi_\sigma(\mathbf{x})\,d^3x
+=
+1
+$$
+For branch separation $\mathbf{d}(t)$ around center $\mathbf{x}_0(t)$, set
+$$
+\begin{aligned}
+\rho_1(\mathbf{x},t)
+&=
+m\,\varphi_\sigma\!\left(
+\mathbf{x}-\mathbf{x}_0(t)-\frac{\mathbf{d}(t)}{2}
+\right),\\
+\rho_2(\mathbf{x},t)
+&=
+m\,\varphi_\sigma\!\left(
+\mathbf{x}-\mathbf{x}_0(t)+\frac{\mathbf{d}(t)}{2}
+\right).
+\end{aligned}
+$$
+Let $G_A(t,s;\mathbf{x};\theta)$ be the detector response kernel implied by the same effective-metric constitutive record used for redshift, Shapiro delay, lensing, gravitational-wave speed, and, when the record is extrapolated to compact sources, horizon-scale ring/shadow imaging. The branch response is
+$$
+h_A(t;\rho_k,\theta)
+=
+\int_0^t\!\int_{\Sigma_s}
+G_A(t,s;\mathbf{x};\theta)\,
+\rho_k(\mathbf{x},s)\,d^3x\,ds
+$$
+Therefore
+$$
+\Delta h_A(t)
+=
+\int_0^t\!\int_{\Sigma_s}
+G_A(t,s;\mathbf{x};\theta)\,
+\left[
+\rho_1(\mathbf{x},s)-\rho_2(\mathbf{x},s)
+\right]d^3x\,ds
+$$
+When $\|\mathbf{d}(t)\|$ is small relative to the packet scale,
+$$
+\rho_1(\mathbf{x},t)-\rho_2(\mathbf{x},t)
+=
+-m\,d^i(t)\,
+\partial_i\varphi_\sigma(\mathbf{x}-\mathbf{x}_0(t))
++
+O(\|\mathbf{d}(t)\|^3)
+$$
+so the leading branch response is
+$$
+\Delta h_A(t)
+\approx
+-m\int_0^t
+d^i(s)
+\int_{\Sigma_s}
+G_A(t,s;\mathbf{x};\theta)\,
+\partial_i\varphi_\sigma(\mathbf{x}-\mathbf{x}_0(s))\,d^3x\,ds
+$$
+This gives the first closure equation: a mass displacement history should map to a predicted detector-channel separation before any interpretive claim about classical or quantum spacetime is introduced.
+
+#### Mediated Entanglement Comparison
+
+A complementary massive-superposition test asks whether two independently prepared massive probes can become entangled through the gravity-side channel while non-gravitational couplings are suppressed or bounded. This is a positive branch-phase benchmark, not a new ontology. The observable is the final two-probe correlation record, together with the calibration record showing that electromagnetic, spin-spin, thermal, and apparatus cross-talk channels are too small to account for the effect.
+
+Let the two probes be $A$ and $B$, with branch labels $a,b\in\{+,-\}$ and branch mass histories $\rho_A^a(\mathbf{x},t)$ and $\rho_B^b(\mathbf{x},t)$. The same weak-field constitutive record $\theta$ used for redshift, Shapiro delay, lensing, PPN, gravitational-wave speed, compact-source ring/shadow extrapolations, and $\mathcal{D}_{\mathrm{grav}}$ must determine the branch interaction energy
+$$
+U_{ab}^{\mathrm{eff}}(t;\theta)
+=
+-G_{\mathrm{eff}}(\theta)
+\int_{\Sigma_t}\!\!\int_{\Sigma_t}
+\frac{\rho_A^a(\mathbf{x},t)\rho_B^b(\mathbf{y},t)}
+{\|\mathbf{x}-\mathbf{y}\|}
+\,d^3x\,d^3y
++O(c_0^{-2})
+$$
+The branch phase is then
+$$
+\Phi_{ab}(T;\theta)
+=
+\frac{1}{\hbar}
+\int_0^T
+U_{ab}^{\mathrm{eff}}(t;\theta)\,dt
+$$
+Local branch phases can be absorbed into the one-probe descriptions. The entangling invariant is the cross-branch phase combination
+$$
+\Delta\Phi_{\mathrm{ent}}(T;\theta)
+=
+\Phi_{++}(T;\theta)+\Phi_{--}(T;\theta)
+-\Phi_{+-}(T;\theta)-\Phi_{-+}(T;\theta)
+$$
+For the ideal equal-amplitude two-branch packet, a first witness target is
+$$
+C_{\mathrm{GIE}}(T;\theta)
+=
+\left|
+\sin\frac{\Delta\Phi_{\mathrm{ent}}(T;\theta)}{2}
+\right|
+$$
+This formula is an observer-level benchmark. It does not say that the Euclidean void is quantized, that the effective metric is fundamental, or that a graviton field is the native substrate. It says that the same gravity-side constitutive record must produce the branch phase that standard low-energy descriptions would attribute to gravitational mediation.
+
+The comparison is meaningful only when the non-gravitational residual is bounded. Let $\mathcal{R}_{\mathrm{nongrav}}$ collect calibrated electromagnetic, spin-spin, Casimir, thermal, vibration, and apparatus cross-talk contributions to the same entanglement witness. A run can be used as a gravity-side validation target only if
+$$
+\mathcal{R}_{\mathrm{nongrav}}
+\le
+\varepsilon_{\mathrm{iso}}
+$$
+with $\varepsilon_{\mathrm{iso}}$ declared by the apparatus class and retained alongside the covariance record $N_{AB}$.
+
+#### Input Record Schema
+
+The packet is evaluated on an explicit run record:
+
+| Field | Symbol | Required content |
+| --- | --- | --- |
+| branch mass histories | $\rho_1,\rho_2$ | normalized mass-density histories on $\Sigma_t$ over $0\le t\le T$ |
+| branch separation | $\mathbf{d}(t)$ | center or multipole separation history with declared packet width $\sigma$ |
+| apparatus/environment record | $\mathcal{A}_{\mathrm{rec}}$ | record variable, persistence window, environmental coupling channels, and ordinary decoherence estimate |
+| gravity response kernel | $G_A(t,s;\mathbf{x};\theta)$ | detector response derived from the same effective-metric constitutive record used in weak-field gravity |
+| mediated-entanglement phase | $\Delta\Phi_{\mathrm{ent}}$ | cross-branch phase predicted from $\rho_A^a,\rho_B^b$ and the shared constitutive record $\theta$ |
+| non-gravitational residual | $\mathcal{R}_{\mathrm{nongrav}}$ | calibrated bound on non-gravity channels that could create the observed correlation |
+| covariance decomposition | $N_{AB}$ | detector noise, unresolved boundary-wake terms, environmental residuals, and calibration residuals |
+| visibility data | $\mathcal{V}(T)$ | observed or predicted interference visibility over the run |
+| entanglement data | $C_{\mathrm{obs}}$ | measured or predicted two-probe entanglement witness in the retained readout basis |
+| record criteria | $R,\Sigma,T_{\text{rec}}$ | Physical Observer record variable, separatrix, and persistence threshold |
+
+No row may be filled by changing the weak-field metric record after the positive gravity benchmarks have already been fit. The same $\theta$ must be replayable through redshift, Shapiro delay, lensing, PPN, gravitational-wave speed, compact-source ring/shadow extrapolations, and this massive-superposition packet.
+
+#### Evaluation Protocol
+
+1. **Normalize the branch histories.** Verify $\int_{\Sigma_t}\rho_k(\mathbf{x},t)\,d^3x=m$ for each branch and each resolved time slice, or record the known mass exchange with the apparatus ledger.
+2. **Compute the response difference.** Use one kernel $G_A(t,s;\mathbf{x};\theta)$ to compute $h_A(t;\rho_1,\theta)$, $h_A(t;\rho_2,\theta)$, and $\Delta h_A(t)$.
+3. **Assemble the covariance.** Build $N_{AB}=N^{\mathrm{det}}_{AB}+N^{\mathrm{env}}_{AB}+N^{\mathrm{wake}}_{AB}+N^{\mathrm{cal}}_{AB}$, with each term either derived from the apparatus model or bounded by calibration data.
+4. **Evaluate distinguishability.** Compute $\mathcal{D}_{\mathrm{grav}}(T;\theta)$ and compare it with $\varepsilon_{\mathrm{wp}}$.
+5. **Evaluate record formation.** Compute $\tau_{\text{meas}}$, $\Delta_{\mathrm{rec}}$, and the persistence window from the measurement chapter's record criteria.
+6. **Evaluate mediated entanglement when present.** If the run is a two-probe mediated-entanglement experiment, compute $\Delta\Phi_{\mathrm{ent}}$, $C_{\mathrm{GIE}}$, and $\mathcal{R}_{\mathrm{nongrav}}$ from the same run record.
+7. **Classify the run.** Use the same output record to assign one of four statuses:
+
+| Status | Conditions | Interpretation |
+| --- | --- | --- |
+| weak-probe | $\mathcal{D}_{\mathrm{grav}}\le\varepsilon_{\mathrm{wp}}$ and no durable record forms | gravitational response is too weak to act as a which-path record |
+| mediated-entangling | $C_{\mathrm{GIE}}\ge C_{\mathrm{obs}}-\varepsilon_C$, $\mathcal{R}_{\mathrm{nongrav}}\le\varepsilon_{\mathrm{iso}}$, $\mathcal{D}_{\mathrm{grav}}\le\varepsilon_{\mathrm{wp}}$, and no durable which-path record forms | the branch phase is strong enough to account for the entanglement witness while the gravity-side readout remains below record threshold |
+| record-forming | $\mathcal{D}_{\mathrm{grav}} > \varepsilon_{\mathrm{wp}}$, $\tau_{\text{meas}} < T$, and $\Delta_{\mathrm{rec}}$ stays below threshold through $T_{\text{rec}}$ | the apparatus/environment has formed an autonomous record |
+| falsifying | $\mathcal{D}_{\mathrm{grav}}\gg1$ while visibility remains high and no record-autonomy criterion is met | the effective-metric response overproduces observable which-path information |
+
+For a white-noise readout approximation, $N_{AB}(t,t')=S_{AB}\delta(t-t')$, the distinguishability reduces to
+$$
+\mathcal{D}_{\mathrm{grav}}(T;\theta)
+=
+\int_0^T
+\Delta h_A(t)\,
+S_{AB}^{-1}\,
+\Delta h_B(t)\,dt
+$$
+This special case is the first numerical target because it turns the validation packet into a finite time-series calculation once $m$, $\sigma$, $\mathbf{d}(t)$, $G_A$, and $S_{AB}$ are supplied.
+
+#### Worked Acceleration Bound
+
+A first sanity bound can use a single acceleration readout channel before introducing a full detector geometry. Suppose the branch displacement is bounded by $\|\mathbf{d}(t)\|\le d_0$, the detector is at distance $R$ from the branch center with $d_0\ll R$, and the weak-field map satisfies $G_{\mathrm{eff}}(\theta)\to G$ in the tested regime. The branch acceleration difference is bounded by
+$$
+|\Delta h(t)|
+\le
+\frac{2G_{\mathrm{eff}}(\theta)M d_0}{R^3}
+$$
+For a white acceleration readout covariance $N(t,t')=S_a\delta(t-t')$, the distinguishability obeys
+$$
+\mathcal{D}_{\mathrm{grav}}(T;\theta)
+\le
+\frac{4G_{\mathrm{eff}}^2(\theta)M^2d_0^2T}{R^6S_a}
+$$
+With benchmark values
+$$
+M=10^{-14}\,\mathrm{kg},\qquad
+d_0=10^{-6}\,\mathrm{m},\qquad
+R=10^{-3}\,\mathrm{m},\qquad
+T=1\,\mathrm{s}
+$$
+and an aggressive acceleration-noise amplitude
+$$
+S_a^{1/2}=10^{-15}\,\mathrm{m\,s^{-2}}/\sqrt{\mathrm{Hz}}
+$$
+the bound is
+$$
+\mathcal{D}_{\mathrm{grav}}
+\lesssim
+1.8\times10^{-12}
+\left(\frac{M}{10^{-14}\,\mathrm{kg}}\right)^2
+\left(\frac{d_0}{10^{-6}\,\mathrm{m}}\right)^2
+\left(\frac{10^{-3}\,\mathrm{m}}{R}\right)^6
+\left(\frac{T}{1\,\mathrm{s}}\right)
+\left(
+\frac{10^{-15}\,\mathrm{m\,s^{-2}}/\sqrt{\mathrm{Hz}}}{S_a^{1/2}}
+\right)^2
+$$
+For a which-path threshold of order unity, this run is deep in the weak-probe class. Solving the same bound for the mass needed to reach $\mathcal{D}_{\mathrm{grav}}\sim\varepsilon_{\mathrm{wp}}$ gives
+$$
+M_{\mathrm{crit}}
+\approx
+\frac{R^3}{2G_{\mathrm{eff}}(\theta)d_0}
+\sqrt{\frac{\varepsilon_{\mathrm{wp}}S_a}{T}}
+$$
+or, in the same benchmark geometry,
+$$
+M_{\mathrm{crit}}
+\approx
+7.5\times10^{-9}\,\mathrm{kg}\,
+\varepsilon_{\mathrm{wp}}^{1/2}
+\left(\frac{R}{10^{-3}\,\mathrm{m}}\right)^3
+\left(\frac{10^{-6}\,\mathrm{m}}{d_0}\right)
+\left(
+\frac{S_a^{1/2}}{10^{-15}\,\mathrm{m\,s^{-2}}/\sqrt{\mathrm{Hz}}}
+\right)
+\left(\frac{1\,\mathrm{s}}{T}\right)^{1/2}
+$$
+This is not a new ontology or an experimental forecast. It is a scale check: for ordinary mesoscopic masses, gravity-side which-path leakage is negligible unless the branch mass, separation, proximity, coherence time, or readout sensitivity moves by many orders of magnitude. A full detector calculation should replace the scalar factor $2/R^3$ with the tensor response in the Minimal Response Model above.
+
+#### Acceptance Criteria
+
+For an interference-preserving run, the metric or gravity-side readout must satisfy
+$$
+\mathcal{D}_{\mathrm{grav}}(T;\theta)
+\le
+\varepsilon_{\mathrm{wp}}
+$$
+For a mediated-entanglement run, the same record must also satisfy
+$$
+C_{\mathrm{GIE}}(T;\theta)
+\ge
+C_{\mathrm{obs}}-\varepsilon_C,
+\qquad
+\mathcal{R}_{\mathrm{nongrav}}
+\le
+\varepsilon_{\mathrm{iso}}
+$$
+This combined gate preserves the observable without overclaiming the interpretation: the run tests whether the retained gravity-side constitutive record can generate the observed branch correlation while avoiding premature which-path record formation.
+
+If a which-path record is claimed instead, the measurement chapter's record criteria must also hold:
+$$
+\tau_{\text{meas}} < T,
+\qquad
+\sup_{t\in[\tau_{\text{meas}},\,\tau_{\text{meas}}+T_{\text{rec}}]}
+\Delta_{\mathrm{rec}}(t;k)
+\le
+\varepsilon_{\mathrm{rec}}
+$$
+The failure condition is strict. If $\mathcal{D}_{\mathrm{grav}}\gg1$ while interference visibility remains high and no record-autonomy condition is satisfied, the effective-metric response has overproduced observable which-path information.
+
+The same $\theta$ must also remain compatible with the gravity-side ledger: redshift, Shapiro delay, lensing, PPN parameters, gravitational-wave speed, dispersion, detector-mode bounds, and compact-source ring/shadow extrapolations. A parameter set that fits the massive-superposition channel only by changing the weak-field metric record is not a valid closure.
+
+#### Simulation Target
+
+The minimal simulation target is the map
+$$
+\mathcal{S}_{\mathrm{grav}}:
+\left(
+m,\sigma,\mathbf{d}(t),T,G_A,N_{AB},R,\Sigma,\rho_A^a,\rho_B^b
+\right)
+\longmapsto
+\left(
+\mathcal{D}_{\mathrm{grav}},
+\mathcal{V}(T),
+\Delta\Phi_{\mathrm{ent}},
+C_{\mathrm{GIE}},
+\tau_{\text{meas}},
+\Delta_{\mathrm{rec}}
+\right)
+$$
+The inputs are the branch mass scale, packet width, separation history, coherence window, detector response kernel, covariance decomposition, record variable, separatrix, and two-probe branch histories when present. The outputs are the gravitational distinguishability, interference visibility, entangling phase, mediated-entanglement witness, finite measurement time, and record-autonomy residual.
+
+The worked acceleration bound supplies the first analytic $\mathcal{D}_{\mathrm{grav}}$ estimate. The mediated-entanglement comparison supplies the first branch-phase target. Full packet closure still requires one numerical or analytic instance that computes the retained outputs from a shared constitutive record and reports whether the branch pair is weak-probe, mediated-entangling, record-forming, or falsifying.
 
 ### Validation Simulations
 
@@ -74365,6 +76121,435 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to state explicitly 
 
 ---
 
+#### Theory Inheritance Discipline
+
+This chapter states how inherited physics concepts may be used during
+$\mathbb{A}\mathbb{A}\mathbb{A}$ development. Its central rule is simple:
+successful mapping is not burden relief. A concept from a higher-level theory
+may be accurate, useful, or even indispensable in its tested regime while still
+failing to identify the substrate mechanism that produces the result.
+
+The discipline here sits between the broad survey in [Theory Mapping](../../../../markdown/aaa/philosophy-history/theory-mapping.md),
+the classification catalog in [Theory Differentials](../../../../markdown/aaa/philosophy-history/theory-differentials.md),
+and the detailed per-framework mappings in [Theory Bridges](../../../../markdown/aaa/philosophy-history/theory-bridges/README.md).
+It does not own the substrate ontology, the Master Equation of Motion, assembly
+definitions, validation gates, or parameter ledgers. Its job is to prevent
+inherited concepts from entering the corpus with more authority than they have
+earned.
+
+##### Core Claim
+
+No inherited theory is trusted as ontology. Inherited theories are trusted only
+as structured evidence, mathematics, benchmark records, or comparison pressure
+after their regime and stack placement are declared.
+
+The strongest safe use is therefore not "this maps to $\mathbb{A}\mathbb{A}\mathbb{A}$."
+The stronger use is:
+
+1. name the regime where the inherited concept is accurate,
+2. state the mathematics or record that survives,
+3. locate the corresponding $\mathbb{A}\mathbb{A}\mathbb{A}$ layer,
+4. define the residual that would count as recovery,
+5. name the failure mode that would show the mapping has overreached.
+
+Plain language: the inherited theory can tell the program what must be
+recovered, but it cannot tell the program what the world is made of.
+
+##### Transfer Record
+
+For an inherited concept $C$, the comparison is disciplined only when the
+corpus can state a transfer record
+
+$$
+\mathcal{T}_{\mathrm{inherit}}(C)
+=
+\left(
+D_C,\,
+M_C,\,
+B_C,\,
+\Pi_C^{\mathbb{A}\mathbb{A}\mathbb{A}},\,
+\mathcal{R}_C,\,
+P_C,\,
+F_C
+\right)
+$$
+
+The fields mean:
+
+| Field | Meaning | Question it answers |
+| --- | --- | --- |
+| $D_C$ | Domain of validity | Where does the inherited concept work? |
+| $M_C$ | Retained mathematics | Which equation, symmetry, statistic, or model form is still useful? |
+| $B_C$ | Benchmark record | Which observed or validated data product must be recovered? |
+| $\Pi_C^{\mathbb{A}\mathbb{A}\mathbb{A}}$ | Projection map | How does substrate or assembly data become the inherited observable? |
+| $\mathcal{R}_C$ | Recovery residual | How close is the projected record to the benchmark? |
+| $P_C$ | Reasoning provenance | Why is the equation believed, doubted, or kept directional? |
+| $F_C$ | Failure mode | What would show the mapping is only verbal or overfitted? |
+
+This is a methodology object, not a new validation gate. It is a compact way to
+keep ontology, effective description, and inference separated while the theory
+is being built.
+
+A typical residual has the schematic form
+
+$$
+\mathcal{R}_C(\theta)
+=
+d_C\!\left(
+B_C\!\left(\Pi_C^{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta)\right),
+B_C^{\mathrm{obs}}
+\right)
+$$
+
+where $\theta$ is the candidate $\mathbb{A}\mathbb{A}\mathbb{A}$ branch record,
+$d_C$ is the comparison metric appropriate to the inherited concept, and
+$B_C^{\mathrm{obs}}$ is the validated observer-level benchmark.
+
+The important burden is the origin of $\theta$. If $\theta$ is selected after
+seeing the benchmark, the result is benchmark fitting. If $\theta$ is generated
+from the Master EOM, assembly closure, Noether sea response, and declared
+record channel before comparison, then a small $\mathcal{R}_C$ can become
+evidence of implementation closure.
+
+##### Transfer Classes
+
+Inherited concepts enter the corpus in five different ways.
+
+| Transfer class | Authority level | Typical use | Burden |
+| --- | --- | --- | --- |
+| Native substrate commitment | Highest, but only when already part of $\mathbb{A}\mathbb{A}\mathbb{A}$ | Absolute time, Euclidean void, architrinos, causal wakes, path history | Must be stated by the native ontology and dynamics, not borrowed from a historical analogy |
+| Direct mathematical tool | Formal, not ontological | Calculus, distributions, Jacobians, norms, variational language, residuals | Must not import the ontology of the theory where the tool was historically used |
+| Validated benchmark record | Empirical and operational | SM spectra, QED precision rows, Lorentz tests, PPN bounds, BBN/CMB rows | Must be recovered as an output of one declared branch record |
+| Effective-limit concept | Conditional | Wavefunction, thermodynamics, entropy, hydrodynamics, effective metric, cosmology variables | Must declare coarse-graining, regime, and residual |
+| Directional comparison | Low to medium | Holography, MOND-like fits, inflationary language, string/LQG/SUSY programs, information/computation ontology | May guide questions, but cannot supply doctrine without a native derivation |
+
+The transfer class can change by regime. A mathematical structure may be a
+direct formal tool in one chapter, an effective-limit concept in another, and a
+directional analogy in a third. The page or section using it must make the
+local status visible.
+
+##### Canonical Direct-Use Audit
+
+The current corpus uses prior-theory concepts directly only in controlled ways.
+This list is the canonical audit level for the present corpus; individual
+chapters still own their local details.
+
+| Inherited concept family | Current corpus use | Transfer class | Scope discipline |
+| --- | --- | --- | --- |
+| Euclidean geometry and vector calculus | Spatial metric $h_{ij}$, norms, dot products, gradients, and spatial integration on $\Sigma_t$ | Native substrate commitment plus direct mathematical tool | Geometry is fundamental only as Euclidean void geometry; it does not license Newtonian force ontology or 4D spacetime ontology |
+| Absolute-time parameterization | Global time $t$, worldlines, causal emission times $t_0$, and $\mathbb{U}_{\text{now}}\equiv S(t)$ | Native substrate commitment | Proper time, clock readout, and time dilation remain observer-level recovery targets |
+| Distributional causal surfaces | Delta functions, Heaviside support, mollification, branch integrals, and weak limits | Direct mathematical tool | The distribution is a formal representation of causal wake support, not a continuum field substance |
+| Jacobian and branch analysis | Causal-root weights, transversality floors, caustic handling, and multi-root bookkeeping | Direct mathematical tool | A root ledger records admissible delayed channels; it is not itself a force law or stability proof |
+| Inverse-square surface dilution | Causal wake density over expanding surfaces | Native dynamics component | It supplies the microscopic kernel but still owes effective recovery of observer-level field laws |
+| Conservation language | Energy, momentum, angular momentum, charge/polarity inventory, and event ledgers | Benchmark record plus native bookkeeping target | Observer-level conservation laws must be traced to event records rather than inserted as standalone axioms |
+| Standard Model labels | Electric charge, color, weak isospin, hypercharge, chirality, generation, CKM/PMNS rows, and anomaly checks | Validated benchmark record | Labels may organize the assembly dictionary, but the gauge dynamics and couplings remain derivation targets |
+| QED/QCD/EW precision formalisms | Loop-sensitive observables, confinement benchmarks, electroweak rates, branching ratios, and null-result bounds | Validated benchmark record | Perturbative and lattice successes fix recovery pressure; they do not establish virtual particles, continuum fields, or gauge primitives as substrate ontology |
+| Lorentz and SR behavior | Time dilation, length contraction, invariant signal speed, two-way synchronization, and preferred-frame leakage bounds | Validated benchmark record and effective-limit concept | The closure target is moving-assembly deformation and clock/ruler retuning from causal-root dynamics, not a Lorentz postulate |
+| GR and PPN behavior | Redshift, Shapiro delay, lensing, orbital precession, gravitational waves, black-hole ring/lensing scales, and PPN coefficients | Validated benchmark record and effective-limit concept | Effective metric language is retained only after a Noether sea response map supplies clock, ruler, signal, and weak-field channels without per-observable retuning |
+| Quantum state language | Wavefunction, Born weights, uncertainty, operators, spin, entanglement, no-signaling, and Bell/CHSH benchmarks | Effective-limit concept plus benchmark record | The effective chart must derive basin measures, record formation, and apparatus kernels from deterministic path-history dynamics |
+| Thermodynamics and statistical mechanics | Entropy, temperature, heat, irreversibility, kinetic theory, virial behavior, and ensemble closures | Effective-limit concept | The regime must declare the coarse-graining, access window, boundary flux, and measure; global cosmological extrapolation is not automatic |
+| Radiation and reaction formulas | Larmor/Lienard, bremsstrahlung, synchrotron, Compton-like rows, pair thresholds, blackbody and polarization constraints | Validated benchmark record | Formulas are target limits for event ledgers with photon output, recoil, remnant, heat, reaction, and medium-update rows |
+| Cosmology variables | $a(t)$, $H(t)$, redshift, CMB spectra, BAO rulers, BBN abundances, growth, $S_8$, and $\Omega$ summaries | Observer-inference benchmark record | These variables describe Noether sea evolution, transport, and clock-rate comparison; the Euclidean void does not expand |
+| Information and computation | State distinction, encoding, measurement records, reset cost, algorithmic scaling, and simulation discipline | Directional comparison and methodological language | Useful for records and models, but not a substrate ontology |
+| Holography, AdS/CFT, islands, MOND-like fits, string/LQG/SUSY/inflationary programs | Comparison pressure, candidate analogies, and boundary checks | Directional comparison | They may sharpen constraints, but they are not closure targets unless a tested observable or hard consistency condition requires them |
+
+##### Foundational Formula Audit
+
+The foundational layer uses a short list of formulas directly, but they do not
+all have the same status. Some are substrate commitments, some are formal tools
+used to state the substrate, some are accepted native dynamics, and some are
+bookkeeping or proof scaffolds that remain subordinate to the native branch law.
+
+The important correction is the status of the familiar $1/r$ potential. The
+accepted primitive dynamics is not "a static $1/r$ field." The accepted
+primitive dynamics is the causal-root, inverse-square, Jacobian-weighted
+acceleration law. A $1/r$ expression appears as a stationary/path-history
+potential calibration and as a partial Fokker-type variational scaffold, but it
+does not by itself relieve the burden of deriving or certifying the Master EOM.
+
+| Formula family | Foundational expression | Current status | What it does not license |
+| --- | --- | --- | --- |
+| Absolute timespace: absolute time + Euclidean void | $\mathcal{M}=\mathbb{R}\times\mathbb{R}^3$, $\Sigma_t=\{t\}\times\mathbb{R}^3$ | Native substrate commitment | A fundamental 4D metric, spacetime curvature, or relativistic interval |
+| Substrate clock and Euclidean metric | $dt$, $h_{ij}=\delta_{ij}$, $\nabla dt=0$, $\nabla h=0$ | Native substrate commitment plus direct mathematical tool | Curvature of the Euclidean void or observer proper time as a substrate interval |
+| Worldline kinematics | $\mathbf{s}_a(t)$, $\mathbf{v}_a=d\mathbf{s}_a/dt$, $\mathbf{a}_a=d\mathbf{v}_a/dt$ | Native absolute-time kinematics | Particle-specific inertial mass or $\mathbf{F}=m\mathbf{a}$ as primitive law |
+| Complete state and path history | $\mathbb{U}_{\text{now}}\equiv S(t)$ with history ledger $H_t$ and branch data $\mathcal{B}_t$ | Native bookkeeping requirement for deterministic delayed dynamics | A history-free Markov state or observer-accessible complete state |
+| Polarity and sign bookkeeping | $q_a=\sigma_a\epsilon$, $\sigma_a\in\{-1,+1\}$, $\sigma_{ij}=\mathrm{sign}(q_iq_j)$ | Native polarity bookkeeping with observer-charge calibration | A completed derivation of electric, weak, color, or generation structure |
+| Causal wake support | $\lVert\mathbf{x}-\mathbf{x}_0\rVert=c_f(t-t_0)$ with $t>t_0$ | Native causal support rule | A filled light cone, Lorentzian metric cone, or instantaneous action |
+| Causal-root set | $F_{ij}(t,s)=\lVert\mathbf{x}_i(t)-\mathbf{x}_j(s)\rVert-c_f(t-s)$ and $\mathcal{C}_{ij}(t)=\{\,s<t:F_{ij}(t,s)=0\,\}$ | Native branch-selection geometry | Treating all past source points as active, or treating root existence as stability proof |
+| Causal surface density | $\rho(t,\mathbf{x})=\dfrac{q}{4\pi r^2}\delta(r-c_f\tau)H(\tau)$ | Distributional representation of causal wake support | A permanent filled $1/r$ near field or autonomous field substance |
+| Heaviside endpoint rule | $H(0)=0$ and $t_0<t$ in the causal-root set | Native endpoint convention | Instantaneous self-kick or zero-delay self-force |
+| Root Jacobian and transversality | $J_{ij}=1-\mathbf{v}_j(s)\cdot\hat{\mathbf{r}}_{ij}/c_f$ with positive branch floor | Direct branch-analysis tool in the native law | Replacing the branch factor by speed magnitude, or ignoring caustic/fold regimes |
+| Per-hit acceleration | $\mathbf{a}_{ij}=\kappa\sigma_{ij}\dfrac{\lvert q_iq_j\rvert}{r_{ij}^2\lvert J_{ij}\rvert}\hat{\mathbf{r}}_{ij}$ | Accepted native dynamical law on certified branch charts | Cross-product forces, primitive magnetic fields, or a mass-based force ontology |
+| Total acceleration | $\ddot{\mathbf{x}}_i(t)=\sum_j\sum_{t_0\in\mathcal{C}_{ij}(t)}\mathbf{a}_{ij}(t;t_0)$ | Accepted native branch sum | Bulk equations, convergence for infinite populations, or assembly stability without added branch records |
+| Superposition | Source contributions add linearly on the declared branch chart | Native source-addition rule and effective reconstruction tool | Wake-wake interaction as an independent substance law |
+| Regularized wake surface | $\delta(r-c_f\tau)\to\delta_\eta(r-c_f\tau)$, with optional core scale $\epsilon_c$ in proof models | Formal regularization and simulation/proof tool | A new substrate substance, a hidden fit parameter, or a completed $\eta\to0$ proof |
+| Potential reconstruction | $\Phi_{\text{net}}(\mathbf{x},t)=\sum_o\Phi_o(\mathbf{x},t)$ and $U_{o'}=q_{o'}\Phi_{\text{net}}[\text{history}]$ | Fixed-history bookkeeping and effective diagnostic | Static electrostatic ontology or source-position-only potential |
+| Gradient force identity | $\mathbf{F}_{o'}=-\nabla_{\mathbf{s}_{o'}}U_{o'}$ for mollified fixed-history channels | Conditional diagnostic equivalent after normalization and fixed-history convention | Replacement of the Master EOM by an unrestricted potential theory |
+| Work and kinetic bookkeeping | $dK/dt=\mu_K(\lVert\mathbf{v}\rVert)\mathbf{a}\cdot\mathbf{v}$ and optional $\mathbf{F}=\mu_{\text{arch}}\mathbf{a}$ | Energy bookkeeping after a kinetic proxy is declared | Primitive particle-specific mass or universal quadratic kinetic energy by assumption |
+| $1/r$ potential/action scaffold | $\delta(g_{ij})/r_{ij}$ in path-history or Fokker-type action calculations | Calibration and partial variational scaffold | A universal proof that the scalar $1/r$ action alone derives the Master EOM |
+
+The $1/r$ item therefore belongs below the accepted acceleration law in the
+trust gradient. In a stationary emitter calibration, the path-history potential
+may take the familiar form
+
+$$
+\phi(r,t)=\frac{q_0}{4\pi r}
+$$
+
+and taking a spatial gradient connects that amplitude to inverse-square force
+scaling. In the full delayed dynamics, however, the accepted branch law remains
+
+$$
+\frac{d^2 \mathbf{x}_i}{dt^2}
+=
+\sum_j\sum_{t_0\in\mathcal{C}_{ij}(t)}
+\kappa\sigma_{ij}
+\frac{\lvert q_iq_j\rvert}{r_{ij}^2(t;t_0)\lvert J_{ij}(t;t_0)\rvert}
+\hat{\mathbf{r}}_{ij}(t;t_0).
+$$
+
+The pure scalar $1/r$ action scaffold is not yet an unconditional foundation
+because its variation leaves a receiver-side constraint residual on generic
+branches unless a stationarity condition or invariant counterterm closes the
+Euler derivative. That failure does not demote the Master EOM. It demotes the
+claim that the scalar $1/r$ scaffold alone explains the Master EOM.
+
+###### Reliance-Risk Rating
+
+Risk here means the risk of relying on the formula as foundational before its
+scope, proof status, and failure mode are controlled. It is not a measure of
+importance. A formula can be central and still carry high reliance risk because
+the branch, convergence, regularization, or recovery burden is heavy.
+
+Risk scores:
+
+- 1: low risk; mostly definitional or purely formal.
+- 2: controlled risk; explicit postulate or convention with clear boundaries.
+- 3: medium risk; usable, but easy to overextend into a stronger claim.
+- 4: high risk; requires branch, regularization, or recovery discipline before
+  broad use.
+- 5: very high risk; should not be treated as foundational without a narrow
+  certificate or separate proof.
+
+| Formula family | Risk score | Main reliance risk | Required discipline |
+| --- | --- | --- | --- |
+| Absolute timespace: absolute time + Euclidean void | 2 | The fixed absolute time + Euclidean void background is an explicit ontology postulate with total-theory consequences if effective relativistic recovery fails | Keep curvature, expansion, and Lorentz behavior at the recovered-effect layer |
+| Substrate clock and Euclidean metric | 2 | The formulas are stable substrate data, but overuse can turn observer proper time or effective metric behavior into background structure | Keep $dt$ and $h_{ij}$ separate from $\tau$ and $g_{\mu\nu}^{\text{eff}}$ |
+| Worldline kinematics | 2 | The definitions are direct, but smoothness assumptions can exceed the branch or mollified regime | State regularity, impulse, and mollification assumptions before differentiating freely |
+| Complete state and path history | 4 | The object is necessary but large; omitting path-history or branch data makes the state falsely Markovian | Specify retained history, provenance ledger, Noether sea sample, and branch chart |
+| Polarity and sign bookkeeping | 3 | Polarity is native, but the observer-level charge normalization $\epsilon=\lvert e\rvert/6$ and gauge labels are not fully derived here | Treat $\epsilon$ and charge labels as observer bookkeeping until assembly closure supplies the map |
+| Causal wake support | 3 | The equality surface can be misread as a filled cone, light cone, or effective metric primitive | Keep support on causal wake surfaces and distinguish $c_f$ from observer-channel speeds |
+| Causal-root set | 4 | Root existence is exact but branch completeness, multiplicity, and fold handling are hard | Record active roots, inactive gaps, memory depth, and branch-chart boundaries |
+| Causal surface density | 4 | The $1/r^2$ surface law can be mistaken for a permanent filled field and does not by itself solve convergence in large populations | Use it as distributional wake support with normalization, screening, or cancellation conditions |
+| Heaviside endpoint rule | 2 | Endpoint exclusion is clear, but regulator choices can reintroduce ambiguous self-contact behavior | Keep $H(0)=0$ and match any mollified endpoint convention to the same branch packet |
+| Root Jacobian and transversality | 4 | The Jacobian is essential and easy to misread as speed weighting; small denominators mark branch failure, not ordinary force amplification | Use $\lvert J_{ij}\rvert^{-1}$ only with transversality floors, caustic routing, and root diagnostics |
+| Per-hit acceleration | 4 | This is the accepted native law, but relying on it globally without branch certification overclaims exact closure | Attach use to certified causal roots, Jacobian floors, endpoint rules, and regularization status |
+| Total acceleration | 5 | The branch sum can hide missing roots, divergent far populations, or unproved infinite-system convergence | Declare finite horizons, summation prescriptions, cancellation estimates, or convergence proof targets |
+| Superposition | 4 | Linear source addition is native on a branch chart, but far-field accumulation and incoherent cancellation are nontrivial | Pair superposition with convergence, screening, finite-window, or mean-field controls |
+| Regularized wake surface | 4 | A regulator can stabilize calculations while changing the branch behavior being claimed | State $\eta$, any core scale, refinement behavior, and whether the claim is finite-regulator only |
+| Potential reconstruction | 4 | Potential notation can smuggle in static-field ontology or source-position-only dependence | Treat $\Phi_{\text{net}}$ and $U$ as fixed-history diagnostics unless a stronger action proof is supplied |
+| Gradient force identity | 4 | The identity is conditional and can incorrectly replace the receiver-local Master EOM | Use only on mollified, fixed-history channels with declared normalization |
+| Work and kinetic bookkeeping | 4 | Primitive mass and quadratic kinetic energy are not native; energy bookkeeping depends on the chosen kinetic proxy and wake term | Declare $K$, $\mu_K$, or $\mu_{\text{arch}}$ and keep observer mass as an assembly-level recovery |
+| $1/r$ potential/action scaffold | 5 | It is useful for calibration and variational scaffolding, but the scalar scaffold alone does not generically derive the Master EOM | Treat it as conditional until the receiver-side residual, counterterm, or stationarity condition closes |
+
+The highest-risk rows are not rejected. They are the rows where the formula is
+too valuable to use casually. The correct response is narrower authority:
+branch certificates for root formulas, convergence controls for sums,
+finite-regulator labels for regularized claims, and explicit diagnostic status
+for potential and action scaffolds.
+
+##### Regime And Scale Chart
+
+The corpus should read inherited accuracy by regime, not by reputation.
+
+| Regime or scale | Inherited framework with high accuracy | What $\mathbb{A}\mathbb{A}\mathbb{A}$ should inherit | What it must not inherit |
+| --- | --- | --- | --- |
+| Microscopic substrate scale | No inherited framework has direct confirmed access | Formal tools for causal roots, distributions, branch charts, and simulation | Continuum fields, metric spacetime, quantum randomness, or information as primitive |
+| Stable assembly scale | Standard Model phenomenology and bound-state quantum labels | Charge, color, weak, spin, generation, mass, lifetime, and reaction benchmarks | Point-particle ontology, primitive gauge fields, primitive spin, or free mass parameters |
+| Atomic and molecular scale | Nonrelativistic QM, QED corrections, spectroscopy, thermodynamics | Spectral lines, selection rules, uncertainty benchmarks, loop-sensitive residuals, heat and record costs | Literal wavefunction ontology or virtual-particle substrate narratives |
+| Laboratory relativistic scale | SR, QFT, accelerator SM, precision clocks | Lorentz behavior, cross sections, rates, anomalies, null results, clock/ruler constraints | Minkowski spacetime as substrate or independent Lorentz postulates |
+| Weak-field astronomical scale | GR, PPN, lensing, orbital dynamics, gravitational waves | Redshift, Shapiro delay, lensing, orbital precession, gravitational-wave speed and waveform benchmarks | Fundamental curvature of the Euclidean void or freely tuned metric coefficients |
+| Strong-field compact-object scale | GR black-hole phenomenology, EHT, merger/ringdown inference, black-hole thermodynamics | Horizon-interface benchmarks, compact lensing scales, area/entropy pressure, release-channel ledgers | Singularities, event horizons, or holographic duals as direct substrate ontology |
+| Thermal and bulk matter scale | Thermodynamics, kinetic theory, hydrodynamics, plasma physics | Coarse-grained equations, transport coefficients, virial behavior, entropy-production constraints | A universal entropy slogan detached from window, boundary, and coarse-graining |
+| Cosmological inference scale | Lambda-CDM-era CMB, BBN, BAO, SN, lensing, growth, and distance-ladder pipelines | Data-product constraints and shared-state residuals for Noether sea evolution and photon transport | Expansion of the Euclidean void, independent per-observable fits, or cosmological constants as substrate inputs |
+| Beyond-tested speculative scale | Inflationary, holographic, string, LQG, SUSY, MOND-like, multiverse, and landscape programs | Comparison pressure and occasional mathematical tools | New doctrine, new particles, hidden dimensions, or new closure burdens without empirical or mathematical necessity |
+
+##### Non-Relief Lemma
+
+**Lemma (methodological):** A mapping from an inherited concept $C$ to an
+$\mathbb{A}\mathbb{A}\mathbb{A}$ descriptor $A_C$ does not reduce the proof
+burden unless the same branch record $\theta$ also supplies the implementation
+map $\Pi_C^{\mathbb{A}\mathbb{A}\mathbb{A}}$, keeps
+$\mathcal{R}_C(\theta)$ below the declared tolerance in $D_C$, and avoids the
+known failure mode $F_C$ with a reasoning provenance $P_C$ appropriate to the
+claim level.
+
+Proof route: a verbal or diagrammatic mapping establishes only a relation
+between labels. Benchmark recovery requires an output comparison. Implementation
+closure requires a generator. If the generator is not declared, the concept
+still sits at the comparison layer. If the generator changes between benchmark
+families, the result is hidden tuning. If the generator is native and shared
+across the relevant sectors, then the inherited concept has been recovered as
+an effective limit rather than merely named.
+
+Plain language: a map is not a mechanism. A mechanism is a native record that
+keeps working after the comparison target changes.
+
+##### Reasoning Provenance Below Existing Theory
+
+The hardest inheritance cases appear when an inherited theory works above the
+level where $\mathbb{A}\mathbb{A}\mathbb{A}$ needs to reason. A formula may
+describe bulk matter, a detector record, or an ensemble statistic with high
+accuracy while still saying little about the motion of one assembly, one
+causal-root branch family, or one event ledger. In that zone, the solution is
+not yet sharp enough for doctrine. The corpus must record why an equation is
+being trusted, doubted, or used only as a directional guide.
+
+This record is not a progress diary. It is reasoning provenance: the active
+chain of reasons that explains why a candidate equation is allowed to carry its
+current claim level. A useful provenance note contains:
+
+1. the inherited trigger, meaning the equation, regularity, or benchmark that
+   motivated the deeper search,
+2. the native candidate, meaning the $\mathbb{A}\mathbb{A}\mathbb{A}$ equation,
+   branch condition, residual, or simulation target proposed underneath it,
+3. the reason for belief, such as a symmetry, dimensional match, conservation
+   channel, branch-counting identity, limiting case, or shared generator,
+4. the reason for doubt, such as hidden coarse-graining, missing branch
+   admissibility, ensemble dependence, caustic sensitivity, boundary flux, or a
+   record channel that has not been generated natively,
+5. the level of the claim: individual assembly, finite assembly family, bulk or
+   statistical population, observer inference, or analogy,
+6. the first falsifier that would demote the equation.
+
+The central question is therefore not merely "does this equation map?" The
+central question is "what makes this equation believable at this level?"
+
+| Equation status | What makes it believable | What would demote it |
+| --- | --- | --- |
+| Native definition or postulate | It is part of the declared substrate ontology or Master EOM and survives internal consistency checks | It conflicts with the ontology, event bookkeeping, or another accepted native equation |
+| Exact branch derivation | It follows from one declared causal-root chart with admissible roots, transversality control, and a shared branch record | A missing branch, caustic, branch-switching ambiguity, or hidden parameter change is needed |
+| Individual assembly law | It predicts an assembly observable from that assembly's path history and event ledger | It only works after averaging over assemblies or after importing a bulk variable |
+| Finite assembly family law | It is stable over a declared family, boundary condition, and access window | It changes when the family membership, boundary flux, or causal-root support changes |
+| Bulk or statistical law | It follows from an explicit coarse-graining map, measure, and residual tolerance | It is applied to one assembly without proving that the projection preserves the relevant observable |
+| Observer-inference formula | It correctly relates projected records to detector or survey data products | It is treated as substrate dynamics rather than an inference layer |
+| Directional analogy | It suggests a question, invariant, or comparison target without supplying doctrine | It is used as if it were a native generator or closure proof |
+
+##### Bulk Versus Individual Assembly Behavior
+
+Bulk formulas are not automatically wrong. They are often the most accurate
+description available at the observer scale. The error is to treat a bulk
+formula as if it already describes one assembly unless the projection from
+assembly records to bulk variables has been shown.
+
+Let $\Gamma_A(t)$ denote the retained state of assembly $A$, and let
+$\mathcal{H}_A(t)$ denote its path-history and event record over an access
+window $W$. Let $\mathcal{A}_W$ be the assembly family sampled by that window,
+and let $\mathcal{P}_{\mathcal{Q},W}$ be the declared projection that keeps only
+the observables $\mathcal{Q}$ relevant to the inherited comparison. A bulk
+variable has the schematic form
+
+$$
+Y_{\mathcal{Q},W}(t)
+=
+\mathcal{P}_{\mathcal{Q},W}
+\left(
+\{\Gamma_A(t),\mathcal{H}_A(t)\}_{A\in \mathcal{A}_W},
+\rho_{\text{NS}}(\mathbf{x},t)
+\right),
+$$
+
+where $\rho_{\text{NS}}$ is the Noether sea state sampled by the same window.
+In residuals below, $\Gamma(t)$ abbreviates the full sampled collection of
+assembly states, path histories, and Noether sea state.
+
+A proposed bulk equation
+
+$$
+\dot{Y}_{\mathcal{Q},W}
+=
+F_{\mathrm{bulk}}\!\left(Y_{\mathcal{Q},W}\right)
+$$
+
+is credible only as a bulk equation until its projection residual is controlled:
+
+$$
+\mathcal{R}_{\mathrm{bulk}}
+=
+\left\|
+\frac{d}{dt}\mathcal{P}_{\mathcal{Q},W}(\Gamma(t))
+-
+F_{\mathrm{bulk}}\!\left(Y_{\mathcal{Q},W}(t)\right)
+\right\|_{\mathcal{Q},W}.
+$$
+
+It becomes credible as an individual-assembly guide only after a separate
+assembly-level residual is controlled:
+
+$$
+\mathcal{R}_{\mathrm{assembly}}
+=
+\sup_{A\in \mathcal{A}_W}
+\left\|
+\Pi_A\!\left(\varphi_t(\Gamma_A,\mathcal{H}_A)\right)
+-
+\Pi_A^{\mathrm{bulk}}\!\left(Y_{\mathcal{Q},W}(t)\right)
+\right\|_A.
+$$
+
+Here $\varphi_t$ is the native evolution of the assembly record, $\Pi_A$ is the
+assembly-level observable projection, and $\Pi_A^{\mathrm{bulk}}$ is the
+individual-assembly value inferred from the bulk equation. If
+$\mathcal{R}_{\mathrm{bulk}}$ is small while
+$\mathcal{R}_{\mathrm{assembly}}$ is large, the formula remains a population
+law. If both residuals are small in the declared regime, the bulk equation may
+serve as an effective assembly-level guide, but only in that regime.
+
+This distinction is why virial, thermodynamic, hydrodynamic, cosmological, and
+detector-level formulas need special care. They may be accurate descriptions of
+records after projection while still being incomplete descriptions of the
+assembly behavior that produced those records.
+
+##### Use With Existing Comparison Documents
+
+[Theory Mapping](../../../../markdown/aaa/philosophy-history/theory-mapping.md) should remain the compact reader map of
+major frameworks. It tells readers what the inherited theory says and how
+$\mathbb{A}\mathbb{A}\mathbb{A}$ expects to recover, reinterpret, or reject it.
+
+[Theory Differentials](../../../../markdown/aaa/philosophy-history/theory-differentials.md) should remain the classification
+catalog. It locates each concept in the comparative stack and the
+$\mathbb{A}\mathbb{A}\mathbb{A}$ stack, names its relation type, and records the
+mapping target.
+
+[Theory Bridges](../../../../markdown/aaa/philosophy-history/theory-bridges/README.md) should remain the detailed bridge
+lane. A bridge may use this chapter's transfer record to keep its mathematical
+handoff disciplined, but the bridge still has to point back to the domain
+chapters that own the underlying mechanism.
+
+[Failure Criteria](../../../../markdown/aaa/validation/failure-criteria.md), [Parameter Ledger](../../../../markdown/aaa/validation/parameter-ledger.md),
+and [Constraint Ledger](../../../../markdown/aaa/validation/constraint-ledger.md) remain the places
+where validation records, benchmark families, and null-result pressure are
+made operational. This chapter should not duplicate those ledgers.
+
+##### Writing Rule
+
+When a corpus page relies on inherited theory, the prose should answer five
+questions before the concept carries weight:
+
+1. What exactly is inherited: mathematics, data, benchmark, analogy, or method?
+2. What is the $\mathbb{A}\mathbb{A}\mathbb{A}$ layer that generates the same
+   observable or regularity?
+3. What residual or failure mode would show that the inheritance has not closed?
+4. What reasoning provenance makes the equation believable, doubtful, or only
+   directional?
+5. Is the equation about an individual assembly, a finite assembly family, a
+   bulk or statistical population, or observer inference?
+
+This rule keeps the force of inherited successes while preserving the deeper
+burden: $\mathbb{A}\mathbb{A}\mathbb{A}$ must still find the better metric,
+principle, or native mechanism when the inherited theory only supplies a successful
+effective summary.
+
 #### Theory Bridges
 
 ##### Quantum Operator Mapping
@@ -79055,6 +81240,130 @@ Those steps remain open.
    Transition from a fermion-like oblate spheroidal envelope to a boson-like disk must:
    - Conserve total angular momentum via emission of spin-1 radiation (circularly polarized bosons).
    - Produce potentially observable signatures (e.g. polarization patterns near strong-gravity regions).
+
+### Geometry and Ontology
+
+#### Overview
+
+This document addresses a philosophical pressure that appears whenever $\mathbb{A}\mathbb{A}\mathbb{A}$ criticizes curved spacetime ontology. The issue is not whether physics should use geometry. The issue is where each geometry belongs in the explanatory stack.
+
+General Relativity is powerful because it makes clocks, rulers, light paths, free fall, and gravitational inference behave as one metric structure. That success should be preserved. The limitation appears when the effective metric is treated as the deepest object rather than as a recovered observer-level geometry generated by substrate and medium dynamics.
+
+$\mathbb{A}\mathbb{A}\mathbb{A}$ is therefore not an anti-geometric theory. It is a theory with disciplined placement for each geometry it uses. The Euclidean void supplies the fixed spatial metric, causal wakes supply path-history geometry, assemblies carry internal geometry, the Noether sea supplies constitutive response, and Physical Observers reconstruct an effective metric from clocks, rulers, and signal behavior. The critique of modern spacetime ontology is not that it is geometric. The critique is that it promotes one successful effective geometry into final ontology before the generator has been identified.
+
+The technical owners remain [Euclidean Void](../../../../markdown/aaa/foundations/euclidean-void.md), [Foundational Ontology](../../../../markdown/aaa/foundations/ontology.md), [Master Equation of Motion](../../../../markdown/aaa/dynamics/master-equation.md), [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md), [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md), and [Spacetime Models and the Noether sea](../../../../markdown/aaa/philosophy-history/theory-bridges/spacetime-models-and-noether-sea.md). This page supplies the philosophy-facing placement discipline.
+
+#### The Geometry Question
+
+The central question can be stated without polemic:
+
+Does nature curve the arena itself, or do substrate and medium dynamics produce an effective geometry that observers inside the system read as curved spacetime?
+
+The first answer is the usual General Relativity ontology. The second answer is the $\mathbb{A}\mathbb{A}\mathbb{A}$ placement. Both answers are geometric. They differ over which geometry is fundamental, which geometry is generated, and which measurements justify each placement.
+
+For $\mathbb{A}\mathbb{A}\mathbb{A}$, the fixed substrate geometry is
+$$
+h_{ij}=\delta_{ij},
+\qquad
+\partial_t h_{ij}=0,
+\qquad
+R^i{}_{jkl}(h)=0
+$$
+This geometry gives distance, direction, simultaneity slices, and Euclidean differential operators. It does not bend light, slow clocks, store stress, expand, or respond to matter. Those effects belong to the dynamics of architrinos, causal wakes, assemblies, and the Noether sea, then to the observer-level metric reconstructed from them.
+
+The inherited spacetime metric belongs at the other end of the stack:
+$$
+g^{\text{eff}}_{\mu\nu}
+=
+\mathcal{G}_{\text{metric}}
+\left(
+h_{ij},
+S(t),
+n,
+\chi_{\text{sea}},
+\sigma^{ab}_{\text{sea}},
+u^i_{\text{sea}},
+e^a{}_i,
+\Pi_{\text{obs}}
+\right)
+$$
+Here $S(t)$ is the complete ontic universe state with path-history provenance, $n$ is normalized Noether swarm density, $\chi_{\text{sea}}$ is the Noether sea delay factor, $\sigma^{ab}_{\text{sea}}$ denotes retained stress response, $u^i_{\text{sea}}$ and $e^a{}_i$ are observer-level drift and frame-field channels, and $\Pi_{\text{obs}}$ denotes the clock, ruler, and signal projections used by Physical Observers. The map $\mathcal{G}_{\text{metric}}$ is not a new primitive. It is the constitutive recovery problem: show how one medium and observer record yields the effective metric that passes GR-level tests.
+
+#### Geometry-Layer Map
+
+The useful distinction is not geometric versus non-geometric. It is primitive geometry versus generated geometry.
+
+| Layer | Geometry | Ontological status | What it controls |
+| --- | --- | --- | --- |
+| Euclidean void | Flat metric $h_{ij}=\delta_{ij}$ on $\mathbb{R}^3$ | Fundamental container | Distance, direction, simultaneity-slice spatial operators, fixed location identity |
+| Causal wake | Expanding causal isochrons satisfying $r=c_f(t-t_0)$ | Source-provenanced causal structure | Delayed interaction, line of action, branch roots, path-history effects |
+| Assembly | Stable internal organization of architrinos and Noether swarms | Emergent bound structure | Particle identity, shielding, mass response, chirality, spin-like and quantum-number mappings |
+| Noether sea | Density, delay, stress, drift, alignment, and compliance response | Emergent medium content | Clock/ruler response, inertia, propagation channels, weak-field gravitational behavior |
+| Effective metric | $g^{\text{eff}}_{\mu\nu}$ reconstructed from observer records | Observer-level geometry | Proper time, geodesic approximation, lensing, redshift, Shapiro delay, gravitational-wave comparison |
+
+This map prevents two opposite mistakes. One mistake treats General Relativity's metric success as proof that the fixed spatial container itself is dynamical. The other mistake reacts against curved spacetime so strongly that it forgets $\mathbb{A}\mathbb{A}\mathbb{A}$ also uses geometry at every layer. The stronger position is neither of those. The stronger position is stack discipline.
+
+#### What General Relativity Gets Right
+
+General Relativity should be treated as a successful effective geometry, not as a strawman. Its central achievement is that many operational records move together. Clocks, rulers, light paths, free-fall trajectories, gravitational redshift, orbital precession, lensing, Shapiro delay, and gravitational waves can be organized by one metric framework with extraordinary precision.
+
+That achievement creates a real recovery burden for $\mathbb{A}\mathbb{A}\mathbb{A}$. The theory cannot merely say that the void is Euclidean. It must derive why Physical Observers, built from assemblies inside a Noether sea, reconstruct a shared effective metric whose benchmark residuals match the tested GR regime. If the clock channel, ruler channel, and signal channel require disconnected tuning, then the metric recovery has failed as a unified explanation.
+
+The philosophical criticism is therefore precise. General Relativity may be correct as the observer-level metric closure while being mislocated as substrate ontology. Its geometry can be real as an effective geometry without being the geometry of the fundamental container.
+
+#### What $\mathbb{A}\mathbb{A}\mathbb{A}$ Adds
+
+$\mathbb{A}\mathbb{A}\mathbb{A}$ adds a generator beneath effective geometry. The generator has multiple parts:
+
+1. absolute time orders the universe-state sequence,
+2. the Euclidean void supplies fixed spatial identity and flat metric structure,
+3. architrinos supply primitive material identity and causal wake emission,
+4. causal wakes supply delayed path-history interaction geometry,
+5. assemblies supply stable internal geometry and observer-facing particle behavior,
+6. the Noether sea supplies medium response,
+7. Physical Observers reconstruct effective spacetime geometry from their own clocks, rulers, and signal channels.
+
+This is why the theory can preserve the geometric strength of modern physics without accepting its deepest ontological placement. Geometry remains central, but it is no longer a single object with one explanatory role. It becomes a layered family of structures whose status depends on what generates them and what they measure.
+
+The guiding closure condition is:
+$$
+\text{same substrate and medium record}
+\quad\Longrightarrow\quad
+\text{same clock, ruler, signal, and gravity benchmarks}
+$$
+In technical chapters this becomes a residual such as the effective-metric recovery condition in [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md). In philosophy-facing language, the point is that curved-spacetime behavior must arise from one shared constitutive record, not from an interpretive overlay added after the measurements.
+
+#### The Correct Critique
+
+The disciplined critique of inherited physics is not:
+
+> Physicists were wrong to use geometry.
+
+The disciplined critique is:
+
+> Physicists found an extraordinarily successful effective geometry and then often treated that geometry as final ontology.
+
+That distinction matters because the first criticism is too weak and too easy to dismiss. The second criticism is structural. It says that predictive closure does not settle implementation closure. A metric can predict correctly while leaving open the question of what physically implements the metric readout.
+
+From the standpoint of $\mathbb{A}\mathbb{A}\mathbb{A}$, the mature replacement claim is therefore:
+
+> The Euclidean void is fundamentally flat; causal wake, assembly, and Noether sea dynamics generate the operational records from which Physical Observers reconstruct curved effective spacetime.
+
+This keeps the force of the insight without overstating it. It does not deny geometry. It relocates geometry.
+
+#### Methodological Use
+
+Whenever a document invokes geometry, the reader should be able to answer five questions:
+
+1. Which geometry is being used?
+2. Which layer owns it?
+3. Is it primitive, generated, effective, or inferential?
+4. Which invariant or measurement record makes it useful?
+5. Which derivation or validation condition would expose incorrect placement?
+
+For the Euclidean void, the invariant is flat spatial metric structure: $\partial_t h_{ij}=0$ and $R^i{}_{jkl}(h)=0$. For causal wakes, the invariant is finite-speed delayed intersection: $r=c_f(t-t_0)$. For effective spacetime, the invariant target is operational agreement across clock, ruler, signal, and gravity records under one shared constitutive map.
+
+This gives the philosophy-history lane a clean answer to the original worry. $\mathbb{A}\mathbb{A}\mathbb{A}$ is geometric, but it is not geometrically naive. It treats geometry as a layered explanatory instrument and refuses to let an effective observer geometry replace the substrate generator it is supposed to recover.
 
 ### Substance, Structure, and the Plenum of Potential
 
