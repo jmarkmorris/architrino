@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "Architrino Textbook Bundle v1",
+  "title": "Architrino Reader Textbook Bundle v1",
   "description": "Manifest schema for the v1 app-bundled, chapter-first textbook package",
   "type": "object",
   "required": [

@@ -166,6 +166,7 @@ function renderMathHtml(segment) {
   try {
     return katex.renderToString(segment.math || "", {
       displayMode: segment.display === true,
+      output: "html",
       throwOnError: false,
       strict: "ignore",
     });
@@ -251,13 +252,8 @@ function validateInputRecords(records) {
   }
 }
 
-function relativeAssetPath(fromDir, assetPath) {
-  const relativePath = path.relative(path.join(rootDir, fromDir), path.join(rootDir, assetPath));
-  return normalizeRelPath(relativePath);
-}
-
 function renderReviewHtml({ record, markdownText, htmlDir }) {
-  const assetDir = relativeAssetPath(htmlDir, READER_ASSET_DIR);
+  const assetDir = pathToFileURL(path.join(rootDir, READER_ASSET_DIR)).href;
   const escapedTitle = escapeHtml(record.title);
   const bodyHtml = renderMarkdownHTMLFragment(markdownText);
   return `<!doctype html>
@@ -285,8 +281,8 @@ function renderReviewHtml({ record, markdownText, htmlDir }) {
       }
 
       body {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-        font-size: 11pt;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 12pt;
         line-height: 1.42;
       }
 
@@ -423,6 +419,16 @@ function renderReviewHtml({ record, markdownText, htmlDir }) {
 
       .katex {
         font-size: 1.02em;
+      }
+
+      .katex .katex-mathml {
+        clip: rect(1px, 1px, 1px, 1px);
+        border: 0;
+        height: 1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
       }
     </style>
   </head>

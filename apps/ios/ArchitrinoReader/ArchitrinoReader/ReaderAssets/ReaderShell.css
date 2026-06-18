@@ -135,7 +135,3 @@ a {
 a.app-internal-link {
   color: var(--reader-internal-link);
 }
-
-html {
-  scroll-behavior: smooth;
-}
