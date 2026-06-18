@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "manifest_schema": "textbook_bundle_schema_v1",
-  "generated_at": "2026-06-17T19:22:51.208Z",
+  "generated_at": "2026-06-18T03:01:10.624Z",
   "package_version": "1.0.0-8a808c39",
   "schema_version_note": "content_bundle_schema_v1",
   "textbook_toc": {
@@ -268,16 +268,16 @@
       "sourcePath": "__generated__/reading-copies/philosophy-history.html",
       "role": "chapter",
       "type": "html",
-      "size": 6660317,
-      "sha256": "8bc9a9b25852dc9af26abadf0545a8fa151ef27068f3109a68ca4b5749a8b642"
+      "size": 6961412,
+      "sha256": "42114e40116d3efec15de880617c0aa431254c68b02ef93913071be70a357975"
     },
     {
       "path": "reading-copies/philosophy-history.md",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 1431235,
-      "sha256": "98669c935b4759837dc1d9755cf5d461762c01ed9ca73f9e1dac001037372285"
+      "size": 1475477,
+      "sha256": "48577f84ea150298cac92d999bf771cd03ec917316dc9a9848432bd9214015b6"
     },
     {
       "path": "reading-copies/quantum.html",
@@ -300,16 +300,16 @@
       "sourcePath": "__generated__/reading-copies/reactions.html",
       "role": "chapter",
       "type": "html",
-      "size": 1071808,
-      "sha256": "e3fe3fe3b6ea0f210174e093c3358b647bc124c6aba5df72cddd5d4f12c6a7b3"
+      "size": 1976765,
+      "sha256": "8d3e5aeda22e91d519990ad04cff08acf233c0501db636d034673830f8b9c6b9"
     },
     {
       "path": "reading-copies/reactions.md",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/reactions.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 85864,
-      "sha256": "32e9a6c3ad58adcc4b03dbe667f77ccf6903afa6ed2f241fc78c5e28d3c0ea3a"
+      "size": 159714,
+      "sha256": "78c07d638af0c0ce6f1c87cecfb4917870f89e5c2790619b643d6a42a0638ab8"
     },
     {
       "path": "reading-copies/standard-model-assemblies.html",
@@ -332,16 +332,16 @@
       "sourcePath": "__generated__/reading-copies/validation.html",
       "role": "chapter",
       "type": "html",
-      "size": 4646073,
-      "sha256": "1fc5a5a7f2de3e3aeeeefdaf4d85c8ac0154a5a0161013d3f8bf1845284bd26e"
+      "size": 5130919,
+      "sha256": "ed6b46ce34a6ca15ac1de3e3eb552e0ce41645c5c4ef9c1440e86235bec178c2"
     },
     {
       "path": "reading-copies/validation.md",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/validation.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 407618,
-      "sha256": "7ddd9947dc12c33825ba64970efd7e2dfcd9adf0b31d839180157427e565f4dc"
+      "size": 450273,
+      "sha256": "4d92613f96fc4fab666af339c8905b03e3e09b62e3fe91f62247346e862cae48"
     },
     {
       "path": "references/academic-style-guide.html",
@@ -428,8 +428,8 @@
       "sourcePath": "__generated__/textbook_bundle_search_index.json",
       "role": "search",
       "type": "json",
-      "size": 8159164,
-      "sha256": "859cd3aa35ffd107f8bce0c5d6743a9824a126aa57389d902bc0c8eb4abcf926"
+      "size": 8384829,
+      "sha256": "6127a7aa04769f354be9a298897dff6eda80fb6330e542435fac0c264ab80bba"
     }
   ],
   "links": []
