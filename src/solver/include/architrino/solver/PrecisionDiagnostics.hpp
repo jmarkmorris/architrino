@@ -20,6 +20,8 @@ struct PrecisionDiagnostic {
   MagnitudeSummary toleranceScale;
   PrecisionPath recommendedPath = PrecisionPath::ScaledF64Fast;
   NumericType recommendedNumericType = NumericType::F64;
+  NumericChart recommendedChart = NumericChart::AbsoluteF64;
+  NumericChart speedChart = NumericChart::NondimensionalRatio;
   bool scaleNormalizationRecommended = false;
   bool extendedPrecisionRecommended = false;
   bool scaleResolutionLimited = false;

@@ -1,4 +1,7 @@
 import { createIdealSwarmSharedGeometryRunRequest } from "../../solver/app/SolverAppAdapters.mjs";
+import {
+  runSolverAppBridgeRequest,
+} from "../../solver/app/SolverAppBridgeClientResolver.mjs";
 
 const QUARTER_TURN = Math.PI / 2;
 const NO_FORWARD_SPAN = 0;
@@ -166,15 +169,29 @@ export async function solveCircularSelfHitSpanRowWithSolverBridge(fieldSpeedRati
     options.runRequest ?? createIdealSwarmCircularSelfHitSpanRunRequest(fieldSpeedRatio, options);
   const runHandle = typeof options.runSolverBridge === "function"
     ? await options.runSolverBridge(runRequest)
-    : await runIdealSwarmSolverBridgeClient(options.solverClient, runRequest);
+    : await runIdealSwarmSolverBridgeClient(options, fieldSpeedRatio, runRequest);
   return extractCircularSelfHitSpanRow(runHandle);
 }
 
-async function runIdealSwarmSolverBridgeClient(client, runRequest) {
-  if (!client || typeof client.runSimulation !== "function") {
-    throw new Error("Ideal Swarm solver bridge request requires a solver client or runSolverBridge option.");
-  }
-  return client.runSimulation(runRequest);
+async function runIdealSwarmSolverBridgeClient(options, fieldSpeedRatio, runRequest) {
+  return runSolverAppBridgeRequest({
+    appId: "ideal-swarm",
+    request: runRequest,
+    options,
+    factoryRequest: { fieldSpeedRatio },
+    requestedCapabilities: ["sharedGeometry", "delayedHits"],
+    storagePolicy: {
+      target: options.streamTarget ?? "caller-buffer",
+      durable: options.streamTarget === "native-file",
+      maxBytes: options.memoryBudgetBytes ?? DEFAULT_SOLVER_MEMORY_BUDGET_BYTES,
+    },
+    threadingPolicy: {
+      mode: options.threadingMode ?? "single-thread",
+      deterministic: options.deterministic ?? true,
+    },
+    missingClientMessage:
+      "Ideal Swarm solver bridge request requires a solver client, runSolverBridge option, client factory, worker, or solver WASM module factory.",
+  });
 }
 
 function extractCircularSelfHitSpanRow(runHandle = {}) {

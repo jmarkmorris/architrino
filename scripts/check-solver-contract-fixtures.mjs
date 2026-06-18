@@ -5,11 +5,15 @@ import path from "node:path";
 
 const rootDir = process.cwd();
 const schemaPath = "src/contracts/solver-app-bridge/v1/schema.json";
+const workerBridgePath = "src/solver/app/SolverAppWorkerBridge.mjs";
+const bridgeContractPath = "src/solver/app/SolverAppBridgeContract.d.ts";
 const requestPath = "src/solver/fixtures/causal-roots-f64-smoke.request.json";
 const batchResponsePath = "src/solver/fixtures/causal-root-batch-f64-smoke.response.json";
 const responsePath = "src/solver/fixtures/roots-and-hits-f64-smoke.response.json";
 
 const schema = readJson(schemaPath);
+const workerBridgeSource = fs.readFileSync(path.join(rootDir, workerBridgePath), "utf8");
+const bridgeContractSource = fs.readFileSync(path.join(rootDir, bridgeContractPath), "utf8");
 const request = readJson(requestPath);
 const batchResponse = readJson(batchResponsePath);
 const response = readJson(responsePath);
@@ -96,6 +100,11 @@ assert(schema.$defs?.threadingStageSpeedupSummary, "threading stage speedup summ
 assert(schema.$defs?.capabilityEnvelope, "capability envelope schema missing");
 assert(schema.$defs?.admissionRequest, "admission request schema missing");
 assert(schema.$defs?.admissionResponse, "admission response schema missing");
+assert(
+  schema.$defs.admissionResponse.properties.decision.enum.includes("simplify") &&
+    schema.$defs.runManifestAdmission.properties.decision.enum.includes("simplify"),
+  "admission simplify decision schema missing"
+);
 assert(schema.$defs?.causalRootsF64Request, "request schema missing");
 assert(schema.$defs?.causalRootsF64Response, "causal roots response schema missing");
 assert(schema.$defs?.causalRootsNormalizedF64Request, "normalized causal roots request schema missing");
@@ -143,9 +152,21 @@ assert(schema.$defs?.causalRootsPrecisionF64Request, "precision causal roots req
 assert(schema.$defs?.causalRootsPrecisionF64Response, "precision causal roots response schema missing");
 assert(schema.$defs?.rootsAndHitsPrecisionF64Response, "precision roots-and-hits response schema missing");
 assert(schema.$defs?.precisionSolveSummaryF64, "precision solve summary schema missing");
+assert(schema.$defs?.precisionEscalationRecord, "precision escalation record schema missing");
+assert(schema.$defs?.runPrecisionMetadata, "run precision metadata schema missing");
 assert(schema.$defs?.rootLedgerDetailF64Request, "root-ledger detail request schema missing");
 assert(schema.$defs?.rootLedgerDetailF64Response, "root-ledger detail response schema missing");
 assert(schema.$defs?.rootLedgerDetailF64, "root-ledger detail row schema missing");
+for (const field of [
+  "residualScale",
+  "absoluteResidual",
+  "normalizedResidual",
+  "rootTolerance",
+  "firstFailureCode",
+]) {
+  assert(schema.$defs.rootLedgerDetailF64.required.includes(field), `root-ledger detail ${field} required`);
+  assert(schema.$defs.rootLedgerDetailF64.properties[field], `root-ledger detail ${field} schema missing`);
+}
 assert(schema.$defs?.precisionDiagnosticF64Request, "precision diagnostic request schema missing");
 assert(schema.$defs?.precisionDiagnosticF64Response, "precision diagnostic response schema missing");
 assert(schema.$defs?.errorBudgetPropagationF64Request, "error budget propagation request schema missing");
@@ -161,7 +182,13 @@ assert(schema.$defs?.rootLedgerTransitionF64, "root-ledger transition row schema
 assert(schema.$defs?.rootLedgerTransitionKind, "root-ledger transition kind schema missing");
 assert(schema.$defs?.precisionPathId, "precision path schema missing");
 assert(schema.$defs?.numericTypeId, "numeric type schema missing");
+assert(schema.$defs?.numericChartId, "numeric chart schema missing");
+assert(
+  schema.$defs.numericChartId.enum.includes("direction_log_magnitude"),
+  "numeric chart schema missing direction log magnitude"
+);
 assert(schema.$defs?.numericSerializationDescriptor, "numeric serialization descriptor schema missing");
+assert(schema.$defs?.numericChartDescriptor, "numeric chart descriptor schema missing");
 assert(schema.$defs?.numericSerializationContract, "numeric serialization contract schema missing");
 assert(schema.$defs?.precisionRoutingCapability, "precision routing capability schema missing");
 assert(schema.$defs?.precisionRouteCapability, "precision route capability schema missing");
@@ -276,7 +303,39 @@ assert(schema.$defs?.openStreamResponse, "open stream response schema missing");
 assert(schema.$defs?.readStreamRangeRequest, "read stream range request schema missing");
 assert(schema.$defs?.readStreamRangeResponse, "read stream range response schema missing");
 assert(schema.$defs?.pathHistoryStorageLifecycleRequest, "path-history lifecycle request schema missing");
+assert(
+  schema.$defs.pathHistoryStorageLifecycleRequest.anyOf?.length === 3,
+  "path-history lifecycle request source selector schema missing"
+);
+assert(
+  schema.$defs.pathHistoryStorageLifecycleRequestEnvelope.properties.request.$ref ===
+    "#/$defs/pathHistoryStorageLifecycleRequest",
+  "path-history lifecycle request envelope points at wrong schema"
+);
 assert(schema.$defs?.pathHistoryStorageLifecycleResponse, "path-history lifecycle response schema missing");
+assert(schema.$defs?.pathHistoryStorageLifecycleApplyRequest, "path-history lifecycle apply request schema missing");
+assert(
+  schema.$defs.pathHistoryStorageLifecycleApplyRequest.properties.deleteStreamWhenAllChunksDeleted?.type ===
+    "boolean",
+  "path-history lifecycle apply cleanup flag schema missing"
+);
+assert(
+  schema.$defs.pathHistoryStorageLifecycleApplyRequestEnvelope.properties.request.$ref ===
+    "#/$defs/pathHistoryStorageLifecycleApplyRequest",
+  "path-history lifecycle apply request envelope points at wrong schema"
+);
+assert(schema.$defs?.pathHistoryStorageLifecycleApplyResponse, "path-history lifecycle apply response schema missing");
+assert(schema.$defs?.pathHistoryStorageLifecycleCleanup, "path-history lifecycle cleanup schema missing");
+assert(
+  schema.$defs.pathHistoryStorageLifecycleApplyResponse.properties.cleanup?.$ref ===
+    "#/$defs/pathHistoryStorageLifecycleCleanup",
+  "path-history lifecycle apply cleanup response schema missing"
+);
+assert(schema.$defs?.pathHistoryStorageLifecycleMetadata, "path-history lifecycle metadata schema missing");
+assert(schema.$defs?.pathHistoryDeepIndexMetadata, "path-history deep-index metadata schema missing");
+assert(schema.$defs?.pathHistoryStorageLifecycleSummary, "path-history lifecycle summary schema missing");
+assert(schema.$defs?.pathHistoryStorageTierCounts, "path-history lifecycle tier-count schema missing");
+assert(schema.$defs?.pathHistoryStorageActionCounts, "path-history lifecycle action-count schema missing");
 assert(schema.$defs?.pathHistoryChunkMetadata, "path-history chunk metadata schema missing");
 assert(schema.$defs?.pathHistoryLifecycleDecision, "path-history lifecycle decision schema missing");
 assert(schema.$defs?.assemblyStateF64, "assembly state row schema missing");
@@ -394,6 +453,7 @@ assertWorkerMethods([
   "buildPathHistoryStreamSpaceTimeIndexF64",
   "integrateConstantAccelerationMotionF64",
   "createPathHistoryStreamF64",
+  "applyPathHistoryStorageLifecycleF64",
   "validatePathHistoryDynamicReplayF64",
   "queryEmissionShellCandidatePacketsF64",
   "refineEmissionShellCandidateRootsF64",
@@ -605,6 +665,7 @@ function validateCircularSourceRootsHitsLedgerResponseEnvelope(value) {
   assert(responseValue.hits.length === 1, "circular-source response hit count mismatch");
   assert(responseValue.rootLedgerDetails.length === 1, "circular-source ledger detail count mismatch");
   assert(responseValue.rootLedgerDetails[0].entryKind === 1, "circular-source ledger detail entry mismatch");
+  assertRootLedgerDetailForensics(responseValue.rootLedgerDetails[0], 1e-13, "circular-source ledger detail");
   assert(responseValue.buffers[2].layout === "root_ledger_detail.v1", "circular-source ledger buffer mismatch");
   assert(responseValue.streams[0].indexLayout === "stream_index.v1", "circular-source stream index mismatch");
   assert(responseValue.statuses[0].code === "ok", "circular-source status row mismatch");
@@ -657,6 +718,7 @@ function validateCausalRootsPrecisionRequestEnvelope(value) {
   assertNonemptyString(value.requestId, "precision causal roots request id");
   const requestValue = value.request;
   assert(requestValue.rootRequest.hitTime === request.request.hitTime, "precision root request hit time mismatch");
+  assert(requestValue.rootRequest.rootTolerance === 1e-16, "precision root request tolerance mismatch");
   assert(requestValue.requestedPrecisionPath === "scaled_f64_strict", "precision requested path mismatch");
   assert(requestValue.claimLevel === "exported-dataset", "precision claim level mismatch");
   assert(requestValue.allowEscalation === true, "precision allow escalation mismatch");
@@ -673,6 +735,7 @@ function validateCausalRootsPrecisionResponseEnvelope(value) {
   assert(responseValue.roots.length === 1, "precision response root count mismatch");
   assert(responseValue.precision.selectedPrecisionPath === "extended_precision", "precision selected path mismatch");
   assert(responseValue.precision.selectedNumericType === "decimal128", "precision numeric type mismatch");
+  assert(responseValue.precision.selectedNumericChart === "interval_bounds", "precision numeric chart mismatch");
   assert(responseValue.precision.escalated === true, "precision escalation mismatch");
   assert(responseValue.precision.validationReplayRun === true, "precision replay run mismatch");
   assert(responseValue.precision.validationReplayMatched === true, "precision replay matched mismatch");
@@ -686,6 +749,7 @@ function validateRootsAndHitsPrecisionRequestEnvelope(value) {
   assertNonemptyString(value.requestId, "precision roots-and-hits request id");
   const requestValue = value.request;
   assert(requestValue.rootRequest.hitTime === request.request.hitTime, "precision roots-and-hits hit time mismatch");
+  assert(requestValue.rootRequest.rootTolerance === 1e-16, "precision roots-and-hits tolerance mismatch");
   assert(requestValue.requestedPrecisionPath === "scaled_f64_strict", "precision roots-and-hits path mismatch");
   assert(requestValue.claimLevel === "exported-dataset", "precision roots-and-hits claim level mismatch");
   assert(requestValue.allowEscalation === true, "precision roots-and-hits escalation mismatch");
@@ -704,8 +768,13 @@ function validateRootsAndHitsPrecisionResponseEnvelope(value) {
   assert(responseValue.hits.length === 1, "precision roots-and-hits hit count mismatch");
   assert(responseValue.rootLedgerDetails.length >= 1, "precision roots-and-hits detail rows mismatch");
   assert(responseValue.rootLedgerDetails[0].entryKind === 1, "precision roots-and-hits detail entry mismatch");
+  assertRootLedgerDetailForensics(responseValue.rootLedgerDetails[0], 1e-16, "precision roots-and-hits detail");
   assert(responseValue.precision.selectedPrecisionPath === "extended_precision", "precision roots-and-hits path mismatch");
   assert(responseValue.precision.selectedNumericType === "decimal128", "precision roots-and-hits numeric type mismatch");
+  assert(
+    responseValue.precision.selectedNumericChart === "interval_bounds",
+    "precision roots-and-hits numeric chart mismatch"
+  );
   assert(responseValue.buffers[0].layout === "root_ledger.v1", "precision roots-and-hits root buffer mismatch");
   assert(responseValue.buffers[1].layout === "delayed_hit_events.v1", "precision roots-and-hits hit buffer mismatch");
   assert(responseValue.buffers[2].layout === "root_ledger_detail.v1", "precision roots-and-hits detail buffer mismatch");
@@ -855,12 +924,33 @@ function assertCapabilities(value, label) {
   );
   assert(value.appBridge.workPackets.helpers.includes("planPathHistoryWorkPackets"), `${label} work packet helper mismatch`);
   assert(value.numericSerialization.descriptors.length >= 1, `${label} numeric descriptors mismatch`);
+  assert(value.numericSerialization.chartDescriptors.length === 7, `${label} numeric chart descriptor count mismatch`);
+  assert(
+    findNumericChartDescriptor(value, "local_frame").preservesLocalDetailAcrossLargeOffsets === true,
+    `${label} local-frame chart descriptor mismatch`
+  );
+  assert(
+    findNumericChartDescriptor(value, "direction_log_magnitude").preservesLocalDetailAcrossLargeOffsets === true,
+    `${label} direction-log chart descriptor mismatch`
+  );
+  assert(
+    findNumericChartDescriptor(value, "interval_bounds").preservesLocalDetailAcrossLargeOffsets === true,
+    `${label} interval-bounds chart descriptor mismatch`
+  );
   assert(value.errorBudgetPropagation.stages.length >= 1, `${label} error budget propagation mismatch`);
   assert(value.validation.invariantChecks.includes("root_hit_f64"), `${label} validation capability mismatch`);
   assert(value.maxTransferBytes === 67108864, `${label} max transfer mismatch`);
   assert(value.wasmModuleFactory === true, `${label} wasm factory mismatch`);
   assert(value.abiInfo.rootRowF64Bytes === 112, `${label} ABI root row mismatch`);
   assert(value.abiInfo.motionIntegrationRequestF64Bytes === 120, `${label} ABI motion integration mismatch`);
+}
+
+function findNumericChartDescriptor(capabilities, numericChart) {
+  const descriptor = capabilities.numericSerialization.chartDescriptors.find(
+    (candidate) => candidate.numericChart === numericChart
+  );
+  assert(descriptor, `Missing numeric chart descriptor ${numericChart}`);
+  return descriptor;
 }
 
 function validateBatchResponseEnvelope(value) {
@@ -997,6 +1087,20 @@ function validateRunSimulationResponseEnvelope(value) {
     "run manifest precision summary mismatch"
   );
   assert(
+    responseValue.response.manifest.precision.selectedNumericChart === "interval_bounds",
+    "run manifest precision numeric chart mismatch"
+  );
+  assert(
+    responseValue.response.precision.escalations[0].newPrecisionPath === "extended_precision",
+    "run response precision escalation record mismatch"
+  );
+  assert(
+    responseValue.response.manifest.precisionMetadata.numericType === "decimal128" &&
+      responseValue.response.manifest.precisionMetadata.numericChart === "interval_bounds" &&
+      responseValue.response.manifest.precisionMetadata.scaleNormalization === "unit-test-scale",
+    "run manifest precision metadata mismatch"
+  );
+  assert(
     responseValue.response.manifest.validationArtifacts.toleranceVector.rootIsolationTolerance === 1e-14,
     "run manifest validation tolerance mismatch"
   );
@@ -1005,6 +1109,7 @@ function validateRunSimulationResponseEnvelope(value) {
     "run manifest artifact hash count mismatch"
   );
   assert(responseValue.response.rootLedgerDetails[0].entryKind === 1, "run response detail row mismatch");
+  assertRootLedgerDetailForensics(responseValue.response.rootLedgerDetails[0], 1e-16, "run response detail row");
   assert(responseValue.response.buffers.length === 3, "run response buffer count mismatch");
 }
 
@@ -1343,6 +1448,11 @@ function assertStoragePolicy(policy, maxBytes, label) {
 function assertPathHistoryMetadata(metadata, label) {
   assert(metadata.schema === "solver-path-history-stream-metadata.v1", `${label} schema mismatch`);
   assert(metadata.precisionPath === "scaled_f64_strict", `${label} precision path mismatch`);
+  assert(metadata.numericType === "f64", `${label} numeric type mismatch`);
+  assert(metadata.numericChart === "absolute_f64", `${label} numeric chart mismatch`);
+  assert(metadata.valueAuthority === "authoritative", `${label} value authority mismatch`);
+  assert(metadata.appBufferAuthority === "authoritative", `${label} app buffer authority mismatch`);
+  assert(metadata.claimLevel === "migration-parity", `${label} claim level mismatch`);
   assert(metadata.units === "solver-si", `${label} units mismatch`);
   assert(metadata.coordinateFrame === "absolute-lab-frame", `${label} coordinate frame mismatch`);
   assert(metadata.scaleNormalization === "unit-test-scale", `${label} scale normalization mismatch`);
@@ -1404,6 +1514,39 @@ function assertWorkerMethods(expectedMethods) {
   for (const method of expectedMethods) {
     assert(actualMethods.includes(method), `worker method missing ${method}`);
   }
+  const bridgeMethods = readWorkerBridgeMethods();
+  const clientMethods = readSolverClientMethods();
+  assertSameOrderedList(actualMethods, bridgeMethods, "schema worker method enum", "SolverAppWorkerBridge methods");
+  assertSameSet(actualMethods, clientMethods, "schema worker method enum", "SolverClient methods");
+}
+
+function readWorkerBridgeMethods() {
+  const match = workerBridgeSource.match(/SOLVER_APP_WORKER_METHODS\s*=\s*Object\.freeze\(\[([\s\S]*?)\]\)/u);
+  assert(match, "unable to read SOLVER_APP_WORKER_METHODS from worker bridge");
+  return [...match[1].matchAll(/"([A-Za-z][A-Za-z0-9_]*)"/gu)].map((entry) => entry[1]);
+}
+
+function readSolverClientMethods() {
+  const match = bridgeContractSource.match(/export interface SolverClient \{([\s\S]*?)\n\}/u);
+  assert(match, "unable to read SolverClient interface from bridge contract declarations");
+  return [...match[1].matchAll(/^\s{2}([A-Za-z][A-Za-z0-9_]*)\(/gmu)].map((entry) => entry[1]);
+}
+
+function assertSameOrderedList(left, right, leftLabel, rightLabel) {
+  assert(
+    left.length === right.length,
+    `${leftLabel} count ${left.length} does not match ${rightLabel} count ${right.length}`
+  );
+  left.forEach((value, index) => {
+    assert(value === right[index], `${leftLabel} ${value} does not match ${rightLabel} ${right[index]} at ${index}`);
+  });
+}
+
+function assertSameSet(left, right, leftLabel, rightLabel) {
+  const missing = left.filter((value) => !right.includes(value));
+  const extra = right.filter((value) => !left.includes(value));
+  assert(missing.length === 0, `${rightLabel} missing ${leftLabel} value(s): ${missing.join(", ")}`);
+  assert(extra.length === 0, `${rightLabel} has extra value(s) not in ${leftLabel}: ${extra.join(", ")}`);
 }
 
 function createCausalRootsResponseEnvelope() {
@@ -1699,7 +1842,10 @@ function createCausalRootsPrecisionRequestEnvelope() {
     kind: "causal-roots-precision-f64-request",
     requestId: "causal-roots-precision-contract-request",
     request: {
-      rootRequest: request.request,
+      rootRequest: {
+        ...request.request,
+        rootTolerance: 1e-16,
+      },
       requestedPrecisionPath: "scaled_f64_strict",
       claimLevel: "exported-dataset",
       allowEscalation: true,
@@ -1715,6 +1861,7 @@ function createPrecisionSummaryFixture() {
     diagnosticPrecisionPath: "extended_precision",
     selectedPrecisionPath: "extended_precision",
     selectedNumericType: "decimal128",
+    selectedNumericChart: "interval_bounds",
     claimLevel: "exported-dataset",
     statusCode: "insufficient_scale_resolution",
     statusSeverity: "warning",
@@ -1725,12 +1872,22 @@ function createPrecisionSummaryFixture() {
     maxIterations: 256,
     scanSubdivisions: 512,
     escalated: true,
+    escalations: [
+      {
+        priorPrecisionPath: "scaled_f64_strict",
+        newPrecisionPath: "extended_precision",
+        triggeringDiagnostic: "precision-diagnostic",
+        affectedStage: "precision-path",
+        claimLevelSatisfied: true,
+      },
+    ],
     validationReplayRun: true,
     validationReplayMatched: true,
   };
 }
 
-function createRootLedgerDetailFixture() {
+function createRootLedgerDetailFixture(options = {}) {
+  const rootTolerance = options.rootTolerance ?? 1e-13;
   return {
     ledgerKey: 1001,
     sourceKey: 2001,
@@ -1742,6 +1899,10 @@ function createRootLedgerDetailFixture() {
     hitTime: 10,
     delay: 10,
     residual: 0,
+    residualScale: 10,
+    absoluteResidual: 0,
+    normalizedResidual: 0,
+    rootTolerance,
     jacobian: 1,
     branchWeight: 1,
     bracketStart: 0,
@@ -1755,6 +1916,7 @@ function createRootLedgerDetailFixture() {
     sequenceIndex: 0,
     iterationCount: 1,
     stateFlags: 0,
+    firstFailureCode: 0,
   };
 }
 
@@ -1792,7 +1954,10 @@ function createRootsAndHitsPrecisionRequestEnvelope() {
     kind: "roots-and-hits-precision-f64-request",
     requestId: "roots-and-hits-precision-contract-request",
     request: {
-      rootRequest: request.request,
+      rootRequest: {
+        ...request.request,
+        rootTolerance: 1e-16,
+      },
       requestedPrecisionPath: "scaled_f64_strict",
       claimLevel: "exported-dataset",
       allowEscalation: true,
@@ -1812,7 +1977,7 @@ function createRootsAndHitsPrecisionResponseEnvelope() {
       schema: "solver-roots-and-hits-precision-f64.v1",
       roots: response.response.roots,
       hits: response.response.hits,
-      rootLedgerDetails: [createRootLedgerDetailFixture()],
+      rootLedgerDetails: [createRootLedgerDetailFixture({ rootTolerance: 1e-16 })],
       precision: createPrecisionSummaryFixture(),
       buffers: [
         {
@@ -2319,6 +2484,43 @@ function createCapabilitiesFixture() {
           authoritativeStorageSafe: true,
         },
       ],
+      chartDescriptors: [
+        {
+          numericChart: "absolute_f64",
+          role: "raw-coordinate-chart",
+          preservesLocalDetailAcrossLargeOffsets: false,
+        },
+        {
+          numericChart: "local_frame",
+          role: "translated-local-geometry-chart",
+          preservesLocalDetailAcrossLargeOffsets: true,
+        },
+        {
+          numericChart: "nondimensional_ratio",
+          role: "scale-ratio-chart",
+          preservesLocalDetailAcrossLargeOffsets: true,
+        },
+        {
+          numericChart: "log_magnitude",
+          role: "positive-scale-chart",
+          preservesLocalDetailAcrossLargeOffsets: true,
+        },
+        {
+          numericChart: "signed_log_magnitude",
+          role: "signed-scale-chart",
+          preservesLocalDetailAcrossLargeOffsets: true,
+        },
+        {
+          numericChart: "direction_log_magnitude",
+          role: "vector-direction-plus-scale-chart",
+          preservesLocalDetailAcrossLargeOffsets: true,
+        },
+        {
+          numericChart: "interval_bounds",
+          role: "bounded-validation-chart",
+          preservesLocalDetailAcrossLargeOffsets: true,
+        },
+      ],
     },
     errorBudgetPropagation: {
       schema: "solver-error-budget-propagation.v1",
@@ -2653,7 +2855,7 @@ function createSolverRunResponse() {
     ],
     roots: response.response.roots,
     hits: response.response.hits,
-    rootLedgerDetails: [createRootLedgerDetailFixture()],
+    rootLedgerDetails: [createRootLedgerDetailFixture({ rootTolerance: 1e-16 })],
     status: createStatusFixture("ok", "ok", "run response ready"),
   };
 }
@@ -2674,6 +2876,7 @@ function createRunManifest() {
     envelope: createRunEnvelope(),
     capability: createCapabilityEnvelope(),
     errorBudget: createRunErrorBudget(),
+    precisionMetadata: createRunPrecisionMetadataFixture(),
     requestedPrecisionPath: "auto",
     selectedPrecisionPath: "extended_precision",
     output: createRunOutputRequest(),
@@ -2734,6 +2937,22 @@ function createRunValidationArtifactsFixture() {
       summaryHash: "aaaaaaaaaaaaaaaa",
       responseStatusHash: "bbbbbbbbbbbbbbbb",
     },
+  };
+}
+
+function createRunPrecisionMetadataFixture() {
+  return {
+    schema: "solver-run-precision-metadata.v1",
+    requestedPrecisionPath: "auto",
+    selectedPrecisionPath: "extended_precision",
+    numericType: "decimal128",
+    numericChart: "interval_bounds",
+    unitConvention: "solver-si",
+    scaleNormalization: "unit-test-scale",
+    globalErrorBudget: 1e-13,
+    stageErrorBudgets: createRunErrorBudget(),
+    claimLevel: "interactive-preview",
+    valueAuthority: "authoritative",
   };
 }
 
@@ -2892,6 +3111,7 @@ function createRunStreams() {
         durable: false,
         maxBytes: 432,
       },
+      metadata: createRunStreamMetadataFixture(),
     },
   ];
 }
@@ -2903,7 +3123,32 @@ function createRunManifestStreams() {
     indexLayout: stream.indexLayout,
     rangeCount: stream.availableRanges.length,
     storagePolicy: stream.storagePolicy,
+    metadata: stream.metadata,
   }));
+}
+
+function createRunStreamMetadataFixture() {
+  return {
+    schema: "solver-path-history-stream-metadata.v1",
+    precisionPath: "extended_precision",
+    numericType: "f64",
+    numericChart: "interval_bounds",
+    valueAuthority: "authoritative",
+    appBufferAuthority: "approximate",
+    claimLevel: "interactive-preview",
+    units: "solver-si",
+    coordinateFrame: "absolute-lab-frame",
+    scaleNormalization: "unit-test-scale",
+    interpolationRule: "causal-root-transient",
+    provenance: { fixture: "run-contract-fixture" },
+    diagnostics: [
+      {
+        code: "ok",
+        severity: "info",
+        message: "run stream precision metadata fixture",
+      },
+    ],
+  };
 }
 
 function createStatusFixture(code, severity, message, extra = {}) {
@@ -2934,6 +3179,11 @@ function createPathHistoryStreamRequestEnvelope() {
       },
       metadata: {
         precisionPath: "scaled_f64_strict",
+        numericType: "f64",
+        numericChart: "absolute_f64",
+        valueAuthority: "authoritative",
+        appBufferAuthority: "authoritative",
+        claimLevel: "migration-parity",
         units: "solver-si",
         coordinateFrame: "absolute-lab-frame",
         scaleNormalization: "unit-test-scale",
@@ -3038,6 +3288,11 @@ function createPathHistoryStreamMetadata() {
   return {
     schema: "solver-path-history-stream-metadata.v1",
     precisionPath: "scaled_f64_strict",
+    numericType: "f64",
+    numericChart: "absolute_f64",
+    valueAuthority: "authoritative",
+    appBufferAuthority: "authoritative",
+    claimLevel: "migration-parity",
     units: "solver-si",
     coordinateFrame: "absolute-lab-frame",
     scaleNormalization: "unit-test-scale",
@@ -3616,6 +3871,23 @@ function assertFinite(value, label) {
 
 function assertClose(actual, expected, label) {
   assert(Math.abs(actual - expected) <= 1e-10, `${label} expected ${expected} got ${actual}`);
+}
+
+function assertRootLedgerDetailForensics(row, expectedRootTolerance, label) {
+  const residualScale = Math.max(
+    Math.abs(row.delay),
+    Math.abs(row.hitTime - row.emissionTime),
+    Math.abs(row.intervalEnd - row.intervalStart),
+    1
+  );
+  assertClose(row.residualScale, residualScale, `${label} residual scale`);
+  assert(row.absoluteResidual === Math.abs(row.residual), `${label} absolute residual mismatch`);
+  assertClose(row.normalizedResidual, row.absoluteResidual / row.residualScale, `${label} normalized residual`);
+  assert(row.rootTolerance === expectedRootTolerance, `${label} root tolerance mismatch`);
+  assert(
+    row.firstFailureCode === ((row.stateFlags & 1) !== 0 ? row.statusCode : 0),
+    `${label} first failure code mismatch`
+  );
 }
 
 function assert(condition, message) {

@@ -23,6 +23,7 @@ import {
   solveFlightTimeRowWithSolverBridge,
   solveFlightTimeWithSolverBridge,
 } from "../src/apps/ideal-swarm/IdealSwarmRuntime.js";
+import { createSolverBridgeLoopbackWorker } from "./solver-worker-loopback.mjs";
 
 test("Ideal Swarm model reuses three animator circular binaries", () => {
   const model = createIdealSwarmModel({ THREE });
@@ -221,6 +222,103 @@ test("Ideal Swarm flight time can be routed through the solver app bridge for a 
   assert.ok(Math.abs(tau - expectedTau) < 1e-12);
 });
 
+test("Ideal Swarm flight time can create and dispose a solver bridge client", async () => {
+  const sourceStart = new THREE.Vector3(0.4, -0.2, 0.1);
+  const sourceVelocity = new THREE.Vector3(0.05, 0.1, -0.02);
+  const architrino = {
+    q: 1,
+    positionAt(timeSeconds) {
+      return sourceStart.clone().add(sourceVelocity.clone().multiplyScalar(timeSeconds));
+    },
+    velocityAt() {
+      return sourceVelocity.clone();
+    },
+  };
+  const samplePoint = new THREE.Vector3(1.3, 0.7, -0.2);
+  const observationTime = 1.5;
+  const expectedTau = 0.25;
+  let disposed = false;
+
+  const row = await solveFlightTimeRowWithSolverBridge(samplePoint, architrino, observationTime, {
+    requestId: "ideal_flight_factory_request",
+    runId: "ideal_flight_factory_run",
+    datasetId: "ideal_flight_factory_dataset",
+    disposeSolverBridgeClientAfterRun: true,
+    createSolverBridgeClient(factoryRequest, context) {
+      assert.equal(context.appId, "ideal-swarm");
+      assert.equal(context.requiredMethod, "runSimulation");
+      assert.ok(context.requestedCapabilities.includes("sharedGeometry"));
+      assert.equal(factoryRequest.observationTime, observationTime);
+      return {
+        async runSimulation(runRequest) {
+          assert.equal(runRequest.requestId, "ideal_flight_factory_request");
+          return createFlightTimeRunHandle(runRequest, expectedTau);
+        },
+        async dispose() {
+          disposed = true;
+        },
+      };
+    },
+  });
+
+  assert.equal(row.runId, "ideal_flight_factory_run");
+  assert.equal(row.tau, expectedTau);
+  assert.equal(disposed, true);
+});
+
+test("Ideal Swarm flight time can create and dispose a solver bridge worker client", async () => {
+  const sourceStart = new THREE.Vector3(0.2, 0.1, -0.3);
+  const sourceVelocity = new THREE.Vector3(0.04, -0.03, 0.02);
+  const architrino = {
+    q: 1,
+    positionAt(timeSeconds) {
+      return sourceStart.clone().add(sourceVelocity.clone().multiplyScalar(timeSeconds));
+    },
+    velocityAt() {
+      return sourceVelocity.clone();
+    },
+  };
+  const samplePoint = new THREE.Vector3(0.8, -0.6, 0.5);
+  const observationTime = 2.25;
+  const expectedTau = 0.375;
+  const worker = createSolverBridgeLoopbackWorker({
+    init(initRequest) {
+      assert.equal(initRequest.appId, "ideal-swarm");
+      assert.ok(initRequest.requestedCapabilities.includes("sharedGeometry"));
+      return {
+        apiVersion: initRequest.apiVersion,
+        status: { code: "ok", severity: "ok", message: "solver initialized" },
+      };
+    },
+    runSimulation(runRequest) {
+      assert.equal(runRequest.requestId, "ideal_flight_worker_request");
+      assert.equal(runRequest.runKind, "sharedGeometry");
+      return createFlightTimeRunHandle(runRequest, expectedTau);
+    },
+  });
+
+  const row = await solveFlightTimeRowWithSolverBridge(samplePoint, architrino, observationTime, {
+    requestId: "ideal_flight_worker_request",
+    runId: "ideal_flight_worker_run",
+    datasetId: "ideal_flight_worker_dataset",
+    createSolverWorker(factoryRequest, context) {
+      assert.equal(context.appId, "ideal-swarm");
+      assert.equal(context.requiredMethod, "runSimulation");
+      assert.ok(context.requestedCapabilities.includes("sharedGeometry"));
+      assert.equal(factoryRequest.observationTime, observationTime);
+      return worker;
+    },
+  });
+
+  assert.equal(row.runId, "ideal_flight_worker_run");
+  assert.equal(row.tau, expectedTau);
+  assert.deepEqual(
+    worker.messages.map((message) => message.method),
+    ["init", "runSimulation", "dispose"]
+  );
+  assert.equal(worker.terminated, true);
+});
+
 test("orbit path tint profiles distinguish inner middle and outer binaries", () => {
   const model = createIdealSwarmModel({ THREE });
   const [inner, middle, outer] = model.binaries.map((binary) => getOrbitPathTintProfile(binary));
@@ -289,6 +387,36 @@ test("Ideal Swarm circular self-hit span can be routed through the solver app br
     },
   });
   assert.ok(Math.abs(span - expectedSpan) < 1e-12);
+});
+
+test("Ideal Swarm circular self-hit span can create and dispose a solver bridge client", async () => {
+  const expectedSpan = 2.5;
+  let disposed = false;
+  const row = await solveCircularSelfHitSpanRowWithSolverBridge(1.35, {
+    requestId: "ideal_self_hit_factory_request",
+    runId: "ideal_self_hit_factory_run",
+    datasetId: "ideal_self_hit_factory_dataset",
+    disposeSolverBridgeClientAfterRun: true,
+    createSolverBridgeClient(factoryRequest, context) {
+      assert.equal(context.appId, "ideal-swarm");
+      assert.equal(context.requiredMethod, "runSimulation");
+      assert.ok(context.requestedCapabilities.includes("sharedGeometry"));
+      assert.equal(factoryRequest.fieldSpeedRatio, 1.35);
+      return {
+        async runSimulation(runRequest) {
+          assert.equal(runRequest.requestId, "ideal_self_hit_factory_request");
+          return createSelfHitRunHandle(runRequest, expectedSpan);
+        },
+        async dispose() {
+          disposed = true;
+        },
+      };
+    },
+  });
+
+  assert.equal(row.runId, "ideal_self_hit_factory_run");
+  assert.equal(row.span, expectedSpan);
+  assert.equal(disposed, true);
 });
 
 function createSelfHitRunHandle(runRequest, span) {

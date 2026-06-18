@@ -238,6 +238,12 @@
       "$ref": "#/$defs/pathHistoryStorageLifecycleResponseEnvelope"
     },
     {
+      "$ref": "#/$defs/pathHistoryStorageLifecycleApplyRequestEnvelope"
+    },
+    {
+      "$ref": "#/$defs/pathHistoryStorageLifecycleApplyResponseEnvelope"
+    },
+    {
       "$ref": "#/$defs/workPacketHeaderEnvelope"
     },
     {
@@ -334,6 +340,7 @@
         "integrateConstantAccelerationMotionF64",
         "createPathHistoryStreamF64",
         "planPathHistoryStorageLifecycleF64",
+        "applyPathHistoryStorageLifecycleF64",
         "queryEmissionShellCandidatesF64",
         "queryEmissionShellCandidatePacketF64",
         "queryEmissionShellCandidatePacketsF64",
@@ -2028,6 +2035,46 @@
         }
       }
     },
+    "pathHistoryStorageLifecycleApplyRequestEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "request"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "path-history-storage-lifecycle-apply-request"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "request": {
+          "$ref": "#/$defs/pathHistoryStorageLifecycleApplyRequest"
+        }
+      }
+    },
+    "pathHistoryStorageLifecycleApplyResponseEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "kind", "requestId", "response"],
+      "properties": {
+        "schema": {
+          "const": "solver-app-bridge/v1"
+        },
+        "kind": {
+          "const": "path-history-storage-lifecycle-apply-response"
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "response": {
+          "$ref": "#/$defs/pathHistoryStorageLifecycleApplyResponse"
+        }
+      }
+    },
     "spaceTimeIndexF64ResponseEnvelope": {
       "type": "object",
       "additionalProperties": false,
@@ -3645,7 +3692,7 @@
       "properties": {
         "decision": {
           "type": "string",
-          "enum": ["admit", "batch", "escalate_precision", "reject"]
+          "enum": ["admit", "batch", "escalate_precision", "reject", "simplify"]
         },
         "selectedPrecisionPath": {
           "$ref": "#/$defs/precisionPathId"
@@ -4329,6 +4376,9 @@
         "reason": {
           "type": "string",
           "minLength": 1
+        },
+        "releaseStreams": {
+          "type": "boolean"
         }
       }
     },
@@ -5265,6 +5315,22 @@
         "residual": {
           "type": "number"
         },
+        "residualScale": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "absoluteResidual": {
+          "type": "number",
+          "minimum": 0
+        },
+        "normalizedResidual": {
+          "type": "number",
+          "minimum": 0
+        },
+        "rootTolerance": {
+          "type": "number",
+          "minimum": 0
+        },
         "jacobian": {
           "type": "number"
         },
@@ -5593,6 +5659,8 @@
         "statusCode",
         "recommendedPath",
         "recommendedNumericType",
+        "recommendedChart",
+        "speedChart",
         "scaleNormalizationRecommended",
         "extendedPrecisionRecommended",
         "scaleResolutionLimited",
@@ -5613,6 +5681,12 @@
         },
         "recommendedNumericType": {
           "$ref": "#/$defs/numericTypeId"
+        },
+        "recommendedChart": {
+          "$ref": "#/$defs/numericChartId"
+        },
+        "speedChart": {
+          "$ref": "#/$defs/numericChartId"
         },
         "scaleNormalizationRecommended": {
           "type": "boolean"
@@ -5679,6 +5753,7 @@
         "diagnosticPrecisionPath",
         "selectedPrecisionPath",
         "selectedNumericType",
+        "selectedNumericChart",
         "claimLevel",
         "statusCode",
         "statusSeverity",
@@ -5689,6 +5764,7 @@
         "maxIterations",
         "scanSubdivisions",
         "escalated",
+        "escalations",
         "validationReplayRun",
         "validationReplayMatched"
       ],
@@ -5704,6 +5780,9 @@
         },
         "selectedNumericType": {
           "$ref": "#/$defs/numericTypeId"
+        },
+        "selectedNumericChart": {
+          "$ref": "#/$defs/numericChartId"
         },
         "claimLevel": {
           "$ref": "#/$defs/solverClaimLevel"
@@ -5743,10 +5822,46 @@
         "escalated": {
           "type": "boolean"
         },
+        "escalations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/precisionEscalationRecord"
+          }
+        },
         "validationReplayRun": {
           "type": "boolean"
         },
         "validationReplayMatched": {
+          "type": "boolean"
+        }
+      }
+    },
+    "precisionEscalationRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "priorPrecisionPath",
+        "newPrecisionPath",
+        "triggeringDiagnostic",
+        "affectedStage",
+        "claimLevelSatisfied"
+      ],
+      "properties": {
+        "priorPrecisionPath": {
+          "$ref": "#/$defs/precisionPathId"
+        },
+        "newPrecisionPath": {
+          "$ref": "#/$defs/precisionPathId"
+        },
+        "triggeringDiagnostic": {
+          "type": "string",
+          "minLength": 1
+        },
+        "affectedStage": {
+          "type": "string",
+          "minLength": 1
+        },
+        "claimLevelSatisfied": {
           "type": "boolean"
         }
       }
@@ -6993,6 +7108,10 @@
         "stateFlags": {
           "type": "integer",
           "minimum": 0
+        },
+        "firstFailureCode": {
+          "type": "integer",
+          "minimum": 0
         }
       }
     },
@@ -7408,6 +7527,12 @@
           "items": {
             "$ref": "#/$defs/streamRange"
           }
+        },
+        "storagePolicy": {
+          "$ref": "#/$defs/storagePolicy"
+        },
+        "metadata": {
+          "$ref": "#/$defs/pathHistoryStreamMetadata"
         }
       }
     },
@@ -7581,6 +7706,11 @@
       "required": [
         "schema",
         "precisionPath",
+        "numericType",
+        "numericChart",
+        "valueAuthority",
+        "appBufferAuthority",
+        "claimLevel",
         "units",
         "coordinateFrame",
         "scaleNormalization",
@@ -7594,6 +7724,21 @@
         },
         "precisionPath": {
           "$ref": "#/$defs/precisionPathId"
+        },
+        "numericType": {
+          "$ref": "#/$defs/numericTypeId"
+        },
+        "numericChart": {
+          "$ref": "#/$defs/numericChartId"
+        },
+        "valueAuthority": {
+          "$ref": "#/$defs/valueAuthorityId"
+        },
+        "appBufferAuthority": {
+          "$ref": "#/$defs/valueAuthorityId"
+        },
+        "claimLevel": {
+          "$ref": "#/$defs/solverClaimLevel"
         },
         "units": {
           "type": "string",
@@ -7613,6 +7758,9 @@
         },
         "dynamicReplay": {
           "$ref": "#/$defs/pathHistoryDynamicReplayMetadata"
+        },
+        "lifecycle": {
+          "$ref": "#/$defs/pathHistoryStorageLifecycleMetadata"
         },
         "provenance": {
           "type": "object"
@@ -8604,8 +8752,17 @@
       "type": "object",
       "additionalProperties": false,
       "required": ["policy"],
+      "anyOf": [
+        { "required": ["streamId"] },
+        { "required": ["manifestPath"] },
+        { "required": ["chunks"] }
+      ],
       "properties": {
         "streamId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "manifestPath": {
           "type": "string",
           "minLength": 1
         },
@@ -8617,6 +8774,31 @@
           "items": {
             "$ref": "#/$defs/pathHistoryChunkMetadata"
           }
+        }
+      }
+    },
+    "pathHistoryStorageLifecycleApplyRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["policy"],
+      "anyOf": [
+        { "required": ["streamId"] },
+        { "required": ["manifestPath"] }
+      ],
+      "properties": {
+        "streamId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "manifestPath": {
+          "type": "string",
+          "minLength": 1
+        },
+        "policy": {
+          "$ref": "#/$defs/pathHistoryStorageLifecyclePolicy"
+        },
+        "deleteStreamWhenAllChunksDeleted": {
+          "type": "boolean"
         }
       }
     },
@@ -8702,7 +8884,7 @@
     "pathHistoryStorageLifecycleResponse": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["schema", "policy", "chunkCount", "decisions", "status"],
+      "required": ["schema", "policy", "chunkCount", "decisions", "summary", "status"],
       "properties": {
         "schema": {
           "const": "solver-path-history-storage-lifecycle.v1"
@@ -8724,9 +8906,282 @@
             "$ref": "#/$defs/pathHistoryLifecycleDecision"
           }
         },
+        "summary": {
+          "$ref": "#/$defs/pathHistoryStorageLifecycleSummary"
+        },
         "status": {
           "$ref": "#/$defs/statusRecord"
         }
+      }
+    },
+    "pathHistoryStorageLifecycleApplyResponse": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "streamId",
+        "plan",
+        "appliedChunkCount",
+        "nativeManifestUpdated",
+        "metadata",
+        "cleanup",
+        "status"
+      ],
+      "properties": {
+        "schema": {
+          "const": "solver-path-history-storage-lifecycle-apply.v1"
+        },
+        "streamId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "plan": {
+          "$ref": "#/$defs/pathHistoryStorageLifecycleResponse"
+        },
+        "appliedChunkCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "nativeManifestUpdated": {
+          "type": "boolean"
+        },
+        "manifestPath": {
+          "type": "string",
+          "minLength": 1
+        },
+        "metadata": {
+          "$ref": "#/$defs/pathHistoryStorageLifecycleMetadata"
+        },
+        "cleanup": {
+          "$ref": "#/$defs/pathHistoryStorageLifecycleCleanup"
+        },
+        "status": {
+          "$ref": "#/$defs/statusRecord"
+        }
+      }
+    },
+    "pathHistoryStorageLifecycleCleanup": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "requested",
+        "deletedStream",
+        "releasedStream",
+        "deletedNativeFileStream",
+        "plannedDeleteChunkCount",
+        "skippedReason"
+      ],
+      "properties": {
+        "schema": {
+          "const": "solver-path-history-storage-lifecycle-cleanup.v1"
+        },
+        "requested": {
+          "type": "boolean"
+        },
+        "deletedStream": {
+          "type": "boolean"
+        },
+        "releasedStream": {
+          "type": "boolean"
+        },
+        "deletedNativeFileStream": {
+          "type": "boolean"
+        },
+        "plannedDeleteChunkCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "skippedReason": {
+          "type": "string",
+          "enum": [
+            "none",
+            "not_requested",
+            "no_chunks",
+            "not_all_chunks_planned_delete"
+          ]
+        }
+      }
+    },
+    "pathHistoryStorageLifecycleMetadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "policy", "summary", "decisions"],
+      "properties": {
+        "schema": {
+          "const": "solver-path-history-storage-lifecycle-metadata.v1"
+        },
+        "policy": {
+          "$ref": "#/$defs/pathHistoryStorageLifecyclePolicy"
+        },
+        "summary": {
+          "$ref": "#/$defs/pathHistoryStorageLifecycleSummary"
+        },
+        "decisions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/pathHistoryLifecycleDecision"
+          }
+        },
+        "deepIndex": {
+          "$ref": "#/$defs/pathHistoryDeepIndexMetadata"
+        }
+      }
+    },
+    "pathHistoryDeepIndexMetadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "indexKind",
+        "indexLayout",
+        "sourceStreamId",
+        "builtChunkIndices",
+        "rowCount",
+        "overflowEntryCount",
+        "byteLength",
+        "checksum",
+        "options"
+      ],
+      "properties": {
+        "schema": {
+          "const": "solver-path-history-deep-index.v1"
+        },
+        "indexKind": {
+          "const": "spacetime"
+        },
+        "indexLayout": {
+          "const": "spacetime_index.v1"
+        },
+        "sourceStreamId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "builtChunkIndices": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "rowCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "overflowEntryCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "byteLength": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "checksum": {
+          "type": "string",
+          "minLength": 1
+        },
+        "options": {
+          "$ref": "#/$defs/spaceTimeIndexOptionsF64"
+        }
+      }
+    },
+    "pathHistoryStorageLifecycleSummary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "totalChunkCount",
+        "totalBytes",
+        "tierCounts",
+        "actionCounts",
+        "bytesByTier",
+        "safeToAgeOutCount",
+        "unsafeToAgeOutCount",
+        "deepIndexRequiredCount",
+        "deepIndexQueueChunkIndices",
+        "unsafeToAgeOutChunkIndices"
+      ],
+      "properties": {
+        "schema": {
+          "const": "solver-path-history-storage-lifecycle-summary.v1"
+        },
+        "totalChunkCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "totalBytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "tierCounts": {
+          "$ref": "#/$defs/pathHistoryStorageTierCounts"
+        },
+        "actionCounts": {
+          "$ref": "#/$defs/pathHistoryStorageActionCounts"
+        },
+        "bytesByTier": {
+          "$ref": "#/$defs/pathHistoryStorageTierCounts"
+        },
+        "safeToAgeOutCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "unsafeToAgeOutCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "deepIndexRequiredCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "deepIndexQueueChunkIndices": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "unsafeToAgeOutChunkIndices": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      }
+    },
+    "pathHistoryStorageTierCounts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["active", "warm", "cold", "deleted", "unknown"],
+      "properties": {
+        "active": { "type": "integer", "minimum": 0 },
+        "warm": { "type": "integer", "minimum": 0 },
+        "cold": { "type": "integer", "minimum": 0 },
+        "deleted": { "type": "integer", "minimum": 0 },
+        "unknown": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "pathHistoryStorageActionCounts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "keep_active",
+        "spill_warm",
+        "archive_cold",
+        "build_deep_index",
+        "delete",
+        "blocked_unsafe",
+        "unknown"
+      ],
+      "properties": {
+        "keep_active": { "type": "integer", "minimum": 0 },
+        "spill_warm": { "type": "integer", "minimum": 0 },
+        "archive_cold": { "type": "integer", "minimum": 0 },
+        "build_deep_index": { "type": "integer", "minimum": 0 },
+        "delete": { "type": "integer", "minimum": 0 },
+        "blocked_unsafe": { "type": "integer", "minimum": 0 },
+        "unknown": { "type": "integer", "minimum": 0 }
       }
     },
     "assemblyStateF64": {
@@ -9023,6 +9478,10 @@
         "hitTime",
         "delay",
         "residual",
+        "residualScale",
+        "absoluteResidual",
+        "normalizedResidual",
+        "rootTolerance",
         "jacobian",
         "branchWeight",
         "bracketStart",
@@ -9035,7 +9494,8 @@
         "jacobianSignStratum",
         "sequenceIndex",
         "iterationCount",
-        "stateFlags"
+        "stateFlags",
+        "firstFailureCode"
       ],
       "properties": {
         "ledgerKey": {
@@ -9071,6 +9531,22 @@
         },
         "residual": {
           "type": "number"
+        },
+        "residualScale": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "absoluteResidual": {
+          "type": "number",
+          "minimum": 0
+        },
+        "normalizedResidual": {
+          "type": "number",
+          "minimum": 0
+        },
+        "rootTolerance": {
+          "type": "number",
+          "minimum": 0
         },
         "jacobian": {
           "type": "number"
@@ -9118,6 +9594,10 @@
           "type": "integer",
           "minimum": 0,
           "maximum": 4294967295
+        },
+        "firstFailureCode": {
+          "type": "integer",
+          "minimum": 0
         }
       }
     },
@@ -9811,6 +10291,46 @@
         }
       }
     },
+    "pathHistoryWorkPacketChunkSelection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["chunkIndex", "bufferId", "rowOffset", "rowCount", "byteLength", "checksum"],
+      "properties": {
+        "chunkIndex": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "bufferId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "rowOffset": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "rowCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "byteLength": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "checksum": {
+          "type": "string",
+          "minLength": 1
+        },
+        "timeRange": {
+          "$ref": "#/$defs/range"
+        },
+        "frameRange": {
+          "$ref": "#/$defs/range"
+        },
+        "byteRange": {
+          "$ref": "#/$defs/range"
+        }
+      }
+    },
     "pathHistoryWorkPacketPlanRequest": {
       "type": "object",
       "additionalProperties": false,
@@ -9909,6 +10429,9 @@
         "chunkPairCount",
         "packetCount",
         "truncated",
+        "sourceSelections",
+        "receiverSelections",
+        "planChecksum",
         "packets",
         "status"
       ],
@@ -9973,6 +10496,22 @@
         },
         "truncated": {
           "type": "boolean"
+        },
+        "sourceSelections": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/pathHistoryWorkPacketChunkSelection"
+          }
+        },
+        "receiverSelections": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/pathHistoryWorkPacketChunkSelection"
+          }
+        },
+        "planChecksum": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{16}$"
         },
         "packets": {
           "type": "array",
@@ -10131,6 +10670,18 @@
       "type": "string",
       "enum": ["f64", "scaled_i64", "interval_f64_pair", "decimal128", "mp_limb_block"]
     },
+    "numericChartId": {
+      "type": "string",
+      "enum": [
+        "absolute_f64",
+        "local_frame",
+        "nondimensional_ratio",
+        "log_magnitude",
+        "signed_log_magnitude",
+        "direction_log_magnitude",
+        "interval_bounds"
+      ]
+    },
     "numericSerializationDescriptor": {
       "type": "object",
       "additionalProperties": false,
@@ -10200,10 +10751,27 @@
         }
       }
     },
+    "numericChartDescriptor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["numericChart", "role", "preservesLocalDetailAcrossLargeOffsets"],
+      "properties": {
+        "numericChart": {
+          "$ref": "#/$defs/numericChartId"
+        },
+        "role": {
+          "type": "string",
+          "minLength": 1
+        },
+        "preservesLocalDetailAcrossLargeOffsets": {
+          "type": "boolean"
+        }
+      }
+    },
     "numericSerializationContract": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["schema", "descriptors"],
+      "required": ["schema", "descriptors", "chartDescriptors"],
       "properties": {
         "schema": {
           "const": "solver-numeric-serialization.v1"
@@ -10213,6 +10781,13 @@
           "minItems": 1,
           "items": {
             "$ref": "#/$defs/numericSerializationDescriptor"
+          }
+        },
+        "chartDescriptors": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/numericChartDescriptor"
           }
         }
       }
@@ -10557,7 +11132,7 @@
     "runManifestStream": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["streamId", "manifestVersion", "indexLayout", "rangeCount", "storagePolicy"],
+      "required": ["streamId", "manifestVersion", "indexLayout", "rangeCount", "storagePolicy", "metadata"],
       "properties": {
         "streamId": {
           "type": "string",
@@ -10578,6 +11153,61 @@
         },
         "metadata": {
           "$ref": "#/$defs/pathHistoryStreamMetadata"
+        }
+      }
+    },
+    "runPrecisionMetadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "requestedPrecisionPath",
+        "selectedPrecisionPath",
+        "numericType",
+        "numericChart",
+        "unitConvention",
+        "scaleNormalization",
+        "globalErrorBudget",
+        "stageErrorBudgets",
+        "claimLevel",
+        "valueAuthority"
+      ],
+      "properties": {
+        "schema": {
+          "const": "solver-run-precision-metadata.v1"
+        },
+        "requestedPrecisionPath": {
+          "$ref": "#/$defs/precisionPathId"
+        },
+        "selectedPrecisionPath": {
+          "$ref": "#/$defs/precisionPathId"
+        },
+        "numericType": {
+          "$ref": "#/$defs/numericTypeId"
+        },
+        "numericChart": {
+          "$ref": "#/$defs/numericChartId"
+        },
+        "unitConvention": {
+          "type": "string",
+          "minLength": 1
+        },
+        "scaleNormalization": {
+          "type": "string",
+          "minLength": 1
+        },
+        "globalErrorBudget": {
+          "type": "number",
+          "minimum": 0
+        },
+        "stageErrorBudgets": {
+          "$ref": "#/$defs/solverErrorBudget"
+        },
+        "claimLevel": {
+          "$ref": "#/$defs/solverClaimLevel"
+        },
+        "valueAuthority": {
+          "$ref": "#/$defs/valueAuthorityId"
         }
       }
     },
@@ -10660,7 +11290,7 @@
       "properties": {
         "decision": {
           "type": "string",
-          "enum": ["admit", "batch", "escalate_precision", "reject"]
+          "enum": ["admit", "batch", "escalate_precision", "reject", "simplify"]
         },
         "admitted": {
           "type": "boolean"
@@ -10864,6 +11494,7 @@
         "envelope",
         "errorBudget",
         "capability",
+        "precisionMetadata",
         "requestedPrecisionPath",
         "selectedPrecisionPath",
         "output",
@@ -10926,6 +11557,9 @@
         "capability": {
           "$ref": "#/$defs/capabilityEnvelope"
         },
+        "precisionMetadata": {
+          "$ref": "#/$defs/runPrecisionMetadata"
+        },
         "requestedPrecisionPath": {
           "$ref": "#/$defs/precisionPathId"
         },
@@ -10979,7 +11613,7 @@
     "streamDescriptor": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["streamId", "manifestVersion", "indexLayout", "availableRanges", "storagePolicy"],
+      "required": ["streamId", "manifestVersion", "indexLayout", "availableRanges", "storagePolicy", "metadata"],
       "properties": {
         "streamId": {
           "type": "string",

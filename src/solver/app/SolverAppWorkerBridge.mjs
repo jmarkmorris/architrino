@@ -44,6 +44,7 @@ export const SOLVER_APP_WORKER_METHODS = Object.freeze([
   "integrateConstantAccelerationMotionF64",
   "createPathHistoryStreamF64",
   "planPathHistoryStorageLifecycleF64",
+  "applyPathHistoryStorageLifecycleF64",
   "queryEmissionShellCandidatesF64",
   "queryEmissionShellCandidatePacketF64",
   "queryEmissionShellCandidatePacketsF64",

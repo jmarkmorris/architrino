@@ -2,8 +2,8 @@
 
 import { spawnSync } from "node:child_process";
 import fs from "node:fs";
-import { createRequire } from "node:module";
 import path from "node:path";
+import { pathToFileURL } from "node:url";
 
 const args = process.argv.slice(2);
 const target = args[0] || "all";
@@ -16,7 +16,6 @@ if (args.includes("--help") || !allowedTargets.has(target)) {
 const rootDir = process.cwd();
 const solverDir = path.join(rootDir, "src", "solver");
 const buildRoot = path.join(rootDir, ".tmp", "solver-build");
-const require = createRequire(import.meta.url);
 const emCache = process.env.EM_CACHE || path.join(rootDir, ".tmp", "solver-emcache");
 const env = {
   ...process.env,
@@ -28,6 +27,7 @@ fs.mkdirSync(emCache, { recursive: true });
 
 runChecked("node", ["scripts/solver-toolchain-preflight.mjs"], { env });
 runChecked("node", ["scripts/check-solver-contract-fixtures.mjs"], { env });
+runChecked("node", ["scripts/check-solver-geometry-inventory.mjs"], { env });
 
 if (target === "native" || target === "all") {
   configureNative();
@@ -62,6 +62,7 @@ if (target === "wasm" || target === "all") {
   runChecked("node", ["scripts/build-solver-package-manifest.mjs", "--check"], { env });
   runChecked("node", ["scripts/check-solver-app-bridge.mjs"], { env });
   runChecked("node", ["scripts/check-solver-baseline-sandbox.mjs"], { env });
+  runChecked("node", ["scripts/check-solver-migration-parity.mjs"], { env });
 }
 
 console.log(`solver smoke build complete: ${target}`);
@@ -123,12 +124,12 @@ function assertExists(filePath) {
 
 async function verifyWasmSmoke() {
   const wasmDir = path.join(buildRoot, "wasm");
-  const jsPath = path.join(wasmDir, "architrino_solver_wasm_smoke.js");
+  const jsPath = path.join(wasmDir, "architrino_solver_wasm_smoke.mjs");
   const wasmPath = path.join(wasmDir, "architrino_solver_wasm_smoke.wasm");
   assertExists(jsPath);
   assertExists(wasmPath);
 
-  const createModule = require(jsPath);
+  const { default: createModule } = await import(pathToFileURL(jsPath).href);
   const module = await createModule({
     locateFile: (fileName) => path.join(wasmDir, fileName),
   });

@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
-import { createRequire } from "node:module";
 import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
+import { pathToFileURL } from "node:url";
 
 import * as THREE from "../vendor/three/three.module.js";
 import {
@@ -29,14 +29,17 @@ import {
   createPathHistoryRunRequest,
   createPhotonPhaseDiagnosticsRunRequest,
 } from "../src/solver/app/SolverAppAdapters.mjs";
+import { runAnimatorSimulationWorkerRequestAsync } from "../src/apps/animator/AnimatorSimulationWorkerCoreRuntime.js";
+import { createAnimatorSimulationWorkerRunRequest } from "../src/apps/animator/AnimatorSimulationWorkerProtocolRuntime.js";
+import { hydrateAnimatorSimulationWorkerCompleteMessage } from "../src/apps/animator/AnimatorSimulationWorkerRuntime.js";
 import { classifySolverBaselineResponse } from "../src/solver/app/SolverBaselineComparison.mjs";
 
-const require = createRequire(import.meta.url);
 const rootDir = process.cwd();
 const wasmDir = path.join(rootDir, ".tmp", "solver-build", "wasm");
 const outputDir = path.join(rootDir, ".tmp", "solver-baseline-sandbox");
-const wasmLoaderPath = path.join(wasmDir, "architrino_solver_wasm_smoke.js");
-const createWasmModule = require(wasmLoaderPath);
+const wasmLoaderPath = path.join(wasmDir, "architrino_solver_wasm_smoke.mjs");
+const { default: createWasmModule } = await import(pathToFileURL(wasmLoaderPath).href);
+const locateWasmFile = (fileName) => path.join(wasmDir, fileName);
 const fixtureRequest = readJson("src/solver/fixtures/causal-roots-f64-smoke.request.json");
 const fixtureResponse = readJson("src/solver/fixtures/roots-and-hits-f64-smoke.response.json");
 
@@ -44,7 +47,7 @@ fs.mkdirSync(outputDir, { recursive: true });
 
 const client = createSolverAppBridgeClient({
   createWasmModule,
-  locateFile: (fileName) => path.join(wasmDir, fileName),
+  locateFile: locateWasmFile,
 });
 
 await client.init({
@@ -157,6 +160,34 @@ artifacts.push({
   manifestHash: photonFacadeNormalizedResponse.manifest.manifestHash,
 });
 
+const photonWasmClientCase = createPhotonCausalRootsWasmClientCase();
+const photonWasmClientRunHandle = await runPhotonCausalRootsWithSolverBridge(
+  photonWasmClientCase.request,
+  {
+    createWasmModule,
+    locateFile: locateWasmFile,
+    runId: `${photonWasmClientCase.caseId}-run`,
+  }
+);
+const photonWasmClientNormalizedResponse = stripRuntimeBuffers(photonWasmClientRunHandle.response);
+const photonWasmClientComparison = classifySolverBaselineResponse({
+  baseline: projectRootHitResponseForBaseline(photonWasmClientCase.baseline),
+  candidate: projectRootHitResponseForBaseline(photonWasmClientNormalizedResponse),
+  tolerance: photonWasmClientCase.tolerance,
+  refinementTolerance: photonWasmClientCase.refinementTolerance,
+});
+assert(
+  photonWasmClientComparison.classification === "baseline_within_tolerance",
+  `${photonWasmClientCase.caseId} baseline classification was ${photonWasmClientComparison.classification}`
+);
+recordSandboxArtifact({
+  testCase: photonWasmClientCase,
+  comparison: photonWasmClientComparison,
+  runManifest: photonWasmClientNormalizedResponse.manifest,
+  response: photonWasmClientNormalizedResponse,
+  manifestHash: photonWasmClientNormalizedResponse.manifest.manifestHash,
+});
+
 const photonCircularFacadeCase = createPhotonCircularSourceFacadeCase();
 const photonCircularFacadeResponse = await solvePhotonCircularSourceRootsHitsLedgerWithSolverBridge(
   null,
@@ -207,6 +238,48 @@ artifacts.push({
   tolerancePolicy: createTolerancePolicy(photonCircularFacadeCase),
   classification: photonCircularFacadeComparison.classification,
   manifestHash: "circular-source-direct-bridge",
+});
+
+const photonCircularWasmClientCase = createPhotonCircularSourceWasmClientCase();
+const photonCircularWasmClientResponse =
+  await solvePhotonCircularSourceRootsHitsLedgerWithSolverBridge(
+    null,
+    null,
+    photonCircularWasmClientCase.request.hitTime,
+    {
+      request: photonCircularWasmClientCase.request,
+      createWasmModule,
+      locateFile: locateWasmFile,
+    }
+  );
+const photonCircularWasmClientNormalizedResponse = stripRuntimeBuffers(
+  photonCircularWasmClientResponse
+);
+const photonCircularWasmClientComparison = classifySolverBaselineResponse({
+  baseline: projectCircularSourceRootsHitsLedgerForBaseline(
+    photonCircularWasmClientCase.baseline
+  ),
+  candidate: projectCircularSourceRootsHitsLedgerForBaseline(
+    photonCircularWasmClientNormalizedResponse
+  ),
+  tolerance: photonCircularWasmClientCase.tolerance,
+  refinementTolerance: photonCircularWasmClientCase.refinementTolerance,
+});
+assert(
+  photonCircularWasmClientComparison.classification === "baseline_within_tolerance",
+  `${photonCircularWasmClientCase.caseId} baseline classification was ${photonCircularWasmClientComparison.classification}`
+);
+recordSandboxArtifact({
+  testCase: photonCircularWasmClientCase,
+  comparison: photonCircularWasmClientComparison,
+  baseline: projectCircularSourceRootsHitsLedgerForBaseline(
+    photonCircularWasmClientCase.baseline
+  ),
+  response: projectCircularSourceRootsHitsLedgerForBaseline(
+    photonCircularWasmClientNormalizedResponse
+  ),
+  fullResponse: photonCircularWasmClientNormalizedResponse,
+  manifestHash: "circular-source-wasm-client-bridge",
 });
 
 const photonNormalizedCircularFacadeCase = createPhotonNormalizedCircularSourceFacadeCase();
@@ -383,6 +456,48 @@ artifacts.push({
   manifestHash: "geometry-direct-bridge",
 });
 
+const idealSwarmSelfHitWasmClientCase = createIdealSwarmSelfHitWasmClientCase(
+  idealSwarmGeometryCase
+);
+const idealSwarmSelfHitWasmClientRow = await solveCircularSelfHitSpanRowWithSolverBridge(1.2, {
+  createWasmModule,
+  locateFile: locateWasmFile,
+  runId: `${idealSwarmSelfHitWasmClientCase.caseId}-run`,
+});
+const idealSwarmSelfHitWasmClientCandidate = {
+  geometry: {
+    circularSelfHitSpans: [
+      projectCircularSelfHitSpanRowForBaseline(idealSwarmSelfHitWasmClientRow),
+    ],
+  },
+  status: {
+    code: "ok",
+    severity: "ok",
+    message: "shared geometry computed",
+    recoverable: true,
+  },
+};
+const idealSwarmSelfHitWasmClientComparison = classifySolverBaselineResponse({
+  baseline: idealSwarmSelfHitWasmClientCase.baseline,
+  candidate: idealSwarmSelfHitWasmClientCandidate,
+  tolerance: idealSwarmSelfHitWasmClientCase.tolerance,
+  refinementTolerance: idealSwarmSelfHitWasmClientCase.refinementTolerance,
+});
+assert(
+  idealSwarmSelfHitWasmClientComparison.classification === "baseline_within_tolerance",
+  `${idealSwarmSelfHitWasmClientCase.caseId} baseline classification was ${idealSwarmSelfHitWasmClientComparison.classification}`
+);
+recordSandboxArtifact({
+  testCase: idealSwarmSelfHitWasmClientCase,
+  comparison: idealSwarmSelfHitWasmClientComparison,
+  baseline: idealSwarmSelfHitWasmClientCase.baseline,
+  response: idealSwarmSelfHitWasmClientCandidate,
+  fullResponse: {
+    appFacadeSelfHit: idealSwarmSelfHitWasmClientRow,
+  },
+  manifestHash: "ideal-swarm-self-hit-wasm-client",
+});
+
 const idealSwarmFlightTimeCase = createIdealSwarmFlightTimeCase();
 const idealSwarmFlightTimeRow = await solveFlightTimeRowWithSolverBridge(
   idealSwarmFlightTimeCase.samplePoint,
@@ -448,6 +563,54 @@ artifacts.push({
   tolerancePolicy: createTolerancePolicy(idealSwarmFlightTimeCase),
   classification: idealSwarmFlightTimeComparison.classification,
   manifestHash: "ideal-swarm-flight-time-facade",
+});
+
+const idealSwarmFlightTimeWasmClientCase = createIdealSwarmFlightTimeWasmClientCase(
+  idealSwarmFlightTimeCase
+);
+const idealSwarmFlightTimeWasmClientRow = await solveFlightTimeRowWithSolverBridge(
+  idealSwarmFlightTimeWasmClientCase.samplePoint,
+  idealSwarmFlightTimeWasmClientCase.architrino,
+  idealSwarmFlightTimeWasmClientCase.observationTime,
+  {
+    ...idealSwarmFlightTimeWasmClientCase.options,
+    createWasmModule,
+    locateFile: locateWasmFile,
+    runId: `${idealSwarmFlightTimeWasmClientCase.caseId}-run`,
+  }
+);
+const idealSwarmFlightTimeWasmClientCandidate = {
+  geometry: {
+    delayedPotentials: [
+      projectDelayedPotentialRowForBaseline(idealSwarmFlightTimeWasmClientRow),
+    ],
+  },
+  status: {
+    code: "ok",
+    severity: "ok",
+    message: "shared geometry computed",
+    recoverable: true,
+  },
+};
+const idealSwarmFlightTimeWasmClientComparison = classifySolverBaselineResponse({
+  baseline: idealSwarmFlightTimeWasmClientCase.baseline,
+  candidate: idealSwarmFlightTimeWasmClientCandidate,
+  tolerance: idealSwarmFlightTimeWasmClientCase.tolerance,
+  refinementTolerance: idealSwarmFlightTimeWasmClientCase.refinementTolerance,
+});
+assert(
+  idealSwarmFlightTimeWasmClientComparison.classification === "baseline_within_tolerance",
+  `${idealSwarmFlightTimeWasmClientCase.caseId} baseline classification was ${idealSwarmFlightTimeWasmClientComparison.classification}`
+);
+recordSandboxArtifact({
+  testCase: idealSwarmFlightTimeWasmClientCase,
+  comparison: idealSwarmFlightTimeWasmClientComparison,
+  baseline: idealSwarmFlightTimeWasmClientCase.baseline,
+  response: idealSwarmFlightTimeWasmClientCandidate,
+  fullResponse: {
+    appFacadeFlightTime: idealSwarmFlightTimeWasmClientRow,
+  },
+  manifestHash: "ideal-swarm-flight-time-wasm-client",
 });
 
 const photonPhaseCase = createPhotonPhaseDiagnosticsCase();
@@ -589,6 +752,64 @@ artifacts.push({
   manifestHash: animatorMotionNormalizedResponse.manifest.manifestHash,
 });
 
+const animatorWorkerBridgeCase = createAnimatorWorkerBridgeCase(animatorMotionCase);
+const animatorWorkerBridgeMessage = await runAnimatorSimulationWorkerRequestAsync(
+  createAnimatorWorkerBridgeRunRequest(animatorWorkerBridgeCase),
+  {
+    createWasmModule,
+    locateFile: locateWasmFile,
+  }
+);
+const animatorWorkerBridgeHydrated = hydrateAnimatorSimulationWorkerCompleteMessage(
+  animatorWorkerBridgeMessage
+);
+const animatorWorkerBridgeCandidate = projectAnimatorWorkerBridgeDatasetForBaseline(
+  animatorWorkerBridgeHydrated.dataset
+);
+const animatorWorkerBridgeComparison = classifySolverBaselineResponse({
+  baseline: animatorWorkerBridgeCase.baseline,
+  candidate: animatorWorkerBridgeCandidate,
+  tolerance: animatorWorkerBridgeCase.tolerance,
+  refinementTolerance: animatorWorkerBridgeCase.refinementTolerance,
+});
+assert(
+  animatorWorkerBridgeComparison.classification === "baseline_within_tolerance",
+  `${animatorWorkerBridgeCase.caseId} baseline classification was ${animatorWorkerBridgeComparison.classification}`
+);
+const animatorWorkerBridgeArtifact = {
+  schema: "solver-baseline-sandbox/v1",
+  caseId: animatorWorkerBridgeCase.caseId,
+  appId: animatorWorkerBridgeCase.appId,
+  seedPolicy: "fixed-no-randomness",
+  resourceCaps: animatorWorkerBridgeCase.resourceCaps,
+  tolerancePolicy: createTolerancePolicy(animatorWorkerBridgeCase),
+  provenance: createSandboxProvenance(animatorWorkerBridgeCase),
+  workingDirectory: outputDir,
+  outputPolicy: "artifact-only",
+  writesToAppSource: false,
+  comparison: animatorWorkerBridgeComparison,
+  baseline: animatorWorkerBridgeCase.baseline,
+  response: animatorWorkerBridgeCandidate,
+  fullResponse: {
+    dataset: animatorWorkerBridgeHydrated.dataset,
+    frameBufferSummary: animatorWorkerBridgeHydrated.frameBufferSummary,
+  },
+};
+const animatorWorkerBridgeArtifactPath = path.join(outputDir, `${animatorWorkerBridgeCase.caseId}.json`);
+const animatorWorkerBridgeArtifactSha256 = writeJsonArtifact(
+  animatorWorkerBridgeArtifactPath,
+  animatorWorkerBridgeArtifact
+);
+artifacts.push({
+  caseId: animatorWorkerBridgeCase.caseId,
+  appId: animatorWorkerBridgeCase.appId,
+  path: animatorWorkerBridgeArtifactPath,
+  artifactSha256: animatorWorkerBridgeArtifactSha256,
+  tolerancePolicy: createTolerancePolicy(animatorWorkerBridgeCase),
+  classification: animatorWorkerBridgeComparison.classification,
+  manifestHash: animatorWorkerBridgeHydrated.dataset.simulation.solver.runId,
+});
+
 const manifestPath = path.join(outputDir, "manifest.json");
 writeJsonArtifact(manifestPath, {
   schema: "solver-baseline-sandbox-manifest/v1",
@@ -620,6 +841,45 @@ function createCase(caseId, appId) {
   };
 }
 
+function recordSandboxArtifact({
+  testCase,
+  comparison,
+  baseline,
+  runManifest,
+  response,
+  fullResponse,
+  manifestHash,
+}) {
+  const artifact = {
+    schema: "solver-baseline-sandbox/v1",
+    caseId: testCase.caseId,
+    appId: testCase.appId,
+    seedPolicy: "fixed-no-randomness",
+    resourceCaps: testCase.resourceCaps,
+    tolerancePolicy: createTolerancePolicy(testCase),
+    provenance: createSandboxProvenance(testCase),
+    workingDirectory: outputDir,
+    outputPolicy: "artifact-only",
+    writesToAppSource: false,
+    comparison,
+    ...(baseline === undefined ? {} : { baseline }),
+    ...(runManifest === undefined ? {} : { runManifest }),
+    response,
+    ...(fullResponse === undefined ? {} : { fullResponse }),
+  };
+  const artifactPath = path.join(outputDir, `${testCase.caseId}.json`);
+  const artifactSha256 = writeJsonArtifact(artifactPath, artifact);
+  artifacts.push({
+    caseId: testCase.caseId,
+    appId: testCase.appId,
+    path: artifactPath,
+    artifactSha256,
+    tolerancePolicy: createTolerancePolicy(testCase),
+    classification: comparison.classification,
+    manifestHash,
+  });
+}
+
 function createPhotonCausalRootsFacadeCase() {
   return {
     caseId: "photon-causal-root-facade-smoke",
@@ -635,6 +895,13 @@ function createPhotonCausalRootsFacadeCase() {
       network: "disabled",
       sourceWrites: "disabled",
     },
+  };
+}
+
+function createPhotonCausalRootsWasmClientCase() {
+  return {
+    ...createPhotonCausalRootsFacadeCase(),
+    caseId: "photon-causal-root-wasm-client-smoke",
   };
 }
 
@@ -724,6 +991,18 @@ function createPhotonCircularSourceFacadeCase() {
       maxHits: 4,
       network: "disabled",
       sourceWrites: "disabled",
+    },
+  };
+}
+
+function createPhotonCircularSourceWasmClientCase() {
+  const baseCase = createPhotonCircularSourceFacadeCase();
+  return {
+    ...baseCase,
+    caseId: "photon-circular-source-roots-hits-ledger-wasm-client-smoke",
+    request: {
+      ...baseCase.request,
+      streamId: "baseline-photon-circular-source-wasm-client",
     },
   };
 }
@@ -844,6 +1123,31 @@ function createIdealSwarmGeometryCase() {
   };
 }
 
+function createIdealSwarmSelfHitWasmClientCase(idealSwarmGeometryCase) {
+  return {
+    caseId: "ideal-swarm-self-hit-wasm-client-smoke",
+    appId: "ideal-swarm",
+    tolerance: idealSwarmGeometryCase.tolerance,
+    refinementTolerance: idealSwarmGeometryCase.refinementTolerance,
+    resourceCaps: idealSwarmGeometryCase.resourceCaps,
+    baseline: {
+      geometry: {
+        circularSelfHitSpans:
+          idealSwarmGeometryCase.baseline.geometry.circularSelfHitSpans.map((row) => ({
+            itemIndex: row.itemIndex,
+            statusCode: row.statusCode,
+            fieldSpeedRatio: row.fieldSpeedRatio,
+            regime: row.regime,
+            resultKind: row.resultKind,
+            span: row.span,
+            rootFound: row.rootFound,
+          })),
+      },
+      status: idealSwarmGeometryCase.baseline.status,
+    },
+  };
+}
+
 function createIdealSwarmFlightTimeCase() {
   const sourceStart = new THREE.Vector3(1, -0.5, 0.25);
   const sourceVelocity = new THREE.Vector3(0.2, 0.1, -0.05);
@@ -910,6 +1214,13 @@ function createIdealSwarmFlightTimeCase() {
         recoverable: true,
       },
     },
+  };
+}
+
+function createIdealSwarmFlightTimeWasmClientCase(idealSwarmFlightTimeCase) {
+  return {
+    ...idealSwarmFlightTimeCase,
+    caseId: "ideal-swarm-flight-time-wasm-client-smoke",
   };
 }
 
@@ -1029,6 +1340,11 @@ function createPathHistoryCase() {
         metadata: {
           schema: "solver-path-history-stream-metadata.v1",
           precisionPath: "scaled_f64_strict",
+          numericType: "f64",
+          numericChart: "absolute_f64",
+          valueAuthority: "authoritative",
+          appBufferAuthority: "authoritative",
+          claimLevel: "migration-parity",
           units: "solver-si",
           coordinateFrame: "absolute-lab-frame",
           scaleNormalization: "unit-test-scale",
@@ -1130,6 +1446,32 @@ function createAnimatorMotionCase() {
   };
 }
 
+function createAnimatorWorkerBridgeCase(animatorMotionCase) {
+  return {
+    caseId: "animator-worker-solver-bridge-smoke",
+    appId: "animator",
+    tolerance: animatorMotionCase.tolerance,
+    refinementTolerance: animatorMotionCase.refinementTolerance,
+    resourceCaps: animatorMotionCase.resourceCaps,
+    motionRequest: animatorMotionCase.motionRequest,
+    baseline: {
+      frames: animatorMotionCase.baseline.frames.map((frame) => ({
+        frameIndex: frame.frameIndex,
+        time: frame.time,
+        position: vectorObjectToArray(frame.position),
+        velocity: vectorObjectToArray(frame.velocity),
+      })),
+      status: {
+        code: "ok",
+      },
+    },
+  };
+}
+
+function vectorObjectToArray(value = {}) {
+  return [Number(value.x) || 0, Number(value.y) || 0, Number(value.z) || 0];
+}
+
 function createMotionFrameBaseline(frameIndex, time, position) {
   return {
     pathKey: 1234,
@@ -1179,6 +1521,18 @@ function projectDelayedPotentialRowForBaseline(row) {
     potential: row.potential,
     iterations: row.iterations,
     usedCausalDenominator: row.usedCausalDenominator,
+  };
+}
+
+function projectCircularSelfHitSpanRowForBaseline(row) {
+  return {
+    itemIndex: row.itemIndex,
+    statusCode: row.statusCode,
+    fieldSpeedRatio: row.fieldSpeedRatio,
+    regime: row.regime,
+    resultKind: row.resultKind,
+    span: row.span,
+    rootFound: row.rootFound,
   };
 }
 
@@ -1298,6 +1652,23 @@ function projectAnimatorMotionResponseForBaseline(response, dynamicReplayValidat
     dynamicReplayValidation: projectDynamicReplayValidationForBaseline(dynamicReplayValidation),
     status: {
       code: response.status?.code,
+    },
+  };
+}
+
+function projectAnimatorWorkerBridgeDatasetForBaseline(dataset = {}) {
+  return {
+    frames: (dataset.frames ?? []).map((frame) => {
+      const particle = frame.particles?.[0] ?? {};
+      return {
+        frameIndex: frame.index,
+        time: frame.t,
+        position: particle.position ?? [],
+        velocity: particle.velocity ?? [],
+      };
+    }),
+    status: {
+      code: dataset.simulation?.halt?.code,
     },
   };
 }
@@ -1530,6 +1901,7 @@ function createPathHistoryRunSimulationRequest(testCase) {
     rowsPerChunk: 1,
     metadata: {
       precisionPath: "scaled_f64_strict",
+      claimLevel: "migration-parity",
       units: "solver-si",
       coordinateFrame: "absolute-lab-frame",
       scaleNormalization: "unit-test-scale",
@@ -1605,6 +1977,27 @@ function createAnimatorMotionRunSimulationRequest(testCase) {
       deterministic: true,
     },
   });
+}
+
+function createAnimatorWorkerBridgeRunRequest(testCase) {
+  return createAnimatorSimulationWorkerRunRequest(
+    {
+      solverBridge: {
+        enabled: true,
+        motionRequest: testCase.motionRequest,
+        streamTarget: "caller-buffer",
+        deterministic: true,
+        memoryBudgetBytes: testCase.resourceCaps.maxBytes,
+      },
+    },
+    {
+      requestId: `${testCase.caseId}-request`,
+      datasetOptions: {
+        id: `${testCase.caseId}-dataset`,
+        claimLevel: "migration-parity",
+      },
+    }
+  );
 }
 
 function stripRuntimeBuffers(response) {

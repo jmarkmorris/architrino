@@ -110,6 +110,23 @@
           "target": "caller-buffer",
           "durable": false,
           "maxBytes": 240
+        },
+        "metadata": {
+          "schema": "solver-path-history-stream-metadata.v1",
+          "precisionPath": "auto",
+          "numericType": "f64",
+          "numericChart": "absolute_f64",
+          "valueAuthority": "authoritative",
+          "appBufferAuthority": "authoritative",
+          "claimLevel": "interactive-preview",
+          "units": "solver-units",
+          "coordinateFrame": "solver-frame",
+          "scaleNormalization": "none",
+          "interpolationRule": "transient-buffer",
+          "provenance": {
+            "source": "transient-stream"
+          },
+          "diagnostics": []
         }
       }
     ],

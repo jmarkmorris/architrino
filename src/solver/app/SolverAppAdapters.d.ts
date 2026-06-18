@@ -36,6 +36,7 @@ import type {
   SolverPathHistoryDynamicReplayValidationRequest,
   SolverPathHistoryStorageLifecyclePolicy,
   SolverPathHistoryChunkMetadata,
+  SolverPathHistoryStorageLifecycleApplyRequest,
   SolverPathHistoryStorageLifecycleRequest,
   SolverRunConfig,
   SolverRunKind,
@@ -248,6 +249,7 @@ export interface PathHistoryStorageLifecycleAdapterInput {
   manifestPath?: string;
   policy: SolverPathHistoryStorageLifecyclePolicy;
   chunks?: SolverPathHistoryChunkMetadata[];
+  deleteStreamWhenAllChunksDeleted?: boolean;
 }
 
 export interface PathHistoryWorkPacketPlanAdapterInput {
@@ -378,6 +380,10 @@ export declare function createReadStreamRangeRequest(
 export declare function createPathHistoryStorageLifecycleRequest(
   input: PathHistoryStorageLifecycleAdapterInput
 ): SolverPathHistoryStorageLifecycleRequest;
+
+export declare function createPathHistoryStorageLifecycleApplyRequest(
+  input: PathHistoryStorageLifecycleAdapterInput
+): SolverPathHistoryStorageLifecycleApplyRequest;
 
 export declare function createPathHistoryWorkPacketPlanRequest(
   input: PathHistoryWorkPacketPlanAdapterInput

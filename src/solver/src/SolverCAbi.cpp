@@ -102,6 +102,7 @@ static_assert(offsetof(ArchitrinoSolverPrecisionDiagnosticRowF64, geometry_min) 
 static_assert(offsetof(ArchitrinoSolverPrecisionSolveSummaryF64, root_tolerance) == 32);
 static_assert(offsetof(ArchitrinoSolverPrecisionSolveSummaryF64, max_iterations) == 56);
 static_assert(offsetof(ArchitrinoSolverPrecisionSolveSummaryF64, validation_replay_matched) == 72);
+static_assert(offsetof(ArchitrinoSolverPrecisionSolveSummaryF64, selected_numeric_chart) == 76);
 static_assert(offsetof(ArchitrinoSolverErrorBudgetStageInputF64, estimated_absolute_error) == 8);
 static_assert(offsetof(ArchitrinoSolverErrorBudgetStageRowF64, estimated_absolute_error) == 16);
 static_assert(offsetof(ArchitrinoSolverErrorBudgetStageRowF64, tolerance_ratio) == 32);
@@ -1220,6 +1221,8 @@ int precision_flags(const architrino::solver::PrecisionDiagnostic& diagnostic) {
   if (diagnostic.timeResolutionLimited) {
     flags |= 8;
   }
+  flags |= (static_cast<int>(diagnostic.recommendedChart) & 0xff) << 8;
+  flags |= (static_cast<int>(diagnostic.speedChart) & 0xff) << 16;
   return flags;
 }
 
@@ -1296,7 +1299,7 @@ ArchitrinoSolverPrecisionSolveSummaryF64 to_precision_solve_summary(
       report.escalated ? 1U : 0U,
       report.validationReplayRun ? 1U : 0U,
       report.validationReplayMatched ? 1U : 0U,
-      0U,
+      static_cast<int>(report.selectedNumericChart),
   };
 }
 

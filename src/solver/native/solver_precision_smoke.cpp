@@ -103,6 +103,15 @@ int main() {
               true,
               false,
           });
+  const architrino::solver::PrecisionCausalRootResult forcedExtendedPath =
+      architrino::solver::solve_causal_roots_with_precision(
+          make_request(0.0, 10.0, 10.0, 1e-10),
+          architrino::solver::PrecisionSolveOptions{
+              architrino::solver::PrecisionPath::ExtendedPrecision,
+              architrino::solver::ClaimLevel::InteractivePreview,
+              true,
+              false,
+          });
   const architrino::solver::PrecisionRootsAndHitsResult precisionRootsAndHits =
       architrino::solver::solve_roots_and_hits_with_precision(
           make_request(1e15, 1e3, 1e12, 1e-16),
@@ -122,11 +131,15 @@ int main() {
       std::abs(largeRoots.roots[0].residual) <= 1e-9 &&
       ordinary.recommendedPath == architrino::solver::PrecisionPath::ScaledF64Fast &&
       ordinary.recommendedNumericType == architrino::solver::NumericType::F64 &&
+      ordinary.recommendedChart == architrino::solver::NumericChart::AbsoluteF64 &&
+      ordinary.speedChart == architrino::solver::NumericChart::NondimensionalRatio &&
       !ordinary.scaleNormalizationRecommended &&
       !ordinary.scaleResolutionLimited &&
       !ordinary.timeResolutionLimited &&
       large.recommendedPath == architrino::solver::PrecisionPath::ExtendedPrecision &&
       large.recommendedNumericType == architrino::solver::NumericType::Decimal128 &&
+      large.recommendedChart == architrino::solver::NumericChart::IntervalBounds &&
+      large.speedChart == architrino::solver::NumericChart::NondimensionalRatio &&
       large.scaleNormalizationRecommended &&
       large.extendedPrecisionRecommended &&
       large.scaleResolutionLimited &&
@@ -153,6 +166,12 @@ int main() {
       strictPath.precision.selectedNumericType == architrino::solver::NumericType::F64 &&
       strictPath.precision.scanSubdivisions >= 128 &&
       strictPath.precision.maxIterations >= 128 &&
+      forcedExtendedPath.precision.selectedPath ==
+          architrino::solver::PrecisionPath::ExtendedPrecision &&
+      forcedExtendedPath.precision.selectedNumericType ==
+          architrino::solver::NumericType::Decimal128 &&
+      forcedExtendedPath.precision.selectedNumericChart ==
+          architrino::solver::NumericChart::IntervalBounds &&
       precisionRootsAndHits.roots.validation.ok &&
       precisionRootsAndHits.hits.validation.ok &&
       precisionRootsAndHits.roots.roots.size() == 1 &&
@@ -179,6 +198,10 @@ int main() {
       (cDiagnostic.flags & 2) != 0 &&
       (cDiagnostic.flags & 4) != 0 &&
       (cDiagnostic.flags & 8) != 0 &&
+      ((cDiagnostic.flags >> 8) & 0xff) ==
+          static_cast<int>(architrino::solver::NumericChart::IntervalBounds) &&
+      ((cDiagnostic.flags >> 16) & 0xff) ==
+          static_cast<int>(architrino::solver::NumericChart::NondimensionalRatio) &&
       cDiagnostic.geometry_orders >= 12.0;
 
   ArchitrinoSolverCausalRootRowF64 precisionRoots[2] = {};
@@ -254,6 +277,8 @@ int main() {
           static_cast<int>(architrino::solver::PrecisionPath::ExtendedPrecision) &&
       precisionSummary.selected_numeric_type ==
           static_cast<int>(architrino::solver::NumericType::Decimal128) &&
+      precisionSummary.selected_numeric_chart ==
+          static_cast<int>(architrino::solver::NumericChart::IntervalBounds) &&
       precisionSummary.escalated == 1 &&
       precisionSummary.validation_replay_run == 1 &&
       precisionSummary.validation_replay_matched == 1 &&

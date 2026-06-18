@@ -1,4 +1,7 @@
 import { runAssemblyDynamicsDataset } from "../../../scripts/simulations/lib/assembly-dynamics-engine.mjs";
+import {
+  runSolverAppBridgeRequest,
+} from "../../solver/app/SolverAppBridgeClientResolver.mjs";
 import { createAnimatorMotionSimulationRunRequest } from "../../solver/app/SolverAppAdapters.mjs";
 import {
   ANIMATOR_SIMULATION_DATASET_KIND,
@@ -10,13 +13,12 @@ import {
   summarizeAnimatorSimulationFrameBuffer,
 } from "./AnimatorSimulationFrameBufferRuntime.js";
 import {
+  ANIMATOR_SOLVER_BRIDGE_ENGINE_ID,
   ANIMATOR_SIMULATION_WORKER_COMPLETE_TYPE,
   ANIMATOR_SIMULATION_WORKER_REQUEST_TYPE,
   ANIMATOR_SIMULATION_WORKER_STARTED_TYPE,
   createAnimatorSimulationWorkerErrorMessage,
 } from "./AnimatorSimulationWorkerProtocolRuntime.js";
-
-const SOLVER_BRIDGE_ENGINE_ID = "architrino-solver-app-bridge";
 
 export function createAnimatorSimulationWorkerStartedMessage(request = {}) {
   return {
@@ -63,7 +65,7 @@ async function runAnimatorSolverBridgeWorkerRequest(request = {}, options = {}) 
   const runRequest = createAnimatorSolverBridgeRunRequest(request);
   const runHandle = typeof options.runSolverBridge === "function"
     ? await options.runSolverBridge(runRequest, request)
-    : await runSolverBridgeClient(options.solverClient, runRequest);
+    : await runSolverBridgeClient(options, request, runRequest);
   const dataset = createAnimatorDatasetFromSolverBridgeRun(runHandle, request);
   const frameBuffer = createAnimatorSimulationFrameBuffer(dataset);
   const datasetSkeleton = stripAnimatorSimulationDatasetFrames(dataset);
@@ -78,7 +80,7 @@ async function runAnimatorSolverBridgeWorkerRequest(request = {}, options = {}) 
       completed: dataset?.simulation?.halt?.status === "completed",
       haltStatus: dataset?.simulation?.halt?.status ?? "unknown",
       haltCode: dataset?.simulation?.halt?.code ?? null,
-      solverEngineId: SOLVER_BRIDGE_ENGINE_ID,
+      solverEngineId: ANIMATOR_SOLVER_BRIDGE_ENGINE_ID,
     },
   };
 }
@@ -89,18 +91,41 @@ function shouldUseSolverBridge(request = {}, options = {}) {
     ? config.solverBridge
     : {};
   return (
-    config.solverEngine === SOLVER_BRIDGE_ENGINE_ID ||
+    config.solverEngine === ANIMATOR_SOLVER_BRIDGE_ENGINE_ID ||
     config.solverEngine === "solver-app-bridge" ||
     bridgeConfig.enabled === true ||
     typeof options.runSolverBridge === "function"
   );
 }
 
-async function runSolverBridgeClient(client, runRequest) {
-  if (!client || typeof client.runSimulation !== "function") {
-    throw new Error("Animator solver bridge worker request requires a solver client or runSolverBridge option.");
-  }
-  return client.runSimulation(runRequest);
+async function runSolverBridgeClient(options, request, runRequest) {
+  const bridgeConfig = request?.config?.solverBridge && typeof request.config.solverBridge === "object"
+    ? request.config.solverBridge
+    : {};
+  return runSolverAppBridgeRequest({
+    appId: "animator",
+    request: runRequest,
+    options,
+    bridgeConfig,
+    factoryRequest: request,
+    requestedCapabilities: [
+      "motionSimulation",
+      "pathHistory",
+      "appPlayback",
+      "validationReplay",
+    ],
+    storagePolicy: {
+      target: bridgeConfig.streamTarget ?? "caller-buffer",
+      durable: bridgeConfig.streamTarget === "native-file",
+      maxBytes: bridgeConfig.memoryBudgetBytes ?? 64 * 1024 * 1024,
+    },
+    threadingPolicy: {
+      mode: bridgeConfig.threadingMode ?? "single-thread",
+      deterministic: bridgeConfig.deterministic ?? true,
+    },
+    missingClientMessage:
+      "Animator solver bridge worker request requires a solver client, runSolverBridge option, client factory, worker, or solver WASM module factory.",
+  });
 }
 
 function createAnimatorSolverBridgeRunRequest(request = {}) {
@@ -163,7 +188,7 @@ function createAnimatorDatasetFromSolverBridgeRun(runHandle = {}, request = {}) 
       index: frameIndex,
       t: Number.isFinite(Number(frame.time)) ? Number(frame.time) : frameIndex,
       particles: [],
-      diagnostics: { source: SOLVER_BRIDGE_ENGINE_ID },
+      diagnostics: { source: ANIMATOR_SOLVER_BRIDGE_ENGINE_ID },
     };
     entry.particles.push({
       id: particleIds.get(frame.pathKey) ?? `path_${frame.pathKey}`,
@@ -205,7 +230,7 @@ function createAnimatorDatasetFromSolverBridgeRun(runHandle = {}, request = {}) 
     id: response.datasetId ?? request.datasetOptions?.id ?? "animator_solver_bridge_dataset",
     claimLevel: runHandle.acceptedPrecisionPath ? "solver-derived-diagnostic" : request.datasetOptions?.claimLevel ?? "solver-derived-diagnostic",
     provenance: {
-      source: SOLVER_BRIDGE_ENGINE_ID,
+      source: ANIMATOR_SOLVER_BRIDGE_ENGINE_ID,
       runId: response.runId ?? runHandle.runId ?? "",
       requestId: runHandle.requestId ?? request.requestId ?? "",
     },
@@ -220,7 +245,7 @@ function createAnimatorDatasetFromSolverBridgeRun(runHandle = {}, request = {}) 
         sampleStride: 1,
       },
       solver: {
-        engineId: SOLVER_BRIDGE_ENGINE_ID,
+        engineId: ANIMATOR_SOLVER_BRIDGE_ENGINE_ID,
         runId: response.runId ?? runHandle.runId ?? "",
         datasetId: response.datasetId ?? runHandle.datasetId ?? "",
         acceptedPrecisionPath: runHandle.acceptedPrecisionPath ?? response.summary?.precisionPath ?? "",

@@ -369,6 +369,22 @@ export function createPathHistoryStorageLifecycleRequest(input) {
   };
 }
 
+export function createPathHistoryStorageLifecycleApplyRequest(input) {
+  requireObject(input, "path-history storage lifecycle apply adapter input");
+  if (input.chunks != null) {
+    throw new TypeError("path-history storage lifecycle apply requires a streamId or manifestPath, not loose chunks");
+  }
+  return {
+    streamId: cloneOptionalString(input.streamId, "streamId"),
+    manifestPath: cloneOptionalString(input.manifestPath, "manifestPath"),
+    policy: cloneRequiredObject(input.policy, "policy"),
+    deleteStreamWhenAllChunksDeleted: cloneOptionalBoolean(
+      input.deleteStreamWhenAllChunksDeleted,
+      "deleteStreamWhenAllChunksDeleted"
+    ),
+  };
+}
+
 export function createPathHistoryWorkPacketPlanRequest(input) {
   requireObject(input, "path-history work-packet plan adapter input");
   return {

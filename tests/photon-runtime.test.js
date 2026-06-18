@@ -76,6 +76,7 @@ import {
   getPhotonFieldPlotSampleCount,
   isPhotonPlotSampleInForwardGap,
 } from "../src/apps/photon/PhotonSwarmVisualRuntime.js";
+import { createSolverBridgeLoopbackWorker } from "./solver-worker-loopback.mjs";
 
 function assertNear(actual, expected, epsilon = 1e-12) {
   assert.ok(Math.abs(actual - expected) < epsilon, `${actual} should be near ${expected}`);
@@ -394,6 +395,166 @@ test("Photon causal roots can be routed through the solver app bridge for linear
   assert.equal(roots[0].residual, 0);
 });
 
+test("Photon causal roots can create and dispose a solver bridge client", async () => {
+  const rootRequest = {
+    source: {
+      startTime: 0,
+      endTime: 10,
+      positionAtStart: { x: 0, y: 0, z: 0 },
+      velocity: { x: 0, y: 0, z: 0 },
+    },
+    receiver: {
+      startTime: 0,
+      endTime: 10,
+      positionAtStart: { x: 3, y: 0, z: 0 },
+      velocity: { x: 0, y: 0, z: 0 },
+    },
+    hitTime: 3,
+    signalSpeed: 1,
+    rootTolerance: 1e-13,
+    maxIterations: 128,
+    scanSubdivisions: 64,
+    maxRoots: 4,
+    maxHits: 4,
+  };
+  let disposed = false;
+
+  const roots = await solvePhotonCausalRootsWithSolverBridge(rootRequest, {
+    requestId: "photon_factory_request",
+    runId: "photon_factory_run",
+    datasetId: "photon_factory_dataset",
+    disposeSolverBridgeClientAfterRun: true,
+    createSolverBridgeClient(factoryRequest, context) {
+      assert.equal(factoryRequest, rootRequest);
+      assert.equal(context.appId, "photon");
+      assert.equal(context.requiredMethod, "runSimulation");
+      assert.ok(context.requestedCapabilities.includes("causalRoots"));
+      return {
+        async runSimulation(runRequest) {
+          assert.equal(runRequest.requestId, "photon_factory_request");
+          return {
+            requestId: runRequest.requestId,
+            runId: runRequest.runId,
+            datasetId: runRequest.datasetId,
+            status: { code: "ok", severity: "ok", message: "causal roots solved" },
+            response: {
+              runId: runRequest.runId,
+              datasetId: runRequest.datasetId,
+              roots: [
+                {
+                  rootId: 0,
+                  statusCode: 0,
+                  emissionTime: 0,
+                  hitTime: 3,
+                  delay: 3,
+                  distance: 3,
+                  residual: 0,
+                  jacobian: 1,
+                  branchWeight: 1,
+                  sourcePoint: { x: 0, y: 0, z: 0 },
+                  receiverPoint: { x: 3, y: 0, z: 0 },
+                },
+              ],
+              status: { code: "ok", severity: "ok", message: "causal roots solved" },
+            },
+          };
+        },
+        async dispose() {
+          disposed = true;
+        },
+      };
+    },
+  });
+
+  assert.equal(roots.length, 1);
+  assert.equal(roots[0].delay, 3);
+  assert.equal(disposed, true);
+});
+
+test("Photon causal roots can create and dispose a solver bridge worker client", async () => {
+  const rootRequest = {
+    source: {
+      startTime: 0,
+      endTime: 10,
+      positionAtStart: { x: 0, y: 0, z: 0 },
+      velocity: { x: 0, y: 0, z: 0 },
+    },
+    receiver: {
+      startTime: 0,
+      endTime: 10,
+      positionAtStart: { x: 4, y: 0, z: 0 },
+      velocity: { x: 0, y: 0, z: 0 },
+    },
+    hitTime: 4,
+    signalSpeed: 1,
+    rootTolerance: 1e-13,
+    maxIterations: 128,
+    scanSubdivisions: 64,
+    maxRoots: 4,
+    maxHits: 4,
+  };
+  const worker = createSolverBridgeLoopbackWorker({
+    init(initRequest) {
+      assert.equal(initRequest.appId, "photon");
+      assert.ok(initRequest.requestedCapabilities.includes("causalRoots"));
+      return {
+        apiVersion: initRequest.apiVersion,
+        status: { code: "ok", severity: "ok", message: "solver initialized" },
+      };
+    },
+    runSimulation(runRequest) {
+      assert.equal(runRequest.requestId, "photon_worker_request");
+      return {
+        requestId: runRequest.requestId,
+        runId: runRequest.runId,
+        datasetId: runRequest.datasetId,
+        status: { code: "ok", severity: "ok", message: "causal roots solved" },
+        response: {
+          runId: runRequest.runId,
+          datasetId: runRequest.datasetId,
+          roots: [
+            {
+              rootId: 0,
+              statusCode: 0,
+              emissionTime: 0,
+              hitTime: 4,
+              delay: 4,
+              distance: 4,
+              residual: 0,
+              jacobian: 1,
+              branchWeight: 1,
+              sourcePoint: { x: 0, y: 0, z: 0 },
+              receiverPoint: { x: 4, y: 0, z: 0 },
+            },
+          ],
+          status: { code: "ok", severity: "ok", message: "causal roots solved" },
+        },
+      };
+    },
+  });
+
+  const roots = await solvePhotonCausalRootsWithSolverBridge(rootRequest, {
+    requestId: "photon_worker_request",
+    runId: "photon_worker_run",
+    datasetId: "photon_worker_dataset",
+    createSolverWorker(factoryRequest, context) {
+      assert.equal(factoryRequest, rootRequest);
+      assert.equal(context.appId, "photon");
+      assert.equal(context.requiredMethod, "runSimulation");
+      assert.ok(context.requestedCapabilities.includes("causalRoots"));
+      return worker;
+    },
+  });
+
+  assert.equal(roots.length, 1);
+  assert.equal(roots[0].delay, 4);
+  assert.deepEqual(
+    worker.messages.map((message) => message.method),
+    ["init", "runSimulation", "dispose"]
+  );
+  assert.equal(worker.terminated, true);
+});
+
 test("Photon circular-source solver request preserves source orbit geometry", () => {
   const state = createDefaultPhotonState();
   const sourceRef = { swarmId: "left", layerId: "O", chargeType: "electrino" };
@@ -511,6 +672,61 @@ test("Photon circular-source roots, hits, and ledger rows can be routed through 
   assert.equal(roots.length, 1);
   assert.equal(roots[0].hitTime, observationTime);
   assert.equal(roots[0].residual, 0);
+});
+
+test("Photon circular-source bridge can create and dispose a solver bridge client", async () => {
+  const state = createDefaultPhotonState();
+  const sourceRef = { swarmId: "left", layerId: "O", chargeType: "positrino" };
+  const observationTime = 0.75;
+  let disposed = false;
+
+  const response = await solvePhotonCircularSourceRootsHitsLedgerWithSolverBridge(
+    state,
+    sourceRef,
+    observationTime,
+    {
+      disposeSolverBridgeClientAfterRun: true,
+      createSolverBridgeClient(factoryRequest, context) {
+        assert.equal(factoryRequest.hitTime, observationTime);
+        assert.equal(context.appId, "photon");
+        assert.equal(context.requiredMethod, "solveCircularSourceRootsHitsLedgerF64");
+        assert.ok(context.requestedCapabilities.includes("causalRoots"));
+        return {
+          async solveCircularSourceRootsHitsLedgerF64(request) {
+            assert.equal(request.hitTime, observationTime);
+            return {
+              schema: "solver-circular-source-roots-hits-ledger-f64.v1",
+              roots: [
+                {
+                  rootId: 0,
+                  statusCode: 0,
+                  emissionTime: 0.5,
+                  hitTime: observationTime,
+                  delay: 0.25,
+                  distance: 0.25,
+                  residual: 0,
+                  jacobian: 1,
+                  branchWeight: 1,
+                  sourcePoint: { x: -1, y: 0, z: 0 },
+                  receiverPoint: state.measurement.virtualObserver,
+                },
+              ],
+              hits: [],
+              rootLedgerDetails: [],
+              status: { code: "ok", severity: "ok", message: "circular-source causal roots solved" },
+            };
+          },
+          async dispose() {
+            disposed = true;
+          },
+        };
+      },
+    }
+  );
+
+  assert.equal(response.roots.length, 1);
+  assert.equal(response.roots[0].hitTime, observationTime);
+  assert.equal(disposed, true);
 });
 
 test("large Sep/r still uses the full causal-root scanner", () => {

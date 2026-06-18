@@ -316,10 +316,16 @@ AdmissionReport admit_simulation_envelope(const ModelContract& model,
     return admission;
   }
 
-  if (envelope.entityCount > capability.maxInteractiveEntities ||
-      envelope.outputDetail == OutputDetail::Validation ||
-      envelope.latencyTarget == LatencyTarget::Batch ||
-      envelope.latencyTarget == LatencyTarget::Validation) {
+  const bool requires_batch_execution = envelope.outputDetail == OutputDetail::Validation ||
+                                        envelope.latencyTarget == LatencyTarget::Batch ||
+                                        envelope.latencyTarget == LatencyTarget::Validation;
+  const bool exceeds_interactive_entities = envelope.entityCount > capability.maxInteractiveEntities;
+  if (requires_batch_execution) {
+    admission.decision = AdmissionDecision::Batch;
+  } else if (exceeds_interactive_entities &&
+             envelope.simplificationPolicy == SimplificationPolicy::ExplicitReducedModel) {
+    admission.decision = AdmissionDecision::Simplify;
+  } else if (exceeds_interactive_entities) {
     admission.decision = AdmissionDecision::Batch;
   } else {
     admission.decision = AdmissionDecision::Admit;

@@ -170,7 +170,7 @@ struct ArchitrinoSolverPrecisionSolveSummaryF64 {
   std::uint32_t escalated;
   std::uint32_t validation_replay_run;
   std::uint32_t validation_replay_matched;
-  std::uint32_t reserved0;
+  int selected_numeric_chart;
 };
 
 struct ArchitrinoSolverErrorBudgetF64 {

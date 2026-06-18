@@ -130,6 +130,18 @@ bool solver_contract_smoke() {
     return false;
   }
 
+  SimulationEnvelope simplified = envelope;
+  simplified.entityCount = capability.maxInteractiveEntities + 1;
+  simplified.simplificationPolicy = SimplificationPolicy::ExplicitReducedModel;
+  const AdmissionReport simplifiedAdmission =
+      admit_simulation_envelope(model, budget, simplified, capability);
+  if (!simplifiedAdmission.validation.ok ||
+      simplifiedAdmission.decision != AdmissionDecision::Simplify ||
+      simplifiedAdmission.selectedPrecisionPath != PrecisionPath::EventRootFocused ||
+      simplifiedAdmission.stressSummary.dominantStress != AdmissionStressDimension::EntityCount) {
+    return false;
+  }
+
   ModelContract invalidModel = model;
   invalidModel.modelId.clear();
   if (validate_model_contract(invalidModel).ok) {

@@ -12,7 +12,7 @@ const DEFAULT_PRECISION_PATHS = [
   "extended_precision",
   "validation_replay",
 ];
-const ADMISSION_DECISION_BY_ID = ["admit", "batch", "escalate_precision", "reject"];
+const ADMISSION_DECISION_BY_ID = ["admit", "batch", "escalate_precision", "reject", "simplify"];
 const ADMISSION_STRESS_DIMENSION_BY_ID = [
   "entity_count",
   "interaction_graph",
@@ -273,6 +273,15 @@ const ERROR_BUDGET_STAGE_TO_ID = new Map(
   ERROR_BUDGET_STAGE_BY_ID.map((stage, index) => [stage, index])
 );
 const VALUE_AUTHORITY_BY_ID = ["authoritative", "approximate", "display-only", "rejected"];
+const NUMERIC_CHART_BY_ID = [
+  "absolute_f64",
+  "local_frame",
+  "nondimensional_ratio",
+  "log_magnitude",
+  "signed_log_magnitude",
+  "direction_log_magnitude",
+  "interval_bounds",
+];
 const NUMERIC_SERIALIZATION_CONTRACT = {
   schema: "solver-numeric-serialization.v1",
   descriptors: [
@@ -350,6 +359,43 @@ const NUMERIC_SERIALIZATION_CONTRACT = {
       textExport: "significand and exponent with exact limb checksum",
       appBufferSafe: false,
       authoritativeStorageSafe: true,
+    },
+  ],
+  chartDescriptors: [
+    {
+      numericChart: "absolute_f64",
+      role: "raw-coordinate-chart",
+      preservesLocalDetailAcrossLargeOffsets: false,
+    },
+    {
+      numericChart: "local_frame",
+      role: "translated-local-geometry-chart",
+      preservesLocalDetailAcrossLargeOffsets: true,
+    },
+    {
+      numericChart: "nondimensional_ratio",
+      role: "scale-ratio-chart",
+      preservesLocalDetailAcrossLargeOffsets: true,
+    },
+    {
+      numericChart: "log_magnitude",
+      role: "positive-scale-chart",
+      preservesLocalDetailAcrossLargeOffsets: true,
+    },
+    {
+      numericChart: "signed_log_magnitude",
+      role: "signed-scale-chart",
+      preservesLocalDetailAcrossLargeOffsets: true,
+    },
+    {
+      numericChart: "direction_log_magnitude",
+      role: "vector-direction-plus-scale-chart",
+      preservesLocalDetailAcrossLargeOffsets: true,
+    },
+    {
+      numericChart: "interval_bounds",
+      role: "bounded-validation-chart",
+      preservesLocalDetailAcrossLargeOffsets: true,
     },
   ],
 };
@@ -758,6 +804,17 @@ export function createSolverAppBridgeClient(options = {}) {
       );
     },
 
+    async applyPathHistoryStorageLifecycleF64(request) {
+      assertNotDisposed(state);
+      const module = await requireWasmModule(state);
+      return applyPathHistoryStorageLifecycleF64WithModule(
+        state,
+        module,
+        request,
+        state.abiInfo || defaultAbiInfo()
+      );
+    },
+
     async queryEmissionShellCandidatesF64(request) {
       assertNotDisposed(state);
       return queryEmissionShellCandidatesF64(state, request, state.module, state.abiInfo || defaultAbiInfo());
@@ -998,10 +1055,7 @@ export function createSolverAppBridgeClient(options = {}) {
 
     async cancelRun(request = {}) {
       assertNotDisposed(state);
-      return createStatus("cancelled", "info", request.reason || "run cancellation acknowledged", {
-        runId: request.runId,
-        requestId: request.requestId,
-      });
+      return cancelRun(state, request);
     },
 
     async openStream(request = {}) {
@@ -1131,6 +1185,8 @@ function createCapabilities(hasWasmModuleFactory) {
           "queryEmissionShellCandidatePacketF64",
           "queryEmissionShellCandidatePacketsF64",
           "refineEmissionShellCandidateRootsF64",
+          "planPathHistoryStorageLifecycleF64",
+          "applyPathHistoryStorageLifecycleF64",
         ],
         pathHistoryLayouts: ["path_segment.v1"],
         indexedFilters: ["pathKeys", "chunkIndices", "timeRange", "frameRange", "byteRange"],
@@ -1227,6 +1283,9 @@ function cloneNumericSerializationContract() {
   return {
     schema: NUMERIC_SERIALIZATION_CONTRACT.schema,
     descriptors: NUMERIC_SERIALIZATION_CONTRACT.descriptors.map((descriptor) => ({ ...descriptor })),
+    chartDescriptors: NUMERIC_SERIALIZATION_CONTRACT.chartDescriptors.map((descriptor) => ({
+      ...descriptor,
+    })),
   };
 }
 
@@ -2042,6 +2101,8 @@ function planPathHistoryWorkPackets(state, request) {
   );
   const sourceChunks = sourceSelection.chunks;
   const receiverChunks = receiverSelection.chunks;
+  const sourceSelections = sourceChunks.map(createPathHistoryWorkPacketChunkSelection);
+  const receiverSelections = receiverChunks.map(createPathHistoryWorkPacketChunkSelection);
   const packets = [];
   let chunkPairCount = 0;
   let truncated = false;
@@ -2089,6 +2150,19 @@ function planPathHistoryWorkPackets(state, request) {
       packets.push(prepared.packet);
     }
   }
+  const planChecksum = stableHashHex({
+    schema: "solver-path-history-work-packet-plan.v1",
+    streamId: streamEntry.stream.streamId,
+    runId: normalizedRequest.runId,
+    modelId: normalizedRequest.modelId,
+    precisionPath: normalizedRequest.precisionPath,
+    sourceSelections,
+    receiverSelections,
+    chunkPairCount,
+    packetCount: packets.length,
+    truncated,
+    packetHeaderChecksums: packets.map((packet) => packet.headerChecksum),
+  });
 
   return {
     schema: "solver-path-history-work-packet-plan.v1",
@@ -2105,6 +2179,9 @@ function planPathHistoryWorkPackets(state, request) {
     chunkPairCount,
     packetCount: packets.length,
     truncated,
+    sourceSelections,
+    receiverSelections,
+    planChecksum,
     packets,
     status: createStatus(
       truncated ? "stream_memory_pressure" : "ok",
@@ -2121,6 +2198,7 @@ function planPathHistoryWorkPackets(state, request) {
           chunkPairCount,
           packetCount: packets.length,
           maxPacketCount: normalizedRequest.maxPacketCount,
+          planChecksum,
         },
       }
     ),
@@ -2290,6 +2368,20 @@ function pathHistoryChunkBufferRef(chunk) {
     rowOffset: chunk.rowOffset,
     rowCount: chunk.descriptor.rowCount,
     checksum: chunk.descriptor.checksum ?? "",
+  };
+}
+
+function createPathHistoryWorkPacketChunkSelection(chunk) {
+  return {
+    chunkIndex: chunk.chunkIndex,
+    bufferId: chunk.descriptor.bufferId,
+    rowOffset: chunk.rowOffset,
+    rowCount: chunk.descriptor.rowCount,
+    byteLength: chunk.descriptor.byteLength,
+    checksum: chunk.descriptor.checksum ?? "",
+    timeRange: chunk.range.timeRange ? { ...chunk.range.timeRange } : undefined,
+    frameRange: chunk.range.frameRange ? { ...chunk.range.frameRange } : undefined,
+    byteRange: chunk.range.byteRange ? { ...chunk.range.byteRange } : undefined,
   };
 }
 
@@ -2684,12 +2776,19 @@ function admitSimulationEnvelope(request) {
     );
     decision = "reject";
   } else {
-    if (
-      request.envelope.entityCount > capability.maxInteractiveEntities ||
+    const requiresBatchExecution =
       request.envelope.outputDetail === "validation" ||
       request.envelope.latencyTarget === "batch" ||
-      request.envelope.latencyTarget === "validation"
+      request.envelope.latencyTarget === "validation";
+    const exceedsInteractiveEntities = request.envelope.entityCount > capability.maxInteractiveEntities;
+    if (requiresBatchExecution) {
+      decision = "batch";
+    } else if (
+      exceedsInteractiveEntities &&
+      request.envelope.simplificationPolicy === "explicit-reduced-model"
     ) {
+      decision = "simplify";
+    } else if (exceedsInteractiveEntities) {
       decision = "batch";
     }
 
@@ -3457,6 +3556,7 @@ function runSimulationWithModule(state, module, request, abiInfo) {
         metadata: {
           ...request.config.metadata,
           precisionPath: request.config.metadata?.precisionPath ?? admission.selectedPrecisionPath,
+          claimLevel: request.config.metadata?.claimLevel ?? request.claimLevel,
         },
       },
       abiInfo
@@ -3910,11 +4010,12 @@ function createCircularSourceRunPrecisionSummary(response, precisionRequest) {
   const roots = response.roots ?? [];
   const residuals = roots.map((root) => Math.abs(root.residual)).filter(Number.isFinite);
   const jacobians = roots.map((root) => Math.abs(root.jacobian)).filter(Number.isFinite);
-  return {
+  const summary = {
     requestedPrecisionPath: precisionRequest.requestedPrecisionPath,
     diagnosticPrecisionPath: precisionRequest.diagnosticPrecisionPath,
     selectedPrecisionPath: precisionRequest.selectedPrecisionPath,
     selectedNumericType: "f64",
+    selectedNumericChart: "absolute_f64",
     claimLevel: precisionRequest.claimLevel,
     statusCode: "ok",
     statusSeverity: "info",
@@ -3929,6 +4030,10 @@ function createCircularSourceRunPrecisionSummary(response, precisionRequest) {
       precisionRequest.selectedPrecisionPath !== "auto",
     validationReplayRun: false,
     validationReplayMatched: false,
+  };
+  return {
+    ...summary,
+    escalations: createPrecisionEscalationRecords(summary),
   };
 }
 
@@ -4023,7 +4128,8 @@ function solveCircularSourceRootsHitsLedgerF64WithModule(module, request, abiInf
       rootLedgerDetails.push(
         readRootLedgerDetailRowF64(
           module,
-          ledgerRowsPtr + index * abiInfo.rootLedgerDetailRowF64Bytes
+          ledgerRowsPtr + index * abiInfo.rootLedgerDetailRowF64Bytes,
+          request.rootTolerance ?? 1e-12
         )
       );
     }
@@ -4279,8 +4385,10 @@ function estimateRunThreadingItemCount(request) {
 }
 
 function finalizeRunManifest(manifest, response) {
+  const precisionMetadata = createRunPrecisionMetadata(manifest, response);
   const finalized = {
     ...manifest,
+    precisionMetadata,
     buffers: response.buffers.map((buffer) => ({
       bufferId: buffer.bufferId,
       layout: buffer.layout,
@@ -4301,6 +4409,7 @@ function finalizeRunManifest(manifest, response) {
       indexLayout: stream.indexLayout,
       rangeCount: stream.availableRanges.length,
       storagePolicy: { ...stream.storagePolicy },
+      metadata: createRunManifestStreamMetadata(stream, manifest, response, precisionMetadata),
     })),
     precision: response.precision == null ? undefined : deepCloneJson(response.precision),
     diagnostics: response.diagnostics.map((diagnostic) => ({ ...diagnostic })),
@@ -4317,6 +4426,129 @@ function finalizeRunManifest(manifest, response) {
       manifestHash: undefined,
     }),
   };
+}
+
+function createRunPrecisionMetadata(manifest, response) {
+  const explicitStreamMetadata = response.streams.find((stream) => stream?.metadata)?.metadata ?? {};
+  const precision = response.precision && typeof response.precision === "object" ? response.precision : {};
+  const numericType = normalizeMetadataEnum(
+    precision.selectedNumericType,
+    NUMERIC_TYPE_BY_ID,
+    inferResponseNumericType(response),
+    "response.precision.selectedNumericType"
+  );
+  const numericChart = normalizeMetadataEnum(
+    precision.selectedNumericChart ?? explicitStreamMetadata.numericChart,
+    NUMERIC_CHART_BY_ID,
+    "absolute_f64",
+    "response.precision.selectedNumericChart"
+  );
+  const errorBudget = manifest.errorBudget ?? {};
+  return {
+    schema: "solver-run-precision-metadata.v1",
+    requestedPrecisionPath: manifest.requestedPrecisionPath,
+    selectedPrecisionPath: manifest.selectedPrecisionPath,
+    numericType,
+    numericChart,
+    unitConvention: normalizeMetadataString(
+      manifest.model?.unitConvention ?? explicitStreamMetadata.units,
+      "solver-units",
+      "manifest.model.unitConvention"
+    ),
+    scaleNormalization: normalizeMetadataString(
+      explicitStreamMetadata.scaleNormalization,
+      "none",
+      "precisionMetadata.scaleNormalization"
+    ),
+    globalErrorBudget: Number(errorBudget.globalTolerance) || 0,
+    stageErrorBudgets: {
+      rootIsolationTolerance: Number(errorBudget.rootIsolationTolerance) || 0,
+      delayedHitTolerance: Number(errorBudget.delayedHitTolerance) || 0,
+      integrationTolerance: Number(errorBudget.integrationTolerance) || 0,
+      streamEncodingTolerance: Number(errorBudget.streamEncodingTolerance) || 0,
+      readbackTolerance: Number(errorBudget.readbackTolerance) || 0,
+      projectionTolerance: Number(errorBudget.projectionTolerance) || 0,
+      displayTolerance: Number(errorBudget.displayTolerance) || 0,
+    },
+    claimLevel: manifest.claimLevel,
+    valueAuthority: "authoritative",
+  };
+}
+
+function createRunManifestStreamMetadata(stream, manifest, response, precisionMetadata) {
+  const metadata = stream.metadata && typeof stream.metadata === "object" && !Array.isArray(stream.metadata)
+    ? stream.metadata
+    : {};
+  const isPlaceholderMetadata = metadata.provenance?.source === "transient-stream";
+  const numericType = normalizeMetadataEnum(
+    isPlaceholderMetadata ? undefined : metadata.numericType,
+    NUMERIC_TYPE_BY_ID,
+    inferStreamNumericType(stream, response),
+    "stream.metadata.numericType"
+  );
+  const appBufferAuthority =
+    (isPlaceholderMetadata ? undefined : metadata.appBufferAuthority) ??
+    (numericType === precisionMetadata.numericType ? "authoritative" : "approximate");
+  return normalizePathHistoryStreamMetadata({
+    ...metadata,
+    precisionPath:
+      isPlaceholderMetadata || metadata.precisionPath === "auto"
+        ? precisionMetadata.selectedPrecisionPath
+        : metadata.precisionPath ?? precisionMetadata.selectedPrecisionPath,
+    numericType,
+    numericChart:
+      isPlaceholderMetadata ? precisionMetadata.numericChart : metadata.numericChart ?? precisionMetadata.numericChart,
+    valueAuthority: (isPlaceholderMetadata ? undefined : metadata.valueAuthority) ?? "authoritative",
+    appBufferAuthority,
+    claimLevel: (isPlaceholderMetadata ? undefined : metadata.claimLevel) ?? precisionMetadata.claimLevel,
+    units: (isPlaceholderMetadata ? undefined : metadata.units) ?? precisionMetadata.unitConvention,
+    coordinateFrame: (isPlaceholderMetadata ? undefined : metadata.coordinateFrame) ?? "solver-frame",
+    scaleNormalization:
+      (isPlaceholderMetadata ? undefined : metadata.scaleNormalization) ?? precisionMetadata.scaleNormalization,
+    interpolationRule: (isPlaceholderMetadata ? undefined : metadata.interpolationRule) ?? "stream-layout",
+    provenance: isPlaceholderMetadata ? { source: "run-manifest-derived" } : metadata.provenance ?? { source: "run-manifest-derived" },
+    diagnostics:
+      metadata.diagnostics ??
+      [
+        createStatus("ok", "info", "stream precision metadata derived from run contract", {
+          details: {
+            selectedPrecisionPath: precisionMetadata.selectedPrecisionPath,
+            numericType,
+            numericChart: metadata.numericChart ?? precisionMetadata.numericChart,
+          },
+        }),
+      ],
+  });
+}
+
+function normalizeMetadataEnum(value, allowedValues, fallback, label) {
+  if (value == null) {
+    return fallback;
+  }
+  if (!allowedValues.includes(value)) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", `${label} is invalid`, {
+        recoverable: false,
+        details: { value, allowedValues },
+      })
+    );
+  }
+  return value;
+}
+
+function inferResponseNumericType(response) {
+  const buffer = response.buffers.find((candidate) => candidate?.numericType);
+  return buffer?.numericType ?? "f64";
+}
+
+function inferStreamNumericType(stream, response) {
+  const streamByteLength = stream.availableRanges.reduce(
+    (sum, range) => sum + Math.max(0, Number(range.byteRange?.end) - Number(range.byteRange?.start)),
+    0
+  );
+  const buffer = response.buffers.find((candidate) => candidate?.byteLength === streamByteLength) ??
+    response.buffers.find((candidate) => candidate?.numericType);
+  return buffer?.numericType ?? "f64";
 }
 
 function createRunValidationArtifacts(manifest, response) {
@@ -6992,6 +7224,10 @@ function validateRootLedgerDetailRow(row, label) {
   requireFiniteNumber(row.hitTime, `${label}.hitTime`);
   requireFiniteNumber(row.delay, `${label}.delay`);
   requireFiniteNumber(row.residual, `${label}.residual`);
+  requirePositiveFiniteNumber(row.residualScale, `${label}.residualScale`);
+  requireNonnegativeFiniteNumber(row.absoluteResidual, `${label}.absoluteResidual`);
+  requireNonnegativeFiniteNumber(row.normalizedResidual, `${label}.normalizedResidual`);
+  requireNonnegativeFiniteNumber(row.rootTolerance, `${label}.rootTolerance`);
   requireFiniteNumber(row.jacobian, `${label}.jacobian`);
   requireFiniteNumber(row.branchWeight, `${label}.branchWeight`);
   requireFiniteNumber(row.bracketStart, `${label}.bracketStart`);
@@ -7005,6 +7241,7 @@ function validateRootLedgerDetailRow(row, label) {
   requireUint32(row.sequenceIndex, `${label}.sequenceIndex`);
   requireUint32(row.iterationCount, `${label}.iterationCount`);
   requireUint32(row.stateFlags, `${label}.stateFlags`);
+  requireUint32(row.firstFailureCode, `${label}.firstFailureCode`);
 }
 
 function validateRunSimulationRequest(request) {
@@ -7881,7 +8118,13 @@ function buildRootLedgerDetailF64WithModule(module, request, abiInfo) {
     }
     const rows = [];
     for (let index = 0; index < rowCount; index += 1) {
-      rows.push(readRootLedgerDetailRowF64(module, rowsPtr + index * abiInfo.rootLedgerDetailRowF64Bytes));
+      rows.push(
+        readRootLedgerDetailRowF64(
+          module,
+          rowsPtr + index * abiInfo.rootLedgerDetailRowF64Bytes,
+          request.rootTolerance ?? 1e-12
+        )
+      );
     }
     const buffer = copyWasmBytes(module, rowsPtr, rowCount * abiInfo.rootLedgerDetailRowF64Bytes);
     return {
@@ -8115,7 +8358,11 @@ function solveRootsAndHitsPrecisionF64WithModule(module, request, abiInfo) {
       }
       for (let index = 0; index < ledgerRowCount; index += 1) {
         rootLedgerDetails.push(
-          readRootLedgerDetailRowF64(module, ledgerRowsPtr + index * abiInfo.rootLedgerDetailRowF64Bytes)
+          readRootLedgerDetailRowF64(
+            module,
+            ledgerRowsPtr + index * abiInfo.rootLedgerDetailRowF64Bytes,
+            precision.rootTolerance
+          )
         );
       }
     }
@@ -9418,8 +9665,8 @@ function readCausalRootRowF64(module, ptr) {
   };
 }
 
-function readRootLedgerDetailRowF64(module, ptr) {
-  return {
+function readRootLedgerDetailRowF64(module, ptr, rootTolerance = 0) {
+  const row = {
     ledgerKey: readUint64(module, ptr),
     sourceKey: readUint64(module, ptr + 8),
     receiverKey: readUint64(module, ptr + 16),
@@ -9443,6 +9690,25 @@ function readRootLedgerDetailRowF64(module, ptr) {
     sequenceIndex: module.getValue(ptr + 176, "i32") >>> 0,
     iterationCount: module.getValue(ptr + 180, "i32") >>> 0,
     stateFlags: module.getValue(ptr + 184, "i32") >>> 0,
+  };
+  return addRootLedgerDetailPrecisionForensics(row, rootTolerance);
+}
+
+function addRootLedgerDetailPrecisionForensics(row, rootTolerance = 0) {
+  const residualScale = Math.max(
+    Math.abs(row.delay),
+    Math.abs(row.hitTime - row.emissionTime),
+    Math.abs(row.intervalEnd - row.intervalStart),
+    1
+  );
+  const absoluteResidual = Math.abs(row.residual);
+  return {
+    ...row,
+    residualScale,
+    absoluteResidual,
+    normalizedResidual: absoluteResidual / residualScale,
+    rootTolerance: Number.isFinite(rootTolerance) && rootTolerance >= 0 ? rootTolerance : 0,
+    firstFailureCode: (row.stateFlags & 1) !== 0 ? row.statusCode : 0,
   };
 }
 
@@ -9477,6 +9743,8 @@ function readPrecisionDiagnosticRowF64(module, ptr) {
     statusCode: module.getValue(ptr, "i32"),
     recommendedPath: PRECISION_PATH_BY_ID[module.getValue(ptr + 4, "i32")] || "auto",
     recommendedNumericType: NUMERIC_TYPE_BY_ID[module.getValue(ptr + 8, "i32")] || "f64",
+    recommendedChart: NUMERIC_CHART_BY_ID[(flags >> 8) & 0xff] || "absolute_f64",
+    speedChart: NUMERIC_CHART_BY_ID[(flags >> 16) & 0xff] || "nondimensional_ratio",
     scaleNormalizationRecommended: Boolean(flags & 1),
     extendedPrecisionRecommended: Boolean(flags & 2),
     scaleResolutionLimited: Boolean(flags & 4),
@@ -9503,7 +9771,7 @@ function readPrecisionDiagnosticRowF64(module, ptr) {
 }
 
 function readPrecisionSolveSummaryF64(module, ptr) {
-  return {
+  const summary = {
     requestedPrecisionPath: PRECISION_PATH_BY_ID[module.getValue(ptr, "i32")] || "auto",
     diagnosticPrecisionPath: PRECISION_PATH_BY_ID[module.getValue(ptr + 4, "i32")] || "auto",
     selectedPrecisionPath: PRECISION_PATH_BY_ID[module.getValue(ptr + 8, "i32")] || "auto",
@@ -9520,7 +9788,35 @@ function readPrecisionSolveSummaryF64(module, ptr) {
     escalated: module.getValue(ptr + 64, "i32") !== 0,
     validationReplayRun: module.getValue(ptr + 68, "i32") !== 0,
     validationReplayMatched: module.getValue(ptr + 72, "i32") !== 0,
+    selectedNumericChart: NUMERIC_CHART_BY_ID[module.getValue(ptr + 76, "i32")] || "absolute_f64",
   };
+  return {
+    ...summary,
+    escalations: createPrecisionEscalationRecords(summary),
+  };
+}
+
+function createPrecisionEscalationRecords(summary) {
+  if (!summary.escalated) {
+    return [];
+  }
+  const priorPrecisionPath =
+    summary.requestedPrecisionPath === "auto"
+      ? summary.diagnosticPrecisionPath
+      : summary.requestedPrecisionPath;
+  const triggeringDiagnostic =
+    summary.selectedPrecisionPath === summary.diagnosticPrecisionPath
+      ? "precision-diagnostic"
+      : "claim-level-or-run-contract-minimum";
+  return [
+    {
+      priorPrecisionPath,
+      newPrecisionPath: summary.selectedPrecisionPath,
+      triggeringDiagnostic,
+      affectedStage: "precision-path",
+      claimLevelSatisfied: summary.statusSeverity !== "halt" && summary.statusSeverity !== "error",
+    },
+  ];
 }
 
 function readErrorBudgetStageRowF64(module, ptr) {
@@ -9969,7 +10265,7 @@ function createBufferDescriptor(bufferId, layout, rowCount, rowSizeBytes, buffer
   return descriptor;
 }
 
-function createTransientStreamDescriptor(streamId, hitTime, buffers) {
+function createTransientStreamDescriptor(streamId, hitTime, buffers, metadata = {}) {
   let byteOffset = 0;
   const availableRanges = buffers.map((buffer) => {
     const byteRange = {
@@ -9993,6 +10289,20 @@ function createTransientStreamDescriptor(streamId, hitTime, buffers) {
       durable: false,
       maxBytes: byteOffset,
     },
+    metadata: normalizePathHistoryStreamMetadata({
+      precisionPath: metadata.precisionPath ?? "auto",
+      numericType: metadata.numericType ?? "f64",
+      numericChart: metadata.numericChart ?? "absolute_f64",
+      valueAuthority: metadata.valueAuthority ?? "authoritative",
+      appBufferAuthority: metadata.appBufferAuthority ?? "authoritative",
+      claimLevel: metadata.claimLevel ?? "interactive-preview",
+      units: metadata.units ?? "solver-units",
+      coordinateFrame: metadata.coordinateFrame ?? "solver-frame",
+      scaleNormalization: metadata.scaleNormalization ?? "none",
+      interpolationRule: metadata.interpolationRule ?? "transient-buffer",
+      provenance: metadata.provenance ?? { source: "transient-stream" },
+      diagnostics: metadata.diagnostics ?? [],
+    }),
   };
 }
 
@@ -10006,6 +10316,7 @@ function createStreamEntry(stream, buffers, options = {}) {
       ? options.pathIndexRows.map(copyPathHistoryIndexRow)
       : null,
     indexSidecar: options.indexSidecar ? copyStreamIndexSidecar(options.indexSidecar) : null,
+    deepIndexes: Array.isArray(options.deepIndexes) ? options.deepIndexes.map(deepCloneJson) : [],
     pathIndexRowsByChunk: null,
     pathIndexSummary: null,
   };
@@ -10212,6 +10523,7 @@ function planPathHistoryStorageLifecycleF64WithModule(state, module, request, ab
       policy: normalizedRequest.policy,
       chunkCount,
       decisions,
+      summary: summarizePathHistoryStorageLifecycle(normalizedRequest.chunks, decisions),
       status: createStatus("ok", "ok", "path-history storage lifecycle planned", {
         details: {
           streamId: normalizedRequest.streamId,
@@ -10230,6 +10542,264 @@ function planPathHistoryStorageLifecycleF64WithModule(state, module, request, ab
     }
     module._free(outRowCountPtr);
   }
+}
+
+function applyPathHistoryStorageLifecycleF64WithModule(state, module, request, abiInfo) {
+  if (!request || typeof request !== "object") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "path-history lifecycle apply request object is required", {
+        recoverable: false,
+      })
+    );
+  }
+  if (request.streamId == null && request.manifestPath == null) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "path-history lifecycle apply requires streamId or manifestPath", {
+        recoverable: false,
+      })
+    );
+  }
+  if (request.chunks != null) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "path-history lifecycle apply cannot target loose chunks", {
+        recoverable: false,
+      })
+    );
+  }
+  if (
+    request.deleteStreamWhenAllChunksDeleted != null &&
+    typeof request.deleteStreamWhenAllChunksDeleted !== "boolean"
+  ) {
+    throw new SolverBridgeError(
+      createStatus(
+        "app_contract_error",
+        "error",
+        "path-history lifecycle apply deleteStreamWhenAllChunksDeleted must be boolean",
+        { recoverable: false }
+      )
+    );
+  }
+
+  const streamEntry = resolveStreamEntryByIdOrManifest(state, request);
+  const plan = planPathHistoryStorageLifecycleF64WithModule(
+    state,
+    module,
+    {
+      streamId: streamEntry.stream.streamId,
+      policy: request.policy,
+    },
+    abiInfo
+  );
+  const deepIndex = buildLifecycleDeepIndexIfNeeded(state, module, streamEntry, plan, abiInfo);
+  const metadata = normalizePathHistoryStorageLifecycleMetadata({
+    schema: "solver-path-history-storage-lifecycle-metadata.v1",
+    policy: plan.policy,
+    summary: plan.summary,
+    decisions: plan.decisions,
+    deepIndex,
+  });
+  streamEntry.stream.metadata = normalizePathHistoryStreamMetadata({
+    ...streamEntry.stream.metadata,
+    lifecycle: metadata,
+  });
+  const manifestPath = streamEntry.stream.storagePolicy?.manifestPath;
+  const cleanup = applyLifecycleCleanupIfRequested(
+    state,
+    streamEntry,
+    plan,
+    Boolean(request.deleteStreamWhenAllChunksDeleted)
+  );
+  const nativeManifestUpdated = cleanup.deletedStream ? false : rewriteNativeFileStreamManifestIfNeeded(streamEntry);
+
+  return dropUndefinedProperties({
+    schema: "solver-path-history-storage-lifecycle-apply.v1",
+    streamId: streamEntry.stream.streamId,
+    plan,
+    appliedChunkCount: plan.decisions.length,
+    nativeManifestUpdated,
+    manifestPath,
+    metadata,
+    cleanup,
+    status: createStatus("ok", "ok", "path-history storage lifecycle applied", {
+      details: {
+        streamId: streamEntry.stream.streamId,
+        appliedChunkCount: plan.decisions.length,
+        nativeManifestUpdated,
+        cleanup,
+      },
+    }),
+  });
+}
+
+function buildLifecycleDeepIndexIfNeeded(state, module, streamEntry, plan, abiInfo) {
+  const chunkIndices = plan.summary.deepIndexQueueChunkIndices;
+  if (!plan.policy.deepIndexEnabled || chunkIndices.length === 0) {
+    return undefined;
+  }
+  const options = createDefaultLifecycleDeepIndexOptions(streamEntry);
+  const indexResponse = buildPathHistoryStreamSpaceTimeIndexF64WithModule(
+    state,
+    module,
+    {
+      streamId: streamEntry.stream.streamId,
+      chunkIndices,
+      options,
+    },
+    abiInfo
+  );
+  const indexBuffer = indexResponse.buffers.find((buffer) => buffer.layout === "spacetime_index.v1");
+  const checksum = indexBuffer?.buffer instanceof ArrayBuffer
+    ? fnv1a64ArrayBufferHex(indexBuffer.buffer)
+    : stableHashHex(indexResponse.rows);
+  const artifact = {
+    schema: "solver-path-history-deep-index.v1",
+    indexKind: "spacetime",
+    indexLayout: "spacetime_index.v1",
+    sourceStreamId: streamEntry.stream.streamId,
+    builtChunkIndices: [...chunkIndices],
+    rowCount: indexResponse.rows.length,
+    overflowEntryCount: indexResponse.overflowEntryCount,
+    byteLength: indexBuffer?.byteLength ?? 0,
+    checksum,
+    options,
+  };
+  streamEntry.deepIndexes.push(deepCloneJson(artifact));
+  return artifact;
+}
+
+function createDefaultLifecycleDeepIndexOptions(streamEntry) {
+  const ranges = streamEntry.stream.availableRanges ?? [];
+  const timeSpan = ranges.reduce((span, range) => {
+    const start = range.timeRange?.start;
+    const end = range.timeRange?.end;
+    if (!Number.isFinite(start) || !Number.isFinite(end)) {
+      return span;
+    }
+    return Math.max(span, Math.abs(end - start));
+  }, 0);
+  return {
+    spatialCellSize: 1,
+    timeBinSize: Math.max(1, timeSpan || 1),
+    maxCellsPerItem: 16,
+  };
+}
+
+function applyLifecycleCleanupIfRequested(state, streamEntry, plan, requested) {
+  const plannedDeleteChunkCount = plan.decisions.filter((decision) => decision.action === "delete").length;
+  const base = {
+    schema: "solver-path-history-storage-lifecycle-cleanup.v1",
+    requested,
+    deletedStream: false,
+    releasedStream: false,
+    deletedNativeFileStream: false,
+    plannedDeleteChunkCount,
+    skippedReason: requested ? "not_all_chunks_planned_delete" : "not_requested",
+  };
+  if (!requested) {
+    return base;
+  }
+  if (plan.decisions.length === 0) {
+    return {
+      ...base,
+      skippedReason: "no_chunks",
+    };
+  }
+  const allChunksPlanDelete = plannedDeleteChunkCount === plan.decisions.length;
+  if (!allChunksPlanDelete) {
+    return base;
+  }
+  const deletedNativeFileStream = cleanupNativeFileStreamEntry(streamEntry);
+  state.streams.delete(streamEntry.stream.streamId);
+  return {
+    ...base,
+    deletedStream: true,
+    releasedStream: true,
+    deletedNativeFileStream,
+    skippedReason: "none",
+  };
+}
+
+function rewriteNativeFileStreamManifestIfNeeded(streamEntry) {
+  const storagePolicy = streamEntry.stream.storagePolicy;
+  if (storagePolicy?.target !== "native-file") {
+    return false;
+  }
+  requireNonemptyString(storagePolicy.manifestPath, "stream.storagePolicy.manifestPath");
+  const { fs, path } = requireNativeFileStorageModules();
+  writeNativeFileStreamManifest(
+    {
+      fs,
+      path,
+      basePath: storagePolicy.basePath,
+      streamPath: storagePolicy.streamPath,
+      indexPath: storagePolicy.indexPath,
+      manifestPath: storagePolicy.manifestPath,
+    },
+    streamEntry.stream,
+    streamEntry.buffers,
+    buildStreamIndexDescription(streamEntry)
+  );
+  return true;
+}
+
+function summarizePathHistoryStorageLifecycle(chunks, decisions) {
+  const chunksByIndex = new Map(chunks.map((chunk) => [chunk.chunkIndex, chunk]));
+  const tierCounts = createLifecycleCountRecord(["active", "warm", "cold", "deleted", "unknown"]);
+  const actionCounts = createLifecycleCountRecord([
+    "keep_active",
+    "spill_warm",
+    "archive_cold",
+    "build_deep_index",
+    "delete",
+    "blocked_unsafe",
+    "unknown",
+  ]);
+  const bytesByTier = createLifecycleCountRecord(["active", "warm", "cold", "deleted", "unknown"]);
+  let totalBytes = 0;
+  let safeToAgeOutCount = 0;
+  let unsafeToAgeOutCount = 0;
+  let deepIndexRequiredCount = 0;
+  const deepIndexQueueChunkIndices = [];
+  const unsafeToAgeOutChunkIndices = [];
+
+  decisions.forEach((decision) => {
+    const chunk = chunksByIndex.get(decision.chunkIndex);
+    const byteLength = chunk?.byteLength ?? 0;
+    const tier = Object.hasOwn(tierCounts, decision.tier) ? decision.tier : "unknown";
+    const action = Object.hasOwn(actionCounts, decision.action) ? decision.action : "unknown";
+    totalBytes += byteLength;
+    tierCounts[tier] += 1;
+    actionCounts[action] += 1;
+    bytesByTier[tier] += byteLength;
+    if (decision.safeToAgeOut) {
+      safeToAgeOutCount += 1;
+    } else {
+      unsafeToAgeOutCount += 1;
+      unsafeToAgeOutChunkIndices.push(decision.chunkIndex);
+    }
+    if (decision.requiresDeepIndex) {
+      deepIndexRequiredCount += 1;
+      deepIndexQueueChunkIndices.push(decision.chunkIndex);
+    }
+  });
+
+  return {
+    schema: "solver-path-history-storage-lifecycle-summary.v1",
+    totalChunkCount: decisions.length,
+    totalBytes,
+    tierCounts,
+    actionCounts,
+    bytesByTier,
+    safeToAgeOutCount,
+    unsafeToAgeOutCount,
+    deepIndexRequiredCount,
+    deepIndexQueueChunkIndices,
+    unsafeToAgeOutChunkIndices,
+  };
+}
+
+function createLifecycleCountRecord(keys) {
+  return Object.fromEntries(keys.map((key) => [key, 0]));
 }
 
 function normalizePathHistoryStorageLifecycleRequest(state, request) {
@@ -10478,6 +11048,76 @@ function describeRun(state, request) {
       runId: response.runId,
     }),
   };
+}
+
+function cancelRun(state, request = {}) {
+  if (!request || typeof request !== "object" || Array.isArray(request)) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "run cancellation request object is required", {
+        recoverable: false,
+      })
+    );
+  }
+  if (request.runId != null) {
+    requireNonemptyString(request.runId, "runId");
+  }
+  if (request.requestId != null) {
+    requireNonemptyString(request.requestId, "requestId");
+  }
+  const response = findRunResponseForCancellation(state, request);
+  const releaseStreams = request.releaseStreams === true;
+  const releaseSummary = response && releaseStreams
+    ? releaseRunStreams(state, response.runId)
+    : { releasedStreamCount: 0, deletedNativeFileStreamCount: 0 };
+  const status = createStatus(
+    "cancelled",
+    "info",
+    request.reason || "run cancellation acknowledged",
+    {
+      runId: response?.runId ?? request.runId,
+      requestId: response?.manifest?.requestId ?? request.requestId,
+      details: {
+        matchedRun: Boolean(response),
+        releaseStreams,
+        releaseSummary,
+      },
+    }
+  );
+
+  if (response) {
+    applyRunCancellationStatus(response, status);
+  }
+  return status;
+}
+
+function findRunResponseForCancellation(state, request) {
+  if (request.runId != null) {
+    return state.runs.get(request.runId) ?? null;
+  }
+  if (request.requestId != null) {
+    for (const response of state.runs.values()) {
+      if (response.manifest?.requestId === request.requestId) {
+        return response;
+      }
+    }
+  }
+  return null;
+}
+
+function applyRunCancellationStatus(response, status) {
+  const runStatus = copyStatusRecord(status);
+  response.status = runStatus;
+  if (response.summary) {
+    response.summary = {
+      ...response.summary,
+      status: copyStatusRecord(status),
+    };
+  }
+  response.diagnostics = [
+    ...response.diagnostics,
+    toDiagnosticRecord(status),
+  ];
+  response.manifest = finalizeRunManifest(response.manifest, response);
 }
 
 function describeStream(state, request) {
@@ -12669,6 +13309,8 @@ function openRegisteredStream(state, request) {
     manifestVersion: streamEntry.stream.manifestVersion,
     readableLayouts,
     availableRanges: streamEntry.stream.availableRanges.map(copyStreamRange),
+    storagePolicy: { ...streamEntry.stream.storagePolicy },
+    metadata: deepCloneJson(streamEntry.stream.metadata),
   };
 }
 
@@ -14532,6 +15174,36 @@ function normalizePathHistoryStreamMetadata(metadata = {}) {
   const normalized = {
     schema: "solver-path-history-stream-metadata.v1",
     precisionPath,
+    numericType: normalizeMetadataEnum(
+      metadata.numericType,
+      NUMERIC_TYPE_BY_ID,
+      "f64",
+      "metadata.numericType"
+    ),
+    numericChart: normalizeMetadataEnum(
+      metadata.numericChart,
+      NUMERIC_CHART_BY_ID,
+      "absolute_f64",
+      "metadata.numericChart"
+    ),
+    valueAuthority: normalizeMetadataEnum(
+      metadata.valueAuthority,
+      VALUE_AUTHORITY_BY_ID,
+      "authoritative",
+      "metadata.valueAuthority"
+    ),
+    appBufferAuthority: normalizeMetadataEnum(
+      metadata.appBufferAuthority,
+      VALUE_AUTHORITY_BY_ID,
+      "authoritative",
+      "metadata.appBufferAuthority"
+    ),
+    claimLevel: normalizeMetadataEnum(
+      metadata.claimLevel,
+      CLAIM_LEVEL_BY_ID,
+      "interactive-preview",
+      "metadata.claimLevel"
+    ),
     units: normalizeMetadataString(metadata.units, "solver-units", "metadata.units"),
     coordinateFrame: normalizeMetadataString(metadata.coordinateFrame, "solver-frame", "metadata.coordinateFrame"),
     scaleNormalization: normalizeMetadataString(
@@ -14550,7 +15222,223 @@ function normalizePathHistoryStreamMetadata(metadata = {}) {
   if (metadata.dynamicReplay != null) {
     normalized.dynamicReplay = normalizePathHistoryDynamicReplayMetadata(metadata.dynamicReplay);
   }
+  if (metadata.lifecycle != null) {
+    normalized.lifecycle = normalizePathHistoryStorageLifecycleMetadata(metadata.lifecycle);
+  }
   return normalized;
+}
+
+function normalizePathHistoryStorageLifecycleMetadata(metadata) {
+  if (!metadata || typeof metadata !== "object" || Array.isArray(metadata)) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "path-history lifecycle metadata must be an object", {
+        recoverable: false,
+      })
+    );
+  }
+  if (metadata.schema !== "solver-path-history-storage-lifecycle-metadata.v1") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "path-history lifecycle metadata schema is invalid", {
+        recoverable: false,
+      })
+    );
+  }
+  if (metadata.policy == null) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "path-history lifecycle metadata policy is required", {
+        recoverable: false,
+      })
+    );
+  }
+  requireArray(metadata.decisions, "lifecycle.decisions");
+  return {
+    schema: "solver-path-history-storage-lifecycle-metadata.v1",
+    policy: normalizeStorageLifecyclePolicy(metadata.policy),
+    summary: normalizePathHistoryStorageLifecycleSummaryMetadata(metadata.summary),
+    decisions: metadata.decisions.map((decision, index) =>
+      normalizePathHistoryLifecycleDecisionMetadata(decision, `lifecycle.decisions[${index}]`)
+    ),
+    ...(metadata.deepIndex == null ? {} : {
+      deepIndex: normalizePathHistoryDeepIndexMetadata(metadata.deepIndex),
+    }),
+  };
+}
+
+function normalizePathHistoryDeepIndexMetadata(deepIndex) {
+  if (!deepIndex || typeof deepIndex !== "object" || Array.isArray(deepIndex)) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "path-history deep-index metadata must be an object", {
+        recoverable: false,
+      })
+    );
+  }
+  if (
+    deepIndex.schema !== "solver-path-history-deep-index.v1" ||
+    deepIndex.indexKind !== "spacetime" ||
+    deepIndex.indexLayout !== "spacetime_index.v1"
+  ) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "path-history deep-index metadata schema is invalid", {
+        recoverable: false,
+      })
+    );
+  }
+  requireNonemptyString(deepIndex.sourceStreamId, "lifecycle.deepIndex.sourceStreamId");
+  requireArray(deepIndex.builtChunkIndices, "lifecycle.deepIndex.builtChunkIndices");
+  deepIndex.builtChunkIndices.forEach((chunkIndex, index) =>
+    requireNonnegativeInteger(chunkIndex, `lifecycle.deepIndex.builtChunkIndices[${index}]`)
+  );
+  requireNonnegativeInteger(deepIndex.rowCount, "lifecycle.deepIndex.rowCount");
+  requireNonnegativeInteger(deepIndex.overflowEntryCount, "lifecycle.deepIndex.overflowEntryCount");
+  requireNonnegativeInteger(deepIndex.byteLength, "lifecycle.deepIndex.byteLength");
+  requireNonemptyString(deepIndex.checksum, "lifecycle.deepIndex.checksum");
+  validateSpaceTimeIndexOptions(deepIndex.options);
+  return {
+    schema: "solver-path-history-deep-index.v1",
+    indexKind: "spacetime",
+    indexLayout: "spacetime_index.v1",
+    sourceStreamId: deepIndex.sourceStreamId,
+    builtChunkIndices: [...deepIndex.builtChunkIndices],
+    rowCount: deepIndex.rowCount,
+    overflowEntryCount: deepIndex.overflowEntryCount,
+    byteLength: deepIndex.byteLength,
+    checksum: deepIndex.checksum,
+    options: { ...deepIndex.options },
+  };
+}
+
+function normalizePathHistoryStorageLifecycleSummaryMetadata(summary) {
+  if (!summary || typeof summary !== "object" || Array.isArray(summary)) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "path-history lifecycle summary metadata is required", {
+        recoverable: false,
+      })
+    );
+  }
+  if (summary.schema !== "solver-path-history-storage-lifecycle-summary.v1") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "path-history lifecycle summary metadata schema is invalid", {
+        recoverable: false,
+      })
+    );
+  }
+  [
+    "totalChunkCount",
+    "totalBytes",
+    "safeToAgeOutCount",
+    "unsafeToAgeOutCount",
+    "deepIndexRequiredCount",
+  ].forEach((key) => requireNonnegativeInteger(summary[key], `lifecycle.summary.${key}`));
+  requireArray(summary.deepIndexQueueChunkIndices, "lifecycle.summary.deepIndexQueueChunkIndices");
+  requireArray(summary.unsafeToAgeOutChunkIndices, "lifecycle.summary.unsafeToAgeOutChunkIndices");
+  summary.deepIndexQueueChunkIndices.forEach((chunkIndex, index) =>
+    requireNonnegativeInteger(chunkIndex, `lifecycle.summary.deepIndexQueueChunkIndices[${index}]`)
+  );
+  summary.unsafeToAgeOutChunkIndices.forEach((chunkIndex, index) =>
+    requireNonnegativeInteger(chunkIndex, `lifecycle.summary.unsafeToAgeOutChunkIndices[${index}]`)
+  );
+  return {
+    schema: "solver-path-history-storage-lifecycle-summary.v1",
+    totalChunkCount: summary.totalChunkCount,
+    totalBytes: summary.totalBytes,
+    tierCounts: normalizeLifecycleCountMetadata(
+      summary.tierCounts,
+      ["active", "warm", "cold", "deleted", "unknown"],
+      "lifecycle.summary.tierCounts"
+    ),
+    actionCounts: normalizeLifecycleCountMetadata(
+      summary.actionCounts,
+      [
+        "keep_active",
+        "spill_warm",
+        "archive_cold",
+        "build_deep_index",
+        "delete",
+        "blocked_unsafe",
+        "unknown",
+      ],
+      "lifecycle.summary.actionCounts"
+    ),
+    bytesByTier: normalizeLifecycleCountMetadata(
+      summary.bytesByTier,
+      ["active", "warm", "cold", "deleted", "unknown"],
+      "lifecycle.summary.bytesByTier"
+    ),
+    safeToAgeOutCount: summary.safeToAgeOutCount,
+    unsafeToAgeOutCount: summary.unsafeToAgeOutCount,
+    deepIndexRequiredCount: summary.deepIndexRequiredCount,
+    deepIndexQueueChunkIndices: [...summary.deepIndexQueueChunkIndices],
+    unsafeToAgeOutChunkIndices: [...summary.unsafeToAgeOutChunkIndices],
+  };
+}
+
+function normalizeLifecycleCountMetadata(record, keys, label) {
+  if (!record || typeof record !== "object" || Array.isArray(record)) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", `${label} must be an object`, {
+        recoverable: false,
+      })
+    );
+  }
+  return Object.fromEntries(
+    keys.map((key) => {
+      requireNonnegativeInteger(record[key], `${label}.${key}`);
+      return [key, record[key]];
+    })
+  );
+}
+
+function normalizePathHistoryLifecycleDecisionMetadata(decision, label) {
+  if (!decision || typeof decision !== "object" || Array.isArray(decision)) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", `${label} must be an object`, {
+        recoverable: false,
+      })
+    );
+  }
+  requireNonnegativeInteger(decision.chunkIndex, `${label}.chunkIndex`);
+  requireUint32(decision.tierCode, `${label}.tierCode`);
+  requireUint32(decision.actionCode, `${label}.actionCode`);
+  requireUint32(decision.reasonCode, `${label}.reasonCode`);
+  if (![...STORAGE_LIFECYCLE_TIER_BY_ID, "unknown"].includes(decision.tier)) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", `${label}.tier is invalid`, {
+        recoverable: false,
+      })
+    );
+  }
+  if (![...STORAGE_LIFECYCLE_ACTION_BY_ID, "unknown"].includes(decision.action)) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", `${label}.action is invalid`, {
+        recoverable: false,
+      })
+    );
+  }
+  if (![...STORAGE_LIFECYCLE_REASON_BY_ID, "unknown"].includes(decision.reason)) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", `${label}.reason is invalid`, {
+        recoverable: false,
+      })
+    );
+  }
+  if (typeof decision.safeToAgeOut !== "boolean" || typeof decision.requiresDeepIndex !== "boolean") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", `${label} boolean flags are required`, {
+        recoverable: false,
+      })
+    );
+  }
+  return {
+    chunkIndex: decision.chunkIndex,
+    tierCode: decision.tierCode,
+    tier: decision.tier,
+    actionCode: decision.actionCode,
+    action: decision.action,
+    safeToAgeOut: decision.safeToAgeOut,
+    requiresDeepIndex: decision.requiresDeepIndex,
+    reasonCode: decision.reasonCode,
+    reason: decision.reason,
+  };
 }
 
 function normalizePathHistoryDynamicReplayMetadata(replay) {

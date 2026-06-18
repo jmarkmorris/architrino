@@ -102,6 +102,25 @@ RootControls controls_for_path(const CausalRootRequest& request, PrecisionPath p
   return controls;
 }
 
+NumericChart chart_for_selected_path(PrecisionPath path, const PrecisionDiagnostic& diagnostic) {
+  switch (path) {
+    case PrecisionPath::ExtendedPrecision:
+    case PrecisionPath::ValidationReplay:
+      return NumericChart::IntervalBounds;
+    case PrecisionPath::AdaptiveMultirate:
+    case PrecisionPath::EventRootFocused:
+      if (diagnostic.recommendedChart == NumericChart::AbsoluteF64) {
+        return NumericChart::LocalFrame;
+      }
+      return diagnostic.recommendedChart;
+    case PrecisionPath::Auto:
+    case PrecisionPath::ScaledF64Fast:
+    case PrecisionPath::ScaledF64Strict:
+      return diagnostic.recommendedChart;
+  }
+  return diagnostic.recommendedChart;
+}
+
 CausalRootRequest apply_controls(CausalRootRequest request, RootControls controls) {
   request.rootTolerance = controls.rootTolerance;
   request.maxIterations = controls.maxIterations;
@@ -254,6 +273,7 @@ PrecisionCausalRootResult solve_causal_roots_with_precision(
 
   const RootControls controls = controls_for_path(request, selectedPath);
   report.selectedNumericType = controls.numericType;
+  report.selectedNumericChart = chart_for_selected_path(selectedPath, result.diagnostic);
   report.rootTolerance = controls.rootTolerance;
   report.maxIterations = controls.maxIterations;
   report.scanSubdivisions = controls.scanSubdivisions;

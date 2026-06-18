@@ -141,6 +141,26 @@ std::string_view to_string(NumericType value) {
   return "unknown";
 }
 
+std::string_view to_string(NumericChart value) {
+  switch (value) {
+    case NumericChart::AbsoluteF64:
+      return "absolute_f64";
+    case NumericChart::LocalFrame:
+      return "local_frame";
+    case NumericChart::NondimensionalRatio:
+      return "nondimensional_ratio";
+    case NumericChart::LogMagnitude:
+      return "log_magnitude";
+    case NumericChart::SignedLogMagnitude:
+      return "signed_log_magnitude";
+    case NumericChart::DirectionLogMagnitude:
+      return "direction_log_magnitude";
+    case NumericChart::IntervalBounds:
+      return "interval_bounds";
+  }
+  return "unknown";
+}
+
 std::string_view to_string(InteractionPolicy value) {
   switch (value) {
     case InteractionPolicy::Sparse:
@@ -217,6 +237,8 @@ std::string_view to_string(AdmissionDecision value) {
       return "escalate_precision";
     case AdmissionDecision::Reject:
       return "reject";
+    case AdmissionDecision::Simplify:
+      return "simplify";
   }
   return "unknown";
 }

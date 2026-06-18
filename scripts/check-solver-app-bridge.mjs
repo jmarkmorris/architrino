@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
-import { createRequire } from "node:module";
 import fs from "node:fs";
 import path from "node:path";
+import { pathToFileURL } from "node:url";
 
 import {
   SOLVER_APP_BRIDGE_API_VERSION,
@@ -46,6 +46,7 @@ import {
   createPhotonPhaseDiagnosticsRunRequest,
   createPathHistoryDynamicReplayValidationRequest,
   createPathHistoryRunRequest,
+  createPathHistoryStorageLifecycleApplyRequest,
   createPathHistoryStorageLifecycleRequest,
   createPathHistoryStreamRequest,
   createPathHistoryStreamSpaceTimeIndexRequest,
@@ -55,11 +56,10 @@ import {
 } from "../src/solver/app/SolverAppAdapters.mjs";
 import { classifySolverBaselineResponse } from "../src/solver/app/SolverBaselineComparison.mjs";
 
-const require = createRequire(import.meta.url);
 const rootDir = process.cwd();
 const wasmDir = path.join(rootDir, ".tmp", "solver-build", "wasm");
-const wasmLoaderPath = path.join(wasmDir, "architrino_solver_wasm_smoke.js");
-const createWasmModule = require(wasmLoaderPath);
+const wasmLoaderPath = path.join(wasmDir, "architrino_solver_wasm_smoke.mjs");
+const { default: createWasmModule } = await import(pathToFileURL(wasmLoaderPath).href);
 const fixtureRequest = readJson("src/solver/fixtures/causal-roots-f64-smoke.request.json");
 const batchFixtureResponse = readJson("src/solver/fixtures/causal-root-batch-f64-smoke.response.json");
 const fixtureResponse = readJson("src/solver/fixtures/roots-and-hits-f64-smoke.response.json");
@@ -170,6 +170,16 @@ assert(
 assert(
   initResponse.capabilities.numericSerialization.descriptors.length === 5,
   "expected five numeric serialization descriptors"
+);
+assert(
+  initResponse.capabilities.numericSerialization.chartDescriptors.length === 7 &&
+    findNumericChartDescriptor(initResponse.capabilities, "local_frame")
+      .preservesLocalDetailAcrossLargeOffsets &&
+    findNumericChartDescriptor(initResponse.capabilities, "direction_log_magnitude")
+      .preservesLocalDetailAcrossLargeOffsets &&
+    findNumericChartDescriptor(initResponse.capabilities, "interval_bounds")
+      .preservesLocalDetailAcrossLargeOffsets,
+  "expected numeric chart serialization descriptors"
 );
 assert(
   findNumericDescriptor(initResponse.capabilities, "f64").appBufferSafe &&
@@ -567,6 +577,11 @@ assert(
     workerCircularSourceRootsHitsLedgerResponse.rootLedgerDetails.some((row) => row.entryKind === 1),
   "expected worker circular-source roots/hits/ledger response"
 );
+assertRootLedgerDetailForensics(
+  workerCircularSourceRootsHitsLedgerResponse.rootLedgerDetails.find((row) => row.entryKind === 1),
+  makeCircularSourceCausalRootRequest().rootTolerance,
+  "worker circular-source root-ledger detail"
+);
 const workerNormalizedCircularSourceRootsHitsLedgerResponse =
   await workerClient.solveCircularSourceRootsHitsLedgerNormalizedF64(
     makeNormalizedCircularSourceRootsHitsLedgerRequest({
@@ -640,6 +655,11 @@ assert(
     workerPrecisionRootsAndHitsResponse.precision.selectedPrecisionPath === "extended_precision" &&
     workerPrecisionRootsAndHitsResponse.precision.validationReplayMatched,
   "expected worker precision roots-and-hits solve response"
+);
+assertRootLedgerDetailForensics(
+  workerPrecisionRootsAndHitsResponse.rootLedgerDetails[0],
+  workerPrecisionRootsAndHitsResponse.precision.rootTolerance,
+  "worker precision roots-and-hits detail"
 );
 const workerMotionRunHandle = await workerClient.runSimulation(makeMotionRunSimulationRequest());
 assert(
@@ -911,6 +931,26 @@ assert(
   batchAdmission.stressSummary.dominantStress === "entity_count" &&
     batchAdmission.stressSummary.entityPressure === 2,
   "expected batch admission entity pressure"
+);
+const simplifiedAdmission = await client.admitSimulationEnvelope(
+  makeAdmissionRequest({
+    errorBudget: { globalTolerance: 1e-9, rootIsolationTolerance: 1e-10 },
+    envelope: {
+      entityCount: 4096,
+      simplificationPolicy: "explicit-reduced-model",
+    },
+  })
+);
+assert(
+  simplifiedAdmission.admitted &&
+    simplifiedAdmission.decision === "simplify" &&
+    simplifiedAdmission.selectedPrecisionPath === "event_root_focused",
+  "expected explicit reduced-model admission"
+);
+assert(
+  simplifiedAdmission.stressSummary.dominantStress === "entity_count" &&
+    simplifiedAdmission.stressSummary.entityPressure === 2,
+  "expected simplified admission entity pressure"
 );
 const rejectedAdmission = await client.admitSimulationEnvelope(
   makeAdmissionRequest({
@@ -1465,6 +1505,11 @@ assert(
     directCircularSourceActiveLedger.bracketEnd >= circularSourceRootsHitsLedgerResponse.roots[0].emissionTime,
   "expected direct circular-source roots/hits/ledger rows"
 );
+assertRootLedgerDetailForensics(
+  directCircularSourceActiveLedger,
+  makeCircularSourceCausalRootRequest().rootTolerance,
+  "direct circular-source root-ledger detail"
+);
 const circularSourceRootsHitsLedgerInvariant = await client.checkRootHitInvariantsF64({
   roots: circularSourceRootsHitsLedgerResponse.roots,
   hits: circularSourceRootsHitsLedgerResponse.hits,
@@ -1487,6 +1532,11 @@ assert(
     normalizedCircularSourceRootsHitsLedgerResponse.hits.length === 1 &&
     normalizedCircularSourceRootsHitsLedgerResponse.rootLedgerDetails.some((row) => row.entryKind === 1),
   "expected normalized circular-source roots/hits/ledger response"
+);
+assertRootLedgerDetailForensics(
+  normalizedCircularSourceRootsHitsLedgerResponse.rootLedgerDetails.find((row) => row.entryKind === 1),
+  makeNormalizedCircularSourceRootsHitsLedgerRequest().localRequest.rootTolerance,
+  "normalized circular-source root-ledger detail"
 );
 assert(
   Math.abs(normalizedCircularSourceRootsHitsLedgerResponse.roots[0].distance - Math.sqrt(101)) <= 1e-10 &&
@@ -1532,6 +1582,7 @@ assert(rootLedgerDetailResponse.rows[0].jacobianSignStratum === 3, "expected pos
 assert(rootLedgerDetailResponse.rows[0].rootKey > 0, "expected stable root detail key");
 assert(Math.abs(rootLedgerDetailResponse.rows[0].delay - 10) <= 1e-10, "expected root detail delay");
 assert(Math.abs(rootLedgerDetailResponse.rows[0].jacobian - 1) <= 1e-10, "expected root detail Jacobian");
+assertRootLedgerDetailForensics(rootLedgerDetailResponse.rows[0], 1e-13, "direct root-ledger detail");
 assert(
   rootLedgerDetailResponse.rows.some(
     (row) => row.entryKind === 3 && row.intervalStart === fixtureRequest.request.source.startTime
@@ -1556,6 +1607,7 @@ assert(rootLedgerFailureDetailResponse.status.code === "ok", "expected root-ledg
 assert(rootLedgerFailureDetailResponse.rows.length >= 1, "expected root-ledger failure row");
 assert(rootLedgerFailureDetailResponse.rows[0].entryKind === 5, "expected root-ledger failure entry");
 assert(rootLedgerFailureDetailResponse.rows[0].statusCode === 9, "expected insufficient-history failure status");
+assertRootLedgerDetailForensics(rootLedgerFailureDetailResponse.rows[0], 1e-13, "failure root-ledger detail");
 const noRootLedgerRequest = normalizeJson(fixtureRequest.request);
 noRootLedgerRequest.source.startTime = 6;
 noRootLedgerRequest.source.endTime = 10;
@@ -1633,6 +1685,11 @@ assert(
   "expected high-dynamic-range request to request decimal128 diagnostics"
 );
 assert(
+  precisionResponse.recommendedChart === "interval_bounds" &&
+    precisionResponse.speedChart === "nondimensional_ratio",
+  "expected high-dynamic-range request to recommend numeric charts"
+);
+assert(
   precisionResponse.scaleNormalizationRecommended &&
     precisionResponse.extendedPrecisionRecommended &&
     precisionResponse.scaleResolutionLimited &&
@@ -1656,7 +1713,10 @@ assert(
 );
 assert(
   precisionSolveResponse.precision.selectedNumericType === "decimal128" &&
+    precisionSolveResponse.precision.selectedNumericChart === "interval_bounds" &&
     precisionSolveResponse.precision.escalated &&
+    precisionSolveResponse.precision.escalations[0].priorPrecisionPath === "scaled_f64_strict" &&
+    precisionSolveResponse.precision.escalations[0].newPrecisionPath === "extended_precision" &&
     precisionSolveResponse.precision.validationReplayRun &&
     precisionSolveResponse.precision.validationReplayMatched &&
     precisionSolveResponse.precision.rootTolerance <= 1e-16 &&
@@ -1845,6 +1905,11 @@ assert(
     precisionRootsAndHitsResponse.streams.length === 1,
   "expected precision roots-and-hits summary and stream"
 );
+assertRootLedgerDetailForensics(
+  precisionRootsAndHitsResponse.rootLedgerDetails[0],
+  precisionRootsAndHitsResponse.precision.rootTolerance,
+  "precision roots-and-hits detail"
+);
 assert(
   findBuffer(precisionRootsAndHitsResponse, "root_ledger.v1").rowCount === 1 &&
     findBuffer(precisionRootsAndHitsResponse, "delayed_hit_events.v1").rowCount === 1 &&
@@ -1941,7 +2006,12 @@ const pathHistoryHandle = await client.openStream(
     purpose: "playback",
   })
 );
-assert(pathHistoryHandle.readableLayouts.includes("path_segment.v1"), "expected path-history readable layout");
+assert(
+  pathHistoryHandle.readableLayouts.includes("path_segment.v1") &&
+    pathHistoryHandle.storagePolicy.target === "caller-buffer" &&
+    pathHistoryHandle.metadata.precisionPath === "scaled_f64_strict",
+  "expected path-history readable layout and handle metadata"
+);
 const pathHistoryDescription = await client.describeStream(
   createDescribeStreamRequest({ streamId: "smoke-path-history" })
 );
@@ -2031,6 +2101,26 @@ assert(
 assert(pathHistoryLifecyclePlan.status.code === "ok", "expected path-history lifecycle status ok");
 assert(pathHistoryLifecyclePlan.chunkCount === 3, "expected path-history lifecycle chunk count");
 assert(pathHistoryLifecyclePlan.decisions.length === 3, "expected path-history lifecycle decisions");
+const pathHistoryLifecycleUnsafeToAgeOutChunkIndices = pathHistoryLifecyclePlan.decisions
+  .filter((decision) => !decision.safeToAgeOut)
+  .map((decision) => decision.chunkIndex);
+assert(
+  pathHistoryLifecyclePlan.summary.schema === "solver-path-history-storage-lifecycle-summary.v1" &&
+    pathHistoryLifecyclePlan.summary.totalChunkCount === pathHistoryLifecyclePlan.decisions.length &&
+    pathHistoryLifecyclePlan.summary.totalBytes === 288 &&
+    pathHistoryLifecyclePlan.summary.tierCounts.active ===
+      pathHistoryLifecyclePlan.decisions.filter((decision) => decision.tier === "active").length &&
+    pathHistoryLifecyclePlan.summary.actionCounts.keep_active ===
+      pathHistoryLifecyclePlan.decisions.filter((decision) => decision.action === "keep_active").length &&
+    pathHistoryLifecyclePlan.summary.actionCounts.blocked_unsafe ===
+      pathHistoryLifecyclePlan.decisions.filter((decision) => decision.action === "blocked_unsafe").length &&
+    pathHistoryLifecyclePlan.summary.safeToAgeOutCount ===
+      pathHistoryLifecyclePlan.decisions.filter((decision) => decision.safeToAgeOut).length &&
+    pathHistoryLifecyclePlan.summary.unsafeToAgeOutCount === pathHistoryLifecycleUnsafeToAgeOutChunkIndices.length &&
+    JSON.stringify(pathHistoryLifecyclePlan.summary.unsafeToAgeOutChunkIndices) ===
+      JSON.stringify(pathHistoryLifecycleUnsafeToAgeOutChunkIndices),
+  "expected path-history lifecycle summary"
+);
 assert(
   pathHistoryLifecyclePlan.decisions[0].action === "keep_active" &&
     pathHistoryLifecyclePlan.decisions[0].reason === "overlaps_active_window",
@@ -2041,6 +2131,108 @@ assert(
     pathHistoryLifecyclePlan.decisions[2].tier === "active" &&
     pathHistoryLifecyclePlan.decisions[2].safeToAgeOut === false,
   "expected pinned path-history chunk to block aging"
+);
+const pathHistoryLifecycleApply = await client.applyPathHistoryStorageLifecycleF64(
+  createPathHistoryStorageLifecycleApplyRequest({
+    streamId: "smoke-path-history",
+    policy: {
+      activeWindow: { start: 0.5, end: 1.5 },
+      deepIndexEnabled: true,
+    },
+  })
+);
+assert(
+  pathHistoryLifecycleApply.schema === "solver-path-history-storage-lifecycle-apply.v1" &&
+    pathHistoryLifecycleApply.status.code === "ok" &&
+    pathHistoryLifecycleApply.streamId === "smoke-path-history" &&
+    pathHistoryLifecycleApply.appliedChunkCount === pathHistoryLifecyclePlan.decisions.length &&
+    pathHistoryLifecycleApply.nativeManifestUpdated === false &&
+    pathHistoryLifecycleApply.cleanup.requested === false &&
+    pathHistoryLifecycleApply.cleanup.skippedReason === "not_requested" &&
+    pathHistoryLifecycleApply.metadata.summary.unsafeToAgeOutCount ===
+      pathHistoryLifecyclePlan.summary.unsafeToAgeOutCount,
+  "expected path-history lifecycle apply response"
+);
+const pathHistoryLifecycleAppliedDescription = await client.describeStream(
+  createDescribeStreamRequest({ streamId: "smoke-path-history" })
+);
+assert(
+  pathHistoryLifecycleAppliedDescription.stream.metadata.lifecycle.summary.unsafeToAgeOutCount ===
+    pathHistoryLifecyclePlan.summary.unsafeToAgeOutCount,
+  "expected applied lifecycle metadata on path-history stream"
+);
+await client.createPathHistoryStreamF64(
+  createPathHistoryStreamRequest({
+    runId: "smoke-path-history-delete-run",
+    streamId: "smoke-path-history-delete",
+    pathRows: [makePathHistoryRows()[0]],
+    rowsPerChunk: 1,
+    metadata: {
+      precisionPath: "scaled_f64_strict",
+    },
+  })
+);
+const pathHistoryDeleteApply = await client.applyPathHistoryStorageLifecycleF64(
+  createPathHistoryStorageLifecycleApplyRequest({
+    streamId: "smoke-path-history-delete",
+    policy: {
+      deleteRequested: true,
+    },
+    deleteStreamWhenAllChunksDeleted: true,
+  })
+);
+assert(
+  pathHistoryDeleteApply.status.code === "ok" &&
+    pathHistoryDeleteApply.cleanup.requested === true &&
+    pathHistoryDeleteApply.cleanup.deletedStream === true &&
+    pathHistoryDeleteApply.cleanup.releasedStream === true &&
+    pathHistoryDeleteApply.cleanup.deletedNativeFileStream === false &&
+    pathHistoryDeleteApply.cleanup.plannedDeleteChunkCount === 1 &&
+    pathHistoryDeleteApply.cleanup.skippedReason === "none",
+  "expected caller-buffer lifecycle cleanup delete"
+);
+let deletedCallerBufferStreamRejected = false;
+try {
+  await client.describeStream(createDescribeStreamRequest({ streamId: "smoke-path-history-delete" }));
+} catch (error) {
+  deletedCallerBufferStreamRejected =
+    error instanceof SolverBridgeError && error.status.code === "stream_read_failed";
+}
+assert(deletedCallerBufferStreamRejected, "expected deleted caller-buffer stream to be unavailable");
+await client.createPathHistoryStreamF64(
+  createPathHistoryStreamRequest({
+    runId: "smoke-path-history-partial-delete-run",
+    streamId: "smoke-path-history-partial-delete",
+    pathRows: makePathHistoryRows().slice(0, 2),
+    rowsPerChunk: 1,
+    metadata: {
+      precisionPath: "scaled_f64_strict",
+    },
+  })
+);
+const partialDeleteApply = await client.applyPathHistoryStorageLifecycleF64(
+  createPathHistoryStorageLifecycleApplyRequest({
+    streamId: "smoke-path-history-partial-delete",
+    policy: {
+      activeWindow: { start: 0, end: 0.5 },
+      storageBudgetBytes: 96,
+    },
+    deleteStreamWhenAllChunksDeleted: true,
+  })
+);
+assert(
+  partialDeleteApply.cleanup.requested === true &&
+    partialDeleteApply.cleanup.deletedStream === false &&
+    partialDeleteApply.cleanup.plannedDeleteChunkCount === 1 &&
+    partialDeleteApply.cleanup.skippedReason === "not_all_chunks_planned_delete",
+  "expected partial lifecycle cleanup to be skipped"
+);
+const partialDeleteDescription = await client.describeStream(
+  createDescribeStreamRequest({ streamId: "smoke-path-history-partial-delete" })
+);
+assert(
+  partialDeleteDescription.stream.metadata.lifecycle?.summary.actionCounts.delete === 1,
+  "expected partial-delete stream to remain available with lifecycle metadata"
 );
 const nativeFileBasePath = path.join(rootDir, ".tmp", "solver-app-bridge-native-streams");
 fs.rmSync(nativeFileBasePath, { recursive: true, force: true });
@@ -2338,6 +2530,60 @@ assert(
     directNativeFileLifecyclePlan.chunkCount === 2,
   "expected direct-manifest native-file lifecycle planning"
 );
+const directNativeFileLifecycleApply = await directNativeFileQueryClient.applyPathHistoryStorageLifecycleF64(
+  createPathHistoryStorageLifecycleApplyRequest({
+    manifestPath: nativeFilePathHistoryStream.stream.storagePolicy.manifestPath,
+    policy: {
+      activeWindow: { start: 0.5, end: 1.5 },
+      deepIndexEnabled: true,
+    },
+  })
+);
+assert(
+  directNativeFileLifecycleApply.status.code === "ok" &&
+    directNativeFileLifecycleApply.streamId === "smoke-native-file-path-history" &&
+    directNativeFileLifecycleApply.appliedChunkCount === directNativeFileLifecyclePlan.decisions.length &&
+    directNativeFileLifecycleApply.nativeManifestUpdated === true &&
+    directNativeFileLifecycleApply.cleanup.requested === false &&
+    directNativeFileLifecycleApply.cleanup.skippedReason === "not_requested" &&
+    directNativeFileLifecycleApply.manifestPath === nativeFilePathHistoryStream.stream.storagePolicy.manifestPath,
+  "expected direct-manifest native-file lifecycle apply"
+);
+const appliedNativeFileManifest = JSON.parse(
+  fs.readFileSync(nativeFilePathHistoryStream.stream.storagePolicy.manifestPath, "utf8")
+);
+assert(
+  appliedNativeFileManifest.stream.metadata.lifecycle?.schema ===
+    "solver-path-history-storage-lifecycle-metadata.v1" &&
+    appliedNativeFileManifest.stream.metadata.lifecycle.decisions.length ===
+      directNativeFileLifecycleApply.metadata.decisions.length,
+  "expected native-file manifest lifecycle metadata"
+);
+const postApplyNativeFileClient = createSolverAppBridgeClient();
+const postApplyNativeFileHandle = await postApplyNativeFileClient.openStream(
+  createOpenStreamRequest({
+    manifestPath: nativeFilePathHistoryStream.stream.storagePolicy.manifestPath,
+    purpose: "diagnostics",
+  })
+);
+assert(
+  postApplyNativeFileHandle.storagePolicy.target === "native-file" &&
+    postApplyNativeFileHandle.metadata.lifecycle?.summary.totalBytes ===
+      directNativeFileLifecycleApply.metadata.summary.totalBytes,
+  "expected reopened native-file handle lifecycle metadata"
+);
+const postApplyNativeFileDescription = await postApplyNativeFileClient.describeStream(
+  createDescribeStreamRequest({
+    manifestPath: nativeFilePathHistoryStream.stream.storagePolicy.manifestPath,
+  })
+);
+assert(
+  postApplyNativeFileDescription.stream.metadata.lifecycle?.summary.totalBytes ===
+    directNativeFileLifecycleApply.metadata.summary.totalBytes &&
+    postApplyNativeFileDescription.stream.metadata.lifecycle.decisions[0].action ===
+      directNativeFileLifecycleApply.metadata.decisions[0].action,
+  "expected reopened native-file lifecycle metadata"
+);
 const directNativeFilePacketPlan = await directNativeFileQueryClient.planPathHistoryWorkPackets(
   createPathHistoryWorkPacketPlanRequest({
     manifestPath: nativeFilePathHistoryStream.stream.storagePolicy.manifestPath,
@@ -2393,6 +2639,58 @@ assert(
     nativeFileLifecyclePlan.chunkCount === 2,
   "expected native-file lifecycle planning from file-backed chunks"
 );
+const nativeDeleteBasePath = path.join(rootDir, ".tmp", "solver-app-bridge-native-delete-streams");
+fs.rmSync(nativeDeleteBasePath, { recursive: true, force: true });
+const nativeDeleteStream = await client.createPathHistoryStreamF64(
+  createPathHistoryStreamRequest({
+    runId: "smoke-native-delete-path-history-run",
+    streamId: "smoke-native-delete-path-history",
+    pathRows: [makePathHistoryRows()[0]],
+    rowsPerChunk: 1,
+    storagePolicy: {
+      target: "native-file",
+      durable: true,
+      maxBytes: 1024,
+      basePath: nativeDeleteBasePath,
+    },
+    metadata: {
+      precisionPath: "scaled_f64_strict",
+    },
+  })
+);
+const nativeDeleteManifestPath = nativeDeleteStream.stream.storagePolicy.manifestPath;
+const nativeDeleteChunkPath = nativeDeleteStream.buffers[0].filePath;
+const nativeDeleteApply = await client.applyPathHistoryStorageLifecycleF64(
+  createPathHistoryStorageLifecycleApplyRequest({
+    streamId: "smoke-native-delete-path-history",
+    policy: {
+      deleteRequested: true,
+    },
+    deleteStreamWhenAllChunksDeleted: true,
+  })
+);
+assert(
+  nativeDeleteApply.status.code === "ok" &&
+    nativeDeleteApply.cleanup.deletedStream === true &&
+    nativeDeleteApply.cleanup.deletedNativeFileStream === true &&
+    nativeDeleteApply.cleanup.plannedDeleteChunkCount === 1 &&
+    nativeDeleteApply.cleanup.skippedReason === "none" &&
+    nativeDeleteApply.nativeManifestUpdated === false,
+  "expected native-file lifecycle cleanup delete"
+);
+assert(
+  !fs.existsSync(nativeDeleteManifestPath) &&
+    !fs.existsSync(nativeDeleteChunkPath),
+  "expected native-file lifecycle cleanup to remove stream files"
+);
+let deletedNativeStreamRejected = false;
+try {
+  await client.describeStream(createDescribeStreamRequest({ streamId: "smoke-native-delete-path-history" }));
+} catch (error) {
+  deletedNativeStreamRejected =
+    error instanceof SolverBridgeError && error.status.code === "stream_read_failed";
+}
+assert(deletedNativeStreamRejected, "expected deleted native-file stream to be unavailable");
 const nativeFileStreamPath = nativeFilePathHistoryStream.stream.storagePolicy.streamPath;
 const nativeFileChunkPath = nativeFilePathHistoryStream.buffers[0].filePath;
 const nativeFileCloseStatus = await client.closeRun({
@@ -2419,6 +2717,7 @@ try {
 }
 assert(closedNativeFileStreamRejected, "expected closed native-file stream to be unavailable");
 await directNativeFileQueryClient.dispose();
+await postApplyNativeFileClient.dispose();
 await reopenedNativeFileClient.dispose();
 const explicitLifecyclePlan = await client.planPathHistoryStorageLifecycleF64(
   createPathHistoryStorageLifecycleRequest({
@@ -2466,6 +2765,16 @@ const explicitLifecyclePlan = await client.planPathHistoryStorageLifecycleF64(
 );
 assert(explicitLifecyclePlan.decisions[1].action === "build_deep_index", "expected deep-index build action");
 assert(
+  explicitLifecyclePlan.summary.deepIndexRequiredCount === 1 &&
+    explicitLifecyclePlan.summary.deepIndexQueueChunkIndices[0] === 1 &&
+    explicitLifecyclePlan.summary.actionCounts.build_deep_index === 1 &&
+    explicitLifecyclePlan.summary.tierCounts.cold === 2 &&
+    explicitLifecyclePlan.summary.unsafeToAgeOutCount === 1 &&
+    explicitLifecyclePlan.summary.unsafeToAgeOutChunkIndices[0] === 0 &&
+    explicitLifecyclePlan.summary.bytesByTier.cold === 192,
+  "expected explicit lifecycle deep-index summary"
+);
+assert(
   explicitLifecyclePlan.decisions[1].requiresDeepIndex &&
     explicitLifecyclePlan.decisions[1].reason === "aged_chunk_requires_deep_index",
   "expected lifecycle deep-index requirement"
@@ -2474,6 +2783,51 @@ assert(
   explicitLifecyclePlan.decisions[2].action === "archive_cold" &&
     explicitLifecyclePlan.decisions[2].reason === "deep_index_already_built",
   "expected deep-indexed chunk to archive cold"
+);
+await client.createPathHistoryStreamF64(
+  createPathHistoryStreamRequest({
+    runId: "smoke-path-history-deep-index-run",
+    streamId: "smoke-path-history-deep-index",
+    pathRows: makePathHistoryRows().map((row, index) => ({
+      ...row,
+      pathKey: 3100 + index,
+      stateFlags: 0,
+    })),
+    rowsPerChunk: 1,
+    metadata: {
+      precisionPath: "scaled_f64_strict",
+      provenance: { fixture: "path-history-deep-index-smoke" },
+    },
+  })
+);
+const deepIndexApply = await client.applyPathHistoryStorageLifecycleF64(
+  createPathHistoryStorageLifecycleApplyRequest({
+    streamId: "smoke-path-history-deep-index",
+    policy: {
+      activeWindow: { start: 0, end: 0.5 },
+      deepIndexEnabled: true,
+    },
+  })
+);
+assert(
+  deepIndexApply.metadata.deepIndex?.schema === "solver-path-history-deep-index.v1" &&
+    deepIndexApply.metadata.deepIndex.indexLayout === "spacetime_index.v1" &&
+    deepIndexApply.metadata.deepIndex.sourceStreamId === "smoke-path-history-deep-index" &&
+    deepIndexApply.metadata.deepIndex.builtChunkIndices.length === 2 &&
+    deepIndexApply.metadata.deepIndex.builtChunkIndices[0] === 1 &&
+    deepIndexApply.metadata.deepIndex.builtChunkIndices[1] === 2 &&
+    deepIndexApply.metadata.deepIndex.rowCount > 0 &&
+    deepIndexApply.metadata.deepIndex.byteLength === deepIndexApply.metadata.deepIndex.rowCount * 128 &&
+    deepIndexApply.metadata.deepIndex.checksum.length === 16,
+  "expected lifecycle apply to build a deep spacetime index"
+);
+const deepIndexDescription = await client.describeStream(
+  createDescribeStreamRequest({ streamId: "smoke-path-history-deep-index" })
+);
+assert(
+  deepIndexDescription.stream.metadata.lifecycle?.deepIndex?.checksum ===
+    deepIndexApply.metadata.deepIndex.checksum,
+  "expected deep-index metadata to persist on the stream"
 );
 const pathHistoryPacketPlan = await client.planPathHistoryWorkPackets(
   createPathHistoryWorkPacketPlanRequest({
@@ -2500,12 +2854,44 @@ assert(pathHistoryPacketPlan.sourcePathPrunedChunkCount === 0, "expected no sour
 assert(pathHistoryPacketPlan.receiverPathPrunedChunkCount === 0, "expected no receiver path-pruned chunks");
 assert(pathHistoryPacketPlan.chunkPairCount === 3, "expected path-history work-packet chunk pairs");
 assert(pathHistoryPacketPlan.packetCount === 3, "expected path-history work-packet count");
+assert(pathHistoryPacketPlan.planChecksum.length === 16, "expected path-history packet plan checksum");
+assert(
+  pathHistoryPacketPlan.status.details?.planChecksum === pathHistoryPacketPlan.planChecksum,
+  "expected path-history packet plan checksum in status details"
+);
+assert(
+  pathHistoryPacketPlan.sourceSelections.length === 2 &&
+    pathHistoryPacketPlan.receiverSelections.length === 2 &&
+    pathHistoryPacketPlan.sourceSelections[0].chunkIndex === 0 &&
+    pathHistoryPacketPlan.sourceSelections[0].rowOffset === 0 &&
+    pathHistoryPacketPlan.sourceSelections[0].rowCount === 1 &&
+    pathHistoryPacketPlan.sourceSelections[0].byteRange.start === 0 &&
+    pathHistoryPacketPlan.receiverSelections[1].chunkIndex === 2 &&
+    pathHistoryPacketPlan.receiverSelections[1].rowOffset === 2,
+  "expected path-history packet chunk selection metadata"
+);
 assert(
   pathHistoryPacketPlan.packets[0].sourceBlock.start === 0 &&
     pathHistoryPacketPlan.packets[0].receiverBlock.start === 1 &&
     pathHistoryPacketPlan.packets[0].inputBuffers.length === 2 &&
     pathHistoryPacketPlan.packets[0].headerChecksum.length === 16,
   "expected first path-history work-packet header"
+);
+const repeatedPathHistoryPacketPlan = await client.planPathHistoryWorkPackets(
+  createPathHistoryWorkPacketPlanRequest({
+    streamId: "smoke-path-history",
+    runId: "smoke-path-history-packet-run",
+    modelId: "aaa.central-solver",
+    precisionPath: "event_root_focused",
+    packetIdPrefix: "smoke-path-history-packet",
+    sourceChunkIndices: [0, 1],
+    receiverChunkIndices: [1, 2],
+    includeSameChunk: false,
+  })
+);
+assert(
+  repeatedPathHistoryPacketPlan.planChecksum === pathHistoryPacketPlan.planChecksum,
+  "expected deterministic path-history packet plan checksum"
 );
 const orderedPlannedPackets = await client.orderWorkPacketResults({
   results: pathHistoryPacketPlan.packets
@@ -3207,6 +3593,7 @@ assert(
 assert(
   runHandle.response.precision.selectedPrecisionPath === "extended_precision" &&
     runHandle.response.precision.selectedNumericType === "decimal128" &&
+    runHandle.response.precision.selectedNumericChart === "interval_bounds" &&
     runHandle.response.precision.rootCount === 1,
   "expected runSimulation response precision summary"
 );
@@ -3215,6 +3602,11 @@ assert(
     runHandle.response.rootLedgerDetails[0].entryKind === 1 &&
     findBuffer(runHandle.response, "root_ledger_detail.v1").rowCount >= 1,
   "expected runSimulation detailed root ledger"
+);
+assertRootLedgerDetailForensics(
+  runHandle.response.rootLedgerDetails[0],
+  runHandle.response.precision.rootTolerance,
+  "runSimulation root-ledger detail"
 );
 assert(runHandle.response.manifest.schema === "solver-run-manifest.v1", "expected run manifest schema");
 assert(runHandle.response.manifest.manifestHash.length === 16, "expected run manifest hash");
@@ -3229,8 +3621,23 @@ assert(
 );
 assert(
   runHandle.response.manifest.precision.selectedPrecisionPath === "extended_precision" &&
-    runHandle.response.manifest.precision.selectedNumericType === "decimal128",
+    runHandle.response.manifest.precision.selectedNumericType === "decimal128" &&
+    runHandle.response.manifest.precision.selectedNumericChart === "interval_bounds",
   "expected run manifest precision summary"
+);
+assert(
+  runHandle.response.manifest.precisionMetadata.selectedPrecisionPath === "extended_precision" &&
+    runHandle.response.manifest.precisionMetadata.numericType === "decimal128" &&
+    runHandle.response.manifest.precisionMetadata.numericChart === "interval_bounds" &&
+    runHandle.response.manifest.precisionMetadata.unitConvention === "solver-si" &&
+    runHandle.response.manifest.precisionMetadata.stageErrorBudgets.rootIsolationTolerance === 1e-14,
+  "expected run manifest precision metadata"
+);
+assert(
+  runHandle.response.manifest.streams[0].metadata.precisionPath === "extended_precision" &&
+    runHandle.response.manifest.streams[0].metadata.numericType === "f64" &&
+    runHandle.response.manifest.streams[0].metadata.appBufferAuthority === "approximate",
+  "expected run manifest stream precision metadata"
 );
 assert(
   runHandle.response.manifest.errorBudget.globalTolerance === 1e-13,
@@ -3381,6 +3788,74 @@ assert(
     runDescription.precision.validationReplayRun === false,
   "expected run description precision summary"
 );
+const priorRunManifestHash = runDescription.manifest.manifestHash;
+const knownRunCancelStatus = await client.cancelRun({
+  runId: "smoke-run",
+  reason: "smoke run cancellation smoke",
+});
+assert(
+  knownRunCancelStatus.code === "cancelled" &&
+    knownRunCancelStatus.details?.matchedRun === true &&
+    knownRunCancelStatus.details?.releaseStreams === false,
+  "expected known run cancellation status"
+);
+const cancelledRunDescription = await client.describeRun({ runId: "smoke-run" });
+assert(
+  cancelledRunDescription.summary.status.code === "cancelled" &&
+    cancelledRunDescription.manifest.status.code === "cancelled" &&
+    cancelledRunDescription.manifest.manifestHash !== priorRunManifestHash,
+  "expected cancellation to update stored run manifest and summary"
+);
+assert(
+  cancelledRunDescription.diagnostics.some((diagnostic) => diagnostic.code === "cancelled"),
+  "expected cancellation diagnostic in run description"
+);
+const cancelledRunStreamRead = await client.readStreamRange({
+  streamId: "smoke-run:causal-root-transient",
+  maxBytes: 2048,
+});
+assert(cancelledRunStreamRead.status.code === "ok", "expected non-cleanup cancellation to preserve streams");
+const cleanupCancelRunHandle = await client.runSimulation(makePathHistoryRunSimulationRequest({
+  requestId: "smoke-cancel-cleanup-run-request",
+  runId: "smoke-cancel-cleanup-run",
+  datasetId: "smoke-cancel-cleanup-run-dataset",
+  streamId: "smoke-cancel-cleanup-run:path-history",
+}));
+assert(cleanupCancelRunHandle.status.code === "ok", "expected cleanup cancellation setup run");
+const cleanupCancelRead = await client.readStreamRange({
+  streamId: "smoke-cancel-cleanup-run:path-history",
+  maxBytes: 1024,
+});
+assert(cleanupCancelRead.status.code === "ok", "expected cleanup cancellation setup stream read");
+const cleanupCancelStatus = await client.cancelRun({
+  runId: "smoke-cancel-cleanup-run",
+  reason: "smoke cleanup cancellation",
+  releaseStreams: true,
+});
+assert(
+  cleanupCancelStatus.code === "cancelled" &&
+    cleanupCancelStatus.details?.matchedRun === true &&
+    cleanupCancelStatus.details?.releaseStreams === true &&
+    cleanupCancelStatus.details?.releaseSummary?.releasedStreamCount === 1,
+  "expected cleanup cancellation release summary"
+);
+const cleanupCancelledRunDescription = await client.describeRun({ runId: "smoke-cancel-cleanup-run" });
+assert(
+  cleanupCancelledRunDescription.status.code === "ok" &&
+    cleanupCancelledRunDescription.manifest.status.code === "cancelled",
+  "expected cleanup-cancelled run to remain describable"
+);
+let cleanupCancelledStreamRejected = false;
+try {
+  await client.readStreamRange({
+    streamId: "smoke-cancel-cleanup-run:path-history",
+    maxBytes: 1024,
+  });
+} catch (error) {
+  cleanupCancelledStreamRejected =
+    error instanceof SolverBridgeError && error.status.code === "stream_read_failed";
+}
+assert(cleanupCancelledStreamRejected, "expected cleanup cancellation to release stream handles");
 
 const circularSourceRunHandle = await client.runSimulation(makeCircularSourceRunSimulationRequest());
 assert(circularSourceRunHandle.status.code === "ok", "expected circular-source runSimulation status ok");
@@ -3401,6 +3876,11 @@ assert(
     circularSourceRunActiveLedger.bracketStart <= circularSourceRunHandle.response.roots[0].emissionTime &&
     circularSourceRunActiveLedger.bracketEnd >= circularSourceRunHandle.response.roots[0].emissionTime,
   "expected circular-source detailed ledger row"
+);
+assertRootLedgerDetailForensics(
+  circularSourceRunActiveLedger,
+  circularSourceRunHandle.response.precision.rootTolerance,
+  "circular-source run root-ledger detail"
 );
 assert(
   findBuffer(circularSourceRunHandle.response, "root_ledger.v1").rowCount === 1 &&
@@ -3612,7 +4092,9 @@ assert(
   pathHistoryRunHandle.response.manifest.runKind === "pathHistory" &&
     pathHistoryRunHandle.response.manifest.appId === "animator" &&
     pathHistoryRunHandle.response.manifest.streams.length === 1 &&
-    pathHistoryRunHandle.response.manifest.streams[0].streamId === "smoke-path-history-run:path-history",
+    pathHistoryRunHandle.response.manifest.streams[0].streamId === "smoke-path-history-run:path-history" &&
+    pathHistoryRunHandle.response.manifest.streams[0].metadata.numericType === "f64" &&
+    pathHistoryRunHandle.response.manifest.streams[0].metadata.valueAuthority === "authoritative",
   "expected path-history run manifest"
 );
 const pathHistoryRunDescription = await client.describeRun({ runId: "smoke-path-history-run" });
@@ -3640,7 +4122,9 @@ assert(
     motionRunHandle.response.manifest.appId === "animator" &&
     motionRunHandle.response.manifest.buffers[0].layout === "frame_buffer.v1" &&
     motionRunHandle.response.manifest.streams[0].streamId ===
-      "smoke-motion-run:motion-path-history",
+      "smoke-motion-run:motion-path-history" &&
+    motionRunHandle.response.manifest.streams[0].metadata.numericType === "f64" &&
+    motionRunHandle.response.manifest.streams[0].metadata.appBufferAuthority === "authoritative",
   "expected motion run manifest"
 );
 assert(motionRunHandle.response.frames.length === 3, "expected motion run frames");
@@ -3877,6 +4361,11 @@ assert(
     delayedHitRunHandle.response.manifest.buffers.length === 3,
   "expected delayed-hit run manifest"
 );
+assertRootLedgerDetailForensics(
+  delayedHitRunHandle.response.rootLedgerDetails[0],
+  delayedHitRunHandle.response.precision.rootTolerance,
+  "delayed-hit run root-ledger detail"
+);
 const normalizedDelayedHitRunHandle = await client.runSimulation(
   makeNormalizedDelayedHitRunSimulationRequest()
 );
@@ -3886,6 +4375,11 @@ assert(
     normalizedDelayedHitRunHandle.response.rootLedgerDetails.length >= 1 &&
     Math.abs(normalizedDelayedHitRunHandle.response.hits[0].distance - 1) <= 1e-12,
   "expected normalized delayed-hit run response"
+);
+assertRootLedgerDetailForensics(
+  normalizedDelayedHitRunHandle.response.rootLedgerDetails[0],
+  normalizedDelayedHitRunHandle.response.precision.rootTolerance,
+  "normalized delayed-hit run root-ledger detail"
 );
 assert(
   normalizedDelayedHitRunHandle.response.diagnostics.some(
@@ -4127,6 +4621,26 @@ function assertCircularSourceRootResponse(response, label) {
       Math.abs(response.roots[0].distance - expectedDelay) <= 1e-10 &&
       Math.abs(response.roots[0].jacobian - 1) <= 1e-10,
     `expected ${label} closed-form circular-source causal root`
+  );
+}
+
+function assertRootLedgerDetailForensics(row, expectedRootTolerance, label) {
+  const residualScale = Math.max(
+    Math.abs(row.delay),
+    Math.abs(row.hitTime - row.emissionTime),
+    Math.abs(row.intervalEnd - row.intervalStart),
+    1
+  );
+  assert(Math.abs(row.residualScale - residualScale) <= 1e-12, `expected ${label} residual scale`);
+  assert(row.absoluteResidual === Math.abs(row.residual), `expected ${label} absolute residual`);
+  assert(
+    Math.abs(row.normalizedResidual - row.absoluteResidual / row.residualScale) <= 1e-15,
+    `expected ${label} normalized residual`
+  );
+  assert(row.rootTolerance === expectedRootTolerance, `expected ${label} root tolerance`);
+  assert(
+    row.firstFailureCode === ((row.stateFlags & 1) !== 0 ? row.statusCode : 0),
+    `expected ${label} first failure code`
   );
 }
 
@@ -4444,7 +4958,7 @@ function makePhaseDiagnosticsRunSimulationRequest(roots) {
   });
 }
 
-function makePathHistoryRunSimulationRequest() {
+function makePathHistoryRunSimulationRequest(overrides = {}) {
   const admission = makeAdmissionRequest();
   return createPathHistoryRunRequest({
     requestId: "smoke-path-history-run-request",
@@ -4461,6 +4975,14 @@ function makePathHistoryRunSimulationRequest() {
     streamId: "smoke-path-history-run:path-history",
     pathRows: makePathHistoryRows(),
     rowsPerChunk: 1,
+    output: {
+      outputs: ["pathStream", "diagnostics"],
+      streamTarget: "caller-buffer",
+      memoryBudgetBytes: 64 * 1024 * 1024,
+      deterministic: true,
+      ...(overrides.output ?? {}),
+    },
+    ...overrides,
     metadata: {
       precisionPath: "scaled_f64_strict",
       units: "solver-si",
@@ -4468,12 +4990,7 @@ function makePathHistoryRunSimulationRequest() {
       scaleNormalization: "unit-test-scale",
       interpolationRule: "linear-segment",
       provenance: { fixture: "path-history-run-smoke" },
-    },
-    output: {
-      outputs: ["pathStream", "diagnostics"],
-      streamTarget: "caller-buffer",
-      memoryBudgetBytes: 64 * 1024 * 1024,
-      deterministic: true,
+      ...(overrides.metadata ?? {}),
     },
   });
 }
@@ -4863,6 +5380,17 @@ function findNumericDescriptor(capabilities, numericType) {
   );
   if (!descriptor) {
     console.error(`Missing numeric descriptor ${numericType}`);
+    process.exit(1);
+  }
+  return descriptor;
+}
+
+function findNumericChartDescriptor(capabilities, numericChart) {
+  const descriptor = capabilities.numericSerialization.chartDescriptors.find(
+    (candidate) => candidate.numericChart === numericChart
+  );
+  if (!descriptor) {
+    console.error(`Missing numeric chart descriptor ${numericChart}`);
     process.exit(1);
   }
   return descriptor;

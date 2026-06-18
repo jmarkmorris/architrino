@@ -23,6 +23,8 @@ struct BenchmarkOutcome {
   std::uint64_t operations = 0;
   std::uint64_t observations = 0;
   double checksum = 0.0;
+  std::string strategy;
+  std::vector<std::pair<std::string, double>> metrics;
 };
 
 struct BenchmarkResult {
@@ -31,6 +33,15 @@ struct BenchmarkResult {
   std::uint64_t observations = 0;
   double elapsedMs = 0.0;
   double operationsPerSecond = 0.0;
+  double checksum = 0.0;
+  std::string strategy;
+  std::vector<std::pair<std::string, double>> metrics;
+};
+
+struct CausalRootBatchRunSummary {
+  architrino::solver::CausalRootBatchResult result;
+  double elapsedMs = 0.0;
+  std::uint64_t rootCount = 0;
   double checksum = 0.0;
 };
 
@@ -131,6 +142,40 @@ std::vector<architrino::solver::AssemblyStateRowF64> make_assembly_states(std::s
   return rows;
 }
 
+CausalRootBatchRunSummary run_causal_root_batch(
+    const std::vector<architrino::solver::CausalRootBatchItem>& items,
+    std::size_t requestedWorkerCount) {
+  const auto started = Clock::now();
+  architrino::solver::CausalRootBatchResult result =
+      architrino::solver::solve_causal_roots_batch(
+          items,
+          architrino::solver::CausalRootBatchOptions{requestedWorkerCount, true});
+  const auto finished = Clock::now();
+  const double elapsedMs =
+      std::chrono::duration<double, std::milli>(finished - started).count();
+  if (!result.validation.ok || result.items.size() != items.size()) {
+    throw std::runtime_error("causal-root batch benchmark failed validation");
+  }
+
+  std::uint64_t rootCount = 0;
+  double checksum = 0.0;
+  for (const architrino::solver::CausalRootBatchItemResult& item : result.items) {
+    rootCount += item.result.roots.size();
+    for (const architrino::solver::CausalRoot& root : item.result.roots) {
+      checksum += root.emissionTime + root.distance + root.branchWeight;
+    }
+  }
+  if (rootCount == 0 || !std::isfinite(checksum)) {
+    throw std::runtime_error("causal-root batch benchmark produced no roots");
+  }
+  return CausalRootBatchRunSummary{
+      std::move(result),
+      elapsedMs,
+      rootCount,
+      checksum,
+  };
+}
+
 BenchmarkResult measure(std::string name, BenchmarkOutcome (*workload)()) {
   const auto started = Clock::now();
   const BenchmarkOutcome outcome = workload();
@@ -144,31 +189,56 @@ BenchmarkResult measure(std::string name, BenchmarkOutcome (*workload)()) {
       elapsedMs,
       elapsedMs > 0.0 ? static_cast<double>(outcome.operations) * 1000.0 / elapsedMs : 0.0,
       outcome.checksum,
+      outcome.strategy,
+      outcome.metrics,
   };
 }
 
 BenchmarkOutcome benchmark_causal_root_batch() {
   const std::vector<architrino::solver::CausalRootBatchItem> items =
       make_causal_root_batch(512);
-  const architrino::solver::CausalRootBatchResult result =
-      architrino::solver::solve_causal_roots_batch(
-          items,
-          architrino::solver::CausalRootBatchOptions{2, true});
-  if (!result.validation.ok || result.items.size() != items.size()) {
-    throw std::runtime_error("causal-root batch benchmark failed validation");
+  const CausalRootBatchRunSummary run = run_causal_root_batch(items, 2);
+  return BenchmarkOutcome{
+      items.size(),
+      run.rootCount,
+      run.checksum,
+      "deterministic-indexed-batch",
+      {
+          {"requested_worker_count", 2.0},
+          {"used_worker_count", static_cast<double>(run.result.workerCountUsed)},
+      },
+  };
+}
+
+BenchmarkOutcome benchmark_causal_root_thread_scaling() {
+  const std::vector<architrino::solver::CausalRootBatchItem> items =
+      make_causal_root_batch(768);
+  const CausalRootBatchRunSummary singleWorkerRun = run_causal_root_batch(items, 1);
+  const CausalRootBatchRunSummary boundedWorkerRun = run_causal_root_batch(items, 4);
+  if (singleWorkerRun.rootCount != boundedWorkerRun.rootCount) {
+    throw std::runtime_error("thread-scaling benchmark changed root count");
   }
-  std::uint64_t rootCount = 0;
-  double checksum = 0.0;
-  for (const architrino::solver::CausalRootBatchItemResult& item : result.items) {
-    rootCount += item.result.roots.size();
-    for (const architrino::solver::CausalRoot& root : item.result.roots) {
-      checksum += root.emissionTime + root.distance + root.branchWeight;
-    }
+  const double checksumDelta = std::fabs(singleWorkerRun.checksum - boundedWorkerRun.checksum);
+  if (checksumDelta > 1e-9) {
+    throw std::runtime_error("thread-scaling benchmark changed checksum");
   }
-  if (rootCount == 0 || !std::isfinite(checksum)) {
-    throw std::runtime_error("causal-root batch benchmark produced no roots");
-  }
-  return BenchmarkOutcome{items.size(), rootCount, checksum};
+  const double speedup =
+      boundedWorkerRun.elapsedMs > 0.0 ? singleWorkerRun.elapsedMs / boundedWorkerRun.elapsedMs : 0.0;
+  return BenchmarkOutcome{
+      items.size() * 2,
+      boundedWorkerRun.rootCount,
+      boundedWorkerRun.checksum,
+      "deterministic-single-vs-bounded-worker-batch",
+      {
+          {"item_count", static_cast<double>(items.size())},
+          {"single_worker_count", static_cast<double>(singleWorkerRun.result.workerCountUsed)},
+          {"bounded_worker_count", static_cast<double>(boundedWorkerRun.result.workerCountUsed)},
+          {"single_elapsed_ms", singleWorkerRun.elapsedMs},
+          {"bounded_elapsed_ms", boundedWorkerRun.elapsedMs},
+          {"speedup_ratio", speedup},
+          {"checksum_delta", checksumDelta},
+      },
+  };
 }
 
 BenchmarkOutcome benchmark_emission_shell_broad_phase() {
@@ -198,10 +268,24 @@ BenchmarkOutcome benchmark_emission_shell_broad_phase() {
   for (const architrino::solver::EmissionShellBroadPhaseCandidate& candidate : result.candidates) {
     checksum += candidate.distanceLowerBound + candidate.distanceUpperBound;
   }
+  const double pairCount = static_cast<double>(result.summary.pairCount);
+  const double candidateCount = static_cast<double>(result.candidates.size());
+  const double rejectedPairCount = static_cast<double>(result.summary.rejectedPairCount);
   return BenchmarkOutcome{
       result.summary.pairCount,
       static_cast<std::uint64_t>(result.candidates.size()),
       checksum,
+      "all-pairs-aabb-radius-interval",
+      {
+          {"source_rows", static_cast<double>(sourceRows.size())},
+          {"receiver_rows", static_cast<double>(receiverRows.size())},
+          {"tested_pairs", pairCount},
+          {"rejected_pairs", rejectedPairCount},
+          {"candidate_count", candidateCount},
+          {"rejection_rate", pairCount > 0.0 ? rejectedPairCount / pairCount : 0.0},
+          {"candidate_rate", pairCount > 0.0 ? candidateCount / pairCount : 0.0},
+          {"planned_worker_count", static_cast<double>(result.summary.plannedWorkerCount)},
+      },
   };
 }
 
@@ -240,7 +324,19 @@ BenchmarkOutcome benchmark_spacetime_index() {
   for (const architrino::solver::SpaceTimeIndexRowF64& row : matches) {
     checksum += static_cast<double>(row.subjectKey) + static_cast<double>(row.rowOffset);
   }
-  return BenchmarkOutcome{merged.rows.size(), matches.size(), checksum};
+  return BenchmarkOutcome{
+      merged.rows.size(),
+      matches.size(),
+      checksum,
+      "combined-spacetime-cell-index",
+      {
+          {"path_rows", static_cast<double>(pathRows.size())},
+          {"assembly_rows", static_cast<double>(assemblyRows.size())},
+          {"index_rows", static_cast<double>(merged.rows.size())},
+          {"query_matches", static_cast<double>(matches.size())},
+          {"overflow_entries", static_cast<double>(merged.overflowEntryCount)},
+      },
+  };
 }
 
 BenchmarkOutcome benchmark_stream_and_store_io() {
@@ -343,7 +439,14 @@ void print_result(const BenchmarkResult& result) {
             << " elapsed_ms=" << std::fixed << std::setprecision(3) << result.elapsedMs
             << " ops_per_sec=" << std::fixed << std::setprecision(1)
             << result.operationsPerSecond
-            << " checksum=" << std::setprecision(6) << result.checksum << '\n';
+            << " checksum=" << std::setprecision(6) << result.checksum;
+  if (!result.strategy.empty()) {
+    std::cout << " strategy=" << result.strategy;
+  }
+  for (const auto& metric : result.metrics) {
+    std::cout << ' ' << metric.first << '=' << std::setprecision(6) << metric.second;
+  }
+  std::cout << '\n';
 }
 
 }  // namespace
@@ -352,6 +455,7 @@ int main() {
   try {
     const std::vector<BenchmarkResult> results{
         measure("causal-root-batch", benchmark_causal_root_batch),
+        measure("causal-root-thread-scaling", benchmark_causal_root_thread_scaling),
         measure("emission-shell-broad-phase", benchmark_emission_shell_broad_phase),
         measure("spacetime-index-build-query", benchmark_spacetime_index),
         measure("stream-and-assembly-store-io", benchmark_stream_and_store_io),

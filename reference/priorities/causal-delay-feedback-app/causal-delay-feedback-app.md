@@ -51,6 +51,16 @@ The first version should be a candidate-level explanatory model. It should teach
 - Prefer icon buttons, including a settings gear, and draggable handles over labeled slider rows.
 - Keep text small and functional: labels should name the selected object, time, depth, or contribution rather than explain the whole app.
 
+## Reusable App Design References
+
+Recent app work has several reusable design patterns for this app:
+
+- [Molecule Visualization](../../../molecule.html) provides the best compact app-shell reference: a full canvas, top floating title block, small toolbar, color legend chips, hover label, and compact bottom readout.
+- [MoleculeRuntime.js](../../../src/apps/molecule/MoleculeRuntime.js) has useful viewport-fit logic that keeps the main object clear of the readout. Reuse that idea so the receiver, moving architrino paths, and contribution stack do not collide at different canvas sizes.
+- [IdealSwarmRuntime.js](../../../src/apps/ideal-swarm/IdealSwarmRuntime.js) remains the primary marker and trail grammar reference for architrino motion: glow-backed positrino/electrino markers, layered path ribbons, faded wake layers, and dark full-canvas atmosphere.
+- [PhotonSwarmVisualRuntime.js](../../../src/apps/photon/PhotonSwarmVisualRuntime.js) has a useful 2D arc-tail primitive: segmented curved arcs with width and alpha falloff. Adapt that pattern for causal-wake arcs, pulse trails, and $1/r$ thinning.
+- Do not import Molecule's dense side preset rail or Ideal Swarm's four-corner panel layout into v1. The causal-delay app should keep the canvas-first, low-control direction already selected.
+
 ## V1 Product Direction
 
 The first build should feel simpler than Photon or Ideal Swarm:
@@ -106,6 +116,8 @@ During dragging, the canvas may show a lightweight preview path so the interface
 
 Contact sheet proofs may use representative mock solver-replay paths before the app has real solver integration. The proof goal is visual readability, not numerical correctness.
 
+[NPQG Fundamentals - Paths.pptx](NPQG Fundamentals - Paths.pptx) is a conceptual and geometry reference for path-history, expanding emissions, circular wake intersections, and action-at-intersection scenes. It is not the art-direction target. The contact sheet proofs should improve on the old slide aesthetic while preserving the useful causal-delay ideas.
+
 Mock proof datasets must be labeled as `representative mock solver replay` in the proof artifact or local proof notes. They should imitate the solver output shape closely enough to test layout:
 
 - frame samples for one positrino/electrino pair;
@@ -152,10 +164,14 @@ Accepted first contact sheet variants:
 - A full-circular-arc preset should exist because it teaches the complete emitted wake geometry.
 - The default teaching view should use smaller outward-propagating arcs moving toward each intersection, because partial arcs keep the screen less busy and make feedback arrivals easier to see.
 - The first contact sheet proof scope is accepted: one positrino, one electrino, one receiver probe, three retained feedback depths, and both wake modes shown across 16:9 proof variants.
+- The first proof should use linear or gently curved path-history motion. Orbit-motion scenes can come later.
+- The receiver probe in the first proof is a virtual observer/probe, not a fixed architrino. The positrino and electrino must move on solver-returned paths and should not be frozen to simplify the scene.
+- Signed positrino/electrino polarity color should be visible from the start.
 - The settings gear is accepted; canvas color should be one of the first settings so purple-background variants can be tested without adding a dense control panel.
 - Six landscape contact sheet variants are enough for the first visual proof pass.
 - Contribution magnitude should use a $1/r$ falloff law in v1.
 - Causal-wake fading and thinning should be tunable from computed contribution magnitude; weak or subthreshold wakes may desaturate toward white as an assembly-relevance indicator, but their source identity should remain readable.
+- Long fading white trails may be useful as a setting. They should not be limited to `contrast_stress`, but they also should not obscure emitter identity in the default teaching scene.
 
 ## Visualization
 
@@ -166,6 +182,7 @@ Accepted first contact sheet variants:
 - Reserve a small edge strip or inset for the contribution stack so the main animation does not become crowded.
 - Use stable scaling: changing field speed or feedback depth should not resize the whole scene unexpectedly.
 - Keep the default composition sparse: two architrino initial-condition handles, one receiver probe, three visible feedback-depth rows, and a thin contribution stack.
+- Treat the receiver probe as a virtual observer/probe in the first visual proof; the moving positrino and electrino remain solver-owned architrino paths.
 - Let the main source path and receiver location occupy the first viewport immediately; avoid a landing-page feel.
 
 ### Objects
@@ -182,6 +199,7 @@ Accepted first contact sheet variants:
 ### Animation
 
 - Animate architrino markers along solver-returned path samples.
+- Use linear or gently curved path-history motion for the first proof scenes.
 - Animate partial causal-wake arcs expanding outward from prior source positions toward each active intersection.
 - Animate pulses on those visible arcs and land them on the receiver at `now`.
 - In full-circular-arc mode, draw complete emitted circles or near-circles as background geometry, then highlight the active arc segment that reaches the receiver.
@@ -200,6 +218,7 @@ Accepted first contact sheet variants:
 - Test at least one dense history scene where multiple emitter-colored arcs overlap against the purple background.
 - Test both normal and dimmed/faded causal-wake arcs so old history remains readable without overwhelming the canvas.
 - Test $1/r$-driven fade and stroke-width mappings, including a weak/subthreshold state that can approach white without looking like a new emitter color.
+- Test long fading white trails as an optional setting, including whether the emitter color remains readable through pulse color, active-segment color, labels, or contribution rows.
 - If emitter colors are hard to distinguish on purple, revise the background saturation/value before changing the emitter-color rule.
 - Preserve the rule that causal-wake arcs and pulses are colored by their emitter unless a later visual test proves a specific accessibility exception is required.
 - Include the accepted six-variant contact sheet proof set in the first visual pass.
@@ -220,6 +239,7 @@ Named presets should load complete app state:
 - retained history depth;
 - path visibility mode;
 - wake-arc display mode;
+- weak-trail display mode;
 - readout visibility;
 - canvas color or purple-background atmosphere variant;
 - and proof dataset source when a contact sheet is using mock replay data.
@@ -246,12 +266,26 @@ Initial settings:
 
 - Canvas color: choose among the approved purple-background atmosphere variants and any test fallback color.
 - Background depth field: on/off.
+- Weak-trail display: off, threshold-only, or long fading white trails.
 - Reduced motion: on/off.
 - High contrast paths: on/off.
 
 Canvas color is a first-class app setting. It should be stored with named presets and mock contact-sheet datasets so visual proofs can compare the same scene across background variants.
 
 The settings popover should close when the user clicks outside it or selects a setting. It should not introduce long explanatory text or dense slider rows.
+
+## Future iPhone App Integration
+
+The causal-delay feedback app should be designed so it can later integrate with the [iOS app](../ios-app/ios-app.md) as a post-v1 visualization.
+
+The iPhone/iPad version may start as an embedded web runtime if that preserves behavior fastest. A native SwiftUI/SceneKit/Canvas rewrite can follow only if the embedded route blocks quality, performance, or offline packaging.
+
+Orientation behavior should be planned early:
+
+- Landscape: use the full 16:9 canvas composition, with the floating toolbar and receiver-side contribution stack close to the desktop contact-sheet layout.
+- Portrait: keep the same one-pair scene, but stack the compact toolbar, canvas, contribution stack, and readout vertically so the moving architrino paths remain visible.
+- iPad: prefer a landscape-like canvas with optional inspector/readout space; do not add extra conceptual panels just because more screen space is available.
+- The orientation change should preserve the current preset, `now` time, selected path, wake-arc display mode, and weak-trail setting.
 
 ## Direct Manipulation Model
 
@@ -380,6 +414,7 @@ Each solver run should also carry a compact setup record:
 | `datasetSource` | `solver`, `representative_mock_solver_replay`, or `draft_preview`. |
 | `canvasColor` | Selected canvas color or purple-background atmosphere variant. |
 | `wakeArcDisplayMode` | `partial_propagating_arcs` or `full_circular_arcs`. |
+| `weakTrailMode` | `off`, `threshold_only`, or `long_fading_white_trails`. |
 | `initialConditions` | Initial positions, velocities, polarity or role, and run duration. |
 | `solverStatus` | `draft`, `running`, `ready`, `stale`, `failed`, or `unsupported`. |
 | `frameStride` | Display stride for replayed frame samples. |
@@ -397,7 +432,7 @@ Each solver run should also carry a compact setup record:
 6. `drag_to_solver_loop` - Make source, receiver, velocity arrow, and history-depth handles update setup state and rerun the solver on release. Status: `pending`.
 7. `pulse_animation` - Animate source motion, outward-propagating causal-wake arcs, and emitter-colored pulses along solver-returned retained paths. Status: `pending`.
 8. `compact_readout` - Add selected-object, selected-depth, and solver-status readouts without a dense default panel. Status: `pending`.
-9. `settings_gear` - Add a compact settings popover with canvas color, background depth field, reduced motion, and high contrast paths. Status: `pending`.
+9. `settings_gear` - Add a compact settings popover with canvas color, background depth field, weak-trail display, reduced motion, and high contrast paths. Status: `pending`.
 10. `toolbar_minimum` - Add preset dropdown, play/pause, reset, reset preset, paths cycle, slow/fast, readout toggle, settings gear, and rerun indicator. Status: `pending`.
 11. `purple_background_contrast_pass` - Verify the purple background against emitter-colored wake arcs, pulse fades, weak-to-white threshold states, selected highlights, warnings, and text. Status: `pending`.
 12. `invalid_path_states` - Show inactive, rejected, unresolved, and stale paths with clear visual states and concise reasons. Status: `pending`.
@@ -408,6 +443,7 @@ Each solver run should also carry a compact setup record:
 - Do not hand-author meaningful architrino paths in the app runtime; use solver output for path history.
 - Do not let contact-sheet mock paths become accepted runtime physics; they are representative proof data only.
 - Do not claim Noether sea closure from the toy feedback-depth model.
+- Do not clone the older PowerPoint slide aesthetic as the app's visual target; use it only as a source of causal-delay visualization ideas.
 - Keep the page as a usable animation app first, not a prose explainer with a small graphic.
 - Keep any end-user language plain: explain causal delay as influence arriving after travel time.
 - Do not let the app grow into another control-dense inspector before the direct-manipulation loop is working.
@@ -415,8 +451,5 @@ Each solver run should also carry a compact setup record:
 
 ## Open Questions
 
-- Should the first build use line motion, orbit motion, or both?
-- Should the default receiver be fixed, or should receiver motion be available from the start?
-- Should v1 include signed red/blue polarity, or keep the first source neutral until the timing model is clear?
 - Should the first visual mock use SVG/canvas 2D for speed of iteration, or Three.js with an orthographic camera to reuse more existing app rendering conventions?
 - Should the first implementation call the current JavaScript assembly-dynamics solver path as a bridge, or wait for the central solver app bridge to expose motion simulation plus causal-root rows?

@@ -70,6 +70,16 @@ enum class NumericType {
   MpLimbBlock,
 };
 
+enum class NumericChart {
+  AbsoluteF64,
+  LocalFrame,
+  NondimensionalRatio,
+  LogMagnitude,
+  SignedLogMagnitude,
+  DirectionLogMagnitude,
+  IntervalBounds,
+};
+
 enum class InteractionPolicy {
   Sparse,
   NeighborPruned,
@@ -104,10 +114,11 @@ enum class SimplificationPolicy {
 };
 
 enum class AdmissionDecision {
-  Admit,
-  Batch,
-  EscalatePrecision,
-  Reject,
+  Admit = 0,
+  Batch = 1,
+  EscalatePrecision = 2,
+  Reject = 3,
+  Simplify = 4,
 };
 
 enum class AdmissionStressDimension {
@@ -219,6 +230,7 @@ std::string_view to_string(StatusCode value);
 std::string_view to_string(PrecisionPath value);
 std::string_view to_string(ClaimLevel value);
 std::string_view to_string(NumericType value);
+std::string_view to_string(NumericChart value);
 std::string_view to_string(InteractionPolicy value);
 std::string_view to_string(BranchComplexity value);
 std::string_view to_string(OutputDetail value);

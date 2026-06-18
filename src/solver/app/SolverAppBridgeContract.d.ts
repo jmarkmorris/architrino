@@ -25,7 +25,7 @@ export type SolverClaimLevel =
   | "exported-dataset"
   | "validation-evidence";
 
-export type SolverAdmissionDecision = "admit" | "batch" | "escalate_precision" | "reject";
+export type SolverAdmissionDecision = "admit" | "batch" | "escalate_precision" | "reject" | "simplify";
 
 export type SolverErrorBudgetStage =
   | "root_isolation"
@@ -124,6 +124,9 @@ export interface SolverClient {
   planPathHistoryStorageLifecycleF64(
     request: SolverPathHistoryStorageLifecycleRequest
   ): Promise<SolverPathHistoryStorageLifecycleResponse>;
+  applyPathHistoryStorageLifecycleF64(
+    request: SolverPathHistoryStorageLifecycleApplyRequest
+  ): Promise<SolverPathHistoryStorageLifecycleApplyResponse>;
   queryEmissionShellCandidatesF64(
     request: SolverEmissionShellCandidateF64Request
   ): Promise<SolverEmissionShellCandidateF64Response>;
@@ -685,6 +688,13 @@ export interface SolverPathHistoryStorageLifecycleRequest {
   chunks?: SolverPathHistoryChunkMetadata[];
 }
 
+export interface SolverPathHistoryStorageLifecycleApplyRequest {
+  streamId?: string;
+  manifestPath?: string;
+  policy: SolverPathHistoryStorageLifecyclePolicy;
+  deleteStreamWhenAllChunksDeleted?: boolean;
+}
+
 export interface SolverPathHistoryLifecycleDecision {
   chunkIndex: number;
   tierCode: number;
@@ -705,17 +715,85 @@ export interface SolverPathHistoryStorageLifecycleResponse {
   };
   chunkCount: number;
   decisions: SolverPathHistoryLifecycleDecision[];
+  summary: SolverPathHistoryStorageLifecycleSummary;
   status: SolverStatusRecord;
+}
+
+export interface SolverPathHistoryStorageLifecycleApplyResponse {
+  schema: "solver-path-history-storage-lifecycle-apply.v1";
+  streamId: string;
+  plan: SolverPathHistoryStorageLifecycleResponse;
+  appliedChunkCount: number;
+  nativeManifestUpdated: boolean;
+  manifestPath?: string;
+  metadata: SolverPathHistoryStorageLifecycleMetadata;
+  cleanup: SolverPathHistoryStorageLifecycleCleanup;
+  status: SolverStatusRecord;
+}
+
+export interface SolverPathHistoryStorageLifecycleCleanup {
+  schema: "solver-path-history-storage-lifecycle-cleanup.v1";
+  requested: boolean;
+  deletedStream: boolean;
+  releasedStream: boolean;
+  deletedNativeFileStream: boolean;
+  plannedDeleteChunkCount: number;
+  skippedReason:
+    | "none"
+    | "not_requested"
+    | "no_chunks"
+    | "not_all_chunks_planned_delete";
+}
+
+export interface SolverPathHistoryStorageLifecycleMetadata {
+  schema: "solver-path-history-storage-lifecycle-metadata.v1";
+  policy: SolverPathHistoryStorageLifecycleResponse["policy"];
+  summary: SolverPathHistoryStorageLifecycleSummary;
+  decisions: SolverPathHistoryLifecycleDecision[];
+  deepIndex?: SolverPathHistoryDeepIndexMetadata;
+}
+
+export interface SolverPathHistoryDeepIndexMetadata {
+  schema: "solver-path-history-deep-index.v1";
+  indexKind: "spacetime";
+  indexLayout: "spacetime_index.v1";
+  sourceStreamId: string;
+  builtChunkIndices: number[];
+  rowCount: number;
+  overflowEntryCount: number;
+  byteLength: number;
+  checksum: string;
+  options: SolverSpaceTimeIndexOptionsF64;
+}
+
+export interface SolverPathHistoryStorageLifecycleSummary {
+  schema: "solver-path-history-storage-lifecycle-summary.v1";
+  totalChunkCount: number;
+  totalBytes: number;
+  tierCounts: Record<SolverPathHistoryStorageTier, number>;
+  actionCounts: Record<SolverPathHistoryStorageAction, number>;
+  bytesByTier: Record<SolverPathHistoryStorageTier, number>;
+  safeToAgeOutCount: number;
+  unsafeToAgeOutCount: number;
+  deepIndexRequiredCount: number;
+  deepIndexQueueChunkIndices: number[];
+  unsafeToAgeOutChunkIndices: number[];
 }
 
 export interface SolverPathHistoryStreamMetadata {
   schema: "solver-path-history-stream-metadata.v1";
   precisionPath: SolverPrecisionPath;
+  numericType: SolverNumericType;
+  numericChart: SolverNumericChart;
+  valueAuthority: SolverValueAuthority;
+  appBufferAuthority: SolverValueAuthority;
+  claimLevel: SolverClaimLevel;
   units: string;
   coordinateFrame: string;
   scaleNormalization: string;
   interpolationRule: string;
   dynamicReplay?: SolverPathHistoryDynamicReplayMetadata;
+  lifecycle?: SolverPathHistoryStorageLifecycleMetadata;
   provenance: Record<string, unknown>;
   diagnostics: SolverDiagnosticRecord[];
 }
@@ -1067,6 +1145,7 @@ export interface SolverPrecisionSolveSummaryF64 {
   diagnosticPrecisionPath: SolverPrecisionPath;
   selectedPrecisionPath: SolverPrecisionPath;
   selectedNumericType: SolverNumericType;
+  selectedNumericChart: SolverNumericChart;
   claimLevel: SolverClaimLevel;
   statusCode: SolverStatusCode;
   statusSeverity: SolverStatusSeverity;
@@ -1077,8 +1156,17 @@ export interface SolverPrecisionSolveSummaryF64 {
   maxIterations: number;
   scanSubdivisions: number;
   escalated: boolean;
+  escalations: SolverPrecisionEscalationRecord[];
   validationReplayRun: boolean;
   validationReplayMatched: boolean;
+}
+
+export interface SolverPrecisionEscalationRecord {
+  priorPrecisionPath: SolverPrecisionPath;
+  newPrecisionPath: SolverPrecisionPath;
+  triggeringDiagnostic: string;
+  affectedStage: string;
+  claimLevelSatisfied: boolean;
 }
 
 export interface SolverCausalRootsNormalizedF64Request {
@@ -1124,6 +1212,8 @@ export interface SolverPrecisionDiagnosticF64Response {
   statusCode: number;
   recommendedPath: SolverPrecisionPath;
   recommendedNumericType: SolverNumericType;
+  recommendedChart: SolverNumericChart;
+  speedChart: SolverNumericChart;
   scaleNormalizationRecommended: boolean;
   extendedPrecisionRecommended: boolean;
   scaleResolutionLimited: boolean;
@@ -1302,6 +1392,10 @@ export interface SolverRootLedgerDetailF64 {
   hitTime: number;
   delay: number;
   residual: number;
+  residualScale: number;
+  absoluteResidual: number;
+  normalizedResidual: number;
+  rootTolerance: number;
   jacobian: number;
   branchWeight: number;
   bracketStart: number;
@@ -1315,6 +1409,7 @@ export interface SolverRootLedgerDetailF64 {
   sequenceIndex: number;
   iterationCount: number;
   stateFlags: number;
+  firstFailureCode: number;
 }
 
 export interface SolverDelayedHitF64 {
@@ -1752,6 +1847,7 @@ export interface SolverRunManifest {
   envelope: SolverSimulationEnvelope;
   capability: SolverCapabilityEnvelope;
   errorBudget: SolverErrorBudget;
+  precisionMetadata: SolverRunPrecisionMetadata;
   requestedPrecisionPath: SolverPrecisionPath;
   selectedPrecisionPath: SolverPrecisionPath;
   output: SolverOutputRequest;
@@ -1765,6 +1861,20 @@ export interface SolverRunManifest {
   precision?: SolverPrecisionSolveSummaryF64;
   validationArtifacts: SolverRunValidationArtifacts;
   status: SolverStatusRecord;
+}
+
+export interface SolverRunPrecisionMetadata {
+  schema: "solver-run-precision-metadata.v1";
+  requestedPrecisionPath: SolverPrecisionPath;
+  selectedPrecisionPath: SolverPrecisionPath;
+  numericType: SolverNumericType;
+  numericChart: SolverNumericChart;
+  unitConvention: string;
+  scaleNormalization: string;
+  globalErrorBudget: number;
+  stageErrorBudgets: SolverErrorBudget;
+  claimLevel: SolverClaimLevel;
+  valueAuthority: SolverValueAuthority;
 }
 
 export type SolverPrecisionReplayStatus = "not-run" | "matched" | "mismatch";
@@ -1836,6 +1946,7 @@ export interface SolverRunManifestStream {
   indexLayout: SolverBinaryLayoutId;
   rangeCount: number;
   storagePolicy: SolverStoragePolicy;
+  metadata: SolverPathHistoryStreamMetadata;
 }
 
 export interface SolverBufferDescriptor {
@@ -1913,6 +2024,18 @@ export interface SolverWorkPacketResultOrderResponse {
   status: SolverStatusRecord;
 }
 
+export interface SolverPathHistoryWorkPacketChunkSelection {
+  chunkIndex: number;
+  bufferId: string;
+  rowOffset: number;
+  rowCount: number;
+  byteLength: number;
+  checksum: string;
+  timeRange?: SolverRange;
+  frameRange?: SolverRange;
+  byteRange?: SolverRange;
+}
+
 export interface SolverPathHistoryWorkPacketPlanRequest {
   streamId?: string;
   manifestPath?: string;
@@ -1945,6 +2068,9 @@ export interface SolverPathHistoryWorkPacketPlanResponse {
   chunkPairCount: number;
   packetCount: number;
   truncated: boolean;
+  sourceSelections: SolverPathHistoryWorkPacketChunkSelection[];
+  receiverSelections: SolverPathHistoryWorkPacketChunkSelection[];
+  planChecksum: string;
   packets: SolverWorkPacketHeader[];
   status: SolverStatusRecord;
 }
@@ -1955,7 +2081,7 @@ export interface SolverStreamDescriptor {
   indexLayout: SolverBinaryLayoutId;
   availableRanges: SolverStreamRange[];
   storagePolicy: SolverStoragePolicy;
-  metadata?: SolverPathHistoryStreamMetadata;
+  metadata: SolverPathHistoryStreamMetadata;
 }
 
 export type SolverBinaryLayoutId =
@@ -1982,6 +2108,15 @@ export type SolverNumericType =
   | "interval_f64_pair"
   | "decimal128"
   | "mp_limb_block";
+
+export type SolverNumericChart =
+  | "absolute_f64"
+  | "local_frame"
+  | "nondimensional_ratio"
+  | "log_magnitude"
+  | "signed_log_magnitude"
+  | "direction_log_magnitude"
+  | "interval_bounds";
 
 export type SolverStatusSeverity = "ok" | "info" | "warning" | "halt" | "error";
 
@@ -2313,9 +2448,16 @@ export interface SolverNumericSerializationDescriptor {
   authoritativeStorageSafe: boolean;
 }
 
+export interface SolverNumericChartDescriptor {
+  numericChart: SolverNumericChart;
+  role: string;
+  preservesLocalDetailAcrossLargeOffsets: boolean;
+}
+
 export interface SolverNumericSerializationContract {
   schema: "solver-numeric-serialization.v1";
   descriptors: SolverNumericSerializationDescriptor[];
+  chartDescriptors: SolverNumericChartDescriptor[];
 }
 
 export interface SolverErrorBudgetPropagationStageDescriptor {
@@ -2443,6 +2585,7 @@ export interface SolverCancelRequest {
   requestId?: string;
   runId?: string;
   reason?: string;
+  releaseStreams?: boolean;
 }
 
 export interface SolverCloseRunRequest {
@@ -2507,6 +2650,8 @@ export interface SolverStreamHandle {
   manifestVersion: string;
   readableLayouts: SolverBinaryLayoutId[];
   availableRanges: SolverStreamRange[];
+  storagePolicy?: SolverStoragePolicy;
+  metadata?: SolverPathHistoryStreamMetadata;
 }
 
 export interface SolverReadStreamRangeRequest {

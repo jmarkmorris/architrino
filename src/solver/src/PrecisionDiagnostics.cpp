@@ -62,6 +62,34 @@ PrecisionPath choose_path(const PrecisionDiagnostic& diagnostic) {
   return PrecisionPath::ScaledF64Fast;
 }
 
+NumericChart choose_primary_chart(const PrecisionDiagnostic& diagnostic) {
+  if (
+      diagnostic.extendedPrecisionRecommended ||
+      diagnostic.scaleResolutionLimited ||
+      diagnostic.timeResolutionLimited ||
+      diagnostic.toleranceScale.minNonzeroMagnitude <= 1e-15) {
+    return NumericChart::IntervalBounds;
+  }
+  if (
+      diagnostic.scaleNormalizationRecommended ||
+      diagnostic.geometryScale.ordersOfMagnitude >= 8.0 ||
+      diagnostic.timeScale.ordersOfMagnitude >= 8.0 ||
+      diagnostic.geometryScale.maxMagnitude >= 1e9 ||
+      diagnostic.timeScale.maxMagnitude >= 1e9) {
+    return NumericChart::LocalFrame;
+  }
+  return NumericChart::AbsoluteF64;
+}
+
+NumericChart choose_speed_chart(const PrecisionDiagnostic& diagnostic) {
+  if (
+      diagnostic.speedScale.ordersOfMagnitude >= 8.0 ||
+      diagnostic.speedScale.maxMagnitude >= 1e6) {
+    return NumericChart::LogMagnitude;
+  }
+  return NumericChart::NondimensionalRatio;
+}
+
 }  // namespace
 
 MagnitudeSummary summarize_magnitudes(const std::vector<double>& values) {
@@ -155,6 +183,8 @@ PrecisionDiagnostic diagnose_precision(const CausalRootRequest& request) {
       toleranceTarget > 0.0 && geometryResolutionFloor > toleranceTarget;
   diagnostic.timeResolutionLimited =
       toleranceTarget > 0.0 && timeResolutionFloor > toleranceTarget;
+  diagnostic.recommendedChart = choose_primary_chart(diagnostic);
+  diagnostic.speedChart = choose_speed_chart(diagnostic);
 
   if (diagnostic.scaleResolutionLimited) {
     diagnostic.validation.add(

@@ -7,6 +7,7 @@ import {
   createAnimatorSimulationAuthoringDraft,
   summarizeAnimatorSimulationAuthoringDataset,
 } from "../src/apps/animator/AnimatorSimulationAuthoringRuntime.js";
+import { ANIMATOR_SOLVER_BRIDGE_ENGINE_ID } from "../src/apps/animator/AnimatorSimulationWorkerProtocolRuntime.js";
 
 const BASE_DOCUMENT = Object.freeze({
   scene: {
@@ -117,6 +118,43 @@ test("simulation authoring worker payload normalizes invalid choices fail-closed
   assert.equal(payload.config.cf, 1);
   assert.equal(payload.config.historyMode, "adaptive");
   assert.equal(payload.config.rootHaltPolicy, "all");
+});
+
+test("simulation authoring worker payload can opt into the central solver bridge", () => {
+  const motionRequest = {
+    pathKey: 7,
+    segment: {
+      startTime: 0,
+      endTime: 1,
+      positionAtStart: { x: 0, y: 0, z: 0 },
+      velocity: { x: 1, y: 0, z: 0 },
+    },
+    startTime: 0,
+    endTime: 1,
+    step: 0.25,
+  };
+  const payload = buildAnimatorSimulationAuthoringWorkerPayload(
+    {
+      solverEngine: "solver-app-bridge",
+      solverBridge: {
+        enabled: true,
+        precisionPath: "scaled_f64_strict",
+        streamTarget: "caller-buffer",
+        deterministic: true,
+        motionRequest,
+      },
+    },
+    BASE_DOCUMENT
+  );
+
+  assert.equal(payload.config.solverEngine, ANIMATOR_SOLVER_BRIDGE_ENGINE_ID);
+  assert.deepEqual(payload.config.solverBridge, {
+    enabled: true,
+    precisionPath: "scaled_f64_strict",
+    streamTarget: "caller-buffer",
+    deterministic: true,
+    motionRequest,
+  });
 });
 
 test("simulation authoring summary reports active dataset diagnostics", () => {

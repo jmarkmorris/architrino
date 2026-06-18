@@ -5,6 +5,9 @@ import { createAnimatorDefaultCoreSpec } from "../animator/AnimatorDraftScaffold
 import { createAnimatorStructureGeometryRuntime } from "../animator/AnimatorStructureGeometryRuntime.js";
 import { createIdealSwarmSharedGeometryRunRequest } from "../../solver/app/SolverAppAdapters.mjs";
 import {
+  runSolverAppBridgeRequest,
+} from "../../solver/app/SolverAppBridgeClientResolver.mjs";
+import {
   getFieldSpeedRegimeLabel,
   getOrbitPathBranchGain,
   getOrbitPathTintProfile as resolveOrbitPathTintProfile,
@@ -521,15 +524,32 @@ export async function solveFlightTimeRowWithSolverBridge(
     createIdealSwarmFlightTimeRunRequest(samplePoint, architrino, observationTime, options);
   const runHandle = typeof options.runSolverBridge === "function"
     ? await options.runSolverBridge(runRequest)
-    : await runIdealSwarmSolverBridgeClient(options.solverClient, runRequest);
+    : await runIdealSwarmSolverBridgeClient(options, {
+        factoryRequest: { samplePoint, architrino, observationTime },
+        runRequest,
+      });
   return extractIdealSwarmFlightTimeRow(runHandle);
 }
 
-async function runIdealSwarmSolverBridgeClient(client, runRequest) {
-  if (!client || typeof client.runSimulation !== "function") {
-    throw new Error("Ideal Swarm solver bridge request requires a solver client or runSolverBridge option.");
-  }
-  return client.runSimulation(runRequest);
+async function runIdealSwarmSolverBridgeClient(options, { factoryRequest, runRequest }) {
+  return runSolverAppBridgeRequest({
+    appId: "ideal-swarm",
+    request: runRequest,
+    options,
+    factoryRequest,
+    requestedCapabilities: ["sharedGeometry", "delayedHits"],
+    storagePolicy: {
+      target: options.streamTarget ?? "caller-buffer",
+      durable: options.streamTarget === "native-file",
+      maxBytes: options.memoryBudgetBytes ?? DEFAULT_SOLVER_MEMORY_BUDGET_BYTES,
+    },
+    threadingPolicy: {
+      mode: options.threadingMode ?? "single-thread",
+      deterministic: options.deterministic ?? true,
+    },
+    missingClientMessage:
+      "Ideal Swarm solver bridge request requires a solver client, runSolverBridge option, client factory, worker, or solver WASM module factory.",
+  });
 }
 
 function extractIdealSwarmFlightTimeRow(runHandle = {}) {

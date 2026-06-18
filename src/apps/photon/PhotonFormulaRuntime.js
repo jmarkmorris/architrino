@@ -2,6 +2,9 @@ import {
   createPhotonCausalRootsRunRequest,
 } from "../../solver/app/SolverAppAdapters.mjs";
 import {
+  runSolverAppBridgeRequest,
+} from "../../solver/app/SolverAppBridgeClientResolver.mjs";
+import {
   PHOTON_LAYER_ORDER,
   getPhotonDirectionSign,
   getPhotonLayer,
@@ -358,7 +361,7 @@ export async function solvePhotonCircularSourceRootsHitsLedgerWithSolverBridge(
     createPhotonCircularSourceCausalRootRequest(state, sourceRef, observationTime, options);
   const response = typeof options.solveCircularSourceRootsHitsLedger === "function"
     ? await options.solveCircularSourceRootsHitsLedger(request)
-    : await runPhotonCircularSourceSolverBridgeClient(options.solverClient, request);
+    : await runPhotonCircularSourceSolverBridgeClient(options, request);
   return {
     solverEngineId: PHOTON_SOLVER_BRIDGE_ENGINE_ID,
     ...response,
@@ -385,25 +388,54 @@ export async function runPhotonCausalRootsWithSolverBridge(rootRequest, options 
     options.runRequest ?? createPhotonCausalRootsSolverRunRequest(rootRequest, options);
   const runHandle = typeof options.runSolverBridge === "function"
     ? await options.runSolverBridge(runRequest)
-    : await runPhotonSolverBridgeClient(options.solverClient, runRequest);
+    : await runPhotonSolverBridgeClient(options, rootRequest, runRequest);
   return {
     solverEngineId: PHOTON_SOLVER_BRIDGE_ENGINE_ID,
     ...runHandle,
   };
 }
 
-async function runPhotonSolverBridgeClient(client, runRequest) {
-  if (!client || typeof client.runSimulation !== "function") {
-    throw new Error("Photon solver bridge request requires a solver client or runSolverBridge option.");
-  }
-  return client.runSimulation(runRequest);
+async function runPhotonSolverBridgeClient(options, rootRequest, runRequest) {
+  return runSolverAppBridgeRequest({
+    appId: "photon",
+    request: runRequest,
+    options,
+    factoryRequest: rootRequest,
+    requestedCapabilities: ["causalRoots", "delayedHits"],
+    storagePolicy: {
+      target: options.streamTarget ?? "caller-buffer",
+      durable: options.streamTarget === "native-file",
+      maxBytes: options.memoryBudgetBytes ?? DEFAULT_SOLVER_MEMORY_BUDGET_BYTES,
+    },
+    threadingPolicy: {
+      mode: options.threadingMode ?? "single-thread",
+      deterministic: options.deterministic ?? true,
+    },
+    missingClientMessage:
+      "Photon solver bridge request requires a solver client, runSolverBridge option, client factory, worker, or solver WASM module factory.",
+  });
 }
 
-async function runPhotonCircularSourceSolverBridgeClient(client, request) {
-  if (!client || typeof client.solveCircularSourceRootsHitsLedgerF64 !== "function") {
-    throw new Error("Photon circular-source solver bridge request requires a solver client or solveCircularSourceRootsHitsLedger option.");
-  }
-  return client.solveCircularSourceRootsHitsLedgerF64(request);
+async function runPhotonCircularSourceSolverBridgeClient(options, request) {
+  return runSolverAppBridgeRequest({
+    appId: "photon",
+    methodName: "solveCircularSourceRootsHitsLedgerF64",
+    request,
+    options,
+    factoryRequest: request,
+    requestedCapabilities: ["causalRoots", "delayedHits"],
+    storagePolicy: {
+      target: options.streamTarget ?? "caller-buffer",
+      durable: options.streamTarget === "native-file",
+      maxBytes: options.memoryBudgetBytes ?? DEFAULT_SOLVER_MEMORY_BUDGET_BYTES,
+    },
+    threadingPolicy: {
+      mode: options.threadingMode ?? "single-thread",
+      deterministic: options.deterministic ?? true,
+    },
+    missingClientMessage:
+      "Photon circular-source solver bridge request requires a solver client, solveCircularSourceRootsHitsLedger option, client factory, worker, or solver WASM module factory.",
+  });
 }
 
 function createDefaultPhotonCausalRootsModel() {

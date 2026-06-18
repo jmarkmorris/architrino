@@ -30,8 +30,8 @@ const manifestRelPath = ".tmp/solver-build/solver-package-manifest.json";
 const packageArtifacts = [
   {
     role: "wasm-loader",
-    kind: "emscripten-modularized-loader",
-    path: ".tmp/solver-build/wasm/architrino_solver_wasm_smoke.js",
+    kind: "emscripten-es-module-loader",
+    path: ".tmp/solver-build/wasm/architrino_solver_wasm_smoke.mjs",
     packageTarget: "browser-app-runtime",
   },
   {
@@ -50,6 +50,12 @@ const packageArtifacts = [
     role: "app-adapters-runtime",
     kind: "javascript-module",
     path: "src/solver/app/SolverAppAdapters.mjs",
+    packageTarget: "browser-app-runtime",
+  },
+  {
+    role: "app-bridge-client-resolver-runtime",
+    kind: "javascript-module",
+    path: "src/solver/app/SolverAppBridgeClientResolver.mjs",
     packageTarget: "browser-app-runtime",
   },
   {
@@ -80,6 +86,12 @@ const packageArtifacts = [
     role: "app-adapters-types",
     kind: "typescript-declarations",
     path: "src/solver/app/SolverAppAdapters.d.ts",
+    packageTarget: "browser-app-runtime",
+  },
+  {
+    role: "app-bridge-client-resolver-types",
+    kind: "typescript-declarations",
+    path: "src/solver/app/SolverAppBridgeClientResolver.d.ts",
     packageTarget: "browser-app-runtime",
   },
   {
@@ -195,6 +207,10 @@ function buildManifest(packageCapabilities) {
         "src/solver/app/SolverAppBridge.mjs",
         "SOLVER_APP_BRIDGE_API_VERSION"
       ),
+      appBridgeClientResolver: readJsExportedString(
+        "src/solver/app/SolverAppBridgeClientResolver.mjs",
+        "SOLVER_APP_BRIDGE_CLIENT_RESOLVER_VERSION"
+      ),
       appAdapters: readJsExportedString(
         "src/solver/app/SolverAppAdapters.mjs",
         "SOLVER_APP_ADAPTERS_VERSION"
@@ -212,7 +228,7 @@ function buildManifest(packageCapabilities) {
     schemaVersions,
     build: {
       buildRoot: ".tmp/solver-build",
-      emCache: process.env.EM_CACHE || ".tmp/solver-emcache",
+      emCache: formatBuildPath(process.env.EM_CACHE || path.join(rootDir, ".tmp", "solver-emcache")),
       wasmBuildType: wasmCache.CMAKE_BUILD_TYPE || null,
       nativeBuildType: nativeCache.CMAKE_BUILD_TYPE || null,
       nativeCxxCompiler: nativeCache.CMAKE_CXX_COMPILER || null,
@@ -232,9 +248,10 @@ function buildManifest(packageCapabilities) {
       intermediateArtifactPatterns: bannedPackagePathPatterns.map((pattern) => pattern.source),
     },
     entrypoints: {
-      wasmLoader: ".tmp/solver-build/wasm/architrino_solver_wasm_smoke.js",
+      wasmLoader: ".tmp/solver-build/wasm/architrino_solver_wasm_smoke.mjs",
       wasmBinary: ".tmp/solver-build/wasm/architrino_solver_wasm_smoke.wasm",
       appBridgeModule: "src/solver/app/SolverAppBridge.mjs",
+      appBridgeClientResolverModule: "src/solver/app/SolverAppBridgeClientResolver.mjs",
       workerBridgeModule: "src/solver/app/SolverAppWorkerBridge.mjs",
       workerRuntimeModule: "src/solver/app/SolverAppWorkerRuntime.mjs",
       appAdaptersModule: "src/solver/app/SolverAppAdapters.mjs",
@@ -265,6 +282,7 @@ function summarizePackageCapabilities(capabilities) {
     ],
     enabledPrecisionPaths: capabilities.precisionPaths,
     outputLayouts: capabilities.outputLayouts,
+    binaryLayouts: capabilities.binaryLayouts,
     storageSupport: capabilities.storage,
     threadingSupport: capabilities.threading,
     appBridge: {
@@ -314,7 +332,7 @@ function createSchemaVersionSummary(contractSchema, packageCapabilities) {
     numericSerialization: packageCapabilities.schemas.numericSerialization,
     errorBudgetPropagation: packageCapabilities.schemas.errorBudgetPropagation,
     validation: packageCapabilities.schemas.validation,
-    binaryLayouts: "solver-output-layouts.v1",
+    binaryLayouts: packageCapabilities.binaryLayouts.schema,
   };
 }
 
@@ -343,6 +361,14 @@ function assertPackageCapabilitySummary(packageCapabilities) {
   }
   if (!packageCapabilities.outputLayouts.includes("path_segment.v1")) {
     fail("Package manifest must include binary output layouts");
+  }
+  if (
+    !packageCapabilities.binaryLayouts ||
+    !packageCapabilities.binaryLayouts.layouts.some(
+      (layout) => layout.layout === "path_segment.v1" && layout.rowSizeBytes === 96
+    )
+  ) {
+    fail("Package manifest must include binary layout row sizes");
   }
   if (!packageCapabilities.threadingSupport || !("browserWorker" in packageCapabilities.threadingSupport)) {
     fail("Package manifest must include threading support");
@@ -454,6 +480,15 @@ function sha256File(filePath) {
 
 function normalizeRelPath(relPath) {
   return relPath.split(path.sep).join("/");
+}
+
+function formatBuildPath(filePath) {
+  const resolvedPath = path.resolve(rootDir, filePath);
+  const relPath = path.relative(rootDir, resolvedPath);
+  if (relPath && !relPath.startsWith("..") && !path.isAbsolute(relPath)) {
+    return normalizeRelPath(relPath);
+  }
+  return filePath;
 }
 
 function uniqueSorted(values) {

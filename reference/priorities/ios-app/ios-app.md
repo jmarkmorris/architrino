@@ -34,6 +34,7 @@ Decision 1 (locked): `Xcode` scaffold for v1 lives at `apps/ios/ArchitrinoReader
 13. Glossary access is provided through an explicit reader action and opens through browser handoff using the existing comparative glossary destination.
 14. Reader-facing UI text and notices avoid equation-style symbols; keep labels and helper copy as plain words.
 15. The first public release target is Unlisted App Store distribution. The app still ships through App Store Connect and ordinary App Review, but the post-approval install path is a direct App Store link rather than App Store search, categories, recommendations, charts, or other listings.
+16. [Causal Delay Feedback App](../causal-delay-feedback-app/causal-delay-feedback-app.md) is a post-v1 visualization candidate. Its iPhone/iPad integration should adapt to landscape and portrait orientation while preserving the one-pair causal-delay scene state.
 
 ## Design Thesis
 
@@ -189,6 +190,7 @@ Treat these as backlog tickets in execution order. Keep each ticket one engineer
 - Later visualization candidates:
   - Photon candidate planar pair and Virtual Observer diagnostic.
   - Ideal Swarm layered trails and causal path-history intuition.
+  - Causal Delay Feedback App with one-pair path-history, partial/full wake modes, and orientation-adaptive iPhone/iPad layout.
   - Causal-root delay diagram for source time, observer time, distance, and branch weight.
   - Noether swarm layer comparison with Inner, Middle, and Outer roles.
 - A visualization should have a clear textbook entry point: a chapter or section link that can open the relevant visual context.

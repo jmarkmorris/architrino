@@ -17,6 +17,7 @@ struct PrecisionSolveReport {
   PrecisionPath diagnosticPath = PrecisionPath::ScaledF64Fast;
   PrecisionPath selectedPath = PrecisionPath::ScaledF64Fast;
   NumericType selectedNumericType = NumericType::F64;
+  NumericChart selectedNumericChart = NumericChart::AbsoluteF64;
   ClaimLevel claimLevel = ClaimLevel::InteractivePreview;
   double rootTolerance = 0.0;
   int maxIterations = 0;
