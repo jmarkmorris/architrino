@@ -160,7 +160,7 @@
   function hydrateReaderLayout(payload) {
     const rootStyle = document.documentElement.style;
     const lineHeight = readerLineSpacings[payload.lineSpacing] || readerLineSpacings.standard;
-    const margin = readerMargins[payload.marginWidth] || readerMargins.standard;
+    const margin = readerMargins[payload.marginWidth] || readerMargins.narrow;
     rootStyle.setProperty("--reader-line-height", lineHeight);
     rootStyle.setProperty("--reader-shell-padding-inline", margin.paddingInline);
     rootStyle.setProperty("--reader-article-max-width", margin.articleMaxWidth);

@@ -10,7 +10,7 @@ final class ReaderViewModel: ObservableObject {
     @Published var fontScale: Double = 1.0
     @Published var theme: ReaderTheme = .architrinoPurple
     @Published var lineSpacing: ReaderLineSpacing = .standard
-    @Published var marginWidth: ReaderMarginWidth = .standard
+    @Published var marginWidth: ReaderMarginWidth = .narrow
     @Published var isReady: Bool = false
     @Published var searchText: String = ""
     @Published var searchResults: [TextbookSearchEntry] = []
@@ -414,7 +414,7 @@ final class ReaderViewModel: ObservableObject {
         fontScale = 1.0
         theme = .architrinoPurple
         lineSpacing = .standard
-        marginWidth = .standard
+        marginWidth = .narrow
         defaults.set(fontScale, forKey: fontScaleKey)
         defaults.set(theme.rawValue, forKey: themeKey)
         defaults.set(lineSpacing.rawValue, forKey: lineSpacingKey)

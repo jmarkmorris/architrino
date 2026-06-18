@@ -128,14 +128,14 @@ Mock proof datasets must be labeled as `representative mock solver replay` in th
 - contribution summaries;
 - and inactive or rejected rows for at least one proof variant.
 
-The baseline contact sheet scene is one pair: one positrino, one electrino, one Virtual Observer, three retained feedback depths, and a visible contribution stack. This is the first landscape proof case because it tests the essential readability burden without turning the design into a many-body view.
+The baseline contact sheet scene is one pair: one positrino, one electrino, one Virtual Observer, three retained feedback depths, and a visible contribution stack. In the proof images, `three retained depths` means three retained wake-hit rows: depth 1 is the newest retained causal hit, depth 2 is older, and depth 3 is the oldest retained hit. This is the first landscape proof case because it tests the essential readability burden without turning the design into a many-body view.
 
 The contact-sheet frame should be YouTube-compatible landscape. The standard target is 16:9, with 1920x1080 as the primary proof tile. Scale checks may use other 16:9 YouTube resolutions, but the first proof should not mix 16:10 or 4:3 frames.
 
 Accepted first proof constraints:
 
 - Keep one pair only: one positrino, one electrino, and one Virtual Observer.
-- Use three retained feedback depths.
+- Use three retained feedback depths, shown in the UI as three retained wake hits.
 - Show both wake modes across the proof set: `partial_propagating_arcs` and `full_circular_arcs`.
 - Use 16:9 framing, with 1920x1080 as the design target.
 
@@ -149,21 +149,42 @@ Accepted first contact sheet variants:
 
 | Variant | Purpose |
 | --- | --- |
-| `partial_arcs_on_default_purple_canvas` | Default teaching scene with one pair, one Virtual Observer, three retained depths, and smaller outward-propagating emitter-colored curved arcs. |
-| `full_circular_arcs_on_default_purple_canvas` | Full emitted circular wake geometry with emitter-colored arcs and active Virtual Observer intersections highlighted. |
-| `dense_history_on_default_purple_canvas` | Overlap stress case with multiple emitter-colored curved arcs on the primary purple canvas background. |
-| `partial_arcs_on_deep_purple_canvas` | Same default teaching scene on a darker purple / near-black canvas atmosphere. |
-| `partial_arcs_on_lifted_purple_canvas` | Same default teaching scene on a lifted purple canvas atmosphere for contrast comparison. |
-| `contrast_stress` | Red/blue wakes, selected cyan highlights, amber warnings, inactive/rejected rows, and `long_fading_white_trails` on weak/subthreshold paths. |
+| `partial_arcs_baseline_solid_purple` | Default teaching scene with one pair, one Virtual Observer, three retained wake hits, solid purple canvas, no grid, uniform history dots, and smaller outward-propagating emitter-colored dotted wake arcs. |
+| `full_circular_arcs_solid_purple` | Full emitted circular wake geometry on the same solid purple canvas, with emitter-colored arcs and active Virtual Observer intersections highlighted. |
+| `depth_1_focus_solid_purple` | Partial-arc proof with the newest retained depth selected while all path-history dots stay visually identical. |
+| `depth_2_focus_solid_purple` | Partial-arc proof with the middle retained depth selected while all path-history dots stay visually identical. |
+| `dense_history_solid_purple` | Overlap stress case with multiple emitter-colored curved arcs on the same solid purple canvas. |
+| `contrast_stress_solid_purple` | Red/blue wakes, selected cyan highlights, amber warnings, inactive/rejected rows, and threshold-only weak/subthreshold path cues. |
+
+Generated contact sheet proof artifacts:
+
+- Generator: [generate_contact_sheet_mockups.py](generate_contact_sheet_mockups.py).
+- Composite review sheet: [contact-sheet-six-variants.png](contact-sheets/contact-sheet-six-variants.png).
+- Manifest: [manifest.json](contact-sheets/manifest.json).
+
+| Variant | Proof tile |
+| --- | --- |
+| `partial_arcs_baseline_solid_purple` | [partial_arcs_baseline_solid_purple.png](contact-sheets/partial_arcs_baseline_solid_purple.png) |
+| `full_circular_arcs_solid_purple` | [full_circular_arcs_solid_purple.png](contact-sheets/full_circular_arcs_solid_purple.png) |
+| `depth_1_focus_solid_purple` | [depth_1_focus_solid_purple.png](contact-sheets/depth_1_focus_solid_purple.png) |
+| `depth_2_focus_solid_purple` | [depth_2_focus_solid_purple.png](contact-sheets/depth_2_focus_solid_purple.png) |
+| `dense_history_solid_purple` | [dense_history_solid_purple.png](contact-sheets/dense_history_solid_purple.png) |
+| `contrast_stress_solid_purple` | [contrast_stress_solid_purple.png](contact-sheets/contrast_stress_solid_purple.png) |
 
 ## Resolved Landscape Design Decisions
 
 - The emitter-color rule is accepted: causal-wake arcs and pulses use the color of the emitting architrino.
 - The landscape layout is accepted: full 16:9 canvas, compact floating toolbar, compact readout, right-edge contribution stack, and no dense side panel.
 - Causal wakes should be drawn as curved arcs, not straight rays.
+- Architrino path history should be drawn as solid trails, while causal wakes should be drawn as dotted arcs so the two uses of positrino/electrino color remain distinct.
 - A full-circular-arc preset should exist because it teaches the complete emitted wake geometry.
 - The default teaching view should use smaller outward-propagating arcs moving toward each intersection, because partial arcs keep the screen less busy and make feedback arrivals easier to see.
 - The first contact sheet proof scope is accepted: one positrino, one electrino, one Virtual Observer, three retained feedback depths, and both wake modes shown across 16:9 proof variants.
+- The revised contact sheet proof canvas should be a solid purple field with no grid.
+- All path-history points on the architrino paths should use the same dot treatment; selected rows may highlight the causal path or stack row, but not make one history dot look like a different class of object.
+- The representative mock pair should end at a steeper angle near the Virtual Observer so the red and blue causal-wake arcs separate clearly as they reach the observer.
+- Full circular wake geometry should keep every background circle at the same faint opacity so the nearest circle does not dominate the proof tile.
+- The proof images should not draw straight source-to-observer connector lines from history points; the dotted wake arc should carry the causal-hit geometry.
 - The first proof should use linear or gently curved path-history motion. Orbit-motion scenes can come later.
 - The first visual proof should use 2D canvas/SVG-style mock proof generation. Three.js can be deferred until runtime needs it.
 - Contact sheet proofs can proceed with representative mock solver-replay paths before the real solver bridge is selected.
@@ -174,9 +195,7 @@ Accepted first contact sheet variants:
 - The settings gear is accepted; canvas color should be one of the first settings so purple-background variants can be tested without adding a dense control panel.
 - Six landscape contact sheet variants are enough for the first visual proof pass.
 - Contribution magnitude should use a $1/r$ falloff law in v1.
-- Causal-wake fading and thinning should be tunable from computed contribution magnitude; weak or subthreshold wakes may desaturate toward white as an assembly-relevance indicator, but their source identity should remain readable.
-- Long fading white trails may be useful as a setting. They should not be limited to `contrast_stress`, but they also should not obscure emitter identity in the default teaching scene.
-- One accepted proof variant should show `long_fading_white_trails` clearly so the setting can be judged against the purple canvas and emitter-color rule.
+- Causal-wake fading and thinning should be tunable from computed contribution magnitude; weak or subthreshold wakes should use threshold-only cues.
 
 ## Visualization
 
@@ -194,7 +213,7 @@ Accepted first contact sheet variants:
 
 - Draw the source setup as one draggable positrino/electrino pair or a compact draggable architrino initial-condition marker.
 - Draw the Virtual Observer as a draggable sample point with a visible `now` marker.
-- Draw each retained feedback depth as a separate solver-returned curved causal-wake arc with its own depth index and emitter color.
+- Draw each retained feedback depth as a separate solver-returned curved dotted causal-wake arc with its own retained-hit index and emitter color.
 - Draw pulses as small moving packets on the causal-wake paths, using the same color as the emitting architrino.
 - Draw inactive or invalid paths as faint dashed paths with a rejection reason.
 - Draw a draggable velocity arrow attached to the source. Pulling the arrow should change speed and direction without requiring a numeric control.
@@ -205,12 +224,12 @@ Accepted first contact sheet variants:
 
 - Animate architrino markers along solver-returned path samples.
 - Use linear or gently curved path-history motion for the first proof scenes.
-- Animate partial causal-wake arcs expanding outward from prior source positions toward each active intersection.
+- Animate partial dotted causal-wake arcs expanding outward from prior source positions toward each active intersection.
 - Animate pulses on those visible arcs and land them on the Virtual Observer at `now`.
 - In full-circular-arc mode, draw complete emitted circles or near-circles as background geometry, then highlight the active arc segment that reaches the Virtual Observer.
 - Keep every pulse and wake arc color-locked to its emitter for the full trip, including faded older depths.
 - Fade and thin older paths by computed contribution strength using the $1/r$ falloff while keeping their depth index and emission time readable.
-- Let weak paths approach a thin desaturated or white endpoint state below the assembly-relevance threshold, provided the wake's emitter identity remains clear from the active segment, pulse, depth row, or endpoint label.
+- Let weak paths approach a thin or desaturated endpoint state below the assembly-relevance threshold, provided the wake's emitter identity remains clear from the active segment, pulse, depth row, or endpoint label.
 - When a pulse lands, add its signed contribution to the Virtual Observer contribution stack.
 - When geometry changes, animate paths entering or leaving the active set instead of snapping them silently on and off.
 - Provide pause/play, reset, slow/fast, and frame-step controls.
@@ -222,8 +241,7 @@ Accepted first contact sheet variants:
 - Test whether the purple background leaves enough contrast for red positrino wakes, blue electrino wakes, selected cyan highlights, amber warning states, and white text.
 - Test at least one dense history scene where multiple emitter-colored arcs overlap against the purple background.
 - Test both normal and dimmed/faded causal-wake arcs so old history remains readable without overwhelming the canvas.
-- Test $1/r$-driven fade and stroke-width mappings, including a weak/subthreshold state that can approach white without looking like a new emitter color.
-- Test long fading white trails as an optional setting, including whether the emitter color remains readable through pulse color, active-segment color, labels, or contribution rows.
+- Test $1/r$-driven fade and stroke-width mappings, including a weak/subthreshold state that remains readable through threshold-only cues.
 - If emitter colors are hard to distinguish on purple, revise the background saturation/value before changing the emitter-color rule.
 - Preserve the rule that causal-wake arcs and pulses are colored by their emitter unless a later visual test proves a specific accessibility exception is required.
 - Include the accepted six-variant contact sheet proof set in the first visual pass.
@@ -244,7 +262,7 @@ Named presets should load complete app state:
 - retained history depth;
 - path visibility mode;
 - wake-arc display mode;
-- weak-trail display mode;
+- weak contribution cue mode;
 - readout visibility;
 - canvas color or purple-background atmosphere variant;
 - and proof dataset source when a contact sheet is using mock replay data.
@@ -271,7 +289,7 @@ Initial settings:
 
 - Canvas color: choose among the approved purple-background atmosphere variants and any test fallback color.
 - Background depth field: on/off.
-- Weak-trail display: off, threshold-only, or long fading white trails.
+- Weak contribution cue: off or threshold-only.
 - Reduced motion: on/off.
 - High contrast paths: on/off.
 
@@ -290,7 +308,7 @@ Orientation behavior should be planned early:
 - Landscape: use the full 16:9 canvas composition, with the floating toolbar and right-edge contribution stack close to the desktop contact-sheet layout.
 - Portrait: keep the same one-pair scene, but stack the compact toolbar, canvas, contribution stack, and readout vertically so the moving architrino paths remain visible.
 - iPad: prefer a landscape-like canvas with optional inspector/readout space; do not add extra conceptual panels just because more screen space is available.
-- The orientation change should preserve the current preset, `now` time, selected path, wake-arc display mode, and weak-trail setting.
+- The orientation change should preserve the current preset, `now` time, selected path, wake-arc display mode, and weak contribution cue setting.
 
 ## Direct Manipulation Model
 
@@ -300,8 +318,8 @@ Primary interactions:
 - Drag the Virtual Observer to change the hit geometry.
 - Drag the source velocity arrow to change source initial velocity.
 - Drag a source-path ghost point only as a draft setup handle when the app is in a solver-prep mode; ordinary replay paths remain solver-owned.
-- Click a feedback-depth path to select it and show its row in the compact readout.
-- Use a small depth stepper near the contribution stack to add or remove retained depths.
+- Click a retained wake-hit path to select it and show its row in the compact readout.
+- Use a small retained-hit stepper near the contribution stack for adding or removing retained wake-hit rows.
 
 Secondary interactions:
 
@@ -322,7 +340,7 @@ V1 should avoid a large controls panel. The visible controls should be limited t
 - Readout on/off.
 - Settings gear.
 - Slow/fast as a compact two-button or segmented control.
-- Feedback depth plus/minus.
+- Retained-hit plus/minus.
 
 Canvas handles should replace these traditional controls:
 
@@ -330,7 +348,7 @@ Canvas handles should replace these traditional controls:
 | --- | --- |
 | Source speed | Drag the initial-velocity arrow. |
 | Source-observer separation | Drag the Virtual Observer or source marker. |
-| Feedback depth count | Use the depth plus/minus chip beside the contribution stack. |
+| Retained wake-hit count | Use the retained-hit plus/minus chip beside the contribution stack. |
 | History window length | Drag the history-window bracket on the trail. |
 | Minimum contribution threshold | Drag a faint threshold line on the contribution stack. |
 | Show inactive paths | Use the path visibility button cycle: `active`, `active+inactive`, `all`. |
@@ -351,7 +369,7 @@ Always-visible readouts:
 
 - current `now`;
 - solver status;
-- active feedback-depth count;
+- active retained wake-hit count;
 - total Virtual Observer readout;
 - strongest active contribution;
 - and selected object label.
@@ -375,14 +393,14 @@ The diagnostic table may exist behind the readout toggle, but v1 should not make
 
 - Scrubbing time should move the visible `now` marker and recompute which history rows are active.
 - Dragging the Virtual Observer should update path distances and contribution rows in real time.
-- Changing feedback depth should add or remove rows without losing the current source-motion settings.
+- Changing retained wake-hit count should add or remove rows without losing the current source-motion settings.
 - Toggling inactive paths should preserve rejected rows in the table when they are relevant to understanding the geometry.
 - Selecting a contribution-stack entry should highlight the causal-wake path that produced it.
 - Drag targets must have generous hit areas so the app works on trackpads and tablets.
 - Dragging a marker must update the visual paths first, then the numeric readout; the app should feel spatial before it feels tabular.
 - Releasing a dragged initial-condition handle should enqueue or rerun the solver and mark previous paths as preview or stale until the new solver result arrives.
 - If the dragged state creates no active paths, the canvas should show an empty active set and name why rather than freezing the prior paths.
-- The initial scene should teach without any required setup: one moving positrino/electrino pair, one Virtual Observer, three retained paths, and a visible contribution stack.
+- The initial scene should teach without any required setup: one moving positrino/electrino pair, one Virtual Observer, three retained wake hits, and a visible contribution stack.
 
 ## Data Model Requirements
 
@@ -419,7 +437,7 @@ Each solver run should also carry a compact setup record:
 | `datasetSource` | `solver`, `representative_mock_solver_replay`, or `draft_preview`. |
 | `canvasColor` | Selected canvas color or purple-background atmosphere variant. |
 | `wakeArcDisplayMode` | `partial_propagating_arcs` or `full_circular_arcs`. |
-| `weakTrailMode` | `off`, `threshold_only`, or `long_fading_white_trails`. |
+| `weakCueMode` | `off` or `threshold_only`. |
 | `initialConditions` | Initial positions, velocities, polarity or role, and run duration. |
 | `solverStatus` | `draft`, `running`, `ready`, `stale`, `failed`, or `unsupported`. |
 | `frameStride` | Display stride for replayed frame samples. |
@@ -430,17 +448,16 @@ Each solver run should also carry a compact setup record:
 ## First Build Queue
 
 1. `solver_setup_contract` - Define the initial-condition request and solver dataset shape needed by the app, including mock contact-sheet dataset shape. Status: `active`.
-2. `contact_sheet_mock_replay` - Produce the accepted six-variant one-pair representative mock solver-replay contact sheet, including full-circular-arc and partial-propagating-arc variants. Status: `pending`.
-3. `named_preset_dropdown` - Add a compact preset dropdown and `Reset preset` behavior consistent with the Photon app pattern. Status: `pending`.
-4. `direct_manipulation_mock` - Create a static canvas layout with purple background, draggable source initial position, Virtual Observer, initial-velocity arrow, retained emitter-colored causal-wake paths, depth labels, and contribution stack. Status: `pending`.
-5. `solver_replay_adapter` - Replay solver-returned frame samples, path-history samples, causal roots, delayed hits, emitter colors, $1/r$ falloff factors, thresholds, and contribution summaries. Status: `pending`.
-6. `drag_to_solver_loop` - Make source, Virtual Observer, velocity arrow, and history-depth handles update setup state and rerun the solver on release. Status: `pending`.
-7. `pulse_animation` - Animate source motion, outward-propagating causal-wake arcs, and emitter-colored pulses along solver-returned retained paths. Status: `pending`.
-8. `compact_readout` - Add selected-object, selected-depth, and solver-status readouts without a dense default panel. Status: `pending`.
-9. `settings_gear` - Add a compact settings popover with canvas color, background depth field, weak-trail display, reduced motion, and high contrast paths. Status: `pending`.
-10. `toolbar_minimum` - Add preset dropdown, play/pause, reset, reset preset, paths cycle, slow/fast, readout toggle, settings gear, and rerun indicator. Status: `pending`.
-11. `purple_background_contrast_pass` - Verify the purple background against emitter-colored wake arcs, pulse fades, weak-to-white threshold states, selected highlights, warnings, and text. Status: `pending`.
-12. `invalid_path_states` - Show inactive, rejected, unresolved, and stale paths with clear visual states and concise reasons. Status: `pending`.
+2. `named_preset_dropdown` - Add a compact preset dropdown and `Reset preset` behavior consistent with the Photon app pattern. Status: `pending`.
+3. `direct_manipulation_mock` - Create a static canvas layout with purple background, draggable source initial position, Virtual Observer, initial-velocity arrow, retained emitter-colored causal-wake paths, depth labels, and contribution stack. Status: `pending`.
+4. `solver_replay_adapter` - Replay solver-returned frame samples, path-history samples, causal roots, delayed hits, emitter colors, $1/r$ falloff factors, thresholds, and contribution summaries. Status: `pending`.
+5. `drag_to_solver_loop` - Make source, Virtual Observer, velocity arrow, and history-depth handles update setup state and rerun the solver on release. Status: `pending`.
+6. `pulse_animation` - Animate source motion, outward-propagating causal-wake arcs, and emitter-colored pulses along solver-returned retained paths. Status: `pending`.
+7. `compact_readout` - Add selected-object, selected-depth, and solver-status readouts without a dense default panel. Status: `pending`.
+8. `settings_gear` - Add a compact settings popover with canvas color, background depth field, weak contribution cue, reduced motion, and high contrast paths. Status: `pending`.
+9. `toolbar_minimum` - Add preset dropdown, play/pause, reset, reset preset, paths cycle, slow/fast, readout toggle, settings gear, and rerun indicator. Status: `pending`.
+10. `purple_background_contrast_pass` - Verify the purple background against emitter-colored wake arcs, pulse fades, threshold-only weak states, selected highlights, warnings, and text. Status: `pending`.
+11. `invalid_path_states` - Show inactive, rejected, unresolved, and stale paths with clear visual states and concise reasons. Status: `pending`.
 
 ## Implementation Boundaries
 

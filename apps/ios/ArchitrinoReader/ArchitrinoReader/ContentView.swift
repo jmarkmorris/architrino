@@ -9,6 +9,7 @@ struct ContentView: View {
     @State private var tocNotice: String?
     @State private var showAbout = false
     @State private var showReaderSettings = false
+    @State private var showTOCReaderSettings = false
     @State private var didPresentInitialToc = false
     @State private var expandedTOCGroupID: String?
 
@@ -198,6 +199,9 @@ struct ContentView: View {
             .tint(viewModel.theme.readerAccentColor)
         }
         .preferredColorScheme(viewModel.theme.readerToolbarColorScheme)
+        .sheet(isPresented: $showTOCReaderSettings) {
+            ReaderSettingsSheet(viewModel: viewModel)
+        }
     }
 
     private var readerSelectionPlaceholder: some View {
@@ -301,20 +305,6 @@ struct ContentView: View {
 
                 Section {
                     Button {
-                        viewModel.presentSearch()
-                    } label: {
-                        Label("Search", systemImage: "magnifyingglass")
-                            .foregroundStyle(viewModel.theme.readerPrimaryTextColor)
-                    }
-
-                    Button {
-                        viewModel.isBookmarksPresented = true
-                    } label: {
-                        Label("Bookmarks", systemImage: "list.bullet.rectangle")
-                            .foregroundStyle(viewModel.theme.readerPrimaryTextColor)
-                    }
-
-                    Button {
                         navigateFromTOC {
                             viewModel.openGlossary()
                         }
@@ -327,8 +317,6 @@ struct ContentView: View {
                             )
                     }
                     .disabled(!viewModel.canOpenGlossary)
-                } header: {
-                    tocSectionHeader("Actions")
                 }
                 .listRowBackground(Color.clear)
                 .listRowSeparatorTint(viewModel.theme.readerSeparatorColor)
@@ -345,14 +333,6 @@ struct ContentView: View {
         .toolbarBackground(.visible, for: .navigationBar)
         .toolbarColorScheme(viewModel.theme.readerToolbarColorScheme, for: .navigationBar)
         .tint(viewModel.theme.readerAccentColor)
-    }
-
-    private func tocSectionHeader(_ title: String) -> some View {
-        Text(title)
-            .font(.caption)
-            .fontWeight(.semibold)
-            .foregroundStyle(viewModel.theme.readerSecondaryTextColor)
-            .textCase(.uppercase)
     }
 
     private func presentInitialTOCIfNeeded() {
@@ -551,7 +531,7 @@ struct ContentView: View {
             }
         }
         .contentShape(Rectangle())
-        .padding(.vertical, 4)
+        .padding(.vertical, depth == 0 ? 7 : 4)
     }
 
     private func navigateTOCRoute(_ route: ReaderViewModel.TOCRoute, fallbackExpansionID: String?) {
@@ -582,7 +562,7 @@ struct ContentView: View {
     private func tocRowLabel(title: String, depth: Int) -> some View {
         HStack(spacing: 4) {
             Text(readerNativeLabelText(title))
-                .font(.custom("HelveticaNeue", size: 17, relativeTo: .body))
+                .font(.custom(depth == 0 ? "HelveticaNeue-Bold" : "HelveticaNeue", size: 17, relativeTo: .body))
                 .foregroundStyle(viewModel.theme.readerPrimaryTextColor)
                 .lineLimit(2)
                 .multilineTextAlignment(.leading)
@@ -601,7 +581,7 @@ struct ContentView: View {
     private func readerControlBar(isTOC: Bool) -> some View {
         HStack {
             fontSizeControl
-            readerSettingsControl
+            readerSettingsControl(isTOC: isTOC)
 
             if isTOC {
                 Text("TOC")
@@ -621,11 +601,11 @@ struct ContentView: View {
                 .accessibilityLabel(viewModel.isCurrentPositionBookmarked ? "Remove bookmark" : "Add bookmark")
 
                 Text(viewModel.readingProgressLabel)
-                    .font(.caption2)
+                    .font(.subheadline)
                     .foregroundStyle(viewModel.theme.readerControlBarSecondaryTextColor)
                     .lineLimit(1)
                     .minimumScaleFactor(0.75)
-                    .frame(maxWidth: 72, alignment: .leading)
+                    .frame(maxWidth: 88, alignment: .leading)
                     .accessibilityLabel("Reading location \(viewModel.readingProgressLabel)")
             }
 
@@ -655,13 +635,18 @@ struct ContentView: View {
         }
         .font(.subheadline)
         .tint(viewModel.theme.readerControlBarAccentColor)
-        .padding(10)
-        .background(viewModel.theme.readerControlBarBackgroundColor.ignoresSafeArea(edges: .bottom))
+        .padding(.horizontal, 10)
+        .padding(.vertical, 8)
+        .background(viewModel.theme.readerControlBarBackgroundColor)
     }
 
-    private var readerSettingsControl: some View {
+    private func readerSettingsControl(isTOC: Bool) -> some View {
         Button {
-            showReaderSettings = true
+            if isTOC {
+                showTOCReaderSettings = true
+            } else {
+                showReaderSettings = true
+            }
         } label: {
             HStack(spacing: 4) {
                 Image(systemName: "gearshape")
@@ -1309,7 +1294,7 @@ private struct AboutSheet: View {
                                 .minimumScaleFactor(0.72)
                                 .accessibilityAddTraits(.isHeader)
 
-                            Text("AAA begins from a deliberately spare ontology: point-like transceivers of potential, termed architrinos, moving through a three-dimensional Euclidean void in absolute time, exchanging influence through causal wakes, and assembling into the structures we observe.")
+                            Text("AAA begins from a minimal ontology: point-like transceivers of potential, termed architrinos, moving through three-dimensional Euclidean space in absolute time, exchanging influence through causal wakes, and assembling into the structures we observe.")
                                 .font(.body)
                                 .foregroundStyle(theme.readerSecondaryTextColor)
 
