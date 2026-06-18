@@ -3,6 +3,7 @@ import { CSS2DRenderer, CSS2DObject } from "../../../vendor/three/CSS2DRenderer.
 import { AppDirector } from "../../director/AppDirector.js";
 import { createLevelRuntime } from "../../runtime/LevelRuntime.js";
 import { createMarkdownRuntime } from "../../runtime/MarkdownRuntime.js";
+import { createFileSourceRuntime } from "../../runtime/FileSourceRuntime.js";
 import { createNodeFactory } from "../../runtime/NodeFactoryRuntime.js";
 import {
   clampAnimatorTimelineSpan,
@@ -6699,6 +6700,9 @@ const markdownRuntime = createMarkdownRuntime({
     await appDirector.navigateTo(target);
   },
 });
+const fileSourceRuntime = createFileSourceRuntime({
+  appendCacheBust,
+});
 
 function updateSceneMarkdown() {
   if (!currentLevel || !currentLevel.markdownPath) {
@@ -8618,6 +8622,9 @@ function focusOnPointer(clientX, clientY) {
   const hasMarkdownTarget =
     typeof targetNode?.data?.markdownPath === "string" &&
     targetNode.data.markdownPath.trim().length > 0;
+  const hasFileTarget =
+    typeof targetNode?.data?.filePath === "string" &&
+    targetNode.data.filePath.trim().length > 0;
   const canOpenMarkdown =
     hasMarkdownTarget && targetNode.data.markdownOpenEligible === true;
 
@@ -8635,6 +8642,13 @@ function focusOnPointer(clientX, clientY) {
     closeDetailPanel();
     hideHoverTooltip();
     markdownRuntime.downloadMarkdownSource(targetNode.data);
+    return true;
+  }
+
+  if (hasFileTarget && targetNode.data.fileOpenEligible === true) {
+    closeDetailPanel();
+    hideHoverTooltip();
+    fileSourceRuntime.openFileSource(targetNode.data);
     return true;
   }
 

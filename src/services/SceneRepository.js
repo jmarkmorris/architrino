@@ -82,6 +82,38 @@ export class SceneRepository {
     };
   }
 
+  resolveFileConfig(entry) {
+    const source = entry?.source ?? null;
+    const view = entry?.view ?? null;
+    const sourceType =
+      typeof source?.type === "string" ? source.type.trim().toLowerCase() : "";
+    const supportedFileSource =
+      sourceType === "pdf" || sourceType === "file" || sourceType === "asset";
+    const filePath =
+      supportedFileSource && typeof source?.path === "string" && source.path.trim().length > 0
+        ? source.path.trim()
+        : null;
+    const fileOpenMode =
+      typeof view?.openMode === "string" && view.openMode.trim().length > 0
+        ? view.openMode.trim()
+        : "new-tab";
+    const fileDownload =
+      view?.download === true ||
+      view?.downloadOnly === true ||
+      fileOpenMode === "download";
+    const fileDownloadName =
+      typeof view?.downloadName === "string" && view.downloadName.trim().length > 0
+        ? view.downloadName.trim()
+        : null;
+    return {
+      filePath,
+      fileSourceType: filePath ? sourceType : null,
+      fileOpenMode,
+      fileDownload,
+      fileDownloadName,
+    };
+  }
+
   resolveSplitSceneConfig(sceneMeta) {
     const sceneType = sceneMeta?.type;
     const source = sceneMeta?.source ?? null;
@@ -307,6 +339,7 @@ export class SceneRepository {
 
   buildRuntimeNode(obj, context = {}) {
     const markdown = this.resolveMarkdownConfig(obj);
+    const file = this.resolveFileConfig(obj);
     const sceneChildRef = this.resolveNodeChildRef(obj, context);
     const nodeTitle = this.resolveNodeTitle(obj, sceneChildRef) ?? obj.id;
     const hasScale = obj.scaleExponent !== undefined && obj.scaleExponent !== null;
@@ -347,8 +380,14 @@ export class SceneRepository {
       markdownPlainSectionPaths: Array.isArray(obj.markdownPlainSectionPaths)
         ? obj.markdownPlainSectionPaths
         : [],
+      filePath: file.filePath,
+      fileSourceType: file.fileSourceType,
+      fileOpenMode: file.fileOpenMode,
+      fileDownload: file.fileDownload,
+      fileDownloadName: file.fileDownloadName,
+      fileOpenEligible: !!file.filePath,
       binaryBands,
-      glowRing: obj.glowRing ?? false,
+      glowRing: obj.glowRing ?? !!file.filePath,
       glowRingColor: obj.glowRingColor ?? null,
       glowRingOpacity: obj.glowRingOpacity ?? null,
       glowRingThickness: obj.glowRingThickness ?? null,

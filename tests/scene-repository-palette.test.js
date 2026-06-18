@@ -122,6 +122,38 @@ test("Archie hub keeps authored colors from the standard sphere palette", async 
   );
 });
 
+test("textbook PDF snapshot spheres open rendered markdown for PDF export", async () => {
+  const sceneData = JSON.parse(
+    await readFile(
+      new URL("../content/scenes/archie/textbook_pdf_snapshots.json", import.meta.url),
+      "utf8"
+    )
+  );
+  const repository = createRepositoryWithScenes(
+    {},
+    {
+      resolveMarkdownFileSize: async () => 4096,
+      resolveMarkdownFileCharacterCount: async () => 4096,
+    }
+  );
+
+  const config = await repository.createConfigFromSceneData(
+    "content/scenes/archie/textbook_pdf_snapshots.json",
+    sceneData
+  );
+  const readingCopyNodes = config.nodes.filter(
+    (node) => node.id.startsWith("pdf_snapshot_") && node.id !== "pdf_snapshot_overview"
+  );
+
+  assert.equal(readingCopyNodes.length, 14);
+  for (const node of readingCopyNodes) {
+    assert.equal(node.markdownColumns, 1);
+    assert.equal(node.markdownAutoOpen, true);
+    assert.equal(node.markdownDownloadOnly, false);
+    assert.equal(node.markdownOpenEligible, true);
+  }
+});
+
 test("Scene-Index nodes infer doc badges from markdown child scenes", async () => {
   const repository = createRepositoryWithScenes({
     "content/scenes/example/markdown_child.json": {

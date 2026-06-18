@@ -26,6 +26,16 @@ export function createNodeFactory(deps) {
     );
   }
 
+  function getPdfBadgeSvg() {
+    return (
+      '<svg class="label-badge-svg label-badge-doc" viewBox="0 0 28 24" aria-hidden="true" focusable="false">' +
+      '<path d="M5 3H16L22 9V21H5Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="miter"/>' +
+      '<path d="M16 3V9H22Z" fill="currentColor"/>' +
+      '<text x="8" y="17" font-family="Arial, Helvetica, sans-serif" font-size="6.5" font-weight="700" fill="currentColor">PDF</text>' +
+      "</svg>"
+    );
+  }
+
   function getDiagramBadgeSvg() {
     return (
       '<svg class="label-badge-svg label-badge-diagram" viewBox="0 0 24 16" aria-hidden="true" focusable="false">' +
@@ -47,6 +57,13 @@ export function createNodeFactory(deps) {
       normalized === "md" ||
       normalized === "markdown"
     );
+  }
+
+  function isPdfBadgeToken(value) {
+    if (typeof value !== "string") {
+      return false;
+    }
+    return value.trim().toLowerCase() === "pdf";
   }
 
   function isDiagramBadgeToken(value) {
@@ -218,6 +235,7 @@ export function createNodeFactory(deps) {
       typeof node.labelBadge === "string" && node.labelBadge.trim().length > 0
         ? node.labelBadge.trim()
         : "";
+    const wantsPdfSvgBadge = isPdfBadgeToken(badgeToken);
     const wantsDocSvgBadge = isDocBadgeToken(badgeToken);
     const wantsDiagramSvgBadge = isDiagramBadgeToken(badgeToken);
     const badgeImage =
@@ -244,6 +262,8 @@ export function createNodeFactory(deps) {
       ? `<div class="label-badge-line"><img class="label-badge-image" src="${escapeAttr(
           badgeImage
         )}" alt="${escapeAttr(badgeAlt)}" /></div>`
+      : wantsPdfSvgBadge
+        ? `<div class="label-badge-line">${getPdfBadgeSvg()}</div>`
       : wantsDocSvgBadge
         ? `<div class="label-badge-line">${getDefaultDocBadgeSvg()}</div>`
       : wantsDiagramSvgBadge && node.childScene
