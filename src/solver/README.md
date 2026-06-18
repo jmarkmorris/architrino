@@ -45,6 +45,11 @@ The smoke command verifies:
   catalog, worker-method parity across schema/runtime/declarations, toolchain
   versions, runtime capability probes, checksums, transitive app-module imports, and
   no-intermediate-artifact policy;
+- solver app-bridge fixture validation against the JSON Schema `$defs` and top-level
+  `solver-app-bridge/v1` entrypoint for all 97 top-level request, response, and
+  worker-message schema variants, including nested manifests, streams, buffers,
+  statuses, stream indices, lifecycle metadata, work-packet metadata, assembly graph
+  metadata, geometry, and precision content;
 - model-contract, error-budget, simulation-envelope, admission validation, and native admission stress summaries;
 - geometry centralization inventory for Photon, Ideal Swarm, Animator, and the assembly-dynamics reference engine, with `sim2` and non-app legacy solver families kept out of migration scope;
 - app bridge admission preflight for admit, simplify, batch, precision-escalation, and reject decisions with stress diagnostics;

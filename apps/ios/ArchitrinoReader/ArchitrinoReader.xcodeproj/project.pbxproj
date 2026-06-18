@@ -14,6 +14,7 @@
 		8A1F1F252D0A2B0D0073C001 /* ArchitrinoReader/ReaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1F1F212D0A2B0D0073C001 /* ArchitrinoReader/ReaderViewModel.swift */; };
 		8A1F1F262D0A2B0D0073C001 /* ArchitrinoReader/ReaderWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1F1F222D0A2B0D0073C001 /* ArchitrinoReader/ReaderWebView.swift */; };
 		8A1F1F272D0A2B0D0073C001 /* ArchitrinoReader/ReaderAssets in Resources */ = {isa = PBXBuildFile; fileRef = 8A1F1F232D0A2B0D0073C001 /* ArchitrinoReader/ReaderAssets */; };
+		8A1F1F2B2D0A2B0D0073C001 /* ArchitrinoReader/Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A1F1F2A2D0A2B0D0073C001 /* ArchitrinoReader/Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		8A1F1F212D0A2B0D0073C001 /* ArchitrinoReader/ReaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchitrinoReader/ReaderViewModel.swift; sourceTree = SOURCE_ROOT; };
 		8A1F1F222D0A2B0D0073C001 /* ArchitrinoReader/ReaderWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchitrinoReader/ReaderWebView.swift; sourceTree = SOURCE_ROOT; };
 		8A1F1F232D0A2B0D0073C001 /* ArchitrinoReader/ReaderAssets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ArchitrinoReader/ReaderAssets; sourceTree = SOURCE_ROOT; };
+		8A1F1F2A2D0A2B0D0073C001 /* ArchitrinoReader/Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ArchitrinoReader/Assets.xcassets; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 				8A1F1F202D0A2B0D0073C001 /* ArchitrinoReader/ReaderModels.swift */,
 				8A1F1F212D0A2B0D0073C001 /* ArchitrinoReader/ReaderViewModel.swift */,
 				8A1F1F222D0A2B0D0073C001 /* ArchitrinoReader/ReaderWebView.swift */,
+				8A1F1F2A2D0A2B0D0073C001 /* ArchitrinoReader/Assets.xcassets */,
 				8A1F1F232D0A2B0D0073C001 /* ArchitrinoReader/ReaderAssets */,
 				8A1F1F0B2D0A2B0D0073C001 /* GeneratedTextbookPackage */,
 			);
@@ -128,6 +131,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8A1F1F102D0A2B0D0073C001 /* GeneratedTextbookPackage in Resources */,
+				8A1F1F2B2D0A2B0D0073C001 /* ArchitrinoReader/Assets.xcassets in Resources */,
 				8A1F1F272D0A2B0D0073C001 /* ArchitrinoReader/ReaderAssets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

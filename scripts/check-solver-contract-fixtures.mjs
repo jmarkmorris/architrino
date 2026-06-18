@@ -40,6 +40,39 @@ const causalRootsPrecisionRequest = createCausalRootsPrecisionRequestEnvelope();
 const causalRootsPrecisionResponse = createCausalRootsPrecisionResponseEnvelope();
 const rootsAndHitsPrecisionRequest = createRootsAndHitsPrecisionRequestEnvelope();
 const rootsAndHitsPrecisionResponse = createRootsAndHitsPrecisionResponseEnvelope();
+const rootLedgerDetailRequest = createRootLedgerDetailRequestEnvelope();
+const rootLedgerDetailResponse = createRootLedgerDetailResponseEnvelope();
+const precisionDiagnosticRequest = createPrecisionDiagnosticRequestEnvelope();
+const precisionDiagnosticResponse = createPrecisionDiagnosticResponseEnvelope();
+const errorBudgetPropagationRequest = createErrorBudgetPropagationRequestEnvelope();
+const errorBudgetPropagationResponse = createErrorBudgetPropagationResponseEnvelope();
+const rootHitInvariantRequest = createRootHitInvariantRequestEnvelope();
+const rootHitInvariantResponse = createRootHitInvariantResponseEnvelope();
+const rootLedgerTransitionRequest = createRootLedgerTransitionRequestEnvelope();
+const rootLedgerTransitionResponse = createRootLedgerTransitionResponseEnvelope();
+const causalRootBatchRequest = createCausalRootBatchRequestEnvelope();
+const linearMotionSampleRequest = createLinearMotionSampleRequestEnvelope();
+const linearMotionSampleResponse = createLinearMotionSampleResponseEnvelope();
+const phaseAtHitRequest = createPhaseAtHitRequestEnvelope();
+const phaseAtHitResponse = createPhaseAtHitResponseEnvelope();
+const phaseAtHitSummaryRequest = createPhaseAtHitSummaryRequestEnvelope();
+const phaseAtHitSummaryResponse = createPhaseAtHitSummaryResponseEnvelope();
+const sharedGeometryRequest = createSharedGeometryRequestEnvelope();
+const sharedGeometryResponse = createSharedGeometryResponseEnvelope();
+const assemblyMembershipEventsRequest = createAssemblyMembershipEventsRequestEnvelope();
+const assemblyMembershipEventsResponse = createAssemblyMembershipEventsResponseEnvelope();
+const assemblyGraphDatasetRequest = createAssemblyGraphDatasetRequestEnvelope();
+const assemblyGraphDatasetResponse = createAssemblyGraphDatasetResponseEnvelope();
+const assemblyGraphStoreRequest = createAssemblyGraphStoreRequestEnvelope();
+const assemblyGraphStoreResponse = createAssemblyGraphStoreResponseEnvelope();
+const describeAssemblyGraphStoreRequest = createDescribeAssemblyGraphStoreRequestEnvelope();
+const assemblyGraphStoreDescriptionResponse = createAssemblyGraphStoreDescriptionResponseEnvelope();
+const assemblyGraphStoreReadRequest = createAssemblyGraphStoreReadRequestEnvelope();
+const assemblyGraphStoreReadResponse = createAssemblyGraphStoreReadResponseEnvelope();
+const buildSpaceTimeIndexRequest = createBuildSpaceTimeIndexRequestEnvelope();
+const buildPathHistoryStreamSpaceTimeIndexRequest = createBuildPathHistoryStreamSpaceTimeIndexRequestEnvelope();
+const spaceTimeIndexResponse = createSpaceTimeIndexResponseEnvelope();
+const querySpaceTimeIndexRequest = createQuerySpaceTimeIndexRequestEnvelope();
 const motionIntegrationRequest = createMotionIntegrationRequestEnvelope();
 const motionIntegrationResponse = createMotionIntegrationResponseEnvelope();
 const pathHistoryStreamRequest = createPathHistoryStreamRequestEnvelope();
@@ -61,12 +94,214 @@ const openStreamRequest = createOpenStreamRequestEnvelope();
 const openStreamResponse = createOpenStreamResponseEnvelope();
 const readStreamRangeRequest = createReadStreamRangeRequestEnvelope();
 const readStreamRangeResponse = createReadStreamRangeResponseEnvelope();
+const pathHistoryStorageLifecycleRequest = createPathHistoryStorageLifecycleRequestEnvelope();
+const pathHistoryStorageLifecycleResponse = createPathHistoryStorageLifecycleResponseEnvelope();
+const pathHistoryStorageLifecycleApplyRequest = createPathHistoryStorageLifecycleApplyRequestEnvelope();
+const pathHistoryStorageLifecycleApplyResponse = createPathHistoryStorageLifecycleApplyResponseEnvelope();
+const workPacketHeader = createWorkPacketHeaderEnvelope();
+const workPacketHeaderResponse = createWorkPacketHeaderResponseEnvelope();
+const workPacketResultOrderRequest = createWorkPacketResultOrderRequestEnvelope();
+const workPacketResultOrderResponse = createWorkPacketResultOrderResponseEnvelope();
+const emissionShellCandidatePacketMergeRequest = createEmissionShellCandidatePacketMergeRequestEnvelope();
+const pathHistoryWorkPacketPlanRequest = createPathHistoryWorkPacketPlanRequestEnvelope();
+const pathHistoryWorkPacketPlanResponse = createPathHistoryWorkPacketPlanResponseEnvelope();
+const emissionShellCandidateRequest = createEmissionShellCandidateRequestEnvelope();
+const emissionShellCandidatePacketRequest = createEmissionShellCandidatePacketRequestEnvelope();
+const emissionShellCandidatePacketsRequest = createEmissionShellCandidatePacketsRequestEnvelope();
 const emissionShellCandidateResponse = createEmissionShellCandidateResponseEnvelope();
 const emissionShellRootRefinementRequest = createEmissionShellRootRefinementRequestEnvelope();
 const emissionShellRootRefinementResponse = createEmissionShellRootRefinementResponseEnvelope();
 const workerRequestMessage = createWorkerRequestMessage();
 const workerResponseMessage = createWorkerResponseMessage();
 const workerErrorMessage = createWorkerErrorMessage();
+const schemaFixtures = [
+  ["worker request message", "solverAppWorkerRequestMessage", workerRequestMessage],
+  ["worker response message", "solverAppWorkerResponseMessage", workerResponseMessage],
+  ["worker error message", "solverAppWorkerErrorMessage", workerErrorMessage],
+  ["causal roots request", "causalRootsF64RequestEnvelope", request],
+  ["init request", "initRequestEnvelope", initRequest],
+  ["init response", "initResponseEnvelope", initResponse],
+  ["capabilities request", "capabilitiesRequestEnvelope", capabilitiesRequest],
+  ["capabilities response", "capabilitiesResponseEnvelope", capabilitiesResponse],
+  ["threading plan request", "threadingPlanRequestEnvelope", threadingPlanRequest],
+  ["threading plan response", "threadingPlanResponseEnvelope", threadingPlanResponse],
+  ["admission request", "admissionRequestEnvelope", admissionRequest],
+  ["admission response", "admissionResponseEnvelope", admissionResponse],
+  ["causal roots response", "causalRootsF64ResponseEnvelope", causalRootsResponse],
+  ["normalized causal roots request", "causalRootsNormalizedF64RequestEnvelope", causalRootsNormalizedRequest],
+  ["normalized causal roots response", "causalRootsNormalizedF64ResponseEnvelope", causalRootsNormalizedResponse],
+  ["circular-source causal roots request", "circularSourceCausalRootsF64RequestEnvelope", circularSourceCausalRootsRequest],
+  ["circular-source causal roots response", "circularSourceCausalRootsF64ResponseEnvelope", circularSourceCausalRootsResponse],
+  [
+    "circular-source roots/hits/ledger request",
+    "circularSourceRootsHitsLedgerF64RequestEnvelope",
+    circularSourceRootsHitsLedgerRequest,
+  ],
+  [
+    "circular-source roots/hits/ledger response",
+    "circularSourceRootsHitsLedgerF64ResponseEnvelope",
+    circularSourceRootsHitsLedgerResponse,
+  ],
+  [
+    "normalized circular-source roots/hits/ledger request",
+    "circularSourceRootsHitsLedgerNormalizedF64RequestEnvelope",
+    circularSourceRootsHitsLedgerNormalizedRequest,
+  ],
+  [
+    "normalized circular-source roots/hits/ledger response",
+    "circularSourceRootsHitsLedgerNormalizedF64ResponseEnvelope",
+    circularSourceRootsHitsLedgerNormalizedResponse,
+  ],
+  ["precision causal roots request", "causalRootsPrecisionF64RequestEnvelope", causalRootsPrecisionRequest],
+  ["precision causal roots response", "causalRootsPrecisionF64ResponseEnvelope", causalRootsPrecisionResponse],
+  ["precision roots-and-hits request", "rootsAndHitsPrecisionF64RequestEnvelope", rootsAndHitsPrecisionRequest],
+  ["precision roots-and-hits response", "rootsAndHitsPrecisionF64ResponseEnvelope", rootsAndHitsPrecisionResponse],
+  ["root-ledger detail request", "rootLedgerDetailF64RequestEnvelope", rootLedgerDetailRequest],
+  ["root-ledger detail response", "rootLedgerDetailF64ResponseEnvelope", rootLedgerDetailResponse],
+  ["precision diagnostic request", "precisionDiagnosticF64RequestEnvelope", precisionDiagnosticRequest],
+  ["precision diagnostic response", "precisionDiagnosticF64ResponseEnvelope", precisionDiagnosticResponse],
+  ["error-budget propagation request", "errorBudgetPropagationF64RequestEnvelope", errorBudgetPropagationRequest],
+  ["error-budget propagation response", "errorBudgetPropagationF64ResponseEnvelope", errorBudgetPropagationResponse],
+  ["root-hit invariant request", "rootHitInvariantF64RequestEnvelope", rootHitInvariantRequest],
+  ["root-hit invariant response", "rootHitInvariantF64ResponseEnvelope", rootHitInvariantResponse],
+  ["root-ledger transition request", "rootLedgerTransitionF64RequestEnvelope", rootLedgerTransitionRequest],
+  ["root-ledger transition response", "rootLedgerTransitionF64ResponseEnvelope", rootLedgerTransitionResponse],
+  ["causal-root batch request", "causalRootBatchF64RequestEnvelope", causalRootBatchRequest],
+  ["linear motion sample request", "linearMotionSampleF64RequestEnvelope", linearMotionSampleRequest],
+  ["linear motion sample response", "linearMotionSampleF64ResponseEnvelope", linearMotionSampleResponse],
+  ["phase-at-hit request", "phaseAtHitF64RequestEnvelope", phaseAtHitRequest],
+  ["phase-at-hit response", "phaseAtHitF64ResponseEnvelope", phaseAtHitResponse],
+  ["phase-at-hit summary request", "phaseAtHitSummaryF64RequestEnvelope", phaseAtHitSummaryRequest],
+  ["phase-at-hit summary response", "phaseAtHitSummaryF64ResponseEnvelope", phaseAtHitSummaryResponse],
+  ["shared geometry request", "sharedGeometryF64RequestEnvelope", sharedGeometryRequest],
+  ["shared geometry response", "sharedGeometryF64ResponseEnvelope", sharedGeometryResponse],
+  [
+    "assembly membership events request",
+    "assemblyMembershipEventsF64RequestEnvelope",
+    assemblyMembershipEventsRequest,
+  ],
+  [
+    "assembly membership events response",
+    "assemblyMembershipEventsF64ResponseEnvelope",
+    assemblyMembershipEventsResponse,
+  ],
+  ["assembly graph dataset request", "assemblyGraphDatasetF64RequestEnvelope", assemblyGraphDatasetRequest],
+  ["assembly graph dataset response", "assemblyGraphDatasetF64ResponseEnvelope", assemblyGraphDatasetResponse],
+  ["assembly graph store request", "assemblyGraphStoreF64RequestEnvelope", assemblyGraphStoreRequest],
+  ["assembly graph store response", "assemblyGraphStoreF64ResponseEnvelope", assemblyGraphStoreResponse],
+  [
+    "describe assembly graph store request",
+    "describeAssemblyGraphStoreF64RequestEnvelope",
+    describeAssemblyGraphStoreRequest,
+  ],
+  [
+    "assembly graph store description response",
+    "assemblyGraphStoreDescriptionF64ResponseEnvelope",
+    assemblyGraphStoreDescriptionResponse,
+  ],
+  ["assembly graph store read request", "assemblyGraphStoreReadF64RequestEnvelope", assemblyGraphStoreReadRequest],
+  ["assembly graph store read response", "assemblyGraphStoreReadF64ResponseEnvelope", assemblyGraphStoreReadResponse],
+  ["build spacetime index request", "buildSpaceTimeIndexF64RequestEnvelope", buildSpaceTimeIndexRequest],
+  [
+    "build path-history stream spacetime index request",
+    "buildPathHistoryStreamSpaceTimeIndexF64RequestEnvelope",
+    buildPathHistoryStreamSpaceTimeIndexRequest,
+  ],
+  ["spacetime index response", "spaceTimeIndexF64ResponseEnvelope", spaceTimeIndexResponse],
+  ["query spacetime index request", "querySpaceTimeIndexF64RequestEnvelope", querySpaceTimeIndexRequest],
+  ["motion integration request", "motionIntegrationF64RequestEnvelope", motionIntegrationRequest],
+  ["motion integration response", "motionIntegrationF64ResponseEnvelope", motionIntegrationResponse],
+  ["causal-root batch response", "causalRootBatchF64ResponseEnvelope", batchResponse],
+  ["roots-and-hits response", "rootsAndHitsF64ResponseEnvelope", response],
+  ["run simulation request", "runSimulationRequestEnvelope", runSimulationRequest],
+  ["normalized run simulation request", "runSimulationRequestEnvelope", runSimulationNormalizedRequest],
+  ["run simulation response", "runSimulationResponseEnvelope", runSimulationResponse],
+  ["describe run request", "describeRunRequestEnvelope", describeRunRequest],
+  ["describe run response", "describeRunResponseEnvelope", describeRunResponse],
+  ["cancel run request", "cancelRunRequestEnvelope", cancelRunRequest],
+  ["cancel run response", "cancelRunResponseEnvelope", cancelRunResponse],
+  ["close run request", "closeRunRequestEnvelope", closeRunRequest],
+  ["close run response", "closeRunResponseEnvelope", closeRunResponse],
+  ["path-history stream request", "pathHistoryStreamF64RequestEnvelope", pathHistoryStreamRequest],
+  ["path-history stream response", "pathHistoryStreamF64ResponseEnvelope", pathHistoryStreamResponse],
+  ["describe stream request", "describeStreamRequestEnvelope", describeStreamRequest],
+  ["describe stream response", "describeStreamResponseEnvelope", describeStreamResponse],
+  [
+    "path-history dynamic replay validation request",
+    "pathHistoryDynamicReplayValidationRequestEnvelope",
+    pathHistoryDynamicReplayValidationRequest,
+  ],
+  [
+    "path-history dynamic replay validation response",
+    "pathHistoryDynamicReplayValidationResponseEnvelope",
+    pathHistoryDynamicReplayValidationResponse,
+  ],
+  ["open stream request", "openStreamRequestEnvelope", openStreamRequest],
+  ["open stream response", "openStreamResponseEnvelope", openStreamResponse],
+  ["read stream range request", "readStreamRangeRequestEnvelope", readStreamRangeRequest],
+  ["read stream range response", "readStreamRangeResponseEnvelope", readStreamRangeResponse],
+  [
+    "path-history storage lifecycle request",
+    "pathHistoryStorageLifecycleRequestEnvelope",
+    pathHistoryStorageLifecycleRequest,
+  ],
+  [
+    "path-history storage lifecycle response",
+    "pathHistoryStorageLifecycleResponseEnvelope",
+    pathHistoryStorageLifecycleResponse,
+  ],
+  [
+    "path-history storage lifecycle apply request",
+    "pathHistoryStorageLifecycleApplyRequestEnvelope",
+    pathHistoryStorageLifecycleApplyRequest,
+  ],
+  [
+    "path-history storage lifecycle apply response",
+    "pathHistoryStorageLifecycleApplyResponseEnvelope",
+    pathHistoryStorageLifecycleApplyResponse,
+  ],
+  ["work packet header", "workPacketHeaderEnvelope", workPacketHeader],
+  ["work packet header response", "workPacketHeaderResponseEnvelope", workPacketHeaderResponse],
+  ["work packet result order request", "workPacketResultOrderRequestEnvelope", workPacketResultOrderRequest],
+  ["work packet result order response", "workPacketResultOrderResponseEnvelope", workPacketResultOrderResponse],
+  [
+    "emission-shell candidate packet merge request",
+    "emissionShellCandidatePacketMergeF64RequestEnvelope",
+    emissionShellCandidatePacketMergeRequest,
+  ],
+  [
+    "path-history work packet plan request",
+    "pathHistoryWorkPacketPlanRequestEnvelope",
+    pathHistoryWorkPacketPlanRequest,
+  ],
+  [
+    "path-history work packet plan response",
+    "pathHistoryWorkPacketPlanResponseEnvelope",
+    pathHistoryWorkPacketPlanResponse,
+  ],
+  ["emission-shell candidate request", "emissionShellCandidateF64RequestEnvelope", emissionShellCandidateRequest],
+  [
+    "emission-shell candidate packet request",
+    "emissionShellCandidatePacketF64RequestEnvelope",
+    emissionShellCandidatePacketRequest,
+  ],
+  [
+    "emission-shell candidate packets request",
+    "emissionShellCandidatePacketsF64RequestEnvelope",
+    emissionShellCandidatePacketsRequest,
+  ],
+  ["emission-shell candidate response", "emissionShellCandidateF64ResponseEnvelope", emissionShellCandidateResponse],
+  [
+    "emission-shell root refinement request",
+    "emissionShellRootRefinementF64RequestEnvelope",
+    emissionShellRootRefinementRequest,
+  ],
+  [
+    "emission-shell root refinement response",
+    "emissionShellRootRefinementF64ResponseEnvelope",
+    emissionShellRootRefinementResponse,
+  ],
+];
 
 assert(schema.$id === "https://architrino.local/contracts/solver-app-bridge/v1/schema.json", "schema id mismatch");
 assert(schema.$defs?.initRequest, "init request schema missing");
@@ -462,6 +697,9 @@ assertWorkerMethods([
   "dispose",
 ]);
 
+assertTopLevelSchemaFixtureCoverage(schemaFixtures);
+validateSchemaFixtures(schemaFixtures);
+
 validateWorkerRequestMessage(workerRequestMessage);
 validateWorkerResponseMessage(workerResponseMessage);
 validateWorkerErrorMessage(workerErrorMessage);
@@ -518,6 +756,215 @@ console.log("solver contract fixtures check passed.");
 
 function readJson(relativePath) {
   return JSON.parse(fs.readFileSync(path.join(rootDir, relativePath), "utf8"));
+}
+
+function assertTopLevelSchemaFixtureCoverage(fixtures) {
+  const fixtureDefinitionNames = new Set(fixtures.map(([, definitionName]) => definitionName));
+  const topLevelDefinitionNames = (schema.oneOf ?? [])
+    .map((entry) => entry.$ref?.split("/").at(-1))
+    .filter(Boolean);
+  const missing = topLevelDefinitionNames.filter((definitionName) => !fixtureDefinitionNames.has(definitionName));
+  assert(topLevelDefinitionNames.length > 0, "top-level solver app-bridge schema has no oneOf entries");
+  assert(
+    missing.length === 0,
+    `missing schema fixtures for top-level solver app-bridge definitions: ${missing.join(", ")}`
+  );
+}
+
+function validateSchemaFixtures(fixtures) {
+  const failures = [];
+  for (const [label, definitionName, value] of fixtures) {
+    const definition = schema.$defs?.[definitionName];
+    if (!definition) {
+      failures.push(`${label}: missing schema definition ${definitionName}`);
+      continue;
+    }
+    const errors = validateAgainstSchema(value, definition, schema, "$");
+    if (errors.length > 0) {
+      failures.push(`${label} against ${definitionName}:\n${errors.map((error) => `  - ${error}`).join("\n")}`);
+    }
+    const topLevelErrors = validateAgainstSchema(value, schema, schema, "$");
+    if (topLevelErrors.length > 0) {
+      failures.push(
+        `${label} against top-level solver-app-bridge schema:\n${topLevelErrors
+          .map((error) => `  - ${error}`)
+          .join("\n")}`
+      );
+    }
+  }
+  if (failures.length > 0) {
+    console.error(`solver contract fixture schema validation failed:\n${failures.join("\n")}`);
+    process.exit(1);
+  }
+}
+
+function validateAgainstSchema(value, schemaNode, rootSchema, schemaPath = "$", seenRefs = new Set()) {
+  if (schemaNode === true) {
+    return [];
+  }
+  if (schemaNode === false) {
+    return [`${schemaPath}: schema rejects all values`];
+  }
+  if (!schemaNode || typeof schemaNode !== "object") {
+    return [];
+  }
+  if (schemaNode.$ref) {
+    const resolved = resolveSchemaRef(schemaNode.$ref, rootSchema);
+    const refKey = `${schemaPath}:${schemaNode.$ref}`;
+    if (seenRefs.has(refKey)) {
+      return [];
+    }
+    return validateAgainstSchema(value, resolved, rootSchema, schemaPath, new Set([...seenRefs, refKey]));
+  }
+
+  const errors = [];
+  if (schemaNode.oneOf) {
+    const branchErrors = schemaNode.oneOf.map((candidate) =>
+      validateAgainstSchema(value, candidate, rootSchema, schemaPath, seenRefs)
+    );
+    const matchCount = branchErrors.filter((candidateErrors) => candidateErrors.length === 0).length;
+    if (matchCount !== 1) {
+      errors.push(`${schemaPath}: expected exactly one oneOf branch to match, matched ${matchCount}`);
+      if (matchCount === 0) {
+        errors.push(...summarizeBranchErrors(schemaPath, "oneOf", branchErrors));
+      }
+    }
+  }
+  if (schemaNode.anyOf) {
+    const branchErrors = schemaNode.anyOf.map((candidate) =>
+      validateAgainstSchema(value, candidate, rootSchema, schemaPath, seenRefs)
+    );
+    if (!branchErrors.some((candidateErrors) => candidateErrors.length === 0)) {
+      errors.push(`${schemaPath}: expected at least one anyOf branch to match`);
+      errors.push(...summarizeBranchErrors(schemaPath, "anyOf", branchErrors));
+    }
+  }
+
+  if (Object.prototype.hasOwnProperty.call(schemaNode, "const") && !Object.is(value, schemaNode.const)) {
+    errors.push(`${schemaPath}: expected constant ${JSON.stringify(schemaNode.const)}`);
+    return errors;
+  }
+  if (Array.isArray(schemaNode.enum) && !schemaNode.enum.some((entry) => Object.is(entry, value))) {
+    errors.push(`${schemaPath}: expected one of ${schemaNode.enum.map((entry) => JSON.stringify(entry)).join(", ")}`);
+  }
+
+  if (schemaNode.type) {
+    const allowedTypes = Array.isArray(schemaNode.type) ? schemaNode.type : [schemaNode.type];
+    if (!allowedTypes.some((type) => isSchemaTypeMatch(value, type))) {
+      errors.push(`${schemaPath}: expected type ${allowedTypes.join(" | ")}`);
+      return errors;
+    }
+  }
+
+  if (typeof value === "number") {
+    if (!Number.isFinite(value)) {
+      errors.push(`${schemaPath}: expected finite number`);
+    }
+    if (typeof schemaNode.minimum === "number" && value < schemaNode.minimum) {
+      errors.push(`${schemaPath}: expected number >= ${schemaNode.minimum}`);
+    }
+    if (typeof schemaNode.exclusiveMinimum === "number" && value <= schemaNode.exclusiveMinimum) {
+      errors.push(`${schemaPath}: expected number > ${schemaNode.exclusiveMinimum}`);
+    }
+    if (typeof schemaNode.maximum === "number" && value > schemaNode.maximum) {
+      errors.push(`${schemaPath}: expected number <= ${schemaNode.maximum}`);
+    }
+    if (typeof schemaNode.exclusiveMaximum === "number" && value >= schemaNode.exclusiveMaximum) {
+      errors.push(`${schemaPath}: expected number < ${schemaNode.exclusiveMaximum}`);
+    }
+  }
+
+  if (typeof value === "string") {
+    if (typeof schemaNode.minLength === "number" && value.length < schemaNode.minLength) {
+      errors.push(`${schemaPath}: expected string length >= ${schemaNode.minLength}`);
+    }
+    if (typeof schemaNode.maxLength === "number" && value.length > schemaNode.maxLength) {
+      errors.push(`${schemaPath}: expected string length <= ${schemaNode.maxLength}`);
+    }
+    if (schemaNode.pattern && !new RegExp(schemaNode.pattern).test(value)) {
+      errors.push(`${schemaPath}: expected string matching ${schemaNode.pattern}`);
+    }
+  }
+
+  if (Array.isArray(value)) {
+    if (typeof schemaNode.minItems === "number" && value.length < schemaNode.minItems) {
+      errors.push(`${schemaPath}: expected array length >= ${schemaNode.minItems}`);
+    }
+    if (typeof schemaNode.maxItems === "number" && value.length > schemaNode.maxItems) {
+      errors.push(`${schemaPath}: expected array length <= ${schemaNode.maxItems}`);
+    }
+    if (schemaNode.uniqueItems) {
+      const seenItems = new Set(value.map((item) => JSON.stringify(item)));
+      if (seenItems.size !== value.length) {
+        errors.push(`${schemaPath}: expected unique array items`);
+      }
+    }
+    if (schemaNode.items) {
+      value.forEach((item, index) => {
+        errors.push(...validateAgainstSchema(item, schemaNode.items, rootSchema, `${schemaPath}[${index}]`, seenRefs));
+      });
+    }
+  }
+
+  if (value && typeof value === "object" && !Array.isArray(value)) {
+    const properties = schemaNode.properties ?? {};
+    for (const key of schemaNode.required ?? []) {
+      if (!Object.prototype.hasOwnProperty.call(value, key)) {
+        errors.push(`${schemaPath}: missing required property ${key}`);
+      }
+    }
+    if (schemaNode.additionalProperties === false) {
+      for (const key of Object.keys(value)) {
+        if (!Object.prototype.hasOwnProperty.call(properties, key)) {
+          errors.push(`${schemaPath}: unexpected property ${key}`);
+        }
+      }
+    }
+    for (const [key, childSchema] of Object.entries(properties)) {
+      if (Object.prototype.hasOwnProperty.call(value, key)) {
+        errors.push(...validateAgainstSchema(value[key], childSchema, rootSchema, `${schemaPath}.${key}`, seenRefs));
+      }
+    }
+  }
+
+  return errors;
+}
+
+function resolveSchemaRef(ref, rootSchema) {
+  if (!ref.startsWith("#/")) {
+    throw new Error(`unsupported schema ref ${ref}`);
+  }
+  return ref
+    .slice(2)
+    .split("/")
+    .reduce((node, part) => node?.[part.replace(/~1/g, "/").replace(/~0/g, "~")], rootSchema);
+}
+
+function summarizeBranchErrors(schemaPath, branchType, branchErrors) {
+  return branchErrors.slice(0, 3).flatMap((errors, index) =>
+    errors.slice(0, 5).map((error) => `${schemaPath}: ${branchType}[${index}] ${error}`)
+  );
+}
+
+function isSchemaTypeMatch(value, type) {
+  switch (type) {
+    case "array":
+      return Array.isArray(value);
+    case "boolean":
+      return typeof value === "boolean";
+    case "integer":
+      return Number.isInteger(value);
+    case "null":
+      return value === null;
+    case "number":
+      return typeof value === "number" && Number.isFinite(value);
+    case "object":
+      return value !== null && typeof value === "object" && !Array.isArray(value);
+    case "string":
+      return typeof value === "string";
+    default:
+      return false;
+  }
 }
 
 function validateRequestEnvelope(value) {
@@ -1763,6 +2210,7 @@ function createCircularSourceStreamFixture(buffers) {
     streamId: "circular-source-contract-stream",
     manifestVersion: "solver-stream-manifest.v1",
     indexLayout: "stream_index.v1",
+    metadata: createRunStreamMetadataFixture(),
     availableRanges: buffers.map((buffer) => {
       const byteEnd = byteStart + buffer.byteLength;
       const range = {
@@ -2032,6 +2480,7 @@ function createRootsAndHitsPrecisionResponseEnvelope() {
             durable: false,
             maxBytes: 432,
           },
+          metadata: createRunStreamMetadataFixture(),
         },
       ],
       status: createStatusFixture(
@@ -2040,6 +2489,918 @@ function createRootsAndHitsPrecisionResponseEnvelope() {
         "precision causal roots and delayed hits solved with diagnostics"
       ),
     },
+  };
+}
+
+function createRootLedgerDetailRequestEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "root-ledger-detail-f64-request",
+    requestId: "root-ledger-detail-contract-request",
+    request: {
+      ...request.request,
+      maxRows: 8,
+    },
+  };
+}
+
+function createRootLedgerDetailResponseEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "root-ledger-detail-f64-response",
+    requestId: "root-ledger-detail-contract-request",
+    response: {
+      rows: [createRootLedgerDetailFixture()],
+      buffers: [
+        createBufferDescriptorFixture("root-ledger-detail-contract-buffer", "root_ledger_detail.v1", 192, 1),
+      ],
+      status: createStatusFixture("ok", "ok", "root-ledger detail fixture"),
+    },
+  };
+}
+
+function createPrecisionDiagnosticRequestEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "precision-diagnostic-f64-request",
+    requestId: "precision-diagnostic-contract-request",
+    request: request.request,
+  };
+}
+
+function createPrecisionDiagnosticResponseEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "precision-diagnostic-f64-response",
+    requestId: "precision-diagnostic-contract-request",
+    response: {
+      statusCode: 0,
+      recommendedPath: "scaled_f64_strict",
+      recommendedNumericType: "f64",
+      recommendedChart: "local_frame",
+      speedChart: "log_magnitude",
+      scaleNormalizationRecommended: true,
+      extendedPrecisionRecommended: false,
+      scaleResolutionLimited: false,
+      timeResolutionLimited: false,
+      timeScale: createMagnitudeSummaryFixture(),
+      geometryScale: createMagnitudeSummaryFixture(),
+      speedScale: createMagnitudeMaxSummaryFixture(),
+      toleranceScale: createMagnitudeMinSummaryFixture(),
+      status: createStatusFixture("ok", "ok", "precision diagnostic fixture"),
+    },
+  };
+}
+
+function createErrorBudgetPropagationRequestEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "error-budget-propagation-f64-request",
+    requestId: "error-budget-propagation-contract-request",
+    request: {
+      errorBudget: createRunErrorBudget(),
+      stages: [
+        {
+          stage: "root_isolation",
+          estimatedAbsoluteError: 1e-15,
+        },
+      ],
+      maxRows: 4,
+    },
+  };
+}
+
+function createErrorBudgetPropagationResponseEnvelope() {
+  const stageStatus = createStatusFixture("ok", "ok", "root isolation budget inside tolerance");
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "error-budget-propagation-f64-response",
+    requestId: "error-budget-propagation-contract-request",
+    response: {
+      cumulativeError: 1e-15,
+      cumulativeBudgetRatio: 0.1,
+      authority: "authoritative",
+      stages: [
+        {
+          stage: "root_isolation",
+          estimatedAbsoluteError: 1e-15,
+          tolerance: 1e-14,
+          toleranceRatio: 0.1,
+          authority: "authoritative",
+          status: stageStatus,
+        },
+      ],
+      statuses: [stageStatus],
+      status: createStatusFixture("ok", "ok", "error budget propagated"),
+    },
+  };
+}
+
+function createRootHitInvariantRequestEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "root-hit-invariant-f64-request",
+    requestId: "root-hit-invariant-contract-request",
+    request: {
+      roots: response.response.roots,
+      hits: response.response.hits,
+      options: {
+        rootResidualTolerance: 1e-12,
+        timeTolerance: 1e-12,
+        distanceTolerance: 1e-12,
+        directionTolerance: 1e-12,
+        branchWeightTolerance: 1e-12,
+        smallJacobianTolerance: 1e-12,
+      },
+    },
+  };
+}
+
+function createRootHitInvariantResponseEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "root-hit-invariant-f64-response",
+    requestId: "root-hit-invariant-contract-request",
+    response: {
+      rootCount: 1,
+      hitCount: 1,
+      statuses: [createStatusFixture("ok", "ok", "root-hit invariants passed")],
+      status: createStatusFixture("ok", "ok", "root-hit invariant fixture"),
+    },
+  };
+}
+
+function createRootLedgerTransitionRequestEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "root-ledger-transition-f64-request",
+    requestId: "root-ledger-transition-contract-request",
+    request: {
+      priorRows: [createRootLedgerDetailFixture()],
+      nextRows: [createRootLedgerDetailFixture()],
+    },
+  };
+}
+
+function createRootLedgerTransitionResponseEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "root-ledger-transition-f64-response",
+    requestId: "root-ledger-transition-contract-request",
+    response: {
+      transitions: [
+        {
+          transitionKey: "0000000000001b59",
+          kind: "retained",
+          priorRootKey: 4001,
+          nextRootKey: 4001,
+          sourceKey: 2001,
+          receiverKey: 3001,
+          intervalStart: 0,
+          intervalEnd: 10,
+          priorEntryKind: 1,
+          nextEntryKind: 1,
+          priorStatusCode: 0,
+          nextStatusCode: 0,
+          priorJacobianSignStratum: 3,
+          nextJacobianSignStratum: 3,
+          status: createStatusFixture("ok", "ok", "root retained"),
+        },
+      ],
+      statuses: [createStatusFixture("ok", "ok", "root transition fixture")],
+      status: createStatusFixture("ok", "ok", "root-ledger transitions classified"),
+    },
+  };
+}
+
+function createCausalRootBatchRequestEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "causal-root-batch-f64-request",
+    requestId: "causal-root-batch-contract-request",
+    request: {
+      requests: [request.request],
+      maxItems: 1,
+      maxRoots: 4,
+      workerCount: 1,
+    },
+  };
+}
+
+function createLinearMotionSampleRequestEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "linear-motion-sample-f64-request",
+    requestId: "linear-motion-sample-contract-request",
+    request: createLinearMotionSampleRequestFixture(),
+  };
+}
+
+function createLinearMotionSampleResponseEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "linear-motion-sample-f64-response",
+    requestId: "linear-motion-sample-contract-request",
+    response: {
+      frames: [createMotionFrameFixture({ pathKey: 2000, frameIndex: 0, time: 0, x: 0, y: 0, z: 0 })],
+      buffers: [createBufferDescriptorFixture("linear-motion-frame-buffer", "frame_buffer.v1", 88, 1)],
+      status: createStatusFixture("ok", "ok", "linear motion sampled"),
+    },
+  };
+}
+
+function createLinearMotionSampleRequestFixture() {
+  return {
+    pathKey: 2000,
+    segment: request.request.source,
+    startTime: 0,
+    endTime: 1,
+    step: 1,
+    stateFlags: 1,
+    maxFrames: 2,
+  };
+}
+
+function createPhaseAtHitRequestEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "phase-at-hit-f64-request",
+    requestId: "phase-at-hit-contract-request",
+    request: {
+      roots: response.response.roots,
+      sourceClock: { period: 3, epoch: 0, phaseOffset: 0 },
+      receiverClock: { period: 3, epoch: 0, phaseOffset: 0 },
+      metadata: [createPhaseAtHitMetadataFixture()],
+    },
+  };
+}
+
+function createPhaseAtHitResponseEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "phase-at-hit-f64-response",
+    requestId: "phase-at-hit-contract-request",
+    response: {
+      rows: [createPhaseAtHitRowFixture()],
+      buffers: [createBufferDescriptorFixture("phase-at-hit-buffer", "phase_at_hit.v1", 88, 1)],
+      status: createStatusFixture("ok", "ok", "phase-at-hit rows computed"),
+    },
+  };
+}
+
+function createPhaseAtHitSummaryRequestEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "phase-at-hit-summary-f64-request",
+    requestId: "phase-at-hit-summary-contract-request",
+    request: {
+      rows: [createPhaseAtHitRowFixture()],
+    },
+  };
+}
+
+function createPhaseAtHitSummaryResponseEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "phase-at-hit-summary-f64-response",
+    requestId: "phase-at-hit-summary-contract-request",
+    response: {
+      summary: createPhaseAtHitSummaryFixture(),
+      status: createStatusFixture("ok", "ok", "phase-at-hit summary computed"),
+    },
+  };
+}
+
+function createPhaseAtHitMetadataFixture() {
+  return {
+    rootKind: 1,
+    sourceLayerCode: 2,
+    receiverLayerCode: 3,
+    sourceRoleCode: 4,
+    receiverRoleCode: 5,
+    sourceChargeSign: 1,
+    receiverChargeSign: -1,
+    stateFlags: 0,
+  };
+}
+
+function createPhaseAtHitRowFixture() {
+  return {
+    rootId: 0,
+    statusCode: 0,
+    sourceCycleIndex: 3,
+    receiverCycleIndex: 3,
+    emissionTime: 0,
+    hitTime: 10,
+    sourcePhase: 0,
+    receiverPhase: 1 / 3,
+    phaseDelta: 1 / 3,
+    phaseSpread: 1 / 3,
+    ...createPhaseAtHitMetadataFixture(),
+  };
+}
+
+function createPhaseAtHitSummaryFixture() {
+  const range = { start: 0, end: 0 };
+  const phaseRange = { start: 1 / 3, end: 1 / 3 };
+  return {
+    schema: "solver-phase-at-hit-summary.v1",
+    rowCount: 1,
+    rootIdRange: range,
+    statusCounts: [{ statusCode: 0, rowCount: 1 }],
+    sourceCycleIndexRange: { start: 3, end: 3 },
+    receiverCycleIndexRange: { start: 3, end: 3 },
+    emissionTimeRange: range,
+    hitTimeRange: { start: 10, end: 10 },
+    sourcePhaseRange: range,
+    receiverPhaseRange: phaseRange,
+    phaseDeltaRange: phaseRange,
+    phaseSpreadRange: phaseRange,
+    meanPhaseDelta: 1 / 3,
+    meanPhaseSpread: 1 / 3,
+    maxPhaseSpread: 1 / 3,
+  };
+}
+
+function createSharedGeometryRequestEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "shared-geometry-f64-request",
+    requestId: "shared-geometry-contract-request",
+    request: {
+      pathBounds: [
+        {
+          pathKey: 2000,
+          segment: request.request.source,
+        },
+      ],
+      spherePointIntersections: [
+        {
+          center: { x: 0, y: 0, z: 0 },
+          radius: 1,
+          point: { x: 0.5, y: 0, z: 0 },
+          tolerance: 1e-12,
+        },
+      ],
+      delayedPotentials: [
+        {
+          source: request.request.source,
+          samplePoint: { x: 1, y: 0, z: 0 },
+          observationTime: 2,
+          fieldSpeed: 1,
+          normalization: 1,
+          softening: 1e-12,
+          sourceCharge: 1,
+          iterations: 8,
+          useCausalDenominator: true,
+        },
+      ],
+      circularSelfHitSpans: [
+        {
+          fieldSpeedRatio: 0.5,
+          fieldSpeedTolerance: 1e-12,
+          tolerance: 1e-12,
+          maxIterations: 32,
+          scanSubdivisions: 64,
+          maxAngle: Math.PI,
+        },
+      ],
+    },
+  };
+}
+
+function createSharedGeometryResponseEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "shared-geometry-f64-response",
+    requestId: "shared-geometry-contract-request",
+    response: {
+      pathBounds: [
+        {
+          itemIndex: 0,
+          statusCode: 0,
+          pathKey: 2000,
+          min: { x: 0, y: 0, z: 0 },
+          max: { x: 10, y: 0, z: 0 },
+        },
+      ],
+      spherePointIntersections: [
+        {
+          itemIndex: 0,
+          intersects: true,
+          centerDistance: 0.5,
+          signedDistance: -0.5,
+        },
+      ],
+      delayedPotentials: [
+        {
+          itemIndex: 0,
+          statusCode: 0,
+          tau: 1,
+          emissionTime: 1,
+          emissionPoint: { x: 1, y: 0, z: 0 },
+          displacement: { x: 0, y: 0, z: 0 },
+          distance: 0,
+          denominator: 1,
+          potential: 1,
+          kappa: 0,
+          iterations: 1,
+          usedCausalDenominator: true,
+        },
+      ],
+      circularSelfHitSpans: [
+        {
+          itemIndex: 0,
+          statusCode: 0,
+          fieldSpeedRatio: 0.5,
+          fieldSpeedTolerance: 1e-12,
+          regime: "sub_field",
+          resultKind: "below_threshold",
+          span: 0,
+          rootFound: false,
+          bracketLow: 0,
+          bracketHigh: Math.PI,
+          residual: 0,
+          iterations: 0,
+        },
+      ],
+      status: createStatusFixture("ok", "ok", "shared geometry fixture"),
+    },
+  };
+}
+
+function createAssemblyMembershipEventsRequestEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "assembly-membership-events-f64-request",
+    requestId: "assembly-membership-events-contract-request",
+    request: {
+      memberships: [createAssemblyMembershipFixture()],
+      maxEvents: 8,
+    },
+  };
+}
+
+function createAssemblyMembershipEventsResponseEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "assembly-membership-events-f64-response",
+    requestId: "assembly-membership-events-contract-request",
+    response: {
+      events: [createAssemblyEventFixture()],
+      buffers: [createBufferDescriptorFixture("assembly-events-buffer", "assembly_events.v1", 88, 1)],
+      status: createStatusFixture("ok", "ok", "assembly membership events fixture"),
+    },
+  };
+}
+
+function createAssemblyGraphDatasetRequestEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "assembly-graph-dataset-f64-request",
+    requestId: "assembly-graph-dataset-contract-request",
+    request: {
+      assemblyStates: [createAssemblyStateFixture()],
+      memberships: [createAssemblyMembershipFixture()],
+      hierarchy: [createAssemblyHierarchyFixture()],
+      events: [createAssemblyEventFixture()],
+      deriveMembershipEvents: true,
+      maxEvents: 8,
+    },
+  };
+}
+
+function createAssemblyGraphDatasetResponseEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "assembly-graph-dataset-f64-response",
+    requestId: "assembly-graph-dataset-contract-request",
+    response: {
+      schema: "solver-assembly-graph-dataset.v1",
+      summary: createAssemblyGraphSummaryFixture(),
+      assemblyStates: [createAssemblyStateFixture()],
+      memberships: [createAssemblyMembershipFixture()],
+      hierarchy: [createAssemblyHierarchyFixture()],
+      events: [createAssemblyEventFixture()],
+      buffers: createAssemblyGraphBuffersFixture(),
+      status: createStatusFixture("ok", "ok", "assembly graph dataset fixture"),
+    },
+  };
+}
+
+function createAssemblyGraphStoreRequestEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "assembly-graph-store-f64-request",
+    requestId: "assembly-graph-store-contract-request",
+    request: {
+      storeId: "fixture-assembly-graph-store",
+      assemblyStates: [createAssemblyStateFixture()],
+      memberships: [createAssemblyMembershipFixture()],
+      hierarchy: [createAssemblyHierarchyFixture()],
+      events: [createAssemblyEventFixture()],
+      deriveMembershipEvents: true,
+      maxEvents: 8,
+      storagePolicy: createStoragePolicyFixture(),
+    },
+  };
+}
+
+function createAssemblyGraphStoreResponseEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "assembly-graph-store-f64-response",
+    requestId: "assembly-graph-store-contract-request",
+    response: {
+      schema: "solver-assembly-graph-store.v1",
+      store: createAssemblyGraphStoreManifestFixture(),
+      summary: createAssemblyGraphSummaryFixture(),
+      buffers: createAssemblyGraphBuffersFixture(),
+      status: createStatusFixture("ok", "ok", "assembly graph store fixture"),
+    },
+  };
+}
+
+function createDescribeAssemblyGraphStoreRequestEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "describe-assembly-graph-store-f64-request",
+    requestId: "describe-assembly-graph-store-contract-request",
+    request: {
+      storeId: "fixture-assembly-graph-store",
+    },
+  };
+}
+
+function createAssemblyGraphStoreDescriptionResponseEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "assembly-graph-store-description-f64-response",
+    requestId: "describe-assembly-graph-store-contract-request",
+    response: {
+      schema: "solver-assembly-graph-store-description.v1",
+      store: createAssemblyGraphStoreManifestFixture(),
+      buffers: createAssemblyGraphBuffersFixture(),
+      status: createStatusFixture("ok", "ok", "assembly graph store description fixture"),
+    },
+  };
+}
+
+function createAssemblyGraphStoreReadRequestEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "assembly-graph-store-read-f64-request",
+    requestId: "assembly-graph-store-read-contract-request",
+    request: {
+      storeId: "fixture-assembly-graph-store",
+      layouts: ["assembly_membership.v1", "assembly_events.v1"],
+      rowOffset: 0,
+      rowCount: 1,
+      pathKey: 2000,
+      assemblyKey: 3000,
+      timeRange: { start: 0, end: 1 },
+      byteRange: { start: 0, end: 168 },
+      maxBytes: 168,
+    },
+  };
+}
+
+function createAssemblyGraphStoreReadResponseEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "assembly-graph-store-read-f64-response",
+    requestId: "assembly-graph-store-read-contract-request",
+    response: {
+      schema: "solver-assembly-graph-read.v1",
+      storeId: "fixture-assembly-graph-store",
+      manifestVersion: "solver-assembly-graph-manifest.v1",
+      readSummary: {
+        schema: "solver-assembly-graph-read-summary.v1",
+        assemblyStateCount: 0,
+        membershipCount: 1,
+        hierarchyCount: 0,
+        eventCount: 1,
+        bufferCount: 2,
+        byteLength: 168,
+        indexed: true,
+        indexedLayoutCount: 2,
+        indexRowCount: 2,
+        indexSkippedRowCount: 0,
+      },
+      assemblyStates: [],
+      memberships: [createAssemblyMembershipFixture()],
+      hierarchy: [],
+      events: [createAssemblyEventFixture()],
+      buffers: [
+        createBufferDescriptorFixture("assembly-membership-read-buffer", "assembly_membership.v1", 80, 1),
+        createBufferDescriptorFixture("assembly-events-read-buffer", "assembly_events.v1", 88, 1),
+      ],
+      status: createStatusFixture("ok", "ok", "assembly graph store read fixture"),
+    },
+  };
+}
+
+function createAssemblyGraphSummaryFixture() {
+  return {
+    schema: "solver-assembly-graph-summary.v1",
+    assemblyStateCount: 1,
+    membershipCount: 1,
+    hierarchyCount: 1,
+    eventCount: 1,
+    derivedEventCount: 1,
+    explicitEventCount: 0,
+    assemblyCount: 1,
+    pathCount: 1,
+    bufferCount: 4,
+    eventSource: "derived",
+    timeRange: { start: 0, end: 1 },
+  };
+}
+
+function createAssemblyStateFixture() {
+  return {
+    assemblyKey: 3000,
+    assemblyStateKey: 3001,
+    timeStart: 0,
+    timeEnd: 1,
+    center: { x: 0, y: 0, z: 0 },
+    velocity: { x: 0, y: 0, z: 0 },
+    phase: 0,
+    cycleIndex: 0,
+    modelVersion: 1,
+    statusFlags: 0,
+    fidelityFlags: 0,
+  };
+}
+
+function createAssemblyMembershipFixture() {
+  return {
+    membershipKey: 1001,
+    pathKey: 2000,
+    assemblyKey: 3000,
+    assemblyStateKey: 3001,
+    timeStart: 0,
+    timeEnd: 1,
+    confidence: 1,
+    localRole: 1,
+    bindingState: 1,
+    membershipVersion: 1,
+    eventKind: 1,
+    statusFlags: 0,
+  };
+}
+
+function createAssemblyHierarchyFixture() {
+  return {
+    hierarchyKey: 4001,
+    parentAssemblyKey: 3000,
+    childAssemblyKey: 3001,
+    timeStart: 0,
+    timeEnd: 1,
+    relationType: 1,
+    hierarchyVersion: 1,
+    statusFlags: 0,
+  };
+}
+
+function createAssemblyEventFixture() {
+  return {
+    eventKey: 5001,
+    primaryId: 1001,
+    secondaryId: 0,
+    priorStateKey: 3001,
+    nextStateKey: 3001,
+    relatedPathKey: 2000,
+    relatedAssemblyKey: 3000,
+    branchTransitionKey: 0,
+    eventTime: 0,
+    eventKind: 1,
+    speedRegime: 0,
+    statusFlags: 0,
+  };
+}
+
+function createAssemblyGraphBuffersFixture() {
+  return [
+    createBufferDescriptorFixture("assembly-state-buffer", "assembly_state.v1", 112, 1),
+    createBufferDescriptorFixture("assembly-membership-buffer", "assembly_membership.v1", 80, 1),
+    createBufferDescriptorFixture("assembly-hierarchy-buffer", "assembly_hierarchy.v1", 56, 1),
+    createBufferDescriptorFixture("assembly-events-buffer", "assembly_events.v1", 88, 1),
+  ];
+}
+
+function createAssemblyGraphStoreManifestFixture() {
+  return {
+    storeId: "fixture-assembly-graph-store",
+    manifestVersion: "solver-assembly-graph-manifest.v1",
+    numericType: "f64",
+    byteOrder: "little-endian",
+    timeRange: { start: 0, end: 1 },
+    durable: false,
+    metadataPath: ".tmp/fixture-assembly-graph-store/manifest.json",
+    storagePolicy: createStoragePolicyFixture(),
+    summary: createAssemblyGraphSummaryFixture(),
+    index: {
+      schema: "solver-assembly-graph-index.v1",
+      indexedFilters: ["pathKey", "assemblyKey", "timeRange", "rowRange", "byteRange"],
+      rowCount: 2,
+      rows: [
+        createAssemblyGraphIndexRowFixture("assembly_membership.v1", "path", 2000, 0, 1, 0, 80),
+        createAssemblyGraphIndexRowFixture("assembly_events.v1", "assembly", 3000, 0, 1, 80, 168),
+      ],
+      summary: {
+        schema: "solver-assembly-graph-index-summary.v1",
+        rowCount: 2,
+        countsByLayout: {
+          "assembly_membership.v1": 1,
+          "assembly_events.v1": 1,
+        },
+        countsByKeyKind: {
+          path: 1,
+          assembly: 1,
+        },
+      },
+      sidecar: {
+        schema: "solver-assembly-graph-index-sidecar.v1",
+        indexLayout: "assembly_graph_index.v1",
+        numericType: "f64",
+        byteOrder: "little-endian",
+        rowSizeBytes: 72,
+        rowCount: 2,
+        byteLength: 144,
+        filePath: ".tmp/fixture-assembly-graph-store/index.bin",
+        checksum: "0123456789abcdef",
+      },
+    },
+    datasets: {
+      states: createAssemblyGraphStoreDatasetFixture("assembly_state.v1", 112, 1, "states.bin"),
+      memberships: createAssemblyGraphStoreDatasetFixture("assembly_membership.v1", 80, 1, "memberships.bin"),
+      hierarchy: createAssemblyGraphStoreDatasetFixture("assembly_hierarchy.v1", 56, 1, "hierarchy.bin"),
+      events: createAssemblyGraphStoreDatasetFixture("assembly_events.v1", 88, 1, "events.bin"),
+    },
+  };
+}
+
+function createAssemblyGraphIndexRowFixture(layout, keyKind, key, rowOffset, rowCount, byteStart, byteEnd) {
+  return {
+    layout,
+    keyKind,
+    key,
+    rowOffset,
+    rowCount,
+    timeRange: { start: 0, end: 1 },
+    byteRange: { start: byteStart, end: byteEnd },
+  };
+}
+
+function createAssemblyGraphStoreDatasetFixture(layout, rowSizeBytes, rowCount, fileName) {
+  return {
+    layout,
+    rowSizeBytes,
+    rowCount,
+    byteLength: rowSizeBytes * rowCount,
+    path: `.tmp/fixture-assembly-graph-store/${fileName}`,
+    checksum: "0123456789abcdef",
+  };
+}
+
+function createBuildSpaceTimeIndexRequestEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "build-spacetime-index-f64-request",
+    requestId: "build-spacetime-index-contract-request",
+    request: {
+      pathRows: createPathHistoryRows(),
+      assemblyStates: [createAssemblyStateFixture()],
+      options: createSpaceTimeIndexOptionsFixture(),
+      maxRows: 16,
+    },
+  };
+}
+
+function createBuildPathHistoryStreamSpaceTimeIndexRequestEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "build-path-history-stream-spacetime-index-f64-request",
+    requestId: "build-path-history-stream-spacetime-index-contract-request",
+    request: {
+      streamId: "fixture-path-history-stream",
+      pathKeys: [2000],
+      chunkIndices: [0],
+      timeRange: { start: 0, end: 1 },
+      frameRange: { start: 0, end: 0 },
+      byteRange: { start: 0, end: 96 },
+      assemblyStates: [createAssemblyStateFixture()],
+      options: createSpaceTimeIndexOptionsFixture(),
+      maxRows: 16,
+      maxBytes: 2048,
+    },
+  };
+}
+
+function createSpaceTimeIndexResponseEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "spacetime-index-f64-response",
+    requestId: "build-spacetime-index-contract-request",
+    response: {
+      rows: [createSpaceTimeIndexRowFixture()],
+      buffers: [createBufferDescriptorFixture("spacetime-index-buffer", "spacetime_index.v1", 128, 1)],
+      overflowEntryCount: 0,
+      status: createStatusFixture("ok", "ok", "space-time index fixture"),
+    },
+  };
+}
+
+function createQuerySpaceTimeIndexRequestEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "query-spacetime-index-f64-request",
+    requestId: "query-spacetime-index-contract-request",
+    request: {
+      rows: [createSpaceTimeIndexRowFixture()],
+      query: {
+        bounds: {
+          min: { x: 0, y: 0, z: 0 },
+          max: { x: 1, y: 1, z: 1 },
+          timeStart: 0,
+          timeEnd: 1,
+        },
+        filterSpace: true,
+        filterTime: true,
+        subjectKind: 1,
+        subjectKey: 2000,
+      },
+      options: createSpaceTimeIndexOptionsFixture(),
+      maxRows: 16,
+    },
+  };
+}
+
+function createSpaceTimeIndexOptionsFixture() {
+  return {
+    spatialCellSize: 1,
+    timeBinSize: 1,
+    maxCellsPerItem: 8,
+  };
+}
+
+function createSpaceTimeIndexRowFixture() {
+  return {
+    cellX: 0,
+    cellY: 0,
+    cellZ: 0,
+    cellT: 0,
+    subjectKey: 2000,
+    rowOffset: 0,
+    min: { x: 0, y: 0, z: 0 },
+    max: { x: 1, y: 1, z: 1 },
+    timeStart: 0,
+    timeEnd: 1,
+    subjectKind: 1,
+    sourceLayout: 1,
+    stateFlags: 0,
+  };
+}
+
+function createMagnitudeSummaryFixture() {
+  return {
+    ordersOfMagnitude: 0,
+    maxMagnitude: 1,
+    minNonzeroMagnitude: 1,
+  };
+}
+
+function createMagnitudeMaxSummaryFixture() {
+  return {
+    ordersOfMagnitude: 0,
+    maxMagnitude: 1,
+  };
+}
+
+function createMagnitudeMinSummaryFixture() {
+  return {
+    ordersOfMagnitude: 0,
+    minNonzeroMagnitude: 1,
+  };
+}
+
+function createBufferDescriptorFixture(bufferId, layout, byteLength, rowCount) {
+  return {
+    bufferId,
+    layout,
+    byteOffset: 0,
+    byteLength,
+    rowCount,
+    numericType: "f64",
+  };
+}
+
+function createStoragePolicyFixture() {
+  return {
+    target: "caller-buffer",
+    durable: false,
+    maxBytes: 4096,
   };
 }
 
@@ -2070,7 +3431,9 @@ function createWorkerErrorMessage() {
     requestId: "worker-invalid-method-request",
     method: "missingMethod",
     status: createStatusFixture("app_contract_error", "error", "solver worker method is not supported", {
-      method: "missingMethod",
+      details: {
+        method: "missingMethod",
+      },
     }),
   };
 }
@@ -2660,7 +4023,6 @@ function createMotionIntegrationResponseEnvelope() {
           byteLength: 264,
           rowCount: 3,
           numericType: "f64",
-          buffer: {},
         },
       ],
       status: createStatusFixture("ok", "ok", "constant-acceleration motion integrated"),
@@ -2805,7 +4167,9 @@ function createCloseRunResponseEnvelope() {
     requestId: "close-run-contract-request",
     response: createStatusFixture("ok", "ok", "run closed", {
       runId: "run-contract",
-      releasedStreams: true,
+      details: {
+        releasedStreams: true,
+      },
     }),
   };
 }
@@ -3590,6 +4954,414 @@ function createReadStreamRangeResponseEnvelope() {
         recoverable: true,
       },
     },
+  };
+}
+
+function createPathHistoryStorageLifecycleRequestEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "path-history-storage-lifecycle-request",
+    requestId: "path-history-storage-lifecycle-contract-request",
+    request: {
+      streamId: "fixture-path-history-stream",
+      policy: createPathHistoryStorageLifecyclePolicyFixture(),
+      chunks: [createPathHistoryChunkMetadataFixture()],
+    },
+  };
+}
+
+function createPathHistoryStorageLifecycleResponseEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "path-history-storage-lifecycle-response",
+    requestId: "path-history-storage-lifecycle-contract-request",
+    response: createPathHistoryStorageLifecyclePlanFixture(),
+  };
+}
+
+function createPathHistoryStorageLifecycleApplyRequestEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "path-history-storage-lifecycle-apply-request",
+    requestId: "path-history-storage-lifecycle-apply-contract-request",
+    request: {
+      streamId: "fixture-path-history-stream",
+      policy: createPathHistoryStorageLifecyclePolicyFixture(),
+      deleteStreamWhenAllChunksDeleted: false,
+    },
+  };
+}
+
+function createPathHistoryStorageLifecycleApplyResponseEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "path-history-storage-lifecycle-apply-response",
+    requestId: "path-history-storage-lifecycle-apply-contract-request",
+    response: {
+      schema: "solver-path-history-storage-lifecycle-apply.v1",
+      streamId: "fixture-path-history-stream",
+      plan: createPathHistoryStorageLifecyclePlanFixture(),
+      appliedChunkCount: 1,
+      nativeManifestUpdated: false,
+      manifestPath: ".tmp/fixture-path-history-stream/stream-manifest.json",
+      metadata: {
+        schema: "solver-path-history-storage-lifecycle-metadata.v1",
+        policy: createPathHistoryStorageLifecyclePolicyFixture(),
+        summary: createPathHistoryStorageLifecycleSummaryFixture(),
+        decisions: [createPathHistoryLifecycleDecisionFixture()],
+        deepIndex: {
+          schema: "solver-path-history-deep-index.v1",
+          indexKind: "spacetime",
+          indexLayout: "spacetime_index.v1",
+          sourceStreamId: "fixture-path-history-stream",
+          builtChunkIndices: [0],
+          rowCount: 1,
+          overflowEntryCount: 0,
+          byteLength: 128,
+          checksum: "0123456789abcdef",
+          options: createSpaceTimeIndexOptionsFixture(),
+        },
+      },
+      cleanup: {
+        schema: "solver-path-history-storage-lifecycle-cleanup.v1",
+        requested: false,
+        deletedStream: false,
+        releasedStream: false,
+        deletedNativeFileStream: false,
+        plannedDeleteChunkCount: 0,
+        skippedReason: "not_requested",
+      },
+      status: createStatusFixture("ok", "ok", "path-history lifecycle apply fixture"),
+    },
+  };
+}
+
+function createPathHistoryStorageLifecyclePlanFixture() {
+  return {
+    schema: "solver-path-history-storage-lifecycle.v1",
+    streamId: "fixture-path-history-stream",
+    policy: createPathHistoryStorageLifecyclePolicyFixture(),
+    chunkCount: 1,
+    decisions: [createPathHistoryLifecycleDecisionFixture()],
+    summary: createPathHistoryStorageLifecycleSummaryFixture(),
+    status: createStatusFixture("ok", "ok", "path-history lifecycle plan fixture"),
+  };
+}
+
+function createPathHistoryStorageLifecyclePolicyFixture() {
+  return {
+    activeWindow: { start: 0, end: 1 },
+    deepIndexEnabled: true,
+    exportRequested: true,
+    failedRun: false,
+    deleteRequested: false,
+    activeMemoryBudgetBytes: 1024,
+    storageBudgetBytes: 4096,
+  };
+}
+
+function createPathHistoryChunkMetadataFixture() {
+  return {
+    chunkIndex: 0,
+    pathKeyStart: 2000,
+    pathKeyEnd: 2001,
+    rowOffset: 0,
+    rowCount: 2,
+    timeRange: { start: 0, end: 1 },
+    frameRange: { start: 0, end: 1 },
+    byteRange: { start: 0, end: 192 },
+    timeStart: 0,
+    timeEnd: 1,
+    frameStart: 0,
+    frameEnd: 1,
+    byteOffset: 0,
+    byteLength: 192,
+    checksum64: "0123456789abcdef",
+    stateFlags: 0,
+  };
+}
+
+function createPathHistoryLifecycleDecisionFixture() {
+  return {
+    chunkIndex: 0,
+    tierCode: 1,
+    tier: "warm",
+    actionCode: 3,
+    action: "build_deep_index",
+    safeToAgeOut: true,
+    requiresDeepIndex: true,
+    reasonCode: 5,
+    reason: "aged_chunk_requires_deep_index",
+  };
+}
+
+function createPathHistoryStorageLifecycleSummaryFixture() {
+  return {
+    schema: "solver-path-history-storage-lifecycle-summary.v1",
+    totalChunkCount: 1,
+    totalBytes: 192,
+    tierCounts: createPathHistoryStorageTierCountsFixture({ warm: 1 }),
+    actionCounts: createPathHistoryStorageActionCountsFixture({ build_deep_index: 1 }),
+    bytesByTier: createPathHistoryStorageTierCountsFixture({ warm: 192 }),
+    safeToAgeOutCount: 1,
+    unsafeToAgeOutCount: 0,
+    deepIndexRequiredCount: 1,
+    deepIndexQueueChunkIndices: [0],
+    unsafeToAgeOutChunkIndices: [],
+  };
+}
+
+function createPathHistoryStorageTierCountsFixture(overrides = {}) {
+  return {
+    active: 0,
+    warm: 0,
+    cold: 0,
+    deleted: 0,
+    unknown: 0,
+    ...overrides,
+  };
+}
+
+function createPathHistoryStorageActionCountsFixture(overrides = {}) {
+  return {
+    keep_active: 0,
+    spill_warm: 0,
+    archive_cold: 0,
+    build_deep_index: 0,
+    delete: 0,
+    blocked_unsafe: 0,
+    unknown: 0,
+    ...overrides,
+  };
+}
+
+function createWorkPacketHeaderEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "work-packet-header",
+    requestId: "work-packet-header-contract-request",
+    packet: createWorkPacketHeaderFixture(),
+  };
+}
+
+function createWorkPacketHeaderResponseEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "work-packet-header-response",
+    requestId: "work-packet-header-contract-request",
+    response: {
+      schema: "solver-work-packet-header.v1",
+      packet: createWorkPacketHeaderFixture(),
+      serializedHeader: "solver-work-packet.v1:packet-a",
+      headerChecksum: "0123456789abcdef",
+      diagnostics: [
+        {
+          code: "ok",
+          severity: "ok",
+          message: "work packet header fixture",
+        },
+      ],
+      precision: createPrecisionSummaryFixture(),
+      status: createStatusFixture("ok", "ok", "work packet header fixture"),
+    },
+  };
+}
+
+function createWorkPacketResultOrderRequestEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "work-packet-result-order-request",
+    requestId: "work-packet-result-order-contract-request",
+    request: {
+      results: [
+        createEmissionShellPacketResult("packet-b", 1, "source:1:receiver:2", 0),
+        createEmissionShellPacketResult("packet-a", 0, "source:0:receiver:1", 1),
+      ],
+    },
+  };
+}
+
+function createWorkPacketResultOrderResponseEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "work-packet-result-order-response",
+    requestId: "work-packet-result-order-contract-request",
+    response: {
+      schema: "solver-work-packet-result-order.v1",
+      results: [
+        createEmissionShellPacketResult("packet-a", 0, "source:0:receiver:1", 1),
+        createEmissionShellPacketResult("packet-b", 1, "source:1:receiver:2", 0),
+      ],
+      status: createStatusFixture("ok", "ok", "work packet result order fixture"),
+    },
+  };
+}
+
+function createEmissionShellCandidatePacketMergeRequestEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "emission-shell-candidate-packet-merge-f64-request",
+    requestId: "emission-shell-candidate-packet-merge-contract-request",
+    request: {
+      responses: [createEmissionShellCandidateResponseEnvelope().response],
+    },
+  };
+}
+
+function createPathHistoryWorkPacketPlanRequestEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "path-history-work-packet-plan-request",
+    requestId: "path-history-work-packet-plan-contract-request",
+    request: {
+      streamId: "fixture-path-history-stream",
+      runId: "run-contract",
+      modelId: "aaa.central-solver",
+      precisionPath: "scaled_f64_strict",
+      packetIdPrefix: "packet",
+      timeRange: { start: 0, end: 1 },
+      expectedOutputs: ["emission_shell_candidate.v1", "emission_shell_narrow_phase.v1"],
+      sourcePathKeys: [2000],
+      receiverPathKeys: [2001],
+      sourceChunkIndices: [0],
+      receiverChunkIndices: [1],
+      includeSameChunk: false,
+      maxPacketCount: 4,
+    },
+  };
+}
+
+function createPathHistoryWorkPacketPlanResponseEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "path-history-work-packet-plan-response",
+    requestId: "path-history-work-packet-plan-contract-request",
+    response: {
+      schema: "solver-path-history-work-packet-plan.v1",
+      streamId: "fixture-path-history-stream",
+      runId: "run-contract",
+      modelId: "aaa.central-solver",
+      precisionPath: "scaled_f64_strict",
+      sourceChunkCount: 1,
+      receiverChunkCount: 1,
+      pathIndexRowCount: 2,
+      pathIndexedChunkCount: 2,
+      sourcePathPrunedChunkCount: 0,
+      receiverPathPrunedChunkCount: 0,
+      chunkPairCount: 1,
+      packetCount: 1,
+      truncated: false,
+      sourceSelections: [createPathHistoryWorkPacketChunkSelectionFixture(0, "source-chunk-0", 0, 1, 96)],
+      receiverSelections: [createPathHistoryWorkPacketChunkSelectionFixture(1, "receiver-chunk-1", 0, 1, 96)],
+      planChecksum: "0123456789abcdef",
+      packets: [createWorkPacketHeaderFixture()],
+      status: createStatusFixture("ok", "ok", "path-history work packet plan fixture"),
+    },
+  };
+}
+
+function createEmissionShellCandidateRequestEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "emission-shell-candidate-f64-request",
+    requestId: "emission-shell-candidate-contract-request",
+    request: {
+      streamId: "fixture-path-history-stream",
+      signalSpeed: 1,
+      tolerance: 1e-12,
+      maxCandidates: 4,
+      sourcePathKeys: [2000],
+      receiverPathKeys: [2001],
+      sourceChunkIndices: [0],
+      receiverChunkIndices: [1],
+      allowSamePath: false,
+      workerCount: 2,
+      timeRange: { start: 0, end: 2 },
+    },
+  };
+}
+
+function createEmissionShellCandidatePacketRequestEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "emission-shell-candidate-packet-f64-request",
+    requestId: "emission-shell-candidate-packet-contract-request",
+    request: {
+      streamId: "fixture-path-history-stream",
+      packet: createWorkPacketHeaderFixture(),
+      signalSpeed: 1,
+      tolerance: 1e-12,
+      maxCandidates: 4,
+      sourcePathKeys: [2000],
+      receiverPathKeys: [2001],
+      allowSamePath: false,
+      workerCount: 2,
+      timeRange: { start: 0, end: 2 },
+    },
+  };
+}
+
+function createEmissionShellCandidatePacketsRequestEnvelope() {
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "emission-shell-candidate-packets-f64-request",
+    requestId: "emission-shell-candidate-packets-contract-request",
+    request: {
+      streamId: "fixture-path-history-stream",
+      packets: [createWorkPacketHeaderFixture()],
+      signalSpeed: 1,
+      tolerance: 1e-12,
+      maxCandidatesPerPacket: 4,
+      sourcePathKeys: [2000],
+      receiverPathKeys: [2001],
+      allowSamePath: false,
+      workerCount: 2,
+      timeRange: { start: 0, end: 2 },
+    },
+  };
+}
+
+function createWorkPacketHeaderFixture() {
+  return {
+    schema: "solver-work-packet.v1",
+    packetId: "packet-a",
+    runId: "run-contract",
+    modelId: "aaa.central-solver",
+    precisionPath: "scaled_f64_strict",
+    sourceBlock: { enabled: true, start: 0, end: 1 },
+    receiverBlock: { enabled: true, start: 1, end: 2 },
+    pathBlock: { enabled: true, start: 0, end: 2 },
+    timeRange: { start: 0, end: 2 },
+    expectedOutputs: ["emission_shell_candidate.v1", "emission_shell_narrow_phase.v1"],
+    inputBuffers: [
+      {
+        bufferId: "fixture-path-history-stream:path-chunk-0",
+        layout: "path_segment.v1",
+        numericType: "f64",
+        byteOffset: 0,
+        byteLength: 192,
+        rowOffset: 0,
+        rowCount: 2,
+        checksum: "0123456789abcdef",
+      },
+    ],
+    mergeOrder: 0,
+    mergeKey: "source:0:receiver:1",
+    headerChecksum: "0123456789abcdef",
+  };
+}
+
+function createPathHistoryWorkPacketChunkSelectionFixture(chunkIndex, bufferId, rowOffset, rowCount, byteLength) {
+  return {
+    chunkIndex,
+    bufferId,
+    rowOffset,
+    rowCount,
+    byteLength,
+    checksum: "0123456789abcdef",
+    timeRange: { start: 0, end: 1 },
+    frameRange: { start: 0, end: 0 },
+    byteRange: { start: 0, end: byteLength },
   };
 }
 
