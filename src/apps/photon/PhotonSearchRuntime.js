@@ -15,7 +15,6 @@ import {
 } from "./PhotonPresetRuntime.js";
 import { computePhotonDiagnostics } from "./PhotonDiagnosticsRuntime.js";
 import {
-  computePhotonFormulaSummary,
   computePhotonFormulaSummaryWithSolverBridge,
 } from "./PhotonFormulaRuntime.js";
 
@@ -269,12 +268,6 @@ function perturbPhotonSearchState(state) {
   return normalizePhotonState(perturbed);
 }
 
-function evaluatePhotonSearchPerturbation(state, summary) {
-  const perturbed = perturbPhotonSearchState(state);
-  const nextSummary = computePhotonFormulaSummary(perturbed, 0, PHOTON_SEARCH_PERTURB_OPTIONS);
-  return summarizePhotonSearchPerturbation(summary, nextSummary);
-}
-
 async function evaluatePhotonSearchPerturbationWithSolverBridge(state, summary, options = {}) {
   const perturbed = perturbPhotonSearchState(state);
   const nextSummary = await computePhotonFormulaSummaryWithSolverBridge(
@@ -514,21 +507,6 @@ function buildPhotonSearchCandidateResult(candidate, index, state, summary, diag
   };
 }
 
-function evaluatePhotonSearchCandidate(candidate, index) {
-  const state = cloneNormalizedPhotonState(candidate.state);
-  const summary = computePhotonFormulaSummary(state, 0, PHOTON_SEARCH_SUMMARY_OPTIONS);
-  const diagnostics = computePhotonDiagnostics(state, 0, summary);
-  const perturbation = evaluatePhotonSearchPerturbation(state, summary);
-  return buildPhotonSearchCandidateResult(
-    candidate,
-    index,
-    state,
-    summary,
-    diagnostics,
-    perturbation
-  );
-}
-
 async function evaluatePhotonSearchCandidateWithSolverBridge(candidate, index, options = {}) {
   const state = cloneNormalizedPhotonState(candidate.state);
   const summary = await computePhotonFormulaSummaryWithSolverBridge(
@@ -593,20 +571,6 @@ function selectDiversePhotonSearchResults(evaluatedResults, limit = PHOTON_SEARC
     ...result,
     id: `photon-search-${String(index + 1).padStart(2, "0")}`,
   }));
-}
-
-export function createPhotonConfigurationSearchResults(baseState, options = {}) {
-  const candidates = buildPhotonSearchCandidates(baseState).slice(
-    0,
-    options.maxCandidates ?? Number.POSITIVE_INFINITY
-  );
-  const evaluated = candidates.map((candidate, index) =>
-    evaluatePhotonSearchCandidate(candidate, index)
-  );
-  return selectDiversePhotonSearchResults(
-    evaluated,
-    options.limit ?? PHOTON_SEARCH_RESULT_LIMIT
-  );
 }
 
 export async function createPhotonConfigurationSearchResultsWithSolverBridge(

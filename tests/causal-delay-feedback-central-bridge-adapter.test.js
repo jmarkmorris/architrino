@@ -217,11 +217,11 @@ test("causal delay bridge replay request declares the central bridge contract", 
   assert.equal(request.config.initialConditions.electrino.y, 800);
   assert.equal(request.config.geometry.initialConditions.positrino.vx, 1);
   assert.equal(request.config.geometry.virtualObserver.label, "Virtual Observer");
-  assert.equal(request.config.geometry.canvasColorId, "solid_purple");
+  assert.equal(request.config.geometry.canvasColorId, "architrinoPurple");
   assert.equal(request.config.replay.historyDepth, 4);
   assert(request.config.frames.length > 0);
-  assert.equal(request.config.hits.length, 6);
-  assert.equal(request.config.geometry.history.positrino.length, 4);
+  assert.equal(request.config.hits.length, 10);
+  assert.equal(request.config.geometry.history.positrino.length, 6);
   assert.equal(request.config.frames[0].pathKey, 1);
   assert.equal(request.config.hits[0].sourceKind, "positrino");
   assert.deepEqual(request.output.outputs, [
@@ -261,8 +261,8 @@ test("causal delay bridge replay normalizer accepts central appPlayback motion f
     dataset.paths.electrino.at(-1).x,
     request.config.frames.filter((frame) => frame.pathKey === 2).at(-1).position.x,
   );
-  assert.equal(dataset.history.positrino.length, 4);
-  assert.equal(dataset.wakeLinks.length, 6);
+  assert.equal(dataset.history.positrino.length, 6);
+  assert.equal(dataset.wakeLinks.length, 10);
   assert.equal(dataset.wakeLinks[0].label, "red 1 -> blue 2");
   assert.equal(dataset.virtualObserver.x, request.config.geometry.virtualObserver.x);
 });
@@ -277,7 +277,7 @@ test("causal delay bridge replay normalizer returns runtime dataset shape", () =
   assert.equal(dataset.solverIntegrationPath, CENTRAL_SOLVER_REPLAY_ADAPTER);
   assert.equal(dataset.futureSolverTarget, "central_solver_bridge_path_history_stream");
   assert.equal(dataset.wakeArcDisplayMode, "partial_propagating_arcs");
-  assert.equal(dataset.canvasColorId, "solid_purple");
+  assert.equal(dataset.canvasColorId, "architrinoPurple");
   assert.equal(dataset.paths.positrino.length, 3);
   assert.equal(dataset.paths.electrino[1].x, 640);
   assert.equal(dataset.history.positrino[0].depth, 1);
@@ -294,9 +294,9 @@ test("causal delay bridge replay normalizer returns runtime dataset shape", () =
 
   const colorDataset = normalizeCausalDelayFeedbackBridgeReplay({
     requestId: "request",
-    response: createBridgeReplayResponse({ canvasColorId: "soft_purple" }),
+    response: createBridgeReplayResponse({ canvasColorId: "warm" }),
   });
-  assert.equal(colorDataset.canvasColorId, "soft_purple");
+  assert.equal(colorDataset.canvasColorId, "warm");
 });
 
 test("causal delay central bridge adapter normalizes an injected bridge run", async () => {
@@ -329,7 +329,7 @@ test("causal delay central bridge adapter normalizes appPlayback-shaped bridge r
     async runSolverBridge(request) {
       assert.equal(request.appId, CAUSAL_DELAY_FEEDBACK_APP_ID);
       assert(request.config.frames.length > 0);
-      assert.equal(request.config.hits.length, 6);
+      assert.equal(request.config.hits.length, 10);
       return {
         requestId: request.requestId,
         runId: request.runId,
@@ -354,7 +354,7 @@ test("causal delay central bridge adapter normalizes appPlayback-shaped bridge r
   assert.equal(dataset.solverIntegrationPath, CENTRAL_SOLVER_REPLAY_ADAPTER);
   assert.equal(dataset.solverStatus.code, "ok");
   assert.equal(dataset.frames.length, 180);
-  assert.equal(dataset.wakeLinks.length, 6);
+  assert.equal(dataset.wakeLinks.length, 10);
   assert.equal(dataset.history.electrino[1].depth, 2);
 });
 
@@ -391,7 +391,7 @@ test("causal delay central bridge adapter can build replay frames from central m
     },
   });
 
-  assert.equal(requests.length, 8);
+  assert.equal(requests.length, 12);
   assert.deepEqual(
     requests
       .filter((request) => request.runKind === CENTRAL_SOLVER_MOTION_REPLAY_MODE)
@@ -399,14 +399,14 @@ test("causal delay central bridge adapter can build replay frames from central m
     [1, 2],
   );
   assert.equal(requests[0].config.motionIntegrationRequest.maxFrames, 3);
-  assert.equal(requests.filter((request) => request.runKind === "delayedHits").length, 6);
+  assert.equal(requests.filter((request) => request.runKind === "delayedHits").length, 10);
   assert.equal(dataset.datasetSource, CENTRAL_SOLVER_REPLAY_DATASET_SOURCE);
   assert.equal(dataset.solverIntegrationPath, CENTRAL_SOLVER_REPLAY_ADAPTER);
   assert.equal(dataset.frames.length, 3);
   assert.equal(dataset.frames[2].positrino.x, 110);
   assert.equal(dataset.frames[2].electrino.y, 650);
-  assert.equal(dataset.history.positrino.length, 4);
-  assert.equal(dataset.wakeLinks.length, 6);
+  assert.equal(dataset.history.positrino.length, 6);
+  assert.equal(dataset.wakeLinks.length, 10);
   assert.equal(dataset.wakeLinks[0].emissionTime, dataset.history.positrino[0].t);
   assert.equal(dataset.wakeLinks[0].hitTime, dataset.history.electrino[1].t);
   assert.equal(dataset.wakeLinks[0].solverEmissionTime, dataset.wakeLinks[0].emissionTime);
@@ -415,7 +415,7 @@ test("causal delay central bridge adapter can build replay frames from central m
   assert.equal(dataset.wakeLinks[0].solverRootStatusCode, 0);
   assert.equal(dataset.wakeLinks[0].solverHitStatusCode, 0);
   assert.equal(dataset.wakeLinks[0].solverRunId.endsWith("-delayed-hit"), true);
-  assert.equal(dataset.solverSummary.delayedHitRunIds.length, 6);
+  assert.equal(dataset.solverSummary.delayedHitRunIds.length, 10);
   assert.equal(dataset.solverSummary.replayMode, CENTRAL_SOLVER_MOTION_REPLAY_MODE);
   assert.equal(dataset.diagnostics[0].code, "causal_delay_motion_solver_replay");
 });

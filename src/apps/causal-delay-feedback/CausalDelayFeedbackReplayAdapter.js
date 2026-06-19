@@ -4,7 +4,7 @@ export const FRAME_COUNT = 180;
 export const PARTIAL_PROPAGATING_ARCS = "partial_propagating_arcs";
 export const FULL_CIRCULAR_ARCS = "full_circular_arcs";
 export const DEFAULT_PRESET_ID = "accepted_tight_bright";
-export const DEFAULT_CANVAS_ID = "solid_purple";
+export const DEFAULT_CANVAS_ID = "architrinoPurple";
 export const CENTRAL_SOLVER_BRIDGE_TARGET = "central_solver_bridge_path_history_stream";
 export const TEMPORARY_MOCK_ADAPTER = "temporary_mock_adapter";
 export const REPRESENTATIVE_MOCK_SOLVER_REPLAY = "representative_mock_solver_replay";
@@ -16,11 +16,14 @@ export const POSITRINO_WAKE = Object.freeze({ r: 255, g: 150, b: 166, a: 1 });
 export const ELECTRINO_WAKE = Object.freeze({ r: 150, g: 170, b: 255, a: 1 });
 export const WHITE = Object.freeze({ r: 246, g: 247, b: 255, a: 1 });
 export const ARCHITRINO_KINDS = Object.freeze(["positrino", "electrino"]);
+const PATH_TIME_START_X = DESIGN_WIDTH * 0.05;
+const PATH_TIME_END_X = DESIGN_WIDTH * 0.95;
 
 export const CANVAS_COLORS = Object.freeze([
-  { id: "solid_purple", label: "Solid purple", color: "#401d68" },
-  { id: "deep_purple", label: "Deep purple", color: "#2d174d" },
-  { id: "soft_purple", label: "Soft purple", color: "#522888" },
+  { id: "architrinoPurple", label: "Purple", color: "#4b0082" },
+  { id: "light", label: "Light", color: "#fdfdfd" },
+  { id: "warm", label: "Warm", color: "#f4ecd8" },
+  { id: "dark", label: "Dark", color: "#0f172a" },
 ]);
 
 export const PRESETS = Object.freeze([
@@ -110,7 +113,7 @@ export const PRESETS = Object.freeze([
     dotRadius: 1.95,
     alphaScale: 1.24,
     falloffPower: 1,
-    canvasColorId: "solid_purple",
+    canvasColorId: "architrinoPurple",
     assemblyThreshold: 0.00075,
     contrastStress: true,
     representativeOnly: true,
@@ -118,10 +121,12 @@ export const PRESETS = Object.freeze([
 ]);
 
 const HISTORY_POINTS = Object.freeze([
-  { depth: 1, t: 0.08, weight: 0.24, state: "older" },
-  { depth: 2, t: 0.25, weight: 0.48, state: "active" },
-  { depth: 3, t: 0.62, weight: 0.72, state: "active" },
-  { depth: 4, t: 0.88, weight: 1, state: "newer" },
+  { depth: 1, t: 0, weight: 1 / 6, state: "older" },
+  { depth: 2, t: 0.08, weight: 2 / 6, state: "active" },
+  { depth: 3, t: 0.25, weight: 3 / 6, state: "active" },
+  { depth: 4, t: 0.62, weight: 4 / 6, state: "active" },
+  { depth: 5, t: 0.88, weight: 5 / 6, state: "active" },
+  { depth: 6, t: 1, weight: 1, state: "newer" },
 ]);
 
 const DEFAULT_VIRTUAL_OBSERVER = Object.freeze({
@@ -133,7 +138,7 @@ const DEFAULT_VIRTUAL_OBSERVER = Object.freeze({
 });
 
 const PATH_ANCHORS = Object.freeze({
-  positrino: Object.freeze([
+  positrino: stretchPathToTimeAxis([
     Object.freeze({ x: 260, y: 300 }),
     Object.freeze({ x: 450, y: 350 }),
     Object.freeze({ x: 650, y: 530 }),
@@ -142,7 +147,7 @@ const PATH_ANCHORS = Object.freeze({
     Object.freeze({ x: 1290, y: 620 }),
     Object.freeze({ x: 1450, y: 600 }),
   ]),
-  electrino: Object.freeze([
+  electrino: stretchPathToTimeAxis([
     Object.freeze({ x: 250, y: 810 }),
     Object.freeze({ x: 450, y: 735 }),
     Object.freeze({ x: 640, y: 595 }),
@@ -155,6 +160,24 @@ const PATH_ANCHORS = Object.freeze({
 
 function clamp(value, min, max) {
   return Math.max(min, Math.min(max, value));
+}
+
+function stretchPathToTimeAxis(points) {
+  const first = points[0];
+  const last = points[points.length - 1];
+  const sourceSpan = last.x - first.x;
+  const targetSpan = PATH_TIME_END_X - PATH_TIME_START_X;
+  if (!Number.isFinite(sourceSpan) || sourceSpan === 0) {
+    return Object.freeze(points.map((point) => Object.freeze({ ...point })));
+  }
+  return Object.freeze(
+    points.map((point) =>
+      Object.freeze({
+        ...point,
+        x: PATH_TIME_START_X + ((point.x - first.x) / sourceSpan) * targetSpan,
+      }),
+    ),
+  );
 }
 
 function catmullRomPoint(points, t) {
@@ -377,7 +400,7 @@ function createInitialConditionsFromPaths(paths) {
 function samplePath(kind, count = FRAME_COUNT) {
   const points = [];
   for (let index = 0; index < count; index += 1) {
-    const t = 0.03 + (0.88 - 0.03) * (index / Math.max(1, count - 1));
+    const t = index / Math.max(1, count - 1);
     points.push({ t, ...getPathPoint(kind, t) });
   }
   return points;

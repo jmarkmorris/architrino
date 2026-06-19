@@ -1,5 +1,4 @@
 import { PHOTON_LAYER_ORDER, getPhotonLayer } from "./PhotonStateRuntime.js";
-import { computePhotonFormulaSummary } from "./PhotonFormulaRuntime.js";
 
 export function formatPhotonFixed(value, digits = 3) {
   if (!Number.isFinite(value)) {
@@ -100,8 +99,15 @@ function getDelayStatusQuality(status) {
   return "info";
 }
 
+function requirePhotonFormulaSummary(formulaSummary) {
+  if (!formulaSummary || typeof formulaSummary !== "object") {
+    throw new Error("Photon diagnostics require a solver-backed formula summary.");
+  }
+  return formulaSummary;
+}
+
 export function computePhotonDiagnostics(state, timeSeconds, formulaSummary = null) {
-  const formula = formulaSummary ?? computePhotonFormulaSummary(state, timeSeconds);
+  const formula = requirePhotonFormulaSummary(formulaSummary);
   const leftAction = computeSwarmActionProxy(state, "left");
   const rightAction = computeSwarmActionProxy(state, "right");
   const exposureBalance = Math.abs(leftAction - rightAction) / (leftAction + rightAction + 1e-9);
@@ -133,7 +139,7 @@ export function computePhotonDiagnostics(state, timeSeconds, formulaSummary = nu
 }
 
 export function getPhotonDiagnosticRows(state, timeSeconds, formulaSummary = null) {
-  const formula = formulaSummary ?? computePhotonFormulaSummary(state, timeSeconds);
+  const formula = requirePhotonFormulaSummary(formulaSummary);
   const diagnostics = computePhotonDiagnostics(state, timeSeconds, formula);
   const delayStatus = getDelaySolveStatus(diagnostics);
   const rows = [

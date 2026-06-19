@@ -35,9 +35,9 @@ The first runnable version uses a temporary mock replay adapter that matches the
 - Route target: `causal-delay-feedback.html`.
 - Runtime target: focused modules under `src/apps/causal-delay-feedback/`.
 - Page structure: full-viewport canvas with a compact floating toolbar, small legend chips, and a hover label, not a dense side-panel app.
-- First runnable model: one representative positrino/electrino replay pair, four retained path-history points per path, and six cross-path causal-wake links generated from a solver-shaped mock dataset.
+- First runnable model: one representative positrino/electrino replay pair, six retained path-history points per path, and ten cross-path causal-wake links generated from a solver-shaped mock dataset.
 - Visual style: reuse Ideal Swarm-style architrino markers, orbit/path trails, purple-background canvas treatment, and emitter-colored causal-wake arcs where practical.
-- Interaction style: the canvas is the control surface. The first implementation prioritizes replay, preset selection, path visibility, reset, hover labels, and canvas-color settings. Dragging initial conditions comes after the canvas replay and solver-shaped data contract are stable.
+- Interaction style: the canvas is the control surface. The first implementation prioritizes replay, preset selection, reset, hover labels, canvas-color settings, and compact speed settings. Path history is always visible.
 
 ## Visual And UI Conventions
 
@@ -48,7 +48,7 @@ The first runnable version uses a temporary mock replay adapter that matches the
 - Neutral, mixed, or aggregate wake summaries should use a desaturated outline, split-color bundle, or faint white/lavender diagnostic treatment only if it remains distinct from the purple background.
 - Use red/blue polarity markers for positrino/electrino objects when polarity is shown, and keep their emitted wake arcs in the same color family.
 - Keep panels at or below an 8px radius, with restrained borders and translucent dark fills.
-- Prefer icon buttons, including a settings gear, and draggable handles over labeled slider rows.
+- Prefer icon buttons, including a settings gear, and draggable handles over labeled slider rows except for compact speed settings where exact values matter.
 - Keep text small and functional: labels should name the selected object, time, depth, or contribution rather than explain the whole app.
 
 ## Reusable App Design References
@@ -66,7 +66,7 @@ Recent app work has several reusable design patterns for this app:
 The first build should feel simpler than Photon or Ideal Swarm:
 
 - one canvas-first scene;
-- one floating toolbar with a preset dropdown, play/pause, reset, path visibility, and settings gear;
+- one floating toolbar with a preset dropdown, play/pause, reset, and settings gear;
 - no always-open control panel;
 - no large formula panel;
 - a compact named preset dropdown, consistent with the Photon app pattern;
@@ -127,7 +127,7 @@ The app renders solver-shaped datasets. It should not draw physically meaningful
 1. App loads a named replay preset.
 2. The runtime creates or receives a solver-shaped dataset with frame samples, retained path-history points, and causal-wake links.
 3. App replays the dataset on the canvas.
-4. User changes the named preset, play state, path visibility, or canvas color without opening a dense control panel.
+4. User changes the named preset, play state, canvas color, or compact speed settings without opening a dense control panel.
 5. After the central solver bridge is available, dragging an initial-condition handle should submit the setup to the solver or app-worker adapter.
 6. Solver computes the architrino path history, causal roots, delayed hits, and diagnostics.
 7. App replaces the draft or mock replay with the solver dataset.
@@ -151,18 +151,18 @@ Mock proof datasets must be labeled as `representative mock solver replay` in th
 - contribution summaries;
 - and inactive or rejected rows for at least one proof variant.
 
-The current contact sheet scene is one pair shown in a time-space diagram: the electrino path starts at the lower-left, the positrino path starts at the upper-left, both paths move left to right, cross near the middle, and then begin turning back toward each other as if attraction is bending the later motion. The proof images do not draw a Virtual Observer. The retained history labels are ordered from older to newer: `1`, `2`, `3`, and `4`. The visible wake links test cross-path causal feedback from red `1` to blue `2`, red `2` to blue `3`, red `3` to blue `4`, and the corresponding blue-to-red links.
+The current contact sheet scene is one pair shown in a time-space diagram: the electrino path starts at the lower-left, the positrino path starts at the upper-left, both paths move left to right, cross near the middle, and then begin turning back toward each other as if attraction is bending the later motion. The proof images do not draw a Virtual Observer. The retained history labels are ordered from older to newer: `1` through `6`, with the path start as `1` and the path end as `6`. The visible wake links test cross-path causal feedback from each point `n` to the opposite path point `n+1`.
 
 The contact-sheet frame should be YouTube-compatible landscape. The standard target is 16:9, with 1920x1080 as the primary proof tile. Scale checks may use other 16:9 YouTube resolutions, but the first proof should not mix 16:10 or 4:3 frames.
 
 Accepted first proof constraints:
 
 - Keep one pair only: one positrino path and one electrino path.
-- Use four retained history points per path, shown as `1`, `2`, `3`, and `4`.
+- Use six retained history points per path, shown as `1` through `6`.
 - Use cross-path growing partial wake arcs in the current proof set. Keep `full_circular_arcs` as a later named preset rather than mixing it into this comparison sheet.
 - Use 16:9 framing, with 1920x1080 as the design target.
 
-Landscape contact sheets should use the accepted six-variant proof set. Each variant should preserve the one-pair, four-point, three-link-per-direction scope and be framed as a 16:9 YouTube-compatible landscape tile.
+Landscape contact sheets should use the accepted six-variant proof set. Each variant should preserve the one-pair, six-point, five-link-per-direction scope and be framed as a 16:9 YouTube-compatible landscape tile.
 
 - `1920x1080` primary proof tile;
 - `1280x720` downscale readability check;
@@ -220,13 +220,13 @@ Generated contact sheet proof artifacts:
 - Prototype proof tiles should not draw pulse dots or architrino-like markers on top of dotted wake arcs; the dotted wake stroke itself carries the wake geometry.
 - A full-circular-arc preset should exist because it teaches the complete emitted wake geometry.
 - The default teaching view should use smaller outward-propagating arcs moving toward each intersection, because partial arcs keep the screen less busy and make feedback arrivals easier to see.
-- The first contact sheet proof scope is accepted: one positrino path, one electrino path, no Virtual Observer drawn, four retained path points per path, three cross-path feedback links per direction, and six 16:9 proof variants that compare undecided growing-arc treatments.
+- The first contact sheet proof scope is accepted: one positrino path, one electrino path, no Virtual Observer drawn, six retained path points per path, five cross-path feedback links per direction, and six 16:9 proof variants that compare undecided growing-arc treatments.
 - The revised contact sheet proof canvas should be a solid purple field with no grid.
 - Prototype canvases should not include a per-tile title panel; variant names belong in the contact-sheet manifest or surrounding review sheet, not inside each 1920x1080 proof tile.
 - Contact-sheet proof tiles should not include the bottom data/readout panel or the right-edge `Feedback Links` panel; keep proof metadata in the manifest or review sheet.
-- Toolbar proof icons should use recognizable meanings: play, path visibility, reset, and settings. Avoid abstract placeholder glyphs that read as unrelated marks.
+- Toolbar proof icons should use recognizable meanings: play, reset, and settings. Avoid abstract placeholder glyphs that read as unrelated marks.
 - All path-history points on the architrino paths should use the same dot treatment; selected rows may highlight the causal path or stack row, but not make one history dot look like a different class of object.
-- Label each retained history point on each path as `1`, `2`, `3`, and `4`, ordered older to newer.
+- Label each retained history point on each path as `1` through `6`, ordered older to newer.
 - The proof image should communicate the active cross-path feedback links directly through the path labels and dotted wake arcs, not through a separate links panel.
 - The positrino and electrino mock replay paths should not look like equal-and-opposite mirror curves; use visibly different path histories so the pair reads as two solver-owned trajectories.
 - The representative mock pair should end in the upper-right region with visibly different slopes and curvature so the red and blue causal-wake arcs separate clearly as they reach later path points.
@@ -252,7 +252,9 @@ Generated contact sheet proof artifacts:
 - Keep the source path points, receiving path points, active paths, and arriving wake segments visible at the same time.
 - Do not reserve a proof-only right-edge panel; use the full canvas width for the path geometry.
 - Use stable scaling: changing field speed or feedback depth should not resize the whole scene unexpectedly.
-- Keep the current proof composition sparse: two solver-replay architrino paths, four retained points per path, and six visible cross-path feedback links.
+- In the representative replay, both architrino paths should start at 5% of the time-axis width and end at 95% of the time-axis width.
+- Keep the current proof composition sparse: two solver-replay architrino paths, six retained points per path, and ten visible cross-path feedback links.
+- Treat the beginning and ending of each path as first-class path-history points: the starting marker is point `1`, both endpoints are visible markers, and both endpoints can be dragged like the interior retained points.
 - Keep the moving positrino and electrino as solver-owned architrino paths.
 - Let the main path geometry occupy the first viewport immediately; avoid a landing-page feel.
 
@@ -307,7 +309,6 @@ Named presets should load complete app state:
 - Virtual Observer position;
 - run duration;
 - retained history depth;
-- path visibility mode;
 - wake-arc display mode;
 - weak contribution cue mode;
 - readout visibility;
@@ -334,16 +335,18 @@ V1 should include a compact settings gear in the floating toolbar. The gear open
 
 Initial settings:
 
-- Canvas color: choose among the approved purple-background atmosphere variants and any test fallback color.
-- Retained points: compact 2/3/4 selector that reduces or restores active path-history points and feedback rows without changing the solver replay dataset.
+- Canvas color: choose among the four iOS reader theme backgrounds: Purple, Light, Warm, and Dark.
+- $c_f$ speed: compact slider that changes field-speed replay tempo between slow and fast without changing the retained geometry.
+- Architrino speed: compact 10-stop slider/clicker for $v/c_f$ with exact stops `0.1`, `0.3`, `0.5`, `0.7`, `0.9`, `0.99`, `0.999`, `0.9999`, `0.99999`, and `0.999999`.
+- Retained points: compact depth selector that reduces or restores active path-history points and feedback rows without changing the solver replay dataset.
 - Background depth field: on/off.
 - Weak contribution cue: off or threshold-only.
 - Reduced motion: on/off.
 - High contrast paths: on/off.
 
-Canvas color is a first-class app setting. It should be stored with named presets and mock contact-sheet datasets so visual proofs can compare the same scene across background variants.
+Canvas color is a first-class app setting. It should use the same four backgrounds allowed by the iOS reader app and should be stored with named presets and mock contact-sheet datasets so visual proofs can compare the same scene across those variants.
 
-The settings popover should close when the user clicks outside it or selects a setting. It should not introduce long explanatory text or dense slider rows.
+The settings popover should close when the user clicks outside it or selects a setting that behaves like a choice. It should not introduce long explanatory text, and any slider rows should stay compact.
 
 ## Future iPhone App Integration
 
@@ -395,12 +398,11 @@ Canvas handles should replace these traditional controls:
 
 | Traditional control | V1 replacement |
 | --- | --- |
-| Source speed | Drag the initial-velocity arrow. |
+| Source speed | Drag the initial-velocity arrow, or use the compact architrino-speed fraction setting when an exact $v/c_f$ value is needed. |
 | Contribution distance | Drag the Virtual Observer or source marker. |
 | Retained wake-hit count | Use the retained-hit plus/minus chip beside the contribution stack. |
 | History window length | Drag the history-window bracket on the trail. |
 | Minimum contribution threshold | Drag a faint threshold line on the contribution stack. |
-| Show inactive paths | Use the path visibility button cycle: `active`, `active+inactive`, `all`. |
 
 Later controls may include:
 
@@ -502,7 +504,7 @@ Each solver run should also carry a compact setup record:
 - `solver_adapter_boundary` - Isolate the temporary mock replay in a focused adapter module so the central solver bridge can replace the data source without rewriting the canvas renderer.
 - `named_preset_dropdown` - Add named replay presets matching the accepted contact-sheet comparison family, plus a full circular wake mode.
 - `preset_review_url` - Allow direct review links such as `causal-delay-feedback.html?preset=full_circular_arcs` and canvas-color variants through URL query settings.
-- `toolbar_minimum` - Add compact play/pause, path visibility, reset, preset, and settings controls.
+- `toolbar_minimum` - Add compact play/pause, reset, preset, and settings controls.
 - `spacebar_play_pause` - Toggle play/pause from the spacebar while preserving native control behavior when focus is on the preset dropdown or toolbar buttons.
 - `central_solver_replay_contract_adapter` - Add a central-bridge replay request builder and response normalizer for causal-delay feedback datasets, with injected bridge-run support for tests and future worker wiring.
 - `central_bridge_causal_delay_app_id` - Add `causal-delay-feedback` to the central solver bridge app-id contract and smoke it through built-in app playback.
@@ -512,7 +514,7 @@ Each solver run should also carry a compact setup record:
 - `central_motion_solver_replay` - Add `?replay=central&solverReplay=motion`, advertise causal-delay `motionSimulation` bridge capability, smoke it through `check-solver-app-bridge`, and let the central adapter generate positrino/electrino frame samples from declared initial positions and velocities.
 - `central_delayed_hit_solver_replay` - In central motion replay, build root requests from the solver-produced path samples and run central `delayedHits` once per visible wake link, preserving the numbered source/receiver path-point timing used by the canvas proof.
 - `central_solver_default_replay` - Make the standalone page attempt central motion replay by default, keep the mock replay as the immediate fallback, and preserve `?replay=mock` for representative visual review.
-- `contrast_stress_runtime_preset` - Add a selectable representative-only `contrast_stress` preset that uses the solid purple canvas and a mixed-state wake dataset with active, root-only/inactive, stale, and rejected rows for browser visual QA, without replacing that QA scene through the central bridge.
+- `contrast_stress_runtime_preset` - Add a selectable representative-only `contrast_stress` preset that uses the iOS Purple canvas and a mixed-state wake dataset with active, root-only/inactive, stale, and rejected rows for browser visual QA, without replacing that QA scene through the central bridge.
 - `central_wake_solver_readout` - Carry central delayed-hit root/hit counts, solver hit time, residual, and status codes into selected wake-link readouts without adding a persistent diagnostics panel.
 - `root_status_diagnostic_readout` - Surface solver root-status code, severity, and compact message details in selected rejected or root-only wake rows so invalid paths explain why they do not contribute.
 - `contribution_threshold_wake_state` - Derive selected-wake contribution magnitude from `weight * 1/r`, classify it against the assembly threshold, and dim/desaturate solver links with no delayed hit.
@@ -524,7 +526,8 @@ Each solver run should also carry a compact setup record:
 - `post_reception_wake_suppression` - Stop drawing a wake arc series immediately after its retained receiver point has been reached; the same series becomes drawable again only when the replay clock wraps into the next loop and reaches the source-to-receiver interval again.
 - `full_circular_arcs_preset` - Add faint equal-opacity full circular wake rings as a named preset.
 - `settings_gear` - Add a compact settings popover with canvas-color swatches.
-- `retained_depth_setting` - Add compact 2/3/4 retained-point controls in the settings popover, filter the active history points and wake rows without mutating the solver-shaped replay dataset, and preserve the selected depth across central replay reruns after initial-condition edits.
+- `field_and_architrino_speed_settings` - Add compact settings controls for $c_f$ replay speed and architrino speed as $v/c_f$, with the architrino speed setting using the exact 10-stop sequence `0.1`, `0.3`, `0.5`, `0.7`, `0.9`, `0.99`, `0.999`, `0.9999`, `0.99999`, and `0.999999`.
+- `retained_depth_setting` - Add compact retained-point controls in the settings popover, filter the active history points and wake rows without mutating the solver-shaped replay dataset, and preserve the selected depth across central replay reruns after initial-condition edits.
 - `compact_selection_readout` - Let clicks on retained path-history points and wake links show a small canvas readout strip and subtle canvas highlight without adding a side panel.
 - `wake_timing_readout` - Extend selected wake-link readouts with emission time, hit time, travel time, pending/active/received state, and the v1 `$1/r$` falloff factor.
 - `retained_point_drag_preview` - Let retained path-history points be dragged in the temporary mock replay with smooth local path deformation, wake endpoint updates, live architrino markers that follow the edited path, and a `draft preview` source chip so edited canvas state is not confused with a solver result.
@@ -538,7 +541,7 @@ Each solver run should also carry a compact setup record:
 
 ## Current Build Queue
 
-1. `purple_background_contrast_pass` - The runtime now includes a `contrast_stress` preset for solid-purple browser QA against active, root-only/inactive, stale, and rejected emitter-colored wakes. Remaining work is rendered browser/screenshot inspection for selected highlights, warning text, white labels, and compact controls. Status: `active`.
+1. `purple_background_contrast_pass` - The runtime now includes a `contrast_stress` preset for iOS Purple browser QA against active, root-only/inactive, stale, and rejected emitter-colored wakes. Remaining work is rendered browser/screenshot inspection for selected highlights, warning text, white labels, and compact controls. Status: `active`.
 2. `central_solver_runtime_switch` - The standalone page now attempts central motion replay by default, can execute the central bridge through the browser-side WASM loader when the built solver artifact exists, and can fall back to the representative mock replay when the bridge is unavailable. Remaining work is fuller causal-root diagnostics beyond the selected-row compact readout. Status: `active`.
 3. `drag_to_solver_loop` - Initial source-position, velocity-arrow, Virtual Observer, retained-point drag, and right-click retained-point insertion handles now update setup state, show only a temporary `draft preview` during dragging or insertion, rerun central replay on release when the central adapter is active, preserve the active retained-depth setting across reruns, and keep rejected edits visible with compact solver rejection diagnostics. Remaining work is replacement of the mock-seeded replay with solver-produced paths. Status: `active`.
 4. `solver_diagnostics_readout` - The compact readout now includes central delayed-hit solver status, root/hit counts, solver hit time, residual, nonzero status codes, root-status code/severity/message details, selected-wake contribution magnitude, threshold state, and default aggregate signed contribution totals across the current replay time. Remaining work is fuller causal-root diagnostics beyond the selected-row compact readout. Status: `active`.

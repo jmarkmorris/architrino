@@ -25,8 +25,6 @@ import {
 const ICON_HELP = Object.freeze({
   play: "Play replay",
   pause: "Pause replay",
-  showPaths: "Show path history",
-  hidePaths: "Hide path history",
 });
 const REPLAY_LOOP_SECONDS = 9;
 const TIME_EPSILON = 1e-6;
@@ -34,6 +32,12 @@ const INITIAL_VELOCITY_ARROW_SCALE = 0.07;
 const INITIAL_VELOCITY_PREVIEW_RESPONSE = 0.42;
 const DEFAULT_ASSEMBLY_THRESHOLD = 0.00075;
 const MIN_RETAINED_DEPTH_LIMIT = 2;
+const FIELD_SPEED_MIN = 0.25;
+const FIELD_SPEED_MAX = 2.5;
+const DEFAULT_FIELD_SPEED_SCALE = 1;
+const ARCHITRINO_KINDS = Object.freeze(["positrino", "electrino"]);
+const ARCHITRINO_SPEED_FRACTIONS = Object.freeze([0.1, 0.3, 0.5, 0.7, 0.9, 0.99, 0.999, 0.9999, 0.99999, 0.999999]);
+const DEFAULT_ARCHITRINO_SPEED_INDEX = 3;
 const VIRTUAL_OBSERVER = Object.freeze({ r: 74, g: 229, b: 255, a: 1 });
 const DEFAULT_VIRTUAL_OBSERVER_POINT = Object.freeze({
   kind: "virtualObserver",
@@ -147,7 +151,11 @@ class CausalDelayFeedbackRuntime {
     this.lastFrameTime = 0;
     this.elapsedSeconds = 0;
     this.isPlaying = true;
-    this.showPaths = true;
+    this.fieldSpeedScale = this.normalizeFieldSpeedScale(options.fieldSpeedScale ?? DEFAULT_FIELD_SPEED_SCALE);
+    this.architrinoSpeedIndex = this.normalizeArchitrinoSpeedIndex(
+      options.architrinoSpeedIndex ?? DEFAULT_ARCHITRINO_SPEED_INDEX,
+    );
+    this.architrinoVelocityReference = {};
     this.presetId = getPresetById(
       options.presetId ?? getInitialQueryValue(this.window, "preset") ?? DEFAULT_PRESET_ID,
     ).id;
@@ -163,6 +171,7 @@ class CausalDelayFeedbackRuntime {
     this.replayLoadError = null;
     this.dataset = this.createFallbackReplay(this.presetId);
     this.updateWakeLinkGeometry();
+    this.resetArchitrinoVelocityReference();
     this.retainedDepthLimit = this.normalizeRetainedDepthLimit(options.retainedDepthLimit);
     this.viewport = createViewport(DESIGN_WIDTH, DESIGN_HEIGHT);
     this.pixelRatio = 1;
@@ -181,6 +190,7 @@ class CausalDelayFeedbackRuntime {
     this.populatePresets();
     this.populateCanvasSwatches();
     this.populateHistoryDepthControls();
+    this.updateSpeedControls();
     this.updateReplayStatus();
     this.bindEvents();
     this.resize();
@@ -197,11 +207,14 @@ class CausalDelayFeedbackRuntime {
       canvas: queryRequiredElement(this.document, "#causal-delay-feedback-canvas"),
       preset: queryRequiredElement(this.document, "#causal-delay-feedback-preset"),
       playButton: queryRequiredElement(this.document, "#causal-delay-feedback-play"),
-      pathsButton: queryRequiredElement(this.document, "#causal-delay-feedback-paths"),
       resetButton: queryRequiredElement(this.document, "#causal-delay-feedback-reset"),
       settingsButton: queryRequiredElement(this.document, "#causal-delay-feedback-settings"),
       settingsPanel: queryRequiredElement(this.document, "#causal-delay-feedback-settings-panel"),
       colorSwatches: queryRequiredElement(this.document, "#causal-delay-feedback-color-swatches"),
+      cfSpeedInput: queryRequiredElement(this.document, "#causal-delay-feedback-cf-speed"),
+      cfSpeedValue: queryRequiredElement(this.document, "#causal-delay-feedback-cf-speed-value"),
+      architrinoSpeedInput: queryRequiredElement(this.document, "#causal-delay-feedback-architrino-speed"),
+      architrinoSpeedValue: queryRequiredElement(this.document, "#causal-delay-feedback-architrino-speed-value"),
       historyDepthControls: queryRequiredElement(this.document, "#causal-delay-feedback-history-depth"),
       replayStatus: queryRequiredElement(this.document, "#causal-delay-feedback-replay-status"),
       hoverLabel: queryRequiredElement(this.document, "#causal-delay-feedback-hover-label"),
@@ -269,11 +282,6 @@ class CausalDelayFeedbackRuntime {
     this.dom.playButton.addEventListener("click", () => {
       this.setPlaying(!this.isPlaying);
     });
-    this.dom.pathsButton.addEventListener("click", () => {
-      this.showPaths = !this.showPaths;
-      this.updatePathsButton();
-      this.render();
-    });
     this.dom.resetButton.addEventListener("click", () => {
       this.elapsedSeconds = 0;
       this.setPlaying(true);
@@ -288,6 +296,22 @@ class CausalDelayFeedbackRuntime {
         return;
       }
       this.setCanvasColor(button.dataset.colorId);
+    });
+    this.dom.cfSpeedInput.addEventListener("input", () => {
+      this.setFieldSpeedScale(this.dom.cfSpeedInput.value);
+    });
+    this.dom.architrinoSpeedInput.addEventListener("input", () => {
+      this.setArchitrinoSpeedIndex(this.dom.architrinoSpeedInput.value);
+    });
+    this.dom.architrinoSpeedInput.addEventListener("change", () => {
+      void this.submitArchitrinoSpeedFraction();
+    });
+    this.dom.settingsPanel.addEventListener("click", (event) => {
+      const button = event.target.closest("[data-architrino-speed-step]");
+      if (!button) {
+        return;
+      }
+      void this.stepArchitrinoSpeedIndex(Number(button.dataset.architrinoSpeedStep));
     });
     this.dom.historyDepthControls.addEventListener("click", (event) => {
       const button = event.target.closest("[data-history-depth]");
@@ -421,6 +445,7 @@ class CausalDelayFeedbackRuntime {
     this.applyDatasetCanvasColor(dataset);
     this.syncVirtualObserverState();
     this.updateWakeLinkGeometry();
+    this.resetArchitrinoVelocityReference();
     this.syncReplayRequestOptionsFromDataset();
     if (this.dom?.preset) {
       this.dom.preset.value = this.presetId;
@@ -428,6 +453,7 @@ class CausalDelayFeedbackRuntime {
     if (this.dom?.historyDepthControls) {
       this.populateHistoryDepthControls();
     }
+    this.updateSpeedControls();
     this.updateReplayStatus();
   }
 
@@ -441,6 +467,8 @@ class CausalDelayFeedbackRuntime {
       virtualObserver: cloneJson(this.getVirtualObserver()),
       replayDataset: this.dataset,
       retainedDepthLimit: this.retainedDepthLimit,
+      fieldSpeedScale: this.fieldSpeedScale,
+      architrinoSpeedFraction: this.getArchitrinoSpeedFraction(),
     };
   }
 
@@ -540,6 +568,54 @@ class CausalDelayFeedbackRuntime {
     this.render();
   }
 
+  setFieldSpeedScale(speedScale) {
+    const nextScale = this.normalizeFieldSpeedScale(speedScale);
+    if (nextScale === this.fieldSpeedScale) {
+      this.updateFieldSpeedControl();
+      return;
+    }
+    this.fieldSpeedScale = nextScale;
+    this.syncReplayRequestOptionsFromDataset();
+    this.updateFieldSpeedControl();
+  }
+
+  setArchitrinoSpeedIndex(speedIndex, { submit = false } = {}) {
+    const nextIndex = this.normalizeArchitrinoSpeedIndex(speedIndex);
+    const didIndexChange = nextIndex !== this.architrinoSpeedIndex;
+    this.architrinoSpeedIndex = nextIndex;
+    const didEdit = didIndexChange && this.applyArchitrinoSpeedFraction(this.getArchitrinoSpeedFraction());
+    this.updateArchitrinoSpeedControl();
+    if (didEdit) {
+      this.updateWakeLinkGeometry();
+      this.syncReplayRequestOptionsFromDataset();
+      this.markDraftPreview("architrino_speed_fraction_preview");
+      if (this.dom?.readout) {
+        this.updateReadout();
+      }
+      if (this.context) {
+        this.render();
+      }
+    } else {
+      this.syncReplayRequestOptionsFromDataset();
+    }
+    if (submit) {
+      return this.submitArchitrinoSpeedFraction();
+    }
+    return this.dataset;
+  }
+
+  stepArchitrinoSpeedIndex(direction) {
+    const step = Math.sign(Number(direction) || 0);
+    if (step === 0) {
+      return this.dataset;
+    }
+    return this.setArchitrinoSpeedIndex(this.architrinoSpeedIndex + step, { submit: true });
+  }
+
+  submitArchitrinoSpeedFraction() {
+    return this.rerunAfterDirectManipulationDrag();
+  }
+
   setRetainedDepthLimit(depthLimit) {
     const nextLimit = this.normalizeRetainedDepthLimit(depthLimit);
     if (nextLimit === this.retainedDepthLimit) {
@@ -596,6 +672,29 @@ class CausalDelayFeedbackRuntime {
     });
   }
 
+  updateSpeedControls() {
+    this.updateFieldSpeedControl();
+    this.updateArchitrinoSpeedControl();
+  }
+
+  updateFieldSpeedControl() {
+    if (this.dom?.cfSpeedInput) {
+      this.dom.cfSpeedInput.value = String(this.fieldSpeedScale);
+    }
+    if (this.dom?.cfSpeedValue) {
+      this.dom.cfSpeedValue.textContent = this.formatFieldSpeedScale(this.fieldSpeedScale);
+    }
+  }
+
+  updateArchitrinoSpeedControl() {
+    if (this.dom?.architrinoSpeedInput) {
+      this.dom.architrinoSpeedInput.value = String(this.architrinoSpeedIndex);
+    }
+    if (this.dom?.architrinoSpeedValue) {
+      this.dom.architrinoSpeedValue.textContent = `${this.formatArchitrinoSpeedFraction(this.getArchitrinoSpeedFraction())} c_f`;
+    }
+  }
+
   getMaxRetainedDepthLimit() {
     const historyDepth = Number(this.dataset?.initialConditions?.historyDepth);
     if (Number.isFinite(historyDepth) && historyDepth > 0) {
@@ -614,6 +713,31 @@ class CausalDelayFeedbackRuntime {
     const numericDepth = Number(depthLimit);
     const candidate = Number.isFinite(numericDepth) ? Math.floor(numericDepth) : maxDepth;
     return clamp(candidate, minDepth, maxDepth);
+  }
+
+  normalizeFieldSpeedScale(speedScale) {
+    const numericScale = Number(speedScale);
+    const candidate = Number.isFinite(numericScale) ? numericScale : DEFAULT_FIELD_SPEED_SCALE;
+    return clamp(candidate, FIELD_SPEED_MIN, FIELD_SPEED_MAX);
+  }
+
+  normalizeArchitrinoSpeedIndex(speedIndex) {
+    const numericIndex = Number(speedIndex);
+    const candidate = Number.isFinite(numericIndex) ? Math.round(numericIndex) : DEFAULT_ARCHITRINO_SPEED_INDEX;
+    return clamp(candidate, 0, ARCHITRINO_SPEED_FRACTIONS.length - 1);
+  }
+
+  getArchitrinoSpeedFraction(index = this.architrinoSpeedIndex) {
+    return ARCHITRINO_SPEED_FRACTIONS[this.normalizeArchitrinoSpeedIndex(index)];
+  }
+
+  formatFieldSpeedScale(speedScale) {
+    const rounded = Math.round(this.normalizeFieldSpeedScale(speedScale) * 100) / 100;
+    return `${String(rounded).replace(/\.0+$/, "")}x`;
+  }
+
+  formatArchitrinoSpeedFraction(fraction) {
+    return String(fraction);
   }
 
   getVisibleHistory(kind) {
@@ -652,14 +776,6 @@ class CausalDelayFeedbackRuntime {
     this.dom.playButton.innerHTML = this.isPlaying
       ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14"></path><path d="M16 5v14"></path></svg>'
       : '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l10-7z"></path></svg>';
-  }
-
-  updatePathsButton() {
-    this.dom.pathsButton.classList.toggle("is-active", this.showPaths);
-    const help = this.showPaths ? ICON_HELP.hidePaths : ICON_HELP.showPaths;
-    this.dom.pathsButton.setAttribute("aria-label", help);
-    this.dom.pathsButton.title = help;
-    this.dom.pathsButton.dataset.tooltip = help;
   }
 
   toggleSettings() {
@@ -720,7 +836,7 @@ class CausalDelayFeedbackRuntime {
     this.lastFrameTime = time;
     if (this.isPlaying) {
       const previousReplayTime = this.getCurrentReplayTime();
-      this.elapsedSeconds += deltaSeconds;
+      this.elapsedSeconds += deltaSeconds * this.fieldSpeedScale;
       const replayTime = this.getCurrentReplayTime();
       this.render(this.getFrameReceptionReplayTime(previousReplayTime, replayTime) ?? replayTime);
       if (this.dom?.readout) {
@@ -758,10 +874,8 @@ class CausalDelayFeedbackRuntime {
     ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
     this.drawBackground(ctx);
     this.drawWakes(ctx, replayTime);
-    if (this.showPaths) {
-      this.drawPathTrail(ctx, "positrino", POSITRINO);
-      this.drawPathTrail(ctx, "electrino", ELECTRINO);
-    }
+    this.drawPathTrail(ctx, "positrino", POSITRINO);
+    this.drawPathTrail(ctx, "electrino", ELECTRINO);
     this.drawInitialConditionHandles(ctx);
     this.drawHistoryPoints(ctx, "positrino", POSITRINO);
     this.drawHistoryPoints(ctx, "electrino", ELECTRINO);
@@ -1332,6 +1446,7 @@ class CausalDelayFeedbackRuntime {
       return false;
     }
     this.updateWakeLinkGeometry();
+    this.syncReplayRequestOptionsFromDataset();
     this.markDraftPreview("retained_point_drag_preview");
     return true;
   }
@@ -1364,6 +1479,7 @@ class CausalDelayFeedbackRuntime {
     condition.vx = nextVelocity.vx;
     condition.vy = nextVelocity.vy;
     this.applyInitialVelocityPreview(kind, condition, previousVelocity, nextVelocity);
+    this.setArchitrinoVelocityReferenceFromCondition(kind);
     this.updateWakeLinkGeometry();
     this.syncReplayRequestOptionsFromDataset();
     this.markDraftPreview("initial_velocity_drag_preview");
@@ -1615,6 +1731,91 @@ class CausalDelayFeedbackRuntime {
     return true;
   }
 
+  applyArchitrinoSpeedFraction(fraction) {
+    const speedFraction = Number(fraction);
+    if (!Number.isFinite(speedFraction) || speedFraction <= 0) {
+      return false;
+    }
+    let didEdit = false;
+    ARCHITRINO_KINDS.forEach((kind) => {
+      const condition = this.getInitialCondition(kind);
+      if (!condition) {
+        return;
+      }
+      const previousVelocity = {
+        vx: Number(condition.vx) || 0,
+        vy: Number(condition.vy) || 0,
+      };
+      const direction = this.getVelocityDirection(kind, condition);
+      const referenceMagnitude = this.getArchitrinoVelocityReferenceMagnitude(kind, condition);
+      const nextMagnitude = referenceMagnitude * speedFraction;
+      const nextVelocity = {
+        vx: direction.x * nextMagnitude,
+        vy: direction.y * nextMagnitude,
+      };
+      if (
+        Math.abs(previousVelocity.vx - nextVelocity.vx) <= TIME_EPSILON &&
+        Math.abs(previousVelocity.vy - nextVelocity.vy) <= TIME_EPSILON
+      ) {
+        return;
+      }
+      condition.vx = nextVelocity.vx;
+      condition.vy = nextVelocity.vy;
+      this.applyInitialVelocityPreview(kind, condition, previousVelocity, nextVelocity);
+      didEdit = true;
+    });
+    return didEdit;
+  }
+
+  resetArchitrinoVelocityReference() {
+    this.architrinoVelocityReference = {};
+    ARCHITRINO_KINDS.forEach((kind) => {
+      this.setArchitrinoVelocityReferenceFromCondition(kind);
+    });
+  }
+
+  setArchitrinoVelocityReferenceFromCondition(kind, fraction = this.getArchitrinoSpeedFraction()) {
+    const condition = this.getInitialCondition(kind);
+    if (!condition) {
+      return;
+    }
+    const magnitude = Math.hypot(Number(condition.vx) || 0, Number(condition.vy) || 0);
+    const speedFraction = Math.max(Number(fraction) || this.getArchitrinoSpeedFraction(), TIME_EPSILON);
+    this.architrinoVelocityReference[kind] = magnitude / speedFraction;
+  }
+
+  getArchitrinoVelocityReferenceMagnitude(kind, condition) {
+    const storedMagnitude = Number(this.architrinoVelocityReference?.[kind]);
+    if (Number.isFinite(storedMagnitude) && storedMagnitude > 0) {
+      return storedMagnitude;
+    }
+    this.setArchitrinoVelocityReferenceFromCondition(kind);
+    const nextMagnitude = Number(this.architrinoVelocityReference?.[kind]);
+    if (Number.isFinite(nextMagnitude) && nextMagnitude > 0) {
+      return nextMagnitude;
+    }
+    return Math.hypot(Number(condition?.vx) || 0, Number(condition?.vy) || 0);
+  }
+
+  getVelocityDirection(kind, condition) {
+    const vx = Number(condition?.vx) || 0;
+    const vy = Number(condition?.vy) || 0;
+    const magnitude = Math.hypot(vx, vy);
+    if (magnitude > TIME_EPSILON) {
+      return { x: vx / magnitude, y: vy / magnitude };
+    }
+    const points = this.dataset?.paths?.[kind] ?? [];
+    const start = points[0];
+    const next = points[1];
+    const dx = Number(next?.x) - Number(start?.x);
+    const dy = Number(next?.y) - Number(start?.y);
+    const pathMagnitude = Math.hypot(dx, dy);
+    if (pathMagnitude > TIME_EPSILON) {
+      return { x: dx / pathMagnitude, y: dy / pathMagnitude };
+    }
+    return { x: 1, y: 0 };
+  }
+
   applyInitialVelocityPreview(kind, condition, previousVelocity, nextVelocity) {
     const points = this.dataset.paths[kind];
     if (!Array.isArray(points)) {
@@ -1687,7 +1888,23 @@ class CausalDelayFeedbackRuntime {
       point.x += delta.x * weight;
       point.y += delta.y * weight;
     });
+    this.syncInitialConditionToHistoryStart(kind, selectedPoint);
     return true;
+  }
+
+  syncInitialConditionToHistoryStart(kind, point) {
+    const condition = this.getInitialCondition(kind);
+    if (!condition || !point) {
+      return;
+    }
+    const isStartDepth = Number(point.depth) === 1;
+    const isConditionTime = Math.abs((Number(point.t) || 0) - (Number(condition.t) || 0)) <= TIME_EPSILON;
+    if (!isStartDepth && !isConditionTime) {
+      return;
+    }
+    condition.t = Number(point.t) || 0;
+    condition.x = Number(point.x) || 0;
+    condition.y = Number(point.y) || 0;
   }
 
   getReplayPathPoint(kind, t) {
@@ -1960,7 +2177,7 @@ class CausalDelayFeedbackRuntime {
   }
 
   updateReadout(hit = null) {
-    const readoutHit = hit ?? this.getSelectedHit() ?? this.createContributionSummaryHit();
+    const readoutHit = hit ?? this.getSelectedHit();
     if (!readoutHit) {
       this.dom.readout.hidden = true;
       this.dom.readout.replaceChildren();
@@ -2098,6 +2315,19 @@ class CausalDelayFeedbackRuntime {
       return nearestVelocity;
     }
 
+    const historyCandidates = [];
+    ["positrino", "electrino"].forEach((kind) => {
+      this.getVisibleHistory(kind).forEach((point) => {
+        const candidate = this.worldToScreen(point);
+        const distance = Math.hypot(screen.x - candidate.x, screen.y - candidate.y);
+        historyCandidates.push(this.createHistoryHit(point, distance));
+      });
+    });
+    const nearestHistory = historyCandidates.sort((a, b) => a.distance - b.distance)[0];
+    if (nearestHistory && nearestHistory.distance <= nearestHistory.hitRadius) {
+      return nearestHistory;
+    }
+
     const initialCandidates = [];
     ["positrino", "electrino"].forEach((kind) => {
       const condition = this.getInitialCondition(kind);
@@ -2123,18 +2353,6 @@ class CausalDelayFeedbackRuntime {
       }
     }
 
-    const historyCandidates = [];
-    ["positrino", "electrino"].forEach((kind) => {
-      this.getVisibleHistory(kind).forEach((point) => {
-        const candidate = this.worldToScreen(point);
-        const distance = Math.hypot(screen.x - candidate.x, screen.y - candidate.y);
-        historyCandidates.push(this.createHistoryHit(point, distance));
-      });
-    });
-    const nearestHistory = historyCandidates.sort((a, b) => a.distance - b.distance)[0];
-    if (nearestHistory && nearestHistory.distance <= nearestHistory.hitRadius) {
-      return nearestHistory;
-    }
     const candidates = [];
     if (includeWakes) {
       this.getVisibleWakeLinks().forEach((link) => {

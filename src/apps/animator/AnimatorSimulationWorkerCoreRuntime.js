@@ -30,15 +30,6 @@ export async function runAnimatorSimulationWorkerRequestAsync(request = {}, opti
   return runAnimatorSolverBridgeWorkerRequest(request, options);
 }
 
-export function runAnimatorSimulationWorkerRequest(request = {}) {
-  if (request?.type !== ANIMATOR_SIMULATION_WORKER_REQUEST_TYPE) {
-    throw new Error(`Unsupported simulation worker request type: ${request?.type ?? ""}`);
-  }
-  throw new Error(
-    "Animator simulation worker runs require runAnimatorSimulationWorkerRequestAsync and the central solver bridge."
-  );
-}
-
 async function runAnimatorSolverBridgeWorkerRequest(request = {}, options = {}) {
   if (request?.type !== ANIMATOR_SIMULATION_WORKER_REQUEST_TYPE) {
     throw new Error(`Unsupported simulation worker request type: ${request?.type ?? ""}`);

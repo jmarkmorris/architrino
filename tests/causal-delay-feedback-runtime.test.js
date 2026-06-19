@@ -8,6 +8,8 @@ import {
   CENTRAL_SOLVER_MOTION_REPLAY_MODE,
 } from "../src/apps/causal-delay-feedback/CausalDelayFeedbackCentralBridgeAdapter.js";
 import {
+  CANVAS_COLORS,
+  DESIGN_WIDTH,
   DIRECT_MANIPULATION_DRAFT_PREVIEW,
   REPRESENTATIVE_MOCK_SOLVER_REPLAY,
   TEMPORARY_MOCK_ADAPTER,
@@ -98,7 +100,7 @@ test("causal delay feedback readout summarizes selected path history point", () 
   assert.equal(readout.hidden, false);
   assert.deepEqual(
     readout.children.map((child) => child.textContent),
-    ["positrino 1", "t=0.08", "weight=0.24", "older"],
+    ["positrino 1", "t=0.00", "weight=0.17", "older"],
   );
 });
 
@@ -113,12 +115,12 @@ test("causal delay feedback readout summarizes selected wake link", () => {
   assert.equal(readout.hidden, false);
   assert.equal(readout.children[0].textContent, "red 1 -> blue 2");
   assert.match(readout.children[1].textContent, /^distance=\d+$/);
-  assert.equal(readout.children[2].textContent, "emit=0.08");
-  assert.equal(readout.children[3].textContent, "hit=0.25");
-  assert.equal(readout.children[4].textContent, "travel=0.17");
+  assert.equal(readout.children[2].textContent, "emit=0.00");
+  assert.equal(readout.children[3].textContent, "hit=0.08");
+  assert.equal(readout.children[4].textContent, "travel=0.08");
   assert.match(readout.children[5].textContent, /^(pending|active=\d\.\d{2}|received)$/);
   assert.match(readout.children[6].textContent, /^1\/r=0\.\d{4}$/);
-  assert.equal(readout.children[7].textContent, "weight=0.24");
+  assert.equal(readout.children[7].textContent, "weight=0.17");
   assert.match(readout.children[8].textContent, /^contrib=/);
   assert.match(readout.children[9].textContent, /^(threshold=above_threshold|threshold=near_threshold|threshold=below_threshold)$/);
   assert.equal(readout.children[10].textContent, "partial arc");
@@ -287,7 +289,7 @@ test("causal delay feedback wake readout reports received rows after the hit tim
   assert.equal(readout.children[5].textContent, "received");
 });
 
-test("causal delay feedback default readout summarizes aggregate feedback contributions", () => {
+test("causal delay feedback default readout stays hidden while aggregate feedback updates", () => {
   const { runtime, readout } = createRuntimeForReadout();
   const firstLink = runtime.dataset.wakeLinks[0];
   const receiverPoint = runtime.dataset.history[firstLink.receiverKind].find(
@@ -299,14 +301,11 @@ test("causal delay feedback default readout summarizes aggregate feedback contri
   runtime.updateReadout();
   const summary = runtime.getContributionSummary(runtime.getCurrentReplayTime());
 
-  assert.equal(readout.hidden, false);
-  assert.equal(readout.children[0].textContent, "feedback sum");
-  assert.equal(readout.children[2].textContent, "received=2/6");
-  assert.equal(readout.children[3].textContent, "in_flight=2");
-  assert.equal(readout.children[4].textContent, "pending=2");
+  assert.equal(readout.hidden, true);
+  assert.equal(readout.children.length, 0);
   assert.equal(summary.receivedCount, 2);
   assert.equal(summary.inFlightCount, 2);
-  assert.equal(summary.pendingCount, 2);
+  assert.equal(summary.pendingCount, 6);
   assert(summary.positiveContribution > 0);
   assert(summary.negativeContribution < 0);
   assert.equal(summary.netContribution, summary.positiveContribution + summary.negativeContribution);
@@ -327,12 +326,12 @@ test("causal delay feedback aggregate summary excludes rejected solver links", (
 
   runtime.updateReadout(runtime.createContributionSummaryHit(receiverPoint.t + 0.01));
 
-  assert.equal(summary.activeLinkCount, 5);
+  assert.equal(summary.activeLinkCount, 9);
   assert.equal(summary.receivedCount, 1);
   assert.equal(summary.inFlightCount, 2);
-  assert.equal(summary.pendingCount, 2);
+  assert.equal(summary.pendingCount, 6);
   assert.equal(summary.rejectedCount, 1);
-  assert.equal(readout.children[2].textContent, "received=1/5");
+  assert.equal(readout.children[2].textContent, "received=1/9");
   assert.equal(readout.children[readout.children.length - 1].textContent, "rejected=1");
 });
 
@@ -346,6 +345,21 @@ test("causal delay feedback partial wake presets use dense emission-to-receipt b
   assert.equal(runtime.dataset.preset.wakeBands, 30);
 });
 
+test("causal delay feedback mock paths span five to ninety-five percent of the time axis", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  const expectedStartX = DESIGN_WIDTH * 0.05;
+  const expectedEndX = DESIGN_WIDTH * 0.95;
+
+  ["positrino", "electrino"].forEach((kind) => {
+    const points = runtime.dataset.paths[kind];
+    assertNear(points[0].x, expectedStartX);
+    assertNear(points.at(-1).x, expectedEndX);
+  });
+});
+
 test("causal delay feedback contrast stress preset exercises mixed purple-background states", () => {
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
@@ -357,7 +371,7 @@ test("causal delay feedback contrast stress preset exercises mixed purple-backgr
 
   assert.equal(runtime.dataset.preset.id, "contrast_stress");
   assert.equal(runtime.dataset.preset.wakeBands, 36);
-  assert.equal(runtime.dataset.canvasColorId, "solid_purple");
+  assert.equal(runtime.dataset.canvasColorId, "architrinoPurple");
   assert.equal(runtime.dataset.assemblyThreshold, 0.00075);
   assert(statuses.includes("active"));
   assert(statuses.includes("inactive"));
@@ -366,6 +380,18 @@ test("causal delay feedback contrast stress preset exercises mixed purple-backgr
   assert.equal(runtime.dataset.wakeLinks[1].rootStatus.code, "contrast_root_without_hit");
   assert.equal(runtime.dataset.wakeLinks[2].reason, "contrast_stress_stale_solver_row");
   assert.equal(runtime.dataset.wakeLinks[3].rootStatus.code, "contrast_no_delayed_hit");
+});
+
+test("causal delay feedback canvas swatches match the iOS reader theme colors", () => {
+  assert.deepEqual(
+    CANVAS_COLORS.map(({ id, label, color }) => ({ id, label, color })),
+    [
+      { id: "architrinoPurple", label: "Purple", color: "#4b0082" },
+      { id: "light", label: "Light", color: "#fdfdfd" },
+      { id: "warm", label: "Warm", color: "#f4ecd8" },
+      { id: "dark", label: "Dark", color: "#0f172a" },
+    ],
+  );
 });
 
 test("causal delay feedback replay datasets can load preset canvas color state", () => {
@@ -381,14 +407,14 @@ test("causal delay feedback replay datasets can load preset canvas color state",
   runtime.applyReplayDataset(
     {
       ...createMockCausalDelayReplayDataset("accepted_tight_bright"),
-      canvasColorId: "soft_purple",
+      canvasColorId: "warm",
     },
     { loadState: "ready" },
   );
 
-  assert.equal(runtime.canvasColorId, "soft_purple");
+  assert.equal(runtime.canvasColorId, "warm");
   const activeSwatch = colorSwatches.children.find((button) => button.classList.contains("is-active"));
-  assert.equal(activeSwatch.dataset.colorId, "soft_purple");
+  assert.equal(activeSwatch.dataset.colorId, "warm");
 });
 
 test("causal delay feedback retained depth setting filters active history and wake rows", () => {
@@ -406,7 +432,7 @@ test("causal delay feedback retained depth setting filters active history and wa
   assert.equal(runtime.getVisibleHistory("positrino").length, 3);
   assert.equal(runtime.getVisibleHistory("electrino").length, 3);
   assert.equal(runtime.getVisibleWakeLinks().length, 4);
-  assert.equal(runtime.dataset.wakeLinks.length, 6);
+  assert.equal(runtime.dataset.wakeLinks.length, 10);
   assert.equal(summary.linkCount, 4);
   assert.equal(hiddenHit, null);
   assert.equal(runtime.replayRequestOptions.retainedDepthLimit, 3);
@@ -424,6 +450,70 @@ test("causal delay feedback retained depth setting clears hidden selected rows",
   assert.equal(runtime.selectedItem, null);
 });
 
+test("causal delay feedback c_f speed setting scales the replay clock", () => {
+  const scheduledFrames = [];
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: {
+      ...fakeWindow,
+      requestAnimationFrame(callback) {
+        scheduledFrames.push(callback);
+        return scheduledFrames.length;
+      },
+    },
+  });
+  runtime.render = () => {};
+  runtime.setFieldSpeedScale(2);
+  runtime.lastFrameTime = 984;
+
+  runtime.tick(1000);
+
+  assert.equal(runtime.fieldSpeedScale, 2);
+  assertNear(runtime.elapsedSeconds, 0.032);
+  assert.equal(runtime.replayRequestOptions.fieldSpeedScale, 2);
+  assert.equal(scheduledFrames.length, 1);
+});
+
+test("causal delay feedback architrino speed setting uses the requested v over c_f sequence", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+
+  assert.deepEqual(
+    Array.from({ length: 10 }, (_, index) => runtime.getArchitrinoSpeedFraction(index)),
+    [0.1, 0.3, 0.5, 0.7, 0.9, 0.99, 0.999, 0.9999, 0.99999, 0.999999],
+  );
+});
+
+test("causal delay feedback architrino speed setting rescales initial velocity magnitudes", () => {
+  const replayStatus = new FakeElement();
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  runtime.dom = { replayStatus };
+  const previousMagnitudes = Object.fromEntries(
+    ["positrino", "electrino"].map((kind) => {
+      const condition = runtime.getInitialCondition(kind);
+      return [kind, Math.hypot(condition.vx, condition.vy)];
+    }),
+  );
+
+  runtime.setArchitrinoSpeedIndex(5);
+
+  assert.equal(runtime.getArchitrinoSpeedFraction(), 0.99);
+  assert.equal(runtime.dataset.datasetSource, DIRECT_MANIPULATION_DRAFT_PREVIEW);
+  assert.equal(runtime.dataset.draftPreview.reason, "architrino_speed_fraction_preview");
+  assert.equal(runtime.replayLoadState, "draft");
+  assert.equal(replayStatus.textContent, "draft preview");
+  assert.equal(runtime.replayRequestOptions.architrinoSpeedFraction, 0.99);
+  ["positrino", "electrino"].forEach((kind) => {
+    const condition = runtime.getInitialCondition(kind);
+    assertNear(Math.hypot(condition.vx, condition.vy), previousMagnitudes[kind] * (0.99 / 0.7));
+  });
+});
+
 test("causal delay feedback replay exposes draggable initial conditions", () => {
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
@@ -434,7 +524,7 @@ test("causal delay feedback replay exposes draggable initial conditions", () => 
   assert.equal(runtime.dataset.initialConditions.electrino.kind, "electrino");
   assert.equal(runtime.dataset.initialConditions.virtualObserver.label, "Virtual Observer");
   assert.equal(runtime.dataset.virtualObserver.x, runtime.dataset.initialConditions.virtualObserver.x);
-  assert.equal(runtime.dataset.initialConditions.historyDepth, 4);
+  assert.equal(runtime.dataset.initialConditions.historyDepth, 6);
   assert.equal(runtime.replayRequestOptions.initialConditions.positrino.x, runtime.dataset.paths.positrino[0].x);
   assert.equal(runtime.replayRequestOptions.initialConditions.electrino.y, runtime.dataset.paths.electrino[0].y);
   assert.equal(runtime.replayRequestOptions.virtualObserver.x, runtime.dataset.virtualObserver.x);
@@ -969,6 +1059,23 @@ test("causal delay feedback hit testing prefers reception points over wake links
   assert.deepEqual(hit.selection, { type: "history", kind: "electrino", depth: 2 });
 });
 
+test("causal delay feedback path endpoints are first-class history hits", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  const startPoint = runtime.dataset.history.positrino.find((point) => point.depth === 1);
+  const endPoint = runtime.dataset.history.positrino.find((point) => point.depth === 6);
+
+  const startHit = runtime.findNearestHit(runtime.worldToScreen(startPoint), { includeWakes: true });
+  const endHit = runtime.findNearestHit(runtime.worldToScreen(endPoint), { includeWakes: true });
+
+  assert.equal(startPoint.t, 0);
+  assert.equal(endPoint.t, 1);
+  assert.deepEqual(startHit.selection, { type: "history", kind: "positrino", depth: 1 });
+  assert.deepEqual(endHit.selection, { type: "history", kind: "positrino", depth: 6 });
+});
+
 test("causal delay feedback right-click insertion renumbers retained path points and rebuilds wake links", () => {
   const replayStatus = new FakeElement();
   const runtime = createCausalDelayFeedbackRuntime({
@@ -981,23 +1088,23 @@ test("causal delay feedback right-click insertion renumbers retained path points
   const inserted = runtime.addReceptionPointAtPath("positrino", insertionPoint);
 
   assert.equal(inserted.kind, "positrino");
-  assert.equal(inserted.depth, 3);
-  assert.equal(runtime.dataset.history.positrino.length, 5);
-  assert.equal(runtime.dataset.history.electrino.length, 5);
-  assert.deepEqual(runtime.dataset.history.positrino.map((point) => point.depth), [1, 2, 3, 4, 5]);
-  assert.deepEqual(runtime.dataset.history.electrino.map((point) => point.depth), [1, 2, 3, 4, 5]);
-  assert.equal(runtime.dataset.initialConditions.historyDepth, 5);
-  assert.equal(runtime.retainedDepthLimit, 5);
+  assert.equal(inserted.depth, 4);
+  assert.equal(runtime.dataset.history.positrino.length, 7);
+  assert.equal(runtime.dataset.history.electrino.length, 7);
+  assert.deepEqual(runtime.dataset.history.positrino.map((point) => point.depth), [1, 2, 3, 4, 5, 6, 7]);
+  assert.deepEqual(runtime.dataset.history.electrino.map((point) => point.depth), [1, 2, 3, 4, 5, 6, 7]);
+  assert.equal(runtime.dataset.initialConditions.historyDepth, 7);
+  assert.equal(runtime.retainedDepthLimit, 7);
   assert.equal(runtime.dataset.draftPreview.reason, "reception_point_insert_preview");
   assert.equal(runtime.dataset.datasetSource, DIRECT_MANIPULATION_DRAFT_PREVIEW);
   assert.equal(replayStatus.textContent, "draft preview");
-  assert.equal(runtime.replayRequestOptions.initialConditions.historyDepth, 5);
-  assert.equal(runtime.dataset.wakeLinks.length, 8);
+  assert.equal(runtime.replayRequestOptions.initialConditions.historyDepth, 7);
+  assert.equal(runtime.dataset.wakeLinks.length, 12);
   assert(runtime.dataset.wakeLinks.every((link) => link.receiverDepth === link.sourceDepth + 1));
-  assert(runtime.dataset.wakeLinks.some((link) => link.label === "red 3 -> blue 4"));
-  assert(runtime.dataset.wakeLinks.some((link) => link.label === "blue 2 -> red 3"));
-  assert(runtime.dataset.wakeLinks.some((link) => link.label === "blue 4 -> red 5"));
-  assert.equal(runtime.dataset.wakeLinks.find((link) => link.label === "blue 2 -> red 3").receiver.t, inserted.t);
+  assert(runtime.dataset.wakeLinks.some((link) => link.label === "red 4 -> blue 5"));
+  assert(runtime.dataset.wakeLinks.some((link) => link.label === "blue 3 -> red 4"));
+  assert(runtime.dataset.wakeLinks.some((link) => link.label === "blue 6 -> red 7"));
+  assert.equal(runtime.dataset.wakeLinks.find((link) => link.label === "blue 3 -> red 4").receiver.t, inserted.t);
 });
 
 test("causal delay feedback context menu inserts a retained point on the nearest path", () => {
@@ -1027,10 +1134,10 @@ test("causal delay feedback context menu inserts a retained point on the nearest
   });
 
   assert.equal(preventedDefault, true);
-  assert.equal(runtime.dataset.history.electrino.length, 5);
-  assert.equal(runtime.dataset.history.positrino.length, 5);
-  assert.deepEqual(runtime.selectedItem, { type: "history", kind: "electrino", depth: 3 });
-  assert.equal(readout.children[0].textContent, "electrino 3");
+  assert.equal(runtime.dataset.history.electrino.length, 7);
+  assert.equal(runtime.dataset.history.positrino.length, 7);
+  assert.deepEqual(runtime.selectedItem, { type: "history", kind: "electrino", depth: 4 });
+  assert.equal(readout.children[0].textContent, "electrino 4");
 });
 
 test("causal delay feedback retained point drag deforms the path and updates wake endpoints", () => {
@@ -1049,6 +1156,59 @@ test("causal delay feedback retained point drag deforms the path and updates wak
   assert.equal(receptionPoint.y, start.y - 25);
   assert.equal(wakeLink.receiver.x, receptionPoint.x);
   assert.equal(wakeLink.receiver.y, receptionPoint.y);
+});
+
+test("causal delay feedback retained start point drag updates the initial condition", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  const startPoint = runtime.dataset.history.positrino.find((point) => point.depth === 1);
+  const pathStart = runtime.dataset.paths.positrino[0];
+  const condition = runtime.dataset.initialConditions.positrino;
+  const before = {
+    startX: startPoint.x,
+    startY: startPoint.y,
+    pathX: pathStart.x,
+    pathY: pathStart.y,
+  };
+
+  const didEdit = runtime.applyRetainedPointDrag("positrino", 1, { x: 42, y: -18 });
+
+  assert.equal(didEdit, true);
+  assert.equal(startPoint.x, before.startX + 42);
+  assert.equal(startPoint.y, before.startY - 18);
+  assert.equal(pathStart.x, before.pathX + 42);
+  assert.equal(pathStart.y, before.pathY - 18);
+  assert.equal(condition.x, startPoint.x);
+  assert.equal(condition.y, startPoint.y);
+  assert.equal(runtime.replayRequestOptions.initialConditions.positrino.x, condition.x);
+});
+
+test("causal delay feedback retained end point drag updates the path endpoint", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  const endPoint = runtime.dataset.history.electrino.find((point) => point.depth === 6);
+  const pathEnd = runtime.dataset.paths.electrino.at(-1);
+  const wakeLink = runtime.dataset.wakeLinks.find((link) => link.label === "red 5 -> blue 6");
+  const before = {
+    endX: endPoint.x,
+    endY: endPoint.y,
+    pathX: pathEnd.x,
+    pathY: pathEnd.y,
+  };
+
+  const didEdit = runtime.applyRetainedPointDrag("electrino", 6, { x: -36, y: 24 });
+
+  assert.equal(didEdit, true);
+  assert.equal(endPoint.x, before.endX - 36);
+  assert.equal(endPoint.y, before.endY + 24);
+  assert.equal(pathEnd.x, before.pathX - 36);
+  assert.equal(pathEnd.y, before.pathY + 24);
+  assert.equal(wakeLink.receiver.x, endPoint.x);
+  assert.equal(wakeLink.receiver.y, endPoint.y);
 });
 
 test("causal delay feedback retained point drag preserves wake and receiver arrival synchronization", () => {
@@ -1126,11 +1286,11 @@ test("causal delay feedback aggregate summary separates stale solver rows from r
   const summary = runtime.getContributionSummary(receiverPoint.t + 0.01);
   runtime.updateReadout(runtime.createContributionSummaryHit(receiverPoint.t + 0.01));
 
-  assert.equal(summary.activeLinkCount, 5);
+  assert.equal(summary.activeLinkCount, 9);
   assert.equal(summary.staleCount, 1);
   assert.equal(summary.rejectedCount, 0);
   assert.equal(summary.receivedCount, 1);
-  assert.equal(readout.children[2].textContent, "received=1/5");
+  assert.equal(readout.children[2].textContent, "received=1/9");
   assert.equal(readout.children[readout.children.length - 1].textContent, "stale=1");
 });
 
@@ -1194,7 +1354,7 @@ test("causal delay feedback initial velocity drag updates setup and bends the pr
   const condition = runtime.dataset.initialConditions.positrino;
   const velocityEnd = runtime.initialConditionVelocityEnd(condition);
   const pathStart = runtime.dataset.paths.positrino[0];
-  const laterPoint = runtime.dataset.history.positrino.find((point) => point.depth === 4);
+  const laterPoint = runtime.dataset.history.positrino.find((point) => point.depth === 5);
   const before = {
     vx: condition.vx,
     vy: condition.vy,
@@ -1255,10 +1415,10 @@ test("causal delay feedback Virtual Observer drag updates contribution readout w
   assert(after > before);
   assert.equal(runtime.dataset.datasetSource, DIRECT_MANIPULATION_DRAFT_PREVIEW);
   assert.equal(runtime.dataset.draftPreview.reason, "virtual_observer_drag_preview");
-  assert.equal(runtime.dataset.virtualObserver.x, endpoints.receiver.x + 120);
-  assert.equal(runtime.dataset.initialConditions.virtualObserver.x, runtime.dataset.virtualObserver.x);
-  assert.equal(runtime.replayRequestOptions.virtualObserver.x, runtime.dataset.virtualObserver.x);
-  assert.equal(runtime.replayRequestOptions.initialConditions.virtualObserver.x, runtime.dataset.virtualObserver.x);
+  assertNear(runtime.dataset.virtualObserver.x, endpoints.receiver.x + 120);
+  assertNear(runtime.dataset.initialConditions.virtualObserver.x, runtime.dataset.virtualObserver.x);
+  assertNear(runtime.replayRequestOptions.virtualObserver.x, runtime.dataset.virtualObserver.x);
+  assertNear(runtime.replayRequestOptions.initialConditions.virtualObserver.x, runtime.dataset.virtualObserver.x);
   assert.equal(runtime.getWakeStatus(link).status, "active");
   assert.equal(link.status, undefined);
   assert.equal(replayStatus.textContent, "draft preview");

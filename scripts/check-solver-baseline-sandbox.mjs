@@ -7,8 +7,6 @@ import { pathToFileURL } from "node:url";
 
 import * as THREE from "../vendor/three/three.module.js";
 import {
-  computePotentialContribution,
-  solveFlightTime,
   solveFlightTimeRowWithSolverBridge,
 } from "../src/apps/ideal-swarm/IdealSwarmRuntime.js";
 import {
@@ -16,7 +14,6 @@ import {
   solvePhotonCircularSourceRootsHitsLedgerWithSolverBridge,
 } from "../src/apps/photon/PhotonFormulaRuntime.js";
 import {
-  solveCircularSelfHitSpan,
   solveCircularSelfHitSpanRowWithSolverBridge,
 } from "../src/apps/ideal-swarm/IdealSwarmPathPotentialProfile.js";
 import {
@@ -1039,20 +1036,13 @@ function createPhotonNormalizedCircularSourceRunCase() {
 }
 
 function createIdealSwarmGeometryCase() {
-  const samplePoint = new THREE.Vector3(6, 0, 0);
-  const architrino = {
-    q: 3,
-    positionAt: () => new THREE.Vector3(0, 0, 0),
-    velocityAt: () => new THREE.Vector3(0, 0, 0),
+  const delayedPotentialBaseline = {
+    tau: 1,
+    emissionTime: 5,
+    distance: 6,
+    potential: 6 / Math.sqrt(36 + 0.08 * 0.08),
   };
-  const potentialBaseline = computePotentialContribution(samplePoint, architrino, 6, {
-    fieldSpeed: 6,
-    normalization: 2,
-    softening: 0.08,
-    useCausalDenominator: true,
-    iterations: 4,
-  });
-  const selfHitSpan = solveCircularSelfHitSpan(1.2);
+  const selfHitSpan = 2.0534765827345125;
   return {
     caseId: "ideal-swarm-geometry-smoke",
     appId: "ideal-swarm",
@@ -1092,10 +1082,10 @@ function createIdealSwarmGeometryCase() {
           {
             itemIndex: 0,
             statusCode: 0,
-            tau: potentialBaseline.tau,
-            emissionTime: potentialBaseline.emissionTime,
-            distance: potentialBaseline.distance,
-            potential: potentialBaseline.potential,
+            tau: delayedPotentialBaseline.tau,
+            emissionTime: delayedPotentialBaseline.emissionTime,
+            distance: delayedPotentialBaseline.distance,
+            potential: delayedPotentialBaseline.potential,
             kappa: 1,
             iterations: 4,
             usedCausalDenominator: true,
@@ -1171,13 +1161,12 @@ function createIdealSwarmFlightTimeCase() {
     sourceCharge: 2,
     useCausalDenominator: true,
   };
-  const potentialBaseline = computePotentialContribution(
-    samplePoint,
-    architrino,
-    observationTime,
-    options
-  );
-  const tauBaseline = solveFlightTime(samplePoint, architrino, observationTime, options);
+  const delayedPotentialBaseline = {
+    tau: 0.43776433548735727,
+    emissionTime: 2.0622356645126425,
+    distance: 2.6265860131821737,
+    potential: 1.581307013398278,
+  };
   return {
     caseId: "ideal-swarm-flight-time-smoke",
     appId: "ideal-swarm",
@@ -1198,10 +1187,10 @@ function createIdealSwarmFlightTimeCase() {
           {
             itemIndex: 0,
             statusCode: 0,
-            tau: tauBaseline,
-            emissionTime: potentialBaseline.emissionTime,
-            distance: potentialBaseline.distance,
-            potential: potentialBaseline.potential,
+            tau: delayedPotentialBaseline.tau,
+            emissionTime: delayedPotentialBaseline.emissionTime,
+            distance: delayedPotentialBaseline.distance,
+            potential: delayedPotentialBaseline.potential,
             iterations: options.iterations,
             usedCausalDenominator: true,
           },

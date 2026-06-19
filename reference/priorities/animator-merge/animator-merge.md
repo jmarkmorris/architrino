@@ -1,6 +1,6 @@
 # Animator Merge Direction
 
-This note records the current direction for merging the useful parts of `src/apps/sim2/` and `scripts/simulations/` toward `src/apps/animator/`. The target is not a sim2 rewrite. The target is an evolved animator that keeps its 3-D authoring and visualization surface while gaining a master-equation simulation mode.
+This note records the current direction for moving simulation work from `scripts/simulations/` toward `src/apps/animator/`. The removed `sim2` prototype no longer exists as an active source path. The target is an evolved animator that keeps its 3-D authoring and visualization surface while gaining a master-equation simulation mode.
 
 ## Direction
 
@@ -8,7 +8,7 @@ Animator is the destination application. Its current 3-D scene, authoring, camer
 
 `scripts/simulations/` is the best current source for solver discipline. It should guide the reusable simulation engine: delayed causal-root solving, exact branch-resolved finite-history sums where the branch chart stays simple, Jacobian diagnostics, halt reasons, convergence checks, and batch output.
 
-`src/apps/sim2/` is the best current source for field-shell and delayed-hit visual language. Its Python/PyGame/ModernGL runtime should be treated as a reference prototype, not the target implementation.
+The deleted `sim2` prototype contributed field-shell and delayed-hit visual intent that is now captured as Animator requirements. Its Python/PyGame/ModernGL runtime is not preserved as a production implementation.
 
 ## Core Requirements
 
@@ -27,12 +27,12 @@ Animator is the destination application. Its current 3-D scene, authoring, camer
 |---|---|---|
 | Product shell | `src/apps/animator/` | Continue with animator as the app surface. |
 | 3-D rendering | `src/apps/animator/` | Three.js scene graph, camera controls, lines, meshes, sprites, labels, and timeline rendering. |
-| 2-D planar mode | `src/apps/sim2/` for planar visual semantics; `src/apps/animator/` for UI integration | Add an animator view mode that constrains or projects solver data onto a planar surface while retaining animator playback, trails, and diagnostics. |
+| 2-D planar mode | Captured planar visual semantics; `src/apps/animator/` for UI integration | Add an animator view mode that constrains or projects solver data onto a planar surface while retaining animator playback, trails, and diagnostics. |
 | Authoring UI | `src/apps/animator/` | Extend the existing document workspace, path editor, timeline, library/save flow, and camera waypoint tools. |
 | Solver semantics | `scripts/simulations/` | Extract a focused JavaScript or TypeScript solver module, with Web Worker execution and typed-array frame buffers. |
 | Delayed causal roots | `scripts/simulations/` | Keep branch-root search, causal residual checks, Jacobian diagnostics, and fail-closed halt reporting. |
-| Field shells | `src/apps/sim2/` | Rebuild as Three.js shell geometry or shader-assisted shell rendering. |
-| Delayed hit visuals | `src/apps/sim2/` for visuals; `scripts/simulations/` for correctness | Render solver-derived hits using sim2-inspired connectors, emission points, shell intersections, and hit tables. |
+| Field shells | Animator requirements | Render as Three.js shell geometry or shader-assisted shell rendering. |
+| Delayed hit visuals | Animator requirements for visuals; `scripts/simulations/` for correctness | Render solver-derived hits using connectors, emission points, shell intersections, and hit tables. |
 | Path animation | `src/apps/animator/` | Keep authored spline/polyline paths and add solver-derived trails as a separate motion source. |
 | Offline playback | `scripts/simulations/` | Produce cached simulation datasets for animator scrubbing, inspection, and video export. |
 | Performance path | `src/apps/animator/` plus extracted solver | Start with Web Workers and typed arrays; consider WASM, WebGPU, or shader kernels only after profiling identifies the bottleneck. |
@@ -64,7 +64,7 @@ Animator can then render the dataset with scrub/play controls without requiring 
 
 Each implementation step should follow the same loop:
 
-1. Refresh the current behavior in `src/apps/sim2/`, `scripts/simulations/`, or `src/apps/animator/` for the function being moved or extended.
+1. Refresh the current behavior in `scripts/simulations/` or `src/apps/animator/` for the function being moved or extended.
 2. Implement the next animator-centered change.
 3. Report exactly how the operator/developer can test it.
 4. Collect operator/developer feedback.
@@ -78,17 +78,17 @@ Each implementation step should follow the same loop:
 4. **Complete: 2-D planar mode**: add an animator view mode for planar simulations, preserving solver-derived diagnostics while allowing a flat 2-D view for cases where the simulation target is planar.
 5. **Complete: solver module extraction**: refactor the useful `scripts/simulations/` behavior behind a reusable module interface while preserving the existing command-line scripts and outputs.
 6. **Complete: worker simulation runner**: add a Web Worker runner that can generate or stream simulation frames into animator using typed arrays or another profiled frame-buffer format.
-7. **Complete: field-shell rendering**: port sim2 shell semantics into animator as 3-D spherical emission shells, including expanding solver-derived shells, shell visibility controls, opacity controls, and white zero-field semantics where appropriate.
+7. **Complete: field-shell rendering**: render solver-derived shell semantics in animator as 3-D spherical emission shells, including expanding shells, shell visibility controls, opacity controls, and white zero-field semantics where appropriate.
 8. **Complete: delayed-hit rendering**: render solver-derived delayed hits with emission points, receiver points, branch/Jacobian diagnostics, hit connectors, and hit-table data.
 9. **Complete: fadeable trails**: add solid and dotted trail rendering for solver-derived paths, with lifetime, opacity, and diagnostic emphasis controls.
 10. **Current: simulation authoring UI**: add scene setup, particle setup, solver parameters, run/cache controls, and diagnostic panels to the animator authoring surface.
     - **Review gate**: Marko needs to review the Simulation authoring panel before this step is marked complete.
 11. **Offline/cache workflow**: support long-running or high-precision simulations that bake datasets for animator playback, inspection, and export.
-12. **Parity and retirement decision**: compare animator against sim2 and `scripts/simulations/` for the covered functions, close remaining visual or solver gaps, then decide whether sim2 stays archived as reference or is removed.
+12. **Complete: sim2 removal decision**: remove sim2 from the active app tree. Remaining parity checks compare Animator against `scripts/simulations/`, central solver datasets, and the captured visual requirements for field shells, delayed hits, and trails.
 
 ## Non-Goals
 
-- Do not make sim2 the destination application.
+- Do not restore sim2 as a destination application.
 - Do not preserve the Python/PyGame runtime for long-term production use unless a concrete benchmark or workflow requires it.
 - Do not mix authored paths with solver-derived motion without a visible mode/provenance distinction.
 - Do not add new validation infrastructure unless it directly protects the Master EOM simulation path or the animator playback contract.

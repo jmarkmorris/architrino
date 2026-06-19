@@ -11,11 +11,6 @@ import {
   getPhotonSeparationLog10Ratio,
   wrapPhotonTime,
 } from "./PhotonStateRuntime.js";
-import {
-  buildPhotonDerivedPolarizationTrace,
-  buildPhotonPlotSamples,
-} from "./PhotonFormulaRuntime.js";
-
 const TWO_PI = Math.PI * 2;
 const ARCHITRINO_MARKER_RADIUS = 5.2;
 const PHOTON_FIELD_PLOT_MIN_SAMPLE_COUNT = 360;
@@ -33,11 +28,6 @@ const PHOTON_STAGE_WHITE_LABEL_COLOR = "#ffffff";
 const PHOTON_TRANSLATION_AXIS_COLOR = "rgba(251, 191, 36, 0.92)";
 const PHOTON_FACE_AXIS_COLOR = "rgba(251, 191, 36, 0.82)";
 const PHOTON_FACE_CAMERA_REFERENCE_RADIUS = PHOTON_DEFAULT_LAYER_RADII.O * 1.5;
-
-let photonFieldPlotCache = {
-  key: "",
-  plot: null,
-};
 
 function resizeCanvasToDisplaySize(canvas, windowLike = globalThis.window) {
   const rect = canvas.getBoundingClientRect();
@@ -664,30 +654,6 @@ export function getPhotonFieldPlotSampleCount(cssWidth) {
   );
 }
 
-function createPhotonFieldPlotCacheKey(state, sampleCount) {
-  return JSON.stringify({
-    pair: state.pair,
-    measurement: state.measurement,
-    time: {
-      cycleReferenceLayer: state.time?.cycleReferenceLayer,
-      cycleCount: state.time?.cycleCount,
-    },
-    sampleCount,
-    analyzerAngleDeg: state.polarization?.analyzerAngleDeg,
-  });
-}
-
-function getPhotonFieldPlotSamples(state, sampleCount) {
-  const key = createPhotonFieldPlotCacheKey(state, sampleCount);
-  if (photonFieldPlotCache.key !== key || !photonFieldPlotCache.plot) {
-    photonFieldPlotCache = {
-      key,
-      plot: buildPhotonPlotSamples(state, 0, sampleCount),
-    };
-  }
-  return photonFieldPlotCache.plot;
-}
-
 function mapPhotonPolarizationPoint(point, centerX, centerY, radius, scale) {
   const divisor = Math.max(1e-9, scale);
   return {
@@ -848,10 +814,9 @@ function drawPhotonComponentPlot(canvas, state, timeSeconds, options = {}) {
   ctx.fillStyle = "rgba(6, 9, 18, 0.96)";
   ctx.fillRect(0, 0, cssWidth, cssHeight);
 
-  const sampleCount = getPhotonFieldPlotSampleCount(cssWidth);
   const plot = hasOwnOption(options, "plot")
     ? options.plot
-    : getPhotonFieldPlotSamples(state, sampleCount);
+    : null;
   if (!hasPhotonPlotSamples(plot)) {
     drawPhotonFieldPanelMessage(ctx, cssWidth, cssHeight, options.pendingMessage);
     return;
@@ -945,7 +910,7 @@ export function drawPhotonPolarizationInset(canvas, state, timeSeconds, options 
 
   const trace = hasOwnOption(options, "trace")
     ? options.trace
-    : buildPhotonDerivedPolarizationTrace(state, timeSeconds);
+    : null;
   if (!hasPhotonPolarizationTrace(trace)) {
     drawPhotonFieldPanelMessage(ctx, cssWidth, cssHeight, options.pendingMessage);
     return;

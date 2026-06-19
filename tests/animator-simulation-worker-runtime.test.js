@@ -10,7 +10,6 @@ import {
   createAnimatorSimulationWorkerRunRequest,
 } from "../src/apps/animator/AnimatorSimulationWorkerProtocolRuntime.js";
 import {
-  runAnimatorSimulationWorkerRequest,
   runAnimatorSimulationWorkerRequestAsync,
 } from "../src/apps/animator/AnimatorSimulationWorkerCoreRuntime.js";
 import {
@@ -131,18 +130,6 @@ test("animator simulation worker core returns a transferable frame buffer from t
   assert.equal(hydrated.frames.length, 3);
   assert.deepEqual(hydrated.frames[0].particles[0].position, [0, 0, 0]);
   assert.equal(hydrated.simulation.solver.engineId, "architrino-solver-app-bridge");
-});
-
-test("animator simulation worker synchronous core rejects legacy solver use", () => {
-  const request = createAnimatorSimulationWorkerRunRequest(SMALL_RUN, {
-    requestId: "worker_core_legacy_reject_test",
-    datasetOptions: { id: "worker_core_legacy_reject_dataset" },
-  });
-
-  assert.throws(
-    () => runAnimatorSimulationWorkerRequest(request),
-    /central solver bridge/
-  );
 });
 
 test("animator simulation worker core can route an opt-in run through the solver app bridge", async () => {

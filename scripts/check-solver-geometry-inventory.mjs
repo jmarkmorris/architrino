@@ -19,9 +19,9 @@ const migrationTargets = [
     local: {
       file: "src/apps/photon/PhotonFormulaRuntime.js",
       symbols: [
-        "solvePhotonCausalRoots",
-        "getPhotonCausalRootResidual",
-        "pushPhotonRoot",
+        "solvePhotonCausalRootsWithSolverBridge",
+        "solvePhotonCausalRootsForSourceWithSolverBridge",
+        "computePhotonDelayedEmissionFieldWithSolverBridge",
       ],
     },
     central: [
@@ -99,9 +99,9 @@ const migrationTargets = [
     local: {
       file: "src/apps/ideal-swarm/IdealSwarmRuntime.js",
       symbols: [
-        "solveFlightTime",
         "createIdealSwarmFlightTimeRunRequest",
         "solveFlightTimeRowWithSolverBridge",
+        "computePotentialSamplesWithSolverBridge",
       ],
     },
     central: [
@@ -134,9 +134,9 @@ const migrationTargets = [
     local: {
       file: "src/apps/ideal-swarm/IdealSwarmPathPotentialProfile.js",
       symbols: [
-        "solveCircularSelfHitSpan",
         "createIdealSwarmCircularSelfHitSpanRunRequest",
         "solveCircularSelfHitSpanRowWithSolverBridge",
+        "solveCircularSelfHitSpanRowsWithSolverBridge",
       ],
     },
     central: [
@@ -165,7 +165,7 @@ const migrationTargets = [
     local: {
       file: "src/apps/animator/AnimatorSimulationWorkerCoreRuntime.js",
       symbols: [
-        "runAnimatorSimulationWorkerRequest",
+        "runAnimatorSimulationWorkerRequestAsync",
         "runAnimatorSolverBridgeWorkerRequest",
         "runSolverBridgeClient",
         "createAnimatorDatasetFromSolverBridgeRun",
@@ -240,9 +240,9 @@ const migrationTargets = [
 const excludedSurfaces = [
   {
     id: "sim2",
-    path: "src/apps/sim2/orbits.py",
-    policy: "animation-intent archive only",
-    reason: "sim2 is not a migration target and should not receive a central-solver adapter.",
+    formerPath: "src/apps/sim2",
+    policy: "removed from active scope",
+    reason: "sim2 was an early animation prototype and is not a migration target, adapter target, or parity target.",
   },
   {
     id: "legacy-solver-families",
