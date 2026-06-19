@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
   "manifest_schema": "textbook_bundle_schema_v1",
-  "generated_at": "2026-06-19T04:35:04.132Z",
-  "package_version": "1.0.0-26cf2e56",
+  "generated_at": "2026-06-19T05:00:00.751Z",
+  "package_version": "1.0.0-eb2a5481",
   "schema_version_note": "content_bundle_schema_v1",
   "textbook_toc": {
     "path": "content/graph/textbook_toc.json",
-    "sha256": "26cf2e565f9eaf208b6804c41c6461069db78bfd1bc43f02c4151c0abe85f478",
-    "size": 622952
+    "sha256": "eb2a5481878e0281ec4ee239c06ad30192058acedd5ea4656042b46c72669a53",
+    "size": 672393
   },
   "chapters": [
     {
@@ -164,8 +164,8 @@
       "sourcePath": "content/graph/textbook_toc.json",
       "role": "toc",
       "type": "json",
-      "size": 623406,
-      "sha256": "26cf2e565f9eaf208b6804c41c6461069db78bfd1bc43f02c4151c0abe85f478"
+      "size": 672847,
+      "sha256": "eb2a5481878e0281ec4ee239c06ad30192058acedd5ea4656042b46c72669a53"
     },
     {
       "path": "reading-copies/atomic-and-nuclear-assemblies.html",
@@ -268,16 +268,16 @@
       "sourcePath": "__generated__/reading-copies/philosophy-history.html",
       "role": "chapter",
       "type": "html",
-      "size": 6961408,
-      "sha256": "151992f378d3a9cda8601e5c2e973afd03a257a822525a8be56d032e49eb0322"
+      "size": 9554466,
+      "sha256": "cfe134afdbfc1f7fc3490202f595e9db46470513ac43d80559288615c81dcaf1"
     },
     {
       "path": "reading-copies/philosophy-history.md",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 1475473,
-      "sha256": "7c7165f4b37aed4a168944efdeea914f8923f088352d3ae2d9c8b4af1417d207"
+      "size": 1614207,
+      "sha256": "899eeb734bf5414834a1186f12aa9daf55a6d727c71fa0df22e5d5a235e998e3"
     },
     {
       "path": "reading-copies/quantum.html",
@@ -332,16 +332,16 @@
       "sourcePath": "__generated__/reading-copies/validation.html",
       "role": "chapter",
       "type": "html",
-      "size": 3514855,
-      "sha256": "c95dc016603485f70fade0acc32d589466e320df735a938aa878ecb0888593af"
+      "size": 5496230,
+      "sha256": "c9e14c90ba6e837f91961d3a0da822675a1cb27146dae18d721ae4bdb1aecb18"
     },
     {
       "path": "reading-copies/validation.md",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/validation.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 346611,
-      "sha256": "7d65220e996a1cc8a8d7d812dd13ad6332f15bf0e2f0d62af3796655e37ef9c8"
+      "size": 471294,
+      "sha256": "e1d9c919e674205c68f6b5dd774ad15ccd8e9df7504a7ce1ab3fec341a75ae9f"
     },
     {
       "path": "references/academic-style-guide.html",
@@ -428,8 +428,8 @@
       "sourcePath": "__generated__/textbook_bundle_search_index.json",
       "role": "search",
       "type": "json",
-      "size": 8381885,
-      "sha256": "d6881a18bbbd392be746d7a82201cf6fb881ec6e48dfa48496f718c4c9e79b7f"
+      "size": 8716334,
+      "sha256": "79635d8a3d4e304f439ae483a916d903abd0614826be8da4f663969b11208b51"
     }
   ],
   "links": []
