@@ -65,6 +65,10 @@
       {
         "nodeId": "philosophy_history",
         "scenePath": "content/scenes/philosophy_history/philosophy_history.json"
+      },
+      {
+        "nodeId": "glossary",
+        "scenePath": "content/scenes/archie/glossary.json"
       }
     ]
   },
@@ -260,6 +264,23 @@
         "type": "fixed"
       },
       "labelTitle": "Philosophy-History",
+      "fixedPosition": true
+    },
+    {
+      "id": "glossary",
+      "title": "Comparative Glossary",
+      "radius": 2.35,
+      "color": "#2f6b6f",
+      "position": [
+        -14.8,
+        14.8,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Comparative Glossary",
+      "labelBadge": "doc",
       "fixedPosition": true
     }
   ]

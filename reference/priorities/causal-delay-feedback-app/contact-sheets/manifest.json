@@ -1,43 +1,43 @@
 [
   {
-    "variant": "partial_arcs_baseline_solid_purple",
-    "title": "Partial arcs baseline on solid purple",
-    "path": "contact-sheets/partial_arcs_baseline_solid_purple.png",
+    "variant": "centered_baseline_growing_arcs",
+    "title": "Baseline - centered observer, 5 growing bands",
+    "path": "contact-sheets/centered_baseline_growing_arcs.png",
     "size": "1920x1080",
     "datasetSource": "representative_mock_solver_replay"
   },
   {
-    "variant": "full_circular_arcs_solid_purple",
-    "title": "Full circular arcs on solid purple",
-    "path": "contact-sheets/full_circular_arcs_solid_purple.png",
+    "variant": "centered_sparse_growing_arcs",
+    "title": "Sparse bands - fewer wake steps",
+    "path": "contact-sheets/centered_sparse_growing_arcs.png",
     "size": "1920x1080",
     "datasetSource": "representative_mock_solver_replay"
   },
   {
-    "variant": "depth_1_focus_solid_purple",
-    "title": "Depth 1 focus on solid purple",
-    "path": "contact-sheets/depth_1_focus_solid_purple.png",
+    "variant": "centered_dense_growing_arcs",
+    "title": "Dense bands - smoother wake growth",
+    "path": "contact-sheets/centered_dense_growing_arcs.png",
     "size": "1920x1080",
     "datasetSource": "representative_mock_solver_replay"
   },
   {
-    "variant": "depth_2_focus_solid_purple",
-    "title": "Depth 2 focus on solid purple",
-    "path": "contact-sheets/depth_2_focus_solid_purple.png",
+    "variant": "centered_tight_arrival_arcs",
+    "title": "Tight arrival - narrow final arc span",
+    "path": "contact-sheets/centered_tight_arrival_arcs.png",
     "size": "1920x1080",
     "datasetSource": "representative_mock_solver_replay"
   },
   {
-    "variant": "dense_history_solid_purple",
-    "title": "Dense history on solid purple",
-    "path": "contact-sheets/dense_history_solid_purple.png",
+    "variant": "centered_wide_arrival_arcs",
+    "title": "Wide arrival - broader final arc span",
+    "path": "contact-sheets/centered_wide_arrival_arcs.png",
     "size": "1920x1080",
     "datasetSource": "representative_mock_solver_replay"
   },
   {
-    "variant": "contrast_stress_solid_purple",
-    "title": "Contrast stress on solid purple",
-    "path": "contact-sheets/contrast_stress_solid_purple.png",
+    "variant": "centered_strong_falloff_arcs",
+    "title": "Strong falloff - older wakes fade harder",
+    "path": "contact-sheets/centered_strong_falloff_arcs.png",
     "size": "1920x1080",
     "datasetSource": "representative_mock_solver_replay"
   }

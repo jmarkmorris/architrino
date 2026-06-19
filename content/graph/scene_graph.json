@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 514,
-      "edges": 1261,
-      "scenes": 334,
+      "nodes": 511,
+      "edges": 1259,
+      "scenes": 332,
       "markdownIndexes": 0,
-      "markdownDocs": 168,
+      "markdownDocs": 166,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -1703,18 +1703,6 @@
       "nodeType": "scene"
     },
     {
-      "id": "archie__scene_taxonomy",
-      "name": "Scene Taxonomy",
-      "path": "content/scenes/archie/scene_taxonomy.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "archie__textbook_file_structure",
-      "name": "Textbook File Structure",
-      "path": "content/scenes/archie/textbook_file_structure.json",
-      "nodeType": "scene"
-    },
-    {
       "id": "archie__research_notebook",
       "name": "Research Notebook",
       "path": "content/scenes/archie/research_notebook.json",
@@ -2225,12 +2213,6 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/archie/scene-taxonomy.md",
-      "name": "Scene Taxonomy",
-      "path": "content/markdown/aaa/archie/scene-taxonomy.md",
-      "nodeType": "markdown_doc"
-    },
-    {
       "id": "content/markdown/aaa/archie/software-architecture-and-maintenance.md",
       "name": "Software Architecture and Maintenance",
       "path": "content/markdown/aaa/archie/software-architecture-and-maintenance.md",
@@ -2249,14 +2231,8 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/archie/textbook-file-structure.md",
-      "name": "Textbook File Structure",
-      "path": "content/markdown/aaa/archie/textbook-file-structure.md",
-      "nodeType": "markdown_doc"
-    },
-    {
       "id": "content/markdown/aaa/archie/textbook-pdf-snapshots.md",
-      "name": "Textbook PDF Review Copies",
+      "name": "Download Textbook (pdf)",
       "path": "content/markdown/aaa/archie/textbook-pdf-snapshots.md",
       "nodeType": "markdown_doc"
     },
@@ -3307,15 +3283,6 @@
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/archie/scene_taxonomy.json",
-      "nodeType": "scene",
-      "id": "archie__scene_taxonomy",
-      "name": "Scene Taxonomy",
-      "path": "content/scenes/archie/scene_taxonomy.json",
-      "searchTarget": "content/scenes/archie/scene_taxonomy.json",
-      "implicit": false
-    },
-    {
       "nodeId": "scene:content/scenes/archie/software_architecture_and_maintenance.json",
       "nodeType": "scene",
       "id": "archie__software_architecture_and_maintenance",
@@ -3340,15 +3307,6 @@
       "name": "Terminology Usage",
       "path": "content/scenes/archie/terminology_usage.json",
       "searchTarget": "content/scenes/archie/terminology_usage.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/archie/textbook_file_structure.json",
-      "nodeType": "scene",
-      "id": "archie__textbook_file_structure",
-      "name": "Textbook File Structure",
-      "path": "content/scenes/archie/textbook_file_structure.json",
-      "searchTarget": "content/scenes/archie/textbook_file_structure.json",
       "implicit": false
     },
     {
@@ -6277,15 +6235,6 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/archie/scene-taxonomy.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/archie/scene-taxonomy.md",
-      "name": "Scene Taxonomy",
-      "path": "content/markdown/aaa/archie/scene-taxonomy.md",
-      "searchTarget": "content/markdown/aaa/archie/scene-taxonomy.md",
-      "implicit": false
-    },
-    {
       "nodeId": "markdown_doc:content/markdown/aaa/archie/software-architecture-and-maintenance.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/archie/software-architecture-and-maintenance.md",
@@ -6313,19 +6262,10 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/archie/textbook-file-structure.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/archie/textbook-file-structure.md",
-      "name": "Textbook File Structure",
-      "path": "content/markdown/aaa/archie/textbook-file-structure.md",
-      "searchTarget": "content/markdown/aaa/archie/textbook-file-structure.md",
-      "implicit": false
-    },
-    {
       "nodeId": "markdown_doc:content/markdown/aaa/archie/textbook-pdf-snapshots.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/archie/textbook-pdf-snapshots.md",
-      "name": "Textbook PDF Review Copies",
+      "name": "Download Textbook (pdf)",
       "path": "content/markdown/aaa/archie/textbook-pdf-snapshots.md",
       "searchTarget": "content/markdown/aaa/archie/textbook-pdf-snapshots.md",
       "implicit": false
@@ -7699,6 +7639,15 @@
       "implicit": false
     },
     {
+      "nodeId": "asset:content/generated/pdf/textbook/review-copies/comparative-glossary.pdf",
+      "nodeType": "asset",
+      "id": "content/generated/pdf/textbook/review-copies/comparative-glossary.pdf",
+      "name": "Comparative Glossary",
+      "path": "content/generated/pdf/textbook/review-copies/comparative-glossary.pdf",
+      "searchTarget": "content/generated/pdf/textbook/review-copies/comparative-glossary.pdf",
+      "implicit": false
+    },
+    {
       "nodeId": "asset:content/generated/pdf/textbook/review-copies/cosmology.pdf",
       "nodeType": "asset",
       "id": "content/generated/pdf/textbook/review-copies/cosmology.pdf",
@@ -7900,14 +7849,7 @@
       "to": "scene:content/scenes/archie/research_notebook.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/documentation.json",
-      "field": "scene.children[8]"
-    },
-    {
-      "from": "scene:content/scenes/archie/documentation.json",
-      "to": "scene:content/scenes/archie/scene_taxonomy.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/archie/documentation.json",
-      "field": "scene.children[7]"
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/archie/documentation.json",
@@ -7918,17 +7860,10 @@
     },
     {
       "from": "scene:content/scenes/archie/documentation.json",
-      "to": "scene:content/scenes/archie/textbook_file_structure.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/archie/documentation.json",
-      "field": "scene.children[5]"
-    },
-    {
-      "from": "scene:content/scenes/archie/documentation.json",
       "to": "scene:content/scenes/archie/textbook_pdf_snapshots.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/documentation.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/archie/project.json",
@@ -7985,6 +7920,13 @@
       "edgeType": "subscene",
       "source": "content/scenes/archie/user_interface.json",
       "field": "scene.children[3]"
+    },
+    {
+      "from": "scene:content/scenes/architrino_assembly_architecture.json",
+      "to": "scene:content/scenes/archie/glossary.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/architrino_assembly_architecture.json",
+      "field": "scene.children[12]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
@@ -12173,13 +12115,6 @@
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/archie/scene_taxonomy.json",
-      "to": "markdown_doc:content/markdown/aaa/archie/scene-taxonomy.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/archie/scene_taxonomy.json",
-      "field": "scene.source.path"
-    },
-    {
       "from": "scene:content/scenes/archie/software_architecture_and_maintenance.json",
       "to": "markdown_doc:content/markdown/aaa/archie/software-architecture-and-maintenance.md",
       "edgeType": "markdown_doc",
@@ -12198,13 +12133,6 @@
       "to": "markdown_doc:content/markdown/aaa/archie/terminology-usage.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/archie/terminology_usage.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/archie/textbook_file_structure.json",
-      "to": "markdown_doc:content/markdown/aaa/archie/textbook-file-structure.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/archie/textbook_file_structure.json",
       "field": "scene.source.path"
     },
     {
@@ -16546,6 +16474,13 @@
       "edgeType": "asset",
       "source": "content/scenes/archie/textbook_pdf_snapshots.json",
       "field": "pdf_snapshot_atomic_nuclear_assemblies.source.path"
+    },
+    {
+      "from": "scene:content/scenes/archie/textbook_pdf_snapshots.json",
+      "to": "asset:content/generated/pdf/textbook/review-copies/comparative-glossary.pdf",
+      "edgeType": "asset",
+      "source": "content/scenes/archie/textbook_pdf_snapshots.json",
+      "field": "pdf_snapshot_comparative_glossary.source.path"
     },
     {
       "from": "scene:content/scenes/archie/textbook_pdf_snapshots.json",

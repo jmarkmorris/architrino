@@ -1296,16 +1296,6 @@
       "path": "content/scenes/archie/mathematical_terminology.json"
     },
     {
-      "id": "archie__scene_taxonomy",
-      "name": "Scene Taxonomy",
-      "path": "content/scenes/archie/scene_taxonomy.json"
-    },
-    {
-      "id": "archie__textbook_file_structure",
-      "name": "Textbook File Structure",
-      "path": "content/scenes/archie/textbook_file_structure.json"
-    },
-    {
       "id": "archie__research_notebook",
       "name": "Research Notebook",
       "path": "content/scenes/archie/research_notebook.json"

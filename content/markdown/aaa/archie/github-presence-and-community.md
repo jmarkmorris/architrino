@@ -135,8 +135,6 @@ This document connects outward to nearby project-guidance pages, including:
 - [Academic Style Guide](academic-style-guide.md)
 - [Mathematics Style Guide](mathematics-style-guide.md)
 - [Mathematics Terminology](mathematics-terminology.md)
-- [Textbook File Structure](textbook-file-structure.md)
-- [Scene Taxonomy](scene-taxonomy.md)
 - [Research Notebook](research-notebook.md)
 
 Additional governance, contribution, and moderation pages may be added later if the public discussion surface grows enough to require them.

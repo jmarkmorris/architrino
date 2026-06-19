@@ -32,16 +32,8 @@
         "scenePath": "content/scenes/archie/terminology_usage.json"
       },
       {
-        "nodeId": "textbook_file_structure",
-        "scenePath": "content/scenes/archie/textbook_file_structure.json"
-      },
-      {
         "nodeId": "textbook_pdf_snapshots",
         "scenePath": "content/scenes/archie/textbook_pdf_snapshots.json"
-      },
-      {
-        "nodeId": "scene_taxonomy",
-        "scenePath": "content/scenes/archie/scene_taxonomy.json"
       },
       {
         "nodeId": "research_notebook",
@@ -91,27 +83,11 @@
       "labelBadge": "doc"
     },
     {
-      "id": "textbook_file_structure",
-      "title": "Textbook File Structure",
-      "radius": 2.2,
-      "color": "#465f3a",
-      "labelTitle": "Textbook File Structure",
-      "labelBadge": "doc"
-    },
-    {
       "id": "textbook_pdf_snapshots",
-      "title": "Textbook PDF Review Copies",
+      "title": "Download Textbook (pdf)",
       "radius": 2.2,
       "color": "#7a5a2f",
-      "labelTitle": "Textbook PDF Review Copies",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "scene_taxonomy",
-      "title": "Scene Taxonomy",
-      "radius": 2.2,
-      "color": "#6a5a8f",
-      "labelTitle": "Scene Taxonomy",
+      "labelTitle": "Download Textbook (pdf)",
       "labelBadge": "doc"
     },
     {

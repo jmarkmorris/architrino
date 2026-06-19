@@ -103,4 +103,4 @@ Each implementation step should follow the same loop:
 - [run-protocols](../../../content/markdown/aaa/validation/simulations/run-protocols.md)
 - [architrino](../../../content/markdown/aaa/validation/simulations/architrino.md)
 - [about-the-webapp](../../../content/markdown/aaa/archie/about-the-webapp.md)
-- [scene-taxonomy](../../../content/markdown/aaa/archie/scene-taxonomy.md)
+- [scene-taxonomy](../../architecture/scene-taxonomy.md)

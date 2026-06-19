@@ -8,8 +8,8 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 165,
-      "sections": 1323
+      "entries": 166,
+      "sections": 1325
     }
   },
   "tocRoot": {
@@ -12226,6 +12226,32 @@
                 "headingLevel": 2
               }
             ]
+          }
+        ]
+      },
+      {
+        "id": "archie__glossary",
+        "title": "Comparative Glossary",
+        "kind": "markdown-view",
+        "sceneType": "Scene-Markdown-View",
+        "scenePath": "content/scenes/archie/glossary.json",
+        "markdownPath": "content/markdown/aaa/archie/comparative-glossary.md",
+        "sections": [
+          {
+            "kind": "markdown-section",
+            "title": "Cosmology Lineage Terms",
+            "markdownPath": "content/markdown/aaa/archie/comparative-glossary.md",
+            "markdownSection": "Cosmology Lineage Terms",
+            "sectionKey": "cosmology lineage terms",
+            "headingLevel": 2
+          },
+          {
+            "kind": "markdown-section",
+            "title": "Key Regime Terms",
+            "markdownPath": "content/markdown/aaa/archie/comparative-glossary.md",
+            "markdownSection": "Key Regime Terms",
+            "sectionKey": "key regime terms",
+            "headingLevel": 2
           }
         ]
       }

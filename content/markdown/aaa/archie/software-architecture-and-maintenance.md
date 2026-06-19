@@ -8,11 +8,7 @@ Read this as maintenance governance for the software side of the project: first 
 
 This note explains how the project should treat software architecture, cleanup, superseded implementations, and temporary development paths. It is not a speculative engineering memo. It is the common contributor guidance for how to add, revise, and retire implementation paths without letting old experiments accumulate into structural debt.
 
-This guide should be read alongside:
-
-- [about-the-webapp.md](about-the-webapp.md)
-- [scene-taxonomy.md](scene-taxonomy.md)
-- [textbook-file-structure.md](textbook-file-structure.md)
+This guide should be read alongside [about-the-webapp.md](about-the-webapp.md).
 
 ## Core Claim
 

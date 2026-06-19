@@ -139,7 +139,15 @@ test("textbook PDF review spheres expose generated PDF files", async () => {
     (node) => node.id.startsWith("pdf_snapshot_") && node.id !== "pdf_snapshot_overview"
   );
 
-  assert.equal(readingCopyNodes.length, 12);
+  assert.equal(readingCopyNodes.length, 13);
+  assert.ok(
+    readingCopyNodes.some(
+      (node) =>
+        node.id === "pdf_snapshot_comparative_glossary" &&
+        node.filePath ===
+          "content/generated/pdf/textbook/review-copies/comparative-glossary.pdf"
+    )
+  );
   for (const node of readingCopyNodes) {
     assert.equal(node.markdownPath, null);
     assert.equal(node.fileSourceType, "pdf");

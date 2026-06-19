@@ -146,6 +146,54 @@ export function createMarkdownRuntime(deps) {
     return { markdown: output, protectedSegments };
   }
 
+  function protectCodeSegments(markdown) {
+    const protectedCodeSegments = [];
+    let protectedIndex = 0;
+    let output = "";
+    let cursor = 0;
+
+    const makeToken = () => `CODESEGMENTTOKEN${protectedIndex++}X`;
+
+    while (cursor < markdown.length) {
+      if (markdown[cursor] !== "`") {
+        output += markdown[cursor];
+        cursor += 1;
+        continue;
+      }
+
+      let runEnd = cursor;
+      while (runEnd < markdown.length && markdown[runEnd] === "`") {
+        runEnd += 1;
+      }
+      const fence = markdown.slice(cursor, runEnd);
+      const closeIndex = markdown.indexOf(fence, runEnd);
+      if (closeIndex === -1) {
+        output += markdown[cursor];
+        cursor += 1;
+        continue;
+      }
+
+      const raw = markdown.slice(cursor, closeIndex + fence.length);
+      const token = makeToken();
+      protectedCodeSegments.push({ token, raw });
+      output += token;
+      cursor = closeIndex + fence.length;
+    }
+
+    return { markdown: output, protectedCodeSegments };
+  }
+
+  function restoreCodeSegments(markdown, protectedCodeSegments) {
+    if (!protectedCodeSegments?.length) {
+      return markdown;
+    }
+    let restored = markdown;
+    protectedCodeSegments.forEach(({ token, raw }) => {
+      restored = restored.split(token).join(raw);
+    });
+    return restored;
+  }
+
   function renderMathSegmentFallback(segment) {
     return escapeHtml(segment.math || segment.raw || "");
   }
@@ -637,9 +685,12 @@ export function createMarkdownRuntime(deps) {
           }
         }
         if (markdownRenderer) {
+          const { markdown: codeProtectedMarkdown, protectedCodeSegments } =
+            protectCodeSegments(markdownSource);
           const { markdown: protectedMarkdown, protectedSegments } =
-            protectMathSegments(markdownSource);
-          html = restoreMathSegments(markdownRenderer.render(protectedMarkdown), protectedSegments);
+            protectMathSegments(codeProtectedMarkdown);
+          const rendererMarkdown = restoreCodeSegments(protectedMarkdown, protectedCodeSegments);
+          html = restoreMathSegments(markdownRenderer.render(rendererMarkdown), protectedSegments);
         } else {
           html = `<pre>${escapeHtml(markdownSource)}</pre>`;
         }

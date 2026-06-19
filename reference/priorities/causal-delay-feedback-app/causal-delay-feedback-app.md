@@ -36,17 +36,17 @@ The first version should be a candidate-level explanatory model. It should teach
 - Runtime target: a focused module under `src/apps/causal-delay-feedback/` when implementation starts.
 - Page structure: full-viewport canvas with a compact floating toolbar and a small collapsible readout, not a dense side-panel app.
 - First model: a few draggable initial-condition handles for architrinos, one Virtual Observer sample point, and a small finite set of retained causal-delay paths computed from solver history.
-- Visual style: reuse Ideal Swarm-style architrino markers, orbit/path trails, purple-background canvas treatment, and emitter-colored causal-wake arcs/pulses where practical.
+- Visual style: reuse Ideal Swarm-style architrino markers, orbit/path trails, purple-background canvas treatment, and emitter-colored causal-wake arcs where practical.
 - Interaction style: the canvas is the control surface. Users should learn by dragging source markers, the Virtual Observer, velocity arrows, and history-depth handles.
 
 ## Visual And UI Conventions
 
 - Use purple as the background atmosphere: a dark purple / near-black canvas with restrained purple depth fields behind the motion.
 - Use the standard app font stack: `"Helvetica Neue", Arial, sans-serif`.
-- Color causal-wake arcs and pulses by their emitter: positrino-sourced wakes inherit the positrino color, and electrino-sourced wakes inherit the electrino color.
+- Color causal-wake arcs by their emitter: positrino-sourced wakes inherit the positrino color, and electrino-sourced wakes inherit the electrino color.
 - Do not use purple as the causal-wake color. Purple belongs to the canvas atmosphere and background depth field.
 - Neutral, mixed, or aggregate wake summaries should use a desaturated outline, split-color bundle, or faint white/lavender diagnostic treatment only if it remains distinct from the purple background.
-- Use red/blue polarity markers for positrino/electrino objects when polarity is shown, and keep their emitted wake arcs/pulses in the same color family.
+- Use red/blue polarity markers for positrino/electrino objects when polarity is shown, and keep their emitted wake arcs in the same color family.
 - Keep panels at or below an 8px radius, with restrained borders and translucent dark fills.
 - Prefer icon buttons, including a settings gear, and draggable handles over labeled slider rows.
 - Keep text small and functional: labels should name the selected object, time, depth, or contribution rather than explain the whole app.
@@ -58,7 +58,7 @@ Recent app work has several reusable design patterns for this app:
 - [Molecule Visualization](../../../molecule.html) provides the best compact app-shell reference: a full canvas, top floating title block, small toolbar, color legend chips, hover label, and compact bottom readout.
 - [MoleculeRuntime.js](../../../src/apps/molecule/MoleculeRuntime.js) has useful viewport-fit logic that keeps the main object clear of the readout. Reuse that idea so the Virtual Observer, moving architrino paths, and contribution stack do not collide at different canvas sizes.
 - [IdealSwarmRuntime.js](../../../src/apps/ideal-swarm/IdealSwarmRuntime.js) remains the primary marker and trail grammar reference for architrino motion: glow-backed positrino/electrino markers, layered path ribbons, faded wake layers, and dark full-canvas atmosphere.
-- [PhotonSwarmVisualRuntime.js](../../../src/apps/photon/PhotonSwarmVisualRuntime.js) has a useful 2D arc-tail primitive: segmented curved arcs with width and alpha falloff. Adapt that pattern for causal-wake arcs, pulse trails, and $1/r$ thinning.
+- [PhotonSwarmVisualRuntime.js](../../../src/apps/photon/PhotonSwarmVisualRuntime.js) has a useful 2D arc-tail primitive: segmented curved arcs with width and alpha falloff. Adapt that pattern for causal-wake arcs and $1/r$ thinning.
 - Do not import Molecule's dense side preset rail or Ideal Swarm's four-corner panel layout into v1. The causal-delay app should keep the canvas-first, low-control direction already selected.
 
 ## V1 Product Direction
@@ -128,7 +128,7 @@ Mock proof datasets must be labeled as `representative mock solver replay` in th
 - contribution summaries;
 - and inactive or rejected rows for at least one proof variant.
 
-The baseline contact sheet scene is one pair: one positrino, one electrino, one Virtual Observer, three retained feedback depths, and a visible contribution stack. In the proof images, `three retained depths` means three retained wake-hit rows: depth 1 is the newest retained causal hit, depth 2 is older, and depth 3 is the oldest retained hit. This is the first landscape proof case because it tests the essential readability burden without turning the design into a many-body view.
+The baseline contact sheet scene is one pair: one electrino on the left, one positrino on the right, one centered Virtual Observer, three retained feedback depths, and a visible contribution stack. In the proof images, the retained history labels are ordered from older to newer: `1` is the oldest retained causal hit, `2` is the middle retained causal hit, and `3` is the newest retained causal hit. This is the first landscape proof case because it tests the essential readability burden without turning the design into a many-body view.
 
 The contact-sheet frame should be YouTube-compatible landscape. The standard target is 16:9, with 1920x1080 as the primary proof tile. Scale checks may use other 16:9 YouTube resolutions, but the first proof should not mix 16:10 or 4:3 frames.
 
@@ -136,7 +136,7 @@ Accepted first proof constraints:
 
 - Keep one pair only: one positrino, one electrino, and one Virtual Observer.
 - Use three retained feedback depths, shown in the UI as three retained wake hits.
-- Show both wake modes across the proof set: `partial_propagating_arcs` and `full_circular_arcs`.
+- Use emitted-to-observer growing partial wake arcs in the current proof set. Keep `full_circular_arcs` as a later named preset rather than mixing it into this comparison sheet.
 - Use 16:9 framing, with 1920x1080 as the design target.
 
 Landscape contact sheets should use the accepted six-variant proof set. Each variant should preserve the one-pair, three-depth scope and be framed as a 16:9 YouTube-compatible landscape tile.
@@ -149,12 +149,12 @@ Accepted first contact sheet variants:
 
 | Variant | Purpose |
 | --- | --- |
-| `partial_arcs_baseline_solid_purple` | Default teaching scene with one pair, one Virtual Observer, three retained wake hits, solid purple canvas, no grid, uniform history dots, and smaller outward-propagating emitter-colored dotted wake arcs. |
-| `full_circular_arcs_solid_purple` | Full emitted circular wake geometry on the same solid purple canvas, with emitter-colored arcs and active Virtual Observer intersections highlighted. |
-| `depth_1_focus_solid_purple` | Partial-arc proof with the newest retained depth selected while all path-history dots stay visually identical. |
-| `depth_2_focus_solid_purple` | Partial-arc proof with the middle retained depth selected while all path-history dots stay visually identical. |
-| `dense_history_solid_purple` | Overlap stress case with multiple emitter-colored curved arcs on the same solid purple canvas. |
-| `contrast_stress_solid_purple` | Red/blue wakes, selected cyan highlights, amber warnings, inactive/rejected rows, and threshold-only weak/subthreshold path cues. |
+| `centered_baseline_growing_arcs` | Baseline centered-observer layout with five growing emitter-to-receiver wake bands. |
+| `centered_sparse_growing_arcs` | Fewer wake bands so the arrival timing reads with less clutter. |
+| `centered_dense_growing_arcs` | More wake bands so the outward growth reads more continuously. |
+| `centered_tight_arrival_arcs` | Narrow final arc span to test whether the receiver hit feels precise. |
+| `centered_wide_arrival_arcs` | Broader final arc span to test whether the reference-image rhythm is clearer. |
+| `centered_strong_falloff_arcs` | Stronger old-hit fading to test whether $1/r$ falloff should be visually amplified. |
 
 Generated contact sheet proof artifacts:
 
@@ -164,24 +164,36 @@ Generated contact sheet proof artifacts:
 
 | Variant | Proof tile |
 | --- | --- |
-| `partial_arcs_baseline_solid_purple` | [partial_arcs_baseline_solid_purple.png](contact-sheets/partial_arcs_baseline_solid_purple.png) |
-| `full_circular_arcs_solid_purple` | [full_circular_arcs_solid_purple.png](contact-sheets/full_circular_arcs_solid_purple.png) |
-| `depth_1_focus_solid_purple` | [depth_1_focus_solid_purple.png](contact-sheets/depth_1_focus_solid_purple.png) |
-| `depth_2_focus_solid_purple` | [depth_2_focus_solid_purple.png](contact-sheets/depth_2_focus_solid_purple.png) |
-| `dense_history_solid_purple` | [dense_history_solid_purple.png](contact-sheets/dense_history_solid_purple.png) |
-| `contrast_stress_solid_purple` | [contrast_stress_solid_purple.png](contact-sheets/contrast_stress_solid_purple.png) |
+| `centered_baseline_growing_arcs` | [centered_baseline_growing_arcs.png](contact-sheets/centered_baseline_growing_arcs.png) |
+| `centered_sparse_growing_arcs` | [centered_sparse_growing_arcs.png](contact-sheets/centered_sparse_growing_arcs.png) |
+| `centered_dense_growing_arcs` | [centered_dense_growing_arcs.png](contact-sheets/centered_dense_growing_arcs.png) |
+| `centered_tight_arrival_arcs` | [centered_tight_arrival_arcs.png](contact-sheets/centered_tight_arrival_arcs.png) |
+| `centered_wide_arrival_arcs` | [centered_wide_arrival_arcs.png](contact-sheets/centered_wide_arrival_arcs.png) |
+| `centered_strong_falloff_arcs` | [centered_strong_falloff_arcs.png](contact-sheets/centered_strong_falloff_arcs.png) |
 
 ## Resolved Landscape Design Decisions
 
-- The emitter-color rule is accepted: causal-wake arcs and pulses use the color of the emitting architrino.
+- The emitter-color rule is accepted: causal-wake arcs use the color of the emitting architrino.
+- Use the official polarity colors in proof images: positrino red `#ff0000` and electrino blue `#0000ff`, with halo/outline treatment only for readability on purple.
 - The landscape layout is accepted: full 16:9 canvas, compact floating toolbar, compact readout, right-edge contribution stack, and no dense side panel.
+- The comparison proof layout should put the Virtual Observer near the canvas center, the electrino path on the left, and the positrino path on the right.
+- The representative pair should start near the lower canvas, move away from the center, then arc back toward the center as the paths move upward.
 - Causal wakes should be drawn as curved arcs, not straight rays.
 - Architrino path history should be drawn as solid trails, while causal wakes should be drawn as dotted arcs so the two uses of positrino/electrino color remain distinct.
+- Active dotted wake arcs in the proof tiles should begin at the emission point and grow outward toward the Virtual Observer.
+- The visible wake segment length should grow linearly as each emitted band approaches the Virtual Observer.
+- Current proof wake arcs should only cover the emitter-to-receiver sector, not full circles or unrelated off-path arcs.
+- Prototype proof tiles should not draw pulse dots or architrino-like markers on top of dotted wake arcs; the dotted wake stroke itself carries the wake geometry.
 - A full-circular-arc preset should exist because it teaches the complete emitted wake geometry.
 - The default teaching view should use smaller outward-propagating arcs moving toward each intersection, because partial arcs keep the screen less busy and make feedback arrivals easier to see.
-- The first contact sheet proof scope is accepted: one positrino, one electrino, one Virtual Observer, three retained feedback depths, and both wake modes shown across 16:9 proof variants.
+- The first contact sheet proof scope is accepted: one positrino, one electrino, one centered Virtual Observer, three retained feedback depths, and six 16:9 proof variants that compare undecided growing-arc treatments.
 - The revised contact sheet proof canvas should be a solid purple field with no grid.
+- Prototype canvases should not include a per-tile title panel; variant names belong in the contact-sheet manifest or surrounding review sheet, not inside each 1920x1080 proof tile.
+- Toolbar proof icons should use recognizable meanings: play, path visibility, reset, and settings. Avoid abstract placeholder glyphs that read as unrelated marks.
 - All path-history points on the architrino paths should use the same dot treatment; selected rows may highlight the causal path or stack row, but not make one history dot look like a different class of object.
+- Label each retained history point on each path as `1`, `2`, and `3`, ordered older to newer.
+- The right-edge contribution stack should use the same bare numeric labels `1`, `2`, and `3` instead of `depth 1`, `depth 2`, and `depth 3`.
+- The positrino and electrino mock replay paths should not look like equal-and-opposite mirror curves; use visibly different path histories so the pair reads as two solver-owned trajectories.
 - The representative mock pair should end at a steeper angle near the Virtual Observer so the red and blue causal-wake arcs separate clearly as they reach the observer.
 - Full circular wake geometry should keep every background circle at the same faint opacity so the nearest circle does not dominate the proof tile.
 - The proof images should not draw straight source-to-observer connector lines from history points; the dotted wake arc should carry the causal-hit geometry.
@@ -202,7 +214,7 @@ Generated contact sheet proof artifacts:
 ### Canvas
 
 - Use one large canvas with a horizontal space axis and a subtle time-depth stack behind it.
-- Keep the source, Virtual Observer, active paths, and arriving pulses visible at the same time.
+- Keep the source, Virtual Observer, active paths, and arriving wake segments visible at the same time.
 - Reserve a small right-edge strip or inset for the contribution stack so the main animation does not become crowded.
 - Use stable scaling: changing field speed or feedback depth should not resize the whole scene unexpectedly.
 - Keep the default composition sparse: two architrino initial-condition handles, one Virtual Observer, three visible feedback-depth rows, and a thin contribution stack.
@@ -214,7 +226,7 @@ Generated contact sheet proof artifacts:
 - Draw the source setup as one draggable positrino/electrino pair or a compact draggable architrino initial-condition marker.
 - Draw the Virtual Observer as a draggable sample point with a visible `now` marker.
 - Draw each retained feedback depth as a separate solver-returned curved dotted causal-wake arc with its own retained-hit index and emitter color.
-- Draw pulses as small moving packets on the causal-wake paths, using the same color as the emitting architrino.
+- Do not draw separate pulse or particle markers on the causal-wake paths in the first proof; the dotted wake segment itself is the arrival cue.
 - Draw inactive or invalid paths as faint dashed paths with a rejection reason.
 - Draw a draggable velocity arrow attached to the source. Pulling the arrow should change speed and direction without requiring a numeric control.
 - Draw a small depth handle or plus/minus chip near the contribution stack for adding or removing retained depths.
@@ -225,12 +237,12 @@ Generated contact sheet proof artifacts:
 - Animate architrino markers along solver-returned path samples.
 - Use linear or gently curved path-history motion for the first proof scenes.
 - Animate partial dotted causal-wake arcs expanding outward from prior source positions toward each active intersection.
-- Animate pulses on those visible arcs and land them on the Virtual Observer at `now`.
+- Animate those visible wake segments so their leading edge reaches the Virtual Observer at `now`.
 - In full-circular-arc mode, draw complete emitted circles or near-circles as background geometry, then highlight the active arc segment that reaches the Virtual Observer.
-- Keep every pulse and wake arc color-locked to its emitter for the full trip, including faded older depths.
+- Keep every wake arc color-locked to its emitter for the full trip, including faded older depths.
 - Fade and thin older paths by computed contribution strength using the $1/r$ falloff while keeping their depth index and emission time readable.
-- Let weak paths approach a thin or desaturated endpoint state below the assembly-relevance threshold, provided the wake's emitter identity remains clear from the active segment, pulse, depth row, or endpoint label.
-- When a pulse lands, add its signed contribution to the Virtual Observer contribution stack.
+- Let weak paths approach a thin or desaturated endpoint state below the assembly-relevance threshold, provided the wake's emitter identity remains clear from the active segment, depth row, or endpoint label.
+- When a wake segment reaches the Virtual Observer, add its signed contribution to the Virtual Observer contribution stack.
 - When geometry changes, animate paths entering or leaving the active set instead of snapping them silently on and off.
 - Provide pause/play, reset, slow/fast, and frame-step controls.
 - While dragging, pause or slow the animation enough that users can see path geometry update continuously.
@@ -243,7 +255,7 @@ Generated contact sheet proof artifacts:
 - Test both normal and dimmed/faded causal-wake arcs so old history remains readable without overwhelming the canvas.
 - Test $1/r$-driven fade and stroke-width mappings, including a weak/subthreshold state that remains readable through threshold-only cues.
 - If emitter colors are hard to distinguish on purple, revise the background saturation/value before changing the emitter-color rule.
-- Preserve the rule that causal-wake arcs and pulses are colored by their emitter unless a later visual test proves a specific accessibility exception is required.
+- Preserve the rule that causal-wake arcs are colored by their emitter unless a later visual test proves a specific accessibility exception is required.
 - Include the accepted six-variant contact sheet proof set in the first visual pass.
 
 ## Presets
@@ -323,7 +335,7 @@ Primary interactions:
 
 Secondary interactions:
 
-- Hover a pulse to show emission time, hit time, travel time, and contribution magnitude.
+- Hover a wake hit to show emission time, hit time, travel time, and contribution magnitude.
 - Hover an inactive path to show the rejection reason.
 - Click the contribution stack to highlight the path that produced that contribution.
 - Use the mouse wheel or pinch to zoom only when the pointer is over the canvas background, not while dragging an object.
@@ -387,7 +399,7 @@ Selected-depth readouts:
 - active, inactive, or rejected state;
 - and total Virtual Observer readout from the active contribution sum.
 
-The diagnostic table may exist behind the readout toggle, but v1 should not make it the main interaction surface. Selecting a row should highlight the matching source position, causal-wake path, arriving pulse, and contribution-stack entry.
+The diagnostic table may exist behind the readout toggle, but v1 should not make it the main interaction surface. Selecting a row should highlight the matching source position, causal-wake path, arriving wake segment, and contribution-stack entry.
 
 ## Interaction Requirements
 
@@ -412,7 +424,7 @@ Each retained depth row should be represented as structured state:
 | `sourceTime` | Source emission time for the retained contribution. |
 | `emitterId` | Solver id of the source architrino that emitted the wake. |
 | `emitterPolarity` | Positrino, electrino, neutral, or aggregate emitter classification. |
-| `emitterColor` | Display color inherited by the causal-wake arc and pulse. |
+| `emitterColor` | Display color inherited by the causal-wake arc. |
 | `hitTime` | Receiver hit time. |
 | `travelTime` | Delay between source emission and Virtual Observer hit. |
 | `sourcePosition` | Source position at emission. |
@@ -452,11 +464,11 @@ Each solver run should also carry a compact setup record:
 3. `direct_manipulation_mock` - Create a static canvas layout with purple background, draggable source initial position, Virtual Observer, initial-velocity arrow, retained emitter-colored causal-wake paths, depth labels, and contribution stack. Status: `pending`.
 4. `solver_replay_adapter` - Replay solver-returned frame samples, path-history samples, causal roots, delayed hits, emitter colors, $1/r$ falloff factors, thresholds, and contribution summaries. Status: `pending`.
 5. `drag_to_solver_loop` - Make source, Virtual Observer, velocity arrow, and history-depth handles update setup state and rerun the solver on release. Status: `pending`.
-6. `pulse_animation` - Animate source motion, outward-propagating causal-wake arcs, and emitter-colored pulses along solver-returned retained paths. Status: `pending`.
+6. `wake_arrival_animation` - Animate source motion and outward-propagating dotted causal-wake arcs along solver-returned retained paths, without particle-like markers on the wake paths. Status: `pending`.
 7. `compact_readout` - Add selected-object, selected-depth, and solver-status readouts without a dense default panel. Status: `pending`.
 8. `settings_gear` - Add a compact settings popover with canvas color, background depth field, weak contribution cue, reduced motion, and high contrast paths. Status: `pending`.
 9. `toolbar_minimum` - Add preset dropdown, play/pause, reset, reset preset, paths cycle, slow/fast, readout toggle, settings gear, and rerun indicator. Status: `pending`.
-10. `purple_background_contrast_pass` - Verify the purple background against emitter-colored wake arcs, pulse fades, threshold-only weak states, selected highlights, warnings, and text. Status: `pending`.
+10. `purple_background_contrast_pass` - Verify the purple background against emitter-colored wake arcs, threshold-only weak states, selected highlights, warnings, and text. Status: `pending`.
 11. `invalid_path_states` - Show inactive, rejected, unresolved, and stale paths with clear visual states and concise reasons. Status: `pending`.
 
 ## Implementation Boundaries

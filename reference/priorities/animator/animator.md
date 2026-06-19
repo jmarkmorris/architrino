@@ -69,7 +69,7 @@ It does not own:
 
 | File | Role | Primary promotion targets |
 | --- | --- | --- |
-| [design-and-interfaces.md](design-and-interfaces.md) | Stable animator design doctrine, viewport model, observer/framing model, media and overlay boundaries, structure editing direction, inputs, outputs, and app boundaries. | [about-the-webapp](../../../content/markdown/aaa/archie/about-the-webapp.md), [scene-taxonomy](../../../content/markdown/aaa/archie/scene-taxonomy.md), [navigation-and-controls](../../../content/markdown/aaa/archie/navigation-and-controls.md) |
+| [design-and-interfaces.md](design-and-interfaces.md) | Stable animator design doctrine, viewport model, observer/framing model, media and overlay boundaries, structure editing direction, inputs, outputs, and app boundaries. | [about-the-webapp](../../../content/markdown/aaa/archie/about-the-webapp.md), [scene-taxonomy](../../architecture/scene-taxonomy.md), [navigation-and-controls](../../../content/markdown/aaa/archie/navigation-and-controls.md) |
 
 ## Promotion Map
 
@@ -129,5 +129,5 @@ Objective:
 ## Related AAA Notes
 
 - [about-the-webapp](../../../content/markdown/aaa/archie/about-the-webapp.md)
-- [scene-taxonomy](../../../content/markdown/aaa/archie/scene-taxonomy.md)
+- [scene-taxonomy](../../architecture/scene-taxonomy.md)
 - [navigation-and-controls](../../../content/markdown/aaa/archie/navigation-and-controls.md)

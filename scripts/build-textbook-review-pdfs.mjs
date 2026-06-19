@@ -14,6 +14,16 @@ const MANIFEST_PATH = `${OUTPUT_DIR}/manifest.json`;
 const TEMP_HTML_DIR = ".tmp/textbook-review-pdf-html";
 const READER_ASSET_DIR = "apps/ios/ArchitrinoReader/ArchitrinoReader/ReaderAssets";
 const FULL_TEXTBOOK_ID = "architrino-textbook";
+const DEFAULT_PDF_MERGE_PATHS = [
+  process.env.PDF_UNITE_PATH,
+  "/opt/homebrew/bin/pdfunite",
+  "/usr/local/bin/pdfunite",
+  "pdfunite",
+  process.env.QPDF_PATH,
+  "/opt/homebrew/bin/qpdf",
+  "/usr/local/bin/qpdf",
+  "qpdf",
+].filter(Boolean);
 const DEFAULT_BROWSER_PATHS = [
   process.env.PDF_BROWSER_PATH,
   "/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge",
@@ -191,7 +201,21 @@ function renderMarkdownHTMLFragment(markdownText) {
 }
 
 function resolveBrowserPath() {
-  const candidates = args.browserPath ? [args.browserPath] : DEFAULT_BROWSER_PATHS;
+  return resolveExecutablePath(args.browserPath ? [args.browserPath] : DEFAULT_BROWSER_PATHS);
+}
+
+function resolvePdfMergeTool() {
+  const executablePath = resolveExecutablePath(DEFAULT_PDF_MERGE_PATHS);
+  if (!executablePath) {
+    return null;
+  }
+  return {
+    path: executablePath,
+    kind: path.basename(executablePath).toLowerCase().includes("qpdf") ? "qpdf" : "pdfunite",
+  };
+}
+
+function resolveExecutablePath(candidates) {
   for (const candidate of candidates) {
     if (!candidate) {
       continue;
@@ -207,6 +231,39 @@ function resolveBrowserPath() {
     }
   }
   return null;
+}
+
+function mergePdfFiles({ inputPaths, outputPath, tool }) {
+  const absoluteInputPaths = inputPaths.map((inputPath) => path.join(rootDir, inputPath));
+  const absoluteOutputPath = path.join(rootDir, outputPath);
+  const missingInputs = absoluteInputPaths.filter((inputPath) => !fs.existsSync(inputPath));
+  if (missingInputs.length) {
+    errors.push(
+      `${outputPath}: full-textbook PDF merge missing input(s): ${missingInputs
+        .map((inputPath) => normalizeRelPath(path.relative(rootDir, inputPath)))
+        .join(", ")}`
+    );
+    return;
+  }
+
+  fs.mkdirSync(path.dirname(absoluteOutputPath), { recursive: true });
+  fs.rmSync(absoluteOutputPath, { force: true });
+
+  const argsForTool =
+    tool.kind === "qpdf"
+      ? ["--empty", "--pages", ...absoluteInputPaths, "--", absoluteOutputPath]
+      : [...absoluteInputPaths, absoluteOutputPath];
+  const result = spawnSync(tool.path, argsForTool, { encoding: "utf8" });
+  if (result.status !== 0) {
+    const detail = `${result.stderr || result.stdout || ""}`.trim();
+    errors.push(
+      `${outputPath}: full-textbook PDF merge failed${detail ? ` (${detail})` : ""}`
+    );
+    return;
+  }
+  if (!fs.existsSync(absoluteOutputPath) || fs.statSync(absoluteOutputPath).size <= 0) {
+    errors.push(`${outputPath}: full-textbook PDF merge did not produce output`);
+  }
 }
 
 function buildRecords() {
@@ -645,14 +702,32 @@ if (!errors.length && mode === "write") {
   if (!browserPath) {
     errors.push("No supported browser found. Set PDF_BROWSER_PATH or pass --browser=PATH.");
   } else {
+    const pdfMergeTool = resolvePdfMergeTool();
     console.log(`build-textbook-review-pdfs mode: ${mode}`);
     console.log(`- Browser: ${browserPath}`);
+    if (pdfMergeTool) {
+      console.log(`- PDF merge: ${pdfMergeTool.path}`);
+    }
     console.log(`- Review PDFs: ${records.length}`);
     fs.rmSync(path.join(rootDir, TEMP_HTML_DIR), { recursive: true, force: true });
     for (const record of records) {
       console.log(`- Writing ${record.pdfPath}`);
-      const htmlPath = writeReviewHtml(record);
-      await runBrowserPrint({ browserPath, htmlPath, pdfPath: record.pdfPath });
+      if (record.id === FULL_TEXTBOOK_ID) {
+        if (!pdfMergeTool) {
+          errors.push("No supported PDF merge tool found. Install pdfunite or qpdf.");
+          break;
+        }
+        mergePdfFiles({
+          inputPaths: records
+            .filter((candidate) => candidate.id !== FULL_TEXTBOOK_ID)
+            .map((candidate) => candidate.pdfPath),
+          outputPath: record.pdfPath,
+          tool: pdfMergeTool,
+        });
+      } else {
+        const htmlPath = writeReviewHtml(record);
+        await runBrowserPrint({ browserPath, htmlPath, pdfPath: record.pdfPath });
+      }
       if (errors.length) {
         break;
       }

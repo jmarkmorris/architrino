@@ -396,6 +396,7 @@ struct ContentView: View {
                     }
                 }
             }
+            .padding(.vertical, depth == 0 ? 8 : 0)
         )
     }
 
@@ -531,7 +532,7 @@ struct ContentView: View {
             }
         }
         .contentShape(Rectangle())
-        .padding(.vertical, depth == 0 ? 7 : 4)
+        .padding(.vertical, 4)
     }
 
     private func navigateTOCRoute(_ route: ReaderViewModel.TOCRoute, fallbackExpansionID: String?) {
@@ -579,7 +580,11 @@ struct ContentView: View {
     }
 
     private func readerControlBar(isTOC: Bool) -> some View {
-        HStack {
+        let canBookmark = viewModel.currentChapter != nil
+        let canGoPrevious = viewModel.canGoPreviousChapter()
+        let canGoNext = isTOC ? viewModel.chapter(at: 0) != nil : viewModel.canGoNextChapter()
+
+        return HStack {
             fontSizeControl
             readerSettingsControl(isTOC: isTOC)
 
@@ -597,7 +602,12 @@ struct ContentView: View {
                 } label: {
                     Image(systemName: viewModel.isCurrentPositionBookmarked ? "bookmark.fill" : "bookmark")
                 }
-                .disabled(viewModel.currentChapter == nil)
+                .buttonStyle(
+                    ReaderControlBarButtonStyle(
+                        color: readerControlBarButtonColor(isEnabled: canBookmark)
+                    )
+                )
+                .disabled(!canBookmark)
                 .accessibilityLabel(viewModel.isCurrentPositionBookmarked ? "Remove bookmark" : "Add bookmark")
 
                 Text(viewModel.readingProgressLabel)
@@ -617,7 +627,12 @@ struct ContentView: View {
                 } label: {
                     Label("Prev", systemImage: "chevron.left")
                 }
-                .disabled(!viewModel.canGoPreviousChapter())
+                .buttonStyle(
+                    ReaderControlBarButtonStyle(
+                        color: readerControlBarButtonColor(isEnabled: canGoPrevious)
+                    )
+                )
+                .disabled(!canGoPrevious)
                 .accessibilityLabel("Previous chapter")
             }
 
@@ -630,7 +645,12 @@ struct ContentView: View {
             } label: {
                 Label("Next", systemImage: "chevron.right")
             }
-            .disabled(isTOC ? viewModel.chapter(at: 0) == nil : !viewModel.canGoNextChapter())
+            .buttonStyle(
+                ReaderControlBarButtonStyle(
+                    color: readerControlBarButtonColor(isEnabled: canGoNext)
+                )
+            )
+            .disabled(!canGoNext)
             .accessibilityLabel(isTOC ? "Open first chapter" : "Next chapter")
         }
         .font(.subheadline)
@@ -638,6 +658,12 @@ struct ContentView: View {
         .padding(.horizontal, 10)
         .padding(.vertical, 8)
         .background(viewModel.theme.readerControlBarBackgroundColor)
+    }
+
+    private func readerControlBarButtonColor(isEnabled: Bool) -> Color {
+        isEnabled
+            ? viewModel.theme.readerControlBarAccentColor
+            : viewModel.theme.readerControlBarSecondaryTextColor
     }
 
     private func readerSettingsControl(isTOC: Bool) -> some View {
@@ -921,6 +947,7 @@ private struct ReaderSettingsSheet: View {
                                 .buttonStyle(.plain)
                             }
                         }
+                        .frame(maxWidth: .infinity, alignment: .center)
                         .padding(.vertical, 4)
                     } header: {
                         Text("Theme")
@@ -1032,6 +1059,16 @@ private struct ReaderSettingsSheet: View {
             }
         }
         .preferredColorScheme(viewModel.theme.readerToolbarColorScheme)
+    }
+}
+
+private struct ReaderControlBarButtonStyle: ButtonStyle {
+    let color: Color
+
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .foregroundStyle(color)
+            .opacity(configuration.isPressed ? 0.72 : 1)
     }
 }
 

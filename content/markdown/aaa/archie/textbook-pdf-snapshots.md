@@ -1,4 +1,4 @@
-# Textbook PDF Review Copies
+# Download Textbook (pdf)
 
 This scene is the PDF review shelf for textbook reading copies. The released webapp at [architrino.com](https://www.architrino.com) remains the content of record. A generated PDF review copy is a stable exchange artifact for reading, annotation, forwarding, citation, and offline review.
 
@@ -83,3 +83,7 @@ Open the Validation generated PDF review copy.
 ## Philosophy-History
 
 Open the Philosophy-History generated PDF review copy.
+
+## Comparative Glossary
+
+Open the Comparative Glossary generated PDF review copy.

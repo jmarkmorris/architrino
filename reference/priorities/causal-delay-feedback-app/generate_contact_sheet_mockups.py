@@ -17,8 +17,8 @@ WIDTH = 1920
 HEIGHT = 1080
 SCALE = 2
 
-POSITRINO = (255, 86, 112, 255)
-ELECTRINO = (83, 174, 255, 255)
+POSITRINO = (255, 0, 0, 255)
+ELECTRINO = (0, 0, 255, 255)
 CYAN = (74, 229, 255, 255)
 AMBER = (255, 196, 87, 255)
 WHITE = (246, 247, 255, 255)
@@ -43,51 +43,62 @@ class Variant:
     key: str
     title: str
     mode: str
-    dense: bool = False
-    full_circles: bool = False
-    contrast: bool = False
     selected_depth: int = 1
+    wake_bands: int = 5
+    final_span: float = 34.0
+    start_span: float = 7.0
+    dot_radius: float = 2.0
+    alpha_scale: float = 1.0
+    falloff_power: float = 1.0
 
 
 VARIANTS = [
     Variant(
-        key="partial_arcs_baseline_solid_purple",
-        title="Partial arcs baseline on solid purple",
-        mode="partial_propagating_arcs",
-        selected_depth=1,
-    ),
-    Variant(
-        key="full_circular_arcs_solid_purple",
-        title="Full circular arcs on solid purple",
-        mode="full_circular_arcs",
-        full_circles=True,
-        selected_depth=2,
-    ),
-    Variant(
-        key="depth_1_focus_solid_purple",
-        title="Depth 1 focus on solid purple",
-        mode="partial_propagating_arcs",
-        selected_depth=1,
-    ),
-    Variant(
-        key="depth_2_focus_solid_purple",
-        title="Depth 2 focus on solid purple",
+        key="centered_baseline_growing_arcs",
+        title="Baseline - centered observer, 5 growing bands",
         mode="partial_propagating_arcs",
         selected_depth=2,
     ),
     Variant(
-        key="dense_history_solid_purple",
-        title="Dense history on solid purple",
+        key="centered_sparse_growing_arcs",
+        title="Sparse bands - fewer wake steps",
         mode="partial_propagating_arcs",
-        dense=True,
+        wake_bands=3,
+        final_span=32,
         selected_depth=2,
     ),
     Variant(
-        key="contrast_stress_solid_purple",
-        title="Contrast stress on solid purple",
+        key="centered_dense_growing_arcs",
+        title="Dense bands - smoother wake growth",
         mode="partial_propagating_arcs",
-        dense=True,
-        contrast=True,
+        wake_bands=8,
+        dot_radius=1.7,
+        selected_depth=2,
+    ),
+    Variant(
+        key="centered_tight_arrival_arcs",
+        title="Tight arrival - narrow final arc span",
+        mode="partial_propagating_arcs",
+        final_span=22,
+        start_span=5,
+        selected_depth=2,
+    ),
+    Variant(
+        key="centered_wide_arrival_arcs",
+        title="Wide arrival - broader final arc span",
+        mode="partial_propagating_arcs",
+        final_span=54,
+        start_span=9,
+        dot_radius=2.1,
+        selected_depth=2,
+    ),
+    Variant(
+        key="centered_strong_falloff_arcs",
+        title="Strong falloff - older wakes fade harder",
+        mode="partial_propagating_arcs",
+        final_span=36,
+        alpha_scale=0.92,
+        falloff_power=1.7,
         selected_depth=3,
     ),
 ]
@@ -102,9 +113,9 @@ THEMES = {
 }
 
 DEPTHS = [
-    {"depth": 1, "t": 0.61, "weight": 1.00, "falloff": "1.00", "state": "active"},
+    {"depth": 1, "t": 0.27, "weight": 0.27, "falloff": "0.27", "state": "near threshold"},
     {"depth": 2, "t": 0.44, "weight": 0.58, "falloff": "0.58", "state": "active"},
-    {"depth": 3, "t": 0.27, "weight": 0.27, "falloff": "0.27", "state": "near threshold"},
+    {"depth": 3, "t": 0.61, "weight": 1.00, "falloff": "1.00", "state": "active"},
 ]
 
 
@@ -250,18 +261,24 @@ class Canvas:
 
 
 def path_point(kind: str, t: float) -> tuple[float, float]:
-    turn = max(0.0, min(1.0, (t - 0.54) / 0.32))
-    turn = turn * turn * (3 - 2 * turn)
-    x = 210 + 960 * t + 165 * turn
+    t = max(0.0, min(1.0, t))
+    u = 1 - t
     if kind == "positrino":
-        return (
-            x,
-            330 + 72 * math.sin(1.9 * math.pi * t + 0.4) + 125 * turn,
-        )
-    return (
-        x,
-        675 - 76 * math.sin(1.7 * math.pi * t + 0.35) - 120 * turn,
-    )
+        p0 = (1080, 905)
+        p1 = (1335, 805)
+        p2 = (1375, 392)
+        p3 = (1124, 296)
+    else:
+        p0 = (840, 905)
+        p1 = (588, 830)
+        p2 = (512, 460)
+        p3 = (808, 314)
+    x = u**3 * p0[0] + 3 * u * u * t * p1[0] + 3 * u * t * t * p2[0] + t**3 * p3[0]
+    y = u**3 * p0[1] + 3 * u * u * t * p1[1] + 3 * u * t * t * p2[1] + t**3 * p3[1]
+    wobble = math.sin(math.pi * t) ** 2
+    if kind == "positrino":
+        return x + 22 * math.sin(2.7 * math.pi * t + 0.3) * wobble, y - 14 * math.sin(2.1 * math.pi * t)
+    return x - 18 * math.sin(2.4 * math.pi * t + 0.8) * wobble, y + 18 * math.sin(1.8 * math.pi * t + 0.2)
 
 
 def sample_path(kind: str, start: float = 0.03, end: float = 0.86, count: int = 90) -> list[tuple[float, float]]:
@@ -294,18 +311,21 @@ def draw_toolbar(c: Canvas) -> None:
         if label == "play":
             c.draw.polygon([c.xy((bx + 12, 55)), c.xy((bx + 12, 73)), c.xy((bx + 23, 64))], fill=(255, 255, 255, 196))
         elif label == "paths":
-            c.arc((bx + 16, 64), 9, 205, 350, (255, 255, 255, 182), 2)
-            c.circle((bx + 23, 60), 2.2, (255, 255, 255, 182))
+            path_points = [(bx + 9, 69), (bx + 16, 58), (bx + 24, 64)]
+            c.line(path_points, (255, 255, 255, 182), 1.8)
+            for point in path_points:
+                c.circle(point, 2.4, (255, 255, 255, 196))
         elif label == "reset":
-            c.arc((bx + 16, 64), 9, 35, 320, (255, 255, 255, 182), 2)
-            c.draw.polygon([c.xy((bx + 10, 55)), c.xy((bx + 9, 65)), c.xy((bx + 18, 60))], fill=(255, 255, 255, 182))
+            c.arc((bx + 16, 64), 9, 35, 315, (255, 255, 255, 182), 2)
+            c.draw.polygon([c.xy((bx + 10, 56)), c.xy((bx + 10, 66)), c.xy((bx + 18, 61))], fill=(255, 255, 255, 182))
         else:
-            c.ellipse_outline((bx + 16, 64), 8, (255, 255, 255, 176), 1.8)
-            c.circle((bx + 16, 64), 2.4, (255, 255, 255, 176))
-
-    c.rounded(1130, 32, 348, 64, 8, c.theme["panel"], c.theme["panel_border"], 1)
-    c.text((1152, 55), c.variant.title, 18, WHITE, "bold", anchor="lm")
-    c.text((1152, 78), "1920x1080 proof tile", 13, (220, 224, 245, 164), "regular", anchor="lm")
+            for tooth_index in range(8):
+                angle = math.tau * tooth_index / 8
+                inner = (bx + 16 + 7.5 * math.cos(angle), 64 + 7.5 * math.sin(angle))
+                outer = (bx + 16 + 10.5 * math.cos(angle), 64 + 10.5 * math.sin(angle))
+                c.line([inner, outer], (255, 255, 255, 164), 1.6)
+            c.ellipse_outline((bx + 16, 64), 6.2, (255, 255, 255, 184), 1.7)
+            c.circle((bx + 16, 64), 2.3, (36, 20, 55, 228), (255, 255, 255, 168), 1.1)
 
 
 def draw_legend(c: Canvas) -> None:
@@ -340,6 +360,15 @@ def draw_path_trail(c: Canvas, kind: str, color: tuple[int, int, int, int]) -> N
         point = path_point(kind, depth["t"])
         c.circle(point, 8.5, (8, 6, 18, 210), with_alpha(WHITE, 172), 1.2)
         c.circle(point, 4.2, color)
+        label_offset = (13, -13) if kind == "positrino" else (13, 15)
+        c.text(
+            (point[0] + label_offset[0], point[1] + label_offset[1]),
+            str(depth["depth"]),
+            13,
+            with_alpha(WHITE, 210),
+            "bold",
+            anchor="mm",
+        )
 
     now = path_point(kind, 0.86)
     c.circle(now, 20, with_alpha(color, 30))
@@ -434,65 +463,31 @@ def draw_wake_for_emitter(
     source = path_point(kind, float(depth["t"]))
     radius = distance(source, observer)
     theta = angle_between(source, observer)
-    depth_index = int(depth["depth"])
     weight = float(depth["weight"])
-    span = 50 - depth_index * 8
-    width = 6.4 * weight + 1.1
-    alpha = round(210 * weight)
+    falloff_weight = weight**variant.falloff_power
+    band_count = max(2, variant.wake_bands)
 
-    if variant.full_circles:
-        draw_dotted_arc(c, source, radius, 0, 360, with_alpha(color, 34), 1.2, 132)
+    for index in range(band_count):
+        progress = (index + 1) / band_count
+        band_radius = radius * progress
+        wake_span = variant.start_span + (variant.final_span - variant.start_span) * progress
+        alpha = round((34 + 178 * progress) * (0.42 + 0.58 * falloff_weight) * variant.alpha_scale)
+        dot_radius = variant.dot_radius * (0.72 + 0.34 * progress) * (0.72 + 0.3 * falloff_weight)
         draw_dotted_arc(
             c,
             source,
-            radius,
-            theta - span * 0.5,
-            theta + span * 0.5,
-            with_alpha(color, min(235, alpha + 35)),
-            max(2.0, width * 0.43),
+            band_radius,
+            theta - wake_span * 0.5,
+            theta + wake_span * 0.5,
+            with_alpha(color, min(235, alpha)),
+            max(1.05, dot_radius),
         )
-    else:
-        draw_dotted_arc(
-            c,
-            source,
-            radius,
-            theta - span * 0.58,
-            theta + span * 0.58,
-            with_alpha(color, alpha),
-            max(1.8, width * 0.43),
-        )
-
-    if variant.dense:
-        offset = 34 if kind == "positrino" else -34
-        draw_dashed_arc(
-            c,
-            (source[0] - 32, source[1] + offset),
-            radius * 0.92,
-            theta - span * 0.9,
-            theta + span * 0.25,
-            with_alpha(color, round(60 * weight)),
-            max(1.0, width * 0.35),
-        )
-
-    pulse_angle = theta - span * 0.16 if kind == "positrino" else theta + span * 0.16
-    pulse = (
-        source[0] + radius * math.cos(math.radians(pulse_angle)),
-        source[1] + radius * math.sin(math.radians(pulse_angle)),
-    )
-    c.circle(pulse, 9.5 * weight + 2, with_alpha(color, min(245, alpha + 40)), WHITE if depth_index == variant.selected_depth else None, 1.2)
 
 
 def draw_wakes(c: Canvas, observer: tuple[float, float]) -> None:
     for depth in DEPTHS:
         draw_wake_for_emitter(c, "positrino", POSITRINO, observer, depth, c.variant)
         draw_wake_for_emitter(c, "electrino", ELECTRINO, observer, depth, c.variant)
-
-    if c.variant.contrast:
-        warning_source = path_point("electrino", 0.18)
-        radius = distance(warning_source, observer) * 0.88
-        theta = angle_between(warning_source, observer)
-        draw_dashed_arc(c, warning_source, radius, theta - 26, theta + 28, AMBER, 2.3, 14)
-        c.text((warning_source[0] - 4, warning_source[1] + 44), "rejected root", 13, AMBER, "bold", anchor="mm")
 
 
 def draw_stack_bar(c: Canvas, x: float, y: float, width: float, color: tuple[int, int, int, int], value: float) -> None:
@@ -518,12 +513,9 @@ def draw_contribution_stack(c: Canvas) -> None:
         fill = (18, 12, 30, 238 if active else 216)
         outline = with_alpha(CYAN if active else WHITE, 132 if active else 44)
         c.rounded(x + 18, row_y, w - 36, row_h, 7, fill, outline, 1)
-        c.text((x + 36, row_y + 27), f"depth {depth_index}", 18, WHITE, "bold", anchor="lm")
+        c.text((x + 36, row_y + 27), f"{depth_index}", 18, WHITE, "bold", anchor="lm")
         state = str(depth["state"])
         state_color = CYAN if state == "active" else AMBER
-        if c.variant.contrast and depth_index == 3:
-            state = "below threshold"
-            state_color = AMBER
         c.text((x + 190, row_y + 27), state, 13, state_color, "bold", anchor="lm")
 
         weight = float(depth["weight"])
@@ -557,7 +549,7 @@ def draw_bottom_readout(c: Canvas) -> None:
 
 
 def draw_scene(c: Canvas) -> None:
-    observer = (1360, 566)
+    observer = (960, 540)
     draw_background(c)
     draw_toolbar(c)
     draw_legend(c)
@@ -611,7 +603,7 @@ def generate_review_sheet(manifest: list[dict[str, str]]) -> None:
     draw.text((82, 72), "Causal Delay Feedback - Six Mock Contact Sheet Proofs", fill=WHITE, font=title_font)
     draw.text(
         (86, 148),
-        "All tiles are 1920x1080 representative mock solver replay frames with the right-edge contribution stack.",
+        "Centered Virtual Observer, official red/blue polarity colors, and emitter-to-receiver growing wake bands.",
         fill=(224, 230, 255, 188),
         font=body_font,
     )
@@ -631,7 +623,7 @@ def generate_review_sheet(manifest: list[dict[str, str]]) -> None:
             width=2,
         )
         sheet.alpha_composite(tile, (x, y))
-        draw.text((x, y + thumb_h + 20), f"{index + 1}. {entry['variant']}", fill=WHITE, font=label_font)
+        draw.text((x, y + thumb_h + 20), f"{index + 1}. {entry['title']}", fill=WHITE, font=label_font)
 
     sheet.convert("RGB").save(OUT_DIR / "contact-sheet-six-variants.png")
 

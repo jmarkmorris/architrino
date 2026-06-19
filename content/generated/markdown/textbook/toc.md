@@ -1490,3 +1490,6 @@ Chapter links open scenes. Section links open the corresponding markdown section
     - [Compatibilist Agency](../../../markdown/aaa/philosophy-history/agency-and-internal-causation.md?section=Compatibilist+Agency)
     - [Summary](../../../markdown/aaa/philosophy-history/agency-and-internal-causation.md?section=Summary)
     - [Closing Statement](../../../markdown/aaa/philosophy-history/agency-and-internal-causation.md?section=Closing+Statement)
+- [Comparative Glossary](../../../scenes/archie/glossary.json)
+  - [Cosmology Lineage Terms](../../../markdown/aaa/archie/comparative-glossary.md?section=Cosmology+Lineage+Terms)
+  - [Key Regime Terms](../../../markdown/aaa/archie/comparative-glossary.md?section=Key+Regime+Terms)
