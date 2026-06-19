@@ -128,7 +128,7 @@ Mock proof datasets must be labeled as `representative mock solver replay` in th
 - contribution summaries;
 - and inactive or rejected rows for at least one proof variant.
 
-The current contact sheet scene is one pair shown in a time-space diagram: one electrino path and one positrino path start in the lower-left region, separate in space, curve smoothly, and end in the upper-right region as time moves left to right. The proof images do not draw a Virtual Observer. The retained history labels are ordered from older to newer: `1`, `2`, `3`, and `4`. The visible wake links test cross-path causal feedback from red `1` to blue `2`, red `2` to blue `3`, red `3` to blue `4`, and the corresponding blue-to-red links.
+The current contact sheet scene is one pair shown in a time-space diagram: the electrino path starts at the lower-left, the positrino path starts at the upper-left, both paths move left to right, cross near the middle, and then begin turning back toward each other as if attraction is bending the later motion. The proof images do not draw a Virtual Observer. The retained history labels are ordered from older to newer: `1`, `2`, `3`, and `4`. The visible wake links test cross-path causal feedback from red `1` to blue `2`, red `2` to blue `3`, red `3` to blue `4`, and the corresponding blue-to-red links.
 
 The contact-sheet frame should be YouTube-compatible landscape. The standard target is 16:9, with 1920x1080 as the primary proof tile. Scale checks may use other 16:9 YouTube resolutions, but the first proof should not mix 16:10 or 4:3 frames.
 
@@ -149,11 +149,11 @@ Accepted first contact sheet variants:
 
 | Variant | Purpose |
 | --- | --- |
-| `cross_feedback_baseline_15_fronts` | Baseline time-space cross-feedback diagram with 15 light wake fronts per link. |
-| `cross_feedback_tight_fronts` | Narrower receiver-sector wake fronts to test precision. |
-| `cross_feedback_wide_fronts` | Broader receiver-sector wake fronts to test readability. |
+| `cross_feedback_baseline_15_fronts` | Accepted sample-2-plus-sample-5 baseline: tight receiver-sector fronts with brighter visibility treatment. |
+| `cross_feedback_tight_fronts` | Tighter receiver sector to test cleaner arrivals. |
+| `cross_feedback_wide_fronts` | Slightly wider receiver sector to test readability. |
 | `cross_feedback_thin_fronts` | Lighter/thinner wake traces to test low-clutter contrast. |
-| `cross_feedback_bright_fronts` | Brighter wake traces to test visibility on purple. |
+| `cross_feedback_bright_fronts` | Brighter wake traces to stress-test visibility on purple. |
 | `cross_feedback_strong_falloff` | Stronger old-hit fading to test whether $1/r$ falloff should be visually amplified. |
 
 Generated contact sheet proof artifacts:
@@ -176,13 +176,17 @@ Generated contact sheet proof artifacts:
 - The emitter-color rule is accepted: causal-wake arcs use the color of the emitting architrino.
 - Use the official polarity colors in proof images: positrino red `#ff0000` and electrino blue `#0000ff`, with halo/outline treatment only for readability on purple.
 - The landscape layout is accepted: full 16:9 canvas, compact floating toolbar, compact readout, right-edge contribution stack, and no dense side panel.
-- The comparison proof layout should use a time-space diagram: time on the horizontal axis, space on the vertical axis, and both paths moving from lower-left to upper-right.
+- The comparison proof layout should use a time-space diagram: time on the horizontal axis, space on the vertical axis, and both paths moving left to right.
 - The current comparison proof should not draw the Virtual Observer; it should show cross-path causal feedback between retained positrino and electrino history points.
-- The representative pair should start in the lower-left region separated in space, then turn upward and right without reading as mirrored or equal-and-opposite curves.
+- The representative pair should start separated on the left side: blue/electrino at lower-left and red/positrino at upper-left.
+- The representative pair should cross near the middle and then begin bending back toward each other so the mock replay suggests attraction after the crossover.
+- The final red/blue positions should remain separated enough that the late wake fronts are readable and do not overlap into a single bundle.
 - Causal wakes should be drawn as curved arcs, not straight rays.
 - Architrino path history should be drawn as solid trails, while causal wakes should be drawn as dotted arcs so the two uses of positrino/electrino color remain distinct.
 - Active dotted wake arcs in the proof tiles should begin at the emitting history point and grow outward toward the later receiving history point on the opposite path.
 - The visible wake segment length should grow linearly as each emitted band approaches its receiving path point.
+- The accepted default wake-front treatment combines the tighter receiver sector from sample `2` with the brighter visibility treatment from sample `5`.
+- Dotted wake fronts should be bolder near the emitter and fade lighter as they approach the receiver.
 - Current proof wake arcs should only cover the emitter-to-receiver sector, not full circles or unrelated off-path arcs.
 - Prototype proof tiles should not draw pulse dots or architrino-like markers on top of dotted wake arcs; the dotted wake stroke itself carries the wake geometry.
 - A full-circular-arc preset should exist because it teaches the complete emitted wake geometry.

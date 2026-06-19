@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
   "manifest_schema": "textbook_bundle_schema_v1",
-  "generated_at": "2026-06-19T01:45:21.157Z",
-  "package_version": "1.0.0-97f9e05f",
+  "generated_at": "2026-06-19T03:09:36.817Z",
+  "package_version": "1.0.0-1281bb87",
   "schema_version_note": "content_bundle_schema_v1",
   "textbook_toc": {
     "path": "content/graph/textbook_toc.json",
-    "sha256": "97f9e05f074a572ae2ea3d8b77fc4b99ed709adebd0d0188fa9cf767ef77fdab",
-    "size": 625461
+    "sha256": "1281bb879cdacc3691a890d8b929266c9449f3491d11f6fd8de5b50cadd68596",
+    "size": 625431
   },
   "chapters": [
     {
@@ -164,8 +164,8 @@
       "sourcePath": "content/graph/textbook_toc.json",
       "role": "toc",
       "type": "json",
-      "size": 625915,
-      "sha256": "97f9e05f074a572ae2ea3d8b77fc4b99ed709adebd0d0188fa9cf767ef77fdab"
+      "size": 625885,
+      "sha256": "1281bb879cdacc3691a890d8b929266c9449f3491d11f6fd8de5b50cadd68596"
     },
     {
       "path": "reading-copies/atomic-and-nuclear-assemblies.html",
@@ -220,16 +220,16 @@
       "sourcePath": "__generated__/reading-copies/foundations.html",
       "role": "chapter",
       "type": "html",
-      "size": 1621909,
-      "sha256": "a856c1e076b33ddd60e22f44d24f5c8f18c180c030240155f5911d63d4942643"
+      "size": 1621823,
+      "sha256": "a4148d6d37d5c8e91121fd77581aae90930a43542a77f751a847a834ae9e9731"
     },
     {
       "path": "reading-copies/foundations.md",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 184470,
-      "sha256": "5fc1c43f4950a15d132af1739df7fccae6ccd9b7572b16b472452daeda130aee"
+      "size": 184405,
+      "sha256": "e15d85c9e67321dfc1f43325ead4701ab751c5fbca1c3c94e1b755cda6e99171"
     },
     {
       "path": "reading-copies/noether-sea-and-effective-spacetime.html",
@@ -428,8 +428,8 @@
       "sourcePath": "__generated__/textbook_bundle_search_index.json",
       "role": "search",
       "type": "json",
-      "size": 8385622,
-      "sha256": "08a4765711450372aeb11dec3c7e40e31fa88816b233899280a010c151d686b5"
+      "size": 8385517,
+      "sha256": "4b5d22e95719d01e43191ae9cef308421bef8379e499b5b255565a56feccdcef"
     }
   ],
   "links": []

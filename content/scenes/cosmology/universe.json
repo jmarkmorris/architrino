@@ -17,15 +17,8 @@
     },
     "children": [
       {
-        "nodeId": "voids",
-        "scenePath": "content/scenes/spacetime/noether_sea.json",
-        "textbookToc": {
-          "hideEntry": true
-        }
-      },
-      {
         "nodeId": "cosmic_web",
-        "scenePath": "content/scenes/cosmology/structure_formation.json",
+        "scenePath": "content/scenes/cosmology/galaxy_cluster.json",
         "textbookToc": {
           "hideEntry": true
         }
@@ -33,33 +26,106 @@
       {
         "nodeId": "galaxy_cluster",
         "scenePath": "content/scenes/cosmology/galaxy_cluster.json"
+      },
+      {
+        "nodeId": "galaxy",
+        "scenePath": "content/scenes/cosmology/galaxy.json",
+        "textbookToc": {
+          "hideEntry": true
+        }
+      },
+      {
+        "nodeId": "intracluster_medium",
+        "scenePath": "content/scenes/cosmology/intracluster_medium.json",
+        "textbookToc": {
+          "hideEntry": true
+        }
       }
     ]
   },
   "objects": [
     {
       "id": "voids",
-      "label": "active cosmic voids",
-      "radius": 2.688,
-      "color": "#1c2a4f",
-      "labelTitle": "active cosmic voids",
+      "label": "cosmic void",
+      "radius": 2.05,
+      "color": "#5a1f2e",
+      "position": [
+        -5.2,
+        5.6,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "cosmic void",
       "details": {
         "interpretation": "Cosmological voids are not empty. In this model they remain active Noether sea regions with photon and neutrino transport, occasional hydrogen atoms, and possible high-energy photon reaction channels."
-      }
+      },
+      "fixedPosition": true
     },
     {
       "id": "cosmic_web",
       "label": "cosmic web",
-      "radius": 2.688,
+      "radius": 2.05,
       "color": "#2f4f7a",
-      "labelTitle": "cosmic web"
+      "position": [
+        5.2,
+        5.6,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "cosmic web",
+      "fixedPosition": true
     },
     {
       "id": "galaxy_cluster",
       "label": "galaxy cluster",
-      "radius": 2.688,
-      "color": "#243d8f",
-      "labelTitle": "galaxy cluster"
+      "radius": 2.05,
+      "color": "#4b0082",
+      "position": [
+        0,
+        0.6,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "galaxy cluster",
+      "fixedPosition": true
+    },
+    {
+      "id": "galaxy",
+      "label": "galaxy",
+      "radius": 2.05,
+      "color": "#3f6a5a",
+      "position": [
+        -4.8,
+        -4.8,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "galaxy",
+      "fixedPosition": true
+    },
+    {
+      "id": "intracluster_medium",
+      "label": "intracluster medium",
+      "radius": 2.05,
+      "color": "#6a4d1b",
+      "position": [
+        4.8,
+        -4.8,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "intracluster medium",
+      "fixedPosition": true
     }
   ]
 }

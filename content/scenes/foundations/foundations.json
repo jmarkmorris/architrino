@@ -42,8 +42,8 @@
         "scenePath": "content/scenes/foundations/detecting_the_absolute_frame.json"
       },
       {
-        "nodeId": "bootstrapping_the_absolute_frame",
-        "scenePath": "content/scenes/foundations/bootstrapping_the_absolute_frame.json"
+        "nodeId": "constructing_the_absolute_frame",
+        "scenePath": "content/scenes/foundations/constructing_the_absolute_frame.json"
       },
       {
         "nodeId": "emergence_of_structure",
@@ -109,7 +109,7 @@
       "labelBadge": "doc"
     },
     {
-      "id": "bootstrapping_the_absolute_frame",
+      "id": "constructing_the_absolute_frame",
       "title": "Constructing the Absolute Frame",
       "radius": 2.95,
       "color": "#3657a6",

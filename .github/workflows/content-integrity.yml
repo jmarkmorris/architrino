@@ -16,14 +16,5 @@ jobs:
         with:
           node-version: "22"
 
-      - name: Validate content indexes and references
-        run: node scripts/validate-content.mjs --check --strict
-
-      - name: Validate generated scene graph manifest
-        run: node scripts/build-scene-graph.mjs --check --strict
-
-      - name: Validate generated iOS textbook package
-        run: node scripts/export-ios-textbook-package.mjs --check --strict
-
-      - name: Smoke test manifest runtime routes/search
-        run: node scripts/smoke-option3.mjs
+      - name: Run Content Integrity gate
+        run: node scripts/check-content-integrity.mjs

@@ -16,7 +16,7 @@ Translate mathematical structures and simulation results into a **clear picture 
 ## Current Theory Alignment
 
 - Treat `foundations/ontology.md` and `dynamics/master-equation.md` as canonical for ontology and dynamics language.
-- Use `foundations/detecting-the-absolute-frame.md`, `foundations/bootstrapping-the-absolute-frame.md`, and `cosmology/cosmology-ontology.md` for the fixed-void + effective-observer dual-description stance.
+- Use `foundations/detecting-the-absolute-frame.md`, `foundations/constructing-the-absolute-frame.md`, and `cosmology/cosmology-ontology.md` for the fixed-void + effective-observer dual-description stance.
 - Keep philosophical claims ledger-aware via `validation/parameter-ledger.md`, `validation/constraint-ledger.md`, and `validation/failure-criteria.md`.
 - Enforce terminology from current docs: path history/causal wakes, deterministic multistability, and explicit $\mathbb{U}_{\text{now}}$ vs observer-level descriptions.
 

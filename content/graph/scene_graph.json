@@ -1295,9 +1295,9 @@
       "nodeType": "scene"
     },
     {
-      "id": "foundations__bootstrapping_the_absolute_frame",
+      "id": "foundations__constructing_the_absolute_frame",
       "name": "Constructing the Absolute Frame",
-      "path": "content/scenes/foundations/bootstrapping_the_absolute_frame.json",
+      "path": "content/scenes/foundations/constructing_the_absolute_frame.json",
       "nodeType": "scene"
     },
     {
@@ -2429,9 +2429,9 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
+      "id": "content/markdown/aaa/foundations/constructing-the-absolute-frame.md",
       "name": "Constructing the Absolute Frame",
-      "path": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
+      "path": "content/markdown/aaa/foundations/constructing-the-absolute-frame.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -4858,12 +4858,12 @@
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/foundations/bootstrapping_the_absolute_frame.json",
+      "nodeId": "scene:content/scenes/foundations/constructing_the_absolute_frame.json",
       "nodeType": "scene",
-      "id": "foundations__bootstrapping_the_absolute_frame",
+      "id": "foundations__constructing_the_absolute_frame",
       "name": "Constructing the Absolute Frame",
-      "path": "content/scenes/foundations/bootstrapping_the_absolute_frame.json",
-      "searchTarget": "content/scenes/foundations/bootstrapping_the_absolute_frame.json",
+      "path": "content/scenes/foundations/constructing_the_absolute_frame.json",
+      "searchTarget": "content/scenes/foundations/constructing_the_absolute_frame.json",
       "implicit": false
     },
     {
@@ -6559,12 +6559,12 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
+      "nodeId": "markdown_doc:content/markdown/aaa/foundations/constructing-the-absolute-frame.md",
       "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
+      "id": "content/markdown/aaa/foundations/constructing-the-absolute-frame.md",
       "name": "Constructing the Absolute Frame",
-      "path": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
-      "searchTarget": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
+      "path": "content/markdown/aaa/foundations/constructing-the-absolute-frame.md",
+      "searchTarget": "content/markdown/aaa/foundations/constructing-the-absolute-frame.md",
       "implicit": false
     },
     {
@@ -8311,21 +8311,21 @@
       "to": "scene:content/scenes/cosmology/galaxy_cluster.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/universe.json",
+      "field": "scene.children[0]"
+    },
+    {
+      "from": "scene:content/scenes/cosmology/universe.json",
+      "to": "scene:content/scenes/cosmology/galaxy.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/cosmology/universe.json",
       "field": "scene.children[2]"
     },
     {
       "from": "scene:content/scenes/cosmology/universe.json",
-      "to": "scene:content/scenes/cosmology/structure_formation.json",
+      "to": "scene:content/scenes/cosmology/intracluster_medium.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/universe.json",
-      "field": "scene.children[1]"
-    },
-    {
-      "from": "scene:content/scenes/cosmology/universe.json",
-      "to": "scene:content/scenes/spacetime/noether_sea.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/cosmology/universe.json",
-      "field": "scene.children[0]"
+      "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
@@ -10912,7 +10912,7 @@
     },
     {
       "from": "scene:content/scenes/foundations/foundations.json",
-      "to": "scene:content/scenes/foundations/bootstrapping_the_absolute_frame.json",
+      "to": "scene:content/scenes/foundations/constructing_the_absolute_frame.json",
       "edgeType": "subscene",
       "source": "content/scenes/foundations/foundations.json",
       "field": "scene.children[7]"
@@ -12360,10 +12360,10 @@
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/foundations/bootstrapping_the_absolute_frame.json",
-      "to": "markdown_doc:content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
+      "from": "scene:content/scenes/foundations/constructing_the_absolute_frame.json",
+      "to": "markdown_doc:content/markdown/aaa/foundations/constructing-the-absolute-frame.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/foundations/bootstrapping_the_absolute_frame.json",
+      "source": "content/scenes/foundations/constructing_the_absolute_frame.json",
       "field": "scene.source.path"
     },
     {

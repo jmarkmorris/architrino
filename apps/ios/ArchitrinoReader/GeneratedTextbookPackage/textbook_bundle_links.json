@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-06-19T01:45:21.157Z",
+  "generated_at": "2026-06-19T03:09:36.817Z",
   "total_links": 1390,
   "links": [
     {
@@ -3222,18 +3222,18 @@
     {
       "sourceChapterId": "foundations",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
-      "target": "../../../../markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
+      "target": "../../../../markdown/aaa/foundations/constructing-the-absolute-frame.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md"
+      "targetBundlePath": "content/markdown/aaa/foundations/constructing-the-absolute-frame.md"
     },
     {
       "sourceChapterId": "foundations",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
-      "target": "../../../../markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
+      "target": "../../../../markdown/aaa/foundations/constructing-the-absolute-frame.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md"
+      "targetBundlePath": "content/markdown/aaa/foundations/constructing-the-absolute-frame.md"
     },
     {
       "sourceChapterId": "foundations",

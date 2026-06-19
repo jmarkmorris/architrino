@@ -30,6 +30,7 @@ struct ReaderWebView: UIViewRepresentable {
         view.scrollView.alwaysBounceHorizontal = false
         view.scrollView.showsHorizontalScrollIndicator = false
         view.scrollView.isDirectionalLockEnabled = true
+        view.scrollView.delegate = context.coordinator
 
         if let shellURL = Bundle.main.url(
             forResource: "ReaderShell",
@@ -56,6 +57,7 @@ struct ReaderWebView: UIViewRepresentable {
             uiView.scrollView.backgroundColor = UIColor.readerBackground(for: theme)
         }
         context.coordinator.webView = uiView
+        uiView.scrollView.delegate = context.coordinator
         context.coordinator.pendingAppearance = appearance
         if let anchorCommand,
            context.coordinator.lastAppliedAnchorCommandID != anchorCommand.id {
@@ -83,7 +85,7 @@ struct ReaderWebView: UIViewRepresentable {
         Coordinator(parent: self)
     }
 
-    final class Coordinator: NSObject, WKScriptMessageHandler, WKNavigationDelegate {
+    final class Coordinator: NSObject, WKScriptMessageHandler, WKNavigationDelegate, UIScrollViewDelegate {
         private let parent: ReaderWebView
         weak var webView: WKWebView?
         var isReaderReady = false
@@ -143,6 +145,13 @@ struct ReaderWebView: UIViewRepresentable {
         func webViewWebContentProcessDidTerminate(_ webView: WKWebView) {
             markReaderShellReloading()
             webView.reload()
+        }
+
+        func scrollViewDidScroll(_ scrollView: UIScrollView) {
+            guard scrollView.contentOffset.x != 0 else {
+                return
+            }
+            scrollView.contentOffset = CGPoint(x: 0, y: scrollView.contentOffset.y)
         }
 
         private func markReaderShellReloading() {
@@ -308,6 +317,7 @@ struct ReaderWebView: UIViewRepresentable {
 
         deinit {
             resetReaderState()
+            webView?.scrollView.delegate = nil
             if let controller = webView?.configuration.userContentController {
                 controller.removeScriptMessageHandler(forName: "readerLinkHandler")
                 controller.removeScriptMessageHandler(forName: "readerReady")

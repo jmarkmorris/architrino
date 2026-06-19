@@ -1,21 +1,21 @@
 [
   {
     "variant": "cross_feedback_baseline_15_fronts",
-    "title": "Baseline - 15 light cross-path fronts",
+    "title": "Accepted - tight bright fronts",
     "path": "contact-sheets/cross_feedback_baseline_15_fronts.png",
     "size": "1920x1080",
     "datasetSource": "representative_mock_solver_replay"
   },
   {
     "variant": "cross_feedback_tight_fronts",
-    "title": "Tight fronts - narrower receiver sector",
+    "title": "Tighter sector - cleaner arrivals",
     "path": "contact-sheets/cross_feedback_tight_fronts.png",
     "size": "1920x1080",
     "datasetSource": "representative_mock_solver_replay"
   },
   {
     "variant": "cross_feedback_wide_fronts",
-    "title": "Wide fronts - broader receiver sector",
+    "title": "Slightly wider sector",
     "path": "contact-sheets/cross_feedback_wide_fronts.png",
     "size": "1920x1080",
     "datasetSource": "representative_mock_solver_replay"
@@ -29,7 +29,7 @@
   },
   {
     "variant": "cross_feedback_bright_fronts",
-    "title": "Bright fronts - stronger visibility",
+    "title": "Brighter fronts - visibility stress",
     "path": "contact-sheets/cross_feedback_bright_fronts.png",
     "size": "1920x1080",
     "datasetSource": "representative_mock_solver_replay"

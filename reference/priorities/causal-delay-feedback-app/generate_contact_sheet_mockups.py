@@ -47,46 +47,46 @@ class Variant:
     mode: str
     selected_depth: int = 2
     wake_bands: int = 15
-    final_span: float = 28.0
-    start_span: float = 4.5
-    dot_radius: float = 1.55
-    alpha_scale: float = 1.0
+    final_span: float = 14.0
+    start_span: float = 2.5
+    dot_radius: float = 1.8
+    alpha_scale: float = 1.18
     falloff_power: float = 1.0
 
 
 VARIANTS = [
     Variant(
         key="cross_feedback_baseline_15_fronts",
-        title="Baseline - 15 light cross-path fronts",
+        title="Accepted - tight bright fronts",
         mode="partial_propagating_arcs",
     ),
     Variant(
         key="cross_feedback_tight_fronts",
-        title="Tight fronts - narrower receiver sector",
+        title="Tighter sector - cleaner arrivals",
+        mode="partial_propagating_arcs",
+        final_span=10,
+        start_span=1.8,
+    ),
+    Variant(
+        key="cross_feedback_wide_fronts",
+        title="Slightly wider sector",
         mode="partial_propagating_arcs",
         final_span=20,
         start_span=3.5,
     ),
     Variant(
-        key="cross_feedback_wide_fronts",
-        title="Wide fronts - broader receiver sector",
-        mode="partial_propagating_arcs",
-        final_span=42,
-        start_span=6,
-    ),
-    Variant(
         key="cross_feedback_thin_fronts",
         title="Thin fronts - lighter trace weight",
         mode="partial_propagating_arcs",
-        dot_radius=1.2,
-        alpha_scale=0.78,
+        dot_radius=1.35,
+        alpha_scale=0.86,
     ),
     Variant(
         key="cross_feedback_bright_fronts",
-        title="Bright fronts - stronger visibility",
+        title="Brighter fronts - visibility stress",
         mode="partial_propagating_arcs",
-        dot_radius=1.8,
-        alpha_scale=1.18,
+        dot_radius=2.05,
+        alpha_scale=1.32,
     ),
     Variant(
         key="cross_feedback_strong_falloff",
@@ -257,19 +257,51 @@ class Canvas:
 
 def path_point(kind: str, t: float) -> tuple[float, float]:
     t = max(0.0, min(1.0, t))
-    u = 1 - t
     if kind == "positrino":
-        p0 = (270, 835)
-        p1 = (430, 915)
-        p2 = (760, 390)
-        p3 = (1358, 238)
+        anchors = [
+            (260, 300),
+            (450, 350),
+            (650, 530),
+            (820, 675),
+            (1070, 645),
+            (1290, 620),
+            (1450, 600),
+        ]
     else:
-        p0 = (250, 705)
-        p1 = (470, 520)
-        p2 = (755, 865)
-        p3 = (1335, 322)
-    x = u**3 * p0[0] + 3 * u * u * t * p1[0] + 3 * u * t * t * p2[0] + t**3 * p3[0]
-    y = u**3 * p0[1] + 3 * u * u * t * p1[1] + 3 * u * t * t * p2[1] + t**3 * p3[1]
+        anchors = [
+            (250, 810),
+            (450, 735),
+            (640, 595),
+            (830, 420),
+            (1080, 430),
+            (1305, 440),
+            (1450, 470),
+        ]
+
+    segment_count = len(anchors) - 1
+    scaled_t = t * segment_count
+    index = min(segment_count - 1, int(math.floor(scaled_t)))
+    local_t = scaled_t - index
+
+    p0 = anchors[max(0, index - 1)]
+    p1 = anchors[index]
+    p2 = anchors[index + 1]
+    p3 = anchors[min(len(anchors) - 1, index + 2)]
+    tt = local_t * local_t
+    ttt = tt * local_t
+
+    x = 0.5 * (
+        (2 * p1[0])
+        + (-p0[0] + p2[0]) * local_t
+        + (2 * p0[0] - 5 * p1[0] + 4 * p2[0] - p3[0]) * tt
+        + (-p0[0] + 3 * p1[0] - 3 * p2[0] + p3[0]) * ttt
+    )
+    y = 0.5 * (
+        (2 * p1[1])
+        + (-p0[1] + p2[1]) * local_t
+        + (2 * p0[1] - 5 * p1[1] + 4 * p2[1] - p3[1]) * tt
+        + (-p0[1] + 3 * p1[1] - 3 * p2[1] + p3[1]) * ttt
+    )
     return x, y
 
 
@@ -368,8 +400,8 @@ def draw_path_trail(c: Canvas, kind: str, color: tuple[int, int, int, int]) -> N
     c.circle(now, 9, color, WHITE, 1.4)
 
     label = "positrino" if kind == "positrino" else "electrino"
-    offset_y = -28 if kind == "positrino" else 30
-    c.text((now[0] + 16, now[1] + offset_y), label, 14, with_alpha(color, 230), "bold", anchor="lm")
+    label_offset = (16, 24) if kind == "positrino" else (16, -30)
+    c.text((now[0] + label_offset[0], now[1] + label_offset[1]), label, 14, with_alpha(color, 230), "bold", anchor="lm")
 
 
 def angle_between(center: tuple[float, float], point: tuple[float, float]) -> float:
@@ -454,8 +486,9 @@ def draw_wake_progression(
         progress = (index + 1) / band_count
         band_radius = radius * progress
         wake_span = variant.start_span + (variant.final_span - variant.start_span) * progress
-        alpha = round((30 + 148 * progress) * (0.44 + 0.56 * falloff_weight) * variant.alpha_scale)
-        dot_radius = variant.dot_radius * (0.72 + 0.34 * progress) * (0.72 + 0.3 * falloff_weight)
+        emitter_bias = (1.0 - progress) ** 0.72
+        alpha = round((42 + 154 * emitter_bias) * (0.48 + 0.52 * falloff_weight) * variant.alpha_scale)
+        dot_radius = variant.dot_radius * (0.76 + 0.42 * emitter_bias) * (0.72 + 0.3 * falloff_weight)
         draw_dotted_arc(
             c,
             source,
@@ -597,7 +630,7 @@ def generate_review_sheet(manifest: list[dict[str, str]]) -> None:
     draw.text((82, 72), "Causal Delay Feedback - Six Mock Contact Sheet Proofs", fill=WHITE, font=title_font)
     draw.text(
         (86, 148),
-        "Time-space cross feedback, official red/blue path colors, and lighter emitter-colored growing wake bands.",
+        "Left-to-right crossover paths, accepted tight-bright wake fronts, and wider final separation.",
         fill=(224, 230, 255, 188),
         font=body_font,
     )

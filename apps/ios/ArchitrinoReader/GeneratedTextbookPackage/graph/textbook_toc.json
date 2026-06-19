@@ -713,17 +713,17 @@
             ]
           },
           {
-            "id": "foundations__bootstrapping_the_absolute_frame",
+            "id": "foundations__constructing_the_absolute_frame",
             "title": "Constructing the Absolute Frame",
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/foundations/bootstrapping_the_absolute_frame.json",
-            "markdownPath": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
+            "scenePath": "content/scenes/foundations/constructing_the_absolute_frame.json",
+            "markdownPath": "content/markdown/aaa/foundations/constructing-the-absolute-frame.md",
             "sections": [
               {
                 "kind": "markdown-section",
                 "title": "Overview",
-                "markdownPath": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
+                "markdownPath": "content/markdown/aaa/foundations/constructing-the-absolute-frame.md",
                 "markdownSection": "Overview",
                 "sectionKey": "overview",
                 "headingLevel": 2
@@ -731,7 +731,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Reconstruction Existence Lemma",
-                "markdownPath": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
+                "markdownPath": "content/markdown/aaa/foundations/constructing-the-absolute-frame.md",
                 "markdownSection": "Reconstruction Existence Lemma",
                 "sectionKey": "reconstruction existence lemma",
                 "headingLevel": 2
@@ -739,7 +739,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Minimal Reconstruction Procedure",
-                "markdownPath": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
+                "markdownPath": "content/markdown/aaa/foundations/constructing-the-absolute-frame.md",
                 "markdownSection": "Minimal Reconstruction Procedure",
                 "sectionKey": "minimal reconstruction procedure",
                 "headingLevel": 2
@@ -747,7 +747,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Parity Convention and Dynamical Chirality",
-                "markdownPath": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
+                "markdownPath": "content/markdown/aaa/foundations/constructing-the-absolute-frame.md",
                 "markdownSection": "Parity Convention and Dynamical Chirality",
                 "sectionKey": "parity convention and dynamical chirality",
                 "headingLevel": 2
@@ -755,7 +755,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Coordinate Frames Are Not Ontology",
-                "markdownPath": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
+                "markdownPath": "content/markdown/aaa/foundations/constructing-the-absolute-frame.md",
                 "markdownSection": "Coordinate Frames Are Not Ontology",
                 "sectionKey": "coordinate frames are not ontology",
                 "headingLevel": 2
@@ -763,7 +763,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Complete-State and Physical-Observer Access",
-                "markdownPath": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
+                "markdownPath": "content/markdown/aaa/foundations/constructing-the-absolute-frame.md",
                 "markdownSection": "Complete-State and Physical-Observer Access",
                 "sectionKey": "complete state and physical observer access",
                 "headingLevel": 2

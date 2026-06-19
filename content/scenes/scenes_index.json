@@ -956,9 +956,9 @@
       "path": "content/scenes/foundations/absolute_time_defense.json"
     },
     {
-      "id": "foundations__bootstrapping_the_absolute_frame",
+      "id": "foundations__constructing_the_absolute_frame",
       "name": "Constructing the Absolute Frame",
-      "path": "content/scenes/foundations/bootstrapping_the_absolute_frame.json"
+      "path": "content/scenes/foundations/constructing_the_absolute_frame.json"
     },
     {
       "id": "foundations__emergence_of_structure",
