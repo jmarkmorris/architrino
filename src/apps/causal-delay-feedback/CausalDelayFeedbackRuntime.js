@@ -30,6 +30,7 @@ const REPLAY_LOOP_SECONDS = 9;
 const TIME_EPSILON = 1e-6;
 const INITIAL_VELOCITY_ARROW_SCALE = 0.07;
 const INITIAL_VELOCITY_PREVIEW_RESPONSE = 0.42;
+const DEFAULT_ASSEMBLY_THRESHOLD = 0.00075;
 const SPACE_KEYS = new Set([" ", "Space", "Spacebar"]);
 const SPACEBAR_NATIVE_CONTROL_TAGS = new Set(["BUTTON", "INPUT", "SELECT", "TEXTAREA"]);
 
@@ -61,6 +62,20 @@ function mixColor(a, b, t) {
     b: Math.round(a.b + (b.b - a.b) * amount),
     a: a.a + ((b.a ?? 1) - (a.a ?? 1)) * amount,
   };
+}
+
+function formatCompactNumber(value) {
+  if (!Number.isFinite(value)) {
+    return "--";
+  }
+  if (value === 0) {
+    return "0";
+  }
+  const magnitude = Math.abs(value);
+  if (magnitude < 0.001 || magnitude >= 1000) {
+    return value.toExponential(1);
+  }
+  return value.toFixed(3).replace(/0+$/, "").replace(/\.$/, "");
 }
 
 function createViewport(canvasWidth, canvasHeight) {
@@ -111,6 +126,7 @@ class CausalDelayFeedbackRuntime {
     this.replayLoadState = "idle";
     this.replayLoadError = null;
     this.dataset = this.createFallbackReplay(this.presetId);
+    this.updateWakeLinkGeometry();
     this.viewport = createViewport(DESIGN_WIDTH, DESIGN_HEIGHT);
     this.pixelRatio = 1;
     this.selectedItem = null;
@@ -305,6 +321,7 @@ class CausalDelayFeedbackRuntime {
   applyReplayDataset(dataset, { loadState = this.replayLoadState } = {}) {
     this.dataset = dataset;
     this.replayLoadState = loadState;
+    this.updateWakeLinkGeometry();
     this.syncReplayRequestOptionsFromDataset();
     if (this.dom?.preset) {
       this.dom.preset.value = this.presetId;
@@ -490,6 +507,9 @@ class CausalDelayFeedbackRuntime {
     if (this.isPlaying) {
       this.elapsedSeconds += deltaSeconds;
       this.render();
+      if (this.dom?.readout) {
+        this.updateReadout();
+      }
     }
     this.animationFrame = this.window.requestAnimationFrame((nextTime) => this.tick(nextTime));
   }
@@ -583,11 +603,12 @@ class CausalDelayFeedbackRuntime {
       return;
     }
     const preset = this.dataset.preset;
+    const visualWeight = this.getWakeVisualWeight(link);
     const radius = getDistance(timing.source, timing.receiver);
     const bandCount = Math.max(2, preset.wakeBands);
-    const alpha = (preset.fullCircleAlpha ?? 0.14) * preset.alphaScale;
-    const color = withAlpha(mixColor(link.color, WHITE, 0.2), alpha);
-    const dotRadius = Math.max(0.9, preset.dotRadius);
+    const alpha = (preset.fullCircleAlpha ?? 0.14) * preset.alphaScale * visualWeight.alphaScale;
+    const color = withAlpha(mixColor(link.color, WHITE, 0.2 + visualWeight.desaturation * 0.5), alpha);
+    const dotRadius = Math.max(0.9, preset.dotRadius * visualWeight.radiusScale);
     const visibleProgress = clamp(timing.progress, 0, 1);
 
     for (let index = 0; index < bandCount + 1; index += 1) {
@@ -609,6 +630,7 @@ class CausalDelayFeedbackRuntime {
     const theta = getAngleDegrees(timing.source, timing.receiver);
     const falloffWeight = Math.pow(link.weight, preset.falloffPower);
     const bandCount = Math.max(2, preset.wakeBands);
+    const visualWeight = this.getWakeVisualWeight(link);
 
     this.drawWakeBuildProgression(ctx, link, {
       source: timing.source,
@@ -617,10 +639,11 @@ class CausalDelayFeedbackRuntime {
       falloffWeight,
       bandCount,
       buildProgress: timing.progress,
+      visualWeight,
     });
   }
 
-  drawWakeBuildProgression(ctx, link, { source, radius, theta, falloffWeight, bandCount, buildProgress }) {
+  drawWakeBuildProgression(ctx, link, { source, radius, theta, falloffWeight, bandCount, buildProgress, visualWeight }) {
     const preset = this.dataset.preset;
     const visibleProgress = clamp(buildProgress, 0.02, 1);
 
@@ -633,15 +656,24 @@ class CausalDelayFeedbackRuntime {
       const wakeSpan = preset.startSpan + (preset.finalSpan - preset.startSpan) * progress;
       const frontDistance = clamp((visibleProgress - progress) * bandCount, 0, 1);
       const frontBias = 1 - frontDistance;
-      const alpha = ((70 + 138 * frontBias) / 255) * (0.48 + 0.52 * falloffWeight) * preset.alphaScale;
-      const dotRadius = preset.dotRadius * (0.82 + 0.38 * frontBias) * (0.72 + 0.3 * falloffWeight);
+      const alpha =
+        ((70 + 138 * frontBias) / 255) *
+        (0.48 + 0.52 * falloffWeight) *
+        preset.alphaScale *
+        visualWeight.alphaScale;
+      const dotRadius =
+        preset.dotRadius *
+        (0.82 + 0.38 * frontBias) *
+        (0.72 + 0.3 * falloffWeight) *
+        visualWeight.radiusScale;
+      const wakeColor = mixColor(link.color, WHITE, visualWeight.desaturation);
       this.drawDottedArc(
         ctx,
         source,
         bandRadius,
         theta - wakeSpan * 0.5,
         theta + wakeSpan * 0.5,
-        withAlpha(link.color, alpha),
+        withAlpha(wakeColor, alpha),
         Math.max(1.05, dotRadius),
       );
     }
@@ -1038,6 +1070,7 @@ class CausalDelayFeedbackRuntime {
     if (!this.dataset) {
       return;
     }
+    this.markSolverWakeLinksStale(reason);
     this.dataset.datasetSource = DIRECT_MANIPULATION_DRAFT_PREVIEW;
     this.dataset.draftPreview = {
       reason,
@@ -1046,6 +1079,18 @@ class CausalDelayFeedbackRuntime {
     this.replayLoadState = "draft";
     this.replayLoadError = null;
     this.updateReplayStatus();
+  }
+
+  markSolverWakeLinksStale(reason) {
+    (this.dataset?.wakeLinks ?? []).forEach((link) => {
+      if (!this.hasWakeSolverMetadata(link)) {
+        return;
+      }
+      link.status = "stale";
+      link.reason = reason;
+      link.staleSolverRunId = link.solverRunId ?? link.staleSolverRunId;
+      link.staleReplaySource = this.dataset.runId ?? this.dataset.datasetId ?? null;
+    });
   }
 
   translateReplayPath(kind, delta) {
@@ -1285,10 +1330,39 @@ class CausalDelayFeedbackRuntime {
     };
   }
 
+  getWakeArrivalSynchronization(link) {
+    const timing = this.getWakeTiming(link);
+    if (!timing) {
+      return null;
+    }
+    const arrivalTiming = this.getWakeTiming(link, timing.receiverT);
+    const wakeFront = this.getWakeFrontCenterPoint(link, timing.receiverT);
+    const receivingArchitrino = this.getReplayPathPoint(link.receiverKind, timing.receiverT);
+    const receivingTime = Number(receivingArchitrino.t);
+    const timeError = Math.abs((Number.isFinite(receivingTime) ? receivingTime : timing.receiverT) - timing.receiverT);
+    const distanceError = wakeFront ? getDistance(wakeFront, receivingArchitrino) : Number.POSITIVE_INFINITY;
+
+    return {
+      arrivalTime: timing.receiverT,
+      progress: arrivalTiming?.progress ?? null,
+      wakeFront,
+      receivingArchitrino,
+      receiver: timing.receiver,
+      timeError,
+      distanceError,
+      isSynchronized:
+        Boolean(arrivalTiming?.active) &&
+        Math.abs((arrivalTiming?.progress ?? 0) - 1) <= TIME_EPSILON &&
+        timeError <= TIME_EPSILON &&
+        distanceError <= TIME_EPSILON,
+    };
+  }
+
   updateWakeLinkGeometry() {
-    this.dataset.wakeLinks.forEach((link) => {
-      const source = this.dataset.history[link.sourceKind]?.find((point) => point.depth === link.sourceDepth);
-      const receiver = this.dataset.history[link.receiverKind]?.find((point) => point.depth === link.receiverDepth);
+    const links = this.dataset?.wakeLinks ?? [];
+    links.forEach((link) => {
+      const source = this.dataset.history?.[link.sourceKind]?.find((point) => point.depth === link.sourceDepth);
+      const receiver = this.dataset.history?.[link.receiverKind]?.find((point) => point.depth === link.receiverDepth);
       if (!source || !receiver) {
         return;
       }
@@ -1302,21 +1376,16 @@ class CausalDelayFeedbackRuntime {
   }
 
   updateReadout(hit = null) {
-    if (!this.selectedItem) {
+    const readoutHit = hit ?? this.getSelectedHit() ?? this.createContributionSummaryHit();
+    if (!readoutHit) {
       this.dom.readout.hidden = true;
       this.dom.readout.replaceChildren();
       return;
     }
 
-    const selectedHit = hit ?? this.getSelectedHit();
-    if (!selectedHit) {
-      this.dom.readout.hidden = true;
-      return;
-    }
-
     this.dom.readout.replaceChildren(
-      this.createReadoutStrong(selectedHit.title),
-      ...selectedHit.details.map((detail) => this.createReadoutSpan(detail)),
+      this.createReadoutStrong(readoutHit.title),
+      ...readoutHit.details.map((detail) => this.createReadoutSpan(detail)),
     );
     this.dom.readout.hidden = false;
   }
@@ -1353,6 +1422,34 @@ class CausalDelayFeedbackRuntime {
       return link ? this.createWakeHit(link, 0) : null;
     }
     return null;
+  }
+
+  createContributionSummaryHit(replayTime = this.getCurrentReplayTime()) {
+    const summary = this.getContributionSummary(replayTime);
+    if (!summary) {
+      return null;
+    }
+    return {
+      type: "contribution-summary",
+      title: "feedback sum",
+      label: "feedback sum",
+      details: [
+        `now=${summary.replayTime.toFixed(2)}`,
+        `received=${summary.receivedCount}/${summary.activeLinkCount}`,
+        `in_flight=${summary.inFlightCount}`,
+        `pending=${summary.pendingCount}`,
+        `red=${formatCompactNumber(summary.positiveContribution)}`,
+        `blue=${formatCompactNumber(summary.negativeContribution)}`,
+        `net=${formatCompactNumber(summary.netContribution)}`,
+        `threshold=${formatCompactNumber(summary.threshold)}`,
+        ...(summary.inactiveCount > 0 ? [`inactive=${summary.inactiveCount}`] : []),
+        ...(summary.staleCount > 0 ? [`stale=${summary.staleCount}`] : []),
+        ...(summary.rejectedCount > 0 ? [`rejected=${summary.rejectedCount}`] : []),
+      ],
+      distance: 0,
+      hitRadius: 0,
+      selection: null,
+    };
   }
 
   findNearestHit(screen, { includeWakes = false } = {}) {
@@ -1469,6 +1566,10 @@ class CausalDelayFeedbackRuntime {
     const travelDistance = endpoints ? getDistance(endpoints.source, endpoints.receiver) : 0;
     const timingState = this.getWakeTimingState(timing);
     const falloff = this.getWakeFalloff(link);
+    const contribution = this.getWakeContributionMagnitude(link);
+    const thresholdState = this.getWakeThresholdState(link);
+    const wakeState = this.getWakeStatus(link);
+    const solverDetails = this.createWakeSolverReadoutDetails(link);
     return {
       type: "wake",
       title: link.label,
@@ -1481,12 +1582,204 @@ class CausalDelayFeedbackRuntime {
         timingState,
         `1/r=${falloff.toFixed(4)}`,
         `weight=${link.weight.toFixed(2)}`,
+        `contrib=${formatCompactNumber(contribution)}`,
+        `threshold=${thresholdState}`,
+        ...(wakeState.status === "active" ? [] : [`state=${wakeState.status}`, `reason=${wakeState.reason}`]),
+        ...solverDetails,
         this.dataset.wakeArcDisplayMode === FULL_CIRCULAR_ARCS ? "full circular" : "partial arc",
       ],
       distance,
       hitRadius: 20,
       selection: { type: "wake", linkId: link.id },
     };
+  }
+
+  getWakeContributionMagnitude(link) {
+    const weight = Number.isFinite(Number(link.weight)) ? Number(link.weight) : 0;
+    return weight * this.getWakeFalloff(link);
+  }
+
+  getContributionSummary(replayTime = this.getCurrentReplayTime()) {
+    const wakeLinks = this.dataset?.wakeLinks ?? [];
+    if (wakeLinks.length === 0) {
+      return null;
+    }
+    const summary = {
+      replayTime,
+      threshold: this.getAssemblyThreshold(),
+      linkCount: wakeLinks.length,
+      activeLinkCount: 0,
+      pendingCount: 0,
+      inFlightCount: 0,
+      receivedCount: 0,
+      inactiveCount: 0,
+      staleCount: 0,
+      rejectedCount: 0,
+      positiveContribution: 0,
+      negativeContribution: 0,
+      netContribution: 0,
+    };
+
+    wakeLinks.forEach((link) => {
+      const wakeStatus = this.getWakeStatus(link);
+      if (wakeStatus.status !== "active") {
+        if (wakeStatus.status === "inactive") {
+          summary.inactiveCount += 1;
+        } else if (wakeStatus.status === "stale") {
+          summary.staleCount += 1;
+        } else {
+          summary.rejectedCount += 1;
+        }
+        return;
+      }
+      const timing = this.getWakeTiming(link, replayTime);
+      if (!timing) {
+        summary.rejectedCount += 1;
+        return;
+      }
+      summary.activeLinkCount += 1;
+      if (replayTime < timing.sourceT - TIME_EPSILON) {
+        summary.pendingCount += 1;
+        return;
+      }
+      if (replayTime < timing.receiverT - TIME_EPSILON) {
+        summary.inFlightCount += 1;
+        return;
+      }
+      summary.receivedCount += 1;
+      const signedContribution = this.getWakeSignedContribution(link);
+      if (signedContribution >= 0) {
+        summary.positiveContribution += signedContribution;
+      } else {
+        summary.negativeContribution += signedContribution;
+      }
+      summary.netContribution += signedContribution;
+    });
+
+    return summary;
+  }
+
+  getWakeSignedContribution(link) {
+    const sign = link.sourceKind === "electrino" ? -1 : 1;
+    return sign * this.getWakeContributionMagnitude(link);
+  }
+
+  getAssemblyThreshold() {
+    const threshold = Number(this.dataset.assemblyThreshold ?? this.dataset.preset?.assemblyThreshold);
+    return Number.isFinite(threshold) && threshold > 0 ? threshold : DEFAULT_ASSEMBLY_THRESHOLD;
+  }
+
+  getWakeThresholdState(link) {
+    const magnitude = this.getWakeContributionMagnitude(link);
+    const threshold = this.getAssemblyThreshold();
+    if (magnitude >= threshold) {
+      return "above_threshold";
+    }
+    if (magnitude >= threshold * 0.5) {
+      return "near_threshold";
+    }
+    return "below_threshold";
+  }
+
+  getWakeStatus(link) {
+    if (link.status === "rejected" || link.status === "inactive" || link.status === "stale") {
+      return {
+        status: link.status,
+        reason: typeof link.reason === "string" && link.reason.length > 0 ? link.reason : "solver_status",
+      };
+    }
+    if (!this.hasWakeSolverMetadata(link)) {
+      return { status: "active", reason: "representative_replay" };
+    }
+    const rootCount = Number.isFinite(Number(link.rootCount)) ? Number(link.rootCount) : 0;
+    const hitCount = Number.isFinite(Number(link.solverHitCount)) ? Number(link.solverHitCount) : 0;
+    if (hitCount > 0) {
+      return { status: "active", reason: "delayed_hit_solved" };
+    }
+    if (rootCount > 0) {
+      return { status: "inactive", reason: "root_without_hit" };
+    }
+    return { status: "rejected", reason: "no_delayed_hit" };
+  }
+
+  getWakeVisualWeight(link) {
+    const status = this.getWakeStatus(link);
+    const thresholdState = this.getWakeThresholdState(link);
+    const contributionScale = clamp(this.getWakeContributionMagnitude(link) / this.getAssemblyThreshold(), 0, 1);
+    const thresholdAlphaScale =
+      thresholdState === "below_threshold" ? 0.62 : thresholdState === "near_threshold" ? 0.82 : 1;
+    const thresholdRadiusScale =
+      thresholdState === "below_threshold" ? 0.78 : thresholdState === "near_threshold" ? 0.9 : 1;
+    if (status.status === "active") {
+      return {
+        status: status.status,
+        reason: status.reason,
+        contributionScale,
+        alphaScale: thresholdAlphaScale,
+        radiusScale: thresholdRadiusScale,
+        desaturation: thresholdState === "below_threshold" ? 0.18 : 0,
+      };
+    }
+    return {
+      status: status.status,
+      reason: status.reason,
+      contributionScale,
+      alphaScale: 0.28,
+      radiusScale: 0.68,
+      desaturation: 0.56,
+    };
+  }
+
+  createWakeSolverReadoutDetails(link) {
+    if (!this.hasWakeSolverMetadata(link)) {
+      return [];
+    }
+    const details = [
+      `solver=${this.getWakeSolverStatusLabel(link)}`,
+      `roots=${Number.isFinite(Number(link.rootCount)) ? Number(link.rootCount) : 0}`,
+      `hits=${Number.isFinite(Number(link.solverHitCount)) ? Number(link.solverHitCount) : 0}`,
+    ];
+    if (Number.isFinite(Number(link.solverHitTime))) {
+      details.push(`solverHit=${Number(link.solverHitTime).toFixed(2)}`);
+    }
+    if (Number.isFinite(Number(link.solverResidual))) {
+      details.push(`resid=${formatCompactNumber(Number(link.solverResidual))}`);
+    }
+    if (Number.isFinite(Number(link.solverRootStatusCode)) && Number(link.solverRootStatusCode) !== 0) {
+      details.push(`rootCode=${Number(link.solverRootStatusCode)}`);
+    }
+    if (Number.isFinite(Number(link.solverHitStatusCode)) && Number(link.solverHitStatusCode) !== 0) {
+      details.push(`hitCode=${Number(link.solverHitStatusCode)}`);
+    }
+    return details;
+  }
+
+  hasWakeSolverMetadata(link) {
+    return Boolean(
+      link.solverRunId ||
+        Number.isFinite(Number(link.rootCount)) ||
+        Number.isFinite(Number(link.solverHitCount)) ||
+        Number.isFinite(Number(link.solverHitTime)) ||
+        Number.isFinite(Number(link.solverResidual)),
+    );
+  }
+
+  getWakeSolverStatusLabel(link) {
+    if (this.getWakeStatus(link).status === "stale") {
+      return "stale";
+    }
+    const rootCount = Number.isFinite(Number(link.rootCount)) ? Number(link.rootCount) : 0;
+    const hitCount = Number.isFinite(Number(link.solverHitCount)) ? Number(link.solverHitCount) : 0;
+    if (hitCount > 0) {
+      return "solved";
+    }
+    if (rootCount > 0 && hitCount === 0) {
+      return "root-only";
+    }
+    if (rootCount === 0 && hitCount === 0) {
+      return "unresolved";
+    }
+    return "check";
   }
 
   getWakeTimingState(timing) {

@@ -18,6 +18,7 @@ export const CAUSAL_DELAY_FEEDBACK_REPLAY_CONFIG_VERSION =
   "causal-delay-feedback-replay-adapter.v1";
 export const CENTRAL_SOLVER_APP_PLAYBACK_REPLAY_MODE = "appPlayback";
 export const CENTRAL_SOLVER_MOTION_REPLAY_MODE = "motionSimulation";
+export const CENTRAL_SOLVER_DELAYED_HITS_RUN_KIND = "delayedHits";
 
 const DEFAULT_MEMORY_BUDGET_BYTES = 128 * 1024 * 1024;
 const DEFAULT_HISTORY_DEPTH = 4;
@@ -151,15 +152,34 @@ async function createMotionSolverReplayDataset(playbackRequest, options = {}) {
     pairedFrames,
     playbackRequest.config.geometry.history,
   );
+  const wakeLinks = createWakeLinksFromBridgeHits(
+    playbackRequest.config.hits,
+    playbackRequest.config.geometry.wakeArcDisplayMode,
+  );
+  const delayedHitRunHandles = await Promise.all(
+    wakeLinks.map((link, index) => {
+      const request = createCausalDelayFeedbackDelayedHitRequest(
+        playbackRequest,
+        link,
+        history,
+        pairedFrames,
+        index,
+      );
+      return runCausalDelayBridgeRequest(request, options, {
+        factoryRequest: request.config.rootRequest,
+        requestedCapabilities: ["causalRoots", "delayedHits", "diagnostics"],
+      });
+    }),
+  );
   const historyReplayDataset = {
     history,
-    wakeLinks: createWakeLinksFromBridgeHits(
-      playbackRequest.config.hits,
-      playbackRequest.config.geometry.wakeArcDisplayMode,
-    ),
+    wakeLinks,
     wakeArcDisplayMode: playbackRequest.config.geometry.wakeArcDisplayMode,
   };
-  const hits = createBridgeDelayedHitsFromReplayDataset(historyReplayDataset);
+  const hits = createBridgeDelayedHitsFromDelayedHitRuns(
+    delayedHitRunHandles,
+    historyReplayDataset,
+  );
   const geometry = createBridgeGeometryFromReplayDataset(
     {
       history,
@@ -169,6 +189,9 @@ async function createMotionSolverReplayDataset(playbackRequest, options = {}) {
     { initialConditions: playbackRequest.config.initialConditions },
   );
   const motionDiagnostics = motionRunHandles.flatMap((runHandle) => (
+    normalizeOptionalArray(unwrapBridgeResponse(runHandle).diagnostics)
+  ));
+  const delayedHitDiagnostics = delayedHitRunHandles.flatMap((runHandle) => (
     normalizeOptionalArray(unwrapBridgeResponse(runHandle).diagnostics)
   ));
   return normalizeCausalDelayFeedbackBridgeReplay(
@@ -188,6 +211,7 @@ async function createMotionSolverReplayDataset(playbackRequest, options = {}) {
           pathCount: ARCHITRINO_KINDS.length,
           delayedHitCount: hits.length,
           motionRunIds: motionRunHandles.map((handle) => handle.runId ?? handle.response?.runId),
+          delayedHitRunIds: delayedHitRunHandles.map((handle) => handle.runId ?? handle.response?.runId),
         },
         initialConditions: playbackRequest.config.initialConditions,
         frames: bridgeFrames,
@@ -197,6 +221,7 @@ async function createMotionSolverReplayDataset(playbackRequest, options = {}) {
           ...geometry,
           solverReplayMode: CENTRAL_SOLVER_MOTION_REPLAY_MODE,
           motionRunIds: motionRunHandles.map((handle) => handle.runId ?? handle.response?.runId),
+          delayedHitRunIds: delayedHitRunHandles.map((handle) => handle.runId ?? handle.response?.runId),
         },
         diagnostics: [
           {
@@ -205,6 +230,7 @@ async function createMotionSolverReplayDataset(playbackRequest, options = {}) {
             message: "central motion simulations generated architrino frame samples",
           },
           ...motionDiagnostics,
+          ...delayedHitDiagnostics,
         ],
       },
     },
@@ -333,6 +359,147 @@ function createCausalDelayFeedbackMotionSimulationRequest(playbackRequest, kind)
       memoryBudgetBytes: playbackRequest.output.memoryBudgetBytes,
       deterministic: playbackRequest.output.deterministic,
     },
+  };
+}
+
+function createCausalDelayFeedbackDelayedHitRequest(playbackRequest, link, history, frames, index) {
+  const source = findHistoryPoint(
+    history,
+    link.sourceKind,
+    link.sourceDepth,
+    `source ${link.sourceKind} ${link.sourceDepth}`,
+  );
+  const receiver = findHistoryPoint(
+    history,
+    link.receiverKind,
+    link.receiverDepth,
+    `receiver ${link.receiverKind} ${link.receiverDepth}`,
+  );
+  const travelTime = receiver.t - source.t;
+  if (!Number.isFinite(travelTime) || travelTime <= 0) {
+    throw new TypeError(`wake link ${link.id ?? index} must reference a later receiver history point`);
+  }
+  const distance = getDistance(source, receiver);
+  const signalSpeed = normalizePositiveNumber(
+    link.signalSpeed ?? playbackRequest.config.geometry.signalSpeed,
+    Math.max(distance / travelTime, 1e-9),
+    `wakeLinks[${index}].signalSpeed`,
+  );
+  const runId = `${playbackRequest.runId}-${link.sourceKind}${link.sourceDepth}` +
+    `-to-${link.receiverKind}${link.receiverDepth}-delayed-hit`;
+  const rootRequest = {
+    source: createCausalSegmentForHistoryPoint(frames, link.sourceKind, source),
+    receiver: createCausalSegmentForHistoryPoint(frames, link.receiverKind, receiver),
+    hitTime: receiver.t,
+    signalSpeed,
+    rootTolerance: playbackRequest.errorBudget.rootIsolationTolerance,
+    maxIterations: 96,
+    scanSubdivisions: 64,
+    maxRoots: 2,
+    maxHits: 2,
+  };
+
+  return {
+    requestId: `${runId}-request`,
+    runId,
+    datasetId: `${runId}-dataset`,
+    appId: CAUSAL_DELAY_FEEDBACK_APP_ID,
+    runKind: CENTRAL_SOLVER_DELAYED_HITS_RUN_KIND,
+    claimLevel: playbackRequest.claimLevel,
+    precisionPath: playbackRequest.precisionPath,
+    configVersion: "causal-delay-feedback-delayed-hit-adapter.v1",
+    configHash: `${playbackRequest.configHash ?? playbackRequest.runId}:${link.id ?? index}:delayed-hit`,
+    model: cloneObject(playbackRequest.model, "model"),
+    envelope: cloneObject(playbackRequest.envelope, "envelope"),
+    errorBudget: cloneObject(playbackRequest.errorBudget, "errorBudget"),
+    config: {
+      appId: CAUSAL_DELAY_FEEDBACK_APP_ID,
+      rootRequest,
+      link: {
+        id: link.id,
+        label: link.label,
+        sourceKind: link.sourceKind,
+        receiverKind: link.receiverKind,
+        sourceDepth: link.sourceDepth,
+        receiverDepth: link.receiverDepth,
+        weight: link.weight,
+        mode: link.mode,
+        emissionTime: source.t,
+        hitTime: receiver.t,
+        travelTime,
+        distance,
+        signalSpeed,
+      },
+      metadata: {
+        precisionPath: playbackRequest.precisionPath,
+        coordinateFrame: "absolute-lab-frame",
+        source: "causal-delay-feedback-history-link",
+        signalSpeedSource:
+          link.signalSpeed != null || playbackRequest.config.geometry.signalSpeed != null
+            ? "configured"
+            : "designated-history-point-match",
+      },
+    },
+    output: {
+      outputs: ["rootLedger", "delayedHitEvents", "diagnostics"],
+      streamTarget: playbackRequest.output.streamTarget,
+      memoryBudgetBytes: playbackRequest.output.memoryBudgetBytes,
+      deterministic: playbackRequest.output.deterministic,
+    },
+  };
+}
+
+function createCausalSegmentForHistoryPoint(frames, kind, historyPoint) {
+  const points = frames
+    .map((frame) => ({ t: frame.t, ...frame[kind] }))
+    .sort((a, b) => a.t - b.t);
+  if (points.length === 0) {
+    throw new TypeError(`motion replay frames.${kind} must include samples`);
+  }
+  const sampleT = normalizeFiniteNumber(historyPoint.t, `${kind} history point time`);
+  if (points.length === 1) {
+    return createDegenerateCausalSegment(points[0], sampleT);
+  }
+
+  let left = points[0];
+  let right = points[1];
+  if (sampleT >= points[points.length - 1].t) {
+    left = points[points.length - 2];
+    right = points[points.length - 1];
+  } else if (sampleT > points[0].t) {
+    const rightIndex = points.findIndex((point) => point.t >= sampleT);
+    left = points[Math.max(0, rightIndex - 1)];
+    right = points[rightIndex] ?? points[points.length - 1];
+  }
+
+  const span = right.t - left.t;
+  if (!Number.isFinite(span) || span <= 0) {
+    return createDegenerateCausalSegment(historyPoint, sampleT);
+  }
+  return {
+    startTime: left.t,
+    endTime: right.t,
+    positionAtStart: toBridgeVector(left),
+    velocity: {
+      x: (right.x - left.x) / span,
+      y: (right.y - left.y) / span,
+      z: ((right.z ?? 0) - (left.z ?? 0)) / span,
+    },
+    errorBound: Math.max(0, Number(left.errorBound) || 0, Number(right.errorBound) || 0),
+  };
+}
+
+function createDegenerateCausalSegment(point, t) {
+  return {
+    startTime: t,
+    endTime: t,
+    positionAtStart: toBridgeVector(point),
+    velocity: {
+      x: Number.isFinite(Number(point.vx)) ? Number(point.vx) : 0,
+      y: Number.isFinite(Number(point.vy)) ? Number(point.vy) : 0,
+      z: Number.isFinite(Number(point.vz)) ? Number(point.vz) : 0,
+    },
+    errorBound: Math.max(0, Number(point.errorBound) || 0),
   };
 }
 
@@ -653,6 +820,72 @@ function normalizeWakeLink(row, index, history) {
     emissionTime,
     hitTime,
     travelTime,
+    ...(row.solverEmissionTime != null
+      ? {
+          solverEmissionTime: normalizeFiniteNumber(
+            row.solverEmissionTime,
+            `bridge response delayedHits[${index}].solverEmissionTime`,
+          ),
+        }
+      : {}),
+    ...(row.solverHitTime != null
+      ? {
+          solverHitTime: normalizeFiniteNumber(
+            row.solverHitTime,
+            `bridge response delayedHits[${index}].solverHitTime`,
+          ),
+        }
+      : {}),
+    ...(row.solverDistance != null
+      ? {
+          solverDistance: normalizeNonnegativeNumber(
+            row.solverDistance,
+            undefined,
+            `bridge response delayedHits[${index}].solverDistance`,
+          ),
+        }
+      : {}),
+    ...(row.solverJacobian != null
+      ? {
+          solverJacobian: normalizeFiniteNumber(
+            row.solverJacobian,
+            `bridge response delayedHits[${index}].solverJacobian`,
+          ),
+        }
+      : {}),
+    ...(row.solverResidual != null
+      ? {
+          solverResidual: normalizeFiniteNumber(
+            row.solverResidual,
+            `bridge response delayedHits[${index}].solverResidual`,
+          ),
+        }
+      : {}),
+    ...(row.solverRootStatusCode != null
+      ? {
+          solverRootStatusCode: normalizeNonnegativeInteger(
+            row.solverRootStatusCode,
+            `bridge response delayedHits[${index}].solverRootStatusCode`,
+          ),
+        }
+      : {}),
+    ...(row.solverHitStatusCode != null
+      ? {
+          solverHitStatusCode: normalizeNonnegativeInteger(
+            row.solverHitStatusCode,
+            `bridge response delayedHits[${index}].solverHitStatusCode`,
+          ),
+        }
+      : {}),
+    ...(row.solverRunId != null
+      ? {
+          solverRunId: normalizeOptionalString(
+            row.solverRunId,
+            undefined,
+            `bridge response delayedHits[${index}].solverRunId`,
+          ),
+        }
+      : {}),
     color: sourceKind === "positrino" ? POSITRINO_WAKE : ELECTRINO_WAKE,
     weight: normalizeUnitNumber(row.weight ?? row.strength, undefined, `bridge response delayedHits[${index}].weight`),
     distance: normalizeNonnegativeNumber(
@@ -662,6 +895,14 @@ function normalizeWakeLink(row, index, history) {
     ),
     mode: row.mode ?? PARTIAL_PROPAGATING_ARCS,
     rootStatus: row.rootStatus ?? row.status ?? null,
+    rootCount: normalizeNonnegativeInteger(
+      row.rootCount ?? 0,
+      `bridge response delayedHits[${index}].rootCount`,
+    ),
+    solverHitCount: normalizeNonnegativeInteger(
+      row.solverHitCount ?? 0,
+      `bridge response delayedHits[${index}].solverHitCount`,
+    ),
   };
 }
 
@@ -812,6 +1053,78 @@ function createBridgeDelayedHitsFromReplayDataset(replayDataset) {
       mode: replayDataset.wakeArcDisplayMode,
     };
   });
+}
+
+function createBridgeDelayedHitsFromDelayedHitRuns(runHandles, replayDataset) {
+  const links = replayDataset.wakeLinks;
+  if (!Array.isArray(runHandles) || runHandles.length !== links.length) {
+    throw new TypeError("delayed-hit run handles must match wake link count");
+  }
+  return runHandles.map((runHandle, index) => {
+    const response = unwrapBridgeResponse(runHandle);
+    const solverHit = normalizeOptionalArray(
+      response.hits ?? response.delayedHits ?? response.delayedHitEvents,
+    )[0];
+    const solverRoot = normalizeOptionalArray(response.roots)[0];
+    const fallback = createBridgeDelayedHitFromWakeLink(replayDataset, links[index], index);
+    return {
+      ...fallback,
+      eventId: solverHit?.eventId ?? fallback.eventId,
+      rootId: solverHit?.rootId ?? fallback.rootId,
+      statusCode: solverHit?.statusCode ?? fallback.statusCode,
+      distance: solverHit?.distance ?? fallback.distance,
+      jacobian: solverHit?.jacobian ?? fallback.jacobian,
+      strength: solverHit?.strength ?? fallback.strength,
+      ...(solverHit?.emissionTime != null ? { solverEmissionTime: solverHit.emissionTime } : {}),
+      ...(solverHit?.hitTime != null ? { solverHitTime: solverHit.hitTime } : {}),
+      ...(solverHit?.distance != null ? { solverDistance: solverHit.distance } : {}),
+      ...(solverHit?.jacobian != null ? { solverJacobian: solverHit.jacobian } : {}),
+      ...(solverHit?.statusCode != null ? { solverHitStatusCode: solverHit.statusCode } : {}),
+      ...(solverRoot?.statusCode != null ? { solverRootStatusCode: solverRoot.statusCode } : {}),
+      ...(solverRoot?.residual != null ? { solverResidual: solverRoot.residual } : {}),
+      ...(solverHit?.emissionPoint != null
+        ? { solverEmissionPoint: cloneObject(solverHit.emissionPoint, "solverHit.emissionPoint") }
+        : {}),
+      ...(solverHit?.receiverPoint != null
+        ? { solverReceiverPoint: cloneObject(solverHit.receiverPoint, "solverHit.receiverPoint") }
+        : {}),
+      ...(solverHit?.unitDirection != null
+        ? { solverUnitDirection: cloneObject(solverHit.unitDirection, "solverHit.unitDirection") }
+        : {}),
+      rootStatus: response.status ?? response.summary?.status ?? fallback.rootStatus,
+      solverRunId: response.runId ?? runHandle.runId,
+      rootCount: Array.isArray(response.roots) ? response.roots.length : 0,
+      solverHitCount: Array.isArray(response.hits) ? response.hits.length : 0,
+    };
+  });
+}
+
+function createBridgeDelayedHitFromWakeLink(replayDataset, link, index) {
+  const source = findReplayHistoryPoint(replayDataset, link.sourceKind, link.sourceDepth);
+  const receiver = findReplayHistoryPoint(replayDataset, link.receiverKind, link.receiverDepth);
+  const distance = getDistance(source, receiver);
+  return {
+    eventId: index,
+    rootId: index,
+    statusCode: 1,
+    emissionTime: normalizeFiniteNumber(source.t, `wakeLinks[${index}].emissionTime`),
+    hitTime: normalizeFiniteNumber(receiver.t, `wakeLinks[${index}].hitTime`),
+    distance,
+    jacobian: 0,
+    strength: normalizeUnitNumber(link.weight, 1, `wakeLinks[${index}].weight`),
+    emissionPoint: toBridgeVector(source),
+    receiverPoint: toBridgeVector(receiver),
+    unitDirection: toUnitDirection(source, receiver, distance),
+    id: link.id,
+    label: link.label,
+    sourceKind: link.sourceKind,
+    receiverKind: link.receiverKind,
+    sourceDepth: link.sourceDepth,
+    receiverDepth: link.receiverDepth,
+    weight: link.weight,
+    mode: replayDataset.wakeArcDisplayMode,
+    rootStatus: { code: "solver_no_delayed_hit", severity: "warn" },
+  };
 }
 
 function createBridgeGeometryFromReplayDataset(replayDataset, { initialConditions = {} } = {}) {

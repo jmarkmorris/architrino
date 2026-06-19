@@ -7,12 +7,28 @@ import { createTemporaryMockReplayAdapter } from "./CausalDelayFeedbackReplayAda
 import { createCausalDelayFeedbackSolverBridgeOptions } from "./CausalDelayFeedbackSolverBridgeOptions.js";
 
 const CENTRAL_REPLAY_QUERY_VALUES = new Set(["central", "bridge", "solver", "central_solver_bridge"]);
+const MOCK_REPLAY_QUERY_VALUES = new Set([
+  "mock",
+  "representative",
+  "representative_mock",
+  "temporary_mock",
+  "temporary_mock_adapter",
+  "off",
+  "false",
+]);
 const MOTION_REPLAY_QUERY_VALUES = new Set([
   "motion",
   "motion-simulation",
   "motionsimulation",
   "motion_solver",
   "solver_motion",
+]);
+const APP_PLAYBACK_REPLAY_QUERY_VALUES = new Set([
+  "app",
+  "app-playback",
+  "appplayback",
+  "playback",
+  "bridge-playback",
 ]);
 
 function getInitialQueryValue(windowLike, key) {
@@ -24,27 +40,53 @@ function getInitialQueryValue(windowLike, key) {
 }
 
 export function shouldUseCentralBridgeReplay(windowLike = globalThis.window) {
+  if (shouldUseTemporaryMockReplay(windowLike)) {
+    return false;
+  }
+  return true;
+}
+
+function shouldUseTemporaryMockReplay(windowLike = globalThis.window) {
+  return ["replay", "solver", "adapter"].some((key) => {
+    const value = getInitialQueryValue(windowLike, key);
+    return value ? MOCK_REPLAY_QUERY_VALUES.has(value.toLowerCase()) : false;
+  });
+}
+
+function hasExplicitCentralBridgeReplay(windowLike = globalThis.window) {
   return ["replay", "solver", "adapter"].some((key) => {
     const value = getInitialQueryValue(windowLike, key);
     return value ? CENTRAL_REPLAY_QUERY_VALUES.has(value.toLowerCase()) : false;
   });
 }
 
-export function getCentralBridgeReplayMode(windowLike = globalThis.window) {
+export function getCentralBridgeReplayMode(windowLike = globalThis.window, { defaultMode } = {}) {
   const value =
     getInitialQueryValue(windowLike, "solverReplay") ??
     getInitialQueryValue(windowLike, "replayMode");
-  return value && MOTION_REPLAY_QUERY_VALUES.has(value.toLowerCase())
-    ? CENTRAL_SOLVER_MOTION_REPLAY_MODE
-    : undefined;
+  if (!value) {
+    return defaultMode;
+  }
+  const normalizedValue = value.toLowerCase();
+  if (MOTION_REPLAY_QUERY_VALUES.has(normalizedValue)) {
+    return CENTRAL_SOLVER_MOTION_REPLAY_MODE;
+  }
+  if (APP_PLAYBACK_REPLAY_QUERY_VALUES.has(normalizedValue)) {
+    return undefined;
+  }
+  return defaultMode;
 }
 
 export function createCausalDelayFeedbackRuntimeForPage(windowLike = globalThis.window) {
   const fallbackReplayAdapter = createTemporaryMockReplayAdapter();
-  const replayAdapter = shouldUseCentralBridgeReplay(windowLike)
+  const useCentralBridgeReplay = shouldUseCentralBridgeReplay(windowLike);
+  const solverReplayMode = getCentralBridgeReplayMode(windowLike, {
+    defaultMode: hasExplicitCentralBridgeReplay(windowLike) ? undefined : CENTRAL_SOLVER_MOTION_REPLAY_MODE,
+  });
+  const replayAdapter = useCentralBridgeReplay
     ? createCausalDelayFeedbackCentralBridgeAdapter(
         createCausalDelayFeedbackSolverBridgeOptions(windowLike, {
-          solverReplayMode: getCentralBridgeReplayMode(windowLike),
+          solverReplayMode,
         }),
       )
     : fallbackReplayAdapter;

@@ -83,21 +83,23 @@ The app should use the architrino motion and geometry solver as its source of tr
 
 The current implementation path is:
 
-- use a temporary mock adapter labeled `representative_mock_solver_replay`;
-- keep the runtime dataset shaped like a solver result;
-- expose the future bridge target as `central_solver_bridge_path_history_stream`;
-- replace the mock dataset with the central solver bridge when that bridge can stream frame samples, path-history samples, causal roots, delayed-hit rows, and compact diagnostics.
+- default the standalone page to the central solver bridge motion replay path;
+- keep a temporary mock adapter labeled `representative_mock_solver_replay` as the immediate fallback and as an explicit `?replay=mock` review mode;
+- keep every runtime dataset shaped like a solver result;
+- expose the bridge target as `central_solver_bridge_path_history_stream`;
+- use the central solver bridge for frame samples, path-history samples, delayed-hit rows, and compact diagnostics when a solver client, worker, or WASM module factory is available.
 
 Current central-bridge inspection:
 
 - [SolverAppBridge.mjs](../../../src/solver/app/SolverAppBridge.mjs) exposes `createSolverAppBridgeClient` and already supports path-history, motion-simulation, delayed-hit, causal-root, shared-geometry, validation-replay, and app-playback run kinds.
 - [SolverAppAdapters.mjs](../../../src/solver/app/SolverAppAdapters.mjs) and [SolverAppBridge.mjs](../../../src/solver/app/SolverAppBridge.mjs) now recognize `causal-delay-feedback` as a central-bridge app id for motion-simulation, path-history, causal-root, delayed-hit, app-playback, and validation-replay lanes.
-- [CausalDelayFeedbackCentralBridgeAdapter.js](../../../src/apps/causal-delay-feedback/CausalDelayFeedbackCentralBridgeAdapter.js) now defines the causal-delay replay request contract, packages replay data as bridge-valid app-playback motion frames, delayed-hit rows, and geometry metadata, then normalizes app-shaped, bridge app-playback, or central motion-simulation responses into the canvas runtime dataset shape. It fails closed when frame samples, retained path-history samples, or delayed-hit rows are missing.
-- The runtime can attempt the central bridge replay adapter with `?replay=central`, `?solver=central`, or `?adapter=central`; it uses the mock replay immediately and keeps that fallback if the bridge is unavailable or returns an invalid payload.
+- [CausalDelayFeedbackCentralBridgeAdapter.js](../../../src/apps/causal-delay-feedback/CausalDelayFeedbackCentralBridgeAdapter.js) now defines the causal-delay replay request contract, packages replay data as bridge-valid app-playback motion frames, delayed-hit rows, and geometry metadata, then normalizes app-shaped, bridge app-playback, or central motion-simulation responses into the canvas runtime dataset shape. In central motion mode it runs one `motionSimulation` request per architrino and one `delayedHits` request per visible wake link. It fails closed when frame samples, retained path-history samples, or delayed-hit rows are missing.
+- The runtime uses the central bridge replay adapter by default, while `?replay=mock`, `?solver=mock`, or `?adapter=mock` forces the temporary representative replay adapter for visual review.
 - The query-gated page path now provides default browser-side solver bridge options that dynamically load `.tmp/solver-build/wasm/architrino_solver_wasm_smoke.mjs` when the built solver artifact is available, while still allowing injected solver clients, workers, or factories through `ARCHITRINO_CAUSAL_DELAY_FEEDBACK_SOLVER_BRIDGE_OPTIONS`.
-- The central bridge already executes `appPlayback` for `causal-delay-feedback` when a solver client, worker, or WASM module factory is available. Without that execution source, the query-gated page path shows `representative fallback`.
-- `?replay=central&solverReplay=motion` selects the new central motion-simulation replay path: the bridge runs one motion simulation per architrino from the declared initial conditions, merges those solver-produced frame rows into the canvas dataset, and keeps delayed-hit rows on the existing replay-shaped contract until the root/hit solver slice replaces them.
-- `node scripts/check-solver-app-bridge.mjs` passes for the current bridge, including causal-delay app-playback and motion-simulation smoke runs. The remaining causal-delay work is causal-root/delayed-hit payload wiring, default bridge enablement, and solver-backed diagnostics rather than repairing the generic bridge.
+- The page attempts the central motion-simulation replay path by default: the bridge runs one motion simulation per architrino from the declared initial conditions, merges those solver-produced frame rows into the canvas dataset, then runs central delayed-hit solves for the visible cross-path wake links.
+- Explicit central review URLs still work. `?replay=central&solverReplay=motion` selects central motion replay directly; `?replay=central&solverReplay=app-playback` keeps the bridge app-playback review path available.
+- Without a solver execution source, the page keeps the representative mock replay and shows `representative fallback`.
+- `node scripts/check-solver-app-bridge.mjs` passes for the current bridge, including causal-delay app-playback, motion-simulation, and delayed-hit smoke runs. The remaining causal-delay work is default bridge enablement, fuller causal-root diagnostics, rejected-hit visual states, and contribution summaries rather than repairing the generic bridge.
 
 The direct-manipulation canvas sets initial conditions:
 
@@ -504,15 +506,22 @@ Each solver run should also carry a compact setup record:
 - `central_bridge_causal_delay_app_id` - Add `causal-delay-feedback` to the central solver bridge app-id contract and smoke it through built-in app playback.
 - `central_bridge_app_playback_shape` - Package causal-delay replay data as bridge-valid app-playback motion frames, delayed-hit rows, and geometry metadata, then normalize bridge app-playback responses back into the runtime dataset shape.
 - `central_bridge_runtime_loader` - Let the page select the central bridge replay adapter by query flag, load async replay datasets, ignore stale async responses, and keep the temporary mock replay as a fallback when the bridge is unavailable.
-- `central_bridge_browser_wasm_loader` - Give the query-gated central replay path default browser-side WASM loader options for the built solver artifact, while preserving configured solver client, worker, factory, and run-callback overrides.
+- `central_bridge_browser_wasm_loader` - Give the central replay path default browser-side WASM loader options for the built solver artifact, while preserving configured solver client, worker, factory, and run-callback overrides.
 - `central_motion_solver_replay` - Add `?replay=central&solverReplay=motion`, advertise causal-delay `motionSimulation` bridge capability, smoke it through `check-solver-app-bridge`, and let the central adapter generate positrino/electrino frame samples from declared initial positions and velocities.
+- `central_delayed_hit_solver_replay` - In central motion replay, build root requests from the solver-produced path samples and run central `delayedHits` once per visible wake link, preserving the numbered source/receiver path-point timing used by the canvas proof.
+- `central_solver_default_replay` - Make the standalone page attempt central motion replay by default, keep the mock replay as the immediate fallback, and preserve `?replay=mock` for representative visual review.
+- `central_wake_solver_readout` - Carry central delayed-hit root/hit counts, solver hit time, residual, and status codes into selected wake-link readouts without adding a persistent diagnostics panel.
+- `contribution_threshold_wake_state` - Derive selected-wake contribution magnitude from `weight * 1/r`, classify it against the assembly threshold, and dim/desaturate solver links with no delayed hit.
+- `aggregate_contribution_summary` - Use the compact readout strip as the default no-selection view, summarizing received, in-flight, pending, inactive, and rejected wake links plus signed red/blue/net contribution totals for the current replay time.
 - `replay_source_status_chip` - Show a compact toolbar chip for `representative replay`, `solver bridge loading`, `solver bridge replay`, `representative fallback`, and `draft preview` so the operator can tell which data source is currently driving the canvas.
 - `wake_arrival_animation` - Animate source motion and outward-propagating dotted causal-wake arcs along retained path-history links, using the replay clock so each wake reaches its receiving point with the receiving architrino, without particle-like markers on wake paths.
+- `wake_receiver_arrival_sync` - Refresh each visible wake link from its designated retained source/receiver points whenever a replay dataset or draft path edit changes, and assert that the final wake front and receiving architrino reach the receiver point at the same replay time.
 - `full_circular_arcs_preset` - Add faint equal-opacity full circular wake rings as a named preset.
 - `settings_gear` - Add a compact settings popover with canvas-color swatches.
 - `compact_selection_readout` - Let clicks on retained path-history points and wake links show a small canvas readout strip and subtle canvas highlight without adding a side panel.
 - `wake_timing_readout` - Extend selected wake-link readouts with emission time, hit time, travel time, pending/active/received state, and the v1 `$1/r$` falloff factor.
 - `retained_point_drag_preview` - Let retained path-history points be dragged in the temporary mock replay with smooth local path deformation, wake endpoint updates, live architrino markers that follow the edited path, and a `draft preview` source chip so edited canvas state is not confused with a solver result.
+- `stale_solver_draft_state` - When a draft path or initial-condition edit changes geometry that has solver diagnostics attached, mark those wake rows `stale` so prior solver hits remain visible as context but no longer count as current solved contributions.
 - `initial_condition_drag_preview` - Add draggable initial-condition handles that translate the selected setup and replay path during a draft preview, then submit edited initial positions through the central replay adapter on release when that adapter is active.
 - `initial_velocity_arrow_drag_preview` - Make the attached velocity arrow endpoint a draggable handle; pulling it updates the selected architrino's initial `vx/vy`, bends the draft preview path forward from the initial time, and submits edited velocity through the central replay adapter on release.
 - `causal_delay_runtime_test` - Add focused Node tests for selected history readout, selected wake timing/falloff readout, dense wake bands, retained-point dragging, initial-position dragging, initial-velocity dragging, spacebar play/pause, direct preset review URLs, async bridge replay loading, bridge fallback behavior, stale async replay protection, replay-source status labels, and central bridge replay normalization.
@@ -520,10 +529,10 @@ Each solver run should also carry a compact setup record:
 ## Current Build Queue
 
 1. `purple_background_contrast_pass` - Verify the purple background against emitter-colored wake arcs, selected highlights, warnings, text, and compact controls. Status: `active`.
-2. `central_solver_runtime_switch` - The query-gated page path can now execute the central bridge through the browser-side WASM loader when the built solver artifact exists, and `solverReplay=motion` can generate frame/path samples through central motion simulations. Remaining work is to replace mock-derived causal-root and delayed-hit rows with solver-produced rows and diagnostics, then decide when central replay becomes the default instead of query-gated. Status: `active`.
+2. `central_solver_runtime_switch` - The standalone page now attempts central motion replay by default, can execute the central bridge through the browser-side WASM loader when the built solver artifact exists, and can fall back to the representative mock replay when the bridge is unavailable. Remaining work is fuller causal-root diagnostics and stronger rejected-root explanations. Status: `active`.
 3. `drag_to_solver_loop` - Initial source-position and velocity-arrow handles now update setup state, show only a temporary `draft preview` during dragging, and rerun central replay on release when the central adapter is active. Remaining work is Virtual Observer dragging, history-depth controls, solver diagnostics for rejected edits, and replacement of the mock-seeded replay with solver-produced paths. Status: `active`.
-4. `solver_diagnostics_readout` - Extend the compact readout from the current selected-wake timing and `$1/r$` diagnostics to include solver status, causal-root rows, solver-provided delayed-hit timing, contribution magnitudes, and threshold states once the central solver adapter provides those fields. Status: `pending`.
-5. `invalid_path_states` - Show inactive, rejected, unresolved, and stale paths with clear visual states and concise reasons once solver diagnostics are available. Status: `pending`.
+4. `solver_diagnostics_readout` - The compact readout now includes central delayed-hit solver status, root/hit counts, solver hit time, residual, nonzero status codes, selected-wake contribution magnitude, threshold state, and default aggregate signed contribution totals across the current replay time. Remaining work is richer rejected-root explanations. Status: `active`.
+5. `invalid_path_states` - Solver links with no delayed hit now dim and desaturate, stale solver rows are separated from rejected rows during draft edits, and selected readouts report `rejected`, `inactive`, or `stale` with a concise reason. Remaining work is richer visual treatment for mixed root-only states. Status: `active`.
 
 ## Implementation Boundaries
 

@@ -4385,6 +4385,25 @@ assert(
   "expected causal-delay app-playback run manifest"
 );
 
+const causalDelayDelayedHitRunHandle = await client.runSimulation(
+  makeCausalDelayDelayedHitRunSimulationRequest()
+);
+assert(
+  causalDelayDelayedHitRunHandle.status.code === "ok",
+  "expected causal-delay delayed-hit runSimulation status ok"
+);
+assert(
+  causalDelayDelayedHitRunHandle.response.summary.eventCount === 1 &&
+    causalDelayDelayedHitRunHandle.response.hits.length === 1,
+  "expected causal-delay delayed-hit run rows"
+);
+assert(
+  causalDelayDelayedHitRunHandle.response.manifest.runKind === "delayedHits" &&
+    causalDelayDelayedHitRunHandle.response.manifest.appId === "causal-delay-feedback" &&
+    causalDelayDelayedHitRunHandle.response.rootLedgerDetails.length >= 1,
+  "expected causal-delay delayed-hit run manifest"
+);
+
 const delayedHitRunHandle = await client.runSimulation(makeDelayedHitRunSimulationRequest());
 assert(delayedHitRunHandle.status.code === "ok", "expected delayed-hit runSimulation status ok");
 assert(delayedHitRunHandle.response.summary.eventCount === 1, "expected delayed-hit run event count");
@@ -5271,6 +5290,34 @@ function makeCausalDelayAppPlaybackRunSimulationRequest(sourceResponse) {
     },
     output: {
       outputs: ["frameBuffer", "diagnostics"],
+      streamTarget: "caller-buffer",
+      memoryBudgetBytes: 64 * 1024 * 1024,
+      deterministic: true,
+    },
+  });
+}
+
+function makeCausalDelayDelayedHitRunSimulationRequest() {
+  const admission = makeAdmissionRequest();
+  return createSolverRunRequest({
+    requestId: "smoke-causal-delay-delayed-hit-run-request",
+    runId: "smoke-causal-delay-delayed-hit-run",
+    datasetId: "smoke-causal-delay-delayed-hit-run-dataset",
+    appId: "causal-delay-feedback",
+    runKind: "delayedHits",
+    claimLevel: "interactive-preview",
+    precisionPath: "auto",
+    configVersion: "causal-delay-feedback-delayed-hit-run-smoke.v1",
+    configHash: "causal-delay-feedback-delayed-hit-run-smoke",
+    model: admission.model,
+    envelope: admission.envelope,
+    errorBudget: admission.errorBudget,
+    config: {
+      appId: "causal-delay-feedback",
+      rootRequest: fixtureRequest.request,
+    },
+    output: {
+      outputs: ["rootLedger", "delayedHitEvents", "diagnostics"],
       streamTarget: "caller-buffer",
       memoryBudgetBytes: 64 * 1024 * 1024,
       deterministic: true,

@@ -117,6 +117,74 @@ function createMotionRunResponse(request) {
   };
 }
 
+function createDelayedHitRunResponse(request) {
+  const rootRequest = request.config.rootRequest;
+  const link = request.config.link;
+  const emissionPoint = pointAtSegment(rootRequest.source, link.emissionTime);
+  const receiverPoint = pointAtSegment(rootRequest.receiver, link.hitTime);
+  const distance = Math.hypot(
+    receiverPoint.x - emissionPoint.x,
+    receiverPoint.y - emissionPoint.y,
+    receiverPoint.z - emissionPoint.z,
+  );
+  return {
+    requestId: request.requestId,
+    runId: request.runId,
+    datasetId: request.datasetId,
+    response: {
+      runId: request.runId,
+      datasetId: request.datasetId,
+      status: { code: "ok", severity: "ok", message: "delayed-hit simulation completed" },
+      summary: { rootCount: 1, eventCount: 1 },
+      diagnostics: [{ code: `delayed_hit_${link.sourceDepth}_${link.receiverDepth}`, severity: "info" }],
+      roots: [
+        {
+          rootId: 0,
+          statusCode: 0,
+          emissionTime: link.emissionTime,
+          hitTime: link.hitTime,
+          delay: link.travelTime,
+          distance,
+          residual: 0,
+          jacobian: 1,
+          branchWeight: 1,
+          sourcePoint: emissionPoint,
+          receiverPoint,
+        },
+      ],
+      hits: [
+        {
+          eventId: 0,
+          rootId: 0,
+          statusCode: 0,
+          emissionTime: link.emissionTime,
+          hitTime: link.hitTime,
+          distance,
+          jacobian: 1,
+          strength: link.weight,
+          emissionPoint,
+          receiverPoint,
+          unitDirection: {
+            x: distance === 0 ? 0 : (receiverPoint.x - emissionPoint.x) / distance,
+            y: distance === 0 ? 0 : (receiverPoint.y - emissionPoint.y) / distance,
+            z: distance === 0 ? 0 : (receiverPoint.z - emissionPoint.z) / distance,
+          },
+        },
+      ],
+      rootLedgerDetails: [],
+    },
+  };
+}
+
+function pointAtSegment(segment, time) {
+  const dt = time - segment.startTime;
+  return {
+    x: segment.positionAtStart.x + segment.velocity.x * dt,
+    y: segment.positionAtStart.y + segment.velocity.y * dt,
+    z: (segment.positionAtStart.z ?? 0) + (segment.velocity.z ?? 0) * dt,
+  };
+}
+
 test("causal delay bridge replay request declares the central bridge contract", () => {
   const request = createCausalDelayFeedbackBridgeReplayRequest({
     presetId: "full_circular_arcs",
@@ -287,11 +355,17 @@ test("causal delay central bridge adapter can build replay frames from central m
     async runSolverBridge(request) {
       requests.push(request);
       assert.equal(request.appId, CAUSAL_DELAY_FEEDBACK_APP_ID);
-      assert.equal(request.runKind, CENTRAL_SOLVER_MOTION_REPLAY_MODE);
       assert.equal(request.config.appId, CAUSAL_DELAY_FEEDBACK_APP_ID);
-      assert.equal(request.output.outputs.includes("frameBuffer"), true);
-      assert.equal(request.output.outputs.includes("pathStream"), true);
-      return createMotionRunResponse(request);
+      if (request.runKind === CENTRAL_SOLVER_MOTION_REPLAY_MODE) {
+        assert.equal(request.output.outputs.includes("frameBuffer"), true);
+        assert.equal(request.output.outputs.includes("pathStream"), true);
+        return createMotionRunResponse(request);
+      }
+      assert.equal(request.runKind, "delayedHits");
+      assert.equal(request.output.outputs.includes("delayedHitEvents"), true);
+      assert.equal(request.config.rootRequest.hitTime, request.config.link.hitTime);
+      assert.equal(request.config.rootRequest.signalSpeed > 0, true);
+      return createDelayedHitRunResponse(request);
     },
   });
 
@@ -307,12 +381,15 @@ test("causal delay central bridge adapter can build replay frames from central m
     },
   });
 
-  assert.equal(requests.length, 2);
+  assert.equal(requests.length, 8);
   assert.deepEqual(
-    requests.map((request) => request.config.motionIntegrationRequest.pathKey),
+    requests
+      .filter((request) => request.runKind === CENTRAL_SOLVER_MOTION_REPLAY_MODE)
+      .map((request) => request.config.motionIntegrationRequest.pathKey),
     [1, 2],
   );
   assert.equal(requests[0].config.motionIntegrationRequest.maxFrames, 3);
+  assert.equal(requests.filter((request) => request.runKind === "delayedHits").length, 6);
   assert.equal(dataset.datasetSource, CENTRAL_SOLVER_REPLAY_DATASET_SOURCE);
   assert.equal(dataset.solverIntegrationPath, CENTRAL_SOLVER_REPLAY_ADAPTER);
   assert.equal(dataset.frames.length, 3);
@@ -322,6 +399,13 @@ test("causal delay central bridge adapter can build replay frames from central m
   assert.equal(dataset.wakeLinks.length, 6);
   assert.equal(dataset.wakeLinks[0].emissionTime, dataset.history.positrino[0].t);
   assert.equal(dataset.wakeLinks[0].hitTime, dataset.history.electrino[1].t);
+  assert.equal(dataset.wakeLinks[0].solverEmissionTime, dataset.wakeLinks[0].emissionTime);
+  assert.equal(dataset.wakeLinks[0].solverHitTime, dataset.wakeLinks[0].hitTime);
+  assert.equal(dataset.wakeLinks[0].solverResidual, 0);
+  assert.equal(dataset.wakeLinks[0].solverRootStatusCode, 0);
+  assert.equal(dataset.wakeLinks[0].solverHitStatusCode, 0);
+  assert.equal(dataset.wakeLinks[0].solverRunId.endsWith("-delayed-hit"), true);
+  assert.equal(dataset.solverSummary.delayedHitRunIds.length, 6);
   assert.equal(dataset.solverSummary.replayMode, CENTRAL_SOLVER_MOTION_REPLAY_MODE);
   assert.equal(dataset.diagnostics[0].code, "causal_delay_motion_solver_replay");
 });
