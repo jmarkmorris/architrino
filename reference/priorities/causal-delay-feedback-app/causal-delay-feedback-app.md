@@ -7,7 +7,7 @@
 - Value: `high`
 - Cost: `unscored`
 - ROI: `unscored`
-- Status: `queued`
+- Status: `active`
 
 ## Current
 
@@ -17,9 +17,9 @@ The app should make one point visually clear: the present Virtual Observer reado
 
 ## Objective
 
-Build a compact teaching app with one main animation canvas, direct dragging interactions, solver-generated architrino paths, and lightweight live diagnostics for causal-delay feedback depth.
+Build a compact teaching app with one main animation canvas, solver-generated architrino paths, solver-shaped replay data, and lightweight live diagnostics for causal-delay feedback depth.
 
-The first version should be a candidate-level explanatory model. It should teach path-history and delayed-hit mechanics without claiming to solve full Noether sea feedback, exact many-body recurrence, or optical surface routing. The path geometry itself should still come from solver output given declared starting conditions.
+The first runnable version uses a temporary mock replay adapter that matches the intended solver output shape. It should teach path-history and delayed-hit mechanics without claiming to solve full Noether sea feedback, exact many-body recurrence, or optical surface routing. The path geometry in production modes should come from solver output given declared starting conditions.
 
 ## Core Teaching Claims
 
@@ -33,11 +33,11 @@ The first version should be a candidate-level explanatory model. It should teach
 ## App Shape
 
 - Route target: `causal-delay-feedback.html`.
-- Runtime target: a focused module under `src/apps/causal-delay-feedback/` when implementation starts.
-- Page structure: full-viewport canvas with a compact floating toolbar and a small collapsible readout, not a dense side-panel app.
-- First model: a few draggable initial-condition handles for architrinos, one Virtual Observer sample point, and a small finite set of retained causal-delay paths computed from solver history.
+- Runtime target: focused modules under `src/apps/causal-delay-feedback/`.
+- Page structure: full-viewport canvas with a compact floating toolbar, small legend chips, and a hover label, not a dense side-panel app.
+- First runnable model: one representative positrino/electrino replay pair, four retained path-history points per path, and six cross-path causal-wake links generated from a solver-shaped mock dataset.
 - Visual style: reuse Ideal Swarm-style architrino markers, orbit/path trails, purple-background canvas treatment, and emitter-colored causal-wake arcs where practical.
-- Interaction style: the canvas is the control surface. Users should learn by dragging source markers, the Virtual Observer, velocity arrows, and history-depth handles.
+- Interaction style: the canvas is the control surface. The first implementation prioritizes replay, preset selection, path visibility, reset, hover labels, and canvas-color settings. Dragging initial conditions comes after the canvas replay and solver-shaped data contract are stable.
 
 ## Visual And UI Conventions
 
@@ -66,19 +66,36 @@ Recent app work has several reusable design patterns for this app:
 The first build should feel simpler than Photon or Ideal Swarm:
 
 - one canvas-first scene;
-- one floating toolbar with a preset dropdown, play/pause, reset, reset preset, path visibility, readout toggle, and settings gear;
+- one floating toolbar with a preset dropdown, play/pause, reset, path visibility, and settings gear;
 - no always-open control panel;
 - no large formula panel;
 - a compact named preset dropdown, consistent with the Photon app pattern;
 - no search, export, or markdown reader in v1;
-- no more than three primary draggable objects visible at startup;
-- and one compact readout that updates from the current selection.
+- no more than two live architrino markers visible at startup;
+- no proof metadata panels on the canvas;
+- and one compact hover label for retained path points.
 
-The app should behave more like a small physics sandbox than a parameter dashboard. Users should change the state by moving objects, not by filling out a form.
+The app should behave more like a small physics replay sandbox than a parameter dashboard. Users should first see the causal-delay feedback geometry animate without setup, then gain direct-manipulation controls once those controls can rerun the solver path.
 
 ## Solver-Backed Model
 
 The app should use the architrino motion and geometry solver as its source of truth for paths.
+
+The current implementation path is:
+
+- use a temporary mock adapter labeled `representative_mock_solver_replay`;
+- keep the runtime dataset shaped like a solver result;
+- expose the future bridge target as `central_solver_bridge_path_history_stream`;
+- replace the mock dataset with the central solver bridge when that bridge can stream frame samples, path-history samples, causal roots, delayed-hit rows, and compact diagnostics.
+
+Current central-bridge inspection:
+
+- [SolverAppBridge.mjs](../../../src/solver/app/SolverAppBridge.mjs) exposes `createSolverAppBridgeClient` and already supports path-history, motion-simulation, delayed-hit, causal-root, shared-geometry, validation-replay, and app-playback run kinds.
+- [SolverAppAdapters.mjs](../../../src/solver/app/SolverAppAdapters.mjs) and [SolverAppBridge.mjs](../../../src/solver/app/SolverAppBridge.mjs) now recognize `causal-delay-feedback` as a central-bridge app id for path-history, causal-root, delayed-hit, app-playback, and validation-replay lanes.
+- [CausalDelayFeedbackCentralBridgeAdapter.js](../../../src/apps/causal-delay-feedback/CausalDelayFeedbackCentralBridgeAdapter.js) now defines the causal-delay replay request contract, packages replay data as bridge-valid app-playback motion frames, delayed-hit rows, and geometry metadata, then normalizes app-shaped or bridge app-playback responses into the canvas runtime dataset shape. It fails closed when frame samples, retained path-history samples, or delayed-hit rows are missing.
+- The runtime can attempt the central bridge replay adapter with `?replay=central`, `?solver=central`, or `?adapter=central`; it uses the mock replay immediately and keeps that fallback if the bridge is unavailable or returns an invalid payload.
+- The central bridge already executes `appPlayback` for `causal-delay-feedback` when a solver client, worker, or WASM module factory is available. Without that execution source, the query-gated page path shows `representative fallback`.
+- `node scripts/check-solver-app-bridge.mjs` passes for the current bridge, including a causal-delay app-playback smoke run. The remaining causal-delay work is solver-produced replay payload wiring, default bridge enablement, and solver-backed diagnostics rather than repairing the generic bridge.
 
 The direct-manipulation canvas sets initial conditions:
 
@@ -99,16 +116,18 @@ The solver returns:
 - rejected or unresolved root diagnostics;
 - and compact contribution summaries for the Virtual Observer readout.
 
-The app renders those returned datasets. It should not draw physically meaningful architrino trajectories from CSS, pointer interpolation, or hand-authored Bezier paths except as a temporary drag preview before a solver run completes.
+The app renders solver-shaped datasets. It should not draw physically meaningful architrino trajectories from CSS, pointer interpolation, or hand-authored Bezier paths except as temporary proof data or a temporary drag preview before a solver run completes.
 
 ## Simulation Flow
 
-1. User drags an initial-condition handle.
-2. App updates the local draft setup immediately.
-3. App submits the setup to the solver or app-worker adapter.
-4. Solver computes the architrino path history, causal roots, delayed hits, and diagnostics.
-5. App replays the solver dataset on the canvas.
-6. User scrubs `now` across the replayed path history and sees which delayed hits are active.
+1. App loads a named replay preset.
+2. The runtime creates or receives a solver-shaped dataset with frame samples, retained path-history points, and causal-wake links.
+3. App replays the dataset on the canvas.
+4. User changes the named preset, play state, path visibility, or canvas color without opening a dense control panel.
+5. After the central solver bridge is available, dragging an initial-condition handle should submit the setup to the solver or app-worker adapter.
+6. Solver computes the architrino path history, causal roots, delayed hits, and diagnostics.
+7. App replaces the draft or mock replay with the solver dataset.
+8. User scrubs `now` across the replayed path history and sees which delayed hits are active.
 
 During dragging, the canvas may show a lightweight preview path so the interface feels responsive. After release, the authoritative displayed path should be replaced by the solver result.
 
@@ -186,6 +205,11 @@ Generated contact sheet proof artifacts:
 - Architrino path history should be drawn as solid trails, while causal wakes should be drawn as dotted arcs so the two uses of positrino/electrino color remain distinct.
 - Active dotted wake arcs in the proof tiles should begin at the emitting history point and grow outward toward the later receiving history point on the opposite path.
 - The visible wake segment length should grow linearly as each emitted band approaches its receiving path point.
+- Wake progression and live architrino motion should use the same replay clock, so the final wake front reaches a receiving history point at the same time the receiving architrino reaches that point.
+- Once a wake arc series reaches its receiving point in a simulation loop, that series is complete for the loop and should disappear until the next loop begins. Do not keep drawing additional post-receipt arcs from the receiver.
+- Partial wake presets should use denser emission-to-receipt bands than the original contact-sheet count so the traveling series is easier to read.
+- Clicking a receiving path-history point should select the point, not synthesize a final wake arc. The final arrival arc belongs to the normal timed progression.
+- In the temporary mock replay, dragging a retained path-history point may deform the displayed path with a smooth local spline-style falloff, update the connected wake endpoints, and move the live architrino marker along the edited path. Solver-backed modes should replace this preview with a solver rerun.
 - The accepted default wake-front treatment combines the tighter receiver sector from sample `2` with the brighter visibility treatment from sample `5`.
 - Dotted wake fronts should be bolder near the emitter and fade lighter as they approach the receiver.
 - Current proof wake arcs should only cover the emitter-to-receiver sector, not full circles or unrelated off-path arcs.
@@ -406,7 +430,7 @@ Selected-depth readouts:
 - active, inactive, or rejected state;
 - and total Virtual Observer readout from the active contribution sum.
 
-The diagnostic table may exist behind the readout toggle, but v1 should not make it the main interaction surface. Selecting a row should highlight the matching source position, causal-wake path, arriving wake segment, and contribution-stack entry.
+The diagnostic table may exist behind a compact inspector, but v1 should not make it the main interaction surface. Selecting a row should highlight the matching source position, causal-wake path, arriving wake segment, and contribution-stack entry.
 
 ## Interaction Requirements
 
@@ -417,9 +441,10 @@ The diagnostic table may exist behind the readout toggle, but v1 should not make
 - Selecting a contribution-stack entry should highlight the causal-wake path that produced it.
 - Drag targets must have generous hit areas so the app works on trackpads and tablets.
 - Dragging a marker must update the visual paths first, then the numeric readout; the app should feel spatial before it feels tabular.
+- Pressing the spacebar should toggle play/pause unless focus is inside a native control such as the preset dropdown or a toolbar button.
 - Releasing a dragged initial-condition handle should enqueue or rerun the solver and mark previous paths as preview or stale until the new solver result arrives.
 - If the dragged state creates no active paths, the canvas should show an empty active set and name why rather than freezing the prior paths.
-- The initial scene should teach without any required setup: one moving positrino/electrino pair, one Virtual Observer, three retained wake hits, and a visible contribution stack.
+- The initial scene should teach without any required setup: one moving positrino/electrino pair, retained path-history points, and visible cross-path causal-wake arrivals.
 
 ## Data Model Requirements
 
@@ -464,19 +489,35 @@ Each solver run should also carry a compact setup record:
 | `assemblyThreshold` | Current visual/diagnostic threshold for weak contribution treatment. |
 | `haltReason` | Solver halt status or completion reason. |
 
-## First Build Queue
+## First Pass Implemented
 
-1. `solver_setup_contract` - Define the initial-condition request and solver dataset shape needed by the app, including mock contact-sheet dataset shape. Status: `active`.
-2. `named_preset_dropdown` - Add a compact preset dropdown and `Reset preset` behavior consistent with the Photon app pattern. Status: `pending`.
-3. `direct_manipulation_mock` - Create a static canvas layout with purple background, draggable source initial position, Virtual Observer, initial-velocity arrow, retained emitter-colored causal-wake paths, depth labels, and contribution stack. Status: `pending`.
-4. `solver_replay_adapter` - Replay solver-returned frame samples, path-history samples, causal roots, delayed hits, emitter colors, $1/r$ falloff factors, thresholds, and contribution summaries. Status: `pending`.
-5. `drag_to_solver_loop` - Make source, Virtual Observer, velocity arrow, and history-depth handles update setup state and rerun the solver on release. Status: `pending`.
-6. `wake_arrival_animation` - Animate source motion and outward-propagating dotted causal-wake arcs along solver-returned retained paths, without particle-like markers on the wake paths. Status: `pending`.
-7. `compact_readout` - Add selected-object, selected-depth, and solver-status readouts without a dense default panel. Status: `pending`.
-8. `settings_gear` - Add a compact settings popover with canvas color, background depth field, weak contribution cue, reduced motion, and high contrast paths. Status: `pending`.
-9. `toolbar_minimum` - Add preset dropdown, play/pause, reset, reset preset, paths cycle, slow/fast, readout toggle, settings gear, and rerun indicator. Status: `pending`.
-10. `purple_background_contrast_pass` - Verify the purple background against emitter-colored wake arcs, threshold-only weak states, selected highlights, warnings, and text. Status: `pending`.
-11. `invalid_path_states` - Show inactive, rejected, unresolved, and stale paths with clear visual states and concise reasons. Status: `pending`.
+- `route_runtime_scaffold` - Add `causal-delay-feedback.html`, `src/apps/causal-delay-feedback/`, and the standalone navigator route.
+- `temporary_mock_solver_replay_adapter` - Create `representative_mock_solver_replay` data with frame samples, retained path-history points, cross-path wake links, official red/blue polarity colors, and the future central solver bridge target.
+- `solver_adapter_boundary` - Isolate the temporary mock replay in a focused adapter module so the central solver bridge can replace the data source without rewriting the canvas renderer.
+- `named_preset_dropdown` - Add named replay presets matching the accepted contact-sheet comparison family, plus a full circular wake mode.
+- `preset_review_url` - Allow direct review links such as `causal-delay-feedback.html?preset=full_circular_arcs` and canvas-color variants through URL query settings.
+- `toolbar_minimum` - Add compact play/pause, path visibility, reset, preset, and settings controls.
+- `spacebar_play_pause` - Toggle play/pause from the spacebar while preserving native control behavior when focus is on the preset dropdown or toolbar buttons.
+- `central_solver_replay_contract_adapter` - Add a central-bridge replay request builder and response normalizer for causal-delay feedback datasets, with injected bridge-run support for tests and future worker wiring.
+- `central_bridge_causal_delay_app_id` - Add `causal-delay-feedback` to the central solver bridge app-id contract and smoke it through built-in app playback.
+- `central_bridge_app_playback_shape` - Package causal-delay replay data as bridge-valid app-playback motion frames, delayed-hit rows, and geometry metadata, then normalize bridge app-playback responses back into the runtime dataset shape.
+- `central_bridge_runtime_loader` - Let the page select the central bridge replay adapter by query flag, load async replay datasets, ignore stale async responses, and keep the temporary mock replay as a fallback when the bridge is unavailable.
+- `replay_source_status_chip` - Show a compact toolbar chip for `representative replay`, `solver bridge loading`, `solver bridge replay`, and `representative fallback` so the operator can tell which data source is currently driving the canvas.
+- `wake_arrival_animation` - Animate source motion and outward-propagating dotted causal-wake arcs along retained path-history links, using the replay clock so each wake reaches its receiving point with the receiving architrino, without particle-like markers on wake paths.
+- `full_circular_arcs_preset` - Add faint equal-opacity full circular wake rings as a named preset.
+- `settings_gear` - Add a compact settings popover with canvas-color swatches.
+- `compact_selection_readout` - Let clicks on retained path-history points and wake links show a small canvas readout strip and subtle canvas highlight without adding a side panel.
+- `wake_timing_readout` - Extend selected wake-link readouts with emission time, hit time, travel time, pending/active/received state, and the v1 `$1/r$` falloff factor.
+- `retained_point_drag_preview` - Let retained path-history points be dragged in the temporary mock replay with smooth local path deformation, wake endpoint updates, and live architrino markers that follow the edited path.
+- `causal_delay_runtime_test` - Add focused Node tests for selected history readout, selected wake timing/falloff readout, dense wake bands, retained-point dragging, spacebar play/pause, direct preset review URLs, async bridge replay loading, bridge fallback behavior, stale async replay protection, replay-source status labels, and central bridge replay normalization.
+
+## Current Build Queue
+
+1. `purple_background_contrast_pass` - Verify the purple background against emitter-colored wake arcs, selected highlights, warnings, text, and compact controls. Status: `active`.
+2. `central_solver_runtime_switch` - Connect the central bridge runtime loader to a solver client, worker, or WASM module that returns solver-produced frame samples, retained path-history samples, causal-root rows, delayed-hit rows, and diagnostics, then decide when central replay becomes the default instead of query-gated. Status: `pending`.
+3. `drag_to_solver_loop` - Make source, Virtual Observer, velocity arrow, and history-depth handles update setup state and rerun the solver on release. Status: `pending`.
+4. `solver_diagnostics_readout` - Extend the compact readout from the current selected-wake timing and `$1/r$` diagnostics to include solver status, causal-root rows, solver-provided delayed-hit timing, contribution magnitudes, and threshold states once the central solver adapter provides those fields. Status: `pending`.
+5. `invalid_path_states` - Show inactive, rejected, unresolved, and stale paths with clear visual states and concise reasons once solver diagnostics are available. Status: `pending`.
 
 ## Implementation Boundaries
 
@@ -490,6 +531,8 @@ Each solver run should also carry a compact setup record:
 - Do not let the app grow into another control-dense inspector before the direct-manipulation loop is working.
 - Do not use the word `electron` for the draggable primitives in the app UI when the object is meant to be an architrino, electrino, positrino, source marker, or Virtual Observer.
 
-## Open Questions
+## Resolved Implementation Direction
 
-- After contact sheet proofs, should the first implementation call the current JavaScript assembly-dynamics solver path as a bridge, or wait for the central solver app bridge to expose motion simulation plus causal-root rows?
+- Use the temporary mock replay adapter for the first runnable canvas.
+- Keep the central solver bridge as the authoritative integration target.
+- Defer dragging initial conditions until after the canvas replay is stable and the solver bridge can accept setup state.

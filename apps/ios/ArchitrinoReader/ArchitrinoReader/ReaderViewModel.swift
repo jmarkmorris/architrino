@@ -68,6 +68,8 @@ final class ReaderViewModel: ObservableObject {
     private var postLaunchWarmupTask: Task<Void, Never>?
     private var deferredRestoreRenderTask: Task<Void, Never>?
     private var fontScalePersistenceTask: Task<Void, Never>?
+    private var readingStatePersistenceTask: Task<Void, Never>?
+    private var currentScrollProgress: Double?
 
     struct ReaderRenderCommand: Identifiable, Codable {
         let id: UUID
@@ -83,6 +85,7 @@ final class ReaderViewModel: ObservableObject {
         let theme: ReaderTheme
         let lineSpacing: ReaderLineSpacing
         let marginWidth: ReaderMarginWidth
+        let initialScrollProgress: Double?
         let bootstrapContext: ReaderBootstrapContext
     }
 
@@ -513,6 +516,38 @@ final class ReaderViewModel: ObservableObject {
         }
     }
 
+    func updateReadingScrollProgress(_ progress: Double) {
+        guard currentChapterId != nil,
+              renderCommand != nil,
+              !isRendering else { return }
+        let clamped = max(0, min(1, progress))
+        if let currentScrollProgress,
+           abs(currentScrollProgress - clamped) < 0.002 {
+            return
+        }
+        currentScrollProgress = clamped
+        persistReadingStateSoon()
+    }
+
+    func persistReadingStateNow() {
+        readingStatePersistenceTask?.cancel()
+        readingStatePersistenceTask = nil
+        saveReadingState()
+    }
+
+    private func persistReadingStateSoon() {
+        readingStatePersistenceTask?.cancel()
+        readingStatePersistenceTask = Task { [weak self] in
+            try? await Task.sleep(nanoseconds: 350_000_000)
+            guard !Task.isCancelled else { return }
+            await MainActor.run { [weak self] in
+                guard let self else { return }
+                saveReadingState()
+                readingStatePersistenceTask = nil
+            }
+        }
+    }
+
     func openChapter(by id: String, anchor: String?) {
         guard package?.chapterById[id] != nil || package?.referenceById[id] != nil else { return }
         openDocument(by: id, anchor: anchor)
@@ -807,6 +842,7 @@ final class ReaderViewModel: ObservableObject {
         readerNotice = nil
         let isSameDocument = currentChapterId == id && renderCommand != nil
         currentAnchor = anchor
+        currentScrollProgress = nil
         currentChapterId = id
         if isSameDocument {
             anchorCommand = ReaderAnchorCommand(id: UUID(), anchor: anchor)
@@ -860,6 +896,7 @@ final class ReaderViewModel: ObservableObject {
             theme: theme,
             lineSpacing: lineSpacing,
             marginWidth: marginWidth,
+            initialScrollProgress: currentScrollProgress,
             bootstrapContext: bootstrapContext
         )
     }
@@ -1075,7 +1112,8 @@ final class ReaderViewModel: ObservableObject {
         let state = ReaderPosition(
             chapterId: currentChapterId,
             anchor: currentAnchor,
-            isExplicit: true
+            isExplicit: true,
+            scrollProgress: currentScrollProgress
         )
         do {
             let payload = try JSONEncoder().encode(state)
@@ -1089,6 +1127,7 @@ final class ReaderViewModel: ObservableObject {
         guard let stateData = defaults.data(forKey: stateKey) else {
             currentChapterId = nil
             currentAnchor = nil
+            currentScrollProgress = nil
             return false
         }
         do {
@@ -1102,12 +1141,17 @@ final class ReaderViewModel: ObservableObject {
                 }
                 currentChapterId = state.chapterId
                 currentAnchor = state.anchor
+                currentScrollProgress = state.scrollProgress.map { max(0, min(1, $0)) }
                 return true
             }
         } catch {
             currentChapterId = nil
             currentAnchor = nil
+            currentScrollProgress = nil
         }
+        currentChapterId = nil
+        currentAnchor = nil
+        currentScrollProgress = nil
         return false
     }
 

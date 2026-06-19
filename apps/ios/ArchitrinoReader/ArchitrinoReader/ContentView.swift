@@ -4,6 +4,7 @@ struct ContentView: View {
     @StateObject private var viewModel = ReaderViewModel()
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     @Environment(\.openURL) private var openURL
+    @Environment(\.scenePhase) private var scenePhase
 
     @State private var showToc = false
     @State private var tocNotice: String?
@@ -63,6 +64,11 @@ struct ContentView: View {
                 resetTOCExpansion()
             }
         }
+        .onChange(of: scenePhase) { _, phase in
+            if phase == .inactive || phase == .background {
+                viewModel.persistReadingStateNow()
+            }
+        }
     }
 
     private var readerDetail: some View {
@@ -104,6 +110,9 @@ struct ContentView: View {
                             },
                             onRenderComplete: { payload in
                                 viewModel.markRenderComplete(message: payload)
+                            },
+                            onScrollPositionChange: { progress in
+                                viewModel.updateReadingScrollProgress(progress)
                             }
                         )
                         .opacity(viewModel.renderCommand == nil ? 0 : 1)
@@ -324,6 +333,7 @@ struct ContentView: View {
         guard !didPresentInitialToc,
               !isRegularWidth,
               viewModel.isReady,
+              !viewModel.restoredReadingState,
               viewModel.hasAnyContent() else {
             return
         }
@@ -1302,6 +1312,7 @@ private struct AboutSheet: View {
 
     private let websiteURL = URL(string: "https://architrino.com")!
     private let repositoryURL = URL(string: "https://github.com/jmarkmorris/architrino")!
+    private let issuesURL = URL(string: "https://github.com/jmarkmorris/architrino/issues")!
 
     var body: some View {
         NavigationStack {
@@ -1346,6 +1357,11 @@ private struct AboutSheet: View {
 
                         Link(destination: repositoryURL) {
                             Label("GitHub repository", systemImage: "chevron.left.forwardslash.chevron.right")
+                                .foregroundStyle(theme.readerAccentColor)
+                        }
+
+                        Link(destination: issuesURL) {
+                            Label("Feedback", systemImage: "exclamationmark.bubble")
                                 .foregroundStyle(theme.readerAccentColor)
                         }
                     } header: {

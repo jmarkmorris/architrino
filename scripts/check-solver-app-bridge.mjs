@@ -52,6 +52,7 @@ import {
   createPathHistoryStreamSpaceTimeIndexRequest,
   createPathHistoryWorkPacketPlanRequest,
   createReadStreamRangeRequest,
+  createSolverRunRequest,
   createValidationReplayRunRequest,
 } from "../src/solver/app/SolverAppAdapters.mjs";
 import { classifySolverBaselineResponse } from "../src/solver/app/SolverBaselineComparison.mjs";
@@ -115,6 +116,13 @@ assert(
     findAppAdapter(initResponse.capabilities.appBridge, "animator").runKinds.includes("pathHistory") &&
     findAppAdapter(initResponse.capabilities.appBridge, "animator").runKinds.includes("appPlayback"),
   "expected Animator motion, path-history, and playback adapter capabilities"
+);
+assert(
+  findAppAdapter(initResponse.capabilities.appBridge, "causal-delay-feedback").runKinds.includes("pathHistory") &&
+    findAppAdapter(initResponse.capabilities.appBridge, "causal-delay-feedback").runKinds.includes("causalRoots") &&
+    findAppAdapter(initResponse.capabilities.appBridge, "causal-delay-feedback").runKinds.includes("delayedHits") &&
+    findAppAdapter(initResponse.capabilities.appBridge, "causal-delay-feedback").runKinds.includes("appPlayback"),
+  "expected Causal Delay Feedback path-history, causal-root, delayed-hit, and playback adapter capabilities"
 );
 assert(
   initResponse.capabilities.appBridge.denseDataTransport.includes("array-buffer") &&
@@ -4345,6 +4353,24 @@ assert(
   "expected app-playback run manifest"
 );
 
+const causalDelayAppPlaybackRunHandle = await client.runSimulation(
+  makeCausalDelayAppPlaybackRunSimulationRequest(motionRunHandle.response)
+);
+assert(
+  causalDelayAppPlaybackRunHandle.status.code === "ok",
+  "expected causal-delay app-playback runSimulation status ok"
+);
+assert(
+  causalDelayAppPlaybackRunHandle.response.summary.frameCount === 3 &&
+    causalDelayAppPlaybackRunHandle.response.summary.pathCount === 1,
+  "expected causal-delay app-playback summary"
+);
+assert(
+  causalDelayAppPlaybackRunHandle.response.manifest.runKind === "appPlayback" &&
+    causalDelayAppPlaybackRunHandle.response.manifest.appId === "causal-delay-feedback",
+  "expected causal-delay app-playback run manifest"
+);
+
 const delayedHitRunHandle = await client.runSimulation(makeDelayedHitRunSimulationRequest());
 assert(delayedHitRunHandle.status.code === "ok", "expected delayed-hit runSimulation status ok");
 assert(delayedHitRunHandle.response.summary.eventCount === 1, "expected delayed-hit run event count");
@@ -5141,6 +5167,43 @@ function makeAppPlaybackRunSimulationRequest(sourceResponse) {
         message: "playback source accepted",
       },
     ],
+    output: {
+      outputs: ["frameBuffer", "diagnostics"],
+      streamTarget: "caller-buffer",
+      memoryBudgetBytes: 64 * 1024 * 1024,
+      deterministic: true,
+    },
+  });
+}
+
+function makeCausalDelayAppPlaybackRunSimulationRequest(sourceResponse) {
+  const admission = makeAdmissionRequest();
+  return createSolverRunRequest({
+    requestId: "smoke-causal-delay-app-playback-run-request",
+    runId: "smoke-causal-delay-app-playback-run",
+    datasetId: "smoke-causal-delay-app-playback-run-dataset",
+    appId: "causal-delay-feedback",
+    runKind: "appPlayback",
+    claimLevel: "interactive-preview",
+    precisionPath: "auto",
+    configVersion: "causal-delay-feedback-app-playback-run-smoke.v1",
+    configHash: "causal-delay-feedback-app-playback-run-smoke",
+    model: admission.model,
+    envelope: admission.envelope,
+    errorBudget: admission.errorBudget,
+    config: {
+      appId: "causal-delay-feedback",
+      sourceRunId: sourceResponse.runId,
+      sourceDatasetId: sourceResponse.datasetId,
+      frames: sourceResponse.frames,
+      diagnostics: [
+        {
+          code: "ok",
+          severity: "ok",
+          message: "causal-delay playback source accepted",
+        },
+      ],
+    },
     output: {
       outputs: ["frameBuffer", "diagnostics"],
       streamTarget: "caller-buffer",

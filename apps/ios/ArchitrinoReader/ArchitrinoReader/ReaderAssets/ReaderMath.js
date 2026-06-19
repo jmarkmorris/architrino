@@ -350,14 +350,31 @@
       .replace(/-+$/, "") || "section";
   }
 
-  function assignHeadingAnchors(container) {
+  function headingTitleForAnchor(heading, inlineBlocks, displayBlocks) {
+    const clone = heading.cloneNode(true);
+    clone.querySelectorAll(".reader-inline-math-placeholder[data-reader-math-index]").forEach((placeholder) => {
+      const index = Number(placeholder.dataset.readerMathIndex);
+      const block = Array.isArray(inlineBlocks) ? inlineBlocks[index] : null;
+      placeholder.replaceWith(document.createTextNode(block && block.math ? block.math : ""));
+    });
+    clone.querySelectorAll(".reader-display-math-placeholder[data-reader-math-index]").forEach((placeholder) => {
+      const index = Number(placeholder.dataset.readerMathIndex);
+      const block = Array.isArray(displayBlocks) ? displayBlocks[index] : null;
+      placeholder.replaceWith(document.createTextNode(block && block.math ? block.math : ""));
+    });
+    return clone.textContent || "";
+  }
+
+  function assignHeadingAnchors(container, inlineBlocks, displayBlocks) {
     if (!container || typeof container.querySelectorAll !== "function") {
       return;
     }
 
     const anchorCounts = new Map();
     container.querySelectorAll("h2, h3, h4, h5, h6").forEach((heading) => {
-      const baseAnchor = anchorFromHeadingTitle(heading.textContent || "");
+      const baseAnchor = anchorFromHeadingTitle(
+        headingTitleForAnchor(heading, inlineBlocks, displayBlocks),
+      );
       const prior = anchorCounts.get(baseAnchor) || 0;
       heading.id = prior === 0 ? baseAnchor : `${baseAnchor}-${prior}`;
       anchorCounts.set(baseAnchor, prior + 1);
@@ -369,7 +386,7 @@
     const displayPrepared = extractDisplayMathBlocks(markdownText || "");
     const inlinePrepared = extractInlineMathSpans(displayPrepared.markdownText);
     template.innerHTML = markdownParser.render(inlinePrepared.markdownText);
-    assignHeadingAnchors(template.content);
+    assignHeadingAnchors(template.content, inlinePrepared.inlineBlocks, displayPrepared.displayBlocks);
     renderDisplayMathBlocks(template.content, displayPrepared.displayBlocks);
     renderInlineMathSpans(template.content, inlinePrepared.inlineBlocks);
     renderMath(template.content);

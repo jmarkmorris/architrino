@@ -99,6 +99,7 @@ struct ReaderPosition: Codable {
     let chapterId: String
     let anchor: String?
     let isExplicit: Bool?
+    let scrollProgress: Double?
 }
 
 enum ReaderTheme: String, Codable, CaseIterable, Identifiable, Hashable {

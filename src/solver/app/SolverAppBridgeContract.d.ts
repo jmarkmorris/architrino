@@ -1,4 +1,4 @@
-export type SolverAppId = "animator" | "photon" | "ideal-swarm";
+export type SolverAppId = "animator" | "photon" | "ideal-swarm" | "causal-delay-feedback";
 
 export type SolverRunKind =
   | "motionSimulation"

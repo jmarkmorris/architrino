@@ -10,6 +10,7 @@ struct ReaderWebView: UIViewRepresentable {
     let marginWidth: ReaderMarginWidth
     let onLinkTap: (Any) -> Void
     let onRenderComplete: (Any) -> Void
+    let onScrollPositionChange: (Double) -> Void
 
     func makeUIView(context: Context) -> WKWebView {
         let configuration = WKWebViewConfiguration()
@@ -96,6 +97,7 @@ struct ReaderWebView: UIViewRepresentable {
         var lastAppliedAppearance: ReaderAppearancePayload?
         var lastRenderedCommandID: UUID?
         var lastAppliedAnchorCommandID: UUID?
+        var lastReportedScrollProgress: Double?
 
         init(parent: ReaderWebView) {
             self.parent = parent
@@ -148,10 +150,23 @@ struct ReaderWebView: UIViewRepresentable {
         }
 
         func scrollViewDidScroll(_ scrollView: UIScrollView) {
-            guard scrollView.contentOffset.x != 0 else {
+            if scrollView.contentOffset.x != 0 {
+                scrollView.contentOffset = CGPoint(x: 0, y: scrollView.contentOffset.y)
+            }
+
+            let maxOffset = max(0, scrollView.contentSize.height - scrollView.bounds.height)
+            let progress: Double
+            if maxOffset <= 0 {
+                progress = 0
+            } else {
+                progress = max(0, min(1, Double(scrollView.contentOffset.y / maxOffset)))
+            }
+            if let lastReportedScrollProgress,
+               abs(lastReportedScrollProgress - progress) < 0.002 {
                 return
             }
-            scrollView.contentOffset = CGPoint(x: 0, y: scrollView.contentOffset.y)
+            lastReportedScrollProgress = progress
+            parent.onScrollPositionChange(progress)
         }
 
         private func markReaderShellReloading() {
@@ -313,6 +328,7 @@ struct ReaderWebView: UIViewRepresentable {
             lastAppliedAppearance = nil
             lastRenderedCommandID = nil
             lastAppliedAnchorCommandID = nil
+            lastReportedScrollProgress = nil
         }
 
         deinit {

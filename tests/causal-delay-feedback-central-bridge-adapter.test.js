@@ -1,0 +1,254 @@
+import assert from "node:assert/strict";
+import { test } from "node:test";
+
+import {
+  CAUSAL_DELAY_FEEDBACK_APP_ID,
+  CENTRAL_SOLVER_REPLAY_ADAPTER,
+  CENTRAL_SOLVER_REPLAY_DATASET_SOURCE,
+  createCausalDelayFeedbackBridgeReplayRequest,
+  createCausalDelayFeedbackCentralBridgeAdapter,
+  normalizeCausalDelayFeedbackBridgeReplay,
+} from "../src/apps/causal-delay-feedback/CausalDelayFeedbackCentralBridgeAdapter.js";
+
+function createBridgeReplayResponse(overrides = {}) {
+  return {
+    runId: "causal-delay-test-run",
+    datasetId: "causal-delay-test-dataset",
+    presetId: "accepted_tight_bright",
+    status: { code: "ok", severity: "ok", message: "bridge replay ready" },
+    frames: [
+      {
+        t: 0,
+        positrino: { x: 100, y: 220, vx: 12, vy: 5 },
+        electrino: { x: 100, y: 780, vx: 12, vy: -5 },
+      },
+      {
+        t: 0.5,
+        positrino: { x: 620, y: 470, vx: 20, vy: 8 },
+        electrino: { x: 640, y: 560, vx: 20, vy: -8 },
+      },
+      {
+        t: 1,
+        positrino: { x: 1300, y: 520, vx: 16, vy: -2 },
+        electrino: { x: 1300, y: 620, vx: 16, vy: 2 },
+      },
+    ],
+    history: {
+      positrino: [
+        { depth: 1, t: 0.1, x: 240, y: 260, weight: 0.25, state: "older" },
+        { depth: 2, t: 0.35, x: 520, y: 390, weight: 0.5, state: "active" },
+        { depth: 3, t: 0.65, x: 870, y: 505, weight: 0.75, state: "active" },
+        { depth: 4, t: 0.9, x: 1220, y: 515, weight: 1, state: "newer" },
+      ],
+      electrino: [
+        { depth: 1, t: 0.1, x: 230, y: 820, weight: 0.25, state: "older" },
+        { depth: 2, t: 0.35, x: 520, y: 680, weight: 0.5, state: "active" },
+        { depth: 3, t: 0.65, x: 890, y: 595, weight: 0.75, state: "active" },
+        { depth: 4, t: 0.9, x: 1230, y: 610, weight: 1, state: "newer" },
+      ],
+    },
+    delayedHits: [
+      {
+        sourceKind: "positrino",
+        receiverKind: "electrino",
+        sourceDepth: 1,
+        receiverDepth: 2,
+        weight: 0.25,
+        rootStatus: "active",
+      },
+      {
+        sourceKind: "electrino",
+        receiverKind: "positrino",
+        sourceDepth: 1,
+        receiverDepth: 2,
+        weight: 0.25,
+        rootStatus: "active",
+      },
+      {
+        sourceKind: "positrino",
+        receiverKind: "electrino",
+        sourceDepth: 2,
+        receiverDepth: 3,
+        weight: 0.5,
+        rootStatus: "active",
+      },
+    ],
+    diagnostics: [{ code: "causal_delay_replay_fixture", severity: "info" }],
+    summary: { retainedDepth: 4 },
+    ...overrides,
+  };
+}
+
+test("causal delay bridge replay request declares the central bridge contract", () => {
+  const request = createCausalDelayFeedbackBridgeReplayRequest({
+    presetId: "full_circular_arcs",
+    runId: "causal-delay-bridge-proof",
+    historyDepth: 4,
+    frameCount: 96,
+    runDuration: 2,
+    initialConditions: {
+      positrino: { x: 100, y: 200, vx: 1, vy: 0 },
+      electrino: { x: 100, y: 800, vx: 1, vy: 0 },
+    },
+  });
+
+  assert.equal(request.appId, CAUSAL_DELAY_FEEDBACK_APP_ID);
+  assert.equal(request.runKind, "appPlayback");
+  assert.equal(request.config.solverTarget, "central_solver_bridge_path_history_stream");
+  assert.equal(request.config.presetId, "full_circular_arcs");
+  assert.equal(request.config.replay.historyDepth, 4);
+  assert(request.config.frames.length > 0);
+  assert.equal(request.config.hits.length, 6);
+  assert.equal(request.config.geometry.history.positrino.length, 4);
+  assert.equal(request.config.frames[0].pathKey, 1);
+  assert.equal(request.config.hits[0].sourceKind, "positrino");
+  assert.deepEqual(request.output.outputs, [
+    "frameBuffer",
+    "pathStream",
+    "rootLedger",
+    "delayedHitEvents",
+    "diagnostics",
+  ]);
+});
+
+test("causal delay bridge replay normalizer accepts central appPlayback motion frames", () => {
+  const request = createCausalDelayFeedbackBridgeReplayRequest({
+    presetId: "accepted_tight_bright",
+    runId: "causal-delay-bridge-motion-frame-proof",
+  });
+  const dataset = normalizeCausalDelayFeedbackBridgeReplay({
+    requestId: request.requestId,
+    runId: request.runId,
+    datasetId: request.datasetId,
+    response: {
+      runId: request.runId,
+      datasetId: request.datasetId,
+      status: { code: "ok", severity: "ok", message: "app playback dataset prepared" },
+      summary: { frameCount: request.config.frames.length, pathCount: 2 },
+      frames: request.config.frames,
+      hits: request.config.hits,
+      geometry: request.config.geometry,
+      diagnostics: request.config.diagnostics,
+    },
+  });
+
+  assert.equal(dataset.runId, "causal-delay-bridge-motion-frame-proof");
+  assert.equal(dataset.frames.length, 180);
+  assert.equal(dataset.paths.positrino[0].x, request.config.frames[0].position.x);
+  assert.equal(
+    dataset.paths.electrino.at(-1).x,
+    request.config.frames.filter((frame) => frame.pathKey === 2).at(-1).position.x,
+  );
+  assert.equal(dataset.history.positrino.length, 4);
+  assert.equal(dataset.wakeLinks.length, 6);
+  assert.equal(dataset.wakeLinks[0].label, "red 1 -> blue 2");
+});
+
+test("causal delay bridge replay normalizer returns runtime dataset shape", () => {
+  const dataset = normalizeCausalDelayFeedbackBridgeReplay({
+    requestId: "request",
+    response: createBridgeReplayResponse(),
+  });
+
+  assert.equal(dataset.datasetSource, CENTRAL_SOLVER_REPLAY_DATASET_SOURCE);
+  assert.equal(dataset.solverIntegrationPath, CENTRAL_SOLVER_REPLAY_ADAPTER);
+  assert.equal(dataset.futureSolverTarget, "central_solver_bridge_path_history_stream");
+  assert.equal(dataset.wakeArcDisplayMode, "partial_propagating_arcs");
+  assert.equal(dataset.paths.positrino.length, 3);
+  assert.equal(dataset.paths.electrino[1].x, 640);
+  assert.equal(dataset.history.positrino[0].depth, 1);
+  assert.equal(dataset.history.electrino[3].state, "newer");
+  assert.equal(dataset.wakeLinks.length, 3);
+  assert.equal(dataset.wakeLinks[0].label, "red 1 -> blue 2");
+  assert.deepEqual(dataset.wakeLinks[0].color, { r: 255, g: 150, b: 166, a: 1 });
+  assert.deepEqual(dataset.wakeLinks[1].color, { r: 150, g: 170, b: 255, a: 1 });
+  assert.equal(dataset.wakeLinks[0].receiver.x, 520);
+  assert.equal(dataset.diagnostics[0].code, "causal_delay_replay_fixture");
+});
+
+test("causal delay central bridge adapter normalizes an injected bridge run", async () => {
+  const adapter = createCausalDelayFeedbackCentralBridgeAdapter({
+    async runSolverBridge(request) {
+      assert.equal(request.appId, CAUSAL_DELAY_FEEDBACK_APP_ID);
+      assert.equal(request.config.presetId, "accepted_tight_bright");
+      return {
+        requestId: request.requestId,
+        runId: request.runId,
+        datasetId: request.datasetId,
+        response: createBridgeReplayResponse({
+          runId: request.runId,
+          datasetId: request.datasetId,
+        }),
+      };
+    },
+  });
+
+  const dataset = await adapter.createReplayAsync({ presetId: "accepted_tight_bright" });
+
+  assert.equal(adapter.id, CENTRAL_SOLVER_REPLAY_ADAPTER);
+  assert.equal(dataset.runId, "causal-delay-feedback-accepted_tight_bright");
+  assert.equal(dataset.datasetId, "causal-delay-feedback-accepted_tight_bright-dataset");
+  assert.equal(dataset.frames[2].positrino.x, 1300);
+});
+
+test("causal delay central bridge adapter normalizes appPlayback-shaped bridge responses", async () => {
+  const adapter = createCausalDelayFeedbackCentralBridgeAdapter({
+    async runSolverBridge(request) {
+      assert.equal(request.appId, CAUSAL_DELAY_FEEDBACK_APP_ID);
+      assert(request.config.frames.length > 0);
+      assert.equal(request.config.hits.length, 6);
+      return {
+        requestId: request.requestId,
+        runId: request.runId,
+        datasetId: request.datasetId,
+        response: {
+          runId: request.runId,
+          datasetId: request.datasetId,
+          status: { code: "ok", severity: "ok", message: "app playback dataset prepared" },
+          summary: { frameCount: request.config.frames.length, pathCount: 2 },
+          frames: request.config.frames,
+          hits: request.config.hits,
+          geometry: request.config.geometry,
+          diagnostics: [{ code: "ok", severity: "ok", message: "bridge callback accepted" }],
+        },
+      };
+    },
+  });
+
+  const dataset = await adapter.createReplayAsync({ presetId: "accepted_tight_bright" });
+
+  assert.equal(dataset.datasetSource, CENTRAL_SOLVER_REPLAY_DATASET_SOURCE);
+  assert.equal(dataset.solverIntegrationPath, CENTRAL_SOLVER_REPLAY_ADAPTER);
+  assert.equal(dataset.solverStatus.code, "ok");
+  assert.equal(dataset.frames.length, 180);
+  assert.equal(dataset.wakeLinks.length, 6);
+  assert.equal(dataset.history.electrino[1].depth, 2);
+});
+
+test("causal delay bridge replay normalizer fails closed without retained history", () => {
+  const response = createBridgeReplayResponse({ history: undefined });
+
+  assert.throws(
+    () => normalizeCausalDelayFeedbackBridgeReplay(response),
+    /bridge response history must be an object/,
+  );
+});
+
+test("causal delay bridge replay normalizer fails closed for unresolved wake references", () => {
+  const response = createBridgeReplayResponse({
+    delayedHits: [
+      {
+        sourceKind: "positrino",
+        receiverKind: "electrino",
+        sourceDepth: 1,
+        receiverDepth: 8,
+        weight: 0.2,
+      },
+    ],
+  });
+
+  assert.throws(
+    () => normalizeCausalDelayFeedbackBridgeReplay(response),
+    /missing receiver electrino 8/,
+  );
+});
