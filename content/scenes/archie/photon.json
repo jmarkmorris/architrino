@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "archie__photon",
-    "title": "Photon and Polarization Visualization",
+    "title": "Photon Guide",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,
@@ -11,11 +11,10 @@
     },
     "source": {
       "type": "markdown",
-      "path": "content/markdown/aaa/assemblies/bosons/electroweak-bosons.md"
+      "path": "content/markdown/aaa/archie/photon-guide.md"
     },
     "view": {
       "columns": 1,
-      "section": "Photon Closure Interface",
       "autoOpen": true
     }
   },

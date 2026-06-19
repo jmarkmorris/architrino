@@ -40,6 +40,18 @@
       {
         "nodeId": "sim_synthetic_observables",
         "scenePath": "content/scenes/validation/sim_synthetic_observables.json"
+      },
+      {
+        "nodeId": "sim_branch_quantum",
+        "scenePath": "content/scenes/validation/sim_branch_quantum.json"
+      },
+      {
+        "nodeId": "sim_metric_observer",
+        "scenePath": "content/scenes/validation/sim_metric_observer.json"
+      },
+      {
+        "nodeId": "sim_cosmology_residuals",
+        "scenePath": "content/scenes/validation/sim_cosmology_residuals.json"
       }
     ]
   },
@@ -99,6 +111,27 @@
       "color": "#2f4f7a",
       "labelTitle": "Synthetic Observables",
       "labelBadge": "doc"
+    },
+    {
+      "id": "sim_branch_quantum",
+      "title": "Branch / Quantum",
+      "radius": 2.688,
+      "color": "#6c4f8d",
+      "labelTitle": "Branch / Quantum"
+    },
+    {
+      "id": "sim_metric_observer",
+      "title": "Metric / Observer",
+      "radius": 2.688,
+      "color": "#2c567a",
+      "labelTitle": "Metric / Observer"
+    },
+    {
+      "id": "sim_cosmology_residuals",
+      "title": "Cosmology Residuals",
+      "radius": 2.688,
+      "color": "#4b5e2f",
+      "labelTitle": "Cosmology Residuals"
     }
   ]
 }

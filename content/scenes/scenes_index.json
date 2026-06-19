@@ -1649,6 +1649,71 @@
       "id": "validation__reaction_cosmology_provenance_ledger",
       "name": "Reaction-Cosmology Provenance Ledger",
       "path": "content/scenes/validation/reaction_cosmology_provenance_ledger.json"
+    },
+    {
+      "id": "theory_bridges__angular_momentum_and_spin",
+      "name": "Angular Momentum and Spin",
+      "path": "content/scenes/philosophy_history/theory_bridges/angular_momentum_and_spin.json"
+    },
+    {
+      "id": "validation_simulations__sim_branch_quantum__sim_a0_tier0_result_interpretation",
+      "name": "A0 Tier 0 Result Interpretation",
+      "path": "content/scenes/validation/sim_a0_tier0_result_interpretation.json"
+    },
+    {
+      "id": "validation_simulations__sim_branch_quantum__sim_bell_family_record_measure",
+      "name": "Bell-Family Record-Measure Harness",
+      "path": "content/scenes/validation/sim_bell_family_record_measure.json"
+    },
+    {
+      "id": "validation_simulations__sim_branch_quantum",
+      "name": "Branch / Quantum",
+      "path": "content/scenes/validation/sim_branch_quantum.json"
+    },
+    {
+      "id": "validation_simulations__sim_cosmology_residuals",
+      "name": "Cosmology Residuals",
+      "path": "content/scenes/validation/sim_cosmology_residuals.json"
+    },
+    {
+      "id": "validation_simulations__sim_cosmology_residuals__sim_cosmology_shared_residual_fit",
+      "name": "Cosmology Shared Residual Fit Protocol",
+      "path": "content/scenes/validation/sim_cosmology_shared_residual_fit.json"
+    },
+    {
+      "id": "validation_simulations__sim_metric_observer__sim_hydrogen_gamma_n_spectral_row_toy_scan",
+      "name": "Hydrogen Gamma_N Spectral Coefficient Row Toy Scan",
+      "path": "content/scenes/validation/sim_hydrogen_gamma_n_spectral_row_toy_scan.json"
+    },
+    {
+      "id": "validation_simulations__sim_metric_observer",
+      "name": "Metric / Observer",
+      "path": "content/scenes/validation/sim_metric_observer.json"
+    },
+    {
+      "id": "validation_simulations__sim_branch_quantum__sim_nested_shell_swarm_action_increment_protocol",
+      "name": "Nested Shell Swarm Action-Increment Protocol",
+      "path": "content/scenes/validation/sim_nested_shell_swarm_action_increment_protocol.json"
+    },
+    {
+      "id": "validation_simulations__sim_cosmology_residuals__sim_redshift_budget_toy_model",
+      "name": "Redshift-Budget Toy Model",
+      "path": "content/scenes/validation/sim_redshift_budget_toy_model.json"
+    },
+    {
+      "id": "validation_simulations__sim_branch_quantum__sim_retuning_map_toy_model",
+      "name": "Retuning-Map Toy Model",
+      "path": "content/scenes/validation/sim_retuning_map_toy_model.json"
+    },
+    {
+      "id": "validation_simulations__sim_metric_observer__sim_static_response_vector_toy_model",
+      "name": "Static Response Vector Toy Model",
+      "path": "content/scenes/validation/sim_static_response_vector_toy_model.json"
+    },
+    {
+      "id": "validation_simulations__sim_metric_observer__sim_thermodynamic_residual",
+      "name": "Thermodynamic Residual Protocol",
+      "path": "content/scenes/validation/sim_thermodynamic_residual.json"
     }
   ]
 }

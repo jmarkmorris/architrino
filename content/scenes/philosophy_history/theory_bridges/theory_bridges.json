@@ -7,13 +7,20 @@
     "units": "relative",
     "wrapLabels": true,
     "layout": {
-      "type": "rings"
+      "type": "rings",
+      "centerNode": "quantum_operator_mapping",
+      "order": "objects",
+      "direction": "clockwise"
     },
     "centerOn": "quantum_operator_mapping",
     "children": [
       {
         "nodeId": "quantum_operator_mapping",
         "scenePath": "content/scenes/philosophy_history/theory_bridges/quantum_operator_mapping.json"
+      },
+      {
+        "nodeId": "angular_momentum_and_spin",
+        "scenePath": "content/scenes/philosophy_history/theory_bridges/angular_momentum_and_spin.json"
       },
       {
         "nodeId": "pilot_wave_character",
@@ -67,204 +74,104 @@
       "title": "Quantum Operator Mapping",
       "radius": 2.688,
       "color": "#6c4f8d",
-      "position": [
-        0,
-        0,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Quantum Operator Mapping",
-      "labelBadge": "doc",
-      "fixedPosition": true
+      "labelBadge": "doc"
+    },
+    {
+      "id": "angular_momentum_and_spin",
+      "title": "Angular Momentum and Spin",
+      "radius": 2.688,
+      "color": "#7a5430",
+      "labelTitle": "Angular Momentum and Spin",
+      "labelBadge": "doc"
     },
     {
       "id": "pilot_wave_character",
       "title": "Pilot-Wave Character",
       "radius": 2.688,
       "color": "#3a5f9f",
-      "position": [
-        0,
-        10.5,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Pilot-Wave Character",
-      "labelBadge": "doc",
-      "fixedPosition": true
+      "labelBadge": "doc"
     },
     {
       "id": "superposition_mechanism",
       "title": "Superposition Mechanism",
       "radius": 2.688,
       "color": "#1c2a4f",
-      "position": [
-        5.68,
-        8.83,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Superposition Mechanism",
-      "labelBadge": "doc",
-      "fixedPosition": true
+      "labelBadge": "doc"
     },
     {
       "id": "collapse_problem",
       "title": "Measurement Problem and Collapse",
       "radius": 2.688,
       "color": "#2f6b6f",
-      "position": [
-        9.51,
-        4.36,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Measurement Problem and Collapse",
-      "labelBadge": "doc",
-      "fixedPosition": true
+      "labelBadge": "doc"
     },
     {
       "id": "entanglement_nonlocality",
       "title": "Entanglement and Nonlocality",
       "radius": 2.688,
       "color": "#5a1f2e",
-      "position": [
-        10.39,
-        -1.49,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Entanglement and Nonlocality",
-      "labelBadge": "doc",
-      "fixedPosition": true
+      "labelBadge": "doc"
     },
     {
       "id": "bell_theorem",
       "title": "Bell's Theorem",
       "radius": 2.688,
       "color": "#243d8f",
-      "position": [
-        7.94,
-        -6.87,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Bell's Theorem",
-      "labelBadge": "doc",
-      "fixedPosition": true
+      "labelBadge": "doc"
     },
     {
       "id": "special_relativity_noether_swarm",
       "title": "Special Relativity and Deformable Noether Swarms",
       "radius": 2.688,
       "color": "#4f5d75",
-      "position": [
-        2.96,
-        -10.07,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Special Relativity and Deformable Noether Swarms",
-      "labelBadge": "doc",
-      "fixedPosition": true
+      "labelBadge": "doc"
     },
     {
       "id": "return_cycle_lorentz_quantization",
       "title": "Return-Cycle Lorentz Quantization",
       "radius": 2.688,
       "color": "#6f5a3f",
-      "position": [
-        -2.96,
-        -10.07,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Return-Cycle Lorentz Quantization",
-      "labelBadge": "doc",
-      "fixedPosition": true
+      "labelBadge": "doc"
     },
     {
       "id": "spacetime_models_and_noether_sea",
       "title": "Spacetime Models and the Noether Sea",
       "radius": 2.688,
       "color": "#5b6f5a",
-      "position": [
-        -7.94,
-        -6.87,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Spacetime Models and the Noether Sea",
-      "labelBadge": "doc",
-      "fixedPosition": true
+      "labelBadge": "doc"
     },
     {
       "id": "klein_gordon_scalar_fields",
       "title": "Relativistic Scalar Fields and the Klein-Gordon Equation",
       "radius": 2.688,
       "color": "#3c6a7a",
-      "position": [
-        -10.39,
-        -1.49,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Relativistic Scalar Fields and the Klein-Gordon Equation",
-      "labelBadge": "doc",
-      "fixedPosition": true
+      "labelBadge": "doc"
     },
     {
       "id": "weak_mixing_ckm",
       "title": "Weak Mixing CKM",
       "radius": 2.688,
       "color": "#3f6a5a",
-      "position": [
-        -9.51,
-        4.36,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Weak Mixing CKM",
-      "labelBadge": "doc",
-      "fixedPosition": true
+      "labelBadge": "doc"
     },
     {
       "id": "planck_scale_nested_shell_swarm_alignment",
       "title": "Planck Scale Nested Shell Swarm Alignment",
       "radius": 2.688,
       "color": "#7a4a1f",
-      "position": [
-        -5.68,
-        8.83,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Planck Scale Nested Shell Swarm Alignment",
-      "labelBadge": "doc",
-      "fixedPosition": true
+      "labelBadge": "doc"
     }
   ]
 }

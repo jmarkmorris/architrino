@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "validation_simulations__sim_metric_observer",
+    "title": "Metric / Observer",
+    "type": "Scene-Index",
+    "units": "relative",
+    "layout": {
+      "type": "rings",
+      "centerNode": null,
+      "order": "objects",
+      "direction": "clockwise"
+    },
+    "wrapLabels": true,
+    "children": [
+      {
+        "nodeId": "sim_static_response_vector_toy_model",
+        "scenePath": "content/scenes/validation/sim_static_response_vector_toy_model.json"
+      },
+      {
+        "nodeId": "sim_hydrogen_gamma_n_spectral_row_toy_scan",
+        "scenePath": "content/scenes/validation/sim_hydrogen_gamma_n_spectral_row_toy_scan.json"
+      },
+      {
+        "nodeId": "sim_thermodynamic_residual",
+        "scenePath": "content/scenes/validation/sim_thermodynamic_residual.json"
+      }
+    ]
+  },
+  "objects": [
+    {
+      "id": "sim_static_response_vector_toy_model",
+      "title": "Static Response Vector Toy Model",
+      "radius": 2.688,
+      "color": "#2c567a",
+      "labelTitle": "Static Response Vector",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "sim_hydrogen_gamma_n_spectral_row_toy_scan",
+      "title": "Hydrogen Gamma_N Spectral Coefficient Row Toy Scan",
+      "radius": 2.688,
+      "color": "#3c6a7a",
+      "labelTitle": "Hydrogen Gamma_N Spectral Row",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "sim_thermodynamic_residual",
+      "title": "Thermodynamic Residual Protocol",
+      "radius": 2.688,
+      "color": "#5a1f2e",
+      "labelTitle": "Thermodynamic Residual",
+      "labelBadge": "doc"
+    }
+  ]
+}

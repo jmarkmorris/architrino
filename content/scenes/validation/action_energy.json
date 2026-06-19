@@ -6,8 +6,9 @@
     "type": "Scene-Index",
     "units": "relative",
     "layout": {
-      "type": "rings"
+      "type": "grid"
     },
+    "layoutColumns": 4,
     "wrapLabels": true,
     "children": [
       {
@@ -82,6 +83,7 @@
       "title": "Action Model",
       "radius": 2.688,
       "color": "#3a5f9f",
+      "position": [-10.5, 10.5, 0],
       "labelTitle": "Action Model",
       "labelBadge": "doc"
     },
@@ -90,6 +92,7 @@
       "title": "Analytic Baselines",
       "radius": 2.688,
       "color": "#2f6b6f",
+      "position": [-3.5, 10.5, 0],
       "labelTitle": "Analytic Baselines",
       "labelBadge": "doc"
     },
@@ -98,6 +101,7 @@
       "title": "Attraction",
       "radius": 2.688,
       "color": "#5a1f2e",
+      "position": [3.5, 10.5, 0],
       "labelTitle": "Attraction",
       "labelBadge": "doc"
     },
@@ -106,6 +110,7 @@
       "title": "Background and Simple Action",
       "radius": 2.688,
       "color": "#3f6a5a",
+      "position": [10.5, 10.5, 0],
       "labelTitle": "Background and Simple Action",
       "labelBadge": "doc"
     },
@@ -114,6 +119,7 @@
       "title": "Causal Set and Delay Geometry",
       "radius": 2.688,
       "color": "#4b0082",
+      "position": [-10.5, 3.5, 0],
       "labelTitle": "Causal Set and Delay Geometry",
       "labelBadge": "doc"
     },
@@ -122,6 +128,7 @@
       "title": "Constructive Energy for Delay Dynamics",
       "radius": 2.688,
       "color": "#2c567a",
+      "position": [-3.5, 3.5, 0],
       "labelTitle": "Constructive Energy for Delay Dynamics",
       "labelBadge": "doc"
     },
@@ -130,6 +137,7 @@
       "title": "Informational Ambiguity",
       "radius": 2.688,
       "color": "#6a3c3c",
+      "position": [3.5, 3.5, 0],
       "labelTitle": "Informational Ambiguity",
       "labelBadge": "doc"
     },
@@ -138,6 +146,7 @@
       "title": "Numerical Recipe and Stability",
       "radius": 2.688,
       "color": "#2f4f7a",
+      "position": [10.5, 3.5, 0],
       "labelTitle": "Numerical Recipe and Stability",
       "labelBadge": "doc"
     },
@@ -146,6 +155,7 @@
       "title": "Radial Attraction",
       "radius": 2.688,
       "color": "#2c567a",
+      "position": [-10.5, -3.5, 0],
       "labelTitle": "Radial Attraction",
       "labelBadge": "doc"
     },
@@ -154,6 +164,7 @@
       "title": "Receiver Velocity and Work",
       "radius": 2.688,
       "color": "#3a5f9f",
+      "position": [-3.5, -3.5, 0],
       "labelTitle": "Receiver Velocity and Work",
       "labelBadge": "doc"
     },
@@ -162,6 +173,7 @@
       "title": "Repulsion",
       "radius": 2.688,
       "color": "#2f6b6f",
+      "position": [3.5, -3.5, 0],
       "labelTitle": "Repulsion",
       "labelBadge": "doc"
     },
@@ -170,6 +182,7 @@
       "title": "Self-Energy",
       "radius": 2.688,
       "color": "#5a1f2e",
+      "position": [10.5, -3.5, 0],
       "labelTitle": "Self-Energy",
       "labelBadge": "doc"
     },
@@ -178,6 +191,7 @@
       "title": "Self-Interaction Switch",
       "radius": 2.688,
       "color": "#3f6a5a",
+      "position": [-10.5, -10.5, 0],
       "labelTitle": "Self-Interaction Switch",
       "labelBadge": "doc"
     },
@@ -186,6 +200,7 @@
       "title": "Superposition and Locality",
       "radius": 2.688,
       "color": "#4b0082",
+      "position": [-3.5, -10.5, 0],
       "labelTitle": "Superposition and Locality",
       "labelBadge": "doc"
     },
@@ -194,6 +209,7 @@
       "title": "Units and Constants",
       "radius": 2.688,
       "color": "#6a3c3c",
+      "position": [3.5, -10.5, 0],
       "labelTitle": "Units and Constants",
       "labelBadge": "doc"
     },
@@ -202,6 +218,7 @@
       "title": "Well-Posedness and Regularization",
       "radius": 2.688,
       "color": "#2f4f7a",
+      "position": [10.5, -10.5, 0],
       "labelTitle": "Well-Posedness and Regularization",
       "labelBadge": "doc"
     }
