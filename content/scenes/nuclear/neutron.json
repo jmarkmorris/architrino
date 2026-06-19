@@ -31,7 +31,6 @@
     {
       "id": "down_quark_1",
       "label": "down quark",
-      "scaleExponent": -19,
       "radius": 0.9,
       "color": "BLUE",
       "motion": {
@@ -43,7 +42,6 @@
     {
       "id": "down_quark_2",
       "label": "down quark",
-      "scaleExponent": -19,
       "radius": 0.9,
       "color": "BLUE",
       "motion": {
@@ -55,7 +53,6 @@
     {
       "id": "up_quark",
       "label": "up quark",
-      "scaleExponent": -19,
       "radius": 0.9,
       "color": "RED",
       "motion": {

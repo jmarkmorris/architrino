@@ -229,7 +229,6 @@
           "type": ["number", "array"],
           "items": { "type": "number" }
         },
-        "hideScaleLabels": { "type": "boolean" },
         "wrapLabels": { "type": "boolean" },
         "centerOn": { "type": "string" },
         "layoutColumns": { "type": "integer", "minimum": 1 },
@@ -238,7 +237,17 @@
           "type": "object",
           "additionalProperties": true,
           "properties": {
-            "type": { "type": "string" }
+            "type": { "type": "string" },
+            "centerNode": { "type": ["string", "null"] },
+            "centerOn": { "type": "string" },
+            "direction": {
+              "type": "string",
+              "enum": ["clockwise", "counterclockwise"]
+            },
+            "order": {
+              "type": "string",
+              "enum": ["objects"]
+            }
           }
         },
         "source": {
@@ -375,8 +384,6 @@
             "type": "array",
             "items": { "type": "string" }
           },
-          "scaleExponent": { "type": "number" },
-          "hideScaleLabel": { "type": "boolean" },
           "category": { "type": "string" },
           "reaction": { "type": "string" },
           "role": { "type": "string" },

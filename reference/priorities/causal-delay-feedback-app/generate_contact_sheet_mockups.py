@@ -19,6 +19,8 @@ SCALE = 2
 
 POSITRINO = (255, 0, 0, 255)
 ELECTRINO = (0, 0, 255, 255)
+POSITRINO_WAKE = (255, 150, 166, 255)
+ELECTRINO_WAKE = (150, 170, 255, 255)
 CYAN = (74, 229, 255, 255)
 AMBER = (255, 196, 87, 255)
 WHITE = (246, 247, 255, 255)
@@ -43,63 +45,55 @@ class Variant:
     key: str
     title: str
     mode: str
-    selected_depth: int = 1
-    wake_bands: int = 5
-    final_span: float = 34.0
-    start_span: float = 7.0
-    dot_radius: float = 2.0
+    selected_depth: int = 2
+    wake_bands: int = 15
+    final_span: float = 28.0
+    start_span: float = 4.5
+    dot_radius: float = 1.55
     alpha_scale: float = 1.0
     falloff_power: float = 1.0
 
 
 VARIANTS = [
     Variant(
-        key="centered_baseline_growing_arcs",
-        title="Baseline - centered observer, 5 growing bands",
+        key="cross_feedback_baseline_15_fronts",
+        title="Baseline - 15 light cross-path fronts",
         mode="partial_propagating_arcs",
-        selected_depth=2,
     ),
     Variant(
-        key="centered_sparse_growing_arcs",
-        title="Sparse bands - fewer wake steps",
+        key="cross_feedback_tight_fronts",
+        title="Tight fronts - narrower receiver sector",
         mode="partial_propagating_arcs",
-        wake_bands=3,
-        final_span=32,
-        selected_depth=2,
+        final_span=20,
+        start_span=3.5,
     ),
     Variant(
-        key="centered_dense_growing_arcs",
-        title="Dense bands - smoother wake growth",
+        key="cross_feedback_wide_fronts",
+        title="Wide fronts - broader receiver sector",
         mode="partial_propagating_arcs",
-        wake_bands=8,
-        dot_radius=1.7,
-        selected_depth=2,
+        final_span=42,
+        start_span=6,
     ),
     Variant(
-        key="centered_tight_arrival_arcs",
-        title="Tight arrival - narrow final arc span",
+        key="cross_feedback_thin_fronts",
+        title="Thin fronts - lighter trace weight",
         mode="partial_propagating_arcs",
-        final_span=22,
-        start_span=5,
-        selected_depth=2,
+        dot_radius=1.2,
+        alpha_scale=0.78,
     ),
     Variant(
-        key="centered_wide_arrival_arcs",
-        title="Wide arrival - broader final arc span",
+        key="cross_feedback_bright_fronts",
+        title="Bright fronts - stronger visibility",
         mode="partial_propagating_arcs",
-        final_span=54,
-        start_span=9,
-        dot_radius=2.1,
-        selected_depth=2,
+        dot_radius=1.8,
+        alpha_scale=1.18,
     ),
     Variant(
-        key="centered_strong_falloff_arcs",
+        key="cross_feedback_strong_falloff",
         title="Strong falloff - older wakes fade harder",
         mode="partial_propagating_arcs",
-        final_span=36,
         alpha_scale=0.92,
         falloff_power=1.7,
-        selected_depth=3,
     ),
 ]
 
@@ -113,9 +107,10 @@ THEMES = {
 }
 
 DEPTHS = [
-    {"depth": 1, "t": 0.27, "weight": 0.27, "falloff": "0.27", "state": "near threshold"},
-    {"depth": 2, "t": 0.44, "weight": 0.58, "falloff": "0.58", "state": "active"},
-    {"depth": 3, "t": 0.61, "weight": 1.00, "falloff": "1.00", "state": "active"},
+    {"depth": 1, "t": 0.16, "weight": 0.24, "falloff": "0.24", "state": "older"},
+    {"depth": 2, "t": 0.38, "weight": 0.48, "falloff": "0.48", "state": "active"},
+    {"depth": 3, "t": 0.62, "weight": 0.72, "falloff": "0.72", "state": "active"},
+    {"depth": 4, "t": 0.88, "weight": 1.00, "falloff": "1.00", "state": "newer"},
 ]
 
 
@@ -264,36 +259,33 @@ def path_point(kind: str, t: float) -> tuple[float, float]:
     t = max(0.0, min(1.0, t))
     u = 1 - t
     if kind == "positrino":
-        p0 = (1080, 905)
-        p1 = (1335, 805)
-        p2 = (1375, 392)
-        p3 = (1124, 296)
+        p0 = (270, 835)
+        p1 = (430, 915)
+        p2 = (760, 390)
+        p3 = (1358, 238)
     else:
-        p0 = (840, 905)
-        p1 = (588, 830)
-        p2 = (512, 460)
-        p3 = (808, 314)
+        p0 = (250, 705)
+        p1 = (470, 520)
+        p2 = (755, 865)
+        p3 = (1335, 322)
     x = u**3 * p0[0] + 3 * u * u * t * p1[0] + 3 * u * t * t * p2[0] + t**3 * p3[0]
     y = u**3 * p0[1] + 3 * u * u * t * p1[1] + 3 * u * t * t * p2[1] + t**3 * p3[1]
-    wobble = math.sin(math.pi * t) ** 2
-    if kind == "positrino":
-        return x + 22 * math.sin(2.7 * math.pi * t + 0.3) * wobble, y - 14 * math.sin(2.1 * math.pi * t)
-    return x - 18 * math.sin(2.4 * math.pi * t + 0.8) * wobble, y + 18 * math.sin(1.8 * math.pi * t + 0.2)
+    return x, y
 
 
-def sample_path(kind: str, start: float = 0.03, end: float = 0.86, count: int = 90) -> list[tuple[float, float]]:
+def sample_path(kind: str, start: float = 0.03, end: float = 0.88, count: int = 160) -> list[tuple[float, float]]:
     return [path_point(kind, start + (end - start) * i / (count - 1)) for i in range(count)]
 
 
 def draw_background(c: Canvas) -> None:
     c.draw.rectangle((0, 0, WIDTH * SCALE, HEIGHT * SCALE), fill=c.theme["canvas"])
 
-    c.line([(92, 908), (1510, 908)], (255, 255, 255, 82), 1.2)
-    c.line([(92, 908), (92, 182)], (255, 255, 255, 58), 1.2)
-    c.draw.polygon([c.xy((1510, 908)), c.xy((1496, 900)), c.xy((1496, 916))], fill=(255, 255, 255, 92))
+    c.line([(92, 908), (1510, 908)], (255, 255, 255, 112), 1.2)
+    c.line([(92, 908), (92, 182)], (255, 255, 255, 84), 1.2)
+    c.draw.polygon([c.xy((1510, 908)), c.xy((1496, 900)), c.xy((1496, 916))], fill=(255, 255, 255, 124))
     c.draw.polygon([c.xy((92, 182)), c.xy((84, 196)), c.xy((100, 196))], fill=(255, 255, 255, 70))
-    c.text((112, 920), "absolute time", 14, (238, 243, 255, 142), "regular")
-    c.text((74, 165), "causal distance", 14, (238, 243, 255, 126), "regular", anchor="lm")
+    c.text((112, 920), "time", 14, (238, 243, 255, 172), "regular")
+    c.text((74, 165), "space", 14, (238, 243, 255, 150), "regular", anchor="lm")
 
 
 def draw_toolbar(c: Canvas) -> None:
@@ -339,18 +331,19 @@ def draw_legend(c: Canvas) -> None:
     x += 208
     c.rounded(x, y, 178, 30, 6, (34, 18, 54, 226), (255, 255, 255, 64), 1)
     for index in range(5):
-        c.circle((x + 18 + index * 7, y + 15), 2.2, with_alpha(POSITRINO, 215))
-        c.circle((x + 18 + index * 7, y + 21), 2.2, with_alpha(ELECTRINO, 215))
+        c.circle((x + 18 + index * 7, y + 15), 2.2, with_alpha(POSITRINO_WAKE, 215))
+        c.circle((x + 18 + index * 7, y + 21), 2.2, with_alpha(ELECTRINO_WAKE, 215))
     c.text((x + 60, y + 16), "dotted wakes", 14, (246, 247, 255, 205), "regular", anchor="lm")
 
     x += 192
     c.rounded(x, y, 190, 30, 6, (34, 18, 54, 226), (255, 255, 255, 58), 1)
-    c.text((x + 15, y + 15), "3 retained wake hits", 14, (246, 247, 255, 196), "regular", anchor="lm")
+    c.text((x + 15, y + 15), "4 retained path points", 14, (246, 247, 255, 196), "regular", anchor="lm")
 
 
 def draw_path_trail(c: Canvas, kind: str, color: tuple[int, int, int, int]) -> None:
     points = sample_path(kind)
-    c.line(points, with_alpha(color, 70), 12)
+    halo_color = mix(color, WHITE, 0.45)
+    c.line(points, with_alpha(halo_color, 82), 14)
     for i in range(len(points) - 1):
         alpha = round(92 + 138 * (i / (len(points) - 1)))
         width = 3.0 + 3.4 * (i / (len(points) - 1))
@@ -370,25 +363,13 @@ def draw_path_trail(c: Canvas, kind: str, color: tuple[int, int, int, int]) -> N
             anchor="mm",
         )
 
-    now = path_point(kind, 0.86)
+    now = path_point(kind, 0.88)
     c.circle(now, 20, with_alpha(color, 30))
     c.circle(now, 9, color, WHITE, 1.4)
 
     label = "positrino" if kind == "positrino" else "electrino"
     offset_y = -28 if kind == "positrino" else 30
     c.text((now[0] + 16, now[1] + offset_y), label, 14, with_alpha(color, 230), "bold", anchor="lm")
-
-
-def draw_virtual_observer(c: Canvas, point: tuple[float, float]) -> None:
-    c.circle(point, 34, (255, 255, 255, 18), (255, 255, 255, 96), 1.2)
-    c.circle(point, 16, (255, 255, 255, 30), CYAN, 2.2)
-    c.line([(point[0] - 48, point[1]), (point[0] - 23, point[1])], with_alpha(CYAN, 150), 1.4)
-    c.line([(point[0] + 23, point[1]), (point[0] + 48, point[1])], with_alpha(CYAN, 150), 1.4)
-    c.line([(point[0], point[1] - 48), (point[0], point[1] - 23)], with_alpha(CYAN, 150), 1.4)
-    c.line([(point[0], point[1] + 23), (point[0], point[1] + 48)], with_alpha(CYAN, 150), 1.4)
-    c.circle(point, 4.5, WHITE)
-    c.text((point[0] + 26, point[1] - 38), "Virtual Observer", 16, WHITE, "bold", anchor="lm")
-    c.text((point[0] + 26, point[1] - 17), "now t=0.86", 13, (225, 232, 255, 170), "regular", anchor="lm")
 
 
 def angle_between(center: tuple[float, float], point: tuple[float, float]) -> float:
@@ -441,7 +422,7 @@ def draw_dotted_arc(
     dot_count: int | None = None,
 ) -> None:
     span = abs(end_deg - start_deg)
-    count = dot_count or max(12, min(150, round((span / 360) * radius * 0.72)))
+    count = dot_count or max(16, min(220, round((span / 360) * radius * 1.2)))
     for index in range(count + 1):
         t = index / max(1, count)
         angle = start_deg + (end_deg - start_deg) * t
@@ -452,18 +433,20 @@ def draw_dotted_arc(
         c.circle(point, dot_radius, color)
 
 
-def draw_wake_for_emitter(
+def draw_wake_progression(
     c: Canvas,
-    kind: str,
+    source_kind: str,
+    target_kind: str,
     color: tuple[int, int, int, int],
-    observer: tuple[float, float],
-    depth: dict[str, object],
+    source_depth: dict[str, object],
+    target_depth: dict[str, object],
     variant: Variant,
 ) -> None:
-    source = path_point(kind, float(depth["t"]))
-    radius = distance(source, observer)
-    theta = angle_between(source, observer)
-    weight = float(depth["weight"])
+    source = path_point(source_kind, float(source_depth["t"]))
+    target = path_point(target_kind, float(target_depth["t"]))
+    radius = distance(source, target)
+    theta = angle_between(source, target)
+    weight = min(float(source_depth["weight"]), float(target_depth["weight"]))
     falloff_weight = weight**variant.falloff_power
     band_count = max(2, variant.wake_bands)
 
@@ -471,7 +454,7 @@ def draw_wake_for_emitter(
         progress = (index + 1) / band_count
         band_radius = radius * progress
         wake_span = variant.start_span + (variant.final_span - variant.start_span) * progress
-        alpha = round((34 + 178 * progress) * (0.42 + 0.58 * falloff_weight) * variant.alpha_scale)
+        alpha = round((30 + 148 * progress) * (0.44 + 0.56 * falloff_weight) * variant.alpha_scale)
         dot_radius = variant.dot_radius * (0.72 + 0.34 * progress) * (0.72 + 0.3 * falloff_weight)
         draw_dotted_arc(
             c,
@@ -484,10 +467,27 @@ def draw_wake_for_emitter(
         )
 
 
-def draw_wakes(c: Canvas, observer: tuple[float, float]) -> None:
-    for depth in DEPTHS:
-        draw_wake_for_emitter(c, "positrino", POSITRINO, observer, depth, c.variant)
-        draw_wake_for_emitter(c, "electrino", ELECTRINO, observer, depth, c.variant)
+def draw_wakes(c: Canvas) -> None:
+    by_depth = {int(depth["depth"]): depth for depth in DEPTHS}
+    for index in range(1, 4):
+        draw_wake_progression(
+            c,
+            "positrino",
+            "electrino",
+            POSITRINO_WAKE,
+            by_depth[index],
+            by_depth[index + 1],
+            c.variant,
+        )
+        draw_wake_progression(
+            c,
+            "electrino",
+            "positrino",
+            ELECTRINO_WAKE,
+            by_depth[index],
+            by_depth[index + 1],
+            c.variant,
+        )
 
 
 def draw_stack_bar(c: Canvas, x: float, y: float, width: float, color: tuple[int, int, int, int], value: float) -> None:
@@ -502,44 +502,40 @@ def draw_contribution_stack(c: Canvas) -> None:
     w = 300
     h = 782
     c.rounded(x, y, w, h, 8, c.theme["panel"], c.theme["panel_border"], 1)
-    c.text((x + 24, y + 34), "Virtual Observer Stack", 22, WHITE, "bold", anchor="lm")
-    c.text((x + 24, y + 60), "right-edge contribution readout", 13, (224, 230, 255, 158), "regular", anchor="lm")
+    c.text((x + 24, y + 34), "Feedback Links", 22, WHITE, "bold", anchor="lm")
+    c.text((x + 24, y + 60), "emitter point -> later receiver point", 13, (224, 230, 255, 158), "regular", anchor="lm")
 
-    row_y = y + 94
-    for depth in DEPTHS:
-        depth_index = int(depth["depth"])
-        active = depth_index == c.variant.selected_depth
-        row_h = 144
-        fill = (18, 12, 30, 238 if active else 216)
-        outline = with_alpha(CYAN if active else WHITE, 132 if active else 44)
+    links = [
+        ("red 1 -> blue 2", POSITRINO_WAKE, "older red wake"),
+        ("blue 1 -> red 2", ELECTRINO_WAKE, "older blue wake"),
+        ("red 2 -> blue 3", POSITRINO_WAKE, "middle red wake"),
+        ("blue 2 -> red 3", ELECTRINO_WAKE, "middle blue wake"),
+        ("red 3 -> blue 4", POSITRINO_WAKE, "newer red wake"),
+        ("blue 3 -> red 4", ELECTRINO_WAKE, "newer blue wake"),
+    ]
+    row_y = y + 96
+    row_h = 72
+    for index, (label, color, note) in enumerate(links):
+        fill = (18, 12, 30, 230 if index in (2, 3) else 208)
+        outline = with_alpha(color, 96 if index in (2, 3) else 54)
         c.rounded(x + 18, row_y, w - 36, row_h, 7, fill, outline, 1)
-        c.text((x + 36, row_y + 27), f"{depth_index}", 18, WHITE, "bold", anchor="lm")
-        state = str(depth["state"])
-        state_color = CYAN if state == "active" else AMBER
-        c.text((x + 190, row_y + 27), state, 13, state_color, "bold", anchor="lm")
+        c.text((x + 36, row_y + 25), label, 15, with_alpha(color, 235), "bold", anchor="lm")
+        c.text((x + 36, row_y + 49), note, 12, (224, 230, 255, 150), "regular", anchor="lm")
+        c.line([(x + 202, row_y + 36), (x + 248, row_y + 36)], with_alpha(color, 190), 2.0)
+        row_y += row_h + 12
 
-        weight = float(depth["weight"])
-        draw_stack_bar(c, x + 36, row_y + 62, 104, POSITRINO, weight)
-        draw_stack_bar(c, x + 36, row_y + 86, 104, ELECTRINO, max(0.12, weight * 0.74))
-        c.text((x + 154, row_y + 65), f"+{weight:.2f}", 14, with_alpha(POSITRINO, 220), "regular", anchor="lm")
-        c.text((x + 154, row_y + 89), f"-{weight * 0.74:.2f}", 14, with_alpha(ELECTRINO, 220), "regular", anchor="lm")
-        c.text((x + 36, row_y + 119), f"falloff 1/r = {depth['falloff']}", 13, (224, 230, 255, 164), "regular", anchor="lm")
-        row_y += row_h + 16
-
-    c.rounded(x + 18, y + h - 126, w - 36, 88, 7, (18, 12, 30, 220), (255, 255, 255, 54), 1)
-    c.text((x + 36, y + h - 94), "sum readout", 16, WHITE, "bold", anchor="lm")
-    c.text((x + 36, y + h - 64), "+0.42 active / +0.05 weak", 15, (224, 230, 255, 194), "regular", anchor="lm")
-    c.line([(x + 36, y + h - 42), (x + w - 36, y + h - 42)], with_alpha(AMBER, 130), 1.2)
-    c.text((x + w - 38, y + h - 47), "assembly threshold", 12, with_alpha(AMBER, 190), "regular", anchor="rs")
+    c.rounded(x + 18, y + h - 106, w - 36, 68, 7, (18, 12, 30, 220), (255, 255, 255, 54), 1)
+    c.text((x + 36, y + h - 78), "trace count", 16, WHITE, "bold", anchor="lm")
+    c.text((x + 36, y + h - 51), f"{c.variant.wake_bands} fronts per link", 15, (224, 230, 255, 194), "regular", anchor="lm")
 
 
 def draw_bottom_readout(c: Canvas) -> None:
     c.rounded(64, 940, 980, 80, 8, c.theme["panel"], c.theme["panel_border"], 1)
     chips = [
-        ("now", "0.86"),
-        ("retained hits", "3 wake hits"),
+        ("now", "0.88"),
+        ("retained points", "4 per path"),
         ("dataset", "representative mock solver replay"),
-        ("layout", "right-edge stack"),
+        ("layout", "time-space cross feedback"),
     ]
     x = 88
     for label, value in chips:
@@ -549,14 +545,12 @@ def draw_bottom_readout(c: Canvas) -> None:
 
 
 def draw_scene(c: Canvas) -> None:
-    observer = (960, 540)
     draw_background(c)
     draw_toolbar(c)
     draw_legend(c)
+    draw_wakes(c)
     draw_path_trail(c, "positrino", POSITRINO)
     draw_path_trail(c, "electrino", ELECTRINO)
-    draw_wakes(c, observer)
-    draw_virtual_observer(c, observer)
     draw_contribution_stack(c)
     draw_bottom_readout(c)
 
@@ -603,7 +597,7 @@ def generate_review_sheet(manifest: list[dict[str, str]]) -> None:
     draw.text((82, 72), "Causal Delay Feedback - Six Mock Contact Sheet Proofs", fill=WHITE, font=title_font)
     draw.text(
         (86, 148),
-        "Centered Virtual Observer, official red/blue polarity colors, and emitter-to-receiver growing wake bands.",
+        "Time-space cross feedback, official red/blue path colors, and lighter emitter-colored growing wake bands.",
         fill=(224, 230, 255, 188),
         font=body_font,
     )

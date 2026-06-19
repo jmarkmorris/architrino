@@ -25,7 +25,7 @@ The repo-local best-fit split for developer meta:
 - [AGENTS.md](../AGENTS.md) for stable repo-wide operating rules and constraints;
 - [reference/op/codex-setup.md](./op/codex-setup.md) for codex/operator-specific process notes;
 - `reference/priorities/` for live backlog and current-state tracking;
-- `reference/architecture/` for durable developer-facing technical documentation;
+- `reference/design/` for durable developer-facing design documentation;
 - `reference/outreach/` for outreach descriptions, channel planning, and message-testing material;
 - `reference/priorities` for issue tracker / project board for the live backlog.
 - `reference/adr/` for Architecture Decision Records;

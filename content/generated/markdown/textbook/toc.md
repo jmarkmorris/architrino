@@ -88,7 +88,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
     - [Ontological Clarifications](../../../markdown/aaa/foundations/detecting-the-absolute-frame.md?section=Ontological+Clarifications)
     - [Philosophical Context](../../../markdown/aaa/foundations/detecting-the-absolute-frame.md?section=Philosophical+Context)
     - [Summary: The Detection Method](../../../markdown/aaa/foundations/detecting-the-absolute-frame.md?section=Summary%3A+The+Detection+Method)
-  - [Reconstructing a Coordinate Frame from Wake Geometry](../../../scenes/foundations/bootstrapping_the_absolute_frame.json)
+  - [Constructing the Absolute Frame](../../../scenes/foundations/bootstrapping_the_absolute_frame.json)
     - [Overview](../../../markdown/aaa/foundations/bootstrapping-the-absolute-frame.md?section=Overview)
     - [Reconstruction Existence Lemma](../../../markdown/aaa/foundations/bootstrapping-the-absolute-frame.md?section=Reconstruction+Existence+Lemma)
     - [Minimal Reconstruction Procedure](../../../markdown/aaa/foundations/bootstrapping-the-absolute-frame.md?section=Minimal+Reconstruction+Procedure)
@@ -254,9 +254,6 @@ Chapter links open scenes. Section links open the corresponding markdown section
     - [The Nested Shell Swarm Hierarchy and Fermion Generations](../../../markdown/aaa/noether-swarm/noether-swarm.md?section=The+Nested+Shell+Swarm+Hierarchy+and+Fermion+Generations)
     - [Nested Shell Swarm Alignment and Planck-Scale Framing](../../../markdown/aaa/noether-swarm/noether-swarm.md?section=Nested+Shell+Swarm+Alignment+and+Planck-Scale+Framing)
     - [The Foundation for Fermions](../../../markdown/aaa/noether-swarm/noether-swarm.md?section=The+Foundation+for+Fermions)
-  - [Neutral Swarm](../../../scenes/noether-swarm/neutral_swarm.json) _(diagram)_
-  - [Shell Swarm](../../../scenes/noether-swarm/shell_swarm.json) _(diagram)_
-  - [Nested Shell Swarm](../../../scenes/noether-swarm/nested_shell_swarm.json) _(diagram)_
   - [Nested Shell Swarm Dynamics](../../../scenes/noether-swarm/nested_shell_swarm_dynamics.json)
     - [Relation to Causal Closure](../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md?section=Relation+to+Causal+Closure)
     - [Claim Scope](../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md?section=Claim+Scope)
@@ -1490,6 +1487,3 @@ Chapter links open scenes. Section links open the corresponding markdown section
     - [Compatibilist Agency](../../../markdown/aaa/philosophy-history/agency-and-internal-causation.md?section=Compatibilist+Agency)
     - [Summary](../../../markdown/aaa/philosophy-history/agency-and-internal-causation.md?section=Summary)
     - [Closing Statement](../../../markdown/aaa/philosophy-history/agency-and-internal-causation.md?section=Closing+Statement)
-- [Comparative Glossary](../../../scenes/archie/glossary.json)
-  - [Cosmology Lineage Terms](../../../markdown/aaa/archie/comparative-glossary.md?section=Cosmology+Lineage+Terms)
-  - [Key Regime Terms](../../../markdown/aaa/archie/comparative-glossary.md?section=Key+Regime+Terms)

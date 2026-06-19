@@ -65,6 +65,8 @@ struct TextbookSearchIndex: Decodable {
 struct TextbookSearchEntry: Decodable, Identifiable, Equatable {
     let chapterId: String
     let chapterTitle: String
+    let chapterPath: String?
+    let chapterSourcePath: String?
     let sectionAnchor: String
     let sectionTitle: String
     let headingLevel: Int
@@ -72,8 +74,10 @@ struct TextbookSearchEntry: Decodable, Identifiable, Equatable {
     let snippet: String
     let snippetMarkdown: String?
     let sectionKey: String?
+    let sourcePath: String?
 
     var id: String { "\(chapterId)::\(sectionAnchor)" }
+    var documentKey: String { sourcePath ?? chapterSourcePath ?? chapterPath ?? chapterId }
 
     var renderedPreviewMarkdown: String {
         let preview = (snippetMarkdown?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty == false)

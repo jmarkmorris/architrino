@@ -25,7 +25,10 @@ body {
   margin: 0;
   padding: 0;
   width: 100%;
+  max-width: 100%;
   min-height: 100%;
+  overflow-x: hidden;
+  overscroll-behavior-x: none;
   background: var(--reader-background);
   color: var(--reader-text);
   -webkit-text-size-adjust: 100%;
@@ -39,13 +42,18 @@ body {
 }
 
 .reader-shell {
+  width: 100%;
+  max-width: 100%;
   min-height: 100%;
   padding: 16px var(--reader-shell-padding-inline);
+  overflow-x: hidden;
 }
 
 .reader-article {
+  width: min(100%, var(--reader-article-max-width));
   max-width: var(--reader-article-max-width);
   margin: 0 auto;
+  overflow-x: hidden;
 }
 
 .reader-article h1,
@@ -74,6 +82,7 @@ body {
 }
 
 .reader-article pre {
+  max-width: 100%;
   overflow-x: auto;
   padding: 0.85em;
   border-radius: 8px;
@@ -87,11 +96,16 @@ body {
 }
 
 .reader-article .katex-display {
+  max-width: 100%;
   overflow-x: auto;
   overflow-y: hidden;
   padding-bottom: 0.15em;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
+}
+
+.reader-article .katex-display > .katex {
+  max-width: none;
 }
 
 .reader-article .katex-display::-webkit-scrollbar {
@@ -112,8 +126,19 @@ body {
 }
 
 .reader-article table {
-  width: 100%;
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  overflow-x: auto;
   border-collapse: collapse;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.reader-article table::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
 }
 
 .reader-article th,

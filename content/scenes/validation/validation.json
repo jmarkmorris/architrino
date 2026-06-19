@@ -7,9 +7,11 @@
     "units": "relative",
     "wrapLabels": true,
     "layout": {
-      "type": "rings"
+      "type": "rings",
+      "centerNode": null,
+      "order": "objects",
+      "direction": "clockwise"
     },
-    "centerOn": "validation_protocols",
     "children": [
       {
         "nodeId": "validation_protocols",
@@ -67,201 +69,93 @@
       "title": "Validation Protocols",
       "radius": 2.688,
       "color": "#2c567a",
-      "position": [
-        0,
-        0,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Validation Protocols",
-      "labelBadge": "doc",
-      "fixedPosition": true
+      "labelBadge": "doc"
     },
     {
       "id": "architrino_si_base_units",
       "title": "Architrino SI Base Units",
       "radius": 2.688,
       "color": "#3a5f9f",
-      "position": [
-        0,
-        10.5,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Architrino SI Base Units",
-      "labelBadge": "doc",
-      "fixedPosition": true
+      "labelBadge": "doc"
     },
     {
       "id": "parameter_ledger",
       "title": "Parameter Ledger",
       "radius": 2.688,
       "color": "#6a3c3c",
-      "position": [
-        6.75,
-        8.04,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Parameter Ledger",
-      "labelBadge": "doc",
-      "fixedPosition": true
+      "labelBadge": "doc"
     },
     {
       "id": "reaction_ledger",
       "title": "Reaction Ledger",
       "radius": 2.688,
       "color": "#2f4f7a",
-      "position": [
-        10.34,
-        1.82,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Reaction Ledger",
-      "labelBadge": "doc",
-      "fixedPosition": true
+      "labelBadge": "doc"
     },
     {
       "id": "reaction_cosmology_provenance_ledger",
       "title": "Reaction-Cosmology Provenance Ledger",
       "radius": 2.688,
       "color": "#4b5e2f",
-      "position": [
-        13.3,
-        9,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Reaction-Cosmology Provenance",
-      "labelBadge": "doc",
-      "fixedPosition": true
+      "labelBadge": "doc"
     },
     {
       "id": "constraint_ledger",
       "title": "Constraint Ledger",
       "radius": 2.688,
       "color": "#2f6b6f",
-      "position": [
-        9.09,
-        -5.25,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Constraint Ledger",
-      "labelBadge": "doc",
-      "fixedPosition": true
+      "labelBadge": "doc"
     },
     {
       "id": "failure_criteria",
       "title": "Failure Criteria",
       "radius": 2.688,
       "color": "#5a1f2e",
-      "position": [
-        3.59,
-        -9.87,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Failure Criteria",
-      "labelBadge": "doc",
-      "fixedPosition": true
+      "labelBadge": "doc"
     },
     {
       "id": "no_go_theorems",
       "title": "No Go Theorems",
       "radius": 2.688,
       "color": "#4b0082",
-      "position": [
-        -3.59,
-        -9.87,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "No Go Theorems",
-      "fixedPosition": true
+      "labelTitle": "No Go Theorems"
     },
     {
       "id": "known_tensions",
       "title": "Known Tensions",
       "radius": 2.688,
       "color": "#3f6a5a",
-      "position": [
-        -9.09,
-        -5.25,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Known Tensions",
-      "fixedPosition": true
+      "labelTitle": "Known Tensions"
     },
     {
       "id": "massive_superposition_gravity",
       "title": "Massive Superposition Gravity",
       "radius": 2.688,
       "color": "#7a5430",
-      "position": [
-        -6.8,
-        -14.5,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Massive Superposition Gravity",
-      "labelBadge": "doc",
-      "fixedPosition": true
+      "labelBadge": "doc"
     },
     {
       "id": "validation_simulations",
       "title": "Simulations",
       "radius": 2.688,
       "color": "#3f6a5a",
-      "position": [
-        -10.34,
-        1.82,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Simulations",
-      "fixedPosition": true
+      "labelTitle": "Simulations"
     },
     {
       "id": "closure_scorecard",
       "title": "Closure Scorecard",
       "radius": 2.688,
       "color": "#4b5e2f",
-      "position": [
-        -6.75,
-        8.04,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Closure Scorecard",
-      "labelBadge": "doc",
-      "fixedPosition": true
+      "labelBadge": "doc"
     }
   ]
 }

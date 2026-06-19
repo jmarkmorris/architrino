@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
   "manifest_schema": "textbook_bundle_schema_v1",
-  "generated_at": "2026-06-18T23:38:32.975Z",
-  "package_version": "1.0.0-3ee59ad5",
+  "generated_at": "2026-06-19T01:45:21.157Z",
+  "package_version": "1.0.0-97f9e05f",
   "schema_version_note": "content_bundle_schema_v1",
   "textbook_toc": {
     "path": "content/graph/textbook_toc.json",
-    "sha256": "3ee59ad55f38b3e1c639a38059b5b7e30003819996c81aa1c581e01b6b908ae7",
-    "size": 627245
+    "sha256": "97f9e05f074a572ae2ea3d8b77fc4b99ed709adebd0d0188fa9cf767ef77fdab",
+    "size": 625461
   },
   "chapters": [
     {
@@ -119,16 +119,6 @@
       "heading": "scene-index",
       "sectionCount": 0,
       "sectionKeys": []
-    },
-    {
-      "id": "archie__glossary",
-      "title": "Comparative Glossary",
-      "markdownPath": "content/generated/markdown/textbook/reading-copies/comparative-glossary.md",
-      "bundlePath": "reading-copies/comparative-glossary.md",
-      "htmlPath": "reading-copies/comparative-glossary.html",
-      "heading": "markdown-view",
-      "sectionCount": 0,
-      "sectionKeys": []
     }
   ],
   "references": [
@@ -174,40 +164,24 @@
       "sourcePath": "content/graph/textbook_toc.json",
       "role": "toc",
       "type": "json",
-      "size": 627699,
-      "sha256": "3ee59ad55f38b3e1c639a38059b5b7e30003819996c81aa1c581e01b6b908ae7"
+      "size": 625915,
+      "sha256": "97f9e05f074a572ae2ea3d8b77fc4b99ed709adebd0d0188fa9cf767ef77fdab"
     },
     {
       "path": "reading-copies/atomic-and-nuclear-assemblies.html",
       "sourcePath": "__generated__/reading-copies/atomic-and-nuclear-assemblies.html",
       "role": "chapter",
       "type": "html",
-      "size": 1535246,
-      "sha256": "7a17b3482c9133c2c41d6be6e4bf65d07626af2d093f5cd0494a785f6a788618"
+      "size": 1535369,
+      "sha256": "f99b571f292b4b19ce20dea10fa0b113f272cba97e747830f6640b4b5f1a5ed1"
     },
     {
       "path": "reading-copies/atomic-and-nuclear-assemblies.md",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/atomic-and-nuclear-assemblies.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 127448,
-      "sha256": "aedcaaa75bc18d60ac02b428c70a096610f2a92fbcbac78a3d036ce78e6964f3"
-    },
-    {
-      "path": "reading-copies/comparative-glossary.html",
-      "sourcePath": "__generated__/reading-copies/comparative-glossary.html",
-      "role": "chapter",
-      "type": "html",
-      "size": 176875,
-      "sha256": "9a594ec365a7d8acd6cae7459650a9416e6df70a0d460acea62c333fb3aaef79"
-    },
-    {
-      "path": "reading-copies/comparative-glossary.md",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/comparative-glossary.md",
-      "role": "chapter",
-      "type": "markdown",
-      "size": 71381,
-      "sha256": "545fb075f0a26ad08731d6ba7ca11b42d4bf8bb5f2391f98c94255513f80521c"
+      "size": 127554,
+      "sha256": "71a47d9da333a95319b4adacf8a695c73e93e0e1a90dc26740c4092718c9a953"
     },
     {
       "path": "reading-copies/cosmology.html",
@@ -278,16 +252,16 @@
       "sourcePath": "__generated__/reading-copies/noether-swarm.html",
       "role": "chapter",
       "type": "html",
-      "size": 3342497,
-      "sha256": "99c42a0799d1021eb611a5882efc62eaa7cf587e527d5e71b38a22728381dbc8"
+      "size": 3342359,
+      "sha256": "7e1d43f237219c61f04cd47846d9d5df7c6c21f2b15a3b19aba10b9072df4ac1"
     },
     {
       "path": "reading-copies/noether-swarm.md",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 167027,
-      "sha256": "468b2f39e1675c147bc6052eb09ca9e8d086f319112a492fe1fbfe6255b82c18"
+      "size": 166970,
+      "sha256": "dc679c4a69fb49b63ef816b7cf2da9d75c10bb02d26ae31b9bfb778109cbe22e"
     },
     {
       "path": "reading-copies/philosophy-history.html",
@@ -454,8 +428,8 @@
       "sourcePath": "__generated__/textbook_bundle_search_index.json",
       "role": "search",
       "type": "json",
-      "size": 8408196,
-      "sha256": "8f13dd0eef45efd25bdb75b19078fbc0ea7e4a4e80a6cd428ef5604e63c5a950"
+      "size": 8385622,
+      "sha256": "08a4765711450372aeb11dec3c7e40e31fa88816b233899280a010c151d686b5"
     }
   ],
   "links": []

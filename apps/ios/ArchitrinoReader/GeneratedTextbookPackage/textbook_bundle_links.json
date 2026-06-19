@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-06-18T23:38:32.975Z",
-  "total_links": 1389,
+  "generated_at": "2026-06-19T01:45:21.157Z",
+  "total_links": 1390,
   "links": [
     {
       "sourceChapterId": "archie-academic-style-guide",
@@ -4770,6 +4770,14 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/validation/simulations/retuning-map-toy-model.md"
+    },
+    {
+      "sourceChapterId": "nuclear_atomic",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/atomic-and-nuclear-assemblies.md",
+      "target": "../../../../scenes/chemistry/hyde_periodic_table_scene.json",
+      "kind": "external",
+      "status": "web_scene_redirect",
+      "targetBundlePath": "https://architrino.com/#scene=content%2Fscenes%2Fchemistry%2Fhyde_periodic_table_scene.json"
     },
     {
       "sourceChapterId": "philosophy_history",

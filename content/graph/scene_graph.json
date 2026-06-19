@@ -10,7 +10,7 @@
     },
     "counts": {
       "nodes": 511,
-      "edges": 1259,
+      "edges": 1255,
       "scenes": 332,
       "markdownIndexes": 0,
       "markdownDocs": 166,
@@ -1296,7 +1296,7 @@
     },
     {
       "id": "foundations__bootstrapping_the_absolute_frame",
-      "name": "Reconstructing a Coordinate Frame from Wake Geometry",
+      "name": "Constructing the Absolute Frame",
       "path": "content/scenes/foundations/bootstrapping_the_absolute_frame.json",
       "nodeType": "scene"
     },
@@ -2430,7 +2430,7 @@
     },
     {
       "id": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
-      "name": "Reconstructing a Coordinate Frame from Wake Geometry",
+      "name": "Constructing the Absolute Frame",
       "path": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
       "nodeType": "markdown_doc"
     },
@@ -4861,7 +4861,7 @@
       "nodeId": "scene:content/scenes/foundations/bootstrapping_the_absolute_frame.json",
       "nodeType": "scene",
       "id": "foundations__bootstrapping_the_absolute_frame",
-      "name": "Reconstructing a Coordinate Frame from Wake Geometry",
+      "name": "Constructing the Absolute Frame",
       "path": "content/scenes/foundations/bootstrapping_the_absolute_frame.json",
       "searchTarget": "content/scenes/foundations/bootstrapping_the_absolute_frame.json",
       "implicit": false
@@ -6562,7 +6562,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
-      "name": "Reconstructing a Coordinate Frame from Wake Geometry",
+      "name": "Constructing the Absolute Frame",
       "path": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
       "searchTarget": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
       "implicit": false
@@ -7920,13 +7920,6 @@
       "edgeType": "subscene",
       "source": "content/scenes/archie/user_interface.json",
       "field": "scene.children[3]"
-    },
-    {
-      "from": "scene:content/scenes/architrino_assembly_architecture.json",
-      "to": "scene:content/scenes/archie/glossary.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "scene.children[12]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
@@ -10957,28 +10950,14 @@
       "to": "scene:content/scenes/noether-swarm/nested_shell_swarm_dynamics.json",
       "edgeType": "subscene",
       "source": "content/scenes/noether-swarm/noether_swarm.json",
-      "field": "scene.children[4]"
+      "field": "scene.children[1]"
     },
     {
       "from": "scene:content/scenes/noether-swarm/noether_swarm.json",
       "to": "scene:content/scenes/noether-swarm/nested_shell_swarm_geometry.json",
       "edgeType": "subscene",
       "source": "content/scenes/noether-swarm/noether_swarm.json",
-      "field": "scene.children[5]"
-    },
-    {
-      "from": "scene:content/scenes/noether-swarm/noether_swarm.json",
-      "to": "scene:content/scenes/noether-swarm/nested_shell_swarm.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/noether-swarm/noether_swarm.json",
-      "field": "scene.children[3]"
-    },
-    {
-      "from": "scene:content/scenes/noether-swarm/noether_swarm.json",
-      "to": "scene:content/scenes/noether-swarm/neutral_swarm.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/noether-swarm/noether_swarm.json",
-      "field": "scene.children[1]"
+      "field": "scene.children[2]"
     },
     {
       "from": "scene:content/scenes/noether-swarm/noether_swarm.json",
@@ -10986,13 +10965,6 @@
       "edgeType": "subscene",
       "source": "content/scenes/noether-swarm/noether_swarm.json",
       "field": "scene.children[0]"
-    },
-    {
-      "from": "scene:content/scenes/noether-swarm/noether_swarm.json",
-      "to": "scene:content/scenes/noether-swarm/shell_swarm.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/noether-swarm/noether_swarm.json",
-      "field": "scene.children[2]"
     },
     {
       "from": "scene:content/scenes/nuclear/atom.json",

@@ -7,7 +7,10 @@
     "units": "relative",
     "wrapLabels": true,
     "layout": {
-      "type": "rings"
+      "type": "rings",
+      "centerNode": null,
+      "order": "objects",
+      "direction": "clockwise"
     },
     "children": [
       {
@@ -38,85 +41,40 @@
       "title": "Mode Taxonomy",
       "radius": 2.688,
       "color": "#3c6a7a",
-      "position": [
-        0,
-        10.5,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Mode Taxonomy",
-      "labelBadge": "doc",
-      "fixedPosition": true
+      "labelBadge": "doc"
     },
     {
       "id": "radiation",
       "title": "Radiation",
       "radius": 2.688,
       "color": "#4b5e2f",
-      "position": [
-        0,
-        0,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Radiation",
-      "labelBadge": "doc",
-      "fixedPosition": true
+      "labelBadge": "doc"
     },
     {
       "id": "atomic_transition_radiation",
       "title": "Atomic Transition Radiation",
       "radius": 2.688,
       "color": "#2f6b6f",
-      "position": [
-        0,
-        -10.5,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Atomic Transition Radiation",
-      "labelBadge": "doc",
-      "fixedPosition": true
+      "labelBadge": "doc"
     },
     {
       "id": "bremsstrahlung",
       "title": "Bremsstrahlung",
       "radius": 2.688,
       "color": "#5a1f2e",
-      "position": [
-        9.09,
-        -5.25,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Bremsstrahlung",
-      "labelBadge": "doc",
-      "fixedPosition": true
+      "labelBadge": "doc"
     },
     {
       "id": "synchrotron_cascades",
       "title": "Synchrotron Cascades",
       "radius": 2.688,
       "color": "#2f4f7a",
-      "position": [
-        -9.09,
-        -5.25,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Synchrotron Cascades",
-      "labelBadge": "doc",
-      "fixedPosition": true
+      "labelBadge": "doc"
     }
   ]
 }

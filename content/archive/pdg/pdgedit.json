@@ -5,7 +5,6 @@
     "title": "pdgedit",
     "type": "Scene-Diagram",
     "units": "relative",
-    "hideScaleLabels": true,
     "wrapLabels": true,
     "layout": {
       "type": "rings"

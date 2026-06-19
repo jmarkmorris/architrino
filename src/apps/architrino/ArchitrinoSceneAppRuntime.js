@@ -73,6 +73,10 @@ import {
   computeCenteredSceneFitZoom,
 } from "../../runtime/SceneViewportFitRuntime.js";
 import { createSceneGraphRuntime } from "../../runtime/SceneGraphRuntime.js";
+import {
+  RING_LAYOUT_DEFAULTS as ringLayoutDefaults,
+  getRingGuardBand,
+} from "../../runtime/RingLayoutRuntime.js";
 import { createTransitionEngine } from "../../runtime/TransitionEngine.js";
 import { SceneRepository } from "../../services/SceneRepository.js";
 import { SceneIndexService } from "../../services/SceneIndexService.js";
@@ -101,6 +105,7 @@ import {
   isAtomContextScene,
   isAtomicParticleFocusTarget,
   isHydePeriodicTableScene,
+  isPeriodicTableScene,
   isStandardModelScene,
 } from "../../services/SceneCapabilitiesService.js";
 import { resolveStandaloneAppHrefForScene } from "../navigator/StandaloneAppLaunchRuntime.js";
@@ -6348,12 +6353,6 @@ const sceneStateHashService = createSceneStateHashService({
   getNavigationStack: () => navigationStack,
 });
 
-const ringLayoutDefaults = {
-  haloScale: 1.18,
-  guardBandMin: 0.15,
-  guardBandRatio: 0.08,
-  startAngle: Math.PI / 2,
-};
 const standardRingMaxCount = 14;
 
 function getRingStartAngle(count) {
@@ -6365,10 +6364,7 @@ function maxRingNodeRadius(ringRadius, count) {
     return Infinity;
   }
   const chord = 2 * ringRadius * Math.sin(Math.PI / count);
-  const guardBand = Math.max(
-    ringLayoutDefaults.guardBandMin,
-    chord * ringLayoutDefaults.guardBandRatio
-  );
+  const guardBand = getRingGuardBand(chord);
   return (chord - guardBand) / (2 * ringLayoutDefaults.haloScale);
 }
 
@@ -6405,10 +6401,7 @@ function solveRingFit(frameRadius, count) {
 
   const requiredRingRadiusForHalo = (haloRadius) => {
     const haloDiameter = haloRadius * 2;
-    const guardBand = Math.max(
-      ringLayoutDefaults.guardBandMin,
-      haloDiameter * ringLayoutDefaults.guardBandRatio
-    );
+    const guardBand = getRingGuardBand(haloDiameter);
     const requiredChord = haloDiameter + guardBand;
     return requiredChord / (2 * sinHalfStep);
   };
@@ -6665,11 +6658,15 @@ function isHydePeriodicLevel(level = currentLevel) {
   return isHydePeriodicTableScene(level);
 }
 
+function isPeriodicTableLevel(level = currentLevel) {
+  return isPeriodicTableScene(level) || isHydePeriodicLevel(level);
+}
+
 function showZoomToastIfNeeded() {
   if (!zoomToast || hasDismissedZoomToast()) {
     return;
   }
-  if (isHydePeriodicLevel()) {
+  if (isPeriodicTableLevel()) {
     hideZoomToast();
     return;
   }
@@ -7742,10 +7739,54 @@ function estimateLabelLineCount(text, fontSize, maxWidth) {
   return lines;
 }
 
+function getLabelBadgeHeightMultiplier(nodeData = {}) {
+  if (
+    typeof nodeData.labelBadgeImage === "string" &&
+    nodeData.labelBadgeImage.trim()
+  ) {
+    return 1;
+  }
+  const badgeToken =
+    typeof nodeData.labelBadge === "string"
+      ? nodeData.labelBadge.trim().toLowerCase()
+      : "";
+  if (!badgeToken) {
+    return 0;
+  }
+  if (
+    badgeToken === "doc" ||
+    badgeToken === "doc-svg" ||
+    badgeToken === "md" ||
+    badgeToken === "markdown" ||
+    badgeToken === "pdf"
+  ) {
+    return 2.2;
+  }
+  if (
+    (badgeToken === "diagram" || badgeToken === "branch") &&
+    typeof nodeData.childScene === "string" &&
+    nodeData.childScene
+  ) {
+    return 1.9;
+  }
+  return 0;
+}
+
+function resolveLabelTitleWeight(titleSize, titleLineCount) {
+  if (titleSize <= 10.75 || titleLineCount >= 4) {
+    return 400;
+  }
+  if (titleSize <= 12.5 || titleLineCount >= 3) {
+    return 500;
+  }
+  return 600;
+}
+
 function updateLevelLabelWrap(level) {
   if (!level) {
     return;
   }
+  const labelFits = [];
   level.nodes.forEach((node) => {
     if (!node.data.wrapLabel) {
       return;
@@ -7755,9 +7796,9 @@ function updateLevelLabelWrap(level) {
     if (!Number.isFinite(diameter) || diameter <= 0) {
       return;
     }
-    const targetWidth = Math.round(diameter * 0.88);
+    const targetWidth = Math.round(diameter * 0.8);
     const minWidth = 42;
-    const maxAllowed = Math.round(diameter * 0.95);
+    const maxAllowed = Math.round(diameter * 0.84);
     const widthFloor = Math.min(minWidth, maxAllowed);
     const maxWidth = Math.max(widthFloor, Math.min(targetWidth, maxAllowed));
     if (node.labelMaxWidth !== maxWidth) {
@@ -7782,9 +7823,8 @@ function updateLevelLabelWrap(level) {
       typeof node.data.labelDates === "string" && node.data.labelDates.trim()
         ? node.data.labelDates.trim()
         : "";
-    const hasLabelBadge =
-      (typeof node.data.labelBadge === "string" && node.data.labelBadge.trim()) ||
-      (typeof node.data.labelBadgeImage === "string" && node.data.labelBadgeImage.trim());
+    const badgeHeightMultiplier = getLabelBadgeHeightMultiplier(node.data);
+    const hasLabelBadge = badgeHeightMultiplier > 0;
     const tokens = labelName
       .split(/[\s-]+/)
       .map((token) => token.replace(/[^A-Za-z0-9]/g, ""))
@@ -7814,8 +7854,11 @@ function updateLevelLabelWrap(level) {
       const detailHeight =
         subtitleLineCount * subtitleSizeEstimate * 1.08 +
         datesLineCount * datesSizeEstimate * 1.08 +
-        (hasLabelBadge ? badgeSize + 2 : 0);
-      const verticalBudget = diameter * 0.58;
+        (hasLabelBadge ? badgeSize * badgeHeightMultiplier + 2 : 0);
+      const widthRatio = Math.min(0.98, Math.max(0, maxWidth / diameter));
+      const circleHeightBudget =
+        diameter * Math.sqrt(Math.max(0.01, 1 - widthRatio * widthRatio));
+      const verticalBudget = Math.min(diameter * 0.52, circleHeightBudget * 0.92);
       const totalHeight = titleHeight + detailHeight;
       if (!Number.isFinite(totalHeight) || totalHeight <= verticalBudget) {
         break;
@@ -7823,25 +7866,50 @@ function updateLevelLabelWrap(level) {
       titleSize = clamp(titleSize * (verticalBudget / totalHeight), 8.5, titleSize);
     }
 
-    let titleWeight = 600;
-    if (titleSize <= 10.75 || titleLineCount >= 4) {
-      titleWeight = 400;
-    } else if (titleSize <= 12.5 || titleLineCount >= 3) {
-      titleWeight = 500;
-    }
-    lineHeight = titleSize <= 10.5 ? 1.18 : titleSize <= 12.5 ? 1.15 : 1.12;
+    labelFits.push({
+      node,
+      labelName,
+      maxWidth,
+      titleSize,
+      titleLineCount,
+    });
+  });
+
+  if (!labelFits.length) {
+    return;
+  }
+
+  const sharedTitleSize = Math.min(...labelFits.map((fit) => fit.titleSize));
+  const sharedMaxLineCount = Math.max(
+    1,
+    ...labelFits.map((fit) =>
+      estimateLabelLineCount(fit.labelName, sharedTitleSize, fit.maxWidth)
+    )
+  );
+  const sharedTitleWeight = resolveLabelTitleWeight(
+    sharedTitleSize,
+    sharedMaxLineCount
+  );
+  const lineHeight =
+    sharedTitleSize <= 10.5 ? 1.18 : sharedTitleSize <= 12.5 ? 1.15 : 1.12;
+  const tagSize = clamp(sharedTitleSize * 0.58, 8, 9);
+  const subtitleSize =
+    sharedTitleSize <= 11 ? sharedTitleSize * 0.92 : sharedTitleSize * 0.96;
+  const datesSize =
+    sharedTitleSize <= 11 ? sharedTitleSize * 0.92 : sharedTitleSize * 0.96;
+  const badgeSize = clamp(
+    sharedTitleSize * (sharedMaxLineCount >= 4 ? 0.82 : 0.94),
+    9.5,
+    17
+  );
+
+  labelFits.forEach(({ node }) => {
     const letterSpacing = 0;
-    const scaleSize = clamp(titleSize * 0.62, 8, 10);
-    const tagSize = clamp(titleSize * 0.58, 8, 9);
-    const subtitleSize = titleSize <= 11 ? titleSize * 0.92 : titleSize * 0.96;
-    const datesSize = titleSize <= 11 ? titleSize * 0.92 : titleSize * 0.96;
-    badgeSize = clamp(titleSize * (titleLineCount >= 4 ? 0.82 : 0.94), 9.5, 17);
     const typographyKey = [
-      titleSize.toFixed(2),
-      titleWeight,
+      sharedTitleSize.toFixed(2),
+      sharedTitleWeight,
       lineHeight.toFixed(2),
       letterSpacing.toFixed(2),
-      scaleSize.toFixed(2),
       tagSize.toFixed(2),
       subtitleSize.toFixed(2),
       datesSize.toFixed(2),
@@ -7851,14 +7919,13 @@ function updateLevelLabelWrap(level) {
     if (node.labelTypographyKey !== typographyKey) {
       node.labelTypographyKey = typographyKey;
       const labelStyle = node.labelObject.element.style;
-      labelStyle.setProperty("--label-title-size", `${titleSize.toFixed(2)}px`);
-      labelStyle.setProperty("--label-title-weight", `${titleWeight}`);
+      labelStyle.setProperty("--label-title-size", `${sharedTitleSize.toFixed(2)}px`);
+      labelStyle.setProperty("--label-title-weight", `${sharedTitleWeight}`);
       labelStyle.setProperty("--label-title-line-height", lineHeight.toFixed(2));
       labelStyle.setProperty(
         "--label-title-letter-spacing",
         `${letterSpacing.toFixed(2)}em`
       );
-      labelStyle.setProperty("--label-scale-size", `${scaleSize.toFixed(2)}px`);
       labelStyle.setProperty("--label-tag-size", `${tagSize.toFixed(2)}px`);
       labelStyle.setProperty("--label-subtitle-size", `${subtitleSize.toFixed(2)}px`);
       labelStyle.setProperty("--label-dates-size", `${datesSize.toFixed(2)}px`);

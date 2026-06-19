@@ -8,8 +8,8 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 166,
-      "sections": 1325
+      "entries": 162,
+      "sections": 1323
     }
   },
   "tocRoot": {
@@ -714,7 +714,7 @@
           },
           {
             "id": "foundations__bootstrapping_the_absolute_frame",
-            "title": "Reconstructing a Coordinate Frame from Wake Geometry",
+            "title": "Constructing the Absolute Frame",
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
             "scenePath": "content/scenes/foundations/bootstrapping_the_absolute_frame.json",
@@ -2066,27 +2066,6 @@
                 "headingLevel": 2
               }
             ]
-          },
-          {
-            "id": "noether_swarm__neutral_swarm",
-            "title": "Neutral Swarm",
-            "kind": "diagram",
-            "sceneType": "Scene-Diagram",
-            "scenePath": "content/scenes/noether-swarm/neutral_swarm.json"
-          },
-          {
-            "id": "noether_swarm__shell_swarm",
-            "title": "Shell Swarm",
-            "kind": "diagram",
-            "sceneType": "Scene-Diagram",
-            "scenePath": "content/scenes/noether-swarm/shell_swarm.json"
-          },
-          {
-            "id": "noether_swarm__nested_shell_swarm",
-            "title": "Nested Shell Swarm",
-            "kind": "diagram",
-            "sceneType": "Scene-Diagram",
-            "scenePath": "content/scenes/noether-swarm/nested_shell_swarm.json"
           },
           {
             "id": "noether_swarm__nested_shell_swarm_dynamics",
@@ -12226,32 +12205,6 @@
                 "headingLevel": 2
               }
             ]
-          }
-        ]
-      },
-      {
-        "id": "archie__glossary",
-        "title": "Comparative Glossary",
-        "kind": "markdown-view",
-        "sceneType": "Scene-Markdown-View",
-        "scenePath": "content/scenes/archie/glossary.json",
-        "markdownPath": "content/markdown/aaa/archie/comparative-glossary.md",
-        "sections": [
-          {
-            "kind": "markdown-section",
-            "title": "Cosmology Lineage Terms",
-            "markdownPath": "content/markdown/aaa/archie/comparative-glossary.md",
-            "markdownSection": "Cosmology Lineage Terms",
-            "sectionKey": "cosmology lineage terms",
-            "headingLevel": 2
-          },
-          {
-            "kind": "markdown-section",
-            "title": "Key Regime Terms",
-            "markdownPath": "content/markdown/aaa/archie/comparative-glossary.md",
-            "markdownSection": "Key Regime Terms",
-            "sectionKey": "key regime terms",
-            "headingLevel": 2
           }
         ]
       }

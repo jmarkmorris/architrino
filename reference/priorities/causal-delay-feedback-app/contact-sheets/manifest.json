@@ -1,43 +1,43 @@
 [
   {
-    "variant": "centered_baseline_growing_arcs",
-    "title": "Baseline - centered observer, 5 growing bands",
-    "path": "contact-sheets/centered_baseline_growing_arcs.png",
+    "variant": "cross_feedback_baseline_15_fronts",
+    "title": "Baseline - 15 light cross-path fronts",
+    "path": "contact-sheets/cross_feedback_baseline_15_fronts.png",
     "size": "1920x1080",
     "datasetSource": "representative_mock_solver_replay"
   },
   {
-    "variant": "centered_sparse_growing_arcs",
-    "title": "Sparse bands - fewer wake steps",
-    "path": "contact-sheets/centered_sparse_growing_arcs.png",
+    "variant": "cross_feedback_tight_fronts",
+    "title": "Tight fronts - narrower receiver sector",
+    "path": "contact-sheets/cross_feedback_tight_fronts.png",
     "size": "1920x1080",
     "datasetSource": "representative_mock_solver_replay"
   },
   {
-    "variant": "centered_dense_growing_arcs",
-    "title": "Dense bands - smoother wake growth",
-    "path": "contact-sheets/centered_dense_growing_arcs.png",
+    "variant": "cross_feedback_wide_fronts",
+    "title": "Wide fronts - broader receiver sector",
+    "path": "contact-sheets/cross_feedback_wide_fronts.png",
     "size": "1920x1080",
     "datasetSource": "representative_mock_solver_replay"
   },
   {
-    "variant": "centered_tight_arrival_arcs",
-    "title": "Tight arrival - narrow final arc span",
-    "path": "contact-sheets/centered_tight_arrival_arcs.png",
+    "variant": "cross_feedback_thin_fronts",
+    "title": "Thin fronts - lighter trace weight",
+    "path": "contact-sheets/cross_feedback_thin_fronts.png",
     "size": "1920x1080",
     "datasetSource": "representative_mock_solver_replay"
   },
   {
-    "variant": "centered_wide_arrival_arcs",
-    "title": "Wide arrival - broader final arc span",
-    "path": "contact-sheets/centered_wide_arrival_arcs.png",
+    "variant": "cross_feedback_bright_fronts",
+    "title": "Bright fronts - stronger visibility",
+    "path": "contact-sheets/cross_feedback_bright_fronts.png",
     "size": "1920x1080",
     "datasetSource": "representative_mock_solver_replay"
   },
   {
-    "variant": "centered_strong_falloff_arcs",
+    "variant": "cross_feedback_strong_falloff",
     "title": "Strong falloff - older wakes fade harder",
-    "path": "contact-sheets/centered_strong_falloff_arcs.png",
+    "path": "contact-sheets/cross_feedback_strong_falloff.png",
     "size": "1920x1080",
     "datasetSource": "representative_mock_solver_replay"
   }

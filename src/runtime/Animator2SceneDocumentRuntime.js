@@ -1064,7 +1064,6 @@ export function buildAnimatorPreviewSceneData(document, options = {}) {
       type: "Scene-Diagram",
       units: "relative",
       wrapLabels: true,
-      hideScaleLabels: true,
       layout: {
         type: "rings",
       },

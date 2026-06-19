@@ -27,6 +27,9 @@ struct ReaderWebView: UIViewRepresentable {
         view.scrollView.backgroundColor = UIColor.readerBackground(for: .architrinoPurple)
         view.scrollView.keyboardDismissMode = .onDrag
         view.scrollView.bounces = false
+        view.scrollView.alwaysBounceHorizontal = false
+        view.scrollView.showsHorizontalScrollIndicator = false
+        view.scrollView.isDirectionalLockEnabled = true
 
         if let shellURL = Bundle.main.url(
             forResource: "ReaderShell",

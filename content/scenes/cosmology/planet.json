@@ -17,7 +17,6 @@
     {
       "id": "core",
       "label": "core",
-      "scaleExponent": 6,
       "radius": 1.2,
       "color": "#6a4d1b",
       "motion": {
@@ -28,7 +27,6 @@
     {
       "id": "mantle",
       "label": "mantle",
-      "scaleExponent": 6,
       "radius": 1.1,
       "color": "#7a4a1f",
       "motion": {
@@ -39,7 +37,6 @@
     {
       "id": "crust",
       "label": "crust",
-      "scaleExponent": 6,
       "radius": 1,
       "color": "#8a6a3a",
       "motion": {
@@ -50,7 +47,6 @@
     {
       "id": "atmosphere",
       "label": "atmosphere",
-      "scaleExponent": 6,
       "radius": 1,
       "color": "#2c6c7e",
       "motion": {
@@ -61,7 +57,6 @@
     {
       "id": "magnetosphere",
       "label": "magnetosphere",
-      "scaleExponent": 6,
       "radius": 1,
       "color": "#3f5f8a",
       "motion": {
@@ -72,7 +67,6 @@
     {
       "id": "rings",
       "label": "rings",
-      "scaleExponent": 6,
       "radius": 1,
       "color": "#9ea6bf",
       "motion": {

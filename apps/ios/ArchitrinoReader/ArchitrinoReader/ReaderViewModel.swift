@@ -36,6 +36,26 @@ final class ReaderViewModel: ObservableObject {
     private let appWebBaseURL = "https://architrino.com"
     private let inAppTOCKinds: Set<String> = ["scene-index", "markdown-view"]
     private let webappTOCKinds: Set<String> = ["diagram", "markdown-tree", "markdown-split"]
+    private let appTOCNodeIDs: Set<String> = [
+        "archie__applications",
+        "ideal_swarm",
+        "photon",
+        "hyde_periodic_table",
+        "periodic_table",
+        "atom",
+        "standard_model",
+        "molecule",
+    ]
+    private let appTOCScenePaths: Set<String> = [
+        "content/scenes/archie/applications.json",
+        "content/scenes/archie/ideal_swarm.json",
+        "content/scenes/archie/photon.json",
+        "content/scenes/chemistry/hyde_periodic_table_scene.json",
+        "content/scenes/chemistry/periodic_table_scene.json",
+        "content/scenes/nuclear/atom.json",
+        "content/scenes/standard-model-particles/standard_model.json",
+        "content/scenes/archie/molecule.json",
+    ]
 
     private var markdownCache: [String: String] = [:]
     private var htmlCache: [String: String] = [:]
@@ -221,7 +241,58 @@ final class ReaderViewModel: ObservableObject {
     }
 
     var tocTopLevelNodes: [TextbookTOCNode] {
-        package?.tocPackage.tocRoot.resolvedChildren ?? []
+        visibleTOCNodes(package?.tocPackage.tocRoot.resolvedChildren ?? [])
+    }
+
+    func visibleTOCChildren(for node: TextbookTOCNode) -> [TextbookTOCNode] {
+        visibleTOCNodes(node.resolvedChildren)
+    }
+
+    func visibleTOCSections(for node: TextbookTOCNode) -> [TextbookTOCSection] {
+        node.resolvedSections
+    }
+
+    private func visibleTOCNodes(_ nodes: [TextbookTOCNode]) -> [TextbookTOCNode] {
+        nodes.filter(isTOCNodeVisible)
+    }
+
+    private func isTOCNodeVisible(_ node: TextbookTOCNode) -> Bool {
+        if hasTOCMarkdownTarget(node) || isAppTOCNode(node) {
+            return true
+        }
+
+        return node.resolvedChildren.contains(where: isTOCNodeVisible)
+    }
+
+    private func hasTOCMarkdownTarget(_ node: TextbookTOCNode) -> Bool {
+        if hasText(node.markdownPath) {
+            return true
+        }
+
+        return node.resolvedSections.contains { hasTOCMarkdownTarget($0) }
+    }
+
+    private func hasTOCMarkdownTarget(_ section: TextbookTOCSection) -> Bool {
+        if hasText(section.markdownPath) {
+            return true
+        }
+
+        return section.resolvedChildren.contains { hasTOCMarkdownTarget($0) }
+    }
+
+    private func isAppTOCNode(_ node: TextbookTOCNode) -> Bool {
+        if appTOCNodeIDs.contains(node.id) {
+            return true
+        }
+
+        guard let scenePath = node.scenePath else {
+            return false
+        }
+        return appTOCScenePaths.contains(normalizePath(scenePath))
+    }
+
+    private func hasText(_ value: String?) -> Bool {
+        value?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty == false
     }
 
     var packageVersionLabel: String {
@@ -478,7 +549,8 @@ final class ReaderViewModel: ObservableObject {
 
     func search(_ query: String) {
         searchText = query
-        guard !query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
+        let normalized = query.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+        guard !normalized.isEmpty else {
             searchResults = []
             return
         }
@@ -487,17 +559,21 @@ final class ReaderViewModel: ObservableObject {
             ensureSearchIndexLoaded()
             return
         }
-        let normalized = query.lowercased()
-        searchResults = searchIndexEntries.filter { entry in
+        var seenDocumentKeys = Set<String>()
+        var nextResults: [TextbookSearchEntry] = []
+        for entry in searchIndexEntries {
             let haystack = "\(entry.chapterTitle) \(entry.sectionTitle) \(entry.text) \(entry.snippet)".lowercased()
-            return haystack.contains(normalized)
-        }
-        .sorted { lhs, rhs in
-            if lhs.chapterTitle == rhs.chapterTitle {
-                return lhs.sectionTitle < rhs.sectionTitle
+            guard haystack.contains(normalized) else {
+                continue
             }
-            return lhs.chapterTitle < rhs.chapterTitle
+            let documentKey = entry.documentKey
+            guard !seenDocumentKeys.contains(documentKey) else {
+                continue
+            }
+            seenDocumentKeys.insert(documentKey)
+            nextResults.append(entry)
         }
+        searchResults = nextResults
     }
 
     func clearSearch() {

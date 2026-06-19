@@ -4,9 +4,11 @@
     "title": "Dynamics",
     "type": "Scene-Index",
     "layout": {
-      "type": "rings"
+      "type": "rings",
+      "centerNode": null,
+      "order": "objects",
+      "direction": "clockwise"
     },
-    "centerOn": "master_equation_of_motion",
     "children": [
       {
         "nodeId": "master_equation_of_motion",
@@ -48,135 +50,63 @@
       "title": "Master Equation of Motion",
       "radius": 2.688,
       "color": "#1c2a4f",
-      "position": [
-        0,
-        0,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Master Equation of Motion",
-      "labelBadge": "doc",
-      "fixedPosition": true
+      "labelBadge": "doc"
     },
     {
       "id": "kinetic_and_potential_energy",
       "title": "Kinetic and Potential Energy",
       "radius": 2.688,
       "color": "#4b0082",
-      "position": [
-        0,
-        12,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Kinetic and Potential Energy",
-      "labelBadge": "doc",
-      "fixedPosition": true
+      "labelBadge": "doc"
     },
     {
       "id": "binary_dynamics",
       "title": "Binary Dynamics",
       "radius": 2.688,
       "color": "#243d8f",
-      "position": [
-        10.39,
-        6,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Binary Dynamics",
-      "labelBadge": "doc",
-      "fixedPosition": true
+      "labelBadge": "doc"
     },
     {
       "id": "dyadic_resonance_lock",
       "title": "Dyadic Resonance Lock",
       "radius": 2.688,
       "color": "#6c4f8d",
-      "position": [
-        10.39,
-        -6,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Dyadic Resonance Lock",
-      "labelBadge": "doc",
-      "fixedPosition": true
+      "labelBadge": "doc"
     },
     {
       "id": "causal_action_functional",
       "title": "Causal Action Functional",
       "radius": 2.688,
       "color": "#2f6b6f",
-      "position": [
-        0,
-        -12,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Causal Action Functional",
-      "labelBadge": "doc",
-      "fixedPosition": true
+      "labelBadge": "doc"
     },
     {
       "id": "effective_lagrangian",
       "title": "Effective Lagrangian",
       "radius": 2.688,
       "color": "#5a1f2e",
-      "position": [
-        -10.39,
-        -6,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Effective Lagrangian",
-      "labelBadge": "doc",
-      "fixedPosition": true
+      "labelBadge": "doc"
     },
     {
       "id": "entropy_and_record_coarse_graining",
       "title": "Entropy and Record Coarse-Graining",
       "radius": 2.688,
       "color": "#7a4b2a",
-      "position": [
-        -12,
-        0,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Entropy and Record Coarse-Graining",
-      "labelBadge": "doc",
-      "fixedPosition": true
+      "labelBadge": "doc"
     },
     {
       "id": "proof_programs",
       "title": "Proof Programs",
       "radius": 2.688,
       "color": "#6f5a2f",
-      "position": [
-        -10.39,
-        6,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Proof Programs",
-      "fixedPosition": true
+      "labelTitle": "Proof Programs"
     }
   ]
 }

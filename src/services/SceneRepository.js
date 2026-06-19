@@ -342,7 +342,6 @@ export class SceneRepository {
     const file = this.resolveFileConfig(obj);
     const sceneChildRef = this.resolveNodeChildRef(obj, context);
     const nodeTitle = this.resolveNodeTitle(obj, sceneChildRef) ?? obj.id;
-    const hasScale = obj.scaleExponent !== undefined && obj.scaleExponent !== null;
     const binaryBands = Array.isArray(obj.binaryBands) ? obj.binaryBands : null;
     const node = {
       id: obj.id,
@@ -356,8 +355,6 @@ export class SceneRepository {
         this.resolveInferredNodeBadge(obj, context),
       labelBadgeImage: obj.labelBadgeImage ?? null,
       labelBadgeAlt: obj.labelBadgeAlt ?? null,
-      scale: hasScale ? obj.scaleExponent : null,
-      hasScale,
       radius: obj.radius ?? 1,
       color: this.resolveNodeColor({
         ...obj,
@@ -369,6 +366,7 @@ export class SceneRepository {
       reaction: obj.reaction,
       details: obj.details ?? null,
       renderStyle: obj.renderStyle ?? null,
+      hideSphere: obj.hideSphere === true,
       markdownPath: markdown.markdownPath,
       markdownSection: markdown.markdownSection,
       markdownColumns: markdown.markdownColumns,
@@ -393,7 +391,6 @@ export class SceneRepository {
       glowRingThickness: obj.glowRingThickness ?? null,
       glowRingScale: obj.glowRingScale ?? null,
       baseOpacity: obj.baseOpacity ?? null,
-      hideScaleLabel: obj.hideScaleLabel ?? context.hideScaleLabels ?? false,
       wrapLabel: obj.wrapLabel ?? context.wrapLabels ?? true,
       layoutSlot: this.resolveNodeLayoutSlot(obj, sceneChildRef),
     };
@@ -669,8 +666,11 @@ export class SceneRepository {
           }
         : rawSceneMarkdown;
     const rawLayoutType = this.resolveLayoutType(sceneMeta);
+    const rawLayoutConfig =
+      sceneMeta.layout && typeof sceneMeta.layout === "object" && !Array.isArray(sceneMeta.layout)
+        ? sceneMeta.layout
+        : null;
     const splitScene = this.resolveSplitSceneConfig(sceneMeta);
-    const hideScaleLabels = Boolean(sceneMeta.hideScaleLabels);
     const wrapLabels = sceneMeta.wrapLabels ?? true;
     const sceneChildRefByNodeId = this.buildSceneChildRefMap(sceneMeta);
     const sceneChildMarkdownViewBadgeByNodeId =
@@ -680,7 +680,6 @@ export class SceneRepository {
     );
     let nodes = data.objects.map((obj) =>
       this.buildRuntimeNode(obj, {
-        hideScaleLabels,
         wrapLabels,
         idMap,
         sceneChildRefByNodeId,
@@ -696,7 +695,12 @@ export class SceneRepository {
       });
     }
     this.applyPersonalityArchitrinoSizing(nodes);
-    const splitRuntimeScene = { ...data.scene, ...splitScene, layoutType: rawLayoutType };
+    const splitRuntimeScene = {
+      ...data.scene,
+      ...splitScene,
+      layoutType: rawLayoutType,
+      layoutConfig: rawLayoutConfig,
+    };
     const autoNodes = await this.buildAutoMarkdownNodes(splitRuntimeScene, nodes);
     if (autoNodes.length) {
       nodes = nodes.concat(autoNodes);
@@ -715,6 +719,7 @@ export class SceneRepository {
     const config = {
       layout: nodes.some((node) => node.orbit) ? "orbit" : "static",
       layoutType: rawLayoutType,
+      layoutConfig: rawLayoutConfig,
       layoutColumns:
         Number.isInteger(data.scene?.layoutColumns) && data.scene.layoutColumns > 0
           ? data.scene.layoutColumns

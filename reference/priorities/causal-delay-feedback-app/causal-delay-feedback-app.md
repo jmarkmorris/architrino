@@ -128,18 +128,18 @@ Mock proof datasets must be labeled as `representative mock solver replay` in th
 - contribution summaries;
 - and inactive or rejected rows for at least one proof variant.
 
-The baseline contact sheet scene is one pair: one electrino on the left, one positrino on the right, one centered Virtual Observer, three retained feedback depths, and a visible contribution stack. In the proof images, the retained history labels are ordered from older to newer: `1` is the oldest retained causal hit, `2` is the middle retained causal hit, and `3` is the newest retained causal hit. This is the first landscape proof case because it tests the essential readability burden without turning the design into a many-body view.
+The current contact sheet scene is one pair shown in a time-space diagram: one electrino path and one positrino path start in the lower-left region, separate in space, curve smoothly, and end in the upper-right region as time moves left to right. The proof images do not draw a Virtual Observer. The retained history labels are ordered from older to newer: `1`, `2`, `3`, and `4`. The visible wake links test cross-path causal feedback from red `1` to blue `2`, red `2` to blue `3`, red `3` to blue `4`, and the corresponding blue-to-red links.
 
 The contact-sheet frame should be YouTube-compatible landscape. The standard target is 16:9, with 1920x1080 as the primary proof tile. Scale checks may use other 16:9 YouTube resolutions, but the first proof should not mix 16:10 or 4:3 frames.
 
 Accepted first proof constraints:
 
-- Keep one pair only: one positrino, one electrino, and one Virtual Observer.
-- Use three retained feedback depths, shown in the UI as three retained wake hits.
-- Use emitted-to-observer growing partial wake arcs in the current proof set. Keep `full_circular_arcs` as a later named preset rather than mixing it into this comparison sheet.
+- Keep one pair only: one positrino path and one electrino path.
+- Use four retained history points per path, shown as `1`, `2`, `3`, and `4`.
+- Use cross-path growing partial wake arcs in the current proof set. Keep `full_circular_arcs` as a later named preset rather than mixing it into this comparison sheet.
 - Use 16:9 framing, with 1920x1080 as the design target.
 
-Landscape contact sheets should use the accepted six-variant proof set. Each variant should preserve the one-pair, three-depth scope and be framed as a 16:9 YouTube-compatible landscape tile.
+Landscape contact sheets should use the accepted six-variant proof set. Each variant should preserve the one-pair, four-point, three-link-per-direction scope and be framed as a 16:9 YouTube-compatible landscape tile.
 
 - `1920x1080` primary proof tile;
 - `1280x720` downscale readability check;
@@ -149,12 +149,12 @@ Accepted first contact sheet variants:
 
 | Variant | Purpose |
 | --- | --- |
-| `centered_baseline_growing_arcs` | Baseline centered-observer layout with five growing emitter-to-receiver wake bands. |
-| `centered_sparse_growing_arcs` | Fewer wake bands so the arrival timing reads with less clutter. |
-| `centered_dense_growing_arcs` | More wake bands so the outward growth reads more continuously. |
-| `centered_tight_arrival_arcs` | Narrow final arc span to test whether the receiver hit feels precise. |
-| `centered_wide_arrival_arcs` | Broader final arc span to test whether the reference-image rhythm is clearer. |
-| `centered_strong_falloff_arcs` | Stronger old-hit fading to test whether $1/r$ falloff should be visually amplified. |
+| `cross_feedback_baseline_15_fronts` | Baseline time-space cross-feedback diagram with 15 light wake fronts per link. |
+| `cross_feedback_tight_fronts` | Narrower receiver-sector wake fronts to test precision. |
+| `cross_feedback_wide_fronts` | Broader receiver-sector wake fronts to test readability. |
+| `cross_feedback_thin_fronts` | Lighter/thinner wake traces to test low-clutter contrast. |
+| `cross_feedback_bright_fronts` | Brighter wake traces to test visibility on purple. |
+| `cross_feedback_strong_falloff` | Stronger old-hit fading to test whether $1/r$ falloff should be visually amplified. |
 
 Generated contact sheet proof artifacts:
 
@@ -164,45 +164,46 @@ Generated contact sheet proof artifacts:
 
 | Variant | Proof tile |
 | --- | --- |
-| `centered_baseline_growing_arcs` | [centered_baseline_growing_arcs.png](contact-sheets/centered_baseline_growing_arcs.png) |
-| `centered_sparse_growing_arcs` | [centered_sparse_growing_arcs.png](contact-sheets/centered_sparse_growing_arcs.png) |
-| `centered_dense_growing_arcs` | [centered_dense_growing_arcs.png](contact-sheets/centered_dense_growing_arcs.png) |
-| `centered_tight_arrival_arcs` | [centered_tight_arrival_arcs.png](contact-sheets/centered_tight_arrival_arcs.png) |
-| `centered_wide_arrival_arcs` | [centered_wide_arrival_arcs.png](contact-sheets/centered_wide_arrival_arcs.png) |
-| `centered_strong_falloff_arcs` | [centered_strong_falloff_arcs.png](contact-sheets/centered_strong_falloff_arcs.png) |
+| `cross_feedback_baseline_15_fronts` | [cross_feedback_baseline_15_fronts.png](contact-sheets/cross_feedback_baseline_15_fronts.png) |
+| `cross_feedback_tight_fronts` | [cross_feedback_tight_fronts.png](contact-sheets/cross_feedback_tight_fronts.png) |
+| `cross_feedback_wide_fronts` | [cross_feedback_wide_fronts.png](contact-sheets/cross_feedback_wide_fronts.png) |
+| `cross_feedback_thin_fronts` | [cross_feedback_thin_fronts.png](contact-sheets/cross_feedback_thin_fronts.png) |
+| `cross_feedback_bright_fronts` | [cross_feedback_bright_fronts.png](contact-sheets/cross_feedback_bright_fronts.png) |
+| `cross_feedback_strong_falloff` | [cross_feedback_strong_falloff.png](contact-sheets/cross_feedback_strong_falloff.png) |
 
 ## Resolved Landscape Design Decisions
 
 - The emitter-color rule is accepted: causal-wake arcs use the color of the emitting architrino.
 - Use the official polarity colors in proof images: positrino red `#ff0000` and electrino blue `#0000ff`, with halo/outline treatment only for readability on purple.
 - The landscape layout is accepted: full 16:9 canvas, compact floating toolbar, compact readout, right-edge contribution stack, and no dense side panel.
-- The comparison proof layout should put the Virtual Observer near the canvas center, the electrino path on the left, and the positrino path on the right.
-- The representative pair should start near the lower canvas, move away from the center, then arc back toward the center as the paths move upward.
+- The comparison proof layout should use a time-space diagram: time on the horizontal axis, space on the vertical axis, and both paths moving from lower-left to upper-right.
+- The current comparison proof should not draw the Virtual Observer; it should show cross-path causal feedback between retained positrino and electrino history points.
+- The representative pair should start in the lower-left region separated in space, then turn upward and right without reading as mirrored or equal-and-opposite curves.
 - Causal wakes should be drawn as curved arcs, not straight rays.
 - Architrino path history should be drawn as solid trails, while causal wakes should be drawn as dotted arcs so the two uses of positrino/electrino color remain distinct.
-- Active dotted wake arcs in the proof tiles should begin at the emission point and grow outward toward the Virtual Observer.
-- The visible wake segment length should grow linearly as each emitted band approaches the Virtual Observer.
+- Active dotted wake arcs in the proof tiles should begin at the emitting history point and grow outward toward the later receiving history point on the opposite path.
+- The visible wake segment length should grow linearly as each emitted band approaches its receiving path point.
 - Current proof wake arcs should only cover the emitter-to-receiver sector, not full circles or unrelated off-path arcs.
 - Prototype proof tiles should not draw pulse dots or architrino-like markers on top of dotted wake arcs; the dotted wake stroke itself carries the wake geometry.
 - A full-circular-arc preset should exist because it teaches the complete emitted wake geometry.
 - The default teaching view should use smaller outward-propagating arcs moving toward each intersection, because partial arcs keep the screen less busy and make feedback arrivals easier to see.
-- The first contact sheet proof scope is accepted: one positrino, one electrino, one centered Virtual Observer, three retained feedback depths, and six 16:9 proof variants that compare undecided growing-arc treatments.
+- The first contact sheet proof scope is accepted: one positrino path, one electrino path, no Virtual Observer drawn, four retained path points per path, three cross-path feedback links per direction, and six 16:9 proof variants that compare undecided growing-arc treatments.
 - The revised contact sheet proof canvas should be a solid purple field with no grid.
 - Prototype canvases should not include a per-tile title panel; variant names belong in the contact-sheet manifest or surrounding review sheet, not inside each 1920x1080 proof tile.
 - Toolbar proof icons should use recognizable meanings: play, path visibility, reset, and settings. Avoid abstract placeholder glyphs that read as unrelated marks.
 - All path-history points on the architrino paths should use the same dot treatment; selected rows may highlight the causal path or stack row, but not make one history dot look like a different class of object.
-- Label each retained history point on each path as `1`, `2`, and `3`, ordered older to newer.
-- The right-edge contribution stack should use the same bare numeric labels `1`, `2`, and `3` instead of `depth 1`, `depth 2`, and `depth 3`.
+- Label each retained history point on each path as `1`, `2`, `3`, and `4`, ordered older to newer.
+- The right-edge contribution stack should show the active cross-path feedback links: red `1 -> 2`, red `2 -> 3`, red `3 -> 4`, and the matching blue `1 -> 2`, blue `2 -> 3`, blue `3 -> 4` links.
 - The positrino and electrino mock replay paths should not look like equal-and-opposite mirror curves; use visibly different path histories so the pair reads as two solver-owned trajectories.
-- The representative mock pair should end at a steeper angle near the Virtual Observer so the red and blue causal-wake arcs separate clearly as they reach the observer.
+- The representative mock pair should end in the upper-right region with visibly different slopes and curvature so the red and blue causal-wake arcs separate clearly as they reach later path points.
 - Full circular wake geometry should keep every background circle at the same faint opacity so the nearest circle does not dominate the proof tile.
-- The proof images should not draw straight source-to-observer connector lines from history points; the dotted wake arc should carry the causal-hit geometry.
+- The proof images should not draw straight source-to-receiver connector lines from history points; the dotted wake arc should carry the causal-hit geometry.
 - The first proof should use linear or gently curved path-history motion. Orbit-motion scenes can come later.
 - The first visual proof should use 2D canvas/SVG-style mock proof generation. Three.js can be deferred until runtime needs it.
 - Contact sheet proofs can proceed with representative mock solver-replay paths before the real solver bridge is selected.
 - The contribution stack should sit on the right edge for the first landscape proof.
 - Use `Virtual Observer` as the end-user UI term for the observation point. Retain `receiver` only when referring to canonical causal-root math and solver/data fields.
-- The Virtual Observer in the first proof is not an architrino. The positrino and electrino must move on solver-returned paths and should not be frozen to simplify the scene.
+- When the Virtual Observer appears in runtime app modes, it is not an architrino. The current contact-sheet proof omits it so the cross-path feedback links are easier to read.
 - Signed positrino/electrino polarity color should be visible from the start.
 - The settings gear is accepted; canvas color should be one of the first settings so purple-background variants can be tested without adding a dense control panel.
 - Six landscape contact sheet variants are enough for the first visual proof pass.
@@ -213,19 +214,19 @@ Generated contact sheet proof artifacts:
 
 ### Canvas
 
-- Use one large canvas with a horizontal space axis and a subtle time-depth stack behind it.
-- Keep the source, Virtual Observer, active paths, and arriving wake segments visible at the same time.
+- Use one large canvas with a light horizontal `time` axis and a light vertical `space` axis.
+- Keep the source path points, receiving path points, active paths, and arriving wake segments visible at the same time.
 - Reserve a small right-edge strip or inset for the contribution stack so the main animation does not become crowded.
 - Use stable scaling: changing field speed or feedback depth should not resize the whole scene unexpectedly.
-- Keep the default composition sparse: two architrino initial-condition handles, one Virtual Observer, three visible feedback-depth rows, and a thin contribution stack.
-- Treat the Virtual Observer as the observation point in the first visual proof; the moving positrino and electrino remain solver-owned architrino paths.
-- Let the main source path and Virtual Observer location occupy the first viewport immediately; avoid a landing-page feel.
+- Keep the current proof composition sparse: two solver-replay architrino paths, four retained points per path, six visible cross-path feedback links, and a thin contribution stack.
+- Keep the moving positrino and electrino as solver-owned architrino paths.
+- Let the main path geometry occupy the first viewport immediately; avoid a landing-page feel.
 
 ### Objects
 
 - Draw the source setup as one draggable positrino/electrino pair or a compact draggable architrino initial-condition marker.
-- Draw the Virtual Observer as a draggable sample point with a visible `now` marker.
-- Draw each retained feedback depth as a separate solver-returned curved dotted causal-wake arc with its own retained-hit index and emitter color.
+- In runtime modes that include an observation point, draw the Virtual Observer as a draggable sample point with a visible `now` marker.
+- In the current contact-sheet proof, omit the Virtual Observer and draw each retained cross-path feedback link as a separate curved dotted causal-wake arc with its own retained-hit index and emitter color.
 - Do not draw separate pulse or particle markers on the causal-wake paths in the first proof; the dotted wake segment itself is the arrival cue.
 - Draw inactive or invalid paths as faint dashed paths with a rejection reason.
 - Draw a draggable velocity arrow attached to the source. Pulling the arrow should change speed and direction without requiring a numeric control.
@@ -237,12 +238,12 @@ Generated contact sheet proof artifacts:
 - Animate architrino markers along solver-returned path samples.
 - Use linear or gently curved path-history motion for the first proof scenes.
 - Animate partial dotted causal-wake arcs expanding outward from prior source positions toward each active intersection.
-- Animate those visible wake segments so their leading edge reaches the Virtual Observer at `now`.
-- In full-circular-arc mode, draw complete emitted circles or near-circles as background geometry, then highlight the active arc segment that reaches the Virtual Observer.
+- Animate those visible wake segments so their leading edge reaches the receiving path point at the active hit time.
+- In full-circular-arc mode, draw complete emitted circles or near-circles as background geometry, then highlight the active arc segment that reaches the receiver.
 - Keep every wake arc color-locked to its emitter for the full trip, including faded older depths.
 - Fade and thin older paths by computed contribution strength using the $1/r$ falloff while keeping their depth index and emission time readable.
 - Let weak paths approach a thin or desaturated endpoint state below the assembly-relevance threshold, provided the wake's emitter identity remains clear from the active segment, depth row, or endpoint label.
-- When a wake segment reaches the Virtual Observer, add its signed contribution to the Virtual Observer contribution stack.
+- When a wake segment reaches its receiver, add its signed contribution to the contribution stack.
 - When geometry changes, animate paths entering or leaving the active set instead of snapping them silently on and off.
 - Provide pause/play, reset, slow/fast, and frame-step controls.
 - While dragging, pause or slow the animation enough that users can see path geometry update continuously.

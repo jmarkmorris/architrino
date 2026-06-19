@@ -5,7 +5,6 @@
     "title": "Intracluster Medium",
     "type": "Scene-Index",
     "units": "relative",
-    "hideScaleLabels": true,
     "centerOn": "hydrogen_ion",
     "textbookToc": {
       "hideChildren": true

@@ -25,6 +25,7 @@
       "title": "Overview",
       "radius": 2.4,
       "color": "#7a5a2f",
+      "hideSphere": true,
       "position": [0, 0, 0],
       "motion": { "type": "fixed" },
       "fixedPosition": true,

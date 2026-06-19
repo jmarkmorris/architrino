@@ -40,7 +40,6 @@
     {
       "id": "star",
       "label": "Star",
-      "scaleExponent": 9,
       "radius": 2.2,
       "color": "#b07a2a",
       "position": [
@@ -53,7 +52,6 @@
     {
       "id": "planet_a",
       "label": "Planet A",
-      "scaleExponent": 6,
       "radius": 1.0625,
       "color": "#327a5e",
       "motion": {
@@ -71,7 +69,6 @@
     {
       "id": "planet_b",
       "label": "Planet B",
-      "scaleExponent": 6,
       "radius": 0.935,
       "color": "#2c6c7e",
       "motion": {
@@ -89,7 +86,6 @@
     {
       "id": "planet_c",
       "label": "Planet C",
-      "scaleExponent": 6,
       "radius": 1.15,
       "color": "#3f5f8a",
       "motion": {
@@ -107,7 +103,6 @@
     {
       "id": "moon",
       "label": "Moon",
-      "scaleExponent": 5,
       "radius": 0.45,
       "color": "#9ea6bf",
       "motion": {

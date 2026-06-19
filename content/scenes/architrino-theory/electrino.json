@@ -17,8 +17,6 @@
     {
       "id": "electrino",
       "label": "Electrino",
-      "scaleExponent": -20,
-      "hideScaleLabel": true,
       "radius": 0.6,
       "color": "BLUE",
       "motion": {

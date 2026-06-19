@@ -6,7 +6,7 @@ This chapter isolates the complete-state diagnostic problem of identifying absol
 
 This chapter answers the question that must be settled before any coordinate construction can begin: can the architrino framework identify **absolute rest** from its own physics, without assuming a pre-labeled grid? The answer in this framework is yes, but the answer belongs first to the $\mathbb{U}_{\text{now}}$ universe-state perspective. The complete-state diagnostic is the **concentricity of source-tagged causal isochron centers**. A stationary architrino is sufficient to expose that diagnostic, but the preferred rest frame itself is defined by the propagation law: it is the frame in which primitive causal wakes expand isotropically at $c_f$.
 
-This argument sits between [Euclidean Void](euclidean-void.md), which states the underlying substrate, and [Reconstructing a Coordinate Frame from Wake Geometry](bootstrapping-the-absolute-frame.md), which turns the preferred-rest diagnostic into a usable coordinate frame. Its operational shielding claims also connect directly to [Absolute Time Defense](absolute-time-defense.md) and [Lorentz Kinematics](../spacetime/lorentz-kinematics.md).
+This argument sits between [Euclidean Void](euclidean-void.md), which states the underlying substrate, and [Constructing the Absolute Frame](bootstrapping-the-absolute-frame.md), which turns the preferred-rest diagnostic into a usable coordinate frame. Its operational shielding claims also connect directly to [Absolute Time Defense](absolute-time-defense.md) and [Lorentz Kinematics](../spacetime/lorentz-kinematics.md).
 
 ## The Fundamental Challenge
 
@@ -201,4 +201,4 @@ This places the theory in the tradition of **Lorentz Ether Theory**:
 - The theory can identify a preferred rest condition from intrinsic physics alone
 - Operational Lorentz invariance is compatible with fundamental absolute structure
 
-The next chapter, [Reconstructing a Coordinate Frame from Wake Geometry](bootstrapping-the-absolute-frame.md), uses this preferred-rest diagnostic as the starting point for constructing a complete coordinate frame.
+The next chapter, [Constructing the Absolute Frame](bootstrapping-the-absolute-frame.md), uses this preferred-rest diagnostic as the starting point for constructing a complete coordinate frame.

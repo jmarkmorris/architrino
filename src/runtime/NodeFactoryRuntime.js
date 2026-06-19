@@ -246,10 +246,6 @@ export function createNodeFactory(deps) {
       typeof node.labelBadgeAlt === "string" && node.labelBadgeAlt.trim().length > 0
         ? node.labelBadgeAlt.trim()
         : "Badge";
-    const scaleHtml =
-      node.hideScaleLabel || !node.hasScale
-        ? ""
-        : `<div class="label-scale">10^${escapeHtml(node.scale)}</div>`;
     const tagHtml =
       node.category === "Reaction" ? `<div class="label-tag">RXN</div>` : "";
     const subtitleHtml = labelSubtitle
@@ -271,7 +267,7 @@ export function createNodeFactory(deps) {
         : "";
     label.innerHTML = `<div class="label-title">${escapeHtml(
       labelTitle
-    )}</div>${subtitleHtml}${datesHtml}${scaleHtml}${tagHtml}${badgeHtml}`;
+    )}</div>${subtitleHtml}${datesHtml}${tagHtml}${badgeHtml}`;
     return new CSS2DObject(label);
   }
 
@@ -423,10 +419,11 @@ export function createNodeFactory(deps) {
     const group = new THREE.Group();
     const geometry = new THREE.SphereGeometry(nodeData.radius, 32, 20);
     const isReaction = nodeData.category === "Reaction";
+    const hideSphere = nodeData.hideSphere === true;
     const material = new THREE.MeshBasicMaterial({
       color: nodeData.color,
       transparent: true,
-      opacity: isReaction ? 0.92 : 0.86,
+      opacity: hideSphere ? 0 : isReaction ? 0.92 : 0.86,
     });
     material.depthWrite = false;
     const mesh = new THREE.Mesh(geometry, material);
@@ -436,7 +433,7 @@ export function createNodeFactory(deps) {
     const outlineMaterial = new THREE.LineBasicMaterial({
       color: isReaction ? "#f6dd9c" : "#7a7a7a",
       transparent: true,
-      opacity: isReaction ? 0.55 : 0.3,
+      opacity: hideSphere ? 0 : isReaction ? 0.55 : 0.3,
     });
     outlineMaterial.depthWrite = false;
     const outline = new THREE.LineSegments(outlineGeometry, outlineMaterial);
@@ -446,7 +443,7 @@ export function createNodeFactory(deps) {
     group.add(labelObject);
 
     const extraMeshes = [];
-    if (nodeData.glowRing) {
+    if (!hideSphere && nodeData.glowRing) {
       const ring = createRingMesh(nodeData, getRingStyle(nodeData));
       ring.userData.isGlowRing = true;
       group.add(ring);
@@ -454,7 +451,11 @@ export function createNodeFactory(deps) {
     }
 
     let halo = null;
-    if (!nodeData.glowRing && (nodeData.childScene || nodeData.docDrillDownPreferred === true)) {
+    if (
+      !hideSphere &&
+      !nodeData.glowRing &&
+      (nodeData.childScene || nodeData.docDrillDownPreferred === true)
+    ) {
       halo = createRingMesh(nodeData, getRingStyle(nodeData));
       halo.userData.isHaloRing = true;
       group.add(halo);

@@ -88,7 +88,7 @@ struct ContentView: View {
                             .foregroundStyle(viewModel.theme.readerSecondaryTextColor)
                     }
                     .padding()
-                } else if viewModel.renderCommand != nil {
+                } else if viewModel.isReady && viewModel.hasAnyContent() {
                     ZStack {
                         ReaderWebView(
                             renderCommand: $viewModel.renderCommand,
@@ -106,14 +106,17 @@ struct ContentView: View {
                                 viewModel.markRenderComplete(message: payload)
                             }
                         )
+                        .opacity(viewModel.renderCommand == nil ? 0 : 1)
+                        .allowsHitTesting(viewModel.renderCommand != nil)
 
+                        if viewModel.renderCommand == nil {
+                            readerSelectionPlaceholder
+                        }
                         if viewModel.isRendering {
                             readerRenderOverlay
                         }
                     }
                     .background(viewModel.theme.readerBackgroundColor)
-                } else if viewModel.isReady && viewModel.hasAnyContent() {
-                    readerSelectionPlaceholder
                 } else {
                     VStack {
                         ProgressView()
@@ -252,9 +255,9 @@ struct ContentView: View {
                 dismissTOCImmediately()
             } label: {
                 Image(systemName: "xmark")
-                    .font(.system(size: 18, weight: .semibold))
+                    .font(.system(size: 17, weight: .semibold))
                     .foregroundStyle(viewModel.theme.readerPrimaryTextColor)
-                    .frame(width: 44, height: 44)
+                    .frame(width: 40, height: 40)
                     .background(
                         Circle()
                             .fill(viewModel.theme.readerSearchControlBackgroundColor)
@@ -263,7 +266,7 @@ struct ContentView: View {
             .accessibilityLabel("Close table of contents")
         }
         .padding(.horizontal, 14)
-        .padding(.bottom, 6)
+        .padding(.bottom, 0)
     }
 
     private var tocSidebar: some View {
@@ -302,30 +305,12 @@ struct ContentView: View {
                 .listRowBackground(Color.clear)
                 .listRowSeparatorTint(viewModel.theme.readerSeparatorColor)
                 .listRowInsets(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
-
-                Section {
-                    Button {
-                        navigateFromTOC {
-                            viewModel.openGlossary()
-                        }
-                    } label: {
-                        Label("Glossary", systemImage: "book.pages")
-                            .foregroundStyle(
-                                viewModel.canOpenGlossary
-                                    ? viewModel.theme.readerPrimaryTextColor
-                                    : viewModel.theme.readerSecondaryTextColor
-                            )
-                    }
-                    .disabled(!viewModel.canOpenGlossary)
-                }
-                .listRowBackground(Color.clear)
-                .listRowSeparatorTint(viewModel.theme.readerSeparatorColor)
-                .listRowInsets(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
             }
             .listStyle(.plain)
             .listSectionSpacing(8)
-            .contentMargins(.top, 8, for: .scrollContent)
+            .contentMargins(.top, 0, for: .scrollContent)
             .contentMargins(.horizontal, 0, for: .scrollContent)
+            .environment(\.defaultMinListHeaderHeight, 0)
             .scrollContentBackground(.hidden)
             .background(viewModel.theme.readerBackgroundColor.ignoresSafeArea())
         }
@@ -387,11 +372,11 @@ struct ContentView: View {
                 )
 
                 if depth == 0 {
-                    ForEach(node.resolvedChildren) { child in
+                    ForEach(viewModel.visibleTOCChildren(for: node)) { child in
                         tocSecondLevelNodeRow(child, parentID: node.id)
                     }
 
-                    ForEach(Array(node.resolvedSections.enumerated()), id: \.offset) { index, section in
+                    ForEach(Array(viewModel.visibleTOCSections(for: node).enumerated()), id: \.offset) { index, section in
                         tocSectionRow(section, in: node, depth: depth + 1, stableID: "\(node.id)::top-section-\(index)")
                     }
                 }
@@ -404,7 +389,9 @@ struct ContentView: View {
         let route = viewModel.resolveTOCTarget(for: node)
         let expansionID = "\(parentID)::\(node.id)"
         let isExpanded = expandedTOCGroupID == expansionID
-        let hasExpandableContent = !node.resolvedSections.isEmpty || !node.resolvedChildren.isEmpty
+        let visibleChildren = viewModel.visibleTOCChildren(for: node)
+        let visibleSections = viewModel.visibleTOCSections(for: node)
+        let hasExpandableContent = !visibleSections.isEmpty || !visibleChildren.isEmpty
 
         return VStack(alignment: .leading, spacing: 0) {
             tocNavigationRow(
@@ -417,11 +404,11 @@ struct ContentView: View {
             )
 
             if isExpanded {
-                ForEach(node.resolvedChildren) { child in
+                ForEach(visibleChildren) { child in
                     tocLeafNodeRow(child, depth: 2)
                 }
 
-                ForEach(Array(node.resolvedSections.enumerated()), id: \.offset) { index, section in
+                ForEach(Array(visibleSections.enumerated()), id: \.offset) { index, section in
                     tocSectionRow(section, in: node, depth: 2, stableID: "\(expansionID)::section-\(index)")
                 }
             }
@@ -1159,7 +1146,7 @@ private struct SearchSheet: View {
                 if viewModel.isSearchIndexLoading {
                     searchStatusText("Preparing search...")
                 } else if viewModel.searchResults.isEmpty && !query.isEmpty {
-                    searchStatusText("No matching sections.")
+                    searchStatusText("No matching documents.")
                 }
 
                 ForEach(viewModel.searchResults) { result in
@@ -1199,7 +1186,7 @@ private struct SearchResultRow: View {
                 .foregroundStyle(theme.readerPrimaryTextColor)
 
             SearchSnippetPreview(markdownText: result.renderedPreviewMarkdown, theme: theme)
-                .frame(height: 78)
+                .frame(height: 72)
                 .clipped()
                 .allowsHitTesting(false)
         }
