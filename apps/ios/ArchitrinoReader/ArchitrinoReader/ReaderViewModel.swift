@@ -68,6 +68,8 @@ final class ReaderViewModel: ObservableObject {
     private var postLaunchWarmupTask: Task<Void, Never>?
     private var deferredRestoreRenderTask: Task<Void, Never>?
     private var fontScalePersistenceTask: Task<Void, Never>?
+    private var readingStatePersistenceTask: Task<Void, Never>?
+    private var currentScrollProgress: Double?
 
     struct ReaderRenderCommand: Identifiable, Codable {
         let id: UUID
@@ -83,6 +85,7 @@ final class ReaderViewModel: ObservableObject {
         let theme: ReaderTheme
         let lineSpacing: ReaderLineSpacing
         let marginWidth: ReaderMarginWidth
+        let initialScrollProgress: Double?
         let bootstrapContext: ReaderBootstrapContext
     }
 
@@ -114,6 +117,11 @@ final class ReaderViewModel: ObservableObject {
         let sourcePath: String
         let bundlePath: String
         let htmlPath: String?
+    }
+
+    private struct PostLaunchWarmupDocument: Sendable {
+        let cacheKey: String
+        let htmlPath: String
     }
 
     init() {
@@ -180,13 +188,14 @@ final class ReaderViewModel: ObservableObject {
             searchResults = []
             isSearchIndexLoaded = false
             isSearchIndexLoading = false
-            let data = try loader.loadPackage()
+            let data = try await Task.detached(priority: .userInitiated) {
+                try ReaderTextbookLoader().loadPackage()
+            }.value
             package = data
             markdownCache.removeAll(keepingCapacity: false)
             htmlCache.removeAll(keepingCapacity: false)
             restoredReadingState = restoreReadingState()
             buildBootstrapContext()
-            loadLinkMetadataIfNeeded()
             errorMessage = nil
             renderCommand = nil
             anchorCommand = nil
@@ -513,6 +522,38 @@ final class ReaderViewModel: ObservableObject {
         }
     }
 
+    func updateReadingScrollProgress(_ progress: Double) {
+        guard currentChapterId != nil,
+              renderCommand != nil,
+              !isRendering else { return }
+        let clamped = max(0, min(1, progress))
+        if let currentScrollProgress,
+           abs(currentScrollProgress - clamped) < 0.002 {
+            return
+        }
+        currentScrollProgress = clamped
+        persistReadingStateSoon()
+    }
+
+    func persistReadingStateNow() {
+        readingStatePersistenceTask?.cancel()
+        readingStatePersistenceTask = nil
+        saveReadingState()
+    }
+
+    private func persistReadingStateSoon() {
+        readingStatePersistenceTask?.cancel()
+        readingStatePersistenceTask = Task { [weak self] in
+            try? await Task.sleep(nanoseconds: 350_000_000)
+            guard !Task.isCancelled else { return }
+            await MainActor.run { [weak self] in
+                guard let self else { return }
+                saveReadingState()
+                readingStatePersistenceTask = nil
+            }
+        }
+    }
+
     func openChapter(by id: String, anchor: String?) {
         guard package?.chapterById[id] != nil || package?.referenceById[id] != nil else { return }
         openDocument(by: id, anchor: anchor)
@@ -807,6 +848,7 @@ final class ReaderViewModel: ObservableObject {
         readerNotice = nil
         let isSameDocument = currentChapterId == id && renderCommand != nil
         currentAnchor = anchor
+        currentScrollProgress = nil
         currentChapterId = id
         if isSameDocument {
             anchorCommand = ReaderAnchorCommand(id: UUID(), anchor: anchor)
@@ -860,6 +902,7 @@ final class ReaderViewModel: ObservableObject {
             theme: theme,
             lineSpacing: lineSpacing,
             marginWidth: marginWidth,
+            initialScrollProgress: currentScrollProgress,
             bootstrapContext: bootstrapContext
         )
     }
@@ -1021,38 +1064,55 @@ final class ReaderViewModel: ObservableObject {
     }
 
     private func schedulePostLaunchWarmup() {
-        let warmupPaths = postLaunchWarmupPaths()
+        let warmupDocuments = postLaunchWarmupDocuments()
+        guard !warmupDocuments.isEmpty else {
+            postLaunchWarmupTask = nil
+            return
+        }
+
         postLaunchWarmupTask?.cancel()
         postLaunchWarmupTask = Task { [weak self] in
-            try? await Task.sleep(nanoseconds: 450_000_000)
+            try? await Task.sleep(nanoseconds: 2_500_000_000)
             guard !Task.isCancelled else { return }
 
-            await Task.detached(priority: .utility) {
+            let warmedHTML = await Task.detached(priority: .utility) {
                 let loader = ReaderTextbookLoader()
-                for path in warmupPaths {
-                    _ = try? loader.bundledData(relativePath: path)
+                var warmedHTML: [String: String] = [:]
+                for document in warmupDocuments {
+                    guard !Task.isCancelled else { break }
+                    if let text = try? loader.bundledText(relativePath: document.htmlPath) {
+                        warmedHTML[document.cacheKey] = text
+                    }
                 }
+                return warmedHTML
             }.value
 
             guard !Task.isCancelled else { return }
-            self?.postLaunchWarmupTask = nil
+            await MainActor.run {
+                guard let self else { return }
+                for (cacheKey, text) in warmedHTML where self.htmlCache[cacheKey] == nil {
+                    self.htmlCache[cacheKey] = text
+                }
+                self.postLaunchWarmupTask = nil
+            }
         }
     }
 
-    private func postLaunchWarmupPaths() -> [String] {
+    private func postLaunchWarmupDocuments() -> [PostLaunchWarmupDocument] {
         guard let package else { return [] }
         var seen: Set<String> = []
         return package.manifest.chapters.compactMap { chapter in
             readerDocument(by: chapter.id)
         }
-        .map { document in
-            document.htmlPath ?? document.bundlePath
-        }
-        .filter { path in
-            let normalized = normalizePath(path)
-            guard !seen.contains(normalized) else { return false }
+        .compactMap { document -> PostLaunchWarmupDocument? in
+            guard let htmlPath = document.htmlPath else { return nil }
+            let normalized = normalizePath(htmlPath)
+            guard !seen.contains(normalized) else { return nil }
             seen.insert(normalized)
-            return true
+            return PostLaunchWarmupDocument(
+                cacheKey: "html::\(document.id)",
+                htmlPath: htmlPath
+            )
         }
     }
 
@@ -1075,7 +1135,8 @@ final class ReaderViewModel: ObservableObject {
         let state = ReaderPosition(
             chapterId: currentChapterId,
             anchor: currentAnchor,
-            isExplicit: true
+            isExplicit: true,
+            scrollProgress: currentScrollProgress
         )
         do {
             let payload = try JSONEncoder().encode(state)
@@ -1089,6 +1150,7 @@ final class ReaderViewModel: ObservableObject {
         guard let stateData = defaults.data(forKey: stateKey) else {
             currentChapterId = nil
             currentAnchor = nil
+            currentScrollProgress = nil
             return false
         }
         do {
@@ -1102,12 +1164,17 @@ final class ReaderViewModel: ObservableObject {
                 }
                 currentChapterId = state.chapterId
                 currentAnchor = state.anchor
+                currentScrollProgress = state.scrollProgress.map { max(0, min(1, $0)) }
                 return true
             }
         } catch {
             currentChapterId = nil
             currentAnchor = nil
+            currentScrollProgress = nil
         }
+        currentChapterId = nil
+        currentAnchor = nil
+        currentScrollProgress = nil
         return false
     }
 

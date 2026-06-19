@@ -52,6 +52,7 @@ import {
   createPathHistoryStreamSpaceTimeIndexRequest,
   createPathHistoryWorkPacketPlanRequest,
   createReadStreamRangeRequest,
+  createSolverRunRequest,
   createValidationReplayRunRequest,
 } from "../src/solver/app/SolverAppAdapters.mjs";
 import { classifySolverBaselineResponse } from "../src/solver/app/SolverBaselineComparison.mjs";
@@ -115,6 +116,14 @@ assert(
     findAppAdapter(initResponse.capabilities.appBridge, "animator").runKinds.includes("pathHistory") &&
     findAppAdapter(initResponse.capabilities.appBridge, "animator").runKinds.includes("appPlayback"),
   "expected Animator motion, path-history, and playback adapter capabilities"
+);
+assert(
+  findAppAdapter(initResponse.capabilities.appBridge, "causal-delay-feedback").runKinds.includes("motionSimulation") &&
+    findAppAdapter(initResponse.capabilities.appBridge, "causal-delay-feedback").runKinds.includes("pathHistory") &&
+    findAppAdapter(initResponse.capabilities.appBridge, "causal-delay-feedback").runKinds.includes("causalRoots") &&
+    findAppAdapter(initResponse.capabilities.appBridge, "causal-delay-feedback").runKinds.includes("delayedHits") &&
+    findAppAdapter(initResponse.capabilities.appBridge, "causal-delay-feedback").runKinds.includes("appPlayback"),
+  "expected Causal Delay Feedback motion, path-history, causal-root, delayed-hit, and playback adapter capabilities"
 );
 assert(
   initResponse.capabilities.appBridge.denseDataTransport.includes("array-buffer") &&
@@ -4155,6 +4164,19 @@ assert(
     motionRunHandle.response.frames[2].position.z === 1,
   "expected motion run final position"
 );
+const causalDelayMotionRunHandle = await client.runSimulation(makeCausalDelayMotionRunSimulationRequest());
+assert(causalDelayMotionRunHandle.status.code === "ok", "expected causal-delay motion run status ok");
+assert(
+  causalDelayMotionRunHandle.response.manifest.runKind === "motionSimulation" &&
+    causalDelayMotionRunHandle.response.manifest.appId === "causal-delay-feedback" &&
+    causalDelayMotionRunHandle.response.summary.frameCount === 3,
+  "expected causal-delay motion run manifest"
+);
+assert(
+  causalDelayMotionRunHandle.response.frames[2].position.x === 155 &&
+    causalDelayMotionRunHandle.response.frames[2].position.y === 170,
+  "expected causal-delay motion run final position"
+);
 const motionRunPathRead = await client.readStreamRange({
   streamId: "smoke-motion-run:motion-path-history",
   frameRange: { start: 0, end: 0 },
@@ -4343,6 +4365,43 @@ assert(
     appPlaybackRunHandle.response.manifest.appId === "animator" &&
     appPlaybackRunHandle.response.manifest.buffers.length === 0,
   "expected app-playback run manifest"
+);
+
+const causalDelayAppPlaybackRunHandle = await client.runSimulation(
+  makeCausalDelayAppPlaybackRunSimulationRequest(motionRunHandle.response)
+);
+assert(
+  causalDelayAppPlaybackRunHandle.status.code === "ok",
+  "expected causal-delay app-playback runSimulation status ok"
+);
+assert(
+  causalDelayAppPlaybackRunHandle.response.summary.frameCount === 3 &&
+    causalDelayAppPlaybackRunHandle.response.summary.pathCount === 1,
+  "expected causal-delay app-playback summary"
+);
+assert(
+  causalDelayAppPlaybackRunHandle.response.manifest.runKind === "appPlayback" &&
+    causalDelayAppPlaybackRunHandle.response.manifest.appId === "causal-delay-feedback",
+  "expected causal-delay app-playback run manifest"
+);
+
+const causalDelayDelayedHitRunHandle = await client.runSimulation(
+  makeCausalDelayDelayedHitRunSimulationRequest()
+);
+assert(
+  causalDelayDelayedHitRunHandle.status.code === "ok",
+  "expected causal-delay delayed-hit runSimulation status ok"
+);
+assert(
+  causalDelayDelayedHitRunHandle.response.summary.eventCount === 1 &&
+    causalDelayDelayedHitRunHandle.response.hits.length === 1,
+  "expected causal-delay delayed-hit run rows"
+);
+assert(
+  causalDelayDelayedHitRunHandle.response.manifest.runKind === "delayedHits" &&
+    causalDelayDelayedHitRunHandle.response.manifest.appId === "causal-delay-feedback" &&
+    causalDelayDelayedHitRunHandle.response.rootLedgerDetails.length >= 1,
+  "expected causal-delay delayed-hit run manifest"
 );
 
 const delayedHitRunHandle = await client.runSimulation(makeDelayedHitRunSimulationRequest());
@@ -5033,6 +5092,57 @@ function makeMotionRunSimulationRequest() {
   });
 }
 
+function makeCausalDelayMotionRunSimulationRequest() {
+  const admission = makeAdmissionRequest();
+  return createSolverRunRequest({
+    requestId: "smoke-causal-delay-motion-run-request",
+    runId: "smoke-causal-delay-motion-run",
+    datasetId: "smoke-causal-delay-motion-run-dataset",
+    appId: "causal-delay-feedback",
+    runKind: "motionSimulation",
+    claimLevel: "interactive-preview",
+    precisionPath: "auto",
+    configVersion: "causal-delay-feedback-motion-run-smoke.v1",
+    configHash: "causal-delay-feedback-motion-run-smoke",
+    model: admission.model,
+    envelope: admission.envelope,
+    errorBudget: admission.errorBudget,
+    config: {
+      appId: "causal-delay-feedback",
+      motionRequest: {
+        pathKey: 9001,
+        segment: {
+          startTime: 0,
+          endTime: 1,
+          positionAtStart: { x: 100, y: 200, z: 0 },
+          velocity: { x: 55, y: -30, z: 0 },
+          errorBound: 1e-12,
+        },
+        startTime: 0,
+        endTime: 1,
+        step: 0.5,
+        stateFlags: 1,
+      },
+      streamId: "smoke-causal-delay-motion-run:motion-path-history",
+      rowsPerChunk: 1,
+      metadata: {
+        precisionPath: "scaled_f64_strict",
+        units: "solver-si",
+        coordinateFrame: "absolute-lab-frame",
+        scaleNormalization: "causal-delay-display-units",
+        interpolationRule: "linear-segment",
+        provenance: { fixture: "causal-delay-motion-run-smoke" },
+      },
+    },
+    output: {
+      outputs: ["frameBuffer", "pathStream", "diagnostics"],
+      streamTarget: "caller-buffer",
+      memoryBudgetBytes: 64 * 1024 * 1024,
+      deterministic: true,
+    },
+  });
+}
+
 function makeIntegratedMotionRunSimulationRequest() {
   const admission = makeAdmissionRequest();
   return createAnimatorMotionSimulationRunRequest({
@@ -5143,6 +5253,71 @@ function makeAppPlaybackRunSimulationRequest(sourceResponse) {
     ],
     output: {
       outputs: ["frameBuffer", "diagnostics"],
+      streamTarget: "caller-buffer",
+      memoryBudgetBytes: 64 * 1024 * 1024,
+      deterministic: true,
+    },
+  });
+}
+
+function makeCausalDelayAppPlaybackRunSimulationRequest(sourceResponse) {
+  const admission = makeAdmissionRequest();
+  return createSolverRunRequest({
+    requestId: "smoke-causal-delay-app-playback-run-request",
+    runId: "smoke-causal-delay-app-playback-run",
+    datasetId: "smoke-causal-delay-app-playback-run-dataset",
+    appId: "causal-delay-feedback",
+    runKind: "appPlayback",
+    claimLevel: "interactive-preview",
+    precisionPath: "auto",
+    configVersion: "causal-delay-feedback-app-playback-run-smoke.v1",
+    configHash: "causal-delay-feedback-app-playback-run-smoke",
+    model: admission.model,
+    envelope: admission.envelope,
+    errorBudget: admission.errorBudget,
+    config: {
+      appId: "causal-delay-feedback",
+      sourceRunId: sourceResponse.runId,
+      sourceDatasetId: sourceResponse.datasetId,
+      frames: sourceResponse.frames,
+      diagnostics: [
+        {
+          code: "ok",
+          severity: "ok",
+          message: "causal-delay playback source accepted",
+        },
+      ],
+    },
+    output: {
+      outputs: ["frameBuffer", "diagnostics"],
+      streamTarget: "caller-buffer",
+      memoryBudgetBytes: 64 * 1024 * 1024,
+      deterministic: true,
+    },
+  });
+}
+
+function makeCausalDelayDelayedHitRunSimulationRequest() {
+  const admission = makeAdmissionRequest();
+  return createSolverRunRequest({
+    requestId: "smoke-causal-delay-delayed-hit-run-request",
+    runId: "smoke-causal-delay-delayed-hit-run",
+    datasetId: "smoke-causal-delay-delayed-hit-run-dataset",
+    appId: "causal-delay-feedback",
+    runKind: "delayedHits",
+    claimLevel: "interactive-preview",
+    precisionPath: "auto",
+    configVersion: "causal-delay-feedback-delayed-hit-run-smoke.v1",
+    configHash: "causal-delay-feedback-delayed-hit-run-smoke",
+    model: admission.model,
+    envelope: admission.envelope,
+    errorBudget: admission.errorBudget,
+    config: {
+      appId: "causal-delay-feedback",
+      rootRequest: fixtureRequest.request,
+    },
+    output: {
+      outputs: ["rootLedger", "delayedHitEvents", "diagnostics"],
       streamTarget: "caller-buffer",
       memoryBudgetBytes: 64 * 1024 * 1024,
       deterministic: true,

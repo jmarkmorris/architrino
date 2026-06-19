@@ -36,6 +36,7 @@ const MIME_TYPES = new Map([
   [".png", "image/png"],
   [".svg", "image/svg+xml"],
   [".txt", "text/plain; charset=utf-8"],
+  [".wasm", "application/wasm"],
   [".webp", "image/webp"],
 ]);
 

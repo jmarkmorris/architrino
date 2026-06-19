@@ -3,15 +3,20 @@ import { createMarkdownRuntime } from "../../runtime/MarkdownRuntime.js";
 import { extractMarkdownSection } from "../../services/MarkdownPolicyService.js";
 import { createAnimatorDefaultCoreSpec } from "../animator/AnimatorDraftScaffoldRuntime.js";
 import { createAnimatorStructureGeometryRuntime } from "../animator/AnimatorStructureGeometryRuntime.js";
+import { createSolverAppBridgeClient } from "../../solver/app/SolverAppBridge.mjs";
 import { createIdealSwarmSharedGeometryRunRequest } from "../../solver/app/SolverAppAdapters.mjs";
 import {
+  createSolverAppBridgeInitRequest,
   runSolverAppBridgeRequest,
 } from "../../solver/app/SolverAppBridgeClientResolver.mjs";
+import { createSolverAppWorkerClient } from "../../solver/app/SolverAppWorkerBridge.mjs";
 import {
   getFieldSpeedRegimeLabel,
   getOrbitPathBranchGain,
   getOrbitPathTintProfile as resolveOrbitPathTintProfile,
+  solveCircularSelfHitSpanRowsWithSolverBridge,
 } from "./IdealSwarmPathPotentialProfile.js";
+import { createIdealSwarmSolverBridgeOptions } from "./IdealSwarmSolverBridgeOptions.js";
 
 const BINARY_META = [
   {
@@ -56,6 +61,15 @@ const DEFAULT_SOLVER_MEMORY_BUDGET_BYTES = 64 * 1024 * 1024;
 const DEFAULT_FLIGHT_TIME_TOLERANCE = 1e-12;
 const DEFAULT_FLIGHT_TIME_SOURCE_HISTORY_DEPTH = 10;
 const IDEAL_SWARM_SOLVER_BRIDGE_ENGINE_ID = "architrino-solver-app-bridge";
+const IDEAL_SWARM_RUNTIME_SOLVER_CAPABILITIES = Object.freeze([
+  "sharedGeometry",
+  "delayedHits",
+]);
+const IDEAL_SWARM_RUNTIME_SOLVER_MEMORY_BUDGET_BYTES = 64 * 1024 * 1024;
+const IDEAL_SWARM_RUNTIME_SOLVER_WORKER_REQUEST_TIMEOUT_MS = 30_000;
+const IDEAL_SWARM_SURFACE_SOLVER_TIME_QUANTUM_SECONDS = 1 / 8;
+const IDEAL_SWARM_SURFACE_SOLVER_MIN_INTERVAL_MS = 180;
+const IDEAL_SWARM_SURFACE_SOLVER_EDIT_DEBOUNCE_MS = 120;
 const SHELL_SURFACE_BASE_OPACITY = 0.007;
 const SHELL_SURFACE_RIM_OPACITY = 0.16;
 const SHELL_SURFACE_RIM_POWER = 3.2;
@@ -426,17 +440,6 @@ export function createIdealSwarmModel(options = {}) {
   };
 }
 
-export function solveFlightTime(samplePoint, architrino, observationTime, options = {}) {
-  const fieldSpeed = Math.max(0.001, Number(options.fieldSpeed ?? 6) || 6);
-  const iterations = Math.max(1, Math.round(Number(options.iterations ?? 4) || 4));
-  let tau = samplePoint.distanceTo(architrino.positionAt(observationTime)) / fieldSpeed;
-  for (let index = 0; index < iterations; index += 1) {
-    const emittedPosition = architrino.positionAt(observationTime - tau);
-    tau = samplePoint.distanceTo(emittedPosition) / fieldSpeed;
-  }
-  return tau;
-}
-
 export function createIdealSwarmFlightTimeRunRequest(
   samplePoint,
   architrino,
@@ -567,6 +570,144 @@ function extractIdealSwarmFlightTimeRow(runHandle = {}) {
   };
 }
 
+export function createIdealSwarmPotentialSamplesRunRequest(
+  samplePoints,
+  model,
+  observationTime,
+  options = {}
+) {
+  const points = normalizeSolverSamplePoints(samplePoints);
+  const architrinos = normalizeSolverArchitrinos(model);
+  const fieldSpeed = Math.max(0.001, Number(options.fieldSpeed ?? 6) || 6);
+  const iterations = Math.max(1, Math.round(Number(options.iterations ?? 4) || 4));
+  const tolerance = normalizeNonnegativeSolverNumber(
+    options.tolerance,
+    DEFAULT_FLIGHT_TIME_TOLERANCE
+  );
+  const memoryBudgetBytes = normalizePositiveSolverInteger(
+    options.memoryBudgetBytes,
+    DEFAULT_SOLVER_MEMORY_BUDGET_BYTES
+  );
+  const sources = architrinos.map((architrino) =>
+    createIdealSwarmFlightTimeSourceSegment(architrino, observationTime, options)
+  );
+  const delayedPotentials = points.flatMap((samplePoint) =>
+    architrinos.map((architrino, sourceIndex) => ({
+      source: cloneSolverSegment(sources[sourceIndex]),
+      samplePoint: vectorToSolverBridge(samplePoint),
+      observationTime: Number(observationTime) || 0,
+      fieldSpeed,
+      normalization: Number(options.normalization ?? 1) || 1,
+      softening: Math.max(0.0001, Number(options.softening ?? 0.08) || 0.08),
+      sourceCharge: Number(options.sourceCharge ?? architrino?.q ?? 1) || 1,
+      iterations,
+      useCausalDenominator: options.useCausalDenominator === true,
+    }))
+  );
+  const runId =
+    options.runId ??
+    `ideal-swarm-potential-samples-${formatSolverIdNumber(observationTime)}-${points.length}x${architrinos.length}`;
+  return createIdealSwarmSharedGeometryRunRequest({
+    requestId: options.requestId ?? `${runId}-request`,
+    runId,
+    datasetId: options.datasetId ?? `${runId}-dataset`,
+    claimLevel: options.claimLevel ?? "interactive-preview",
+    precisionPath: options.precisionPath ?? "auto",
+    configVersion: options.configVersion ?? "ideal-swarm-potential-samples-adapter.v1",
+    configHash:
+      options.configHash ??
+      `ideal-swarm-potential-samples:${formatSolverIdNumber(observationTime)}:${points.length}:${architrinos.length}`,
+    model: options.model ?? createDefaultIdealSwarmPotentialSamplesModel(),
+    envelope:
+      options.envelope ??
+      createDefaultIdealSwarmPotentialSamplesEnvelope({
+        sources,
+        observationTime,
+        sampleCount: points.length,
+        sourceCount: architrinos.length,
+        memoryBudgetBytes,
+      }),
+    errorBudget: options.errorBudget ?? createDefaultIdealSwarmFlightTimeErrorBudget(tolerance),
+    geometryRequest: {
+      delayedPotentials,
+    },
+    output: options.output ?? {
+      outputs: ["geometryBuffer", "diagnostics"],
+      streamTarget: options.streamTarget ?? "caller-buffer",
+      memoryBudgetBytes,
+      deterministic: options.deterministic ?? true,
+    },
+  });
+}
+
+export async function computePotentialSamplesWithSolverBridge(
+  samplePoints,
+  model,
+  observationTime,
+  options = {}
+) {
+  const points = normalizeSolverSamplePoints(samplePoints);
+  const architrinos = normalizeSolverArchitrinos(model);
+  const runRequest =
+    options.runRequest ??
+    createIdealSwarmPotentialSamplesRunRequest(points, { architrinos }, observationTime, options);
+  const runHandle =
+    typeof options.runSolverBridge === "function"
+      ? await options.runSolverBridge(runRequest)
+      : await runIdealSwarmSolverBridgeClient(options, {
+          factoryRequest: {
+            sampleCount: points.length,
+            sourceCount: architrinos.length,
+            observationTime,
+          },
+          runRequest,
+        });
+  return extractIdealSwarmPotentialSamplesSnapshot(runHandle, {
+    sampleCount: points.length,
+    sourceCount: architrinos.length,
+  });
+}
+
+function extractIdealSwarmPotentialSamplesSnapshot(
+  runHandle = {},
+  { sampleCount = 0, sourceCount = 0 } = {}
+) {
+  const response = runHandle.response ?? runHandle;
+  const geometry = response.geometry ?? response;
+  const rows = Array.isArray(geometry.delayedPotentials) ? geometry.delayedPotentials : [];
+  const samplePotentials = Array.from({ length: sampleCount }, () => 0);
+  const contributionsBySample = Array.from({ length: sampleCount }, () => []);
+  const rowSourceCount = Math.max(1, sourceCount);
+  rows.forEach((row, rowIndex) => {
+    const itemIndex = Number.isInteger(row.itemIndex) ? row.itemIndex : rowIndex;
+    const sampleIndex = Math.floor(itemIndex / rowSourceCount);
+    if (sampleIndex < 0 || sampleIndex >= sampleCount) {
+      return;
+    }
+    contributionsBySample[sampleIndex].push(row);
+    if (row.statusCode !== 0) {
+      return;
+    }
+    const potential = Number(row.potential);
+    if (Number.isFinite(potential)) {
+      samplePotentials[sampleIndex] += potential;
+    }
+  });
+  const maxAbs = Math.max(0.0001, ...samplePotentials.map((value) => Math.abs(value)));
+  const min = samplePotentials.length > 0 ? Math.min(...samplePotentials) : 0;
+  const max = samplePotentials.length > 0 ? Math.max(...samplePotentials) : 0;
+  return {
+    solverEngineId: IDEAL_SWARM_SOLVER_BRIDGE_ENGINE_ID,
+    runId: response.runId ?? runHandle.runId ?? "",
+    datasetId: response.datasetId ?? runHandle.datasetId ?? "",
+    samplePotentials,
+    contributionsBySample,
+    delayedPotentials: rows,
+    surfaceRange: { min, max, maxAbs },
+    status: response.status ?? runHandle.status ?? geometry.status,
+  };
+}
+
 function createIdealSwarmFlightTimeSourceSegment(architrino, observationTime, options = {}) {
   if (options.sourceSegment && typeof options.sourceSegment === "object") {
     return cloneSolverSegment(options.sourceSegment);
@@ -581,12 +722,21 @@ function createIdealSwarmFlightTimeSourceSegment(architrino, observationTime, op
   const startTime = Number.isFinite(Number(options.sourceStartTime))
     ? Number(options.sourceStartTime)
     : endTime - historyDepth;
-  const positionAtStart = typeof architrino?.positionAt === "function"
-    ? vectorToSolverBridge(architrino.positionAt(startTime))
-    : vectorToSolverBridge(architrino?.position ?? architrino);
+  const linearizationTime = Number.isFinite(Number(options.sourceLinearizationTime))
+    ? Number(options.sourceLinearizationTime)
+    : endTime;
   const velocity = typeof architrino?.velocityAt === "function"
-    ? vectorToSolverBridge(architrino.velocityAt(startTime))
+    ? vectorToSolverBridge(architrino.velocityAt(linearizationTime))
     : vectorToSolverBridge(architrino?.velocity);
+  const anchorPosition = typeof architrino?.positionAt === "function"
+    ? vectorToSolverBridge(architrino.positionAt(linearizationTime))
+    : vectorToSolverBridge(architrino?.position ?? architrino);
+  const anchorOffset = linearizationTime - startTime;
+  const positionAtStart = {
+    x: anchorPosition.x - velocity.x * anchorOffset,
+    y: anchorPosition.y - velocity.y * anchorOffset,
+    z: anchorPosition.z - velocity.z * anchorOffset,
+  };
   return {
     startTime,
     endTime,
@@ -619,6 +769,19 @@ function createDefaultIdealSwarmFlightTimeModel() {
   };
 }
 
+function createDefaultIdealSwarmPotentialSamplesModel() {
+  return {
+    modelId: "aaa.ideal-swarm",
+    equationVersion: "delayed-potential-samples-v1",
+    forceLawVersion: "causal-delay-v1",
+    constantsHash: "constants:ideal-swarm",
+    causalSpeedPolicy: "field-speed",
+    branchPolicy: "batched-linear-source-segments",
+    unitConvention: "relative",
+    compatiblePrecisionPaths: ["scaled_f64_strict", "event_root_focused", "extended_precision"],
+  };
+}
+
 function createDefaultIdealSwarmFlightTimeEnvelope({
   source,
   observationTime,
@@ -643,6 +806,37 @@ function createDefaultIdealSwarmFlightTimeEnvelope({
   };
 }
 
+function createDefaultIdealSwarmPotentialSamplesEnvelope({
+  sources = [],
+  observationTime,
+  sampleCount = 0,
+  sourceCount = 0,
+  memoryBudgetBytes,
+} = {}) {
+  const startTime = Math.min(
+    ...sources.map((source) => Number(source?.startTime)).filter(Number.isFinite),
+    Number(observationTime) || 0
+  );
+  const endTime = Number.isFinite(Number(observationTime)) ? Number(observationTime) : startTime;
+  const duration = Math.max(0, endTime - startTime);
+  const stepHint = duration > 0 ? duration / 64 : 1;
+  return {
+    entityCount: sourceCount,
+    assemblyCount: Math.max(1, sourceCount),
+    timeWindow: { start: startTime, end: endTime, stepHint, units: "seconds" },
+    timeResolutionHint: stepHint,
+    interactionPolicy: "batched-delayed-potential-surface",
+    expectedBranchComplexity: "medium",
+    outputDetail: "geometry",
+    memoryBudgetBytes,
+    storageBudgetBytes: memoryBudgetBytes,
+    latencyTarget: "interactive",
+    simplificationPolicy: "linear-source-segments",
+    sampleCount,
+    sourceCount,
+  };
+}
+
 function createDefaultIdealSwarmFlightTimeErrorBudget(tolerance = DEFAULT_FLIGHT_TIME_TOLERANCE) {
   return {
     globalTolerance: tolerance,
@@ -654,6 +848,19 @@ function createDefaultIdealSwarmFlightTimeErrorBudget(tolerance = DEFAULT_FLIGHT
     projectionTolerance: 1e-9,
     displayTolerance: 1e-6,
   };
+}
+
+function normalizeSolverSamplePoints(samplePoints) {
+  const points = Array.isArray(samplePoints) ? samplePoints : [samplePoints];
+  return points.filter(Boolean);
+}
+
+function normalizeSolverArchitrinos(model) {
+  const architrinos = Array.isArray(model?.architrinos) ? model.architrinos : [];
+  if (architrinos.length === 0) {
+    throw new TypeError("Ideal Swarm potential sample request requires at least one architrino.");
+  }
+  return architrinos;
 }
 
 function vectorToSolverBridge(value = {}) {
@@ -683,40 +890,21 @@ function formatSolverIdNumber(value) {
   return String(Number(value) || 0).replaceAll(".", "_").replaceAll("-", "neg_");
 }
 
-export function computePotentialContribution(samplePoint, architrino, observationTime, options = {}) {
-  const fieldSpeed = Math.max(0.001, Number(options.fieldSpeed ?? 6) || 6);
-  const normalization = Number(options.normalization ?? 1) || 1;
-  const softening = Math.max(0.0001, Number(options.softening ?? 0.08) || 0.08);
-  const tau = Number.isFinite(options.flightTime)
-    ? Number(options.flightTime)
-    : solveFlightTime(samplePoint, architrino, observationTime, options);
-  const emissionTime = observationTime - tau;
-  const emittedPosition = architrino.positionAt(emissionTime);
-  const displacement = samplePoint.clone().sub(emittedPosition);
-  const distance = Math.max(0.0001, displacement.length());
-  let denominator = Math.sqrt(distance * distance + softening * softening);
-  if (options.useCausalDenominator) {
-    const direction = displacement.clone().multiplyScalar(1 / distance);
-    const velocity = architrino.velocityAt(emissionTime);
-    const kappa = 1 - direction.dot(velocity) / fieldSpeed;
-    denominator *= Math.max(0.08, Math.abs(kappa));
-  }
-  return {
-    potential: (normalization * architrino.q) / denominator,
-    tau,
-    distance,
-    emissionTime,
-  };
+function quantizeIdealSwarmRuntimeSolverTime(timeSeconds) {
+  const time = Number.isFinite(Number(timeSeconds)) ? Number(timeSeconds) : 0;
+  return Math.round(time / IDEAL_SWARM_SURFACE_SOLVER_TIME_QUANTUM_SECONDS) *
+    IDEAL_SWARM_SURFACE_SOLVER_TIME_QUANTUM_SECONDS;
 }
 
-export function computePotentialSum(samplePoint, model, observationTime, options = {}) {
-  const contributions = model.architrinos.map((architrino) =>
-    computePotentialContribution(samplePoint, architrino, observationTime, options)
-  );
-  return {
-    potential: contributions.reduce((sum, contribution) => sum + contribution.potential, 0),
-    contributions,
-  };
+function getIdealSwarmRuntimeNowMs(windowLike) {
+  if (typeof windowLike?.performance?.now === "function") {
+    return windowLike.performance.now();
+  }
+  return Date.now();
+}
+
+function hasIdealSwarmInlineSolverOption(options) {
+  return typeof options?.runSolverBridge === "function";
 }
 
 function createOrbitPathLine(Three, binary) {
@@ -1377,6 +1565,10 @@ export function mountIdealSwarm(options = {}) {
   const windowLike = options.windowLike ?? globalThis.window;
   const Three = options.THREE ?? THREE;
   const homeHref = options.homeHref ?? IDEAL_SWARM_NAVIGATOR_HREF;
+  const solverBridgeOptions = createIdealSwarmSolverBridgeOptions(
+    windowLike ?? globalThis,
+    options.solverBridgeOptions ?? {}
+  );
   const canvas = queryRequiredElement(documentLike, "#ideal-swarm-canvas");
   const model = createIdealSwarmModel({ THREE: Three });
   const renderer = new Three.WebGLRenderer({
@@ -1521,6 +1713,282 @@ export function mountIdealSwarm(options = {}) {
     surfaceRange: { min: 0, max: 0, maxAbs: 1 },
     samplePotential: 0,
   };
+  let runtimeDestroyed = false;
+  let solverClientPromise = null;
+  let ownedSolverClient = null;
+  let ownedSolverWorker = null;
+  let surfaceSolverSnapshot = null;
+  let surfaceSolverSnapshotPromise = null;
+  let surfaceSolverLastRequestAtMs = 0;
+  let surfaceSolverLastStateChangeAtMs = 0;
+  let surfaceSolverInteractiveUpdatePending = false;
+  let surfaceSolverError = null;
+  let solverGeneration = 0;
+  let orbitProfileSolverPromise = null;
+
+  function createIdealSwarmRuntimeSolverInitRequest(runtimeSolverOptions) {
+    return createSolverAppBridgeInitRequest({
+      appId: "ideal-swarm",
+      requestedCapabilities: IDEAL_SWARM_RUNTIME_SOLVER_CAPABILITIES,
+      options: runtimeSolverOptions,
+      storagePolicy: {
+        target: runtimeSolverOptions.streamTarget ?? "caller-buffer",
+        durable: runtimeSolverOptions.streamTarget === "native-file",
+        maxBytes:
+          runtimeSolverOptions.memoryBudgetBytes ??
+          IDEAL_SWARM_RUNTIME_SOLVER_MEMORY_BUDGET_BYTES,
+      },
+      threadingPolicy: {
+        mode: runtimeSolverOptions.threadingMode ?? "single-thread",
+        deterministic: runtimeSolverOptions.deterministic ?? true,
+      },
+    });
+  }
+
+  function createIdealSwarmRuntimeSolverWorkerClient() {
+    const workerUrl = solverBridgeOptions.workerUrl;
+    const scope = solverBridgeOptions.scope ?? windowLike ?? globalThis;
+    const WorkerCtor = solverBridgeOptions.WorkerCtor ?? scope?.Worker;
+    if (!workerUrl || typeof WorkerCtor !== "function") {
+      return null;
+    }
+    const worker = new WorkerCtor(workerUrl, {
+      type: "module",
+      name: "ideal-swarm-solver-bridge",
+      ...(solverBridgeOptions.workerOptions ?? {}),
+    });
+    ownedSolverWorker = worker;
+    return createSolverAppWorkerClient(worker, {
+      requestIdPrefix: "ideal-swarm-solver-worker",
+      requestTimeoutMs:
+        solverBridgeOptions.workerRequestTimeoutMs ??
+        IDEAL_SWARM_RUNTIME_SOLVER_WORKER_REQUEST_TIMEOUT_MS,
+      terminateOnDispose: solverBridgeOptions.terminateSolverWorkerOnDispose ?? true,
+    });
+  }
+
+  async function getIdealSwarmRuntimeSolverClient() {
+    if (solverBridgeOptions.solverClient) {
+      return solverBridgeOptions.solverClient;
+    }
+    if (!solverClientPromise) {
+      solverClientPromise = (async () => {
+        if (solverBridgeOptions.solverWorker) {
+          const providedWorkerClient = createSolverAppWorkerClient(
+            solverBridgeOptions.solverWorker,
+            {
+              requestIdPrefix: "ideal-swarm-solver-worker",
+              requestTimeoutMs:
+                solverBridgeOptions.workerRequestTimeoutMs ??
+                IDEAL_SWARM_RUNTIME_SOLVER_WORKER_REQUEST_TIMEOUT_MS,
+              terminateOnDispose: solverBridgeOptions.terminateSolverWorkerOnDispose === true,
+            }
+          );
+          await providedWorkerClient.init(
+            createIdealSwarmRuntimeSolverInitRequest(solverBridgeOptions)
+          );
+          ownedSolverClient = providedWorkerClient;
+          return providedWorkerClient;
+        }
+        const workerClient = createIdealSwarmRuntimeSolverWorkerClient();
+        if (workerClient) {
+          await workerClient.init(createIdealSwarmRuntimeSolverInitRequest(solverBridgeOptions));
+          ownedSolverClient = workerClient;
+          return workerClient;
+        }
+        const client = createSolverAppBridgeClient({
+          createWasmModule: solverBridgeOptions.createWasmModule,
+          locateFile: solverBridgeOptions.locateFile,
+        });
+        await client.init(createIdealSwarmRuntimeSolverInitRequest(solverBridgeOptions));
+        ownedSolverClient = client;
+        return client;
+      })();
+    }
+    return solverClientPromise;
+  }
+
+  async function createIdealSwarmRuntimeSolverOptions() {
+    if (hasIdealSwarmInlineSolverOption(solverBridgeOptions)) {
+      return solverBridgeOptions;
+    }
+    return {
+      ...solverBridgeOptions,
+      solverClient: await getIdealSwarmRuntimeSolverClient(),
+      streamTarget: solverBridgeOptions.streamTarget ?? "caller-buffer",
+      deterministic: solverBridgeOptions.deterministic ?? true,
+      threadingMode: solverBridgeOptions.threadingMode ?? "single-thread",
+    };
+  }
+
+  function createSurfaceSolverStateKey() {
+    return [
+      formatSolverIdNumber(state.radius),
+      formatSolverIdNumber(state.beta),
+      ...model.binaries.map((binary) =>
+        [
+          binary.id,
+          formatSolverIdNumber(binary.radius),
+          formatSolverIdNumber(binary.fieldSpeedRatio),
+          formatSolverIdNumber(binary.basis.normal.x),
+          formatSolverIdNumber(binary.basis.normal.y),
+          formatSolverIdNumber(binary.basis.normal.z),
+        ].join(":")
+      ),
+    ].join("|");
+  }
+
+  function createSurfaceSolverSamplePoints() {
+    const points = surfaceSamples.map((sample) =>
+      sample.unit.clone().multiplyScalar(state.radius)
+    );
+    points.push(new Three.Vector3(state.radius, 0, 0));
+    return points;
+  }
+
+  function clearSurfaceSolverSnapshotForStateChange({ preserveSnapshot = true } = {}) {
+    solverGeneration += 1;
+    surfaceSolverLastStateChangeAtMs = getIdealSwarmRuntimeNowMs(windowLike);
+    surfaceSolverInteractiveUpdatePending = preserveSnapshot;
+    if (!preserveSnapshot) {
+      surfaceSolverSnapshot = null;
+    }
+    surfaceSolverError = null;
+  }
+
+  function getCurrentSurfaceSolverSnapshot() {
+    const stateKey = createSurfaceSolverStateKey();
+    if (surfaceSolverSnapshot?.stateKey === stateKey) {
+      return surfaceSolverSnapshot;
+    }
+    return surfaceSolverInteractiveUpdatePending ? surfaceSolverSnapshot : null;
+  }
+
+  function scheduleSurfaceSolverSnapshot({ force = false } = {}) {
+    if (runtimeDestroyed || surfaceSolverSnapshotPromise) {
+      return;
+    }
+    const solveTime = quantizeIdealSwarmRuntimeSolverTime(state.modelTime);
+    const stateKey = createSurfaceSolverStateKey();
+    const snapshotMatches =
+      surfaceSolverSnapshot?.stateKey === stateKey &&
+      Math.abs((surfaceSolverSnapshot.solveTime ?? 0) - solveTime) <= 1e-12;
+    if (snapshotMatches) {
+      return;
+    }
+    const nowMs = getIdealSwarmRuntimeNowMs(windowLike);
+    if (
+      !force &&
+      surfaceSolverInteractiveUpdatePending &&
+      nowMs - surfaceSolverLastStateChangeAtMs < IDEAL_SWARM_SURFACE_SOLVER_EDIT_DEBOUNCE_MS
+    ) {
+      return;
+    }
+    const stateChanged = surfaceSolverSnapshot?.stateKey !== stateKey;
+    if (
+      !force &&
+      !stateChanged &&
+      !state.frozen &&
+      nowMs - surfaceSolverLastRequestAtMs < IDEAL_SWARM_SURFACE_SOLVER_MIN_INTERVAL_MS
+    ) {
+      return;
+    }
+
+    const generation = solverGeneration;
+    const samplePoints = createSurfaceSolverSamplePoints();
+    const runRequest = createIdealSwarmPotentialSamplesRunRequest(
+      samplePoints,
+      model,
+      solveTime,
+      {
+        fieldSpeed: 6,
+        softening: 0.1,
+        memoryBudgetBytes: IDEAL_SWARM_RUNTIME_SOLVER_MEMORY_BUDGET_BYTES,
+      }
+    );
+    surfaceSolverLastRequestAtMs = nowMs;
+    surfaceSolverInteractiveUpdatePending = false;
+    surfaceSolverError = null;
+    surfaceSolverSnapshotPromise = (async () => {
+      const runtimeSolverOptions = await createIdealSwarmRuntimeSolverOptions();
+      const snapshot = await computePotentialSamplesWithSolverBridge(
+        samplePoints,
+        model,
+        solveTime,
+        {
+          ...runtimeSolverOptions,
+          runRequest,
+          fieldSpeed: 6,
+          softening: 0.1,
+          memoryBudgetBytes: IDEAL_SWARM_RUNTIME_SOLVER_MEMORY_BUDGET_BYTES,
+        }
+      );
+      return {
+        ...snapshot,
+        stateKey,
+        solveTime,
+        surfacePotentials: snapshot.samplePotentials.slice(0, surfaceSamples.length),
+        samplePotential: snapshot.samplePotentials[surfaceSamples.length] ?? 0,
+      };
+    })();
+    surfaceSolverSnapshotPromise
+      .then((snapshot) => {
+        surfaceSolverSnapshotPromise = null;
+        if (runtimeDestroyed) {
+          return;
+        }
+        if (
+          generation !== solverGeneration ||
+          createSurfaceSolverStateKey() !== snapshot.stateKey
+        ) {
+          return;
+        }
+        surfaceSolverSnapshot = snapshot;
+        surfaceSolverInteractiveUpdatePending = false;
+        surfaceSolverError = null;
+      })
+      .catch((error) => {
+        surfaceSolverSnapshotPromise = null;
+        if (runtimeDestroyed || generation !== solverGeneration) {
+          return;
+        }
+        surfaceSolverInteractiveUpdatePending = false;
+        surfaceSolverError = error;
+      });
+  }
+
+  function scheduleOrbitProfileSolverSnapshot() {
+    if (runtimeDestroyed || orbitProfileSolverPromise) {
+      return;
+    }
+    const ratios = model.binaries.map((binary) => binary.fieldSpeedRatio);
+    orbitProfileSolverPromise = (async () => {
+      const runtimeSolverOptions = await createIdealSwarmRuntimeSolverOptions();
+      return solveCircularSelfHitSpanRowsWithSolverBridge(ratios, {
+        ...runtimeSolverOptions,
+        runId: "ideal-swarm-orbit-profile-self-hit",
+        memoryBudgetBytes: IDEAL_SWARM_RUNTIME_SOLVER_MEMORY_BUDGET_BYTES,
+      });
+    })();
+    orbitProfileSolverPromise
+      .then((rows) => {
+        orbitProfileSolverPromise = null;
+        if (runtimeDestroyed) {
+          return;
+        }
+        rows.forEach((row, rowIndex) => {
+          const binary = model.binaries[row.itemIndex ?? rowIndex];
+          if (!binary || row.statusCode !== 0) {
+            return;
+          }
+          binary.solverSelfHitSpan = Number(row.span) || 0;
+          binary.solverSelfHitRow = row;
+        });
+      })
+      .catch(() => {
+        orbitProfileSolverPromise = null;
+      });
+  }
 
   function getCurrentLorentzState() {
     return computeLorentzState(state.beta, state.radius);
@@ -1574,6 +2042,7 @@ export function mountIdealSwarm(options = {}) {
     state.radius = Math.max(0.0001, Number(referenceRadius) || state.radius);
     updateBinaryOrbitRadii(state.radius);
     updateShellSurfaces();
+    clearSurfaceSolverSnapshotForStateChange({ preserveSnapshot: true });
   }
 
   function resize() {
@@ -1655,21 +2124,23 @@ export function mountIdealSwarm(options = {}) {
   }
 
   function updateSurface() {
-    const potentials = surfaceSamples.map((sample, sampleIndex) => {
+    const snapshot = getCurrentSurfaceSolverSnapshot();
+    scheduleSurfaceSolverSnapshot();
+    const potentials = snapshot?.surfacePotentials ??
+      Array.from({ length: surfaceSamples.length }, () => 0);
+    surfaceSamples.forEach((sample, sampleIndex) => {
       const position = sample.unit.clone().multiplyScalar(state.radius);
       surfacePositions[sampleIndex * 3] = position.x;
       surfacePositions[sampleIndex * 3 + 1] = position.y;
       surfacePositions[sampleIndex * 3 + 2] = position.z;
-      return computePotentialSum(position, model, state.modelTime, {
-        fieldSpeed: 6,
-        softening: 0.1,
-      }).potential;
     });
-    const maxAbs = Math.max(0.0001, ...potentials.map((value) => Math.abs(value)));
-    const min = Math.min(...potentials);
-    const max = Math.max(...potentials);
+    const surfaceRange = snapshot?.surfaceRange ?? {
+      min: Math.min(...potentials),
+      max: Math.max(...potentials),
+      maxAbs: Math.max(0.0001, ...potentials.map((value) => Math.abs(value))),
+    };
     potentials.forEach((potential, index) => {
-      const color = colorForPotential(Three, potential, maxAbs);
+      const color = colorForPotential(Three, potential, surfaceRange.maxAbs);
       surfaceColors[index * 3] = color.r;
       surfaceColors[index * 3 + 1] = color.g;
       surfaceColors[index * 3 + 2] = color.b;
@@ -1677,13 +2148,8 @@ export function mountIdealSwarm(options = {}) {
     surfaceGeometry.attributes.position.needsUpdate = true;
     surfaceGeometry.attributes.color.needsUpdate = true;
     surfaceGeometry.computeBoundingSphere();
-    state.surfaceRange = { min, max, maxAbs };
-    state.samplePotential = computePotentialSum(
-      new Three.Vector3(state.radius, 0, 0),
-      model,
-      state.modelTime,
-      { fieldSpeed: 6, softening: 0.1 }
-    ).potential;
+    state.surfaceRange = surfaceRange;
+    state.samplePotential = snapshot?.samplePotential ?? state.samplePotential;
   }
 
   function updateAxisReference() {
@@ -1846,6 +2312,9 @@ export function mountIdealSwarm(options = {}) {
   }
 
   function renderFrame(now) {
+    if (runtimeDestroyed) {
+      return;
+    }
     const deltaSeconds = Math.min(0.05, Math.max(0, (now - state.lastFrameTime) / 1000));
     state.lastFrameTime = now;
     if (!state.frozen) {
@@ -1861,7 +2330,9 @@ export function mountIdealSwarm(options = {}) {
     renderTable();
     syncControls();
     renderer.render(scene, camera);
-    windowLike.requestAnimationFrame(renderFrame);
+    if (!runtimeDestroyed) {
+      windowLike.requestAnimationFrame(renderFrame);
+    }
   }
 
   dom.pathToggle.addEventListener("click", () => {
@@ -1889,6 +2360,7 @@ export function mountIdealSwarm(options = {}) {
   });
   dom.betaInput.addEventListener("input", () => {
     state.beta = clampNumber(Number(dom.betaInput.value) || 0, 0, LORENTZ_BETA_MAX);
+    clearSurfaceSolverSnapshotForStateChange({ preserveSnapshot: true });
     syncControls();
   });
   dom.speedInput.addEventListener("input", () => {
@@ -1983,6 +2455,9 @@ export function mountIdealSwarm(options = {}) {
   resetRotation();
   resize();
   syncControls();
+  updateLorentzGeometry();
+  scheduleOrbitProfileSolverSnapshot();
+  scheduleSurfaceSolverSnapshot({ force: true });
   canvas.focus();
   windowLike.requestAnimationFrame(renderFrame);
 
@@ -1996,7 +2471,13 @@ export function mountIdealSwarm(options = {}) {
     sphereContents,
     markdownRuntime,
     destroy() {
+      runtimeDestroyed = true;
       resizeObserver.disconnect();
+      if (ownedSolverClient && typeof ownedSolverClient.dispose === "function") {
+        void ownedSolverClient.dispose();
+      } else if (ownedSolverWorker && typeof ownedSolverWorker.terminate === "function") {
+        ownedSolverWorker.terminate();
+      }
       renderer.dispose();
       markdownRuntime.hideMarkdownPanel();
     },

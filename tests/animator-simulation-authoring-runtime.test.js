@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import {
+  DEFAULT_ANIMATOR_SIMULATION_AUTHORING_DRAFT,
   applyAnimatorSimulationAuthoringDraftToDocument,
   buildAnimatorSimulationAuthoringWorkerPayload,
   createAnimatorSimulationAuthoringDraft,
@@ -36,6 +37,15 @@ const BASE_DOCUMENT = Object.freeze({
   },
 });
 
+const DEFAULT_SOLVER_BRIDGE_CONFIG = Object.freeze({
+  enabled: true,
+  precisionPath: "auto",
+  streamTarget: "caller-buffer",
+  deterministic: true,
+  threadingMode: "single-thread",
+  rowsPerChunk: 256,
+});
+
 test("simulation authoring draft reads scene timing and dataset context", () => {
   const draft = createAnimatorSimulationAuthoringDraft(BASE_DOCUMENT);
 
@@ -47,6 +57,12 @@ test("simulation authoring draft reads scene timing and dataset context", () => 
   assert.equal(draft.cf, 1);
   assert.equal(draft.claimLevel, "solver-derived-diagnostic");
   assert.equal(draft.datasetId, "authoring_scene_worker_dataset");
+  assert.equal(draft.solverEngine, ANIMATOR_SOLVER_BRIDGE_ENGINE_ID);
+  assert.deepEqual(draft.solverBridge, DEFAULT_SOLVER_BRIDGE_CONFIG);
+  assert.deepEqual(
+    DEFAULT_ANIMATOR_SIMULATION_AUTHORING_DRAFT.solverBridge,
+    DEFAULT_SOLVER_BRIDGE_CONFIG
+  );
 });
 
 test("simulation authoring draft applies worker config and preserves existing metadata", () => {
@@ -89,6 +105,8 @@ test("simulation authoring draft applies worker config and preserves existing me
     shellK: 0,
     historyMode: "deep",
     rootHaltPolicy: "partner",
+    solverEngine: ANIMATOR_SOLVER_BRIDGE_ENGINE_ID,
+    solverBridge: DEFAULT_SOLVER_BRIDGE_CONFIG,
   });
   assert.deepEqual(nextDocument.metadata.simulationWorker.datasetOptions, {
     id: "custom_dataset",
@@ -118,9 +136,11 @@ test("simulation authoring worker payload normalizes invalid choices fail-closed
   assert.equal(payload.config.cf, 1);
   assert.equal(payload.config.historyMode, "adaptive");
   assert.equal(payload.config.rootHaltPolicy, "all");
+  assert.equal(payload.config.solverEngine, ANIMATOR_SOLVER_BRIDGE_ENGINE_ID);
+  assert.deepEqual(payload.config.solverBridge, DEFAULT_SOLVER_BRIDGE_CONFIG);
 });
 
-test("simulation authoring worker payload can opt into the central solver bridge", () => {
+test("simulation authoring worker payload can configure the central solver bridge", () => {
   const motionRequest = {
     pathKey: 7,
     segment: {
@@ -149,12 +169,25 @@ test("simulation authoring worker payload can opt into the central solver bridge
 
   assert.equal(payload.config.solverEngine, ANIMATOR_SOLVER_BRIDGE_ENGINE_ID);
   assert.deepEqual(payload.config.solverBridge, {
+    ...DEFAULT_SOLVER_BRIDGE_CONFIG,
     enabled: true,
     precisionPath: "scaled_f64_strict",
     streamTarget: "caller-buffer",
     deterministic: true,
     motionRequest,
   });
+});
+
+test("simulation authoring worker payload keeps the central solver bridge enabled", () => {
+  const payload = buildAnimatorSimulationAuthoringWorkerPayload(
+    {
+      solverBridge: { enabled: false },
+    },
+    BASE_DOCUMENT
+  );
+
+  assert.equal(payload.config.solverEngine, ANIMATOR_SOLVER_BRIDGE_ENGINE_ID);
+  assert.deepEqual(payload.config.solverBridge, DEFAULT_SOLVER_BRIDGE_CONFIG);
 });
 
 test("simulation authoring summary reports active dataset diagnostics", () => {

@@ -1,1 +1,0 @@
-# python -m cProfile -s tottime -n 20 orbits.py --run sim2/2circle.json --render

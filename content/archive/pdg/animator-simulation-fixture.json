@@ -370,7 +370,6 @@
                 "source": "manual-step-1-fixture"
               },
               "sourceReferences": [
-                "src/apps/sim2/orbits.py",
                 "scripts/simulations/assembly-dynamics-toy.mjs"
               ]
             },

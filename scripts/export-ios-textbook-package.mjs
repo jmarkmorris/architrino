@@ -413,6 +413,20 @@ function anchorFromTitle(title) {
     .replace(/-+$/, "") || "section";
 }
 
+function anchorTitleFromMarkdownContent(content, env) {
+  return String(content || "")
+    .replace(/@@ARCHITRINO_INLINE_MATH_(\d+)@@/g, (_match, indexValue) => {
+      const index = Number(indexValue);
+      const block = env?.inlineMathBlocks?.[index];
+      return block?.math || "";
+    })
+    .replace(/@@ARCHITRINO_DISPLAY_MATH_(\d+)@@/g, (_match, indexValue) => {
+      const index = Number(indexValue);
+      const block = env?.displayMathBlocks?.[index];
+      return block?.math || "";
+    });
+}
+
 function installHeadingAnchorRenderer(markdownParser) {
   const defaultHeadingOpen =
     markdownParser.renderer.rules.heading_open ||
@@ -423,7 +437,8 @@ function installHeadingAnchorRenderer(markdownParser) {
     const level = Number(String(token.tag || "").replace(/^h/i, ""));
     if (level >= 2 && level <= 6) {
       const inlineToken = tokens[idx + 1];
-      const baseAnchor = anchorFromTitle(inlineToken?.content || "");
+      const anchorTitle = anchorTitleFromMarkdownContent(inlineToken?.content || "", env);
+      const baseAnchor = anchorFromTitle(anchorTitle);
       env.headingAnchorCounts = env.headingAnchorCounts || new Map();
       const prior = env.headingAnchorCounts.get(baseAnchor) || 0;
       token.attrSet("id", prior === 0 ? baseAnchor : `${baseAnchor}-${prior}`);
@@ -706,7 +721,9 @@ function renderMarkdownHTMLFragment(markdownText) {
   const displayPrepared = extractDisplayMathBlocks(markdownText || "");
   const inlinePrepared = extractInlineMathSpans(displayPrepared.markdownText);
   const html = renderedMarkdownParser.render(inlinePrepared.markdownText, {
+    displayMathBlocks: displayPrepared.displayBlocks,
     headingAnchorCounts: new Map(),
+    inlineMathBlocks: inlinePrepared.inlineBlocks,
   });
   return replaceInlineMathPlaceholders(
     replaceDisplayMathPlaceholders(html, displayPrepared.displayBlocks),

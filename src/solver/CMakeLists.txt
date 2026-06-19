@@ -232,6 +232,14 @@ if(NOT EMSCRIPTEN)
     PRIVATE architrino_solver_core
   )
 
+  add_executable(architrino_solver_precision_dynamic_range_smoke
+    native/solver_precision_dynamic_range_smoke.cpp
+  )
+
+  target_link_libraries(architrino_solver_precision_dynamic_range_smoke
+    PRIVATE architrino_solver_core
+  )
+
   add_executable(architrino_solver_stream_smoke
     native/solver_stream_smoke.cpp
   )

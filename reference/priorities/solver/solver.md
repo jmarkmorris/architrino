@@ -3,7 +3,7 @@
 ## Requirements
 
 1. This workstream is not about every general-purpose tool with `solve` or `solver` in its name. Its scope is tools that solve architrino motion, causal roots, delayed hits, and geometry.
-2. The new central solver is a complete redesign. It should not be framed as a small upgrade to `sim2`, the current assembly-dynamics toy solver, or any app-local helper.
+2. The new central solver is a complete redesign. It should not be framed as a small upgrade to the removed `sim2` prototype, the current assembly-dynamics toy solver, or any app-local helper.
 3. The solver needs an explicit capability and API list before implementation: motion solving, causal-root solving, delayed-hit solving, geometry calculations, dataset output, diagnostics, worker or batch execution, path-history streaming, non-volatile storage, indexed readback, and app adapters.
 4. Every run must declare its model contract: model id, equation or force-law version, constants, causal speed policy, branch policy, unit convention, and compatibility with the selected precision path.
 5. Geometry calculations should be centralized around solver-owned simulation and geometry routines for Photon, Ideal Swarm, Animator, and the new central solver.
@@ -33,35 +33,33 @@
 
 ## Repo Inventory
 
-The repo has multiple solver-like paths that grew around different app and proof needs. The solver inventory contains 4 app-facing solver paths and about 10 meaningful solver families overall.
+The repo has multiple solver-like paths that grew around different app and proof needs. The active solver inventory contains 3 app-facing migration paths and about 9 meaningful solver families overall.
 
 Solver-like terms also appear in checkers, fit helpers, layout utilities, proof sidecars, and unrelated helper functions. Those files reflect scattered responsibilities, not the target scope for this workstream.
 
-The reusable solver target is a new architrino motion and geometry solver. It should solve source histories, causal roots, branch-resolved delayed hits, Jacobian-weighted interaction terms, and app-ready simulation datasets. It must be precise over very small and very large geometry, time, velocity, residual, and branch-weight scales. It must also treat long path histories as streamable data, not as unbounded in-memory arrays. This is a complete redesign, not an incremental hardening of `sim2`, the assembly-dynamics toy solver, or an app-local helper. General checkers, fit helpers, layout utilities, proof sidecars, and unrelated helper functions are out of scope unless they directly consume or validate architrino motion and geometry.
+The reusable solver target is a new architrino motion and geometry solver. It should solve source histories, causal roots, branch-resolved delayed hits, Jacobian-weighted interaction terms, and app-ready simulation datasets. It must be precise over very small and very large geometry, time, velocity, residual, and branch-weight scales. It must also treat long path histories as streamable data, not as unbounded in-memory arrays. This is a complete redesign, not an incremental hardening of the removed `sim2` prototype, the assembly-dynamics toy solver, or an app-local helper. General checkers, fit helpers, layout utilities, proof sidecars, and unrelated helper functions are out of scope unless they directly consume or validate architrino motion and geometry.
 
 ## App-Facing Solver Paths
 
 | App | Current solver path | Notes |
 | --- | --- | --- |
 | Photon | `solvePhotonCausalRoots` in [PhotonFormulaRuntime.js](../../../src/apps/photon/PhotonFormulaRuntime.js#L198) | Photon-local causal-root scan for observer-field diagnostics. |
-| Ideal Swarm | `solveFlightTime` in [IdealSwarmRuntime.js](../../../src/apps/ideal-swarm/IdealSwarmRuntime.js#L421) and `solveCircularSelfHitSpan` in [IdealSwarmPathPotentialProfile.js](../../../src/apps/ideal-swarm/IdealSwarmPathPotentialProfile.js#L53) | Delayed-potential iteration plus circular self-hit span logic. |
+| Ideal Swarm | `computePotentialSamplesWithSolverBridge` and `solveFlightTimeRowWithSolverBridge` in [IdealSwarmRuntime.js](../../../src/apps/ideal-swarm/IdealSwarmRuntime.js), plus `solveCircularSelfHitSpanRowsWithSolverBridge` in [IdealSwarmPathPotentialProfile.js](../../../src/apps/ideal-swarm/IdealSwarmPathPotentialProfile.js) | Bridge-backed delayed-potential samples, flight-time rows, and circular self-hit span rows. The app-facing local JavaScript flight-time, potential-sum, and circular self-hit solvers have been removed. |
 | Animator | `runAnimatorSimulationWorkerRequest` in [AnimatorSimulationWorkerCoreRuntime.js](../../../src/apps/animator/AnimatorSimulationWorkerCoreRuntime.js#L21), backed by [assembly-dynamics-solver.mjs](../../../scripts/simulations/lib/assembly-dynamics-solver.mjs#L323) through [assembly-dynamics-engine.mjs](../../../scripts/simulations/lib/assembly-dynamics-engine.mjs) | Closest current app bridge to solver-derived datasets. |
-| `sim2` | hit-detection causal simulation in [orbits.py](../../../src/apps/sim2/orbits.py#L1123) | Early primitive prototype. Preserve only the intended animation ideas where useful; do not migrate its solver code or treat it as a parity target. |
 
 ## Meaningful Solver Families
 
 1. Photon causal-root field solver.
 2. Assembly dynamics causal-root solver, reused by Animator.
-3. Ideal Swarm delayed-potential and self-hit solver.
-4. `sim2` causal hit detector.
-5. `pdgsolve` reaction and assembly closure solver, with the delegating entrypoint at [pdgsolve.py](../../../pdgsolve.py).
-6. Neutral-swarm geometry and root solver family.
-7. Mass-map $A_0$ branch and residual solver family.
-8. Nested-shell swarm toy solvers.
-9. Proof-program LP and collocation screen solvers.
-10. Cosmology residual-fit linear solver.
+3. Ideal Swarm delayed-potential and self-hit bridge adapter.
+4. `pdgsolve` reaction and assembly closure solver, with the delegating entrypoint at [pdgsolve.py](../../../pdgsolve.py).
+5. Neutral-swarm geometry and root solver family.
+6. Mass-map $A_0$ branch and residual solver family.
+7. Nested-shell swarm toy solvers.
+8. Proof-program LP and collocation screen solvers.
+9. Cosmology residual-fit linear solver.
 
-Only Photon, Ideal Swarm, and Animator through the assembly-dynamics path are current migration targets. `sim2` is an animation-intent reference and archive surface only. The non-app legacy solver families are inventory, reference, archive, or separate-maintenance surfaces, not migration targets for the central solver.
+Only Photon, Ideal Swarm, and Animator through the assembly-dynamics path are current migration targets. `sim2` has been removed from the active tree and is not a migration target, adapter target, or parity target. The non-app legacy solver families are inventory, reference, archive, or separate-maintenance surfaces, not migration targets for the central solver.
 
 ## Cross-Priority Requirements Extracted
 
@@ -103,7 +101,7 @@ Direct contract additions from the extraction:
 - Add simulation-envelope discipline: entity count, assembly complexity, volume, density, duration, time resolution, interaction density, branch complexity, output detail, memory budget, storage budget, latency target, simplification policy, and admission status.
 - Add virtual-observer path-record discipline: segment time bounds, endpoint state or segment coefficients, interpolation law, coordinate frame, numeric type, error bounds, and optional dynamic replay or potential audit references.
 - Add artifact and provenance discipline: config hash, schema version, engine version, precision path, tolerance vector, interpolation policy, stream/index hashes, artifact hashes, run claim level, and promotion or migration parity status.
-- Keep first implementation scope disciplined: Photon, Ideal Swarm, and Animator are migration targets; `sim2` is animation-intent reference only; mass-map, swarm, geometry-bridge, master-equation, and proof-program families are reference, validation, or future artifact consumers unless a later priority explicitly changes scope.
+- Keep first implementation scope disciplined: Photon, Ideal Swarm, and Animator are migration targets; `sim2` remains removed from active scope; mass-map, swarm, geometry-bridge, master-equation, and proof-program families are reference, validation, or future artifact consumers unless a later priority explicitly changes scope.
 
 ## Decision Summary
 
@@ -112,7 +110,7 @@ Direct contract additions from the extraction:
 | Production language | Use C++ with Clang/LLVM only. Rust remains comparison-only and is not a fallback implementation path. |
 | C++ standard and build | Use C++20, Clang/LLVM, CMake presets, Ninja, one native CLI target, and one WebAssembly worker target. |
 | App bridge | Use one shared JavaScript adapter with TypeScript declarations, backed by a WebAssembly worker. Apps do not handle C++ or WebAssembly directly. |
-| Migration scope | Migrate Photon, Ideal Swarm, and Animator only. `sim2` is animation-intent archive only; legacy solver families are reference/archive/separate surfaces. |
+| Migration scope | Migrate Photon, Ideal Swarm, and Animator only. `sim2` is removed from active scope; legacy solver families are reference/archive/separate surfaces. |
 | Requirement extraction | Maintain the cross-priority solver-requirements ledger before changing central solver scope. |
 | Model contract | Every run declares model id, equation or force-law version, constants, causal speed policy, branch policy, units, and precision compatibility. |
 | First solver core | Build the causal-root, delayed-hit, source-history, diagnostics, stream, and index core first; expand motion integration after that core is stable. |
@@ -188,7 +186,7 @@ The central API should be versioned and handle-based. Small configs, manifests, 
 | Run in a browser worker | Request and response messages with typed data where profiling justifies it. |
 | Run offline or in batch | CLI or script entrypoint with reproducible input, output, diagnostics, and benchmark metadata. |
 | Produce validation or handoff artifacts | Provenance records, artifact hashes, convergence summaries, tolerance vectors, failure-code reports, replay status, and migration parity status. |
-| Run baseline comparisons | Isolated baseline sandbox runs for Photon, Ideal Swarm, and Animator, with diff reports that classify differences as `baseline_within_tolerance`, `baseline_refined_result`, `baseline_model_boundary_difference`, or `baseline_investigation_required_mismatch`. Optional `sim2` or legacy notes may clarify the boundary, but they do not create migration parity gates. |
+| Run baseline comparisons | Isolated baseline sandbox runs for Photon, Ideal Swarm, and Animator, with diff reports that classify differences as `baseline_within_tolerance`, `baseline_refined_result`, `baseline_model_boundary_difference`, or `baseline_investigation_required_mismatch`. Legacy notes may clarify the boundary, but they do not create migration parity gates. |
 
 API contract decisions:
 
@@ -717,7 +715,7 @@ export interface ValidationReplayConfig {
 | --- | --- | --- | --- |
 | Animator | Convert simulation-authoring state and assembly initial conditions into `motionSimulation` or `appPlayback` requests. | Frame buffers, path streams, field-shell geometry, delayed-hit events, root ledger, run summary, halt status, and diagnostics compatible with the existing Animator dataset playback surface. | Existing Animator playback can render solver datasets without per-frame solver execution, and parity fixtures match the current assembly-dynamics-backed path within declared tolerances. |
 | Photon | Convert photon layer parameters, source histories, receiver history, local speed parameters, and observer-field settings into `causalRoots`, `delayedHits`, and `sharedGeometry` requests. | All positive causal roots, same-source roots when enabled, phase-at-hit rows, phase-spread summaries, Jacobian diagnostics, rejected-root reasons, reconstructed receiver acceleration, and transverse-field buffers. | Photon-local causal-root diagnostics can be replaced by the shared root and phase APIs while preserving visible diagnostic behavior and exposing stronger precision/status records. |
-| Ideal Swarm | Convert flight-time, delayed-potential, circular self-hit, and path-potential settings into `causalRoots`, `delayedHits`, and `sharedGeometry` requests. | Flight-time roots, circular self-hit spans, delayed-potential geometry, root ledger rows, delayed-hit events, precision diagnostics, and geometry buffers usable by the existing profile views. | Existing `solveFlightTime` and `solveCircularSelfHitSpan` fixtures match shared-solver outputs within declared root residual and geometry tolerances. |
+| Ideal Swarm | Convert flight-time, delayed-potential, circular self-hit, and path-potential settings into `sharedGeometry` requests through the shared solver bridge. | Bridge-owned flight-time rows, batched delayed-potential sample rows, circular self-hit span rows, precision diagnostics, and geometry buffers usable by the existing surface and path-profile views. | The Ideal Swarm runtime owns a shared solver bridge client or worker, refreshes potential surfaces from batched solver snapshots, obtains circular self-hit spans from solver rows, and no longer exposes the app-facing local JavaScript flight-time, potential-sum, or self-hit solvers. |
 
 App adapters may contain UI-to-solver normalization and solver-to-renderer formatting. They may not contain app-specific C++ handling, WebAssembly lifecycle code, stream-file parsing, or private status-code interpretation.
 
@@ -1100,9 +1098,9 @@ Chosen boundary:
 - solver owns canonical numeric geometry used by Photon, Ideal Swarm, and Animator migration targets;
 - apps own UI controls, camera choice, color, trail styling, visual filtering, labels, panels, and renderer-specific layout;
 - app adapters may request lighter projected geometry for display, but projection buffers must be labeled as app-facing projections when they are not authoritative solver data;
-- `sim2` visual ideas may be referenced, but `sim2` geometry code is not migrated into the central solver.
+- The removed `sim2` prototype no longer supplies live geometry code. Any remembered visual ideas must be reimplemented through central solver outputs and Animator rendering.
 
-Current implementation note: `scripts/check-solver-geometry-inventory.mjs` writes `solver-geometry-centralization-inventory.v1` under `.tmp/solver-geometry-inventory/`. It verifies the current app-local and central-solver surfaces for Photon causal roots, Photon circular-source roots/hits/ledger, Ideal Swarm flight time, Ideal Swarm circular self-hit span, Animator motion datasets, and the assembly-dynamics reference engine. The report records solver-owned geometry targets and keeps `sim2` plus non-app legacy solver families outside migration scope.
+Current implementation note: `scripts/check-solver-geometry-inventory.mjs` writes `solver-geometry-centralization-inventory.v1` under `.tmp/solver-geometry-inventory/`. It verifies the current app-facing bridge and central-solver surfaces for Photon causal roots, Photon circular-source roots/hits/ledger, Ideal Swarm flight time and batched potential samples, Ideal Swarm circular self-hit spans, Animator motion datasets, and the assembly-dynamics reference engine. The report records solver-owned geometry targets and keeps the removed `sim2` prototype plus non-app legacy solver families outside migration scope.
 
 ## Solver Contract And Validation Policy
 
@@ -1129,7 +1127,7 @@ The first central core should expose source histories, branch-resolved causal ro
 
 Baseline harnesses are comparison tools, not trusted oracles. Each harness must run without network access, inside a controlled working directory, with fixed seeds, resource caps, artifact-only output, and no writes back into app source paths. A baseline comparison can approve migration only when analytic fixtures, invariant checks, and tolerance rules also support the result.
 
-Current implementation note: `scripts/check-solver-migration-parity.mjs` consumes the baseline sandbox manifest, verifies artifact hashes and the baseline-classification vocabulary, enforces the migration order Animator, Photon, then Ideal Swarm, and writes `solver-migration-parity-report.v1` under `.tmp/solver-migration-parity/`. The report includes aggregate app/case readiness counts plus explicit missing and blocking case lists. The required app-owned bridge cases now prove that Animator, Photon, and Ideal Swarm app helpers can create, initialize, use, and dispose the shared solver bridge client against the packaged WebAssembly module without caller-owned solver clients. The Animator worker shell now passes standard solver bridge worker options to the async core, including an ES-module loader path for the packaged WebAssembly module and override hooks for packaged deployments. Animator authoring payloads can now opt into the central solver bridge through canonical `solverEngine` or `solverBridge.enabled` metadata while preserving the assembly-dynamics path as the default until parity justifies simplification. A green report means the fixed parity artifacts are ready for ordered adapter migration; it does not by itself remove or simplify app-local solver code.
+Current implementation note: `scripts/check-solver-migration-parity.mjs` consumes the baseline sandbox manifest, verifies artifact hashes and the baseline-classification vocabulary, enforces the migration order Animator, Photon, then Ideal Swarm, and writes `solver-migration-parity-report.v1` under `.tmp/solver-migration-parity/`. The report includes aggregate app/case readiness counts plus explicit missing and blocking case lists. The required app-owned bridge cases now prove that Animator, Photon, and Ideal Swarm app helpers can create, initialize, use, and dispose the shared solver bridge client against the packaged WebAssembly module without caller-owned solver clients. The Ideal Swarm runtime now owns the shared bridge lifecycle for the app, batches surface delayed-potential samples through `sharedGeometry`, and requests circular self-hit spans through solver rows. Animator authoring payloads can now opt into the central solver bridge through canonical `solverEngine` or `solverBridge.enabled` metadata while preserving the assembly-dynamics path as the default until parity justifies simplification.
 
 ### Initial Validation Fixtures
 
@@ -1147,8 +1145,8 @@ Before app migration, build these focused fixtures and keep each one small enoug
 | `ideal_swarm_wasm_client_smoke` | Ideal Swarm flight-time and circular self-hit app helpers with a packaged WebAssembly module factory. | Delayed-potential row, circular self-hit span row, shared-geometry status, and artifact hashes. | Ideal Swarm app helpers own the shared solver bridge lifecycle without caller-provided solver clients and match the declared geometry baselines. |
 | `animator_assembly_dynamics_smoke` | Assembly-dynamics-backed Animator dataset path. | `frame_buffer.v1`, `delayed_hit_events.v1`, `root_ledger.v1`, summary diagnostics. | Existing Animator playback can render the dataset, root/hit counts match the baseline, and frame positions stay inside the declared tolerance. |
 | `photon_causal_roots_static_observer` | Photon-local `solvePhotonCausalRoots` diagnostic case. | `root_ledger.v1`, `phase_at_hit.v1`, rejected-root diagnostics, transverse-field summary. | Positive roots, no-root reasons, Jacobian diagnostics, and field summaries match the baseline within declared residual tolerances. |
-| `ideal_swarm_flight_time` | Ideal Swarm `solveFlightTime` case. | Root list, delay values, residuals, and status records. | Flight times and root residuals match the app-local baseline, including failure behavior for no-root cases. |
-| `ideal_swarm_circular_self_hit_span` | Ideal Swarm `solveCircularSelfHitSpan` case. | Self-hit span geometry and root diagnostics. | Span endpoints, delay windows, and root status match the app-local baseline within declared geometry tolerance. |
+| `ideal_swarm_potential_samples_bridge` | Ideal Swarm `computePotentialSamplesWithSolverBridge` and `solveFlightTimeRowWithSolverBridge` cases. | Batched delayed-potential rows, flight-time delays, emission times, geometry status, and artifact hashes. | Bridge rows match declared geometry baselines and the app can refresh surface samples without app-local potential solving. |
+| `ideal_swarm_circular_self_hit_span_bridge` | Ideal Swarm `solveCircularSelfHitSpanRowsWithSolverBridge` cases. | Batched self-hit span rows, regime labels, root status, span geometry, and diagnostics. | Span endpoints, delay windows, and root status match declared geometry baselines, and path-profile views consume solver rows rather than app-local self-hit solving. |
 | `path_stream_round_trip` | Synthetic multi-path run with deterministic samples. | `path_chunk.v1`, `stream_index.v1`, manifest, checksums. | Write/read round trip is byte-stable where expected, index seeks return the requested time/frame ranges, and checksum faults are detected. |
 | `virtual_observer_minimal_path_record` | Synthetic path segments with known interpolation and error bounds. | `path_segment.v1`, manifest metadata, optional dynamic replay references, and optional potential audit references. | The kinematic record reconstructs the path within declared error, dynamic replay can be attached without changing the path definition, and potential audit rows can be omitted from playback-only datasets. |
 | `assembly_membership_change_trigger` | Synthetic architrino paths that enter, leave, and change roles inside declared assemblies. | `assembly_membership.v1`, path segments, assembly-state references, membership indices, and manifest metadata. | Membership changes emit deterministic events, path rows keep compact references rather than duplicated assembly state, and assembly-aware replay joins records without changing kinematic path fidelity. |
@@ -1169,7 +1167,7 @@ The following decisions define the current design contract:
 | Area | Settled decision |
 | --- | --- |
 | Scope | Central solver focuses on architrino motion, causal roots, delayed hits, path histories, and solver-owned geometry. General solver-like helpers stay out of scope. |
-| Migration targets | Photon, Ideal Swarm, and Animator are migration targets. `sim2` is animation-intent archive only; legacy solver families are reference, archive, validation, or separate-maintenance surfaces. |
+| Migration targets | Photon, Ideal Swarm, and Animator are migration targets. `sim2` is removed from active scope; legacy solver families are reference, archive, validation, or separate-maintenance surfaces. |
 | Language | C++20 with Clang/LLVM is the production-core path. Rust is comparison-only, not a fallback. |
 | Model contract | Every run declares model id, equation or force-law version, constants, causal speed policy, branch policy, unit convention, and precision compatibility. |
 | Simulation envelope | Every run declares the dimensions that stress the solver. The solver must admit, simplify, batch, escalate, or reject based on the declared envelope and must preserve the envelope in the manifest. |
@@ -1211,7 +1209,7 @@ Current implementation note: `scripts/check-solver-contract-fixtures.mjs` now va
 
 ## Migration Plan
 
-The migration plan for Photon, Ideal Swarm, and Animator follows these steps. `sim2` and legacy solver families are excluded from migration. `sim2` may be archived or mined for animation intent only; legacy families may be documented only where that clarifies the new solver boundary.
+The migration plan for Photon, Ideal Swarm, and Animator follows these steps. The removed `sim2` prototype and legacy solver families are excluded from migration. Legacy families may be documented only where that clarifies the new solver boundary.
 
 1. Inventory Photon, Ideal Swarm, Animator, and the assembly-dynamics path for current uses of architrino motion, causal roots, delayed hits, or solver-adjacent geometry.
 2. Define the central solver contract, model contract, simulation-envelope contract, precision-path contract, error-budget propagation contract, and minimum stable dataset schema.
@@ -1232,7 +1230,7 @@ The migration plan for Photon, Ideal Swarm, and Animator follows these steps. `s
 17. Migrate Animator first where the dataset bridge already exists.
 18. Migrate Photon causal-root diagnostics to the shared causal-root and source-history APIs.
 19. Migrate Ideal Swarm delayed-potential and self-hit calculations to shared geometry and causal-delay routines.
-20. Archive or keep `sim2` as an animation-intent prototype only; do not build a central-solver adapter for it and do not use it as a parity target.
+20. Keep `sim2` removed from active scope; do not build a central-solver adapter for it and do not use it as a parity target.
 21. Document the legacy solver-family boundary: proof-program, mass-map, neutral-swarm, nested-shell, cosmology, and related families are not migration targets.
 22. Remove or simplify app-local solver and geometry code after parity tests confirm the new solver path.
 23. Keep any future contact with proof-program, mass-map, neutral-swarm, nested-shell, and cosmology solver families limited to artifacts, diagnostics, or independently maintained contracts unless a later priority explicitly changes scope.
@@ -1256,12 +1254,12 @@ The migration plan for Photon, Ideal Swarm, and Animator follows these steps. `s
 15. `analytic_and_invariant_validation` - Define manufactured causal-root cases, closed-form geometry cases, root-count invariants, residual checks, conservation or bounded-drift checks where the model provides them, and stream replay invariants. Status: `active`. Depends on: `solver_contract`.
 16. `baseline_comparison_sandbox` - Define isolated baseline harnesses for Photon, Ideal Swarm, and Animator, fixed input cases, resource caps, no-network execution, fixed seeds, controlled working directories, artifact-only output, tolerance files, provenance records, divergence reports, and ordered migration parity reporting. Status: `active-parity-report`. Depends on: `app_bridge_contract`, `solver_contract`, `analytic_and_invariant_validation`.
 17. `gpu_acceleration_deferral` - Keep Metal, WebGPU, service GPU, and other GPU compute paths out of the first solver core and migration plan; preserve GPU-ready data layout and work partitioning, then reconsider GPU execution only after CPU benchmarks identify a suitable regular hotspot. Status: `settled-deferred`. Depends on: `cpp_clang_runtime_validation`.
-18. `geometry_centralization_inventory` - Identify duplicated or app-local solver geometry in Photon, Ideal Swarm, Animator, and the assembly-dynamics path. Exclude `sim2` and legacy solver families from migration scope. Status: `active-first-inventory-check`. Depends on: `solver_contract`.
+18. `geometry_centralization_inventory` - Identify duplicated or app-local solver geometry in Photon, Ideal Swarm, Animator, and the assembly-dynamics path. Exclude the removed `sim2` prototype and legacy solver families from migration scope. Status: `active-first-inventory-check`. Depends on: `solver_contract`.
 19. `minimal_causal_root_core` - Implement or extract the first central causal-root core with source histories, branch diagnostics, precision diagnostics, simulation-envelope diagnostics, virtual-observer path-record output, temporal-assembly-graph output, streaming output, app-bridge output, threading diagnostics, and benchmark hooks. Status: `active-first-core-smoke`. Depends on: `solver_contract`.
 20. `animator_adapter` - Route Animator simulation runs through the central solver contract while preserving the existing dataset playback surface. Status: `active-authoring-bridge-opt-in`. Depends on: `minimal_causal_root_core`, `baseline_comparison_sandbox`.
 21. `photon_adapter` - Replace Photon-local causal-root diagnostics with shared source-history and causal-root calls. Status: `active-app-owned-bridge-migration`. Depends on: `minimal_causal_root_core`, `baseline_comparison_sandbox`.
-22. `ideal_swarm_adapter` - Replace Ideal Swarm delayed-potential and self-hit calculations with shared solver geometry. Status: `active-app-owned-bridge-migration`. Depends on: `minimal_causal_root_core`, `baseline_comparison_sandbox`.
-23. `sim2_reference_archive_plan` - Document `sim2` as an animation-intent archive surface only, with no central-solver adapter, no migration path, and no solver parity obligation. Status: `settled-excluded`. Depends on: `solver_contract`.
+22. `ideal_swarm_adapter` - Replace Ideal Swarm delayed-potential and self-hit calculations with shared solver geometry. Status: `migrated-app-owned-bridge`. Depends on: `minimal_causal_root_core`, `baseline_comparison_sandbox`.
+23. `sim2_removal_boundary` - Keep `sim2` removed from active scope, with no central-solver adapter, no migration path, and no solver parity obligation. Status: `settled-removed`. Depends on: `solver_contract`.
 24. `legacy_solver_boundary` - Document that non-app legacy solver families stay outside central-solver migration and may only exchange artifacts, diagnostics, or independently maintained contracts. Status: `settled-excluded`. Depends on: `solver_contract`.
 
 ## Related Priorities

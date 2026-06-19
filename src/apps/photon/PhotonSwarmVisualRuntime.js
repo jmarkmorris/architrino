@@ -11,11 +11,6 @@ import {
   getPhotonSeparationLog10Ratio,
   wrapPhotonTime,
 } from "./PhotonStateRuntime.js";
-import {
-  buildPhotonDerivedPolarizationTrace,
-  buildPhotonPlotSamples,
-} from "./PhotonFormulaRuntime.js";
-
 const TWO_PI = Math.PI * 2;
 const ARCHITRINO_MARKER_RADIUS = 5.2;
 const PHOTON_FIELD_PLOT_MIN_SAMPLE_COUNT = 360;
@@ -33,11 +28,6 @@ const PHOTON_STAGE_WHITE_LABEL_COLOR = "#ffffff";
 const PHOTON_TRANSLATION_AXIS_COLOR = "rgba(251, 191, 36, 0.92)";
 const PHOTON_FACE_AXIS_COLOR = "rgba(251, 191, 36, 0.82)";
 const PHOTON_FACE_CAMERA_REFERENCE_RADIUS = PHOTON_DEFAULT_LAYER_RADII.O * 1.5;
-
-let photonFieldPlotCache = {
-  key: "",
-  plot: null,
-};
 
 function resizeCanvasToDisplaySize(canvas, windowLike = globalThis.window) {
   const rect = canvas.getBoundingClientRect();
@@ -628,6 +618,32 @@ function getPhotonFieldAxisY(cssHeight) {
   return (PHOTON_FIELD_PLOT_TOP_INSET + (cssHeight - PHOTON_FIELD_PLOT_BOTTOM_INSET)) / 2;
 }
 
+function hasOwnOption(options, key) {
+  return Object.prototype.hasOwnProperty.call(options, key);
+}
+
+function hasPhotonPlotSamples(plot) {
+  return Array.isArray(plot?.samples) && plot.samples.length > 0;
+}
+
+function hasPhotonPolarizationTrace(trace) {
+  return Array.isArray(trace?.samples) &&
+    trace.samples.length > 0 &&
+    trace.current &&
+    trace.analyzer &&
+    Number.isFinite(Number(trace.scale));
+}
+
+function drawPhotonFieldPanelMessage(ctx, cssWidth, cssHeight, message) {
+  ctx.save();
+  ctx.fillStyle = "rgba(238, 243, 255, 0.68)";
+  ctx.font = PHOTON_FIELD_PANEL_TEXT_FONT;
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillText(String(message || "Loading solver data"), cssWidth / 2, cssHeight / 2);
+  ctx.restore();
+}
+
 export function getPhotonFieldPlotSampleCount(cssWidth) {
   const width = Math.max(0, Number(cssWidth) || 0);
   return Math.round(
@@ -636,30 +652,6 @@ export function getPhotonFieldPlotSampleCount(cssWidth) {
       Math.min(PHOTON_FIELD_PLOT_MAX_SAMPLE_COUNT, width * PHOTON_FIELD_PLOT_SAMPLES_PER_CSS_PIXEL)
     )
   );
-}
-
-function createPhotonFieldPlotCacheKey(state, sampleCount) {
-  return JSON.stringify({
-    pair: state.pair,
-    measurement: state.measurement,
-    time: {
-      cycleReferenceLayer: state.time?.cycleReferenceLayer,
-      cycleCount: state.time?.cycleCount,
-    },
-    sampleCount,
-    analyzerAngleDeg: state.polarization?.analyzerAngleDeg,
-  });
-}
-
-function getPhotonFieldPlotSamples(state, sampleCount) {
-  const key = createPhotonFieldPlotCacheKey(state, sampleCount);
-  if (photonFieldPlotCache.key !== key || !photonFieldPlotCache.plot) {
-    photonFieldPlotCache = {
-      key,
-      plot: buildPhotonPlotSamples(state, 0, sampleCount),
-    };
-  }
-  return photonFieldPlotCache.plot;
 }
 
 function mapPhotonPolarizationPoint(point, centerX, centerY, radius, scale) {
@@ -822,8 +814,13 @@ function drawPhotonComponentPlot(canvas, state, timeSeconds, options = {}) {
   ctx.fillStyle = "rgba(6, 9, 18, 0.96)";
   ctx.fillRect(0, 0, cssWidth, cssHeight);
 
-  const sampleCount = getPhotonFieldPlotSampleCount(cssWidth);
-  const plot = getPhotonFieldPlotSamples(state, sampleCount);
+  const plot = hasOwnOption(options, "plot")
+    ? options.plot
+    : null;
+  if (!hasPhotonPlotSamples(plot)) {
+    drawPhotonFieldPanelMessage(ctx, cssWidth, cssHeight, options.pendingMessage);
+    return;
+  }
   const currentTime = wrapPhotonTime(state, timeSeconds);
   const currentProgress = plot.runDuration > 0 ? currentTime / plot.runDuration : 0;
   const amplitudeScale = getPlotAmplitudeScale(
@@ -911,7 +908,13 @@ export function drawPhotonPolarizationInset(canvas, state, timeSeconds, options 
   ctx.fillStyle = "rgba(6, 9, 18, 0.96)";
   ctx.fillRect(0, 0, cssWidth, cssHeight);
 
-  const trace = buildPhotonDerivedPolarizationTrace(state, timeSeconds);
+  const trace = hasOwnOption(options, "trace")
+    ? options.trace
+    : null;
+  if (!hasPhotonPolarizationTrace(trace)) {
+    drawPhotonFieldPanelMessage(ctx, cssWidth, cssHeight, options.pendingMessage);
+    return;
+  }
   const centerX = cssWidth / 2;
   const centerY = getPhotonFieldAxisY(cssHeight);
   const radius = Math.max(42, Math.min(cssWidth - 40, cssHeight - 62) * 0.48);

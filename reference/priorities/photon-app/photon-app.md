@@ -380,7 +380,6 @@ Existing code to mine first:
 
 - `src/apps/photon/PhotonFormulaRuntime.js` already contains the current co-moving branch-sum scanner. It is useful for the UI and formulas, but it is not the absolute moving-apparatus solver because source and receiver histories do not yet translate through the Noether sea.
 - `scripts/simulations/lib/assembly-dynamics-solver.mjs` is the closest reusable numerical pattern. It already keeps finite history, resolves all retained causal roots, separates self and partner roots, reports unresolved-root reasons, and applies the Jacobian factor $1/|J|$.
-- `src/apps/sim2/orbits.py` and `src/apps/sim2/md/design.md` are useful visual and emission-history precedents, but their hit detector is discrete emission-history crossing logic rather than the analytic branch-root solver needed here.
 
 ### Polarization And Formulas
 

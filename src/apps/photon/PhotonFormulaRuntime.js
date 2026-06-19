@@ -23,9 +23,6 @@ const MIN_FIELD_DISTANCE = 0.08;
 const ROOT_SCAN_MIN_STEPS = 48;
 const ROOT_SCAN_MAX_STEPS = 720;
 const ROOT_SCAN_STEPS_PER_CYCLE = 40;
-const ROOT_BISECTION_STEPS = 32;
-const ROOT_RESIDUAL_TOLERANCE = 1e-5;
-const ROOT_DEDUP_DELAY_TOLERANCE = 1e-4;
 const JACOBIAN_FLOOR = 1e-4;
 const DEFAULT_ANALYZER_AVERAGE_SAMPLES = 48;
 const DEFAULT_POLARIZATION_FIT_SAMPLES = 144;
@@ -141,27 +138,6 @@ function safeDirectionVector(delta) {
   };
 }
 
-function getPhotonCausalRootResidual(state, sourceRef, observationTime, delay, measurement) {
-  const emissionTime = observationTime - delay;
-  const kinematics = getPhotonArchitrinoKinematics(
-    state,
-    sourceRef.swarmId,
-    sourceRef.layerId,
-    sourceRef.chargeType,
-    emissionTime
-  );
-  const delta = subtractVector(measurement.virtualObserver, kinematics.position);
-  const { distance, direction } = safeDirectionVector(delta);
-  return {
-    emissionTime,
-    delay,
-    residual: distance - measurement.emissionSpeedCf * delay,
-    distance,
-    direction,
-    kinematics,
-  };
-}
-
 function getPhotonSourceMaxDelay(state, sourceRef, measurement) {
   const layer = getPhotonLayer(state, sourceRef.swarmId, sourceRef.layerId);
   const centerX = getPhotonSwarmCenterX(state, sourceRef.swarmId);
@@ -174,73 +150,6 @@ function getPhotonSourceMaxDelay(state, sourceRef, measurement) {
     Math.hypot(dx, maxTransverseDistance)
   );
   return (maxDistance + MIN_FIELD_DISTANCE) / measurement.emissionSpeedCf;
-}
-
-function pushPhotonRoot(roots, root) {
-  const duplicate = roots.some((existingRoot) =>
-    Math.abs(existingRoot.delay - root.delay) <= ROOT_DEDUP_DELAY_TOLERANCE
-  );
-  if (!duplicate) {
-    roots.push(root);
-  }
-}
-
-function refinePhotonRootDelay(state, sourceRef, observationTime, measurement, lowDelay, highDelay) {
-  let low = getPhotonCausalRootResidual(state, sourceRef, observationTime, lowDelay, measurement);
-  let high = getPhotonCausalRootResidual(state, sourceRef, observationTime, highDelay, measurement);
-  for (let index = 0; index < ROOT_BISECTION_STEPS; index += 1) {
-    const midDelay = (low.delay + high.delay) / 2;
-    const mid = getPhotonCausalRootResidual(state, sourceRef, observationTime, midDelay, measurement);
-    if (Math.abs(mid.residual) <= ROOT_RESIDUAL_TOLERANCE) {
-      return { ...mid, solveIterations: index + 1 };
-    }
-    if (Math.sign(low.residual) === Math.sign(mid.residual)) {
-      low = mid;
-    } else {
-      high = mid;
-    }
-  }
-  const result = Math.abs(low.residual) < Math.abs(high.residual) ? low : high;
-  return { ...result, solveIterations: ROOT_BISECTION_STEPS };
-}
-
-export function solvePhotonCausalRoots(state, sourceRef, observationTime, measurement = resolvePhotonMeasurementParameters(state)) {
-  const layer = getPhotonLayer(state, sourceRef.swarmId, sourceRef.layerId);
-  const maxDelay = getPhotonSourceMaxDelay(state, sourceRef, measurement);
-  const frequency = Math.max(0, Math.abs(Number(layer.frequencyHz) || 0));
-  const scanSteps = Math.min(
-    ROOT_SCAN_MAX_STEPS,
-    Math.max(ROOT_SCAN_MIN_STEPS, Math.ceil(maxDelay * frequency * ROOT_SCAN_STEPS_PER_CYCLE))
-  );
-  const roots = [];
-  let previous = getPhotonCausalRootResidual(state, sourceRef, observationTime, 0, measurement);
-  if (Math.abs(previous.residual) <= ROOT_RESIDUAL_TOLERANCE) {
-    pushPhotonRoot(roots, { ...previous, solveIterations: 0 });
-  }
-
-  for (let index = 1; index <= scanSteps; index += 1) {
-    const delay = (maxDelay * index) / scanSteps;
-    const current = getPhotonCausalRootResidual(state, sourceRef, observationTime, delay, measurement);
-    if (Math.abs(current.residual) <= ROOT_RESIDUAL_TOLERANCE) {
-      pushPhotonRoot(roots, { ...current, solveIterations: 0 });
-    }
-    if (Math.sign(previous.residual) !== Math.sign(current.residual)) {
-      pushPhotonRoot(
-        roots,
-        refinePhotonRootDelay(
-          state,
-          sourceRef,
-          observationTime,
-          measurement,
-          previous.delay,
-          current.delay
-        )
-      );
-    }
-    previous = current;
-  }
-
-  return roots.sort((a, b) => a.delay - b.delay);
 }
 
 export function createPhotonCausalRootsSolverRunRequest(rootRequest, options = {}) {
@@ -583,13 +492,102 @@ export function buildPhotonArchitrinoSourceRefs(state = null) {
   );
 }
 
-export function computePhotonDelayedEmissionField(state, observationTime) {
-  const measurement = resolvePhotonMeasurementParameters(state);
-  const sourceRefs = buildPhotonArchitrinoSourceRefs(state);
-  const rootSets = sourceRefs.map((sourceRef) => ({
+function mapPhotonCircularSourceRootToDelayedRoot(state, sourceRef, measurement, root = {}) {
+  const emissionTime = Number(root.emissionTime) || 0;
+  const hitTime = Number(root.hitTime) || 0;
+  const delay = Number.isFinite(Number(root.delay))
+    ? Number(root.delay)
+    : Math.max(0, hitTime - emissionTime);
+  const kinematics = getPhotonArchitrinoKinematics(
+    state,
+    sourceRef.swarmId,
+    sourceRef.layerId,
+    sourceRef.chargeType,
+    emissionTime
+  );
+  const sourcePoint = root.sourcePoint && typeof root.sourcePoint === "object"
+    ? root.sourcePoint
+    : kinematics.position;
+  const receiverPoint = root.receiverPoint && typeof root.receiverPoint === "object"
+    ? root.receiverPoint
+    : measurement.virtualObserver;
+  const delta = subtractVector(receiverPoint, sourcePoint);
+  const { distance, direction } = safeDirectionVector(delta);
+  return {
+    ...root,
+    emissionTime,
+    delay,
+    residual: Number.isFinite(Number(root.residual)) ? Number(root.residual) : 0,
+    distance: Number.isFinite(Number(root.distance)) ? Number(root.distance) : distance,
+    direction,
+    kinematics: {
+      ...kinematics,
+      position: {
+        x: Number(sourcePoint.x) || 0,
+        y: Number(sourcePoint.y) || 0,
+        z: Number(sourcePoint.z) || 0,
+      },
+    },
+    solveIterations: Number.isFinite(Number(root.iterationCount))
+      ? Number(root.iterationCount)
+      : Number(root.solveIterations) || 0,
+    solverEngineId: PHOTON_SOLVER_BRIDGE_ENGINE_ID,
+  };
+}
+
+export async function solvePhotonCausalRootsForSourceWithSolverBridge(
+  state,
+  sourceRef,
+  observationTime,
+  options = {}
+) {
+  const measurement = options.measurement ?? resolvePhotonMeasurementParameters(state);
+  const response = await solvePhotonCircularSourceRootsHitsLedgerWithSolverBridge(
+    state,
     sourceRef,
-    roots: solvePhotonCausalRoots(state, sourceRef, observationTime, measurement),
-  }));
+    observationTime,
+    {
+      ...options,
+      measurement,
+    }
+  );
+  return (Array.isArray(response?.roots) ? response.roots : [])
+    .map((root) => mapPhotonCircularSourceRootToDelayedRoot(
+      state,
+      sourceRef,
+      measurement,
+      root
+    ))
+    .sort((a, b) => a.delay - b.delay);
+}
+
+export async function computePhotonDelayedEmissionFieldWithSolverBridge(
+  state,
+  observationTime,
+  options = {}
+) {
+  const measurement = options.measurement ?? resolvePhotonMeasurementParameters(state);
+  const sourceRefs = buildPhotonArchitrinoSourceRefs(state);
+  const solveRootSet = async (sourceRef) => ({
+    sourceRef,
+    roots: await solvePhotonCausalRootsForSourceWithSolverBridge(
+      state,
+      sourceRef,
+      observationTime,
+      {
+        ...options,
+        measurement,
+      }
+    ),
+  });
+  const rootSets = options.parallel === false
+    ? []
+    : await Promise.all(sourceRefs.map((sourceRef) => solveRootSet(sourceRef)));
+  if (options.parallel === false) {
+    for (const sourceRef of sourceRefs) {
+      rootSets.push(await solveRootSet(sourceRef));
+    }
+  }
   const contributions = rootSets.flatMap(({ roots }) =>
     roots.map((root) => computePhotonDelayedContribution(root, measurement))
   );
@@ -626,7 +624,8 @@ export function computePhotonDelayedEmissionField(state, observationTime) {
   ).length;
 
   return {
-    sourceMode: "virtual_observer_branch_sum",
+    sourceMode: "solver_bridge_circular_source_branch_sum",
+    solverEngineId: PHOTON_SOLVER_BRIDGE_ENGINE_ID,
     measurement,
     contributions,
     sourceCount: sourceRefs.length,
@@ -643,10 +642,14 @@ export function computePhotonDelayedEmissionField(state, observationTime) {
   };
 }
 
-export function computePhotonObserverField(state, timeSeconds) {
+export async function computePhotonObserverFieldWithSolverBridge(state, timeSeconds, options = {}) {
   const referenceFrequency = getPhotonReferenceFrequency(state);
   const phase = TWO_PI * referenceFrequency * timeSeconds;
-  const delayedField = computePhotonDelayedEmissionField(state, timeSeconds);
+  const delayedField = await computePhotonDelayedEmissionFieldWithSolverBridge(
+    state,
+    timeSeconds,
+    options
+  );
   const ey = delayedField.electric.y;
   const ez = delayedField.electric.z;
   const by = delayedField.comparisonB.y;
@@ -662,6 +665,7 @@ export function computePhotonObserverField(state, timeSeconds) {
     referenceFrequency,
     phase,
     sourceMode: delayedField.sourceMode,
+    solverEngineId: PHOTON_SOLVER_BRIDGE_ENGINE_ID,
     measurement: delayedField.measurement,
     sourceCount: delayedField.sourceCount,
     rootCount: delayedField.rootCount,
@@ -860,10 +864,11 @@ export function fitPhotonPolarizationFromSamples(samples, analyzerAngleRadians =
   };
 }
 
-export function buildPhotonDerivedPolarizationTrace(
+export async function buildPhotonDerivedPolarizationTraceWithSolverBridge(
   state,
   timeSeconds,
-  sampleCount = DEFAULT_POLARIZATION_FIT_SAMPLES
+  sampleCount = DEFAULT_POLARIZATION_FIT_SAMPLES,
+  options = {}
 ) {
   const referenceFrequency = getPhotonReferenceFrequency(state);
   const cycleDuration = 1 / referenceFrequency;
@@ -872,22 +877,26 @@ export function buildPhotonDerivedPolarizationTrace(
   const currentProgress =
     ((((currentTime - fitCycleStart) / cycleDuration) % 1) + 1) % 1;
   const currentPhase = TWO_PI * currentProgress;
-  const count = Math.max(24, Math.round(sampleCount));
-  const rawSamples = [];
-
-  for (let index = 0; index < count; index += 1) {
-    const progress = index / count;
-    const phase = TWO_PI * progress;
-    const t = fitCycleStart + progress * cycleDuration;
-    const field = computePhotonObserverField(state, t);
-    rawSamples.push({
-      t,
-      progress,
-      phase,
-      ey: field.electric.y,
-      ez: field.electric.z,
-    });
-  }
+  const minimumSampleCount = Math.max(
+    3,
+    Math.round(options.minimumPolarizationSampleCount ?? 24)
+  );
+  const count = Math.max(minimumSampleCount, Math.round(sampleCount));
+  const rawSamples = await Promise.all(
+    Array.from({ length: count }, async (_, index) => {
+      const progress = index / count;
+      const phase = TWO_PI * progress;
+      const t = fitCycleStart + progress * cycleDuration;
+      const field = await computePhotonObserverFieldWithSolverBridge(state, t, options);
+      return {
+        t,
+        progress,
+        phase,
+        ey: field.electric.y,
+        ez: field.electric.z,
+      };
+    })
+  );
 
   const analyzerAngle = degreesToPhotonRadians(state?.polarization?.analyzerAngleDeg ?? 0);
   const fit = fitPhotonPolarizationFromSamples(rawSamples, analyzerAngle);
@@ -903,7 +912,11 @@ export function buildPhotonDerivedPolarizationTrace(
     });
   }
 
-  const currentField = computePhotonObserverField(state, currentTime);
+  const currentField = await computePhotonObserverFieldWithSolverBridge(
+    state,
+    currentTime,
+    options
+  );
   const rawCurrent = {
     ey: currentField.electric.y,
     ez: currentField.electric.z,
@@ -927,6 +940,7 @@ export function buildPhotonDerivedPolarizationTrace(
 
   return {
     ...fit,
+    solverEngineId: PHOTON_SOLVER_BRIDGE_ENGINE_ID,
     referenceFrequency,
     cycleDuration,
     fitCycleStart,
@@ -942,37 +956,51 @@ export function buildPhotonDerivedPolarizationTrace(
   };
 }
 
-export function computePhotonAverageAnalyzerFraction(
+export async function computePhotonAverageAnalyzerFractionWithSolverBridge(
   state,
-  sampleCount = DEFAULT_ANALYZER_AVERAGE_SAMPLES
+  sampleCount = DEFAULT_ANALYZER_AVERAGE_SAMPLES,
+  options = {}
 ) {
   const runDuration = getPhotonRunDuration(state);
-  const count = Math.max(8, Math.round(sampleCount));
-  let fractionSum = 0;
-  for (let index = 0; index < count; index += 1) {
-    const t = (index / count) * runDuration;
-    fractionSum += computePhotonObserverField(state, t).analyzer.fraction;
-  }
-  return fractionSum / count;
+  const minimumSampleCount = Math.max(
+    1,
+    Math.round(options.minimumAnalyzerSampleCount ?? 8)
+  );
+  const count = Math.max(minimumSampleCount, Math.round(sampleCount));
+  const fractions = await Promise.all(
+    Array.from({ length: count }, async (_, index) => {
+      const t = (index / count) * runDuration;
+      const field = await computePhotonObserverFieldWithSolverBridge(state, t, options);
+      return field.analyzer.fraction;
+    })
+  );
+  return fractions.reduce((sum, fraction) => sum + fraction, 0) / count;
 }
 
-export function computePhotonFormulaSummary(state, timeSeconds, options = {}) {
+export async function computePhotonFormulaSummaryWithSolverBridge(
+  state,
+  timeSeconds,
+  options = {}
+) {
   const wrappedTime = wrapPhotonTime(state, timeSeconds);
-  const field = computePhotonObserverField(state, wrappedTime);
-  const polarization = buildPhotonDerivedPolarizationTrace(
+  const field = await computePhotonObserverFieldWithSolverBridge(state, wrappedTime, options);
+  const polarization = await buildPhotonDerivedPolarizationTraceWithSolverBridge(
     state,
     wrappedTime,
-    options.polarizationSampleCount ?? DEFAULT_POLARIZATION_FIT_SAMPLES
+    options.polarizationSampleCount ?? DEFAULT_POLARIZATION_FIT_SAMPLES,
+    options
   );
   const stokes = polarization.stokes;
-  const averageAnalyzerFraction = computePhotonAverageAnalyzerFraction(
+  const averageAnalyzerFraction = await computePhotonAverageAnalyzerFractionWithSolverBridge(
     state,
-    options.analyzerSampleCount ?? DEFAULT_ANALYZER_AVERAGE_SAMPLES
+    options.analyzerSampleCount ?? DEFAULT_ANALYZER_AVERAGE_SAMPLES,
+    options
   );
   const analyzerTarget = polarization.analyzerFractionTarget;
   const analyzerResidual = averageAnalyzerFraction - analyzerTarget;
   return {
     wrappedTime,
+    solverEngineId: PHOTON_SOLVER_BRIDGE_ENGINE_ID,
     runDuration: getPhotonRunDuration(state),
     middleCycle: getPhotonMiddleCycleBounds(state),
     field,
@@ -985,30 +1013,40 @@ export function computePhotonFormulaSummary(state, timeSeconds, options = {}) {
   };
 }
 
-export function buildPhotonPlotSamples(state, timeSeconds, sampleCount = 360) {
+export async function buildPhotonPlotSamplesWithSolverBridge(
+  state,
+  timeSeconds,
+  sampleCount = 360,
+  options = {}
+) {
   const runDuration = getPhotonRunDuration(state);
   const currentTime = wrapPhotonTime(state, timeSeconds);
-  const samples = [];
+  const fields = await Promise.all(
+    Array.from({ length: sampleCount + 1 }, async (_, index) => {
+      const t = (index / sampleCount) * runDuration;
+      const field = await computePhotonObserverFieldWithSolverBridge(state, t, options);
+      return { index, t, field };
+    })
+  );
   let amplitudeScale = 0;
-  for (let index = 0; index <= sampleCount; index += 1) {
-    const t = (index / sampleCount) * runDuration;
-    const field = computePhotonObserverField(state, t);
+  const samples = fields.map(({ index, t, field }) => {
     amplitudeScale = Math.max(
       amplitudeScale,
       Math.abs(field.electric.y),
       Math.abs(field.electric.z)
     );
-    samples.push({
+    return {
       t,
-      progress: runDuration > 0 ? t / runDuration : 0,
+      progress: runDuration > 0 ? index / sampleCount : 0,
       ey: field.electric.y,
       ez: field.electric.z,
       analyzerFraction: field.analyzer.fraction,
-    });
-  }
+    };
+  });
   return {
     runDuration,
     currentTime,
+    solverEngineId: PHOTON_SOLVER_BRIDGE_ENGINE_ID,
     middleCycle: getPhotonMiddleCycleBounds(state),
     amplitudeScale,
     samples,

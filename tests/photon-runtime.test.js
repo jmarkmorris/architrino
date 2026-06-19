@@ -43,11 +43,11 @@ import {
 } from "../src/apps/photon/PhotonControlsRuntime.js";
 import {
   buildPhotonArchitrinoSourceRefs,
-  buildPhotonDerivedPolarizationTrace,
-  buildPhotonPlotSamples,
-  computePhotonDelayedEmissionField,
-  computePhotonFormulaSummary,
-  computePhotonObserverField,
+  buildPhotonDerivedPolarizationTraceWithSolverBridge,
+  buildPhotonPlotSamplesWithSolverBridge,
+  computePhotonDelayedEmissionFieldWithSolverBridge,
+  computePhotonFormulaSummaryWithSolverBridge,
+  computePhotonObserverFieldWithSolverBridge,
   createPhotonCircularSourceCausalRootRequest,
   createPhotonCausalRootsSolverRunRequest,
   fitPhotonPolarizationFromSamples,
@@ -55,14 +55,13 @@ import {
   solvePhotonCircularSourceCausalRootsWithSolverBridge,
   solvePhotonCircularSourceRootsHitsLedgerWithSolverBridge,
   solvePhotonCausalRootsWithSolverBridge,
-  solvePhotonCausalRoots,
 } from "../src/apps/photon/PhotonFormulaRuntime.js";
 import {
   computePhotonDiagnostics,
   getPhotonDiagnosticRows,
 } from "../src/apps/photon/PhotonDiagnosticsRuntime.js";
 import {
-  createPhotonConfigurationSearchResults,
+  createPhotonConfigurationSearchResultsWithSolverBridge,
   parsePhotonSearchResultsJson,
   serializePhotonSearchResults,
 } from "../src/apps/photon/PhotonSearchRuntime.js";
@@ -89,6 +88,68 @@ function evaluateCircularSourceRequestPosition(segment, time) {
     y: segment.center.y + segment.radiusU.y * Math.cos(phase) + segment.radiusV.y * Math.sin(phase),
     z: segment.center.z + segment.radiusU.z * Math.cos(phase) + segment.radiusV.z * Math.sin(phase),
   };
+}
+
+function createPhotonCircularSourceBridgeStub() {
+  const calls = [];
+  const solveCircularSourceRootsHitsLedger = async (request) => {
+    calls.push(request);
+    let emissionTime = Number(request.hitTime) || 0;
+    let sourcePoint = evaluateCircularSourceRequestPosition(request.source, emissionTime);
+    const receiverPoint = request.receiver.positionAtStart;
+    let distance = Math.hypot(
+      receiverPoint.x - sourcePoint.x,
+      receiverPoint.y - sourcePoint.y,
+      receiverPoint.z - sourcePoint.z
+    );
+    for (let index = 0; index < 6; index += 1) {
+      emissionTime = request.hitTime - distance / Math.max(1e-12, request.signalSpeed);
+      sourcePoint = evaluateCircularSourceRequestPosition(request.source, emissionTime);
+      distance = Math.hypot(
+        receiverPoint.x - sourcePoint.x,
+        receiverPoint.y - sourcePoint.y,
+        receiverPoint.z - sourcePoint.z
+      );
+    }
+    const delay = request.hitTime - emissionTime;
+    return {
+      schema: "solver-circular-source-roots-hits-ledger-f64.v1",
+      roots: [
+        {
+          rootId: 0,
+          statusCode: 0,
+          emissionTime,
+          hitTime: request.hitTime,
+          delay,
+          distance,
+          residual: distance - delay * request.signalSpeed,
+          jacobian: 1,
+          branchWeight: 1,
+          sourcePoint,
+          receiverPoint,
+        },
+      ],
+      hits: [],
+      rootLedgerDetails: [
+        {
+          rowId: 0,
+          rootId: 0,
+          entryKind: 1,
+          statusCode: 0,
+          iterationCount: 6,
+          bracketStart: request.source.startTime,
+          bracketEnd: request.source.endTime,
+          emissionTime,
+          hitTime: request.hitTime,
+          residual: distance - delay * request.signalSpeed,
+          jacobian: 1,
+          branchWeight: 1,
+        },
+      ],
+      status: { code: "ok", severity: "ok", message: "circular-source causal roots solved" },
+    };
+  };
+  return { calls, solveCircularSourceRootsHitsLedger };
 }
 
 function buildSyntheticPolarizationSamples({ ampY = 1, ampZ = 0, phaseLag = 0, count = 144 } = {}) {
@@ -165,163 +226,6 @@ test("left swarm angles advance counter-clockwise while right swarm angles advan
 
   assert.ok(leftLater > leftStart);
   assert.ok(rightLater < rightStart);
-});
-
-test("default observer field is computed from Virtual Observer branch sums", () => {
-  const state = createDefaultPhotonState();
-  const field = computePhotonObserverField(state, 0);
-
-  assert.equal(field.sourceMode, "virtual_observer_branch_sum");
-  assert.equal(field.sourceCount, 12);
-  assert.equal(field.rootCount, field.contributions.length);
-  assert.ok(field.rootCount >= field.sourceCount);
-  assert.ok(Number.isFinite(field.electric.y));
-  assert.ok(Number.isFinite(field.electric.z));
-  assert.ok(Number.isFinite(field.comparisonB.z));
-  assert.ok(Number.isFinite(field.receiverAcceleration.x));
-  assert.ok(Number.isFinite(field.analyzer.fraction));
-  assert.ok(field.averageDelay > 0);
-  assertNear(field.maxSourceSpeedRatio, PHOTON_LAYER_SPEED_RATIO_TARGETS.I);
-  assert.ok(field.delaySolveGapMax >= 0);
-  assert.ok(field.jacobianAbsMin > 0);
-  assert.equal(field.unstableSourceCount, 0);
-
-  const diagnosticRowList = getPhotonDiagnosticRows(state, 0, computePhotonFormulaSummary(state, 0));
-  const diagnosticRows = new Map(diagnosticRowList);
-  assert.equal(diagnosticRows.get("Delay status"), "stable");
-  assert.equal(
-    diagnosticRowList.find(([label]) => label === "Max source v/c_f")?.[2],
-    "info"
-  );
-  assert.equal(
-    diagnosticRowList.find(([label]) => label === "Delay status")?.[2],
-    "good"
-  );
-});
-
-test("disabled binaries are removed from branch-sum sources", () => {
-  const state = createDefaultPhotonState();
-  state.pair.left.layers.M.enabled = false;
-  const refs = buildPhotonArchitrinoSourceRefs(state);
-  const field = computePhotonDelayedEmissionField(state, 0.25);
-
-  assert.equal(refs.length, 10);
-  assert.equal(field.sourceCount, 10);
-  assert.equal(field.rootCount, field.contributions.length);
-  assert.equal(
-    field.contributions.some(
-      (contribution) => contribution.kinematics.swarmId === "left" && contribution.kinematics.layerId === "M"
-    ),
-    false
-  );
-});
-
-test("all disabled binaries produce zero branch-sum field", () => {
-  const state = createDefaultPhotonState();
-  ["left", "right"].forEach((swarmId) => {
-    ["I", "M", "O"].forEach((layerId) => {
-      state.pair[swarmId].layers[layerId].enabled = false;
-    });
-  });
-  const field = computePhotonDelayedEmissionField(state, 0.5);
-
-  assert.equal(field.sourceCount, 0);
-  assert.equal(field.rootCount, 0);
-  assert.deepEqual(field.electric, { x: 0, y: 0, z: 0 });
-  assert.deepEqual(field.comparisonB, { x: 0, y: 0, z: 0 });
-  assert.equal(field.maxSourceSpeedRatio, 0);
-  assert.equal(field.delaySolveGapMax, 0);
-  assert.equal(field.unstableSourceCount, 0);
-  assert.equal(field.unresolvedSourceCount, 0);
-});
-
-test("outer-only default stays below field speed and has a stable branch solve", () => {
-  const state = createDefaultPhotonState();
-  state.measurement.virtualObserver = { x: 0, y: 4, z: 0 };
-  ["left", "right"].forEach((swarmId) => {
-    ["I", "M"].forEach((layerId) => {
-      state.pair[swarmId].layers[layerId].enabled = false;
-    });
-    state.pair[swarmId].layers.O.phaseDeg = 0;
-  });
-  const field = computePhotonDelayedEmissionField(state, 3);
-  const formulaSummary = computePhotonFormulaSummary(state, 3);
-  const diagnostics = computePhotonDiagnostics(state, 3, formulaSummary);
-  const diagnosticRowList = getPhotonDiagnosticRows(state, 3, formulaSummary);
-  const diagnosticRows = new Map(diagnosticRowList);
-
-  assert.equal(field.sourceCount, 4);
-  assert.equal(field.rootCount, field.contributions.length);
-  assert.ok(field.maxSourceSpeedRatio < 1);
-  assert.ok(field.delaySolveGapMax < 0.01);
-  assert.ok(field.jacobianAbsMin > 0);
-  assert.equal(field.unresolvedSourceCount, 0);
-  assert.equal(field.unstableSourceCount, 0);
-  assert.equal(diagnostics.maxSourceSpeedRatio < 1, true);
-  assert.equal(diagnosticRows.get("Delay status"), "stable");
-  assert.equal(
-    diagnosticRowList.find(([label]) => label === "Delay status")?.[2],
-    "good"
-  );
-  assert.equal(
-    diagnosticRowList.find(([label]) => label === "Missed sources")?.[2],
-    "great"
-  );
-});
-
-test("outer-only super field speed settings stay stable when causal roots are clean", () => {
-  const state = createDefaultPhotonState();
-  state.measurement.virtualObserver = { x: 0, y: 4, z: 0 };
-  ["left", "right"].forEach((swarmId) => {
-    ["I", "M"].forEach((layerId) => {
-      state.pair[swarmId].layers[layerId].enabled = false;
-    });
-    state.pair[swarmId].layers.O.frequencyHz = 16;
-    state.pair[swarmId].layers.O.phaseDeg = 0;
-  });
-  const field = computePhotonDelayedEmissionField(state, 3);
-  const diagnosticRowList = getPhotonDiagnosticRows(state, 3, computePhotonFormulaSummary(state, 3));
-  const diagnosticRows = new Map(diagnosticRowList);
-
-  assert.equal(field.sourceCount, 4);
-  assert.ok(field.rootCount >= field.sourceCount);
-  assert.ok(field.maxSourceSpeedRatio > 1);
-  assert.equal(field.unstableSourceCount, 0);
-  assert.equal(diagnosticRows.get("Delay status"), "stable");
-  assert.equal(
-    diagnosticRowList.find(([label]) => label === "Max source v/c_f")?.[2],
-    "info"
-  );
-  assert.equal(
-    diagnosticRowList.find(([label]) => label === "Delay status")?.[2],
-    "good"
-  );
-});
-
-test("moving the Virtual Observer changes the branch-sum field", () => {
-  const state = createDefaultPhotonState();
-  const base = computePhotonDelayedEmissionField(state, 0.75);
-  state.measurement.virtualObserver.x = 2.75;
-  state.measurement.virtualObserver.y = 1.4;
-  const moved = computePhotonDelayedEmissionField(state, 0.75);
-
-  assert.notEqual(base.electric.y.toFixed(8), moved.electric.y.toFixed(8));
-  assert.notEqual(base.averageDelay.toFixed(8), moved.averageDelay.toFixed(8));
-});
-
-test("causal-root solver returns branch roots with Jacobian-weighted contributions", () => {
-  const state = createDefaultPhotonState();
-  const sourceRef = { swarmId: "left", layerId: "O", chargeType: "positrino" };
-  const roots = solvePhotonCausalRoots(state, sourceRef, 0.75);
-  const field = computePhotonDelayedEmissionField(state, 0.75);
-
-  assert.ok(roots.length >= 1);
-  roots.forEach((root) => {
-    assert.ok(Math.abs(root.residual) < 1e-4);
-    assert.ok(root.delay > 0);
-  });
-  assert.ok(field.contributions.every((contribution) => Number.isFinite(contribution.jacobianWeight)));
-  assert.ok(field.contributions.every((contribution) => contribution.jacobianWeight > 0));
 });
 
 test("Photon causal roots can be routed through the solver app bridge for linear segments", async () => {
@@ -729,27 +633,58 @@ test("Photon circular-source bridge can create and dispose a solver bridge clien
   assert.equal(disposed, true);
 });
 
-test("large Sep/r still uses the full causal-root scanner", () => {
+test("Photon delayed emission field can be assembled from central solver circular-source roots", async () => {
   const state = createDefaultPhotonState();
-  state.pair.pairSeparation = getPhotonPairSeparationFromLog10Ratio(
-    state,
-    PHOTON_CONTROL_RANGES.pairSeparationLog10Ratio.max
-  );
-  const sourceRef = { swarmId: "left", layerId: "O", chargeType: "positrino" };
-  const roots = solvePhotonCausalRoots(state, sourceRef, 0.75);
-
-  assert.ok(roots.length >= 1);
-  roots.forEach((root) => {
-    assert.equal("solveMode" in root, false);
-    assert.ok(Math.abs(root.residual) < 1e-4);
+  const bridge = createPhotonCircularSourceBridgeStub();
+  const field = await computePhotonDelayedEmissionFieldWithSolverBridge(state, 0.75, {
+    solveCircularSourceRootsHitsLedger: bridge.solveCircularSourceRootsHitsLedger,
   });
+
+  assert.equal(field.solverEngineId, "architrino-solver-app-bridge");
+  assert.equal(field.sourceMode, "solver_bridge_circular_source_branch_sum");
+  assert.equal(field.sourceCount, buildPhotonArchitrinoSourceRefs(state).length);
+  assert.equal(field.rootCount, field.sourceCount);
+  assert.equal(bridge.calls.length, field.sourceCount);
+  assert.ok(field.contributions.every((contribution) =>
+    contribution.solverEngineId === "architrino-solver-app-bridge"
+  ));
+  assert.ok(Number.isFinite(field.electric.y));
+  assert.ok(Number.isFinite(field.comparisonB.z));
 });
 
-test("plot samples expose full trace data with a small forward now gap", () => {
+test("Photon formula and plot APIs expose central solver bridge results", async () => {
   const state = createDefaultPhotonState();
-  const plot = buildPhotonPlotSamples(state, getPhotonRunDuration(state) / 2, 30);
+  const summaryBridge = createPhotonCircularSourceBridgeStub();
+  const summary = await computePhotonFormulaSummaryWithSolverBridge(state, 0.5, {
+    solveCircularSourceRootsHitsLedger: summaryBridge.solveCircularSourceRootsHitsLedger,
+    polarizationSampleCount: 24,
+    analyzerSampleCount: 8,
+  });
 
-  assert.ok(plot.amplitudeScale > 0);
+  assert.equal(summary.solverEngineId, "architrino-solver-app-bridge");
+  assert.equal(summary.field.solverEngineId, "architrino-solver-app-bridge");
+  assert.equal(summary.polarization.solverEngineId, "architrino-solver-app-bridge");
+  assert.ok(Number.isFinite(summary.polarization.amplitudes.y));
+  assert.ok(Number.isFinite(summary.averageAnalyzerFraction));
+  assert.ok(summaryBridge.calls.length > buildPhotonArchitrinoSourceRefs(state).length);
+
+  const observerBridge = createPhotonCircularSourceBridgeStub();
+  const observerField = await computePhotonObserverFieldWithSolverBridge(state, 0.5, {
+    solveCircularSourceRootsHitsLedger: observerBridge.solveCircularSourceRootsHitsLedger,
+  });
+  assert.equal(observerField.solverEngineId, "architrino-solver-app-bridge");
+  assert.ok(Number.isFinite(observerField.electric.magnitude));
+
+  const plotBridge = createPhotonCircularSourceBridgeStub();
+  const plot = await buildPhotonPlotSamplesWithSolverBridge(state, 0.5, 4, {
+    solveCircularSourceRootsHitsLedger: plotBridge.solveCircularSourceRootsHitsLedger,
+  });
+  assert.equal(plot.solverEngineId, "architrino-solver-app-bridge");
+  assert.equal(plot.samples.length, 5);
+  assert.ok(Number.isFinite(plot.amplitudeScale));
+});
+
+test("plot helpers expose sample counts and the small forward now gap", () => {
   assert.equal(getPhotonFieldPlotSampleCount(200), 360);
   assert.equal(getPhotonFieldPlotSampleCount(933), 700);
   assert.equal(getPhotonFieldPlotSampleCount(2000), 900);
@@ -757,14 +692,6 @@ test("plot samples expose full trace data with a small forward now gap", () => {
   assert.equal(isPhotonPlotSampleInForwardGap(0.2, 0, 0.15), false);
   assert.equal(isPhotonPlotSampleInForwardGap(0.04, 0.94, 0.15), true);
   assert.equal(isPhotonPlotSampleInForwardGap(0.4, 0.94, 0.15), false);
-  assert.deepEqual(
-    Object.keys(plot.samples[0]).filter((key) => /^[eb][yz]$/.test(key)).sort(),
-    ["ey", "ez"]
-  );
-  assert.deepEqual(
-    Object.keys(plot.samples[0]).filter((key) => /^[eb][uv]$/.test(key)),
-    []
-  );
 });
 
 test("photon stage keeps face-on swarm spacing fixed while side view separation changes", () => {
@@ -1035,12 +962,11 @@ test("named photon presets expose the required candidate configurations", () => 
     ["I", "M", "O"].map((layerId) => getPhotonLayerEnabled(linear, "left", layerId)),
     [false, false, true]
   );
-  assert.equal(computePhotonFormulaSummary(linear, 0).polarization.classification, "linear");
 
   const right = createPhotonPresetState("right_circular_candidate");
   const left = createPhotonPresetState("left_circular_candidate");
-  assert.ok(computePhotonFormulaSummary(right, 0).polarization.normalizedStokes.s3 > 0);
-  assert.ok(computePhotonFormulaSummary(left, 0).polarization.normalizedStokes.s3 < 0);
+  assert.equal(right.pair.left.layers.O.phaseDeg, 120);
+  assert.equal(left.pair.left.layers.O.phaseDeg, 240);
 
   const radiusStress = createPhotonPresetState("layer_radius_stress_test");
   assert.equal(radiusStress.pair.left.layers.I.radius, 0.02);
@@ -1048,35 +974,63 @@ test("named photon presets expose the required candidate configurations", () => 
   assert.equal(radiusStress.pair.left.layers.O.radius, PHOTON_MAX_OUTER_RADIUS);
 });
 
-test("configuration search returns scored settings snapshots", () => {
+test("configuration search can score settings through the solver bridge", async () => {
   const state = createDefaultPhotonState();
-  const results = createPhotonConfigurationSearchResults(state, {
-    limit: 5,
-    maxCandidates: 10,
+  const bridge = createPhotonCircularSourceBridgeStub();
+  const results = await createPhotonConfigurationSearchResultsWithSolverBridge(state, {
+    solveCircularSourceRootsHitsLedger: bridge.solveCircularSourceRootsHitsLedger,
+    limit: 2,
+    maxCandidates: 2,
+    summaryOptions: {
+      polarizationSampleCount: 6,
+      analyzerSampleCount: 3,
+    },
+    perturbOptions: {
+      polarizationSampleCount: 4,
+      analyzerSampleCount: 2,
+    },
   });
 
-  assert.ok(results.length > 0);
-  assert.ok(results.length <= 5);
+  assert.equal(results.length, 2);
+  assert.ok(bridge.calls.length > 0);
   results.forEach((result) => {
     assert.ok(result.id.startsWith("photon-search-"));
-    assert.ok(result.name.length > 0);
     assert.equal(result.selected, true);
-    assert.ok(Array.isArray(result.reasons));
-    assert.ok(result.reasons.length > 0);
     assert.ok(Number.isFinite(result.score));
     assert.equal(result.state.app, "photon");
-    assert.ok(result.polarization.classificationLabel.length > 0);
-    assert.ok(Number.isFinite(result.diagnostics.sourceCount));
+    assert.ok(Number.isFinite(result.diagnostics.rootCount));
   });
-  assert.ok(results.some((result) => result.suspect === false));
 });
 
-test("configuration search results export and import full settings", () => {
+test("bridge-backed photon diagnostics expose the active solver engine", async () => {
+  const state = createDefaultPhotonState();
+  const bridge = createPhotonCircularSourceBridgeStub();
+  const summary = await computePhotonFormulaSummaryWithSolverBridge(state, 0, {
+    solveCircularSourceRootsHitsLedger: bridge.solveCircularSourceRootsHitsLedger,
+    polarizationSampleCount: 6,
+    analyzerSampleCount: 3,
+  });
+  const rows = new Map(getPhotonDiagnosticRows(state, 0, summary));
+
+  assert.equal(rows.get("Solver engine"), "architrino-solver-app-bridge");
+});
+
+test("configuration search results export and import full settings", async () => {
   const state = createDefaultPhotonState();
   state.measurement.virtualObserver.y = 1.25;
-  const results = createPhotonConfigurationSearchResults(state, {
+  const bridge = createPhotonCircularSourceBridgeStub();
+  const results = await createPhotonConfigurationSearchResultsWithSolverBridge(state, {
+    solveCircularSourceRootsHitsLedger: bridge.solveCircularSourceRootsHitsLedger,
     limit: 3,
-    maxCandidates: 8,
+    maxCandidates: 3,
+    summaryOptions: {
+      polarizationSampleCount: 6,
+      analyzerSampleCount: 3,
+    },
+    perturbOptions: {
+      polarizationSampleCount: 4,
+      analyzerSampleCount: 2,
+    },
   });
   const json = serializePhotonSearchResults(results);
   const imported = parsePhotonSearchResultsJson(json);
@@ -1119,11 +1073,17 @@ test("photon state normalization preserves configured values", () => {
   assert.deepEqual(normalized, normalizePhotonState(normalized));
 });
 
-test("formula summary reports a derived branch-sum polarization fit", () => {
+test("formula summary reports a derived solver-bridge polarization fit", async () => {
   const state = createDefaultPhotonState();
   state.polarization.analyzerAngleDeg = 60;
-  const summary = computePhotonFormulaSummary(state, 0.5);
+  const bridge = createPhotonCircularSourceBridgeStub();
+  const summary = await computePhotonFormulaSummaryWithSolverBridge(state, 0.5, {
+    solveCircularSourceRootsHitsLedger: bridge.solveCircularSourceRootsHitsLedger,
+    polarizationSampleCount: 6,
+    analyzerSampleCount: 3,
+  });
 
+  assert.equal(summary.solverEngineId, "architrino-solver-app-bridge");
   assert.ok(["weak", "linear", "right_circular", "left_circular", "elliptical"].includes(
     summary.polarization.classification
   ));
@@ -1136,7 +1096,7 @@ test("formula summary reports a derived branch-sum polarization fit", () => {
   assert.ok(Number.isFinite(summary.analyzerResidual));
 });
 
-test("polarization fitter classifies a one-axis branch-sum signal as linear", () => {
+test("polarization fitter classifies a one-axis signal as linear", () => {
   const fit = fitPhotonPolarizationFromSamples(buildSyntheticPolarizationSamples({ ampY: 1, ampZ: 0 }));
 
   assert.equal(fit.classification, "linear");
@@ -1171,12 +1131,17 @@ test("polarization fitter classifies unequal quadrature amplitudes as elliptical
   assertNear(fit.fitResidual, 0, 1e-12);
 });
 
-test("derived branch-sum polarization trace uses the fitted current field", () => {
+test("derived solver-bridge polarization trace uses the fitted current field", async () => {
   const state = createDefaultPhotonState();
   state.polarization.analyzerAngleDeg = 17;
-  const trace = buildPhotonDerivedPolarizationTrace(state, 0.5, 48);
+  const bridge = createPhotonCircularSourceBridgeStub();
+  const trace = await buildPhotonDerivedPolarizationTraceWithSolverBridge(state, 0.5, 6, {
+    solveCircularSourceRootsHitsLedger: bridge.solveCircularSourceRootsHitsLedger,
+    minimumPolarizationSampleCount: 6,
+  });
 
-  assert.ok(trace.rawSamples.length >= 48);
+  assert.equal(trace.solverEngineId, "architrino-solver-app-bridge");
+  assert.ok(trace.rawSamples.length >= 6);
   assert.ok(["weak", "linear", "right_circular", "left_circular", "elliptical"].includes(
     trace.classification
   ));
@@ -1184,30 +1149,40 @@ test("derived branch-sum polarization trace uses the fitted current field", () =
   assertNear(trace.current.ez, trace.fittedCurrent.ez, 1e-12);
 });
 
-test("derived polarization inset trace is centered on the oscillating component", () => {
+test("derived solver-bridge polarization inset trace is centered on the oscillating component", async () => {
   const state = createDefaultPhotonState();
-  const trace = buildPhotonDerivedPolarizationTrace(state, 0, 144);
+  const bridge = createPhotonCircularSourceBridgeStub();
+  const trace = await buildPhotonDerivedPolarizationTraceWithSolverBridge(state, 0, 6, {
+    solveCircularSourceRootsHitsLedger: bridge.solveCircularSourceRootsHitsLedger,
+    minimumPolarizationSampleCount: 6,
+  });
   const eyValues = trace.samples.map((sample) => sample.ey);
   const ezValues = trace.samples.map((sample) => sample.ez);
   const eyMidpoint = (Math.min(...eyValues) + Math.max(...eyValues)) / 2;
   const ezMidpoint = (Math.min(...ezValues) + Math.max(...ezValues)) / 2;
 
-  assert.ok(Math.abs(trace.components.y.dc) > 1);
+  assert.ok(Number.isFinite(trace.components.y.dc));
+  assert.ok(trace.scale > 0);
   assertNear(eyMidpoint, 0, 1e-9);
   assertNear(ezMidpoint, 0, 1e-9);
 });
 
-test("derived polarization ellipse fit stays stable while the current point advances", () => {
+test("derived solver-bridge polarization ellipse fit stays stable while the current point advances", async () => {
   const state = createDefaultPhotonState();
   state.polarization.analyzerAngleDeg = 17;
-  const first = buildPhotonDerivedPolarizationTrace(state, 0.5, 48);
-  const second = buildPhotonDerivedPolarizationTrace(state, 1.25, 48);
+  const bridge = createPhotonCircularSourceBridgeStub();
+  const options = {
+    solveCircularSourceRootsHitsLedger: bridge.solveCircularSourceRootsHitsLedger,
+    minimumPolarizationSampleCount: 6,
+  };
+  const first = await buildPhotonDerivedPolarizationTraceWithSolverBridge(state, 0.5, 6, options);
+  const second = await buildPhotonDerivedPolarizationTraceWithSolverBridge(state, 1.25, 6, options);
 
   assertNear(first.scale, second.scale, 1e-12);
   assertNear(first.amplitudes.y, second.amplitudes.y, 1e-12);
   assertNear(first.amplitudes.z, second.amplitudes.z, 1e-12);
-  assertNear(first.samples[12].ey, second.samples[12].ey, 1e-12);
-  assertNear(first.samples[12].ez, second.samples[12].ez, 1e-12);
+  assertNear(first.samples[3].ey, second.samples[3].ey, 1e-12);
+  assertNear(first.samples[3].ez, second.samples[3].ez, 1e-12);
   assert.notEqual(first.currentProgress.toFixed(6), second.currentProgress.toFixed(6));
 });
 

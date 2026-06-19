@@ -29,9 +29,9 @@ Decision 1 (locked): `Xcode` scaffold for v1 lives at `apps/ios/ArchitrinoReader
 8. The v1 Xcode project path is `apps/ios/ArchitrinoReader/ArchitrinoReader.xcodeproj` (project name `ArchitrinoReader`).
 9. Default deployment policy: do not lower the first-release iOS/iPadOS floor if doing so adds compatibility code, layout compromises, or tool friction.
 10. HTML app links (for example `ideal-swarm.html`) in textbook markdown should route to `https://architrino.com/<slug>` in-app via explicit browser handoff rather than failing with missing local assets.
-11. v1 rendering path is locked: native SwiftUI shell + local HTML shell (`WKWebView`) + runtime markdown→HTML conversion in-app. No pre-rendered per-chapter HTML artifacts for v1.
+11. v1 rendering path is locked: native SwiftUI shell + local HTML shell (`WKWebView`) + generated per-chapter HTML reading copies, with chapter markdown retained as package fallback/source material.
 12. TOC entries that point to web-app scene nodes (for example `diagram`, `markdown-tree`, `markdown-split`) do not open chapter content in-app. They display a local banner notice and require an explicit Safari handoff action.
-13. Glossary access is provided through an explicit reader action and opens through browser handoff using the existing comparative glossary destination.
+13. Glossary access is provided through an explicit reader action and opens as a bundled in-app reference document when included in the textbook package.
 14. Reader-facing UI text and notices avoid equation-style symbols; keep labels and helper copy as plain words.
 15. The first public release target is Unlisted App Store distribution. The app still ships through App Store Connect and ordinary App Review, but the post-approval install path is a direct App Store link rather than App Store search, categories, recommendations, charts, or other listings.
 16. [Causal Delay Feedback App](../causal-delay-feedback-app/causal-delay-feedback-app.md) is a post-v1 visualization candidate. Its iPhone/iPad integration should adapt to landscape and portrait orientation while preserving the one-pair causal-delay scene state.
@@ -82,6 +82,7 @@ Release requirements:
 Release-prep checklist:
 
 - Repository-side app icon assets are present in `Assets.xcassets/AppIcon.appiconset`, including iPhone, iPad, and 1024x1024 marketing icon slots.
+- iPad AppIcon coverage includes the classic 76x76 @1x slot, 76x76 @2x slot, 83.5x83.5 @2x iPad Pro slot, and the 1024x1024 marketing icon.
 - Refresh the bundled textbook package from canonical repo artifacts before each archive.
 - Verify package version and package date in the app About screen before upload.
 - Run strict package validation before archive: `node scripts/export-ios-textbook-package.mjs --check --strict`.
@@ -133,7 +134,7 @@ Treat these as backlog tickets in execution order. Keep each ticket one engineer
 10. `math_and_anchor_rendering` - Verify representative math-heavy, equation-heavy, and table-heavy sections render in local WebKit and keep TeX delimiters stable. Status: `implemented; continue regression testing during release QA`.
 11. `full_text_indexing` - Add index generation from reading-copy markdown for title/section/body search and structured result snippets. Status: `implemented`.
 12. `search_and_bookmarks_ux` - Build dedicated search and bookmarks screens/panes with deterministic navigation into active sections. Status: `implemented`.
-13. `iPad_reading_layout` - Implement split-view reading workspace with sidebar content and reading pane. Status: `implemented; physical iPad smoke test required before first release`.
+13. `iPad_reading_layout` - Implement split-view reading workspace with a persistent TOC sidebar, reading pane, adaptive reader controls, and constrained modal sheet content. Status: `implemented; physical iPad smoke test required before first release`.
 
 ### Phase 3: Visualization (Post-v1)
 
@@ -182,7 +183,7 @@ Treat these as backlog tickets in execution order. Keep each ticket one engineer
 - Textbook is the first tab and the default launch surface.
 - Visualizations are deferred from v1.
 - Settings stays small: content version, appearance, offline package state, and diagnostic/export controls.
-- iPad uses a sidebar and reading pane; iPhone uses a navigation stack with TOC, search, and bookmarks as sheets or pushed views.
+- iPad uses a persistent TOC sidebar and reading pane; search, bookmarks, settings, and About open as adaptive sheets from the reader toolbar. iPhone uses a navigation stack with TOC, search, and bookmarks as focused full-screen or sheet surfaces.
 - Reader controls stay quiet: TOC, search, bookmark, text size, previous, and next.
 
 ### Visualizations
@@ -238,9 +239,9 @@ Reader chrome:
 
 The default layout is a two-pane reading workspace:
 
-- left sidebar: TOC, search results, bookmarks, and package status;
+- left sidebar: generated textbook TOC with stable chapter and section navigation;
 - right pane: current textbook section;
-- optional inspector: section outline, related visualizations, and source links.
+- reader toolbar and bottom controls: search, bookmarks, package/about information, reader appearance, bookmark, and previous/next navigation.
 
 The iPad design should not add extra conceptual surfaces just because there is more screen space.
 

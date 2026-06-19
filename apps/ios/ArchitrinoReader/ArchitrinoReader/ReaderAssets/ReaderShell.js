@@ -368,10 +368,28 @@
     });
   }
 
-  function scrollToInitialPosition(anchor, onComplete) {
+  function scrollToProgress(progress) {
+    if (typeof progress !== "number" || !Number.isFinite(progress)) {
+      return false;
+    }
+    const clamped = Math.max(0, Math.min(1, progress));
+    const scrollHeight = Math.max(
+      document.documentElement.scrollHeight || 0,
+      document.body.scrollHeight || 0,
+    );
+    const maxOffset = Math.max(0, scrollHeight - window.innerHeight);
+    window.scrollTo({
+      top: maxOffset * clamped,
+      left: 0,
+      behavior: "auto",
+    });
+    return true;
+  }
+
+  function scrollToInitialPosition(anchor, scrollProgress, onComplete) {
     window.requestAnimationFrame(() => {
       setTimeout(() => {
-        if (!anchor || !scrollToAnchor(anchor)) {
+        if (!scrollToProgress(scrollProgress) && (!anchor || !scrollToAnchor(anchor))) {
           scrollToTop();
         }
         if (typeof onComplete === "function") {
@@ -427,7 +445,7 @@
     }
     article.appendChild(rendered);
     setupLinks(article);
-    scrollToInitialPosition(payload.initialAnchor, () => sendRenderComplete(payload));
+    scrollToInitialPosition(payload.initialAnchor, payload.initialScrollProgress, () => sendRenderComplete(payload));
   }
 
   function parseRenderPayload(rawPayload) {

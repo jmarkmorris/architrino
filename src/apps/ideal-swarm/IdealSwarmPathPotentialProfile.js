@@ -37,6 +37,12 @@ function normalizeFieldSpeedRatio(value) {
   return Number.isFinite(ratio) && ratio > 0 ? ratio : 1;
 }
 
+function normalizeFieldSpeedRatios(values) {
+  const ratios = Array.isArray(values) ? values : [values];
+  const normalized = ratios.map((value) => normalizeFieldSpeedRatio(value));
+  return normalized.length > 0 ? normalized : [1];
+}
+
 function getBinaryId(binaryOrId) {
   return typeof binaryOrId === "string" ? binaryOrId : binaryOrId?.id;
 }
@@ -60,54 +66,12 @@ export function getFieldSpeedRegimeLabel(fieldSpeedRatio) {
   return "field speed";
 }
 
-export function solveCircularSelfHitSpan(fieldSpeedRatio) {
-  const ratio = normalizeFieldSpeedRatio(fieldSpeedRatio);
-  if (ratio <= 1 + FIELD_SPEED_TOLERANCE) {
-    return 0;
-  }
-
-  function residual(angle) {
-    return 2 * Math.sin(angle / 2) - angle / ratio;
-  }
-
-  const maxAngle = Math.PI * 1.96;
-  const step = Math.PI / 72;
-  let low = step;
-  let high = maxAngle;
-  let foundHigh = false;
-  let previousAngle = low;
-  let previousValue = residual(previousAngle);
-
-  for (let angle = low + step; angle <= maxAngle; angle += step) {
-    const value = residual(angle);
-    if (previousValue > 0 && value <= 0) {
-      low = previousAngle;
-      high = angle;
-      foundHigh = true;
-      break;
-    }
-    previousAngle = angle;
-    previousValue = value;
-  }
-
-  if (!foundHigh) {
-    return Math.PI;
-  }
-
-  for (let index = 0; index < SELF_HIT_SOLVE_ITERATIONS; index += 1) {
-    const middle = (low + high) / 2;
-    if (residual(middle) > 0) {
-      low = middle;
-    } else {
-      high = middle;
-    }
-  }
-
-  return (low + high) / 2;
+export function createIdealSwarmCircularSelfHitSpanRunRequest(fieldSpeedRatio, options = {}) {
+  return createIdealSwarmCircularSelfHitSpansRunRequest([fieldSpeedRatio], options);
 }
 
-export function createIdealSwarmCircularSelfHitSpanRunRequest(fieldSpeedRatio, options = {}) {
-  const ratio = normalizeFieldSpeedRatio(fieldSpeedRatio);
+export function createIdealSwarmCircularSelfHitSpansRunRequest(fieldSpeedRatios, options = {}) {
+  const ratios = normalizeFieldSpeedRatios(fieldSpeedRatios);
   const tolerance = normalizeNonnegativeNumber(options.tolerance, SELF_HIT_TOLERANCE);
   const fieldSpeedTolerance = normalizeNonnegativeNumber(
     options.fieldSpeedTolerance,
@@ -123,7 +87,8 @@ export function createIdealSwarmCircularSelfHitSpanRunRequest(fieldSpeedRatio, o
     options.memoryBudgetBytes,
     DEFAULT_SOLVER_MEMORY_BUDGET_BYTES
   );
-  const runId = options.runId ?? `ideal-swarm-self-hit-${ratio.toString().replaceAll(".", "_")}`;
+  const ratioId = ratios.map((ratio) => ratio.toString().replaceAll(".", "_")).join("-");
+  const runId = options.runId ?? `ideal-swarm-self-hit-${ratioId}`;
   return createIdealSwarmSharedGeometryRunRequest({
     requestId: options.requestId ?? `${runId}-request`,
     runId,
@@ -131,24 +96,22 @@ export function createIdealSwarmCircularSelfHitSpanRunRequest(fieldSpeedRatio, o
     claimLevel: options.claimLevel ?? "interactive-preview",
     precisionPath: options.precisionPath ?? "auto",
     configVersion: options.configVersion ?? "ideal-swarm-circular-self-hit-adapter.v1",
-    configHash: options.configHash ?? `ideal-swarm-circular-self-hit:${ratio}`,
+    configHash: options.configHash ?? `ideal-swarm-circular-self-hit:${ratios.join(",")}`,
     model: options.model ?? createDefaultIdealSwarmGeometryModel(),
     envelope: options.envelope ?? createDefaultIdealSwarmGeometryEnvelope({
-      fieldSpeedRatio: ratio,
+      fieldSpeedRatio: Math.max(...ratios),
       memoryBudgetBytes,
     }),
     errorBudget: options.errorBudget ?? createDefaultIdealSwarmGeometryErrorBudget(tolerance),
     geometryRequest: {
-      circularSelfHitSpans: [
-        {
-          fieldSpeedRatio: ratio,
-          fieldSpeedTolerance,
-          tolerance,
-          maxIterations,
-          scanSubdivisions,
-          maxAngle,
-        },
-      ],
+      circularSelfHitSpans: ratios.map((ratio) => ({
+        fieldSpeedRatio: ratio,
+        fieldSpeedTolerance,
+        tolerance,
+        maxIterations,
+        scanSubdivisions,
+        maxAngle,
+      })),
     },
     output: options.output ?? {
       outputs: ["geometryBuffer", "diagnostics"],
@@ -165,20 +128,35 @@ export async function solveCircularSelfHitSpanWithSolverBridge(fieldSpeedRatio, 
 }
 
 export async function solveCircularSelfHitSpanRowWithSolverBridge(fieldSpeedRatio, options = {}) {
-  const runRequest =
-    options.runRequest ?? createIdealSwarmCircularSelfHitSpanRunRequest(fieldSpeedRatio, options);
-  const runHandle = typeof options.runSolverBridge === "function"
-    ? await options.runSolverBridge(runRequest)
-    : await runIdealSwarmSolverBridgeClient(options, fieldSpeedRatio, runRequest);
-  return extractCircularSelfHitSpanRow(runHandle);
+  const rows = await solveCircularSelfHitSpanRowsWithSolverBridge([fieldSpeedRatio], options);
+  if (rows.length === 0) {
+    throw new Error("Ideal Swarm solver bridge response did not include a circular self-hit span row.");
+  }
+  return rows[0];
 }
 
-async function runIdealSwarmSolverBridgeClient(options, fieldSpeedRatio, runRequest) {
+export async function solveCircularSelfHitSpanRowsWithSolverBridge(
+  fieldSpeedRatios,
+  options = {}
+) {
+  const runRequest =
+    options.runRequest ??
+    createIdealSwarmCircularSelfHitSpansRunRequest(fieldSpeedRatios, options);
+  const runHandle = typeof options.runSolverBridge === "function"
+    ? await options.runSolverBridge(runRequest)
+    : await runIdealSwarmSolverBridgeClient(options, fieldSpeedRatios, runRequest);
+  return extractCircularSelfHitSpanRows(runHandle);
+}
+
+async function runIdealSwarmSolverBridgeClient(options, fieldSpeedRatios, runRequest) {
   return runSolverAppBridgeRequest({
     appId: "ideal-swarm",
     request: runRequest,
     options,
-    factoryRequest: { fieldSpeedRatio },
+    factoryRequest: {
+      fieldSpeedRatio: normalizeFieldSpeedRatios(fieldSpeedRatios)[0],
+      fieldSpeedRatios: normalizeFieldSpeedRatios(fieldSpeedRatios),
+    },
     requestedCapabilities: ["sharedGeometry", "delayedHits"],
     storagePolicy: {
       target: options.streamTarget ?? "caller-buffer",
@@ -194,19 +172,19 @@ async function runIdealSwarmSolverBridgeClient(options, fieldSpeedRatio, runRequ
   });
 }
 
-function extractCircularSelfHitSpanRow(runHandle = {}) {
+function extractCircularSelfHitSpanRows(runHandle = {}) {
   const response = runHandle.response ?? runHandle;
   const geometry = response.geometry ?? response;
   const rows = Array.isArray(geometry.circularSelfHitSpans) ? geometry.circularSelfHitSpans : [];
   if (rows.length === 0) {
     throw new Error("Ideal Swarm solver bridge response did not include a circular self-hit span row.");
   }
-  return {
+  return rows.map((row) => ({
     solverEngineId: IDEAL_SWARM_SOLVER_BRIDGE_ENGINE_ID,
     runId: response.runId ?? runHandle.runId ?? "",
     datasetId: response.datasetId ?? runHandle.datasetId ?? "",
-    ...rows[0],
-  };
+    ...row,
+  }));
 }
 
 function createDefaultIdealSwarmGeometryModel() {
@@ -306,34 +284,72 @@ function createFieldSpeedProfile() {
   };
 }
 
-function createSuperFieldProfile(fieldSpeedRatio) {
+function createSuperFieldProfile(fieldSpeedRatio, selfHitSpanInput = 0) {
   const superProgress = clampNumber((fieldSpeedRatio - 1) / 0.35, 0, 1);
-  const selfHitSpan = solveCircularSelfHitSpan(fieldSpeedRatio);
+  const selfHitSpan = normalizeNonnegativeNumber(selfHitSpanInput, 0);
+  const displayedSpan = selfHitSpan > 0 ? selfHitSpan : QUARTER_TURN;
   return {
     fieldSpeedRatio,
     regime: getFieldSpeedRegimeLabel(fieldSpeedRatio),
     forwardSpan: NO_FORWARD_SPAN,
-    backwardSpan: clampNumber(selfHitSpan, QUARTER_TURN, Math.PI * 0.92),
+    backwardSpan: clampNumber(displayedSpan, QUARTER_TURN, Math.PI * 0.92),
     falloff: lerpNumber(0.85, 0.72, superProgress),
     forwardGain: 0,
     backwardGain: lerpNumber(0.78, 0.9, superProgress),
     forwardWidthScale: 1,
     wakeWidthScale: lerpNumber(1.05, 1.26, superProgress),
     selfHitSpan,
+    solverProfileStatus: selfHitSpan > 0 ? "solver-row" : "pending-solver-row",
   };
 }
 
-export function getOrbitPathTintProfile(binaryOrId) {
+export function getOrbitPathTintProfile(binaryOrId, options = {}) {
   const fieldSpeedRatio = getBinaryFieldSpeedRatio(binaryOrId);
   if (fieldSpeedRatio < 1 - FIELD_SPEED_TOLERANCE) {
     return createSubFieldProfile(fieldSpeedRatio);
   }
   if (fieldSpeedRatio > 1 + FIELD_SPEED_TOLERANCE) {
-    return createSuperFieldProfile(fieldSpeedRatio);
+    return createSuperFieldProfile(fieldSpeedRatio, resolveSelfHitSpan(binaryOrId, options));
   }
   return createFieldSpeedProfile();
 }
 
+export async function getOrbitPathTintProfileWithSolverBridge(binaryOrId, options = {}) {
+  const fieldSpeedRatio = getBinaryFieldSpeedRatio(binaryOrId);
+  if (fieldSpeedRatio <= 1 + FIELD_SPEED_TOLERANCE) {
+    return getOrbitPathTintProfile(binaryOrId, options);
+  }
+  const row = await solveCircularSelfHitSpanRowWithSolverBridge(fieldSpeedRatio, options);
+  return {
+    ...createSuperFieldProfile(fieldSpeedRatio, row.span),
+    solverEngineId: row.solverEngineId,
+    solverRunId: row.runId,
+    solverDatasetId: row.datasetId,
+    solverRow: row,
+  };
+}
+
 export function getOrbitPathBranchGain(profile, travelSign) {
   return travelSign > 0 ? profile.forwardGain : profile.backwardGain;
+}
+
+function resolveSelfHitSpan(binaryOrId, options = {}) {
+  const explicitSpan = Number(options.selfHitSpan);
+  if (Number.isFinite(explicitSpan) && explicitSpan >= 0) {
+    return explicitSpan;
+  }
+  if (typeof options.selfHitSpanByBinaryId === "function") {
+    return normalizeNonnegativeNumber(
+      options.selfHitSpanByBinaryId(getBinaryId(binaryOrId)),
+      0
+    );
+  }
+  if (options.selfHitSpanByBinaryId && typeof options.selfHitSpanByBinaryId === "object") {
+    return normalizeNonnegativeNumber(
+      options.selfHitSpanByBinaryId[getBinaryId(binaryOrId)],
+      0
+    );
+  }
+  const binarySpan = Number(binaryOrId?.solverSelfHitSpan);
+  return Number.isFinite(binarySpan) && binarySpan >= 0 ? binarySpan : 0;
 }

@@ -3,6 +3,7 @@ import { classifySolverBaselineResponse } from "./SolverBaselineComparison.mjs";
 
 export const SOLVER_APP_BRIDGE_API_VERSION = "solver-app-bridge.v1";
 
+const KNOWN_APP_IDS = ["animator", "photon", "ideal-swarm", "causal-delay-feedback"];
 const DEFAULT_PRECISION_PATHS = [
   "auto",
   "scaled_f64_fast",
@@ -1131,6 +1132,17 @@ function createCapabilities(hasWasmModuleFactory) {
           appId: "ideal-swarm",
           runKinds: ["delayedHits", "pathHistory", "sharedGeometry", "validationReplay"],
         },
+        {
+          appId: "causal-delay-feedback",
+          runKinds: [
+            "motionSimulation",
+            "pathHistory",
+            "causalRoots",
+            "delayedHits",
+            "appPlayback",
+            "validationReplay",
+          ],
+        },
       ],
       denseDataTransport: ["array-buffer", "stream-handle"],
       workerModel: {
@@ -1345,7 +1357,7 @@ function validateInitRequest(request) {
       recoverable: false,
     });
   }
-  if (!["animator", "photon", "ideal-swarm"].includes(request.appId)) {
+  if (!KNOWN_APP_IDS.includes(request.appId)) {
     return createStatus("app_contract_error", "error", "known app id is required", {
       recoverable: false,
     });
@@ -7252,7 +7264,7 @@ function validateRunSimulationRequest(request) {
       })
     );
   }
-  if (!["animator", "photon", "ideal-swarm"].includes(request.appId)) {
+  if (!KNOWN_APP_IDS.includes(request.appId)) {
     throw new SolverBridgeError(
       createStatus("app_contract_error", "error", "known app id is required", {
         recoverable: false,
@@ -7335,7 +7347,7 @@ function validatePathHistoryRunConfig(config) {
       })
     );
   }
-  if (!["animator", "photon", "ideal-swarm"].includes(config.appId)) {
+  if (!KNOWN_APP_IDS.includes(config.appId)) {
     throw new SolverBridgeError(
       createStatus("app_contract_error", "error", "path-history app id is required", {
         recoverable: false,
@@ -7430,7 +7442,7 @@ function validateValidationReplayRunConfig(config) {
       })
     );
   }
-  if (!["animator", "photon", "ideal-swarm"].includes(config.appId)) {
+  if (!KNOWN_APP_IDS.includes(config.appId)) {
     throw new SolverBridgeError(
       createStatus("app_contract_error", "error", "validation replay app id is required", {
         recoverable: false,
@@ -7481,7 +7493,7 @@ function validateAppPlaybackRunConfig(config) {
       })
     );
   }
-  if (!["animator", "photon", "ideal-swarm"].includes(config.appId)) {
+  if (!KNOWN_APP_IDS.includes(config.appId)) {
     throw new SolverBridgeError(
       createStatus("app_contract_error", "error", "app playback app id is required", {
         recoverable: false,

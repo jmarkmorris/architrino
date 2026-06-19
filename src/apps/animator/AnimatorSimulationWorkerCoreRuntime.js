@@ -1,4 +1,3 @@
-import { runAssemblyDynamicsDataset } from "../../../scripts/simulations/lib/assembly-dynamics-engine.mjs";
 import {
   runSolverAppBridgeRequest,
 } from "../../solver/app/SolverAppBridgeClientResolver.mjs";
@@ -28,34 +27,7 @@ export function createAnimatorSimulationWorkerStartedMessage(request = {}) {
 }
 
 export async function runAnimatorSimulationWorkerRequestAsync(request = {}, options = {}) {
-  if (shouldUseSolverBridge(request, options)) {
-    return runAnimatorSolverBridgeWorkerRequest(request, options);
-  }
-  return runAnimatorSimulationWorkerRequest(request, options);
-}
-
-export function runAnimatorSimulationWorkerRequest(request = {}, options = {}) {
-  if (request?.type !== ANIMATOR_SIMULATION_WORKER_REQUEST_TYPE) {
-    throw new Error(`Unsupported simulation worker request type: ${request?.type ?? ""}`);
-  }
-  const runDataset =
-    typeof options.runDataset === "function" ? options.runDataset : runAssemblyDynamicsDataset;
-  const dataset = runDataset(request.config ?? {}, request.datasetOptions ?? {});
-  const frameBuffer = createAnimatorSimulationFrameBuffer(dataset);
-  const datasetSkeleton = stripAnimatorSimulationDatasetFrames(dataset);
-  const frameBufferSummary = summarizeAnimatorSimulationFrameBuffer(frameBuffer);
-  return {
-    type: ANIMATOR_SIMULATION_WORKER_COMPLETE_TYPE,
-    requestId: request.requestId ?? "",
-    dataset: datasetSkeleton,
-    frameBuffer,
-    stats: {
-      ...frameBufferSummary,
-      completed: dataset?.simulation?.halt?.status === "completed",
-      haltStatus: dataset?.simulation?.halt?.status ?? "unknown",
-      haltCode: dataset?.simulation?.halt?.code ?? null,
-    },
-  };
+  return runAnimatorSolverBridgeWorkerRequest(request, options);
 }
 
 async function runAnimatorSolverBridgeWorkerRequest(request = {}, options = {}) {
@@ -83,19 +55,6 @@ async function runAnimatorSolverBridgeWorkerRequest(request = {}, options = {}) 
       solverEngineId: ANIMATOR_SOLVER_BRIDGE_ENGINE_ID,
     },
   };
-}
-
-function shouldUseSolverBridge(request = {}, options = {}) {
-  const config = request?.config && typeof request.config === "object" ? request.config : {};
-  const bridgeConfig = config.solverBridge && typeof config.solverBridge === "object"
-    ? config.solverBridge
-    : {};
-  return (
-    config.solverEngine === ANIMATOR_SOLVER_BRIDGE_ENGINE_ID ||
-    config.solverEngine === "solver-app-bridge" ||
-    bridgeConfig.enabled === true ||
-    typeof options.runSolverBridge === "function"
-  );
 }
 
 async function runSolverBridgeClient(options, request, runRequest) {
