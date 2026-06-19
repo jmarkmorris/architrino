@@ -19,8 +19,15 @@ export const DEFAULT_ANIMATOR_SIMULATION_AUTHORING_DRAFT = Object.freeze({
   rootHaltPolicy: "all",
   claimLevel: "solver-derived-diagnostic",
   datasetId: "",
-  solverEngine: "",
-  solverBridge: null,
+  solverEngine: ANIMATOR_SOLVER_BRIDGE_ENGINE_ID,
+  solverBridge: Object.freeze({
+    enabled: true,
+    precisionPath: "auto",
+    streamTarget: "caller-buffer",
+    deterministic: true,
+    threadingMode: "single-thread",
+    rowsPerChunk: 256,
+  }),
 });
 
 const HISTORY_MODES = Object.freeze(["adaptive", "deep", "fixed"]);
@@ -77,8 +84,8 @@ function normalizeSolverBridgeConfig(config = {}, defaults = {}) {
   const solverEngine = normalizeSolverEngine(config.solverEngine, defaults.solverEngine);
   const requestedEnabled =
     bridge.enabled === true ||
-    (bridge.enabled !== false && defaultBridge.enabled === true) ||
-    (bridge.enabled !== false && solverEngine === ANIMATOR_SOLVER_BRIDGE_ENGINE_ID);
+    defaultBridge.enabled === true ||
+    solverEngine === ANIMATOR_SOLVER_BRIDGE_ENGINE_ID;
   if (!requestedEnabled) {
     return null;
   }

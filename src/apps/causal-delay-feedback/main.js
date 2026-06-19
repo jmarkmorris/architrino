@@ -1,6 +1,7 @@
 import { createCausalDelayFeedbackCentralBridgeAdapter } from "./CausalDelayFeedbackCentralBridgeAdapter.js";
 import { createCausalDelayFeedbackRuntime } from "./CausalDelayFeedbackRuntime.js";
 import { createTemporaryMockReplayAdapter } from "./CausalDelayFeedbackReplayAdapter.js";
+import { createCausalDelayFeedbackSolverBridgeOptions } from "./CausalDelayFeedbackSolverBridgeOptions.js";
 
 const CENTRAL_REPLAY_QUERY_VALUES = new Set(["central", "bridge", "solver", "central_solver_bridge"]);
 
@@ -22,7 +23,9 @@ export function shouldUseCentralBridgeReplay(windowLike = globalThis.window) {
 export function createCausalDelayFeedbackRuntimeForPage(windowLike = globalThis.window) {
   const fallbackReplayAdapter = createTemporaryMockReplayAdapter();
   const replayAdapter = shouldUseCentralBridgeReplay(windowLike)
-    ? createCausalDelayFeedbackCentralBridgeAdapter({ scope: windowLike })
+    ? createCausalDelayFeedbackCentralBridgeAdapter(
+        createCausalDelayFeedbackSolverBridgeOptions(windowLike),
+      )
     : fallbackReplayAdapter;
   return createCausalDelayFeedbackRuntime({
     window: windowLike,

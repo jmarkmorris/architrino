@@ -94,8 +94,22 @@ test("causal delay bridge replay request declares the central bridge contract", 
 
   assert.equal(request.appId, CAUSAL_DELAY_FEEDBACK_APP_ID);
   assert.equal(request.runKind, "appPlayback");
+  assert.equal(request.model.modelId, "aaa.central-solver");
+  assert.equal(request.model.unitConvention, "solver-si");
+  assert.deepEqual(request.model.compatiblePrecisionPaths, [
+    "scaled_f64_strict",
+    "event_root_focused",
+    "extended_precision",
+  ]);
+  assert.equal(request.envelope.entityCount, 16);
+  assert.equal(request.envelope.memoryBudgetBytes, 128 * 1024 * 1024);
+  assert.equal(request.envelope.storageBudgetBytes, 512 * 1024 * 1024);
+  assert.equal(request.errorBudget.rootIsolationTolerance, 1e-14);
   assert.equal(request.config.solverTarget, "central_solver_bridge_path_history_stream");
   assert.equal(request.config.presetId, "full_circular_arcs");
+  assert.equal(request.config.initialConditions.positrino.x, 100);
+  assert.equal(request.config.initialConditions.electrino.y, 800);
+  assert.equal(request.config.geometry.initialConditions.positrino.vx, 1);
   assert.equal(request.config.replay.historyDepth, 4);
   assert(request.config.frames.length > 0);
   assert.equal(request.config.hits.length, 6);

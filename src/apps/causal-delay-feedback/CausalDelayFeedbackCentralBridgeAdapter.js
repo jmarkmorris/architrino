@@ -17,7 +17,7 @@ export const CENTRAL_SOLVER_REPLAY_DATASET_SOURCE = "central_solver_bridge_repla
 export const CAUSAL_DELAY_FEEDBACK_REPLAY_CONFIG_VERSION =
   "causal-delay-feedback-replay-adapter.v1";
 
-const DEFAULT_MEMORY_BUDGET_BYTES = 64 * 1024 * 1024;
+const DEFAULT_MEMORY_BUDGET_BYTES = 128 * 1024 * 1024;
 const DEFAULT_HISTORY_DEPTH = 4;
 const DEFAULT_FRAME_COUNT = 180;
 const DEFAULT_RUN_DURATION = 1;
@@ -41,9 +41,14 @@ export function createCausalDelayFeedbackBridgeReplayRequest(input = {}) {
     "memoryBudgetBytes",
   );
   const replayDataset = input.replayDataset ?? createMockCausalDelayReplayDataset(preset.id);
+  const initialConditions = cloneObject(
+    input.initialConditions ?? replayDataset.initialConditions ?? {},
+    "initialConditions",
+  );
   const bridgeFrames = input.frames ?? createBridgeMotionFramesFromReplayDataset(replayDataset);
   const bridgeHits = input.hits ?? createBridgeDelayedHitsFromReplayDataset(replayDataset);
-  const bridgeGeometry = input.geometry ?? createBridgeGeometryFromReplayDataset(replayDataset);
+  const bridgeGeometry =
+    input.geometry ?? createBridgeGeometryFromReplayDataset(replayDataset, { initialConditions });
 
   return {
     requestId: normalizeOptionalString(input.requestId, `${runId}-request`, "requestId"),
@@ -73,7 +78,7 @@ export function createCausalDelayFeedbackBridgeReplayRequest(input = {}) {
       appId: CAUSAL_DELAY_FEEDBACK_APP_ID,
       solverTarget: CENTRAL_SOLVER_BRIDGE_TARGET,
       presetId: preset.id,
-      initialConditions: cloneObject(input.initialConditions ?? {}, "initialConditions"),
+      initialConditions,
       sourceRunId: input.sourceRunId ?? replayDataset.runId,
       sourceDatasetId: input.sourceDatasetId ?? replayDataset.datasetId,
       frames: cloneArray(bridgeFrames, "frames"),
@@ -185,6 +190,10 @@ export function normalizeCausalDelayFeedbackBridgeReplay(runHandle = {}, options
       preset.wakeArcDisplayMode ??
       PARTIAL_PROPAGATING_ARCS,
     preset,
+    initialConditions: cloneObject(
+      bridgeResponse.initialConditions ?? bridgeResponse.geometry?.initialConditions ?? {},
+      "bridge response initialConditions",
+    ),
     paths: {
       positrino: frames.map((frame) => ({ t: frame.t, ...frame.positrino })),
       electrino: frames.map((frame) => ({ t: frame.t, ...frame.electrino })),
@@ -385,32 +394,48 @@ function findHistoryPoint(history, kind, depth, label) {
 
 function createDefaultReplayModel() {
   return {
-    modelId: "causal-delay-feedback-replay.v1",
+    modelId: "aaa.central-solver",
+    equationVersion: "motion-root-v1",
     forceLawVersion: "causal-delay-v1",
-    coordinateFrame: "absolute-lab-frame",
+    constantsHash: "constants:causal-delay-feedback",
+    causalSpeedPolicy: "fixed-field-speed",
+    branchPolicy: "all-positive-roots",
+    unitConvention: "solver-si",
+    compatiblePrecisionPaths: ["scaled_f64_strict", "event_root_focused", "extended_precision"],
   };
 }
 
 function createDefaultReplayEnvelope({ input, memoryBudgetBytes }) {
   return {
+    entityCount: 16,
+    assemblyCount: 1,
     timeWindow: {
       start: 0,
       end: normalizePositiveNumber(input.runDuration, DEFAULT_RUN_DURATION, "runDuration"),
-      units: "normalized-time",
+      stepHint: 0.01,
+      units: "solver-time",
     },
-    coordinateDomain: {
-      dimensions: 2,
-      units: "design-pixels",
-    },
+    timeResolutionHint: 0.01,
+    interactionPolicy: "neighbor-pruned",
+    expectedBranchComplexity: "low",
+    outputDetail: "playback",
     memoryBudgetBytes,
+    storageBudgetBytes: 512 * 1024 * 1024,
+    latencyTarget: "background",
+    simplificationPolicy: "none",
   };
 }
 
 function createDefaultReplayErrorBudget() {
   return {
-    positionTolerance: 1e-6,
-    causalRootTolerance: 1e-9,
-    maxUnresolvedRoots: 0,
+    globalTolerance: 1e-13,
+    rootIsolationTolerance: 1e-14,
+    delayedHitTolerance: 1e-13,
+    integrationTolerance: 1e-12,
+    streamEncodingTolerance: 1e-12,
+    readbackTolerance: 1e-12,
+    projectionTolerance: 1e-9,
+    displayTolerance: 1e-6,
   };
 }
 
@@ -474,12 +499,13 @@ function createBridgeDelayedHitsFromReplayDataset(replayDataset) {
   });
 }
 
-function createBridgeGeometryFromReplayDataset(replayDataset) {
+function createBridgeGeometryFromReplayDataset(replayDataset, { initialConditions = {} } = {}) {
   requireObject(replayDataset, "replayDataset");
   return {
     pathBounds: [],
     spherePointIntersections: [],
     history: cloneObject(replayDataset.history, "replayDataset.history"),
+    initialConditions: cloneObject(initialConditions, "initialConditions"),
     presetId: replayDataset.preset?.id ?? DEFAULT_PRESET_ID,
     wakeArcDisplayMode: replayDataset.wakeArcDisplayMode ?? PARTIAL_PROPAGATING_ARCS,
     status: { code: "ok", severity: "ok", message: "causal-delay replay metadata prepared" },

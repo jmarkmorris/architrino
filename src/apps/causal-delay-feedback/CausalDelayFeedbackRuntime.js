@@ -4,6 +4,7 @@ import {
   DEFAULT_PRESET_ID,
   DESIGN_HEIGHT,
   DESIGN_WIDTH,
+  DIRECT_MANIPULATION_DRAFT_PREVIEW,
   ELECTRINO,
   FULL_CIRCULAR_ARCS,
   POSITRINO,
@@ -77,6 +78,10 @@ function getInitialQueryValue(windowLike, key) {
   }
 }
 
+function cloneJson(value) {
+  return value == null ? value : JSON.parse(JSON.stringify(value));
+}
+
 export function createCausalDelayFeedbackRuntime(options = {}) {
   return new CausalDelayFeedbackRuntime(options);
 }
@@ -108,6 +113,7 @@ class CausalDelayFeedbackRuntime {
     this.pixelRatio = 1;
     this.selectedItem = null;
     this.dragState = null;
+    this.syncReplayRequestOptionsFromDataset();
   }
 
   init() {
@@ -219,10 +225,10 @@ class CausalDelayFeedbackRuntime {
       }
     });
     this.window.addEventListener("pointerup", () => {
-      this.finishDrag();
+      void this.finishDrag();
     });
     this.window.addEventListener("pointercancel", () => {
-      this.finishDrag();
+      void this.finishDrag();
     });
     this.document.addEventListener("pointerdown", (event) => {
       if (
@@ -297,10 +303,22 @@ class CausalDelayFeedbackRuntime {
   applyReplayDataset(dataset, { loadState = this.replayLoadState } = {}) {
     this.dataset = dataset;
     this.replayLoadState = loadState;
+    this.syncReplayRequestOptionsFromDataset();
     if (this.dom?.preset) {
       this.dom.preset.value = this.presetId;
     }
     this.updateReplayStatus();
+  }
+
+  syncReplayRequestOptionsFromDataset() {
+    if (!this.dataset) {
+      return;
+    }
+    this.replayRequestOptions = {
+      ...this.replayRequestOptions,
+      initialConditions: cloneJson(this.dataset.initialConditions ?? {}),
+      replayDataset: this.dataset,
+    };
   }
 
   refreshAfterReplayDatasetChange() {
@@ -340,10 +358,23 @@ class CausalDelayFeedbackRuntime {
       };
     }
     if (this.replayLoadState === "fallback") {
+      const errorMessage = this.replayLoadError?.message;
       return {
         state: "fallback",
         label: "representative fallback",
-        help: "Showing representative replay data because solver bridge replay is unavailable.",
+        help: errorMessage
+          ? `Showing representative replay data because solver bridge replay is unavailable: ${errorMessage}`
+          : "Showing representative replay data because solver bridge replay is unavailable.",
+      };
+    }
+    if (
+      this.replayLoadState === "draft" ||
+      this.dataset?.datasetSource === DIRECT_MANIPULATION_DRAFT_PREVIEW
+    ) {
+      return {
+        state: "draft",
+        label: "draft preview",
+        help: "Showing an edited canvas preview that has not been recomputed by the solver.",
       };
     }
     if (this.dataset?.solverIntegrationPath && this.dataset.solverIntegrationPath !== TEMPORARY_MOCK_ADAPTER) {
@@ -493,6 +524,7 @@ class CausalDelayFeedbackRuntime {
       this.drawPathTrail(ctx, "positrino", POSITRINO);
       this.drawPathTrail(ctx, "electrino", ELECTRINO);
     }
+    this.drawInitialConditionHandles(ctx);
     this.drawHistoryPoints(ctx, "positrino", POSITRINO);
     this.drawHistoryPoints(ctx, "electrino", ELECTRINO);
     this.drawSelection(ctx);
@@ -549,7 +581,7 @@ class CausalDelayFeedbackRuntime {
       return;
     }
     const preset = this.dataset.preset;
-    const radius = getDistance(link.source, link.receiver);
+    const radius = getDistance(timing.source, timing.receiver);
     const bandCount = Math.max(2, preset.wakeBands);
     const alpha = (preset.fullCircleAlpha ?? 0.14) * preset.alphaScale;
     const color = withAlpha(mixColor(link.color, WHITE, 0.2), alpha);
@@ -561,7 +593,7 @@ class CausalDelayFeedbackRuntime {
       if (progress <= 0 || progress > visibleProgress) {
         continue;
       }
-      this.drawDottedArc(ctx, link.source, radius * progress, 0, 360, color, dotRadius);
+      this.drawDottedArc(ctx, timing.source, radius * progress, 0, 360, color, dotRadius);
     }
   }
 
@@ -571,12 +603,13 @@ class CausalDelayFeedbackRuntime {
       return;
     }
     const preset = this.dataset.preset;
-    const radius = getDistance(link.source, link.receiver);
-    const theta = getAngleDegrees(link.source, link.receiver);
+    const radius = getDistance(timing.source, timing.receiver);
+    const theta = getAngleDegrees(timing.source, timing.receiver);
     const falloffWeight = Math.pow(link.weight, preset.falloffPower);
     const bandCount = Math.max(2, preset.wakeBands);
 
     this.drawWakeBuildProgression(ctx, link, {
+      source: timing.source,
       radius,
       theta,
       falloffWeight,
@@ -585,7 +618,7 @@ class CausalDelayFeedbackRuntime {
     });
   }
 
-  drawWakeBuildProgression(ctx, link, { radius, theta, falloffWeight, bandCount, buildProgress }) {
+  drawWakeBuildProgression(ctx, link, { source, radius, theta, falloffWeight, bandCount, buildProgress }) {
     const preset = this.dataset.preset;
     const visibleProgress = clamp(buildProgress, 0.02, 1);
 
@@ -602,7 +635,7 @@ class CausalDelayFeedbackRuntime {
       const dotRadius = preset.dotRadius * (0.82 + 0.38 * frontBias) * (0.72 + 0.3 * falloffWeight);
       this.drawDottedArc(
         ctx,
-        link.source,
+        source,
         bandRadius,
         theta - wakeSpan * 0.5,
         theta + wakeSpan * 0.5,
@@ -632,6 +665,26 @@ class CausalDelayFeedbackRuntime {
     });
   }
 
+  drawInitialConditionHandles(ctx) {
+    this.drawInitialConditionHandle(ctx, "positrino", POSITRINO);
+    this.drawInitialConditionHandle(ctx, "electrino", ELECTRINO);
+  }
+
+  drawInitialConditionHandle(ctx, kind, color) {
+    const condition = this.getInitialCondition(kind);
+    if (!condition) {
+      return;
+    }
+    const point = this.initialConditionPoint(condition);
+    const velocityEnd = this.initialConditionVelocityEnd(condition);
+    const screen = this.worldToScreen(point);
+    const velocityScreen = this.worldToScreen(velocityEnd);
+    this.drawLine(ctx, [screen, velocityScreen], withAlpha(mixColor(color, WHITE, 0.42), 0.46), 2);
+    this.drawCircle(ctx, velocityScreen, 4.2, withAlpha(color, 0.56), withAlpha(WHITE, 0.54), 0.9);
+    this.drawCircle(ctx, screen, 16, withAlpha(color, 0.13), withAlpha(WHITE, 0.62), 1.2);
+    this.drawCircle(ctx, screen, 6.4, color, WHITE, 1.2);
+  }
+
   drawSelection(ctx) {
     if (!this.selectedItem) {
       return;
@@ -647,13 +700,26 @@ class CausalDelayFeedbackRuntime {
       this.drawCircle(ctx, screen, 18, withAlpha(WHITE, 0.05), withAlpha(WHITE, 0.86), 1.4);
       return;
     }
+    if (this.selectedItem.type === "initial-condition") {
+      const condition = this.getInitialCondition(this.selectedItem.kind);
+      if (!condition) {
+        return;
+      }
+      const screen = this.worldToScreen(this.initialConditionPoint(condition));
+      this.drawCircle(ctx, screen, 24, withAlpha(WHITE, 0.05), withAlpha(WHITE, 0.9), 1.5);
+      return;
+    }
 
     const link = this.dataset.wakeLinks.find((candidate) => candidate.id === this.selectedItem.linkId);
     if (!link) {
       return;
     }
-    this.drawCircle(ctx, this.worldToScreen(link.source), 13, withAlpha(link.color, 0.08), withAlpha(WHITE, 0.58), 1);
-    this.drawCircle(ctx, this.worldToScreen(link.receiver), 15, withAlpha(WHITE, 0.04), withAlpha(WHITE, 0.78), 1.1);
+    const endpoints = this.getWakeEndpoints(link);
+    if (!endpoints) {
+      return;
+    }
+    this.drawCircle(ctx, this.worldToScreen(endpoints.source), 13, withAlpha(link.color, 0.08), withAlpha(WHITE, 0.58), 1);
+    this.drawCircle(ctx, this.worldToScreen(endpoints.receiver), 15, withAlpha(WHITE, 0.04), withAlpha(WHITE, 0.78), 1.1);
   }
 
   drawLiveMarkers(ctx) {
@@ -769,7 +835,11 @@ class CausalDelayFeedbackRuntime {
 
   handleCanvasPointerMove(event) {
     if (this.dragState) {
-      this.dragSelectedHistoryPoint(event);
+      if (this.dragState.type === "initial-condition") {
+        this.dragSelectedInitialCondition(event);
+      } else {
+        this.dragSelectedHistoryPoint(event);
+      }
       return;
     }
     this.updateHoverLabel(event);
@@ -787,7 +857,9 @@ class CausalDelayFeedbackRuntime {
     }
     this.selectedItem = hit.selection;
     this.updateReadout(hit);
-    if (hit.type === "history") {
+    if (hit.type === "initial-condition") {
+      this.startInitialConditionDrag(event, hit);
+    } else if (hit.type === "history") {
       this.startHistoryPointDrag(event, hit);
     }
     this.render();
@@ -797,9 +869,26 @@ class CausalDelayFeedbackRuntime {
     const rect = this.dom.canvas.getBoundingClientRect();
     const screen = { x: event.clientX - rect.left, y: event.clientY - rect.top };
     this.dragState = {
+      type: "history",
       kind: hit.selection.kind,
       depth: hit.selection.depth,
       lastWorld: this.screenToWorld(screen),
+    };
+    this.setPlaying(false);
+    if (typeof this.dom.canvas.setPointerCapture === "function") {
+      this.dom.canvas.setPointerCapture(event.pointerId);
+    }
+    event.preventDefault();
+  }
+
+  startInitialConditionDrag(event, hit) {
+    const rect = this.dom.canvas.getBoundingClientRect();
+    const screen = { x: event.clientX - rect.left, y: event.clientY - rect.top };
+    this.dragState = {
+      type: "initial-condition",
+      kind: hit.selection.kind,
+      lastWorld: this.screenToWorld(screen),
+      didEdit: false,
     };
     this.setPlaying(false);
     if (typeof this.dom.canvas.setPointerCapture === "function") {
@@ -817,23 +906,116 @@ class CausalDelayFeedbackRuntime {
       y: world.y - this.dragState.lastWorld.y,
     };
     this.dragState.lastWorld = world;
-    this.deformPathAroundHistoryPoint(this.dragState.kind, this.dragState.depth, delta);
-    this.updateWakeLinkGeometry();
-    this.updateReadout();
-    this.render();
+    if (this.applyRetainedPointDrag(this.dragState.kind, this.dragState.depth, delta)) {
+      this.updateReadout();
+      this.render();
+    }
+  }
+
+  dragSelectedInitialCondition(event) {
+    const rect = this.dom.canvas.getBoundingClientRect();
+    const screen = { x: event.clientX - rect.left, y: event.clientY - rect.top };
+    const world = this.screenToWorld(screen);
+    const delta = {
+      x: world.x - this.dragState.lastWorld.x,
+      y: world.y - this.dragState.lastWorld.y,
+    };
+    this.dragState.lastWorld = world;
+    if (this.applyInitialConditionDrag(this.dragState.kind, delta)) {
+      this.dragState.didEdit = true;
+      this.updateReadout();
+      this.render();
+    }
   }
 
   finishDrag() {
+    const completedDrag = this.dragState;
     this.dragState = null;
+    if (completedDrag?.type === "initial-condition" && completedDrag.didEdit) {
+      return this.rerunAfterInitialConditionDrag();
+    }
+    return this.dataset;
+  }
+
+  rerunAfterInitialConditionDrag() {
+    if (this.usesFallbackReplayOnly()) {
+      return this.dataset;
+    }
+    return this.loadReplay({ requestOptions: this.replayRequestOptions });
+  }
+
+  applyRetainedPointDrag(kind, depth, delta) {
+    const didEdit = this.deformPathAroundHistoryPoint(kind, depth, delta);
+    if (!didEdit) {
+      return false;
+    }
+    this.updateWakeLinkGeometry();
+    this.markDraftPreview("retained_point_drag_preview");
+    return true;
+  }
+
+  applyInitialConditionDrag(kind, delta) {
+    const didEdit = this.translateReplayPath(kind, delta);
+    if (!didEdit) {
+      return false;
+    }
+    this.updateWakeLinkGeometry();
+    this.syncReplayRequestOptionsFromDataset();
+    this.markDraftPreview("initial_condition_drag_preview");
+    return true;
+  }
+
+  markDraftPreview(reason) {
+    if (!this.dataset) {
+      return;
+    }
+    this.dataset.datasetSource = DIRECT_MANIPULATION_DRAFT_PREVIEW;
+    this.dataset.draftPreview = {
+      reason,
+      authoritative: false,
+    };
+    this.replayLoadState = "draft";
+    this.replayLoadError = null;
+    this.updateReplayStatus();
+  }
+
+  translateReplayPath(kind, delta) {
+    if (!delta || (delta.x === 0 && delta.y === 0)) {
+      return false;
+    }
+    const points = this.dataset.paths[kind];
+    const condition = this.getInitialCondition(kind);
+    if (!Array.isArray(points) || !condition) {
+      return false;
+    }
+    points.forEach((point) => {
+      point.x += delta.x;
+      point.y += delta.y;
+    });
+    this.dataset.frames.forEach((frame) => {
+      const point = frame[kind];
+      if (!point || points.includes(point)) {
+        return;
+      }
+      point.x += delta.x;
+      point.y += delta.y;
+    });
+    this.dataset.history[kind].forEach((point) => {
+      point.x += delta.x;
+      point.y += delta.y;
+    });
+    condition.x += delta.x;
+    condition.y += delta.y;
+    return true;
   }
 
   deformPathAroundHistoryPoint(kind, depth, delta) {
     if (!delta || (delta.x === 0 && delta.y === 0)) {
-      return;
+      return false;
     }
     const selectedPoint = this.dataset.history[kind]?.find((point) => point.depth === depth);
     if (!selectedPoint) {
-      return;
+      return false;
     }
     const centerT = selectedPoint.t;
     const influenceWidth = 0.17;
@@ -857,6 +1039,7 @@ class CausalDelayFeedbackRuntime {
       point.x += delta.x * weight;
       point.y += delta.y * weight;
     });
+    return true;
   }
 
   getReplayPathPoint(kind, t) {
@@ -909,12 +1092,35 @@ class CausalDelayFeedbackRuntime {
     return this.dataset.history[kind]?.find((point) => Math.abs(point.t - t) <= TIME_EPSILON) ?? null;
   }
 
+  getInitialCondition(kind) {
+    return this.dataset.initialConditions?.[kind] ?? null;
+  }
+
+  initialConditionPoint(condition) {
+    return { x: Number(condition.x) || 0, y: Number(condition.y) || 0 };
+  }
+
+  initialConditionVelocityEnd(condition) {
+    const point = this.initialConditionPoint(condition);
+    const vx = Number(condition.vx) || 0;
+    const vy = Number(condition.vy) || 0;
+    const speed = Math.hypot(vx, vy);
+    if (speed === 0) {
+      return { x: point.x + 42, y: point.y };
+    }
+    const scale = 74 / speed;
+    return {
+      x: point.x + vx * scale,
+      y: point.y + vy * scale,
+    };
+  }
+
   getWakeTiming(link, replayTime = this.getCurrentReplayTime()) {
-    const source = this.dataset.history[link.sourceKind]?.find((point) => point.depth === link.sourceDepth);
-    const receiver = this.dataset.history[link.receiverKind]?.find((point) => point.depth === link.receiverDepth);
-    if (!source || !receiver) {
+    const endpoints = this.getWakeEndpoints(link);
+    if (!endpoints) {
       return null;
     }
+    const { source, receiver } = endpoints;
     const duration = receiver.t - source.t;
     if (!Number.isFinite(duration) || duration <= 0) {
       return null;
@@ -927,6 +1133,30 @@ class CausalDelayFeedbackRuntime {
       receiverT: receiver.t,
       progress: clamp(rawProgress, 0, 1),
       active: rawProgress >= -TIME_EPSILON && rawProgress <= 1 + TIME_EPSILON,
+    };
+  }
+
+  getWakeEndpoints(link) {
+    const source = this.dataset.history[link.sourceKind]?.find((point) => point.depth === link.sourceDepth);
+    const receiver = this.dataset.history[link.receiverKind]?.find((point) => point.depth === link.receiverDepth);
+    if (source && receiver) {
+      return { source, receiver };
+    }
+    if (link.source && link.receiver) {
+      return { source: link.source, receiver: link.receiver };
+    }
+    return null;
+  }
+
+  getWakeFrontCenterPoint(link, replayTime = this.getCurrentReplayTime()) {
+    const timing = this.getWakeTiming(link, replayTime);
+    if (!timing) {
+      return null;
+    }
+    return {
+      x: timing.source.x + (timing.receiver.x - timing.source.x) * timing.progress,
+      y: timing.source.y + (timing.receiver.y - timing.source.y) * timing.progress,
+      t: replayTime,
     };
   }
 
@@ -976,6 +1206,10 @@ class CausalDelayFeedbackRuntime {
   }
 
   getSelectedHit() {
+    if (this.selectedItem?.type === "initial-condition") {
+      const condition = this.getInitialCondition(this.selectedItem.kind);
+      return condition ? this.createInitialConditionHit(this.selectedItem.kind, condition, 0) : null;
+    }
     if (this.selectedItem?.type === "history") {
       const point = this.dataset.history[this.selectedItem.kind]?.find(
         (candidate) => candidate.depth === this.selectedItem.depth,
@@ -990,6 +1224,21 @@ class CausalDelayFeedbackRuntime {
   }
 
   findNearestHit(screen, { includeWakes = false } = {}) {
+    const initialCandidates = [];
+    ["positrino", "electrino"].forEach((kind) => {
+      const condition = this.getInitialCondition(kind);
+      if (!condition) {
+        return;
+      }
+      const candidate = this.worldToScreen(this.initialConditionPoint(condition));
+      const distance = Math.hypot(screen.x - candidate.x, screen.y - candidate.y);
+      initialCandidates.push(this.createInitialConditionHit(kind, condition, distance));
+    });
+    const nearestInitial = initialCandidates.sort((a, b) => a.distance - b.distance)[0];
+    if (nearestInitial && nearestInitial.distance <= nearestInitial.hitRadius) {
+      return nearestInitial;
+    }
+
     const historyCandidates = [];
     ["positrino", "electrino"].forEach((kind) => {
       this.dataset.history[kind].forEach((point) => {
@@ -1005,7 +1254,15 @@ class CausalDelayFeedbackRuntime {
     const candidates = [];
     if (includeWakes) {
       this.dataset.wakeLinks.forEach((link) => {
-        const distance = this.getScreenDistanceToSegment(screen, this.worldToScreen(link.source), this.worldToScreen(link.receiver));
+        const endpoints = this.getWakeEndpoints(link);
+        if (!endpoints) {
+          return;
+        }
+        const distance = this.getScreenDistanceToSegment(
+          screen,
+          this.worldToScreen(endpoints.source),
+          this.worldToScreen(endpoints.receiver),
+        );
         candidates.push(this.createWakeHit(link, distance));
       });
     }
@@ -1025,9 +1282,27 @@ class CausalDelayFeedbackRuntime {
     };
   }
 
+  createInitialConditionHit(kind, condition, distance) {
+    return {
+      type: "initial-condition",
+      title: `${kind} initial`,
+      label: `${kind} initial`,
+      details: [
+        `x=${Math.round(Number(condition.x) || 0)}`,
+        `y=${Math.round(Number(condition.y) || 0)}`,
+        `vx=${(Number(condition.vx) || 0).toFixed(1)}`,
+        `vy=${(Number(condition.vy) || 0).toFixed(1)}`,
+      ],
+      distance,
+      hitRadius: 24,
+      selection: { type: "initial-condition", kind },
+    };
+  }
+
   createWakeHit(link, distance) {
-    const travelDistance = getDistance(link.source, link.receiver);
     const timing = this.getWakeTiming(link);
+    const endpoints = timing ?? this.getWakeEndpoints(link);
+    const travelDistance = endpoints ? getDistance(endpoints.source, endpoints.receiver) : 0;
     const timingState = this.getWakeTimingState(timing);
     const falloff = this.getWakeFalloff(link);
     return {
@@ -1064,9 +1339,10 @@ class CausalDelayFeedbackRuntime {
   }
 
   getWakeFalloff(link) {
-    const distance = Number.isFinite(Number(link.distance))
-      ? Number(link.distance)
-      : getDistance(link.source, link.receiver);
+    const endpoints = this.getWakeEndpoints(link);
+    const distance = endpoints
+      ? getDistance(endpoints.source, endpoints.receiver)
+      : Number(link.distance);
     return distance > 0 ? 1 / distance : 0;
   }
 

@@ -8,12 +8,14 @@ export const DEFAULT_CANVAS_ID = "solid_purple";
 export const CENTRAL_SOLVER_BRIDGE_TARGET = "central_solver_bridge_path_history_stream";
 export const TEMPORARY_MOCK_ADAPTER = "temporary_mock_adapter";
 export const REPRESENTATIVE_MOCK_SOLVER_REPLAY = "representative_mock_solver_replay";
+export const DIRECT_MANIPULATION_DRAFT_PREVIEW = "direct_manipulation_draft_preview";
 
 export const POSITRINO = Object.freeze({ r: 255, g: 0, b: 0, a: 1 });
 export const ELECTRINO = Object.freeze({ r: 0, g: 0, b: 255, a: 1 });
 export const POSITRINO_WAKE = Object.freeze({ r: 255, g: 150, b: 166, a: 1 });
 export const ELECTRINO_WAKE = Object.freeze({ r: 150, g: 170, b: 255, a: 1 });
 export const WHITE = Object.freeze({ r: 246, g: 247, b: 255, a: 1 });
+export const ARCHITRINO_KINDS = Object.freeze(["positrino", "electrino"]);
 
 export const CANVAS_COLORS = Object.freeze([
   { id: "solid_purple", label: "Solid purple", color: "#401d68" },
@@ -196,6 +198,7 @@ export function createMockCausalDelayReplayDataset(presetId = DEFAULT_PRESET_ID)
     positrino: samplePath("positrino"),
     electrino: samplePath("electrino"),
   };
+  const initialConditions = createInitialConditionsFromPaths(paths);
   const history = {
     positrino: HISTORY_POINTS.map((row) => ({ ...row, kind: "positrino", ...getPathPoint("positrino", row.t) })),
     electrino: HISTORY_POINTS.map((row) => ({ ...row, kind: "electrino", ...getPathPoint("electrino", row.t) })),
@@ -233,6 +236,7 @@ export function createMockCausalDelayReplayDataset(presetId = DEFAULT_PRESET_ID)
     futureSolverTarget: CENTRAL_SOLVER_BRIDGE_TARGET,
     wakeArcDisplayMode: preset.wakeArcDisplayMode,
     preset,
+    initialConditions,
     paths,
     history,
     wakeLinks,
@@ -242,6 +246,32 @@ export function createMockCausalDelayReplayDataset(presetId = DEFAULT_PRESET_ID)
       electrino: paths.electrino[index],
     })),
   };
+}
+
+function createInitialConditionsFromPaths(paths) {
+  const conditions = {
+    historyDepth: HISTORY_POINTS.length,
+    outputStride: 1,
+    runDuration: 1,
+  };
+  ARCHITRINO_KINDS.forEach((kind) => {
+    const points = paths[kind];
+    const start = points[0];
+    const next = points[1] ?? start;
+    const dt = Number(next.t) - Number(start.t);
+    const velocityScale = Number.isFinite(dt) && dt !== 0 ? 1 / dt : 0;
+    conditions[kind] = {
+      kind,
+      t: start.t,
+      x: start.x,
+      y: start.y,
+      vx: (next.x - start.x) * velocityScale,
+      vy: (next.y - start.y) * velocityScale,
+      polarity: kind === "positrino" ? "positive" : "negative",
+      role: "source",
+    };
+  });
+  return conditions;
 }
 
 function samplePath(kind, count = FRAME_COUNT) {

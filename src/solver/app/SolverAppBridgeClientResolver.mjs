@@ -289,7 +289,9 @@ export async function resolveSolverAppBridgeWorker({
   const workerUrl = options.workerUrl ?? bridgeConfig.workerUrl;
   const scope = options.scope ?? bridgeConfig.scope ?? globalThis;
   const WorkerCtor = options.WorkerCtor ?? bridgeConfig.WorkerCtor ?? scope?.Worker;
-  if (workerUrl != null || WorkerCtor != null) {
+  const hasConfiguredWorkerCtor =
+    options.WorkerCtor != null || bridgeConfig.WorkerCtor != null;
+  if (workerUrl != null || hasConfiguredWorkerCtor) {
     if (workerUrl == null || typeof WorkerCtor !== "function") {
       throw new Error("solver worker resolution requires both workerUrl and Worker constructor");
     }

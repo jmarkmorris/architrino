@@ -17,6 +17,7 @@ import {
   createAnimatorDefaultSolverWasmLoaderUrl,
   createAnimatorSolverBridgeWorkerOptions,
 } from "../src/apps/animator/AnimatorSolverBridgeWorkerRuntime.js";
+import { resolveSolverAppBridgeWorker } from "../src/solver/app/SolverAppBridgeClientResolver.mjs";
 import { normalizeAnimatorSimulationDataset } from "../src/apps/animator/AnimatorSimulationDatasetRuntime.js";
 import { createSolverBridgeLoopbackWorker } from "./solver-worker-loopback.mjs";
 
@@ -28,29 +29,120 @@ const SMALL_RUN = Object.freeze({
   rootHaltPolicy: "none",
 });
 
-test("animator simulation worker core returns a transferable frame buffer", () => {
+function createMockAnimatorSolverBridgeRunHandle(runRequest, options = {}) {
+  const motionRequest = runRequest.config?.motionRequest ?? {};
+  const segment = motionRequest.segment ?? {};
+  const frameCount = Math.max(1, Math.round(Number(options.frameCount) || 3));
+  const startTime = Number.isFinite(Number(motionRequest.startTime))
+    ? Number(motionRequest.startTime)
+    : Number(segment.startTime) || 0;
+  const endTime = Number.isFinite(Number(motionRequest.endTime))
+    ? Number(motionRequest.endTime)
+    : startTime;
+  const segmentStartTime = Number.isFinite(Number(segment.startTime))
+    ? Number(segment.startTime)
+    : startTime;
+  const frameStep = frameCount > 1 ? (endTime - startTime) / (frameCount - 1) : 0;
+  const pathKey = Number.isFinite(Number(options.pathKey))
+    ? Number(options.pathKey)
+    : Number(motionRequest.pathKey) || 1;
+  const startPosition = segment.positionAtStart ?? { x: 0, y: 0, z: 0 };
+  const velocity = segment.velocity ?? { x: 0, y: 0, z: 0 };
+  const frames = Array.from({ length: frameCount }, (_, index) => {
+    const time = startTime + frameStep * index;
+    const elapsed = time - segmentStartTime;
+    return {
+      pathKey,
+      frameIndex: index,
+      time,
+      position: {
+        x: (Number(startPosition.x) || 0) + (Number(velocity.x) || 0) * elapsed,
+        y: (Number(startPosition.y) || 0) + (Number(velocity.y) || 0) * elapsed,
+        z: (Number(startPosition.z) || 0) + (Number(velocity.z) || 0) * elapsed,
+      },
+      velocity: {
+        x: Number(velocity.x) || 0,
+        y: Number(velocity.y) || 0,
+        z: Number(velocity.z) || 0,
+      },
+      errorBound: Number(segment.errorBound) || 0,
+      stateFlags: Number(motionRequest.stateFlags) || 0,
+    };
+  });
+  return {
+    requestId: runRequest.requestId,
+    runId: runRequest.runId,
+    datasetId: runRequest.datasetId,
+    acceptedPrecisionPath: options.precisionPath ?? "event_root_focused",
+    status: { code: "ok", severity: "ok", message: "simulation run completed" },
+    response: {
+      runId: runRequest.runId,
+      datasetId: runRequest.datasetId,
+      summary: {
+        precisionPath: options.precisionPath ?? "event_root_focused",
+        frameCount: frames.length,
+        pathCount: frames.length > 0 ? 1 : 0,
+        status: { code: "ok", severity: "ok", message: "motion simulation completed" },
+      },
+      frames,
+      pathHistory: { streamId: `${runRequest.runId}:motion-path-history` },
+      diagnostics: [],
+      status: { code: "ok", severity: "ok", message: "motion simulation completed" },
+    },
+  };
+}
+
+function createMockAnimatorSolverBridgeRunner(options = {}) {
+  return async function runSolverBridge(runRequest) {
+    options.assertRunRequest?.(runRequest);
+    return createMockAnimatorSolverBridgeRunHandle(runRequest, options);
+  };
+}
+
+test("animator simulation worker core returns a transferable frame buffer from the central solver", async () => {
   const request = createAnimatorSimulationWorkerRunRequest(SMALL_RUN, {
     requestId: "worker_core_test",
     datasetOptions: { id: "worker_core_dataset" },
   });
-  const message = runAnimatorSimulationWorkerRequest(request);
+  const message = await runAnimatorSimulationWorkerRequestAsync(request, {
+    runSolverBridge: createMockAnimatorSolverBridgeRunner({
+      assertRunRequest(runRequest) {
+        assert.equal(runRequest.runKind, "motionSimulation");
+        assert.equal(runRequest.appId, "animator");
+        assert.equal(runRequest.config.motionRequest.pathKey, 1);
+      },
+    }),
+  });
 
   assert.equal(message.type, "animator.simulation.complete");
   assert.equal(message.requestId, "worker_core_test");
   assert.equal(message.dataset.id, "worker_core_dataset");
   assert.equal(message.dataset.frames.length, 0);
-  assert.ok(message.dataset.delayedHits.length > 0);
+  assert.equal(message.dataset.delayedHits.length, 0);
   assert.equal(message.frameBuffer.frameCount, 3);
+  assert.equal(message.frameBuffer.particleCount, 1);
   assert.equal(message.frameBuffer.positions instanceof Float64Array, true);
   assert.equal(message.stats.completed, true);
+  assert.equal(message.stats.solverEngineId, "architrino-solver-app-bridge");
 
   const hydrated = normalizeAnimatorSimulationDataset(
     hydrateAnimatorSimulationWorkerCompleteMessage(message).dataset
   );
   assert.equal(hydrated.frames.length, 3);
-  assert.deepEqual(hydrated.frames[0].particles[0].position, [1, 0, 0]);
-  assert.equal(hydrated.delayedHits[0].status, "causal-root");
-  assert.equal(hydrated.diagnostics.aggregateHitStats.total_partner_hits, 16);
+  assert.deepEqual(hydrated.frames[0].particles[0].position, [0, 0, 0]);
+  assert.equal(hydrated.simulation.solver.engineId, "architrino-solver-app-bridge");
+});
+
+test("animator simulation worker synchronous core rejects legacy solver use", () => {
+  const request = createAnimatorSimulationWorkerRunRequest(SMALL_RUN, {
+    requestId: "worker_core_legacy_reject_test",
+    datasetOptions: { id: "worker_core_legacy_reject_dataset" },
+  });
+
+  assert.throws(
+    () => runAnimatorSimulationWorkerRequest(request),
+    /central solver bridge/
+  );
 });
 
 test("animator simulation worker core can route an opt-in run through the solver app bridge", async () => {
@@ -387,6 +479,22 @@ test("animator solver bridge worker options point to the packaged ES module load
   );
 });
 
+test("solver bridge resolver ignores ambient Worker constructors without a worker URL", async () => {
+  class AmbientWorker {
+    postMessage() {}
+  }
+
+  const workerResolution = await resolveSolverAppBridgeWorker({
+    appId: "animator",
+    requiredMethod: "runSimulation",
+    options: {
+      scope: { Worker: AmbientWorker },
+    },
+  });
+
+  assert.equal(workerResolution, null);
+});
+
 test("animator simulation worker client hydrates worker messages", async () => {
   class FakeWorker {
     constructor() {
@@ -402,9 +510,15 @@ test("animator simulation worker client hydrates worker messages", async () => {
     }
 
     postMessage(request) {
-      queueMicrotask(() => {
-        const response = runAnimatorSimulationWorkerRequest(request);
-        this.listeners.get("message")?.({ data: response });
+      queueMicrotask(async () => {
+        try {
+          const response = await runAnimatorSimulationWorkerRequestAsync(request, {
+            runSolverBridge: createMockAnimatorSolverBridgeRunner(),
+          });
+          this.listeners.get("message")?.({ data: response });
+        } catch (error) {
+          this.listeners.get("error")?.({ error, message: error?.message });
+        }
       });
     }
 
@@ -424,17 +538,19 @@ test("animator simulation worker client hydrates worker messages", async () => {
   assert.equal(result.dataset.id, "client_dataset");
   assert.equal(result.dataset.frames.length, 3);
   assert.equal(result.frameBufferSummary.frameCount, 3);
-  assert.deepEqual(result.dataset.frames[2].particles[1].position.length, 3);
+  assert.deepEqual(result.dataset.frames[2].particles[0].position.length, 3);
   client.terminate();
 });
 
-test("animator simulation worker dataset merges into an animator document", () => {
+test("animator simulation worker dataset merges into an animator document", async () => {
   const request = createAnimatorSimulationWorkerRunRequest(SMALL_RUN, {
     requestId: "merge_test",
     datasetOptions: { id: "merge_dataset" },
   });
   const result = hydrateAnimatorSimulationWorkerCompleteMessage(
-    runAnimatorSimulationWorkerRequest(request)
+    await runAnimatorSimulationWorkerRequestAsync(request, {
+      runSolverBridge: createMockAnimatorSolverBridgeRunner(),
+    })
   );
   const documentData = mergeAnimatorSimulationDatasetIntoDocument(
     {
@@ -455,13 +571,15 @@ test("animator simulation worker dataset merges into an animator document", () =
   assert.equal(documentData.metadata.simulationWorker.lastRun.frameCount, 3);
 });
 
-test("animator simulation worker dataset can preserve authored scene timing", () => {
+test("animator simulation worker dataset can preserve authored scene timing", async () => {
   const request = createAnimatorSimulationWorkerRunRequest(SMALL_RUN, {
     requestId: "merge_preserve_time_test",
     datasetOptions: { id: "merge_preserve_time_dataset" },
   });
   const result = hydrateAnimatorSimulationWorkerCompleteMessage(
-    runAnimatorSimulationWorkerRequest(request)
+    await runAnimatorSimulationWorkerRequestAsync(request, {
+      runSolverBridge: createMockAnimatorSolverBridgeRunner(),
+    })
   );
   const documentData = mergeAnimatorSimulationDatasetIntoDocument(
     {

@@ -44,10 +44,14 @@ import {
 import {
   buildPhotonArchitrinoSourceRefs,
   buildPhotonDerivedPolarizationTrace,
+  buildPhotonPlotSamplesWithSolverBridge,
   buildPhotonPlotSamples,
   computePhotonDelayedEmissionField,
+  computePhotonDelayedEmissionFieldWithSolverBridge,
+  computePhotonFormulaSummaryWithSolverBridge,
   computePhotonFormulaSummary,
   computePhotonObserverField,
+  computePhotonObserverFieldWithSolverBridge,
   createPhotonCircularSourceCausalRootRequest,
   createPhotonCausalRootsSolverRunRequest,
   fitPhotonPolarizationFromSamples,
@@ -89,6 +93,68 @@ function evaluateCircularSourceRequestPosition(segment, time) {
     y: segment.center.y + segment.radiusU.y * Math.cos(phase) + segment.radiusV.y * Math.sin(phase),
     z: segment.center.z + segment.radiusU.z * Math.cos(phase) + segment.radiusV.z * Math.sin(phase),
   };
+}
+
+function createPhotonCircularSourceBridgeStub() {
+  const calls = [];
+  const solveCircularSourceRootsHitsLedger = async (request) => {
+    calls.push(request);
+    let emissionTime = Number(request.hitTime) || 0;
+    let sourcePoint = evaluateCircularSourceRequestPosition(request.source, emissionTime);
+    const receiverPoint = request.receiver.positionAtStart;
+    let distance = Math.hypot(
+      receiverPoint.x - sourcePoint.x,
+      receiverPoint.y - sourcePoint.y,
+      receiverPoint.z - sourcePoint.z
+    );
+    for (let index = 0; index < 6; index += 1) {
+      emissionTime = request.hitTime - distance / Math.max(1e-12, request.signalSpeed);
+      sourcePoint = evaluateCircularSourceRequestPosition(request.source, emissionTime);
+      distance = Math.hypot(
+        receiverPoint.x - sourcePoint.x,
+        receiverPoint.y - sourcePoint.y,
+        receiverPoint.z - sourcePoint.z
+      );
+    }
+    const delay = request.hitTime - emissionTime;
+    return {
+      schema: "solver-circular-source-roots-hits-ledger-f64.v1",
+      roots: [
+        {
+          rootId: 0,
+          statusCode: 0,
+          emissionTime,
+          hitTime: request.hitTime,
+          delay,
+          distance,
+          residual: distance - delay * request.signalSpeed,
+          jacobian: 1,
+          branchWeight: 1,
+          sourcePoint,
+          receiverPoint,
+        },
+      ],
+      hits: [],
+      rootLedgerDetails: [
+        {
+          rowId: 0,
+          rootId: 0,
+          entryKind: 1,
+          statusCode: 0,
+          iterationCount: 6,
+          bracketStart: request.source.startTime,
+          bracketEnd: request.source.endTime,
+          emissionTime,
+          hitTime: request.hitTime,
+          residual: distance - delay * request.signalSpeed,
+          jacobian: 1,
+          branchWeight: 1,
+        },
+      ],
+      status: { code: "ok", severity: "ok", message: "circular-source causal roots solved" },
+    };
+  };
+  return { calls, solveCircularSourceRootsHitsLedger };
 }
 
 function buildSyntheticPolarizationSamples({ ampY = 1, ampZ = 0, phaseLag = 0, count = 144 } = {}) {
@@ -727,6 +793,57 @@ test("Photon circular-source bridge can create and dispose a solver bridge clien
   assert.equal(response.roots.length, 1);
   assert.equal(response.roots[0].hitTime, observationTime);
   assert.equal(disposed, true);
+});
+
+test("Photon delayed emission field can be assembled from central solver circular-source roots", async () => {
+  const state = createDefaultPhotonState();
+  const bridge = createPhotonCircularSourceBridgeStub();
+  const field = await computePhotonDelayedEmissionFieldWithSolverBridge(state, 0.75, {
+    solveCircularSourceRootsHitsLedger: bridge.solveCircularSourceRootsHitsLedger,
+  });
+
+  assert.equal(field.solverEngineId, "architrino-solver-app-bridge");
+  assert.equal(field.sourceMode, "solver_bridge_circular_source_branch_sum");
+  assert.equal(field.sourceCount, buildPhotonArchitrinoSourceRefs(state).length);
+  assert.equal(field.rootCount, field.sourceCount);
+  assert.equal(bridge.calls.length, field.sourceCount);
+  assert.ok(field.contributions.every((contribution) =>
+    contribution.solverEngineId === "architrino-solver-app-bridge"
+  ));
+  assert.ok(Number.isFinite(field.electric.y));
+  assert.ok(Number.isFinite(field.comparisonB.z));
+});
+
+test("Photon formula and plot APIs expose central solver bridge results", async () => {
+  const state = createDefaultPhotonState();
+  const summaryBridge = createPhotonCircularSourceBridgeStub();
+  const summary = await computePhotonFormulaSummaryWithSolverBridge(state, 0.5, {
+    solveCircularSourceRootsHitsLedger: summaryBridge.solveCircularSourceRootsHitsLedger,
+    polarizationSampleCount: 24,
+    analyzerSampleCount: 8,
+  });
+
+  assert.equal(summary.solverEngineId, "architrino-solver-app-bridge");
+  assert.equal(summary.field.solverEngineId, "architrino-solver-app-bridge");
+  assert.equal(summary.polarization.solverEngineId, "architrino-solver-app-bridge");
+  assert.ok(Number.isFinite(summary.polarization.amplitudes.y));
+  assert.ok(Number.isFinite(summary.averageAnalyzerFraction));
+  assert.ok(summaryBridge.calls.length > buildPhotonArchitrinoSourceRefs(state).length);
+
+  const observerBridge = createPhotonCircularSourceBridgeStub();
+  const observerField = await computePhotonObserverFieldWithSolverBridge(state, 0.5, {
+    solveCircularSourceRootsHitsLedger: observerBridge.solveCircularSourceRootsHitsLedger,
+  });
+  assert.equal(observerField.solverEngineId, "architrino-solver-app-bridge");
+  assert.ok(Number.isFinite(observerField.electric.magnitude));
+
+  const plotBridge = createPhotonCircularSourceBridgeStub();
+  const plot = await buildPhotonPlotSamplesWithSolverBridge(state, 0.5, 4, {
+    solveCircularSourceRootsHitsLedger: plotBridge.solveCircularSourceRootsHitsLedger,
+  });
+  assert.equal(plot.solverEngineId, "architrino-solver-app-bridge");
+  assert.equal(plot.samples.length, 5);
+  assert.ok(Number.isFinite(plot.amplitudeScale));
 });
 
 test("large Sep/r still uses the full causal-root scanner", () => {
