@@ -12,9 +12,10 @@
 		8A1F1F102D0A2B0D0073C001 /* GeneratedTextbookPackage in Resources */ = {isa = PBXBuildFile; fileRef = 8A1F1F0B2D0A2B0D0073C001 /* GeneratedTextbookPackage */; };
 		8A1F1F242D0A2B0D0073C001 /* ArchitrinoReader/ReaderModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1F1F202D0A2B0D0073C001 /* ArchitrinoReader/ReaderModels.swift */; };
 		8A1F1F252D0A2B0D0073C001 /* ArchitrinoReader/ReaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1F1F212D0A2B0D0073C001 /* ArchitrinoReader/ReaderViewModel.swift */; };
-		8A1F1F262D0A2B0D0073C001 /* ArchitrinoReader/ReaderWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1F1F222D0A2B0D0073C001 /* ArchitrinoReader/ReaderWebView.swift */; };
-		8A1F1F272D0A2B0D0073C001 /* ArchitrinoReader/ReaderAssets in Resources */ = {isa = PBXBuildFile; fileRef = 8A1F1F232D0A2B0D0073C001 /* ArchitrinoReader/ReaderAssets */; };
-		8A1F1F2B2D0A2B0D0073C001 /* ArchitrinoReader/Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A1F1F2A2D0A2B0D0073C001 /* ArchitrinoReader/Assets.xcassets */; };
+			8A1F1F262D0A2B0D0073C001 /* ArchitrinoReader/ReaderWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1F1F222D0A2B0D0073C001 /* ArchitrinoReader/ReaderWebView.swift */; };
+			8A1F1F272D0A2B0D0073C001 /* ArchitrinoReader/ReaderAssets in Resources */ = {isa = PBXBuildFile; fileRef = 8A1F1F232D0A2B0D0073C001 /* ArchitrinoReader/ReaderAssets */; };
+			8A1F1F2B2D0A2B0D0073C001 /* ArchitrinoReader/Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A1F1F2A2D0A2B0D0073C001 /* ArchitrinoReader/Assets.xcassets */; };
+			8A1F1F302D0B10000073C001 /* ArchitrinoReader/LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A1F1F2F2D0B10000073C001 /* ArchitrinoReader/LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,9 +25,10 @@
 		8A1F1F0D2D0A2B0D0073C001 /* ArchitrinoReader/ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchitrinoReader/ContentView.swift; sourceTree = SOURCE_ROOT; };
 		8A1F1F202D0A2B0D0073C001 /* ArchitrinoReader/ReaderModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchitrinoReader/ReaderModels.swift; sourceTree = SOURCE_ROOT; };
 		8A1F1F212D0A2B0D0073C001 /* ArchitrinoReader/ReaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchitrinoReader/ReaderViewModel.swift; sourceTree = SOURCE_ROOT; };
-		8A1F1F222D0A2B0D0073C001 /* ArchitrinoReader/ReaderWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchitrinoReader/ReaderWebView.swift; sourceTree = SOURCE_ROOT; };
-		8A1F1F232D0A2B0D0073C001 /* ArchitrinoReader/ReaderAssets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ArchitrinoReader/ReaderAssets; sourceTree = SOURCE_ROOT; };
-		8A1F1F2A2D0A2B0D0073C001 /* ArchitrinoReader/Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ArchitrinoReader/Assets.xcassets; sourceTree = SOURCE_ROOT; };
+			8A1F1F222D0A2B0D0073C001 /* ArchitrinoReader/ReaderWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchitrinoReader/ReaderWebView.swift; sourceTree = SOURCE_ROOT; };
+			8A1F1F232D0A2B0D0073C001 /* ArchitrinoReader/ReaderAssets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ArchitrinoReader/ReaderAssets; sourceTree = SOURCE_ROOT; };
+			8A1F1F2A2D0A2B0D0073C001 /* ArchitrinoReader/Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ArchitrinoReader/Assets.xcassets; sourceTree = SOURCE_ROOT; };
+			8A1F1F2F2D0B10000073C001 /* ArchitrinoReader/LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ArchitrinoReader/LaunchScreen.storyboard; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,11 +64,12 @@
 				8A1F1F0C2D0A2B0D0073C001 /* ArchitrinoReader/ArchitrinoReaderApp.swift */,
 				8A1F1F0D2D0A2B0D0073C001 /* ArchitrinoReader/ContentView.swift */,
 				8A1F1F202D0A2B0D0073C001 /* ArchitrinoReader/ReaderModels.swift */,
-				8A1F1F212D0A2B0D0073C001 /* ArchitrinoReader/ReaderViewModel.swift */,
-				8A1F1F222D0A2B0D0073C001 /* ArchitrinoReader/ReaderWebView.swift */,
-				8A1F1F2A2D0A2B0D0073C001 /* ArchitrinoReader/Assets.xcassets */,
-				8A1F1F232D0A2B0D0073C001 /* ArchitrinoReader/ReaderAssets */,
-				8A1F1F0B2D0A2B0D0073C001 /* GeneratedTextbookPackage */,
+					8A1F1F212D0A2B0D0073C001 /* ArchitrinoReader/ReaderViewModel.swift */,
+					8A1F1F222D0A2B0D0073C001 /* ArchitrinoReader/ReaderWebView.swift */,
+					8A1F1F2F2D0B10000073C001 /* ArchitrinoReader/LaunchScreen.storyboard */,
+					8A1F1F2A2D0A2B0D0073C001 /* ArchitrinoReader/Assets.xcassets */,
+					8A1F1F232D0A2B0D0073C001 /* ArchitrinoReader/ReaderAssets */,
+					8A1F1F0B2D0A2B0D0073C001 /* GeneratedTextbookPackage */,
 			);
 			path = ArchitrinoReader;
 			sourceTree = SOURCE_ROOT;
@@ -129,11 +132,12 @@
 		8A1F1F112D0A2B0D0073C001 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
-			files = (
-				8A1F1F102D0A2B0D0073C001 /* GeneratedTextbookPackage in Resources */,
-				8A1F1F2B2D0A2B0D0073C001 /* ArchitrinoReader/Assets.xcassets in Resources */,
-				8A1F1F272D0A2B0D0073C001 /* ArchitrinoReader/ReaderAssets in Resources */,
-			);
+				files = (
+					8A1F1F102D0A2B0D0073C001 /* GeneratedTextbookPackage in Resources */,
+					8A1F1F302D0B10000073C001 /* ArchitrinoReader/LaunchScreen.storyboard in Resources */,
+					8A1F1F2B2D0A2B0D0073C001 /* ArchitrinoReader/Assets.xcassets in Resources */,
+					8A1F1F272D0A2B0D0073C001 /* ArchitrinoReader/ReaderAssets in Resources */,
+				);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
@@ -188,8 +192,7 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = "";
+					INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UIStatusBarHidden = NO;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -223,8 +226,7 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = "";
+					INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UIStatusBarHidden = NO;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

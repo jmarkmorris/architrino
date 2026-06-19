@@ -183,13 +183,14 @@ final class ReaderViewModel: ObservableObject {
             searchResults = []
             isSearchIndexLoaded = false
             isSearchIndexLoading = false
-            let data = try loader.loadPackage()
+            let data = try await Task.detached(priority: .userInitiated) {
+                try ReaderTextbookLoader().loadPackage()
+            }.value
             package = data
             markdownCache.removeAll(keepingCapacity: false)
             htmlCache.removeAll(keepingCapacity: false)
             restoredReadingState = restoreReadingState()
             buildBootstrapContext()
-            loadLinkMetadataIfNeeded()
             errorMessage = nil
             renderCommand = nil
             anchorCommand = nil
@@ -1061,7 +1062,7 @@ final class ReaderViewModel: ObservableObject {
         let warmupPaths = postLaunchWarmupPaths()
         postLaunchWarmupTask?.cancel()
         postLaunchWarmupTask = Task { [weak self] in
-            try? await Task.sleep(nanoseconds: 450_000_000)
+            try? await Task.sleep(nanoseconds: 2_500_000_000)
             guard !Task.isCancelled else { return }
 
             await Task.detached(priority: .utility) {

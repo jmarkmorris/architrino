@@ -628,6 +628,32 @@ function getPhotonFieldAxisY(cssHeight) {
   return (PHOTON_FIELD_PLOT_TOP_INSET + (cssHeight - PHOTON_FIELD_PLOT_BOTTOM_INSET)) / 2;
 }
 
+function hasOwnOption(options, key) {
+  return Object.prototype.hasOwnProperty.call(options, key);
+}
+
+function hasPhotonPlotSamples(plot) {
+  return Array.isArray(plot?.samples) && plot.samples.length > 0;
+}
+
+function hasPhotonPolarizationTrace(trace) {
+  return Array.isArray(trace?.samples) &&
+    trace.samples.length > 0 &&
+    trace.current &&
+    trace.analyzer &&
+    Number.isFinite(Number(trace.scale));
+}
+
+function drawPhotonFieldPanelMessage(ctx, cssWidth, cssHeight, message) {
+  ctx.save();
+  ctx.fillStyle = "rgba(238, 243, 255, 0.68)";
+  ctx.font = PHOTON_FIELD_PANEL_TEXT_FONT;
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillText(String(message || "Loading solver data"), cssWidth / 2, cssHeight / 2);
+  ctx.restore();
+}
+
 export function getPhotonFieldPlotSampleCount(cssWidth) {
   const width = Math.max(0, Number(cssWidth) || 0);
   return Math.round(
@@ -823,7 +849,13 @@ function drawPhotonComponentPlot(canvas, state, timeSeconds, options = {}) {
   ctx.fillRect(0, 0, cssWidth, cssHeight);
 
   const sampleCount = getPhotonFieldPlotSampleCount(cssWidth);
-  const plot = getPhotonFieldPlotSamples(state, sampleCount);
+  const plot = hasOwnOption(options, "plot")
+    ? options.plot
+    : getPhotonFieldPlotSamples(state, sampleCount);
+  if (!hasPhotonPlotSamples(plot)) {
+    drawPhotonFieldPanelMessage(ctx, cssWidth, cssHeight, options.pendingMessage);
+    return;
+  }
   const currentTime = wrapPhotonTime(state, timeSeconds);
   const currentProgress = plot.runDuration > 0 ? currentTime / plot.runDuration : 0;
   const amplitudeScale = getPlotAmplitudeScale(
@@ -911,7 +943,13 @@ export function drawPhotonPolarizationInset(canvas, state, timeSeconds, options 
   ctx.fillStyle = "rgba(6, 9, 18, 0.96)";
   ctx.fillRect(0, 0, cssWidth, cssHeight);
 
-  const trace = buildPhotonDerivedPolarizationTrace(state, timeSeconds);
+  const trace = hasOwnOption(options, "trace")
+    ? options.trace
+    : buildPhotonDerivedPolarizationTrace(state, timeSeconds);
+  if (!hasPhotonPolarizationTrace(trace)) {
+    drawPhotonFieldPanelMessage(ctx, cssWidth, cssHeight, options.pendingMessage);
+    return;
+  }
   const centerX = cssWidth / 2;
   const centerY = getPhotonFieldAxisY(cssHeight);
   const radius = Math.max(42, Math.min(cssWidth - 40, cssHeight - 62) * 0.48);

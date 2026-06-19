@@ -133,9 +133,10 @@ export function computePhotonDiagnostics(state, timeSeconds, formulaSummary = nu
 }
 
 export function getPhotonDiagnosticRows(state, timeSeconds, formulaSummary = null) {
-  const diagnostics = computePhotonDiagnostics(state, timeSeconds, formulaSummary);
+  const formula = formulaSummary ?? computePhotonFormulaSummary(state, timeSeconds);
+  const diagnostics = computePhotonDiagnostics(state, timeSeconds, formula);
   const delayStatus = getDelaySolveStatus(diagnostics);
-  return [
+  const rows = [
     ["Transverse amp", formatPhotonFixed(diagnostics.transverseAmplitude, 3), "info"],
     ["Longitudinal leak", formatPhotonFixed(diagnostics.longitudinalLeakage, 3), getLongitudinalLeakQuality(diagnostics)],
     ["Helicity estimate", diagnostics.helicityEstimate > 0 ? "+1" : "open", diagnostics.helicityEstimate > 0 ? "good" : "info"],
@@ -166,4 +167,8 @@ export function getPhotonDiagnosticRows(state, timeSeconds, formulaSummary = nul
     ["Left phase spread", `${formatPhotonFixed(diagnostics.leftPhaseSpread, 1)} deg`, "info"],
     ["Right phase spread", `${formatPhotonFixed(diagnostics.rightPhaseSpread, 1)} deg`, "info"],
   ];
+  if (formula?.solverEngineId) {
+    rows.unshift(["Solver engine", formula.solverEngineId, "info"]);
+  }
+  return rows;
 }

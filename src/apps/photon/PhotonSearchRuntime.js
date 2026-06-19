@@ -14,7 +14,10 @@ import {
   createPhotonPresetState,
 } from "./PhotonPresetRuntime.js";
 import { computePhotonDiagnostics } from "./PhotonDiagnosticsRuntime.js";
-import { computePhotonFormulaSummary } from "./PhotonFormulaRuntime.js";
+import {
+  computePhotonFormulaSummary,
+  computePhotonFormulaSummaryWithSolverBridge,
+} from "./PhotonFormulaRuntime.js";
 
 const PHOTON_SEARCH_RESULT_LIMIT = 12;
 const PHOTON_SEARCH_SUMMARY_OPTIONS = Object.freeze({
@@ -269,6 +272,20 @@ function perturbPhotonSearchState(state) {
 function evaluatePhotonSearchPerturbation(state, summary) {
   const perturbed = perturbPhotonSearchState(state);
   const nextSummary = computePhotonFormulaSummary(perturbed, 0, PHOTON_SEARCH_PERTURB_OPTIONS);
+  return summarizePhotonSearchPerturbation(summary, nextSummary);
+}
+
+async function evaluatePhotonSearchPerturbationWithSolverBridge(state, summary, options = {}) {
+  const perturbed = perturbPhotonSearchState(state);
+  const nextSummary = await computePhotonFormulaSummaryWithSolverBridge(
+    perturbed,
+    0,
+    createPhotonSearchSolverOptions(options, PHOTON_SEARCH_PERTURB_OPTIONS, "perturb")
+  );
+  return summarizePhotonSearchPerturbation(summary, nextSummary);
+}
+
+function summarizePhotonSearchPerturbation(summary, nextSummary) {
   const previousStrength = Math.max(EPSILON, getPolarizationStrength(summary));
   const nextStrength = getPolarizationStrength(nextSummary);
   const strengthDelta = Math.abs(nextStrength - previousStrength) / previousStrength;
@@ -285,6 +302,22 @@ function evaluatePhotonSearchPerturbation(state, summary) {
     strengthDelta,
     phaseDelta,
     fitDelta: Math.abs(nextSummary.fitResidual - summary.fitResidual),
+  };
+}
+
+function createPhotonSearchSolverOptions(options, defaults, overrideKey) {
+  const {
+    limit: _limit,
+    maxCandidates: _maxCandidates,
+    summaryOptions,
+    perturbOptions,
+    ...solverOptions
+  } = options && typeof options === "object" ? options : {};
+  const overrides = overrideKey === "perturb" ? perturbOptions : summaryOptions;
+  return {
+    ...solverOptions,
+    ...defaults,
+    ...(overrides && typeof overrides === "object" ? overrides : {}),
   };
 }
 
@@ -305,10 +338,7 @@ function hasSimplePhases(state) {
   );
 }
 
-function evaluatePhotonSearchCandidate(candidate, index) {
-  const state = cloneNormalizedPhotonState(candidate.state);
-  const summary = computePhotonFormulaSummary(state, 0, PHOTON_SEARCH_SUMMARY_OPTIONS);
-  const diagnostics = computePhotonDiagnostics(state, 0, summary);
+function buildPhotonSearchCandidateResult(candidate, index, state, summary, diagnostics, perturbation) {
   const reasons = [];
   const components = {};
   const polarization = summary.polarization;
@@ -381,7 +411,6 @@ function evaluatePhotonSearchCandidate(candidate, index) {
     );
   }
 
-  const perturbation = evaluatePhotonSearchPerturbation(state, summary);
   if (
     perturbation.classificationChanged ||
     perturbation.phaseDelta >= 25 ||
@@ -485,6 +514,44 @@ function evaluatePhotonSearchCandidate(candidate, index) {
   };
 }
 
+function evaluatePhotonSearchCandidate(candidate, index) {
+  const state = cloneNormalizedPhotonState(candidate.state);
+  const summary = computePhotonFormulaSummary(state, 0, PHOTON_SEARCH_SUMMARY_OPTIONS);
+  const diagnostics = computePhotonDiagnostics(state, 0, summary);
+  const perturbation = evaluatePhotonSearchPerturbation(state, summary);
+  return buildPhotonSearchCandidateResult(
+    candidate,
+    index,
+    state,
+    summary,
+    diagnostics,
+    perturbation
+  );
+}
+
+async function evaluatePhotonSearchCandidateWithSolverBridge(candidate, index, options = {}) {
+  const state = cloneNormalizedPhotonState(candidate.state);
+  const summary = await computePhotonFormulaSummaryWithSolverBridge(
+    state,
+    0,
+    createPhotonSearchSolverOptions(options, PHOTON_SEARCH_SUMMARY_OPTIONS, "summary")
+  );
+  const diagnostics = computePhotonDiagnostics(state, 0, summary);
+  const perturbation = await evaluatePhotonSearchPerturbationWithSolverBridge(
+    state,
+    summary,
+    options
+  );
+  return buildPhotonSearchCandidateResult(
+    candidate,
+    index,
+    state,
+    summary,
+    diagnostics,
+    perturbation
+  );
+}
+
 function buildPhotonSearchResultName(candidateName, classificationLabel, reasons) {
   const primary = reasons.find((reason) => reason.score > 0)?.label ?? "Reference";
   return normalizeSearchName(`${primary}: ${classificationLabel} (${candidateName})`);
@@ -535,6 +602,25 @@ export function createPhotonConfigurationSearchResults(baseState, options = {}) 
   );
   const evaluated = candidates.map((candidate, index) =>
     evaluatePhotonSearchCandidate(candidate, index)
+  );
+  return selectDiversePhotonSearchResults(
+    evaluated,
+    options.limit ?? PHOTON_SEARCH_RESULT_LIMIT
+  );
+}
+
+export async function createPhotonConfigurationSearchResultsWithSolverBridge(
+  baseState,
+  options = {}
+) {
+  const candidates = buildPhotonSearchCandidates(baseState).slice(
+    0,
+    options.maxCandidates ?? Number.POSITIVE_INFINITY
+  );
+  const evaluated = await Promise.all(
+    candidates.map((candidate, index) =>
+      evaluatePhotonSearchCandidateWithSolverBridge(candidate, index, options)
+    )
   );
   return selectDiversePhotonSearchResults(
     evaluated,

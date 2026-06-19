@@ -5,6 +5,7 @@ import {
   CAUSAL_DELAY_FEEDBACK_APP_ID,
   CENTRAL_SOLVER_REPLAY_ADAPTER,
   CENTRAL_SOLVER_REPLAY_DATASET_SOURCE,
+  CENTRAL_SOLVER_MOTION_REPLAY_MODE,
   createCausalDelayFeedbackBridgeReplayRequest,
   createCausalDelayFeedbackCentralBridgeAdapter,
   normalizeCausalDelayFeedbackBridgeReplay,
@@ -76,6 +77,43 @@ function createBridgeReplayResponse(overrides = {}) {
     diagnostics: [{ code: "causal_delay_replay_fixture", severity: "info" }],
     summary: { retainedDepth: 4 },
     ...overrides,
+  };
+}
+
+function createMotionRunResponse(request) {
+  const motion = request.config.motionIntegrationRequest;
+  const times = [
+    motion.startTime,
+    motion.startTime + (motion.endTime - motion.startTime) * 0.5,
+    motion.endTime,
+  ];
+  return {
+    requestId: request.requestId,
+    runId: request.runId,
+    datasetId: request.datasetId,
+    response: {
+      runId: request.runId,
+      datasetId: request.datasetId,
+      status: { code: "ok", severity: "ok", message: "motion simulation completed" },
+      summary: { frameCount: times.length, pathCount: 1 },
+      diagnostics: [{ code: `motion_path_${motion.pathKey}`, severity: "info" }],
+      frames: times.map((time, frameIndex) => {
+        const dt = time - motion.startTime;
+        return {
+          pathKey: motion.pathKey,
+          frameIndex,
+          time,
+          position: {
+            x: motion.initialPosition.x + motion.initialVelocity.x * dt,
+            y: motion.initialPosition.y + motion.initialVelocity.y * dt,
+            z: 0,
+          },
+          velocity: motion.initialVelocity,
+          errorBound: 0,
+          stateFlags: motion.stateFlags,
+        };
+      }),
+    },
   };
 }
 
@@ -177,6 +215,9 @@ test("causal delay bridge replay normalizer returns runtime dataset shape", () =
   assert.deepEqual(dataset.wakeLinks[0].color, { r: 255, g: 150, b: 166, a: 1 });
   assert.deepEqual(dataset.wakeLinks[1].color, { r: 150, g: 170, b: 255, a: 1 });
   assert.equal(dataset.wakeLinks[0].receiver.x, 520);
+  assert.equal(dataset.wakeLinks[0].emissionTime, dataset.history.positrino[0].t);
+  assert.equal(dataset.wakeLinks[0].hitTime, dataset.history.electrino[1].t);
+  assert.equal(dataset.wakeLinks[0].travelTime, dataset.history.electrino[1].t - dataset.history.positrino[0].t);
   assert.equal(dataset.diagnostics[0].code, "causal_delay_replay_fixture");
 });
 
@@ -237,6 +278,52 @@ test("causal delay central bridge adapter normalizes appPlayback-shaped bridge r
   assert.equal(dataset.frames.length, 180);
   assert.equal(dataset.wakeLinks.length, 6);
   assert.equal(dataset.history.electrino[1].depth, 2);
+});
+
+test("causal delay central bridge adapter can build replay frames from central motion simulations", async () => {
+  const requests = [];
+  const adapter = createCausalDelayFeedbackCentralBridgeAdapter({
+    solverReplayMode: CENTRAL_SOLVER_MOTION_REPLAY_MODE,
+    async runSolverBridge(request) {
+      requests.push(request);
+      assert.equal(request.appId, CAUSAL_DELAY_FEEDBACK_APP_ID);
+      assert.equal(request.runKind, CENTRAL_SOLVER_MOTION_REPLAY_MODE);
+      assert.equal(request.config.appId, CAUSAL_DELAY_FEEDBACK_APP_ID);
+      assert.equal(request.output.outputs.includes("frameBuffer"), true);
+      assert.equal(request.output.outputs.includes("pathStream"), true);
+      return createMotionRunResponse(request);
+    },
+  });
+
+  const dataset = await adapter.createReplayAsync({
+    presetId: "accepted_tight_bright",
+    requestOptions: {
+      frameCount: 3,
+      runDuration: 1,
+      initialConditions: {
+        positrino: { kind: "positrino", t: 0, x: 10, y: 20, vx: 100, vy: 0 },
+        electrino: { kind: "electrino", t: 0, x: 30, y: 700, vx: 80, vy: -50 },
+      },
+    },
+  });
+
+  assert.equal(requests.length, 2);
+  assert.deepEqual(
+    requests.map((request) => request.config.motionIntegrationRequest.pathKey),
+    [1, 2],
+  );
+  assert.equal(requests[0].config.motionIntegrationRequest.maxFrames, 3);
+  assert.equal(dataset.datasetSource, CENTRAL_SOLVER_REPLAY_DATASET_SOURCE);
+  assert.equal(dataset.solverIntegrationPath, CENTRAL_SOLVER_REPLAY_ADAPTER);
+  assert.equal(dataset.frames.length, 3);
+  assert.equal(dataset.frames[2].positrino.x, 110);
+  assert.equal(dataset.frames[2].electrino.y, 650);
+  assert.equal(dataset.history.positrino.length, 4);
+  assert.equal(dataset.wakeLinks.length, 6);
+  assert.equal(dataset.wakeLinks[0].emissionTime, dataset.history.positrino[0].t);
+  assert.equal(dataset.wakeLinks[0].hitTime, dataset.history.electrino[1].t);
+  assert.equal(dataset.solverSummary.replayMode, CENTRAL_SOLVER_MOTION_REPLAY_MODE);
+  assert.equal(dataset.diagnostics[0].code, "causal_delay_motion_solver_replay");
 });
 
 test("causal delay bridge replay normalizer fails closed without retained history", () => {

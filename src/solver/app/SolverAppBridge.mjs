@@ -1134,7 +1134,14 @@ function createCapabilities(hasWasmModuleFactory) {
         },
         {
           appId: "causal-delay-feedback",
-          runKinds: ["pathHistory", "causalRoots", "delayedHits", "appPlayback", "validationReplay"],
+          runKinds: [
+            "motionSimulation",
+            "pathHistory",
+            "causalRoots",
+            "delayedHits",
+            "appPlayback",
+            "validationReplay",
+          ],
         },
       ],
       denseDataTransport: ["array-buffer", "stream-handle"],

@@ -16,6 +16,8 @@ export const CENTRAL_SOLVER_REPLAY_ADAPTER = "central_solver_bridge_replay_adapt
 export const CENTRAL_SOLVER_REPLAY_DATASET_SOURCE = "central_solver_bridge_replay";
 export const CAUSAL_DELAY_FEEDBACK_REPLAY_CONFIG_VERSION =
   "causal-delay-feedback-replay-adapter.v1";
+export const CENTRAL_SOLVER_APP_PLAYBACK_REPLAY_MODE = "appPlayback";
+export const CENTRAL_SOLVER_MOTION_REPLAY_MODE = "motionSimulation";
 
 const DEFAULT_MEMORY_BUDGET_BYTES = 128 * 1024 * 1024;
 const DEFAULT_HISTORY_DEPTH = 4;
@@ -119,29 +121,337 @@ export function createCausalDelayFeedbackCentralBridgeAdapter(options = {}) {
         ...requestOptions,
         presetId,
       });
-      const runHandle = typeof options.runSolverBridge === "function"
-        ? await options.runSolverBridge(request)
-        : await runSolverAppBridgeRequest({
-            appId: CAUSAL_DELAY_FEEDBACK_APP_ID,
-            request,
-            options,
-            factoryRequest: request.config.initialConditions,
-            requestedCapabilities: ["appPlayback", "pathHistory", "causalRoots", "delayedHits"],
-            storagePolicy: {
-              target: request.output.streamTarget,
-              durable: request.output.streamTarget === "native-file",
-              maxBytes: request.output.memoryBudgetBytes,
-            },
-            threadingPolicy: {
-              mode: options.threadingMode ?? "single-thread",
-              deterministic: request.output.deterministic,
-            },
-            missingClientMessage:
-              "Causal-delay feedback bridge replay requires a solver client, runSolverBridge option, client factory, worker, or solver WASM module factory.",
-          });
+      if (resolveCentralSolverReplayMode(requestOptions, options) === CENTRAL_SOLVER_MOTION_REPLAY_MODE) {
+        return createMotionSolverReplayDataset(request, options);
+      }
+      const runHandle = await runCausalDelayBridgeRequest(request, options, {
+        factoryRequest: request.config.initialConditions,
+        requestedCapabilities: ["appPlayback", "pathHistory", "causalRoots", "delayedHits"],
+      });
       return normalizeCausalDelayFeedbackBridgeReplay(runHandle, { presetId });
     },
   };
+}
+
+async function createMotionSolverReplayDataset(playbackRequest, options = {}) {
+  const motionRunHandles = await Promise.all(
+    ARCHITRINO_KINDS.map((kind) => {
+      const request = createCausalDelayFeedbackMotionSimulationRequest(playbackRequest, kind);
+      return runCausalDelayBridgeRequest(request, options, {
+        factoryRequest: request.config.motionIntegrationRequest,
+        requestedCapabilities: ["motionSimulation", "pathHistory", "diagnostics"],
+      });
+    }),
+  );
+  const bridgeFrames = motionRunHandles.flatMap((runHandle, index) => (
+    normalizeMotionRunFrames(runHandle, ARCHITRINO_KINDS[index])
+  ));
+  const pairedFrames = normalizeFrameSamples(bridgeFrames, "central motion replay frames");
+  const history = createHistorySamplesFromPairedFrames(
+    pairedFrames,
+    playbackRequest.config.geometry.history,
+  );
+  const historyReplayDataset = {
+    history,
+    wakeLinks: createWakeLinksFromBridgeHits(
+      playbackRequest.config.hits,
+      playbackRequest.config.geometry.wakeArcDisplayMode,
+    ),
+    wakeArcDisplayMode: playbackRequest.config.geometry.wakeArcDisplayMode,
+  };
+  const hits = createBridgeDelayedHitsFromReplayDataset(historyReplayDataset);
+  const geometry = createBridgeGeometryFromReplayDataset(
+    {
+      history,
+      wakeArcDisplayMode: playbackRequest.config.geometry.wakeArcDisplayMode,
+      preset: { id: playbackRequest.config.presetId },
+    },
+    { initialConditions: playbackRequest.config.initialConditions },
+  );
+  const motionDiagnostics = motionRunHandles.flatMap((runHandle) => (
+    normalizeOptionalArray(unwrapBridgeResponse(runHandle).diagnostics)
+  ));
+  return normalizeCausalDelayFeedbackBridgeReplay(
+    {
+      requestId: playbackRequest.requestId,
+      runId: playbackRequest.runId,
+      datasetId: playbackRequest.datasetId,
+      response: {
+        runId: playbackRequest.runId,
+        datasetId: playbackRequest.datasetId,
+        presetId: playbackRequest.config.presetId,
+        status: { code: "ok", severity: "ok", message: "central motion replay prepared" },
+        summary: {
+          runId: playbackRequest.runId,
+          replayMode: CENTRAL_SOLVER_MOTION_REPLAY_MODE,
+          frameCount: pairedFrames.length,
+          pathCount: ARCHITRINO_KINDS.length,
+          delayedHitCount: hits.length,
+          motionRunIds: motionRunHandles.map((handle) => handle.runId ?? handle.response?.runId),
+        },
+        initialConditions: playbackRequest.config.initialConditions,
+        frames: bridgeFrames,
+        history,
+        hits,
+        geometry: {
+          ...geometry,
+          solverReplayMode: CENTRAL_SOLVER_MOTION_REPLAY_MODE,
+          motionRunIds: motionRunHandles.map((handle) => handle.runId ?? handle.response?.runId),
+        },
+        diagnostics: [
+          {
+            code: "causal_delay_motion_solver_replay",
+            severity: "info",
+            message: "central motion simulations generated architrino frame samples",
+          },
+          ...motionDiagnostics,
+        ],
+      },
+    },
+    { presetId: playbackRequest.config.presetId },
+  );
+}
+
+function resolveCentralSolverReplayMode(requestOptions = {}, options = {}) {
+  const value = String(
+    requestOptions.solverReplayMode ??
+      requestOptions.replayMode ??
+      options.solverReplayMode ??
+      options.replayMode ??
+      CENTRAL_SOLVER_APP_PLAYBACK_REPLAY_MODE,
+  ).toLowerCase();
+  if (
+    value === "motion" ||
+    value === "motion-simulation" ||
+    value === "motionsimulation" ||
+    value === "motion_solver" ||
+    value === "solver_motion"
+  ) {
+    return CENTRAL_SOLVER_MOTION_REPLAY_MODE;
+  }
+  return CENTRAL_SOLVER_APP_PLAYBACK_REPLAY_MODE;
+}
+
+function runCausalDelayBridgeRequest(request, options = {}, {
+  factoryRequest,
+  requestedCapabilities,
+} = {}) {
+  if (typeof options.runSolverBridge === "function") {
+    return options.runSolverBridge(request);
+  }
+  return runSolverAppBridgeRequest({
+    appId: CAUSAL_DELAY_FEEDBACK_APP_ID,
+    request,
+    options,
+    factoryRequest,
+    requestedCapabilities,
+    storagePolicy: {
+      target: request.output.streamTarget,
+      durable: request.output.streamTarget === "native-file",
+      maxBytes: request.output.memoryBudgetBytes,
+    },
+    threadingPolicy: {
+      mode: options.threadingMode ?? "single-thread",
+      deterministic: request.output.deterministic,
+    },
+    missingClientMessage:
+      "Causal-delay feedback bridge replay requires a solver client, runSolverBridge option, client factory, worker, or solver WASM module factory.",
+  });
+}
+
+function createCausalDelayFeedbackMotionSimulationRequest(playbackRequest, kind) {
+  const initialConditions = playbackRequest.config.initialConditions;
+  const condition = initialConditions[kind];
+  requireObject(condition, `initialConditions.${kind}`);
+  const replayConfig = playbackRequest.config.replay;
+  const frameCount = normalizePositiveInteger(replayConfig.frameCount, DEFAULT_FRAME_COUNT, "frameCount");
+  const runDuration = normalizePositiveNumber(replayConfig.runDuration, DEFAULT_RUN_DURATION, "runDuration");
+  const startTime = Number.isFinite(Number(condition.t)) ? Number(condition.t) : 0;
+  const endTime = startTime + runDuration;
+  const step = runDuration / Math.max(1, frameCount - 1);
+  const pathKey = PATH_KEYS_BY_KIND[kind];
+  const runId = `${playbackRequest.runId}-${kind}-motion`;
+  return {
+    requestId: `${runId}-request`,
+    runId,
+    datasetId: `${runId}-dataset`,
+    appId: CAUSAL_DELAY_FEEDBACK_APP_ID,
+    runKind: CENTRAL_SOLVER_MOTION_REPLAY_MODE,
+    claimLevel: playbackRequest.claimLevel,
+    precisionPath: playbackRequest.precisionPath,
+    configVersion: "causal-delay-feedback-motion-simulation-adapter.v1",
+    configHash: `${playbackRequest.configHash ?? playbackRequest.runId}:${kind}:motion`,
+    model: cloneObject(playbackRequest.model, "model"),
+    envelope: cloneObject(playbackRequest.envelope, "envelope"),
+    errorBudget: cloneObject(playbackRequest.errorBudget, "errorBudget"),
+    config: {
+      appId: CAUSAL_DELAY_FEEDBACK_APP_ID,
+      streamId: `${runId}:path-history`,
+      rowsPerChunk: 64,
+      storagePolicy: {
+        target: playbackRequest.output.streamTarget,
+        durable: playbackRequest.output.streamTarget === "native-file",
+        maxBytes: playbackRequest.output.memoryBudgetBytes,
+      },
+      metadata: {
+        precisionPath: playbackRequest.precisionPath,
+        units: playbackRequest.model.unitConvention,
+        coordinateFrame: "absolute-lab-frame",
+        scaleNormalization: "causal-delay-display-units",
+        interpolationRule: "linear-segment-chord",
+        provenance: {
+          source: "causal-delay-feedback-initial-conditions",
+          presetId: playbackRequest.config.presetId,
+          kind,
+        },
+      },
+      motionIntegrationRequest: {
+        pathKey,
+        startTime,
+        endTime,
+        step,
+        maxFrames: frameCount,
+        initialPosition: {
+          x: normalizeFiniteNumber(condition.x, `initialConditions.${kind}.x`),
+          y: normalizeFiniteNumber(condition.y, `initialConditions.${kind}.y`),
+          z: Number.isFinite(Number(condition.z)) ? Number(condition.z) : 0,
+        },
+        initialVelocity: {
+          x: normalizeFiniteNumber(condition.vx, `initialConditions.${kind}.vx`),
+          y: normalizeFiniteNumber(condition.vy, `initialConditions.${kind}.vy`),
+          z: Number.isFinite(Number(condition.vz)) ? Number(condition.vz) : 0,
+        },
+        acceleration: { x: 0, y: 0, z: 0 },
+        integrationTolerance: playbackRequest.errorBudget.integrationTolerance,
+        integrationMethod: 1,
+        stateFlags: kind === "positrino" ? 1 : 2,
+      },
+    },
+    output: {
+      outputs: ["frameBuffer", "pathStream", "diagnostics"],
+      streamTarget: playbackRequest.output.streamTarget,
+      memoryBudgetBytes: playbackRequest.output.memoryBudgetBytes,
+      deterministic: playbackRequest.output.deterministic,
+    },
+  };
+}
+
+function normalizeMotionRunFrames(runHandle, kind) {
+  const response = unwrapBridgeResponse(runHandle);
+  const frames = response.frames ?? response.frameSamples;
+  if (!Array.isArray(frames) || frames.length === 0) {
+    throw new TypeError(`central motion response for ${kind} must include frame samples`);
+  }
+  return frames.map((frame, index) => normalizeMotionRunFrame(frame, kind, index));
+}
+
+function normalizeMotionRunFrame(frame, kind, index) {
+  requireObject(frame, `central motion frames.${kind}[${index}]`);
+  const pathKey = PATH_KEYS_BY_KIND[kind];
+  const position = frame.position ?? frame;
+  const velocity = frame.velocity ?? frame;
+  return {
+    pathKey,
+    frameIndex: normalizeNonnegativeInteger(
+      frame.frameIndex ?? index,
+      `central motion frames.${kind}[${index}].frameIndex`,
+    ),
+    time: normalizeFiniteNumber(frame.time ?? frame.t, `central motion frames.${kind}[${index}].time`),
+    position: normalizeVectorPoint(position, `central motion frames.${kind}[${index}].position`),
+    velocity: normalizeOptionalVector(velocity, `central motion frames.${kind}[${index}].velocity`) ?? {
+      x: 0,
+      y: 0,
+      z: 0,
+    },
+    errorBound: Number.isFinite(Number(frame.errorBound)) ? Number(frame.errorBound) : 0,
+    stateFlags: Number.isFinite(Number(frame.stateFlags)) ? Number(frame.stateFlags) : pathKey,
+  };
+}
+
+function createHistorySamplesFromPairedFrames(frames, templateHistory) {
+  requireObject(templateHistory, "motion replay history template");
+  return Object.fromEntries(
+    ARCHITRINO_KINDS.map((kind) => {
+      const rows = templateHistory[kind];
+      if (!Array.isArray(rows) || rows.length === 0) {
+        throw new TypeError(`motion replay history template.${kind} must include retained samples`);
+      }
+      return [
+        kind,
+        rows.map((row, index) => {
+          const t = normalizeFiniteNumber(row.t, `motion replay history template.${kind}[${index}].t`);
+          const point = interpolatePairedFrames(frames, kind, t);
+          return {
+            kind,
+            depth: normalizePositiveInteger(row.depth ?? index + 1, index + 1, "history depth"),
+            t,
+            x: point.x,
+            y: point.y,
+            ...(Number.isFinite(Number(point.vx)) ? { vx: Number(point.vx) } : {}),
+            ...(Number.isFinite(Number(point.vy)) ? { vy: Number(point.vy) } : {}),
+            weight: normalizeUnitNumber(row.weight, (index + 1) / rows.length, "history weight"),
+            state: row.state ?? defaultHistoryState(index, rows.length),
+          };
+        }),
+      ];
+    }),
+  );
+}
+
+function interpolatePairedFrames(frames, kind, t) {
+  const points = frames
+    .map((frame) => ({ t: frame.t, ...frame[kind] }))
+    .sort((a, b) => a.t - b.t);
+  if (points.length === 0) {
+    throw new TypeError(`motion replay frames.${kind} must include samples`);
+  }
+  if (t <= points[0].t) {
+    return points[0];
+  }
+  const last = points[points.length - 1];
+  if (t >= last.t) {
+    return last;
+  }
+  const rightIndex = points.findIndex((point) => point.t >= t);
+  const left = points[Math.max(0, rightIndex - 1)];
+  const right = points[rightIndex];
+  const span = right.t - left.t;
+  const amount = span === 0 ? 0 : (t - left.t) / span;
+  return {
+    t,
+    x: left.x + (right.x - left.x) * amount,
+    y: left.y + (right.y - left.y) * amount,
+    vx: Number.isFinite(Number(left.vx)) && Number.isFinite(Number(right.vx))
+      ? left.vx + (right.vx - left.vx) * amount
+      : undefined,
+    vy: Number.isFinite(Number(left.vy)) && Number.isFinite(Number(right.vy))
+      ? left.vy + (right.vy - left.vy) * amount
+      : undefined,
+  };
+}
+
+function createWakeLinksFromBridgeHits(hits, mode) {
+  if (!Array.isArray(hits) || hits.length === 0) {
+    throw new TypeError("motion replay bridge hits must include delayed-hit links");
+  }
+  return hits.map((hit, index) => ({
+    id: normalizeOptionalString(
+      hit.id ?? hit.label,
+      `${hit.sourceKind}-${hit.sourceDepth}-to-${hit.receiverKind}-${hit.receiverDepth}`,
+      `motion replay hits[${index}].id`,
+    ),
+    label: normalizeOptionalString(
+      hit.label,
+      `${kindLabel(hit.sourceKind)} ${hit.sourceDepth} -> ${kindLabel(hit.receiverKind)} ${hit.receiverDepth}`,
+      `motion replay hits[${index}].label`,
+    ),
+    sourceKind: normalizeArchitrinoKind(hit.sourceKind, `motion replay hits[${index}].sourceKind`),
+    receiverKind: normalizeArchitrinoKind(hit.receiverKind, `motion replay hits[${index}].receiverKind`),
+    sourceDepth: normalizePositiveInteger(hit.sourceDepth, undefined, `motion replay hits[${index}].sourceDepth`),
+    receiverDepth: normalizePositiveInteger(hit.receiverDepth, undefined, `motion replay hits[${index}].receiverDepth`),
+    weight: normalizeUnitNumber(hit.weight ?? hit.strength, 1, `motion replay hits[${index}].weight`),
+    mode,
+  }));
 }
 
 export function normalizeCausalDelayFeedbackBridgeReplay(runHandle = {}, options = {}) {
@@ -315,12 +625,14 @@ function normalizeWakeLink(row, index, history) {
     undefined,
     `bridge response delayedHits[${index}].receiverDepth`,
   );
-  const source = row.source
-    ? normalizePoint(row.source, `bridge response delayedHits[${index}].source`)
-    : findHistoryPoint(history, sourceKind, sourceDepth, `source ${sourceKind} ${sourceDepth}`);
-  const receiver = row.receiver
-    ? normalizePoint(row.receiver, `bridge response delayedHits[${index}].receiver`)
-    : findHistoryPoint(history, receiverKind, receiverDepth, `receiver ${receiverKind} ${receiverDepth}`);
+  const source = findHistoryPoint(history, sourceKind, sourceDepth, `source ${sourceKind} ${sourceDepth}`);
+  const receiver = findHistoryPoint(history, receiverKind, receiverDepth, `receiver ${receiverKind} ${receiverDepth}`);
+  const emissionTime = normalizeFiniteNumber(source.t, `bridge response delayedHits[${index}].emissionTime`);
+  const hitTime = normalizeFiniteNumber(receiver.t, `bridge response delayedHits[${index}].hitTime`);
+  const travelTime = hitTime - emissionTime;
+  if (!Number.isFinite(travelTime) || travelTime <= 0) {
+    throw new TypeError(`bridge response delayedHits[${index}] must reference a later receiver history point`);
+  }
 
   return {
     id: normalizeOptionalString(
@@ -338,6 +650,9 @@ function normalizeWakeLink(row, index, history) {
     receiverDepth,
     source,
     receiver,
+    emissionTime,
+    hitTime,
+    travelTime,
     color: sourceKind === "positrino" ? POSITRINO_WAKE : ELECTRINO_WAKE,
     weight: normalizeUnitNumber(row.weight ?? row.strength, undefined, `bridge response delayedHits[${index}].weight`),
     distance: normalizeNonnegativeNumber(
@@ -389,7 +704,7 @@ function findHistoryPoint(history, kind, depth, label) {
   if (!row) {
     throw new TypeError(`bridge response delayed hit references missing ${label}`);
   }
-  return { x: row.x, y: row.y };
+  return { x: row.x, y: row.y, t: row.t };
 }
 
 function createDefaultReplayModel() {

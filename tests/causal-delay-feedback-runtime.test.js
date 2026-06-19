@@ -5,6 +5,7 @@ import { createCausalDelayFeedbackRuntime } from "../src/apps/causal-delay-feedb
 import {
   CENTRAL_SOLVER_REPLAY_ADAPTER,
   CENTRAL_SOLVER_REPLAY_DATASET_SOURCE,
+  CENTRAL_SOLVER_MOTION_REPLAY_MODE,
 } from "../src/apps/causal-delay-feedback/CausalDelayFeedbackCentralBridgeAdapter.js";
 import {
   DIRECT_MANIPULATION_DRAFT_PREVIEW,
@@ -12,6 +13,7 @@ import {
 } from "../src/apps/causal-delay-feedback/CausalDelayFeedbackReplayAdapter.js";
 import {
   createCausalDelayFeedbackRuntimeForPage,
+  getCentralBridgeReplayMode,
   shouldUseCentralBridgeReplay,
 } from "../src/apps/causal-delay-feedback/main.js";
 import {
@@ -133,6 +135,18 @@ test("causal delay feedback replay exposes draggable initial conditions", () => 
   assert.equal(runtime.dataset.initialConditions.historyDepth, 4);
   assert.equal(runtime.replayRequestOptions.initialConditions.positrino.x, runtime.dataset.paths.positrino[0].x);
   assert.equal(runtime.replayRequestOptions.initialConditions.electrino.y, runtime.dataset.paths.electrino[0].y);
+});
+
+test("causal delay feedback exposes draggable initial velocity handles", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  const condition = runtime.dataset.initialConditions.positrino;
+  const hit = runtime.findNearestHit(runtime.worldToScreen(runtime.initialConditionVelocityEnd(condition)));
+
+  assert.equal(hit.type, "initial-velocity");
+  assert.deepEqual(hit.selection, { type: "initial-velocity", kind: "positrino" });
 });
 
 test("causal delay feedback runtime loads an async bridge replay over the mock fallback", async () => {
@@ -258,6 +272,33 @@ test("causal delay feedback page selects central replay only from explicit query
   assert.equal(centralRuntime.dataset.datasetSource, "representative_mock_solver_replay");
 });
 
+test("causal delay feedback page accepts central motion replay review URLs", () => {
+  assert.equal(
+    getCentralBridgeReplayMode({
+      location: {
+        href: "http://localhost/causal-delay-feedback.html?replay=central&solverReplay=motion",
+      },
+    }),
+    CENTRAL_SOLVER_MOTION_REPLAY_MODE,
+  );
+  assert.equal(
+    getCentralBridgeReplayMode({
+      location: {
+        href: "http://localhost/causal-delay-feedback.html?replay=central&replayMode=motion-simulation",
+      },
+    }),
+    CENTRAL_SOLVER_MOTION_REPLAY_MODE,
+  );
+  assert.equal(
+    getCentralBridgeReplayMode({
+      location: {
+        href: "http://localhost/causal-delay-feedback.html?replay=central",
+      },
+    }),
+    undefined,
+  );
+});
+
 test("causal delay feedback solver bridge options resolve the default WASM loader path", () => {
   const createWasmModule = () => ({});
   const scope = {
@@ -323,6 +364,8 @@ test("causal delay feedback wake fronts and receiver markers synchronize for eve
     const sourcePoint = runtime.dataset.history[link.sourceKind].find((point) => point.depth === link.sourceDepth);
     const receiverPoint = runtime.dataset.history[link.receiverKind].find((point) => point.depth === link.receiverDepth);
 
+    runtime.updateWakeLinkGeometry();
+
     const beforeSource = runtime.getWakeTiming(link, sourcePoint.t - 0.01);
     const atSource = runtime.getWakeTiming(link, sourcePoint.t);
     const atReceiver = runtime.getWakeTiming(link, receiverPoint.t);
@@ -337,6 +380,9 @@ test("causal delay feedback wake fronts and receiver markers synchronize for eve
     assert.equal(atReceiver.active, true);
     assert.equal(atReceiver.progress, 1);
     assert.equal(afterReceiver.active, false);
+    assert.equal(link.emissionTime, sourcePoint.t);
+    assert.equal(link.hitTime, receiverPoint.t);
+    assert.equal(link.travelTime, receiverPoint.t - sourcePoint.t);
     assertNear(sourceFront.x, sourcePoint.x);
     assertNear(sourceFront.y, sourcePoint.y);
     assertNear(receiverFront.x, receiverPoint.x);
@@ -426,6 +472,49 @@ test("causal delay feedback initial-condition drag translates setup and replay p
   assert.equal(replayStatus.textContent, "draft preview");
 });
 
+test("causal delay feedback initial velocity drag updates setup and bends the preview path", () => {
+  const replayStatus = new FakeElement();
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  runtime.dom = { replayStatus };
+  const condition = runtime.dataset.initialConditions.positrino;
+  const velocityEnd = runtime.initialConditionVelocityEnd(condition);
+  const pathStart = runtime.dataset.paths.positrino[0];
+  const laterPoint = runtime.dataset.history.positrino.find((point) => point.depth === 4);
+  const before = {
+    vx: condition.vx,
+    vy: condition.vy,
+    conditionX: condition.x,
+    conditionY: condition.y,
+    pathStartX: pathStart.x,
+    pathStartY: pathStart.y,
+    laterX: laterPoint.x,
+    laterY: laterPoint.y,
+  };
+
+  const didEdit = runtime.applyInitialVelocityDrag("positrino", {
+    x: velocityEnd.x + 28,
+    y: velocityEnd.y - 14,
+  });
+
+  assert.equal(didEdit, true);
+  assertNear(condition.vx, before.vx + 400);
+  assertNear(condition.vy, before.vy - 200);
+  assert.equal(condition.x, before.conditionX);
+  assert.equal(condition.y, before.conditionY);
+  assert.equal(pathStart.x, before.pathStartX);
+  assert.equal(pathStart.y, before.pathStartY);
+  assert(laterPoint.x > before.laterX + 100);
+  assert(laterPoint.y < before.laterY - 50);
+  assert.equal(runtime.dataset.datasetSource, DIRECT_MANIPULATION_DRAFT_PREVIEW);
+  assert.equal(runtime.dataset.draftPreview.reason, "initial_velocity_drag_preview");
+  assertNear(runtime.replayRequestOptions.initialConditions.positrino.vx, condition.vx);
+  assert.equal(runtime.replayRequestOptions.replayDataset, runtime.dataset);
+  assert.equal(replayStatus.textContent, "draft preview");
+});
+
 test("causal delay feedback initial-condition release reruns central replay with edited setup", async () => {
   const replayStatus = new FakeElement();
   let capturedRequestOptions = null;
@@ -455,6 +544,46 @@ test("causal delay feedback initial-condition release reruns central replay with
 
   assert.equal(capturedRequestOptions.initialConditions.electrino.x, runtime.dataset.initialConditions.electrino.x);
   assert.equal(capturedRequestOptions.initialConditions.electrino.y, runtime.dataset.initialConditions.electrino.y);
+  assert.equal(capturedRequestOptions.replayDataset.datasetSource, DIRECT_MANIPULATION_DRAFT_PREVIEW);
+  assert.equal(runtime.dataset.datasetSource, CENTRAL_SOLVER_REPLAY_DATASET_SOURCE);
+  assert.equal(runtime.replayLoadState, "ready");
+  assert.equal(replayStatus.textContent, "solver bridge replay");
+});
+
+test("causal delay feedback initial velocity release reruns central replay with edited setup", async () => {
+  const replayStatus = new FakeElement();
+  let capturedRequestOptions = null;
+  const adapter = {
+    id: CENTRAL_SOLVER_REPLAY_ADAPTER,
+    async createReplayAsync({ presetId, requestOptions }) {
+      capturedRequestOptions = requestOptions;
+      return {
+        ...createMockCausalDelayReplayDataset(presetId),
+        initialConditions: requestOptions.initialConditions,
+        datasetSource: CENTRAL_SOLVER_REPLAY_DATASET_SOURCE,
+        solverIntegrationPath: CENTRAL_SOLVER_REPLAY_ADAPTER,
+      };
+    },
+  };
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+    replayAdapter: adapter,
+    autoLoadReplay: false,
+  });
+  runtime.dom = { replayStatus };
+  const condition = runtime.dataset.initialConditions.electrino;
+  const velocityEnd = runtime.initialConditionVelocityEnd(condition);
+
+  runtime.applyInitialVelocityDrag("electrino", {
+    x: velocityEnd.x - 21,
+    y: velocityEnd.y - 7,
+  });
+  runtime.dragState = { type: "initial-velocity", kind: "electrino", didEdit: true };
+  await runtime.finishDrag();
+
+  assertNear(capturedRequestOptions.initialConditions.electrino.vx, runtime.dataset.initialConditions.electrino.vx);
+  assertNear(capturedRequestOptions.initialConditions.electrino.vy, runtime.dataset.initialConditions.electrino.vy);
   assert.equal(capturedRequestOptions.replayDataset.datasetSource, DIRECT_MANIPULATION_DRAFT_PREVIEW);
   assert.equal(runtime.dataset.datasetSource, CENTRAL_SOLVER_REPLAY_DATASET_SOURCE);
   assert.equal(runtime.replayLoadState, "ready");

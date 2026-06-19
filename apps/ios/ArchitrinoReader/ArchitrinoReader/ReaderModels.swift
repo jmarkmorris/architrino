@@ -1,6 +1,6 @@
 import Foundation
 
-struct TextbookBundleManifest: Decodable {
+struct TextbookBundleManifest: Decodable, Sendable {
     let schemaVersion: Int
     let manifestSchema: String
     let generatedAt: String
@@ -11,13 +11,13 @@ struct TextbookBundleManifest: Decodable {
     let files: [TextbookBundleFile]
 }
 
-struct TextbookBundleTOC: Decodable {
+struct TextbookBundleTOC: Decodable, Sendable {
     let path: String
     let sha256: String
     let size: Int
 }
 
-struct TextbookChapter: Decodable, Identifiable, Equatable, Hashable {
+struct TextbookChapter: Decodable, Identifiable, Equatable, Hashable, Sendable {
     let id: String
     let title: String
     let markdownPath: String
@@ -30,7 +30,7 @@ struct TextbookChapter: Decodable, Identifiable, Equatable, Hashable {
     var readableTitle: String { title }
 }
 
-struct TextbookBundleFile: Decodable {
+struct TextbookBundleFile: Decodable, Sendable {
     let path: String
     let sourcePath: String
     let role: String
@@ -39,7 +39,7 @@ struct TextbookBundleFile: Decodable {
     let sha256: String
 }
 
-struct TextbookReferenceDocument: Decodable, Identifiable, Equatable, Hashable {
+struct TextbookReferenceDocument: Decodable, Identifiable, Equatable, Hashable, Sendable {
     let id: String
     let title: String
     let sourcePath: String
@@ -47,7 +47,7 @@ struct TextbookReferenceDocument: Decodable, Identifiable, Equatable, Hashable {
     let htmlPath: String?
 }
 
-struct TextbookLinkMetadata: Decodable, Equatable, Hashable {
+struct TextbookLinkMetadata: Decodable, Equatable, Hashable, Sendable {
     let sourceChapterId: String
     let sourcePath: String
     let target: String
@@ -56,13 +56,13 @@ struct TextbookLinkMetadata: Decodable, Equatable, Hashable {
     let targetBundlePath: String?
 }
 
-struct TextbookSearchIndex: Decodable {
+struct TextbookSearchIndex: Decodable, Sendable {
     let schemaVersion: Int
     let totalEntries: Int
     let entries: [TextbookSearchEntry]
 }
 
-struct TextbookSearchEntry: Decodable, Identifiable, Equatable {
+struct TextbookSearchEntry: Decodable, Identifiable, Equatable, Sendable {
     let chapterId: String
     let chapterTitle: String
     let chapterPath: String?
@@ -95,14 +95,14 @@ struct TextbookSearchEntry: Decodable, Identifiable, Equatable {
     }
 }
 
-struct ReaderPosition: Codable {
+struct ReaderPosition: Codable, Sendable {
     let chapterId: String
     let anchor: String?
     let isExplicit: Bool?
     let scrollProgress: Double?
 }
 
-enum ReaderTheme: String, Codable, CaseIterable, Identifiable, Hashable {
+enum ReaderTheme: String, Codable, CaseIterable, Identifiable, Hashable, Sendable {
     case architrinoPurple
     case light
     case warm
@@ -111,7 +111,7 @@ enum ReaderTheme: String, Codable, CaseIterable, Identifiable, Hashable {
     var id: String { rawValue }
 }
 
-enum ReaderLineSpacing: String, Codable, CaseIterable, Identifiable, Hashable {
+enum ReaderLineSpacing: String, Codable, CaseIterable, Identifiable, Hashable, Sendable {
     case compact
     case standard
     case open
@@ -119,7 +119,7 @@ enum ReaderLineSpacing: String, Codable, CaseIterable, Identifiable, Hashable {
     var id: String { rawValue }
 }
 
-enum ReaderMarginWidth: String, Codable, CaseIterable, Identifiable, Hashable {
+enum ReaderMarginWidth: String, Codable, CaseIterable, Identifiable, Hashable, Sendable {
     case narrow
     case standard
     case wide
@@ -127,7 +127,7 @@ enum ReaderMarginWidth: String, Codable, CaseIterable, Identifiable, Hashable {
     var id: String { rawValue }
 }
 
-struct ReaderBookmark: Codable, Identifiable, Equatable {
+struct ReaderBookmark: Codable, Identifiable, Equatable, Sendable {
     let id: UUID
     let chapterId: String
     let chapterTitle: String
@@ -148,7 +148,7 @@ struct ReaderBookmark: Codable, Identifiable, Equatable {
     }
 }
 
-struct TextbookTOCSection: Decodable, Equatable {
+struct TextbookTOCSection: Decodable, Equatable, Sendable {
     let kind: String?
     let title: String?
     let markdownPath: String?
@@ -162,7 +162,7 @@ struct TextbookTOCSection: Decodable, Equatable {
     }
 }
 
-struct TextbookTOCNode: Decodable, Identifiable {
+struct TextbookTOCNode: Decodable, Identifiable, Sendable {
     let id: String
     let title: String
     let kind: String?
@@ -191,18 +191,18 @@ struct TextbookTOCNode: Decodable, Identifiable {
     }
 }
 
-struct TextbookTOCPackage: Decodable {
+struct TextbookTOCPackage: Decodable, Sendable {
     let tocRoot: TextbookTOCNode
 }
 
-struct ReaderPayloadChapterLink: Codable {
+struct ReaderPayloadChapterLink: Codable, Sendable {
     let target: String
     let kind: String
     let status: String
     let targetBundlePath: String
 }
 
-struct ReaderBootstrapContext: Codable {
+struct ReaderBootstrapContext: Codable, Sendable {
     let chapterBySourcePath: [String: String]
     let chapterByBasename: [String: String]
 }
@@ -328,7 +328,7 @@ final class ReaderTextbookLoader {
     }
 }
 
-struct ReaderPackageData {
+struct ReaderPackageData: Sendable {
     let manifest: TextbookBundleManifest
     let tocPackage: TextbookTOCPackage
     let tocChapterByNodeId: [String: String]

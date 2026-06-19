@@ -67,6 +67,7 @@ import {
 } from "../src/apps/photon/PhotonDiagnosticsRuntime.js";
 import {
   createPhotonConfigurationSearchResults,
+  createPhotonConfigurationSearchResultsWithSolverBridge,
   parsePhotonSearchResultsJson,
   serializePhotonSearchResults,
 } from "../src/apps/photon/PhotonSearchRuntime.js";
@@ -1186,6 +1187,47 @@ test("configuration search returns scored settings snapshots", () => {
     assert.ok(Number.isFinite(result.diagnostics.sourceCount));
   });
   assert.ok(results.some((result) => result.suspect === false));
+});
+
+test("configuration search can score settings through the solver bridge", async () => {
+  const state = createDefaultPhotonState();
+  const bridge = createPhotonCircularSourceBridgeStub();
+  const results = await createPhotonConfigurationSearchResultsWithSolverBridge(state, {
+    solveCircularSourceRootsHitsLedger: bridge.solveCircularSourceRootsHitsLedger,
+    limit: 2,
+    maxCandidates: 2,
+    summaryOptions: {
+      polarizationSampleCount: 6,
+      analyzerSampleCount: 3,
+    },
+    perturbOptions: {
+      polarizationSampleCount: 4,
+      analyzerSampleCount: 2,
+    },
+  });
+
+  assert.equal(results.length, 2);
+  assert.ok(bridge.calls.length > 0);
+  results.forEach((result) => {
+    assert.ok(result.id.startsWith("photon-search-"));
+    assert.equal(result.selected, true);
+    assert.ok(Number.isFinite(result.score));
+    assert.equal(result.state.app, "photon");
+    assert.ok(Number.isFinite(result.diagnostics.rootCount));
+  });
+});
+
+test("bridge-backed photon diagnostics expose the active solver engine", async () => {
+  const state = createDefaultPhotonState();
+  const bridge = createPhotonCircularSourceBridgeStub();
+  const summary = await computePhotonFormulaSummaryWithSolverBridge(state, 0, {
+    solveCircularSourceRootsHitsLedger: bridge.solveCircularSourceRootsHitsLedger,
+    polarizationSampleCount: 6,
+    analyzerSampleCount: 3,
+  });
+  const rows = new Map(getPhotonDiagnosticRows(state, 0, summary));
+
+  assert.equal(rows.get("Solver engine"), "architrino-solver-app-bridge");
 });
 
 test("configuration search results export and import full settings", () => {

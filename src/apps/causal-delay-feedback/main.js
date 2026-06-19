@@ -1,9 +1,19 @@
-import { createCausalDelayFeedbackCentralBridgeAdapter } from "./CausalDelayFeedbackCentralBridgeAdapter.js";
+import {
+  CENTRAL_SOLVER_MOTION_REPLAY_MODE,
+  createCausalDelayFeedbackCentralBridgeAdapter,
+} from "./CausalDelayFeedbackCentralBridgeAdapter.js";
 import { createCausalDelayFeedbackRuntime } from "./CausalDelayFeedbackRuntime.js";
 import { createTemporaryMockReplayAdapter } from "./CausalDelayFeedbackReplayAdapter.js";
 import { createCausalDelayFeedbackSolverBridgeOptions } from "./CausalDelayFeedbackSolverBridgeOptions.js";
 
 const CENTRAL_REPLAY_QUERY_VALUES = new Set(["central", "bridge", "solver", "central_solver_bridge"]);
+const MOTION_REPLAY_QUERY_VALUES = new Set([
+  "motion",
+  "motion-simulation",
+  "motionsimulation",
+  "motion_solver",
+  "solver_motion",
+]);
 
 function getInitialQueryValue(windowLike, key) {
   try {
@@ -20,11 +30,22 @@ export function shouldUseCentralBridgeReplay(windowLike = globalThis.window) {
   });
 }
 
+export function getCentralBridgeReplayMode(windowLike = globalThis.window) {
+  const value =
+    getInitialQueryValue(windowLike, "solverReplay") ??
+    getInitialQueryValue(windowLike, "replayMode");
+  return value && MOTION_REPLAY_QUERY_VALUES.has(value.toLowerCase())
+    ? CENTRAL_SOLVER_MOTION_REPLAY_MODE
+    : undefined;
+}
+
 export function createCausalDelayFeedbackRuntimeForPage(windowLike = globalThis.window) {
   const fallbackReplayAdapter = createTemporaryMockReplayAdapter();
   const replayAdapter = shouldUseCentralBridgeReplay(windowLike)
     ? createCausalDelayFeedbackCentralBridgeAdapter(
-        createCausalDelayFeedbackSolverBridgeOptions(windowLike),
+        createCausalDelayFeedbackSolverBridgeOptions(windowLike, {
+          solverReplayMode: getCentralBridgeReplayMode(windowLike),
+        }),
       )
     : fallbackReplayAdapter;
   return createCausalDelayFeedbackRuntime({

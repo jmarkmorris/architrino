@@ -28,6 +28,8 @@ const ICON_HELP = Object.freeze({
 });
 const REPLAY_LOOP_SECONDS = 9;
 const TIME_EPSILON = 1e-6;
+const INITIAL_VELOCITY_ARROW_SCALE = 0.07;
+const INITIAL_VELOCITY_PREVIEW_RESPONSE = 0.42;
 const SPACE_KEYS = new Set([" ", "Space", "Spacebar"]);
 const SPACEBAR_NATIVE_CONTROL_TAGS = new Set(["BUTTON", "INPUT", "SELECT", "TEXTAREA"]);
 
@@ -680,7 +682,7 @@ class CausalDelayFeedbackRuntime {
     const screen = this.worldToScreen(point);
     const velocityScreen = this.worldToScreen(velocityEnd);
     this.drawLine(ctx, [screen, velocityScreen], withAlpha(mixColor(color, WHITE, 0.42), 0.46), 2);
-    this.drawCircle(ctx, velocityScreen, 4.2, withAlpha(color, 0.56), withAlpha(WHITE, 0.54), 0.9);
+    this.drawCircle(ctx, velocityScreen, 5.6, withAlpha(color, 0.62), withAlpha(WHITE, 0.58), 1);
     this.drawCircle(ctx, screen, 16, withAlpha(color, 0.13), withAlpha(WHITE, 0.62), 1.2);
     this.drawCircle(ctx, screen, 6.4, color, WHITE, 1.2);
   }
@@ -707,6 +709,15 @@ class CausalDelayFeedbackRuntime {
       }
       const screen = this.worldToScreen(this.initialConditionPoint(condition));
       this.drawCircle(ctx, screen, 24, withAlpha(WHITE, 0.05), withAlpha(WHITE, 0.9), 1.5);
+      return;
+    }
+    if (this.selectedItem.type === "initial-velocity") {
+      const condition = this.getInitialCondition(this.selectedItem.kind);
+      if (!condition) {
+        return;
+      }
+      const screen = this.worldToScreen(this.initialConditionVelocityEnd(condition));
+      this.drawCircle(ctx, screen, 18, withAlpha(WHITE, 0.05), withAlpha(WHITE, 0.9), 1.4);
       return;
     }
 
@@ -835,7 +846,9 @@ class CausalDelayFeedbackRuntime {
 
   handleCanvasPointerMove(event) {
     if (this.dragState) {
-      if (this.dragState.type === "initial-condition") {
+      if (this.dragState.type === "initial-velocity") {
+        this.dragSelectedInitialVelocity(event);
+      } else if (this.dragState.type === "initial-condition") {
         this.dragSelectedInitialCondition(event);
       } else {
         this.dragSelectedHistoryPoint(event);
@@ -857,7 +870,9 @@ class CausalDelayFeedbackRuntime {
     }
     this.selectedItem = hit.selection;
     this.updateReadout(hit);
-    if (hit.type === "initial-condition") {
+    if (hit.type === "initial-velocity") {
+      this.startInitialVelocityDrag(event, hit);
+    } else if (hit.type === "initial-condition") {
       this.startInitialConditionDrag(event, hit);
     } else if (hit.type === "history") {
       this.startHistoryPointDrag(event, hit);
@@ -886,6 +901,22 @@ class CausalDelayFeedbackRuntime {
     const screen = { x: event.clientX - rect.left, y: event.clientY - rect.top };
     this.dragState = {
       type: "initial-condition",
+      kind: hit.selection.kind,
+      lastWorld: this.screenToWorld(screen),
+      didEdit: false,
+    };
+    this.setPlaying(false);
+    if (typeof this.dom.canvas.setPointerCapture === "function") {
+      this.dom.canvas.setPointerCapture(event.pointerId);
+    }
+    event.preventDefault();
+  }
+
+  startInitialVelocityDrag(event, hit) {
+    const rect = this.dom.canvas.getBoundingClientRect();
+    const screen = { x: event.clientX - rect.left, y: event.clientY - rect.top };
+    this.dragState = {
+      type: "initial-velocity",
       kind: hit.selection.kind,
       lastWorld: this.screenToWorld(screen),
       didEdit: false,
@@ -928,10 +959,25 @@ class CausalDelayFeedbackRuntime {
     }
   }
 
+  dragSelectedInitialVelocity(event) {
+    const rect = this.dom.canvas.getBoundingClientRect();
+    const screen = { x: event.clientX - rect.left, y: event.clientY - rect.top };
+    const world = this.screenToWorld(screen);
+    this.dragState.lastWorld = world;
+    if (this.applyInitialVelocityDrag(this.dragState.kind, world)) {
+      this.dragState.didEdit = true;
+      this.updateReadout();
+      this.render();
+    }
+  }
+
   finishDrag() {
     const completedDrag = this.dragState;
     this.dragState = null;
-    if (completedDrag?.type === "initial-condition" && completedDrag.didEdit) {
+    if (
+      (completedDrag?.type === "initial-condition" || completedDrag?.type === "initial-velocity") &&
+      completedDrag.didEdit
+    ) {
       return this.rerunAfterInitialConditionDrag();
     }
     return this.dataset;
@@ -962,6 +1008,29 @@ class CausalDelayFeedbackRuntime {
     this.updateWakeLinkGeometry();
     this.syncReplayRequestOptionsFromDataset();
     this.markDraftPreview("initial_condition_drag_preview");
+    return true;
+  }
+
+  applyInitialVelocityDrag(kind, velocityEnd) {
+    const condition = this.getInitialCondition(kind);
+    if (!condition || !velocityEnd) {
+      return false;
+    }
+    const previousVelocity = {
+      vx: Number(condition.vx) || 0,
+      vy: Number(condition.vy) || 0,
+    };
+    const nextVelocity = this.velocityFromInitialConditionHandle(condition, velocityEnd);
+    if (previousVelocity.vx === nextVelocity.vx && previousVelocity.vy === nextVelocity.vy) {
+      return false;
+    }
+
+    condition.vx = nextVelocity.vx;
+    condition.vy = nextVelocity.vy;
+    this.applyInitialVelocityPreview(kind, condition, previousVelocity, nextVelocity);
+    this.updateWakeLinkGeometry();
+    this.syncReplayRequestOptionsFromDataset();
+    this.markDraftPreview("initial_velocity_drag_preview");
     return true;
   }
 
@@ -1007,6 +1076,48 @@ class CausalDelayFeedbackRuntime {
     condition.x += delta.x;
     condition.y += delta.y;
     return true;
+  }
+
+  applyInitialVelocityPreview(kind, condition, previousVelocity, nextVelocity) {
+    const points = this.dataset.paths[kind];
+    if (!Array.isArray(points)) {
+      return;
+    }
+    const deltaVelocity = {
+      vx: nextVelocity.vx - previousVelocity.vx,
+      vy: nextVelocity.vy - previousVelocity.vy,
+    };
+    points.forEach((point) => {
+      this.applyVelocityPreviewToPoint(point, condition, deltaVelocity);
+    });
+    this.dataset.frames.forEach((frame) => {
+      const point = frame[kind];
+      if (!point || points.includes(point)) {
+        return;
+      }
+      this.applyVelocityPreviewToPoint(point, condition, deltaVelocity, frame.t);
+    });
+    this.dataset.history[kind].forEach((point) => {
+      this.applyVelocityPreviewToPoint(point, condition, deltaVelocity);
+    });
+  }
+
+  applyVelocityPreviewToPoint(point, condition, deltaVelocity, fallbackT = point.t) {
+    const sampleT = Number(fallbackT);
+    const startT = Number(condition.t) || 0;
+    if (!Number.isFinite(sampleT)) {
+      return;
+    }
+    const dt = Math.max(0, sampleT - startT);
+    if (dt === 0) {
+      return;
+    }
+    const runDuration = Math.max(0.01, Number(this.dataset.initialConditions?.runDuration) || 1);
+    const normalizedTime = clamp(dt / runDuration, 0, 1);
+    const easing = 0.35 + 0.65 * Math.pow(normalizedTime, 1.15);
+    const response = dt * easing * INITIAL_VELOCITY_PREVIEW_RESPONSE;
+    point.x += deltaVelocity.vx * response;
+    point.y += deltaVelocity.vy * response;
   }
 
   deformPathAroundHistoryPoint(kind, depth, delta) {
@@ -1104,14 +1215,17 @@ class CausalDelayFeedbackRuntime {
     const point = this.initialConditionPoint(condition);
     const vx = Number(condition.vx) || 0;
     const vy = Number(condition.vy) || 0;
-    const speed = Math.hypot(vx, vy);
-    if (speed === 0) {
-      return { x: point.x + 42, y: point.y };
-    }
-    const scale = 74 / speed;
     return {
-      x: point.x + vx * scale,
-      y: point.y + vy * scale,
+      x: point.x + vx * INITIAL_VELOCITY_ARROW_SCALE,
+      y: point.y + vy * INITIAL_VELOCITY_ARROW_SCALE,
+    };
+  }
+
+  velocityFromInitialConditionHandle(condition, velocityEnd) {
+    const point = this.initialConditionPoint(condition);
+    return {
+      vx: (Number(velocityEnd.x) - point.x) / INITIAL_VELOCITY_ARROW_SCALE,
+      vy: (Number(velocityEnd.y) - point.y) / INITIAL_VELOCITY_ARROW_SCALE,
     };
   }
 
@@ -1121,16 +1235,18 @@ class CausalDelayFeedbackRuntime {
       return null;
     }
     const { source, receiver } = endpoints;
-    const duration = receiver.t - source.t;
+    const sourceT = Number.isFinite(Number(source.t)) ? Number(source.t) : Number(link.emissionTime);
+    const receiverT = Number.isFinite(Number(receiver.t)) ? Number(receiver.t) : Number(link.hitTime);
+    const duration = receiverT - sourceT;
     if (!Number.isFinite(duration) || duration <= 0) {
       return null;
     }
-    const rawProgress = (replayTime - source.t) / duration;
+    const rawProgress = (replayTime - sourceT) / duration;
     return {
       source,
       receiver,
-      sourceT: source.t,
-      receiverT: receiver.t,
+      sourceT,
+      receiverT,
       progress: clamp(rawProgress, 0, 1),
       active: rawProgress >= -TIME_EPSILON && rawProgress <= 1 + TIME_EPSILON,
     };
@@ -1143,7 +1259,16 @@ class CausalDelayFeedbackRuntime {
       return { source, receiver };
     }
     if (link.source && link.receiver) {
-      return { source: link.source, receiver: link.receiver };
+      return {
+        source: {
+          ...link.source,
+          t: Number.isFinite(Number(link.source.t)) ? Number(link.source.t) : Number(link.emissionTime),
+        },
+        receiver: {
+          ...link.receiver,
+          t: Number.isFinite(Number(link.receiver.t)) ? Number(link.receiver.t) : Number(link.hitTime),
+        },
+      };
     }
     return null;
   }
@@ -1167,8 +1292,11 @@ class CausalDelayFeedbackRuntime {
       if (!source || !receiver) {
         return;
       }
-      link.source = { x: source.x, y: source.y };
-      link.receiver = { x: receiver.x, y: receiver.y };
+      link.source = { x: source.x, y: source.y, t: source.t };
+      link.receiver = { x: receiver.x, y: receiver.y, t: receiver.t };
+      link.emissionTime = source.t;
+      link.hitTime = receiver.t;
+      link.travelTime = receiver.t - source.t;
       link.weight = Math.min(source.weight, receiver.weight);
     });
   }
@@ -1206,6 +1334,10 @@ class CausalDelayFeedbackRuntime {
   }
 
   getSelectedHit() {
+    if (this.selectedItem?.type === "initial-velocity") {
+      const condition = this.getInitialCondition(this.selectedItem.kind);
+      return condition ? this.createInitialVelocityHit(this.selectedItem.kind, condition, 0) : null;
+    }
     if (this.selectedItem?.type === "initial-condition") {
       const condition = this.getInitialCondition(this.selectedItem.kind);
       return condition ? this.createInitialConditionHit(this.selectedItem.kind, condition, 0) : null;
@@ -1224,6 +1356,21 @@ class CausalDelayFeedbackRuntime {
   }
 
   findNearestHit(screen, { includeWakes = false } = {}) {
+    const velocityCandidates = [];
+    ["positrino", "electrino"].forEach((kind) => {
+      const condition = this.getInitialCondition(kind);
+      if (!condition) {
+        return;
+      }
+      const candidate = this.worldToScreen(this.initialConditionVelocityEnd(condition));
+      const distance = Math.hypot(screen.x - candidate.x, screen.y - candidate.y);
+      velocityCandidates.push(this.createInitialVelocityHit(kind, condition, distance));
+    });
+    const nearestVelocity = velocityCandidates.sort((a, b) => a.distance - b.distance)[0];
+    if (nearestVelocity && nearestVelocity.distance <= nearestVelocity.hitRadius) {
+      return nearestVelocity;
+    }
+
     const initialCandidates = [];
     ["positrino", "electrino"].forEach((kind) => {
       const condition = this.getInitialCondition(kind);
@@ -1296,6 +1443,23 @@ class CausalDelayFeedbackRuntime {
       distance,
       hitRadius: 24,
       selection: { type: "initial-condition", kind },
+    };
+  }
+
+  createInitialVelocityHit(kind, condition, distance) {
+    const speed = Math.hypot(Number(condition.vx) || 0, Number(condition.vy) || 0);
+    return {
+      type: "initial-velocity",
+      title: `${kind} velocity`,
+      label: `${kind} velocity`,
+      details: [
+        `speed=${Math.round(speed)}`,
+        `vx=${(Number(condition.vx) || 0).toFixed(1)}`,
+        `vy=${(Number(condition.vy) || 0).toFixed(1)}`,
+      ],
+      distance,
+      hitRadius: 20,
+      selection: { type: "initial-velocity", kind },
     };
   }
 
