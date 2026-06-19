@@ -6,8 +6,10 @@ import {
   DESIGN_WIDTH,
   DIRECT_MANIPULATION_DRAFT_PREVIEW,
   ELECTRINO,
+  ELECTRINO_WAKE,
   FULL_CIRCULAR_ARCS,
   POSITRINO,
+  POSITRINO_WAKE,
   PRESETS,
   REPRESENTATIVE_MOCK_SOLVER_REPLAY,
   TEMPORARY_MOCK_ADAPTER,
@@ -31,8 +33,34 @@ const TIME_EPSILON = 1e-6;
 const INITIAL_VELOCITY_ARROW_SCALE = 0.07;
 const INITIAL_VELOCITY_PREVIEW_RESPONSE = 0.42;
 const DEFAULT_ASSEMBLY_THRESHOLD = 0.00075;
+const MIN_RETAINED_DEPTH_LIMIT = 2;
+const VIRTUAL_OBSERVER = Object.freeze({ r: 74, g: 229, b: 255, a: 1 });
+const DEFAULT_VIRTUAL_OBSERVER_POINT = Object.freeze({
+  kind: "virtualObserver",
+  label: "Virtual Observer",
+  role: "observer",
+  x: 1600,
+  y: 540,
+});
 const SPACE_KEYS = new Set([" ", "Space", "Spacebar"]);
 const SPACEBAR_NATIVE_CONTROL_TAGS = new Set(["BUTTON", "INPUT", "SELECT", "TEXTAREA"]);
+const INACTIVE_WAKE_VISUAL_TIERS = Object.freeze({
+  inactive: Object.freeze({
+    alphaScale: 0.46,
+    radiusScale: 0.78,
+    desaturation: 0.32,
+  }),
+  stale: Object.freeze({
+    alphaScale: 0.24,
+    radiusScale: 0.62,
+    desaturation: 0.7,
+  }),
+  rejected: Object.freeze({
+    alphaScale: 0.18,
+    radiusScale: 0.56,
+    desaturation: 0.78,
+  }),
+});
 
 function queryRequiredElement(documentLike, selector) {
   const element = documentLike.querySelector(selector);
@@ -76,6 +104,14 @@ function formatCompactNumber(value) {
     return value.toExponential(1);
   }
   return value.toFixed(3).replace(/0+$/, "").replace(/\.$/, "");
+}
+
+function formatCompactLabel(value, fallback = "") {
+  const text = String(value ?? "").trim();
+  if (!text) {
+    return fallback;
+  }
+  return text.replace(/\s+/g, "_").slice(0, 72);
 }
 
 function createViewport(canvasWidth, canvasHeight) {
@@ -127,6 +163,7 @@ class CausalDelayFeedbackRuntime {
     this.replayLoadError = null;
     this.dataset = this.createFallbackReplay(this.presetId);
     this.updateWakeLinkGeometry();
+    this.retainedDepthLimit = this.normalizeRetainedDepthLimit(options.retainedDepthLimit);
     this.viewport = createViewport(DESIGN_WIDTH, DESIGN_HEIGHT);
     this.pixelRatio = 1;
     this.selectedItem = null;
@@ -143,6 +180,7 @@ class CausalDelayFeedbackRuntime {
 
     this.populatePresets();
     this.populateCanvasSwatches();
+    this.populateHistoryDepthControls();
     this.updateReplayStatus();
     this.bindEvents();
     this.resize();
@@ -164,6 +202,7 @@ class CausalDelayFeedbackRuntime {
       settingsButton: queryRequiredElement(this.document, "#causal-delay-feedback-settings"),
       settingsPanel: queryRequiredElement(this.document, "#causal-delay-feedback-settings-panel"),
       colorSwatches: queryRequiredElement(this.document, "#causal-delay-feedback-color-swatches"),
+      historyDepthControls: queryRequiredElement(this.document, "#causal-delay-feedback-history-depth"),
       replayStatus: queryRequiredElement(this.document, "#causal-delay-feedback-replay-status"),
       hoverLabel: queryRequiredElement(this.document, "#causal-delay-feedback-hover-label"),
       readout: queryRequiredElement(this.document, "#causal-delay-feedback-readout"),
@@ -191,12 +230,31 @@ class CausalDelayFeedbackRuntime {
         button.style.background = entry.color;
         button.dataset.colorId = entry.id;
         button.setAttribute("aria-label", entry.label);
-        if (entry.id === this.canvasColorId) {
-          button.classList.add("is-active");
-        }
         return button;
       }),
     );
+    this.updateCanvasSwatchSelection();
+  }
+
+  populateHistoryDepthControls() {
+    const maxDepth = this.getMaxRetainedDepthLimit();
+    const minDepth = Math.min(MIN_RETAINED_DEPTH_LIMIT, maxDepth);
+    const options = [];
+    for (let depth = minDepth; depth <= maxDepth; depth += 1) {
+      options.push(depth);
+    }
+    this.dom.historyDepthControls.replaceChildren(
+      ...options.map((depth) => {
+        const button = this.document.createElement("button");
+        button.type = "button";
+        button.className = "causal-depth-button";
+        button.textContent = String(depth);
+        button.dataset.historyDepth = String(depth);
+        button.setAttribute("aria-label", `${depth} retained path points`);
+        return button;
+      }),
+    );
+    this.updateHistoryDepthSelection();
   }
 
   bindEvents() {
@@ -231,11 +289,21 @@ class CausalDelayFeedbackRuntime {
       }
       this.setCanvasColor(button.dataset.colorId);
     });
+    this.dom.historyDepthControls.addEventListener("click", (event) => {
+      const button = event.target.closest("[data-history-depth]");
+      if (!button) {
+        return;
+      }
+      this.setRetainedDepthLimit(Number(button.dataset.historyDepth));
+    });
     this.dom.canvas.addEventListener("pointermove", (event) => {
       this.handleCanvasPointerMove(event);
     });
     this.dom.canvas.addEventListener("pointerdown", (event) => {
       this.handleCanvasPointerDown(event);
+    });
+    this.dom.canvas.addEventListener("contextmenu", (event) => {
+      this.handleCanvasContextMenu(event);
     });
     this.dom.canvas.addEventListener("pointerleave", () => {
       if (!this.dragState) {
@@ -265,8 +333,10 @@ class CausalDelayFeedbackRuntime {
     this.elapsedSeconds = 0;
     this.selectedItem = null;
     this.dragState = null;
-    this.applyReplayDataset(this.createFallbackReplay(this.presetId), {
-      loadState: this.usesFallbackReplayOnly() ? "ready" : "loading",
+    const fallbackDataset = this.createFallbackReplay(this.presetId);
+    this.retainedDepthLimit = this.normalizeRetainedDepthLimit(fallbackDataset.initialConditions?.historyDepth);
+    this.applyReplayDataset(fallbackDataset, {
+      loadState: this.usesFallbackReplayOnly() || this.shouldUseRepresentativeReplayOnly(this.presetId) ? "ready" : "loading",
     });
     this.refreshAfterReplayDatasetChange();
     return this.loadReplay();
@@ -283,12 +353,33 @@ class CausalDelayFeedbackRuntime {
     return this.replayAdapter === this.fallbackReplayAdapter && typeof this.replayAdapter.createReplayAsync !== "function";
   }
 
-  async loadReplay({ presetId = this.presetId, requestOptions = this.replayRequestOptions } = {}) {
+  shouldUseRepresentativeReplayOnly(presetId = this.presetId) {
+    return getPresetById(presetId).representativeOnly === true;
+  }
+
+  async loadReplay({
+    presetId = this.presetId,
+    requestOptions = this.replayRequestOptions,
+    preserveDraftOnFailure = false,
+  } = {}) {
     const sequence = ++this.replayLoadSequence;
     const adapter = this.replayAdapter;
     this.replayLoadState = "loading";
     this.replayLoadError = null;
     this.updateReplayStatus();
+
+    if (this.shouldUseRepresentativeReplayOnly(presetId)) {
+      const dataset = this.createFallbackReplay(presetId);
+      if (sequence !== this.replayLoadSequence) {
+        return this.dataset;
+      }
+      this.applyReplayDataset(dataset, { loadState: "ready" });
+      this.elapsedSeconds = 0;
+      this.selectedItem = null;
+      this.dragState = null;
+      this.refreshAfterReplayDatasetChange();
+      return this.dataset;
+    }
 
     try {
       const dataset =
@@ -309,6 +400,11 @@ class CausalDelayFeedbackRuntime {
         return this.dataset;
       }
       this.replayLoadError = error;
+      if (preserveDraftOnFailure && this.dataset?.datasetSource === DIRECT_MANIPULATION_DRAFT_PREVIEW) {
+        this.markDraftSolverRejection(error);
+        this.refreshAfterReplayDatasetChange();
+        return this.dataset;
+      }
       this.applyReplayDataset(this.createFallbackReplay(presetId), { loadState: "fallback" });
       this.elapsedSeconds = 0;
       this.selectedItem = null;
@@ -321,10 +417,16 @@ class CausalDelayFeedbackRuntime {
   applyReplayDataset(dataset, { loadState = this.replayLoadState } = {}) {
     this.dataset = dataset;
     this.replayLoadState = loadState;
+    this.retainedDepthLimit = this.normalizeRetainedDepthLimit(this.retainedDepthLimit);
+    this.applyDatasetCanvasColor(dataset);
+    this.syncVirtualObserverState();
     this.updateWakeLinkGeometry();
     this.syncReplayRequestOptionsFromDataset();
     if (this.dom?.preset) {
       this.dom.preset.value = this.presetId;
+    }
+    if (this.dom?.historyDepthControls) {
+      this.populateHistoryDepthControls();
     }
     this.updateReplayStatus();
   }
@@ -336,7 +438,9 @@ class CausalDelayFeedbackRuntime {
     this.replayRequestOptions = {
       ...this.replayRequestOptions,
       initialConditions: cloneJson(this.dataset.initialConditions ?? {}),
+      virtualObserver: cloneJson(this.getVirtualObserver()),
       replayDataset: this.dataset,
+      retainedDepthLimit: this.retainedDepthLimit,
     };
   }
 
@@ -386,6 +490,16 @@ class CausalDelayFeedbackRuntime {
           : "Showing representative replay data because solver bridge replay is unavailable.",
       };
     }
+    if (this.replayLoadState === "draft-rejected") {
+      const errorMessage = this.getDraftSolverRejectionMessage();
+      return {
+        state: "draft-rejected",
+        label: "solver rejected edit",
+        help: errorMessage
+          ? `Showing the edited draft because the solver bridge could not recompute it: ${errorMessage}`
+          : "Showing the edited draft because the solver bridge could not recompute it.",
+      };
+    }
     if (
       this.replayLoadState === "draft" ||
       this.dataset?.datasetSource === DIRECT_MANIPULATION_DRAFT_PREVIEW
@@ -419,10 +533,110 @@ class CausalDelayFeedbackRuntime {
 
   setCanvasColor(colorId) {
     this.canvasColorId = getCanvasColorById(colorId).id;
+    this.updateCanvasSwatchSelection();
+    if (this.dom?.settingsPanel) {
+      this.hideSettings();
+    }
+    this.render();
+  }
+
+  setRetainedDepthLimit(depthLimit) {
+    const nextLimit = this.normalizeRetainedDepthLimit(depthLimit);
+    if (nextLimit === this.retainedDepthLimit) {
+      return;
+    }
+    this.retainedDepthLimit = nextLimit;
+    this.syncReplayRequestOptionsFromDataset();
+    if (!this.isSelectionVisible()) {
+      this.selectedItem = null;
+    }
+    this.updateHistoryDepthSelection();
+    if (this.dom?.readout) {
+      this.updateReadout();
+    }
+    if (this.context) {
+      this.render();
+    }
+    if (this.dom?.settingsPanel) {
+      this.hideSettings();
+    }
+  }
+
+  applyDatasetCanvasColor(dataset) {
+    const colorId = dataset?.canvasColorId ?? dataset?.preset?.canvasColorId;
+    if (!colorId) {
+      return;
+    }
+    this.canvasColorId = getCanvasColorById(colorId).id;
+    this.updateCanvasSwatchSelection();
+  }
+
+  syncVirtualObserverState() {
+    const observer = this.getVirtualObserver() ?? DEFAULT_VIRTUAL_OBSERVER_POINT;
+    this.setVirtualObserverPosition(observer);
+  }
+
+  updateCanvasSwatchSelection() {
+    if (!this.dom?.colorSwatches) {
+      return;
+    }
     Array.from(this.dom.colorSwatches.children).forEach((button) => {
       button.classList.toggle("is-active", button.dataset.colorId === this.canvasColorId);
     });
-    this.render();
+  }
+
+  updateHistoryDepthSelection() {
+    if (!this.dom?.historyDepthControls) {
+      return;
+    }
+    Array.from(this.dom.historyDepthControls.children).forEach((button) => {
+      const isActive = Number(button.dataset.historyDepth) === this.retainedDepthLimit;
+      button.classList.toggle("is-active", isActive);
+      button.setAttribute("aria-pressed", isActive ? "true" : "false");
+    });
+  }
+
+  getMaxRetainedDepthLimit() {
+    const historyDepth = Number(this.dataset?.initialConditions?.historyDepth);
+    if (Number.isFinite(historyDepth) && historyDepth > 0) {
+      return Math.max(1, Math.floor(historyDepth));
+    }
+    const depths = Object.values(this.dataset?.history ?? {})
+      .flat()
+      .map((point) => Number(point.depth))
+      .filter(Number.isFinite);
+    return depths.length > 0 ? Math.max(...depths) : MIN_RETAINED_DEPTH_LIMIT;
+  }
+
+  normalizeRetainedDepthLimit(depthLimit) {
+    const maxDepth = this.getMaxRetainedDepthLimit();
+    const minDepth = Math.min(MIN_RETAINED_DEPTH_LIMIT, maxDepth);
+    const numericDepth = Number(depthLimit);
+    const candidate = Number.isFinite(numericDepth) ? Math.floor(numericDepth) : maxDepth;
+    return clamp(candidate, minDepth, maxDepth);
+  }
+
+  getVisibleHistory(kind) {
+    return (this.dataset?.history?.[kind] ?? []).filter((point) => Number(point.depth) <= this.retainedDepthLimit);
+  }
+
+  getVisibleWakeLinks() {
+    return (this.dataset?.wakeLinks ?? []).filter(
+      (link) => Number(link.sourceDepth) <= this.retainedDepthLimit && Number(link.receiverDepth) <= this.retainedDepthLimit,
+    );
+  }
+
+  isSelectionVisible() {
+    if (!this.selectedItem) {
+      return true;
+    }
+    if (this.selectedItem.type === "history") {
+      return Number(this.selectedItem.depth) <= this.retainedDepthLimit;
+    }
+    if (this.selectedItem.type === "wake") {
+      return this.getVisibleWakeLinks().some((link) => link.id === this.selectedItem.linkId);
+    }
+    return true;
   }
 
   setPlaying(isPlaying) {
@@ -505,8 +719,10 @@ class CausalDelayFeedbackRuntime {
     const deltaSeconds = Math.min(0.06, Math.max(0, (time - this.lastFrameTime) / 1000));
     this.lastFrameTime = time;
     if (this.isPlaying) {
+      const previousReplayTime = this.getCurrentReplayTime();
       this.elapsedSeconds += deltaSeconds;
-      this.render();
+      const replayTime = this.getCurrentReplayTime();
+      this.render(this.getFrameReceptionReplayTime(previousReplayTime, replayTime) ?? replayTime);
       if (this.dom?.readout) {
         this.updateReadout();
       }
@@ -536,12 +752,12 @@ class CausalDelayFeedbackRuntime {
     };
   }
 
-  render() {
+  render(replayTime = this.getCurrentReplayTime()) {
     const ctx = this.context;
     ctx.setTransform(this.pixelRatio, 0, 0, this.pixelRatio, 0, 0);
     ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
     this.drawBackground(ctx);
-    this.drawWakes(ctx);
+    this.drawWakes(ctx, replayTime);
     if (this.showPaths) {
       this.drawPathTrail(ctx, "positrino", POSITRINO);
       this.drawPathTrail(ctx, "electrino", ELECTRINO);
@@ -549,8 +765,9 @@ class CausalDelayFeedbackRuntime {
     this.drawInitialConditionHandles(ctx);
     this.drawHistoryPoints(ctx, "positrino", POSITRINO);
     this.drawHistoryPoints(ctx, "electrino", ELECTRINO);
+    this.drawVirtualObserver(ctx);
     this.drawSelection(ctx);
-    this.drawLiveMarkers(ctx);
+    this.drawLiveMarkers(ctx, replayTime);
   }
 
   drawBackground(ctx) {
@@ -580,26 +797,25 @@ class CausalDelayFeedbackRuntime {
     this.drawText(ctx, "time", { x: 1788, y: 932 }, 14, withAlpha(WHITE, 0.72), "right");
   }
 
-  drawWakes(ctx) {
-    const replayTime = this.getCurrentReplayTime();
+  drawWakes(ctx, replayTime = this.getCurrentReplayTime()) {
     if (this.dataset.wakeArcDisplayMode === FULL_CIRCULAR_ARCS) {
       this.drawFullCircularWakes(ctx, replayTime);
       return;
     }
-    this.dataset.wakeLinks.forEach((link) => {
+    this.getVisibleWakeLinks().forEach((link) => {
       this.drawWakeProgression(ctx, link, replayTime);
     });
   }
 
   drawFullCircularWakes(ctx, replayTime) {
-    this.dataset.wakeLinks.forEach((link) => {
+    this.getVisibleWakeLinks().forEach((link) => {
       this.drawFullCircularWakeProgression(ctx, link, replayTime);
     });
   }
 
   drawFullCircularWakeProgression(ctx, link, replayTime) {
     const timing = this.getWakeTiming(link, replayTime);
-    if (!timing?.active) {
+    if (!this.shouldDrawWakeSeries(timing)) {
       return;
     }
     const preset = this.dataset.preset;
@@ -622,7 +838,7 @@ class CausalDelayFeedbackRuntime {
 
   drawWakeProgression(ctx, link, replayTime) {
     const timing = this.getWakeTiming(link, replayTime);
-    if (!timing?.active) {
+    if (!this.shouldDrawWakeSeries(timing)) {
       return;
     }
     const preset = this.dataset.preset;
@@ -690,7 +906,7 @@ class CausalDelayFeedbackRuntime {
   }
 
   drawHistoryPoints(ctx, kind, color) {
-    this.dataset.history[kind].forEach((point) => {
+    this.getVisibleHistory(kind).forEach((point) => {
       const screen = this.worldToScreen(point);
       this.drawCircle(ctx, screen, 8.5, withAlpha({ r: 8, g: 6, b: 18, a: 1 }, 0.82), withAlpha(WHITE, 0.68), 1.2);
       this.drawCircle(ctx, screen, 4.3, color);
@@ -719,12 +935,27 @@ class CausalDelayFeedbackRuntime {
     this.drawCircle(ctx, screen, 6.4, color, WHITE, 1.2);
   }
 
+  drawVirtualObserver(ctx) {
+    const observer = this.getVirtualObserver();
+    if (!observer) {
+      return;
+    }
+    const screen = this.worldToScreen(observer);
+    const arm = 18 * this.viewport.scale;
+    this.drawCircle(ctx, screen, 22, withAlpha(VIRTUAL_OBSERVER, 0.1), withAlpha(VIRTUAL_OBSERVER, 0.58), 1.2);
+    this.drawCircle(ctx, screen, 8.4, withAlpha({ r: 8, g: 6, b: 18, a: 1 }, 0.86), withAlpha(WHITE, 0.74), 1);
+    this.drawCircle(ctx, screen, 3.6, VIRTUAL_OBSERVER);
+    this.drawLine(ctx, [{ x: screen.x - arm, y: screen.y }, { x: screen.x + arm, y: screen.y }], withAlpha(VIRTUAL_OBSERVER, 0.54), 1.2);
+    this.drawLine(ctx, [{ x: screen.x, y: screen.y - arm }, { x: screen.x, y: screen.y + arm }], withAlpha(VIRTUAL_OBSERVER, 0.54), 1.2);
+    this.drawScreenText(ctx, "Virtual Observer", { x: screen.x + 30 * this.viewport.scale, y: screen.y - 20 * this.viewport.scale }, 13, withAlpha(WHITE, 0.76), "left", "bold");
+  }
+
   drawSelection(ctx) {
     if (!this.selectedItem) {
       return;
     }
     if (this.selectedItem.type === "history") {
-      const point = this.dataset.history[this.selectedItem.kind]?.find(
+      const point = this.getVisibleHistory(this.selectedItem.kind).find(
         (candidate) => candidate.depth === this.selectedItem.depth,
       );
       if (!point) {
@@ -752,8 +983,17 @@ class CausalDelayFeedbackRuntime {
       this.drawCircle(ctx, screen, 18, withAlpha(WHITE, 0.05), withAlpha(WHITE, 0.9), 1.4);
       return;
     }
+    if (this.selectedItem.type === "virtual-observer") {
+      const observer = this.getVirtualObserver();
+      if (!observer) {
+        return;
+      }
+      const screen = this.worldToScreen(observer);
+      this.drawCircle(ctx, screen, 30, withAlpha(VIRTUAL_OBSERVER, 0.08), withAlpha(WHITE, 0.9), 1.5);
+      return;
+    }
 
-    const link = this.dataset.wakeLinks.find((candidate) => candidate.id === this.selectedItem.linkId);
+    const link = this.getVisibleWakeLinks().find((candidate) => candidate.id === this.selectedItem.linkId);
     if (!link) {
       return;
     }
@@ -765,10 +1005,15 @@ class CausalDelayFeedbackRuntime {
     this.drawCircle(ctx, this.worldToScreen(endpoints.receiver), 15, withAlpha(WHITE, 0.04), withAlpha(WHITE, 0.78), 1.1);
   }
 
-  drawLiveMarkers(ctx) {
-    const t = this.getCurrentReplayTime();
-    this.drawLiveMarker(ctx, "positrino", POSITRINO, this.getReplayPathPoint("positrino", t), "positrino", { x: 16, y: 24 });
-    this.drawLiveMarker(ctx, "electrino", ELECTRINO, this.getReplayPathPoint("electrino", t), "electrino", { x: 16, y: -30 });
+  drawLiveMarkers(ctx, replayTime = this.getCurrentReplayTime()) {
+    this.drawLiveMarker(ctx, "positrino", POSITRINO, this.getReplayPathPoint("positrino", replayTime), "positrino", {
+      x: 16,
+      y: 24,
+    });
+    this.drawLiveMarker(ctx, "electrino", ELECTRINO, this.getReplayPathPoint("electrino", replayTime), "electrino", {
+      x: 16,
+      y: -30,
+    });
   }
 
   drawLiveMarker(ctx, kind, color, point, label, labelOffset) {
@@ -882,6 +1127,8 @@ class CausalDelayFeedbackRuntime {
         this.dragSelectedInitialVelocity(event);
       } else if (this.dragState.type === "initial-condition") {
         this.dragSelectedInitialCondition(event);
+      } else if (this.dragState.type === "virtual-observer") {
+        this.dragSelectedVirtualObserver(event);
       } else {
         this.dragSelectedHistoryPoint(event);
       }
@@ -906,9 +1153,28 @@ class CausalDelayFeedbackRuntime {
       this.startInitialVelocityDrag(event, hit);
     } else if (hit.type === "initial-condition") {
       this.startInitialConditionDrag(event, hit);
+    } else if (hit.type === "virtual-observer") {
+      this.startVirtualObserverDrag(event, hit);
     } else if (hit.type === "history") {
       this.startHistoryPointDrag(event, hit);
     }
+    this.render();
+  }
+
+  handleCanvasContextMenu(event) {
+    const rect = this.dom.canvas.getBoundingClientRect();
+    const screen = { x: event.clientX - rect.left, y: event.clientY - rect.top };
+    const insertion = this.findNearestPathInsertion(screen);
+    if (!insertion) {
+      return;
+    }
+    event.preventDefault();
+    const point = this.addReceptionPointAtPath(insertion.kind, insertion);
+    if (!point) {
+      return;
+    }
+    this.selectedItem = { type: "history", kind: point.kind, depth: point.depth };
+    this.updateReadout(this.createHistoryHit(point, 0));
     this.render();
   }
 
@@ -950,6 +1216,21 @@ class CausalDelayFeedbackRuntime {
     this.dragState = {
       type: "initial-velocity",
       kind: hit.selection.kind,
+      lastWorld: this.screenToWorld(screen),
+      didEdit: false,
+    };
+    this.setPlaying(false);
+    if (typeof this.dom.canvas.setPointerCapture === "function") {
+      this.dom.canvas.setPointerCapture(event.pointerId);
+    }
+    event.preventDefault();
+  }
+
+  startVirtualObserverDrag(event, hit) {
+    const rect = this.dom.canvas.getBoundingClientRect();
+    const screen = { x: event.clientX - rect.left, y: event.clientY - rect.top };
+    this.dragState = {
+      type: "virtual-observer",
       lastWorld: this.screenToWorld(screen),
       didEdit: false,
     };
@@ -1003,23 +1284,46 @@ class CausalDelayFeedbackRuntime {
     }
   }
 
+  dragSelectedVirtualObserver(event) {
+    const rect = this.dom.canvas.getBoundingClientRect();
+    const screen = { x: event.clientX - rect.left, y: event.clientY - rect.top };
+    const world = this.screenToWorld(screen);
+    const delta = {
+      x: world.x - this.dragState.lastWorld.x,
+      y: world.y - this.dragState.lastWorld.y,
+    };
+    this.dragState.lastWorld = world;
+    if (this.applyVirtualObserverDrag(delta)) {
+      this.dragState.didEdit = true;
+      this.updateReadout();
+      this.render();
+    }
+  }
+
   finishDrag() {
     const completedDrag = this.dragState;
     this.dragState = null;
     if (
-      (completedDrag?.type === "initial-condition" || completedDrag?.type === "initial-velocity") &&
+      (
+        completedDrag?.type === "initial-condition" ||
+        completedDrag?.type === "initial-velocity" ||
+        completedDrag?.type === "virtual-observer"
+      ) &&
       completedDrag.didEdit
     ) {
-      return this.rerunAfterInitialConditionDrag();
+      return this.rerunAfterDirectManipulationDrag();
     }
     return this.dataset;
   }
 
-  rerunAfterInitialConditionDrag() {
+  rerunAfterDirectManipulationDrag() {
     if (this.usesFallbackReplayOnly()) {
       return this.dataset;
     }
-    return this.loadReplay({ requestOptions: this.replayRequestOptions });
+    return this.loadReplay({
+      requestOptions: this.replayRequestOptions,
+      preserveDraftOnFailure: true,
+    });
   }
 
   applyRetainedPointDrag(kind, depth, delta) {
@@ -1066,11 +1370,170 @@ class CausalDelayFeedbackRuntime {
     return true;
   }
 
-  markDraftPreview(reason) {
+  applyVirtualObserverDrag(delta) {
+    if (!delta || (delta.x === 0 && delta.y === 0)) {
+      return false;
+    }
+    const observer = this.getVirtualObserver();
+    if (!observer) {
+      return false;
+    }
+    this.setVirtualObserverPosition({
+      x: observer.x + delta.x,
+      y: observer.y + delta.y,
+    });
+    this.syncReplayRequestOptionsFromDataset();
+    this.markDraftPreview("virtual_observer_drag_preview", { staleSolverRows: false });
+    return true;
+  }
+
+  addReceptionPointAtPath(kind, point) {
+    if (!this.dataset?.history?.[kind] || !point) {
+      return null;
+    }
+    const insertedPoint = this.insertHistoryPoint(kind, point);
+    if (!insertedPoint) {
+      return null;
+    }
+
+    this.renumberHistoryPoints(kind);
+    const oppositeKind = kind === "positrino" ? "electrino" : "positrino";
+    const oppositePoint = this.getReplayPathPoint(oppositeKind, insertedPoint.t);
+    if (this.insertHistoryPoint(oppositeKind, oppositePoint)) {
+      this.renumberHistoryPoints(oppositeKind);
+    }
+    this.syncHistoryDepthState();
+    this.rebuildWakeLinksFromHistory();
+    this.retainedDepthLimit = this.getMaxRetainedDepthLimit();
+    this.syncReplayRequestOptionsFromDataset();
+    this.markDraftPreview("reception_point_insert_preview", { staleSolverRows: false });
+    if (this.dom?.historyDepthControls) {
+      this.populateHistoryDepthControls();
+    }
+    return insertedPoint;
+  }
+
+  insertHistoryPoint(kind, point) {
+    const rows = this.dataset?.history?.[kind];
+    if (!Array.isArray(rows) || !point) {
+      return null;
+    }
+    const historyPoint = {
+      kind,
+      t: Number(point.t),
+      x: Number(point.x),
+      y: Number(point.y),
+      weight: 1,
+      state: "active",
+    };
+    if (
+      !Number.isFinite(historyPoint.t) ||
+      !Number.isFinite(historyPoint.x) ||
+      !Number.isFinite(historyPoint.y)
+    ) {
+      return null;
+    }
+    if (rows.some((row) => Math.abs(row.t - historyPoint.t) <= TIME_EPSILON)) {
+      return null;
+    }
+    rows.push(historyPoint);
+    return historyPoint;
+  }
+
+  renumberHistoryPoints(kind) {
+    const rows = this.dataset?.history?.[kind];
+    if (!Array.isArray(rows)) {
+      return;
+    }
+    rows.sort((left, right) => left.t - right.t);
+    const count = rows.length;
+    rows.forEach((point, index) => {
+      point.kind = kind;
+      point.depth = index + 1;
+      point.weight = count > 1 ? (index + 1) / count : 1;
+      point.state = this.getHistoryPointState(index, count);
+    });
+  }
+
+  getHistoryPointState(index, count) {
+    if (index === 0) {
+      return "older";
+    }
+    if (index === count - 1) {
+      return "newer";
+    }
+    return "active";
+  }
+
+  syncHistoryDepthState() {
+    const maxDepth = Math.max(
+      1,
+      ...Object.values(this.dataset?.history ?? {})
+        .flat()
+        .map((point) => Number(point.depth))
+        .filter(Number.isFinite),
+    );
+    if (!this.dataset.initialConditions) {
+      this.dataset.initialConditions = {};
+    }
+    this.dataset.initialConditions.historyDepth = maxDepth;
+  }
+
+  rebuildWakeLinksFromHistory() {
+    const links = [];
+    this.appendHistoryWakeLinks(links, "positrino", "electrino");
+    this.appendHistoryWakeLinks(links, "electrino", "positrino");
+    this.dataset.wakeLinks = links;
+  }
+
+  appendHistoryWakeLinks(links, sourceKind, receiverKind) {
+    const sourceRows = this.dataset?.history?.[sourceKind] ?? [];
+    const receiverRows = this.dataset?.history?.[receiverKind] ?? [];
+    const maxDepth = Math.max(sourceRows.length, receiverRows.length);
+    for (let depth = 1; depth < maxDepth; depth += 1) {
+      const source = sourceRows.find((point) => point.depth === depth);
+      const receiver = receiverRows.find((point) => point.depth === depth + 1);
+      if (!source || !receiver || receiver.t <= source.t) {
+        continue;
+      }
+      links.push(this.createHistoryWakeLink(sourceKind, receiverKind, source, receiver));
+    }
+  }
+
+  createHistoryWakeLink(sourceKind, receiverKind, source, receiver) {
+    return {
+      id: `${sourceKind}-${source.depth}-to-${receiverKind}-${receiver.depth}`,
+      label: `${this.getKindShortLabel(sourceKind)} ${source.depth} -> ${this.getKindShortLabel(receiverKind)} ${receiver.depth}`,
+      sourceKind,
+      receiverKind,
+      sourceDepth: source.depth,
+      receiverDepth: receiver.depth,
+      source: { x: source.x, y: source.y, t: source.t },
+      receiver: { x: receiver.x, y: receiver.y, t: receiver.t },
+      emissionTime: source.t,
+      hitTime: receiver.t,
+      travelTime: receiver.t - source.t,
+      color: this.getWakeColorForKind(sourceKind),
+      weight: Math.min(source.weight, receiver.weight),
+      mode: this.dataset.wakeArcDisplayMode,
+    };
+  }
+
+  getKindShortLabel(kind) {
+    return kind === "positrino" ? "red" : "blue";
+  }
+
+  getWakeColorForKind(kind) {
+    return kind === "positrino" ? POSITRINO_WAKE : ELECTRINO_WAKE;
+  }
+
+  markDraftPreview(reason, { staleSolverRows = true } = {}) {
     if (!this.dataset) {
       return;
     }
-    this.markSolverWakeLinksStale(reason);
+    if (staleSolverRows) {
+      this.markSolverWakeLinksStale(reason);
+    }
     this.dataset.datasetSource = DIRECT_MANIPULATION_DRAFT_PREVIEW;
     this.dataset.draftPreview = {
       reason,
@@ -1081,8 +1544,37 @@ class CausalDelayFeedbackRuntime {
     this.updateReplayStatus();
   }
 
+  markDraftSolverRejection(error) {
+    if (!this.dataset) {
+      return;
+    }
+    const message = this.formatSolverRejectionMessage(error);
+    this.dataset.datasetSource = DIRECT_MANIPULATION_DRAFT_PREVIEW;
+    this.dataset.draftPreview = {
+      ...(this.dataset.draftPreview ?? {}),
+      authoritative: false,
+      solverRejected: true,
+      solverRejection: {
+        message,
+        code: formatCompactLabel(error?.code ?? error?.name, "solver_error"),
+      },
+    };
+    this.replayLoadState = "draft-rejected";
+    this.syncReplayRequestOptionsFromDataset();
+    this.updateReplayStatus();
+  }
+
+  getDraftSolverRejectionMessage() {
+    return this.dataset?.draftPreview?.solverRejection?.message ?? this.formatSolverRejectionMessage(this.replayLoadError);
+  }
+
+  formatSolverRejectionMessage(error) {
+    const message = String(error?.message ?? error ?? "").trim();
+    return message.length > 0 ? message : "solver bridge rejected the edited setup";
+  }
+
   markSolverWakeLinksStale(reason) {
-    (this.dataset?.wakeLinks ?? []).forEach((link) => {
+    this.getVisibleWakeLinks().forEach((link) => {
       if (!this.hasWakeSolverMetadata(link)) {
         return;
       }
@@ -1227,9 +1719,56 @@ class CausalDelayFeedbackRuntime {
   }
 
   getCurrentReplayTime() {
+    return this.getReplayTimeForElapsedSeconds(this.elapsedSeconds);
+  }
+
+  getReplayTimeForElapsedSeconds(elapsedSeconds) {
     const [start, end] = this.getReplayTimeRange();
-    const phase = (this.elapsedSeconds % REPLAY_LOOP_SECONDS) / REPLAY_LOOP_SECONDS;
+    const phase = (elapsedSeconds % REPLAY_LOOP_SECONDS) / REPLAY_LOOP_SECONDS;
     return start + (end - start) * phase;
+  }
+
+  getFrameReceptionReplayTime(previousReplayTime, replayTime) {
+    if (!Number.isFinite(previousReplayTime) || !Number.isFinite(replayTime)) {
+      return null;
+    }
+    const [start, end] = this.getReplayTimeRange();
+    if (!Number.isFinite(start) || !Number.isFinite(end) || end <= start) {
+      return null;
+    }
+
+    const candidates = [];
+    this.getVisibleWakeLinks().forEach((link) => {
+      const timing = this.getWakeTiming(link, replayTime);
+      const receiverT = timing?.receiverT;
+      if (!Number.isFinite(receiverT)) {
+        return;
+      }
+      const advance = this.getReplayTimeAdvanceToCrossedPoint(previousReplayTime, replayTime, receiverT, start, end);
+      if (Number.isFinite(advance)) {
+        candidates.push({ replayTime: receiverT, advance });
+      }
+    });
+
+    candidates.sort((left, right) => left.advance - right.advance);
+    return candidates[0]?.replayTime ?? null;
+  }
+
+  getReplayTimeAdvanceToCrossedPoint(previousReplayTime, replayTime, crossedReplayTime, start, end) {
+    if (previousReplayTime <= replayTime) {
+      if (crossedReplayTime > previousReplayTime + TIME_EPSILON && crossedReplayTime <= replayTime + TIME_EPSILON) {
+        return crossedReplayTime - previousReplayTime;
+      }
+      return Number.NaN;
+    }
+
+    if (crossedReplayTime > previousReplayTime + TIME_EPSILON && crossedReplayTime <= end + TIME_EPSILON) {
+      return crossedReplayTime - previousReplayTime;
+    }
+    if (crossedReplayTime >= start - TIME_EPSILON && crossedReplayTime <= replayTime + TIME_EPSILON) {
+      return end - previousReplayTime + crossedReplayTime - start;
+    }
+    return Number.NaN;
   }
 
   getReplayTimeRange() {
@@ -1250,6 +1789,33 @@ class CausalDelayFeedbackRuntime {
 
   getInitialCondition(kind) {
     return this.dataset.initialConditions?.[kind] ?? null;
+  }
+
+  getVirtualObserver() {
+    return this.dataset?.virtualObserver ?? this.dataset?.initialConditions?.virtualObserver ?? null;
+  }
+
+  setVirtualObserverPosition(point) {
+    if (!this.dataset || !point) {
+      return null;
+    }
+    const current = this.getVirtualObserver() ?? {
+      ...DEFAULT_VIRTUAL_OBSERVER_POINT,
+    };
+    const next = {
+      ...current,
+      kind: "virtualObserver",
+      label: current.label ?? "Virtual Observer",
+      role: current.role ?? "observer",
+      x: Number(point.x) || 0,
+      y: Number(point.y) || 0,
+    };
+    this.dataset.virtualObserver = next;
+    if (!this.dataset.initialConditions) {
+      this.dataset.initialConditions = {};
+    }
+    this.dataset.initialConditions.virtualObserver = { ...next };
+    return next;
   }
 
   initialConditionPoint(condition) {
@@ -1280,21 +1846,39 @@ class CausalDelayFeedbackRuntime {
       return null;
     }
     const { source, receiver } = endpoints;
-    const sourceT = Number.isFinite(Number(source.t)) ? Number(source.t) : Number(link.emissionTime);
-    const receiverT = Number.isFinite(Number(receiver.t)) ? Number(receiver.t) : Number(link.hitTime);
+    // Pin the visible schedule to retained endpoint times. Solver hit times stay diagnostic-only.
+    const sourceT = this.getDesignatedWakeEndpointTime(source, link.emissionTime);
+    const receiverT = this.getDesignatedWakeEndpointTime(receiver, link.hitTime);
     const duration = receiverT - sourceT;
     if (!Number.isFinite(duration) || duration <= 0) {
       return null;
     }
     const rawProgress = (replayTime - sourceT) / duration;
+    const startedForLoop = replayTime >= sourceT - TIME_EPSILON;
+    const completedForLoop = replayTime > receiverT;
     return {
       source,
       receiver,
       sourceT,
       receiverT,
       progress: clamp(rawProgress, 0, 1),
-      active: rawProgress >= -TIME_EPSILON && rawProgress <= 1 + TIME_EPSILON,
+      active: startedForLoop && !completedForLoop,
+      startedForLoop,
+      completedForLoop,
     };
+  }
+
+  shouldDrawWakeSeries(timing) {
+    return Boolean(timing?.startedForLoop) && !timing.completedForLoop;
+  }
+
+  getDesignatedWakeEndpointTime(endpoint, fallbackTime) {
+    const endpointTime = Number(endpoint?.t);
+    if (Number.isFinite(endpointTime)) {
+      return endpointTime;
+    }
+    const fallback = Number(fallbackTime);
+    return Number.isFinite(fallback) ? fallback : Number.NaN;
   }
 
   getWakeEndpoints(link) {
@@ -1411,14 +1995,18 @@ class CausalDelayFeedbackRuntime {
       const condition = this.getInitialCondition(this.selectedItem.kind);
       return condition ? this.createInitialConditionHit(this.selectedItem.kind, condition, 0) : null;
     }
+    if (this.selectedItem?.type === "virtual-observer") {
+      const observer = this.getVirtualObserver();
+      return observer ? this.createVirtualObserverHit(observer, 0) : null;
+    }
     if (this.selectedItem?.type === "history") {
-      const point = this.dataset.history[this.selectedItem.kind]?.find(
+      const point = this.getVisibleHistory(this.selectedItem.kind).find(
         (candidate) => candidate.depth === this.selectedItem.depth,
       );
       return point ? this.createHistoryHit(point, 0) : null;
     }
     if (this.selectedItem?.type === "wake") {
-      const link = this.dataset.wakeLinks.find((candidate) => candidate.id === this.selectedItem.linkId);
+      const link = this.getVisibleWakeLinks().find((candidate) => candidate.id === this.selectedItem.linkId);
       return link ? this.createWakeHit(link, 0) : null;
     }
     return null;
@@ -1442,6 +2030,7 @@ class CausalDelayFeedbackRuntime {
         `blue=${formatCompactNumber(summary.negativeContribution)}`,
         `net=${formatCompactNumber(summary.netContribution)}`,
         `threshold=${formatCompactNumber(summary.threshold)}`,
+        ...this.createDraftSolverRejectionReadoutDetails(),
         ...(summary.inactiveCount > 0 ? [`inactive=${summary.inactiveCount}`] : []),
         ...(summary.staleCount > 0 ? [`stale=${summary.staleCount}`] : []),
         ...(summary.rejectedCount > 0 ? [`rejected=${summary.rejectedCount}`] : []),
@@ -1449,6 +2038,47 @@ class CausalDelayFeedbackRuntime {
       distance: 0,
       hitRadius: 0,
       selection: null,
+    };
+  }
+
+  findNearestPathInsertion(screen) {
+    const candidates = [];
+    ["positrino", "electrino"].forEach((kind) => {
+      const points = this.dataset?.paths?.[kind] ?? [];
+      for (let index = 0; index < points.length - 1; index += 1) {
+        const left = points[index];
+        const right = points[index + 1];
+        const start = this.worldToScreen(left);
+        const end = this.worldToScreen(right);
+        const projection = this.projectScreenPointToSegment(screen, start, end);
+        const amount = projection.amount;
+        candidates.push({
+          kind,
+          distance: projection.distance,
+          x: left.x + (right.x - left.x) * amount,
+          y: left.y + (right.y - left.y) * amount,
+          t: left.t + (right.t - left.t) * amount,
+        });
+      }
+    });
+    const nearest = candidates.sort((left, right) => left.distance - right.distance)[0];
+    return nearest && nearest.distance <= 28 ? nearest : null;
+  }
+
+  projectScreenPointToSegment(point, start, end) {
+    const dx = end.x - start.x;
+    const dy = end.y - start.y;
+    const lengthSquared = dx * dx + dy * dy;
+    if (lengthSquared === 0) {
+      return {
+        amount: 0,
+        distance: Math.hypot(point.x - start.x, point.y - start.y),
+      };
+    }
+    const amount = clamp(((point.x - start.x) * dx + (point.y - start.y) * dy) / lengthSquared, 0, 1);
+    return {
+      amount,
+      distance: Math.hypot(point.x - (start.x + dx * amount), point.y - (start.y + dy * amount)),
     };
   }
 
@@ -1483,9 +2113,19 @@ class CausalDelayFeedbackRuntime {
       return nearestInitial;
     }
 
+    const observer = this.getVirtualObserver();
+    if (observer) {
+      const candidate = this.worldToScreen(observer);
+      const distance = Math.hypot(screen.x - candidate.x, screen.y - candidate.y);
+      const observerHit = this.createVirtualObserverHit(observer, distance);
+      if (observerHit.distance <= observerHit.hitRadius) {
+        return observerHit;
+      }
+    }
+
     const historyCandidates = [];
     ["positrino", "electrino"].forEach((kind) => {
-      this.dataset.history[kind].forEach((point) => {
+      this.getVisibleHistory(kind).forEach((point) => {
         const candidate = this.worldToScreen(point);
         const distance = Math.hypot(screen.x - candidate.x, screen.y - candidate.y);
         historyCandidates.push(this.createHistoryHit(point, distance));
@@ -1497,7 +2137,7 @@ class CausalDelayFeedbackRuntime {
     }
     const candidates = [];
     if (includeWakes) {
-      this.dataset.wakeLinks.forEach((link) => {
+      this.getVisibleWakeLinks().forEach((link) => {
         const endpoints = this.getWakeEndpoints(link);
         if (!endpoints) {
           return;
@@ -1536,6 +2176,7 @@ class CausalDelayFeedbackRuntime {
         `y=${Math.round(Number(condition.y) || 0)}`,
         `vx=${(Number(condition.vx) || 0).toFixed(1)}`,
         `vy=${(Number(condition.vy) || 0).toFixed(1)}`,
+        ...this.createDraftSolverRejectionReadoutDetails(),
       ],
       distance,
       hitRadius: 24,
@@ -1553,10 +2194,34 @@ class CausalDelayFeedbackRuntime {
         `speed=${Math.round(speed)}`,
         `vx=${(Number(condition.vx) || 0).toFixed(1)}`,
         `vy=${(Number(condition.vy) || 0).toFixed(1)}`,
+        ...this.createDraftSolverRejectionReadoutDetails(),
       ],
       distance,
       hitRadius: 20,
       selection: { type: "initial-velocity", kind },
+    };
+  }
+
+  createVirtualObserverHit(observer, distance) {
+    const summary = this.getContributionSummary(this.getCurrentReplayTime());
+    return {
+      type: "virtual-observer",
+      title: "Virtual Observer",
+      label: "Virtual Observer",
+      details: [
+        `x=${Math.round(Number(observer.x) || 0)}`,
+        `y=${Math.round(Number(observer.y) || 0)}`,
+        ...(summary
+          ? [
+              `received=${summary.receivedCount}/${summary.activeLinkCount}`,
+              `net=${formatCompactNumber(summary.netContribution)}`,
+            ]
+          : []),
+        ...this.createDraftSolverRejectionReadoutDetails(),
+      ],
+      distance,
+      hitRadius: 28,
+      selection: { type: "virtual-observer" },
     };
   }
 
@@ -1565,7 +2230,7 @@ class CausalDelayFeedbackRuntime {
     const endpoints = timing ?? this.getWakeEndpoints(link);
     const travelDistance = endpoints ? getDistance(endpoints.source, endpoints.receiver) : 0;
     const timingState = this.getWakeTimingState(timing);
-    const falloff = this.getWakeFalloff(link);
+    const falloff = this.getWakeContributionFalloff(link);
     const contribution = this.getWakeContributionMagnitude(link);
     const thresholdState = this.getWakeThresholdState(link);
     const wakeState = this.getWakeStatus(link);
@@ -1594,13 +2259,24 @@ class CausalDelayFeedbackRuntime {
     };
   }
 
+  createDraftSolverRejectionReadoutDetails() {
+    if (this.replayLoadState !== "draft-rejected" && !this.dataset?.draftPreview?.solverRejected) {
+      return [];
+    }
+    const rejection = this.dataset?.draftPreview?.solverRejection;
+    return [
+      "edit=not_solved",
+      `reason=${formatCompactLabel(rejection?.message ?? this.replayLoadError?.message, "solver_rejected_edit")}`,
+    ];
+  }
+
   getWakeContributionMagnitude(link) {
     const weight = Number.isFinite(Number(link.weight)) ? Number(link.weight) : 0;
-    return weight * this.getWakeFalloff(link);
+    return weight * this.getWakeContributionFalloff(link);
   }
 
   getContributionSummary(replayTime = this.getCurrentReplayTime()) {
-    const wakeLinks = this.dataset?.wakeLinks ?? [];
+    const wakeLinks = this.getVisibleWakeLinks();
     if (wakeLinks.length === 0) {
       return null;
     }
@@ -1685,7 +2361,10 @@ class CausalDelayFeedbackRuntime {
     if (link.status === "rejected" || link.status === "inactive" || link.status === "stale") {
       return {
         status: link.status,
-        reason: typeof link.reason === "string" && link.reason.length > 0 ? link.reason : "solver_status",
+        reason:
+          typeof link.reason === "string" && link.reason.length > 0
+            ? link.reason
+            : this.getWakeRootStatusCode(link) ?? "solver_status",
       };
     }
     if (!this.hasWakeSolverMetadata(link)) {
@@ -1697,9 +2376,9 @@ class CausalDelayFeedbackRuntime {
       return { status: "active", reason: "delayed_hit_solved" };
     }
     if (rootCount > 0) {
-      return { status: "inactive", reason: "root_without_hit" };
+      return { status: "inactive", reason: this.getWakeRootStatusCode(link) ?? "root_without_hit" };
     }
-    return { status: "rejected", reason: "no_delayed_hit" };
+    return { status: "rejected", reason: this.getWakeRootStatusCode(link) ?? "no_delayed_hit" };
   }
 
   getWakeVisualWeight(link) {
@@ -1720,13 +2399,12 @@ class CausalDelayFeedbackRuntime {
         desaturation: thresholdState === "below_threshold" ? 0.18 : 0,
       };
     }
+    const inactiveVisualTier = INACTIVE_WAKE_VISUAL_TIERS[status.status] ?? INACTIVE_WAKE_VISUAL_TIERS.rejected;
     return {
       status: status.status,
       reason: status.reason,
       contributionScale,
-      alphaScale: 0.28,
-      radiusScale: 0.68,
-      desaturation: 0.56,
+      ...inactiveVisualTier,
     };
   }
 
@@ -1751,7 +2429,56 @@ class CausalDelayFeedbackRuntime {
     if (Number.isFinite(Number(link.solverHitStatusCode)) && Number(link.solverHitStatusCode) !== 0) {
       details.push(`hitCode=${Number(link.solverHitStatusCode)}`);
     }
+    details.push(...this.createWakeRootStatusReadoutDetails(link));
     return details;
+  }
+
+  createWakeRootStatusReadoutDetails(link) {
+    const rootStatus = this.getWakeRootStatus(link);
+    if (!rootStatus) {
+      return [];
+    }
+    const details = [];
+    if (rootStatus.code && !["ok", "active"].includes(rootStatus.code)) {
+      details.push(`rootStatus=${rootStatus.code}`);
+    }
+    if (rootStatus.severity && !["ok", "info"].includes(rootStatus.severity)) {
+      details.push(`rootSeverity=${rootStatus.severity}`);
+    }
+    if (rootStatus.message) {
+      details.push(`rootMsg=${rootStatus.message}`);
+    }
+    return details;
+  }
+
+  getWakeRootStatus(link) {
+    const rootStatus = link?.rootStatus;
+    if (rootStatus == null) {
+      return null;
+    }
+    if (typeof rootStatus === "string") {
+      return {
+        code: formatCompactLabel(rootStatus),
+        severity: "",
+        message: "",
+      };
+    }
+    if (typeof rootStatus === "object") {
+      return {
+        code: formatCompactLabel(rootStatus.code ?? rootStatus.status),
+        severity: formatCompactLabel(rootStatus.severity),
+        message: formatCompactLabel(rootStatus.message),
+      };
+    }
+    return null;
+  }
+
+  getWakeRootStatusCode(link) {
+    const rootStatus = this.getWakeRootStatus(link);
+    if (!rootStatus?.code || ["ok", "active"].includes(rootStatus.code)) {
+      return null;
+    }
+    return rootStatus.code;
   }
 
   hasWakeSolverMetadata(link) {
@@ -1800,6 +2527,17 @@ class CausalDelayFeedbackRuntime {
     const distance = endpoints
       ? getDistance(endpoints.source, endpoints.receiver)
       : Number(link.distance);
+    return distance > 0 ? 1 / distance : 0;
+  }
+
+  getWakeContributionFalloff(link) {
+    const endpoints = this.getWakeEndpoints(link);
+    const observer = this.getVirtualObserver();
+    const distance = endpoints && observer
+      ? getDistance(endpoints.receiver, observer)
+      : endpoints
+        ? getDistance(endpoints.source, endpoints.receiver)
+        : Number(link.distance);
     return distance > 0 ? 1 / distance : 0;
   }
 

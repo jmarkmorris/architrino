@@ -1,6 +1,7 @@
 const DEFAULT_SOLVER_WASM_RELATIVE_URL =
   "../../../.tmp/solver-build/wasm/architrino_solver_wasm_smoke.mjs";
 const DEFAULT_SOLVER_WASM_BASE_RELATIVE_URL = "../../../.tmp/solver-build/wasm/";
+const DEFAULT_SOLVER_WORKER_RELATIVE_URL = "./PhotonSolverBridgeWorker.js";
 const DEFAULT_SOLVER_WASM_CACHE_TAG = "photon-solver-wasm-v1";
 const DEFAULT_WASM_FACTORY_EXPORTS = Object.freeze([
   "default",
@@ -16,6 +17,7 @@ export function createPhotonSolverBridgeOptions(scope = globalThis, overrides = 
   };
   const resolverScope = options.scope ?? scope;
   const wasmBaseUrl = options.wasmBaseUrl ?? createPhotonDefaultSolverWasmBaseUrl();
+  const workerUrl = options.workerUrl ?? createPhotonDefaultSolverWorkerUrl();
   const createWasmModule =
     options.createWasmModule ??
     resolvePhotonGlobalFactory(resolverScope, options) ??
@@ -28,6 +30,7 @@ export function createPhotonSolverBridgeOptions(scope = globalThis, overrides = 
     ...options,
     scope: resolverScope,
     wasmBaseUrl,
+    workerUrl,
     createWasmModule,
     locateFile:
       options.locateFile ??
@@ -41,6 +44,10 @@ export function createPhotonDefaultSolverWasmLoaderUrl() {
 
 export function createPhotonDefaultSolverWasmBaseUrl() {
   return new URL(DEFAULT_SOLVER_WASM_BASE_RELATIVE_URL, import.meta.url).href;
+}
+
+export function createPhotonDefaultSolverWorkerUrl() {
+  return new URL(DEFAULT_SOLVER_WORKER_RELATIVE_URL, import.meta.url).href;
 }
 
 function getPhotonSolverBridgeConfiguredOptions(scope) {

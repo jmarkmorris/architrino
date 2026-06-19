@@ -23,6 +23,7 @@ struct ContentView: View {
             if isRegularWidth {
                 NavigationSplitView {
                     tocSidebar
+                        .navigationSplitViewColumnWidth(min: 300, ideal: 380, max: 460)
                 } detail: {
                     readerDetail
                 }
@@ -720,6 +721,19 @@ struct ContentView: View {
     }
 }
 
+private extension View {
+    @ViewBuilder
+    func readerSheetContentWidth(_ isRegularWidth: Bool, maxWidth: CGFloat) -> some View {
+        if isRegularWidth {
+            self
+                .frame(maxWidth: maxWidth, maxHeight: .infinity)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+        } else {
+            self.frame(maxWidth: .infinity, maxHeight: .infinity)
+        }
+    }
+}
+
 private extension ReaderTheme {
     var displayName: String {
         switch self {
@@ -904,7 +918,12 @@ private extension ReaderMarginWidth {
 
 private struct ReaderSettingsSheet: View {
     @ObservedObject var viewModel: ReaderViewModel
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     @Environment(\.dismiss) private var dismiss
+
+    private var isRegularWidth: Bool {
+        horizontalSizeClass == .regular
+    }
 
     var body: some View {
         NavigationStack {
@@ -1040,6 +1059,7 @@ private struct ReaderSettingsSheet: View {
                 }
                 .scrollContentBackground(.hidden)
                 .background(viewModel.theme.readerBackgroundColor.ignoresSafeArea())
+                .readerSheetContentWidth(isRegularWidth, maxWidth: 640)
             }
             .navigationTitle("Reading")
             .navigationBarTitleDisplayMode(.inline)
@@ -1071,8 +1091,13 @@ private struct ReaderControlBarButtonStyle: ButtonStyle {
 
 private struct SearchSheet: View {
     @ObservedObject var viewModel: ReaderViewModel
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     @State private var query = ""
     @FocusState private var isSearchFieldFocused: Bool
+
+    private var isRegularWidth: Bool {
+        horizontalSizeClass == .regular
+    }
 
     var body: some View {
         ZStack {
@@ -1082,6 +1107,7 @@ private struct SearchSheet: View {
                 searchHeader
                 searchResults
             }
+            .readerSheetContentWidth(isRegularWidth, maxWidth: 820)
         }
         .preferredColorScheme(viewModel.theme.readerToolbarColorScheme)
         .onAppear {
@@ -1211,6 +1237,11 @@ private struct SearchResultRow: View {
 
 private struct BookmarksSheet: View {
     @ObservedObject var viewModel: ReaderViewModel
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+
+    private var isRegularWidth: Bool {
+        horizontalSizeClass == .regular
+    }
 
     var body: some View {
         NavigationStack {
@@ -1244,6 +1275,7 @@ private struct BookmarksSheet: View {
                 .listStyle(.plain)
                 .scrollContentBackground(.hidden)
                 .background(viewModel.theme.readerBackgroundColor.ignoresSafeArea())
+                .readerSheetContentWidth(isRegularWidth, maxWidth: 720)
             }
             .navigationTitle("Bookmarks")
             .navigationBarTitleDisplayMode(.inline)
@@ -1308,11 +1340,16 @@ private struct AboutSheet: View {
     let packageDate: String
     let theme: ReaderTheme
 
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     @Environment(\.dismiss) private var dismiss
 
     private let websiteURL = URL(string: "https://architrino.com")!
     private let repositoryURL = URL(string: "https://github.com/jmarkmorris/architrino")!
     private let issuesURL = URL(string: "https://github.com/jmarkmorris/architrino/issues")!
+
+    private var isRegularWidth: Bool {
+        horizontalSizeClass == .regular
+    }
 
     var body: some View {
         NavigationStack {
@@ -1391,6 +1428,7 @@ private struct AboutSheet: View {
                 }
                 .scrollContentBackground(.hidden)
                 .background(theme.readerBackgroundColor.ignoresSafeArea())
+                .readerSheetContentWidth(isRegularWidth, maxWidth: 720)
             }
             .navigationTitle("About the Textbook")
             .navigationBarTitleDisplayMode(.inline)

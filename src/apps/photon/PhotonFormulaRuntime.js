@@ -1153,7 +1153,11 @@ export async function buildPhotonDerivedPolarizationTraceWithSolverBridge(
   const currentProgress =
     ((((currentTime - fitCycleStart) / cycleDuration) % 1) + 1) % 1;
   const currentPhase = TWO_PI * currentProgress;
-  const count = Math.max(24, Math.round(sampleCount));
+  const minimumSampleCount = Math.max(
+    3,
+    Math.round(options.minimumPolarizationSampleCount ?? 24)
+  );
+  const count = Math.max(minimumSampleCount, Math.round(sampleCount));
   const rawSamples = await Promise.all(
     Array.from({ length: count }, async (_, index) => {
       const progress = index / count;
@@ -1248,7 +1252,11 @@ export async function computePhotonAverageAnalyzerFractionWithSolverBridge(
   options = {}
 ) {
   const runDuration = getPhotonRunDuration(state);
-  const count = Math.max(8, Math.round(sampleCount));
+  const minimumSampleCount = Math.max(
+    1,
+    Math.round(options.minimumAnalyzerSampleCount ?? 8)
+  );
+  const count = Math.max(minimumSampleCount, Math.round(sampleCount));
   const fractions = await Promise.all(
     Array.from({ length: count }, async (_, index) => {
       const t = (index / count) * runDuration;

@@ -9,6 +9,7 @@ Status:
 - App display/product name: `Architrino`
 - Textbook-only packaging: implemented via `scripts/export-ios-textbook-package.mjs`
 - Device family: iPhone and iPad
+- iPadOS release posture: first-release quality target with split-view TOC/sidebar reading layout
 - Release target: Unlisted App Store distribution
 
 The goal is to keep v1 focused on chapter-bundled offline textbook reading on iPhone and iPad.
@@ -43,14 +44,14 @@ Target public distribution is Unlisted App Store distribution. The app still goe
 Repo-side release prep:
 
 1. Confirmed bundle identifier: `com.architrino.reader`.
-2. Final AppIcon asset slots are present for iPhone, iPad, and the 1024x1024 marketing icon.
+2. Final AppIcon asset slots are present for iPhone, iPad, iPad Pro, and the 1024x1024 marketing icon.
 3. Refresh the bundled textbook package with `node scripts/export-ios-textbook-package.mjs --write --strict` before every archive.
 4. Validate the package with `node scripts/export-ios-textbook-package.mjs --check --strict`.
 5. Verify the About screen reports the expected package version and package date.
 
 App Store Connect release prep:
 
-1. Capture iPhone and iPad screenshots.
+1. Capture iPhone and iPad screenshots, including at least one iPad split-view reader/TOC screenshot.
 2. Set App Store privacy metadata to no data collection unless new networked features are added.
 3. Add an App Review note that this app is intended for unlisted distribution.
 4. Upload a signed Release archive.

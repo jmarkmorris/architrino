@@ -9,6 +9,7 @@ import {
 } from "../src/apps/causal-delay-feedback/CausalDelayFeedbackCentralBridgeAdapter.js";
 import {
   DIRECT_MANIPULATION_DRAFT_PREVIEW,
+  REPRESENTATIVE_MOCK_SOLVER_REPLAY,
   TEMPORARY_MOCK_ADAPTER,
   createMockCausalDelayReplayDataset,
 } from "../src/apps/causal-delay-feedback/CausalDelayFeedbackReplayAdapter.js";
@@ -31,6 +32,26 @@ class FakeElement {
     this.textContent = "";
     this.title = "";
     this.attributes = {};
+    this.style = {};
+    this.classNames = new Set();
+    this.classList = {
+      add: (name) => {
+        this.classNames.add(name);
+      },
+      remove: (name) => {
+        this.classNames.delete(name);
+      },
+      contains: (name) => this.classNames.has(name),
+      toggle: (name, force) => {
+        const shouldAdd = force ?? !this.classNames.has(name);
+        if (shouldAdd) {
+          this.classNames.add(name);
+        } else {
+          this.classNames.delete(name);
+        }
+        return shouldAdd;
+      },
+    };
   }
 
   replaceChildren(...children) {
@@ -151,12 +172,105 @@ test("causal delay feedback wake readout and visual weight expose rejected solve
 
   assert.equal(runtime.getWakeStatus(link).status, "rejected");
   assert.equal(runtime.getWakeStatus(link).reason, "no_delayed_hit");
-  assert.equal(visualWeight.alphaScale, 0.28);
-  assert.equal(visualWeight.desaturation, 0.56);
+  assert.equal(visualWeight.alphaScale, 0.18);
+  assert.equal(visualWeight.radiusScale, 0.56);
+  assert.equal(visualWeight.desaturation, 0.78);
   assert.deepEqual(
     readout.children.map((child) => child.textContent).slice(10, 16),
     ["state=rejected", "reason=no_delayed_hit", "solver=unresolved", "roots=0", "hits=0", "partial arc"],
   );
+});
+
+test("causal delay feedback rejected wake readout reports solver root-status detail", () => {
+  const { runtime, readout } = createRuntimeForReadout();
+  const link = runtime.dataset.wakeLinks[0];
+  Object.assign(link, {
+    solverRunId: "causal-delay-feedback-rejected-red1-blue2-delayed-hit",
+    rootCount: 0,
+    solverHitCount: 0,
+    rootStatus: {
+      code: "solver_no_delayed_hit",
+      severity: "warn",
+      message: "no delayed hit crossed receiver before sample window ended",
+    },
+  });
+  const hit = runtime.createWakeHit(link, 0);
+
+  runtime.selectedItem = hit.selection;
+  runtime.updateReadout(hit);
+  const readoutText = readout.children.map((child) => child.textContent);
+
+  assert.equal(runtime.getWakeStatus(link).status, "rejected");
+  assert.equal(runtime.getWakeStatus(link).reason, "solver_no_delayed_hit");
+  assert(readoutText.includes("state=rejected"));
+  assert(readoutText.includes("reason=solver_no_delayed_hit"));
+  assert(readoutText.includes("rootStatus=solver_no_delayed_hit"));
+  assert(readoutText.includes("rootSeverity=warn"));
+  assert(readoutText.includes("rootMsg=no_delayed_hit_crossed_receiver_before_sample_window_ended"));
+});
+
+test("causal delay feedback root-only wake readout reports inactive root detail", () => {
+  const { runtime, readout } = createRuntimeForReadout();
+  const link = runtime.dataset.wakeLinks[0];
+  Object.assign(link, {
+    solverRunId: "causal-delay-feedback-root-only-red1-blue2-delayed-hit",
+    rootCount: 1,
+    solverHitCount: 0,
+    rootStatus: {
+      code: "root_outside_receiver_segment",
+      severity: "warn",
+      message: "root solved outside retained receiver segment",
+    },
+  });
+  const visualWeight = runtime.getWakeVisualWeight(link);
+  const hit = runtime.createWakeHit(link, 0);
+
+  runtime.selectedItem = hit.selection;
+  runtime.updateReadout(hit);
+  const readoutText = readout.children.map((child) => child.textContent);
+
+  assert.equal(runtime.getWakeStatus(link).status, "inactive");
+  assert.equal(runtime.getWakeStatus(link).reason, "root_outside_receiver_segment");
+  assert.equal(visualWeight.alphaScale, 0.46);
+  assert.equal(visualWeight.radiusScale, 0.78);
+  assert.equal(visualWeight.desaturation, 0.32);
+  assert(readoutText.includes("state=inactive"));
+  assert(readoutText.includes("reason=root_outside_receiver_segment"));
+  assert(readoutText.includes("solver=root-only"));
+  assert(readoutText.includes("roots=1"));
+  assert(readoutText.includes("hits=0"));
+  assert(readoutText.includes("rootStatus=root_outside_receiver_segment"));
+  assert(readoutText.includes("rootMsg=root_solved_outside_retained_receiver_segment"));
+});
+
+test("causal delay feedback invalid wake visual tiers distinguish inactive stale and rejected rows", () => {
+  const { runtime } = createRuntimeForReadout();
+  const baseLink = runtime.dataset.wakeLinks[0];
+  const inactive = runtime.getWakeVisualWeight({
+    ...baseLink,
+    status: "inactive",
+    reason: "root_without_hit",
+  });
+  const stale = runtime.getWakeVisualWeight({
+    ...baseLink,
+    status: "stale",
+    reason: "retained_point_drag_preview",
+  });
+  const rejected = runtime.getWakeVisualWeight({
+    ...baseLink,
+    status: "rejected",
+    reason: "no_delayed_hit",
+  });
+
+  assert(inactive.alphaScale > stale.alphaScale);
+  assert(stale.alphaScale > rejected.alphaScale);
+  assert(inactive.radiusScale > stale.radiusScale);
+  assert(stale.radiusScale > rejected.radiusScale);
+  assert(inactive.desaturation < stale.desaturation);
+  assert(stale.desaturation < rejected.desaturation);
+  assert.equal(inactive.status, "inactive");
+  assert.equal(stale.status, "stale");
+  assert.equal(rejected.status, "rejected");
 });
 
 test("causal delay feedback wake readout reports received rows after the hit time", () => {
@@ -232,6 +346,84 @@ test("causal delay feedback partial wake presets use dense emission-to-receipt b
   assert.equal(runtime.dataset.preset.wakeBands, 30);
 });
 
+test("causal delay feedback contrast stress preset exercises mixed purple-background states", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: {
+      location: { href: "http://localhost/causal-delay-feedback.html?preset=contrast_stress" },
+    },
+  });
+  const statuses = runtime.dataset.wakeLinks.map((link) => runtime.getWakeStatus(link).status);
+
+  assert.equal(runtime.dataset.preset.id, "contrast_stress");
+  assert.equal(runtime.dataset.preset.wakeBands, 36);
+  assert.equal(runtime.dataset.canvasColorId, "solid_purple");
+  assert.equal(runtime.dataset.assemblyThreshold, 0.00075);
+  assert(statuses.includes("active"));
+  assert(statuses.includes("inactive"));
+  assert(statuses.includes("stale"));
+  assert(statuses.includes("rejected"));
+  assert.equal(runtime.dataset.wakeLinks[1].rootStatus.code, "contrast_root_without_hit");
+  assert.equal(runtime.dataset.wakeLinks[2].reason, "contrast_stress_stale_solver_row");
+  assert.equal(runtime.dataset.wakeLinks[3].rootStatus.code, "contrast_no_delayed_hit");
+});
+
+test("causal delay feedback replay datasets can load preset canvas color state", () => {
+  const colorSwatches = new FakeElement();
+  const replayStatus = new FakeElement();
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  runtime.dom = { colorSwatches, replayStatus };
+  runtime.populateCanvasSwatches();
+
+  runtime.applyReplayDataset(
+    {
+      ...createMockCausalDelayReplayDataset("accepted_tight_bright"),
+      canvasColorId: "soft_purple",
+    },
+    { loadState: "ready" },
+  );
+
+  assert.equal(runtime.canvasColorId, "soft_purple");
+  const activeSwatch = colorSwatches.children.find((button) => button.classList.contains("is-active"));
+  assert.equal(activeSwatch.dataset.colorId, "soft_purple");
+});
+
+test("causal delay feedback retained depth setting filters active history and wake rows", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  const hiddenPoint = runtime.dataset.history.positrino.find((point) => point.depth === 4);
+
+  runtime.setRetainedDepthLimit(3);
+  const hiddenHit = runtime.findNearestHit(runtime.worldToScreen(hiddenPoint), { includeWakes: true });
+  const summary = runtime.getContributionSummary(1);
+
+  assert.equal(runtime.retainedDepthLimit, 3);
+  assert.equal(runtime.getVisibleHistory("positrino").length, 3);
+  assert.equal(runtime.getVisibleHistory("electrino").length, 3);
+  assert.equal(runtime.getVisibleWakeLinks().length, 4);
+  assert.equal(runtime.dataset.wakeLinks.length, 6);
+  assert.equal(summary.linkCount, 4);
+  assert.equal(hiddenHit, null);
+  assert.equal(runtime.replayRequestOptions.retainedDepthLimit, 3);
+});
+
+test("causal delay feedback retained depth setting clears hidden selected rows", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  runtime.selectedItem = { type: "wake", linkId: "positrino-3-to-electrino-4" };
+
+  runtime.setRetainedDepthLimit(3);
+
+  assert.equal(runtime.selectedItem, null);
+});
+
 test("causal delay feedback replay exposes draggable initial conditions", () => {
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
@@ -240,9 +432,12 @@ test("causal delay feedback replay exposes draggable initial conditions", () => 
 
   assert.equal(runtime.dataset.initialConditions.positrino.kind, "positrino");
   assert.equal(runtime.dataset.initialConditions.electrino.kind, "electrino");
+  assert.equal(runtime.dataset.initialConditions.virtualObserver.label, "Virtual Observer");
+  assert.equal(runtime.dataset.virtualObserver.x, runtime.dataset.initialConditions.virtualObserver.x);
   assert.equal(runtime.dataset.initialConditions.historyDepth, 4);
   assert.equal(runtime.replayRequestOptions.initialConditions.positrino.x, runtime.dataset.paths.positrino[0].x);
   assert.equal(runtime.replayRequestOptions.initialConditions.electrino.y, runtime.dataset.paths.electrino[0].y);
+  assert.equal(runtime.replayRequestOptions.virtualObserver.x, runtime.dataset.virtualObserver.x);
 });
 
 test("causal delay feedback exposes draggable initial velocity handles", () => {
@@ -255,6 +450,18 @@ test("causal delay feedback exposes draggable initial velocity handles", () => {
 
   assert.equal(hit.type, "initial-velocity");
   assert.deepEqual(hit.selection, { type: "initial-velocity", kind: "positrino" });
+});
+
+test("causal delay feedback exposes a draggable Virtual Observer handle", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  const hit = runtime.findNearestHit(runtime.worldToScreen(runtime.getVirtualObserver()));
+
+  assert.equal(hit.type, "virtual-observer");
+  assert.deepEqual(hit.selection, { type: "virtual-observer" });
+  assert.equal(hit.title, "Virtual Observer");
 });
 
 test("causal delay feedback runtime loads an async bridge replay over the mock fallback", async () => {
@@ -291,6 +498,47 @@ test("causal delay feedback runtime loads an async bridge replay over the mock f
   assert.equal(replayStatus.dataset.state, "bridge");
 });
 
+test("causal delay feedback contrast stress preset stays representative under central bridge", async () => {
+  const replayStatus = new FakeElement();
+  let centralCalls = 0;
+  const adapter = {
+    id: CENTRAL_SOLVER_REPLAY_ADAPTER,
+    async createReplayAsync({ presetId }) {
+      centralCalls += 1;
+      return {
+        ...createMockCausalDelayReplayDataset(presetId),
+        runId: `central:${presetId}`,
+        datasetSource: CENTRAL_SOLVER_REPLAY_DATASET_SOURCE,
+        solverIntegrationPath: CENTRAL_SOLVER_REPLAY_ADAPTER,
+      };
+    },
+  };
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: {
+      location: { href: "http://localhost/causal-delay-feedback.html?preset=contrast_stress" },
+    },
+    replayAdapter: adapter,
+    autoLoadReplay: false,
+  });
+  runtime.dom = { replayStatus };
+
+  await runtime.loadReplay();
+  const statuses = runtime.dataset.wakeLinks.map((link) => runtime.getWakeStatus(link).status);
+
+  assert.equal(centralCalls, 0);
+  assert.equal(runtime.dataset.preset.id, "contrast_stress");
+  assert.equal(runtime.dataset.datasetSource, REPRESENTATIVE_MOCK_SOLVER_REPLAY);
+  assert.equal(runtime.dataset.solverIntegrationPath, TEMPORARY_MOCK_ADAPTER);
+  assert.equal(runtime.replayLoadState, "ready");
+  assert.equal(replayStatus.textContent, "representative replay");
+  assert.equal(replayStatus.dataset.state, "representative");
+  assert(statuses.includes("active"));
+  assert(statuses.includes("inactive"));
+  assert(statuses.includes("stale"));
+  assert(statuses.includes("rejected"));
+});
+
 test("causal delay feedback runtime keeps the mock replay when bridge replay loading fails", async () => {
   const replayStatus = new FakeElement();
   const adapter = {
@@ -315,6 +563,45 @@ test("causal delay feedback runtime keeps the mock replay when bridge replay loa
   assert.match(runtime.replayLoadError.message, /solver client missing/);
   assert.equal(replayStatus.textContent, "representative fallback");
   assert.equal(replayStatus.dataset.state, "fallback");
+});
+
+test("causal delay feedback rejected direct edit preserves the draft and reports solver diagnostics", async () => {
+  const replayStatus = new FakeElement();
+  const readout = new FakeElement();
+  const adapter = {
+    id: CENTRAL_SOLVER_REPLAY_ADAPTER,
+    async createReplayAsync() {
+      throw new Error("edited position outside solver domain");
+    },
+  };
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+    replayAdapter: adapter,
+    autoLoadReplay: false,
+  });
+  runtime.dom = { replayStatus, readout };
+  runtime.selectedItem = { type: "initial-condition", kind: "electrino" };
+
+  runtime.applyInitialConditionDrag("electrino", { x: 84, y: -32 });
+  const editedX = runtime.dataset.initialConditions.electrino.x;
+  runtime.dragState = { type: "initial-condition", kind: "electrino", didEdit: true };
+  await runtime.finishDrag();
+
+  const readoutText = readout.children.map((child) => child.textContent);
+
+  assert.equal(runtime.dataset.datasetSource, DIRECT_MANIPULATION_DRAFT_PREVIEW);
+  assert.equal(runtime.replayLoadState, "draft-rejected");
+  assert.equal(runtime.dataset.initialConditions.electrino.x, editedX);
+  assert.equal(runtime.dataset.draftPreview.solverRejected, true);
+  assert.equal(runtime.dataset.draftPreview.solverRejection.message, "edited position outside solver domain");
+  assert.equal(runtime.replayRequestOptions.replayDataset, runtime.dataset);
+  assert.equal(runtime.replayRequestOptions.initialConditions.electrino.x, editedX);
+  assert.equal(replayStatus.textContent, "solver rejected edit");
+  assert.equal(replayStatus.dataset.state, "draft-rejected");
+  assert.match(replayStatus.title, /edited position outside solver domain/);
+  assert(readoutText.includes("edit=not_solved"));
+  assert(readoutText.includes("reason=edited_position_outside_solver_domain"));
 });
 
 test("causal delay feedback runtime ignores stale async replay responses", async () => {
@@ -502,6 +789,7 @@ test("causal delay feedback wake fronts and receiver markers synchronize for eve
     const beforeSource = runtime.getWakeTiming(link, sourcePoint.t - 0.01);
     const atSource = runtime.getWakeTiming(link, sourcePoint.t);
     const atReceiver = runtime.getWakeTiming(link, receiverPoint.t);
+    const justAfterReceiver = runtime.getWakeTiming(link, receiverPoint.t + 1e-9);
     const afterReceiver = runtime.getWakeTiming(link, receiverPoint.t + 0.01);
     const sourceFront = runtime.getWakeFrontCenterPoint(link, sourcePoint.t);
     const receiverFront = runtime.getWakeFrontCenterPoint(link, receiverPoint.t);
@@ -513,7 +801,11 @@ test("causal delay feedback wake fronts and receiver markers synchronize for eve
     assert.equal(atSource.progress, 0);
     assert.equal(atReceiver.active, true);
     assert.equal(atReceiver.progress, 1);
+    assert.equal(justAfterReceiver.active, false);
+    assert.equal(justAfterReceiver.completedForLoop, true);
     assert.equal(afterReceiver.active, false);
+    assert.equal(atReceiver.completedForLoop, false);
+    assert.equal(afterReceiver.completedForLoop, true);
     assert.equal(link.emissionTime, sourcePoint.t);
     assert.equal(link.hitTime, receiverPoint.t);
     assert.equal(link.travelTime, receiverPoint.t - sourcePoint.t);
@@ -529,6 +821,142 @@ test("causal delay feedback wake fronts and receiver markers synchronize for eve
   });
 });
 
+test("causal delay feedback partial wake arc series disappears after reception until the loop restarts", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  const link = runtime.dataset.wakeLinks[0];
+  const sourcePoint = runtime.dataset.history[link.sourceKind].find((point) => point.depth === link.sourceDepth);
+  const receiverPoint = runtime.dataset.history[link.receiverKind].find((point) => point.depth === link.receiverDepth);
+  let drawnArcCount = 0;
+  runtime.drawDottedArc = () => {
+    drawnArcCount += 1;
+  };
+
+  runtime.drawWakeProgression({}, link, receiverPoint.t);
+  assert(drawnArcCount > 0);
+
+  drawnArcCount = 0;
+  runtime.drawWakeProgression({}, link, receiverPoint.t + 0.01);
+  assert.equal(drawnArcCount, 0);
+
+  drawnArcCount = 0;
+  runtime.drawWakeProgression({}, link, sourcePoint.t + (receiverPoint.t - sourcePoint.t) * 0.5);
+  assert(drawnArcCount > 0);
+});
+
+test("causal delay feedback full circular wake series disappears after reception until the loop restarts", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: {
+      location: { href: "http://localhost/causal-delay-feedback.html?preset=full_circular_arcs" },
+    },
+  });
+  const link = runtime.dataset.wakeLinks[0];
+  const sourcePoint = runtime.dataset.history[link.sourceKind].find((point) => point.depth === link.sourceDepth);
+  const receiverPoint = runtime.dataset.history[link.receiverKind].find((point) => point.depth === link.receiverDepth);
+  let drawnArcCount = 0;
+  runtime.drawDottedArc = () => {
+    drawnArcCount += 1;
+  };
+
+  runtime.drawFullCircularWakeProgression({}, link, receiverPoint.t);
+  assert(drawnArcCount > 0);
+
+  drawnArcCount = 0;
+  runtime.drawFullCircularWakeProgression({}, link, receiverPoint.t + 0.01);
+  assert.equal(drawnArcCount, 0);
+
+  drawnArcCount = 0;
+  runtime.drawFullCircularWakeProgression({}, link, sourcePoint.t + (receiverPoint.t - sourcePoint.t) * 0.5);
+  assert(drawnArcCount > 0);
+});
+
+test("causal delay feedback solver hit diagnostics do not desynchronize receiver-point arrivals", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  const link = runtime.dataset.wakeLinks[0];
+  const receiverPoint = runtime.dataset.history[link.receiverKind].find((point) => point.depth === link.receiverDepth);
+  const solverDiagnosticHitTime = receiverPoint.t + 0.06;
+  Object.assign(link, {
+    hitTime: solverDiagnosticHitTime,
+    solverRunId: "central-solved-with-diagnostic-hit-offset",
+    rootCount: 1,
+    solverHitCount: 1,
+    solverHitTime: solverDiagnosticHitTime,
+  });
+
+  const atReceiver = runtime.getWakeTiming(link, receiverPoint.t);
+  const atSolverDiagnosticTime = runtime.getWakeTiming(link, solverDiagnosticHitTime);
+  const receiverFront = runtime.getWakeFrontCenterPoint(link, receiverPoint.t);
+  const receivingMarker = runtime.getReplayPathPoint(link.receiverKind, receiverPoint.t);
+  const synchronization = runtime.getWakeArrivalSynchronization(link);
+  const hit = runtime.createWakeHit(link, 0);
+
+  assert.equal(atReceiver.receiverT, receiverPoint.t);
+  assert.equal(atReceiver.progress, 1);
+  assert.equal(atReceiver.active, true);
+  assert.equal(atSolverDiagnosticTime.active, false);
+  assert.equal(atSolverDiagnosticTime.progress, 1);
+  assert.equal(receiverFront.x, receiverPoint.x);
+  assert.equal(receiverFront.y, receiverPoint.y);
+  assert.equal(receivingMarker.x, receiverPoint.x);
+  assert.equal(receivingMarker.y, receiverPoint.y);
+  assert.equal(synchronization.isSynchronized, true);
+  assert(hit.details.includes(`hit=${receiverPoint.t.toFixed(2)}`));
+  assert(hit.details.includes(`solverHit=${solverDiagnosticHitTime.toFixed(2)}`));
+});
+
+test("causal delay feedback skipped animation frames snap to the crossed reception point", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  const link = runtime.dataset.wakeLinks[0];
+  const receiverPoint = runtime.dataset.history[link.receiverKind].find((point) => point.depth === link.receiverDepth);
+  const previousReplayTime = receiverPoint.t - 0.006;
+  const nextReplayTime = receiverPoint.t + 0.006;
+
+  const snappedReplayTime = runtime.getFrameReceptionReplayTime(previousReplayTime, nextReplayTime);
+  const receiverFront = runtime.getWakeFrontCenterPoint(link, snappedReplayTime);
+  const receivingMarker = runtime.getReplayPathPoint(link.receiverKind, snappedReplayTime);
+
+  assert.equal(snappedReplayTime, receiverPoint.t);
+  assert.equal(receiverFront.x, receiverPoint.x);
+  assert.equal(receiverFront.y, receiverPoint.y);
+  assert.equal(receivingMarker.x, receiverPoint.x);
+  assert.equal(receivingMarker.y, receiverPoint.y);
+  assert.equal(runtime.getFrameReceptionReplayTime(receiverPoint.t + 0.006, receiverPoint.t + 0.012), null);
+});
+
+test("causal delay feedback arrival snap only follows visible wake arcs", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  const visibleLink = runtime.dataset.wakeLinks.find((link) => link.receiverDepth === 3);
+  const hiddenLink = runtime.dataset.wakeLinks.find((link) => link.receiverDepth === 4);
+  const visibleReceiver = runtime.dataset.history[visibleLink.receiverKind].find(
+    (point) => point.depth === visibleLink.receiverDepth,
+  );
+  const hiddenReceiver = runtime.dataset.history[hiddenLink.receiverKind].find(
+    (point) => point.depth === hiddenLink.receiverDepth,
+  );
+
+  runtime.setRetainedDepthLimit(3);
+
+  assert.equal(runtime.getVisibleWakeLinks().some((link) => link.id === visibleLink.id), true);
+  assert.equal(runtime.getVisibleWakeLinks().some((link) => link.id === hiddenLink.id), false);
+  assert.equal(
+    runtime.getFrameReceptionReplayTime(visibleReceiver.t - 0.006, visibleReceiver.t + 0.006),
+    visibleReceiver.t,
+  );
+  assert.equal(runtime.getFrameReceptionReplayTime(hiddenReceiver.t - 0.006, hiddenReceiver.t + 0.006), null);
+});
+
 test("causal delay feedback hit testing prefers reception points over wake links", () => {
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
@@ -539,6 +967,70 @@ test("causal delay feedback hit testing prefers reception points over wake links
 
   assert.equal(hit.type, "history");
   assert.deepEqual(hit.selection, { type: "history", kind: "electrino", depth: 2 });
+});
+
+test("causal delay feedback right-click insertion renumbers retained path points and rebuilds wake links", () => {
+  const replayStatus = new FakeElement();
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  runtime.dom = { replayStatus };
+  const insertionPoint = runtime.getReplayPathPoint("positrino", 0.48);
+
+  const inserted = runtime.addReceptionPointAtPath("positrino", insertionPoint);
+
+  assert.equal(inserted.kind, "positrino");
+  assert.equal(inserted.depth, 3);
+  assert.equal(runtime.dataset.history.positrino.length, 5);
+  assert.equal(runtime.dataset.history.electrino.length, 5);
+  assert.deepEqual(runtime.dataset.history.positrino.map((point) => point.depth), [1, 2, 3, 4, 5]);
+  assert.deepEqual(runtime.dataset.history.electrino.map((point) => point.depth), [1, 2, 3, 4, 5]);
+  assert.equal(runtime.dataset.initialConditions.historyDepth, 5);
+  assert.equal(runtime.retainedDepthLimit, 5);
+  assert.equal(runtime.dataset.draftPreview.reason, "reception_point_insert_preview");
+  assert.equal(runtime.dataset.datasetSource, DIRECT_MANIPULATION_DRAFT_PREVIEW);
+  assert.equal(replayStatus.textContent, "draft preview");
+  assert.equal(runtime.replayRequestOptions.initialConditions.historyDepth, 5);
+  assert.equal(runtime.dataset.wakeLinks.length, 8);
+  assert(runtime.dataset.wakeLinks.every((link) => link.receiverDepth === link.sourceDepth + 1));
+  assert(runtime.dataset.wakeLinks.some((link) => link.label === "red 3 -> blue 4"));
+  assert(runtime.dataset.wakeLinks.some((link) => link.label === "blue 2 -> red 3"));
+  assert(runtime.dataset.wakeLinks.some((link) => link.label === "blue 4 -> red 5"));
+  assert.equal(runtime.dataset.wakeLinks.find((link) => link.label === "blue 2 -> red 3").receiver.t, inserted.t);
+});
+
+test("causal delay feedback context menu inserts a retained point on the nearest path", () => {
+  const readout = new FakeElement();
+  const replayStatus = new FakeElement();
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  runtime.dom = {
+    readout,
+    replayStatus,
+    canvas: {
+      getBoundingClientRect: () => ({ left: 0, top: 0 }),
+    },
+  };
+  runtime.render = () => {};
+  const screen = runtime.worldToScreen(runtime.getReplayPathPoint("electrino", 0.48));
+  let preventedDefault = false;
+
+  runtime.handleCanvasContextMenu({
+    clientX: screen.x,
+    clientY: screen.y,
+    preventDefault() {
+      preventedDefault = true;
+    },
+  });
+
+  assert.equal(preventedDefault, true);
+  assert.equal(runtime.dataset.history.electrino.length, 5);
+  assert.equal(runtime.dataset.history.positrino.length, 5);
+  assert.deepEqual(runtime.selectedItem, { type: "history", kind: "electrino", depth: 3 });
+  assert.equal(readout.children[0].textContent, "electrino 3");
 });
 
 test("causal delay feedback retained point drag deforms the path and updates wake endpoints", () => {
@@ -608,8 +1100,9 @@ test("causal delay feedback draft path edits mark prior solver wake diagnostics 
   assert.equal(runtime.getWakeStatus(wakeLink).reason, "retained_point_drag_preview");
   assert.equal(wakeLink.staleSolverRunId, "central-solved-red1-blue2");
   assert.equal(wakeLink.staleReplaySource, runtime.dataset.runId);
-  assert.equal(visualWeight.alphaScale, 0.28);
-  assert.equal(visualWeight.desaturation, 0.56);
+  assert.equal(visualWeight.alphaScale, 0.24);
+  assert.equal(visualWeight.radiusScale, 0.62);
+  assert.equal(visualWeight.desaturation, 0.7);
   assert(readoutText.includes("state=stale"));
   assert(readoutText.includes("reason=retained_point_drag_preview"));
   assert(readoutText.includes("solver=stale"));
@@ -734,6 +1227,43 @@ test("causal delay feedback initial velocity drag updates setup and bends the pr
   assert.equal(replayStatus.textContent, "draft preview");
 });
 
+test("causal delay feedback Virtual Observer drag updates contribution readout without staling wake roots", () => {
+  const replayStatus = new FakeElement();
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  runtime.dom = { replayStatus };
+  const link = runtime.dataset.wakeLinks[0];
+  Object.assign(link, {
+    solverRunId: "central-solved-red1-blue2",
+    rootCount: 1,
+    solverHitCount: 1,
+    solverHitTime: link.hitTime,
+  });
+  const endpoints = runtime.getWakeEndpoints(link);
+  const observer = runtime.getVirtualObserver();
+  const before = runtime.getWakeContributionMagnitude(link);
+
+  const didEdit = runtime.applyVirtualObserverDrag({
+    x: endpoints.receiver.x + 120 - observer.x,
+    y: endpoints.receiver.y - observer.y,
+  });
+  const after = runtime.getWakeContributionMagnitude(link);
+
+  assert.equal(didEdit, true);
+  assert(after > before);
+  assert.equal(runtime.dataset.datasetSource, DIRECT_MANIPULATION_DRAFT_PREVIEW);
+  assert.equal(runtime.dataset.draftPreview.reason, "virtual_observer_drag_preview");
+  assert.equal(runtime.dataset.virtualObserver.x, endpoints.receiver.x + 120);
+  assert.equal(runtime.dataset.initialConditions.virtualObserver.x, runtime.dataset.virtualObserver.x);
+  assert.equal(runtime.replayRequestOptions.virtualObserver.x, runtime.dataset.virtualObserver.x);
+  assert.equal(runtime.replayRequestOptions.initialConditions.virtualObserver.x, runtime.dataset.virtualObserver.x);
+  assert.equal(runtime.getWakeStatus(link).status, "active");
+  assert.equal(link.status, undefined);
+  assert.equal(replayStatus.textContent, "draft preview");
+});
+
 test("causal delay feedback initial-condition release reruns central replay with edited setup", async () => {
   const replayStatus = new FakeElement();
   let capturedRequestOptions = null;
@@ -766,6 +1296,77 @@ test("causal delay feedback initial-condition release reruns central replay with
   assert.equal(capturedRequestOptions.replayDataset.datasetSource, DIRECT_MANIPULATION_DRAFT_PREVIEW);
   assert.equal(runtime.dataset.datasetSource, CENTRAL_SOLVER_REPLAY_DATASET_SOURCE);
   assert.equal(runtime.replayLoadState, "ready");
+  assert.equal(replayStatus.textContent, "solver bridge replay");
+});
+
+test("causal delay feedback retained depth survives central replay reruns", async () => {
+  const replayStatus = new FakeElement();
+  let capturedRequestOptions = null;
+  const adapter = {
+    id: CENTRAL_SOLVER_REPLAY_ADAPTER,
+    async createReplayAsync({ presetId, requestOptions }) {
+      capturedRequestOptions = requestOptions;
+      return {
+        ...createMockCausalDelayReplayDataset(presetId),
+        initialConditions: requestOptions.initialConditions,
+        datasetSource: CENTRAL_SOLVER_REPLAY_DATASET_SOURCE,
+        solverIntegrationPath: CENTRAL_SOLVER_REPLAY_ADAPTER,
+      };
+    },
+  };
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+    replayAdapter: adapter,
+    autoLoadReplay: false,
+  });
+  runtime.dom = { replayStatus };
+
+  runtime.setRetainedDepthLimit(2);
+  runtime.applyInitialConditionDrag("electrino", { x: -12, y: 9 });
+  runtime.dragState = { type: "initial-condition", kind: "electrino", didEdit: true };
+  await runtime.finishDrag();
+
+  assert.equal(capturedRequestOptions.retainedDepthLimit, 2);
+  assert.equal(runtime.retainedDepthLimit, 2);
+  assert.equal(runtime.getVisibleWakeLinks().length, 2);
+  assert.equal(runtime.dataset.initialConditions.electrino.x, capturedRequestOptions.initialConditions.electrino.x);
+  assert.equal(runtime.dataset.datasetSource, CENTRAL_SOLVER_REPLAY_DATASET_SOURCE);
+});
+
+test("causal delay feedback Virtual Observer release reruns central replay with edited observer", async () => {
+  const replayStatus = new FakeElement();
+  let capturedRequestOptions = null;
+  const adapter = {
+    id: CENTRAL_SOLVER_REPLAY_ADAPTER,
+    async createReplayAsync({ presetId, requestOptions }) {
+      capturedRequestOptions = requestOptions;
+      return {
+        ...createMockCausalDelayReplayDataset(presetId),
+        initialConditions: requestOptions.initialConditions,
+        virtualObserver: requestOptions.virtualObserver,
+        datasetSource: CENTRAL_SOLVER_REPLAY_DATASET_SOURCE,
+        solverIntegrationPath: CENTRAL_SOLVER_REPLAY_ADAPTER,
+      };
+    },
+  };
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+    replayAdapter: adapter,
+    autoLoadReplay: false,
+  });
+  runtime.dom = { replayStatus };
+
+  runtime.applyVirtualObserverDrag({ x: -180, y: 44 });
+  runtime.dragState = { type: "virtual-observer", didEdit: true };
+  await runtime.finishDrag();
+
+  assert.equal(capturedRequestOptions.virtualObserver.x, runtime.dataset.virtualObserver.x);
+  assert.equal(capturedRequestOptions.virtualObserver.y, runtime.dataset.virtualObserver.y);
+  assert.equal(capturedRequestOptions.initialConditions.virtualObserver.x, runtime.dataset.virtualObserver.x);
+  assert.equal(runtime.dataset.initialConditions.virtualObserver.y, runtime.dataset.virtualObserver.y);
+  assert.equal(runtime.dataset.datasetSource, CENTRAL_SOLVER_REPLAY_DATASET_SOURCE);
   assert.equal(replayStatus.textContent, "solver bridge replay");
 });
 

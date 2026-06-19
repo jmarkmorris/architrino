@@ -1,6 +1,7 @@
 import { runSolverAppBridgeRequest } from "../../solver/app/SolverAppBridgeClientResolver.mjs";
 import {
   CENTRAL_SOLVER_BRIDGE_TARGET,
+  DEFAULT_CANVAS_ID,
   DEFAULT_PRESET_ID,
   ELECTRINO_WAKE,
   FULL_CIRCULAR_ARCS,
@@ -646,6 +647,18 @@ export function normalizeCausalDelayFeedbackBridgeReplay(runHandle = {}, options
       bridgeResponse.hits,
     history,
   );
+  const initialConditions = cloneObject(
+    bridgeResponse.initialConditions ?? bridgeResponse.geometry?.initialConditions ?? {},
+    "bridge response initialConditions",
+  );
+  const virtualObserver = normalizeOptionalVirtualObserver(
+    bridgeResponse.virtualObserver ??
+      bridgeResponse.geometry?.virtualObserver ??
+      initialConditions.virtualObserver,
+  );
+  if (virtualObserver && !initialConditions.virtualObserver) {
+    initialConditions.virtualObserver = { ...virtualObserver };
+  }
 
   return {
     runId: normalizeOptionalString(
@@ -666,11 +679,14 @@ export function normalizeCausalDelayFeedbackBridgeReplay(runHandle = {}, options
       bridgeResponse.geometry?.wakeArcDisplayMode ??
       preset.wakeArcDisplayMode ??
       PARTIAL_PROPAGATING_ARCS,
+    canvasColorId:
+      bridgeResponse.canvasColorId ??
+      bridgeResponse.geometry?.canvasColorId ??
+      preset.canvasColorId ??
+      DEFAULT_CANVAS_ID,
     preset,
-    initialConditions: cloneObject(
-      bridgeResponse.initialConditions ?? bridgeResponse.geometry?.initialConditions ?? {},
-      "bridge response initialConditions",
-    ),
+    initialConditions,
+    ...(virtualObserver ? { virtualObserver } : {}),
     paths: {
       positrino: frames.map((frame) => ({ t: frame.t, ...frame.positrino })),
       electrino: frames.map((frame) => ({ t: frame.t, ...frame.electrino })),
@@ -940,6 +956,20 @@ function normalizeOptionalVector(point, label) {
   return normalizeVectorPoint(point, label);
 }
 
+function normalizeOptionalVirtualObserver(point) {
+  if (point == null) {
+    return null;
+  }
+  const normalized = normalizePoint(point, "virtualObserver");
+  return {
+    ...point,
+    ...normalized,
+    kind: "virtualObserver",
+    label: typeof point.label === "string" && point.label.length > 0 ? point.label : "Virtual Observer",
+    role: typeof point.role === "string" && point.role.length > 0 ? point.role : "observer",
+  };
+}
+
 function findHistoryPoint(history, kind, depth, label) {
   const row = history[kind].find((candidate) => candidate.depth === depth);
   if (!row) {
@@ -1129,12 +1159,15 @@ function createBridgeDelayedHitFromWakeLink(replayDataset, link, index) {
 
 function createBridgeGeometryFromReplayDataset(replayDataset, { initialConditions = {} } = {}) {
   requireObject(replayDataset, "replayDataset");
+  const virtualObserver = replayDataset.virtualObserver ?? initialConditions.virtualObserver ?? null;
   return {
     pathBounds: [],
     spherePointIntersections: [],
     history: cloneObject(replayDataset.history, "replayDataset.history"),
     initialConditions: cloneObject(initialConditions, "initialConditions"),
+    ...(virtualObserver ? { virtualObserver: cloneObject(virtualObserver, "virtualObserver") } : {}),
     presetId: replayDataset.preset?.id ?? DEFAULT_PRESET_ID,
+    canvasColorId: replayDataset.canvasColorId ?? replayDataset.preset?.canvasColorId ?? DEFAULT_CANVAS_ID,
     wakeArcDisplayMode: replayDataset.wakeArcDisplayMode ?? PARTIAL_PROPAGATING_ARCS,
     status: { code: "ok", severity: "ok", message: "causal-delay replay metadata prepared" },
   };

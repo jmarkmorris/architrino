@@ -216,6 +216,8 @@ test("causal delay bridge replay request declares the central bridge contract", 
   assert.equal(request.config.initialConditions.positrino.x, 100);
   assert.equal(request.config.initialConditions.electrino.y, 800);
   assert.equal(request.config.geometry.initialConditions.positrino.vx, 1);
+  assert.equal(request.config.geometry.virtualObserver.label, "Virtual Observer");
+  assert.equal(request.config.geometry.canvasColorId, "solid_purple");
   assert.equal(request.config.replay.historyDepth, 4);
   assert(request.config.frames.length > 0);
   assert.equal(request.config.hits.length, 6);
@@ -262,6 +264,7 @@ test("causal delay bridge replay normalizer accepts central appPlayback motion f
   assert.equal(dataset.history.positrino.length, 4);
   assert.equal(dataset.wakeLinks.length, 6);
   assert.equal(dataset.wakeLinks[0].label, "red 1 -> blue 2");
+  assert.equal(dataset.virtualObserver.x, request.config.geometry.virtualObserver.x);
 });
 
 test("causal delay bridge replay normalizer returns runtime dataset shape", () => {
@@ -274,6 +277,7 @@ test("causal delay bridge replay normalizer returns runtime dataset shape", () =
   assert.equal(dataset.solverIntegrationPath, CENTRAL_SOLVER_REPLAY_ADAPTER);
   assert.equal(dataset.futureSolverTarget, "central_solver_bridge_path_history_stream");
   assert.equal(dataset.wakeArcDisplayMode, "partial_propagating_arcs");
+  assert.equal(dataset.canvasColorId, "solid_purple");
   assert.equal(dataset.paths.positrino.length, 3);
   assert.equal(dataset.paths.electrino[1].x, 640);
   assert.equal(dataset.history.positrino[0].depth, 1);
@@ -287,6 +291,12 @@ test("causal delay bridge replay normalizer returns runtime dataset shape", () =
   assert.equal(dataset.wakeLinks[0].hitTime, dataset.history.electrino[1].t);
   assert.equal(dataset.wakeLinks[0].travelTime, dataset.history.electrino[1].t - dataset.history.positrino[0].t);
   assert.equal(dataset.diagnostics[0].code, "causal_delay_replay_fixture");
+
+  const colorDataset = normalizeCausalDelayFeedbackBridgeReplay({
+    requestId: "request",
+    response: createBridgeReplayResponse({ canvasColorId: "soft_purple" }),
+  });
+  assert.equal(colorDataset.canvasColorId, "soft_purple");
 });
 
 test("causal delay central bridge adapter normalizes an injected bridge run", async () => {

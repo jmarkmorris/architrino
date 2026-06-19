@@ -100,6 +100,21 @@ export const PRESETS = Object.freeze([
     falloffPower: 1,
     fullCircleAlpha: 0.16,
   },
+  {
+    id: "contrast_stress",
+    label: "Contrast stress - mixed wake states",
+    wakeArcDisplayMode: PARTIAL_PROPAGATING_ARCS,
+    wakeBands: 36,
+    finalSpan: 16,
+    startSpan: 2.8,
+    dotRadius: 1.95,
+    alphaScale: 1.24,
+    falloffPower: 1,
+    canvasColorId: "solid_purple",
+    assemblyThreshold: 0.00075,
+    contrastStress: true,
+    representativeOnly: true,
+  },
 ]);
 
 const HISTORY_POINTS = Object.freeze([
@@ -108,6 +123,14 @@ const HISTORY_POINTS = Object.freeze([
   { depth: 3, t: 0.62, weight: 0.72, state: "active" },
   { depth: 4, t: 0.88, weight: 1, state: "newer" },
 ]);
+
+const DEFAULT_VIRTUAL_OBSERVER = Object.freeze({
+  kind: "virtualObserver",
+  label: "Virtual Observer",
+  role: "observer",
+  x: 1600,
+  y: 540,
+});
 
 const PATH_ANCHORS = Object.freeze({
   positrino: Object.freeze([
@@ -228,6 +251,9 @@ export function createMockCausalDelayReplayDataset(presetId = DEFAULT_PRESET_ID)
       ),
     );
   }
+  if (preset.contrastStress) {
+    applyContrastStressWakeState(wakeLinks);
+  }
 
   return {
     runId: `causal-delay-feedback:${preset.id}`,
@@ -235,8 +261,13 @@ export function createMockCausalDelayReplayDataset(presetId = DEFAULT_PRESET_ID)
     solverIntegrationPath: TEMPORARY_MOCK_ADAPTER,
     futureSolverTarget: CENTRAL_SOLVER_BRIDGE_TARGET,
     wakeArcDisplayMode: preset.wakeArcDisplayMode,
+    canvasColorId: preset.canvasColorId ?? DEFAULT_CANVAS_ID,
+    ...(Number.isFinite(Number(preset.assemblyThreshold))
+      ? { assemblyThreshold: Number(preset.assemblyThreshold) }
+      : {}),
     preset,
     initialConditions,
+    virtualObserver: { ...initialConditions.virtualObserver },
     paths,
     history,
     wakeLinks,
@@ -248,11 +279,80 @@ export function createMockCausalDelayReplayDataset(presetId = DEFAULT_PRESET_ID)
   };
 }
 
+function applyContrastStressWakeState(wakeLinks) {
+  const [red1Blue2, blue1Red2, red2Blue3, blue2Red3, red3Blue4, blue3Red4] = wakeLinks;
+  if (red1Blue2) {
+    Object.assign(red1Blue2, {
+      solverRunId: "contrast-stress-red1-blue2-delayed-hit",
+      rootCount: 1,
+      solverHitCount: 1,
+      solverHitTime: red1Blue2.hitTime,
+      solverResidual: 0,
+    });
+  }
+  if (blue1Red2) {
+    Object.assign(blue1Red2, {
+      solverRunId: "contrast-stress-blue1-red2-root-only",
+      rootCount: 1,
+      solverHitCount: 0,
+      rootStatus: {
+        code: "contrast_root_without_hit",
+        severity: "warn",
+        message: "contrast stress root without accepted hit",
+      },
+    });
+  }
+  if (red2Blue3) {
+    Object.assign(red2Blue3, {
+      status: "stale",
+      reason: "contrast_stress_stale_solver_row",
+      solverRunId: "contrast-stress-red2-blue3-delayed-hit",
+      staleSolverRunId: "contrast-stress-red2-blue3-delayed-hit",
+      staleReplaySource: "contrast_stress",
+      rootCount: 1,
+      solverHitCount: 1,
+      solverHitTime: red2Blue3.hitTime,
+      solverResidual: 0,
+    });
+  }
+  if (blue2Red3) {
+    Object.assign(blue2Red3, {
+      solverRunId: "contrast-stress-blue2-red3-rejected",
+      rootCount: 0,
+      solverHitCount: 0,
+      rootStatus: {
+        code: "contrast_no_delayed_hit",
+        severity: "warn",
+        message: "contrast stress rejected wake row",
+      },
+    });
+  }
+  if (red3Blue4) {
+    Object.assign(red3Blue4, {
+      solverRunId: "contrast-stress-red3-blue4-delayed-hit",
+      rootCount: 1,
+      solverHitCount: 1,
+      solverHitTime: red3Blue4.hitTime,
+      solverResidual: 0,
+    });
+  }
+  if (blue3Red4) {
+    Object.assign(blue3Red4, {
+      solverRunId: "contrast-stress-blue3-red4-delayed-hit",
+      rootCount: 1,
+      solverHitCount: 1,
+      solverHitTime: blue3Red4.hitTime,
+      solverResidual: 0,
+    });
+  }
+}
+
 function createInitialConditionsFromPaths(paths) {
   const conditions = {
     historyDepth: HISTORY_POINTS.length,
     outputStride: 1,
     runDuration: 1,
+    virtualObserver: { ...DEFAULT_VIRTUAL_OBSERVER },
   };
   ARCHITRINO_KINDS.forEach((kind) => {
     const points = paths[kind];

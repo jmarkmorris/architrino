@@ -290,6 +290,29 @@
         gap: 8px;
       }
 
+      .causal-depth-row {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 6px;
+      }
+
+      .causal-depth-button {
+        height: 28px;
+        border: 1px solid rgba(246, 247, 255, 0.28);
+        border-radius: 6px;
+        background: rgba(36, 20, 55, 0.9);
+        color: rgba(246, 247, 255, 0.8);
+        cursor: pointer;
+        font-size: 12px;
+        font-weight: 760;
+        line-height: 1;
+      }
+
+      .causal-depth-button.is-active {
+        border-color: rgba(74, 229, 255, 0.72);
+        color: #4ae5ff;
+      }
+
       .causal-swatch {
         width: 30px;
         height: 30px;
@@ -524,6 +547,8 @@
       >
         <div class="causal-settings-label">Canvas</div>
         <div class="causal-swatch-row" id="causal-delay-feedback-color-swatches"></div>
+        <div class="causal-settings-label">Retained points</div>
+        <div class="causal-depth-row" id="causal-delay-feedback-history-depth"></div>
       </div>
 
       <div id="causal-delay-feedback-hover-label" class="causal-hover-label" hidden></div>

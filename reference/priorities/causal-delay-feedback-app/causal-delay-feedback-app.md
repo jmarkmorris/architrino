@@ -99,7 +99,7 @@ Current central-bridge inspection:
 - The page attempts the central motion-simulation replay path by default: the bridge runs one motion simulation per architrino from the declared initial conditions, merges those solver-produced frame rows into the canvas dataset, then runs central delayed-hit solves for the visible cross-path wake links.
 - Explicit central review URLs still work. `?replay=central&solverReplay=motion` selects central motion replay directly; `?replay=central&solverReplay=app-playback` keeps the bridge app-playback review path available.
 - Without a solver execution source, the page keeps the representative mock replay and shows `representative fallback`.
-- `node scripts/check-solver-app-bridge.mjs` passes for the current bridge, including causal-delay app-playback, motion-simulation, and delayed-hit smoke runs. The remaining causal-delay work is default bridge enablement, fuller causal-root diagnostics, rejected-hit visual states, and contribution summaries rather than repairing the generic bridge.
+- `node scripts/check-solver-app-bridge.mjs` passes for the current bridge, including causal-delay app-playback, motion-simulation, and delayed-hit smoke runs. The remaining causal-delay work is fuller causal-root diagnostics beyond the compact readout, direct-manipulation controls beyond initial position/velocity handles, and browser visual QA rather than repairing the generic bridge.
 
 The direct-manipulation canvas sets initial conditions:
 
@@ -335,6 +335,7 @@ V1 should include a compact settings gear in the floating toolbar. The gear open
 Initial settings:
 
 - Canvas color: choose among the approved purple-background atmosphere variants and any test fallback color.
+- Retained points: compact 2/3/4 selector that reduces or restores active path-history points and feedback rows without changing the solver replay dataset.
 - Background depth field: on/off.
 - Weak contribution cue: off or threshold-only.
 - Reduced motion: on/off.
@@ -362,9 +363,10 @@ Orientation behavior should be planned early:
 Primary interactions:
 
 - Drag the source marker to change the source initial position.
-- Drag the Virtual Observer to change the hit geometry.
+- Drag the Virtual Observer to change the contribution readout geometry.
 - Drag the source velocity arrow to change source initial velocity.
 - Drag a source-path ghost point only as a draft setup handle when the app is in a solver-prep mode; ordinary replay paths remain solver-owned.
+- Right-click a path to insert a retained reception point at that replay time; the app also inserts the paired retained point on the opposite path, renumbers both paths, and rebuilds all valid cross-path wake links from point `n` to point `n+1`.
 - Click a retained wake-hit path to select it and show its row in the compact readout.
 - Use a small retained-hit stepper near the contribution stack for adding or removing retained wake-hit rows.
 
@@ -394,7 +396,7 @@ Canvas handles should replace these traditional controls:
 | Traditional control | V1 replacement |
 | --- | --- |
 | Source speed | Drag the initial-velocity arrow. |
-| Source-observer separation | Drag the Virtual Observer or source marker. |
+| Contribution distance | Drag the Virtual Observer or source marker. |
 | Retained wake-hit count | Use the retained-hit plus/minus chip beside the contribution stack. |
 | History window length | Drag the history-window bracket on the trail. |
 | Minimum contribution threshold | Drag a faint threshold line on the contribution stack. |
@@ -439,7 +441,7 @@ The diagnostic table may exist behind a compact inspector, but v1 should not mak
 ## Interaction Requirements
 
 - Scrubbing time should move the visible `now` marker and recompute which history rows are active.
-- Dragging the Virtual Observer should update path distances and contribution rows in real time.
+- Dragging the Virtual Observer should update receiver-to-observer contribution distances and contribution rows in real time, without rewriting the retained source/receiver wake hits.
 - Changing retained wake-hit count should add or remove rows without losing the current source-motion settings.
 - Toggling inactive paths should preserve rejected rows in the table when they are relevant to understanding the geometry.
 - Selecting a contribution-stack entry should highlight the causal-wake path that produced it.
@@ -462,9 +464,9 @@ Each retained depth row should be represented as structured state:
 | `emitterPolarity` | Positrino, electrino, neutral, or aggregate emitter classification. |
 | `emitterColor` | Display color inherited by the causal-wake arc. |
 | `hitTime` | Receiver hit time. |
-| `travelTime` | Delay between source emission and Virtual Observer hit. |
+| `travelTime` | Delay between source emission and retained receiver hit. |
 | `sourcePosition` | Source position at emission. |
-| `receiverPosition` | Solver receiver position at hit; shown in the UI as the Virtual Observer coordinate in v1. |
+| `receiverPosition` | Solver receiver position at hit; separate from the Virtual Observer coordinate in cross-path feedback modes. |
 | `pathDistance` | Spatial distance used by the causal-delay calculation. |
 | `falloffLaw` | Contribution falloff law; v1 uses `$1/r$`. |
 | `falloffFactor` | Computed distance factor from the $1/r$ falloff. |
@@ -473,7 +475,7 @@ Each retained depth row should be represented as structured state:
 | `assemblyThreshold` | Tunable threshold for marking a contribution as likely or unlikely to affect an assembly. |
 | `thresholdState` | `above_threshold`, `near_threshold`, or `below_threshold`. |
 | `visualWeight` | Derived stroke width, alpha, and desaturation level for drawing the wake. |
-| `status` | `active`, `inactive`, or `rejected`. |
+| `status` | `active`, `inactive`, `stale`, or `rejected`. |
 | `reason` | Plain reason for inactive or rejected rows. |
 
 Each solver run should also carry a compact setup record:
@@ -510,29 +512,36 @@ Each solver run should also carry a compact setup record:
 - `central_motion_solver_replay` - Add `?replay=central&solverReplay=motion`, advertise causal-delay `motionSimulation` bridge capability, smoke it through `check-solver-app-bridge`, and let the central adapter generate positrino/electrino frame samples from declared initial positions and velocities.
 - `central_delayed_hit_solver_replay` - In central motion replay, build root requests from the solver-produced path samples and run central `delayedHits` once per visible wake link, preserving the numbered source/receiver path-point timing used by the canvas proof.
 - `central_solver_default_replay` - Make the standalone page attempt central motion replay by default, keep the mock replay as the immediate fallback, and preserve `?replay=mock` for representative visual review.
+- `contrast_stress_runtime_preset` - Add a selectable representative-only `contrast_stress` preset that uses the solid purple canvas and a mixed-state wake dataset with active, root-only/inactive, stale, and rejected rows for browser visual QA, without replacing that QA scene through the central bridge.
 - `central_wake_solver_readout` - Carry central delayed-hit root/hit counts, solver hit time, residual, and status codes into selected wake-link readouts without adding a persistent diagnostics panel.
+- `root_status_diagnostic_readout` - Surface solver root-status code, severity, and compact message details in selected rejected or root-only wake rows so invalid paths explain why they do not contribute.
 - `contribution_threshold_wake_state` - Derive selected-wake contribution magnitude from `weight * 1/r`, classify it against the assembly threshold, and dim/desaturate solver links with no delayed hit.
+- `invalid_wake_visual_tiers` - Keep inactive/root-only, stale, and rejected wake links visually distinct with separate alpha, radius, and desaturation tiers while preserving the emitter-color hue.
 - `aggregate_contribution_summary` - Use the compact readout strip as the default no-selection view, summarizing received, in-flight, pending, inactive, and rejected wake links plus signed red/blue/net contribution totals for the current replay time.
 - `replay_source_status_chip` - Show a compact toolbar chip for `representative replay`, `solver bridge loading`, `solver bridge replay`, `representative fallback`, and `draft preview` so the operator can tell which data source is currently driving the canvas.
 - `wake_arrival_animation` - Animate source motion and outward-propagating dotted causal-wake arcs along retained path-history links, using the replay clock so each wake reaches its receiving point with the receiving architrino, without particle-like markers on wake paths.
-- `wake_receiver_arrival_sync` - Refresh each visible wake link from its designated retained source/receiver points whenever a replay dataset or draft path edit changes, and assert that the final wake front and receiving architrino reach the receiver point at the same replay time.
+- `wake_receiver_arrival_sync` - Refresh each visible wake link from its designated retained source/receiver points whenever a replay dataset or draft path edit changes, assert that the final wake front and receiving architrino reach the receiver point at the same replay time, snap a crossed visible-wake animation frame to the receiver point for one rendered pass so the final arc is visible, and keep any solver-reported hit-time offset as diagnostics rather than as the canvas arrival schedule.
+- `post_reception_wake_suppression` - Stop drawing a wake arc series immediately after its retained receiver point has been reached; the same series becomes drawable again only when the replay clock wraps into the next loop and reaches the source-to-receiver interval again.
 - `full_circular_arcs_preset` - Add faint equal-opacity full circular wake rings as a named preset.
 - `settings_gear` - Add a compact settings popover with canvas-color swatches.
+- `retained_depth_setting` - Add compact 2/3/4 retained-point controls in the settings popover, filter the active history points and wake rows without mutating the solver-shaped replay dataset, and preserve the selected depth across central replay reruns after initial-condition edits.
 - `compact_selection_readout` - Let clicks on retained path-history points and wake links show a small canvas readout strip and subtle canvas highlight without adding a side panel.
 - `wake_timing_readout` - Extend selected wake-link readouts with emission time, hit time, travel time, pending/active/received state, and the v1 `$1/r$` falloff factor.
 - `retained_point_drag_preview` - Let retained path-history points be dragged in the temporary mock replay with smooth local path deformation, wake endpoint updates, live architrino markers that follow the edited path, and a `draft preview` source chip so edited canvas state is not confused with a solver result.
 - `stale_solver_draft_state` - When a draft path or initial-condition edit changes geometry that has solver diagnostics attached, mark those wake rows `stale` so prior solver hits remain visible as context but no longer count as current solved contributions.
 - `initial_condition_drag_preview` - Add draggable initial-condition handles that translate the selected setup and replay path during a draft preview, then submit edited initial positions through the central replay adapter on release when that adapter is active.
 - `initial_velocity_arrow_drag_preview` - Make the attached velocity arrow endpoint a draggable handle; pulling it updates the selected architrino's initial `vx/vy`, bends the draft preview path forward from the initial time, and submits edited velocity through the central replay adapter on release.
+- `virtual_observer_drag_preview` - Add a draggable Virtual Observer handle that updates the live contribution readout through the receiver-to-observer $1/r$ factor, carries the edited observer point in replay request options, and submits it through the central replay adapter on release without marking already solved cross-path wake roots stale.
+- `direct_edit_rejection_diagnostics` - If a central replay rerun rejects an edited initial condition, velocity, or Virtual Observer state, keep the edited draft on the canvas, show `solver rejected edit` in the status chip, and surface the compact rejection reason in the current readout instead of replacing the edit with the representative fallback.
+- `context_reception_point_insert` - Add a canvas context-menu path insertion gesture that creates a retained reception point, inserts the paired opposite-path point at the same replay time, renumbers retained points on both paths, refreshes retained-depth controls, and rebuilds cross-path wake links dynamically as `source n -> receiver n+1`.
 - `causal_delay_runtime_test` - Add focused Node tests for selected history readout, selected wake timing/falloff readout, dense wake bands, retained-point dragging, initial-position dragging, initial-velocity dragging, spacebar play/pause, direct preset review URLs, async bridge replay loading, bridge fallback behavior, stale async replay protection, replay-source status labels, and central bridge replay normalization.
 
 ## Current Build Queue
 
-1. `purple_background_contrast_pass` - Verify the purple background against emitter-colored wake arcs, selected highlights, warnings, text, and compact controls. Status: `active`.
-2. `central_solver_runtime_switch` - The standalone page now attempts central motion replay by default, can execute the central bridge through the browser-side WASM loader when the built solver artifact exists, and can fall back to the representative mock replay when the bridge is unavailable. Remaining work is fuller causal-root diagnostics and stronger rejected-root explanations. Status: `active`.
-3. `drag_to_solver_loop` - Initial source-position and velocity-arrow handles now update setup state, show only a temporary `draft preview` during dragging, and rerun central replay on release when the central adapter is active. Remaining work is Virtual Observer dragging, history-depth controls, solver diagnostics for rejected edits, and replacement of the mock-seeded replay with solver-produced paths. Status: `active`.
-4. `solver_diagnostics_readout` - The compact readout now includes central delayed-hit solver status, root/hit counts, solver hit time, residual, nonzero status codes, selected-wake contribution magnitude, threshold state, and default aggregate signed contribution totals across the current replay time. Remaining work is richer rejected-root explanations. Status: `active`.
-5. `invalid_path_states` - Solver links with no delayed hit now dim and desaturate, stale solver rows are separated from rejected rows during draft edits, and selected readouts report `rejected`, `inactive`, or `stale` with a concise reason. Remaining work is richer visual treatment for mixed root-only states. Status: `active`.
+1. `purple_background_contrast_pass` - The runtime now includes a `contrast_stress` preset for solid-purple browser QA against active, root-only/inactive, stale, and rejected emitter-colored wakes. Remaining work is rendered browser/screenshot inspection for selected highlights, warning text, white labels, and compact controls. Status: `active`.
+2. `central_solver_runtime_switch` - The standalone page now attempts central motion replay by default, can execute the central bridge through the browser-side WASM loader when the built solver artifact exists, and can fall back to the representative mock replay when the bridge is unavailable. Remaining work is fuller causal-root diagnostics beyond the selected-row compact readout. Status: `active`.
+3. `drag_to_solver_loop` - Initial source-position, velocity-arrow, Virtual Observer, retained-point drag, and right-click retained-point insertion handles now update setup state, show only a temporary `draft preview` during dragging or insertion, rerun central replay on release when the central adapter is active, preserve the active retained-depth setting across reruns, and keep rejected edits visible with compact solver rejection diagnostics. Remaining work is replacement of the mock-seeded replay with solver-produced paths. Status: `active`.
+4. `solver_diagnostics_readout` - The compact readout now includes central delayed-hit solver status, root/hit counts, solver hit time, residual, nonzero status codes, root-status code/severity/message details, selected-wake contribution magnitude, threshold state, and default aggregate signed contribution totals across the current replay time. Remaining work is fuller causal-root diagnostics beyond the selected-row compact readout. Status: `active`.
 
 ## Implementation Boundaries
 

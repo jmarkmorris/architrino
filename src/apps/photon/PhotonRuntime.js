@@ -19,7 +19,6 @@ import { createMarkdownRuntime } from "../../runtime/MarkdownRuntime.js";
 import { extractMarkdownSection } from "../../services/MarkdownPolicyService.js";
 import { createPhotonControlsRuntime } from "./PhotonControlsRuntime.js";
 import {
-  buildPhotonPlotSamplesWithSolverBridge,
   computePhotonFormulaSummaryWithSolverBridge,
 } from "./PhotonFormulaRuntime.js";
 import { getPhotonDiagnosticRows, formatPhotonFixed } from "./PhotonDiagnosticsRuntime.js";
@@ -34,6 +33,9 @@ import {
 import {
   createSolverAppBridgeInitRequest,
 } from "../../solver/app/SolverAppBridgeClientResolver.mjs";
+import {
+  createSolverAppWorkerClient,
+} from "../../solver/app/SolverAppWorkerBridge.mjs";
 import { createPhotonSolverBridgeOptions } from "./PhotonSolverBridgeOptions.js";
 
 const PHOTON_DOCS = {
@@ -66,11 +68,15 @@ const PHOTON_RUNTIME_SOLVER_ENGINE_ID = "architrino-solver-app-bridge";
 const PHOTON_RUNTIME_SOLVER_CAPABILITIES = Object.freeze(["causalRoots", "delayedHits"]);
 const PHOTON_RUNTIME_SOLVER_MEMORY_BUDGET_BYTES = 64 * 1024 * 1024;
 const PHOTON_RUNTIME_SOLVER_MIN_INTERVAL_MS = 750;
+const PHOTON_RUNTIME_SOLVER_EDIT_DEBOUNCE_MS = 220;
 const PHOTON_RUNTIME_SOLVER_TIME_QUANTUM_SECONDS = 1 / 12;
-const PHOTON_RUNTIME_SOLVER_PLOT_SAMPLE_COUNT = 72;
+const PHOTON_RUNTIME_SOLVER_DISPLAY_PLOT_SAMPLE_COUNT = 360;
+const PHOTON_RUNTIME_SOLVER_WORKER_REQUEST_TIMEOUT_MS = 120000;
 const PHOTON_RUNTIME_SOLVER_SUMMARY_OPTIONS = Object.freeze({
-  polarizationSampleCount: 24,
-  analyzerSampleCount: 8,
+  polarizationSampleCount: 6,
+  minimumPolarizationSampleCount: 6,
+  analyzerSampleCount: 2,
+  minimumAnalyzerSampleCount: 2,
 });
 const PHOTON_RUNTIME_SOLVER_SEARCH_OPTIONS = Object.freeze({
   summaryOptions: {
@@ -338,14 +344,9 @@ function getPhotonRuntimeNowMs(windowLike) {
   return Date.now();
 }
 
-function hasPhotonDirectSolverOption(options) {
+function hasPhotonInlineSolverOption(options) {
   return typeof options?.solveCircularSourceRootsHitsLedger === "function" ||
-    typeof options?.runSolverBridge === "function" ||
-    typeof options?.solverClient?.solveCircularSourceRootsHitsLedgerF64 === "function" ||
-    typeof options?.createSolverBridgeClient === "function" ||
-    (options?.worker && typeof options.worker === "object") ||
-    typeof options?.workerUrl === "string" ||
-    typeof options?.WorkerCtor === "function";
+    typeof options?.runSolverBridge === "function";
 }
 
 function getPhotonRuntimeSolverStatusMessage(error = null) {
@@ -353,6 +354,60 @@ function getPhotonRuntimeSolverStatusMessage(error = null) {
     return `Solver data unavailable: ${error?.message ?? "unknown error"}`;
   }
   return "Loading solver data";
+}
+
+function evaluatePhotonRuntimeCenteredFit(component, phase) {
+  return (
+    (Number(component?.cosCoefficient) || 0) * Math.cos(phase) +
+    (Number(component?.sinCoefficient) || 0) * Math.sin(phase)
+  );
+}
+
+function createPhotonRuntimePlotFromPolarizationTrace(
+  state,
+  trace,
+  timeSeconds,
+  sampleCount = PHOTON_RUNTIME_SOLVER_DISPLAY_PLOT_SAMPLE_COUNT
+) {
+  const runDuration = getPhotonRunDuration(state);
+  const currentTime = wrapPhotonTime(state, timeSeconds);
+  const count = Math.max(24, Math.round(sampleCount));
+  const cycleDuration = Math.max(1e-12, Number(trace?.cycleDuration) || runDuration || 1);
+  const cyclesPerRun = runDuration / cycleDuration;
+  const yComponent = trace?.components?.y;
+  const zComponent = trace?.components?.z;
+  const canEvaluateFit = yComponent && zComponent;
+  const fallbackSamples = Array.isArray(trace?.samples) ? trace.samples : [];
+  const samples = Array.from({ length: count + 1 }, (_, index) => {
+    const progress = count > 0 ? index / count : 0;
+    const phase = Math.PI * 2 * progress * cyclesPerRun;
+    const fallback = fallbackSamples.length > 0
+      ? fallbackSamples[Math.min(fallbackSamples.length - 1, Math.round(progress * (fallbackSamples.length - 1)))]
+      : {};
+    return {
+      t: progress * runDuration,
+      progress,
+      ey: canEvaluateFit
+        ? evaluatePhotonRuntimeCenteredFit(yComponent, phase)
+        : Number(fallback?.ey) || 0,
+      ez: canEvaluateFit
+        ? evaluatePhotonRuntimeCenteredFit(zComponent, phase)
+        : Number(fallback?.ez) || 0,
+      analyzerFraction: 0,
+    };
+  });
+  const amplitudeScale = Math.max(
+    1e-9,
+    Number(trace?.scale) || 0,
+    ...samples.flatMap((sample) => [Math.abs(sample.ey), Math.abs(sample.ez)])
+  );
+  return {
+    runDuration,
+    currentTime,
+    solverEngineId: trace?.solverEngineId,
+    amplitudeScale,
+    samples,
+  };
 }
 
 function createPhotonSlug(value, fallback = "configuration") {
@@ -436,9 +491,13 @@ export function createPhotonRuntime({
   let animationFrame = 0;
   let solverClientPromise = null;
   let ownedSolverClient = null;
+  let ownedSolverWorker = null;
   let solverSnapshot = null;
   let solverSnapshotPromise = null;
   let solverLastRequestAtMs = 0;
+  let solverLastStateChangeAtMs = 0;
+  let solverInteractiveUpdatePending = false;
+  let solverDebounceTimer = 0;
   let solverError = null;
   let solverGeneration = 0;
   let runtimeDestroyed = false;
@@ -454,33 +513,84 @@ export function createPhotonRuntime({
     markdownLayoutToggle,
   });
 
+  function createPhotonRuntimeSolverInitRequest(options) {
+    return createSolverAppBridgeInitRequest({
+      appId: "photon",
+      requestedCapabilities: PHOTON_RUNTIME_SOLVER_CAPABILITIES,
+      options,
+      storagePolicy: {
+        target: options.streamTarget ?? "caller-buffer",
+        durable: options.streamTarget === "native-file",
+        maxBytes:
+          options.memoryBudgetBytes ??
+          PHOTON_RUNTIME_SOLVER_MEMORY_BUDGET_BYTES,
+      },
+      threadingPolicy: {
+        mode: options.threadingMode ?? "single-thread",
+        deterministic: options.deterministic ?? true,
+      },
+    });
+  }
+
+  function createPhotonRuntimeSolverWorkerClient() {
+    const workerUrl = solverBridgeOptions.workerUrl;
+    const scope = solverBridgeOptions.scope ?? windowLike ?? globalThis;
+    const WorkerCtor = solverBridgeOptions.WorkerCtor ?? scope?.Worker;
+    if (!workerUrl || typeof WorkerCtor !== "function") {
+      return null;
+    }
+    const worker = new WorkerCtor(workerUrl, {
+      type: "module",
+      name: "photon-solver-bridge",
+      ...(solverBridgeOptions.workerOptions ?? {}),
+    });
+    ownedSolverWorker = worker;
+    return createSolverAppWorkerClient(worker, {
+      requestIdPrefix: "photon-solver-worker",
+      requestTimeoutMs:
+        solverBridgeOptions.workerRequestTimeoutMs ??
+        PHOTON_RUNTIME_SOLVER_WORKER_REQUEST_TIMEOUT_MS,
+      terminateOnDispose: solverBridgeOptions.terminateSolverWorkerOnDispose ?? true,
+    });
+  }
+
   async function getPhotonRuntimeSolverClient() {
     if (solverBridgeOptions.solverClient) {
       return solverBridgeOptions.solverClient;
     }
     if (!solverClientPromise) {
       solverClientPromise = (async () => {
+        if (solverBridgeOptions.solverWorker) {
+          const providedWorkerClient = createSolverAppWorkerClient(
+            solverBridgeOptions.solverWorker,
+            {
+              requestIdPrefix: "photon-solver-worker",
+              requestTimeoutMs:
+                solverBridgeOptions.workerRequestTimeoutMs ??
+                PHOTON_RUNTIME_SOLVER_WORKER_REQUEST_TIMEOUT_MS,
+              terminateOnDispose: solverBridgeOptions.terminateSolverWorkerOnDispose === true,
+            }
+          );
+          await providedWorkerClient.init(
+            createPhotonRuntimeSolverInitRequest(solverBridgeOptions)
+          );
+          ownedSolverClient = providedWorkerClient;
+          return providedWorkerClient;
+        }
+        const workerClient = createPhotonRuntimeSolverWorkerClient();
+        if (workerClient) {
+          await workerClient.init(
+            createPhotonRuntimeSolverInitRequest(solverBridgeOptions)
+          );
+          ownedSolverClient = workerClient;
+          return workerClient;
+        }
         const client = createSolverAppBridgeClient({
           createWasmModule: solverBridgeOptions.createWasmModule,
           locateFile: solverBridgeOptions.locateFile,
         });
         await client.init(
-          createSolverAppBridgeInitRequest({
-            appId: "photon",
-            requestedCapabilities: PHOTON_RUNTIME_SOLVER_CAPABILITIES,
-            options: solverBridgeOptions,
-            storagePolicy: {
-              target: solverBridgeOptions.streamTarget ?? "caller-buffer",
-              durable: solverBridgeOptions.streamTarget === "native-file",
-              maxBytes:
-                solverBridgeOptions.memoryBudgetBytes ??
-                PHOTON_RUNTIME_SOLVER_MEMORY_BUDGET_BYTES,
-            },
-            threadingPolicy: {
-              mode: solverBridgeOptions.threadingMode ?? "single-thread",
-              deterministic: solverBridgeOptions.deterministic ?? true,
-            },
-          })
+          createPhotonRuntimeSolverInitRequest(solverBridgeOptions)
         );
         ownedSolverClient = client;
         return client;
@@ -490,7 +600,7 @@ export function createPhotonRuntime({
   }
 
   async function createPhotonRuntimeSolverOptions() {
-    if (hasPhotonDirectSolverOption(solverBridgeOptions)) {
+    if (hasPhotonInlineSolverOption(solverBridgeOptions)) {
       return solverBridgeOptions;
     }
     return {
@@ -504,12 +614,51 @@ export function createPhotonRuntime({
 
   function getCurrentSolverSnapshot() {
     const stateKey = createPhotonRuntimeSolverStateKey(state);
-    return solverSnapshot?.stateKey === stateKey ? solverSnapshot : null;
+    if (solverSnapshot?.stateKey === stateKey) {
+      return solverSnapshot;
+    }
+    return solverInteractiveUpdatePending ? solverSnapshot : null;
   }
 
-  function clearSolverSnapshotForStateChange() {
+  function clearSolverDebounceTimer() {
+    if (!solverDebounceTimer) {
+      return;
+    }
+    const cancel =
+      typeof windowLike?.clearTimeout === "function"
+        ? windowLike.clearTimeout.bind(windowLike)
+        : clearTimeout;
+    cancel(solverDebounceTimer);
+    solverDebounceTimer = 0;
+  }
+
+  function scheduleSolverDebouncedDraw() {
+    if (runtimeDestroyed) {
+      return;
+    }
+    clearSolverDebounceTimer();
+    const schedule =
+      typeof windowLike?.setTimeout === "function"
+        ? windowLike.setTimeout.bind(windowLike)
+        : setTimeout;
+    solverDebounceTimer = schedule(() => {
+      solverDebounceTimer = 0;
+      if (!runtimeDestroyed) {
+        draw();
+      }
+    }, PHOTON_RUNTIME_SOLVER_EDIT_DEBOUNCE_MS);
+  }
+
+  function clearSolverSnapshotForStateChange({ preserveSnapshot = false } = {}) {
     solverGeneration += 1;
-    solverSnapshot = null;
+    solverLastStateChangeAtMs = getPhotonRuntimeNowMs(windowLike);
+    solverInteractiveUpdatePending = preserveSnapshot;
+    if (preserveSnapshot) {
+      scheduleSolverDebouncedDraw();
+    } else {
+      clearSolverDebounceTimer();
+      solverSnapshot = null;
+    }
     solverError = null;
   }
 
@@ -550,6 +699,13 @@ export function createPhotonRuntime({
       return;
     }
     const nowMs = getPhotonRuntimeNowMs(windowLike);
+    if (
+      !force &&
+      solverInteractiveUpdatePending &&
+      nowMs - solverLastStateChangeAtMs < PHOTON_RUNTIME_SOLVER_EDIT_DEBOUNCE_MS
+    ) {
+      return;
+    }
     const stateChanged = solverSnapshot?.stateKey !== stateKey;
     if (
       !force &&
@@ -563,30 +719,27 @@ export function createPhotonRuntime({
     const stateForSolve = cloneRuntimePhotonState(state);
     const generation = solverGeneration;
     solverLastRequestAtMs = nowMs;
+    solverInteractiveUpdatePending = false;
     solverError = null;
     solverSnapshotPromise = (async () => {
       const solverOptions = await createPhotonRuntimeSolverOptions();
-      const [summary, plot] = await Promise.all([
-        computePhotonFormulaSummaryWithSolverBridge(
-          stateForSolve,
-          solveTime,
-          {
-            ...solverOptions,
-            ...PHOTON_RUNTIME_SOLVER_SUMMARY_OPTIONS,
-          }
-        ),
-        buildPhotonPlotSamplesWithSolverBridge(
-          stateForSolve,
-          0,
-          PHOTON_RUNTIME_SOLVER_PLOT_SAMPLE_COUNT,
-          solverOptions
-        ),
-      ]);
+      const summary = await computePhotonFormulaSummaryWithSolverBridge(
+        stateForSolve,
+        solveTime,
+        {
+          ...solverOptions,
+          ...PHOTON_RUNTIME_SOLVER_SUMMARY_OPTIONS,
+        }
+      );
       return {
         stateKey,
         solveTime,
         summary,
-        plot,
+        plot: createPhotonRuntimePlotFromPolarizationTrace(
+          stateForSolve,
+          summary.polarization,
+          solveTime
+        ),
       };
     })();
 
@@ -604,6 +757,7 @@ export function createPhotonRuntime({
           return;
         }
         solverSnapshot = snapshot;
+        solverInteractiveUpdatePending = false;
         solverError = null;
         draw();
       })
@@ -612,6 +766,11 @@ export function createPhotonRuntime({
         if (runtimeDestroyed) {
           return;
         }
+        if (generation !== solverGeneration) {
+          draw();
+          return;
+        }
+        solverInteractiveUpdatePending = false;
         solverError = error;
         draw();
       });
@@ -931,7 +1090,7 @@ export function createPhotonRuntime({
 
   function onStateChange({ syncControls: shouldSyncControls = true, drawNow = true } = {}) {
     state = normalizePhotonState(state);
-    clearSolverSnapshotForStateChange();
+    clearSolverSnapshotForStateChange({ preserveSnapshot: !drawNow });
     if (shouldSyncControls) {
       syncControls();
     }
@@ -1020,12 +1179,17 @@ export function createPhotonRuntime({
     if (animationFrame) {
       windowLike.cancelAnimationFrame(animationFrame);
     }
+    clearSolverDebounceTimer();
     solverSnapshotPromise = null;
     const clientToDispose = ownedSolverClient;
+    const workerToTerminate = ownedSolverWorker;
     ownedSolverClient = null;
+    ownedSolverWorker = null;
     solverClientPromise = null;
     if (clientToDispose && typeof clientToDispose.dispose === "function") {
       void clientToDispose.dispose();
+    } else if (workerToTerminate && typeof workerToTerminate.terminate === "function") {
+      workerToTerminate.terminate();
     }
     documentLike.removeEventListener("keydown", handleKeydown);
     windowLike.removeEventListener("resize", draw);

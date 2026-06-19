@@ -119,6 +119,11 @@ final class ReaderViewModel: ObservableObject {
         let htmlPath: String?
     }
 
+    private struct PostLaunchWarmupDocument: Sendable {
+        let cacheKey: String
+        let htmlPath: String
+    }
+
     init() {
         bootstrap()
     }
@@ -1059,38 +1064,55 @@ final class ReaderViewModel: ObservableObject {
     }
 
     private func schedulePostLaunchWarmup() {
-        let warmupPaths = postLaunchWarmupPaths()
+        let warmupDocuments = postLaunchWarmupDocuments()
+        guard !warmupDocuments.isEmpty else {
+            postLaunchWarmupTask = nil
+            return
+        }
+
         postLaunchWarmupTask?.cancel()
         postLaunchWarmupTask = Task { [weak self] in
             try? await Task.sleep(nanoseconds: 2_500_000_000)
             guard !Task.isCancelled else { return }
 
-            await Task.detached(priority: .utility) {
+            let warmedHTML = await Task.detached(priority: .utility) {
                 let loader = ReaderTextbookLoader()
-                for path in warmupPaths {
-                    _ = try? loader.bundledData(relativePath: path)
+                var warmedHTML: [String: String] = [:]
+                for document in warmupDocuments {
+                    guard !Task.isCancelled else { break }
+                    if let text = try? loader.bundledText(relativePath: document.htmlPath) {
+                        warmedHTML[document.cacheKey] = text
+                    }
                 }
+                return warmedHTML
             }.value
 
             guard !Task.isCancelled else { return }
-            self?.postLaunchWarmupTask = nil
+            await MainActor.run {
+                guard let self else { return }
+                for (cacheKey, text) in warmedHTML where self.htmlCache[cacheKey] == nil {
+                    self.htmlCache[cacheKey] = text
+                }
+                self.postLaunchWarmupTask = nil
+            }
         }
     }
 
-    private func postLaunchWarmupPaths() -> [String] {
+    private func postLaunchWarmupDocuments() -> [PostLaunchWarmupDocument] {
         guard let package else { return [] }
         var seen: Set<String> = []
         return package.manifest.chapters.compactMap { chapter in
             readerDocument(by: chapter.id)
         }
-        .map { document in
-            document.htmlPath ?? document.bundlePath
-        }
-        .filter { path in
-            let normalized = normalizePath(path)
-            guard !seen.contains(normalized) else { return false }
+        .compactMap { document -> PostLaunchWarmupDocument? in
+            guard let htmlPath = document.htmlPath else { return nil }
+            let normalized = normalizePath(htmlPath)
+            guard !seen.contains(normalized) else { return nil }
             seen.insert(normalized)
-            return true
+            return PostLaunchWarmupDocument(
+                cacheKey: "html::\(document.id)",
+                htmlPath: htmlPath
+            )
         }
     }
 
