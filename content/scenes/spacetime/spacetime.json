@@ -7,9 +7,11 @@
     "units": "relative",
     "wrapLabels": true,
     "layout": {
-      "type": "rings"
+      "type": "rings",
+      "centerNode": null,
+      "order": "objects",
+      "direction": "clockwise"
     },
-    "centerOn": "noether_sea",
     "children": [
       {
         "nodeId": "noether_sea",
@@ -43,99 +45,45 @@
       "title": "Noether Sea",
       "radius": 2.05,
       "color": "#2f4f7a",
-      "position": [
-        0,
-        0,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Noether Sea",
-      "labelBadge": "doc",
-      "fixedPosition": true
+      "labelBadge": "doc"
     },
     {
       "id": "noether_sea_pro_anti_coupling",
       "title": "Noether Sea Pro/Anti Coupling",
       "radius": 2.05,
       "color": "#6a3c3c",
-      "position": [
-        0,
-        8.2,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Noether Sea Pro/Anti Coupling",
-      "labelBadge": "doc",
-      "fixedPosition": true
+      "labelBadge": "doc"
     },
     {
       "id": "molecular_exclusion_and_noether_sea_response",
       "title": "Molecular Exclusion and Noether Sea Response",
       "radius": 2.05,
       "color": "#3f6a5a",
-      "position": [
-        7.8,
-        2.53,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Molecular Exclusion and Noether Sea Response",
-      "labelBadge": "doc",
-      "fixedPosition": true
+      "labelBadge": "doc"
     },
     {
       "id": "physical_observers",
       "title": "Physical Observers",
       "radius": 2.05,
       "color": "#2f6b6f",
-      "position": [
-        4.82,
-        -6.63,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Physical Observers",
-      "fixedPosition": true
+      "labelTitle": "Physical Observers"
     },
     {
       "id": "effective_metric",
       "title": "Effective Metric",
       "radius": 2.05,
       "color": "#243d8f",
-      "position": [
-        -4.82,
-        -6.63,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Effective Metric",
-      "fixedPosition": true
+      "labelTitle": "Effective Metric"
     },
     {
       "id": "strong_field_regime",
       "title": "Strong-Field Regime",
       "radius": 2.05,
       "color": "#4a3b6f",
-      "position": [
-        -7.8,
-        2.53,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Strong-Field Regime",
-      "fixedPosition": true
+      "labelTitle": "Strong-Field Regime"
     }
   ]
 }

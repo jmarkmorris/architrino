@@ -6,7 +6,7 @@ Synchrotron cascades are coupled electromagnetic processes in which relativistic
 
 This chapter presents synchrotron-cascade theory first in standard observer-level form, then in a provisional $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology map that preserves established reaction physics.
 
-Terminology in this chapter follows [mode-taxonomy.md](../interactions/mode-taxonomy.md): photon emission is described as **planar-mode nucleation**; `corridor` terms are reserved for weak-channel contexts.
+Terminology in this chapter follows [mode-taxonomy.md](mode-taxonomy.md): photon emission is described as **planar-mode nucleation**; `corridor` terms are reserved for weak-channel contexts.
 
 ## Notation Snapshot
 

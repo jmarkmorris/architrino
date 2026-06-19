@@ -4,7 +4,7 @@
   }
 
   const markdownParser = window.markdownit({
-    html: false,
+    html: true,
     breaks: true,
     linkify: false,
     typographer: true,

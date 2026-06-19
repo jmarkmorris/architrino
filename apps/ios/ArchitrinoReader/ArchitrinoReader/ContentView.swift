@@ -9,7 +9,9 @@ struct ContentView: View {
     @State private var tocNotice: String?
     @State private var showAbout = false
     @State private var showReaderSettings = false
+    @State private var showTOCReaderSettings = false
     @State private var didPresentInitialToc = false
+    @State private var expandedTOCGroupID: String?
 
     private var isRegularWidth: Bool {
         horizontalSizeClass == .regular
@@ -56,6 +58,11 @@ struct ContentView: View {
         .onChange(of: horizontalSizeClass) { _, _ in
             presentInitialTOCIfNeeded()
         }
+        .onChange(of: showToc) { _, isPresented in
+            if isPresented {
+                resetTOCExpansion()
+            }
+        }
     }
 
     private var readerDetail: some View {
@@ -81,7 +88,7 @@ struct ContentView: View {
                             .foregroundStyle(viewModel.theme.readerSecondaryTextColor)
                     }
                     .padding()
-                } else if viewModel.renderCommand != nil {
+                } else if viewModel.isReady && viewModel.hasAnyContent() {
                     ZStack {
                         ReaderWebView(
                             renderCommand: $viewModel.renderCommand,
@@ -99,14 +106,17 @@ struct ContentView: View {
                                 viewModel.markRenderComplete(message: payload)
                             }
                         )
+                        .opacity(viewModel.renderCommand == nil ? 0 : 1)
+                        .allowsHitTesting(viewModel.renderCommand != nil)
 
+                        if viewModel.renderCommand == nil {
+                            readerSelectionPlaceholder
+                        }
                         if viewModel.isRendering {
                             readerRenderOverlay
                         }
                     }
                     .background(viewModel.theme.readerBackgroundColor)
-                } else if viewModel.isReady && viewModel.hasAnyContent() {
-                    readerSelectionPlaceholder
                 } else {
                     VStack {
                         ProgressView()
@@ -192,6 +202,9 @@ struct ContentView: View {
             .tint(viewModel.theme.readerAccentColor)
         }
         .preferredColorScheme(viewModel.theme.readerToolbarColorScheme)
+        .sheet(isPresented: $showTOCReaderSettings) {
+            ReaderSettingsSheet(viewModel: viewModel)
+        }
     }
 
     private var readerSelectionPlaceholder: some View {
@@ -218,8 +231,8 @@ struct ContentView: View {
     private var tocFullScreen: some View {
         GeometryReader { proxy in
             VStack(spacing: 0) {
-                Color.clear
-                    .frame(height: max(proxy.safeAreaInsets.top + 8, 44))
+                tocDismissHeader
+                    .padding(.top, proxy.safeAreaInsets.top)
 
                 tocSidebar
 
@@ -232,6 +245,28 @@ struct ContentView: View {
             .background(viewModel.theme.readerBackgroundColor.ignoresSafeArea())
         }
         .preferredColorScheme(viewModel.theme.readerToolbarColorScheme)
+    }
+
+    private var tocDismissHeader: some View {
+        HStack {
+            Spacer()
+
+            Button {
+                dismissTOCImmediately()
+            } label: {
+                Image(systemName: "xmark")
+                    .font(.system(size: 17, weight: .semibold))
+                    .foregroundStyle(viewModel.theme.readerPrimaryTextColor)
+                    .frame(width: 40, height: 40)
+                    .background(
+                        Circle()
+                            .fill(viewModel.theme.readerSearchControlBackgroundColor)
+                    )
+            }
+            .accessibilityLabel("Close table of contents")
+        }
+        .padding(.horizontal, 14)
+        .padding(.bottom, 0)
     }
 
     private var tocSidebar: some View {
@@ -270,46 +305,12 @@ struct ContentView: View {
                 .listRowBackground(Color.clear)
                 .listRowSeparatorTint(viewModel.theme.readerSeparatorColor)
                 .listRowInsets(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
-
-                Section {
-                    Button {
-                        viewModel.presentSearch()
-                    } label: {
-                        Label("Search", systemImage: "magnifyingglass")
-                            .foregroundStyle(viewModel.theme.readerPrimaryTextColor)
-                    }
-
-                    Button {
-                        viewModel.isBookmarksPresented = true
-                    } label: {
-                        Label("Bookmarks", systemImage: "list.bullet.rectangle")
-                            .foregroundStyle(viewModel.theme.readerPrimaryTextColor)
-                    }
-
-                    Button {
-                        navigateFromTOC {
-                            viewModel.openGlossary()
-                        }
-                    } label: {
-                        Label("Glossary", systemImage: "book.pages")
-                            .foregroundStyle(
-                                viewModel.canOpenGlossary
-                                    ? viewModel.theme.readerPrimaryTextColor
-                                    : viewModel.theme.readerSecondaryTextColor
-                            )
-                    }
-                    .disabled(!viewModel.canOpenGlossary)
-                } header: {
-                    tocSectionHeader("Actions")
-                }
-                .listRowBackground(Color.clear)
-                .listRowSeparatorTint(viewModel.theme.readerSeparatorColor)
-                .listRowInsets(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
             }
             .listStyle(.plain)
             .listSectionSpacing(8)
-            .contentMargins(.top, 8, for: .scrollContent)
+            .contentMargins(.top, 0, for: .scrollContent)
             .contentMargins(.horizontal, 0, for: .scrollContent)
+            .environment(\.defaultMinListHeaderHeight, 0)
             .scrollContentBackground(.hidden)
             .background(viewModel.theme.readerBackgroundColor.ignoresSafeArea())
         }
@@ -317,14 +318,6 @@ struct ContentView: View {
         .toolbarBackground(.visible, for: .navigationBar)
         .toolbarColorScheme(viewModel.theme.readerToolbarColorScheme, for: .navigationBar)
         .tint(viewModel.theme.readerAccentColor)
-    }
-
-    private func tocSectionHeader(_ title: String) -> some View {
-        Text(title)
-            .font(.caption)
-            .fontWeight(.semibold)
-            .foregroundStyle(viewModel.theme.readerSecondaryTextColor)
-            .textCase(.uppercase)
     }
 
     private func presentInitialTOCIfNeeded() {
@@ -341,6 +334,7 @@ struct ContentView: View {
     private func navigateFromTOC(_ action: () -> Void) {
         tocNotice = nil
         viewModel.readerNotice = nil
+        resetTOCExpansion()
         action()
         if !isRegularWidth && showToc {
             dismissTOCImmediately()
@@ -348,7 +342,12 @@ struct ContentView: View {
     }
 
     private func dismissTOCImmediately() {
+        resetTOCExpansion()
         showToc = false
+    }
+
+    private func resetTOCExpansion() {
+        expandedTOCGroupID = nil
     }
 
     private func openFirstChapterFromTOC() {
@@ -363,86 +362,93 @@ struct ContentView: View {
 
         return AnyView(
             VStack(alignment: .leading, spacing: 0) {
-                Button {
-                    switch route {
-                    case .chapter(let chapterId, let anchor):
-                        navigateFromTOC {
-                            viewModel.openChapter(by: chapterId, anchor: anchor)
-                        }
-                    case .external(let external):
-                        tocNotice = nil
-                        viewModel.readerNotice = nil
-                        openURL(external)
-                        if !isRegularWidth {
-                            dismissTOCImmediately()
-                        }
-                    case .none:
-                        break
+                tocNavigationRow(
+                    title: node.title,
+                    route: route,
+                    depth: depth,
+                    expansionID: nil,
+                    isExpanded: false,
+                    hasExpandableContent: false
+                )
+
+                if depth == 0 {
+                    ForEach(viewModel.visibleTOCChildren(for: node)) { child in
+                        tocSecondLevelNodeRow(child, parentID: node.id)
                     }
-                } label: {
-                    HStack(spacing: 8) {
-                        tocRouteIcon(for: route)
 
-                        tocRowLabel(title: node.title, depth: depth)
-
-                        Spacer()
+                    ForEach(Array(viewModel.visibleTOCSections(for: node).enumerated()), id: \.offset) { index, section in
+                        tocSectionRow(section, in: node, depth: depth + 1, stableID: "\(node.id)::top-section-\(index)")
                     }
-                    .contentShape(Rectangle())
-                    .padding(.vertical, 2)
-                }
-                .contentShape(Rectangle())
-                .padding(.vertical, 2)
-                .buttonStyle(.plain)
-
-                ForEach(Array(node.resolvedSections.enumerated()), id: \.offset) { _, section in
-                    tocSectionRow(section, in: node, depth: depth + 1)
-                }
-
-                ForEach(node.resolvedChildren) { child in
-                    tocHierarchyRow(child, depth: depth + 1)
                 }
             }
+            .padding(.vertical, depth == 0 ? 8 : 0)
         )
     }
 
-    private func tocSectionRow(_ section: TextbookTOCSection, in node: TextbookTOCNode, depth: Int) -> AnyView {
+    private func tocSecondLevelNodeRow(_ node: TextbookTOCNode, parentID: String) -> some View {
+        let route = viewModel.resolveTOCTarget(for: node)
+        let expansionID = "\(parentID)::\(node.id)"
+        let isExpanded = expandedTOCGroupID == expansionID
+        let visibleChildren = viewModel.visibleTOCChildren(for: node)
+        let visibleSections = viewModel.visibleTOCSections(for: node)
+        let hasExpandableContent = !visibleSections.isEmpty || !visibleChildren.isEmpty
+
+        return VStack(alignment: .leading, spacing: 0) {
+            tocNavigationRow(
+                title: node.title,
+                route: route,
+                depth: 1,
+                expansionID: expansionID,
+                isExpanded: isExpanded,
+                hasExpandableContent: hasExpandableContent
+            )
+
+            if isExpanded {
+                ForEach(visibleChildren) { child in
+                    tocLeafNodeRow(child, depth: 2)
+                }
+
+                ForEach(Array(visibleSections.enumerated()), id: \.offset) { index, section in
+                    tocSectionRow(section, in: node, depth: 2, stableID: "\(expansionID)::section-\(index)")
+                }
+            }
+        }
+    }
+
+    private func tocLeafNodeRow(_ node: TextbookTOCNode, depth: Int) -> some View {
+        tocNavigationRow(
+            title: node.title,
+            route: viewModel.resolveTOCTarget(for: node),
+            depth: depth,
+            expansionID: nil,
+            isExpanded: false,
+            hasExpandableContent: false
+        )
+    }
+
+    private func tocSectionRow(
+        _ section: TextbookTOCSection,
+        in node: TextbookTOCNode,
+        depth: Int,
+        stableID: String
+    ) -> AnyView {
         let route = viewModel.resolveTOCSectionTarget(section, in: node)
 
         return AnyView(
             VStack(alignment: .leading, spacing: 0) {
-                Button {
-                    switch route {
-                    case .chapter(let chapterId, let anchor):
-                        navigateFromTOC {
-                            viewModel.openChapter(by: chapterId, anchor: anchor)
-                        }
-                    case .external(let external):
-                        tocNotice = nil
-                        viewModel.readerNotice = nil
-                        openURL(external)
-                        if !isRegularWidth {
-                            dismissTOCImmediately()
-                        }
-                    case .none:
-                        break
+                tocNavigationRow(
+                    title: tocSectionTitle(section),
+                    route: route,
+                    depth: depth,
+                    expansionID: nil,
+                    isExpanded: false,
+                    hasExpandableContent: false
+                )
+
+                if expandedTOCGroupID == stableID {
+                    ForEach(Array(section.resolvedChildren.enumerated()), id: \.offset) { index, child in
+                        tocSectionRow(child, in: node, depth: depth + 1, stableID: "\(stableID)::child-\(index)")
                     }
-                } label: {
-                    HStack(spacing: 8) {
-                        tocRouteIcon(for: route)
-
-                        tocRowLabel(title: tocSectionTitle(section), depth: depth)
-
-                        Spacer()
-                    }
-                    .contentShape(Rectangle())
-                    .padding(.vertical, 2)
-                }
-                .contentShape(Rectangle())
-                .padding(.vertical, 2)
-                .buttonStyle(.plain)
-
-                ForEach(Array(section.resolvedChildren.enumerated()), id: \.offset) { _, child in
-                    tocSectionRow(child, in: node, depth: depth + 1)
                 }
             }
         )
@@ -476,10 +482,75 @@ struct ContentView: View {
         }
     }
 
+    private func tocNavigationRow(
+        title: String,
+        route: ReaderViewModel.TOCRoute,
+        depth: Int,
+        expansionID: String?,
+        isExpanded: Bool,
+        hasExpandableContent: Bool
+    ) -> some View {
+        HStack(spacing: 8) {
+            Button {
+                navigateTOCRoute(route, fallbackExpansionID: expansionID)
+            } label: {
+                HStack(spacing: 8) {
+                    tocRouteIcon(for: route)
+
+                    tocRowLabel(title: title, depth: depth)
+
+                    Spacer(minLength: 0)
+                }
+                .contentShape(Rectangle())
+            }
+            .buttonStyle(.plain)
+
+            if hasExpandableContent, let expansionID {
+                Button {
+                    toggleTOCExpansion(expansionID)
+                } label: {
+                    Image(systemName: isExpanded ? "minus.circle" : "plus.circle")
+                        .font(.system(size: 18, weight: .semibold))
+                        .foregroundStyle(viewModel.theme.readerAccentColor)
+                        .frame(width: 34, height: 34)
+                }
+                .buttonStyle(.plain)
+                .accessibilityLabel(isExpanded ? "Collapse section" : "Expand section")
+            }
+        }
+        .contentShape(Rectangle())
+        .padding(.vertical, 4)
+    }
+
+    private func navigateTOCRoute(_ route: ReaderViewModel.TOCRoute, fallbackExpansionID: String?) {
+        switch route {
+        case .chapter(let chapterId, let anchor):
+            navigateFromTOC {
+                viewModel.openChapter(by: chapterId, anchor: anchor)
+            }
+        case .external(let external):
+            tocNotice = nil
+            viewModel.readerNotice = nil
+            resetTOCExpansion()
+            openURL(external)
+            if !isRegularWidth {
+                dismissTOCImmediately()
+            }
+        case .none:
+            if let fallbackExpansionID {
+                toggleTOCExpansion(fallbackExpansionID)
+            }
+        }
+    }
+
+    private func toggleTOCExpansion(_ id: String) {
+        expandedTOCGroupID = expandedTOCGroupID == id ? nil : id
+    }
+
     private func tocRowLabel(title: String, depth: Int) -> some View {
         HStack(spacing: 4) {
-            Text(title)
-                .font(.custom("HelveticaNeue", size: 17, relativeTo: .body))
+            Text(readerNativeLabelText(title))
+                .font(.custom(depth == 0 ? "HelveticaNeue-Bold" : "HelveticaNeue", size: 17, relativeTo: .body))
                 .foregroundStyle(viewModel.theme.readerPrimaryTextColor)
                 .lineLimit(2)
                 .multilineTextAlignment(.leading)
@@ -496,9 +567,13 @@ struct ContentView: View {
     }
 
     private func readerControlBar(isTOC: Bool) -> some View {
-        HStack {
+        let canBookmark = viewModel.currentChapter != nil
+        let canGoPrevious = viewModel.canGoPreviousChapter()
+        let canGoNext = isTOC ? viewModel.chapter(at: 0) != nil : viewModel.canGoNextChapter()
+
+        return HStack {
             fontSizeControl
-            readerSettingsControl
+            readerSettingsControl(isTOC: isTOC)
 
             if isTOC {
                 Text("TOC")
@@ -514,15 +589,20 @@ struct ContentView: View {
                 } label: {
                     Image(systemName: viewModel.isCurrentPositionBookmarked ? "bookmark.fill" : "bookmark")
                 }
-                .disabled(viewModel.currentChapter == nil)
+                .buttonStyle(
+                    ReaderControlBarButtonStyle(
+                        color: readerControlBarButtonColor(isEnabled: canBookmark)
+                    )
+                )
+                .disabled(!canBookmark)
                 .accessibilityLabel(viewModel.isCurrentPositionBookmarked ? "Remove bookmark" : "Add bookmark")
 
                 Text(viewModel.readingProgressLabel)
-                    .font(.caption2)
+                    .font(.subheadline)
                     .foregroundStyle(viewModel.theme.readerControlBarSecondaryTextColor)
                     .lineLimit(1)
                     .minimumScaleFactor(0.75)
-                    .frame(maxWidth: 72, alignment: .leading)
+                    .frame(maxWidth: 88, alignment: .leading)
                     .accessibilityLabel("Reading location \(viewModel.readingProgressLabel)")
             }
 
@@ -532,9 +612,15 @@ struct ContentView: View {
                 Button {
                     viewModel.goToPreviousChapter()
                 } label: {
-                    Label("Previous", systemImage: "chevron.left")
+                    Label("Prev", systemImage: "chevron.left")
                 }
-                .disabled(!viewModel.canGoPreviousChapter())
+                .buttonStyle(
+                    ReaderControlBarButtonStyle(
+                        color: readerControlBarButtonColor(isEnabled: canGoPrevious)
+                    )
+                )
+                .disabled(!canGoPrevious)
+                .accessibilityLabel("Previous chapter")
             }
 
             Button {
@@ -546,17 +632,34 @@ struct ContentView: View {
             } label: {
                 Label("Next", systemImage: "chevron.right")
             }
-            .disabled(isTOC ? viewModel.chapter(at: 0) == nil : !viewModel.canGoNextChapter())
+            .buttonStyle(
+                ReaderControlBarButtonStyle(
+                    color: readerControlBarButtonColor(isEnabled: canGoNext)
+                )
+            )
+            .disabled(!canGoNext)
+            .accessibilityLabel(isTOC ? "Open first chapter" : "Next chapter")
         }
         .font(.subheadline)
         .tint(viewModel.theme.readerControlBarAccentColor)
-        .padding(10)
-        .background(viewModel.theme.readerControlBarBackgroundColor.ignoresSafeArea(edges: .bottom))
+        .padding(.horizontal, 10)
+        .padding(.vertical, 8)
+        .background(viewModel.theme.readerControlBarBackgroundColor)
     }
 
-    private var readerSettingsControl: some View {
+    private func readerControlBarButtonColor(isEnabled: Bool) -> Color {
+        isEnabled
+            ? viewModel.theme.readerControlBarAccentColor
+            : viewModel.theme.readerControlBarSecondaryTextColor
+    }
+
+    private func readerSettingsControl(isTOC: Bool) -> some View {
         Button {
-            showReaderSettings = true
+            if isTOC {
+                showTOCReaderSettings = true
+            } else {
+                showReaderSettings = true
+            }
         } label: {
             HStack(spacing: 4) {
                 Image(systemName: "gearshape")
@@ -831,6 +934,7 @@ private struct ReaderSettingsSheet: View {
                                 .buttonStyle(.plain)
                             }
                         }
+                        .frame(maxWidth: .infinity, alignment: .center)
                         .padding(.vertical, 4)
                     } header: {
                         Text("Theme")
@@ -945,6 +1049,16 @@ private struct ReaderSettingsSheet: View {
     }
 }
 
+private struct ReaderControlBarButtonStyle: ButtonStyle {
+    let color: Color
+
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .foregroundStyle(color)
+            .opacity(configuration.isPressed ? 0.72 : 1)
+    }
+}
+
 private struct SearchSheet: View {
     @ObservedObject var viewModel: ReaderViewModel
     @State private var query = ""
@@ -1032,7 +1146,7 @@ private struct SearchSheet: View {
                 if viewModel.isSearchIndexLoading {
                     searchStatusText("Preparing search...")
                 } else if viewModel.searchResults.isEmpty && !query.isEmpty {
-                    searchStatusText("No matching sections.")
+                    searchStatusText("No matching documents.")
                 }
 
                 ForEach(viewModel.searchResults) { result in
@@ -1066,13 +1180,13 @@ private struct SearchResultRow: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
-            Text(result.chapterTitle)
+            Text(readerNativeLabelText(result.chapterTitle))
                 .font(.subheadline)
                 .fontWeight(.semibold)
                 .foregroundStyle(theme.readerPrimaryTextColor)
 
             SearchSnippetPreview(markdownText: result.renderedPreviewMarkdown, theme: theme)
-                .frame(height: 78)
+                .frame(height: 72)
                 .clipped()
                 .allowsHitTesting(false)
         }
@@ -1149,12 +1263,12 @@ private struct BookmarkRow: View {
         HStack(spacing: 12) {
             Button(action: open) {
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(bookmark.chapterTitle)
+                    Text(readerNativeLabelText(bookmark.chapterTitle))
                         .font(.subheadline)
                         .fontWeight(.semibold)
                         .foregroundStyle(theme.readerPrimaryTextColor)
 
-                    Text(bookmark.displayLabel)
+                    Text(readerNativeLabelText(bookmark.displayLabel))
                         .font(.caption)
                         .foregroundStyle(theme.readerSecondaryTextColor)
                 }
@@ -1197,14 +1311,14 @@ private struct AboutSheet: View {
                 List {
                     Section {
                         VStack(alignment: .leading, spacing: 12) {
-                            Text("Architrino Assembly Architecture")
+                            Text("Architrino Assembly Architecture (AAA)")
                                 .font(.headline)
                                 .foregroundStyle(theme.readerPrimaryTextColor)
                                 .lineLimit(1)
                                 .minimumScaleFactor(0.72)
                                 .accessibilityAddTraits(.isHeader)
 
-                            Text("Architrino Assembly Architecture (AAA) begins from a deliberately spare ontology: point-like architrinos moving through a three-dimensional Euclidean void in absolute time, exchanging influence through causal wakes, and assembling into the structures we observe.")
+                            Text("AAA begins from a minimal ontology: point-like transceivers of potential, termed architrinos, moving through three-dimensional Euclidean space in absolute time, exchanging influence through causal wakes, and assembling into the structures we observe.")
                                 .font(.body)
                                 .foregroundStyle(theme.readerSecondaryTextColor)
 
@@ -1212,7 +1326,7 @@ private struct AboutSheet: View {
                                 .font(.body)
                                 .foregroundStyle(theme.readerSecondaryTextColor)
 
-                            Text("This textbook is an invitation into that architecture. Its promise is parsimony: fewer starting assumptions, clearer causal accounting, and a path from substrate events to effective physical law.")
+                            Text("This textbook is an invitation into that architecture. Its promise is parsimony: few assumptions, clearer causal accounting, and a path from substrate events to effective physical law.")
                                 .font(.body)
                                 .foregroundStyle(theme.readerSecondaryTextColor)
 
@@ -1278,6 +1392,193 @@ private struct AboutSheet: View {
         }
         .preferredColorScheme(theme.readerToolbarColorScheme)
     }
+}
+
+private func readerNativeLabelText(_ value: String) -> String {
+    var output = ""
+    var index = value.startIndex
+
+    while let open = value[index...].firstIndex(of: "$") {
+        output += String(value[index..<open])
+        let mathStart = value.index(after: open)
+        guard let close = value[mathStart...].firstIndex(of: "$") else {
+            output += String(value[open...])
+            return readerNormalizeNativeLabelSpacing(output)
+        }
+
+        output += readerNativeMathText(String(value[mathStart..<close]))
+        index = value.index(after: close)
+    }
+
+    output += String(value[index...])
+    return readerNormalizeNativeLabelSpacing(output)
+}
+
+private func readerNativeMathText(_ rawValue: String) -> String {
+    let trimmed = rawValue.trimmingCharacters(in: .whitespacesAndNewlines)
+    if trimmed == "\\mathbb{A}\\mathbb{A}\\mathbb{A}" {
+        return "AAA"
+    }
+    if trimmed == "\\mathbb{U}_{\\text{now}}" {
+        return "U_now"
+    }
+
+    var text = readerReplaceBracedTextCommands(trimmed)
+    let replacements: [(String, String)] = [
+        ("\\mathbb{A}\\mathbb{A}\\mathbb{A}", "AAA"),
+        ("\\mathbb{U}", "U"),
+        ("\\bar{K}", "K\u{0304}"),
+        ("\\Lambda", "Λ"),
+        ("\\gamma", "γ"),
+        ("\\pi", "π"),
+        ("\\rho", "ρ"),
+        ("\\Delta", "Δ"),
+        ("\\eta", "η"),
+        ("\\epsilon", "ε"),
+        ("\\hbar", "ℏ"),
+        ("\\ell", "ℓ"),
+        ("\\times", "×"),
+        ("\\to", " → "),
+        ("\\pm", "±"),
+        ("\\sim", "~"),
+        ("\\|", "||")
+    ]
+
+    for (source, replacement) in replacements {
+        text = text.replacingOccurrences(of: source, with: replacement)
+    }
+
+    text = readerReplaceScriptMarkers(in: text, marker: "^", transform: readerSuperscriptText)
+    text = readerReplaceScriptMarkers(in: text, marker: "_", transform: readerSubscriptText)
+    text = text
+        .replacingOccurrences(of: "{", with: "")
+        .replacingOccurrences(of: "}", with: "")
+        .replacingOccurrences(of: "\\", with: "")
+
+    return readerNormalizeNativeLabelSpacing(text)
+}
+
+private func readerReplaceBracedTextCommands(_ value: String) -> String {
+    var text = value
+    for command in ["\\text", "\\mathrm", "\\mathbf"] {
+        while let commandRange = text.range(of: "\(command){") {
+            let contentStart = commandRange.upperBound
+            guard let close = text[contentStart...].firstIndex(of: "}") else {
+                break
+            }
+            let content = text[contentStart..<close]
+            text.replaceSubrange(commandRange.lowerBound...close, with: content)
+        }
+    }
+    return text
+}
+
+private func readerReplaceScriptMarkers(
+    in value: String,
+    marker: Character,
+    transform: (String) -> String
+) -> String {
+    var output = ""
+    var index = value.startIndex
+
+    while index < value.endIndex {
+        guard value[index] == marker else {
+            output.append(value[index])
+            index = value.index(after: index)
+            continue
+        }
+
+        let tokenStart = value.index(after: index)
+        guard tokenStart < value.endIndex else {
+            output.append(marker)
+            index = tokenStart
+            continue
+        }
+
+        if value[tokenStart] == "{" {
+            let contentStart = value.index(after: tokenStart)
+            guard let close = value[contentStart...].firstIndex(of: "}") else {
+                output.append(marker)
+                index = tokenStart
+                continue
+            }
+            output += transform(String(value[contentStart..<close]))
+            index = value.index(after: close)
+            continue
+        }
+
+        var tokenEnd = tokenStart
+        while tokenEnd < value.endIndex,
+              readerIsScriptTokenCharacter(value[tokenEnd]) {
+            tokenEnd = value.index(after: tokenEnd)
+        }
+
+        if tokenEnd == tokenStart {
+            output.append(marker)
+            index = tokenStart
+        } else {
+            output += transform(String(value[tokenStart..<tokenEnd]))
+            index = tokenEnd
+        }
+    }
+
+    return output
+}
+
+private func readerIsScriptTokenCharacter(_ character: Character) -> Bool {
+    character.isLetter || character.isNumber || character == "+" || character == "-" || character == "±"
+}
+
+private func readerSuperscriptText(_ value: String) -> String {
+    readerMappedScriptText(
+        value,
+        map: [
+            "0": "⁰", "1": "¹", "2": "²", "3": "³", "4": "⁴",
+            "5": "⁵", "6": "⁶", "7": "⁷", "8": "⁸", "9": "⁹",
+            "+": "⁺", "-": "⁻", "±": "±"
+        ],
+        fallbackPrefix: "^"
+    )
+}
+
+private func readerSubscriptText(_ value: String) -> String {
+    readerMappedScriptText(
+        value,
+        map: [
+            "0": "₀", "1": "₁", "2": "₂", "3": "₃", "4": "₄",
+            "5": "₅", "6": "₆", "7": "₇", "8": "₈", "9": "₉"
+        ],
+        fallbackPrefix: "_"
+    )
+}
+
+private func readerMappedScriptText(
+    _ value: String,
+    map: [Character: Character],
+    fallbackPrefix: String
+) -> String {
+    var output = ""
+    for character in value {
+        guard let mapped = map[character] else {
+            return "\(fallbackPrefix)\(value)"
+        }
+        output.append(mapped)
+    }
+    return output
+}
+
+private func readerNormalizeNativeLabelSpacing(_ value: String) -> String {
+    var text = value
+        .replacingOccurrences(of: "  ", with: " ")
+        .replacingOccurrences(of: " ,", with: ",")
+        .replacingOccurrences(of: "( ", with: "(")
+        .replacingOccurrences(of: " )", with: ")")
+        .trimmingCharacters(in: .whitespacesAndNewlines)
+
+    while text.contains("  ") {
+        text = text.replacingOccurrences(of: "  ", with: " ")
+    }
+    return text
 }
 
 struct ContentView_Previews: PreviewProvider {

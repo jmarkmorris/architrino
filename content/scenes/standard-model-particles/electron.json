@@ -51,8 +51,6 @@
     {
       "id": "fermion_core",
       "label": "Nested shell swarm",
-      "scaleExponent": -20,
-      "hideScaleLabel": true,
       "radius": 2.4,
       "color": "PURPLE",
       "position": [

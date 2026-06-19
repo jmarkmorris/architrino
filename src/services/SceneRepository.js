@@ -14,6 +14,7 @@ export class SceneRepository {
     this.defaultSphereColorSchemeName = deps.defaultSphereColorSchemeName ?? "jewel";
     this.homeScenePath = deps.homeScenePath ?? null;
     this.buildAutoMarkdownNodes = deps.buildAutoMarkdownNodes;
+    this.resolveTextbookChapterLabel = deps.resolveTextbookChapterLabel;
     this.resolveMarkdownFileSize = deps.resolveMarkdownFileSize;
     this.resolveMarkdownFileCharacterCount = deps.resolveMarkdownFileCharacterCount;
     this.markdownDocBadgeMinChars =
@@ -79,6 +80,38 @@ export class SceneRepository {
       markdownColumns,
       markdownAutoOpen,
       markdownDownloadOnly,
+    };
+  }
+
+  resolveFileConfig(entry) {
+    const source = entry?.source ?? null;
+    const view = entry?.view ?? null;
+    const sourceType =
+      typeof source?.type === "string" ? source.type.trim().toLowerCase() : "";
+    const supportedFileSource =
+      sourceType === "pdf" || sourceType === "file" || sourceType === "asset";
+    const filePath =
+      supportedFileSource && typeof source?.path === "string" && source.path.trim().length > 0
+        ? source.path.trim()
+        : null;
+    const fileOpenMode =
+      typeof view?.openMode === "string" && view.openMode.trim().length > 0
+        ? view.openMode.trim()
+        : "new-tab";
+    const fileDownload =
+      view?.download === true ||
+      view?.downloadOnly === true ||
+      fileOpenMode === "download";
+    const fileDownloadName =
+      typeof view?.downloadName === "string" && view.downloadName.trim().length > 0
+        ? view.downloadName.trim()
+        : null;
+    return {
+      filePath,
+      fileSourceType: filePath ? sourceType : null,
+      fileOpenMode,
+      fileDownload,
+      fileDownloadName,
     };
   }
 
@@ -307,9 +340,9 @@ export class SceneRepository {
 
   buildRuntimeNode(obj, context = {}) {
     const markdown = this.resolveMarkdownConfig(obj);
+    const file = this.resolveFileConfig(obj);
     const sceneChildRef = this.resolveNodeChildRef(obj, context);
     const nodeTitle = this.resolveNodeTitle(obj, sceneChildRef) ?? obj.id;
-    const hasScale = obj.scaleExponent !== undefined && obj.scaleExponent !== null;
     const binaryBands = Array.isArray(obj.binaryBands) ? obj.binaryBands : null;
     const node = {
       id: obj.id,
@@ -323,8 +356,6 @@ export class SceneRepository {
         this.resolveInferredNodeBadge(obj, context),
       labelBadgeImage: obj.labelBadgeImage ?? null,
       labelBadgeAlt: obj.labelBadgeAlt ?? null,
-      scale: hasScale ? obj.scaleExponent : null,
-      hasScale,
       radius: obj.radius ?? 1,
       color: this.resolveNodeColor({
         ...obj,
@@ -336,6 +367,7 @@ export class SceneRepository {
       reaction: obj.reaction,
       details: obj.details ?? null,
       renderStyle: obj.renderStyle ?? null,
+      hideSphere: obj.hideSphere === true,
       markdownPath: markdown.markdownPath,
       markdownSection: markdown.markdownSection,
       markdownColumns: markdown.markdownColumns,
@@ -347,14 +379,19 @@ export class SceneRepository {
       markdownPlainSectionPaths: Array.isArray(obj.markdownPlainSectionPaths)
         ? obj.markdownPlainSectionPaths
         : [],
+      filePath: file.filePath,
+      fileSourceType: file.fileSourceType,
+      fileOpenMode: file.fileOpenMode,
+      fileDownload: file.fileDownload,
+      fileDownloadName: file.fileDownloadName,
+      fileOpenEligible: !!file.filePath,
       binaryBands,
-      glowRing: obj.glowRing ?? false,
+      glowRing: obj.glowRing ?? !!file.filePath,
       glowRingColor: obj.glowRingColor ?? null,
       glowRingOpacity: obj.glowRingOpacity ?? null,
       glowRingThickness: obj.glowRingThickness ?? null,
       glowRingScale: obj.glowRingScale ?? null,
       baseOpacity: obj.baseOpacity ?? null,
-      hideScaleLabel: obj.hideScaleLabel ?? context.hideScaleLabels ?? false,
       wrapLabel: obj.wrapLabel ?? context.wrapLabels ?? true,
       layoutSlot: this.resolveNodeLayoutSlot(obj, sceneChildRef),
     };
@@ -605,6 +642,26 @@ export class SceneRepository {
     return nodes;
   }
 
+  async applyTextbookChapterLabels(nodes) {
+    if (
+      !Array.isArray(nodes) ||
+      !nodes.length ||
+      typeof this.resolveTextbookChapterLabel !== "function"
+    ) {
+      return nodes;
+    }
+
+    await Promise.all(
+      nodes.map(async (node) => {
+        const label = await this.resolveTextbookChapterLabel(node);
+        node.textbookChapterLabel =
+          typeof label === "string" && label.trim().length > 0 ? label.trim() : null;
+      })
+    );
+
+    return nodes;
+  }
+
   isAuthoredSceneData(data) {
     return !!(
       data &&
@@ -630,8 +687,11 @@ export class SceneRepository {
           }
         : rawSceneMarkdown;
     const rawLayoutType = this.resolveLayoutType(sceneMeta);
+    const rawLayoutConfig =
+      sceneMeta.layout && typeof sceneMeta.layout === "object" && !Array.isArray(sceneMeta.layout)
+        ? sceneMeta.layout
+        : null;
     const splitScene = this.resolveSplitSceneConfig(sceneMeta);
-    const hideScaleLabels = Boolean(sceneMeta.hideScaleLabels);
     const wrapLabels = sceneMeta.wrapLabels ?? true;
     const sceneChildRefByNodeId = this.buildSceneChildRefMap(sceneMeta);
     const sceneChildMarkdownViewBadgeByNodeId =
@@ -641,7 +701,6 @@ export class SceneRepository {
     );
     let nodes = data.objects.map((obj) =>
       this.buildRuntimeNode(obj, {
-        hideScaleLabels,
         wrapLabels,
         idMap,
         sceneChildRefByNodeId,
@@ -657,11 +716,17 @@ export class SceneRepository {
       });
     }
     this.applyPersonalityArchitrinoSizing(nodes);
-    const splitRuntimeScene = { ...data.scene, ...splitScene, layoutType: rawLayoutType };
+    const splitRuntimeScene = {
+      ...data.scene,
+      ...splitScene,
+      layoutType: rawLayoutType,
+      layoutConfig: rawLayoutConfig,
+    };
     const autoNodes = await this.buildAutoMarkdownNodes(splitRuntimeScene, nodes);
     if (autoNodes.length) {
       nodes = nodes.concat(autoNodes);
     }
+    await this.applyTextbookChapterLabels(nodes);
     await this.applyMarkdownDocEligibility(nodes);
 
     const sceneName = this.resolveDisplayTitle(sceneMeta) ?? scenePath;
@@ -676,6 +741,7 @@ export class SceneRepository {
     const config = {
       layout: nodes.some((node) => node.orbit) ? "orbit" : "static",
       layoutType: rawLayoutType,
+      layoutConfig: rawLayoutConfig,
       layoutColumns:
         Number.isInteger(data.scene?.layoutColumns) && data.scene.layoutColumns > 0
           ? data.scene.layoutColumns
@@ -785,5 +851,6 @@ export class SceneRepository {
     if (needsEligibility) {
       await this.applyMarkdownDocEligibility(config.nodes);
     }
+    await this.applyTextbookChapterLabels(config.nodes);
   }
 }

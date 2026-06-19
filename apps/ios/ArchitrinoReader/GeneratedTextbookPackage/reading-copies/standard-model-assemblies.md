@@ -58,7 +58,7 @@ Here $\theta$ is the retained Noether sea state and assembly branch record, $d_Q
 
 This working map starts from the measured low-energy pattern, not from a larger symmetry that must later be hidden. The durable observer-level target is the Standard Model gauge record: $U(1)_Y\times SU(2)_L\times SU(3)_c$, the charge relation $Q=T_3+Y/2$, the observed chiral weak couplings, the charge and generation tables, the running of $g_1,g_2,g_3$, and the absence of additional low-energy partners or transport modes above current bounds.
 
-The familiar running-coupling plot is a useful bridge for this target. It says that the effective $SU(3)_c$, $SU(2)_L$, and $U(1)_Y$ interaction strengths change with observer-level probe scale, with approximate high-scale convergence in many normalizations. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is not treated as proof of grand-unified ontology. It is a pressure on the mapping: the same Noether sea response, axial-layer exposure, and color axis-exceptionality bookkeeping must generate the scale-dependent effective record discussed in [Gauge Symmetries](../../../../markdown/aaa/interactions/gauge-symmetries.md#running-coupling-bridge), while the same branch record keeps non-baseline channels absent.
+The familiar running-coupling plot is a useful bridge for this target. It says that the effective $SU(3)_c$, $SU(2)_L$, and $U(1)_Y$ interaction strengths change with observer-level probe scale, with approximate high-scale convergence in many normalizations. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is not treated as proof of grand-unified ontology. It is a pressure on the mapping: the same Noether sea response, axial-layer exposure, and color axis-exceptionality bookkeeping must generate the scale-dependent effective record discussed in [Gauge Symmetries](../../../../markdown/aaa/assemblies/gauge-symmetries.md#running-coupling-bridge), while the same branch record keeps non-baseline channels absent.
 
 There is a second consistency pressure that is just as important as the charge table. The Standard Model is a chiral gauge theory, so the low-energy fermion collection must cancel gauge anomalies and the $SU(2)$ Witten obstruction as a set. In this working emergence map, anomaly cancellation is read as a recovery condition on the assembly dictionary:
 $$
@@ -327,7 +327,7 @@ $$
 $$
 where $R_L$ is the outer-binary scale.
 
-For the formal closure layer beneath this working map, see [Gauge Symmetries](../../../../markdown/aaa/interactions/gauge-symmetries.md) and [Effective Lagrangian](../../../../markdown/aaa/dynamics/effective-lagrangian.md).
+For the formal closure layer beneath this working map, see [Gauge Symmetries](../../../../markdown/aaa/assemblies/gauge-symmetries.md) and [Effective Lagrangian](../../../../markdown/aaa/dynamics/effective-lagrangian.md).
 
 #### Parameter Dictionary (Substrate -> Electroweak)
 
@@ -396,7 +396,7 @@ For $R_L\sim 10^{-19}\,\text{m}$, this predicts negligible deviations at both $\
 This chapter provides a minimal theorem-backed bridge from architrino/assembly dynamics to the effective gauge symmetry structure used elsewhere.
 
 Interface chapters:
-- Electroweak emergence narrative: [Gauge Structure Emergence](../../../../markdown/aaa/interactions/gauge-structure-emergence.md)
+- Electroweak emergence narrative: [Gauge Structure Emergence](../../../../markdown/aaa/assemblies/gauge-structure-emergence.md)
 - Color $SU(3)$ algebra closure: [Color Charge SU3](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md)
 - Variational substrate: [Effective Lagrangian](../../../../markdown/aaa/dynamics/effective-lagrangian.md)
 
@@ -1224,7 +1224,7 @@ In the Standard Model, mass arises via the **Higgs Mechanism**: particles acquir
 
 In $\mathbb{A}\mathbb{A}\mathbb{A}$, the Higgs-sector comparison is an effective matching problem, not yet a derived replacement. The working expectation is that Standard Model mass parameters and Yukawa couplings would be reinterpreted as effective summaries of assembly geometry, shielding, and Noether sea response. The benchmark is a neutral scalar-compatible resonance near $125$ GeV with signal-strength normalization near the Standard Model expectation. Exact date-stamped masses, uncertainties, and signal-strength entries belong in validation and parameter ledgers; modeling the resonance as a collective medium excitation is a theorem target, not an established result.
 
-For the electroweak medium interpretation behind this replacement, see [Gauge Structure Emergence](../../../../markdown/aaa/interactions/gauge-structure-emergence.md).
+For the electroweak medium interpretation behind this replacement, see [Gauge Structure Emergence](../../../../markdown/aaa/assemblies/gauge-structure-emergence.md).
 
 #### Higgs and Yukawa Matching Residual
 
@@ -2657,7 +2657,7 @@ So the rule above should currently be read as a strong charged-fermion synthesis
 
 ##### Charge quantization cross-check
 
-Because every charged-fermion axial layer fills six polar sites with $\pm e/6$, the only stable net charges from the Active+Shielded split are $0, \pm 1/3, \pm 2/3, \pm 1$, matching the SM spectrum (see the e/6 stability table in [interactions/gauge-structure-emergence.md](../../../../markdown/aaa/interactions/gauge-structure-emergence.md#quantization-from-stability-selection-rules), section “Quantization from Stability”). The neutrino's neutral charge is instead carried by pro/anti near-photon cancellation plus the effective weak ledger.
+Because every charged-fermion axial layer fills six polar sites with $\pm e/6$, the only stable net charges from the Active+Shielded split are $0, \pm 1/3, \pm 2/3, \pm 1$, matching the SM spectrum (see the e/6 stability table in [assemblies/gauge-structure-emergence.md](../../../../markdown/aaa/assemblies/gauge-structure-emergence.md#quantization-from-stability-selection-rules), section “Quantization from Stability”). The neutrino's neutral charge is instead carried by pro/anti near-photon cancellation plus the effective weak ledger.
 
 ##### Baryon / lepton bookkeeping and anomaly cancellation
 
@@ -3100,7 +3100,7 @@ with nested shell swarm ordered-frame evolution transforming on the double cover
 
 #### Weak-Mixing and Composite-Observable Closure Hooks
 
-This chapter fixes the geometry-to-quantum-number dictionary used by the observer-level electroweak closure map in [interactions/gauge-structure-emergence.md](../../../../markdown/aaa/interactions/gauge-structure-emergence.md).
+This chapter fixes the geometry-to-quantum-number dictionary used by the observer-level electroweak closure map in [assemblies/gauge-structure-emergence.md](../../../../markdown/aaa/assemblies/gauge-structure-emergence.md).
 
 ##### Weak mixing as a six-pole branch-increment hypothesis
 
@@ -3698,7 +3698,7 @@ That boundary matters. The current chapter is a canonical catalog, not a claim t
 
 ### Weak Mixing Angle
 
-This note records the current geometric interpretation of the weak mixing angle inside the assembly framework. Its purpose is to distinguish what is being used as a constrained geometric hypothesis from what is already measured electroweak phenomenology, and to keep the scaffold-frame versus axial-frame distinction explicit. It bridges the fermion-side geometry to [Electroweak Bosons: Photons, W/Z, and Higgs](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md) and [Gauge Structure Emergence](../../../../markdown/aaa/interactions/gauge-structure-emergence.md).
+This note records the current geometric interpretation of the weak mixing angle inside the assembly framework. Its purpose is to distinguish what is being used as a constrained geometric hypothesis from what is already measured electroweak phenomenology, and to keep the scaffold-frame versus axial-frame distinction explicit. It bridges the fermion-side geometry to [Electroweak Bosons: Photons, W/Z, and Higgs](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md) and [Gauge Structure Emergence](../../../../markdown/aaa/assemblies/gauge-structure-emergence.md).
 
 #### Purpose
 
@@ -4097,7 +4097,7 @@ In short: do not rotate the scaffold; rotate the axial frame. Then ask whether t
 
 **Scope:** Defines the geometric assemblies corresponding to the U(1), SU(2), and Scalar sectors.
 **Core Principle:** Bosons are discrete, propagating assemblies of architrinos organized into phase-locked modes.
-This chapter is the bosonic-side companion to [Gauge Structure Emergence](../../../../markdown/aaa/interactions/gauge-structure-emergence.md), [Weak Mixing Angle](../../../../markdown/aaa/assemblies/fermions/weak-mixing-angle.md), and [Particle Masses: Emergent Inertia in the Noether sea](../../../../markdown/aaa/assemblies/particle-masses.md).
+This chapter is the bosonic-side companion to [Gauge Structure Emergence](../../../../markdown/aaa/assemblies/gauge-structure-emergence.md), [Weak Mixing Angle](../../../../markdown/aaa/assemblies/fermions/weak-mixing-angle.md), and [Particle Masses: Emergent Inertia in the Noether sea](../../../../markdown/aaa/assemblies/particle-masses.md).
 
 Spin labels in this chapter are downstream mapping targets, not completed derivations. The Higgs is treated as a scalar target because its candidate motion is radial, while the photon and weak corridors are treated as vector-mode targets because each carries a distinguished propagation or interaction axis together with transverse phase structure. The proof obligations for these labels sit in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md).
 
@@ -4159,7 +4159,7 @@ The photon description above is the ontology-level target. The theorem-level pro
 
 Gate C treats blackbody behavior as an ensemble theorem target. It should not be read as a property of a single photon, a single excited Noether swarm, or a local source event by itself; the blackbody route requires repeated emission, capture, scattering, pair-channel exchange, and medium exchange to recover detailed balance for a photon bath.
 
-The Aharonov-Bohm item in Gate C inherits the observer-level benchmark from [Gauge Symmetries](../../../../markdown/aaa/interactions/gauge-symmetries.md#aharonov-bohm-holonomy-benchmark). The photon and effective U(1) ledgers must recover a relative phase proportional to enclosed flux while the local force channel on the interferometer arms vanishes. This is a phase-ledger recovery target, not a claim that the gauge potential is a separate substrate object.
+The Aharonov-Bohm item in Gate C inherits the observer-level benchmark from [Gauge Symmetries](../../../../markdown/aaa/assemblies/gauge-symmetries.md#aharonov-bohm-holonomy-benchmark). The photon and effective U(1) ledgers must recover a relative phase proportional to enclosed flux while the local force channel on the interferometer arms vanishes. This is a phase-ledger recovery target, not a claim that the gauge potential is a separate substrate object.
 
 ##### Gate A Theorem Scaffold: Kinematics and Optics
 
@@ -4495,7 +4495,7 @@ $$
 
 The correlation target depends on the prepared photon-pair state, but the usual polarization tests require a $\cos 2(\alpha-\beta)$ angle dependence up to the sign and phase convention of that state. A model may use pair provenance and contextual local analyzer coupling, but it must not permit the remote analyzer setting to send a usable signal through the photon ledger.
 
-In reaction chapters, Gate C should be expressed through [Mode Taxonomy](../../../../markdown/aaa/interactions/mode-taxonomy.md): photon emission uses **planar-mode nucleation**, not corridor-mode language. Event-level provenance for radiative and pair channels is tracked in [Reaction-Cosmology Provenance Ledger](../../../../markdown/aaa/validation/reaction-cosmology-provenance-ledger.md).
+In reaction chapters, Gate C should be expressed through [Mode Taxonomy](../../../../markdown/aaa/reactions/mode-taxonomy.md): photon emission uses **planar-mode nucleation**, not corridor-mode language. Event-level provenance for radiative and pair channels is tracked in [Reaction-Cosmology Provenance Ledger](../../../../markdown/aaa/validation/reaction-cosmology-provenance-ledger.md).
 
 ---
 
@@ -4659,7 +4659,7 @@ Primary closure integrations:
 ## Gluons
 
 **Scope:** Definition of color charge, gluon structure, and confinement.
-This chapter should be read together with [Quarks](../../../../markdown/aaa/assemblies/fermions/quarks.md), [Color Charge and SU(3)](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md), and [Gauge Symmetries](../../../../markdown/aaa/interactions/gauge-symmetries.md).
+This chapter should be read together with [Quarks](../../../../markdown/aaa/assemblies/fermions/quarks.md), [Color Charge and SU(3)](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md), and [Gauge Symmetries](../../../../markdown/aaa/assemblies/gauge-symmetries.md).
 
 ### The Geometric Origin of Color Charge
 

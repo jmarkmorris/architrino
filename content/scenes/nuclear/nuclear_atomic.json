@@ -6,10 +6,12 @@
     "type": "Scene-Index",
     "units": "relative",
     "layout": {
-      "type": "rings"
+      "type": "rings",
+      "centerNode": null,
+      "order": "objects",
+      "direction": "clockwise"
     },
     "wrapLabels": true,
-    "centerOn": "atomic_structure",
     "children": [
       {
         "nodeId": "atomic_structure",
@@ -55,147 +57,66 @@
       "title": "Atomic Structure",
       "radius": 2.688,
       "color": "#2f6b6f",
-      "position": [
-        0,
-        0,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Atomic Structure",
-      "labelBadge": "doc",
-      "fixedPosition": true
+      "labelBadge": "doc"
     },
     {
       "id": "nucleon_structure",
       "title": "Nucleon Structure",
       "radius": 2.688,
       "color": "#2f4f7a",
-      "position": [
-        0,
-        10.5,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Nucleon Structure",
-      "fixedPosition": true
+      "labelTitle": "Nucleon Structure"
     },
     {
       "id": "nuclear_binding",
       "title": "Nuclear Binding",
       "radius": 2.688,
       "color": "#6a3c3c",
-      "position": [
-        7.42,
-        7.42,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Nuclear Binding",
-      "fixedPosition": true
+      "labelTitle": "Nuclear Binding"
     },
     {
       "id": "atom",
       "title": "Atom",
       "radius": 2.688,
       "color": "#a50041",
-      "position": [
-        10.5,
-        0,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Atom",
-      "fixedPosition": true
+      "labelTitle": "Atom"
     },
     {
       "id": "atomic_spectra",
       "title": "Atomic Spectra",
       "radius": 2.688,
       "color": "#3a5f9f",
-      "position": [
-        7.42,
-        -7.42,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Atomic Spectra",
-      "labelBadge": "doc",
-      "fixedPosition": true
+      "labelBadge": "doc"
     },
     {
       "id": "periodic_table",
       "title": "Periodic Table",
       "radius": 2.688,
       "color": "#3a5f9f",
-      "position": [
-        0,
-        -10.5,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Periodic Table",
-      "fixedPosition": true
+      "labelTitle": "Periodic Table"
     },
     {
       "id": "hyde_periodic_table",
       "title": "Hyde Periodic Table",
       "radius": 2.688,
       "color": "#2f4f7a",
-      "position": [
-        -7.42,
-        -7.42,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Hyde Periodic Table",
-      "fixedPosition": true
+      "labelTitle": "Hyde Periodic Table"
     },
     {
       "id": "molecular_geometry",
       "title": "Molecular Geometry",
       "radius": 2.688,
       "color": "#4b0082",
-      "position": [
-        -10.5,
-        0,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Molecular Geometry",
-      "fixedPosition": true
+      "labelTitle": "Molecular Geometry"
     },
     {
       "id": "condensed_matter",
       "title": "Condensed Matter",
       "radius": 2.688,
       "color": "#5a1f2e",
-      "position": [
-        -7.42,
-        7.42,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Condensed Matter",
-      "labelBadge": "doc",
-      "fixedPosition": true
+      "labelBadge": "doc"
     }
   ]
 }

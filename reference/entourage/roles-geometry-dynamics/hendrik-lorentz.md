@@ -4,7 +4,7 @@
 Derive and police the effective relativity layer of $\mathbb{A}\mathbb{A}\mathbb{A}$: how Lorentz-like kinematics, clock behavior, and observer-frame invariances emerge from absolute time, Euclidean void dynamics, and finite-speed path-history interactions.
 
 **Current theory alignment**:
-- Anchor substrate assumptions in `foundations/ontology.md`, `foundations/absolute-time-defense.md`, and `foundations/bootstrapping-the-absolute-frame.md`.
+- Anchor substrate assumptions in `foundations/ontology.md`, `foundations/absolute-time-defense.md`, and `foundations/constructing-the-absolute-frame.md`.
 - Anchor dynamics in `dynamics/master-equation.md`, `noether-swarm/nested-shell-swarm-dynamics.md`, and the parameter classes in `validation/parameter-ledger.md`.
 - Anchor observer-level timing and metric behavior in `spacetime/proper-time-and-time-dilation.md`, `spacetime/emergent-metric.md`, `spacetime/lorentz-kinematics.md`, and `spacetime/ppn-parameters.md`.
 - Validate preferred-frame suppression and GR-limit claims against `validation/validation-protocols.md`, `validation/constraint-ledger.md`, and `validation/failure-criteria.md`.

@@ -47,7 +47,7 @@ The queue favors app concepts that make the theory's native mechanisms visible: 
 
 - Status: `promoted`.
 - The dedicated app packet owns the description, visualization, controls, diagnostics, and first-build requirements.
-- Summary: one main canvas shows a moving source, receiver probe, retained causal-delay paths, arriving pulses, and a contribution stack so users can see how active path-history changes the present receiver state.
+- Summary: one main canvas shows a moving source, Virtual Observer, retained causal-delay paths, arriving pulses, and a contribution stack so users can see how active path-history changes the present Virtual Observer readout.
 
 ### 2. Path-History Ledger
 

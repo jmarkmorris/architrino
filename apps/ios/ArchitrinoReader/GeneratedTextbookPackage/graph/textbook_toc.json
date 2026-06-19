@@ -8,8 +8,8 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 165,
-      "sections": 1323
+      "entries": 174,
+      "sections": 1415
     }
   },
   "tocRoot": {
@@ -713,17 +713,17 @@
             ]
           },
           {
-            "id": "foundations__bootstrapping_the_absolute_frame",
-            "title": "Reconstructing a Coordinate Frame from Wake Geometry",
+            "id": "foundations__constructing_the_absolute_frame",
+            "title": "Constructing the Absolute Frame",
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/foundations/bootstrapping_the_absolute_frame.json",
-            "markdownPath": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
+            "scenePath": "content/scenes/foundations/constructing_the_absolute_frame.json",
+            "markdownPath": "content/markdown/aaa/foundations/constructing-the-absolute-frame.md",
             "sections": [
               {
                 "kind": "markdown-section",
                 "title": "Overview",
-                "markdownPath": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
+                "markdownPath": "content/markdown/aaa/foundations/constructing-the-absolute-frame.md",
                 "markdownSection": "Overview",
                 "sectionKey": "overview",
                 "headingLevel": 2
@@ -731,7 +731,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Reconstruction Existence Lemma",
-                "markdownPath": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
+                "markdownPath": "content/markdown/aaa/foundations/constructing-the-absolute-frame.md",
                 "markdownSection": "Reconstruction Existence Lemma",
                 "sectionKey": "reconstruction existence lemma",
                 "headingLevel": 2
@@ -739,7 +739,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Minimal Reconstruction Procedure",
-                "markdownPath": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
+                "markdownPath": "content/markdown/aaa/foundations/constructing-the-absolute-frame.md",
                 "markdownSection": "Minimal Reconstruction Procedure",
                 "sectionKey": "minimal reconstruction procedure",
                 "headingLevel": 2
@@ -747,7 +747,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Parity Convention and Dynamical Chirality",
-                "markdownPath": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
+                "markdownPath": "content/markdown/aaa/foundations/constructing-the-absolute-frame.md",
                 "markdownSection": "Parity Convention and Dynamical Chirality",
                 "sectionKey": "parity convention and dynamical chirality",
                 "headingLevel": 2
@@ -755,7 +755,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Coordinate Frames Are Not Ontology",
-                "markdownPath": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
+                "markdownPath": "content/markdown/aaa/foundations/constructing-the-absolute-frame.md",
                 "markdownSection": "Coordinate Frames Are Not Ontology",
                 "sectionKey": "coordinate frames are not ontology",
                 "headingLevel": 2
@@ -763,7 +763,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Complete-State and Physical-Observer Access",
-                "markdownPath": "content/markdown/aaa/foundations/bootstrapping-the-absolute-frame.md",
+                "markdownPath": "content/markdown/aaa/foundations/constructing-the-absolute-frame.md",
                 "markdownSection": "Complete-State and Physical-Observer Access",
                 "sectionKey": "complete state and physical observer access",
                 "headingLevel": 2
@@ -956,6 +956,389 @@
                 "markdownSection": "Appendix A: Energy Zero and Bookkeeping",
                 "sectionKey": "appendix a energy zero and bookkeeping",
                 "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "validation_action_energy",
+            "title": "Action-Energy",
+            "kind": "scene-index",
+            "sceneType": "Scene-Index",
+            "scenePath": "content/scenes/validation/action_energy.json",
+            "children": [
+              {
+                "id": "validation_action_energy__action_model",
+                "title": "Action Model",
+                "kind": "markdown-view",
+                "sceneType": "Scene-Markdown-View",
+                "scenePath": "content/scenes/validation/action_model.json",
+                "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
+                "sections": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Time-based PDE (wave equation with a moving point source)",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
+                    "markdownSection": "Time-based PDE (wave equation with a moving point source)",
+                    "sectionKey": "time based pde wave equation with a moving point source",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Integral (Green’s function / path-history potential) approach",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
+                    "markdownSection": "Integral (Green’s function / path-history potential) approach",
+                    "sectionKey": "integral green s function path history potential approach",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Event-driven radial-transport + per-hit EOM (current canonical method)",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
+                    "markdownSection": "Event-driven radial-transport + per-hit EOM (current canonical method)",
+                    "sectionKey": "event driven radial transport per hit eom current canonical method",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Cross-Method Guidance",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
+                    "markdownSection": "Cross-Method Guidance",
+                    "sectionKey": "cross method guidance",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Differential analysis (criteria-by-criteria)",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
+                    "markdownSection": "Differential analysis (criteria-by-criteria)",
+                    "sectionKey": "differential analysis criteria by criteria",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Pros and cons (comparative)",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
+                    "markdownSection": "Pros and cons (comparative)",
+                    "sectionKey": "pros and cons comparative",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Recommendation",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
+                    "markdownSection": "Recommendation",
+                    "sectionKey": "recommendation",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Layered penetration diagram (molecules → cores)",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
+                    "markdownSection": "Layered penetration diagram (molecules → cores)",
+                    "sectionKey": "layered penetration diagram molecules cores",
+                    "headingLevel": 2
+                  }
+                ]
+              },
+              {
+                "id": "validation_action_energy__analytic_baselines",
+                "title": "Analytic Baselines",
+                "kind": "markdown-view",
+                "sceneType": "Scene-Markdown-View",
+                "scenePath": "content/scenes/validation/analytic_baselines.json",
+                "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/analytic-baselines.md"
+              },
+              {
+                "id": "validation_action_energy__attraction",
+                "title": "Attraction",
+                "kind": "markdown-view",
+                "sceneType": "Scene-Markdown-View",
+                "scenePath": "content/scenes/validation/attraction.json",
+                "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/attraction.md"
+              },
+              {
+                "id": "validation_action_energy__background_simple_action",
+                "title": "Background and Simple Action",
+                "kind": "markdown-view",
+                "sceneType": "Scene-Markdown-View",
+                "scenePath": "content/scenes/validation/background_simple_action.json",
+                "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/background-and-simple-action.md",
+                "sections": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Dynamical Geometry",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/background-and-simple-action.md",
+                    "markdownSection": "Dynamical Geometry",
+                    "sectionKey": "dynamical geometry",
+                    "headingLevel": 2
+                  }
+                ]
+              },
+              {
+                "id": "validation_action_energy__causal_set_delay_geometry",
+                "title": "Causal Set and Delay Geometry",
+                "kind": "markdown-view",
+                "sceneType": "Scene-Markdown-View",
+                "scenePath": "content/scenes/validation/causal_set_delay_geometry.json",
+                "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/causal-set-and-delay-geometry.md",
+                "sections": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Geometry of Delay and Roots",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/causal-set-and-delay-geometry.md",
+                    "markdownSection": "Geometry of Delay and Roots",
+                    "sectionKey": "geometry of delay and roots",
+                    "headingLevel": 2
+                  }
+                ]
+              },
+              {
+                "id": "validation_action_energy__delay_dynamics_energy",
+                "title": "Constructive Energy for Delay Dynamics",
+                "kind": "markdown-view",
+                "sceneType": "Scene-Markdown-View",
+                "scenePath": "content/scenes/validation/delay_dynamics_energy.json",
+                "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md",
+                "sections": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Energy Construction Problem",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md",
+                    "markdownSection": "Energy Construction Problem",
+                    "sectionKey": "energy construction problem",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Accepted Construction Routes",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md",
+                    "markdownSection": "Accepted Construction Routes",
+                    "sectionKey": "accepted construction routes",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Crosswalk Residual",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md",
+                    "markdownSection": "Crosswalk Residual",
+                    "sectionKey": "crosswalk residual",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Conservation Residual",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md",
+                    "markdownSection": "Conservation Residual",
+                    "sectionKey": "conservation residual",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "No-Double-Counting Rule",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md",
+                    "markdownSection": "No-Double-Counting Rule",
+                    "sectionKey": "no double counting rule",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Promotion and Failure Conditions",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md",
+                    "markdownSection": "Promotion and Failure Conditions",
+                    "sectionKey": "promotion and failure conditions",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Downstream Use",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md",
+                    "markdownSection": "Downstream Use",
+                    "sectionKey": "downstream use",
+                    "headingLevel": 2
+                  }
+                ]
+              },
+              {
+                "id": "validation_action_energy__informational_ambiguity",
+                "title": "Informational Ambiguity",
+                "kind": "markdown-view",
+                "sceneType": "Scene-Markdown-View",
+                "scenePath": "content/scenes/validation/informational_ambiguity.json",
+                "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/informational-ambiguity.md",
+                "sections": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Degeneracies and Inference Limits",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/informational-ambiguity.md",
+                    "markdownSection": "Degeneracies and Inference Limits",
+                    "sectionKey": "degeneracies and inference limits",
+                    "headingLevel": 2
+                  }
+                ]
+              },
+              {
+                "id": "validation_action_energy__numerical_recipe_stability",
+                "title": "Numerical Recipe and Stability",
+                "kind": "markdown-view",
+                "sceneType": "Scene-Markdown-View",
+                "scenePath": "content/scenes/validation/numerical_recipe_stability.json",
+                "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/numerical-recipe-and-stability.md"
+              },
+              {
+                "id": "validation_action_energy__radial_attraction",
+                "title": "Radial Attraction",
+                "kind": "markdown-view",
+                "sceneType": "Scene-Markdown-View",
+                "scenePath": "content/scenes/validation/radial_attraction.json",
+                "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/radial-attraction.md"
+              },
+              {
+                "id": "validation_action_energy__receiver_velocity_work",
+                "title": "Receiver Velocity and Work",
+                "kind": "markdown-view",
+                "sceneType": "Scene-Markdown-View",
+                "scenePath": "content/scenes/validation/receiver_velocity_work.json",
+                "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/receiver-velocity-and-work.md",
+                "sections": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Decomposition and Energetics",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/receiver-velocity-and-work.md",
+                    "markdownSection": "Decomposition and Energetics",
+                    "sectionKey": "decomposition and energetics",
+                    "headingLevel": 2
+                  }
+                ]
+              },
+              {
+                "id": "validation_action_energy__repulsion",
+                "title": "Repulsion",
+                "kind": "markdown-view",
+                "sceneType": "Scene-Markdown-View",
+                "scenePath": "content/scenes/validation/repulsion.json",
+                "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/repulsion.md"
+              },
+              {
+                "id": "validation_action_energy__self_energy",
+                "title": "Self-Energy",
+                "kind": "markdown-view",
+                "sceneType": "Scene-Markdown-View",
+                "scenePath": "content/scenes/validation/self_energy.json",
+                "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/self-energy.md",
+                "sections": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Classical self-energy pathology (contrast)",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/self-energy.md",
+                    "markdownSection": "Classical self-energy pathology (contrast)",
+                    "sectionKey": "classical self energy pathology contrast",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Why the zero-radius divergence is quarantined here",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/self-energy.md",
+                    "markdownSection": "Why the zero-radius divergence is quarantined here",
+                    "sectionKey": "why the zero radius divergence is quarantined here",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Practical guidance (numerics and analysis)",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/self-energy.md",
+                    "markdownSection": "Practical guidance (numerics and analysis)",
+                    "sectionKey": "practical guidance numerics and analysis",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Sign-resolved bookkeeping",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/self-energy.md",
+                    "markdownSection": "Sign-resolved bookkeeping",
+                    "sectionKey": "sign resolved bookkeeping",
+                    "headingLevel": 2
+                  }
+                ]
+              },
+              {
+                "id": "validation_action_energy__self_interaction_switch",
+                "title": "Self-Interaction Switch",
+                "kind": "markdown-view",
+                "sceneType": "Scene-Markdown-View",
+                "scenePath": "content/scenes/validation/self_interaction_switch.json",
+                "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/self-interaction-switch.md",
+                "sections": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Conditions and Effects",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/self-interaction-switch.md",
+                    "markdownSection": "Conditions and Effects",
+                    "sectionKey": "conditions and effects",
+                    "headingLevel": 2
+                  }
+                ]
+              },
+              {
+                "id": "validation_action_energy__superposition_locality",
+                "title": "Superposition and Locality",
+                "kind": "markdown-view",
+                "sceneType": "Scene-Markdown-View",
+                "scenePath": "content/scenes/validation/superposition_locality.json",
+                "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/superposition-and-locality.md",
+                "sections": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Why Nearby Wakes Dominate",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/superposition-and-locality.md",
+                    "markdownSection": "Why Nearby Wakes Dominate",
+                    "sectionKey": "why nearby wakes dominate",
+                    "headingLevel": 2
+                  }
+                ]
+              },
+              {
+                "id": "validation_action_energy__units_constants",
+                "title": "Units and Constants",
+                "kind": "markdown-view",
+                "sceneType": "Scene-Markdown-View",
+                "scenePath": "content/scenes/validation/units_constants.json",
+                "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/units-and-constants.md",
+                "sections": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Dynamical Geometry",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/units-and-constants.md",
+                    "markdownSection": "Dynamical Geometry",
+                    "sectionKey": "dynamical geometry",
+                    "headingLevel": 2
+                  }
+                ]
+              },
+              {
+                "id": "validation_action_energy__well_posedness_regularization",
+                "title": "Well-Posedness and Regularization",
+                "kind": "markdown-view",
+                "sceneType": "Scene-Markdown-View",
+                "scenePath": "content/scenes/validation/well_posedness_regularization.json",
+                "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md",
+                "sections": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Impulses Versus Smooth Pushes",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md",
+                    "markdownSection": "Impulses Versus Smooth Pushes",
+                    "sectionKey": "impulses versus smooth pushes",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Formal $\\eta > 0$ Continuation Package",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md",
+                    "markdownSection": "Formal $\\eta > 0$ Continuation Package",
+                    "sectionKey": "formal eta 0 continuation package",
+                    "headingLevel": 2
+                  }
+                ]
               }
             ]
           },
@@ -2066,27 +2449,6 @@
                 "headingLevel": 2
               }
             ]
-          },
-          {
-            "id": "noether_swarm__neutral_swarm",
-            "title": "Neutral Swarm",
-            "kind": "diagram",
-            "sceneType": "Scene-Diagram",
-            "scenePath": "content/scenes/noether-swarm/neutral_swarm.json"
-          },
-          {
-            "id": "noether_swarm__shell_swarm",
-            "title": "Shell Swarm",
-            "kind": "diagram",
-            "sceneType": "Scene-Diagram",
-            "scenePath": "content/scenes/noether-swarm/shell_swarm.json"
-          },
-          {
-            "id": "noether_swarm__nested_shell_swarm",
-            "title": "Nested Shell Swarm",
-            "kind": "diagram",
-            "sceneType": "Scene-Diagram",
-            "scenePath": "content/scenes/noether-swarm/nested_shell_swarm.json"
           },
           {
             "id": "noether_swarm__nested_shell_swarm_dynamics",
@@ -3634,12 +3996,12 @@
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
             "scenePath": "content/scenes/assemblies/gauge_structure_emergence.json",
-            "markdownPath": "content/markdown/aaa/interactions/gauge-structure-emergence.md",
+            "markdownPath": "content/markdown/aaa/assemblies/gauge-structure-emergence.md",
             "sections": [
               {
                 "kind": "markdown-section",
                 "title": "Physical Medium: From Vacuum Language to Noether Sea",
-                "markdownPath": "content/markdown/aaa/interactions/gauge-structure-emergence.md",
+                "markdownPath": "content/markdown/aaa/assemblies/gauge-structure-emergence.md",
                 "markdownSection": "Physical Medium: From Vacuum Language to Noether Sea",
                 "sectionKey": "physical medium from vacuum language to noether sea",
                 "headingLevel": 2
@@ -3647,7 +4009,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Field Language as Effective Bookkeeping",
-                "markdownPath": "content/markdown/aaa/interactions/gauge-structure-emergence.md",
+                "markdownPath": "content/markdown/aaa/assemblies/gauge-structure-emergence.md",
                 "markdownSection": "Field Language as Effective Bookkeeping",
                 "sectionKey": "field language as effective bookkeeping",
                 "headingLevel": 2
@@ -3655,7 +4017,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Symmetry Groups as Geometric Deformations",
-                "markdownPath": "content/markdown/aaa/interactions/gauge-structure-emergence.md",
+                "markdownPath": "content/markdown/aaa/assemblies/gauge-structure-emergence.md",
                 "markdownSection": "Symmetry Groups as Geometric Deformations",
                 "sectionKey": "symmetry groups as geometric deformations",
                 "headingLevel": 2
@@ -3663,7 +4025,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Standard Model Recovery Discipline",
-                "markdownPath": "content/markdown/aaa/interactions/gauge-structure-emergence.md",
+                "markdownPath": "content/markdown/aaa/assemblies/gauge-structure-emergence.md",
                 "markdownSection": "Standard Model Recovery Discipline",
                 "sectionKey": "standard model recovery discipline",
                 "headingLevel": 2
@@ -3671,7 +4033,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Gauge-Covariance Recovery Target",
-                "markdownPath": "content/markdown/aaa/interactions/gauge-structure-emergence.md",
+                "markdownPath": "content/markdown/aaa/assemblies/gauge-structure-emergence.md",
                 "markdownSection": "Gauge-Covariance Recovery Target",
                 "sectionKey": "gauge covariance recovery target",
                 "headingLevel": 2
@@ -3679,7 +4041,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Scattering-Amplitude Comparison Target",
-                "markdownPath": "content/markdown/aaa/interactions/gauge-structure-emergence.md",
+                "markdownPath": "content/markdown/aaa/assemblies/gauge-structure-emergence.md",
                 "markdownSection": "Scattering-Amplitude Comparison Target",
                 "sectionKey": "scattering amplitude comparison target",
                 "headingLevel": 2
@@ -3687,7 +4049,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Higgs Mechanism and VEV Reinterpretation",
-                "markdownPath": "content/markdown/aaa/interactions/gauge-structure-emergence.md",
+                "markdownPath": "content/markdown/aaa/assemblies/gauge-structure-emergence.md",
                 "markdownSection": "Higgs Mechanism and VEV Reinterpretation",
                 "sectionKey": "higgs mechanism and vev reinterpretation",
                 "headingLevel": 2
@@ -3695,7 +4057,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Resolving the Unruh Ambiguity",
-                "markdownPath": "content/markdown/aaa/interactions/gauge-structure-emergence.md",
+                "markdownPath": "content/markdown/aaa/assemblies/gauge-structure-emergence.md",
                 "markdownSection": "Resolving the Unruh Ambiguity",
                 "sectionKey": "resolving the unruh ambiguity",
                 "headingLevel": 2
@@ -3703,7 +4065,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Quantization from Stability (Selection Rules)",
-                "markdownPath": "content/markdown/aaa/interactions/gauge-structure-emergence.md",
+                "markdownPath": "content/markdown/aaa/assemblies/gauge-structure-emergence.md",
                 "markdownSection": "Quantization from Stability (Selection Rules)",
                 "sectionKey": "quantization from stability selection rules",
                 "headingLevel": 2
@@ -3711,7 +4073,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Observer-Level Electroweak Closure Map (Working)",
-                "markdownPath": "content/markdown/aaa/interactions/gauge-structure-emergence.md",
+                "markdownPath": "content/markdown/aaa/assemblies/gauge-structure-emergence.md",
                 "markdownSection": "Observer-Level Electroweak Closure Map (Working)",
                 "sectionKey": "observer level electroweak closure map working",
                 "headingLevel": 2
@@ -3724,12 +4086,12 @@
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
             "scenePath": "content/scenes/assemblies/gauge_symmetries.json",
-            "markdownPath": "content/markdown/aaa/interactions/gauge-symmetries.md",
+            "markdownPath": "content/markdown/aaa/assemblies/gauge-symmetries.md",
             "sections": [
               {
                 "kind": "markdown-section",
                 "title": "Regularized Setting",
-                "markdownPath": "content/markdown/aaa/interactions/gauge-symmetries.md",
+                "markdownPath": "content/markdown/aaa/assemblies/gauge-symmetries.md",
                 "markdownSection": "Regularized Setting",
                 "sectionKey": "regularized setting",
                 "headingLevel": 2
@@ -3737,7 +4099,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Standard Model Recovery Gate",
-                "markdownPath": "content/markdown/aaa/interactions/gauge-symmetries.md",
+                "markdownPath": "content/markdown/aaa/assemblies/gauge-symmetries.md",
                 "markdownSection": "Standard Model Recovery Gate",
                 "sectionKey": "standard model recovery gate",
                 "headingLevel": 2
@@ -3745,7 +4107,7 @@
               {
                 "kind": "markdown-section",
                 "title": "U(1) Sector",
-                "markdownPath": "content/markdown/aaa/interactions/gauge-symmetries.md",
+                "markdownPath": "content/markdown/aaa/assemblies/gauge-symmetries.md",
                 "markdownSection": "U(1) Sector",
                 "sectionKey": "u 1 sector",
                 "headingLevel": 2
@@ -3753,7 +4115,7 @@
               {
                 "kind": "markdown-section",
                 "title": "SU(2) Weak Sector",
-                "markdownPath": "content/markdown/aaa/interactions/gauge-symmetries.md",
+                "markdownPath": "content/markdown/aaa/assemblies/gauge-symmetries.md",
                 "markdownSection": "SU(2) Weak Sector",
                 "sectionKey": "su 2 weak sector",
                 "headingLevel": 2
@@ -3761,7 +4123,7 @@
               {
                 "kind": "markdown-section",
                 "title": "SU(3) Color Sector",
-                "markdownPath": "content/markdown/aaa/interactions/gauge-symmetries.md",
+                "markdownPath": "content/markdown/aaa/assemblies/gauge-symmetries.md",
                 "markdownSection": "SU(3) Color Sector",
                 "sectionKey": "su 3 color sector",
                 "headingLevel": 2
@@ -3769,7 +4131,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Minimal Effective Gauge Lagrangian",
-                "markdownPath": "content/markdown/aaa/interactions/gauge-symmetries.md",
+                "markdownPath": "content/markdown/aaa/assemblies/gauge-symmetries.md",
                 "markdownSection": "Minimal Effective Gauge Lagrangian",
                 "sectionKey": "minimal effective gauge lagrangian",
                 "headingLevel": 2
@@ -3777,7 +4139,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Closure Interface: Gauge-Topology Compatibility",
-                "markdownPath": "content/markdown/aaa/interactions/gauge-symmetries.md",
+                "markdownPath": "content/markdown/aaa/assemblies/gauge-symmetries.md",
                 "markdownSection": "Closure Interface: Gauge-Topology Compatibility",
                 "sectionKey": "closure interface gauge topology compatibility",
                 "headingLevel": 2
@@ -3785,7 +4147,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Failure Conditions",
-                "markdownPath": "content/markdown/aaa/interactions/gauge-symmetries.md",
+                "markdownPath": "content/markdown/aaa/assemblies/gauge-symmetries.md",
                 "markdownSection": "Failure Conditions",
                 "sectionKey": "failure conditions",
                 "headingLevel": 2
@@ -4907,12 +5269,12 @@
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
             "scenePath": "content/scenes/reactions/mode_taxonomy.json",
-            "markdownPath": "content/markdown/aaa/interactions/mode-taxonomy.md",
+            "markdownPath": "content/markdown/aaa/reactions/mode-taxonomy.md",
             "sections": [
               {
                 "kind": "markdown-section",
                 "title": "Scope",
-                "markdownPath": "content/markdown/aaa/interactions/mode-taxonomy.md",
+                "markdownPath": "content/markdown/aaa/reactions/mode-taxonomy.md",
                 "markdownSection": "Scope",
                 "sectionKey": "scope",
                 "headingLevel": 2
@@ -4920,7 +5282,7 @@
               {
                 "kind": "markdown-section",
                 "title": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Assembly-Level Interpretation",
-                "markdownPath": "content/markdown/aaa/interactions/mode-taxonomy.md",
+                "markdownPath": "content/markdown/aaa/reactions/mode-taxonomy.md",
                 "markdownSection": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Assembly-Level Interpretation",
                 "sectionKey": "mathbb a mathbb a mathbb a assembly level interpretation",
                 "headingLevel": 2
@@ -4928,7 +5290,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Low-Energy Standard Model Assemblies in the Noether Sea",
-                "markdownPath": "content/markdown/aaa/interactions/mode-taxonomy.md",
+                "markdownPath": "content/markdown/aaa/reactions/mode-taxonomy.md",
                 "markdownSection": "Low-Energy Standard Model Assemblies in the Noether Sea",
                 "sectionKey": "low energy standard model assemblies in the noether sea",
                 "headingLevel": 2
@@ -4936,7 +5298,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Core Terms",
-                "markdownPath": "content/markdown/aaa/interactions/mode-taxonomy.md",
+                "markdownPath": "content/markdown/aaa/reactions/mode-taxonomy.md",
                 "markdownSection": "Core Terms",
                 "sectionKey": "core terms",
                 "headingLevel": 2
@@ -4944,7 +5306,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Channel-Specific Terms",
-                "markdownPath": "content/markdown/aaa/interactions/mode-taxonomy.md",
+                "markdownPath": "content/markdown/aaa/reactions/mode-taxonomy.md",
                 "markdownSection": "Channel-Specific Terms",
                 "sectionKey": "channel specific terms",
                 "headingLevel": 2
@@ -4952,7 +5314,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Usage Rules",
-                "markdownPath": "content/markdown/aaa/interactions/mode-taxonomy.md",
+                "markdownPath": "content/markdown/aaa/reactions/mode-taxonomy.md",
                 "markdownSection": "Usage Rules",
                 "sectionKey": "usage rules",
                 "headingLevel": 2
@@ -4960,7 +5322,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Mapping Discipline",
-                "markdownPath": "content/markdown/aaa/interactions/mode-taxonomy.md",
+                "markdownPath": "content/markdown/aaa/reactions/mode-taxonomy.md",
                 "markdownSection": "Mapping Discipline",
                 "sectionKey": "mapping discipline",
                 "headingLevel": 2
@@ -4968,7 +5330,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Related Chapters",
-                "markdownPath": "content/markdown/aaa/interactions/mode-taxonomy.md",
+                "markdownPath": "content/markdown/aaa/reactions/mode-taxonomy.md",
                 "markdownSection": "Related Chapters",
                 "sectionKey": "related chapters",
                 "headingLevel": 2
@@ -7540,389 +7902,6 @@
             "scenePath": "content/scenes/validation/simulations.json",
             "children": [
               {
-                "id": "validation_action_energy",
-                "title": "Action-Energy",
-                "kind": "scene-index",
-                "sceneType": "Scene-Index",
-                "scenePath": "content/scenes/validation/action_energy.json",
-                "children": [
-                  {
-                    "id": "validation_action_energy__action_model",
-                    "title": "Action Model",
-                    "kind": "markdown-view",
-                    "sceneType": "Scene-Markdown-View",
-                    "scenePath": "content/scenes/validation/action_model.json",
-                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
-                    "sections": [
-                      {
-                        "kind": "markdown-section",
-                        "title": "Time-based PDE (wave equation with a moving point source)",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
-                        "markdownSection": "Time-based PDE (wave equation with a moving point source)",
-                        "sectionKey": "time based pde wave equation with a moving point source",
-                        "headingLevel": 2
-                      },
-                      {
-                        "kind": "markdown-section",
-                        "title": "Integral (Green’s function / path-history potential) approach",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
-                        "markdownSection": "Integral (Green’s function / path-history potential) approach",
-                        "sectionKey": "integral green s function path history potential approach",
-                        "headingLevel": 2
-                      },
-                      {
-                        "kind": "markdown-section",
-                        "title": "Event-driven radial-transport + per-hit EOM (current canonical method)",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
-                        "markdownSection": "Event-driven radial-transport + per-hit EOM (current canonical method)",
-                        "sectionKey": "event driven radial transport per hit eom current canonical method",
-                        "headingLevel": 2
-                      },
-                      {
-                        "kind": "markdown-section",
-                        "title": "Cross-Method Guidance",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
-                        "markdownSection": "Cross-Method Guidance",
-                        "sectionKey": "cross method guidance",
-                        "headingLevel": 2
-                      },
-                      {
-                        "kind": "markdown-section",
-                        "title": "Differential analysis (criteria-by-criteria)",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
-                        "markdownSection": "Differential analysis (criteria-by-criteria)",
-                        "sectionKey": "differential analysis criteria by criteria",
-                        "headingLevel": 2
-                      },
-                      {
-                        "kind": "markdown-section",
-                        "title": "Pros and cons (comparative)",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
-                        "markdownSection": "Pros and cons (comparative)",
-                        "sectionKey": "pros and cons comparative",
-                        "headingLevel": 2
-                      },
-                      {
-                        "kind": "markdown-section",
-                        "title": "Recommendation",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
-                        "markdownSection": "Recommendation",
-                        "sectionKey": "recommendation",
-                        "headingLevel": 2
-                      },
-                      {
-                        "kind": "markdown-section",
-                        "title": "Layered penetration diagram (molecules → cores)",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
-                        "markdownSection": "Layered penetration diagram (molecules → cores)",
-                        "sectionKey": "layered penetration diagram molecules cores",
-                        "headingLevel": 2
-                      }
-                    ]
-                  },
-                  {
-                    "id": "validation_action_energy__analytic_baselines",
-                    "title": "Analytic Baselines",
-                    "kind": "markdown-view",
-                    "sceneType": "Scene-Markdown-View",
-                    "scenePath": "content/scenes/validation/analytic_baselines.json",
-                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/analytic-baselines.md"
-                  },
-                  {
-                    "id": "validation_action_energy__attraction",
-                    "title": "Attraction",
-                    "kind": "markdown-view",
-                    "sceneType": "Scene-Markdown-View",
-                    "scenePath": "content/scenes/validation/attraction.json",
-                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/attraction.md"
-                  },
-                  {
-                    "id": "validation_action_energy__background_simple_action",
-                    "title": "Background and Simple Action",
-                    "kind": "markdown-view",
-                    "sceneType": "Scene-Markdown-View",
-                    "scenePath": "content/scenes/validation/background_simple_action.json",
-                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/background-and-simple-action.md",
-                    "sections": [
-                      {
-                        "kind": "markdown-section",
-                        "title": "Dynamical Geometry",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/background-and-simple-action.md",
-                        "markdownSection": "Dynamical Geometry",
-                        "sectionKey": "dynamical geometry",
-                        "headingLevel": 2
-                      }
-                    ]
-                  },
-                  {
-                    "id": "validation_action_energy__causal_set_delay_geometry",
-                    "title": "Causal Set and Delay Geometry",
-                    "kind": "markdown-view",
-                    "sceneType": "Scene-Markdown-View",
-                    "scenePath": "content/scenes/validation/causal_set_delay_geometry.json",
-                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/causal-set-and-delay-geometry.md",
-                    "sections": [
-                      {
-                        "kind": "markdown-section",
-                        "title": "Geometry of Delay and Roots",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/causal-set-and-delay-geometry.md",
-                        "markdownSection": "Geometry of Delay and Roots",
-                        "sectionKey": "geometry of delay and roots",
-                        "headingLevel": 2
-                      }
-                    ]
-                  },
-                  {
-                    "id": "validation_action_energy__delay_dynamics_energy",
-                    "title": "Constructive Energy for Delay Dynamics",
-                    "kind": "markdown-view",
-                    "sceneType": "Scene-Markdown-View",
-                    "scenePath": "content/scenes/validation/delay_dynamics_energy.json",
-                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md",
-                    "sections": [
-                      {
-                        "kind": "markdown-section",
-                        "title": "Energy Construction Problem",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md",
-                        "markdownSection": "Energy Construction Problem",
-                        "sectionKey": "energy construction problem",
-                        "headingLevel": 2
-                      },
-                      {
-                        "kind": "markdown-section",
-                        "title": "Accepted Construction Routes",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md",
-                        "markdownSection": "Accepted Construction Routes",
-                        "sectionKey": "accepted construction routes",
-                        "headingLevel": 2
-                      },
-                      {
-                        "kind": "markdown-section",
-                        "title": "Crosswalk Residual",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md",
-                        "markdownSection": "Crosswalk Residual",
-                        "sectionKey": "crosswalk residual",
-                        "headingLevel": 2
-                      },
-                      {
-                        "kind": "markdown-section",
-                        "title": "Conservation Residual",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md",
-                        "markdownSection": "Conservation Residual",
-                        "sectionKey": "conservation residual",
-                        "headingLevel": 2
-                      },
-                      {
-                        "kind": "markdown-section",
-                        "title": "No-Double-Counting Rule",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md",
-                        "markdownSection": "No-Double-Counting Rule",
-                        "sectionKey": "no double counting rule",
-                        "headingLevel": 2
-                      },
-                      {
-                        "kind": "markdown-section",
-                        "title": "Promotion and Failure Conditions",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md",
-                        "markdownSection": "Promotion and Failure Conditions",
-                        "sectionKey": "promotion and failure conditions",
-                        "headingLevel": 2
-                      },
-                      {
-                        "kind": "markdown-section",
-                        "title": "Downstream Use",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md",
-                        "markdownSection": "Downstream Use",
-                        "sectionKey": "downstream use",
-                        "headingLevel": 2
-                      }
-                    ]
-                  },
-                  {
-                    "id": "validation_action_energy__informational_ambiguity",
-                    "title": "Informational Ambiguity",
-                    "kind": "markdown-view",
-                    "sceneType": "Scene-Markdown-View",
-                    "scenePath": "content/scenes/validation/informational_ambiguity.json",
-                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/informational-ambiguity.md",
-                    "sections": [
-                      {
-                        "kind": "markdown-section",
-                        "title": "Degeneracies and Inference Limits",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/informational-ambiguity.md",
-                        "markdownSection": "Degeneracies and Inference Limits",
-                        "sectionKey": "degeneracies and inference limits",
-                        "headingLevel": 2
-                      }
-                    ]
-                  },
-                  {
-                    "id": "validation_action_energy__numerical_recipe_stability",
-                    "title": "Numerical Recipe and Stability",
-                    "kind": "markdown-view",
-                    "sceneType": "Scene-Markdown-View",
-                    "scenePath": "content/scenes/validation/numerical_recipe_stability.json",
-                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/numerical-recipe-and-stability.md"
-                  },
-                  {
-                    "id": "validation_action_energy__radial_attraction",
-                    "title": "Radial Attraction",
-                    "kind": "markdown-view",
-                    "sceneType": "Scene-Markdown-View",
-                    "scenePath": "content/scenes/validation/radial_attraction.json",
-                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/radial-attraction.md"
-                  },
-                  {
-                    "id": "validation_action_energy__receiver_velocity_work",
-                    "title": "Receiver Velocity and Work",
-                    "kind": "markdown-view",
-                    "sceneType": "Scene-Markdown-View",
-                    "scenePath": "content/scenes/validation/receiver_velocity_work.json",
-                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/receiver-velocity-and-work.md",
-                    "sections": [
-                      {
-                        "kind": "markdown-section",
-                        "title": "Decomposition and Energetics",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/receiver-velocity-and-work.md",
-                        "markdownSection": "Decomposition and Energetics",
-                        "sectionKey": "decomposition and energetics",
-                        "headingLevel": 2
-                      }
-                    ]
-                  },
-                  {
-                    "id": "validation_action_energy__repulsion",
-                    "title": "Repulsion",
-                    "kind": "markdown-view",
-                    "sceneType": "Scene-Markdown-View",
-                    "scenePath": "content/scenes/validation/repulsion.json",
-                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/repulsion.md"
-                  },
-                  {
-                    "id": "validation_action_energy__self_energy",
-                    "title": "Self-Energy",
-                    "kind": "markdown-view",
-                    "sceneType": "Scene-Markdown-View",
-                    "scenePath": "content/scenes/validation/self_energy.json",
-                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/self-energy.md",
-                    "sections": [
-                      {
-                        "kind": "markdown-section",
-                        "title": "Classical self-energy pathology (contrast)",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/self-energy.md",
-                        "markdownSection": "Classical self-energy pathology (contrast)",
-                        "sectionKey": "classical self energy pathology contrast",
-                        "headingLevel": 2
-                      },
-                      {
-                        "kind": "markdown-section",
-                        "title": "Why the zero-radius divergence is quarantined here",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/self-energy.md",
-                        "markdownSection": "Why the zero-radius divergence is quarantined here",
-                        "sectionKey": "why the zero radius divergence is quarantined here",
-                        "headingLevel": 2
-                      },
-                      {
-                        "kind": "markdown-section",
-                        "title": "Practical guidance (numerics and analysis)",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/self-energy.md",
-                        "markdownSection": "Practical guidance (numerics and analysis)",
-                        "sectionKey": "practical guidance numerics and analysis",
-                        "headingLevel": 2
-                      },
-                      {
-                        "kind": "markdown-section",
-                        "title": "Sign-resolved bookkeeping",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/self-energy.md",
-                        "markdownSection": "Sign-resolved bookkeeping",
-                        "sectionKey": "sign resolved bookkeeping",
-                        "headingLevel": 2
-                      }
-                    ]
-                  },
-                  {
-                    "id": "validation_action_energy__self_interaction_switch",
-                    "title": "Self-Interaction Switch",
-                    "kind": "markdown-view",
-                    "sceneType": "Scene-Markdown-View",
-                    "scenePath": "content/scenes/validation/self_interaction_switch.json",
-                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/self-interaction-switch.md",
-                    "sections": [
-                      {
-                        "kind": "markdown-section",
-                        "title": "Conditions and Effects",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/self-interaction-switch.md",
-                        "markdownSection": "Conditions and Effects",
-                        "sectionKey": "conditions and effects",
-                        "headingLevel": 2
-                      }
-                    ]
-                  },
-                  {
-                    "id": "validation_action_energy__superposition_locality",
-                    "title": "Superposition and Locality",
-                    "kind": "markdown-view",
-                    "sceneType": "Scene-Markdown-View",
-                    "scenePath": "content/scenes/validation/superposition_locality.json",
-                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/superposition-and-locality.md",
-                    "sections": [
-                      {
-                        "kind": "markdown-section",
-                        "title": "Why Nearby Wakes Dominate",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/superposition-and-locality.md",
-                        "markdownSection": "Why Nearby Wakes Dominate",
-                        "sectionKey": "why nearby wakes dominate",
-                        "headingLevel": 2
-                      }
-                    ]
-                  },
-                  {
-                    "id": "validation_action_energy__units_constants",
-                    "title": "Units and Constants",
-                    "kind": "markdown-view",
-                    "sceneType": "Scene-Markdown-View",
-                    "scenePath": "content/scenes/validation/units_constants.json",
-                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/units-and-constants.md",
-                    "sections": [
-                      {
-                        "kind": "markdown-section",
-                        "title": "Dynamical Geometry",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/units-and-constants.md",
-                        "markdownSection": "Dynamical Geometry",
-                        "sectionKey": "dynamical geometry",
-                        "headingLevel": 2
-                      }
-                    ]
-                  },
-                  {
-                    "id": "validation_action_energy__well_posedness_regularization",
-                    "title": "Well-Posedness and Regularization",
-                    "kind": "markdown-view",
-                    "sceneType": "Scene-Markdown-View",
-                    "scenePath": "content/scenes/validation/well_posedness_regularization.json",
-                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md",
-                    "sections": [
-                      {
-                        "kind": "markdown-section",
-                        "title": "Impulses Versus Smooth Pushes",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md",
-                        "markdownSection": "Impulses Versus Smooth Pushes",
-                        "sectionKey": "impulses versus smooth pushes",
-                        "headingLevel": 2
-                      },
-                      {
-                        "kind": "markdown-section",
-                        "title": "Formal $\\eta > 0$ Continuation Package",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md",
-                        "markdownSection": "Formal $\\eta > 0$ Continuation Package",
-                        "sectionKey": "formal eta 0 continuation package",
-                        "headingLevel": 2
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "validation_simulations__sim_architrino",
                 "title": "Architrino",
                 "kind": "markdown-view",
@@ -8313,20 +8292,679 @@
                 ]
               },
               {
-                "id": "validation_simulations__sim_unsolved_problems",
-                "title": "Unsolved Problems",
-                "kind": "markdown-view",
-                "sceneType": "Scene-Markdown-View",
-                "scenePath": "content/scenes/validation/sim_unsolved_problems.json",
-                "markdownPath": "content/markdown/aaa/validation/simulations/unsolved-problems.md",
-                "sections": [
+                "id": "validation_simulations__sim_branch_quantum",
+                "title": "Branch / Quantum",
+                "kind": "scene-index",
+                "sceneType": "Scene-Index",
+                "scenePath": "content/scenes/validation/sim_branch_quantum.json",
+                "children": [
                   {
-                    "kind": "markdown-section",
-                    "title": "Planck-Scale Framing",
-                    "markdownPath": "content/markdown/aaa/validation/simulations/unsolved-problems.md",
-                    "markdownSection": "Planck-Scale Framing",
-                    "sectionKey": "planck scale framing",
-                    "headingLevel": 2
+                    "id": "validation_simulations__sim_branch_quantum__sim_a0_tier0_result_interpretation",
+                    "title": "A0 Tier 0 Result Interpretation",
+                    "kind": "markdown-view",
+                    "sceneType": "Scene-Markdown-View",
+                    "scenePath": "content/scenes/validation/sim_a0_tier0_result_interpretation.json",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md",
+                    "sections": [
+                      {
+                        "kind": "markdown-section",
+                        "title": "Output Status",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md",
+                        "markdownSection": "Output Status",
+                        "sectionKey": "output status",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Quotient-Coordinate Row",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md",
+                        "markdownSection": "Quotient-Coordinate Row",
+                        "sectionKey": "quotient coordinate row",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Near-Zero Self-Root Policy",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md",
+                        "markdownSection": "Near-Zero Self-Root Policy",
+                        "sectionKey": "near zero self root policy",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Residual Semantics",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md",
+                        "markdownSection": "Residual Semantics",
+                        "sectionKey": "residual semantics",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Floquet Handoff",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md",
+                        "markdownSection": "Floquet Handoff",
+                        "sectionKey": "floquet handoff",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Certificate Gates and Failure Codes",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md",
+                        "markdownSection": "Certificate Gates and Failure Codes",
+                        "sectionKey": "certificate gates and failure codes",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Promotion Boundary",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md",
+                        "markdownSection": "Promotion Boundary",
+                        "sectionKey": "promotion boundary",
+                        "headingLevel": 2
+                      }
+                    ]
+                  },
+                  {
+                    "id": "validation_simulations__sim_branch_quantum__sim_bell_family_record_measure",
+                    "title": "Bell-Family Record-Measure Harness",
+                    "kind": "markdown-view",
+                    "sceneType": "Scene-Markdown-View",
+                    "scenePath": "content/scenes/validation/sim_bell_family_record_measure.json",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/bell-family-record-measure.md",
+                    "sections": [
+                      {
+                        "kind": "markdown-section",
+                        "title": "Runtime Artifact",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/bell-family-record-measure.md",
+                        "markdownSection": "Runtime Artifact",
+                        "sectionKey": "runtime artifact",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Residual Object",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/bell-family-record-measure.md",
+                        "markdownSection": "Residual Object",
+                        "sectionKey": "residual object",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Generated Pair-Provenance Path",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/bell-family-record-measure.md",
+                        "markdownSection": "Generated Pair-Provenance Path",
+                        "sectionKey": "generated pair provenance path",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Built-In Scenarios",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/bell-family-record-measure.md",
+                        "markdownSection": "Built-In Scenarios",
+                        "sectionKey": "built in scenarios",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Proof Scaffold Boundary",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/bell-family-record-measure.md",
+                        "markdownSection": "Proof Scaffold Boundary",
+                        "sectionKey": "proof scaffold boundary",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Acceptance Boundary",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/bell-family-record-measure.md",
+                        "markdownSection": "Acceptance Boundary",
+                        "sectionKey": "acceptance boundary",
+                        "headingLevel": 2
+                      }
+                    ]
+                  },
+                  {
+                    "id": "validation_simulations__sim_branch_quantum__sim_nested_shell_swarm_action_increment_protocol",
+                    "title": "Nested Shell Swarm Action-Increment Protocol",
+                    "kind": "markdown-view",
+                    "sceneType": "Scene-Markdown-View",
+                    "scenePath": "content/scenes/validation/sim_nested_shell_swarm_action_increment_protocol.json",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/nested-shell-swarm-action-increment-protocol.md",
+                    "sections": [
+                      {
+                        "kind": "markdown-section",
+                        "title": "Closure Question",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/nested-shell-swarm-action-increment-protocol.md",
+                        "markdownSection": "Closure Question",
+                        "sectionKey": "closure question",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Accepted Transition Class",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/nested-shell-swarm-action-increment-protocol.md",
+                        "markdownSection": "Accepted Transition Class",
+                        "sectionKey": "accepted transition class",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Master-Equation Increment",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/nested-shell-swarm-action-increment-protocol.md",
+                        "markdownSection": "Master-Equation Increment",
+                        "sectionKey": "master equation increment",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Branch-Chart Conservation Pullback",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/nested-shell-swarm-action-increment-protocol.md",
+                        "markdownSection": "Branch-Chart Conservation Pullback",
+                        "sectionKey": "branch chart conservation pullback",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Cluster and Stability Residuals",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/nested-shell-swarm-action-increment-protocol.md",
+                        "markdownSection": "Cluster and Stability Residuals",
+                        "sectionKey": "cluster and stability residuals",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Required Packet Files",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/nested-shell-swarm-action-increment-protocol.md",
+                        "markdownSection": "Required Packet Files",
+                        "sectionKey": "required packet files",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Promotion Gates",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/nested-shell-swarm-action-increment-protocol.md",
+                        "markdownSection": "Promotion Gates",
+                        "sectionKey": "promotion gates",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Failure-Code Enum",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/nested-shell-swarm-action-increment-protocol.md",
+                        "markdownSection": "Failure-Code Enum",
+                        "sectionKey": "failure code enum",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Interpretation",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/nested-shell-swarm-action-increment-protocol.md",
+                        "markdownSection": "Interpretation",
+                        "sectionKey": "interpretation",
+                        "headingLevel": 2
+                      }
+                    ]
+                  },
+                  {
+                    "id": "validation_simulations__sim_branch_quantum__sim_retuning_map_toy_model",
+                    "title": "Retuning-Map Toy Model",
+                    "kind": "markdown-view",
+                    "sceneType": "Scene-Markdown-View",
+                    "scenePath": "content/scenes/validation/sim_retuning_map_toy_model.json",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/retuning-map-toy-model.md",
+                    "sections": [
+                      {
+                        "kind": "markdown-section",
+                        "title": "Runtime Artifact",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/retuning-map-toy-model.md",
+                        "markdownSection": "Runtime Artifact",
+                        "sectionKey": "runtime artifact",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Replay Equation",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/retuning-map-toy-model.md",
+                        "markdownSection": "Replay Equation",
+                        "sectionKey": "replay equation",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Input Packet",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/retuning-map-toy-model.md",
+                        "markdownSection": "Input Packet",
+                        "sectionKey": "input packet",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Output Diagnostics",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/retuning-map-toy-model.md",
+                        "markdownSection": "Output Diagnostics",
+                        "sectionKey": "output diagnostics",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Expected Mock Behavior",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/retuning-map-toy-model.md",
+                        "markdownSection": "Expected Mock Behavior",
+                        "sectionKey": "expected mock behavior",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Failure Reading",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/retuning-map-toy-model.md",
+                        "markdownSection": "Failure Reading",
+                        "sectionKey": "failure reading",
+                        "headingLevel": 2
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "validation_simulations__sim_metric_observer",
+                "title": "Metric / Observer",
+                "kind": "scene-index",
+                "sceneType": "Scene-Index",
+                "scenePath": "content/scenes/validation/sim_metric_observer.json",
+                "children": [
+                  {
+                    "id": "validation_simulations__sim_metric_observer__sim_static_response_vector_toy_model",
+                    "title": "Static Response Vector Toy Model",
+                    "kind": "markdown-view",
+                    "sceneType": "Scene-Markdown-View",
+                    "scenePath": "content/scenes/validation/sim_static_response_vector_toy_model.json",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/static-response-vector-toy-model.md",
+                    "sections": [
+                      {
+                        "kind": "markdown-section",
+                        "title": "Runtime Artifact",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/static-response-vector-toy-model.md",
+                        "markdownSection": "Runtime Artifact",
+                        "sectionKey": "runtime artifact",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Replay Equations",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/static-response-vector-toy-model.md",
+                        "markdownSection": "Replay Equations",
+                        "sectionKey": "replay equations",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Minimal Shared-Delay Packet",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/static-response-vector-toy-model.md",
+                        "markdownSection": "Minimal Shared-Delay Packet",
+                        "sectionKey": "minimal shared delay packet",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Pressure Bridge",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/static-response-vector-toy-model.md",
+                        "markdownSection": "Pressure Bridge",
+                        "sectionKey": "pressure bridge",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Input Packet",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/static-response-vector-toy-model.md",
+                        "markdownSection": "Input Packet",
+                        "sectionKey": "input packet",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Output Diagnostics",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/static-response-vector-toy-model.md",
+                        "markdownSection": "Output Diagnostics",
+                        "sectionKey": "output diagnostics",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Expected Mock Behavior",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/static-response-vector-toy-model.md",
+                        "markdownSection": "Expected Mock Behavior",
+                        "sectionKey": "expected mock behavior",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Compensated-Family Validation Result",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/static-response-vector-toy-model.md",
+                        "markdownSection": "Compensated-Family Validation Result",
+                        "sectionKey": "compensated family validation result",
+                        "headingLevel": 2
+                      }
+                    ]
+                  },
+                  {
+                    "id": "validation_simulations__sim_metric_observer__sim_hydrogen_gamma_n_spectral_row_toy_scan",
+                    "title": "Hydrogen Gamma_N Spectral Coefficient Row Toy Scan",
+                    "kind": "markdown-view",
+                    "sceneType": "Scene-Markdown-View",
+                    "scenePath": "content/scenes/validation/sim_hydrogen_gamma_n_spectral_row_toy_scan.json",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/hydrogen-gamma-n-spectral-row-toy-scan.md",
+                    "sections": [
+                      {
+                        "kind": "markdown-section",
+                        "title": "Runtime Artifact",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/hydrogen-gamma-n-spectral-row-toy-scan.md",
+                        "markdownSection": "Runtime Artifact",
+                        "sectionKey": "runtime artifact",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Theory-Bearing Input Scaffold",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/hydrogen-gamma-n-spectral-row-toy-scan.md",
+                        "markdownSection": "Theory-Bearing Input Scaffold",
+                        "sectionKey": "theory bearing input scaffold",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Hydrogen Spectral Residual Separation",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/hydrogen-gamma-n-spectral-row-toy-scan.md",
+                        "markdownSection": "Hydrogen Spectral Residual Separation",
+                        "sectionKey": "hydrogen spectral residual separation",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Compensated-Row Readout",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/hydrogen-gamma-n-spectral-row-toy-scan.md",
+                        "markdownSection": "Compensated-Row Readout",
+                        "sectionKey": "compensated row readout",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Input Variables",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/hydrogen-gamma-n-spectral-row-toy-scan.md",
+                        "markdownSection": "Input Variables",
+                        "sectionKey": "input variables",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Coefficient Constraints",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/hydrogen-gamma-n-spectral-row-toy-scan.md",
+                        "markdownSection": "Coefficient Constraints",
+                        "sectionKey": "coefficient constraints",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Minimal Toy Scan",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/hydrogen-gamma-n-spectral-row-toy-scan.md",
+                        "markdownSection": "Minimal Toy Scan",
+                        "sectionKey": "minimal toy scan",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Pass Condition",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/hydrogen-gamma-n-spectral-row-toy-scan.md",
+                        "markdownSection": "Pass Condition",
+                        "sectionKey": "pass condition",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Hydrogen $\\Gamma_N$ Certificate Boundary",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/hydrogen-gamma-n-spectral-row-toy-scan.md",
+                        "markdownSection": "Hydrogen $\\Gamma_N$ Certificate Boundary",
+                        "sectionKey": "hydrogen gamma n certificate boundary",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Failure Tests",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/hydrogen-gamma-n-spectral-row-toy-scan.md",
+                        "markdownSection": "Failure Tests",
+                        "sectionKey": "failure tests",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Output Diagnostics",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/hydrogen-gamma-n-spectral-row-toy-scan.md",
+                        "markdownSection": "Output Diagnostics",
+                        "sectionKey": "output diagnostics",
+                        "headingLevel": 2
+                      }
+                    ]
+                  },
+                  {
+                    "id": "validation_simulations__sim_metric_observer__sim_thermodynamic_residual",
+                    "title": "Thermodynamic Residual Protocol",
+                    "kind": "markdown-view",
+                    "sceneType": "Scene-Markdown-View",
+                    "scenePath": "content/scenes/validation/sim_thermodynamic_residual.json",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/thermodynamic-residual.md",
+                    "sections": [
+                      {
+                        "kind": "markdown-section",
+                        "title": "Minimal Record",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/thermodynamic-residual.md",
+                        "markdownSection": "Minimal Record",
+                        "sectionKey": "minimal record",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Boundary Count and Area Slope",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/thermodynamic-residual.md",
+                        "markdownSection": "Boundary Count and Area Slope",
+                        "sectionKey": "boundary count and area slope",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Temperature and Flux",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/thermodynamic-residual.md",
+                        "markdownSection": "Temperature and Flux",
+                        "sectionKey": "temperature and flux",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Conservation and Same-Record Gate",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/thermodynamic-residual.md",
+                        "markdownSection": "Conservation and Same-Record Gate",
+                        "sectionKey": "conservation and same record gate",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Free-Energy and Response Consistency",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/thermodynamic-residual.md",
+                        "markdownSection": "Free-Energy and Response Consistency",
+                        "sectionKey": "free energy and response consistency",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Proof Route",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/thermodynamic-residual.md",
+                        "markdownSection": "Proof Route",
+                        "sectionKey": "proof route",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Failure Codes",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/thermodynamic-residual.md",
+                        "markdownSection": "Failure Codes",
+                        "sectionKey": "failure codes",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Negative Controls",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/thermodynamic-residual.md",
+                        "markdownSection": "Negative Controls",
+                        "sectionKey": "negative controls",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Runtime Artifact",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/thermodynamic-residual.md",
+                        "markdownSection": "Runtime Artifact",
+                        "sectionKey": "runtime artifact",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Promotion Boundary",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/thermodynamic-residual.md",
+                        "markdownSection": "Promotion Boundary",
+                        "sectionKey": "promotion boundary",
+                        "headingLevel": 2
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "validation_simulations__sim_cosmology_residuals",
+                "title": "Cosmology Residuals",
+                "kind": "scene-index",
+                "sceneType": "Scene-Index",
+                "scenePath": "content/scenes/validation/sim_cosmology_residuals.json",
+                "children": [
+                  {
+                    "id": "validation_simulations__sim_cosmology_residuals__sim_cosmology_shared_residual_fit",
+                    "title": "Cosmology Shared Residual Fit Protocol",
+                    "kind": "markdown-view",
+                    "sceneType": "Scene-Markdown-View",
+                    "scenePath": "content/scenes/validation/sim_cosmology_shared_residual_fit.json",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/cosmology-shared-residual-fit.md",
+                    "sections": [
+                      {
+                        "kind": "markdown-section",
+                        "title": "Residual Object",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/cosmology-shared-residual-fit.md",
+                        "markdownSection": "Residual Object",
+                        "sectionKey": "residual object",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Packet Schema",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/cosmology-shared-residual-fit.md",
+                        "markdownSection": "Packet Schema",
+                        "sectionKey": "packet schema",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Pre-BBN Branch Packet",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/cosmology-shared-residual-fit.md",
+                        "markdownSection": "Pre-BBN Branch Packet",
+                        "sectionKey": "pre bbn branch packet",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Frame-Split Measurement Recipe",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/cosmology-shared-residual-fit.md",
+                        "markdownSection": "Frame-Split Measurement Recipe",
+                        "sectionKey": "frame split measurement recipe",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Runtime Artifact",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/cosmology-shared-residual-fit.md",
+                        "markdownSection": "Runtime Artifact",
+                        "sectionKey": "runtime artifact",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Acceptance Boundary",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/cosmology-shared-residual-fit.md",
+                        "markdownSection": "Acceptance Boundary",
+                        "sectionKey": "acceptance boundary",
+                        "headingLevel": 2
+                      }
+                    ]
+                  },
+                  {
+                    "id": "validation_simulations__sim_cosmology_residuals__sim_redshift_budget_toy_model",
+                    "title": "Redshift-Budget Toy Model",
+                    "kind": "markdown-view",
+                    "sceneType": "Scene-Markdown-View",
+                    "scenePath": "content/scenes/validation/sim_redshift_budget_toy_model.json",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/redshift-budget-toy-model.md",
+                    "sections": [
+                      {
+                        "kind": "markdown-section",
+                        "title": "Runtime Artifact",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/redshift-budget-toy-model.md",
+                        "markdownSection": "Runtime Artifact",
+                        "sectionKey": "runtime artifact",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Replay Equation",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/redshift-budget-toy-model.md",
+                        "markdownSection": "Replay Equation",
+                        "sectionKey": "replay equation",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Input Packet",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/redshift-budget-toy-model.md",
+                        "markdownSection": "Input Packet",
+                        "sectionKey": "input packet",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Coefficient-Row Validation Notes",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/redshift-budget-toy-model.md",
+                        "markdownSection": "Coefficient-Row Validation Notes",
+                        "sectionKey": "coefficient row validation notes",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Output Diagnostics",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/redshift-budget-toy-model.md",
+                        "markdownSection": "Output Diagnostics",
+                        "sectionKey": "output diagnostics",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Expected Mock Behavior",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/redshift-budget-toy-model.md",
+                        "markdownSection": "Expected Mock Behavior",
+                        "sectionKey": "expected mock behavior",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Failure Reading",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/redshift-budget-toy-model.md",
+                        "markdownSection": "Failure Reading",
+                        "sectionKey": "failure reading",
+                        "headingLevel": 2
+                      }
+                    ]
                   }
                 ]
               }
@@ -10449,6 +11087,200 @@
                         "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md",
                         "markdownSection": "Statistical Falsifiability and Observables",
                         "sectionKey": "statistical falsifiability and observables",
+                        "headingLevel": 2
+                      }
+                    ]
+                  },
+                  {
+                    "id": "theory_bridges__angular_momentum_and_spin",
+                    "title": "Angular Momentum and Spin",
+                    "kind": "markdown-view",
+                    "sceneType": "Scene-Markdown-View",
+                    "scenePath": "content/scenes/philosophy_history/theory_bridges/angular_momentum_and_spin.json",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md",
+                    "sections": [
+                      {
+                        "kind": "markdown-section",
+                        "title": "Primitive Status",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md",
+                        "markdownSection": "Primitive Status",
+                        "sectionKey": "primitive status",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Angular Momentum as a History Ledger",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md",
+                        "markdownSection": "Angular Momentum as a History Ledger",
+                        "sectionKey": "angular momentum as a history ledger",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Four Regimes",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md",
+                        "markdownSection": "Four Regimes",
+                        "sectionKey": "four regimes",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Opposite and Same Polarity Flybys",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md",
+                        "markdownSection": "Opposite and Same Polarity Flybys",
+                        "sectionKey": "opposite and same polarity flybys",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Spiraling Binary",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md",
+                        "markdownSection": "Spiraling Binary",
+                        "sectionKey": "spiraling binary",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Maximum-Curvature Binary",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md",
+                        "markdownSection": "Maximum-Curvature Binary",
+                        "sectionKey": "maximum curvature binary",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Nested Shell Swarm Spin Scaffold",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md",
+                        "markdownSection": "Nested Shell Swarm Spin Scaffold",
+                        "sectionKey": "nested shell swarm spin scaffold",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Delayed Three-Layer Functional Scaffold",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md",
+                        "markdownSection": "Delayed Three-Layer Functional Scaffold",
+                        "sectionKey": "delayed three layer functional scaffold",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Partition Equations from the Master Ledger",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md",
+                        "markdownSection": "Partition Equations from the Master Ledger",
+                        "sectionKey": "partition equations from the master ledger",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Worked Outer-Coupled Transition",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md",
+                        "markdownSection": "Worked Outer-Coupled Transition",
+                        "sectionKey": "worked outer coupled transition",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Ordered-Frame Spinor Target",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md",
+                        "markdownSection": "Ordered-Frame Spinor Target",
+                        "sectionKey": "ordered frame spinor target",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "The $h$ and $\\hbar$ Convention",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md",
+                        "markdownSection": "The $h$ and $\\hbar$ Convention",
+                        "sectionKey": "the h and hbar convention",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Foundation-Up Closure Route",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md",
+                        "markdownSection": "Foundation-Up Closure Route",
+                        "sectionKey": "foundation up closure route",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Bridge to Standard Quantum Mechanics",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md",
+                        "markdownSection": "Bridge to Standard Quantum Mechanics",
+                        "sectionKey": "bridge to standard quantum mechanics",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Standard Recovery Gates",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md",
+                        "markdownSection": "Standard Recovery Gates",
+                        "sectionKey": "standard recovery gates",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Orbital Angular Momentum",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md",
+                        "markdownSection": "Orbital Angular Momentum",
+                        "sectionKey": "orbital angular momentum",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Spin",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md",
+                        "markdownSection": "Spin",
+                        "sectionKey": "spin",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Downstream Use",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md",
+                        "markdownSection": "Downstream Use",
+                        "sectionKey": "downstream use",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Helicity and Vector Modes",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md",
+                        "markdownSection": "Helicity and Vector Modes",
+                        "sectionKey": "helicity and vector modes",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Stern-Gerlach-Like Measurement Response",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md",
+                        "markdownSection": "Stern-Gerlach-Like Measurement Response",
+                        "sectionKey": "stern gerlach like measurement response",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Bell's Theorem Handoff",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md",
+                        "markdownSection": "Bell's Theorem Handoff",
+                        "sectionKey": "bell s theorem handoff",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Terminology Rules",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md",
+                        "markdownSection": "Terminology Rules",
+                        "sectionKey": "terminology rules",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Closure Targets",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md",
+                        "markdownSection": "Closure Targets",
+                        "sectionKey": "closure targets",
                         "headingLevel": 2
                       }
                     ]

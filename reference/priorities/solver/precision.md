@@ -20,6 +20,18 @@ The precision problem appears in at least these variable families:
 
 Standard `f64` floating point already contains a sign, significand, and exponent. It can represent very large and very small magnitudes, but it does not automatically preserve local detail, cancellation safety, or root residual fidelity. Values such as `1e30` and `1e30 + 1` collapse to the same `f64`; subtracting nearly equal large terms can destroy meaningful digits; and a root residual can look clean in raw units while being badly conditioned relative to the declared tolerance.
 
+### Position And Radius Metrics
+
+The clearest value of the numeric-chart idea is position and radius tracking. A solver can need huge absolute coordinates for app display, persisted context, or inter-assembly placement while also needing tiny local differences for path intersections, causal roots, and near-collision geometry. The table uses `epsilon = 2^-52 ~= 2.22e-16` as an order-of-magnitude `f64` spacing estimate. Exact unit-in-the-last-place spacing depends on the binary exponent bucket, so these are scale diagnostics rather than bit-level certificates.
+
+| Metric | Current absolute-coordinate path | Proposed chart-aware path | Cost or negative effect |
+| --- | --- | --- | --- |
+| Smallest distinguishable position step near coordinate magnitude `1e12` | Roughly `2.2e-4` coordinate units. | If the active local frame keeps the same path segment near magnitude `1e3`, roughly `2.2e-13` local units. | Requires frame origin, basis, unit, transform error, and authority metadata. |
+| Smallest distinguishable position step near coordinate magnitude `1e18` | Roughly `2.2e2` coordinate units; small local motion can disappear. | If the active local frame keeps the local geometry near `1e3`, roughly `2.2e-13` local units. | Requires chart validity checks when paths drift far from the frame origin. |
+| Smallest distinguishable position step near coordinate magnitude `1e30` | Roughly `2.2e14` coordinate units; `1e30 + 1` is not distinguishable from `1e30` in `f64`. | Local path geometry can still be tracked near its own scale if the chart remains valid; absolute display may be approximate or display-only. | Absolute values must carry authority labels so app display does not masquerade as solver authority. |
+| Radius or separation comparisons across many decades | Direct subtraction or comparison can lose the small separation being tested. | Use nondimensional ratios, local-frame deltas, or log/signed-log magnitude where the operation is well conditioned. | Signed values, zero crossings, and vector subtraction need special handling; log charts are not universal. |
+| Causal-root residual near large path coordinates | Residuals can look numerically small or large in raw units while being poorly conditioned. | Evaluate residuals in a chart tied to the local path segment and declared tolerance scale. | Bad chart selection must trigger precision escalation or a halt, not silent continuation. |
+
 The solver therefore needs precision paths: declared simulation methods chosen by regime, not one universal numerical path.
 
 ## Local Idea History

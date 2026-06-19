@@ -7,7 +7,10 @@
     "units": "relative",
     "wrapLabels": true,
     "layout": {
-      "type": "rings"
+      "type": "rings",
+      "centerNode": "emergent_metric",
+      "order": "objects",
+      "direction": "clockwise"
     },
     "centerOn": "emergent_metric",
     "children": [
@@ -35,68 +38,32 @@
       "title": "Emergent Metric",
       "radius": 2.688,
       "color": "#243d8f",
-      "position": [
-        0,
-        0,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Emergent Metric",
-      "labelBadge": "doc",
-      "fixedPosition": true
+      "labelBadge": "doc"
     },
     {
       "id": "ppn_parameters",
       "title": "PPN Parameters",
       "radius": 2.688,
       "color": "#4b0082",
-      "position": [
-        0,
-        10.5,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "PPN Parameters",
-      "labelBadge": "doc",
-      "fixedPosition": true
+      "labelBadge": "doc"
     },
     {
       "id": "general_relativity_observables",
       "title": "General Relativity",
       "radius": 2.688,
       "color": "#2f6b6f",
-      "position": [
-        9.09,
-        -5.25,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "General Relativity",
-      "labelBadge": "doc",
-      "fixedPosition": true
+      "labelBadge": "doc"
     },
     {
       "id": "gravitational_waves",
       "title": "Gravitational Waves",
       "radius": 2.688,
       "color": "#5a1f2e",
-      "position": [
-        -9.09,
-        -5.25,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Gravitational Waves",
-      "labelBadge": "doc",
-      "fixedPosition": true
+      "labelBadge": "doc"
     }
   ]
 }

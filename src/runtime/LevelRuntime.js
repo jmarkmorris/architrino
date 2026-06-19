@@ -173,6 +173,15 @@ export function createLevelRuntime(deps) {
     });
   }
 
+  function setNodeLabelOpacity(node, opacity) {
+    if (node.labelObject?.element) {
+      node.labelObject.element.style.opacity = opacity;
+    }
+    if (node.chapterLabelObject?.element) {
+      node.chapterLabelObject.element.style.opacity = opacity;
+    }
+  }
+
   function setLevelShellGuideOpacity(level, opacity) {
     if (!level?.shellGuides?.length) {
       return;
@@ -190,7 +199,7 @@ export function createLevelRuntime(deps) {
     level.nodes.forEach((node) => {
       node.mesh.material.opacity = node.baseOpacity.mesh * opacity;
       node.outline.material.opacity = node.baseOpacity.outline * opacity;
-      node.labelObject.element.style.opacity = opacity;
+      setNodeLabelOpacity(node, opacity);
       node.haloIntensity = opacity;
       setNodeExtraOpacity(node, opacity);
     });
@@ -201,7 +210,7 @@ export function createLevelRuntime(deps) {
     level.nodes.forEach((node) => {
       node.mesh.material.opacity = node.baseOpacity.mesh * meshOpacity;
       node.outline.material.opacity = node.baseOpacity.outline * meshOpacity;
-      node.labelObject.element.style.opacity = labelOpacity;
+      setNodeLabelOpacity(node, labelOpacity);
       node.haloIntensity = meshOpacity;
       setNodeExtraOpacity(node, meshOpacity);
     });
@@ -210,7 +219,7 @@ export function createLevelRuntime(deps) {
 
   function setLevelLabelOpacity(level, labelOpacity) {
     level.nodes.forEach((node) => {
-      node.labelObject.element.style.opacity = labelOpacity;
+      setNodeLabelOpacity(node, labelOpacity);
     });
   }
 
@@ -228,7 +237,7 @@ export function createLevelRuntime(deps) {
           : otherOpacity;
       node.mesh.material.opacity = node.baseOpacity.mesh * opacity;
       node.outline.material.opacity = node.baseOpacity.outline * opacity;
-      node.labelObject.element.style.opacity = opacity;
+      setNodeLabelOpacity(node, opacity);
       node.haloIntensity = opacity;
       setNodeExtraOpacity(node, opacity);
     });
@@ -250,7 +259,7 @@ export function createLevelRuntime(deps) {
           : otherOpacity;
       node.mesh.material.opacity = node.baseOpacity.mesh * opacity;
       node.outline.material.opacity = node.baseOpacity.outline * opacity;
-      node.labelObject.element.style.opacity = opacity * labelOpacity;
+      setNodeLabelOpacity(node, opacity * labelOpacity);
       node.haloIntensity = opacity;
       setNodeExtraOpacity(node, opacity);
     });

@@ -1,6 +1,6 @@
 # Weak-Sector Gauge Closure
 
-This detailed priority file supports [Standard Model Closure](standard-model-closure.md). It covers [Weak Mixing Angle](../../../content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md), [Gauge Symmetries](../../../content/markdown/aaa/interactions/gauge-symmetries.md), and [Emergence of U(1)/SU(2)](../../../content/markdown/aaa/interactions/gauge-structure-emergence.md).
+This detailed priority file supports [Standard Model Closure](standard-model-closure.md). It covers [Weak Mixing Angle](../../../content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md), [Gauge Symmetries](../../../content/markdown/aaa/assemblies/gauge-symmetries.md), and [Emergence of U(1)/SU(2)](../../../content/markdown/aaa/assemblies/gauge-structure-emergence.md).
 
 ## Core Opportunity
 
@@ -214,8 +214,8 @@ with calibration and mistag rates attached. Here $d_0$ is impact-parameter infor
 | --- | --- |
 | [weak-mixing-angle](../../../content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md) | The discrete axial-frame branch claim is stated as a quotient/minimization problem, not a loose angle list. |
 | [weak-mixing-ckm](../../../content/markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md) | CKM/PMNS overlap uses the same weak-exposure domain as `V-A` and weak-reaction provenance. |
-| [gauge-symmetries](../../../content/markdown/aaa/interactions/gauge-symmetries.md) | Gauge covariance records the assembly-level assumptions and failure conditions behind the effective theorem spine. |
-| [gauge-structure-emergence](../../../content/markdown/aaa/interactions/gauge-structure-emergence.md) | Emergence prose is normalized so Noether sea structure is mechanism, while gauge fields remain effective bookkeeping. |
+| [gauge-symmetries](../../../content/markdown/aaa/assemblies/gauge-symmetries.md) | Gauge covariance records the assembly-level assumptions and failure conditions behind the effective theorem spine. |
+| [gauge-structure-emergence](../../../content/markdown/aaa/assemblies/gauge-structure-emergence.md) | Emergence prose is normalized so Noether sea structure is mechanism, while gauge fields remain effective bookkeeping. |
 
 ## Failure Modes
 

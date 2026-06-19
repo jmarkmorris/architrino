@@ -7,7 +7,10 @@
     "units": "relative",
     "wrapLabels": true,
     "layout": {
-      "type": "rings"
+      "type": "rings",
+      "centerNode": "observer_framework",
+      "order": "objects",
+      "direction": "clockwise"
     },
     "centerOn": "observer_framework",
     "children": [
@@ -31,51 +34,24 @@
       "title": "Observer Framework",
       "radius": 2.688,
       "color": "#2f6b6f",
-      "position": [
-        0,
-        0,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Observer Framework",
-      "labelBadge": "doc",
-      "fixedPosition": true
+      "labelBadge": "doc"
     },
     {
       "id": "proper_time_and_time_dilation",
       "title": "Proper Time and Time Dilation",
       "radius": 2.688,
       "color": "#3a5f9f",
-      "position": [
-        0,
-        10.5,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Proper Time and Time Dilation",
-      "labelBadge": "doc",
-      "fixedPosition": true
+      "labelBadge": "doc"
     },
     {
       "id": "lorentz_kinematics",
       "title": "Lorentz Kinematics",
       "radius": 2.688,
       "color": "#3657a6",
-      "position": [
-        0,
-        -10.5,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Lorentz Kinematics",
-      "labelBadge": "doc",
-      "fixedPosition": true
+      "labelBadge": "doc"
     }
   ]
 }

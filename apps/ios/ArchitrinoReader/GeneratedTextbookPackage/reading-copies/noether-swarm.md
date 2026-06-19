@@ -599,12 +599,6 @@ The Noether swarm class supplies the structural scaffold used by the fermion pro
 
 The collective motion, or **group velocity**, of a Noether swarm assembly determines its emergent behavior. The way these assemblies interact and pack together can lead to different statistical properties. The geometry-facing version of that claim is developed in [Fermi-Dirac and Bose-Einstein Statistics](../../../../markdown/aaa/quantum/quantum-statistics.md): volumetric Noether swarm envelopes are the substrate candidate for fermionic exclusion, while strongly oblated coherent support is the candidate route to bosonic shared occupation.
 
-## Neutral Swarm
-
-## Shell Swarm
-
-## Nested Shell Swarm
-
 ## Nested Shell Swarm Dynamics
 
 This chapter formulates nested shell swarm dynamics by extending the two-body delayed causal-wake system to a nested shell swarm with three coupled shell binaries. Its focus is the branch geometry, high-speed response, gradient response, and diagnostic quantities needed to assess stability and alignment in absolute substrate time.

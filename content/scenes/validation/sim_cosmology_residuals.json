@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "validation_simulations__sim_cosmology_residuals",
+    "title": "Cosmology Residuals",
+    "type": "Scene-Index",
+    "units": "relative",
+    "layout": {
+      "type": "rings",
+      "centerNode": null,
+      "order": "objects",
+      "direction": "clockwise"
+    },
+    "wrapLabels": true,
+    "children": [
+      {
+        "nodeId": "sim_cosmology_shared_residual_fit",
+        "scenePath": "content/scenes/validation/sim_cosmology_shared_residual_fit.json"
+      },
+      {
+        "nodeId": "sim_redshift_budget_toy_model",
+        "scenePath": "content/scenes/validation/sim_redshift_budget_toy_model.json"
+      }
+    ]
+  },
+  "objects": [
+    {
+      "id": "sim_cosmology_shared_residual_fit",
+      "title": "Cosmology Shared Residual Fit Protocol",
+      "radius": 2.688,
+      "color": "#4b5e2f",
+      "labelTitle": "Cosmology Shared Residual Fit",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "sim_redshift_budget_toy_model",
+      "title": "Redshift-Budget Toy Model",
+      "radius": 2.688,
+      "color": "#6f5a3f",
+      "labelTitle": "Redshift-Budget Toy Model",
+      "labelBadge": "doc"
+    }
+  ]
+}

@@ -275,6 +275,75 @@ test("markdown math placeholders retry when the renderer loads late", async (t) 
   assert.match(markdownBody.innerHTML, /class="katex"/);
 });
 
+test("markdown panels leave TeX delimiter examples inside inline code", async (t) => {
+  const originalFetch = globalThis.fetch;
+  const originalWindow = globalThis.window;
+  let renderMathCallCount = 0;
+
+  globalThis.fetch = async () => ({
+    ok: true,
+    async text() {
+      return [
+        "Preserve TeX delimiters exactly:",
+        "",
+        "- `$...$`",
+        "- `$$...$$`",
+        "- `\\(...\\)`",
+        "- `\\[...\\]`",
+        "- Use `$...$` inline math for short symbols or ratios in prose.",
+        "- Use `$$...$$` display math only for standalone equations.",
+      ].join("\n");
+    },
+  });
+  globalThis.window = {
+    renderMathInElement() {
+      renderMathCallCount += 1;
+    },
+  };
+
+  t.after(() => {
+    globalThis.fetch = originalFetch;
+    globalThis.window = originalWindow;
+  });
+
+  const markdownBody = createFakeElement();
+  const runtime = createMarkdownRuntime({
+    markdownPanel: createFakeElement(),
+    markdownBody,
+    markdownLayoutToggle: createFakeElement(),
+    markdownRenderer: {
+      render(markdown) {
+        return `<div>${markdown.replace(/`([^`]*)`/g, "<code>$1</code>")}</div>`;
+      },
+    },
+    markdownCache: new Map(),
+    markdownSectionCache: new Map(),
+    extractMarkdownSection: () => null,
+    appendCacheBust: (path) => path,
+  });
+
+  await runtime.showMarkdownPanel({
+    name: "Test",
+    markdownPath: "content/markdown/test.md",
+    markdownColumns: 1,
+  });
+
+  assert.match(markdownBody.innerHTML, /<code>\$\.\.\.\$<\/code>/);
+  assert.match(markdownBody.innerHTML, /<code>\$\$\.\.\.\$\$<\/code>/);
+  assert.match(markdownBody.innerHTML, /<code>\\\(\.\.\.\\\)<\/code>/);
+  assert.match(markdownBody.innerHTML, /<code>\\\[\.\.\.\\\]<\/code>/);
+  assert.match(
+    markdownBody.innerHTML,
+    /Use <code>\$\.\.\.\$<\/code> inline math for short symbols or ratios in prose\./
+  );
+  assert.match(
+    markdownBody.innerHTML,
+    /Use <code>\$\$\.\.\.\$\$<\/code> display math only for standalone equations\./
+  );
+  assert.doesNotMatch(markdownBody.innerHTML, /markdown-math-segment/);
+  assert.equal(renderMathCallCount, 1);
+});
+
 test("open markdown panels can invoke the browser PDF save flow", async (t) => {
   const originalFetch = globalThis.fetch;
   const originalWindow = globalThis.window;

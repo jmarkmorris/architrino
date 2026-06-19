@@ -12,7 +12,7 @@ This chapter is organized in three layers:
 
 Read left-to-right as: baseline physics $\rightarrow$ shared radiation routing $\rightarrow$ channel-specific ontology mapping.
 
-Terminology in this chapter follows [mode-taxonomy.md](../interactions/mode-taxonomy.md): photon emission is described as **planar-mode nucleation**; `corridor` terms are reserved for weak-channel contexts.
+Terminology in this chapter follows [mode-taxonomy.md](mode-taxonomy.md): photon emission is described as **planar-mode nucleation**; `corridor` terms are reserved for weak-channel contexts.
 
 ## Notation Snapshot
 

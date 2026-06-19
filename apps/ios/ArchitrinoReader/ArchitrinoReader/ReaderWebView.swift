@@ -27,6 +27,10 @@ struct ReaderWebView: UIViewRepresentable {
         view.scrollView.backgroundColor = UIColor.readerBackground(for: .architrinoPurple)
         view.scrollView.keyboardDismissMode = .onDrag
         view.scrollView.bounces = false
+        view.scrollView.alwaysBounceHorizontal = false
+        view.scrollView.showsHorizontalScrollIndicator = false
+        view.scrollView.isDirectionalLockEnabled = true
+        view.scrollView.delegate = context.coordinator
 
         if let shellURL = Bundle.main.url(
             forResource: "ReaderShell",
@@ -53,6 +57,7 @@ struct ReaderWebView: UIViewRepresentable {
             uiView.scrollView.backgroundColor = UIColor.readerBackground(for: theme)
         }
         context.coordinator.webView = uiView
+        uiView.scrollView.delegate = context.coordinator
         context.coordinator.pendingAppearance = appearance
         if let anchorCommand,
            context.coordinator.lastAppliedAnchorCommandID != anchorCommand.id {
@@ -60,10 +65,13 @@ struct ReaderWebView: UIViewRepresentable {
         } else if anchorCommand == nil {
             context.coordinator.pendingAnchorCommand = nil
         }
-        if let command = renderCommand,
-           context.coordinator.lastRenderedCommandID != command.id {
-            context.coordinator.pendingRenderCommand = command
+        if let command = renderCommand {
+            context.coordinator.currentRenderCommand = command
+            if context.coordinator.lastRenderedCommandID != command.id {
+                context.coordinator.pendingRenderCommand = command
+            }
         } else if renderCommand == nil {
+            context.coordinator.currentRenderCommand = nil
             context.coordinator.pendingRenderCommand = nil
         }
         if context.coordinator.isReaderReady {
@@ -77,13 +85,14 @@ struct ReaderWebView: UIViewRepresentable {
         Coordinator(parent: self)
     }
 
-    final class Coordinator: NSObject, WKScriptMessageHandler, WKNavigationDelegate {
+    final class Coordinator: NSObject, WKScriptMessageHandler, WKNavigationDelegate, UIScrollViewDelegate {
         private let parent: ReaderWebView
         weak var webView: WKWebView?
         var isReaderReady = false
         var pendingRenderCommand: ReaderViewModel.ReaderRenderCommand?
         var pendingAppearance: ReaderAppearancePayload?
         var pendingAnchorCommand: ReaderViewModel.ReaderAnchorCommand?
+        var currentRenderCommand: ReaderViewModel.ReaderRenderCommand?
         var lastAppliedAppearance: ReaderAppearancePayload?
         var lastRenderedCommandID: UUID?
         var lastAppliedAnchorCommandID: UUID?
@@ -99,6 +108,7 @@ struct ReaderWebView: UIViewRepresentable {
             if message.name == "readerReady" {
                 isReaderReady = true
                 DispatchQueue.main.async {
+                    self.restorePendingRenderCommandIfNeeded()
                     self.flushAppearance()
                     self.flushRenderCommand()
                     self.flushAnchorCommand()
@@ -122,9 +132,43 @@ struct ReaderWebView: UIViewRepresentable {
 
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
             isReaderReady = true
+            restorePendingRenderCommandIfNeeded()
             flushAppearance()
             flushRenderCommand()
             flushAnchorCommand()
+        }
+
+        func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+            markReaderShellReloading()
+        }
+
+        func webViewWebContentProcessDidTerminate(_ webView: WKWebView) {
+            markReaderShellReloading()
+            webView.reload()
+        }
+
+        func scrollViewDidScroll(_ scrollView: UIScrollView) {
+            guard scrollView.contentOffset.x != 0 else {
+                return
+            }
+            scrollView.contentOffset = CGPoint(x: 0, y: scrollView.contentOffset.y)
+        }
+
+        private func markReaderShellReloading() {
+            isReaderReady = false
+            lastRenderedCommandID = nil
+            lastAppliedAnchorCommandID = nil
+            lastAppliedAppearance = nil
+            restorePendingRenderCommandIfNeeded()
+        }
+
+        private func restorePendingRenderCommandIfNeeded() {
+            guard pendingRenderCommand == nil,
+                  let currentRenderCommand,
+                  currentRenderCommand.id != lastRenderedCommandID else {
+                return
+            }
+            pendingRenderCommand = currentRenderCommand
         }
 
         func flushRenderCommand() {
@@ -168,10 +212,20 @@ struct ReaderWebView: UIViewRepresentable {
                 let jsonData = try JSONEncoder().encode(command)
                 let jsonString = String(data: jsonData, encoding: .utf8) ?? "{}"
                 let script = """
-                window.ReaderBridge && window.ReaderBridge.renderChapter(\(readerJavaScriptStringLiteral(jsonString)));
+                if (!window.ReaderBridge || typeof window.ReaderBridge.renderChapter !== "function") {
+                    throw new Error("Reader shell is not ready.");
+                }
+                window.ReaderBridge.renderChapter(\(readerJavaScriptStringLiteral(jsonString)));
                 """
+                currentRenderCommand = command
                 webView.evaluateJavaScript(script) { _, error in
                     if let error {
+                        DispatchQueue.main.async {
+                            if self.currentRenderCommand?.id == command.id {
+                                self.lastRenderedCommandID = nil
+                                self.pendingRenderCommand = command
+                            }
+                        }
                         // Keep diagnostics available during local testing.
                         _ = error
                     }
@@ -255,6 +309,7 @@ struct ReaderWebView: UIViewRepresentable {
             pendingRenderCommand = nil
             pendingAppearance = nil
             pendingAnchorCommand = nil
+            currentRenderCommand = nil
             lastAppliedAppearance = nil
             lastRenderedCommandID = nil
             lastAppliedAnchorCommandID = nil
@@ -262,6 +317,7 @@ struct ReaderWebView: UIViewRepresentable {
 
         deinit {
             resetReaderState()
+            webView?.scrollView.delegate = nil
             if let controller = webView?.configuration.userContentController {
                 controller.removeScriptMessageHandler(forName: "readerLinkHandler")
                 controller.removeScriptMessageHandler(forName: "readerReady")

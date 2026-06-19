@@ -6,7 +6,6 @@
     "type": "Scene-Diagram",
     "units": "relative",
     "wrapLabels": true,
-    "hideScaleLabels": true,
     "layout": {
       "type": "static"
     }

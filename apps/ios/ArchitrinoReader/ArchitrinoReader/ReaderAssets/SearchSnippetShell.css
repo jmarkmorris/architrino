@@ -1,6 +1,7 @@
 :root {
   --snippet-font-size: 14px;
   --snippet-line-height: 1.28;
+  --snippet-line-count: 4;
   --snippet-text: #ede9fe;
   --snippet-heading: #ffffff;
   --snippet-muted: #ddd6fe;
@@ -22,6 +23,8 @@ body {
   overflow: hidden;
   background: transparent;
   color: var(--snippet-muted);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
@@ -31,8 +34,10 @@ body {
 }
 
 .snippet-root {
-  max-height: calc(var(--snippet-font-size) * var(--snippet-line-height) * 4.4);
+  display: -webkit-box;
   overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
 }
 
 .snippet-root p,
@@ -40,7 +45,7 @@ body {
 .snippet-root ol,
 .snippet-root blockquote,
 .snippet-root pre {
-  margin: 0 0 0.18em;
+  margin: 0;
 }
 
 .snippet-root p:first-child {

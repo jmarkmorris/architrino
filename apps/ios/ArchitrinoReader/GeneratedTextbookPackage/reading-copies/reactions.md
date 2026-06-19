@@ -365,7 +365,7 @@ If these are not maintained, standard QED/SM transport language is authoritative
 
 ### Related Chapters
 
-- [Gauge Structure Emergence](../../../../markdown/aaa/interactions/gauge-structure-emergence.md)
+- [Gauge Structure Emergence](../../../../markdown/aaa/assemblies/gauge-structure-emergence.md)
 - [Effective Lagrangian](../../../../markdown/aaa/dynamics/effective-lagrangian.md)
 - [Bremsstrahlung](../../../../markdown/aaa/reactions/bremsstrahlung.md)
 - [Synchrotron](../../../../markdown/aaa/reactions/synchrotron.md)
@@ -374,7 +374,7 @@ If these are not maintained, standard QED/SM transport language is authoritative
 
 Radiation is the $\mathbb{A}\mathbb{A}\mathbb{A}$ workstream for energy shedding by assemblies. A radiative event is not defined merely by acceleration or by the presence of excess energy. It is the routed relaxation of a driven assembly or local Noether sea state into one or more allowed channels: photon output, medium excitation, recoil, residual internal energy, or reaction products. Photon output is described through planar-mode nucleation, while non-radiative channels remain explicit when the available energy does not lock into a stable photon assembly.
 
-The detailed channel pages remain [Bremsstrahlung](../../../../markdown/aaa/reactions/bremsstrahlung.md), [Synchrotron Cascades](../../../../markdown/aaa/reactions/synchrotron.md), and [Atomic Transition Radiation](../../../../markdown/aaa/reactions/atomic-transition-radiation.md). Photon assembly ontology belongs in [Electroweak Bosons](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md), while channel vocabulary follows [Mode Taxonomy](../../../../markdown/aaa/interactions/mode-taxonomy.md). Event-level conservation uses [Reaction Ledger](../../../../markdown/aaa/validation/reaction-ledger.md), and cosmology-facing radiation provenance is tracked in [Reaction-Cosmology Provenance Ledger](../../../../markdown/aaa/validation/reaction-cosmology-provenance-ledger.md).
+The detailed channel pages remain [Bremsstrahlung](../../../../markdown/aaa/reactions/bremsstrahlung.md), [Synchrotron Cascades](../../../../markdown/aaa/reactions/synchrotron.md), and [Atomic Transition Radiation](../../../../markdown/aaa/reactions/atomic-transition-radiation.md). Photon assembly ontology belongs in [Electroweak Bosons](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md), while channel vocabulary follows [Mode Taxonomy](../../../../markdown/aaa/reactions/mode-taxonomy.md). Event-level conservation uses [Reaction Ledger](../../../../markdown/aaa/validation/reaction-ledger.md), and cosmology-facing radiation provenance is tracked in [Reaction-Cosmology Provenance Ledger](../../../../markdown/aaa/validation/reaction-cosmology-provenance-ledger.md).
 
 This page is a foundation-up overview. It states the shared mechanism and the closure targets that individual channel pages must specialize. It does not by itself prove blackbody radiation, photon spin, atomic spectra, or QED cross sections.
 
@@ -504,7 +504,7 @@ The thresholds in this table are names for proof targets, not asserted universal
 
 ### Planar-Mode Nucleation
 
-Photon output is modeled as the lock-in of a coaxial contra-rotating pro/anti planar pair. In the language of [Mode Taxonomy](../../../../markdown/aaa/interactions/mode-taxonomy.md), the photon branch is a planar-mode nucleation event: shed energy, wake stress, and Noether sea state jointly cross the stability boundary for a propagating photon assembly.
+Photon output is modeled as the lock-in of a coaxial contra-rotating pro/anti planar pair. In the language of [Mode Taxonomy](../../../../markdown/aaa/reactions/mode-taxonomy.md), the photon branch is a planar-mode nucleation event: shed energy, wake stress, and Noether sea state jointly cross the stability boundary for a propagating photon assembly.
 
 A minimal nucleation gate can be written as a two-condition target:
 
@@ -1585,7 +1585,7 @@ This chapter is organized in three layers:
 
 Read left-to-right as: baseline physics $\rightarrow$ shared radiation routing $\rightarrow$ channel-specific ontology mapping.
 
-Terminology in this chapter follows [mode-taxonomy.md](../../../../markdown/aaa/interactions/mode-taxonomy.md): photon emission is described as **planar-mode nucleation**; `corridor` terms are reserved for weak-channel contexts.
+Terminology in this chapter follows [mode-taxonomy.md](../../../../markdown/aaa/reactions/mode-taxonomy.md): photon emission is described as **planar-mode nucleation**; `corridor` terms are reserved for weak-channel contexts.
 
 ### Notation Snapshot
 
@@ -2031,7 +2031,7 @@ Synchrotron cascades are coupled electromagnetic processes in which relativistic
 
 This chapter presents synchrotron-cascade theory first in standard observer-level form, then in a provisional $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology map that preserves established reaction physics.
 
-Terminology in this chapter follows [mode-taxonomy.md](../../../../markdown/aaa/interactions/mode-taxonomy.md): photon emission is described as **planar-mode nucleation**; `corridor` terms are reserved for weak-channel contexts.
+Terminology in this chapter follows [mode-taxonomy.md](../../../../markdown/aaa/reactions/mode-taxonomy.md): photon emission is described as **planar-mode nucleation**; `corridor` terms are reserved for weak-channel contexts.
 
 ### Notation Snapshot
 

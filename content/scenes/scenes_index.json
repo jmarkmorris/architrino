@@ -36,11 +36,6 @@
       "path": "content/scenes/cosmology/disk.json"
     },
     {
-      "id": "galaxy_cluster",
-      "name": "Galaxy Cluster",
-      "path": "content/scenes/cosmology/galaxy_cluster.json"
-    },
-    {
       "id": "galaxy",
       "name": "Galaxy",
       "path": "content/scenes/cosmology/galaxy.json"
@@ -956,9 +951,9 @@
       "path": "content/scenes/foundations/absolute_time_defense.json"
     },
     {
-      "id": "foundations__bootstrapping_the_absolute_frame",
-      "name": "Reconstructing a Coordinate Frame from Wake Geometry",
-      "path": "content/scenes/foundations/bootstrapping_the_absolute_frame.json"
+      "id": "foundations__constructing_the_absolute_frame",
+      "name": "Constructing the Absolute Frame",
+      "path": "content/scenes/foundations/constructing_the_absolute_frame.json"
     },
     {
       "id": "foundations__emergence_of_structure",
@@ -1211,11 +1206,6 @@
       "path": "content/scenes/validation/sim_synthetic_observables.json"
     },
     {
-      "id": "validation_simulations__sim_unsolved_problems",
-      "name": "Unsolved Problems",
-      "path": "content/scenes/validation/sim_unsolved_problems.json"
-    },
-    {
       "id": "validation_action_energy__superposition_locality",
       "name": "Superposition and Locality",
       "path": "content/scenes/validation/superposition_locality.json"
@@ -1294,16 +1284,6 @@
       "id": "archie__mathematical_terminology",
       "name": "Mathematical Terminology Reference",
       "path": "content/scenes/archie/mathematical_terminology.json"
-    },
-    {
-      "id": "archie__scene_taxonomy",
-      "name": "Scene Taxonomy",
-      "path": "content/scenes/archie/scene_taxonomy.json"
-    },
-    {
-      "id": "archie__textbook_file_structure",
-      "name": "Textbook File Structure",
-      "path": "content/scenes/archie/textbook_file_structure.json"
     },
     {
       "id": "archie__research_notebook",
@@ -1669,6 +1649,71 @@
       "id": "validation__reaction_cosmology_provenance_ledger",
       "name": "Reaction-Cosmology Provenance Ledger",
       "path": "content/scenes/validation/reaction_cosmology_provenance_ledger.json"
+    },
+    {
+      "id": "theory_bridges__angular_momentum_and_spin",
+      "name": "Angular Momentum and Spin",
+      "path": "content/scenes/philosophy_history/theory_bridges/angular_momentum_and_spin.json"
+    },
+    {
+      "id": "validation_simulations__sim_branch_quantum__sim_a0_tier0_result_interpretation",
+      "name": "A0 Tier 0 Result Interpretation",
+      "path": "content/scenes/validation/sim_a0_tier0_result_interpretation.json"
+    },
+    {
+      "id": "validation_simulations__sim_branch_quantum__sim_bell_family_record_measure",
+      "name": "Bell-Family Record-Measure Harness",
+      "path": "content/scenes/validation/sim_bell_family_record_measure.json"
+    },
+    {
+      "id": "validation_simulations__sim_branch_quantum",
+      "name": "Branch / Quantum",
+      "path": "content/scenes/validation/sim_branch_quantum.json"
+    },
+    {
+      "id": "validation_simulations__sim_cosmology_residuals",
+      "name": "Cosmology Residuals",
+      "path": "content/scenes/validation/sim_cosmology_residuals.json"
+    },
+    {
+      "id": "validation_simulations__sim_cosmology_residuals__sim_cosmology_shared_residual_fit",
+      "name": "Cosmology Shared Residual Fit Protocol",
+      "path": "content/scenes/validation/sim_cosmology_shared_residual_fit.json"
+    },
+    {
+      "id": "validation_simulations__sim_metric_observer__sim_hydrogen_gamma_n_spectral_row_toy_scan",
+      "name": "Hydrogen Gamma_N Spectral Coefficient Row Toy Scan",
+      "path": "content/scenes/validation/sim_hydrogen_gamma_n_spectral_row_toy_scan.json"
+    },
+    {
+      "id": "validation_simulations__sim_metric_observer",
+      "name": "Metric / Observer",
+      "path": "content/scenes/validation/sim_metric_observer.json"
+    },
+    {
+      "id": "validation_simulations__sim_branch_quantum__sim_nested_shell_swarm_action_increment_protocol",
+      "name": "Nested Shell Swarm Action-Increment Protocol",
+      "path": "content/scenes/validation/sim_nested_shell_swarm_action_increment_protocol.json"
+    },
+    {
+      "id": "validation_simulations__sim_cosmology_residuals__sim_redshift_budget_toy_model",
+      "name": "Redshift-Budget Toy Model",
+      "path": "content/scenes/validation/sim_redshift_budget_toy_model.json"
+    },
+    {
+      "id": "validation_simulations__sim_branch_quantum__sim_retuning_map_toy_model",
+      "name": "Retuning-Map Toy Model",
+      "path": "content/scenes/validation/sim_retuning_map_toy_model.json"
+    },
+    {
+      "id": "validation_simulations__sim_metric_observer__sim_static_response_vector_toy_model",
+      "name": "Static Response Vector Toy Model",
+      "path": "content/scenes/validation/sim_static_response_vector_toy_model.json"
+    },
+    {
+      "id": "validation_simulations__sim_metric_observer__sim_thermodynamic_residual",
+      "name": "Thermodynamic Residual Protocol",
+      "path": "content/scenes/validation/sim_thermodynamic_residual.json"
     }
   ]
 }

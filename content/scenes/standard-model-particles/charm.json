@@ -43,8 +43,6 @@
     {
       "id": "quark_core",
       "label": "Nested shell swarm",
-      "scaleExponent": -20,
-      "hideScaleLabel": true,
       "radius": 1.68,
       "color": "PURPLE",
       "position": [

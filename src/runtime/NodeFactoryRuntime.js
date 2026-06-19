@@ -26,6 +26,16 @@ export function createNodeFactory(deps) {
     );
   }
 
+  function getPdfBadgeSvg() {
+    return (
+      '<svg class="label-badge-svg label-badge-doc" viewBox="0 0 28 24" aria-hidden="true" focusable="false">' +
+      '<path d="M5 3H16L22 9V21H5Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="miter"/>' +
+      '<path d="M16 3V9H22Z" fill="currentColor"/>' +
+      '<text x="8" y="17" font-family="Arial, Helvetica, sans-serif" font-size="6.5" font-weight="700" fill="currentColor">PDF</text>' +
+      "</svg>"
+    );
+  }
+
   function getDiagramBadgeSvg() {
     return (
       '<svg class="label-badge-svg label-badge-diagram" viewBox="0 0 24 16" aria-hidden="true" focusable="false">' +
@@ -47,6 +57,13 @@ export function createNodeFactory(deps) {
       normalized === "md" ||
       normalized === "markdown"
     );
+  }
+
+  function isPdfBadgeToken(value) {
+    if (typeof value !== "string") {
+      return false;
+    }
+    return value.trim().toLowerCase() === "pdf";
   }
 
   function isDiagramBadgeToken(value) {
@@ -218,6 +235,7 @@ export function createNodeFactory(deps) {
       typeof node.labelBadge === "string" && node.labelBadge.trim().length > 0
         ? node.labelBadge.trim()
         : "";
+    const wantsPdfSvgBadge = isPdfBadgeToken(badgeToken);
     const wantsDocSvgBadge = isDocBadgeToken(badgeToken);
     const wantsDiagramSvgBadge = isDiagramBadgeToken(badgeToken);
     const badgeImage =
@@ -228,10 +246,6 @@ export function createNodeFactory(deps) {
       typeof node.labelBadgeAlt === "string" && node.labelBadgeAlt.trim().length > 0
         ? node.labelBadgeAlt.trim()
         : "Badge";
-    const scaleHtml =
-      node.hideScaleLabel || !node.hasScale
-        ? ""
-        : `<div class="label-scale">10^${escapeHtml(node.scale)}</div>`;
     const tagHtml =
       node.category === "Reaction" ? `<div class="label-tag">RXN</div>` : "";
     const subtitleHtml = labelSubtitle
@@ -244,6 +258,8 @@ export function createNodeFactory(deps) {
       ? `<div class="label-badge-line"><img class="label-badge-image" src="${escapeAttr(
           badgeImage
         )}" alt="${escapeAttr(badgeAlt)}" /></div>`
+      : wantsPdfSvgBadge
+        ? `<div class="label-badge-line">${getPdfBadgeSvg()}</div>`
       : wantsDocSvgBadge
         ? `<div class="label-badge-line">${getDefaultDocBadgeSvg()}</div>`
       : wantsDiagramSvgBadge && node.childScene
@@ -251,8 +267,24 @@ export function createNodeFactory(deps) {
         : "";
     label.innerHTML = `<div class="label-title">${escapeHtml(
       labelTitle
-    )}</div>${subtitleHtml}${datesHtml}${scaleHtml}${tagHtml}${badgeHtml}`;
+    )}</div>${subtitleHtml}${datesHtml}${tagHtml}${badgeHtml}`;
     return new CSS2DObject(label);
+  }
+
+  function createChapterLabel(node) {
+    const chapterLabel =
+      typeof node.textbookChapterLabel === "string" && node.textbookChapterLabel.trim().length > 0
+        ? node.textbookChapterLabel.trim()
+        : "";
+    if (!chapterLabel) {
+      return null;
+    }
+    const label = document.createElement("div");
+    label.className = "label-chapter-marker";
+    label.textContent = chapterLabel;
+    const labelObject = new CSS2DObject(label);
+    labelObject.position.set(0, -Math.max(0, node.radius ?? 0) * 0.7, 0);
+    return labelObject;
   }
 
   function getBinaryBandRadii(shellRadius, bands) {
@@ -370,12 +402,17 @@ export function createNodeFactory(deps) {
 
     const labelObject = createLabel(nodeData);
     group.add(labelObject);
+    const chapterLabelObject = createChapterLabel(nodeData);
+    if (chapterLabelObject) {
+      group.add(chapterLabelObject);
+    }
 
     return {
       group,
       mesh,
       outline,
       labelObject,
+      chapterLabelObject,
       labelMaxWidth: null,
       halo: null,
       haloBaseOpacity: 0,
@@ -403,10 +440,11 @@ export function createNodeFactory(deps) {
     const group = new THREE.Group();
     const geometry = new THREE.SphereGeometry(nodeData.radius, 32, 20);
     const isReaction = nodeData.category === "Reaction";
+    const hideSphere = nodeData.hideSphere === true;
     const material = new THREE.MeshBasicMaterial({
       color: nodeData.color,
       transparent: true,
-      opacity: isReaction ? 0.92 : 0.86,
+      opacity: hideSphere ? 0 : isReaction ? 0.92 : 0.86,
     });
     material.depthWrite = false;
     const mesh = new THREE.Mesh(geometry, material);
@@ -416,7 +454,7 @@ export function createNodeFactory(deps) {
     const outlineMaterial = new THREE.LineBasicMaterial({
       color: isReaction ? "#f6dd9c" : "#7a7a7a",
       transparent: true,
-      opacity: isReaction ? 0.55 : 0.3,
+      opacity: hideSphere ? 0 : isReaction ? 0.55 : 0.3,
     });
     outlineMaterial.depthWrite = false;
     const outline = new THREE.LineSegments(outlineGeometry, outlineMaterial);
@@ -424,9 +462,13 @@ export function createNodeFactory(deps) {
 
     const labelObject = createLabel(nodeData);
     group.add(labelObject);
+    const chapterLabelObject = createChapterLabel(nodeData);
+    if (chapterLabelObject) {
+      group.add(chapterLabelObject);
+    }
 
     const extraMeshes = [];
-    if (nodeData.glowRing) {
+    if (!hideSphere && nodeData.glowRing) {
       const ring = createRingMesh(nodeData, getRingStyle(nodeData));
       ring.userData.isGlowRing = true;
       group.add(ring);
@@ -434,7 +476,11 @@ export function createNodeFactory(deps) {
     }
 
     let halo = null;
-    if (!nodeData.glowRing && (nodeData.childScene || nodeData.docDrillDownPreferred === true)) {
+    if (
+      !hideSphere &&
+      !nodeData.glowRing &&
+      (nodeData.childScene || nodeData.docDrillDownPreferred === true)
+    ) {
       halo = createRingMesh(nodeData, getRingStyle(nodeData));
       halo.userData.isHaloRing = true;
       group.add(halo);
@@ -445,6 +491,7 @@ export function createNodeFactory(deps) {
       mesh,
       outline,
       labelObject,
+      chapterLabelObject,
       labelMaxWidth: null,
       halo,
       haloBaseOpacity: halo ? halo.material.opacity : 0,

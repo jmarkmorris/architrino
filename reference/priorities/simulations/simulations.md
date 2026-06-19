@@ -17,6 +17,16 @@
 4. `hydrogen_gamma_n_record_extraction` — The hydrogen $\Gamma_N$ spectral coefficient-row scan now derives $\Lambda_{ab}$, observer frequency, and replay envelope gap entries from recovered principal labels, `frequency_scale`, and `line_inferred_ln_Gamma_N`; the remaining proof/simulation burden is to derive or bound $\mathbf{g}_{N,\mathrm H}^{(\ell)}$ from the same hydrogen spectral channel ledger, replace the scaffolded static response vector only with a constitutive response row for the same Noether sea cell, and replace the shared line-inferred cadence stretch only with electron-envelope gaps from the hydrogen branch. A May 22, 2026 inspection found no declared native $\Theta_{\mathrm H,\mathrm{spec}}^{(\ell)}$ artifact in scope, so no scaffold input is safe to replace yet. Residual recoil, hyperfine structure, photon-channel propagation, and source-branch effects must remain outside $\Gamma_N$ unless a declared residual budget carries them. Status: `pending`. Depends on: `hydrogen_fermion_sea_boundary` and Noether sea response rows from `mass-map`.
 5. `gw_public_waveform_packet` — Build a public-data gravitational-wave benchmark packet from GWOSC/LVK event records. The packet must replay GW150914-class short binary-black-hole strain, GW170817-class long binary-neutron-star inspiral and photon-channel speed timing, and current GWTC-4.0 catalog provenance with versioned strain files, detector masks, PE samples, waveform family, calibration notes, artifact hashes, and predeclared waveform/energy/speed residuals. A May 22, 2026 inspection fixes the first document-level packet manifest around `GW150914_short_bbh`, `GW170817_long_bns`, and `GW170817_GRB_speed`; executable artifact collection remains pending until GWOSC/LVK strain, PE, release-metadata, and hash files exist locally. Status: `pending`. Depends on: gravitational-wave effective-metric and event-ledger closure rows.
 
+## Open Simulation-Side Questions
+
+This section collects the main open simulation-side questions that remain after the current protocols and diagnostics are in place. Its purpose is to keep unresolved strong-field and Planck-scale issues visible without pretending they are already part of the validated stack.
+
+### Planck-Scale Framing
+
+- Clarify how **event-horizon alignment conditions** (nested shell swarm coplanarity/co-linearity at $v=c_f$) map to conventional Planck units.
+- Identify observables that distinguish **alignment-driven strong-field effects** from inner-binary maximal-curvature dynamics.
+- Specify which parameters control alignment onset (Noether sea density, compression, external field gradients).
+
 ## Hydrogen Native Extractor Boundary
 
 The May 22, 2026 hydrogen inspection did not find a native $\Theta_{\mathrm H,\mathrm{spec}}^{(\ell)}$ derivation packet. The missing row is

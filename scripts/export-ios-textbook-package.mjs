@@ -985,6 +985,16 @@ function toArchitrinoWebUrl(rawTarget, resolvedPath) {
   return `${ARCHITRINO_WEB_BASE_URL}/${slug}${anchor}`;
 }
 
+function toArchitrinoSceneWebUrl(resolvedPath) {
+  const scenePath = normalizeRelPath(resolvedPath);
+  if (!scenePath.startsWith("content/scenes/") || !scenePath.endsWith(".json")) {
+    return null;
+  }
+  const params = new URLSearchParams();
+  params.set("scene", scenePath);
+  return `${ARCHITRINO_WEB_BASE_URL}/#${params.toString()}`;
+}
+
 function processLink({ sourcePath, sourceChapterId }, rawTarget) {
   const normalized = resolveLink(sourcePath, rawTarget);
   const target = String(rawTarget || "").trim();
@@ -1076,6 +1086,22 @@ function processLink({ sourcePath, sourceChapterId }, rawTarget) {
     });
     if (!redirectUrl) {
       warnings.push(`Unsupported html link in ${sourcePath}: ${target}`);
+    }
+    return;
+  }
+
+  if (normalized.ext === ".json") {
+    const redirectUrl = toArchitrinoSceneWebUrl(normalized.resolvedPath);
+    manifest.links.push({
+      sourceChapterId,
+      sourcePath,
+      target,
+      kind: redirectUrl ? "external" : "unsupported",
+      status: redirectUrl ? "web_scene_redirect" : "unsupported_extension_json",
+      targetBundlePath: redirectUrl || normalized.resolvedPath,
+    });
+    if (!redirectUrl) {
+      warnings.push(`Unsupported json link in ${sourcePath}: ${target}`);
     }
     return;
   }
@@ -1246,15 +1272,7 @@ function addSearchIndexFileRecord() {
   const payload = {
     schema_version: SEARCH_INDEX_SCHEMA_VERSION,
     total_entries: searchIndex.length,
-    entries: [...searchIndex].sort((a, b) => {
-      const aKey = `${a.chapterId}::${a.sectionAnchor}`;
-      const bKey = `${b.chapterId}::${b.sectionAnchor}`;
-      const order = aKey.localeCompare(bKey);
-      if (order !== 0) {
-        return order;
-      }
-      return a.sectionTitle.localeCompare(b.sectionTitle);
-    }),
+    entries: searchIndex,
   };
   addGeneratedFileRecord({
     bundlePath: SEARCH_INDEX_FILE,

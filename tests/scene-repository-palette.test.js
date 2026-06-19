@@ -122,6 +122,42 @@ test("Archie hub keeps authored colors from the standard sphere palette", async 
   );
 });
 
+test("textbook PDF review spheres expose generated PDF files", async () => {
+  const sceneData = JSON.parse(
+    await readFile(
+      new URL("../content/scenes/archie/textbook_pdf_snapshots.json", import.meta.url),
+      "utf8"
+    )
+  );
+  const repository = createRepositoryWithScenes({});
+
+  const config = await repository.createConfigFromSceneData(
+    "content/scenes/archie/textbook_pdf_snapshots.json",
+    sceneData
+  );
+  const readingCopyNodes = config.nodes.filter(
+    (node) => node.id.startsWith("pdf_snapshot_") && node.id !== "pdf_snapshot_overview"
+  );
+
+  assert.equal(readingCopyNodes.length, 13);
+  assert.ok(
+    readingCopyNodes.some(
+      (node) =>
+        node.id === "pdf_snapshot_comparative_glossary" &&
+        node.filePath ===
+          "content/generated/pdf/textbook/review-copies/comparative-glossary.pdf"
+    )
+  );
+  for (const node of readingCopyNodes) {
+    assert.equal(node.markdownPath, null);
+    assert.equal(node.fileSourceType, "pdf");
+    assert.equal(node.fileOpenMode, "new-tab");
+    assert.equal(node.fileDownload, false);
+    assert.equal(node.fileOpenEligible, true);
+    assert.match(node.filePath, /^content\/generated\/pdf\/textbook\/review-copies\/.+\.pdf$/);
+  }
+});
+
 test("Scene-Index nodes infer doc badges from markdown child scenes", async () => {
   const repository = createRepositoryWithScenes({
     "content/scenes/example/markdown_child.json": {
@@ -185,6 +221,52 @@ test("Scene-Index nodes infer doc badges from markdown child scenes", async () =
   assert.equal(
     config.nodes.find((node) => node.id === "explicit_badge")?.labelBadge,
     "diagram"
+  );
+});
+
+test("Scene-Index nodes receive textbook chapter labels from resolver", async () => {
+  const repository = createRepositoryWithScenes(
+    {
+      "content/scenes/example/markdown_child.json": {
+        scene: {
+          type: "Scene-Markdown-View",
+          source: {
+            type: "markdown",
+            path: "content/markdown/example.md",
+          },
+        },
+        objects: [],
+      },
+    },
+    {
+      resolveTextbookChapterLabel: async (node) =>
+        node.childScene === "content/scenes/example/markdown_child.json" ? "Ch 3.2" : null,
+    }
+  );
+
+  const config = await repository.createConfigFromSceneData(
+    "content/scenes/example/index.json",
+    {
+      scene: {
+        type: "Scene-Index",
+        children: [
+          {
+            nodeId: "markdown_child",
+            scenePath: "content/scenes/example/markdown_child.json",
+          },
+        ],
+      },
+      objects: [
+        {
+          id: "markdown_child",
+        },
+      ],
+    }
+  );
+
+  assert.equal(
+    config.nodes.find((node) => node.id === "markdown_child")?.textbookChapterLabel,
+    "Ch 3.2"
   );
 });
 

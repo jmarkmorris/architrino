@@ -1,4 +1,10 @@
 import { isElementScene } from "../services/SceneCapabilitiesService.js";
+import {
+  RING_LAYOUT_DEFAULTS,
+  getRingDirectionSign,
+  getRingGuardBand,
+  normalizeRingLayoutOptions,
+} from "./RingLayoutRuntime.js";
 
 export function createSceneGraphRuntime(deps) {
   const ELEMENT_FIRST_SHELL_OFFSET = 0.80;
@@ -31,11 +37,9 @@ export function createSceneGraphRuntime(deps) {
         Number.isFinite(node?.radius) && node.radius > 0 ? node.radius : 1
       )
     );
-    const haloScale = 1.18;
-    const guardBandMin = 0.15;
-    const guardBandRatio = 0.08;
+    const haloScale = RING_LAYOUT_DEFAULTS.haloScale;
     const haloDiameter = maxNodeRadius * haloScale * 2;
-    const guardBand = Math.max(guardBandMin, haloDiameter * guardBandRatio);
+    const guardBand = getRingGuardBand(haloDiameter);
     const requiredChord = haloDiameter + guardBand;
     return { maxNodeRadius, requiredChord };
   }
@@ -47,10 +51,17 @@ export function createSceneGraphRuntime(deps) {
     return requiredChord / (2 * Math.sin(Math.PI / count));
   }
 
-  function buildRingPoints(count, radius, startAngle = Math.PI / 2, phaseOffset = 0) {
+  function buildRingPoints(
+    count,
+    radius,
+    startAngle = RING_LAYOUT_DEFAULTS.startAngle,
+    phaseOffset = 0,
+    direction = RING_LAYOUT_DEFAULTS.direction
+  ) {
     const points = [];
+    const angleStepSign = getRingDirectionSign(direction);
     for (let i = 0; i < count; i += 1) {
-      const angle = (i / count) * Math.PI * 2 + startAngle + phaseOffset;
+      const angle = startAngle + phaseOffset + angleStepSign * (i / count) * Math.PI * 2;
       points.push([
         Number((Math.cos(angle) * radius).toFixed(2)),
         Number((Math.sin(angle) * radius).toFixed(2)),
@@ -140,7 +151,7 @@ export function createSceneGraphRuntime(deps) {
     return { outerRadius: high, phase: bestPhase };
   }
 
-  function computeExplicitRingPositions(nodes) {
+  function computeExplicitRingPositions(nodes, options = {}) {
     const count = Array.isArray(nodes) ? nodes.length : 0;
     if (!count) {
       return null;
@@ -150,12 +161,19 @@ export function createSceneGraphRuntime(deps) {
     }
 
     const { requiredChord } = getLayoutPackingMetrics(nodes);
-    const startAngle = Math.PI / 2;
+    const ringLayoutOptions = normalizeRingLayoutOptions(options);
+    const startAngle = RING_LAYOUT_DEFAULTS.startAngle;
     const ringRadius = ringSelfRadius(count, requiredChord);
-    return buildRingPoints(count, ringRadius, startAngle);
+    return buildRingPoints(
+      count,
+      ringRadius,
+      startAngle,
+      0,
+      ringLayoutOptions.direction
+    );
   }
 
-  function computeExplicitRingsPositions(nodes, centerOn = null) {
+  function computeExplicitRingsPositions(nodes, options = {}) {
     const count = Array.isArray(nodes) ? nodes.length : 0;
     if (!count) {
       return null;
@@ -163,12 +181,27 @@ export function createSceneGraphRuntime(deps) {
     if (count === 1) {
       return [[0, 0, 0]];
     }
+    const ringLayoutOptions = normalizeRingLayoutOptions(
+      typeof options === "string" ? null : options,
+      typeof options === "string" ? { centerOn: options } : {}
+    );
+    if (ringLayoutOptions.centerMode === "none") {
+      return computeExplicitRingPositions(nodes, ringLayoutOptions);
+    }
     const { maxNodeRadius, requiredChord } = getLayoutPackingMetrics(nodes);
     const candidates = [];
-    candidates.push({ outerCount: count, innerCount: 0, hasCenter: false });
+    const wantsCenter = ringLayoutOptions.centerMode === "node";
+    const allowsAutoCenter = ringLayoutOptions.centerMode === "auto";
+    if (!wantsCenter) {
+      candidates.push({ outerCount: count, innerCount: 0, hasCenter: false });
+    }
 
-    const centerAllowed = count > 6;
-    const centerModes = centerAllowed ? [false, true] : [false];
+    const centerAllowed = wantsCenter ? count > 2 : allowsAutoCenter && count > 6;
+    const centerModes = centerAllowed
+      ? wantsCenter
+        ? [true]
+        : [false, true]
+      : [false];
     centerModes.forEach((hasCenter) => {
       const remaining = count - (hasCenter ? 1 : 0);
       if (remaining < 2) {
@@ -188,7 +221,7 @@ export function createSceneGraphRuntime(deps) {
     });
 
     if (!candidates.length) {
-      return computeExplicitRingPositions(nodes);
+      return computeExplicitRingPositions(nodes, ringLayoutOptions);
     }
 
     const scoreCandidate = (candidate) => {
@@ -245,7 +278,7 @@ export function createSceneGraphRuntime(deps) {
     const scoredCandidates = candidates.map(scoreCandidate).filter(Boolean);
 
     if (!scoredCandidates.length) {
-      return computeExplicitRingPositions(nodes);
+      return computeExplicitRingPositions(nodes, ringLayoutOptions);
     }
 
     scoredCandidates.sort(compareScoredCandidates);
@@ -278,8 +311,9 @@ export function createSceneGraphRuntime(deps) {
     }
 
     const centerMatch =
-      typeof centerOn === "string" && centerOn.trim().length
-        ? centerOn.trim().toLowerCase()
+      typeof ringLayoutOptions.centerOn === "string" &&
+      ringLayoutOptions.centerOn.trim().length
+        ? ringLayoutOptions.centerOn.trim().toLowerCase()
         : null;
     let centerIndex = -1;
     if (best.hasCenter) {
@@ -304,8 +338,20 @@ export function createSceneGraphRuntime(deps) {
 
     const outerIndices = remainingIndices.slice(0, best.outerCount);
     const innerIndices = remainingIndices.slice(best.outerCount, best.outerCount + best.innerCount);
-    const outerPoints = buildRingPoints(best.outerCount, best.outerRadius, Math.PI / 2);
-    const innerPoints = buildRingPoints(best.innerCount, best.innerRadius, Math.PI / 2, best.innerPhase);
+    const outerPoints = buildRingPoints(
+      best.outerCount,
+      best.outerRadius,
+      RING_LAYOUT_DEFAULTS.startAngle,
+      0,
+      ringLayoutOptions.direction
+    );
+    const innerPoints = buildRingPoints(
+      best.innerCount,
+      best.innerRadius,
+      RING_LAYOUT_DEFAULTS.startAngle,
+      best.innerPhase,
+      ringLayoutOptions.direction
+    );
 
     outerIndices.forEach((nodeIndex, i) => {
       positions[nodeIndex] = outerPoints[i];
@@ -372,6 +418,9 @@ export function createSceneGraphRuntime(deps) {
       node.mesh.geometry.dispose();
     }
     node.mesh.geometry = new deps.THREE.SphereGeometry(radius, 32, 20);
+    if (node.chapterLabelObject) {
+      node.chapterLabelObject.position.set(0, -radius * 0.7, 0);
+    }
     if (node.outline?.geometry) {
       node.outline.geometry.dispose();
       node.outline.geometry = new deps.THREE.EdgesGeometry(node.mesh.geometry);
@@ -608,8 +657,11 @@ export function createSceneGraphRuntime(deps) {
     const ringNodes = useStructuredLayout
       ? config.nodes.filter((node) => node?.category !== "legend")
       : [];
+    const explicitRingLayoutOptions = useExplicitRingsLayout
+      ? normalizeRingLayoutOptions(config.layoutConfig, { centerOn: config.centerOn })
+      : null;
     const explicitRingsPositions = useExplicitRingsLayout
-      ? computeExplicitRingsPositions(ringNodes, config.centerOn)
+      ? computeExplicitRingsPositions(ringNodes, explicitRingLayoutOptions)
       : null;
     let ringIndex = 0;
 
@@ -825,6 +877,8 @@ export function createSceneGraphRuntime(deps) {
       primaryBinaryNode,
       layout: config.layout,
       layoutType: config.layoutType ?? null,
+      layoutConfig: config.layoutConfig ?? null,
+      ringLayout: explicitRingLayoutOptions,
       links: [],
     };
 

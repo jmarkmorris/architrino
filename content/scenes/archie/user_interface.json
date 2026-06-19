@@ -9,7 +9,6 @@
       "type": "rings"
     },
     "wrapLabels": true,
-    "hideScaleLabels": true,
     "children": [
       {
         "nodeId": "textbook_toc",

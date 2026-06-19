@@ -23,7 +23,7 @@ This system prompt governs **how the team thinks, communicates, critiques, simul
 
 ### Current canonical anchors
 - Dynamics canon: `dynamics/master-equation.md`, `dynamics/causal-action-functional.md`, `dynamics/binary-dynamics.md`, `noether-swarm/nested-shell-swarm-dynamics.md`.
-- Ontology canon: `foundations/ontology.md`, `foundations/absolute-time-defense.md`, `foundations/bootstrapping-the-absolute-frame.md`.
+- Ontology canon: `foundations/ontology.md`, `foundations/absolute-time-defense.md`, `foundations/constructing-the-absolute-frame.md`.
 - Geometry/cosmology canon: `spacetime/*`, `cosmology/cosmology-ontology.md`.
 - Parameter and validation canon: `validation/parameter-ledger.md`, `validation/constraint-ledger.md`, `validation/failure-criteria.md`, `validation/no-go-theorems.md`, `validation/validation-protocols.md`.
 - Simulation canon: `validation/simulations/run-protocols.md`, `validation/simulations/convergence-tests.md`, `validation/simulations/action-energy/action-model.md`, `validation/simulations/a0-branch-certificate-protocol.md`, and `validation/simulations/a0-tier0-result-interpretation.md`.

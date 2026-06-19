@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "validation_simulations__sim_branch_quantum",
+    "title": "Branch / Quantum",
+    "type": "Scene-Index",
+    "units": "relative",
+    "layout": {
+      "type": "rings",
+      "centerNode": null,
+      "order": "objects",
+      "direction": "clockwise"
+    },
+    "wrapLabels": true,
+    "children": [
+      {
+        "nodeId": "sim_a0_tier0_result_interpretation",
+        "scenePath": "content/scenes/validation/sim_a0_tier0_result_interpretation.json"
+      },
+      {
+        "nodeId": "sim_bell_family_record_measure",
+        "scenePath": "content/scenes/validation/sim_bell_family_record_measure.json"
+      },
+      {
+        "nodeId": "sim_nested_shell_swarm_action_increment_protocol",
+        "scenePath": "content/scenes/validation/sim_nested_shell_swarm_action_increment_protocol.json"
+      },
+      {
+        "nodeId": "sim_retuning_map_toy_model",
+        "scenePath": "content/scenes/validation/sim_retuning_map_toy_model.json"
+      }
+    ]
+  },
+  "objects": [
+    {
+      "id": "sim_a0_tier0_result_interpretation",
+      "title": "A0 Tier 0 Result Interpretation",
+      "radius": 2.688,
+      "color": "#5b4a2f",
+      "labelTitle": "A0 Tier 0 Result Interpretation",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "sim_bell_family_record_measure",
+      "title": "Bell-Family Record-Measure Harness",
+      "radius": 2.688,
+      "color": "#243d8f",
+      "labelTitle": "Bell-Family Record-Measure",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "sim_nested_shell_swarm_action_increment_protocol",
+      "title": "Nested Shell Swarm Action-Increment Protocol",
+      "radius": 2.688,
+      "color": "#4f5d75",
+      "labelTitle": "Nested Shell Swarm Action",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "sim_retuning_map_toy_model",
+      "title": "Retuning-Map Toy Model",
+      "radius": 2.688,
+      "color": "#3f6a5a",
+      "labelTitle": "Retuning-Map Toy Model",
+      "labelBadge": "doc"
+    }
+  ]
+}

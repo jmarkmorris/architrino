@@ -146,6 +146,54 @@ export function createMarkdownRuntime(deps) {
     return { markdown: output, protectedSegments };
   }
 
+  function protectCodeSegments(markdown) {
+    const protectedCodeSegments = [];
+    let protectedIndex = 0;
+    let output = "";
+    let cursor = 0;
+
+    const makeToken = () => `CODESEGMENTTOKEN${protectedIndex++}X`;
+
+    while (cursor < markdown.length) {
+      if (markdown[cursor] !== "`") {
+        output += markdown[cursor];
+        cursor += 1;
+        continue;
+      }
+
+      let runEnd = cursor;
+      while (runEnd < markdown.length && markdown[runEnd] === "`") {
+        runEnd += 1;
+      }
+      const fence = markdown.slice(cursor, runEnd);
+      const closeIndex = markdown.indexOf(fence, runEnd);
+      if (closeIndex === -1) {
+        output += markdown[cursor];
+        cursor += 1;
+        continue;
+      }
+
+      const raw = markdown.slice(cursor, closeIndex + fence.length);
+      const token = makeToken();
+      protectedCodeSegments.push({ token, raw });
+      output += token;
+      cursor = closeIndex + fence.length;
+    }
+
+    return { markdown: output, protectedCodeSegments };
+  }
+
+  function restoreCodeSegments(markdown, protectedCodeSegments) {
+    if (!protectedCodeSegments?.length) {
+      return markdown;
+    }
+    let restored = markdown;
+    protectedCodeSegments.forEach(({ token, raw }) => {
+      restored = restored.split(token).join(raw);
+    });
+    return restored;
+  }
+
   function renderMathSegmentFallback(segment) {
     return escapeHtml(segment.math || segment.raw || "");
   }
@@ -209,70 +257,24 @@ export function createMarkdownRuntime(deps) {
         (child) => child.tagName === "UL" || child.tagName === "OL"
       ) ?? null;
 
-    const level1Items = [...topLevelList.children].filter(
-      (child) => child.tagName === "LI"
-    );
-    const level2Items = [];
-
-    level1Items.forEach((level1Item) => {
-      level1Item.dataset.tocLevel = "1";
-      const level2List = findDirectChildList(level1Item);
-      if (!level2List) {
-        return;
-      }
-      level2List.dataset.tocLevel = "2";
-      [...level2List.children].forEach((level2Item) => {
-        if (level2Item.tagName !== "LI") {
+    const markListLevel = (list, level) => {
+      list.dataset.tocLevel = String(level);
+      [...list.children].forEach((item) => {
+        if (item.tagName !== "LI") {
           return;
         }
-        level2Item.dataset.tocLevel = "2";
-        const level3List = findDirectChildList(level2Item);
-        if (!level3List) {
-          return;
+        item.dataset.tocLevel = String(level);
+        item.classList.remove("toc-collapsible", "is-collapsed", "is-expanded");
+        delete item.dataset.tocExpanded;
+        const branchList = findDirectChildList(item);
+        if (branchList) {
+          branchList.hidden = false;
+          markListLevel(branchList, level + 1);
         }
-        level3List.hidden = true;
-        level3List.dataset.tocLevel = "3";
-        level2Item.classList.add("toc-collapsible", "is-collapsed");
-        level2Item.dataset.tocExpanded = "false";
-        const primaryLink = [...level2Item.children].find(
-          (child) => child.tagName === "A"
-        );
-        if (!primaryLink) {
-          return;
-        }
-        const toggle = document.createElement("button");
-        toggle.type = "button";
-        toggle.className = "toc-branch-toggle";
-        toggle.setAttribute("aria-label", `Expand ${primaryLink.textContent.trim()}`);
-        toggle.setAttribute("aria-expanded", "false");
-        toggle.textContent = "+";
-        primaryLink.insertAdjacentElement("beforebegin", toggle);
-        level2Items.push(level2Item);
       });
-    });
-
-    const setExpandedState = (listItem, expanded) => {
-      const branchList = findDirectChildList(listItem);
-      const toggle = listItem.querySelector(":scope > .toc-branch-toggle");
-      if (!branchList || !toggle) {
-        return;
-      }
-      listItem.classList.toggle("is-expanded", expanded);
-      listItem.classList.toggle("is-collapsed", !expanded);
-      listItem.dataset.tocExpanded = expanded ? "true" : "false";
-      branchList.hidden = !expanded;
-      toggle.setAttribute("aria-expanded", expanded ? "true" : "false");
-      toggle.textContent = expanded ? "−" : "+";
-      const primaryLink = listItem.querySelector(":scope > a");
-      if (primaryLink) {
-        toggle.setAttribute(
-          "aria-label",
-          `${expanded ? "Collapse" : "Expand"} ${primaryLink.textContent.trim()}`
-        );
-      }
     };
 
-    level2Items.forEach((item) => setExpandedState(item, false));
+    markListLevel(topLevelList, 1);
   }
 
   function decorateSupportResearch() {
@@ -637,9 +639,12 @@ export function createMarkdownRuntime(deps) {
           }
         }
         if (markdownRenderer) {
+          const { markdown: codeProtectedMarkdown, protectedCodeSegments } =
+            protectCodeSegments(markdownSource);
           const { markdown: protectedMarkdown, protectedSegments } =
-            protectMathSegments(markdownSource);
-          html = restoreMathSegments(markdownRenderer.render(protectedMarkdown), protectedSegments);
+            protectMathSegments(codeProtectedMarkdown);
+          const rendererMarkdown = restoreCodeSegments(protectedMarkdown, protectedCodeSegments);
+          html = restoreMathSegments(markdownRenderer.render(rendererMarkdown), protectedSegments);
         } else {
           html = `<pre>${escapeHtml(markdownSource)}</pre>`;
         }

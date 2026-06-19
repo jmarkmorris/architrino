@@ -1,8 +1,8 @@
 {
   "schemaVersion": "0.1",
   "scene": {
-    "id": "archie__scene_taxonomy",
-    "title": "Scene Taxonomy",
+    "id": "validation_simulations__sim_branch_quantum__sim_nested_shell_swarm_action_increment_protocol",
+    "title": "Nested Shell Swarm Action-Increment Protocol",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,
@@ -11,7 +11,7 @@
     },
     "source": {
       "type": "markdown",
-      "path": "content/markdown/aaa/archie/scene-taxonomy.md"
+      "path": "content/markdown/aaa/validation/simulations/nested-shell-swarm-action-increment-protocol.md"
     },
     "view": {
       "columns": 1,

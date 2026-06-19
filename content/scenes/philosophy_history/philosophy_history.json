@@ -7,9 +7,11 @@
     "units": "relative",
     "wrapLabels": true,
     "layout": {
-      "type": "rings"
+      "type": "rings",
+      "centerNode": null,
+      "order": "objects",
+      "direction": "clockwise"
     },
-    "centerOn": "philosophy_of_science",
     "children": [
       {
         "nodeId": "philosophy_of_science",
@@ -63,179 +65,80 @@
       "title": "Philosophy of Science",
       "radius": 2.688,
       "color": "#7a4a1f",
-      "position": [
-        0,
-        0,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Philosophy of Science",
-      "fixedPosition": true
+      "labelTitle": "Philosophy of Science"
     },
     {
       "id": "crisis_in_physics",
       "title": "Crisis in Physics",
       "radius": 2.688,
       "color": "#243d8f",
-      "position": [
-        0,
-        11,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Crisis in Physics",
-      "fixedPosition": true
+      "labelTitle": "Crisis in Physics"
     },
     {
       "id": "unknowns_paradoxes_scene",
       "title": "Unknowns & Paradoxes",
       "radius": 2.688,
       "color": "#5a3f73",
-      "position": [
-        7.07,
-        8.43,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Unknowns & Paradoxes",
-      "fixedPosition": true
+      "labelTitle": "Unknowns & Paradoxes"
     },
     {
       "id": "inherited_theory_interface",
       "title": "Inherited Theory Interface",
       "radius": 2.688,
       "color": "#2f4f7a",
-      "position": [
-        10.83,
-        1.91,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Inherited Theory Interface",
-      "fixedPosition": true
-    },
-    {
-      "id": "substance_structure_potential",
-      "title": "Substance, Structure, and the Plenum of Potential",
-      "radius": 2.688,
-      "color": "#7a5430",
-      "position": [
-        9.53,
-        -5.5,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Substance / Structure",
-      "labelBadge": "doc",
-      "fixedPosition": true
+      "labelTitle": "Inherited Theory Interface"
     },
     {
       "id": "geometry_and_ontology",
       "title": "Geometry and Ontology",
       "radius": 2.688,
       "color": "#4b5e2f",
-      "position": [
-        15,
-        -2,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Geometry and Ontology",
-      "labelBadge": "doc",
-      "fixedPosition": true
+      "labelBadge": "doc"
+    },
+    {
+      "id": "substance_structure_potential",
+      "title": "Substance, Structure, and the Plenum of Potential",
+      "radius": 2.688,
+      "color": "#7a5430",
+      "labelTitle": "Substance / Structure",
+      "labelBadge": "doc"
     },
     {
       "id": "historical_context_missed_opportunities",
       "title": "Historical Context and Missed Opportunities",
       "radius": 2.688,
       "color": "#2f6b6f",
-      "position": [
-        3.76,
-        -10.34,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Historical Context and Missed Opportunities",
-      "fixedPosition": true
+      "labelTitle": "Historical Context and Missed Opportunities"
     },
     {
       "id": "major_thinkers",
       "title": "Major Thinkers",
       "radius": 2.688,
       "color": "#4b0082",
-      "position": [
-        -3.76,
-        -10.34,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Major Thinkers",
-      "fixedPosition": true
+      "labelTitle": "Major Thinkers"
     },
     {
       "id": "religious_ontologies",
       "title": "Religious Ontologies",
       "radius": 2.688,
       "color": "#3a5f9f",
-      "position": [
-        -9.53,
-        -5.5,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Religious Ontologies",
-      "fixedPosition": true
+      "labelTitle": "Religious Ontologies"
     },
     {
       "id": "information_computation",
       "title": "Information / Computation",
       "radius": 2.688,
       "color": "#2f4f7a",
-      "position": [
-        -10.83,
-        1.91,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Information / Computation",
-      "fixedPosition": true
+      "labelTitle": "Information / Computation"
     },
     {
       "id": "agency_and_internal_causation",
       "title": "Agency and Internal Causation",
       "radius": 2.688,
       "color": "#6a3c3c",
-      "position": [
-        -7.07,
-        8.43,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Agency and Internal Causation",
-      "labelBadge": "doc",
-      "fixedPosition": true
+      "labelBadge": "doc"
     }
   ]
 }

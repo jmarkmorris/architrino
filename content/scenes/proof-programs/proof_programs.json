@@ -7,9 +7,11 @@
     "units": "relative",
     "wrapLabels": true,
     "layout": {
-      "type": "rings"
+      "type": "rings",
+      "centerNode": null,
+      "order": "objects",
+      "direction": "clockwise"
     },
-    "centerOn": "master_equation_breather",
     "children": [
       {
         "nodeId": "master_equation_breather",
@@ -33,70 +35,30 @@
     {
       "id": "master_equation_breather",
       "label": "Master Equation Breather",
-      "radius": 2.688,
       "color": "#2f6b6f",
-      "position": [
-        0,
-        0,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Master Equation Breather",
-      "labelBadge": "doc",
-      "fixedPosition": true
+      "labelBadge": "doc"
     },
     {
       "id": "collinear_breather",
       "label": "1D Collinear Binary",
-      "radius": 2.688,
       "color": "#7a5c2f",
-      "position": [
-        0,
-        10.5,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "1D Collinear Binary",
-      "labelBadge": "doc",
-      "fixedPosition": true
+      "labelBadge": "doc"
     },
     {
       "id": "closed_form_collinear_breather_ansatz",
       "label": "Closed-Form Collinear Breather Ansatz",
-      "radius": 2.688,
       "color": "#243d8f",
-      "position": [
-        9.09,
-        -5.25,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Closed-Form Collinear Breather Ansatz",
-      "labelBadge": "doc",
-      "fixedPosition": true
+      "labelBadge": "doc"
     },
     {
       "id": "planar_bridge_closure",
       "label": "Planar Bridge Closure",
-      "radius": 2.688,
       "color": "#5a1f2e",
-      "position": [
-        -9.09,
-        -5.25,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Planar Bridge Closure",
-      "labelBadge": "doc",
-      "fixedPosition": true
+      "labelBadge": "doc"
     }
   ]
 }

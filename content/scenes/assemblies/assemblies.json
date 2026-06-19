@@ -7,9 +7,11 @@
     "units": "relative",
     "wrapLabels": true,
     "layout": {
-      "type": "rings"
+      "type": "rings",
+      "centerNode": null,
+      "order": "objects",
+      "direction": "clockwise"
     },
-    "centerOn": "standard_model",
     "children": [
       {
         "nodeId": "standard_model",
@@ -51,134 +53,62 @@
       "title": "Standard Model Assemblies",
       "radius": 2.35,
       "color": "#2f6b6f",
-      "position": [
-        0,
-        0,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Standard Model Assemblies",
-      "fixedPosition": true
+      "labelTitle": "Standard Model Assemblies"
     },
     {
       "id": "gauge_structure_emergence",
       "title": "Gauge Structure Emergence",
       "radius": 2.35,
       "color": "#3a5f9f",
-      "position": [
-        0,
-        10.8,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Gauge Structure Emergence",
-      "labelBadge": "doc",
-      "fixedPosition": true
+      "labelBadge": "doc"
     },
     {
       "id": "gauge_symmetries",
       "title": "Gauge Symmetries",
       "radius": 2.35,
       "color": "#2f4f7a",
-      "position": [
-        8.45,
-        6.73,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Gauge Symmetries",
-      "labelBadge": "doc",
-      "fixedPosition": true
+      "labelBadge": "doc"
     },
     {
       "id": "particle_masses",
       "title": "Particle Masses",
       "radius": 2.35,
       "color": "#5a1f2e",
-      "position": [
-        10.53,
-        -2.4,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Particle Masses",
-      "labelBadge": "doc",
-      "fixedPosition": true
+      "labelBadge": "doc"
     },
     {
       "id": "fermions",
       "title": "Fermions",
       "radius": 2.35,
       "color": "#5d3a9f",
-      "position": [
-        4.69,
-        -9.73,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Fermions",
-      "fixedPosition": true
+      "labelTitle": "Fermions"
     },
     {
       "id": "electroweak_bosons",
       "title": "Electroweak Bosons",
       "radius": 2.35,
       "color": "#2f6b6f",
-      "position": [
-        -4.69,
-        -9.73,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Electroweak Bosons",
-      "labelBadge": "doc",
-      "fixedPosition": true
+      "labelBadge": "doc"
     },
     {
       "id": "gluons",
       "title": "Gluons",
       "radius": 2.35,
       "color": "#3a5f9f",
-      "position": [
-        -10.53,
-        -2.4,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Gluons",
-      "labelBadge": "doc",
-      "fixedPosition": true
+      "labelBadge": "doc"
     },
     {
       "id": "mesons_doc",
       "title": "Mesons",
       "radius": 2.35,
       "color": "#3a5f9f",
-      "position": [
-        -8.45,
-        6.73,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Mesons",
-      "labelBadge": "doc",
-      "fixedPosition": true
+      "labelBadge": "doc"
     }
   ]
 }

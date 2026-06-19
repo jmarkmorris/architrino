@@ -1,8 +1,8 @@
 {
   "schemaVersion": "0.1",
   "scene": {
-    "id": "archie__textbook_file_structure",
-    "title": "Textbook File Structure",
+    "id": "validation_simulations__sim_metric_observer__sim_hydrogen_gamma_n_spectral_row_toy_scan",
+    "title": "Hydrogen Gamma_N Spectral Coefficient Row Toy Scan",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,
@@ -11,7 +11,7 @@
     },
     "source": {
       "type": "markdown",
-      "path": "content/markdown/aaa/archie/textbook-file-structure.md"
+      "path": "content/markdown/aaa/validation/simulations/hydrogen-gamma-n-spectral-row-toy-scan.md"
     },
     "view": {
       "columns": 1,

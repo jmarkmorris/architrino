@@ -2,7 +2,7 @@
 
 This chapter defines the controlled vocabulary for reaction-level assembly transitions. It is the canonical terminology source for `reactions/*.md`.
 
-For concrete channel applications of this vocabulary, see [Bremsstrahlung](../reactions/bremsstrahlung.md), [Synchrotron](../reactions/synchrotron.md), [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md), [Electron](../assemblies/fermions/electron.md), and [Neutrinos](../assemblies/fermions/neutrinos.md).
+For concrete channel applications of this vocabulary, see [Bremsstrahlung](bremsstrahlung.md), [Synchrotron](synchrotron.md), [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md), [Electron](../assemblies/fermions/electron.md), and [Neutrinos](../assemblies/fermions/neutrinos.md).
 
 ## Scope
 
@@ -115,7 +115,7 @@ $$
 =0
 $$
 
-The energy, momentum, and angular-momentum components are defined by the effective electromagnetic energy-momentum gate in [Radiation](../reactions/radiation.md). A channel passes only when these components vanish in the declared validated limit or when each nonzero term is assigned to a named photon, material, recoil, wake, or remnant row. This keeps Maxwell-level ledgers as recovery tests for channel bookkeeping rather than as primitive Noether sea dynamics.
+The energy, momentum, and angular-momentum components are defined by the effective electromagnetic energy-momentum gate in [Radiation](radiation.md). A channel passes only when these components vanish in the declared validated limit or when each nonzero term is assigned to a named photon, material, recoil, wake, or remnant row. This keeps Maxwell-level ledgers as recovery tests for channel bookkeeping rather than as primitive Noether sea dynamics.
 
 5. **Evaluate wake-strain trigger**
 Compute whether interaction forcing crosses the relevant mode boundary.
@@ -363,7 +363,7 @@ If these are not maintained, standard QED/SM transport language is authoritative
 
 ## Related Chapters
 
-- [Gauge Structure Emergence](gauge-structure-emergence.md)
+- [Gauge Structure Emergence](../assemblies/gauge-structure-emergence.md)
 - [Effective Lagrangian](../dynamics/effective-lagrangian.md)
-- [Bremsstrahlung](../reactions/bremsstrahlung.md)
-- [Synchrotron](../reactions/synchrotron.md)
+- [Bremsstrahlung](bremsstrahlung.md)
+- [Synchrotron](synchrotron.md)

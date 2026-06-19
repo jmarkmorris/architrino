@@ -1,4 +1,4 @@
-# Reconstructing a Coordinate Frame from Wake Geometry
+# Constructing the Absolute Frame
 
 This chapter explains how a usable coordinate frame can be reconstructed from complete-state wake geometry rather than assumed from pre-labeled space. The ontological data are architrino worldlines, source-tagged causal wakes, Euclidean distances on an absolute-time slice, and the path-history records needed to compare them. The coordinate frame reconstructed from those data is a mathematical and computational representation, not an additional constituent of the ontology.
 

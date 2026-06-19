@@ -1691,6 +1691,8 @@ The orbital part of this recovery should match the standard effective labels $\e
 
 ## Hyde Periodic Table
 
+[Open the interactive Hyde Periodic Table](../../../../scenes/chemistry/hyde_periodic_table_scene.json).
+
 ### Scope
 
 This document treats the periodic table as a scientific structure first, then analyzes how the Hyde format re-encodes that structure geometrically. The objective is technical clarity on:

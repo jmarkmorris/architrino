@@ -157,7 +157,9 @@ This document distinguishes three audience scopes:
 - `pre-commit` runs:
   - `node scripts/validate-content.mjs --check --strict`
   - `node scripts/build-scene-graph.mjs --check --strict`
-- `pre-push` runs the same checks again before push.
+- `pre-push` runs the shared Content Integrity gate before push:
+  - `node scripts/check-content-integrity.mjs`
+  - `node scripts/check-animator-runtime-wiring.mjs`
 
 ### If Scene Graph Drift Appears
 

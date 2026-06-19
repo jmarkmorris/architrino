@@ -47,6 +47,7 @@
       "sceneId": "dynamics",
       "sceneName": "Dynamics",
       "objects": {
+        "action_energy": "Action-Energy",
         "binary_dynamics": "Binary Dynamics",
         "causal_action_functional": "Causal Action Functional",
         "effective_lagrangian": "Effective Lagrangian",
@@ -65,7 +66,7 @@
         "absolute_timespace": "Absolute Timespace",
         "architrino": "Architrino",
         "detecting_the_absolute_frame": "Detecting the Absolute Frame",
-        "bootstrapping_the_absolute_frame": "Reconstructing a Coordinate Frame from Wake Geometry",
+        "constructing_the_absolute_frame": "Constructing the Absolute Frame",
         "emergence_of_structure": "Emergence of Structure",
         "euclidean_void": "Euclidean Void",
         "foundational_ontology": "Foundational Ontology"
@@ -205,14 +206,12 @@
       "sceneId": "validation_simulations",
       "sceneName": "Validation Simulations",
       "objects": {
-        "action_energy": "Action-Energy",
         "sim_architrino": "Architrino",
         "sim_convergence_tests": "Convergence Tests",
         "sim_perspective": "Perspective",
         "sim_readme": "README",
         "sim_run_protocols": "Run Protocols",
-        "sim_synthetic_observables": "Synthetic Observables",
-        "sim_unsolved_problems": "Unsolved Problems"
+        "sim_synthetic_observables": "Synthetic Observables"
       }
     },
     "content/scenes/validation/validation.json": {

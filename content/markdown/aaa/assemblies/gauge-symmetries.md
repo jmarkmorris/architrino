@@ -4,7 +4,7 @@ This chapter provides a minimal theorem-backed bridge from architrino/assembly d
 
 Interface chapters:
 - Electroweak emergence narrative: [Gauge Structure Emergence](./gauge-structure-emergence.md)
-- Color $SU(3)$ algebra closure: [Color Charge SU3](../assemblies/fermions/color-charge-su3.md)
+- Color $SU(3)$ algebra closure: [Color Charge SU3](fermions/color-charge-su3.md)
 - Variational substrate: [Effective Lagrangian](../dynamics/effective-lagrangian.md)
 
 ## Regularized Setting
@@ -304,7 +304,7 @@ $$
 **Theorem 3 (Color algebra closure in axis-exceptionality basis).**  
 In the ordered basis $(H,M,L)$, the eight generators built from axis mixers and two diagonal traceless operators close a Lie algebra isomorphic to $\mathfrak{su}(3)$.
 
-This is the rigorous closure result already proven in [color-charge-su3](../assemblies/fermions/color-charge-su3.md#algebra-closure-rigorous-statement). Therefore effective color transport acts through
+This is the rigorous closure result already proven in [color-charge-su3](fermions/color-charge-su3.md#algebra-closure-rigorous-statement). Therefore effective color transport acts through
 $$
 U_3\in SU(3),\qquad
 D_\mu=\partial_\mu-i g_3 G_\mu^a T^a
@@ -338,7 +338,7 @@ Required consistency conditions:
 
 Interface chapters:
 - topology and action invariants: [dynamics/causal-action-functional.md](../dynamics/causal-action-functional.md)
-- color structure and confinement geometry: [assemblies/fermions/color-charge-su3.md](../assemblies/fermions/color-charge-su3.md)
+- color structure and confinement geometry: [assemblies/fermions/color-charge-su3.md](fermions/color-charge-su3.md)
 - preferred-frame closure: [spacetime/ppn-parameters.md](../spacetime/ppn-parameters.md)
 
 ## Failure Conditions

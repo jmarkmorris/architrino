@@ -1,8 +1,8 @@
 {
   "schemaVersion": "0.1",
   "scene": {
-    "id": "validation_simulations__sim_unsolved_problems",
-    "title": "Unsolved Problems",
+    "id": "theory_bridges__angular_momentum_and_spin",
+    "title": "Angular Momentum and Spin",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,
@@ -11,7 +11,7 @@
     },
     "source": {
       "type": "markdown",
-      "path": "content/markdown/aaa/validation/simulations/unsolved-problems.md"
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md"
     },
     "view": {
       "columns": 1,

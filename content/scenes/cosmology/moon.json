@@ -17,7 +17,6 @@
     {
       "id": "core",
       "label": "core",
-      "scaleExponent": 5,
       "radius": 1.1,
       "color": "#6a4d1b",
       "motion": {
@@ -28,7 +27,6 @@
     {
       "id": "mantle",
       "label": "mantle",
-      "scaleExponent": 6,
       "radius": 1,
       "color": "#7a4a1f",
       "motion": {
@@ -39,7 +37,6 @@
     {
       "id": "crust",
       "label": "crust",
-      "scaleExponent": 5,
       "radius": 0.95,
       "color": "#8a6a3a",
       "motion": {
@@ -50,7 +47,6 @@
     {
       "id": "regolith",
       "label": "regolith",
-      "scaleExponent": 5,
       "radius": 0.95,
       "color": "#9ea6bf",
       "motion": {
