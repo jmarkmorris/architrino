@@ -1173,7 +1173,13 @@ function renderTextbookTocMarkdown(rootEntry) {
     "",
   ];
 
-  function renderEntry(entry, depth) {
+  function formatNumberedTocItem(numberPath, label, target, badge = "") {
+    const chapterPrefix = `**Ch ${numberPath.join(".")}**`;
+    const title = target ? `[${label}](${target})` : label;
+    return `${chapterPrefix} ${title}${badge}`;
+  }
+
+  function renderEntry(entry, depth, numberPath) {
     if (!entry || typeof entry !== "object") {
       return;
     }
@@ -1192,16 +1198,22 @@ function renderTextbookTocMarkdown(rootEntry) {
           ? " _(animation)_"
           : "";
     const label = escapeMarkdownLinkText(normalizeTextbookTocMarkdownLabel(entry.title));
-    lines.push(target ? `${indent}- [${label}](${target})${badge}` : `${indent}- ${label}${badge}`);
+    lines.push(`${indent}- ${formatNumberedTocItem(numberPath, label, target, badge)}`);
 
     const sections = Array.isArray(entry.sections) ? entry.sections : [];
-    sections.forEach((section) => renderSection(section, depth + 1));
-
     const children = Array.isArray(entry.children) ? entry.children : [];
-    children.forEach((child) => renderEntry(child, depth + 1));
+    let nextOrdinal = 1;
+    sections.forEach((section) => {
+      renderSection(section, depth + 1, [...numberPath, nextOrdinal]);
+      nextOrdinal += 1;
+    });
+    children.forEach((child) => {
+      renderEntry(child, depth + 1, [...numberPath, nextOrdinal]);
+      nextOrdinal += 1;
+    });
   }
 
-  function renderSection(section, depth) {
+  function renderSection(section, depth, numberPath) {
     if (!section || typeof section !== "object") {
       return;
     }
@@ -1210,13 +1222,13 @@ function renderTextbookTocMarkdown(rootEntry) {
       section: section.markdownSection,
     });
     const label = escapeMarkdownLinkText(normalizeTextbookTocMarkdownLabel(section.title));
-    lines.push(`${indent}- [${label}](${target})`);
+    lines.push(`${indent}- ${formatNumberedTocItem(numberPath, label, target)}`);
     const children = Array.isArray(section.children) ? section.children : [];
-    children.forEach((child) => renderSection(child, depth + 1));
+    children.forEach((child, index) => renderSection(child, depth + 1, [...numberPath, index + 1]));
   }
 
   const rootChildren = Array.isArray(rootEntry?.children) ? rootEntry.children : [];
-  rootChildren.forEach((entry) => renderEntry(entry, 0));
+  rootChildren.forEach((entry, index) => renderEntry(entry, 0, [index + 1]));
   return `${lines.join("\n")}\n`;
 }
 

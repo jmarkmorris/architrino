@@ -25,6 +25,8 @@
     "content/markdown/aaa/assemblies/fermions/quantum-number-mapping.md",
     "content/markdown/aaa/assemblies/fermions/quarks.md",
     "content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md",
+    "content/markdown/aaa/assemblies/gauge-structure-emergence.md",
+    "content/markdown/aaa/assemblies/gauge-symmetries.md",
     "content/markdown/aaa/assemblies/mesons/mesons.md",
     "content/markdown/aaa/assemblies/particle-masses.md",
     "content/markdown/aaa/cosmology/BBN-constraints.md",
@@ -52,9 +54,6 @@
     "content/markdown/aaa/foundations/emergence.md",
     "content/markdown/aaa/foundations/euclidean-void.md",
     "content/markdown/aaa/foundations/ontology.md",
-    "content/markdown/aaa/interactions/gauge-structure-emergence.md",
-    "content/markdown/aaa/interactions/gauge-symmetries.md",
-    "content/markdown/aaa/interactions/mode-taxonomy.md",
     "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
     "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
     "content/markdown/aaa/noether-swarm/noether-swarm.md",
@@ -105,6 +104,7 @@
     "content/markdown/aaa/quantum/wavefunction-ontology.md",
     "content/markdown/aaa/reactions/atomic-transition-radiation.md",
     "content/markdown/aaa/reactions/bremsstrahlung.md",
+    "content/markdown/aaa/reactions/mode-taxonomy.md",
     "content/markdown/aaa/reactions/radiation.md",
     "content/markdown/aaa/reactions/synchrotron.md",
     "content/markdown/aaa/spacetime/black-holes.md",
@@ -123,7 +123,6 @@
     "content/markdown/aaa/validation/architrino-si-base-units.md",
     "content/markdown/aaa/validation/closure-scorecard.md",
     "content/markdown/aaa/validation/constraint-ledger.md",
-    "content/markdown/aaa/validation/data-sources/pdg-api.md",
     "content/markdown/aaa/validation/failure-criteria.md",
     "content/markdown/aaa/validation/known-tensions.md",
     "content/markdown/aaa/validation/massive-superposition-gravity.md",
@@ -163,7 +162,6 @@
     "content/markdown/aaa/validation/simulations/static-response-vector-toy-model.md",
     "content/markdown/aaa/validation/simulations/synthetic-observables.md",
     "content/markdown/aaa/validation/simulations/thermodynamic-residual.md",
-    "content/markdown/aaa/validation/simulations/unsolved-problems.md",
     "content/markdown/aaa/validation/validation-protocols.md"
   ]
 }

@@ -17,17 +17,6 @@
     },
     "children": [
       {
-        "nodeId": "cosmic_web",
-        "scenePath": "content/scenes/cosmology/galaxy_cluster.json",
-        "textbookToc": {
-          "hideEntry": true
-        }
-      },
-      {
-        "nodeId": "galaxy_cluster",
-        "scenePath": "content/scenes/cosmology/galaxy_cluster.json"
-      },
-      {
         "nodeId": "galaxy",
         "scenePath": "content/scenes/cosmology/galaxy.json",
         "textbookToc": {

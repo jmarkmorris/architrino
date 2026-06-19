@@ -8,8 +8,8 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 162,
-      "sections": 1323
+      "entries": 161,
+      "sections": 1322
     }
   },
   "tocRoot": {
@@ -8287,24 +8287,6 @@
                     "markdownPath": "content/markdown/aaa/validation/simulations/synthetic-observables.md",
                     "markdownSection": "$\\mathbb{U}_{\\text{now}}$ Logging Standard",
                     "sectionKey": "mathbb u text now logging standard",
-                    "headingLevel": 2
-                  }
-                ]
-              },
-              {
-                "id": "validation_simulations__sim_unsolved_problems",
-                "title": "Unsolved Problems",
-                "kind": "markdown-view",
-                "sceneType": "Scene-Markdown-View",
-                "scenePath": "content/scenes/validation/sim_unsolved_problems.json",
-                "markdownPath": "content/markdown/aaa/validation/simulations/unsolved-problems.md",
-                "sections": [
-                  {
-                    "kind": "markdown-section",
-                    "title": "Planck-Scale Framing",
-                    "markdownPath": "content/markdown/aaa/validation/simulations/unsolved-problems.md",
-                    "markdownSection": "Planck-Scale Framing",
-                    "sectionKey": "planck scale framing",
                     "headingLevel": 2
                   }
                 ]

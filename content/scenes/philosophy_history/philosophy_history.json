@@ -89,19 +89,19 @@
       "labelTitle": "Inherited Theory Interface"
     },
     {
-      "id": "substance_structure_potential",
-      "title": "Substance, Structure, and the Plenum of Potential",
-      "radius": 2.688,
-      "color": "#7a5430",
-      "labelTitle": "Substance / Structure",
-      "labelBadge": "doc"
-    },
-    {
       "id": "geometry_and_ontology",
       "title": "Geometry and Ontology",
       "radius": 2.688,
       "color": "#4b5e2f",
       "labelTitle": "Geometry and Ontology",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "substance_structure_potential",
+      "title": "Substance, Structure, and the Plenum of Potential",
+      "radius": 2.688,
+      "color": "#7a5430",
+      "labelTitle": "Substance / Structure",
       "labelBadge": "doc"
     },
     {

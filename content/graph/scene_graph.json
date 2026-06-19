@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 511,
-      "edges": 1255,
-      "scenes": 332,
+      "nodes": 507,
+      "edges": 1250,
+      "scenes": 330,
       "markdownIndexes": 0,
-      "markdownDocs": 166,
+      "markdownDocs": 164,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -188,12 +188,6 @@
       "id": "galaxy_disk",
       "name": "Galaxy Disk",
       "path": "content/scenes/cosmology/disk.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "galaxy_cluster",
-      "name": "Galaxy Cluster",
-      "path": "content/scenes/cosmology/galaxy_cluster.json",
       "nodeType": "scene"
     },
     {
@@ -1601,12 +1595,6 @@
       "nodeType": "scene"
     },
     {
-      "id": "validation_simulations__sim_unsolved_problems",
-      "name": "Unsolved Problems",
-      "path": "content/scenes/validation/sim_unsolved_problems.json",
-      "nodeType": "scene"
-    },
-    {
       "id": "validation_action_energy__superposition_locality",
       "name": "Superposition and Locality",
       "path": "content/scenes/validation/superposition_locality.json",
@@ -2297,6 +2285,18 @@
       "nodeType": "markdown_doc"
     },
     {
+      "id": "content/markdown/aaa/assemblies/gauge-structure-emergence.md",
+      "name": "Gauge Structure Emergence",
+      "path": "content/markdown/aaa/assemblies/gauge-structure-emergence.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/assemblies/gauge-symmetries.md",
+      "name": "Gauge Symmetries",
+      "path": "content/markdown/aaa/assemblies/gauge-symmetries.md",
+      "nodeType": "markdown_doc"
+    },
+    {
       "id": "content/markdown/aaa/assemblies/mesons/mesons.md",
       "name": "Transient Hadrons: Mesons and Δ Resonances",
       "path": "content/markdown/aaa/assemblies/mesons/mesons.md",
@@ -2456,24 +2456,6 @@
       "id": "content/markdown/aaa/foundations/ontology.md",
       "name": "Foundational Ontology",
       "path": "content/markdown/aaa/foundations/ontology.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/interactions/gauge-structure-emergence.md",
-      "name": "Gauge Structure Emergence",
-      "path": "content/markdown/aaa/interactions/gauge-structure-emergence.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/interactions/gauge-symmetries.md",
-      "name": "Gauge Symmetries",
-      "path": "content/markdown/aaa/interactions/gauge-symmetries.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/interactions/mode-taxonomy.md",
-      "name": "Mode Taxonomy",
-      "path": "content/markdown/aaa/interactions/mode-taxonomy.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -2777,6 +2759,12 @@
       "nodeType": "markdown_doc"
     },
     {
+      "id": "content/markdown/aaa/reactions/mode-taxonomy.md",
+      "name": "Mode Taxonomy",
+      "path": "content/markdown/aaa/reactions/mode-taxonomy.md",
+      "nodeType": "markdown_doc"
+    },
+    {
       "id": "content/markdown/aaa/reactions/radiation.md",
       "name": "Radiation",
       "path": "content/markdown/aaa/reactions/radiation.md",
@@ -2882,12 +2870,6 @@
       "id": "content/markdown/aaa/validation/constraint-ledger.md",
       "name": "Constraint Ledger",
       "path": "content/markdown/aaa/validation/constraint-ledger.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/validation/data-sources/pdg-api.md",
-      "name": "PDG Python API (pdg package)",
-      "path": "content/markdown/aaa/validation/data-sources/pdg-api.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -3122,12 +3104,6 @@
       "id": "content/markdown/aaa/validation/simulations/thermodynamic-residual.md",
       "name": "Thermodynamic Residual Protocol",
       "path": "content/markdown/aaa/validation/simulations/thermodynamic-residual.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/validation/simulations/unsolved-problems.md",
-      "name": "Unsolved Problems",
-      "path": "content/markdown/aaa/validation/simulations/unsolved-problems.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -3577,15 +3553,6 @@
       "name": "Expansion Mechanism",
       "path": "content/scenes/cosmology/expansion_mechanism.json",
       "searchTarget": "content/scenes/cosmology/expansion_mechanism.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/cosmology/galaxy_cluster.json",
-      "nodeType": "scene",
-      "id": "galaxy_cluster",
-      "name": "Galaxy Cluster",
-      "path": "content/scenes/cosmology/galaxy_cluster.json",
-      "searchTarget": "content/scenes/cosmology/galaxy_cluster.json",
       "implicit": false
     },
     {
@@ -6064,15 +6031,6 @@
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/validation/sim_unsolved_problems.json",
-      "nodeType": "scene",
-      "id": "validation_simulations__sim_unsolved_problems",
-      "name": "Unsolved Problems",
-      "path": "content/scenes/validation/sim_unsolved_problems.json",
-      "searchTarget": "content/scenes/validation/sim_unsolved_problems.json",
-      "implicit": false
-    },
-    {
       "nodeId": "scene:content/scenes/validation/simulations.json",
       "nodeType": "scene",
       "id": "validation_simulations",
@@ -6361,6 +6319,24 @@
       "implicit": false
     },
     {
+      "nodeId": "markdown_doc:content/markdown/aaa/assemblies/gauge-structure-emergence.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/assemblies/gauge-structure-emergence.md",
+      "name": "Gauge Structure Emergence",
+      "path": "content/markdown/aaa/assemblies/gauge-structure-emergence.md",
+      "searchTarget": "content/markdown/aaa/assemblies/gauge-structure-emergence.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/assemblies/gauge-symmetries.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/assemblies/gauge-symmetries.md",
+      "name": "Gauge Symmetries",
+      "path": "content/markdown/aaa/assemblies/gauge-symmetries.md",
+      "searchTarget": "content/markdown/aaa/assemblies/gauge-symmetries.md",
+      "implicit": false
+    },
+    {
       "nodeId": "markdown_doc:content/markdown/aaa/assemblies/mesons/mesons.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/assemblies/mesons/mesons.md",
@@ -6601,33 +6577,6 @@
       "name": "Foundational Ontology",
       "path": "content/markdown/aaa/foundations/ontology.md",
       "searchTarget": "content/markdown/aaa/foundations/ontology.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/interactions/gauge-structure-emergence.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/interactions/gauge-structure-emergence.md",
-      "name": "Gauge Structure Emergence",
-      "path": "content/markdown/aaa/interactions/gauge-structure-emergence.md",
-      "searchTarget": "content/markdown/aaa/interactions/gauge-structure-emergence.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/interactions/gauge-symmetries.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/interactions/gauge-symmetries.md",
-      "name": "Gauge Symmetries",
-      "path": "content/markdown/aaa/interactions/gauge-symmetries.md",
-      "searchTarget": "content/markdown/aaa/interactions/gauge-symmetries.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/interactions/mode-taxonomy.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/interactions/mode-taxonomy.md",
-      "name": "Mode Taxonomy",
-      "path": "content/markdown/aaa/interactions/mode-taxonomy.md",
-      "searchTarget": "content/markdown/aaa/interactions/mode-taxonomy.md",
       "implicit": false
     },
     {
@@ -7081,6 +7030,15 @@
       "implicit": false
     },
     {
+      "nodeId": "markdown_doc:content/markdown/aaa/reactions/mode-taxonomy.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/reactions/mode-taxonomy.md",
+      "name": "Mode Taxonomy",
+      "path": "content/markdown/aaa/reactions/mode-taxonomy.md",
+      "searchTarget": "content/markdown/aaa/reactions/mode-taxonomy.md",
+      "implicit": false
+    },
+    {
       "nodeId": "markdown_doc:content/markdown/aaa/reactions/radiation.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/reactions/radiation.md",
@@ -7240,15 +7198,6 @@
       "name": "Constraint Ledger",
       "path": "content/markdown/aaa/validation/constraint-ledger.md",
       "searchTarget": "content/markdown/aaa/validation/constraint-ledger.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/validation/data-sources/pdg-api.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/validation/data-sources/pdg-api.md",
-      "name": "PDG Python API (pdg package)",
-      "path": "content/markdown/aaa/validation/data-sources/pdg-api.md",
-      "searchTarget": "content/markdown/aaa/validation/data-sources/pdg-api.md",
       "implicit": false
     },
     {
@@ -7603,15 +7552,6 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/validation/simulations/unsolved-problems.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/validation/simulations/unsolved-problems.md",
-      "name": "Unsolved Problems",
-      "path": "content/markdown/aaa/validation/simulations/unsolved-problems.md",
-      "searchTarget": "content/markdown/aaa/validation/simulations/unsolved-problems.md",
-      "implicit": false
-    },
-    {
       "nodeId": "markdown_doc:content/markdown/aaa/validation/validation-protocols.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/validation/validation-protocols.md",
@@ -7940,7 +7880,7 @@
       "to": "scene:content/scenes/cosmology/universe.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "scene.children[9]"
+      "field": "scene.children[11]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
@@ -7975,7 +7915,7 @@
       "to": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "scene.children[11]"
+      "field": "scene.children[10]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
@@ -8003,7 +7943,7 @@
       "to": "scene:content/scenes/validation/validation.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "scene.children[10]"
+      "field": "scene.children[9]"
     },
     {
       "from": "scene:content/scenes/assemblies/assemblies.json",
@@ -8188,20 +8128,6 @@
       "field": "scene.children[0]"
     },
     {
-      "from": "scene:content/scenes/cosmology/galaxy_cluster.json",
-      "to": "scene:content/scenes/cosmology/galaxy.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/cosmology/galaxy_cluster.json",
-      "field": "scene.children[0]"
-    },
-    {
-      "from": "scene:content/scenes/cosmology/galaxy_cluster.json",
-      "to": "scene:content/scenes/cosmology/intracluster_medium.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/cosmology/galaxy_cluster.json",
-      "field": "scene.children[1]"
-    },
-    {
       "from": "scene:content/scenes/cosmology/galaxy.json",
       "to": "scene:content/scenes/cosmology/disk.json",
       "edgeType": "subscene",
@@ -8308,59 +8234,52 @@
     },
     {
       "from": "scene:content/scenes/cosmology/universe.json",
-      "to": "scene:content/scenes/cosmology/galaxy_cluster.json",
+      "to": "scene:content/scenes/cosmology/galaxy.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/universe.json",
       "field": "scene.children[0]"
     },
     {
       "from": "scene:content/scenes/cosmology/universe.json",
-      "to": "scene:content/scenes/cosmology/galaxy.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/cosmology/universe.json",
-      "field": "scene.children[2]"
-    },
-    {
-      "from": "scene:content/scenes/cosmology/universe.json",
       "to": "scene:content/scenes/cosmology/intracluster_medium.json",
       "edgeType": "subscene",
       "source": "content/scenes/cosmology/universe.json",
-      "field": "scene.children[3]"
+      "field": "scene.children[1]"
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
       "to": "scene:content/scenes/dynamics/binary_dynamics.json",
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[3]"
+      "field": "scene.children[4]"
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
       "to": "scene:content/scenes/dynamics/causal_action_functional.json",
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[5]"
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
       "to": "scene:content/scenes/dynamics/dyadic_resonance_lock.json",
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[4]"
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
       "to": "scene:content/scenes/dynamics/effective_lagrangian.json",
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
       "to": "scene:content/scenes/dynamics/entropy_and_record_coarse_graining.json",
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[2]"
+      "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
@@ -8381,7 +8300,14 @@
       "to": "scene:content/scenes/proof-programs/proof_programs.json",
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[7]"
+      "field": "scene.children[8]"
+    },
+    {
+      "from": "scene:content/scenes/dynamics/dynamics.json",
+      "to": "scene:content/scenes/validation/action_energy.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/dynamics/dynamics.json",
+      "field": "scene.children[2]"
     },
     {
       "from": "scene:content/scenes/elements/ac.json",
@@ -11864,66 +11790,52 @@
     },
     {
       "from": "scene:content/scenes/validation/simulations.json",
-      "to": "scene:content/scenes/validation/action_energy.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/validation/simulations.json",
-      "field": "scene.children[0]"
-    },
-    {
-      "from": "scene:content/scenes/validation/simulations.json",
       "to": "scene:content/scenes/validation/sim_a0_branch_certificate_protocol.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/validation/simulations.json",
-      "field": "scene.children[6]"
-    },
-    {
-      "from": "scene:content/scenes/validation/simulations.json",
-      "to": "scene:content/scenes/validation/sim_architrino.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/validation/simulations.json",
-      "field": "scene.children[1]"
-    },
-    {
-      "from": "scene:content/scenes/validation/simulations.json",
-      "to": "scene:content/scenes/validation/sim_convergence_tests.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/validation/simulations.json",
-      "field": "scene.children[2]"
-    },
-    {
-      "from": "scene:content/scenes/validation/simulations.json",
-      "to": "scene:content/scenes/validation/sim_perspective.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/validation/simulations.json",
-      "field": "scene.children[3]"
-    },
-    {
-      "from": "scene:content/scenes/validation/simulations.json",
-      "to": "scene:content/scenes/validation/sim_readme.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/validation/simulations.json",
-      "field": "scene.children[4]"
-    },
-    {
-      "from": "scene:content/scenes/validation/simulations.json",
-      "to": "scene:content/scenes/validation/sim_run_protocols.json",
       "edgeType": "subscene",
       "source": "content/scenes/validation/simulations.json",
       "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/validation/simulations.json",
-      "to": "scene:content/scenes/validation/sim_synthetic_observables.json",
+      "to": "scene:content/scenes/validation/sim_architrino.json",
       "edgeType": "subscene",
       "source": "content/scenes/validation/simulations.json",
-      "field": "scene.children[7]"
+      "field": "scene.children[0]"
     },
     {
       "from": "scene:content/scenes/validation/simulations.json",
-      "to": "scene:content/scenes/validation/sim_unsolved_problems.json",
+      "to": "scene:content/scenes/validation/sim_convergence_tests.json",
       "edgeType": "subscene",
       "source": "content/scenes/validation/simulations.json",
-      "field": "scene.children[8]"
+      "field": "scene.children[1]"
+    },
+    {
+      "from": "scene:content/scenes/validation/simulations.json",
+      "to": "scene:content/scenes/validation/sim_perspective.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/validation/simulations.json",
+      "field": "scene.children[2]"
+    },
+    {
+      "from": "scene:content/scenes/validation/simulations.json",
+      "to": "scene:content/scenes/validation/sim_readme.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/validation/simulations.json",
+      "field": "scene.children[3]"
+    },
+    {
+      "from": "scene:content/scenes/validation/simulations.json",
+      "to": "scene:content/scenes/validation/sim_run_protocols.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/validation/simulations.json",
+      "field": "scene.children[4]"
+    },
+    {
+      "from": "scene:content/scenes/validation/simulations.json",
+      "to": "scene:content/scenes/validation/sim_synthetic_observables.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/validation/simulations.json",
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/validation/validation.json",
@@ -12151,14 +12063,14 @@
     },
     {
       "from": "scene:content/scenes/assemblies/gauge_structure_emergence.json",
-      "to": "markdown_doc:content/markdown/aaa/interactions/gauge-structure-emergence.md",
+      "to": "markdown_doc:content/markdown/aaa/assemblies/gauge-structure-emergence.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/assemblies/gauge_structure_emergence.json",
       "field": "scene.source.path"
     },
     {
       "from": "scene:content/scenes/assemblies/gauge_symmetries.json",
-      "to": "markdown_doc:content/markdown/aaa/interactions/gauge-symmetries.md",
+      "to": "markdown_doc:content/markdown/aaa/assemblies/gauge-symmetries.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/assemblies/gauge_symmetries.json",
       "field": "scene.source.path"
@@ -12725,7 +12637,7 @@
     },
     {
       "from": "scene:content/scenes/reactions/mode_taxonomy.json",
-      "to": "markdown_doc:content/markdown/aaa/interactions/mode-taxonomy.md",
+      "to": "markdown_doc:content/markdown/aaa/reactions/mode-taxonomy.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/reactions/mode_taxonomy.json",
       "field": "scene.source.path"
@@ -13064,13 +12976,6 @@
       "to": "markdown_doc:content/markdown/aaa/validation/simulations/synthetic-observables.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/validation/sim_synthetic_observables.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/validation/sim_unsolved_problems.json",
-      "to": "markdown_doc:content/markdown/aaa/validation/simulations/unsolved-problems.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/validation/sim_unsolved_problems.json",
       "field": "scene.source.path"
     },
     {

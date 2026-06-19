@@ -19,6 +19,10 @@
         "scenePath": "content/scenes/dynamics/kinetic_and_potential_energy.json"
       },
       {
+        "nodeId": "action_energy",
+        "scenePath": "content/scenes/validation/action_energy.json"
+      },
+      {
         "nodeId": "entropy_and_record_coarse_graining",
         "scenePath": "content/scenes/dynamics/entropy_and_record_coarse_graining.json"
       },
@@ -62,6 +66,21 @@
       "labelBadge": "doc"
     },
     {
+      "id": "action_energy",
+      "title": "Action-Energy",
+      "radius": 2.688,
+      "color": "#3a5f9f",
+      "labelTitle": "Action-Energy"
+    },
+    {
+      "id": "entropy_and_record_coarse_graining",
+      "title": "Entropy and Record Coarse-Graining",
+      "radius": 2.688,
+      "color": "#7a4b2a",
+      "labelTitle": "Entropy and Record Coarse-Graining",
+      "labelBadge": "doc"
+    },
+    {
       "id": "binary_dynamics",
       "title": "Binary Dynamics",
       "radius": 2.688,
@@ -91,14 +110,6 @@
       "radius": 2.688,
       "color": "#5a1f2e",
       "labelTitle": "Effective Lagrangian",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "entropy_and_record_coarse_graining",
-      "title": "Entropy and Record Coarse-Graining",
-      "radius": 2.688,
-      "color": "#7a4b2a",
-      "labelTitle": "Entropy and Record Coarse-Graining",
       "labelBadge": "doc"
     },
     {

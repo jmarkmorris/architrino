@@ -224,6 +224,52 @@ test("Scene-Index nodes infer doc badges from markdown child scenes", async () =
   );
 });
 
+test("Scene-Index nodes receive textbook chapter labels from resolver", async () => {
+  const repository = createRepositoryWithScenes(
+    {
+      "content/scenes/example/markdown_child.json": {
+        scene: {
+          type: "Scene-Markdown-View",
+          source: {
+            type: "markdown",
+            path: "content/markdown/example.md",
+          },
+        },
+        objects: [],
+      },
+    },
+    {
+      resolveTextbookChapterLabel: async (node) =>
+        node.childScene === "content/scenes/example/markdown_child.json" ? "Ch 3.2" : null,
+    }
+  );
+
+  const config = await repository.createConfigFromSceneData(
+    "content/scenes/example/index.json",
+    {
+      scene: {
+        type: "Scene-Index",
+        children: [
+          {
+            nodeId: "markdown_child",
+            scenePath: "content/scenes/example/markdown_child.json",
+          },
+        ],
+      },
+      objects: [
+        {
+          id: "markdown_child",
+        },
+      ],
+    }
+  );
+
+  assert.equal(
+    config.nodes.find((node) => node.id === "markdown_child")?.textbookChapterLabel,
+    "Ch 3.2"
+  );
+});
+
 test("markdown view options propagate to runtime nodes", async () => {
   const repository = createRepositoryWithScenes({});
 

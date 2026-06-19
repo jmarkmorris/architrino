@@ -37,19 +37,19 @@
       "labelBadge": "doc"
     },
     {
-      "id": "nested_shell_swarm_geometry",
-      "title": "Nested Shell Swarm Geometry",
-      "radius": 2.05,
-      "color": "#2f4f7a",
-      "labelTitle": "Nested Shell Swarm Geometry",
-      "labelBadge": "doc"
-    },
-    {
       "id": "nested_shell_swarm_dynamics",
       "title": "Nested Shell Swarm Dynamics",
       "radius": 2.05,
       "color": "#3f6a5a",
       "labelTitle": "Nested Shell Swarm Dynamics",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "nested_shell_swarm_geometry",
+      "title": "Nested Shell Swarm Geometry",
+      "radius": 2.05,
+      "color": "#2f4f7a",
+      "labelTitle": "Nested Shell Swarm Geometry",
       "labelBadge": "doc"
     }
   ]

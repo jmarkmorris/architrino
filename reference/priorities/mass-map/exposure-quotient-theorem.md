@@ -515,7 +515,7 @@ This packet owns:
 
 ## Promotion Gate
 
-The theorem can promote into [particle-masses](../../../content/markdown/aaa/assemblies/particle-masses.md), [weak-mixing-angle](../../../content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md), [gauge-structure-emergence](../../../content/markdown/aaa/interactions/gauge-structure-emergence.md), [radiation](../../../content/markdown/aaa/reactions/radiation.md), or [measurement-ontology](../../../content/markdown/aaa/quantum/measurement-ontology.md) only after at least one worked case instantiates the Exposure Promotion Lemma with:
+The theorem can promote into [particle-masses](../../../content/markdown/aaa/assemblies/particle-masses.md), [weak-mixing-angle](../../../content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md), [gauge-structure-emergence](../../../content/markdown/aaa/assemblies/gauge-structure-emergence.md), [radiation](../../../content/markdown/aaa/reactions/radiation.md), or [measurement-ontology](../../../content/markdown/aaa/quantum/measurement-ontology.md) only after at least one worked case instantiates the Exposure Promotion Lemma with:
 
 1. an accepted source assembly or branch family;
 2. a concrete emitted ledger $\mathcal{L}_A\in\mathfrak{L}_A$;
@@ -557,6 +557,6 @@ The theorem can promote into [particle-masses](../../../content/markdown/aaa/ass
 - [weak-mixing-ckm](../../../content/markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md)
 - [color-charge-su3](../../../content/markdown/aaa/assemblies/fermions/color-charge-su3.md)
 - [electroweak-bosons](../../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md)
-- [gauge-structure-emergence](../../../content/markdown/aaa/interactions/gauge-structure-emergence.md)
+- [gauge-structure-emergence](../../../content/markdown/aaa/assemblies/gauge-structure-emergence.md)
 - [radiation](../../../content/markdown/aaa/reactions/radiation.md)
 - [measurement-ontology](../../../content/markdown/aaa/quantum/measurement-ontology.md)

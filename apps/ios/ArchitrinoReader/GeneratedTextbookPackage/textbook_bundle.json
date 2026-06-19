@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
   "manifest_schema": "textbook_bundle_schema_v1",
-  "generated_at": "2026-06-19T03:09:36.817Z",
-  "package_version": "1.0.0-1281bb87",
+  "generated_at": "2026-06-19T03:58:32.471Z",
+  "package_version": "1.0.0-7a1e6afb",
   "schema_version_note": "content_bundle_schema_v1",
   "textbook_toc": {
     "path": "content/graph/textbook_toc.json",
-    "sha256": "1281bb879cdacc3691a890d8b929266c9449f3491d11f6fd8de5b50cadd68596",
-    "size": 625431
+    "sha256": "7a1e6afb69b0aaa70240d047622f08ec78ff4b66aef6f5be51a4612d12046a7e",
+    "size": 624551
   },
   "chapters": [
     {
@@ -164,8 +164,8 @@
       "sourcePath": "content/graph/textbook_toc.json",
       "role": "toc",
       "type": "json",
-      "size": 625885,
-      "sha256": "1281bb879cdacc3691a890d8b929266c9449f3491d11f6fd8de5b50cadd68596"
+      "size": 625005,
+      "sha256": "7a1e6afb69b0aaa70240d047622f08ec78ff4b66aef6f5be51a4612d12046a7e"
     },
     {
       "path": "reading-copies/atomic-and-nuclear-assemblies.html",
@@ -332,16 +332,16 @@
       "sourcePath": "__generated__/reading-copies/validation.html",
       "role": "chapter",
       "type": "html",
-      "size": 5130919,
-      "sha256": "ed6b46ce34a6ca15ac1de3e3eb552e0ce41645c5c4ef9c1440e86235bec178c2"
+      "size": 5128793,
+      "sha256": "7b5d136313e179bbe084eebe5106a22caa50fad19dc8d8ad55554309bd56afc9"
     },
     {
       "path": "reading-copies/validation.md",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/validation.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 450273,
-      "sha256": "4d92613f96fc4fab666af339c8905b03e3e09b62e3fe91f62247346e862cae48"
+      "size": 449559,
+      "sha256": "fa31c5c933db91a80612d207eb3ed2d31d074916f18c0ccf0696b8d31d546d7a"
     },
     {
       "path": "references/academic-style-guide.html",
@@ -428,8 +428,8 @@
       "sourcePath": "__generated__/textbook_bundle_search_index.json",
       "role": "search",
       "type": "json",
-      "size": 8385517,
-      "sha256": "4b5d22e95719d01e43191ae9cef308421bef8379e499b5b255565a56feccdcef"
+      "size": 8382607,
+      "sha256": "1687c5df73c236413b80e01e5f59a8d7713382fae8fb92024919c863819cb9a6"
     }
   ],
   "links": []

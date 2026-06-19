@@ -107,8 +107,8 @@ THEMES = {
 }
 
 DEPTHS = [
-    {"depth": 1, "t": 0.16, "weight": 0.24, "falloff": "0.24", "state": "older"},
-    {"depth": 2, "t": 0.38, "weight": 0.48, "falloff": "0.48", "state": "active"},
+    {"depth": 1, "t": 0.08, "weight": 0.24, "falloff": "0.24", "state": "older"},
+    {"depth": 2, "t": 0.25, "weight": 0.48, "falloff": "0.48", "state": "active"},
     {"depth": 3, "t": 0.62, "weight": 0.72, "falloff": "0.72", "state": "active"},
     {"depth": 4, "t": 0.88, "weight": 1.00, "falloff": "1.00", "state": "newer"},
 ]
@@ -316,7 +316,7 @@ def draw_background(c: Canvas) -> None:
     c.line([(92, 908), (92, 182)], (255, 255, 255, 84), 1.2)
     c.draw.polygon([c.xy((1510, 908)), c.xy((1496, 900)), c.xy((1496, 916))], fill=(255, 255, 255, 124))
     c.draw.polygon([c.xy((92, 182)), c.xy((84, 196)), c.xy((100, 196))], fill=(255, 255, 255, 70))
-    c.text((112, 920), "time", 14, (238, 243, 255, 172), "regular")
+    c.text((1488, 920), "time", 14, (238, 243, 255, 172), "regular", anchor="ra")
     c.text((74, 165), "space", 14, (238, 243, 255, 150), "regular", anchor="lm")
 
 
@@ -523,60 +523,6 @@ def draw_wakes(c: Canvas) -> None:
         )
 
 
-def draw_stack_bar(c: Canvas, x: float, y: float, width: float, color: tuple[int, int, int, int], value: float) -> None:
-    value = max(0.0, min(1.0, value))
-    c.rounded(x, y, width, 8, 4, (42, 34, 64, 232), None)
-    c.rounded(x, y, width * value, 8, 4, with_alpha(color, 190), None)
-
-
-def draw_contribution_stack(c: Canvas) -> None:
-    x = 1580
-    y = 142
-    w = 300
-    h = 782
-    c.rounded(x, y, w, h, 8, c.theme["panel"], c.theme["panel_border"], 1)
-    c.text((x + 24, y + 34), "Feedback Links", 22, WHITE, "bold", anchor="lm")
-    c.text((x + 24, y + 60), "emitter point -> later receiver point", 13, (224, 230, 255, 158), "regular", anchor="lm")
-
-    links = [
-        ("red 1 -> blue 2", POSITRINO_WAKE, "older red wake"),
-        ("blue 1 -> red 2", ELECTRINO_WAKE, "older blue wake"),
-        ("red 2 -> blue 3", POSITRINO_WAKE, "middle red wake"),
-        ("blue 2 -> red 3", ELECTRINO_WAKE, "middle blue wake"),
-        ("red 3 -> blue 4", POSITRINO_WAKE, "newer red wake"),
-        ("blue 3 -> red 4", ELECTRINO_WAKE, "newer blue wake"),
-    ]
-    row_y = y + 96
-    row_h = 72
-    for index, (label, color, note) in enumerate(links):
-        fill = (18, 12, 30, 230 if index in (2, 3) else 208)
-        outline = with_alpha(color, 96 if index in (2, 3) else 54)
-        c.rounded(x + 18, row_y, w - 36, row_h, 7, fill, outline, 1)
-        c.text((x + 36, row_y + 25), label, 15, with_alpha(color, 235), "bold", anchor="lm")
-        c.text((x + 36, row_y + 49), note, 12, (224, 230, 255, 150), "regular", anchor="lm")
-        c.line([(x + 202, row_y + 36), (x + 248, row_y + 36)], with_alpha(color, 190), 2.0)
-        row_y += row_h + 12
-
-    c.rounded(x + 18, y + h - 106, w - 36, 68, 7, (18, 12, 30, 220), (255, 255, 255, 54), 1)
-    c.text((x + 36, y + h - 78), "trace count", 16, WHITE, "bold", anchor="lm")
-    c.text((x + 36, y + h - 51), f"{c.variant.wake_bands} fronts per link", 15, (224, 230, 255, 194), "regular", anchor="lm")
-
-
-def draw_bottom_readout(c: Canvas) -> None:
-    c.rounded(64, 940, 980, 80, 8, c.theme["panel"], c.theme["panel_border"], 1)
-    chips = [
-        ("now", "0.88"),
-        ("retained points", "4 per path"),
-        ("dataset", "representative mock solver replay"),
-        ("layout", "time-space cross feedback"),
-    ]
-    x = 88
-    for label, value in chips:
-        c.text((x, 963), label, 13, (224, 230, 255, 142), "regular", anchor="la")
-        c.text((x, 990), value, 16, WHITE, "bold", anchor="la")
-        x += 218 if label != "dataset" else 330
-
-
 def draw_scene(c: Canvas) -> None:
     draw_background(c)
     draw_toolbar(c)
@@ -584,8 +530,6 @@ def draw_scene(c: Canvas) -> None:
     draw_wakes(c)
     draw_path_trail(c, "positrino", POSITRINO)
     draw_path_trail(c, "electrino", ELECTRINO)
-    draw_contribution_stack(c)
-    draw_bottom_readout(c)
 
 
 def generate_tiles() -> list[dict[str, str]]:

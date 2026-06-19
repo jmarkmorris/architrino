@@ -27,7 +27,7 @@ When the reduced map is used as a probability or stability laboratory, this work
 
 | File | Role | Target AAA notes |
 | --- | --- | --- |
-| [phenomenological-heuristics.md](phenomenological-heuristics.md) | Preserved archive for conjectural geometry, scaling, and cosmology intuitions that should not drive the active derivation unless rederived from the reduced dynamics. | [dyadic-resonance-lock](../../../content/markdown/aaa/dynamics/dyadic-resonance-lock.md), [binary-dynamics](../../../content/markdown/aaa/dynamics/binary-dynamics.md), [mode-taxonomy](../../../content/markdown/aaa/interactions/mode-taxonomy.md) |
+| [phenomenological-heuristics.md](phenomenological-heuristics.md) | Preserved archive for conjectural geometry, scaling, and cosmology intuitions that should not drive the active derivation unless rederived from the reduced dynamics. | [dyadic-resonance-lock](../../../content/markdown/aaa/dynamics/dyadic-resonance-lock.md), [binary-dynamics](../../../content/markdown/aaa/dynamics/binary-dynamics.md), [mode-taxonomy](../../../content/markdown/aaa/reactions/mode-taxonomy.md) |
 | [noether-swarm-scaling-and-packing.md](noether-swarm-scaling-and-packing.md) | Priority scaffold for ideal Noether swarm same-energy scaling, outer-binary radius/speed equations, and exclusion-envelope packing center density. | [dyadic-resonance-lock](../../../content/markdown/aaa/dynamics/dyadic-resonance-lock.md), [binary-dynamics](../../../content/markdown/aaa/dynamics/binary-dynamics.md), [noether-swarm](../../../content/markdown/aaa/noether-swarm/noether-swarm.md), [nested-shell-swarm-geometry](../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md), [noether-sea](../../../content/markdown/aaa/spacetime/noether-sea.md) |
 
 ## What Is Solid
@@ -52,7 +52,7 @@ When the reduced map is used as a probability or stability laboratory, this work
 | --- | --- | --- | --- |
 | `reduced_phase_amplitude_map` | [phenomenological-heuristics.md](phenomenological-heuristics.md) as archive source only | [dyadic-resonance-lock](../../../content/markdown/aaa/dynamics/dyadic-resonance-lock.md) | A finite-$\eta$ two-layer return map with phase and amplitude/speed variables, active branch counts, and a stated regularization. |
 | `stable_12_fixed_point` | [phenomenological-heuristics.md](phenomenological-heuristics.md) as archive source only | [dyadic-resonance-lock](../../../content/markdown/aaa/dynamics/dyadic-resonance-lock.md) | A stable `1:2` fixed point proved or numerically demonstrated with Jacobian/eigenvalue diagnostics. |
-| `chain_to_124` | [phenomenological-heuristics.md](phenomenological-heuristics.md) as archive source only | [dyadic-resonance-lock](../../../content/markdown/aaa/dynamics/dyadic-resonance-lock.md) and [mode-taxonomy](../../../content/markdown/aaa/interactions/mode-taxonomy.md) | Chaining the second layer yields a stable `1:2:4` state, or the failure mode is recorded without promoting the old heuristic branch ledger. |
+| `chain_to_124` | [phenomenological-heuristics.md](phenomenological-heuristics.md) as archive source only | [dyadic-resonance-lock](../../../content/markdown/aaa/dynamics/dyadic-resonance-lock.md) and [mode-taxonomy](../../../content/markdown/aaa/reactions/mode-taxonomy.md) | Chaining the second layer yields a stable `1:2:4` state, or the failure mode is recorded without promoting the old heuristic branch ledger. |
 
 ## Breather Certificate Discipline
 
@@ -77,4 +77,4 @@ The dyadic program should copy the breather distinction between integer closure 
 
 - [dyadic-resonance-lock](../../../content/markdown/aaa/dynamics/dyadic-resonance-lock.md)
 - [binary-dynamics](../../../content/markdown/aaa/dynamics/binary-dynamics.md)
-- [mode-taxonomy](../../../content/markdown/aaa/interactions/mode-taxonomy.md)
+- [mode-taxonomy](../../../content/markdown/aaa/reactions/mode-taxonomy.md)

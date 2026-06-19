@@ -7,11 +7,11 @@
 - Value: `high`
 - Cost: `unscored`
 - ROI: `unscored`
-- Status: `active`
+- Status: `release-prep`
 
 ## Purpose
 
-This workstream owns a future iOS app for reading and inspecting the Architrino textbook on iPhone and iPad.
+This workstream owns the in-repo iOS/iPadOS app for reading and inspecting the Architrino textbook.
 
 The first priority is a calm, offline-capable textbook reader with a table of contents, internal links, search, reading position, bookmarks, and reliable math rendering.
 
@@ -23,11 +23,11 @@ Decision 1 (locked): `Xcode` scaffold for v1 lives at `apps/ios/ArchitrinoReader
 2. The first textbook content package ships inside the app bundle only. Downloadable content updates can come later.
 3. The first post-v1 visualization candidate is Molecule Visualization, reusing the existing [Molecule scene](../../../content/scenes/archie/molecule.json) and [Molecule runtime](../../../src/apps/molecule/MoleculeRuntime.js) as the eventual starting surface.
 4. The app scope is limited to reading and visualization; there is no separate memorization or review feature in the first product plan.
-5. The first minimum deployment target is iOS 18.0 and iPadOS 18.0, built with the current Xcode SDK available at implementation time. This avoids older compatibility constraints while preserving room to raise the floor if a needed app, rendering, or visualization API requires it.
+5. The first minimum deployment target is iOS 18.0 and iPadOS 18.0, built with the current Xcode SDK available at implementation time.
 6. The v1 milestone intentionally ships textbook-only; visualization work is deferred to a later milestone and does not block v1 completion.
 7. The v1 content package stores content as chapter-level markdown bundles plus required assets (images, CSS/JS), referenced directly by `textbook_toc.json` paths; there is no monolithic book file requirement in the app runtime.
 8. The v1 Xcode project path is `apps/ios/ArchitrinoReader/ArchitrinoReader.xcodeproj` (project name `ArchitrinoReader`).
-9. Default deployment policy: target the latest practical iOS/iPadOS release (currently 18.0 for v1) only if it does not add compatibility code, layout compromises, or tool friction; otherwise defer lower-floor support and keep this v1 single-target.
+9. Default deployment policy: do not lower the first-release iOS/iPadOS floor if doing so adds compatibility code, layout compromises, or tool friction.
 10. HTML app links (for example `ideal-swarm.html`) in textbook markdown should route to `https://architrino.com/<slug>` in-app via explicit browser handoff rather than failing with missing local assets.
 11. v1 rendering path is locked: native SwiftUI shell + local HTML shell (`WKWebView`) + runtime markdown→HTML conversion in-app. No pre-rendered per-chapter HTML artifacts for v1.
 12. TOC entries that point to web-app scene nodes (for example `diagram`, `markdown-tree`, `markdown-split`) do not open chapter content in-app. They display a local banner notice and require an explicit Safari handoff action.
@@ -35,6 +35,7 @@ Decision 1 (locked): `Xcode` scaffold for v1 lives at `apps/ios/ArchitrinoReader
 14. Reader-facing UI text and notices avoid equation-style symbols; keep labels and helper copy as plain words.
 15. The first public release target is Unlisted App Store distribution. The app still ships through App Store Connect and ordinary App Review, but the post-approval install path is a direct App Store link rather than App Store search, categories, recommendations, charts, or other listings.
 16. [Causal Delay Feedback App](../causal-delay-feedback-app/causal-delay-feedback-app.md) is a post-v1 visualization candidate. Its iPhone/iPad integration should adapt to landscape and portrait orientation while preserving the one-pair causal-delay scene state.
+17. iPadOS is a first-release quality target, not an opportunistic compatibility target. The first release must be usable on iPad with the same textbook content package, reader controls, search, bookmarks, and local-only persistence as iPhone.
 
 ## Design Thesis
 
@@ -68,7 +69,8 @@ The v1 distribution plan is Unlisted App Store distribution through Apple's stan
 Release requirements:
 
 - Maintain the app record under bundle identifier `com.architrino.reader`.
-- Use TestFlight for private pre-release testing and Unlisted App Store distribution for the first public install path.
+- Use TestFlight for private pre-release testing on physical iPhone and iPad devices.
+- Use Unlisted App Store distribution for the first public install path.
 - Add an App Review note stating that Architrino Reader is intended for unlisted distribution.
 - After approval, publish the generated direct App Store link from `architrino.com` and the GitHub repository documentation.
 - Treat GitHub as the source-code, release-note, and support-documentation home, not as the iPhone install channel.
@@ -79,23 +81,24 @@ Release requirements:
 
 Release-prep checklist:
 
-- Finalize the app icon and screenshots before the first App Store Connect submission.
+- Repository-side app icon assets are present in `Assets.xcassets/AppIcon.appiconset`, including iPhone, iPad, and 1024x1024 marketing icon slots.
 - Refresh the bundled textbook package from canonical repo artifacts before each archive.
 - Verify package version and package date in the app About screen before upload.
 - Run strict package validation before archive: `node scripts/export-ios-textbook-package.mjs --check --strict`.
+- Capture App Store Connect screenshots for iPhone and iPad.
 - Archive from Xcode with a signed Release build and upload through App Store Connect.
-- Smoke-test the TestFlight build on a physical iPhone before App Review submission.
+- Smoke-test the TestFlight build on physical iPhone and iPad hardware before App Review submission.
 
 ## First Prototype Target
 
 Build the smallest useful iOS prototype as an in-repo, offline reader:
 
-1. `in_repo_xcode_project` - Create the SwiftUI iOS project inside this repo, with iOS 18.0 and iPadOS 18.0 as the first minimum deployment target. Status: `active`. Depends on: none.
-2. `textbook_package_export` - Add or define an export step that packages `textbook_toc.json`, chapter reading-copy markdown, local assets, link metadata, and a lightweight search index for app-bundle inclusion. Status: `active`. Depends on: `in_repo_xcode_project`.
-3. `native_reader_shell` - Create a SwiftUI app shell with a Textbook tab, iPhone navigation stack, iPad sidebar, persistent reading position, and local bundle content loading. Status: `active`. Depends on: `textbook_package_export`.
-4. `toc_and_internal_links` - Render the generated textbook TOC as navigable app state and route scene links plus markdown section links inside the app. Status: `active`. Depends on: `native_reader_shell`.
-5. `math_and_markdown_rendering` - Prove that TeX, KaTeX, headings, tables, callouts, and internal anchors render correctly on iPhone and iPad. Status: `active`. Depends on: `native_reader_shell`.
-6. `reader_basics` - Add search, bookmarks, reading position, text size controls, light/dark mode, and next/previous section navigation. Status: `next`. Depends on: `math_and_markdown_rendering`.
+1. `in_repo_xcode_project` - Create the SwiftUI iOS project inside this repo, with iOS 18.0 and iPadOS 18.0 as the first minimum deployment target. Status: `implemented`. Depends on: none.
+2. `textbook_package_export` - Add or define an export step that packages `textbook_toc.json`, chapter reading-copy markdown, local assets, link metadata, and a lightweight search index for app-bundle inclusion. Status: `implemented`. Depends on: `in_repo_xcode_project`.
+3. `native_reader_shell` - Create a SwiftUI app shell with a Textbook tab, iPhone navigation stack, iPad sidebar, persistent reading position, and local bundle content loading. Status: `implemented`. Depends on: `textbook_package_export`.
+4. `toc_and_internal_links` - Render the generated textbook TOC as navigable app state and route scene links plus markdown section links inside the app. Status: `implemented`. Depends on: `native_reader_shell`.
+5. `math_and_markdown_rendering` - Prove that TeX, KaTeX, headings, tables, callouts, and internal anchors render correctly on iPhone and iPad. Status: `implemented; first-release iPad device QA pending`. Depends on: `native_reader_shell`.
+6. `reader_basics` - Add search, bookmarks, reading position, text size controls, theme controls, margin controls, and next/previous section navigation. Status: `implemented`. Depends on: `math_and_markdown_rendering`.
 7. `molecule_visualization` - Defer to a later milestone. Status: `deferred`. Depends on: `reader_basics`.
 
 ## Implementation Tickets
@@ -104,33 +107,33 @@ Treat these as backlog tickets in execution order. Keep each ticket one engineer
 
 ### Phase 0: Foundation
 
-1. `ios_project_scaffold` - Create the SwiftUI project in-repo with iOS 18.0 / iPadOS 18.0 deployment targets, a lightweight tab shell (Textbook / Settings), and basic routing. Status: `active` (project file and generic iOS build validation complete; simulator runtime check pending).
+1. `ios_project_scaffold` - Create the SwiftUI project in-repo with iOS 18.0 / iPadOS 18.0 deployment targets, a lightweight tab shell, and basic routing. Status: `implemented`.
    - Scaffolded folder and Swift sources now exist at `apps/ios/ArchitrinoReader/`.
    - Xcode project file now exists at `apps/ios/ArchitrinoReader/ArchitrinoReader.xcodeproj`.
    - Generic no-signing iOS build passes with Xcode 26.5 using the `ArchitrinoReader` scheme.
-2. `content_bundle_schema_v1` - Define and document a deterministic `textbook_bundle.json` manifest schema for the app package (content hashes, generated-on, version id, TOC checksum, file map). Status: `active`.
+2. `content_bundle_schema_v1` - Define and document a deterministic `textbook_bundle.json` manifest schema for the app package (content hashes, generated-on, version id, TOC checksum, file map). Status: `implemented`.
    - Schema: `apps/ios/ArchitrinoReader/textbook_bundle_schema_v1.json`.
-3. `content_export_script` - Add an export script that copies `content/graph/textbook_toc.json`, generated reading-copy markdown, and related assets into `ios-app` bundle-ready structure. Status: `active`.
+3. `content_export_script` - Add an export script that copies `content/graph/textbook_toc.json`, generated reading-copy markdown, and related assets into the bundle-ready package. Status: `implemented`.
    - Script: `scripts/export-ios-textbook-package.mjs`.
    - Run with `node scripts/export-ios-textbook-package.mjs --write` and validate with `--check`.
    - Search index generation now excludes non-deterministic fields from content hashing and reports repeated heading titles as non-fatal diagnostics after assigning deterministic suffix anchors.
    - The generated app package is excluded from the repo-wide markdown audit; `export-ios-textbook-package.mjs` owns its link and manifest validation.
-4. `bundle_validation_smoke` - Add a local check that ensures manifest consistency and detects missing markdown links, duplicate anchors, and absent assets before build integration.
+4. `bundle_validation_smoke` - Add a local check that ensures manifest consistency and detects missing markdown links, duplicate anchors, and absent assets before build integration. Status: `implemented`.
 
 ### Phase 1: Reader Core
 
-5. `local_asset_loader` - Implement startup bootstrap for app-bundle textbook loading and package fingerprint display.
-6. `toc_renderer_state` - Render TOC from `textbook_toc.json` into persistent app state with chapter/section navigation.
-7. `reader_router` - Implement internal anchor/link routing for markdown section links and scene links (no external browser handoff unless explicitly requested by link type).
-8. `reader_position_bookmarks` - Persist reading position and bookmark entries by canonical path + anchor key.
-9. `basic_controls` - Add text-size control, theme control (light/dark), previous/next navigation, and search invocation.
+5. `local_asset_loader` - Implement startup bootstrap for app-bundle textbook loading and package fingerprint display. Status: `implemented`.
+6. `toc_renderer_state` - Render TOC from `textbook_toc.json` into persistent app state with chapter/section navigation. Status: `implemented`.
+7. `reader_router` - Implement internal anchor/link routing for markdown section links and scene links, with explicit browser handoff for web-app scene targets. Status: `implemented`.
+8. `reader_position_bookmarks` - Persist reading position and bookmark entries by canonical path + anchor key. Status: `implemented`.
+9. `basic_controls` - Add text-size control, theme control, margin control, previous/next navigation, and search invocation. Status: `implemented`.
 
 ### Phase 2: Reader Quality
 
-10. `math_and_anchor_rendering` - Verify representative math-heavy, equation-heavy, and table-heavy sections render in local WebKit and keep TeX delimiters stable.
-11. `full_text_indexing` - Add index generation from reading-copy markdown for title/section/body search and structured result snippets.
-12. `search_and_bookmarks_ux` - Build dedicated search and bookmarks screens/panes with deterministic navigation into active sections.
-13. `iPad_reading_layout` - Implement split-view reading workspace with sidebar content and reading pane.
+10. `math_and_anchor_rendering` - Verify representative math-heavy, equation-heavy, and table-heavy sections render in local WebKit and keep TeX delimiters stable. Status: `implemented; continue regression testing during release QA`.
+11. `full_text_indexing` - Add index generation from reading-copy markdown for title/section/body search and structured result snippets. Status: `implemented`.
+12. `search_and_bookmarks_ux` - Build dedicated search and bookmarks screens/panes with deterministic navigation into active sections. Status: `implemented`.
+13. `iPad_reading_layout` - Implement split-view reading workspace with sidebar content and reading pane. Status: `implemented; physical iPad smoke test required before first release`.
 
 ### Phase 3: Visualization (Post-v1)
 
@@ -207,7 +210,6 @@ Treat these as backlog tickets in execution order. Keep each ticket one engineer
 - Equation index and symbol index.
 - Figure index and visualization index.
 - Small guided reading paths such as Foundations, Photon, Relativity Bridge, and Proof Programs.
-- TestFlight distribution before App Store packaging.
 - Apple Pencil annotations on iPad.
 - Widget or shortcut for resuming the last section.
 
@@ -254,9 +256,12 @@ Visualizations are out of v1 scope; the list-detail pattern is a post-v1 integra
 - Do not make Visualizations block the first Textbook reader prototype.
 - Do not build broad editing, proof-checking, simulation-authoring, or visualization tools into the first iOS app.
 
-## Remaining Design Choices
+## Remaining Release Gates
 
-1. Confirm any future compatibility deltas after the v1 baseline stabilizes.
+1. Capture App Store Connect screenshots for iPhone and iPad.
+2. Verify the refreshed package version and package date in the About screen on a physical device.
+3. Run TestFlight smoke tests on physical iPhone and iPad hardware.
+4. Upload through App Store Connect, pass App Review, and request Unlisted App Store distribution.
 
 ## First Done Criteria
 
@@ -268,6 +273,7 @@ The first prototype is useful when:
 - math renders correctly in representative sections;
 - reading position and bookmarks persist across app restarts;
 - the app can identify the content package version it is using;
+- iPad opens into a usable split-view reader with the same TOC, search, bookmark, appearance, and navigation capabilities as iPhone;
 - visualizations remain out of v1 scope;
 - and the implementation path does not create a second source of truth for textbook content.
 

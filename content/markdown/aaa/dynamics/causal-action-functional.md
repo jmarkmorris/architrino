@@ -480,7 +480,7 @@ Combined with causal-locus class constraints, this would give a quantitative sep
 
 - causal-locus topology and bifurcation class invariants: **this chapter**
 - color-algebra and singlet braid structure: [assemblies/fermions/color-charge-su3.md](../assemblies/fermions/color-charge-su3.md)
-- gauge-covariant effective layer and failure criteria: [interactions/gauge-symmetries.md](../interactions/gauge-symmetries.md)
+- gauge-covariant effective layer and failure criteria: [assemblies/gauge-symmetries.md](../assemblies/gauge-symmetries.md)
 
 ## Reduced Branch-Certificate Targets
 

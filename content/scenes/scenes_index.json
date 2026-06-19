@@ -36,11 +36,6 @@
       "path": "content/scenes/cosmology/disk.json"
     },
     {
-      "id": "galaxy_cluster",
-      "name": "Galaxy Cluster",
-      "path": "content/scenes/cosmology/galaxy_cluster.json"
-    },
-    {
       "id": "galaxy",
       "name": "Galaxy",
       "path": "content/scenes/cosmology/galaxy.json"
@@ -1209,11 +1204,6 @@
       "id": "validation_simulations__sim_synthetic_observables",
       "name": "Synthetic Observables",
       "path": "content/scenes/validation/sim_synthetic_observables.json"
-    },
-    {
-      "id": "validation_simulations__sim_unsolved_problems",
-      "name": "Unsolved Problems",
-      "path": "content/scenes/validation/sim_unsolved_problems.json"
     },
     {
       "id": "validation_action_energy__superposition_locality",

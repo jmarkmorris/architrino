@@ -6,14 +6,13 @@
     "type": "Scene-Index",
     "units": "relative",
     "layout": {
-      "type": "rings"
+      "type": "rings",
+      "centerNode": null,
+      "order": "objects",
+      "direction": "clockwise"
     },
     "wrapLabels": true,
     "children": [
-      {
-        "nodeId": "action_energy",
-        "scenePath": "content/scenes/validation/action_energy.json"
-      },
       {
         "nodeId": "sim_architrino",
         "scenePath": "content/scenes/validation/sim_architrino.json"
@@ -41,21 +40,10 @@
       {
         "nodeId": "sim_synthetic_observables",
         "scenePath": "content/scenes/validation/sim_synthetic_observables.json"
-      },
-      {
-        "nodeId": "sim_unsolved_problems",
-        "scenePath": "content/scenes/validation/sim_unsolved_problems.json"
       }
     ]
   },
   "objects": [
-    {
-      "id": "action_energy",
-      "title": "Action-Energy",
-      "radius": 2.688,
-      "color": "#3a5f9f",
-      "labelTitle": "Action-Energy"
-    },
     {
       "id": "sim_architrino",
       "title": "Architrino",
@@ -110,14 +98,6 @@
       "radius": 2.688,
       "color": "#2f4f7a",
       "labelTitle": "Synthetic Observables",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "sim_unsolved_problems",
-      "title": "Unsolved Problems",
-      "radius": 2.688,
-      "color": "#2c567a",
-      "labelTitle": "Unsolved Problems",
       "labelBadge": "doc"
     }
   ]

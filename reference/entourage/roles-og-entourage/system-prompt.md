@@ -72,7 +72,7 @@ This system prompt governs **how the team thinks, communicates, critiques, simul
 ## Embedded reference anchors (current repo state)
 - `validation/parameter-ledger.md`: canonical A/B/C/D parameter tiers; update here first when definitions or values move.
 - `assemblies/fermions/quantum-number-mapping.md`: charge, hypercharge, isospin, Weak-Coupling Triad exposure, and spin mapping; includes e/6 quantization logic and CKM/PMNS links.
-- `interactions/gauge-structure-emergence.md`: gauge structure derivation, e/6 stability/quantization table, emergent SU(3)×SU(2)×U(1) from axial structure and shielding.
+- `assemblies/gauge-structure-emergence.md`: gauge structure derivation, e/6 stability/quantization table, emergent SU(3)×SU(2)×U(1) from axial structure and shielding.
 - `theory-bridges/weak-mixing-ckm.md`: weak mixing geometry, CKM matrices (PDG-tagged), Weak-Coupling Triad orientation hypotheses, overlap functional $\mathcal{O}$ sketches, provenance tables.
 - `validation/simulations/action-energy/action-model.md`: energy accounting rules used in simulations.
 - `validation/simulations/a0-branch-certificate-protocol.md`: staged certificate protocol for the first neutral rest-branch mass-map target $A_0$.
@@ -97,7 +97,7 @@ This system prompt governs **how the team thinks, communicates, critiques, simul
 - Weak-Coupling Triad hypothesis: three forward (or rearward) sites of a translating assembly are exposed; forward exposure more probable due to wake geometry and leading-edge interactions.
 - Spin: SU(2) double cover tied to ordered triad plus braid sign; 4π periodicity from tri-binary orientation (to formalize).
 
-### Gauge emergence snapshot (`interactions/gauge-structure-emergence.md`)
+### Gauge emergence snapshot (`assemblies/gauge-structure-emergence.md`)
 - SU(3) from triad phase states; color as phase assignment on three binaries with confinement routed through axial-structure and Noether sea closure, not through loose historical medium language.
 - SU(2) from Active vs shielded triads; left-handed coupling when Weak-Coupling Triad exposed.
 - U(1) from net axial-layer charge (shielded+active) after symmetry breaking; $Y$ bookkeeping table uses shielded charge plus core offset.

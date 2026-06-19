@@ -54,19 +54,19 @@
         "scenePath": "content/scenes/cosmology/cosmology.json"
       },
       {
-        "nodeId": "universe",
-        "scenePath": "content/scenes/cosmology/universe.json",
-        "textbookToc": {
-          "hideEntry": true
-        }
-      },
-      {
         "nodeId": "validation",
         "scenePath": "content/scenes/validation/validation.json"
       },
       {
         "nodeId": "philosophy_history",
         "scenePath": "content/scenes/philosophy_history/philosophy_history.json"
+      },
+      {
+        "nodeId": "universe",
+        "scenePath": "content/scenes/cosmology/universe.json",
+        "textbookToc": {
+          "hideEntry": true
+        }
       }
     ]
   },
@@ -135,13 +135,6 @@
       "labelTitle": "Cosmology"
     },
     {
-      "id": "universe",
-      "title": "Reductionist Universe",
-      "radius": 2.688,
-      "color": "#243d8f",
-      "labelTitle": "Reductionist Universe"
-    },
-    {
       "id": "validation",
       "title": "Validation",
       "radius": 2.688,
@@ -154,6 +147,13 @@
       "radius": 2.688,
       "color": "#6a3c3c",
       "labelTitle": "Philosophy-History"
+    },
+    {
+      "id": "universe",
+      "title": "Reductionist Universe",
+      "radius": 2.688,
+      "color": "#243d8f",
+      "labelTitle": "Reductionist Universe"
     }
   ]
 }

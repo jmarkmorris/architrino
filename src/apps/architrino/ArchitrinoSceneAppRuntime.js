@@ -101,6 +101,7 @@ import { createSceneGraphManifestService } from "../../services/SceneGraphManife
 import { createSceneStateHashService } from "../../services/SceneStateHashService.js";
 import { createSceneBootstrapService } from "../../services/SceneBootstrapService.js";
 import { createSceneSearchCoordinatorService } from "../../services/SceneSearchCoordinatorService.js";
+import { createTextbookTocNumberingService } from "../../services/TextbookTocNumberingService.js";
 import {
   isAtomContextScene,
   isAtomicParticleFocusTarget,
@@ -6908,6 +6909,14 @@ const buildAutoMarkdownNodes = createMarkdownNodeBuilder({
   logger: console,
 });
 
+const textbookTocNumberingService = createTextbookTocNumberingService({
+  fetchImpl: (...args) => fetch(...args),
+  appendCacheBust,
+  normalizeMarkdownPath,
+  normalizeMarkdownKey,
+  logger: console,
+});
+
 const sceneRepository = new SceneRepository({
   fetchImpl: (...args) => fetch(...args),
   appendCacheBust,
@@ -6921,6 +6930,7 @@ const sceneRepository = new SceneRepository({
   defaultSphereColorSchemeName,
   homeScenePath: rootScenePath,
   buildAutoMarkdownNodes,
+  resolveTextbookChapterLabel: textbookTocNumberingService.resolveNodeChapterLabel,
   resolveMarkdownFileSize,
   resolveMarkdownFileCharacterCount,
   markdownDocBadgeMinChars: markdownDocBadgeCharacterThreshold,
@@ -7805,6 +7815,13 @@ function updateLevelLabelWrap(level) {
       node.labelMaxWidth = maxWidth;
       node.labelObject.element.style.maxWidth = `${maxWidth}px`;
       node.labelObject.element.style.width = `${maxWidth}px`;
+    }
+    if (node.chapterLabelObject?.element) {
+      const chapterSize = clamp(diameter * 0.055, 8.5, 12.5);
+      node.chapterLabelObject.element.style.setProperty(
+        "--label-chapter-size",
+        `${chapterSize.toFixed(2)}px`
+      );
     }
 
     const labelName =

@@ -418,6 +418,9 @@ export function createSceneGraphRuntime(deps) {
       node.mesh.geometry.dispose();
     }
     node.mesh.geometry = new deps.THREE.SphereGeometry(radius, 32, 20);
+    if (node.chapterLabelObject) {
+      node.chapterLabelObject.position.set(0, -radius * 0.7, 0);
+    }
     if (node.outline?.geometry) {
       node.outline.geometry.dispose();
       node.outline.geometry = new deps.THREE.EdgesGeometry(node.mesh.geometry);

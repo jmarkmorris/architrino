@@ -44,7 +44,7 @@ Relevant files:
 
 - [Photon and Polarization Visualization](../../../../photon.html)
 - [Photon Guide](photon-guide.md)
-- [Mode Taxonomy](../interactions/mode-taxonomy.md)
+- [Mode Taxonomy](../reactions/mode-taxonomy.md)
 - [Horizon Chirality and Planar Spin](../spacetime/horizon-chirality.md)
 - [Quantum Summary](../quantum/quantum-summary.md)
 - [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md)
@@ -57,7 +57,7 @@ That electric-field readout is not hand-drawn. The runtime sums delayed contribu
 
 The polarization panel asks what kind of field the candidate actually produces. It fits $E_y(t)$ and $E_z(t)$ over one cycle and reports whether the observed signal looks weak, linear, circular, or elliptical. This is a diagnostic result, not a proof: the app helps find promising planar-pair settings, but photon closure still requires a separate branch-ledger argument.
 
-The supporting documents keep that boundary clear. [Photon Guide](photon-guide.md) explains how to use the app. [Mode Taxonomy](../interactions/mode-taxonomy.md), [Horizon Chirality and Planar Spin](../spacetime/horizon-chirality.md), [Quantum Summary](../quantum/quantum-summary.md), and [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md) state what still has to be recovered: stable transverse behavior, polarization, helicity, analyzer response, and no free longitudinal photon mode.
+The supporting documents keep that boundary clear. [Photon Guide](photon-guide.md) explains how to use the app. [Mode Taxonomy](../reactions/mode-taxonomy.md), [Horizon Chirality and Planar Spin](../spacetime/horizon-chirality.md), [Quantum Summary](../quantum/quantum-summary.md), and [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md) state what still has to be recovered: stable transverse behavior, polarization, helicity, analyzer response, and no free longitudinal photon mode.
 
 ## 2026-06-10: Ideal Noether Swarm Lorentz Geometry
 

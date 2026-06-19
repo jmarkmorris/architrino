@@ -271,6 +271,22 @@ export function createNodeFactory(deps) {
     return new CSS2DObject(label);
   }
 
+  function createChapterLabel(node) {
+    const chapterLabel =
+      typeof node.textbookChapterLabel === "string" && node.textbookChapterLabel.trim().length > 0
+        ? node.textbookChapterLabel.trim()
+        : "";
+    if (!chapterLabel) {
+      return null;
+    }
+    const label = document.createElement("div");
+    label.className = "label-chapter-marker";
+    label.textContent = chapterLabel;
+    const labelObject = new CSS2DObject(label);
+    labelObject.position.set(0, -Math.max(0, node.radius ?? 0) * 0.7, 0);
+    return labelObject;
+  }
+
   function getBinaryBandRadii(shellRadius, bands) {
     if (!Array.isArray(bands) || bands.length === 0) {
       return [];
@@ -386,12 +402,17 @@ export function createNodeFactory(deps) {
 
     const labelObject = createLabel(nodeData);
     group.add(labelObject);
+    const chapterLabelObject = createChapterLabel(nodeData);
+    if (chapterLabelObject) {
+      group.add(chapterLabelObject);
+    }
 
     return {
       group,
       mesh,
       outline,
       labelObject,
+      chapterLabelObject,
       labelMaxWidth: null,
       halo: null,
       haloBaseOpacity: 0,
@@ -441,6 +462,10 @@ export function createNodeFactory(deps) {
 
     const labelObject = createLabel(nodeData);
     group.add(labelObject);
+    const chapterLabelObject = createChapterLabel(nodeData);
+    if (chapterLabelObject) {
+      group.add(chapterLabelObject);
+    }
 
     const extraMeshes = [];
     if (!hideSphere && nodeData.glowRing) {
@@ -466,6 +491,7 @@ export function createNodeFactory(deps) {
       mesh,
       outline,
       labelObject,
+      chapterLabelObject,
       labelMaxWidth: null,
       halo,
       haloBaseOpacity: halo ? halo.material.opacity : 0,

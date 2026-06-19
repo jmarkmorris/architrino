@@ -14,6 +14,7 @@ export class SceneRepository {
     this.defaultSphereColorSchemeName = deps.defaultSphereColorSchemeName ?? "jewel";
     this.homeScenePath = deps.homeScenePath ?? null;
     this.buildAutoMarkdownNodes = deps.buildAutoMarkdownNodes;
+    this.resolveTextbookChapterLabel = deps.resolveTextbookChapterLabel;
     this.resolveMarkdownFileSize = deps.resolveMarkdownFileSize;
     this.resolveMarkdownFileCharacterCount = deps.resolveMarkdownFileCharacterCount;
     this.markdownDocBadgeMinChars =
@@ -641,6 +642,26 @@ export class SceneRepository {
     return nodes;
   }
 
+  async applyTextbookChapterLabels(nodes) {
+    if (
+      !Array.isArray(nodes) ||
+      !nodes.length ||
+      typeof this.resolveTextbookChapterLabel !== "function"
+    ) {
+      return nodes;
+    }
+
+    await Promise.all(
+      nodes.map(async (node) => {
+        const label = await this.resolveTextbookChapterLabel(node);
+        node.textbookChapterLabel =
+          typeof label === "string" && label.trim().length > 0 ? label.trim() : null;
+      })
+    );
+
+    return nodes;
+  }
+
   isAuthoredSceneData(data) {
     return !!(
       data &&
@@ -705,6 +726,7 @@ export class SceneRepository {
     if (autoNodes.length) {
       nodes = nodes.concat(autoNodes);
     }
+    await this.applyTextbookChapterLabels(nodes);
     await this.applyMarkdownDocEligibility(nodes);
 
     const sceneName = this.resolveDisplayTitle(sceneMeta) ?? scenePath;
@@ -829,5 +851,6 @@ export class SceneRepository {
     if (needsEligibility) {
       await this.applyMarkdownDocEligibility(config.nodes);
     }
+    await this.applyTextbookChapterLabels(config.nodes);
   }
 }

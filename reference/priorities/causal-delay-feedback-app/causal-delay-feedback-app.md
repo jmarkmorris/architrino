@@ -175,12 +175,13 @@ Generated contact sheet proof artifacts:
 
 - The emitter-color rule is accepted: causal-wake arcs use the color of the emitting architrino.
 - Use the official polarity colors in proof images: positrino red `#ff0000` and electrino blue `#0000ff`, with halo/outline treatment only for readability on purple.
-- The landscape layout is accepted: full 16:9 canvas, compact floating toolbar, compact readout, right-edge contribution stack, and no dense side panel.
+- The landscape app layout may use compact runtime readouts, but the contact-sheet proof layout should be a full 16:9 canvas with only the compact floating toolbar and small legend.
 - The comparison proof layout should use a time-space diagram: time on the horizontal axis, space on the vertical axis, and both paths moving left to right.
 - The current comparison proof should not draw the Virtual Observer; it should show cross-path causal feedback between retained positrino and electrino history points.
 - The representative pair should start separated on the left side: blue/electrino at lower-left and red/positrino at upper-left.
 - The representative pair should cross near the middle and then begin bending back toward each other so the mock replay suggests attraction after the crossover.
 - The final red/blue positions should remain separated enough that the late wake fronts are readable and do not overlap into a single bundle.
+- Retained history points `1` and `2` should sit well left of the crossover on both paths so the crossover remains visually clean.
 - Causal wakes should be drawn as curved arcs, not straight rays.
 - Architrino path history should be drawn as solid trails, while causal wakes should be drawn as dotted arcs so the two uses of positrino/electrino color remain distinct.
 - Active dotted wake arcs in the proof tiles should begin at the emitting history point and grow outward toward the later receiving history point on the opposite path.
@@ -194,10 +195,11 @@ Generated contact sheet proof artifacts:
 - The first contact sheet proof scope is accepted: one positrino path, one electrino path, no Virtual Observer drawn, four retained path points per path, three cross-path feedback links per direction, and six 16:9 proof variants that compare undecided growing-arc treatments.
 - The revised contact sheet proof canvas should be a solid purple field with no grid.
 - Prototype canvases should not include a per-tile title panel; variant names belong in the contact-sheet manifest or surrounding review sheet, not inside each 1920x1080 proof tile.
+- Contact-sheet proof tiles should not include the bottom data/readout panel or the right-edge `Feedback Links` panel; keep proof metadata in the manifest or review sheet.
 - Toolbar proof icons should use recognizable meanings: play, path visibility, reset, and settings. Avoid abstract placeholder glyphs that read as unrelated marks.
 - All path-history points on the architrino paths should use the same dot treatment; selected rows may highlight the causal path or stack row, but not make one history dot look like a different class of object.
 - Label each retained history point on each path as `1`, `2`, `3`, and `4`, ordered older to newer.
-- The right-edge contribution stack should show the active cross-path feedback links: red `1 -> 2`, red `2 -> 3`, red `3 -> 4`, and the matching blue `1 -> 2`, blue `2 -> 3`, blue `3 -> 4` links.
+- The proof image should communicate the active cross-path feedback links directly through the path labels and dotted wake arcs, not through a separate links panel.
 - The positrino and electrino mock replay paths should not look like equal-and-opposite mirror curves; use visibly different path histories so the pair reads as two solver-owned trajectories.
 - The representative mock pair should end in the upper-right region with visibly different slopes and curvature so the red and blue causal-wake arcs separate clearly as they reach later path points.
 - Full circular wake geometry should keep every background circle at the same faint opacity so the nearest circle does not dominate the proof tile.
@@ -205,7 +207,7 @@ Generated contact sheet proof artifacts:
 - The first proof should use linear or gently curved path-history motion. Orbit-motion scenes can come later.
 - The first visual proof should use 2D canvas/SVG-style mock proof generation. Three.js can be deferred until runtime needs it.
 - Contact sheet proofs can proceed with representative mock solver-replay paths before the real solver bridge is selected.
-- The contribution stack should sit on the right edge for the first landscape proof.
+- The first landscape proof should not reserve a right-edge contribution stack.
 - Use `Virtual Observer` as the end-user UI term for the observation point. Retain `receiver` only when referring to canonical causal-root math and solver/data fields.
 - When the Virtual Observer appears in runtime app modes, it is not an architrino. The current contact-sheet proof omits it so the cross-path feedback links are easier to read.
 - Signed positrino/electrino polarity color should be visible from the start.
@@ -220,9 +222,9 @@ Generated contact sheet proof artifacts:
 
 - Use one large canvas with a light horizontal `time` axis and a light vertical `space` axis.
 - Keep the source path points, receiving path points, active paths, and arriving wake segments visible at the same time.
-- Reserve a small right-edge strip or inset for the contribution stack so the main animation does not become crowded.
+- Do not reserve a proof-only right-edge panel; use the full canvas width for the path geometry.
 - Use stable scaling: changing field speed or feedback depth should not resize the whole scene unexpectedly.
-- Keep the current proof composition sparse: two solver-replay architrino paths, four retained points per path, six visible cross-path feedback links, and a thin contribution stack.
+- Keep the current proof composition sparse: two solver-replay architrino paths, four retained points per path, and six visible cross-path feedback links.
 - Keep the moving positrino and electrino as solver-owned architrino paths.
 - Let the main path geometry occupy the first viewport immediately; avoid a landing-page feel.
 
@@ -322,7 +324,7 @@ The iPhone/iPad version may start as an embedded web runtime if that preserves b
 
 Orientation behavior should be planned early:
 
-- Landscape: use the full 16:9 canvas composition, with the floating toolbar and right-edge contribution stack close to the desktop contact-sheet layout.
+- Landscape: use the full 16:9 canvas composition with the floating toolbar kept compact; runtime readouts should stay unobtrusive and should not recreate the removed proof-panel layout.
 - Portrait: keep the same one-pair scene, but stack the compact toolbar, canvas, contribution stack, and readout vertically so the moving architrino paths remain visible.
 - iPad: prefer a landscape-like canvas with optional inspector/readout space; do not add extra conceptual panels just because more screen space is available.
 - The orientation change should preserve the current preset, `now` time, selected path, wake-arc display mode, and weak contribution cue setting.

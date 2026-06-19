@@ -7,7 +7,10 @@
     "units": "relative",
     "wrapLabels": true,
     "layout": {
-      "type": "rings"
+      "type": "rings",
+      "centerNode": null,
+      "order": "objects",
+      "direction": "clockwise"
     },
     "children": [
       {
@@ -50,9 +53,6 @@
       "title": "Color Charge SU3",
       "radius": 2.688,
       "color": "#2f6b6f",
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Color Charge SU3",
       "labelBadge": "doc"
     },
@@ -61,9 +61,6 @@
       "title": "Electron, Muon, Tau",
       "radius": 2.688,
       "color": "#5a1f2e",
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Electron, Muon, Tau"
     },
     {
@@ -71,9 +68,6 @@
       "title": "Neutrinos",
       "radius": 2.688,
       "color": "#4b0082",
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Neutrinos",
       "labelBadge": "doc"
     },
@@ -82,9 +76,6 @@
       "title": "Quantum Number Mapping",
       "radius": 2.688,
       "color": "#3a5f9f",
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Quantum Number Mapping",
       "labelBadge": "doc"
     },
@@ -93,9 +84,6 @@
       "title": "Quarks",
       "radius": 2.688,
       "color": "#7a4a1f",
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Quarks",
       "labelBadge": "doc"
     },
@@ -104,9 +92,6 @@
       "title": "Down, Strange, Bottom Quarks",
       "radius": 2.688,
       "color": "#2f4f7a",
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Down, Strange, Bottom Quarks"
     },
     {
@@ -114,9 +99,6 @@
       "title": "Up, Charm, Top Quarks",
       "radius": 2.688,
       "color": "#3a5f9f",
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Up, Charm, Top Quarks"
     },
     {
@@ -124,9 +106,6 @@
       "title": "Weak Mixing Angle",
       "radius": 2.688,
       "color": "#7a5a2f",
-      "motion": {
-        "type": "fixed"
-      },
       "labelTitle": "Weak Mixing Angle",
       "labelBadge": "doc"
     }
