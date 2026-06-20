@@ -565,6 +565,13 @@ class CausalDelayFeedbackRuntime {
         const boundaryMode =
           this.dataset?.pathConstraintBoundaryMode ??
           this.dataset?.solverSummary?.pathConstraintBoundaryMode;
+        const boundaryRelaxationMode =
+          this.dataset?.pathConstraintBoundaryRelaxationMode ??
+          this.dataset?.solverSummary?.pathConstraintBoundaryRelaxationMode;
+        const boundaryRelaxationIterationCount = Number(
+          this.dataset?.pathConstraintBoundaryRelaxationIterationCount ??
+            this.dataset?.solverSummary?.pathConstraintBoundaryRelaxationIterationCount
+        );
         const constraintSolverStatus =
           this.dataset?.pathConstraintSolverStatus ??
           this.dataset?.solverSummary?.pathConstraintSolverStatus;
@@ -607,6 +614,13 @@ class CausalDelayFeedbackRuntime {
         const boundaryStatusDetail =
           boundaryStatus && boundaryStatus !== "unchecked" ? ` bStatus=${formatCompactLabel(boundaryStatus)}` : "";
         const boundaryModeDetail = boundaryMode ? ` bMode=${formatCompactLabel(boundaryMode)}` : "";
+        const boundaryRelaxationDetail = boundaryRelaxationMode
+          ? ` relax=${formatCompactLabel(boundaryRelaxationMode)}${
+              Number.isFinite(boundaryRelaxationIterationCount)
+                ? ` relaxIter=${boundaryRelaxationIterationCount}`
+                : ""
+            }`
+          : "";
         const guidanceDetail = Number.isFinite(guidanceSampleCount) && guidanceSampleCount > 0
           ? ` guidance=${guidanceSampleCount}${
               guidanceMode ? ` mode=${guidanceMode}` : ""
@@ -624,7 +638,7 @@ class CausalDelayFeedbackRuntime {
           state: guidanceDetail ? "bridge-guided" : "bridge",
           label: guidanceDetail ? "solver guided replay" : "solver pair replay",
           help:
-            `Showing central solver bridge replay from one mutual pair-interaction path run${stepDetail}${lawDetail}${pathDetail}${residualDetail}${boundaryDetail}${boundaryStatusDetail}${boundaryModeDetail}${guidanceDetail}${constraintSolverDetail}. ` +
+            `Showing central solver bridge replay from one mutual pair-interaction path run${stepDetail}${lawDetail}${pathDetail}${residualDetail}${boundaryDetail}${boundaryStatusDetail}${boundaryModeDetail}${boundaryRelaxationDetail}${guidanceDetail}${constraintSolverDetail}. ` +
             `This replaces the segmented one-body seed replay for the default canvas path.${guidanceBoundary}`,
         };
       }
@@ -2810,6 +2824,12 @@ class CausalDelayFeedbackRuntime {
     );
     const guidanceMode = this.dataset?.pathConstraintGuidanceMode ?? summary.pathConstraintGuidanceMode;
     const boundaryMode = this.dataset?.pathConstraintBoundaryMode ?? summary.pathConstraintBoundaryMode;
+    const boundaryRelaxationMode =
+      this.dataset?.pathConstraintBoundaryRelaxationMode ?? summary.pathConstraintBoundaryRelaxationMode;
+    const boundaryRelaxationIterationCount = Number(
+      this.dataset?.pathConstraintBoundaryRelaxationIterationCount ??
+        summary.pathConstraintBoundaryRelaxationIterationCount,
+    );
     const constraintSolverStatus = this.dataset?.pathConstraintSolverStatus ?? summary.pathConstraintSolverStatus;
     const constraintSolverClaim = this.dataset?.pathConstraintSolverClaim ?? summary.pathConstraintSolverClaim;
     const maxGuidanceAcceleration = Number(
@@ -2834,6 +2854,12 @@ class CausalDelayFeedbackRuntime {
       details.push(`guide=${formatCompactLabel(guidanceMode, "guided")}`);
       if (boundaryMode) {
         details.push(`bMode=${formatCompactLabel(boundaryMode)}`);
+      }
+      if (boundaryRelaxationMode) {
+        details.push(`relax=${formatCompactLabel(boundaryRelaxationMode)}`);
+        if (Number.isFinite(boundaryRelaxationIterationCount)) {
+          details.push(`relaxIter=${boundaryRelaxationIterationCount}`);
+        }
       }
       details.push(`guideRows=${guidanceSampleCount}`);
       if (Number.isFinite(maxGuidanceAcceleration)) {

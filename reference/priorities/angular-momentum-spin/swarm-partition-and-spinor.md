@@ -490,6 +490,94 @@ does not vanish, the clean four-substep branch is not energy-closed. For $\omega
 
 This result is useful because it gives the first explicit failure gate as well as the first explicit success branch. The transition is allowed in the clean minimal chart only when the angular ledger, speed-regime inequalities, self-root parity, self-delay equation, and energy-frequency condition all hold.
 
+### Candidate 2026-06-20: Test $(O,M,I)=(f-1,f,f+2)$ Around The Middle Hinge
+
+Status: priority-only candidate under `tri_binary_partition_rule` and `worked_three_layer_noether_transition`. This is not a theorem row, not a canonized tri-binary law, and not reader-facing corpus prose. Its value is that it turns the operator/developer's three-binary offset intuition into a branch-family test that the existing partition and certificate machinery can accept or reject.
+
+Promotion decision: defer with blocker. Promote only after a retained branch chart shows that the same candidate offset relation closes phase, speed-regime, causal-root, vector-ledger, energy, and stability rows. Until then, preserve it as a high-priority branch-family target because it probes whether the middle binary is genuinely acting as the $v=c_f$ hinge between the outer interface layer and the doubled inner self-hit response.
+
+The candidate relation is
+
+$$
+n_O=f-1,
+\qquad
+n_M=f,
+\qquad
+n_I=f+2,
+\qquad
+f\in\mathbb Z_{>1},
+$$
+
+where $n_O,n_M,n_I$ are integer phase-lock or resonance indices for the outer, middle, and inner layers in the declared branch chart. These indices must not be mistaken for raw speeds. The speed rows remain separate:
+
+$$
+s_O=R_O\omega_O<c_f,
+\qquad
+s_M=R_M\omega_M\approx c_f,
+\qquad
+s_I=R_I\omega_I>c_f.
+$$
+
+The reason this candidate outranks the symmetric relation $(O,M,I)=(f-1,f,f+1)$ is the already populated minimal four-substep scaffold: the clean branch assigns one outer substep, one middle hinge substep, and two equal inner self-hit substeps. The offset $f+2$ is therefore the natural first test for whether the inner layer's extra self-hit burden is a phase-lock or resonance-index echo of the action partition
+
+$$
+\Delta I_{\text{outer}}:\Delta I_{\text{middle}}:\Delta I_{\text{inner}}
+=
+1:1:2.
+$$
+
+The exact test is not to impose the offset relation as a premise of the theorem. For each admissible $f$, build a finite candidate family containing both
+
+$$
+(n_O,n_M,n_I)=(f-1,f,f+2)
+$$
+
+and the symmetric control
+
+$$
+(n_O,n_M,n_I)=(f-1,f,f+1).
+$$
+
+Each candidate must carry the same retained rows already demanded by this workstream:
+
+1. outer speed row $s_O<c_f$;
+2. middle hinge row $\left|s_M-c_f\right|\le\varepsilon_M$;
+3. inner self-hit row with accepted same-source roots, positive Jacobian floor, and declared self-root parity;
+4. phase-lock rows for every active intra-layer and inter-layer root;
+5. scalar and vector action partition rows;
+6. energy-frequency row, including declared root-energy, wake-energy, recoil, or transport routing if the clean energy row does not close;
+7. post-branch stability row.
+
+First calculation. Insert the two candidate offset families into the existing action-angle energy condition. In the clean no-wake, no-root-energy approximation, compare whether
+
+$$
+\omega_{\text{tx}}\hbar
+=
+\omega_O^\ast\Delta I_{\text{outer}}
++
+\omega_M^\ast\Delta I_{\text{middle}}
++
+\omega_I^\ast\Delta I_{\text{inner}}
+$$
+
+selects the populated minimal value
+
+$$
+\omega_\ast
+=
+\frac{\omega_O^\ast+\omega_M^\ast+2\omega_I^\ast}{4}
+$$
+
+more naturally for the $(f-1,f,f+2)$ family than for the symmetric control. If the comparison depends on undeclared wake or root-energy slack, the candidate remains blocked rather than promoted.
+
+Failure modes:
+
+1. The $(f-1,f,f+2)$ family cannot keep $s_M$ within the middle-hinge tolerance while $s_O<c_f$ and $s_I>c_f$.
+2. The inner $f+2$ offset does not correspond to retained self-hit rows with a positive Jacobian floor and the declared separator parity.
+3. The symmetric $(f-1,f,f+1)$ control passes all residuals with lower or equal branch-selection cost.
+4. Both families pass without a deterministic branch-selection rule, leaving the offset relation branch-dependent rather than theorem-grade.
+5. The relation closes only by hiding wake, recoil, transport, or root-energy terms outside the declared event ledger.
+
 ## Result 2026-05-12: Ordered Noether-Core Frame For Spinor Closure
 
 This section defines the ordered-frame target only. It does not prove spin-$\tfrac{1}{2}$ behavior. Use it as the spinor closure target until the holonomy calculation is derived from the delayed dynamics.

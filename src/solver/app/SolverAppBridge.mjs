@@ -647,6 +647,9 @@ const PAIR_INTERACTION_SUMMARY_F64_BYTES = 104;
 const PAIR_INTERACTION_PATH_CONSTRAINT_GUIDANCE_MODE = "retained_knot_boundary";
 const PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_MODE = "retained_knot_boundary";
 const PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_MODE_LAW_AWARE = "law_aware_retained_knot_boundary";
+const PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_RELAXATION_MODE =
+  "finite_difference_frame_relaxation_v1";
+const PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_RELAXATION_ITERATION_COUNT = 8;
 const PAIR_INTERACTION_CONSTRAINT_SOLVER_STATUS_GUIDED = "guided_constraint_path";
 const PAIR_INTERACTION_CONSTRAINT_SOLVER_STATUS_SNAP = "constraint_snap_only";
 const PAIR_INTERACTION_CONSTRAINT_SOLVER_STATUS_UNCONSTRAINED = "unconstrained";
@@ -3770,6 +3773,9 @@ function runSimulationWithModule(state, module, request, abiInfo) {
         frameCount: pair.frames.length,
         pathCount: pair.pathCount,
         interactionLaw: pair.interactionLaw,
+        pathConstraintBoundaryRelaxationMode: pair.summary?.pathConstraintBoundaryRelaxationMode,
+        pathConstraintBoundaryRelaxationIterationCount:
+          pair.summary?.pathConstraintBoundaryRelaxationIterationCount,
         pathConstraintSolverStatus: pair.summary?.pathConstraintSolverStatus,
         pathConstraintSolverClaim: pair.summary?.pathConstraintSolverClaim,
       },
@@ -3797,6 +3803,9 @@ function runSimulationWithModule(state, module, request, abiInfo) {
         pathConstraintGuidanceSampleCount: pair.summary?.pathConstraintGuidanceSampleCount ?? 0,
         pathConstraintGuidanceMode: pair.summary?.pathConstraintGuidanceMode,
         pathConstraintBoundaryMode: pair.summary?.pathConstraintBoundaryMode,
+        pathConstraintBoundaryRelaxationMode: pair.summary?.pathConstraintBoundaryRelaxationMode,
+        pathConstraintBoundaryRelaxationIterationCount:
+          pair.summary?.pathConstraintBoundaryRelaxationIterationCount,
         pathConstraintSolverStatus: pair.summary?.pathConstraintSolverStatus,
         pathConstraintSolverClaim: pair.summary?.pathConstraintSolverClaim,
         maxPathConstraintGuidanceAcceleration: pair.summary?.maxPathConstraintGuidanceAcceleration ?? 0,
@@ -4035,6 +4044,7 @@ function solvePairInteractionPathF64(request, options = {}) {
     ? PAIR_INTERACTION_PATH_CONSTRAINT_GUIDANCE_MODE
     : undefined;
   const pathConstraintBoundaryMode = createPairInteractionPathConstraintBoundaryMode(normalized);
+  const boundaryRelaxationMetadata = createPairInteractionBoundaryRelaxationMetadata(normalized);
   const constraintSolverMetadata = createPairInteractionConstraintSolverMetadata(
     residualSummary.pathConstraintCount,
     guidanceSummary.pathConstraintGuidanceSampleCount,
@@ -4063,6 +4073,7 @@ function solvePairInteractionPathF64(request, options = {}) {
       pathConstraintGuidanceSampleCount: guidanceSummary.pathConstraintGuidanceSampleCount,
       pathConstraintGuidanceMode,
       pathConstraintBoundaryMode,
+      ...boundaryRelaxationMetadata,
       pathConstraintSolverStatus: constraintSolverMetadata.pathConstraintSolverStatus,
       pathConstraintSolverClaim: constraintSolverMetadata.pathConstraintSolverClaim,
       maxPathConstraintGuidanceAcceleration: guidanceSummary.maxPathConstraintGuidanceAcceleration,
@@ -4108,6 +4119,7 @@ function solvePairInteractionPathF64(request, options = {}) {
       pathConstraintGuidanceSampleCount: guidanceSummary.pathConstraintGuidanceSampleCount,
       pathConstraintGuidanceMode,
       pathConstraintBoundaryMode,
+      ...boundaryRelaxationMetadata,
       pathConstraintSolverStatus: constraintSolverMetadata.pathConstraintSolverStatus,
       pathConstraintSolverClaim: constraintSolverMetadata.pathConstraintSolverClaim,
       maxPathConstraintGuidanceAcceleration: guidanceSummary.maxPathConstraintGuidanceAcceleration,
@@ -4319,6 +4331,17 @@ function createPairInteractionPathConstraintBoundaryMode(request) {
   return hasBoundarySegment
     ? PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_MODE_LAW_AWARE
     : PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_MODE;
+}
+
+function createPairInteractionBoundaryRelaxationMetadata(request) {
+  if (!request || !Array.isArray(request.pathConstraints) || request.pathConstraints.length === 0) {
+    return {};
+  }
+  return {
+    pathConstraintBoundaryRelaxationMode: PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_RELAXATION_MODE,
+    pathConstraintBoundaryRelaxationIterationCount:
+      PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_RELAXATION_ITERATION_COUNT,
+  };
 }
 
 function createPairInteractionBoundaryResidualAcceptanceMetadata(boundarySummary, request) {
@@ -6986,6 +7009,7 @@ function integratePairInteractionMotionF64WithModule(module, request, options = 
       ? PAIR_INTERACTION_PATH_CONSTRAINT_GUIDANCE_MODE
       : undefined;
     const pathConstraintBoundaryMode = createPairInteractionPathConstraintBoundaryMode(normalized);
+    const boundaryRelaxationMetadata = createPairInteractionBoundaryRelaxationMetadata(normalized);
     const constraintSolverMetadata = createPairInteractionConstraintSolverMetadata(
       nativeSummary.pathConstraintCount,
       nativeSummary.guidanceSampleCount,
@@ -7019,6 +7043,7 @@ function integratePairInteractionMotionF64WithModule(module, request, options = 
         pathConstraintGuidanceSampleCount: nativeSummary.guidanceSampleCount,
         pathConstraintGuidanceMode,
         pathConstraintBoundaryMode,
+        ...boundaryRelaxationMetadata,
         pathConstraintSolverStatus: constraintSolverMetadata.pathConstraintSolverStatus,
         pathConstraintSolverClaim: constraintSolverMetadata.pathConstraintSolverClaim,
         maxPathConstraintGuidanceAcceleration: nativeSummary.maxGuidanceAcceleration,
@@ -7064,6 +7089,7 @@ function integratePairInteractionMotionF64WithModule(module, request, options = 
         pathConstraintGuidanceSampleCount: nativeSummary.guidanceSampleCount,
         pathConstraintGuidanceMode,
         pathConstraintBoundaryMode,
+        ...boundaryRelaxationMetadata,
         pathConstraintSolverStatus: constraintSolverMetadata.pathConstraintSolverStatus,
         pathConstraintSolverClaim: constraintSolverMetadata.pathConstraintSolverClaim,
         maxPathConstraintGuidanceAcceleration: nativeSummary.maxGuidanceAcceleration,

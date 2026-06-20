@@ -263,6 +263,9 @@ async function createMotionSolverReplayDataset(playbackRequest, options = {}, { 
           pathConstraintGuidanceSampleCount: motionReplay.pathConstraintGuidanceSampleCount,
           pathConstraintGuidanceMode: motionReplay.pathConstraintGuidanceMode,
           pathConstraintBoundaryMode: motionReplay.pathConstraintBoundaryMode,
+          pathConstraintBoundaryRelaxationMode: motionReplay.pathConstraintBoundaryRelaxationMode,
+          pathConstraintBoundaryRelaxationIterationCount:
+            motionReplay.pathConstraintBoundaryRelaxationIterationCount,
           pathConstraintSolverStatus: motionReplay.pathConstraintSolverStatus,
           pathConstraintSolverClaim: motionReplay.pathConstraintSolverClaim,
           maxPathConstraintGuidanceAcceleration: motionReplay.maxPathConstraintGuidanceAcceleration,
@@ -302,6 +305,9 @@ async function createMotionSolverReplayDataset(playbackRequest, options = {}, { 
           pathConstraintGuidanceSampleCount: motionReplay.pathConstraintGuidanceSampleCount,
           pathConstraintGuidanceMode: motionReplay.pathConstraintGuidanceMode,
           pathConstraintBoundaryMode: motionReplay.pathConstraintBoundaryMode,
+          pathConstraintBoundaryRelaxationMode: motionReplay.pathConstraintBoundaryRelaxationMode,
+          pathConstraintBoundaryRelaxationIterationCount:
+            motionReplay.pathConstraintBoundaryRelaxationIterationCount,
           pathConstraintSolverStatus: motionReplay.pathConstraintSolverStatus,
           pathConstraintSolverClaim: motionReplay.pathConstraintSolverClaim,
           maxPathConstraintGuidanceAcceleration: motionReplay.maxPathConstraintGuidanceAcceleration,
@@ -480,6 +486,12 @@ async function createPairInteractionSolverReplayFrames(playbackRequest, options 
     ),
     pathConstraintGuidanceMode: pairSummary.pathConstraintGuidanceMode ?? pairInteraction.pathConstraintGuidanceMode,
     pathConstraintBoundaryMode: pairSummary.pathConstraintBoundaryMode ?? pairInteraction.pathConstraintBoundaryMode,
+    pathConstraintBoundaryRelaxationMode:
+      pairSummary.pathConstraintBoundaryRelaxationMode ?? pairInteraction.pathConstraintBoundaryRelaxationMode,
+    pathConstraintBoundaryRelaxationIterationCount: optionalFiniteNumber(
+      pairSummary.pathConstraintBoundaryRelaxationIterationCount ??
+        pairInteraction.pathConstraintBoundaryRelaxationIterationCount
+    ),
     pathConstraintSolverStatus: pairSummary.pathConstraintSolverStatus ?? pairInteraction.pathConstraintSolverStatus,
     pathConstraintSolverClaim: pairSummary.pathConstraintSolverClaim ?? pairInteraction.pathConstraintSolverClaim,
     maxPathConstraintGuidanceAcceleration: optionalFiniteNumber(
@@ -1389,6 +1401,16 @@ export function normalizeCausalDelayFeedbackBridgeReplay(runHandle = {}, options
       : {}),
     ...(bridgeResponse.geometry?.pathConstraintBoundaryMode
       ? { pathConstraintBoundaryMode: String(bridgeResponse.geometry.pathConstraintBoundaryMode) }
+      : {}),
+    ...(bridgeResponse.geometry?.pathConstraintBoundaryRelaxationMode
+      ? { pathConstraintBoundaryRelaxationMode: String(bridgeResponse.geometry.pathConstraintBoundaryRelaxationMode) }
+      : {}),
+    ...(Number.isFinite(Number(bridgeResponse.geometry?.pathConstraintBoundaryRelaxationIterationCount))
+      ? {
+          pathConstraintBoundaryRelaxationIterationCount: Number(
+            bridgeResponse.geometry.pathConstraintBoundaryRelaxationIterationCount
+          ),
+        }
       : {}),
     ...(bridgeResponse.geometry?.pathConstraintSolverStatus
       ? { pathConstraintSolverStatus: String(bridgeResponse.geometry.pathConstraintSolverStatus) }

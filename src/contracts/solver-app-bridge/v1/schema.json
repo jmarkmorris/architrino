@@ -4479,6 +4479,14 @@
           "type": "string",
           "minLength": 1
         },
+        "pathConstraintBoundaryRelaxationMode": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pathConstraintBoundaryRelaxationIterationCount": {
+          "type": "integer",
+          "minimum": 0
+        },
         "pathConstraintSolverStatus": {
           "type": "string",
           "minLength": 1
@@ -4584,6 +4592,14 @@
         "pathConstraintBoundaryMode": {
           "type": "string",
           "minLength": 1
+        },
+        "pathConstraintBoundaryRelaxationMode": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pathConstraintBoundaryRelaxationIterationCount": {
+          "type": "integer",
+          "minimum": 0
         },
         "pathConstraintSolverStatus": {
           "type": "string",

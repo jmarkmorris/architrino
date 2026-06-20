@@ -636,6 +636,8 @@ test("causal delay feedback aggregate summary surfaces compact pair solver diagn
     pathConstraintGuidanceSampleCount: 12,
     pathConstraintGuidanceMode: "retained_knot_boundary",
     pathConstraintBoundaryMode: "law_aware_retained_knot_boundary",
+    pathConstraintBoundaryRelaxationMode: "finite_difference_frame_relaxation_v1",
+    pathConstraintBoundaryRelaxationIterationCount: 8,
     pathConstraintSolverStatus: "guided_constraint_path",
     pathConstraintSolverClaim: "diagnostic_constraint_replay_not_boundary_value_solve",
     maxPathConstraintGuidanceAcceleration: 48.25,
@@ -650,6 +652,8 @@ test("causal delay feedback aggregate summary surfaces compact pair solver diagn
 
   assert(readoutText.includes("guide=retained_knot_boundary"));
   assert(readoutText.includes("bMode=law_aware_retained_knot_boundary"));
+  assert(readoutText.includes("relax=finite_difference_frame_relaxation_v1"));
+  assert(readoutText.includes("relaxIter=8"));
   assert(readoutText.includes("guideRows=12"));
   assert(readoutText.includes("maxA=48.25"));
   assert(readoutText.includes("constraint=guided_constraint_path"));
@@ -946,6 +950,8 @@ test("causal delay feedback status distinguishes constraint-guided pair replay",
     pathConstraintGuidanceSampleCount: 12,
     pathConstraintGuidanceMode: "retained_knot_boundary",
     pathConstraintBoundaryMode: "law_aware_retained_knot_boundary",
+    pathConstraintBoundaryRelaxationMode: "finite_difference_frame_relaxation_v1",
+    pathConstraintBoundaryRelaxationIterationCount: 8,
     pathConstraintSolverStatus: "guided_constraint_path",
     pathConstraintSolverClaim: "diagnostic_constraint_replay_not_boundary_value_solve",
     maxPathConstraintGuidanceAcceleration: 48.25,
@@ -961,6 +967,8 @@ test("causal delay feedback status distinguishes constraint-guided pair replay",
   assert.match(replayStatus.title, /tolB=0\.02/);
   assert.match(replayStatus.title, /bStatus=within_tolerance/);
   assert.match(replayStatus.title, /bMode=law_aware_retained_knot_boundary/);
+  assert.match(replayStatus.title, /relax=finite_difference_frame_relaxation_v1/);
+  assert.match(replayStatus.title, /relaxIter=8/);
   assert.match(replayStatus.title, /guidance=12/);
   assert.match(replayStatus.title, /mode=retained_knot_boundary/);
   assert.match(replayStatus.title, /maxA=48\.25/);
@@ -1671,6 +1679,25 @@ test("causal delay feedback right-click insertion renumbers retained path points
   assert(runtime.dataset.wakeLinks.some((link) => link.label === "blue 3 -> red 4"));
   assert(runtime.dataset.wakeLinks.some((link) => link.label === "blue 6 -> red 7"));
   assert.equal(runtime.dataset.wakeLinks.find((link) => link.label === "blue 3 -> red 4").receiver.t, inserted.t);
+
+  const startPoint = runtime.dataset.history.positrino.find((point) => point.depth === 1);
+  const finalPoint = runtime.dataset.history.positrino.find((point) => point.depth === 7);
+  const finalPathPoint = runtime.dataset.paths.positrino.at(-1);
+  const beforeFinal = { x: finalPoint.x, y: finalPoint.y };
+  runtime.setRetainedDepthLimit(3);
+
+  const startHit = runtime.findNearestHit(runtime.worldToScreen(startPoint), { includeWakes: true });
+  const finalHit = runtime.findNearestHit(runtime.worldToScreen(finalPoint), { includeWakes: true });
+  const didEditFinal = runtime.applyRetainedPointDrag("positrino", 7, { x: 22, y: -18 });
+
+  assert.deepEqual(startHit.selection, { type: "history", kind: "positrino", depth: 1 });
+  assert.deepEqual(finalHit.selection, { type: "history", kind: "positrino", depth: 7 });
+  assert.deepEqual(runtime.getVisibleHistory("positrino").map((point) => point.depth), [1, 2, 3, 7]);
+  assert.equal(didEditFinal, true);
+  assert.equal(finalPoint.x, beforeFinal.x + 22);
+  assert.equal(finalPoint.y, beforeFinal.y - 18);
+  assert.equal(finalPathPoint.x, finalPoint.x);
+  assert.equal(finalPathPoint.y, finalPoint.y);
 });
 
 test("causal delay feedback context menu inserts a retained point on the nearest path", () => {

@@ -4220,6 +4220,9 @@ assert(
     causalDelayPairRunHandle.response.summary.pathConstraintGuidanceMode === "retained_knot_boundary" &&
     causalDelayPairRunHandle.response.summary.pathConstraintBoundaryMode ===
       "law_aware_retained_knot_boundary" &&
+    causalDelayPairRunHandle.response.summary.pathConstraintBoundaryRelaxationMode ===
+      "finite_difference_frame_relaxation_v1" &&
+    causalDelayPairRunHandle.response.summary.pathConstraintBoundaryRelaxationIterationCount === 8 &&
     causalDelayPairRunHandle.response.summary.pathConstraintSolverStatus === "guided_constraint_path" &&
     causalDelayPairRunHandle.response.summary.pathConstraintSolverClaim ===
       "diagnostic_constraint_replay_not_boundary_value_solve" &&
@@ -4241,8 +4244,8 @@ const causalDelayPairMidRetainedFrame = causalDelayPairRunHandle.response.frames
 );
 assert(
   causalDelayPairMidRetainedFrame &&
-    Math.abs(causalDelayPairMidRetainedFrame.velocity.y - 85.23333333333333) < 1e-9,
-  "expected law-aware retained-knot tangent velocity"
+    Math.abs(causalDelayPairMidRetainedFrame.velocity.y - 76.01155034442922) < 1e-9,
+  "expected relaxed retained-knot boundary-frame velocity"
 );
 const causalDelayPairBoundaryToleranceAcceptedRunHandle = await client.runSimulation(
   makeCausalDelayPairInteractionRunSimulationRequest({
@@ -4287,9 +4290,9 @@ const causalDelayPairRedBoundary = causalDelayPairRunHandle.response.frames.find
   (frame) => frame.pathKey === 1 && frame.time === 0.125
 );
 assert(
-  Math.abs(causalDelayPairRedBoundary.position.x - 107.3046875) < 1e-9 &&
-    Math.abs(causalDelayPairRedBoundary.position.y - 221.2537109375) < 1e-9,
-  "expected causal-delay pair intermediate frame to follow the law-aware retained-knot boundary path"
+  Math.abs(causalDelayPairRedBoundary.position.x - 107.49967157958221) < 1e-9 &&
+    Math.abs(causalDelayPairRedBoundary.position.y - 224.35294925508552) < 1e-9,
+  "expected causal-delay pair intermediate frame to follow the relaxed retained-knot boundary path"
 );
 const causalDelayPairRedInserted = causalDelayPairRunHandle.response.frames.find(
   (frame) => frame.pathKey === 1 && frame.time === 0.25
@@ -4297,9 +4300,9 @@ const causalDelayPairRedInserted = causalDelayPairRunHandle.response.frames.find
 assert(
   causalDelayPairRedInserted.position.x === 115 &&
     causalDelayPairRedInserted.position.y === 250 &&
-    causalDelayPairRedInserted.velocity.x === 60 &&
-    causalDelayPairRedInserted.velocity.y === 120,
-  "expected causal-delay pair path constraints to emit the inserted red point with retained-knot tangent velocity"
+    Math.abs(causalDelayPairRedInserted.velocity.x - 60.00131368167115) < 1e-9 &&
+    Math.abs(causalDelayPairRedInserted.velocity.y - 120.43045034177851) < 1e-9,
+  "expected causal-delay pair path constraints to emit the inserted red point with relaxed boundary-frame velocity"
 );
 const causalDelayPairBlueFinal = causalDelayPairRunHandle.response.frames.find(
   (frame) => frame.pathKey === 2 && frame.time === 1

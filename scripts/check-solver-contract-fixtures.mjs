@@ -1611,8 +1611,24 @@ function validatePairInteractionRunSimulationResponseEnvelope(value) {
   assert(runResponse.summary.pathConstraintBoundaryResidualStatus === "within_tolerance", "pair summary status mismatch");
   assert(runResponse.summary.pathConstraintBoundaryResidualTolerance === 0.5, "pair summary tolerance mismatch");
   assert(
+    runResponse.summary.pathConstraintBoundaryRelaxationMode === "finite_difference_frame_relaxation_v1",
+    "pair summary relaxation mode mismatch"
+  );
+  assert(
+    runResponse.summary.pathConstraintBoundaryRelaxationIterationCount === 8,
+    "pair summary relaxation iteration mismatch"
+  );
+  assert(
     runResponse.pairInteraction.pathConstraintBoundaryResidualStatus === "within_tolerance",
     "pair interaction nested status mismatch"
+  );
+  assert(
+    runResponse.pairInteraction.pathConstraintBoundaryRelaxationMode === "finite_difference_frame_relaxation_v1",
+    "pair interaction nested relaxation mode mismatch"
+  );
+  assert(
+    runResponse.pairInteraction.pathConstraintBoundaryRelaxationIterationCount === 8,
+    "pair interaction nested relaxation iteration mismatch"
   );
   assert(runResponse.frames.length === 4, "pair frame count mismatch");
   assert(runResponse.pathHistory.rowCount === 4, "pair path-history row count mismatch");
@@ -4599,6 +4615,8 @@ function createPairInteractionRunSummaryFixture() {
     pathConstraintGuidanceSampleCount: 2,
     pathConstraintGuidanceMode: "retained_knot_boundary",
     pathConstraintBoundaryMode: "law_aware_retained_knot_boundary",
+    pathConstraintBoundaryRelaxationMode: "finite_difference_frame_relaxation_v1",
+    pathConstraintBoundaryRelaxationIterationCount: 8,
     pathConstraintSolverStatus: "guided_constraint_path",
     pathConstraintSolverClaim: "diagnostic_constraint_replay_not_boundary_value_solve",
     maxPathConstraintGuidanceAcceleration: 4.5,
