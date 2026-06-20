@@ -332,7 +332,7 @@ Proof route: the scalar quotient class $Q_0\Pi_0\mathcal{L}_A[d]$ is the only ob
 | [weak-sector-gauge-closure.md](../standard-model-closure/weak-sector-gauge-closure.md) | Weak `V-A`, CKM/PMNS overlap, weak-corridor provenance, and gauge-covariance compatibility. | Uses the exposure quotient to keep weak chirality, flavor overlap, and corridor provenance in one weak-visible domain. |
 | [geometry-first-program.md](../standard-model-closure/geometry-first-program.md) | Quark masses, flavor mixing, color exceptionality, confinement, and weak provenance routing. | Uses the exposure quotient to separate color/topological exceptionality from externally visible weak or mass-facing response. |
 | [photon-measurement-bell-gates.md](../angular-momentum-spin/photon-measurement-bell-gates.md) | Photon transverse projector, no longitudinal free mode, analyzer visibility, and polarization ledger. | Uses the exposure quotient to derive rank-two transverse photon visibility from a hidden planar-pair ledger. |
-| [radiation-gate-c-benchmarks.md](../nested-shell-swarm-causal-closure/radiation-gate-c-benchmarks.md) | Radiation channel visibility, emission/absorption handoff, and benchmark recovery. | Uses the exposure quotient to decide which residual channel becomes a visible photon, material update, or non-radiative route. |
+| [radiation](../../../content/markdown/aaa/reactions/radiation.md) | Radiation channel visibility, emission/absorption handoff, and benchmark recovery. | Uses the exposure quotient to decide which residual channel becomes a visible photon, material update, or non-radiative route. |
 
 ## Worked $A_0$ Scalar Shielding Case
 

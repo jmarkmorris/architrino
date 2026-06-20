@@ -33,6 +33,27 @@ My working suspicion is that the probability weights should be attached only aft
 
 That is the part I am most interested in testing against your treatment: whether the absorber response, conservation closure, durable record, and no-signaling constraint are all one physical selection condition, or whether they remain separate ingredients that still need a unifying rule.
 
+### Copyable Letter for Ruth (Recommended Draft)
+
+Use this as a ready-to-send response, including the salutation and signoff:
+
+```text
+Hi Ruth,
+
+Thank you for the clarification. The question I am trying to isolate is not whether RTI has a measurement account; it is whether the record-forming step can be stated as one physical criterion.
+
+The model I am developing takes a concrete route. It treats the quantum state as a compressed description of underlying point-transceiver assembly dynamics, with a measurement outcome counted only when a declared detector channel closes the relevant couplings, energy-momentum ledger, environmental persistence, and no-signaling constraints. In that framing, Born weights are not assigned over every formal branch. They are normalized over the alternatives that can become durable records.
+
+This is where I see a possible bridge to RTI. The incipient/actualized transaction distinction seems to point at the same boundary I would call record eligibility: a possible exchange becomes a physically realized event only when source, absorber, and the surrounding physical ledger have locked into a conservation-closed record.
+
+The question I would value your reaction to is: in RTI, are absorber response, conservation closure, actualized spacetime event, durable detector record, and no-signaling consistency all aspects of one physical selection condition? Or should they be kept as separate constraints around the transaction?
+
+If useful, I can send a one-page mapping from my point-transceiver assembly / record-eligibility notation to RTI's incipient/actualized transaction language. I think it would make clear where the proposed overlap is, and where the two accounts may genuinely diverge.
+
+Best regards,
+Mark
+```
+
 ### Ruth Kastner Reference
 
 - Primary reference from Ruth's reply: Ruth E. Kastner, [*The Transactional Interpretation of Quantum Mechanics: A Relativistic Treatment*](https://www.cambridge.org/core/books/transactional-interpretation-of-quantum-mechanics/F8BF34FBF9B116E43ED1F12833B60A6A), 2nd ed., Cambridge University Press, 2022.
@@ -52,6 +73,7 @@ No standalone public CV PDF was found in this pass. Treat this as a source-backe
 | Field | Note | Source status |
 | --- | --- | --- |
 | Name | Ruth E. Kastner | Confirmed by Cambridge Core and arXiv metadata. |
+| Public correspondence email | `rkastner@umd.edu` | Listed as correspondence email in the 2023 arXiv paper *Physical Time as Human Time*. |
 | Primary field relevance | Quantum foundations, philosophy of physics, and the Transactional Interpretation family; not primarily astrophysics. | Confirmed by the 2022 CUP reference and the existing source-mined video. |
 | Education | B.S. and M.S. in Physics; Ph.D. in History and Philosophy of Science; all from the University of Maryland. | Operator-provided background; keep until a standalone CV or institutional profile is found. |
 | Institutional affiliation | Cambridge Core book metadata lists her with University of Maryland, Baltimore; Cambridge author biography describes her as a Research Associate and member of the Foundations of Physics group at University of Maryland, College Park. | Cambridge Core metadata. |

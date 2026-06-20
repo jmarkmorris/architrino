@@ -13,11 +13,13 @@ struct ContentView: View {
     @State private var showReaderSettings = false
     @State private var showTOCReaderSettings = false
     @State private var didPresentInitialToc = false
-    @State private var expandedTOCGroupID: String?
+    @State private var expandedTOCGroupIDs: Set<String> = []
     @State private var pageFeedbackBaseImage: UIImage?
     @State private var pageFeedbackContext: ReaderFeedbackContext?
     @State private var feedbackCaptureMessage: String?
     @State private var isPageFeedbackMode = false
+    @State private var readerPaneWidth: CGFloat = 0
+    @State private var readerLayoutAnchorReplayTask: Task<Void, Never>?
 
     private var isRegularWidth: Bool {
         horizontalSizeClass == .regular
@@ -50,8 +52,6 @@ struct ContentView: View {
             AboutSheet(
                 packageVersion: viewModel.packageVersionLabel,
                 packageDate: viewModel.packageDateLabel,
-                currentDocumentTitle: viewModel.currentDocumentTitle,
-                currentReadingLocator: viewModel.readingProgressLabel,
                 theme: viewModel.theme
             )
         }
@@ -133,25 +133,34 @@ struct ContentView: View {
                     .padding()
                 } else if viewModel.isReady && viewModel.hasAnyContent() {
                     ZStack {
-                        ReaderWebView(
-                            renderCommand: $viewModel.renderCommand,
-                            anchorCommand: $viewModel.anchorCommand,
-                            fontScale: viewModel.fontScale,
-                            theme: viewModel.theme,
-                            lineSpacing: viewModel.lineSpacing,
-                            marginWidth: viewModel.marginWidth,
-                            onLinkTap: { payload in
-                                if let url = viewModel.handleWebLink(message: payload) {
-                                    openURL(url)
+                        GeometryReader { proxy in
+                            ReaderWebView(
+                                renderCommand: $viewModel.renderCommand,
+                                anchorCommand: $viewModel.anchorCommand,
+                                fontScale: viewModel.fontScale,
+                                theme: viewModel.theme,
+                                lineSpacing: viewModel.lineSpacing,
+                                marginWidth: viewModel.marginWidth,
+                                onLinkTap: { payload in
+                                    if let url = viewModel.handleWebLink(message: payload) {
+                                        openURL(url)
+                                    }
+                                },
+                                onRenderComplete: { payload in
+                                    viewModel.markRenderComplete(message: payload)
+                                },
+                                onScrollPositionChange: { progress in
+                                    viewModel.updateReadingScrollProgress(progress)
                                 }
-                            },
-                            onRenderComplete: { payload in
-                                viewModel.markRenderComplete(message: payload)
-                            },
-                            onScrollPositionChange: { progress in
-                                viewModel.updateReadingScrollProgress(progress)
+                            )
+                            .frame(width: proxy.size.width, height: proxy.size.height)
+                            .onAppear {
+                                handleReaderPaneWidthChange(proxy.size.width)
                             }
-                        )
+                            .onChange(of: proxy.size.width) { _, width in
+                                handleReaderPaneWidthChange(width)
+                            }
+                        }
                         .opacity(viewModel.renderCommand == nil ? 0 : 1)
                         .allowsHitTesting(viewModel.renderCommand != nil)
 
@@ -238,9 +247,9 @@ struct ContentView: View {
                             Button {
                                 startPageFeedbackCapture()
                             } label: {
-                                Image(systemName: "exclamationmark.bubble")
+                                Image(systemName: "square.and.pencil")
                             }
-                            .accessibilityLabel("Feedback")
+                            .accessibilityLabel("Annotate feedback")
 
                             Button {
                                 showAbout = true
@@ -390,7 +399,6 @@ struct ContentView: View {
     private func navigateFromTOC(_ action: () -> Void) {
         tocNotice = nil
         viewModel.readerNotice = nil
-        resetTOCExpansion()
         action()
         if !isRegularWidth && showToc {
             dismissTOCImmediately()
@@ -437,7 +445,25 @@ struct ContentView: View {
     }
 
     private func resetTOCExpansion() {
-        expandedTOCGroupID = nil
+        expandedTOCGroupIDs.removeAll()
+    }
+
+    private func handleReaderPaneWidthChange(_ width: CGFloat) {
+        guard width > 0 else { return }
+        let previousWidth = readerPaneWidth
+        readerPaneWidth = width
+        guard previousWidth > 0,
+              abs(previousWidth - width) > 24 else {
+            return
+        }
+
+        readerLayoutAnchorReplayTask?.cancel()
+        readerLayoutAnchorReplayTask = Task { @MainActor in
+            try? await Task.sleep(nanoseconds: 160_000_000)
+            guard !Task.isCancelled else { return }
+            viewModel.replayCurrentAnchorAfterLayoutChange()
+            readerLayoutAnchorReplayTask = nil
+        }
     }
 
     private func openFirstChapterFromTOC() {
@@ -467,7 +493,12 @@ struct ContentView: View {
                     }
 
                     ForEach(Array(viewModel.visibleTOCSections(for: node).enumerated()), id: \.offset) { index, section in
-                        tocSectionRow(section, in: node, depth: depth + 1, stableID: "\(node.id)::top-section-\(index)")
+                        tocSectionRow(
+                            section,
+                            in: node,
+                            depth: depth + 1,
+                            stableID: tocSectionStableID(section, parentID: node.id, index: index)
+                        )
                     }
                 }
             }
@@ -478,7 +509,7 @@ struct ContentView: View {
     private func tocSecondLevelNodeRow(_ node: TextbookTOCNode, parentID: String) -> some View {
         let route = viewModel.resolveTOCTarget(for: node)
         let expansionID = "\(parentID)::\(node.id)"
-        let isExpanded = expandedTOCGroupID == expansionID
+        let isExpanded = expandedTOCGroupIDs.contains(expansionID)
         let visibleChildren = viewModel.visibleTOCChildren(for: node)
         let visibleSections = viewModel.visibleTOCSections(for: node)
         let hasExpandableContent = !visibleSections.isEmpty || !visibleChildren.isEmpty
@@ -499,7 +530,12 @@ struct ContentView: View {
                 }
 
                 ForEach(Array(visibleSections.enumerated()), id: \.offset) { index, section in
-                    tocSectionRow(section, in: node, depth: 2, stableID: "\(expansionID)::section-\(index)")
+                    tocSectionRow(
+                        section,
+                        in: node,
+                        depth: 2,
+                        stableID: tocSectionStableID(section, parentID: expansionID, index: index)
+                    )
                 }
             }
         }
@@ -523,6 +559,8 @@ struct ContentView: View {
         stableID: String
     ) -> AnyView {
         let route = viewModel.resolveTOCSectionTarget(section, in: node)
+        let isExpanded = expandedTOCGroupIDs.contains(stableID)
+        let hasExpandableContent = !section.resolvedChildren.isEmpty
 
         return AnyView(
             VStack(alignment: .leading, spacing: 0) {
@@ -530,18 +568,45 @@ struct ContentView: View {
                     title: tocSectionTitle(section),
                     route: route,
                     depth: depth,
-                    expansionID: nil,
-                    isExpanded: false,
-                    hasExpandableContent: false
+                    expansionID: hasExpandableContent ? stableID : nil,
+                    isExpanded: isExpanded,
+                    hasExpandableContent: hasExpandableContent
                 )
 
-                if expandedTOCGroupID == stableID {
+                if isExpanded {
                     ForEach(Array(section.resolvedChildren.enumerated()), id: \.offset) { index, child in
-                        tocSectionRow(child, in: node, depth: depth + 1, stableID: "\(stableID)::child-\(index)")
+                        tocSectionRow(
+                            child,
+                            in: node,
+                            depth: depth + 1,
+                            stableID: tocSectionStableID(child, parentID: stableID, index: index)
+                        )
                     }
                 }
             }
         )
+    }
+
+    private func tocSectionStableID(_ section: TextbookTOCSection, parentID: String, index: Int) -> String {
+        let metadata = [
+            section.markdownPath,
+            section.markdownSection,
+            section.sectionKey,
+            section.title,
+            section.headingLevel.map { String($0) }
+        ]
+            .compactMap { value -> String? in
+                guard let trimmed = value?.trimmingCharacters(in: .whitespacesAndNewlines),
+                      !trimmed.isEmpty else {
+                    return nil
+                }
+                return trimmed
+            }
+
+        if metadata.isEmpty {
+            return "\(parentID)::section::\(index)"
+        }
+        return ([parentID, "section"] + metadata).joined(separator: "::")
     }
 
     private func tocSectionTitle(_ section: TextbookTOCSection) -> String {
@@ -621,9 +686,8 @@ struct ContentView: View {
         case .external(let external):
             tocNotice = nil
             viewModel.readerNotice = nil
-            resetTOCExpansion()
             openURL(external)
-            if !isRegularWidth {
+            if !isRegularWidth && showToc {
                 dismissTOCImmediately()
             }
         case .none:
@@ -634,7 +698,11 @@ struct ContentView: View {
     }
 
     private func toggleTOCExpansion(_ id: String) {
-        expandedTOCGroupID = expandedTOCGroupID == id ? nil : id
+        if expandedTOCGroupIDs.contains(id) {
+            expandedTOCGroupIDs.remove(id)
+        } else {
+            expandedTOCGroupIDs.insert(id)
+        }
     }
 
     private func tocRowLabel(title: String, depth: Int) -> some View {
@@ -1429,8 +1497,6 @@ private struct BookmarkRow: View {
 private struct AboutSheet: View {
     let packageVersion: String
     let packageDate: String
-    let currentDocumentTitle: String
-    let currentReadingLocator: String
     let theme: ReaderTheme
 
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
@@ -1441,50 +1507,6 @@ private struct AboutSheet: View {
 
     private var isRegularWidth: Bool {
         horizontalSizeClass == .regular
-    }
-
-    private var feedbackIssueURL: URL {
-        var components = URLComponents(string: "https://github.com/jmarkmorris/architrino/issues/new")!
-        components.queryItems = [
-            URLQueryItem(name: "title", value: feedbackIssueTitle),
-            URLQueryItem(name: "body", value: feedbackIssueBody),
-        ]
-        return components.url!
-    }
-
-    private var feedbackIssueTitle: String {
-        "Feedback: \(feedbackLocationLabel)"
-    }
-
-    private var feedbackIssueBody: String {
-        """
-        ## Feedback
-
-        Tell us what you noticed, what confused you, or what would help. Use whatever level of detail fits you.
-
-        ## Reader context
-
-        - Location: \(feedbackLocationLabel)
-        - Package version: \(packageVersion)
-        - Package date: \(packageDate)
-        - App version: \(appVersionLabel)
-
-        """
-    }
-
-    private var feedbackLocationLabel: String {
-        let title = currentDocumentTitle.trimmingCharacters(in: .whitespacesAndNewlines)
-        let locator = currentReadingLocator.trimmingCharacters(in: .whitespacesAndNewlines)
-
-        if title.isEmpty || title == "Textbook" {
-            return locator.isEmpty ? "Table of contents" : locator
-        }
-
-        if locator.isEmpty {
-            return title
-        }
-
-        return "\(title) - \(locator)"
     }
 
     private var appVersionLabel: String {
@@ -1547,22 +1569,6 @@ private struct AboutSheet: View {
                         Link(destination: repositoryURL) {
                             Label("GitHub repository", systemImage: "chevron.left.forwardslash.chevron.right")
                                 .foregroundStyle(theme.readerAccentColor)
-                        }
-
-                        Link(destination: feedbackIssueURL) {
-                            Label {
-                                VStack(alignment: .leading, spacing: 2) {
-                                    Text("Feedback (GitHub login required)")
-                                        .foregroundStyle(theme.readerAccentColor)
-
-                                    Text("Opens a prefilled issue with package details.")
-                                        .font(.footnote)
-                                        .foregroundStyle(theme.readerSecondaryTextColor)
-                                }
-                            } icon: {
-                                Image(systemName: "exclamationmark.bubble")
-                                    .foregroundStyle(theme.readerAccentColor)
-                            }
                         }
                     } header: {
                         Text("Links")

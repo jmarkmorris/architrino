@@ -57,6 +57,7 @@ It does not own:
 - A first-pass autoscale behavior already exists in code, but the authored framing UI is still missing.
 - A canonical structure bridge exists, and a narrow live mutation path exists for `Split Group`, but animator-side structural editing is still incomplete.
 - Imported staging data already carries observer framing, preview identifiers, and export scene data through a dedicated scene-staging contract without importing external app runtimes.
+- Solver-derived simulation mode has moved under this workstream as [simulation-mode.md](simulation-mode.md), so Animator owns the authoring and playback surface while `solver/` owns the central solver contract.
 
 ## Task Queue
 
@@ -64,12 +65,14 @@ It does not own:
 2. `observer_framing_ui` — Finish authored observer framing and autoscale UI so authors can set and inspect framing intent directly. Status: `active`. Depends on: `runtime_cutover`.
 3. `timeline_observer_audio` — Replace placeholder `Observer` and `Audio` timeline blocks with real authored objects, or remove placeholder paths until they are real. Status: `next`. Depends on: `observer_framing_ui`.
 4. `canonical_structure_transforms` — Move more animator editing onto canonical structure transforms so nesting, scale, and transfer staging stay coherent. Status: `pending`. Depends on: `runtime_cutover`.
+5. `simulation_mode` — Finish the Animator-owned simulation authoring surface, offline/cache workflow, and production-solver cleanup described in [simulation-mode.md](simulation-mode.md). Status: `current-review-gate`. Depends on: `runtime_cutover`.
 
 ## Detailed Priority Files
 
 | File | Role | Primary promotion targets |
 | --- | --- | --- |
 | [design-and-interfaces.md](design-and-interfaces.md) | Stable animator design doctrine, viewport model, observer/framing model, media and overlay boundaries, structure editing direction, inputs, outputs, and app boundaries. | [about-the-webapp](../../../content/markdown/aaa/archie/about-the-webapp.md), [scene-taxonomy](../../design/scene-taxonomy.md), [navigation-and-controls](../../../content/markdown/aaa/archie/navigation-and-controls.md) |
+| [simulation-mode.md](simulation-mode.md) | Detailed packet for solver-derived Animator simulation mode, dataset playback, field shells, delayed hits, authoring controls, offline/cache workflow, and production solver cleanup. | [run-protocols](../../../content/markdown/aaa/validation/simulations/run-protocols.md), [about-the-webapp](../../../content/markdown/aaa/archie/about-the-webapp.md), and Animator runtime documentation. |
 
 ## Promotion Map
 
@@ -79,6 +82,7 @@ It does not own:
 | `observer_framing_ui` | [design-and-interfaces.md](design-and-interfaces.md) | Animator observer/framing UI and authored scene output. | Authors can directly edit framing intent, required/optional targets, autoscale behavior, and imported observer hints. |
 | `timeline_observer_audio` | [design-and-interfaces.md](design-and-interfaces.md) | Animator timeline object model. | `Observer` becomes a true timeline object and `Audio` is either implemented as a real authored object or removed from placeholder insertion paths. |
 | `canonical_structure_transforms` | [design-and-interfaces.md](design-and-interfaces.md) | Canonical scene structure transforms. | Structure reads and edits share one canonical model rather than animator-local mutation paths. |
+| `simulation_mode` | [simulation-mode.md](simulation-mode.md) | Animator simulation authoring and playback mode. | Solver-derived scenes keep visible provenance, authoring controls, offline/cache behavior, and production solver cleanup without mixing authored paths with simulation output. |
 
 ## Task Notes
 

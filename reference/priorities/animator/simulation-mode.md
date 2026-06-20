@@ -1,6 +1,6 @@
-# Animator Merge Direction
+# Animator Simulation Mode
 
-This note records the current direction for connecting `src/apps/animator/` to the central solver. The target is an evolved animator that keeps its 3-D authoring and visualization surface while gaining a master-equation simulation mode.
+This detailed priority file records the current direction for connecting `src/apps/animator/` to the central solver. The target is an evolved animator that keeps its 3-D authoring and visualization surface while gaining a master-equation simulation mode.
 
 ## Direction
 
@@ -92,7 +92,7 @@ Each implementation step should follow the same loop:
 ## Related Priorities
 
 - [simulations](../simulations/simulations.md)
-- [animator](../animator/animator.md)
+- [animator](animator.md)
 
 ## Related AAA Notes
 

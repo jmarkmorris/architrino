@@ -4,6 +4,7 @@
 #include <cmath>
 #include <iterator>
 #include <limits>
+#include <map>
 #include <utility>
 
 namespace architrino::solver {
@@ -402,7 +403,24 @@ PathHistoryRowF64 make_pair_interaction_path_history_row(const MotionFrameRowF64
   };
 }
 
-std::vector<double> pair_interaction_sample_times(const PairInteractionRequest& request) {
+struct PairInteractionSampleSchedule {
+  std::vector<double> times{};
+  std::uint64_t pathConstraintFrameRefinementSampleCount = 0;
+};
+
+std::vector<double> unique_pair_interaction_times(std::vector<double> times, double epsilon) {
+  std::sort(times.begin(), times.end());
+  times.erase(std::unique(times.begin(),
+                          times.end(),
+                          [epsilon](double left, double right) {
+                            return std::abs(left - right) <= epsilon;
+                          }),
+              times.end());
+  return times;
+}
+
+PairInteractionSampleSchedule pair_interaction_sample_schedule(
+    const PairInteractionRequest& request) {
   std::vector<double> times;
   const double epsilon = std::max(request.step * 1e-9, 1e-12);
   for (double time = request.startTime; time < request.endTime - epsilon;
@@ -418,14 +436,63 @@ std::vector<double> pair_interaction_sample_times(const PairInteractionRequest& 
       times.push_back(std::clamp(constraint.time, request.startTime, request.endTime));
     }
   }
-  std::sort(times.begin(), times.end());
-  times.erase(std::unique(times.begin(),
-                          times.end(),
-                          [epsilon](double left, double right) {
-                            return std::abs(left - right) <= epsilon;
-                          }),
-              times.end());
-  return times;
+  const std::vector<double> baseTimes = unique_pair_interaction_times(times, epsilon);
+  std::vector<double> refinementTimes;
+  std::map<std::uint64_t, std::vector<double>> constraintTimesByPath;
+  for (const PairInteractionPathConstraint& constraint : request.pathConstraints) {
+    if (constraint.time < request.startTime - epsilon ||
+        constraint.time > request.endTime + epsilon) {
+      continue;
+    }
+    constraintTimesByPath[constraint.pathKey].push_back(
+        std::clamp(constraint.time, request.startTime, request.endTime));
+  }
+  for (auto& entry : constraintTimesByPath) {
+    std::vector<double>& pathTimes = entry.second;
+    std::sort(pathTimes.begin(), pathTimes.end());
+    pathTimes.erase(std::unique(pathTimes.begin(),
+                                pathTimes.end(),
+                                [epsilon](double left, double right) {
+                                  return std::abs(left - right) <= epsilon;
+                                }),
+                    pathTimes.end());
+    for (std::size_t index = 0; index + 1 < pathTimes.size(); ++index) {
+      const double left = pathTimes[index];
+      const double right = pathTimes[index + 1];
+      if (right - left <= epsilon * 2.0) {
+        continue;
+      }
+      for (double fraction : {0.25, 0.5, 0.75}) {
+        const double refinementTime = left + (right - left) * fraction;
+        if (refinementTime > request.startTime + epsilon &&
+            refinementTime < request.endTime - epsilon) {
+          refinementTimes.push_back(refinementTime);
+        }
+      }
+    }
+  }
+  const std::vector<double> uniqueRefinementTimes =
+      unique_pair_interaction_times(refinementTimes, epsilon);
+  std::uint64_t refinementSampleCount = 0;
+  for (double refinementTime : uniqueRefinementTimes) {
+    const bool alreadySampled =
+        std::any_of(baseTimes.begin(),
+                    baseTimes.end(),
+                    [epsilon, refinementTime](double time) {
+                      return std::abs(time - refinementTime) <= epsilon;
+                    });
+    if (!alreadySampled) {
+      ++refinementSampleCount;
+    }
+  }
+  std::vector<double> combinedTimes = baseTimes;
+  combinedTimes.insert(combinedTimes.end(),
+                       uniqueRefinementTimes.begin(),
+                       uniqueRefinementTimes.end());
+  return PairInteractionSampleSchedule{
+      unique_pair_interaction_times(combinedTimes, epsilon),
+      refinementSampleCount,
+  };
 }
 
 std::vector<Vector3> pair_interaction_accelerations(
@@ -1563,6 +1630,16 @@ constexpr std::uint32_t kPairBoundaryRelaxationCandidateCorrectedBlend = 8;
 constexpr std::uint32_t kPairBoundaryRelaxationCandidateLinearizedDefectCorrection = 9;
 constexpr std::uint32_t kPairBoundaryRelaxationCandidateLocalNewtonDefectCorrection = 10;
 constexpr std::uint32_t kPairBoundaryRelaxationCandidateCoupledLocalNewtonDefectCorrection = 11;
+constexpr std::uint32_t kPairBoundaryRelaxationCandidateBlockCoupledNewtonDefectCorrection = 12;
+constexpr std::uint32_t kPairBoundaryRelaxationCandidatePredictedBlockCoupledNewtonDefectCorrection = 13;
+constexpr std::uint32_t kPairBoundaryRelaxationCandidateCorrectedBlockCoupledNewtonDefectCorrection = 14;
+constexpr std::uint32_t kPairBoundaryRelaxationCandidateSecondCorrectedDefectCorrection = 15;
+constexpr std::uint32_t kPairBoundaryRelaxationCandidateSecondCorrectedBlockCoupledNewtonDefectCorrection = 16;
+constexpr std::uint32_t kPairBoundaryRelaxationCandidateSecondCorrectedBlend = 17;
+constexpr std::uint32_t kPairBoundaryRelaxationCandidateThirdCorrector = 18;
+constexpr std::uint32_t kPairBoundaryRelaxationCandidateThirdCorrectedDefectCorrection = 19;
+constexpr std::uint32_t kPairBoundaryRelaxationCandidateThirdCorrectedBlockCoupledNewtonDefectCorrection = 20;
+constexpr std::uint32_t kPairBoundaryRelaxationCandidateThirdCorrectedBlend = 21;
 constexpr std::uint32_t kPairBoundaryRelaxationCandidateCenterOfMassOffset = 100;
 
 struct PairInteractionBoundaryRelaxationRun {
@@ -1572,6 +1649,9 @@ struct PairInteractionBoundaryRelaxationRun {
   double finalStepFactor = 0.0;
   std::uint32_t selectedCandidateKind = 0;
   std::uint32_t centerOfMassSelectedCount = 0;
+  std::uint64_t candidateVariantCount = 0;
+  std::uint64_t lineSearchTrialCount = 0;
+  std::uint64_t candidateKindMask = 0;
 };
 
 struct PairInteractionRelaxationCandidate {
@@ -1585,9 +1665,22 @@ struct PairInteractionRelaxationStepSelection {
   double maxStep = 0.0;
   double stepFactor = 0.0;
   std::uint32_t candidateKind = kPairBoundaryRelaxationCandidateNone;
+  std::uint64_t candidateVariantCount = 0;
+  std::uint64_t lineSearchTrialCount = 0;
+  std::uint64_t candidateKindMask = 0;
   PairInteractionBoundaryRelaxationResidualSummary residual;
   std::vector<MotionFrameRowF64> frames;
 };
+
+std::uint64_t pair_boundary_relaxation_candidate_family_mask(std::uint32_t candidateKind) {
+  if (candidateKind >= kPairBoundaryRelaxationCandidateCenterOfMassOffset) {
+    candidateKind -= kPairBoundaryRelaxationCandidateCenterOfMassOffset;
+  }
+  if (candidateKind == kPairBoundaryRelaxationCandidateNone || candidateKind >= 64) {
+    return 0;
+  }
+  return std::uint64_t{1} << candidateKind;
+}
 
 std::uint32_t pair_boundary_relaxation_status(
     const PairInteractionBoundaryRelaxationResidualSummary& before,
@@ -2602,6 +2695,315 @@ PairInteractionRelaxationCandidate solve_pair_interaction_coupled_local_newton_d
   return candidate;
 }
 
+std::vector<double> pair_interaction_constraint_boundary_times(
+    const PairInteractionRequest& request,
+    double epsilon) {
+  std::vector<double> times;
+  for (const PairInteractionPathConstraint& constraint : request.pathConstraints) {
+    if (std::isfinite(constraint.time)) {
+      times.push_back(constraint.time);
+    }
+  }
+  std::sort(times.begin(), times.end());
+  times.erase(std::unique(times.begin(),
+                          times.end(),
+                          [epsilon](double left, double right) {
+                            return std::abs(left - right) <= epsilon;
+                          }),
+              times.end());
+  return times;
+}
+
+int pair_interaction_relaxation_block_index_for_time(
+    const std::vector<double>& boundaryTimes,
+    double time,
+    double epsilon) {
+  if (!std::isfinite(time)) {
+    return -1;
+  }
+  if (boundaryTimes.size() < 2) {
+    return 0;
+  }
+  for (std::size_t index = 0; index + 1 < boundaryTimes.size(); ++index) {
+    if (time > boundaryTimes[index] + epsilon && time < boundaryTimes[index + 1] - epsilon) {
+      return static_cast<int>(index);
+    }
+  }
+  return -1;
+}
+
+PairInteractionRelaxationCandidate solve_pair_interaction_block_coupled_newton_defect_correction_candidate(
+    const PairInteractionSampleResult& result,
+    const PairInteractionRequest& request,
+    const std::vector<PairInteractionState>& initialStates,
+    const std::vector<std::uint64_t>& pathKeys,
+    double epsilon,
+    const PairInteractionRelaxationCandidate& defectCorrectionCandidate) {
+  PairInteractionRelaxationCandidate candidate{
+      std::vector<Vector3>(result.frames.size()),
+      std::vector<bool>(result.frames.size(), false),
+      kPairBoundaryRelaxationCandidateBlockCoupledNewtonDefectCorrection,
+  };
+  if (initialStates.size() < 2) {
+    return candidate;
+  }
+
+  struct BlockEntry {
+    std::size_t frameIndex = 0;
+    std::size_t previousFrameIndex = 0;
+    std::size_t nextFrameIndex = 0;
+    MotionFrameRowF64 current{};
+    MotionFrameRowF64 previous{};
+    MotionFrameRowF64 next{};
+    double leftDt = 0.0;
+    double rightDt = 0.0;
+    double averageDt = 0.0;
+  };
+
+  struct StepMetadata {
+    std::size_t frameIndex = 0;
+    MotionFrameRowF64 current{};
+    double maxStep = 0.0;
+  };
+
+  const std::vector<double> boundaryTimes =
+      pair_interaction_constraint_boundary_times(request, epsilon);
+  const std::size_t blockCount = boundaryTimes.size() >= 2 ? boundaryTimes.size() - 1 : 1;
+  std::vector<std::vector<BlockEntry>> blocks(blockCount);
+
+  for (std::uint64_t pathKey : pathKeys) {
+    const std::vector<std::size_t> indices = mutable_frame_indices_for_path(result.frames, pathKey);
+    if (indices.size() < 3) {
+      continue;
+    }
+    for (std::size_t pathIndex = 1; pathIndex + 1 < indices.size(); ++pathIndex) {
+      const MotionFrameRowF64& previous = result.frames[indices[pathIndex - 1]];
+      const MotionFrameRowF64& current = result.frames[indices[pathIndex]];
+      const MotionFrameRowF64& next = result.frames[indices[pathIndex + 1]];
+      if (has_pair_constraint_at_time(request, current.pathKey, current.time, epsilon)) {
+        continue;
+      }
+      const double leftDt = current.time - previous.time;
+      const double rightDt = next.time - current.time;
+      const double averageDt = 0.5 * (leftDt + rightDt);
+      if (leftDt <= epsilon || rightDt <= epsilon || averageDt <= epsilon) {
+        continue;
+      }
+      const int blockIndex =
+          pair_interaction_relaxation_block_index_for_time(boundaryTimes, current.time, epsilon);
+      if (blockIndex < 0 || static_cast<std::size_t>(blockIndex) >= blocks.size()) {
+        continue;
+      }
+      blocks[static_cast<std::size_t>(blockIndex)].push_back(
+          BlockEntry{
+              indices[pathIndex],
+              indices[pathIndex - 1],
+              indices[pathIndex + 1],
+              current,
+              previous,
+              next,
+              leftDt,
+              rightDt,
+              averageDt,
+          });
+    }
+  }
+
+  const std::size_t missing = std::numeric_limits<std::size_t>::max();
+  for (const std::vector<BlockEntry>& block : blocks) {
+    if (block.empty()) {
+      continue;
+    }
+    auto variableIndexForFrame = [&block](std::size_t frameIndex) -> std::size_t {
+      for (std::size_t index = 0; index < block.size(); ++index) {
+        if (block[index].frameIndex == frameIndex) {
+          return index;
+        }
+      }
+      return missing;
+    };
+    auto variableIndexForFrameAndPath =
+        [&block](std::uint64_t frameIndex, std::uint64_t pathKey) -> std::size_t {
+      for (std::size_t index = 0; index < block.size(); ++index) {
+        if (block[index].current.frameIndex == frameIndex &&
+            block[index].current.pathKey == pathKey) {
+          return index;
+        }
+      }
+      return missing;
+    };
+
+    constexpr std::size_t componentCount = 3;
+    const std::size_t dimension = block.size() * componentCount;
+    std::vector<std::vector<double>> matrix(dimension, std::vector<double>(dimension, 0.0));
+    std::vector<double> rhs(dimension, 0.0);
+    std::vector<StepMetadata> stepMetadata;
+    stepMetadata.reserve(block.size());
+    bool validBlock = true;
+
+    for (std::size_t variableIndex = 0; variableIndex < block.size(); ++variableIndex) {
+      const BlockEntry& entry = block[variableIndex];
+      Vector3 residual{};
+      if (!pair_interaction_boundary_relaxation_residual_vector_for_frames(
+              result.frames,
+              request,
+              initialStates,
+              entry.previous,
+              entry.current,
+              entry.next,
+              epsilon,
+              residual)) {
+        validBlock = false;
+        break;
+      }
+      const std::vector<PairInteractionState> states =
+          states_at_frame_index(result.frames, entry.current.frameIndex, initialStates);
+      if (states.size() != initialStates.size()) {
+        validBlock = false;
+        break;
+      }
+      const auto stateMatch = std::find_if(
+          states.begin(),
+          states.end(),
+          [&entry](const PairInteractionState& state) {
+            return state.pathKey == entry.current.pathKey;
+          });
+      if (stateMatch == states.end()) {
+        validBlock = false;
+        break;
+      }
+      const std::size_t accelerationStateIndex = static_cast<std::size_t>(
+          std::distance(states.begin(), stateMatch));
+      const double finiteDifferenceDerivative =
+          -(1.0 / entry.leftDt + 1.0 / entry.rightDt) / entry.averageDt;
+      const std::size_t rowOffset = variableIndex * componentCount;
+      const std::size_t previousVariableIndex = variableIndexForFrame(entry.previousFrameIndex);
+      const std::size_t nextVariableIndex = variableIndexForFrame(entry.nextFrameIndex);
+
+      for (std::size_t accelerationComponent = 0; accelerationComponent < componentCount;
+           ++accelerationComponent) {
+        const std::size_t row = rowOffset + accelerationComponent;
+        rhs[row] = -vector_component(residual, accelerationComponent);
+        matrix[row][row] += finiteDifferenceDerivative;
+        if (previousVariableIndex != missing) {
+          matrix[row][previousVariableIndex * componentCount + accelerationComponent] +=
+              1.0 / (entry.leftDt * entry.averageDt);
+        }
+        if (nextVariableIndex != missing) {
+          matrix[row][nextVariableIndex * componentCount + accelerationComponent] +=
+              1.0 / (entry.rightDt * entry.averageDt);
+        }
+
+        for (std::size_t positionStateIndex = 0; positionStateIndex < states.size();
+             ++positionStateIndex) {
+          const std::size_t positionVariableIndex =
+              variableIndexForFrameAndPath(entry.current.frameIndex,
+                                           states[positionStateIndex].pathKey);
+          if (positionVariableIndex == missing) {
+            continue;
+          }
+          for (std::size_t positionComponent = 0; positionComponent < componentCount;
+               ++positionComponent) {
+            const double accelerationDerivative =
+                pair_interaction_law_position_derivative_component(
+                    request,
+                    states,
+                    accelerationStateIndex,
+                    positionStateIndex,
+                    accelerationComponent,
+                    positionComponent);
+            if (!std::isfinite(accelerationDerivative)) {
+              validBlock = false;
+              break;
+            }
+            matrix[row][positionVariableIndex * componentCount + positionComponent] -=
+                accelerationDerivative;
+          }
+          if (!validBlock) {
+            break;
+          }
+        }
+        if (!validBlock) {
+          break;
+        }
+      }
+      if (!validBlock) {
+        break;
+      }
+
+      double defectStep = 0.0;
+      if (entry.frameIndex < defectCorrectionCandidate.hasPosition.size() &&
+          defectCorrectionCandidate.hasPosition[entry.frameIndex]) {
+        defectStep = vector_norm(
+            vector_subtract(defectCorrectionCandidate.positions[entry.frameIndex],
+                            frame_position(entry.current)));
+      }
+      const double leftSpacing =
+          vector_norm(vector_subtract(frame_position(entry.current), frame_position(entry.previous)));
+      const double rightSpacing =
+          vector_norm(vector_subtract(frame_position(entry.next), frame_position(entry.current)));
+      if (!std::isfinite(leftSpacing) || !std::isfinite(rightSpacing)) {
+        validBlock = false;
+        break;
+      }
+      const double spacingLimit = std::max(epsilon, std::min(leftSpacing, rightSpacing) * 0.5);
+      const double defectLimit =
+          std::isfinite(defectStep) && defectStep > epsilon ? defectStep * 2.0 : spacingLimit;
+      stepMetadata.push_back(
+          StepMetadata{
+              entry.frameIndex,
+              entry.current,
+              std::max(epsilon, std::min(spacingLimit, defectLimit)),
+          });
+    }
+    if (!validBlock || stepMetadata.size() != block.size()) {
+      continue;
+    }
+
+    const std::vector<double> solution =
+        solve_dense_linear_system(matrix, rhs, kPairBoundaryRelaxationResidualEpsilon);
+    if (solution.size() != dimension) {
+      continue;
+    }
+
+    double stepScale = 1.0;
+    bool hasNonzeroStep = false;
+    for (std::size_t variableIndex = 0; variableIndex < stepMetadata.size(); ++variableIndex) {
+      const std::size_t offset = variableIndex * componentCount;
+      const Vector3 step{solution[offset], solution[offset + 1], solution[offset + 2]};
+      const double stepNorm = vector_norm(step);
+      if (!std::isfinite(stepNorm)) {
+        validBlock = false;
+        break;
+      }
+      if (stepNorm > epsilon) {
+        hasNonzeroStep = true;
+        stepScale = std::min(stepScale, stepMetadata[variableIndex].maxStep / stepNorm);
+      }
+    }
+    if (!validBlock || !hasNonzeroStep || !std::isfinite(stepScale) || stepScale <= 0.0) {
+      continue;
+    }
+
+    for (std::size_t variableIndex = 0; variableIndex < stepMetadata.size(); ++variableIndex) {
+      const std::size_t offset = variableIndex * componentCount;
+      const StepMetadata& metadata = stepMetadata[variableIndex];
+      const Vector3 current = frame_position(metadata.current);
+      const Vector3 target{
+          current.x + solution[offset] * stepScale,
+          current.y + solution[offset + 1] * stepScale,
+          current.z + solution[offset + 2] * stepScale,
+      };
+      if (finite_vector(target) && vector_norm(vector_subtract(target, current)) > epsilon) {
+        candidate.positions[metadata.frameIndex] = target;
+        candidate.hasPosition[metadata.frameIndex] = true;
+      }
+    }
+  }
+
+  return candidate;
+}
+
 bool pair_constraint_center_of_mass_at_time(
     const PairInteractionRequest& request,
     const std::vector<PairInteractionState>& initialStates,
@@ -2919,6 +3321,7 @@ PairInteractionRelaxationStepSelection select_pair_interaction_relaxation_step(
             factor)) {
       continue;
     }
+    ++selection.lineSearchTrialCount;
     const PairInteractionBoundaryRelaxationResidualSummary residual =
         measure_pair_interaction_boundary_relaxation_residuals(result, request, initialStates);
     if (!pair_boundary_relaxation_residual_no_worse(residual, residualBeforeIteration)) {
@@ -2959,10 +3362,15 @@ PairInteractionRelaxationStepSelection select_pair_interaction_relaxation_step_v
     const std::vector<MotionFrameRowF64>& framesBeforeIteration,
     const std::vector<PairInteractionRelaxationCandidate>& candidates) {
   PairInteractionRelaxationStepSelection selectedStep;
+  std::uint64_t candidateVariantCount = 0;
+  std::uint64_t lineSearchTrialCount = 0;
+  std::uint64_t candidateKindMask = 0;
   for (const PairInteractionRelaxationCandidate& candidate : candidates) {
     if (!has_pair_interaction_relaxation_candidate(candidate)) {
       continue;
     }
+    ++candidateVariantCount;
+    candidateKindMask |= pair_boundary_relaxation_candidate_family_mask(candidate.kind);
     result.frames = framesBeforeIteration;
     const PairInteractionRelaxationStepSelection step =
         select_pair_interaction_relaxation_step(result,
@@ -2971,11 +3379,15 @@ PairInteractionRelaxationStepSelection select_pair_interaction_relaxation_step_v
                                                 residualBeforeIteration,
                                                 framesBeforeIteration,
                                                 candidate);
+    lineSearchTrialCount += step.lineSearchTrialCount;
     result.frames = framesBeforeIteration;
     if (pair_interaction_relaxation_selection_better(step, selectedStep)) {
       selectedStep = step;
     }
   }
+  selectedStep.candidateVariantCount = candidateVariantCount;
+  selectedStep.lineSearchTrialCount = lineSearchTrialCount;
+  selectedStep.candidateKindMask = candidateKindMask;
   return selectedStep;
 }
 
@@ -3005,6 +3417,9 @@ PairInteractionBoundaryRelaxationRun relax_pair_interaction_constrained_frames(
   double finalStepFactor = 0.0;
   std::uint32_t selectedCandidateKind = kPairBoundaryRelaxationCandidateNone;
   std::uint32_t centerOfMassSelectedCount = 0;
+  std::uint64_t candidateVariantCount = 0;
+  std::uint64_t lineSearchTrialCount = 0;
+  std::uint64_t candidateKindMask = 0;
   PairInteractionBoundaryRelaxationResidualSummary bestAcceptedResidual =
       measure_pair_interaction_boundary_relaxation_residuals(result, request, initialStates);
   bool hasBestAcceptedResidual = bestAcceptedResidual.sampleCount > 0;
@@ -3022,6 +3437,9 @@ PairInteractionBoundaryRelaxationRun relax_pair_interaction_constrained_frames(
         finalStepFactor,
         selectedCandidateKind,
         centerOfMassSelectedCount,
+        candidateVariantCount,
+        lineSearchTrialCount,
+        candidateKindMask,
     };
   };
   if (relaxationIterations == 0) {
@@ -3078,6 +3496,14 @@ PairInteractionBoundaryRelaxationRun relax_pair_interaction_constrained_frames(
             initialStates,
             epsilon,
             defectCorrectionCandidate);
+    PairInteractionRelaxationCandidate blockCoupledNewtonDefectCorrectionCandidate =
+        solve_pair_interaction_block_coupled_newton_defect_correction_candidate(
+            result,
+            request,
+            initialStates,
+            pathKeys,
+            epsilon,
+            defectCorrectionCandidate);
 
     PairInteractionSampleResult predictedResult = result;
     apply_pair_interaction_relaxation_positions(
@@ -3095,6 +3521,16 @@ PairInteractionBoundaryRelaxationRun relax_pair_interaction_constrained_frames(
             predictedResult.frames);
     predictedDefectCorrectionCandidate.kind =
         kPairBoundaryRelaxationCandidatePredictedDefectCorrection;
+    PairInteractionRelaxationCandidate predictedBlockCoupledNewtonDefectCorrectionCandidate =
+        solve_pair_interaction_block_coupled_newton_defect_correction_candidate(
+            predictedResult,
+            request,
+            initialStates,
+            pathKeys,
+            epsilon,
+            predictedDefectCorrectionCandidate);
+    predictedBlockCoupledNewtonDefectCorrectionCandidate.kind =
+        kPairBoundaryRelaxationCandidatePredictedBlockCoupledNewtonDefectCorrection;
     PairInteractionRelaxationCandidate predictedBlendCandidate =
         solve_pair_interaction_relaxation_candidate(
             result,
@@ -3117,7 +3553,15 @@ PairInteractionBoundaryRelaxationRun relax_pair_interaction_constrained_frames(
     correctedCandidate.kind = kPairBoundaryRelaxationCandidateFirstCorrector;
     PairInteractionRelaxationCandidate secondCorrectedCandidate;
     PairInteractionRelaxationCandidate correctedDefectCorrectionCandidate;
+    PairInteractionRelaxationCandidate correctedBlockCoupledNewtonDefectCorrectionCandidate;
     PairInteractionRelaxationCandidate correctedBlendCandidate;
+    PairInteractionRelaxationCandidate secondCorrectedDefectCorrectionCandidate;
+    PairInteractionRelaxationCandidate secondCorrectedBlockCoupledNewtonDefectCorrectionCandidate;
+    PairInteractionRelaxationCandidate secondCorrectedBlendCandidate;
+    PairInteractionRelaxationCandidate thirdCorrectedCandidate;
+    PairInteractionRelaxationCandidate thirdCorrectedDefectCorrectionCandidate;
+    PairInteractionRelaxationCandidate thirdCorrectedBlockCoupledNewtonDefectCorrectionCandidate;
+    PairInteractionRelaxationCandidate thirdCorrectedBlendCandidate;
     if (has_pair_interaction_relaxation_candidate(correctedCandidate)) {
       PairInteractionSampleResult correctedPredictedResult = result;
       apply_pair_interaction_relaxation_positions(
@@ -3135,6 +3579,16 @@ PairInteractionBoundaryRelaxationRun relax_pair_interaction_constrained_frames(
               correctedPredictedResult.frames);
       correctedDefectCorrectionCandidate.kind =
           kPairBoundaryRelaxationCandidateCorrectedDefectCorrection;
+      correctedBlockCoupledNewtonDefectCorrectionCandidate =
+          solve_pair_interaction_block_coupled_newton_defect_correction_candidate(
+              correctedPredictedResult,
+              request,
+              initialStates,
+              pathKeys,
+              epsilon,
+              correctedDefectCorrectionCandidate);
+      correctedBlockCoupledNewtonDefectCorrectionCandidate.kind =
+          kPairBoundaryRelaxationCandidateCorrectedBlockCoupledNewtonDefectCorrection;
       correctedBlendCandidate =
           solve_pair_interaction_relaxation_candidate(
               result,
@@ -3155,6 +3609,93 @@ PairInteractionBoundaryRelaxationRun relax_pair_interaction_constrained_frames(
               epsilon,
               correctedPredictedResult.frames);
       secondCorrectedCandidate.kind = kPairBoundaryRelaxationCandidateSecondCorrector;
+      if (has_pair_interaction_relaxation_candidate(secondCorrectedCandidate)) {
+        PairInteractionSampleResult secondCorrectedPredictedResult = result;
+        apply_pair_interaction_relaxation_positions(
+            secondCorrectedPredictedResult,
+            secondCorrectedCandidate.positions,
+            secondCorrectedCandidate.hasPosition,
+            1.0);
+        secondCorrectedDefectCorrectionCandidate =
+            solve_pair_interaction_defect_correction_candidate(
+                secondCorrectedPredictedResult,
+                request,
+                initialStates,
+                pathKeys,
+                epsilon,
+                secondCorrectedPredictedResult.frames);
+        secondCorrectedDefectCorrectionCandidate.kind =
+            kPairBoundaryRelaxationCandidateSecondCorrectedDefectCorrection;
+        secondCorrectedBlockCoupledNewtonDefectCorrectionCandidate =
+            solve_pair_interaction_block_coupled_newton_defect_correction_candidate(
+                secondCorrectedPredictedResult,
+                request,
+                initialStates,
+                pathKeys,
+                epsilon,
+                secondCorrectedDefectCorrectionCandidate);
+        secondCorrectedBlockCoupledNewtonDefectCorrectionCandidate.kind =
+            kPairBoundaryRelaxationCandidateSecondCorrectedBlockCoupledNewtonDefectCorrection;
+        secondCorrectedBlendCandidate =
+            solve_pair_interaction_relaxation_candidate(
+                result,
+                request,
+                initialStates,
+                pathKeys,
+                epsilon,
+                result.frames,
+                &secondCorrectedPredictedResult.frames,
+                0.5);
+        secondCorrectedBlendCandidate.kind = kPairBoundaryRelaxationCandidateSecondCorrectedBlend;
+        thirdCorrectedCandidate =
+            solve_pair_interaction_relaxation_candidate(
+                result,
+                request,
+                initialStates,
+                pathKeys,
+                epsilon,
+                secondCorrectedPredictedResult.frames);
+        thirdCorrectedCandidate.kind = kPairBoundaryRelaxationCandidateThirdCorrector;
+        if (has_pair_interaction_relaxation_candidate(thirdCorrectedCandidate)) {
+          PairInteractionSampleResult thirdCorrectedPredictedResult = result;
+          apply_pair_interaction_relaxation_positions(
+              thirdCorrectedPredictedResult,
+              thirdCorrectedCandidate.positions,
+              thirdCorrectedCandidate.hasPosition,
+              1.0);
+          thirdCorrectedDefectCorrectionCandidate =
+              solve_pair_interaction_defect_correction_candidate(
+                  thirdCorrectedPredictedResult,
+                  request,
+                  initialStates,
+                  pathKeys,
+                  epsilon,
+                  thirdCorrectedPredictedResult.frames);
+          thirdCorrectedDefectCorrectionCandidate.kind =
+              kPairBoundaryRelaxationCandidateThirdCorrectedDefectCorrection;
+          thirdCorrectedBlockCoupledNewtonDefectCorrectionCandidate =
+              solve_pair_interaction_block_coupled_newton_defect_correction_candidate(
+                  thirdCorrectedPredictedResult,
+                  request,
+                  initialStates,
+                  pathKeys,
+                  epsilon,
+                  thirdCorrectedDefectCorrectionCandidate);
+          thirdCorrectedBlockCoupledNewtonDefectCorrectionCandidate.kind =
+              kPairBoundaryRelaxationCandidateThirdCorrectedBlockCoupledNewtonDefectCorrection;
+          thirdCorrectedBlendCandidate =
+              solve_pair_interaction_relaxation_candidate(
+                  result,
+                  request,
+                  initialStates,
+                  pathKeys,
+                  epsilon,
+                  result.frames,
+                  &thirdCorrectedPredictedResult.frames,
+                  0.5);
+          thirdCorrectedBlendCandidate.kind = kPairBoundaryRelaxationCandidateThirdCorrectedBlend;
+        }
+      }
     }
 
     std::vector<PairInteractionRelaxationCandidate> candidateVariants{
@@ -3165,13 +3706,23 @@ PairInteractionBoundaryRelaxationRun relax_pair_interaction_constrained_frames(
         linearizedDefectCorrectionCandidate,
         localNewtonDefectCorrectionCandidate,
         coupledLocalNewtonDefectCorrectionCandidate,
+        blockCoupledNewtonDefectCorrectionCandidate,
         predictedDefectCorrectionCandidate,
+        predictedBlockCoupledNewtonDefectCorrectionCandidate,
         predictedBlendCandidate,
         correctedDefectCorrectionCandidate,
+        correctedBlockCoupledNewtonDefectCorrectionCandidate,
         correctedBlendCandidate,
+        secondCorrectedDefectCorrectionCandidate,
+        secondCorrectedBlockCoupledNewtonDefectCorrectionCandidate,
+        secondCorrectedBlendCandidate,
+        thirdCorrectedCandidate,
+        thirdCorrectedDefectCorrectionCandidate,
+        thirdCorrectedBlockCoupledNewtonDefectCorrectionCandidate,
+        thirdCorrectedBlendCandidate,
     };
-    const std::size_t candidateVariantCount = candidateVariants.size();
-    for (std::size_t index = 0; index < candidateVariantCount; ++index) {
+    const std::size_t baseCandidateVariantCount = candidateVariants.size();
+    for (std::size_t index = 0; index < baseCandidateVariantCount; ++index) {
       const PairInteractionRelaxationCandidate projectedCandidate =
           project_pair_interaction_candidate_to_constraint_center_of_mass(
               result,
@@ -3192,6 +3743,9 @@ PairInteractionBoundaryRelaxationRun relax_pair_interaction_constrained_frames(
             residualBeforeIteration,
             framesBeforeIteration,
             candidateVariants);
+    candidateVariantCount += selectedStep.candidateVariantCount;
+    lineSearchTrialCount += selectedStep.lineSearchTrialCount;
+    candidateKindMask |= selectedStep.candidateKindMask;
     if (!selectedStep.accepted) {
       result.frames = framesBeforeIteration;
       return finish(kPairBoundaryRelaxationStopReasonLineSearchStalled);
@@ -3301,6 +3855,48 @@ void summarize_pair_interaction_constraint_residuals(
   if (sampleCount > 0) {
     result.meanPathConstraintResidual = sumResidual / static_cast<double>(sampleCount);
     result.rmsPathConstraintResidual =
+        std::sqrt(sumResidualSquared / static_cast<double>(sampleCount));
+  }
+}
+
+void summarize_pair_interaction_constraint_position_residuals(
+    PairInteractionSampleResult& result,
+    const PairInteractionRequest& request) {
+  if (request.pathConstraints.empty()) {
+    return;
+  }
+
+  const double epsilon = pair_constraint_time_epsilon(request);
+  double sumResidual = 0.0;
+  double sumResidualSquared = 0.0;
+  double maxResidual = 0.0;
+  std::uint64_t sampleCount = 0;
+
+  for (const PairInteractionPathConstraint& constraint : request.pathConstraints) {
+    const auto match = std::find_if(
+        result.frames.begin(),
+        result.frames.end(),
+        [&constraint, epsilon](const MotionFrameRowF64& frame) {
+          return frame.pathKey == constraint.pathKey &&
+              std::abs(frame.time - constraint.time) <= epsilon;
+        });
+    if (match == result.frames.end()) {
+      continue;
+    }
+    const double residual = vector_norm(
+        vector_subtract(frame_position(*match), constraint.position));
+    if (!std::isfinite(residual)) {
+      continue;
+    }
+    record_residual_sample(residual, maxResidual, sumResidual, sumResidualSquared, sampleCount);
+  }
+
+  result.pathConstraintPositionResidualSampleCount = sampleCount;
+  result.maxPathConstraintPositionResidual = maxResidual;
+  if (sampleCount > 0) {
+    result.meanPathConstraintPositionResidual =
+        sumResidual / static_cast<double>(sampleCount);
+    result.rmsPathConstraintPositionResidual =
         std::sqrt(sumResidualSquared / static_cast<double>(sampleCount));
   }
 }
@@ -3491,7 +4087,10 @@ PairInteractionSampleResult integrate_pair_interaction_motion(
   }
 
   std::vector<PairInteractionState> states = initialStates;
-  const std::vector<double> times = pair_interaction_sample_times(request);
+  const PairInteractionSampleSchedule sampleSchedule = pair_interaction_sample_schedule(request);
+  const std::vector<double>& times = sampleSchedule.times;
+  result.pathConstraintFrameRefinementSampleCount =
+      sampleSchedule.pathConstraintFrameRefinementSampleCount;
   std::vector<MotionFrameRowF64> previousFrames;
 
   for (std::size_t frameIndex = 0; frameIndex < times.size(); ++frameIndex) {
@@ -3556,6 +4155,12 @@ PairInteractionSampleResult integrate_pair_interaction_motion(
       boundaryRelaxationRun.selectedCandidateKind;
   result.pathConstraintBoundaryRelaxationCenterOfMassSelectedCount =
       boundaryRelaxationRun.centerOfMassSelectedCount;
+  result.pathConstraintBoundaryRelaxationCandidateVariantCount =
+      boundaryRelaxationRun.candidateVariantCount;
+  result.pathConstraintBoundaryRelaxationLineSearchTrialCount =
+      boundaryRelaxationRun.lineSearchTrialCount;
+  result.pathConstraintBoundaryRelaxationCandidateKindMask =
+      boundaryRelaxationRun.candidateKindMask;
   result.pathConstraintBoundaryRelaxationMaxStep =
       boundaryRelaxationRun.maxAcceptedStep;
   result.pathConstraintBoundaryRelaxationFinalStepFactor =
@@ -3609,6 +4214,7 @@ PairInteractionSampleResult integrate_pair_interaction_motion(
           result.rmsPathConstraintBoundaryRelaxationResidualRatio,
           boundaryRelaxationRun.appliedIterationCount);
   rebuild_pair_interaction_path_rows(result);
+  summarize_pair_interaction_constraint_position_residuals(result, request);
   summarize_pair_interaction_constraint_residuals(result, request, initialStates);
   summarize_pair_interaction_boundary_residuals(result, request, initialStates);
   result.stepCount = times.empty() ? 0 : static_cast<std::uint64_t>(times.size() - 1);

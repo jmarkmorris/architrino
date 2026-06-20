@@ -91,6 +91,11 @@ struct PairInteractionSampleResult {
   std::vector<PathHistoryRowF64> pathRows;
   std::uint64_t stepCount = 0;
   std::uint64_t pathConstraintCount = 0;
+  std::uint64_t pathConstraintFrameRefinementSampleCount = 0;
+  std::uint64_t pathConstraintPositionResidualSampleCount = 0;
+  double maxPathConstraintPositionResidual = 0.0;
+  double meanPathConstraintPositionResidual = 0.0;
+  double rmsPathConstraintPositionResidual = 0.0;
   std::uint64_t pathConstraintResidualSampleCount = 0;
   double maxPathConstraintResidual = 0.0;
   double meanPathConstraintResidual = 0.0;
@@ -124,6 +129,9 @@ struct PairInteractionSampleResult {
   double pathConstraintBoundaryRelaxationMaxStep = 0.0;
   double pathConstraintBoundaryRelaxationFinalStepFactor = 0.0;
   std::uint32_t pathConstraintBoundaryRelaxationCenterOfMassSelectedCount = 0;
+  std::uint64_t pathConstraintBoundaryRelaxationCandidateVariantCount = 0;
+  std::uint64_t pathConstraintBoundaryRelaxationLineSearchTrialCount = 0;
+  std::uint64_t pathConstraintBoundaryRelaxationCandidateKindMask = 0;
   ValidationReport validation;
 };
 

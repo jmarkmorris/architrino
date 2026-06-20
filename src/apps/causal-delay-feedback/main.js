@@ -132,6 +132,19 @@ export function createCausalDelayFeedbackInitialReplayRequestOptions(windowLike 
   if (pathConstraintBoundaryResidualTolerance != null) {
     requestOptions.pathConstraintBoundaryResidualTolerance = pathConstraintBoundaryResidualTolerance;
   }
+  const pathConstraintPositionResidualTolerance =
+    getInitialNonnegativeQueryNumber(windowLike, "pathConstraintPositionResidualTolerance") ??
+    getInitialNonnegativeQueryNumber(windowLike, "positionResidualTolerance");
+  if (pathConstraintPositionResidualTolerance != null) {
+    requestOptions.pathConstraintPositionResidualTolerance = pathConstraintPositionResidualTolerance;
+  }
+  const pathConstraintGuidanceAccelerationTolerance =
+    getInitialNonnegativeQueryNumber(windowLike, "pathConstraintGuidanceAccelerationTolerance") ??
+    getInitialNonnegativeQueryNumber(windowLike, "guidanceAccelerationTolerance");
+  if (pathConstraintGuidanceAccelerationTolerance != null) {
+    requestOptions.pathConstraintGuidanceAccelerationTolerance =
+      pathConstraintGuidanceAccelerationTolerance;
+  }
   const pathConstraintBoundaryRelaxationIterationCount =
     getInitialNonnegativeQueryInteger(windowLike, "pathConstraintBoundaryRelaxationIterationCount") ??
     getInitialNonnegativeQueryInteger(windowLike, "boundaryRelaxationIterations");

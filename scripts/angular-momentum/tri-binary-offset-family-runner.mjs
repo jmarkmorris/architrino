@@ -19,6 +19,7 @@ const TIME_WINDOW_TORQUE_RESIDUAL_TOLERANCE = 1e-8;
 const POINT_EVENT_TORQUE_RESIDUAL_TOLERANCE = 1e-12;
 const POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE = 1e-12;
 const BINARY_TO_BINARY_PATH_SEGMENT_COUNT = 32;
+const ENDPOINT_LINEAR_SEGMENT_CONVERGENCE_COUNTS = [16, 32, 64, 128, 256];
 const FIXED_RECEIVER_POSITION = { x: 2.5, y: 0, z: 0 };
 const DEFAULT_OUTPUT_PATH =
   ".tmp/angular-momentum-spin/tri-binary-offset-family-solver-report.json";
@@ -1835,6 +1836,153 @@ function computeEnergyFrequencyTarget(byLayer) {
       inner: 2,
     },
   };
+}
+
+function createMinimalBranchTransactionFrequencyCertificate({
+  selectedCase,
+  cleanEnergyFrequencyTarget,
+  candidateCapturePass,
+  topologyRunsThroughMiddle,
+  hingeChartContinuityPass,
+  geometryTransportPass,
+}) {
+  const angularVelocities = cleanEnergyFrequencyTarget?.angularVelocities ?? {};
+  const actionWeights = cleanEnergyFrequencyTarget?.actionWeights ?? {};
+  const weightedOmegaNumerator =
+    Number.isFinite(angularVelocities.outer) &&
+    Number.isFinite(angularVelocities.middle) &&
+    Number.isFinite(angularVelocities.inner) &&
+    Number.isFinite(actionWeights.outer) &&
+    Number.isFinite(actionWeights.middle) &&
+    Number.isFinite(actionWeights.inner)
+      ? actionWeights.outer * angularVelocities.outer +
+        actionWeights.middle * angularVelocities.middle +
+        actionWeights.inner * angularVelocities.inner
+      : null;
+  const actionWeightSum =
+    Number.isFinite(actionWeights.outer) &&
+    Number.isFinite(actionWeights.middle) &&
+    Number.isFinite(actionWeights.inner)
+      ? actionWeights.outer + actionWeights.middle + actionWeights.inner
+      : null;
+  const candidateOmegaTx =
+    Number.isFinite(weightedOmegaNumerator) &&
+    Number.isFinite(actionWeightSum) &&
+    Math.abs(actionWeightSum) > POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE
+      ? weightedOmegaNumerator / actionWeightSum
+      : null;
+  const targetOmegaTx = cleanEnergyFrequencyTarget?.omegaStar ?? null;
+  const residual =
+    Number.isFinite(candidateOmegaTx) && Number.isFinite(targetOmegaTx)
+      ? candidateOmegaTx - targetOmegaTx
+      : null;
+  const residualAbs = Number.isFinite(residual) ? Math.abs(residual) : null;
+  const frequencyIdentityPass =
+    Number.isFinite(residualAbs) &&
+    residualAbs <= POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE;
+  const middleHingeRow = findBranchChartProjectionRow(selectedCase, "middle_hinge");
+  const innerSelfHitRow = findBranchChartProjectionRow(selectedCase, "inner_self_hit");
+  const phaseClosureRow = findBranchChartProjectionRow(
+    selectedCase,
+    "cycle_phase_closure_proxy"
+  );
+  const selfRootParityRow = findBranchChartProjectionRow(
+    selectedCase,
+    "self_root_parity_index_proxy"
+  );
+  const indexOffset =
+    Number.isFinite(selectedCase?.indices?.inner) &&
+    Number.isFinite(selectedCase?.indices?.middle)
+      ? selectedCase.indices.inner - selectedCase.indices.middle
+      : null;
+  const minimalSubstepPatternPass =
+    selectedCase?.familyId === "middle-hinge-offset" &&
+    indexOffset === 2 &&
+    selfRootParityRow?.status === "index_proxy_matches_target";
+  const reducedCertificatePass =
+    frequencyIdentityPass &&
+    selectedCase?.priorityCandidate === true &&
+    minimalSubstepPatternPass &&
+    middleHingeRow?.status === "reduced_pass" &&
+    innerSelfHitRow?.status === "reduced_pass" &&
+    phaseClosureRow?.status === "cycle_proxy_pass" &&
+    candidateCapturePass === true &&
+    topologyRunsThroughMiddle === true &&
+    hingeChartContinuityPass === true;
+  const acceptedRetainedEventDomainPass = false;
+  const acceptedTransactionFrequencyPass =
+    reducedCertificatePass &&
+    geometryTransportPass === true &&
+    selectedCase?.branchChartProjection?.retainedBranchClaim === true &&
+    acceptedRetainedEventDomainPass === true;
+  const acceptanceBlockers = [
+    reducedCertificatePass ? null : "minimal_four_substep_reduced_certificate",
+    geometryTransportPass === true
+      ? null
+      : "geometrically_continuous_branch_transport_pair_map",
+    selectedCase?.branchChartProjection?.retainedBranchClaim === true
+      ? null
+      : "accepted_retained_branch_claim",
+    acceptedRetainedEventDomainPass
+      ? null
+      : "accepted_retained_point_event_rule_or_positive_width_common_retained_time_domain",
+    "same_event_energy_carrier_population",
+  ].filter(Boolean);
+
+  return {
+    schema:
+      "aaa-tri-binary-minimal-branch-transaction-frequency-certificate-target.v1",
+    status: !Number.isFinite(candidateOmegaTx)
+      ? "minimal_branch_transaction_frequency_certificate_missing_frequency"
+      : !frequencyIdentityPass
+        ? "minimal_branch_transaction_frequency_certificate_identity_mismatch"
+        : acceptedTransactionFrequencyPass
+          ? "minimal_branch_transaction_frequency_certificate_accepted"
+          : reducedCertificatePass
+            ? "minimal_branch_transaction_frequency_reduced_certificate_formal_acceptance_blocked"
+            : "minimal_branch_transaction_frequency_reduced_certificate_incomplete",
+    claimLevel:
+      "minimal four-substep branch frequency certificate target; not accepted omega_tx until retained-event acceptance and same-event carrier population are supplied",
+    retainedBranchClaim: false,
+    acceptedTransactionFrequencyPass,
+    acceptedRetainedEventDomainPass,
+    reducedCertificatePass,
+    frequencyIdentityPass,
+    candidateOmegaTx,
+    targetOmegaTx,
+    residual,
+    residualAbs,
+    formula:
+      "omega_tx^(4)=(omega_O+omega_M+2 omega_I)/(1+1+2)",
+    actionWeights,
+    actionWeightSum,
+    weightedOmegaNumerator,
+    selectedCaseId: selectedCase?.caseId ?? null,
+    familyId: selectedCase?.familyId ?? null,
+    familyLabel: selectedCase?.familyLabel ?? null,
+    indices: selectedCase?.indices ?? null,
+    indexOffset,
+    minimalSubstepPatternPass,
+    middleHingeStatus: middleHingeRow?.status ?? null,
+    innerSelfHitStatus: innerSelfHitRow?.status ?? null,
+    phaseClosureStatus: phaseClosureRow?.status ?? null,
+    selfRootParityStatus: selfRootParityRow?.status ?? null,
+    candidateCapturePass,
+    topologyRunsThroughMiddle,
+    hingeChartContinuityPass,
+    geometryTransportPass,
+    acceptanceBlockers,
+    retainedLimitation:
+      "The four-substep weighted frequency is exact for the selected reduced $(f-1,f,f+2)$ middle-hinge branch, but it is only an omega_tx source after the same route has an accepted retained point-event or positive-width retained domain, geometrically continuous branch transport, and same-event energy carrier population.",
+  };
+}
+
+function findBranchChartProjectionRow(selectedCase, id) {
+  return (
+    selectedCase?.branchChartProjection?.populatedRows?.find(
+      (row) => row.id === id
+    ) ?? null
+  );
 }
 
 function createProjectionRow({
@@ -4112,8 +4260,12 @@ function createCompensatedRoutePayloadRow(routeRow) {
 
 function createRouteAuthorizedWakePayloadDiagnostic({
   compensatedRoutePayloadCertificate,
+  hingeRootBranchTransportRouteFeasibility = null,
+  hingeEventRowSetIdentity = null,
+  retainedTimeDomainCoverage = null,
   timeWindowTorqueProbe,
   cleanEnergyFrequencyTarget = null,
+  minimalBranchTransactionFrequencyCertificate = null,
   layerByName = new Map(),
 }) {
   const reconstruction =
@@ -4203,8 +4355,12 @@ function createRouteAuthorizedWakePayloadDiagnostic({
     normalizedActionKernelWakeCharge,
     retainedActionKernelPullbackDomain,
     compensatedRoutePayloadCertificate,
+    hingeRootBranchTransportRouteFeasibility,
+    hingeEventRowSetIdentity,
+    retainedTimeDomainCoverage,
     timeWindowTorqueProbe,
     cleanEnergyFrequencyTarget,
+    minimalBranchTransactionFrequencyCertificate,
     actionKernelNormalizationConventionCandidate,
     masterEquationCharacteristicTailPullbackCandidate,
     layerByName,
@@ -4325,6 +4481,7 @@ function createRouteAuthorizedWakePayloadDiagnostic({
     masterEquationCharacteristicTailPullbackCandidate,
     normalizedActionKernelWakeCharge,
     retainedActionKernelPullbackDomain,
+    minimalBranchTransactionFrequencyCertificate,
     wakeEnergyIncrementTarget,
     wakeEnergyIncrement: null,
     partialProgressFields: [
@@ -4543,8 +4700,12 @@ function createWakeEnergyIncrementTarget({
   normalizedActionKernelWakeCharge,
   retainedActionKernelPullbackDomain,
   compensatedRoutePayloadCertificate,
+  hingeRootBranchTransportRouteFeasibility = null,
+  hingeEventRowSetIdentity = null,
+  retainedTimeDomainCoverage = null,
   timeWindowTorqueProbe,
   cleanEnergyFrequencyTarget,
+  minimalBranchTransactionFrequencyCertificate,
   actionKernelNormalizationConventionCandidate,
   masterEquationCharacteristicTailPullbackCandidate,
   layerByName,
@@ -4593,9 +4754,34 @@ function createWakeEnergyIncrementTarget({
       actionBoundaryDerivativeTarget,
       compensatedRoutePayloadCertificate,
       cleanEnergyFrequencyTarget,
+      minimalBranchTransactionFrequencyCertificate,
+      masterEquationCharacteristicTailPullbackCandidate,
       omegaStarWeightedBoundaryCharge,
       omegaStar,
       targetChargeNorm,
+    });
+  const sameEventEnergyRoutingTarget = createSameEventEnergyRoutingTarget({
+    targetPopulated,
+    normalizedActionKernelWakeCharge,
+    retainedActionKernelPullbackDomain,
+    compensatedRoutePayloadCertificate,
+    cleanEnergyFrequencyTarget,
+    minimalBranchTransactionFrequencyCertificate,
+    actionBoundaryDerivativeTarget,
+    actionBoundaryWakeEnergyLawCandidate,
+    omegaStarWeightedBoundaryCharge,
+    rootEnergyDiagnosticSum,
+    targetChargeNorm,
+  });
+  const omegaSameEventDependencyDiagnostic =
+    createOmegaSameEventDependencyDiagnostic({
+      minimalBranchTransactionFrequencyCertificate,
+      actionBoundaryWakeEnergyLawCandidate,
+      sameEventEnergyRoutingTarget,
+      hingeRootBranchTransportRouteFeasibility,
+      hingeEventRowSetIdentity,
+      retainedTimeDomainCoverage,
+      layerByName,
     });
 
   return {
@@ -4625,11 +4811,25 @@ function createWakeEnergyIncrementTarget({
     cleanEnergyFrequencyTargetStatus:
       cleanEnergyFrequencyTarget?.status ?? null,
     cleanEnergyFrequencyOmegaStar: omegaStar,
+    minimalBranchTransactionFrequencyCertificateStatus:
+      minimalBranchTransactionFrequencyCertificate?.status ?? null,
+    minimalBranchTransactionFrequencyCandidateOmegaTx:
+      minimalBranchTransactionFrequencyCertificate?.candidateOmegaTx ?? null,
+    minimalBranchTransactionFrequencyReducedCertificatePass:
+      minimalBranchTransactionFrequencyCertificate?.reducedCertificatePass ?? null,
+    minimalBranchTransactionFrequencyAcceptedPass:
+      minimalBranchTransactionFrequencyCertificate
+        ?.acceptedTransactionFrequencyPass ?? null,
+    sameEventEnergyRoutingStatus: sameEventEnergyRoutingTarget.status,
+    acceptedSameEventEnergyRoutingPass:
+      sameEventEnergyRoutingTarget.acceptedSameEventEnergyRoutingPass,
     rootEnergyDiagnosticRowCount: rootEnergyDiagnosticRows.length,
     rootEnergyDiagnosticSum,
     maxRootEnergyDiagnosticIncrement: maxFinite(rootEnergyIncrements),
     actionBoundaryDerivativeTarget,
     actionBoundaryWakeEnergyLawCandidate,
+    sameEventEnergyRoutingTarget,
+    omegaSameEventDependencyDiagnostic,
     candidateRoutes: [
       {
         id: "action_boundary_derivative_kernel",
@@ -4670,6 +4870,43 @@ function createWakeEnergyIncrementTarget({
           actionBoundaryWakeEnergyLawCandidate.actionScaleLawSearchTarget ?? null,
       },
       {
+        id: "action_boundary_action_scale_derivation_target",
+        status:
+          actionBoundaryWakeEnergyLawCandidate.actionScaleDerivationTarget
+            ?.status ?? "blocked_missing_action_boundary_wake_energy_candidate",
+        requiredPositiveActionScale:
+          actionBoundaryWakeEnergyLawCandidate
+            .positiveActionScaleForOmegaStarMagnitude,
+        acceptedActionScaleDerivationPass:
+          actionBoundaryWakeEnergyLawCandidate.actionScaleDerivationTarget
+            ?.acceptedActionScaleDerivationPass ?? false,
+        acceptedRows:
+          actionBoundaryWakeEnergyLawCandidate.actionScaleDerivationTarget
+            ?.acceptedRows ?? [],
+        bestRejectedCandidate:
+          actionBoundaryWakeEnergyLawCandidate.actionScaleDerivationTarget
+            ?.bestRejectedCandidate ?? null,
+        target:
+          actionBoundaryWakeEnergyLawCandidate.actionScaleDerivationTarget ??
+          null,
+      },
+      {
+        id: "energy_orientation_law_search",
+        status:
+          actionBoundaryWakeEnergyLawCandidate.energyOrientationLawTarget
+            ?.status ?? "blocked_missing_action_boundary_wake_energy_candidate",
+        requiredEnergyOrientation:
+          actionBoundaryWakeEnergyLawCandidate.requiredEnergyOrientation,
+        acceptedCandidate:
+          actionBoundaryWakeEnergyLawCandidate.energyOrientationLawTarget
+            ?.acceptedRows?.[0] ?? null,
+        exactIneligibleRows:
+          actionBoundaryWakeEnergyLawCandidate.energyOrientationLawTarget
+            ?.exactIneligibleRows ?? [],
+        target:
+          actionBoundaryWakeEnergyLawCandidate.energyOrientationLawTarget ?? null,
+      },
+      {
         id: "omega_star_weighted_boundary_charge",
         status:
           omegaStarWeightedBoundaryCharge != null
@@ -4700,6 +4937,34 @@ function createWakeEnergyIncrementTarget({
             ?.exactIneligibleRows ?? [],
         target:
           actionBoundaryWakeEnergyLawCandidate.omegaTxLawSearchTarget ?? null,
+      },
+      {
+        id: "minimal_branch_transaction_frequency_certificate",
+        status:
+          minimalBranchTransactionFrequencyCertificate?.status ??
+          "blocked_missing_minimal_branch_frequency_certificate",
+        candidateOmegaTx:
+          minimalBranchTransactionFrequencyCertificate?.candidateOmegaTx ?? null,
+        targetOmegaTx:
+          minimalBranchTransactionFrequencyCertificate?.targetOmegaTx ?? null,
+        residual:
+          minimalBranchTransactionFrequencyCertificate?.residual ?? null,
+        acceptedTransactionFrequencyPass:
+          minimalBranchTransactionFrequencyCertificate
+            ?.acceptedTransactionFrequencyPass ?? false,
+        acceptanceBlockers:
+          minimalBranchTransactionFrequencyCertificate?.acceptanceBlockers ?? [],
+        target: minimalBranchTransactionFrequencyCertificate ?? null,
+      },
+      {
+        id: "same_event_energy_routing_target",
+        status: sameEventEnergyRoutingTarget.status,
+        acceptedSameEventEnergyRoutingPass:
+          sameEventEnergyRoutingTarget.acceptedSameEventEnergyRoutingPass,
+        exactFormalCandidateRows:
+          sameEventEnergyRoutingTarget.exactFormalCandidateRows,
+        acceptanceBlockers: sameEventEnergyRoutingTarget.acceptanceBlockers,
+        target: sameEventEnergyRoutingTarget,
       },
       {
         id: "zero_wake_energy",
@@ -4733,10 +4998,2021 @@ function createWakeEnergyIncrementTarget({
   };
 }
 
+function createSameEventEnergyRoutingTarget({
+  targetPopulated,
+  normalizedActionKernelWakeCharge,
+  retainedActionKernelPullbackDomain,
+  compensatedRoutePayloadCertificate,
+  cleanEnergyFrequencyTarget,
+  minimalBranchTransactionFrequencyCertificate,
+  actionBoundaryDerivativeTarget,
+  actionBoundaryWakeEnergyLawCandidate,
+  omegaStarWeightedBoundaryCharge,
+  rootEnergyDiagnosticSum,
+  targetChargeNorm,
+}) {
+  const routeRows = retainedActionKernelPullbackDomain?.routeRows ?? [];
+  const routeRootKeys = retainedActionKernelPullbackDomain?.routeRootKeys ?? [];
+  const sameRetainedActiveRowIds =
+    retainedActionKernelPullbackDomain?.sameRetainedActiveRowIds ?? [];
+  const sameEventRowsPass =
+    targetPopulated &&
+    routeRows.length > 0 &&
+    routeRootKeys.length > 0 &&
+    sameRetainedActiveRowIds.length > 0;
+  const acceptedOmegaTxSource =
+    actionBoundaryWakeEnergyLawCandidate?.omegaTxLawSearchTarget
+      ?.acceptedOmegaTxLawPass === true;
+  const acceptedActionScale =
+    actionBoundaryWakeEnergyLawCandidate?.acceptedActionScalePass === true ||
+    actionBoundaryWakeEnergyLawCandidate?.actionScaleDerivationTarget
+      ?.acceptedActionScaleDerivationPass === true ||
+    actionBoundaryWakeEnergyLawCandidate?.actionScaleLawSearchTarget
+      ?.acceptedActionScaleLawPass === true;
+  const acceptedEnergyOrientation =
+    actionBoundaryWakeEnergyLawCandidate?.acceptedEnergyOrientationPass === true;
+  const acceptedWakeEnergyIncrementLaw =
+    actionBoundaryWakeEnergyLawCandidate?.acceptedWakeEnergyIncrementPass === true;
+  const acceptanceBlockers = [
+    targetPopulated ? null : "accepted_boundary_charge_pullback",
+    sameEventRowsPass ? null : "same_retained_route_rows",
+    acceptedOmegaTxSource ? null : "accepted_omega_tx_source",
+    acceptedActionScale ? null : "derived_sigma_hbar_action_scale",
+    acceptedEnergyOrientation ? null : "accepted_energy_orientation",
+    acceptedWakeEnergyIncrementLaw ? null : "accepted_wake_energy_increment_law",
+  ].filter(Boolean);
+  const candidateRows = createSameEventEnergyRoutingCandidateRows({
+    targetPopulated,
+    sameEventRowsPass,
+    acceptedOmegaTxSource,
+    acceptedActionScale,
+    acceptedEnergyOrientation,
+    acceptedWakeEnergyIncrementLaw,
+    minimalBranchTransactionFrequencyCertificate,
+    actionBoundaryDerivativeTarget,
+    actionBoundaryWakeEnergyLawCandidate,
+    omegaStarWeightedBoundaryCharge,
+    rootEnergyDiagnosticSum,
+    targetChargeNorm,
+  }).map((row) => {
+    const residual =
+      Number.isFinite(row.candidateWakeEnergyIncrement) &&
+      Number.isFinite(omegaStarWeightedBoundaryCharge)
+        ? row.candidateWakeEnergyIncrement - omegaStarWeightedBoundaryCharge
+        : null;
+    const residualAbs = Number.isFinite(residual) ? Math.abs(residual) : null;
+    const exactBoundaryChargeEnergyPass =
+      Number.isFinite(residualAbs) &&
+      residualAbs <= POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE;
+    return {
+      ...row,
+      targetWakeEnergyIncrement: omegaStarWeightedBoundaryCharge,
+      residual,
+      residualAbs,
+      exactBoundaryChargeEnergyPass,
+      acceptedSameEventEnergyRoutePass:
+        row.acceptanceEligible === true && exactBoundaryChargeEnergyPass,
+    };
+  });
+  const finiteRows = candidateRows.filter((row) =>
+    Number.isFinite(row.candidateWakeEnergyIncrement)
+  );
+  const acceptedRows = finiteRows.filter(
+    (row) => row.acceptedSameEventEnergyRoutePass
+  );
+  const exactFormalCandidateRows = finiteRows.filter(
+    (row) =>
+      row.exactBoundaryChargeEnergyPass &&
+      row.acceptedSameEventEnergyRoutePass !== true
+  );
+  const rejectedRows = finiteRows.filter(
+    (row) => row.exactBoundaryChargeEnergyPass !== true
+  );
+  const bestRejectedCandidate =
+    rejectedRows.length > 0
+      ? rejectedRows.reduce((best, row) =>
+          row.residualAbs < best.residualAbs ? row : best
+        )
+      : null;
+
+  return {
+    schema: "aaa-tri-binary-same-event-energy-routing-target.v1",
+    status: !targetPopulated
+      ? "same_event_energy_routing_target_blocked_until_boundary_charge_pullback"
+      : acceptedRows.length > 0
+        ? "same_event_energy_routing_target_accepted"
+        : exactFormalCandidateRows.some(
+            (row) =>
+              row.id === "minimal_branch_frequency_boundary_charge_candidate"
+          )
+          ? "same_event_energy_routing_target_minimal_branch_boundary_candidate_formal_acceptance_blocked"
+          : exactFormalCandidateRows.length > 0
+            ? "same_event_energy_routing_target_exact_candidate_formal_acceptance_blocked"
+            : finiteRows.length > 0
+              ? "same_event_energy_routing_target_candidates_populated_no_exact_accepted_route"
+              : "same_event_energy_routing_target_no_finite_candidates",
+    claimLevel:
+      "same-event wake-energy routing target for the route-authorized retained rows; not accepted retained energy routing",
+    targetPopulated,
+    sameEventRowsPass,
+    acceptedSameEventEnergyRoutingPass: acceptedRows.length > 0,
+    normalizedBoundaryChargeStatus:
+      normalizedActionKernelWakeCharge?.status ?? null,
+    retainedCrossingDomainPullbackStatus:
+      retainedActionKernelPullbackDomain?.status ?? null,
+    routeRootKeys,
+    sameRetainedActiveRowIds,
+    routeRowCount: routeRows.length,
+    cleanEnergyFrequencyOmegaStar: cleanEnergyFrequencyTarget?.omegaStar ?? null,
+    targetWakeEnergyIncrement: omegaStarWeightedBoundaryCharge,
+    targetChargeNorm,
+    minimalBranchTransactionFrequencyCertificateStatus:
+      minimalBranchTransactionFrequencyCertificate?.status ?? null,
+    minimalBranchTransactionFrequencyAcceptedPass:
+      minimalBranchTransactionFrequencyCertificate
+        ?.acceptedTransactionFrequencyPass ?? null,
+    actionBoundaryWakeEnergyLawStatus:
+      actionBoundaryWakeEnergyLawCandidate?.status ?? null,
+    actionBoundaryDerivativeStatus: actionBoundaryDerivativeTarget?.status ?? null,
+    acceptedOmegaTxSource,
+    acceptedActionScale,
+    acceptedEnergyOrientation,
+    acceptedWakeEnergyIncrementLaw,
+    acceptanceBlockers,
+    candidateCount: candidateRows.length,
+    finiteCandidateCount: finiteRows.length,
+    exactFormalCandidateCount: exactFormalCandidateRows.length,
+    acceptedCandidateCount: acceptedRows.length,
+    bestRejectedCandidate,
+    exactFormalCandidateRows,
+    acceptedRows,
+    rows: candidateRows,
+    retainedLimitation:
+      "This target separates same-event carrier population from acceptance. Exact boundary-charge energy candidates remain formal only until omega_tx, sigma*hbar action scale, and the wake-energy law are accepted on the same retained rows.",
+  };
+}
+
+function createOmegaSameEventDependencyDiagnostic({
+  minimalBranchTransactionFrequencyCertificate,
+  actionBoundaryWakeEnergyLawCandidate,
+  sameEventEnergyRoutingTarget,
+  hingeRootBranchTransportRouteFeasibility,
+  hingeEventRowSetIdentity = null,
+  retainedTimeDomainCoverage = null,
+  layerByName = new Map(),
+}) {
+  const omegaAcceptanceBlockers =
+    minimalBranchTransactionFrequencyCertificate?.acceptanceBlockers ?? [];
+  const exactSameEventCarrierRows =
+    sameEventEnergyRoutingTarget?.exactFormalCandidateRows ?? [];
+  const minimalBranchBoundaryCarrierRow =
+    exactSameEventCarrierRows.find(
+      (row) => row.id === "minimal_branch_frequency_boundary_charge_candidate"
+    ) ?? null;
+  const actionBoundaryDerivativeCarrierRow =
+    exactSameEventCarrierRows.find(
+      (row) => row.id === "action_boundary_derivative_scaled_candidate"
+    ) ?? null;
+  const sameEventCarrierPopulationPass =
+    sameEventEnergyRoutingTarget?.sameEventRowsPass === true &&
+    exactSameEventCarrierRows.length > 0;
+  const omegaBlockersAfterCarrierPopulation = omegaAcceptanceBlockers
+    .map((blocker) =>
+      blocker === "same_event_energy_carrier_population" &&
+      sameEventCarrierPopulationPass
+        ? null
+        : blocker
+    )
+    .filter(Boolean);
+  const acceptedOmegaTxSource =
+    actionBoundaryWakeEnergyLawCandidate?.omegaTxLawSearchTarget
+      ?.acceptedOmegaTxLawPass === true;
+  const acceptedActionScale =
+    actionBoundaryWakeEnergyLawCandidate?.acceptedActionScalePass === true;
+  const acceptedEnergyOrientation =
+    actionBoundaryWakeEnergyLawCandidate?.acceptedEnergyOrientationPass === true;
+  const acceptedWakeEnergyIncrementLaw =
+    actionBoundaryWakeEnergyLawCandidate?.acceptedWakeEnergyIncrementPass === true;
+  const acceptedSameEventEnergyRouting =
+    sameEventEnergyRoutingTarget?.acceptedSameEventEnergyRoutingPass === true;
+  const sameEventRouteBlockers =
+    sameEventEnergyRoutingTarget?.acceptanceBlockers ?? [];
+  const legacyAcceptedRouteCircularBlockerPresent =
+    omegaAcceptanceBlockers.includes("accepted_same_event_energy_route");
+  const carrierPopulationOnlyBlockerPresent = omegaAcceptanceBlockers.includes(
+    "same_event_energy_carrier_population"
+  );
+  const retainedEventGeometryBlockerDiagnostic =
+    createOmegaRetainedEventGeometryBlockerDiagnostic({
+      hingeRootBranchTransportRouteFeasibility,
+      hingeEventRowSetIdentity,
+      retainedTimeDomainCoverage,
+      omegaBlockersAfterCarrierPopulation,
+      layerByName,
+    });
+
+  return {
+    schema: "aaa-tri-binary-omega-same-event-dependency-diagnostic.v1",
+    status: !minimalBranchTransactionFrequencyCertificate
+      ? "omega_same_event_dependency_diagnostic_missing_frequency_certificate"
+      : minimalBranchTransactionFrequencyCertificate.reducedCertificatePass !==
+          true
+        ? "omega_same_event_dependency_reduced_certificate_incomplete"
+        : !sameEventEnergyRoutingTarget
+          ? "omega_same_event_dependency_blocked_until_same_event_target"
+          : !sameEventCarrierPopulationPass
+            ? "omega_same_event_dependency_blocked_until_same_event_carrier_population"
+            : omegaBlockersAfterCarrierPopulation.length > 0
+              ? "omega_same_event_dependency_carrier_populated_retained_event_blockers_remain"
+              : acceptedOmegaTxSource &&
+                  acceptedActionScale &&
+                  acceptedWakeEnergyIncrementLaw
+                ? "omega_same_event_dependency_closed"
+                : "omega_same_event_dependency_carrier_populated_action_scale_or_wake_law_blocked",
+    claimLevel:
+      "dependency diagnostic separating same-event carrier population from accepted same-event energy routing; not an accepted omega_tx or wake-energy law",
+    reducedCertificatePass:
+      minimalBranchTransactionFrequencyCertificate?.reducedCertificatePass ??
+      null,
+    frequencyIdentityPass:
+      minimalBranchTransactionFrequencyCertificate?.frequencyIdentityPass ??
+      null,
+    candidateOmegaTx:
+      minimalBranchTransactionFrequencyCertificate?.candidateOmegaTx ?? null,
+    minimalBranchBoundaryCarrierExactPass:
+      minimalBranchBoundaryCarrierRow?.exactBoundaryChargeEnergyPass ?? false,
+    actionBoundaryDerivativeCarrierExactPass:
+      actionBoundaryDerivativeCarrierRow?.exactBoundaryChargeEnergyPass ?? false,
+    sameEventRowsPass: sameEventEnergyRoutingTarget?.sameEventRowsPass ?? null,
+    exactSameEventCarrierCount: exactSameEventCarrierRows.length,
+    sameEventCarrierPopulationPass,
+    acceptedOmegaTxSource,
+    acceptedActionScale,
+    acceptedEnergyOrientation,
+    acceptedWakeEnergyIncrementLaw,
+    acceptedSameEventEnergyRouting,
+    omegaAcceptanceBlockers,
+    omegaBlockersAfterCarrierPopulation,
+    sameEventRouteBlockers,
+    retainedEventGeometryBlockerStatus:
+      retainedEventGeometryBlockerDiagnostic.status,
+    retainedEventGeometryBlockerDiagnostic,
+    legacyAcceptedRouteCircularBlockerPresent,
+    carrierPopulationOnlyBlockerPresent,
+    minimalBranchBoundaryCarrierRow,
+    actionBoundaryDerivativeCarrierRow,
+    retainedLimitation:
+      "The exact same-event carrier rows can discharge only the carrier-population dependency for omega_tx. They do not accept the transaction frequency, sigma*hbar action scale, or wake-energy increment law; retained-event geometry and domain blockers remain separate.",
+  };
+}
+
+function createOmegaRetainedEventGeometryBlockerDiagnostic({
+  hingeRootBranchTransportRouteFeasibility,
+  hingeEventRowSetIdentity = null,
+  retainedTimeDomainCoverage = null,
+  omegaBlockersAfterCarrierPopulation,
+  layerByName = new Map(),
+}) {
+  const routeRows = hingeRootBranchTransportRouteFeasibility?.rows ?? [];
+  const zeroSlackRows = routeRows.filter((row) => row.zeroSlackRoutePass === true);
+  const compensationRows = routeRows.filter(
+    (row) => row.compensationRequired === true
+  );
+  const blockingRows = routeRows.filter((row) => row.candidateRoutePass !== true);
+  const sameSourceEmissionClockTransportDiagnostic =
+    createSameSourceEmissionClockTransportDiagnostic({
+      routeRows,
+      layerByName,
+    });
+  const retainedEventBlockers = omegaBlockersAfterCarrierPopulation.filter((blocker) =>
+    [
+      "geometrically_continuous_branch_transport_pair_map",
+      "accepted_retained_branch_claim",
+      "accepted_retained_point_event_rule_or_positive_width_common_retained_time_domain",
+    ].includes(blocker)
+  );
+  const routeAuthorizedEndpointProviderGlobalDomainObstructionTarget =
+    createRouteAuthorizedEndpointProviderGlobalDomainObstructionTarget({
+      hingeRootBranchTransportRouteFeasibility,
+      hingeEventRowSetIdentity,
+      retainedTimeDomainCoverage,
+      sameSourceEmissionClockTransportDiagnostic,
+      retainedEventBlockers,
+    });
+  const rowSummaries = routeRows.map((row) => ({
+    incomingPairKey: row.incomingPairKey ?? null,
+    outgoingPairKey: row.outgoingPairKey ?? null,
+    continuityRole: row.continuityRole ?? null,
+    status: row.status ?? null,
+    candidateRoutePass: row.candidateRoutePass === true,
+    zeroSlackRoutePass: row.zeroSlackRoutePass === true,
+    compensationRequired: row.compensationRequired === true,
+    routeRootKey: row.routeRootKey ?? null,
+    minOneSidedRouteWidth: finiteOrNull(row.minOneSidedRouteWidth),
+    endpointPairResidual: finiteOrNull(row.endpointPairResidual),
+    endpointToChartResidual: finiteOrNull(row.endpointToChartResidual),
+    requiredEndpointCompensationNorm: finiteOrNull(
+      row.requiredEndpointCompensationNorm
+    ),
+      requiredClockRetune: finiteOrNull(row.requiredClockRetune),
+      requiredPhaseCompensation: finiteOrNull(row.requiredPhaseCompensation),
+  }));
+
+  return {
+    schema: "aaa-tri-binary-omega-retained-event-geometry-blocker.v1",
+    status: !hingeRootBranchTransportRouteFeasibility
+      ? "omega_retained_event_geometry_blocker_missing_route_feasibility"
+      : retainedEventBlockers.length === 0
+        ? "omega_retained_event_geometry_blocker_cleared"
+        : hingeRootBranchTransportRouteFeasibility.zeroSlackRoutePass === true
+          ? "omega_retained_event_geometry_zero_slack_route_candidate_retained_domain_blocked"
+          : hingeRootBranchTransportRouteFeasibility.candidateRoutePass === true
+            ? "omega_retained_event_geometry_same_source_compensation_required"
+            : "omega_retained_event_geometry_route_candidate_blocked",
+    claimLevel:
+      "row-level diagnostic for retained-event geometry/domain blockers after same-event carrier population; not retained branch acceptance",
+    routeFeasibilityStatus:
+      hingeRootBranchTransportRouteFeasibility?.status ?? null,
+    retainedEventBlockers,
+    evaluatedRouteCount:
+      hingeRootBranchTransportRouteFeasibility?.evaluatedRouteCount ?? null,
+    candidateRouteCount:
+      hingeRootBranchTransportRouteFeasibility?.candidateRouteCount ?? null,
+    zeroSlackRouteCount:
+      hingeRootBranchTransportRouteFeasibility?.zeroSlackRouteCount ?? null,
+    compensationRequiredMatchCount:
+      hingeRootBranchTransportRouteFeasibility?.compensationRequiredMatchCount ??
+      null,
+    blockingMatchCount:
+      hingeRootBranchTransportRouteFeasibility?.blockingMatchCount ?? null,
+    maxRequiredEndpointCompensationNorm:
+      hingeRootBranchTransportRouteFeasibility?.maxRequiredEndpointCompensationNorm ??
+      null,
+    maxRequiredPhaseCompensation:
+      hingeRootBranchTransportRouteFeasibility?.maxRequiredPhaseCompensation ??
+      null,
+    sameSourceEmissionClockTransportStatus:
+      sameSourceEmissionClockTransportDiagnostic.status,
+    sameSourceEmissionClockTransportDiagnostic,
+    routeAuthorizedEndpointProviderGlobalDomainObstructionStatus:
+      routeAuthorizedEndpointProviderGlobalDomainObstructionTarget.status,
+    routeAuthorizedEndpointProviderGlobalDomainObstructionTarget,
+    zeroSlackRows,
+    compensationRows,
+    blockingRows,
+    rowSummaries,
+    retainedLimitation:
+      "This diagnostic maps the remaining omega_tx retained-event blockers to route rows. It does not accept the retained branch, create a positive-width common retained time domain, or assign compensation as physical transport.",
+  };
+}
+
+function createRouteAuthorizedEndpointProviderGlobalDomainObstructionTarget({
+  hingeRootBranchTransportRouteFeasibility,
+  hingeEventRowSetIdentity,
+  retainedTimeDomainCoverage,
+  sameSourceEmissionClockTransportDiagnostic,
+  retainedEventBlockers,
+}) {
+  const acceptedEndpointProviderRows =
+    sameSourceEmissionClockTransportDiagnostic?.rows?.filter(
+      (row) =>
+        row.retainedEndpointProviderAcceptanceTarget
+          ?.acceptedRetainedEndpointProviderPass === true
+    ) ?? [];
+  const firstAcceptedEndpointProviderRow =
+    acceptedEndpointProviderRows[0] ?? null;
+  const firstAcceptedEndpointProviderTarget =
+    firstAcceptedEndpointProviderRow?.retainedEndpointProviderAcceptanceTarget ??
+    null;
+  const routeAuthorizedPointEventDomainTarget =
+    firstAcceptedEndpointProviderTarget?.routeAuthorizedPointEventDomainTarget ??
+    null;
+  const rootPayloadIntervalEnclosure =
+    hingeEventRowSetIdentity?.rootPayloadIntervalEnclosure ?? null;
+  const positiveWidthCommonRetainedTimeDomainPass =
+    (retainedTimeDomainCoverage?.maxCommonWidth ?? 0) > ROOT_TOLERANCE ||
+    rootPayloadIntervalEnclosure?.positiveWidthCommonRootInterval === true ||
+    rootPayloadIntervalEnclosure?.oneSidedPositiveWidthCommonInterval === true;
+  const eventRootKeyCandidatePass =
+    hingeEventRowSetIdentity?.status ===
+    "hinge_event_common_root_key_candidate_populated";
+  const branchRouteCandidatePass =
+    hingeRootBranchTransportRouteFeasibility?.candidateRoutePass === true;
+  const zeroSlackBranchRoutePass =
+    hingeRootBranchTransportRouteFeasibility?.zeroSlackRoutePass === true;
+  const localEndpointProviderAcceptedPass =
+    acceptedEndpointProviderRows.length > 0 &&
+    routeAuthorizedPointEventDomainTarget
+      ?.acceptedRouteAuthorizedPointEventDomainPass === true;
+  const globalRetainedBranchClaimPass = false;
+  const fullPointEventRulePass =
+    localEndpointProviderAcceptedPass &&
+    positiveWidthCommonRetainedTimeDomainPass &&
+    zeroSlackBranchRoutePass &&
+    globalRetainedBranchClaimPass;
+  const obstructionReasons = [
+    localEndpointProviderAcceptedPass
+      ? null
+      : "local_route_authorized_endpoint_provider_point_event_missing",
+    eventRootKeyCandidatePass ? null : "hinge_event_common_root_key_missing",
+    positiveWidthCommonRetainedTimeDomainPass
+      ? null
+      : "positive_width_common_retained_time_domain_missing",
+    zeroSlackBranchRoutePass
+      ? null
+      : "geometrically_continuous_zero_slack_branch_transport_missing",
+    globalRetainedBranchClaimPass ? null : "global_retained_branch_claim_missing",
+    "wake_partition_torque_phase_route_stability_or_energy_payloads_not_globally_certified",
+  ].filter(Boolean);
+  const routeRows =
+    hingeRootBranchTransportRouteFeasibility?.rows?.map((row) => ({
+      incomingPairKey: row.incomingPairKey ?? null,
+      outgoingPairKey: row.outgoingPairKey ?? null,
+      continuityRole: row.continuityRole ?? null,
+      candidateRoutePass: row.candidateRoutePass === true,
+      zeroSlackRoutePass: row.zeroSlackRoutePass === true,
+      compensationRequired: row.compensationRequired === true,
+      routeRootKey: row.routeRootKey ?? null,
+      minOneSidedRouteWidth: finiteOrNull(row.minOneSidedRouteWidth),
+      endpointPairResidual: finiteOrNull(row.endpointPairResidual),
+      endpointToChartResidual: finiteOrNull(row.endpointToChartResidual),
+      requiredEndpointCompensationNorm: finiteOrNull(
+        row.requiredEndpointCompensationNorm
+      ),
+      requiredClockRetune: finiteOrNull(row.requiredClockRetune),
+      requiredPhaseCompensation: finiteOrNull(row.requiredPhaseCompensation),
+    })) ?? [];
+
+  return {
+    schema:
+      "aaa-tri-binary-route-authorized-endpoint-provider-global-domain-obstruction.v1",
+    status: !localEndpointProviderAcceptedPass
+      ? "route_authorized_endpoint_provider_global_domain_obstruction_not_applicable"
+      : fullPointEventRulePass
+        ? "route_authorized_endpoint_provider_global_domain_lift_candidate_formal_acceptance_blocked"
+        : !positiveWidthCommonRetainedTimeDomainPass &&
+              !zeroSlackBranchRoutePass
+          ? "route_authorized_endpoint_provider_global_domain_blocked_point_only_common_root_and_compensation"
+          : !positiveWidthCommonRetainedTimeDomainPass
+            ? "route_authorized_endpoint_provider_global_domain_blocked_point_only_common_root"
+            : !zeroSlackBranchRoutePass
+              ? "route_authorized_endpoint_provider_global_domain_blocked_branch_transport_compensation"
+              : "route_authorized_endpoint_provider_global_domain_blocked_retained_branch_claim",
+    claimLevel:
+      "fail-closed diagnostic comparing the accepted local endpoint-provider point-event domain with the global retained branch and full point-event domain requirements",
+    localEndpointProviderAcceptedPass,
+    globalRetainedBranchClaimPass,
+    fullPointEventRulePass,
+    retainedBranchClaim: false,
+    acceptedEndpointProviderRowCount: acceptedEndpointProviderRows.length,
+    endpointProviderAggregateStatus:
+      sameSourceEmissionClockTransportDiagnostic
+        ?.retainedEndpointProviderAcceptanceStatus ?? null,
+    endpointProviderTargetStatus:
+      firstAcceptedEndpointProviderTarget?.status ?? null,
+    routeAuthorizedPointEventDomainStatus:
+      routeAuthorizedPointEventDomainTarget?.status ?? null,
+    routeAuthorizedPointEventDomainScope:
+      routeAuthorizedPointEventDomainTarget?.domainScope ?? null,
+    routeRootKey:
+      routeAuthorizedPointEventDomainTarget?.routeRootKey ??
+      firstAcceptedEndpointProviderTarget?.routeRootKey ??
+      null,
+    eventRootKeyCandidatePass,
+    eventRowSetIdentityStatus: hingeEventRowSetIdentity?.status ?? null,
+    globalRetainedRowSetIdentityStatus:
+      hingeEventRowSetIdentity?.globalRetainedRowSetIdentityStatus ?? null,
+    eventPairCount: hingeEventRowSetIdentity?.pairCount ?? null,
+    eventPairCountWithCommonRootKey:
+      hingeEventRowSetIdentity?.pairCountWithCommonRootKey ?? null,
+    eventCommonRootKeyCount:
+      hingeEventRowSetIdentity?.commonRootKeyCount ?? null,
+    rootPayloadIntervalStatus:
+      rootPayloadIntervalEnclosure?.status ?? null,
+    positiveWidthCommonRetainedTimeDomainPass,
+    positiveWidthCommonRootInterval:
+      rootPayloadIntervalEnclosure?.positiveWidthCommonRootInterval ?? null,
+    oneSidedPositiveWidthCommonInterval:
+      rootPayloadIntervalEnclosure?.oneSidedPositiveWidthCommonInterval ??
+      null,
+    maxCommonRootIntervalWidth:
+      rootPayloadIntervalEnclosure?.maxCommonWidth ?? null,
+    leftCommonSideIntervalMaxWidth:
+      rootPayloadIntervalEnclosure?.sideCoverage?.left?.maxCommonWidth ?? null,
+    rightCommonSideIntervalMaxWidth:
+      rootPayloadIntervalEnclosure?.sideCoverage?.right?.maxCommonWidth ??
+      null,
+    retainedTimeDomainCoverageStatus:
+      retainedTimeDomainCoverage?.status ?? null,
+    retainedTimeDomainMaxCommonWidth:
+      retainedTimeDomainCoverage?.maxCommonWidth ?? null,
+    branchRouteFeasibilityStatus:
+      hingeRootBranchTransportRouteFeasibility?.status ?? null,
+    branchRouteCandidatePass,
+    zeroSlackBranchRoutePass,
+    evaluatedRouteCount:
+      hingeRootBranchTransportRouteFeasibility?.evaluatedRouteCount ?? null,
+    zeroSlackRouteCount:
+      hingeRootBranchTransportRouteFeasibility?.zeroSlackRouteCount ?? null,
+    compensationRequiredMatchCount:
+      hingeRootBranchTransportRouteFeasibility
+        ?.compensationRequiredMatchCount ?? null,
+    retainedEventBlockers,
+    obstructionReasons,
+    routeRows,
+    retainedLimitation:
+      "The accepted local endpoint-provider point-event domain uses one same-source middle route and positive one-sided route intervals. It cannot be promoted to a global retained branch, full point-event rule, or positive-width common retained time domain while the all-pair common root interval is point-only, no common one-sided all-pair interval exists, one middle route still requires compensation, and wake, partition, torque, phase, route, stability, omega_tx, action-scale, and wake-energy rows are not globally certified.",
+  };
+}
+
+function createSameSourceEmissionClockTransportDiagnostic({
+  routeRows,
+  layerByName = new Map(),
+}) {
+  const rows = (routeRows ?? [])
+    .filter(
+      (row) =>
+        row.continuityRole === "same_source" &&
+        row.compensationRequired === true
+    )
+    .map((row) =>
+      createSameSourceEmissionClockTransportRow({ routeRow: row, layerByName })
+    );
+  const exactChartTransportRows = rows.filter(
+    (row) => row.chartEmissionClockTransportPass === true
+  );
+  const endpointTransportRows = rows.filter(
+    (row) => row.endpointEmissionClockTransportPass === true
+  );
+  const endpointResidualBlockedRows = rows.filter(
+    (row) =>
+      row.chartEmissionClockTransportPass === true &&
+      row.endpointEmissionClockTransportPass !== true
+  );
+  const pathHistorySegmentErrorBoundedRows = rows.filter(
+    (row) =>
+      row.pathHistorySegmentErrorBoundDiagnostic
+        ?.endpointResidualsSegmentBoundedPass === true
+  );
+  const endpointResidualBlockedSegmentBoundedRows = endpointResidualBlockedRows.filter(
+    (row) =>
+      row.pathHistorySegmentErrorBoundDiagnostic
+        ?.endpointResidualsSegmentBoundedPass === true
+  );
+  const endpointLinearSegmentReplayRows = rows.filter(
+    (row) =>
+      row.endpointLinearSegmentReplayDiagnostic
+        ?.linearReplayExplainsEndpointResidualsPass === true
+  );
+  const endpointLinearSegmentConvergenceRows = rows.filter(
+    (row) =>
+      row.endpointLinearSegmentReplayDiagnostic?.convergenceDiagnostic
+        ?.zeroLimitConvergenceCertificatePass === true
+  );
+  const exactCircularEndpointReplacementRows = rows.filter(
+    (row) =>
+      row.exactCircularEndpointReplacementTarget
+        ?.exactCircularReplacementTransportPass === true
+  );
+  const reducedCircularEndpointProviderRows = rows.filter(
+    (row) =>
+      row.exactCircularEndpointReplacementTarget
+        ?.reducedCircularEndpointProviderLawCandidate
+        ?.reducedProviderLawPass === true
+  );
+  const retainedEndpointProviderSameRowSetRows = rows.filter(
+    (row) =>
+      row.retainedEndpointProviderAcceptanceTarget
+        ?.sameRetainedRowSetProviderPass === true
+  );
+  const retainedEndpointProviderAcceptedRows = rows.filter(
+    (row) =>
+      row.retainedEndpointProviderAcceptanceTarget
+        ?.acceptedRetainedEndpointProviderPass === true
+  );
+  const maxEndpointAdvectionResidual = maxFinite(
+    rows.map((row) => row.endpointAdvectionResidualNorm)
+  );
+  const maxEndpointToEmissionChartResidual = maxFinite(
+    rows.map((row) => row.maxEndpointToEmissionChartResidual)
+  );
+  const maxEndpointPairResidualVsChartChord = maxFinite(
+    rows.map((row) => row.endpointPairResidualVsChartChordAbs)
+  );
+  const maxPathHistorySegmentErrorBound = maxFinite(
+    rows.map(
+      (row) =>
+        row.pathHistorySegmentErrorBoundDiagnostic?.segmentErrorBound ?? null
+    )
+  );
+  const maxDoublePathHistorySegmentErrorBound = maxFinite(
+    rows.map(
+      (row) =>
+        row.pathHistorySegmentErrorBoundDiagnostic?.doubleSegmentErrorBound ??
+        null
+    )
+  );
+  const maxEndpointLinearReplayResidual = maxFinite(
+    rows.map(
+      (row) =>
+        row.endpointLinearSegmentReplayDiagnostic
+          ?.maxEndpointLinearReplayResidual ?? null
+    )
+  );
+  const maxLinearToExactCircularResidual = maxFinite(
+    rows.map(
+      (row) =>
+        row.endpointLinearSegmentReplayDiagnostic
+          ?.maxLinearToExactCircularResidual ?? null
+    )
+  );
+  const maxExactCircularEndpointCorrectionNorm = maxFinite(
+    rows.map(
+      (row) =>
+        row.exactCircularEndpointReplacementTarget
+          ?.maxEndpointCorrectionNorm ?? null
+    )
+  );
+  const maxExactCircularReplacementTransportResidual = maxFinite(
+    rows.map(
+      (row) =>
+        row.exactCircularEndpointReplacementTarget
+          ?.replacementAdvectionResidualNorm ?? null
+    )
+  );
+  const maxReducedCircularEndpointProviderPointResidual = maxFinite(
+    rows.map(
+      (row) =>
+        row.exactCircularEndpointReplacementTarget
+          ?.reducedCircularEndpointProviderLawCandidate
+          ?.maxProviderPointResidualNorm ?? null
+    )
+  );
+  const maxReducedCircularEndpointProviderAdvectionResidual = maxFinite(
+    rows.map(
+      (row) =>
+        row.exactCircularEndpointReplacementTarget
+          ?.reducedCircularEndpointProviderLawCandidate
+          ?.providerAdvectionResidualNorm ?? null
+    )
+  );
+  const pathHistorySegmentErrorBoundStatus =
+    rows.length === 0
+      ? "same_source_path_history_segment_error_bound_not_required"
+      : pathHistorySegmentErrorBoundedRows.length === rows.length
+        ? "same_source_path_history_segment_error_bound_contains_endpoint_residuals"
+        : pathHistorySegmentErrorBoundedRows.length > 0
+          ? "same_source_path_history_segment_error_bound_partial"
+          : "same_source_path_history_segment_error_bound_exceeded_or_inputs_missing";
+  const endpointLinearSegmentReplayStatus =
+    rows.length === 0
+      ? "same_source_endpoint_linear_segment_replay_not_required"
+      : endpointLinearSegmentReplayRows.length === rows.length
+        ? "same_source_endpoint_linear_segment_replay_identifies_linearization_error"
+        : endpointLinearSegmentReplayRows.length > 0
+          ? "same_source_endpoint_linear_segment_replay_partial"
+          : "same_source_endpoint_linear_segment_replay_unexplained_or_inputs_missing";
+  const endpointLinearSegmentConvergenceStatus =
+    rows.length === 0
+      ? "same_source_endpoint_linear_segment_convergence_not_required"
+      : endpointLinearSegmentConvergenceRows.length === rows.length
+        ? "same_source_endpoint_linear_segment_convergence_certificate_populated"
+        : endpointLinearSegmentConvergenceRows.length > 0
+          ? "same_source_endpoint_linear_segment_convergence_partial"
+          : "same_source_endpoint_linear_segment_convergence_not_established";
+  const exactCircularEndpointReplacementStatus =
+    rows.length === 0
+      ? "same_source_exact_circular_endpoint_replacement_not_required"
+      : exactCircularEndpointReplacementRows.length === rows.length
+        ? "same_source_exact_circular_endpoint_replacement_target_populated"
+        : exactCircularEndpointReplacementRows.length > 0
+          ? "same_source_exact_circular_endpoint_replacement_partial"
+          : "same_source_exact_circular_endpoint_replacement_not_populated";
+  const reducedCircularEndpointProviderLawStatus =
+    rows.length === 0
+      ? "same_source_reduced_circular_endpoint_provider_law_not_required"
+      : reducedCircularEndpointProviderRows.length === rows.length
+        ? "same_source_reduced_circular_endpoint_provider_law_candidate_populated"
+        : reducedCircularEndpointProviderRows.length > 0
+          ? "same_source_reduced_circular_endpoint_provider_law_partial"
+          : "same_source_reduced_circular_endpoint_provider_law_not_populated";
+  const retainedEndpointProviderAcceptanceStatus =
+    rows.length === 0
+      ? "same_source_retained_endpoint_provider_acceptance_not_required"
+      : retainedEndpointProviderAcceptedRows.length === rows.length
+        ? "same_source_retained_endpoint_provider_accepted"
+        : retainedEndpointProviderSameRowSetRows.length === rows.length
+          ? "same_source_retained_endpoint_provider_same_row_set_populated_domain_blocked"
+          : retainedEndpointProviderSameRowSetRows.length > 0
+            ? "same_source_retained_endpoint_provider_same_row_set_partial"
+            : "same_source_retained_endpoint_provider_same_row_set_not_populated";
+
+  return {
+    schema:
+      "aaa-tri-binary-same-source-emission-clock-transport-diagnostic.v1",
+    status:
+      rows.length === 0
+        ? "same_source_emission_clock_transport_not_required"
+        : endpointTransportRows.length === rows.length
+          ? "same_source_emission_clock_transport_endpoint_candidate_formal_acceptance_blocked"
+          : exactChartTransportRows.length === rows.length
+            ? "same_source_emission_clock_transport_chart_exact_endpoint_residual_blocked"
+            : exactChartTransportRows.length > 0
+              ? "same_source_emission_clock_transport_partial_chart_exact_endpoint_residual_blocked"
+              : "same_source_emission_clock_transport_chart_residual_blocked",
+    claimLevel:
+      "diagnostic separating exact same-source middle-chart emission-clock transport from sampled endpoint/path-history residuals; not retained branch acceptance",
+    evaluatedRowCount: rows.length,
+    exactChartTransportRowCount: exactChartTransportRows.length,
+    endpointTransportRowCount: endpointTransportRows.length,
+    endpointResidualBlockedRowCount: endpointResidualBlockedRows.length,
+    pathHistorySegmentErrorBoundStatus,
+    pathHistorySegmentErrorBoundedRowCount:
+      pathHistorySegmentErrorBoundedRows.length,
+    endpointResidualBlockedSegmentBoundedRowCount:
+      endpointResidualBlockedSegmentBoundedRows.length,
+    endpointLinearSegmentReplayStatus,
+    endpointLinearSegmentReplayRowCount:
+      endpointLinearSegmentReplayRows.length,
+    endpointLinearSegmentConvergenceStatus,
+    endpointLinearSegmentConvergenceRowCount:
+      endpointLinearSegmentConvergenceRows.length,
+    exactCircularEndpointReplacementStatus,
+    exactCircularEndpointReplacementRowCount:
+      exactCircularEndpointReplacementRows.length,
+    reducedCircularEndpointProviderLawStatus,
+    reducedCircularEndpointProviderLawRowCount:
+      reducedCircularEndpointProviderRows.length,
+    retainedEndpointProviderAcceptanceStatus,
+    retainedEndpointProviderSameRowSetRowCount:
+      retainedEndpointProviderSameRowSetRows.length,
+    retainedEndpointProviderAcceptedRowCount:
+      retainedEndpointProviderAcceptedRows.length,
+    maxEndpointAdvectionResidual,
+    maxEndpointToEmissionChartResidual,
+    maxEndpointPairResidualVsChartChord,
+    maxPathHistorySegmentErrorBound,
+    maxDoublePathHistorySegmentErrorBound,
+    maxEndpointLinearReplayResidual,
+    maxLinearToExactCircularResidual,
+    maxExactCircularEndpointCorrectionNorm,
+    maxExactCircularReplacementTransportResidual,
+    maxReducedCircularEndpointProviderPointResidual,
+    maxReducedCircularEndpointProviderAdvectionResidual,
+    rows,
+    retainedLimitation:
+      "Exact emission-clock chart transport can explain the middle source clock/phase jump at the chart level, and the current endpoint residuals can be identified as finite linear path-segment interpolation error and compared against the finite path-history segment error bound. The exact circular endpoint replacement target identifies the endpoint correction that would make same-source endpoint transport exact. The reduced endpoint provider is now checked against the same route/root-key row set, but retained acceptance still requires an accepted retained point-event rule or positive-width common retained time domain plus wake, partition, torque, phase, route, and stability payload closure.",
+  };
+}
+
+function createSameSourceEmissionClockTransportRow({ routeRow, layerByName }) {
+  const layer = layerByName.get(routeRow.continuityLayer) ?? null;
+  const incomingGeometry = routeRow.incomingPairEndpointGeometry ?? null;
+  const outgoingGeometry = routeRow.outgoingPairEndpointGeometry ?? null;
+  const incomingClockTime = incomingGeometry?.emissionTime ?? null;
+  const outgoingClockTime = outgoingGeometry?.emissionTime ?? null;
+  const incomingEndpointPoint = routeRow.incomingPoint ?? null;
+  const outgoingEndpointPoint = routeRow.outgoingPoint ?? null;
+  const clockTimeJump =
+    Number.isFinite(incomingClockTime) && Number.isFinite(outgoingClockTime)
+      ? incomingClockTime - outgoingClockTime
+      : null;
+  const phaseJump =
+    layer && Number.isFinite(clockTimeJump)
+      ? layer.angularVelocity * clockTimeJump
+      : null;
+  const wrappedPhaseJump = Number.isFinite(phaseJump)
+    ? wrapAngleToPi(phaseJump)
+    : null;
+  const requiredPhaseResidual =
+    Number.isFinite(routeRow.requiredPhaseCompensation) &&
+    Number.isFinite(wrappedPhaseJump)
+      ? Math.abs(routeRow.requiredPhaseCompensation) - Math.abs(wrappedPhaseJump)
+      : null;
+  const incomingChartPoint =
+    layer && Number.isFinite(incomingClockTime)
+      ? computeCircularLayerPoint(layer, incomingClockTime)
+      : null;
+  const outgoingChartPoint =
+    layer && Number.isFinite(outgoingClockTime)
+      ? computeCircularLayerPoint(layer, outgoingClockTime)
+      : null;
+  const predictedOutgoingChartPoint =
+    incomingChartPoint && Number.isFinite(phaseJump)
+      ? rotateVectorZ(incomingChartPoint, -phaseJump)
+      : null;
+  const chartAdvectionResidualVector =
+    predictedOutgoingChartPoint && outgoingChartPoint
+      ? subtractVectors(predictedOutgoingChartPoint, outgoingChartPoint)
+      : null;
+  const chartAdvectionResidualNorm = chartAdvectionResidualVector
+    ? vectorNorm(chartAdvectionResidualVector)
+    : null;
+  const chartChord =
+    incomingChartPoint && outgoingChartPoint
+      ? vectorNorm(subtractVectors(incomingChartPoint, outgoingChartPoint))
+      : null;
+  const circularChordFromClock =
+    layer && Number.isFinite(wrappedPhaseJump)
+      ? Math.abs(2 * layer.radius * Math.sin(wrappedPhaseJump / 2))
+      : null;
+  const chartChordResidual =
+    Number.isFinite(chartChord) && Number.isFinite(circularChordFromClock)
+      ? chartChord - circularChordFromClock
+      : null;
+  const predictedOutgoingEndpointPoint =
+    isFiniteVector(incomingEndpointPoint) && Number.isFinite(phaseJump)
+      ? rotateVectorZ(incomingEndpointPoint, -phaseJump)
+      : null;
+  const endpointAdvectionResidualVector =
+    predictedOutgoingEndpointPoint && isFiniteVector(outgoingEndpointPoint)
+      ? subtractVectors(predictedOutgoingEndpointPoint, outgoingEndpointPoint)
+      : null;
+  const endpointAdvectionResidualNorm = endpointAdvectionResidualVector
+    ? vectorNorm(endpointAdvectionResidualVector)
+    : null;
+  const incomingEndpointToEmissionChartResidual =
+    isFiniteVector(incomingEndpointPoint) && incomingChartPoint
+      ? vectorNorm(subtractVectors(incomingEndpointPoint, incomingChartPoint))
+      : null;
+  const outgoingEndpointToEmissionChartResidual =
+    isFiniteVector(outgoingEndpointPoint) && outgoingChartPoint
+      ? vectorNorm(subtractVectors(outgoingEndpointPoint, outgoingChartPoint))
+      : null;
+  const maxEndpointToEmissionChartResidual = maxFinite([
+    incomingEndpointToEmissionChartResidual,
+    outgoingEndpointToEmissionChartResidual,
+  ]);
+  const endpointPairResidualVsChartChord =
+    Number.isFinite(routeRow.endpointPairResidual) && Number.isFinite(chartChord)
+      ? routeRow.endpointPairResidual - chartChord
+      : null;
+  const endpointPairResidualVsChartChordAbs = Number.isFinite(
+    endpointPairResidualVsChartChord
+  )
+    ? Math.abs(endpointPairResidualVsChartChord)
+    : null;
+  const chartEmissionClockTransportPass =
+    Number.isFinite(clockTimeJump) &&
+    Number.isFinite(phaseJump) &&
+    Number.isFinite(chartAdvectionResidualNorm) &&
+    chartAdvectionResidualNorm <= POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE &&
+    Number.isFinite(chartChordResidual) &&
+    Math.abs(chartChordResidual) <= POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE &&
+    Number.isFinite(requiredPhaseResidual) &&
+    Math.abs(requiredPhaseResidual) <= POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE;
+  const endpointEmissionClockTransportPass =
+    chartEmissionClockTransportPass &&
+    Number.isFinite(endpointAdvectionResidualNorm) &&
+    endpointAdvectionResidualNorm <= POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE &&
+    Number.isFinite(maxEndpointToEmissionChartResidual) &&
+    maxEndpointToEmissionChartResidual <= POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE;
+  const endpointLinearSegmentReplayDiagnostic =
+    createSameSourceEndpointLinearSegmentReplayDiagnostic({
+      layer,
+      incomingClockTime,
+      outgoingClockTime,
+      incomingEndpointPoint,
+      outgoingEndpointPoint,
+      incomingChartPoint,
+      outgoingChartPoint,
+    });
+  const pathHistorySegmentErrorBoundDiagnostic =
+    createSameSourcePathHistorySegmentErrorBoundDiagnostic({
+      layer,
+      endpointAdvectionResidualNorm,
+      maxEndpointToEmissionChartResidual,
+      endpointPairResidualVsChartChordAbs,
+    });
+  const exactCircularEndpointReplacementTarget =
+    createSameSourceExactCircularEndpointReplacementTarget({
+      layer,
+      incomingClockTime,
+      outgoingClockTime,
+      phaseJump,
+      incomingEndpointPoint,
+      outgoingEndpointPoint,
+      incomingChartPoint,
+      outgoingChartPoint,
+      chartChord,
+      endpointPairResidual: routeRow.endpointPairResidual,
+      endpointAdvectionResidualNorm,
+    });
+  const retainedEndpointProviderAcceptanceTarget =
+    createSameSourceRetainedEndpointProviderAcceptanceTarget({
+      routeRow,
+      exactCircularEndpointReplacementTarget,
+    });
+
+  return {
+    incomingPairKey: routeRow.incomingPairKey,
+    outgoingPairKey: routeRow.outgoingPairKey,
+    continuityRole: routeRow.continuityRole,
+    continuityLayer: routeRow.continuityLayer,
+    routeRootKey: routeRow.routeRootKey ?? null,
+    status: !layer
+      ? "same_source_emission_clock_transport_layer_missing"
+      : !Number.isFinite(clockTimeJump)
+        ? "same_source_emission_clock_transport_clock_missing"
+        : endpointEmissionClockTransportPass
+          ? "same_source_emission_clock_transport_endpoint_candidate_formal_acceptance_blocked"
+          : chartEmissionClockTransportPass
+            ? "same_source_emission_clock_transport_chart_exact_endpoint_residual_blocked"
+            : "same_source_emission_clock_transport_chart_residual_blocked",
+    chartEmissionClockTransportPass,
+    endpointEmissionClockTransportPass,
+    angularVelocity: layer?.angularVelocity ?? null,
+    radius: layer?.radius ?? null,
+    incomingClockTime,
+    outgoingClockTime,
+    clockTimeJump,
+    phaseJump,
+    wrappedPhaseJump,
+    requiredClockRetune: finiteOrNull(routeRow.requiredClockRetune),
+    requiredPhaseCompensation: finiteOrNull(routeRow.requiredPhaseCompensation),
+    requiredPhaseResidual,
+    incomingChartPoint,
+    outgoingChartPoint,
+    predictedOutgoingChartPoint,
+    chartAdvectionResidualVector,
+    chartAdvectionResidualNorm,
+    chartChord,
+    circularChordFromClock,
+    chartChordResidual,
+    incomingEndpointPoint,
+    outgoingEndpointPoint,
+    predictedOutgoingEndpointPoint,
+    endpointAdvectionResidualVector,
+    endpointAdvectionResidualNorm,
+    incomingEndpointToEmissionChartResidual,
+    outgoingEndpointToEmissionChartResidual,
+    maxEndpointToEmissionChartResidual,
+    endpointPairResidual: finiteOrNull(routeRow.endpointPairResidual),
+    endpointPairResidualVsChartChord,
+    endpointPairResidualVsChartChordAbs,
+    endpointLinearSegmentReplayDiagnostic,
+    pathHistorySegmentErrorBoundDiagnostic,
+    exactCircularEndpointReplacementTarget,
+    retainedEndpointProviderAcceptanceTarget,
+    tolerance: POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE,
+  };
+}
+
+function createSameSourceExactCircularEndpointReplacementTarget({
+  layer,
+  incomingClockTime,
+  outgoingClockTime,
+  phaseJump,
+  incomingEndpointPoint,
+  outgoingEndpointPoint,
+  incomingChartPoint,
+  outgoingChartPoint,
+  chartChord,
+  endpointPairResidual,
+  endpointAdvectionResidualNorm,
+}) {
+  const incomingEndpointCorrectionVector =
+    isFiniteVector(incomingEndpointPoint) && isFiniteVector(incomingChartPoint)
+      ? subtractVectors(incomingChartPoint, incomingEndpointPoint)
+      : null;
+  const outgoingEndpointCorrectionVector =
+    isFiniteVector(outgoingEndpointPoint) && isFiniteVector(outgoingChartPoint)
+      ? subtractVectors(outgoingChartPoint, outgoingEndpointPoint)
+      : null;
+  const incomingEndpointCorrectionNorm = incomingEndpointCorrectionVector
+    ? vectorNorm(incomingEndpointCorrectionVector)
+    : null;
+  const outgoingEndpointCorrectionNorm = outgoingEndpointCorrectionVector
+    ? vectorNorm(outgoingEndpointCorrectionVector)
+    : null;
+  const maxEndpointCorrectionNorm = maxFinite([
+    incomingEndpointCorrectionNorm,
+    outgoingEndpointCorrectionNorm,
+  ]);
+  const predictedOutgoingReplacementPoint =
+    isFiniteVector(incomingChartPoint) && Number.isFinite(phaseJump)
+      ? rotateVectorZ(incomingChartPoint, -phaseJump)
+      : null;
+  const replacementAdvectionResidualVector =
+    predictedOutgoingReplacementPoint && isFiniteVector(outgoingChartPoint)
+      ? subtractVectors(predictedOutgoingReplacementPoint, outgoingChartPoint)
+      : null;
+  const replacementAdvectionResidualNorm = replacementAdvectionResidualVector
+    ? vectorNorm(replacementAdvectionResidualVector)
+    : null;
+  const transportedIncomingCorrectionVector =
+    incomingEndpointCorrectionVector && Number.isFinite(phaseJump)
+      ? rotateVectorZ(incomingEndpointCorrectionVector, -phaseJump)
+      : null;
+  const endpointCorrectionTransportBalanceVector =
+    transportedIncomingCorrectionVector && outgoingEndpointCorrectionVector
+      ? subtractVectors(
+          transportedIncomingCorrectionVector,
+          outgoingEndpointCorrectionVector
+        )
+      : null;
+  const endpointCorrectionTransportBalanceNorm =
+    endpointCorrectionTransportBalanceVector
+      ? vectorNorm(endpointCorrectionTransportBalanceVector)
+      : null;
+  const endpointCorrectionBalancesSampledAdvectionPass =
+    Number.isFinite(endpointCorrectionTransportBalanceNorm) &&
+    Number.isFinite(endpointAdvectionResidualNorm) &&
+    Math.abs(
+      endpointCorrectionTransportBalanceNorm - endpointAdvectionResidualNorm
+    ) <= POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE;
+  const replacementEndpointPairDistance =
+    isFiniteVector(incomingChartPoint) && isFiniteVector(outgoingChartPoint)
+      ? vectorNorm(subtractVectors(incomingChartPoint, outgoingChartPoint))
+      : null;
+  const replacementEndpointPairResidualVsChartChord =
+    Number.isFinite(replacementEndpointPairDistance) &&
+    Number.isFinite(chartChord)
+      ? replacementEndpointPairDistance - chartChord
+      : null;
+  const sampledEndpointPairToReplacementDistanceDelta =
+    Number.isFinite(endpointPairResidual) &&
+    Number.isFinite(replacementEndpointPairDistance)
+      ? endpointPairResidual - replacementEndpointPairDistance
+      : null;
+  const inputsPopulated =
+    layer != null &&
+    Number.isFinite(incomingClockTime) &&
+    Number.isFinite(outgoingClockTime) &&
+    Number.isFinite(phaseJump) &&
+    isFiniteVector(incomingEndpointPoint) &&
+    isFiniteVector(outgoingEndpointPoint) &&
+    isFiniteVector(incomingChartPoint) &&
+    isFiniteVector(outgoingChartPoint);
+  const exactCircularReplacementTransportPass =
+    inputsPopulated &&
+    Number.isFinite(replacementAdvectionResidualNorm) &&
+    replacementAdvectionResidualNorm <=
+      POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE &&
+    Number.isFinite(replacementEndpointPairResidualVsChartChord) &&
+    Math.abs(replacementEndpointPairResidualVsChartChord) <=
+      POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE;
+  const reducedCircularEndpointProviderLawCandidate =
+    createSameSourceReducedCircularEndpointProviderLawCandidate({
+      layer,
+      incomingClockTime,
+      outgoingClockTime,
+      phaseJump,
+      incomingReplacementPoint: incomingChartPoint,
+      outgoingReplacementPoint: outgoingChartPoint,
+      exactCircularReplacementTransportPass,
+    });
+
+  return {
+    schema:
+      "aaa-tri-binary-same-source-exact-circular-endpoint-replacement-target.v1",
+    status: !inputsPopulated
+      ? "same_source_exact_circular_endpoint_replacement_inputs_missing"
+      : exactCircularReplacementTransportPass
+        ? "same_source_exact_circular_endpoint_replacement_target_populated_formal_acceptance_blocked"
+        : "same_source_exact_circular_endpoint_replacement_residual_blocked",
+    claimLevel:
+      "candidate exact circular endpoint replacement target for the same-source middle route; not physical path-history transport or retained branch acceptance",
+    acceptedExactEndpointReplayPass: false,
+    exactCircularReplacementTransportPass,
+    endpointProviderRequirement:
+      "curved exact-circular source path-history endpoint provider or retained-domain transport law on the same route",
+    blockingPayloads: [
+      "physical_endpoint_replacement_law",
+      "retained_domain_transport_law",
+      "positive_width_common_retained_time_domain_or_accepted_point_event",
+      "wake_partition_torque_phase_route_stability_payloads",
+    ],
+    incomingClockTime,
+    outgoingClockTime,
+    phaseJump,
+    incomingEndpointPoint,
+    outgoingEndpointPoint,
+    incomingReplacementPoint: incomingChartPoint,
+    outgoingReplacementPoint: outgoingChartPoint,
+    predictedOutgoingReplacementPoint,
+    incomingEndpointCorrectionVector,
+    outgoingEndpointCorrectionVector,
+    incomingEndpointCorrectionNorm,
+    outgoingEndpointCorrectionNorm,
+    maxEndpointCorrectionNorm,
+    transportedIncomingCorrectionVector,
+    endpointCorrectionTransportBalanceVector,
+    endpointCorrectionTransportBalanceNorm,
+    endpointCorrectionBalancesSampledAdvectionPass,
+    sampledEndpointAdvectionResidualNorm: endpointAdvectionResidualNorm,
+    replacementAdvectionResidualVector,
+    replacementAdvectionResidualNorm,
+    replacementEndpointPairDistance,
+    chartChord,
+    replacementEndpointPairResidualVsChartChord,
+    sampledEndpointPairDistance: finiteOrNull(endpointPairResidual),
+    sampledEndpointPairToReplacementDistanceDelta,
+    reducedCircularEndpointProviderLawCandidate,
+    retainedLimitation:
+      "Replacing the sampled finite linear endpoint with the exact circular chart endpoint makes same-source endpoint transport exact at the diagnostic level. Acceptance still requires a physical endpoint provider or retained-domain transport law that carries this replacement on the same retained rows.",
+  };
+}
+
+function createSameSourceReducedCircularEndpointProviderLawCandidate({
+  layer,
+  incomingClockTime,
+  outgoingClockTime,
+  phaseJump,
+  incomingReplacementPoint,
+  outgoingReplacementPoint,
+  exactCircularReplacementTransportPass,
+}) {
+  const incomingProviderPoint =
+    layer && Number.isFinite(incomingClockTime)
+      ? computeCircularLayerPoint(layer, incomingClockTime)
+      : null;
+  const outgoingProviderPoint =
+    layer && Number.isFinite(outgoingClockTime)
+      ? computeCircularLayerPoint(layer, outgoingClockTime)
+      : null;
+  const incomingProviderVelocity =
+    layer && Number.isFinite(incomingClockTime)
+      ? computeCircularLayerVelocity(layer, incomingClockTime)
+      : null;
+  const outgoingProviderVelocity =
+    layer && Number.isFinite(outgoingClockTime)
+      ? computeCircularLayerVelocity(layer, outgoingClockTime)
+      : null;
+  const incomingProviderResidualVector =
+    isFiniteVector(incomingProviderPoint) &&
+    isFiniteVector(incomingReplacementPoint)
+      ? subtractVectors(incomingProviderPoint, incomingReplacementPoint)
+      : null;
+  const outgoingProviderResidualVector =
+    isFiniteVector(outgoingProviderPoint) &&
+    isFiniteVector(outgoingReplacementPoint)
+      ? subtractVectors(outgoingProviderPoint, outgoingReplacementPoint)
+      : null;
+  const incomingProviderResidualNorm = incomingProviderResidualVector
+    ? vectorNorm(incomingProviderResidualVector)
+    : null;
+  const outgoingProviderResidualNorm = outgoingProviderResidualVector
+    ? vectorNorm(outgoingProviderResidualVector)
+    : null;
+  const maxProviderPointResidualNorm = maxFinite([
+    incomingProviderResidualNorm,
+    outgoingProviderResidualNorm,
+  ]);
+  const predictedOutgoingProviderPoint =
+    isFiniteVector(incomingProviderPoint) && Number.isFinite(phaseJump)
+      ? rotateVectorZ(incomingProviderPoint, -phaseJump)
+      : null;
+  const providerAdvectionResidualVector =
+    predictedOutgoingProviderPoint && isFiniteVector(outgoingProviderPoint)
+      ? subtractVectors(predictedOutgoingProviderPoint, outgoingProviderPoint)
+      : null;
+  const providerAdvectionResidualNorm = providerAdvectionResidualVector
+    ? vectorNorm(providerAdvectionResidualVector)
+    : null;
+  const inputsPopulated =
+    layer != null &&
+    Number.isFinite(incomingClockTime) &&
+    Number.isFinite(outgoingClockTime) &&
+    Number.isFinite(phaseJump) &&
+    isFiniteVector(incomingReplacementPoint) &&
+    isFiniteVector(outgoingReplacementPoint);
+  const reducedProviderLawPass =
+    inputsPopulated &&
+    exactCircularReplacementTransportPass === true &&
+    Number.isFinite(maxProviderPointResidualNorm) &&
+    maxProviderPointResidualNorm <= POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE &&
+    Number.isFinite(providerAdvectionResidualNorm) &&
+    providerAdvectionResidualNorm <= POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE;
+
+  return {
+    schema:
+      "aaa-tri-binary-same-source-reduced-circular-endpoint-provider-law-candidate.v1",
+    status: !inputsPopulated
+      ? "same_source_reduced_circular_endpoint_provider_law_inputs_missing"
+      : reducedProviderLawPass
+        ? "same_source_reduced_circular_endpoint_provider_law_candidate_populated_formal_acceptance_blocked"
+        : "same_source_reduced_circular_endpoint_provider_law_residual_blocked",
+    claimLevel:
+      "reduced exact circular endpoint-provider law candidate for the same-source middle route; not retained path-history provider acceptance",
+    providerKind: "exact_circular_layer_clock",
+    providerFormula:
+      "p_l(t)=(R_l cos(omega_l t + phi_l), R_l sin(omega_l t + phi_l), 0)",
+    providerVelocityFormula: "dp_l/dt=omega_l zhat x p_l(t)",
+    providerDomain:
+      "same-source middle route incoming and outgoing emission clocks",
+    reducedProviderLawPass,
+    acceptedRetainedEndpointProviderPass: false,
+    exactCircularReplacementTransportPass,
+    layer: layer?.layer ?? null,
+    radius: finiteOrNull(layer?.radius),
+    angularVelocity: finiteOrNull(layer?.angularVelocity),
+    phaseAtEpoch: finiteOrNull(layer?.phaseAtEpoch),
+    incomingClockTime,
+    outgoingClockTime,
+    phaseJump,
+    incomingProviderPoint,
+    outgoingProviderPoint,
+    incomingProviderVelocity,
+    outgoingProviderVelocity,
+    incomingProviderResidualVector,
+    outgoingProviderResidualVector,
+    incomingProviderResidualNorm,
+    outgoingProviderResidualNorm,
+    maxProviderPointResidualNorm,
+    predictedOutgoingProviderPoint,
+    providerAdvectionResidualVector,
+    providerAdvectionResidualNorm,
+    retainedAcceptanceBlockers: [
+      "path_history_stream_must_carry_curved_endpoint_provider",
+      "same_retained_row_set_transport_law",
+      "positive_width_common_retained_time_domain_or_accepted_point_event",
+      "wake_partition_torque_phase_route_stability_payloads",
+    ],
+    retainedLimitation:
+      "The reduced circular layer law supplies exact replacement endpoints for the sampled same-source route. It is not accepted as retained transport until the path-history stream or retained-domain law carries the same provider on the same retained rows.",
+  };
+}
+
+function createSameSourceRetainedEndpointProviderAcceptanceTarget({
+  routeRow,
+  exactCircularEndpointReplacementTarget,
+}) {
+  const provider =
+    exactCircularEndpointReplacementTarget
+      ?.reducedCircularEndpointProviderLawCandidate ?? null;
+  const routeRootKey = routeRow?.routeRootKey ?? null;
+  const incomingRootKey =
+    routeRow?.incomingPairEndpointGeometry?.rootKey ?? null;
+  const outgoingRootKey =
+    routeRow?.outgoingPairEndpointGeometry?.rootKey ?? null;
+  const routeRootKeyToken =
+    routeRootKey == null ? null : String(routeRootKey);
+  const incomingRootKeyToken =
+    incomingRootKey == null ? null : String(incomingRootKey);
+  const outgoingRootKeyToken =
+    outgoingRootKey == null ? null : String(outgoingRootKey);
+  const routeRootKeyPass =
+    routeRootKeyToken != null &&
+    incomingRootKeyToken != null &&
+    outgoingRootKeyToken != null &&
+    routeRootKeyToken === incomingRootKeyToken &&
+    routeRootKeyToken === outgoingRootKeyToken;
+  const routeRowSetInputsPopulated =
+    routeRow != null &&
+    routeRow.incomingPairKey != null &&
+    routeRow.outgoingPairKey != null &&
+    routeRootKeyPass &&
+    routeRow.continuityRole === "same_source" &&
+    routeRow.continuityLayer === provider?.layer;
+  const sameRetainedRowSetProviderPass =
+    routeRowSetInputsPopulated &&
+    routeRow.candidateRoutePass === true &&
+    exactCircularEndpointReplacementTarget
+      ?.exactCircularReplacementTransportPass === true &&
+    provider?.reducedProviderLawPass === true;
+  const routeAuthorizedPointEventDomainTarget =
+    createSameSourceRouteAuthorizedEndpointProviderPointEventDomainTarget({
+      routeRow,
+      sameRetainedRowSetProviderPass,
+    });
+  const acceptedRetainedPointEventOrPositiveWidthDomainPass =
+    routeAuthorizedPointEventDomainTarget
+      .acceptedRouteAuthorizedPointEventDomainPass === true;
+  const acceptedRetainedEndpointProviderPass =
+    sameRetainedRowSetProviderPass &&
+    acceptedRetainedPointEventOrPositiveWidthDomainPass;
+  const retainedAcceptanceBlockers = acceptedRetainedEndpointProviderPass
+    ? []
+    : sameRetainedRowSetProviderPass
+    ? [
+        "accepted_retained_point_event_rule_or_positive_width_common_retained_time_domain",
+      ]
+    : [
+        "same_route_root_key_identity",
+        "same_source_middle_continuity_route",
+        "exact_circular_endpoint_provider_law",
+      ];
+
+  return {
+    schema:
+      "aaa-tri-binary-same-source-retained-endpoint-provider-acceptance-target.v1",
+    status: !provider
+      ? "same_source_retained_endpoint_provider_candidate_missing"
+      : acceptedRetainedEndpointProviderPass
+        ? "same_source_retained_endpoint_provider_route_authorized_point_event_accepted"
+        : sameRetainedRowSetProviderPass
+          ? "same_source_retained_endpoint_provider_same_row_set_populated_domain_blocked"
+          : "same_source_retained_endpoint_provider_same_row_set_blocked",
+    claimLevel:
+      "route-authorized retained endpoint-provider acceptance target for the same-source middle route; not global retained branch acceptance",
+    acceptedRetainedEndpointProviderPass,
+    sameRetainedRowSetProviderPass,
+    acceptedRetainedPointEventOrPositiveWidthDomainPass,
+    acceptedPointEventRuleScope:
+      acceptedRetainedEndpointProviderPass
+        ? "route_authorized_endpoint_provider_point_event_only"
+        : null,
+    routeRowSetInputsPopulated,
+    routeRootKeyPass,
+    routeRootKey,
+    incomingRootKey,
+    outgoingRootKey,
+    incomingPairKey: routeRow?.incomingPairKey ?? null,
+    outgoingPairKey: routeRow?.outgoingPairKey ?? null,
+    continuityRole: routeRow?.continuityRole ?? null,
+    continuityLayer: routeRow?.continuityLayer ?? null,
+    providerLayer: provider?.layer ?? null,
+    candidateRoutePass: routeRow?.candidateRoutePass === true,
+    zeroSlackRoutePass: routeRow?.zeroSlackRoutePass === true,
+    compensationRequired: routeRow?.compensationRequired === true,
+    minOneSidedRouteWidth: finiteOrNull(routeRow?.minOneSidedRouteWidth),
+    providerKind: provider?.providerKind ?? null,
+    reducedProviderLawPass: provider?.reducedProviderLawPass === true,
+    exactCircularReplacementTransportPass:
+      exactCircularEndpointReplacementTarget
+        ?.exactCircularReplacementTransportPass === true,
+    maxProviderPointResidualNorm: finiteOrNull(
+      provider?.maxProviderPointResidualNorm
+    ),
+    providerAdvectionResidualNorm: finiteOrNull(
+      provider?.providerAdvectionResidualNorm
+    ),
+    replacementAdvectionResidualNorm: finiteOrNull(
+      exactCircularEndpointReplacementTarget
+        ?.replacementAdvectionResidualNorm
+    ),
+    routeAuthorizedPointEventDomainTarget,
+    incomingProviderPoint: provider?.incomingProviderPoint ?? null,
+    outgoingProviderPoint: provider?.outgoingProviderPoint ?? null,
+    incomingReplacementPoint:
+      exactCircularEndpointReplacementTarget?.incomingReplacementPoint ?? null,
+    outgoingReplacementPoint:
+      exactCircularEndpointReplacementTarget?.outgoingReplacementPoint ?? null,
+    retainedAcceptanceBlockers,
+    remainingBranchClosureBlockers: [
+      "global_retained_branch_claim",
+      "geometrically_continuous_branch_transport_or_full_point_event_rule",
+      "wake_partition_torque_phase_route_stability_payloads",
+      "accepted_omega_tx_action_scale_and_wake_energy_law",
+    ],
+    retainedLimitation:
+      "The exact circular endpoint provider is accepted only for the route-authorized point-event domain when acceptedRetainedEndpointProviderPass is true. This local acceptance does not create a global retained branch claim, a positive-width common retained time domain, or wake, partition, torque, phase, route, stability, omega_tx, action-scale, and wake-energy closure.",
+  };
+}
+
+function createSameSourceRouteAuthorizedEndpointProviderPointEventDomainTarget({
+  routeRow,
+  sameRetainedRowSetProviderPass,
+}) {
+  const incomingLeftCoverage = routeRow?.incomingLeftCoverage ?? null;
+  const outgoingRightCoverage = routeRow?.outgoingRightCoverage ?? null;
+  const incomingLeftWidth = finiteOrNull(incomingLeftCoverage?.maxWidth);
+  const outgoingRightWidth = finiteOrNull(outgoingRightCoverage?.maxWidth);
+  const minOneSidedRouteWidth = finiteOrNull(routeRow?.minOneSidedRouteWidth);
+  const oneSidedRouteWidthPass =
+    Number.isFinite(minOneSidedRouteWidth) &&
+    minOneSidedRouteWidth > ROOT_TOLERANCE &&
+    Number.isFinite(incomingLeftWidth) &&
+    incomingLeftWidth > ROOT_TOLERANCE &&
+    Number.isFinite(outgoingRightWidth) &&
+    outgoingRightWidth > ROOT_TOLERANCE;
+  const routeRootKeyPass = routeRow?.routeRootKey != null;
+  const routeCarrierPass =
+    routeRow?.candidateRoutePass === true &&
+    routeRow?.continuityRole === "same_source" &&
+    routeRow?.continuityLayer === "middle" &&
+    routeRootKeyPass;
+  const acceptedRouteAuthorizedPointEventDomainPass =
+    sameRetainedRowSetProviderPass === true &&
+    routeCarrierPass &&
+    oneSidedRouteWidthPass;
+
+  return {
+    schema:
+      "aaa-tri-binary-same-source-route-authorized-endpoint-provider-point-event-domain.v1",
+    status: acceptedRouteAuthorizedPointEventDomainPass
+      ? "route_authorized_endpoint_provider_point_event_domain_accepted"
+      : routeCarrierPass && sameRetainedRowSetProviderPass
+        ? "route_authorized_endpoint_provider_point_event_domain_width_blocked"
+        : "route_authorized_endpoint_provider_point_event_domain_route_blocked",
+    claimLevel:
+      "route-authorized point-event domain for exact same-source endpoint-provider transport; not positive-width common retained branch domain",
+    acceptedRouteAuthorizedPointEventDomainPass,
+    retainedBranchClaim: false,
+    domainScope: "same_source_endpoint_provider_route_only",
+    routeRootKey: routeRow?.routeRootKey ?? null,
+    incomingPairKey: routeRow?.incomingPairKey ?? null,
+    outgoingPairKey: routeRow?.outgoingPairKey ?? null,
+    continuityRole: routeRow?.continuityRole ?? null,
+    continuityLayer: routeRow?.continuityLayer ?? null,
+    hingeTime: finiteOrNull(routeRow?.hingeTime),
+    routeCarrierPass,
+    sameRetainedRowSetProviderPass:
+      sameRetainedRowSetProviderPass === true,
+    oneSidedRouteWidthPass,
+    minOneSidedRouteWidth,
+    incomingLeftWidth,
+    outgoingRightWidth,
+    incomingLeftCoverage,
+    outgoingRightCoverage,
+    positiveWidthCommonRetainedTimeDomainPass: false,
+    retainedLimitation:
+      "The route-authorized point-event domain accepts only the exact same-source endpoint provider at the hinge root key, using positive one-sided route intervals on the incoming-left and outgoing-right sides. It is not a positive-width common retained time domain and does not certify the full point-event rule for force, torque, wake, phase, partition, stability, vector-ledger, or energy-routing rows.",
+  };
+}
+
+function createSameSourceEndpointLinearSegmentReplayDiagnostic({
+  layer,
+  incomingClockTime,
+  outgoingClockTime,
+  incomingEndpointPoint,
+  outgoingEndpointPoint,
+  incomingChartPoint,
+  outgoingChartPoint,
+}) {
+  const incomingReplay = createEndpointLinearSegmentReplayRow({
+    id: "incoming_source_endpoint",
+    layer,
+    clockTime: incomingClockTime,
+    endpointPoint: incomingEndpointPoint,
+    exactCircularPoint: incomingChartPoint,
+  });
+  const outgoingReplay = createEndpointLinearSegmentReplayRow({
+    id: "outgoing_source_endpoint",
+    layer,
+    clockTime: outgoingClockTime,
+    endpointPoint: outgoingEndpointPoint,
+    exactCircularPoint: outgoingChartPoint,
+  });
+  const replayRows = [incomingReplay, outgoingReplay];
+  const finiteRows = replayRows.filter((row) => row.inputsPopulated === true);
+  const maxEndpointLinearReplayResidual = maxFinite(
+    replayRows.map((row) => row.endpointLinearReplayResidualNorm)
+  );
+  const maxLinearToExactCircularResidual = maxFinite(
+    replayRows.map((row) => row.linearToExactCircularResidualNorm)
+  );
+  const maxEndpointToExactCircularResidual = maxFinite(
+    replayRows.map((row) => row.endpointToExactCircularResidualNorm)
+  );
+  const maxEndpointExactMinusLinearResidual = maxFinite(
+    replayRows.map((row) => row.endpointExactMinusLinearResidualAbs)
+  );
+  const segmentBound = computeCircularLayerPathSegmentErrorBound(layer);
+  const segmentErrorBound = segmentBound?.errorBound ?? null;
+  const linearReplayExplainsEndpointResidualsPass =
+    finiteRows.length === replayRows.length &&
+    Number.isFinite(maxEndpointLinearReplayResidual) &&
+    maxEndpointLinearReplayResidual <= POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE &&
+    Number.isFinite(maxEndpointExactMinusLinearResidual) &&
+    maxEndpointExactMinusLinearResidual <= POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE;
+  const segmentBoundContainsLinearizationErrorPass =
+    Number.isFinite(maxLinearToExactCircularResidual) &&
+    Number.isFinite(segmentErrorBound) &&
+    maxLinearToExactCircularResidual <= segmentErrorBound;
+  const exactCircularEndpointReplayPass =
+    Number.isFinite(maxEndpointToExactCircularResidual) &&
+    maxEndpointToExactCircularResidual <= POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE;
+  const convergenceDiagnostic =
+    createSameSourceEndpointLinearSegmentConvergenceDiagnostic({
+      layer,
+      incomingClockTime,
+      outgoingClockTime,
+      incomingChartPoint,
+      outgoingChartPoint,
+      currentMaxLinearToExactCircularResidual:
+        maxLinearToExactCircularResidual,
+    });
+
+  return {
+    schema:
+      "aaa-tri-binary-same-source-endpoint-linear-segment-replay-diagnostic.v1",
+    status:
+      finiteRows.length !== replayRows.length
+        ? "same_source_endpoint_linear_segment_replay_inputs_missing"
+        : exactCircularEndpointReplayPass
+          ? "same_source_endpoint_exact_circular_replay_passes_formal_acceptance_blocked"
+          : linearReplayExplainsEndpointResidualsPass &&
+              segmentBoundContainsLinearizationErrorPass
+            ? "same_source_endpoint_linear_segment_replay_identifies_linearization_error"
+            : "same_source_endpoint_linear_segment_replay_unexplained_residual",
+    claimLevel:
+      "diagnostic replay of sampled same-source endpoints as finite linear path-segment interpolation points; not exact endpoint transport or retained branch acceptance",
+    segmentCountPerLayer: BINARY_TO_BINARY_PATH_SEGMENT_COUNT,
+    pathSegmentStep: segmentBound?.step ?? null,
+    segmentErrorBound,
+    maxEndpointLinearReplayResidual,
+    maxLinearToExactCircularResidual,
+    maxEndpointToExactCircularResidual,
+    maxEndpointExactMinusLinearResidual,
+    linearReplayExplainsEndpointResidualsPass,
+    segmentBoundContainsLinearizationErrorPass,
+    exactCircularEndpointReplayPass,
+    convergenceDiagnostic,
+    rows: replayRows,
+    retainedLimitation:
+      "The sampled endpoints replay as finite linear path-segment interpolation points, so their residual against exact circular replay is identified as interpolation error. The nested convergence diagnostic measures the finite-segment decay at the same emission clocks; it still does not accept exact endpoint transport, a retained-domain replacement, or retained branch acceptance.",
+  };
+}
+
+function createSameSourceEndpointLinearSegmentConvergenceDiagnostic({
+  layer,
+  incomingClockTime,
+  outgoingClockTime,
+  incomingChartPoint,
+  outgoingChartPoint,
+  currentMaxLinearToExactCircularResidual,
+}) {
+  const endpoints = [
+    {
+      id: "incoming_source_endpoint",
+      clockTime: incomingClockTime,
+      exactCircularPoint: incomingChartPoint,
+    },
+    {
+      id: "outgoing_source_endpoint",
+      clockTime: outgoingClockTime,
+      exactCircularPoint: outgoingChartPoint,
+    },
+  ];
+  const rows = ENDPOINT_LINEAR_SEGMENT_CONVERGENCE_COUNTS.map(
+    (segmentCount) =>
+      createEndpointLinearSegmentConvergenceRow({
+        segmentCount,
+        layer,
+        endpoints,
+      })
+  );
+  const finiteRows = rows.filter((row) => row.inputsPopulated === true);
+  const ratioRows = [];
+  for (let index = 1; index < rows.length; index += 1) {
+    const previous = rows[index - 1];
+    const current = rows[index];
+    const residualRatio =
+      Number.isFinite(previous.maxLinearToExactCircularResidual) &&
+      previous.maxLinearToExactCircularResidual > 0 &&
+      Number.isFinite(current.maxLinearToExactCircularResidual)
+        ? current.maxLinearToExactCircularResidual /
+          previous.maxLinearToExactCircularResidual
+        : null;
+    const observedOrderEstimate =
+      Number.isFinite(residualRatio) &&
+      residualRatio > 0 &&
+      current.segmentCount > previous.segmentCount
+        ? Math.log(1 / residualRatio) /
+          Math.log(current.segmentCount / previous.segmentCount)
+        : null;
+    ratioRows.push({
+      previousSegmentCount: previous.segmentCount,
+      segmentCount: current.segmentCount,
+      previousMaxLinearToExactCircularResidual:
+        previous.maxLinearToExactCircularResidual,
+      maxLinearToExactCircularResidual:
+        current.maxLinearToExactCircularResidual,
+      residualRatio,
+      observedOrderEstimate,
+    });
+  }
+  const finiteOrderEstimates = ratioRows
+    .map((row) => row.observedOrderEstimate)
+    .filter((value) => Number.isFinite(value));
+  const meanObservedOrderEstimate =
+    finiteOrderEstimates.length > 0
+      ? finiteOrderEstimates.reduce((sum, value) => sum + value, 0) /
+        finiteOrderEstimates.length
+      : null;
+  const minObservedOrderEstimate = minFinite(finiteOrderEstimates);
+  const monotoneResidualDecreasePass =
+    finiteRows.length === rows.length &&
+    ratioRows.every(
+      (row) =>
+        Number.isFinite(row.residualRatio) &&
+        row.residualRatio < 1
+    );
+  const allRowsWithinSegmentErrorBoundPass =
+    finiteRows.length === rows.length &&
+    rows.every((row) => row.segmentBoundContainsResidualPass === true);
+  const segmentErrorBoundsDecreasePass =
+    finiteRows.length === rows.length &&
+    rows
+      .slice(1)
+      .every(
+        (row, index) =>
+          Number.isFinite(row.segmentErrorBound) &&
+          Number.isFinite(rows[index].segmentErrorBound) &&
+          row.segmentErrorBound < rows[index].segmentErrorBound
+      );
+  const observedSecondOrderDecayPass =
+    Number.isFinite(minObservedOrderEstimate) &&
+    minObservedOrderEstimate >= 1.8;
+  const currentSegmentRow =
+    rows.find(
+      (row) => row.segmentCount === BINARY_TO_BINARY_PATH_SEGMENT_COUNT
+    ) ?? null;
+  const currentSegmentCountResidualDelta =
+    currentSegmentRow &&
+    Number.isFinite(currentSegmentRow.maxLinearToExactCircularResidual) &&
+    Number.isFinite(currentMaxLinearToExactCircularResidual)
+      ? currentSegmentRow.maxLinearToExactCircularResidual -
+        currentMaxLinearToExactCircularResidual
+      : null;
+  const currentSegmentCountResidualMatchesReplayPass =
+    Number.isFinite(currentSegmentCountResidualDelta) &&
+    Math.abs(currentSegmentCountResidualDelta) <=
+      POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE;
+  const zeroLimitConvergenceCertificatePass =
+    finiteRows.length === rows.length &&
+    monotoneResidualDecreasePass &&
+    allRowsWithinSegmentErrorBoundPass &&
+    segmentErrorBoundsDecreasePass &&
+    currentSegmentCountResidualMatchesReplayPass;
+
+  return {
+    schema:
+      "aaa-tri-binary-same-source-endpoint-linear-segment-convergence-diagnostic.v1",
+    status:
+      finiteRows.length !== rows.length
+        ? "same_source_endpoint_linear_segment_convergence_inputs_missing"
+        : zeroLimitConvergenceCertificatePass
+          ? "same_source_endpoint_linear_segment_convergence_certificate_populated"
+          : monotoneResidualDecreasePass
+            ? "same_source_endpoint_linear_segment_convergence_partial"
+            : "same_source_endpoint_linear_segment_convergence_not_established",
+    claimLevel:
+      "analytic convergence diagnostic for finite linear path-history interpolation at fixed same-source emission clocks; not retained-domain acceptance",
+    segmentCounts: ENDPOINT_LINEAR_SEGMENT_CONVERGENCE_COUNTS,
+    currentSegmentCount: BINARY_TO_BINARY_PATH_SEGMENT_COUNT,
+    currentSegmentCountResidual:
+      currentSegmentRow?.maxLinearToExactCircularResidual ?? null,
+    currentMaxLinearToExactCircularResidual,
+    currentSegmentCountResidualDelta,
+    currentSegmentCountResidualMatchesReplayPass,
+    monotoneResidualDecreasePass,
+    allRowsWithinSegmentErrorBoundPass,
+    segmentErrorBoundsDecreasePass,
+    observedSecondOrderDecayPass,
+    minObservedOrderEstimate,
+    meanObservedOrderEstimate,
+    analyticSegmentErrorBoundLimit: 0,
+    zeroLimitConvergenceCertificatePass,
+    ratioRows,
+    rows,
+    retainedLimitation:
+      "The residual decay only certifies the zero-segment-width limit of the linear interpolation diagnostic at the sampled emission clocks. It does not supply an accepted retained point event, a positive-width common retained time domain, or a physical compensation law.",
+  };
+}
+
+function createEndpointLinearSegmentConvergenceRow({
+  segmentCount,
+  layer,
+  endpoints,
+}) {
+  const segmentBound = computeCircularLayerPathSegmentErrorBound(
+    layer,
+    segmentCount
+  );
+  const samples = endpoints.map((endpoint) => {
+    const exactCircularPoint = isFiniteVector(endpoint.exactCircularPoint)
+      ? endpoint.exactCircularPoint
+      : layer && Number.isFinite(endpoint.clockTime)
+        ? computeCircularLayerPoint(layer, endpoint.clockTime)
+        : null;
+    const linearReplay = computeCircularLayerPathSegmentReplayPoint(
+      layer,
+      endpoint.clockTime,
+      segmentCount
+    );
+    const residualVector =
+      isFiniteVector(linearReplay?.point) && isFiniteVector(exactCircularPoint)
+        ? subtractVectors(linearReplay.point, exactCircularPoint)
+        : null;
+    const linearToExactCircularResidualNorm = residualVector
+      ? vectorNorm(residualVector)
+      : null;
+    return {
+      id: endpoint.id,
+      clockTime: endpoint.clockTime,
+      segmentIndex: linearReplay?.segmentIndex ?? null,
+      interpolationFraction: linearReplay?.interpolationFraction ?? null,
+      linearReplayPoint: linearReplay?.point ?? null,
+      exactCircularPoint,
+      linearToExactCircularResidualVector: residualVector,
+      linearToExactCircularResidualNorm,
+      inputsPopulated:
+        linearReplay != null &&
+        Number.isFinite(endpoint.clockTime) &&
+        isFiniteVector(exactCircularPoint),
+    };
+  });
+  const maxLinearToExactCircularResidual = maxFinite(
+    samples.map((sample) => sample.linearToExactCircularResidualNorm)
+  );
+  const segmentBoundContainsResidualPass =
+    Number.isFinite(maxLinearToExactCircularResidual) &&
+    Number.isFinite(segmentBound?.errorBound) &&
+    maxLinearToExactCircularResidual <= segmentBound.errorBound;
+
+  return {
+    segmentCount,
+    pathSegmentStep: segmentBound?.step ?? null,
+    angularSpan: segmentBound?.angularSpan ?? null,
+    segmentErrorBound: segmentBound?.errorBound ?? null,
+    maxLinearToExactCircularResidual,
+    segmentBoundContainsResidualPass,
+    inputsPopulated: samples.every((sample) => sample.inputsPopulated === true),
+    samples,
+  };
+}
+
+function createEndpointLinearSegmentReplayRow({
+  id,
+  layer,
+  clockTime,
+  endpointPoint,
+  exactCircularPoint,
+}) {
+  const linearReplay = computeCircularLayerPathSegmentReplayPoint(layer, clockTime);
+  const endpointLinearReplayResidualVector =
+    isFiniteVector(endpointPoint) && isFiniteVector(linearReplay?.point)
+      ? subtractVectors(endpointPoint, linearReplay.point)
+      : null;
+  const endpointLinearReplayResidualNorm =
+    endpointLinearReplayResidualVector != null
+      ? vectorNorm(endpointLinearReplayResidualVector)
+      : null;
+  const linearToExactCircularResidualVector =
+    isFiniteVector(linearReplay?.point) && isFiniteVector(exactCircularPoint)
+      ? subtractVectors(linearReplay.point, exactCircularPoint)
+      : null;
+  const linearToExactCircularResidualNorm =
+    linearToExactCircularResidualVector != null
+      ? vectorNorm(linearToExactCircularResidualVector)
+      : null;
+  const endpointToExactCircularResidualVector =
+    isFiniteVector(endpointPoint) && isFiniteVector(exactCircularPoint)
+      ? subtractVectors(endpointPoint, exactCircularPoint)
+      : null;
+  const endpointToExactCircularResidualNorm =
+    endpointToExactCircularResidualVector != null
+      ? vectorNorm(endpointToExactCircularResidualVector)
+      : null;
+  const endpointExactMinusLinearResidual =
+    Number.isFinite(endpointToExactCircularResidualNorm) &&
+    Number.isFinite(linearToExactCircularResidualNorm)
+      ? endpointToExactCircularResidualNorm - linearToExactCircularResidualNorm
+      : null;
+
+  return {
+    id,
+    status:
+      Number.isFinite(endpointLinearReplayResidualNorm) &&
+      endpointLinearReplayResidualNorm <=
+        POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE
+        ? "endpoint_replays_as_linear_path_segment_point"
+        : "endpoint_linear_path_segment_replay_residual",
+    inputsPopulated:
+      linearReplay != null &&
+      Number.isFinite(clockTime) &&
+      isFiniteVector(endpointPoint) &&
+      isFiniteVector(exactCircularPoint),
+    clockTime,
+    segmentIndex: linearReplay?.segmentIndex ?? null,
+    segmentStartTime: linearReplay?.segmentStartTime ?? null,
+    segmentEndTime: linearReplay?.segmentEndTime ?? null,
+    interpolationFraction: linearReplay?.interpolationFraction ?? null,
+    segmentStartPoint: linearReplay?.segmentStartPoint ?? null,
+    segmentEndPoint: linearReplay?.segmentEndPoint ?? null,
+    linearReplayPoint: linearReplay?.point ?? null,
+    exactCircularPoint,
+    endpointPoint,
+    endpointLinearReplayResidualVector,
+    endpointLinearReplayResidualNorm,
+    linearToExactCircularResidualVector,
+    linearToExactCircularResidualNorm,
+    endpointToExactCircularResidualVector,
+    endpointToExactCircularResidualNorm,
+    endpointExactMinusLinearResidual,
+    endpointExactMinusLinearResidualAbs: Number.isFinite(
+      endpointExactMinusLinearResidual
+    )
+      ? Math.abs(endpointExactMinusLinearResidual)
+      : null,
+  };
+}
+
+function createSameSourcePathHistorySegmentErrorBoundDiagnostic({
+  layer,
+  endpointAdvectionResidualNorm,
+  maxEndpointToEmissionChartResidual,
+  endpointPairResidualVsChartChordAbs,
+}) {
+  const segmentBound = computeCircularLayerPathSegmentErrorBound(layer);
+  const segmentErrorBound = segmentBound?.errorBound ?? null;
+  const doubleSegmentErrorBound = Number.isFinite(segmentErrorBound)
+    ? 2 * segmentErrorBound
+    : null;
+  const endpointToEmissionChartWithinSegmentBound =
+    Number.isFinite(maxEndpointToEmissionChartResidual) &&
+    Number.isFinite(segmentErrorBound) &&
+    maxEndpointToEmissionChartResidual <= segmentErrorBound;
+  const endpointAdvectionWithinDoubleSegmentBound =
+    Number.isFinite(endpointAdvectionResidualNorm) &&
+    Number.isFinite(doubleSegmentErrorBound) &&
+    endpointAdvectionResidualNorm <= doubleSegmentErrorBound;
+  const endpointPairChartChordGapWithinDoubleSegmentBound =
+    Number.isFinite(endpointPairResidualVsChartChordAbs) &&
+    Number.isFinite(doubleSegmentErrorBound) &&
+    endpointPairResidualVsChartChordAbs <= doubleSegmentErrorBound;
+  const endpointResidualsSegmentBoundedPass =
+    endpointToEmissionChartWithinSegmentBound &&
+    endpointAdvectionWithinDoubleSegmentBound &&
+    endpointPairChartChordGapWithinDoubleSegmentBound;
+  const inputsPopulated =
+    Number.isFinite(segmentErrorBound) &&
+    Number.isFinite(doubleSegmentErrorBound) &&
+    Number.isFinite(endpointAdvectionResidualNorm) &&
+    Number.isFinite(maxEndpointToEmissionChartResidual) &&
+    Number.isFinite(endpointPairResidualVsChartChordAbs);
+
+  return {
+    schema:
+      "aaa-tri-binary-same-source-path-history-segment-error-bound-diagnostic.v1",
+    status: !inputsPopulated
+      ? "same_source_path_history_segment_error_bound_inputs_missing"
+      : endpointResidualsSegmentBoundedPass
+        ? "same_source_path_history_segment_error_bound_contains_endpoint_residuals"
+        : "same_source_path_history_segment_error_bound_endpoint_residual_exceeds_bound",
+    claimLevel:
+      "diagnostic comparison against the finite circular path-history segment error bound; not exact endpoint transport or retained branch acceptance",
+    segmentCountPerLayer: BINARY_TO_BINARY_PATH_SEGMENT_COUNT,
+    pathSegmentStep: segmentBound?.step ?? null,
+    angularSpan: segmentBound?.angularSpan ?? null,
+    segmentErrorBound,
+    doubleSegmentErrorBound,
+    endpointAdvectionResidualNorm,
+    maxEndpointToEmissionChartResidual,
+    endpointPairResidualVsChartChordAbs,
+    endpointToEmissionChartWithinSegmentBound,
+    endpointAdvectionWithinDoubleSegmentBound,
+    endpointPairChartChordGapWithinDoubleSegmentBound,
+    endpointResidualsSegmentBoundedPass,
+    retainedLimitation:
+      "The sampled endpoint residuals fit within the 32-segment circular path-history approximation envelope. This bounds the current residuals but does not replace an exact endpoint replay or retained-domain transport law.",
+  };
+}
+
+function createSameEventEnergyRoutingCandidateRows({
+  targetPopulated,
+  sameEventRowsPass,
+  acceptedOmegaTxSource,
+  acceptedActionScale,
+  acceptedEnergyOrientation,
+  acceptedWakeEnergyIncrementLaw,
+  minimalBranchTransactionFrequencyCertificate,
+  actionBoundaryDerivativeTarget,
+  actionBoundaryWakeEnergyLawCandidate,
+  omegaStarWeightedBoundaryCharge,
+  rootEnergyDiagnosticSum,
+  targetChargeNorm,
+}) {
+  const rows = [];
+  const addCandidate = ({
+    id,
+    source,
+    formula,
+    candidateWakeEnergyIncrement,
+    sameEventCarrier = true,
+    acceptanceBlockers = [],
+    rejectionReason = null,
+  }) => {
+    const finiteCandidateWakeEnergyIncrement = finiteOrNull(
+      candidateWakeEnergyIncrement
+    );
+    const acceptanceEligible =
+      sameEventCarrier === true &&
+      acceptanceBlockers.length === 0 &&
+      finiteCandidateWakeEnergyIncrement != null;
+    rows.push({
+      id,
+      status:
+        finiteCandidateWakeEnergyIncrement != null
+          ? acceptanceEligible
+            ? "same_event_energy_route_candidate_evaluated"
+            : "same_event_energy_route_candidate_evaluated_not_acceptance_source"
+          : "same_event_energy_route_candidate_not_finite",
+      source,
+      formula,
+      sameEventCarrier,
+      acceptanceEligible,
+      acceptanceBlockers,
+      rejectionReason,
+      candidateWakeEnergyIncrement: finiteCandidateWakeEnergyIncrement,
+    });
+  };
+  const sharedAcceptanceBlockers = [
+    targetPopulated ? null : "accepted_boundary_charge_pullback",
+    sameEventRowsPass ? null : "same_retained_route_rows",
+    acceptedOmegaTxSource ? null : "accepted_omega_tx_source",
+    acceptedActionScale ? null : "derived_sigma_hbar_action_scale",
+    acceptedEnergyOrientation ? null : "accepted_energy_orientation",
+    acceptedWakeEnergyIncrementLaw ? null : "accepted_wake_energy_increment_law",
+  ].filter(Boolean);
+  const minimalBranchFrequency =
+    minimalBranchTransactionFrequencyCertificate?.candidateOmegaTx ?? null;
+  const minimalBranchEnergy =
+    Number.isFinite(minimalBranchFrequency) && Number.isFinite(targetChargeNorm)
+      ? minimalBranchFrequency * targetChargeNorm
+      : null;
+  addCandidate({
+    id: "minimal_branch_frequency_boundary_charge_candidate",
+    source: "minimal four-substep branch frequency certificate on the route-authorized wake charge",
+    formula: "Delta E_wake = omega_tx^(4) |Delta J_wake|",
+    candidateWakeEnergyIncrement: minimalBranchEnergy,
+    acceptanceBlockers: sharedAcceptanceBlockers,
+    rejectionReason:
+      sharedAcceptanceBlockers.length === 0
+        ? null
+        : "The reduced four-substep energy candidate is exact only as a formal carrier until the same event has accepted omega_tx, sigma*hbar action scale, and wake-energy law rows.",
+  });
+  const signedActionScale =
+    actionBoundaryWakeEnergyLawCandidate?.signedActionScaleForOmegaStarTarget ??
+    null;
+  const unitActionWakeEnergyIncrement =
+    actionBoundaryWakeEnergyLawCandidate?.unitActionWakeEnergyIncrement ?? null;
+  addCandidate({
+    id: "action_boundary_derivative_scaled_candidate",
+    source: "evaluated action-boundary derivative with the required action scale",
+    formula:
+      "Delta E_wake = sigma*hbar_scale_required * (1/2 sum kappa_sigma_row partial_t1 K_eff,row)",
+    candidateWakeEnergyIncrement:
+      Number.isFinite(signedActionScale) &&
+      Number.isFinite(unitActionWakeEnergyIncrement)
+        ? signedActionScale * unitActionWakeEnergyIncrement
+        : null,
+    acceptanceBlockers: sharedAcceptanceBlockers,
+    rejectionReason:
+      sharedAcceptanceBlockers.length === 0
+        ? null
+        : "The required action scale is measured by the derivative comparison but is not yet a derived sigma*hbar law.",
+  });
+  addCandidate({
+    id: "unit_action_boundary_derivative",
+    source: "evaluated action-boundary derivative before action-scale assignment",
+    formula: "1/2 sum kappa_sigma_row partial_t1 K_eff,row",
+    candidateWakeEnergyIncrement: unitActionWakeEnergyIncrement,
+    sameEventCarrier: true,
+    acceptanceBlockers: [
+      "derived_sigma_hbar_action_scale",
+      "accepted_wake_energy_increment_law",
+    ],
+    rejectionReason:
+      "The unit-action derivative is evaluated on the same route rows, but it is not an energy route without sigma*hbar action scale.",
+  });
+  addCandidate({
+    id: "root_energy_diagnostic_sum",
+    source: "compensated route-payload certificate",
+    formula: "sum unit-action root-energy diagnostic rows",
+    candidateWakeEnergyIncrement: rootEnergyDiagnosticSum,
+    sameEventCarrier: false,
+    acceptanceBlockers: ["retained_wake_energy_route_law"],
+    rejectionReason:
+      "Root-energy rows are route diagnostics; they do not assign retained wake energy.",
+  });
+  addCandidate({
+    id: "boundary_charge_norm_only",
+    source: "normalized action-kernel wake charge",
+    formula: "|Delta J_wake|",
+    candidateWakeEnergyIncrement: targetChargeNorm,
+    sameEventCarrier: false,
+    acceptanceBlockers: ["transaction_frequency_or_action_boundary_law"],
+    rejectionReason:
+      "Boundary-charge norm is angular momentum, not energy, until a transaction frequency or action-boundary energy law is accepted.",
+  });
+  addCandidate({
+    id: "zero_wake_energy",
+    source: "null route control",
+    formula: "Delta E_wake = 0",
+    candidateWakeEnergyIncrement: 0,
+    sameEventCarrier: false,
+    acceptanceBlockers: ["nonzero_boundary_charge"],
+    rejectionReason:
+      Number.isFinite(omegaStarWeightedBoundaryCharge) &&
+      Math.abs(omegaStarWeightedBoundaryCharge) >
+        POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE
+        ? "The route-authorized boundary charge has a nonzero omega-weighted energy target."
+        : "Zero energy is a null control, not a retained wake-energy route.",
+  });
+
+  return rows;
+}
+
 function createActionBoundaryWakeEnergyLawCandidate({
   actionBoundaryDerivativeTarget,
   compensatedRoutePayloadCertificate,
   cleanEnergyFrequencyTarget,
+  minimalBranchTransactionFrequencyCertificate,
+  masterEquationCharacteristicTailPullbackCandidate,
   omegaStarWeightedBoundaryCharge,
   omegaStar,
   targetChargeNorm,
@@ -4791,8 +7067,34 @@ function createActionBoundaryWakeEnergyLawCandidate({
     });
   const actionScaleLawSearchAccepted =
     actionScaleLawSearchTarget.acceptedActionScaleLawPass === true;
+  const energyOrientationLawTarget = createEnergyOrientationLawTarget({
+    requiredEnergyOrientation,
+    actionBoundaryDerivativeTarget,
+    omegaStarWeightedBoundaryCharge,
+    masterEquationCharacteristicTailPullbackCandidate,
+  });
+  const energyOrientationAccepted =
+    energyOrientationLawTarget.acceptedEnergyOrientationPass === true;
+  const actionScaleDerivationTarget =
+    createActionBoundaryActionScaleDerivationTarget({
+      requiredPositiveActionScale: positiveActionScaleForOmegaStarMagnitude,
+      signedActionScaleForOmegaStarTarget,
+      unitActionWakeEnergyIncrement,
+      omegaStarWeightedBoundaryCharge,
+      actionBoundaryDerivativeTarget,
+      compensatedRoutePayloadCertificate,
+      actionScaleLawSearchTarget,
+      energyOrientationLawTarget,
+      masterEquationCharacteristicTailPullbackCandidate,
+      targetChargeNorm,
+    });
+  const actionScaleDerivationAccepted =
+    actionScaleDerivationTarget.acceptedActionScaleDerivationPass === true;
+  const acceptedActionScale =
+    actionScaleLawSearchAccepted || actionScaleDerivationAccepted;
   const omegaTxLawSearchTarget = createOmegaTxLawSearchTarget({
     cleanEnergyFrequencyTarget,
+    minimalBranchTransactionFrequencyCertificate,
     compensatedRoutePayloadCertificate,
   });
   const omegaTxLawSearchAccepted =
@@ -4804,9 +7106,13 @@ function createActionBoundaryWakeEnergyLawCandidate({
     status: !derivativeEvaluated
       ? "action_boundary_wake_energy_law_candidate_blocked_until_derivative_evaluated"
       : Number.isFinite(omegaStarWeightedBoundaryCharge)
-      ? omegaTxLawSearchAccepted && actionScaleLawSearchAccepted
-        ? "action_boundary_wake_energy_law_candidate_has_simple_action_scale_candidate_pending_orientation_and_omega_tx_acceptance"
-        : !omegaTxLawSearchAccepted && !actionScaleLawSearchAccepted
+      ? omegaTxLawSearchAccepted &&
+        acceptedActionScale &&
+        energyOrientationAccepted
+        ? "action_boundary_wake_energy_law_candidate_scale_orientation_and_omega_tx_candidates_accepted_wake_energy_law_missing"
+        : omegaTxLawSearchAccepted && acceptedActionScale
+        ? "action_boundary_wake_energy_law_candidate_has_action_scale_and_omega_tx_candidates_pending_orientation"
+        : !omegaTxLawSearchAccepted && !acceptedActionScale
         ? "action_boundary_wake_energy_law_candidate_omega_tx_and_scale_law_search_no_simple_candidate_accepted"
         : !omegaTxLawSearchAccepted
         ? "action_boundary_wake_energy_law_candidate_omega_tx_law_search_no_simple_candidate_accepted"
@@ -4821,33 +7127,224 @@ function createActionBoundaryWakeEnergyLawCandidate({
     omegaStarWeightedBoundaryCharge,
     omegaStar,
     targetChargeNorm,
+    minimalBranchTransactionFrequencyCertificate,
     signedActionScaleForOmegaStarTarget,
     positiveActionScaleForOmegaStarMagnitude,
     requiredEnergyOrientation,
+    acceptedEnergyOrientationPass: energyOrientationAccepted,
+    energyOrientationLawStatus: energyOrientationLawTarget.status,
+    energyOrientationLawTarget,
+    acceptedActionScalePass: acceptedActionScale,
+    acceptedSimpleActionScaleLawPass: actionScaleLawSearchAccepted,
+    acceptedActionScaleDerivationPass: actionScaleDerivationAccepted,
     actionScaleLawSearchStatus: actionScaleLawSearchTarget.status,
     actionScaleLawSearchTarget,
+    actionScaleDerivationStatus: actionScaleDerivationTarget.status,
+    actionScaleDerivationTarget,
     omegaTxLawSearchStatus: omegaTxLawSearchTarget.status,
     omegaTxLawSearchTarget,
     unitActionResidualAgainstOmegaStar,
     magnitudeResidualAgainstOmegaStar,
     missingAcceptedFields: [
-      "accepted_sigma_hbar_action_scale",
-      "accepted_energy_orientation",
+      acceptedActionScale ? null : "accepted_sigma_hbar_action_scale",
+      energyOrientationAccepted ? null : "accepted_energy_orientation",
       "accepted_omega_tx_or_energy_target",
       "accepted_wake_energy_increment_law",
-    ],
+    ].filter(Boolean),
     retainedLimitation:
-      "This candidate measures the action scale that would make the evaluated action-boundary derivative agree with the omega_* boundary-charge comparison. It does not accept omega_* as omega_tx, choose the energy orientation, or derive sigma*hbar.",
+      "This candidate measures the action scale that would make the evaluated action-boundary derivative agree with the omega_* boundary-charge comparison. It does not accept omega_* as omega_tx, derive sigma*hbar, or assign retained wake energy.",
   };
+}
+
+function createEnergyOrientationLawTarget({
+  requiredEnergyOrientation,
+  actionBoundaryDerivativeTarget,
+  omegaStarWeightedBoundaryCharge,
+  masterEquationCharacteristicTailPullbackCandidate,
+}) {
+  const candidateRows = createEnergyOrientationLawCandidateRows({
+    actionBoundaryDerivativeTarget,
+    omegaStarWeightedBoundaryCharge,
+    masterEquationCharacteristicTailPullbackCandidate,
+  }).map((row) => {
+    const residual =
+      Number.isFinite(row.candidateEnergyOrientation) &&
+      Number.isFinite(requiredEnergyOrientation)
+        ? row.candidateEnergyOrientation - requiredEnergyOrientation
+        : null;
+    const residualAbs = Number.isFinite(residual) ? Math.abs(residual) : null;
+    return {
+      ...row,
+      requiredEnergyOrientation,
+      residual,
+      residualAbs,
+      exactEnergyOrientationPass:
+        Number.isFinite(residualAbs) &&
+        residualAbs <= POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE,
+      acceptedEnergyOrientationPass:
+        row.acceptanceEligible === true &&
+        Number.isFinite(residualAbs) &&
+        residualAbs <= POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE,
+    };
+  });
+  const finiteRows = candidateRows.filter((row) =>
+    Number.isFinite(row.candidateEnergyOrientation)
+  );
+  const acceptedRows = finiteRows.filter(
+    (row) => row.acceptedEnergyOrientationPass
+  );
+  const exactIneligibleRows = finiteRows.filter(
+    (row) => row.exactEnergyOrientationPass && row.acceptanceEligible !== true
+  );
+  const rejectedEligibleRows = finiteRows.filter(
+    (row) => row.acceptanceEligible === true && !row.exactEnergyOrientationPass
+  );
+  const bestRejectedCandidate =
+    rejectedEligibleRows.length > 0
+      ? rejectedEligibleRows.reduce((best, row) =>
+          row.residualAbs < best.residualAbs ? row : best
+        )
+      : null;
+
+  return {
+    schema:
+      "aaa-tri-binary-action-boundary-energy-orientation-law-target.v1",
+    status: !Number.isFinite(requiredEnergyOrientation)
+      ? "energy_orientation_law_search_blocked_until_required_orientation"
+      : finiteRows.length === 0
+      ? "energy_orientation_law_search_no_finite_candidates"
+      : acceptedRows.length > 0
+      ? "energy_orientation_law_search_route_local_candidate_accepted"
+      : exactIneligibleRows.length > 0
+      ? "energy_orientation_law_search_exact_ineligible_only"
+      : "energy_orientation_law_search_no_route_local_candidate_accepted",
+    claimLevel:
+      "route-local energy-orientation sign search for the evaluated wake-energy comparison; not action-scale, omega_tx, or retained energy routing",
+    requiredEnergyOrientation,
+    acceptedEnergyOrientationPass: acceptedRows.length > 0,
+    candidateCount: candidateRows.length,
+    finiteCandidateCount: finiteRows.length,
+    acceptedCandidateCount: acceptedRows.length,
+    exactIneligibleCount: exactIneligibleRows.length,
+    bestRejectedCandidate,
+    acceptedRows,
+    exactIneligibleRows,
+    rows: candidateRows,
+    retainedLimitation:
+      "This target can accept only a route-local orientation sign supplied by accepted characteristic-tail polarity/coefficient rows. Derivative or target signs are diagnostic comparisons, not independent orientation laws.",
+  };
+}
+
+function createEnergyOrientationLawCandidateRows({
+  actionBoundaryDerivativeTarget,
+  omegaStarWeightedBoundaryCharge,
+  masterEquationCharacteristicTailPullbackCandidate,
+}) {
+  const rows = [];
+  const seenIds = new Set();
+  const addCandidate = ({
+    id,
+    source,
+    formula,
+    candidateEnergyOrientation,
+    acceptanceEligible = true,
+    rejectionReason = null,
+  }) => {
+    if (seenIds.has(id)) {
+      return;
+    }
+    seenIds.add(id);
+    const finiteCandidateEnergyOrientation = normalizeOrientationSign(
+      candidateEnergyOrientation
+    );
+    rows.push({
+      id,
+      status:
+        finiteCandidateEnergyOrientation != null
+          ? acceptanceEligible
+            ? "energy_orientation_law_candidate_evaluated"
+            : "energy_orientation_law_candidate_evaluated_not_acceptance_source"
+          : "energy_orientation_law_candidate_not_finite",
+      source,
+      formula,
+      acceptanceEligible,
+      rejectionReason,
+      candidateEnergyOrientation: finiteCandidateEnergyOrientation,
+    });
+  };
+  const coefficientTarget =
+    masterEquationCharacteristicTailPullbackCandidate?.coefficientQuadratureTarget
+      ?.routeLocalCoefficientAcceptanceTarget ?? null;
+  const singleCoefficientSolve =
+    masterEquationCharacteristicTailPullbackCandidate?.coefficientQuadratureTarget
+      ?.singleCoefficientSignPatternSolve ?? null;
+  const signPattern = singleCoefficientSolve?.signPattern ?? [];
+  const commonSigmaSign =
+    signPattern.length > 0 &&
+    signPattern.every((sign) => Number.isFinite(sign) && sign === signPattern[0])
+      ? signPattern[0]
+      : null;
+  const routeLocalCoefficientAccepted =
+    coefficientTarget?.acceptedCoefficientQuadraturePass === true;
+
+  addCandidate({
+    id: "route_local_common_sigma_sign",
+    source: "route-local characteristic-tail coefficient rows",
+    formula:
+      "common sigma sign from the accepted route-local characteristic-tail coefficient rows",
+    candidateEnergyOrientation: commonSigmaSign,
+    acceptanceEligible:
+      routeLocalCoefficientAccepted && Number.isFinite(commonSigmaSign),
+    rejectionReason: routeLocalCoefficientAccepted
+      ? null
+      : "The common sigma sign is not an acceptance source until the route-local coefficient target is accepted.",
+  });
+  addCandidate({
+    id: "negative_action_time_derivative_convention",
+    source: "action-boundary derivative comparison",
+    formula: "Delta E = - sigma*hbar_scale partial_t K_eff",
+    candidateEnergyOrientation: -1,
+    acceptanceEligible: false,
+    rejectionReason:
+      "The sign matches the action-time comparison convention, but acceptance in this target requires a route-local sign source.",
+  });
+  addCandidate({
+    id: "unit_action_derivative_sign",
+    source: "evaluated action-boundary derivative",
+    formula: "sign(1/2 sum kappa_sigma_row partial_t1 K_eff,row)",
+    candidateEnergyOrientation: Math.sign(
+      actionBoundaryDerivativeTarget?.halfWeightedNormalizedPartialT1KernelTermSum
+    ),
+    acceptanceEligible: false,
+    rejectionReason:
+      "This is the evaluated derivative sign, not an independent energy-orientation law.",
+  });
+  addCandidate({
+    id: "positive_energy_target_sign",
+    source: "omega_* weighted boundary-charge comparison",
+    formula: "sign(omega_* |Delta J_wake|)",
+    candidateEnergyOrientation: Math.sign(omegaStarWeightedBoundaryCharge),
+    acceptanceEligible: false,
+    rejectionReason:
+      "This is the comparison target sign, not independent route-local orientation evidence.",
+  });
+
+  return rows;
+}
+
+function normalizeOrientationSign(value) {
+  return Number.isFinite(value) && Math.abs(value) === 1 ? value : null;
 }
 
 function createOmegaTxLawSearchTarget({
   cleanEnergyFrequencyTarget,
+  minimalBranchTransactionFrequencyCertificate,
   compensatedRoutePayloadCertificate,
 }) {
   const targetOmegaTx = cleanEnergyFrequencyTarget?.omegaStar ?? null;
   const candidateRows = createOmegaTxLawCandidateRows({
     cleanEnergyFrequencyTarget,
+    minimalBranchTransactionFrequencyCertificate,
     compensatedRoutePayloadCertificate,
   }).map((row) => {
     const residual =
@@ -4885,6 +7382,9 @@ function createOmegaTxLawSearchTarget({
           row.residualAbs < best.residualAbs ? row : best
         )
       : null;
+  const exactMinimalBranchCertificateRows = exactIneligibleRows.filter(
+    (row) => row.id === "minimal_branch_four_substep_frequency_certificate"
+  );
 
   return {
     schema: "aaa-tri-binary-omega-tx-law-search-target.v1",
@@ -4894,6 +7394,8 @@ function createOmegaTxLawSearchTarget({
       ? "omega_tx_law_search_no_finite_candidates"
       : acceptedRows.length > 0
       ? "omega_tx_law_search_simple_candidate_accepted"
+      : exactMinimalBranchCertificateRows.length > 0
+      ? "omega_tx_law_search_minimal_branch_frequency_certificate_formal_acceptance_blocked"
       : exactIneligibleRows.length > 0
       ? "omega_tx_law_search_clean_target_identity_only_no_route_local_candidate_accepted"
       : "omega_tx_law_search_no_simple_route_local_candidate_accepted",
@@ -4902,6 +7404,15 @@ function createOmegaTxLawSearchTarget({
     targetOmegaTx,
     cleanEnergyFrequencyTargetStatus:
       cleanEnergyFrequencyTarget?.status ?? null,
+    minimalBranchTransactionFrequencyCertificateStatus:
+      minimalBranchTransactionFrequencyCertificate?.status ?? null,
+    minimalBranchTransactionFrequencyReducedCertificatePass:
+      minimalBranchTransactionFrequencyCertificate?.reducedCertificatePass ?? null,
+    minimalBranchTransactionFrequencyAcceptedPass:
+      minimalBranchTransactionFrequencyCertificate
+        ?.acceptedTransactionFrequencyPass ?? null,
+    minimalBranchTransactionFrequencyAcceptanceBlockers:
+      minimalBranchTransactionFrequencyCertificate?.acceptanceBlockers ?? [],
     acceptedOmegaTxLawPass: acceptedRows.length > 0,
     candidateCount: candidateRows.length,
     finiteCandidateCount: finiteRows.length,
@@ -4909,15 +7420,17 @@ function createOmegaTxLawSearchTarget({
     exactIneligibleCount: exactIneligibleRows.length,
     bestRejectedCandidate,
     exactIneligibleRows,
+    exactMinimalBranchCertificateRows,
     acceptedRows,
     rows: candidateRows,
     retainedLimitation:
-      "This search treats the clean weighted omega_* expression as the comparison target, not independent omega_tx evidence. Acceptance requires a separate route-local frequency law on the retained rows.",
+      "This search treats the clean weighted omega_* expression as the comparison target. The minimal four-substep frequency certificate is exact for the reduced branch, but omega_tx acceptance still requires retained-event acceptance and same-event carrier population on the same route.",
   };
 }
 
 function createOmegaTxLawCandidateRows({
   cleanEnergyFrequencyTarget,
+  minimalBranchTransactionFrequencyCertificate,
   compensatedRoutePayloadCertificate,
 }) {
   const rows = [];
@@ -4930,6 +7443,7 @@ function createOmegaTxLawCandidateRows({
     candidateOmegaTx,
     acceptanceEligible = true,
     rejectionReason = null,
+    evidence = null,
   }) => {
     if (seenIds.has(id)) {
       return;
@@ -4949,6 +7463,7 @@ function createOmegaTxLawCandidateRows({
       acceptanceEligible,
       rejectionReason,
       candidateOmegaTx: finiteCandidateOmegaTx,
+      evidence,
     });
   };
   const addMeanCandidate = ({ id, source, formula, values }) => {
@@ -4980,6 +7495,32 @@ function createOmegaTxLawCandidateRows({
     acceptanceEligible: false,
     rejectionReason:
       "This is the omega_* comparison target itself, not independent route-local transaction-frequency evidence.",
+  });
+  addCandidate({
+    id: "minimal_branch_four_substep_frequency_certificate",
+    source: "minimal four-substep branch frequency certificate target",
+    formula: "omega_tx^(4)=(omega_O+omega_M+2 omega_I)/(1+1+2)",
+    candidateOmegaTx:
+      minimalBranchTransactionFrequencyCertificate?.candidateOmegaTx ?? null,
+    acceptanceEligible:
+      minimalBranchTransactionFrequencyCertificate
+        ?.acceptedTransactionFrequencyPass === true,
+    rejectionReason:
+      minimalBranchTransactionFrequencyCertificate
+        ?.acceptedTransactionFrequencyPass === true
+        ? null
+        : "The reduced four-substep certificate is exact but not an acceptance source until retained-event acceptance and same-event carrier population are supplied.",
+    evidence: minimalBranchTransactionFrequencyCertificate
+      ? {
+          status: minimalBranchTransactionFrequencyCertificate.status,
+          reducedCertificatePass:
+            minimalBranchTransactionFrequencyCertificate.reducedCertificatePass,
+          frequencyIdentityPass:
+            minimalBranchTransactionFrequencyCertificate.frequencyIdentityPass,
+          acceptanceBlockers:
+            minimalBranchTransactionFrequencyCertificate.acceptanceBlockers,
+        }
+      : null,
   });
   addCandidate({
     id: "outer_layer_angular_velocity",
@@ -5138,6 +7679,2187 @@ function createActionBoundaryActionScaleLawSearchTarget({
     rows: candidateRows,
     retainedLimitation:
       "This search tests only existing route, normalization, wake-charge, and unit-payload scalars with no fitted coefficients. Rejecting them leaves sigma*hbar action-scale derivation open rather than accepting an empirical scale.",
+  };
+}
+
+function createActionBoundaryActionScaleDerivationTarget({
+  requiredPositiveActionScale,
+  signedActionScaleForOmegaStarTarget,
+  unitActionWakeEnergyIncrement,
+  omegaStarWeightedBoundaryCharge,
+  actionBoundaryDerivativeTarget,
+  compensatedRoutePayloadCertificate,
+  actionScaleLawSearchTarget,
+  energyOrientationLawTarget,
+  masterEquationCharacteristicTailPullbackCandidate,
+  targetChargeNorm,
+}) {
+  const routeLocalCoefficientAcceptanceTarget =
+    masterEquationCharacteristicTailPullbackCandidate?.coefficientQuadratureTarget
+      ?.routeLocalCoefficientAcceptanceTarget ?? null;
+  const rowAmplitudeRequirementTarget =
+    routeLocalCoefficientAcceptanceTarget?.rowAmplitudeRequirementTarget ?? null;
+  const rowAmplitudeLawSearchTarget =
+    rowAmplitudeRequirementTarget?.rowAmplitudeLawSearchTarget ?? null;
+  const leastNormBoundaryChargeAmplitudeLaw =
+    rowAmplitudeLawSearchTarget?.leastNormBoundaryChargeAmplitudeLaw ?? null;
+  const rowAmplitudeLawAccepted =
+    rowAmplitudeRequirementTarget?.acceptedRowAmplitudeLawPass === true &&
+    leastNormBoundaryChargeAmplitudeLaw?.acceptedRowAmplitudeLawPass === true;
+  const routeLocalCoefficientAccepted =
+    routeLocalCoefficientAcceptanceTarget?.acceptedCoefficientQuadraturePass ===
+    true;
+  const simpleScalarSearchAccepted =
+    actionScaleLawSearchTarget?.acceptedActionScaleLawPass === true;
+  const orientationAccepted =
+    energyOrientationLawTarget?.acceptedEnergyOrientationPass === true;
+  const candidateRows = createActionBoundaryActionScaleDerivationCandidateRows({
+    requiredPositiveActionScale,
+    signedActionScaleForOmegaStarTarget,
+    unitActionWakeEnergyIncrement,
+    omegaStarWeightedBoundaryCharge,
+    actionBoundaryDerivativeTarget,
+    actionScaleLawSearchTarget,
+    rowAmplitudeLawAccepted,
+    routeLocalCoefficientAccepted,
+    routeLocalCoefficientAcceptanceTarget,
+    rowAmplitudeRequirementTarget,
+    leastNormBoundaryChargeAmplitudeLaw,
+    targetChargeNorm,
+  }).map((row) => {
+    const residual =
+      Number.isFinite(row.candidateActionScale) &&
+      Number.isFinite(requiredPositiveActionScale)
+        ? row.candidateActionScale - requiredPositiveActionScale
+        : null;
+    const residualAbs = Number.isFinite(residual) ? Math.abs(residual) : null;
+    const exactActionScaleDerivationPass =
+      Number.isFinite(residualAbs) &&
+      residualAbs <= POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE;
+    return {
+      ...row,
+      requiredPositiveActionScale,
+      residual,
+      residualAbs,
+      exactActionScaleDerivationPass,
+      acceptedActionScaleDerivationPass:
+        row.acceptanceEligible === true && exactActionScaleDerivationPass,
+    };
+  });
+  const finiteRows = candidateRows.filter((row) =>
+    Number.isFinite(row.candidateActionScale)
+  );
+  const acceptedRows = finiteRows.filter(
+    (row) => row.acceptedActionScaleDerivationPass
+  );
+  const exactDiagnosticRows = finiteRows.filter(
+    (row) =>
+      row.exactActionScaleDerivationPass &&
+      row.acceptedActionScaleDerivationPass !== true
+  );
+  const rejectedRows = finiteRows.filter(
+    (row) => row.exactActionScaleDerivationPass !== true
+  );
+  const rejectedEligibleRows = rejectedRows.filter(
+    (row) => row.acceptanceEligible === true
+  );
+  const bestRejectedCandidate =
+    rejectedEligibleRows.length > 0
+      ? rejectedEligibleRows.reduce((best, row) =>
+          row.residualAbs < best.residualAbs ? row : best
+        )
+      : null;
+  const bestRejectedDiagnosticOrIneligibleCandidate =
+    rejectedRows.length > 0
+      ? rejectedRows.reduce((best, row) =>
+          row.residualAbs < best.residualAbs ? row : best
+        )
+      : null;
+  const measuredScaleDiagnosticPass = exactDiagnosticRows.some(
+    (row) => row.id === "required_scale_measured_by_boundary_charge"
+  );
+  const residualCorrectionDiagnostic =
+    createActionBoundaryActionScaleResidualCorrectionDiagnostic({
+      requiredPositiveActionScale,
+      omegaStarWeightedBoundaryCharge,
+      actionBoundaryDerivativeTarget,
+      compensatedRoutePayloadCertificate,
+      targetChargeNorm,
+      leastNormBoundaryChargeAmplitudeLaw,
+      routeLocalCoefficientAcceptanceTarget,
+      bestRejectedCandidate,
+    });
+
+  return {
+    schema:
+      "aaa-tri-binary-action-boundary-action-scale-derivation-target.v1",
+    status: !Number.isFinite(requiredPositiveActionScale)
+      ? "action_boundary_action_scale_derivation_target_blocked_until_required_scale"
+      : acceptedRows.length > 0
+        ? "action_boundary_action_scale_derivation_target_route_local_candidate_accepted"
+        : !measuredScaleDiagnosticPass
+          ? "action_boundary_action_scale_derivation_target_required_scale_not_measured"
+          : rowAmplitudeLawAccepted
+            ? "action_boundary_action_scale_derivation_target_measured_scale_populated_route_local_candidates_rejected"
+            : "action_boundary_action_scale_derivation_target_measured_scale_populated_row_amplitude_law_missing",
+    claimLevel:
+      "fail-closed sigma*hbar action-scale derivation target; the comparison-measured scale is diagnostic, not an accepted law",
+    requiredPositiveActionScale,
+    signedActionScaleForOmegaStarTarget,
+    unitActionWakeEnergyIncrement,
+    omegaStarWeightedBoundaryCharge,
+    targetChargeNorm,
+    acceptedActionScaleDerivationPass: acceptedRows.length > 0,
+    measuredScaleDiagnosticPass,
+    rowAmplitudeLawAccepted,
+    routeLocalCoefficientAccepted,
+    simpleScalarSearchAccepted,
+    orientationAccepted,
+    actionScaleLawSearchStatus: actionScaleLawSearchTarget?.status ?? null,
+    energyOrientationLawStatus: energyOrientationLawTarget?.status ?? null,
+    routeLocalCoefficientAcceptanceStatus:
+      routeLocalCoefficientAcceptanceTarget?.status ?? null,
+    rowAmplitudeRequirementStatus: rowAmplitudeRequirementTarget?.status ?? null,
+    rowAmplitudeLawSearchStatus: rowAmplitudeLawSearchTarget?.status ?? null,
+    leastNormBoundaryChargeAmplitudeLawStatus:
+      leastNormBoundaryChargeAmplitudeLaw?.status ?? null,
+    candidateCount: candidateRows.length,
+    finiteCandidateCount: finiteRows.length,
+    acceptedCandidateCount: acceptedRows.length,
+    exactDiagnosticCount: exactDiagnosticRows.length,
+    residualCorrectionDiagnosticStatus:
+      residualCorrectionDiagnostic?.status ?? null,
+    bestRejectedCandidate,
+    bestRejectedDiagnosticOrIneligibleCandidate,
+    residualCorrectionDiagnostic,
+    exactDiagnosticRows,
+    acceptedRows,
+    rows: candidateRows,
+    retainedLimitation:
+      "This target keeps the action scale on the same route-local characteristic-tail and action-boundary rows. The required scale is measured by the boundary-charge comparison, but it remains blocked until a non-tautological route-local law supplies sigma*hbar without fitting the target.",
+  };
+}
+
+function createActionBoundaryActionScaleDerivationCandidateRows({
+  requiredPositiveActionScale,
+  signedActionScaleForOmegaStarTarget,
+  unitActionWakeEnergyIncrement,
+  omegaStarWeightedBoundaryCharge,
+  actionBoundaryDerivativeTarget,
+  actionScaleLawSearchTarget,
+  rowAmplitudeLawAccepted,
+  routeLocalCoefficientAccepted,
+  routeLocalCoefficientAcceptanceTarget,
+  rowAmplitudeRequirementTarget,
+  leastNormBoundaryChargeAmplitudeLaw,
+  targetChargeNorm,
+}) {
+  const rows = [];
+  const seenIds = new Set();
+  const routeLocalAcceptanceBlockers = [
+    routeLocalCoefficientAccepted
+      ? null
+      : "accepted_route_local_coefficient_quadrature",
+    rowAmplitudeLawAccepted ? null : "accepted_route_local_row_amplitude_law",
+  ].filter(Boolean);
+  const routeLocalAcceptanceEligible =
+    routeLocalAcceptanceBlockers.length === 0;
+  const addCandidate = ({
+    id,
+    source,
+    formula,
+    candidateActionScale,
+    acceptanceEligible = routeLocalAcceptanceEligible,
+    acceptanceBlockers = routeLocalAcceptanceBlockers,
+    rejectionReason = null,
+    evidence = null,
+  }) => {
+    if (seenIds.has(id)) {
+      return;
+    }
+    seenIds.add(id);
+    const finiteCandidateActionScale = finiteOrNull(candidateActionScale);
+    rows.push({
+      id,
+      status:
+        finiteCandidateActionScale != null
+          ? acceptanceEligible
+            ? "action_scale_derivation_candidate_evaluated"
+            : "action_scale_derivation_candidate_evaluated_not_acceptance_source"
+          : "action_scale_derivation_candidate_not_finite",
+      source,
+      formula,
+      acceptanceEligible,
+      acceptanceBlockers,
+      rejectionReason,
+      evidence,
+      candidateActionScale: finiteCandidateActionScale,
+    });
+  };
+  const addAggregateCandidates = ({
+    idPrefix,
+    source,
+    formulaPrefix,
+    values,
+    evidence,
+  }) => {
+    const finiteValues = values.filter(Number.isFinite);
+    if (finiteValues.length === 0) {
+      addCandidate({
+        id: `${idPrefix}_missing`,
+        source,
+        formula: `${formulaPrefix} finite scalar missing`,
+        candidateActionScale: null,
+        evidence,
+      });
+      return;
+    }
+    const absValues = finiteValues.map((value) => Math.abs(value));
+    const signedMean =
+      finiteValues.reduce((sum, value) => sum + value, 0) / finiteValues.length;
+    const absMean =
+      absValues.reduce((sum, value) => sum + value, 0) / absValues.length;
+    addCandidate({
+      id: `${idPrefix}_min_abs`,
+      source,
+      formula: `min(abs(${formulaPrefix}))`,
+      candidateActionScale: minFinite(absValues),
+      evidence,
+    });
+    addCandidate({
+      id: `${idPrefix}_mean_abs`,
+      source,
+      formula: `mean(abs(${formulaPrefix}))`,
+      candidateActionScale: absMean,
+      evidence,
+    });
+    addCandidate({
+      id: `${idPrefix}_max_abs`,
+      source,
+      formula: `max(abs(${formulaPrefix}))`,
+      candidateActionScale: maxFinite(absValues),
+      evidence,
+    });
+    addCandidate({
+      id: `${idPrefix}_signed_mean_abs`,
+      source,
+      formula: `abs(mean(${formulaPrefix}))`,
+      candidateActionScale: Math.abs(signedMean),
+      evidence,
+    });
+  };
+
+  addCandidate({
+    id: "required_scale_measured_by_boundary_charge",
+    source: "action-boundary derivative comparison",
+    formula:
+      "|omega_* Delta J_wake| / |1/2 sum kappa_sigma_row partial_t1 K_eff,row|",
+    candidateActionScale: requiredPositiveActionScale,
+    acceptanceEligible: false,
+    acceptanceBlockers: ["independent_sigma_hbar_action_scale_law"],
+    rejectionReason:
+      "This row measures the required comparison scale and cannot accept the sigma*hbar law it is trying to derive.",
+    evidence: {
+      signedActionScaleForOmegaStarTarget,
+      unitActionWakeEnergyIncrement,
+      omegaStarWeightedBoundaryCharge,
+    },
+  });
+  addCandidate({
+    id: "simple_scalar_search_best_rejected",
+    source: "simple existing-scalar action-scale law search",
+    formula: actionScaleLawSearchTarget?.bestRejectedCandidate?.formula ?? null,
+    candidateActionScale:
+      actionScaleLawSearchTarget?.bestRejectedCandidate?.candidateActionScale ??
+      null,
+    acceptanceEligible: false,
+    acceptanceBlockers: ["simple_scalar_search_rejected"],
+    rejectionReason:
+      "This is the closest rejected simple-scalar candidate, retained as a comparison row rather than an acceptance source.",
+    evidence: actionScaleLawSearchTarget?.bestRejectedCandidate ?? null,
+  });
+
+  const leastNormRows = leastNormBoundaryChargeAmplitudeLaw?.rows ?? [];
+  const amplitudeEvidence = {
+    rowAmplitudeRequirementStatus: rowAmplitudeRequirementTarget?.status ?? null,
+    leastNormBoundaryChargeAmplitudeLawStatus:
+      leastNormBoundaryChargeAmplitudeLaw?.status ?? null,
+    targetResidualNorm:
+      leastNormBoundaryChargeAmplitudeLaw?.targetResidualNorm ?? null,
+    rowCount: leastNormBoundaryChargeAmplitudeLaw?.rowCount ?? null,
+    activeBasisRowCount:
+      leastNormBoundaryChargeAmplitudeLaw?.activeBasisRowCount ?? null,
+  };
+  addAggregateCandidates({
+    idPrefix: "least_norm_row_amplitude",
+    source: "accepted route-local least-norm boundary-charge row-amplitude law",
+    formulaPrefix: "required row amplitude",
+    values: leastNormRows.map((row) => row.requiredRowAmplitude),
+    evidence: amplitudeEvidence,
+  });
+  addAggregateCandidates({
+    idPrefix: "least_norm_boundary_charge_coefficient",
+    source: "accepted route-local least-norm boundary-charge split",
+    formulaPrefix: "least-norm boundary-charge coefficient",
+    values: leastNormRows.map((row) => row.leastNormBoundaryChargeCoefficient),
+    evidence: amplitudeEvidence,
+  });
+
+  const hPlusValues = (actionBoundaryDerivativeTarget?.rows ?? [])
+    .map((row) => row.hPlusRouteWidth)
+    .filter(Number.isFinite);
+  const minHPlusRouteWidth =
+    hPlusValues.length > 0 ? minFinite(hPlusValues) : null;
+  const eta = actionBoundaryDerivativeTarget?.eta ?? null;
+  const actionKernelMarginRatio =
+    Number.isFinite(minHPlusRouteWidth) &&
+    Number.isFinite(eta) &&
+    Math.abs(eta) > POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE
+      ? minHPlusRouteWidth / eta
+      : null;
+  const coefficientValues = leastNormRows
+    .map((row) => row.leastNormBoundaryChargeCoefficient)
+    .filter(Number.isFinite);
+  const minAbsCoefficient =
+    coefficientValues.length > 0
+      ? minFinite(coefficientValues.map((value) => Math.abs(value)))
+      : null;
+  addCandidate({
+    id: "least_norm_boundary_charge_coefficient_min_abs_over_action_kernel_margin",
+    source:
+      "accepted route-local least-norm boundary-charge split and action-kernel normalization margin",
+    formula:
+      "min(abs(least-norm boundary-charge coefficient)) / (min(h_+ route width) / eta)",
+    candidateActionScale:
+      Number.isFinite(minAbsCoefficient) &&
+      Number.isFinite(actionKernelMarginRatio) &&
+      Math.abs(actionKernelMarginRatio) >
+        POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE
+        ? minAbsCoefficient / actionKernelMarginRatio
+        : null,
+    evidence: {
+      ...amplitudeEvidence,
+      minAbsCoefficient,
+      eta,
+      minHPlusRouteWidth,
+      actionKernelMarginRatio,
+    },
+  });
+
+  const commonCouplingCoefficient =
+    routeLocalCoefficientAcceptanceTarget?.commonCouplingCoefficient ??
+    leastNormRows.find((row) => Number.isFinite(row.commonCouplingCoefficient))
+      ?.commonCouplingCoefficient ??
+    null;
+  addCandidate({
+    id: "route_local_common_coupling_coefficient",
+    source: "accepted route-local characteristic-tail coefficient rows",
+    formula: "common kappa-sigma coupling coefficient",
+    candidateActionScale: commonCouplingCoefficient,
+    evidence: {
+      routeLocalCoefficientAcceptanceStatus:
+        routeLocalCoefficientAcceptanceTarget?.status ?? null,
+    },
+  });
+  addCandidate({
+    id: "route_local_common_coupling_coefficient_half",
+    source: "accepted route-local characteristic-tail coefficient rows",
+    formula: "common kappa-sigma coupling coefficient / 2",
+    candidateActionScale: Number.isFinite(commonCouplingCoefficient)
+      ? commonCouplingCoefficient / 2
+      : null,
+    evidence: {
+      routeLocalCoefficientAcceptanceStatus:
+        routeLocalCoefficientAcceptanceTarget?.status ?? null,
+    },
+  });
+  addCandidate({
+    id: "route_local_common_coupling_times_target_charge_norm",
+    source: "route-local coefficient rows and normalized wake charge",
+    formula: "common kappa-sigma coupling coefficient * |Delta J_wake|",
+    candidateActionScale:
+      Number.isFinite(commonCouplingCoefficient) &&
+      Number.isFinite(targetChargeNorm)
+        ? commonCouplingCoefficient * targetChargeNorm
+        : null,
+    evidence: {
+      routeLocalCoefficientAcceptanceStatus:
+        routeLocalCoefficientAcceptanceTarget?.status ?? null,
+      targetChargeNorm,
+    },
+  });
+
+  return rows;
+}
+
+function createActionBoundaryActionScaleResidualCorrectionDiagnostic({
+  requiredPositiveActionScale,
+  omegaStarWeightedBoundaryCharge,
+  actionBoundaryDerivativeTarget,
+  compensatedRoutePayloadCertificate,
+  targetChargeNorm,
+  leastNormBoundaryChargeAmplitudeLaw,
+  routeLocalCoefficientAcceptanceTarget,
+  bestRejectedCandidate,
+}) {
+  const bestResidualAbs = bestRejectedCandidate?.residualAbs ?? null;
+  const actionKernelMarginRatio =
+    bestRejectedCandidate?.evidence?.actionKernelMarginRatio ?? null;
+  const minAbsCoefficient =
+    bestRejectedCandidate?.evidence?.minAbsCoefficient ?? null;
+  const coefficientGap =
+    Number.isFinite(requiredPositiveActionScale) &&
+    Number.isFinite(actionKernelMarginRatio) &&
+    Number.isFinite(minAbsCoefficient)
+      ? requiredPositiveActionScale * actionKernelMarginRatio - minAbsCoefficient
+      : null;
+  const convergenceRows = createActionBoundaryQuadratureConvergenceRows({
+    omegaStarWeightedBoundaryCharge,
+    actionBoundaryDerivativeTarget,
+    candidateActionScale: bestRejectedCandidate?.candidateActionScale ?? null,
+  });
+  const finalConvergenceRow = convergenceRows.at(-1) ?? null;
+  const quadratureShiftFromCurrent =
+    Number.isFinite(finalConvergenceRow?.requiredPositiveActionScale) &&
+    Number.isFinite(requiredPositiveActionScale)
+      ? finalConvergenceRow.requiredPositiveActionScale - requiredPositiveActionScale
+      : null;
+  const endpointCorrectionRows = createActionBoundaryEndpointCorrectionRows({
+    actionBoundaryDerivativeTarget,
+    targetCorrectionAbs: bestResidualAbs,
+    actionKernelMarginRatio,
+  });
+  const boundaryChargeGapDiagnostic =
+    createActionBoundaryScaleBoundaryChargeGapDiagnostic({
+      requiredPositiveActionScale,
+      actionKernelMarginRatio,
+      minAbsCoefficient,
+      leastNormBoundaryChargeAmplitudeLaw,
+    });
+  const coefficientProvenanceDiagnostic =
+    createActionBoundaryCoefficientProvenanceDiagnostic({
+      boundaryChargeGapDiagnostic,
+      leastNormBoundaryChargeAmplitudeLaw,
+      routeLocalCoefficientAcceptanceTarget,
+      eta: actionBoundaryDerivativeTarget?.eta ?? null,
+    });
+  const boundaryChargeIncrementCandidateRows =
+    createActionBoundaryChargeIncrementCandidateRows({
+      boundaryChargeGapDiagnostic,
+      actionBoundaryDerivativeTarget,
+      actionKernelMarginRatio,
+      quadratureShiftFromCurrent,
+      endpointCorrectionRows,
+      bestResidualAbs,
+    });
+  const alternateNormalizationShiftDiagnostic =
+    createActionBoundaryAlternateNormalizationShiftDiagnostic({
+      requiredPositiveActionScale,
+      bestRejectedCandidate,
+      actionBoundaryDerivativeTarget,
+      quadratureShiftFromCurrent,
+      endpointCorrectionRows,
+    });
+  const retainedWorkActionScaleDiagnostic =
+    createActionBoundaryRetainedWorkActionScaleDiagnostic({
+      requiredPositiveActionScale,
+      omegaStarWeightedBoundaryCharge,
+      actionBoundaryDerivativeTarget,
+      compensatedRoutePayloadCertificate,
+      targetChargeNorm,
+    });
+  const acceptedBoundaryChargeIncrementRows =
+    boundaryChargeIncrementCandidateRows.filter(
+      (row) =>
+        row.acceptanceEligible === true &&
+        row.boundaryChargeIncrementCandidatePass === true
+    );
+  const exactDiagnosticBoundaryChargeIncrementRows =
+    boundaryChargeIncrementCandidateRows.filter(
+      (row) =>
+        row.acceptanceEligible !== true &&
+        row.boundaryChargeIncrementCandidatePass === true
+    );
+  const acceptedEndpointCorrectionRows = endpointCorrectionRows.filter(
+    (row) => row.correctionCandidatePass
+  );
+  const quadratureClearsResidual =
+    Number.isFinite(finalConvergenceRow?.residualAbs) &&
+    finalConvergenceRow.residualAbs <= POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE;
+  const quadratureStableResidual =
+    Number.isFinite(quadratureShiftFromCurrent) &&
+    Math.abs(quadratureShiftFromCurrent) <=
+      POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE &&
+    Number.isFinite(finalConvergenceRow?.residualAbs) &&
+    finalConvergenceRow.residualAbs > POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE;
+
+  return {
+    schema:
+      "aaa-tri-binary-action-boundary-action-scale-residual-correction-diagnostic.v1",
+    status:
+      !Number.isFinite(bestResidualAbs)
+        ? "action_scale_residual_correction_diagnostic_blocked_until_best_residual"
+        : quadratureClearsResidual
+          ? "action_scale_residual_correction_diagnostic_quadrature_clears_residual"
+          : acceptedEndpointCorrectionRows.length > 0
+            ? "action_scale_residual_correction_diagnostic_endpoint_candidate_matches_residual"
+            : quadratureStableResidual
+              ? "action_scale_residual_correction_diagnostic_quadrature_stable_endpoint_candidates_rejected"
+              : "action_scale_residual_correction_diagnostic_no_correction_accepted",
+    claimLevel:
+      "diagnostic residual audit for the best route-local action-scale miss; not an accepted sigma*hbar law",
+    bestRejectedCandidateId: bestRejectedCandidate?.id ?? null,
+    requiredPositiveActionScale,
+    bestCandidateActionScale: bestRejectedCandidate?.candidateActionScale ?? null,
+    bestResidual: bestRejectedCandidate?.residual ?? null,
+    bestResidualAbs,
+    actionKernelMarginRatio,
+    minAbsCoefficient,
+    coefficientGap,
+    coefficientGapOverMargin:
+      Number.isFinite(coefficientGap) &&
+      Number.isFinite(actionKernelMarginRatio) &&
+      Math.abs(actionKernelMarginRatio) >
+        POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE
+        ? coefficientGap / actionKernelMarginRatio
+        : null,
+    quadratureClearsResidual,
+    quadratureStableResidual,
+    quadratureShiftFromCurrent,
+    boundaryChargeGapDiagnosticStatus:
+      boundaryChargeGapDiagnostic?.status ?? null,
+    boundaryChargeGapDiagnostic,
+    coefficientProvenanceDiagnosticStatus:
+      coefficientProvenanceDiagnostic?.status ?? null,
+    coefficientProvenanceDiagnostic,
+    boundaryChargeIncrementCandidateStatus:
+      !Number.isFinite(boundaryChargeGapDiagnostic?.targetChargeGap)
+        ? "boundary_charge_increment_candidates_blocked_until_gap"
+        : acceptedBoundaryChargeIncrementRows.length > 0
+          ? "boundary_charge_increment_candidate_matches_gap"
+          : exactDiagnosticBoundaryChargeIncrementRows.length > 0
+            ? "boundary_charge_increment_candidates_rejected_target_derived_comparison_only"
+            : "boundary_charge_increment_candidates_rejected",
+    boundaryChargeIncrementCandidateCount:
+      boundaryChargeIncrementCandidateRows.length,
+    acceptedBoundaryChargeIncrementCandidateCount:
+      acceptedBoundaryChargeIncrementRows.length,
+    exactDiagnosticBoundaryChargeIncrementCount:
+      exactDiagnosticBoundaryChargeIncrementRows.length,
+    acceptedBoundaryChargeIncrementRows,
+    exactDiagnosticBoundaryChargeIncrementRows,
+    boundaryChargeIncrementCandidateRows,
+    alternateNormalizationShiftDiagnosticStatus:
+      alternateNormalizationShiftDiagnostic?.status ?? null,
+    alternateNormalizationShiftDiagnostic,
+    retainedWorkActionScaleDiagnosticStatus:
+      retainedWorkActionScaleDiagnostic?.status ?? null,
+    retainedWorkActionScaleDiagnostic,
+    convergenceRows,
+    endpointCorrectionCandidateCount: endpointCorrectionRows.length,
+    acceptedEndpointCorrectionCount: acceptedEndpointCorrectionRows.length,
+    acceptedEndpointCorrectionRows,
+    endpointCorrectionRows,
+    retainedLimitation:
+      "The residual is audited against higher-resolution normalized-history quadrature and finite endpoint-leakage scales. Passing this diagnostic would only identify a correction source; accepting sigma*hbar still requires an independent route-local action-scale law.",
+  };
+}
+
+function createActionBoundaryAlternateNormalizationShiftDiagnostic({
+  requiredPositiveActionScale,
+  bestRejectedCandidate,
+  actionBoundaryDerivativeTarget,
+  quadratureShiftFromCurrent,
+  endpointCorrectionRows,
+}) {
+  const minAbsCoefficient =
+    bestRejectedCandidate?.evidence?.minAbsCoefficient ?? null;
+  const currentMarginRatio =
+    bestRejectedCandidate?.evidence?.actionKernelMarginRatio ?? null;
+  const eta = bestRejectedCandidate?.evidence?.eta ?? null;
+  const minHPlusRouteWidth =
+    bestRejectedCandidate?.evidence?.minHPlusRouteWidth ?? null;
+  const requiredMarginRatio =
+    Number.isFinite(minAbsCoefficient) &&
+    Number.isFinite(requiredPositiveActionScale) &&
+    Math.abs(requiredPositiveActionScale) >
+      POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE
+      ? minAbsCoefficient / requiredPositiveActionScale
+      : null;
+  const requiredEtaForFixedRouteWidth =
+    Number.isFinite(minHPlusRouteWidth) &&
+    Number.isFinite(requiredMarginRatio) &&
+    Math.abs(requiredMarginRatio) >
+      POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE
+      ? minHPlusRouteWidth / requiredMarginRatio
+      : null;
+  const requiredHPlusForFixedEta =
+    Number.isFinite(eta) && Number.isFinite(requiredMarginRatio)
+      ? eta * requiredMarginRatio
+      : null;
+  const targetEtaShiftAbs =
+    Number.isFinite(requiredEtaForFixedRouteWidth) && Number.isFinite(eta)
+      ? Math.abs(requiredEtaForFixedRouteWidth - eta)
+      : null;
+  const targetHPlusShiftAbs =
+    Number.isFinite(requiredHPlusForFixedEta) &&
+    Number.isFinite(minHPlusRouteWidth)
+      ? Math.abs(requiredHPlusForFixedEta - minHPlusRouteWidth)
+      : null;
+  const actionScalePerEta =
+    Number.isFinite(minAbsCoefficient) &&
+    Number.isFinite(minHPlusRouteWidth) &&
+    Math.abs(minHPlusRouteWidth) > POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE
+      ? minAbsCoefficient / minHPlusRouteWidth
+      : null;
+  const actionScaleCorrectionToEtaShift = (value) =>
+    Number.isFinite(value) &&
+    Number.isFinite(actionScalePerEta) &&
+    Math.abs(actionScalePerEta) > POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE
+      ? Math.abs(value) / Math.abs(actionScalePerEta)
+      : null;
+  const rows = [];
+  const seenIds = new Set();
+  const addRow = ({
+    id,
+    source,
+    shiftKind,
+    formula,
+    candidateShiftAbs,
+    targetShiftAbs,
+    acceptanceEligible = true,
+    acceptanceBlockers = [],
+    rejectionReason = null,
+    evidence = null,
+  }) => {
+    if (seenIds.has(id)) {
+      return;
+    }
+    seenIds.add(id);
+    const finiteCandidateShiftAbs = finiteOrNull(candidateShiftAbs);
+    const residual =
+      finiteCandidateShiftAbs != null && Number.isFinite(targetShiftAbs)
+        ? finiteCandidateShiftAbs - targetShiftAbs
+        : null;
+    const residualAbs = Number.isFinite(residual) ? Math.abs(residual) : null;
+    rows.push({
+      id,
+      status:
+        finiteCandidateShiftAbs != null
+          ? acceptanceEligible
+            ? "alternate_normalization_shift_candidate_evaluated"
+            : "alternate_normalization_shift_candidate_evaluated_not_acceptance_source"
+          : "alternate_normalization_shift_candidate_not_finite",
+      source,
+      shiftKind,
+      formula,
+      acceptanceEligible,
+      acceptanceBlockers,
+      rejectionReason,
+      evidence,
+      targetShiftAbs,
+      candidateShiftAbs: finiteCandidateShiftAbs,
+      residual,
+      residualAbs,
+      alternateNormalizationShiftCandidatePass:
+        Number.isFinite(residualAbs) &&
+        residualAbs <= POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE,
+    });
+  };
+
+  addRow({
+    id: "required_eta_shift_for_fixed_route_width",
+    source: "required action-scale comparison",
+    shiftKind: "eta",
+    formula:
+      "abs(min(h_+ route width) / required margin ratio - eta)",
+    candidateShiftAbs: targetEtaShiftAbs,
+    targetShiftAbs: targetEtaShiftAbs,
+    acceptanceEligible: false,
+    acceptanceBlockers: ["target_derived_required_normalization_shift"],
+    rejectionReason:
+      "This row computes the eta shift required by the measured action-scale comparison and cannot supply an independent normalization law.",
+    evidence: {
+      eta,
+      minHPlusRouteWidth,
+      currentMarginRatio,
+      requiredMarginRatio,
+      requiredEtaForFixedRouteWidth,
+    },
+  });
+  addRow({
+    id: "required_h_plus_shift_for_fixed_eta",
+    source: "required action-scale comparison",
+    shiftKind: "h_plus_route_width",
+    formula:
+      "abs(eta * required margin ratio - min(h_+ route width))",
+    candidateShiftAbs: targetHPlusShiftAbs,
+    targetShiftAbs: targetHPlusShiftAbs,
+    acceptanceEligible: false,
+    acceptanceBlockers: ["target_derived_required_normalization_shift"],
+    rejectionReason:
+      "This row computes the route-width shift required by the measured action-scale comparison and cannot supply an independent normalization law.",
+    evidence: {
+      eta,
+      minHPlusRouteWidth,
+      currentMarginRatio,
+      requiredMarginRatio,
+      requiredHPlusForFixedEta,
+    },
+  });
+  addRow({
+    id: "quadrature_shift_as_eta_shift",
+    source: "higher-resolution normalized-history quadrature",
+    shiftKind: "eta",
+    formula:
+      "abs(8192-step required-scale shift) / abs(min(abs(coefficient)) / min(h_+ route width))",
+    candidateShiftAbs:
+      actionScaleCorrectionToEtaShift(quadratureShiftFromCurrent),
+    targetShiftAbs: targetEtaShiftAbs,
+    evidence: {
+      quadratureShiftFromCurrent,
+      actionScalePerEta,
+    },
+  });
+
+  for (const row of endpointCorrectionRows) {
+    addRow({
+      id: `endpoint_${row.id}_as_eta_shift`,
+      source: "finite endpoint-leakage correction scale",
+      shiftKind: "eta",
+      formula: `${row.formula} converted by abs(min(abs(coefficient)) / min(h_+ route width))`,
+      candidateShiftAbs:
+        actionScaleCorrectionToEtaShift(row.candidateCorrectionAbs),
+      targetShiftAbs: targetEtaShiftAbs,
+      evidence: {
+        endpointCorrectionRowId: row.id,
+        candidateCorrectionAbs: row.candidateCorrectionAbs,
+        actionScalePerEta,
+      },
+    });
+  }
+
+  const derivativeRows = actionBoundaryDerivativeTarget?.rows ?? [];
+  const compensationSplit = createActionBoundaryEndpointLeakageSplit(
+    derivativeRows
+  );
+  const addEndpointLeakageWidthRow = ({ id, formula, value }) => {
+    addRow({
+      id,
+      source: "finite endpoint-leakage rows",
+      shiftKind: "h_plus_route_width",
+      formula,
+      candidateShiftAbs: value,
+      targetShiftAbs: targetHPlusShiftAbs,
+      evidence: {
+        routeRowCount: derivativeRows.length,
+        minHPlusRouteWidth: compensationSplit.minHPlusRouteWidth,
+      },
+    });
+  };
+  addEndpointLeakageWidthRow({
+    id: "max_route_width_endpoint_leakage_as_h_plus_shift",
+    formula: "max(abs(route-width endpoint leakage))",
+    value: maxFinite(compensationSplit.allEndpointLeakages),
+  });
+  addEndpointLeakageWidthRow({
+    id: "max_compensated_endpoint_leakage_as_h_plus_shift",
+    formula: "max(abs(compensated-row endpoint leakage))",
+    value: maxFinite(compensationSplit.compensatedEndpointLeakages),
+  });
+  addEndpointLeakageWidthRow({
+    id: "max_zero_slack_endpoint_leakage_as_h_plus_shift",
+    formula: "max(abs(zero-slack endpoint leakage))",
+    value: maxFinite(compensationSplit.zeroSlackEndpointLeakages),
+  });
+  addEndpointLeakageWidthRow({
+    id: "sum_zero_slack_endpoint_leakage_as_h_plus_shift",
+    formula: "sum(abs(zero-slack endpoint leakage))",
+    value:
+      compensationSplit.zeroSlackEndpointLeakages.length > 0
+        ? compensationSplit.zeroSlackEndpointLeakages.reduce(
+            (sum, value) => sum + value,
+            0
+          )
+        : null,
+  });
+
+  const acceptedRows = rows.filter(
+    (row) =>
+      row.acceptanceEligible === true &&
+      row.alternateNormalizationShiftCandidatePass === true
+  );
+  const exactDiagnosticRows = rows.filter(
+    (row) =>
+      row.acceptanceEligible !== true &&
+      row.alternateNormalizationShiftCandidatePass === true
+  );
+
+  return {
+    schema:
+      "aaa-tri-binary-action-boundary-alternate-normalization-shift-diagnostic.v1",
+    status:
+      !Number.isFinite(targetEtaShiftAbs) ||
+      !Number.isFinite(targetHPlusShiftAbs)
+        ? "alternate_normalization_shift_diagnostic_inputs_missing"
+        : acceptedRows.length > 0
+          ? "alternate_normalization_shift_candidate_matches"
+          : exactDiagnosticRows.length > 0
+            ? "alternate_normalization_shift_candidates_rejected_target_derived_comparison_only"
+            : "alternate_normalization_shift_candidates_rejected",
+    claimLevel:
+      "fail-closed diagnostic for the alternate normalization shift required by the best action-scale miss; not an accepted normalization law",
+    currentMarginRatio,
+    requiredMarginRatio,
+    marginRatioGap:
+      Number.isFinite(requiredMarginRatio) && Number.isFinite(currentMarginRatio)
+        ? requiredMarginRatio - currentMarginRatio
+        : null,
+    eta,
+    requiredEtaForFixedRouteWidth,
+    targetEtaShiftAbs,
+    minHPlusRouteWidth,
+    requiredHPlusForFixedEta,
+    targetHPlusShiftAbs,
+    actionScalePerEta,
+    candidateCount: rows.length,
+    acceptedCandidateCount: acceptedRows.length,
+    exactDiagnosticCount: exactDiagnosticRows.length,
+    acceptedRows,
+    exactDiagnosticRows,
+    rows,
+    retainedLimitation:
+      "The current declared margin ratio remains eta = min(h_+ route width) / 4. This diagnostic only states the alternate eta or h_+ shift required to make the best coefficient/margin law exact and tests whether current quadrature or endpoint-width rows supply it independently.",
+  };
+}
+
+function createActionBoundaryRetainedWorkActionScaleDiagnostic({
+  requiredPositiveActionScale,
+  omegaStarWeightedBoundaryCharge,
+  actionBoundaryDerivativeTarget,
+  compensatedRoutePayloadCertificate,
+  targetChargeNorm,
+}) {
+  const unitActionWakeEnergyIncrement =
+    actionBoundaryDerivativeTarget?.halfWeightedNormalizedPartialT1KernelTermSum ??
+    null;
+  const unitActionWakeEnergyMagnitude = Number.isFinite(
+    unitActionWakeEnergyIncrement
+  )
+    ? Math.abs(unitActionWakeEnergyIncrement)
+    : null;
+  const omegaStar =
+    Number.isFinite(omegaStarWeightedBoundaryCharge) &&
+    Number.isFinite(targetChargeNorm) &&
+    Math.abs(targetChargeNorm) > POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE
+      ? omegaStarWeightedBoundaryCharge / targetChargeNorm
+      : null;
+  const derivativeRows = actionBoundaryDerivativeTarget?.rows ?? [];
+  const eta = actionBoundaryDerivativeTarget?.eta ?? null;
+  const minHPlusRouteWidth = minFinite(
+    derivativeRows.map((row) => row.hPlusRouteWidth)
+  );
+  const actionKernelMarginRatio =
+    Number.isFinite(minHPlusRouteWidth) &&
+    Number.isFinite(eta) &&
+    Math.abs(eta) > POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE
+      ? minHPlusRouteWidth / eta
+      : null;
+  const routeRows = compensatedRoutePayloadCertificate?.rows ?? [];
+  const routeWorkAcceptanceEligible =
+    compensatedRoutePayloadCertificate?.retainedBranchClaim === true &&
+    compensatedRoutePayloadCertificate?.complete === true;
+  const rows = [];
+  const seenIds = new Set();
+  const scaleByUnitDerivative = (value) =>
+    Number.isFinite(value) &&
+    Number.isFinite(unitActionWakeEnergyMagnitude) &&
+    unitActionWakeEnergyMagnitude > POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE
+      ? Math.abs(value) / unitActionWakeEnergyMagnitude
+      : null;
+  const omegaWeightedScaleByUnitDerivative = (value) =>
+    Number.isFinite(value) && Number.isFinite(omegaStar)
+      ? scaleByUnitDerivative(omegaStar * value)
+      : null;
+  const scaleByMargin = (value) =>
+    Number.isFinite(value) &&
+    Number.isFinite(actionKernelMarginRatio) &&
+    Math.abs(actionKernelMarginRatio) >
+      POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE
+      ? Math.abs(value) / Math.abs(actionKernelMarginRatio)
+      : null;
+  const addRow = ({
+    id,
+    source,
+    formula,
+    candidateActionScale,
+    sameEventCarrier = false,
+    acceptanceEligible = routeWorkAcceptanceEligible,
+    acceptanceBlockers = routeWorkAcceptanceEligible
+      ? []
+      : ["accepted_retained_work_route_law"],
+    rejectionReason = routeWorkAcceptanceEligible
+      ? null
+      : "The route-payload rows are formal diagnostics until the same retained event has an accepted retained-work route law.",
+    evidence = null,
+  }) => {
+    if (seenIds.has(id)) {
+      return;
+    }
+    seenIds.add(id);
+    const finiteCandidateActionScale = finiteOrNull(candidateActionScale);
+    const residual =
+      finiteCandidateActionScale != null &&
+      Number.isFinite(requiredPositiveActionScale)
+        ? finiteCandidateActionScale - requiredPositiveActionScale
+        : null;
+    const residualAbs = Number.isFinite(residual) ? Math.abs(residual) : null;
+    rows.push({
+      id,
+      status:
+        finiteCandidateActionScale != null
+          ? acceptanceEligible
+            ? "retained_work_action_scale_candidate_evaluated"
+            : "retained_work_action_scale_candidate_evaluated_not_acceptance_source"
+          : "retained_work_action_scale_candidate_not_finite",
+      source,
+      formula,
+      sameEventCarrier,
+      acceptanceEligible,
+      acceptanceBlockers,
+      rejectionReason,
+      evidence,
+      candidateActionScale: finiteCandidateActionScale,
+      requiredPositiveActionScale,
+      residual,
+      residualAbs,
+      retainedWorkActionScaleCandidatePass:
+        Number.isFinite(residualAbs) &&
+        residualAbs <= POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE,
+    });
+  };
+
+  addRow({
+    id: "omega_star_boundary_charge_over_unit_action_derivative",
+    source: "omega_* boundary-charge comparison",
+    formula:
+      "abs(omega_* Delta J_wake) / abs(1/2 sum kappa_sigma_row partial_t1 K_eff,row)",
+    candidateActionScale: scaleByUnitDerivative(omegaStarWeightedBoundaryCharge),
+    sameEventCarrier: true,
+    acceptanceEligible: false,
+    acceptanceBlockers: ["target_derived_action_scale_comparison"],
+    rejectionReason:
+      "This row restates the measured action-scale comparison and cannot supply an independent retained-work law.",
+    evidence: {
+      omegaStarWeightedBoundaryCharge,
+      unitActionWakeEnergyMagnitude,
+    },
+  });
+
+  const routeScalarRows = [];
+  for (const row of routeRows) {
+    const role = row.continuityRole ?? `route_${routeScalarRows.length}`;
+    const transportNorm =
+      row.transportAngularMomentumIncrement?.unitEndpointPairAngularMomentumNorm ??
+      null;
+    const recoilNorm =
+      row.recoilChannelData?.unitRecoilAngularMomentumNorm ?? null;
+    const rootEnergy =
+      row.rootEnergyIncrement?.unitActionRootEnergyIncrement ?? null;
+    const endpointPairResidual = row.endpointPairResidual ?? null;
+    const endpointToChartResidual = row.endpointToChartResidual ?? null;
+    const clockRetune =
+      row.rootEnergyIncrement?.clockRetuneMagnitude ??
+      row.boundedUndeclaredRouteSlack?.clockRetuneUpperBound ??
+      null;
+    const phaseCompensation =
+      row.rootEnergyIncrement?.phaseMagnitude ??
+      row.boundedUndeclaredRouteSlack?.phaseUpperBound ??
+      null;
+    const routeWidth = row.minOneSidedRouteWidth ?? null;
+    const routeEvidence = {
+      incomingPairKey: row.incomingPairKey,
+      outgoingPairKey: row.outgoingPairKey,
+      continuityRole: row.continuityRole,
+      compensationRequired: row.compensationRequired,
+      routeRootKey: row.routeRootKey,
+      zeroSlackRoutePass: row.zeroSlackRoutePass,
+    };
+
+    addRow({
+      id: `${role}_endpoint_pair_residual_half`,
+      source: "compensated route-payload endpoint geometry",
+      formula: "endpoint-pair residual / 2",
+      candidateActionScale: Number.isFinite(endpointPairResidual)
+        ? Math.abs(endpointPairResidual) / 2
+        : null,
+      sameEventCarrier: true,
+      evidence: {
+        ...routeEvidence,
+        endpointPairResidual,
+      },
+    });
+    addRow({
+      id: `${role}_omega_weighted_route_width_over_unit_action_derivative`,
+      source: "compensated route-payload one-sided root interval",
+      formula: "omega_* min one-sided route width / abs(unit action derivative)",
+      candidateActionScale: omegaWeightedScaleByUnitDerivative(routeWidth),
+      sameEventCarrier: true,
+      evidence: {
+        ...routeEvidence,
+        routeWidth,
+        omegaStar,
+      },
+    });
+    addRow({
+      id: `${role}_omega_weighted_transport_norm_over_unit_action_derivative`,
+      source: "compensated route-payload transport angular momentum",
+      formula:
+        "omega_* unit transport angular-momentum norm / abs(unit action derivative)",
+      candidateActionScale: omegaWeightedScaleByUnitDerivative(transportNorm),
+      sameEventCarrier: true,
+      evidence: {
+        ...routeEvidence,
+        transportNorm,
+        omegaStar,
+      },
+    });
+    addRow({
+      id: `${role}_omega_weighted_recoil_norm_over_unit_action_derivative`,
+      source: "compensated route-payload recoil channel",
+      formula:
+        "omega_* unit recoil angular-momentum norm / abs(unit action derivative)",
+      candidateActionScale: omegaWeightedScaleByUnitDerivative(recoilNorm),
+      sameEventCarrier: true,
+      evidence: {
+        ...routeEvidence,
+        recoilNorm,
+        omegaStar,
+      },
+    });
+    addRow({
+      id: `${role}_root_energy_over_unit_action_derivative`,
+      source: "compensated route-payload root-energy increment",
+      formula: "unit-action root-energy increment / abs(unit action derivative)",
+      candidateActionScale: scaleByUnitDerivative(rootEnergy),
+      sameEventCarrier: true,
+      evidence: {
+        ...routeEvidence,
+        rootEnergy,
+      },
+    });
+    addRow({
+      id: `${role}_root_energy_over_action_kernel_margin`,
+      source: "compensated route-payload root-energy increment",
+      formula: "unit-action root-energy increment / (min(h_+ route width) / eta)",
+      candidateActionScale: scaleByMargin(rootEnergy),
+      sameEventCarrier: true,
+      evidence: {
+        ...routeEvidence,
+        rootEnergy,
+        actionKernelMarginRatio,
+      },
+    });
+    addRow({
+      id: `${role}_clock_retune_half`,
+      source: "compensated route-payload clock retune",
+      formula: "clock retune / 2",
+      candidateActionScale: Number.isFinite(clockRetune)
+        ? Math.abs(clockRetune) / 2
+        : null,
+      sameEventCarrier: true,
+      evidence: {
+        ...routeEvidence,
+        clockRetune,
+      },
+    });
+    addRow({
+      id: `${role}_phase_compensation_over_action_kernel_margin`,
+      source: "compensated route-payload phase compensation",
+      formula: "phase compensation / (min(h_+ route width) / eta)",
+      candidateActionScale: scaleByMargin(phaseCompensation),
+      sameEventCarrier: true,
+      evidence: {
+        ...routeEvidence,
+        phaseCompensation,
+        actionKernelMarginRatio,
+      },
+    });
+    addRow({
+      id: `${role}_endpoint_phase_work_over_unit_action_derivative`,
+      source: "compensated route-payload endpoint and phase diagnostics",
+      formula:
+        "abs(endpoint-to-chart residual * phase compensation) / abs(unit action derivative)",
+      candidateActionScale:
+        Number.isFinite(endpointToChartResidual) &&
+        Number.isFinite(phaseCompensation)
+          ? scaleByUnitDerivative(endpointToChartResidual * phaseCompensation)
+          : null,
+      sameEventCarrier: true,
+      evidence: {
+        ...routeEvidence,
+        endpointToChartResidual,
+        phaseCompensation,
+      },
+    });
+    routeScalarRows.push({
+      role,
+      transportNorm,
+      recoilNorm,
+      rootEnergy,
+      endpointPairResidual,
+      endpointToChartResidual,
+      phaseCompensation,
+      routeWidth,
+    });
+  }
+
+  const finiteRouteScalars = (selector) =>
+    routeScalarRows.map(selector).filter(Number.isFinite);
+  const rootEnergySum = finiteRouteScalars((row) => row.rootEnergy).reduce(
+    (sum, value) => sum + value,
+    0
+  );
+  const rootEnergyCount = finiteRouteScalars((row) => row.rootEnergy).length;
+  addRow({
+    id: "root_energy_sum_over_unit_action_derivative",
+    source: "compensated route-payload root-energy increments",
+    formula: "sum(unit-action root-energy increments) / abs(unit action derivative)",
+    candidateActionScale:
+      rootEnergyCount > 0 ? scaleByUnitDerivative(rootEnergySum) : null,
+    sameEventCarrier: true,
+    evidence: {
+      rootEnergyCount,
+      rootEnergySum,
+    },
+  });
+  addRow({
+    id: "max_endpoint_pair_residual_half",
+    source: "compensated route-payload endpoint geometry",
+    formula: "max(abs(endpoint-pair residual)) / 2",
+    candidateActionScale:
+      finiteRouteScalars((row) => row.endpointPairResidual).length > 0
+        ? maxFinite(
+            finiteRouteScalars((row) => Math.abs(row.endpointPairResidual))
+          ) / 2
+        : null,
+    sameEventCarrier: true,
+  });
+  addRow({
+    id: "max_omega_weighted_transport_norm_over_unit_action_derivative",
+    source: "compensated route-payload transport angular momentum",
+    formula:
+      "omega_* max(unit transport angular-momentum norm) / abs(unit action derivative)",
+    candidateActionScale: omegaWeightedScaleByUnitDerivative(
+      maxFinite(finiteRouteScalars((row) => row.transportNorm))
+    ),
+    sameEventCarrier: true,
+  });
+  addRow({
+    id: "max_endpoint_phase_work_over_unit_action_derivative",
+    source: "compensated route-payload endpoint and phase diagnostics",
+    formula:
+      "max(abs(endpoint-to-chart residual * phase compensation)) / abs(unit action derivative)",
+    candidateActionScale: scaleByUnitDerivative(
+      maxFinite(
+        routeScalarRows
+          .map((row) =>
+            Number.isFinite(row.endpointToChartResidual) &&
+            Number.isFinite(row.phaseCompensation)
+              ? Math.abs(row.endpointToChartResidual * row.phaseCompensation)
+              : null
+          )
+          .filter(Number.isFinite)
+      )
+    ),
+    sameEventCarrier: true,
+  });
+
+  const finiteRows = rows.filter((row) =>
+    Number.isFinite(row.candidateActionScale)
+  );
+  const acceptedRows = finiteRows.filter(
+    (row) =>
+      row.acceptanceEligible === true &&
+      row.retainedWorkActionScaleCandidatePass === true
+  );
+  const exactDiagnosticRows = finiteRows.filter(
+    (row) =>
+      row.acceptanceEligible !== true &&
+      row.retainedWorkActionScaleCandidatePass === true
+  );
+  const exactTargetDerivedRows = exactDiagnosticRows.filter((row) =>
+    row.acceptanceBlockers.includes("target_derived_action_scale_comparison")
+  );
+  const exactFormalIndependentRows = exactDiagnosticRows.filter(
+    (row) =>
+      !row.acceptanceBlockers.includes("target_derived_action_scale_comparison")
+  );
+  const independentRows = finiteRows.filter(
+    (row) => !row.acceptanceBlockers.includes("target_derived_action_scale_comparison")
+  );
+  const bestIndependentCandidate =
+    independentRows.length > 0
+      ? independentRows.reduce((best, row) =>
+          row.residualAbs < best.residualAbs ? row : best
+        )
+      : null;
+
+  return {
+    schema:
+      "aaa-tri-binary-action-boundary-retained-work-action-scale-diagnostic.v1",
+    status:
+      !Number.isFinite(requiredPositiveActionScale) ||
+      !Number.isFinite(unitActionWakeEnergyMagnitude)
+        ? "retained_work_action_scale_diagnostic_inputs_missing"
+        : finiteRows.length === 0
+          ? "retained_work_action_scale_diagnostic_no_finite_candidates"
+          : acceptedRows.length > 0
+            ? "retained_work_action_scale_candidate_accepted"
+            : exactFormalIndependentRows.length > 0
+              ? "retained_work_action_scale_candidates_rejected_formal_only"
+              : exactTargetDerivedRows.length > 0
+                ? "retained_work_action_scale_candidates_rejected_target_derived_comparison_only"
+              : "retained_work_action_scale_candidates_rejected",
+    claimLevel:
+      "fail-closed diagnostic for retained-work and near-field route-payload action-scale candidates; not an accepted wake-energy route",
+    requiredPositiveActionScale,
+    unitActionWakeEnergyIncrement,
+    unitActionWakeEnergyMagnitude,
+    omegaStar,
+    omegaStarWeightedBoundaryCharge,
+    targetChargeNorm,
+    actionKernelMarginRatio,
+    routeWorkAcceptanceEligible,
+    routeRowCount: routeRows.length,
+    candidateCount: rows.length,
+    finiteCandidateCount: finiteRows.length,
+    acceptedCandidateCount: acceptedRows.length,
+    exactDiagnosticCount: exactDiagnosticRows.length,
+    exactTargetDerivedCount: exactTargetDerivedRows.length,
+    exactFormalIndependentCount: exactFormalIndependentRows.length,
+    bestIndependentCandidate,
+    acceptedRows,
+    exactDiagnosticRows,
+    rows,
+    retainedLimitation:
+      "The tested rows use only existing compensated route-payload, root-energy, transport, recoil, endpoint, and slack diagnostics. These rows can narrow the retained-work route, but they do not become acceptance sources until the route has an accepted retained-work law on the same event.",
+  };
+}
+
+function createActionBoundaryChargeIncrementCandidateRows({
+  boundaryChargeGapDiagnostic,
+  actionBoundaryDerivativeTarget,
+  actionKernelMarginRatio,
+  quadratureShiftFromCurrent,
+  endpointCorrectionRows,
+  bestResidualAbs,
+}) {
+  const targetBoundaryChargeIncrement =
+    boundaryChargeGapDiagnostic?.targetChargeGap ?? null;
+  const activeBasisNormalZZ =
+    boundaryChargeGapDiagnostic?.activeBasisNormalZZ ?? null;
+  const inferredColumnZ = boundaryChargeGapDiagnostic?.inferredColumnZ ?? null;
+  const boundaryChargePerActionScale =
+    Number.isFinite(actionKernelMarginRatio) &&
+    Number.isFinite(activeBasisNormalZZ) &&
+    Number.isFinite(inferredColumnZ) &&
+    Math.abs(inferredColumnZ) > POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE
+      ? (actionKernelMarginRatio * activeBasisNormalZZ) /
+        Math.abs(inferredColumnZ)
+      : null;
+  const rows = [];
+  const seenIds = new Set();
+  const mapActionScaleCorrectionToBoundaryCharge = (value) =>
+    Number.isFinite(value) && Number.isFinite(boundaryChargePerActionScale)
+      ? Math.abs(value) * boundaryChargePerActionScale
+      : null;
+  const addCandidate = ({
+    id,
+    source,
+    formula,
+    candidateBoundaryChargeIncrement,
+    acceptanceEligible = true,
+    acceptanceBlockers = [],
+    rejectionReason = null,
+    evidence = null,
+  }) => {
+    if (seenIds.has(id)) {
+      return;
+    }
+    seenIds.add(id);
+    const finiteCandidateBoundaryChargeIncrement = finiteOrNull(
+      candidateBoundaryChargeIncrement
+    );
+    const residual =
+      finiteCandidateBoundaryChargeIncrement != null &&
+      Number.isFinite(targetBoundaryChargeIncrement)
+        ? finiteCandidateBoundaryChargeIncrement - targetBoundaryChargeIncrement
+        : null;
+    const residualAbs = Number.isFinite(residual) ? Math.abs(residual) : null;
+    rows.push({
+      id,
+      status:
+        finiteCandidateBoundaryChargeIncrement != null
+          ? acceptanceEligible
+            ? "boundary_charge_increment_candidate_evaluated"
+            : "boundary_charge_increment_candidate_evaluated_not_acceptance_source"
+          : "boundary_charge_increment_candidate_not_finite",
+      source,
+      formula,
+      acceptanceEligible,
+      acceptanceBlockers,
+      rejectionReason,
+      evidence,
+      targetBoundaryChargeIncrement,
+      candidateBoundaryChargeIncrement:
+        finiteCandidateBoundaryChargeIncrement,
+      residual,
+      residualAbs,
+      boundaryChargeIncrementCandidatePass:
+        Number.isFinite(residualAbs) &&
+        residualAbs <= POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE,
+    });
+  };
+
+  addCandidate({
+    id: "best_action_scale_residual_mapped_to_boundary_charge_gap",
+    source: "current best action-scale miss",
+    formula:
+      "abs(best action-scale residual) * (min(h_+ route width) / eta) * N_zz / abs(column_z)",
+    candidateBoundaryChargeIncrement:
+      mapActionScaleCorrectionToBoundaryCharge(bestResidualAbs),
+    acceptanceEligible: false,
+    acceptanceBlockers: ["target_derived_from_best_action_scale_miss"],
+    rejectionReason:
+      "This row restates the measured action-scale miss in boundary-charge units and cannot supply an independent charge increment.",
+    evidence: {
+      bestResidualAbs,
+      actionKernelMarginRatio,
+      activeBasisNormalZZ,
+      inferredColumnZ,
+      boundaryChargePerActionScale,
+    },
+  });
+  addCandidate({
+    id: "quadrature_shift_mapped_to_boundary_charge",
+    source: "higher-resolution normalized-history quadrature",
+    formula:
+      "abs(8192-step required-scale shift) * (min(h_+ route width) / eta) * N_zz / abs(column_z)",
+    candidateBoundaryChargeIncrement:
+      mapActionScaleCorrectionToBoundaryCharge(quadratureShiftFromCurrent),
+    evidence: {
+      quadratureShiftFromCurrent,
+      actionKernelMarginRatio,
+      activeBasisNormalZZ,
+      inferredColumnZ,
+      boundaryChargePerActionScale,
+    },
+  });
+
+  for (const row of endpointCorrectionRows) {
+    addCandidate({
+      id: `endpoint_${row.id}_mapped_to_boundary_charge`,
+      source: "finite endpoint-leakage correction scale",
+      formula: `${row.formula} mapped through N_zz / abs(column_z)`,
+      candidateBoundaryChargeIncrement:
+        mapActionScaleCorrectionToBoundaryCharge(row.candidateCorrectionAbs),
+      evidence: {
+        endpointCorrectionRowId: row.id,
+        candidateCorrectionAbs: row.candidateCorrectionAbs,
+        actionKernelMarginRatio,
+        activeBasisNormalZZ,
+        inferredColumnZ,
+        boundaryChargePerActionScale,
+      },
+    });
+  }
+
+  const derivativeRows = actionBoundaryDerivativeTarget?.rows ?? [];
+  const compensationSplit = createActionBoundaryEndpointLeakageSplit(
+    derivativeRows
+  );
+  const addEndpointLeakageCandidate = ({ id, formula, value }) => {
+    addCandidate({
+      id,
+      source: "finite endpoint-leakage rows",
+      formula,
+      candidateBoundaryChargeIncrement: value,
+      evidence: {
+        routeRowCount: derivativeRows.length,
+        minHPlusRouteWidth: compensationSplit.minHPlusRouteWidth,
+      },
+    });
+  };
+  addEndpointLeakageCandidate({
+    id: "max_route_width_endpoint_leakage_as_charge_increment",
+    formula: "max(abs(route-width endpoint leakage))",
+    value: maxFinite(compensationSplit.allEndpointLeakages),
+  });
+  addEndpointLeakageCandidate({
+    id: "max_compensated_endpoint_leakage_as_charge_increment",
+    formula: "max(abs(compensated-row endpoint leakage))",
+    value: maxFinite(compensationSplit.compensatedEndpointLeakages),
+  });
+  addEndpointLeakageCandidate({
+    id: "max_zero_slack_endpoint_leakage_as_charge_increment",
+    formula: "max(abs(zero-slack endpoint leakage))",
+    value: maxFinite(compensationSplit.zeroSlackEndpointLeakages),
+  });
+  addEndpointLeakageCandidate({
+    id: "sum_zero_slack_endpoint_leakage_as_charge_increment",
+    formula: "sum(abs(zero-slack endpoint leakage))",
+    value:
+      compensationSplit.zeroSlackEndpointLeakages.length > 0
+        ? compensationSplit.zeroSlackEndpointLeakages.reduce(
+            (sum, value) => sum + value,
+            0
+          )
+        : null,
+  });
+
+  return rows;
+}
+
+function createActionBoundaryScaleBoundaryChargeGapDiagnostic({
+  requiredPositiveActionScale,
+  actionKernelMarginRatio,
+  minAbsCoefficient,
+  leastNormBoundaryChargeAmplitudeLaw,
+}) {
+  const leastNormRows = leastNormBoundaryChargeAmplitudeLaw?.rows ?? [];
+  const targetChargeZ = leastNormBoundaryChargeAmplitudeLaw?.targetCharge?.z ?? null;
+  const activeBasisNormalZZ =
+    leastNormBoundaryChargeAmplitudeLaw?.normalMatrix?.[2]?.[2] ?? null;
+  const minCoefficientRow = leastNormRows
+    .filter((row) =>
+      Number.isFinite(row.leastNormBoundaryChargeCoefficient)
+    )
+    .reduce(
+      (best, row) =>
+        best == null ||
+        Math.abs(row.leastNormBoundaryChargeCoefficient) <
+          Math.abs(best.leastNormBoundaryChargeCoefficient)
+          ? row
+          : best,
+      null
+    );
+  const inferredColumnZ =
+    Number.isFinite(minCoefficientRow?.leastNormBoundaryChargeCoefficient) &&
+    Number.isFinite(activeBasisNormalZZ) &&
+    Number.isFinite(targetChargeZ) &&
+    Math.abs(targetChargeZ) > POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE
+      ? (minCoefficientRow.leastNormBoundaryChargeCoefficient *
+          activeBasisNormalZZ) /
+        targetChargeZ
+      : null;
+  const requiredCoefficientMagnitude =
+    Number.isFinite(requiredPositiveActionScale) &&
+    Number.isFinite(actionKernelMarginRatio)
+      ? requiredPositiveActionScale * actionKernelMarginRatio
+      : null;
+  const requiredTargetChargeNormForBestRow =
+    Number.isFinite(requiredCoefficientMagnitude) &&
+    Number.isFinite(activeBasisNormalZZ) &&
+    Number.isFinite(inferredColumnZ) &&
+    Math.abs(inferredColumnZ) > POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE
+      ? (requiredCoefficientMagnitude * activeBasisNormalZZ) /
+        Math.abs(inferredColumnZ)
+      : null;
+  const targetChargeGap =
+    Number.isFinite(requiredTargetChargeNormForBestRow) &&
+    Number.isFinite(targetChargeZ)
+      ? requiredTargetChargeNormForBestRow - Math.abs(targetChargeZ)
+      : null;
+
+  return {
+    schema:
+      "aaa-tri-binary-action-scale-boundary-charge-gap-diagnostic.v1",
+    status:
+      Number.isFinite(targetChargeGap)
+        ? "action_scale_residual_maps_to_boundary_charge_gap"
+        : "action_scale_boundary_charge_gap_diagnostic_inputs_missing",
+    claimLevel:
+      "diagnostic map from the best action-scale miss into the least-norm boundary-charge target; not an accepted charge correction",
+    targetChargeZ,
+    targetChargeNorm: Number.isFinite(targetChargeZ)
+      ? Math.abs(targetChargeZ)
+      : null,
+    activeBasisNormalZZ,
+    minCoefficientRow:
+      minCoefficientRow == null
+        ? null
+        : {
+            rowId: minCoefficientRow.rowId,
+            pairKey: minCoefficientRow.pairKey,
+            side: minCoefficientRow.side,
+            leastNormBoundaryChargeCoefficient:
+              minCoefficientRow.leastNormBoundaryChargeCoefficient,
+            pairDistance: minCoefficientRow.pairDistance,
+            predictedSignedDeltaEtaCandidate:
+              minCoefficientRow.predictedSignedDeltaEtaCandidate,
+            requiredCouplingCoefficient:
+              minCoefficientRow.predictedRequiredCouplingCoefficient,
+            requiredRowAmplitude: minCoefficientRow.requiredRowAmplitude,
+          },
+    inferredColumnZ,
+    minAbsCoefficient,
+    requiredCoefficientMagnitude,
+    coefficientGap:
+      Number.isFinite(requiredCoefficientMagnitude) &&
+      Number.isFinite(minAbsCoefficient)
+        ? requiredCoefficientMagnitude - minAbsCoefficient
+        : null,
+    requiredTargetChargeNormForBestRow,
+    targetChargeGap,
+    targetChargeRelativeGap:
+      Number.isFinite(targetChargeGap) &&
+      Number.isFinite(targetChargeZ) &&
+      Math.abs(targetChargeZ) > POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE
+        ? targetChargeGap / Math.abs(targetChargeZ)
+        : null,
+    retainedLimitation:
+      "This diagnostic states the boundary-charge increment that would make the current best coefficient/margin law exact. It does not authorize changing the accepted wake charge without an independent retained-work, near-field, or normalization derivation.",
+  };
+}
+
+function createActionBoundaryCoefficientProvenanceDiagnostic({
+  boundaryChargeGapDiagnostic,
+  leastNormBoundaryChargeAmplitudeLaw,
+  routeLocalCoefficientAcceptanceTarget,
+  eta,
+}) {
+  const minCoefficientRow =
+    boundaryChargeGapDiagnostic?.minCoefficientRow ?? null;
+  const leastNormRows = leastNormBoundaryChargeAmplitudeLaw?.rows ?? [];
+  const routeLocalRows = routeLocalCoefficientAcceptanceTarget?.rows ?? [];
+  const matchingLeastNormRow =
+    leastNormRows.find((row) => row.rowId === minCoefficientRow?.rowId) ??
+    leastNormRows.find(
+      (row) =>
+        row.pairKey === minCoefficientRow?.pairKey &&
+        row.side === minCoefficientRow?.side
+    ) ??
+    null;
+  const matchingRouteLocalRow =
+    routeLocalRows.find((row) => row.rowId === minCoefficientRow?.rowId) ??
+    routeLocalRows.find(
+      (row) =>
+        row.pairKey === minCoefficientRow?.pairKey &&
+        row.side === minCoefficientRow?.side
+    ) ??
+    null;
+  const currentCoefficientAbs = Math.abs(
+    boundaryChargeGapDiagnostic?.minAbsCoefficient ?? NaN
+  );
+  const requiredCoefficientMagnitude =
+    boundaryChargeGapDiagnostic?.requiredCoefficientMagnitude ?? null;
+  const targetCoefficientGap =
+    boundaryChargeGapDiagnostic?.coefficientGap ?? null;
+  const targetCoefficientGapAbs = Number.isFinite(targetCoefficientGap)
+    ? Math.abs(targetCoefficientGap)
+    : null;
+  const pairDistance =
+    matchingLeastNormRow?.pairDistance ?? minCoefficientRow?.pairDistance ?? null;
+  const pairDistanceSquared = Number.isFinite(pairDistance)
+    ? pairDistance * pairDistance
+    : null;
+  const deltaEtaGaussianAtGap =
+    matchingLeastNormRow?.deltaEtaGaussianAtGap ??
+    matchingRouteLocalRow?.deltaEtaGaussianAtGap ??
+    null;
+  const causalGap = matchingRouteLocalRow?.causalGap ?? null;
+  const commonCouplingCoefficient =
+    matchingLeastNormRow?.commonCouplingCoefficient ??
+    matchingRouteLocalRow?.commonCouplingCoefficient ??
+    null;
+  const requiredSigmaSign =
+    matchingLeastNormRow?.requiredSigmaSign ??
+    matchingRouteLocalRow?.requiredSigmaSign ??
+    null;
+  const requiredRowAmplitude =
+    matchingLeastNormRow?.requiredRowAmplitude ??
+    matchingRouteLocalRow?.requiredRowAmplitude ??
+    null;
+  const requiredSignedDeltaEtaGap =
+    Number.isFinite(targetCoefficientGapAbs) &&
+    Number.isFinite(pairDistanceSquared)
+      ? targetCoefficientGapAbs * pairDistanceSquared
+      : null;
+  const requiredRowAmplitudeShiftAbs =
+    Number.isFinite(requiredSignedDeltaEtaGap) &&
+    Number.isFinite(commonCouplingCoefficient) &&
+    Number.isFinite(deltaEtaGaussianAtGap) &&
+    Math.abs(commonCouplingCoefficient * deltaEtaGaussianAtGap) >
+      POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE
+      ? requiredSignedDeltaEtaGap /
+        Math.abs(commonCouplingCoefficient * deltaEtaGaussianAtGap)
+      : null;
+  const requiredCommonCouplingShiftAbs =
+    Number.isFinite(requiredSignedDeltaEtaGap) &&
+    Number.isFinite(requiredRowAmplitude) &&
+    Number.isFinite(deltaEtaGaussianAtGap) &&
+    Math.abs(requiredRowAmplitude * deltaEtaGaussianAtGap) >
+      POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE
+      ? requiredSignedDeltaEtaGap /
+        Math.abs(requiredRowAmplitude * deltaEtaGaussianAtGap)
+      : null;
+  const targetChargeNorm = boundaryChargeGapDiagnostic?.targetChargeNorm ?? null;
+  const activeBasisNormalZZ =
+    boundaryChargeGapDiagnostic?.activeBasisNormalZZ ?? null;
+  const inferredColumnZAbs = Math.abs(
+    boundaryChargeGapDiagnostic?.inferredColumnZ ?? NaN
+  );
+  const requiredInferredColumnZAbs =
+    Number.isFinite(requiredCoefficientMagnitude) &&
+    Number.isFinite(activeBasisNormalZZ) &&
+    Number.isFinite(targetChargeNorm) &&
+    Math.abs(targetChargeNorm) > POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE
+      ? (requiredCoefficientMagnitude * activeBasisNormalZZ) / targetChargeNorm
+      : null;
+  const inferredColumnZShiftAbs =
+    Number.isFinite(requiredInferredColumnZAbs) &&
+    Number.isFinite(inferredColumnZAbs)
+      ? Math.abs(requiredInferredColumnZAbs - inferredColumnZAbs)
+      : null;
+  const requiredNormalMatrixZZ =
+    Number.isFinite(targetChargeNorm) &&
+    Number.isFinite(inferredColumnZAbs) &&
+    Number.isFinite(requiredCoefficientMagnitude) &&
+    Math.abs(requiredCoefficientMagnitude) >
+      POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE
+      ? (targetChargeNorm * inferredColumnZAbs) / requiredCoefficientMagnitude
+      : null;
+  const normalMatrixZZShiftAbs =
+    Number.isFinite(requiredNormalMatrixZZ) &&
+    Number.isFinite(activeBasisNormalZZ)
+      ? Math.abs(requiredNormalMatrixZZ - activeBasisNormalZZ)
+      : null;
+  const targetChargeGapAbs = Math.abs(
+    boundaryChargeGapDiagnostic?.targetChargeGap ?? NaN
+  );
+  const mapRowAmplitudeResidualToCoefficient = (row) => {
+    if (
+      !Number.isFinite(row?.rowAmplitudeResidual) ||
+      !Number.isFinite(row?.commonCouplingCoefficient) ||
+      !Number.isFinite(row?.deltaEtaGaussianAtGap) ||
+      !Number.isFinite(row?.pairDistance) ||
+      Math.abs(row.pairDistance) <= POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE
+    ) {
+      return null;
+    }
+    return Math.abs(
+      (row.rowAmplitudeResidual *
+        row.commonCouplingCoefficient *
+        row.deltaEtaGaussianAtGap) /
+        (row.pairDistance * row.pairDistance)
+    );
+  };
+  const mapDeltaEtaShiftToCoefficient = (value) =>
+    Number.isFinite(value) &&
+    Number.isFinite(pairDistanceSquared) &&
+    Math.abs(pairDistanceSquared) > POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE
+      ? Math.abs(value) / pairDistanceSquared
+      : null;
+  const deltaEtaAtZero =
+    Number.isFinite(deltaEtaGaussianAtGap) && Number.isFinite(eta)
+      ? evaluateGaussianDeltaEta({ gap: 0, eta })
+    : null;
+  const finiteCausalGapDeltaEtaShift =
+    Number.isFinite(deltaEtaGaussianAtGap) && Number.isFinite(deltaEtaAtZero)
+      ? Math.abs(deltaEtaGaussianAtGap - deltaEtaAtZero)
+      : null;
+  const rows = [];
+  const seenIds = new Set();
+  const addRow = ({
+    id,
+    source,
+    shiftKind,
+    formula,
+    candidateShiftAbs,
+    targetShiftAbs,
+    acceptanceEligible = true,
+    acceptanceBlockers = [],
+    rejectionReason = null,
+    evidence = null,
+  }) => {
+    if (seenIds.has(id)) {
+      return;
+    }
+    seenIds.add(id);
+    const finiteCandidateShiftAbs = finiteOrNull(candidateShiftAbs);
+    const residual =
+      finiteCandidateShiftAbs != null && Number.isFinite(targetShiftAbs)
+        ? finiteCandidateShiftAbs - targetShiftAbs
+        : null;
+    const residualAbs = Number.isFinite(residual) ? Math.abs(residual) : null;
+    rows.push({
+      id,
+      status:
+        finiteCandidateShiftAbs != null
+          ? acceptanceEligible
+            ? "coefficient_provenance_candidate_evaluated"
+            : "coefficient_provenance_candidate_evaluated_not_acceptance_source"
+          : "coefficient_provenance_candidate_not_finite",
+      source,
+      shiftKind,
+      formula,
+      acceptanceEligible,
+      acceptanceBlockers,
+      rejectionReason,
+      evidence,
+      targetShiftAbs,
+      candidateShiftAbs: finiteCandidateShiftAbs,
+      residual,
+      residualAbs,
+      coefficientProvenanceCandidatePass:
+        Number.isFinite(residualAbs) &&
+        residualAbs <= POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE,
+    });
+  };
+
+  addRow({
+    id: "required_coefficient_gap",
+    source: "best coefficient/margin action-scale miss",
+    shiftKind: "least_norm_boundary_charge_coefficient",
+    formula: "required coefficient magnitude - current min(abs(coefficient))",
+    candidateShiftAbs: targetCoefficientGapAbs,
+    targetShiftAbs: targetCoefficientGapAbs,
+    acceptanceEligible: false,
+    acceptanceBlockers: ["target_derived_required_coefficient_gap"],
+    rejectionReason:
+      "This row states the coefficient gap required by the measured action-scale miss and cannot supply independent provenance.",
+    evidence: {
+      currentCoefficientAbs,
+      requiredCoefficientMagnitude,
+      targetCoefficientGap,
+    },
+  });
+  addRow({
+    id: "required_signed_delta_eta_shift",
+    source: "best coefficient/margin action-scale miss",
+    shiftKind: "signed_delta_eta",
+    formula: "abs(required coefficient gap) * pair distance^2",
+    candidateShiftAbs: requiredSignedDeltaEtaGap,
+    targetShiftAbs: requiredSignedDeltaEtaGap,
+    acceptanceEligible: false,
+    acceptanceBlockers: ["target_derived_required_delta_eta_shift"],
+    rejectionReason:
+      "This row maps the target-derived coefficient gap into signed-delta-eta units for the same least-norm row.",
+    evidence: {
+      pairDistance,
+      pairDistanceSquared,
+      targetCoefficientGapAbs,
+    },
+  });
+  addRow({
+    id: "required_row_amplitude_shift",
+    source: "best coefficient/margin action-scale miss",
+    shiftKind: "row_amplitude",
+    formula:
+      "abs(required signed-delta-eta shift) / abs(common coupling * delta_eta(g))",
+    candidateShiftAbs: requiredRowAmplitudeShiftAbs,
+    targetShiftAbs: requiredRowAmplitudeShiftAbs,
+    acceptanceEligible: false,
+    acceptanceBlockers: ["target_derived_required_row_amplitude_shift"],
+    rejectionReason:
+      "This row maps the target-derived coefficient gap into row-amplitude units for comparison with accepted residuals.",
+    evidence: {
+      commonCouplingCoefficient,
+      requiredSigmaSign,
+      deltaEtaGaussianAtGap,
+      requiredSignedDeltaEtaGap,
+    },
+  });
+  addRow({
+    id: "required_common_coupling_shift",
+    source: "best coefficient/margin action-scale miss",
+    shiftKind: "common_coupling_coefficient",
+    formula:
+      "abs(required signed-delta-eta shift) / abs(required row amplitude * delta_eta(g))",
+    candidateShiftAbs: requiredCommonCouplingShiftAbs,
+    targetShiftAbs: requiredCommonCouplingShiftAbs,
+    acceptanceEligible: false,
+    acceptanceBlockers: ["target_derived_required_common_coupling_shift"],
+    rejectionReason:
+      "This row maps the target-derived coefficient gap into common-coupling units for comparison with accepted residuals.",
+    evidence: {
+      requiredRowAmplitude,
+      deltaEtaGaussianAtGap,
+      requiredSignedDeltaEtaGap,
+    },
+  });
+  addRow({
+    id: "required_target_charge_shift",
+    source: "least-norm coefficient relation",
+    shiftKind: "target_charge_norm",
+    formula:
+      "required target charge norm for the best row - current target charge norm",
+    candidateShiftAbs: targetChargeGapAbs,
+    targetShiftAbs: targetChargeGapAbs,
+    acceptanceEligible: false,
+    acceptanceBlockers: ["target_derived_required_target_charge_shift"],
+    rejectionReason:
+      "This row restates the boundary-charge gap already implied by the action-scale miss.",
+    evidence: boundaryChargeGapDiagnostic,
+  });
+  addRow({
+    id: "required_inferred_column_shift",
+    source: "least-norm coefficient relation",
+    shiftKind: "inferred_column_z",
+    formula:
+      "abs(required coefficient * N_zz / target charge norm - inferred column_z)",
+    candidateShiftAbs: inferredColumnZShiftAbs,
+    targetShiftAbs: inferredColumnZShiftAbs,
+    acceptanceEligible: false,
+    acceptanceBlockers: ["target_derived_required_column_shift"],
+    rejectionReason:
+      "This row states the inferred-column shift that would make the current target charge exact.",
+    evidence: {
+      activeBasisNormalZZ,
+      targetChargeNorm,
+      inferredColumnZAbs,
+      requiredInferredColumnZAbs,
+    },
+  });
+  addRow({
+    id: "required_normal_matrix_zz_shift",
+    source: "least-norm coefficient relation",
+    shiftKind: "normal_matrix_zz",
+    formula:
+      "abs(target charge norm * inferred column_z / required coefficient - N_zz)",
+    candidateShiftAbs: normalMatrixZZShiftAbs,
+    targetShiftAbs: normalMatrixZZShiftAbs,
+    acceptanceEligible: false,
+    acceptanceBlockers: ["target_derived_required_normal_matrix_shift"],
+    rejectionReason:
+      "This row states the normal-matrix shift that would make the current target charge exact.",
+    evidence: {
+      activeBasisNormalZZ,
+      targetChargeNorm,
+      inferredColumnZAbs,
+      requiredNormalMatrixZZ,
+    },
+  });
+
+  addRow({
+    id: "least_norm_target_residual_mapped_to_coefficient",
+    source: "accepted least-norm boundary-charge solve",
+    shiftKind: "least_norm_boundary_charge_coefficient",
+    formula:
+      "target residual norm * abs(inferred column_z) / N_zz",
+    candidateShiftAbs:
+      Number.isFinite(leastNormBoundaryChargeAmplitudeLaw?.targetResidualNorm) &&
+      Number.isFinite(inferredColumnZAbs) &&
+      Number.isFinite(activeBasisNormalZZ) &&
+      Math.abs(activeBasisNormalZZ) >
+        POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE
+        ? (leastNormBoundaryChargeAmplitudeLaw.targetResidualNorm *
+            inferredColumnZAbs) /
+          activeBasisNormalZZ
+        : null,
+    targetShiftAbs: targetCoefficientGapAbs,
+    evidence: {
+      targetResidualNorm:
+        leastNormBoundaryChargeAmplitudeLaw?.targetResidualNorm ?? null,
+      inferredColumnZAbs,
+      activeBasisNormalZZ,
+    },
+  });
+  addRow({
+    id: "min_row_amplitude_residual_mapped_to_coefficient",
+    source: "accepted row-amplitude law residual for the best least-norm row",
+    shiftKind: "least_norm_boundary_charge_coefficient",
+    formula:
+      "abs(row amplitude residual * common coupling * delta_eta(g) / pair distance^2)",
+    candidateShiftAbs: mapRowAmplitudeResidualToCoefficient(
+      matchingRouteLocalRow ?? matchingLeastNormRow
+    ),
+    targetShiftAbs: targetCoefficientGapAbs,
+    evidence: {
+      rowAmplitudeResidual:
+        matchingRouteLocalRow?.rowAmplitudeResidual ??
+        matchingLeastNormRow?.residual ??
+        null,
+      commonCouplingCoefficient,
+      deltaEtaGaussianAtGap,
+      pairDistance,
+    },
+  });
+  const rowAmplitudeCoefficientResiduals = routeLocalRows
+    .map(mapRowAmplitudeResidualToCoefficient)
+    .filter(Number.isFinite);
+  addRow({
+    id: "max_row_amplitude_residual_mapped_to_coefficient",
+    source: "accepted row-amplitude law residuals",
+    shiftKind: "least_norm_boundary_charge_coefficient",
+    formula:
+      "max(abs(row amplitude residual * common coupling * delta_eta(g) / pair distance^2))",
+    candidateShiftAbs:
+      rowAmplitudeCoefficientResiduals.length > 0
+        ? maxFinite(rowAmplitudeCoefficientResiduals)
+        : null,
+    targetShiftAbs: targetCoefficientGapAbs,
+    evidence: {
+      rowAmplitudeResidualCount: rowAmplitudeCoefficientResiduals.length,
+      maxRowAmplitudeResidualMappedToCoefficient:
+        rowAmplitudeCoefficientResiduals.length > 0
+          ? maxFinite(rowAmplitudeCoefficientResiduals)
+          : null,
+    },
+  });
+  addRow({
+    id: "finite_causal_gap_delta_eta_shift_mapped_to_coefficient",
+    source: "finite causal-gap Gaussian evaluation",
+    shiftKind: "least_norm_boundary_charge_coefficient",
+    formula:
+      "abs(delta_eta(g)-delta_eta(0)) * abs(required row amplitude * common coupling) / pair distance^2",
+    candidateShiftAbs:
+      Number.isFinite(finiteCausalGapDeltaEtaShift) &&
+      Number.isFinite(requiredRowAmplitude) &&
+      Number.isFinite(commonCouplingCoefficient)
+        ? mapDeltaEtaShiftToCoefficient(
+            finiteCausalGapDeltaEtaShift *
+              Math.abs(requiredRowAmplitude * commonCouplingCoefficient)
+          )
+        : null,
+    targetShiftAbs: targetCoefficientGapAbs,
+    evidence: {
+      causalGap,
+      deltaEtaGaussianAtGap,
+      deltaEtaAtZero,
+      finiteCausalGapDeltaEtaShift,
+      requiredRowAmplitude,
+      commonCouplingCoefficient,
+      pairDistance,
+    },
+  });
+
+  const acceptedRows = rows.filter(
+    (row) =>
+      row.acceptanceEligible === true &&
+      row.coefficientProvenanceCandidatePass === true
+  );
+  const exactDiagnosticRows = rows.filter(
+    (row) =>
+      row.acceptanceEligible !== true &&
+      row.coefficientProvenanceCandidatePass === true
+  );
+  const independentRows = rows.filter((row) => row.acceptanceEligible === true);
+  const bestIndependentCandidate =
+    independentRows.length > 0
+      ? independentRows.reduce((best, row) =>
+          (row.residualAbs ?? Infinity) < (best.residualAbs ?? Infinity)
+            ? row
+            : best
+        )
+      : null;
+
+  return {
+    schema:
+      "aaa-tri-binary-action-scale-coefficient-provenance-diagnostic.v1",
+    status:
+      !Number.isFinite(targetCoefficientGapAbs)
+        ? "coefficient_provenance_diagnostic_inputs_missing"
+        : acceptedRows.length > 0
+          ? "coefficient_provenance_candidate_matches_gap"
+          : exactDiagnosticRows.length > 0
+            ? "coefficient_provenance_candidates_rejected_target_derived_comparison_only"
+            : "coefficient_provenance_candidates_rejected",
+    claimLevel:
+      "fail-closed provenance diagnostic for the least-norm coefficient gap behind the best action-scale miss; not an accepted coefficient correction",
+    minCoefficientRow,
+    currentCoefficientAbs,
+    requiredCoefficientMagnitude,
+    targetCoefficientGap,
+    targetCoefficientGapAbs,
+    requiredSignedDeltaEtaGap,
+    requiredRowAmplitudeShiftAbs,
+    requiredCommonCouplingShiftAbs,
+    targetChargeGapAbs,
+    inferredColumnZAbs,
+    requiredInferredColumnZAbs,
+    inferredColumnZShiftAbs,
+    activeBasisNormalZZ,
+    requiredNormalMatrixZZ,
+    normalMatrixZZShiftAbs,
+    candidateCount: rows.length,
+    acceptedCandidateCount: acceptedRows.length,
+    exactDiagnosticCount: exactDiagnosticRows.length,
+    bestIndependentCandidate,
+    acceptedRows,
+    exactDiagnosticRows,
+    rows,
+    retainedLimitation:
+      "The diagnostic decomposes the coefficient/margin action-scale miss into equivalent shifts of the least-norm coefficient, signed delta_eta, row amplitude, common coupling, target charge, inferred column, and normal matrix. Exact required-shift rows are target-derived comparisons only; acceptance requires an independent row residual or finite-gap effect that supplies the same shift.",
+  };
+}
+
+function createActionBoundaryQuadratureConvergenceRows({
+  omegaStarWeightedBoundaryCharge,
+  actionBoundaryDerivativeTarget,
+  candidateActionScale,
+}) {
+  const derivativeRows = actionBoundaryDerivativeTarget?.rows ?? [];
+  return [512, 2048, 8192].map((steps) => {
+    const weightedTerms = derivativeRows
+      .map((row) => {
+        const historyIntegralM3 = evaluateGaussianHistoryIntegral({
+          hPlus: row.normalizedEndpointHPlus,
+          upper: row.causalGap,
+          u: row.u,
+          eta: row.eta,
+          power: 3,
+          steps,
+        });
+        const normalizedPartialT1KernelTerm =
+          Number.isFinite(row.localBoundaryDerivativeTerm) &&
+          Number.isFinite(historyIntegralM3)
+            ? row.localBoundaryDerivativeTerm - 2 * historyIntegralM3
+            : null;
+        return Number.isFinite(normalizedPartialT1KernelTerm) &&
+          Number.isFinite(row.requiredCouplingCoefficient)
+          ? row.requiredCouplingCoefficient * normalizedPartialT1KernelTerm
+          : null;
+      })
+      .filter(Number.isFinite);
+    const weightedNormalizedPartialT1KernelTermSum =
+      weightedTerms.length === derivativeRows.length && derivativeRows.length > 0
+        ? weightedTerms.reduce((sum, value) => sum + value, 0)
+        : null;
+    const halfWeightedNormalizedPartialT1KernelTermSum = Number.isFinite(
+      weightedNormalizedPartialT1KernelTermSum
+    )
+      ? 0.5 * weightedNormalizedPartialT1KernelTermSum
+      : null;
+    const requiredPositiveActionScale =
+      Number.isFinite(omegaStarWeightedBoundaryCharge) &&
+      Number.isFinite(halfWeightedNormalizedPartialT1KernelTermSum) &&
+      Math.abs(halfWeightedNormalizedPartialT1KernelTermSum) >
+        POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE
+        ? Math.abs(omegaStarWeightedBoundaryCharge) /
+          Math.abs(halfWeightedNormalizedPartialT1KernelTermSum)
+        : null;
+    const residual =
+      Number.isFinite(requiredPositiveActionScale) &&
+      Number.isFinite(candidateActionScale)
+        ? requiredPositiveActionScale - candidateActionScale
+        : null;
+
+    return {
+      steps,
+      weightedNormalizedPartialT1KernelTermSum,
+      halfWeightedNormalizedPartialT1KernelTermSum,
+      requiredPositiveActionScale,
+      residual,
+      residualAbs: Number.isFinite(residual) ? Math.abs(residual) : null,
+    };
+  });
+}
+
+function createActionBoundaryEndpointCorrectionRows({
+  actionBoundaryDerivativeTarget,
+  targetCorrectionAbs,
+  actionKernelMarginRatio,
+}) {
+  const derivativeRows = actionBoundaryDerivativeTarget?.rows ?? [];
+  const {
+    allEndpointLeakages,
+    compensatedEndpointLeakages,
+    zeroSlackEndpointLeakages,
+  } = createActionBoundaryEndpointLeakageSplit(derivativeRows);
+  const addRow = ({ id, formula, value }) => {
+    const correctionResidual =
+      Number.isFinite(value) && Number.isFinite(targetCorrectionAbs)
+        ? Math.abs(value) - targetCorrectionAbs
+        : null;
+    return {
+      id,
+      formula,
+      candidateCorrectionAbs: finiteOrNull(value),
+      targetCorrectionAbs,
+      correctionResidual,
+      correctionResidualAbs: Number.isFinite(correctionResidual)
+        ? Math.abs(correctionResidual)
+        : null,
+      correctionCandidatePass:
+        Number.isFinite(correctionResidual) &&
+        Math.abs(correctionResidual) <= POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE,
+    };
+  };
+  const scaleByMargin = (value) =>
+    Number.isFinite(value) &&
+    Number.isFinite(actionKernelMarginRatio) &&
+    Math.abs(actionKernelMarginRatio) >
+      POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE
+      ? value / actionKernelMarginRatio
+      : null;
+
+  return [
+    addRow({
+      id: "max_route_width_endpoint_leakage_over_margin",
+      formula:
+        "max(abs(route-width endpoint leakage)) / (min(h_+ route width) / eta)",
+      value: scaleByMargin(maxFinite(allEndpointLeakages)),
+    }),
+    addRow({
+      id: "max_compensated_endpoint_leakage_over_margin",
+      formula:
+        "max(abs(compensated-row endpoint leakage)) / (min(h_+ route width) / eta)",
+      value: scaleByMargin(maxFinite(compensatedEndpointLeakages)),
+    }),
+    addRow({
+      id: "max_zero_slack_endpoint_leakage_over_margin",
+      formula:
+        "max(abs(zero-slack endpoint leakage)) / (min(h_+ route width) / eta)",
+      value: scaleByMargin(maxFinite(zeroSlackEndpointLeakages)),
+    }),
+    addRow({
+      id: "sum_zero_slack_endpoint_leakage_over_margin",
+      formula:
+        "sum(abs(zero-slack endpoint leakage)) / (min(h_+ route width) / eta)",
+      value: scaleByMargin(
+        zeroSlackEndpointLeakages.length > 0
+          ? zeroSlackEndpointLeakages.reduce((sum, value) => sum + value, 0)
+          : null
+      ),
+    }),
+  ];
+}
+
+function createActionBoundaryEndpointLeakageSplit(derivativeRows) {
+  const hPlusRouteWidthValues = derivativeRows
+    .map((row) => row.hPlusRouteWidth)
+    .filter(Number.isFinite);
+  const minHPlusRouteWidth =
+    hPlusRouteWidthValues.length > 0 ? minFinite(hPlusRouteWidthValues) : null;
+  const compensationRows = derivativeRows.filter(
+    (row) =>
+      Number.isFinite(row.hPlusRouteWidth) &&
+      Number.isFinite(minHPlusRouteWidth) &&
+      Math.abs(row.hPlusRouteWidth - minHPlusRouteWidth) <=
+        POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE
+  );
+  const zeroSlackRows = derivativeRows.filter(
+    (row) =>
+      Number.isFinite(row.hPlusRouteWidth) &&
+      Number.isFinite(minHPlusRouteWidth) &&
+      Math.abs(row.hPlusRouteWidth - minHPlusRouteWidth) >
+        POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE
+  );
+  return {
+    minHPlusRouteWidth,
+    compensationRows,
+    zeroSlackRows,
+    allEndpointLeakages: derivativeRows
+      .map((row) => row.endpointLeakageAbsAtRouteWidth)
+      .filter(Number.isFinite),
+    compensatedEndpointLeakages: compensationRows
+      .map((row) => row.endpointLeakageAbsAtRouteWidth)
+      .filter(Number.isFinite),
+    zeroSlackEndpointLeakages: zeroSlackRows
+      .map((row) => row.endpointLeakageAbsAtRouteWidth)
+      .filter(Number.isFinite),
   };
 }
 
@@ -5713,13 +10435,21 @@ function evaluateEndpointGaugeDerivative({ hPlus, u, eta }) {
   return deltaAtEndpoint / (FIELD_SPEED * (u + hPlus) * (u + hPlus));
 }
 
-function evaluateGaussianHistoryIntegral({ hPlus, upper, u, eta, power }) {
+function evaluateGaussianHistoryIntegral({
+  hPlus,
+  upper,
+  u,
+  eta,
+  power,
+  steps = 512,
+}) {
   if (
     !Number.isFinite(hPlus) ||
     !Number.isFinite(upper) ||
     !Number.isFinite(u) ||
     !Number.isFinite(eta) ||
     !Number.isFinite(power) ||
+    !Number.isFinite(steps) ||
     hPlus <= 0 ||
     eta <= 0 ||
     FIELD_SPEED <= 0
@@ -5730,7 +10460,6 @@ function evaluateGaussianHistoryIntegral({ hPlus, upper, u, eta, power }) {
   if (upper < lower) {
     return null;
   }
-  const steps = 512;
   return integrateSimpson({
     lower,
     upper,
@@ -9608,6 +14337,15 @@ function createMiddleFieldSpeedHingeCapture({
   const maxCausalEndpointToHingeChartResidual = maxFinite(
     middleHingeChartRows.map((row) => row.maxCausalEndpointToHingeChartResidual)
   );
+  const minimalBranchTransactionFrequencyCertificate =
+    createMinimalBranchTransactionFrequencyCertificate({
+      selectedCase,
+      cleanEnergyFrequencyTarget,
+      candidateCapturePass,
+      topologyRunsThroughMiddle,
+      hingeChartContinuityPass,
+      geometryTransportPass,
+    });
   const retainedChartFeasibility = createMiddleFieldSpeedRetainedChartFeasibility({
     candidateCapturePass,
     geometryTransportPass,
@@ -9617,6 +14355,7 @@ function createMiddleFieldSpeedHingeCapture({
     retainedTimeDomainCoverage,
     timeWindowTorqueProbe,
     cleanEnergyFrequencyTarget,
+    minimalBranchTransactionFrequencyCertificate,
     layerByName,
   });
 
@@ -9668,6 +14407,7 @@ function createMiddleFieldSpeedHingeCapture({
     maxMiddleClockTimeJump,
     maxMiddleWrappedPhaseJump,
     maxCausalEndpointToHingeChartResidual,
+    minimalBranchTransactionFrequencyCertificate,
     retainedChartFeasibility,
     middleContinuityMatches: middleContinuityMatches.map((match) => ({
       incomingPairKey: match.incomingPairKey,
@@ -9698,6 +14438,7 @@ function createMiddleFieldSpeedRetainedChartFeasibility({
   retainedTimeDomainCoverage,
   timeWindowTorqueProbe,
   cleanEnergyFrequencyTarget,
+  minimalBranchTransactionFrequencyCertificate,
   layerByName,
 }) {
   const compensationRows = middleContinuityMatches.map((match) =>
@@ -9714,8 +14455,12 @@ function createMiddleFieldSpeedRetainedChartFeasibility({
   });
   const wakePayloadDiagnostic = createRouteAuthorizedWakePayloadDiagnostic({
     compensatedRoutePayloadCertificate,
+    hingeRootBranchTransportRouteFeasibility,
+    hingeEventRowSetIdentity,
+    retainedTimeDomainCoverage,
     timeWindowTorqueProbe,
     cleanEnergyFrequencyTarget,
+    minimalBranchTransactionFrequencyCertificate,
     layerByName,
   });
   const compensatedPayloadInventory = createCompensatedRetainedChartPayloadInventory({
@@ -11410,10 +16155,7 @@ function createBinaryToBinaryPathHistoryRows(layers) {
       const start = computeCircularLayerPoint(layer, startTime);
       const end = computeCircularLayerPoint(layer, endTime);
       const velocity = scaleVector(subtractVectors(end, start), 1 / step);
-      const angularSpan = Math.abs(layer.angularVelocity * step);
-      const errorBound =
-        Math.abs(layer.radius) * Math.max(0, 1 - Math.cos(Math.min(angularSpan, Math.PI) / 2)) +
-        1e-12;
+      const { errorBound } = computeCircularLayerPathSegmentErrorBound(layer);
       maxPathErrorBound = Math.max(maxPathErrorBound, errorBound);
       pathRows.push({
         pathKey,
@@ -11659,6 +16401,67 @@ function computeCircularLayerPoint(layer, time) {
   };
 }
 
+function computeCircularLayerPathSegmentErrorBound(
+  layer,
+  segmentCount = BINARY_TO_BINARY_PATH_SEGMENT_COUNT
+) {
+  const step = CLOSURE_PERIOD / segmentCount;
+  const angularSpan =
+    layer && Number.isFinite(layer.angularVelocity)
+      ? Math.abs(layer.angularVelocity * step)
+      : null;
+  const errorBound =
+    layer &&
+    Number.isFinite(layer.radius) &&
+    Number.isFinite(angularSpan)
+      ? Math.abs(layer.radius) *
+          Math.max(0, 1 - Math.cos(Math.min(angularSpan, Math.PI) / 2)) +
+        1e-12
+      : null;
+  return {
+    step,
+    angularSpan,
+    errorBound,
+  };
+}
+
+function computeCircularLayerPathSegmentReplayPoint(
+  layer,
+  time,
+  segmentCount = BINARY_TO_BINARY_PATH_SEGMENT_COUNT
+) {
+  if (!layer || !Number.isFinite(time) || !Number.isFinite(segmentCount)) {
+    return null;
+  }
+  const step = CLOSURE_PERIOD / segmentCount;
+  const normalizedTime =
+    ((time % CLOSURE_PERIOD) + CLOSURE_PERIOD) % CLOSURE_PERIOD;
+  const segmentIndex = Math.min(
+    segmentCount - 1,
+    Math.floor(normalizedTime / step)
+  );
+  const segmentStartTime = segmentIndex * step;
+  const segmentEndTime = (segmentIndex + 1) * step;
+  const interpolationFraction = (normalizedTime - segmentStartTime) / step;
+  const segmentStartPoint = computeCircularLayerPoint(layer, segmentStartTime);
+  const segmentEndPoint = computeCircularLayerPoint(layer, segmentEndTime);
+  return {
+    segmentIndex,
+    segmentStartTime,
+    segmentEndTime,
+    interpolationFraction,
+    segmentStartPoint,
+    segmentEndPoint,
+    point: addVectors(
+      segmentStartPoint,
+      scaleVector(
+        subtractVectors(segmentEndPoint, segmentStartPoint),
+        interpolationFraction
+      )
+    ),
+  };
+}
+
 function createReportBranchChartProjection(cases, retainedLineagePhaseProbe) {
   const populatedRowCounts = {};
   const blockedRowCounts = {};
@@ -11714,7 +16517,7 @@ function createClosureSummary(cases, retainedLineagePhaseProbe) {
     status: "not_closed",
     retainedBranchClaim: false,
     reason:
-      "The runner now emits solver-backed reduced rows, sampled active-row lineage, phase-at-hit rows, a branch-chart projection, a selected fixed-receiver time-window torque diagnostic, binary-to-binary path-history roots/hits, replayed binary-to-binary root-ledger-detail rows, solver root-key transition classification, inactive-gap margins, retained hit-time coverage, common hinge-point candidates, point-event witnesses, candidate point-event admissibility rows, candidate branch-transport incidence rows, a candidate branch-transport pair-map, a middle field-speed hinge-capture diagnostic, a fail-closed retained-chart feasibility diagnostic, a complete route-payload diagnostic, a route-authorized wake-charge/domain target, an action-kernel normalization-convention candidate, accepted chart-restricted crossing-domain rows, a least-norm route-gradient candidate, a finite endpoint-clear kernel-gradient candidate evaluation, a Master-Equation characteristic-tail pair-radial pullback target, a side-split radial-constrained boundary-charge solve, a delta_eta(g) quadrature target, a single-coefficient sign-pattern candidate, a layer-polarity assignment candidate, a source/receiver polarity row-binding candidate, an accepted normalized action-kernel wake charge, an accepted retained crossing-domain pullback, a populated wake-energy increment target, a finite-Gaussian endpoint-clearance gauge repair, a normalized action-boundary derivative history integral, and partial retained chains, but promotion still requires an accepted retained point-event rule or a positive-width common retained time domain plus common active-row identity across force, torque, wake, partition, phase, stability, accepted layer-polarity assignment, accepted source/receiver polarity metadata, a sigma*hbar action scale, an accepted action-boundary wake-energy increment law, vector-ledger, and energy-routing rows.",
+      "The runner now emits solver-backed reduced rows, sampled active-row lineage, phase-at-hit rows, a branch-chart projection, a selected fixed-receiver time-window torque diagnostic, binary-to-binary path-history roots/hits, replayed binary-to-binary root-ledger-detail rows, solver root-key transition classification, inactive-gap margins, retained hit-time coverage, common hinge-point candidates, point-event witnesses, candidate point-event admissibility rows, candidate branch-transport incidence rows, a candidate branch-transport pair-map, a middle field-speed hinge-capture diagnostic, a fail-closed retained-chart feasibility diagnostic, a complete route-payload diagnostic, a route-authorized wake-charge/domain target, an action-kernel normalization-convention candidate, accepted chart-restricted crossing-domain rows, a least-norm route-gradient candidate, a finite endpoint-clear kernel-gradient candidate evaluation, a Master-Equation characteristic-tail pair-radial pullback target, a side-split radial-constrained boundary-charge solve, a delta_eta(g) quadrature target, a single-coefficient sign-pattern candidate, a layer-polarity assignment candidate, a source/receiver polarity row-binding candidate, an accepted normalized action-kernel wake charge, an accepted retained crossing-domain pullback, a populated wake-energy increment target, a finite-Gaussian endpoint-clearance gauge repair, a normalized action-boundary derivative history integral, an exact reduced four-substep transaction-frequency certificate, and partial retained chains, but promotion still requires an accepted retained point-event rule or a positive-width common retained time domain plus common active-row identity across force, torque, wake, partition, phase, stability, accepted layer-polarity assignment, accepted source/receiver polarity metadata, a sigma*hbar action scale, an accepted omega_tx source or energy route, an accepted action-boundary wake-energy increment law, vector-ledger, and energy-routing rows.",
     reducedPassCases: projection.reducedPassCases,
     activeLineageProbeCases: projection.activeLineageProbeCases,
     phaseAtHitProbeCases: projection.phaseAtHitProbeCases,
@@ -11898,6 +16701,16 @@ function crossVectors(left, right) {
     x: left.y * right.z - left.z * right.y,
     y: left.z * right.x - left.x * right.z,
     z: left.x * right.y - left.y * right.x,
+  };
+}
+
+function rotateVectorZ(vector, angle) {
+  const cos = Math.cos(angle);
+  const sin = Math.sin(angle);
+  return {
+    x: vector.x * cos - vector.y * sin,
+    y: vector.x * sin + vector.y * cos,
+    z: vector.z,
   };
 }
 

@@ -244,7 +244,7 @@ Under these conditions, the event may be promoted because the residual is replay
 
 | Consumer packet | Local responsibility | Shared theorem burden consumed here |
 | --- | --- | --- |
-| [radiation-gate-c-benchmarks.md](radiation-gate-c-benchmarks.md) | First worked case for atomic transitions, bremsstrahlung, synchrotron, Compton-like scattering, pair channels, and blackbody recovery. | Derive the route from $\mathcal{R}_{\Theta}$ to photon, retuning, non-radiative, and reaction channels with a closed event ledger. |
+| [radiation](../../../content/markdown/aaa/reactions/radiation.md) | First worked case for atomic transitions, bremsstrahlung, synchrotron, Compton-like scattering, pair channels, and blackbody recovery. | Derive the route from $\mathcal{R}_{\Theta}$ to photon, retuning, non-radiative, and reaction channels with a closed event ledger. |
 | [condensed-matter-medium-transport.md](../mass-map/condensed-matter-medium-transport.md) | Critical-transport residual separating reversible medium-dressed inertia from dissipative transport. | Use the shared contract when $\mathcal{R}_{\text{tr}}$ crosses into excitation, radiation, medium heating, or branch transition. |
 | [weak-sector-gauge-closure.md](../standard-model-closure/weak-sector-gauge-closure.md) | Weak-corridor provenance, charged-current handedness, and effective gauge compatibility. | Use the shared event ledger for weak reactions so outgoing lepton / antilepton cores and charged transaction deltas have source accounting. |
 | [nuclear-binding-closure.md](../standard-model-closure/nuclear-binding-closure.md) | Hadronic-to-nuclear coarse graining, residual strong channels, beta stability, and first nuclear benchmarks. | Use the shared residual-routing contract for residual strong channels, beta transitions, recoil, and binding-energy ledgers. |
@@ -266,7 +266,7 @@ Each consumer packet should instantiate the same predicate factors instead of ad
 
 ## First Worked Case
 
-[Radiation Gate C](radiation-gate-c-benchmarks.md) remains the first worked case because it already names the residual input state
+[Radiation](../../../content/markdown/aaa/reactions/radiation.md) remains the first worked case because it names the residual input state
 
 $$
 \mathcal{R}_{\Theta}
@@ -418,10 +418,10 @@ The shared packet may appear in [reaction-ledger](../../../content/markdown/aaa/
 | `residual.hidden_retuning` | The same benchmark family can be recovered only by changing the residual definition, the channel boundary $g_i$, or the Noether sea variables $\rho_{\text{NS}}(\mathbf{x},t)$ and $\chi_{\text{sea}}(\mathbf{x},t)$ between sector cases. | $\operatorname{Replay}_S$ and $\operatorname{Accept}_S$ |
 | `acceptance.empty_intersection` | $\mathsf e\notin\mathcal{C}_{\mathbb{A}\mathbb{A}\mathbb{A}}$, so the local routing succeeds only by violating another required weak, quantum, gravity, hadronic, radiation, cosmology, conservation-law, or direct-observation acceptance gate. | $\operatorname{Accept}_S$ |
 
-## Related Priorities
+## Related Priorities And Corpus Consumers
 
 - [nested-shell-swarm-causal-closure](nested-shell-swarm-causal-closure.md)
-- [radiation-gate-c-benchmarks](radiation-gate-c-benchmarks.md)
+- [radiation](../../../content/markdown/aaa/reactions/radiation.md)
 - [mass-map](../mass-map/mass-map.md)
 - [standard-model-closure](../standard-model-closure/standard-model-closure.md)
 - [quantum-closure](../quantum-closure/quantum-closure.md)

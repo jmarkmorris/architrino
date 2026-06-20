@@ -18,7 +18,7 @@
 
 ## Scope
 
-This lane is a draft mapping surface for entropy. It is not a new reader-facing $\mathbb{A}\mathbb{A}\mathbb{A}$ chapter and it does not replace [strong-field-closure](../strong-field-closure/strong-field-closure.md), [quantum-closure](../quantum-closure/quantum-closure.md), [cosmology-closure](../cosmology-closure/cosmology-closure.md), or [radiation Gate C](../nested-shell-swarm-causal-closure/radiation-gate-c-benchmarks.md).
+This lane is a draft mapping surface for entropy. It is not a new reader-facing $\mathbb{A}\mathbb{A}\mathbb{A}$ chapter and it does not replace [strong-field-closure](../strong-field-closure/strong-field-closure.md), [quantum-closure](../quantum-closure/quantum-closure.md), [cosmology-closure](../cosmology-closure/cosmology-closure.md), or [Radiation](../../../content/markdown/aaa/reactions/radiation.md).
 
 The purpose is to keep the current theoretical meanings of entropy intact, then identify which parts can be recovered as effective limits of assembly dynamics, Noether sea state records, event-ledger routing, and finite observer access windows.
 
@@ -289,7 +289,7 @@ The proof burden is to derive $\mathcal{L}_{\gamma_A}^{(O)}(t)$ from native hori
 - [quantum-closure](../quantum-closure/quantum-closure.md)
 - [cosmology-closure](../cosmology-closure/cosmology-closure.md)
 - [validation-gates](../validation-gates/validation-gates.md)
-- [radiation Gate C](../nested-shell-swarm-causal-closure/radiation-gate-c-benchmarks.md)
+- [radiation](../../../content/markdown/aaa/reactions/radiation.md)
 
 ## Related $\mathbb{A}\mathbb{A}\mathbb{A}$ Notes
 

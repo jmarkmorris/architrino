@@ -1611,6 +1611,14 @@ function validatePairInteractionRunSimulationRequestEnvelope(value) {
     "pair boundary tolerance mismatch"
   );
   assert(
+    requestValue.config.pairInteractionRequest.pathConstraintPositionResidualTolerance === 0.01,
+    "pair position tolerance mismatch"
+  );
+  assert(
+    requestValue.config.pairInteractionRequest.pathConstraintGuidanceAccelerationTolerance === 6,
+    "pair guidance acceleration tolerance mismatch"
+  );
+  assert(
     requestValue.config.pairInteractionRequest.pathConstraintBoundaryRelaxationIterationCount === 12,
     "pair boundary relaxation iteration mismatch"
   );
@@ -1631,8 +1639,22 @@ function validatePairInteractionRunSimulationResponseEnvelope(value) {
   const responseValue = value.response;
   assert(responseValue.runId === "pair-interaction-contract", "pair run handle id mismatch");
   const runResponse = responseValue.response;
+  assert(
+    runResponse.summary.pathConstraintFrameRefinementSampleCount === 1,
+    "pair summary frame refinement mismatch"
+  );
   assert(runResponse.summary.pathConstraintBoundaryResidualStatus === "within_tolerance", "pair summary status mismatch");
   assert(runResponse.summary.pathConstraintBoundaryResidualTolerance === 0.5, "pair summary tolerance mismatch");
+  assert(
+    runResponse.summary.pathConstraintPositionResidualStatus === "within_tolerance" &&
+      runResponse.summary.pathConstraintPositionResidualTolerance === 0.01,
+    "pair summary position residual acceptance mismatch"
+  );
+  assert(
+    runResponse.summary.pathConstraintGuidanceAccelerationStatus === "within_tolerance" &&
+      runResponse.summary.pathConstraintGuidanceAccelerationTolerance === 6,
+    "pair summary guidance acceleration acceptance mismatch"
+  );
   assert(
     runResponse.summary.pathConstraintBoundaryRelaxationMode === "finite_difference_frame_relaxation_v1",
     "pair summary relaxation mode mismatch"
@@ -1656,6 +1678,11 @@ function validatePairInteractionRunSimulationResponseEnvelope(value) {
   assert(
     runResponse.summary.pathConstraintBoundaryRelaxationStatus === "accepted",
     "pair summary relaxation status mismatch"
+  );
+  assert(
+    runResponse.summary.pathConstraintBoundaryRelaxationResidualEvidenceStatus ===
+      "aggregate_non_worsening",
+    "pair summary relaxation residual evidence status mismatch"
   );
   assert(
     runResponse.summary.pathConstraintBoundaryRelaxationResidualSampleCount === 2,
@@ -1684,8 +1711,23 @@ function validatePairInteractionRunSimulationResponseEnvelope(value) {
     "pair summary relaxation residual settling-rate mismatch"
   );
   assert(
+    runResponse.summary.pathConstraintBoundaryRelaxationCandidateVariantCount === 14 &&
+      runResponse.summary.pathConstraintBoundaryRelaxationLineSearchTrialCount === 112 &&
+      runResponse.summary.pathConstraintBoundaryRelaxationCandidateKindMask === 0x3ffffe,
+    "pair summary relaxation candidate telemetry mismatch"
+  );
+  assert(
+    runResponse.pairInteraction.pathConstraintFrameRefinementSampleCount === 1,
+    "pair interaction nested frame refinement mismatch"
+  );
+  assert(
     runResponse.pairInteraction.pathConstraintBoundaryResidualStatus === "within_tolerance",
     "pair interaction nested status mismatch"
+  );
+  assert(
+    runResponse.pairInteraction.pathConstraintGuidanceAccelerationStatus === "within_tolerance" &&
+      runResponse.pairInteraction.pathConstraintGuidanceAccelerationTolerance === 6,
+    "pair interaction nested guidance acceleration acceptance mismatch"
   );
   assert(
     runResponse.pairInteraction.pathConstraintBoundaryRelaxationMode === "finite_difference_frame_relaxation_v1",
@@ -1710,6 +1752,11 @@ function validatePairInteractionRunSimulationResponseEnvelope(value) {
   assert(
     runResponse.pairInteraction.pathConstraintBoundaryRelaxationStatus === "accepted",
     "pair interaction nested relaxation status mismatch"
+  );
+  assert(
+    runResponse.pairInteraction.pathConstraintBoundaryRelaxationResidualEvidenceStatus ===
+      "aggregate_non_worsening",
+    "pair interaction nested relaxation residual evidence status mismatch"
   );
   assert(
     runResponse.pairInteraction.pathConstraintBoundaryRelaxationResidualSampleCount === 2,
@@ -1737,6 +1784,12 @@ function validatePairInteractionRunSimulationResponseEnvelope(value) {
       runResponse.pairInteraction.rmsPathConstraintBoundaryRelaxationResidualSettlingRate ===
         Math.pow(1.75 / 6.5, 1 / 4),
     "pair interaction nested relaxation residual settling-rate mismatch"
+  );
+  assert(
+    runResponse.pairInteraction.pathConstraintBoundaryRelaxationCandidateVariantCount === 14 &&
+      runResponse.pairInteraction.pathConstraintBoundaryRelaxationLineSearchTrialCount === 112 &&
+      runResponse.pairInteraction.pathConstraintBoundaryRelaxationCandidateKindMask === 0x3ffffe,
+    "pair interaction nested relaxation candidate telemetry mismatch"
   );
   assert(runResponse.frames.length === 4, "pair frame count mismatch");
   assert(runResponse.pathHistory.rowCount === 4, "pair path-history row count mismatch");
@@ -4676,6 +4729,8 @@ function createPairInteractionRequestFixture() {
     pathConstraintBoundaryRelaxationTolerance: 0.01,
     pathConstraintBoundaryRelaxationStepTolerance: 0.001,
     pathConstraintBoundaryResidualTolerance: 0.5,
+    pathConstraintPositionResidualTolerance: 0.01,
+    pathConstraintGuidanceAccelerationTolerance: 6,
     initialStates: [
       {
         pathKey: 1,
@@ -4724,6 +4779,13 @@ function createPairInteractionRunSummaryFixture() {
     interactionLaw: "inverse_distance_pair_attraction_v1",
     executionPath: "native_c_abi",
     pathConstraintCount: 2,
+    pathConstraintFrameRefinementSampleCount: 1,
+    pathConstraintPositionResidualSampleCount: 2,
+    pathConstraintPositionResidualStatus: "within_tolerance",
+    pathConstraintPositionResidualTolerance: 0.01,
+    maxPathConstraintPositionResidual: 0,
+    meanPathConstraintPositionResidual: 0,
+    rmsPathConstraintPositionResidual: 0,
     pathConstraintResidualSampleCount: 2,
     maxPathConstraintResidual: 0.125,
     meanPathConstraintResidual: 0.0625,
@@ -4737,6 +4799,7 @@ function createPairInteractionRunSummaryFixture() {
     pathConstraintBoundaryRelaxationTolerance: 0.01,
     pathConstraintBoundaryRelaxationStepTolerance: 0.001,
     pathConstraintBoundaryRelaxationStatus: "accepted",
+    pathConstraintBoundaryRelaxationResidualEvidenceStatus: "aggregate_non_worsening",
     pathConstraintBoundaryRelaxationResidualSampleCount: 2,
     maxPathConstraintBoundaryRelaxationResidualBefore: 8,
     maxPathConstraintBoundaryRelaxationResidualAfter: 2,
@@ -4750,11 +4813,16 @@ function createPairInteractionRunSummaryFixture() {
     pathConstraintBoundaryRelaxationResidualSettlingRate: Math.pow(0.25, 1 / 4),
     meanPathConstraintBoundaryRelaxationResidualSettlingRate: Math.pow(0.25, 1 / 4),
     rmsPathConstraintBoundaryRelaxationResidualSettlingRate: Math.pow(1.75 / 6.5, 1 / 4),
+    pathConstraintBoundaryRelaxationCandidateVariantCount: 14,
+    pathConstraintBoundaryRelaxationLineSearchTrialCount: 112,
+    pathConstraintBoundaryRelaxationCandidateKindMask: 0x3ffffe,
     pathConstraintSolverStatus: "guided_constraint_path",
     pathConstraintSolverClaim: "diagnostic_constraint_replay_not_boundary_value_solve",
     maxPathConstraintGuidanceAcceleration: 4.5,
     meanPathConstraintGuidanceAcceleration: 2.25,
     rmsPathConstraintGuidanceAcceleration: 3.1,
+    pathConstraintGuidanceAccelerationStatus: "within_tolerance",
+    pathConstraintGuidanceAccelerationTolerance: 6,
     pathConstraintBoundaryResidualSampleCount: 2,
     pathConstraintBoundaryResidualStatus: "within_tolerance",
     pathConstraintBoundaryResidualTolerance: 0.5,

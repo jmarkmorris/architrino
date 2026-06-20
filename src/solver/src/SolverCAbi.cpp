@@ -55,7 +55,7 @@ static_assert(sizeof(ArchitrinoSolverMotionIntegrationRequestF64) == 120);
 static_assert(sizeof(ArchitrinoSolverPairInteractionRequestF64) == 80);
 static_assert(sizeof(ArchitrinoSolverPairInteractionStateF64) == 80);
 static_assert(sizeof(ArchitrinoSolverPairInteractionPathConstraintF64) == 48);
-static_assert(sizeof(ArchitrinoSolverPairInteractionSummaryF64) == 248);
+static_assert(sizeof(ArchitrinoSolverPairInteractionSummaryF64) == 312);
 static_assert(sizeof(ArchitrinoSolverMotionFrameRowF64) == 88);
 static_assert(sizeof(ArchitrinoSolverPathHistoryRowF64) == 96);
 static_assert(sizeof(ArchitrinoSolverPathHistoryIndexRow) == 64);
@@ -166,6 +166,14 @@ static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, rms_boundary_r
 static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, boundary_relaxation_residual_settling_rate) == 224);
 static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, mean_boundary_relaxation_residual_settling_rate) == 232);
 static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, rms_boundary_relaxation_residual_settling_rate) == 240);
+static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, frame_refinement_sample_count) == 248);
+static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, boundary_relaxation_candidate_variant_count) == 256);
+static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, boundary_relaxation_line_search_trial_count) == 264);
+static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, boundary_relaxation_candidate_kind_mask) == 272);
+static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, position_residual_sample_count) == 280);
+static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, max_position_residual) == 288);
+static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, mean_position_residual) == 296);
+static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, rms_position_residual) == 304);
 static_assert(offsetof(ArchitrinoSolverMotionFrameRowF64, time) == 16);
 static_assert(offsetof(ArchitrinoSolverMotionFrameRowF64, state_flags) == 80);
 static_assert(offsetof(ArchitrinoSolverPathHistoryRowF64, start_time) == 16);
@@ -555,6 +563,14 @@ ArchitrinoSolverPairInteractionSummaryF64 to_pair_interaction_summary(
       result.pathConstraintBoundaryRelaxationResidualSettlingRate,
       result.meanPathConstraintBoundaryRelaxationResidualSettlingRate,
       result.rmsPathConstraintBoundaryRelaxationResidualSettlingRate,
+      result.pathConstraintFrameRefinementSampleCount,
+      result.pathConstraintBoundaryRelaxationCandidateVariantCount,
+      result.pathConstraintBoundaryRelaxationLineSearchTrialCount,
+      result.pathConstraintBoundaryRelaxationCandidateKindMask,
+      result.pathConstraintPositionResidualSampleCount,
+      result.maxPathConstraintPositionResidual,
+      result.meanPathConstraintPositionResidual,
+      result.rmsPathConstraintPositionResidual,
   };
 }
 

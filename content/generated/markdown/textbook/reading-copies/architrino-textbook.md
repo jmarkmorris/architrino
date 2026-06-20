@@ -39836,11 +39836,11 @@ d\tau_{\mathcal A}
 =
 \frac{d\varphi_{\mathcal A}}{\Omega_{\mathcal A}^{(0)}}
 $$
-Here $\varphi_{\mathcal A}$ is the counted clock phase, $\Omega_{\mathcal A}^{(0)}$ is its rest-branch reference rate, $\mathcal{N}_{\mathrm{sea}}$ is the retained Noether sea state, $R_{\mathcal A}$ is the clock geometry/orientation record, $H_{\mathcal A}$ is the relevant path-history ledger, and $\mathbf{w}$ is the clock drift relative to local Noether sea flow. A broad expression such as $d\tau/dt=F(\mathbf{v},n,\chi_{\text{sea}},\Phi_{\text{eff}},\text{clock geometry})$ is only a shorthand after this phase channel has been declared.
+Here $\varphi_{\mathcal A}$ is the counted clock phase, $\Omega_{\mathcal A}^{(0)}$ is its rest-branch reference rate, $\mathcal{N}_{\mathrm{sea}}$ is the retained Noether sea state, $R_{\mathcal A}$ is the clock geometry/orientation record, $H_{\mathcal A}$ is the relevant path-history ledger, and $\mathbf{w}$ is the clock drift relative to local Noether sea flow. A broad expression such as $d\tau/dt=F(\mathbf{w},n,\chi_{\text{sea}},\Phi_{\text{eff}},\text{clock geometry})$ is only a shorthand after this phase channel has been declared.
 
 The target is to reproduce, in the appropriate regime,
 $$
-\frac{d\tau}{dt} \approx \sqrt{1+\frac{2\Phi_N}{c_0^2} - \frac{v^2}{c_0^2}}
+\frac{d\tau}{dt} \approx \sqrt{1+\frac{2\Phi_N}{c_0^2} - \frac{\|\mathbf{w}\|^2}{c_0^2}}
 $$
 and generalizes to strong-field and high-velocity conditions.
 
@@ -39882,7 +39882,7 @@ d\tau = \frac{\omega(\text{state})}{\omega_0}\, dt
 $$
 where $\omega(\text{state})$ is the instantaneous internal oscillation frequency in the actual kinematic and environmental state.
 
-The central problem is to compute $\omega(\mathbf{v},n,\chi_{\text{sea}},\Phi_{\text{eff}})$ from the master dynamics.
+The central problem is to compute $\omega(\mathbf{w},n,\chi_{\text{sea}},\Phi_{\text{eff}})$ from the master dynamics.
 
 ###### Moving-Branch Clock Retuning Target
 
@@ -39894,30 +39894,59 @@ c_f(t-t_0)
 $$
 The dressed observer-channel speed $c_\star$ is declared only after the clock/ruler channel is chosen: $c_\star=c_f$ for a primitive branch scan and usually $c_\star=c_{\text{eff}}(\mathbf{x})$ for a Noether sea dressed clock comparison. Thus
 $$
-\beta_\star=\frac{v}{c_\star},
+\mathbf{w}
+=
+\mathbf{V}_{\text{cm}}-\mathbf{u}_{\text{sea}},
 \qquad
-\gamma_\star(v)=\frac{1}{\sqrt{1-\beta_\star^2}}
+\beta_\star=\frac{\|\mathbf{w}\|}{c_\star},
+\qquad
+\gamma_\star(\mathbf{w})=\frac{1}{\sqrt{1-\beta_\star^2}}
 $$
+where $\mathbf{w}$ is the clock assembly drift through the local Noether sea.
 
-For an admitted moving nested shell swarm branch $q$ on a drift band $0\le v/c_f\le\beta_{\max}<1$, choose one clock phase $\theta_{\mathrm{clk},q}$ from the same causal-root ledger used for the branch's geometry. The extracted period is
+The simple clock-budget target is that the declared channel speed splits into center-of-mass drift and transverse closure:
 $$
-T_q(v)
+c_\star^2
+=
+\|\mathbf{w}\|^2+c_{\perp}^2
+$$
+so
+$$
+c_{\perp}
+=
+c_\star\sqrt{1-\frac{\|\mathbf{w}\|^2}{c_\star^2}}
+=
+\frac{c_\star}{\gamma_\star(\mathbf{w})}
+$$
+An accepted clock branch must then extract
+$$
+\frac{d\tau}{dt}
+=
+\frac{c_{\perp}}{c_\star}
+=
+\frac{1}{\gamma_\star(\mathbf{w})}
+$$
+from its internal phase dynamics, rather than assign the factor independently.
+
+For an admitted moving nested shell swarm branch $q$ on a drift band $0\le \|\mathbf{w}\|/c_f\le\beta_{\max}<1$, choose one clock phase $\theta_{\mathrm{clk},q}$ from the same causal-root ledger used for the branch's geometry. The extracted period is
+$$
+T_q(\mathbf{w})
 =
 \frac{2\pi}{\langle\dot{\theta}_{\mathrm{clk},q}\rangle_{\mathrm{cyc}}},
 \qquad
-T_0=T_q(0)
+T_0=T_q(\mathbf{0})
 $$
 and the clock residual is
 $$
-R_T^{(q)}(v)
+R_T^{(q)}(\mathbf{w})
 \equiv
-\frac{T_q(v)}{T_0}
+\frac{T_q(\mathbf{w})}{T_0}
 -
-\gamma_\star(v)
+\gamma_\star(\mathbf{w})
 $$
 The moving-clock theorem target is
 $$
-\left|R_T^{(q)}(v)\right|
+\left|R_T^{(q)}(\mathbf{w})\right|
 \le
 C_T\epsilon_{\text{LV}}\beta_\star^2
 $$
@@ -40521,7 +40550,7 @@ Two coupled mechanisms change the internal frequency of a tri‑binary clock:
 
 ###### Kinematic Effect (Velocity Dependence)
 
-When the clock moves with velocity $\mathbf{v}$ relative to the Noether sea:
+When the clock has center-of-mass velocity $\mathbf{V}_{\text{cm}}$ relative to a local Noether sea drift $\mathbf{u}_{\text{sea}}$, its material drift is $\mathbf{w}=\mathbf{V}_{\text{cm}}-\mathbf{u}_{\text{sea}}$:
 
 1. **Path‑length elongation:**
  Internal architrinos must traverse longer spatial paths per cycle because the clock’s center of mass is in motion. Even in the clock’s own rest frame, the underlying wake interactions are evaluated in the absolute frame where the worldline is slanted through absolute timespace.
@@ -40530,9 +40559,9 @@ When the clock moves with velocity $\mathbf{v}$ relative to the Noether sea:
  Primitive self-hit and partner-hit roots are mediated by delayed, radial path-history interactions at speed $c_f$. When those roots are dressed into an observer-level clock law, the transverse budget must be formed with the declared channel speed $c_\star$: $c_\star=c_f$ for a primitive branch test and $c_\star=c_{\text{eff}}(\mathbf{x})$ for a Noether sea dressed clock comparison.
 
 3. **Shape deformation (Lorentz‑link hypothesis):**
- To remain dynamically stable under increased $\|\mathbf{v}\|$, the tri‑binary’s outer exclusion surface becomes **oblate**, flattened along the direction of motion:
- - At low $v$, the outer exclusion surface is nearly spherical.
- - As $v\to c_\star$, that exclusion surface contracts along $\hat{\mathbf{v}}$ while maintaining transverse dimensions, yielding an oblate spheroidal envelope with semiaxes $(a_\perp, a_\perp, a_\parallel)$ and $a_\parallel < a_\perp$.
+ To remain dynamically stable under increased $\|\mathbf{w}\|$, the tri‑binary’s outer exclusion surface becomes **oblate**, flattened along the direction of motion:
+ - At low $\|\mathbf{w}\|$, the outer exclusion surface is nearly spherical.
+ - As $\|\mathbf{w}\|\to c_\star$, that exclusion surface contracts along $\hat{\mathbf{w}}$ while maintaining transverse dimensions, yielding an oblate spheroidal envelope with semiaxes $(a_\perp, a_\perp, a_\parallel)$ and $a_\parallel < a_\perp$.
  - This geometric dilation changes internal path lengths and curvature, lowering $\omega$.
 
 Geometry terminology follows [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md#canonical-geometry-variables): the envelope shape ratio is $\xi=R_{\parallel}/R_{\perp}$. The proper-time factor is not defined to be $\xi$; it is the extracted clock observable $\omega_{\text{clk}}/\omega_0=d\tau/dt$. In the homogeneous Lorentz-closure target, the theory must derive $\omega_{\text{clk}}/\omega_0\to\xi\to1/\gamma$.
@@ -40542,11 +40571,11 @@ $$
 c_{\perp}
 =
 c_\star
-\sqrt{1 - \frac{v^2}{c_\star^2}},
+\sqrt{1 - \frac{\|\mathbf{w}\|^2}{c_\star^2}},
 \qquad
-\omega(v, n=1) \approx \omega_0 \frac{c_{\perp}}{c_\star}
+\omega(\mathbf{w}, n=1) \approx \omega_0 \frac{c_{\perp}}{c_\star}
 \quad \Rightarrow\quad
-\frac{d\tau}{dt}\bigg|_{\text{kin}} \approx \sqrt{1 - \frac{v^2}{c_\star^2}}
+\frac{d\tau}{dt}\bigg|_{\text{kin}} \approx \sqrt{1 - \frac{\|\mathbf{w}\|^2}{c_\star^2}}
 $$
 in the regime where the clock's motion does not significantly disturb the local Noether sea. For SI comparison in the weak homogeneous observer branch, $c_\star$ is the measured low-gradient clock/signal speed $c_0=c_{\text{eff}}(\infty)$, not an independent replacement for the primitive wake speed $c_f$.
 
@@ -40599,13 +40628,13 @@ This coefficient must be derived from the same weak-field clock and phase map th
 
 ###### Combined Dilation
 
-In a region with potential $\Phi_N(\mathbf{x})$ and clock velocity $v$ relative to the Noether sea, we conjecture:
+In a region with potential $\Phi_N(\mathbf{x})$ and clock drift $\mathbf{w}$ relative to the Noether sea, we conjecture:
 $$
 \frac{d\tau}{dt}
-= \frac{\omega(v,\Phi_N,n)}{\omega_0}
-\approx \sqrt{1 + \frac{2\Phi_N}{c_0^2} - \frac{v^2}{c_0^2}}
+= \frac{\omega(\mathbf{w},\Phi_N,n)}{\omega_0}
+\approx \sqrt{1 + \frac{2\Phi_N}{c_0^2} - \frac{\|\mathbf{w}\|^2}{c_0^2}}
 $$
-in the weak-field, low-velocity observer limit, with higher-order corrections ($v^4/c_0^4$, $\Phi_N^2/c_0^4$, cross-terms) determined by the detailed Noether swarm response. Primitive simulations may still use $c_f$ inside the root equation; the PPN comparison uses the dressed asymptotic speed $c_0$.
+in the weak-field, low-velocity observer limit, with higher-order corrections ($\|\mathbf{w}\|^4/c_0^4$, $\Phi_N^2/c_0^4$, cross-terms) determined by the detailed Noether swarm response. Primitive simulations may still use $c_f$ inside the root equation; the PPN comparison uses the dressed asymptotic speed $c_0$.
 
 Outside that limit, $F$ will in general deviate from the GR expression and define the theory’s distinctive strong‑field / high‑velocity predictions.
 
@@ -40827,7 +40856,7 @@ This program fails—and the emergent‑metric project is likely untenable—if 
 ---
 
 **Deliverable of this document:**
-A concrete definition of **how** to compute $\omega(v,\Phi_{\text{eff}},n)$ for a tri‑binary clock, and a clear expression for $d\tau/dt$ in terms of those quantities.
+A concrete definition of **how** to compute $\omega(\mathbf{w},\Phi_{\text{eff}},n)$ for a tri‑binary clock, and a clear expression for $d\tau/dt$ in terms of those quantities.
 
 ###### Closure Program Interface (clock-to-PPN bridge)
 
@@ -47251,6 +47280,40 @@ Apparent inertial mass is expected to arise from a connected stack of effects:
   $$
   Language about velocity-dependent inertia should therefore be read as the moving center-of-mass response of the dressed assembly ledger, not as a change in scalar rest mass.
 - **Environment Dependence:** Local variations in Noether sea density, compliance, drift, and effective lapse can modulate the response. In dense or strongly graded regions, the effective inertial and gravitational response must be computed from the same medium-dressed closure map.
+
+###### Equivalence-Principle Response Target
+
+The mass thesis must recover not only an inertial response to imposed acceleration, but also the observed agreement between inertial and gravitational response. In $\mathbb{A}\mathbb{A}\mathbb{A}$ language, this is a same-map requirement: bulk acceleration of a stable assembly and a matched Noether sea gradient must perturb the same shielded internal causal ledger to tested accuracy.
+
+For a clock or mass-bearing assembly $A$, write the assembly-dependent clock/response factor in a weak cell as
+
+$$
+\chi_A(\mathbf{x})
+=
+N(\mathbf{x})\,[1+\epsilon_A(\mathbf{x})]
+$$
+
+where $N(\mathbf{x})$ is the universal effective lapse reconstructed from the local Noether sea state and $\epsilon_A$ is the assembly-dependent residue after the shared response has been removed. The weak equivalence target is then
+
+$$
+|\epsilon_A-\epsilon_B|
+\lesssim
+10^{-13}
+$$
+
+across tested material pairs after the corresponding inertial and gravitational response maps are compared. The exact bound belongs to the selected experimental class, but the structural point is fixed: if $\epsilon_A$ carries unsuppressed composition dependence, or if the acceleration row and gradient row use different Noether sea records, the scalar mass relation is only a fitted average rather than a branch consequence.
+
+Equivalently, the tensor response that maps exposed internal energy into $p_{\text{int}}^a$ must have the same homogeneous low-energy limit in acceleration and gradient probes:
+
+$$
+\mathcal{M}_{\text{sea,acc}}^{ab}(A)
+-
+\mathcal{M}_{\text{sea,grad}}^{ab}(A)
+=
+O(\epsilon_{\mathrm{EP}})
+$$
+
+with any residual reported as direction-dependent inertia, composition dependence, transport loss, or branch failure instead of being hidden inside $\zeta(A)$.
 
 ##### Stability Constraint
 A critical requirement: assemblies in **equilibrium** with the Noether sea (e.g., atoms in stable orbitals) must experience no dissipative drag in the ordinary sense. Otherwise, electron orbitals would lose stability, radiate energy, and collapse into the nucleus (the classical electron catastrophe).
@@ -54572,6 +54635,60 @@ E_\gamma
 $$
 
 Channel pages may add specialized variables, but they should not remove these fields. The polarization handoff remains inherited from photon Gate B; radiation records carry the fields needed by that gate, while the photon-spin and polarization proof remains outside the local radiation event record.
+
+##### Gate C Benchmark Vector
+
+For photon-producing routes, Gate C is the radiation-sector acceptance predicate:
+
+$$
+\operatorname{GateC}_{\gamma}(\mathsf e)
+=
+\operatorname{Ledger}_{\gamma}(\mathsf e)
+\wedge
+\operatorname{Trans}_{\gamma}(\mathsf e)
+\wedge
+\operatorname{Bench}_{\gamma}(\mathsf e)
+$$
+
+Here $\operatorname{Ledger}_{\gamma}$ requires the event ledger to close after photon output, recoil, remnant, medium update, wake handoff, and provenance rows are included. The transversality row is inherited from photon Gate B:
+
+$$
+\operatorname{Trans}_{\gamma}(\mathsf e)
+\Longleftrightarrow
+\left\|
+P_{\parallel,\hat{\mathbf{k}}}
+\Pi_{\gamma}\mathcal{L}_A(\mathsf e)
+\right\|_{\gamma}
+\le
+\epsilon_{\gamma,\parallel}
+$$
+
+so any longitudinal response must cancel, remain unexposed below tolerance, or route to a material, remnant, medium-bound, or massive-vector channel rather than a free photon.
+
+For a declared benchmark family $b$, the Gate C output should be a normalized residual vector rather than a narrative pass:
+
+$$
+\mathbf{R}_{\gamma,b}(\mathsf e)
+=
+\left(
+\frac{\Delta_E}{E_b+\varepsilon},
+\frac{\|\Delta_{\mathbf{p}}\|}{p_b+\varepsilon},
+\frac{\|\Delta_{\mathbf{J}}\|}{J_b+\varepsilon},
+\frac{\left\|P_{\parallel,\hat{\mathbf{k}}}\Pi_{\gamma}\mathcal{L}_A(\mathsf e)\right\|_{\gamma}}{\epsilon_{\gamma,\parallel}},
+R_{\mathrm{bench},b},
+R_{\mathrm{replay},b}
+\right)
+$$
+
+The benchmark scales $E_b$, $p_b$, and $J_b$ are declared comparison scales, not fitted recovery knobs. $R_{\mathrm{bench},b}$ is the family-specific residual, such as Larmor/Lienard power, Compton shift, pair threshold, or Planck occupation. $R_{\mathrm{replay},b}$ vanishes only when the same residual definition, channel boundary, and Noether sea variables replay across the selected event panel without retuning. The acceptance target is
+
+$$
+\left\|\mathbf{R}_{\gamma,b}(\mathsf e)\right\|_{\infty}
+\le
+1
+$$
+
+after photon Gate A supplies the admissible massless branch and photon Gate B supplies the transverse ledger. A radiation family is therefore not closed by matching one scalar benchmark if energy, momentum, angular momentum, transversality, provenance, or replayability still fails.
 
 #### Scattering and Reaction-Ledger Grammar
 
@@ -70649,9 +70766,11 @@ Requirements:
 2) Evaluate each existing scorecard category in closure-scorecard.md on a 0-100 scale.
 3) Use the validated-closure lens: certified equations, derivation depth, coefficient recovery, parameter determination, empirical precision, geometry/dynamics consistency, unresolved placeholders, and falsification-readiness.
 4) Do not let architectural coherence, explanatory logic, or ontology compensate for missing equations, missing coefficients, unfixed parameters, or unvalidated benchmark recovery.
-5) Add or populate the next dated assessment column in closure-scorecard.md with raw numeric scores, preserving previous assessment columns unless explicitly told to replace them.
-6) Recompute the TOTAL row as the weighted arithmetic mean using the Weight column.
-7) Keep all TeX intact and preserve category definitions unless explicitly asked to revise them.
+5) Add or populate the next dated assessment column in closure-scorecard.md with raw numeric scores, placing it after existing dated $\mathbb{A}\mathbb{A}\mathbb{A}$ columns and before $\Delta$; preserve previous assessment columns unless explicitly told to replace or remove them.
+6) Recompute each $\Delta$ value as the latest dated $\mathbb{A}\mathbb{A}\mathbb{A}$ score minus $\max(\text{Modern Physics Operational},\text{Modern Physics Mechanism})$.
+7) Recompute the TOTAL row as the weighted arithmetic mean using the Weight column; round the displayed TOTAL only after computing the weighted mean from the raw row scores.
+8) Add a dated assessment-notes section for the new column, naming concrete gains, regressions, and remaining blockers. If an assessment column or note is removed, remove or rewrite stale date references that pointed to it.
+9) Keep all TeX intact and preserve category definitions unless explicitly asked to revise them.
 ```
 
 Scale: `0-100` (standard numeric grading scale).
@@ -70660,6 +70779,10 @@ Total score rule: weighted arithmetic mean using the Weight column.
 #### Scoring Lens
 
 The scorecard now weights highly validated mathematical closure. A high score requires not only a coherent theory route, but also explicit equations, coefficient-level derivations, parameter fixing, and contact with tested benchmark physics.
+
+This lens scores accepted closure, not the presence of a plan for closure. Protocols, ledgers, mock packets, replay fixtures, and negative controls can raise Falsification Gates, Coverage+Interface Readiness, or adjacent readiness rows. They should raise Formula+Coefficient Recovery, Parameter+Scale Closure, or Empirical Precision+Benchmark Validation only when they produce retained branch-derived coefficients, fixed parameters, or benchmark passes under declared tolerances.
+
+Shared-record discipline is part of the score. A result that works only after changing the branch record, Noether sea state, coefficient row, apparatus kernel, or calibration context per observable remains local; it should not be scored as cross-regime or empirical closure. Negative and no-go diagnostics can improve auditability and falsification readiness, but they do not by themselves recover target formulas, constants, or benchmark data.
 
 Score bands:
 
@@ -70677,22 +70800,32 @@ Modern physics columns use the same categories for the effective-theory stack (`
 
 The $\Delta$ column is computed as the latest dated $\mathbb{A}\mathbb{A}\mathbb{A}$ score minus $\max(\text{Modern Physics Operational},\text{Modern Physics Mechanism})$; negative values mark current $\mathbb{A}\mathbb{A}\mathbb{A}$ deficits against the stronger modern-physics comparator.
 
-| Category | Weight | Description | Modern Physics Operational | Modern Physics Mechanism | $\mathbb{A}\mathbb{A}\mathbb{A}$ 2026-05-16 | $\mathbb{A}\mathbb{A}\mathbb{A}$ 2026-05-20 | $\mathbb{A}\mathbb{A}\mathbb{A}$ 2026-05-22 | $\Delta$ |
-| :--- | :---: | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| Axiom+Notation | 4 | Canonical symbols, definitions, and cross-chapter mathematical language consistency. | 96 | 82 | 92 | 95 | 98 | 2 |
-| Master EOM+Local Dynamics | 10 | Certified closure of the core equations of motion: local field/effective equations in modern physics and delayed path-history dynamics in $\mathbb{A}\mathbb{A}\mathbb{A}$. | 96 | 75 | 60 | 72 | 74 | -22 |
-| Potential+Action Closure | 9 | Action, potential, variational, and force/acceleration closure, including whether the central dynamics derive from a stable mathematical principle. | 98 | 86 | 45 | 61 | 63 | -35 |
-| Conservation+Invariant Closure | 7 | Energy, momentum, angular momentum, charge, quantum-number, and symmetry-invariant closure, including no-go consistency. | 98 | 92 | 50 | 63 | 65 | -33 |
-| Formula+Coefficient Recovery | 13 | Explicit recovery of target formulas and coefficients: Lorentz behavior, clock/redshift laws, PPN terms, mass formulas, quantum probabilities, and Standard Model mappings. | 96 | 78 | 28 | 43 | 44 | -52 |
-| Parameter+Scale Closure | 10 | Determination status of constants, couplings, scales, constitutive coefficients, and renormalization or calibration freedom. | 70 | 42 | 25 | 37 | 38 | -32 |
-| Empirical Precision+Benchmark Validation | 14 | Agreement with direct observation, precision tests, benchmark experiments, simulations, and quantitative pass/fail thresholds. | 98 | 78 | 20 | 34 | 35 | -63 |
-| Cross-Regime Bridge | 8 | Mathematical consistency across regimes: micro to macro, quantum to classical, particle to cosmology, weak to strong gravity, and thermodynamics. | 82 | 48 | 42 | 59 | 63 | -19 |
-| Internal Constituent Dynamics | 5 | Detailed closure of internal constituent regimes: bound-state/composite dynamics in modern physics and nested shell swarm/Noether swarm dynamics in $\mathbb{A}\mathbb{A}\mathbb{A}$. | 82 | 50 | 55 | 69 | 73 | -9 |
-| UV/IR+Regularization Completion | 6 | Ultraviolet and infrared completion quality, including cutoff dependence, singular behavior, regularization limits, horizon/singularity issues, and asymptotics. | 70 | 35 | 30 | 42 | 43 | -27 |
-| Falsification Gates | 4 | Explicitness and enforceability of falsification thresholds, stop conditions, validation gates, and failure criteria. | 98 | 88 | 80 | 90 | 92 | -6 |
-| Coverage+Interface Readiness | 2 | Coverage completeness across mathematics/geometry-relevant domains, including interface consistency and minimally developed sections. | 99 | 82 | 72 | 88 | 91 | -8 |
-| Theory Architecture+Ontic Logic | 8 | Unified theoretical architecture, explanatory parsimony, substrate logic, and avoidance of ad-hoc patching, scored separately from validated formula recovery. | 58 | 35 | 96 | 99 | 99 | 41 |
-| **TOTAL** | **100** | **Weighted mean across all categories.** | **88** | **67** | **46** | **59** | **61** | **-27** |
+| Category | Weight | Description | Modern Physics Operational | Modern Physics Mechanism | $\mathbb{A}\mathbb{A}\mathbb{A}$ 2026-05-16 | $\mathbb{A}\mathbb{A}\mathbb{A}$ 2026-06-20 | $\Delta$ |
+| :--- | :---: | :--- | :---: | :---: | :---: | :---: | :---: |
+| Empirical Precision+Benchmark Validation | 14 | Agreement with direct observation, precision tests, benchmark experiments, simulations, and quantitative pass/fail thresholds. | 98 | 78 | 20 | 39 | -59 |
+| Formula+Coefficient Recovery | 13 | Explicit recovery of target formulas and coefficients: Lorentz behavior, clock/redshift laws, PPN terms, mass formulas, quantum probabilities, and Standard Model mappings. | 96 | 78 | 28 | 48 | -48 |
+| Parameter+Scale Closure | 10 | Determination status of constants, couplings, scales, constitutive coefficients, and renormalization or calibration freedom. | 70 | 42 | 25 | 42 | -28 |
+| Potential+Action Closure | 9 | Action, potential, variational, and force/acceleration closure, including whether the central dynamics derive from a stable mathematical principle. | 98 | 86 | 45 | 71 | -27 |
+| Conservation+Invariant Closure | 7 | Energy, momentum, angular momentum, charge, quantum-number, and symmetry-invariant closure, including no-go consistency. | 98 | 92 | 50 | 71 | -27 |
+| UV/IR+Regularization Completion | 6 | Ultraviolet and infrared completion quality, including cutoff dependence, singular behavior, regularization limits, horizon/singularity issues, and asymptotics. | 70 | 35 | 30 | 49 | -21 |
+| Master EOM+Local Dynamics | 10 | Certified closure of the core equations of motion: local field/effective equations in modern physics and delayed path-history dynamics in $\mathbb{A}\mathbb{A}\mathbb{A}$. | 96 | 75 | 60 | 80 | -16 |
+| Cross-Regime Bridge | 8 | Mathematical consistency across regimes: micro to macro, quantum to classical, particle to cosmology, weak to strong gravity, and thermodynamics. | 82 | 48 | 42 | 69 | -13 |
+| Internal Constituent Dynamics | 5 | Detailed closure of internal constituent regimes: bound-state/composite dynamics in modern physics and nested shell swarm/Noether swarm dynamics in $\mathbb{A}\mathbb{A}\mathbb{A}$. | 82 | 50 | 55 | 78 | -4 |
+| Falsification Gates | 4 | Explicitness and enforceability of falsification thresholds, stop conditions, validation gates, and failure criteria. | 98 | 88 | 80 | 95 | -3 |
+| Coverage+Interface Readiness | 2 | Coverage completeness across mathematics/geometry-relevant domains, including interface consistency and minimally developed sections. | 99 | 82 | 72 | 96 | -3 |
+| Axiom+Notation | 4 | Canonical symbols, definitions, and cross-chapter mathematical language consistency. | 96 | 82 | 92 | 99 | 3 |
+| Theory Architecture+Ontic Logic | 8 | Unified theoretical architecture, explanatory parsimony, substrate logic, and avoidance of ad-hoc patching, scored separately from validated formula recovery. | 58 | 35 | 96 | 99 | 41 |
+| **TOTAL** | **100** | **Weighted mean across all categories.** | **88** | **67** | **46** | **65** | **-23** |
+
+#### 2026-06-20 Assessment Notes
+
+The 2026-06-20 assessment records a weighted $\mathbb{A}\mathbb{A}\mathbb{A}$ score of `65` after a full read of the `163` markdown files under `content/markdown/aaa`. The score is concentrated in mathematical scaffolding, validation discipline, and interface coverage rather than in final recovery of observed coefficients. The corpus now has a much stronger causal-action and energy/conservation spine: the scalar causal-hit functional has a regularized theorem spine and finite-memory bounds, the energy chapter separates finite-window wake-history balances from particle-only conservation, and nested shell swarm dynamics states a shared causal-closure certificate target that ties causal-root ledgers, Jacobian floors, mass response, observer exports, event ledgers, and stability rows to the same retained branch.
+
+The score increase is deliberately limited by the validated-closure lens. Many of the strongest new artifacts are still explicitly theorem targets, mock packets, replay fixtures, or rejection diagnostics. The hydrogen $\Gamma_N$ spectral scan now keeps density, Noether sea delay, scale, envelope, and core rows separate and uses a shared coefficient row, but it does not yet derive hydrogen envelope gaps, real observer frequencies, or the static response vector from the master dynamics. The cosmology shared-residual fit, Bell-family record-measure harness, radiation ledgers, massive-superposition gravity packet, and thermodynamic residual protocol improve falsification-readiness and benchmark shape, but they do not yet supply empirical joint fits or accepted branch-derived coefficients.
+
+Formula, parameter, and empirical rows remain the main drag on the total. The corpus still lacks a single accepted native record that supplies $E_{\text{internal}}(A_0)$, $\zeta(A_0)$, $\mathcal{M}_{\text{sea}}^{ab}$, Lorentz/PPN coefficients, photon-channel coefficients, Born/Bell measures, weak-mixing and CKM/PMNS values, Standard Model mass formulas, radiation benchmarks, and shared cosmology residual fits. The Parameter Ledger improves the bookkeeping of primitive constants, geometric closure targets, constitutive closure targets, CODATA benchmark rows, and null-result discipline, but most decisive symbols remain open or branch-dependent rather than fixed outputs.
+
+Falsification and coverage now score near modern-operational levels because the corpus contains explicit sector acceptance sets, null-result residuals, failure conditions, benchmark protocols, and cross-regime packet schemas. That does not make the total near modern physics. Architecture and ontology remain very strong, but their limited score weight prevents coherence from compensating for missing derivations, missing coefficients, unfixed parameters, and unvalidated benchmark recovery.
 
 #### 2026-05-22 Assessment Notes
 
@@ -70741,17 +70874,7 @@ This is a concrete mathematical advance because it prevents isolated seed charts
 
 Executable neutral-swarm diagnostics add negative evidence and sharper first-failure semantics. The current sampled octahedral root-ledger diagnostic passes the all-pairs sampled root/Jacobian screen, while the rigid zero-offset fixed-speed row is rejected by a nonzero tangential residual witness and an ordinary same-source positive-delay no-go. These artifacts improve falsification readiness and empirical/simulation discipline because they report `not_retained` rather than converting a failed seed into branch evidence. The score increase is deliberately small because sampled diagnostics, no-go witnesses for one rigid seed, and finite-mode search schemas do not yet replace an interval-certified all-pairs root ledger, action/Noether row, event ledger, stability certificate, or observer-export recovery.
 
-The total remains far below modern operational closure for the same reason as May 20. The theory stack has stronger taxonomy, residual surfaces, and fail-closed diagnostics, but not the decisive retained branch. Until a single native record supplies $E_{\text{internal}}(A_0)$, $\zeta(A_0)$, $\mathcal{M}_{\text{sea}}^{ab}$, Lorentz/PPN recovery, photon-channel recovery, quantum source measures, Standard Model mapping coefficients, and shared cosmology fits, architecture and auditability must not inflate the validated-closure total.
-
-#### 2026-05-20 Assessment Notes
-
-The 2026-05-20 assessment raises the weighted $\mathbb{A}\mathbb{A}\mathbb{A}$ score from `55` to `59`. The gain is real but deliberately limited: May 20 work moved several live areas from vague obligation to exact certificate, residual, no-go, or fail-closed form, while leaving the decisive coefficient and benchmark recoveries open.
-
-The largest gains are in Master EOM+Local Dynamics, Potential+Action Closure, Conservation+Invariant Closure, Falsification Gates, and Cross-Regime Bridge. The master-equation stack now has the normalized delayed-interior characteristic-tail kernel, receiver-gradient cancellation, and wake-history energy/momentum/angular-momentum increments in corpus prose. The spiral program has a theorem-grade A1 constant-$\Omega$ kinematic-balance no-go, a VP-1 outward tangential-drive failure, and an explicit force-ratio obstruction showing that $\Gamma=b_\ast^2c_f^2r_\ast/(\kappa q_1^2)$ is not fixed by the branch kinematics alone. For A1, the radial turn passes for the prescribed history, exact tangential compatibility fails, and the finite-memory inverse-rate witness moves the live burden to interval transport of a nonconstant time law. The proof-program ledger also now records accepted fold constants, multiple parent-complement rejection routes, and a fresh fold-adapted collocation target rather than treating the failed cosine packet as an ambiguous near miss.
-
-Formula, parameter, and empirical scores rise only modestly. The $A_0$ mass-map work now has a compact finite-coordinate no-go, a branch-chart revision contract, fail-closed anti-overfit checks, energy/shielding and medium-response handoffs, and normalized $\alpha_m$ mass-map notation across the corpus. Angular-momentum work has populated symbolic certificate instances, spinor return-table controls, photon Gate B substrate residuals, Stern-Gerlach-like diagnostics, and Bell handoff packets. These are stronger mathematical objects, but they are still blocked on retained branch-chart rows, native photon Gate A branches, event ledgers, apparatus models, or accepted source measures.
-
-The total remains far below modern operational closure because no first accepted $A_0$ branch exists; $\zeta(A_0)$, $E_{\text{internal}}(A_0)$, $\mathcal{M}_{\text{sea}}^{ab}$, Lorentz / PPN coefficients, photon-channel coefficients, Born/Bell measures, weak mixing, Standard Model mass formulas, and cosmological residual fits are still not recovered from one accepted native record. May 20 improves closure pressure by making failures and next certificates sharper, not by passing the central benchmark rows.
+The total remains far below modern operational closure for the same reason as the prior assessments. The theory stack has stronger taxonomy, residual surfaces, and fail-closed diagnostics, but not the decisive retained branch. Until a single native record supplies $E_{\text{internal}}(A_0)$, $\zeta(A_0)$, $\mathcal{M}_{\text{sea}}^{ab}$, Lorentz/PPN recovery, photon-channel recovery, quantum source measures, Standard Model mapping coefficients, and shared cosmology fits, architecture and auditability must not inflate the validated-closure total.
 
 #### 2026-05-19 Assessment Notes
 
@@ -85250,20 +85373,58 @@ $$
 $$
 The equation is an observer-level statement: it tells Physical Observers how many proper-time units a moving clock records relative to an inertial coordinate description.
 
+For the Noether swarm bridge, the velocity entering the material response is the assembly drift through the local Noether sea, not an abstract coordinate label:
+$$
+\mathbf{w}
+=
+\mathbf{V}_{\text{cm}}-\mathbf{u}_{\text{sea}}
+$$
+In the local Noether sea rest frame, this reduces to the center-of-mass drift. The corresponding effective Lorentz factor is
+$$
+\gamma_{\text{eff}}(\mathbf{w})
+=
+\frac{1}{\sqrt{1-\|\mathbf{w}\|^2/c_{\text{eff}}^2}}
+$$
+
 In $\mathbb{A}\mathbb{A}\mathbb{A}$, the primitive time parameter is absolute time $t$. A clock is not primitive time itself; it is a stable assembly that counts internal cycles. For a Noether swarm clock, a natural clock channel is the middle binary or a transition built from the coupled nested shell swarm ledger. The proper-time map is therefore an extracted frequency ratio:
 $$
 \frac{d\tau}{dt}
 =
-\frac{\omega_{\text{clk}}(v,n,\chi_{\text{sea}},\Phi_{\text{eff}},\text{geometry})}{\omega_0}
+\frac{\omega_{\text{clk}}(\mathbf{w},n,\chi_{\text{sea}},\Phi_{\text{eff}},\text{geometry})}{\omega_0}
 $$
 The special-relativistic target is recovered when homogeneous weak-field conditions give
 $$
-\frac{\omega_{\text{clk}}(v)}{\omega_0}
+\frac{\omega_{\text{clk}}(\mathbf{w})}{\omega_0}
 \approx
-\sqrt{1-\frac{v^2}{c_{\text{eff}}^2}}
+\sqrt{1-\frac{\|\mathbf{w}\|^2}{c_{\text{eff}}^2}}
+=
+\frac{1}{\gamma_{\text{eff}}(\mathbf{w})}
 $$
 
-The Noether swarm mechanism behind that target is finite-speed causal closure. As the center of mass translates, each internal wake return must close across a slanted path-history geometry. The assembly can remain stable only if orbital phase, path length, envelope geometry, and inter-layer timing retune together. Clock slowing is then the observer-facing readout of a deeper assembly fact: the moving swarm has fewer available stable closure cycles per unit absolute time.
+The Noether swarm mechanism behind that target is finite-speed causal closure. As the center of mass drifts through the local Noether sea, each internal wake return must close across a slanted path-history geometry. In the local Noether sea rest frame, the channel speed budget separates into a drift component and a transverse closure component:
+$$
+c_{\text{eff}}^2
+=
+\|\mathbf{w}\|^2+c_{\perp}^2
+$$
+so
+$$
+c_{\perp}
+=
+c_{\text{eff}}
+\sqrt{1-\frac{\|\mathbf{w}\|^2}{c_{\text{eff}}^2}}
+=
+\frac{c_{\text{eff}}}{\gamma_{\text{eff}}(\mathbf{w})}
+$$
+Clock slowing is the observer-facing readout of this retuning:
+$$
+\frac{d\tau}{dt}
+=
+\frac{c_{\perp}}{c_{\text{eff}}}
+=
+\frac{1}{\gamma_{\text{eff}}(\mathbf{w})}
+$$
+The assembly can remain stable only if orbital phase, path length, envelope geometry, and inter-layer timing retune together, so the moving swarm has fewer available stable closure cycles per unit absolute time.
 
 ###### Ruler Channel
 
@@ -85279,7 +85440,7 @@ In the Noether swarm implementation story, rods are made from bound assemblies w
 $$
 \mathcal{E}_{\text{excl}}
 =
-\mathcal{E}_{\text{excl}}(\mathbf{v},\mathbf{A}_i,\mathbf{A}_m,\mathbf{A}_o,R_i,R_m,R_o,n,\chi_{\text{sea}})
+\mathcal{E}_{\text{excl}}(\mathbf{w},\mathbf{A}_i,\mathbf{A}_m,\mathbf{A}_o,R_i,R_m,R_o,n,\chi_{\text{sea}})
 $$
 Here the subscripts $i,m,o$ refer to the inner, middle, and outer binary layers. The Lorentz-compatible weak-field target is the envelope-axis relation
 $$
@@ -85287,7 +85448,7 @@ $$
 \to
 \frac{1}{\gamma_{\text{eff}}},
 \qquad
-\gamma_{\text{eff}}=\frac{1}{\sqrt{1-v^2/c_{\text{eff}}^2}}
+\gamma_{\text{eff}}(\mathbf{w})=\frac{1}{\sqrt{1-\|\mathbf{w}\|^2/c_{\text{eff}}^2}}
 $$
 
 The important point is that the contraction is not a primitive command imposed on matter. It is a closure condition on matter. If delayed wake exchange sets stable separations, and if those wake exchanges propagate through a medium with effective speed $c_{\text{eff}}$, then the equilibrium geometry of a moving bound system must change in the direction that preserves return timing and phase lock.
@@ -85296,7 +85457,7 @@ In the geometry canon, this contraction is recorded first as the Noether swarm e
 
 ###### Closed Return Cycle And Oblate Spheroidal Envelope Map
 
-The shortest derivation of the oblate spheroidal envelope map uses the difference between a one-way leg and a closed return cycle. A one-way causal leg in the drift direction exposes the preferred Noether sea frame:
+The shortest derivation of the oblate spheroidal envelope map uses the difference between a one-way leg and a closed return cycle. In this subsection, $v$ denotes the scalar drift magnitude $\|\mathbf{w}\|$. A one-way causal leg in the drift direction exposes the preferred Noether sea frame:
 $$
 t_{+}=\frac{R_{\parallel}}{c_{\text{eff}}-v},
 \qquad
@@ -85371,6 +85532,8 @@ Thus $\gamma_{\text{eff}}$ maps to the shape channel $\xi$, while $\lambda$ rema
 This is the bridge insight. The one-way legs reveal the substrate anisotropy; the closed return cycle determines the geometry that hides it from Physical Observers. The Lorentz factor is therefore not painted onto an oblate spheroidal envelope. It is the return-cycle closure condition expressed as an axis ratio.
 
 This is also the precise meaning of quantizing the Lorentz response. The smooth equation for $\gamma_{\text{eff}}(v)$ remains the effective observer law, but a Noether swarm assembly realizes any admitted value only through a discrete stable branch class $q$ with a definite causal-root ledger, return-cycle period, and envelope projection. The continuous Lorentz curve is therefore treated as the common observer envelope of branch-indexed Noether swarm closure states, not as an independent kinematic rule imposed on matter.
+
+The same component split also states the material speed-limit side of the bridge. As $\|\mathbf{w}\|\to c_{\text{eff}}$, the transverse budget $c_{\perp}$ tends to zero. A limiting branch may still carry axial wake transfer in the bookkeeping sense, but it can no longer function as a volumetric clock or ruler because the internal binary and inter-layer loops have no transverse causal capacity left. The speed bound is therefore not merely a rule about fast coordinate motion; it is the branch-failure point at which a bound assembly can no longer preserve the clock/ruler ledger required for ordinary matter.
 
 ###### Branch-Quantized Lorentz Response
 

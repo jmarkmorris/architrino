@@ -1772,6 +1772,8 @@ export interface SolverPairInteractionF64Request {
   pathConstraintBoundaryRelaxationTolerance?: number;
   pathConstraintBoundaryRelaxationStepTolerance?: number;
   pathConstraintBoundaryResidualTolerance?: number;
+  pathConstraintPositionResidualTolerance?: number;
+  pathConstraintGuidanceAccelerationTolerance?: number;
   initialStates: SolverPairInteractionStateF64Request[];
   pathConstraints?: SolverPairInteractionPathConstraintF64Request[];
 }
@@ -2883,6 +2885,13 @@ export interface SolverRunSummary {
   interactionLaw?: string;
   executionPath?: string;
   pathConstraintCount?: number;
+  pathConstraintFrameRefinementSampleCount?: number;
+  pathConstraintPositionResidualSampleCount?: number;
+  pathConstraintPositionResidualStatus?: SolverPairInteractionPositionResidualStatus;
+  pathConstraintPositionResidualTolerance?: number;
+  maxPathConstraintPositionResidual?: number;
+  meanPathConstraintPositionResidual?: number;
+  rmsPathConstraintPositionResidual?: number;
   pathConstraintResidualSampleCount?: number;
   maxPathConstraintResidual?: number;
   meanPathConstraintResidual?: number;
@@ -2899,6 +2908,7 @@ export interface SolverRunSummary {
   pathConstraintBoundaryRelaxationTolerance?: number;
   pathConstraintBoundaryRelaxationStepTolerance?: number;
   pathConstraintBoundaryRelaxationStatus?: string;
+  pathConstraintBoundaryRelaxationResidualEvidenceStatus?: string;
   pathConstraintBoundaryRelaxationResidualSampleCount?: number;
   maxPathConstraintBoundaryRelaxationResidualBefore?: number;
   maxPathConstraintBoundaryRelaxationResidualAfter?: number;
@@ -2916,11 +2926,16 @@ export interface SolverRunSummary {
   pathConstraintBoundaryRelaxationFinalStepFactor?: number;
   pathConstraintBoundaryRelaxationSelectedCandidateKind?: string;
   pathConstraintBoundaryRelaxationCenterOfMassSelectedCount?: number;
+  pathConstraintBoundaryRelaxationCandidateVariantCount?: number;
+  pathConstraintBoundaryRelaxationLineSearchTrialCount?: number;
+  pathConstraintBoundaryRelaxationCandidateKindMask?: number;
   pathConstraintSolverStatus?: string;
   pathConstraintSolverClaim?: string;
   maxPathConstraintGuidanceAcceleration?: number;
   meanPathConstraintGuidanceAcceleration?: number;
   rmsPathConstraintGuidanceAcceleration?: number;
+  pathConstraintGuidanceAccelerationStatus?: SolverPairInteractionGuidanceAccelerationStatus;
+  pathConstraintGuidanceAccelerationTolerance?: number;
   pathConstraintBoundaryResidualSampleCount?: number;
   pathConstraintBoundaryResidualStatus?: SolverPairInteractionBoundaryResidualStatus;
   pathConstraintBoundaryResidualTolerance?: number;
@@ -2936,6 +2951,20 @@ export type SolverPairInteractionBoundaryResidualStatus =
   | "within_tolerance"
   | "exceeded_tolerance";
 
+export type SolverPairInteractionPositionResidualStatus =
+  | "unchecked"
+  | "no_position_samples"
+  | "unresolved"
+  | "within_tolerance"
+  | "exceeded_tolerance";
+
+export type SolverPairInteractionGuidanceAccelerationStatus =
+  | "unchecked"
+  | "no_guidance_samples"
+  | "unresolved"
+  | "within_tolerance"
+  | "exceeded_tolerance";
+
 export interface SolverPairInteractionSummary {
   runId?: string;
   claimLevel?: SolverClaimLevel;
@@ -2947,6 +2976,13 @@ export interface SolverPairInteractionSummary {
   interactionLaw?: string;
   executionPath?: string;
   pathConstraintCount?: number;
+  pathConstraintFrameRefinementSampleCount?: number;
+  pathConstraintPositionResidualSampleCount?: number;
+  pathConstraintPositionResidualStatus?: SolverPairInteractionPositionResidualStatus;
+  pathConstraintPositionResidualTolerance?: number;
+  maxPathConstraintPositionResidual?: number;
+  meanPathConstraintPositionResidual?: number;
+  rmsPathConstraintPositionResidual?: number;
   pathConstraintResidualSampleCount?: number;
   maxPathConstraintResidual?: number;
   meanPathConstraintResidual?: number;
@@ -2963,6 +2999,7 @@ export interface SolverPairInteractionSummary {
   pathConstraintBoundaryRelaxationTolerance?: number;
   pathConstraintBoundaryRelaxationStepTolerance?: number;
   pathConstraintBoundaryRelaxationStatus?: string;
+  pathConstraintBoundaryRelaxationResidualEvidenceStatus?: string;
   pathConstraintBoundaryRelaxationResidualSampleCount?: number;
   maxPathConstraintBoundaryRelaxationResidualBefore?: number;
   maxPathConstraintBoundaryRelaxationResidualAfter?: number;
@@ -2980,11 +3017,16 @@ export interface SolverPairInteractionSummary {
   pathConstraintBoundaryRelaxationFinalStepFactor?: number;
   pathConstraintBoundaryRelaxationSelectedCandidateKind?: string;
   pathConstraintBoundaryRelaxationCenterOfMassSelectedCount?: number;
+  pathConstraintBoundaryRelaxationCandidateVariantCount?: number;
+  pathConstraintBoundaryRelaxationLineSearchTrialCount?: number;
+  pathConstraintBoundaryRelaxationCandidateKindMask?: number;
   pathConstraintSolverStatus?: string;
   pathConstraintSolverClaim?: string;
   maxPathConstraintGuidanceAcceleration?: number;
   meanPathConstraintGuidanceAcceleration?: number;
   rmsPathConstraintGuidanceAcceleration?: number;
+  pathConstraintGuidanceAccelerationStatus?: SolverPairInteractionGuidanceAccelerationStatus;
+  pathConstraintGuidanceAccelerationTolerance?: number;
   pathConstraintBoundaryResidualSampleCount?: number;
   pathConstraintBoundaryResidualStatus?: SolverPairInteractionBoundaryResidualStatus;
   pathConstraintBoundaryResidualTolerance?: number;

@@ -407,6 +407,14 @@ struct ArchitrinoSolverPairInteractionSummaryF64 {
   double boundary_relaxation_residual_settling_rate;
   double mean_boundary_relaxation_residual_settling_rate;
   double rms_boundary_relaxation_residual_settling_rate;
+  std::uint64_t frame_refinement_sample_count;
+  std::uint64_t boundary_relaxation_candidate_variant_count;
+  std::uint64_t boundary_relaxation_line_search_trial_count;
+  std::uint64_t boundary_relaxation_candidate_kind_mask;
+  std::uint64_t position_residual_sample_count;
+  double max_position_residual;
+  double mean_position_residual;
+  double rms_position_residual;
 };
 
 struct ArchitrinoSolverMotionFrameRowF64 {

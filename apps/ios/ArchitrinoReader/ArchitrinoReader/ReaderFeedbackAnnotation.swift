@@ -60,9 +60,27 @@ struct ReaderFeedbackContext {
         Package date: \(packageDate)
         App version: \(Self.appVersionLabel)
 
-        GitHub issue page: https://github.com/jmarkmorris/architrino/issues/new
-        GitHub login is required to submit there.
+        Use the GitHub feedback button in the app to open a prefilled issue.
+        GitHub login is required.
         """
+    }
+
+    var githubIssueURL: URL {
+        ReaderFeedbackIssue.url(title: githubIssueTitle, body: githubIssueBody)
+    }
+
+    var githubIssueTitle: String {
+        "Feedback: \(locationLabel)"
+    }
+
+    var githubIssueBody: String {
+        ReaderFeedbackIssue.body(
+            locationLabel: locationLabel,
+            packageVersion: packageVersion,
+            packageDate: packageDate,
+            appVersion: Self.appVersionLabel,
+            includesClipboardScreenshot: true
+        )
     }
 
     private static var appVersionLabel: String {
@@ -82,6 +100,43 @@ struct ReaderFeedbackContext {
     }
 }
 
+enum ReaderFeedbackIssue {
+    static func url(title: String, body: String) -> URL {
+        var components = URLComponents(string: "https://github.com/jmarkmorris/architrino/issues/new")!
+        components.queryItems = [
+            URLQueryItem(name: "title", value: title),
+            URLQueryItem(name: "body", value: body),
+        ]
+        return components.url!
+    }
+
+    static func body(
+        locationLabel: String,
+        packageVersion: String,
+        packageDate: String,
+        appVersion: String,
+        includesClipboardScreenshot: Bool
+    ) -> String {
+        let screenshotInstruction = includesClipboardScreenshot
+            ? "\n\nThe app copied an annotated screenshot to the clipboard. Paste it into this issue if GitHub does not insert it automatically."
+            : ""
+
+        return """
+        ## Feedback
+
+        Tell us what you noticed, what confused you, or what would help. Use whatever level of detail fits you.\(screenshotInstruction)
+
+        ## Reader context
+
+        - Location: \(locationLabel)
+        - Package version: \(packageVersion)
+        - Package date: \(packageDate)
+        - App version: \(appVersion)
+
+        """
+    }
+}
+
 struct ReaderPageFeedbackOverlay: View {
     let context: ReaderFeedbackContext
     let theme: ReaderTheme
@@ -91,6 +146,7 @@ struct ReaderPageFeedbackOverlay: View {
     @State private var canvasView: PKCanvasView?
     @State private var hasDrawing = false
     @State private var sharePayload: ReaderFeedbackSharePayload?
+    @State private var safariDestination: ReaderSafariDestination?
 
     init(baseImage: UIImage, context: ReaderFeedbackContext, theme: ReaderTheme, onClose: @escaping () -> Void) {
         self.feedbackBaseImage = ReaderFeedbackImageRenderer.makeFeedbackBaseImage(
@@ -144,8 +200,12 @@ struct ReaderPageFeedbackOverlay: View {
                                 updateDrawingState()
                             }
 
-                            feedbackIconButton(systemName: "square.and.arrow.up", accessibilityLabel: "Share annotated feedback") {
+                            feedbackIconButton(systemName: "square.and.arrow.up", accessibilityLabel: "Share or save annotated feedback") {
                                 shareAnnotatedFeedback()
+                            }
+
+                            feedbackSubmitButton {
+                                openGitHubIssue()
                             }
                         }
                         .padding(.horizontal, 8)
@@ -162,6 +222,10 @@ struct ReaderPageFeedbackOverlay: View {
         }
         .sheet(item: $sharePayload) { payload in
             ReaderFeedbackShareSheet(activityItems: payload.activityItems)
+        }
+        .sheet(item: $safariDestination) { destination in
+            ReaderSafariView(url: destination.url)
+                .ignoresSafeArea()
         }
     }
 
@@ -183,6 +247,28 @@ struct ReaderPageFeedbackOverlay: View {
         .accessibilityLabel(accessibilityLabel)
     }
 
+    private func feedbackSubmitButton(action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            ViewThatFits(in: .horizontal) {
+                feedbackSubmitLabel("Submit GitHub issue")
+                feedbackSubmitLabel("Submit issue")
+            }
+        }
+        .accessibilityLabel("Submit GitHub issue")
+    }
+
+    private func feedbackSubmitLabel(_ title: String) -> some View {
+        Label(title, systemImage: "exclamationmark.bubble")
+            .font(.system(size: 15, weight: .semibold))
+            .foregroundStyle(theme.feedbackActionColor)
+            .lineLimit(1)
+            .minimumScaleFactor(0.82)
+            .padding(.horizontal, 12)
+            .frame(height: 36)
+            .background(theme.feedbackChromeBackgroundColor)
+            .clipShape(Capsule())
+    }
+
     private func updateDrawingState() {
         guard let canvasView else {
             hasDrawing = false
@@ -192,17 +278,24 @@ struct ReaderPageFeedbackOverlay: View {
     }
 
     private func shareAnnotatedFeedback() {
+        sharePayload = ReaderFeedbackSharePayload(activityItems: [context.shareText, currentFeedbackImage()])
+    }
+
+    private func openGitHubIssue() {
+        UIPasteboard.general.image = currentFeedbackImage()
+        safariDestination = ReaderSafariDestination(url: context.githubIssueURL)
+    }
+
+    private func currentFeedbackImage() -> UIImage {
         guard let canvasView else {
-            sharePayload = ReaderFeedbackSharePayload(activityItems: [context.shareText, feedbackBaseImage])
-            return
+            return feedbackBaseImage
         }
 
-        let image = ReaderFeedbackImageRenderer.renderAnnotatedImage(
+        return ReaderFeedbackImageRenderer.renderAnnotatedImage(
             baseImage: feedbackBaseImage,
             drawing: canvasView.drawing,
             canvasBounds: canvasView.bounds
         )
-        sharePayload = ReaderFeedbackSharePayload(activityItems: [context.shareText, image])
     }
 }
 
@@ -346,41 +439,26 @@ private enum ReaderFeedbackImageRenderer {
         context.fill(rect)
 
         let inset = ReaderFeedbackLayout.commentPanelInset
-        let gutter = ReaderFeedbackLayout.commentPanelGutter
-        let columnWidth = (rect.width - (inset * 2) - gutter) / 2
-        let leftColumn = CGRect(x: rect.minX + inset, y: rect.minY, width: columnWidth, height: rect.height)
-        let rightColumn = CGRect(x: leftColumn.maxX + gutter, y: rect.minY, width: columnWidth, height: rect.height)
+        let writableRect = rect.insetBy(dx: inset, dy: 0)
         let rulePath = UIBezierPath()
         let firstRuleY = rect.minY + ReaderFeedbackLayout.commentPanelTopPadding
         let lastRuleY = rect.maxY - ReaderFeedbackLayout.commentPanelBottomPadding
         var y = firstRuleY
 
         while y <= lastRuleY {
-            rulePath.move(to: CGPoint(x: leftColumn.minX, y: y))
-            rulePath.addLine(to: CGPoint(x: leftColumn.maxX, y: y))
-            rulePath.move(to: CGPoint(x: rightColumn.minX, y: y))
-            rulePath.addLine(to: CGPoint(x: rightColumn.maxX, y: y))
+            rulePath.move(to: CGPoint(x: writableRect.minX, y: y))
+            rulePath.addLine(to: CGPoint(x: writableRect.maxX, y: y))
             y += ReaderFeedbackLayout.commentPanelLineSpacing
         }
-
-        let dividerPath = UIBezierPath()
-        let dividerX = rect.midX
-        dividerPath.move(to: CGPoint(x: dividerX, y: rect.minY + 12))
-        dividerPath.addLine(to: CGPoint(x: dividerX, y: rect.maxY - 12))
 
         theme.feedbackRuleUIColor.setStroke()
         rulePath.lineWidth = 1
         rulePath.stroke()
-
-        theme.feedbackRuleUIColor.withAlphaComponent(0.72).setStroke()
-        dividerPath.lineWidth = 1
-        dividerPath.stroke()
     }
 }
 
 private enum ReaderFeedbackLayout {
     static let commentPanelInset: CGFloat = 18
-    static let commentPanelGutter: CGFloat = 28
     static let commentPanelTopPadding: CGFloat = 22
     static let commentPanelBottomPadding: CGFloat = 12
     static let commentPanelLineSpacing: CGFloat = 24

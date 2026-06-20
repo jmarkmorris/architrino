@@ -21,7 +21,7 @@ int main() {
   static_assert(sizeof(ArchitrinoSolverPairInteractionRequestF64) == 80);
   static_assert(sizeof(ArchitrinoSolverPairInteractionStateF64) == 80);
   static_assert(sizeof(ArchitrinoSolverPairInteractionPathConstraintF64) == 48);
-  static_assert(sizeof(ArchitrinoSolverPairInteractionSummaryF64) == 248);
+  static_assert(sizeof(ArchitrinoSolverPairInteractionSummaryF64) == 312);
 
   const architrino::solver::LinearPathSegment segment{
       "motion-path",
@@ -344,9 +344,9 @@ int main() {
   };
   ArchitrinoSolverPairInteractionRequestF64 abiPairConstrainedRequest = abiPairRequest;
   abiPairConstrainedRequest.step = 0.25;
-  ArchitrinoSolverMotionFrameRowF64 abiPairConstrainedFrames[10]{};
+  ArchitrinoSolverMotionFrameRowF64 abiPairConstrainedFrames[18]{};
   int abiPairConstrainedFrameCount = 0;
-  ArchitrinoSolverPathHistoryRowF64 abiPairConstrainedPathRows[8]{};
+  ArchitrinoSolverPathHistoryRowF64 abiPairConstrainedPathRows[16]{};
   int abiPairConstrainedPathRowCount = 0;
   ArchitrinoSolverPairInteractionSummaryF64 abiPairConstrainedSummary{};
   const int abiPairConstrainedStatus = architrino_solver_integrate_pair_interaction_motion_f64(
@@ -356,10 +356,10 @@ int main() {
       abiPairConstraints,
       6,
       abiPairConstrainedFrames,
-      10,
+      18,
       &abiPairConstrainedFrameCount,
       abiPairConstrainedPathRows,
-      8,
+      16,
       &abiPairConstrainedPathRowCount,
       &abiPairConstrainedSummary);
   const ArchitrinoSolverAbiInfo abiInfo = architrino_solver_abi_info();
@@ -481,10 +481,13 @@ int main() {
       abiPairPathRows[0].path_key == 101 &&
       nearly_equal(abiPairPathRows[0].velocity_x, 0.5) &&
       pairConstrained.validation.ok &&
-      pairConstrained.frames.size() == 10 &&
-      pairConstrained.pathRows.size() == 8 &&
+      pairConstrained.frames.size() == 18 &&
+      pairConstrained.pathRows.size() == 16 &&
       pairConstrained.pathConstraintCount == 6 &&
-      pairConstrained.pathConstraintResidualSampleCount == 6 &&
+      pairConstrained.pathConstraintFrameRefinementSampleCount == 4 &&
+      pairConstrained.pathConstraintPositionResidualSampleCount == 6 &&
+      nearly_equal(pairConstrained.maxPathConstraintPositionResidual, 0.0) &&
+      pairConstrained.pathConstraintResidualSampleCount == 14 &&
       pairConstrained.maxPathConstraintResidual > 0.0 &&
       pairConstrained.pathConstraintGuidanceSampleCount > 0 &&
       pairConstrained.maxPathConstraintGuidanceAcceleration > 0.0 &&
@@ -511,36 +514,47 @@ int main() {
       pairConstrained.rmsPathConstraintBoundaryRelaxationResidualSettlingRate < 1.0 &&
       pairConstrained.pathConstraintBoundaryRelaxationStatus == 1 &&
       pairConstrained.pathConstraintBoundaryRelaxationStopReason == 6 &&
-      pairConstrained.pathConstraintBoundarySeedSampleCount == 10 &&
-      nearly_equal(pairConstrained.frames[2].positionX, 1.97642, 1e-4) &&
-      nearly_equal(pairConstrained.frames[2].positionY, 1.00158, 1e-4) &&
-      nearly_equal(pairConstrained.frames[2].velocityX, 8.0, 1e-4) &&
-      nearly_equal(pairConstrained.frames[2].velocityY, 4.0, 1e-4) &&
-      nearly_equal(pairConstrained.frames[4].positionX, 4.0) &&
-      nearly_equal(pairConstrained.frames[4].positionY, 2.0) &&
-      nearly_equal(pairConstrained.frames[4].velocityX, 8.03145, 1e-4) &&
-      nearly_equal(pairConstrained.frames[4].velocityY, -0.0062893, 1e-4) &&
-      nearly_equal(pairConstrained.frames[9].positionY, 2.0) &&
+      pairConstrained.pathConstraintBoundarySeedSampleCount == 18 &&
+      nearly_equal(pairConstrained.frames[2].positionX, 0.98135, 1e-4) &&
+      nearly_equal(pairConstrained.frames[2].positionY, 0.50098, 1e-4) &&
+      nearly_equal(pairConstrained.frames[2].velocityX, 7.90573, 1e-4) &&
+      nearly_equal(pairConstrained.frames[2].velocityY, 4.00628, 1e-4) &&
+      nearly_equal(pairConstrained.frames[8].positionX, 4.0) &&
+      nearly_equal(pairConstrained.frames[8].positionY, 2.0) &&
+      nearly_equal(pairConstrained.frames[8].velocityX, 8.03930, 1e-4) &&
+      nearly_equal(pairConstrained.frames[8].velocityY, -0.0078591, 1e-4) &&
+      nearly_equal(pairConstrained.frames[17].positionY, 2.0) &&
       pairConstrained.pathRows[0].pathKey == 101 &&
-      nearly_equal(pairConstrained.pathRows[0].velocityX, 7.90566, 1e-4) &&
-      nearly_equal(pairConstrained.pathRows[0].velocityY, 4.00629, 1e-4) &&
+      nearly_equal(pairConstrained.pathRows[0].velocityX, 7.85081, 1e-4) &&
+      nearly_equal(pairConstrained.pathRows[0].velocityY, 4.00786, 1e-4) &&
       abiPairConstrainedStatus == 0 &&
-      abiPairConstrainedFrameCount == 10 &&
-      abiPairConstrainedPathRowCount == 8 &&
-      nearly_equal(abiPairConstrainedFrames[2].position_x, 1.97642, 1e-4) &&
-      nearly_equal(abiPairConstrainedFrames[2].position_y, 1.00158, 1e-4) &&
-      nearly_equal(abiPairConstrainedFrames[2].velocity_x, 8.0, 1e-4) &&
-      nearly_equal(abiPairConstrainedFrames[2].velocity_y, 4.0, 1e-4) &&
-      nearly_equal(abiPairConstrainedFrames[4].position_x, 4.0) &&
-      nearly_equal(abiPairConstrainedFrames[4].position_y, 2.0) &&
-      nearly_equal(abiPairConstrainedFrames[4].velocity_x, 8.03145, 1e-4) &&
-      nearly_equal(abiPairConstrainedFrames[4].velocity_y, -0.0062893, 1e-4) &&
-      nearly_equal(abiPairConstrainedFrames[9].position_y, 2.0) &&
+      abiPairConstrainedFrameCount == 18 &&
+      abiPairConstrainedPathRowCount == 16 &&
+      nearly_equal(abiPairConstrainedFrames[2].position_x, 0.98135, 1e-4) &&
+      nearly_equal(abiPairConstrainedFrames[2].position_y, 0.50098, 1e-4) &&
+      nearly_equal(abiPairConstrainedFrames[2].velocity_x, 7.90573, 1e-4) &&
+      nearly_equal(abiPairConstrainedFrames[2].velocity_y, 4.00628, 1e-4) &&
+      nearly_equal(abiPairConstrainedFrames[8].position_x, 4.0) &&
+      nearly_equal(abiPairConstrainedFrames[8].position_y, 2.0) &&
+      nearly_equal(abiPairConstrainedFrames[8].velocity_x, 8.03930, 1e-4) &&
+      nearly_equal(abiPairConstrainedFrames[8].velocity_y, -0.0078591, 1e-4) &&
+      nearly_equal(abiPairConstrainedFrames[17].position_y, 2.0) &&
       abiPairConstrainedPathRows[0].path_key == 101 &&
-      nearly_equal(abiPairConstrainedPathRows[0].velocity_x, 7.90566, 1e-4) &&
-      nearly_equal(abiPairConstrainedPathRows[0].velocity_y, 4.00629, 1e-4) &&
+      nearly_equal(abiPairConstrainedPathRows[0].velocity_x, 7.85081, 1e-4) &&
+      nearly_equal(abiPairConstrainedPathRows[0].velocity_y, 4.00786, 1e-4) &&
       abiPairConstrainedSummary.path_constraint_count == 6 &&
-      abiPairConstrainedSummary.residual_sample_count == 6 &&
+      abiPairConstrainedSummary.position_residual_sample_count ==
+          pairConstrained.pathConstraintPositionResidualSampleCount &&
+      nearly_equal(
+          abiPairConstrainedSummary.max_position_residual,
+          pairConstrained.maxPathConstraintPositionResidual) &&
+      nearly_equal(
+          abiPairConstrainedSummary.mean_position_residual,
+          pairConstrained.meanPathConstraintPositionResidual) &&
+      nearly_equal(
+          abiPairConstrainedSummary.rms_position_residual,
+          pairConstrained.rmsPathConstraintPositionResidual) &&
+      abiPairConstrainedSummary.residual_sample_count == 14 &&
       nearly_equal(
           abiPairConstrainedSummary.max_constraint_residual,
           pairConstrained.maxPathConstraintResidual) &&
@@ -600,6 +614,18 @@ int main() {
           pairConstrained.pathConstraintBoundaryRelaxationStopReason &&
       abiPairConstrainedSummary.boundary_seed_sample_count ==
           pairConstrained.pathConstraintBoundarySeedSampleCount &&
+      abiPairConstrainedSummary.frame_refinement_sample_count ==
+          pairConstrained.pathConstraintFrameRefinementSampleCount &&
+      abiPairConstrainedSummary.boundary_relaxation_candidate_variant_count ==
+          pairConstrained.pathConstraintBoundaryRelaxationCandidateVariantCount &&
+      abiPairConstrainedSummary.boundary_relaxation_line_search_trial_count ==
+          pairConstrained.pathConstraintBoundaryRelaxationLineSearchTrialCount &&
+      abiPairConstrainedSummary.boundary_relaxation_candidate_kind_mask ==
+          pairConstrained.pathConstraintBoundaryRelaxationCandidateKindMask &&
+      abiPairConstrainedSummary.boundary_relaxation_candidate_variant_count > 0 &&
+      abiPairConstrainedSummary.boundary_relaxation_line_search_trial_count >=
+          abiPairConstrainedSummary.boundary_relaxation_candidate_variant_count &&
+      abiPairConstrainedSummary.boundary_relaxation_candidate_kind_mask != 0 &&
       abiInfo.motion_integration_request_f64_bytes == 120;
 
   if (!ok) {
