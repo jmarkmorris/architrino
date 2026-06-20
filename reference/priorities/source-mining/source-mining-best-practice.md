@@ -25,6 +25,14 @@ If mined material yields one of those approval-required actions, present it as a
 
 Use audit/report mode only when the operator/developer explicitly asks for a report, audit, plan, discussion, review, or no-edit pass.
 
+## Goal-First Prompt Standard
+
+Every source-mining prompt, continuation prompt, approval prompt, or Priority Action Menu prompt must begin with a `Goal:` statement before any command, context, task, scope, or constraints. The goal should be one concrete objective that Codex goal mode can use to keep the thread aligned.
+
+For source-mining threads, the goal should name the source type or workstream, the intended extraction or advancement outcome, and the authority posture when it matters. Keep detailed context, task steps, scope limits, edit authority, and expected output after the goal.
+
+Every source-mining turn response should also end with a concise `Forward goal:` line, after validation status and before or inside any thread-state handoff. This gives the operator/developer a clean next objective to paste, select, or refine.
+
 ## Relationship To Other AAA Processes
 
 This guide is a source-intake and source-processing practice. It is not another gate system, not a certificate system, and not a competing corpus-advancement protocol.
@@ -44,6 +52,9 @@ The completed target list lives in [source-mining-history](source-mining-history
 Use this prompt when the source type is unknown, mixed, or not worth choosing a narrower template before the first pass.
 
 ```text
+Goal:
+Mine the supplied source for high-quality $\mathbb{A}\mathbb{A}\mathbb{A}$ insights, linkages, mappings, source leads, and theory-advancement candidates, then make safe scoped corpus edits when authorized.
+
 Cody, use the AAA corpus advancement skill in edit-batch mode.
 
 Use the [source-mining-best-practice.md](reference/priorities/source-mining/source-mining-best-practice.md) processes to mine this source.
@@ -72,7 +83,7 @@ Expected output:
 7. Affected-document table.
 8. Edits made, source-mining history update, regeneration result, and validation result when applicable.
 9. Approval boxes for work outside safe scoped edit authority.
-10. Priority Action Menu with detailed paste-ready follow-up prompts for any work outside the current authority.
+10. Priority Action Menu with detailed paste-ready follow-up prompts whose first line is `Goal:` for any work outside the current authority.
 ```
 
 ## Corpus Deferral Rules
@@ -119,7 +130,7 @@ Every source-mining pass should produce a compact report with these parts when a
 6. Claim map: ontology, derivation or closure target, effective summary, speculation.
 7. Theory-advancement candidates: candidate definitions, closure equations, invariants, proof scaffolds, validation criteria, simulation targets, or disciplined discussion prompts.
 8. Affected-document table: path, issue or opportunity, source signal, recommended update, priority, risk, claim bucket, and action taken or approval-box requirement.
-9. Priority Action Menu: paste-ready follow-up prompts for work outside the current authority.
+9. Priority Action Menu: paste-ready follow-up prompts whose first line is `Goal:` for work outside the current authority.
 
 ## Source-Family Intake
 
@@ -191,10 +202,10 @@ YouTube mining selection criteria:
 YouTube edit-batch prompt template:
 
 ```text
-Cody, use the AAA corpus advancement skill in edit-batch mode to mine this video.
-
 Goal:
 Mine this long-form video for material that could add value to the AAA corpus, without distracting from AAA, importing another theory as doctrine, or introducing new terminology. Use `yt-dlp` to extract available subtitles/transcript and metadata.
+
+Cody, use the AAA corpus advancement skill in edit-batch mode to mine this video.
 
 YouTube link:
 [PASTE URL]
@@ -257,7 +268,7 @@ Analysis output:
    - Claim bucket affected.
    - Action taken now, or approval-box requirement if outside safe scope.
 7. Priority Action Menu:
-   - Every recommended follow-up must be a detailed paste-ready prompt.
+   - Every recommended follow-up must be a detailed paste-ready prompt whose first line is `Goal:`.
    - Prompts should be scoped so approved items can run without interfering.
    - Include write scope or report-only scope for each prompt.
    - Include explicit edit authority: none / safe scoped edits allowed / direct edit batch authorized.
@@ -278,10 +289,10 @@ Mine slide decks as visual, textual, and speaker-context sources.
 PowerPoint edit-batch prompt template:
 
 ```text
-Cody, use the AAA corpus advancement skill in edit-batch mode to mine this PowerPoint or slide deck.
-
 Goal:
 Mine the deck as a visual, textual, and speaker-context source. Include Notes pages as first-class source material. Extract every useful AAA-relevant definition, equation, visual mapping, figure, table, source lead, and theory-advancement candidate without importing slide slogans as doctrine.
+
+Cody, use the AAA corpus advancement skill in edit-batch mode to mine this PowerPoint or slide deck.
 
 Deck path or URL:
 [PASTE LOCAL PATH OR URL]
@@ -329,7 +340,7 @@ Analysis output:
    - Claim bucket affected.
    - Action taken now, or approval-box requirement if outside safe scope.
 7. Priority Action Menu:
-   - Every recommended follow-up must be a detailed paste-ready prompt.
+   - Every recommended follow-up must be a detailed paste-ready prompt whose first line is `Goal:`.
    - Include explicit edit authority: none / safe scoped edits allowed / direct edit batch authorized.
    - Do not implement these prompts in the current pass.
 ```
@@ -348,10 +359,10 @@ Mine blog hierarchies as development-path sources rather than isolated posts.
 Web hierarchy edit-batch prompt template:
 
 ```text
-Cody, use the AAA corpus advancement skill in edit-batch mode to mine this web blog hierarchy.
-
 Goal:
 Mine the site as a development-path source, not as isolated posts. Recover high-quality insights, linkages, mappings, source leads, theory-advancement candidates, and abandoned paths while keeping historical process material out of reader-facing corpus prose unless it can be rewritten as current source of truth.
+
+Cody, use the AAA corpus advancement skill in edit-batch mode to mine this web blog hierarchy.
 
 Site root or seed URLs:
 [PASTE SITE ROOT AND ANY KNOWN ARCHIVE, CATEGORY, SERIES, OR POST URLS]
@@ -405,7 +416,7 @@ Analysis output:
    - Claim bucket affected.
    - Action taken now, or approval-box requirement if outside safe scope.
 8. Priority Action Menu:
-   - Every recommended follow-up must be a detailed paste-ready prompt.
+   - Every recommended follow-up must be a detailed paste-ready prompt whose first line is `Goal:`.
    - Include explicit edit authority: none / safe scoped edits allowed / direct edit batch authorized.
    - Do not implement these prompts in the current pass.
 ```
@@ -426,10 +437,10 @@ Mine research documents as structured technical sources.
 Research document edit-batch prompt template:
 
 ```text
-Cody, use the AAA corpus advancement skill in edit-batch mode to mine this research document.
-
 Goal:
 Mine the paper, book chapter, report, or arXiv source as a structured technical source. Extract equations, definitions, theorem targets, assumptions, empirical constraints, benchmark values, figures, tables, bibliography trails, and theory-advancement candidates without importing the author's framework as AAA doctrine.
+
+Cody, use the AAA corpus advancement skill in edit-batch mode to mine this research document.
 
 Research document path, DOI, arXiv id, or URL:
 [PASTE LOCAL PATH, DOI, ARXIV ID, OR URL]
@@ -480,7 +491,7 @@ Analysis output:
    - Claim bucket affected.
    - Action taken now, or approval-box requirement if outside safe scope.
 8. Priority Action Menu:
-   - Every recommended follow-up must be a detailed paste-ready prompt.
+   - Every recommended follow-up must be a detailed paste-ready prompt whose first line is `Goal:`.
    - Include explicit edit authority: none / safe scoped edits allowed / direct edit batch authorized.
    - Do not implement these prompts in the current pass.
 ```
@@ -498,10 +509,10 @@ Mine encyclopedia sources as orientation and source discovery, not as authority 
 Wikipedia and encyclopedia edit-batch prompt template:
 
 ```text
-Cody, use the AAA corpus advancement skill in edit-batch mode to mine this Wikipedia or encyclopedia source.
-
 Goal:
 Use the encyclopedia page for orientation, vocabulary, topic boundaries, historical context, and source discovery. Do not treat the page itself as authority for AAA corpus claims. Follow cited references where needed before recommending corpus changes.
+
+Cody, use the AAA corpus advancement skill in edit-batch mode to mine this Wikipedia or encyclopedia source.
 
 Page URL or title:
 [PASTE URL OR PAGE TITLE]
@@ -554,7 +565,7 @@ Analysis output:
    - Claim bucket affected.
    - Action taken now, or approval-box requirement if outside safe scope.
 8. Priority Action Menu:
-   - Every recommended follow-up must be a detailed paste-ready prompt.
+   - Every recommended follow-up must be a detailed paste-ready prompt whose first line is `Goal:`.
    - Include explicit edit authority: none / safe scoped edits allowed / direct edit batch authorized.
    - Do not implement these prompts in the current pass.
 ```
@@ -571,10 +582,10 @@ Use portals such as PDG, CODATA, NIST, GWOSC, NASA LAMBDA, CERN, LVK, EHT, and s
 Official portal edit-batch prompt template:
 
 ```text
-Cody, use the AAA corpus advancement skill in edit-batch mode to mine this official data, review, or reference portal.
-
 Goal:
 Mine the portal for measurement provenance, benchmark values, uncertainty language, release structure, official review summaries, data products, and source leads. Use the material to sharpen AAA benchmark comparisons and recovery targets, not to create new gates, certificates, residual inventories, live-ledger checklists, or similar hurdle artifacts by default.
+
+Cody, use the AAA corpus advancement skill in edit-batch mode to mine this official data, review, or reference portal.
 
 Portal, release, table, dataset, or review URL:
 [PASTE URLS, DATASET IDS, RELEASE NAMES, OR LOCAL PATHS]
@@ -627,7 +638,7 @@ Analysis output:
    - Claim bucket affected.
    - Action taken now, or approval-box requirement if outside safe scope.
 8. Priority Action Menu:
-   - Every recommended follow-up must be a detailed paste-ready prompt.
+   - Every recommended follow-up must be a detailed paste-ready prompt whose first line is `Goal:`.
    - Include explicit edit authority: none / safe scoped edits allowed / direct edit batch authorized.
    - Do not implement these prompts in the current pass.
 ```
@@ -652,10 +663,10 @@ Deferred legacy material classes:
 Legacy material edit-batch prompt template:
 
 ```text
-Cody, use the AAA corpus advancement skill in edit-batch mode to mine this legacy social, WordPress, or operational material.
-
 Goal:
 Mine legacy material for original intuition, source leads, naming decisions, reader-facing bridges, analogy seeds, and theory-advancement candidates while keeping productization, outlook material, abandoned language, and historical process subordinate to current theory closure.
+
+Cody, use the AAA corpus advancement skill in edit-batch mode to mine this legacy social, WordPress, or operational material.
 
 Legacy source paths or URLs:
 [PASTE LOCAL PATHS, ARCHIVE ROOTS, THREAD URLS, POST URLS, OR OPERATIONAL NOTES]
@@ -712,7 +723,7 @@ Analysis output:
    - Claim bucket affected.
    - Action taken now, or approval-box requirement if outside safe scope.
 8. Priority Action Menu:
-   - Every recommended follow-up must be a detailed paste-ready prompt.
+   - Every recommended follow-up must be a detailed paste-ready prompt whose first line is `Goal:`.
    - Include explicit edit authority: none / safe scoped edits allowed / direct edit batch authorized.
    - Do not implement these prompts in the current pass.
 ```

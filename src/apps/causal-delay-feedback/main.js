@@ -1,5 +1,7 @@
 import {
+  CENTRAL_SOLVER_APP_PLAYBACK_REPLAY_MODE,
   CENTRAL_SOLVER_MOTION_REPLAY_MODE,
+  CENTRAL_SOLVER_PAIR_INTERACTION_REPLAY_MODE,
   createCausalDelayFeedbackCentralBridgeAdapter,
 } from "./CausalDelayFeedbackCentralBridgeAdapter.js";
 import { createCausalDelayFeedbackRuntime } from "./CausalDelayFeedbackRuntime.js";
@@ -23,6 +25,14 @@ const MOTION_REPLAY_QUERY_VALUES = new Set([
   "motion_solver",
   "solver_motion",
 ]);
+const PAIR_INTERACTION_REPLAY_QUERY_VALUES = new Set([
+  "pair",
+  "pair-interaction",
+  "pairinteraction",
+  "pair_interaction",
+  "pair_solver",
+  "solver_pair",
+]);
 const APP_PLAYBACK_REPLAY_QUERY_VALUES = new Set([
   "app",
   "app-playback",
@@ -39,6 +49,12 @@ function getInitialQueryValue(windowLike, key) {
   }
 }
 
+function getInitialPositiveQueryNumber(windowLike, key) {
+  const value = getInitialQueryValue(windowLike, key);
+  const number = Number(value);
+  return Number.isFinite(number) && number > 0 ? number : undefined;
+}
+
 export function shouldUseCentralBridgeReplay(windowLike = globalThis.window) {
   if (shouldUseTemporaryMockReplay(windowLike)) {
     return false;
@@ -53,13 +69,6 @@ function shouldUseTemporaryMockReplay(windowLike = globalThis.window) {
   });
 }
 
-function hasExplicitCentralBridgeReplay(windowLike = globalThis.window) {
-  return ["replay", "solver", "adapter"].some((key) => {
-    const value = getInitialQueryValue(windowLike, key);
-    return value ? CENTRAL_REPLAY_QUERY_VALUES.has(value.toLowerCase()) : false;
-  });
-}
-
 export function getCentralBridgeReplayMode(windowLike = globalThis.window, { defaultMode } = {}) {
   const value =
     getInitialQueryValue(windowLike, "solverReplay") ??
@@ -68,20 +77,43 @@ export function getCentralBridgeReplayMode(windowLike = globalThis.window, { def
     return defaultMode;
   }
   const normalizedValue = value.toLowerCase();
+  if (PAIR_INTERACTION_REPLAY_QUERY_VALUES.has(normalizedValue)) {
+    return CENTRAL_SOLVER_PAIR_INTERACTION_REPLAY_MODE;
+  }
   if (MOTION_REPLAY_QUERY_VALUES.has(normalizedValue)) {
     return CENTRAL_SOLVER_MOTION_REPLAY_MODE;
   }
   if (APP_PLAYBACK_REPLAY_QUERY_VALUES.has(normalizedValue)) {
-    return undefined;
+    return CENTRAL_SOLVER_APP_PLAYBACK_REPLAY_MODE;
   }
   return defaultMode;
+}
+
+export function createCausalDelayFeedbackInitialReplayRequestOptions(windowLike = globalThis.window) {
+  const requestOptions = {};
+  const motionAccelerationPolicy =
+    getInitialQueryValue(windowLike, "motionPolicy") ??
+    getInitialQueryValue(windowLike, "accelerationPolicy") ??
+    getInitialQueryValue(windowLike, "pairPolicy");
+  if (motionAccelerationPolicy) {
+    requestOptions.motionAccelerationPolicy = motionAccelerationPolicy;
+  }
+  const pairSegmentCount = getInitialPositiveQueryNumber(windowLike, "pairSegmentCount");
+  if (pairSegmentCount != null) {
+    requestOptions.pairSegmentCount = Math.max(1, Math.floor(pairSegmentCount));
+  }
+  const pairAccelerationScale = getInitialPositiveQueryNumber(windowLike, "pairAccelerationScale");
+  if (pairAccelerationScale != null) {
+    requestOptions.pairAccelerationScale = pairAccelerationScale;
+  }
+  return requestOptions;
 }
 
 export function createCausalDelayFeedbackRuntimeForPage(windowLike = globalThis.window) {
   const fallbackReplayAdapter = createTemporaryMockReplayAdapter();
   const useCentralBridgeReplay = shouldUseCentralBridgeReplay(windowLike);
   const solverReplayMode = getCentralBridgeReplayMode(windowLike, {
-    defaultMode: hasExplicitCentralBridgeReplay(windowLike) ? undefined : CENTRAL_SOLVER_MOTION_REPLAY_MODE,
+    defaultMode: CENTRAL_SOLVER_PAIR_INTERACTION_REPLAY_MODE,
   });
   const replayAdapter = useCentralBridgeReplay
     ? createCausalDelayFeedbackCentralBridgeAdapter(
@@ -94,6 +126,7 @@ export function createCausalDelayFeedbackRuntimeForPage(windowLike = globalThis.
     window: windowLike,
     replayAdapter,
     fallbackReplayAdapter,
+    replayRequestOptions: createCausalDelayFeedbackInitialReplayRequestOptions(windowLike),
   });
 }
 

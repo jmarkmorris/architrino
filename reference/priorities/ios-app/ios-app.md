@@ -75,6 +75,8 @@ Release requirements:
 - After approval, publish the generated direct App Store link from `architrino.com` and the GitHub repository documentation.
 - Treat GitHub as the source-code, release-note, and support-documentation home, not as the iPhone install channel.
 - Keep user data local-only for v1: theme, font size, bookmarks, and reading position persist on device, with no account system or cloud sync.
+- The About screen Feedback link opens a prefilled GitHub issue URL and must state that GitHub login is required to submit. Do not embed a GitHub token, access code, or backend credential in the app.
+- The About screen Annotated feedback action captures the visible reader page locally, opens an orange-only PencilKit handwriting surface with extra ruled writing space, and shares the marked image plus package/location context through the user-controlled iOS share sheet.
 - State App Store privacy metadata as no data collection unless future features add analytics, accounts, cloud sync, crash reporting, or network services that change that claim.
 - Do not add account gates or link-based authorization in v1; the bundled textbook app is public to anyone who has the unlisted link.
 - Defer EU alternative marketplace distribution, direct web distribution, custom app distribution, and Apple Business Manager private distribution unless a separate release need appears.

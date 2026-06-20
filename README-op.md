@@ -14,6 +14,7 @@ This file is Cody's living feedback backlog for improving operator/developer wor
 
 - [ ] Bias substantial sessions toward one core geometrical theory closure target before app, prose, presentation, or infrastructure work.
 - [ ] Start each substantial session by naming the single closure objective, likely files in scope, and definition of done.
+- [ ] Start new Cody prompts with a one-sentence `Goal:` line so Codex goal mode begins from the intended objective.
 - [ ] Give Cody the expected verification command, app path, or rendered target when that target is not obvious.
 - [ ] Keep priority lists ordered by closure value rather than historical arrival order.
 - [ ] When pasting source material, mark what is canon, what is speculation, and what is only context.
@@ -35,6 +36,7 @@ This file is Cody's living feedback backlog for improving operator/developer wor
 - [ ] Flag non-negotiable constraints before asking for implementation.
 - [ ] Separate hard guardrails from preferences that Cody may trade off.
 - [ ] Define success in terms of observable behavior, passing check, equation recovered, or text promoted.
+- [ ] Preserve Cody's returned `Forward goal:` line when restarting, splitting, or refocusing a thread.
 - [ ] Before broad terminology migrations, ask Cody to scan git history and current usage, then name accepted terms and frozen labels before editing.
 
 ## Multi-Agent Use

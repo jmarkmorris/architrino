@@ -55,10 +55,61 @@ struct MotionIntegrationRequest {
   std::uint32_t stateFlags = 0;
 };
 
+struct PairInteractionState {
+  std::uint64_t pathKey = 0;
+  Vector3 initialPosition{};
+  Vector3 initialVelocity{};
+  double charge = 1.0;
+  double mass = 1.0;
+  std::uint32_t stateFlags = 0;
+};
+
+struct PairInteractionPathConstraint {
+  std::uint64_t pathKey = 0;
+  std::uint32_t depth = 0;
+  double time = 0.0;
+  Vector3 position{};
+};
+
+struct PairInteractionRequest {
+  double startTime = 0.0;
+  double endTime = 0.0;
+  double step = 1.0;
+  double pairAccelerationScale = 0.18;
+  double softening = 0.0;
+  double integrationTolerance = 0.0;
+  std::uint32_t interactionLaw = 1;
+  std::uint32_t integrationMethod = 1;
+  std::vector<PairInteractionPathConstraint> pathConstraints{};
+};
+
+struct PairInteractionSampleResult {
+  std::vector<MotionFrameRowF64> frames;
+  std::vector<PathHistoryRowF64> pathRows;
+  std::uint64_t stepCount = 0;
+  std::uint64_t pathConstraintCount = 0;
+  std::uint64_t pathConstraintResidualSampleCount = 0;
+  double maxPathConstraintResidual = 0.0;
+  double meanPathConstraintResidual = 0.0;
+  double rmsPathConstraintResidual = 0.0;
+  std::uint64_t pathConstraintGuidanceSampleCount = 0;
+  double maxPathConstraintGuidanceAcceleration = 0.0;
+  double meanPathConstraintGuidanceAcceleration = 0.0;
+  double rmsPathConstraintGuidanceAcceleration = 0.0;
+  std::uint64_t pathConstraintBoundaryResidualSampleCount = 0;
+  double maxPathConstraintBoundaryResidual = 0.0;
+  double meanPathConstraintBoundaryResidual = 0.0;
+  double rmsPathConstraintBoundaryResidual = 0.0;
+  ValidationReport validation;
+};
+
 MotionSampleResult sample_linear_motion(const MotionSampleRequest& request);
 MotionPathHistoryResult sample_linear_path_history(const MotionSampleRequest& request);
 MotionSampleResult integrate_constant_acceleration_motion(const MotionIntegrationRequest& request);
 MotionPathHistoryResult integrate_constant_acceleration_path_history(
     const MotionIntegrationRequest& request);
+PairInteractionSampleResult integrate_pair_interaction_motion(
+    const PairInteractionRequest& request,
+    const std::vector<PairInteractionState>& initialStates);
 
 }  // namespace architrino::solver

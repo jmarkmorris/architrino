@@ -2,6 +2,7 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject private var viewModel = ReaderViewModel()
+    @StateObject private var readerSnapshotController = ReaderSnapshotController()
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     @Environment(\.openURL) private var openURL
     @Environment(\.scenePhase) private var scenePhase
@@ -13,6 +14,9 @@ struct ContentView: View {
     @State private var showTOCReaderSettings = false
     @State private var didPresentInitialToc = false
     @State private var expandedTOCGroupID: String?
+    @State private var feedbackDraft: ReaderFeedbackDraft?
+    @State private var feedbackCaptureMessage: String?
+    @State private var isCapturingFeedback = false
 
     private var isRegularWidth: Bool {
         horizontalSizeClass == .regular
@@ -45,11 +49,41 @@ struct ContentView: View {
             AboutSheet(
                 packageVersion: viewModel.packageVersionLabel,
                 packageDate: viewModel.packageDateLabel,
+                currentDocumentTitle: viewModel.currentDocumentTitle,
+                currentReadingLocator: viewModel.readingProgressLabel,
+                onAnnotatedFeedback: {
+                    startAnnotatedFeedbackCapture()
+                },
                 theme: viewModel.theme
             )
         }
+        .sheet(item: $feedbackDraft) { draft in
+            ReaderFeedbackAnnotationSheet(draft: draft, theme: viewModel.theme)
+        }
         .sheet(isPresented: $showReaderSettings) {
             ReaderSettingsSheet(viewModel: viewModel)
+        }
+        .overlay {
+            if isCapturingFeedback {
+                feedbackCaptureOverlay
+            }
+        }
+        .alert(
+            "Feedback capture failed",
+            isPresented: Binding(
+                get: { feedbackCaptureMessage != nil },
+                set: { isPresented in
+                    if !isPresented {
+                        feedbackCaptureMessage = nil
+                    }
+                }
+            )
+        ) {
+            Button("OK", role: .cancel) {
+                feedbackCaptureMessage = nil
+            }
+        } message: {
+            Text(feedbackCaptureMessage ?? "")
         }
         .onAppear {
             presentInitialTOCIfNeeded()
@@ -104,6 +138,7 @@ struct ContentView: View {
                             theme: viewModel.theme,
                             lineSpacing: viewModel.lineSpacing,
                             marginWidth: viewModel.marginWidth,
+                            snapshotController: readerSnapshotController,
                             onLinkTap: { payload in
                                 if let url = viewModel.handleWebLink(message: payload) {
                                     openURL(url)
@@ -349,6 +384,55 @@ struct ContentView: View {
         action()
         if !isRegularWidth && showToc {
             dismissTOCImmediately()
+        }
+    }
+
+    private var feedbackCaptureOverlay: some View {
+        ZStack {
+            viewModel.theme.readerBackgroundColor.opacity(0.72)
+                .ignoresSafeArea()
+
+            VStack(spacing: 12) {
+                ProgressView()
+                    .tint(viewModel.theme.readerPrimaryTextColor)
+
+                Text("Preparing feedback")
+                    .font(.footnote)
+                    .foregroundStyle(viewModel.theme.readerPrimaryTextColor)
+            }
+            .padding(18)
+            .background(viewModel.theme.readerSearchResultBackgroundColor)
+            .clipShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
+        }
+    }
+
+    private func startAnnotatedFeedbackCapture() {
+        guard !isCapturingFeedback else { return }
+
+        showAbout = false
+        isCapturingFeedback = true
+
+        Task { @MainActor in
+            try? await Task.sleep(nanoseconds: 250_000_000)
+
+            do {
+                let snapshot = try await readerSnapshotController.captureVisibleSnapshot()
+                let context = ReaderFeedbackContext(
+                    documentTitle: viewModel.currentDocumentTitle,
+                    readingLocator: viewModel.readingProgressLabel,
+                    packageVersion: viewModel.packageVersionLabel,
+                    packageDate: viewModel.packageDateLabel
+                )
+                feedbackDraft = ReaderFeedbackDraft(
+                    snapshot: snapshot,
+                    context: context,
+                    theme: viewModel.theme
+                )
+            } catch {
+                feedbackCaptureMessage = "Open a textbook page, then try annotated feedback again."
+            }
+
+            isCapturingFeedback = false
         }
     }
 
@@ -1338,6 +1422,9 @@ private struct BookmarkRow: View {
 private struct AboutSheet: View {
     let packageVersion: String
     let packageDate: String
+    let currentDocumentTitle: String
+    let currentReadingLocator: String
+    let onAnnotatedFeedback: () -> Void
     let theme: ReaderTheme
 
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
@@ -1345,10 +1432,69 @@ private struct AboutSheet: View {
 
     private let websiteURL = URL(string: "https://architrino.com")!
     private let repositoryURL = URL(string: "https://github.com/jmarkmorris/architrino")!
-    private let issuesURL = URL(string: "https://github.com/jmarkmorris/architrino/issues")!
 
     private var isRegularWidth: Bool {
         horizontalSizeClass == .regular
+    }
+
+    private var feedbackIssueURL: URL {
+        var components = URLComponents(string: "https://github.com/jmarkmorris/architrino/issues/new")!
+        components.queryItems = [
+            URLQueryItem(name: "title", value: feedbackIssueTitle),
+            URLQueryItem(name: "body", value: feedbackIssueBody),
+        ]
+        return components.url!
+    }
+
+    private var feedbackIssueTitle: String {
+        "Feedback: \(feedbackLocationLabel)"
+    }
+
+    private var feedbackIssueBody: String {
+        """
+        ## Feedback
+
+        Tell us what you noticed, what confused you, or what would help. Use whatever level of detail fits you.
+
+        ## Reader context
+
+        - Location: \(feedbackLocationLabel)
+        - Package version: \(packageVersion)
+        - Package date: \(packageDate)
+        - App version: \(appVersionLabel)
+
+        """
+    }
+
+    private var feedbackLocationLabel: String {
+        let title = currentDocumentTitle.trimmingCharacters(in: .whitespacesAndNewlines)
+        let locator = currentReadingLocator.trimmingCharacters(in: .whitespacesAndNewlines)
+
+        if title.isEmpty || title == "Textbook" {
+            return locator.isEmpty ? "Table of contents" : locator
+        }
+
+        if locator.isEmpty {
+            return title
+        }
+
+        return "\(title) - \(locator)"
+    }
+
+    private var appVersionLabel: String {
+        let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
+        let build = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String
+
+        switch (version?.trimmingCharacters(in: .whitespacesAndNewlines), build?.trimmingCharacters(in: .whitespacesAndNewlines)) {
+        case let (.some(version), .some(build)) where !version.isEmpty && !build.isEmpty:
+            return "\(version) (\(build))"
+        case let (.some(version), _) where !version.isEmpty:
+            return version
+        case let (_, .some(build)) where !build.isEmpty:
+            return build
+        default:
+            return "unavailable"
+        }
     }
 
     var body: some View {
@@ -1397,9 +1543,36 @@ private struct AboutSheet: View {
                                 .foregroundStyle(theme.readerAccentColor)
                         }
 
-                        Link(destination: issuesURL) {
-                            Label("Feedback", systemImage: "exclamationmark.bubble")
-                                .foregroundStyle(theme.readerAccentColor)
+                        Link(destination: feedbackIssueURL) {
+                            Label {
+                                VStack(alignment: .leading, spacing: 2) {
+                                    Text("Feedback (GitHub login required)")
+                                        .foregroundStyle(theme.readerAccentColor)
+
+                                    Text("Opens a prefilled issue with package details.")
+                                        .font(.footnote)
+                                        .foregroundStyle(theme.readerSecondaryTextColor)
+                                }
+                            } icon: {
+                                Image(systemName: "exclamationmark.bubble")
+                                    .foregroundStyle(theme.readerAccentColor)
+                            }
+                        }
+
+                        Button(action: onAnnotatedFeedback) {
+                            Label {
+                                VStack(alignment: .leading, spacing: 2) {
+                                    Text("Annotated feedback")
+                                        .foregroundStyle(theme.readerAccentColor)
+
+                                    Text("Share a marked screenshot.")
+                                        .font(.footnote)
+                                        .foregroundStyle(theme.readerSecondaryTextColor)
+                                }
+                            } icon: {
+                                Image(systemName: "pencil.and.scribble")
+                                    .foregroundStyle(theme.readerAccentColor)
+                            }
                         }
                     } header: {
                         Text("Links")

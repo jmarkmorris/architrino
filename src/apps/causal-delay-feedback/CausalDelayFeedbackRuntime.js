@@ -30,6 +30,7 @@ const REPLAY_LOOP_SECONDS = 9;
 const TIME_EPSILON = 1e-6;
 const INITIAL_VELOCITY_ARROW_SCALE = 0.04;
 const INITIAL_VELOCITY_PREVIEW_RESPONSE = 0.42;
+const NOW_SLIDER_MAX = 1000;
 const DEFAULT_ASSEMBLY_THRESHOLD = 0.00075;
 const MIN_RETAINED_DEPTH_LIMIT = 2;
 const FIELD_SPEED_MIN = 0.25;
@@ -38,6 +39,7 @@ const DEFAULT_FIELD_SPEED_SCALE = 1;
 const ARCHITRINO_KINDS = Object.freeze(["positrino", "electrino"]);
 const ARCHITRINO_SPEED_FRACTIONS = Object.freeze([0.1, 0.3, 0.5, 0.7, 0.9, 0.99, 0.999, 0.9999, 0.99999, 0.999999]);
 const DEFAULT_ARCHITRINO_SPEED_INDEX = 3;
+const CENTRAL_PAIR_INTERACTION_REPLAY_MODE = "pairInteraction";
 const VIRTUAL_OBSERVER = Object.freeze({ r: 74, g: 229, b: 255, a: 1 });
 const DEFAULT_VIRTUAL_OBSERVER_POINT = Object.freeze({
   kind: "virtualObserver",
@@ -174,6 +176,8 @@ class CausalDelayFeedbackRuntime {
     this.resetArchitrinoVelocityReference();
     this.retainedDepthLimit = this.normalizeRetainedDepthLimit(options.retainedDepthLimit);
     this.viewport = createViewport(DESIGN_WIDTH, DESIGN_HEIGHT);
+    this.canvasWidth = DESIGN_WIDTH;
+    this.canvasHeight = DESIGN_HEIGHT;
     this.pixelRatio = 1;
     this.selectedItem = null;
     this.dragState = null;
@@ -191,6 +195,7 @@ class CausalDelayFeedbackRuntime {
     this.populateCanvasSwatches();
     this.populateHistoryDepthControls();
     this.updateSpeedControls();
+    this.updateNowControl();
     this.updateReplayStatus();
     this.bindEvents();
     this.resize();
@@ -211,6 +216,8 @@ class CausalDelayFeedbackRuntime {
       settingsButton: queryRequiredElement(this.document, "#causal-delay-feedback-settings"),
       settingsPanel: queryRequiredElement(this.document, "#causal-delay-feedback-settings-panel"),
       colorSwatches: queryRequiredElement(this.document, "#causal-delay-feedback-color-swatches"),
+      nowInput: queryRequiredElement(this.document, "#causal-delay-feedback-now"),
+      nowValue: queryRequiredElement(this.document, "#causal-delay-feedback-now-value"),
       cfSpeedInput: queryRequiredElement(this.document, "#causal-delay-feedback-cf-speed"),
       cfSpeedValue: queryRequiredElement(this.document, "#causal-delay-feedback-cf-speed-value"),
       architrinoSpeedInput: queryRequiredElement(this.document, "#causal-delay-feedback-architrino-speed"),
@@ -283,9 +290,7 @@ class CausalDelayFeedbackRuntime {
       this.setPlaying(!this.isPlaying);
     });
     this.dom.resetButton.addEventListener("click", () => {
-      this.elapsedSeconds = 0;
-      this.setPlaying(true);
-      this.render();
+      this.resetReplayTime();
     });
     this.dom.settingsButton.addEventListener("click", () => {
       this.toggleSettings();
@@ -296,6 +301,9 @@ class CausalDelayFeedbackRuntime {
         return;
       }
       this.setCanvasColor(button.dataset.colorId);
+    });
+    this.dom.nowInput.addEventListener("input", () => {
+      this.setReplayNowSliderValue(this.dom.nowInput.value);
     });
     this.dom.cfSpeedInput.addEventListener("input", () => {
       this.setFieldSpeedScale(this.dom.cfSpeedInput.value);
@@ -473,6 +481,7 @@ class CausalDelayFeedbackRuntime {
   }
 
   refreshAfterReplayDatasetChange() {
+    this.updateNowControl();
     this.updateReplayStatus();
     if (this.dom?.readout) {
       this.updateReadout();
@@ -539,6 +548,87 @@ class CausalDelayFeedbackRuntime {
       };
     }
     if (this.dataset?.solverIntegrationPath && this.dataset.solverIntegrationPath !== TEMPORARY_MOCK_ADAPTER) {
+      if (this.dataset?.solverReplayMode === CENTRAL_PAIR_INTERACTION_REPLAY_MODE) {
+        const stepCount = Number(this.dataset?.pairInteractionStepCount ?? this.dataset?.solverSummary?.pairInteractionStepCount);
+        const interactionLaw = this.dataset?.interactionLaw ?? this.dataset?.solverSummary?.interactionLaw;
+        const executionPath = this.dataset?.executionPath ?? this.dataset?.solverSummary?.executionPath;
+        const maxConstraintResidual = Number(
+          this.dataset?.maxPathConstraintResidual ?? this.dataset?.solverSummary?.maxPathConstraintResidual
+        );
+        const guidanceSampleCount = Number(
+          this.dataset?.pathConstraintGuidanceSampleCount ??
+            this.dataset?.solverSummary?.pathConstraintGuidanceSampleCount
+        );
+        const guidanceMode =
+          this.dataset?.pathConstraintGuidanceMode ??
+          this.dataset?.solverSummary?.pathConstraintGuidanceMode;
+        const maxGuidanceAcceleration = Number(
+          this.dataset?.maxPathConstraintGuidanceAcceleration ??
+            this.dataset?.solverSummary?.maxPathConstraintGuidanceAcceleration
+        );
+        const boundarySampleCount = Number(
+          this.dataset?.pathConstraintBoundaryResidualSampleCount ??
+            this.dataset?.solverSummary?.pathConstraintBoundaryResidualSampleCount
+        );
+        const maxBoundaryResidual = Number(
+          this.dataset?.maxPathConstraintBoundaryResidual ??
+            this.dataset?.solverSummary?.maxPathConstraintBoundaryResidual
+        );
+        const stepDetail = Number.isFinite(stepCount) ? ` steps=${stepCount}` : "";
+        const lawDetail = interactionLaw ? ` law=${interactionLaw}` : "";
+        const pathDetail = executionPath ? ` path=${executionPath}` : "";
+        const residualDetail = Number.isFinite(maxConstraintResidual)
+          ? ` residual=${formatCompactNumber(maxConstraintResidual)}`
+          : "";
+        const boundaryDetail =
+          Number.isFinite(boundarySampleCount) && boundarySampleCount > 0
+            ? ` boundary=${boundarySampleCount}${
+                Number.isFinite(maxBoundaryResidual) ? ` maxB=${formatCompactNumber(maxBoundaryResidual)}` : ""
+              }`
+            : "";
+        const guidanceDetail = Number.isFinite(guidanceSampleCount) && guidanceSampleCount > 0
+          ? ` guidance=${guidanceSampleCount}${
+              guidanceMode ? ` mode=${guidanceMode}` : ""
+            }${Number.isFinite(maxGuidanceAcceleration) ? ` maxA=${formatCompactNumber(maxGuidanceAcceleration)}` : ""}`
+          : "";
+        const guidanceBoundary = guidanceDetail
+          ? guidanceMode === "retained_knot_hermite_boundary"
+            ? " Retained path constraints used retained-knot Hermite boundary guidance; this is not yet the final physical boundary-value path solve."
+            : " Retained path constraints used finite-time guidance; this is not yet the final physical boundary-value path solve."
+          : "";
+        return {
+          state: guidanceDetail ? "bridge-guided" : "bridge",
+          label: guidanceDetail ? "solver guided replay" : "solver pair replay",
+          help:
+            `Showing central solver bridge replay from one mutual pair-interaction path run${stepDetail}${lawDetail}${pathDetail}${residualDetail}${boundaryDetail}${guidanceDetail}. ` +
+            `This replaces the segmented one-body seed replay for the default canvas path.${guidanceBoundary}`,
+        };
+      }
+      const accelerationPolicy = this.getBridgeMotionAccelerationPolicy();
+      if (accelerationPolicy === "pair_segmented_attraction_seed") {
+        const scale = Number(this.dataset?.pairAccelerationScale ?? this.dataset?.solverSummary?.pairAccelerationScale);
+        const segmentCount = Number(this.dataset?.pairSegmentCount ?? this.dataset?.solverSummary?.pairSegmentCount);
+        const scaleDetail = Number.isFinite(scale) ? ` scale=${formatCompactNumber(scale)}` : "";
+        const segmentDetail = Number.isFinite(segmentCount) ? ` segments=${segmentCount}` : "";
+        return {
+          state: "bridge-seed",
+          label: "solver seed replay",
+          help:
+            `Showing central solver bridge replay using pair_segmented_attraction_seed path acceleration${scaleDetail}${segmentDetail}. ` +
+            "This is a segmented pair-interaction approximation, not the final full pair-interaction path solver.",
+        };
+      }
+      if (accelerationPolicy === "pair_initial_attraction_seed") {
+        const scale = Number(this.dataset?.pairAccelerationScale ?? this.dataset?.solverSummary?.pairAccelerationScale);
+        const scaleDetail = Number.isFinite(scale) ? ` scale=${formatCompactNumber(scale)}.` : ".";
+        return {
+          state: "bridge-seed",
+          label: "solver seed replay",
+          help:
+            `Showing central solver bridge replay using pair_initial_attraction_seed path acceleration${scaleDetail} ` +
+            "This is not the final full pair-interaction path solver.",
+        };
+      }
       return {
         state: "bridge",
         label: "solver bridge replay",
@@ -557,6 +647,11 @@ class CausalDelayFeedbackRuntime {
       label: "replay ready",
       help: "Showing replay data.",
     };
+  }
+
+  getBridgeMotionAccelerationPolicy() {
+    const policy = this.dataset?.motionAccelerationPolicy ?? this.dataset?.solverSummary?.motionAccelerationPolicy;
+    return typeof policy === "string" ? policy.trim() : "";
   }
 
   setCanvasColor(colorId) {
@@ -741,7 +836,7 @@ class CausalDelayFeedbackRuntime {
   }
 
   getVisibleHistory(kind) {
-    return (this.dataset?.history?.[kind] ?? []).filter((point) => Number(point.depth) <= this.retainedDepthLimit);
+    return (this.dataset?.history?.[kind] ?? []).filter((point) => this.isVisibleHistoryPoint(kind, point));
   }
 
   getVisibleWakeLinks() {
@@ -755,12 +850,31 @@ class CausalDelayFeedbackRuntime {
       return true;
     }
     if (this.selectedItem.type === "history") {
-      return Number(this.selectedItem.depth) <= this.retainedDepthLimit;
+      return this.isVisibleHistoryDepth(this.selectedItem.kind, this.selectedItem.depth);
     }
     if (this.selectedItem.type === "wake") {
       return this.getVisibleWakeLinks().some((link) => link.id === this.selectedItem.linkId);
     }
     return true;
+  }
+
+  isVisibleHistoryPoint(kind, point) {
+    return this.isVisibleHistoryDepth(kind, point?.depth);
+  }
+
+  isVisibleHistoryDepth(kind, depth) {
+    const numericDepth = Number(depth);
+    if (!Number.isFinite(numericDepth)) {
+      return false;
+    }
+    return numericDepth <= this.retainedDepthLimit || numericDepth === 1 || numericDepth === this.getMaxHistoryDepth(kind);
+  }
+
+  getMaxHistoryDepth(kind) {
+    const depths = (this.dataset?.history?.[kind] ?? [])
+      .map((point) => Number(point.depth))
+      .filter(Number.isFinite);
+    return depths.length > 0 ? Math.max(...depths) : 0;
   }
 
   setPlaying(isPlaying) {
@@ -776,6 +890,59 @@ class CausalDelayFeedbackRuntime {
     this.dom.playButton.innerHTML = this.isPlaying
       ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14"></path><path d="M16 5v14"></path></svg>'
       : '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l10-7z"></path></svg>';
+  }
+
+  resetReplayTime() {
+    this.elapsedSeconds = 0;
+    this.setPlaying(true);
+    this.updateNowControl();
+    if (this.dom?.readout) {
+      this.updateReadout();
+    }
+    if (this.context) {
+      this.render();
+    }
+  }
+
+  setReplayNowSliderValue(value) {
+    const numericValue = Number(value);
+    const sliderValue = Number.isFinite(numericValue) ? clamp(numericValue, 0, NOW_SLIDER_MAX) : 0;
+    const [start, end] = this.getReplayTimeRange();
+    const span = end - start;
+    const replayTime = span > 0 ? start + span * (sliderValue / NOW_SLIDER_MAX) : start;
+    this.setPlaying(false);
+    this.setCurrentReplayTime(replayTime);
+    this.updateNowControl(replayTime);
+    if (this.context) {
+      this.render(replayTime);
+    }
+    if (this.dom?.readout) {
+      this.updateReadout();
+    }
+  }
+
+  setCurrentReplayTime(replayTime) {
+    const [start, end] = this.getReplayTimeRange();
+    const span = end - start;
+    if (!Number.isFinite(span) || span <= 0) {
+      this.elapsedSeconds = 0;
+      return;
+    }
+    const numericReplayTime = Number(replayTime);
+    const nextTime = Number.isFinite(numericReplayTime) ? clamp(numericReplayTime, start, end) : start;
+    const phase = clamp((nextTime - start) / span, 0, 1);
+    this.elapsedSeconds = phase >= 1 ? REPLAY_LOOP_SECONDS - TIME_EPSILON : phase * REPLAY_LOOP_SECONDS;
+  }
+
+  updateNowControl(replayTime = this.getCurrentReplayTime()) {
+    if (!this.dom?.nowInput || !this.dom?.nowValue) {
+      return;
+    }
+    const [start, end] = this.getReplayTimeRange();
+    const span = end - start;
+    const phase = span > 0 ? clamp((replayTime - start) / span, 0, 1) : 0;
+    this.dom.nowInput.value = String(Math.round(phase * NOW_SLIDER_MAX));
+    this.dom.nowValue.textContent = `t=${formatCompactNumber(replayTime)}`;
   }
 
   toggleSettings() {
@@ -838,6 +1005,7 @@ class CausalDelayFeedbackRuntime {
       const previousReplayTime = this.getCurrentReplayTime();
       this.elapsedSeconds += deltaSeconds * this.fieldSpeedScale;
       const replayTime = this.getCurrentReplayTime();
+      this.updateNowControl(replayTime);
       this.render(this.getFrameReceptionReplayTime(previousReplayTime, replayTime) ?? replayTime);
       if (this.dom?.readout) {
         this.updateReadout();
@@ -1039,8 +1207,8 @@ class CausalDelayFeedbackRuntime {
     if (!condition) {
       return;
     }
-    const point = this.getHistoryStartPoint(kind) ?? this.initialConditionPoint(condition);
-    const velocityEnd = this.initialConditionVelocityEnd({ ...condition, x: point.x, y: point.y });
+    const point = this.getInitialVelocityAnchorPoint(kind, condition);
+    const velocityEnd = this.initialConditionVelocityEnd(condition, point);
     const screen = this.worldToScreen(point);
     const velocityScreen = this.worldToScreen(velocityEnd);
     this.drawLine(ctx, [screen, velocityScreen], withAlpha(mixColor(color, WHITE, 0.42), 0.46), 2);
@@ -1059,7 +1227,28 @@ class CausalDelayFeedbackRuntime {
     this.drawCircle(ctx, screen, 3.6, VIRTUAL_OBSERVER);
     this.drawLine(ctx, [{ x: screen.x - arm, y: screen.y }, { x: screen.x + arm, y: screen.y }], withAlpha(VIRTUAL_OBSERVER, 0.54), 1.2);
     this.drawLine(ctx, [{ x: screen.x, y: screen.y - arm }, { x: screen.x, y: screen.y + arm }], withAlpha(VIRTUAL_OBSERVER, 0.54), 1.2);
-    this.drawScreenText(ctx, "Virtual Observer", { x: screen.x + 30 * this.viewport.scale, y: screen.y - 20 * this.viewport.scale }, 13, withAlpha(WHITE, 0.76), "left", "bold");
+    const label = this.getVirtualObserverLabelPlacement(screen);
+    this.drawScreenText(ctx, "Virtual Observer", label, 13, withAlpha(WHITE, 0.76), label.align, "bold");
+  }
+
+  getVirtualObserverLabelPlacement(screen, text = "Virtual Observer", size = 13) {
+    const fontSize = Math.max(9, size * this.viewport.scale);
+    const estimatedWidth = text.length * fontSize * 0.68;
+    const labelGap = Math.max(12, 30 * this.viewport.scale);
+    const rightPadding = Math.max(12, 28 * this.viewport.scale);
+    const labelY = screen.y - Math.max(12, 20 * this.viewport.scale);
+    if (screen.x + labelGap + estimatedWidth > this.canvasWidth - rightPadding) {
+      return {
+        x: screen.x - labelGap,
+        y: labelY,
+        align: "right",
+      };
+    }
+    return {
+      x: screen.x + labelGap,
+      y: labelY,
+      align: "left",
+    };
   }
 
   drawSelection(ctx) {
@@ -1213,15 +1402,31 @@ class CausalDelayFeedbackRuntime {
   updateHoverLabel(event) {
     const rect = this.dom.canvas.getBoundingClientRect();
     const screen = { x: event.clientX - rect.left, y: event.clientY - rect.top };
-    const hit = this.findNearestHit(screen);
+    const hit = this.findNearestHit(screen, { includeWakes: true });
     if (!hit) {
       this.dom.hoverLabel.hidden = true;
       return;
     }
-    this.dom.hoverLabel.textContent = hit.label;
+    this.dom.hoverLabel.textContent = this.createHoverLabel(hit);
     this.dom.hoverLabel.style.left = `${event.clientX}px`;
     this.dom.hoverLabel.style.top = `${event.clientY}px`;
     this.dom.hoverLabel.hidden = false;
+  }
+
+  createHoverLabel(hit) {
+    if (hit?.type !== "wake") {
+      return hit?.label ?? "";
+    }
+    const hoverDetails = (hit.details ?? []).filter((detail) => (
+      detail.startsWith("emit=") ||
+      detail.startsWith("hit=") ||
+      detail.startsWith("travel=") ||
+      detail.startsWith("contrib=") ||
+      detail.startsWith("state=") ||
+      detail.startsWith("reason=") ||
+      detail.startsWith("solver=")
+    ));
+    return [hit.label, ...hoverDetails].join("  ");
   }
 
   handleCanvasPointerMove(event) {
@@ -1410,7 +1615,7 @@ class CausalDelayFeedbackRuntime {
     if (completedDrag.type === "initial-velocity" || completedDrag.type === "virtual-observer") {
       return true;
     }
-    return completedDrag.type === "history" && Number(completedDrag.depth) === 1;
+    return completedDrag.type === "history";
   }
 
   rerunAfterDirectManipulationDrag() {
@@ -1439,18 +1644,23 @@ class CausalDelayFeedbackRuntime {
     if (!condition || !velocityEnd) {
       return false;
     }
+    const startPoint = this.getHistoryStartPoint(kind);
+    if (startPoint) {
+      this.syncInitialConditionToHistoryStart(kind, startPoint);
+    }
+    const velocityAnchor = this.getInitialVelocityAnchorPoint(kind, condition);
     const previousVelocity = {
       vx: Number(condition.vx) || 0,
       vy: Number(condition.vy) || 0,
     };
-    const nextVelocity = this.velocityFromInitialConditionHandle(condition, velocityEnd);
+    const nextVelocity = this.velocityFromInitialConditionHandle(condition, velocityEnd, velocityAnchor);
     if (previousVelocity.vx === nextVelocity.vx && previousVelocity.vy === nextVelocity.vy) {
       return false;
     }
 
     condition.vx = nextVelocity.vx;
     condition.vy = nextVelocity.vy;
-    this.applyInitialVelocityPreview(kind, condition, previousVelocity, nextVelocity);
+    this.applyInitialVelocityPreview(kind, { ...condition, ...velocityAnchor }, previousVelocity, nextVelocity);
     this.setArchitrinoVelocityReferenceFromCondition(kind);
     this.updateWakeLinkGeometry();
     this.syncReplayRequestOptionsFromDataset();
@@ -1830,8 +2040,30 @@ class CausalDelayFeedbackRuntime {
       point.x += delta.x * weight;
       point.y += delta.y * weight;
     });
+    this.syncPathSamplesToHistoryPoint(kind, selectedPoint);
     this.syncInitialConditionToHistoryStart(kind, selectedPoint);
     return true;
+  }
+
+  syncPathSamplesToHistoryPoint(kind, historyPoint) {
+    const targetT = Number(historyPoint?.t);
+    if (!Number.isFinite(targetT)) {
+      return;
+    }
+    const syncPoint = (point, fallbackT = point?.t) => {
+      const sampleT = Number(fallbackT);
+      if (!point || !Number.isFinite(sampleT) || Math.abs(sampleT - targetT) > TIME_EPSILON) {
+        return;
+      }
+      point.x = Number(historyPoint.x) || 0;
+      point.y = Number(historyPoint.y) || 0;
+    };
+    (this.dataset.paths?.[kind] ?? []).forEach((point) => syncPoint(point));
+    (this.dataset.frames ?? []).forEach((frame) => {
+      const point = frame?.[kind];
+      const sampleT = Number.isFinite(Number(point?.t)) ? Number(point.t) : Number(frame?.t);
+      syncPoint(point, sampleT);
+    });
   }
 
   syncInitialConditionToHistoryStart(kind, point) {
@@ -1982,11 +2214,26 @@ class CausalDelayFeedbackRuntime {
   }
 
   initialConditionPoint(condition) {
-    return { x: Number(condition.x) || 0, y: Number(condition.y) || 0 };
+    return { x: Number(condition?.x) || 0, y: Number(condition?.y) || 0 };
   }
 
-  initialConditionVelocityEnd(condition) {
-    const point = this.initialConditionPoint(condition);
+  getInitialVelocityAnchorPoint(kind, condition = this.getInitialCondition(kind)) {
+    const historyStart = this.getHistoryStartPoint(kind);
+    if (historyStart) {
+      return {
+        t: Number.isFinite(Number(historyStart.t)) ? Number(historyStart.t) : Number(condition?.t) || 0,
+        x: Number(historyStart.x) || 0,
+        y: Number(historyStart.y) || 0,
+      };
+    }
+    return {
+      t: Number(condition?.t) || 0,
+      ...this.initialConditionPoint(condition),
+    };
+  }
+
+  initialConditionVelocityEnd(condition, anchorPoint = this.initialConditionPoint(condition)) {
+    const point = anchorPoint;
     const vx = Number(condition.vx) || 0;
     const vy = Number(condition.vy) || 0;
     return {
@@ -1995,8 +2242,8 @@ class CausalDelayFeedbackRuntime {
     };
   }
 
-  velocityFromInitialConditionHandle(condition, velocityEnd) {
-    const point = this.initialConditionPoint(condition);
+  velocityFromInitialConditionHandle(condition, velocityEnd, anchorPoint = this.initialConditionPoint(condition)) {
+    const point = anchorPoint;
     return {
       vx: (Number(velocityEnd.x) - point.x) / INITIAL_VELOCITY_ARROW_SCALE,
       vy: (Number(velocityEnd.y) - point.y) / INITIAL_VELOCITY_ARROW_SCALE,
@@ -2249,7 +2496,9 @@ class CausalDelayFeedbackRuntime {
       if (!condition) {
         return;
       }
-      const candidate = this.worldToScreen(this.initialConditionVelocityEnd(condition));
+      const candidate = this.worldToScreen(
+        this.initialConditionVelocityEnd(condition, this.getInitialVelocityAnchorPoint(kind, condition)),
+      );
       const distance = Math.hypot(screen.x - candidate.x, screen.y - candidate.y);
       velocityCandidates.push(this.createInitialVelocityHit(kind, condition, distance));
     });
@@ -2597,7 +2846,30 @@ class CausalDelayFeedbackRuntime {
     if (Number.isFinite(Number(link.solverHitStatusCode)) && Number(link.solverHitStatusCode) !== 0) {
       details.push(`hitCode=${Number(link.solverHitStatusCode)}`);
     }
+    details.push(...this.createWakeRootLedgerReadoutDetails(link));
     details.push(...this.createWakeRootStatusReadoutDetails(link));
+    return details;
+  }
+
+  createWakeRootLedgerReadoutDetails(link) {
+    const rows = Array.isArray(link?.rootLedgerDetails) ? link.rootLedgerDetails : [];
+    if (rows.length === 0) {
+      return [];
+    }
+    const details = [`ledgerRows=${rows.length}`];
+    const firstRow = rows.find((row) => row && typeof row === "object") ?? {};
+    if (Number.isFinite(Number(firstRow.residual))) {
+      details.push(`ledgerResid=${formatCompactNumber(Number(firstRow.residual))}`);
+    }
+    if (Number.isFinite(Number(firstRow.bracketStart)) && Number.isFinite(Number(firstRow.bracketEnd))) {
+      details.push(`ledgerBracket=${Number(firstRow.bracketStart).toFixed(2)}-${Number(firstRow.bracketEnd).toFixed(2)}`);
+    }
+    if (Number.isFinite(Number(firstRow.iterationCount))) {
+      details.push(`ledgerIter=${Number(firstRow.iterationCount)}`);
+    }
+    if (Number.isFinite(Number(firstRow.statusCode)) && Number(firstRow.statusCode) !== 0) {
+      details.push(`ledgerCode=${Number(firstRow.statusCode)}`);
+    }
     return details;
   }
 
@@ -2655,7 +2927,8 @@ class CausalDelayFeedbackRuntime {
         Number.isFinite(Number(link.rootCount)) ||
         Number.isFinite(Number(link.solverHitCount)) ||
         Number.isFinite(Number(link.solverHitTime)) ||
-        Number.isFinite(Number(link.solverResidual)),
+        Number.isFinite(Number(link.solverResidual)) ||
+        (Array.isArray(link.rootLedgerDetails) && link.rootLedgerDetails.length > 0),
     );
   }
 

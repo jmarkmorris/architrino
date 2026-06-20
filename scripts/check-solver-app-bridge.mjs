@@ -118,12 +118,13 @@ assert(
   "expected Animator motion, path-history, and playback adapter capabilities"
 );
 assert(
-  findAppAdapter(initResponse.capabilities.appBridge, "causal-delay-feedback").runKinds.includes("motionSimulation") &&
+    findAppAdapter(initResponse.capabilities.appBridge, "causal-delay-feedback").runKinds.includes("motionSimulation") &&
     findAppAdapter(initResponse.capabilities.appBridge, "causal-delay-feedback").runKinds.includes("pathHistory") &&
     findAppAdapter(initResponse.capabilities.appBridge, "causal-delay-feedback").runKinds.includes("causalRoots") &&
     findAppAdapter(initResponse.capabilities.appBridge, "causal-delay-feedback").runKinds.includes("delayedHits") &&
+    findAppAdapter(initResponse.capabilities.appBridge, "causal-delay-feedback").runKinds.includes("pairInteraction") &&
     findAppAdapter(initResponse.capabilities.appBridge, "causal-delay-feedback").runKinds.includes("appPlayback"),
-  "expected Causal Delay Feedback motion, path-history, causal-root, delayed-hit, and playback adapter capabilities"
+  "expected Causal Delay Feedback motion, path-history, causal-root, delayed-hit, pair-interaction, and playback adapter capabilities"
 );
 assert(
   initResponse.capabilities.appBridge.denseDataTransport.includes("array-buffer") &&
@@ -4177,6 +4178,74 @@ assert(
     causalDelayMotionRunHandle.response.frames[2].position.y === 170,
   "expected causal-delay motion run final position"
 );
+const causalDelayPairRunHandle = await client.runSimulation(makeCausalDelayPairInteractionRunSimulationRequest());
+assert(causalDelayPairRunHandle.status.code === "ok", "expected causal-delay pair run status ok");
+assert(
+  causalDelayPairRunHandle.response.manifest.runKind === "pairInteraction" &&
+    causalDelayPairRunHandle.response.manifest.appId === "causal-delay-feedback" &&
+    causalDelayPairRunHandle.response.summary.frameCount === 18 &&
+    causalDelayPairRunHandle.response.summary.pathCount === 2 &&
+    causalDelayPairRunHandle.response.summary.pathConstraintCount === 8 &&
+    causalDelayPairRunHandle.response.summary.pathConstraintResidualSampleCount === 14 &&
+    causalDelayPairRunHandle.response.summary.maxPathConstraintResidual > 0 &&
+    causalDelayPairRunHandle.response.summary.pathConstraintGuidanceSampleCount > 0 &&
+    causalDelayPairRunHandle.response.summary.pathConstraintGuidanceMode === "retained_knot_hermite_boundary" &&
+    causalDelayPairRunHandle.response.summary.maxPathConstraintGuidanceAcceleration > 0 &&
+    causalDelayPairRunHandle.response.summary.pathConstraintBoundaryResidualSampleCount === 4 &&
+    causalDelayPairRunHandle.response.summary.maxPathConstraintBoundaryResidual > 0 &&
+    causalDelayPairRunHandle.response.summary.executionPath === "native_c_abi",
+  "expected causal-delay pair run manifest"
+);
+assert(
+  causalDelayPairRunHandle.response.pathHistory.metadata.dynamicReplay.replayKind ===
+    "pair-interaction-path-integration" &&
+    causalDelayPairRunHandle.response.pathHistory.metadata.dynamicReplay.pathKeys.length === 2,
+  "expected causal-delay pair dynamic replay metadata"
+);
+assert(
+  causalDelayPairRunHandle.response.frames.length === 18 &&
+    causalDelayPairRunHandle.response.frames.filter((frame) => frame.pathKey === 1).length === 9 &&
+    causalDelayPairRunHandle.response.frames.filter((frame) => frame.pathKey === 2).length === 9,
+  "expected causal-delay pair frames for both paths"
+);
+const causalDelayPairRedHermite = causalDelayPairRunHandle.response.frames.find(
+  (frame) => frame.pathKey === 1 && frame.time === 0.125
+);
+assert(
+  Math.abs(causalDelayPairRedHermite.position.x - 107.34375) < 1e-9 &&
+    Math.abs(causalDelayPairRedHermite.position.y - 221.875) < 1e-9,
+  "expected causal-delay pair intermediate frame to follow retained-knot Hermite boundary path"
+);
+const causalDelayPairRedInserted = causalDelayPairRunHandle.response.frames.find(
+  (frame) => frame.pathKey === 1 && frame.time === 0.25
+);
+assert(
+  causalDelayPairRedInserted.position.x === 115 &&
+    causalDelayPairRedInserted.position.y === 250 &&
+    causalDelayPairRedInserted.velocity.x === 60 &&
+    causalDelayPairRedInserted.velocity.y === 120,
+  "expected causal-delay pair path constraints to emit the inserted red point with retained-knot tangent velocity"
+);
+const causalDelayPairBlueFinal = causalDelayPairRunHandle.response.frames.find(
+  (frame) => frame.pathKey === 2 && frame.time === 1
+);
+assert(
+  causalDelayPairBlueFinal.position.x === 160 &&
+    causalDelayPairBlueFinal.position.y === 540,
+  "expected causal-delay pair path constraints to pin the blue final point"
+);
+const causalDelayPairReplayValidation = await client.validatePathHistoryDynamicReplayF64({
+  ...createPathHistoryDynamicReplayValidationRequest({
+    streamId: "smoke-causal-delay-pair-run:pair-path-history",
+    tolerance: 0,
+  }),
+});
+assert(
+  causalDelayPairReplayValidation.status.code === "ok" &&
+    causalDelayPairReplayValidation.matched &&
+    causalDelayPairReplayValidation.replayKind === "pair-interaction-path-integration",
+  "expected causal-delay pair dynamic replay validation match"
+);
 const motionRunPathRead = await client.readStreamRange({
   streamId: "smoke-motion-run:motion-path-history",
   frameRange: { start: 0, end: 0 },
@@ -5132,6 +5201,121 @@ function makeCausalDelayMotionRunSimulationRequest() {
         scaleNormalization: "causal-delay-display-units",
         interpolationRule: "linear-segment",
         provenance: { fixture: "causal-delay-motion-run-smoke" },
+      },
+    },
+    output: {
+      outputs: ["frameBuffer", "pathStream", "diagnostics"],
+      streamTarget: "caller-buffer",
+      memoryBudgetBytes: 64 * 1024 * 1024,
+      deterministic: true,
+    },
+  });
+}
+
+function makeCausalDelayPairInteractionRunSimulationRequest() {
+  const admission = makeAdmissionRequest();
+  return createSolverRunRequest({
+    requestId: "smoke-causal-delay-pair-run-request",
+    runId: "smoke-causal-delay-pair-run",
+    datasetId: "smoke-causal-delay-pair-run-dataset",
+    appId: "causal-delay-feedback",
+    runKind: "pairInteraction",
+    claimLevel: "interactive-preview",
+    precisionPath: "auto",
+    configVersion: "causal-delay-feedback-pair-run-smoke.v1",
+    configHash: "causal-delay-feedback-pair-run-smoke",
+    model: admission.model,
+    envelope: admission.envelope,
+    errorBudget: admission.errorBudget,
+    config: {
+      appId: "causal-delay-feedback",
+      pairInteractionRequest: {
+        startTime: 0,
+        endTime: 1,
+        step: 0.125,
+        maxFrames: 9,
+        pairAccelerationScale: 0.18,
+        softening: 0,
+        integrationTolerance: 1e-12,
+        interactionLaw: "display_pair_attraction_v1",
+        initialStates: [
+          {
+            pathKey: 1,
+            initialPosition: { x: 100, y: 200, z: 0 },
+            initialVelocity: { x: 55, y: 20, z: 0 },
+            charge: 1,
+            mass: 1,
+            stateFlags: 1,
+          },
+          {
+            pathKey: 2,
+            initialPosition: { x: 100, y: 700, z: 0 },
+            initialVelocity: { x: 55, y: -20, z: 0 },
+            charge: -1,
+            mass: 1,
+            stateFlags: 2,
+          },
+        ],
+        pathConstraints: [
+          {
+            pathKey: 1,
+            depth: 1,
+            time: 0,
+            position: { x: 100, y: 200, z: 0 },
+          },
+          {
+            pathKey: 1,
+            depth: 2,
+            time: 0.25,
+            position: { x: 115, y: 250, z: 0 },
+          },
+          {
+            pathKey: 1,
+            depth: 3,
+            time: 0.5,
+            position: { x: 130, y: 260, z: 0 },
+          },
+          {
+            pathKey: 1,
+            depth: 4,
+            time: 1,
+            position: { x: 160, y: 320, z: 0 },
+          },
+          {
+            pathKey: 2,
+            depth: 1,
+            time: 0,
+            position: { x: 100, y: 700, z: 0 },
+          },
+          {
+            pathKey: 2,
+            depth: 2,
+            time: 0.25,
+            position: { x: 115, y: 660, z: 0 },
+          },
+          {
+            pathKey: 2,
+            depth: 3,
+            time: 0.5,
+            position: { x: 130, y: 620, z: 0 },
+          },
+          {
+            pathKey: 2,
+            depth: 4,
+            time: 1,
+            position: { x: 160, y: 540, z: 0 },
+          },
+        ],
+      },
+      streamId: "smoke-causal-delay-pair-run:pair-path-history",
+      rowsPerChunk: 2,
+      metadata: {
+        precisionPath: "scaled_f64_strict",
+        units: "solver-si",
+        coordinateFrame: "absolute-lab-frame",
+        scaleNormalization: "causal-delay-display-units",
+        interpolationRule: "piecewise-pair-interaction-integration",
+        provenance: { fixture: "causal-delay-pair-run-smoke" },
       },
     },
     output: {

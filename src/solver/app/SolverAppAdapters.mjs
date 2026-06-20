@@ -11,6 +11,7 @@ const KNOWN_RUN_KINDS = new Set([
   "delayedHits",
   "sharedGeometry",
   "appPlayback",
+  "pairInteraction",
   "validationReplay",
 ]);
 const DEFAULT_CONFIG_VERSION_BY_RUN_KIND = Object.freeze({
@@ -21,6 +22,7 @@ const DEFAULT_CONFIG_VERSION_BY_RUN_KIND = Object.freeze({
   delayedHits: "ideal-swarm-delayed-hits-adapter.v1",
   sharedGeometry: "shared-geometry-adapter.v1",
   appPlayback: "animator-app-playback-adapter.v1",
+  pairInteraction: "causal-delay-feedback-pair-interaction-adapter.v1",
   validationReplay: "validation-replay-adapter.v1",
 });
 const DEFAULT_OUTPUTS_BY_RUN_KIND = Object.freeze({
@@ -31,6 +33,7 @@ const DEFAULT_OUTPUTS_BY_RUN_KIND = Object.freeze({
   delayedHits: ["rootLedger", "delayedHitEvents", "diagnostics"],
   sharedGeometry: ["geometryBuffer", "diagnostics"],
   appPlayback: ["summary", "diagnostics"],
+  pairInteraction: ["frameBuffer", "pathStream", "diagnostics"],
   validationReplay: ["validationArtifacts", "diagnostics"],
 });
 

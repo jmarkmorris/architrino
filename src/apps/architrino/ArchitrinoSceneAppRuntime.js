@@ -6381,7 +6381,7 @@ function getNodeBoundsRadius(node) {
   return Math.max(baseRadius, baseRadius * ringLayoutDefaults.haloScale);
 }
 
-function solveRingFit(frameRadius, count) {
+function computeRingFit(frameRadius, count) {
   const maxFrameRadius = Math.max(0, frameRadius);
   if (!Number.isFinite(maxFrameRadius) || maxFrameRadius <= 0) {
     return { haloRadius: 0, ringRadius: 0, nodeRadius: 0 };
@@ -7345,9 +7345,9 @@ function layoutRootLevel(level) {
     const { safeWidth, safeHeight } = getSafeViewportWorld();
     const safeRadius = Math.max(2, Math.min(safeWidth, safeHeight) / 2);
     const frameRadius = safeRadius;
-    const solvedRing = solveRingFit(frameRadius, nodes.length);
-    const targetRadius = Math.max(0, solvedRing.nodeRadius);
-    const ringRadius = Math.max(0, solvedRing.ringRadius);
+    const ringFit = computeRingFit(frameRadius, nodes.length);
+    const targetRadius = Math.max(0, ringFit.nodeRadius);
+    const ringRadius = Math.max(0, ringFit.ringRadius);
     const scaleFactor = baseRadius > 0 ? targetRadius / baseRadius : 1;
     if (Number.isFinite(scaleFactor)) {
       nodes.forEach((node) => {

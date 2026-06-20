@@ -340,6 +340,53 @@ struct ArchitrinoSolverMotionIntegrationRequestF64 {
   std::uint32_t state_flags;
 };
 
+struct ArchitrinoSolverPairInteractionRequestF64 {
+  double start_time;
+  double end_time;
+  double step;
+  double pair_acceleration_scale;
+  double softening;
+  double integration_tolerance;
+  std::uint32_t interaction_law;
+  std::uint32_t integration_method;
+  std::uint64_t reserved0;
+};
+
+struct ArchitrinoSolverPairInteractionStateF64 {
+  std::uint64_t path_key;
+  ArchitrinoSolverVector3F64 initial_position;
+  ArchitrinoSolverVector3F64 initial_velocity;
+  double charge;
+  double mass;
+  std::uint32_t state_flags;
+  std::uint32_t reserved0;
+};
+
+struct ArchitrinoSolverPairInteractionPathConstraintF64 {
+  std::uint64_t path_key;
+  std::uint32_t depth;
+  std::uint32_t reserved0;
+  double time;
+  ArchitrinoSolverVector3F64 position;
+};
+
+struct ArchitrinoSolverPairInteractionSummaryF64 {
+  std::uint32_t path_constraint_count;
+  std::uint32_t reserved0;
+  std::uint64_t residual_sample_count;
+  double max_constraint_residual;
+  double mean_constraint_residual;
+  double rms_constraint_residual;
+  std::uint64_t guidance_sample_count;
+  double max_guidance_acceleration;
+  double mean_guidance_acceleration;
+  double rms_guidance_acceleration;
+  std::uint64_t boundary_residual_sample_count;
+  double max_boundary_residual;
+  double mean_boundary_residual;
+  double rms_boundary_residual;
+};
+
 struct ArchitrinoSolverMotionFrameRowF64 {
   std::uint64_t path_key;
   std::uint64_t frame_index;
@@ -936,6 +983,20 @@ int architrino_solver_integrate_constant_acceleration_path_history_f64(
     ArchitrinoSolverPathHistoryRowF64* rows,
     int max_rows,
     int* out_row_count);
+
+int architrino_solver_integrate_pair_interaction_motion_f64(
+    const ArchitrinoSolverPairInteractionRequestF64* request,
+    const ArchitrinoSolverPairInteractionStateF64* states,
+    int state_count,
+    const ArchitrinoSolverPairInteractionPathConstraintF64* path_constraints,
+    int path_constraint_count,
+    ArchitrinoSolverMotionFrameRowF64* frames,
+    int max_frames,
+    int* out_frame_count,
+    ArchitrinoSolverPathHistoryRowF64* path_rows,
+    int max_path_rows,
+    int* out_path_row_count,
+    ArchitrinoSolverPairInteractionSummaryF64* out_summary);
 
 int architrino_solver_compute_phase_at_hit_f64(
     const ArchitrinoSolverCausalRootRowF64* roots,

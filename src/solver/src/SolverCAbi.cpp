@@ -18,6 +18,7 @@
 
 #include <algorithm>
 #include <cmath>
+#include <utility>
 #include <cstddef>
 #include <limits>
 #include <string>
@@ -51,6 +52,10 @@ static_assert(sizeof(ArchitrinoSolverPhaseAtHitMetadataF64) == 32);
 static_assert(sizeof(ArchitrinoSolverPhaseAtHitRowF64) == 104);
 static_assert(sizeof(ArchitrinoSolverMotionSampleRequestF64) == 112);
 static_assert(sizeof(ArchitrinoSolverMotionIntegrationRequestF64) == 120);
+static_assert(sizeof(ArchitrinoSolverPairInteractionRequestF64) == 64);
+static_assert(sizeof(ArchitrinoSolverPairInteractionStateF64) == 80);
+static_assert(sizeof(ArchitrinoSolverPairInteractionPathConstraintF64) == 48);
+static_assert(sizeof(ArchitrinoSolverPairInteractionSummaryF64) == 104);
 static_assert(sizeof(ArchitrinoSolverMotionFrameRowF64) == 88);
 static_assert(sizeof(ArchitrinoSolverPathHistoryRowF64) == 96);
 static_assert(sizeof(ArchitrinoSolverPathHistoryIndexRow) == 64);
@@ -125,6 +130,16 @@ static_assert(offsetof(ArchitrinoSolverMotionSampleRequestF64, path_key) == 72);
 static_assert(offsetof(ArchitrinoSolverMotionSampleRequestF64, state_flags) == 104);
 static_assert(offsetof(ArchitrinoSolverMotionIntegrationRequestF64, initial_position) == 32);
 static_assert(offsetof(ArchitrinoSolverMotionIntegrationRequestF64, integration_method) == 112);
+static_assert(offsetof(ArchitrinoSolverPairInteractionRequestF64, interaction_law) == 48);
+static_assert(offsetof(ArchitrinoSolverPairInteractionStateF64, initial_position) == 8);
+static_assert(offsetof(ArchitrinoSolverPairInteractionStateF64, state_flags) == 72);
+static_assert(offsetof(ArchitrinoSolverPairInteractionPathConstraintF64, time) == 16);
+static_assert(offsetof(ArchitrinoSolverPairInteractionPathConstraintF64, position) == 24);
+static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, max_constraint_residual) == 16);
+static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, guidance_sample_count) == 40);
+static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, max_guidance_acceleration) == 48);
+static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, boundary_residual_sample_count) == 72);
+static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, max_boundary_residual) == 80);
 static_assert(offsetof(ArchitrinoSolverMotionFrameRowF64, time) == 16);
 static_assert(offsetof(ArchitrinoSolverMotionFrameRowF64, state_flags) == 80);
 static_assert(offsetof(ArchitrinoSolverPathHistoryRowF64, start_time) == 16);
@@ -427,6 +442,66 @@ architrino::solver::MotionIntegrationRequest to_motion_integration_request(
       request->integration_tolerance,
       request->integration_method,
       request->state_flags,
+  };
+}
+
+architrino::solver::PairInteractionRequest to_pair_interaction_request(
+    const ArchitrinoSolverPairInteractionRequestF64* request,
+    std::vector<architrino::solver::PairInteractionPathConstraint> pathConstraints) {
+  return architrino::solver::PairInteractionRequest{
+      request->start_time,
+      request->end_time,
+      request->step,
+      request->pair_acceleration_scale,
+      request->softening,
+      request->integration_tolerance,
+      request->interaction_law,
+      request->integration_method,
+      std::move(pathConstraints),
+  };
+}
+
+architrino::solver::PairInteractionState to_pair_interaction_state(
+    const ArchitrinoSolverPairInteractionStateF64& state) {
+  return architrino::solver::PairInteractionState{
+      state.path_key,
+      to_vector(state.initial_position),
+      to_vector(state.initial_velocity),
+      state.charge,
+      state.mass,
+      state.state_flags,
+  };
+}
+
+architrino::solver::PairInteractionPathConstraint to_pair_interaction_path_constraint(
+    const ArchitrinoSolverPairInteractionPathConstraintF64& constraint) {
+  return architrino::solver::PairInteractionPathConstraint{
+      constraint.path_key,
+      constraint.depth,
+      constraint.time,
+      to_vector(constraint.position),
+  };
+}
+
+ArchitrinoSolverPairInteractionSummaryF64 to_pair_interaction_summary(
+    const architrino::solver::PairInteractionSampleResult& result) {
+  return ArchitrinoSolverPairInteractionSummaryF64{
+      static_cast<std::uint32_t>(std::min<std::uint64_t>(
+          result.pathConstraintCount,
+          std::numeric_limits<std::uint32_t>::max())),
+      0,
+      result.pathConstraintResidualSampleCount,
+      result.maxPathConstraintResidual,
+      result.meanPathConstraintResidual,
+      result.rmsPathConstraintResidual,
+      result.pathConstraintGuidanceSampleCount,
+      result.maxPathConstraintGuidanceAcceleration,
+      result.meanPathConstraintGuidanceAcceleration,
+      result.rmsPathConstraintGuidanceAcceleration,
+      result.pathConstraintBoundaryResidualSampleCount,
+      result.maxPathConstraintBoundaryResidual,
+      result.meanPathConstraintBoundaryResidual,
+      result.rmsPathConstraintBoundaryResidual,
   };
 }
 
@@ -2710,6 +2785,73 @@ extern "C" int architrino_solver_integrate_constant_acceleration_path_history_f6
   }
 
   return copy_path_history_rows(result.rows, rows, max_rows, out_row_count);
+}
+
+extern "C" int architrino_solver_integrate_pair_interaction_motion_f64(
+    const ArchitrinoSolverPairInteractionRequestF64* request,
+    const ArchitrinoSolverPairInteractionStateF64* states,
+    int state_count,
+    const ArchitrinoSolverPairInteractionPathConstraintF64* path_constraints,
+    int path_constraint_count,
+    ArchitrinoSolverMotionFrameRowF64* frames,
+    int max_frames,
+    int* out_frame_count,
+    ArchitrinoSolverPathHistoryRowF64* path_rows,
+    int max_path_rows,
+    int* out_path_row_count,
+    ArchitrinoSolverPairInteractionSummaryF64* out_summary) {
+  if (request == nullptr || states == nullptr || out_frame_count == nullptr ||
+      out_path_row_count == nullptr || state_count < 0 || path_constraint_count < 0 ||
+      max_frames < 0 || max_path_rows < 0 ||
+      (path_constraint_count > 0 && path_constraints == nullptr)) {
+    return -1;
+  }
+
+  std::vector<architrino::solver::PairInteractionState> cppStates;
+  cppStates.reserve(static_cast<std::size_t>(state_count));
+  for (int index = 0; index < state_count; ++index) {
+    cppStates.push_back(to_pair_interaction_state(states[index]));
+  }
+  std::vector<architrino::solver::PairInteractionPathConstraint> cppConstraints;
+  cppConstraints.reserve(static_cast<std::size_t>(path_constraint_count));
+  for (int index = 0; index < path_constraint_count; ++index) {
+    cppConstraints.push_back(to_pair_interaction_path_constraint(path_constraints[index]));
+  }
+
+  const architrino::solver::PairInteractionSampleResult result =
+      architrino::solver::integrate_pair_interaction_motion(
+          to_pair_interaction_request(request, std::move(cppConstraints)),
+          cppStates);
+  if (!result.validation.ok) {
+    *out_frame_count = 0;
+    *out_path_row_count = 0;
+    return -2;
+  }
+  if (root_count_overflows(result.frames.size()) || root_count_overflows(result.pathRows.size())) {
+    *out_frame_count = 0;
+    *out_path_row_count = 0;
+    return -4;
+  }
+
+  const int requiredFrames = static_cast<int>(result.frames.size());
+  const int requiredPathRows = static_cast<int>(result.pathRows.size());
+  *out_frame_count = requiredFrames;
+  *out_path_row_count = requiredPathRows;
+  if (out_summary != nullptr) {
+    *out_summary = to_pair_interaction_summary(result);
+  }
+  if ((requiredFrames > 0 && (frames == nullptr || max_frames < requiredFrames)) ||
+      (requiredPathRows > 0 && (path_rows == nullptr || max_path_rows < requiredPathRows))) {
+    return -3;
+  }
+
+  for (int index = 0; index < requiredFrames; ++index) {
+    frames[index] = to_motion_row(result.frames[static_cast<std::size_t>(index)]);
+  }
+  for (int index = 0; index < requiredPathRows; ++index) {
+    path_rows[index] = to_c_path_history_row(result.pathRows[static_cast<std::size_t>(index)]);
+  }
+  return 0;
 }
 
 extern "C" int architrino_solver_compute_phase_at_hit_f64(
