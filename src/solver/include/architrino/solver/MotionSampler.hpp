@@ -100,6 +100,10 @@ struct PairInteractionSampleResult {
   double maxPathConstraintBoundaryResidual = 0.0;
   double meanPathConstraintBoundaryResidual = 0.0;
   double rmsPathConstraintBoundaryResidual = 0.0;
+  std::uint64_t pathConstraintBoundaryRelaxationResidualSampleCount = 0;
+  double maxPathConstraintBoundaryRelaxationResidualBefore = 0.0;
+  double maxPathConstraintBoundaryRelaxationResidualAfter = 0.0;
+  double pathConstraintBoundaryRelaxationResidualRatio = 0.0;
   ValidationReport validation;
 };
 

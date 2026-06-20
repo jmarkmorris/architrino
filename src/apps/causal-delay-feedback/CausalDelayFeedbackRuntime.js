@@ -572,6 +572,10 @@ class CausalDelayFeedbackRuntime {
           this.dataset?.pathConstraintBoundaryRelaxationIterationCount ??
             this.dataset?.solverSummary?.pathConstraintBoundaryRelaxationIterationCount
         );
+        const boundaryRelaxationResidualRatio = Number(
+          this.dataset?.pathConstraintBoundaryRelaxationResidualRatio ??
+            this.dataset?.solverSummary?.pathConstraintBoundaryRelaxationResidualRatio
+        );
         const constraintSolverStatus =
           this.dataset?.pathConstraintSolverStatus ??
           this.dataset?.solverSummary?.pathConstraintSolverStatus;
@@ -618,6 +622,10 @@ class CausalDelayFeedbackRuntime {
           ? ` relax=${formatCompactLabel(boundaryRelaxationMode)}${
               Number.isFinite(boundaryRelaxationIterationCount)
                 ? ` relaxIter=${boundaryRelaxationIterationCount}`
+                : ""
+            }${
+              Number.isFinite(boundaryRelaxationResidualRatio)
+                ? ` relaxRatio=${formatCompactNumber(boundaryRelaxationResidualRatio)}`
                 : ""
             }`
           : "";
@@ -2830,6 +2838,10 @@ class CausalDelayFeedbackRuntime {
       this.dataset?.pathConstraintBoundaryRelaxationIterationCount ??
         summary.pathConstraintBoundaryRelaxationIterationCount,
     );
+    const boundaryRelaxationResidualRatio = Number(
+      this.dataset?.pathConstraintBoundaryRelaxationResidualRatio ??
+        summary.pathConstraintBoundaryRelaxationResidualRatio,
+    );
     const constraintSolverStatus = this.dataset?.pathConstraintSolverStatus ?? summary.pathConstraintSolverStatus;
     const constraintSolverClaim = this.dataset?.pathConstraintSolverClaim ?? summary.pathConstraintSolverClaim;
     const maxGuidanceAcceleration = Number(
@@ -2859,6 +2871,9 @@ class CausalDelayFeedbackRuntime {
         details.push(`relax=${formatCompactLabel(boundaryRelaxationMode)}`);
         if (Number.isFinite(boundaryRelaxationIterationCount)) {
           details.push(`relaxIter=${boundaryRelaxationIterationCount}`);
+        }
+        if (Number.isFinite(boundaryRelaxationResidualRatio)) {
+          details.push(`relaxRatio=${formatCompactNumber(boundaryRelaxationResidualRatio)}`);
         }
       }
       details.push(`guideRows=${guidanceSampleCount}`);

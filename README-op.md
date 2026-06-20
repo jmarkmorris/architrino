@@ -1,12 +1,12 @@
 # Operator Feedback
 
-This file is Cody's living feedback backlog for improving operator/developer workflow. The method is a short bidirectional checklist: Cody adds or reopens concrete one-line tasks, the operator checks items when the behavior improves, and Cody can uncheck an item if the same friction returns.
+This file is the agent's living feedback backlog for improving operator/developer workflow. The method is a short bidirectional checklist: the agent adds or reopens concrete one-line tasks, the operator checks items when the behavior improves, and the agent can uncheck an item if the same friction returns.
 
 ## Method
 
 - [ ] Keep each feedback item to one concrete operator behavior that would reduce friction or accelerate closure.
 - [ ] Treat a checked item as "improved in practice" rather than permanently closed.
-- [ ] Let Cody uncheck a checked item only when the same workflow friction recurs, adding a short dated note if useful.
+- [ ] Let the agent uncheck a checked item only when the same workflow friction recurs, adding a short dated note if useful.
 - [ ] Keep the active list small enough to review before major theory, code, or multi-agent pushes.
 - [ ] Move stable solved items to `Resolved` only after the improved behavior survives repeated sessions.
 
@@ -14,16 +14,16 @@ This file is Cody's living feedback backlog for improving operator/developer wor
 
 - [ ] Bias substantial sessions toward one core geometrical theory closure target before app, prose, presentation, or infrastructure work.
 - [ ] Start each substantial session by naming the single closure objective, likely files in scope, and definition of done.
-- [ ] Start new Cody prompts with a one-sentence `Goal:` line so Codex goal mode begins from the intended objective.
-- [ ] Give Cody the expected verification command, app path, or rendered target when that target is not obvious.
+- [ ] Start new prompts with a one-sentence `Closure goal:` line so Codex goal mode begins from the intended objective.
+- [ ] Give the expected verification command, app path, or rendered target when that target is not obvious.
 - [ ] Keep priority lists ordered by closure value rather than historical arrival order.
 - [ ] When pasting source material, mark what is canon, what is speculation, and what is only context.
 - [ ] Say whether you want implementation, review, planning, or brainstorming before long prompts with mixed signals.
 - [ ] Prefer one hard target per turn; batch only independent items with clear file boundaries.
 - [ ] Promote recurring operating decisions into repo docs instead of re-explaining them in chat.
 - [ ] Keep the local push gate and GitHub Content Integrity gate in parity before treating a push as clean.
-- [ ] For broad advancement prompts, let Cody continue into safe direct follow-on work instead of stopping at a Priority Action Menu.
-- [ ] For multi-hour self-running theory passes, state the desired checkpoint cadence or final artifact threshold when it differs from Cody's default.
+- [ ] For broad advancement prompts, let the agent continue into safe direct follow-on work instead of stopping at a Priority Action Menu.
+- [ ] For multi-hour self-running theory passes, state the desired checkpoint cadence or final artifact threshold when it differs from the default.
 - [ ] Add optional heartbeat diagnostics to long-running theory tests so healthy multi-minute artifact builds are distinguishable from hung runs. 2026-05-25: reopened after the `Shift31` root-tail tube test ran for about 228 seconds with no intermediate row progress. 2026-05-28: H39 terminal graph remainder budget now has `AAA_TEST_HEARTBEAT` progress and an `AAA_H39_STOP_FILE` cooperative stop path; the terminal affine-$\zeta$ provider replay and post-$\zeta$ source-isolation diagnostics now emit endpoint/source-replay progress callbacks, but the stop-file wrapper still needs to be generalized to these newer routes. 2026-05-29: the H39/y44 $N_{38}$ terminal endpoint bridge now emits progress callbacks through signed-affine setup, target selection, and terminal row replay. 2026-05-29: the combined H39 shared-evaluator suite and H38 successor certificate suite still have silent multi-minute phases; add per-test or per-diagnostic progress around the remaining quiet shared-evaluator and producer-certificate paths. 2026-05-29: the named H39/y44 source-covariance Node test also stayed silent after the direct progress-enabled validator completed, so the source-covariance test harness needs the same progress surface. 2026-05-29: a narrowed expression-level M4 refinement probe also stayed silent past two minutes before clean `SIGINT`; add progress callbacks before using that path as a sprint critical path. 2026-05-29: the full H39 shared-evaluator suite again stayed silent for more than two minutes after the TAP header during the Lagrange source-decomposition sprint and required clean `SIGINT`. 2026-05-29: the combined H37/H38 successor coefficient test command stayed silent after the TAP header for roughly eight minutes before clean `SIGINT`; add heartbeat/progress to the successor certificate test harness before relying on it as a final sprint check. 2026-05-29: the standalone thirty-eighth-order post-$U$ successor coefficient test again stayed silent after the TAP header for more than five minutes before clean `SIGINT`; prioritize heartbeat and cooperative stop support for this exact test path. 2026-05-29: during the h36 provider-boundary bridge sprint, the full H39 shared-domain evaluator and standalone H38 successor suites again stayed silent after only the TAP header and required clean `SIGINT`; make heartbeat output mandatory before these suites are used as release-quality long gates. 2026-05-31: the full H39 shared-domain evaluator suite again stayed silent for about six minutes after only the TAP header during the total-$N_{38}$ node-width-localizer sprint and required `SIGINT`; do not treat this suite as a final gate until per-test heartbeat or cooperative stop support is added. 2026-06-02: the combined H39 primitive/root-tangent/H38 successor validation passed 128 H39/root-tangent subtests, then stayed silent in the H38 successor segment and had to be interrupted with `pkill -INT`; prioritize heartbeat and cooperative stop support for the H38 successor certificate builder before using it in combined milestone gates.
 
 ## Clarity
@@ -31,13 +31,13 @@ This file is Cody's living feedback backlog for improving operator/developer wor
 - [ ] Name the canonical project term when a concept has multiple nearby aliases.
 - [ ] State the intended claim level: ontology, derivation, effective summary, comparison, or speculation.
 - [ ] Attach the expected output shape to requests: patch, report, PR, checklist, proof route, or prose draft.
-- [ ] When asking for recommendations only, expect Cody to answer in chat unless a durable repo file is explicitly requested.
+- [ ] When asking for recommendations only, expect an answer in chat unless a durable repo file is explicitly requested.
 - [ ] Use exact dates, branch names, PR numbers, filenames, and command names when referencing prior work.
 - [ ] Flag non-negotiable constraints before asking for implementation.
-- [ ] Separate hard guardrails from preferences that Cody may trade off.
+- [ ] Separate hard guardrails from preferences the agent may trade off.
 - [ ] Define success in terms of observable behavior, passing check, equation recovered, or text promoted.
-- [ ] Preserve Cody's returned `Forward goal:` line when restarting, splitting, or refocusing a thread.
-- [ ] Before broad terminology migrations, ask Cody to scan git history and current usage, then name accepted terms and frozen labels before editing.
+- [ ] Preserve the returned `Closure goal:` line when restarting, splitting, or refocusing a thread.
+- [ ] Before broad terminology migrations, ask for a scan of git history and current usage, then name accepted terms and frozen labels before editing.
 
 ## Multi-Agent Use
 

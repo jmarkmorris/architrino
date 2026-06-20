@@ -21,7 +21,11 @@ function clamp(value, min, max) {
 }
 
 function normalizeVector(value = []) {
-  const source = Array.isArray(value) ? value : [];
+  const source = Array.isArray(value)
+    ? value
+    : value && typeof value === "object"
+      ? [value.x, value.y, value.z]
+      : [];
   return [
     normalizeNumber(source[0], 0),
     normalizeNumber(source[1], 0),
@@ -61,74 +65,6 @@ function timeIdPart(value) {
     .replace(/0+$/u, "")
     .replace(/\.$/u, "")
     .replace(/[^0-9a-z]+/giu, "_");
-}
-
-function vectorDistance(from, to) {
-  const a = normalizeVector(from);
-  const b = normalizeVector(to);
-  return Math.hypot(b[0] - a[0], b[1] - a[1], b[2] - a[2]);
-}
-
-function residualToExpandingShell(emissionPosition, sample, fieldSpeed, emissionTime) {
-  const time = normalizeNumber(sample?.time ?? sample?.t, emissionTime);
-  return (
-    vectorDistance(emissionPosition, sample?.position) -
-    Math.max(0, fieldSpeed * (time - emissionTime))
-  );
-}
-
-function interpolateSample(from, to, alpha) {
-  const startTime = normalizeNumber(from?.time ?? from?.t, 0);
-  const endTime = normalizeNumber(to?.time ?? to?.t, startTime);
-  return {
-    time: startTime + (endTime - startTime) * alpha,
-    position: interpolateVector(from?.position, to?.position, alpha),
-  };
-}
-
-function findShellPathIntersection(emission, fromSample, toSample, options = {}) {
-  const emissionTime = normalizeNumber(emission?.time ?? emission?.emissionTime, 0);
-  const emissionPosition = normalizeVector(emission?.position ?? emission?.emissionPosition);
-  const fieldSpeed = Math.max(
-    0.000001,
-    normalizeNumber(emission?.fieldSpeed, normalizeNumber(options.fieldSpeed, 1))
-  );
-  const tolerance = Math.max(0, normalizeNumber(options.tolerance, 0.001));
-  let low = {
-    sample: fromSample,
-    residual: residualToExpandingShell(emissionPosition, fromSample, fieldSpeed, emissionTime),
-  };
-  let high = {
-    sample: toSample,
-    residual: residualToExpandingShell(emissionPosition, toSample, fieldSpeed, emissionTime),
-  };
-  if (Math.abs(low.residual) <= tolerance) {
-    return low.sample;
-  }
-  if (Math.abs(high.residual) <= tolerance) {
-    return high.sample;
-  }
-  if (low.residual * high.residual > 0) {
-    return null;
-  }
-  for (let index = 0; index < 24; index += 1) {
-    const midpoint = interpolateSample(low.sample, high.sample, 0.5);
-    const midpointResidual = residualToExpandingShell(
-      emissionPosition,
-      midpoint,
-      fieldSpeed,
-      emissionTime
-    );
-    if (Math.abs(midpointResidual) <= tolerance) {
-      return midpoint;
-    }
-    if (low.residual * midpointResidual <= 0) {
-      high = { sample: midpoint, residual: midpointResidual };
-    } else {
-      low = { sample: midpoint, residual: midpointResidual };
-    }
-  }
-  return interpolateSample(low.sample, high.sample, 0.5);
 }
 
 export function getAnimatorDelayedHitDiagnosticLabel(hit = {}) {
@@ -240,114 +176,50 @@ export function createAnimatorDelayedHitTableRows(dataset = {}, timeSeconds = 0)
   });
 }
 
-export function createAnimatorDelayedHitsFromPathSamples(
-  emissionSamples = [],
-  receiverTracks = [],
-  options = {}
-) {
-  const emissions = Array.isArray(emissionSamples) ? emissionSamples.filter(Boolean) : [];
-  const tracks = Array.isArray(receiverTracks) ? receiverTracks.filter(Boolean) : [];
-  const allowSelfHits = options.allowSelfHits === true;
-  const maxHits = Math.max(0, Math.floor(normalizeNumber(options.maxHits, Infinity)));
-  const fallbackFieldSpeed = Math.max(0.000001, normalizeNumber(options.fieldSpeed, 1));
-  const hits = [];
-
-  emissions.forEach((emission, emissionIndex) => {
-    if (hits.length >= maxHits) {
-      return;
-    }
-    const emitterId = normalizeString(emission?.emitterId ?? emission?.id, "");
-    const emissionTime = normalizeNumber(emission?.time ?? emission?.emissionTime, 0);
-    const emissionPosition = normalizeVector(emission?.position ?? emission?.emissionPosition);
-    const fieldSpeed = Math.max(
-      0.000001,
-      normalizeNumber(emission?.fieldSpeed, fallbackFieldSpeed)
+export function createAnimatorDelayedHitsFromSolverRows(rowsOrResponse = [], options = {}) {
+  const rows = Array.isArray(rowsOrResponse)
+    ? rowsOrResponse
+    : Array.isArray(rowsOrResponse?.rows)
+      ? rowsOrResponse.rows
+      : [];
+  return rows.filter(Boolean).map((row, index) => {
+    const metadata = row.metadata && typeof row.metadata === "object" ? row.metadata : {};
+    const emitterId = normalizeString(row.emitterId ?? row.emitter, `source_${index + 1}`);
+    const receiverId = normalizeString(row.receiverId ?? row.receiver, `receiver_${index + 1}`);
+    const emissionTime = normalizeNumber(row.emissionTime ?? row.tEmit, 0);
+    const hitTime = normalizeNumber(row.hitTime ?? row.t, emissionTime);
+    const displayStrength = normalizeNumber(
+      metadata.displayStrength,
+      normalizeNumber(row.displayStrength, normalizeNumber(row.strength, 0))
     );
-
-    tracks.forEach((track) => {
-      if (hits.length >= maxHits) {
-        return;
-      }
-      const receiverId = normalizeString(track?.receiverId ?? track?.id, "");
-      if (!receiverId || (!allowSelfHits && receiverId === emitterId)) {
-        return;
-      }
-      const samples = Array.isArray(track?.samples)
-        ? track.samples
-            .filter((sample) => Number(sample?.time ?? sample?.t) >= emissionTime - 1e-9)
-            .sort((a, b) => Number(a?.time ?? a?.t) - Number(b?.time ?? b?.t))
-        : [];
-      if (samples.length < 2) {
-        return;
-      }
-      let previous = samples[0];
-      let previousResidual = residualToExpandingShell(
-        emissionPosition,
-        previous,
-        fieldSpeed,
-        emissionTime
-      );
-      for (let sampleIndex = 1; sampleIndex < samples.length; sampleIndex += 1) {
-        const current = samples[sampleIndex];
-        const currentResidual = residualToExpandingShell(
-          emissionPosition,
-          current,
-          fieldSpeed,
-          emissionTime
-        );
-        const bracketed =
-          Math.abs(currentResidual) <= normalizeNumber(options.tolerance, 0.001) ||
-          previousResidual * currentResidual <= 0;
-        if (!bracketed) {
-          previous = current;
-          previousResidual = currentResidual;
-          continue;
-        }
-        const intersection = findShellPathIntersection(emission, previous, current, {
-          ...options,
-          fieldSpeed,
-        });
-        if (!intersection) {
-          previous = current;
-          previousResidual = currentResidual;
-          continue;
-        }
-        const hitTime = normalizeNumber(intersection.time, emissionTime);
-        if (hitTime <= emissionTime + 1e-9) {
-          return;
-        }
-        const receiverPosition = normalizeVector(intersection.position);
-        const distance = vectorDistance(emissionPosition, receiverPosition);
-        hits.push({
-          id: `path_hit_${idPart(emitterId, "source")}_to_${idPart(receiverId, "receiver")}_t${timeIdPart(emissionTime)}_${emissionIndex}`,
-          emitterId,
-          receiverId,
-          hitTime,
-          emissionTime,
-          emitterEmissionPosition: emissionPosition,
-          receiverPosition,
-          strength: distance > 0 ? 1 / (distance * distance) : 0,
-          branchId: `path_history_${idPart(emitterId, "source")}_to_${idPart(receiverId, "receiver")}_${emissionIndex}`,
-          jacobian: 1,
-          status: normalizeString(options.status, "path-history"),
-          metadata: {
-            source: "path-history-shell-intersection",
-            emissionIndex,
-            receiverTrackId: receiverId,
-            distance,
-            fieldSpeed,
-            ...(emission?.metadata && typeof emission.metadata === "object"
-              ? { emissionMetadata: { ...emission.metadata } }
-              : {}),
-            ...(track?.metadata && typeof track.metadata === "object"
-              ? { receiverMetadata: { ...track.metadata } }
-              : {}),
-          },
-        });
-        return;
-      }
-    });
+    return {
+      id: normalizeString(
+        row.id,
+        `solver_path_hit_${idPart(emitterId, "source")}_to_${idPart(receiverId, "receiver")}_t${timeIdPart(emissionTime)}_${index}`
+      ),
+      emitterId,
+      receiverId,
+      hitTime,
+      emissionTime,
+      emitterEmissionPosition: normalizeVector(row.emissionPoint ?? row.emitterEmissionPosition),
+      receiverPosition: normalizeVector(row.receiverPoint ?? row.receiverPosition),
+      strength: displayStrength,
+      branchId: normalizeString(
+        row.branchId,
+        `solver_path_history_${idPart(emitterId, "source")}_to_${idPart(receiverId, "receiver")}_${index}`
+      ),
+      jacobian: normalizeNumber(row.jacobian, 0),
+      status: normalizeString(options.status ?? row.status, "solver-owned-row"),
+      metadata: {
+        ...metadata,
+        source: normalizeString(metadata.source, "solver-owned-delayed-hit-row"),
+        rowLayout: normalizeString(metadata.rowLayout, "delayed_hit_events.v1"),
+        eventId: normalizeNumber(row.eventId, index),
+        rootId: normalizeNumber(row.rootId, index),
+        statusCode: normalizeNumber(row.statusCode, 0),
+        solverBranchWeight: normalizeNumber(row.strength, 0),
+        unitDirection: normalizeVector(row.unitDirection),
+      },
+    };
   });
-
-  return hits;
 }

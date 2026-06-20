@@ -193,11 +193,14 @@ import {
   getAnimatorFieldShellRenderState,
 } from "../animator/AnimatorFieldShellRuntime.js";
 import {
-  createAnimatorDelayedHitsFromPathSamples,
+  createAnimatorDelayedHitsFromSolverRows,
   createAnimatorDelayedHitTableRows,
   getAnimatorDelayedHitDiagnosticLabel,
   getAnimatorDelayedHitRenderState,
 } from "../animator/AnimatorDelayedHitRuntime.js";
+import {
+  createAnimatorDelayedHitRowsFromPathSamples,
+} from "../../solver/app/AnimatorDelayedHitRows.mjs";
 import {
   createAnimatorFadeableTrailSamples,
   createAnimatorTimedTrailSamples,
@@ -2482,7 +2485,7 @@ function createAnimatorArchitrinoPathHistoryDelayedHits(
     });
     return tracks;
   }, new Map()).values()];
-  return createAnimatorDelayedHitsFromPathSamples(
+  const rowResponse = createAnimatorDelayedHitRowsFromPathSamples(
     architrinoFieldShells.map((shell) => ({
       emitterId: shell.emitterId,
       time: shell.emissionTime,
@@ -2498,6 +2501,9 @@ function createAnimatorArchitrinoPathHistoryDelayedHits(
       status: "path-history",
     }
   );
+  return createAnimatorDelayedHitsFromSolverRows(rowResponse, {
+    status: "path-history",
+  });
 }
 
 function createAnimatorArchitrinoFieldShellInstances(

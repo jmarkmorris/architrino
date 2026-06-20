@@ -871,6 +871,15 @@ export interface SolverEmissionShellCandidateF64Request {
   allowSamePath?: boolean;
   workerCount?: number;
   timeRange?: SolverRange;
+  indexOptions?: SolverEmissionShellIndexedBroadPhaseOptions;
+}
+
+export interface SolverEmissionShellIndexedBroadPhaseOptions {
+  strategy: "emission_shell_broad_phase_v0";
+  timeSlabCount: number;
+  spatialCellSize: number;
+  sourceRowOffset?: number;
+  receiverRowOffset?: number;
 }
 
 export interface SolverEmissionShellCandidatePacketF64Request {
@@ -885,6 +894,7 @@ export interface SolverEmissionShellCandidatePacketF64Request {
   allowSamePath?: boolean;
   workerCount?: number;
   timeRange?: SolverRange;
+  indexOptions?: SolverEmissionShellIndexedBroadPhaseOptions;
 }
 
 export interface SolverEmissionShellCandidatePacketsF64Request {
@@ -899,6 +909,7 @@ export interface SolverEmissionShellCandidatePacketsF64Request {
   allowSamePath?: boolean;
   workerCount?: number;
   timeRange?: SolverRange;
+  indexOptions?: SolverEmissionShellIndexedBroadPhaseOptions;
 }
 
 export interface SolverEmissionShellCandidatePacketMergeF64Request {
@@ -922,6 +933,7 @@ export interface SolverEmissionShellCandidateF64Response {
   candidateRate: number;
   falsePositiveEstimate: SolverEmissionShellFalsePositiveEstimate;
   scanSummary: SolverEmissionShellScanSummary;
+  indexSummary?: SolverEmissionShellIndexedBroadPhaseSummary;
   truncated: boolean;
   candidates: SolverEmissionShellCandidateF64[];
   buffers: SolverBufferDescriptor[];
@@ -986,7 +998,7 @@ export interface SolverEmissionShellRootRefinementItemF64 {
 
 export interface SolverEmissionShellScanSummary {
   schema: "solver-emission-shell-scan-summary.v1";
-  executionPath: "native_c_abi" | "javascript_fallback" | "packet_merge";
+  executionPath: "native_c_abi" | "native_c_abi_indexed_v0" | "javascript_fallback" | "packet_merge";
   streamChunkCount: number;
   skippedChunkCount: number;
   prunedByTimeChunkCount: number;
@@ -1010,6 +1022,21 @@ export interface SolverEmissionShellScanSummary {
   requestedWorkerCount: number;
   plannedWorkerCount: number;
   truncated: boolean;
+}
+
+export interface SolverEmissionShellIndexedBroadPhaseSummary {
+  sourceRowOffset: number;
+  receiverRowOffset: number;
+  receiverCellRows: number;
+  shellAnnulusRows: number;
+  cellLookups: number;
+  indexedPairTests: number;
+  duplicatePairTests: number;
+  spatialCellSize: number;
+  timeRangeStart: number;
+  timeRangeEnd: number;
+  timeSlabCount: number;
+  coverageStatus: "complete" | "truncated" | "invalid_input";
 }
 
 export interface SolverEmissionShellFalsePositiveEstimate {
@@ -2861,6 +2888,10 @@ export interface SolverRunSummary {
   pathConstraintBoundaryMode?: string;
   pathConstraintBoundaryRelaxationMode?: string;
   pathConstraintBoundaryRelaxationIterationCount?: number;
+  pathConstraintBoundaryRelaxationResidualSampleCount?: number;
+  maxPathConstraintBoundaryRelaxationResidualBefore?: number;
+  maxPathConstraintBoundaryRelaxationResidualAfter?: number;
+  pathConstraintBoundaryRelaxationResidualRatio?: number;
   pathConstraintSolverStatus?: string;
   pathConstraintSolverClaim?: string;
   maxPathConstraintGuidanceAcceleration?: number;
@@ -2901,6 +2932,10 @@ export interface SolverPairInteractionSummary {
   pathConstraintBoundaryMode?: string;
   pathConstraintBoundaryRelaxationMode?: string;
   pathConstraintBoundaryRelaxationIterationCount?: number;
+  pathConstraintBoundaryRelaxationResidualSampleCount?: number;
+  maxPathConstraintBoundaryRelaxationResidualBefore?: number;
+  maxPathConstraintBoundaryRelaxationResidualAfter?: number;
+  pathConstraintBoundaryRelaxationResidualRatio?: number;
   pathConstraintSolverStatus?: string;
   pathConstraintSolverClaim?: string;
   maxPathConstraintGuidanceAcceleration?: number;

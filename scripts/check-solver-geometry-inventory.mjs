@@ -201,6 +201,39 @@ const migrationTargets = [
       "animator-worker-solver-bridge-smoke",
     ],
   },
+  {
+    id: "animator-delayed-hit-rows",
+    app: "Animator",
+    local: {
+      file: "src/apps/animator/AnimatorDelayedHitRuntime.js",
+      symbols: [
+        "createAnimatorDelayedHitsFromSolverRows",
+      ],
+    },
+    central: [
+      {
+        file: "src/solver/app/AnimatorDelayedHitRows.mjs",
+        symbols: [
+          "ANIMATOR_DELAYED_HIT_ROW_LAYOUT",
+          "createAnimatorDelayedHitRowsFromPathSamples",
+        ],
+      },
+      {
+        file: "tests/animator-delayed-hit-runtime.test.js",
+        symbols: [
+          "animator delayed-hit runtime consumes solver-owned path-history hit rows",
+        ],
+      },
+    ],
+    solverOwnership: [
+      "field-shell/path intersection solving",
+      "delayed-hit row output",
+      "Jacobian and branch-weight row fields",
+    ],
+    baselineCases: [
+      "animator-path-history-smoke",
+    ],
+  },
 ];
 
 const inventoryItems = migrationTargets.map(checkMigrationTarget);

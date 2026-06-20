@@ -362,6 +362,32 @@ int main() {
           abiEmissionRows,
           2,
           &abiEmissionSummary);
+  const ArchitrinoSolverEmissionShellIndexedBroadPhaseOptionsF64 abiEmissionIndexOptions{
+      1.0,
+      0.0,
+      2.0,
+      10,
+      20,
+      4,
+      1,
+      0,
+      0,
+  };
+  ArchitrinoSolverEmissionShellCandidateRowF64 abiIndexedEmissionRows[2]{};
+  ArchitrinoSolverEmissionShellBroadPhaseSummary abiIndexedEmissionSummary{};
+  ArchitrinoSolverEmissionShellIndexedBroadPhaseSummary abiEmissionIndexSummary{};
+  const int abiIndexedEmissionStatus =
+      architrino_solver_query_emission_shell_broad_phase_indexed_v0_f64(
+          abiEmissionSources,
+          1,
+          abiEmissionReceivers,
+          2,
+          &abiEmissionOptions,
+          &abiEmissionIndexOptions,
+          abiIndexedEmissionRows,
+          2,
+          &abiIndexedEmissionSummary,
+          &abiEmissionIndexSummary);
   const ArchitrinoSolverEmissionShellNarrowPhaseRequestF64 abiNarrowRequests[2]{
       ArchitrinoSolverEmissionShellNarrowPhaseRequestF64{
           abiEmissionSources[0],
@@ -496,6 +522,21 @@ int main() {
       nearly_equal(abiEmissionRows[0].distance_upper_bound, 2.0) &&
       nearly_equal(abiEmissionRows[0].radius_lower_bound, 0.0) &&
       nearly_equal(abiEmissionRows[0].radius_upper_bound, 2.0) &&
+      abiIndexedEmissionStatus == 0 &&
+      abiIndexedEmissionSummary.pair_count == 1 &&
+      abiIndexedEmissionSummary.rejected_pair_count == 0 &&
+      abiIndexedEmissionSummary.candidate_count == 1 &&
+      abiIndexedEmissionSummary.truncated == 0 &&
+      abiEmissionIndexSummary.coverage_status == 0 &&
+      abiEmissionIndexSummary.time_slab_count == 4 &&
+      abiEmissionIndexSummary.receiver_cell_rows > 0 &&
+      abiEmissionIndexSummary.shell_annulus_rows > 0 &&
+      abiEmissionIndexSummary.cell_lookups > 0 &&
+      abiEmissionIndexSummary.indexed_pair_tests == 1 &&
+      abiIndexedEmissionRows[0].source_path_key == 4000 &&
+      abiIndexedEmissionRows[0].receiver_path_key == 4001 &&
+      abiIndexedEmissionRows[0].source_row_index == 10 &&
+      abiIndexedEmissionRows[0].receiver_row_index == 20 &&
       abiNarrowStatus == 0 &&
       abiNarrowCount == 2 &&
       abiNarrowRows[0].status_code == 0 &&

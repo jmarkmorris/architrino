@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import fs from "node:fs";
 import test from "node:test";
 
 import {
@@ -15,6 +16,16 @@ function report() {
 
 function clone(value) {
   return JSON.parse(JSON.stringify(value));
+}
+
+function readAuditDoc() {
+  return fs.readFileSync(
+    new URL(
+      "../reference/priorities/solver/h39-solver-impact-audit.md",
+      import.meta.url
+    ),
+    "utf8"
+  );
 }
 
 test("h39 terminal graph remainder budget replay report validates the second solver-impact fixture", () => {
@@ -39,6 +50,23 @@ test("h39 terminal graph remainder budget replay report validates the second sol
   assert.equal(
     artifact.next_replay_candidate,
     "h39_affine_endpoint_provider_boundary_replay"
+  );
+  assert.equal(
+    artifact.next_replay_gate,
+    "Keep provider-boundary replay classified as missing solver capability until the solver owns H39 provider-boundary theorem objects."
+  );
+});
+
+test("h39 provider-boundary replay remains missing-capability gated", () => {
+  const auditDoc = readAuditDoc();
+
+  assert.match(
+    auditDoc,
+    /\| `h39_affine_endpoint_provider_boundary_replay` \|[^|\n]+\|[^|\n]+\| `needs_missing_solver_capability`\. The central solver does not currently expose H39 provider-boundary theorem objects\. \|/
+  );
+  assert.match(
+    auditDoc,
+    /\| Next audit action \| Hold `h39_affine_endpoint_provider_boundary_replay` at missing-capability status until the solver owns H39 provider-boundary theorem objects\. \|/
   );
 });
 

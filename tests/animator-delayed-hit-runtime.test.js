@@ -2,11 +2,14 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import {
-  createAnimatorDelayedHitsFromPathSamples,
+  createAnimatorDelayedHitsFromSolverRows,
   createAnimatorDelayedHitTableRows,
   getAnimatorDelayedHitDiagnosticLabel,
   getAnimatorDelayedHitRenderState,
 } from "../src/apps/animator/AnimatorDelayedHitRuntime.js";
+import {
+  createAnimatorDelayedHitRowsFromPathSamples,
+} from "../src/solver/app/AnimatorDelayedHitRows.mjs";
 
 test("animator delayed-hit runtime animates a connector from emission to receiver", () => {
   const hit = {
@@ -71,8 +74,8 @@ test("animator delayed-hit runtime formats branch and Jacobian table rows", () =
   assert.equal(rows[0].stateLabel, "0.25s to hit");
 });
 
-test("animator delayed-hit runtime derives path-history hits from expanding shell samples", () => {
-  const hits = createAnimatorDelayedHitsFromPathSamples(
+test("animator delayed-hit runtime consumes solver-owned path-history hit rows", () => {
+  const rowResponse = createAnimatorDelayedHitRowsFromPathSamples(
     [
       {
         emitterId: "source_a",
@@ -94,6 +97,20 @@ test("animator delayed-hit runtime derives path-history hits from expanding shel
     ],
     { fieldSpeed: 1 }
   );
+  assert.equal(rowResponse.schema, "animator-delayed-hit-rows.v1");
+  assert.equal(rowResponse.rowLayout, "delayed_hit_events.v1");
+  assert.equal(rowResponse.rows.length, 1);
+  assert.equal(rowResponse.rows[0].emitterId, "source_a");
+  assert.equal(rowResponse.rows[0].receiverId, "receiver_b");
+  assert.equal(rowResponse.rows[0].hitTime, 2);
+  assert.equal(rowResponse.rows[0].distance, 2);
+  assert.equal(rowResponse.rows[0].jacobian, 1);
+  assert.equal(rowResponse.rows[0].strength, 1);
+  assert.equal(rowResponse.rows[0].metadata.displayStrength, 0.25);
+
+  const hits = createAnimatorDelayedHitsFromSolverRows(rowResponse, {
+    status: "path-history",
+  });
 
   assert.equal(hits.length, 1);
   assert.equal(hits[0].emitterId, "source_a");
@@ -101,5 +118,9 @@ test("animator delayed-hit runtime derives path-history hits from expanding shel
   assert.equal(hits[0].hitTime, 2);
   assert.deepEqual(hits[0].emitterEmissionPosition, [0, 0, 0]);
   assert.deepEqual(hits[0].receiverPosition, [2, 0, 0]);
+  assert.equal(hits[0].strength, 0.25);
+  assert.equal(hits[0].metadata.source, "solver-owned-emission-shell-path-row");
+  assert.equal(hits[0].metadata.rowLayout, "delayed_hit_events.v1");
+  assert.equal(hits[0].metadata.solverBranchWeight, 1);
   assert.equal(hits[0].status, "path-history");
 });

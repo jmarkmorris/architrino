@@ -638,6 +638,7 @@ test("causal delay feedback aggregate summary surfaces compact pair solver diagn
     pathConstraintBoundaryMode: "law_aware_retained_knot_boundary",
     pathConstraintBoundaryRelaxationMode: "finite_difference_frame_relaxation_v1",
     pathConstraintBoundaryRelaxationIterationCount: 8,
+    pathConstraintBoundaryRelaxationResidualRatio: 0.25,
     pathConstraintSolverStatus: "guided_constraint_path",
     pathConstraintSolverClaim: "diagnostic_constraint_replay_not_boundary_value_solve",
     maxPathConstraintGuidanceAcceleration: 48.25,
@@ -654,6 +655,7 @@ test("causal delay feedback aggregate summary surfaces compact pair solver diagn
   assert(readoutText.includes("bMode=law_aware_retained_knot_boundary"));
   assert(readoutText.includes("relax=finite_difference_frame_relaxation_v1"));
   assert(readoutText.includes("relaxIter=8"));
+  assert(readoutText.includes("relaxRatio=0.25"));
   assert(readoutText.includes("guideRows=12"));
   assert(readoutText.includes("maxA=48.25"));
   assert(readoutText.includes("constraint=guided_constraint_path"));
@@ -952,6 +954,7 @@ test("causal delay feedback status distinguishes constraint-guided pair replay",
     pathConstraintBoundaryMode: "law_aware_retained_knot_boundary",
     pathConstraintBoundaryRelaxationMode: "finite_difference_frame_relaxation_v1",
     pathConstraintBoundaryRelaxationIterationCount: 8,
+    pathConstraintBoundaryRelaxationResidualRatio: 0.25,
     pathConstraintSolverStatus: "guided_constraint_path",
     pathConstraintSolverClaim: "diagnostic_constraint_replay_not_boundary_value_solve",
     maxPathConstraintGuidanceAcceleration: 48.25,
@@ -969,6 +972,7 @@ test("causal delay feedback status distinguishes constraint-guided pair replay",
   assert.match(replayStatus.title, /bMode=law_aware_retained_knot_boundary/);
   assert.match(replayStatus.title, /relax=finite_difference_frame_relaxation_v1/);
   assert.match(replayStatus.title, /relaxIter=8/);
+  assert.match(replayStatus.title, /relaxRatio=0\.25/);
   assert.match(replayStatus.title, /guidance=12/);
   assert.match(replayStatus.title, /mode=retained_knot_boundary/);
   assert.match(replayStatus.title, /maxA=48\.25/);

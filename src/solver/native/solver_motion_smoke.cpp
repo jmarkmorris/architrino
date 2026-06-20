@@ -21,7 +21,7 @@ int main() {
   static_assert(sizeof(ArchitrinoSolverPairInteractionRequestF64) == 64);
   static_assert(sizeof(ArchitrinoSolverPairInteractionStateF64) == 80);
   static_assert(sizeof(ArchitrinoSolverPairInteractionPathConstraintF64) == 48);
-  static_assert(sizeof(ArchitrinoSolverPairInteractionSummaryF64) == 104);
+  static_assert(sizeof(ArchitrinoSolverPairInteractionSummaryF64) == 136);
 
   const architrino::solver::LinearPathSegment segment{
       "motion-path",
@@ -482,6 +482,11 @@ int main() {
       pairConstrained.maxPathConstraintGuidanceAcceleration > 0.0 &&
       pairConstrained.pathConstraintBoundaryResidualSampleCount == 2 &&
       pairConstrained.maxPathConstraintBoundaryResidual > 0.0 &&
+      pairConstrained.pathConstraintBoundaryRelaxationResidualSampleCount > 0 &&
+      pairConstrained.maxPathConstraintBoundaryRelaxationResidualBefore >
+          pairConstrained.maxPathConstraintBoundaryRelaxationResidualAfter &&
+      pairConstrained.pathConstraintBoundaryRelaxationResidualRatio >= 0.0 &&
+      pairConstrained.pathConstraintBoundaryRelaxationResidualRatio < 1.0 &&
       nearly_equal(pairConstrained.frames[2].positionX, 1.97538, 1e-4) &&
       nearly_equal(pairConstrained.frames[2].positionY, 1.00158, 1e-4) &&
       nearly_equal(pairConstrained.frames[2].velocityX, 8.0, 1e-4) &&
@@ -524,6 +529,17 @@ int main() {
       nearly_equal(
           abiPairConstrainedSummary.max_boundary_residual,
           pairConstrained.maxPathConstraintBoundaryResidual) &&
+      abiPairConstrainedSummary.boundary_relaxation_residual_sample_count ==
+          pairConstrained.pathConstraintBoundaryRelaxationResidualSampleCount &&
+      nearly_equal(
+          abiPairConstrainedSummary.max_boundary_relaxation_residual_before,
+          pairConstrained.maxPathConstraintBoundaryRelaxationResidualBefore) &&
+      nearly_equal(
+          abiPairConstrainedSummary.max_boundary_relaxation_residual_after,
+          pairConstrained.maxPathConstraintBoundaryRelaxationResidualAfter) &&
+      nearly_equal(
+          abiPairConstrainedSummary.boundary_relaxation_residual_ratio,
+          pairConstrained.pathConstraintBoundaryRelaxationResidualRatio) &&
       abiInfo.motion_integration_request_f64_bytes == 120;
 
   if (!ok) {

@@ -423,6 +423,7 @@ export function createEmissionShellCandidateQueryRequest(input) {
     allowSamePath: cloneOptionalBoolean(input.allowSamePath, "allowSamePath"),
     workerCount: cloneOptionalNonnegativeInteger(input.workerCount, "workerCount"),
     timeRange: cloneOptionalRange(input.timeRange, "timeRange"),
+    indexOptions: cloneOptionalObject(input.indexOptions, "indexOptions"),
   };
 }
 
@@ -459,6 +460,7 @@ export function createEmissionShellCandidatePacketQueryRequest(input) {
     allowSamePath: cloneOptionalBoolean(input.allowSamePath, "allowSamePath"),
     workerCount: cloneOptionalNonnegativeInteger(input.workerCount, "workerCount"),
     timeRange: cloneOptionalRange(input.timeRange, "timeRange"),
+    indexOptions: cloneOptionalObject(input.indexOptions, "indexOptions"),
   };
 }
 
@@ -479,6 +481,7 @@ export function createEmissionShellCandidatePacketBatchQueryRequest(input) {
     allowSamePath: cloneOptionalBoolean(input.allowSamePath, "allowSamePath"),
     workerCount: cloneOptionalNonnegativeInteger(input.workerCount, "workerCount"),
     timeRange: cloneOptionalRange(input.timeRange, "timeRange"),
+    indexOptions: cloneOptionalObject(input.indexOptions, "indexOptions"),
   };
 }
 

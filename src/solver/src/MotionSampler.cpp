@@ -1164,6 +1164,89 @@ void rebuild_pair_interaction_path_rows(PairInteractionSampleResult& result) {
   }
 }
 
+struct PairInteractionBoundaryRelaxationResidualSummary {
+  std::uint64_t sampleCount = 0;
+  double maxResidual = 0.0;
+};
+
+PairInteractionBoundaryRelaxationResidualSummary measure_pair_interaction_boundary_relaxation_residuals(
+    const PairInteractionSampleResult& result,
+    const PairInteractionRequest& request,
+    const std::vector<PairInteractionState>& initialStates) {
+  PairInteractionBoundaryRelaxationResidualSummary summary;
+  if (request.pathConstraints.empty() || result.frames.empty()) {
+    return summary;
+  }
+
+  std::vector<std::uint64_t> pathKeys;
+  for (const MotionFrameRowF64& frame : result.frames) {
+    if (std::find(pathKeys.begin(), pathKeys.end(), frame.pathKey) == pathKeys.end()) {
+      pathKeys.push_back(frame.pathKey);
+    }
+  }
+  std::sort(pathKeys.begin(), pathKeys.end());
+
+  const double epsilon = pair_constraint_time_epsilon(request);
+  for (std::uint64_t pathKey : pathKeys) {
+    const std::vector<const MotionFrameRowF64*> pathFrames =
+        sorted_const_frames_for_path(result.frames, pathKey);
+    if (pathFrames.size() < 3) {
+      continue;
+    }
+    for (std::size_t index = 1; index + 1 < pathFrames.size(); ++index) {
+      const MotionFrameRowF64& previous = *pathFrames[index - 1];
+      const MotionFrameRowF64& current = *pathFrames[index];
+      const MotionFrameRowF64& next = *pathFrames[index + 1];
+      if (has_pair_constraint_at_time(request, current.pathKey, current.time, epsilon)) {
+        continue;
+      }
+      const double leftDt = current.time - previous.time;
+      const double rightDt = next.time - current.time;
+      const double averageDt = 0.5 * (leftDt + rightDt);
+      if (leftDt <= epsilon || rightDt <= epsilon || averageDt <= epsilon) {
+        continue;
+      }
+      const Vector3 leftVelocity = vector_scale(
+          vector_subtract(frame_position(current), frame_position(previous)),
+          1.0 / leftDt);
+      const Vector3 rightVelocity = vector_scale(
+          vector_subtract(frame_position(next), frame_position(current)),
+          1.0 / rightDt);
+      const Vector3 finiteDifferenceAcceleration =
+          vector_scale(vector_subtract(rightVelocity, leftVelocity), 1.0 / averageDt);
+      const std::vector<PairInteractionState> states =
+          states_at_frame_index(result.frames, current.frameIndex, initialStates);
+      if (states.size() != initialStates.size()) {
+        continue;
+      }
+      const std::vector<Vector3> lawAccelerations =
+          pair_interaction_accelerations(request, states);
+      const auto stateMatch = std::find_if(states.begin(),
+                                           states.end(),
+                                           [&current](const PairInteractionState& state) {
+                                             return state.pathKey == current.pathKey;
+                                           });
+      if (stateMatch == states.end()) {
+        continue;
+      }
+      const std::size_t stateIndex = static_cast<std::size_t>(
+          std::distance(states.begin(), stateMatch));
+      if (stateIndex >= lawAccelerations.size()) {
+        continue;
+      }
+      const double residual = vector_norm(
+          vector_subtract(finiteDifferenceAcceleration, lawAccelerations[stateIndex]));
+      if (!std::isfinite(residual)) {
+        continue;
+      }
+      summary.maxResidual = std::max(summary.maxResidual, residual);
+      ++summary.sampleCount;
+    }
+  }
+
+  return summary;
+}
+
 void relax_pair_interaction_constrained_frames(
     PairInteractionSampleResult& result,
     const PairInteractionRequest& request,
@@ -1573,7 +1656,21 @@ PairInteractionSampleResult integrate_pair_interaction_motion(
     }
   }
 
+  const PairInteractionBoundaryRelaxationResidualSummary relaxationResidualBefore =
+      measure_pair_interaction_boundary_relaxation_residuals(result, request, initialStates);
   relax_pair_interaction_constrained_frames(result, request, initialStates);
+  const PairInteractionBoundaryRelaxationResidualSummary relaxationResidualAfter =
+      measure_pair_interaction_boundary_relaxation_residuals(result, request, initialStates);
+  result.pathConstraintBoundaryRelaxationResidualSampleCount =
+      relaxationResidualAfter.sampleCount;
+  result.maxPathConstraintBoundaryRelaxationResidualBefore =
+      relaxationResidualBefore.maxResidual;
+  result.maxPathConstraintBoundaryRelaxationResidualAfter =
+      relaxationResidualAfter.maxResidual;
+  result.pathConstraintBoundaryRelaxationResidualRatio =
+      relaxationResidualBefore.maxResidual > 0.0
+          ? relaxationResidualAfter.maxResidual / relaxationResidualBefore.maxResidual
+          : 0.0;
   rebuild_pair_interaction_path_rows(result);
   summarize_pair_interaction_constraint_residuals(result, request, initialStates);
   summarize_pair_interaction_boundary_residuals(result, request, initialStates);

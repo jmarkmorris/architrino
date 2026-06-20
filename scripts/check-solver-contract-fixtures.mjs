@@ -614,11 +614,16 @@ assert(
   schema.$defs?.emissionShellCandidatePacketMergeF64Request,
   "emission-shell candidate packet merge request schema missing"
 );
+assert(schema.$defs?.emissionShellIndexedBroadPhaseOptions, "emission-shell index options schema missing");
 assert(
   schema.$defs?.emissionShellCandidateF64ResponseEnvelope,
   "emission-shell candidate response envelope schema missing"
 );
 assert(schema.$defs?.emissionShellCandidateF64Response, "emission-shell candidate response schema missing");
+assert(
+  schema.$defs?.emissionShellIndexedBroadPhaseSummary,
+  "emission-shell indexed broad-phase summary schema missing"
+);
 assert(
   schema.$defs?.emissionShellRootRefinementF64Request,
   "emission-shell root refinement request schema missing"
@@ -1619,6 +1624,16 @@ function validatePairInteractionRunSimulationResponseEnvelope(value) {
     "pair summary relaxation iteration mismatch"
   );
   assert(
+    runResponse.summary.pathConstraintBoundaryRelaxationResidualSampleCount === 2,
+    "pair summary relaxation residual sample count mismatch"
+  );
+  assert(
+    runResponse.summary.maxPathConstraintBoundaryRelaxationResidualBefore === 8 &&
+      runResponse.summary.maxPathConstraintBoundaryRelaxationResidualAfter === 2 &&
+      runResponse.summary.pathConstraintBoundaryRelaxationResidualRatio === 0.25,
+    "pair summary relaxation residual improvement mismatch"
+  );
+  assert(
     runResponse.pairInteraction.pathConstraintBoundaryResidualStatus === "within_tolerance",
     "pair interaction nested status mismatch"
   );
@@ -1629,6 +1644,16 @@ function validatePairInteractionRunSimulationResponseEnvelope(value) {
   assert(
     runResponse.pairInteraction.pathConstraintBoundaryRelaxationIterationCount === 8,
     "pair interaction nested relaxation iteration mismatch"
+  );
+  assert(
+    runResponse.pairInteraction.pathConstraintBoundaryRelaxationResidualSampleCount === 2,
+    "pair interaction nested relaxation residual sample count mismatch"
+  );
+  assert(
+    runResponse.pairInteraction.maxPathConstraintBoundaryRelaxationResidualBefore === 8 &&
+      runResponse.pairInteraction.maxPathConstraintBoundaryRelaxationResidualAfter === 2 &&
+      runResponse.pairInteraction.pathConstraintBoundaryRelaxationResidualRatio === 0.25,
+    "pair interaction nested relaxation residual improvement mismatch"
   );
   assert(runResponse.frames.length === 4, "pair frame count mismatch");
   assert(runResponse.pathHistory.rowCount === 4, "pair path-history row count mismatch");
@@ -1873,8 +1898,11 @@ function validateEmissionShellCandidateResponseEnvelope(value) {
   assert(responseValue.rejectedPairCount === 0, "emission-shell rejected pair count mismatch");
   assert(responseValue.candidateCount === 1, "emission-shell candidate count mismatch");
   assert(responseValue.falsePositiveEstimate.method === "sampled_linear_segment_bisection.v1", "emission-shell false-positive method mismatch");
-  assert(responseValue.scanSummary.executionPath === "packet_merge", "emission-shell scan execution path mismatch");
+  assert(responseValue.scanSummary.executionPath === "native_c_abi_indexed_v0", "emission-shell scan execution path mismatch");
   assert(responseValue.scanSummary.outputBufferCount === 2, "emission-shell scan output buffer count mismatch");
+  assert(responseValue.indexSummary.coverageStatus === "complete", "emission-shell index coverage mismatch");
+  assert(responseValue.indexSummary.timeSlabCount === 32, "emission-shell index slab count mismatch");
+  assert(responseValue.indexSummary.indexedPairTests === 1, "emission-shell indexed pair count mismatch");
   assert(responseValue.truncated === false, "emission-shell truncated mismatch");
   assert(responseValue.candidates.length === 1, "emission-shell candidate row count mismatch");
   assert(responseValue.candidates[0].candidateKind === "broad_phase_possible", "emission-shell candidate kind mismatch");
@@ -4617,6 +4645,10 @@ function createPairInteractionRunSummaryFixture() {
     pathConstraintBoundaryMode: "law_aware_retained_knot_boundary",
     pathConstraintBoundaryRelaxationMode: "finite_difference_frame_relaxation_v1",
     pathConstraintBoundaryRelaxationIterationCount: 8,
+    pathConstraintBoundaryRelaxationResidualSampleCount: 2,
+    maxPathConstraintBoundaryRelaxationResidualBefore: 8,
+    maxPathConstraintBoundaryRelaxationResidualAfter: 2,
+    pathConstraintBoundaryRelaxationResidualRatio: 0.25,
     pathConstraintSolverStatus: "guided_constraint_path",
     pathConstraintSolverClaim: "diagnostic_constraint_replay_not_boundary_value_solve",
     maxPathConstraintGuidanceAcceleration: 4.5,
@@ -6086,6 +6118,7 @@ function createEmissionShellCandidateRequestEnvelope() {
       allowSamePath: false,
       workerCount: 2,
       timeRange: { start: 0, end: 2 },
+      indexOptions: createEmissionShellIndexedBroadPhaseOptionsFixture(),
     },
   };
 }
@@ -6106,6 +6139,7 @@ function createEmissionShellCandidatePacketRequestEnvelope() {
       allowSamePath: false,
       workerCount: 2,
       timeRange: { start: 0, end: 2 },
+      indexOptions: createEmissionShellIndexedBroadPhaseOptionsFixture(),
     },
   };
 }
@@ -6126,6 +6160,7 @@ function createEmissionShellCandidatePacketsRequestEnvelope() {
       allowSamePath: false,
       workerCount: 2,
       timeRange: { start: 0, end: 2 },
+      indexOptions: createEmissionShellIndexedBroadPhaseOptionsFixture(),
     },
   };
 }
@@ -6232,6 +6267,16 @@ function createEmissionShellCandidateFixture() {
   };
 }
 
+function createEmissionShellIndexedBroadPhaseOptionsFixture() {
+  return {
+    strategy: "emission_shell_broad_phase_v0",
+    timeSlabCount: 32,
+    spatialCellSize: 0.5,
+    sourceRowOffset: 0,
+    receiverRowOffset: 0,
+  };
+}
+
 function createEmissionShellCandidateResponseEnvelope() {
   const packetAResult = createEmissionShellPacketResult("packet-a", 0, "source:0:receiver:1", 1);
   const packetBResult = createEmissionShellPacketResult("packet-b", 1, "source:1:receiver:2", 0);
@@ -6263,7 +6308,7 @@ function createEmissionShellCandidateResponseEnvelope() {
       },
       scanSummary: {
         schema: "solver-emission-shell-scan-summary.v1",
-        executionPath: "packet_merge",
+        executionPath: "native_c_abi_indexed_v0",
         streamChunkCount: 2,
         skippedChunkCount: 0,
         prunedByTimeChunkCount: 0,
@@ -6287,6 +6332,20 @@ function createEmissionShellCandidateResponseEnvelope() {
         requestedWorkerCount: 2,
         plannedWorkerCount: 1,
         truncated: false,
+      },
+      indexSummary: {
+        sourceRowOffset: 0,
+        receiverRowOffset: 0,
+        receiverCellRows: 2,
+        shellAnnulusRows: 1,
+        cellLookups: 4,
+        indexedPairTests: 1,
+        duplicatePairTests: 0,
+        spatialCellSize: 0.5,
+        timeRangeStart: 0,
+        timeRangeEnd: 2,
+        timeSlabCount: 32,
+        coverageStatus: "complete",
       },
       truncated: false,
       candidates: [createEmissionShellCandidateFixture()],

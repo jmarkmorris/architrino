@@ -570,6 +570,12 @@ $$
 
 more naturally for the $(f-1,f,f+2)$ family than for the symmetric control. If the comparison depends on undeclared wake or root-energy slack, the candidate remains blocked rather than promoted.
 
+Reduced solver probe 2026-06-20. The first executable comparison now lives in [tri-binary-offset-family-runner.mjs](../../../scripts/angular-momentum/tri-binary-offset-family-runner.mjs). It uses the central solver bridge to sample circular source roots, delayed hits, root-ledger details, and circular self-hit spans for both the $(f-1,f,f+2)$ candidate and the $(f-1,f,f+1)$ control. The default report target is `.tmp/angular-momentum-spin/tri-binary-offset-family-solver-report.json`.
+
+The reduced probe supports continued priority work but does not certify the branch. In the `phase-lock` policy, where offsets are treated as integer labels and radii are retuned so the outer, middle, and inner speeds stay sub-field, field-speed, and super-field, both families pass the sampled reduced rows with no inner self-hit span separation. In the diagnostic `index-ratio` stress policy, where speed ratios are mapped to $n_{\ell}/n_M$, both families pass the sampled reduced rows and the $(f-1,f,f+2)$ candidate has the larger inner self-hit span for $2\le f\le8$. This means the candidate remains live because the solver sees the expected stronger inner self-hit burden under the stress mapping, but promotion still requires a retained branch chart with phase, vector-ledger, energy-routing, wake, torque, and stability residuals.
+
+The same report now carries a branch-chart projection. It marks `root_chart_reduced`, `outer_speed`, `middle_hinge`, `inner_self_hit`, `cycle_phase_closure_proxy`, `self_root_parity_index_proxy`, and `energy_frequency_target` as populated reduced rows, while leaving the retained branch-selection residual blocked: `row_set_identity`, `phase_lock`, `torque_consistency`, `tail_wake_pullback`, `vector_partition_retained`, `energy_routing`, `section_stability`, and `non_minimal_retained_competitors` still have no retained-row payload. The audit partition is therefore $\mathcal A^{\mathrm{eval}}=\varnothing$, $\mathcal A^{\mathrm{blk}}\ne\varnothing$, and $\mathcal A^{\mathrm{excl}}=\varnothing$ for this reduced family probe.
+
 Failure modes:
 
 1. The $(f-1,f,f+2)$ family cannot keep $s_M$ within the middle-hinge tolerance while $s_O<c_f$ and $s_I>c_f$.

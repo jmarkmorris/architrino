@@ -17,6 +17,7 @@ Implementation surfaces:
 
 - [AnimatorSimulationWorkerCoreRuntime.js](../../../src/apps/animator/AnimatorSimulationWorkerCoreRuntime.js)
 - [AnimatorSolverBridgeWorkerRuntime.js](../../../src/apps/animator/AnimatorSolverBridgeWorkerRuntime.js)
+- [AnimatorDelayedHitRows.mjs](../../../src/solver/app/AnimatorDelayedHitRows.mjs)
 - [AnimatorSimulationAuthoringRuntime.js](../../../src/apps/animator/AnimatorSimulationAuthoringRuntime.js)
 - [AnimatorSimulationWorker.js](../../../src/apps/animator/AnimatorSimulationWorker.js)
 - [SolverAppAdapters.mjs](../../../src/solver/app/SolverAppAdapters.mjs)
@@ -33,8 +34,10 @@ playback surface.
 This closeout covers motion simulation frames, path-history stream identity,
 solver metadata, frame-buffer packaging, worker-owned bridge clients, worker
 bridge clients, and authoring payload configuration. It does not claim that
-Animator delayed-hit shell/path intersections or field-shell event generation
-have been migrated to solver-owned delayed-hit rows.
+field-shell event descriptors and receiver paths are fully stream-backed.
+Animator delayed-hit shell/path intersections now route through solver-owned
+`delayed_hit_events.v1`-shaped rows, while the scene still assembles the
+emission samples and receiver tracks consumed by that row helper.
 
 ## Current Bridge Path
 
@@ -66,13 +69,17 @@ Current validation evidence:
 - [animator-simulation-authoring-runtime.test.js](../../../tests/animator-simulation-authoring-runtime.test.js)
   verifies the authoring payload configures and keeps the central solver bridge
   enabled.
+- [animator-delayed-hit-runtime.test.js](../../../tests/animator-delayed-hit-runtime.test.js)
+  verifies the solver-owned Animator delayed-hit row helper against the legacy
+  shell/path fixture and verifies the app delayed-hit runtime only maps solver
+  rows into display records.
 
 ## Remaining Boundaries
 
 Remaining Animator work is outside this adapter closeout:
 
-- move delayed-hit shell/path intersection and placeholder Jacobian logic into
-  solver-owned delayed-hit rows before deleting local delayed-hit generation;
+- replace scene-built emission samples and receiver tracks with stream-backed
+  solver descriptors for delayed-hit row generation;
 - keep playback interpolation, camera bounds, opacity, labels, and authoring
   preview transforms app-side;
 - add adapter cases for any future non-linear or multi-path authoring mode before

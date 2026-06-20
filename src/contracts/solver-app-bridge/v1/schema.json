@@ -4487,6 +4487,20 @@
           "type": "integer",
           "minimum": 0
         },
+        "pathConstraintBoundaryRelaxationResidualSampleCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "maxPathConstraintBoundaryRelaxationResidualBefore": {
+          "type": "number"
+        },
+        "maxPathConstraintBoundaryRelaxationResidualAfter": {
+          "type": "number"
+        },
+        "pathConstraintBoundaryRelaxationResidualRatio": {
+          "type": "number",
+          "minimum": 0
+        },
         "pathConstraintSolverStatus": {
           "type": "string",
           "minLength": 1
@@ -4599,6 +4613,20 @@
         },
         "pathConstraintBoundaryRelaxationIterationCount": {
           "type": "integer",
+          "minimum": 0
+        },
+        "pathConstraintBoundaryRelaxationResidualSampleCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "maxPathConstraintBoundaryRelaxationResidualBefore": {
+          "type": "number"
+        },
+        "maxPathConstraintBoundaryRelaxationResidualAfter": {
+          "type": "number"
+        },
+        "pathConstraintBoundaryRelaxationResidualRatio": {
+          "type": "number",
           "minimum": 0
         },
         "pathConstraintSolverStatus": {
@@ -8999,6 +9027,36 @@
         },
         "timeRange": {
           "$ref": "#/$defs/range"
+        },
+        "indexOptions": {
+          "$ref": "#/$defs/emissionShellIndexedBroadPhaseOptions"
+        }
+      }
+    },
+    "emissionShellIndexedBroadPhaseOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["strategy", "timeSlabCount", "spatialCellSize"],
+      "properties": {
+        "strategy": {
+          "const": "emission_shell_broad_phase_v0"
+        },
+        "timeSlabCount": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2147483647
+        },
+        "spatialCellSize": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "sourceRowOffset": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "receiverRowOffset": {
+          "type": "integer",
+          "minimum": 0
         }
       }
     },
@@ -9084,6 +9142,9 @@
         },
         "scanSummary": {
           "$ref": "#/$defs/emissionShellScanSummary"
+        },
+        "indexSummary": {
+          "$ref": "#/$defs/emissionShellIndexedBroadPhaseSummary"
         },
         "truncated": {
           "type": "boolean"
@@ -9399,6 +9460,9 @@
         },
         "timeRange": {
           "$ref": "#/$defs/range"
+        },
+        "indexOptions": {
+          "$ref": "#/$defs/emissionShellIndexedBroadPhaseOptions"
         }
       }
     },
@@ -9455,6 +9519,9 @@
         },
         "timeRange": {
           "$ref": "#/$defs/range"
+        },
+        "indexOptions": {
+          "$ref": "#/$defs/emissionShellIndexedBroadPhaseOptions"
         }
       }
     },
@@ -9469,6 +9536,41 @@
           "items": {
             "$ref": "#/$defs/emissionShellCandidateF64Response"
           }
+        }
+      }
+    },
+    "emissionShellIndexedBroadPhaseSummary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sourceRowOffset",
+        "receiverRowOffset",
+        "receiverCellRows",
+        "shellAnnulusRows",
+        "cellLookups",
+        "indexedPairTests",
+        "duplicatePairTests",
+        "spatialCellSize",
+        "timeRangeStart",
+        "timeRangeEnd",
+        "timeSlabCount",
+        "coverageStatus"
+      ],
+      "properties": {
+        "sourceRowOffset": { "type": "integer", "minimum": 0 },
+        "receiverRowOffset": { "type": "integer", "minimum": 0 },
+        "receiverCellRows": { "type": "integer", "minimum": 0 },
+        "shellAnnulusRows": { "type": "integer", "minimum": 0 },
+        "cellLookups": { "type": "integer", "minimum": 0 },
+        "indexedPairTests": { "type": "integer", "minimum": 0 },
+        "duplicatePairTests": { "type": "integer", "minimum": 0 },
+        "spatialCellSize": { "type": "number", "exclusiveMinimum": 0 },
+        "timeRangeStart": { "type": "number" },
+        "timeRangeEnd": { "type": "number" },
+        "timeSlabCount": { "type": "integer", "minimum": 1 },
+        "coverageStatus": {
+          "type": "string",
+          "enum": ["complete", "truncated", "invalid_input"]
         }
       }
     },
@@ -9508,7 +9610,7 @@
         },
         "executionPath": {
           "type": "string",
-          "enum": ["native_c_abi", "javascript_fallback", "packet_merge"]
+          "enum": ["native_c_abi", "native_c_abi_indexed_v0", "javascript_fallback", "packet_merge"]
         },
         "streamChunkCount": {
           "type": "integer",

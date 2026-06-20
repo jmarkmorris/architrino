@@ -266,6 +266,14 @@ async function createMotionSolverReplayDataset(playbackRequest, options = {}, { 
           pathConstraintBoundaryRelaxationMode: motionReplay.pathConstraintBoundaryRelaxationMode,
           pathConstraintBoundaryRelaxationIterationCount:
             motionReplay.pathConstraintBoundaryRelaxationIterationCount,
+          pathConstraintBoundaryRelaxationResidualSampleCount:
+            motionReplay.pathConstraintBoundaryRelaxationResidualSampleCount,
+          maxPathConstraintBoundaryRelaxationResidualBefore:
+            motionReplay.maxPathConstraintBoundaryRelaxationResidualBefore,
+          maxPathConstraintBoundaryRelaxationResidualAfter:
+            motionReplay.maxPathConstraintBoundaryRelaxationResidualAfter,
+          pathConstraintBoundaryRelaxationResidualRatio:
+            motionReplay.pathConstraintBoundaryRelaxationResidualRatio,
           pathConstraintSolverStatus: motionReplay.pathConstraintSolverStatus,
           pathConstraintSolverClaim: motionReplay.pathConstraintSolverClaim,
           maxPathConstraintGuidanceAcceleration: motionReplay.maxPathConstraintGuidanceAcceleration,
@@ -308,6 +316,14 @@ async function createMotionSolverReplayDataset(playbackRequest, options = {}, { 
           pathConstraintBoundaryRelaxationMode: motionReplay.pathConstraintBoundaryRelaxationMode,
           pathConstraintBoundaryRelaxationIterationCount:
             motionReplay.pathConstraintBoundaryRelaxationIterationCount,
+          pathConstraintBoundaryRelaxationResidualSampleCount:
+            motionReplay.pathConstraintBoundaryRelaxationResidualSampleCount,
+          maxPathConstraintBoundaryRelaxationResidualBefore:
+            motionReplay.maxPathConstraintBoundaryRelaxationResidualBefore,
+          maxPathConstraintBoundaryRelaxationResidualAfter:
+            motionReplay.maxPathConstraintBoundaryRelaxationResidualAfter,
+          pathConstraintBoundaryRelaxationResidualRatio:
+            motionReplay.pathConstraintBoundaryRelaxationResidualRatio,
           pathConstraintSolverStatus: motionReplay.pathConstraintSolverStatus,
           pathConstraintSolverClaim: motionReplay.pathConstraintSolverClaim,
           maxPathConstraintGuidanceAcceleration: motionReplay.maxPathConstraintGuidanceAcceleration,
@@ -491,6 +507,22 @@ async function createPairInteractionSolverReplayFrames(playbackRequest, options 
     pathConstraintBoundaryRelaxationIterationCount: optionalFiniteNumber(
       pairSummary.pathConstraintBoundaryRelaxationIterationCount ??
         pairInteraction.pathConstraintBoundaryRelaxationIterationCount
+    ),
+    pathConstraintBoundaryRelaxationResidualSampleCount: optionalFiniteNumber(
+      pairSummary.pathConstraintBoundaryRelaxationResidualSampleCount ??
+        pairInteraction.pathConstraintBoundaryRelaxationResidualSampleCount
+    ),
+    maxPathConstraintBoundaryRelaxationResidualBefore: optionalFiniteNumber(
+      pairSummary.maxPathConstraintBoundaryRelaxationResidualBefore ??
+        pairInteraction.maxPathConstraintBoundaryRelaxationResidualBefore
+    ),
+    maxPathConstraintBoundaryRelaxationResidualAfter: optionalFiniteNumber(
+      pairSummary.maxPathConstraintBoundaryRelaxationResidualAfter ??
+        pairInteraction.maxPathConstraintBoundaryRelaxationResidualAfter
+    ),
+    pathConstraintBoundaryRelaxationResidualRatio: optionalFiniteNumber(
+      pairSummary.pathConstraintBoundaryRelaxationResidualRatio ??
+        pairInteraction.pathConstraintBoundaryRelaxationResidualRatio
     ),
     pathConstraintSolverStatus: pairSummary.pathConstraintSolverStatus ?? pairInteraction.pathConstraintSolverStatus,
     pathConstraintSolverClaim: pairSummary.pathConstraintSolverClaim ?? pairInteraction.pathConstraintSolverClaim,
@@ -1409,6 +1441,34 @@ export function normalizeCausalDelayFeedbackBridgeReplay(runHandle = {}, options
       ? {
           pathConstraintBoundaryRelaxationIterationCount: Number(
             bridgeResponse.geometry.pathConstraintBoundaryRelaxationIterationCount
+          ),
+        }
+      : {}),
+    ...(Number.isFinite(Number(bridgeResponse.geometry?.pathConstraintBoundaryRelaxationResidualSampleCount))
+      ? {
+          pathConstraintBoundaryRelaxationResidualSampleCount: Number(
+            bridgeResponse.geometry.pathConstraintBoundaryRelaxationResidualSampleCount
+          ),
+        }
+      : {}),
+    ...(Number.isFinite(Number(bridgeResponse.geometry?.maxPathConstraintBoundaryRelaxationResidualBefore))
+      ? {
+          maxPathConstraintBoundaryRelaxationResidualBefore: Number(
+            bridgeResponse.geometry.maxPathConstraintBoundaryRelaxationResidualBefore
+          ),
+        }
+      : {}),
+    ...(Number.isFinite(Number(bridgeResponse.geometry?.maxPathConstraintBoundaryRelaxationResidualAfter))
+      ? {
+          maxPathConstraintBoundaryRelaxationResidualAfter: Number(
+            bridgeResponse.geometry.maxPathConstraintBoundaryRelaxationResidualAfter
+          ),
+        }
+      : {}),
+    ...(Number.isFinite(Number(bridgeResponse.geometry?.pathConstraintBoundaryRelaxationResidualRatio))
+      ? {
+          pathConstraintBoundaryRelaxationResidualRatio: Number(
+            bridgeResponse.geometry.pathConstraintBoundaryRelaxationResidualRatio
           ),
         }
       : {}),

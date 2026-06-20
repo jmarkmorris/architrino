@@ -2966,6 +2966,11 @@ const packetScopedEmissionShellCandidates = await client.queryEmissionShellCandi
     signalSpeed: 1,
     tolerance: 1e-12,
     workerCount: 2,
+    indexOptions: {
+      strategy: "emission_shell_broad_phase_v0",
+      timeSlabCount: 32,
+      spatialCellSize: 0.5,
+    },
   })
 );
 assert(
@@ -2981,6 +2986,12 @@ assert(
   packetScopedEmissionShellCandidates.candidates[0].sourceChunkIndex === 0 &&
     packetScopedEmissionShellCandidates.candidates[0].receiverChunkIndex === 1,
   "expected packet-scoped emission-shell chunk identity"
+);
+assert(
+  packetScopedEmissionShellCandidates.indexSummary.coverageStatus === "complete" &&
+    packetScopedEmissionShellCandidates.indexSummary.timeSlabCount === 32 &&
+    packetScopedEmissionShellCandidates.indexSummary.indexedPairTests === 1,
+  "expected packet-scoped indexed emission-shell summary"
 );
 assertEmissionShellScanSummary(packetScopedEmissionShellCandidates.scanSummary, {
   streamChunkCount: 2,
@@ -3004,7 +3015,7 @@ assertEmissionShellScanSummary(packetScopedEmissionShellCandidates.scanSummary, 
   outputByteLength: 152,
   requestedWorkerCount: 2,
   plannedWorkerCount: 1,
-});
+}, "native_c_abi_indexed_v0");
 const packetQueryEmissionShellCandidates = await client.queryEmissionShellCandidatePacketF64(
   createEmissionShellCandidatePacketQueryRequest({
     streamId: "smoke-path-history",
@@ -4223,6 +4234,11 @@ assert(
     causalDelayPairRunHandle.response.summary.pathConstraintBoundaryRelaxationMode ===
       "finite_difference_frame_relaxation_v1" &&
     causalDelayPairRunHandle.response.summary.pathConstraintBoundaryRelaxationIterationCount === 8 &&
+    causalDelayPairRunHandle.response.summary.pathConstraintBoundaryRelaxationResidualSampleCount > 0 &&
+    causalDelayPairRunHandle.response.summary.maxPathConstraintBoundaryRelaxationResidualBefore >
+      causalDelayPairRunHandle.response.summary.maxPathConstraintBoundaryRelaxationResidualAfter &&
+    causalDelayPairRunHandle.response.summary.pathConstraintBoundaryRelaxationResidualRatio >= 0 &&
+    causalDelayPairRunHandle.response.summary.pathConstraintBoundaryRelaxationResidualRatio < 1 &&
     causalDelayPairRunHandle.response.summary.pathConstraintSolverStatus === "guided_constraint_path" &&
     causalDelayPairRunHandle.response.summary.pathConstraintSolverClaim ===
       "diagnostic_constraint_replay_not_boundary_value_solve" &&

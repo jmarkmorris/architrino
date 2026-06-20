@@ -125,6 +125,8 @@ $$
 
 The candidate is not locally excluded because no row proves an impossible branch, invalid parity, unsourced nonzero wake term, or forbidden routing event. It is blocked because the retained data needed by the branch-selection residual remain absent.
 
+Reduced solver projection 2026-06-20. [tri-binary-offset-family-runner.mjs](../../../scripts/angular-momentum/tri-binary-offset-family-runner.mjs) now supplies a reduced branch-chart projection for the $(f-1,f,f+2)$ candidate family and the $(f-1,f,f+1)$ control. This adds machine-readable proxy evidence for sampled root population, Jacobian floor, outer speed, middle hinge, inner self-hit, integer-cycle phase closure, the index-level self-root parity target, and the clean energy-frequency target $\omega_\ast$. It does not change the audit partition above because the retained row identity, retained phase lock, torque consistency, causal-wake pullback, vector partition, energy routing, section stability, and retained competitor rows remain missing.
+
 ## Row Verdicts
 
 | Row family | Instance value | Verdict |
@@ -133,7 +135,7 @@ The candidate is not locally excluded because no row proves an impossible branch
 | Scalar partition | $\mathcal R_I^{B_{\min}}=0$ in the reduced certificate. | Conditional pass. |
 | Vector partition | $\mathcal R_{\mathbf J}^{B_{\min}}=\mathbf 0$ in the reduced certificate. | Conditional pass. |
 | Transverse bookkeeping | $\mathcal R_{\perp}^{B_{\min}}=\mathbf 0$ in the reduced certificate. | Conditional pass. |
-| Root replay | Individual continued active-root rows are not supplied through the full retained chart. | Blocked. |
+| Root replay | A reduced circular-root proxy is now populated, but individual continued active-root rows are not supplied through the full retained chart. | Blocked. |
 | Phase lock | Integer phase branches and branch-domain margins are not populated. | Blocked. |
 | Torque consistency | The force, torque, wake, and partition row sets are not yet shown to be identical. | Blocked. |
 | Causal-wake pullback | The normalized delayed-interior characteristic-tail angular-momentum increment is assumed away or routed, not retained. | Blocked. |

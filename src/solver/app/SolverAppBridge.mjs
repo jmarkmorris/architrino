@@ -643,7 +643,7 @@ const MOTION_INTEGRATION_REQUEST_F64_BYTES = 120;
 const PAIR_INTERACTION_REQUEST_F64_BYTES = 64;
 const PAIR_INTERACTION_STATE_F64_BYTES = 80;
 const PAIR_INTERACTION_PATH_CONSTRAINT_F64_BYTES = 48;
-const PAIR_INTERACTION_SUMMARY_F64_BYTES = 104;
+const PAIR_INTERACTION_SUMMARY_F64_BYTES = 136;
 const PAIR_INTERACTION_PATH_CONSTRAINT_GUIDANCE_MODE = "retained_knot_boundary";
 const PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_MODE = "retained_knot_boundary";
 const PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_MODE_LAW_AWARE = "law_aware_retained_knot_boundary";
@@ -687,8 +687,11 @@ const SPACETIME_QUERY_F64_BYTES = 96;
 const EMISSION_SHELL_BROAD_PHASE_OPTIONS_F64_BYTES = 48;
 const EMISSION_SHELL_CANDIDATE_ROW_F64_BYTES = 112;
 const EMISSION_SHELL_BROAD_PHASE_SUMMARY_BYTES = 32;
+const EMISSION_SHELL_INDEXED_BROAD_PHASE_OPTIONS_F64_BYTES = 56;
+const EMISSION_SHELL_INDEXED_BROAD_PHASE_SUMMARY_BYTES = 96;
 const EMISSION_SHELL_NARROW_PHASE_REQUEST_F64_BYTES = 208;
 const EMISSION_SHELL_NARROW_PHASE_ROW_F64_BYTES = 40;
+const EMISSION_SHELL_INDEXED_BROAD_PHASE_V0_STRATEGY = "emission_shell_broad_phase_v0";
 const DEFAULT_MAX_CAUSAL_ROOTS = 64;
 const DEFAULT_MAX_ROOT_LEDGER_DETAIL_ROWS = 4096;
 const DEFAULT_MAX_MOTION_FRAMES = 65536;
@@ -3776,6 +3779,14 @@ function runSimulationWithModule(state, module, request, abiInfo) {
         pathConstraintBoundaryRelaxationMode: pair.summary?.pathConstraintBoundaryRelaxationMode,
         pathConstraintBoundaryRelaxationIterationCount:
           pair.summary?.pathConstraintBoundaryRelaxationIterationCount,
+        pathConstraintBoundaryRelaxationResidualSampleCount:
+          pair.summary?.pathConstraintBoundaryRelaxationResidualSampleCount,
+        maxPathConstraintBoundaryRelaxationResidualBefore:
+          pair.summary?.maxPathConstraintBoundaryRelaxationResidualBefore,
+        maxPathConstraintBoundaryRelaxationResidualAfter:
+          pair.summary?.maxPathConstraintBoundaryRelaxationResidualAfter,
+        pathConstraintBoundaryRelaxationResidualRatio:
+          pair.summary?.pathConstraintBoundaryRelaxationResidualRatio,
         pathConstraintSolverStatus: pair.summary?.pathConstraintSolverStatus,
         pathConstraintSolverClaim: pair.summary?.pathConstraintSolverClaim,
       },
@@ -3806,6 +3817,14 @@ function runSimulationWithModule(state, module, request, abiInfo) {
         pathConstraintBoundaryRelaxationMode: pair.summary?.pathConstraintBoundaryRelaxationMode,
         pathConstraintBoundaryRelaxationIterationCount:
           pair.summary?.pathConstraintBoundaryRelaxationIterationCount,
+        pathConstraintBoundaryRelaxationResidualSampleCount:
+          pair.summary?.pathConstraintBoundaryRelaxationResidualSampleCount,
+        maxPathConstraintBoundaryRelaxationResidualBefore:
+          pair.summary?.maxPathConstraintBoundaryRelaxationResidualBefore,
+        maxPathConstraintBoundaryRelaxationResidualAfter:
+          pair.summary?.maxPathConstraintBoundaryRelaxationResidualAfter,
+        pathConstraintBoundaryRelaxationResidualRatio:
+          pair.summary?.pathConstraintBoundaryRelaxationResidualRatio,
         pathConstraintSolverStatus: pair.summary?.pathConstraintSolverStatus,
         pathConstraintSolverClaim: pair.summary?.pathConstraintSolverClaim,
         maxPathConstraintGuidanceAcceleration: pair.summary?.maxPathConstraintGuidanceAcceleration ?? 0,
@@ -4036,7 +4055,15 @@ function solvePairInteractionPathF64(request, options = {}) {
     }
   }
 
+  const boundaryRelaxationResidualBefore = summarizePairInteractionBoundaryRelaxationResiduals(
+    frames,
+    normalized,
+  );
   relaxPairInteractionConstrainedFrames(frames, normalized);
+  const boundaryRelaxationResidualAfter = summarizePairInteractionBoundaryRelaxationResiduals(
+    frames,
+    normalized,
+  );
   const pathRows = createPairInteractionPathRows(frames);
   const residualSummary = summarizePairInteractionConstraintResiduals(frames, normalized);
   const boundarySummary = summarizePairInteractionBoundaryResiduals(normalized);
@@ -4044,7 +4071,11 @@ function solvePairInteractionPathF64(request, options = {}) {
     ? PAIR_INTERACTION_PATH_CONSTRAINT_GUIDANCE_MODE
     : undefined;
   const pathConstraintBoundaryMode = createPairInteractionPathConstraintBoundaryMode(normalized);
-  const boundaryRelaxationMetadata = createPairInteractionBoundaryRelaxationMetadata(normalized);
+  const boundaryRelaxationMetadata = createPairInteractionBoundaryRelaxationMetadata(
+    normalized,
+    boundaryRelaxationResidualBefore,
+    boundaryRelaxationResidualAfter,
+  );
   const constraintSolverMetadata = createPairInteractionConstraintSolverMetadata(
     residualSummary.pathConstraintCount,
     guidanceSummary.pathConstraintGuidanceSampleCount,
@@ -4333,14 +4364,24 @@ function createPairInteractionPathConstraintBoundaryMode(request) {
     : PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_MODE;
 }
 
-function createPairInteractionBoundaryRelaxationMetadata(request) {
+function createPairInteractionBoundaryRelaxationMetadata(request, residualBefore, residualAfter) {
   if (!request || !Array.isArray(request.pathConstraints) || request.pathConstraints.length === 0) {
     return {};
   }
+  const beforeMax = Number(residualBefore?.maxPathConstraintBoundaryRelaxationResidual);
+  const afterMax = Number(residualAfter?.maxPathConstraintBoundaryRelaxationResidual);
   return {
     pathConstraintBoundaryRelaxationMode: PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_RELAXATION_MODE,
     pathConstraintBoundaryRelaxationIterationCount:
       PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_RELAXATION_ITERATION_COUNT,
+    pathConstraintBoundaryRelaxationResidualSampleCount:
+      residualAfter?.pathConstraintBoundaryRelaxationResidualSampleCount ?? 0,
+    maxPathConstraintBoundaryRelaxationResidualBefore: Number.isFinite(beforeMax) ? beforeMax : 0,
+    maxPathConstraintBoundaryRelaxationResidualAfter: Number.isFinite(afterMax) ? afterMax : 0,
+    pathConstraintBoundaryRelaxationResidualRatio:
+      Number.isFinite(beforeMax) && beforeMax > 0 && Number.isFinite(afterMax)
+        ? afterMax / beforeMax
+        : 0,
   };
 }
 
@@ -4813,6 +4854,63 @@ function summarizePairInteractionBoundaryResiduals(request) {
     summary.meanPathConstraintBoundaryResidual = residualSum / sampleCount;
     summary.rmsPathConstraintBoundaryResidual = Math.sqrt(residualSquaredSum / sampleCount);
   }
+  return summary;
+}
+
+function summarizePairInteractionBoundaryRelaxationResiduals(frames, request) {
+  const summary = {
+    pathConstraintBoundaryRelaxationResidualSampleCount: 0,
+    maxPathConstraintBoundaryRelaxationResidual: 0,
+  };
+  if (!Array.isArray(frames) || frames.length === 0 || (request.pathConstraints ?? []).length === 0) {
+    return summary;
+  }
+
+  const epsilon = pairConstraintTimeEpsilon(request);
+  const pathKeys = Array.from(new Set(frames.map((frame) => frame.pathKey))).sort((left, right) => left - right);
+  pathKeys.forEach((pathKey) => {
+    const pathFrames = frames
+      .filter((frame) => frame.pathKey === pathKey)
+      .sort((left, right) => left.time - right.time || left.frameIndex - right.frameIndex);
+    for (let index = 1; index + 1 < pathFrames.length; index += 1) {
+      const previous = pathFrames[index - 1];
+      const current = pathFrames[index];
+      const next = pathFrames[index + 1];
+      if (hasPairConstraintAtTime(request, current.pathKey, current.time, epsilon)) {
+        continue;
+      }
+      const leftDt = current.time - previous.time;
+      const rightDt = next.time - current.time;
+      const averageDt = 0.5 * (leftDt + rightDt);
+      if (leftDt <= epsilon || rightDt <= epsilon || averageDt <= epsilon) {
+        continue;
+      }
+      const leftVelocity = scalePairResidualVector(vectorSubtract(current.position, previous.position), 1 / leftDt);
+      const rightVelocity = scalePairResidualVector(vectorSubtract(next.position, current.position), 1 / rightDt);
+      const finiteDifferenceAcceleration = scalePairResidualVector(
+        vectorSubtract(rightVelocity, leftVelocity),
+        1 / averageDt,
+      );
+      const states = statesAtPairInteractionFrameIndex(frames, current.frameIndex, request.initialStates);
+      if (states.length !== request.initialStates.length) {
+        continue;
+      }
+      const lawAccelerations = computePairInteractionAccelerations(states, request);
+      const stateIndex = states.findIndex((state) => state.pathKey === current.pathKey);
+      if (stateIndex < 0 || !lawAccelerations[stateIndex]) {
+        continue;
+      }
+      const residual = vectorNorm(vectorSubtract(finiteDifferenceAcceleration, lawAccelerations[stateIndex]));
+      if (!Number.isFinite(residual)) {
+        continue;
+      }
+      summary.maxPathConstraintBoundaryRelaxationResidual = Math.max(
+        summary.maxPathConstraintBoundaryRelaxationResidual,
+        residual,
+      );
+      summary.pathConstraintBoundaryRelaxationResidualSampleCount += 1;
+    }
+  });
   return summary;
 }
 
@@ -7009,7 +7107,21 @@ function integratePairInteractionMotionF64WithModule(module, request, options = 
       ? PAIR_INTERACTION_PATH_CONSTRAINT_GUIDANCE_MODE
       : undefined;
     const pathConstraintBoundaryMode = createPairInteractionPathConstraintBoundaryMode(normalized);
-    const boundaryRelaxationMetadata = createPairInteractionBoundaryRelaxationMetadata(normalized);
+    const boundaryRelaxationMetadata = createPairInteractionBoundaryRelaxationMetadata(
+      normalized,
+      {
+        pathConstraintBoundaryRelaxationResidualSampleCount:
+          nativeSummary.boundaryRelaxationResidualSampleCount,
+        maxPathConstraintBoundaryRelaxationResidual:
+          nativeSummary.maxBoundaryRelaxationResidualBefore,
+      },
+      {
+        pathConstraintBoundaryRelaxationResidualSampleCount:
+          nativeSummary.boundaryRelaxationResidualSampleCount,
+        maxPathConstraintBoundaryRelaxationResidual:
+          nativeSummary.maxBoundaryRelaxationResidualAfter,
+      },
+    );
     const constraintSolverMetadata = createPairInteractionConstraintSolverMetadata(
       nativeSummary.pathConstraintCount,
       nativeSummary.guidanceSampleCount,
@@ -9362,6 +9474,7 @@ export function hasSolverCAbi(module) {
     typeof module?._architrino_solver_build_spacetime_index_f64 === "function" &&
     typeof module?._architrino_solver_query_spacetime_index_f64 === "function" &&
     typeof module?._architrino_solver_query_emission_shell_broad_phase_f64 === "function" &&
+    typeof module?._architrino_solver_query_emission_shell_broad_phase_indexed_v0_f64 === "function" &&
     typeof module?._architrino_solver_estimate_emission_shell_narrow_phase_f64 === "function" &&
     typeof module?._architrino_solver_plan_path_history_storage_lifecycle === "function" &&
     typeof module?._architrino_solver_get_abi_info === "function"
@@ -11223,6 +11336,19 @@ function writeEmissionShellBroadPhaseOptionsF64(module, ptr, request, tolerance,
   module.setValue(ptr + 44, request.workerCount ?? 0, "i32");
 }
 
+function writeEmissionShellIndexedBroadPhaseOptionsF64(module, ptr, request, indexOptions) {
+  const timeRange = request.timeRange ?? null;
+  module.setValue(ptr, indexOptions.spatialCellSize, "double");
+  module.setValue(ptr + 8, timeRange?.start ?? 0, "double");
+  module.setValue(ptr + 16, timeRange?.end ?? 0, "double");
+  writeUint64(module, ptr + 24, indexOptions.sourceRowOffset ?? 0);
+  writeUint64(module, ptr + 32, indexOptions.receiverRowOffset ?? 0);
+  module.setValue(ptr + 40, indexOptions.timeSlabCount, "i32");
+  module.setValue(ptr + 44, timeRange ? 1 : 0, "i32");
+  module.setValue(ptr + 48, 0, "i32");
+  module.setValue(ptr + 52, 0, "i32");
+}
+
 function writeEmissionShellNarrowPhaseRequestF64(
   module,
   ptr,
@@ -11379,6 +11505,10 @@ function readPairInteractionSummaryF64(module, ptr) {
     maxBoundaryResidual: module.getValue(ptr + 80, "double"),
     meanBoundaryResidual: module.getValue(ptr + 88, "double"),
     rmsBoundaryResidual: module.getValue(ptr + 96, "double"),
+    boundaryRelaxationResidualSampleCount: readUint64(module, ptr + 104),
+    maxBoundaryRelaxationResidualBefore: module.getValue(ptr + 112, "double"),
+    maxBoundaryRelaxationResidualAfter: module.getValue(ptr + 120, "double"),
+    boundaryRelaxationResidualRatio: module.getValue(ptr + 128, "double"),
   };
 }
 
@@ -11707,6 +11837,26 @@ function readEmissionShellBroadPhaseSummary(module, ptr) {
     candidateCount: readUint64(module, ptr + 16),
     truncated: module.getValue(ptr + 24, "i32") !== 0,
     plannedWorkerCount: module.getValue(ptr + 28, "i32") >>> 0,
+  };
+}
+
+function readEmissionShellIndexedBroadPhaseSummary(module, ptr) {
+  const coverageStatusId = module.getValue(ptr + 84, "i32") >>> 0;
+  const coverageStatus =
+    coverageStatusId === 0 ? "complete" : coverageStatusId === 1 ? "truncated" : "invalid_input";
+  return {
+    sourceRowOffset: readUint64(module, ptr),
+    receiverRowOffset: readUint64(module, ptr + 8),
+    receiverCellRows: readUint64(module, ptr + 16),
+    shellAnnulusRows: readUint64(module, ptr + 24),
+    cellLookups: readUint64(module, ptr + 32),
+    indexedPairTests: readUint64(module, ptr + 40),
+    duplicatePairTests: readUint64(module, ptr + 48),
+    spatialCellSize: module.getValue(ptr + 56, "double"),
+    timeRangeStart: module.getValue(ptr + 64, "double"),
+    timeRangeEnd: module.getValue(ptr + 72, "double"),
+    timeSlabCount: module.getValue(ptr + 80, "i32") >>> 0,
+    coverageStatus,
   };
 }
 
@@ -13058,6 +13208,42 @@ function queryEmissionShellCandidatesF64(state, request, module = null, abiInfo 
   );
   const tolerance = request.tolerance ?? 0;
   const maxCandidates = request.maxCandidates ?? 4096;
+  const indexOptions = validateOptionalEmissionShellIndexOptions(request.indexOptions, "indexOptions");
+  if (
+    indexOptions &&
+    module &&
+    typeof module?._architrino_solver_query_emission_shell_broad_phase_indexed_v0_f64 !== "function"
+  ) {
+    throw new SolverBridgeError(
+      createStatus(
+        "app_contract_error",
+        "error",
+        "indexed emission-shell broad-phase C ABI export is unavailable",
+        {
+          recoverable: false,
+          stage: "emission_shell_candidates",
+          details: { strategy: indexOptions.strategy },
+        }
+      )
+    );
+  }
+  if (
+    indexOptions &&
+    typeof module?._architrino_solver_query_emission_shell_broad_phase_indexed_v0_f64 === "function"
+  ) {
+    return queryEmissionShellCandidatesF64WithIndexedModule(
+      module,
+      streamEntry.stream.streamId,
+      request,
+      sourceRows,
+      receiverRows,
+      tolerance,
+      maxCandidates,
+      scanMetrics,
+      indexOptions,
+      abiInfo
+    );
+  }
   if (typeof module?._architrino_solver_query_emission_shell_broad_phase_f64 === "function") {
     return queryEmissionShellCandidatesF64WithModule(
       module,
@@ -13202,6 +13388,7 @@ function queryEmissionShellCandidatePacketF64(state, request, module = null, abi
       receiverChunkIndices: expandWorkPacketChunkRange(packet.receiverBlock, "packet.receiverBlock"),
       allowSamePath: request.allowSamePath,
       workerCount: request.workerCount,
+      indexOptions: request.indexOptions,
       timeRange,
     },
     module,
@@ -13235,6 +13422,7 @@ function queryEmissionShellCandidatePacketsF64(state, request, module = null, ab
         receiverPathKeys: request.receiverPathKeys,
         allowSamePath: request.allowSamePath,
         workerCount: request.workerCount,
+        indexOptions: request.indexOptions,
         timeRange: request.timeRange,
       },
       module,
@@ -13643,6 +13831,230 @@ function mergeBufferDescriptors(parts, bufferId, layout, rowSizeBytes) {
   return createBufferDescriptor(bufferId, layout, rowCount, rowSizeBytes, merged.buffer);
 }
 
+function resolveEmissionShellNativeCandidateInput(nativeCandidate, sourceRows, receiverRows, indexSummary = null) {
+  const sourceRowOffset = indexSummary?.sourceRowOffset ?? 0;
+  const receiverRowOffset = indexSummary?.receiverRowOffset ?? 0;
+  const sourceIndex = nativeCandidate.sourceRowIndex - sourceRowOffset;
+  const receiverIndex = nativeCandidate.receiverRowIndex - receiverRowOffset;
+  if (
+    !Number.isInteger(sourceIndex) ||
+    !Number.isInteger(receiverIndex) ||
+    sourceIndex < 0 ||
+    receiverIndex < 0 ||
+    sourceIndex >= sourceRows.length ||
+    receiverIndex >= receiverRows.length
+  ) {
+    throw new SolverBridgeError(
+      createStatus("internal_solver_error", "halt", "emission-shell candidate row index is outside materialized rows", {
+        recoverable: false,
+        details: {
+          sourceRowIndex: nativeCandidate.sourceRowIndex,
+          receiverRowIndex: nativeCandidate.receiverRowIndex,
+          sourceRowOffset,
+          receiverRowOffset,
+          sourceRowCount: sourceRows.length,
+          receiverRowCount: receiverRows.length,
+        },
+      })
+    );
+  }
+  return {
+    nativeCandidate,
+    source: sourceRows[sourceIndex],
+    receiver: receiverRows[receiverIndex],
+  };
+}
+
+function queryEmissionShellCandidatesF64WithIndexedModule(
+  module,
+  streamId,
+  request,
+  sourceRows,
+  receiverRows,
+  tolerance,
+  maxCandidates,
+  scanMetrics,
+  indexOptions,
+  abiInfo
+) {
+  if (typeof module._malloc !== "function" || typeof module._free !== "function") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "WebAssembly allocator exports are required", {
+        recoverable: false,
+      })
+    );
+  }
+
+  const sourceRowsPtr =
+    sourceRows.length > 0 ? module._malloc(abiInfo.pathHistoryRowF64Bytes * sourceRows.length) : 0;
+  const receiverRowsPtr =
+    receiverRows.length > 0 ? module._malloc(abiInfo.pathHistoryRowF64Bytes * receiverRows.length) : 0;
+  const optionsPtr = module._malloc(abiInfo.emissionShellBroadPhaseOptionsF64Bytes);
+  const indexOptionsPtr = module._malloc(EMISSION_SHELL_INDEXED_BROAD_PHASE_OPTIONS_F64_BYTES);
+  const candidatesPtr =
+    maxCandidates > 0 ? module._malloc(abiInfo.emissionShellCandidateRowF64Bytes * maxCandidates) : 0;
+  const summaryPtr = module._malloc(abiInfo.emissionShellBroadPhaseSummaryBytes);
+  const indexSummaryPtr = module._malloc(EMISSION_SHELL_INDEXED_BROAD_PHASE_SUMMARY_BYTES);
+  try {
+    sourceRows.forEach((row, index) => {
+      writePathHistoryRowF64(module, sourceRowsPtr + index * abiInfo.pathHistoryRowF64Bytes, row);
+    });
+    receiverRows.forEach((row, index) => {
+      writePathHistoryRowF64(module, receiverRowsPtr + index * abiInfo.pathHistoryRowF64Bytes, row);
+    });
+    writeEmissionShellBroadPhaseOptionsF64(module, optionsPtr, request, tolerance, maxCandidates);
+    writeEmissionShellIndexedBroadPhaseOptionsF64(module, indexOptionsPtr, request, indexOptions);
+    const query = module.cwrap("architrino_solver_query_emission_shell_broad_phase_indexed_v0_f64", "number", [
+      "number",
+      "number",
+      "number",
+      "number",
+      "number",
+      "number",
+      "number",
+      "number",
+      "number",
+      "number",
+    ]);
+    const status = query(
+      sourceRowsPtr,
+      sourceRows.length,
+      receiverRowsPtr,
+      receiverRows.length,
+      optionsPtr,
+      indexOptionsPtr,
+      candidatesPtr,
+      maxCandidates,
+      summaryPtr,
+      indexSummaryPtr
+    );
+    const summary = readEmissionShellBroadPhaseSummary(module, summaryPtr);
+    const indexSummary = readEmissionShellIndexedBroadPhaseSummary(module, indexSummaryPtr);
+    if (status !== 0) {
+      throw new SolverBridgeError(
+        createStatus("internal_solver_error", "halt", `emission-shell indexed broad-phase C ABI returned ${status}`, {
+          recoverable: status === -3,
+          details: { status, ...summary, indexSummary },
+        })
+      );
+    }
+
+    const candidateInputs = [];
+    for (let index = 0; index < summary.candidateCount; index += 1) {
+      const nativeCandidate = readEmissionShellCandidateRowF64(
+        module,
+        candidatesPtr + index * abiInfo.emissionShellCandidateRowF64Bytes
+      );
+      candidateInputs.push(
+        resolveEmissionShellNativeCandidateInput(nativeCandidate, sourceRows, receiverRows, indexSummary)
+      );
+    }
+    const nativeNarrowPhaseEstimates =
+      typeof module?._architrino_solver_estimate_emission_shell_narrow_phase_f64 === "function"
+        ? estimateEmissionShellNarrowPhaseF64WithModule(
+            module,
+            candidateInputs,
+            request.signalSpeed,
+            tolerance,
+            abiInfo
+          )
+        : { rows: [], buffer: new ArrayBuffer(0) };
+    const candidates = candidateInputs.map((candidateInput, index) =>
+      enrichEmissionShellCandidate(
+        candidateInput.nativeCandidate,
+        candidateInput.source,
+        candidateInput.receiver,
+        request.signalSpeed,
+        tolerance,
+        nativeNarrowPhaseEstimates.rows[index]
+      )
+    );
+    const falsePositiveEstimate = summarizeEmissionShellFalsePositiveEstimate(candidates);
+    const candidateBuffer = copyWasmBytes(
+      module,
+      candidatesPtr,
+      candidates.length * abiInfo.emissionShellCandidateRowF64Bytes
+    );
+    const buffers = [
+      createBufferDescriptor(
+        "emission-shell-candidates",
+        "emission_shell_candidate.v1",
+        candidates.length,
+        abiInfo.emissionShellCandidateRowF64Bytes,
+        candidateBuffer
+      ),
+      createBufferDescriptor(
+        "emission-shell-narrow-phase",
+        "emission_shell_narrow_phase.v1",
+        nativeNarrowPhaseEstimates.rows.length,
+        abiInfo.emissionShellNarrowPhaseRowF64Bytes,
+        nativeNarrowPhaseEstimates.buffer
+      ),
+    ];
+    const scanSummary = createEmissionShellScanSummary({
+      executionPath: "native_c_abi_indexed_v0",
+      scanMetrics,
+      pairCount: summary.pairCount,
+      rejectedPairCount: summary.rejectedPairCount,
+      candidateCount: candidates.length,
+      buffers,
+      truncated: summary.truncated,
+      requestedWorkerCount: request.workerCount ?? 0,
+      plannedWorkerCount: summary.plannedWorkerCount,
+    });
+    return {
+      schema: "solver-emission-shell-candidates.v1",
+      streamId,
+      signalSpeed: request.signalSpeed,
+      tolerance,
+      pairCount: summary.pairCount,
+      rejectedPairCount: summary.rejectedPairCount,
+      candidateCount: candidates.length,
+      rejectionRate: summary.pairCount === 0 ? 0 : summary.rejectedPairCount / summary.pairCount,
+      candidateRate: summary.pairCount === 0 ? 0 : candidates.length / summary.pairCount,
+      falsePositiveEstimate,
+      scanSummary,
+      indexSummary,
+      truncated: summary.truncated,
+      candidates,
+      buffers,
+      status: createStatus(
+        summary.truncated ? "stream_memory_pressure" : "ok",
+        summary.truncated ? "warning" : "ok",
+        summary.truncated
+          ? "emission-shell indexed broad-phase candidates truncated"
+          : "emission-shell indexed broad-phase candidates computed",
+        {
+          details: {
+            streamId,
+            pairCount: summary.pairCount,
+            rejectedPairCount: summary.rejectedPairCount,
+            candidateCount: candidates.length,
+            estimatedFalsePositiveCount: falsePositiveEstimate.estimatedFalsePositiveCount,
+            maxCandidates,
+            scanSummary,
+            indexSummary,
+          },
+        }
+      ),
+    };
+  } finally {
+    if (sourceRowsPtr) {
+      module._free(sourceRowsPtr);
+    }
+    if (receiverRowsPtr) {
+      module._free(receiverRowsPtr);
+    }
+    module._free(optionsPtr);
+    module._free(indexOptionsPtr);
+    if (candidatesPtr) {
+      module._free(candidatesPtr);
+    }
+    module._free(summaryPtr);
+    module._free(indexSummaryPtr);
+  }
+}
+
 function queryEmissionShellCandidatesF64WithModule(
   module,
   streamId,
@@ -13714,9 +14126,7 @@ function queryEmissionShellCandidatesF64WithModule(
         module,
         candidatesPtr + index * abiInfo.emissionShellCandidateRowF64Bytes
       );
-      const source = sourceRows[nativeCandidate.sourceRowIndex];
-      const receiver = receiverRows[nativeCandidate.receiverRowIndex];
-      candidateInputs.push({ nativeCandidate, source, receiver });
+      candidateInputs.push(resolveEmissionShellNativeCandidateInput(nativeCandidate, sourceRows, receiverRows));
     }
     const nativeNarrowPhaseEstimates =
       typeof module?._architrino_solver_estimate_emission_shell_narrow_phase_f64 === "function"
@@ -13944,6 +14354,42 @@ function validateEmissionShellCandidateRequest(request) {
   if (request.timeRange != null) {
     validateRange(request.timeRange, "timeRange");
   }
+  validateOptionalEmissionShellIndexOptions(request.indexOptions, "indexOptions");
+}
+
+function validateOptionalEmissionShellIndexOptions(indexOptions, label) {
+  if (indexOptions == null) {
+    return null;
+  }
+  if (!indexOptions || typeof indexOptions !== "object" || Array.isArray(indexOptions)) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", `${label} must be an object`, {
+        recoverable: false,
+      })
+    );
+  }
+  if (indexOptions.strategy !== EMISSION_SHELL_INDEXED_BROAD_PHASE_V0_STRATEGY) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", `${label}.strategy is not supported`, {
+        recoverable: false,
+      })
+    );
+  }
+  requirePositiveInt32(indexOptions.timeSlabCount, `${label}.timeSlabCount`);
+  requirePositiveFiniteNumber(indexOptions.spatialCellSize, `${label}.spatialCellSize`);
+  if (indexOptions.sourceRowOffset != null) {
+    requireNonnegativeInteger(indexOptions.sourceRowOffset, `${label}.sourceRowOffset`);
+  }
+  if (indexOptions.receiverRowOffset != null) {
+    requireNonnegativeInteger(indexOptions.receiverRowOffset, `${label}.receiverRowOffset`);
+  }
+  return {
+    strategy: indexOptions.strategy,
+    timeSlabCount: indexOptions.timeSlabCount,
+    spatialCellSize: indexOptions.spatialCellSize,
+    sourceRowOffset: indexOptions.sourceRowOffset ?? 0,
+    receiverRowOffset: indexOptions.receiverRowOffset ?? 0,
+  };
 }
 
 function validateEmissionShellRootRefinementRequest(request) {
@@ -14154,6 +14600,7 @@ function validateEmissionShellCandidatePacketRequest(request) {
   if (request.timeRange != null) {
     validateRange(request.timeRange, "timeRange");
   }
+  validateOptionalEmissionShellIndexOptions(request.indexOptions, "indexOptions");
 }
 
 function validateEmissionShellCandidatePacketsRequest(request) {
@@ -14202,6 +14649,7 @@ function validateEmissionShellCandidatePacketsRequest(request) {
   if (request.timeRange != null) {
     validateRange(request.timeRange, "timeRange");
   }
+  validateOptionalEmissionShellIndexOptions(request.indexOptions, "indexOptions");
 }
 
 function expandWorkPacketChunkRange(range, label) {
