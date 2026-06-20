@@ -492,6 +492,10 @@ test("causal delay central bridge adapter uses pair interaction by default", asy
   assertNear(dataset.paths.positrino.at(-1).x, 1824);
   assertNear(dataset.paths.electrino[0].x, 96);
   assertNear(dataset.paths.electrino.at(-1).x, 1824);
+  assertNear(dataset.initialConditions.positrino.x, dataset.history.positrino[0].x);
+  assertNear(dataset.initialConditions.positrino.y, dataset.history.positrino[0].y);
+  assertNear(dataset.initialConditions.electrino.x, dataset.history.electrino[0].x);
+  assertNear(dataset.initialConditions.electrino.y, dataset.history.electrino[0].y);
   const projectedYValues = [
     ...dataset.paths.positrino.map((point) => point.y),
     ...dataset.paths.electrino.map((point) => point.y),

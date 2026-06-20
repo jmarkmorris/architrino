@@ -194,6 +194,7 @@ async function createMotionSolverReplayDataset(playbackRequest, options = {}, { 
   const history = createHistorySamplesFromPairedFrames(
     pairedFrames,
     playbackRequest.config.geometry.history,
+    { preserveTemplatePoints: Number(motionReplay.pathConstraintCount) > 0 },
   );
   const wakeLinks = createWakeLinksFromBridgeHits(
     playbackRequest.config.hits,
@@ -1238,7 +1239,7 @@ function normalizePairInteractionRunFrame(frame, index) {
   };
 }
 
-function createHistorySamplesFromPairedFrames(frames, templateHistory) {
+function createHistorySamplesFromPairedFrames(frames, templateHistory, { preserveTemplatePoints = false } = {}) {
   requireObject(templateHistory, "motion replay history template");
   return Object.fromEntries(
     ARCHITRINO_KINDS.map((kind) => {
@@ -1251,12 +1252,15 @@ function createHistorySamplesFromPairedFrames(frames, templateHistory) {
         rows.map((row, index) => {
           const t = normalizeFiniteNumber(row.t, `motion replay history template.${kind}[${index}].t`);
           const point = interpolatePairedFrames(frames, kind, t);
+          const templatePoint = preserveTemplatePoints
+            ? normalizePoint(row, `motion replay history template.${kind}[${index}]`)
+            : null;
           return {
             kind,
             depth: normalizePositiveInteger(row.depth ?? index + 1, index + 1, "history depth"),
             t,
-            x: point.x,
-            y: point.y,
+            x: templatePoint?.x ?? point.x,
+            y: templatePoint?.y ?? point.y,
             ...(Number.isFinite(Number(point.vx)) ? { vx: Number(point.vx) } : {}),
             ...(Number.isFinite(Number(point.vy)) ? { vy: Number(point.vy) } : {}),
             weight: normalizeUnitNumber(row.weight, (index + 1) / rows.length, "history weight"),
@@ -1266,6 +1270,31 @@ function createHistorySamplesFromPairedFrames(frames, templateHistory) {
       ];
     }),
   );
+}
+
+function syncInitialConditionsToHistoryStarts(initialConditions, history) {
+  if (!initialConditions || typeof initialConditions !== "object") {
+    return;
+  }
+  ARCHITRINO_KINDS.forEach((kind) => {
+    const condition = initialConditions[kind];
+    if (!condition || typeof condition !== "object") {
+      return;
+    }
+    const startPoint =
+      history?.[kind]?.find((point) => Number(point.depth) === 1) ??
+      history?.[kind]?.[0];
+    if (!startPoint) {
+      return;
+    }
+    condition.kind = condition.kind ?? kind;
+    condition.t = normalizeFiniteNumber(startPoint.t, `history.${kind}.start.t`);
+    condition.x = normalizeFiniteNumber(startPoint.x, `history.${kind}.start.x`);
+    condition.y = normalizeFiniteNumber(startPoint.y, `history.${kind}.start.y`);
+    if (Number.isFinite(Number(startPoint.z))) {
+      condition.z = Number(startPoint.z);
+    }
+  });
 }
 
 function interpolatePairedFrames(frames, kind, t) {
@@ -1353,6 +1382,7 @@ export function normalizeCausalDelayFeedbackBridgeReplay(runHandle = {}, options
     bridgeResponse.initialConditions ?? bridgeResponse.geometry?.initialConditions ?? {},
     "bridge response initialConditions",
   );
+  syncInitialConditionsToHistoryStarts(initialConditions, history);
   const virtualObserver = normalizeOptionalVirtualObserver(
     bridgeResponse.virtualObserver ??
       bridgeResponse.geometry?.virtualObserver ??

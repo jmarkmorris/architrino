@@ -202,6 +202,10 @@ import {
   createAnimatorDelayedHitRowsFromStreamDescriptors,
 } from "../../solver/app/AnimatorDelayedHitRows.mjs";
 import {
+  createAnimatorFieldShellCadenceTimes,
+  createAnimatorFieldShellEventStreamPackage,
+} from "../../solver/app/AnimatorFieldShellEventStream.mjs";
+import {
   createAnimatorFadeableTrailSamples,
   createAnimatorTimedTrailSamples,
   getAnimatorTrailMaterialOpacity,
@@ -2195,25 +2199,6 @@ function getAnimatorFieldShellWireOpacity(fieldShell, shellState) {
   return Math.min(0.85, opacity * 7.5);
 }
 
-function getAnimatorFieldShellEmissionTimesForDocument(documentData = {}, intervalSeconds = 0.25) {
-  const timeWindow = getAnimatorSceneTimeWindow(documentData);
-  const start = Number(timeWindow.start ?? 0) || 0;
-  const end = Number(timeWindow.end ?? start) || start;
-  const interval = Math.max(0.001, Number(intervalSeconds) || 0.25);
-  if (end < start) {
-    return [start];
-  }
-  const times = [];
-  for (let index = 0; ; index += 1) {
-    const time = start + interval * index;
-    if (time > end + 1e-9) {
-      break;
-    }
-    times.push(Number(time.toFixed(9)));
-  }
-  return times.length ? times : [start];
-}
-
 function getAnimatorFieldShellSpeed(simulationDataset = {}) {
   const speed = Number(
     simulationDataset?.simulation?.fieldSpeed ??
@@ -2230,6 +2215,18 @@ function getAnimatorMotionSamplingState(documentData = animatorCurrentDocument, 
     motionTime,
     normalizedSceneT: totalMotionDuration > 0 ? clamp(motionTime / totalMotionDuration, 0, 1) : 0,
   };
+}
+
+function getAnimatorArchitrinoPathHistoryStreamId(simulationDataset = {}) {
+  return (
+    String(simulationDataset?.simulation?.solver?.pathHistoryStreamId ?? "").trim() ||
+    `${String(simulationDataset?.id ?? "animator").trim() || "animator"}:architrino-path-history`
+  );
+}
+
+function getAnimatorArchitrinoFieldShellEventStreamId(simulationDataset = {}) {
+  const datasetId = String(simulationDataset?.id ?? "animator").trim() || "animator";
+  return `${datasetId}:architrino-field-shell-events`;
 }
 
 function resolveAnimatorAssemblyCenterAtMotionTime(
@@ -2328,7 +2325,7 @@ function resolveAnimatorAssemblyCenterAtMotionTime(
   return center;
 }
 
-function createAnimatorArchitrinoPathSamples(
+function createAnimatorArchitrinoEmitterStateSamples(
   documentData = animatorCurrentDocument,
   simulationDataset = null,
   sampleTimes = []
@@ -2421,9 +2418,7 @@ function createAnimatorArchitrinoReceiverPathDescriptors(
   const paths = Array.isArray(documentData?.paths) ? documentData.paths : [];
   const pathById = new Map(paths.map((path) => [path.id, path]));
   const assemblyById = new Map(assemblies.map((assembly) => [assembly.id, assembly]));
-  const streamId =
-    String(simulationDataset?.simulation?.solver?.pathHistoryStreamId ?? "").trim() ||
-    `${String(simulationDataset?.id ?? "animator").trim() || "animator"}:architrino-path-history`;
+  const streamId = getAnimatorArchitrinoPathHistoryStreamId(simulationDataset);
   const descriptorByReceiverId = new Map();
 
   sampleTimes.forEach((sampleTime) => {
@@ -2523,58 +2518,66 @@ function createAnimatorArchitrinoReceiverPathDescriptors(
     .map(({ previous, ...descriptor }) => descriptor);
 }
 
-function createAnimatorArchitrinoPotentialFieldShells(
+function createAnimatorArchitrinoFieldShellEventPackage(
   documentData = animatorCurrentDocument,
   simulationDataset = null
 ) {
   if (!simulationDataset) {
-    return [];
+    return null;
   }
-  const emissionTimes = getAnimatorFieldShellEmissionTimesForDocument(
-    documentData,
-    animatorArchitrinoFieldShellEmissionIntervalSeconds
-  );
+  const timeWindow = getAnimatorSceneTimeWindow(documentData);
+  const cadenceTimes = createAnimatorFieldShellCadenceTimes({
+    timeWindow,
+    intervalSeconds: animatorArchitrinoFieldShellEmissionIntervalSeconds,
+  });
   const fieldSpeed = getAnimatorFieldShellSpeed(simulationDataset);
-  const lifetime = 1.6;
-  const samples = createAnimatorArchitrinoPathSamples(
+  const samples = createAnimatorArchitrinoEmitterStateSamples(
     documentData,
     simulationDataset,
-    emissionTimes
+    cadenceTimes
   );
 
-  return samples.map((sample) => ({
-    id: `architrino_shell_${sample.emitterId}_${sample.sampleIndex}`,
-    emitterId: sample.emitterId,
-    emissionTime: sample.time,
-    displayTime: sample.time + lifetime,
-    emissionPosition: sample.position,
-    radius: fieldSpeed * lifetime,
-    sign: sample.sign,
-    strength: 1,
-    fieldSpeed,
-    branchId: `architrino_shell_sample_${sample.sampleIndex}`,
-    metadata: {
-      ...(sample.metadata ?? {}),
-      source: "architrino-emitter-cadence",
-      emissionIntervalSeconds: animatorArchitrinoFieldShellEmissionIntervalSeconds,
-      continuousExpansion: true,
-      fixedEmissionPosition: true,
+  return createAnimatorFieldShellEventStreamPackage({
+    streamId: getAnimatorArchitrinoFieldShellEventStreamId(simulationDataset),
+    datasetId: String(simulationDataset?.id ?? "animator").trim() || "animator",
+    timeWindow,
+    cadence: {
+      intervalSeconds: animatorArchitrinoFieldShellEmissionIntervalSeconds,
     },
-  }));
+    fieldSpeed,
+    lifetimeSeconds: 1.6,
+    emitterSamples: samples,
+    metadata: {
+      precisionPath: simulationDataset?.simulation?.solver?.acceptedPrecisionPath ??
+        simulationDataset?.simulation?.solver?.precisionPath ??
+        "event_root_focused",
+      claimLevel: simulationDataset?.claimLevel ?? "interactive-preview",
+      provenance: {
+        source: "animator-architrino-field-shell-event-package",
+        datasetId: String(simulationDataset?.id ?? "animator").trim() || "animator",
+        pathHistoryStreamId: getAnimatorArchitrinoPathHistoryStreamId(simulationDataset),
+      },
+    },
+  });
 }
 
 function createAnimatorArchitrinoPathHistoryDelayedHits(
   documentData = animatorCurrentDocument,
   simulationDataset = null,
-  architrinoFieldShells = []
+  fieldShellEventPackage = null
 ) {
-  if (!simulationDataset || !architrinoFieldShells.length) {
+  const fieldShells = Array.isArray(fieldShellEventPackage?.fieldShells)
+    ? fieldShellEventPackage.fieldShells
+    : [];
+  if (!simulationDataset || !fieldShells.length) {
     return [];
   }
-  const sampleTimes = getAnimatorFieldShellEmissionTimesForDocument(
-    documentData,
-    animatorArchitrinoFieldShellEmissionIntervalSeconds
-  );
+  const sampleTimes = Array.isArray(fieldShellEventPackage?.cadence?.times)
+    ? fieldShellEventPackage.cadence.times
+    : createAnimatorFieldShellCadenceTimes({
+        timeWindow: getAnimatorSceneTimeWindow(documentData),
+        intervalSeconds: animatorArchitrinoFieldShellEmissionIntervalSeconds,
+      });
   const receiverPathDescriptors = createAnimatorArchitrinoReceiverPathDescriptors(
     documentData,
     simulationDataset,
@@ -2583,24 +2586,28 @@ function createAnimatorArchitrinoPathHistoryDelayedHits(
   const rowResponse = createAnimatorDelayedHitRowsFromStreamDescriptors(
     {
       schema: "animator-delayed-hit-stream-descriptors.v1",
-      streamId:
-        String(simulationDataset?.simulation?.solver?.pathHistoryStreamId ?? "").trim() ||
-        `${String(simulationDataset?.id ?? "animator").trim() || "animator"}:architrino-path-history`,
+      streamId: getAnimatorArchitrinoPathHistoryStreamId(simulationDataset),
       fieldSpeed: getAnimatorFieldShellSpeed(simulationDataset),
-      emissionEvents: architrinoFieldShells.map((shell) => ({
-        emitterId: shell.emitterId,
-        emissionTime: shell.emissionTime,
-        emissionPoint: shell.emissionPosition,
-        fieldSpeed: shell.fieldSpeed,
-        metadata: shell.metadata ?? {},
-      })),
+      emissionEvents: Array.isArray(fieldShellEventPackage?.emissionEvents)
+        ? fieldShellEventPackage.emissionEvents
+        : fieldShells.map((shell) => ({
+            emitterId: shell.emitterId,
+            emissionTime: shell.emissionTime,
+            emissionPoint: shell.emissionPosition,
+            fieldSpeed: shell.fieldSpeed,
+            metadata: shell.metadata ?? {},
+          })),
       receiverPathDescriptors,
     },
     {
       allowSelfHits: false,
       fieldSpeed: getAnimatorFieldShellSpeed(simulationDataset),
       tolerance: 0.006,
-      status: "path-history",
+      metadata: {
+        status: "path-history",
+        fieldShellEventStreamId: fieldShellEventPackage?.streamId ?? "",
+        fieldShellEventRowLayout: fieldShellEventPackage?.rowLayout ?? "",
+      },
     }
   );
   return createAnimatorDelayedHitsFromSolverRows(rowResponse, {
@@ -5242,10 +5249,13 @@ function updateAnimatorViewportFromDocument(documentData) {
     addAnimatorHistoryTrace(historyTrace);
   });
   const simulationDataset = getAnimatorSimulationDataset(documentData);
-  const architrinoFieldShells = createAnimatorArchitrinoPotentialFieldShells(
+  const architrinoFieldShellEventPackage = createAnimatorArchitrinoFieldShellEventPackage(
     documentData,
     simulationDataset
   );
+  const architrinoFieldShells = Array.isArray(architrinoFieldShellEventPackage?.fieldShells)
+    ? architrinoFieldShellEventPackage.fieldShells
+    : [];
   const explicitSimulationFieldShells = Array.isArray(simulationDataset?.fieldShells)
     ? simulationDataset.fieldShells
     : [];
@@ -5289,7 +5299,7 @@ function updateAnimatorViewportFromDocument(documentData) {
   const pathHistoryDelayedHits = createAnimatorArchitrinoPathHistoryDelayedHits(
     documentData,
     simulationDataset,
-    architrinoFieldShells
+    architrinoFieldShellEventPackage
   );
   addAnimatorPathHistoryLineSegments(pathHistoryDelayedHits);
   const delayedHits = Array.isArray(simulationDataset?.delayedHits)

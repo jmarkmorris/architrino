@@ -1286,6 +1286,20 @@ test("causal delay feedback page accepts central motion policy review URL option
   assert.equal(options.pathConstraintBoundaryResidualTolerance, 0.015);
 });
 
+test("causal delay feedback page leaves absent boundary tolerance unset", () => {
+  const defaultOptions = createCausalDelayFeedbackInitialReplayRequestOptions({
+    location: { href: "http://localhost/causal-delay-feedback.html?replay=central" },
+  });
+  const explicitZeroOptions = createCausalDelayFeedbackInitialReplayRequestOptions({
+    location: {
+      href: "http://localhost/causal-delay-feedback.html?replay=central&boundaryResidualTolerance=0",
+    },
+  });
+
+  assert.equal(defaultOptions.pathConstraintBoundaryResidualTolerance, undefined);
+  assert.equal(explicitZeroOptions.pathConstraintBoundaryResidualTolerance, 0);
+});
+
 test("causal delay feedback solver bridge options resolve the default WASM loader path", () => {
   const createWasmModule = () => ({});
   const scope = {

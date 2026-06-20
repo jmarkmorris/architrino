@@ -237,6 +237,49 @@ const migrationTargets = [
       "animator-path-history-smoke",
     ],
   },
+  {
+    id: "animator-field-shell-event-stream",
+    app: "Animator",
+    local: {
+      file: "src/apps/architrino/ArchitrinoSceneAppRuntime.js",
+      symbols: [
+        "createAnimatorArchitrinoFieldShellEventPackage",
+        "createAnimatorFieldShellEventStreamPackage",
+      ],
+    },
+    central: [
+      {
+        file: "src/solver/app/AnimatorFieldShellEventStream.mjs",
+        symbols: [
+          "ANIMATOR_FIELD_SHELL_EVENT_STREAM_PACKAGE_SCHEMA",
+          "ANIMATOR_FIELD_SHELL_CADENCE_DESCRIPTOR_SCHEMA",
+          "ANIMATOR_FIELD_SHELL_EVENT_ROW_LAYOUT",
+          "ANIMATOR_FIELD_SHELL_EVENT_NATIVE_FILE_MANIFEST_SCHEMA",
+          "ANIMATOR_FIELD_SHELL_EVENT_ROW_SIZE_BYTES",
+          "createAnimatorFieldShellCadenceTimes",
+          "createAnimatorFieldShellEventNativeFileStoragePolicy",
+          "createAnimatorFieldShellEventStreamPackage",
+          "field_shell_events.v1",
+        ],
+      },
+      {
+        file: "tests/animator-field-shell-event-stream.test.js",
+        symbols: [
+          "animator field-shell event package feeds delayed-hit stream descriptors",
+          "animator field-shell event package writes native-file stream storage",
+        ],
+      },
+    ],
+    solverOwnership: [
+      "field-shell cadence generation",
+      "field-shell event row packaging",
+      "field-shell event stream manifest metadata",
+      "delayed-hit emission descriptor handoff",
+    ],
+    baselineCases: [
+      "animator-path-history-smoke",
+    ],
+  },
 ];
 
 const inventoryItems = migrationTargets.map(checkMigrationTarget);

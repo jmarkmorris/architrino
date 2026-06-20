@@ -73,6 +73,7 @@ const DEFAULT_OUTPUT_LAYOUTS = [
   "root_ledger.v1",
   "root_ledger_detail.v1",
   "delayed_hit_events.v1",
+  "field_shell_events.v1",
   "phase_at_hit.v1",
   "spacetime_index.v1",
   "emission_shell_candidate.v1",
@@ -92,6 +93,7 @@ const BINARY_LAYOUT_ROW_SIZE_BYTES = new Map([
   ["root_ledger.v1", 112],
   ["root_ledger_detail.v1", 192],
   ["delayed_hit_events.v1", 128],
+  ["field_shell_events.v1", 160],
   ["phase_at_hit.v1", 104],
   ["spacetime_index.v1", 128],
   ["emission_shell_candidate.v1", 112],
@@ -110,6 +112,7 @@ const BINARY_LAYOUT_ROLE_BY_ID = {
   "root_ledger.v1": "root-ledger",
   "root_ledger_detail.v1": "root-ledger",
   "delayed_hit_events.v1": "delayed-hit",
+  "field_shell_events.v1": "field-shell-event",
   "phase_at_hit.v1": "phase-diagnostic",
   "spacetime_index.v1": "spacetime-index",
   "emission_shell_candidate.v1": "emission-shell",
@@ -120,6 +123,7 @@ const BINARY_LAYOUT_ROLE_BY_ID = {
 const STREAMABLE_BINARY_LAYOUTS = new Set([
   "path_segment.v1",
   "path_chunk.v1",
+  "field_shell_events.v1",
   "stream_index.v1",
   "assembly_graph_index.v1",
 ]);

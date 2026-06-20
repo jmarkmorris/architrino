@@ -199,7 +199,22 @@ Latest local benchmark run on 2026-06-20:
 | Work-packet extra candidates | 0 |
 | Work-packet merge-order mismatches | 0 |
 
-This is a solver-owned native API, C ABI, app-bridge opt-in path, and benchmark fixture. Future scoped work may add larger stress coverage, make the indexed strategy the preferred default for supported envelopes, and add threshold-based performance acceptance.
+This is a solver-owned native API, C ABI, app-bridge opt-in path, benchmark fixture, and threshold-gated acceptance case. The indexed strategy remains opt-in until default-policy evidence covers the requested simulation envelopes.
+
+## Stress-Scale Acceptance Gate
+
+`node scripts/benchmark-solver.mjs` writes `solver-benchmark-report.v1` and then invokes [check-solver-benchmark-thresholds.mjs](../../../scripts/check-solver-benchmark-thresholds.mjs) by default. The gate is intentionally non-wall-clock: it accepts structural coverage, oracle correctness, pair-pressure reduction, stream replay, and deterministic packet replay. It does not claim a machine-independent runtime budget.
+
+The `emission-shell-broad-phase-v0` case must satisfy:
+
+| Threshold family | Required acceptance |
+| --- | --- |
+| Fixture stress | At least 4 scenarios, path-count coverage through 1024, time slabs through 128, at least 5 speed regimes, at least 3 density cases, same-source enabled, all-to-all enabled, and oracle replay sweeps for every scenario. |
+| Oracle correctness | At least 1,000,000 brute-force replay pairs, indexed candidates equal brute-force candidates, zero missing oracle candidates, zero extra indexed candidates, broad-phase recall at least 1.0, and sampled narrow-phase hits preserved. |
+| Broad-phase reduction | Indexed pair tests below brute-force pairs, candidate-count reduction at least 0.999, indexed pair-test reduction at least 0.98, and false-positive ratio no greater than 0.5. |
+| Stream and packet replay | At least 2,000 replayed path-history rows, at least 250,000 replayed chunk bytes, at least 16 deterministic work packets, packet candidates equal indexed candidates, packet header checksums for every packet, zero packet missing candidates, zero packet extra candidates, and zero merge-order mismatches. |
+
+Latest local threshold status on 2026-06-20: pass, with 42 threshold checks over `.tmp/solver-build/benchmark/solver-benchmark-report.json`.
 
 ## Decision
 
@@ -216,7 +231,8 @@ The first benchmark should answer one question before broadening: can the solver
 `spatiotemporal_query_algorithm_survey` is closed as a survey and first-prototype
 selection artifact. The survey compares the relevant query families, selects the
 emission-shell-specific hybrid, and records benchmark evidence for
-`emission-shell-broad-phase-v0` against brute-force chunk replay. Larger
-stress-scale thresholds, deterministic packet execution breadth, and solver
-contract integration are future scoped implementation work, not blockers for
-this survey closeout.
+`emission-shell-broad-phase-v0` against brute-force chunk replay. The v0
+acceptance gate now enforces stress-scale, oracle, reduction, stream, and packet
+thresholds. Larger stress-scale breadth, app-facing packet execution, and
+default-strategy promotion remain future scoped implementation work, not
+blockers for this survey closeout.

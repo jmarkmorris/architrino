@@ -2169,6 +2169,7 @@ export type SolverBinaryLayoutId =
   | "root_ledger.v1"
   | "root_ledger_detail.v1"
   | "delayed_hit_events.v1"
+  | "field_shell_events.v1"
   | "phase_at_hit.v1"
   | "spacetime_index.v1"
   | "emission_shell_candidate.v1"

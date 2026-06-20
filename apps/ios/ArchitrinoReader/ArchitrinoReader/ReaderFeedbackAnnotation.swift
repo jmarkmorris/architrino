@@ -269,7 +269,10 @@ private enum ReaderFeedbackImageRenderer {
         let topChromeCrop = ReaderFeedbackLayout.topChromeCrop(for: size)
         let footerTransferHeight = ReaderFeedbackLayout.footerTransferHeight(for: size)
         let commentPanelHeight = topChromeCrop + footerTransferHeight
-        let remainingHeight = max(1, size.height - commentPanelHeight)
+        let sourceTopCrop = ReaderFeedbackLayout.sourceTopCrop(for: size)
+        let sourceBottomCrop = ReaderFeedbackLayout.sourceBottomCrop(for: size)
+        let sourceHeight = max(1, size.height - sourceTopCrop - sourceBottomCrop)
+        let destinationHeight = max(1, size.height - commentPanelHeight)
 
         let format = UIGraphicsImageRendererFormat.default()
         format.scale = max(2, baseImage.scale)
@@ -281,15 +284,15 @@ private enum ReaderFeedbackImageRenderer {
 
             let sourceRect = CGRect(
                 x: 0,
-                y: topChromeCrop,
+                y: sourceTopCrop,
                 width: size.width,
-                height: remainingHeight
+                height: sourceHeight
             )
             let destinationRect = CGRect(
                 x: 0,
                 y: commentPanelHeight,
                 width: size.width,
-                height: remainingHeight
+                height: destinationHeight
             )
             if let croppedImage = croppedFeedbackImage(baseImage, sourceRect: sourceRect) {
                 croppedImage.draw(in: destinationRect)
@@ -388,6 +391,14 @@ private enum ReaderFeedbackLayout {
 
     static func footerTransferHeight(for size: CGSize) -> CGFloat {
         min(max(size.height * 0.07, 64), 96)
+    }
+
+    static func sourceTopCrop(for size: CGSize) -> CGFloat {
+        min(max(size.height * 0.068, 54), 82)
+    }
+
+    static func sourceBottomCrop(for size: CGSize) -> CGFloat {
+        min(max(size.height * 0.058, 54), 78)
     }
 }
 

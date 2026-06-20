@@ -26,7 +26,8 @@ The live tree now passes the end-to-end runtime validation gate:
   that previously blocked closure;
 - baseline sandbox and migration parity checks pass inside the full smoke
   wrapper;
-- the Release benchmark runner passes all ten current benchmark cases.
+- the Release benchmark runner passes all ten current benchmark cases and the
+  `emission-shell-broad-phase-v0` non-wall-clock acceptance threshold gate.
 
 This is not a claim that threaded stages, browser-worker execution, WebAssembly
 execution, path-history IO, or app bridge requests have met a final production
@@ -110,7 +111,7 @@ Primary runtime checks covered by this validation capture:
 | `node scripts/check-solver-app-bridge.mjs` | Pass | `solver app bridge check passed.` |
 | `node scripts/check-solver-contract-fixtures.mjs` | Pass | `solver contract fixtures check passed.` |
 | `node scripts/build-solver-smoke.mjs all` | Pass | Preflight, contract fixtures, geometry inventory, native configure/build, all native smoke executables, WebAssembly configure/build and smoke calls, solver package manifest write/check, app bridge, baseline sandbox, and migration parity all passed; final line `solver smoke build complete: all`. |
-| `node scripts/benchmark-solver.mjs --skip-preflight` | Pass | Release benchmark built and ran ten cases; final line `solver benchmark=ok cases=10`, report written to `.tmp/solver-build/benchmark/solver-benchmark-report.json`. |
+| `node scripts/benchmark-solver.mjs --skip-preflight` | Pass | Release benchmark built and ran ten cases; final line `solver benchmark=ok cases=10`, report written to `.tmp/solver-build/benchmark/solver-benchmark-report.json`, and `emission-shell-broad-phase-v0` threshold acceptance passed. |
 
 ## Validated Workloads
 
@@ -182,8 +183,9 @@ benchmark cases:
 | `path-history-deep-index-build-budget` | 8192 | 31944 | path-history spacetime deep-index build/query |
 | `path-history-recovery-detection-budget` | 64 | 3 | checksum fault, partial write, and stale sidecar detection |
 
-The benchmark runner checks result sanity and report consistency. It does not
-enforce wall-clock thresholds.
+The benchmark runner checks result sanity, report consistency, and
+non-wall-clock acceptance thresholds for `emission-shell-broad-phase-v0`. It
+does not enforce wall-clock thresholds.
 
 ## Remaining Runtime Boundaries
 
@@ -200,9 +202,9 @@ acceptance:
   are contract-checked but not benchmark-thresholded;
 - sustained large path-history stream throughput, warm/cold tier movement, and
   storage pressure have sanity cases but no production threshold table;
-- the benchmark suite has no explicit pass/fail performance thresholds, so
-  benchmark success means sanity, not runtime acceptance against a declared
-  performance budget.
+- benchmark success now includes a structural acceptance gate for
+  `emission-shell-broad-phase-v0`, but it is still not runtime acceptance
+  against a declared wall-clock production performance budget.
 
 ## Closure Boundary
 

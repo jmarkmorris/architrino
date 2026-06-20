@@ -57,6 +57,9 @@ function getInitialPositiveQueryNumber(windowLike, key) {
 
 function getInitialNonnegativeQueryNumber(windowLike, key) {
   const value = getInitialQueryValue(windowLike, key);
+  if (value == null || value === "") {
+    return undefined;
+  }
   const number = Number(value);
   return Number.isFinite(number) && number >= 0 ? number : undefined;
 }
