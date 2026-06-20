@@ -247,19 +247,23 @@ The live Diagnostics panel includes a quality word when a readout has a useful d
 | 7 | Root&nbsp;count | How many causal roots were retained after solving source histories. More than source count means at least one source has multiple roots. |
 | 8 | Max&nbsp;source&nbsp;v/c_f | The fastest active source speed compared with field speed. Above `1` means super-field-speed source motion is present; that is a regime indicator, not a delay-solve failure by itself. |
 | 9 | Min \|J\| | The smallest Jacobian magnitude in the causal-root sum. Very small values mean the branch is close to a pile-up or caustic. |
-| 10 | Self-hit&nbsp;roots | How many enabled binary layers produced a retained same-source self-hit span row in the shared-geometry solver. |
-| 11 | Self-hit&nbsp;max&nbsp;$v/c_{\mathrm{sig}}$ | The largest same-source speed ratio after combining photon-channel translation speed with transverse orbital speed. Values above `1` nominate a self-hit candidate regime. |
-| 12 | Missed&nbsp;sources | How many active source rows produced no retained root. For a clean solve, this should be `0`. |
-| 13 | No&nbsp;catch-up&nbsp;sources | How many source histories did not causally catch the moving Virtual Observer in the scanned window. This can be a real moving-apparatus result when $c_\gamma$ is close to $c_{\mathrm{sig}}$. |
-| 14 | Stale&nbsp;windows | How many scan windows looked too old for the selected hit time. |
-| 15 | Near&nbsp;misses | How many source histories came close to a root but did not retain one. These deserve numerical caution. |
-| 16 | Root&nbsp;cap&nbsp;hits | How many source histories found more candidate roots than the current root cap can keep. |
-| 17 | Delay&nbsp;solve&nbsp;gap | The largest leftover mismatch in the causal-delay equation. Smaller means the root solve is tighter. |
-| 18 | Delay&nbsp;status | A simple stable/catch-up-limited/unstable flag based on root misses, no-catch-up classification, delay gap, and small-Jacobian checks. |
-| 19 | Left&nbsp;phase&nbsp;spread | How evenly the left swarm's I/M/O phases are spaced. |
-| 20 | Right&nbsp;phase&nbsp;spread | How evenly the right swarm's I/M/O phases are spaced. |
-| 21 | Trailing&nbsp;hit&nbsp;phase&nbsp;spread | How tightly retained trailing-swarm source roots cluster by source phase. Smaller means the retained roots are more phase-aligned. |
-| 22 | Leading&nbsp;hit&nbsp;phase&nbsp;spread | How tightly retained leading-swarm source roots cluster by source phase. Smaller means the retained roots are more phase-aligned. |
+| 10 | Span&nbsp;self-hit&nbsp;roots | How many enabled binary layers produced a retained same-source span row in the shared-geometry solver. This is the older circular speed-regime proxy. |
+| 11 | Span&nbsp;self-hit&nbsp;max&nbsp;$v/c_{\mathrm{sig}}$ | The largest span-proxy same-source speed ratio after combining photon-channel translation speed with transverse orbital speed. |
+| 12 | Helical&nbsp;self-hit&nbsp;roots | How many individual architrino helical source histories produced retained same-source roots. |
+| 13 | Helical&nbsp;self-hit&nbsp;max&nbsp;$v/c_{\mathrm{sig}}$ | The largest same-source speed ratio in the helical source-history rows. Values above `1` nominate a self-hit candidate regime. |
+| 14 | Helical&nbsp;self-hit&nbsp;min&nbsp;\|J\| | The smallest Jacobian magnitude among retained helical same-source roots. Very small values mean the self-hit family is close to a pile-up or caustic. |
+| 15 | Helical&nbsp;self-hit&nbsp;phase&nbsp;spread | How tightly retained helical same-source roots cluster by source phase. Smaller means the roots are more phase-aligned. |
+| 16 | Missed&nbsp;sources | How many active source rows produced no retained root. For a clean solve, this should be `0`. |
+| 17 | No&nbsp;catch-up&nbsp;sources | How many source histories did not causally catch the moving Virtual Observer in the scanned window. This can be a real moving-apparatus result when $c_\gamma$ is close to $c_{\mathrm{sig}}$. |
+| 18 | Stale&nbsp;windows | How many scan windows looked too old for the selected hit time. |
+| 19 | Near&nbsp;misses | How many source histories came close to a root but did not retain one. These deserve numerical caution. |
+| 20 | Root&nbsp;cap&nbsp;hits | How many source histories found more candidate roots than the current root cap can keep. |
+| 21 | Delay&nbsp;solve&nbsp;gap | The largest leftover mismatch in the causal-delay equation. Smaller means the root solve is tighter. |
+| 22 | Delay&nbsp;status | A simple stable/catch-up-limited/unstable flag based on root misses, no-catch-up classification, delay gap, and small-Jacobian checks. |
+| 23 | Left&nbsp;phase&nbsp;spread | How evenly the left swarm's I/M/O phases are spaced. |
+| 24 | Right&nbsp;phase&nbsp;spread | How evenly the right swarm's I/M/O phases are spaced. |
+| 25 | Trailing&nbsp;hit&nbsp;phase&nbsp;spread | How tightly retained trailing-swarm source roots cluster by source phase. Smaller means the retained roots are more phase-aligned. |
+| 26 | Leading&nbsp;hit&nbsp;phase&nbsp;spread | How tightly retained leading-swarm source roots cluster by source phase. Smaller means the retained roots are more phase-aligned. |
 
 ## Formulas
 

@@ -53,6 +53,23 @@ function computeHitPhaseSpread(contributions = [], sourceRole) {
   };
 }
 
+function computeSelfHitPhaseSpread(rows = []) {
+  const phases = (Array.isArray(rows) ? rows : [])
+    .filter((row) => row.rootFound === true)
+    .map((row) => row.phaseAtHit?.sourcePhaseDegrees ?? row.sourcePhaseDegrees);
+  return {
+    count: phases.length,
+    spreadDeg: computeCircularSpreadDegrees(phases),
+  };
+}
+
+function computeMinPositive(values = []) {
+  return values.reduce((minimum, value) => {
+    const number = Number(value);
+    return Number.isFinite(number) && number > 0 ? Math.min(minimum, number) : minimum;
+  }, Number.POSITIVE_INFINITY);
+}
+
 function getDelaySolveStatus(diagnostics) {
   if (diagnostics.sourceCount === 0) {
     return "none";
@@ -174,6 +191,11 @@ export function computePhotonDiagnostics(state, timeSeconds, formulaSummary = nu
     : 0;
   const trailingHitPhaseSpread = computeHitPhaseSpread(formula.field.contributions, "trailing");
   const leadingHitPhaseSpread = computeHitPhaseSpread(formula.field.contributions, "leading");
+  const helicalSelfHitRows = formula.selfHitDiagnostics?.helicalRows ?? [];
+  const helicalSelfHitPhaseSpread = computeSelfHitPhaseSpread(helicalSelfHitRows);
+  const helicalSelfHitJacobianAbsMin = computeMinPositive(
+    helicalSelfHitRows.map((row) => row.jacobianAbs)
+  );
   return {
     exposureBalance,
     transverseAmplitude: formula.field.electric.magnitude,
@@ -202,6 +224,14 @@ export function computePhotonDiagnostics(state, timeSeconds, formulaSummary = nu
     selfHitRootFoundCount: formula.selfHitDiagnostics?.rootFoundCount ?? 0,
     selfHitMaxFieldSpeedRatio: formula.selfHitDiagnostics?.maxFieldSpeedRatio ?? 0,
     selfHitStatus: formula.selfHitDiagnostics?.status ?? "unavailable",
+    helicalSelfHitRowCount: formula.selfHitDiagnostics?.helicalRowCount ?? 0,
+    helicalSelfHitCandidateCount: formula.selfHitDiagnostics?.helicalCandidateCount ?? 0,
+    helicalSelfHitRootFoundCount: formula.selfHitDiagnostics?.helicalRootFoundCount ?? 0,
+    helicalSelfHitMaxFieldSpeedRatio: formula.selfHitDiagnostics?.helicalMaxFieldSpeedRatio ?? 0,
+    helicalSelfHitJacobianAbsMin: Number.isFinite(helicalSelfHitJacobianAbsMin)
+      ? helicalSelfHitJacobianAbsMin
+      : 0,
+    helicalSelfHitPhaseSpread,
     leftPhaseSpread: computePhaseLockSpread(state, "left"),
     rightPhaseSpread: computePhaseLockSpread(state, "right"),
     trailingHitPhaseSpread,
@@ -240,15 +270,42 @@ export function getPhotonDiagnosticRows(state, timeSeconds, formulaSummary = nul
       { labelMath: "\\mathrm{Min}\\ |J|" },
     ],
     [
-      "Self-hit roots",
+      "Span self-hit roots",
       `${diagnostics.selfHitRootFoundCount} / ${diagnostics.selfHitRowCount}`,
       diagnostics.selfHitStatus === "ok" ? "info" : "poor",
     ],
     [
-      "Self-hit max v/c_sig",
+      "Span self-hit max v/c_sig",
       formatPhotonFixed(diagnostics.selfHitMaxFieldSpeedRatio, 2),
       "info",
-      { labelMath: "\\mathrm{Self\\! -\\! hit\\ max}\\ v/c_{\\mathrm{sig}}" },
+      { labelMath: "\\mathrm{Span\\ self\\! -\\! hit\\ max}\\ v/c_{\\mathrm{sig}}" },
+    ],
+    [
+      "Helical self-hit roots",
+      `${diagnostics.helicalSelfHitRootFoundCount} / ${diagnostics.helicalSelfHitRowCount}`,
+      diagnostics.helicalSelfHitRootFoundCount > 0 ? "info" : "poor",
+    ],
+    [
+      "Helical self-hit max v/c_sig",
+      formatPhotonFixed(diagnostics.helicalSelfHitMaxFieldSpeedRatio, 2),
+      "info",
+      { labelMath: "\\mathrm{Helical\\ self\\! -\\! hit\\ max}\\ v/c_{\\mathrm{sig}}" },
+    ],
+    [
+      "Helical self-hit min |J|",
+      formatPhotonFixed(diagnostics.helicalSelfHitJacobianAbsMin, 4),
+      getHigherIsBetterQuality(diagnostics.helicalSelfHitJacobianAbsMin, {
+        great: 0.5,
+        good: 0.2,
+        ok: 0.05,
+        poor: 0.01,
+      }),
+      { labelMath: "\\mathrm{Helical\\ self\\! -\\! hit\\ min}\\ |J|" },
+    ],
+    [
+      "Helical self-hit phase spread",
+      `${formatPhotonFixed(diagnostics.helicalSelfHitPhaseSpread.spreadDeg, 1)} deg`,
+      getHitPhaseSpreadQuality(diagnostics.helicalSelfHitPhaseSpread),
     ],
     ["Missed sources", String(diagnostics.unresolvedSourceCount), getMissedSourceQuality(diagnostics)],
     [

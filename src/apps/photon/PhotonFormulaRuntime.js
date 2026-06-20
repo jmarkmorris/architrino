@@ -7,9 +7,11 @@ import {
 } from "../../solver/app/SolverAppBridgeClientResolver.mjs";
 import {
   createMovingCircularSourceLinearizedRootRequests,
+  createMovingCircularSameSourceRootRequest,
   createMovingCircularSourceRootRequest,
   evaluateLinearHistoryPoint,
   evaluateMovingCircularSourceHistory,
+  solveMovingCircularSameSourceCausalRoots,
   solveMovingCircularSourceCausalRoots,
 } from "../../solver/app/AbsoluteHistoryRootRuntime.mjs";
 import {
@@ -736,8 +738,9 @@ function extractPhotonCircularSelfHitRows(runHandle = {}, descriptors = []) {
   });
 }
 
-function summarizePhotonSelfHitRows(rows = [], status = "ok", message = "") {
+function summarizePhotonSelfHitRows(rows = [], status = "ok", message = "", helicalRows = []) {
   const safeRows = Array.isArray(rows) ? rows : [];
+  const safeHelicalRows = Array.isArray(helicalRows) ? helicalRows : [];
   const maxFieldSpeedRatio = safeRows.reduce(
     (maximum, row) => Math.max(maximum, Number(row.fieldSpeedRatio) || 0),
     0
@@ -746,6 +749,14 @@ function summarizePhotonSelfHitRows(rows = [], status = "ok", message = "") {
   const candidateCount = safeRows.filter(
     (row) => (Number(row.fieldSpeedRatio) || 0) > 1 + DEFAULT_SELF_HIT_FIELD_SPEED_TOLERANCE
   ).length;
+  const helicalRootFoundCount = safeHelicalRows.filter((row) => row.rootFound === true).length;
+  const helicalCandidateCount = safeHelicalRows.filter(
+    (row) => (Number(row.fieldSpeedRatio) || 0) > 1 + DEFAULT_SELF_HIT_FIELD_SPEED_TOLERANCE
+  ).length;
+  const helicalMaxFieldSpeedRatio = safeHelicalRows.reduce(
+    (maximum, row) => Math.max(maximum, Number(row.fieldSpeedRatio) || 0),
+    0
+  );
   return {
     solverEngineId: PHOTON_SOLVER_BRIDGE_ENGINE_ID,
     status,
@@ -755,7 +766,136 @@ function summarizePhotonSelfHitRows(rows = [], status = "ok", message = "") {
     candidateCount,
     rootFoundCount,
     maxFieldSpeedRatio,
+    helicalRows: safeHelicalRows,
+    helicalRowCount: safeHelicalRows.length,
+    helicalCandidateCount,
+    helicalRootFoundCount,
+    helicalMaxFieldSpeedRatio,
   };
+}
+
+function createPhotonHelicalSelfHitRootRequest(state, sourceRef, measurement, hitTime, options = {}) {
+  const layer = getPhotonLayer(state, sourceRef.swarmId, sourceRef.layerId);
+  const frequency = Math.max(EPSILON, Math.abs(Number(layer.frequencyHz) || 0));
+  const historyCycles = normalizePositiveSolverNumber(
+    options.helicalSelfHitHistoryCycles ?? options.selfHitHistoryCycles,
+    DEFAULT_ABSOLUTE_HISTORY_CYCLES
+  );
+  const maxDelay = normalizePositiveSolverNumber(
+    options.helicalSelfHitMaxDelay ?? options.selfHitMaxDelay,
+    historyCycles / frequency
+  );
+  const scanSubdivisions = normalizePositiveSolverInteger(
+    options.helicalSelfHitScanSubdivisions ?? options.selfHitScanSubdivisions,
+    Math.min(
+      ROOT_SCAN_MAX_STEPS,
+      Math.max(ROOT_SCAN_MIN_STEPS, Math.ceil(historyCycles * ROOT_SCAN_STEPS_PER_CYCLE))
+    )
+  );
+  return createMovingCircularSameSourceRootRequest({
+    source: createPhotonAbsoluteMovingCircularSourceHistory(state, sourceRef, measurement),
+    hitTime,
+    signalSpeed: measurement.emissionSpeedCf,
+    sourceStartTime: hitTime - maxDelay,
+    sourceEndTime: hitTime,
+    minimumDelay: options.helicalSelfHitMinimumDelay ?? options.selfHitMinimumDelay ?? 1e-6,
+    rootTolerance: options.helicalSelfHitRootTolerance ?? options.rootTolerance ?? DEFAULT_PHOTON_ROOT_TOLERANCE,
+    maxIterations: options.helicalSelfHitMaxIterations ?? options.maxIterations ?? 96,
+    scanSubdivisions,
+    maxRoots: normalizePositiveSolverInteger(options.helicalSelfHitMaxRoots ?? options.maxRoots, 8),
+    sourceRef,
+  });
+}
+
+function getPhotonSelfHitRegime(fieldSpeedRatio) {
+  if (fieldSpeedRatio > 1 + DEFAULT_SELF_HIT_FIELD_SPEED_TOLERANCE) {
+    return "super_field";
+  }
+  if (fieldSpeedRatio < 1 - DEFAULT_SELF_HIT_FIELD_SPEED_TOLERANCE) {
+    return "sub_field";
+  }
+  return "field_speed";
+}
+
+async function createPhotonHelicalSelfHitRow(state, descriptor, chargeType, itemIndex, measurement, options = {}) {
+  const sourceRef = {
+    swarmId: descriptor.swarmId,
+    layerId: descriptor.layerId,
+    chargeType,
+  };
+  const hitTime = Number.isFinite(Number(options.selfHitObservationTime))
+    ? Number(options.selfHitObservationTime)
+    : 0;
+  const request = createPhotonHelicalSelfHitRootRequest(state, sourceRef, measurement, hitTime, options);
+  const response = typeof options.solveMovingCircularSameSourceRoots === "function"
+    ? await options.solveMovingCircularSameSourceRoots(request)
+    : solveMovingCircularSameSourceCausalRoots(request);
+  const roots = (Array.isArray(response?.roots) ? response.roots : [])
+    .map((root) => ({
+      ...root,
+      phaseAtHit: createPhotonSelfHitPhaseAtHitRecord(
+        state,
+        sourceRef,
+        root.emissionTime,
+        root.sourcePhase,
+        root.hitTime,
+        root.receiverPhase
+      ),
+    }))
+    .sort((a, b) => a.delay - b.delay);
+  const firstRoot = roots[0] ?? null;
+  return {
+    solverEngineId: PHOTON_SOLVER_BRIDGE_ENGINE_ID,
+    itemIndex,
+    sourceHistoryKind: "moving-circular-same-source",
+    ...descriptor,
+    chargeType,
+    chargeSign: PHOTON_CHARGE_SIGN[chargeType] ?? 0,
+    regime: getPhotonSelfHitRegime(descriptor.fieldSpeedRatio),
+    resultKind: firstRoot ? "root_solved" : response?.rejectedReason || response?.status?.code || "no_roots",
+    statusCode: firstRoot ? 0 : -1,
+    rootFound: Boolean(firstRoot),
+    rootCount: roots.length,
+    roots,
+    delay: Number(firstRoot?.delay) || 0,
+    residual: Number.isFinite(Number(firstRoot?.residual)) ? Number(firstRoot.residual) : 0,
+    jacobian: Number.isFinite(Number(firstRoot?.jacobian)) ? Number(firstRoot.jacobian) : 0,
+    jacobianAbs: Math.abs(Number(firstRoot?.jacobian) || 0),
+    sourcePhaseDegrees: Number.isFinite(Number(firstRoot?.phaseAtHit?.sourcePhaseDegrees))
+      ? Number(firstRoot.phaseAtHit.sourcePhaseDegrees)
+      : null,
+    receiverPhaseDegrees: Number.isFinite(Number(firstRoot?.phaseAtHit?.receiverPhaseDegrees))
+      ? Number(firstRoot.phaseAtHit.receiverPhaseDegrees)
+      : null,
+    phaseAtHit: firstRoot?.phaseAtHit ?? null,
+    rejectedReason: firstRoot ? "" : response?.rejectedReason || response?.status?.code || "no_roots",
+    scan: response?.scan ?? null,
+  };
+}
+
+async function createPhotonHelicalSelfHitRows(state, measurement, descriptors, options = {}) {
+  const rows = await Promise.all(
+    descriptors.flatMap((descriptor) =>
+      PHOTON_CHARGE_TYPES.map((chargeType, chargeIndex) => {
+        const itemIndex = rowsIndexForPhotonSelfHit(descriptor, chargeIndex);
+        return createPhotonHelicalSelfHitRow(
+          state,
+          descriptor,
+          chargeType,
+          itemIndex,
+          measurement,
+          options
+        );
+      })
+    )
+  );
+  return rows.map((row, index) => ({ ...row, itemIndex: index }));
+}
+
+function rowsIndexForPhotonSelfHit(descriptor, chargeIndex) {
+  const swarmOffset = descriptor.swarmId === "right" ? PHOTON_LAYER_ORDER.length * PHOTON_CHARGE_TYPES.length : 0;
+  const layerOffset = Math.max(0, PHOTON_LAYER_ORDER.indexOf(descriptor.layerId)) * PHOTON_CHARGE_TYPES.length;
+  return swarmOffset + layerOffset + chargeIndex;
 }
 
 export async function computePhotonSelfHitDiagnosticsWithSolverBridge(state, options = {}) {
@@ -764,6 +904,7 @@ export async function computePhotonSelfHitDiagnosticsWithSolverBridge(state, opt
   if (descriptors.length === 0) {
     return summarizePhotonSelfHitRows([], "empty", "No enabled photon binaries.");
   }
+  const helicalRows = await createPhotonHelicalSelfHitRows(state, measurement, descriptors, options);
   if (!hasPhotonSelfHitSolverBridgeOption(options)) {
     const rows = descriptors.map((descriptor, index) => ({
       solverEngineId: PHOTON_SOLVER_BRIDGE_ENGINE_ID,
@@ -786,7 +927,8 @@ export async function computePhotonSelfHitDiagnosticsWithSolverBridge(state, opt
     return summarizePhotonSelfHitRows(
       rows,
       "unavailable",
-      "Self-hit span rows need the shared-geometry solver bridge."
+      "Self-hit span rows need the shared-geometry solver bridge.",
+      helicalRows
     );
   }
   const runRequest = options.selfHitRunRequest ??
@@ -801,7 +943,8 @@ export async function computePhotonSelfHitDiagnosticsWithSolverBridge(state, opt
   return summarizePhotonSelfHitRows(
     extractPhotonCircularSelfHitRows(runHandle, descriptors),
     "ok",
-    "Self-hit span rows computed from shared-geometry solver bridge."
+    "Self-hit span rows computed from shared-geometry solver bridge.",
+    helicalRows
   );
 }
 
@@ -942,6 +1085,46 @@ function createPhotonPhaseAtHitRecord(state, sourceRef, emissionTime, sourcePhas
     receiverPhaseRadians: null,
     receiverPhaseDegrees: null,
     receiverPhaseCycleIndex: null,
+  };
+}
+
+function createPhotonSelfHitPhaseAtHitRecord(
+  state,
+  sourceRef,
+  emissionTime,
+  sourcePhase = null,
+  hitTime = 0,
+  receiverPhase = null
+) {
+  const sourceRecord = createPhotonPhaseAtHitRecord(state, sourceRef, emissionTime, sourcePhase);
+  const receiverRawPhase = Number.isFinite(Number(receiverPhase?.rawRadians))
+    ? Number(receiverPhase.rawRadians)
+    : getPhotonLayerAngleRadians(
+      state,
+      sourceRef.swarmId,
+      sourceRef.layerId,
+      hitTime,
+      sourceRef.chargeType
+    );
+  const receiverWrappedPhase = Number.isFinite(Number(receiverPhase?.radians))
+    ? Number(receiverPhase.radians)
+    : ((receiverRawPhase % TWO_PI) + TWO_PI) % TWO_PI;
+  return {
+    ...sourceRecord,
+    rootKind: "same-source",
+    receiverKind: "same-source",
+    receiverRole: sourceRecord.sourceRole,
+    receiverSwarmId: sourceRef.swarmId,
+    receiverLayerId: sourceRef.layerId,
+    receiverChargeType: sourceRef.chargeType,
+    receiverChargeSign: PHOTON_CHARGE_SIGN[sourceRef.chargeType] ?? 0,
+    receiverHitTime: hitTime,
+    receiverPhaseRadians: receiverWrappedPhase,
+    receiverPhaseDegrees: receiverWrappedPhase * 180 / Math.PI,
+    receiverPhaseRawRadians: receiverRawPhase,
+    receiverPhaseCycleIndex: Number.isFinite(Number(receiverPhase?.cycleIndex))
+      ? Number(receiverPhase.cycleIndex)
+      : Math.floor(receiverRawPhase / TWO_PI),
   };
 }
 
@@ -1829,6 +2012,7 @@ export async function computePhotonFormulaSummaryWithSolverBridge(
       {
         ...options,
         measurement: field.measurement,
+        selfHitObservationTime: wrappedTime,
       }
     );
   return {

@@ -122,6 +122,23 @@ function movingCircularResidual(request, emissionTime) {
   };
 }
 
+function movingCircularSameSourceResidual(request, emissionTime) {
+  const hitTime = finiteNumber(request.hitTime);
+  const signalSpeed = positiveNumber(request.signalSpeed, 1);
+  const sourceSample = evaluateMovingCircularSourceHistory(request.source, emissionTime);
+  const receiverSample = evaluateMovingCircularSourceHistory(request.source, hitTime);
+  const delta = subtract(receiverSample.position, sourceSample.position);
+  const distance = magnitude(delta);
+  return {
+    residual: distance - signalSpeed * (hitTime - emissionTime),
+    sourceSample,
+    receiverSample,
+    receiverPoint: receiverSample.position,
+    delta,
+    distance,
+  };
+}
+
 function buildMovingCircularRoot(request, emissionTime, rootId, residualInfo = null, iterations = 0) {
   const hitTime = finiteNumber(request.hitTime);
   const signalSpeed = positiveNumber(request.signalSpeed, 1);
@@ -146,6 +163,36 @@ function buildMovingCircularRoot(request, emissionTime, rootId, residualInfo = n
     sourcePhase: info.sourceSample.phase,
     iterationCount: iterations,
     sourceHistoryKind: "moving-circular-source",
+  };
+}
+
+function buildMovingCircularSameSourceRoot(request, emissionTime, rootId, residualInfo = null, iterations = 0) {
+  const hitTime = finiteNumber(request.hitTime);
+  const signalSpeed = positiveNumber(request.signalSpeed, 1);
+  const info = residualInfo ?? movingCircularSameSourceResidual(request, emissionTime);
+  const safeDistance = Math.max(EPSILON, info.distance);
+  const direction = scale(info.delta, 1 / safeDistance);
+  const jacobian = 1 - dot(info.sourceSample.velocity, direction) / signalSpeed;
+  const branchWeight = 1 / Math.max(EPSILON, Math.abs(jacobian));
+  return {
+    rootId,
+    statusCode: 0,
+    rootKind: "same-source",
+    emissionTime,
+    hitTime,
+    delay: Math.max(0, hitTime - emissionTime),
+    distance: info.distance,
+    residual: info.residual,
+    jacobian,
+    branchWeight,
+    sourcePoint: info.sourceSample.position,
+    receiverPoint: info.receiverPoint,
+    sourceVelocity: info.sourceSample.velocity,
+    receiverVelocity: info.receiverSample.velocity,
+    sourcePhase: info.sourceSample.phase,
+    receiverPhase: info.receiverSample.phase,
+    iterationCount: iterations,
+    sourceHistoryKind: "moving-circular-same-source",
   };
 }
 
@@ -179,6 +226,38 @@ function refineMovingCircularRoot(request, lowTime, highTime, lowResidual, highR
   }
 
   return buildMovingCircularRoot(request, bestTime, 0, bestInfo, iterations);
+}
+
+function refineMovingCircularSameSourceRoot(request, lowTime, highTime, lowResidual, highResidual, maxIterations) {
+  let low = lowTime;
+  let high = highTime;
+  let fLow = lowResidual;
+  let fHigh = highResidual;
+  let bestTime = Math.abs(fLow) <= Math.abs(fHigh) ? low : high;
+  let bestInfo = movingCircularSameSourceResidual(request, bestTime);
+  let iterations = 0;
+
+  for (; iterations < maxIterations; iterations += 1) {
+    const mid = (low + high) / 2;
+    const midInfo = movingCircularSameSourceResidual(request, mid);
+    const fMid = midInfo.residual;
+    if (Math.abs(fMid) < Math.abs(bestInfo.residual)) {
+      bestTime = mid;
+      bestInfo = midInfo;
+    }
+    if (Math.abs(fMid) <= positiveNumber(request.rootTolerance, 1e-12)) {
+      return buildMovingCircularSameSourceRoot(request, mid, 0, midInfo, iterations + 1);
+    }
+    if (Math.sign(fLow) === Math.sign(fMid)) {
+      low = mid;
+      fLow = fMid;
+    } else {
+      high = mid;
+      fHigh = fMid;
+    }
+  }
+
+  return buildMovingCircularSameSourceRoot(request, bestTime, 0, bestInfo, iterations);
 }
 
 function dedupeRoots(roots, tolerance = 1e-9) {
@@ -433,6 +512,165 @@ export function solveMovingCircularSourceCausalRoots(request = {}) {
       severity: retained.length > 0 ? (scan.rootLimitReached ? "warning" : "ok") : noRootStatus.severity,
       message: retained.length > 0
         ? "moving circular source causal roots solved"
+        : noRootStatus.message,
+    },
+  };
+}
+
+export function createMovingCircularSameSourceRootRequest({
+  source,
+  hitTime,
+  signalSpeed,
+  sourceStartTime,
+  sourceEndTime,
+  rootTolerance = 1e-12,
+  minimumDelay = 1e-6,
+  maxIterations = 96,
+  scanSubdivisions = 128,
+  maxRoots = 32,
+  sourceRef = undefined,
+} = {}) {
+  const safeHitTime = finiteNumber(hitTime);
+  const safeMinimumDelay = positiveNumber(minimumDelay, 1e-6);
+  const latestEmissionTime = safeHitTime - safeMinimumDelay;
+  const safeSourceEnd = Number.isFinite(Number(sourceEndTime))
+    ? Math.min(Number(sourceEndTime), latestEmissionTime)
+    : latestEmissionTime;
+  const safeSourceStart = Number.isFinite(Number(sourceStartTime))
+    ? Math.min(Number(sourceStartTime), safeSourceEnd)
+    : safeSourceEnd - 1;
+  return {
+    sourceRef,
+    sourceHistoryKind: "moving-circular-same-source",
+    source: {
+      centerAtEpoch: vector(source?.centerAtEpoch ?? source?.center),
+      centerVelocity: vector(source?.centerVelocity),
+      radiusU: vector(source?.radiusU),
+      radiusV: vector(source?.radiusV),
+      angularVelocity: finiteNumber(source?.angularVelocity),
+      phaseAtEpoch: finiteNumber(source?.phaseAtEpoch),
+      epochTime: finiteNumber(source?.epochTime),
+      errorBound: finiteNumber(source?.errorBound),
+    },
+    hitTime: safeHitTime,
+    signalSpeed: positiveNumber(signalSpeed, 1),
+    sourceStartTime: safeSourceStart,
+    sourceEndTime: safeSourceEnd,
+    minimumDelay: safeMinimumDelay,
+    rootTolerance: positiveNumber(rootTolerance, 1e-12),
+    maxIterations: positiveInteger(maxIterations, 96),
+    scanSubdivisions: positiveInteger(scanSubdivisions, 128),
+    maxRoots: positiveInteger(maxRoots, 32),
+  };
+}
+
+export function solveMovingCircularSameSourceCausalRoots(request = {}) {
+  const normalized = createMovingCircularSameSourceRootRequest(request);
+  const start = normalized.sourceStartTime;
+  const end = normalized.sourceEndTime;
+  const duration = Math.max(0, end - start);
+  if (duration <= EPSILON) {
+    return {
+      roots: [],
+      rejectedReason: "empty_window",
+      scan: createMovingCircularScanSummary({
+        start,
+        end,
+        steps: 0,
+        startInfo: null,
+        endInfo: null,
+        minResidual: 0,
+        maxResidual: 0,
+        minAbsResidual: 0,
+        minAbsTime: start,
+        signChangeCount: 0,
+        sampledCount: 0,
+        rootLimitReached: false,
+      }),
+      status: { code: "empty_window", severity: "warning", message: "moving circular same-source root window is empty" },
+    };
+  }
+
+  const tolerance = normalized.rootTolerance;
+  const steps = normalized.scanSubdivisions;
+  const roots = [];
+  let priorTime = start;
+  let priorInfo = movingCircularSameSourceResidual(normalized, priorTime);
+  let endInfo = priorInfo;
+  let minResidual = priorInfo.residual;
+  let maxResidual = priorInfo.residual;
+  let minAbsResidual = Math.abs(priorInfo.residual);
+  let minAbsTime = priorTime;
+  let signChangeCount = 0;
+  let sampledCount = 1;
+  let rootLimitReached = false;
+
+  if (Math.abs(priorInfo.residual) <= tolerance) {
+    roots.push(buildMovingCircularSameSourceRoot(normalized, priorTime, roots.length, priorInfo, 0));
+  }
+
+  for (let index = 1; index <= steps; index += 1) {
+    const time = start + (duration * index) / steps;
+    const info = movingCircularSameSourceResidual(normalized, time);
+    sampledCount += 1;
+    endInfo = info;
+    const priorResidual = priorInfo.residual;
+    const residual = info.residual;
+    minResidual = Math.min(minResidual, residual);
+    maxResidual = Math.max(maxResidual, residual);
+    if (Math.abs(residual) < minAbsResidual) {
+      minAbsResidual = Math.abs(residual);
+      minAbsTime = time;
+    }
+    const hasSignChange = Math.sign(priorResidual) !== Math.sign(residual);
+    if (hasSignChange) {
+      signChangeCount += 1;
+    }
+    if (roots.length < normalized.maxRoots) {
+      if (Math.abs(residual) <= tolerance) {
+        roots.push(buildMovingCircularSameSourceRoot(normalized, time, roots.length, info, 0));
+      } else if (hasSignChange) {
+        roots.push(refineMovingCircularSameSourceRoot(
+          normalized,
+          priorTime,
+          time,
+          priorResidual,
+          residual,
+          normalized.maxIterations
+        ));
+      }
+    } else if (Math.abs(residual) <= tolerance || hasSignChange) {
+      rootLimitReached = true;
+    }
+    priorTime = time;
+    priorInfo = info;
+  }
+
+  const retained = dedupeRoots(roots, Math.max(tolerance * 10, 1e-9)).slice(0, normalized.maxRoots);
+  const scan = createMovingCircularScanSummary({
+    start,
+    end,
+    steps,
+    startInfo: movingCircularSameSourceResidual(normalized, start),
+    endInfo,
+    minResidual,
+    maxResidual,
+    minAbsResidual,
+    minAbsTime,
+    signChangeCount,
+    sampledCount,
+    rootLimitReached: rootLimitReached || roots.length > retained.length,
+  });
+  const noRootStatus = classifyMovingCircularRootScan(scan, tolerance);
+  return {
+    roots: retained,
+    rejectedReason: retained.length > 0 ? "" : noRootStatus.rejectedReason,
+    scan,
+    status: {
+      code: retained.length > 0 ? (scan.rootLimitReached ? "partial" : "ok") : noRootStatus.code,
+      severity: retained.length > 0 ? (scan.rootLimitReached ? "warning" : "ok") : noRootStatus.severity,
+      message: retained.length > 0
+        ? "moving circular same-source causal roots solved"
         : noRootStatus.message,
     },
   };

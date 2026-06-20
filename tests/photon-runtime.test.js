@@ -738,6 +738,13 @@ test("Photon self-hit diagnostics can fall back when only circular-source roots 
   assert.equal(diagnostics.rowCount, 6);
   assert.equal(diagnostics.rootFoundCount, 0);
   assert.ok(diagnostics.candidateCount >= 2);
+  assert.equal(diagnostics.helicalRowCount, 12);
+  assert.equal(diagnostics.helicalRootFoundCount, 12);
+  assert.ok(diagnostics.helicalRows.every((row) =>
+    row.sourceHistoryKind === "moving-circular-same-source" &&
+    row.phaseAtHit?.rootKind === "same-source" &&
+    Number.isFinite(row.phaseAtHit.receiverPhaseDegrees)
+  ));
 });
 
 test("Photon circular-source roots, hits, and ledger rows can be routed through the solver app bridge", async () => {
@@ -1366,8 +1373,11 @@ test("bridge-backed photon diagnostics expose the active solver engine", async (
   const rows = new Map(getPhotonDiagnosticRows(state, 0, summary));
 
   assert.equal(rows.get("Solver engine"), "architrino-solver-app-bridge");
-  assert.equal(rows.get("Self-hit roots"), "0 / 6");
-  assert.equal(rows.get("Self-hit max v/c_sig"), "1.56");
+  assert.equal(rows.get("Span self-hit roots"), "0 / 6");
+  assert.equal(rows.get("Span self-hit max v/c_sig"), "1.56");
+  assert.equal(rows.get("Helical self-hit roots"), "12 / 12");
+  assert.equal(rows.get("Helical self-hit max v/c_sig"), "1.56");
+  assert.match(rows.get("Helical self-hit phase spread"), / deg$/);
   assert.equal(rows.get("Missed sources"), "6");
   assert.equal(rows.get("No catch-up sources"), "6");
   assert.equal(rows.get("Stale windows"), "0");
