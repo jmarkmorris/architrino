@@ -72,6 +72,7 @@ const PROOFS = Object.freeze([
     requiredBoundaryRelaxationTolerance: [10, 1],
     requiredMaxBoundaryRelaxationResidualAfter: 1,
     requiredMaxBoundaryRelaxationResidualRatio: 0.02,
+    requiredRetainedPositionEvidence: true,
     settingsOpen: false,
     prepareAction: {
       type: "retained-point-drag",
@@ -101,6 +102,7 @@ const PROOFS = Object.freeze([
     requiredBoundaryRelaxationTolerance: 10,
     requiredMaxBoundaryRelaxationResidualAfter: 10,
     requiredMaxBoundaryRelaxationResidualRatio: 0.02,
+    requiredRetainedPositionEvidence: true,
     settingsOpen: false,
     prepareAction: {
       type: "retained-point-drag",
@@ -126,6 +128,7 @@ const PROOFS = Object.freeze([
     requiredBoundaryRelaxationTolerance: [10, 1],
     requiredMaxBoundaryRelaxationResidualAfter: 1,
     requiredMaxBoundaryRelaxationResidualRatio: 0.02,
+    requiredRetainedPositionEvidence: true,
     settingsOpen: false,
     prepareAction: {
       type: "retained-point-drag",
@@ -152,6 +155,7 @@ const PROOFS = Object.freeze([
     requiredBoundaryRelaxationTolerance: [10, 1],
     requiredMaxBoundaryRelaxationResidualAfter: 1,
     requiredMaxBoundaryRelaxationResidualRatio: 0.02,
+    requiredRetainedPositionEvidence: true,
     settingsOpen: false,
     prepareAction: {
       type: "retained-point-drag",
@@ -179,6 +183,7 @@ const PROOFS = Object.freeze([
     requiredBoundaryRelaxationTolerance: [10, 1],
     requiredMaxBoundaryRelaxationResidualAfter: 1,
     requiredMaxBoundaryRelaxationResidualRatio: 0.02,
+    requiredRetainedPositionEvidence: true,
     settingsOpen: false,
     prepareAction: {
       type: "context-reception-point-insert",
@@ -894,6 +899,64 @@ function createPrepareProofExpression(proof) {
         status: runtime.dom.replayStatus.textContent,
       };
     }
+    if (${proof.requiredRetainedPositionEvidence === true ? "true" : "false"}) {
+      const positionResidualSampleCount = Number(
+        runtime.dataset?.pathConstraintPositionResidualSampleCount ??
+          runtime.dataset?.solverSummary?.pathConstraintPositionResidualSampleCount
+      );
+      const positionResidualStatus =
+        runtime.dataset?.pathConstraintPositionResidualStatus ??
+        runtime.dataset?.solverSummary?.pathConstraintPositionResidualStatus;
+      const positionResidualTolerance = Number(
+        runtime.dataset?.pathConstraintPositionResidualTolerance ??
+          runtime.dataset?.solverSummary?.pathConstraintPositionResidualTolerance
+      );
+      const maxPositionResidual = Number(
+        runtime.dataset?.maxPathConstraintPositionResidual ??
+          runtime.dataset?.solverSummary?.maxPathConstraintPositionResidual
+      );
+      const expectedPositionResidualSampleCount = ["positrino", "electrino"].reduce(
+        (sum, kind) => sum + Number(runtime.dataset.history?.[kind]?.length ?? 0),
+        0
+      );
+      const effectivePositionResidualTolerance = Number.isFinite(positionResidualTolerance)
+        ? positionResidualTolerance
+        : 1e-9;
+      const sourceChipTitle = runtime.dom.replayStatus.getAttribute("title") || "";
+      const sourceChipHasRows = sourceChipTitle.includes(\`posRows=\${positionResidualSampleCount}\`);
+      const sourceChipHasAcceptedStatus = sourceChipTitle.includes("posStatus=within_tolerance");
+      if (
+        !Number.isFinite(positionResidualSampleCount) ||
+        positionResidualSampleCount < expectedPositionResidualSampleCount ||
+        positionResidualStatus !== "within_tolerance" ||
+        !Number.isFinite(maxPositionResidual) ||
+        maxPositionResidual > effectivePositionResidualTolerance ||
+        !sourceChipHasRows ||
+        !sourceChipHasAcceptedStatus ||
+        sourceChipTitle.includes("posStatus=unchecked")
+      ) {
+        return {
+          ok: false,
+          reason: "retained_position_evidence_missing",
+          expected: {
+            minimumSampleCount: expectedPositionResidualSampleCount,
+            status: "within_tolerance",
+            maximumResidual: effectivePositionResidualTolerance,
+            sourceChipRows: \`posRows=\${positionResidualSampleCount}\`,
+            sourceChipStatus: "posStatus=within_tolerance",
+          },
+          actual: {
+            positionResidualSampleCount,
+            positionResidualStatus,
+            positionResidualTolerance,
+            maxPositionResidual,
+            sourceChipTitle,
+          },
+          source,
+          status: runtime.dom.replayStatus.textContent,
+        };
+      }
+    }
     if (${proof.requiredTurnbackPaths === true ? "true" : "false"}) {
       const getPoint = (kind, depth) => runtime.dataset.history?.[kind]?.find(
         (point) => Number(point.depth) === Number(depth)
@@ -957,6 +1020,15 @@ function createPrepareProofExpression(proof) {
       pathConstraintSolverClaim,
       maxBoundaryRelaxationResidualAfter,
       boundaryRelaxationResidualRatio,
+      pathConstraintPositionResidualSampleCount:
+        runtime.dataset?.pathConstraintPositionResidualSampleCount ??
+        runtime.dataset?.solverSummary?.pathConstraintPositionResidualSampleCount,
+      pathConstraintPositionResidualStatus:
+        runtime.dataset?.pathConstraintPositionResidualStatus ??
+        runtime.dataset?.solverSummary?.pathConstraintPositionResidualStatus,
+      maxPathConstraintPositionResidual:
+        runtime.dataset?.maxPathConstraintPositionResidual ??
+        runtime.dataset?.solverSummary?.maxPathConstraintPositionResidual,
       readout: runtime.dom.readout.textContent,
     };
   })()`;

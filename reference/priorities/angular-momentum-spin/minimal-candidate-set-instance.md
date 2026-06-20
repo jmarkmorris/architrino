@@ -165,6 +165,8 @@ Current polarity-metadata disposition. The sampled phase metadata cross-check re
 | Non-minimal competitors | No finite family of competing retained generator words has been evaluated. | Blocked. |
 | Local exclusion | No row proves contradiction or forbidden routing. | No exclusion. |
 
+The positive-width lift audit now distinguishes route-local width from retained-domain lift. `aaa-tri-binary-positive-width-retained-domain-lift-target.v1` reports `positive_width_retained_domain_lift_blocked_all_pair_point_only_and_route_compensation`: both branch routes have route-restricted positive one-sided width, but the all-pair common retained interval remains point-only with max width $0$, `inner->inner` and `middle->middle` supply no positive side interval, four pairs are missing on each all-pair side, and the same-source middle route remains compensation-required. This keeps the minimal candidate live as a route-local hinge packet while blocking retained-branch promotion.
+
 The deterministic branch-selection residual is therefore not evaluated:
 
 $$

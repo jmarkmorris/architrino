@@ -1509,22 +1509,6 @@ private struct AboutSheet: View {
         horizontalSizeClass == .regular
     }
 
-    private var appVersionLabel: String {
-        let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
-        let build = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String
-
-        switch (version?.trimmingCharacters(in: .whitespacesAndNewlines), build?.trimmingCharacters(in: .whitespacesAndNewlines)) {
-        case let (.some(version), .some(build)) where !version.isEmpty && !build.isEmpty:
-            return "\(version) (\(build))"
-        case let (.some(version), _) where !version.isEmpty:
-            return version
-        case let (_, .some(build)) where !build.isEmpty:
-            return build
-        default:
-            return "unavailable"
-        }
-    }
-
     var body: some View {
         NavigationStack {
             ZStack {

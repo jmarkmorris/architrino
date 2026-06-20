@@ -1564,6 +1564,10 @@ test("causal delay feedback status distinguishes converged discrete boundary rep
     interactionLaw: "display_pair_attraction_v1",
     executionPath: "native_c_abi",
     maxPathConstraintResidual: 0.004,
+    pathConstraintPositionResidualSampleCount: 12,
+    pathConstraintPositionResidualStatus: "within_tolerance",
+    pathConstraintPositionResidualTolerance: 0.003,
+    maxPathConstraintPositionResidual: 0.002,
     pathConstraintBoundaryResidualSampleCount: 10,
     pathConstraintBoundaryResidualStatus: "within_tolerance",
     pathConstraintBoundaryResidualTolerance: 0.02,
@@ -1596,6 +1600,10 @@ test("causal delay feedback status distinguishes converged discrete boundary rep
   assert.equal(replayStatus.dataset.state, "bridge-boundary");
   assert.match(replayStatus.title, /seed=law_aware_retained_knot_boundary_seed/);
   assert.match(replayStatus.title, /seedRows=18/);
+  assert.match(replayStatus.title, /posRows=12/);
+  assert.match(replayStatus.title, /posErr=0\.002/);
+  assert.match(replayStatus.title, /posTol=0\.003/);
+  assert.match(replayStatus.title, /posStatus=within_tolerance/);
   assert.match(replayStatus.title, /relaxStop=tolerance_reached/);
   assert.match(replayStatus.title, /relaxRmsRatio=0\.125/);
   assert.match(replayStatus.title, /relaxRate=0\.63/);
@@ -1636,7 +1644,9 @@ test("causal delay feedback status flags unchecked boundary residual acceptance 
 
   assert.equal(replayStatus.textContent, "solver boundary replay");
   assert.equal(replayStatus.dataset.state, "bridge-boundary");
+  assert.match(replayStatus.title, /posStatus=unchecked/);
   assert.match(replayStatus.title, /bStatus=unchecked/);
+  assert.match(replayStatus.title, /Retained-position preservation evidence remains unchecked/);
   assert.match(replayStatus.title, /Retained-knot boundary residual acceptance remains unchecked/);
   assert.match(replayStatus.title, /not the full physical pair-interaction\/path-constraint boundary-value solver/);
 });

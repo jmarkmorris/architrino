@@ -1066,6 +1066,8 @@ class CausalDelayFeedbackRuntime {
           constraintSolverStatus === DISCRETE_BOUNDARY_VALUE_CONVERGED_STATUS;
         const effectiveBoundaryStatus =
           boundaryStatus || (isDiscreteBoundaryConverged ? "unchecked" : "");
+        const effectivePositionResidualStatus =
+          positionResidualStatus || (isDiscreteBoundaryConverged ? "unchecked" : "");
         const boundaryDetail =
           Number.isFinite(boundarySampleCount) && boundarySampleCount > 0
             ? ` boundary=${boundarySampleCount}${
@@ -1085,8 +1087,9 @@ class CausalDelayFeedbackRuntime {
               }`
             : "";
         const positionResidualStatusDetail =
-          positionResidualStatus && positionResidualStatus !== "unchecked"
-            ? ` posStatus=${formatCompactLabel(positionResidualStatus)}`
+          effectivePositionResidualStatus &&
+            (effectivePositionResidualStatus !== "unchecked" || isDiscreteBoundaryConverged)
+            ? ` posStatus=${formatCompactLabel(effectivePositionResidualStatus)}`
             : "";
         const boundaryStatusDetail =
           effectiveBoundaryStatus && (effectiveBoundaryStatus !== "unchecked" || isDiscreteBoundaryConverged)
@@ -1214,6 +1217,10 @@ class CausalDelayFeedbackRuntime {
           ? ` Retained path constraints converged against the discrete finite-difference pair equation under the requested relaxation tolerance.${
               effectiveBoundaryStatus === "unchecked"
                 ? " Retained-knot boundary residual acceptance remains unchecked."
+                : ""
+            }${
+              effectivePositionResidualStatus === "unchecked"
+                ? " Retained-position preservation evidence remains unchecked."
                 : ""
             } This remains the finite-difference retained-knot boundary relaxation, not the full physical pair-interaction/path-constraint boundary-value solver.`
           : guidanceDetail

@@ -5404,6 +5404,15 @@ function createRouteAuthorizedEndpointProviderGlobalDomainObstructionTarget({
     acceptedEndpointProviderRows.length > 0 &&
     routeAuthorizedPointEventDomainTarget
       ?.acceptedRouteAuthorizedPointEventDomainPass === true;
+  const positiveWidthRetainedDomainLiftTarget =
+    createPositiveWidthRetainedDomainLiftTarget({
+      hingeRootBranchTransportRouteFeasibility,
+      hingeEventRowSetIdentity,
+      retainedTimeDomainCoverage,
+      routeAuthorizedPointEventDomainTarget,
+      rootPayloadIntervalEnclosure,
+      localEndpointProviderAcceptedPass,
+    });
   const globalRetainedBranchClaimPass = false;
   const fullPointEventRulePass =
     localEndpointProviderAcceptedPass &&
@@ -5474,6 +5483,9 @@ function createRouteAuthorizedEndpointProviderGlobalDomainObstructionTarget({
       routeAuthorizedPointEventDomainTarget?.status ?? null,
     routeAuthorizedPointEventDomainScope:
       routeAuthorizedPointEventDomainTarget?.domainScope ?? null,
+    positiveWidthRetainedDomainLiftStatus:
+      positiveWidthRetainedDomainLiftTarget.status,
+    positiveWidthRetainedDomainLiftTarget,
     routeRootKey:
       routeAuthorizedPointEventDomainTarget?.routeRootKey ??
       firstAcceptedEndpointProviderTarget?.routeRootKey ??
@@ -5523,6 +5535,232 @@ function createRouteAuthorizedEndpointProviderGlobalDomainObstructionTarget({
     retainedLimitation:
       "The accepted local endpoint-provider point-event domain uses one same-source middle route and positive one-sided route intervals. It cannot be promoted to a global retained branch, full point-event rule, or positive-width common retained time domain while the all-pair common root interval is point-only, no common one-sided all-pair interval exists, one middle route still requires compensation, and wake, partition, torque, phase, route, stability, omega_tx, action-scale, and wake-energy rows are not globally certified.",
   };
+}
+
+function createPositiveWidthRetainedDomainLiftTarget({
+  hingeRootBranchTransportRouteFeasibility,
+  hingeEventRowSetIdentity,
+  retainedTimeDomainCoverage,
+  routeAuthorizedPointEventDomainTarget,
+  rootPayloadIntervalEnclosure,
+  localEndpointProviderAcceptedPass,
+}) {
+  const pairRows = hingeEventRowSetIdentity?.rows ?? [];
+  const hingeTime = hingeEventRowSetIdentity?.hingeTime ?? null;
+  const pairSideRows = pairRows.map((row) =>
+    createPairRootSideLiftRow({ row, hingeTime })
+  );
+  const pointOnlyPairRows = pairSideRows.filter(
+    (row) => row.leftSidePositiveWidthPass !== true && row.rightSidePositiveWidthPass !== true
+  );
+  const leftMissingPairKeys = pairSideRows
+    .filter((row) => row.leftSidePositiveWidthPass !== true)
+    .map((row) => row.pairKey);
+  const rightMissingPairKeys = pairSideRows
+    .filter((row) => row.rightSidePositiveWidthPass !== true)
+    .map((row) => row.pairKey);
+  const allPairPositiveWidthCommonRetainedTimeDomainPass =
+    (retainedTimeDomainCoverage?.maxCommonWidth ?? 0) > ROOT_TOLERANCE ||
+    rootPayloadIntervalEnclosure?.positiveWidthCommonRootInterval === true ||
+    rootPayloadIntervalEnclosure?.oneSidedPositiveWidthCommonInterval === true;
+  const routeRows = hingeRootBranchTransportRouteFeasibility?.rows ?? [];
+  const routeRowsWithPositiveWidth = routeRows.filter(
+    (row) =>
+      row.candidateRoutePass === true &&
+      (row.minOneSidedRouteWidth ?? 0) > ROOT_TOLERANCE
+  );
+  const routeRestrictedPositiveWidthPass =
+    routeRows.length > 0 && routeRowsWithPositiveWidth.length === routeRows.length;
+  const zeroSlackBranchRoutePass =
+    hingeRootBranchTransportRouteFeasibility?.zeroSlackRoutePass === true;
+  const routeCompensationRequired =
+    (hingeRootBranchTransportRouteFeasibility?.compensationRequiredMatchCount ?? 0) >
+    0;
+  const globalRetainedRowSetIdentityPass =
+    hingeEventRowSetIdentity?.globalRetainedRowSetIdentityStatus ===
+    "common_active_row_set_candidate_populated";
+  const liftPass =
+    localEndpointProviderAcceptedPass === true &&
+    allPairPositiveWidthCommonRetainedTimeDomainPass &&
+    routeRestrictedPositiveWidthPass &&
+    zeroSlackBranchRoutePass &&
+    globalRetainedRowSetIdentityPass;
+  const domainLiftBlockers = [
+    localEndpointProviderAcceptedPass
+      ? null
+      : "local_route_authorized_endpoint_provider_point_event_missing",
+    globalRetainedRowSetIdentityPass ? null : "global_retained_row_set_identity_missing",
+    allPairPositiveWidthCommonRetainedTimeDomainPass
+      ? null
+      : "all_pair_positive_width_common_retained_time_domain_missing",
+    pointOnlyPairRows.length > 0 ? "point_only_pair_rows_block_all_pair_side_domain" : null,
+    leftMissingPairKeys.length > 0 ? "left_side_all_pair_interval_missing" : null,
+    rightMissingPairKeys.length > 0 ? "right_side_all_pair_interval_missing" : null,
+    routeRestrictedPositiveWidthPass ? null : "route_restricted_positive_width_missing",
+    zeroSlackBranchRoutePass ? null : "zero_slack_branch_route_missing",
+    routeCompensationRequired ? "same_source_route_compensation_required" : null,
+  ].filter(Boolean);
+  const routeRowSummaries = routeRows.map((row) => ({
+    incomingPairKey: row.incomingPairKey ?? null,
+    outgoingPairKey: row.outgoingPairKey ?? null,
+    continuityRole: row.continuityRole ?? null,
+    candidateRoutePass: row.candidateRoutePass === true,
+    zeroSlackRoutePass: row.zeroSlackRoutePass === true,
+    compensationRequired: row.compensationRequired === true,
+    routeRootKey: row.routeRootKey ?? null,
+    minOneSidedRouteWidth: finiteOrNull(row.minOneSidedRouteWidth),
+    incomingLeftMaxWidth: finiteOrNull(row.incomingLeftCoverage?.maxWidth),
+    outgoingRightMaxWidth: finiteOrNull(row.outgoingRightCoverage?.maxWidth),
+    requiredEndpointCompensationNorm: finiteOrNull(
+      row.requiredEndpointCompensationNorm
+    ),
+    requiredClockRetune: finiteOrNull(row.requiredClockRetune),
+    requiredPhaseCompensation: finiteOrNull(row.requiredPhaseCompensation),
+  }));
+
+  return {
+    schema:
+      "aaa-tri-binary-positive-width-retained-domain-lift-target.v1",
+    status: !localEndpointProviderAcceptedPass
+      ? "positive_width_retained_domain_lift_not_applicable_local_endpoint_provider_missing"
+      : liftPass
+        ? "positive_width_retained_domain_lift_candidate_formal_acceptance_blocked"
+        : !allPairPositiveWidthCommonRetainedTimeDomainPass &&
+            routeRestrictedPositiveWidthPass &&
+            routeCompensationRequired
+          ? "positive_width_retained_domain_lift_blocked_all_pair_point_only_and_route_compensation"
+          : !allPairPositiveWidthCommonRetainedTimeDomainPass
+            ? "positive_width_retained_domain_lift_blocked_all_pair_point_only"
+            : routeCompensationRequired
+              ? "positive_width_retained_domain_lift_blocked_route_compensation"
+              : "positive_width_retained_domain_lift_blocked_global_row_set_identity",
+    claimLevel:
+      "fail-closed lift target distinguishing route-restricted one-sided width from the all-pair positive-width retained domain needed for global retained branch promotion",
+    localEndpointProviderAcceptedPass,
+    liftPass,
+    retainedBranchClaim: false,
+    routeAuthorizedPointEventDomainStatus:
+      routeAuthorizedPointEventDomainTarget?.status ?? null,
+    routeAuthorizedPointEventDomainScope:
+      routeAuthorizedPointEventDomainTarget?.domainScope ?? null,
+    routeRootKey:
+      routeAuthorizedPointEventDomainTarget?.routeRootKey ??
+      routeRows.find((row) => row.routeRootKey != null)?.routeRootKey ??
+      null,
+    globalRetainedRowSetIdentityPass,
+    globalRetainedRowSetIdentityStatus:
+      hingeEventRowSetIdentity?.globalRetainedRowSetIdentityStatus ?? null,
+    allPairPositiveWidthCommonRetainedTimeDomainPass,
+    retainedTimeDomainCoverageStatus:
+      retainedTimeDomainCoverage?.status ?? null,
+    retainedTimeDomainCommonIntervalCount:
+      retainedTimeDomainCoverage?.commonIntervalCount ?? null,
+    retainedTimeDomainMaxCommonWidth:
+      retainedTimeDomainCoverage?.maxCommonWidth ?? null,
+    retainedTimeDomainCommonHingePointCount:
+      retainedTimeDomainCoverage?.commonHingePointCount ?? null,
+    rootPayloadIntervalStatus:
+      rootPayloadIntervalEnclosure?.status ?? null,
+    positiveWidthCommonRootInterval:
+      rootPayloadIntervalEnclosure?.positiveWidthCommonRootInterval ?? null,
+    oneSidedPositiveWidthCommonInterval:
+      rootPayloadIntervalEnclosure?.oneSidedPositiveWidthCommonInterval ??
+      null,
+    maxCommonRootIntervalWidth:
+      rootPayloadIntervalEnclosure?.maxCommonWidth ?? null,
+    leftAllPairSideCommonWidth:
+      rootPayloadIntervalEnclosure?.sideCoverage?.left?.maxCommonWidth ?? null,
+    rightAllPairSideCommonWidth:
+      rootPayloadIntervalEnclosure?.sideCoverage?.right?.maxCommonWidth ??
+      null,
+    pairCount: pairSideRows.length,
+    leftSidePositivePairCount: pairSideRows.filter(
+      (row) => row.leftSidePositiveWidthPass === true
+    ).length,
+    rightSidePositivePairCount: pairSideRows.filter(
+      (row) => row.rightSidePositiveWidthPass === true
+    ).length,
+    pointOnlyPairKeys: pointOnlyPairRows.map((row) => row.pairKey),
+    leftMissingPairKeys,
+    rightMissingPairKeys,
+    routeRestrictedPositiveWidthPass,
+    routeRestrictedPositiveWidthRowCount: routeRowsWithPositiveWidth.length,
+    evaluatedRouteCount:
+      hingeRootBranchTransportRouteFeasibility?.evaluatedRouteCount ?? null,
+    zeroSlackBranchRoutePass,
+    routeCompensationRequired,
+    compensationRequiredMatchCount:
+      hingeRootBranchTransportRouteFeasibility
+        ?.compensationRequiredMatchCount ?? null,
+    minRouteOneSidedWidth: minFinite(
+      routeRows
+        .map((row) => row.minOneSidedRouteWidth)
+        .filter(Number.isFinite)
+    ),
+    maxRequiredEndpointCompensationNorm:
+      hingeRootBranchTransportRouteFeasibility
+        ?.maxRequiredEndpointCompensationNorm ?? null,
+    maxRequiredPhaseCompensation:
+      hingeRootBranchTransportRouteFeasibility?.maxRequiredPhaseCompensation ??
+      null,
+    domainLiftBlockers,
+    pairSideRows,
+    routeRows: routeRowSummaries,
+    retainedLimitation:
+      "The branch route has route-restricted positive one-sided width, but global retained-domain lift still needs an all-pair positive-width common retained interval or an accepted full point-event rule. Point-only identity rows and side-mismatched pair rows block the all-pair side interval, while the same-source route still requires compensation.",
+  };
+}
+
+function createPairRootSideLiftRow({ row, hingeTime }) {
+  const leftIntervals = createRootSideIntervals({
+    rootIntervals: row.rootIntervals ?? [],
+    hingeTime,
+    side: "left",
+  });
+  const rightIntervals = createRootSideIntervals({
+    rootIntervals: row.rootIntervals ?? [],
+    hingeTime,
+    side: "right",
+  });
+  const leftCoverage = summarizeHitTimeIntervals(leftIntervals);
+  const rightCoverage = summarizeHitTimeIntervals(rightIntervals);
+  return {
+    pairKey: row.pairKey ?? null,
+    incidence: row.incidence ?? null,
+    rootIntervalCount: row.rootIntervalCount ?? 0,
+    maxRootIntervalWidth: finiteOrNull(row.maxRootIntervalWidth),
+    leftSidePositiveWidthPass: leftCoverage.maxWidth > ROOT_TOLERANCE,
+    leftSideIntervalCount: leftCoverage.intervalCount,
+    leftSideMaxWidth: leftCoverage.maxWidth,
+    rightSidePositiveWidthPass: rightCoverage.maxWidth > ROOT_TOLERANCE,
+    rightSideIntervalCount: rightCoverage.intervalCount,
+    rightSideMaxWidth: rightCoverage.maxWidth,
+  };
+}
+
+function createRootSideIntervals({ rootIntervals, hingeTime, side }) {
+  if (!Number.isFinite(hingeTime)) {
+    return [];
+  }
+  return rootIntervals
+    .map((interval) => {
+      if (side === "left") {
+        return {
+          start: interval.start,
+          end: Math.min(interval.end, hingeTime),
+        };
+      }
+      return {
+        start: Math.max(interval.start, hingeTime),
+        end: interval.end,
+      };
+    })
+    .filter(
+      (interval) =>
+        Number.isFinite(interval.start) &&
+        Number.isFinite(interval.end) &&
+        interval.end - interval.start > ROOT_TOLERANCE
+    );
 }
 
 function createSameSourceEmissionClockTransportDiagnostic({

@@ -5326,7 +5326,13 @@ function createPairInteractionBoundaryResidualAcceptanceMetadata(boundarySummary
 }
 
 function createPairInteractionPositionResidualAcceptanceMetadata(positionSummary, request) {
-  const tolerance = Number(request.pathConstraintPositionResidualTolerance);
+  const explicitTolerance = Number(request.pathConstraintPositionResidualTolerance);
+  const hasPathConstraints = Array.isArray(request.pathConstraints) && request.pathConstraints.length > 0;
+  const tolerance = Number.isFinite(explicitTolerance)
+    ? explicitTolerance
+    : hasPathConstraints
+      ? PAIR_INTERACTION_DERIVED_BOUNDARY_POSITION_RESIDUAL_TOLERANCE
+      : Number.NaN;
   if (!Number.isFinite(tolerance)) {
     return {
       pathConstraintPositionResidualStatus: PAIR_INTERACTION_POSITION_RESIDUAL_STATUS_UNCHECKED,

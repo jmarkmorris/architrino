@@ -4286,6 +4286,8 @@ assert(
     causalDelayPairRunHandle.response.summary.pathConstraintCount === 8 &&
     causalDelayPairRunHandle.response.summary.pathConstraintFrameRefinementSampleCount === 4 &&
     causalDelayPairRunHandle.response.summary.pathConstraintPositionResidualSampleCount === 8 &&
+    causalDelayPairRunHandle.response.summary.pathConstraintPositionResidualStatus ===
+      "within_tolerance" &&
     causalDelayPairRunHandle.response.summary.maxPathConstraintPositionResidual <= 1e-9 &&
     causalDelayPairRunHandle.response.summary.pathConstraintResidualSampleCount === 22 &&
     causalDelayPairRunHandle.response.summary.maxPathConstraintResidual > 0 &&

@@ -19,11 +19,13 @@ The video is useful as a secondary source and source-lead index for Kastner's PT
 
 Really useful distinction between a mere correlation and a record-forming measurement event. A complementary way to frame the issue is that before a durable record exists, the theory may be tracking several possible detector outcomes in a compressed description; after a record exists, the target, detector, environment, and energy/momentum bookkeeping have all changed. The hard part is making the rule that separates those regimes explicit enough to recover the Born weights, conservation laws, no-signaling, and repeatable frequencies without treating the interpretive vocabulary as the mechanism. The strongest takeaway for me is that “measurement” should be earned by a physical process, not inserted as a label after the fact.
 
-### Ruth Kastner Reply
+### Ruth Kastner Initial Reply
 
 Thanks. But indeed we have done that hard part. This is all covered in the recent published literature on RTI. See, for example, my 2022 CUP book "The Transactional Interpretation of Quantum Mechanics: A Relativistic Treatment." This also refutes all the listed objections from 'johnny' above. I cannot post links on YouTube but it is easily found online.
 
-### Proposed Reply To Ruth
+### Earlier Proposed Reply To Ruth
+
+Superseded by the June 20, 2026 follow-up reply and the recommended copyable letter below.
 
 Thanks, Ruth. I will read the 2022 CUP book carefully. The point I am trying to isolate may be adjacent to RTI rather than opposed to it: what exactly makes a possible transaction eligible to become a durable record, rather than merely a correlation or an admissible amplitude relation.
 
@@ -33,6 +35,26 @@ My working suspicion is that the probability weights should be attached only aft
 
 That is the part I am most interested in testing against your treatment: whether the absorber response, conservation closure, durable record, and no-signaling constraint are all one physical selection condition, or whether they remain separate ingredients that still need a unifying rule.
 
+### Ruth Kastner Follow-Up Reply
+
+Captured: June 20, 2026.
+
+Operator-provided latest reply:
+
+```text
+Thanks! We have a book coming out with WSP some time next year on these issues and I think our work does address all these aspects a,b,c. In particular there is no transaction unless the conservation laws are satisfied. There is no signalling since the actualization manifests as a speed-of-light connection between the emission and absorption event. The record is persistent as a spacetime event, since these are invariant and constitute the spacetime (actual) mainfold. As to the selection of one outcome from many, we view that as a reflection of genuine indeterminism in the physical theory--there is no deterministic account of the transition from many to one, since that is the nature of actualization of possibility. But I note elsewhere (e.g. "The Born Rule and Free Will" on philsci archive) that this is actually a good thing since it allows for genuine volition.
+If you'd like to send me some of your work you can reach me via my author page, ruthekastner (dot) org
+```
+
+Disposition for the next reply:
+
+- Ruth states that RTI requires conservation-law satisfaction before a transaction exists.
+- She identifies no-signaling with actualization as a speed-of-light connection between emission and absorption.
+- She treats persistence as the invariant spacetime-event status of the actualized record.
+- She explicitly treats the many-to-one transition as genuine indeterminism rather than a deterministic selection mechanism.
+- The WSP book referenced as coming "next year" should be read as an expected 2027 publication if this reply was current when captured.
+- She invited a work sample through her author page, `ruthekastner.org`.
+
 ### Copyable Letter for Ruth (Recommended Draft)
 
 Use this as a ready-to-send response, including the salutation and signoff:
@@ -40,15 +62,15 @@ Use this as a ready-to-send response, including the salutation and signoff:
 ```text
 Hi Ruth,
 
-Thank you for the clarification. The question I am trying to isolate is not whether RTI has a measurement account; it is whether the record-forming step can be stated as one physical criterion.
+Thank you. That helps me locate the bridge much more precisely.
 
-The model I am developing takes a concrete route. It treats the quantum state as a compressed description of underlying point-transceiver assembly dynamics, with a measurement outcome counted only when a declared detector channel closes the relevant couplings, energy-momentum ledger, environmental persistence, and no-signaling constraints. In that framing, Born weights are not assigned over every formal branch. They are normalized over the alternatives that can become durable records.
+I hear your account as saying that conservation-law satisfaction is required before there is a transaction; no-signaling follows because the actualization is the light-speed emission/absorption connection; and persistence follows because the record is an invariant spacetime event. I also hear the many-to-one step differently now: in RTI it is not a missing deterministic mechanism, but genuine indeterminism in the actualization of possibility, which you connect to genuine volition.
 
-This is where I see a possible bridge to RTI. The incipient/actualized transaction distinction seems to point at the same boundary I would call record eligibility: a possible exchange becomes a physically realized event only when source, absorber, and the surrounding physical ledger have locked into a conservation-closed record.
+The work I would like to send approaches the same boundary from a different base ontology. It treats the quantum state as a compressed description of underlying point-transceiver assembly dynamics, with a measurement outcome counted only when a declared detector channel closes the relevant couplings, energy-momentum ledger, persistence condition, and no-signaling/context constraints. In that notation, Born weights are normalized over record-eligible alternatives, not over every formal branch in the compressed description.
 
-The question I would value your reaction to is: in RTI, are absorber response, conservation closure, actualized spacetime event, durable detector record, and no-signaling consistency all aspects of one physical selection condition? Or should they be kept as separate constraints around the transaction?
+So the question is no longer whether RTI has the conservation, signaling, and persistence pieces. Your reply makes clear that it does. The useful comparison is whether the point-transceiver account gives a mechanical model for the same record-eligibility boundary, and where it genuinely diverges from RTI about the irreducibility of the many-to-one actualization step.
 
-If useful, I can send a one-page mapping from my point-transceiver assembly / record-eligibility notation to RTI's incipient/actualized transaction language. I think it would make clear where the proposed overlap is, and where the two accounts may genuinely diverge.
+I will send a short one-page mapping through your author page, focused on the exact correspondences: transaction eligibility, conservation closure, light-speed emission/absorption connection, persistent spacetime record, and the status of the many-to-one transition.
 
 Best regards,
 Mark
@@ -74,6 +96,7 @@ No standalone public CV PDF was found in this pass. Treat this as a source-backe
 | --- | --- | --- |
 | Name | Ruth E. Kastner | Confirmed by Cambridge Core and arXiv metadata. |
 | Public correspondence email | `rkastner@umd.edu` | Listed as correspondence email in the 2023 arXiv paper *Physical Time as Human Time*. |
+| Public author page | `ruthekastner.org` | Provided by Kastner in the operator-captured June 20, 2026 follow-up reply as the route for sending work. |
 | Primary field relevance | Quantum foundations, philosophy of physics, and the Transactional Interpretation family; not primarily astrophysics. | Confirmed by the 2022 CUP reference and the existing source-mined video. |
 | Education | B.S. and M.S. in Physics; Ph.D. in History and Philosophy of Science; all from the University of Maryland. | Operator-provided background; keep until a standalone CV or institutional profile is found. |
 | Institutional affiliation | Cambridge Core book metadata lists her with University of Maryland, Baltimore; Cambridge author biography describes her as a Research Associate and member of the Foundations of Physics group at University of Maryland, College Park. | Cambridge Core metadata. |
