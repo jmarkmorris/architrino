@@ -1691,17 +1691,24 @@ std::uint32_t pair_boundary_relaxation_status(
     return kPairBoundaryRelaxationStatusNotRequested;
   }
   if (before.sampleCount == 0 || after.sampleCount == 0 ||
-      !std::isfinite(before.maxResidual) || !std::isfinite(after.maxResidual)) {
+      !std::isfinite(before.maxResidual) || !std::isfinite(after.maxResidual) ||
+      !std::isfinite(before.meanResidual) || !std::isfinite(after.meanResidual) ||
+      !std::isfinite(before.rmsResidual) || !std::isfinite(after.rmsResidual)) {
     return kPairBoundaryRelaxationStatusNoRelaxableSamples;
   }
+  const bool aggregateNonWorsening =
+      after.maxResidual <= before.maxResidual + kPairBoundaryRelaxationResidualEpsilon &&
+      after.meanResidual <= before.meanResidual + kPairBoundaryRelaxationResidualEpsilon &&
+      after.rmsResidual <= before.rmsResidual + kPairBoundaryRelaxationResidualEpsilon;
   if (request.boundaryRelaxationTolerance > 0.0 &&
+      aggregateNonWorsening &&
       after.maxResidual <= request.boundaryRelaxationTolerance) {
     return kPairBoundaryRelaxationStatusConverged;
   }
-  if (run.stopReason == kPairBoundaryRelaxationStopReasonStepToleranceReached) {
+  if (aggregateNonWorsening && run.stopReason == kPairBoundaryRelaxationStopReasonStepToleranceReached) {
     return kPairBoundaryRelaxationStatusStepConverged;
   }
-  return after.maxResidual <= before.maxResidual
+  return aggregateNonWorsening
       ? kPairBoundaryRelaxationStatusAccepted
       : kPairBoundaryRelaxationStatusRevertedNoImprovement;
 }

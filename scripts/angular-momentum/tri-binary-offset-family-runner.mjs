@@ -3790,13 +3790,6 @@ function createRetainedHingePointWitness({
 
   const commonRootKeyList = [...(commonRootKeys ?? new Set())].sort((left, right) => left - right);
   const allPairsWitnessed = missingPairCount === 0;
-  const hingeEventRowSetIdentity = createHingeEventRowSetIdentity({
-    hingePoint,
-    allPairsWitnessed,
-    commonRootKeyList,
-    pairWitnesses,
-    retainedRowSetIdentity,
-  });
   const pointDiagnostics = summarizeHingePointDiagnostics(pairWitnesses);
   const candidatePointEventAdmissibility = createCandidatePointEventAdmissibility({
     allPairsWitnessed,
@@ -3811,6 +3804,16 @@ function createRetainedHingePointWitness({
     selectedCase,
     candidatePointEventAdmissibility,
     pairWitnesses,
+  });
+  const hingeEventRowSetIdentity = createHingeEventRowSetIdentity({
+    hingePoint,
+    allPairsWitnessed,
+    commonRootKeyList,
+    pairWitnesses,
+    retainedRowSetIdentity,
+    pointDiagnostics,
+    candidatePointEventAdmissibility,
+    branchTransportIncidence,
   });
   const middleFieldSpeedHingeCapture = createMiddleFieldSpeedHingeCapture({
     selectedCase,
@@ -3856,6 +3859,9 @@ function createHingeEventRowSetIdentity({
   commonRootKeyList,
   pairWitnesses,
   retainedRowSetIdentity,
+  pointDiagnostics = null,
+  candidatePointEventAdmissibility = null,
+  branchTransportIncidence = null,
 }) {
   const commonRootKeySet = new Set(commonRootKeyList);
   const pairRows = Object.entries(pairWitnesses).map(([pairKey, witness]) => {
@@ -3913,6 +3919,35 @@ function createHingeEventRowSetIdentity({
     commonRootKeys: commonRootKeyList.slice(0, 12),
     allPairsWitnessed,
     globalRetainedRowSetIdentityStatus: retainedRowSetIdentity?.status ?? null,
+    pointEventDiagnosticsStatus: pointDiagnostics?.status ?? null,
+    diagonalIdentityPairCount: pointDiagnostics?.diagonalIdentityPairCount ?? null,
+    offDiagonalForcePairCount: pointDiagnostics?.offDiagonalForcePairCount ?? null,
+    offDiagonalNetDiagnosticTorqueNorm:
+      pointDiagnostics?.offDiagonalNetDiagnosticTorqueNorm ?? null,
+    candidatePointEventAdmissibilityStatus:
+      candidatePointEventAdmissibility?.status ?? null,
+    candidatePointEventAdmissibilityPass:
+      candidatePointEventAdmissibility?.pass === true,
+    pointEventTorqueTolerance:
+      candidatePointEventAdmissibility?.torqueTolerance ?? null,
+    branchTransportIncidenceStatus: branchTransportIncidence?.status ?? null,
+    branchTransportIncidencePass: branchTransportIncidence?.pass === true,
+    branchTransportPairMapStatus:
+      branchTransportIncidence?.candidatePairMap?.status ?? null,
+    branchTransportPairMapTopologyPass:
+      branchTransportIncidence?.candidatePairMap?.topologyPass === true,
+    branchTransportPairMapGeometryPass:
+      branchTransportIncidence?.candidatePairMap?.pass === true,
+    branchTransportPairMapHingeChartPass:
+      branchTransportIncidence?.candidatePairMap?.hingeChartContinuityPass === true,
+    pointEventOneSidedPairCount:
+      branchTransportIncidence?.oneSidedPairCount ?? null,
+    pointEventIncomingOnlyPairCount:
+      branchTransportIncidence?.incomingOnlyPairCount ?? null,
+    pointEventOutgoingOnlyPairCount:
+      branchTransportIncidence?.outgoingOnlyPairCount ?? null,
+    pointEventPairMapMatchedPairCount:
+      branchTransportIncidence?.candidatePairMap?.matchedPairCount ?? null,
     rootPayloadIntervalEnclosure,
     rows: pairRows,
     retainedLimitation:
@@ -5413,17 +5448,27 @@ function createRouteAuthorizedEndpointProviderGlobalDomainObstructionTarget({
       rootPayloadIntervalEnclosure,
       localEndpointProviderAcceptedPass,
     });
+  const fullPointEventRuleLiftTarget = createFullPointEventRuleLiftTarget({
+    hingeRootBranchTransportRouteFeasibility,
+    hingeEventRowSetIdentity,
+    retainedTimeDomainCoverage,
+    routeAuthorizedPointEventDomainTarget,
+    rootPayloadIntervalEnclosure,
+    positiveWidthRetainedDomainLiftTarget,
+    localEndpointProviderAcceptedPass,
+  });
   const globalRetainedBranchClaimPass = false;
   const fullPointEventRulePass =
-    localEndpointProviderAcceptedPass &&
-    positiveWidthCommonRetainedTimeDomainPass &&
-    zeroSlackBranchRoutePass &&
+    fullPointEventRuleLiftTarget.fullPointEventRuleLiftPass === true &&
     globalRetainedBranchClaimPass;
   const obstructionReasons = [
     localEndpointProviderAcceptedPass
       ? null
       : "local_route_authorized_endpoint_provider_point_event_missing",
     eventRootKeyCandidatePass ? null : "hinge_event_common_root_key_missing",
+    fullPointEventRuleLiftTarget.fullPointEventRuleLiftPass
+      ? null
+      : "accepted_full_point_event_rule_missing",
     positiveWidthCommonRetainedTimeDomainPass
       ? null
       : "positive_width_common_retained_time_domain_missing",
@@ -5483,6 +5528,8 @@ function createRouteAuthorizedEndpointProviderGlobalDomainObstructionTarget({
       routeAuthorizedPointEventDomainTarget?.status ?? null,
     routeAuthorizedPointEventDomainScope:
       routeAuthorizedPointEventDomainTarget?.domainScope ?? null,
+    fullPointEventRuleLiftStatus: fullPointEventRuleLiftTarget.status,
+    fullPointEventRuleLiftTarget,
     positiveWidthRetainedDomainLiftStatus:
       positiveWidthRetainedDomainLiftTarget.status,
     positiveWidthRetainedDomainLiftTarget,
@@ -5534,6 +5581,224 @@ function createRouteAuthorizedEndpointProviderGlobalDomainObstructionTarget({
     routeRows,
     retainedLimitation:
       "The accepted local endpoint-provider point-event domain uses one same-source middle route and positive one-sided route intervals. It cannot be promoted to a global retained branch, full point-event rule, or positive-width common retained time domain while the all-pair common root interval is point-only, no common one-sided all-pair interval exists, one middle route still requires compensation, and wake, partition, torque, phase, route, stability, omega_tx, action-scale, and wake-energy rows are not globally certified.",
+  };
+}
+
+function createFullPointEventRuleLiftTarget({
+  hingeRootBranchTransportRouteFeasibility,
+  hingeEventRowSetIdentity,
+  retainedTimeDomainCoverage,
+  routeAuthorizedPointEventDomainTarget,
+  rootPayloadIntervalEnclosure,
+  positiveWidthRetainedDomainLiftTarget,
+  localEndpointProviderAcceptedPass,
+}) {
+  const pairRows = hingeEventRowSetIdentity?.rows ?? [];
+  const pairSideRows = positiveWidthRetainedDomainLiftTarget?.pairSideRows ?? [];
+  const diagonalPairKeys = pairRows
+    .filter((row) => isDiagonalLayerPairKey(row.pairKey))
+    .map((row) => row.pairKey);
+  const pointOnlyDiagonalPairKeys = pairSideRows
+    .filter(
+      (row) =>
+        isDiagonalLayerPairKey(row.pairKey) &&
+        row.leftSidePositiveWidthPass !== true &&
+        row.rightSidePositiveWidthPass !== true
+    )
+    .map((row) => row.pairKey);
+  const offDiagonalPairKeys = pairRows
+    .filter((row) => !isDiagonalLayerPairKey(row.pairKey))
+    .map((row) => row.pairKey);
+  const eventRootKeyCandidatePass =
+    hingeEventRowSetIdentity?.status ===
+    "hinge_event_common_root_key_candidate_populated";
+  const candidatePointEventAdmissibilityPass =
+    hingeEventRowSetIdentity?.candidatePointEventAdmissibilityPass === true;
+  const offDiagonalTorqueTolerancePass =
+    Number.isFinite(hingeEventRowSetIdentity?.offDiagonalNetDiagnosticTorqueNorm) &&
+    Number.isFinite(hingeEventRowSetIdentity?.pointEventTorqueTolerance) &&
+    hingeEventRowSetIdentity.offDiagonalNetDiagnosticTorqueNorm <=
+      hingeEventRowSetIdentity.pointEventTorqueTolerance;
+  const branchTransportIncidencePass =
+    hingeEventRowSetIdentity?.branchTransportIncidencePass === true;
+  const branchTransportPairMapTopologyPass =
+    hingeEventRowSetIdentity?.branchTransportPairMapTopologyPass === true;
+  const branchTransportPairMapGeometryPass =
+    hingeEventRowSetIdentity?.branchTransportPairMapGeometryPass === true;
+  const routeRows = hingeRootBranchTransportRouteFeasibility?.rows ?? [];
+  const routeRootKey =
+    routeAuthorizedPointEventDomainTarget?.routeRootKey ??
+    routeRows.find((row) => row.routeRootKey != null)?.routeRootKey ??
+    null;
+  const sameRouteRootKeyPass =
+    routeRootKey != null &&
+    (hingeEventRowSetIdentity?.commonRootKeys ?? []).includes(routeRootKey);
+  const zeroSlackBranchRoutePass =
+    hingeRootBranchTransportRouteFeasibility?.zeroSlackRoutePass === true;
+  const routeCompensationRequired =
+    (hingeRootBranchTransportRouteFeasibility?.compensationRequiredMatchCount ?? 0) >
+    0;
+  const globalRetainedRowSetIdentityPass =
+    hingeEventRowSetIdentity?.globalRetainedRowSetIdentityStatus ===
+    "common_active_row_set_candidate_populated";
+  const allPairPointEventInputPass =
+    eventRootKeyCandidatePass &&
+    candidatePointEventAdmissibilityPass &&
+    branchTransportIncidencePass &&
+    offDiagonalTorqueTolerancePass &&
+    sameRouteRootKeyPass;
+  const branchTransportGeometryPass =
+    branchTransportPairMapGeometryPass && zeroSlackBranchRoutePass && !routeCompensationRequired;
+  const positiveWidthCommonRetainedTimeDomainPass =
+    (retainedTimeDomainCoverage?.maxCommonWidth ?? 0) > ROOT_TOLERANCE ||
+    rootPayloadIntervalEnclosure?.positiveWidthCommonRootInterval === true ||
+    rootPayloadIntervalEnclosure?.oneSidedPositiveWidthCommonInterval === true;
+  const retainedPayloadRowsPass = false;
+  const acceptedRetainedEnergyRoutingPass = false;
+  const acceptedFullPointEventRulePass = false;
+  const fullPointEventRuleLiftPass =
+    localEndpointProviderAcceptedPass === true &&
+    allPairPointEventInputPass &&
+    branchTransportGeometryPass &&
+    globalRetainedRowSetIdentityPass &&
+    retainedPayloadRowsPass &&
+    acceptedRetainedEnergyRoutingPass &&
+    acceptedFullPointEventRulePass;
+  const fullPointEventRuleCandidatePass =
+    localEndpointProviderAcceptedPass === true &&
+    allPairPointEventInputPass &&
+    branchTransportPairMapTopologyPass;
+  const fullPointEventRuleBlockers = [
+    localEndpointProviderAcceptedPass
+      ? null
+      : "local_route_authorized_endpoint_provider_point_event_missing",
+    eventRootKeyCandidatePass ? null : "hinge_event_common_root_key_missing",
+    sameRouteRootKeyPass ? null : "route_root_key_not_on_hinge_event",
+    candidatePointEventAdmissibilityPass ? null : "candidate_point_event_rule_missing",
+    offDiagonalTorqueTolerancePass ? null : "off_diagonal_point_torque_not_cancelled",
+    branchTransportIncidencePass ? null : "branch_transport_incidence_missing",
+    branchTransportPairMapTopologyPass ? null : "branch_transport_pair_map_topology_missing",
+    branchTransportPairMapGeometryPass
+      ? null
+      : "geometrically_continuous_branch_transport_pair_map_missing",
+    zeroSlackBranchRoutePass ? null : "zero_slack_branch_route_missing",
+    routeCompensationRequired ? "same_source_route_compensation_required" : null,
+    globalRetainedRowSetIdentityPass ? null : "global_retained_row_set_identity_missing",
+    positiveWidthCommonRetainedTimeDomainPass
+      ? null
+      : "positive_width_common_retained_time_domain_missing",
+    pointOnlyDiagonalPairKeys.length > 0
+      ? "point_only_diagonal_identity_rows_need_explicit_full_point_event_rule"
+      : null,
+    retainedPayloadRowsPass
+      ? null
+      : "retained_force_torque_wake_phase_partition_stability_payloads_missing",
+    acceptedRetainedEnergyRoutingPass ? null : "accepted_retained_energy_routing_missing",
+    acceptedFullPointEventRulePass ? null : "accepted_full_point_event_rule_missing",
+  ].filter(Boolean);
+  const routeRowSummaries = routeRows.map((row) => ({
+    incomingPairKey: row.incomingPairKey ?? null,
+    outgoingPairKey: row.outgoingPairKey ?? null,
+    continuityRole: row.continuityRole ?? null,
+    candidateRoutePass: row.candidateRoutePass === true,
+    zeroSlackRoutePass: row.zeroSlackRoutePass === true,
+    compensationRequired: row.compensationRequired === true,
+    routeRootKey: row.routeRootKey ?? null,
+    minOneSidedRouteWidth: finiteOrNull(row.minOneSidedRouteWidth),
+    endpointPairResidual: finiteOrNull(row.endpointPairResidual),
+    endpointToChartResidual: finiteOrNull(row.endpointToChartResidual),
+    requiredEndpointCompensationNorm: finiteOrNull(
+      row.requiredEndpointCompensationNorm
+    ),
+    requiredClockRetune: finiteOrNull(row.requiredClockRetune),
+    requiredPhaseCompensation: finiteOrNull(row.requiredPhaseCompensation),
+  }));
+
+  return {
+    schema: "aaa-tri-binary-full-point-event-rule-lift-target.v1",
+    status: !localEndpointProviderAcceptedPass
+      ? "full_point_event_rule_lift_not_applicable_local_endpoint_provider_missing"
+      : fullPointEventRuleLiftPass
+        ? "full_point_event_rule_lift_candidate_formal_acceptance_blocked"
+        : fullPointEventRuleCandidatePass &&
+            pointOnlyDiagonalPairKeys.length > 0 &&
+            routeCompensationRequired
+          ? "full_point_event_rule_lift_blocked_point_only_identity_and_route_compensation"
+          : fullPointEventRuleCandidatePass && pointOnlyDiagonalPairKeys.length > 0
+            ? "full_point_event_rule_lift_blocked_point_only_identity"
+            : fullPointEventRuleCandidatePass
+              ? "full_point_event_rule_lift_blocked_payloads_or_branch_transport"
+              : "full_point_event_rule_lift_blocked_candidate_event_incomplete",
+    claimLevel:
+      "fail-closed target for upgrading a hinge-point candidate into an accepted full point-event rule; not a retained branch claim",
+    localEndpointProviderAcceptedPass,
+    fullPointEventRuleCandidatePass,
+    fullPointEventRuleLiftPass,
+    acceptedFullPointEventRulePass,
+    retainedBranchClaim: false,
+    routeAuthorizedPointEventDomainStatus:
+      routeAuthorizedPointEventDomainTarget?.status ?? null,
+    routeAuthorizedPointEventDomainScope:
+      routeAuthorizedPointEventDomainTarget?.domainScope ?? null,
+    routeRootKey,
+    sameRouteRootKeyPass,
+    eventRootKeyCandidatePass,
+    eventCommonRootKeyCount:
+      hingeEventRowSetIdentity?.commonRootKeyCount ?? null,
+    eventCommonRootKeys: hingeEventRowSetIdentity?.commonRootKeys ?? [],
+    pointEventDiagnosticsStatus:
+      hingeEventRowSetIdentity?.pointEventDiagnosticsStatus ?? null,
+    candidatePointEventAdmissibilityStatus:
+      hingeEventRowSetIdentity?.candidatePointEventAdmissibilityStatus ?? null,
+    candidatePointEventAdmissibilityPass,
+    branchTransportIncidenceStatus:
+      hingeEventRowSetIdentity?.branchTransportIncidenceStatus ?? null,
+    branchTransportIncidencePass,
+    branchTransportPairMapStatus:
+      hingeEventRowSetIdentity?.branchTransportPairMapStatus ?? null,
+    branchTransportPairMapTopologyPass,
+    branchTransportPairMapGeometryPass,
+    branchTransportPairMapHingeChartPass:
+      hingeEventRowSetIdentity?.branchTransportPairMapHingeChartPass === true,
+    pointEventOneSidedPairCount:
+      hingeEventRowSetIdentity?.pointEventOneSidedPairCount ?? null,
+    pointEventIncomingOnlyPairCount:
+      hingeEventRowSetIdentity?.pointEventIncomingOnlyPairCount ?? null,
+    pointEventOutgoingOnlyPairCount:
+      hingeEventRowSetIdentity?.pointEventOutgoingOnlyPairCount ?? null,
+    pointEventPairMapMatchedPairCount:
+      hingeEventRowSetIdentity?.pointEventPairMapMatchedPairCount ?? null,
+    pairCount: pairRows.length,
+    diagonalPairCount: diagonalPairKeys.length,
+    offDiagonalPairCount: offDiagonalPairKeys.length,
+    diagonalIdentityPairCount:
+      hingeEventRowSetIdentity?.diagonalIdentityPairCount ?? null,
+    offDiagonalForcePairCount:
+      hingeEventRowSetIdentity?.offDiagonalForcePairCount ?? null,
+    pointOnlyDiagonalPairKeys,
+    offDiagonalNetDiagnosticTorqueNorm:
+      hingeEventRowSetIdentity?.offDiagonalNetDiagnosticTorqueNorm ?? null,
+    pointEventTorqueTolerance:
+      hingeEventRowSetIdentity?.pointEventTorqueTolerance ?? null,
+    offDiagonalTorqueTolerancePass,
+    positiveWidthCommonRetainedTimeDomainPass,
+    positiveWidthRetainedDomainLiftStatus:
+      positiveWidthRetainedDomainLiftTarget?.status ?? null,
+    globalRetainedRowSetIdentityPass,
+    globalRetainedRowSetIdentityStatus:
+      hingeEventRowSetIdentity?.globalRetainedRowSetIdentityStatus ?? null,
+    zeroSlackBranchRoutePass,
+    branchTransportGeometryPass,
+    routeCompensationRequired,
+    compensationRequiredMatchCount:
+      hingeRootBranchTransportRouteFeasibility
+        ?.compensationRequiredMatchCount ?? null,
+    retainedPayloadRowsPass,
+    acceptedRetainedEnergyRoutingPass,
+    fullPointEventRuleBlockers,
+    routeRows: routeRowSummaries,
+    retainedLimitation:
+      "The hinge has point-event evidence, diagonal identity witnesses, and off-diagonal point-torque cancellation, but an accepted full point-event rule still needs geometrically continuous branch transport and retained force, torque, wake, phase, partition, stability, vector-ledger, and energy-routing rows on the same event. The point-only diagonal rows are useful hinge evidence, not positive-width retained-domain evidence.",
   };
 }
 
@@ -15267,6 +15532,14 @@ function createHingePairPointDiagnostics({ pairKey, time, matchingEdges }) {
 function classifyLayerPairRole(pairKey) {
   const [sourceLayer, receiverLayer] = pairKey.split("->");
   return sourceLayer === receiverLayer ? "diagonal_identity" : "off_diagonal_force_bearing";
+}
+
+function isDiagonalLayerPairKey(pairKey) {
+  if (typeof pairKey !== "string" || !pairKey.includes("->")) {
+    return false;
+  }
+  const [sourceLayer, receiverLayer] = pairKey.split("->");
+  return sourceLayer === receiverLayer;
 }
 
 function dedupeHingeEndpointRows(rows) {

@@ -999,12 +999,13 @@ test("causal delay central bridge adapter does not derive boundary status from w
     },
   });
 
-  assert.equal(dataset.pathConstraintBoundaryRelaxationStatus, "converged");
+  assert.equal(dataset.pathConstraintBoundaryRelaxationStatus, "reverted_no_improvement");
   assert.equal(dataset.maxPathConstraintBoundaryRelaxationResidualBefore, 4);
   assert.equal(dataset.maxPathConstraintBoundaryRelaxationResidualAfter, 6);
   assert.equal(dataset.pathConstraintBoundaryRelaxationResidualEvidenceStatus, "aggregate_worsened");
   assert.equal(dataset.pathConstraintSolverStatus, undefined);
   assert.equal(dataset.pathConstraintSolverClaim, undefined);
+  assert.equal(dataset.solverSummary.pathConstraintBoundaryRelaxationStatus, "reverted_no_improvement");
   assert.equal(dataset.solverSummary.pathConstraintSolverStatus, undefined);
   assert.equal(dataset.solverSummary.pathConstraintSolverClaim, undefined);
 });
@@ -1047,13 +1048,14 @@ test("causal delay central bridge adapter requires aggregate residual improvemen
     },
   });
 
-  assert.equal(dataset.pathConstraintBoundaryRelaxationStatus, "converged");
+  assert.equal(dataset.pathConstraintBoundaryRelaxationStatus, "reverted_no_improvement");
   assert.equal(dataset.maxPathConstraintBoundaryRelaxationResidualAfter, 6);
   assert.equal(dataset.meanPathConstraintBoundaryRelaxationResidualAfter, 4);
   assert.equal(dataset.rmsPathConstraintBoundaryRelaxationResidualAfter, 5);
   assert.equal(dataset.pathConstraintBoundaryRelaxationResidualEvidenceStatus, "aggregate_worsened");
   assert.equal(dataset.pathConstraintSolverStatus, undefined);
   assert.equal(dataset.pathConstraintSolverClaim, undefined);
+  assert.equal(dataset.solverSummary.pathConstraintBoundaryRelaxationStatus, "reverted_no_improvement");
   assert.equal(dataset.solverSummary.pathConstraintSolverStatus, undefined);
   assert.equal(dataset.solverSummary.pathConstraintSolverClaim, undefined);
 });
@@ -1094,10 +1096,11 @@ test("causal delay central bridge adapter validates explicit residual evidence b
     },
   });
 
-  assert.equal(dataset.pathConstraintBoundaryRelaxationStatus, "converged");
+  assert.equal(dataset.pathConstraintBoundaryRelaxationStatus, "reverted_no_improvement");
   assert.equal(dataset.pathConstraintBoundaryRelaxationResidualEvidenceStatus, "aggregate_worsened");
   assert.equal(dataset.pathConstraintSolverStatus, undefined);
   assert.equal(dataset.pathConstraintSolverClaim, undefined);
+  assert.equal(dataset.solverSummary.pathConstraintBoundaryRelaxationStatus, "reverted_no_improvement");
   assert.equal(dataset.solverSummary.pathConstraintSolverStatus, undefined);
   assert.equal(dataset.solverSummary.pathConstraintSolverClaim, undefined);
 });

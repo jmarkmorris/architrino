@@ -167,6 +167,8 @@ Current polarity-metadata disposition. The sampled phase metadata cross-check re
 
 The positive-width lift audit now distinguishes route-local width from retained-domain lift. `aaa-tri-binary-positive-width-retained-domain-lift-target.v1` reports `positive_width_retained_domain_lift_blocked_all_pair_point_only_and_route_compensation`: both branch routes have route-restricted positive one-sided width, but the all-pair common retained interval remains point-only with max width $0$, `inner->inner` and `middle->middle` supply no positive side interval, four pairs are missing on each all-pair side, and the same-source middle route remains compensation-required. This keeps the minimal candidate live as a route-local hinge packet while blocking retained-branch promotion.
 
+The full point-event lift audit now isolates the complementary route. `aaa-tri-binary-full-point-event-rule-lift-target.v1` reports `full_point_event_rule_lift_blocked_point_only_identity_and_route_compensation`: the $\pi/2$ hinge has passing candidate point-event admissibility, passing branch-transport incidence, topology pair-map support, off-diagonal point-torque norm $2.7755575615628914\times10^{-17}$, and route root key `2856731379702547500`, but `fullPointEventRuleLiftPass=false`. The blockers are geometrically continuous branch transport, zero-slack route transport, same-source route compensation, global retained row-set identity, explicit treatment of the point-only `inner->inner` and `middle->middle` diagonal identity rows, retained force / torque / wake / phase / partition / stability payloads, accepted energy routing, and an accepted full point-event rule.
+
 The deterministic branch-selection residual is therefore not evaluated:
 
 $$

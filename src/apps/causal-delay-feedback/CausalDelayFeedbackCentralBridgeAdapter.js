@@ -37,7 +37,11 @@ const PAIR_SEGMENTED_ACCELERATION_POLICY = "pair_segmented_attraction_seed";
 const PAIR_INITIAL_ACCELERATION_POLICY = "pair_initial_attraction_seed";
 const EXPLICIT_ACCELERATION_POLICY = "explicit";
 const FINITE_DIFFERENCE_FRAME_RELAXATION_MODE = "finite_difference_frame_relaxation_v1";
+const FINITE_DIFFERENCE_FRAME_RELAXATION_ACCEPTED_STATUS = "accepted";
 const FINITE_DIFFERENCE_FRAME_RELAXATION_CONVERGED_STATUS = "converged";
+const FINITE_DIFFERENCE_FRAME_RELAXATION_STEP_CONVERGED_STATUS = "step_converged";
+const FINITE_DIFFERENCE_FRAME_RELAXATION_REVERTED_STATUS = "reverted_no_improvement";
+const FINITE_DIFFERENCE_FRAME_RELAXATION_NO_SAMPLES_STATUS = "no_relaxable_samples";
 const DISCRETE_BOUNDARY_VALUE_CONVERGED_STATUS = "discrete_boundary_value_converged";
 const FINITE_DIFFERENCE_PAIR_BOUNDARY_VALUE_SOLVE_CONVERGED_CLAIM =
   "finite_difference_pair_boundary_value_solve_converged";
@@ -629,8 +633,17 @@ async function createPairInteractionSolverReplayFrames(playbackRequest, options 
   const response = unwrapBridgeResponse(runHandle);
   const pairSummary = response.summary ?? {};
   const pairInteraction = response.pairInteraction ?? {};
-  const constraintSolverMetadata = createPairInteractionConstraintSolverMetadata(
+  const normalizedBoundaryRelaxationStatus = pairInteractionBoundaryRelaxationStatus(
     pairSummary,
+    pairInteraction,
+  );
+  const constraintSolverMetadata = createPairInteractionConstraintSolverMetadata(
+    {
+      ...pairSummary,
+      ...(normalizedBoundaryRelaxationStatus
+        ? { pathConstraintBoundaryRelaxationStatus: normalizedBoundaryRelaxationStatus }
+        : {}),
+    },
     pairInteraction,
     request.config.pairInteractionRequest,
   );
@@ -706,8 +719,7 @@ async function createPairInteractionSolverReplayFrames(playbackRequest, options 
       pairSummary.pathConstraintBoundaryRelaxationStepTolerance ??
         pairInteraction.pathConstraintBoundaryRelaxationStepTolerance
     ),
-    pathConstraintBoundaryRelaxationStatus:
-      pairSummary.pathConstraintBoundaryRelaxationStatus ?? pairInteraction.pathConstraintBoundaryRelaxationStatus,
+    pathConstraintBoundaryRelaxationStatus: normalizedBoundaryRelaxationStatus,
     pathConstraintBoundaryRelaxationResidualEvidenceStatus:
       pairInteractionRelaxationResidualEvidenceStatus(pairSummary, pairInteraction),
     pathConstraintBoundaryRelaxationResidualSampleCount: optionalFiniteNumber(
@@ -2717,6 +2729,48 @@ function pairInteractionRelaxationResidualEvidenceStatusFromNumbers(pairSummary,
   return residualPairs.every(([before, after]) => after <= before)
     ? BOUNDARY_RELAXATION_RESIDUAL_EVIDENCE_NON_WORSENING
     : BOUNDARY_RELAXATION_RESIDUAL_EVIDENCE_WORSENED;
+}
+
+function pairInteractionBoundaryRelaxationStatus(pairSummary, pairInteraction) {
+  const status = optionalString(
+    pairInteractionSummaryField(pairSummary, pairInteraction, "pathConstraintBoundaryRelaxationStatus"),
+  );
+  if (!status) {
+    return undefined;
+  }
+  const strongStatuses = new Set([
+    FINITE_DIFFERENCE_FRAME_RELAXATION_ACCEPTED_STATUS,
+    FINITE_DIFFERENCE_FRAME_RELAXATION_CONVERGED_STATUS,
+    FINITE_DIFFERENCE_FRAME_RELAXATION_STEP_CONVERGED_STATUS,
+  ]);
+  if (!strongStatuses.has(status)) {
+    return status;
+  }
+  const residualEvidenceStatus = pairInteractionRelaxationResidualEvidenceStatus(
+    pairSummary,
+    pairInteraction,
+  );
+  if (
+    residualEvidenceStatus === BOUNDARY_RELAXATION_RESIDUAL_EVIDENCE_NO_SAMPLES ||
+    residualEvidenceStatus === BOUNDARY_RELAXATION_RESIDUAL_EVIDENCE_INCOMPLETE
+  ) {
+    return FINITE_DIFFERENCE_FRAME_RELAXATION_NO_SAMPLES_STATUS;
+  }
+  if (residualEvidenceStatus !== BOUNDARY_RELAXATION_RESIDUAL_EVIDENCE_NON_WORSENING) {
+    return FINITE_DIFFERENCE_FRAME_RELAXATION_REVERTED_STATUS;
+  }
+  if (status === FINITE_DIFFERENCE_FRAME_RELAXATION_CONVERGED_STATUS) {
+    const tolerance = Number(
+      pairInteractionSummaryField(pairSummary, pairInteraction, "pathConstraintBoundaryRelaxationTolerance"),
+    );
+    const maxResidualAfter = Number(
+      pairInteractionSummaryField(pairSummary, pairInteraction, "maxPathConstraintBoundaryRelaxationResidualAfter"),
+    );
+    if (!Number.isFinite(tolerance) || !Number.isFinite(maxResidualAfter) || maxResidualAfter > tolerance) {
+      return FINITE_DIFFERENCE_FRAME_RELAXATION_ACCEPTED_STATUS;
+    }
+  }
+  return status;
 }
 
 function createPairInteractionConstraintSolverMetadata(pairSummary, pairInteraction, pairRequest) {
