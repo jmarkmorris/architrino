@@ -666,6 +666,8 @@ const PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_RELAXATION_LINE_SEARCH_FACTORS =
   0.0625,
   0.03125,
   0.015625,
+  0.0078125,
+  0.00390625,
 ]);
 const PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_RELAXATION_RESIDUAL_EPSILON = 1e-12;
 const PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_RELAXATION_CANDIDATE_CENTER_OF_MASS_OFFSET = 100;
@@ -679,6 +681,9 @@ const PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_RELAXATION_CANDIDATE_KIND_BY_COD
   6: "predicted_blend",
   7: "corrected_defect_correction",
   8: "corrected_blend",
+  9: "linearized_defect_correction",
+  10: "local_newton_defect_correction",
+  11: "coupled_local_newton_defect_correction",
   101: "predictor_center_of_mass_projected",
   102: "first_corrector_center_of_mass_projected",
   103: "second_corrector_center_of_mass_projected",
@@ -687,6 +692,9 @@ const PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_RELAXATION_CANDIDATE_KIND_BY_COD
   106: "predicted_blend_center_of_mass_projected",
   107: "corrected_defect_correction_center_of_mass_projected",
   108: "corrected_blend_center_of_mass_projected",
+  109: "linearized_defect_correction_center_of_mass_projected",
+  110: "local_newton_defect_correction_center_of_mass_projected",
+  111: "coupled_local_newton_defect_correction_center_of_mass_projected",
 });
 const PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_RELAXATION_CANDIDATE_CODE_BY_KIND = Object.freeze(
   Object.fromEntries(
@@ -5174,6 +5182,63 @@ function computePairInteractionAccelerations(states, request) {
   });
 }
 
+function pairInteractionLawSelfDerivativeComponent(states, request, stateIndex, component) {
+  return pairInteractionLawPositionDerivativeComponent(
+    states,
+    request,
+    stateIndex,
+    stateIndex,
+    component,
+    component,
+  );
+}
+
+function pairInteractionLawPositionDerivativeComponent(
+  states,
+  request,
+  accelerationStateIndex,
+  positionStateIndex,
+  accelerationComponent,
+  positionComponent,
+) {
+  const state = states[accelerationStateIndex];
+  if (!state || positionStateIndex < 0 || positionStateIndex >= states.length) {
+    return null;
+  }
+  const factor = request.pairAccelerationScale / Math.max(request.duration * request.duration, 1e-12);
+  const softeningSquared = request.softening * request.softening;
+  let derivative = 0;
+  for (let otherIndex = 0; otherIndex < states.length; otherIndex += 1) {
+    if (otherIndex === accelerationStateIndex) {
+      continue;
+    }
+    const other = states[otherIndex];
+    const deltaSign = positionStateIndex === otherIndex ? 1 : positionStateIndex === accelerationStateIndex ? -1 : 0;
+    if (deltaSign === 0) {
+      continue;
+    }
+    const delta = {
+      x: other.position.x - state.position.x,
+      y: other.position.y - state.position.y,
+      z: other.position.z - state.position.z,
+    };
+    const distanceSquared = delta.x * delta.x + delta.y * delta.y + delta.z * delta.z + softeningSquared;
+    const attractionSign = state.charge * other.charge <= 0 ? 1 : -1;
+    const strength = (factor * attractionSign * Math.abs(other.charge)) / state.mass;
+    const sameComponent = accelerationComponent === positionComponent ? 1 : 0;
+    if (request.interactionLaw === "inverse_distance_pair_attraction_v1") {
+      const radius = Math.max(Math.sqrt(distanceSquared), 1e-12);
+      derivative += strength * deltaSign * (
+        sameComponent / radius -
+        (delta[accelerationComponent] * delta[positionComponent]) / (radius * radius * radius)
+      );
+    } else {
+      derivative += strength * deltaSign * sameComponent;
+    }
+  }
+  return Number.isFinite(derivative) ? derivative : null;
+}
+
 function summarizePairInteractionConstraintResiduals(frames, request) {
   const constraints = request.pathConstraints ?? [];
   const summary = {
@@ -5377,6 +5442,81 @@ function summarizePairInteractionBoundaryRelaxationResiduals(frames, request) {
     summary.rmsPathConstraintBoundaryRelaxationResidual = Math.sqrt(residualSquaredSum / sampleCount);
   }
   return summary;
+}
+
+function pairInteractionBoundaryRelaxationResidualVectorEntries(frames, request) {
+  const residuals = new Map();
+  if (!Array.isArray(frames) || frames.length === 0 || (request.pathConstraints ?? []).length === 0) {
+    return residuals;
+  }
+
+  const epsilon = pairConstraintTimeEpsilon(request);
+  const pathKeys = Array.from(new Set(frames.map((frame) => frame.pathKey))).sort((left, right) => left - right);
+  pathKeys.forEach((pathKey) => {
+    const pathFrames = frames
+      .map((frame, index) => ({ frame, index }))
+      .filter((entry) => entry.frame.pathKey === pathKey)
+      .sort((left, right) => left.frame.time - right.frame.time || left.frame.frameIndex - right.frame.frameIndex);
+    for (let pathIndex = 1; pathIndex + 1 < pathFrames.length; pathIndex += 1) {
+      const previous = pathFrames[pathIndex - 1].frame;
+      const current = pathFrames[pathIndex].frame;
+      const next = pathFrames[pathIndex + 1].frame;
+      if (hasPairConstraintAtTime(request, current.pathKey, current.time, epsilon)) {
+        continue;
+      }
+      const residual = pairInteractionBoundaryRelaxationResidualVectorForFrames(
+        frames,
+        request,
+        previous,
+        current,
+        next,
+        epsilon,
+      );
+      if (residual) {
+        residuals.set(pathFrames[pathIndex].index, residual);
+      }
+    }
+  });
+  return residuals;
+}
+
+function pairInteractionBoundaryRelaxationResidualVectorForFrames(
+  frames,
+  request,
+  previous,
+  current,
+  next,
+  epsilon,
+) {
+  const leftDt = current.time - previous.time;
+  const rightDt = next.time - current.time;
+  const averageDt = 0.5 * (leftDt + rightDt);
+  if (leftDt <= epsilon || rightDt <= epsilon || averageDt <= epsilon) {
+    return null;
+  }
+  const leftVelocity = scalePairResidualVector(vectorSubtract(current.position, previous.position), 1 / leftDt);
+  const rightVelocity = scalePairResidualVector(vectorSubtract(next.position, current.position), 1 / rightDt);
+  const finiteDifferenceAcceleration = scalePairResidualVector(
+    vectorSubtract(rightVelocity, leftVelocity),
+    1 / averageDt,
+  );
+  const states = statesAtPairInteractionFrameIndex(frames, current.frameIndex, request.initialStates);
+  if (states.length !== request.initialStates.length) {
+    return null;
+  }
+  const lawAccelerations = computePairInteractionAccelerations(states, request);
+  const stateIndex = states.findIndex((state) => state.pathKey === current.pathKey);
+  if (stateIndex < 0 || !lawAccelerations[stateIndex]) {
+    return null;
+  }
+  const residual = vectorSubtract(finiteDifferenceAcceleration, lawAccelerations[stateIndex]);
+  return (
+    Number.isFinite(residual.x) &&
+    Number.isFinite(residual.y) &&
+    Number.isFinite(residual.z)
+  )
+    ? residual
+    : null;
 }
 
 function sortedPairConstraintsForPath(request, pathKey) {
@@ -5727,6 +5867,427 @@ function buildPairInteractionDefectCorrectionCandidate(frames, request, pathKeys
       for (let solvedIndex = 0; solvedIndex < solvedPositions.length; solvedIndex += 1) {
         const position = solvedPositions[solvedIndex];
         nextPositions.set(pathFrames[blockStart + solvedIndex].index, position);
+      }
+    }
+  });
+  return nextPositions;
+}
+
+function buildPairInteractionLinearizedDefectCorrectionCandidate(frames, request, defectCorrectionPositions) {
+  if (!(defectCorrectionPositions instanceof Map) || defectCorrectionPositions.size === 0) {
+    return new Map();
+  }
+  const baselineResiduals = pairInteractionBoundaryRelaxationResidualVectorEntries(frames, request);
+  if (baselineResiduals.size === 0) {
+    return new Map();
+  }
+  const probeFactor = 0.25;
+  const probeFrames = clonePairInteractionFramesForRelaxation(frames);
+  if (!applyPairInteractionRelaxationPositions(probeFrames, defectCorrectionPositions, probeFactor)) {
+    return new Map();
+  }
+  const probeResiduals = pairInteractionBoundaryRelaxationResidualVectorEntries(probeFrames, request);
+  let numerator = 0;
+  let denominator = 0;
+  baselineResiduals.forEach((baselineResidual, frameIndex) => {
+    const probeResidual = probeResiduals.get(frameIndex);
+    if (!probeResidual) {
+      return;
+    }
+    const derivative = scalePairResidualVector(
+      vectorSubtract(probeResidual, baselineResidual),
+      1 / probeFactor,
+    );
+    if (
+      !Number.isFinite(derivative.x) ||
+      !Number.isFinite(derivative.y) ||
+      !Number.isFinite(derivative.z)
+    ) {
+      return;
+    }
+    numerator += vectorDot(baselineResidual, derivative);
+    denominator += vectorDot(derivative, derivative);
+  });
+  if (
+    !Number.isFinite(numerator) ||
+    !Number.isFinite(denominator) ||
+    denominator <= PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_RELAXATION_RESIDUAL_EPSILON
+  ) {
+    return new Map();
+  }
+  const targetScale = Math.min(2, Math.max(0, -numerator / denominator));
+  if (
+    !Number.isFinite(targetScale) ||
+    targetScale <= PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_RELAXATION_RESIDUAL_EPSILON
+  ) {
+    return new Map();
+  }
+  const epsilon = pairConstraintTimeEpsilon(request);
+  const nextPositions = new Map();
+  defectCorrectionPositions.forEach((position, frameIndex) => {
+    const frame = frames[frameIndex];
+    if (!frame?.position) {
+      return;
+    }
+    const step = vectorSubtract(position, frame.position);
+    const nextPosition = {
+      x: frame.position.x + step.x * targetScale,
+      y: frame.position.y + step.y * targetScale,
+      z: frame.position.z + step.z * targetScale,
+    };
+    if (
+      Number.isFinite(nextPosition.x) &&
+      Number.isFinite(nextPosition.y) &&
+      Number.isFinite(nextPosition.z) &&
+      vectorNorm(vectorSubtract(nextPosition, frame.position)) > epsilon
+    ) {
+      nextPositions.set(frameIndex, nextPosition);
+    }
+  });
+  return nextPositions;
+}
+
+function solveDenseLinearSystem(matrix, rhs, epsilon = 1e-12) {
+  const size = rhs.length;
+  if (
+    size === 0 ||
+    matrix.length !== size ||
+    matrix.some((row) => !Array.isArray(row) || row.length !== size)
+  ) {
+    return null;
+  }
+  const rows = matrix.map((row) => row.slice());
+  const values = rhs.slice();
+  for (let pivotIndex = 0; pivotIndex < size; pivotIndex += 1) {
+    let pivotRow = pivotIndex;
+    let pivotAbs = Math.abs(rows[pivotRow][pivotIndex]);
+    for (let rowIndex = pivotIndex + 1; rowIndex < size; rowIndex += 1) {
+      const candidateAbs = Math.abs(rows[rowIndex][pivotIndex]);
+      if (candidateAbs > pivotAbs) {
+        pivotAbs = candidateAbs;
+        pivotRow = rowIndex;
+      }
+    }
+    if (!Number.isFinite(pivotAbs) || pivotAbs <= epsilon) {
+      return null;
+    }
+    if (pivotRow !== pivotIndex) {
+      [rows[pivotIndex], rows[pivotRow]] = [rows[pivotRow], rows[pivotIndex]];
+      [values[pivotIndex], values[pivotRow]] = [values[pivotRow], values[pivotIndex]];
+    }
+    const pivot = rows[pivotIndex][pivotIndex];
+    for (let rowIndex = pivotIndex + 1; rowIndex < size; rowIndex += 1) {
+      const factor = rows[rowIndex][pivotIndex] / pivot;
+      if (!Number.isFinite(factor)) {
+        return null;
+      }
+      rows[rowIndex][pivotIndex] = 0;
+      for (let columnIndex = pivotIndex + 1; columnIndex < size; columnIndex += 1) {
+        rows[rowIndex][columnIndex] -= factor * rows[pivotIndex][columnIndex];
+      }
+      values[rowIndex] -= factor * values[pivotIndex];
+    }
+  }
+
+  const solution = Array(size).fill(0);
+  for (let rowIndex = size - 1; rowIndex >= 0; rowIndex -= 1) {
+    let value = values[rowIndex];
+    for (let columnIndex = rowIndex + 1; columnIndex < size; columnIndex += 1) {
+      value -= rows[rowIndex][columnIndex] * solution[columnIndex];
+    }
+    const diagonal = rows[rowIndex][rowIndex];
+    if (!Number.isFinite(diagonal) || Math.abs(diagonal) <= epsilon) {
+      return null;
+    }
+    solution[rowIndex] = value / diagonal;
+    if (!Number.isFinite(solution[rowIndex])) {
+      return null;
+    }
+  }
+  return solution;
+}
+
+function buildPairInteractionCoupledLocalNewtonDefectCorrectionCandidate(
+  frames,
+  request,
+  epsilon,
+  defectCorrectionPositions,
+) {
+  const initialStates = request.initialStates ?? [];
+  if (initialStates.length < 2) {
+    return new Map();
+  }
+  const components = ["x", "y", "z"];
+  const nextPositions = new Map();
+  const pathFramesByKey = new Map();
+  const pathIndexByFrameIndex = new Map();
+  frames.forEach((frame, index) => {
+    const entries = pathFramesByKey.get(frame.pathKey) ?? [];
+    entries.push({ frame, index });
+    pathFramesByKey.set(frame.pathKey, entries);
+  });
+  pathFramesByKey.forEach((entries) => {
+    entries.sort((left, right) => left.frame.time - right.frame.time || left.frame.frameIndex - right.frame.frameIndex);
+    entries.forEach((entry, pathIndex) => {
+      pathIndexByFrameIndex.set(entry.index, pathIndex);
+    });
+  });
+
+  const groupsByFrameIndex = new Map();
+  frames.forEach((frame, index) => {
+    const group = groupsByFrameIndex.get(frame.frameIndex) ?? [];
+    group.push({ frame, index });
+    groupsByFrameIndex.set(frame.frameIndex, group);
+  });
+
+  groupsByFrameIndex.forEach((group) => {
+    if (group.length !== initialStates.length) {
+      return;
+    }
+    if (group.some(({ frame }) => hasPairConstraintAtTime(request, frame.pathKey, frame.time, epsilon))) {
+      return;
+    }
+    const states = statesAtPairInteractionFrameIndex(frames, group[0].frame.frameIndex, initialStates);
+    if (states.length !== initialStates.length) {
+      return;
+    }
+    const rows = states.map((state) => group.find(({ frame }) => frame.pathKey === state.pathKey));
+    if (rows.some((row) => !row)) {
+      return;
+    }
+    const dimension = rows.length * components.length;
+    const matrix = Array.from({ length: dimension }, () => Array(dimension).fill(0));
+    const rhs = Array(dimension).fill(0);
+    const stepMetadata = [];
+
+    for (let stateIndex = 0; stateIndex < rows.length; stateIndex += 1) {
+      const entry = rows[stateIndex];
+      const pathFrames = pathFramesByKey.get(entry.frame.pathKey) ?? [];
+      const pathIndex = pathIndexByFrameIndex.get(entry.index);
+      if (!Number.isInteger(pathIndex) || pathIndex <= 0 || pathIndex + 1 >= pathFrames.length) {
+        return;
+      }
+      const previous = pathFrames[pathIndex - 1].frame;
+      const current = entry.frame;
+      const next = pathFrames[pathIndex + 1].frame;
+      const residual = pairInteractionBoundaryRelaxationResidualVectorForFrames(
+        frames,
+        request,
+        previous,
+        current,
+        next,
+        epsilon,
+      );
+      if (!residual) {
+        return;
+      }
+      const leftDt = current.time - previous.time;
+      const rightDt = next.time - current.time;
+      const averageDt = 0.5 * (leftDt + rightDt);
+      if (leftDt <= epsilon || rightDt <= epsilon || averageDt <= epsilon) {
+        return;
+      }
+      const finiteDifferenceDerivative = -(1 / leftDt + 1 / rightDt) / averageDt;
+      for (let accelerationComponentIndex = 0; accelerationComponentIndex < components.length; accelerationComponentIndex += 1) {
+        const row = stateIndex * components.length + accelerationComponentIndex;
+        const accelerationComponent = components[accelerationComponentIndex];
+        rhs[row] = -residual[accelerationComponent];
+        for (let positionStateIndex = 0; positionStateIndex < rows.length; positionStateIndex += 1) {
+          for (let positionComponentIndex = 0; positionComponentIndex < components.length; positionComponentIndex += 1) {
+            const column = positionStateIndex * components.length + positionComponentIndex;
+            const positionComponent = components[positionComponentIndex];
+            const accelerationDerivative = pairInteractionLawPositionDerivativeComponent(
+              states,
+              request,
+              stateIndex,
+              positionStateIndex,
+              accelerationComponent,
+              positionComponent,
+            );
+            if (accelerationDerivative === null) {
+              return;
+            }
+            matrix[row][column] =
+              (stateIndex === positionStateIndex && accelerationComponentIndex === positionComponentIndex
+                ? finiteDifferenceDerivative
+                : 0) - accelerationDerivative;
+          }
+        }
+      }
+
+      const defectPosition = defectCorrectionPositions instanceof Map
+        ? defectCorrectionPositions.get(entry.index)
+        : null;
+      const defectStep = defectPosition ? vectorNorm(vectorSubtract(defectPosition, current.position)) : 0;
+      const leftSpacing = vectorNorm(vectorSubtract(current.position, previous.position));
+      const rightSpacing = vectorNorm(vectorSubtract(next.position, current.position));
+      if (!Number.isFinite(leftSpacing) || !Number.isFinite(rightSpacing)) {
+        return;
+      }
+      const spacingLimit = Math.max(epsilon, Math.min(leftSpacing, rightSpacing) * 0.5);
+      const defectLimit = Number.isFinite(defectStep) && defectStep > epsilon ? defectStep * 2 : spacingLimit;
+      stepMetadata.push({
+        index: entry.index,
+        current,
+        maxStep: Math.max(epsilon, Math.min(spacingLimit, defectLimit)),
+      });
+    }
+
+    const solution = solveDenseLinearSystem(
+      matrix,
+      rhs,
+      PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_RELAXATION_RESIDUAL_EPSILON,
+    );
+    if (!solution) {
+      return;
+    }
+    let stepScale = 1;
+    let hasNonzeroStep = false;
+    for (let stateIndex = 0; stateIndex < stepMetadata.length; stateIndex += 1) {
+      const offset = stateIndex * components.length;
+      const step = {
+        x: solution[offset],
+        y: solution[offset + 1],
+        z: solution[offset + 2],
+      };
+      const stepNorm = vectorNorm(step);
+      if (!Number.isFinite(stepNorm)) {
+        return;
+      }
+      if (stepNorm > epsilon) {
+        hasNonzeroStep = true;
+        stepScale = Math.min(stepScale, stepMetadata[stateIndex].maxStep / stepNorm);
+      }
+    }
+    if (!hasNonzeroStep || !Number.isFinite(stepScale) || stepScale <= 0) {
+      return;
+    }
+    for (let stateIndex = 0; stateIndex < stepMetadata.length; stateIndex += 1) {
+      const offset = stateIndex * components.length;
+      const metadata = stepMetadata[stateIndex];
+      const target = {
+        x: metadata.current.position.x + solution[offset] * stepScale,
+        y: metadata.current.position.y + solution[offset + 1] * stepScale,
+        z: metadata.current.position.z + solution[offset + 2] * stepScale,
+      };
+      if (
+        Number.isFinite(target.x) &&
+        Number.isFinite(target.y) &&
+        Number.isFinite(target.z) &&
+        vectorNorm(vectorSubtract(target, metadata.current.position)) > epsilon
+      ) {
+        nextPositions.set(metadata.index, target);
+      }
+    }
+  });
+
+  return nextPositions;
+}
+
+function buildPairInteractionLocalNewtonDefectCorrectionCandidate(
+  frames,
+  request,
+  pathKeys,
+  epsilon,
+  defectCorrectionPositions,
+) {
+  const nextPositions = new Map();
+  pathKeys.forEach((pathKey) => {
+    const pathFrames = frames
+      .map((frame, index) => ({ frame, index }))
+      .filter((entry) => entry.frame.pathKey === pathKey)
+      .sort((left, right) => left.frame.time - right.frame.time || left.frame.frameIndex - right.frame.frameIndex);
+    for (let pathIndex = 1; pathIndex + 1 < pathFrames.length; pathIndex += 1) {
+      const previous = pathFrames[pathIndex - 1].frame;
+      const current = pathFrames[pathIndex].frame;
+      const next = pathFrames[pathIndex + 1].frame;
+      if (hasPairConstraintAtTime(request, current.pathKey, current.time, epsilon)) {
+        continue;
+      }
+      const residual = pairInteractionBoundaryRelaxationResidualVectorForFrames(
+        frames,
+        request,
+        previous,
+        current,
+        next,
+        epsilon,
+      );
+      if (!residual) {
+        continue;
+      }
+      const leftDt = current.time - previous.time;
+      const rightDt = next.time - current.time;
+      const averageDt = 0.5 * (leftDt + rightDt);
+      if (leftDt <= epsilon || rightDt <= epsilon || averageDt <= epsilon) {
+        continue;
+      }
+      const states = statesAtPairInteractionFrameIndex(frames, current.frameIndex, request.initialStates);
+      if (states.length !== request.initialStates.length) {
+        continue;
+      }
+      const stateIndex = states.findIndex((state) => state.pathKey === current.pathKey);
+      if (stateIndex < 0) {
+        continue;
+      }
+      const finiteDifferenceDerivative = -(1 / leftDt + 1 / rightDt) / averageDt;
+      const step = { x: 0, y: 0, z: 0 };
+      for (const component of ["x", "y", "z"]) {
+        const accelerationDerivative = pairInteractionLawSelfDerivativeComponent(
+          states,
+          request,
+          stateIndex,
+          component,
+        );
+        if (accelerationDerivative === null) {
+          continue;
+        }
+        const residualDerivative = finiteDifferenceDerivative - accelerationDerivative;
+        if (
+          !Number.isFinite(residualDerivative) ||
+          Math.abs(residualDerivative) <= PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_RELAXATION_RESIDUAL_EPSILON
+        ) {
+          continue;
+        }
+        const componentStep = -residual[component] / residualDerivative;
+        if (Number.isFinite(componentStep)) {
+          step[component] = componentStep;
+        }
+      }
+      let stepNorm = vectorNorm(step);
+      if (!Number.isFinite(stepNorm) || stepNorm <= epsilon) {
+        continue;
+      }
+      const defectPosition = defectCorrectionPositions instanceof Map
+        ? defectCorrectionPositions.get(pathFrames[pathIndex].index)
+        : null;
+      const defectStep = defectPosition ? vectorNorm(vectorSubtract(defectPosition, current.position)) : 0;
+      const leftSpacing = vectorNorm(vectorSubtract(current.position, previous.position));
+      const rightSpacing = vectorNorm(vectorSubtract(next.position, current.position));
+      if (!Number.isFinite(leftSpacing) || !Number.isFinite(rightSpacing)) {
+        continue;
+      }
+      const spacingLimit = Math.max(epsilon, Math.min(leftSpacing, rightSpacing) * 0.5);
+      const defectLimit = Number.isFinite(defectStep) && defectStep > epsilon ? defectStep * 2 : spacingLimit;
+      const maxStep = Math.max(epsilon, Math.min(spacingLimit, defectLimit));
+      if (stepNorm > maxStep) {
+        const scale = maxStep / stepNorm;
+        step.x *= scale;
+        step.y *= scale;
+        step.z *= scale;
+        stepNorm = maxStep;
+      }
+      const nextPosition = {
+        x: current.position.x + step.x,
+        y: current.position.y + step.y,
+        z: current.position.z + step.z,
+      };
+      if (
+        stepNorm > epsilon &&
+        Number.isFinite(nextPosition.x) &&
+        Number.isFinite(nextPosition.y) &&
+        Number.isFinite(nextPosition.z)
+      ) {
+        nextPositions.set(pathFrames[pathIndex].index, nextPosition);
       }
     }
   });
@@ -6141,6 +6702,25 @@ function relaxPairInteractionConstrainedFrames(frames, request) {
       pathKeys,
       epsilon,
     );
+    const linearizedDefectCorrectionPositions = buildPairInteractionLinearizedDefectCorrectionCandidate(
+      frames,
+      request,
+      defectCorrectionPositions,
+    );
+    const localNewtonDefectCorrectionPositions = buildPairInteractionLocalNewtonDefectCorrectionCandidate(
+      frames,
+      request,
+      pathKeys,
+      epsilon,
+      defectCorrectionPositions,
+    );
+    const coupledLocalNewtonDefectCorrectionPositions =
+      buildPairInteractionCoupledLocalNewtonDefectCorrectionCandidate(
+        frames,
+        request,
+        epsilon,
+        defectCorrectionPositions,
+      );
     applyPairInteractionRelaxationPositions(frames, predictorPositions, 1);
     const predictedFrames = clonePairInteractionFramesForRelaxation(frames);
     restorePairInteractionFrameStates(frames, baselineFrameStates);
@@ -6205,6 +6785,12 @@ function relaxPairInteractionConstrainedFrames(frames, request) {
       createPairInteractionRelaxationCandidateEntry("first_corrector", correctedPositions),
       createPairInteractionRelaxationCandidateEntry("second_corrector", secondCorrectedPositions),
       createPairInteractionRelaxationCandidateEntry("defect_correction", defectCorrectionPositions),
+      createPairInteractionRelaxationCandidateEntry("linearized_defect_correction", linearizedDefectCorrectionPositions),
+      createPairInteractionRelaxationCandidateEntry("local_newton_defect_correction", localNewtonDefectCorrectionPositions),
+      createPairInteractionRelaxationCandidateEntry(
+        "coupled_local_newton_defect_correction",
+        coupledLocalNewtonDefectCorrectionPositions,
+      ),
       createPairInteractionRelaxationCandidateEntry("predicted_defect_correction", predictedDefectCorrectionPositions),
       createPairInteractionRelaxationCandidateEntry("predicted_blend", predictedBlendPositions),
       createPairInteractionRelaxationCandidateEntry("corrected_defect_correction", correctedDefectCorrectionPositions),
@@ -7514,6 +8100,10 @@ function vectorSubtract(left, right) {
     y: left.y - right.y,
     z: left.z - right.z,
   };
+}
+
+function vectorDot(left, right) {
+  return left.x * right.x + left.y * right.y + left.z * right.z;
 }
 
 function vectorNorm(vector) {

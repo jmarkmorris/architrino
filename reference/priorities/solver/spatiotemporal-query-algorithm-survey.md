@@ -235,9 +235,9 @@ Required promotion gates:
 | Gate | Required evidence | Current status |
 | --- | --- | --- |
 | Native stress gate | `node scripts/benchmark-solver.mjs` must pass the 2048-path, 256-slab, 5M-pair, 20k-candidate threshold gate with zero missing oracle candidates and zero packet replay deltas. | Met for native direct indexed benchmark. |
-| App-facing packet gate | A bridge fixture must run `planPathHistoryWorkPackets` plus `queryEmissionShellCandidatePacketsF64` with `indexOptions.strategy = "emission_shell_broad_phase_v0"` over the stress envelope. Packets must be submitted out of merge order, merge through `packet_merge`, and match the single app-facing `native_c_abi_indexed_v0` result on candidate keys, candidate count, packet result refs, missing candidates, extra candidates, and deterministic merge order. | Not met at stress scale. Existing bridge checks prove the packet API only on smoke-scale fixtures. |
-| Envelope budget gate | A promotion report must declare the supported envelope before the default changes: path count, time-slab count, brute-force pair ceiling, indexed-pair-test ceiling, candidate ceiling, packet count, memory or transfer ceiling, target runtime surface, target hardware context, and p95 wall-clock budget over repeated runs. | Not met. The current benchmark records elapsed time, but the gate is not yet envelope-specific or app-facing. |
-| Default-scope gate | The app bridge may select v0 by default only inside the declared passing envelope. Outside that envelope, callers must still opt in through `indexOptions.strategy = "emission_shell_broad_phase_v0"` or use the existing fallback route. | Not met; the strategy remains opt-in. |
+| App-facing packet gate | A bridge fixture must run `planPathHistoryWorkPackets` plus `queryEmissionShellCandidatePacketsF64` with `indexOptions.strategy = "emission_shell_broad_phase_v0"` over the stress envelope. Packets must be submitted out of merge order, merge through `packet_merge`, and match the single app-facing `native_c_abi_indexed_v0` result on candidate keys, candidate count, packet result refs, missing candidates, extra candidates, and deterministic merge order. | Met by `scripts/check-emission-shell-default-promotion-v1.mjs` over both declared envelopes. |
+| Envelope budget gate | A promotion report must declare the supported envelope before the default changes: path count, time-slab count, brute-force pair ceiling, indexed-pair-test ceiling, candidate ceiling, packet count, memory or transfer ceiling, target runtime surface, target hardware context, and p95 wall-clock budget over repeated runs. | Met by `.tmp/solver-default-promotion/emission_shell_broad_phase_v0_default_promotion_v1.json` on the local app-facing WASM bridge target. |
+| Default-scope gate | The app bridge may select v0 by default only inside the declared passing envelope. Outside that envelope, callers must still opt in through `indexOptions.strategy = "emission_shell_broad_phase_v0"` or use the existing fallback route. | Eligible for both declared envelopes; no app bridge default change has been made in this artifact. |
 
 Initial envelope budget decision:
 
@@ -250,6 +250,29 @@ The boundary is deliberately envelope-specific. A pass for
 `background_validation_large_v0` does not make v0 the interactive default, and a
 pass for `interactive_preview_small_v0` does not authorize larger all-to-all or
 validation workloads.
+
+Promotion artifact result: `scripts/check-emission-shell-default-promotion-v1.mjs`
+now implements `emission_shell_broad_phase_v0_default_promotion_v1`. The fixture
+uses the app bridge path-history stream API, plans work packets with
+`planPathHistoryWorkPackets`, submits packets out of merge order through
+`queryEmissionShellCandidatePacketsF64`, requests
+`indexOptions.strategy = "emission_shell_broad_phase_v0"`, and compares the
+merged `packet_merge` result against the app-facing `native_c_abi_indexed_v0`
+direct query. The solver WASM target is built with heap growth enabled so the
+stress envelope can complete through the same C ABI path.
+
+Measured local report, 2026-06-20:
+
+| Envelope | Result | p95 app packet query plus merge | Replay and candidate evidence |
+| --- | --- | --- | --- |
+| `interactive_preview_small_v0` | Pass | 19.650 ms against a 100 ms budget | 256 source rows, 256 receiver rows, 128 time slabs, 65,536 brute-force replay pairs, 9,206 indexed pair tests, 186 candidates, 4 packets, no truncation, packet/direct equality, ordered packet result refs. |
+| `background_validation_large_v0` | Pass | 623.063 ms against a 5 s budget | 2048 max source rows, 2048 max receiver rows, 256 max time slabs, 5,312,768 brute-force replay pairs, 361,678 indexed pair tests, 24,625 candidates, 20 packets, no truncation, packet/direct equality, ordered packet result refs. |
+
+Decision: `emission_shell_broad_phase_v0` is eligible to become the preferred
+default inside both declared envelopes. The current artifact deliberately leaves
+`defaultStrategyChanged` false; a later app-bridge default-selector patch should
+apply the strategy only when the request is inside one of those passing
+envelopes and should keep explicit opt-in or fallback behavior outside them.
 
 ## Decision
 

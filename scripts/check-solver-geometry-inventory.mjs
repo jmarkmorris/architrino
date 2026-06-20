@@ -222,13 +222,29 @@ const migrationTargets = [
         ],
       },
       {
+        file: "src/solver/app/AnimatorReceiverPathDescriptors.mjs",
+        symbols: [
+          "ANIMATOR_RECEIVER_PATH_DESCRIPTOR_PACKAGE_SCHEMA",
+          "ANIMATOR_RECEIVER_PATH_DESCRIPTOR_LAYOUT",
+          "createAnimatorReceiverPathDescriptorPackage",
+        ],
+      },
+      {
         file: "tests/animator-delayed-hit-runtime.test.js",
         symbols: [
           "animator delayed-hit runtime consumes solver-owned path-history hit rows",
         ],
       },
+      {
+        file: "tests/animator-receiver-path-descriptors.test.js",
+        symbols: [
+          "animator receiver path descriptors derive path segments from source history",
+          "animator delayed-hit rows consume solver-owned receiver descriptors",
+        ],
+      },
     ],
     solverOwnership: [
+      "receiver path descriptor construction",
       "field-shell/path intersection solving",
       "delayed-hit row output",
       "Jacobian and branch-weight row fields",
@@ -253,10 +269,12 @@ const migrationTargets = [
         symbols: [
           "ANIMATOR_FIELD_SHELL_EVENT_STREAM_PACKAGE_SCHEMA",
           "ANIMATOR_FIELD_SHELL_CADENCE_DESCRIPTOR_SCHEMA",
+          "ANIMATOR_FIELD_SHELL_EMITTER_SOURCE_HISTORY_SCHEMA",
           "ANIMATOR_FIELD_SHELL_EVENT_ROW_LAYOUT",
           "ANIMATOR_FIELD_SHELL_EVENT_NATIVE_FILE_MANIFEST_SCHEMA",
           "ANIMATOR_FIELD_SHELL_EVENT_ROW_SIZE_BYTES",
           "createAnimatorFieldShellCadenceTimes",
+          "createAnimatorFieldShellEmitterSourceHistory",
           "createAnimatorFieldShellEventNativeFileStoragePolicy",
           "createAnimatorFieldShellEventStreamPackage",
           "field_shell_events.v1",
@@ -265,6 +283,7 @@ const migrationTargets = [
       {
         file: "tests/animator-field-shell-event-stream.test.js",
         symbols: [
+          "animator field-shell event package derives emitter source history",
           "animator field-shell event package feeds delayed-hit stream descriptors",
           "animator field-shell event package writes native-file stream storage",
         ],
@@ -272,6 +291,7 @@ const migrationTargets = [
     ],
     solverOwnership: [
       "field-shell cadence generation",
+      "field-shell emitter source-history sampling",
       "field-shell event row packaging",
       "field-shell event stream manifest metadata",
       "delayed-hit emission descriptor handoff",

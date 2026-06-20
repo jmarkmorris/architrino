@@ -206,6 +206,9 @@ import {
   createAnimatorFieldShellEventStreamPackage,
 } from "../../solver/app/AnimatorFieldShellEventStream.mjs";
 import {
+  createAnimatorReceiverPathDescriptorPackage,
+} from "../../solver/app/AnimatorReceiverPathDescriptors.mjs";
+import {
   createAnimatorFadeableTrailSamples,
   createAnimatorTimedTrailSamples,
   getAnimatorTrailMaterialOpacity,
@@ -2325,199 +2328,6 @@ function resolveAnimatorAssemblyCenterAtMotionTime(
   return center;
 }
 
-function createAnimatorArchitrinoEmitterStateSamples(
-  documentData = animatorCurrentDocument,
-  simulationDataset = null,
-  sampleTimes = []
-) {
-  if (!simulationDataset) {
-    return [];
-  }
-  const assemblies = Array.isArray(documentData?.assemblies) ? documentData.assemblies : [];
-  const paths = Array.isArray(documentData?.paths) ? documentData.paths : [];
-  const pathById = new Map(paths.map((path) => [path.id, path]));
-  const assemblyById = new Map(assemblies.map((assembly) => [assembly.id, assembly]));
-  const samples = [];
-
-  sampleTimes.forEach((sampleTime, sampleIndex) => {
-    const { motionTime, normalizedSceneT } = getAnimatorMotionSamplingState(
-      documentData,
-      sampleTime
-    );
-    const context = {
-      assemblies,
-      assemblyById,
-      paths,
-      pathById,
-      simulationDataset,
-      motionTime,
-      normalizedSceneT,
-      centers: new Map(),
-    };
-    assemblies.forEach((assembly, assemblyIndex) => {
-      const binaries = Array.isArray(assembly?.core?.binaries) ? assembly.core.binaries : [];
-      if (!binaries.length) {
-        return;
-      }
-      const assemblyCenter = resolveAnimatorAssemblyCenterAtMotionTime(
-        assembly,
-        assemblyIndex,
-        context
-      );
-      binaries.forEach((binary, binaryIndex) => {
-        if (binary?.motion?.type !== "orbit.circular") {
-          return;
-        }
-        [
-          { chargeType: "positrino", sign: 1 },
-          { chargeType: "electrino", sign: -1 },
-        ].forEach(({ chargeType, sign }) => {
-          const memberId = findAnimatorCoreMemberId(assembly.members, chargeType, binaryIndex);
-          if (!memberId) {
-            return;
-          }
-          const position = assemblyCenter
-            .clone()
-            .add(getAnimatorOrbitOffsetAtTime(binary.motion, chargeType, motionTime));
-          samples.push({
-            id: `${assembly.id}_${memberId}`,
-            emitterId: `${assembly.id}_${memberId}`,
-            receiverId: `${assembly.id}_${memberId}`,
-            time: sampleTime,
-            sampleIndex,
-            position: [position.x, position.y, position.z],
-            sign,
-            fieldSpeed: getAnimatorFieldShellSpeed(simulationDataset),
-            metadata: {
-              motionSource: "solver-derived",
-              ownerAssemblyId: assembly.id,
-              memberId,
-              chargeType,
-              binaryId: binary?.id ?? "",
-              emitterScope: "core-architrino",
-              sampleIntervalSeconds: animatorArchitrinoFieldShellEmissionIntervalSeconds,
-            },
-          });
-        });
-      });
-    });
-  });
-
-  return samples;
-}
-
-function createAnimatorArchitrinoReceiverPathDescriptors(
-  documentData = animatorCurrentDocument,
-  simulationDataset = null,
-  sampleTimes = []
-) {
-  if (!simulationDataset) {
-    return [];
-  }
-  const assemblies = Array.isArray(documentData?.assemblies) ? documentData.assemblies : [];
-  const paths = Array.isArray(documentData?.paths) ? documentData.paths : [];
-  const pathById = new Map(paths.map((path) => [path.id, path]));
-  const assemblyById = new Map(assemblies.map((assembly) => [assembly.id, assembly]));
-  const streamId = getAnimatorArchitrinoPathHistoryStreamId(simulationDataset);
-  const descriptorByReceiverId = new Map();
-
-  sampleTimes.forEach((sampleTime) => {
-    const { motionTime, normalizedSceneT } = getAnimatorMotionSamplingState(
-      documentData,
-      sampleTime
-    );
-    const context = {
-      assemblies,
-      assemblyById,
-      paths,
-      pathById,
-      simulationDataset,
-      motionTime,
-      normalizedSceneT,
-      centers: new Map(),
-    };
-    assemblies.forEach((assembly, assemblyIndex) => {
-      const binaries = Array.isArray(assembly?.core?.binaries) ? assembly.core.binaries : [];
-      if (!binaries.length) {
-        return;
-      }
-      const assemblyCenter = resolveAnimatorAssemblyCenterAtMotionTime(
-        assembly,
-        assemblyIndex,
-        context
-      );
-      binaries.forEach((binary, binaryIndex) => {
-        if (binary?.motion?.type !== "orbit.circular") {
-          return;
-        }
-        [
-          { chargeType: "positrino", sign: 1 },
-          { chargeType: "electrino", sign: -1 },
-        ].forEach(({ chargeType, sign }) => {
-          const memberId = findAnimatorCoreMemberId(assembly.members, chargeType, binaryIndex);
-          if (!memberId) {
-            return;
-          }
-          const receiverId = `${assembly.id}_${memberId}`;
-          const position = assemblyCenter
-            .clone()
-            .add(getAnimatorOrbitOffsetAtTime(binary.motion, chargeType, motionTime));
-          if (!descriptorByReceiverId.has(receiverId)) {
-            descriptorByReceiverId.set(receiverId, {
-              id: receiverId,
-              pathId: receiverId,
-              receiverId,
-              pathKey: descriptorByReceiverId.size + 1,
-              streamId,
-              rowLayout: "path_segment.v1",
-              source: "streamRef",
-              segments: [],
-              previous: null,
-              metadata: {
-                motionSource: "solver-derived",
-                ownerAssemblyId: assembly.id,
-                memberId,
-                chargeType,
-                binaryId: binary?.id ?? "",
-                sign,
-                emitterScope: "core-architrino",
-                streamSource: "animator-architrino-path-history",
-              },
-            });
-          }
-          const descriptor = descriptorByReceiverId.get(receiverId);
-          const current = {
-            time: sampleTime,
-            position: { x: position.x, y: position.y, z: position.z },
-          };
-          if (descriptor.previous && current.time > descriptor.previous.time) {
-            const dt = current.time - descriptor.previous.time;
-            descriptor.segments.push({
-              pathKey: descriptor.pathKey,
-              segmentIndex: descriptor.segments.length,
-              startTime: descriptor.previous.time,
-              endTime: current.time,
-              start: { ...descriptor.previous.position },
-              velocity: {
-                x: (current.position.x - descriptor.previous.position.x) / dt,
-                y: (current.position.y - descriptor.previous.position.y) / dt,
-                z: (current.position.z - descriptor.previous.position.z) / dt,
-              },
-              errorBound: 0,
-              stateFlags: 0,
-            });
-          }
-          descriptor.previous = current;
-        });
-      });
-    });
-  });
-
-  return [...descriptorByReceiverId.values()]
-    .filter((descriptor) => descriptor.segments.length > 0)
-    .map(({ previous, ...descriptor }) => descriptor);
-}
-
 function createAnimatorArchitrinoFieldShellEventPackage(
   documentData = animatorCurrentDocument,
   simulationDataset = null
@@ -2531,11 +2341,6 @@ function createAnimatorArchitrinoFieldShellEventPackage(
     intervalSeconds: animatorArchitrinoFieldShellEmissionIntervalSeconds,
   });
   const fieldSpeed = getAnimatorFieldShellSpeed(simulationDataset);
-  const samples = createAnimatorArchitrinoEmitterStateSamples(
-    documentData,
-    simulationDataset,
-    cadenceTimes
-  );
 
   return createAnimatorFieldShellEventStreamPackage({
     streamId: getAnimatorArchitrinoFieldShellEventStreamId(simulationDataset),
@@ -2546,7 +2351,13 @@ function createAnimatorArchitrinoFieldShellEventPackage(
     },
     fieldSpeed,
     lifetimeSeconds: 1.6,
-    emitterSamples: samples,
+    emitterSourceHistory: {
+      documentData,
+      simulationDataset,
+      sampleTimes: cadenceTimes,
+      fieldSpeed,
+      sampleIntervalSeconds: animatorArchitrinoFieldShellEmissionIntervalSeconds,
+    },
     metadata: {
       precisionPath: simulationDataset?.simulation?.solver?.acceptedPrecisionPath ??
         simulationDataset?.simulation?.solver?.precisionPath ??
@@ -2578,11 +2389,15 @@ function createAnimatorArchitrinoPathHistoryDelayedHits(
         timeWindow: getAnimatorSceneTimeWindow(documentData),
         intervalSeconds: animatorArchitrinoFieldShellEmissionIntervalSeconds,
       });
-  const receiverPathDescriptors = createAnimatorArchitrinoReceiverPathDescriptors(
+  const receiverPathDescriptorPackage = createAnimatorReceiverPathDescriptorPackage({
+    streamId: getAnimatorArchitrinoPathHistoryStreamId(simulationDataset),
+    datasetId: String(simulationDataset?.id ?? "animator").trim() || "animator",
     documentData,
     simulationDataset,
-    sampleTimes
-  );
+    sampleTimes,
+    fieldSpeed: getAnimatorFieldShellSpeed(simulationDataset),
+    sampleIntervalSeconds: animatorArchitrinoFieldShellEmissionIntervalSeconds,
+  });
   const rowResponse = createAnimatorDelayedHitRowsFromStreamDescriptors(
     {
       schema: "animator-delayed-hit-stream-descriptors.v1",
@@ -2597,7 +2412,7 @@ function createAnimatorArchitrinoPathHistoryDelayedHits(
             fieldSpeed: shell.fieldSpeed,
             metadata: shell.metadata ?? {},
           })),
-      receiverPathDescriptors,
+      receiverPathDescriptors: receiverPathDescriptorPackage.receiverPathDescriptors,
     },
     {
       allowSelfHits: false,
@@ -2607,6 +2422,9 @@ function createAnimatorArchitrinoPathHistoryDelayedHits(
         status: "path-history",
         fieldShellEventStreamId: fieldShellEventPackage?.streamId ?? "",
         fieldShellEventRowLayout: fieldShellEventPackage?.rowLayout ?? "",
+        receiverPathDescriptorPackageSchema: receiverPathDescriptorPackage.schema,
+        receiverPathDescriptorCount: receiverPathDescriptorPackage.descriptorCount,
+        receiverSegmentCount: receiverPathDescriptorPackage.segmentCount,
       },
     }
   );

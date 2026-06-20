@@ -17,6 +17,7 @@ Implementation surfaces:
 
 - [AnimatorSimulationWorkerCoreRuntime.js](../../../src/apps/animator/AnimatorSimulationWorkerCoreRuntime.js)
 - [AnimatorSolverBridgeWorkerRuntime.js](../../../src/apps/animator/AnimatorSolverBridgeWorkerRuntime.js)
+- [AnimatorReceiverPathDescriptors.mjs](../../../src/solver/app/AnimatorReceiverPathDescriptors.mjs)
 - [AnimatorDelayedHitRows.mjs](../../../src/solver/app/AnimatorDelayedHitRows.mjs)
 - [AnimatorSimulationAuthoringRuntime.js](../../../src/apps/animator/AnimatorSimulationAuthoringRuntime.js)
 - [AnimatorSimulationWorker.js](../../../src/apps/animator/AnimatorSimulationWorker.js)
@@ -24,6 +25,7 @@ Implementation surfaces:
 - [check-solver-baseline-sandbox.mjs](../../../scripts/check-solver-baseline-sandbox.mjs)
 - [animator-simulation-worker-runtime.test.js](../../../tests/animator-simulation-worker-runtime.test.js)
 - [animator-simulation-authoring-runtime.test.js](../../../tests/animator-simulation-authoring-runtime.test.js)
+- [animator-receiver-path-descriptors.test.js](../../../tests/animator-receiver-path-descriptors.test.js)
 
 ## Adapter Scope
 
@@ -34,16 +36,22 @@ playback surface.
 This closeout covers motion simulation frames, path-history stream identity,
 solver metadata, frame-buffer packaging, worker-owned bridge clients, worker
 bridge clients, authoring payload configuration, the descriptor path for
-delayed-hit shell/path intersections, and the solver app package for field-shell
-event cadence. It does not claim that emitter source histories are fully
-core-bridge-owned or that `field_shell_events.v1` has a native C++ producer.
+delayed-hit shell/path intersections, solver-owned receiver path descriptor
+construction, and the solver app package for field-shell emitter source history
+and event cadence. It does not claim that
+`field_shell_events.v1` has a native C++ producer.
 Animator delayed-hit shell/path intersections now route through solver-owned
 `animator-delayed-hit-stream-descriptors.v1` requests with `path_segment.v1`
-receiver descriptors and `delayed_hit_events.v1` row output. Field-shell
+receiver descriptors from
+[AnimatorReceiverPathDescriptors.mjs](../../../src/solver/app/AnimatorReceiverPathDescriptors.mjs)
+and `delayed_hit_events.v1` row output. Field-shell
 emission cadence now routes through `animator-field-shell-event-stream-package.v1`
 with bridge-catalogued `field_shell_events.v1` row metadata and durable
 native-file stream storage before delayed-hit descriptors consume those emission
-events.
+events. Field-shell emitter source-history sampling is now built inside
+[AnimatorFieldShellEventStream.mjs](../../../src/solver/app/AnimatorFieldShellEventStream.mjs)
+from document/dataset state instead of being assembled as app-local emitter
+sample rows.
 
 ## Current Bridge Path
 
@@ -79,17 +87,23 @@ Current validation evidence:
   verifies the solver-owned Animator delayed-hit row helper against the legacy
   shell/path fixture and verifies the app delayed-hit runtime only maps solver
   rows into display records.
+- [animator-receiver-path-descriptors.test.js](../../../tests/animator-receiver-path-descriptors.test.js)
+  verifies solver-owned receiver `path_segment.v1` descriptor construction from
+  document/dataset/cadence state and verifies those descriptors feed the
+  solver-owned delayed-hit row helper.
 - [animator-field-shell-event-stream.test.js](../../../tests/animator-field-shell-event-stream.test.js)
-  verifies solver-owned field-shell cadence rows, stream-package metadata,
-  render shell rows, and delayed-hit emission descriptor handoff.
+  verifies solver-owned field-shell emitter source-history sampling, cadence
+  rows, stream-package metadata, durable native-file `field_shell_events.v1`
+  chunks/index/manifests, render shell rows, and delayed-hit emission descriptor
+  handoff.
 
 ## Remaining Boundaries
 
 Remaining Animator work is outside this adapter closeout:
 
-- promote emitter position history into the core bridge, and add a native C++
-  producer if `field_shell_events.v1` rows need validation-grade diagnostic
-  authority beyond the durable JS-side stream package;
+- add a native C++ producer if `field_shell_events.v1` rows need
+  validation-grade diagnostic authority beyond the durable JS-side stream
+  package;
 - keep playback interpolation, camera bounds, opacity, labels, and authoring
   preview transforms app-side;
 - add adapter cases for any future non-linear or multi-path authoring mode before
@@ -99,6 +113,7 @@ Remaining Animator work is outside this adapter closeout:
 
 `animator_adapter` is complete for central solver motion simulation runs and
 dataset playback preservation. Animator simulation worker requests route through
-the central solver bridge, the resulting solver frames hydrate into the existing
-dataset and frame-buffer surfaces, and the baseline/migration parity harness
-covers the required Animator bridge cases.
+the central solver bridge, receiver path descriptors for delayed-hit
+visualization are solver-owned, the resulting solver frames hydrate into the
+existing dataset and frame-buffer surfaces, and the baseline/migration parity
+harness covers the required Animator bridge cases.

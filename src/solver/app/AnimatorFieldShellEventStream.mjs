@@ -133,6 +133,536 @@ function normalizeSample(sample = {}, index = 0, fallbackFieldSpeed = DEFAULT_FI
   };
 }
 
+function getMotionEntries(source = {}) {
+  return Array.isArray(source?.motion)
+    ? source.motion
+    : source?.motion
+      ? [source.motion]
+      : [];
+}
+
+function getSceneTimeWindow(documentData = {}) {
+  const sceneTime = documentData?.scene?.time ?? {};
+  const start = normalizeNumber(sceneTime.start, 0);
+  const end = normalizeNumber(sceneTime.end, Math.max(24, start + 1));
+  return {
+    start,
+    end: end > start ? end : start + 1,
+  };
+}
+
+function clamp(value, min, max) {
+  return Math.min(max, Math.max(min, value));
+}
+
+function getPlaybackRateAtTime(documentData, timeSeconds) {
+  const timeWarps = Array.isArray(documentData?.scene?.timeWarps) ? documentData.scene.timeWarps : [];
+  const activeWarp = timeWarps.find((warp) => timeSeconds >= warp.start && timeSeconds < warp.end);
+  return normalizeNumber(activeWarp?.rate, 1) || 1;
+}
+
+function getMotionRateAtTime(documentData, timeSeconds) {
+  const pauses = Array.isArray(documentData?.scene?.pauses) ? documentData.scene.pauses : [];
+  const activePause = pauses.find((pause) => {
+    const start = normalizeNumber(pause?.start, 0);
+    const duration = Math.max(0, normalizeNumber(pause?.duration, 0) || 0);
+    return timeSeconds >= start && timeSeconds < start + duration;
+  });
+  return activePause ? 0 : getPlaybackRateAtTime(documentData, timeSeconds);
+}
+
+function getIntegratedMotionTime(documentData, timeSeconds) {
+  const timeWindow = getSceneTimeWindow(documentData);
+  const targetTime = clamp(normalizeNumber(timeSeconds, 0), timeWindow.start, timeWindow.end);
+  if (targetTime <= timeWindow.start) {
+    return 0;
+  }
+  const pauses = Array.isArray(documentData?.scene?.pauses) ? documentData.scene.pauses : [];
+  const warps = Array.isArray(documentData?.scene?.timeWarps) ? documentData.scene.timeWarps : [];
+  const boundaries = new Set([timeWindow.start, targetTime]);
+  pauses.forEach((pause) => {
+    const start = clamp(normalizeNumber(pause?.start, 0), timeWindow.start, targetTime);
+    const end = clamp(start + Math.max(0, normalizeNumber(pause?.duration, 0) || 0), timeWindow.start, targetTime);
+    boundaries.add(start);
+    boundaries.add(end);
+  });
+  warps.forEach((warp) => {
+    boundaries.add(clamp(normalizeNumber(warp?.start, 0), timeWindow.start, targetTime));
+    boundaries.add(clamp(normalizeNumber(warp?.end, 0), timeWindow.start, targetTime));
+  });
+  const sortedBoundaries = [...boundaries].sort((left, right) => left - right);
+  let total = 0;
+  for (let index = 0; index < sortedBoundaries.length - 1; index += 1) {
+    const start = sortedBoundaries[index];
+    const end = sortedBoundaries[index + 1];
+    if (!(end > start)) {
+      continue;
+    }
+    total += (end - start) * getMotionRateAtTime(documentData, start + (end - start) * 0.5);
+  }
+  return total;
+}
+
+function getTotalMotionDuration(documentData) {
+  const timeWindow = getSceneTimeWindow(documentData);
+  return Math.max(0.0001, getIntegratedMotionTime(documentData, timeWindow.end));
+}
+
+function getMotionSamplingState(documentData = {}, playbackTime = 0) {
+  const motionTime = getIntegratedMotionTime(documentData, playbackTime);
+  const totalMotionDuration = getTotalMotionDuration(documentData);
+  return {
+    motionTime,
+    normalizedSceneT: totalMotionDuration > 0 ? clamp(motionTime / totalMotionDuration, 0, 1) : 0,
+  };
+}
+
+function vectorFromValue(value = {}) {
+  if (Array.isArray(value)) {
+    return {
+      x: normalizeNumber(value[0], 0),
+      y: normalizeNumber(value[1], 0),
+      z: normalizeNumber(value[2], 0),
+    };
+  }
+  return normalizeVector(value);
+}
+
+function vectorAdd(left, right) {
+  return {
+    x: left.x + right.x,
+    y: left.y + right.y,
+    z: left.z + right.z,
+  };
+}
+
+function vectorScale(vector, scale) {
+  return {
+    x: vector.x * scale,
+    y: vector.y * scale,
+    z: vector.z * scale,
+  };
+}
+
+function vectorCross(left, right) {
+  return {
+    x: left.y * right.z - left.z * right.y,
+    y: left.z * right.x - left.x * right.z,
+    z: left.x * right.y - left.y * right.x,
+  };
+}
+
+function vectorLengthSq(vector) {
+  return vector.x * vector.x + vector.y * vector.y + vector.z * vector.z;
+}
+
+function vectorNormalize(vector, fallback = { x: 0, y: 1, z: 0 }) {
+  const length = Math.sqrt(vectorLengthSq(vector));
+  return length > 0.0000001 ? vectorScale(vector, 1 / length) : { ...fallback };
+}
+
+function vectorLerp(left, right, t) {
+  return {
+    x: left.x + (right.x - left.x) * t,
+    y: left.y + (right.y - left.y) * t,
+    z: left.z + (right.z - left.z) * t,
+  };
+}
+
+function vectorToTriplet(vector) {
+  return [vector.x, vector.y, vector.z];
+}
+
+function catmullRomPoint(p0, p1, p2, p3, t, tension = 0.5) {
+  const t2 = t * t;
+  const t3 = t2 * t;
+  const v0 = vectorScale({ x: p2.x - p0.x, y: p2.y - p0.y, z: p2.z - p0.z }, tension);
+  const v1 = vectorScale({ x: p3.x - p1.x, y: p3.y - p1.y, z: p3.z - p1.z }, tension);
+  return {
+    x: (2 * p1.x - 2 * p2.x + v0.x + v1.x) * t3 +
+      (-3 * p1.x + 3 * p2.x - 2 * v0.x - v1.x) * t2 +
+      v0.x * t +
+      p1.x,
+    y: (2 * p1.y - 2 * p2.y + v0.y + v1.y) * t3 +
+      (-3 * p1.y + 3 * p2.y - 2 * v0.y - v1.y) * t2 +
+      v0.y * t +
+      p1.y,
+    z: (2 * p1.z - 2 * p2.z + v0.z + v1.z) * t3 +
+      (-3 * p1.z + 3 * p2.z - 2 * v0.z - v1.z) * t2 +
+      v0.z * t +
+      p1.z,
+  };
+}
+
+function samplePointAt(points, normalizedT, options = {}) {
+  if (!Array.isArray(points) || !points.length) {
+    return { x: 0, y: 0, z: 0 };
+  }
+  const source = points.map(vectorFromValue);
+  if (source.length === 1) {
+    return source[0];
+  }
+  const clamped = clamp(normalizeNumber(normalizedT, 0), 0, 1);
+  const closed = !!options.closed;
+  if ((options.interpolate ?? "spline") !== "linear" && source.length > 2) {
+    const scaled = clamped * (closed ? source.length : source.length - 1);
+    const baseIndex = Math.min(source.length - 1, Math.floor(scaled));
+    const localT = scaled - baseIndex;
+    const indexFor = (index) => {
+      if (closed) {
+        return (index + source.length) % source.length;
+      }
+      return clamp(index, 0, source.length - 1);
+    };
+    return catmullRomPoint(
+      source[indexFor(baseIndex - 1)],
+      source[indexFor(baseIndex)],
+      source[indexFor(baseIndex + 1)],
+      source[indexFor(baseIndex + 2)],
+      baseIndex >= source.length - 1 && !closed ? 1 : localT
+    );
+  }
+  const linearSource = closed ? [...source, source[0]] : source;
+  const scaled = clamped * (linearSource.length - 1);
+  const baseIndex = Math.floor(scaled);
+  const nextIndex = Math.min(linearSource.length - 1, baseIndex + 1);
+  return vectorLerp(linearSource[baseIndex], linearSource[nextIndex], scaled - baseIndex);
+}
+
+function computeAssemblyBasePosition(assembly, index, count, pathById) {
+  const transformPosition = assembly?.transform?.position;
+  const hasParent = !!assembly?.parentId;
+  const hasExplicitTransformPosition =
+    Array.isArray(transformPosition) &&
+    transformPosition.length >= 3 &&
+    (transformPosition.some((value) => normalizeNumber(value, 0) !== 0) || hasParent);
+  if (hasExplicitTransformPosition) {
+    return vectorFromValue(transformPosition);
+  }
+  const transportMotion = getMotionEntries(assembly).find((motion) => motion?.type === "path.transport");
+  if (transportMotion?.pathId && pathById.has(transportMotion.pathId)) {
+    const path = pathById.get(transportMotion.pathId);
+    const points = Array.isArray(path?.payload?.points) ? path.payload.points : [];
+    if (points.length) {
+      return vectorFromValue(points[0]);
+    }
+  }
+  if (count <= 1) {
+    return { x: 0, y: 0, z: 0 };
+  }
+  const angle = (index / count) * Math.PI * 2;
+  const radius = 1.6 + count * 0.08;
+  return { x: Math.cos(angle) * radius, y: 0, z: Math.sin(angle) * radius };
+}
+
+function normalizeMotionSourceKind(value) {
+  const source = normalizeString(value, "").toLowerCase();
+  if (source === "solver-derived" || source === "simulation" || source === "simulation.frames") {
+    return "solver-derived";
+  }
+  if (source === "authored" || source === "manual" || source === "path.transport") {
+    return "authored";
+  }
+  if (source === "mixed") {
+    return "mixed";
+  }
+  return "";
+}
+
+function getPathOwnerAssemblyId(path) {
+  return path?.metadata?.ownerAssemblyId ?? path?.ownerAssemblyId ?? null;
+}
+
+function getPathMotionSourceKind(path = {}) {
+  const explicitSource = normalizeMotionSourceKind(path?.metadata?.motionSource);
+  if (explicitSource) {
+    return explicitSource;
+  }
+  const kind = normalizeString(path?.kind, "").toLowerCase();
+  if (kind.startsWith("simulation.") || kind.includes("solver")) {
+    return "solver-derived";
+  }
+  const points = path?.payload?.points ?? path?.points;
+  return Array.isArray(points) && points.length ? "authored" : "static";
+}
+
+function getAssemblyMotionSourceKind(assembly = {}) {
+  const explicitSource = normalizeMotionSourceKind(assembly?.metadata?.motionSource);
+  const motions = getMotionEntries(assembly);
+  const hasSimulationFrameMotion = motions.some((motion) =>
+    normalizeString(motion?.type, "").toLowerCase().startsWith("simulation.")
+  );
+  const hasAuthoredTransportMotion = motions.some((motion) => motion?.type === "path.transport");
+  if (explicitSource === "mixed" || (hasSimulationFrameMotion && hasAuthoredTransportMotion)) {
+    return "mixed";
+  }
+  if (explicitSource === "solver-derived" || hasSimulationFrameMotion) {
+    return "solver-derived";
+  }
+  if (explicitSource === "authored" || hasAuthoredTransportMotion) {
+    return "authored";
+  }
+  return "static";
+}
+
+function getDocumentAssemblyById(assemblies, assemblyId) {
+  return assemblies.find((assembly) => assembly?.id === assemblyId) ?? null;
+}
+
+function getDocumentPathSourceKind(path, assemblies) {
+  if (!path) {
+    return "static";
+  }
+  const ownerAssembly = getDocumentAssemblyById(assemblies, getPathOwnerAssemblyId(path));
+  const pathSourceKind = getPathMotionSourceKind(path);
+  const assemblySourceKind = getAssemblyMotionSourceKind(ownerAssembly);
+  if (pathSourceKind !== "static") {
+    return pathSourceKind;
+  }
+  if (assemblySourceKind === "solver-derived") {
+    return "solver-derived";
+  }
+  if (assemblySourceKind === "authored") {
+    return "authored";
+  }
+  return pathSourceKind;
+}
+
+function getSimulationFrameMotion(assembly = {}) {
+  return getMotionEntries(assembly).find((motion) => motion?.type === "simulation.frame") ?? null;
+}
+
+function getSimulationParticleId(source = {}, assembly = {}) {
+  return normalizeString(
+    source?.simulationParticleId ??
+      source?.particleId ??
+      source?.source?.simulationParticleId ??
+      source?.source?.particleId ??
+      source?.metadata?.simulationParticleId ??
+      assembly?.metadata?.simulationParticleId,
+    ""
+  );
+}
+
+function getSimulationTimeForMotion(timeSeconds, motion = {}) {
+  return normalizeNumber(timeSeconds, 0) * (normalizeNumber(motion?.timeScale, 1) || 1) +
+    normalizeNumber(motion?.timeOffset, 0);
+}
+
+function getSortedFrames(dataset) {
+  return Array.isArray(dataset?.frames)
+    ? [...dataset.frames]
+        .filter((frame) => Number.isFinite(Number(frame?.t)))
+        .sort((left, right) => Number(left.t) - Number(right.t))
+    : [];
+}
+
+function getFrameParticle(frame, particleId) {
+  const normalizedParticleId = normalizeString(particleId, "");
+  if (!normalizedParticleId || !Array.isArray(frame?.particles)) {
+    return null;
+  }
+  return frame.particles.find((particle) => particle?.id === normalizedParticleId) ?? null;
+}
+
+function getBoundingFrames(frames, timeSeconds) {
+  if (!frames.length) {
+    return null;
+  }
+  const time = normalizeNumber(timeSeconds, 0);
+  if (time <= Number(frames[0].t)) {
+    return { from: frames[0], to: frames[0], alpha: 0 };
+  }
+  const lastFrame = frames[frames.length - 1];
+  if (time >= Number(lastFrame.t)) {
+    return { from: lastFrame, to: lastFrame, alpha: 0 };
+  }
+  for (let index = 0; index < frames.length - 1; index += 1) {
+    const from = frames[index];
+    const to = frames[index + 1];
+    const start = Number(from.t);
+    const end = Number(to.t);
+    if (time >= start && time <= end) {
+      return { from, to, alpha: (time - start) / Math.max(0.000001, end - start) };
+    }
+  }
+  return { from: lastFrame, to: lastFrame, alpha: 0 };
+}
+
+function sampleSimulationParticleAtTime(dataset, particleId, timeSeconds) {
+  const bounds = getBoundingFrames(getSortedFrames(dataset), timeSeconds);
+  if (!bounds) {
+    return null;
+  }
+  const fromParticle = getFrameParticle(bounds.from, particleId);
+  const toParticle = getFrameParticle(bounds.to, particleId);
+  const fallbackParticle = fromParticle ?? toParticle;
+  if (!fallbackParticle) {
+    return null;
+  }
+  const fromPosition = vectorFromValue((fromParticle ?? fallbackParticle).position);
+  const toPosition = vectorFromValue((toParticle ?? fallbackParticle).position);
+  return {
+    t: timeSeconds,
+    position: vectorToTriplet(vectorLerp(fromPosition, toPosition, bounds.alpha)),
+  };
+}
+
+function getSimulationDatasetTimeWindow(dataset) {
+  const explicitStart = Number(dataset?.simulation?.time?.start);
+  const explicitEnd = Number(dataset?.simulation?.time?.end);
+  if (Number.isFinite(explicitStart) && Number.isFinite(explicitEnd) && explicitEnd > explicitStart) {
+    return { start: explicitStart, end: explicitEnd };
+  }
+  const frameTimes = getSortedFrames(dataset).map((frame) => Number(frame.t));
+  return frameTimes.length >= 2
+    ? { start: frameTimes[0], end: frameTimes[frameTimes.length - 1] }
+    : { start: 0, end: 1 };
+}
+
+function getSimulationDatasetProgress(dataset, timeSeconds) {
+  const timeWindow = getSimulationDatasetTimeWindow(dataset);
+  return clamp((normalizeNumber(timeSeconds, 0) - timeWindow.start) /
+    Math.max(0.000001, timeWindow.end - timeWindow.start), 0, 1);
+}
+
+function getSolverPathForAssembly(paths = [], assemblies = [], assemblyId = null, particleId = "") {
+  const normalizedParticleId = normalizeString(particleId, "");
+  return (
+    paths.find((path) => {
+      if (getDocumentPathSourceKind(path, assemblies) !== "solver-derived") {
+        return false;
+      }
+      if (assemblyId && getPathOwnerAssemblyId(path) === assemblyId) {
+        return true;
+      }
+      return normalizedParticleId &&
+        normalizeString(path?.metadata?.simulationParticleId, "") === normalizedParticleId;
+    }) ?? null
+  );
+}
+
+function resolveAssemblyCenterAtMotionTime(assembly, index, context, stack = new Set()) {
+  if (!assembly?.id) {
+    return { x: 0, y: 0, z: 0 };
+  }
+  if (context.centers.has(assembly.id)) {
+    return { ...context.centers.get(assembly.id) };
+  }
+  if (stack.has(assembly.id)) {
+    return computeAssemblyBasePosition(assembly, index, context.assemblies.length, context.pathById);
+  }
+  stack.add(assembly.id);
+  const transportMotion = getMotionEntries(assembly).find((motion) => motion?.type === "path.transport");
+  const simulationFrameMotion = getSimulationFrameMotion(assembly);
+  let center = computeAssemblyBasePosition(assembly, index, context.assemblies.length, context.pathById);
+  const simulationParticleId = getSimulationParticleId(simulationFrameMotion, assembly);
+  if (context.simulationDataset && simulationFrameMotion && simulationParticleId) {
+    const simulationTime = getSimulationTimeForMotion(context.motionTime, simulationFrameMotion);
+    const solverPath = getSolverPathForAssembly(context.paths, context.assemblies, assembly.id, simulationParticleId);
+    const solverPathPoints = Array.isArray(solverPath?.payload?.points) ? solverPath.payload.points : [];
+    if (solverPathPoints.length) {
+      center = samplePointAt(solverPathPoints, getSimulationDatasetProgress(context.simulationDataset, simulationTime), {
+        interpolate: solverPath?.payload?.interpolate ?? "spline",
+        closed: !!solverPath?.payload?.closed,
+      });
+    } else {
+      const simulationSample = sampleSimulationParticleAtTime(
+        context.simulationDataset,
+        simulationParticleId,
+        simulationTime
+      );
+      if (simulationSample?.position) {
+        center = vectorFromValue(simulationSample.position);
+      }
+    }
+  } else if (transportMotion?.pathId && context.pathById.has(transportMotion.pathId)) {
+    const path = context.pathById.get(transportMotion.pathId);
+    const points = Array.isArray(path?.payload?.points) ? path.payload.points : [];
+    if (points.length) {
+      center = samplePointAt(points, clamp(
+        context.normalizedSceneT * (normalizeNumber(transportMotion.speed, 1) || 1) +
+          normalizeNumber(transportMotion.phase, 0),
+        0,
+        1
+      ), {
+        interpolate: path?.payload?.interpolate ?? "spline",
+        closed: !!path?.payload?.closed,
+      });
+    }
+  }
+  const parentId = assembly?.parentId;
+  if (parentId && context.assemblyById.has(parentId)) {
+    const parentAssembly = context.assemblyById.get(parentId);
+    const parentIndex = context.assemblies.findIndex((candidate) => candidate?.id === parentId);
+    if (parentAssembly && parentIndex !== -1) {
+      center = vectorAdd(center, resolveAssemblyCenterAtMotionTime(parentAssembly, parentIndex, context, stack));
+    }
+  }
+  context.centers.set(assembly.id, { ...center });
+  stack.delete(assembly.id);
+  return center;
+}
+
+function getOrbitBasis(motion) {
+  const normal = vectorNormalize(Array.isArray(motion?.planeNormal)
+    ? vectorFromValue(motion.planeNormal)
+    : { x: 0, y: 1, z: 0 });
+  const reference = Math.abs(normal.y) < 0.9 ? { x: 0, y: 1, z: 0 } : { x: 1, y: 0, z: 0 };
+  const u = vectorNormalize(vectorCross(reference, normal), { x: 1, y: 0, z: 0 });
+  const v = vectorNormalize(vectorCross(normal, u), { x: 0, y: 0, z: 1 });
+  return { normal, u, v };
+}
+
+function getOrbitOffsetAtTime(motion, chargeType, timeSeconds) {
+  const radius = normalizeNumber(motion?.radius, 0.65);
+  const frequency = normalizeNumber(motion?.frequencyHz, 0.25);
+  const phase = normalizeNumber(motion?.phase, 0);
+  const direction = motion?.direction === "cw" ? -1 : 1;
+  const phaseOffset = chargeType === "electrino" ? Math.PI : 0;
+  const angle = phase + phaseOffset + direction * timeSeconds * Math.PI * 2 * frequency;
+  const { u, v } = getOrbitBasis(motion);
+  return vectorAdd(vectorScale(u, Math.cos(angle) * radius), vectorScale(v, Math.sin(angle) * radius));
+}
+
+function getMemberId(member, index = 0) {
+  if (member && typeof member === "object" && !Array.isArray(member)) {
+    return normalizeString(member.id ?? member.name, `member_${index + 1}`);
+  }
+  return normalizeString(member, `member_${index + 1}`);
+}
+
+function findCoreMemberId(members, chargeType, binaryIndex) {
+  const targetPrefix = chargeType === "electrino" ? "electrino" : "positrino";
+  const targetSuffix = String(binaryIndex + 1);
+  const candidates = Array.isArray(members) ? members : [];
+  const exactMatch = candidates.find((member, memberIndex) => {
+    const normalized = getMemberId(member, memberIndex).trim().toLowerCase();
+    return normalized === `${targetPrefix}_${targetSuffix}` || normalized === `${targetPrefix}${targetSuffix}`;
+  });
+  if (exactMatch) {
+    return getMemberId(exactMatch, candidates.indexOf(exactMatch));
+  }
+  const prefixMatches = candidates
+    .map((member, memberIndex) => getMemberId(member, memberIndex))
+    .filter((memberId) => memberId.trim().toLowerCase().startsWith(targetPrefix));
+  return prefixMatches[binaryIndex] ?? null;
+}
+
+function resolveEmitterSourceHistory(descriptor = {}, fallbackFieldSpeed = DEFAULT_FIELD_SPEED) {
+  const sourceHistory = descriptor.emitterSourceHistory;
+  if (sourceHistory && typeof sourceHistory === "object") {
+    return sourceHistory.schema === ANIMATOR_FIELD_SHELL_EMITTER_SOURCE_HISTORY_SCHEMA &&
+      Array.isArray(sourceHistory.samples)
+      ? sourceHistory
+      : createAnimatorFieldShellEmitterSourceHistory({
+          ...sourceHistory,
+          fieldSpeed: sourceHistory.fieldSpeed ?? fallbackFieldSpeed,
+        });
+  }
+  return null;
+}
+
 function createFieldShellEventRow(sample, rowIndex, descriptor, options) {
   const fieldSpeed = Math.max(
     MIN_FIELD_SPEED,
@@ -570,6 +1100,107 @@ function rowToEmissionEvent(row) {
   };
 }
 
+export function createAnimatorFieldShellEmitterSourceHistory(descriptor = {}) {
+  const documentData = descriptor.documentData ?? descriptor.document ?? {};
+  const simulationDataset = descriptor.simulationDataset ?? null;
+  const timeWindow = normalizeTimeWindow(descriptor.timeWindow ?? getSceneTimeWindow(documentData));
+  const sampleTimes = Array.isArray(descriptor.sampleTimes)
+    ? descriptor.sampleTimes.map((time) => normalizeNumber(time, timeWindow.start))
+    : createAnimatorFieldShellCadenceTimes({
+        timeWindow,
+        intervalSeconds: descriptor.intervalSeconds ?? descriptor.cadence?.intervalSeconds,
+      });
+  const fieldSpeed = Math.max(
+    MIN_FIELD_SPEED,
+    normalizePositiveNumber(descriptor.fieldSpeed, DEFAULT_FIELD_SPEED, 0)
+  );
+  const sampleIntervalSeconds = normalizePositiveNumber(
+    descriptor.sampleIntervalSeconds ?? descriptor.intervalSeconds ?? descriptor.cadence?.intervalSeconds,
+    DEFAULT_INTERVAL_SECONDS,
+    0
+  );
+  const assemblies = Array.isArray(documentData?.assemblies) ? documentData.assemblies : [];
+  const paths = Array.isArray(documentData?.paths) ? documentData.paths : [];
+  const pathById = new Map(paths.map((path) => [path.id, path]));
+  const assemblyById = new Map(assemblies.map((assembly) => [assembly.id, assembly]));
+  const samples = [];
+
+  sampleTimes.forEach((sampleTime, sampleIndex) => {
+    const { motionTime, normalizedSceneT } = getMotionSamplingState(documentData, sampleTime);
+    const context = {
+      assemblies,
+      assemblyById,
+      paths,
+      pathById,
+      simulationDataset,
+      motionTime,
+      normalizedSceneT,
+      centers: new Map(),
+    };
+    assemblies.forEach((assembly, assemblyIndex) => {
+      const binaries = Array.isArray(assembly?.core?.binaries) ? assembly.core.binaries : [];
+      if (!binaries.length) {
+        return;
+      }
+      const assemblyCenter = resolveAssemblyCenterAtMotionTime(assembly, assemblyIndex, context);
+      binaries.forEach((binary, binaryIndex) => {
+        if (binary?.motion?.type !== "orbit.circular") {
+          return;
+        }
+        [
+          { chargeType: "positrino", sign: 1 },
+          { chargeType: "electrino", sign: -1 },
+        ].forEach(({ chargeType, sign }) => {
+          const memberId = findCoreMemberId(assembly.members, chargeType, binaryIndex);
+          if (!memberId) {
+            return;
+          }
+          const position = vectorAdd(
+            assemblyCenter,
+            getOrbitOffsetAtTime(binary.motion, chargeType, motionTime)
+          );
+          samples.push({
+            id: `${assembly.id}_${memberId}`,
+            emitterId: `${assembly.id}_${memberId}`,
+            receiverId: `${assembly.id}_${memberId}`,
+            time: sampleTime,
+            sampleIndex,
+            position: vectorToTriplet(position),
+            sign,
+            fieldSpeed,
+            metadata: {
+              sourceHistorySchema: ANIMATOR_FIELD_SHELL_EMITTER_SOURCE_HISTORY_SCHEMA,
+              motionSource: "solver-derived",
+              ownerAssemblyId: assembly.id,
+              memberId,
+              chargeType,
+              binaryId: binary?.id ?? "",
+              emitterScope: "core-architrino",
+              sampleIntervalSeconds,
+            },
+          });
+        });
+      });
+    });
+  });
+
+  return {
+    schema: ANIMATOR_FIELD_SHELL_EMITTER_SOURCE_HISTORY_SCHEMA,
+    timeWindow,
+    sampleTimes,
+    sampleIntervalSeconds,
+    fieldSpeed,
+    sampleCount: samples.length,
+    samples,
+    metadata: {
+      source: "solver-owned-field-shell-emitter-source-history",
+      datasetId: normalizeString(simulationDataset?.id ?? descriptor.datasetId, ""),
+      assemblyCount: assemblies.length,
+      pathCount: paths.length,
+    },
+  };
+}
+
 export function createAnimatorFieldShellCadenceTimes(descriptor = {}) {
   const timeWindow = normalizeTimeWindow(descriptor);
   const intervalSeconds = Math.max(
@@ -641,7 +1272,13 @@ export function createAnimatorFieldShellEventStreamPackage(descriptor = {}, opti
     lifetimeSeconds,
     cadence,
   };
-  const rows = (Array.isArray(descriptor.emitterSamples) ? descriptor.emitterSamples : [])
+  const emitterSourceHistory = resolveEmitterSourceHistory(descriptor, fieldSpeed);
+  const emitterSamples = Array.isArray(descriptor.emitterSamples)
+    ? descriptor.emitterSamples
+    : Array.isArray(emitterSourceHistory?.samples)
+      ? emitterSourceHistory.samples
+      : [];
+  const rows = emitterSamples
     .filter(Boolean)
     .map((sample, index) => normalizeSample(sample, index, fieldSpeed))
     .filter((sample) => sample.time >= timeWindow.start - 1e-9 && sample.time <= timeWindow.end + 1e-9)
@@ -727,6 +1364,7 @@ export function createAnimatorFieldShellEventStreamPackage(descriptor = {}, opti
     stream,
     manifest,
     nativeFileManifest,
+    emitterSourceHistory,
     eventStore,
     buffer,
     buffers,

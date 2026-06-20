@@ -10,6 +10,7 @@ import {
   createSolverAppBridgeClient,
 } from "../src/solver/app/SolverAppBridge.mjs";
 import {
+  ANIMATOR_FIELD_SHELL_EMITTER_SOURCE_HISTORY_SCHEMA,
   ANIMATOR_FIELD_SHELL_EVENT_MANIFEST_SCHEMA,
   ANIMATOR_FIELD_SHELL_EVENT_NATIVE_FILE_MANIFEST_SCHEMA,
   ANIMATOR_FIELD_SHELL_EVENT_ROW_LAYOUT,
@@ -17,6 +18,7 @@ import {
   ANIMATOR_FIELD_SHELL_EVENT_STORE_SCHEMA,
   ANIMATOR_FIELD_SHELL_EVENT_STREAM_PACKAGE_SCHEMA,
   createAnimatorFieldShellCadenceTimes,
+  createAnimatorFieldShellEmitterSourceHistory,
   createAnimatorFieldShellEventNativeFileStoragePolicy,
   createAnimatorFieldShellEventStreamPackage,
 } from "../src/solver/app/AnimatorFieldShellEventStream.mjs";
@@ -91,6 +93,72 @@ test("animator field-shell events package stream metadata and render shell rows"
   );
   assert.equal(fieldShellPackage.emissionEvents[0].emissionTime, 0);
   assert.deepEqual(fieldShellPackage.emissionEvents[1].emissionPoint, [0.5, 0, 0]);
+});
+
+test("animator field-shell event package derives emitter source history", () => {
+  const documentData = {
+    scene: { time: { start: 0, end: 1 } },
+    paths: [],
+    assemblies: [
+      {
+        id: "assembly_a",
+        transform: { position: [1, 2, 3] },
+        members: ["positrino_1", "electrino_1"],
+        core: {
+          binaries: [
+            {
+              id: "binary_a",
+              motion: {
+                type: "orbit.circular",
+                radius: 1,
+                frequencyHz: 0,
+              },
+            },
+          ],
+        },
+      },
+    ],
+  };
+  const sourceHistory = createAnimatorFieldShellEmitterSourceHistory({
+    documentData,
+    sampleTimes: [0],
+    fieldSpeed: 2,
+    sampleIntervalSeconds: 0.25,
+  });
+  assert.equal(sourceHistory.schema, ANIMATOR_FIELD_SHELL_EMITTER_SOURCE_HISTORY_SCHEMA);
+  assert.equal(sourceHistory.sampleCount, 2);
+  assert.deepEqual(sourceHistory.samples[0].position, [1, 2, 4]);
+  assert.ok(Math.abs(sourceHistory.samples[1].position[0] - 1) < 1e-12);
+  assert.equal(sourceHistory.samples[1].position[1], 2);
+  assert.equal(sourceHistory.samples[1].position[2], 2);
+  assert.equal(
+    sourceHistory.samples[0].metadata.sourceHistorySchema,
+    ANIMATOR_FIELD_SHELL_EMITTER_SOURCE_HISTORY_SCHEMA
+  );
+
+  const fieldShellPackage = createAnimatorFieldShellEventStreamPackage({
+    streamId: "fixture-source-history-field-shell-events",
+    timeWindow: { start: 0, end: 0 },
+    cadence: { intervalSeconds: 0.25 },
+    fieldSpeed: 2,
+    lifetimeSeconds: 1.5,
+    emitterSourceHistory: {
+      documentData,
+      sampleTimes: [0],
+      fieldSpeed: 2,
+      sampleIntervalSeconds: 0.25,
+    },
+  });
+  assert.equal(
+    fieldShellPackage.emitterSourceHistory.schema,
+    ANIMATOR_FIELD_SHELL_EMITTER_SOURCE_HISTORY_SCHEMA
+  );
+  assert.equal(fieldShellPackage.rowCount, 2);
+  assert.deepEqual(fieldShellPackage.emissionEvents[0].emissionPoint, [1, 2, 4]);
+  assert.ok(Math.abs(fieldShellPackage.emissionEvents[1].emissionPoint[0] - 1) < 1e-12);
+  assert.equal(fieldShellPackage.emissionEvents[1].emissionPoint[1], 2);
+  assert.equal(fieldShellPackage.emissionEvents[1].emissionPoint[2], 2);
+  assert.equal(fieldShellPackage.rows[0].metadata.ownerAssemblyId, "assembly_a");
 });
 
 test("animator field-shell event package writes native-file stream storage", async () => {

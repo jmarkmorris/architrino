@@ -65,6 +65,42 @@ const { default: createWasmModule } = await import(pathToFileURL(wasmLoaderPath)
 const fixtureRequest = readJson("src/solver/fixtures/causal-roots-f64-smoke.request.json");
 const batchFixtureResponse = readJson("src/solver/fixtures/causal-root-batch-f64-smoke.response.json");
 const fixtureResponse = readJson("src/solver/fixtures/roots-and-hits-f64-smoke.response.json");
+const pairBoundaryRelaxationLineSearchFactors = Object.freeze([
+  1.25,
+  1,
+  0.5,
+  0.25,
+  0.125,
+  0.0625,
+  0.03125,
+  0.015625,
+  0.0078125,
+  0.00390625,
+]);
+const pairBoundaryRelaxationCandidateKinds = new Set([
+  "predictor",
+  "first_corrector",
+  "second_corrector",
+  "defect_correction",
+  "linearized_defect_correction",
+  "local_newton_defect_correction",
+  "coupled_local_newton_defect_correction",
+  "predicted_defect_correction",
+  "predicted_blend",
+  "corrected_defect_correction",
+  "corrected_blend",
+  "predictor_center_of_mass_projected",
+  "first_corrector_center_of_mass_projected",
+  "second_corrector_center_of_mass_projected",
+  "defect_correction_center_of_mass_projected",
+  "linearized_defect_correction_center_of_mass_projected",
+  "local_newton_defect_correction_center_of_mass_projected",
+  "coupled_local_newton_defect_correction_center_of_mass_projected",
+  "predicted_defect_correction_center_of_mass_projected",
+  "predicted_blend_center_of_mass_projected",
+  "corrected_defect_correction_center_of_mass_projected",
+  "corrected_blend_center_of_mass_projected",
+]);
 
 const client = createSolverAppBridgeClient({
   createWasmModule,
@@ -4261,11 +4297,12 @@ assert(
     causalDelayPairRunHandle.response.summary.meanPathConstraintBoundaryRelaxationResidualBefore >
       causalDelayPairRunHandle.response.summary.meanPathConstraintBoundaryRelaxationResidualAfter &&
     causalDelayPairRunHandle.response.summary.pathConstraintBoundaryRelaxationMaxStep > 0 &&
-    causalDelayPairRunHandle.response.summary.pathConstraintBoundaryRelaxationFinalStepFactor > 0 &&
-    causalDelayPairRunHandle.response.summary.pathConstraintBoundaryRelaxationFinalStepFactor <= 1.25 &&
-    typeof causalDelayPairRunHandle.response.summary.pathConstraintBoundaryRelaxationSelectedCandidateKind ===
-      "string" &&
-    causalDelayPairRunHandle.response.summary.pathConstraintBoundaryRelaxationSelectedCandidateKind !== "none" &&
+    isKnownPairBoundaryRelaxationLineSearchFactor(
+      causalDelayPairRunHandle.response.summary.pathConstraintBoundaryRelaxationFinalStepFactor
+    ) &&
+    isKnownPairBoundaryRelaxationCandidateKind(
+      causalDelayPairRunHandle.response.summary.pathConstraintBoundaryRelaxationSelectedCandidateKind
+    ) &&
     Number.isInteger(
       causalDelayPairRunHandle.response.summary.pathConstraintBoundaryRelaxationCenterOfMassSelectedCount
     ) &&
@@ -4344,12 +4381,13 @@ assert(
     causalDelayPairJsFallbackRunHandle.response.summary.meanPathConstraintBoundaryRelaxationResidualBefore >
       causalDelayPairJsFallbackRunHandle.response.summary.meanPathConstraintBoundaryRelaxationResidualAfter &&
     causalDelayPairJsFallbackRunHandle.response.summary.pathConstraintBoundaryRelaxationMaxStep > 0 &&
-    causalDelayPairJsFallbackRunHandle.response.summary.pathConstraintBoundaryRelaxationFinalStepFactor > 0 &&
-    causalDelayPairJsFallbackRunHandle.response.summary.pathConstraintBoundaryRelaxationFinalStepFactor <= 1.25 &&
-    typeof causalDelayPairJsFallbackRunHandle.response.summary
-      .pathConstraintBoundaryRelaxationSelectedCandidateKind === "string" &&
-    causalDelayPairJsFallbackRunHandle.response.summary
-      .pathConstraintBoundaryRelaxationSelectedCandidateKind !== "none" &&
+    isKnownPairBoundaryRelaxationLineSearchFactor(
+      causalDelayPairJsFallbackRunHandle.response.summary.pathConstraintBoundaryRelaxationFinalStepFactor
+    ) &&
+    isKnownPairBoundaryRelaxationCandidateKind(
+      causalDelayPairJsFallbackRunHandle.response.summary
+        .pathConstraintBoundaryRelaxationSelectedCandidateKind
+    ) &&
     Number.isInteger(
       causalDelayPairJsFallbackRunHandle.response.summary
         .pathConstraintBoundaryRelaxationCenterOfMassSelectedCount
@@ -4417,10 +4455,10 @@ assert(
       "converged" &&
     causalDelayPairBoundaryRelaxationTunedRunHandle.response.summary
       .pathConstraintBoundaryRelaxationMaxStep > 0 &&
-    causalDelayPairBoundaryRelaxationTunedRunHandle.response.summary
-      .pathConstraintBoundaryRelaxationFinalStepFactor > 0 &&
-    causalDelayPairBoundaryRelaxationTunedRunHandle.response.summary
-      .pathConstraintBoundaryRelaxationFinalStepFactor <= 1.25 &&
+    isKnownPairBoundaryRelaxationLineSearchFactor(
+      causalDelayPairBoundaryRelaxationTunedRunHandle.response.summary
+        .pathConstraintBoundaryRelaxationFinalStepFactor
+    ) &&
     causalDelayPairBoundaryRelaxationTunedRunHandle.response.summary.pathConstraintBoundaryRelaxationStopReason ===
       "tolerance_reached" &&
     causalDelayPairBoundaryRelaxationTunedRunHandle.response.summary.pathConstraintBoundaryRelaxationMode ===
@@ -4444,6 +4482,10 @@ assert(
       .pathConstraintBoundaryRelaxationAppliedIterationCount > 0 &&
     causalDelayPairBoundaryRelaxationStepTunedRunHandle.response.summary
       .pathConstraintBoundaryRelaxationMaxStep > 0 &&
+    isKnownPairBoundaryRelaxationLineSearchFactor(
+      causalDelayPairBoundaryRelaxationStepTunedRunHandle.response.summary
+        .pathConstraintBoundaryRelaxationFinalStepFactor
+    ) &&
     causalDelayPairBoundaryRelaxationStepTunedRunHandle.response.summary.pathConstraintBoundaryRelaxationStatus ===
       "step_converged" &&
     causalDelayPairBoundaryRelaxationStepTunedRunHandle.response.summary.pathConstraintBoundaryRelaxationStopReason ===
@@ -6325,6 +6367,16 @@ function assertVectorClose(actual, expected, label) {
   assertClose(actual?.x, expected.x, `${label}.x`);
   assertClose(actual?.y, expected.y, `${label}.y`);
   assertClose(actual?.z, expected.z, `${label}.z`);
+}
+
+function isKnownPairBoundaryRelaxationLineSearchFactor(value) {
+  return pairBoundaryRelaxationLineSearchFactors.some(
+    (factor) => Math.abs(Number(value) - factor) <= 1e-15
+  );
+}
+
+function isKnownPairBoundaryRelaxationCandidateKind(value) {
+  return pairBoundaryRelaxationCandidateKinds.has(String(value));
 }
 
 function assertNonuniformRelaxedFrameVelocity(frames, pathKey, time, label) {

@@ -4114,6 +4114,7 @@ function createRouteAuthorizedWakePayloadDiagnostic({
   compensatedRoutePayloadCertificate,
   timeWindowTorqueProbe,
   cleanEnergyFrequencyTarget = null,
+  layerByName = new Map(),
 }) {
   const reconstruction =
     timeWindowTorqueProbe?.diagnosticWakeTorqueReconstruction ?? null;
@@ -4204,6 +4205,9 @@ function createRouteAuthorizedWakePayloadDiagnostic({
     compensatedRoutePayloadCertificate,
     timeWindowTorqueProbe,
     cleanEnergyFrequencyTarget,
+    actionKernelNormalizationConventionCandidate,
+    masterEquationCharacteristicTailPullbackCandidate,
+    layerByName,
   });
   const characteristicTailCoefficientQuadraturePass =
     masterEquationCharacteristicTailPullbackCandidate.coefficientQuadratureTarget
@@ -4541,6 +4545,9 @@ function createWakeEnergyIncrementTarget({
   compensatedRoutePayloadCertificate,
   timeWindowTorqueProbe,
   cleanEnergyFrequencyTarget,
+  actionKernelNormalizationConventionCandidate,
+  masterEquationCharacteristicTailPullbackCandidate,
+  layerByName,
 }) {
   const chargeAccepted =
     normalizedActionKernelWakeCharge?.acceptedActionKernelChargePass === true;
@@ -4570,12 +4577,34 @@ function createWakeEnergyIncrementTarget({
     pullbackAccepted &&
     routeRows.length > 0 &&
     Number.isFinite(targetChargeNorm);
+  const actionBoundaryDerivativeTarget =
+    createActionBoundaryWakeEnergyDerivativeTarget({
+      targetPopulated,
+      normalizedActionKernelWakeCharge,
+      retainedActionKernelPullbackDomain,
+      actionKernelNormalizationConventionCandidate,
+      masterEquationCharacteristicTailPullbackCandidate,
+      layerByName,
+    });
+  const actionBoundaryDerivativeEvaluated =
+    actionBoundaryDerivativeTarget.normalizedHistoryIntegralPass === true;
+  const actionBoundaryWakeEnergyLawCandidate =
+    createActionBoundaryWakeEnergyLawCandidate({
+      actionBoundaryDerivativeTarget,
+      compensatedRoutePayloadCertificate,
+      cleanEnergyFrequencyTarget,
+      omegaStarWeightedBoundaryCharge,
+      omegaStar,
+      targetChargeNorm,
+    });
 
   return {
     schema: "aaa-tri-binary-route-authorized-wake-energy-increment-target.v1",
-    status: targetPopulated
-      ? "wake_energy_increment_target_populated_action_boundary_law_missing"
-      : "wake_energy_increment_target_blocked_until_boundary_charge_pullback",
+    status: !targetPopulated
+      ? "wake_energy_increment_target_blocked_until_boundary_charge_pullback"
+      : actionBoundaryDerivativeEvaluated
+      ? "wake_energy_increment_target_action_boundary_derivative_evaluated_action_scale_missing"
+      : "wake_energy_increment_target_populated_action_boundary_law_missing",
     claimLevel:
       "wake-energy increment target for the accepted route-authorized crossing-domain rows; not retained energy routing",
     targetPopulated,
@@ -4599,26 +4628,55 @@ function createWakeEnergyIncrementTarget({
     rootEnergyDiagnosticRowCount: rootEnergyDiagnosticRows.length,
     rootEnergyDiagnosticSum,
     maxRootEnergyDiagnosticIncrement: maxFinite(rootEnergyIncrements),
+    actionBoundaryDerivativeTarget,
+    actionBoundaryWakeEnergyLawCandidate,
     candidateRoutes: [
       {
         id: "action_boundary_derivative_kernel",
-        status: targetPopulated
-          ? "law_missing_partial_t1_kernel_not_evaluated"
-          : "blocked_until_boundary_charge_and_pullback_accepted",
+        status: actionBoundaryDerivativeTarget.status,
         route:
           "Evaluate the partial_t1 action-kernel energy derivative on the accepted route-authorized crossing-domain rows.",
         requiredInputs: [
           "accepted_normalized_action_kernel_wake_charge",
           "accepted_retained_crossing_domain_pullback",
           "time_translation_action_kernel",
-          "endpoint_leakage_residual",
+          "finite_gaussian_endpoint_clearance_gauge_repair",
+          "normalized_K_eff_history_integral",
+          "sigma_hbar_action_scale",
         ],
+        target: actionBoundaryDerivativeTarget,
+      },
+      {
+        id: "action_boundary_derivative_unit_action_scale_candidate",
+        status: actionBoundaryWakeEnergyLawCandidate.status,
+        candidateWakeEnergyIncrement:
+          actionBoundaryWakeEnergyLawCandidate.unitActionWakeEnergyIncrement,
+        formula:
+          "Delta E_wake^candidate = sigma*hbar_scale * (1/2 sum kappa_sigma_row partial_t1 K_eff,row)",
+        target: actionBoundaryWakeEnergyLawCandidate,
+      },
+      {
+        id: "action_boundary_action_scale_law_search",
+        status:
+          actionBoundaryWakeEnergyLawCandidate.actionScaleLawSearchTarget
+            ?.status ?? "blocked_missing_action_boundary_wake_energy_candidate",
+        requiredPositiveActionScale:
+          actionBoundaryWakeEnergyLawCandidate
+            .positiveActionScaleForOmegaStarMagnitude,
+        bestRejectedCandidate:
+          actionBoundaryWakeEnergyLawCandidate.actionScaleLawSearchTarget
+            ?.bestRejectedCandidate ?? null,
+        target:
+          actionBoundaryWakeEnergyLawCandidate.actionScaleLawSearchTarget ?? null,
       },
       {
         id: "omega_star_weighted_boundary_charge",
         status:
           omegaStarWeightedBoundaryCharge != null
-            ? "candidate_evaluated_blocked_missing_transaction_frequency_and_action_scale"
+            ? actionBoundaryWakeEnergyLawCandidate.omegaTxLawSearchTarget
+                ?.acceptedOmegaTxLawPass === true
+              ? "candidate_evaluated_blocked_missing_action_scale"
+              : "candidate_evaluated_blocked_missing_transaction_frequency_and_action_scale"
             : "blocked_missing_clean_energy_frequency_or_boundary_charge",
         candidateWakeEnergyIncrement: omegaStarWeightedBoundaryCharge,
         formula:
@@ -4626,7 +4684,22 @@ function createWakeEnergyIncrementTarget({
         omegaStar,
         boundaryChargeNorm: targetChargeNorm,
         limitation:
-          "omega_* is the clean minimal-branch target, not an accepted transaction frequency omega_tx. The candidate also lacks a declared sigma*hbar action scale and does not evaluate partial_t1 of the action kernel on the crossing-domain rows.",
+          "omega_* is the clean minimal-branch target, not an accepted transaction frequency omega_tx. The candidate also lacks a declared sigma*hbar action scale and does not consume the evaluated partial_t1 action-kernel derivative on the crossing-domain rows.",
+      },
+      {
+        id: "omega_tx_law_search",
+        status:
+          actionBoundaryWakeEnergyLawCandidate.omegaTxLawSearchTarget?.status ??
+          "blocked_missing_clean_energy_frequency_target",
+        targetOmegaTx: omegaStar,
+        bestRejectedCandidate:
+          actionBoundaryWakeEnergyLawCandidate.omegaTxLawSearchTarget
+            ?.bestRejectedCandidate ?? null,
+        exactIneligibleRows:
+          actionBoundaryWakeEnergyLawCandidate.omegaTxLawSearchTarget
+            ?.exactIneligibleRows ?? [],
+        target:
+          actionBoundaryWakeEnergyLawCandidate.omegaTxLawSearchTarget ?? null,
       },
       {
         id: "zero_wake_energy",
@@ -4647,10 +4720,10 @@ function createWakeEnergyIncrementTarget({
       {
         id: "charge_norm_as_energy",
         status:
-          "rejected_no_transaction_frequency_or_action_boundary_derivative",
+          "rejected_no_transaction_frequency_or_accepted_action_boundary_energy_law",
         candidateWakeEnergyIncrement: targetChargeNorm,
         limitation:
-          "The angular-momentum boundary-charge norm is not an energy increment without a declared transaction frequency or action-boundary derivative.",
+          "The angular-momentum boundary-charge norm is not an energy increment without a declared transaction frequency or an accepted action-boundary derivative law with action scale.",
       },
     ],
     requiredConstruction:
@@ -4658,6 +4731,1050 @@ function createWakeEnergyIncrementTarget({
     retainedLimitation:
       "This target sharpens the wake-energy blocker only. It does not close retained energy routing, partition, section stability, retained phase, or retained torque.",
   };
+}
+
+function createActionBoundaryWakeEnergyLawCandidate({
+  actionBoundaryDerivativeTarget,
+  compensatedRoutePayloadCertificate,
+  cleanEnergyFrequencyTarget,
+  omegaStarWeightedBoundaryCharge,
+  omegaStar,
+  targetChargeNorm,
+}) {
+  const derivativeEvaluated =
+    actionBoundaryDerivativeTarget?.normalizedHistoryIntegralPass === true;
+  const unitActionWakeEnergyIncrement =
+    actionBoundaryDerivativeTarget?.halfWeightedNormalizedPartialT1KernelTermSum ??
+    null;
+  const unitActionWakeEnergyMagnitude = Number.isFinite(
+    unitActionWakeEnergyIncrement
+  )
+    ? Math.abs(unitActionWakeEnergyIncrement)
+    : null;
+  const signedActionScaleForOmegaStarTarget =
+    Number.isFinite(omegaStarWeightedBoundaryCharge) &&
+    Number.isFinite(unitActionWakeEnergyIncrement) &&
+    Math.abs(unitActionWakeEnergyIncrement) >
+      POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE
+      ? omegaStarWeightedBoundaryCharge / unitActionWakeEnergyIncrement
+      : null;
+  const positiveActionScaleForOmegaStarMagnitude =
+    Number.isFinite(omegaStarWeightedBoundaryCharge) &&
+    Number.isFinite(unitActionWakeEnergyMagnitude) &&
+    unitActionWakeEnergyMagnitude > POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE
+      ? Math.abs(omegaStarWeightedBoundaryCharge) / unitActionWakeEnergyMagnitude
+      : null;
+  const requiredEnergyOrientation =
+    Number.isFinite(signedActionScaleForOmegaStarTarget)
+      ? Math.sign(signedActionScaleForOmegaStarTarget)
+      : null;
+  const unitActionResidualAgainstOmegaStar =
+    Number.isFinite(unitActionWakeEnergyIncrement) &&
+    Number.isFinite(omegaStarWeightedBoundaryCharge)
+      ? unitActionWakeEnergyIncrement - omegaStarWeightedBoundaryCharge
+      : null;
+  const magnitudeResidualAgainstOmegaStar =
+    Number.isFinite(unitActionWakeEnergyMagnitude) &&
+    Number.isFinite(omegaStarWeightedBoundaryCharge)
+      ? unitActionWakeEnergyMagnitude - Math.abs(omegaStarWeightedBoundaryCharge)
+      : null;
+  const candidatePopulated =
+    derivativeEvaluated &&
+    Number.isFinite(unitActionWakeEnergyIncrement);
+  const actionScaleLawSearchTarget =
+    createActionBoundaryActionScaleLawSearchTarget({
+      requiredPositiveActionScale: positiveActionScaleForOmegaStarMagnitude,
+      actionBoundaryDerivativeTarget,
+      compensatedRoutePayloadCertificate,
+      omegaStar,
+      targetChargeNorm,
+    });
+  const actionScaleLawSearchAccepted =
+    actionScaleLawSearchTarget.acceptedActionScaleLawPass === true;
+  const omegaTxLawSearchTarget = createOmegaTxLawSearchTarget({
+    cleanEnergyFrequencyTarget,
+    compensatedRoutePayloadCertificate,
+  });
+  const omegaTxLawSearchAccepted =
+    omegaTxLawSearchTarget.acceptedOmegaTxLawPass === true;
+
+  return {
+    schema:
+      "aaa-tri-binary-action-boundary-wake-energy-law-candidate.v1",
+    status: !derivativeEvaluated
+      ? "action_boundary_wake_energy_law_candidate_blocked_until_derivative_evaluated"
+      : Number.isFinite(omegaStarWeightedBoundaryCharge)
+      ? omegaTxLawSearchAccepted && actionScaleLawSearchAccepted
+        ? "action_boundary_wake_energy_law_candidate_has_simple_action_scale_candidate_pending_orientation_and_omega_tx_acceptance"
+        : !omegaTxLawSearchAccepted && !actionScaleLawSearchAccepted
+        ? "action_boundary_wake_energy_law_candidate_omega_tx_and_scale_law_search_no_simple_candidate_accepted"
+        : !omegaTxLawSearchAccepted
+        ? "action_boundary_wake_energy_law_candidate_omega_tx_law_search_no_simple_candidate_accepted"
+        : "action_boundary_wake_energy_law_candidate_scale_law_search_no_simple_candidate_accepted"
+      : "action_boundary_wake_energy_law_candidate_derivative_evaluated_frequency_target_missing",
+    claimLevel:
+      "route-local wake-energy law candidate from the evaluated partial_t1 K_eff rows; not accepted action scale or retained energy routing",
+    candidatePopulated,
+    acceptedWakeEnergyIncrementPass: false,
+    unitActionWakeEnergyIncrement,
+    unitActionWakeEnergyMagnitude,
+    omegaStarWeightedBoundaryCharge,
+    omegaStar,
+    targetChargeNorm,
+    signedActionScaleForOmegaStarTarget,
+    positiveActionScaleForOmegaStarMagnitude,
+    requiredEnergyOrientation,
+    actionScaleLawSearchStatus: actionScaleLawSearchTarget.status,
+    actionScaleLawSearchTarget,
+    omegaTxLawSearchStatus: omegaTxLawSearchTarget.status,
+    omegaTxLawSearchTarget,
+    unitActionResidualAgainstOmegaStar,
+    magnitudeResidualAgainstOmegaStar,
+    missingAcceptedFields: [
+      "accepted_sigma_hbar_action_scale",
+      "accepted_energy_orientation",
+      "accepted_omega_tx_or_energy_target",
+      "accepted_wake_energy_increment_law",
+    ],
+    retainedLimitation:
+      "This candidate measures the action scale that would make the evaluated action-boundary derivative agree with the omega_* boundary-charge comparison. It does not accept omega_* as omega_tx, choose the energy orientation, or derive sigma*hbar.",
+  };
+}
+
+function createOmegaTxLawSearchTarget({
+  cleanEnergyFrequencyTarget,
+  compensatedRoutePayloadCertificate,
+}) {
+  const targetOmegaTx = cleanEnergyFrequencyTarget?.omegaStar ?? null;
+  const candidateRows = createOmegaTxLawCandidateRows({
+    cleanEnergyFrequencyTarget,
+    compensatedRoutePayloadCertificate,
+  }).map((row) => {
+    const residual =
+      Number.isFinite(row.candidateOmegaTx) && Number.isFinite(targetOmegaTx)
+        ? row.candidateOmegaTx - targetOmegaTx
+        : null;
+    const residualAbs = Number.isFinite(residual) ? Math.abs(residual) : null;
+    return {
+      ...row,
+      targetOmegaTx,
+      residual,
+      residualAbs,
+      exactOmegaTxPass:
+        Number.isFinite(residualAbs) &&
+        residualAbs <= POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE,
+      acceptedOmegaTxLawPass:
+        row.acceptanceEligible === true &&
+        Number.isFinite(residualAbs) &&
+        residualAbs <= POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE,
+    };
+  });
+  const finiteRows = candidateRows.filter((row) =>
+    Number.isFinite(row.candidateOmegaTx)
+  );
+  const acceptedRows = finiteRows.filter((row) => row.acceptedOmegaTxLawPass);
+  const exactIneligibleRows = finiteRows.filter(
+    (row) => row.exactOmegaTxPass && row.acceptanceEligible !== true
+  );
+  const rejectedEligibleRows = finiteRows.filter(
+    (row) => row.acceptanceEligible === true && !row.exactOmegaTxPass
+  );
+  const bestRejectedCandidate =
+    rejectedEligibleRows.length > 0
+      ? rejectedEligibleRows.reduce((best, row) =>
+          row.residualAbs < best.residualAbs ? row : best
+        )
+      : null;
+
+  return {
+    schema: "aaa-tri-binary-omega-tx-law-search-target.v1",
+    status: !Number.isFinite(targetOmegaTx)
+      ? "omega_tx_law_search_blocked_until_clean_frequency_target"
+      : finiteRows.length === 0
+      ? "omega_tx_law_search_no_finite_candidates"
+      : acceptedRows.length > 0
+      ? "omega_tx_law_search_simple_candidate_accepted"
+      : exactIneligibleRows.length > 0
+      ? "omega_tx_law_search_clean_target_identity_only_no_route_local_candidate_accepted"
+      : "omega_tx_law_search_no_simple_route_local_candidate_accepted",
+    claimLevel:
+      "simple route-local transaction-frequency law search for the evaluated wake-energy comparison; not accepted omega_tx",
+    targetOmegaTx,
+    cleanEnergyFrequencyTargetStatus:
+      cleanEnergyFrequencyTarget?.status ?? null,
+    acceptedOmegaTxLawPass: acceptedRows.length > 0,
+    candidateCount: candidateRows.length,
+    finiteCandidateCount: finiteRows.length,
+    acceptedCandidateCount: acceptedRows.length,
+    exactIneligibleCount: exactIneligibleRows.length,
+    bestRejectedCandidate,
+    exactIneligibleRows,
+    acceptedRows,
+    rows: candidateRows,
+    retainedLimitation:
+      "This search treats the clean weighted omega_* expression as the comparison target, not independent omega_tx evidence. Acceptance requires a separate route-local frequency law on the retained rows.",
+  };
+}
+
+function createOmegaTxLawCandidateRows({
+  cleanEnergyFrequencyTarget,
+  compensatedRoutePayloadCertificate,
+}) {
+  const rows = [];
+  const seenIds = new Set();
+  const angularVelocities = cleanEnergyFrequencyTarget?.angularVelocities ?? {};
+  const addCandidate = ({
+    id,
+    source,
+    formula,
+    candidateOmegaTx,
+    acceptanceEligible = true,
+    rejectionReason = null,
+  }) => {
+    if (seenIds.has(id)) {
+      return;
+    }
+    seenIds.add(id);
+    const finiteCandidateOmegaTx = finiteOrNull(candidateOmegaTx);
+    rows.push({
+      id,
+      status:
+        finiteCandidateOmegaTx != null
+          ? acceptanceEligible
+            ? "omega_tx_law_candidate_evaluated"
+            : "omega_tx_law_candidate_evaluated_not_acceptance_source"
+          : "omega_tx_law_candidate_not_finite",
+      source,
+      formula,
+      acceptanceEligible,
+      rejectionReason,
+      candidateOmegaTx: finiteCandidateOmegaTx,
+    });
+  };
+  const addMeanCandidate = ({ id, source, formula, values }) => {
+    const finiteValues = values.filter((value) => Number.isFinite(value));
+    addCandidate({
+      id,
+      source,
+      formula,
+      candidateOmegaTx:
+        finiteValues.length > 0
+          ? finiteValues.reduce((sum, value) => sum + value, 0) /
+            finiteValues.length
+          : null,
+    });
+  };
+  const getLayerOmega = (layerName) =>
+    Number.isFinite(angularVelocities?.[layerName])
+      ? angularVelocities[layerName]
+      : null;
+  const omegaOuter = getLayerOmega("outer");
+  const omegaMiddle = getLayerOmega("middle");
+  const omegaInner = getLayerOmega("inner");
+
+  addCandidate({
+    id: "clean_weighted_omega_star_identity",
+    source: "clean energy-frequency target",
+    formula: "(omega_O + omega_M + 2 omega_I) / 4",
+    candidateOmegaTx: cleanEnergyFrequencyTarget?.omegaStar ?? null,
+    acceptanceEligible: false,
+    rejectionReason:
+      "This is the omega_* comparison target itself, not independent route-local transaction-frequency evidence.",
+  });
+  addCandidate({
+    id: "outer_layer_angular_velocity",
+    source: "selected layer angular velocities",
+    formula: "omega_O",
+    candidateOmegaTx: omegaOuter,
+  });
+  addCandidate({
+    id: "middle_layer_angular_velocity",
+    source: "selected layer angular velocities",
+    formula: "omega_M",
+    candidateOmegaTx: omegaMiddle,
+  });
+  addCandidate({
+    id: "inner_layer_angular_velocity",
+    source: "selected layer angular velocities",
+    formula: "omega_I",
+    candidateOmegaTx: omegaInner,
+  });
+  addMeanCandidate({
+    id: "layer_angular_velocity_mean",
+    source: "selected layer angular velocities",
+    formula: "mean(omega_O, omega_M, omega_I)",
+    values: [omegaOuter, omegaMiddle, omegaInner],
+  });
+  addMeanCandidate({
+    id: "outer_inner_angular_velocity_mean",
+    source: "selected layer angular velocities",
+    formula: "mean(omega_O, omega_I)",
+    values: [omegaOuter, omegaInner],
+  });
+
+  for (const row of compensatedRoutePayloadCertificate?.rows ?? []) {
+    const rowId = row.continuityRole ?? `row_${rows.length}`;
+    const incoming = getPairAngularVelocities({
+      pairKey: row.incomingPairKey,
+      angularVelocities,
+    });
+    const outgoing = getPairAngularVelocities({
+      pairKey: row.outgoingPairKey,
+      angularVelocities,
+    });
+    addCandidate({
+      id: `${rowId}_continuity_angular_velocity`,
+      source: "compensated route-payload certificate",
+      formula: `${rowId} continuity angular velocity`,
+      candidateOmegaTx: row.rootEnergyIncrement?.continuityAngularVelocity ?? null,
+    });
+    addMeanCandidate({
+      id: `${rowId}_source_angular_velocity_mean`,
+      source: "compensated route-payload certificate",
+      formula: `${rowId} mean(incoming source, outgoing source)`,
+      values: [incoming.sourceOmega, outgoing.sourceOmega],
+    });
+    addMeanCandidate({
+      id: `${rowId}_receiver_angular_velocity_mean`,
+      source: "compensated route-payload certificate",
+      formula: `${rowId} mean(incoming receiver, outgoing receiver)`,
+      values: [incoming.receiverOmega, outgoing.receiverOmega],
+    });
+    addMeanCandidate({
+      id: `${rowId}_endpoint_angular_velocity_mean`,
+      source: "compensated route-payload certificate",
+      formula:
+        `${rowId} mean(incoming source, incoming receiver, outgoing source, outgoing receiver)`,
+      values: [
+        incoming.sourceOmega,
+        incoming.receiverOmega,
+        outgoing.sourceOmega,
+        outgoing.receiverOmega,
+      ],
+    });
+  }
+
+  return rows;
+}
+
+function getPairAngularVelocities({ pairKey, angularVelocities }) {
+  const [sourceLayer, receiverLayer] =
+    typeof pairKey === "string" ? pairKey.split("->") : [null, null];
+  const sourceOmega =
+    sourceLayer != null && Number.isFinite(angularVelocities?.[sourceLayer])
+      ? angularVelocities[sourceLayer]
+      : null;
+  const receiverOmega =
+    receiverLayer != null && Number.isFinite(angularVelocities?.[receiverLayer])
+      ? angularVelocities[receiverLayer]
+      : null;
+  return {
+    sourceLayer,
+    receiverLayer,
+    sourceOmega,
+    receiverOmega,
+  };
+}
+
+function createActionBoundaryActionScaleLawSearchTarget({
+  requiredPositiveActionScale,
+  actionBoundaryDerivativeTarget,
+  compensatedRoutePayloadCertificate,
+  omegaStar,
+  targetChargeNorm,
+}) {
+  const candidateRows = createActionBoundaryActionScaleLawCandidateRows({
+    actionBoundaryDerivativeTarget,
+    compensatedRoutePayloadCertificate,
+    omegaStar,
+    targetChargeNorm,
+  }).map((row) => {
+    const residual =
+      Number.isFinite(row.candidateActionScale) &&
+      Number.isFinite(requiredPositiveActionScale)
+        ? row.candidateActionScale - requiredPositiveActionScale
+        : null;
+    const residualAbs = Number.isFinite(residual) ? Math.abs(residual) : null;
+    return {
+      ...row,
+      requiredPositiveActionScale,
+      residual,
+      residualAbs,
+      exactActionScalePass:
+        Number.isFinite(residualAbs) &&
+        residualAbs <= POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE,
+    };
+  });
+  const finiteRows = candidateRows.filter((row) =>
+    Number.isFinite(row.candidateActionScale)
+  );
+  const acceptedRows = finiteRows.filter((row) => row.exactActionScalePass);
+  const rejectedRows = finiteRows.filter((row) => !row.exactActionScalePass);
+  const bestRejectedCandidate =
+    rejectedRows.length > 0
+      ? rejectedRows.reduce((best, row) =>
+          row.residualAbs < best.residualAbs ? row : best
+        )
+      : null;
+
+  return {
+    schema: "aaa-tri-binary-action-boundary-action-scale-law-search-target.v1",
+    status: !Number.isFinite(requiredPositiveActionScale)
+      ? "action_boundary_action_scale_law_search_blocked_until_required_scale"
+      : finiteRows.length === 0
+      ? "action_boundary_action_scale_law_search_no_finite_candidates"
+      : acceptedRows.length > 0
+      ? "action_boundary_action_scale_law_search_simple_candidate_accepted"
+      : "action_boundary_action_scale_law_search_no_simple_candidate_accepted",
+    claimLevel:
+      "simple existing-scalar action-scale law search for the evaluated wake-energy candidate; not fitted sigma*hbar",
+    requiredPositiveActionScale,
+    acceptedActionScaleLawPass: acceptedRows.length > 0,
+    candidateCount: candidateRows.length,
+    finiteCandidateCount: finiteRows.length,
+    acceptedCandidateCount: acceptedRows.length,
+    bestRejectedCandidate,
+    acceptedRows,
+    rows: candidateRows,
+    retainedLimitation:
+      "This search tests only existing route, normalization, wake-charge, and unit-payload scalars with no fitted coefficients. Rejecting them leaves sigma*hbar action-scale derivation open rather than accepting an empirical scale.",
+  };
+}
+
+function createActionBoundaryActionScaleLawCandidateRows({
+  actionBoundaryDerivativeTarget,
+  compensatedRoutePayloadCertificate,
+  omegaStar,
+  targetChargeNorm,
+}) {
+  const rows = [];
+  const seenIds = new Set();
+  const addCandidate = ({ id, source, formula, candidateActionScale }) => {
+    if (seenIds.has(id)) {
+      return;
+    }
+    seenIds.add(id);
+    const finiteCandidateActionScale = finiteOrNull(candidateActionScale);
+    rows.push({
+      id,
+      status:
+        finiteCandidateActionScale != null
+          ? "action_scale_law_candidate_evaluated"
+          : "action_scale_law_candidate_not_finite",
+      source,
+      formula,
+      candidateActionScale: finiteCandidateActionScale,
+    });
+  };
+  const addAggregateCandidates = ({ idPrefix, source, values }) => {
+    const finiteValues = values.filter((value) => Number.isFinite(value));
+    if (finiteValues.length === 0) {
+      addCandidate({
+        id: `${idPrefix}_missing`,
+        source,
+        formula: `${idPrefix} finite scalar missing`,
+        candidateActionScale: null,
+      });
+      return;
+    }
+    const mean =
+      finiteValues.reduce((sum, value) => sum + value, 0) / finiteValues.length;
+    addCandidate({
+      id: `${idPrefix}_min`,
+      source,
+      formula: `min(${idPrefix})`,
+      candidateActionScale: minFinite(finiteValues),
+    });
+    addCandidate({
+      id: `${idPrefix}_mean`,
+      source,
+      formula: `mean(${idPrefix})`,
+      candidateActionScale: mean,
+    });
+    addCandidate({
+      id: `${idPrefix}_max`,
+      source,
+      formula: `max(${idPrefix})`,
+      candidateActionScale: maxFinite(finiteValues),
+    });
+  };
+
+  const eta = actionBoundaryDerivativeTarget?.eta ?? null;
+  addCandidate({
+    id: "target_charge_norm",
+    source: "normalized action-kernel wake charge",
+    formula: "|Delta J_wake|",
+    candidateActionScale: targetChargeNorm,
+  });
+  addCandidate({
+    id: "eta",
+    source: "action-kernel normalization convention",
+    formula: "eta",
+    candidateActionScale: eta,
+  });
+  addCandidate({
+    id: "two_eta",
+    source: "action-kernel normalization convention",
+    formula: "2 eta",
+    candidateActionScale: Number.isFinite(eta) ? 2 * eta : null,
+  });
+  addCandidate({
+    id: "four_eta",
+    source: "action-kernel normalization convention",
+    formula: "4 eta",
+    candidateActionScale: Number.isFinite(eta) ? 4 * eta : null,
+  });
+  addCandidate({
+    id: "eta_omega_star",
+    source: "clean energy-frequency target",
+    formula: "eta omega_*",
+    candidateActionScale:
+      Number.isFinite(eta) && Number.isFinite(omegaStar) ? eta * omegaStar : null,
+  });
+  addCandidate({
+    id: "target_charge_norm_over_omega_star",
+    source: "wake charge and clean energy-frequency target",
+    formula: "|Delta J_wake| / omega_*",
+    candidateActionScale:
+      Number.isFinite(targetChargeNorm) &&
+      Number.isFinite(omegaStar) &&
+      Math.abs(omegaStar) > POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE
+        ? targetChargeNorm / omegaStar
+        : null,
+  });
+  addCandidate({
+    id: "inverse_omega_star",
+    source: "clean energy-frequency target",
+    formula: "1 / omega_*",
+    candidateActionScale:
+      Number.isFinite(omegaStar) &&
+      Math.abs(omegaStar) > POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE
+        ? 1 / omegaStar
+        : null,
+  });
+
+  const derivativeRows = actionBoundaryDerivativeTarget?.rows ?? [];
+  addAggregateCandidates({
+    idPrefix: "normalized_endpoint_h_plus",
+    source: "action-boundary derivative rows",
+    values: derivativeRows.map((row) => row.normalizedEndpointHPlus),
+  });
+  addAggregateCandidates({
+    idPrefix: "route_width_h_plus",
+    source: "action-boundary derivative rows",
+    values: derivativeRows.map((row) => row.hPlusRouteWidth),
+  });
+  addAggregateCandidates({
+    idPrefix: "causal_gap_abs",
+    source: "action-boundary derivative rows",
+    values: derivativeRows.map((row) =>
+      Number.isFinite(row.causalGap) ? Math.abs(row.causalGap) : null
+    ),
+  });
+  addAggregateCandidates({
+    idPrefix: "endpoint_leakage_abs_at_route_width",
+    source: "finite-Gaussian endpoint-clearance rows",
+    values: derivativeRows.map((row) => row.endpointLeakageAbsAtRouteWidth),
+  });
+
+  const payloadRows = compensatedRoutePayloadCertificate?.rows ?? [];
+  addAggregateCandidates({
+    idPrefix: "transport_angular_momentum_norm",
+    source: "compensated route-payload certificate",
+    values: payloadRows.map(
+      (row) =>
+        row.transportAngularMomentumIncrement
+          ?.unitEndpointPairAngularMomentumNorm
+    ),
+  });
+  addAggregateCandidates({
+    idPrefix: "transport_angular_momentum_upper_bound",
+    source: "compensated route-payload certificate",
+    values: payloadRows.map(
+      (row) =>
+        row.transportAngularMomentumIncrement
+          ?.unitAngularMomentumNormUpperBound
+    ),
+  });
+  addAggregateCandidates({
+    idPrefix: "root_energy_increment",
+    source: "compensated route-payload certificate",
+    values: payloadRows.map(
+      (row) => row.rootEnergyIncrement?.unitActionRootEnergyIncrement
+    ),
+  });
+  addAggregateCandidates({
+    idPrefix: "recoil_angular_momentum_norm",
+    source: "compensated route-payload certificate",
+    values: payloadRows.map(
+      (row) => row.recoilChannelData?.unitRecoilAngularMomentumNorm
+    ),
+  });
+  addAggregateCandidates({
+    idPrefix: "bounded_geometric_slack",
+    source: "compensated route-payload certificate",
+    values: payloadRows.map(
+      (row) => row.boundedUndeclaredRouteSlack?.geometricUpperBound
+    ),
+  });
+  addAggregateCandidates({
+    idPrefix: "bounded_phase_slack",
+    source: "compensated route-payload certificate",
+    values: payloadRows.map(
+      (row) => row.boundedUndeclaredRouteSlack?.phaseUpperBound
+    ),
+  });
+
+  return rows;
+}
+
+function createActionBoundaryWakeEnergyDerivativeTarget({
+  targetPopulated,
+  normalizedActionKernelWakeCharge,
+  retainedActionKernelPullbackDomain,
+  actionKernelNormalizationConventionCandidate,
+  masterEquationCharacteristicTailPullbackCandidate,
+  layerByName,
+}) {
+  const eta =
+    actionKernelNormalizationConventionCandidate?.etaCandidate?.value ?? null;
+  const radialRows =
+    masterEquationCharacteristicTailPullbackCandidate?.radialConstrainedSolve
+      ?.rows ?? [];
+  const coefficientRows =
+    masterEquationCharacteristicTailPullbackCandidate?.coefficientQuadratureTarget
+      ?.rows ?? [];
+  const rows = radialRows.map((row, index) =>
+    createActionBoundaryWakeEnergyDerivativeRow({
+      row,
+      coefficientRow: coefficientRows[index] ?? null,
+      eta,
+      layerByName,
+    })
+  );
+  const derivativeRows = rows.filter((row) => row.derivativeInputPass);
+  const endpointClearanceRows = rows.filter(
+    (row) => row.endpointClearanceRepairPass
+  );
+  const historyIntegralRows = rows.filter(
+    (row) => row.normalizedHistoryIntegralPass
+  );
+  const endpointLeakageValues = rows
+    .map((row) => row.endpointLeakageAbsAtInterval)
+    .filter(Number.isFinite);
+  const routeEndpointLeakageValues = rows
+    .map((row) => row.endpointLeakageAbsAtRouteWidth)
+    .filter(Number.isFinite);
+  const endpointClearanceResidualValues = rows
+    .map((row) => row.endpointClearanceResidualAbs)
+    .filter(Number.isFinite);
+  const weightedLocalBoundaryDerivativeTerms = rows
+    .map((row) => row.weightedLocalBoundaryDerivativeTerm)
+    .filter(Number.isFinite);
+  const weightedNormalizedPartialT1KernelTerms = rows
+    .map((row) => row.weightedNormalizedPartialT1KernelTerm)
+    .filter(Number.isFinite);
+  const maxEndpointLeakageAbsAtInterval = maxFinite(endpointLeakageValues);
+  const maxEndpointLeakageAbsAtRouteWidth = maxFinite(routeEndpointLeakageValues);
+  const maxEndpointClearanceResidualAbs = maxFinite(
+    endpointClearanceResidualValues
+  );
+  const weightedLocalBoundaryDerivativeTermSum =
+    weightedLocalBoundaryDerivativeTerms.length === rows.length && rows.length > 0
+      ? weightedLocalBoundaryDerivativeTerms.reduce((sum, value) => sum + value, 0)
+      : null;
+  const halfWeightedLocalBoundaryDerivativeTermSum =
+    Number.isFinite(weightedLocalBoundaryDerivativeTermSum)
+      ? 0.5 * weightedLocalBoundaryDerivativeTermSum
+      : null;
+  const weightedNormalizedPartialT1KernelTermSum =
+    weightedNormalizedPartialT1KernelTerms.length === rows.length &&
+    rows.length > 0
+      ? weightedNormalizedPartialT1KernelTerms.reduce(
+          (sum, value) => sum + value,
+          0
+        )
+      : null;
+  const halfWeightedNormalizedPartialT1KernelTermSum = Number.isFinite(
+    weightedNormalizedPartialT1KernelTermSum
+  )
+    ? 0.5 * weightedNormalizedPartialT1KernelTermSum
+    : null;
+  const endpointLeakageBlocks =
+    Number.isFinite(maxEndpointLeakageAbsAtInterval) &&
+    maxEndpointLeakageAbsAtInterval > POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE;
+  const routeWidthEndpointLeakageBlocks =
+    Number.isFinite(maxEndpointLeakageAbsAtRouteWidth) &&
+    maxEndpointLeakageAbsAtRouteWidth > POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE;
+  const derivativeInputsPass =
+    targetPopulated === true &&
+    rows.length > 0 &&
+    derivativeRows.length === rows.length;
+  const endpointClearanceRepairPass =
+    derivativeInputsPass &&
+    endpointClearanceRows.length === rows.length &&
+    Number.isFinite(maxEndpointClearanceResidualAbs) &&
+    maxEndpointClearanceResidualAbs <= POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE;
+  const normalizedHistoryIntegralPass =
+    endpointClearanceRepairPass &&
+    historyIntegralRows.length === rows.length &&
+    Number.isFinite(halfWeightedNormalizedPartialT1KernelTermSum);
+
+  return {
+    schema: "aaa-tri-binary-action-boundary-wake-energy-derivative-target.v1",
+    status:
+      targetPopulated !== true
+        ? "action_boundary_derivative_kernel_blocked_until_boundary_charge_pullback"
+        : rows.length === 0
+        ? "action_boundary_derivative_kernel_rows_missing"
+        : !derivativeInputsPass
+        ? "action_boundary_derivative_kernel_inputs_missing"
+        : !endpointClearanceRepairPass
+        ? "action_boundary_derivative_kernel_blocked_endpoint_clearance_repair_missing"
+        : !normalizedHistoryIntegralPass
+        ? "action_boundary_derivative_kernel_blocked_history_integral_missing"
+        : "action_boundary_derivative_kernel_history_integral_evaluated_action_scale_missing",
+    claimLevel:
+      "partial_t1 normalized action-kernel derivative target for the accepted route rows; not accepted wake energy",
+    targetPopulated: targetPopulated === true,
+    derivativeInputsPass,
+    endpointClearanceRepairPass,
+    normalizedHistoryIntegralPass,
+    acceptedWakeEnergyIncrementPass: false,
+    normalizedBoundaryChargeStatus:
+      normalizedActionKernelWakeCharge?.status ?? null,
+    retainedCrossingDomainPullbackStatus:
+      retainedActionKernelPullbackDomain?.status ?? null,
+    eta,
+    rowCount: rows.length,
+    derivativeRowCount: derivativeRows.length,
+    formula:
+      "partial_t1 K_eff,h+(r,g) = delta_eta(g)/(c_f (u-g)^2) partial_t1 g - (2/c_f) integral_{-h+}^{g} delta_eta(s)/(u-s)^3 ds, with u=t1-t0",
+    weightedLocalBoundaryDerivativeTermSum,
+    halfWeightedLocalBoundaryDerivativeTermSum,
+    weightedNormalizedPartialT1KernelTermSum,
+    halfWeightedNormalizedPartialT1KernelTermSum,
+    maxEndpointLeakageAbsAtInterval,
+    maxEndpointLeakageAbsAtRouteWidth,
+    maxEndpointClearanceResidualAbs,
+    endpointLeakageBlocks,
+    routeWidthEndpointLeakageBlocks,
+    missingAcceptedFields: [
+      endpointClearanceRepairPass ? null : "endpoint_clearance_residual_zero",
+      normalizedHistoryIntegralPass
+        ? null
+        : "normalized_K_eff_history_integral_m3",
+      "sigma_hbar_action_scale",
+      "accepted_wake_energy_increment_law",
+    ].filter(Boolean),
+    rows,
+    retainedLimitation:
+      "The endpoint-clear gauge repair and normalized K_eff history integral are route-local action-kernel derivative rows only. A declared sigma*hbar action scale and accepted wake-energy law are still required before this can assign retained wake energy.",
+  };
+}
+
+function createActionBoundaryWakeEnergyDerivativeRow({
+  row,
+  coefficientRow,
+  eta,
+  layerByName,
+}) {
+  const pairKey = row.pairKey ?? coefficientRow?.pairKey ?? null;
+  const [, receiverLayerName] =
+    typeof pairKey === "string" ? pairKey.split("->") : [null, null];
+  const receiverLayer = layerByName?.get?.(receiverLayerName) ?? null;
+  const hitTime = coefficientRow?.hitTime ?? row.pairEndpointGeometry?.hitTime ?? null;
+  const emissionTime =
+    coefficientRow?.emissionTime ?? row.pairEndpointGeometry?.emissionTime ?? null;
+  const pairDistance =
+    coefficientRow?.pairDistance ?? row.pairEndpointGeometry?.pairDistance ?? null;
+  const causalGap = coefficientRow?.causalGap ?? null;
+  const u =
+    Number.isFinite(hitTime) && Number.isFinite(emissionTime)
+      ? hitTime - emissionTime
+      : null;
+  const receiverVelocity =
+    receiverLayer && Number.isFinite(hitTime)
+      ? computeCircularLayerVelocity(receiverLayer, hitTime)
+      : null;
+  const receiverRadialUnit = row.pairEndpointGeometry?.receiverRadialUnit ?? null;
+  const receiverRadialVelocity =
+    isFiniteVector(receiverVelocity) && isFiniteVector(receiverRadialUnit)
+      ? dotVectors(receiverVelocity, receiverRadialUnit)
+      : null;
+  const partialT1G =
+    Number.isFinite(receiverRadialVelocity) && FIELD_SPEED > 0
+      ? 1 - receiverRadialVelocity / FIELD_SPEED
+      : null;
+  const deltaEtaAtGap = coefficientRow?.deltaEtaGaussianAtGap ?? null;
+  const localBoundaryDenominator =
+    Number.isFinite(u) && Number.isFinite(causalGap)
+      ? FIELD_SPEED * (u - causalGap) * (u - causalGap)
+      : null;
+  const localBoundaryDerivativeTerm =
+    Number.isFinite(deltaEtaAtGap) &&
+    Number.isFinite(partialT1G) &&
+    Number.isFinite(localBoundaryDenominator) &&
+    Math.abs(localBoundaryDenominator) > POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE
+      ? (deltaEtaAtGap / localBoundaryDenominator) * partialT1G
+      : null;
+  const weightedLocalBoundaryDerivativeTerm =
+    Number.isFinite(localBoundaryDerivativeTerm) &&
+    Number.isFinite(coefficientRow?.requiredCouplingCoefficient)
+      ? coefficientRow.requiredCouplingCoefficient * localBoundaryDerivativeTerm
+      : null;
+  const hPlusInterval = row.intervalWidth ?? null;
+  const hPlusRouteWidth = row.minOneSidedRouteWidth ?? null;
+  const normalizedEndpointHPlus = Number.isFinite(hPlusRouteWidth)
+    ? hPlusRouteWidth
+    : hPlusInterval;
+  const endpointLeakageAtInterval = evaluateEndpointLeakage({
+    hPlus: hPlusInterval,
+    u,
+    eta,
+  });
+  const endpointLeakageAtRouteWidth = evaluateEndpointLeakage({
+    hPlus: hPlusRouteWidth,
+    u,
+    eta,
+  });
+  const endpointClearanceGaugeRepair =
+    createFiniteGaussianEndpointClearanceGaugeRepair({
+      endpointLeakage: endpointLeakageAtRouteWidth,
+      hPlus: hPlusRouteWidth,
+      u,
+      eta,
+    });
+  const historyIntegralM2 = evaluateGaussianHistoryIntegral({
+    hPlus: normalizedEndpointHPlus,
+    upper: causalGap,
+    u,
+    eta,
+    power: 2,
+  });
+  const historyIntegralM3 = evaluateGaussianHistoryIntegral({
+    hPlus: normalizedEndpointHPlus,
+    upper: causalGap,
+    u,
+    eta,
+    power: 3,
+  });
+  const normalizedPartialT1KernelTerm =
+    Number.isFinite(localBoundaryDerivativeTerm) &&
+    Number.isFinite(historyIntegralM3)
+      ? localBoundaryDerivativeTerm - 2 * historyIntegralM3
+      : null;
+  const weightedNormalizedPartialT1KernelTerm =
+    Number.isFinite(normalizedPartialT1KernelTerm) &&
+    Number.isFinite(coefficientRow?.requiredCouplingCoefficient)
+      ? coefficientRow.requiredCouplingCoefficient *
+        normalizedPartialT1KernelTerm
+      : null;
+  const derivativeInputPass =
+    Number.isFinite(localBoundaryDerivativeTerm) &&
+    Number.isFinite(weightedLocalBoundaryDerivativeTerm) &&
+    Number.isFinite(endpointLeakageAtRouteWidth);
+  const endpointClearanceRepairPass =
+    endpointClearanceGaugeRepair?.endpointClearanceRepairPass === true;
+  const normalizedHistoryIntegralPass =
+    Number.isFinite(historyIntegralM2) &&
+    Number.isFinite(historyIntegralM3) &&
+    Number.isFinite(normalizedPartialT1KernelTerm) &&
+    Number.isFinite(weightedNormalizedPartialT1KernelTerm);
+
+  return {
+    rowId: coefficientRow?.rowId ?? row.rowId ?? null,
+    status:
+      derivativeInputPass &&
+      endpointClearanceRepairPass &&
+      normalizedHistoryIntegralPass
+        ? "action_boundary_derivative_row_history_integral_evaluated_action_scale_missing"
+        : derivativeInputPass && endpointClearanceRepairPass
+        ? "action_boundary_derivative_row_endpoint_clearance_repaired_history_integral_missing"
+        : derivativeInputPass
+        ? "action_boundary_derivative_row_local_boundary_term_populated_endpoint_clearance_missing"
+      : "action_boundary_derivative_row_inputs_missing",
+    derivativeInputPass,
+    endpointClearanceRepairPass,
+    normalizedHistoryIntegralPass,
+    pairKey,
+    side: row.side ?? coefficientRow?.side ?? null,
+    endpointOwnership: row.endpointOwnership ?? coefficientRow?.endpointOwnership ?? null,
+    receiverLayer: receiverLayerName ?? null,
+    hitTime,
+    emissionTime,
+    u,
+    pairDistance,
+    causalGap,
+    eta,
+    hPlusInterval,
+    hPlusRouteWidth,
+    normalizedEndpointHPlus,
+    receiverVelocity,
+    receiverRadialUnit,
+    receiverRadialVelocity,
+    partialT1G,
+    deltaEtaAtGap,
+    localBoundaryDerivativeTerm,
+    requiredCouplingCoefficient: coefficientRow?.requiredCouplingCoefficient ?? null,
+    weightedLocalBoundaryDerivativeTerm,
+    endpointLeakageAtInterval,
+    endpointLeakageAbsAtInterval: Number.isFinite(endpointLeakageAtInterval)
+      ? Math.abs(endpointLeakageAtInterval)
+      : null,
+    endpointLeakageAtRouteWidth,
+    endpointLeakageAbsAtRouteWidth: Number.isFinite(endpointLeakageAtRouteWidth)
+      ? Math.abs(endpointLeakageAtRouteWidth)
+      : null,
+    endpointClearanceGaugeRepair,
+    endpointClearanceResidual:
+      endpointClearanceGaugeRepair?.endpointClearanceResidual ?? null,
+    endpointClearanceResidualAbs: Number.isFinite(
+      endpointClearanceGaugeRepair?.endpointClearanceResidual
+    )
+      ? Math.abs(endpointClearanceGaugeRepair.endpointClearanceResidual)
+      : null,
+    historyIntegralM2,
+    historyIntegralM3,
+    normalizedPartialT1KernelTerm,
+    weightedNormalizedPartialT1KernelTerm,
+    retainedLimitation:
+      "This row evaluates the route-width finite-Gaussian endpoint gauge repair and the normalized partial_t1 K_eff history integral. It still lacks a declared action scale and accepted wake-energy law.",
+  };
+}
+
+function evaluateEndpointLeakage({ hPlus, u, eta }) {
+  const deltaAtEndpoint = evaluateGaussianDeltaEta({ gap: -hPlus, eta });
+  if (
+    !Number.isFinite(deltaAtEndpoint) ||
+    !Number.isFinite(u) ||
+    !Number.isFinite(hPlus) ||
+    FIELD_SPEED <= 0 ||
+    Math.abs(u + hPlus) <= POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE
+  ) {
+    return null;
+  }
+  return deltaAtEndpoint / (FIELD_SPEED * (u + hPlus));
+}
+
+function createFiniteGaussianEndpointClearanceGaugeRepair({
+  endpointLeakage,
+  hPlus,
+  u,
+  eta,
+}) {
+  const characteristicGaugeValue = Number.isFinite(endpointLeakage)
+    ? -endpointLeakage
+    : null;
+  const endpointClearanceResidual =
+    Number.isFinite(endpointLeakage) && Number.isFinite(characteristicGaugeValue)
+      ? endpointLeakage + characteristicGaugeValue
+      : null;
+  const characteristicGaugeDerivative = evaluateEndpointGaugeDerivative({
+    hPlus,
+    u,
+    eta,
+  });
+  const endpointClearanceRepairPass =
+    Number.isFinite(endpointClearanceResidual) &&
+    Math.abs(endpointClearanceResidual) <=
+      POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE;
+
+  return {
+    schema:
+      "aaa-tri-binary-finite-gaussian-endpoint-clearance-gauge-repair.v1",
+    status: endpointClearanceRepairPass
+      ? "finite_gaussian_endpoint_clearance_gauge_repair_zero_residual"
+      : "finite_gaussian_endpoint_clearance_gauge_repair_inputs_missing",
+    endpointClearanceRepairPass,
+    endpointLeakage,
+    characteristicGaugeValue,
+    endpointClearanceResidual,
+    characteristicGaugeDerivative,
+    hPlus,
+    u,
+    eta,
+    convention:
+      "For the finite-Gaussian characteristic-tail endpoint, set H_+^(eta)(u)=-B_+^(eta)(u,h_+) before treating K_eff as a normalized action object.",
+  };
+}
+
+function evaluateEndpointGaugeDerivative({ hPlus, u, eta }) {
+  const deltaAtEndpoint = evaluateGaussianDeltaEta({ gap: -hPlus, eta });
+  if (
+    !Number.isFinite(deltaAtEndpoint) ||
+    !Number.isFinite(u) ||
+    !Number.isFinite(hPlus) ||
+    FIELD_SPEED <= 0 ||
+    Math.abs(u + hPlus) <= POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE
+  ) {
+    return null;
+  }
+  return deltaAtEndpoint / (FIELD_SPEED * (u + hPlus) * (u + hPlus));
+}
+
+function evaluateGaussianHistoryIntegral({ hPlus, upper, u, eta, power }) {
+  if (
+    !Number.isFinite(hPlus) ||
+    !Number.isFinite(upper) ||
+    !Number.isFinite(u) ||
+    !Number.isFinite(eta) ||
+    !Number.isFinite(power) ||
+    hPlus <= 0 ||
+    eta <= 0 ||
+    FIELD_SPEED <= 0
+  ) {
+    return null;
+  }
+  const lower = -hPlus;
+  if (upper < lower) {
+    return null;
+  }
+  const steps = 512;
+  return integrateSimpson({
+    lower,
+    upper,
+    steps,
+    integrand: (s) => {
+      const denominator = FIELD_SPEED * Math.pow(u - s, power);
+      if (
+        !Number.isFinite(denominator) ||
+        Math.abs(denominator) <= POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE
+      ) {
+        return null;
+      }
+      const delta = evaluateGaussianDeltaEta({ gap: s, eta });
+      return Number.isFinite(delta) ? delta / denominator : null;
+    },
+  });
+}
+
+function integrateSimpson({ lower, upper, steps, integrand }) {
+  if (
+    !Number.isFinite(lower) ||
+    !Number.isFinite(upper) ||
+    !Number.isFinite(steps) ||
+    steps <= 0
+  ) {
+    return null;
+  }
+  if (upper === lower) {
+    const value = integrand(lower);
+    return Number.isFinite(value) ? 0 : null;
+  }
+  const panelCount = Math.max(2, Math.ceil(steps / 2) * 2);
+  const width = (upper - lower) / panelCount;
+  let sum = 0;
+  for (let index = 0; index <= panelCount; index += 1) {
+    const s = lower + index * width;
+    const value = integrand(s);
+    if (!Number.isFinite(value)) {
+      return null;
+    }
+    const weight = index === 0 || index === panelCount ? 1 : index % 2 === 0 ? 2 : 4;
+    sum += weight * value;
+  }
+  return (width / 3) * sum;
 }
 
 function createRetainedActionKernelPullbackDomainTarget({
@@ -8500,6 +9617,7 @@ function createMiddleFieldSpeedHingeCapture({
     retainedTimeDomainCoverage,
     timeWindowTorqueProbe,
     cleanEnergyFrequencyTarget,
+    layerByName,
   });
 
   return {
@@ -8580,6 +9698,7 @@ function createMiddleFieldSpeedRetainedChartFeasibility({
   retainedTimeDomainCoverage,
   timeWindowTorqueProbe,
   cleanEnergyFrequencyTarget,
+  layerByName,
 }) {
   const compensationRows = middleContinuityMatches.map((match) =>
     createMiddleRetainedChartCompensationRow(match)
@@ -8597,6 +9716,7 @@ function createMiddleFieldSpeedRetainedChartFeasibility({
     compensatedRoutePayloadCertificate,
     timeWindowTorqueProbe,
     cleanEnergyFrequencyTarget,
+    layerByName,
   });
   const compensatedPayloadInventory = createCompensatedRetainedChartPayloadInventory({
     compensationRequiredRows,
@@ -10517,13 +11637,17 @@ function computeMechanicalEndpointIncrementForLayer({ layer, start, end }) {
 
 function computeCircularLayerAngularMomentum(layer, time) {
   const position = computeCircularLayerPoint(layer, time);
+  const velocity = computeCircularLayerVelocity(layer, time);
+  return crossVectors(position, velocity);
+}
+
+function computeCircularLayerVelocity(layer, time) {
   const phase = layer.angularVelocity * time + layer.phaseAtEpoch;
-  const velocity = {
+  return {
     x: -layer.radius * layer.angularVelocity * Math.sin(phase),
     y: layer.radius * layer.angularVelocity * Math.cos(phase),
     z: 0,
   };
-  return crossVectors(position, velocity);
 }
 
 function computeCircularLayerPoint(layer, time) {
@@ -10590,7 +11714,7 @@ function createClosureSummary(cases, retainedLineagePhaseProbe) {
     status: "not_closed",
     retainedBranchClaim: false,
     reason:
-      "The runner now emits solver-backed reduced rows, sampled active-row lineage, phase-at-hit rows, a branch-chart projection, a selected fixed-receiver time-window torque diagnostic, binary-to-binary path-history roots/hits, replayed binary-to-binary root-ledger-detail rows, solver root-key transition classification, inactive-gap margins, retained hit-time coverage, common hinge-point candidates, point-event witnesses, candidate point-event admissibility rows, candidate branch-transport incidence rows, a candidate branch-transport pair-map, a middle field-speed hinge-capture diagnostic, a fail-closed retained-chart feasibility diagnostic, a complete route-payload diagnostic, a route-authorized wake-charge/domain target, an action-kernel normalization-convention candidate, accepted chart-restricted crossing-domain rows, a least-norm route-gradient candidate, a finite endpoint-clear kernel-gradient candidate evaluation, a Master-Equation characteristic-tail pair-radial pullback target, a side-split radial-constrained boundary-charge solve, a delta_eta(g) quadrature target, a single-coefficient sign-pattern candidate, a layer-polarity assignment candidate, a source/receiver polarity row-binding candidate, an accepted normalized action-kernel wake charge, an accepted retained crossing-domain pullback, a populated wake-energy increment target, and partial retained chains, but promotion still requires an accepted retained point-event rule or a positive-width common retained time domain plus common active-row identity across force, torque, wake, partition, phase, stability, accepted layer-polarity assignment, accepted source/receiver polarity metadata, an accepted action-boundary wake-energy increment law, vector-ledger, and energy-routing rows.",
+      "The runner now emits solver-backed reduced rows, sampled active-row lineage, phase-at-hit rows, a branch-chart projection, a selected fixed-receiver time-window torque diagnostic, binary-to-binary path-history roots/hits, replayed binary-to-binary root-ledger-detail rows, solver root-key transition classification, inactive-gap margins, retained hit-time coverage, common hinge-point candidates, point-event witnesses, candidate point-event admissibility rows, candidate branch-transport incidence rows, a candidate branch-transport pair-map, a middle field-speed hinge-capture diagnostic, a fail-closed retained-chart feasibility diagnostic, a complete route-payload diagnostic, a route-authorized wake-charge/domain target, an action-kernel normalization-convention candidate, accepted chart-restricted crossing-domain rows, a least-norm route-gradient candidate, a finite endpoint-clear kernel-gradient candidate evaluation, a Master-Equation characteristic-tail pair-radial pullback target, a side-split radial-constrained boundary-charge solve, a delta_eta(g) quadrature target, a single-coefficient sign-pattern candidate, a layer-polarity assignment candidate, a source/receiver polarity row-binding candidate, an accepted normalized action-kernel wake charge, an accepted retained crossing-domain pullback, a populated wake-energy increment target, a finite-Gaussian endpoint-clearance gauge repair, a normalized action-boundary derivative history integral, and partial retained chains, but promotion still requires an accepted retained point-event rule or a positive-width common retained time domain plus common active-row identity across force, torque, wake, partition, phase, stability, accepted layer-polarity assignment, accepted source/receiver polarity metadata, a sigma*hbar action scale, an accepted action-boundary wake-energy increment law, vector-ledger, and energy-routing rows.",
     reducedPassCases: projection.reducedPassCases,
     activeLineageProbeCases: projection.activeLineageProbeCases,
     phaseAtHitProbeCases: projection.phaseAtHitProbeCases,
