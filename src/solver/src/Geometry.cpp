@@ -3,12 +3,52 @@
 #include <algorithm>
 #include <cmath>
 #include <limits>
+#include <map>
 #include <optional>
+#include <set>
 
 namespace architrino::solver {
 namespace {
 
 constexpr double kPi = 3.141592653589793238462643383279502884;
+
+struct EmissionShellIndexBucketKey {
+  std::int64_t timeSlab = 0;
+  std::int64_t cellX = 0;
+  std::int64_t cellY = 0;
+  std::int64_t cellZ = 0;
+
+  bool operator<(const EmissionShellIndexBucketKey& other) const {
+    if (timeSlab != other.timeSlab) {
+      return timeSlab < other.timeSlab;
+    }
+    if (cellX != other.cellX) {
+      return cellX < other.cellX;
+    }
+    if (cellY != other.cellY) {
+      return cellY < other.cellY;
+    }
+    return cellZ < other.cellZ;
+  }
+};
+
+struct EmissionShellIndexedPairKey {
+  std::uint64_t sourceRowIndex = 0;
+  std::uint64_t receiverRowIndex = 0;
+
+  bool operator<(const EmissionShellIndexedPairKey& other) const {
+    if (sourceRowIndex != other.sourceRowIndex) {
+      return sourceRowIndex < other.sourceRowIndex;
+    }
+    return receiverRowIndex < other.receiverRowIndex;
+  }
+};
+
+struct EmissionShellIndexTimeSpan {
+  bool valid = false;
+  double start = 0.0;
+  double end = 0.0;
+};
 
 double circular_self_hit_residual(double angle, double fieldSpeedRatio) {
   return 2.0 * std::sin(angle / 2.0) - angle / fieldSpeedRatio;
@@ -72,6 +112,65 @@ bool path_history_row_is_finite(const PathHistoryRowF64& row) {
          value_is_finite(row.startZ) && value_is_finite(row.velocityX) &&
          value_is_finite(row.velocityY) && value_is_finite(row.velocityZ) &&
          value_is_finite(row.errorBound);
+}
+
+std::int64_t floor_cell(double value, double cellSize) {
+  return static_cast<std::int64_t>(std::floor(value / cellSize));
+}
+
+std::int64_t clamp_slab(double time, double timeStart, double timeBinSize, std::size_t slabCount) {
+  const double raw = std::floor((time - timeStart) / timeBinSize);
+  if (!std::isfinite(raw) || raw < 0.0) {
+    return 0;
+  }
+  const std::int64_t slab = static_cast<std::int64_t>(raw);
+  const std::int64_t maxSlab = static_cast<std::int64_t>(slabCount == 0 ? 0 : slabCount - 1);
+  return std::min(slab, maxSlab);
+}
+
+AxisAlignedBounds expand_bounds(AxisAlignedBounds bounds, double amount) {
+  return AxisAlignedBounds{
+      Vector3{
+          bounds.min.x - amount,
+          bounds.min.y - amount,
+          bounds.min.z - amount,
+      },
+      Vector3{
+          bounds.max.x + amount,
+          bounds.max.y + amount,
+          bounds.max.z + amount,
+      },
+  };
+}
+
+EmissionShellIndexTimeSpan resolve_index_time_span(
+    const std::vector<PathHistoryRowF64>& sourceRows,
+    const std::vector<PathHistoryRowF64>& receiverRows,
+    const EmissionShellIndexedBroadPhaseOptions& options) {
+  if (options.useFixedTimeRange) {
+    return EmissionShellIndexTimeSpan{
+        std::isfinite(options.timeRangeStart) && std::isfinite(options.timeRangeEnd) &&
+            options.timeRangeEnd > options.timeRangeStart,
+        options.timeRangeStart,
+        options.timeRangeEnd,
+    };
+  }
+
+  double timeStart = std::numeric_limits<double>::infinity();
+  double timeEnd = -std::numeric_limits<double>::infinity();
+  for (const PathHistoryRowF64& row : sourceRows) {
+    timeStart = std::min(timeStart, row.startTime);
+    timeEnd = std::max(timeEnd, row.endTime);
+  }
+  for (const PathHistoryRowF64& row : receiverRows) {
+    timeStart = std::min(timeStart, row.startTime);
+    timeEnd = std::max(timeEnd, row.endTime);
+  }
+  return EmissionShellIndexTimeSpan{
+      std::isfinite(timeStart) && std::isfinite(timeEnd) && timeEnd > timeStart,
+      timeStart,
+      timeEnd,
+  };
 }
 
 double emission_shell_residual(const PathHistoryRowF64& source,
@@ -152,8 +251,8 @@ SampledEmissionTimeSolve solve_sampled_emission_time(const PathHistoryRowF64& so
 std::optional<EmissionShellBroadPhaseCandidate> classify_emission_shell_counted_pair(
     const PathHistoryRowF64& source,
     const PathHistoryRowF64& receiver,
-    std::size_t sourceIndex,
-    std::size_t receiverIndex,
+    std::uint64_t sourceIndex,
+    std::uint64_t receiverIndex,
     double signalSpeed,
     double tolerance) {
   const double maxDelay = receiver.endTime - source.startTime;
@@ -180,8 +279,8 @@ std::optional<EmissionShellBroadPhaseCandidate> classify_emission_shell_counted_
       receiver.pathKey,
       source.segmentIndex,
       receiver.segmentIndex,
-      static_cast<std::uint64_t>(sourceIndex),
-      static_cast<std::uint64_t>(receiverIndex),
+      sourceIndex,
+      receiverIndex,
       source.startTime,
       source.endTime,
       receiver.startTime,
@@ -433,6 +532,175 @@ EmissionShellBroadPhaseResult query_emission_shell_broad_phase_parallel(
     }
   }
   result.summary.candidateCount = static_cast<std::uint64_t>(result.candidates.size());
+  return result;
+}
+
+EmissionShellIndexedBroadPhaseResult query_emission_shell_broad_phase_indexed_v0(
+    const std::vector<PathHistoryRowF64>& sourceRows,
+    const std::vector<PathHistoryRowF64>& receiverRows,
+    const EmissionShellBroadPhaseOptions& broadPhaseOptions,
+    const EmissionShellIndexedBroadPhaseOptions& indexOptions) {
+  EmissionShellIndexedBroadPhaseResult result;
+  result.index.timeSlabCount = indexOptions.timeSlabCount;
+  result.index.spatialCellSize = indexOptions.spatialCellSize;
+  result.index.sourceRowOffset = indexOptions.sourceRowOffset;
+  result.index.receiverRowOffset = indexOptions.receiverRowOffset;
+  result.broadPhase.summary.plannedWorkerCount = 1;
+
+  if (sourceRows.empty() || receiverRows.empty()) {
+    return result;
+  }
+  if (indexOptions.timeSlabCount == 0 || !std::isfinite(indexOptions.spatialCellSize) ||
+      indexOptions.spatialCellSize <= 0.0) {
+    result.index.coverageStatus = EmissionShellIndexCoverageStatus::InvalidInput;
+    return result;
+  }
+
+  const EmissionShellIndexTimeSpan timeSpan =
+      resolve_index_time_span(sourceRows, receiverRows, indexOptions);
+  result.index.timeRangeStart = timeSpan.start;
+  result.index.timeRangeEnd = timeSpan.end;
+  if (!timeSpan.valid) {
+    result.index.coverageStatus = EmissionShellIndexCoverageStatus::InvalidInput;
+    return result;
+  }
+
+  const double timeBinSize =
+      (timeSpan.end - timeSpan.start) / static_cast<double>(indexOptions.timeSlabCount);
+  if (!std::isfinite(timeBinSize) || timeBinSize <= 0.0) {
+    result.index.coverageStatus = EmissionShellIndexCoverageStatus::InvalidInput;
+    return result;
+  }
+
+  const double signalSpeed =
+      std::isfinite(broadPhaseOptions.signalSpeed) && broadPhaseOptions.signalSpeed > 0.0
+          ? broadPhaseOptions.signalSpeed
+          : 1.0;
+  const double tolerance =
+      std::isfinite(broadPhaseOptions.tolerance) && broadPhaseOptions.tolerance > 0.0
+          ? broadPhaseOptions.tolerance
+          : 0.0;
+  result.broadPhase.candidates.reserve(
+      std::min(broadPhaseOptions.maxCandidates, sourceRows.size() * receiverRows.size()));
+
+  std::map<EmissionShellIndexBucketKey, std::vector<std::size_t>> receiverBuckets;
+  for (std::size_t receiverIndex = 0; receiverIndex < receiverRows.size(); ++receiverIndex) {
+    const PathHistoryRowF64& receiver = receiverRows[receiverIndex];
+    if (!path_history_row_is_finite(receiver)) {
+      continue;
+    }
+    const AxisAlignedBounds bounds = path_history_row_bounds(receiver);
+    const std::int64_t timeSlabStart =
+        clamp_slab(receiver.startTime, timeSpan.start, timeBinSize, indexOptions.timeSlabCount);
+    const std::int64_t timeSlabEnd =
+        clamp_slab(receiver.endTime, timeSpan.start, timeBinSize, indexOptions.timeSlabCount);
+    const std::int64_t cellXStart = floor_cell(bounds.min.x, indexOptions.spatialCellSize);
+    const std::int64_t cellXEnd = floor_cell(bounds.max.x, indexOptions.spatialCellSize);
+    const std::int64_t cellYStart = floor_cell(bounds.min.y, indexOptions.spatialCellSize);
+    const std::int64_t cellYEnd = floor_cell(bounds.max.y, indexOptions.spatialCellSize);
+    const std::int64_t cellZStart = floor_cell(bounds.min.z, indexOptions.spatialCellSize);
+    const std::int64_t cellZEnd = floor_cell(bounds.max.z, indexOptions.spatialCellSize);
+    for (std::int64_t timeSlab = timeSlabStart; timeSlab <= timeSlabEnd; ++timeSlab) {
+      for (std::int64_t cellX = cellXStart; cellX <= cellXEnd; ++cellX) {
+        for (std::int64_t cellY = cellYStart; cellY <= cellYEnd; ++cellY) {
+          for (std::int64_t cellZ = cellZStart; cellZ <= cellZEnd; ++cellZ) {
+            receiverBuckets[EmissionShellIndexBucketKey{timeSlab, cellX, cellY, cellZ}]
+                .push_back(receiverIndex);
+            result.index.receiverCellRows += 1;
+          }
+        }
+      }
+    }
+  }
+
+  std::set<EmissionShellIndexedPairKey> testedPairs;
+  for (std::size_t sourceIndex = 0; sourceIndex < sourceRows.size(); ++sourceIndex) {
+    const PathHistoryRowF64& source = sourceRows[sourceIndex];
+    if (!path_history_row_is_finite(source)) {
+      continue;
+    }
+    const AxisAlignedBounds sourceBounds = path_history_row_bounds(source);
+    const std::int64_t firstTargetSlab =
+        clamp_slab(source.startTime, timeSpan.start, timeBinSize, indexOptions.timeSlabCount);
+    const std::int64_t lastTargetSlab =
+        static_cast<std::int64_t>(indexOptions.timeSlabCount - 1);
+    for (std::int64_t timeSlab = firstTargetSlab; timeSlab <= lastTargetSlab; ++timeSlab) {
+      const double targetTimeEnd =
+          timeSpan.start + (static_cast<double>(timeSlab) + 1.0) * timeBinSize;
+      const double maxDelay = targetTimeEnd - source.startTime;
+      if (maxDelay < 0.0) {
+        continue;
+      }
+      result.index.shellAnnulusRows += 1;
+      const double radiusUpper = signalSpeed * maxDelay + tolerance;
+      const AxisAlignedBounds queryBounds =
+          expand_bounds(sourceBounds, std::max(0.0, radiusUpper));
+      const std::int64_t cellXStart = floor_cell(queryBounds.min.x, indexOptions.spatialCellSize);
+      const std::int64_t cellXEnd = floor_cell(queryBounds.max.x, indexOptions.spatialCellSize);
+      const std::int64_t cellYStart = floor_cell(queryBounds.min.y, indexOptions.spatialCellSize);
+      const std::int64_t cellYEnd = floor_cell(queryBounds.max.y, indexOptions.spatialCellSize);
+      const std::int64_t cellZStart = floor_cell(queryBounds.min.z, indexOptions.spatialCellSize);
+      const std::int64_t cellZEnd = floor_cell(queryBounds.max.z, indexOptions.spatialCellSize);
+      for (std::int64_t cellX = cellXStart; cellX <= cellXEnd; ++cellX) {
+        for (std::int64_t cellY = cellYStart; cellY <= cellYEnd; ++cellY) {
+          for (std::int64_t cellZ = cellZStart; cellZ <= cellZEnd; ++cellZ) {
+            result.index.cellLookups += 1;
+            const auto bucket =
+                receiverBuckets.find(EmissionShellIndexBucketKey{timeSlab, cellX, cellY, cellZ});
+            if (bucket == receiverBuckets.end()) {
+              continue;
+            }
+            for (std::size_t receiverIndex : bucket->second) {
+              const PathHistoryRowF64& receiver = receiverRows[receiverIndex];
+              if (!broadPhaseOptions.allowSamePath && source.pathKey == receiver.pathKey) {
+                continue;
+              }
+              if (!pair_overlaps_time_range(source, receiver, broadPhaseOptions)) {
+                continue;
+              }
+              const std::uint64_t globalSourceIndex =
+                  indexOptions.sourceRowOffset + static_cast<std::uint64_t>(sourceIndex);
+              const std::uint64_t globalReceiverIndex =
+                  indexOptions.receiverRowOffset + static_cast<std::uint64_t>(receiverIndex);
+              const EmissionShellIndexedPairKey pair{globalSourceIndex, globalReceiverIndex};
+              if (!testedPairs.insert(pair).second) {
+                result.index.duplicatePairTests += 1;
+                continue;
+              }
+              result.index.indexedPairTests += 1;
+              result.broadPhase.summary.pairCount += 1;
+
+              const std::optional<EmissionShellBroadPhaseCandidate> candidate =
+                  classify_emission_shell_counted_pair(source,
+                                                       receiver,
+                                                       globalSourceIndex,
+                                                       globalReceiverIndex,
+                                                       signalSpeed,
+                                                       tolerance);
+              if (!candidate.has_value()) {
+                result.broadPhase.summary.rejectedPairCount += 1;
+                continue;
+              }
+              if (result.broadPhase.candidates.size() >= broadPhaseOptions.maxCandidates) {
+                result.broadPhase.summary.truncated = true;
+                result.index.coverageStatus = EmissionShellIndexCoverageStatus::Truncated;
+                result.broadPhase.summary.candidateCount =
+                    static_cast<std::uint64_t>(result.broadPhase.candidates.size());
+                return result;
+              }
+              result.broadPhase.candidates.push_back(*candidate);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  result.broadPhase.summary.candidateCount =
+      static_cast<std::uint64_t>(result.broadPhase.candidates.size());
+  result.index.coverageStatus = result.broadPhase.summary.truncated
+                                    ? EmissionShellIndexCoverageStatus::Truncated
+                                    : EmissionShellIndexCoverageStatus::Complete;
   return result;
 }
 

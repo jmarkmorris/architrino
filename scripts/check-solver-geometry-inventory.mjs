@@ -202,52 +202,103 @@ const migrationTargets = [
     ],
   },
   {
-    id: "assembly-dynamics-reference-engine",
+    id: "animator-delayed-hit-rows",
     app: "Animator",
     local: {
-      file: "scripts/simulations/lib/assembly-dynamics-solver.mjs",
+      file: "src/apps/animator/AnimatorDelayedHitRuntime.js",
       symbols: [
-        "causal-delay Jacobian",
-        "unresolved_roots",
-        "self_hits",
-        "partner_hits",
+        "createAnimatorDelayedHitsFromSolverRows",
       ],
     },
     central: [
       {
-        file: "src/solver/src/CausalRootSolver.cpp",
-        symbols: ["jacobian", "branchWeight"],
+        file: "src/solver/app/AnimatorDelayedHitRows.mjs",
+        symbols: [
+          "ANIMATOR_DELAYED_HIT_STREAM_DESCRIPTOR_SCHEMA",
+          "ANIMATOR_RECEIVER_PATH_DESCRIPTOR_LAYOUT",
+          "ANIMATOR_DELAYED_HIT_ROW_LAYOUT",
+          "createAnimatorDelayedHitRowsFromStreamDescriptors",
+          "path_segment.v1",
+        ],
       },
       {
-        file: "src/solver/src/RootLedger.cpp",
-        symbols: ["RootLedgerDetailRowF64"],
+        file: "src/solver/app/AnimatorReceiverPathDescriptors.mjs",
+        symbols: [
+          "ANIMATOR_RECEIVER_PATH_DESCRIPTOR_PACKAGE_SCHEMA",
+          "ANIMATOR_RECEIVER_PATH_DESCRIPTOR_LAYOUT",
+          "createAnimatorReceiverPathDescriptorPackage",
+        ],
       },
       {
-        file: "src/solver/src/InvariantChecks.cpp",
-        symbols: ["delayed-hit"],
+        file: "tests/animator-delayed-hit-runtime.test.js",
+        symbols: [
+          "animator delayed-hit runtime consumes solver-owned path-history hit rows",
+        ],
+      },
+      {
+        file: "tests/animator-receiver-path-descriptors.test.js",
+        symbols: [
+          "animator receiver path descriptors derive path segments from source history",
+          "animator delayed-hit rows consume solver-owned receiver descriptors",
+        ],
       },
     ],
     solverOwnership: [
-      "branch-resolved causal-root accounting",
-      "self and partner delayed-hit rows",
-      "unresolved-root diagnostics",
-      "Jacobian-weighted branch data",
+      "receiver path descriptor construction",
+      "field-shell/path intersection solving",
+      "delayed-hit row output",
+      "Jacobian and branch-weight row fields",
     ],
-    baselineCases: ["animator-causal-root-smoke", "animator-motion-dynamic-replay-smoke"],
-  },
-];
-
-const excludedSurfaces = [
-  {
-    id: "sim2",
-    formerPath: "src/apps/sim2",
-    policy: "removed from active scope",
-    reason: "sim2 was an early animation prototype and is not a migration target, adapter target, or parity target.",
+    baselineCases: [
+      "animator-path-history-smoke",
+    ],
   },
   {
-    id: "legacy-solver-families",
-    policy: "separate maintenance or artifact exchange only",
-    reason: "proof-program, mass-map, neutral-swarm, nested-shell, cosmology, and related solvers are outside central app migration.",
+    id: "animator-field-shell-event-stream",
+    app: "Animator",
+    local: {
+      file: "src/apps/architrino/ArchitrinoSceneAppRuntime.js",
+      symbols: [
+        "createAnimatorArchitrinoFieldShellEventPackage",
+        "createAnimatorFieldShellEventStreamPackage",
+      ],
+    },
+    central: [
+      {
+        file: "src/solver/app/AnimatorFieldShellEventStream.mjs",
+        symbols: [
+          "ANIMATOR_FIELD_SHELL_EVENT_STREAM_PACKAGE_SCHEMA",
+          "ANIMATOR_FIELD_SHELL_CADENCE_DESCRIPTOR_SCHEMA",
+          "ANIMATOR_FIELD_SHELL_EMITTER_SOURCE_HISTORY_SCHEMA",
+          "ANIMATOR_FIELD_SHELL_EVENT_ROW_LAYOUT",
+          "ANIMATOR_FIELD_SHELL_EVENT_NATIVE_FILE_MANIFEST_SCHEMA",
+          "ANIMATOR_FIELD_SHELL_EVENT_ROW_SIZE_BYTES",
+          "createAnimatorFieldShellCadenceTimes",
+          "createAnimatorFieldShellEmitterSourceHistory",
+          "createAnimatorFieldShellEventNativeFileStoragePolicy",
+          "createAnimatorFieldShellEventStreamPackage",
+          "field_shell_events.v1",
+        ],
+      },
+      {
+        file: "tests/animator-field-shell-event-stream.test.js",
+        symbols: [
+          "animator field-shell event package derives emitter source history",
+          "animator field-shell event package feeds delayed-hit stream descriptors",
+          "animator field-shell event package writes native-file stream storage",
+        ],
+      },
+    ],
+    solverOwnership: [
+      "field-shell cadence generation",
+      "field-shell emitter source-history sampling",
+      "field-shell event row packaging",
+      "field-shell event stream manifest metadata",
+      "delayed-hit emission descriptor handoff",
+    ],
+    baselineCases: [
+      "animator-path-history-smoke",
+    ],
   },
 ];
 
@@ -264,7 +315,6 @@ const report = {
   schema: "solver-geometry-centralization-inventory.v1",
   migrationScope: {
     targets: ["Photon", "Ideal Swarm", "Animator"],
-    excluded: excludedSurfaces,
   },
   generatedAt: new Date().toISOString(),
   items: inventoryItems.map(({ missing, ...item }) => item),

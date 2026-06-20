@@ -446,6 +446,60 @@ $$
 
 Channel pages may add specialized variables, but they should not remove these fields. The polarization handoff remains inherited from photon Gate B; radiation records carry the fields needed by that gate, while the photon-spin and polarization proof remains outside the local radiation event record.
 
+### Gate C Benchmark Vector
+
+For photon-producing routes, Gate C is the radiation-sector acceptance predicate:
+
+$$
+\operatorname{GateC}_{\gamma}(\mathsf e)
+=
+\operatorname{Ledger}_{\gamma}(\mathsf e)
+\wedge
+\operatorname{Trans}_{\gamma}(\mathsf e)
+\wedge
+\operatorname{Bench}_{\gamma}(\mathsf e)
+$$
+
+Here $\operatorname{Ledger}_{\gamma}$ requires the event ledger to close after photon output, recoil, remnant, medium update, wake handoff, and provenance rows are included. The transversality row is inherited from photon Gate B:
+
+$$
+\operatorname{Trans}_{\gamma}(\mathsf e)
+\Longleftrightarrow
+\left\|
+P_{\parallel,\hat{\mathbf{k}}}
+\Pi_{\gamma}\mathcal{L}_A(\mathsf e)
+\right\|_{\gamma}
+\le
+\epsilon_{\gamma,\parallel}
+$$
+
+so any longitudinal response must cancel, remain unexposed below tolerance, or route to a material, remnant, medium-bound, or massive-vector channel rather than a free photon.
+
+For a declared benchmark family $b$, the Gate C output should be a normalized residual vector rather than a narrative pass:
+
+$$
+\mathbf{R}_{\gamma,b}(\mathsf e)
+=
+\left(
+\frac{\Delta_E}{E_b+\varepsilon},
+\frac{\|\Delta_{\mathbf{p}}\|}{p_b+\varepsilon},
+\frac{\|\Delta_{\mathbf{J}}\|}{J_b+\varepsilon},
+\frac{\left\|P_{\parallel,\hat{\mathbf{k}}}\Pi_{\gamma}\mathcal{L}_A(\mathsf e)\right\|_{\gamma}}{\epsilon_{\gamma,\parallel}},
+R_{\mathrm{bench},b},
+R_{\mathrm{replay},b}
+\right)
+$$
+
+The benchmark scales $E_b$, $p_b$, and $J_b$ are declared comparison scales, not fitted recovery knobs. $R_{\mathrm{bench},b}$ is the family-specific residual, such as Larmor/Lienard power, Compton shift, pair threshold, or Planck occupation. $R_{\mathrm{replay},b}$ vanishes only when the same residual definition, channel boundary, and Noether sea variables replay across the selected event panel without retuning. The acceptance target is
+
+$$
+\left\|\mathbf{R}_{\gamma,b}(\mathsf e)\right\|_{\infty}
+\le
+1
+$$
+
+after photon Gate A supplies the admissible massless branch and photon Gate B supplies the transverse ledger. A radiation family is therefore not closed by matching one scalar benchmark if energy, momentum, angular momentum, transversality, provenance, or replayability still fails.
+
 ## Scattering and Reaction-Ledger Grammar
 
 Scattering, relativistic collision, pair-channel, and radiation-coupled reaction records should refine the same event schema rather than introduce a separate bookkeeping language. A compact event-ledger grammar is

@@ -8,8 +8,8 @@ This document distinguishes three audience scopes:
 
 ### Workspace Identity
 
-- Preferred agent name in this workspace: `Cody`.
-- Preferred title/role reference: `Principal Proof Architect & Integrator`; see [reference/entourage/cody/codex.md](reference/entourage/cody/codex.md).
+- Do not address the agent by name in prompts or operator/developer communication. This is a one-on-one interaction; prompts should start directly with `Closure goal:`.
+- Preferred title/role reference when a role label is useful: `Principal Proof Architect & Integrator`; see [reference/entourage/cody/codex.md](reference/entourage/cody/codex.md).
 - For Python commands in this workspace, use the shared venv at `/Users/markmorris/vibe/.venv`; prefer `VIRTUAL_ENV=/Users/markmorris/vibe/.venv` and `/Users/markmorris/vibe/.venv/bin/python` over system `python` or `python3`.
 - For live PDG work, use the shared venv at `/Users/markmorris/vibe/.venv`; prefer `VIRTUAL_ENV=/Users/markmorris/vibe/.venv` and `/Users/markmorris/vibe/.venv/bin/python` for `pdgfeed.py build-live-manifest` and related sweep commands.
 
@@ -31,6 +31,8 @@ This document distinguishes three audience scopes:
 - When asking the operator/developer a yes/no or fixed-choice question, end with the explicit prompt in the options format itself, for example `(y/n)` or `(a/b)`.
 - For fixed-choice prompts, always list options in your, the agent, ranked order of preference, with the preferred option first and visually indicated in the closing prompt format.
 - If the question is nuanced, open-ended, or needs discussion rather than a crisp operator/developer choice, start that discussion clearly instead of forcing it into a yes/no or lettered-choice prompt.
+- In every substantive operator/developer response, include a concise `Closure goal:` line near the end. This states the next concrete objective the operator/developer can use to refocus the thread or start a follow-up turn; use `none required` only when no useful continuation remains.
+- When generating or recommending any prompt for this agent, a subagent, or a follow-up thread, prepend a `Closure goal:` statement before the command, context, task, or scope. The closure goal should state one concrete objective in plain language; detailed context, task, scope, constraints, and expected output follow after it. Do not address the prompt to the agent by name.
 - In operator/developer communication, do not assume shared understanding of technical or project-specific terminology before proceeding. When such terms are needed, define them immediately in plain language and explain how they relate to the surrounding concepts.
 - In operator/developer communication and authored markdown, use established project terminology whenever it exists. Do not replace a defined project term with an improvised synonym, softened paraphrase, convenience label, or vague placeholder such as `shape`, `fixture`, `surface`, `anchor`, or similar stand-ins.
 - When a project term has already been established in the local canon, codebase, UI, or accepted documentation, reuse that exact term consistently. Do not create alternate names just because they feel more intuitive, more general, or less repetitive.
@@ -38,8 +40,8 @@ This document distinguishes three audience scopes:
 - If no project-specific term has been established yet, pause and ask the operator/developer before introducing new terminology.
 - Prefer building-block explanations that make relationships between concepts, components, and steps explicit. Use diagrams, mappings, comparisons, or other visual structure when helpful.
 - Maintain operator/developer workflow feedback in [README-op.md](README-op.md), using one-line checklist items that start with `- [ ]` for open feedback or `- [x]` for op improved feedback.
-- When Cody notices a recurring operator-side friction point, add or reopen a concrete task in [README-op.md](README-op.md) instead of burying the feedback in a transient chat summary.
-- Treat checked operator feedback as the operator's current claim of improvement; if the same friction recurs, Cody may uncheck it and add a concise dated note.
+- When the agent notices a recurring operator-side friction point, add or reopen a concrete task in [README-op.md](README-op.md) instead of burying the feedback in a transient chat summary.
+- Treat checked operator feedback as the operator's current claim of improvement; if the same friction recurs, the agent may uncheck it and add a concise dated note.
 - Keep operator feedback direct, actionable, and tied to faster technical closure across efficiency, clarity, multi-agent use, and proof/corpus closure.
 
 ### Workspace Workflow

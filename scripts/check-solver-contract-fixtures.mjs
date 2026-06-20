@@ -80,6 +80,8 @@ const pathHistoryStreamResponse = createPathHistoryStreamResponseEnvelope();
 const runSimulationRequest = createRunSimulationRequestEnvelope();
 const runSimulationNormalizedRequest = createRunSimulationNormalizedRequestEnvelope();
 const runSimulationResponse = createRunSimulationResponseEnvelope();
+const pairInteractionRunSimulationRequest = createPairInteractionRunSimulationRequestEnvelope();
+const pairInteractionRunSimulationResponse = createPairInteractionRunSimulationResponseEnvelope();
 const describeRunRequest = createDescribeRunRequestEnvelope();
 const describeRunResponse = createDescribeRunResponseEnvelope();
 const cancelRunRequest = createCancelRunRequestEnvelope();
@@ -216,6 +218,8 @@ const schemaFixtures = [
   ["run simulation request", "runSimulationRequestEnvelope", runSimulationRequest],
   ["normalized run simulation request", "runSimulationRequestEnvelope", runSimulationNormalizedRequest],
   ["run simulation response", "runSimulationResponseEnvelope", runSimulationResponse],
+  ["pair interaction run simulation request", "runSimulationRequestEnvelope", pairInteractionRunSimulationRequest],
+  ["pair interaction run simulation response", "runSimulationResponseEnvelope", pairInteractionRunSimulationResponse],
   ["describe run request", "describeRunRequestEnvelope", describeRunRequest],
   ["describe run response", "describeRunResponseEnvelope", describeRunResponse],
   ["cancel run request", "cancelRunRequestEnvelope", cancelRunRequest],
@@ -524,6 +528,20 @@ assert(schema.$defs?.pathHistoryStreamF64Request, "path-history stream request s
 assert(schema.$defs?.pathHistoryStreamF64Response, "path-history stream response schema missing");
 assert(schema.$defs?.pathHistoryStreamSummary, "path-history stream summary schema missing");
 assert(schema.$defs?.pathHistoryStreamMetadata, "path-history stream metadata schema missing");
+assert(schema.$defs?.pathHistoryStreamContractArtifacts, "path-history stream contract artifacts schema missing");
+assert(schema.$defs?.pathHistoryStreamContractManifest, "path-history stream contract manifest schema missing");
+assert(schema.$defs?.pathHistoryLogicalStreamTable, "path-history logical stream table schema missing");
+assert(schema.$defs?.pathHistoryChunkRecord, "path-history contract chunk record schema missing");
+assert(schema.$defs?.pathHistoryEncodingDictionary, "path-history encoding dictionary schema missing");
+assert(schema.$defs?.pathHistoryEventStore, "path-history event store schema missing");
+assert(schema.$defs?.pathHistoryEventRecord, "path-history event record schema missing");
+assert(schema.$defs?.pathHistoryContractSummaryRecord, "path-history contract summary record schema missing");
+assert(schema.$defs?.pathHistoryStreamMemoryBudget, "path-history stream memory budget schema missing");
+assert(schema.$defs?.pathHistoryChecksumPolicy, "path-history checksum policy schema missing");
+assert(
+  schema.$defs?.pathHistoryStreamContractFixtureEvidence,
+  "path-history stream contract fixture evidence schema missing"
+);
 assert(schema.$defs?.pathHistoryDynamicReplayMetadata, "path-history dynamic replay metadata schema missing");
 assert(schema.$defs?.pathHistoryDynamicReplayValidationRequest, "path-history dynamic replay request schema missing");
 assert(schema.$defs?.pathHistoryDynamicReplayValidationResponse, "path-history dynamic replay response schema missing");
@@ -596,11 +614,16 @@ assert(
   schema.$defs?.emissionShellCandidatePacketMergeF64Request,
   "emission-shell candidate packet merge request schema missing"
 );
+assert(schema.$defs?.emissionShellIndexedBroadPhaseOptions, "emission-shell index options schema missing");
 assert(
   schema.$defs?.emissionShellCandidateF64ResponseEnvelope,
   "emission-shell candidate response envelope schema missing"
 );
 assert(schema.$defs?.emissionShellCandidateF64Response, "emission-shell candidate response schema missing");
+assert(
+  schema.$defs?.emissionShellIndexedBroadPhaseSummary,
+  "emission-shell indexed broad-phase summary schema missing"
+);
 assert(
   schema.$defs?.emissionShellRootRefinementF64Request,
   "emission-shell root refinement request schema missing"
@@ -622,6 +645,11 @@ assert(
     "#/$defs/workPacketResultRef",
   "emission-shell packet results response schema mismatch"
 );
+assert(
+  schema.$defs.emissionShellCandidateF64Response.properties.indexSummary.$ref ===
+    "#/$defs/emissionShellIndexedBroadPhaseSummary",
+  "emission-shell index summary response schema mismatch"
+);
 assert(schema.$defs?.emissionShellCandidateF64, "emission-shell candidate row schema missing");
 assert(schema.$defs?.emissionShellScanSummary, "emission-shell scan summary schema missing");
 assert(schema.$defs?.emissionShellFalsePositiveEstimate, "emission-shell false-positive estimate schema missing");
@@ -642,6 +670,7 @@ assertCoreBinaryLayouts([
   "root_ledger.v1",
   "root_ledger_detail.v1",
   "delayed_hit_events.v1",
+  "field_shell_events.v1",
   "phase_at_hit.v1",
   "spacetime_index.v1",
   "emission_shell_candidate.v1",
@@ -657,6 +686,7 @@ assertEnumValues("solverRunKind", [
   "delayedHits",
   "sharedGeometry",
   "appPlayback",
+  "pairInteraction",
   "validationReplay",
 ]);
 assertNumericTypes(["f64", "scaled_i64", "interval_f64_pair", "decimal128", "mp_limb_block"]);
@@ -732,6 +762,8 @@ validateResponseEnvelope(response);
 validateRunSimulationRequestEnvelope(runSimulationRequest);
 validateRunSimulationNormalizedRequestEnvelope(runSimulationNormalizedRequest);
 validateRunSimulationResponseEnvelope(runSimulationResponse);
+validatePairInteractionRunSimulationRequestEnvelope(pairInteractionRunSimulationRequest);
+validatePairInteractionRunSimulationResponseEnvelope(pairInteractionRunSimulationResponse);
 validateDescribeRunRequestEnvelope(describeRunRequest);
 validateDescribeRunResponseEnvelope(describeRunResponse);
 validateCancelRunRequestEnvelope(cancelRunRequest);
@@ -1354,6 +1386,11 @@ function assertCapabilities(value, label) {
   );
   assert(value.appBridge.streamQueries.helpers.includes("readStreamRange"), `${label} stream query helper mismatch`);
   assert(
+    value.appBridge.streamQueries.helpers.includes("planPathHistoryStorageLifecycleF64") &&
+      value.appBridge.streamQueries.helpers.includes("applyPathHistoryStorageLifecycleF64"),
+    `${label} stream lifecycle helper mismatch`
+  );
+  assert(
     value.appBridge.streamQueries.helpers.includes("buildPathHistoryStreamSpaceTimeIndexF64"),
     `${label} stream space-time helper mismatch`
   );
@@ -1560,6 +1597,204 @@ function validateRunSimulationResponseEnvelope(value) {
   assert(responseValue.response.buffers.length === 3, "run response buffer count mismatch");
 }
 
+function validatePairInteractionRunSimulationRequestEnvelope(value) {
+  assert(value.schema === "solver-app-bridge/v1", "pair run request schema tag mismatch");
+  assert(value.kind === "run-simulation-request", "pair run request kind mismatch");
+  assertNonemptyString(value.requestId, "pair run request id");
+  const requestValue = value.request;
+  assert(requestValue.appId === "causal-delay-feedback", "pair run app id mismatch");
+  assert(requestValue.runKind === "pairInteraction", "pair run kind mismatch");
+  assert(requestValue.config.pairInteractionRequest.initialStates.length === 2, "pair initial state count mismatch");
+  assert(requestValue.config.pairInteractionRequest.pathConstraints.length === 2, "pair constraint count mismatch");
+  assert(
+    requestValue.config.pairInteractionRequest.pathConstraintBoundaryResidualTolerance === 0.5,
+    "pair boundary tolerance mismatch"
+  );
+  assert(
+    requestValue.config.pairInteractionRequest.pathConstraintPositionResidualTolerance === 0.01,
+    "pair position tolerance mismatch"
+  );
+  assert(
+    requestValue.config.pairInteractionRequest.pathConstraintGuidanceAccelerationTolerance === 6,
+    "pair guidance acceleration tolerance mismatch"
+  );
+  assert(
+    requestValue.config.pairInteractionRequest.pathConstraintBoundaryRelaxationIterationCount === 12,
+    "pair boundary relaxation iteration mismatch"
+  );
+  assert(
+    requestValue.config.pairInteractionRequest.pathConstraintBoundaryRelaxationTolerance === 0.01,
+    "pair boundary relaxation tolerance mismatch"
+  );
+  assert(
+    requestValue.config.pairInteractionRequest.pathConstraintBoundaryRelaxationStepTolerance === 0.001,
+    "pair boundary relaxation step tolerance mismatch"
+  );
+}
+
+function validatePairInteractionRunSimulationResponseEnvelope(value) {
+  assert(value.schema === "solver-app-bridge/v1", "pair run response schema tag mismatch");
+  assert(value.kind === "run-simulation-response", "pair run response kind mismatch");
+  assertNonemptyString(value.requestId, "pair run response request id");
+  const responseValue = value.response;
+  assert(responseValue.runId === "pair-interaction-contract", "pair run handle id mismatch");
+  const runResponse = responseValue.response;
+  assert(
+    runResponse.summary.pathConstraintFrameRefinementSampleCount === 1,
+    "pair summary frame refinement mismatch"
+  );
+  assert(runResponse.summary.pathConstraintBoundaryResidualStatus === "within_tolerance", "pair summary status mismatch");
+  assert(runResponse.summary.pathConstraintBoundaryResidualTolerance === 0.5, "pair summary tolerance mismatch");
+  assert(
+    runResponse.summary.pathConstraintPositionResidualStatus === "within_tolerance" &&
+      runResponse.summary.pathConstraintPositionResidualTolerance === 0.01,
+    "pair summary position residual acceptance mismatch"
+  );
+  assert(
+    runResponse.summary.pathConstraintGuidanceAccelerationStatus === "within_tolerance" &&
+      runResponse.summary.pathConstraintGuidanceAccelerationTolerance === 6,
+    "pair summary guidance acceleration acceptance mismatch"
+  );
+  assert(
+    runResponse.summary.pathConstraintBoundaryRelaxationMode === "finite_difference_frame_relaxation_v1",
+    "pair summary relaxation mode mismatch"
+  );
+  assert(
+    runResponse.summary.pathConstraintBoundaryRelaxationIterationCount === 12,
+    "pair summary relaxation iteration mismatch"
+  );
+  assert(
+    runResponse.summary.pathConstraintBoundaryRelaxationAppliedIterationCount === 4,
+    "pair summary relaxation applied iteration mismatch"
+  );
+  assert(
+    runResponse.summary.pathConstraintBoundaryRelaxationTolerance === 0.01,
+    "pair summary relaxation tolerance mismatch"
+  );
+  assert(
+    runResponse.summary.pathConstraintBoundaryRelaxationStepTolerance === 0.001,
+    "pair summary relaxation step tolerance mismatch"
+  );
+  assert(
+    runResponse.summary.pathConstraintBoundaryRelaxationStatus === "accepted",
+    "pair summary relaxation status mismatch"
+  );
+  assert(
+    runResponse.summary.pathConstraintBoundaryRelaxationResidualEvidenceStatus ===
+      "aggregate_non_worsening",
+    "pair summary relaxation residual evidence status mismatch"
+  );
+  assert(
+    runResponse.summary.pathConstraintBoundaryRelaxationResidualSampleCount === 2,
+    "pair summary relaxation residual sample count mismatch"
+  );
+  assert(
+    runResponse.summary.maxPathConstraintBoundaryRelaxationResidualBefore === 8 &&
+      runResponse.summary.maxPathConstraintBoundaryRelaxationResidualAfter === 2 &&
+      runResponse.summary.pathConstraintBoundaryRelaxationResidualRatio === 0.25,
+    "pair summary relaxation residual improvement mismatch"
+  );
+  assert(
+    runResponse.summary.meanPathConstraintBoundaryRelaxationResidualBefore === 6 &&
+      runResponse.summary.meanPathConstraintBoundaryRelaxationResidualAfter === 1.5 &&
+      runResponse.summary.rmsPathConstraintBoundaryRelaxationResidualBefore === 6.5 &&
+      runResponse.summary.rmsPathConstraintBoundaryRelaxationResidualAfter === 1.75 &&
+      runResponse.summary.meanPathConstraintBoundaryRelaxationResidualRatio === 0.25 &&
+      runResponse.summary.rmsPathConstraintBoundaryRelaxationResidualRatio === 1.75 / 6.5,
+    "pair summary relaxation residual mean/rms mismatch"
+  );
+  assert(
+    runResponse.summary.pathConstraintBoundaryRelaxationResidualSettlingRate === Math.pow(0.25, 1 / 4) &&
+      runResponse.summary.meanPathConstraintBoundaryRelaxationResidualSettlingRate === Math.pow(0.25, 1 / 4) &&
+      runResponse.summary.rmsPathConstraintBoundaryRelaxationResidualSettlingRate ===
+        Math.pow(1.75 / 6.5, 1 / 4),
+    "pair summary relaxation residual settling-rate mismatch"
+  );
+  assert(
+    runResponse.summary.pathConstraintBoundaryRelaxationCandidateVariantCount === 14 &&
+      runResponse.summary.pathConstraintBoundaryRelaxationLineSearchTrialCount === 112 &&
+      runResponse.summary.pathConstraintBoundaryRelaxationCandidateKindMask === 0x3ffffe,
+    "pair summary relaxation candidate telemetry mismatch"
+  );
+  assert(
+    runResponse.pairInteraction.pathConstraintFrameRefinementSampleCount === 1,
+    "pair interaction nested frame refinement mismatch"
+  );
+  assert(
+    runResponse.pairInteraction.pathConstraintBoundaryResidualStatus === "within_tolerance",
+    "pair interaction nested status mismatch"
+  );
+  assert(
+    runResponse.pairInteraction.pathConstraintGuidanceAccelerationStatus === "within_tolerance" &&
+      runResponse.pairInteraction.pathConstraintGuidanceAccelerationTolerance === 6,
+    "pair interaction nested guidance acceleration acceptance mismatch"
+  );
+  assert(
+    runResponse.pairInteraction.pathConstraintBoundaryRelaxationMode === "finite_difference_frame_relaxation_v1",
+    "pair interaction nested relaxation mode mismatch"
+  );
+  assert(
+    runResponse.pairInteraction.pathConstraintBoundaryRelaxationIterationCount === 12,
+    "pair interaction nested relaxation iteration mismatch"
+  );
+  assert(
+    runResponse.pairInteraction.pathConstraintBoundaryRelaxationAppliedIterationCount === 4,
+    "pair interaction nested relaxation applied iteration mismatch"
+  );
+  assert(
+    runResponse.pairInteraction.pathConstraintBoundaryRelaxationTolerance === 0.01,
+    "pair interaction nested relaxation tolerance mismatch"
+  );
+  assert(
+    runResponse.pairInteraction.pathConstraintBoundaryRelaxationStepTolerance === 0.001,
+    "pair interaction nested relaxation step tolerance mismatch"
+  );
+  assert(
+    runResponse.pairInteraction.pathConstraintBoundaryRelaxationStatus === "accepted",
+    "pair interaction nested relaxation status mismatch"
+  );
+  assert(
+    runResponse.pairInteraction.pathConstraintBoundaryRelaxationResidualEvidenceStatus ===
+      "aggregate_non_worsening",
+    "pair interaction nested relaxation residual evidence status mismatch"
+  );
+  assert(
+    runResponse.pairInteraction.pathConstraintBoundaryRelaxationResidualSampleCount === 2,
+    "pair interaction nested relaxation residual sample count mismatch"
+  );
+  assert(
+    runResponse.pairInteraction.maxPathConstraintBoundaryRelaxationResidualBefore === 8 &&
+      runResponse.pairInteraction.maxPathConstraintBoundaryRelaxationResidualAfter === 2 &&
+      runResponse.pairInteraction.pathConstraintBoundaryRelaxationResidualRatio === 0.25,
+    "pair interaction nested relaxation residual improvement mismatch"
+  );
+  assert(
+    runResponse.pairInteraction.meanPathConstraintBoundaryRelaxationResidualBefore === 6 &&
+      runResponse.pairInteraction.meanPathConstraintBoundaryRelaxationResidualAfter === 1.5 &&
+      runResponse.pairInteraction.rmsPathConstraintBoundaryRelaxationResidualBefore === 6.5 &&
+      runResponse.pairInteraction.rmsPathConstraintBoundaryRelaxationResidualAfter === 1.75 &&
+      runResponse.pairInteraction.meanPathConstraintBoundaryRelaxationResidualRatio === 0.25 &&
+      runResponse.pairInteraction.rmsPathConstraintBoundaryRelaxationResidualRatio === 1.75 / 6.5,
+    "pair interaction nested relaxation residual mean/rms mismatch"
+  );
+  assert(
+    runResponse.pairInteraction.pathConstraintBoundaryRelaxationResidualSettlingRate === Math.pow(0.25, 1 / 4) &&
+      runResponse.pairInteraction.meanPathConstraintBoundaryRelaxationResidualSettlingRate ===
+        Math.pow(0.25, 1 / 4) &&
+      runResponse.pairInteraction.rmsPathConstraintBoundaryRelaxationResidualSettlingRate ===
+        Math.pow(1.75 / 6.5, 1 / 4),
+    "pair interaction nested relaxation residual settling-rate mismatch"
+  );
+  assert(
+    runResponse.pairInteraction.pathConstraintBoundaryRelaxationCandidateVariantCount === 14 &&
+      runResponse.pairInteraction.pathConstraintBoundaryRelaxationLineSearchTrialCount === 112 &&
+      runResponse.pairInteraction.pathConstraintBoundaryRelaxationCandidateKindMask === 0x3ffffe,
+    "pair interaction nested relaxation candidate telemetry mismatch"
+  );
+  assert(runResponse.frames.length === 4, "pair frame count mismatch");
+  assert(runResponse.pathHistory.rowCount === 4, "pair path-history row count mismatch");
+}
+
 function validateDescribeRunRequestEnvelope(value) {
   assert(value.schema === "solver-app-bridge/v1", "describe run request schema tag mismatch");
   assert(value.kind === "describe-run-request", "describe run request kind mismatch");
@@ -1656,6 +1891,7 @@ function validatePathHistoryStreamResponseEnvelope(value) {
   assertRange(summary.frameRange, 0, 2, "path-history stream summary frame range");
   assertStoragePolicy(summary.storagePolicy, 288, "path-history stream summary storage policy");
   assertPathHistoryMetadata(summary.metadata, "path-history stream summary metadata");
+  assertPathHistoryContractArtifacts(responseValue.contractArtifacts);
 }
 
 function validateDescribeStreamRequestEnvelope(value) {
@@ -1798,8 +2034,11 @@ function validateEmissionShellCandidateResponseEnvelope(value) {
   assert(responseValue.rejectedPairCount === 0, "emission-shell rejected pair count mismatch");
   assert(responseValue.candidateCount === 1, "emission-shell candidate count mismatch");
   assert(responseValue.falsePositiveEstimate.method === "sampled_linear_segment_bisection.v1", "emission-shell false-positive method mismatch");
-  assert(responseValue.scanSummary.executionPath === "packet_merge", "emission-shell scan execution path mismatch");
+  assert(responseValue.scanSummary.executionPath === "native_c_abi_indexed_v0", "emission-shell scan execution path mismatch");
   assert(responseValue.scanSummary.outputBufferCount === 2, "emission-shell scan output buffer count mismatch");
+  assert(responseValue.indexSummary.coverageStatus === "complete", "emission-shell index coverage mismatch");
+  assert(responseValue.indexSummary.timeSlabCount === 32, "emission-shell index slab count mismatch");
+  assert(responseValue.indexSummary.indexedPairTests === 1, "emission-shell indexed pair count mismatch");
   assert(responseValue.truncated === false, "emission-shell truncated mismatch");
   assert(responseValue.candidates.length === 1, "emission-shell candidate row count mismatch");
   assert(responseValue.candidates[0].candidateKind === "broad_phase_possible", "emission-shell candidate kind mismatch");
@@ -1815,6 +2054,12 @@ function validateEmissionShellRootRefinementRequestEnvelope(value) {
   assertNonemptyString(value.requestId, "emission-shell refinement request id");
   const requestValue = value.request;
   assert(requestValue.streamId === "fixture-path-history-stream", "emission-shell refinement stream id mismatch");
+  assert(requestValue.packet.packetId === "packet-refine-a", "emission-shell refinement packet id mismatch");
+  assert(
+    requestValue.packet.expectedOutputs.includes("root_ledger.v1") &&
+      requestValue.packet.expectedOutputs.includes("delayed_hit_events.v1"),
+    "emission-shell refinement packet expected outputs mismatch"
+  );
   assert(requestValue.signalSpeed === 1, "emission-shell refinement signal speed mismatch");
   assert(requestValue.rootTolerance === 1e-12, "emission-shell refinement root tolerance mismatch");
   assert(requestValue.candidates.length === 1, "emission-shell refinement candidate count mismatch");
@@ -1827,6 +2072,10 @@ function validateEmissionShellRootRefinementResponseEnvelope(value) {
   assertNonemptyString(value.requestId, "emission-shell refinement response id");
   const responseValue = value.response;
   assert(responseValue.schema === "solver-emission-shell-root-refinement.v1", "emission-shell refinement schema mismatch");
+  assert(responseValue.packetId === "packet-refine-a", "emission-shell refinement packet id mismatch");
+  assert(responseValue.packetMergeOrder === 2, "emission-shell refinement packet merge order mismatch");
+  assert(responseValue.packetMergeKey === "source:0:receiver:1:refine", "emission-shell refinement packet merge key mismatch");
+  assertRootRefinementPacketResultRef(responseValue.packetResult, "packet-refine-a", 2, "source:0:receiver:1:refine");
   assert(responseValue.streamId === "fixture-path-history-stream", "emission-shell refinement response stream mismatch");
   assert(responseValue.candidateCount === 1, "emission-shell refinement candidate count mismatch");
   assert(responseValue.processedCandidateCount === 1, "emission-shell refinement processed count mismatch");
@@ -1839,8 +2088,8 @@ function validateEmissionShellRootRefinementResponseEnvelope(value) {
   assert(responseValue.items[0].hitOffset === 0, "emission-shell refinement hit offset mismatch");
   assert(responseValue.roots.length === 1, "emission-shell refinement roots mismatch");
   assert(responseValue.hits.length === 1, "emission-shell refinement hits mismatch");
-  assertBuffer(responseValue.buffers[0], "emission-shell-refined-root-ledger", "root_ledger.v1", 112, 1);
-  assertBuffer(responseValue.buffers[1], "emission-shell-refined-delayed-hits", "delayed_hit_events.v1", 128, 1);
+  assertBuffer(responseValue.buffers[0], "packet-refine-a:emission-shell-refined-root-ledger", "root_ledger.v1", 112, 1);
+  assertBuffer(responseValue.buffers[1], "packet-refine-a:emission-shell-refined-delayed-hits", "delayed_hit_events.v1", 128, 1);
   assert(responseValue.status.code === "ok", "emission-shell refinement status mismatch");
 }
 
@@ -1856,6 +2105,20 @@ function assertWorkPacketResultRef(result, packetId, mergeOrder, mergeKey) {
   );
   assert(result.outputs[0].checksum.length === 16, `${packetId} candidate output checksum mismatch`);
   assert(result.outputs[1].checksum.length === 16, `${packetId} narrow-phase output checksum mismatch`);
+}
+
+function assertRootRefinementPacketResultRef(result, packetId, mergeOrder, mergeKey) {
+  assert(result.packetId === packetId, `${packetId} refinement result packet id mismatch`);
+  assert(result.mergeOrder === mergeOrder, `${packetId} refinement result merge order mismatch`);
+  assert(result.mergeKey === mergeKey, `${packetId} refinement result merge key mismatch`);
+  assert(result.outputs.length === 2, `${packetId} refinement result output count mismatch`);
+  assert(
+    result.outputs[0].layout === "root_ledger.v1" &&
+      result.outputs[1].layout === "delayed_hit_events.v1",
+    `${packetId} refinement result output layout mismatch`
+  );
+  assert(result.outputs[0].checksum.length === 16, `${packetId} refinement root checksum mismatch`);
+  assert(result.outputs[1].checksum.length === 16, `${packetId} refinement hit checksum mismatch`);
 }
 
 function assertSegment(value, label) {
@@ -1911,6 +2174,118 @@ function assertPathHistoryMetadata(metadata, label) {
   assert(metadata.provenance.fixture === "path-history-contract-fixture", `${label} provenance mismatch`);
   assert(Array.isArray(metadata.diagnostics), `${label} diagnostics must be an array`);
   assert(metadata.diagnostics[0].code === "ok", `${label} diagnostic code mismatch`);
+}
+
+function assertPathHistoryContractArtifacts(artifacts) {
+  assert(artifacts.schema === "solver-path-history-stream-contract-artifacts.v1", "contract artifacts schema mismatch");
+  assert(artifacts.manifest.schema === "path_history_stream_manifest.v1", "contract manifest schema mismatch");
+  assert(artifacts.manifest.runId === "path-history-contract-run", "contract manifest run mismatch");
+  assert(artifacts.manifest.chunkStoreId === "fixture-path-chunk-store", "contract chunk store id mismatch");
+  assert(artifacts.manifest.encodingDictionaryId === "fixture-path-encoding-dictionary", "contract dictionary id mismatch");
+  assert(artifacts.manifest.eventStoreId === "fixture-path-event-store", "contract event store id mismatch");
+  assert(artifacts.manifest.indexSidecarId === "fixture-path-index-sidecar", "contract index sidecar id mismatch");
+  assert(artifacts.manifest.lifecycleStatus === "finalized", "contract manifest lifecycle mismatch");
+  assert(artifacts.logicalStreamTable.schema === "path_stream_table.v1", "logical stream table schema mismatch");
+  assert(artifacts.logicalStreamTable.streams.length === 2, "logical stream table count mismatch");
+  assert(
+    artifacts.logicalStreamTable.streams.every((stream) => stream.replayStatus === "complete"),
+    "logical stream replay status mismatch"
+  );
+  assert(artifacts.chunkRecords.length === 2, "contract chunk record count mismatch");
+  assert(artifacts.chunkRecords.every((chunk) => chunk.schema === "path_chunk.v1"), "contract chunk schema mismatch");
+  assert(artifacts.chunkRecords.every((chunk) => chunk.committed === true), "contract chunk commit mismatch");
+  assertRange(artifacts.chunkRecords[0].byteRange, 0, 192, "contract first chunk byte range");
+  assertRange(artifacts.chunkRecords[1].byteRange, 192, 288, "contract second chunk byte range");
+  assert(artifacts.encodingDictionary.schema === "path_encoding_dictionary.v1", "encoding dictionary schema mismatch");
+  assert(
+    artifacts.encodingDictionary.columnLayouts.includes("path_chunk.v1") &&
+      artifacts.encodingDictionary.columnLayouts.includes("stream_index.v1"),
+    "encoding dictionary layout coverage mismatch"
+  );
+  assert(
+    artifacts.checksumPolicy.scopes.includes("chunk_header") &&
+      artifacts.checksumPolicy.scopes.includes("chunk_payload") &&
+      artifacts.checksumPolicy.scopes.includes("chunk_trailer") &&
+      artifacts.checksumPolicy.scopes.includes("sidecar") &&
+      artifacts.checksumPolicy.scopes.includes("manifest"),
+    "checksum policy scope coverage mismatch"
+  );
+  assert(artifacts.eventStore.schema === "path_event_store.v1", "event store schema mismatch");
+  assert(
+    artifacts.eventStore.events.some((event) => event.eventClass === "chunk_committed") &&
+      artifacts.eventStore.events.some((event) => event.eventClass === "checksum_fault") &&
+      artifacts.eventStore.events.some((event) => event.eventClass === "run_finalized"),
+    "event store required classes mismatch"
+  );
+  assert(artifacts.indexSidecar.schema === "solver-stream-index.v1", "contract index sidecar schema mismatch");
+  assert(artifacts.indexSidecar.sidecar.rowCount === 3, "contract index sidecar row count mismatch");
+  assert(artifacts.indexSidecar.pathIndexRows.length === 3, "contract path index row count mismatch");
+  assert(artifacts.summary.schema === "path_history_summary.v1", "contract summary schema mismatch");
+  assert(artifacts.summary.rowCount === 3, "contract summary row count mismatch");
+  assert(artifacts.summary.chunkCount === 2, "contract summary chunk count mismatch");
+  assert(artifacts.summary.checksumFaultCount === 1, "contract summary checksum fault count mismatch");
+  assert(artifacts.summary.activeWindowMaxBytes <= artifacts.memoryBudget.activeWindowBytes, "active bytes exceed budget");
+  assert(artifacts.memoryBudget.schema === "path_history_stream_memory_budget.v1", "memory budget schema mismatch");
+  assert(artifacts.memoryBudget.onBudgetPressure === "spill", "memory budget pressure policy mismatch");
+  const fixtureById = new Map(artifacts.fixtures.map((fixture) => [fixture.fixtureId, fixture]));
+  const roundTrip = fixtureById.get("path_stream_round_trip");
+  const replayInvariants = fixtureById.get("stream_replay_invariants");
+  const ageOutDeepIndex = fixtureById.get("history_age_out_and_deep_index");
+  const interruptedRecovery = fixtureById.get("interrupted_stream_recovery");
+  const highSpeedReadback = fixtureById.get("high_speed_readback_budget");
+  const fastSpill = fixtureById.get("fast_spill_budget");
+  assert(roundTrip, "path_stream_round_trip fixture missing");
+  assert(replayInvariants, "stream_replay_invariants fixture missing");
+  assert(ageOutDeepIndex, "history_age_out_and_deep_index fixture missing");
+  assert(interruptedRecovery, "interrupted_stream_recovery fixture missing");
+  assert(highSpeedReadback, "high_speed_readback_budget fixture missing");
+  assert(fastSpill, "fast_spill_budget fixture missing");
+  assert(roundTrip.status === "passed", "path_stream_round_trip status mismatch");
+  assert(roundTrip.roundTripByteStable === true, "path_stream_round_trip byte stability mismatch");
+  assert(roundTrip.indexSeekMatched === true, "path_stream_round_trip index seek mismatch");
+  assert(roundTrip.fullRunScanRequired === false, "path_stream_round_trip full scan mismatch");
+  assert(roundTrip.checksumFaultDetected === true, "path_stream_round_trip checksum fault detection mismatch");
+  assert(
+    roundTrip.validatedArtifacts.includes("path_history_stream_manifest.v1") &&
+      roundTrip.validatedArtifacts.includes("path_chunk.v1") &&
+      roundTrip.validatedArtifacts.includes("stream_index.v1"),
+    "path_stream_round_trip artifact coverage mismatch"
+  );
+  assert(replayInvariants.status === "passed", "stream_replay_invariants status mismatch");
+  assert(replayInvariants.pathErrorBoundPreserved === true, "stream_replay_invariants path error mismatch");
+  assert(replayInvariants.rootCountPreserved === true, "stream_replay_invariants root count mismatch");
+  assert(replayInvariants.timeOrderingPreserved === true, "stream_replay_invariants ordering mismatch");
+  assert(replayInvariants.checksumIdentityPreserved === true, "stream_replay_invariants checksum mismatch");
+  assert(replayInvariants.projectionAuthorityPreserved === true, "stream_replay_invariants projection authority mismatch");
+  assert(ageOutDeepIndex.status === "passed", "history_age_out_and_deep_index status mismatch");
+  assert(ageOutDeepIndex.safeAgeOutCount > 0, "history_age_out safe count missing");
+  assert(ageOutDeepIndex.unsafeAgeOutCount > 0, "history_age_out unsafe count missing");
+  assert(ageOutDeepIndex.deepIndexBuilt === true, "history_age_out deep-index build mismatch");
+  assert(ageOutDeepIndex.authoritativeReplayReplaced === false, "history_age_out authoritative replay mismatch");
+  assert(
+    ageOutDeepIndex.validatedArtifacts.includes("solver-path-history-storage-lifecycle-summary.v1") &&
+      ageOutDeepIndex.validatedArtifacts.includes("solver-path-history-deep-index.v1"),
+    "history_age_out artifact coverage mismatch"
+  );
+  assert(interruptedRecovery.status === "passed", "interrupted_stream_recovery status mismatch");
+  assert(interruptedRecovery.partialWriteDetected === true, "interrupted recovery partial write mismatch");
+  assert(interruptedRecovery.staleSidecarDetected === true, "interrupted recovery stale sidecar mismatch");
+  assert(interruptedRecovery.manifestMismatchDetected === true, "interrupted recovery manifest mismatch");
+  assert(interruptedRecovery.recoveryEventAppended === true, "interrupted recovery event mismatch");
+  assert(interruptedRecovery.quarantinedChunkCount > 0, "interrupted recovery quarantine count mismatch");
+  assert(highSpeedReadback.status === "passed", "high_speed_readback_budget status mismatch");
+  assert(highSpeedReadback.indexedLookupUsed === true, "high speed readback indexed lookup mismatch");
+  assert(highSpeedReadback.fullRunScanRequired === false, "high speed readback full scan mismatch");
+  assert(highSpeedReadback.selectedRangeReadbackRows > 0, "high speed readback selected rows mismatch");
+  assert(highSpeedReadback.scannedChunkCount < highSpeedReadback.chunkCount, "high speed readback scan budget mismatch");
+  assert(highSpeedReadback.readbackBytes <= highSpeedReadback.readbackMemoryBudgetBytes, "readback memory budget exceeded");
+  assertPositiveFinite(highSpeedReadback.readbackThroughputRowsPerSecond, "high_speed_readback_budget readback throughput");
+  assert(fastSpill.status === "passed", "fast_spill_budget status mismatch");
+  assert(fastSpill.maxActiveBytes <= fastSpill.memoryBudgetBytes, "fast_spill_budget memory budget exceeded");
+  assert(fastSpill.spilledBytes > 0, "fast_spill_budget spilled bytes missing");
+  assert(fastSpill.backpressureApplied === true, "fast_spill_budget backpressure mismatch");
+  assert(fastSpill.halted === false, "fast_spill_budget halt mismatch");
+  assertPositiveFinite(fastSpill.spillThroughputRowsPerSecond, "fast_spill_budget spill throughput");
 }
 
 function assertBuffer(value, bufferId, layout, byteLength, rowCount) {
@@ -3630,6 +4005,7 @@ function createBinaryLayoutCatalogFixture() {
     ["root_ledger.v1", "root-ledger", 112, false],
     ["root_ledger_detail.v1", "root-ledger", 192, false],
     ["delayed_hit_events.v1", "delayed-hit", 128, false],
+    ["field_shell_events.v1", "field-shell-event", 160, true],
     ["phase_at_hit.v1", "phase-diagnostic", 104, false],
     ["spacetime_index.v1", "spacetime-index", 128, false],
     ["emission_shell_candidate.v1", "emission-shell", 112, false],
@@ -3675,6 +4051,7 @@ function createCapabilitiesFixture() {
       "root_ledger.v1",
       "root_ledger_detail.v1",
       "delayed_hit_events.v1",
+      "field_shell_events.v1",
       "phase_at_hit.v1",
       "spacetime_index.v1",
       "emission_shell_candidate.v1",
@@ -3790,6 +4167,8 @@ function createCapabilitiesFixture() {
         schema: "solver-stream-query-capabilities.v1",
         helpers: [
           "createPathHistoryStreamF64",
+          "planPathHistoryStorageLifecycleF64",
+          "applyPathHistoryStorageLifecycleF64",
           "describeStream",
           "validatePathHistoryDynamicReplayF64",
           "readStreamRange",
@@ -4091,6 +4470,141 @@ function createRunSimulationResponseEnvelope() {
   };
 }
 
+function createPairInteractionRunSimulationRequestEnvelope() {
+  const runRequest = {
+    ...createSolverRunRequest(),
+    requestId: "pair-interaction-contract-request",
+    runId: "pair-interaction-contract",
+    datasetId: "pair-interaction-contract-dataset",
+    appId: "causal-delay-feedback",
+    runKind: "pairInteraction",
+    configVersion: "pair-interaction-contract.v1",
+    configHash: "pair-interaction-contract",
+    config: {
+      appId: "causal-delay-feedback",
+      pairInteractionRequest: createPairInteractionRequestFixture(),
+      streamId: "pair-interaction-contract:path-history",
+      rowsPerChunk: 16,
+      storagePolicy: createStoragePolicyFixture(),
+      metadata: {
+        replayKind: "pair-interaction-path-integration",
+      },
+    },
+    output: {
+      outputs: ["summary", "frameBuffer", "pathStream", "diagnostics"],
+      streamTarget: "caller-buffer",
+      memoryBudgetBytes: 1048576,
+      deterministic: true,
+    },
+  };
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "run-simulation-request",
+    requestId: runRequest.requestId,
+    request: runRequest,
+  };
+}
+
+function createPairInteractionRunSimulationResponseEnvelope() {
+  const summary = createPairInteractionRunSummaryFixture();
+  const { status: _summaryStatus, ...pairInteractionSummary } = summary;
+  const pathHistorySummary = {
+    ...createPathHistoryStreamResponseEnvelope().response.summary,
+    runId: "pair-interaction-contract",
+    datasetId: "pair-interaction-contract-dataset",
+    streamId: "pair-interaction-contract:path-history",
+    rowCount: 4,
+    chunkCount: 1,
+    pathCount: 2,
+    byteLength: 384,
+    timeRange: { start: 0, end: 1 },
+    frameRange: { start: 0, end: 1 },
+  };
+  const runResponse = {
+    runId: "pair-interaction-contract",
+    datasetId: "pair-interaction-contract-dataset",
+    manifest: {
+      ...createRunManifest(),
+      requestId: "pair-interaction-contract-request",
+      runId: "pair-interaction-contract",
+      datasetId: "pair-interaction-contract-dataset",
+      appId: "causal-delay-feedback",
+      runKind: "pairInteraction",
+      configVersion: "pair-interaction-contract.v1",
+      configHash: "pair-interaction-contract",
+      output: {
+        outputs: ["summary", "frameBuffer", "pathStream", "diagnostics"],
+        streamTarget: "caller-buffer",
+        memoryBudgetBytes: 1048576,
+        deterministic: true,
+      },
+      buffers: [
+        createBufferDescriptorFixture("pair-interaction-contract:frames", "frame_buffer.v1", 352, 4),
+        createBufferDescriptorFixture("pair-interaction-contract:path-history", "path_segment.v1", 384, 4),
+      ].map(({ byteOffset, ...buffer }, index) => ({
+        ...buffer,
+        checksum: index === 0 ? "1212121212121212" : "3434343434343434",
+      })),
+      streams: [
+        {
+          streamId: "pair-interaction-contract:path-history",
+          manifestVersion: "solver-stream-manifest.v1",
+          indexLayout: "stream_index.v1",
+          rangeCount: 1,
+          storagePolicy: createStoragePolicyFixture(),
+          metadata: createPathHistoryStreamMetadata(),
+        },
+      ],
+    },
+    summary,
+    buffers: [
+      createBufferDescriptorFixture("pair-interaction-contract:frames", "frame_buffer.v1", 352, 4),
+      createBufferDescriptorFixture("pair-interaction-contract:path-history", "path_segment.v1", 384, 4),
+    ],
+    streams: [
+      {
+        streamId: "pair-interaction-contract:path-history",
+        manifestVersion: "solver-stream-manifest.v1",
+        indexLayout: "stream_index.v1",
+        availableRanges: [
+          {
+            timeRange: { start: 0, end: 1 },
+            frameRange: { start: 0, end: 1 },
+            byteRange: { start: 0, end: 384 },
+          },
+        ],
+        storagePolicy: createStoragePolicyFixture(),
+        metadata: createPathHistoryStreamMetadata(),
+      },
+    ],
+    diagnostics: [{ code: "ok", severity: "ok", message: "pair interaction contract fixture" }],
+    frames: [
+      createMotionFrameFixture({ pathKey: 1, frameIndex: 0, time: 0, x: 100, y: 220, z: 0, vx: 55, vy: 20, vz: 0 }),
+      createMotionFrameFixture({ pathKey: 2, frameIndex: 0, time: 0, x: 100, y: 860, z: 0, vx: 55, vy: -20, vz: 0 }),
+      createMotionFrameFixture({ pathKey: 1, frameIndex: 1, time: 1, x: 1820, y: 620, z: 0, vx: 55, vy: 20, vz: 0 }),
+      createMotionFrameFixture({ pathKey: 2, frameIndex: 1, time: 1, x: 1820, y: 460, z: 0, vx: 55, vy: -20, vz: 0 }),
+    ],
+    pathHistory: pathHistorySummary,
+    pairInteraction: pairInteractionSummary,
+    status: createStatusFixture("ok", "ok", "pair interaction completed"),
+  };
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "run-simulation-response",
+    requestId: "pair-interaction-contract-request",
+    response: {
+      requestId: "pair-interaction-contract-request",
+      runId: "pair-interaction-contract",
+      datasetId: "pair-interaction-contract-dataset",
+      cancellationToken: "pair-interaction-contract:cancel",
+      acceptedPrecisionPath: "scaled_f64_fast",
+      expectedOutputs: ["summary", "frameBuffer", "pathStream", "diagnostics"],
+      response: runResponse,
+      status: createStatusFixture("ok", "ok", "pair interaction run completed"),
+    },
+  };
+}
+
 function createDescribeRunRequestEnvelope() {
   return {
     schema: "solver-app-bridge/v1",
@@ -4198,6 +4712,126 @@ function createSolverRunRequest() {
       rootRequest: request.request,
     },
     output: createRunOutputRequest(),
+  };
+}
+
+function createPairInteractionRequestFixture() {
+  return {
+    startTime: 0,
+    endTime: 1,
+    step: 0.5,
+    maxFrames: 3,
+    pairAccelerationScale: 0.18,
+    softening: 0,
+    integrationTolerance: 1e-12,
+    interactionLaw: "inverse_distance_pair_attraction_v1",
+    pathConstraintBoundaryRelaxationIterationCount: 12,
+    pathConstraintBoundaryRelaxationTolerance: 0.01,
+    pathConstraintBoundaryRelaxationStepTolerance: 0.001,
+    pathConstraintBoundaryResidualTolerance: 0.5,
+    pathConstraintPositionResidualTolerance: 0.01,
+    pathConstraintGuidanceAccelerationTolerance: 6,
+    initialStates: [
+      {
+        pathKey: 1,
+        initialPosition: { x: 100, y: 220, z: 0 },
+        initialVelocity: { x: 55, y: 20, z: 0 },
+        charge: 1,
+        mass: 1,
+        stateFlags: 1,
+      },
+      {
+        pathKey: 2,
+        initialPosition: { x: 100, y: 860, z: 0 },
+        initialVelocity: { x: 55, y: -20, z: 0 },
+        charge: -1,
+        mass: 1,
+        stateFlags: 2,
+      },
+    ],
+    pathConstraints: [
+      {
+        pathKey: 1,
+        depth: 2,
+        time: 1,
+        position: { x: 1820, y: 620, z: 0 },
+      },
+      {
+        pathKey: 2,
+        depth: 2,
+        time: 1,
+        position: { x: 1820, y: 460, z: 0 },
+      },
+    ],
+  };
+}
+
+function createPairInteractionRunSummaryFixture() {
+  return {
+    runId: "pair-interaction-contract",
+    claimLevel: "interactive-preview",
+    precisionPath: "scaled_f64_fast",
+    status: createStatusFixture("ok", "ok", "pair interaction summary ready"),
+    frameCount: 4,
+    pathCount: 2,
+    pathRowCount: 4,
+    stepCount: 2,
+    interactionLaw: "inverse_distance_pair_attraction_v1",
+    executionPath: "native_c_abi",
+    pathConstraintCount: 2,
+    pathConstraintFrameRefinementSampleCount: 1,
+    pathConstraintPositionResidualSampleCount: 2,
+    pathConstraintPositionResidualStatus: "within_tolerance",
+    pathConstraintPositionResidualTolerance: 0.01,
+    maxPathConstraintPositionResidual: 0,
+    meanPathConstraintPositionResidual: 0,
+    rmsPathConstraintPositionResidual: 0,
+    pathConstraintResidualSampleCount: 2,
+    maxPathConstraintResidual: 0.125,
+    meanPathConstraintResidual: 0.0625,
+    rmsPathConstraintResidual: 0.088,
+    pathConstraintGuidanceSampleCount: 2,
+    pathConstraintGuidanceMode: "retained_knot_boundary",
+    pathConstraintBoundaryMode: "law_aware_retained_knot_boundary",
+    pathConstraintBoundaryRelaxationMode: "finite_difference_frame_relaxation_v1",
+    pathConstraintBoundaryRelaxationIterationCount: 12,
+    pathConstraintBoundaryRelaxationAppliedIterationCount: 4,
+    pathConstraintBoundaryRelaxationTolerance: 0.01,
+    pathConstraintBoundaryRelaxationStepTolerance: 0.001,
+    pathConstraintBoundaryRelaxationStatus: "accepted",
+    pathConstraintBoundaryRelaxationResidualEvidenceStatus: "aggregate_non_worsening",
+    pathConstraintBoundaryRelaxationResidualSampleCount: 2,
+    maxPathConstraintBoundaryRelaxationResidualBefore: 8,
+    maxPathConstraintBoundaryRelaxationResidualAfter: 2,
+    meanPathConstraintBoundaryRelaxationResidualBefore: 6,
+    meanPathConstraintBoundaryRelaxationResidualAfter: 1.5,
+    rmsPathConstraintBoundaryRelaxationResidualBefore: 6.5,
+    rmsPathConstraintBoundaryRelaxationResidualAfter: 1.75,
+    pathConstraintBoundaryRelaxationResidualRatio: 0.25,
+    meanPathConstraintBoundaryRelaxationResidualRatio: 0.25,
+    rmsPathConstraintBoundaryRelaxationResidualRatio: 1.75 / 6.5,
+    pathConstraintBoundaryRelaxationResidualSettlingRate: Math.pow(0.25, 1 / 4),
+    meanPathConstraintBoundaryRelaxationResidualSettlingRate: Math.pow(0.25, 1 / 4),
+    rmsPathConstraintBoundaryRelaxationResidualSettlingRate: Math.pow(1.75 / 6.5, 1 / 4),
+    pathConstraintBoundaryRelaxationCandidateVariantCount: 14,
+    pathConstraintBoundaryRelaxationLineSearchTrialCount: 112,
+    pathConstraintBoundaryRelaxationCandidateKindMask: 0x3ffffe,
+    pathConstraintSolverStatus: "guided_constraint_path",
+    pathConstraintSolverClaim: "diagnostic_constraint_replay_not_boundary_value_solve",
+    pathConstraintPhysicalBoundarySolverStatus: "physical_boundary_solver_pending",
+    pathConstraintPhysicalBoundarySolverClaim:
+      "retained_knot_guidance_not_physical_boundary_value_solve",
+    maxPathConstraintGuidanceAcceleration: 4.5,
+    meanPathConstraintGuidanceAcceleration: 2.25,
+    rmsPathConstraintGuidanceAcceleration: 3.1,
+    pathConstraintGuidanceAccelerationStatus: "within_tolerance",
+    pathConstraintGuidanceAccelerationTolerance: 6,
+    pathConstraintBoundaryResidualSampleCount: 2,
+    pathConstraintBoundaryResidualStatus: "within_tolerance",
+    pathConstraintBoundaryResidualTolerance: 0.5,
+    maxPathConstraintBoundaryResidual: 0.25,
+    meanPathConstraintBoundaryResidual: 0.125,
+    rmsPathConstraintBoundaryResidual: 0.177,
   };
 }
 
@@ -4638,6 +5272,7 @@ function createPathHistoryStreamResponseEnvelope() {
         },
         metadata,
       },
+      contractArtifacts: createPathHistoryStreamContractArtifactsFixture(),
       status: {
         code: "ok",
         severity: "ok",
@@ -4668,6 +5303,384 @@ function createPathHistoryStreamMetadata() {
         code: "ok",
         severity: "ok",
         message: "path history contract fixture",
+      },
+    ],
+  };
+}
+
+function createPathHistoryStreamContractArtifactsFixture() {
+  const metadata = createPathHistoryStreamMetadata();
+  return {
+    schema: "solver-path-history-stream-contract-artifacts.v1",
+    manifest: {
+      schema: "path_history_stream_manifest.v1",
+      runId: "path-history-contract-run",
+      modelId: "aaa.central-solver",
+      streamTableId: "fixture-path-stream-table",
+      chunkStoreId: "fixture-path-chunk-store",
+      encodingDictionaryId: "fixture-path-encoding-dictionary",
+      eventStoreId: "fixture-path-event-store",
+      indexSidecarId: "fixture-path-index-sidecar",
+      summaryRecordId: "fixture-path-history-summary",
+      checksumPolicyId: "fixture-path-checksum-policy",
+      memoryBudgetId: "fixture-path-memory-budget",
+      lifecycleStatus: "finalized",
+      precisionPath: metadata.precisionPath,
+      numericType: metadata.numericType,
+      numericChart: metadata.numericChart,
+      claimLevel: metadata.claimLevel,
+    },
+    logicalStreamTable: {
+      schema: "path_stream_table.v1",
+      tableId: "fixture-path-stream-table",
+      streams: [
+        {
+          streamId: "fixture-path-history-stream",
+          pathId: "fixture-source-path",
+          pathKey: 2000,
+          entityId: "fixture-source-entity",
+          pathRole: "source-history",
+          claimLevel: metadata.claimLevel,
+          precisionPath: metadata.precisionPath,
+          numericChart: metadata.numericChart,
+          timeRange: { start: 0, end: 3 },
+          frameRange: { start: 0, end: 2 },
+          chunkIds: ["fixture-path-chunk-0", "fixture-path-chunk-1"],
+          replayStatus: "complete",
+        },
+        {
+          streamId: "fixture-path-history-stream",
+          pathId: "fixture-receiver-path",
+          pathKey: 2001,
+          entityId: "fixture-receiver-entity",
+          pathRole: "receiver-history",
+          claimLevel: metadata.claimLevel,
+          precisionPath: metadata.precisionPath,
+          numericChart: metadata.numericChart,
+          timeRange: { start: 1, end: 2 },
+          frameRange: { start: 1, end: 1 },
+          chunkIds: ["fixture-path-chunk-0"],
+          replayStatus: "complete",
+        },
+      ],
+    },
+    chunkRecords: [
+      createPathHistoryContractChunkRecord("fixture-path-chunk-0", 0, 2000, 2001, 0, 2, 0, 2, 0, 1, 0, 192),
+      createPathHistoryContractChunkRecord("fixture-path-chunk-1", 1, 2000, 2000, 2, 1, 2, 3, 2, 2, 192, 288),
+    ],
+    encodingDictionary: {
+      schema: "path_encoding_dictionary.v1",
+      dictionaryId: "fixture-path-encoding-dictionary",
+      columnLayouts: ["path_chunk.v1", "path_segment.v1", "stream_index.v1"],
+      numericEncodings: ["f64"],
+      units: ["solver-si"],
+      eventCodes: ["stream_opened", "chunk_committed", "checksum_fault", "run_finalized"],
+      checksumAlgorithms: ["fnv1a64"],
+      dictionaryChecksum: "4444444444444444",
+    },
+    eventStore: {
+      schema: "path_event_store.v1",
+      eventStoreId: "fixture-path-event-store",
+      events: [
+        createPathHistoryContractEvent(0, "stream_opened", "info", "fixture-path-history-stream"),
+        createPathHistoryContractEvent(1, "chunk_committed", "info", "fixture-path-history-stream", "fixture-path-chunk-0"),
+        createPathHistoryContractEvent(2, "chunk_committed", "info", "fixture-path-history-stream", "fixture-path-chunk-1"),
+        createPathHistoryContractEvent(3, "active_window_aged_out", "info", "fixture-path-history-stream", "fixture-path-chunk-0"),
+        createPathHistoryContractEvent(4, "age_out_blocked", "warning", "fixture-path-history-stream", "fixture-path-chunk-1"),
+        createPathHistoryContractEvent(5, "index_built", "info", "fixture-path-history-stream", "fixture-path-chunk-0"),
+        createPathHistoryContractEvent(6, "checksum_fault", "warning", "fixture-path-history-stream", "fixture-path-chunk-corrupt"),
+        createPathHistoryContractEvent(7, "recovery_action", "warning", "fixture-path-history-stream", "fixture-path-chunk-corrupt"),
+        createPathHistoryContractEvent(8, "run_finalized", "ok", "fixture-path-history-stream"),
+      ],
+    },
+    indexSidecar: createPathHistoryContractIndexSidecarFixture(),
+    summary: {
+      schema: "path_history_summary.v1",
+      streamCount: 1,
+      pathCount: 2,
+      chunkCount: 2,
+      rowCount: 3,
+      byteCount: 288,
+      bytesByTier: { active: 96, warm: 192, cold: 0, deleted: 0, unknown: 0 },
+      activeWindowMaxBytes: 96,
+      checksumCleanCount: 2,
+      checksumFaultCount: 1,
+      spillThroughputRowsPerSecond: 48000,
+      readbackThroughputRowsPerSecond: 96000,
+      replayStatus: "complete",
+    },
+    memoryBudget: {
+      schema: "path_history_stream_memory_budget.v1",
+      activeWindowBytes: 128,
+      activeWindowTimeDepth: 1,
+      activeWindowFrameDepth: 1,
+      spillBufferBytes: 256,
+      indexMemoryBytes: 128,
+      deepIndexMemoryBytes: 0,
+      onBudgetPressure: "spill",
+    },
+    checksumPolicy: {
+      policyId: "fixture-path-checksum-policy",
+      algorithm: "fnv1a64",
+      scopes: [
+        "chunk_header",
+        "chunk_payload",
+        "chunk_trailer",
+        "chain",
+        "dictionary",
+        "sidecar",
+        "event_store",
+        "manifest",
+        "export_artifact",
+      ],
+    },
+    fixtures: [
+      {
+        fixtureId: "path_stream_round_trip",
+        status: "passed",
+        validatedArtifacts: [
+          "path_history_stream_manifest.v1",
+          "path_stream_table.v1",
+          "path_chunk.v1",
+          "path_encoding_dictionary.v1",
+          "path_event_store.v1",
+          "stream_index.v1",
+          "path_history_summary.v1",
+          "path_history_stream_memory_budget.v1",
+        ],
+        rowCount: 3,
+        chunkCount: 2,
+        pathCount: 2,
+        byteLength: 288,
+        memoryBudgetBytes: 128,
+        activeWindowBytes: 96,
+        maxActiveBytes: 96,
+        spilledBytes: 192,
+        checksumFaultDetected: true,
+        indexSeekMatched: true,
+        fullRunScanRequired: false,
+        roundTripByteStable: true,
+      },
+      {
+        fixtureId: "stream_replay_invariants",
+        status: "passed",
+        validatedArtifacts: [
+          "path_history_stream_manifest.v1",
+          "path_stream_table.v1",
+          "path_chunk.v1",
+          "stream_index.v1",
+          "path_history_summary.v1",
+        ],
+        rowCount: 3,
+        chunkCount: 2,
+        pathCount: 2,
+        byteLength: 288,
+        pathErrorBoundPreserved: true,
+        rootCountPreserved: true,
+        timeOrderingPreserved: true,
+        checksumIdentityPreserved: true,
+        projectionAuthorityPreserved: true,
+        indexSeekMatched: true,
+        fullRunScanRequired: false,
+      },
+      {
+        fixtureId: "history_age_out_and_deep_index",
+        status: "passed",
+        validatedArtifacts: [
+          "path_history_stream_manifest.v1",
+          "path_chunk.v1",
+          "path_event_store.v1",
+          "stream_index.v1",
+          "path_history_summary.v1",
+          "path_history_stream_memory_budget.v1",
+          "solver-path-history-storage-lifecycle-summary.v1",
+          "solver-path-history-deep-index.v1",
+        ],
+        rowCount: 3,
+        chunkCount: 2,
+        pathCount: 2,
+        byteLength: 288,
+        memoryBudgetBytes: 128,
+        activeWindowBytes: 96,
+        maxActiveBytes: 96,
+        spilledBytes: 192,
+        safeAgeOutCount: 1,
+        unsafeAgeOutCount: 1,
+        deepIndexBuilt: true,
+        authoritativeReplayReplaced: false,
+        fullRunScanRequired: false,
+      },
+      {
+        fixtureId: "interrupted_stream_recovery",
+        status: "passed",
+        validatedArtifacts: [
+          "path_history_stream_manifest.v1",
+          "path_chunk.v1",
+          "path_encoding_dictionary.v1",
+          "path_event_store.v1",
+          "stream_index.v1",
+          "path_history_summary.v1",
+        ],
+        rowCount: 3,
+        chunkCount: 2,
+        pathCount: 2,
+        byteLength: 288,
+        checksumFaultDetected: true,
+        partialWriteDetected: true,
+        staleSidecarDetected: true,
+        manifestMismatchDetected: true,
+        recoveryEventAppended: true,
+        quarantinedChunkCount: 1,
+        fullRunScanRequired: false,
+      },
+      {
+        fixtureId: "high_speed_readback_budget",
+        status: "passed",
+        validatedArtifacts: [
+          "path_history_stream_manifest.v1",
+          "path_chunk.v1",
+          "stream_index.v1",
+          "path_history_summary.v1",
+          "path_history_stream_memory_budget.v1",
+        ],
+        rowCount: 3,
+        chunkCount: 2,
+        pathCount: 2,
+        byteLength: 288,
+        activeWindowBytes: 96,
+        readbackMemoryBudgetBytes: 128,
+        readbackBytes: 96,
+        selectedRangeReadbackRows: 1,
+        scannedChunkCount: 1,
+        indexedLookupUsed: true,
+        indexSeekMatched: true,
+        fullRunScanRequired: false,
+        readbackThroughputRowsPerSecond: 96000,
+      },
+      {
+        fixtureId: "fast_spill_budget",
+        status: "passed",
+        validatedArtifacts: [
+          "path_history_stream_manifest.v1",
+          "path_chunk.v1",
+          "path_event_store.v1",
+          "stream_index.v1",
+          "path_history_summary.v1",
+          "path_history_stream_memory_budget.v1",
+        ],
+        rowCount: 3,
+        chunkCount: 2,
+        pathCount: 2,
+        byteLength: 288,
+        memoryBudgetBytes: 128,
+        activeWindowBytes: 96,
+        maxActiveBytes: 96,
+        spilledBytes: 192,
+        checksumFaultDetected: false,
+        indexSeekMatched: true,
+        fullRunScanRequired: false,
+        roundTripByteStable: true,
+        backpressureApplied: true,
+        halted: false,
+        spillThroughputRowsPerSecond: 48000,
+      },
+    ],
+  };
+}
+
+function createPathHistoryContractChunkRecord(
+  chunkId,
+  chunkIndex,
+  pathKeyStart,
+  pathKeyEnd,
+  rowOffset,
+  rowCount,
+  timeStart,
+  timeEnd,
+  frameStart,
+  frameEnd,
+  byteStart,
+  byteEnd
+) {
+  return {
+    schema: "path_chunk.v1",
+    chunkId,
+    chunkIndex,
+    streamId: "fixture-path-history-stream",
+    pathKeyStart,
+    pathKeyEnd,
+    rowOffset,
+    rowCount,
+    timeRange: { start: timeStart, end: timeEnd },
+    frameRange: { start: frameStart, end: frameEnd },
+    byteRange: { start: byteStart, end: byteEnd },
+    layout: "path_chunk.v1",
+    numericType: "f64",
+    headerChecksum: chunkIndex === 0 ? "aaaaaaaaaaaaaaaa" : "bbbbbbbbbbbbbbbb",
+    payloadChecksum: chunkIndex === 0 ? "1111111111111111" : "2222222222222222",
+    chunkChecksum: chunkIndex === 0 ? "cccccccccccccccc" : "dddddddddddddddd",
+    committed: true,
+  };
+}
+
+function createPathHistoryContractEvent(sequence, eventClass, severity, affectedStreamId, affectedChunkId) {
+  const event = {
+    sequence,
+    eventClass,
+    affectedStreamId,
+    severity,
+    recoverable: severity !== "error" && severity !== "halt",
+  };
+  if (affectedChunkId) {
+    event.affectedChunkId = affectedChunkId;
+  }
+  return event;
+}
+
+function createPathHistoryContractIndexSidecarFixture() {
+  return {
+    schema: "solver-stream-index.v1",
+    streamId: "fixture-path-history-stream",
+    indexLayout: "stream_index.v1",
+    chunkCount: 2,
+    sidecar: {
+      schema: "solver-stream-index-sidecar.v1",
+      indexLayout: "stream_index.v1",
+      numericType: "f64",
+      byteOrder: "little-endian",
+      rowSizeBytes: 64,
+      rowCount: 3,
+      byteLength: 192,
+      filePath: ".tmp/fixture-path-history-stream/stream-index.bin",
+      checksum: "eeeeeeeeeeeeeeee",
+    },
+    pathIndexRows: [
+      {
+        pathKey: 2000,
+        chunkIndex: 0,
+        rowOffset: 0,
+        rowCount: 1,
+        timeRange: { start: 0, end: 1 },
+        frameRange: { start: 0, end: 0 },
+        byteRange: { start: 0, end: 96 },
+      },
+      {
+        pathKey: 2001,
+        chunkIndex: 0,
+        rowOffset: 1,
+        rowCount: 1,
+        timeRange: { start: 1, end: 2 },
+        frameRange: { start: 1, end: 1 },
+        byteRange: { start: 96, end: 192 },
+      },
+      {
+        pathKey: 2000,
+        chunkIndex: 1,
+        rowOffset: 0,
+        rowCount: 1,
+        timeRange: { start: 2, end: 3 },
+        frameRange: { start: 2, end: 2 },
+        byteRange: { start: 192, end: 288 },
       },
     ],
   };
@@ -5277,6 +6290,7 @@ function createEmissionShellCandidateRequestEnvelope() {
       allowSamePath: false,
       workerCount: 2,
       timeRange: { start: 0, end: 2 },
+      indexOptions: createEmissionShellIndexedBroadPhaseOptionsFixture(),
     },
   };
 }
@@ -5297,6 +6311,7 @@ function createEmissionShellCandidatePacketRequestEnvelope() {
       allowSamePath: false,
       workerCount: 2,
       timeRange: { start: 0, end: 2 },
+      indexOptions: createEmissionShellIndexedBroadPhaseOptionsFixture(),
     },
   };
 }
@@ -5317,6 +6332,7 @@ function createEmissionShellCandidatePacketsRequestEnvelope() {
       allowSamePath: false,
       workerCount: 2,
       timeRange: { start: 0, end: 2 },
+      indexOptions: createEmissionShellIndexedBroadPhaseOptionsFixture(),
     },
   };
 }
@@ -5347,6 +6363,36 @@ function createWorkPacketHeaderFixture() {
     ],
     mergeOrder: 0,
     mergeKey: "source:0:receiver:1",
+    headerChecksum: "0123456789abcdef",
+  };
+}
+
+function createRootRefinementWorkPacketHeaderFixture() {
+  return {
+    schema: "solver-work-packet.v1",
+    packetId: "packet-refine-a",
+    runId: "run-contract",
+    modelId: "aaa.central-solver",
+    precisionPath: "event_root_focused",
+    sourceBlock: { enabled: true, start: 0, end: 1 },
+    receiverBlock: { enabled: true, start: 1, end: 2 },
+    pathBlock: { enabled: true, start: 0, end: 2 },
+    timeRange: { start: 0, end: 2 },
+    expectedOutputs: ["root_ledger.v1", "delayed_hit_events.v1"],
+    inputBuffers: [
+      {
+        bufferId: "fixture-path-history-stream:path-chunk-0",
+        layout: "path_segment.v1",
+        numericType: "f64",
+        byteOffset: 0,
+        byteLength: 192,
+        rowOffset: 0,
+        rowCount: 2,
+        checksum: "0123456789abcdef",
+      },
+    ],
+    mergeOrder: 2,
+    mergeKey: "source:0:receiver:1:refine",
     headerChecksum: "0123456789abcdef",
   };
 }
@@ -5393,6 +6439,16 @@ function createEmissionShellCandidateFixture() {
   };
 }
 
+function createEmissionShellIndexedBroadPhaseOptionsFixture() {
+  return {
+    strategy: "emission_shell_broad_phase_v0",
+    timeSlabCount: 32,
+    spatialCellSize: 0.5,
+    sourceRowOffset: 0,
+    receiverRowOffset: 0,
+  };
+}
+
 function createEmissionShellCandidateResponseEnvelope() {
   const packetAResult = createEmissionShellPacketResult("packet-a", 0, "source:0:receiver:1", 1);
   const packetBResult = createEmissionShellPacketResult("packet-b", 1, "source:1:receiver:2", 0);
@@ -5424,7 +6480,7 @@ function createEmissionShellCandidateResponseEnvelope() {
       },
       scanSummary: {
         schema: "solver-emission-shell-scan-summary.v1",
-        executionPath: "packet_merge",
+        executionPath: "native_c_abi_indexed_v0",
         streamChunkCount: 2,
         skippedChunkCount: 0,
         prunedByTimeChunkCount: 0,
@@ -5448,6 +6504,20 @@ function createEmissionShellCandidateResponseEnvelope() {
         requestedWorkerCount: 2,
         plannedWorkerCount: 1,
         truncated: false,
+      },
+      indexSummary: {
+        sourceRowOffset: 0,
+        receiverRowOffset: 0,
+        receiverCellRows: 2,
+        shellAnnulusRows: 1,
+        cellLookups: 4,
+        indexedPairTests: 1,
+        duplicatePairTests: 0,
+        spatialCellSize: 0.5,
+        timeRangeStart: 0,
+        timeRangeEnd: 2,
+        timeSlabCount: 32,
+        coverageStatus: "complete",
       },
       truncated: false,
       candidates: [createEmissionShellCandidateFixture()],
@@ -5484,6 +6554,7 @@ function createEmissionShellRootRefinementRequestEnvelope() {
     request: {
       streamId: "fixture-path-history-stream",
       candidates: [createEmissionShellCandidateFixture()],
+      packet: createRootRefinementWorkPacketHeaderFixture(),
       signalSpeed: 1,
       tolerance: 1e-12,
       rootTolerance: 1e-12,
@@ -5504,6 +6575,15 @@ function createEmissionShellRootRefinementResponseEnvelope() {
     requestId: "emission-shell-root-refinement-contract-request",
     response: {
       schema: "solver-emission-shell-root-refinement.v1",
+      packetId: "packet-refine-a",
+      packetMergeOrder: 2,
+      packetMergeKey: "source:0:receiver:1:refine",
+      packetResult: createRootRefinementPacketResult(
+        "packet-refine-a",
+        2,
+        "source:0:receiver:1:refine",
+        1
+      ),
       streamId: "fixture-path-history-stream",
       signalSpeed: 1,
       tolerance: 1e-12,
@@ -5536,7 +6616,7 @@ function createEmissionShellRootRefinementResponseEnvelope() {
       hits: [response.response.hits[0]],
       buffers: [
         {
-          bufferId: "emission-shell-refined-root-ledger",
+          bufferId: "packet-refine-a:emission-shell-refined-root-ledger",
           layout: "root_ledger.v1",
           byteOffset: 0,
           byteLength: 112,
@@ -5545,7 +6625,7 @@ function createEmissionShellRootRefinementResponseEnvelope() {
           checksum: "cccccccccccccccc",
         },
         {
-          bufferId: "emission-shell-refined-delayed-hits",
+          bufferId: "packet-refine-a:emission-shell-refined-delayed-hits",
           layout: "delayed_hit_events.v1",
           byteOffset: 0,
           byteLength: 128,
@@ -5584,6 +6664,36 @@ function createEmissionShellPacketResult(packetId, mergeOrder, mergeKey, rowCoun
         rowOffset: 0,
         rowCount,
         checksum: rowCount === 0 ? "cbf29ce484222325" : "bbbbbbbbbbbbbbbb",
+      },
+    ],
+  };
+}
+
+function createRootRefinementPacketResult(packetId, mergeOrder, mergeKey, rowCount) {
+  return {
+    packetId,
+    mergeOrder,
+    mergeKey,
+    outputs: [
+      {
+        bufferId: `${packetId}:emission-shell-refined-root-ledger`,
+        layout: "root_ledger.v1",
+        numericType: "f64",
+        byteOffset: 0,
+        byteLength: rowCount * 112,
+        rowOffset: 0,
+        rowCount,
+        checksum: "cccccccccccccccc",
+      },
+      {
+        bufferId: `${packetId}:emission-shell-refined-delayed-hits`,
+        layout: "delayed_hit_events.v1",
+        numericType: "f64",
+        byteOffset: 0,
+        byteLength: rowCount * 128,
+        rowOffset: 0,
+        rowCount,
+        checksum: "dddddddddddddddd",
       },
     ],
   };

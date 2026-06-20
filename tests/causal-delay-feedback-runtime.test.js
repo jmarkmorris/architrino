@@ -1,11 +1,14 @@
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import { test } from "node:test";
 
 import { createCausalDelayFeedbackRuntime } from "../src/apps/causal-delay-feedback/CausalDelayFeedbackRuntime.js";
 import {
+  CENTRAL_SOLVER_APP_PLAYBACK_REPLAY_MODE,
   CENTRAL_SOLVER_REPLAY_ADAPTER,
   CENTRAL_SOLVER_REPLAY_DATASET_SOURCE,
   CENTRAL_SOLVER_MOTION_REPLAY_MODE,
+  CENTRAL_SOLVER_PAIR_INTERACTION_REPLAY_MODE,
 } from "../src/apps/causal-delay-feedback/CausalDelayFeedbackCentralBridgeAdapter.js";
 import {
   CANVAS_COLORS,
@@ -16,6 +19,7 @@ import {
   createMockCausalDelayReplayDataset,
 } from "../src/apps/causal-delay-feedback/CausalDelayFeedbackReplayAdapter.js";
 import {
+  createCausalDelayFeedbackInitialReplayRequestOptions,
   createCausalDelayFeedbackRuntimeForPage,
   getCentralBridgeReplayMode,
   shouldUseCentralBridgeReplay,
@@ -79,6 +83,29 @@ function assertNear(actual, expected, epsilon = 1e-9) {
   assert.ok(Math.abs(actual - expected) <= epsilon, `${actual} should be near ${expected}`);
 }
 
+function createArcRecordingContext() {
+  return {
+    arcs: [],
+    beginPath() {},
+    fill() {},
+    restore() {},
+    save() {},
+    stroke() {},
+    arc(x, y, radius) {
+      this.arcs.push({ x, y, radius });
+    },
+    set fillStyle(value) {
+      this._fillStyle = value;
+    },
+    set lineWidth(value) {
+      this._lineWidth = value;
+    },
+    set strokeStyle(value) {
+      this._strokeStyle = value;
+    },
+  };
+}
+
 function createRuntimeForReadout() {
   const readout = new FakeElement();
   const runtime = createCausalDelayFeedbackRuntime({
@@ -89,9 +116,14 @@ function createRuntimeForReadout() {
   return { runtime, readout };
 }
 
+function readCausalDelayFeedbackHtml() {
+  return readFileSync(new URL("../causal-delay-feedback.html", import.meta.url), "utf8");
+}
+
 test("causal delay feedback readout summarizes selected path history point", () => {
   const { runtime, readout } = createRuntimeForReadout();
   const point = runtime.dataset.history.positrino[0];
+  const condition = runtime.dataset.initialConditions.positrino;
   const hit = runtime.createHistoryHit(point, 0);
 
   runtime.selectedItem = hit.selection;
@@ -100,7 +132,16 @@ test("causal delay feedback readout summarizes selected path history point", () 
   assert.equal(readout.hidden, false);
   assert.deepEqual(
     readout.children.map((child) => child.textContent),
-    ["positrino 1", "t=0.00", "weight=0.17", "older"],
+    [
+      "positrino 1",
+      "t=0.00",
+      `x=${Math.round(point.x)}`,
+      `y=${Math.round(point.y)}`,
+      "weight=0.17",
+      "older",
+      `vx=${condition.vx.toFixed(1)}`,
+      `vy=${condition.vy.toFixed(1)}`,
+    ],
   );
 });
 
@@ -124,6 +165,52 @@ test("causal delay feedback readout summarizes selected wake link", () => {
   assert.match(readout.children[8].textContent, /^contrib=/);
   assert.match(readout.children[9].textContent, /^(threshold=above_threshold|threshold=near_threshold|threshold=below_threshold)$/);
   assert.equal(readout.children[10].textContent, "partial arc");
+});
+
+test("causal delay feedback wake hover shows timing and contribution diagnostics", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  const hoverLabel = new FakeElement();
+  runtime.dom = {
+    canvas: { getBoundingClientRect: () => ({ left: 0, top: 0 }) },
+    hoverLabel,
+  };
+  const link = runtime.dataset.wakeLinks[0];
+  const endpoints = runtime.getWakeEndpoints(link);
+  const midpoint = runtime.worldToScreen({
+    x: (endpoints.source.x + endpoints.receiver.x) * 0.5,
+    y: (endpoints.source.y + endpoints.receiver.y) * 0.5,
+  });
+
+  runtime.updateHoverLabel({ clientX: midpoint.x, clientY: midpoint.y });
+
+  assert.equal(hoverLabel.hidden, false);
+  assert.match(hoverLabel.textContent, /^red 1 -> blue 2/);
+  assert(hoverLabel.textContent.includes("emit=0.00"));
+  assert(hoverLabel.textContent.includes("hit=0.08"));
+  assert(hoverLabel.textContent.includes("travel=0.08"));
+  assert(hoverLabel.textContent.includes("contrib="));
+});
+
+test("causal delay feedback path point hover stays compact", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  const hoverLabel = new FakeElement();
+  runtime.dom = {
+    canvas: { getBoundingClientRect: () => ({ left: 0, top: 0 }) },
+    hoverLabel,
+  };
+  const point = runtime.dataset.history.positrino[0];
+  const screen = runtime.worldToScreen(point);
+
+  runtime.updateHoverLabel({ clientX: screen.x, clientY: screen.y });
+
+  assert.equal(hoverLabel.hidden, false);
+  assert.equal(hoverLabel.textContent, "positrino 1");
 });
 
 test("causal delay feedback wake readout includes central solver diagnostics", () => {
@@ -156,6 +243,36 @@ test("causal delay feedback wake readout includes central solver diagnostics", (
       "partial arc",
     ],
   );
+});
+
+test("causal delay feedback wake readout includes compact root ledger details", () => {
+  const { runtime, readout } = createRuntimeForReadout();
+  const link = runtime.dataset.wakeLinks[0];
+  Object.assign(link, {
+    solverRunId: "causal-delay-feedback-ledger-red1-blue2-delayed-hit",
+    rootCount: 1,
+    solverHitCount: 1,
+    rootLedgerDetails: [
+      {
+        bracketStart: 0,
+        bracketEnd: 0.083333,
+        residual: 1.2e-9,
+        iterationCount: 7,
+        statusCode: 22,
+      },
+    ],
+  });
+  const hit = runtime.createWakeHit(link, 0);
+
+  runtime.selectedItem = hit.selection;
+  runtime.updateReadout(hit);
+  const readoutText = readout.children.map((child) => child.textContent);
+
+  assert(readoutText.includes("ledgerRows=1"));
+  assert(readoutText.includes("ledgerResid=1.2e-9"));
+  assert(readoutText.includes("ledgerBracket=0.00-0.08"));
+  assert(readoutText.includes("ledgerIter=7"));
+  assert(readoutText.includes("ledgerCode=22"));
 });
 
 test("causal delay feedback wake readout and visual weight expose rejected solver links", () => {
@@ -311,6 +428,332 @@ test("causal delay feedback default readout stays hidden while aggregate feedbac
   assert.equal(summary.netContribution, summary.positiveContribution + summary.negativeContribution);
 });
 
+test("causal delay feedback aggregate summary names an empty active wake set", () => {
+  const { runtime, readout } = createRuntimeForReadout();
+  runtime.dataset.wakeLinks = [];
+
+  const summary = runtime.getContributionSummary(0.5);
+  runtime.updateReadout(runtime.createContributionSummaryHit(0.5));
+  const readoutText = readout.children.map((child) => child.textContent);
+
+  assert.equal(summary.linkCount, 0);
+  assert.equal(summary.activeLinkCount, 0);
+  assert.equal(summary.emptyReason, "no_wake_links");
+  assert.equal(readout.hidden, false);
+  assert.equal(readout.children[0].textContent, "feedback sum");
+  assert(readoutText.includes("received=0/0"));
+  assert(readoutText.includes("why=no_wake_links"));
+});
+
+test("causal delay feedback now scrubber pauses and moves replay time", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  const nowInput = new FakeElement();
+  const nowValue = new FakeElement();
+  const readout = new FakeElement();
+  runtime.dom = {
+    nowInput,
+    nowValue,
+    readout,
+    playButton: {
+      dataset: {},
+      setAttribute() {},
+    },
+  };
+  runtime.context = {};
+  let renderedTime = null;
+  runtime.render = (replayTime = runtime.getCurrentReplayTime()) => {
+    renderedTime = replayTime;
+  };
+
+  runtime.setReplayNowSliderValue(500);
+
+  assert.equal(runtime.isPlaying, false);
+  assert.equal(nowInput.value, "500");
+  assert.equal(nowValue.textContent, "t=0.5");
+  assertNear(runtime.getCurrentReplayTime(), 0.5);
+  assertNear(renderedTime, 0.5);
+  assert.equal(readout.hidden, true);
+});
+
+test("causal delay feedback now scrubber updates selected wake state", () => {
+  const { runtime, readout } = createRuntimeForReadout();
+  const nowInput = new FakeElement();
+  const nowValue = new FakeElement();
+  runtime.dom = {
+    ...runtime.dom,
+    nowInput,
+    nowValue,
+    playButton: {
+      dataset: {},
+      setAttribute() {},
+    },
+  };
+  const link = runtime.dataset.wakeLinks[0];
+  runtime.selectedItem = { type: "wake", linkId: link.id };
+
+  runtime.setReplayNowSliderValue(1000);
+
+  assert.equal(readout.hidden, false);
+  assert.equal(readout.children[0].textContent, link.label);
+  assert(readout.children.map((child) => child.textContent).includes("received"));
+});
+
+test("causal delay feedback reset resyncs now control and selected readout", () => {
+  const { runtime, readout } = createRuntimeForReadout();
+  const nowInput = new FakeElement();
+  const nowValue = new FakeElement();
+  runtime.dom = {
+    ...runtime.dom,
+    nowInput,
+    nowValue,
+    playButton: {
+      dataset: {},
+      setAttribute() {},
+    },
+  };
+  runtime.context = {};
+  runtime.render = () => {};
+  const link = runtime.dataset.wakeLinks[0];
+  runtime.selectedItem = { type: "wake", linkId: link.id };
+  runtime.setReplayNowSliderValue(1000);
+
+  runtime.resetReplayTime();
+  const readoutText = readout.children.map((child) => child.textContent);
+
+  assert.equal(runtime.isPlaying, true);
+  assert.equal(nowInput.value, "0");
+  assert.equal(nowValue.textContent, "t=0");
+  assert.equal(readout.hidden, false);
+  assert.equal(readoutText.includes("received"), false);
+});
+
+test("causal delay feedback reset preset restores the loaded preset state", async () => {
+  const replayStatus = new FakeElement();
+  const settingsPanel = new FakeElement();
+  const settingsButton = new FakeElement();
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  runtime.dom = {
+    replayStatus,
+    settingsPanel,
+    settingsButton,
+  };
+  settingsPanel.hidden = false;
+  const expectedDataset = createMockCausalDelayReplayDataset(runtime.presetId);
+  const expectedStart = expectedDataset.history.positrino.find((point) => point.depth === 1);
+
+  runtime.applyRetainedPointDrag("positrino", 1, { x: 56, y: -18 });
+  assert.equal(runtime.dataset.datasetSource, DIRECT_MANIPULATION_DRAFT_PREVIEW);
+  assert.notEqual(runtime.dataset.history.positrino.find((point) => point.depth === 1).x, expectedStart.x);
+
+  await runtime.resetPreset();
+  const resetStart = runtime.dataset.history.positrino.find((point) => point.depth === 1);
+
+  assert.equal(settingsPanel.hidden, true);
+  assert.equal(settingsButton.attributes["aria-expanded"], "false");
+  assert.equal(runtime.dataset.datasetSource, REPRESENTATIVE_MOCK_SOLVER_REPLAY);
+  assert.equal(runtime.replayLoadState, "ready");
+  assert.equal(replayStatus.textContent, "representative replay");
+  assert.equal(resetStart.x, expectedStart.x);
+  assert.equal(resetStart.y, expectedStart.y);
+  assert.equal(runtime.dataset.draftPreview, undefined);
+});
+
+test("causal delay feedback reset preset reloads the current preset through the central adapter", async () => {
+  const replayStatus = new FakeElement();
+  const settingsPanel = new FakeElement();
+  const settingsButton = new FakeElement();
+  const loadedPresets = [];
+  const adapter = {
+    id: CENTRAL_SOLVER_REPLAY_ADAPTER,
+    async createReplayAsync({ presetId }) {
+      loadedPresets.push(presetId);
+      return {
+        ...createMockCausalDelayReplayDataset(presetId),
+        runId: `central:${presetId}:${loadedPresets.length}`,
+        datasetSource: CENTRAL_SOLVER_REPLAY_DATASET_SOURCE,
+        solverIntegrationPath: CENTRAL_SOLVER_REPLAY_ADAPTER,
+      };
+    },
+  };
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+    replayAdapter: adapter,
+    autoLoadReplay: false,
+  });
+  runtime.dom = {
+    replayStatus,
+    settingsPanel,
+    settingsButton,
+  };
+
+  await runtime.setPreset("full_circular_arcs");
+  const firstCentralRunId = runtime.dataset.runId;
+  runtime.applyRetainedPointDrag("electrino", 2, { x: 28, y: -16 });
+
+  await runtime.resetPreset();
+
+  assert.deepEqual(loadedPresets, ["full_circular_arcs", "full_circular_arcs"]);
+  assert.equal(runtime.presetId, "full_circular_arcs");
+  assert.equal(runtime.dataset.datasetSource, CENTRAL_SOLVER_REPLAY_DATASET_SOURCE);
+  assert.equal(runtime.dataset.solverIntegrationPath, CENTRAL_SOLVER_REPLAY_ADAPTER);
+  assert.notEqual(runtime.dataset.runId, firstCentralRunId);
+  assert.equal(runtime.dataset.draftPreview, undefined);
+  assert.equal(replayStatus.textContent, "solver bridge replay");
+});
+
+test("causal delay feedback reduced motion keeps replay paused but allows frame stepping", () => {
+  const nowInput = new FakeElement();
+  const nowValue = new FakeElement();
+  const reducedMotionInput = new FakeElement();
+  const highContrastPathsInput = new FakeElement();
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  runtime.dom = {
+    playButton: new FakeElement(),
+    nowInput,
+    nowValue,
+    readout: new FakeElement(),
+    reducedMotionInput,
+    highContrastPathsInput,
+  };
+  runtime.render = () => {};
+  const frameTimes = runtime.getReplayFrameStepTimes();
+
+  runtime.setReducedMotionEnabled(true);
+  runtime.setPlaying(true);
+  runtime.resetReplayTime();
+  runtime.setCurrentReplayTime(frameTimes[0]);
+  const didStep = runtime.stepReplayFrame(1);
+
+  assert.equal(reducedMotionInput.checked, true);
+  assert.equal(runtime.isPlaying, false);
+  assert.equal(didStep, true);
+  assertNear(runtime.getCurrentReplayTime(), frameTimes[1]);
+
+  runtime.setReducedMotionEnabled(false);
+  runtime.setPlaying(true);
+
+  assert.equal(reducedMotionInput.checked, false);
+  assert.equal(runtime.isPlaying, true);
+});
+
+test("causal delay feedback high contrast setting strengthens path history rendering", () => {
+  const highContrastPathsInput = new FakeElement();
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  runtime.dom = {
+    reducedMotionInput: new FakeElement(),
+    highContrastPathsInput,
+  };
+  const normalLines = [];
+  runtime.drawLine = (_ctx, _points, color, width) => {
+    normalLines.push({ color, width });
+  };
+  runtime.drawPathTrail({}, "positrino", { r: 255, g: 0, b: 0, a: 1 });
+
+  runtime.setHighContrastPathsEnabled(true);
+  const contrastLines = [];
+  runtime.drawLine = (_ctx, _points, color, width) => {
+    contrastLines.push({ color, width });
+  };
+  runtime.drawPathTrail({}, "positrino", { r: 255, g: 0, b: 0, a: 1 });
+
+  assert.equal(highContrastPathsInput.checked, true);
+  assert(contrastLines[0].width > normalLines[0].width);
+  assert(contrastLines[0].color.a > normalLines[0].color.a);
+  assert(contrastLines.at(-1).width > normalLines.at(-1).width);
+  assert(contrastLines.at(-1).color.a > normalLines.at(-1).color.a);
+});
+
+test("causal delay feedback background depth field is optional and render-only", () => {
+  const backgroundDepthFieldInput = new FakeElement();
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  runtime.dom = {
+    reducedMotionInput: new FakeElement(),
+    highContrastPathsInput: new FakeElement(),
+    backgroundDepthFieldInput,
+    weakContributionCueInput: new FakeElement(),
+  };
+  let renderCount = 0;
+  runtime.context = {};
+  runtime.render = () => {
+    renderCount += 1;
+  };
+
+  runtime.setBackgroundDepthFieldEnabled(true);
+
+  assert.equal(backgroundDepthFieldInput.checked, true);
+  assert.equal(renderCount, 1);
+  assert.equal(runtime.replayRequestOptions.backgroundDepthFieldEnabled, undefined);
+
+  let fieldRenderCount = 0;
+  const context = {
+    fillRect() {},
+  };
+  runtime.drawLine = () => {};
+  runtime.drawTriangle = () => {};
+  runtime.drawText = () => {};
+  runtime.drawBackgroundDepthField = () => {
+    fieldRenderCount += 1;
+  };
+
+  runtime.setBackgroundDepthFieldEnabled(false);
+  runtime.drawBackground(context);
+  runtime.setBackgroundDepthFieldEnabled(true);
+  runtime.drawBackground(context);
+
+  assert.equal(fieldRenderCount, 1);
+});
+
+test("causal delay feedback weak contribution cue can disable threshold-only wake fading", () => {
+  const weakContributionCueInput = new FakeElement();
+  const settingsButton = new FakeElement();
+  const settingsPanel = new FakeElement();
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  settingsPanel.hidden = false;
+  runtime.dom = {
+    reducedMotionInput: new FakeElement(),
+    highContrastPathsInput: new FakeElement(),
+    weakContributionCueInput,
+    settingsButton,
+    settingsPanel,
+  };
+  runtime.dataset.assemblyThreshold = 1;
+  const link = runtime.dataset.wakeLinks[0];
+  const thresholdCueWeight = runtime.getWakeVisualWeight(link);
+
+  runtime.setWeakContributionCueMode("off");
+  const uncuedWeight = runtime.getWakeVisualWeight(link);
+
+  assert.equal(weakContributionCueInput.value, "off");
+  assert.equal(runtime.getWakeThresholdState(link), "below_threshold");
+  assert(thresholdCueWeight.alphaScale < uncuedWeight.alphaScale);
+  assert(thresholdCueWeight.radiusScale < uncuedWeight.radiusScale);
+  assert(thresholdCueWeight.desaturation > uncuedWeight.desaturation);
+  assert.equal(uncuedWeight.alphaScale, 1);
+  assert.equal(uncuedWeight.radiusScale, 1);
+  assert.equal(uncuedWeight.desaturation, 0);
+  assert.equal(settingsPanel.hidden, true);
+  assert.equal(settingsButton.attributes["aria-expanded"], "false");
+});
+
 test("causal delay feedback aggregate summary excludes rejected solver links", () => {
   const { runtime, readout } = createRuntimeForReadout();
   const rejectedLink = runtime.dataset.wakeLinks[0];
@@ -331,8 +774,14 @@ test("causal delay feedback aggregate summary excludes rejected solver links", (
   assert.equal(summary.inFlightCount, 2);
   assert.equal(summary.pendingCount, 6);
   assert.equal(summary.rejectedCount, 1);
+  assert.equal(summary.strongestContributionLabel, "blue 1 -> red 2");
+  assert(summary.strongestContribution < 0);
+  assert.equal(summary.strongestContributionMagnitude, Math.abs(summary.strongestContribution));
+  assert.deepEqual(summary.invalidReasonCounts, { "rejected:no_delayed_hit": 1 });
   assert.equal(readout.children[2].textContent, "received=1/9");
-  assert.equal(readout.children[readout.children.length - 1].textContent, "rejected=1");
+  assert(readout.children.map((child) => child.textContent).some((text) => text.startsWith("strongest=blue_1_->_red_2:")));
+  assert.equal(readout.children[readout.children.length - 2].textContent, "rejected=1");
+  assert.equal(readout.children[readout.children.length - 1].textContent, "why=rejected:no_delayed_hitx1");
 });
 
 test("causal delay feedback partial wake presets use dense emission-to-receipt bands", () => {
@@ -360,6 +809,21 @@ test("causal delay feedback mock paths span five to ninety-five percent of the t
   });
 });
 
+test("causal delay feedback mock initial motion state spans retained path endpoints", () => {
+  const dataset = createMockCausalDelayReplayDataset("accepted_tight_bright");
+  const runDuration = dataset.initialConditions.runDuration;
+
+  ["positrino", "electrino"].forEach((kind) => {
+    const condition = dataset.initialConditions[kind];
+    const pathEnd = dataset.paths[kind].at(-1);
+
+    assert.notEqual(condition.ax, 0);
+    assert.notEqual(condition.ay, 0);
+    assertNear(condition.x + condition.vx * runDuration + 0.5 * condition.ax * runDuration * runDuration, pathEnd.x);
+    assertNear(condition.y + condition.vy * runDuration + 0.5 * condition.ay * runDuration * runDuration, pathEnd.y);
+  });
+});
+
 test("causal delay feedback contrast stress preset exercises mixed purple-background states", () => {
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
@@ -382,6 +846,112 @@ test("causal delay feedback contrast stress preset exercises mixed purple-backgr
   assert.equal(runtime.dataset.wakeLinks[3].rootStatus.code, "contrast_no_delayed_hit");
 });
 
+test("causal delay feedback aggregate summary surfaces compact invalid root reasons", () => {
+  const { runtime, readout } = createRuntimeForReadout();
+  runtime.applyReplayDataset(createMockCausalDelayReplayDataset("contrast_stress"), { loadState: "ready" });
+
+  const summary = runtime.getContributionSummary(1);
+  runtime.updateReadout(runtime.createContributionSummaryHit(1));
+  const readoutText = readout.children.map((child) => child.textContent);
+
+  assert.equal(summary.inactiveCount, 1);
+  assert.equal(summary.staleCount, 1);
+  assert.equal(summary.rejectedCount, 1);
+  assert.deepEqual(summary.invalidReasonCounts, {
+    "inactive:contrast_root_without_hit": 1,
+    "stale:contrast_stress_stale_solver_row": 1,
+    "rejected:contrast_no_delayed_hit": 1,
+  });
+  assert(readoutText.includes("inactive=1"));
+  assert(readoutText.includes("stale=1"));
+  assert(readoutText.includes("rejected=1"));
+  assert(
+    readoutText.includes(
+      "why=inactive:contrast_root_without_hitx1,rejected:contrast_no_delayed_hitx1,stale:contrast_stress_stale_solver_rowx1",
+    ),
+  );
+});
+
+test("causal delay feedback aggregate summary surfaces compact pair solver diagnostics", () => {
+  const { runtime, readout } = createRuntimeForReadout();
+  runtime.dataset = {
+    ...createMockCausalDelayReplayDataset("partial_arcs"),
+    datasetSource: CENTRAL_SOLVER_REPLAY_DATASET_SOURCE,
+    solverIntegrationPath: CENTRAL_SOLVER_REPLAY_ADAPTER,
+    solverReplayMode: CENTRAL_SOLVER_PAIR_INTERACTION_REPLAY_MODE,
+    maxPathConstraintResidual: 0.004,
+    pathConstraintFrameRefinementSampleCount: 15,
+    pathConstraintGuidanceSampleCount: 12,
+    pathConstraintGuidanceMode: "retained_knot_boundary",
+    pathConstraintBoundaryMode: "law_aware_retained_knot_boundary",
+    pathConstraintBoundarySeedMode: "law_aware_retained_knot_boundary_seed",
+    pathConstraintBoundarySeedSampleCount: 18,
+    pathConstraintBoundaryRelaxationMode: "finite_difference_frame_relaxation_v1",
+    pathConstraintBoundaryRelaxationIterationCount: 8,
+    pathConstraintBoundaryRelaxationAppliedIterationCount: 3,
+    pathConstraintBoundaryRelaxationStopReason: "tolerance_reached",
+    pathConstraintBoundaryRelaxationTolerance: 0.006,
+    pathConstraintBoundaryRelaxationStepTolerance: 0.25,
+    pathConstraintBoundaryRelaxationStatus: "converged",
+    pathConstraintBoundaryRelaxationResidualRatio: 0.25,
+    rmsPathConstraintBoundaryRelaxationResidualRatio: 0.125,
+    pathConstraintBoundaryRelaxationResidualSettlingRate: 0.6299605249474366,
+    rmsPathConstraintBoundaryRelaxationResidualSettlingRate: 0.5,
+    rmsPathConstraintBoundaryRelaxationResidualAfter: 0.003,
+    pathConstraintBoundaryRelaxationMaxStep: 7.25,
+    pathConstraintBoundaryRelaxationFinalStepFactor: 0.5,
+    pathConstraintBoundaryRelaxationCandidateVariantCount: 14,
+    pathConstraintBoundaryRelaxationLineSearchTrialCount: 112,
+    pathConstraintBoundaryRelaxationCandidateKindMask: 4194302,
+    pathConstraintSolverStatus: "guided_constraint_path",
+    pathConstraintSolverClaim: "diagnostic_constraint_replay_not_boundary_value_solve",
+    pathConstraintPhysicalBoundarySolverStatus: "physical_boundary_solver_pending",
+    pathConstraintPhysicalBoundarySolverClaim: "retained_knot_guidance_not_physical_boundary_value_solve",
+    maxPathConstraintGuidanceAcceleration: 48.25,
+    pathConstraintBoundaryResidualSampleCount: 10,
+    pathConstraintBoundaryResidualStatus: "within_tolerance",
+    pathConstraintBoundaryResidualTolerance: 0.02,
+    maxPathConstraintBoundaryResidual: 0.018,
+  };
+
+  runtime.updateReadout(runtime.createContributionSummaryHit(0.5));
+  const readoutText = readout.children.map((child) => child.textContent);
+
+  assert(readoutText.includes("refined=15"));
+  assert(readoutText.includes("guide=retained_knot_boundary"));
+  assert(readoutText.includes("bMode=law_aware_retained_knot_boundary"));
+  assert(readoutText.includes("seed=law_aware_retained_knot_boundary_seed"));
+  assert(readoutText.includes("seedRows=18"));
+  assert(readoutText.includes("relax=finite_difference_frame_relaxation_v1"));
+  assert(readoutText.includes("relaxIter=8"));
+  assert(readoutText.includes("relaxApplied=3"));
+  assert(readoutText.includes("relaxStop=tolerance_reached"));
+  assert(readoutText.includes("relaxTol=0.006"));
+  assert(readoutText.includes("relaxStepTol=0.25"));
+  assert(readoutText.includes("relaxRatio=0.25"));
+  assert(readoutText.includes("relaxRmsRatio=0.125"));
+  assert(readoutText.includes("relaxRate=0.63"));
+  assert(readoutText.includes("relaxRmsRate=0.5"));
+  assert(readoutText.includes("relaxRms=0.003"));
+  assert(readoutText.includes("relaxStep=7.25"));
+  assert(readoutText.includes("relaxFactor=0.5"));
+  assert(readoutText.includes("cand=14"));
+  assert(readoutText.includes("trials=112"));
+  assert(readoutText.includes("mask=0x3ffffe"));
+  assert(readoutText.includes("relaxStatus=converged"));
+  assert(readoutText.includes("guideRows=12"));
+  assert(readoutText.includes("maxA=48.25"));
+  assert(readoutText.includes("constraint=guided_constraint_path"));
+  assert(readoutText.includes("claim=diagnostic_constraint_replay_not_boundary_value_solve"));
+  assert(readoutText.includes("physical=physical_boundary_solver_pending"));
+  assert(readoutText.includes("physicalClaim=retained_knot_guidance_not_physical_boundary_value_solve"));
+  assert(readoutText.includes("boundary=10"));
+  assert(readoutText.includes("maxB=0.018"));
+  assert(readoutText.includes("tolB=0.02"));
+  assert(readoutText.includes("bStatus=within_tolerance"));
+  assert(readoutText.includes("solverResid=0.004"));
+});
+
 test("causal delay feedback canvas swatches match the iOS reader theme colors", () => {
   assert.deepEqual(
     CANVAS_COLORS.map(({ id, label, color }) => ({ id, label, color })),
@@ -392,6 +962,43 @@ test("causal delay feedback canvas swatches match the iOS reader theme colors", 
       { id: "dark", label: "Dark", color: "#0f172a" },
     ],
   );
+});
+
+test("causal delay feedback settings sliders use themed range styling", () => {
+  const html = readCausalDelayFeedbackHtml();
+
+  assert.equal(html.includes(".causal-range::-webkit-slider-runnable-track"), true);
+  assert.equal(html.includes(".causal-range::-webkit-slider-thumb"), true);
+  assert.equal(html.includes(".causal-range::-moz-range-track"), true);
+  assert.equal(html.includes(".causal-range::-moz-range-thumb"), true);
+  assert.equal(html.includes("appearance: none;"), true);
+  assert.equal(html.includes("background: #4ae5ff;"), true);
+});
+
+test("causal delay feedback settings popover includes reset preset without adding a toolbar control", () => {
+  const html = readCausalDelayFeedbackHtml();
+
+  assert.equal(html.includes('id="causal-delay-feedback-reset-preset"'), true);
+  assert.equal(html.includes("Reset preset"), true);
+  assert.equal(html.includes(".causal-settings-action"), true);
+  assert.equal(html.includes('id="causal-delay-feedback-reduced-motion"'), true);
+  assert.equal(html.includes('id="causal-delay-feedback-high-contrast-paths"'), true);
+  assert.equal(html.includes('id="causal-delay-feedback-depth-field"'), true);
+  assert.equal(html.includes('id="causal-delay-feedback-weak-cue"'), true);
+  assert.equal(html.includes('value="threshold_only"'), true);
+  assert.equal(html.includes('value="off"'), true);
+  assert.equal(html.includes(".causal-toggle-row"), true);
+  assert.equal(html.includes(".causal-setting-select"), true);
+  assert.equal(html.includes("Hide path history"), false);
+  assert.equal(html.includes("Show path history"), false);
+  assert.equal(html.includes("Paths on/off"), false);
+  assert.equal(html.includes("Readout on/off"), false);
+  assert.equal(html.includes("Feedback Links"), false);
+  assert.equal(html.includes("trace count"), false);
+  assert.equal(html.includes("Root Ledger"), false);
+  assert.equal(html.includes("root ledger inspector"), false);
+  assert.equal(html.includes("diagnostic table"), false);
+  assert.equal(html.includes("diagnostics panel"), false);
 });
 
 test("causal delay feedback replay datasets can load preset canvas color state", () => {
@@ -429,8 +1036,8 @@ test("causal delay feedback retained depth setting filters active history and wa
   const summary = runtime.getContributionSummary(1);
 
   assert.equal(runtime.retainedDepthLimit, 3);
-  assert.equal(runtime.getVisibleHistory("positrino").length, 3);
-  assert.equal(runtime.getVisibleHistory("electrino").length, 3);
+  assert.deepEqual(runtime.getVisibleHistory("positrino").map((point) => point.depth), [1, 2, 3, 6]);
+  assert.deepEqual(runtime.getVisibleHistory("electrino").map((point) => point.depth), [1, 2, 3, 6]);
   assert.equal(runtime.getVisibleWakeLinks().length, 4);
   assert.equal(runtime.dataset.wakeLinks.length, 10);
   assert.equal(summary.linkCount, 4);
@@ -514,7 +1121,7 @@ test("causal delay feedback architrino speed setting rescales initial velocity m
   });
 });
 
-test("causal delay feedback replay exposes draggable initial conditions", () => {
+test("causal delay feedback replay keeps initial conditions synced to path start history", () => {
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
     window: fakeWindow,
@@ -554,6 +1161,203 @@ test("causal delay feedback exposes a draggable Virtual Observer handle", () => 
   assert.equal(hit.title, "Virtual Observer");
 });
 
+test("causal delay feedback flips the Virtual Observer label away from the portrait right edge", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  runtime.viewport = { scale: 0.2, offsetX: 0, offsetY: 0 };
+  runtime.canvasWidth = 390;
+
+  const rightEdgePlacement = runtime.getVirtualObserverLabelPlacement({ x: 330, y: 420 });
+  const centerPlacement = runtime.getVirtualObserverLabelPlacement({ x: 160, y: 420 });
+
+  assert.equal(rightEdgePlacement.align, "right");
+  assert(rightEdgePlacement.x < 330);
+  assert.equal(centerPlacement.align, "left");
+  assert(centerPlacement.x > 160);
+});
+
+test("causal delay feedback wheel zoom anchors on empty canvas background", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  runtime.dom = {
+    canvas: {
+      getBoundingClientRect: () => ({ left: 0, top: 0 }),
+    },
+  };
+  const screen = { x: 960, y: 150 };
+  const beforeScale = runtime.viewport.scale;
+  const beforeWorld = runtime.screenToWorld(screen);
+  let prevented = false;
+
+  runtime.handleCanvasWheel({
+    clientX: screen.x,
+    clientY: screen.y,
+    deltaY: -240,
+    preventDefault() {
+      prevented = true;
+    },
+  });
+  const afterWorld = runtime.screenToWorld(screen);
+
+  assert.equal(prevented, true);
+  assert(runtime.viewport.scale > beforeScale);
+  assertNear(afterWorld.x, beforeWorld.x);
+  assertNear(afterWorld.y, beforeWorld.y);
+});
+
+test("causal delay feedback wheel zoom ignores selectable path objects", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  runtime.dom = {
+    canvas: {
+      getBoundingClientRect: () => ({ left: 0, top: 0 }),
+    },
+  };
+  const pathPoint = runtime.dataset.history.positrino[0];
+  const screen = runtime.worldToScreen(pathPoint);
+  const beforeScale = runtime.viewport.scale;
+  let prevented = false;
+
+  runtime.handleCanvasWheel({
+    clientX: screen.x,
+    clientY: screen.y,
+    deltaY: -240,
+    preventDefault() {
+      prevented = true;
+    },
+  });
+
+  assert.equal(prevented, false);
+  assert.equal(runtime.viewport.scale, beforeScale);
+});
+
+test("causal delay feedback wheel zoom ignores active drags", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  runtime.dom = {
+    canvas: {
+      getBoundingClientRect: () => ({ left: 0, top: 0 }),
+    },
+  };
+  runtime.dragState = { type: "history", kind: "positrino", depth: 1, didEdit: true };
+  const beforeScale = runtime.viewport.scale;
+  let prevented = false;
+
+  runtime.handleCanvasWheel({
+    clientX: 960,
+    clientY: 150,
+    deltaY: -240,
+    preventDefault() {
+      prevented = true;
+    },
+  });
+
+  assert.equal(prevented, false);
+  assert.equal(runtime.viewport.scale, beforeScale);
+});
+
+test("causal delay feedback pinch zoom anchors on empty canvas background", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  runtime.dom = {
+    canvas: {
+      getBoundingClientRect: () => ({ left: 0, top: 0 }),
+    },
+  };
+  const first = { pointerId: 1, pointerType: "touch", clientX: 860, clientY: 150, preventDefault() {} };
+  const second = { pointerId: 2, pointerType: "touch", clientX: 1060, clientY: 150, preventDefault() {} };
+  runtime.startBackgroundPointer(first, { x: first.clientX, y: first.clientY });
+  runtime.startBackgroundPointer(second, { x: second.clientX, y: second.clientY });
+  const beforeScale = runtime.viewport.scale;
+  const anchoredWorld = runtime.screenToWorld({ x: 960, y: 150 });
+  let prevented = false;
+
+  runtime.handleCanvasPointerMove({
+    pointerId: 2,
+    pointerType: "touch",
+    clientX: 1160,
+    clientY: 150,
+    preventDefault() {
+      prevented = true;
+    },
+  });
+  const afterWorld = runtime.screenToWorld({ x: 1010, y: 150 });
+
+  assert.equal(prevented, true);
+  assert(runtime.viewport.scale > beforeScale);
+  assertNear(afterWorld.x, anchoredWorld.x);
+  assertNear(afterWorld.y, anchoredWorld.y);
+});
+
+test("causal delay feedback pinch state clears as touch pointers release", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  runtime.dom = {
+    canvas: {
+      getBoundingClientRect: () => ({ left: 0, top: 0 }),
+    },
+  };
+  runtime.startBackgroundPointer(
+    { pointerId: 1, pointerType: "touch", clientX: 860, clientY: 150, preventDefault() {} },
+    { x: 860, y: 150 },
+  );
+  runtime.startBackgroundPointer(
+    { pointerId: 2, pointerType: "touch", clientX: 1060, clientY: 150, preventDefault() {} },
+    { x: 1060, y: 150 },
+  );
+
+  const returnedDataset = runtime.finishDrag({ pointerId: 2 });
+
+  assert.equal(returnedDataset, runtime.dataset);
+  assert.equal(runtime.backgroundPointers.size, 1);
+  assert.equal(runtime.pinchState, null);
+});
+
+test("causal delay feedback pinch does not start on selectable path objects", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  runtime.dom = {
+    canvas: {
+      getBoundingClientRect: () => ({ left: 0, top: 0 }),
+    },
+    readout: new FakeElement(),
+  };
+  runtime.render = () => {};
+  const pathPoint = runtime.dataset.history.positrino[0];
+  const screen = runtime.worldToScreen(pathPoint);
+  let prevented = false;
+
+  runtime.handleCanvasPointerDown({
+    pointerId: 1,
+    pointerType: "touch",
+    clientX: screen.x,
+    clientY: screen.y,
+    preventDefault() {
+      prevented = true;
+    },
+  });
+
+  assert.equal(prevented, true);
+  assert.equal(runtime.backgroundPointers.size, 0);
+  assert.equal(runtime.pinchState, null);
+  assert.equal(runtime.dragState.type, "history");
+  assert.equal(runtime.dragState.depth, 1);
+});
+
 test("causal delay feedback runtime loads an async bridge replay over the mock fallback", async () => {
   const replayStatus = new FakeElement();
   const adapter = {
@@ -586,6 +1390,327 @@ test("causal delay feedback runtime loads an async bridge replay over the mock f
   assert.equal(runtime.replayLoadError, null);
   assert.equal(replayStatus.textContent, "solver bridge replay");
   assert.equal(replayStatus.dataset.state, "bridge");
+});
+
+test("causal delay feedback status distinguishes pair-interaction bridge replay", () => {
+  const replayStatus = new FakeElement();
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  runtime.dataset = {
+    ...createMockCausalDelayReplayDataset("partial_arcs"),
+    datasetSource: CENTRAL_SOLVER_REPLAY_DATASET_SOURCE,
+    solverIntegrationPath: CENTRAL_SOLVER_REPLAY_ADAPTER,
+    solverReplayMode: CENTRAL_SOLVER_PAIR_INTERACTION_REPLAY_MODE,
+    pairInteractionStepCount: 179,
+    interactionLaw: "display_pair_attraction_v1",
+    executionPath: "native_c_abi",
+    maxPathConstraintResidual: 0.00125,
+  };
+  runtime.dom = { replayStatus };
+
+  runtime.updateReplayStatus();
+
+  assert.equal(replayStatus.textContent, "solver pair replay");
+  assert.equal(replayStatus.dataset.state, "bridge");
+  assert.match(replayStatus.title, /mutual pair-interaction path run/);
+  assert.match(replayStatus.title, /steps=179/);
+  assert.match(replayStatus.title, /path=native_c_abi/);
+  assert.match(replayStatus.title, /residual=0\.001/);
+  assert.match(replayStatus.title, /display_pair_attraction_v1/);
+});
+
+test("causal delay feedback status distinguishes constraint-guided pair replay", () => {
+  const replayStatus = new FakeElement();
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  runtime.dataset = {
+    ...createMockCausalDelayReplayDataset("partial_arcs"),
+    datasetSource: CENTRAL_SOLVER_REPLAY_DATASET_SOURCE,
+    solverIntegrationPath: CENTRAL_SOLVER_REPLAY_ADAPTER,
+    solverReplayMode: CENTRAL_SOLVER_PAIR_INTERACTION_REPLAY_MODE,
+    pairInteractionStepCount: 181,
+    pathConstraintFrameRefinementSampleCount: 15,
+    interactionLaw: "display_pair_attraction_v1",
+    executionPath: "native_c_abi",
+    maxPathConstraintResidual: 0.004,
+    pathConstraintPositionResidualSampleCount: 12,
+    pathConstraintPositionResidualStatus: "within_tolerance",
+    pathConstraintPositionResidualTolerance: 0.003,
+    maxPathConstraintPositionResidual: 0.002,
+    pathConstraintBoundaryResidualSampleCount: 10,
+    pathConstraintBoundaryResidualStatus: "within_tolerance",
+    pathConstraintBoundaryResidualTolerance: 0.02,
+    maxPathConstraintBoundaryResidual: 0.018,
+    pathConstraintGuidanceSampleCount: 12,
+    pathConstraintGuidanceMode: "retained_knot_boundary",
+    pathConstraintBoundaryMode: "law_aware_retained_knot_boundary",
+    pathConstraintBoundarySeedMode: "law_aware_retained_knot_boundary_seed",
+    pathConstraintBoundarySeedSampleCount: 18,
+    pathConstraintBoundaryRelaxationMode: "finite_difference_frame_relaxation_v1",
+    pathConstraintBoundaryRelaxationIterationCount: 8,
+    pathConstraintBoundaryRelaxationAppliedIterationCount: 3,
+    pathConstraintBoundaryRelaxationStopReason: "tolerance_reached",
+    pathConstraintBoundaryRelaxationTolerance: 0.006,
+    pathConstraintBoundaryRelaxationStatus: "converged",
+    pathConstraintBoundaryRelaxationResidualEvidenceStatus: "aggregate_non_worsening",
+    pathConstraintBoundaryRelaxationResidualRatio: 0.25,
+    rmsPathConstraintBoundaryRelaxationResidualRatio: 0.125,
+    pathConstraintBoundaryRelaxationResidualSettlingRate: 0.6299605249474366,
+    rmsPathConstraintBoundaryRelaxationResidualSettlingRate: 0.5,
+    rmsPathConstraintBoundaryRelaxationResidualAfter: 0.003,
+    pathConstraintBoundaryRelaxationMaxStep: 7.25,
+    pathConstraintBoundaryRelaxationFinalStepFactor: 0.5,
+    pathConstraintBoundaryRelaxationCandidateVariantCount: 14,
+    pathConstraintBoundaryRelaxationLineSearchTrialCount: 112,
+    pathConstraintBoundaryRelaxationCandidateKindMask: 4194302,
+    pathConstraintSolverStatus: "guided_constraint_path",
+    pathConstraintSolverClaim: "diagnostic_constraint_replay_not_boundary_value_solve",
+    maxPathConstraintGuidanceAcceleration: 48.25,
+    pathConstraintGuidanceAccelerationStatus: "within_tolerance",
+    pathConstraintGuidanceAccelerationTolerance: 50,
+  };
+  runtime.dom = { replayStatus };
+
+  runtime.updateReplayStatus();
+
+  assert.equal(replayStatus.textContent, "solver guided replay");
+  assert.equal(replayStatus.dataset.state, "bridge-guided");
+  assert.match(replayStatus.title, /refined=15/);
+  assert.match(replayStatus.title, /posRows=12/);
+  assert.match(replayStatus.title, /posErr=0\.002/);
+  assert.match(replayStatus.title, /posTol=0\.003/);
+  assert.match(replayStatus.title, /posStatus=within_tolerance/);
+  assert.match(replayStatus.title, /boundary=10/);
+  assert.match(replayStatus.title, /maxB=0\.018/);
+  assert.match(replayStatus.title, /tolB=0\.02/);
+  assert.match(replayStatus.title, /bStatus=within_tolerance/);
+  assert.match(replayStatus.title, /bMode=law_aware_retained_knot_boundary/);
+  assert.match(replayStatus.title, /seed=law_aware_retained_knot_boundary_seed/);
+  assert.match(replayStatus.title, /seedRows=18/);
+  assert.match(replayStatus.title, /relax=finite_difference_frame_relaxation_v1/);
+  assert.match(replayStatus.title, /relaxIter=8/);
+  assert.match(replayStatus.title, /relaxApplied=3/);
+  assert.match(replayStatus.title, /relaxStop=tolerance_reached/);
+  assert.match(replayStatus.title, /relaxTol=0\.006/);
+  assert.match(replayStatus.title, /relaxRatio=0\.25/);
+  assert.match(replayStatus.title, /relaxRmsRatio=0\.125/);
+  assert.match(replayStatus.title, /relaxRate=0\.63/);
+  assert.match(replayStatus.title, /relaxRmsRate=0\.5/);
+  assert.match(replayStatus.title, /relaxStep=7\.25/);
+  assert.match(replayStatus.title, /relaxFactor=0\.5/);
+  assert.match(replayStatus.title, /relaxEvidence=aggregate_non_worsening/);
+  assert.match(replayStatus.title, /cand=14/);
+  assert.match(replayStatus.title, /trials=112/);
+  assert.match(replayStatus.title, /mask=0x3ffffe/);
+  assert.match(replayStatus.title, /relaxStatus=converged/);
+  assert.match(replayStatus.title, /guidance=12/);
+  assert.match(replayStatus.title, /mode=retained_knot_boundary/);
+  assert.match(replayStatus.title, /maxA=48\.25/);
+  assert.match(replayStatus.title, /tolA=50/);
+  assert.match(replayStatus.title, /aStatus=within_tolerance/);
+  assert.match(replayStatus.title, /constraint=guided_constraint_path/);
+  assert.match(replayStatus.title, /claim=diagnostic_constraint_replay_not_boundary_value_solve/);
+  assert.match(replayStatus.title, /retained-knot boundary guidance/);
+  assert.match(replayStatus.title, /not yet the final physical boundary-value path solve/);
+});
+
+test("causal delay feedback status names skipped boundary relaxation", () => {
+  const replayStatus = new FakeElement();
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  runtime.dataset = {
+    ...createMockCausalDelayReplayDataset("partial_arcs"),
+    datasetSource: CENTRAL_SOLVER_REPLAY_DATASET_SOURCE,
+    solverIntegrationPath: CENTRAL_SOLVER_REPLAY_ADAPTER,
+    solverReplayMode: CENTRAL_SOLVER_PAIR_INTERACTION_REPLAY_MODE,
+    pairInteractionStepCount: 181,
+    interactionLaw: "display_pair_attraction_v1",
+    executionPath: "native_c_abi",
+    pathConstraintGuidanceSampleCount: 12,
+    pathConstraintGuidanceMode: "retained_knot_boundary",
+    pathConstraintBoundaryRelaxationMode: "finite_difference_frame_relaxation_v1",
+    pathConstraintBoundaryRelaxationIterationCount: 0,
+    pathConstraintBoundaryRelaxationAppliedIterationCount: 0,
+    pathConstraintBoundaryRelaxationStopReason: "not_requested",
+    pathConstraintBoundaryRelaxationStatus: "not_requested",
+    pathConstraintSolverStatus: "guided_constraint_path",
+    pathConstraintSolverClaim: "diagnostic_constraint_replay_not_boundary_value_solve",
+  };
+  runtime.dom = { replayStatus };
+
+  runtime.updateReplayStatus();
+
+  assert.equal(replayStatus.textContent, "solver guided replay");
+  assert.equal(replayStatus.dataset.state, "bridge-guided");
+  assert.match(replayStatus.title, /relaxIter=0/);
+  assert.match(replayStatus.title, /relaxApplied=0/);
+  assert.match(replayStatus.title, /relaxStop=not_requested/);
+  assert.match(replayStatus.title, /relaxStatus=not_requested/);
+  assert.match(replayStatus.title, /not yet the final physical boundary-value path solve/);
+});
+
+test("causal delay feedback status distinguishes converged discrete boundary replay", () => {
+  const replayStatus = new FakeElement();
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  runtime.dataset = {
+    ...createMockCausalDelayReplayDataset("partial_arcs"),
+    datasetSource: CENTRAL_SOLVER_REPLAY_DATASET_SOURCE,
+    solverIntegrationPath: CENTRAL_SOLVER_REPLAY_ADAPTER,
+    solverReplayMode: CENTRAL_SOLVER_PAIR_INTERACTION_REPLAY_MODE,
+    pairInteractionStepCount: 181,
+    interactionLaw: "display_pair_attraction_v1",
+    executionPath: "native_c_abi",
+    maxPathConstraintResidual: 0.004,
+    pathConstraintPositionResidualSampleCount: 12,
+    pathConstraintPositionResidualStatus: "within_tolerance",
+    pathConstraintPositionResidualTolerance: 0.003,
+    maxPathConstraintPositionResidual: 0.002,
+    pathConstraintBoundaryResidualSampleCount: 10,
+    pathConstraintBoundaryResidualStatus: "within_tolerance",
+    pathConstraintBoundaryResidualTolerance: 0.02,
+    maxPathConstraintBoundaryResidual: 0.018,
+    pathConstraintGuidanceSampleCount: 12,
+    pathConstraintGuidanceMode: "retained_knot_boundary",
+    pathConstraintBoundaryMode: "law_aware_retained_knot_boundary",
+    pathConstraintBoundarySeedMode: "law_aware_retained_knot_boundary_seed",
+    pathConstraintBoundarySeedSampleCount: 18,
+    pathConstraintBoundaryRelaxationMode: "finite_difference_frame_relaxation_v1",
+    pathConstraintBoundaryRelaxationIterationCount: 8,
+    pathConstraintBoundaryRelaxationAppliedIterationCount: 3,
+    pathConstraintBoundaryRelaxationStopReason: "tolerance_reached",
+    pathConstraintBoundaryRelaxationTolerance: 0.006,
+    pathConstraintBoundaryRelaxationStatus: "converged",
+    pathConstraintBoundaryRelaxationResidualEvidenceStatus: "aggregate_non_worsening",
+    pathConstraintBoundaryRelaxationResidualRatio: 0.25,
+    rmsPathConstraintBoundaryRelaxationResidualRatio: 0.125,
+    pathConstraintBoundaryRelaxationResidualSettlingRate: 0.6299605249474366,
+    rmsPathConstraintBoundaryRelaxationResidualSettlingRate: 0.5,
+    rmsPathConstraintBoundaryRelaxationResidualAfter: 0.003,
+    pathConstraintSolverStatus: "discrete_boundary_value_converged",
+    pathConstraintSolverClaim: "finite_difference_pair_boundary_value_solve_converged",
+    pathConstraintPhysicalBoundarySolverStatus: "physical_boundary_solver_pending",
+    pathConstraintPhysicalBoundarySolverClaim: "retained_knot_guidance_not_physical_boundary_value_solve",
+    maxPathConstraintGuidanceAcceleration: 48.25,
+  };
+  runtime.dom = { replayStatus };
+
+  runtime.updateReplayStatus();
+
+  assert.equal(replayStatus.textContent, "solver boundary replay");
+  assert.equal(replayStatus.dataset.state, "bridge-boundary");
+  assert.match(replayStatus.title, /seed=law_aware_retained_knot_boundary_seed/);
+  assert.match(replayStatus.title, /seedRows=18/);
+  assert.match(replayStatus.title, /posRows=12/);
+  assert.match(replayStatus.title, /posErr=0\.002/);
+  assert.match(replayStatus.title, /posTol=0\.003/);
+  assert.match(replayStatus.title, /posStatus=within_tolerance/);
+  assert.match(replayStatus.title, /relaxStop=tolerance_reached/);
+  assert.match(replayStatus.title, /relaxRmsRatio=0\.125/);
+  assert.match(replayStatus.title, /relaxRate=0\.63/);
+  assert.match(replayStatus.title, /relaxRmsRate=0\.5/);
+  assert.match(replayStatus.title, /relaxStatus=converged/);
+  assert.match(replayStatus.title, /relaxEvidence=aggregate_non_worsening/);
+  assert.match(replayStatus.title, /constraint=discrete_boundary_value_converged/);
+  assert.match(replayStatus.title, /claim=finite_difference_pair_boundary_value_solve_converged/);
+  assert.match(replayStatus.title, /physical=physical_boundary_solver_pending/);
+  assert.match(replayStatus.title, /physicalClaim=retained_knot_guidance_not_physical_boundary_value_solve/);
+  assert.match(replayStatus.title, /bStatus=within_tolerance/);
+  assert.match(replayStatus.title, /converged against the discrete finite-difference pair equation/);
+  assert.match(replayStatus.title, /finite-difference retained-knot boundary relaxation/);
+  assert.match(replayStatus.title, /not the full physical pair-interaction\/path-constraint boundary-value solver/);
+  assert.match(replayStatus.title, /full physical pair-interaction\/path-constraint boundary-value solver is still pending/);
+});
+
+test("causal delay feedback status flags unchecked boundary residual acceptance on boundary replay", () => {
+  const replayStatus = new FakeElement();
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  runtime.dataset = {
+    ...createMockCausalDelayReplayDataset("partial_arcs"),
+    datasetSource: CENTRAL_SOLVER_REPLAY_DATASET_SOURCE,
+    solverIntegrationPath: CENTRAL_SOLVER_REPLAY_ADAPTER,
+    solverReplayMode: CENTRAL_SOLVER_PAIR_INTERACTION_REPLAY_MODE,
+    pathConstraintGuidanceSampleCount: 12,
+    pathConstraintGuidanceMode: "retained_knot_boundary",
+    pathConstraintBoundaryRelaxationMode: "finite_difference_frame_relaxation_v1",
+    pathConstraintBoundaryRelaxationIterationCount: 8,
+    pathConstraintBoundaryRelaxationStopReason: "tolerance_reached",
+    pathConstraintBoundaryRelaxationTolerance: 0.006,
+    pathConstraintBoundaryRelaxationStatus: "converged",
+    pathConstraintSolverStatus: "discrete_boundary_value_converged",
+    pathConstraintSolverClaim: "finite_difference_pair_boundary_value_solve_converged",
+  };
+  runtime.dom = { replayStatus };
+
+  runtime.updateReplayStatus();
+
+  assert.equal(replayStatus.textContent, "solver boundary replay");
+  assert.equal(replayStatus.dataset.state, "bridge-boundary");
+  assert.match(replayStatus.title, /posStatus=unchecked/);
+  assert.match(replayStatus.title, /bStatus=unchecked/);
+  assert.match(replayStatus.title, /Retained-position preservation evidence remains unchecked/);
+  assert.match(replayStatus.title, /Retained-knot boundary residual acceptance remains unchecked/);
+  assert.match(replayStatus.title, /not the full physical pair-interaction\/path-constraint boundary-value solver/);
+});
+
+test("causal delay feedback status distinguishes pair-initial seeded bridge replay", () => {
+  const replayStatus = new FakeElement();
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  runtime.dataset = {
+    ...createMockCausalDelayReplayDataset("partial_arcs"),
+    datasetSource: CENTRAL_SOLVER_REPLAY_DATASET_SOURCE,
+    solverIntegrationPath: CENTRAL_SOLVER_REPLAY_ADAPTER,
+    motionAccelerationPolicy: "pair_initial_attraction_seed",
+    pairAccelerationScale: 0.18,
+  };
+  runtime.dom = { replayStatus };
+
+  runtime.updateReplayStatus();
+
+  assert.equal(replayStatus.textContent, "solver seed replay");
+  assert.equal(replayStatus.dataset.state, "bridge-seed");
+  assert.match(replayStatus.title, /pair_initial_attraction_seed/);
+  assert.match(replayStatus.title, /not the final full pair-interaction path solver/);
+  assert.equal(replayStatus.attributes["aria-label"], replayStatus.title);
+});
+
+test("causal delay feedback status distinguishes segmented pair seeded bridge replay", () => {
+  const replayStatus = new FakeElement();
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  runtime.dataset = {
+    ...createMockCausalDelayReplayDataset("partial_arcs"),
+    datasetSource: CENTRAL_SOLVER_REPLAY_DATASET_SOURCE,
+    solverIntegrationPath: CENTRAL_SOLVER_REPLAY_ADAPTER,
+    motionAccelerationPolicy: "pair_segmented_attraction_seed",
+    pairAccelerationScale: 0.18,
+    pairSegmentCount: 12,
+  };
+  runtime.dom = { replayStatus };
+
+  runtime.updateReplayStatus();
+
+  assert.equal(replayStatus.textContent, "solver seed replay");
+  assert.equal(replayStatus.dataset.state, "bridge-seed");
+  assert.match(replayStatus.title, /pair_segmented_attraction_seed/);
+  assert.match(replayStatus.title, /segments=12/);
+  assert.match(replayStatus.title, /segmented pair-interaction approximation/);
 });
 
 test("causal delay feedback contrast stress preset stays representative under central bridge", async () => {
@@ -671,11 +1796,11 @@ test("causal delay feedback rejected direct edit preserves the draft and reports
     autoLoadReplay: false,
   });
   runtime.dom = { replayStatus, readout };
-  runtime.selectedItem = { type: "initial-condition", kind: "electrino" };
+  runtime.selectedItem = { type: "history", kind: "electrino", depth: 1 };
 
-  runtime.applyInitialConditionDrag("electrino", { x: 84, y: -32 });
+  runtime.applyRetainedPointDrag("electrino", 1, { x: 84, y: -32 });
   const editedX = runtime.dataset.initialConditions.electrino.x;
-  runtime.dragState = { type: "initial-condition", kind: "electrino", didEdit: true };
+  runtime.dragState = { type: "history", kind: "electrino", depth: 1, didEdit: true };
   await runtime.finishDrag();
 
   const readoutText = readout.children.map((child) => child.textContent);
@@ -772,6 +1897,26 @@ test("causal delay feedback page uses central replay by default with a mock esca
 
 test("causal delay feedback page accepts central motion replay review URLs", () => {
   assert.equal(
+    getCentralBridgeReplayMode(fakeWindow, { defaultMode: CENTRAL_SOLVER_PAIR_INTERACTION_REPLAY_MODE }),
+    CENTRAL_SOLVER_PAIR_INTERACTION_REPLAY_MODE,
+  );
+  assert.equal(
+    getCentralBridgeReplayMode({
+      location: {
+        href: "http://localhost/causal-delay-feedback.html?replay=central",
+      },
+    }, { defaultMode: CENTRAL_SOLVER_PAIR_INTERACTION_REPLAY_MODE }),
+    CENTRAL_SOLVER_PAIR_INTERACTION_REPLAY_MODE,
+  );
+  assert.equal(
+    getCentralBridgeReplayMode({
+      location: {
+        href: "http://localhost/causal-delay-feedback.html?replay=central&solverReplay=pair-interaction",
+      },
+    }),
+    CENTRAL_SOLVER_PAIR_INTERACTION_REPLAY_MODE,
+  );
+  assert.equal(
     getCentralBridgeReplayMode({
       location: {
         href: "http://localhost/causal-delay-feedback.html?replay=central&solverReplay=motion",
@@ -794,19 +1939,66 @@ test("causal delay feedback page accepts central motion replay review URLs", () 
   assert.equal(
     getCentralBridgeReplayMode({
       location: {
-        href: "http://localhost/causal-delay-feedback.html?replay=central",
-      },
-    }),
-    undefined,
-  );
-  assert.equal(
-    getCentralBridgeReplayMode({
-      location: {
         href: "http://localhost/causal-delay-feedback.html?replay=central&solverReplay=app-playback",
       },
     }),
-    undefined,
+    CENTRAL_SOLVER_APP_PLAYBACK_REPLAY_MODE,
   );
+});
+
+test("causal delay feedback page accepts central motion policy review URL options", () => {
+  const options = createCausalDelayFeedbackInitialReplayRequestOptions({
+    location: {
+      href:
+        "http://localhost/causal-delay-feedback.html?motionPolicy=pair_initial_attraction_seed" +
+        "&pairSegmentCount=5.8&pairAccelerationScale=0.22" +
+        "&pairInteractionLaw=inverse_distance_pair_attraction_v1" +
+        "&pathConstraintBoundaryResidualTolerance=0.015" +
+        "&pathConstraintPositionResidualTolerance=0.003" +
+        "&pathConstraintGuidanceAccelerationTolerance=0.45" +
+        "&pathConstraintBoundaryRelaxationIterationCount=12.9" +
+        "&pathConstraintBoundaryRelaxationTolerance=0.006" +
+        "&pathConstraintBoundaryRelaxationStepTolerance=0.25",
+    },
+  });
+
+  assert.equal(options.motionAccelerationPolicy, "pair_initial_attraction_seed");
+  assert.equal(options.pairSegmentCount, 5);
+  assert.equal(options.pairAccelerationScale, 0.22);
+  assert.equal(options.pairInteractionLaw, "inverse_distance_pair_attraction_v1");
+  assert.equal(options.pathConstraintBoundaryResidualTolerance, 0.015);
+  assert.equal(options.pathConstraintPositionResidualTolerance, 0.003);
+  assert.equal(options.pathConstraintGuidanceAccelerationTolerance, 0.45);
+  assert.equal(options.pathConstraintBoundaryRelaxationIterationCount, 12);
+  assert.equal(options.pathConstraintBoundaryRelaxationTolerance, 0.006);
+  assert.equal(options.pathConstraintBoundaryRelaxationStepTolerance, 0.25);
+});
+
+test("causal delay feedback page leaves absent boundary tuning unset", () => {
+  const defaultOptions = createCausalDelayFeedbackInitialReplayRequestOptions({
+    location: { href: "http://localhost/causal-delay-feedback.html?replay=central" },
+  });
+  const explicitZeroOptions = createCausalDelayFeedbackInitialReplayRequestOptions({
+    location: {
+      href:
+        "http://localhost/causal-delay-feedback.html?replay=central&boundaryResidualTolerance=0" +
+        "&positionResidualTolerance=0&guidanceAccelerationTolerance=0" +
+        "&boundaryRelaxationIterations=0&boundaryRelaxationTolerance=0&boundaryRelaxationStepTolerance=0",
+    },
+  });
+
+  assert.equal(defaultOptions.pathConstraintBoundaryResidualTolerance, undefined);
+  assert.equal(defaultOptions.pathConstraintPositionResidualTolerance, undefined);
+  assert.equal(defaultOptions.pathConstraintGuidanceAccelerationTolerance, undefined);
+  assert.equal(defaultOptions.pathConstraintBoundaryRelaxationIterationCount, undefined);
+  assert.equal(defaultOptions.pathConstraintBoundaryRelaxationTolerance, undefined);
+  assert.equal(defaultOptions.pathConstraintBoundaryRelaxationStepTolerance, undefined);
+  assert.equal(explicitZeroOptions.pathConstraintBoundaryResidualTolerance, 0);
+  assert.equal(explicitZeroOptions.pathConstraintPositionResidualTolerance, 0);
+  assert.equal(explicitZeroOptions.pathConstraintGuidanceAccelerationTolerance, 0);
+  assert.equal(explicitZeroOptions.pathConstraintBoundaryRelaxationIterationCount, 0);
+  assert.equal(explicitZeroOptions.pathConstraintBoundaryRelaxationTolerance, 0);
+  assert.equal(explicitZeroOptions.pathConstraintBoundaryRelaxationStepTolerance, 0);
 });
 
 test("causal delay feedback solver bridge options resolve the default WASM loader path", () => {
@@ -835,7 +2027,7 @@ test("causal delay feedback page central replay uses configured bridge options f
   const replayStatus = new FakeElement();
   let capturedRequest = null;
   const windowLike = {
-    location: { href: "http://localhost/causal-delay-feedback.html?replay=central" },
+    location: { href: "http://localhost/causal-delay-feedback.html?replay=central&solverReplay=app-playback" },
     ARCHITRINO_CAUSAL_DELAY_FEEDBACK_SOLVER_BRIDGE_OPTIONS: {
       async runSolverBridge(request) {
         capturedRequest = request;
@@ -1065,7 +2257,8 @@ test("causal delay feedback path endpoints are first-class history hits", () => 
     window: fakeWindow,
   });
   const startPoint = runtime.dataset.history.positrino.find((point) => point.depth === 1);
-  const endPoint = runtime.dataset.history.positrino.find((point) => point.depth === 6);
+  const endDepth = runtime.getMaxHistoryDepth("positrino");
+  const endPoint = runtime.dataset.history.positrino.find((point) => point.depth === endDepth);
 
   const startHit = runtime.findNearestHit(runtime.worldToScreen(startPoint), { includeWakes: true });
   const endHit = runtime.findNearestHit(runtime.worldToScreen(endPoint), { includeWakes: true });
@@ -1073,7 +2266,141 @@ test("causal delay feedback path endpoints are first-class history hits", () => 
   assert.equal(startPoint.t, 0);
   assert.equal(endPoint.t, 1);
   assert.deepEqual(startHit.selection, { type: "history", kind: "positrino", depth: 1 });
-  assert.deepEqual(endHit.selection, { type: "history", kind: "positrino", depth: 6 });
+  assert.deepEqual(endHit.selection, { type: "history", kind: "positrino", depth: endDepth });
+});
+
+test("causal delay feedback path endpoint handles stay visible under lower retained wake depth", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  runtime.setRetainedDepthLimit(3);
+  const endDepth = runtime.getMaxHistoryDepth("electrino");
+  const endPoint = runtime.dataset.history.electrino.find((point) => point.depth === endDepth);
+
+  const visibleDepths = runtime.getVisibleHistory("electrino").map((point) => point.depth);
+  const endHit = runtime.findNearestHit(runtime.worldToScreen(endPoint), { includeWakes: true });
+  const before = { x: endPoint.x, y: endPoint.y };
+  const didEdit = runtime.applyRetainedPointDrag("electrino", endDepth, { x: -18, y: 12 });
+
+  assert.deepEqual(visibleDepths, [1, 2, 3, endDepth]);
+  assert(runtime.getVisibleWakeLinks().every((link) => link.sourceDepth <= 3 && link.receiverDepth <= 3));
+  assert.deepEqual(endHit.selection, { type: "history", kind: "electrino", depth: endDepth });
+  assert.equal(didEdit, true);
+  assert.equal(endPoint.x, before.x - 18);
+  assert.equal(endPoint.y, before.y + 12);
+});
+
+test("causal delay feedback does not expose a separate initial-position canvas hit", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  const condition = runtime.dataset.initialConditions.positrino;
+  const startPoint = runtime.dataset.history.positrino.find((point) => point.depth === 1);
+
+  const hit = runtime.findNearestHit(runtime.worldToScreen(runtime.initialConditionPoint(condition)));
+
+  assert.equal(startPoint.x, condition.x);
+  assert.equal(startPoint.y, condition.y);
+  assert.equal(hit.type, "history");
+  assert.deepEqual(hit.selection, { type: "history", kind: "positrino", depth: 1 });
+});
+
+test("causal delay feedback path start marker is the movable point 1 history object", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  const startPoint = runtime.dataset.history.positrino.find((point) => point.depth === 1);
+  const firstPathPoint = runtime.dataset.paths.positrino[0];
+  const firstFramePoint = runtime.dataset.frames[0].positrino;
+  const before = { x: startPoint.x, y: startPoint.y };
+
+  const didEdit = runtime.applyRetainedPointDrag("positrino", 1, { x: 42, y: -24 });
+
+  assert.equal(didEdit, true);
+  assert.equal(startPoint.depth, 1);
+  assert.equal(startPoint.x, before.x + 42);
+  assert.equal(startPoint.y, before.y - 24);
+  assert.equal(runtime.dataset.initialConditions.positrino.x, startPoint.x);
+  assert.equal(runtime.dataset.initialConditions.positrino.y, startPoint.y);
+  assert.equal(firstPathPoint.x, startPoint.x);
+  assert.equal(firstPathPoint.y, startPoint.y);
+  assert.equal(firstFramePoint.x, startPoint.x);
+  assert.equal(firstFramePoint.y, startPoint.y);
+});
+
+test("causal delay feedback path end marker is the movable final history object", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  const endDepth = runtime.getMaxHistoryDepth("electrino");
+  const endPoint = runtime.dataset.history.electrino.find((point) => point.depth === endDepth);
+  const lastPathPoint = runtime.dataset.paths.electrino.at(-1);
+  const lastFramePoint = runtime.dataset.frames.at(-1).electrino;
+  const before = { x: endPoint.x, y: endPoint.y };
+
+  const didEdit = runtime.applyRetainedPointDrag("electrino", endDepth, { x: -38, y: 26 });
+
+  assert.equal(didEdit, true);
+  assert.equal(endPoint.depth, runtime.getMaxHistoryDepth("electrino"));
+  assert.equal(endPoint.x, before.x - 38);
+  assert.equal(endPoint.y, before.y + 26);
+  assert.equal(lastPathPoint.x, endPoint.x);
+  assert.equal(lastPathPoint.y, endPoint.y);
+  assert.equal(lastFramePoint.x, endPoint.x);
+  assert.equal(lastFramePoint.y, endPoint.y);
+});
+
+test("causal delay feedback velocity hit testing follows path-history point 1", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  const startPoint = runtime.dataset.history.positrino.find((point) => point.depth === 1);
+  const condition = runtime.dataset.initialConditions.positrino;
+  startPoint.x += 80;
+  startPoint.y -= 35;
+  condition.x -= 90;
+  condition.y += 70;
+  const velocityEnd = runtime.initialConditionVelocityEnd(
+    condition,
+    runtime.getInitialVelocityAnchorPoint("positrino", condition),
+  );
+
+  const hit = runtime.findNearestHit(runtime.worldToScreen(velocityEnd));
+
+  assert.equal(hit.type, "initial-velocity");
+  assert.deepEqual(hit.selection, { type: "initial-velocity", kind: "positrino" });
+});
+
+test("causal delay feedback velocity selection highlight follows path-history point 1", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  const startPoint = runtime.dataset.history.positrino.find((point) => point.depth === 1);
+  const condition = runtime.dataset.initialConditions.positrino;
+  startPoint.x += 72;
+  startPoint.y -= 41;
+  condition.x -= 86;
+  condition.y += 63;
+  runtime.selectedItem = { type: "initial-velocity", kind: "positrino" };
+  const expectedScreen = runtime.worldToScreen(
+    runtime.initialConditionVelocityEnd(
+      condition,
+      runtime.getInitialVelocityAnchorPoint("positrino", condition),
+    ),
+  );
+  const context = createArcRecordingContext();
+
+  runtime.drawSelection(context);
+
+  assert.equal(context.arcs.length, 1);
+  assertNear(context.arcs[0].x, expectedScreen.x);
+  assertNear(context.arcs[0].y, expectedScreen.y);
 });
 
 test("causal delay feedback right-click insertion renumbers retained path points and rebuilds wake links", () => {
@@ -1105,6 +2432,73 @@ test("causal delay feedback right-click insertion renumbers retained path points
   assert(runtime.dataset.wakeLinks.some((link) => link.label === "blue 3 -> red 4"));
   assert(runtime.dataset.wakeLinks.some((link) => link.label === "blue 6 -> red 7"));
   assert.equal(runtime.dataset.wakeLinks.find((link) => link.label === "blue 3 -> red 4").receiver.t, inserted.t);
+
+  const startPoint = runtime.dataset.history.positrino.find((point) => point.depth === 1);
+  const finalPoint = runtime.dataset.history.positrino.find((point) => point.depth === 7);
+  const finalPathPoint = runtime.dataset.paths.positrino.at(-1);
+  const beforeFinal = { x: finalPoint.x, y: finalPoint.y };
+  runtime.setRetainedDepthLimit(3);
+
+  const startHit = runtime.findNearestHit(runtime.worldToScreen(startPoint), { includeWakes: true });
+  const finalHit = runtime.findNearestHit(runtime.worldToScreen(finalPoint), { includeWakes: true });
+  const didEditFinal = runtime.applyRetainedPointDrag("positrino", 7, { x: 22, y: -18 });
+
+  assert.deepEqual(startHit.selection, { type: "history", kind: "positrino", depth: 1 });
+  assert.deepEqual(finalHit.selection, { type: "history", kind: "positrino", depth: 7 });
+  assert.deepEqual(runtime.getVisibleHistory("positrino").map((point) => point.depth), [1, 2, 3, 7]);
+  assert.equal(didEditFinal, true);
+  assert.equal(finalPoint.x, beforeFinal.x + 22);
+  assert.equal(finalPoint.y, beforeFinal.y - 18);
+  assert.equal(finalPathPoint.x, finalPoint.x);
+  assert.equal(finalPathPoint.y, finalPoint.y);
+});
+
+test("causal delay feedback inserted path endpoints remain movable history on both paths", () => {
+  const replayStatus = new FakeElement();
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  runtime.dom = { replayStatus };
+
+  runtime.addReceptionPointAtPath("positrino", runtime.getReplayPathPoint("positrino", 0.48));
+  runtime.setRetainedDepthLimit(3);
+
+  ["positrino", "electrino"].forEach((kind, index) => {
+    const endDepth = runtime.getMaxHistoryDepth(kind);
+    const startPoint = runtime.dataset.history[kind].find((point) => point.depth === 1);
+    const endPoint = runtime.dataset.history[kind].find((point) => point.depth === endDepth);
+    const startHit = runtime.findNearestHit(runtime.worldToScreen(startPoint), { includeWakes: true });
+    const endHit = runtime.findNearestHit(runtime.worldToScreen(endPoint), { includeWakes: true });
+    const startBefore = { x: startPoint.x, y: startPoint.y };
+    const endBefore = { x: endPoint.x, y: endPoint.y };
+    const startDelta = { x: 18 + index * 5, y: -11 - index * 4 };
+    const endDelta = { x: -24 - index * 6, y: 14 + index * 5 };
+
+    assert.equal(startPoint.t, 0);
+    assert.equal(startPoint.depth, 1);
+    assert.equal(endPoint.t, 1);
+    assert.equal(endPoint.depth, endDepth);
+    assert.deepEqual(runtime.getVisibleHistory(kind).map((point) => point.depth), [1, 2, 3, endDepth]);
+    assert.deepEqual(startHit.selection, { type: "history", kind, depth: 1 });
+    assert.deepEqual(endHit.selection, { type: "history", kind, depth: endDepth });
+
+    assert.equal(runtime.applyRetainedPointDrag(kind, 1, startDelta), true);
+    assert.equal(startPoint.x, startBefore.x + startDelta.x);
+    assert.equal(startPoint.y, startBefore.y + startDelta.y);
+    assert.equal(runtime.dataset.initialConditions[kind].x, startPoint.x);
+    assert.equal(runtime.dataset.initialConditions[kind].y, startPoint.y);
+    assert.equal(runtime.dataset.paths[kind][0].x, startPoint.x);
+    assert.equal(runtime.dataset.paths[kind][0].y, startPoint.y);
+
+    assert.equal(runtime.applyRetainedPointDrag(kind, endDepth, endDelta), true);
+    assert.equal(endPoint.x, endBefore.x + endDelta.x);
+    assert.equal(endPoint.y, endBefore.y + endDelta.y);
+    assert.equal(runtime.dataset.paths[kind].at(-1).x, endPoint.x);
+    assert.equal(runtime.dataset.paths[kind].at(-1).y, endPoint.y);
+    assert.equal(runtime.dataset.frames.at(-1)[kind].x, endPoint.x);
+    assert.equal(runtime.dataset.frames.at(-1)[kind].y, endPoint.y);
+  });
 });
 
 test("causal delay feedback context menu inserts a retained point on the nearest path", () => {
@@ -1138,6 +2532,63 @@ test("causal delay feedback context menu inserts a retained point on the nearest
   assert.equal(runtime.dataset.history.positrino.length, 7);
   assert.deepEqual(runtime.selectedItem, { type: "history", kind: "electrino", depth: 4 });
   assert.equal(readout.children[0].textContent, "electrino 4");
+});
+
+test("causal delay feedback context menu insertion submits central replay when available", async () => {
+  const readout = new FakeElement();
+  const replayStatus = new FakeElement();
+  let capturedRequestOptions = null;
+  const adapter = {
+    id: CENTRAL_SOLVER_REPLAY_ADAPTER,
+    async createReplayAsync({ presetId, requestOptions }) {
+      capturedRequestOptions = requestOptions;
+      return {
+        ...createMockCausalDelayReplayDataset(presetId),
+        initialConditions: requestOptions.initialConditions,
+        history: requestOptions.replayDataset.history,
+        wakeLinks: requestOptions.replayDataset.wakeLinks,
+        datasetSource: CENTRAL_SOLVER_REPLAY_DATASET_SOURCE,
+        solverIntegrationPath: CENTRAL_SOLVER_REPLAY_ADAPTER,
+      };
+    },
+  };
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+    replayAdapter: adapter,
+    autoLoadReplay: false,
+  });
+  runtime.dom = {
+    readout,
+    replayStatus,
+    canvas: {
+      getBoundingClientRect: () => ({ left: 0, top: 0 }),
+    },
+  };
+  runtime.render = () => {};
+  const screen = runtime.worldToScreen(runtime.getReplayPathPoint("electrino", 0.48));
+  let preventedDefault = false;
+
+  await runtime.handleCanvasContextMenu({
+    clientX: screen.x,
+    clientY: screen.y,
+    preventDefault() {
+      preventedDefault = true;
+    },
+  });
+
+  assert.equal(preventedDefault, true);
+  assert.equal(capturedRequestOptions.initialConditions.historyDepth, 7);
+  assert.equal(capturedRequestOptions.replayDataset.datasetSource, DIRECT_MANIPULATION_DRAFT_PREVIEW);
+  assert.equal(capturedRequestOptions.replayDataset.draftPreview.reason, "reception_point_insert_preview");
+  assert.equal(capturedRequestOptions.replayDataset.history.electrino.length, 7);
+  assert.equal(capturedRequestOptions.replayDataset.wakeLinks.length, 12);
+  assert.equal(capturedRequestOptions.pathConstraintBoundaryRelaxationIterationCount, 256);
+  assert.equal(capturedRequestOptions.pathConstraintBoundaryRelaxationTolerance, 1);
+  assert.equal(runtime.dataset.datasetSource, CENTRAL_SOLVER_REPLAY_DATASET_SOURCE);
+  assert.equal(runtime.dataset.history.electrino.length, 7);
+  assert.deepEqual(runtime.selectedItem, { type: "history", kind: "electrino", depth: 4 });
+  assert.equal(replayStatus.textContent, "solver bridge replay");
 });
 
 test("causal delay feedback retained point drag deforms the path and updates wake endpoints", () => {
@@ -1190,9 +2641,12 @@ test("causal delay feedback retained end point drag updates the path endpoint", 
     document: new FakeDocument(),
     window: fakeWindow,
   });
-  const endPoint = runtime.dataset.history.electrino.find((point) => point.depth === 6);
+  const endDepth = runtime.getMaxHistoryDepth("electrino");
+  const endPoint = runtime.dataset.history.electrino.find((point) => point.depth === endDepth);
   const pathEnd = runtime.dataset.paths.electrino.at(-1);
-  const wakeLink = runtime.dataset.wakeLinks.find((link) => link.label === "red 5 -> blue 6");
+  const wakeLink = runtime.dataset.wakeLinks.find(
+    (link) => link.sourceKind === "positrino" && link.receiverKind === "electrino" && link.receiverDepth === endDepth,
+  );
   const before = {
     endX: endPoint.x,
     endY: endPoint.y,
@@ -1200,7 +2654,7 @@ test("causal delay feedback retained end point drag updates the path endpoint", 
     pathY: pathEnd.y,
   };
 
-  const didEdit = runtime.applyRetainedPointDrag("electrino", 6, { x: -36, y: 24 });
+  const didEdit = runtime.applyRetainedPointDrag("electrino", endDepth, { x: -36, y: 24 });
 
   assert.equal(didEdit, true);
   assert.equal(endPoint.x, before.endX - 36);
@@ -1290,8 +2744,10 @@ test("causal delay feedback aggregate summary separates stale solver rows from r
   assert.equal(summary.staleCount, 1);
   assert.equal(summary.rejectedCount, 0);
   assert.equal(summary.receivedCount, 1);
+  assert.deepEqual(summary.invalidReasonCounts, { "stale:retained_point_drag_preview": 1 });
   assert.equal(readout.children[2].textContent, "received=1/9");
-  assert.equal(readout.children[readout.children.length - 1].textContent, "stale=1");
+  assert.equal(readout.children[readout.children.length - 2].textContent, "stale=1");
+  assert.equal(readout.children[readout.children.length - 1].textContent, "why=stale:retained_point_drag_previewx1");
 });
 
 test("causal delay feedback retained point drag marks the replay as a draft preview", () => {
@@ -1313,7 +2769,7 @@ test("causal delay feedback retained point drag marks the replay as a draft prev
   assert.equal(replayStatus.dataset.state, "draft");
 });
 
-test("causal delay feedback initial-condition drag translates setup and replay preview", () => {
+test("causal delay feedback path start history drag updates setup and replay preview", () => {
   const replayStatus = new FakeElement();
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
@@ -1330,7 +2786,7 @@ test("causal delay feedback initial-condition drag translates setup and replay p
     historyX: historyPoint.x,
   };
 
-  const didEdit = runtime.applyInitialConditionDrag("positrino", { x: 56, y: -18 });
+  const didEdit = runtime.applyRetainedPointDrag("positrino", 1, { x: 56, y: -18 });
 
   assert.equal(didEdit, true);
   assert.equal(condition.x, before.conditionX + 56);
@@ -1338,7 +2794,7 @@ test("causal delay feedback initial-condition drag translates setup and replay p
   assert.equal(pathStart.x, before.pathX + 56);
   assert.equal(historyPoint.x, before.historyX + 56);
   assert.equal(runtime.dataset.datasetSource, DIRECT_MANIPULATION_DRAFT_PREVIEW);
-  assert.equal(runtime.dataset.draftPreview.reason, "initial_condition_drag_preview");
+  assert.equal(runtime.dataset.draftPreview.reason, "retained_point_drag_preview");
   assert.equal(runtime.replayRequestOptions.initialConditions.positrino.x, condition.x);
   assert.equal(runtime.replayRequestOptions.replayDataset, runtime.dataset);
   assert.equal(replayStatus.textContent, "draft preview");
@@ -1372,8 +2828,8 @@ test("causal delay feedback initial velocity drag updates setup and bends the pr
   });
 
   assert.equal(didEdit, true);
-  assertNear(condition.vx, before.vx + 400);
-  assertNear(condition.vy, before.vy - 200);
+  assertNear(condition.vx, before.vx + 700);
+  assertNear(condition.vy, before.vy - 350);
   assert.equal(condition.x, before.conditionX);
   assert.equal(condition.y, before.conditionY);
   assert.equal(pathStart.x, before.pathStartX);
@@ -1424,7 +2880,7 @@ test("causal delay feedback Virtual Observer drag updates contribution readout w
   assert.equal(replayStatus.textContent, "draft preview");
 });
 
-test("causal delay feedback initial-condition release reruns central replay with edited setup", async () => {
+test("causal delay feedback point 1 release reruns central replay with edited setup", async () => {
   const replayStatus = new FakeElement();
   let capturedRequestOptions = null;
   const adapter = {
@@ -1447,16 +2903,241 @@ test("causal delay feedback initial-condition release reruns central replay with
   });
   runtime.dom = { replayStatus };
 
-  runtime.applyInitialConditionDrag("electrino", { x: -42, y: 31 });
-  runtime.dragState = { type: "initial-condition", kind: "electrino", didEdit: true };
+  runtime.applyRetainedPointDrag("positrino", 1, { x: 34, y: -19 });
+  runtime.dragState = { type: "history", kind: "positrino", depth: 1, didEdit: true };
   await runtime.finishDrag();
 
-  assert.equal(capturedRequestOptions.initialConditions.electrino.x, runtime.dataset.initialConditions.electrino.x);
-  assert.equal(capturedRequestOptions.initialConditions.electrino.y, runtime.dataset.initialConditions.electrino.y);
-  assert.equal(capturedRequestOptions.replayDataset.datasetSource, DIRECT_MANIPULATION_DRAFT_PREVIEW);
+  assert.equal(capturedRequestOptions.initialConditions.positrino.x, runtime.dataset.initialConditions.positrino.x);
+  assert.equal(capturedRequestOptions.initialConditions.positrino.y, runtime.dataset.initialConditions.positrino.y);
+  assert.equal(capturedRequestOptions.replayDataset.draftPreview.reason, "retained_point_drag_preview");
+  assert.equal(capturedRequestOptions.pathConstraintBoundaryRelaxationIterationCount, 256);
+  assert.equal(capturedRequestOptions.pathConstraintBoundaryRelaxationTolerance, 1);
   assert.equal(runtime.dataset.datasetSource, CENTRAL_SOLVER_REPLAY_DATASET_SOURCE);
-  assert.equal(runtime.replayLoadState, "ready");
   assert.equal(replayStatus.textContent, "solver bridge replay");
+});
+
+test("causal delay feedback final path point release submits central replay constraints", async () => {
+  const replayStatus = new FakeElement();
+  let capturedRequestOptions = null;
+  const adapter = {
+    id: CENTRAL_SOLVER_REPLAY_ADAPTER,
+    async createReplayAsync({ presetId, requestOptions }) {
+      capturedRequestOptions = requestOptions;
+      return {
+        ...createMockCausalDelayReplayDataset(presetId),
+        history: requestOptions.replayDataset.history,
+        wakeLinks: requestOptions.replayDataset.wakeLinks,
+        initialConditions: requestOptions.initialConditions,
+        datasetSource: CENTRAL_SOLVER_REPLAY_DATASET_SOURCE,
+        solverIntegrationPath: CENTRAL_SOLVER_REPLAY_ADAPTER,
+      };
+    },
+  };
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+    replayAdapter: adapter,
+    autoLoadReplay: false,
+  });
+  runtime.dom = { replayStatus };
+
+  const endDepth = runtime.getMaxHistoryDepth("electrino");
+  runtime.applyRetainedPointDrag("electrino", endDepth, { x: -32, y: 23 });
+  runtime.dragState = { type: "history", kind: "electrino", depth: endDepth, didEdit: true };
+  await runtime.finishDrag();
+
+  assert.equal(capturedRequestOptions.replayDataset.draftPreview.reason, "retained_point_drag_preview");
+  assert.equal(capturedRequestOptions.replayDataset.history.electrino.at(-1).x, runtime.dataset.history.electrino.at(-1).x);
+  assert.equal(capturedRequestOptions.pathConstraintBoundaryRelaxationIterationCount, 256);
+  assert.equal(capturedRequestOptions.pathConstraintBoundaryRelaxationTolerance, 1);
+  assert.equal(runtime.dataset.datasetSource, CENTRAL_SOLVER_REPLAY_DATASET_SOURCE);
+  assert.equal(replayStatus.textContent, "solver bridge replay");
+});
+
+test("causal delay feedback retained path releases retry weak default boundary solves", async () => {
+  const replayStatus = new FakeElement();
+  const capturedCalls = [];
+  const adapter = {
+    id: CENTRAL_SOLVER_REPLAY_ADAPTER,
+    async createReplayAsync({ presetId, requestOptions }) {
+      capturedCalls.push({
+        iterationCount: requestOptions.pathConstraintBoundaryRelaxationIterationCount,
+        tolerance: requestOptions.pathConstraintBoundaryRelaxationTolerance,
+        reason: requestOptions.replayDataset.draftPreview.reason,
+      });
+      const isAdaptiveRetry = capturedCalls.length === 2;
+      return {
+        ...createMockCausalDelayReplayDataset(presetId),
+        history: requestOptions.replayDataset.history,
+        wakeLinks: requestOptions.replayDataset.wakeLinks,
+        initialConditions: requestOptions.initialConditions,
+        datasetSource: CENTRAL_SOLVER_REPLAY_DATASET_SOURCE,
+        solverIntegrationPath: CENTRAL_SOLVER_REPLAY_ADAPTER,
+        solverReplayMode: CENTRAL_SOLVER_PAIR_INTERACTION_REPLAY_MODE,
+        pairInteractionStepCount: 181,
+        pathConstraintGuidanceSampleCount: 6,
+        pathConstraintGuidanceMode: "retained_knot_boundary",
+        pathConstraintBoundaryRelaxationMode: "finite_difference_frame_relaxation_v1",
+        pathConstraintBoundaryRelaxationIterationCount:
+          requestOptions.pathConstraintBoundaryRelaxationIterationCount,
+        pathConstraintBoundaryRelaxationAppliedIterationCount: isAdaptiveRetry ? 5 : 1,
+        pathConstraintBoundaryRelaxationTolerance:
+          requestOptions.pathConstraintBoundaryRelaxationTolerance,
+        pathConstraintBoundaryRelaxationStatus: isAdaptiveRetry ? "converged" : "accepted",
+        pathConstraintBoundaryRelaxationResidualRatio: isAdaptiveRetry ? 0.003 : 0.15,
+        pathConstraintSolverStatus: isAdaptiveRetry
+          ? "discrete_boundary_value_converged"
+          : "guided_constraint_path",
+        pathConstraintSolverClaim: isAdaptiveRetry
+          ? "finite_difference_pair_boundary_value_solve_converged"
+          : "diagnostic_constraint_replay_not_boundary_value_solve",
+        maxPathConstraintBoundaryRelaxationResidualAfter: isAdaptiveRetry ? 0.42 : 12.5,
+      };
+    },
+  };
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+    replayAdapter: adapter,
+    autoLoadReplay: false,
+  });
+  runtime.dom = { replayStatus };
+
+  runtime.applyRetainedPointDrag("electrino", 3, { x: 46, y: -34 });
+  runtime.dragState = { type: "history", kind: "electrino", depth: 3, didEdit: true };
+  await runtime.finishDrag();
+
+  assert.deepEqual(capturedCalls, [
+    { iterationCount: 64, tolerance: 10, reason: "retained_point_drag_preview" },
+    { iterationCount: 256, tolerance: 1, reason: "retained_point_drag_preview" },
+  ]);
+  assert.equal(runtime.dataset.pathConstraintSolverStatus, "discrete_boundary_value_converged");
+  assert.equal(runtime.dataset.pathConstraintBoundaryRelaxationAdaptiveRetry, true);
+  assert.equal(runtime.dataset.pathConstraintBoundaryRelaxationRetryCount, 1);
+  assert.equal(runtime.dataset.pathConstraintBoundaryRelaxationInitialIterationCount, 64);
+  assert.equal(runtime.dataset.pathConstraintBoundaryRelaxationInitialTolerance, 10);
+  assert.equal(runtime.dataset.maxPathConstraintBoundaryRelaxationResidualAfterInitialAttempt, 12.5);
+  assert.equal(runtime.dataset.pathConstraintBoundaryRelaxationRetryIterationCount, 256);
+  assert.equal(runtime.dataset.pathConstraintBoundaryRelaxationRetryTolerance, 1);
+  assert.equal(runtime.dataset.maxPathConstraintBoundaryRelaxationResidualAfter, 0.42);
+  assert.equal(replayStatus.textContent, "solver boundary replay");
+  assert.match(replayStatus.title, /adaptiveRetry=64->256/);
+  assert.match(replayStatus.title, /firstTol=10/);
+  assert.match(replayStatus.title, /firstResidual=12\.5/);
+  assert(runtime.createContributionSummarySolverDetails().includes("relaxRetry=64->256"));
+  assert(runtime.createContributionSummarySolverDetails().includes("firstResidual=12.5"));
+});
+
+test("causal delay feedback retained path releases keep first solve when adaptive retry worsens", async () => {
+  const replayStatus = new FakeElement();
+  const capturedCalls = [];
+  const adapter = {
+    id: CENTRAL_SOLVER_REPLAY_ADAPTER,
+    async createReplayAsync({ presetId, requestOptions }) {
+      capturedCalls.push({
+        iterationCount: requestOptions.pathConstraintBoundaryRelaxationIterationCount,
+        tolerance: requestOptions.pathConstraintBoundaryRelaxationTolerance,
+        reason: requestOptions.replayDataset.draftPreview.reason,
+      });
+      const isAdaptiveRetry = capturedCalls.length === 2;
+      return {
+        ...createMockCausalDelayReplayDataset(presetId),
+        history: requestOptions.replayDataset.history,
+        wakeLinks: requestOptions.replayDataset.wakeLinks,
+        initialConditions: requestOptions.initialConditions,
+        datasetSource: CENTRAL_SOLVER_REPLAY_DATASET_SOURCE,
+        solverIntegrationPath: CENTRAL_SOLVER_REPLAY_ADAPTER,
+        solverReplayMode: CENTRAL_SOLVER_PAIR_INTERACTION_REPLAY_MODE,
+        pairInteractionStepCount: 181,
+        pathConstraintGuidanceSampleCount: 6,
+        pathConstraintGuidanceMode: "retained_knot_boundary",
+        pathConstraintBoundaryRelaxationMode: "finite_difference_frame_relaxation_v1",
+        pathConstraintBoundaryRelaxationIterationCount:
+          requestOptions.pathConstraintBoundaryRelaxationIterationCount,
+        pathConstraintBoundaryRelaxationAppliedIterationCount: isAdaptiveRetry ? 6 : 1,
+        pathConstraintBoundaryRelaxationTolerance:
+          requestOptions.pathConstraintBoundaryRelaxationTolerance,
+        pathConstraintBoundaryRelaxationStatus: "accepted",
+        pathConstraintBoundaryRelaxationResidualRatio: isAdaptiveRetry ? 0.4 : 0.1,
+        pathConstraintSolverStatus: "guided_constraint_path",
+        pathConstraintSolverClaim: "diagnostic_constraint_replay_not_boundary_value_solve",
+        maxPathConstraintBoundaryRelaxationResidualAfter: isAdaptiveRetry ? 30 : 8,
+      };
+    },
+  };
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+    replayAdapter: adapter,
+    autoLoadReplay: false,
+  });
+  runtime.dom = { replayStatus };
+
+  runtime.applyRetainedPointDrag("electrino", 3, { x: 46, y: -34 });
+  runtime.dragState = { type: "history", kind: "electrino", depth: 3, didEdit: true };
+  await runtime.finishDrag();
+
+  assert.deepEqual(capturedCalls, [
+    { iterationCount: 64, tolerance: 10, reason: "retained_point_drag_preview" },
+    { iterationCount: 256, tolerance: 1, reason: "retained_point_drag_preview" },
+  ]);
+  assert.equal(runtime.dataset.pathConstraintSolverStatus, "guided_constraint_path");
+  assert.equal(runtime.dataset.pathConstraintBoundaryRelaxationAdaptiveRetry, undefined);
+  assert.equal(runtime.dataset.pathConstraintBoundaryRelaxationAdaptiveRetryRejected, true);
+  assert.equal(runtime.dataset.pathConstraintBoundaryRelaxationRetryCount, 1);
+  assert.equal(runtime.dataset.pathConstraintBoundaryRelaxationInitialIterationCount, 64);
+  assert.equal(runtime.dataset.pathConstraintBoundaryRelaxationInitialTolerance, 10);
+  assert.equal(runtime.dataset.maxPathConstraintBoundaryRelaxationResidualAfterInitialAttempt, 8);
+  assert.equal(runtime.dataset.pathConstraintBoundaryRelaxationRejectedRetryIterationCount, 256);
+  assert.equal(runtime.dataset.pathConstraintBoundaryRelaxationRejectedRetryTolerance, 1);
+  assert.equal(runtime.dataset.maxPathConstraintBoundaryRelaxationResidualAfterRejectedRetry, 30);
+  assert.equal(runtime.dataset.pathConstraintSolverStatusRejectedRetry, "guided_constraint_path");
+  assert.equal(runtime.dataset.maxPathConstraintBoundaryRelaxationResidualAfter, 8);
+  assert.equal(replayStatus.textContent, "solver guided replay");
+  assert.match(replayStatus.title, /adaptiveRetryRejected=64->256/);
+  assert.match(replayStatus.title, /retryTol=1/);
+  assert.match(replayStatus.title, /retryResidual=30/);
+  assert(runtime.createContributionSummarySolverDetails().includes("relaxRetryRejected=64->256"));
+  assert(runtime.createContributionSummarySolverDetails().includes("retryResidual=30"));
+});
+
+test("causal delay feedback retained path releases preserve explicit boundary relaxation settings", async () => {
+  let capturedRequestOptions = null;
+  let callCount = 0;
+  const adapter = {
+    id: CENTRAL_SOLVER_REPLAY_ADAPTER,
+    async createReplayAsync({ presetId, requestOptions }) {
+      callCount += 1;
+      capturedRequestOptions = requestOptions;
+      return {
+        ...createMockCausalDelayReplayDataset(presetId),
+        history: requestOptions.replayDataset.history,
+        wakeLinks: requestOptions.replayDataset.wakeLinks,
+        datasetSource: CENTRAL_SOLVER_REPLAY_DATASET_SOURCE,
+        solverIntegrationPath: CENTRAL_SOLVER_REPLAY_ADAPTER,
+      };
+    },
+  };
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+    replayAdapter: adapter,
+    replayRequestOptions: {
+      pathConstraintBoundaryRelaxationIterationCount: 12,
+      pathConstraintBoundaryRelaxationTolerance: 6,
+    },
+    autoLoadReplay: false,
+  });
+  runtime.dom = { replayStatus: new FakeElement() };
+
+  runtime.applyRetainedPointDrag("positrino", 3, { x: 28, y: -18 });
+  runtime.dragState = { type: "history", kind: "positrino", depth: 3, didEdit: true };
+  await runtime.finishDrag();
+
+  assert.equal(capturedRequestOptions.replayDataset.draftPreview.reason, "retained_point_drag_preview");
+  assert.equal(capturedRequestOptions.pathConstraintBoundaryRelaxationIterationCount, 12);
+  assert.equal(capturedRequestOptions.pathConstraintBoundaryRelaxationTolerance, 6);
+  assert.equal(callCount, 1);
 });
 
 test("causal delay feedback retained depth survives central replay reruns", async () => {
@@ -1483,8 +3164,8 @@ test("causal delay feedback retained depth survives central replay reruns", asyn
   runtime.dom = { replayStatus };
 
   runtime.setRetainedDepthLimit(2);
-  runtime.applyInitialConditionDrag("electrino", { x: -12, y: 9 });
-  runtime.dragState = { type: "initial-condition", kind: "electrino", didEdit: true };
+  runtime.applyRetainedPointDrag("electrino", 1, { x: -12, y: 9 });
+  runtime.dragState = { type: "history", kind: "electrino", depth: 1, didEdit: true };
   await runtime.finishDrag();
 
   assert.equal(capturedRequestOptions.retainedDepthLimit, 2);
@@ -1525,6 +3206,8 @@ test("causal delay feedback Virtual Observer release reruns central replay with 
   assert.equal(capturedRequestOptions.virtualObserver.x, runtime.dataset.virtualObserver.x);
   assert.equal(capturedRequestOptions.virtualObserver.y, runtime.dataset.virtualObserver.y);
   assert.equal(capturedRequestOptions.initialConditions.virtualObserver.x, runtime.dataset.virtualObserver.x);
+  assert.equal(capturedRequestOptions.pathConstraintBoundaryRelaxationIterationCount, undefined);
+  assert.equal(capturedRequestOptions.pathConstraintBoundaryRelaxationTolerance, undefined);
   assert.equal(runtime.dataset.initialConditions.virtualObserver.y, runtime.dataset.virtualObserver.y);
   assert.equal(runtime.dataset.datasetSource, CENTRAL_SOLVER_REPLAY_DATASET_SOURCE);
   assert.equal(replayStatus.textContent, "solver bridge replay");
@@ -1565,6 +3248,8 @@ test("causal delay feedback initial velocity release reruns central replay with 
   assertNear(capturedRequestOptions.initialConditions.electrino.vx, runtime.dataset.initialConditions.electrino.vx);
   assertNear(capturedRequestOptions.initialConditions.electrino.vy, runtime.dataset.initialConditions.electrino.vy);
   assert.equal(capturedRequestOptions.replayDataset.datasetSource, DIRECT_MANIPULATION_DRAFT_PREVIEW);
+  assert.equal(capturedRequestOptions.pathConstraintBoundaryRelaxationIterationCount, undefined);
+  assert.equal(capturedRequestOptions.pathConstraintBoundaryRelaxationTolerance, undefined);
   assert.equal(runtime.dataset.datasetSource, CENTRAL_SOLVER_REPLAY_DATASET_SOURCE);
   assert.equal(runtime.replayLoadState, "ready");
   assert.equal(replayStatus.textContent, "solver bridge replay");
@@ -1679,6 +3364,73 @@ test("causal delay feedback spacebar leaves native controls alone", () => {
 
   assert.equal(prevented, false);
   assert.equal(runtime.isPlaying, true);
+});
+
+test("causal delay feedback arrow keys pause and step solver replay frames", () => {
+  const nowInput = new FakeElement();
+  const nowValue = new FakeElement();
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  runtime.dom = {
+    playButton: new FakeElement(),
+    nowInput,
+    nowValue,
+    readout: new FakeElement(),
+  };
+  const frameTimes = runtime.getReplayFrameStepTimes();
+  let prevented = false;
+
+  runtime.setCurrentReplayTime(frameTimes[0]);
+  runtime.handleKeyDown({
+    key: "ArrowRight",
+    code: "ArrowRight",
+    target: { tagName: "CANVAS" },
+    preventDefault() {
+      prevented = true;
+    },
+  });
+
+  assert.equal(prevented, true);
+  assert.equal(runtime.isPlaying, false);
+  assertNear(runtime.getCurrentReplayTime(), frameTimes[1]);
+  assert.equal(nowValue.textContent, `t=${frameTimes[1].toFixed(3).replace(/0+$/, "").replace(/\.$/, "")}`);
+
+  prevented = false;
+  runtime.handleKeyDown({
+    key: "ArrowLeft",
+    code: "ArrowLeft",
+    target: { tagName: "CANVAS" },
+    preventDefault() {
+      prevented = true;
+    },
+  });
+
+  assert.equal(prevented, true);
+  assertNear(runtime.getCurrentReplayTime(), frameTimes[0]);
+});
+
+test("causal delay feedback arrow keys leave native controls alone", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  const beforeTime = runtime.getCurrentReplayTime();
+  let prevented = false;
+
+  runtime.handleKeyDown({
+    key: "ArrowRight",
+    code: "ArrowRight",
+    target: { tagName: "INPUT" },
+    preventDefault() {
+      prevented = true;
+    },
+  });
+
+  assert.equal(prevented, false);
+  assert.equal(runtime.isPlaying, true);
+  assertNear(runtime.getCurrentReplayTime(), beforeTime);
 });
 
 test("causal delay feedback runtime accepts direct full-circular preset review URL", () => {

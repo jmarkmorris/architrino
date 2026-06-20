@@ -369,9 +369,7 @@
                 "version": "0.1.0",
                 "source": "manual-step-1-fixture"
               },
-              "sourceReferences": [
-                "scripts/simulations/assembly-dynamics-toy.mjs"
-              ]
+              "sourceReferences": []
             },
             "simulation": {
               "mode": "planar-2d",

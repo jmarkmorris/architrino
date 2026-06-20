@@ -2655,6 +2655,7 @@
             "assembly-graph-index",
             "root-ledger",
             "delayed-hit",
+            "field-shell-event",
             "phase-diagnostic",
             "spacetime-index",
             "emission-shell"
@@ -3101,6 +3102,8 @@
             "type": "string",
             "enum": [
               "createPathHistoryStreamF64",
+              "planPathHistoryStorageLifecycleF64",
+              "applyPathHistoryStorageLifecycleF64",
               "describeStream",
               "validatePathHistoryDynamicReplayF64",
               "readStreamRange",
@@ -4005,6 +4008,157 @@
         }
       }
     },
+    "pairInteractionRunConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["appId", "pairInteractionRequest"],
+      "properties": {
+        "appId": {
+          "$ref": "#/$defs/solverAppId"
+        },
+        "pairInteractionRequest": {
+          "$ref": "#/$defs/pairInteractionF64Request"
+        },
+        "streamId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "rowsPerChunk": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "storagePolicy": {
+          "$ref": "#/$defs/storagePolicy"
+        },
+        "metadata": {
+          "type": "object"
+        }
+      }
+    },
+    "pairInteractionF64Request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["startTime", "endTime", "step", "initialStates"],
+      "properties": {
+        "startTime": {
+          "type": "number"
+        },
+        "endTime": {
+          "type": "number"
+        },
+        "step": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "maxFrames": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "pairAccelerationScale": {
+          "type": "number"
+        },
+        "softening": {
+          "type": "number",
+          "minimum": 0
+        },
+        "integrationTolerance": {
+          "type": "number",
+          "minimum": 0
+        },
+        "interactionLaw": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pathConstraintBoundaryRelaxationIterationCount": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 256
+        },
+        "pathConstraintBoundaryRelaxationTolerance": {
+          "type": "number",
+          "minimum": 0
+        },
+        "pathConstraintBoundaryRelaxationStepTolerance": {
+          "type": "number",
+          "minimum": 0
+        },
+        "pathConstraintBoundaryResidualTolerance": {
+          "type": "number",
+          "minimum": 0
+        },
+        "pathConstraintPositionResidualTolerance": {
+          "type": "number",
+          "minimum": 0
+        },
+        "pathConstraintGuidanceAccelerationTolerance": {
+          "type": "number",
+          "minimum": 0
+        },
+        "initialStates": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "$ref": "#/$defs/pairInteractionStateF64Request"
+          }
+        },
+        "pathConstraints": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/pairInteractionPathConstraintF64Request"
+          }
+        }
+      }
+    },
+    "pairInteractionStateF64Request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pathKey", "initialPosition", "initialVelocity"],
+      "properties": {
+        "pathKey": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "initialPosition": {
+          "$ref": "#/$defs/vector3F64"
+        },
+        "initialVelocity": {
+          "$ref": "#/$defs/vector3F64"
+        },
+        "charge": {
+          "type": "number"
+        },
+        "mass": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "stateFlags": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "pairInteractionPathConstraintF64Request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pathKey", "time", "position"],
+      "properties": {
+        "pathKey": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "depth": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "time": {
+          "type": "number"
+        },
+        "position": {
+          "$ref": "#/$defs/vector3F64"
+        }
+      }
+    },
     "solverRunConfig": {
       "anyOf": [
         {
@@ -4027,6 +4181,9 @@
         },
         {
           "$ref": "#/$defs/appPlaybackRunConfig"
+        },
+        {
+          "$ref": "#/$defs/pairInteractionRunConfig"
         },
         {
           "$ref": "#/$defs/motionSimulationRunConfig"
@@ -4245,6 +4402,9 @@
         "validationReplay": {
           "$ref": "#/$defs/baselineComparisonResult"
         },
+        "pairInteraction": {
+          "$ref": "#/$defs/pairInteractionRunSummary"
+        },
         "status": {
           "$ref": "#/$defs/statusRecord"
         }
@@ -4299,8 +4459,516 @@
         "streamCount": {
           "type": "integer",
           "minimum": 0
+        },
+        "stepCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "interactionLaw": {
+          "type": "string",
+          "minLength": 1
+        },
+        "executionPath": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pathConstraintCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pathConstraintFrameRefinementSampleCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pathConstraintPositionResidualSampleCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pathConstraintPositionResidualStatus": {
+          "$ref": "#/$defs/pairInteractionPositionResidualStatus"
+        },
+        "pathConstraintPositionResidualTolerance": {
+          "type": "number",
+          "minimum": 0
+        },
+        "maxPathConstraintPositionResidual": {
+          "type": "number",
+          "minimum": 0
+        },
+        "meanPathConstraintPositionResidual": {
+          "type": "number",
+          "minimum": 0
+        },
+        "rmsPathConstraintPositionResidual": {
+          "type": "number",
+          "minimum": 0
+        },
+        "pathConstraintResidualSampleCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "maxPathConstraintResidual": {
+          "type": "number"
+        },
+        "meanPathConstraintResidual": {
+          "type": "number"
+        },
+        "rmsPathConstraintResidual": {
+          "type": "number"
+        },
+        "pathConstraintGuidanceSampleCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pathConstraintGuidanceMode": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pathConstraintBoundaryMode": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pathConstraintBoundarySeedMode": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pathConstraintBoundarySeedSampleCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pathConstraintBoundaryRelaxationMode": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pathConstraintBoundaryRelaxationIterationCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pathConstraintBoundaryRelaxationAppliedIterationCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pathConstraintBoundaryRelaxationStopReason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pathConstraintBoundaryRelaxationTolerance": {
+          "type": "number",
+          "minimum": 0
+        },
+        "pathConstraintBoundaryRelaxationStepTolerance": {
+          "type": "number",
+          "minimum": 0
+        },
+        "pathConstraintBoundaryRelaxationStatus": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pathConstraintBoundaryRelaxationResidualEvidenceStatus": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pathConstraintBoundaryRelaxationResidualSampleCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "maxPathConstraintBoundaryRelaxationResidualBefore": {
+          "type": "number"
+        },
+        "maxPathConstraintBoundaryRelaxationResidualAfter": {
+          "type": "number"
+        },
+        "meanPathConstraintBoundaryRelaxationResidualBefore": {
+          "type": "number"
+        },
+        "meanPathConstraintBoundaryRelaxationResidualAfter": {
+          "type": "number"
+        },
+        "rmsPathConstraintBoundaryRelaxationResidualBefore": {
+          "type": "number"
+        },
+        "rmsPathConstraintBoundaryRelaxationResidualAfter": {
+          "type": "number"
+        },
+        "pathConstraintBoundaryRelaxationResidualRatio": {
+          "type": "number",
+          "minimum": 0
+        },
+        "meanPathConstraintBoundaryRelaxationResidualRatio": {
+          "type": "number",
+          "minimum": 0
+        },
+        "rmsPathConstraintBoundaryRelaxationResidualRatio": {
+          "type": "number",
+          "minimum": 0
+        },
+        "pathConstraintBoundaryRelaxationResidualSettlingRate": {
+          "type": "number",
+          "minimum": 0
+        },
+        "meanPathConstraintBoundaryRelaxationResidualSettlingRate": {
+          "type": "number",
+          "minimum": 0
+        },
+        "rmsPathConstraintBoundaryRelaxationResidualSettlingRate": {
+          "type": "number",
+          "minimum": 0
+        },
+        "pathConstraintBoundaryRelaxationMaxStep": {
+          "type": "number",
+          "minimum": 0
+        },
+        "pathConstraintBoundaryRelaxationFinalStepFactor": {
+          "type": "number",
+          "minimum": 0
+        },
+        "pathConstraintBoundaryRelaxationSelectedCandidateKind": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pathConstraintBoundaryRelaxationCenterOfMassSelectedCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pathConstraintBoundaryRelaxationCandidateVariantCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pathConstraintBoundaryRelaxationLineSearchTrialCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pathConstraintBoundaryRelaxationCandidateKindMask": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pathConstraintSolverStatus": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pathConstraintSolverClaim": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pathConstraintPhysicalBoundarySolverStatus": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pathConstraintPhysicalBoundarySolverClaim": {
+          "type": "string",
+          "minLength": 1
+        },
+        "maxPathConstraintGuidanceAcceleration": {
+          "type": "number"
+        },
+        "meanPathConstraintGuidanceAcceleration": {
+          "type": "number"
+        },
+        "rmsPathConstraintGuidanceAcceleration": {
+          "type": "number"
+        },
+        "pathConstraintGuidanceAccelerationStatus": {
+          "$ref": "#/$defs/pairInteractionGuidanceAccelerationStatus"
+        },
+        "pathConstraintGuidanceAccelerationTolerance": {
+          "type": "number",
+          "minimum": 0
+        },
+        "pathConstraintBoundaryResidualSampleCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pathConstraintBoundaryResidualStatus": {
+          "$ref": "#/$defs/pairInteractionBoundaryResidualStatus"
+        },
+        "pathConstraintBoundaryResidualTolerance": {
+          "type": "number",
+          "minimum": 0
+        },
+        "maxPathConstraintBoundaryResidual": {
+          "type": "number"
+        },
+        "meanPathConstraintBoundaryResidual": {
+          "type": "number"
+        },
+        "rmsPathConstraintBoundaryResidual": {
+          "type": "number"
         }
       }
+    },
+    "pairInteractionRunSummary": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "runId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "claimLevel": {
+          "$ref": "#/$defs/solverClaimLevel"
+        },
+        "precisionPath": {
+          "$ref": "#/$defs/precisionPathId"
+        },
+        "frameCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pathCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pathRowCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "stepCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "interactionLaw": {
+          "type": "string",
+          "minLength": 1
+        },
+        "executionPath": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pathConstraintCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pathConstraintFrameRefinementSampleCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pathConstraintPositionResidualSampleCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pathConstraintPositionResidualStatus": {
+          "$ref": "#/$defs/pairInteractionPositionResidualStatus"
+        },
+        "pathConstraintPositionResidualTolerance": {
+          "type": "number",
+          "minimum": 0
+        },
+        "maxPathConstraintPositionResidual": {
+          "type": "number",
+          "minimum": 0
+        },
+        "meanPathConstraintPositionResidual": {
+          "type": "number",
+          "minimum": 0
+        },
+        "rmsPathConstraintPositionResidual": {
+          "type": "number",
+          "minimum": 0
+        },
+        "pathConstraintResidualSampleCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "maxPathConstraintResidual": {
+          "type": "number"
+        },
+        "meanPathConstraintResidual": {
+          "type": "number"
+        },
+        "rmsPathConstraintResidual": {
+          "type": "number"
+        },
+        "pathConstraintGuidanceSampleCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pathConstraintGuidanceMode": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pathConstraintBoundaryMode": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pathConstraintBoundarySeedMode": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pathConstraintBoundarySeedSampleCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pathConstraintBoundaryRelaxationMode": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pathConstraintBoundaryRelaxationIterationCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pathConstraintBoundaryRelaxationAppliedIterationCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pathConstraintBoundaryRelaxationStopReason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pathConstraintBoundaryRelaxationTolerance": {
+          "type": "number",
+          "minimum": 0
+        },
+        "pathConstraintBoundaryRelaxationStepTolerance": {
+          "type": "number",
+          "minimum": 0
+        },
+        "pathConstraintBoundaryRelaxationStatus": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pathConstraintBoundaryRelaxationResidualEvidenceStatus": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pathConstraintBoundaryRelaxationResidualSampleCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "maxPathConstraintBoundaryRelaxationResidualBefore": {
+          "type": "number"
+        },
+        "maxPathConstraintBoundaryRelaxationResidualAfter": {
+          "type": "number"
+        },
+        "meanPathConstraintBoundaryRelaxationResidualBefore": {
+          "type": "number"
+        },
+        "meanPathConstraintBoundaryRelaxationResidualAfter": {
+          "type": "number"
+        },
+        "rmsPathConstraintBoundaryRelaxationResidualBefore": {
+          "type": "number"
+        },
+        "rmsPathConstraintBoundaryRelaxationResidualAfter": {
+          "type": "number"
+        },
+        "pathConstraintBoundaryRelaxationResidualRatio": {
+          "type": "number",
+          "minimum": 0
+        },
+        "meanPathConstraintBoundaryRelaxationResidualRatio": {
+          "type": "number",
+          "minimum": 0
+        },
+        "rmsPathConstraintBoundaryRelaxationResidualRatio": {
+          "type": "number",
+          "minimum": 0
+        },
+        "pathConstraintBoundaryRelaxationResidualSettlingRate": {
+          "type": "number",
+          "minimum": 0
+        },
+        "meanPathConstraintBoundaryRelaxationResidualSettlingRate": {
+          "type": "number",
+          "minimum": 0
+        },
+        "rmsPathConstraintBoundaryRelaxationResidualSettlingRate": {
+          "type": "number",
+          "minimum": 0
+        },
+        "pathConstraintBoundaryRelaxationMaxStep": {
+          "type": "number",
+          "minimum": 0
+        },
+        "pathConstraintBoundaryRelaxationFinalStepFactor": {
+          "type": "number",
+          "minimum": 0
+        },
+        "pathConstraintBoundaryRelaxationSelectedCandidateKind": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pathConstraintBoundaryRelaxationCenterOfMassSelectedCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pathConstraintBoundaryRelaxationCandidateVariantCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pathConstraintBoundaryRelaxationLineSearchTrialCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pathConstraintBoundaryRelaxationCandidateKindMask": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pathConstraintSolverStatus": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pathConstraintSolverClaim": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pathConstraintPhysicalBoundarySolverStatus": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pathConstraintPhysicalBoundarySolverClaim": {
+          "type": "string",
+          "minLength": 1
+        },
+        "maxPathConstraintGuidanceAcceleration": {
+          "type": "number"
+        },
+        "meanPathConstraintGuidanceAcceleration": {
+          "type": "number"
+        },
+        "rmsPathConstraintGuidanceAcceleration": {
+          "type": "number"
+        },
+        "pathConstraintGuidanceAccelerationStatus": {
+          "$ref": "#/$defs/pairInteractionGuidanceAccelerationStatus"
+        },
+        "pathConstraintGuidanceAccelerationTolerance": {
+          "type": "number",
+          "minimum": 0
+        },
+        "pathConstraintBoundaryResidualSampleCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pathConstraintBoundaryResidualStatus": {
+          "$ref": "#/$defs/pairInteractionBoundaryResidualStatus"
+        },
+        "pathConstraintBoundaryResidualTolerance": {
+          "type": "number",
+          "minimum": 0
+        },
+        "maxPathConstraintBoundaryResidual": {
+          "type": "number"
+        },
+        "meanPathConstraintBoundaryResidual": {
+          "type": "number"
+        },
+        "rmsPathConstraintBoundaryResidual": {
+          "type": "number"
+        }
+      }
+    },
+    "pairInteractionBoundaryResidualStatus": {
+      "type": "string",
+      "enum": ["unchecked", "no_boundary_samples", "unresolved", "within_tolerance", "exceeded_tolerance"]
+    },
+    "pairInteractionPositionResidualStatus": {
+      "type": "string",
+      "enum": ["unchecked", "no_position_samples", "unresolved", "within_tolerance", "exceeded_tolerance"]
+    },
+    "pairInteractionGuidanceAccelerationStatus": {
+      "type": "string",
+      "enum": ["unchecked", "no_guidance_samples", "unresolved", "within_tolerance", "exceeded_tolerance"]
     },
     "describeRunRequest": {
       "type": "object",
@@ -7171,6 +7839,9 @@
         "summary": {
           "$ref": "#/$defs/pathHistoryStreamSummary"
         },
+        "contractArtifacts": {
+          "$ref": "#/$defs/pathHistoryStreamContractArtifacts"
+        },
         "status": {
           "$ref": "#/$defs/statusRecord"
         }
@@ -7700,6 +8371,744 @@
         }
       }
     },
+    "pathHistoryStreamContractArtifacts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "manifest",
+        "logicalStreamTable",
+        "chunkRecords",
+        "encodingDictionary",
+        "eventStore",
+        "indexSidecar",
+        "summary",
+        "memoryBudget",
+        "checksumPolicy",
+        "fixtures"
+      ],
+      "properties": {
+        "schema": {
+          "const": "solver-path-history-stream-contract-artifacts.v1"
+        },
+        "manifest": {
+          "$ref": "#/$defs/pathHistoryStreamContractManifest"
+        },
+        "logicalStreamTable": {
+          "$ref": "#/$defs/pathHistoryLogicalStreamTable"
+        },
+        "chunkRecords": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/pathHistoryChunkRecord"
+          }
+        },
+        "encodingDictionary": {
+          "$ref": "#/$defs/pathHistoryEncodingDictionary"
+        },
+        "eventStore": {
+          "$ref": "#/$defs/pathHistoryEventStore"
+        },
+        "indexSidecar": {
+          "$ref": "#/$defs/streamIndexDescription"
+        },
+        "summary": {
+          "$ref": "#/$defs/pathHistoryContractSummaryRecord"
+        },
+        "memoryBudget": {
+          "$ref": "#/$defs/pathHistoryStreamMemoryBudget"
+        },
+        "checksumPolicy": {
+          "$ref": "#/$defs/pathHistoryChecksumPolicy"
+        },
+        "fixtures": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/pathHistoryStreamContractFixtureEvidence"
+          }
+        }
+      }
+    },
+    "pathHistoryStreamContractManifest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "runId",
+        "modelId",
+        "streamTableId",
+        "chunkStoreId",
+        "encodingDictionaryId",
+        "eventStoreId",
+        "indexSidecarId",
+        "summaryRecordId",
+        "checksumPolicyId",
+        "memoryBudgetId",
+        "lifecycleStatus",
+        "precisionPath",
+        "numericType",
+        "numericChart",
+        "claimLevel"
+      ],
+      "properties": {
+        "schema": {
+          "const": "path_history_stream_manifest.v1"
+        },
+        "runId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "modelId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "streamTableId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "chunkStoreId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "encodingDictionaryId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "eventStoreId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "indexSidecarId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "summaryRecordId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "checksumPolicyId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "memoryBudgetId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "lifecycleStatus": {
+          "enum": ["active", "finalized", "partial", "quarantined", "invalid"]
+        },
+        "precisionPath": {
+          "$ref": "#/$defs/precisionPathId"
+        },
+        "numericType": {
+          "$ref": "#/$defs/numericTypeId"
+        },
+        "numericChart": {
+          "$ref": "#/$defs/numericChartId"
+        },
+        "claimLevel": {
+          "$ref": "#/$defs/solverClaimLevel"
+        }
+      }
+    },
+    "pathHistoryLogicalStreamTable": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "tableId", "streams"],
+      "properties": {
+        "schema": {
+          "const": "path_stream_table.v1"
+        },
+        "tableId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "streams": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/pathHistoryLogicalStreamRecord"
+          }
+        }
+      }
+    },
+    "pathHistoryLogicalStreamRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "streamId",
+        "pathId",
+        "pathKey",
+        "pathRole",
+        "claimLevel",
+        "precisionPath",
+        "numericChart",
+        "timeRange",
+        "frameRange",
+        "chunkIds",
+        "replayStatus"
+      ],
+      "properties": {
+        "streamId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pathId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pathKey": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "entityId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pathRole": {
+          "enum": [
+            "source-history",
+            "receiver-history",
+            "virtual-observer-path-record",
+            "replay-projection",
+            "validation-path"
+          ]
+        },
+        "claimLevel": {
+          "$ref": "#/$defs/solverClaimLevel"
+        },
+        "precisionPath": {
+          "$ref": "#/$defs/precisionPathId"
+        },
+        "numericChart": {
+          "$ref": "#/$defs/numericChartId"
+        },
+        "timeRange": {
+          "$ref": "#/$defs/range"
+        },
+        "frameRange": {
+          "$ref": "#/$defs/range"
+        },
+        "chunkIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "replayStatus": {
+          "enum": ["complete", "partial", "interrupted-recoverable", "interrupted-quarantined", "invalid"]
+        }
+      }
+    },
+    "pathHistoryChunkRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "chunkId",
+        "chunkIndex",
+        "streamId",
+        "pathKeyStart",
+        "pathKeyEnd",
+        "rowOffset",
+        "rowCount",
+        "timeRange",
+        "frameRange",
+        "byteRange",
+        "layout",
+        "numericType",
+        "headerChecksum",
+        "payloadChecksum",
+        "chunkChecksum",
+        "committed"
+      ],
+      "properties": {
+        "schema": {
+          "const": "path_chunk.v1"
+        },
+        "chunkId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "chunkIndex": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "streamId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pathKeyStart": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pathKeyEnd": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "rowOffset": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "rowCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "timeRange": {
+          "$ref": "#/$defs/range"
+        },
+        "frameRange": {
+          "$ref": "#/$defs/range"
+        },
+        "byteRange": {
+          "$ref": "#/$defs/range"
+        },
+        "layout": {
+          "$ref": "#/$defs/coreBinaryLayoutId"
+        },
+        "numericType": {
+          "$ref": "#/$defs/numericTypeId"
+        },
+        "headerChecksum": {
+          "type": "string",
+          "minLength": 1
+        },
+        "payloadChecksum": {
+          "type": "string",
+          "minLength": 1
+        },
+        "chunkChecksum": {
+          "type": "string",
+          "minLength": 1
+        },
+        "committed": {
+          "type": "boolean"
+        }
+      }
+    },
+    "pathHistoryEncodingDictionary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "dictionaryId", "columnLayouts", "numericEncodings", "units", "eventCodes", "checksumAlgorithms"],
+      "properties": {
+        "schema": {
+          "const": "path_encoding_dictionary.v1"
+        },
+        "dictionaryId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "columnLayouts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/coreBinaryLayoutId"
+          }
+        },
+        "numericEncodings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/numericTypeId"
+          }
+        },
+        "units": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "eventCodes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "checksumAlgorithms": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "dictionaryChecksum": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "pathHistoryEventStore": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "eventStoreId", "events"],
+      "properties": {
+        "schema": {
+          "const": "path_event_store.v1"
+        },
+        "eventStoreId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "events": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/pathHistoryEventRecord"
+          }
+        }
+      }
+    },
+    "pathHistoryEventRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sequence", "eventClass", "severity", "recoverable"],
+      "properties": {
+        "sequence": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "eventClass": {
+          "enum": [
+            "stream_opened",
+            "chunk_committed",
+            "chunk_superseded",
+            "precision_escalated",
+            "active_window_aged_out",
+            "age_out_blocked",
+            "index_built",
+            "checksum_fault",
+            "recovery_action",
+            "run_finalized"
+          ]
+        },
+        "affectedStreamId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "affectedChunkId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "severity": {
+          "enum": ["ok", "info", "warning", "halt", "error"]
+        },
+        "recoverable": {
+          "type": "boolean"
+        }
+      }
+    },
+    "pathHistoryContractSummaryRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "streamCount",
+        "pathCount",
+        "chunkCount",
+        "rowCount",
+        "byteCount",
+        "bytesByTier",
+        "activeWindowMaxBytes",
+        "checksumCleanCount",
+        "checksumFaultCount",
+        "replayStatus"
+      ],
+      "properties": {
+        "schema": {
+          "const": "path_history_summary.v1"
+        },
+        "streamCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pathCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "chunkCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "rowCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "byteCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "bytesByTier": {
+          "$ref": "#/$defs/pathHistoryStorageTierCounts"
+        },
+        "activeWindowMaxBytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "checksumCleanCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "checksumFaultCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "spillThroughputRowsPerSecond": {
+          "type": "number",
+          "minimum": 0
+        },
+        "readbackThroughputRowsPerSecond": {
+          "type": "number",
+          "minimum": 0
+        },
+        "replayStatus": {
+          "enum": ["complete", "partial", "interrupted-recoverable", "interrupted-quarantined", "invalid"]
+        }
+      }
+    },
+    "pathHistoryStreamMemoryBudget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "activeWindowBytes",
+        "activeWindowTimeDepth",
+        "activeWindowFrameDepth",
+        "spillBufferBytes",
+        "indexMemoryBytes",
+        "deepIndexMemoryBytes",
+        "onBudgetPressure"
+      ],
+      "properties": {
+        "schema": {
+          "const": "path_history_stream_memory_budget.v1"
+        },
+        "activeWindowBytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "activeWindowTimeDepth": {
+          "type": "number",
+          "minimum": 0
+        },
+        "activeWindowFrameDepth": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "spillBufferBytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "indexMemoryBytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "deepIndexMemoryBytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "onBudgetPressure": {
+          "enum": ["spill", "reduce_optional_output", "simplify", "halt"]
+        }
+      }
+    },
+    "pathHistoryChecksumPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["policyId", "algorithm", "scopes"],
+      "properties": {
+        "policyId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "algorithm": {
+          "type": "string",
+          "minLength": 1
+        },
+        "scopes": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "chunk_header",
+              "chunk_payload",
+              "chunk_trailer",
+              "chain",
+              "dictionary",
+              "sidecar",
+              "event_store",
+              "manifest",
+              "export_artifact"
+            ]
+          }
+        }
+      }
+    },
+    "pathHistoryStreamContractFixtureEvidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "fixtureId",
+        "status",
+        "validatedArtifacts",
+        "rowCount",
+        "chunkCount",
+        "pathCount",
+        "byteLength"
+      ],
+      "properties": {
+        "fixtureId": {
+          "enum": [
+            "path_stream_round_trip",
+            "stream_replay_invariants",
+            "history_age_out_and_deep_index",
+            "interrupted_stream_recovery",
+            "high_speed_readback_budget",
+            "fast_spill_budget"
+          ]
+        },
+        "status": {
+          "enum": ["passed", "failed", "blocked"]
+        },
+        "validatedArtifacts": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "path_history_stream_manifest.v1",
+              "path_stream_table.v1",
+              "path_chunk.v1",
+              "path_encoding_dictionary.v1",
+              "path_event_store.v1",
+              "stream_index.v1",
+              "path_history_summary.v1",
+              "path_history_stream_memory_budget.v1",
+              "solver-path-history-storage-lifecycle-summary.v1",
+              "solver-path-history-deep-index.v1"
+            ]
+          }
+        },
+        "rowCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "chunkCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pathCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "byteLength": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "memoryBudgetBytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "activeWindowBytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "maxActiveBytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "spilledBytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "checksumFaultDetected": {
+          "type": "boolean"
+        },
+        "indexSeekMatched": {
+          "type": "boolean"
+        },
+        "fullRunScanRequired": {
+          "type": "boolean"
+        },
+        "roundTripByteStable": {
+          "type": "boolean"
+        },
+        "backpressureApplied": {
+          "type": "boolean"
+        },
+        "halted": {
+          "type": "boolean"
+        },
+        "spillThroughputRowsPerSecond": {
+          "type": "number",
+          "minimum": 0
+        },
+        "pathErrorBoundPreserved": {
+          "type": "boolean"
+        },
+        "rootCountPreserved": {
+          "type": "boolean"
+        },
+        "timeOrderingPreserved": {
+          "type": "boolean"
+        },
+        "checksumIdentityPreserved": {
+          "type": "boolean"
+        },
+        "projectionAuthorityPreserved": {
+          "type": "boolean"
+        },
+        "safeAgeOutCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "unsafeAgeOutCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "deepIndexBuilt": {
+          "type": "boolean"
+        },
+        "authoritativeReplayReplaced": {
+          "type": "boolean"
+        },
+        "partialWriteDetected": {
+          "type": "boolean"
+        },
+        "staleSidecarDetected": {
+          "type": "boolean"
+        },
+        "manifestMismatchDetected": {
+          "type": "boolean"
+        },
+        "recoveryEventAppended": {
+          "type": "boolean"
+        },
+        "quarantinedChunkCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "indexedLookupUsed": {
+          "type": "boolean"
+        },
+        "selectedRangeReadbackRows": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "scannedChunkCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "readbackMemoryBudgetBytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "readbackBytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "readbackThroughputRowsPerSecond": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
     "pathHistoryStreamMetadata": {
       "type": "object",
       "additionalProperties": false,
@@ -7916,6 +9325,36 @@
         },
         "timeRange": {
           "$ref": "#/$defs/range"
+        },
+        "indexOptions": {
+          "$ref": "#/$defs/emissionShellIndexedBroadPhaseOptions"
+        }
+      }
+    },
+    "emissionShellIndexedBroadPhaseOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["strategy", "timeSlabCount", "spatialCellSize"],
+      "properties": {
+        "strategy": {
+          "const": "emission_shell_broad_phase_v0"
+        },
+        "timeSlabCount": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2147483647
+        },
+        "spatialCellSize": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "sourceRowOffset": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "receiverRowOffset": {
+          "type": "integer",
+          "minimum": 0
         }
       }
     },
@@ -8002,6 +9441,9 @@
         "scanSummary": {
           "$ref": "#/$defs/emissionShellScanSummary"
         },
+        "indexSummary": {
+          "$ref": "#/$defs/emissionShellIndexedBroadPhaseSummary"
+        },
         "truncated": {
           "type": "boolean"
         },
@@ -8036,6 +9478,9 @@
           "items": {
             "$ref": "#/$defs/emissionShellCandidateF64"
           }
+        },
+        "packet": {
+          "$ref": "#/$defs/workPacketHeader"
         },
         "signalSpeed": {
           "type": "number",
@@ -8105,6 +9550,21 @@
       "properties": {
         "schema": {
           "const": "solver-emission-shell-root-refinement.v1"
+        },
+        "packetId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "packetMergeOrder": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "packetMergeKey": {
+          "type": "string",
+          "minLength": 1
+        },
+        "packetResult": {
+          "$ref": "#/$defs/workPacketResultRef"
         },
         "streamId": {
           "type": "string",
@@ -8298,6 +9758,9 @@
         },
         "timeRange": {
           "$ref": "#/$defs/range"
+        },
+        "indexOptions": {
+          "$ref": "#/$defs/emissionShellIndexedBroadPhaseOptions"
         }
       }
     },
@@ -8354,6 +9817,9 @@
         },
         "timeRange": {
           "$ref": "#/$defs/range"
+        },
+        "indexOptions": {
+          "$ref": "#/$defs/emissionShellIndexedBroadPhaseOptions"
         }
       }
     },
@@ -8368,6 +9834,41 @@
           "items": {
             "$ref": "#/$defs/emissionShellCandidateF64Response"
           }
+        }
+      }
+    },
+    "emissionShellIndexedBroadPhaseSummary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sourceRowOffset",
+        "receiverRowOffset",
+        "receiverCellRows",
+        "shellAnnulusRows",
+        "cellLookups",
+        "indexedPairTests",
+        "duplicatePairTests",
+        "spatialCellSize",
+        "timeRangeStart",
+        "timeRangeEnd",
+        "timeSlabCount",
+        "coverageStatus"
+      ],
+      "properties": {
+        "sourceRowOffset": { "type": "integer", "minimum": 0 },
+        "receiverRowOffset": { "type": "integer", "minimum": 0 },
+        "receiverCellRows": { "type": "integer", "minimum": 0 },
+        "shellAnnulusRows": { "type": "integer", "minimum": 0 },
+        "cellLookups": { "type": "integer", "minimum": 0 },
+        "indexedPairTests": { "type": "integer", "minimum": 0 },
+        "duplicatePairTests": { "type": "integer", "minimum": 0 },
+        "spatialCellSize": { "type": "number", "exclusiveMinimum": 0 },
+        "timeRangeStart": { "type": "number" },
+        "timeRangeEnd": { "type": "number" },
+        "timeSlabCount": { "type": "integer", "minimum": 1 },
+        "coverageStatus": {
+          "type": "string",
+          "enum": ["complete", "truncated", "invalid_input"]
         }
       }
     },
@@ -8407,7 +9908,7 @@
         },
         "executionPath": {
           "type": "string",
-          "enum": ["native_c_abi", "javascript_fallback", "packet_merge"]
+          "enum": ["native_c_abi", "native_c_abi_indexed_v0", "javascript_fallback", "packet_merge"]
         },
         "streamChunkCount": {
           "type": "integer",
@@ -10794,7 +12295,7 @@
     },
     "solverAppId": {
       "type": "string",
-      "enum": ["animator", "photon", "ideal-swarm"]
+      "enum": ["animator", "photon", "ideal-swarm", "causal-delay-feedback"]
     },
     "solverRunKind": {
       "type": "string",
@@ -10806,6 +12307,7 @@
         "delayedHits",
         "sharedGeometry",
         "appPlayback",
+        "pairInteraction",
         "validationReplay"
       ]
     },
@@ -11051,6 +12553,7 @@
         "root_ledger.v1",
         "root_ledger_detail.v1",
         "delayed_hit_events.v1",
+        "field_shell_events.v1",
         "phase_at_hit.v1",
         "spacetime_index.v1",
         "emission_shell_candidate.v1",

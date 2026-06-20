@@ -1583,11 +1583,11 @@ d\tau_{\mathcal A}
 =
 \frac{d\varphi_{\mathcal A}}{\Omega_{\mathcal A}^{(0)}}
 $$
-Here $\varphi_{\mathcal A}$ is the counted clock phase, $\Omega_{\mathcal A}^{(0)}$ is its rest-branch reference rate, $\mathcal{N}_{\mathrm{sea}}$ is the retained Noether sea state, $R_{\mathcal A}$ is the clock geometry/orientation record, $H_{\mathcal A}$ is the relevant path-history ledger, and $\mathbf{w}$ is the clock drift relative to local Noether sea flow. A broad expression such as $d\tau/dt=F(\mathbf{v},n,\chi_{\text{sea}},\Phi_{\text{eff}},\text{clock geometry})$ is only a shorthand after this phase channel has been declared.
+Here $\varphi_{\mathcal A}$ is the counted clock phase, $\Omega_{\mathcal A}^{(0)}$ is its rest-branch reference rate, $\mathcal{N}_{\mathrm{sea}}$ is the retained Noether sea state, $R_{\mathcal A}$ is the clock geometry/orientation record, $H_{\mathcal A}$ is the relevant path-history ledger, and $\mathbf{w}$ is the clock drift relative to local Noether sea flow. A broad expression such as $d\tau/dt=F(\mathbf{w},n,\chi_{\text{sea}},\Phi_{\text{eff}},\text{clock geometry})$ is only a shorthand after this phase channel has been declared.
 
 The target is to reproduce, in the appropriate regime,
 $$
-\frac{d\tau}{dt} \approx \sqrt{1+\frac{2\Phi_N}{c_0^2} - \frac{v^2}{c_0^2}}
+\frac{d\tau}{dt} \approx \sqrt{1+\frac{2\Phi_N}{c_0^2} - \frac{\|\mathbf{w}\|^2}{c_0^2}}
 $$
 and generalizes to strong-field and high-velocity conditions.
 
@@ -1629,7 +1629,7 @@ d\tau = \frac{\omega(\text{state})}{\omega_0}\, dt
 $$
 where $\omega(\text{state})$ is the instantaneous internal oscillation frequency in the actual kinematic and environmental state.
 
-The central problem is to compute $\omega(\mathbf{v},n,\chi_{\text{sea}},\Phi_{\text{eff}})$ from the master dynamics.
+The central problem is to compute $\omega(\mathbf{w},n,\chi_{\text{sea}},\Phi_{\text{eff}})$ from the master dynamics.
 
 ##### Moving-Branch Clock Retuning Target
 
@@ -1641,30 +1641,59 @@ c_f(t-t_0)
 $$
 The dressed observer-channel speed $c_\star$ is declared only after the clock/ruler channel is chosen: $c_\star=c_f$ for a primitive branch scan and usually $c_\star=c_{\text{eff}}(\mathbf{x})$ for a Noether sea dressed clock comparison. Thus
 $$
-\beta_\star=\frac{v}{c_\star},
+\mathbf{w}
+=
+\mathbf{V}_{\text{cm}}-\mathbf{u}_{\text{sea}},
 \qquad
-\gamma_\star(v)=\frac{1}{\sqrt{1-\beta_\star^2}}
+\beta_\star=\frac{\|\mathbf{w}\|}{c_\star},
+\qquad
+\gamma_\star(\mathbf{w})=\frac{1}{\sqrt{1-\beta_\star^2}}
 $$
+where $\mathbf{w}$ is the clock assembly drift through the local Noether sea.
 
-For an admitted moving nested shell swarm branch $q$ on a drift band $0\le v/c_f\le\beta_{\max}<1$, choose one clock phase $\theta_{\mathrm{clk},q}$ from the same causal-root ledger used for the branch's geometry. The extracted period is
+The simple clock-budget target is that the declared channel speed splits into center-of-mass drift and transverse closure:
 $$
-T_q(v)
+c_\star^2
+=
+\|\mathbf{w}\|^2+c_{\perp}^2
+$$
+so
+$$
+c_{\perp}
+=
+c_\star\sqrt{1-\frac{\|\mathbf{w}\|^2}{c_\star^2}}
+=
+\frac{c_\star}{\gamma_\star(\mathbf{w})}
+$$
+An accepted clock branch must then extract
+$$
+\frac{d\tau}{dt}
+=
+\frac{c_{\perp}}{c_\star}
+=
+\frac{1}{\gamma_\star(\mathbf{w})}
+$$
+from its internal phase dynamics, rather than assign the factor independently.
+
+For an admitted moving nested shell swarm branch $q$ on a drift band $0\le \|\mathbf{w}\|/c_f\le\beta_{\max}<1$, choose one clock phase $\theta_{\mathrm{clk},q}$ from the same causal-root ledger used for the branch's geometry. The extracted period is
+$$
+T_q(\mathbf{w})
 =
 \frac{2\pi}{\langle\dot{\theta}_{\mathrm{clk},q}\rangle_{\mathrm{cyc}}},
 \qquad
-T_0=T_q(0)
+T_0=T_q(\mathbf{0})
 $$
 and the clock residual is
 $$
-R_T^{(q)}(v)
+R_T^{(q)}(\mathbf{w})
 \equiv
-\frac{T_q(v)}{T_0}
+\frac{T_q(\mathbf{w})}{T_0}
 -
-\gamma_\star(v)
+\gamma_\star(\mathbf{w})
 $$
 The moving-clock theorem target is
 $$
-\left|R_T^{(q)}(v)\right|
+\left|R_T^{(q)}(\mathbf{w})\right|
 \le
 C_T\epsilon_{\text{LV}}\beta_\star^2
 $$
@@ -2268,7 +2297,7 @@ Two coupled mechanisms change the internal frequency of a tri‑binary clock:
 
 ##### Kinematic Effect (Velocity Dependence)
 
-When the clock moves with velocity $\mathbf{v}$ relative to the Noether sea:
+When the clock has center-of-mass velocity $\mathbf{V}_{\text{cm}}$ relative to a local Noether sea drift $\mathbf{u}_{\text{sea}}$, its material drift is $\mathbf{w}=\mathbf{V}_{\text{cm}}-\mathbf{u}_{\text{sea}}$:
 
 1. **Path‑length elongation:**
  Internal architrinos must traverse longer spatial paths per cycle because the clock’s center of mass is in motion. Even in the clock’s own rest frame, the underlying wake interactions are evaluated in the absolute frame where the worldline is slanted through absolute timespace.
@@ -2277,9 +2306,9 @@ When the clock moves with velocity $\mathbf{v}$ relative to the Noether sea:
  Primitive self-hit and partner-hit roots are mediated by delayed, radial path-history interactions at speed $c_f$. When those roots are dressed into an observer-level clock law, the transverse budget must be formed with the declared channel speed $c_\star$: $c_\star=c_f$ for a primitive branch test and $c_\star=c_{\text{eff}}(\mathbf{x})$ for a Noether sea dressed clock comparison.
 
 3. **Shape deformation (Lorentz‑link hypothesis):**
- To remain dynamically stable under increased $\|\mathbf{v}\|$, the tri‑binary’s outer exclusion surface becomes **oblate**, flattened along the direction of motion:
- - At low $v$, the outer exclusion surface is nearly spherical.
- - As $v\to c_\star$, that exclusion surface contracts along $\hat{\mathbf{v}}$ while maintaining transverse dimensions, yielding an oblate spheroidal envelope with semiaxes $(a_\perp, a_\perp, a_\parallel)$ and $a_\parallel < a_\perp$.
+ To remain dynamically stable under increased $\|\mathbf{w}\|$, the tri‑binary’s outer exclusion surface becomes **oblate**, flattened along the direction of motion:
+ - At low $\|\mathbf{w}\|$, the outer exclusion surface is nearly spherical.
+ - As $\|\mathbf{w}\|\to c_\star$, that exclusion surface contracts along $\hat{\mathbf{w}}$ while maintaining transverse dimensions, yielding an oblate spheroidal envelope with semiaxes $(a_\perp, a_\perp, a_\parallel)$ and $a_\parallel < a_\perp$.
  - This geometric dilation changes internal path lengths and curvature, lowering $\omega$.
 
 Geometry terminology follows [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md#canonical-geometry-variables): the envelope shape ratio is $\xi=R_{\parallel}/R_{\perp}$. The proper-time factor is not defined to be $\xi$; it is the extracted clock observable $\omega_{\text{clk}}/\omega_0=d\tau/dt$. In the homogeneous Lorentz-closure target, the theory must derive $\omega_{\text{clk}}/\omega_0\to\xi\to1/\gamma$.
@@ -2289,11 +2318,11 @@ $$
 c_{\perp}
 =
 c_\star
-\sqrt{1 - \frac{v^2}{c_\star^2}},
+\sqrt{1 - \frac{\|\mathbf{w}\|^2}{c_\star^2}},
 \qquad
-\omega(v, n=1) \approx \omega_0 \frac{c_{\perp}}{c_\star}
+\omega(\mathbf{w}, n=1) \approx \omega_0 \frac{c_{\perp}}{c_\star}
 \quad \Rightarrow\quad
-\frac{d\tau}{dt}\bigg|_{\text{kin}} \approx \sqrt{1 - \frac{v^2}{c_\star^2}}
+\frac{d\tau}{dt}\bigg|_{\text{kin}} \approx \sqrt{1 - \frac{\|\mathbf{w}\|^2}{c_\star^2}}
 $$
 in the regime where the clock's motion does not significantly disturb the local Noether sea. For SI comparison in the weak homogeneous observer branch, $c_\star$ is the measured low-gradient clock/signal speed $c_0=c_{\text{eff}}(\infty)$, not an independent replacement for the primitive wake speed $c_f$.
 
@@ -2346,13 +2375,13 @@ This coefficient must be derived from the same weak-field clock and phase map th
 
 ##### Combined Dilation
 
-In a region with potential $\Phi_N(\mathbf{x})$ and clock velocity $v$ relative to the Noether sea, we conjecture:
+In a region with potential $\Phi_N(\mathbf{x})$ and clock drift $\mathbf{w}$ relative to the Noether sea, we conjecture:
 $$
 \frac{d\tau}{dt}
-= \frac{\omega(v,\Phi_N,n)}{\omega_0}
-\approx \sqrt{1 + \frac{2\Phi_N}{c_0^2} - \frac{v^2}{c_0^2}}
+= \frac{\omega(\mathbf{w},\Phi_N,n)}{\omega_0}
+\approx \sqrt{1 + \frac{2\Phi_N}{c_0^2} - \frac{\|\mathbf{w}\|^2}{c_0^2}}
 $$
-in the weak-field, low-velocity observer limit, with higher-order corrections ($v^4/c_0^4$, $\Phi_N^2/c_0^4$, cross-terms) determined by the detailed Noether swarm response. Primitive simulations may still use $c_f$ inside the root equation; the PPN comparison uses the dressed asymptotic speed $c_0$.
+in the weak-field, low-velocity observer limit, with higher-order corrections ($\|\mathbf{w}\|^4/c_0^4$, $\Phi_N^2/c_0^4$, cross-terms) determined by the detailed Noether swarm response. Primitive simulations may still use $c_f$ inside the root equation; the PPN comparison uses the dressed asymptotic speed $c_0$.
 
 Outside that limit, $F$ will in general deviate from the GR expression and define the theory’s distinctive strong‑field / high‑velocity predictions.
 
@@ -2574,7 +2603,7 @@ This program fails—and the emergent‑metric project is likely untenable—if 
 ---
 
 **Deliverable of this document:**
-A concrete definition of **how** to compute $\omega(v,\Phi_{\text{eff}},n)$ for a tri‑binary clock, and a clear expression for $d\tau/dt$ in terms of those quantities.
+A concrete definition of **how** to compute $\omega(\mathbf{w},\Phi_{\text{eff}},n)$ for a tri‑binary clock, and a clear expression for $d\tau/dt$ in terms of those quantities.
 
 ##### Closure Program Interface (clock-to-PPN bridge)
 

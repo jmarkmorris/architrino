@@ -28,8 +28,9 @@ const ICON_HELP = Object.freeze({
 });
 const REPLAY_LOOP_SECONDS = 9;
 const TIME_EPSILON = 1e-6;
-const INITIAL_VELOCITY_ARROW_SCALE = 0.07;
+const INITIAL_VELOCITY_ARROW_SCALE = 0.04;
 const INITIAL_VELOCITY_PREVIEW_RESPONSE = 0.42;
+const NOW_SLIDER_MAX = 1000;
 const DEFAULT_ASSEMBLY_THRESHOLD = 0.00075;
 const MIN_RETAINED_DEPTH_LIMIT = 2;
 const FIELD_SPEED_MIN = 0.25;
@@ -38,6 +39,22 @@ const DEFAULT_FIELD_SPEED_SCALE = 1;
 const ARCHITRINO_KINDS = Object.freeze(["positrino", "electrino"]);
 const ARCHITRINO_SPEED_FRACTIONS = Object.freeze([0.1, 0.3, 0.5, 0.7, 0.9, 0.99, 0.999, 0.9999, 0.99999, 0.999999]);
 const DEFAULT_ARCHITRINO_SPEED_INDEX = 3;
+const VIEWPORT_ZOOM_MIN = 1;
+const VIEWPORT_ZOOM_MAX = 3;
+const WHEEL_ZOOM_SENSITIVITY = 0.0015;
+const CENTRAL_PAIR_INTERACTION_REPLAY_MODE = "pairInteraction";
+const DISCRETE_BOUNDARY_VALUE_CONVERGED_STATUS = "discrete_boundary_value_converged";
+const PHYSICAL_BOUNDARY_SOLVER_PENDING_STATUS = "physical_boundary_solver_pending";
+const DEFAULT_PATH_CONSTRAINT_BOUNDARY_RELAXATION_ITERATION_COUNT = 64;
+const DEFAULT_PATH_CONSTRAINT_BOUNDARY_RELAXATION_TOLERANCE = 10;
+const ADAPTIVE_PATH_CONSTRAINT_BOUNDARY_RELAXATION_ITERATION_COUNT = 256;
+const ADAPTIVE_PATH_CONSTRAINT_BOUNDARY_RELAXATION_TOLERANCE = 1;
+const WEAK_CONTRIBUTION_CUE_OFF = "off";
+const WEAK_CONTRIBUTION_CUE_THRESHOLD_ONLY = "threshold_only";
+const PATH_CONSTRAINT_DRAFT_REASONS = new Set([
+  "retained_point_drag_preview",
+  "reception_point_insert_preview",
+]);
 const VIRTUAL_OBSERVER = Object.freeze({ r: 74, g: 229, b: 255, a: 1 });
 const DEFAULT_VIRTUAL_OBSERVER_POINT = Object.freeze({
   kind: "virtualObserver",
@@ -47,6 +64,10 @@ const DEFAULT_VIRTUAL_OBSERVER_POINT = Object.freeze({
   y: 540,
 });
 const SPACE_KEYS = new Set([" ", "Space", "Spacebar"]);
+const REPLAY_STEP_KEYS = Object.freeze({
+  ArrowLeft: -1,
+  ArrowRight: 1,
+});
 const SPACEBAR_NATIVE_CONTROL_TAGS = new Set(["BUTTON", "INPUT", "SELECT", "TEXTAREA"]);
 const INACTIVE_WAKE_VISUAL_TIERS = Object.freeze({
   inactive: Object.freeze({
@@ -118,12 +139,16 @@ function formatCompactLabel(value, fallback = "") {
   return text.replace(/\s+/g, "_").slice(0, 72);
 }
 
-function createViewport(canvasWidth, canvasHeight) {
-  const scale = Math.min(canvasWidth / DESIGN_WIDTH, canvasHeight / DESIGN_HEIGHT);
+function createViewport(canvasWidth, canvasHeight, zoom = 1) {
+  const baseScale = Math.min(canvasWidth / DESIGN_WIDTH, canvasHeight / DESIGN_HEIGHT);
+  const viewportZoom = clamp(Number(zoom) || 1, VIEWPORT_ZOOM_MIN, VIEWPORT_ZOOM_MAX);
+  const scale = baseScale * viewportZoom;
   return {
     scale,
     offsetX: (canvasWidth - DESIGN_WIDTH * scale) * 0.5,
     offsetY: (canvasHeight - DESIGN_HEIGHT * scale) * 0.5,
+    baseScale,
+    zoom: viewportZoom,
   };
 }
 
@@ -150,7 +175,13 @@ class CausalDelayFeedbackRuntime {
     this.animationFrame = null;
     this.lastFrameTime = 0;
     this.elapsedSeconds = 0;
-    this.isPlaying = true;
+    this.reducedMotionEnabled = this.normalizeBooleanSetting(
+      options.reducedMotionEnabled ?? this.prefersReducedMotion(),
+    );
+    this.highContrastPathsEnabled = this.normalizeBooleanSetting(options.highContrastPathsEnabled);
+    this.backgroundDepthFieldEnabled = this.normalizeBooleanSetting(options.backgroundDepthFieldEnabled);
+    this.weakContributionCueMode = this.normalizeWeakContributionCueMode(options.weakContributionCueMode);
+    this.isPlaying = !this.reducedMotionEnabled;
     this.fieldSpeedScale = this.normalizeFieldSpeedScale(options.fieldSpeedScale ?? DEFAULT_FIELD_SPEED_SCALE);
     this.architrinoSpeedIndex = this.normalizeArchitrinoSpeedIndex(
       options.architrinoSpeedIndex ?? DEFAULT_ARCHITRINO_SPEED_INDEX,
@@ -165,6 +196,18 @@ class CausalDelayFeedbackRuntime {
     this.fallbackReplayAdapter = options.fallbackReplayAdapter ?? createTemporaryMockReplayAdapter();
     this.replayAdapter = options.replayAdapter ?? this.fallbackReplayAdapter;
     this.replayRequestOptions = options.replayRequestOptions ?? {};
+    this.explicitBoundaryRelaxationIterationCount = Object.prototype.hasOwnProperty.call(
+      this.replayRequestOptions,
+      "pathConstraintBoundaryRelaxationIterationCount",
+    );
+    this.explicitBoundaryRelaxationTolerance = Object.prototype.hasOwnProperty.call(
+      this.replayRequestOptions,
+      "pathConstraintBoundaryRelaxationTolerance",
+    );
+    this.explicitBoundaryRelaxationStepTolerance = Object.prototype.hasOwnProperty.call(
+      this.replayRequestOptions,
+      "pathConstraintBoundaryRelaxationStepTolerance",
+    );
     this.autoLoadReplay = options.autoLoadReplay !== false;
     this.replayLoadSequence = 0;
     this.replayLoadState = "idle";
@@ -173,10 +216,15 @@ class CausalDelayFeedbackRuntime {
     this.updateWakeLinkGeometry();
     this.resetArchitrinoVelocityReference();
     this.retainedDepthLimit = this.normalizeRetainedDepthLimit(options.retainedDepthLimit);
-    this.viewport = createViewport(DESIGN_WIDTH, DESIGN_HEIGHT);
+    this.viewportZoom = VIEWPORT_ZOOM_MIN;
+    this.viewport = createViewport(DESIGN_WIDTH, DESIGN_HEIGHT, this.viewportZoom);
+    this.canvasWidth = DESIGN_WIDTH;
+    this.canvasHeight = DESIGN_HEIGHT;
     this.pixelRatio = 1;
     this.selectedItem = null;
     this.dragState = null;
+    this.backgroundPointers = new Map();
+    this.pinchState = null;
     this.syncReplayRequestOptionsFromDataset();
   }
 
@@ -191,6 +239,8 @@ class CausalDelayFeedbackRuntime {
     this.populateCanvasSwatches();
     this.populateHistoryDepthControls();
     this.updateSpeedControls();
+    this.updateDisplaySettingControls();
+    this.updateNowControl();
     this.updateReplayStatus();
     this.bindEvents();
     this.resize();
@@ -210,12 +260,19 @@ class CausalDelayFeedbackRuntime {
       resetButton: queryRequiredElement(this.document, "#causal-delay-feedback-reset"),
       settingsButton: queryRequiredElement(this.document, "#causal-delay-feedback-settings"),
       settingsPanel: queryRequiredElement(this.document, "#causal-delay-feedback-settings-panel"),
+      resetPresetButton: queryRequiredElement(this.document, "#causal-delay-feedback-reset-preset"),
       colorSwatches: queryRequiredElement(this.document, "#causal-delay-feedback-color-swatches"),
+      nowInput: queryRequiredElement(this.document, "#causal-delay-feedback-now"),
+      nowValue: queryRequiredElement(this.document, "#causal-delay-feedback-now-value"),
       cfSpeedInput: queryRequiredElement(this.document, "#causal-delay-feedback-cf-speed"),
       cfSpeedValue: queryRequiredElement(this.document, "#causal-delay-feedback-cf-speed-value"),
       architrinoSpeedInput: queryRequiredElement(this.document, "#causal-delay-feedback-architrino-speed"),
       architrinoSpeedValue: queryRequiredElement(this.document, "#causal-delay-feedback-architrino-speed-value"),
       historyDepthControls: queryRequiredElement(this.document, "#causal-delay-feedback-history-depth"),
+      reducedMotionInput: queryRequiredElement(this.document, "#causal-delay-feedback-reduced-motion"),
+      highContrastPathsInput: queryRequiredElement(this.document, "#causal-delay-feedback-high-contrast-paths"),
+      backgroundDepthFieldInput: queryRequiredElement(this.document, "#causal-delay-feedback-depth-field"),
+      weakContributionCueInput: queryRequiredElement(this.document, "#causal-delay-feedback-weak-cue"),
       replayStatus: queryRequiredElement(this.document, "#causal-delay-feedback-replay-status"),
       hoverLabel: queryRequiredElement(this.document, "#causal-delay-feedback-hover-label"),
       readout: queryRequiredElement(this.document, "#causal-delay-feedback-readout"),
@@ -283,9 +340,10 @@ class CausalDelayFeedbackRuntime {
       this.setPlaying(!this.isPlaying);
     });
     this.dom.resetButton.addEventListener("click", () => {
-      this.elapsedSeconds = 0;
-      this.setPlaying(true);
-      this.render();
+      this.resetReplayTime();
+    });
+    this.dom.resetPresetButton.addEventListener("click", () => {
+      void this.resetPreset();
     });
     this.dom.settingsButton.addEventListener("click", () => {
       this.toggleSettings();
@@ -296,6 +354,9 @@ class CausalDelayFeedbackRuntime {
         return;
       }
       this.setCanvasColor(button.dataset.colorId);
+    });
+    this.dom.nowInput.addEventListener("input", () => {
+      this.setReplayNowSliderValue(this.dom.nowInput.value);
     });
     this.dom.cfSpeedInput.addEventListener("input", () => {
       this.setFieldSpeedScale(this.dom.cfSpeedInput.value);
@@ -320,12 +381,31 @@ class CausalDelayFeedbackRuntime {
       }
       this.setRetainedDepthLimit(Number(button.dataset.historyDepth));
     });
+    this.dom.reducedMotionInput.addEventListener("change", () => {
+      this.setReducedMotionEnabled(this.dom.reducedMotionInput.checked);
+    });
+    this.dom.highContrastPathsInput.addEventListener("change", () => {
+      this.setHighContrastPathsEnabled(this.dom.highContrastPathsInput.checked);
+    });
+    this.dom.backgroundDepthFieldInput.addEventListener("change", () => {
+      this.setBackgroundDepthFieldEnabled(this.dom.backgroundDepthFieldInput.checked);
+    });
+    this.dom.weakContributionCueInput.addEventListener("change", () => {
+      this.setWeakContributionCueMode(this.dom.weakContributionCueInput.value);
+    });
     this.dom.canvas.addEventListener("pointermove", (event) => {
       this.handleCanvasPointerMove(event);
     });
     this.dom.canvas.addEventListener("pointerdown", (event) => {
       this.handleCanvasPointerDown(event);
     });
+    this.dom.canvas.addEventListener(
+      "wheel",
+      (event) => {
+        this.handleCanvasWheel(event);
+      },
+      { passive: false },
+    );
     this.dom.canvas.addEventListener("contextmenu", (event) => {
       this.handleCanvasContextMenu(event);
     });
@@ -334,11 +414,11 @@ class CausalDelayFeedbackRuntime {
         this.dom.hoverLabel.hidden = true;
       }
     });
-    this.window.addEventListener("pointerup", () => {
-      void this.finishDrag();
+    this.window.addEventListener("pointerup", (event) => {
+      void this.finishDrag(event);
     });
-    this.window.addEventListener("pointercancel", () => {
-      void this.finishDrag();
+    this.window.addEventListener("pointercancel", (event) => {
+      void this.finishDrag(event);
     });
     this.document.addEventListener("pointerdown", (event) => {
       if (
@@ -406,12 +486,32 @@ class CausalDelayFeedbackRuntime {
     }
 
     try {
-      const dataset =
-        typeof adapter.createReplayAsync === "function"
-          ? await adapter.createReplayAsync({ presetId, requestOptions })
-          : adapter.createReplay({ presetId, requestOptions });
+      let dataset = await this.createReplayDataset(adapter, presetId, requestOptions);
       if (sequence !== this.replayLoadSequence) {
         return this.dataset;
+      }
+      const firstDataset = dataset;
+      const adaptiveRequestOptions = this.createAdaptivePathConstraintBoundaryRequestOptions(firstDataset, requestOptions);
+      if (adaptiveRequestOptions) {
+        try {
+          const retryDataset = await this.createReplayDataset(adapter, presetId, adaptiveRequestOptions);
+          if (this.isAdaptivePathConstraintBoundaryRetryBetter(firstDataset, retryDataset)) {
+            dataset = retryDataset;
+            this.annotateAdaptivePathConstraintBoundaryRetry(dataset, firstDataset, requestOptions, adaptiveRequestOptions);
+          } else {
+            this.annotateRejectedAdaptivePathConstraintBoundaryRetry(
+              dataset,
+              retryDataset,
+              requestOptions,
+              adaptiveRequestOptions,
+            );
+          }
+        } catch {
+          // Keep the first solver dataset if the stronger retry fails.
+        }
+        if (sequence !== this.replayLoadSequence) {
+          return this.dataset;
+        }
       }
       this.applyReplayDataset(dataset, { loadState: "ready" });
       this.elapsedSeconds = 0;
@@ -438,6 +538,12 @@ class CausalDelayFeedbackRuntime {
     }
   }
 
+  createReplayDataset(adapter, presetId, requestOptions) {
+    return typeof adapter.createReplayAsync === "function"
+      ? adapter.createReplayAsync({ presetId, requestOptions })
+      : adapter.createReplay({ presetId, requestOptions });
+  }
+
   applyReplayDataset(dataset, { loadState = this.replayLoadState } = {}) {
     this.dataset = dataset;
     this.replayLoadState = loadState;
@@ -461,7 +567,7 @@ class CausalDelayFeedbackRuntime {
     if (!this.dataset) {
       return;
     }
-    this.replayRequestOptions = {
+    const requestOptions = {
       ...this.replayRequestOptions,
       initialConditions: cloneJson(this.dataset.initialConditions ?? {}),
       virtualObserver: cloneJson(this.getVirtualObserver()),
@@ -470,9 +576,238 @@ class CausalDelayFeedbackRuntime {
       fieldSpeedScale: this.fieldSpeedScale,
       architrinoSpeedFraction: this.getArchitrinoSpeedFraction(),
     };
+    this.applyPathConstraintBoundaryDefaults(requestOptions);
+    this.replayRequestOptions = requestOptions;
+  }
+
+  applyPathConstraintBoundaryDefaults(requestOptions) {
+    const usesPathConstraints = this.usesPathConstraintDraft(this.dataset?.draftPreview);
+    if (!this.explicitBoundaryRelaxationIterationCount) {
+      if (usesPathConstraints) {
+        requestOptions.pathConstraintBoundaryRelaxationIterationCount =
+          DEFAULT_PATH_CONSTRAINT_BOUNDARY_RELAXATION_ITERATION_COUNT;
+      } else {
+        delete requestOptions.pathConstraintBoundaryRelaxationIterationCount;
+      }
+    }
+    if (!this.explicitBoundaryRelaxationTolerance) {
+      if (usesPathConstraints) {
+        requestOptions.pathConstraintBoundaryRelaxationTolerance =
+          DEFAULT_PATH_CONSTRAINT_BOUNDARY_RELAXATION_TOLERANCE;
+      } else {
+        delete requestOptions.pathConstraintBoundaryRelaxationTolerance;
+      }
+    }
+  }
+
+  usesPathConstraintDraft(draftPreview) {
+    return PATH_CONSTRAINT_DRAFT_REASONS.has(String(draftPreview?.reason ?? ""));
+  }
+
+  createAdaptivePathConstraintBoundaryRequestOptions(dataset, requestOptions) {
+    if (!this.usesPathConstraintDraft(requestOptions?.replayDataset?.draftPreview)) {
+      return null;
+    }
+    if (this.hasExplicitBoundaryRelaxationSettings(requestOptions)) {
+      return null;
+    }
+    const requestedIterationCount = Number(requestOptions?.pathConstraintBoundaryRelaxationIterationCount);
+    if (
+      Number.isFinite(requestedIterationCount) &&
+      requestedIterationCount >= ADAPTIVE_PATH_CONSTRAINT_BOUNDARY_RELAXATION_ITERATION_COUNT
+    ) {
+      return null;
+    }
+    if (!this.needsAdaptivePathConstraintBoundaryRetry(dataset)) {
+      return null;
+    }
+    return {
+      ...requestOptions,
+      pathConstraintBoundaryRelaxationIterationCount:
+        ADAPTIVE_PATH_CONSTRAINT_BOUNDARY_RELAXATION_ITERATION_COUNT,
+      pathConstraintBoundaryRelaxationTolerance:
+        ADAPTIVE_PATH_CONSTRAINT_BOUNDARY_RELAXATION_TOLERANCE,
+    };
+  }
+
+  hasExplicitBoundaryRelaxationSettings(requestOptions = this.replayRequestOptions) {
+    const hasIterationOverride =
+      Object.prototype.hasOwnProperty.call(requestOptions ?? {}, "pathConstraintBoundaryRelaxationIterationCount") &&
+      requestOptions?.pathConstraintBoundaryRelaxationIterationCount !==
+        DEFAULT_PATH_CONSTRAINT_BOUNDARY_RELAXATION_ITERATION_COUNT;
+    const hasToleranceOverride =
+      Object.prototype.hasOwnProperty.call(requestOptions ?? {}, "pathConstraintBoundaryRelaxationTolerance") &&
+      requestOptions?.pathConstraintBoundaryRelaxationTolerance !==
+        DEFAULT_PATH_CONSTRAINT_BOUNDARY_RELAXATION_TOLERANCE;
+    const hasStepToleranceOverride =
+      Object.prototype.hasOwnProperty.call(requestOptions ?? {}, "pathConstraintBoundaryRelaxationStepTolerance");
+    return (
+      this.explicitBoundaryRelaxationIterationCount ||
+      this.explicitBoundaryRelaxationTolerance ||
+      this.explicitBoundaryRelaxationStepTolerance ||
+      hasIterationOverride ||
+      hasToleranceOverride ||
+      hasStepToleranceOverride
+    );
+  }
+
+  needsAdaptivePathConstraintBoundaryRetry(dataset) {
+    const solverStatus = this.getDatasetPathConstraintSolverStatus(dataset);
+    if (solverStatus !== DISCRETE_BOUNDARY_VALUE_CONVERGED_STATUS) {
+      return true;
+    }
+    const residualAfter = this.getDatasetBoundaryRelaxationResidualAfter(dataset);
+    return (
+      !Number.isFinite(residualAfter) ||
+      residualAfter > ADAPTIVE_PATH_CONSTRAINT_BOUNDARY_RELAXATION_TOLERANCE
+    );
+  }
+
+  isAdaptivePathConstraintBoundaryRetryBetter(firstDataset, retryDataset) {
+    if (!retryDataset || typeof retryDataset !== "object") {
+      return false;
+    }
+    const firstRank = this.getDatasetPathConstraintBoundaryRank(firstDataset);
+    const retryRank = this.getDatasetPathConstraintBoundaryRank(retryDataset);
+    if (retryRank > firstRank) {
+      return true;
+    }
+    if (retryRank < firstRank) {
+      return false;
+    }
+
+    const firstResidualAfter = this.getDatasetBoundaryRelaxationResidualAfter(firstDataset);
+    const retryResidualAfter = this.getDatasetBoundaryRelaxationResidualAfter(retryDataset);
+    if (Number.isFinite(retryResidualAfter) && !Number.isFinite(firstResidualAfter)) {
+      return true;
+    }
+    if (!Number.isFinite(retryResidualAfter) && Number.isFinite(firstResidualAfter)) {
+      return false;
+    }
+    if (Number.isFinite(firstResidualAfter) && Number.isFinite(retryResidualAfter)) {
+      if (retryResidualAfter < firstResidualAfter) {
+        return true;
+      }
+      if (retryResidualAfter > firstResidualAfter) {
+        return false;
+      }
+    }
+
+    const firstResidualRatio = this.getDatasetBoundaryRelaxationResidualRatio(firstDataset);
+    const retryResidualRatio = this.getDatasetBoundaryRelaxationResidualRatio(retryDataset);
+    if (Number.isFinite(retryResidualRatio) && !Number.isFinite(firstResidualRatio)) {
+      return true;
+    }
+    if (!Number.isFinite(retryResidualRatio) && Number.isFinite(firstResidualRatio)) {
+      return false;
+    }
+    return Number.isFinite(firstResidualRatio) && Number.isFinite(retryResidualRatio)
+      ? retryResidualRatio < firstResidualRatio
+      : false;
+  }
+
+  getDatasetPathConstraintBoundaryRank(dataset) {
+    const solverStatus = this.getDatasetPathConstraintSolverStatus(dataset);
+    if (solverStatus === DISCRETE_BOUNDARY_VALUE_CONVERGED_STATUS) {
+      return 2;
+    }
+    return solverStatus ? 1 : 0;
+  }
+
+  getDatasetPathConstraintSolverStatus(dataset) {
+    return dataset?.pathConstraintSolverStatus ?? dataset?.solverSummary?.pathConstraintSolverStatus;
+  }
+
+  getDatasetBoundaryRelaxationResidualAfter(dataset) {
+    return Number(
+      dataset?.maxPathConstraintBoundaryRelaxationResidualAfter ??
+        dataset?.solverSummary?.maxPathConstraintBoundaryRelaxationResidualAfter,
+    );
+  }
+
+  getDatasetBoundaryRelaxationResidualRatio(dataset) {
+    return Number(
+      dataset?.pathConstraintBoundaryRelaxationResidualRatio ??
+        dataset?.solverSummary?.pathConstraintBoundaryRelaxationResidualRatio,
+    );
+  }
+
+  annotateAdaptivePathConstraintBoundaryRetry(dataset, firstDataset, firstRequestOptions, retryRequestOptions) {
+    if (!dataset || typeof dataset !== "object") {
+      return;
+    }
+    const metadata = {
+      pathConstraintBoundaryRelaxationAdaptiveRetry: true,
+      pathConstraintBoundaryRelaxationRetryCount: 1,
+      pathConstraintBoundaryRelaxationInitialIterationCount: Number(
+        firstRequestOptions?.pathConstraintBoundaryRelaxationIterationCount,
+      ),
+      pathConstraintBoundaryRelaxationInitialTolerance: Number(
+        firstRequestOptions?.pathConstraintBoundaryRelaxationTolerance,
+      ),
+      maxPathConstraintBoundaryRelaxationResidualAfterInitialAttempt: Number(
+        firstDataset?.maxPathConstraintBoundaryRelaxationResidualAfter ??
+          firstDataset?.solverSummary?.maxPathConstraintBoundaryRelaxationResidualAfter,
+      ),
+      pathConstraintBoundaryRelaxationResidualRatioInitialAttempt: Number(
+        firstDataset?.pathConstraintBoundaryRelaxationResidualRatio ??
+          firstDataset?.solverSummary?.pathConstraintBoundaryRelaxationResidualRatio,
+      ),
+      pathConstraintBoundaryRelaxationRetryIterationCount: Number(
+        retryRequestOptions?.pathConstraintBoundaryRelaxationIterationCount,
+      ),
+      pathConstraintBoundaryRelaxationRetryTolerance: Number(
+        retryRequestOptions?.pathConstraintBoundaryRelaxationTolerance,
+      ),
+    };
+    Object.assign(dataset, metadata);
+    if (dataset.solverSummary && typeof dataset.solverSummary === "object") {
+      Object.assign(dataset.solverSummary, metadata);
+    }
+  }
+
+  annotateRejectedAdaptivePathConstraintBoundaryRetry(
+    dataset,
+    rejectedDataset,
+    firstRequestOptions,
+    retryRequestOptions,
+  ) {
+    if (!dataset || typeof dataset !== "object") {
+      return;
+    }
+    const metadata = {
+      pathConstraintBoundaryRelaxationAdaptiveRetryRejected: true,
+      pathConstraintBoundaryRelaxationRetryCount: 1,
+      pathConstraintBoundaryRelaxationInitialIterationCount: Number(
+        firstRequestOptions?.pathConstraintBoundaryRelaxationIterationCount,
+      ),
+      pathConstraintBoundaryRelaxationInitialTolerance: Number(
+        firstRequestOptions?.pathConstraintBoundaryRelaxationTolerance,
+      ),
+      maxPathConstraintBoundaryRelaxationResidualAfterInitialAttempt:
+        this.getDatasetBoundaryRelaxationResidualAfter(dataset),
+      pathConstraintBoundaryRelaxationResidualRatioInitialAttempt:
+        this.getDatasetBoundaryRelaxationResidualRatio(dataset),
+      pathConstraintBoundaryRelaxationRejectedRetryIterationCount: Number(
+        retryRequestOptions?.pathConstraintBoundaryRelaxationIterationCount,
+      ),
+      pathConstraintBoundaryRelaxationRejectedRetryTolerance: Number(
+        retryRequestOptions?.pathConstraintBoundaryRelaxationTolerance,
+      ),
+      maxPathConstraintBoundaryRelaxationResidualAfterRejectedRetry:
+        this.getDatasetBoundaryRelaxationResidualAfter(rejectedDataset),
+      pathConstraintBoundaryRelaxationResidualRatioRejectedRetry:
+        this.getDatasetBoundaryRelaxationResidualRatio(rejectedDataset),
+      pathConstraintSolverStatusRejectedRetry: this.getDatasetPathConstraintSolverStatus(rejectedDataset),
+    };
+    Object.assign(dataset, metadata);
+    if (dataset.solverSummary && typeof dataset.solverSummary === "object") {
+      Object.assign(dataset.solverSummary, metadata);
+    }
   }
 
   refreshAfterReplayDatasetChange() {
+    this.updateNowControl();
     this.updateReplayStatus();
     if (this.dom?.readout) {
       this.updateReadout();
@@ -539,6 +874,424 @@ class CausalDelayFeedbackRuntime {
       };
     }
     if (this.dataset?.solverIntegrationPath && this.dataset.solverIntegrationPath !== TEMPORARY_MOCK_ADAPTER) {
+      if (this.dataset?.solverReplayMode === CENTRAL_PAIR_INTERACTION_REPLAY_MODE) {
+        const stepCount = Number(this.dataset?.pairInteractionStepCount ?? this.dataset?.solverSummary?.pairInteractionStepCount);
+        const interactionLaw = this.dataset?.interactionLaw ?? this.dataset?.solverSummary?.interactionLaw;
+        const executionPath = this.dataset?.executionPath ?? this.dataset?.solverSummary?.executionPath;
+        const maxConstraintResidual = Number(
+          this.dataset?.maxPathConstraintResidual ?? this.dataset?.solverSummary?.maxPathConstraintResidual
+        );
+        const guidanceSampleCount = Number(
+          this.dataset?.pathConstraintGuidanceSampleCount ??
+            this.dataset?.solverSummary?.pathConstraintGuidanceSampleCount
+        );
+        const guidanceMode =
+          this.dataset?.pathConstraintGuidanceMode ??
+          this.dataset?.solverSummary?.pathConstraintGuidanceMode;
+        const boundaryMode =
+          this.dataset?.pathConstraintBoundaryMode ??
+          this.dataset?.solverSummary?.pathConstraintBoundaryMode;
+        const boundarySeedMode =
+          this.dataset?.pathConstraintBoundarySeedMode ??
+          this.dataset?.solverSummary?.pathConstraintBoundarySeedMode;
+        const boundarySeedSampleCount = Number(
+          this.dataset?.pathConstraintBoundarySeedSampleCount ??
+            this.dataset?.solverSummary?.pathConstraintBoundarySeedSampleCount
+        );
+        const boundaryRelaxationMode =
+          this.dataset?.pathConstraintBoundaryRelaxationMode ??
+          this.dataset?.solverSummary?.pathConstraintBoundaryRelaxationMode;
+        const boundaryRelaxationIterationCount = Number(
+          this.dataset?.pathConstraintBoundaryRelaxationIterationCount ??
+            this.dataset?.solverSummary?.pathConstraintBoundaryRelaxationIterationCount
+        );
+        const boundaryRelaxationAppliedIterationCount = Number(
+          this.dataset?.pathConstraintBoundaryRelaxationAppliedIterationCount ??
+            this.dataset?.solverSummary?.pathConstraintBoundaryRelaxationAppliedIterationCount
+        );
+        const boundaryRelaxationStopReason =
+          this.dataset?.pathConstraintBoundaryRelaxationStopReason ??
+          this.dataset?.solverSummary?.pathConstraintBoundaryRelaxationStopReason;
+        const boundaryRelaxationTolerance = Number(
+          this.dataset?.pathConstraintBoundaryRelaxationTolerance ??
+            this.dataset?.solverSummary?.pathConstraintBoundaryRelaxationTolerance
+        );
+        const boundaryRelaxationStepTolerance = Number(
+          this.dataset?.pathConstraintBoundaryRelaxationStepTolerance ??
+            this.dataset?.solverSummary?.pathConstraintBoundaryRelaxationStepTolerance
+        );
+        const boundaryRelaxationStatus =
+          this.dataset?.pathConstraintBoundaryRelaxationStatus ??
+          this.dataset?.solverSummary?.pathConstraintBoundaryRelaxationStatus;
+        const boundaryRelaxationResidualEvidenceStatus =
+          this.dataset?.pathConstraintBoundaryRelaxationResidualEvidenceStatus ??
+          this.dataset?.solverSummary?.pathConstraintBoundaryRelaxationResidualEvidenceStatus;
+        const boundaryRelaxationResidualRatio = Number(
+          this.dataset?.pathConstraintBoundaryRelaxationResidualRatio ??
+            this.dataset?.solverSummary?.pathConstraintBoundaryRelaxationResidualRatio
+        );
+        const boundaryRelaxationRmsResidualRatio = Number(
+          this.dataset?.rmsPathConstraintBoundaryRelaxationResidualRatio ??
+            this.dataset?.solverSummary?.rmsPathConstraintBoundaryRelaxationResidualRatio
+        );
+        const boundaryRelaxationResidualSettlingRate = Number(
+          this.dataset?.pathConstraintBoundaryRelaxationResidualSettlingRate ??
+            this.dataset?.solverSummary?.pathConstraintBoundaryRelaxationResidualSettlingRate
+        );
+        const boundaryRelaxationRmsResidualSettlingRate = Number(
+          this.dataset?.rmsPathConstraintBoundaryRelaxationResidualSettlingRate ??
+            this.dataset?.solverSummary?.rmsPathConstraintBoundaryRelaxationResidualSettlingRate
+        );
+        const boundaryRelaxationRmsResidualAfter = Number(
+          this.dataset?.rmsPathConstraintBoundaryRelaxationResidualAfter ??
+            this.dataset?.solverSummary?.rmsPathConstraintBoundaryRelaxationResidualAfter
+        );
+        const boundaryRelaxationMaxStep = Number(
+          this.dataset?.pathConstraintBoundaryRelaxationMaxStep ??
+            this.dataset?.solverSummary?.pathConstraintBoundaryRelaxationMaxStep
+        );
+        const boundaryRelaxationFinalStepFactor = Number(
+          this.dataset?.pathConstraintBoundaryRelaxationFinalStepFactor ??
+            this.dataset?.solverSummary?.pathConstraintBoundaryRelaxationFinalStepFactor
+        );
+        const boundaryRelaxationSelectedCandidateKind =
+          this.dataset?.pathConstraintBoundaryRelaxationSelectedCandidateKind ??
+          this.dataset?.solverSummary?.pathConstraintBoundaryRelaxationSelectedCandidateKind;
+        const boundaryRelaxationCenterOfMassSelectedCount = Number(
+          this.dataset?.pathConstraintBoundaryRelaxationCenterOfMassSelectedCount ??
+            this.dataset?.solverSummary?.pathConstraintBoundaryRelaxationCenterOfMassSelectedCount
+        );
+        const boundaryRelaxationCandidateVariantCount = Number(
+          this.dataset?.pathConstraintBoundaryRelaxationCandidateVariantCount ??
+            this.dataset?.solverSummary?.pathConstraintBoundaryRelaxationCandidateVariantCount
+        );
+        const boundaryRelaxationLineSearchTrialCount = Number(
+          this.dataset?.pathConstraintBoundaryRelaxationLineSearchTrialCount ??
+            this.dataset?.solverSummary?.pathConstraintBoundaryRelaxationLineSearchTrialCount
+        );
+        const boundaryRelaxationCandidateKindMask = Number(
+          this.dataset?.pathConstraintBoundaryRelaxationCandidateKindMask ??
+            this.dataset?.solverSummary?.pathConstraintBoundaryRelaxationCandidateKindMask
+        );
+        const boundaryRelaxationAdaptiveRetry = Boolean(
+          this.dataset?.pathConstraintBoundaryRelaxationAdaptiveRetry ??
+            this.dataset?.solverSummary?.pathConstraintBoundaryRelaxationAdaptiveRetry
+        );
+        const boundaryRelaxationAdaptiveRetryRejected = Boolean(
+          this.dataset?.pathConstraintBoundaryRelaxationAdaptiveRetryRejected ??
+            this.dataset?.solverSummary?.pathConstraintBoundaryRelaxationAdaptiveRetryRejected
+        );
+        const boundaryRelaxationInitialIterationCount = Number(
+          this.dataset?.pathConstraintBoundaryRelaxationInitialIterationCount ??
+            this.dataset?.solverSummary?.pathConstraintBoundaryRelaxationInitialIterationCount
+        );
+        const boundaryRelaxationInitialTolerance = Number(
+          this.dataset?.pathConstraintBoundaryRelaxationInitialTolerance ??
+            this.dataset?.solverSummary?.pathConstraintBoundaryRelaxationInitialTolerance
+        );
+        const boundaryRelaxationInitialResidualAfter = Number(
+          this.dataset?.maxPathConstraintBoundaryRelaxationResidualAfterInitialAttempt ??
+            this.dataset?.solverSummary?.maxPathConstraintBoundaryRelaxationResidualAfterInitialAttempt
+        );
+        const boundaryRelaxationRejectedRetryIterationCount = Number(
+          this.dataset?.pathConstraintBoundaryRelaxationRejectedRetryIterationCount ??
+            this.dataset?.solverSummary?.pathConstraintBoundaryRelaxationRejectedRetryIterationCount
+        );
+        const boundaryRelaxationRejectedRetryTolerance = Number(
+          this.dataset?.pathConstraintBoundaryRelaxationRejectedRetryTolerance ??
+            this.dataset?.solverSummary?.pathConstraintBoundaryRelaxationRejectedRetryTolerance
+        );
+        const boundaryRelaxationRejectedRetryResidualAfter = Number(
+          this.dataset?.maxPathConstraintBoundaryRelaxationResidualAfterRejectedRetry ??
+            this.dataset?.solverSummary?.maxPathConstraintBoundaryRelaxationResidualAfterRejectedRetry
+        );
+        const constraintSolverStatus =
+          this.dataset?.pathConstraintSolverStatus ??
+          this.dataset?.solverSummary?.pathConstraintSolverStatus;
+        const constraintSolverClaim =
+          this.dataset?.pathConstraintSolverClaim ??
+          this.dataset?.solverSummary?.pathConstraintSolverClaim;
+        const physicalBoundarySolverStatus =
+          this.dataset?.pathConstraintPhysicalBoundarySolverStatus ??
+          this.dataset?.solverSummary?.pathConstraintPhysicalBoundarySolverStatus;
+        const physicalBoundarySolverClaim =
+          this.dataset?.pathConstraintPhysicalBoundarySolverClaim ??
+          this.dataset?.solverSummary?.pathConstraintPhysicalBoundarySolverClaim;
+        const maxGuidanceAcceleration = Number(
+          this.dataset?.maxPathConstraintGuidanceAcceleration ??
+            this.dataset?.solverSummary?.maxPathConstraintGuidanceAcceleration
+        );
+        const guidanceAccelerationStatus =
+          this.dataset?.pathConstraintGuidanceAccelerationStatus ??
+          this.dataset?.solverSummary?.pathConstraintGuidanceAccelerationStatus;
+        const guidanceAccelerationTolerance = Number(
+          this.dataset?.pathConstraintGuidanceAccelerationTolerance ??
+            this.dataset?.solverSummary?.pathConstraintGuidanceAccelerationTolerance
+        );
+        const boundarySampleCount = Number(
+          this.dataset?.pathConstraintBoundaryResidualSampleCount ??
+            this.dataset?.solverSummary?.pathConstraintBoundaryResidualSampleCount
+        );
+        const boundaryStatus =
+          this.dataset?.pathConstraintBoundaryResidualStatus ??
+          this.dataset?.solverSummary?.pathConstraintBoundaryResidualStatus;
+        const boundaryTolerance = Number(
+          this.dataset?.pathConstraintBoundaryResidualTolerance ??
+            this.dataset?.solverSummary?.pathConstraintBoundaryResidualTolerance
+        );
+        const maxBoundaryResidual = Number(
+          this.dataset?.maxPathConstraintBoundaryResidual ??
+            this.dataset?.solverSummary?.maxPathConstraintBoundaryResidual
+        );
+        const positionResidualSampleCount = Number(
+          this.dataset?.pathConstraintPositionResidualSampleCount ??
+            this.dataset?.solverSummary?.pathConstraintPositionResidualSampleCount
+        );
+        const positionResidualStatus =
+          this.dataset?.pathConstraintPositionResidualStatus ??
+          this.dataset?.solverSummary?.pathConstraintPositionResidualStatus;
+        const positionResidualTolerance = Number(
+          this.dataset?.pathConstraintPositionResidualTolerance ??
+            this.dataset?.solverSummary?.pathConstraintPositionResidualTolerance
+        );
+        const maxPositionResidual = Number(
+          this.dataset?.maxPathConstraintPositionResidual ??
+            this.dataset?.solverSummary?.maxPathConstraintPositionResidual
+        );
+        const frameRefinementSampleCount = Number(
+          this.dataset?.pathConstraintFrameRefinementSampleCount ??
+            this.dataset?.solverSummary?.pathConstraintFrameRefinementSampleCount
+        );
+        const stepDetail = Number.isFinite(stepCount) ? ` steps=${stepCount}` : "";
+        const frameRefinementDetail =
+          Number.isFinite(frameRefinementSampleCount) && frameRefinementSampleCount > 0
+            ? ` refined=${frameRefinementSampleCount}`
+            : "";
+        const lawDetail = interactionLaw ? ` law=${interactionLaw}` : "";
+        const pathDetail = executionPath ? ` path=${executionPath}` : "";
+        const residualDetail = Number.isFinite(maxConstraintResidual)
+          ? ` residual=${formatCompactNumber(maxConstraintResidual)}`
+          : "";
+        const isDiscreteBoundaryConverged =
+          constraintSolverStatus === DISCRETE_BOUNDARY_VALUE_CONVERGED_STATUS;
+        const effectiveBoundaryStatus =
+          boundaryStatus || (isDiscreteBoundaryConverged ? "unchecked" : "");
+        const effectivePositionResidualStatus =
+          positionResidualStatus || (isDiscreteBoundaryConverged ? "unchecked" : "");
+        const boundaryDetail =
+          Number.isFinite(boundarySampleCount) && boundarySampleCount > 0
+            ? ` boundary=${boundarySampleCount}${
+                Number.isFinite(maxBoundaryResidual) ? ` maxB=${formatCompactNumber(maxBoundaryResidual)}` : ""
+              }${
+                Number.isFinite(boundaryTolerance) ? ` tolB=${formatCompactNumber(boundaryTolerance)}` : ""
+              }`
+            : "";
+        const positionResidualDetail =
+          Number.isFinite(positionResidualSampleCount) && positionResidualSampleCount > 0
+            ? ` posRows=${positionResidualSampleCount}${
+                Number.isFinite(maxPositionResidual) ? ` posErr=${formatCompactNumber(maxPositionResidual)}` : ""
+              }${
+                Number.isFinite(positionResidualTolerance)
+                  ? ` posTol=${formatCompactNumber(positionResidualTolerance)}`
+                  : ""
+              }`
+            : "";
+        const positionResidualStatusDetail =
+          effectivePositionResidualStatus &&
+            (effectivePositionResidualStatus !== "unchecked" || isDiscreteBoundaryConverged)
+            ? ` posStatus=${formatCompactLabel(effectivePositionResidualStatus)}`
+            : "";
+        const boundaryStatusDetail =
+          effectiveBoundaryStatus && (effectiveBoundaryStatus !== "unchecked" || isDiscreteBoundaryConverged)
+            ? ` bStatus=${formatCompactLabel(effectiveBoundaryStatus)}`
+            : "";
+        const boundaryModeDetail = boundaryMode ? ` bMode=${formatCompactLabel(boundaryMode)}` : "";
+        const boundarySeedDetail =
+          boundarySeedMode || (Number.isFinite(boundarySeedSampleCount) && boundarySeedSampleCount > 0)
+            ? ` seed=${boundarySeedMode ? formatCompactLabel(boundarySeedMode) : "boundary"}${
+                Number.isFinite(boundarySeedSampleCount) && boundarySeedSampleCount > 0
+                  ? ` seedRows=${boundarySeedSampleCount}`
+                  : ""
+              }`
+            : "";
+        const boundaryRelaxationDetail = boundaryRelaxationMode
+            ? ` relax=${formatCompactLabel(boundaryRelaxationMode)}${
+              Number.isFinite(boundaryRelaxationIterationCount)
+                ? ` relaxIter=${boundaryRelaxationIterationCount}`
+                : ""
+            }${
+              Number.isFinite(boundaryRelaxationAppliedIterationCount)
+                ? ` relaxApplied=${boundaryRelaxationAppliedIterationCount}`
+                : ""
+            }${
+              boundaryRelaxationStopReason
+                ? ` relaxStop=${formatCompactLabel(boundaryRelaxationStopReason)}`
+                : ""
+            }${
+              Number.isFinite(boundaryRelaxationTolerance)
+                ? ` relaxTol=${formatCompactNumber(boundaryRelaxationTolerance)}`
+                : ""
+            }${
+              Number.isFinite(boundaryRelaxationStepTolerance)
+                ? ` relaxStepTol=${formatCompactNumber(boundaryRelaxationStepTolerance)}`
+                : ""
+            }${
+              Number.isFinite(boundaryRelaxationResidualRatio)
+                ? ` relaxRatio=${formatCompactNumber(boundaryRelaxationResidualRatio)}`
+                : ""
+            }${
+              Number.isFinite(boundaryRelaxationRmsResidualRatio)
+                ? ` relaxRmsRatio=${formatCompactNumber(boundaryRelaxationRmsResidualRatio)}`
+                : ""
+            }${
+              Number.isFinite(boundaryRelaxationResidualSettlingRate)
+                ? ` relaxRate=${formatCompactNumber(boundaryRelaxationResidualSettlingRate)}`
+                : ""
+            }${
+              Number.isFinite(boundaryRelaxationRmsResidualSettlingRate)
+                ? ` relaxRmsRate=${formatCompactNumber(boundaryRelaxationRmsResidualSettlingRate)}`
+                : ""
+            }${
+              Number.isFinite(boundaryRelaxationRmsResidualAfter)
+                ? ` relaxRms=${formatCompactNumber(boundaryRelaxationRmsResidualAfter)}`
+                : ""
+            }${
+              Number.isFinite(boundaryRelaxationMaxStep)
+                ? ` relaxStep=${formatCompactNumber(boundaryRelaxationMaxStep)}`
+                : ""
+            }${
+              Number.isFinite(boundaryRelaxationFinalStepFactor)
+                ? ` relaxFactor=${formatCompactNumber(boundaryRelaxationFinalStepFactor)}`
+                : ""
+            }${
+              boundaryRelaxationSelectedCandidateKind
+                ? ` relaxKind=${formatCompactLabel(boundaryRelaxationSelectedCandidateKind)}`
+                : ""
+            }${
+              boundaryRelaxationResidualEvidenceStatus
+                ? ` relaxEvidence=${formatCompactLabel(boundaryRelaxationResidualEvidenceStatus)}`
+                : ""
+            }${
+              Number.isFinite(boundaryRelaxationCenterOfMassSelectedCount)
+                ? ` relaxCom=${boundaryRelaxationCenterOfMassSelectedCount}`
+                : ""
+            }${
+              Number.isFinite(boundaryRelaxationCandidateVariantCount)
+                ? ` cand=${boundaryRelaxationCandidateVariantCount}`
+                : ""
+            }${
+              Number.isFinite(boundaryRelaxationLineSearchTrialCount)
+                ? ` trials=${boundaryRelaxationLineSearchTrialCount}`
+                : ""
+            }${
+              Number.isFinite(boundaryRelaxationCandidateKindMask)
+                ? ` mask=0x${boundaryRelaxationCandidateKindMask.toString(16)}`
+                : ""
+            }${boundaryRelaxationStatus ? ` relaxStatus=${formatCompactLabel(boundaryRelaxationStatus)}` : ""
+            }`
+          : "";
+        const boundaryAdaptiveDetail = boundaryRelaxationAdaptiveRetry
+          ? ` adaptiveRetry=${Number.isFinite(boundaryRelaxationInitialIterationCount) ? boundaryRelaxationInitialIterationCount : "?"}->${Number.isFinite(boundaryRelaxationIterationCount) ? boundaryRelaxationIterationCount : "?"}${
+              Number.isFinite(boundaryRelaxationInitialTolerance)
+                ? ` firstTol=${formatCompactNumber(boundaryRelaxationInitialTolerance)}`
+                : ""
+            }${
+              Number.isFinite(boundaryRelaxationInitialResidualAfter)
+                ? ` firstResidual=${formatCompactNumber(boundaryRelaxationInitialResidualAfter)}`
+                : ""
+            }`
+          : boundaryRelaxationAdaptiveRetryRejected
+            ? ` adaptiveRetryRejected=${Number.isFinite(boundaryRelaxationInitialIterationCount) ? boundaryRelaxationInitialIterationCount : "?"}->${Number.isFinite(boundaryRelaxationRejectedRetryIterationCount) ? boundaryRelaxationRejectedRetryIterationCount : "?"}${
+                Number.isFinite(boundaryRelaxationRejectedRetryTolerance)
+                  ? ` retryTol=${formatCompactNumber(boundaryRelaxationRejectedRetryTolerance)}`
+                  : ""
+              }${
+                Number.isFinite(boundaryRelaxationRejectedRetryResidualAfter)
+                  ? ` retryResidual=${formatCompactNumber(boundaryRelaxationRejectedRetryResidualAfter)}`
+                  : ""
+              }`
+          : "";
+        const guidanceDetail = Number.isFinite(guidanceSampleCount) && guidanceSampleCount > 0
+          ? ` guidance=${guidanceSampleCount}${
+              guidanceMode ? ` mode=${guidanceMode}` : ""
+            }${Number.isFinite(maxGuidanceAcceleration) ? ` maxA=${formatCompactNumber(maxGuidanceAcceleration)}` : ""}${
+              Number.isFinite(guidanceAccelerationTolerance)
+                ? ` tolA=${formatCompactNumber(guidanceAccelerationTolerance)}`
+                : ""
+            }${
+              guidanceAccelerationStatus && guidanceAccelerationStatus !== "unchecked"
+                ? ` aStatus=${formatCompactLabel(guidanceAccelerationStatus)}`
+                : ""
+            }`
+          : "";
+        const constraintSolverDetail = constraintSolverStatus
+          ? ` constraint=${constraintSolverStatus}${constraintSolverClaim ? ` claim=${constraintSolverClaim}` : ""}`
+          : "";
+        const physicalBoundarySolverDetail = physicalBoundarySolverStatus
+          ? ` physical=${formatCompactLabel(physicalBoundarySolverStatus)}${
+              physicalBoundarySolverClaim ? ` physicalClaim=${formatCompactLabel(physicalBoundarySolverClaim)}` : ""
+            }`
+          : "";
+        const constraintBoundary = isDiscreteBoundaryConverged
+          ? ` Retained path constraints converged against the discrete finite-difference pair equation under the requested relaxation tolerance.${
+              effectiveBoundaryStatus === "unchecked"
+                ? " Retained-knot boundary residual acceptance remains unchecked."
+                : ""
+            }${
+              effectivePositionResidualStatus === "unchecked"
+                ? " Retained-position preservation evidence remains unchecked."
+                : ""
+            } This remains the finite-difference retained-knot boundary relaxation, not the full physical pair-interaction/path-constraint boundary-value solver.`
+          : guidanceDetail
+            ? guidanceMode === "retained_knot_boundary"
+              ? " Retained path constraints used retained-knot boundary guidance; this is not yet the final physical boundary-value path solve."
+              : " Retained path constraints used finite-time guidance; this is not yet the final physical boundary-value path solve."
+            : "";
+        const physicalBoundarySolverHelp =
+          physicalBoundarySolverStatus === PHYSICAL_BOUNDARY_SOLVER_PENDING_STATUS
+            ? " The full physical pair-interaction/path-constraint boundary-value solver is still pending behind this replay."
+            : "";
+        return {
+          state: isDiscreteBoundaryConverged
+            ? "bridge-boundary"
+            : guidanceDetail
+              ? "bridge-guided"
+              : "bridge",
+          label: isDiscreteBoundaryConverged
+            ? "solver boundary replay"
+            : guidanceDetail
+              ? "solver guided replay"
+              : "solver pair replay",
+          help:
+            `Showing central solver bridge replay from one mutual pair-interaction path run${stepDetail}${frameRefinementDetail}${lawDetail}${pathDetail}${residualDetail}${positionResidualDetail}${positionResidualStatusDetail}${boundaryDetail}${boundaryStatusDetail}${boundaryModeDetail}${boundarySeedDetail}${boundaryRelaxationDetail}${boundaryAdaptiveDetail}${guidanceDetail}${constraintSolverDetail}${physicalBoundarySolverDetail}. ` +
+            `This replaces the segmented one-body seed replay for the default canvas path.${constraintBoundary}${physicalBoundarySolverHelp}`,
+        };
+      }
+      const accelerationPolicy = this.getBridgeMotionAccelerationPolicy();
+      if (accelerationPolicy === "pair_segmented_attraction_seed") {
+        const scale = Number(this.dataset?.pairAccelerationScale ?? this.dataset?.solverSummary?.pairAccelerationScale);
+        const segmentCount = Number(this.dataset?.pairSegmentCount ?? this.dataset?.solverSummary?.pairSegmentCount);
+        const scaleDetail = Number.isFinite(scale) ? ` scale=${formatCompactNumber(scale)}` : "";
+        const segmentDetail = Number.isFinite(segmentCount) ? ` segments=${segmentCount}` : "";
+        return {
+          state: "bridge-seed",
+          label: "solver seed replay",
+          help:
+            `Showing central solver bridge replay using pair_segmented_attraction_seed path acceleration${scaleDetail}${segmentDetail}. ` +
+            "This is a segmented pair-interaction approximation, not the final full pair-interaction path solver.",
+        };
+      }
+      if (accelerationPolicy === "pair_initial_attraction_seed") {
+        const scale = Number(this.dataset?.pairAccelerationScale ?? this.dataset?.solverSummary?.pairAccelerationScale);
+        const scaleDetail = Number.isFinite(scale) ? ` scale=${formatCompactNumber(scale)}.` : ".";
+        return {
+          state: "bridge-seed",
+          label: "solver seed replay",
+          help:
+            `Showing central solver bridge replay using pair_initial_attraction_seed path acceleration${scaleDetail} ` +
+            "This is not the final full pair-interaction path solver.",
+        };
+      }
       return {
         state: "bridge",
         label: "solver bridge replay",
@@ -557,6 +1310,11 @@ class CausalDelayFeedbackRuntime {
       label: "replay ready",
       help: "Showing replay data.",
     };
+  }
+
+  getBridgeMotionAccelerationPolicy() {
+    const policy = this.dataset?.motionAccelerationPolicy ?? this.dataset?.solverSummary?.motionAccelerationPolicy;
+    return typeof policy === "string" ? policy.trim() : "";
   }
 
   setCanvasColor(colorId) {
@@ -638,6 +1396,66 @@ class CausalDelayFeedbackRuntime {
     }
   }
 
+  setReducedMotionEnabled(isEnabled) {
+    const nextValue = this.normalizeBooleanSetting(isEnabled);
+    if (nextValue === this.reducedMotionEnabled) {
+      this.updateDisplaySettingControls();
+      return;
+    }
+    this.reducedMotionEnabled = nextValue;
+    if (this.reducedMotionEnabled) {
+      this.setPlaying(false);
+    } else {
+      this.updatePlayButton();
+    }
+    this.updateDisplaySettingControls();
+  }
+
+  setHighContrastPathsEnabled(isEnabled) {
+    const nextValue = this.normalizeBooleanSetting(isEnabled);
+    if (nextValue === this.highContrastPathsEnabled) {
+      this.updateDisplaySettingControls();
+      return;
+    }
+    this.highContrastPathsEnabled = nextValue;
+    this.updateDisplaySettingControls();
+    if (this.context) {
+      this.render();
+    }
+  }
+
+  setBackgroundDepthFieldEnabled(isEnabled) {
+    const nextValue = this.normalizeBooleanSetting(isEnabled);
+    if (nextValue === this.backgroundDepthFieldEnabled) {
+      this.updateDisplaySettingControls();
+      return;
+    }
+    this.backgroundDepthFieldEnabled = nextValue;
+    this.updateDisplaySettingControls();
+    if (this.context) {
+      this.render();
+    }
+  }
+
+  setWeakContributionCueMode(mode) {
+    const nextMode = this.normalizeWeakContributionCueMode(mode);
+    if (nextMode === this.weakContributionCueMode) {
+      this.updateDisplaySettingControls();
+      return;
+    }
+    this.weakContributionCueMode = nextMode;
+    this.updateDisplaySettingControls();
+    if (this.context) {
+      this.render();
+    }
+    if (this.dom?.readout) {
+      this.updateReadout();
+    }
+    if (this.dom?.settingsPanel) {
+      this.hideSettings();
+    }
+  }
+
   applyDatasetCanvasColor(dataset) {
     const colorId = dataset?.canvasColorId ?? dataset?.preset?.canvasColorId;
     if (!colorId) {
@@ -675,6 +1493,21 @@ class CausalDelayFeedbackRuntime {
   updateSpeedControls() {
     this.updateFieldSpeedControl();
     this.updateArchitrinoSpeedControl();
+  }
+
+  updateDisplaySettingControls() {
+    if (this.dom?.reducedMotionInput) {
+      this.dom.reducedMotionInput.checked = this.reducedMotionEnabled;
+    }
+    if (this.dom?.highContrastPathsInput) {
+      this.dom.highContrastPathsInput.checked = this.highContrastPathsEnabled;
+    }
+    if (this.dom?.backgroundDepthFieldInput) {
+      this.dom.backgroundDepthFieldInput.checked = this.backgroundDepthFieldEnabled;
+    }
+    if (this.dom?.weakContributionCueInput) {
+      this.dom.weakContributionCueInput.value = this.weakContributionCueMode;
+    }
   }
 
   updateFieldSpeedControl() {
@@ -727,6 +1560,27 @@ class CausalDelayFeedbackRuntime {
     return clamp(candidate, 0, ARCHITRINO_SPEED_FRACTIONS.length - 1);
   }
 
+  normalizeBooleanSetting(value) {
+    return value === true || value === "true" || value === "1" || value === 1;
+  }
+
+  normalizeWeakContributionCueMode(mode) {
+    return mode === WEAK_CONTRIBUTION_CUE_OFF
+      ? WEAK_CONTRIBUTION_CUE_OFF
+      : WEAK_CONTRIBUTION_CUE_THRESHOLD_ONLY;
+  }
+
+  prefersReducedMotion() {
+    if (typeof this.window?.matchMedia !== "function") {
+      return false;
+    }
+    try {
+      return Boolean(this.window.matchMedia("(prefers-reduced-motion: reduce)")?.matches);
+    } catch {
+      return false;
+    }
+  }
+
   getArchitrinoSpeedFraction(index = this.architrinoSpeedIndex) {
     return ARCHITRINO_SPEED_FRACTIONS[this.normalizeArchitrinoSpeedIndex(index)];
   }
@@ -741,7 +1595,7 @@ class CausalDelayFeedbackRuntime {
   }
 
   getVisibleHistory(kind) {
-    return (this.dataset?.history?.[kind] ?? []).filter((point) => Number(point.depth) <= this.retainedDepthLimit);
+    return (this.dataset?.history?.[kind] ?? []).filter((point) => this.isVisibleHistoryPoint(kind, point));
   }
 
   getVisibleWakeLinks() {
@@ -755,7 +1609,7 @@ class CausalDelayFeedbackRuntime {
       return true;
     }
     if (this.selectedItem.type === "history") {
-      return Number(this.selectedItem.depth) <= this.retainedDepthLimit;
+      return this.isVisibleHistoryDepth(this.selectedItem.kind, this.selectedItem.depth);
     }
     if (this.selectedItem.type === "wake") {
       return this.getVisibleWakeLinks().some((link) => link.id === this.selectedItem.linkId);
@@ -763,12 +1617,34 @@ class CausalDelayFeedbackRuntime {
     return true;
   }
 
+  isVisibleHistoryPoint(kind, point) {
+    return this.isVisibleHistoryDepth(kind, point?.depth);
+  }
+
+  isVisibleHistoryDepth(kind, depth) {
+    const numericDepth = Number(depth);
+    if (!Number.isFinite(numericDepth)) {
+      return false;
+    }
+    return numericDepth <= this.retainedDepthLimit || numericDepth === 1 || numericDepth === this.getMaxHistoryDepth(kind);
+  }
+
+  getMaxHistoryDepth(kind) {
+    const depths = (this.dataset?.history?.[kind] ?? [])
+      .map((point) => Number(point.depth))
+      .filter(Number.isFinite);
+    return depths.length > 0 ? Math.max(...depths) : 0;
+  }
+
   setPlaying(isPlaying) {
-    this.isPlaying = Boolean(isPlaying);
+    this.isPlaying = Boolean(isPlaying) && !this.reducedMotionEnabled;
     this.updatePlayButton();
   }
 
   updatePlayButton() {
+    if (!this.dom?.playButton) {
+      return;
+    }
     const help = this.isPlaying ? ICON_HELP.pause : ICON_HELP.play;
     this.dom.playButton.setAttribute("aria-label", help);
     this.dom.playButton.title = help;
@@ -776,6 +1652,66 @@ class CausalDelayFeedbackRuntime {
     this.dom.playButton.innerHTML = this.isPlaying
       ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14"></path><path d="M16 5v14"></path></svg>'
       : '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l10-7z"></path></svg>';
+  }
+
+  resetReplayTime() {
+    this.elapsedSeconds = 0;
+    this.setPlaying(true);
+    this.updateNowControl();
+    if (this.dom?.readout) {
+      this.updateReadout();
+    }
+    if (this.context) {
+      this.render();
+    }
+  }
+
+  resetPreset() {
+    if (this.dom?.settingsPanel && this.dom?.settingsButton) {
+      this.hideSettings();
+    }
+    return this.setPreset(this.presetId);
+  }
+
+  setReplayNowSliderValue(value) {
+    const numericValue = Number(value);
+    const sliderValue = Number.isFinite(numericValue) ? clamp(numericValue, 0, NOW_SLIDER_MAX) : 0;
+    const [start, end] = this.getReplayTimeRange();
+    const span = end - start;
+    const replayTime = span > 0 ? start + span * (sliderValue / NOW_SLIDER_MAX) : start;
+    this.setPlaying(false);
+    this.setCurrentReplayTime(replayTime);
+    this.updateNowControl(replayTime);
+    if (this.context) {
+      this.render(replayTime);
+    }
+    if (this.dom?.readout) {
+      this.updateReadout();
+    }
+  }
+
+  setCurrentReplayTime(replayTime) {
+    const [start, end] = this.getReplayTimeRange();
+    const span = end - start;
+    if (!Number.isFinite(span) || span <= 0) {
+      this.elapsedSeconds = 0;
+      return;
+    }
+    const numericReplayTime = Number(replayTime);
+    const nextTime = Number.isFinite(numericReplayTime) ? clamp(numericReplayTime, start, end) : start;
+    const phase = clamp((nextTime - start) / span, 0, 1);
+    this.elapsedSeconds = phase >= 1 ? REPLAY_LOOP_SECONDS - TIME_EPSILON : phase * REPLAY_LOOP_SECONDS;
+  }
+
+  updateNowControl(replayTime = this.getCurrentReplayTime()) {
+    if (!this.dom?.nowInput || !this.dom?.nowValue) {
+      return;
+    }
+    const [start, end] = this.getReplayTimeRange();
+    const span = end - start;
+    const phase = span > 0 ? clamp((replayTime - start) / span, 0, 1) : 0;
+    this.dom.nowInput.value = String(Math.round(phase * NOW_SLIDER_MAX));
+    this.dom.nowValue.textContent = `t=${formatCompactNumber(replayTime)}`;
   }
 
   toggleSettings() {
@@ -790,17 +1726,28 @@ class CausalDelayFeedbackRuntime {
   }
 
   handleKeyDown(event) {
-    if (!SPACE_KEYS.has(event.key) && !SPACE_KEYS.has(event.code)) {
+    if (SPACE_KEYS.has(event.key) || SPACE_KEYS.has(event.code)) {
+      if (this.shouldIgnoreKeyboardShortcutTarget(event.target)) {
+        return;
+      }
+      event.preventDefault();
+      this.setPlaying(!this.isPlaying);
       return;
     }
-    if (this.shouldIgnoreSpacebarTarget(event.target)) {
+
+    const stepDirection = REPLAY_STEP_KEYS[event.key] ?? REPLAY_STEP_KEYS[event.code] ?? 0;
+    if (stepDirection === 0) {
       return;
     }
-    event.preventDefault();
-    this.setPlaying(!this.isPlaying);
+    if (this.shouldIgnoreKeyboardShortcutTarget(event.target)) {
+      return;
+    }
+    if (this.stepReplayFrame(stepDirection)) {
+      event.preventDefault();
+    }
   }
 
-  shouldIgnoreSpacebarTarget(target) {
+  shouldIgnoreKeyboardShortcutTarget(target) {
     if (!target) {
       return false;
     }
@@ -809,6 +1756,43 @@ class CausalDelayFeedbackRuntime {
     }
     const tagName = String(target.tagName ?? "").toUpperCase();
     return SPACEBAR_NATIVE_CONTROL_TAGS.has(tagName);
+  }
+
+  stepReplayFrame(direction) {
+    const step = Math.sign(Number(direction) || 0);
+    if (step === 0) {
+      return false;
+    }
+    const times = this.getReplayFrameStepTimes();
+    if (times.length === 0) {
+      return false;
+    }
+    const currentTime = this.getCurrentReplayTime();
+    const nextTime =
+      step > 0
+        ? times.find((time) => time > currentTime + TIME_EPSILON) ?? times[0]
+        : [...times].reverse().find((time) => time < currentTime - TIME_EPSILON) ?? times.at(-1);
+    this.setPlaying(false);
+    this.setCurrentReplayTime(nextTime);
+    this.updateNowControl(nextTime);
+    if (this.context) {
+      this.render(nextTime);
+    }
+    if (this.dom?.readout) {
+      this.updateReadout();
+    }
+    return true;
+  }
+
+  getReplayFrameStepTimes() {
+    const frameTimes = (this.dataset?.frames ?? [])
+      .map((frame) => Number(frame.t))
+      .filter(Number.isFinite);
+    if (frameTimes.length === 0) {
+      return [];
+    }
+    frameTimes.sort((left, right) => left - right);
+    return frameTimes.filter((time, index, rows) => index === 0 || Math.abs(time - rows[index - 1]) > TIME_EPSILON);
   }
 
   resize() {
@@ -822,7 +1806,7 @@ class CausalDelayFeedbackRuntime {
     }
     this.canvasWidth = rect.width;
     this.canvasHeight = rect.height;
-    this.viewport = createViewport(this.canvasWidth, this.canvasHeight);
+    this.viewport = createViewport(this.canvasWidth, this.canvasHeight, this.viewportZoom);
     this.render();
   }
 
@@ -838,6 +1822,7 @@ class CausalDelayFeedbackRuntime {
       const previousReplayTime = this.getCurrentReplayTime();
       this.elapsedSeconds += deltaSeconds * this.fieldSpeedScale;
       const replayTime = this.getCurrentReplayTime();
+      this.updateNowControl(replayTime);
       this.render(this.getFrameReceptionReplayTime(previousReplayTime, replayTime) ?? replayTime);
       if (this.dom?.readout) {
         this.updateReadout();
@@ -868,6 +1853,113 @@ class CausalDelayFeedbackRuntime {
     };
   }
 
+  zoomViewportAtScreenPoint(screen, deltaY) {
+    if (!Number.isFinite(Number(deltaY)) || Number(deltaY) === 0) {
+      return false;
+    }
+    const currentZoom = clamp(
+      Number(this.viewportZoom ?? this.viewport?.zoom ?? VIEWPORT_ZOOM_MIN) || VIEWPORT_ZOOM_MIN,
+      VIEWPORT_ZOOM_MIN,
+      VIEWPORT_ZOOM_MAX,
+    );
+    const nextZoom = clamp(
+      currentZoom * Math.exp(-Number(deltaY) * WHEEL_ZOOM_SENSITIVITY),
+      VIEWPORT_ZOOM_MIN,
+      VIEWPORT_ZOOM_MAX,
+    );
+    return this.setViewportZoomAtScreenPoint(screen, nextZoom, currentZoom);
+  }
+
+  setViewportZoomAtScreenPoint(screen, nextZoom, currentZoom = this.viewportZoom) {
+    return this.setViewportZoomWithAnchorWorld(screen, this.screenToWorld(screen), nextZoom, currentZoom);
+  }
+
+  setViewportZoomWithAnchorWorld(screen, anchorWorld, nextZoom, currentZoom = this.viewportZoom) {
+    const normalizedCurrentZoom = clamp(
+      Number(currentZoom ?? this.viewport?.zoom ?? VIEWPORT_ZOOM_MIN) || VIEWPORT_ZOOM_MIN,
+      VIEWPORT_ZOOM_MIN,
+      VIEWPORT_ZOOM_MAX,
+    );
+    const normalizedNextZoom = clamp(
+      Number(nextZoom) || VIEWPORT_ZOOM_MIN,
+      VIEWPORT_ZOOM_MIN,
+      VIEWPORT_ZOOM_MAX,
+    );
+    if (Math.abs(normalizedNextZoom - normalizedCurrentZoom) <= 1e-5) {
+      return false;
+    }
+    const baseScale = Math.min(this.canvasWidth / DESIGN_WIDTH, this.canvasHeight / DESIGN_HEIGHT);
+    this.viewportZoom = normalizedNextZoom;
+    if (Math.abs(normalizedNextZoom - VIEWPORT_ZOOM_MIN) <= 1e-5) {
+      this.viewport = createViewport(this.canvasWidth, this.canvasHeight, this.viewportZoom);
+      return true;
+    }
+    const scale = baseScale * normalizedNextZoom;
+    this.viewport = {
+      scale,
+      offsetX: screen.x - anchorWorld.x * scale,
+      offsetY: screen.y - anchorWorld.y * scale,
+      baseScale,
+      zoom: normalizedNextZoom,
+    };
+    return true;
+  }
+
+  pointerKey(event) {
+    return event?.pointerId ?? "mouse";
+  }
+
+  canvasScreenPointFromEvent(event) {
+    const rect = this.dom.canvas.getBoundingClientRect();
+    return { x: event.clientX - rect.left, y: event.clientY - rect.top };
+  }
+
+  getPinchPoints() {
+    return [...this.backgroundPointers.entries()].slice(0, 2);
+  }
+
+  getPinchGeometry() {
+    const points = this.getPinchPoints();
+    if (points.length < 2) {
+      return null;
+    }
+    const first = points[0][1];
+    const second = points[1][1];
+    return {
+      distance: Math.hypot(second.x - first.x, second.y - first.y),
+      center: {
+        x: (first.x + second.x) * 0.5,
+        y: (first.y + second.y) * 0.5,
+      },
+    };
+  }
+
+  createPinchState() {
+    const geometry = this.getPinchGeometry();
+    if (!geometry || geometry.distance <= 0) {
+      return null;
+    }
+    return {
+      startDistance: geometry.distance,
+      startZoom: this.viewportZoom ?? VIEWPORT_ZOOM_MIN,
+      anchorWorld: this.screenToWorld(geometry.center),
+    };
+  }
+
+  clearBackgroundPointers() {
+    this.backgroundPointers.clear();
+    this.pinchState = null;
+  }
+
+  releaseCanvasPointer(event) {
+    const key = this.pointerKey(event);
+    if (!this.backgroundPointers.has(key)) {
+      return;
+    }
+    this.backgroundPointers.delete(key);
+    this.pinchState = this.backgroundPointers.size >= 2 ? this.createPinchState() : null;
+  }
+
   render(replayTime = this.getCurrentReplayTime()) {
     const ctx = this.context;
     ctx.setTransform(this.pixelRatio, 0, 0, this.pixelRatio, 0, 0);
@@ -876,7 +1968,7 @@ class CausalDelayFeedbackRuntime {
     this.drawWakes(ctx, replayTime);
     this.drawPathTrail(ctx, "positrino", POSITRINO);
     this.drawPathTrail(ctx, "electrino", ELECTRINO);
-    this.drawInitialConditionHandles(ctx);
+    this.drawInitialVelocityHandles(ctx);
     this.drawHistoryPoints(ctx, "positrino", POSITRINO);
     this.drawHistoryPoints(ctx, "electrino", ELECTRINO);
     this.drawVirtualObserver(ctx);
@@ -888,6 +1980,9 @@ class CausalDelayFeedbackRuntime {
     const canvasColor = getCanvasColorById(this.canvasColorId).color;
     ctx.fillStyle = canvasColor;
     ctx.fillRect(0, 0, this.canvasWidth, this.canvasHeight);
+    if (this.backgroundDepthFieldEnabled) {
+      this.drawBackgroundDepthField(ctx);
+    }
 
     const xAxisStart = this.worldToScreen({ x: 92, y: 908 });
     const xAxisEnd = this.worldToScreen({ x: 1810, y: 908 });
@@ -909,6 +2004,32 @@ class CausalDelayFeedbackRuntime {
 
     this.drawText(ctx, "space", { x: 74, y: 165 }, 14, withAlpha(WHITE, 0.62), "left");
     this.drawText(ctx, "time", { x: 1788, y: 932 }, 14, withAlpha(WHITE, 0.72), "right");
+  }
+
+  drawBackgroundDepthField(ctx) {
+    const fieldColor = withAlpha({ r: 198, g: 166, b: 255, a: 1 }, 0.07);
+    const anchorRows = [
+      { y: 256, bend: 28 },
+      { y: 352, bend: -20 },
+      { y: 448, bend: 22 },
+      { y: 548, bend: -24 },
+      { y: 648, bend: 20 },
+      { y: 748, bend: -22 },
+      { y: 842, bend: 18 },
+    ];
+    anchorRows.forEach((row, rowIndex) => {
+      const points = [];
+      for (let index = 0; index <= 18; index += 1) {
+        const t = index / 18;
+        const x = 140 + t * 1640;
+        const phase = t * Math.PI * 2 + rowIndex * 0.62;
+        points.push(this.worldToScreen({
+          x,
+          y: row.y + Math.sin(phase) * row.bend,
+        }));
+      }
+      this.drawLine(ctx, points, fieldColor, 0.8);
+    });
   }
 
   drawWakes(ctx, replayTime = this.getCurrentReplayTime()) {
@@ -1011,42 +2132,47 @@ class CausalDelayFeedbackRuntime {
 
   drawPathTrail(ctx, kind, color) {
     const points = this.dataset.paths[kind].map((point) => this.worldToScreen(point));
-    this.drawLine(ctx, points, withAlpha(mixColor(color, WHITE, 0.45), 0.32), 14);
+    const haloWidth = this.highContrastPathsEnabled ? 18 : 14;
+    const haloAlpha = this.highContrastPathsEnabled ? 0.46 : 0.32;
+    this.drawLine(ctx, points, withAlpha(mixColor(color, WHITE, 0.45), haloAlpha), haloWidth);
 
     for (let index = 0; index < points.length - 1; index += 1) {
       const progress = index / Math.max(1, points.length - 1);
-      this.drawLine(ctx, [points[index], points[index + 1]], withAlpha(color, 0.36 + 0.54 * progress), 3 + 3.4 * progress);
+      const lineAlpha = this.highContrastPathsEnabled ? 0.58 + 0.4 * progress : 0.36 + 0.54 * progress;
+      const lineWidth = this.highContrastPathsEnabled ? 4.5 + 4.2 * progress : 3 + 3.4 * progress;
+      this.drawLine(ctx, [points[index], points[index + 1]], withAlpha(color, lineAlpha), lineWidth);
     }
   }
 
   drawHistoryPoints(ctx, kind, color) {
     this.getVisibleHistory(kind).forEach((point) => {
       const screen = this.worldToScreen(point);
-      this.drawCircle(ctx, screen, 8.5, withAlpha({ r: 8, g: 6, b: 18, a: 1 }, 0.82), withAlpha(WHITE, 0.68), 1.2);
-      this.drawCircle(ctx, screen, 4.3, color);
+      const outerRadius = this.highContrastPathsEnabled ? 9.8 : 8.5;
+      const innerRadius = this.highContrastPathsEnabled ? 5.1 : 4.3;
+      const outlineAlpha = this.highContrastPathsEnabled ? 0.9 : 0.68;
+      this.drawCircle(ctx, screen, outerRadius, withAlpha({ r: 8, g: 6, b: 18, a: 1 }, 0.82), withAlpha(WHITE, outlineAlpha), 1.2);
+      this.drawCircle(ctx, screen, innerRadius, color);
       const offset = kind === "positrino" ? { x: 14, y: -13 } : { x: 14, y: 15 };
       this.drawScreenText(ctx, String(point.depth), { x: screen.x + offset.x * this.viewport.scale, y: screen.y + offset.y * this.viewport.scale }, 13, withAlpha(WHITE, 0.82), "center", "bold");
     });
   }
 
-  drawInitialConditionHandles(ctx) {
-    this.drawInitialConditionHandle(ctx, "positrino", POSITRINO);
-    this.drawInitialConditionHandle(ctx, "electrino", ELECTRINO);
+  drawInitialVelocityHandles(ctx) {
+    this.drawInitialVelocityHandle(ctx, "positrino", POSITRINO);
+    this.drawInitialVelocityHandle(ctx, "electrino", ELECTRINO);
   }
 
-  drawInitialConditionHandle(ctx, kind, color) {
+  drawInitialVelocityHandle(ctx, kind, color) {
     const condition = this.getInitialCondition(kind);
     if (!condition) {
       return;
     }
-    const point = this.initialConditionPoint(condition);
-    const velocityEnd = this.initialConditionVelocityEnd(condition);
+    const point = this.getInitialVelocityAnchorPoint(kind, condition);
+    const velocityEnd = this.initialConditionVelocityEnd(condition, point);
     const screen = this.worldToScreen(point);
     const velocityScreen = this.worldToScreen(velocityEnd);
     this.drawLine(ctx, [screen, velocityScreen], withAlpha(mixColor(color, WHITE, 0.42), 0.46), 2);
     this.drawCircle(ctx, velocityScreen, 5.6, withAlpha(color, 0.62), withAlpha(WHITE, 0.58), 1);
-    this.drawCircle(ctx, screen, 16, withAlpha(color, 0.13), withAlpha(WHITE, 0.62), 1.2);
-    this.drawCircle(ctx, screen, 6.4, color, WHITE, 1.2);
   }
 
   drawVirtualObserver(ctx) {
@@ -1061,7 +2187,28 @@ class CausalDelayFeedbackRuntime {
     this.drawCircle(ctx, screen, 3.6, VIRTUAL_OBSERVER);
     this.drawLine(ctx, [{ x: screen.x - arm, y: screen.y }, { x: screen.x + arm, y: screen.y }], withAlpha(VIRTUAL_OBSERVER, 0.54), 1.2);
     this.drawLine(ctx, [{ x: screen.x, y: screen.y - arm }, { x: screen.x, y: screen.y + arm }], withAlpha(VIRTUAL_OBSERVER, 0.54), 1.2);
-    this.drawScreenText(ctx, "Virtual Observer", { x: screen.x + 30 * this.viewport.scale, y: screen.y - 20 * this.viewport.scale }, 13, withAlpha(WHITE, 0.76), "left", "bold");
+    const label = this.getVirtualObserverLabelPlacement(screen);
+    this.drawScreenText(ctx, "Virtual Observer", label, 13, withAlpha(WHITE, 0.76), label.align, "bold");
+  }
+
+  getVirtualObserverLabelPlacement(screen, text = "Virtual Observer", size = 13) {
+    const fontSize = Math.max(9, size * this.viewport.scale);
+    const estimatedWidth = text.length * fontSize * 0.68;
+    const labelGap = Math.max(12, 30 * this.viewport.scale);
+    const rightPadding = Math.max(12, 28 * this.viewport.scale);
+    const labelY = screen.y - Math.max(12, 20 * this.viewport.scale);
+    if (screen.x + labelGap + estimatedWidth > this.canvasWidth - rightPadding) {
+      return {
+        x: screen.x - labelGap,
+        y: labelY,
+        align: "right",
+      };
+    }
+    return {
+      x: screen.x + labelGap,
+      y: labelY,
+      align: "left",
+    };
   }
 
   drawSelection(ctx) {
@@ -1079,21 +2226,13 @@ class CausalDelayFeedbackRuntime {
       this.drawCircle(ctx, screen, 18, withAlpha(WHITE, 0.05), withAlpha(WHITE, 0.86), 1.4);
       return;
     }
-    if (this.selectedItem.type === "initial-condition") {
-      const condition = this.getInitialCondition(this.selectedItem.kind);
-      if (!condition) {
-        return;
-      }
-      const screen = this.worldToScreen(this.initialConditionPoint(condition));
-      this.drawCircle(ctx, screen, 24, withAlpha(WHITE, 0.05), withAlpha(WHITE, 0.9), 1.5);
-      return;
-    }
     if (this.selectedItem.type === "initial-velocity") {
       const condition = this.getInitialCondition(this.selectedItem.kind);
       if (!condition) {
         return;
       }
-      const screen = this.worldToScreen(this.initialConditionVelocityEnd(condition));
+      const anchorPoint = this.getInitialVelocityAnchorPoint(this.selectedItem.kind, condition);
+      const screen = this.worldToScreen(this.initialConditionVelocityEnd(condition, anchorPoint));
       this.drawCircle(ctx, screen, 18, withAlpha(WHITE, 0.05), withAlpha(WHITE, 0.9), 1.4);
       return;
     }
@@ -1132,8 +2271,8 @@ class CausalDelayFeedbackRuntime {
 
   drawLiveMarker(ctx, kind, color, point, label, labelOffset) {
     const screen = this.worldToScreen(point);
-    this.drawCircle(ctx, screen, 20, withAlpha(color, 0.12));
-    this.drawCircle(ctx, screen, 9, color, WHITE, 1.4);
+    this.drawCircle(ctx, screen, this.highContrastPathsEnabled ? 23 : 20, withAlpha(color, this.highContrastPathsEnabled ? 0.2 : 0.12));
+    this.drawCircle(ctx, screen, this.highContrastPathsEnabled ? 10.4 : 9, color, WHITE, this.highContrastPathsEnabled ? 2 : 1.4);
     this.drawScreenText(
       ctx,
       label,
@@ -1224,23 +2363,37 @@ class CausalDelayFeedbackRuntime {
   updateHoverLabel(event) {
     const rect = this.dom.canvas.getBoundingClientRect();
     const screen = { x: event.clientX - rect.left, y: event.clientY - rect.top };
-    const hit = this.findNearestHit(screen);
+    const hit = this.findNearestHit(screen, { includeWakes: true });
     if (!hit) {
       this.dom.hoverLabel.hidden = true;
       return;
     }
-    this.dom.hoverLabel.textContent = hit.label;
+    this.dom.hoverLabel.textContent = this.createHoverLabel(hit);
     this.dom.hoverLabel.style.left = `${event.clientX}px`;
     this.dom.hoverLabel.style.top = `${event.clientY}px`;
     this.dom.hoverLabel.hidden = false;
+  }
+
+  createHoverLabel(hit) {
+    if (hit?.type !== "wake") {
+      return hit?.label ?? "";
+    }
+    const hoverDetails = (hit.details ?? []).filter((detail) => (
+      detail.startsWith("emit=") ||
+      detail.startsWith("hit=") ||
+      detail.startsWith("travel=") ||
+      detail.startsWith("contrib=") ||
+      detail.startsWith("state=") ||
+      detail.startsWith("reason=") ||
+      detail.startsWith("solver=")
+    ));
+    return [hit.label, ...hoverDetails].join("  ");
   }
 
   handleCanvasPointerMove(event) {
     if (this.dragState) {
       if (this.dragState.type === "initial-velocity") {
         this.dragSelectedInitialVelocity(event);
-      } else if (this.dragState.type === "initial-condition") {
-        this.dragSelectedInitialCondition(event);
       } else if (this.dragState.type === "virtual-observer") {
         this.dragSelectedVirtualObserver(event);
       } else {
@@ -1248,25 +2401,28 @@ class CausalDelayFeedbackRuntime {
       }
       return;
     }
+    if (this.backgroundPointers.has(this.pointerKey(event))) {
+      this.handleBackgroundPointerMove(event);
+      return;
+    }
     this.updateHoverLabel(event);
   }
 
   handleCanvasPointerDown(event) {
-    const rect = this.dom.canvas.getBoundingClientRect();
-    const screen = { x: event.clientX - rect.left, y: event.clientY - rect.top };
+    const screen = this.canvasScreenPointFromEvent(event);
     const hit = this.findNearestHit(screen, { includeWakes: true });
     if (!hit) {
       this.selectedItem = null;
       this.updateReadout();
       this.render();
+      this.startBackgroundPointer(event, screen);
       return;
     }
+    this.clearBackgroundPointers();
     this.selectedItem = hit.selection;
     this.updateReadout(hit);
     if (hit.type === "initial-velocity") {
       this.startInitialVelocityDrag(event, hit);
-    } else if (hit.type === "initial-condition") {
-      this.startInitialConditionDrag(event, hit);
     } else if (hit.type === "virtual-observer") {
       this.startVirtualObserverDrag(event, hit);
     } else if (hit.type === "history") {
@@ -1275,7 +2431,72 @@ class CausalDelayFeedbackRuntime {
     this.render();
   }
 
-  handleCanvasContextMenu(event) {
+  handleCanvasWheel(event) {
+    if (this.dragState) {
+      return;
+    }
+    const rect = this.dom.canvas.getBoundingClientRect();
+    const screen = { x: event.clientX - rect.left, y: event.clientY - rect.top };
+    const hit = this.findNearestHit(screen, { includeWakes: true });
+    if (hit) {
+      return;
+    }
+    if (!this.zoomViewportAtScreenPoint(screen, event.deltaY)) {
+      return;
+    }
+    event.preventDefault?.();
+    if (this.context) {
+      this.render();
+    }
+  }
+
+  startBackgroundPointer(event, screen) {
+    if (this.dragState) {
+      return;
+    }
+    this.backgroundPointers.set(this.pointerKey(event), screen);
+    this.pinchState = this.backgroundPointers.size >= 2 ? this.createPinchState() : null;
+    if (typeof this.dom.canvas.setPointerCapture === "function" && event.pointerId != null) {
+      this.dom.canvas.setPointerCapture(event.pointerId);
+    }
+    if (event.pointerType === "touch") {
+      event.preventDefault?.();
+    }
+  }
+
+  handleBackgroundPointerMove(event) {
+    const key = this.pointerKey(event);
+    if (!this.backgroundPointers.has(key)) {
+      return false;
+    }
+    this.backgroundPointers.set(key, this.canvasScreenPointFromEvent(event));
+    if (this.backgroundPointers.size < 2) {
+      return false;
+    }
+    const pinchState = this.pinchState ?? this.createPinchState();
+    if (!pinchState) {
+      return false;
+    }
+    this.pinchState = pinchState;
+    const geometry = this.getPinchGeometry();
+    if (!geometry || geometry.distance <= 0 || pinchState.startDistance <= 0) {
+      return false;
+    }
+    const nextZoom = pinchState.startZoom * (geometry.distance / pinchState.startDistance);
+    const didZoom = this.setViewportZoomWithAnchorWorld(
+      geometry.center,
+      pinchState.anchorWorld,
+      nextZoom,
+      this.viewportZoom,
+    );
+    event.preventDefault?.();
+    if (didZoom && this.context) {
+      this.render();
+    }
+    return didZoom;
+  }
+
+  async handleCanvasContextMenu(event) {
     const rect = this.dom.canvas.getBoundingClientRect();
     const screen = { x: event.clientX - rect.left, y: event.clientY - rect.top };
     const insertion = this.findNearestPathInsertion(screen);
@@ -1290,30 +2511,40 @@ class CausalDelayFeedbackRuntime {
     this.selectedItem = { type: "history", kind: point.kind, depth: point.depth };
     this.updateReadout(this.createHistoryHit(point, 0));
     this.render();
+    return this.submitReceptionPointInsertion();
+  }
+
+  async submitReceptionPointInsertion() {
+    if (this.usesFallbackReplayOnly() || this.shouldUseRepresentativeReplayOnly(this.presetId)) {
+      return this.dataset;
+    }
+    const selectedItem = this.selectedItem ? { ...this.selectedItem } : null;
+    const dataset = await this.loadReplay({
+      requestOptions: this.replayRequestOptions,
+      preserveDraftOnFailure: true,
+    });
+    if (this.canRestoreSelectedHistoryItem(selectedItem)) {
+      this.selectedItem = selectedItem;
+      this.updateReadout();
+      this.render();
+    }
+    return dataset;
+  }
+
+  canRestoreSelectedHistoryItem(selectedItem) {
+    if (selectedItem?.type !== "history") {
+      return false;
+    }
+    return this.getVisibleHistory(selectedItem.kind).some((point) => point.depth === selectedItem.depth);
   }
 
   startHistoryPointDrag(event, hit) {
-    const rect = this.dom.canvas.getBoundingClientRect();
-    const screen = { x: event.clientX - rect.left, y: event.clientY - rect.top };
+    this.clearBackgroundPointers();
+    const screen = this.canvasScreenPointFromEvent(event);
     this.dragState = {
       type: "history",
       kind: hit.selection.kind,
       depth: hit.selection.depth,
-      lastWorld: this.screenToWorld(screen),
-    };
-    this.setPlaying(false);
-    if (typeof this.dom.canvas.setPointerCapture === "function") {
-      this.dom.canvas.setPointerCapture(event.pointerId);
-    }
-    event.preventDefault();
-  }
-
-  startInitialConditionDrag(event, hit) {
-    const rect = this.dom.canvas.getBoundingClientRect();
-    const screen = { x: event.clientX - rect.left, y: event.clientY - rect.top };
-    this.dragState = {
-      type: "initial-condition",
-      kind: hit.selection.kind,
       lastWorld: this.screenToWorld(screen),
       didEdit: false,
     };
@@ -1325,8 +2556,8 @@ class CausalDelayFeedbackRuntime {
   }
 
   startInitialVelocityDrag(event, hit) {
-    const rect = this.dom.canvas.getBoundingClientRect();
-    const screen = { x: event.clientX - rect.left, y: event.clientY - rect.top };
+    this.clearBackgroundPointers();
+    const screen = this.canvasScreenPointFromEvent(event);
     this.dragState = {
       type: "initial-velocity",
       kind: hit.selection.kind,
@@ -1341,8 +2572,8 @@ class CausalDelayFeedbackRuntime {
   }
 
   startVirtualObserverDrag(event, hit) {
-    const rect = this.dom.canvas.getBoundingClientRect();
-    const screen = { x: event.clientX - rect.left, y: event.clientY - rect.top };
+    this.clearBackgroundPointers();
+    const screen = this.canvasScreenPointFromEvent(event);
     this.dragState = {
       type: "virtual-observer",
       lastWorld: this.screenToWorld(screen),
@@ -1365,21 +2596,6 @@ class CausalDelayFeedbackRuntime {
     };
     this.dragState.lastWorld = world;
     if (this.applyRetainedPointDrag(this.dragState.kind, this.dragState.depth, delta)) {
-      this.updateReadout();
-      this.render();
-    }
-  }
-
-  dragSelectedInitialCondition(event) {
-    const rect = this.dom.canvas.getBoundingClientRect();
-    const screen = { x: event.clientX - rect.left, y: event.clientY - rect.top };
-    const world = this.screenToWorld(screen);
-    const delta = {
-      x: world.x - this.dragState.lastWorld.x,
-      y: world.y - this.dragState.lastWorld.y,
-    };
-    this.dragState.lastWorld = world;
-    if (this.applyInitialConditionDrag(this.dragState.kind, delta)) {
       this.dragState.didEdit = true;
       this.updateReadout();
       this.render();
@@ -1414,20 +2630,24 @@ class CausalDelayFeedbackRuntime {
     }
   }
 
-  finishDrag() {
+  finishDrag(event = null) {
+    this.releaseCanvasPointer(event);
     const completedDrag = this.dragState;
     this.dragState = null;
-    if (
-      (
-        completedDrag?.type === "initial-condition" ||
-        completedDrag?.type === "initial-velocity" ||
-        completedDrag?.type === "virtual-observer"
-      ) &&
-      completedDrag.didEdit
-    ) {
+    if (this.shouldRerunAfterCompletedDrag(completedDrag)) {
       return this.rerunAfterDirectManipulationDrag();
     }
     return this.dataset;
+  }
+
+  shouldRerunAfterCompletedDrag(completedDrag) {
+    if (!completedDrag?.didEdit) {
+      return false;
+    }
+    if (completedDrag.type === "initial-velocity" || completedDrag.type === "virtual-observer") {
+      return true;
+    }
+    return completedDrag.type === "history";
   }
 
   rerunAfterDirectManipulationDrag() {
@@ -1451,34 +2671,28 @@ class CausalDelayFeedbackRuntime {
     return true;
   }
 
-  applyInitialConditionDrag(kind, delta) {
-    const didEdit = this.translateReplayPath(kind, delta);
-    if (!didEdit) {
-      return false;
-    }
-    this.updateWakeLinkGeometry();
-    this.syncReplayRequestOptionsFromDataset();
-    this.markDraftPreview("initial_condition_drag_preview");
-    return true;
-  }
-
   applyInitialVelocityDrag(kind, velocityEnd) {
     const condition = this.getInitialCondition(kind);
     if (!condition || !velocityEnd) {
       return false;
     }
+    const startPoint = this.getHistoryStartPoint(kind);
+    if (startPoint) {
+      this.syncInitialConditionToHistoryStart(kind, startPoint);
+    }
+    const velocityAnchor = this.getInitialVelocityAnchorPoint(kind, condition);
     const previousVelocity = {
       vx: Number(condition.vx) || 0,
       vy: Number(condition.vy) || 0,
     };
-    const nextVelocity = this.velocityFromInitialConditionHandle(condition, velocityEnd);
+    const nextVelocity = this.velocityFromInitialConditionHandle(condition, velocityEnd, velocityAnchor);
     if (previousVelocity.vx === nextVelocity.vx && previousVelocity.vy === nextVelocity.vy) {
       return false;
     }
 
     condition.vx = nextVelocity.vx;
     condition.vy = nextVelocity.vy;
-    this.applyInitialVelocityPreview(kind, condition, previousVelocity, nextVelocity);
+    this.applyInitialVelocityPreview(kind, { ...condition, ...velocityAnchor }, previousVelocity, nextVelocity);
     this.setArchitrinoVelocityReferenceFromCondition(kind);
     this.updateWakeLinkGeometry();
     this.syncReplayRequestOptionsFromDataset();
@@ -1657,6 +2871,7 @@ class CausalDelayFeedbackRuntime {
     };
     this.replayLoadState = "draft";
     this.replayLoadError = null;
+    this.syncReplayRequestOptionsFromDataset();
     this.updateReplayStatus();
   }
 
@@ -1699,36 +2914,6 @@ class CausalDelayFeedbackRuntime {
       link.staleSolverRunId = link.solverRunId ?? link.staleSolverRunId;
       link.staleReplaySource = this.dataset.runId ?? this.dataset.datasetId ?? null;
     });
-  }
-
-  translateReplayPath(kind, delta) {
-    if (!delta || (delta.x === 0 && delta.y === 0)) {
-      return false;
-    }
-    const points = this.dataset.paths[kind];
-    const condition = this.getInitialCondition(kind);
-    if (!Array.isArray(points) || !condition) {
-      return false;
-    }
-    points.forEach((point) => {
-      point.x += delta.x;
-      point.y += delta.y;
-    });
-    this.dataset.frames.forEach((frame) => {
-      const point = frame[kind];
-      if (!point || points.includes(point)) {
-        return;
-      }
-      point.x += delta.x;
-      point.y += delta.y;
-    });
-    this.dataset.history[kind].forEach((point) => {
-      point.x += delta.x;
-      point.y += delta.y;
-    });
-    condition.x += delta.x;
-    condition.y += delta.y;
-    return true;
   }
 
   applyArchitrinoSpeedFraction(fraction) {
@@ -1888,8 +3073,30 @@ class CausalDelayFeedbackRuntime {
       point.x += delta.x * weight;
       point.y += delta.y * weight;
     });
+    this.syncPathSamplesToHistoryPoint(kind, selectedPoint);
     this.syncInitialConditionToHistoryStart(kind, selectedPoint);
     return true;
+  }
+
+  syncPathSamplesToHistoryPoint(kind, historyPoint) {
+    const targetT = Number(historyPoint?.t);
+    if (!Number.isFinite(targetT)) {
+      return;
+    }
+    const syncPoint = (point, fallbackT = point?.t) => {
+      const sampleT = Number(fallbackT);
+      if (!point || !Number.isFinite(sampleT) || Math.abs(sampleT - targetT) > TIME_EPSILON) {
+        return;
+      }
+      point.x = Number(historyPoint.x) || 0;
+      point.y = Number(historyPoint.y) || 0;
+    };
+    (this.dataset.paths?.[kind] ?? []).forEach((point) => syncPoint(point));
+    (this.dataset.frames ?? []).forEach((frame) => {
+      const point = frame?.[kind];
+      const sampleT = Number.isFinite(Number(point?.t)) ? Number(point.t) : Number(frame?.t);
+      syncPoint(point, sampleT);
+    });
   }
 
   syncInitialConditionToHistoryStart(kind, point) {
@@ -2008,6 +3215,10 @@ class CausalDelayFeedbackRuntime {
     return this.dataset.initialConditions?.[kind] ?? null;
   }
 
+  getHistoryStartPoint(kind) {
+    return this.dataset.history?.[kind]?.find((point) => Number(point.depth) === 1) ?? null;
+  }
+
   getVirtualObserver() {
     return this.dataset?.virtualObserver ?? this.dataset?.initialConditions?.virtualObserver ?? null;
   }
@@ -2036,11 +3247,26 @@ class CausalDelayFeedbackRuntime {
   }
 
   initialConditionPoint(condition) {
-    return { x: Number(condition.x) || 0, y: Number(condition.y) || 0 };
+    return { x: Number(condition?.x) || 0, y: Number(condition?.y) || 0 };
   }
 
-  initialConditionVelocityEnd(condition) {
-    const point = this.initialConditionPoint(condition);
+  getInitialVelocityAnchorPoint(kind, condition = this.getInitialCondition(kind)) {
+    const historyStart = this.getHistoryStartPoint(kind);
+    if (historyStart) {
+      return {
+        t: Number.isFinite(Number(historyStart.t)) ? Number(historyStart.t) : Number(condition?.t) || 0,
+        x: Number(historyStart.x) || 0,
+        y: Number(historyStart.y) || 0,
+      };
+    }
+    return {
+      t: Number(condition?.t) || 0,
+      ...this.initialConditionPoint(condition),
+    };
+  }
+
+  initialConditionVelocityEnd(condition, anchorPoint = this.initialConditionPoint(condition)) {
+    const point = anchorPoint;
     const vx = Number(condition.vx) || 0;
     const vy = Number(condition.vy) || 0;
     return {
@@ -2049,8 +3275,8 @@ class CausalDelayFeedbackRuntime {
     };
   }
 
-  velocityFromInitialConditionHandle(condition, velocityEnd) {
-    const point = this.initialConditionPoint(condition);
+  velocityFromInitialConditionHandle(condition, velocityEnd, anchorPoint = this.initialConditionPoint(condition)) {
+    const point = anchorPoint;
     return {
       vx: (Number(velocityEnd.x) - point.x) / INITIAL_VELOCITY_ARROW_SCALE,
       vy: (Number(velocityEnd.y) - point.y) / INITIAL_VELOCITY_ARROW_SCALE,
@@ -2208,10 +3434,6 @@ class CausalDelayFeedbackRuntime {
       const condition = this.getInitialCondition(this.selectedItem.kind);
       return condition ? this.createInitialVelocityHit(this.selectedItem.kind, condition, 0) : null;
     }
-    if (this.selectedItem?.type === "initial-condition") {
-      const condition = this.getInitialCondition(this.selectedItem.kind);
-      return condition ? this.createInitialConditionHit(this.selectedItem.kind, condition, 0) : null;
-    }
     if (this.selectedItem?.type === "virtual-observer") {
       const observer = this.getVirtualObserver();
       return observer ? this.createVirtualObserverHit(observer, 0) : null;
@@ -2246,11 +3468,19 @@ class CausalDelayFeedbackRuntime {
         `red=${formatCompactNumber(summary.positiveContribution)}`,
         `blue=${formatCompactNumber(summary.negativeContribution)}`,
         `net=${formatCompactNumber(summary.netContribution)}`,
+        ...(summary.strongestContributionLabel
+          ? [
+              `strongest=${formatCompactLabel(summary.strongestContributionLabel)}:${formatCompactNumber(
+                summary.strongestContribution,
+              )}`,
+            ]
+          : []),
         `threshold=${formatCompactNumber(summary.threshold)}`,
         ...this.createDraftSolverRejectionReadoutDetails(),
         ...(summary.inactiveCount > 0 ? [`inactive=${summary.inactiveCount}`] : []),
         ...(summary.staleCount > 0 ? [`stale=${summary.staleCount}`] : []),
         ...(summary.rejectedCount > 0 ? [`rejected=${summary.rejectedCount}`] : []),
+        ...this.createContributionSummaryDiagnosticDetails(summary),
       ],
       distance: 0,
       hitRadius: 0,
@@ -2306,7 +3536,9 @@ class CausalDelayFeedbackRuntime {
       if (!condition) {
         return;
       }
-      const candidate = this.worldToScreen(this.initialConditionVelocityEnd(condition));
+      const candidate = this.worldToScreen(
+        this.initialConditionVelocityEnd(condition, this.getInitialVelocityAnchorPoint(kind, condition)),
+      );
       const distance = Math.hypot(screen.x - candidate.x, screen.y - candidate.y);
       velocityCandidates.push(this.createInitialVelocityHit(kind, condition, distance));
     });
@@ -2326,21 +3558,6 @@ class CausalDelayFeedbackRuntime {
     const nearestHistory = historyCandidates.sort((a, b) => a.distance - b.distance)[0];
     if (nearestHistory && nearestHistory.distance <= nearestHistory.hitRadius) {
       return nearestHistory;
-    }
-
-    const initialCandidates = [];
-    ["positrino", "electrino"].forEach((kind) => {
-      const condition = this.getInitialCondition(kind);
-      if (!condition) {
-        return;
-      }
-      const candidate = this.worldToScreen(this.initialConditionPoint(condition));
-      const distance = Math.hypot(screen.x - candidate.x, screen.y - candidate.y);
-      initialCandidates.push(this.createInitialConditionHit(kind, condition, distance));
-    });
-    const nearestInitial = initialCandidates.sort((a, b) => a.distance - b.distance)[0];
-    if (nearestInitial && nearestInitial.distance <= nearestInitial.hitRadius) {
-      return nearestInitial;
     }
 
     const observer = this.getVirtualObserver();
@@ -2373,32 +3590,31 @@ class CausalDelayFeedbackRuntime {
   }
 
   createHistoryHit(point, distance) {
+    const details = [
+      `t=${point.t.toFixed(2)}`,
+      `x=${Math.round(Number(point.x) || 0)}`,
+      `y=${Math.round(Number(point.y) || 0)}`,
+      `weight=${point.weight.toFixed(2)}`,
+      point.state,
+    ];
+    if (Number(point.depth) === 1) {
+      const condition = this.getInitialCondition(point.kind);
+      if (condition) {
+        details.push(
+          `vx=${(Number(condition.vx) || 0).toFixed(1)}`,
+          `vy=${(Number(condition.vy) || 0).toFixed(1)}`,
+        );
+      }
+    }
+    details.push(...this.createDraftSolverRejectionReadoutDetails());
     return {
       type: "history",
       title: `${point.kind} ${point.depth}`,
       label: `${point.kind} ${point.depth}`,
-      details: [`t=${point.t.toFixed(2)}`, `weight=${point.weight.toFixed(2)}`, point.state],
+      details,
       distance,
       hitRadius: 22,
       selection: { type: "history", kind: point.kind, depth: point.depth },
-    };
-  }
-
-  createInitialConditionHit(kind, condition, distance) {
-    return {
-      type: "initial-condition",
-      title: `${kind} initial`,
-      label: `${kind} initial`,
-      details: [
-        `x=${Math.round(Number(condition.x) || 0)}`,
-        `y=${Math.round(Number(condition.y) || 0)}`,
-        `vx=${(Number(condition.vx) || 0).toFixed(1)}`,
-        `vy=${(Number(condition.vy) || 0).toFixed(1)}`,
-        ...this.createDraftSolverRejectionReadoutDetails(),
-      ],
-      distance,
-      hitRadius: 24,
-      selection: { type: "initial-condition", kind },
     };
   }
 
@@ -2495,9 +3711,6 @@ class CausalDelayFeedbackRuntime {
 
   getContributionSummary(replayTime = this.getCurrentReplayTime()) {
     const wakeLinks = this.getVisibleWakeLinks();
-    if (wakeLinks.length === 0) {
-      return null;
-    }
     const summary = {
       replayTime,
       threshold: this.getAssemblyThreshold(),
@@ -2509,10 +3722,18 @@ class CausalDelayFeedbackRuntime {
       inactiveCount: 0,
       staleCount: 0,
       rejectedCount: 0,
+      invalidReasonCounts: {},
       positiveContribution: 0,
       negativeContribution: 0,
       netContribution: 0,
+      strongestContribution: 0,
+      strongestContributionMagnitude: 0,
+      strongestContributionLabel: null,
     };
+    if (wakeLinks.length === 0) {
+      summary.emptyReason = this.getEmptyWakeLinkReason();
+      return summary;
+    }
 
     wakeLinks.forEach((link) => {
       const wakeStatus = this.getWakeStatus(link);
@@ -2524,11 +3745,16 @@ class CausalDelayFeedbackRuntime {
         } else {
           summary.rejectedCount += 1;
         }
+        this.recordContributionSummaryDiagnosticReason(summary, wakeStatus);
         return;
       }
       const timing = this.getWakeTiming(link, replayTime);
       if (!timing) {
         summary.rejectedCount += 1;
+        this.recordContributionSummaryDiagnosticReason(summary, {
+          status: "rejected",
+          reason: "missing_wake_timing",
+        });
         return;
       }
       summary.activeLinkCount += 1;
@@ -2548,9 +3774,373 @@ class CausalDelayFeedbackRuntime {
         summary.negativeContribution += signedContribution;
       }
       summary.netContribution += signedContribution;
+      const magnitude = Math.abs(signedContribution);
+      if (magnitude > summary.strongestContributionMagnitude) {
+        summary.strongestContribution = signedContribution;
+        summary.strongestContributionMagnitude = magnitude;
+        summary.strongestContributionLabel = link.label;
+      }
     });
 
     return summary;
+  }
+
+  getEmptyWakeLinkReason() {
+    const totalWakeLinks = Number(this.dataset?.wakeLinks?.length);
+    return Number.isFinite(totalWakeLinks) && totalWakeLinks > 0 ? "no_visible_wake_links" : "no_wake_links";
+  }
+
+  recordContributionSummaryDiagnosticReason(summary, wakeStatus) {
+    const status = formatCompactLabel(wakeStatus?.status, "invalid");
+    const reason = formatCompactLabel(wakeStatus?.reason, "unresolved");
+    const key = `${status}:${reason}`;
+    summary.invalidReasonCounts[key] = (summary.invalidReasonCounts[key] ?? 0) + 1;
+  }
+
+  createContributionSummaryDiagnosticDetails(summary) {
+    const solverDetails = this.createContributionSummarySolverDetails();
+    const entries = Object.entries(summary.invalidReasonCounts ?? {})
+      .sort((left, right) => right[1] - left[1] || left[0].localeCompare(right[0]))
+      .slice(0, 3);
+    return [
+      ...solverDetails,
+      ...(summary.emptyReason ? [`why=${summary.emptyReason}`] : []),
+      ...(entries.length > 0 ? [`why=${entries.map(([key, count]) => `${key}x${count}`).join(",")}`] : []),
+    ];
+  }
+
+  createContributionSummarySolverDetails() {
+    if (this.dataset?.solverReplayMode !== CENTRAL_PAIR_INTERACTION_REPLAY_MODE) {
+      return [];
+    }
+    const summary = this.dataset?.solverSummary ?? {};
+    const guidanceSampleCount = Number(
+      this.dataset?.pathConstraintGuidanceSampleCount ?? summary.pathConstraintGuidanceSampleCount,
+    );
+    const guidanceMode = this.dataset?.pathConstraintGuidanceMode ?? summary.pathConstraintGuidanceMode;
+    const boundaryMode = this.dataset?.pathConstraintBoundaryMode ?? summary.pathConstraintBoundaryMode;
+    const boundarySeedMode = this.dataset?.pathConstraintBoundarySeedMode ?? summary.pathConstraintBoundarySeedMode;
+    const boundarySeedSampleCount = Number(
+      this.dataset?.pathConstraintBoundarySeedSampleCount ?? summary.pathConstraintBoundarySeedSampleCount,
+    );
+    const frameRefinementSampleCount = Number(
+      this.dataset?.pathConstraintFrameRefinementSampleCount ??
+        summary.pathConstraintFrameRefinementSampleCount,
+    );
+    const boundaryRelaxationMode =
+      this.dataset?.pathConstraintBoundaryRelaxationMode ?? summary.pathConstraintBoundaryRelaxationMode;
+    const boundaryRelaxationIterationCount = Number(
+      this.dataset?.pathConstraintBoundaryRelaxationIterationCount ??
+        summary.pathConstraintBoundaryRelaxationIterationCount,
+    );
+    const boundaryRelaxationAppliedIterationCount = Number(
+      this.dataset?.pathConstraintBoundaryRelaxationAppliedIterationCount ??
+        summary.pathConstraintBoundaryRelaxationAppliedIterationCount,
+    );
+    const boundaryRelaxationStopReason =
+      this.dataset?.pathConstraintBoundaryRelaxationStopReason ??
+      summary.pathConstraintBoundaryRelaxationStopReason;
+    const boundaryRelaxationTolerance = Number(
+      this.dataset?.pathConstraintBoundaryRelaxationTolerance ??
+        summary.pathConstraintBoundaryRelaxationTolerance,
+    );
+    const boundaryRelaxationStepTolerance = Number(
+      this.dataset?.pathConstraintBoundaryRelaxationStepTolerance ??
+        summary.pathConstraintBoundaryRelaxationStepTolerance,
+    );
+    const boundaryRelaxationStatus =
+      this.dataset?.pathConstraintBoundaryRelaxationStatus ?? summary.pathConstraintBoundaryRelaxationStatus;
+    const boundaryRelaxationResidualEvidenceStatus =
+      this.dataset?.pathConstraintBoundaryRelaxationResidualEvidenceStatus ??
+      summary.pathConstraintBoundaryRelaxationResidualEvidenceStatus;
+    const boundaryRelaxationResidualRatio = Number(
+      this.dataset?.pathConstraintBoundaryRelaxationResidualRatio ??
+        summary.pathConstraintBoundaryRelaxationResidualRatio,
+    );
+    const boundaryRelaxationRmsResidualRatio = Number(
+      this.dataset?.rmsPathConstraintBoundaryRelaxationResidualRatio ??
+        summary.rmsPathConstraintBoundaryRelaxationResidualRatio,
+    );
+    const boundaryRelaxationResidualSettlingRate = Number(
+      this.dataset?.pathConstraintBoundaryRelaxationResidualSettlingRate ??
+        summary.pathConstraintBoundaryRelaxationResidualSettlingRate,
+    );
+    const boundaryRelaxationRmsResidualSettlingRate = Number(
+      this.dataset?.rmsPathConstraintBoundaryRelaxationResidualSettlingRate ??
+        summary.rmsPathConstraintBoundaryRelaxationResidualSettlingRate,
+    );
+    const boundaryRelaxationRmsResidualAfter = Number(
+      this.dataset?.rmsPathConstraintBoundaryRelaxationResidualAfter ??
+        summary.rmsPathConstraintBoundaryRelaxationResidualAfter,
+    );
+    const boundaryRelaxationMaxStep = Number(
+      this.dataset?.pathConstraintBoundaryRelaxationMaxStep ??
+        summary.pathConstraintBoundaryRelaxationMaxStep,
+    );
+    const boundaryRelaxationFinalStepFactor = Number(
+      this.dataset?.pathConstraintBoundaryRelaxationFinalStepFactor ??
+        summary.pathConstraintBoundaryRelaxationFinalStepFactor,
+    );
+    const boundaryRelaxationSelectedCandidateKind =
+      this.dataset?.pathConstraintBoundaryRelaxationSelectedCandidateKind ??
+      summary.pathConstraintBoundaryRelaxationSelectedCandidateKind;
+    const boundaryRelaxationCenterOfMassSelectedCount = Number(
+      this.dataset?.pathConstraintBoundaryRelaxationCenterOfMassSelectedCount ??
+        summary.pathConstraintBoundaryRelaxationCenterOfMassSelectedCount,
+    );
+    const boundaryRelaxationCandidateVariantCount = Number(
+      this.dataset?.pathConstraintBoundaryRelaxationCandidateVariantCount ??
+        summary.pathConstraintBoundaryRelaxationCandidateVariantCount,
+    );
+    const boundaryRelaxationLineSearchTrialCount = Number(
+      this.dataset?.pathConstraintBoundaryRelaxationLineSearchTrialCount ??
+        summary.pathConstraintBoundaryRelaxationLineSearchTrialCount,
+    );
+    const boundaryRelaxationCandidateKindMask = Number(
+      this.dataset?.pathConstraintBoundaryRelaxationCandidateKindMask ??
+        summary.pathConstraintBoundaryRelaxationCandidateKindMask,
+    );
+    const boundaryRelaxationAdaptiveRetry = Boolean(
+      this.dataset?.pathConstraintBoundaryRelaxationAdaptiveRetry ??
+        summary.pathConstraintBoundaryRelaxationAdaptiveRetry,
+    );
+    const boundaryRelaxationAdaptiveRetryRejected = Boolean(
+      this.dataset?.pathConstraintBoundaryRelaxationAdaptiveRetryRejected ??
+        summary.pathConstraintBoundaryRelaxationAdaptiveRetryRejected,
+    );
+    const boundaryRelaxationInitialIterationCount = Number(
+      this.dataset?.pathConstraintBoundaryRelaxationInitialIterationCount ??
+        summary.pathConstraintBoundaryRelaxationInitialIterationCount,
+    );
+    const boundaryRelaxationInitialTolerance = Number(
+      this.dataset?.pathConstraintBoundaryRelaxationInitialTolerance ??
+        summary.pathConstraintBoundaryRelaxationInitialTolerance,
+    );
+    const boundaryRelaxationInitialResidualAfter = Number(
+      this.dataset?.maxPathConstraintBoundaryRelaxationResidualAfterInitialAttempt ??
+        summary.maxPathConstraintBoundaryRelaxationResidualAfterInitialAttempt,
+    );
+    const boundaryRelaxationRejectedRetryIterationCount = Number(
+      this.dataset?.pathConstraintBoundaryRelaxationRejectedRetryIterationCount ??
+        summary.pathConstraintBoundaryRelaxationRejectedRetryIterationCount,
+    );
+    const boundaryRelaxationRejectedRetryTolerance = Number(
+      this.dataset?.pathConstraintBoundaryRelaxationRejectedRetryTolerance ??
+        summary.pathConstraintBoundaryRelaxationRejectedRetryTolerance,
+    );
+    const boundaryRelaxationRejectedRetryResidualAfter = Number(
+      this.dataset?.maxPathConstraintBoundaryRelaxationResidualAfterRejectedRetry ??
+        summary.maxPathConstraintBoundaryRelaxationResidualAfterRejectedRetry,
+    );
+    const boundaryRelaxationRejectedRetryResidualRatio = Number(
+      this.dataset?.pathConstraintBoundaryRelaxationResidualRatioRejectedRetry ??
+        summary.pathConstraintBoundaryRelaxationResidualRatioRejectedRetry,
+    );
+    const constraintSolverStatus = this.dataset?.pathConstraintSolverStatus ?? summary.pathConstraintSolverStatus;
+    const constraintSolverClaim = this.dataset?.pathConstraintSolverClaim ?? summary.pathConstraintSolverClaim;
+    const physicalBoundarySolverStatus =
+      this.dataset?.pathConstraintPhysicalBoundarySolverStatus ??
+      summary.pathConstraintPhysicalBoundarySolverStatus;
+    const physicalBoundarySolverClaim =
+      this.dataset?.pathConstraintPhysicalBoundarySolverClaim ??
+      summary.pathConstraintPhysicalBoundarySolverClaim;
+    const isDiscreteBoundaryConverged = constraintSolverStatus === DISCRETE_BOUNDARY_VALUE_CONVERGED_STATUS;
+    const maxGuidanceAcceleration = Number(
+      this.dataset?.maxPathConstraintGuidanceAcceleration ?? summary.maxPathConstraintGuidanceAcceleration,
+    );
+    const guidanceAccelerationStatus =
+      this.dataset?.pathConstraintGuidanceAccelerationStatus ??
+      summary.pathConstraintGuidanceAccelerationStatus;
+    const guidanceAccelerationTolerance = Number(
+      this.dataset?.pathConstraintGuidanceAccelerationTolerance ??
+        summary.pathConstraintGuidanceAccelerationTolerance,
+    );
+    const boundarySampleCount = Number(
+      this.dataset?.pathConstraintBoundaryResidualSampleCount ?? summary.pathConstraintBoundaryResidualSampleCount,
+    );
+    const boundaryStatus =
+      this.dataset?.pathConstraintBoundaryResidualStatus ?? summary.pathConstraintBoundaryResidualStatus;
+    const effectiveBoundaryStatus =
+      boundaryStatus || (isDiscreteBoundaryConverged ? "unchecked" : "");
+    const boundaryTolerance = Number(
+      this.dataset?.pathConstraintBoundaryResidualTolerance ?? summary.pathConstraintBoundaryResidualTolerance,
+    );
+    const maxBoundaryResidual = Number(
+      this.dataset?.maxPathConstraintBoundaryResidual ?? summary.maxPathConstraintBoundaryResidual,
+    );
+    const maxConstraintResidual = Number(
+      this.dataset?.maxPathConstraintResidual ?? summary.maxPathConstraintResidual,
+    );
+    const positionResidualSampleCount = Number(
+      this.dataset?.pathConstraintPositionResidualSampleCount ??
+        summary.pathConstraintPositionResidualSampleCount,
+    );
+    const positionResidualStatus =
+      this.dataset?.pathConstraintPositionResidualStatus ??
+      summary.pathConstraintPositionResidualStatus;
+    const positionResidualTolerance = Number(
+      this.dataset?.pathConstraintPositionResidualTolerance ??
+        summary.pathConstraintPositionResidualTolerance,
+    );
+    const maxPositionResidual = Number(
+      this.dataset?.maxPathConstraintPositionResidual ?? summary.maxPathConstraintPositionResidual,
+    );
+    const details = [];
+    if (Number.isFinite(frameRefinementSampleCount) && frameRefinementSampleCount > 0) {
+      details.push(`refined=${frameRefinementSampleCount}`);
+    }
+    if (Number.isFinite(guidanceSampleCount) && guidanceSampleCount > 0) {
+      details.push(`guide=${formatCompactLabel(guidanceMode, "guided")}`);
+      if (boundaryMode) {
+        details.push(`bMode=${formatCompactLabel(boundaryMode)}`);
+      }
+      if (boundarySeedMode) {
+        details.push(`seed=${formatCompactLabel(boundarySeedMode)}`);
+      }
+      if (Number.isFinite(boundarySeedSampleCount) && boundarySeedSampleCount > 0) {
+        details.push(`seedRows=${boundarySeedSampleCount}`);
+      }
+      if (boundaryRelaxationMode) {
+        details.push(`relax=${formatCompactLabel(boundaryRelaxationMode)}`);
+        if (Number.isFinite(boundaryRelaxationIterationCount)) {
+          details.push(`relaxIter=${boundaryRelaxationIterationCount}`);
+        }
+      if (Number.isFinite(boundaryRelaxationAppliedIterationCount)) {
+        details.push(`relaxApplied=${boundaryRelaxationAppliedIterationCount}`);
+      }
+      if (boundaryRelaxationStopReason) {
+        details.push(`relaxStop=${formatCompactLabel(boundaryRelaxationStopReason)}`);
+      }
+      if (Number.isFinite(boundaryRelaxationTolerance)) {
+        details.push(`relaxTol=${formatCompactNumber(boundaryRelaxationTolerance)}`);
+      }
+      if (Number.isFinite(boundaryRelaxationStepTolerance)) {
+        details.push(`relaxStepTol=${formatCompactNumber(boundaryRelaxationStepTolerance)}`);
+      }
+        if (Number.isFinite(boundaryRelaxationResidualRatio)) {
+          details.push(`relaxRatio=${formatCompactNumber(boundaryRelaxationResidualRatio)}`);
+        }
+        if (Number.isFinite(boundaryRelaxationRmsResidualRatio)) {
+          details.push(`relaxRmsRatio=${formatCompactNumber(boundaryRelaxationRmsResidualRatio)}`);
+        }
+        if (Number.isFinite(boundaryRelaxationResidualSettlingRate)) {
+          details.push(`relaxRate=${formatCompactNumber(boundaryRelaxationResidualSettlingRate)}`);
+        }
+        if (Number.isFinite(boundaryRelaxationRmsResidualSettlingRate)) {
+          details.push(`relaxRmsRate=${formatCompactNumber(boundaryRelaxationRmsResidualSettlingRate)}`);
+        }
+        if (Number.isFinite(boundaryRelaxationRmsResidualAfter)) {
+          details.push(`relaxRms=${formatCompactNumber(boundaryRelaxationRmsResidualAfter)}`);
+        }
+        if (Number.isFinite(boundaryRelaxationMaxStep)) {
+          details.push(`relaxStep=${formatCompactNumber(boundaryRelaxationMaxStep)}`);
+        }
+        if (Number.isFinite(boundaryRelaxationFinalStepFactor)) {
+          details.push(`relaxFactor=${formatCompactNumber(boundaryRelaxationFinalStepFactor)}`);
+        }
+        if (boundaryRelaxationSelectedCandidateKind) {
+          details.push(`relaxKind=${formatCompactLabel(boundaryRelaxationSelectedCandidateKind)}`);
+        }
+        if (Number.isFinite(boundaryRelaxationCenterOfMassSelectedCount)) {
+          details.push(`relaxCom=${boundaryRelaxationCenterOfMassSelectedCount}`);
+        }
+        if (Number.isFinite(boundaryRelaxationCandidateVariantCount)) {
+          details.push(`cand=${boundaryRelaxationCandidateVariantCount}`);
+        }
+        if (Number.isFinite(boundaryRelaxationLineSearchTrialCount)) {
+          details.push(`trials=${boundaryRelaxationLineSearchTrialCount}`);
+        }
+        if (Number.isFinite(boundaryRelaxationCandidateKindMask)) {
+          details.push(`mask=0x${boundaryRelaxationCandidateKindMask.toString(16)}`);
+        }
+        if (boundaryRelaxationStatus) {
+          details.push(`relaxStatus=${formatCompactLabel(boundaryRelaxationStatus)}`);
+        }
+        if (boundaryRelaxationResidualEvidenceStatus) {
+          details.push(`evidence=${formatCompactLabel(boundaryRelaxationResidualEvidenceStatus)}`);
+        }
+        if (boundaryRelaxationAdaptiveRetry) {
+          if (Number.isFinite(boundaryRelaxationInitialIterationCount)) {
+            details.push(`relaxRetry=${boundaryRelaxationInitialIterationCount}->${boundaryRelaxationIterationCount}`);
+          } else {
+            details.push("relaxRetry=adaptive");
+          }
+          if (Number.isFinite(boundaryRelaxationInitialTolerance)) {
+            details.push(`firstTol=${formatCompactNumber(boundaryRelaxationInitialTolerance)}`);
+          }
+          if (Number.isFinite(boundaryRelaxationInitialResidualAfter)) {
+            details.push(`firstResidual=${formatCompactNumber(boundaryRelaxationInitialResidualAfter)}`);
+          }
+        } else if (boundaryRelaxationAdaptiveRetryRejected) {
+          if (Number.isFinite(boundaryRelaxationInitialIterationCount)) {
+            details.push(
+              `relaxRetryRejected=${boundaryRelaxationInitialIterationCount}->${Number.isFinite(boundaryRelaxationRejectedRetryIterationCount) ? boundaryRelaxationRejectedRetryIterationCount : "?"}`,
+            );
+          } else {
+            details.push("relaxRetryRejected=adaptive");
+          }
+          if (Number.isFinite(boundaryRelaxationRejectedRetryTolerance)) {
+            details.push(`retryTol=${formatCompactNumber(boundaryRelaxationRejectedRetryTolerance)}`);
+          }
+          if (Number.isFinite(boundaryRelaxationRejectedRetryResidualAfter)) {
+            details.push(`retryResidual=${formatCompactNumber(boundaryRelaxationRejectedRetryResidualAfter)}`);
+          }
+          if (Number.isFinite(boundaryRelaxationRejectedRetryResidualRatio)) {
+            details.push(`retryRatio=${formatCompactNumber(boundaryRelaxationRejectedRetryResidualRatio)}`);
+          }
+        }
+      }
+      details.push(`guideRows=${guidanceSampleCount}`);
+      if (Number.isFinite(maxGuidanceAcceleration)) {
+        details.push(`maxA=${formatCompactNumber(maxGuidanceAcceleration)}`);
+      }
+      if (Number.isFinite(guidanceAccelerationTolerance)) {
+        details.push(`tolA=${formatCompactNumber(guidanceAccelerationTolerance)}`);
+      }
+      if (guidanceAccelerationStatus && guidanceAccelerationStatus !== "unchecked") {
+        details.push(`aStatus=${formatCompactLabel(guidanceAccelerationStatus)}`);
+      }
+    }
+    if (constraintSolverStatus) {
+      details.push(`constraint=${formatCompactLabel(constraintSolverStatus)}`);
+    }
+    if (constraintSolverClaim) {
+      details.push(`claim=${formatCompactLabel(constraintSolverClaim)}`);
+    }
+    if (physicalBoundarySolverStatus) {
+      details.push(`physical=${formatCompactLabel(physicalBoundarySolverStatus)}`);
+    }
+    if (physicalBoundarySolverClaim) {
+      details.push(`physicalClaim=${formatCompactLabel(physicalBoundarySolverClaim)}`);
+    }
+    if (Number.isFinite(boundarySampleCount) && boundarySampleCount > 0) {
+      details.push(`boundary=${boundarySampleCount}`);
+      if (Number.isFinite(maxBoundaryResidual)) {
+        details.push(`maxB=${formatCompactNumber(maxBoundaryResidual)}`);
+      }
+      if (Number.isFinite(boundaryTolerance)) {
+        details.push(`tolB=${formatCompactNumber(boundaryTolerance)}`);
+      }
+    }
+    if (effectiveBoundaryStatus && (effectiveBoundaryStatus !== "unchecked" || isDiscreteBoundaryConverged)) {
+      details.push(`bStatus=${formatCompactLabel(effectiveBoundaryStatus)}`);
+    }
+    if (Number.isFinite(positionResidualSampleCount) && positionResidualSampleCount > 0) {
+      details.push(`posRows=${positionResidualSampleCount}`);
+      if (Number.isFinite(maxPositionResidual)) {
+        details.push(`posErr=${formatCompactNumber(maxPositionResidual)}`);
+      }
+      if (Number.isFinite(positionResidualTolerance)) {
+        details.push(`posTol=${formatCompactNumber(positionResidualTolerance)}`);
+      }
+      if (positionResidualStatus && positionResidualStatus !== "unchecked") {
+        details.push(`posStatus=${formatCompactLabel(positionResidualStatus)}`);
+      }
+    }
+    if (Number.isFinite(maxConstraintResidual)) {
+      details.push(`solverResid=${formatCompactNumber(maxConstraintResidual)}`);
+    }
+    return details;
   }
 
   getWakeSignedContribution(link) {
@@ -2603,10 +4193,23 @@ class CausalDelayFeedbackRuntime {
     const status = this.getWakeStatus(link);
     const thresholdState = this.getWakeThresholdState(link);
     const contributionScale = clamp(this.getWakeContributionMagnitude(link) / this.getAssemblyThreshold(), 0, 1);
+    const usesWeakThresholdCue = this.weakContributionCueMode === WEAK_CONTRIBUTION_CUE_THRESHOLD_ONLY;
     const thresholdAlphaScale =
-      thresholdState === "below_threshold" ? 0.62 : thresholdState === "near_threshold" ? 0.82 : 1;
+      !usesWeakThresholdCue
+        ? 1
+        : thresholdState === "below_threshold"
+          ? 0.62
+          : thresholdState === "near_threshold"
+            ? 0.82
+            : 1;
     const thresholdRadiusScale =
-      thresholdState === "below_threshold" ? 0.78 : thresholdState === "near_threshold" ? 0.9 : 1;
+      !usesWeakThresholdCue
+        ? 1
+        : thresholdState === "below_threshold"
+          ? 0.78
+          : thresholdState === "near_threshold"
+            ? 0.9
+            : 1;
     if (status.status === "active") {
       return {
         status: status.status,
@@ -2614,7 +4217,7 @@ class CausalDelayFeedbackRuntime {
         contributionScale,
         alphaScale: thresholdAlphaScale,
         radiusScale: thresholdRadiusScale,
-        desaturation: thresholdState === "below_threshold" ? 0.18 : 0,
+        desaturation: usesWeakThresholdCue && thresholdState === "below_threshold" ? 0.18 : 0,
       };
     }
     const inactiveVisualTier = INACTIVE_WAKE_VISUAL_TIERS[status.status] ?? INACTIVE_WAKE_VISUAL_TIERS.rejected;
@@ -2647,7 +4250,30 @@ class CausalDelayFeedbackRuntime {
     if (Number.isFinite(Number(link.solverHitStatusCode)) && Number(link.solverHitStatusCode) !== 0) {
       details.push(`hitCode=${Number(link.solverHitStatusCode)}`);
     }
+    details.push(...this.createWakeRootLedgerReadoutDetails(link));
     details.push(...this.createWakeRootStatusReadoutDetails(link));
+    return details;
+  }
+
+  createWakeRootLedgerReadoutDetails(link) {
+    const rows = Array.isArray(link?.rootLedgerDetails) ? link.rootLedgerDetails : [];
+    if (rows.length === 0) {
+      return [];
+    }
+    const details = [`ledgerRows=${rows.length}`];
+    const firstRow = rows.find((row) => row && typeof row === "object") ?? {};
+    if (Number.isFinite(Number(firstRow.residual))) {
+      details.push(`ledgerResid=${formatCompactNumber(Number(firstRow.residual))}`);
+    }
+    if (Number.isFinite(Number(firstRow.bracketStart)) && Number.isFinite(Number(firstRow.bracketEnd))) {
+      details.push(`ledgerBracket=${Number(firstRow.bracketStart).toFixed(2)}-${Number(firstRow.bracketEnd).toFixed(2)}`);
+    }
+    if (Number.isFinite(Number(firstRow.iterationCount))) {
+      details.push(`ledgerIter=${Number(firstRow.iterationCount)}`);
+    }
+    if (Number.isFinite(Number(firstRow.statusCode)) && Number(firstRow.statusCode) !== 0) {
+      details.push(`ledgerCode=${Number(firstRow.statusCode)}`);
+    }
     return details;
   }
 
@@ -2705,7 +4331,8 @@ class CausalDelayFeedbackRuntime {
         Number.isFinite(Number(link.rootCount)) ||
         Number.isFinite(Number(link.solverHitCount)) ||
         Number.isFinite(Number(link.solverHitTime)) ||
-        Number.isFinite(Number(link.solverResidual)),
+        Number.isFinite(Number(link.solverResidual)) ||
+        (Array.isArray(link.rootLedgerDetails) && link.rootLedgerDetails.length > 0),
     );
   }
 

@@ -433,6 +433,40 @@ Apparent inertial mass is expected to arise from a connected stack of effects:
   Language about velocity-dependent inertia should therefore be read as the moving center-of-mass response of the dressed assembly ledger, not as a change in scalar rest mass.
 - **Environment Dependence:** Local variations in Noether sea density, compliance, drift, and effective lapse can modulate the response. In dense or strongly graded regions, the effective inertial and gravitational response must be computed from the same medium-dressed closure map.
 
+#### Equivalence-Principle Response Target
+
+The mass thesis must recover not only an inertial response to imposed acceleration, but also the observed agreement between inertial and gravitational response. In $\mathbb{A}\mathbb{A}\mathbb{A}$ language, this is a same-map requirement: bulk acceleration of a stable assembly and a matched Noether sea gradient must perturb the same shielded internal causal ledger to tested accuracy.
+
+For a clock or mass-bearing assembly $A$, write the assembly-dependent clock/response factor in a weak cell as
+
+$$
+\chi_A(\mathbf{x})
+=
+N(\mathbf{x})\,[1+\epsilon_A(\mathbf{x})]
+$$
+
+where $N(\mathbf{x})$ is the universal effective lapse reconstructed from the local Noether sea state and $\epsilon_A$ is the assembly-dependent residue after the shared response has been removed. The weak equivalence target is then
+
+$$
+|\epsilon_A-\epsilon_B|
+\lesssim
+10^{-13}
+$$
+
+across tested material pairs after the corresponding inertial and gravitational response maps are compared. The exact bound belongs to the selected experimental class, but the structural point is fixed: if $\epsilon_A$ carries unsuppressed composition dependence, or if the acceleration row and gradient row use different Noether sea records, the scalar mass relation is only a fitted average rather than a branch consequence.
+
+Equivalently, the tensor response that maps exposed internal energy into $p_{\text{int}}^a$ must have the same homogeneous low-energy limit in acceleration and gradient probes:
+
+$$
+\mathcal{M}_{\text{sea,acc}}^{ab}(A)
+-
+\mathcal{M}_{\text{sea,grad}}^{ab}(A)
+=
+O(\epsilon_{\mathrm{EP}})
+$$
+
+with any residual reported as direction-dependent inertia, composition dependence, transport loss, or branch failure instead of being hidden inside $\zeta(A)$.
+
 ### Stability Constraint
 A critical requirement: assemblies in **equilibrium** with the Noether sea (e.g., atoms in stable orbitals) must experience no dissipative drag in the ordinary sense. Otherwise, electron orbitals would lose stability, radiate energy, and collapse into the nucleus (the classical electron catastrophe).
 

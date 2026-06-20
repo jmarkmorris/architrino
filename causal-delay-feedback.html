@@ -115,6 +115,11 @@
         color: rgba(148, 239, 255, 0.94);
       }
 
+      .causal-source-chip[data-state="bridge-seed"] {
+        border-color: rgba(74, 229, 255, 0.48);
+        color: rgba(255, 235, 145, 0.94);
+      }
+
       .causal-source-chip[data-state="fallback"] {
         border-color: rgba(255, 150, 166, 0.52);
         color: rgba(255, 186, 198, 0.94);
@@ -123,6 +128,23 @@
       .causal-source-chip[data-state="draft"] {
         border-color: rgba(255, 218, 89, 0.54);
         color: rgba(255, 235, 145, 0.94);
+      }
+
+      .causal-now-scrub {
+        display: grid;
+        grid-template-columns: minmax(118px, 18vw) 48px;
+        align-items: center;
+        gap: 8px;
+        min-width: 170px;
+      }
+
+      .causal-now-value {
+        color: rgba(246, 247, 255, 0.86);
+        font-size: 11px;
+        font-weight: 760;
+        line-height: 1;
+        text-align: right;
+        white-space: nowrap;
       }
 
       .causal-icon-button {
@@ -326,9 +348,57 @@
       }
 
       .causal-range {
+        height: 18px;
         width: 100%;
         accent-color: #4ae5ff;
+        appearance: none;
+        background: transparent;
         cursor: pointer;
+      }
+
+      .causal-range::-webkit-slider-runnable-track {
+        height: 4px;
+        border: 1px solid rgba(224, 207, 255, 0.18);
+        border-radius: 999px;
+        background: linear-gradient(90deg, rgba(74, 229, 255, 0.68), rgba(255, 150, 166, 0.58));
+        box-shadow: inset 0 0 0 1px rgba(6, 6, 12, 0.42);
+      }
+
+      .causal-range::-webkit-slider-thumb {
+        width: 16px;
+        height: 16px;
+        margin-top: -7px;
+        border: 1px solid rgba(246, 247, 255, 0.88);
+        border-radius: 999px;
+        appearance: none;
+        background: #4ae5ff;
+        box-shadow:
+          0 0 0 3px rgba(74, 229, 255, 0.16),
+          0 2px 8px rgba(0, 0, 0, 0.32);
+      }
+
+      .causal-range::-moz-range-track {
+        height: 4px;
+        border: 1px solid rgba(224, 207, 255, 0.18);
+        border-radius: 999px;
+        background: linear-gradient(90deg, rgba(74, 229, 255, 0.68), rgba(255, 150, 166, 0.58));
+        box-shadow: inset 0 0 0 1px rgba(6, 6, 12, 0.42);
+      }
+
+      .causal-range::-moz-range-thumb {
+        width: 16px;
+        height: 16px;
+        border: 1px solid rgba(246, 247, 255, 0.88);
+        border-radius: 999px;
+        background: #4ae5ff;
+        box-shadow:
+          0 0 0 3px rgba(74, 229, 255, 0.16),
+          0 2px 8px rgba(0, 0, 0, 0.32);
+      }
+
+      .causal-range:focus-visible {
+        outline: 2px solid rgba(246, 247, 255, 0.76);
+        outline-offset: 4px;
       }
 
       .causal-step-button {
@@ -352,6 +422,65 @@
         border-color: rgba(246, 247, 255, 0.72);
         color: #ffffff;
         outline: none;
+      }
+
+      .causal-settings-action {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 30px;
+        padding: 0 10px;
+        border: 1px solid rgba(246, 247, 255, 0.28);
+        border-radius: 6px;
+        background: rgba(36, 20, 55, 0.9);
+        color: rgba(246, 247, 255, 0.86);
+        cursor: pointer;
+        font-size: 12px;
+        font-weight: 780;
+        line-height: 1;
+      }
+
+      .causal-settings-action:hover,
+      .causal-settings-action:focus-visible {
+        border-color: rgba(246, 247, 255, 0.72);
+        color: #ffffff;
+        outline: none;
+      }
+
+      .causal-toggle-row {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        min-height: 30px;
+        gap: 12px;
+        color: rgba(246, 247, 255, 0.86);
+        font-size: 12px;
+        font-weight: 760;
+        line-height: 1;
+      }
+
+      .causal-toggle-row input {
+        width: 18px;
+        height: 18px;
+        accent-color: #4ae5ff;
+        cursor: pointer;
+      }
+
+      .causal-setting-select {
+        width: 100%;
+        height: 30px;
+        border: 1px solid rgba(224, 207, 255, 0.34);
+        border-radius: 6px;
+        background: rgba(36, 20, 55, 0.9);
+        color: rgba(246, 247, 255, 0.9);
+        font-size: 12px;
+        font-weight: 760;
+        outline: none;
+      }
+
+      .causal-setting-select:hover,
+      .causal-setting-select:focus-visible {
+        border-color: rgba(246, 247, 255, 0.72);
       }
 
       .causal-speed-value {
@@ -470,6 +599,11 @@
           width: auto;
         }
 
+        .causal-now-scrub {
+          flex: 1 1 180px;
+          grid-template-columns: minmax(118px, 1fr) 48px;
+        }
+
         .causal-legend {
           top: max(132px, calc(env(safe-area-inset-top) + 132px));
           left: max(12px, env(safe-area-inset-left));
@@ -509,6 +643,20 @@
           class="causal-source-chip"
           data-state="representative"
         >representative replay</span>
+
+        <div class="causal-now-scrub">
+          <input
+            id="causal-delay-feedback-now"
+            class="causal-range"
+            type="range"
+            min="0"
+            max="1000"
+            step="1"
+            value="0"
+            aria-label="Replay now"
+          />
+          <output id="causal-delay-feedback-now-value" class="causal-now-value">t=0.00</output>
+        </div>
 
         <button
           id="causal-delay-feedback-play"
@@ -623,6 +771,35 @@
         </div>
         <div class="causal-settings-label">Retained points</div>
         <div class="causal-depth-row" id="causal-delay-feedback-history-depth"></div>
+        <div class="causal-settings-label">Display</div>
+        <label class="causal-toggle-row">
+          <span>Reduced motion</span>
+          <input id="causal-delay-feedback-reduced-motion" type="checkbox" />
+        </label>
+        <label class="causal-toggle-row">
+          <span>High contrast paths</span>
+          <input id="causal-delay-feedback-high-contrast-paths" type="checkbox" />
+        </label>
+        <label class="causal-toggle-row">
+          <span>Depth field</span>
+          <input id="causal-delay-feedback-depth-field" type="checkbox" />
+        </label>
+        <div class="causal-settings-label">Weak cue</div>
+        <select
+          id="causal-delay-feedback-weak-cue"
+          class="causal-setting-select"
+          aria-label="Weak contribution cue"
+        >
+          <option value="threshold_only">Threshold only</option>
+          <option value="off">Off</option>
+        </select>
+        <button
+          id="causal-delay-feedback-reset-preset"
+          class="causal-settings-action"
+          type="button"
+        >
+          Reset preset
+        </button>
       </div>
 
       <div id="causal-delay-feedback-hover-label" class="causal-hover-label" hidden></div>

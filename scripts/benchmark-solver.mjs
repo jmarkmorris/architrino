@@ -59,12 +59,16 @@ if (reportPath) {
   fs.mkdirSync(path.dirname(reportPath), { recursive: true });
   fs.writeFileSync(reportPath, `${JSON.stringify(report, null, 2)}\n`);
   console.log(`wrote ${path.relative(rootDir, reportPath)}`);
+  if (!options.skipThresholds) {
+    runChecked("node", ["scripts/check-solver-benchmark-thresholds.mjs", "--report", reportPath], { env });
+  }
 }
 
 function parseArgs(rawArgs) {
   const parsed = {
     help: false,
     skipPreflight: false,
+    skipThresholds: false,
     writeReport: true,
     reportPath: undefined,
   };
@@ -74,6 +78,8 @@ function parseArgs(rawArgs) {
       parsed.help = true;
     } else if (arg === "--skip-preflight") {
       parsed.skipPreflight = true;
+    } else if (arg === "--skip-thresholds") {
+      parsed.skipThresholds = true;
     } else if (arg === "--no-report") {
       parsed.writeReport = false;
     } else if (arg === "--report") {
@@ -243,9 +249,11 @@ function numericValue(value, key, line) {
 }
 
 function printUsage(exitCode) {
-  console.log("Usage: node scripts/benchmark-solver.mjs [--skip-preflight] [--report <path>] [--no-report]");
+  console.log(
+    "Usage: node scripts/benchmark-solver.mjs [--skip-preflight] [--skip-thresholds] [--report <path>] [--no-report]"
+  );
   console.log("  Builds and runs the native Release solver benchmark target.");
   console.log("  Writes a structured benchmark report to .tmp/solver-build/benchmark/solver-benchmark-report.json by default.");
-  console.log("  The benchmark checks result sanity but does not enforce wall-clock thresholds.");
+  console.log("  The benchmark checks result sanity and non-wall-clock acceptance thresholds.");
   process.exit(exitCode);
 }

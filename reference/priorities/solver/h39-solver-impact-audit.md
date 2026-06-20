@@ -1,0 +1,153 @@
+# H39 Solver Impact Audit
+
+Status: `closed-retrospective-boundary-capture`
+
+Kind: `retrospective-impact-audit`
+
+Source task: `h39_solver_impact_audit` in [solver.md](solver.md)
+
+## Purpose
+
+This audit asks whether the central solver would likely have changed the H39 solution path. The possible classifications are:
+
+| Classification | Meaning |
+| --- | --- |
+| `h39_no_material_effect` | The central solver would not have changed the result, runtime profile, manual burden, or blocker order in a meaningful way. |
+| `h39_same_result_faster` | The same mathematical result and blocker would likely have appeared, but with less runtime, less manual iteration, or better diagnostics. |
+| `h39_refined_result` | The central solver would likely have produced sharper residuals, bounds, root data, or provenance while preserving the same broad conclusion. |
+| `h39_changed_bottleneck` | The central solver would likely have removed or demoted a historical bottleneck and exposed a different live blocker earlier. |
+| `h39_investigation_required_mismatch` | A central-solver replay would disagree with historical artifacts in root count, branch identity, residual sign, interval containment, or claim boundary in a way that needs investigation. |
+
+This is not an app migration. It is also not a claim that the central solver would have solved H39.
+
+## Current Evidence
+
+The direct H39 sources inspected for this audit are:
+
+- [solver.md](solver.md)
+- [precision.md](precision.md)
+- [h39-h38-source-covariance-closure-sprint-wrap-up.md](../geometry-bridge/h39-h38-source-covariance-closure-sprint-wrap-up.md)
+- [geometry-bridge.md](../geometry-bridge/geometry-bridge.md)
+- [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-primitive-diagnostic.md](../geometry-bridge/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-primitive-diagnostic.md)
+- [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-coefficient-series-engine.md](../geometry-bridge/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-coefficient-series-engine.md)
+- [theta3minus-fold-pair-first-y-gd-h39-recurrence-refined-subcover-diagnostic.mjs](../../../scripts/neutral-swarm/theta3minus-fold-pair-first-y-gd-h39-recurrence-refined-subcover-diagnostic.mjs)
+- [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-primitive-diagnostic.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-primitive-diagnostic.mjs)
+- [h39-shared-domain-primitive-replay.mjs](../../../scripts/solver-audits/h39-shared-domain-primitive-replay.mjs)
+- [h39-terminal-graph-remainder-budget-replay.mjs](../../../scripts/solver-audits/h39-terminal-graph-remainder-budget-replay.mjs)
+- [neutral-swarm-theta3minus-fold-pair-first-y-gd-shared-domain-evaluator.test.js](../../../tests/neutral-swarm-theta3minus-fold-pair-first-y-gd-shared-domain-evaluator.test.js)
+- [neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-primitive-diagnostic.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-primitive-diagnostic.test.js)
+- [solver-h39-shared-domain-primitive-replay.test.js](../../../tests/solver-h39-shared-domain-primitive-replay.test.js)
+- [solver-h39-terminal-graph-remainder-budget-replay.test.js](../../../tests/solver-h39-terminal-graph-remainder-budget-replay.test.js)
+
+No H39-named proof-program artifacts were found under [proof-programs](../proof-programs/proof-programs.md). The proof-program relevance is indirect: H39 uses certificate discipline, claim boundaries, source-hash style provenance, fail-closed validators, and candidate-only proof artifacts.
+
+The H39/H38 source-covariance wrap-up records the live blocker as the missing same-domain branch-bearing source-map provider object before aggregate $P$ is formed. In concrete terms, the historical path needed one of these objects:
+
+- explicit same-domain terminal provider-object branch rows $P_-$ and $P_+$;
+- a same-domain branch projection map from source terms into $P_b$;
+- a same-domain pushforward operator and normalization identity mapping expression-branch feeds into aggregate provider-object terms;
+- a certified correction law from $A_G^{\mathrm{terminal}}$ to $A_P=P_- - P_+$.
+
+The central solver can improve root, path-history, precision, replay, and ledger discipline. It does not currently define the H39 same-domain provider-object branch schema, projection map, pushforward identity, or directed-rounded proof-certificate backend needed to manufacture the missing $P_b$ object.
+
+Provisional classification before executable replay: `h39_same_result_faster`, bounded by `h39_no_material_effect` for final closure. The likely effect is sharper and faster diagnosis of solver-like subproblems, not automatic H39 closure.
+
+## Historical Bottleneck Classes
+
+| Bottleneck class | H39 evidence | Central-solver relevance |
+| --- | --- | --- |
+| Root solving | H39 packets use fold-pair and regular-root structure, root tangent bounds, root subdivisions, root graph centers, and Jacobian floor witnesses. | Maps to causal-root ledgers, root residuals, bracket/isolation metadata, Jacobian sign strata, first-failure codes, and precision replay. |
+| Interval and bracket handling | The wrap-up says interval excess was not only partition size. Midpoint and affine candidates behaved well, while raw directed-rounded terminal producer intervals remained too wide. | Maps to interval or bounded charts, stage error budgets, validation replay, and explicit halt status when interval authority is insufficient. |
+| Path-history or source-history handling | The live blocker is that aggregate $P$ provider rows are aggregate-only before terminal replay, so branch information is not available where H39 needs $P_-$, $P_+$, or $A_P$. | Maps only partially. The solver path-history stream can preserve branch metadata when supplied, but H39 needs a proof-level same-domain source-map provider object not yet represented by the central solver API. |
+| Precision and dynamic range | H39 uses small residual budgets, Jacobian clearances, Cauchy majorants, primitive bounds, scale ratios, and directed-rounded shared-domain requirements. | Maps strongly to [precision.md](precision.md): numeric charts, precision paths, normalized residuals, Jacobian diagnostics, error budgets, and validation replay. |
+| Ledger, replay, and provenance | H39 artifacts carefully keep candidate-only status, claim boundaries, schema checks, source-term provenance, provider-boundary replay, and validator rejection of overclaims. | Maps to solver manifests, artifact hashes, run claim levels, root ledgers, precision metadata, and validation-replay records. It does not yet map to H39 provider-object theorem identities. |
+| Manual workflow overhead | The H39 path accumulated many packet builders, focused tests, and replay wrappers before isolating the upstream provider-object blocker. | The central solver could reduce repetition by standardizing replay manifests, comparable output sets, root/precision diagnostics, and timing or memory records. |
+
+## Representative Replay Candidates
+
+| Candidate | Historical artifact | Needed central-solver capability | Current replay classification |
+| --- | --- | --- | --- |
+| `h39_shared_domain_primitive_replay` | `buildH39SharedDomainPrimitiveDiagnostic` and tests for missing bounds, supplied bounds, and external directed-rounded provenance wording. | Validation replay manifest, interval/bounded chart metadata, normalized residual and Jacobian fields, claim boundary, artifact hash, and precision-path diagnostics. | `fixture_adapter_built`. The fixture translates the primitive-bound rows into solver-style validation artifacts and classifies the primitive replay surface as `h39_refined_result`. |
+| `h39_terminal_graph_remainder_budget_replay` | `buildH39H38ExpressionN38TerminalGraphRemainderBudgetDiagnosticCandidate` and the focused terminal graph remainder budget test. | Root-ledger detail, root subdivisions, residual scale, interval authority, terminal-row provenance, timing records, and strict replay comparison. | `fixture_adapter_built`. The fixture translates the positive-$\xi$ and symmetric cross-fold terminal graph budget cases into solver-style validation artifacts and classifies the replay surface as `h39_refined_result`. |
+| `h39_affine_endpoint_provider_boundary_replay` | The focused test `h39 terminal affine-zeta endpoint provider replay crosses the provider boundary`. | Branch-local source-history records, provider-boundary rows, terminal-row enclosure metadata, interval containment semantics, and directed-rounded authority labels. | `needs_missing_solver_capability`. The central solver does not currently expose H39 provider-boundary theorem objects. |
+| `h39_pre_sum_provider_branch_source_audit` | `buildH39RequestedY44TerminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAuditCandidate`. | Source-history streams that preserve branch labels, branch weights, branch intervals, projection coefficients, and provider-object branch ids before aggregate formation. | `needs_missing_solver_capability`. The current solver can preserve supplied metadata, but it cannot derive the missing same-domain $P_b$ source-map provider object. |
+| `h39_provider_object_pushforward_audit` | `buildH39RequestedY44TerminalProviderObjectPbPushforwardOperatorAuditCandidate`. | Same-domain pushforward operator rows, normalization identity rows, branch-pair admissibility, and provider-object branch-pair ledgers. | `needs_missing_solver_capability`. This is a proof-object identity requirement, not merely a root-solving request. |
+| `h39_aggregate_p_preaggregation_branch_bearing_audit` | `buildH39RequestedY44TerminalAggregatePProviderPreaggregationBranchBearingAuditCandidate`, the cleanest stopping point in the wrap-up. | Raw provider-probe preservation of branch labels, branch weights, branch intervals, projection maps, pushforward operators, and normalization fields before aggregate $P$. | `needs_missing_solver_capability`. The historical artifact reports zero hits in the required branch-bearing field groups, so the central solver would need a new H39 provider-object schema and upstream producer. |
+
+## First Executable Replay Fixture
+
+Implemented first fixture: `h39_shared_domain_primitive_replay`.
+
+Executable artifacts:
+
+- [h39-shared-domain-primitive-replay.mjs](../../../scripts/solver-audits/h39-shared-domain-primitive-replay.mjs)
+- [solver-h39-shared-domain-primitive-replay.test.js](../../../tests/solver-h39-shared-domain-primitive-replay.test.js)
+
+Reasons this was the right first fixture:
+
+- It is H39-specific and already has focused tests.
+- It is compact compared with the terminal provider-boundary packets.
+- It exercises the central solver precision contract directly: interval or bounded charts, Jacobian lower bounds, root-tangent numerator bounds, residual scale, claim boundary, and validation replay.
+- It can produce a meaningful comparison without pretending to solve the missing provider-object branch identity.
+
+The fixture emits:
+
+- historical artifact id and source file;
+- central-solver request or replay manifest;
+- selected precision path, numeric chart, numeric type, unit convention, and scale normalization;
+- global and stage error budgets;
+- root or primitive residual scale, absolute residual, normalized residual, tolerance, iteration count where applicable, bracket or isolation metadata, Jacobian value, Jacobian sign stratum, and first-failure code;
+- old artifact status, central replay status, timing note, memory note, and impact classification.
+
+First-run outcome: `h39_refined_result` for the primitive replay surface, while preserving the broader H39 blocker as missing provider-object branch provenance. The fixture explicitly records that no native central-solver H39 backend was invoked.
+
+## Second Executable Replay Fixture
+
+Implemented second fixture: `h39_terminal_graph_remainder_budget_replay`.
+
+Executable artifacts:
+
+- [h39-terminal-graph-remainder-budget-replay.mjs](../../../scripts/solver-audits/h39-terminal-graph-remainder-budget-replay.mjs)
+- [solver-h39-terminal-graph-remainder-budget-replay.test.js](../../../tests/solver-h39-terminal-graph-remainder-budget-replay.test.js)
+
+Reasons this was the right second fixture:
+
+- It was already the next audit action after the primitive replay.
+- It exercises the central solver's root-ledger and validation-replay vocabulary against a heavier H39 terminal graph diagnostic.
+- It records root subdivision count, comparison-window rows, interval authority, terminal $h_{37},h_{36},h_{35}$ residual rows, producer interval overbudget status, replay hashes, timing notes, and memory notes.
+- It keeps the result candidate-only and does not promote the terminal graph budget into a directed-rounded terminal provider enclosure.
+
+Second-run outcome: `h39_refined_result` for the terminal graph remainder budget replay surface. Both the positive-$\xi$ window and the symmetric cross-fold window preserve the historical decision: graph plus live nonterminal replay stays below the $5\%$ budget target, raw terminal producer intervals remain over budget, midpoint-fit residuals remain inside the allowed budget, and the producer interval gap stays at roughly $45.4\times$ the allowed scale. The fixture explicitly records that no native central-solver H39 backend was invoked.
+
+## Audit Plan
+
+1. Keep provider-boundary and aggregate-$P$ packets as missing-capability cases until the solver owns an H39 provider-object schema.
+2. If a replay changes root counts, residual signs, Jacobian sign strata, interval containment, or claim-boundary status, classify it as `h39_investigation_required_mismatch` and stop before broadening the audit.
+3. If replay agrees and only improves diagnostics or runtime, classify the relevant candidate as `h39_same_result_faster` or `h39_refined_result`; keep the whole H39/H38 source-covariance lane blocked until a same-domain branch-bearing provider object exists.
+
+## Current Conclusion
+
+The central solver would likely have improved H39's numerical replay discipline, precision metadata, root/ledger reporting, and repeated manual comparison work. It would not currently supply the missing same-domain branch-bearing provider object before aggregate $P$.
+
+Therefore the best current retrospective classification is:
+
+| Scope | Classification |
+| --- | --- |
+| H39 shared-domain primitive replay | `h39_refined_result`: the adapter preserves historical decisions and claim boundaries while adding solver-style precision metadata, primitive residual rows, hashes, and resource notes. |
+| H39 terminal graph remainder budget replay | `h39_refined_result`: the adapter preserves the historical positive-$\xi$ and symmetric cross-fold budget decisions while adding solver-style root ledger rows, terminal residual rows, replay hashes, interval authority notes, timing notes, and strict diff metadata. |
+| Other H39 solver-like subproblems | Provider-boundary and aggregate-$P$ cases are classified as missing-capability surfaces: they require H39 provider-object theorem schemas and upstream producer rows rather than only replay formatting. |
+| Final H39/H38 source-covariance blocker | `h39_no_material_effect` until the central solver gains an H39 provider-object branch schema and an upstream producer for $P_b$. |
+| Next audit action | Hold `h39_affine_endpoint_provider_boundary_replay` at missing-capability status until the solver owns H39 provider-boundary theorem objects. |
+
+## Completion Judgment
+
+`h39_solver_impact_audit` is complete as a retrospective solver-impact audit and
+closed in [solver.md](solver.md). Representative H39 replay surfaces were
+selected, two executable solver-style replay fixtures were built, historical
+artifact decisions were preserved, and the current classifications are recorded.
+
+The central solver would have improved replay discipline and diagnostics for the
+covered primitive and terminal graph budget surfaces, but it would not have
+removed the final H39/H38 source-covariance blocker. Reopening this audit should
+wait until the solver owns an H39 provider-object branch schema and an upstream
+producer for same-domain $P_b$ rows.

@@ -588,6 +588,14 @@ final class ReaderViewModel: ObservableObject {
         openDocument(by: chapterId, anchor: anchor)
     }
 
+    func replayCurrentAnchorAfterLayoutChange() {
+        guard renderCommand != nil,
+              let currentAnchor else {
+            return
+        }
+        anchorCommand = ReaderAnchorCommand(id: UUID(), anchor: currentAnchor)
+    }
+
     func search(_ query: String) {
         searchText = query
         let normalized = query.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
@@ -725,18 +733,18 @@ final class ReaderViewModel: ObservableObject {
 
         for targetPath in targetPaths {
             if let target = resolveDocumentTarget(from: targetPath, defaultAnchor: nil) {
-                let anchor = resolveTOCAnchor(for: section, chapterId: target.documentId) ?? target.anchor
+                let anchor = resolveTOCAnchor(for: section, in: node, chapterId: target.documentId) ?? target.anchor
                 return .chapter(id: target.documentId, anchor: anchor)
             }
         }
 
         if let inheritedChapterId {
-            return .chapter(id: inheritedChapterId, anchor: resolveTOCAnchor(for: section, chapterId: inheritedChapterId))
+            return .chapter(id: inheritedChapterId, anchor: resolveTOCAnchor(for: section, in: node, chapterId: inheritedChapterId))
         }
 
         if let fallback = fallbackExternalURL(
             for: section.markdownPath ?? node.markdownPath ?? node.scenePath ?? node.id,
-            anchor: resolveTOCAnchor(for: section, chapterId: inheritedChapterId)
+            anchor: resolveTOCAnchor(for: section, in: node, chapterId: inheritedChapterId)
         ) {
             return .external(fallback)
         }
@@ -783,6 +791,8 @@ final class ReaderViewModel: ObservableObject {
 
         if payload.kind == "anchor" || payload.type == "anchor" {
             currentAnchor = payload.anchor
+            currentScrollProgress = nil
+            updateActiveRenderCommandLocation(anchor: payload.anchor, scrollProgress: nil)
             saveReadingState()
             return nil
         }
@@ -851,6 +861,7 @@ final class ReaderViewModel: ObservableObject {
         currentScrollProgress = nil
         currentChapterId = id
         if isSameDocument {
+            updateActiveRenderCommandLocation(anchor: anchor, scrollProgress: nil)
             anchorCommand = ReaderAnchorCommand(id: UUID(), anchor: anchor)
             saveReadingState()
             return
@@ -904,6 +915,27 @@ final class ReaderViewModel: ObservableObject {
             marginWidth: marginWidth,
             initialScrollProgress: currentScrollProgress,
             bootstrapContext: bootstrapContext
+        )
+    }
+
+    private func updateActiveRenderCommandLocation(anchor: String?, scrollProgress: Double?) {
+        guard let command = renderCommand else { return }
+        renderCommand = ReaderRenderCommand(
+            id: command.id,
+            chapterId: command.chapterId,
+            chapterTitle: command.chapterTitle,
+            sourcePath: command.sourcePath,
+            htmlPath: command.htmlPath,
+            htmlText: command.htmlText,
+            markdownText: command.markdownText,
+            linkMap: command.linkMap,
+            initialAnchor: anchor,
+            fontScale: command.fontScale,
+            theme: command.theme,
+            lineSpacing: command.lineSpacing,
+            marginWidth: command.marginWidth,
+            initialScrollProgress: scrollProgress,
+            bootstrapContext: command.bootstrapContext
         )
     }
 
@@ -1341,7 +1373,11 @@ final class ReaderViewModel: ObservableObject {
             }
         }
 
-        if let primary = primaryCandidates.first {
+        var primaryFallbackCandidates: [String] = []
+        appendTOCAnchorCandidate(node.markdownSection, to: &primaryFallbackCandidates)
+        appendTOCAnchorCandidate(node.sectionKey, to: &primaryFallbackCandidates)
+        appendTOCAnchorCandidate(node.title, to: &primaryFallbackCandidates)
+        if let primary = primaryFallbackCandidates.first {
             return anchorFromHeadingTitle(primary)
         }
 
@@ -1370,11 +1406,52 @@ final class ReaderViewModel: ObservableObject {
         return fallbackCandidates.first.map(anchorFromHeadingTitle)
     }
 
+    private func resolveTOCAnchor(for section: TextbookTOCSection, in node: TextbookTOCNode, chapterId: String?) -> String? {
+        if let scopedAnchor = resolveScopedTOCAnchor(for: section, in: node, chapterId: chapterId) {
+            return scopedAnchor
+        }
+        return resolveTOCAnchor(for: section, chapterId: chapterId)
+    }
+
+    private func resolveScopedTOCAnchor(for section: TextbookTOCSection, in node: TextbookTOCNode, chapterId: String?) -> String? {
+        guard let chapterId else {
+            return nil
+        }
+
+        let chapterEntries = searchIndexEntries.filter { $0.chapterId == chapterId }
+        guard !chapterEntries.isEmpty,
+              let parentAnchor = resolveTOCAnchor(for: node, chapterId: chapterId),
+              let parentIndex = chapterEntries.firstIndex(where: { $0.sectionAnchor == parentAnchor }) else {
+            return nil
+        }
+
+        let parentHeadingLevel = chapterEntries[parentIndex].headingLevel
+        let scopeEnd = chapterEntries[(parentIndex + 1)...].firstIndex { entry in
+            entry.headingLevel <= parentHeadingLevel
+        } ?? chapterEntries.endIndex
+        guard parentIndex + 1 < scopeEnd else {
+            return nil
+        }
+
+        let scopedEntries = Array(chapterEntries[(parentIndex + 1)..<scopeEnd])
+        for candidate in tocAnchorSearchCandidates(
+            title: section.title,
+            markdownSection: section.markdownSection,
+            sectionKey: section.sectionKey
+        ) {
+            if let match = searchEntryAnchor(matching: candidate, in: scopedEntries) {
+                return match
+            }
+        }
+        return nil
+    }
+
     private func resolveTOCAnchor(for section: TextbookTOCSection, chapterId: String?) -> String? {
-        var candidates: [String] = []
-        appendTOCAnchorCandidate(section.title, to: &candidates)
-        appendTOCAnchorCandidate(section.markdownSection, to: &candidates)
-        appendTOCAnchorCandidate(section.sectionKey, to: &candidates)
+        let candidates = tocAnchorSearchCandidates(
+            title: section.title,
+            markdownSection: section.markdownSection,
+            sectionKey: section.sectionKey
+        )
 
         if let chapterId {
             let chapterEntries = searchIndexEntries.filter { $0.chapterId == chapterId }
@@ -1390,7 +1467,28 @@ final class ReaderViewModel: ObservableObject {
             }
         }
 
-        return candidates.first.map(anchorFromHeadingTitle)
+        let fallbackCandidates = tocAnchorFallbackCandidates(
+            title: section.title,
+            markdownSection: section.markdownSection,
+            sectionKey: section.sectionKey
+        )
+        return fallbackCandidates.first.map(anchorFromHeadingTitle)
+    }
+
+    private func tocAnchorSearchCandidates(title: String?, markdownSection: String?, sectionKey: String?) -> [String] {
+        var candidates: [String] = []
+        appendTOCAnchorCandidate(title, to: &candidates)
+        appendTOCAnchorCandidate(markdownSection, to: &candidates)
+        appendTOCAnchorCandidate(sectionKey, to: &candidates)
+        return candidates
+    }
+
+    private func tocAnchorFallbackCandidates(title: String?, markdownSection: String?, sectionKey: String?) -> [String] {
+        var candidates: [String] = []
+        appendTOCAnchorCandidate(markdownSection, to: &candidates)
+        appendTOCAnchorCandidate(sectionKey, to: &candidates)
+        appendTOCAnchorCandidate(title, to: &candidates)
+        return candidates
     }
 
     private func appendTOCAnchorCandidate(_ value: String?, to candidates: inout [String]) {

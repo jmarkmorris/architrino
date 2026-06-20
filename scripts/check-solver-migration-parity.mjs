@@ -82,8 +82,8 @@ const report = {
   classificationVocabulary,
   status: ready ? "parity_ready_for_ordered_adapter_migration" : "parity_blocked",
   summary: createParitySummary(apps, manifest.artifacts.length, missingCases, failedCases),
-  simplificationPolicy:
-    "Do not remove or simplify app-local solver code until the app adapter migration itself is implemented and this report remains green.",
+  migrationPolicy:
+    "App adapters must continue to use the shared central solver bridge while this report remains green.",
   blockingCases: failedCases.map((entry) => ({
     appId: entry.appId,
     caseId: entry.caseId,

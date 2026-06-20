@@ -11,6 +11,7 @@ const KNOWN_RUN_KINDS = new Set([
   "delayedHits",
   "sharedGeometry",
   "appPlayback",
+  "pairInteraction",
   "validationReplay",
 ]);
 const DEFAULT_CONFIG_VERSION_BY_RUN_KIND = Object.freeze({
@@ -21,6 +22,7 @@ const DEFAULT_CONFIG_VERSION_BY_RUN_KIND = Object.freeze({
   delayedHits: "ideal-swarm-delayed-hits-adapter.v1",
   sharedGeometry: "shared-geometry-adapter.v1",
   appPlayback: "animator-app-playback-adapter.v1",
+  pairInteraction: "causal-delay-feedback-pair-interaction-adapter.v1",
   validationReplay: "validation-replay-adapter.v1",
 });
 const DEFAULT_OUTPUTS_BY_RUN_KIND = Object.freeze({
@@ -31,6 +33,7 @@ const DEFAULT_OUTPUTS_BY_RUN_KIND = Object.freeze({
   delayedHits: ["rootLedger", "delayedHitEvents", "diagnostics"],
   sharedGeometry: ["geometryBuffer", "diagnostics"],
   appPlayback: ["summary", "diagnostics"],
+  pairInteraction: ["frameBuffer", "pathStream", "diagnostics"],
   validationReplay: ["validationArtifacts", "diagnostics"],
 });
 
@@ -420,6 +423,7 @@ export function createEmissionShellCandidateQueryRequest(input) {
     allowSamePath: cloneOptionalBoolean(input.allowSamePath, "allowSamePath"),
     workerCount: cloneOptionalNonnegativeInteger(input.workerCount, "workerCount"),
     timeRange: cloneOptionalRange(input.timeRange, "timeRange"),
+    indexOptions: cloneOptionalObject(input.indexOptions, "indexOptions"),
   };
 }
 
@@ -429,6 +433,7 @@ export function createEmissionShellRootRefinementRequest(input) {
     streamId: cloneOptionalString(input.streamId, "streamId"),
     manifestPath: cloneOptionalString(input.manifestPath, "manifestPath"),
     candidates: copyRequiredArray(input.candidates, "candidates"),
+    packet: cloneOptionalObject(input.packet, "packet"),
     signalSpeed: requirePositiveFiniteNumber(input.signalSpeed, "signalSpeed"),
     tolerance: cloneOptionalNonnegativeFiniteNumber(input.tolerance, "tolerance"),
     rootTolerance: cloneOptionalPositiveFiniteNumber(input.rootTolerance, "rootTolerance"),
@@ -455,6 +460,7 @@ export function createEmissionShellCandidatePacketQueryRequest(input) {
     allowSamePath: cloneOptionalBoolean(input.allowSamePath, "allowSamePath"),
     workerCount: cloneOptionalNonnegativeInteger(input.workerCount, "workerCount"),
     timeRange: cloneOptionalRange(input.timeRange, "timeRange"),
+    indexOptions: cloneOptionalObject(input.indexOptions, "indexOptions"),
   };
 }
 
@@ -475,6 +481,7 @@ export function createEmissionShellCandidatePacketBatchQueryRequest(input) {
     allowSamePath: cloneOptionalBoolean(input.allowSamePath, "allowSamePath"),
     workerCount: cloneOptionalNonnegativeInteger(input.workerCount, "workerCount"),
     timeRange: cloneOptionalRange(input.timeRange, "timeRange"),
+    indexOptions: cloneOptionalObject(input.indexOptions, "indexOptions"),
   };
 }
 

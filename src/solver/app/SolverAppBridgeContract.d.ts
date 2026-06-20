@@ -8,6 +8,7 @@ export type SolverRunKind =
   | "delayedHits"
   | "sharedGeometry"
   | "appPlayback"
+  | "pairInteraction"
   | "validationReplay";
 
 export type SolverPrecisionPath =
@@ -870,6 +871,15 @@ export interface SolverEmissionShellCandidateF64Request {
   allowSamePath?: boolean;
   workerCount?: number;
   timeRange?: SolverRange;
+  indexOptions?: SolverEmissionShellIndexedBroadPhaseOptions;
+}
+
+export interface SolverEmissionShellIndexedBroadPhaseOptions {
+  strategy: "emission_shell_broad_phase_v0";
+  timeSlabCount: number;
+  spatialCellSize: number;
+  sourceRowOffset?: number;
+  receiverRowOffset?: number;
 }
 
 export interface SolverEmissionShellCandidatePacketF64Request {
@@ -884,6 +894,7 @@ export interface SolverEmissionShellCandidatePacketF64Request {
   allowSamePath?: boolean;
   workerCount?: number;
   timeRange?: SolverRange;
+  indexOptions?: SolverEmissionShellIndexedBroadPhaseOptions;
 }
 
 export interface SolverEmissionShellCandidatePacketsF64Request {
@@ -898,6 +909,7 @@ export interface SolverEmissionShellCandidatePacketsF64Request {
   allowSamePath?: boolean;
   workerCount?: number;
   timeRange?: SolverRange;
+  indexOptions?: SolverEmissionShellIndexedBroadPhaseOptions;
 }
 
 export interface SolverEmissionShellCandidatePacketMergeF64Request {
@@ -921,6 +933,7 @@ export interface SolverEmissionShellCandidateF64Response {
   candidateRate: number;
   falsePositiveEstimate: SolverEmissionShellFalsePositiveEstimate;
   scanSummary: SolverEmissionShellScanSummary;
+  indexSummary?: SolverEmissionShellIndexedBroadPhaseSummary;
   truncated: boolean;
   candidates: SolverEmissionShellCandidateF64[];
   buffers: SolverBufferDescriptor[];
@@ -931,6 +944,7 @@ export interface SolverEmissionShellRootRefinementF64Request {
   streamId?: string;
   manifestPath?: string;
   candidates: SolverEmissionShellCandidateF64[];
+  packet?: SolverWorkPacketHeader;
   signalSpeed: number;
   tolerance?: number;
   rootTolerance?: number;
@@ -944,6 +958,10 @@ export interface SolverEmissionShellRootRefinementF64Request {
 
 export interface SolverEmissionShellRootRefinementF64Response {
   schema: "solver-emission-shell-root-refinement.v1";
+  packetId?: string;
+  packetMergeOrder?: number;
+  packetMergeKey?: string;
+  packetResult?: SolverWorkPacketResultRef;
   streamId: string;
   signalSpeed: number;
   tolerance: number;
@@ -980,7 +998,7 @@ export interface SolverEmissionShellRootRefinementItemF64 {
 
 export interface SolverEmissionShellScanSummary {
   schema: "solver-emission-shell-scan-summary.v1";
-  executionPath: "native_c_abi" | "javascript_fallback" | "packet_merge";
+  executionPath: "native_c_abi" | "native_c_abi_indexed_v0" | "javascript_fallback" | "packet_merge";
   streamChunkCount: number;
   skippedChunkCount: number;
   prunedByTimeChunkCount: number;
@@ -1004,6 +1022,21 @@ export interface SolverEmissionShellScanSummary {
   requestedWorkerCount: number;
   plannedWorkerCount: number;
   truncated: boolean;
+}
+
+export interface SolverEmissionShellIndexedBroadPhaseSummary {
+  sourceRowOffset: number;
+  receiverRowOffset: number;
+  receiverCellRows: number;
+  shellAnnulusRows: number;
+  cellLookups: number;
+  indexedPairTests: number;
+  duplicatePairTests: number;
+  spatialCellSize: number;
+  timeRangeStart: number;
+  timeRangeEnd: number;
+  timeSlabCount: number;
+  coverageStatus: "complete" | "truncated" | "invalid_input";
 }
 
 export interface SolverEmissionShellFalsePositiveEstimate {
@@ -1622,6 +1655,7 @@ export type SolverRunConfig =
   | PathHistorySolverConfig
   | DelayedHitsSolverConfig
   | SharedGeometrySolverConfig
+  | PairInteractionSolverConfig
   | MotionSimulationSolverConfig
   | AppPlaybackSolverConfig
   | AnimatorSolverConfig
@@ -1715,6 +1749,50 @@ export type MotionSimulationSolverConfig = {
     | { motionRequest: SolverLinearMotionSampleF64Request; motionIntegrationRequest?: never }
     | { motionRequest?: never; motionIntegrationRequest: SolverMotionIntegrationF64Request }
   );
+
+export interface PairInteractionSolverConfig {
+  appId: SolverAppId;
+  pairInteractionRequest: SolverPairInteractionF64Request;
+  streamId?: string;
+  rowsPerChunk?: number;
+  storagePolicy?: SolverStoragePolicy;
+  metadata?: Partial<SolverPathHistoryStreamMetadata>;
+}
+
+export interface SolverPairInteractionF64Request {
+  startTime: number;
+  endTime: number;
+  step: number;
+  maxFrames?: number;
+  pairAccelerationScale?: number;
+  softening?: number;
+  integrationTolerance?: number;
+  interactionLaw?: string;
+  pathConstraintBoundaryRelaxationIterationCount?: number;
+  pathConstraintBoundaryRelaxationTolerance?: number;
+  pathConstraintBoundaryRelaxationStepTolerance?: number;
+  pathConstraintBoundaryResidualTolerance?: number;
+  pathConstraintPositionResidualTolerance?: number;
+  pathConstraintGuidanceAccelerationTolerance?: number;
+  initialStates: SolverPairInteractionStateF64Request[];
+  pathConstraints?: SolverPairInteractionPathConstraintF64Request[];
+}
+
+export interface SolverPairInteractionStateF64Request {
+  pathKey: number;
+  initialPosition: SolverVector3F64;
+  initialVelocity: SolverVector3F64;
+  charge?: number;
+  mass?: number;
+  stateFlags?: number;
+}
+
+export interface SolverPairInteractionPathConstraintF64Request {
+  pathKey: number;
+  depth?: number;
+  time: number;
+  position: SolverVector3F64;
+}
 
 export interface AppPlaybackSolverConfig {
   appId: SolverAppId;
@@ -1812,6 +1890,7 @@ export interface SolverRunResponse {
   pathHistory?: SolverPathHistoryStreamSummary;
   geometry?: SolverSharedGeometryF64Response;
   validationReplay?: SolverBaselineComparisonResult;
+  pairInteraction?: SolverPairInteractionSummary;
   status: SolverStatusRecord;
 }
 
@@ -2095,6 +2174,7 @@ export type SolverBinaryLayoutId =
   | "root_ledger.v1"
   | "root_ledger_detail.v1"
   | "delayed_hit_events.v1"
+  | "field_shell_events.v1"
   | "phase_at_hit.v1"
   | "spacetime_index.v1"
   | "emission_shell_candidate.v1"
@@ -2240,6 +2320,8 @@ export interface SolverBridgeWorkerModelCapability {
 export interface SolverBridgeStorageFallbackCapability {
   preferredDurableBrowserTarget: "opfs";
   durableBrowserTargetAvailable: boolean;
+  preferredNativeFileTarget: "native-file";
+  nativeFileTargetAvailable: boolean;
   transientTarget: "caller-buffer";
   unsupportedStorageStatusCode: "unsupported_browser_storage";
 }
@@ -2327,6 +2409,8 @@ export interface SolverStreamQueryCapability {
   schema: "solver-stream-query-capabilities.v1";
   helpers: (
     | "createPathHistoryStreamF64"
+    | "planPathHistoryStorageLifecycleF64"
+    | "applyPathHistoryStorageLifecycleF64"
     | "describeStream"
     | "validatePathHistoryDynamicReplayF64"
     | "readStreamRange"
@@ -2797,6 +2881,162 @@ export interface SolverRunSummary {
   pathRowCount?: number;
   chunkCount?: number;
   streamCount?: number;
+  stepCount?: number;
+  interactionLaw?: string;
+  executionPath?: string;
+  pathConstraintCount?: number;
+  pathConstraintFrameRefinementSampleCount?: number;
+  pathConstraintPositionResidualSampleCount?: number;
+  pathConstraintPositionResidualStatus?: SolverPairInteractionPositionResidualStatus;
+  pathConstraintPositionResidualTolerance?: number;
+  maxPathConstraintPositionResidual?: number;
+  meanPathConstraintPositionResidual?: number;
+  rmsPathConstraintPositionResidual?: number;
+  pathConstraintResidualSampleCount?: number;
+  maxPathConstraintResidual?: number;
+  meanPathConstraintResidual?: number;
+  rmsPathConstraintResidual?: number;
+  pathConstraintGuidanceSampleCount?: number;
+  pathConstraintGuidanceMode?: string;
+  pathConstraintBoundaryMode?: string;
+  pathConstraintBoundarySeedMode?: string;
+  pathConstraintBoundarySeedSampleCount?: number;
+  pathConstraintBoundaryRelaxationMode?: string;
+  pathConstraintBoundaryRelaxationIterationCount?: number;
+  pathConstraintBoundaryRelaxationAppliedIterationCount?: number;
+  pathConstraintBoundaryRelaxationStopReason?: string;
+  pathConstraintBoundaryRelaxationTolerance?: number;
+  pathConstraintBoundaryRelaxationStepTolerance?: number;
+  pathConstraintBoundaryRelaxationStatus?: string;
+  pathConstraintBoundaryRelaxationResidualEvidenceStatus?: string;
+  pathConstraintBoundaryRelaxationResidualSampleCount?: number;
+  maxPathConstraintBoundaryRelaxationResidualBefore?: number;
+  maxPathConstraintBoundaryRelaxationResidualAfter?: number;
+  meanPathConstraintBoundaryRelaxationResidualBefore?: number;
+  meanPathConstraintBoundaryRelaxationResidualAfter?: number;
+  rmsPathConstraintBoundaryRelaxationResidualBefore?: number;
+  rmsPathConstraintBoundaryRelaxationResidualAfter?: number;
+  pathConstraintBoundaryRelaxationResidualRatio?: number;
+  meanPathConstraintBoundaryRelaxationResidualRatio?: number;
+  rmsPathConstraintBoundaryRelaxationResidualRatio?: number;
+  pathConstraintBoundaryRelaxationResidualSettlingRate?: number;
+  meanPathConstraintBoundaryRelaxationResidualSettlingRate?: number;
+  rmsPathConstraintBoundaryRelaxationResidualSettlingRate?: number;
+  pathConstraintBoundaryRelaxationMaxStep?: number;
+  pathConstraintBoundaryRelaxationFinalStepFactor?: number;
+  pathConstraintBoundaryRelaxationSelectedCandidateKind?: string;
+  pathConstraintBoundaryRelaxationCenterOfMassSelectedCount?: number;
+  pathConstraintBoundaryRelaxationCandidateVariantCount?: number;
+  pathConstraintBoundaryRelaxationLineSearchTrialCount?: number;
+  pathConstraintBoundaryRelaxationCandidateKindMask?: number;
+  pathConstraintSolverStatus?: string;
+  pathConstraintSolverClaim?: string;
+  pathConstraintPhysicalBoundarySolverStatus?: string;
+  pathConstraintPhysicalBoundarySolverClaim?: string;
+  maxPathConstraintGuidanceAcceleration?: number;
+  meanPathConstraintGuidanceAcceleration?: number;
+  rmsPathConstraintGuidanceAcceleration?: number;
+  pathConstraintGuidanceAccelerationStatus?: SolverPairInteractionGuidanceAccelerationStatus;
+  pathConstraintGuidanceAccelerationTolerance?: number;
+  pathConstraintBoundaryResidualSampleCount?: number;
+  pathConstraintBoundaryResidualStatus?: SolverPairInteractionBoundaryResidualStatus;
+  pathConstraintBoundaryResidualTolerance?: number;
+  maxPathConstraintBoundaryResidual?: number;
+  meanPathConstraintBoundaryResidual?: number;
+  rmsPathConstraintBoundaryResidual?: number;
+}
+
+export type SolverPairInteractionBoundaryResidualStatus =
+  | "unchecked"
+  | "no_boundary_samples"
+  | "unresolved"
+  | "within_tolerance"
+  | "exceeded_tolerance";
+
+export type SolverPairInteractionPositionResidualStatus =
+  | "unchecked"
+  | "no_position_samples"
+  | "unresolved"
+  | "within_tolerance"
+  | "exceeded_tolerance";
+
+export type SolverPairInteractionGuidanceAccelerationStatus =
+  | "unchecked"
+  | "no_guidance_samples"
+  | "unresolved"
+  | "within_tolerance"
+  | "exceeded_tolerance";
+
+export interface SolverPairInteractionSummary {
+  runId?: string;
+  claimLevel?: SolverClaimLevel;
+  precisionPath?: SolverPrecisionPath;
+  frameCount?: number;
+  pathCount?: number;
+  pathRowCount?: number;
+  stepCount?: number;
+  interactionLaw?: string;
+  executionPath?: string;
+  pathConstraintCount?: number;
+  pathConstraintFrameRefinementSampleCount?: number;
+  pathConstraintPositionResidualSampleCount?: number;
+  pathConstraintPositionResidualStatus?: SolverPairInteractionPositionResidualStatus;
+  pathConstraintPositionResidualTolerance?: number;
+  maxPathConstraintPositionResidual?: number;
+  meanPathConstraintPositionResidual?: number;
+  rmsPathConstraintPositionResidual?: number;
+  pathConstraintResidualSampleCount?: number;
+  maxPathConstraintResidual?: number;
+  meanPathConstraintResidual?: number;
+  rmsPathConstraintResidual?: number;
+  pathConstraintGuidanceSampleCount?: number;
+  pathConstraintGuidanceMode?: string;
+  pathConstraintBoundaryMode?: string;
+  pathConstraintBoundarySeedMode?: string;
+  pathConstraintBoundarySeedSampleCount?: number;
+  pathConstraintBoundaryRelaxationMode?: string;
+  pathConstraintBoundaryRelaxationIterationCount?: number;
+  pathConstraintBoundaryRelaxationAppliedIterationCount?: number;
+  pathConstraintBoundaryRelaxationStopReason?: string;
+  pathConstraintBoundaryRelaxationTolerance?: number;
+  pathConstraintBoundaryRelaxationStepTolerance?: number;
+  pathConstraintBoundaryRelaxationStatus?: string;
+  pathConstraintBoundaryRelaxationResidualEvidenceStatus?: string;
+  pathConstraintBoundaryRelaxationResidualSampleCount?: number;
+  maxPathConstraintBoundaryRelaxationResidualBefore?: number;
+  maxPathConstraintBoundaryRelaxationResidualAfter?: number;
+  meanPathConstraintBoundaryRelaxationResidualBefore?: number;
+  meanPathConstraintBoundaryRelaxationResidualAfter?: number;
+  rmsPathConstraintBoundaryRelaxationResidualBefore?: number;
+  rmsPathConstraintBoundaryRelaxationResidualAfter?: number;
+  pathConstraintBoundaryRelaxationResidualRatio?: number;
+  meanPathConstraintBoundaryRelaxationResidualRatio?: number;
+  rmsPathConstraintBoundaryRelaxationResidualRatio?: number;
+  pathConstraintBoundaryRelaxationResidualSettlingRate?: number;
+  meanPathConstraintBoundaryRelaxationResidualSettlingRate?: number;
+  rmsPathConstraintBoundaryRelaxationResidualSettlingRate?: number;
+  pathConstraintBoundaryRelaxationMaxStep?: number;
+  pathConstraintBoundaryRelaxationFinalStepFactor?: number;
+  pathConstraintBoundaryRelaxationSelectedCandidateKind?: string;
+  pathConstraintBoundaryRelaxationCenterOfMassSelectedCount?: number;
+  pathConstraintBoundaryRelaxationCandidateVariantCount?: number;
+  pathConstraintBoundaryRelaxationLineSearchTrialCount?: number;
+  pathConstraintBoundaryRelaxationCandidateKindMask?: number;
+  pathConstraintSolverStatus?: string;
+  pathConstraintSolverClaim?: string;
+  pathConstraintPhysicalBoundarySolverStatus?: string;
+  pathConstraintPhysicalBoundarySolverClaim?: string;
+  maxPathConstraintGuidanceAcceleration?: number;
+  meanPathConstraintGuidanceAcceleration?: number;
+  rmsPathConstraintGuidanceAcceleration?: number;
+  pathConstraintGuidanceAccelerationStatus?: SolverPairInteractionGuidanceAccelerationStatus;
+  pathConstraintGuidanceAccelerationTolerance?: number;
+  pathConstraintBoundaryResidualSampleCount?: number;
+  pathConstraintBoundaryResidualStatus?: SolverPairInteractionBoundaryResidualStatus;
+  pathConstraintBoundaryResidualTolerance?: number;
+  maxPathConstraintBoundaryResidual?: number;
+  meanPathConstraintBoundaryResidual?: number;
+  rmsPathConstraintBoundaryResidual?: number;
 }
 
 export interface SolverDiagnosticRecord {

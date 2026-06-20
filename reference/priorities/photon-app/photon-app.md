@@ -32,11 +32,16 @@ The current app implements:
 - Ideal Swarm-style architrino markers, orbit paths, and layered trails;
 - pause/play, Space bar pause/play, Reset time, Reset all, Paths, and Slow/Fast controls;
 - Virtual Observer $x$, $y$, and $z$ controls with visible zero markers and near-zero snap;
+- direct $c_{\mathrm{sig}}/c_f$ and $c_\gamma/c_f$ controls, with $c_{\mathrm{sig}}$ active in root solves and $c_\gamma$ active in the default `Absolute history` mode;
+- default `Absolute history` mode that translates source and Virtual Observer histories at $c_\gamma$ and uses a shared solver-layer moving-circular root solver as the first moving-apparatus solver path;
 - a three-cycle Electric Field plot based on causal-root branch sums;
+- absolute-history source-scan diagnostics for no-catch-up sources, stale windows, near misses, and root-cap hits;
 - a transverse polarization inset derived from a one-cycle branch-sum fit, with optional raw one-cycle branch-sum points behind the fit;
 - formula and diagnostic panels with quality words where the readout has a useful direction;
+- shared-geometry same-source self-hit span diagnostics for enabled leading/trailing Inner/Middle/Outer binaries, using the vector sum of photon-channel speed and transverse orbital speed as the solver speed ratio;
+- first-pass helical same-source root rows for individual architrino source histories, with source phase-at-hit and receiver phase-at-hit metadata;
 - a named preset dropdown that can load a complete photon settings state and reset back to the last loaded preset;
-- a `Search configurations` workflow that generates session-local scored settings, supports preview/load/play, rename/delete, selected/all JSON export, JSON import, and promotion into session presets;
+- a bounded `Search configurations` workflow that samples representative configuration families, generates session-local scored settings, compares top co-moving and absolute-history diagnostics when the solver path is available, supports preview/load/play, rename/delete, selected/all JSON export, JSON import, and promotion into session presets;
 - and in-app Markdown viewing for the user-facing guide and the two supporting corpus bridges.
 
 ## Candidate Model
@@ -44,8 +49,9 @@ The current app implements:
 The current candidate picture is:
 
 - A photon is represented as a pair of flat Noether swarms.
-- The pair uses fixed $c_f$ in the current app.
-- A later version may replace fixed $c_f$ with local $c$ derived from declared Noether sea state variables.
+- The current co-moving diagnostic exposes a branch signal speed control $c_{\mathrm{sig}}/c_f$.
+- The app uses a photon-channel translation speed control $c_\gamma/c_f$ in the default `Absolute history` mode.
+- A later version should derive local $c$ from declared Noether sea state variables rather than only direct slider input.
 - The trailing swarm is shown on the left in the face-on view and rotates counter-clockwise.
 - The leading swarm is shown on the right in the face-on view and rotates clockwise.
 - The 2D face-on view of each swarm does not rotate as a group; only the binaries and layer phases animate.
@@ -62,6 +68,8 @@ Current defaults:
 - cycle reference: middle layer `M`;
 - plotted cycle count: `3`;
 - Slow/Fast animation scale: `0.20`;
+- signal speed: $c_{\mathrm{sig}}/c_f=1.00$;
+- photon-channel translation speed: $c_\gamma/c_f=1.00$;
 - analyzer angle: `0 deg`;
 - Virtual Observer coordinate: $(x,y,z)=(0,0,0)$;
 - all six binaries enabled;
@@ -125,6 +133,9 @@ Current control ranges remain:
 | O phase | `0 deg` | `0` to `360 deg` | `1 deg` |
 | $\Delta x$ ratio | `1 r` | `1e-10 r` to `1e5 r` | selectable `1` through `9` ticks per decade |
 | Slow/Fast animation scale | `0.20` | `0.025` to `1.600` | log slider |
+| Signal $c_{\mathrm{sig}}/c_f$ | `1.00` | `0.05` to `1.00` | `0.01` |
+| Photon $c_\gamma/c_f$ | `1.00` | `0.00` to `1.00` | `0.01` |
+| Absolute history | `on` | `off` or `on` | checkbox |
 | analyzer angle | `0 deg` | `0` to `180 deg` | `1 deg` |
 | Virtual Observer $x$ | `0.00` | `-10.00` to `10.00` | `0.05` |
 | Virtual Observer $y$ | `0.00` | `-4.00` to `4.00` | `0.05` |
@@ -134,9 +145,9 @@ The Virtual Observer $x$, $y$, and $z$ sliders should continue to show a visible
 
 ### Observer-Field Mapping
 
-The lower Electric Field plot is based on a Virtual Observer branch-sum calculation from the architrino source histories in the two swarms. This mapping is diagnostic-only and is not a photon-substrate derivation or closure certificate.
+The lower Electric Field plot is based on a Virtual Observer branch-sum calculation from the architrino source histories in the two swarms. This mapping is diagnostic-only and is not a photon-substrate derivation or closure certificate. The current root equation uses the visible signal-speed control $c_{\mathrm{sig}}/c_f$.
 
-The current calculation is a co-moving diagnostic: the two swarm centers are held at fixed app-frame offsets, and the Virtual Observer is held at a fixed app-frame coordinate. This is useful for inspecting delayed superposition, but it does not yet solve the harder absolute-history problem where the entire photon candidate, including the two swarms and the Virtual Observer, translates through the Noether sea at local $c$.
+The default calculation is now `Absolute history`: the two swarm centers and the Virtual Observer translate at $c_\gamma$, and the Electric Field plot is reconstructed from shared solver-layer moving-circular source roots. The `co_moving` mode remains available as a comparison diagnostic where swarm centers are held at fixed app-frame offsets and the Virtual Observer is held at a fixed app-frame coordinate. Absolute history is still not the final photon-substrate calculation because same-source self-hit root families, deeper phase-spread summaries, and native/WASM moving-circular bridge rows remain open.
 
 The Virtual Observer coordinate is
 
@@ -176,7 +187,7 @@ F_i(t;\tau)
 \left\|
 \mathbf X_{\mathrm{VO}}-\mathbf r_i(\tau)
 \right\|
--c_f(t-\tau)
+-c_{\mathrm{sig}}(t-\tau)
 =0.
 $$
 
@@ -194,7 +205,7 @@ and source velocity $\mathbf v_i(\tau_{i,k})$, compute
 $$
 J_{i,k}
 =
-1-\frac{\mathbf v_i(\tau_{i,k})\cdot\mathbf n_{i,k}}{c_f}.
+1-\frac{\mathbf v_i(\tau_{i,k})\cdot\mathbf n_{i,k}}{c_{\mathrm{sig}}}.
 $$
 
 The Virtual Observer receiver acceleration is the Jacobian-weighted radial hit sum for a unit positive receiver:
@@ -374,12 +385,9 @@ $$
 
 can nominate self-hit candidate regimes, but a self-hit row exists only when the solver retains a positive same-source causal root with acceptable residual, Jacobian, and transverse geometry.
 
-#### Solver Precedents
+#### Solver Interface
 
-Existing code to mine first:
-
-- `src/apps/photon/PhotonFormulaRuntime.js` already contains the current co-moving branch-sum scanner. It is useful for the UI and formulas, but it is not the absolute moving-apparatus solver because source and receiver histories do not yet translate through the Noether sea.
-- `scripts/simulations/lib/assembly-dynamics-solver.mjs` is the closest reusable numerical pattern. It already keeps finite history, resolves all retained causal roots, separates self and partner roots, reports unresolved-root reasons, and applies the Jacobian factor $1/|J|$.
+Photon should use the central solver bridge for source histories, receiver histories, causal-root ledgers, same-source roots, phase-at-hit rows, rejected-root reasons, Jacobian diagnostics, and observer-field reconstruction.
 
 ### Polarization And Formulas
 
@@ -420,7 +428,7 @@ Current implementation scope:
 
 - start each run from the current app settings;
 - search bounded nearby and systematic variants of enabled binaries, Inner/Middle/Outer frequency powers, radius lanes, phase offsets, $\Delta x$, Virtual Observer position, and Analyzer angle;
-- use the current co-moving branch-sum diagnostics;
+- use the current branch-sum diagnostics and, when available, attach a compact co-moving versus absolute-history comparison for top results;
 - keep results session-local by default;
 - support selected/all JSON export and JSON import.
 
@@ -433,6 +441,7 @@ Each search result should store a complete settings snapshot, not only the chang
 - numeric score components;
 - polarization summary;
 - diagnostic summary;
+- co-moving versus absolute-history comparison status, mode summaries, and deltas when the solver path can compute them;
 - small plot or sample summary;
 - and a short note explaining why the result is interesting.
 
@@ -454,6 +463,7 @@ The search should flag a configuration as interesting when one or more of these 
 - strong cancellation: many active sources but small net transverse field;
 - sharp transitions: small setting changes produce large changes in fitted polarization or analyzer response;
 - robust patterns: the behavior survives small nudges rather than depending on one exact slider value;
+- absolute-history comparison: either strong agreement between co-moving and absolute-history modes, or strong divergence that marks the configuration as a useful moving-apparatus stress case;
 - causal-root structure: low missed-source count, healthy Jacobian values, repeatable phase-at-hit families, or organized same-source and partner-hit roots;
 - simple explanations: fewer enabled binaries, integer frequency ratios, simple phase offsets, or clean leading/trailing symmetry;
 - and diversity: the result set should prefer representative examples from different pattern families over many tiny variations of the same case.
@@ -462,12 +472,12 @@ Suspect numerical cases should be labeled as suspect, not good. Missed roots, ve
 
 ## Open Work Queue
 
-1. `reusable_absolute_history_solver` - Build or extract a shared solver for absolute source histories, moving receiver histories, all retained causal roots, same-source self-hit roots, source and receiver phase-at-hit rows, phase-spread diagnostics, Jacobian floors, rejected-root reasons, receiver acceleration, and observer-level field reconstruction. Mine `scripts/simulations/lib/assembly-dynamics-solver.mjs` first, but adapt it for the photon app's 3D planar-pair histories and local-$c$ translation. Status: `open`.
-2. `local_c_parameterization` - Add a speed mode that replaces fixed $c_f$ with local $c$ from either a direct $c_\gamma/c_f$ control, declared Noether sea state variables, or a Lorentz-factor chart mapping when that mapping is available. This is an input to the reusable absolute-history solver, not just a display label. Status: `open`.
-3. `moving_apparatus_delta_x_mapping` - Use the reusable absolute-history solver to replace the co-moving $\Delta x$ diagnostic with an optional absolute-history mode where the swarms and Virtual Observer translate at $c_\gamma$, then solve whether leading and trailing source histories can causally reach the moving Virtual Observer. Status: `open`.
-4. `absolute_source_history_self_hit` - Use the reusable absolute-history solver to add a local-$c$ helical source-history diagnostic that combines photon-channel translation with transverse binary motion, then reports same-source roots, Jacobian floors, and whether each layer is sub-field-speed or candidate self-hit. Status: `open`.
+1. `reusable_absolute_history_solver` - A working central solver exists, and Photon now routes absolute-history source/observer roots through a shared solver-layer moving-circular root solver. Mapped co-moving and absolute-history contributions carry source phase-at-hit rows, Photon reports trailing/leading hit phase-spread diagnostics, Photon reports no-catch-up, stale-window, near-miss, and root-cap diagnostics for absolute-history source scans, Photon reports shared-geometry same-source self-hit span rows for enabled binary layers, and Photon now reports first-pass helical same-source root rows for individual architrino source histories with source and receiver phase-at-hit metadata. Remaining work: promote the moving-circular and same-source root paths into the native/WASM bridge row set, expose receiver phase rows where the receiver is not only the Virtual Observer or same source, broaden phase-spread diagnostics by layer, charge sign, root kind, and cycle, expand rejected-root reasons to singular-root/small-Jacobian/transversality-floor cases, and harden observer-level field reconstruction for the photon app's 3D planar-pair histories and local-$c$ translation. Status: `open`.
+2. `local_c_parameterization` - Direct $c_{\mathrm{sig}}/c_f$ and $c_\gamma/c_f$ controls exist. Remaining work: add a speed mode that derives local $c$ from declared Noether sea state variables or a Lorentz-factor chart mapping when that mapping is available, and feed that derived value into the absolute-history solver instead of using only direct slider input. Status: `open`.
+3. `moving_apparatus_delta_x_mapping` - Default absolute-history mode now translates source and Virtual Observer histories at $c_\gamma$ through the shared moving-circular root solver, and the diagnostics panel reports no-catch-up, stale-window, near-miss, and root-cap summaries. Remaining work: make this mode the authoritative $\Delta x$ diagnostic, add clearer stale-root aging thresholds, and promote the current shared JavaScript solver path into the native/WASM bridge when that row shape is available. Status: `open`.
+4. `absolute_source_history_self_hit` - First pass exists: Photon now combines photon-channel translation speed with transverse binary speed, reports legacy shared-geometry circular self-hit span rows, and computes helical same-source root rows against the moving source histories with retained roots, Jacobian values, and source/receiver phase-at-hit metadata. Remaining work: promote the helical same-source rows into the native/WASM bridge, add explicit sub-field-speed versus self-hit family summaries, and group the retained roots into stable phase families by layer, charge sign, role, and cycle. Status: `open`.
 5. `substrate_mapping_refinement` - Refine the Virtual Observer branch-sum mapping from I/M/O layer parameters to transverse observer-field amplitudes, while preserving claim discipline and distinguishing co-moving diagnostics from absolute-history results. Status: `open`.
-6. `configuration_search_absolute_history_comparison` - After the reusable absolute-history solver exists, extend Configuration Search scoring to compare co-moving fits against absolute-history moving-apparatus roots and local-$c$ modes. Status: `open`.
+6. `configuration_search_absolute_history_comparison` - First pass exists: Configuration Search now stores and scores a compact co-moving versus absolute-history comparison for top results using the shared moving-circular absolute-history solver. Remaining work: add local-$c$ derived-speed modes, support deeper/background comparison runs when useful, and compare phase-at-hit and same-source root-family summaries once those rows are available. Status: `open`.
 7. `shared_visual_extraction` - Extract shared Ideal Swarm / photon architrino marker, orbit-path, tint-profile, and layered-trail helpers if the visual grammar needs to be maintained across both apps. Status: `open`.
 
 ## Deferred Non-Goals

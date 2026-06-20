@@ -379,22 +379,84 @@ function createInitialConditionsFromPaths(paths) {
   };
   ARCHITRINO_KINDS.forEach((kind) => {
     const points = paths[kind];
-    const start = points[0];
-    const next = points[1] ?? start;
-    const dt = Number(next.t) - Number(start.t);
-    const velocityScale = Number.isFinite(dt) && dt !== 0 ? 1 / dt : 0;
+    const motionState = createInitialMotionStateFromPath(points);
     conditions[kind] = {
       kind,
-      t: start.t,
-      x: start.x,
-      y: start.y,
-      vx: (next.x - start.x) * velocityScale,
-      vy: (next.y - start.y) * velocityScale,
+      t: motionState.t,
+      x: motionState.x,
+      y: motionState.y,
+      vx: motionState.vx,
+      vy: motionState.vy,
+      ax: motionState.ax,
+      ay: motionState.ay,
       polarity: kind === "positrino" ? "positive" : "negative",
       role: "source",
     };
   });
   return conditions;
+}
+
+function createInitialMotionStateFromPath(points) {
+  const start = points[0] ?? { t: 0, x: 0, y: 0 };
+  const end = points.at(-1) ?? start;
+  const midpoint = interpolateSampledPath(points, start.t + (end.t - start.t) * 0.5);
+  const totalTime = Number(end.t) - Number(start.t);
+  const midpointTime = Number(midpoint.t) - Number(start.t);
+  if (!Number.isFinite(totalTime) || totalTime <= 0 || !Number.isFinite(midpointTime) || midpointTime <= 0) {
+    return { t: start.t, x: start.x, y: start.y, vx: 0, vy: 0, ax: 0, ay: 0 };
+  }
+
+  const dx = end.x - start.x;
+  const dy = end.y - start.y;
+  const mx = midpoint.x - start.x;
+  const my = midpoint.y - start.y;
+  const denominator = midpointTime * midpointTime - totalTime * midpointTime;
+  if (!Number.isFinite(denominator) || Math.abs(denominator) <= 1e-9) {
+    return {
+      t: start.t,
+      x: start.x,
+      y: start.y,
+      vx: dx / totalTime,
+      vy: dy / totalTime,
+      ax: 0,
+      ay: 0,
+    };
+  }
+
+  const ax = (2 * (mx - (midpointTime / totalTime) * dx)) / denominator;
+  const ay = (2 * (my - (midpointTime / totalTime) * dy)) / denominator;
+  return {
+    t: start.t,
+    x: start.x,
+    y: start.y,
+    vx: (dx - 0.5 * ax * totalTime * totalTime) / totalTime,
+    vy: (dy - 0.5 * ay * totalTime * totalTime) / totalTime,
+    ax,
+    ay,
+  };
+}
+
+function interpolateSampledPath(points, t) {
+  if (!Array.isArray(points) || points.length === 0) {
+    return { t, x: 0, y: 0 };
+  }
+  if (points.length === 1 || t <= points[0].t) {
+    return { ...points[0] };
+  }
+  const last = points.at(-1);
+  if (t >= last.t) {
+    return { ...last };
+  }
+  const rightIndex = points.findIndex((point) => point.t >= t);
+  const left = points[Math.max(0, rightIndex - 1)];
+  const right = points[rightIndex] ?? last;
+  const span = right.t - left.t;
+  const amount = span === 0 ? 0 : clamp((t - left.t) / span, 0, 1);
+  return {
+    t,
+    x: left.x + (right.x - left.x) * amount,
+    y: left.y + (right.y - left.y) * amount,
+  };
 }
 
 function samplePath(kind, count = FRAME_COUNT) {

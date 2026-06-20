@@ -4,5 +4,9 @@ __pycache__/
 .obsidian/
 .tmp/
 
+# Xcode per-user UI/session state
+**/xcuserdata/
+*.xcuserstate
+
 # Local Cody corpus-exploration coordination cards
 reference/entourage/cody/reports/corpus-exploration-claims/

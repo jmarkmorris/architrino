@@ -21,12 +21,28 @@ import {
 const PHOTON_SEARCH_RESULT_LIMIT = 12;
 const PHOTON_SEARCH_SUMMARY_OPTIONS = Object.freeze({
   polarizationSampleCount: 48,
+  minimumPolarizationSampleCount: 12,
   analyzerSampleCount: 18,
+  minimumAnalyzerSampleCount: 8,
+  skipSelfHitDiagnostics: true,
 });
 const PHOTON_SEARCH_PERTURB_OPTIONS = Object.freeze({
   polarizationSampleCount: 24,
+  minimumPolarizationSampleCount: 8,
   analyzerSampleCount: 10,
+  minimumAnalyzerSampleCount: 4,
+  skipSelfHitDiagnostics: true,
 });
+const PHOTON_SEARCH_COMPARISON_OPTIONS = Object.freeze({
+  polarizationSampleCount: 4,
+  minimumPolarizationSampleCount: 4,
+  analyzerSampleCount: 2,
+  minimumAnalyzerSampleCount: 1,
+  absoluteHistorySegments: 2,
+  maxDelay: 0.25,
+  skipSelfHitDiagnostics: true,
+});
+const PHOTON_SEARCH_COMPARISON_CANDIDATE_LIMIT = 3;
 const PHOTON_SEARCH_EXPORT_KIND = "photon-configuration-search-results";
 const PHOTON_SEARCH_EXPORT_VERSION = 1;
 const EPSILON = 1e-9;
@@ -55,10 +71,15 @@ function getStateSearchKey(state) {
   return JSON.stringify({
     pair: {
       separation: Number(normalized.pair.pairSeparation).toPrecision(10),
+      photonSpeedCf: Number(normalized.pair.photonSpeedCf ?? 1).toPrecision(10),
       left: normalized.pair.left.layers,
       right: normalized.pair.right.layers,
     },
-    observer: normalized.measurement.virtualObserver,
+    measurement: {
+      sourceHistoryMode: normalized.measurement.sourceHistoryMode,
+      observer: normalized.measurement.virtualObserver,
+      signalSpeedCf: Number(normalized.measurement.signalSpeedCf ?? 1).toPrecision(10),
+    },
     analyzer: normalized.polarization.analyzerAngleDeg,
     view: normalized.view,
   });
@@ -233,6 +254,53 @@ function buildPhotonSearchCandidates(baseState) {
   return candidates;
 }
 
+function selectPhotonSearchCandidatePool(candidates, maxCandidates = Number.POSITIVE_INFINITY) {
+  const budget = Math.max(0, Math.floor(Number(maxCandidates)));
+  if (!Number.isFinite(budget) || candidates.length <= budget) {
+    return candidates.slice();
+  }
+  if (budget === 0) {
+    return [];
+  }
+
+  const preferredSources = [
+    "current",
+    "preset",
+    "enabled-layers",
+    "phase",
+    "delta-x",
+    "observer",
+    "combined",
+    "analyzer",
+  ];
+  const selected = [];
+  const selectedIndexes = new Set();
+
+  const pushIndex = (index) => {
+    if (
+      selected.length >= budget ||
+      index < 0 ||
+      index >= candidates.length ||
+      selectedIndexes.has(index)
+    ) {
+      return;
+    }
+    selectedIndexes.add(index);
+    selected.push(candidates[index]);
+  };
+
+  preferredSources.forEach((source) => {
+    const index = candidates.findIndex(
+      (candidate, candidateIndex) =>
+        !selectedIndexes.has(candidateIndex) && candidate.source === source
+    );
+    pushIndex(index);
+  });
+
+  candidates.forEach((_, index) => pushIndex(index));
+  return selected;
+}
+
 function setPairAndPhaseStress(state) {
   setPhotonPairSeparationLog10Ratio(state, -2);
   setVirtualObserver(state, { x: 0.5, y: 1.25, z: -0.75 });
@@ -298,15 +366,125 @@ function summarizePhotonSearchPerturbation(summary, nextSummary) {
   };
 }
 
+function createPhotonSearchModeState(state, sourceHistoryMode) {
+  const next = cloneNormalizedPhotonState(state);
+  next.measurement.sourceHistoryMode = sourceHistoryMode === "absolute_history"
+    ? "absolute_history"
+    : "co_moving";
+  return normalizePhotonState(next);
+}
+
+function summarizePhotonSearchMode(summary, diagnostics) {
+  return {
+    sourceMode: summary.field.sourceMode,
+    classification: summary.polarization.classification,
+    classificationLabel: summary.polarization.classificationLabel,
+    fitResidual: summary.fitResidual,
+    phaseLagDeg: summary.polarization.phaseLagDeg,
+    phaseLagDefined: summary.polarization.phaseLagDefined,
+    amplitudeY: summary.polarization.amplitudes.y,
+    amplitudeZ: summary.polarization.amplitudes.z,
+    amplitudeRatio: summary.polarization.amplitudes.relative,
+    transverseAmplitude: diagnostics.transverseAmplitude,
+    sourceCount: diagnostics.sourceCount,
+    rootCount: diagnostics.rootCount,
+    unresolvedSourceCount: diagnostics.unresolvedSourceCount,
+    unstableSourceCount: diagnostics.unstableSourceCount,
+    delaySolveGapMax: diagnostics.delaySolveGapMax,
+    jacobianAbsMin: diagnostics.jacobianAbsMin,
+    averageDelay: diagnostics.averageDelay,
+  };
+}
+
+function computePhotonSearchComparisonDeltas(coMoving, absoluteHistory) {
+  const coStrength = Math.hypot(coMoving.amplitudeY, coMoving.amplitudeZ);
+  const absoluteStrength = Math.hypot(absoluteHistory.amplitudeY, absoluteHistory.amplitudeZ);
+  const strengthDenominator = Math.max(EPSILON, coStrength);
+  const phaseDeltaDeg = coMoving.phaseLagDefined !== false && absoluteHistory.phaseLagDefined !== false
+    ? getSignedDegreeDelta(absoluteHistory.phaseLagDeg, coMoving.phaseLagDeg)
+    : 0;
+  return {
+    classificationChanged: coMoving.classification !== absoluteHistory.classification,
+    strengthDelta: Math.abs(absoluteStrength - coStrength) / strengthDenominator,
+    phaseDeltaDeg,
+    fitResidualDelta: Math.abs(absoluteHistory.fitResidual - coMoving.fitResidual),
+    rootCountDelta: absoluteHistory.rootCount - coMoving.rootCount,
+    unresolvedDelta: absoluteHistory.unresolvedSourceCount - coMoving.unresolvedSourceCount,
+    jacobianRatio: absoluteHistory.jacobianAbsMin / Math.max(EPSILON, coMoving.jacobianAbsMin),
+  };
+}
+
+async function computePhotonSearchModeSummary(state, sourceHistoryMode, options = {}) {
+  const modeState = createPhotonSearchModeState(state, sourceHistoryMode);
+  const summary = await computePhotonFormulaSummaryWithSolverBridge(
+    modeState,
+    0,
+    createPhotonSearchSolverOptions(options, PHOTON_SEARCH_COMPARISON_OPTIONS, "comparison")
+  );
+  const diagnostics = computePhotonDiagnostics(modeState, 0, summary);
+  return summarizePhotonSearchMode(summary, diagnostics);
+}
+
+async function comparePhotonSearchHistoryModes(state, summary, diagnostics, options = {}) {
+  if (options.compareAbsoluteHistory === false) {
+    return {
+      status: "disabled",
+      message: "Absolute-history comparison disabled for this search.",
+    };
+  }
+  const candidateIndex = Number(options.candidateIndex);
+  const comparisonCandidateLimit = Math.max(
+    0,
+    Math.round(Number(options.comparisonCandidateLimit ?? PHOTON_SEARCH_COMPARISON_CANDIDATE_LIMIT))
+  );
+  if (Number.isFinite(candidateIndex) && candidateIndex >= comparisonCandidateLimit) {
+    return {
+      status: "skipped",
+      message: "Absolute-history comparison skipped for this lower-priority candidate.",
+    };
+  }
+  const currentMode = state.measurement?.sourceHistoryMode === "absolute_history"
+    ? "absolute_history"
+    : "co_moving";
+  const coMoving = currentMode === "co_moving"
+    ? summarizePhotonSearchMode(summary, diagnostics)
+    : await computePhotonSearchModeSummary(state, "co_moving", options);
+  try {
+    const absoluteHistory = currentMode === "absolute_history"
+      ? summarizePhotonSearchMode(summary, diagnostics)
+      : await computePhotonSearchModeSummary(state, "absolute_history", options);
+    return {
+      status: "ok",
+      coMoving,
+      absoluteHistory,
+      deltas: computePhotonSearchComparisonDeltas(coMoving, absoluteHistory),
+    };
+  } catch (error) {
+    return {
+      status: "error",
+      message: error?.message ?? "Absolute-history comparison failed.",
+      coMoving,
+    };
+  }
+}
+
 function createPhotonSearchSolverOptions(options, defaults, overrideKey) {
   const {
     limit: _limit,
     maxCandidates: _maxCandidates,
     summaryOptions,
     perturbOptions,
+    comparisonOptions,
+    compareAbsoluteHistory: _compareAbsoluteHistory,
+    comparisonCandidateLimit: _comparisonCandidateLimit,
+    candidateIndex: _candidateIndex,
     ...solverOptions
   } = options && typeof options === "object" ? options : {};
-  const overrides = overrideKey === "perturb" ? perturbOptions : summaryOptions;
+  const overrides = overrideKey === "comparison"
+    ? comparisonOptions
+    : overrideKey === "perturb"
+      ? perturbOptions
+      : summaryOptions;
   return {
     ...solverOptions,
     ...defaults,
@@ -331,7 +509,15 @@ function hasSimplePhases(state) {
   );
 }
 
-function buildPhotonSearchCandidateResult(candidate, index, state, summary, diagnostics, perturbation) {
+function buildPhotonSearchCandidateResult(
+  candidate,
+  index,
+  state,
+  summary,
+  diagnostics,
+  perturbation,
+  comparison
+) {
   const reasons = [];
   const components = {};
   const polarization = summary.polarization;
@@ -437,6 +623,50 @@ function buildPhotonSearchCandidateResult(candidate, index, state, summary, diag
     );
   }
 
+  if (comparison?.status === "ok") {
+    const deltas = comparison.deltas ?? {};
+    const comparisonSuspect =
+      comparison.absoluteHistory?.unresolvedSourceCount > 0 ||
+      comparison.absoluteHistory?.delaySolveGapMax > 0.05 ||
+      comparison.absoluteHistory?.jacobianAbsMin <= 1e-4;
+    if (
+      !comparisonSuspect &&
+      !deltas.classificationChanged &&
+      deltas.strengthDelta <= 0.18 &&
+      deltas.phaseDeltaDeg <= 12
+    ) {
+      components.absoluteAgreement = pushReason(
+        reasons,
+        "absolute-history-agreement",
+        "Absolute-history agreement",
+        `absolute mode keeps ${comparison.absoluteHistory.classificationLabel}, strength delta ${(deltas.strengthDelta * 100).toFixed(0)}%`,
+        9
+      );
+    } else if (
+      deltas.classificationChanged ||
+      deltas.strengthDelta >= 0.4 ||
+      deltas.phaseDeltaDeg >= 30 ||
+      Math.abs(deltas.rootCountDelta) >= Math.max(2, diagnostics.sourceCount * 0.25)
+    ) {
+      components.absoluteDivergence = pushReason(
+        reasons,
+        "absolute-history-divergence",
+        "Absolute-history divergence",
+        `absolute mode changes ${comparison.coMoving.classificationLabel} to ${comparison.absoluteHistory.classificationLabel}`,
+        7
+      );
+    }
+    if (comparisonSuspect) {
+      components.absoluteSuspect = pushReason(
+        reasons,
+        "absolute-history-suspect",
+        "Absolute-history suspect",
+        `absolute mode missed ${comparison.absoluteHistory.unresolvedSourceCount}, min |J| ${comparison.absoluteHistory.jacobianAbsMin.toFixed(4)}`,
+        -8
+      );
+    }
+  }
+
   if (suspect) {
     components.suspect = pushReason(
       reasons,
@@ -495,6 +725,10 @@ function buildPhotonSearchCandidateResult(candidate, index, state, summary, diag
       jacobianAbsMin: diagnostics.jacobianAbsMin,
       averageDelay: diagnostics.averageDelay,
     },
+    comparison: comparison ?? {
+      status: "unavailable",
+      message: "Absolute-history comparison was not computed.",
+    },
     plot: {
       runDuration: summary.runDuration,
       middleCycleStart: summary.middleCycle.start,
@@ -520,13 +754,23 @@ async function evaluatePhotonSearchCandidateWithSolverBridge(candidate, index, o
     summary,
     options
   );
+  const comparison = await comparePhotonSearchHistoryModes(
+    state,
+    summary,
+    diagnostics,
+    {
+      ...options,
+      candidateIndex: index,
+    }
+  );
   return buildPhotonSearchCandidateResult(
     candidate,
     index,
     state,
     summary,
     diagnostics,
-    perturbation
+    perturbation,
+    comparison
   );
 }
 
@@ -577,8 +821,8 @@ export async function createPhotonConfigurationSearchResultsWithSolverBridge(
   baseState,
   options = {}
 ) {
-  const candidates = buildPhotonSearchCandidates(baseState).slice(
-    0,
+  const candidates = selectPhotonSearchCandidatePool(
+    buildPhotonSearchCandidates(baseState),
     options.maxCandidates ?? Number.POSITIVE_INFINITY
   );
   const evaluated = await Promise.all(
@@ -606,6 +850,7 @@ function serializePhotonSearchResult(result) {
     suspect: !!result.suspect,
     polarization: result.polarization ?? {},
     diagnostics: result.diagnostics ?? {},
+    comparison: result.comparison ?? {},
     plot: result.plot ?? {},
   };
 }

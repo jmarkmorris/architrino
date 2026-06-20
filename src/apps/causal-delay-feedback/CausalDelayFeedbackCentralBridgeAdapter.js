@@ -3,6 +3,8 @@ import {
   CENTRAL_SOLVER_BRIDGE_TARGET,
   DEFAULT_CANVAS_ID,
   DEFAULT_PRESET_ID,
+  DESIGN_HEIGHT,
+  DESIGN_WIDTH,
   ELECTRINO_WAKE,
   FULL_CIRCULAR_ARCS,
   PARTIAL_PROPAGATING_ARCS,
@@ -19,12 +21,47 @@ export const CAUSAL_DELAY_FEEDBACK_REPLAY_CONFIG_VERSION =
   "causal-delay-feedback-replay-adapter.v1";
 export const CENTRAL_SOLVER_APP_PLAYBACK_REPLAY_MODE = "appPlayback";
 export const CENTRAL_SOLVER_MOTION_REPLAY_MODE = "motionSimulation";
+export const CENTRAL_SOLVER_PAIR_INTERACTION_REPLAY_MODE = "pairInteraction";
 export const CENTRAL_SOLVER_DELAYED_HITS_RUN_KIND = "delayedHits";
 
 const DEFAULT_MEMORY_BUDGET_BYTES = 128 * 1024 * 1024;
 const DEFAULT_HISTORY_DEPTH = 4;
 const DEFAULT_FRAME_COUNT = 180;
 const DEFAULT_RUN_DURATION = 1;
+const DEFAULT_PAIR_ACCELERATION_SCALE = 0.18;
+const DEFAULT_PAIR_INTERACTION_ACCELERATION_SCALE = 4000;
+const DEFAULT_PAIR_SEGMENT_COUNT = 12;
+const DEFAULT_PAIR_INTERACTION_SOFTENING = 0;
+const DEFAULT_PAIR_INTERACTION_LAW = "inverse_distance_pair_attraction_v1";
+const PAIR_SEGMENTED_ACCELERATION_POLICY = "pair_segmented_attraction_seed";
+const PAIR_INITIAL_ACCELERATION_POLICY = "pair_initial_attraction_seed";
+const EXPLICIT_ACCELERATION_POLICY = "explicit";
+const FINITE_DIFFERENCE_FRAME_RELAXATION_MODE = "finite_difference_frame_relaxation_v1";
+const FINITE_DIFFERENCE_FRAME_RELAXATION_ACCEPTED_STATUS = "accepted";
+const FINITE_DIFFERENCE_FRAME_RELAXATION_CONVERGED_STATUS = "converged";
+const FINITE_DIFFERENCE_FRAME_RELAXATION_STEP_CONVERGED_STATUS = "step_converged";
+const FINITE_DIFFERENCE_FRAME_RELAXATION_REVERTED_STATUS = "reverted_no_improvement";
+const FINITE_DIFFERENCE_FRAME_RELAXATION_NO_SAMPLES_STATUS = "no_relaxable_samples";
+const DISCRETE_BOUNDARY_VALUE_CONVERGED_STATUS = "discrete_boundary_value_converged";
+const FINITE_DIFFERENCE_PAIR_BOUNDARY_VALUE_SOLVE_CONVERGED_CLAIM =
+  "finite_difference_pair_boundary_value_solve_converged";
+const PHYSICAL_BOUNDARY_SOLVER_PENDING_STATUS = "physical_boundary_solver_pending";
+const RETAINED_KNOT_GUIDANCE_NOT_PHYSICAL_BOUNDARY_VALUE_SOLVE_CLAIM =
+  "retained_knot_guidance_not_physical_boundary_value_solve";
+const BOUNDARY_RELAXATION_RESIDUAL_EVIDENCE_NO_SAMPLES = "no_samples";
+const BOUNDARY_RELAXATION_RESIDUAL_EVIDENCE_INCOMPLETE = "incomplete_evidence";
+const BOUNDARY_RELAXATION_RESIDUAL_EVIDENCE_NON_WORSENING = "aggregate_non_worsening";
+const BOUNDARY_RELAXATION_RESIDUAL_EVIDENCE_WORSENED = "aggregate_worsened";
+const DERIVED_BOUNDARY_POSITION_RESIDUAL_TOLERANCE = 1e-9;
+const TIME_SPACE_CANVAS_FIT_PROJECTION = "time_space_canvas_fit_v1";
+const TIME_AXIS_START_X = DESIGN_WIDTH * 0.05;
+const TIME_AXIS_END_X = DESIGN_WIDTH * 0.95;
+const SPACE_AXIS_TOP_Y = DESIGN_HEIGHT * 0.2;
+const SPACE_AXIS_BOTTOM_Y = DESIGN_HEIGHT * 0.8;
+const PATH_CONSTRAINT_DRAFT_REASONS = new Set([
+  "retained_point_drag_preview",
+  "reception_point_insert_preview",
+]);
 const ARCHITRINO_KINDS = Object.freeze(["positrino", "electrino"]);
 const PATH_KEYS_BY_KIND = Object.freeze({ positrino: 1, electrino: 2 });
 const KIND_BY_PATH_KEY = Object.freeze(Object.fromEntries(
@@ -98,6 +135,52 @@ export function createCausalDelayFeedbackBridgeReplayRequest(input = {}) {
         runDuration: normalizePositiveNumber(input.runDuration, DEFAULT_RUN_DURATION, "runDuration"),
         outputStride: normalizePositiveInteger(input.outputStride, 1, "outputStride"),
       },
+      motion: {
+        accelerationPolicy: normalizeOptionalString(
+          input.motionAccelerationPolicy ?? input.accelerationPolicy,
+          PAIR_SEGMENTED_ACCELERATION_POLICY,
+          "motionAccelerationPolicy",
+        ),
+        pairAccelerationScale: normalizePositiveNumber(
+          input.pairAccelerationScale,
+          DEFAULT_PAIR_ACCELERATION_SCALE,
+          "pairAccelerationScale",
+        ),
+        pairSegmentCount: normalizePositiveInteger(
+          input.pairSegmentCount,
+          DEFAULT_PAIR_SEGMENT_COUNT,
+          "pairSegmentCount",
+        ),
+        pairInteractionLaw: normalizeOptionalString(
+          input.pairInteractionLaw,
+          DEFAULT_PAIR_INTERACTION_LAW,
+          "pairInteractionLaw",
+        ),
+        pathConstraintBoundaryResidualTolerance: normalizeOptionalNonnegativeNumber(
+          input.pathConstraintBoundaryResidualTolerance ?? input.boundaryResidualTolerance,
+          "pathConstraintBoundaryResidualTolerance",
+        ),
+        pathConstraintPositionResidualTolerance: normalizeOptionalNonnegativeNumber(
+          input.pathConstraintPositionResidualTolerance ?? input.positionResidualTolerance,
+          "pathConstraintPositionResidualTolerance",
+        ),
+        pathConstraintGuidanceAccelerationTolerance: normalizeOptionalNonnegativeNumber(
+          input.pathConstraintGuidanceAccelerationTolerance ?? input.guidanceAccelerationTolerance,
+          "pathConstraintGuidanceAccelerationTolerance",
+        ),
+        pathConstraintBoundaryRelaxationIterationCount: normalizeOptionalNonnegativeInteger(
+          input.pathConstraintBoundaryRelaxationIterationCount ?? input.boundaryRelaxationIterations,
+          "pathConstraintBoundaryRelaxationIterationCount",
+        ),
+        pathConstraintBoundaryRelaxationTolerance: normalizeOptionalNonnegativeNumber(
+          input.pathConstraintBoundaryRelaxationTolerance ?? input.boundaryRelaxationTolerance,
+          "pathConstraintBoundaryRelaxationTolerance",
+        ),
+        pathConstraintBoundaryRelaxationStepTolerance: normalizeOptionalNonnegativeNumber(
+          input.pathConstraintBoundaryRelaxationStepTolerance ?? input.boundaryRelaxationStepTolerance,
+          "pathConstraintBoundaryRelaxationStepTolerance",
+        ),
+      },
     },
     output: {
       outputs: input.outputs ?? [
@@ -119,12 +202,20 @@ export function createCausalDelayFeedbackCentralBridgeAdapter(options = {}) {
     id: CENTRAL_SOLVER_REPLAY_ADAPTER,
     futureSolverTarget: CENTRAL_SOLVER_BRIDGE_TARGET,
     async createReplayAsync({ presetId = DEFAULT_PRESET_ID, requestOptions = {} } = {}) {
+      const replayMode = resolveCentralSolverReplayMode(requestOptions, options);
       const request = createCausalDelayFeedbackBridgeReplayRequest({
         ...requestOptions,
+        ...(replayMode === CENTRAL_SOLVER_PAIR_INTERACTION_REPLAY_MODE &&
+        requestOptions.pairAccelerationScale == null
+          ? { pairAccelerationScale: DEFAULT_PAIR_INTERACTION_ACCELERATION_SCALE }
+          : {}),
         presetId,
       });
-      if (resolveCentralSolverReplayMode(requestOptions, options) === CENTRAL_SOLVER_MOTION_REPLAY_MODE) {
-        return createMotionSolverReplayDataset(request, options);
+      if (
+        replayMode === CENTRAL_SOLVER_PAIR_INTERACTION_REPLAY_MODE ||
+        replayMode === CENTRAL_SOLVER_MOTION_REPLAY_MODE
+      ) {
+        return createMotionSolverReplayDataset(request, options, { replayMode });
       }
       const runHandle = await runCausalDelayBridgeRequest(request, options, {
         factoryRequest: request.config.initialConditions,
@@ -135,23 +226,17 @@ export function createCausalDelayFeedbackCentralBridgeAdapter(options = {}) {
   };
 }
 
-async function createMotionSolverReplayDataset(playbackRequest, options = {}) {
-  const motionRunHandles = await Promise.all(
-    ARCHITRINO_KINDS.map((kind) => {
-      const request = createCausalDelayFeedbackMotionSimulationRequest(playbackRequest, kind);
-      return runCausalDelayBridgeRequest(request, options, {
-        factoryRequest: request.config.motionIntegrationRequest,
-        requestedCapabilities: ["motionSimulation", "pathHistory", "diagnostics"],
-      });
-    }),
-  );
-  const bridgeFrames = motionRunHandles.flatMap((runHandle, index) => (
-    normalizeMotionRunFrames(runHandle, ARCHITRINO_KINDS[index])
-  ));
+async function createMotionSolverReplayDataset(playbackRequest, options = {}, { replayMode } = {}) {
+  const resolvedReplayMode = replayMode ?? CENTRAL_SOLVER_PAIR_INTERACTION_REPLAY_MODE;
+  const motionReplay = await createMotionSolverReplayFrames(playbackRequest, options, resolvedReplayMode);
+  const displayReplay = createDisplayReplayFrames(playbackRequest, motionReplay, resolvedReplayMode);
+  const { bridgeFrames } = displayReplay;
+  const { motionRunHandles } = motionReplay;
   const pairedFrames = normalizeFrameSamples(bridgeFrames, "central motion replay frames");
   const history = createHistorySamplesFromPairedFrames(
     pairedFrames,
     playbackRequest.config.geometry.history,
+    { preserveTemplatePoints: Number(motionReplay.pathConstraintCount) > 0 },
   );
   const wakeLinks = createWakeLinksFromBridgeHits(
     playbackRequest.config.hits,
@@ -207,7 +292,107 @@ async function createMotionSolverReplayDataset(playbackRequest, options = {}) {
         status: { code: "ok", severity: "ok", message: "central motion replay prepared" },
         summary: {
           runId: playbackRequest.runId,
-          replayMode: CENTRAL_SOLVER_MOTION_REPLAY_MODE,
+          replayMode: resolvedReplayMode,
+          motionAccelerationPolicy: playbackRequest.config.motion.accelerationPolicy,
+          pairSegmentCount: motionReplay.pairSegmentCount,
+          pairInteractionStepCount: motionReplay.pairInteractionStepCount,
+          interactionLaw: motionReplay.interactionLaw,
+          executionPath: motionReplay.executionPath,
+          pathConstraintCount: motionReplay.pathConstraintCount,
+          pathConstraintFrameRefinementSampleCount:
+            motionReplay.pathConstraintFrameRefinementSampleCount,
+          pathConstraintPositionResidualSampleCount:
+            motionReplay.pathConstraintPositionResidualSampleCount,
+          pathConstraintPositionResidualStatus:
+            motionReplay.pathConstraintPositionResidualStatus,
+          pathConstraintPositionResidualTolerance:
+            motionReplay.pathConstraintPositionResidualTolerance,
+          maxPathConstraintPositionResidual: motionReplay.maxPathConstraintPositionResidual,
+          meanPathConstraintPositionResidual: motionReplay.meanPathConstraintPositionResidual,
+          rmsPathConstraintPositionResidual: motionReplay.rmsPathConstraintPositionResidual,
+          pathConstraintResidualSampleCount: motionReplay.pathConstraintResidualSampleCount,
+          maxPathConstraintResidual: motionReplay.maxPathConstraintResidual,
+          meanPathConstraintResidual: motionReplay.meanPathConstraintResidual,
+          rmsPathConstraintResidual: motionReplay.rmsPathConstraintResidual,
+          pathConstraintGuidanceSampleCount: motionReplay.pathConstraintGuidanceSampleCount,
+          pathConstraintGuidanceMode: motionReplay.pathConstraintGuidanceMode,
+          pathConstraintBoundaryMode: motionReplay.pathConstraintBoundaryMode,
+          pathConstraintBoundarySeedMode: motionReplay.pathConstraintBoundarySeedMode,
+          pathConstraintBoundarySeedSampleCount: motionReplay.pathConstraintBoundarySeedSampleCount,
+          pathConstraintBoundaryRelaxationMode: motionReplay.pathConstraintBoundaryRelaxationMode,
+          pathConstraintBoundaryRelaxationIterationCount:
+            motionReplay.pathConstraintBoundaryRelaxationIterationCount,
+          pathConstraintBoundaryRelaxationAppliedIterationCount:
+            motionReplay.pathConstraintBoundaryRelaxationAppliedIterationCount,
+          pathConstraintBoundaryRelaxationStopReason:
+            motionReplay.pathConstraintBoundaryRelaxationStopReason,
+          pathConstraintBoundaryRelaxationTolerance:
+            motionReplay.pathConstraintBoundaryRelaxationTolerance,
+          pathConstraintBoundaryRelaxationStepTolerance:
+            motionReplay.pathConstraintBoundaryRelaxationStepTolerance,
+          pathConstraintBoundaryRelaxationStatus: motionReplay.pathConstraintBoundaryRelaxationStatus,
+          pathConstraintBoundaryRelaxationResidualEvidenceStatus:
+            motionReplay.pathConstraintBoundaryRelaxationResidualEvidenceStatus,
+          pathConstraintBoundaryRelaxationResidualSampleCount:
+            motionReplay.pathConstraintBoundaryRelaxationResidualSampleCount,
+          maxPathConstraintBoundaryRelaxationResidualBefore:
+            motionReplay.maxPathConstraintBoundaryRelaxationResidualBefore,
+          maxPathConstraintBoundaryRelaxationResidualAfter:
+            motionReplay.maxPathConstraintBoundaryRelaxationResidualAfter,
+          meanPathConstraintBoundaryRelaxationResidualBefore:
+            motionReplay.meanPathConstraintBoundaryRelaxationResidualBefore,
+          meanPathConstraintBoundaryRelaxationResidualAfter:
+            motionReplay.meanPathConstraintBoundaryRelaxationResidualAfter,
+          rmsPathConstraintBoundaryRelaxationResidualBefore:
+            motionReplay.rmsPathConstraintBoundaryRelaxationResidualBefore,
+          rmsPathConstraintBoundaryRelaxationResidualAfter:
+            motionReplay.rmsPathConstraintBoundaryRelaxationResidualAfter,
+          pathConstraintBoundaryRelaxationResidualRatio:
+            motionReplay.pathConstraintBoundaryRelaxationResidualRatio,
+          meanPathConstraintBoundaryRelaxationResidualRatio:
+            motionReplay.meanPathConstraintBoundaryRelaxationResidualRatio,
+          rmsPathConstraintBoundaryRelaxationResidualRatio:
+            motionReplay.rmsPathConstraintBoundaryRelaxationResidualRatio,
+          pathConstraintBoundaryRelaxationResidualSettlingRate:
+            motionReplay.pathConstraintBoundaryRelaxationResidualSettlingRate,
+          meanPathConstraintBoundaryRelaxationResidualSettlingRate:
+            motionReplay.meanPathConstraintBoundaryRelaxationResidualSettlingRate,
+          rmsPathConstraintBoundaryRelaxationResidualSettlingRate:
+            motionReplay.rmsPathConstraintBoundaryRelaxationResidualSettlingRate,
+          pathConstraintBoundaryRelaxationMaxStep:
+            motionReplay.pathConstraintBoundaryRelaxationMaxStep,
+          pathConstraintBoundaryRelaxationFinalStepFactor:
+            motionReplay.pathConstraintBoundaryRelaxationFinalStepFactor,
+          pathConstraintBoundaryRelaxationSelectedCandidateKind:
+            motionReplay.pathConstraintBoundaryRelaxationSelectedCandidateKind,
+          pathConstraintBoundaryRelaxationCenterOfMassSelectedCount:
+            motionReplay.pathConstraintBoundaryRelaxationCenterOfMassSelectedCount,
+          pathConstraintBoundaryRelaxationCandidateVariantCount:
+            motionReplay.pathConstraintBoundaryRelaxationCandidateVariantCount,
+          pathConstraintBoundaryRelaxationLineSearchTrialCount:
+            motionReplay.pathConstraintBoundaryRelaxationLineSearchTrialCount,
+          pathConstraintBoundaryRelaxationCandidateKindMask:
+            motionReplay.pathConstraintBoundaryRelaxationCandidateKindMask,
+          pathConstraintSolverStatus: motionReplay.pathConstraintSolverStatus,
+          pathConstraintSolverClaim: motionReplay.pathConstraintSolverClaim,
+          pathConstraintPhysicalBoundarySolverStatus:
+            motionReplay.pathConstraintPhysicalBoundarySolverStatus,
+          pathConstraintPhysicalBoundarySolverClaim:
+            motionReplay.pathConstraintPhysicalBoundarySolverClaim,
+          maxPathConstraintGuidanceAcceleration: motionReplay.maxPathConstraintGuidanceAcceleration,
+          meanPathConstraintGuidanceAcceleration: motionReplay.meanPathConstraintGuidanceAcceleration,
+          rmsPathConstraintGuidanceAcceleration: motionReplay.rmsPathConstraintGuidanceAcceleration,
+          pathConstraintGuidanceAccelerationStatus:
+            motionReplay.pathConstraintGuidanceAccelerationStatus,
+          pathConstraintGuidanceAccelerationTolerance:
+            motionReplay.pathConstraintGuidanceAccelerationTolerance,
+          pathConstraintBoundaryResidualSampleCount: motionReplay.pathConstraintBoundaryResidualSampleCount,
+          pathConstraintBoundaryResidualStatus: motionReplay.pathConstraintBoundaryResidualStatus,
+          pathConstraintBoundaryResidualTolerance: motionReplay.pathConstraintBoundaryResidualTolerance,
+          maxPathConstraintBoundaryResidual: motionReplay.maxPathConstraintBoundaryResidual,
+          meanPathConstraintBoundaryResidual: motionReplay.meanPathConstraintBoundaryResidual,
+          rmsPathConstraintBoundaryResidual: motionReplay.rmsPathConstraintBoundaryResidual,
+          displayProjection: displayReplay.displayProjection,
           frameCount: pairedFrames.length,
           pathCount: ARCHITRINO_KINDS.length,
           delayedHitCount: hits.length,
@@ -220,7 +405,108 @@ async function createMotionSolverReplayDataset(playbackRequest, options = {}) {
         hits,
         geometry: {
           ...geometry,
-          solverReplayMode: CENTRAL_SOLVER_MOTION_REPLAY_MODE,
+          solverReplayMode: resolvedReplayMode,
+          motionAccelerationPolicy: playbackRequest.config.motion.accelerationPolicy,
+          pairSegmentCount: motionReplay.pairSegmentCount,
+          pairAccelerationScale: playbackRequest.config.motion.pairAccelerationScale,
+          pairInteractionStepCount: motionReplay.pairInteractionStepCount,
+          interactionLaw: motionReplay.interactionLaw,
+          executionPath: motionReplay.executionPath,
+          pathConstraintCount: motionReplay.pathConstraintCount,
+          pathConstraintFrameRefinementSampleCount:
+            motionReplay.pathConstraintFrameRefinementSampleCount,
+          pathConstraintPositionResidualSampleCount:
+            motionReplay.pathConstraintPositionResidualSampleCount,
+          pathConstraintPositionResidualStatus:
+            motionReplay.pathConstraintPositionResidualStatus,
+          pathConstraintPositionResidualTolerance:
+            motionReplay.pathConstraintPositionResidualTolerance,
+          maxPathConstraintPositionResidual: motionReplay.maxPathConstraintPositionResidual,
+          meanPathConstraintPositionResidual: motionReplay.meanPathConstraintPositionResidual,
+          rmsPathConstraintPositionResidual: motionReplay.rmsPathConstraintPositionResidual,
+          pathConstraintResidualSampleCount: motionReplay.pathConstraintResidualSampleCount,
+          maxPathConstraintResidual: motionReplay.maxPathConstraintResidual,
+          meanPathConstraintResidual: motionReplay.meanPathConstraintResidual,
+          rmsPathConstraintResidual: motionReplay.rmsPathConstraintResidual,
+          pathConstraintGuidanceSampleCount: motionReplay.pathConstraintGuidanceSampleCount,
+          pathConstraintGuidanceMode: motionReplay.pathConstraintGuidanceMode,
+          pathConstraintBoundaryMode: motionReplay.pathConstraintBoundaryMode,
+          pathConstraintBoundarySeedMode: motionReplay.pathConstraintBoundarySeedMode,
+          pathConstraintBoundarySeedSampleCount: motionReplay.pathConstraintBoundarySeedSampleCount,
+          pathConstraintBoundaryRelaxationMode: motionReplay.pathConstraintBoundaryRelaxationMode,
+          pathConstraintBoundaryRelaxationIterationCount:
+            motionReplay.pathConstraintBoundaryRelaxationIterationCount,
+          pathConstraintBoundaryRelaxationAppliedIterationCount:
+            motionReplay.pathConstraintBoundaryRelaxationAppliedIterationCount,
+          pathConstraintBoundaryRelaxationStopReason:
+            motionReplay.pathConstraintBoundaryRelaxationStopReason,
+          pathConstraintBoundaryRelaxationTolerance:
+            motionReplay.pathConstraintBoundaryRelaxationTolerance,
+          pathConstraintBoundaryRelaxationStepTolerance:
+            motionReplay.pathConstraintBoundaryRelaxationStepTolerance,
+          pathConstraintBoundaryRelaxationStatus: motionReplay.pathConstraintBoundaryRelaxationStatus,
+          pathConstraintBoundaryRelaxationResidualEvidenceStatus:
+            motionReplay.pathConstraintBoundaryRelaxationResidualEvidenceStatus,
+          pathConstraintBoundaryRelaxationResidualSampleCount:
+            motionReplay.pathConstraintBoundaryRelaxationResidualSampleCount,
+          maxPathConstraintBoundaryRelaxationResidualBefore:
+            motionReplay.maxPathConstraintBoundaryRelaxationResidualBefore,
+          maxPathConstraintBoundaryRelaxationResidualAfter:
+            motionReplay.maxPathConstraintBoundaryRelaxationResidualAfter,
+          meanPathConstraintBoundaryRelaxationResidualBefore:
+            motionReplay.meanPathConstraintBoundaryRelaxationResidualBefore,
+          meanPathConstraintBoundaryRelaxationResidualAfter:
+            motionReplay.meanPathConstraintBoundaryRelaxationResidualAfter,
+          rmsPathConstraintBoundaryRelaxationResidualBefore:
+            motionReplay.rmsPathConstraintBoundaryRelaxationResidualBefore,
+          rmsPathConstraintBoundaryRelaxationResidualAfter:
+            motionReplay.rmsPathConstraintBoundaryRelaxationResidualAfter,
+          pathConstraintBoundaryRelaxationResidualRatio:
+            motionReplay.pathConstraintBoundaryRelaxationResidualRatio,
+          meanPathConstraintBoundaryRelaxationResidualRatio:
+            motionReplay.meanPathConstraintBoundaryRelaxationResidualRatio,
+          rmsPathConstraintBoundaryRelaxationResidualRatio:
+            motionReplay.rmsPathConstraintBoundaryRelaxationResidualRatio,
+          pathConstraintBoundaryRelaxationResidualSettlingRate:
+            motionReplay.pathConstraintBoundaryRelaxationResidualSettlingRate,
+          meanPathConstraintBoundaryRelaxationResidualSettlingRate:
+            motionReplay.meanPathConstraintBoundaryRelaxationResidualSettlingRate,
+          rmsPathConstraintBoundaryRelaxationResidualSettlingRate:
+            motionReplay.rmsPathConstraintBoundaryRelaxationResidualSettlingRate,
+          pathConstraintBoundaryRelaxationMaxStep:
+            motionReplay.pathConstraintBoundaryRelaxationMaxStep,
+          pathConstraintBoundaryRelaxationFinalStepFactor:
+            motionReplay.pathConstraintBoundaryRelaxationFinalStepFactor,
+          pathConstraintBoundaryRelaxationSelectedCandidateKind:
+            motionReplay.pathConstraintBoundaryRelaxationSelectedCandidateKind,
+          pathConstraintBoundaryRelaxationCenterOfMassSelectedCount:
+            motionReplay.pathConstraintBoundaryRelaxationCenterOfMassSelectedCount,
+          pathConstraintBoundaryRelaxationCandidateVariantCount:
+            motionReplay.pathConstraintBoundaryRelaxationCandidateVariantCount,
+          pathConstraintBoundaryRelaxationLineSearchTrialCount:
+            motionReplay.pathConstraintBoundaryRelaxationLineSearchTrialCount,
+          pathConstraintBoundaryRelaxationCandidateKindMask:
+            motionReplay.pathConstraintBoundaryRelaxationCandidateKindMask,
+          pathConstraintSolverStatus: motionReplay.pathConstraintSolverStatus,
+          pathConstraintSolverClaim: motionReplay.pathConstraintSolverClaim,
+          pathConstraintPhysicalBoundarySolverStatus:
+            motionReplay.pathConstraintPhysicalBoundarySolverStatus,
+          pathConstraintPhysicalBoundarySolverClaim:
+            motionReplay.pathConstraintPhysicalBoundarySolverClaim,
+          maxPathConstraintGuidanceAcceleration: motionReplay.maxPathConstraintGuidanceAcceleration,
+          meanPathConstraintGuidanceAcceleration: motionReplay.meanPathConstraintGuidanceAcceleration,
+          rmsPathConstraintGuidanceAcceleration: motionReplay.rmsPathConstraintGuidanceAcceleration,
+          pathConstraintGuidanceAccelerationStatus:
+            motionReplay.pathConstraintGuidanceAccelerationStatus,
+          pathConstraintGuidanceAccelerationTolerance:
+            motionReplay.pathConstraintGuidanceAccelerationTolerance,
+          pathConstraintBoundaryResidualSampleCount: motionReplay.pathConstraintBoundaryResidualSampleCount,
+          pathConstraintBoundaryResidualStatus: motionReplay.pathConstraintBoundaryResidualStatus,
+          pathConstraintBoundaryResidualTolerance: motionReplay.pathConstraintBoundaryResidualTolerance,
+          maxPathConstraintBoundaryResidual: motionReplay.maxPathConstraintBoundaryResidual,
+          meanPathConstraintBoundaryResidual: motionReplay.meanPathConstraintBoundaryResidual,
+          rmsPathConstraintBoundaryResidual: motionReplay.rmsPathConstraintBoundaryResidual,
+          displayProjection: displayReplay.displayProjection,
           motionRunIds: motionRunHandles.map((handle) => handle.runId ?? handle.response?.runId),
           delayedHitRunIds: delayedHitRunHandles.map((handle) => handle.runId ?? handle.response?.runId),
         },
@@ -228,7 +514,10 @@ async function createMotionSolverReplayDataset(playbackRequest, options = {}) {
           {
             code: "causal_delay_motion_solver_replay",
             severity: "info",
-            message: "central motion simulations generated architrino frame samples",
+            message:
+              resolvedReplayMode === CENTRAL_SOLVER_PAIR_INTERACTION_REPLAY_MODE
+                ? "central pair interaction run generated architrino frame samples"
+                : `central motion simulations generated architrino frame samples with ${playbackRequest.config.motion.accelerationPolicy}`,
           },
           ...motionDiagnostics,
           ...delayedHitDiagnostics,
@@ -239,14 +528,465 @@ async function createMotionSolverReplayDataset(playbackRequest, options = {}) {
   );
 }
 
+function createDisplayReplayFrames(playbackRequest, motionReplay, replayMode) {
+  if (
+    replayMode !== CENTRAL_SOLVER_PAIR_INTERACTION_REPLAY_MODE ||
+    Number(motionReplay.pathConstraintCount) > 0
+  ) {
+    return {
+      bridgeFrames: motionReplay.bridgeFrames,
+      displayProjection: undefined,
+    };
+  }
+  return {
+    bridgeFrames: projectBridgeFramesToTimeSpaceCanvas(motionReplay.bridgeFrames, playbackRequest),
+    displayProjection: TIME_SPACE_CANVAS_FIT_PROJECTION,
+  };
+}
+
+async function createMotionSolverReplayFrames(playbackRequest, options = {}, replayMode = CENTRAL_SOLVER_PAIR_INTERACTION_REPLAY_MODE) {
+  if (replayMode === CENTRAL_SOLVER_PAIR_INTERACTION_REPLAY_MODE) {
+    return createPairInteractionSolverReplayFrames(playbackRequest, options);
+  }
+  if (playbackRequest.config.motion.accelerationPolicy === PAIR_SEGMENTED_ACCELERATION_POLICY) {
+    return createSegmentedPairMotionSolverReplayFrames(playbackRequest, options);
+  }
+  return createIndependentMotionSolverReplayFrames(playbackRequest, options);
+}
+
+function projectBridgeFramesToTimeSpaceCanvas(frames, playbackRequest) {
+  if (!Array.isArray(frames) || frames.length === 0) {
+    return frames;
+  }
+  const timeValues = frames
+    .map((frame) => Number(frame.time ?? frame.t))
+    .filter(Number.isFinite);
+  const configuredStart = Math.min(
+    ...ARCHITRINO_KINDS.map((kind) => {
+      const condition = playbackRequest.config.initialConditions?.[kind];
+      return Number.isFinite(Number(condition?.t)) ? Number(condition.t) : 0;
+    }),
+  );
+  const configuredEnd =
+    configuredStart +
+    normalizePositiveNumber(
+      playbackRequest.config.replay?.runDuration,
+      DEFAULT_RUN_DURATION,
+      "replay.runDuration",
+    );
+  const timeStart = timeValues.length > 0 ? Math.min(...timeValues) : configuredStart;
+  const timeEnd = timeValues.length > 0 ? Math.max(...timeValues) : configuredEnd;
+  const timeSpan = Math.max(timeEnd - timeStart, 1e-12);
+  const spaceValues = frames
+    .map((frame) => Number(frame.position?.y ?? frame.y))
+    .filter(Number.isFinite);
+  const rawMinY = spaceValues.length > 0 ? Math.min(...spaceValues) : 0;
+  const rawMaxY = spaceValues.length > 0 ? Math.max(...spaceValues) : 1;
+  const rawSpanY = Math.max(rawMaxY - rawMinY, 1e-9);
+  const projected = frames.map((frame) => {
+    const time = normalizeFiniteNumber(frame.time ?? frame.t, "central display projection frame.time");
+    const rawY = normalizeFiniteNumber(frame.position?.y ?? frame.y, "central display projection frame.y");
+    const timeAmount = Math.max(0, Math.min(1, (time - timeStart) / timeSpan));
+    const spaceAmount = Math.max(0, Math.min(1, (rawY - rawMinY) / rawSpanY));
+    return {
+      ...frame,
+      position: {
+        x: TIME_AXIS_START_X + timeAmount * (TIME_AXIS_END_X - TIME_AXIS_START_X),
+        y: SPACE_AXIS_TOP_Y + spaceAmount * (SPACE_AXIS_BOTTOM_Y - SPACE_AXIS_TOP_Y),
+        z: Number.isFinite(Number(frame.position?.z)) ? Number(frame.position.z) : 0,
+      },
+      velocity: {
+        x: 0,
+        y: 0,
+        z: 0,
+      },
+    };
+  });
+  return recomputeBridgeFrameVelocities(projected);
+}
+
+function recomputeBridgeFrameVelocities(frames) {
+  const projected = frames.map((frame) => ({
+    ...frame,
+    position: cloneObject(frame.position, "projected frame.position"),
+    velocity: cloneObject(frame.velocity, "projected frame.velocity"),
+  }));
+  const byPath = new Map();
+  projected.forEach((frame) => {
+    const rows = byPath.get(frame.pathKey) ?? [];
+    rows.push(frame);
+    byPath.set(frame.pathKey, rows);
+  });
+  byPath.forEach((rows) => {
+    const sorted = rows.slice().sort((left, right) => left.time - right.time || left.frameIndex - right.frameIndex);
+    sorted.forEach((frame, index) => {
+      const previous = sorted[Math.max(0, index - 1)];
+      const next = sorted[Math.min(sorted.length - 1, index + 1)];
+      const dt = next.time - previous.time;
+      frame.velocity = dt > 0
+        ? {
+            x: (next.position.x - previous.position.x) / dt,
+            y: (next.position.y - previous.position.y) / dt,
+            z: ((next.position.z ?? 0) - (previous.position.z ?? 0)) / dt,
+          }
+        : { x: 0, y: 0, z: 0 };
+    });
+  });
+  return projected;
+}
+
+async function createPairInteractionSolverReplayFrames(playbackRequest, options = {}) {
+  const request = createCausalDelayFeedbackPairInteractionRequest(playbackRequest);
+  const runHandle = await runCausalDelayBridgeRequest(request, options, {
+    factoryRequest: request.config.pairInteractionRequest,
+    requestedCapabilities: ["pairInteraction", "pathHistory", "diagnostics"],
+  });
+  const response = unwrapBridgeResponse(runHandle);
+  const pairSummary = response.summary ?? {};
+  const pairInteraction = response.pairInteraction ?? {};
+  const normalizedBoundaryRelaxationStatus = pairInteractionBoundaryRelaxationStatus(
+    pairSummary,
+    pairInteraction,
+  );
+  const constraintSolverMetadata = createPairInteractionConstraintSolverMetadata(
+    {
+      ...pairSummary,
+      ...(normalizedBoundaryRelaxationStatus
+        ? { pathConstraintBoundaryRelaxationStatus: normalizedBoundaryRelaxationStatus }
+        : {}),
+    },
+    pairInteraction,
+    request.config.pairInteractionRequest,
+  );
+  const pathConstraintCount = Number.isFinite(Number(pairSummary.pathConstraintCount))
+    ? Number(pairSummary.pathConstraintCount)
+    : request.config.pairInteractionRequest.pathConstraints?.length;
+  const physicalBoundarySolverMetadata = createPairInteractionPhysicalBoundarySolverMetadata(
+    pairSummary,
+    pairInteraction,
+    pathConstraintCount,
+  );
+  return {
+    bridgeFrames: normalizePairInteractionRunFrames(runHandle),
+    motionRunHandles: [runHandle],
+    pairSegmentCount: 1,
+    pairInteractionStepCount: Number.isFinite(Number(pairSummary.stepCount))
+      ? Number(pairSummary.stepCount)
+      : undefined,
+    interactionLaw: pairSummary.interactionLaw ?? pairInteraction.interactionLaw,
+    executionPath: pairSummary.executionPath ?? pairInteraction.executionPath,
+    pathConstraintCount,
+    pathConstraintFrameRefinementSampleCount: optionalFiniteNumber(
+      pairSummary.pathConstraintFrameRefinementSampleCount ??
+        pairInteraction.pathConstraintFrameRefinementSampleCount
+    ),
+    pathConstraintPositionResidualSampleCount: optionalFiniteNumber(
+      pairSummary.pathConstraintPositionResidualSampleCount ??
+        pairInteraction.pathConstraintPositionResidualSampleCount
+    ),
+    maxPathConstraintPositionResidual: optionalFiniteNumber(
+      pairSummary.maxPathConstraintPositionResidual ?? pairInteraction.maxPathConstraintPositionResidual
+    ),
+    meanPathConstraintPositionResidual: optionalFiniteNumber(
+      pairSummary.meanPathConstraintPositionResidual ?? pairInteraction.meanPathConstraintPositionResidual
+    ),
+    rmsPathConstraintPositionResidual: optionalFiniteNumber(
+      pairSummary.rmsPathConstraintPositionResidual ?? pairInteraction.rmsPathConstraintPositionResidual
+    ),
+    pathConstraintResidualSampleCount: optionalFiniteNumber(
+      pairSummary.pathConstraintResidualSampleCount ?? pairInteraction.pathConstraintResidualSampleCount
+    ),
+    maxPathConstraintResidual: optionalFiniteNumber(
+      pairSummary.maxPathConstraintResidual ?? pairInteraction.maxPathConstraintResidual
+    ),
+    meanPathConstraintResidual: optionalFiniteNumber(
+      pairSummary.meanPathConstraintResidual ?? pairInteraction.meanPathConstraintResidual
+    ),
+    rmsPathConstraintResidual: optionalFiniteNumber(
+      pairSummary.rmsPathConstraintResidual ?? pairInteraction.rmsPathConstraintResidual
+    ),
+    pathConstraintGuidanceSampleCount: optionalFiniteNumber(
+      pairSummary.pathConstraintGuidanceSampleCount ?? pairInteraction.pathConstraintGuidanceSampleCount
+    ),
+    pathConstraintGuidanceMode: pairSummary.pathConstraintGuidanceMode ?? pairInteraction.pathConstraintGuidanceMode,
+    pathConstraintBoundaryMode: pairSummary.pathConstraintBoundaryMode ?? pairInteraction.pathConstraintBoundaryMode,
+    pathConstraintBoundarySeedMode:
+      pairSummary.pathConstraintBoundarySeedMode ?? pairInteraction.pathConstraintBoundarySeedMode,
+    pathConstraintBoundarySeedSampleCount: optionalFiniteNumber(
+      pairSummary.pathConstraintBoundarySeedSampleCount ?? pairInteraction.pathConstraintBoundarySeedSampleCount
+    ),
+    pathConstraintBoundaryRelaxationMode:
+      pairSummary.pathConstraintBoundaryRelaxationMode ?? pairInteraction.pathConstraintBoundaryRelaxationMode,
+    pathConstraintBoundaryRelaxationIterationCount: optionalFiniteNumber(
+      pairSummary.pathConstraintBoundaryRelaxationIterationCount ??
+        pairInteraction.pathConstraintBoundaryRelaxationIterationCount
+    ),
+    pathConstraintBoundaryRelaxationAppliedIterationCount: optionalFiniteNumber(
+      pairSummary.pathConstraintBoundaryRelaxationAppliedIterationCount ??
+        pairInteraction.pathConstraintBoundaryRelaxationAppliedIterationCount
+    ),
+    pathConstraintBoundaryRelaxationStopReason:
+      pairSummary.pathConstraintBoundaryRelaxationStopReason ??
+      pairInteraction.pathConstraintBoundaryRelaxationStopReason,
+    pathConstraintBoundaryRelaxationTolerance: optionalFiniteNumber(
+      pairSummary.pathConstraintBoundaryRelaxationTolerance ??
+        pairInteraction.pathConstraintBoundaryRelaxationTolerance
+    ),
+    pathConstraintBoundaryRelaxationStepTolerance: optionalFiniteNumber(
+      pairSummary.pathConstraintBoundaryRelaxationStepTolerance ??
+        pairInteraction.pathConstraintBoundaryRelaxationStepTolerance
+    ),
+    pathConstraintBoundaryRelaxationStatus: normalizedBoundaryRelaxationStatus,
+    pathConstraintBoundaryRelaxationResidualEvidenceStatus:
+      pairInteractionRelaxationResidualEvidenceStatus(pairSummary, pairInteraction),
+    pathConstraintBoundaryRelaxationResidualSampleCount: optionalFiniteNumber(
+      pairSummary.pathConstraintBoundaryRelaxationResidualSampleCount ??
+        pairInteraction.pathConstraintBoundaryRelaxationResidualSampleCount
+    ),
+    maxPathConstraintBoundaryRelaxationResidualBefore: optionalFiniteNumber(
+      pairSummary.maxPathConstraintBoundaryRelaxationResidualBefore ??
+        pairInteraction.maxPathConstraintBoundaryRelaxationResidualBefore
+    ),
+    maxPathConstraintBoundaryRelaxationResidualAfter: optionalFiniteNumber(
+      pairSummary.maxPathConstraintBoundaryRelaxationResidualAfter ??
+        pairInteraction.maxPathConstraintBoundaryRelaxationResidualAfter
+    ),
+    meanPathConstraintBoundaryRelaxationResidualBefore: optionalFiniteNumber(
+      pairSummary.meanPathConstraintBoundaryRelaxationResidualBefore ??
+        pairInteraction.meanPathConstraintBoundaryRelaxationResidualBefore
+    ),
+    meanPathConstraintBoundaryRelaxationResidualAfter: optionalFiniteNumber(
+      pairSummary.meanPathConstraintBoundaryRelaxationResidualAfter ??
+        pairInteraction.meanPathConstraintBoundaryRelaxationResidualAfter
+    ),
+    rmsPathConstraintBoundaryRelaxationResidualBefore: optionalFiniteNumber(
+      pairSummary.rmsPathConstraintBoundaryRelaxationResidualBefore ??
+        pairInteraction.rmsPathConstraintBoundaryRelaxationResidualBefore
+    ),
+    rmsPathConstraintBoundaryRelaxationResidualAfter: optionalFiniteNumber(
+      pairSummary.rmsPathConstraintBoundaryRelaxationResidualAfter ??
+        pairInteraction.rmsPathConstraintBoundaryRelaxationResidualAfter
+    ),
+    pathConstraintBoundaryRelaxationResidualRatio: optionalFiniteNumber(
+      pairSummary.pathConstraintBoundaryRelaxationResidualRatio ??
+        pairInteraction.pathConstraintBoundaryRelaxationResidualRatio
+    ),
+    meanPathConstraintBoundaryRelaxationResidualRatio: optionalFiniteNumber(
+      pairSummary.meanPathConstraintBoundaryRelaxationResidualRatio ??
+        pairInteraction.meanPathConstraintBoundaryRelaxationResidualRatio
+    ),
+    rmsPathConstraintBoundaryRelaxationResidualRatio: optionalFiniteNumber(
+      pairSummary.rmsPathConstraintBoundaryRelaxationResidualRatio ??
+        pairInteraction.rmsPathConstraintBoundaryRelaxationResidualRatio
+    ),
+    pathConstraintBoundaryRelaxationResidualSettlingRate: optionalFiniteNumber(
+      pairSummary.pathConstraintBoundaryRelaxationResidualSettlingRate ??
+        pairInteraction.pathConstraintBoundaryRelaxationResidualSettlingRate
+    ),
+    meanPathConstraintBoundaryRelaxationResidualSettlingRate: optionalFiniteNumber(
+      pairSummary.meanPathConstraintBoundaryRelaxationResidualSettlingRate ??
+        pairInteraction.meanPathConstraintBoundaryRelaxationResidualSettlingRate
+    ),
+    rmsPathConstraintBoundaryRelaxationResidualSettlingRate: optionalFiniteNumber(
+      pairSummary.rmsPathConstraintBoundaryRelaxationResidualSettlingRate ??
+        pairInteraction.rmsPathConstraintBoundaryRelaxationResidualSettlingRate
+    ),
+    pathConstraintBoundaryRelaxationMaxStep: optionalFiniteNumber(
+      pairSummary.pathConstraintBoundaryRelaxationMaxStep ??
+        pairInteraction.pathConstraintBoundaryRelaxationMaxStep
+    ),
+    pathConstraintBoundaryRelaxationFinalStepFactor: optionalFiniteNumber(
+      pairSummary.pathConstraintBoundaryRelaxationFinalStepFactor ??
+        pairInteraction.pathConstraintBoundaryRelaxationFinalStepFactor
+    ),
+    pathConstraintBoundaryRelaxationSelectedCandidateKind:
+      pairSummary.pathConstraintBoundaryRelaxationSelectedCandidateKind ??
+      pairInteraction.pathConstraintBoundaryRelaxationSelectedCandidateKind,
+    pathConstraintBoundaryRelaxationCenterOfMassSelectedCount: optionalFiniteNumber(
+      pairSummary.pathConstraintBoundaryRelaxationCenterOfMassSelectedCount ??
+        pairInteraction.pathConstraintBoundaryRelaxationCenterOfMassSelectedCount
+    ),
+    pathConstraintBoundaryRelaxationCandidateVariantCount: optionalFiniteNumber(
+      pairSummary.pathConstraintBoundaryRelaxationCandidateVariantCount ??
+        pairInteraction.pathConstraintBoundaryRelaxationCandidateVariantCount
+    ),
+    pathConstraintBoundaryRelaxationLineSearchTrialCount: optionalFiniteNumber(
+      pairSummary.pathConstraintBoundaryRelaxationLineSearchTrialCount ??
+        pairInteraction.pathConstraintBoundaryRelaxationLineSearchTrialCount
+    ),
+    pathConstraintBoundaryRelaxationCandidateKindMask: optionalFiniteNumber(
+      pairSummary.pathConstraintBoundaryRelaxationCandidateKindMask ??
+        pairInteraction.pathConstraintBoundaryRelaxationCandidateKindMask
+    ),
+    pathConstraintSolverStatus: constraintSolverMetadata.pathConstraintSolverStatus,
+    pathConstraintSolverClaim: constraintSolverMetadata.pathConstraintSolverClaim,
+    ...physicalBoundarySolverMetadata,
+    maxPathConstraintGuidanceAcceleration: optionalFiniteNumber(
+      pairSummary.maxPathConstraintGuidanceAcceleration ?? pairInteraction.maxPathConstraintGuidanceAcceleration
+    ),
+    meanPathConstraintGuidanceAcceleration: optionalFiniteNumber(
+      pairSummary.meanPathConstraintGuidanceAcceleration ?? pairInteraction.meanPathConstraintGuidanceAcceleration
+    ),
+    rmsPathConstraintGuidanceAcceleration: optionalFiniteNumber(
+      pairSummary.rmsPathConstraintGuidanceAcceleration ?? pairInteraction.rmsPathConstraintGuidanceAcceleration
+    ),
+    pathConstraintGuidanceAccelerationStatus:
+      pairSummary.pathConstraintGuidanceAccelerationStatus ??
+      pairInteraction.pathConstraintGuidanceAccelerationStatus,
+    pathConstraintGuidanceAccelerationTolerance: optionalFiniteNumber(
+      pairSummary.pathConstraintGuidanceAccelerationTolerance ??
+        pairInteraction.pathConstraintGuidanceAccelerationTolerance ??
+        request.config.pairInteractionRequest.pathConstraintGuidanceAccelerationTolerance
+    ),
+    pathConstraintPositionResidualStatus:
+      pairSummary.pathConstraintPositionResidualStatus ??
+      pairInteraction.pathConstraintPositionResidualStatus,
+    pathConstraintPositionResidualTolerance: optionalFiniteNumber(
+      pairSummary.pathConstraintPositionResidualTolerance ??
+        pairInteraction.pathConstraintPositionResidualTolerance ??
+        request.config.pairInteractionRequest.pathConstraintPositionResidualTolerance
+    ),
+    pathConstraintBoundaryResidualSampleCount: optionalFiniteNumber(
+      pairSummary.pathConstraintBoundaryResidualSampleCount ?? pairInteraction.pathConstraintBoundaryResidualSampleCount
+    ),
+    pathConstraintBoundaryResidualStatus:
+      pairSummary.pathConstraintBoundaryResidualStatus ?? pairInteraction.pathConstraintBoundaryResidualStatus,
+    pathConstraintBoundaryResidualTolerance: optionalFiniteNumber(
+      pairSummary.pathConstraintBoundaryResidualTolerance ??
+        pairInteraction.pathConstraintBoundaryResidualTolerance ??
+        request.config.pairInteractionRequest.pathConstraintBoundaryResidualTolerance
+    ),
+    maxPathConstraintBoundaryResidual: optionalFiniteNumber(
+      pairSummary.maxPathConstraintBoundaryResidual ?? pairInteraction.maxPathConstraintBoundaryResidual
+    ),
+    meanPathConstraintBoundaryResidual: optionalFiniteNumber(
+      pairSummary.meanPathConstraintBoundaryResidual ?? pairInteraction.meanPathConstraintBoundaryResidual
+    ),
+    rmsPathConstraintBoundaryResidual: optionalFiniteNumber(
+      pairSummary.rmsPathConstraintBoundaryResidual ?? pairInteraction.rmsPathConstraintBoundaryResidual
+    ),
+  };
+}
+
+async function createIndependentMotionSolverReplayFrames(playbackRequest, options = {}) {
+  const motionRunHandles = await Promise.all(
+    ARCHITRINO_KINDS.map((kind) => {
+      const request = createCausalDelayFeedbackMotionSimulationRequest(playbackRequest, kind);
+      return runCausalDelayBridgeRequest(request, options, {
+        factoryRequest: request.config.motionIntegrationRequest,
+        requestedCapabilities: ["motionSimulation", "pathHistory", "diagnostics"],
+      });
+    }),
+  );
+  return {
+    bridgeFrames: motionRunHandles.flatMap((runHandle, index) => (
+      normalizeMotionRunFrames(runHandle, ARCHITRINO_KINDS[index])
+    )),
+    motionRunHandles,
+    pairSegmentCount: 1,
+  };
+}
+
+async function createSegmentedPairMotionSolverReplayFrames(playbackRequest, options = {}) {
+  const replayConfig = playbackRequest.config.replay;
+  const frameCount = normalizePositiveInteger(replayConfig.frameCount, DEFAULT_FRAME_COUNT, "frameCount");
+  const runDuration = normalizePositiveNumber(replayConfig.runDuration, DEFAULT_RUN_DURATION, "runDuration");
+  const requestedSegmentCount = normalizePositiveInteger(
+    playbackRequest.config.motion.pairSegmentCount,
+    DEFAULT_PAIR_SEGMENT_COUNT,
+    "pairSegmentCount",
+  );
+  const segmentCount = Math.min(requestedSegmentCount, Math.max(1, frameCount - 1));
+  const segmentFrameCount = Math.max(2, Math.ceil((frameCount - 1) / segmentCount) + 1);
+  let frameIndexOffset = 0;
+  const bridgeFrames = [];
+  const motionRunHandles = [];
+  const states = Object.fromEntries(
+    ARCHITRINO_KINDS.map((kind) => [
+      kind,
+      createMotionStateFromInitialCondition(kind, playbackRequest.config.initialConditions[kind]),
+    ]),
+  );
+  const startTime = Math.min(...ARCHITRINO_KINDS.map((kind) => states[kind].t));
+
+  for (let segmentIndex = 0; segmentIndex < segmentCount; segmentIndex += 1) {
+    const segmentStartTime = startTime + (runDuration * segmentIndex) / segmentCount;
+    const segmentEndTime = startTime + (runDuration * (segmentIndex + 1)) / segmentCount;
+    const accelerations = Object.fromEntries(
+      ARCHITRINO_KINDS.map((kind) => {
+        const otherKind = kind === "positrino" ? "electrino" : "positrino";
+        return [
+          kind,
+          createPairAttractionAcceleration(playbackRequest, kind, states[kind], states[otherKind]),
+        ];
+      }),
+    );
+    const segmentRunHandles = await Promise.all(
+      ARCHITRINO_KINDS.map((kind) => {
+        const request = createCausalDelayFeedbackMotionSimulationRequest(playbackRequest, kind, {
+          condition: states[kind],
+          startTime: segmentStartTime,
+          endTime: segmentEndTime,
+          frameCount: segmentFrameCount,
+          acceleration: accelerations[kind],
+          accelerationPolicy: PAIR_SEGMENTED_ACCELERATION_POLICY,
+          runId: `${playbackRequest.runId}-${kind}-pair-segment-${segmentIndex + 1}`,
+          segmentIndex,
+        });
+        return runCausalDelayBridgeRequest(request, options, {
+          factoryRequest: request.config.motionIntegrationRequest,
+          requestedCapabilities: ["motionSimulation", "pathHistory", "diagnostics"],
+        });
+      }),
+    );
+    motionRunHandles.push(...segmentRunHandles);
+    const segmentFramesByKind = Object.fromEntries(
+      ARCHITRINO_KINDS.map((kind, index) => [
+        kind,
+        normalizeMotionRunFrames(segmentRunHandles[index], kind).sort((left, right) => left.time - right.time),
+      ]),
+    );
+    const segmentLength = Math.min(...ARCHITRINO_KINDS.map((kind) => segmentFramesByKind[kind].length));
+    const startOffset = segmentIndex > 0 ? 1 : 0;
+    for (const kind of ARCHITRINO_KINDS) {
+      segmentFramesByKind[kind].slice(startOffset, segmentLength).forEach((frame, localIndex) => {
+        bridgeFrames.push({
+          ...frame,
+          frameIndex: frameIndexOffset + localIndex,
+        });
+      });
+    }
+    frameIndexOffset += Math.max(0, segmentLength - startOffset);
+    ARCHITRINO_KINDS.forEach((kind) => {
+      states[kind] = createMotionStateFromFrame(kind, segmentFramesByKind[kind][segmentLength - 1]);
+    });
+  }
+
+  return {
+    bridgeFrames,
+    motionRunHandles,
+    pairSegmentCount: segmentCount,
+  };
+}
+
 function resolveCentralSolverReplayMode(requestOptions = {}, options = {}) {
   const value = String(
     requestOptions.solverReplayMode ??
       requestOptions.replayMode ??
       options.solverReplayMode ??
       options.replayMode ??
-      CENTRAL_SOLVER_APP_PLAYBACK_REPLAY_MODE,
+      CENTRAL_SOLVER_PAIR_INTERACTION_REPLAY_MODE,
   ).toLowerCase();
+  if (
+    value === "pair" ||
+    value === "pair-interaction" ||
+    value === "pairinteraction" ||
+    value === "pair_interaction" ||
+    value === "pair_solver" ||
+    value === "solver_pair"
+  ) {
+    return CENTRAL_SOLVER_PAIR_INTERACTION_REPLAY_MODE;
+  }
   if (
     value === "motion" ||
     value === "motion-simulation" ||
@@ -255,6 +995,15 @@ function resolveCentralSolverReplayMode(requestOptions = {}, options = {}) {
     value === "solver_motion"
   ) {
     return CENTRAL_SOLVER_MOTION_REPLAY_MODE;
+  }
+  if (
+    value === "app" ||
+    value === "app-playback" ||
+    value === "appplayback" ||
+    value === "playback" ||
+    value === "bridge-playback"
+  ) {
+    return CENTRAL_SOLVER_APP_PLAYBACK_REPLAY_MODE;
   }
   return CENTRAL_SOLVER_APP_PLAYBACK_REPLAY_MODE;
 }
@@ -286,18 +1035,23 @@ function runCausalDelayBridgeRequest(request, options = {}, {
   });
 }
 
-function createCausalDelayFeedbackMotionSimulationRequest(playbackRequest, kind) {
+function createCausalDelayFeedbackMotionSimulationRequest(playbackRequest, kind, options = {}) {
   const initialConditions = playbackRequest.config.initialConditions;
-  const condition = initialConditions[kind];
+  const condition = options.condition ?? initialConditions[kind];
   requireObject(condition, `initialConditions.${kind}`);
   const replayConfig = playbackRequest.config.replay;
-  const frameCount = normalizePositiveInteger(replayConfig.frameCount, DEFAULT_FRAME_COUNT, "frameCount");
+  const frameCount = normalizePositiveInteger(options.frameCount, replayConfig.frameCount, "frameCount");
   const runDuration = normalizePositiveNumber(replayConfig.runDuration, DEFAULT_RUN_DURATION, "runDuration");
-  const startTime = Number.isFinite(Number(condition.t)) ? Number(condition.t) : 0;
-  const endTime = startTime + runDuration;
-  const step = runDuration / Math.max(1, frameCount - 1);
+  const startTime = Number.isFinite(Number(options.startTime))
+    ? Number(options.startTime)
+    : Number.isFinite(Number(condition.t))
+      ? Number(condition.t)
+      : 0;
+  const endTime = Number.isFinite(Number(options.endTime)) ? Number(options.endTime) : startTime + runDuration;
+  const step = (endTime - startTime) / Math.max(1, frameCount - 1);
   const pathKey = PATH_KEYS_BY_KIND[kind];
-  const runId = `${playbackRequest.runId}-${kind}-motion`;
+  const runId = options.runId ?? `${playbackRequest.runId}-${kind}-motion`;
+  const accelerationPolicy = options.accelerationPolicy ?? getMotionAccelerationPolicy(playbackRequest, condition);
   return {
     requestId: `${runId}-request`,
     runId,
@@ -326,10 +1080,12 @@ function createCausalDelayFeedbackMotionSimulationRequest(playbackRequest, kind)
         coordinateFrame: "absolute-lab-frame",
         scaleNormalization: "causal-delay-display-units",
         interpolationRule: "linear-segment-chord",
+        accelerationPolicy,
         provenance: {
           source: "causal-delay-feedback-initial-conditions",
           presetId: playbackRequest.config.presetId,
           kind,
+          ...(Number.isFinite(Number(options.segmentIndex)) ? { segmentIndex: Number(options.segmentIndex) } : {}),
         },
       },
       motionIntegrationRequest: {
@@ -348,7 +1104,7 @@ function createCausalDelayFeedbackMotionSimulationRequest(playbackRequest, kind)
           y: normalizeFiniteNumber(condition.vy, `initialConditions.${kind}.vy`),
           z: Number.isFinite(Number(condition.vz)) ? Number(condition.vz) : 0,
         },
-        acceleration: { x: 0, y: 0, z: 0 },
+        acceleration: options.acceleration ?? createMotionAccelerationFromPolicy(playbackRequest, kind, condition),
         integrationTolerance: playbackRequest.errorBudget.integrationTolerance,
         integrationMethod: 1,
         stateFlags: kind === "positrino" ? 1 : 2,
@@ -360,6 +1116,311 @@ function createCausalDelayFeedbackMotionSimulationRequest(playbackRequest, kind)
       memoryBudgetBytes: playbackRequest.output.memoryBudgetBytes,
       deterministic: playbackRequest.output.deterministic,
     },
+  };
+}
+
+function createCausalDelayFeedbackPairInteractionRequest(playbackRequest) {
+  const initialConditions = playbackRequest.config.initialConditions;
+  const replayConfig = playbackRequest.config.replay;
+  const frameCount = normalizePositiveInteger(replayConfig.frameCount, DEFAULT_FRAME_COUNT, "frameCount");
+  const runDuration = normalizePositiveNumber(replayConfig.runDuration, DEFAULT_RUN_DURATION, "runDuration");
+  const pathConstraints = shouldUsePairInteractionPathConstraints(playbackRequest.config.geometry?.draftPreview)
+    ? createPairInteractionPathConstraints(playbackRequest.config.geometry?.history)
+    : [];
+  const startTime = Math.min(
+    ...ARCHITRINO_KINDS.map((kind) => {
+      const condition = initialConditions[kind];
+      return Number.isFinite(Number(condition?.t)) ? Number(condition.t) : 0;
+    }),
+  );
+  const endTime = startTime + runDuration;
+  const step = (endTime - startTime) / Math.max(1, frameCount - 1);
+  const maxFrames = estimatePairInteractionSampleFrameCount({
+    startTime,
+    endTime,
+    step,
+    pathConstraints,
+  });
+  const runId = `${playbackRequest.runId}-pair-interaction`;
+  return {
+    requestId: `${runId}-request`,
+    runId,
+    datasetId: `${runId}-dataset`,
+    appId: CAUSAL_DELAY_FEEDBACK_APP_ID,
+    runKind: CENTRAL_SOLVER_PAIR_INTERACTION_REPLAY_MODE,
+    claimLevel: playbackRequest.claimLevel,
+    precisionPath: playbackRequest.precisionPath,
+    configVersion: "causal-delay-feedback-pair-interaction-adapter.v1",
+    configHash: `${playbackRequest.configHash ?? playbackRequest.runId}:pair-interaction`,
+    model: cloneObject(playbackRequest.model, "model"),
+    envelope: cloneObject(playbackRequest.envelope, "envelope"),
+    errorBudget: cloneObject(playbackRequest.errorBudget, "errorBudget"),
+    config: {
+      appId: CAUSAL_DELAY_FEEDBACK_APP_ID,
+      streamId: `${runId}:path-history`,
+      rowsPerChunk: 64,
+      storagePolicy: {
+        target: playbackRequest.output.streamTarget,
+        durable: playbackRequest.output.streamTarget === "native-file",
+        maxBytes: playbackRequest.output.memoryBudgetBytes,
+      },
+      metadata: {
+        precisionPath: playbackRequest.precisionPath,
+        units: playbackRequest.model.unitConvention,
+        coordinateFrame: "absolute-lab-frame",
+        scaleNormalization: "causal-delay-display-units",
+        interpolationRule: "piecewise-pair-interaction-integration",
+        provenance: {
+          source: "causal-delay-feedback-pair-initial-conditions",
+          presetId: playbackRequest.config.presetId,
+        },
+      },
+      pairInteractionRequest: {
+        startTime,
+        endTime,
+        step,
+        maxFrames,
+        pairAccelerationScale: playbackRequest.config.motion.pairAccelerationScale,
+        ...(playbackRequest.config.motion.pathConstraintBoundaryResidualTolerance != null
+          ? {
+              pathConstraintBoundaryResidualTolerance:
+                playbackRequest.config.motion.pathConstraintBoundaryResidualTolerance,
+            }
+          : {}),
+        ...(playbackRequest.config.motion.pathConstraintPositionResidualTolerance != null
+          ? {
+              pathConstraintPositionResidualTolerance:
+                playbackRequest.config.motion.pathConstraintPositionResidualTolerance,
+            }
+          : {}),
+        ...(playbackRequest.config.motion.pathConstraintGuidanceAccelerationTolerance != null
+          ? {
+              pathConstraintGuidanceAccelerationTolerance:
+                playbackRequest.config.motion.pathConstraintGuidanceAccelerationTolerance,
+            }
+          : {}),
+        ...(playbackRequest.config.motion.pathConstraintBoundaryRelaxationIterationCount != null
+          ? {
+              pathConstraintBoundaryRelaxationIterationCount:
+                playbackRequest.config.motion.pathConstraintBoundaryRelaxationIterationCount,
+            }
+          : {}),
+        ...(playbackRequest.config.motion.pathConstraintBoundaryRelaxationTolerance != null
+          ? {
+              pathConstraintBoundaryRelaxationTolerance:
+                playbackRequest.config.motion.pathConstraintBoundaryRelaxationTolerance,
+            }
+          : {}),
+        ...(playbackRequest.config.motion.pathConstraintBoundaryRelaxationStepTolerance != null
+          ? {
+              pathConstraintBoundaryRelaxationStepTolerance:
+                playbackRequest.config.motion.pathConstraintBoundaryRelaxationStepTolerance,
+            }
+          : {}),
+        softening: normalizeNonnegativeNumber(
+          playbackRequest.config.motion.pairInteractionSoftening,
+          DEFAULT_PAIR_INTERACTION_SOFTENING,
+          "pairInteractionSoftening",
+        ),
+        integrationTolerance: playbackRequest.errorBudget.integrationTolerance,
+        interactionLaw:
+          playbackRequest.config.motion.pairInteractionLaw ??
+          DEFAULT_PAIR_INTERACTION_LAW,
+        initialStates: ARCHITRINO_KINDS.map((kind) => {
+          const condition = initialConditions[kind];
+          requireObject(condition, `initialConditions.${kind}`);
+          return {
+            pathKey: PATH_KEYS_BY_KIND[kind],
+            kind,
+            charge: kind === "positrino" ? 1 : -1,
+            mass: 1,
+            initialPosition: {
+              x: normalizeFiniteNumber(condition.x, `initialConditions.${kind}.x`),
+              y: normalizeFiniteNumber(condition.y, `initialConditions.${kind}.y`),
+              z: normalizeOptionalMotionAxis(condition.z, 0),
+            },
+            initialVelocity: {
+              x: normalizeFiniteNumber(condition.vx, `initialConditions.${kind}.vx`),
+              y: normalizeFiniteNumber(condition.vy, `initialConditions.${kind}.vy`),
+              z: normalizeOptionalMotionAxis(condition.vz, 0),
+            },
+            stateFlags: kind === "positrino" ? 1 : 2,
+          };
+        }),
+        pathConstraints,
+      },
+    },
+    output: {
+      outputs: ["frameBuffer", "pathStream", "diagnostics"],
+      streamTarget: playbackRequest.output.streamTarget,
+      memoryBudgetBytes: playbackRequest.output.memoryBudgetBytes,
+      deterministic: playbackRequest.output.deterministic,
+    },
+  };
+}
+
+function estimatePairInteractionSampleFrameCount({ startTime, endTime, step, pathConstraints }) {
+  const times = [];
+  const epsilon = Math.max(step * 1e-9, 1e-12);
+  for (let time = startTime; time < endTime - epsilon; time += step) {
+    times.push(time);
+  }
+  if (times.length === 0 || Math.abs(times[times.length - 1] - endTime) > epsilon) {
+    times.push(endTime);
+  }
+  (pathConstraints ?? []).forEach((constraint) => {
+    if (constraint.time >= startTime - epsilon && constraint.time <= endTime + epsilon) {
+      times.push(Math.max(startTime, Math.min(endTime, constraint.time)));
+    }
+  });
+  appendPairInteractionConstraintRefinementTimes(times, { startTime, endTime, pathConstraints }, epsilon);
+  return times
+    .sort((left, right) => left - right)
+    .filter((time, index, rows) => index === 0 || Math.abs(time - rows[index - 1]) > epsilon)
+    .length;
+}
+
+function appendPairInteractionConstraintRefinementTimes(times, { startTime, endTime, pathConstraints }, epsilon) {
+  const constraintsByPath = new Map();
+  (pathConstraints ?? []).forEach((constraint) => {
+    if (constraint.time < startTime - epsilon || constraint.time > endTime + epsilon) {
+      return;
+    }
+    const pathTimes = constraintsByPath.get(constraint.pathKey) ?? [];
+    pathTimes.push(Math.max(startTime, Math.min(endTime, constraint.time)));
+    constraintsByPath.set(constraint.pathKey, pathTimes);
+  });
+  constraintsByPath.forEach((pathTimes) => {
+    const sortedTimes = pathTimes
+      .sort((left, right) => left - right)
+      .filter((time, index, rows) => index === 0 || Math.abs(time - rows[index - 1]) > epsilon);
+    for (let index = 0; index + 1 < sortedTimes.length; index += 1) {
+      const left = sortedTimes[index];
+      const right = sortedTimes[index + 1];
+      if (right - left <= epsilon * 2) {
+        continue;
+      }
+      [0.25, 0.5, 0.75].forEach((fraction) => {
+        const refinementTime = left + (right - left) * fraction;
+        if (refinementTime > startTime + epsilon && refinementTime < endTime - epsilon) {
+          times.push(refinementTime);
+        }
+      });
+    }
+  });
+}
+
+function createPairInteractionPathConstraints(history) {
+  if (!history || typeof history !== "object") {
+    return [];
+  }
+  return ARCHITRINO_KINDS.flatMap((kind) => {
+    const rows = history[kind];
+    if (!Array.isArray(rows)) {
+      return [];
+    }
+    return rows.map((row, index) => {
+      requireObject(row, `geometry.history.${kind}[${index}]`);
+      return {
+        pathKey: PATH_KEYS_BY_KIND[kind],
+        kind,
+        depth: normalizePositiveInteger(row.depth ?? index + 1, index + 1, `geometry.history.${kind}[${index}].depth`),
+        time: normalizeFiniteNumber(row.t ?? row.time, `geometry.history.${kind}[${index}].time`),
+        position: {
+          x: normalizeFiniteNumber(row.x, `geometry.history.${kind}[${index}].x`),
+          y: normalizeFiniteNumber(row.y, `geometry.history.${kind}[${index}].y`),
+          z: normalizeOptionalMotionAxis(row.z, 0),
+        },
+      };
+    });
+  });
+}
+
+function shouldUsePairInteractionPathConstraints(draftPreview) {
+  return PATH_CONSTRAINT_DRAFT_REASONS.has(String(draftPreview?.reason ?? ""));
+}
+
+function createMotionStateFromInitialCondition(kind, condition) {
+  requireObject(condition, `initialConditions.${kind}`);
+  return {
+    kind,
+    t: Number.isFinite(Number(condition.t)) ? Number(condition.t) : 0,
+    x: normalizeFiniteNumber(condition.x, `initialConditions.${kind}.x`),
+    y: normalizeFiniteNumber(condition.y, `initialConditions.${kind}.y`),
+    z: normalizeOptionalMotionAxis(condition.z, 0),
+    vx: normalizeFiniteNumber(condition.vx, `initialConditions.${kind}.vx`),
+    vy: normalizeFiniteNumber(condition.vy, `initialConditions.${kind}.vy`),
+    vz: normalizeOptionalMotionAxis(condition.vz, 0),
+  };
+}
+
+function createMotionStateFromFrame(kind, frame) {
+  requireObject(frame, `central motion segment frame.${kind}`);
+  const position = frame.position ?? frame;
+  const velocity = frame.velocity ?? frame;
+  return {
+    kind,
+    t: normalizeFiniteNumber(frame.time ?? frame.t, `central motion segment frame.${kind}.time`),
+    x: normalizeFiniteNumber(position.x, `central motion segment frame.${kind}.position.x`),
+    y: normalizeFiniteNumber(position.y, `central motion segment frame.${kind}.position.y`),
+    z: normalizeOptionalMotionAxis(position.z, 0),
+    vx: normalizeOptionalMotionAxis(velocity.x ?? velocity.vx, 0),
+    vy: normalizeOptionalMotionAxis(velocity.y ?? velocity.vy, 0),
+    vz: normalizeOptionalMotionAxis(velocity.z ?? velocity.vz, 0),
+  };
+}
+
+function normalizeOptionalMotionAxis(value, fallback) {
+  const numericValue = Number(value);
+  return Number.isFinite(numericValue) ? numericValue : fallback;
+}
+
+function createMotionAccelerationFromPolicy(playbackRequest, kind, condition) {
+  const policy = getMotionAccelerationPolicy(playbackRequest, condition);
+  if (policy === EXPLICIT_ACCELERATION_POLICY) {
+    return {
+      x: normalizeOptionalMotionAxis(condition.ax ?? condition.acceleration?.x, 0),
+      y: normalizeOptionalMotionAxis(condition.ay ?? condition.acceleration?.y, 0),
+      z: normalizeOptionalMotionAxis(condition.az ?? condition.acceleration?.z, 0),
+    };
+  }
+  return createPairInitialAcceleration(playbackRequest, kind, condition);
+}
+
+function getMotionAccelerationPolicy(playbackRequest, condition = {}) {
+  return normalizeOptionalString(
+    condition.accelerationPolicy ?? playbackRequest.config.motion?.accelerationPolicy,
+    PAIR_INITIAL_ACCELERATION_POLICY,
+    "motionAccelerationPolicy",
+  );
+}
+
+function createPairInitialAcceleration(playbackRequest, kind, condition) {
+  const otherKind = kind === "positrino" ? "electrino" : "positrino";
+  const other = playbackRequest.config.initialConditions?.[otherKind];
+  requireObject(other, `initialConditions.${otherKind}`);
+  return createPairAttractionAcceleration(playbackRequest, kind, condition, other);
+}
+
+function createPairAttractionAcceleration(playbackRequest, kind, condition, other) {
+  const otherKind = kind === "positrino" ? "electrino" : "positrino";
+  const runDuration = normalizePositiveNumber(
+    playbackRequest.config.replay?.runDuration,
+    DEFAULT_RUN_DURATION,
+    "runDuration",
+  );
+  const scale = normalizePositiveNumber(
+    playbackRequest.config.motion?.pairAccelerationScale,
+    DEFAULT_PAIR_ACCELERATION_SCALE,
+    "pairAccelerationScale",
+  );
+  const factor = scale / (runDuration * runDuration);
+  return {
+    x: (normalizeFiniteNumber(other.x, `initialConditions.${otherKind}.x`) -
+      normalizeFiniteNumber(condition.x, `initialConditions.${kind}.x`)) * factor,
+    y: (normalizeFiniteNumber(other.y, `initialConditions.${otherKind}.y`) -
+      normalizeFiniteNumber(condition.y, `initialConditions.${kind}.y`)) * factor,
+    z: (normalizeOptionalMotionAxis(other.z, 0) - normalizeOptionalMotionAxis(condition.z, 0)) * factor,
   };
 }
 
@@ -536,7 +1597,42 @@ function normalizeMotionRunFrame(frame, kind, index) {
   };
 }
 
-function createHistorySamplesFromPairedFrames(frames, templateHistory) {
+function normalizePairInteractionRunFrames(runHandle) {
+  const response = unwrapBridgeResponse(runHandle);
+  const frames = response.frames ?? response.frameSamples;
+  if (!Array.isArray(frames) || frames.length === 0) {
+    throw new TypeError("central pair interaction response must include frame samples");
+  }
+  return frames.map((frame, index) => normalizePairInteractionRunFrame(frame, index));
+}
+
+function normalizePairInteractionRunFrame(frame, index) {
+  requireObject(frame, `central pair interaction frames[${index}]`);
+  const pathKey = normalizePositiveInteger(frame.pathKey, undefined, `central pair interaction frames[${index}].pathKey`);
+  if (!KIND_BY_PATH_KEY[pathKey]) {
+    throw new TypeError(`central pair interaction frames[${index}].pathKey must identify positrino or electrino`);
+  }
+  const position = frame.position ?? frame;
+  const velocity = frame.velocity ?? frame;
+  return {
+    pathKey,
+    frameIndex: normalizeNonnegativeInteger(
+      frame.frameIndex ?? index,
+      `central pair interaction frames[${index}].frameIndex`,
+    ),
+    time: normalizeFiniteNumber(frame.time ?? frame.t, `central pair interaction frames[${index}].time`),
+    position: normalizeVectorPoint(position, `central pair interaction frames[${index}].position`),
+    velocity: normalizeOptionalVector(velocity, `central pair interaction frames[${index}].velocity`) ?? {
+      x: 0,
+      y: 0,
+      z: 0,
+    },
+    errorBound: Number.isFinite(Number(frame.errorBound)) ? Number(frame.errorBound) : 0,
+    stateFlags: Number.isFinite(Number(frame.stateFlags)) ? Number(frame.stateFlags) : pathKey,
+  };
+}
+
+function createHistorySamplesFromPairedFrames(frames, templateHistory, { preserveTemplatePoints = false } = {}) {
   requireObject(templateHistory, "motion replay history template");
   return Object.fromEntries(
     ARCHITRINO_KINDS.map((kind) => {
@@ -549,12 +1645,15 @@ function createHistorySamplesFromPairedFrames(frames, templateHistory) {
         rows.map((row, index) => {
           const t = normalizeFiniteNumber(row.t, `motion replay history template.${kind}[${index}].t`);
           const point = interpolatePairedFrames(frames, kind, t);
+          const templatePoint = preserveTemplatePoints
+            ? normalizePoint(row, `motion replay history template.${kind}[${index}]`)
+            : null;
           return {
             kind,
             depth: normalizePositiveInteger(row.depth ?? index + 1, index + 1, "history depth"),
             t,
-            x: point.x,
-            y: point.y,
+            x: templatePoint?.x ?? point.x,
+            y: templatePoint?.y ?? point.y,
             ...(Number.isFinite(Number(point.vx)) ? { vx: Number(point.vx) } : {}),
             ...(Number.isFinite(Number(point.vy)) ? { vy: Number(point.vy) } : {}),
             weight: normalizeUnitNumber(row.weight, (index + 1) / rows.length, "history weight"),
@@ -564,6 +1663,31 @@ function createHistorySamplesFromPairedFrames(frames, templateHistory) {
       ];
     }),
   );
+}
+
+function syncInitialConditionsToHistoryStarts(initialConditions, history) {
+  if (!initialConditions || typeof initialConditions !== "object") {
+    return;
+  }
+  ARCHITRINO_KINDS.forEach((kind) => {
+    const condition = initialConditions[kind];
+    if (!condition || typeof condition !== "object") {
+      return;
+    }
+    const startPoint =
+      history?.[kind]?.find((point) => Number(point.depth) === 1) ??
+      history?.[kind]?.[0];
+    if (!startPoint) {
+      return;
+    }
+    condition.kind = condition.kind ?? kind;
+    condition.t = normalizeFiniteNumber(startPoint.t, `history.${kind}.start.t`);
+    condition.x = normalizeFiniteNumber(startPoint.x, `history.${kind}.start.x`);
+    condition.y = normalizeFiniteNumber(startPoint.y, `history.${kind}.start.y`);
+    if (Number.isFinite(Number(startPoint.z))) {
+      condition.z = Number(startPoint.z);
+    }
+  });
 }
 
 function interpolatePairedFrames(frames, kind, t) {
@@ -651,6 +1775,7 @@ export function normalizeCausalDelayFeedbackBridgeReplay(runHandle = {}, options
     bridgeResponse.initialConditions ?? bridgeResponse.geometry?.initialConditions ?? {},
     "bridge response initialConditions",
   );
+  syncInitialConditionsToHistoryStarts(initialConditions, history);
   const virtualObserver = normalizeOptionalVirtualObserver(
     bridgeResponse.virtualObserver ??
       bridgeResponse.geometry?.virtualObserver ??
@@ -659,6 +1784,14 @@ export function normalizeCausalDelayFeedbackBridgeReplay(runHandle = {}, options
   if (virtualObserver && !initialConditions.virtualObserver) {
     initialConditions.virtualObserver = { ...virtualObserver };
   }
+  const geometryPathConstraintCount = Number.isFinite(Number(bridgeResponse.geometry?.pathConstraintCount))
+    ? Number(bridgeResponse.geometry.pathConstraintCount)
+    : undefined;
+  const geometryPhysicalBoundarySolverMetadata = createPairInteractionPhysicalBoundarySolverMetadata(
+    bridgeResponse.summary ?? {},
+    bridgeResponse.geometry ?? {},
+    geometryPathConstraintCount,
+  );
 
   return {
     runId: normalizeOptionalString(
@@ -697,6 +1830,329 @@ export function normalizeCausalDelayFeedbackBridgeReplay(runHandle = {}, options
     diagnostics: normalizeOptionalArray(bridgeResponse.diagnostics),
     solverStatus: bridgeResponse.status ?? runHandle.status ?? { code: "ok", severity: "ok" },
     solverSummary: bridgeResponse.summary ?? null,
+    ...(bridgeResponse.geometry?.solverReplayMode
+      ? { solverReplayMode: bridgeResponse.geometry.solverReplayMode }
+      : {}),
+    ...(bridgeResponse.geometry?.motionAccelerationPolicy
+      ? { motionAccelerationPolicy: bridgeResponse.geometry.motionAccelerationPolicy }
+      : {}),
+    ...(Number.isFinite(Number(bridgeResponse.geometry?.pairAccelerationScale))
+      ? { pairAccelerationScale: Number(bridgeResponse.geometry.pairAccelerationScale) }
+      : {}),
+    ...(Number.isFinite(Number(bridgeResponse.geometry?.pairSegmentCount))
+      ? { pairSegmentCount: Number(bridgeResponse.geometry.pairSegmentCount) }
+      : {}),
+    ...(Number.isFinite(Number(bridgeResponse.geometry?.pairInteractionStepCount))
+      ? { pairInteractionStepCount: Number(bridgeResponse.geometry.pairInteractionStepCount) }
+      : {}),
+    ...(Number.isFinite(Number(bridgeResponse.geometry?.pathConstraintCount))
+      ? { pathConstraintCount: Number(bridgeResponse.geometry.pathConstraintCount) }
+      : {}),
+    ...(Number.isFinite(Number(bridgeResponse.geometry?.pathConstraintFrameRefinementSampleCount))
+      ? {
+          pathConstraintFrameRefinementSampleCount: Number(
+            bridgeResponse.geometry.pathConstraintFrameRefinementSampleCount
+          ),
+        }
+      : {}),
+    ...(Number.isFinite(Number(bridgeResponse.geometry?.pathConstraintPositionResidualSampleCount))
+      ? {
+          pathConstraintPositionResidualSampleCount: Number(
+            bridgeResponse.geometry.pathConstraintPositionResidualSampleCount
+          ),
+        }
+      : {}),
+    ...(bridgeResponse.geometry?.pathConstraintPositionResidualStatus
+      ? { pathConstraintPositionResidualStatus: String(bridgeResponse.geometry.pathConstraintPositionResidualStatus) }
+      : {}),
+    ...(Number.isFinite(Number(bridgeResponse.geometry?.pathConstraintPositionResidualTolerance))
+      ? { pathConstraintPositionResidualTolerance: Number(bridgeResponse.geometry.pathConstraintPositionResidualTolerance) }
+      : {}),
+    ...(Number.isFinite(Number(bridgeResponse.geometry?.maxPathConstraintPositionResidual))
+      ? { maxPathConstraintPositionResidual: Number(bridgeResponse.geometry.maxPathConstraintPositionResidual) }
+      : {}),
+    ...(Number.isFinite(Number(bridgeResponse.geometry?.meanPathConstraintPositionResidual))
+      ? { meanPathConstraintPositionResidual: Number(bridgeResponse.geometry.meanPathConstraintPositionResidual) }
+      : {}),
+    ...(Number.isFinite(Number(bridgeResponse.geometry?.rmsPathConstraintPositionResidual))
+      ? { rmsPathConstraintPositionResidual: Number(bridgeResponse.geometry.rmsPathConstraintPositionResidual) }
+      : {}),
+    ...(Number.isFinite(Number(bridgeResponse.geometry?.pathConstraintResidualSampleCount))
+      ? { pathConstraintResidualSampleCount: Number(bridgeResponse.geometry.pathConstraintResidualSampleCount) }
+      : {}),
+    ...(Number.isFinite(Number(bridgeResponse.geometry?.maxPathConstraintResidual))
+      ? { maxPathConstraintResidual: Number(bridgeResponse.geometry.maxPathConstraintResidual) }
+      : {}),
+    ...(Number.isFinite(Number(bridgeResponse.geometry?.meanPathConstraintResidual))
+      ? { meanPathConstraintResidual: Number(bridgeResponse.geometry.meanPathConstraintResidual) }
+      : {}),
+    ...(Number.isFinite(Number(bridgeResponse.geometry?.rmsPathConstraintResidual))
+      ? { rmsPathConstraintResidual: Number(bridgeResponse.geometry.rmsPathConstraintResidual) }
+      : {}),
+    ...(Number.isFinite(Number(bridgeResponse.geometry?.pathConstraintGuidanceSampleCount))
+      ? { pathConstraintGuidanceSampleCount: Number(bridgeResponse.geometry.pathConstraintGuidanceSampleCount) }
+      : {}),
+    ...(bridgeResponse.geometry?.pathConstraintGuidanceMode
+      ? { pathConstraintGuidanceMode: String(bridgeResponse.geometry.pathConstraintGuidanceMode) }
+      : {}),
+    ...(bridgeResponse.geometry?.pathConstraintBoundaryMode
+      ? { pathConstraintBoundaryMode: String(bridgeResponse.geometry.pathConstraintBoundaryMode) }
+      : {}),
+    ...(bridgeResponse.geometry?.pathConstraintBoundarySeedMode
+      ? { pathConstraintBoundarySeedMode: String(bridgeResponse.geometry.pathConstraintBoundarySeedMode) }
+      : {}),
+    ...(Number.isFinite(Number(bridgeResponse.geometry?.pathConstraintBoundarySeedSampleCount))
+      ? {
+          pathConstraintBoundarySeedSampleCount: Number(
+            bridgeResponse.geometry.pathConstraintBoundarySeedSampleCount
+          ),
+        }
+      : {}),
+    ...(bridgeResponse.geometry?.pathConstraintBoundaryRelaxationMode
+      ? { pathConstraintBoundaryRelaxationMode: String(bridgeResponse.geometry.pathConstraintBoundaryRelaxationMode) }
+      : {}),
+    ...(Number.isFinite(Number(bridgeResponse.geometry?.pathConstraintBoundaryRelaxationIterationCount))
+      ? {
+          pathConstraintBoundaryRelaxationIterationCount: Number(
+            bridgeResponse.geometry.pathConstraintBoundaryRelaxationIterationCount
+          ),
+        }
+      : {}),
+    ...(Number.isFinite(Number(bridgeResponse.geometry?.pathConstraintBoundaryRelaxationAppliedIterationCount))
+      ? {
+          pathConstraintBoundaryRelaxationAppliedIterationCount: Number(
+            bridgeResponse.geometry.pathConstraintBoundaryRelaxationAppliedIterationCount
+          ),
+        }
+      : {}),
+    ...(bridgeResponse.geometry?.pathConstraintBoundaryRelaxationStopReason
+      ? {
+          pathConstraintBoundaryRelaxationStopReason: String(
+            bridgeResponse.geometry.pathConstraintBoundaryRelaxationStopReason
+          ),
+        }
+      : {}),
+    ...(Number.isFinite(Number(bridgeResponse.geometry?.pathConstraintBoundaryRelaxationTolerance))
+      ? {
+          pathConstraintBoundaryRelaxationTolerance: Number(
+            bridgeResponse.geometry.pathConstraintBoundaryRelaxationTolerance
+          ),
+        }
+      : {}),
+    ...(Number.isFinite(Number(bridgeResponse.geometry?.pathConstraintBoundaryRelaxationStepTolerance))
+      ? {
+          pathConstraintBoundaryRelaxationStepTolerance: Number(
+            bridgeResponse.geometry.pathConstraintBoundaryRelaxationStepTolerance
+          ),
+        }
+      : {}),
+    ...(bridgeResponse.geometry?.pathConstraintBoundaryRelaxationStatus
+      ? { pathConstraintBoundaryRelaxationStatus: String(bridgeResponse.geometry.pathConstraintBoundaryRelaxationStatus) }
+      : {}),
+    ...(bridgeResponse.geometry?.pathConstraintBoundaryRelaxationResidualEvidenceStatus
+      ? {
+          pathConstraintBoundaryRelaxationResidualEvidenceStatus: String(
+            bridgeResponse.geometry.pathConstraintBoundaryRelaxationResidualEvidenceStatus
+          ),
+        }
+      : {}),
+    ...(Number.isFinite(Number(bridgeResponse.geometry?.pathConstraintBoundaryRelaxationResidualSampleCount))
+      ? {
+          pathConstraintBoundaryRelaxationResidualSampleCount: Number(
+            bridgeResponse.geometry.pathConstraintBoundaryRelaxationResidualSampleCount
+          ),
+        }
+      : {}),
+    ...(Number.isFinite(Number(bridgeResponse.geometry?.maxPathConstraintBoundaryRelaxationResidualBefore))
+      ? {
+          maxPathConstraintBoundaryRelaxationResidualBefore: Number(
+            bridgeResponse.geometry.maxPathConstraintBoundaryRelaxationResidualBefore
+          ),
+        }
+      : {}),
+    ...(Number.isFinite(Number(bridgeResponse.geometry?.maxPathConstraintBoundaryRelaxationResidualAfter))
+      ? {
+          maxPathConstraintBoundaryRelaxationResidualAfter: Number(
+            bridgeResponse.geometry.maxPathConstraintBoundaryRelaxationResidualAfter
+          ),
+        }
+      : {}),
+    ...(Number.isFinite(Number(bridgeResponse.geometry?.meanPathConstraintBoundaryRelaxationResidualBefore))
+      ? {
+          meanPathConstraintBoundaryRelaxationResidualBefore: Number(
+            bridgeResponse.geometry.meanPathConstraintBoundaryRelaxationResidualBefore
+          ),
+        }
+      : {}),
+    ...(Number.isFinite(Number(bridgeResponse.geometry?.meanPathConstraintBoundaryRelaxationResidualAfter))
+      ? {
+          meanPathConstraintBoundaryRelaxationResidualAfter: Number(
+            bridgeResponse.geometry.meanPathConstraintBoundaryRelaxationResidualAfter
+          ),
+        }
+      : {}),
+    ...(Number.isFinite(Number(bridgeResponse.geometry?.rmsPathConstraintBoundaryRelaxationResidualBefore))
+      ? {
+          rmsPathConstraintBoundaryRelaxationResidualBefore: Number(
+            bridgeResponse.geometry.rmsPathConstraintBoundaryRelaxationResidualBefore
+          ),
+        }
+      : {}),
+    ...(Number.isFinite(Number(bridgeResponse.geometry?.rmsPathConstraintBoundaryRelaxationResidualAfter))
+      ? {
+          rmsPathConstraintBoundaryRelaxationResidualAfter: Number(
+            bridgeResponse.geometry.rmsPathConstraintBoundaryRelaxationResidualAfter
+          ),
+        }
+      : {}),
+    ...(Number.isFinite(Number(bridgeResponse.geometry?.pathConstraintBoundaryRelaxationResidualRatio))
+      ? {
+          pathConstraintBoundaryRelaxationResidualRatio: Number(
+            bridgeResponse.geometry.pathConstraintBoundaryRelaxationResidualRatio
+          ),
+        }
+      : {}),
+    ...(Number.isFinite(Number(bridgeResponse.geometry?.meanPathConstraintBoundaryRelaxationResidualRatio))
+      ? {
+          meanPathConstraintBoundaryRelaxationResidualRatio: Number(
+            bridgeResponse.geometry.meanPathConstraintBoundaryRelaxationResidualRatio
+          ),
+        }
+      : {}),
+    ...(Number.isFinite(Number(bridgeResponse.geometry?.rmsPathConstraintBoundaryRelaxationResidualRatio))
+      ? {
+          rmsPathConstraintBoundaryRelaxationResidualRatio: Number(
+            bridgeResponse.geometry.rmsPathConstraintBoundaryRelaxationResidualRatio
+          ),
+        }
+      : {}),
+    ...(Number.isFinite(Number(bridgeResponse.geometry?.pathConstraintBoundaryRelaxationResidualSettlingRate))
+      ? {
+          pathConstraintBoundaryRelaxationResidualSettlingRate: Number(
+            bridgeResponse.geometry.pathConstraintBoundaryRelaxationResidualSettlingRate
+          ),
+        }
+      : {}),
+    ...(Number.isFinite(Number(bridgeResponse.geometry?.meanPathConstraintBoundaryRelaxationResidualSettlingRate))
+      ? {
+          meanPathConstraintBoundaryRelaxationResidualSettlingRate: Number(
+            bridgeResponse.geometry.meanPathConstraintBoundaryRelaxationResidualSettlingRate
+          ),
+        }
+      : {}),
+    ...(Number.isFinite(Number(bridgeResponse.geometry?.rmsPathConstraintBoundaryRelaxationResidualSettlingRate))
+      ? {
+          rmsPathConstraintBoundaryRelaxationResidualSettlingRate: Number(
+            bridgeResponse.geometry.rmsPathConstraintBoundaryRelaxationResidualSettlingRate
+          ),
+        }
+      : {}),
+    ...(Number.isFinite(Number(bridgeResponse.geometry?.pathConstraintBoundaryRelaxationMaxStep))
+      ? {
+          pathConstraintBoundaryRelaxationMaxStep: Number(
+            bridgeResponse.geometry.pathConstraintBoundaryRelaxationMaxStep
+          ),
+        }
+      : {}),
+    ...(Number.isFinite(Number(bridgeResponse.geometry?.pathConstraintBoundaryRelaxationFinalStepFactor))
+      ? {
+          pathConstraintBoundaryRelaxationFinalStepFactor: Number(
+            bridgeResponse.geometry.pathConstraintBoundaryRelaxationFinalStepFactor
+          ),
+        }
+      : {}),
+    ...(bridgeResponse.geometry?.pathConstraintBoundaryRelaxationSelectedCandidateKind
+      ? {
+          pathConstraintBoundaryRelaxationSelectedCandidateKind: String(
+            bridgeResponse.geometry.pathConstraintBoundaryRelaxationSelectedCandidateKind
+          ),
+        }
+      : {}),
+    ...(Number.isFinite(Number(bridgeResponse.geometry?.pathConstraintBoundaryRelaxationCenterOfMassSelectedCount))
+      ? {
+          pathConstraintBoundaryRelaxationCenterOfMassSelectedCount: Number(
+            bridgeResponse.geometry.pathConstraintBoundaryRelaxationCenterOfMassSelectedCount
+          ),
+        }
+      : {}),
+    ...(Number.isFinite(Number(bridgeResponse.geometry?.pathConstraintBoundaryRelaxationCandidateVariantCount))
+      ? {
+          pathConstraintBoundaryRelaxationCandidateVariantCount: Number(
+            bridgeResponse.geometry.pathConstraintBoundaryRelaxationCandidateVariantCount
+          ),
+        }
+      : {}),
+    ...(Number.isFinite(Number(bridgeResponse.geometry?.pathConstraintBoundaryRelaxationLineSearchTrialCount))
+      ? {
+          pathConstraintBoundaryRelaxationLineSearchTrialCount: Number(
+            bridgeResponse.geometry.pathConstraintBoundaryRelaxationLineSearchTrialCount
+          ),
+        }
+      : {}),
+    ...(Number.isFinite(Number(bridgeResponse.geometry?.pathConstraintBoundaryRelaxationCandidateKindMask))
+      ? {
+          pathConstraintBoundaryRelaxationCandidateKindMask: Number(
+            bridgeResponse.geometry.pathConstraintBoundaryRelaxationCandidateKindMask
+          ),
+        }
+      : {}),
+    ...(bridgeResponse.geometry?.pathConstraintSolverStatus
+      ? { pathConstraintSolverStatus: String(bridgeResponse.geometry.pathConstraintSolverStatus) }
+      : {}),
+    ...(bridgeResponse.geometry?.pathConstraintSolverClaim
+      ? { pathConstraintSolverClaim: String(bridgeResponse.geometry.pathConstraintSolverClaim) }
+      : {}),
+    ...geometryPhysicalBoundarySolverMetadata,
+    ...(Number.isFinite(Number(bridgeResponse.geometry?.maxPathConstraintGuidanceAcceleration))
+      ? { maxPathConstraintGuidanceAcceleration: Number(bridgeResponse.geometry.maxPathConstraintGuidanceAcceleration) }
+      : {}),
+    ...(Number.isFinite(Number(bridgeResponse.geometry?.meanPathConstraintGuidanceAcceleration))
+      ? { meanPathConstraintGuidanceAcceleration: Number(bridgeResponse.geometry.meanPathConstraintGuidanceAcceleration) }
+      : {}),
+    ...(Number.isFinite(Number(bridgeResponse.geometry?.rmsPathConstraintGuidanceAcceleration))
+      ? { rmsPathConstraintGuidanceAcceleration: Number(bridgeResponse.geometry.rmsPathConstraintGuidanceAcceleration) }
+      : {}),
+    ...(bridgeResponse.geometry?.pathConstraintGuidanceAccelerationStatus
+      ? {
+          pathConstraintGuidanceAccelerationStatus: String(
+            bridgeResponse.geometry.pathConstraintGuidanceAccelerationStatus
+          ),
+        }
+      : {}),
+    ...(Number.isFinite(Number(bridgeResponse.geometry?.pathConstraintGuidanceAccelerationTolerance))
+      ? {
+          pathConstraintGuidanceAccelerationTolerance: Number(
+            bridgeResponse.geometry.pathConstraintGuidanceAccelerationTolerance
+          ),
+        }
+      : {}),
+    ...(Number.isFinite(Number(bridgeResponse.geometry?.pathConstraintBoundaryResidualSampleCount))
+      ? { pathConstraintBoundaryResidualSampleCount: Number(bridgeResponse.geometry.pathConstraintBoundaryResidualSampleCount) }
+      : {}),
+    ...(bridgeResponse.geometry?.pathConstraintBoundaryResidualStatus
+      ? { pathConstraintBoundaryResidualStatus: String(bridgeResponse.geometry.pathConstraintBoundaryResidualStatus) }
+      : {}),
+    ...(Number.isFinite(Number(bridgeResponse.geometry?.pathConstraintBoundaryResidualTolerance))
+      ? { pathConstraintBoundaryResidualTolerance: Number(bridgeResponse.geometry.pathConstraintBoundaryResidualTolerance) }
+      : {}),
+    ...(Number.isFinite(Number(bridgeResponse.geometry?.maxPathConstraintBoundaryResidual))
+      ? { maxPathConstraintBoundaryResidual: Number(bridgeResponse.geometry.maxPathConstraintBoundaryResidual) }
+      : {}),
+    ...(Number.isFinite(Number(bridgeResponse.geometry?.meanPathConstraintBoundaryResidual))
+      ? { meanPathConstraintBoundaryResidual: Number(bridgeResponse.geometry.meanPathConstraintBoundaryResidual) }
+      : {}),
+    ...(Number.isFinite(Number(bridgeResponse.geometry?.rmsPathConstraintBoundaryResidual))
+      ? { rmsPathConstraintBoundaryResidual: Number(bridgeResponse.geometry.rmsPathConstraintBoundaryResidual) }
+      : {}),
+    ...(bridgeResponse.geometry?.displayProjection
+      ? { displayProjection: String(bridgeResponse.geometry.displayProjection) }
+      : {}),
+    ...(bridgeResponse.geometry?.interactionLaw
+      ? { interactionLaw: String(bridgeResponse.geometry.interactionLaw) }
+      : {}),
+    ...(bridgeResponse.geometry?.executionPath
+      ? { executionPath: String(bridgeResponse.geometry.executionPath) }
+      : {}),
   };
 }
 
@@ -902,6 +2358,11 @@ function normalizeWakeLink(row, index, history) {
           ),
         }
       : {}),
+    ...(Array.isArray(row.rootLedgerDetails)
+      ? {
+          rootLedgerDetails: normalizeOptionalArray(row.rootLedgerDetails),
+        }
+      : {}),
     color: sourceKind === "positrino" ? POSITRINO_WAKE : ELECTRINO_WAKE,
     weight: normalizeUnitNumber(row.weight ?? row.strength, undefined, `bridge response delayedHits[${index}].weight`),
     distance: normalizeNonnegativeNumber(
@@ -1096,6 +2557,7 @@ function createBridgeDelayedHitsFromDelayedHitRuns(runHandles, replayDataset) {
       response.hits ?? response.delayedHits ?? response.delayedHitEvents,
     )[0];
     const solverRoot = normalizeOptionalArray(response.roots)[0];
+    const rootLedgerDetails = normalizeOptionalArray(response.rootLedgerDetails);
     const fallback = createBridgeDelayedHitFromWakeLink(replayDataset, links[index], index);
     return {
       ...fallback,
@@ -1121,6 +2583,7 @@ function createBridgeDelayedHitsFromDelayedHitRuns(runHandles, replayDataset) {
       ...(solverHit?.unitDirection != null
         ? { solverUnitDirection: cloneObject(solverHit.unitDirection, "solverHit.unitDirection") }
         : {}),
+      ...(rootLedgerDetails.length > 0 ? { rootLedgerDetails } : {}),
       rootStatus: response.status ?? response.summary?.status ?? fallback.rootStatus,
       solverRunId: response.runId ?? runHandle.runId,
       rootCount: Array.isArray(response.roots) ? response.roots.length : 0,
@@ -1169,6 +2632,7 @@ function createBridgeGeometryFromReplayDataset(replayDataset, { initialCondition
     presetId: replayDataset.preset?.id ?? DEFAULT_PRESET_ID,
     canvasColorId: replayDataset.canvasColorId ?? replayDataset.preset?.canvasColorId ?? DEFAULT_CANVAS_ID,
     wakeArcDisplayMode: replayDataset.wakeArcDisplayMode ?? PARTIAL_PROPAGATING_ARCS,
+    ...(replayDataset.draftPreview ? { draftPreview: cloneObject(replayDataset.draftPreview, "draftPreview") } : {}),
     status: { code: "ok", severity: "ok", message: "causal-delay replay metadata prepared" },
   };
 }
@@ -1227,6 +2691,274 @@ function kindLabel(kind) {
   return kind === "positrino" ? "red" : "blue";
 }
 
+function optionalString(value) {
+  return typeof value === "string" && value.length > 0 ? value : undefined;
+}
+
+function pairInteractionSummaryField(pairSummary, pairInteraction, fieldName) {
+  return pairSummary?.[fieldName] ?? pairInteraction?.[fieldName];
+}
+
+function pairInteractionRelaxationResidualEvidenceStatus(pairSummary, pairInteraction) {
+  const explicitStatus = optionalString(
+    pairInteractionSummaryField(
+      pairSummary,
+      pairInteraction,
+      "pathConstraintBoundaryRelaxationResidualEvidenceStatus",
+    ),
+  );
+  const numericStatus = pairInteractionRelaxationResidualEvidenceStatusFromNumbers(
+    pairSummary,
+    pairInteraction,
+  );
+  if (!explicitStatus) {
+    return numericStatus;
+  }
+  if (explicitStatus !== BOUNDARY_RELAXATION_RESIDUAL_EVIDENCE_NON_WORSENING) {
+    return explicitStatus;
+  }
+  return numericStatus === BOUNDARY_RELAXATION_RESIDUAL_EVIDENCE_NON_WORSENING
+    ? explicitStatus
+    : numericStatus;
+}
+
+function pairInteractionRelaxationResidualEvidenceStatusFromNumbers(pairSummary, pairInteraction) {
+  const sampleCount = Number(
+    pairInteractionSummaryField(
+      pairSummary,
+      pairInteraction,
+      "pathConstraintBoundaryRelaxationResidualSampleCount",
+    ),
+  );
+  if (!Number.isFinite(sampleCount) || sampleCount <= 0) {
+    return BOUNDARY_RELAXATION_RESIDUAL_EVIDENCE_NO_SAMPLES;
+  }
+  const residualPairs = [
+    [
+      "maxPathConstraintBoundaryRelaxationResidualBefore",
+      "maxPathConstraintBoundaryRelaxationResidualAfter",
+    ],
+    [
+      "meanPathConstraintBoundaryRelaxationResidualBefore",
+      "meanPathConstraintBoundaryRelaxationResidualAfter",
+    ],
+    [
+      "rmsPathConstraintBoundaryRelaxationResidualBefore",
+      "rmsPathConstraintBoundaryRelaxationResidualAfter",
+    ],
+  ].map(([beforeField, afterField]) => [
+    Number(pairInteractionSummaryField(pairSummary, pairInteraction, beforeField)),
+    Number(pairInteractionSummaryField(pairSummary, pairInteraction, afterField)),
+  ]);
+  if (!residualPairs.every(([before, after]) => Number.isFinite(before) && Number.isFinite(after))) {
+    return BOUNDARY_RELAXATION_RESIDUAL_EVIDENCE_INCOMPLETE;
+  }
+  return residualPairs.every(([before, after]) => after <= before)
+    ? BOUNDARY_RELAXATION_RESIDUAL_EVIDENCE_NON_WORSENING
+    : BOUNDARY_RELAXATION_RESIDUAL_EVIDENCE_WORSENED;
+}
+
+function pairInteractionBoundaryRelaxationStatus(pairSummary, pairInteraction) {
+  const status = optionalString(
+    pairInteractionSummaryField(pairSummary, pairInteraction, "pathConstraintBoundaryRelaxationStatus"),
+  );
+  if (!status) {
+    return undefined;
+  }
+  const strongStatuses = new Set([
+    FINITE_DIFFERENCE_FRAME_RELAXATION_ACCEPTED_STATUS,
+    FINITE_DIFFERENCE_FRAME_RELAXATION_CONVERGED_STATUS,
+    FINITE_DIFFERENCE_FRAME_RELAXATION_STEP_CONVERGED_STATUS,
+  ]);
+  if (!strongStatuses.has(status)) {
+    return status;
+  }
+  const residualEvidenceStatus = pairInteractionRelaxationResidualEvidenceStatus(
+    pairSummary,
+    pairInteraction,
+  );
+  if (
+    residualEvidenceStatus === BOUNDARY_RELAXATION_RESIDUAL_EVIDENCE_NO_SAMPLES ||
+    residualEvidenceStatus === BOUNDARY_RELAXATION_RESIDUAL_EVIDENCE_INCOMPLETE
+  ) {
+    return FINITE_DIFFERENCE_FRAME_RELAXATION_NO_SAMPLES_STATUS;
+  }
+  if (residualEvidenceStatus !== BOUNDARY_RELAXATION_RESIDUAL_EVIDENCE_NON_WORSENING) {
+    return FINITE_DIFFERENCE_FRAME_RELAXATION_REVERTED_STATUS;
+  }
+  if (status === FINITE_DIFFERENCE_FRAME_RELAXATION_CONVERGED_STATUS) {
+    const tolerance = Number(
+      pairInteractionSummaryField(pairSummary, pairInteraction, "pathConstraintBoundaryRelaxationTolerance"),
+    );
+    const maxResidualAfter = Number(
+      pairInteractionSummaryField(pairSummary, pairInteraction, "maxPathConstraintBoundaryRelaxationResidualAfter"),
+    );
+    if (!Number.isFinite(tolerance) || !Number.isFinite(maxResidualAfter) || maxResidualAfter > tolerance) {
+      return FINITE_DIFFERENCE_FRAME_RELAXATION_ACCEPTED_STATUS;
+    }
+  }
+  return status;
+}
+
+function createPairInteractionConstraintSolverMetadata(pairSummary, pairInteraction, pairRequest) {
+  const explicitStatus = optionalString(
+    pairInteractionSummaryField(pairSummary, pairInteraction, "pathConstraintSolverStatus"),
+  );
+  const explicitClaim = optionalString(
+    pairInteractionSummaryField(pairSummary, pairInteraction, "pathConstraintSolverClaim"),
+  );
+  const pathConstraintCount = Number(
+    pairInteractionSummaryField(pairSummary, pairInteraction, "pathConstraintCount") ??
+      pairRequest?.pathConstraints?.length,
+  );
+  const relaxationMode = pairInteractionSummaryField(
+    pairSummary,
+    pairInteraction,
+    "pathConstraintBoundaryRelaxationMode",
+  );
+  const relaxationStatus = pairInteractionSummaryField(
+    pairSummary,
+    pairInteraction,
+    "pathConstraintBoundaryRelaxationStatus",
+  );
+  const relaxationSampleCount = Number(
+    pairInteractionSummaryField(
+      pairSummary,
+      pairInteraction,
+      "pathConstraintBoundaryRelaxationResidualSampleCount",
+    ),
+  );
+  const relaxationTolerance = Number(
+    pairInteractionSummaryField(
+      pairSummary,
+      pairInteraction,
+      "pathConstraintBoundaryRelaxationTolerance",
+    ) ?? pairRequest?.pathConstraintBoundaryRelaxationTolerance,
+  );
+  const maxRelaxationResidualAfter = Number(
+    pairInteractionSummaryField(
+      pairSummary,
+      pairInteraction,
+      "maxPathConstraintBoundaryRelaxationResidualAfter",
+    ),
+  );
+  const maxRelaxationResidualBefore = Number(
+    pairInteractionSummaryField(
+      pairSummary,
+      pairInteraction,
+      "maxPathConstraintBoundaryRelaxationResidualBefore",
+    ),
+  );
+  const residualEvidenceStatus = pairInteractionRelaxationResidualEvidenceStatus(
+    pairSummary,
+    pairInteraction,
+  );
+  const retainedPositionsPreserved = pairInteractionRetainedPositionsPreserved(
+    pairSummary,
+    pairInteraction,
+    pairRequest,
+    pathConstraintCount,
+  );
+  const hasConvergedFiniteDifferenceEvidence =
+    Number.isFinite(pathConstraintCount) &&
+    pathConstraintCount > 0 &&
+    retainedPositionsPreserved &&
+    relaxationMode === FINITE_DIFFERENCE_FRAME_RELAXATION_MODE &&
+    relaxationStatus === FINITE_DIFFERENCE_FRAME_RELAXATION_CONVERGED_STATUS &&
+    Number.isFinite(relaxationSampleCount) &&
+    relaxationSampleCount > 0 &&
+    Number.isFinite(relaxationTolerance) &&
+    Number.isFinite(maxRelaxationResidualBefore) &&
+    Number.isFinite(maxRelaxationResidualAfter) &&
+    residualEvidenceStatus === BOUNDARY_RELAXATION_RESIDUAL_EVIDENCE_NON_WORSENING &&
+    maxRelaxationResidualAfter <= relaxationTolerance;
+
+  if (explicitStatus) {
+    if (
+      explicitStatus !== DISCRETE_BOUNDARY_VALUE_CONVERGED_STATUS ||
+      hasConvergedFiniteDifferenceEvidence
+    ) {
+      return {
+        pathConstraintSolverStatus: explicitStatus,
+        pathConstraintSolverClaim: explicitClaim,
+      };
+    }
+    return {
+      pathConstraintSolverStatus: undefined,
+      pathConstraintSolverClaim: undefined,
+    };
+  }
+
+  return {
+    pathConstraintSolverStatus: hasConvergedFiniteDifferenceEvidence
+      ? DISCRETE_BOUNDARY_VALUE_CONVERGED_STATUS
+      : undefined,
+    pathConstraintSolverClaim: explicitClaim ?? (
+      hasConvergedFiniteDifferenceEvidence
+        ? FINITE_DIFFERENCE_PAIR_BOUNDARY_VALUE_SOLVE_CONVERGED_CLAIM
+        : undefined
+    ),
+  };
+}
+
+function createPairInteractionPhysicalBoundarySolverMetadata(pairSummary, pairInteraction, pathConstraintCount) {
+  const explicitStatus = optionalString(
+    pairInteractionSummaryField(pairSummary, pairInteraction, "pathConstraintPhysicalBoundarySolverStatus"),
+  );
+  const explicitClaim = optionalString(
+    pairInteractionSummaryField(pairSummary, pairInteraction, "pathConstraintPhysicalBoundarySolverClaim"),
+  );
+  if (explicitStatus || explicitClaim) {
+    return {
+      ...(explicitStatus ? { pathConstraintPhysicalBoundarySolverStatus: explicitStatus } : {}),
+      ...(explicitClaim ? { pathConstraintPhysicalBoundarySolverClaim: explicitClaim } : {}),
+    };
+  }
+  const constraintCount = Number(pathConstraintCount);
+  if (!Number.isFinite(constraintCount) || constraintCount <= 0) {
+    return {};
+  }
+  return {
+    pathConstraintPhysicalBoundarySolverStatus: PHYSICAL_BOUNDARY_SOLVER_PENDING_STATUS,
+    pathConstraintPhysicalBoundarySolverClaim:
+      RETAINED_KNOT_GUIDANCE_NOT_PHYSICAL_BOUNDARY_VALUE_SOLVE_CLAIM,
+  };
+}
+
+function pairInteractionRetainedPositionsPreserved(pairSummary, pairInteraction, pairRequest, pathConstraintCount) {
+  const constraintCount = Number(pathConstraintCount);
+  if (!Number.isFinite(constraintCount) || constraintCount <= 0) {
+    return false;
+  }
+  const sampleCount = Number(
+    pairInteractionSummaryField(pairSummary, pairInteraction, "pathConstraintPositionResidualSampleCount"),
+  );
+  const maxResidual = Number(
+    pairInteractionSummaryField(pairSummary, pairInteraction, "maxPathConstraintPositionResidual"),
+  );
+  if (!Number.isFinite(sampleCount) || sampleCount < constraintCount || !Number.isFinite(maxResidual)) {
+    return false;
+  }
+  const positionResidualStatus = optionalString(
+    pairInteractionSummaryField(pairSummary, pairInteraction, "pathConstraintPositionResidualStatus"),
+  );
+  if (
+    positionResidualStatus === "no_position_samples" ||
+    positionResidualStatus === "unresolved" ||
+    positionResidualStatus === "exceeded_tolerance"
+  ) {
+    return false;
+  }
+  const requestedTolerance = Number(
+    pairInteractionSummaryField(pairSummary, pairInteraction, "pathConstraintPositionResidualTolerance") ??
+      pairRequest?.pathConstraintPositionResidualTolerance,
+  );
+  const tolerance = Number.isFinite(requestedTolerance)
+    ? requestedTolerance
+    : DERIVED_BOUNDARY_POSITION_RESIDUAL_TOLERANCE;
+  return maxResidual <= Math.max(tolerance, DERIVED_BOUNDARY_POSITION_RESIDUAL_TOLERANCE);
+}
+
 function normalizeArchitrinoKind(value, label) {
   if (!ARCHITRINO_KINDS.includes(value)) {
     throw new TypeError(`${label} must be positrino or electrino`);
@@ -1236,6 +2968,18 @@ function normalizeArchitrinoKind(value, label) {
 
 function normalizeOptionalArray(value) {
   return Array.isArray(value) ? value.map((entry) => cloneJson(entry)) : [];
+}
+
+function optionalFiniteNumber(value) {
+  const number = Number(value);
+  return Number.isFinite(number) ? number : undefined;
+}
+
+function normalizeOptionalNonnegativeNumber(value, label) {
+  if (value == null) {
+    return undefined;
+  }
+  return normalizeNonnegativeNumber(value, undefined, label);
 }
 
 function normalizeOptionalString(value, fallback, label) {
@@ -1276,6 +3020,10 @@ function normalizeNonnegativeInteger(value, label) {
     throw new TypeError(`${label} must be a nonnegative integer`);
   }
   return number;
+}
+
+function normalizeOptionalNonnegativeInteger(value, label) {
+  return value == null ? undefined : normalizeNonnegativeInteger(value, label);
 }
 
 function normalizeUnitNumber(value, fallback, label) {

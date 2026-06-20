@@ -49,20 +49,58 @@ $$
 $$
 The equation is an observer-level statement: it tells Physical Observers how many proper-time units a moving clock records relative to an inertial coordinate description.
 
+For the Noether swarm bridge, the velocity entering the material response is the assembly drift through the local Noether sea, not an abstract coordinate label:
+$$
+\mathbf{w}
+=
+\mathbf{V}_{\text{cm}}-\mathbf{u}_{\text{sea}}
+$$
+In the local Noether sea rest frame, this reduces to the center-of-mass drift. The corresponding effective Lorentz factor is
+$$
+\gamma_{\text{eff}}(\mathbf{w})
+=
+\frac{1}{\sqrt{1-\|\mathbf{w}\|^2/c_{\text{eff}}^2}}
+$$
+
 In $\mathbb{A}\mathbb{A}\mathbb{A}$, the primitive time parameter is absolute time $t$. A clock is not primitive time itself; it is a stable assembly that counts internal cycles. For a Noether swarm clock, a natural clock channel is the middle binary or a transition built from the coupled nested shell swarm ledger. The proper-time map is therefore an extracted frequency ratio:
 $$
 \frac{d\tau}{dt}
 =
-\frac{\omega_{\text{clk}}(v,n,\chi_{\text{sea}},\Phi_{\text{eff}},\text{geometry})}{\omega_0}
+\frac{\omega_{\text{clk}}(\mathbf{w},n,\chi_{\text{sea}},\Phi_{\text{eff}},\text{geometry})}{\omega_0}
 $$
 The special-relativistic target is recovered when homogeneous weak-field conditions give
 $$
-\frac{\omega_{\text{clk}}(v)}{\omega_0}
+\frac{\omega_{\text{clk}}(\mathbf{w})}{\omega_0}
 \approx
-\sqrt{1-\frac{v^2}{c_{\text{eff}}^2}}
+\sqrt{1-\frac{\|\mathbf{w}\|^2}{c_{\text{eff}}^2}}
+=
+\frac{1}{\gamma_{\text{eff}}(\mathbf{w})}
 $$
 
-The Noether swarm mechanism behind that target is finite-speed causal closure. As the center of mass translates, each internal wake return must close across a slanted path-history geometry. The assembly can remain stable only if orbital phase, path length, envelope geometry, and inter-layer timing retune together. Clock slowing is then the observer-facing readout of a deeper assembly fact: the moving swarm has fewer available stable closure cycles per unit absolute time.
+The Noether swarm mechanism behind that target is finite-speed causal closure. As the center of mass drifts through the local Noether sea, each internal wake return must close across a slanted path-history geometry. In the local Noether sea rest frame, the channel speed budget separates into a drift component and a transverse closure component:
+$$
+c_{\text{eff}}^2
+=
+\|\mathbf{w}\|^2+c_{\perp}^2
+$$
+so
+$$
+c_{\perp}
+=
+c_{\text{eff}}
+\sqrt{1-\frac{\|\mathbf{w}\|^2}{c_{\text{eff}}^2}}
+=
+\frac{c_{\text{eff}}}{\gamma_{\text{eff}}(\mathbf{w})}
+$$
+Clock slowing is the observer-facing readout of this retuning:
+$$
+\frac{d\tau}{dt}
+=
+\frac{c_{\perp}}{c_{\text{eff}}}
+=
+\frac{1}{\gamma_{\text{eff}}(\mathbf{w})}
+$$
+The assembly can remain stable only if orbital phase, path length, envelope geometry, and inter-layer timing retune together, so the moving swarm has fewer available stable closure cycles per unit absolute time.
 
 ## Ruler Channel
 
@@ -78,7 +116,7 @@ In the Noether swarm implementation story, rods are made from bound assemblies w
 $$
 \mathcal{E}_{\text{excl}}
 =
-\mathcal{E}_{\text{excl}}(\mathbf{v},\mathbf{A}_i,\mathbf{A}_m,\mathbf{A}_o,R_i,R_m,R_o,n,\chi_{\text{sea}})
+\mathcal{E}_{\text{excl}}(\mathbf{w},\mathbf{A}_i,\mathbf{A}_m,\mathbf{A}_o,R_i,R_m,R_o,n,\chi_{\text{sea}})
 $$
 Here the subscripts $i,m,o$ refer to the inner, middle, and outer binary layers. The Lorentz-compatible weak-field target is the envelope-axis relation
 $$
@@ -86,7 +124,7 @@ $$
 \to
 \frac{1}{\gamma_{\text{eff}}},
 \qquad
-\gamma_{\text{eff}}=\frac{1}{\sqrt{1-v^2/c_{\text{eff}}^2}}
+\gamma_{\text{eff}}(\mathbf{w})=\frac{1}{\sqrt{1-\|\mathbf{w}\|^2/c_{\text{eff}}^2}}
 $$
 
 The important point is that the contraction is not a primitive command imposed on matter. It is a closure condition on matter. If delayed wake exchange sets stable separations, and if those wake exchanges propagate through a medium with effective speed $c_{\text{eff}}$, then the equilibrium geometry of a moving bound system must change in the direction that preserves return timing and phase lock.
@@ -95,7 +133,7 @@ In the geometry canon, this contraction is recorded first as the Noether swarm e
 
 ### Closed Return Cycle And Oblate Spheroidal Envelope Map
 
-The shortest derivation of the oblate spheroidal envelope map uses the difference between a one-way leg and a closed return cycle. A one-way causal leg in the drift direction exposes the preferred Noether sea frame:
+The shortest derivation of the oblate spheroidal envelope map uses the difference between a one-way leg and a closed return cycle. In this subsection, $v$ denotes the scalar drift magnitude $\|\mathbf{w}\|$. A one-way causal leg in the drift direction exposes the preferred Noether sea frame:
 $$
 t_{+}=\frac{R_{\parallel}}{c_{\text{eff}}-v},
 \qquad
@@ -170,6 +208,8 @@ Thus $\gamma_{\text{eff}}$ maps to the shape channel $\xi$, while $\lambda$ rema
 This is the bridge insight. The one-way legs reveal the substrate anisotropy; the closed return cycle determines the geometry that hides it from Physical Observers. The Lorentz factor is therefore not painted onto an oblate spheroidal envelope. It is the return-cycle closure condition expressed as an axis ratio.
 
 This is also the precise meaning of quantizing the Lorentz response. The smooth equation for $\gamma_{\text{eff}}(v)$ remains the effective observer law, but a Noether swarm assembly realizes any admitted value only through a discrete stable branch class $q$ with a definite causal-root ledger, return-cycle period, and envelope projection. The continuous Lorentz curve is therefore treated as the common observer envelope of branch-indexed Noether swarm closure states, not as an independent kinematic rule imposed on matter.
+
+The same component split also states the material speed-limit side of the bridge. As $\|\mathbf{w}\|\to c_{\text{eff}}$, the transverse budget $c_{\perp}$ tends to zero. A limiting branch may still carry axial wake transfer in the bookkeeping sense, but it can no longer function as a volumetric clock or ruler because the internal binary and inter-layer loops have no transverse causal capacity left. The speed bound is therefore not merely a rule about fast coordinate motion; it is the branch-failure point at which a bound assembly can no longer preserve the clock/ruler ledger required for ordinary matter.
 
 ## Branch-Quantized Lorentz Response
 

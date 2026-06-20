@@ -18,6 +18,7 @@
 
 #include <algorithm>
 #include <cmath>
+#include <utility>
 #include <cstddef>
 #include <limits>
 #include <string>
@@ -51,6 +52,10 @@ static_assert(sizeof(ArchitrinoSolverPhaseAtHitMetadataF64) == 32);
 static_assert(sizeof(ArchitrinoSolverPhaseAtHitRowF64) == 104);
 static_assert(sizeof(ArchitrinoSolverMotionSampleRequestF64) == 112);
 static_assert(sizeof(ArchitrinoSolverMotionIntegrationRequestF64) == 120);
+static_assert(sizeof(ArchitrinoSolverPairInteractionRequestF64) == 80);
+static_assert(sizeof(ArchitrinoSolverPairInteractionStateF64) == 80);
+static_assert(sizeof(ArchitrinoSolverPairInteractionPathConstraintF64) == 48);
+static_assert(sizeof(ArchitrinoSolverPairInteractionSummaryF64) == 312);
 static_assert(sizeof(ArchitrinoSolverMotionFrameRowF64) == 88);
 static_assert(sizeof(ArchitrinoSolverPathHistoryRowF64) == 96);
 static_assert(sizeof(ArchitrinoSolverPathHistoryIndexRow) == 64);
@@ -80,6 +85,8 @@ static_assert(sizeof(ArchitrinoSolverSpaceTimeQueryF64) == 96);
 static_assert(sizeof(ArchitrinoSolverEmissionShellBroadPhaseOptionsF64) == 48);
 static_assert(sizeof(ArchitrinoSolverEmissionShellCandidateRowF64) == 112);
 static_assert(sizeof(ArchitrinoSolverEmissionShellBroadPhaseSummary) == 32);
+static_assert(sizeof(ArchitrinoSolverEmissionShellIndexedBroadPhaseOptionsF64) == 56);
+static_assert(sizeof(ArchitrinoSolverEmissionShellIndexedBroadPhaseSummary) == 96);
 static_assert(sizeof(ArchitrinoSolverEmissionShellNarrowPhaseRequestF64) == 208);
 static_assert(sizeof(ArchitrinoSolverEmissionShellNarrowPhaseRowF64) == 40);
 static_assert(sizeof(ArchitrinoSolverAbiInfo) == 188);
@@ -125,6 +132,48 @@ static_assert(offsetof(ArchitrinoSolverMotionSampleRequestF64, path_key) == 72);
 static_assert(offsetof(ArchitrinoSolverMotionSampleRequestF64, state_flags) == 104);
 static_assert(offsetof(ArchitrinoSolverMotionIntegrationRequestF64, initial_position) == 32);
 static_assert(offsetof(ArchitrinoSolverMotionIntegrationRequestF64, integration_method) == 112);
+static_assert(offsetof(ArchitrinoSolverPairInteractionRequestF64, interaction_law) == 48);
+static_assert(offsetof(ArchitrinoSolverPairInteractionRequestF64, boundary_relaxation_iteration_count) == 56);
+static_assert(offsetof(ArchitrinoSolverPairInteractionRequestF64, boundary_relaxation_tolerance) == 64);
+static_assert(offsetof(ArchitrinoSolverPairInteractionRequestF64, boundary_relaxation_step_tolerance) == 72);
+static_assert(offsetof(ArchitrinoSolverPairInteractionStateF64, initial_position) == 8);
+static_assert(offsetof(ArchitrinoSolverPairInteractionStateF64, state_flags) == 72);
+static_assert(offsetof(ArchitrinoSolverPairInteractionPathConstraintF64, time) == 16);
+static_assert(offsetof(ArchitrinoSolverPairInteractionPathConstraintF64, position) == 24);
+static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, boundary_relaxation_selected_candidate_kind) == 4);
+static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, max_constraint_residual) == 16);
+static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, guidance_sample_count) == 40);
+static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, max_guidance_acceleration) == 48);
+static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, boundary_residual_sample_count) == 72);
+static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, max_boundary_residual) == 80);
+static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, boundary_relaxation_residual_sample_count) == 104);
+static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, max_boundary_relaxation_residual_before) == 112);
+static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, max_boundary_relaxation_residual_after) == 120);
+static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, boundary_relaxation_residual_ratio) == 128);
+static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, boundary_relaxation_status) == 136);
+static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, boundary_relaxation_applied_iteration_count) == 140);
+static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, boundary_relaxation_stop_reason) == 144);
+static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, boundary_relaxation_center_of_mass_selected_count) == 148);
+static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, boundary_seed_sample_count) == 152);
+static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, boundary_relaxation_max_step) == 160);
+static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, boundary_relaxation_final_step_factor) == 168);
+static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, mean_boundary_relaxation_residual_before) == 176);
+static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, mean_boundary_relaxation_residual_after) == 184);
+static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, rms_boundary_relaxation_residual_before) == 192);
+static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, rms_boundary_relaxation_residual_after) == 200);
+static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, mean_boundary_relaxation_residual_ratio) == 208);
+static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, rms_boundary_relaxation_residual_ratio) == 216);
+static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, boundary_relaxation_residual_settling_rate) == 224);
+static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, mean_boundary_relaxation_residual_settling_rate) == 232);
+static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, rms_boundary_relaxation_residual_settling_rate) == 240);
+static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, frame_refinement_sample_count) == 248);
+static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, boundary_relaxation_candidate_variant_count) == 256);
+static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, boundary_relaxation_line_search_trial_count) == 264);
+static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, boundary_relaxation_candidate_kind_mask) == 272);
+static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, position_residual_sample_count) == 280);
+static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, max_position_residual) == 288);
+static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, mean_position_residual) == 296);
+static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, rms_position_residual) == 304);
 static_assert(offsetof(ArchitrinoSolverMotionFrameRowF64, time) == 16);
 static_assert(offsetof(ArchitrinoSolverMotionFrameRowF64, state_flags) == 80);
 static_assert(offsetof(ArchitrinoSolverPathHistoryRowF64, start_time) == 16);
@@ -172,6 +221,10 @@ static_assert(offsetof(ArchitrinoSolverEmissionShellCandidateRowF64, source_time
 static_assert(offsetof(ArchitrinoSolverEmissionShellCandidateRowF64, distance_lower_bound) == 80);
 static_assert(offsetof(ArchitrinoSolverEmissionShellBroadPhaseSummary, truncated) == 24);
 static_assert(offsetof(ArchitrinoSolverEmissionShellBroadPhaseSummary, planned_worker_count) == 28);
+static_assert(offsetof(ArchitrinoSolverEmissionShellIndexedBroadPhaseOptionsF64, source_row_offset) == 24);
+static_assert(offsetof(ArchitrinoSolverEmissionShellIndexedBroadPhaseOptionsF64, time_slab_count) == 40);
+static_assert(offsetof(ArchitrinoSolverEmissionShellIndexedBroadPhaseSummary, spatial_cell_size) == 56);
+static_assert(offsetof(ArchitrinoSolverEmissionShellIndexedBroadPhaseSummary, time_slab_count) == 80);
 static_assert(offsetof(ArchitrinoSolverEmissionShellNarrowPhaseRequestF64, signal_speed) == 192);
 static_assert(offsetof(ArchitrinoSolverEmissionShellNarrowPhaseRowF64, hit_time) == 16);
 static_assert(offsetof(ArchitrinoSolverEmissionShellNarrowPhaseRowF64, residual) == 32);
@@ -427,6 +480,97 @@ architrino::solver::MotionIntegrationRequest to_motion_integration_request(
       request->integration_tolerance,
       request->integration_method,
       request->state_flags,
+  };
+}
+
+architrino::solver::PairInteractionRequest to_pair_interaction_request(
+    const ArchitrinoSolverPairInteractionRequestF64* request,
+    std::vector<architrino::solver::PairInteractionPathConstraint> pathConstraints) {
+  return architrino::solver::PairInteractionRequest{
+      request->start_time,
+      request->end_time,
+      request->step,
+      request->pair_acceleration_scale,
+      request->softening,
+      request->integration_tolerance,
+      request->interaction_law,
+      request->integration_method,
+      request->boundary_relaxation_iteration_count,
+      request->boundary_relaxation_tolerance,
+      request->boundary_relaxation_step_tolerance,
+      std::move(pathConstraints),
+  };
+}
+
+architrino::solver::PairInteractionState to_pair_interaction_state(
+    const ArchitrinoSolverPairInteractionStateF64& state) {
+  return architrino::solver::PairInteractionState{
+      state.path_key,
+      to_vector(state.initial_position),
+      to_vector(state.initial_velocity),
+      state.charge,
+      state.mass,
+      state.state_flags,
+  };
+}
+
+architrino::solver::PairInteractionPathConstraint to_pair_interaction_path_constraint(
+    const ArchitrinoSolverPairInteractionPathConstraintF64& constraint) {
+  return architrino::solver::PairInteractionPathConstraint{
+      constraint.path_key,
+      constraint.depth,
+      constraint.time,
+      to_vector(constraint.position),
+  };
+}
+
+ArchitrinoSolverPairInteractionSummaryF64 to_pair_interaction_summary(
+    const architrino::solver::PairInteractionSampleResult& result) {
+  return ArchitrinoSolverPairInteractionSummaryF64{
+      static_cast<std::uint32_t>(std::min<std::uint64_t>(
+          result.pathConstraintCount,
+          std::numeric_limits<std::uint32_t>::max())),
+      result.pathConstraintBoundaryRelaxationSelectedCandidateKind,
+      result.pathConstraintResidualSampleCount,
+      result.maxPathConstraintResidual,
+      result.meanPathConstraintResidual,
+      result.rmsPathConstraintResidual,
+      result.pathConstraintGuidanceSampleCount,
+      result.maxPathConstraintGuidanceAcceleration,
+      result.meanPathConstraintGuidanceAcceleration,
+      result.rmsPathConstraintGuidanceAcceleration,
+      result.pathConstraintBoundaryResidualSampleCount,
+      result.maxPathConstraintBoundaryResidual,
+      result.meanPathConstraintBoundaryResidual,
+      result.rmsPathConstraintBoundaryResidual,
+      result.pathConstraintBoundaryRelaxationResidualSampleCount,
+      result.maxPathConstraintBoundaryRelaxationResidualBefore,
+      result.maxPathConstraintBoundaryRelaxationResidualAfter,
+      result.pathConstraintBoundaryRelaxationResidualRatio,
+      result.pathConstraintBoundaryRelaxationStatus,
+      result.pathConstraintBoundaryRelaxationAppliedIterationCount,
+      result.pathConstraintBoundaryRelaxationStopReason,
+      result.pathConstraintBoundaryRelaxationCenterOfMassSelectedCount,
+      result.pathConstraintBoundarySeedSampleCount,
+      result.pathConstraintBoundaryRelaxationMaxStep,
+      result.pathConstraintBoundaryRelaxationFinalStepFactor,
+      result.meanPathConstraintBoundaryRelaxationResidualBefore,
+      result.meanPathConstraintBoundaryRelaxationResidualAfter,
+      result.rmsPathConstraintBoundaryRelaxationResidualBefore,
+      result.rmsPathConstraintBoundaryRelaxationResidualAfter,
+      result.meanPathConstraintBoundaryRelaxationResidualRatio,
+      result.rmsPathConstraintBoundaryRelaxationResidualRatio,
+      result.pathConstraintBoundaryRelaxationResidualSettlingRate,
+      result.meanPathConstraintBoundaryRelaxationResidualSettlingRate,
+      result.rmsPathConstraintBoundaryRelaxationResidualSettlingRate,
+      result.pathConstraintFrameRefinementSampleCount,
+      result.pathConstraintBoundaryRelaxationCandidateVariantCount,
+      result.pathConstraintBoundaryRelaxationLineSearchTrialCount,
+      result.pathConstraintBoundaryRelaxationCandidateKindMask,
+      result.pathConstraintPositionResidualSampleCount,
+      result.maxPathConstraintPositionResidual,
+      result.meanPathConstraintPositionResidual,
+      result.rmsPathConstraintPositionResidual,
   };
 }
 
@@ -1142,6 +1286,39 @@ ArchitrinoSolverEmissionShellBroadPhaseSummary to_emission_shell_summary(
       summary.candidateCount,
       summary.truncated ? 1U : 0U,
       summary.plannedWorkerCount,
+  };
+}
+
+architrino::solver::EmissionShellIndexedBroadPhaseOptions to_emission_shell_index_options(
+    const ArchitrinoSolverEmissionShellIndexedBroadPhaseOptionsF64& options) {
+  return architrino::solver::EmissionShellIndexedBroadPhaseOptions{
+      static_cast<std::size_t>(options.time_slab_count),
+      options.spatial_cell_size,
+      options.source_row_offset,
+      options.receiver_row_offset,
+      options.has_time_range != 0,
+      options.time_range_start,
+      options.time_range_end,
+  };
+}
+
+ArchitrinoSolverEmissionShellIndexedBroadPhaseSummary to_emission_shell_index_summary(
+    const architrino::solver::EmissionShellIndexedBroadPhaseSummary& summary) {
+  return ArchitrinoSolverEmissionShellIndexedBroadPhaseSummary{
+      summary.sourceRowOffset,
+      summary.receiverRowOffset,
+      summary.receiverCellRows,
+      summary.shellAnnulusRows,
+      summary.cellLookups,
+      summary.indexedPairTests,
+      summary.duplicatePairTests,
+      summary.spatialCellSize,
+      summary.timeRangeStart,
+      summary.timeRangeEnd,
+      static_cast<std::uint32_t>(summary.timeSlabCount),
+      static_cast<std::uint32_t>(summary.coverageStatus),
+      0U,
+      0U,
   };
 }
 
@@ -2712,6 +2889,73 @@ extern "C" int architrino_solver_integrate_constant_acceleration_path_history_f6
   return copy_path_history_rows(result.rows, rows, max_rows, out_row_count);
 }
 
+extern "C" int architrino_solver_integrate_pair_interaction_motion_f64(
+    const ArchitrinoSolverPairInteractionRequestF64* request,
+    const ArchitrinoSolverPairInteractionStateF64* states,
+    int state_count,
+    const ArchitrinoSolverPairInteractionPathConstraintF64* path_constraints,
+    int path_constraint_count,
+    ArchitrinoSolverMotionFrameRowF64* frames,
+    int max_frames,
+    int* out_frame_count,
+    ArchitrinoSolverPathHistoryRowF64* path_rows,
+    int max_path_rows,
+    int* out_path_row_count,
+    ArchitrinoSolverPairInteractionSummaryF64* out_summary) {
+  if (request == nullptr || states == nullptr || out_frame_count == nullptr ||
+      out_path_row_count == nullptr || state_count < 0 || path_constraint_count < 0 ||
+      max_frames < 0 || max_path_rows < 0 ||
+      (path_constraint_count > 0 && path_constraints == nullptr)) {
+    return -1;
+  }
+
+  std::vector<architrino::solver::PairInteractionState> cppStates;
+  cppStates.reserve(static_cast<std::size_t>(state_count));
+  for (int index = 0; index < state_count; ++index) {
+    cppStates.push_back(to_pair_interaction_state(states[index]));
+  }
+  std::vector<architrino::solver::PairInteractionPathConstraint> cppConstraints;
+  cppConstraints.reserve(static_cast<std::size_t>(path_constraint_count));
+  for (int index = 0; index < path_constraint_count; ++index) {
+    cppConstraints.push_back(to_pair_interaction_path_constraint(path_constraints[index]));
+  }
+
+  const architrino::solver::PairInteractionSampleResult result =
+      architrino::solver::integrate_pair_interaction_motion(
+          to_pair_interaction_request(request, std::move(cppConstraints)),
+          cppStates);
+  if (!result.validation.ok) {
+    *out_frame_count = 0;
+    *out_path_row_count = 0;
+    return -2;
+  }
+  if (root_count_overflows(result.frames.size()) || root_count_overflows(result.pathRows.size())) {
+    *out_frame_count = 0;
+    *out_path_row_count = 0;
+    return -4;
+  }
+
+  const int requiredFrames = static_cast<int>(result.frames.size());
+  const int requiredPathRows = static_cast<int>(result.pathRows.size());
+  *out_frame_count = requiredFrames;
+  *out_path_row_count = requiredPathRows;
+  if (out_summary != nullptr) {
+    *out_summary = to_pair_interaction_summary(result);
+  }
+  if ((requiredFrames > 0 && (frames == nullptr || max_frames < requiredFrames)) ||
+      (requiredPathRows > 0 && (path_rows == nullptr || max_path_rows < requiredPathRows))) {
+    return -3;
+  }
+
+  for (int index = 0; index < requiredFrames; ++index) {
+    frames[index] = to_motion_row(result.frames[static_cast<std::size_t>(index)]);
+  }
+  for (int index = 0; index < requiredPathRows; ++index) {
+    path_rows[index] = to_c_path_history_row(result.pathRows[static_cast<std::size_t>(index)]);
+  }
+  return 0;
+}
+
 extern "C" int architrino_solver_compute_phase_at_hit_f64(
     const ArchitrinoSolverCausalRootRowF64* roots,
     int root_count,
@@ -3254,6 +3498,62 @@ extern "C" int architrino_solver_query_emission_shell_broad_phase_f64(
     return 0;
   } catch (...) {
     *out_summary = ArchitrinoSolverEmissionShellBroadPhaseSummary{};
+    return -2;
+  }
+}
+
+extern "C" int architrino_solver_query_emission_shell_broad_phase_indexed_v0_f64(
+    const ArchitrinoSolverPathHistoryRowF64* source_rows,
+    int source_row_count,
+    const ArchitrinoSolverPathHistoryRowF64* receiver_rows,
+    int receiver_row_count,
+    const ArchitrinoSolverEmissionShellBroadPhaseOptionsF64* options,
+    const ArchitrinoSolverEmissionShellIndexedBroadPhaseOptionsF64* index_options,
+    ArchitrinoSolverEmissionShellCandidateRowF64* rows,
+    int max_rows,
+    ArchitrinoSolverEmissionShellBroadPhaseSummary* out_summary,
+    ArchitrinoSolverEmissionShellIndexedBroadPhaseSummary* out_index_summary) {
+  if (options == nullptr || index_options == nullptr || out_summary == nullptr ||
+      out_index_summary == nullptr || source_row_count < 0 || receiver_row_count < 0 ||
+      max_rows < 0 || (source_row_count > 0 && source_rows == nullptr) ||
+      (receiver_row_count > 0 && receiver_rows == nullptr) ||
+      (max_rows > 0 && rows == nullptr)) {
+    return -1;
+  }
+
+  try {
+    std::vector<architrino::solver::PathHistoryRowF64> cppSourceRows;
+    cppSourceRows.reserve(static_cast<std::size_t>(source_row_count));
+    for (int index = 0; index < source_row_count; ++index) {
+      cppSourceRows.push_back(to_path_history_row(source_rows[index]));
+    }
+
+    std::vector<architrino::solver::PathHistoryRowF64> cppReceiverRows;
+    cppReceiverRows.reserve(static_cast<std::size_t>(receiver_row_count));
+    for (int index = 0; index < receiver_row_count; ++index) {
+      cppReceiverRows.push_back(to_path_history_row(receiver_rows[index]));
+    }
+
+    const architrino::solver::EmissionShellBroadPhaseOptions cppOptions =
+        to_emission_shell_options(*options, max_rows);
+    const architrino::solver::EmissionShellIndexedBroadPhaseResult result =
+        architrino::solver::query_emission_shell_broad_phase_indexed_v0(
+            cppSourceRows,
+            cppReceiverRows,
+            cppOptions,
+            to_emission_shell_index_options(*index_options));
+    *out_summary = to_emission_shell_summary(result.broadPhase.summary);
+    *out_index_summary = to_emission_shell_index_summary(result.index);
+    for (std::size_t index = 0; index < result.broadPhase.candidates.size(); ++index) {
+      rows[index] = to_emission_shell_candidate_row(result.broadPhase.candidates[index]);
+    }
+    return result.index.coverageStatus ==
+                   architrino::solver::EmissionShellIndexCoverageStatus::InvalidInput
+               ? -3
+               : 0;
+  } catch (...) {
+    *out_summary = ArchitrinoSolverEmissionShellBroadPhaseSummary{};
+    *out_index_summary = ArchitrinoSolverEmissionShellIndexedBroadPhaseSummary{};
     return -2;
   }
 }

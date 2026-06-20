@@ -4,6 +4,20 @@ Promotion status: `priority-only`. This packet advances the dynamics implication
 
 The packet's purpose is narrow: decompose the bounded-speed force ledger into opposite-polarity attractive and same-polarity repulsive source-site sums, then expose the tangent-power, normal-curvature, and support-radial moment rows that the $3$-$2$ source inventory can bias. It does not retain a branch, derive the action scale, solve the speed ODE, reconstruct the normal curve, or certify support viability.
 
+Closure decision for the sub-$c_f$ observation. In a $v < c_f$ neutral swarm branch where the distinct-site all-pairs ledger is active and same-source self-hit rows are absent or separately emitted, the observation should be represented by the restoring support-radial moment, not by a new force law. The $3$ attractive / $2$ repulsive source-site inventory produces a certifiable inward binding bias only after the weighted projection row proves
+
+$$
+\Gamma(r_i-R_i^0)b_i^\nu <0
+$$
+
+with a declared margin on the same causal-root ledger, or after a site-kernel equality row reduces that weighted inequality to the count coefficient $3-2=1$. Without one of those rows, the correct status is
+
+$$
+\texttt{structural-attraction-bias-not-closure},
+$$
+
+not branch retention and not force closure.
+
 ---
 
 ## 1. Source-Site And Root-Ledger Split

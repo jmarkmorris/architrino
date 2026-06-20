@@ -26,15 +26,69 @@ function computePhaseLockSpread(state, swarmId) {
   return error;
 }
 
+function computeCircularSpreadDegrees(phases) {
+  const finitePhases = phases
+    .map((phase) => Number(phase))
+    .filter((phase) => Number.isFinite(phase));
+  if (finitePhases.length <= 1) {
+    return 0;
+  }
+  const sum = finitePhases.reduce((accumulator, phase) => {
+    const radians = phase * Math.PI / 180;
+    accumulator.cos += Math.cos(radians);
+    accumulator.sin += Math.sin(radians);
+    return accumulator;
+  }, { cos: 0, sin: 0 });
+  const resultant = Math.hypot(sum.cos, sum.sin) / finitePhases.length;
+  return (1 - Math.min(1, Math.max(0, resultant))) * 180;
+}
+
+function computeHitPhaseSpread(contributions = [], sourceRole) {
+  const phases = (Array.isArray(contributions) ? contributions : [])
+    .filter((contribution) => contribution.phaseAtHit?.sourceRole === sourceRole)
+    .map((contribution) => contribution.phaseAtHit?.sourcePhaseDegrees);
+  return {
+    count: phases.length,
+    spreadDeg: computeCircularSpreadDegrees(phases),
+  };
+}
+
+function computeSelfHitPhaseSpread(rows = []) {
+  const phases = (Array.isArray(rows) ? rows : [])
+    .filter((row) => row.rootFound === true)
+    .map((row) => row.phaseAtHit?.sourcePhaseDegrees ?? row.sourcePhaseDegrees);
+  return {
+    count: phases.length,
+    spreadDeg: computeCircularSpreadDegrees(phases),
+  };
+}
+
+function computeMinPositive(values = []) {
+  return values.reduce((minimum, value) => {
+    const number = Number(value);
+    return Number.isFinite(number) && number > 0 ? Math.min(minimum, number) : minimum;
+  }, Number.POSITIVE_INFINITY);
+}
+
 function getDelaySolveStatus(diagnostics) {
   if (diagnostics.sourceCount === 0) {
     return "none";
   }
-  return diagnostics.delaySolveGapMax > 0.05 ||
+  if (
+    diagnostics.delaySolveGapMax > 0.05 ||
     diagnostics.jacobianAbsMin <= 1e-4 ||
-    diagnostics.unresolvedSourceCount > 0
-    ? "unstable"
-    : "stable";
+    diagnostics.nearMissSourceCount > 0 ||
+    diagnostics.rootLimitReachedCount > 0
+  ) {
+    return "unstable";
+  }
+  if (diagnostics.unresolvedSourceCount > 0) {
+    const explainedMisses = diagnostics.noCatchUpSourceCount + diagnostics.staleHistorySourceCount;
+    return explainedMisses >= diagnostics.unresolvedSourceCount
+      ? "catch-up limited"
+      : "unstable";
+  }
+  return "stable";
 }
 
 function getLowerIsBetterQuality(value, thresholds) {
@@ -93,10 +147,31 @@ function getDelayStatusQuality(status) {
   if (status === "stable") {
     return "good";
   }
+  if (status === "catch-up limited") {
+    return "info";
+  }
   if (status === "unstable") {
     return "bad";
   }
   return "info";
+}
+
+function getMissedSourceQuality(diagnostics) {
+  if (diagnostics.unresolvedSourceCount === 0) {
+    return "great";
+  }
+  const explainedMisses = diagnostics.noCatchUpSourceCount + diagnostics.staleHistorySourceCount;
+  return explainedMisses >= diagnostics.unresolvedSourceCount ? "info" : "bad";
+}
+
+function getHitPhaseSpreadQuality(spread) {
+  if (!spread || spread.count < 2) {
+    return "info";
+  }
+  return getLowerIsBetterQuality(
+    spread.spreadDeg,
+    { great: 5, good: 15, ok: 45, poor: 90 }
+  );
 }
 
 function requirePhotonFormulaSummary(formulaSummary) {
@@ -114,6 +189,13 @@ export function computePhotonDiagnostics(state, timeSeconds, formulaSummary = nu
   const helicityEstimate = state?.pair?.left?.direction === "ccw" && state?.pair?.right?.direction === "cw"
     ? 1
     : 0;
+  const trailingHitPhaseSpread = computeHitPhaseSpread(formula.field.contributions, "trailing");
+  const leadingHitPhaseSpread = computeHitPhaseSpread(formula.field.contributions, "leading");
+  const helicalSelfHitRows = formula.selfHitDiagnostics?.helicalRows ?? [];
+  const helicalSelfHitPhaseSpread = computeSelfHitPhaseSpread(helicalSelfHitRows);
+  const helicalSelfHitJacobianAbsMin = computeMinPositive(
+    helicalSelfHitRows.map((row) => row.jacobianAbs)
+  );
   return {
     exposureBalance,
     transverseAmplitude: formula.field.electric.magnitude,
@@ -128,12 +210,32 @@ export function computePhotonDiagnostics(state, timeSeconds, formulaSummary = nu
     maxSourceSpeedRatio: formula.field.maxSourceSpeedRatio,
     jacobianAbsMin: formula.field.jacobianAbsMin,
     unresolvedSourceCount: formula.field.unresolvedSourceCount,
+    noCatchUpSourceCount: formula.field.noCatchUpSourceCount ?? 0,
+    staleHistorySourceCount: formula.field.staleHistorySourceCount ?? 0,
+    nearMissSourceCount: formula.field.nearMissSourceCount ?? 0,
+    rootLimitReachedCount: formula.field.rootLimitReachedCount ?? 0,
+    closestMissResidual: formula.field.closestMissResidual ?? 0,
     unstableSourceCount: formula.field.unstableSourceCount,
     nearestSourceDistance: formula.field.nearestSourceDistance,
     sourceCount: formula.field.sourceCount,
     rootCount: formula.field.rootCount,
+    selfHitRowCount: formula.selfHitDiagnostics?.rowCount ?? 0,
+    selfHitCandidateCount: formula.selfHitDiagnostics?.candidateCount ?? 0,
+    selfHitRootFoundCount: formula.selfHitDiagnostics?.rootFoundCount ?? 0,
+    selfHitMaxFieldSpeedRatio: formula.selfHitDiagnostics?.maxFieldSpeedRatio ?? 0,
+    selfHitStatus: formula.selfHitDiagnostics?.status ?? "unavailable",
+    helicalSelfHitRowCount: formula.selfHitDiagnostics?.helicalRowCount ?? 0,
+    helicalSelfHitCandidateCount: formula.selfHitDiagnostics?.helicalCandidateCount ?? 0,
+    helicalSelfHitRootFoundCount: formula.selfHitDiagnostics?.helicalRootFoundCount ?? 0,
+    helicalSelfHitMaxFieldSpeedRatio: formula.selfHitDiagnostics?.helicalMaxFieldSpeedRatio ?? 0,
+    helicalSelfHitJacobianAbsMin: Number.isFinite(helicalSelfHitJacobianAbsMin)
+      ? helicalSelfHitJacobianAbsMin
+      : 0,
+    helicalSelfHitPhaseSpread,
     leftPhaseSpread: computePhaseLockSpread(state, "left"),
     rightPhaseSpread: computePhaseLockSpread(state, "right"),
+    trailingHitPhaseSpread,
+    leadingHitPhaseSpread,
     snapshotId: `photon-v${state.version}-t${formatPhotonFixed(formula.wrappedTime, 2)}`,
   };
 }
@@ -167,11 +269,79 @@ export function getPhotonDiagnosticRows(state, timeSeconds, formulaSummary = nul
       }),
       { labelMath: "\\mathrm{Min}\\ |J|" },
     ],
-    ["Missed sources", String(diagnostics.unresolvedSourceCount), diagnostics.unresolvedSourceCount === 0 ? "great" : "bad"],
+    [
+      "Span self-hit roots",
+      `${diagnostics.selfHitRootFoundCount} / ${diagnostics.selfHitRowCount}`,
+      diagnostics.selfHitStatus === "ok" ? "info" : "poor",
+    ],
+    [
+      "Span self-hit max v/c_sig",
+      formatPhotonFixed(diagnostics.selfHitMaxFieldSpeedRatio, 2),
+      "info",
+      { labelMath: "\\mathrm{Span\\ self\\! -\\! hit\\ max}\\ v/c_{\\mathrm{sig}}" },
+    ],
+    [
+      "Helical self-hit roots",
+      `${diagnostics.helicalSelfHitRootFoundCount} / ${diagnostics.helicalSelfHitRowCount}`,
+      diagnostics.helicalSelfHitRootFoundCount > 0 ? "info" : "poor",
+    ],
+    [
+      "Helical self-hit max v/c_sig",
+      formatPhotonFixed(diagnostics.helicalSelfHitMaxFieldSpeedRatio, 2),
+      "info",
+      { labelMath: "\\mathrm{Helical\\ self\\! -\\! hit\\ max}\\ v/c_{\\mathrm{sig}}" },
+    ],
+    [
+      "Helical self-hit min |J|",
+      formatPhotonFixed(diagnostics.helicalSelfHitJacobianAbsMin, 4),
+      getHigherIsBetterQuality(diagnostics.helicalSelfHitJacobianAbsMin, {
+        great: 0.5,
+        good: 0.2,
+        ok: 0.05,
+        poor: 0.01,
+      }),
+      { labelMath: "\\mathrm{Helical\\ self\\! -\\! hit\\ min}\\ |J|" },
+    ],
+    [
+      "Helical self-hit phase spread",
+      `${formatPhotonFixed(diagnostics.helicalSelfHitPhaseSpread.spreadDeg, 1)} deg`,
+      getHitPhaseSpreadQuality(diagnostics.helicalSelfHitPhaseSpread),
+    ],
+    ["Missed sources", String(diagnostics.unresolvedSourceCount), getMissedSourceQuality(diagnostics)],
+    [
+      "No catch-up sources",
+      String(diagnostics.noCatchUpSourceCount),
+      diagnostics.noCatchUpSourceCount === 0 ? "great" : "info",
+    ],
+    [
+      "Stale windows",
+      String(diagnostics.staleHistorySourceCount),
+      diagnostics.staleHistorySourceCount === 0 ? "great" : "info",
+    ],
+    [
+      "Near misses",
+      String(diagnostics.nearMissSourceCount),
+      diagnostics.nearMissSourceCount === 0 ? "great" : "poor",
+    ],
+    [
+      "Root cap hits",
+      String(diagnostics.rootLimitReachedCount),
+      diagnostics.rootLimitReachedCount === 0 ? "great" : "poor",
+    ],
     ["Delay solve gap", formatPhotonFixed(diagnostics.delaySolveGapMax, 3), getLowerIsBetterQuality(diagnostics.delaySolveGapMax, { great: 0.001, good: 0.005, ok: 0.02, poor: 0.05 })],
     ["Delay status", delayStatus, getDelayStatusQuality(delayStatus)],
     ["Left phase spread", `${formatPhotonFixed(diagnostics.leftPhaseSpread, 1)} deg`, "info"],
     ["Right phase spread", `${formatPhotonFixed(diagnostics.rightPhaseSpread, 1)} deg`, "info"],
+    [
+      "Trailing hit phase spread",
+      `${formatPhotonFixed(diagnostics.trailingHitPhaseSpread.spreadDeg, 1)} deg`,
+      getHitPhaseSpreadQuality(diagnostics.trailingHitPhaseSpread),
+    ],
+    [
+      "Leading hit phase spread",
+      `${formatPhotonFixed(diagnostics.leadingHitPhaseSpread.spreadDeg, 1)} deg`,
+      getHitPhaseSpreadQuality(diagnostics.leadingHitPhaseSpread),
+    ],
   ];
   if (formula?.solverEngineId) {
     rows.unshift(["Solver engine", formula.solverEngineId, "info"]);

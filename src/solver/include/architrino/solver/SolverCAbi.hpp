@@ -340,6 +340,83 @@ struct ArchitrinoSolverMotionIntegrationRequestF64 {
   std::uint32_t state_flags;
 };
 
+struct ArchitrinoSolverPairInteractionRequestF64 {
+  double start_time;
+  double end_time;
+  double step;
+  double pair_acceleration_scale;
+  double softening;
+  double integration_tolerance;
+  std::uint32_t interaction_law;
+  std::uint32_t integration_method;
+  std::uint64_t boundary_relaxation_iteration_count;
+  double boundary_relaxation_tolerance;
+  double boundary_relaxation_step_tolerance;
+};
+
+struct ArchitrinoSolverPairInteractionStateF64 {
+  std::uint64_t path_key;
+  ArchitrinoSolverVector3F64 initial_position;
+  ArchitrinoSolverVector3F64 initial_velocity;
+  double charge;
+  double mass;
+  std::uint32_t state_flags;
+  std::uint32_t reserved0;
+};
+
+struct ArchitrinoSolverPairInteractionPathConstraintF64 {
+  std::uint64_t path_key;
+  std::uint32_t depth;
+  std::uint32_t reserved0;
+  double time;
+  ArchitrinoSolverVector3F64 position;
+};
+
+struct ArchitrinoSolverPairInteractionSummaryF64 {
+  std::uint32_t path_constraint_count;
+  std::uint32_t boundary_relaxation_selected_candidate_kind;
+  std::uint64_t residual_sample_count;
+  double max_constraint_residual;
+  double mean_constraint_residual;
+  double rms_constraint_residual;
+  std::uint64_t guidance_sample_count;
+  double max_guidance_acceleration;
+  double mean_guidance_acceleration;
+  double rms_guidance_acceleration;
+  std::uint64_t boundary_residual_sample_count;
+  double max_boundary_residual;
+  double mean_boundary_residual;
+  double rms_boundary_residual;
+  std::uint64_t boundary_relaxation_residual_sample_count;
+  double max_boundary_relaxation_residual_before;
+  double max_boundary_relaxation_residual_after;
+  double boundary_relaxation_residual_ratio;
+  std::uint32_t boundary_relaxation_status;
+  std::uint32_t boundary_relaxation_applied_iteration_count;
+  std::uint32_t boundary_relaxation_stop_reason;
+  std::uint32_t boundary_relaxation_center_of_mass_selected_count;
+  std::uint64_t boundary_seed_sample_count;
+  double boundary_relaxation_max_step;
+  double boundary_relaxation_final_step_factor;
+  double mean_boundary_relaxation_residual_before;
+  double mean_boundary_relaxation_residual_after;
+  double rms_boundary_relaxation_residual_before;
+  double rms_boundary_relaxation_residual_after;
+  double mean_boundary_relaxation_residual_ratio;
+  double rms_boundary_relaxation_residual_ratio;
+  double boundary_relaxation_residual_settling_rate;
+  double mean_boundary_relaxation_residual_settling_rate;
+  double rms_boundary_relaxation_residual_settling_rate;
+  std::uint64_t frame_refinement_sample_count;
+  std::uint64_t boundary_relaxation_candidate_variant_count;
+  std::uint64_t boundary_relaxation_line_search_trial_count;
+  std::uint64_t boundary_relaxation_candidate_kind_mask;
+  std::uint64_t position_residual_sample_count;
+  double max_position_residual;
+  double mean_position_residual;
+  double rms_position_residual;
+};
+
 struct ArchitrinoSolverMotionFrameRowF64 {
   std::uint64_t path_key;
   std::uint64_t frame_index;
@@ -724,6 +801,35 @@ struct ArchitrinoSolverEmissionShellBroadPhaseSummary {
   std::uint32_t planned_worker_count;
 };
 
+struct ArchitrinoSolverEmissionShellIndexedBroadPhaseOptionsF64 {
+  double spatial_cell_size;
+  double time_range_start;
+  double time_range_end;
+  std::uint64_t source_row_offset;
+  std::uint64_t receiver_row_offset;
+  std::uint32_t time_slab_count;
+  std::uint32_t has_time_range;
+  std::uint32_t reserved0;
+  std::uint32_t reserved1;
+};
+
+struct ArchitrinoSolverEmissionShellIndexedBroadPhaseSummary {
+  std::uint64_t source_row_offset;
+  std::uint64_t receiver_row_offset;
+  std::uint64_t receiver_cell_rows;
+  std::uint64_t shell_annulus_rows;
+  std::uint64_t cell_lookups;
+  std::uint64_t indexed_pair_tests;
+  std::uint64_t duplicate_pair_tests;
+  double spatial_cell_size;
+  double time_range_start;
+  double time_range_end;
+  std::uint32_t time_slab_count;
+  std::uint32_t coverage_status;
+  std::uint32_t reserved0;
+  std::uint32_t reserved1;
+};
+
 struct ArchitrinoSolverEmissionShellNarrowPhaseRequestF64 {
   ArchitrinoSolverPathHistoryRowF64 source;
   ArchitrinoSolverPathHistoryRowF64 receiver;
@@ -937,6 +1043,20 @@ int architrino_solver_integrate_constant_acceleration_path_history_f64(
     int max_rows,
     int* out_row_count);
 
+int architrino_solver_integrate_pair_interaction_motion_f64(
+    const ArchitrinoSolverPairInteractionRequestF64* request,
+    const ArchitrinoSolverPairInteractionStateF64* states,
+    int state_count,
+    const ArchitrinoSolverPairInteractionPathConstraintF64* path_constraints,
+    int path_constraint_count,
+    ArchitrinoSolverMotionFrameRowF64* frames,
+    int max_frames,
+    int* out_frame_count,
+    ArchitrinoSolverPathHistoryRowF64* path_rows,
+    int max_path_rows,
+    int* out_path_row_count,
+    ArchitrinoSolverPairInteractionSummaryF64* out_summary);
+
 int architrino_solver_compute_phase_at_hit_f64(
     const ArchitrinoSolverCausalRootRowF64* roots,
     int root_count,
@@ -1079,6 +1199,18 @@ int architrino_solver_query_emission_shell_broad_phase_f64(
     ArchitrinoSolverEmissionShellCandidateRowF64* rows,
     int max_rows,
     ArchitrinoSolverEmissionShellBroadPhaseSummary* out_summary);
+
+int architrino_solver_query_emission_shell_broad_phase_indexed_v0_f64(
+    const ArchitrinoSolverPathHistoryRowF64* source_rows,
+    int source_row_count,
+    const ArchitrinoSolverPathHistoryRowF64* receiver_rows,
+    int receiver_row_count,
+    const ArchitrinoSolverEmissionShellBroadPhaseOptionsF64* options,
+    const ArchitrinoSolverEmissionShellIndexedBroadPhaseOptionsF64* index_options,
+    ArchitrinoSolverEmissionShellCandidateRowF64* rows,
+    int max_rows,
+    ArchitrinoSolverEmissionShellBroadPhaseSummary* out_summary,
+    ArchitrinoSolverEmissionShellIndexedBroadPhaseSummary* out_index_summary);
 
 int architrino_solver_estimate_emission_shell_narrow_phase_f64(
     const ArchitrinoSolverEmissionShellNarrowPhaseRequestF64* requests,

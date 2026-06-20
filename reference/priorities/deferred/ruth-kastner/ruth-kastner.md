@@ -15,23 +15,90 @@
 
 The video is useful as a secondary source and source-lead index for Kastner's PTI framing. It should not replace primary-source mining of her books and papers. The description links Kastner's blog, books, papers, Afshar-experiment paper, AAAS retrocausation paper, and Cramer's 2015 Transactional Interpretation article.
 
-### Operator Video Comment
+### Verbatim YouTube Comment Thread
 
+Captured: June 20, 2026, from the public YouTube comment export for video `-BsHh3_vCMQ`. The target thread root is `UgxyDNvw7z31IItIz654AaABAg`; the export returned 447 comments, including all six comments in this thread. YouTube's visible relative timestamps are preserved.
+
+#### 1. `@EmergentUniverse` - `1 month ago` - `UgxyDNvw7z31IItIz654AaABAg`
+
+```text
 Really useful distinction between a mere correlation and a record-forming measurement event. A complementary way to frame the issue is that before a durable record exists, the theory may be tracking several possible detector outcomes in a compressed description; after a record exists, the target, detector, environment, and energy/momentum bookkeeping have all changed. The hard part is making the rule that separates those regimes explicit enough to recover the Born weights, conservation laws, no-signaling, and repeatable frequencies without treating the interpretive vocabulary as the mechanism. The strongest takeaway for me is that “measurement” should be earned by a physical process, not inserted as a label after the fact.
+```
 
-### Ruth Kastner Reply
+#### 2. `@ruthkastner6248` - `4 days ago` - `UgxyDNvw7z31IItIz654AaABAg.AWs_3gnhY-kAY5j7W7DnSM`
 
-Thanks. But indeed we have done that hard part. This is all covered in the recent published literature on RTI. See, for example, my 2022 CUP book "The Transactional Interpretation of Quantum Mechanics: A Relativistic Treatment." This also refutes all the listed objections from 'johnny' above. I cannot post links on YouTube but it is easily found online.
+```text
+Thanks. But indeed we have done that hard part. This is all covered in the recent published literature on RTI. See, for example, my 2022 CUP book "The Transactional Interpretation of Quantum Mechanics: A Relativistic Treament." This also refutes all the listed objections from 'johnny' above.  I cannot post links on YouTube but it is easily found online.
+```
 
-### Proposed Reply To Ruth
+#### 3. `@EmergentUniverse` - `4 days ago` - `UgxyDNvw7z31IItIz654AaABAg.AWs_3gnhY-kAY6svnDIeRR`
 
-Thanks, Ruth. I will read the 2022 CUP book carefully. The point I am trying to isolate may be adjacent to RTI rather than opposed to it: what exactly makes a possible transaction eligible to become a durable record, rather than merely a correlation or an admissible amplitude relation.
-
+```text
+@ruthkastner6248 Thanks, Ruth.  The point I am trying to isolate may be adjacent to RTI rather than opposed to it: what exactly makes a possible transaction eligible to become a durable record, rather than merely a correlation or an admissible amplitude relation.
 The distinction I am circling is between confirmation as part of the quantum amplitude structure and record formation as a conservation-closed physical event. A completed record seems to require more than source/absorber compatibility: the target, detector, surrounding degrees of freedom, and energy/momentum ledger all have to change together in a way that supports repeatable frequencies and blocks controllable signaling.
-
 My working suspicion is that the probability weights should be attached only after that eligibility condition is physically earned. In that framing, the Born weights would normalize over record-eligible possibilities, not over every formal branch in the compressed description. The interesting question is whether RTI derives that eligibility measure explicitly from the direct-action dynamics, or whether the transaction vocabulary names the transition before the underlying bookkeeping has been made fully mechanical.
-
 That is the part I am most interested in testing against your treatment: whether the absorber response, conservation closure, durable record, and no-signaling constraint are all one physical selection condition, or whether they remain separate ingredients that still need a unifying rule.
+```
+
+#### 4. `@ruthkastner6248` - `3 days ago` - `UgxyDNvw7z31IItIz654AaABAg.AWs_3gnhY-kAY8_rwahYh6`
+
+```text
+@EmergentUniverse Thanks. A durable record arises from an actualized transaction, since it transfers a photon and that constitutes a pair of spacetime events: emission event, absorption event, and their connection which is the photon. Absorber responses are precursors to the single actualized transaction, which corresponds to 'reduction' and is intrinsically indeterministic but is quantified (in terms of decay rates). This is all discussed in my 2022 CUP book. The 'durable record' is precisely the new spatial interval created in the transaction. This is all specified in our paper on emergent gravity, ""Gravity from transactions: fulfilling the entropic gravity program".  I can't put a link here but it is available on arxiv and is published by IOP's Journal of Physics Communications, 2023, DOI 10.1088/2399-6528/acd6d7.
+```
+
+#### 5. `@EmergentUniverse` - `2 days ago` - `UgxyDNvw7z31IItIz654AaABAg.AWs_3gnhY-kAYB9uYN6KdM`
+
+```text
+@ruthkastner6248 Thank you—that was very clear, and it maps directly onto the hardest part of our own framework as well.
+What really struck me is that you now have all the pieces for a mechanics of “actualization,” but I think the missing bridge is an explicit, objective rule for why a precursor set becomes one durable record instead of many unresolved alternatives. In my model, that bridge is a single predicate over the full event graph (emission ↔ absorber ↔ detector ↔ environment ↔ ledger), and when that predicate is met, the realized transfer is what gets counted.
+I’d like to stress-test this with you: if a transfer is “actualized” by definition, can you show that the same condition also guarantees (a) persistence of the record, (b) ledger-conserving energy/momentum balance, and (c) no-signaling at the coarse-grained level—without adding an extra postulate at the end? If yes, that gives you a closed rule, not just interpretive language, and I think that is where PTI/RTI can become the most powerful version of transaction dynamics.
+If this resonates, I can send you a one-page mapping between your equation set and my record-eligibility formalism so we can compare term-by-term.
+```
+
+#### 6. `@ruthkastner6248` - `2 days ago` - `UgxyDNvw7z31IItIz654AaABAg.AWs_3gnhY-kAYCduiY7vZE`
+
+```text
+@EmergentUniverse Thanks! We have a book coming out with WSP some time next year on these issues and I think our work does address all these aspects a,b,c. In particular there is no transaction unless the conservation laws are satisfied. There is no signalling since the actualization manifests as a speed-of-light connection between the emission and absorption event. The record is persistent as a spacetime event, since these are invariant and constitute the spacetime (actual) mainfold.  As to the selection of one outcome from many, we view that as a reflection of genuine indeterminism in the physical theory--there is no deterministic account of the transition from many to one, since that is the nature of actualization of possibility. But I note elsewhere (e.g. "The Born Rule and Free Will" on philsci archive) that this is actually a good thing since it allows for genuine volition.
+  If you'd like to send me some of your work you can reach me via my author page, ruthekastner (dot) org
+```
+
+Disposition for the next reply:
+
+- Ruth states that RTI requires conservation-law satisfaction before a transaction exists.
+- She identifies absorber responses as precursors to the single actualized transaction.
+- She identifies no-signaling with actualization as a speed-of-light connection between emission and absorption.
+- She treats persistence as the invariant spacetime-event status of the actualized record, and in the earlier reply calls the durable record the new spatial interval created in the transaction.
+- She explicitly treats the many-to-one transition as genuine indeterminism rather than a deterministic selection mechanism, while saying the process is quantified in terms of decay rates.
+- The WSP book referenced as coming "next year" should be read as an expected 2027 publication if this reply was current when captured.
+- Do not repeat the logistics about sending work through her author page in the next reply; include the short mapping inline as a postscript.
+
+### Copyable Letter for Ruth (Recommended Draft)
+
+Use this as a ready-to-send response, including the salutation and signoff:
+
+```text
+Hi Ruth,
+
+Thank you. Seeing the full exchange together helps me locate the bridge much more precisely.
+
+I now understand your account as saying that absorber responses are precursors to the single actualized transaction; the actualized transaction transfers a photon and establishes the emission event, absorption event, and their connection; conservation-law satisfaction is required before there is a transaction; no-signaling follows because the actualization is the light-speed emission/absorption connection; and persistence follows because the record is an invariant spacetime event. I also understand the many-to-one step differently now: in RTI it is not a missing deterministic mechanism, but genuine indeterminism in the actualization of possibility, quantified through the relevant decay rates and connected in your account to genuine volition.
+
+The point-transceiver assembly account is not trying to relabel that as a missing deterministic rule. It approaches the same boundary from a different base ontology, where the quantum state is a compressed description of underlying assembly dynamics. A measurement outcome is counted only when a declared detector channel closes the relevant couplings, energy-momentum ledger, persistence condition, and no-signaling/context constraints. In that notation, the probability measure is assigned over record-eligible alternatives rather than over every formal branch in the compressed description.
+
+So the useful comparison seems to be: which parts of my record-eligibility predicate correspond to RTI's preconditions for an actualized transaction, and where does the point-transceiver account genuinely diverge from RTI's claim that the final many-to-one actualization is irreducibly indeterministic?
+
+Best regards,
+Mark
+
+P.S. Short mapping:
+
+- Precursor set: in RTI, absorber responses or incipient transactions precede the single actualized transaction. In the point-transceiver account, candidate detector-channel histories precede record eligibility.
+- Eligibility: in RTI, there is no transaction unless conservation laws are satisfied. In the point-transceiver account, record eligibility requires closed detector coupling and an energy-momentum ledger.
+- Actual event: in RTI, photon transfer establishes the emission event, absorption event, and their connection. In the point-transceiver account, the realized transfer locks source, detector, environment, and ledger into one recorded event graph.
+- Persistence: in RTI, the durable record is an invariant spacetime event, or the new spatial interval created in the transaction. In the point-transceiver account, persistence means the detector/environment record remains stable across the declared record window.
+- No-signaling: in RTI, no-signaling follows because actualization manifests as the light-speed emission/absorption connection. In the point-transceiver account, no-signaling/context consistency is part of the record-eligibility predicate at the coarse-grained layer.
+- Many-to-one transition: in RTI, the final transition is irreducibly indeterministic, though quantified by decay rates. In the point-transceiver account, the current claim is weaker: the predicate restricts which alternatives are eligible to become records; the open comparison is whether the final selection remains irreducible or is further constrained by point-transceiver dynamics.
+```
 
 ### Ruth Kastner Reference
 
@@ -52,6 +119,8 @@ No standalone public CV PDF was found in this pass. Treat this as a source-backe
 | Field | Note | Source status |
 | --- | --- | --- |
 | Name | Ruth E. Kastner | Confirmed by Cambridge Core and arXiv metadata. |
+| Public correspondence email | `rkastner@umd.edu` | Listed as correspondence email in the 2023 arXiv paper *Physical Time as Human Time*. |
+| Public author page | `ruthekastner.org` | Provided by Kastner in the operator-captured June 20, 2026 follow-up reply as the route for sending work. |
 | Primary field relevance | Quantum foundations, philosophy of physics, and the Transactional Interpretation family; not primarily astrophysics. | Confirmed by the 2022 CUP reference and the existing source-mined video. |
 | Education | B.S. and M.S. in Physics; Ph.D. in History and Philosophy of Science; all from the University of Maryland. | Operator-provided background; keep until a standalone CV or institutional profile is found. |
 | Institutional affiliation | Cambridge Core book metadata lists her with University of Maryland, Baltimore; Cambridge author biography describes her as a Research Associate and member of the Foundations of Physics group at University of Maryland, College Park. | Cambridge Core metadata. |
