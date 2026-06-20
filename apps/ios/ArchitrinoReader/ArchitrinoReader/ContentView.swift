@@ -1,8 +1,8 @@
 import SwiftUI
+import UIKit
 
 struct ContentView: View {
     @StateObject private var viewModel = ReaderViewModel()
-    @StateObject private var readerSnapshotController = ReaderSnapshotController()
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     @Environment(\.openURL) private var openURL
     @Environment(\.scenePhase) private var scenePhase
@@ -14,9 +14,10 @@ struct ContentView: View {
     @State private var showTOCReaderSettings = false
     @State private var didPresentInitialToc = false
     @State private var expandedTOCGroupID: String?
-    @State private var feedbackDraft: ReaderFeedbackDraft?
+    @State private var pageFeedbackBaseImage: UIImage?
+    @State private var pageFeedbackContext: ReaderFeedbackContext?
     @State private var feedbackCaptureMessage: String?
-    @State private var isCapturingFeedback = false
+    @State private var isPageFeedbackMode = false
 
     private var isRegularWidth: Bool {
         horizontalSizeClass == .regular
@@ -51,21 +52,22 @@ struct ContentView: View {
                 packageDate: viewModel.packageDateLabel,
                 currentDocumentTitle: viewModel.currentDocumentTitle,
                 currentReadingLocator: viewModel.readingProgressLabel,
-                onAnnotatedFeedback: {
-                    startAnnotatedFeedbackCapture()
-                },
                 theme: viewModel.theme
             )
-        }
-        .sheet(item: $feedbackDraft) { draft in
-            ReaderFeedbackAnnotationSheet(draft: draft, theme: viewModel.theme)
         }
         .sheet(isPresented: $showReaderSettings) {
             ReaderSettingsSheet(viewModel: viewModel)
         }
         .overlay {
-            if isCapturingFeedback {
-                feedbackCaptureOverlay
+            if isPageFeedbackMode,
+               let pageFeedbackBaseImage,
+               let pageFeedbackContext {
+                ReaderPageFeedbackOverlay(
+                    baseImage: pageFeedbackBaseImage,
+                    context: pageFeedbackContext,
+                    theme: viewModel.theme,
+                    onClose: endPageFeedbackCapture
+                )
             }
         }
         .alert(
@@ -138,7 +140,6 @@ struct ContentView: View {
                             theme: viewModel.theme,
                             lineSpacing: viewModel.lineSpacing,
                             marginWidth: viewModel.marginWidth,
-                            snapshotController: readerSnapshotController,
                             onLinkTap: { payload in
                                 if let url = viewModel.handleWebLink(message: payload) {
                                     openURL(url)
@@ -173,7 +174,7 @@ struct ContentView: View {
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
 
-                if let notice = viewModel.readerNotice ?? tocNotice {
+                if !isPageFeedbackMode, let notice = viewModel.readerNotice ?? tocNotice {
                     HStack(alignment: .top, spacing: 10) {
                         Image(systemName: "info.circle")
                             .foregroundStyle(viewModel.theme.readerAccentColor)
@@ -206,11 +207,11 @@ struct ContentView: View {
                 controlBar
             }
             .background(viewModel.theme.readerBackgroundColor.ignoresSafeArea())
-            .navigationTitle(viewModel.currentDocumentTitle)
+            .navigationTitle(isPageFeedbackMode ? "" : viewModel.currentDocumentTitle)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    if !isRegularWidth {
+                    if !isPageFeedbackMode && !isRegularWidth {
                         Button {
                             showToc = true
                         } label: {
@@ -219,24 +220,33 @@ struct ContentView: View {
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    HStack {
-                        Button {
-                            viewModel.presentSearch()
-                        } label: {
-                            Image(systemName: "magnifyingglass")
-                        }
+                    if !isPageFeedbackMode {
+                        HStack {
+                            Button {
+                                viewModel.presentSearch()
+                            } label: {
+                                Image(systemName: "magnifyingglass")
+                            }
 
-                        Button {
-                            viewModel.isBookmarksPresented = true
-                        } label: {
-                            Image(systemName: "list.bullet.rectangle")
-                        }
-                        .accessibilityLabel("Bookmarks")
+                            Button {
+                                viewModel.isBookmarksPresented = true
+                            } label: {
+                                Image(systemName: "list.bullet.rectangle")
+                            }
+                            .accessibilityLabel("Bookmarks")
 
-                        Button {
-                            showAbout = true
-                        } label: {
-                            Image(systemName: "info.circle")
+                            Button {
+                                startPageFeedbackCapture()
+                            } label: {
+                                Image(systemName: "exclamationmark.bubble")
+                            }
+                            .accessibilityLabel("Feedback")
+
+                            Button {
+                                showAbout = true
+                            } label: {
+                                Image(systemName: "info.circle")
+                            }
                         }
                     }
                 }
@@ -387,53 +397,38 @@ struct ContentView: View {
         }
     }
 
-    private var feedbackCaptureOverlay: some View {
-        ZStack {
-            viewModel.theme.readerBackgroundColor.opacity(0.72)
-                .ignoresSafeArea()
-
-            VStack(spacing: 12) {
-                ProgressView()
-                    .tint(viewModel.theme.readerPrimaryTextColor)
-
-                Text("Preparing feedback")
-                    .font(.footnote)
-                    .foregroundStyle(viewModel.theme.readerPrimaryTextColor)
-            }
-            .padding(18)
-            .background(viewModel.theme.readerSearchResultBackgroundColor)
-            .clipShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
+    private func startPageFeedbackCapture() {
+        guard !isPageFeedbackMode else { return }
+        guard viewModel.renderCommand != nil else {
+            feedbackCaptureMessage = "Open a textbook page, then try feedback again."
+            return
         }
-    }
 
-    private func startAnnotatedFeedbackCapture() {
-        guard !isCapturingFeedback else { return }
-
-        showAbout = false
-        isCapturingFeedback = true
+        pageFeedbackContext = ReaderFeedbackContext(
+            documentTitle: viewModel.currentDocumentTitle,
+            readingLocator: viewModel.readingProgressLabel,
+            packageVersion: viewModel.packageVersionLabel,
+            packageDate: viewModel.packageDateLabel
+        )
+        pageFeedbackBaseImage = nil
+        isPageFeedbackMode = true
 
         Task { @MainActor in
             try? await Task.sleep(nanoseconds: 250_000_000)
 
             do {
-                let snapshot = try await readerSnapshotController.captureVisibleSnapshot()
-                let context = ReaderFeedbackContext(
-                    documentTitle: viewModel.currentDocumentTitle,
-                    readingLocator: viewModel.readingProgressLabel,
-                    packageVersion: viewModel.packageVersionLabel,
-                    packageDate: viewModel.packageDateLabel
-                )
-                feedbackDraft = ReaderFeedbackDraft(
-                    snapshot: snapshot,
-                    context: context,
-                    theme: viewModel.theme
-                )
+                pageFeedbackBaseImage = try ReaderPageSnapshotCapture.captureVisiblePageSnapshot()
             } catch {
-                feedbackCaptureMessage = "Open a textbook page, then try annotated feedback again."
+                endPageFeedbackCapture()
+                feedbackCaptureMessage = "Open a textbook page, then try feedback again."
             }
-
-            isCapturingFeedback = false
         }
+    }
+
+    private func endPageFeedbackCapture() {
+        pageFeedbackBaseImage = nil
+        pageFeedbackContext = nil
+        isPageFeedbackMode = false
     }
 
     private func dismissTOCImmediately() {
@@ -653,12 +648,24 @@ struct ContentView: View {
         }
     }
 
+    @ViewBuilder
     private var controlBar: some View {
-        readerControlBar(isTOC: false)
+        if isPageFeedbackMode {
+            pageFeedbackBlankControlBar
+        } else {
+            readerControlBar(isTOC: false)
+        }
     }
 
     private var tocControlBar: some View {
         readerControlBar(isTOC: true)
+    }
+
+    private var pageFeedbackBlankControlBar: some View {
+        Rectangle()
+            .fill(viewModel.theme.readerControlBarBackgroundColor)
+            .frame(height: 44)
+            .accessibilityHidden(true)
     }
 
     private func readerControlBar(isTOC: Bool) -> some View {
@@ -1424,7 +1431,6 @@ private struct AboutSheet: View {
     let packageDate: String
     let currentDocumentTitle: String
     let currentReadingLocator: String
-    let onAnnotatedFeedback: () -> Void
     let theme: ReaderTheme
 
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
@@ -1555,22 +1561,6 @@ private struct AboutSheet: View {
                                 }
                             } icon: {
                                 Image(systemName: "exclamationmark.bubble")
-                                    .foregroundStyle(theme.readerAccentColor)
-                            }
-                        }
-
-                        Button(action: onAnnotatedFeedback) {
-                            Label {
-                                VStack(alignment: .leading, spacing: 2) {
-                                    Text("Annotated feedback")
-                                        .foregroundStyle(theme.readerAccentColor)
-
-                                    Text("Share a marked screenshot.")
-                                        .font(.footnote)
-                                        .foregroundStyle(theme.readerSecondaryTextColor)
-                                }
-                            } icon: {
-                                Image(systemName: "pencil.and.scribble")
                                     .foregroundStyle(theme.readerAccentColor)
                             }
                         }

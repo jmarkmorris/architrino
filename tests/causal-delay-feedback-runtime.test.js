@@ -405,6 +405,23 @@ test("causal delay feedback default readout stays hidden while aggregate feedbac
   assert.equal(summary.netContribution, summary.positiveContribution + summary.negativeContribution);
 });
 
+test("causal delay feedback aggregate summary names an empty active wake set", () => {
+  const { runtime, readout } = createRuntimeForReadout();
+  runtime.dataset.wakeLinks = [];
+
+  const summary = runtime.getContributionSummary(0.5);
+  runtime.updateReadout(runtime.createContributionSummaryHit(0.5));
+  const readoutText = readout.children.map((child) => child.textContent);
+
+  assert.equal(summary.linkCount, 0);
+  assert.equal(summary.activeLinkCount, 0);
+  assert.equal(summary.emptyReason, "no_wake_links");
+  assert.equal(readout.hidden, false);
+  assert.equal(readout.children[0].textContent, "feedback sum");
+  assert(readoutText.includes("received=0/0"));
+  assert(readoutText.includes("why=no_wake_links"));
+});
+
 test("causal delay feedback now scrubber pauses and moves replay time", () => {
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
@@ -510,8 +527,12 @@ test("causal delay feedback aggregate summary excludes rejected solver links", (
   assert.equal(summary.inFlightCount, 2);
   assert.equal(summary.pendingCount, 6);
   assert.equal(summary.rejectedCount, 1);
+  assert.equal(summary.strongestContributionLabel, "blue 1 -> red 2");
+  assert(summary.strongestContribution < 0);
+  assert.equal(summary.strongestContributionMagnitude, Math.abs(summary.strongestContribution));
   assert.deepEqual(summary.invalidReasonCounts, { "rejected:no_delayed_hit": 1 });
   assert.equal(readout.children[2].textContent, "received=1/9");
+  assert(readout.children.map((child) => child.textContent).some((text) => text.startsWith("strongest=blue_1_->_red_2:")));
   assert.equal(readout.children[readout.children.length - 2].textContent, "rejected=1");
   assert.equal(readout.children[readout.children.length - 1].textContent, "why=rejected:no_delayed_hitx1");
 });
@@ -913,6 +934,7 @@ test("causal delay feedback status distinguishes constraint-guided pair replay",
     executionPath: "native_c_abi",
     maxPathConstraintResidual: 0.004,
     pathConstraintBoundaryResidualSampleCount: 10,
+    pathConstraintBoundaryResidualTolerance: 0.02,
     maxPathConstraintBoundaryResidual: 0.018,
     pathConstraintGuidanceSampleCount: 12,
     pathConstraintGuidanceMode: "retained_knot_hermite_boundary",
@@ -928,6 +950,7 @@ test("causal delay feedback status distinguishes constraint-guided pair replay",
   assert.equal(replayStatus.dataset.state, "bridge-guided");
   assert.match(replayStatus.title, /boundary=10/);
   assert.match(replayStatus.title, /maxB=0\.018/);
+  assert.match(replayStatus.title, /tolB=0\.02/);
   assert.match(replayStatus.title, /guidance=12/);
   assert.match(replayStatus.title, /mode=retained_knot_hermite_boundary/);
   assert.match(replayStatus.title, /maxA=48\.25/);
@@ -1225,7 +1248,8 @@ test("causal delay feedback page accepts central motion policy review URL option
       href:
         "http://localhost/causal-delay-feedback.html?motionPolicy=pair_initial_attraction_seed" +
         "&pairSegmentCount=5.8&pairAccelerationScale=0.22" +
-        "&pairInteractionLaw=inverse_distance_pair_attraction_v1",
+        "&pairInteractionLaw=inverse_distance_pair_attraction_v1" +
+        "&pathConstraintBoundaryResidualTolerance=0.015",
     },
   });
 
@@ -1233,6 +1257,7 @@ test("causal delay feedback page accepts central motion policy review URL option
   assert.equal(options.pairSegmentCount, 5);
   assert.equal(options.pairAccelerationScale, 0.22);
   assert.equal(options.pairInteractionLaw, "inverse_distance_pair_attraction_v1");
+  assert.equal(options.pathConstraintBoundaryResidualTolerance, 0.015);
 });
 
 test("causal delay feedback solver bridge options resolve the default WASM loader path", () => {

@@ -576,6 +576,10 @@ class CausalDelayFeedbackRuntime {
           this.dataset?.pathConstraintBoundaryResidualSampleCount ??
             this.dataset?.solverSummary?.pathConstraintBoundaryResidualSampleCount
         );
+        const boundaryTolerance = Number(
+          this.dataset?.pathConstraintBoundaryResidualTolerance ??
+            this.dataset?.solverSummary?.pathConstraintBoundaryResidualTolerance
+        );
         const maxBoundaryResidual = Number(
           this.dataset?.maxPathConstraintBoundaryResidual ??
             this.dataset?.solverSummary?.maxPathConstraintBoundaryResidual
@@ -590,6 +594,8 @@ class CausalDelayFeedbackRuntime {
           Number.isFinite(boundarySampleCount) && boundarySampleCount > 0
             ? ` boundary=${boundarySampleCount}${
                 Number.isFinite(maxBoundaryResidual) ? ` maxB=${formatCompactNumber(maxBoundaryResidual)}` : ""
+              }${
+                Number.isFinite(boundaryTolerance) ? ` tolB=${formatCompactNumber(boundaryTolerance)}` : ""
               }`
             : "";
         const guidanceDetail = Number.isFinite(guidanceSampleCount) && guidanceSampleCount > 0
@@ -2444,6 +2450,13 @@ class CausalDelayFeedbackRuntime {
         `red=${formatCompactNumber(summary.positiveContribution)}`,
         `blue=${formatCompactNumber(summary.negativeContribution)}`,
         `net=${formatCompactNumber(summary.netContribution)}`,
+        ...(summary.strongestContributionLabel
+          ? [
+              `strongest=${formatCompactLabel(summary.strongestContributionLabel)}:${formatCompactNumber(
+                summary.strongestContribution,
+              )}`,
+            ]
+          : []),
         `threshold=${formatCompactNumber(summary.threshold)}`,
         ...this.createDraftSolverRejectionReadoutDetails(),
         ...(summary.inactiveCount > 0 ? [`inactive=${summary.inactiveCount}`] : []),
@@ -2680,9 +2693,6 @@ class CausalDelayFeedbackRuntime {
 
   getContributionSummary(replayTime = this.getCurrentReplayTime()) {
     const wakeLinks = this.getVisibleWakeLinks();
-    if (wakeLinks.length === 0) {
-      return null;
-    }
     const summary = {
       replayTime,
       threshold: this.getAssemblyThreshold(),
@@ -2698,7 +2708,14 @@ class CausalDelayFeedbackRuntime {
       positiveContribution: 0,
       negativeContribution: 0,
       netContribution: 0,
+      strongestContribution: 0,
+      strongestContributionMagnitude: 0,
+      strongestContributionLabel: null,
     };
+    if (wakeLinks.length === 0) {
+      summary.emptyReason = this.getEmptyWakeLinkReason();
+      return summary;
+    }
 
     wakeLinks.forEach((link) => {
       const wakeStatus = this.getWakeStatus(link);
@@ -2739,9 +2756,20 @@ class CausalDelayFeedbackRuntime {
         summary.negativeContribution += signedContribution;
       }
       summary.netContribution += signedContribution;
+      const magnitude = Math.abs(signedContribution);
+      if (magnitude > summary.strongestContributionMagnitude) {
+        summary.strongestContribution = signedContribution;
+        summary.strongestContributionMagnitude = magnitude;
+        summary.strongestContributionLabel = link.label;
+      }
     });
 
     return summary;
+  }
+
+  getEmptyWakeLinkReason() {
+    const totalWakeLinks = Number(this.dataset?.wakeLinks?.length);
+    return Number.isFinite(totalWakeLinks) && totalWakeLinks > 0 ? "no_visible_wake_links" : "no_wake_links";
   }
 
   recordContributionSummaryDiagnosticReason(summary, wakeStatus) {
@@ -2758,6 +2786,7 @@ class CausalDelayFeedbackRuntime {
       .slice(0, 3);
     return [
       ...solverDetails,
+      ...(summary.emptyReason ? [`why=${summary.emptyReason}`] : []),
       ...(entries.length > 0 ? [`why=${entries.map(([key, count]) => `${key}x${count}`).join(",")}`] : []),
     ];
   }
@@ -2778,6 +2807,9 @@ class CausalDelayFeedbackRuntime {
     );
     const boundarySampleCount = Number(
       this.dataset?.pathConstraintBoundaryResidualSampleCount ?? summary.pathConstraintBoundaryResidualSampleCount,
+    );
+    const boundaryTolerance = Number(
+      this.dataset?.pathConstraintBoundaryResidualTolerance ?? summary.pathConstraintBoundaryResidualTolerance,
     );
     const maxBoundaryResidual = Number(
       this.dataset?.maxPathConstraintBoundaryResidual ?? summary.maxPathConstraintBoundaryResidual,
@@ -2803,6 +2835,9 @@ class CausalDelayFeedbackRuntime {
       details.push(`boundary=${boundarySampleCount}`);
       if (Number.isFinite(maxBoundaryResidual)) {
         details.push(`maxB=${formatCompactNumber(maxBoundaryResidual)}`);
+      }
+      if (Number.isFinite(boundaryTolerance)) {
+        details.push(`tolB=${formatCompactNumber(boundaryTolerance)}`);
       }
     }
     if (Number.isFinite(maxConstraintResidual)) {

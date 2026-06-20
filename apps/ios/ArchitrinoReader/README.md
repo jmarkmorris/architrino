@@ -49,7 +49,7 @@ Repo-side release prep:
 4. Validate the package with `node scripts/export-ios-textbook-package.mjs --check --strict`.
 5. Verify the About screen reports the expected package version and package date.
 6. Verify the About screen Feedback row opens a prefilled GitHub issue and visibly states that GitHub login is required.
-7. Verify the About screen Annotated feedback row captures the current reader page, accepts orange handwriting, and shares the marked screenshot with package/location context.
+7. Verify the reader Feedback toolbar icon blanks the header/footer, accepts orange handwriting directly on the page, and shares the marked screenshot with package/location context.
 
 App Store Connect release prep:
 

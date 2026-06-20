@@ -185,6 +185,7 @@ function createPairInteractionRunResponse(request) {
         meanPathConstraintGuidanceAcceleration: guidanceSampleCount > 0 ? 2.25 : 0,
         rmsPathConstraintGuidanceAcceleration: guidanceSampleCount > 0 ? 3.1 : 0,
         pathConstraintBoundaryResidualSampleCount: boundaryResidualSampleCount,
+        pathConstraintBoundaryResidualTolerance: pair.pathConstraintBoundaryResidualTolerance,
         maxPathConstraintBoundaryResidual: maxBoundaryResidual,
         meanPathConstraintBoundaryResidual: boundaryResidualSampleCount > 0 ? 0.125 : 0,
         rmsPathConstraintBoundaryResidual: boundaryResidualSampleCount > 0 ? 0.177 : 0,
@@ -464,7 +465,8 @@ test("causal delay central bridge adapter uses pair interaction by default", asy
   assert.equal(dataset.executionPath, "native_c_abi");
   assert.equal(dataset.displayProjection, "time_space_canvas_fit_v1");
   assert.equal(dataset.pairInteractionStepCount, 2);
-  assert.equal(dataset.interactionLaw, "display_pair_attraction_v1");
+  assert.equal(pairRequests[0].config.pairInteractionRequest.interactionLaw, "inverse_distance_pair_attraction_v1");
+  assert.equal(dataset.interactionLaw, "inverse_distance_pair_attraction_v1");
   assert.equal(dataset.wakeLinks.length, 10);
   assert.equal(dataset.frames[0].t, 0);
   assert.equal(dataset.frames.at(-1).t, 1);
@@ -480,7 +482,7 @@ test("causal delay central bridge adapter uses pair interaction by default", asy
   assert(Math.max(...projectedYValues) <= 864.1);
 });
 
-test("causal delay central bridge adapter passes pair interaction law review option", async () => {
+test("causal delay central bridge adapter passes display pair interaction law review option", async () => {
   let capturedPairRequest = null;
   const adapter = createCausalDelayFeedbackCentralBridgeAdapter({
     async runSolverBridge(request) {
@@ -495,16 +497,23 @@ test("causal delay central bridge adapter passes pair interaction law review opt
   const dataset = await adapter.createReplayAsync({
     presetId: "accepted_tight_bright",
     requestOptions: {
-      pairInteractionLaw: "inverse_distance_pair_attraction_v1",
+      pairInteractionLaw: "display_pair_attraction_v1",
+      pathConstraintBoundaryResidualTolerance: 0.05,
     },
   });
 
   assert.equal(
     capturedPairRequest.config.pairInteractionRequest.interactionLaw,
-    "inverse_distance_pair_attraction_v1",
+    "display_pair_attraction_v1",
   );
-  assert.equal(dataset.interactionLaw, "inverse_distance_pair_attraction_v1");
-  assert.equal(dataset.solverSummary.interactionLaw, "inverse_distance_pair_attraction_v1");
+  assert.equal(
+    capturedPairRequest.config.pairInteractionRequest.pathConstraintBoundaryResidualTolerance,
+    0.05,
+  );
+  assert.equal(dataset.interactionLaw, "display_pair_attraction_v1");
+  assert.equal(dataset.solverSummary.interactionLaw, "display_pair_attraction_v1");
+  assert.equal(dataset.pathConstraintBoundaryResidualTolerance, 0.05);
+  assert.equal(dataset.solverSummary.pathConstraintBoundaryResidualTolerance, 0.05);
 });
 
 test("causal delay central bridge adapter submits retained path constraints after a draft point edit", async () => {

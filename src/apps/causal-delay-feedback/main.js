@@ -55,6 +55,12 @@ function getInitialPositiveQueryNumber(windowLike, key) {
   return Number.isFinite(number) && number > 0 ? number : undefined;
 }
 
+function getInitialNonnegativeQueryNumber(windowLike, key) {
+  const value = getInitialQueryValue(windowLike, key);
+  const number = Number(value);
+  return Number.isFinite(number) && number >= 0 ? number : undefined;
+}
+
 export function shouldUseCentralBridgeReplay(windowLike = globalThis.window) {
   if (shouldUseTemporaryMockReplay(windowLike)) {
     return false;
@@ -111,6 +117,12 @@ export function createCausalDelayFeedbackInitialReplayRequestOptions(windowLike 
     getInitialQueryValue(windowLike, "interactionLaw");
   if (pairInteractionLaw) {
     requestOptions.pairInteractionLaw = pairInteractionLaw;
+  }
+  const pathConstraintBoundaryResidualTolerance =
+    getInitialNonnegativeQueryNumber(windowLike, "pathConstraintBoundaryResidualTolerance") ??
+    getInitialNonnegativeQueryNumber(windowLike, "boundaryResidualTolerance");
+  if (pathConstraintBoundaryResidualTolerance != null) {
+    requestOptions.pathConstraintBoundaryResidualTolerance = pathConstraintBoundaryResidualTolerance;
   }
   return requestOptions;
 }

@@ -1,6 +1,6 @@
 # Path-History Stream Contract
 
-Status: `active-contract-drafted`
+Status: `closed-schema-fixture-set`
 
 Kind: `solver-storage-contract`
 
@@ -9,10 +9,10 @@ Source task: `path_history_stream_contract` in [solver.md](solver.md)
 Primary dependencies:
 
 - [precision.md](precision.md)
-- `simulation_envelope_contract`
-- `virtual_observer_path_record_contract`
-- `temporal_assembly_graph_contract`
-- `numeric_serialization_contract`
+- [simulation-envelope-contract](simulation-envelope-contract.md)
+- [virtual-observer-path-record-contract](virtual-observer-path-record-contract.md)
+- [temporal-assembly-graph-contract](temporal-assembly-graph-contract.md)
+- [numeric-serialization-contract](numeric-serialization-contract.md)
 
 ## Purpose
 
@@ -37,7 +37,7 @@ The layer does not own:
 - the physical model or force law;
 - causal-root solving itself;
 - temporal assembly graph semantics beyond storing references and events supplied by that contract;
-- numeric byte layout details that belong to `numeric_serialization_contract`;
+- numeric byte layout details that belong to [numeric-serialization-contract](numeric-serialization-contract.md);
 - storage lifecycle decisions that belong to `storage_lifecycle_policy`, except for the fields this stream contract must expose.
 
 ## Required Artifacts
@@ -144,7 +144,7 @@ The encoding dictionary prevents repeated metadata from bloating every chunk and
 The dictionary must assign stable ids for:
 
 - column layouts, including position, velocity, acceleration, frame id, interpolation bound, path-segment id, and optional replay columns;
-- numeric encoding rules from `numeric_serialization_contract`;
+- numeric encoding rules from [numeric-serialization-contract](numeric-serialization-contract.md);
 - unit and coordinate-frame records;
 - precision path and numeric chart descriptors;
 - local-frame origin and basis records;
@@ -325,23 +325,21 @@ Recovery policy:
 
 The contract should be accepted only after these fixtures pass:
 
-| Fixture | Required proof |
-| --- | --- |
-| `path_stream_round_trip` | Deterministic multi-path run writes chunks, reads the same ranges, preserves byte-stable fields where declared, and detects checksum faults. |
-| `stream_replay_invariants` | Path, root, and replay invariants survive write/read/projection with declared error bounds and ordering. |
-| `history_age_out_and_deep_index` | Safe chunks age out, unsafe chunks remain hot or halt, and optional deep indices build without replacing authoritative replay. |
-| `interrupted_stream_recovery` | Partial writes, missing trailers, stale sidecars, and manifest mismatch produce deterministic recovery or quarantine events. |
-| `high_speed_readback_budget` | Indexed readback meets the declared range-read behavior without full-run scans under the test memory budget. |
-| `fast_spill_budget` | Long synthetic histories stay inside active-window memory by chunking, spilling, backpressure, or explicit halt. |
+| Fixture | Status | Required proof |
+| --- | --- | --- |
+| `path_stream_round_trip` | Implemented in [check-solver-contract-fixtures.mjs](../../../scripts/check-solver-contract-fixtures.mjs). | Deterministic multi-path run writes chunks, reads the same ranges, preserves byte-stable fields where declared, and detects checksum faults. |
+| `stream_replay_invariants` | Implemented in [check-solver-contract-fixtures.mjs](../../../scripts/check-solver-contract-fixtures.mjs). | Path, root, and replay invariants survive write/read/projection with declared error bounds and ordering. |
+| `history_age_out_and_deep_index` | Implemented in [check-solver-contract-fixtures.mjs](../../../scripts/check-solver-contract-fixtures.mjs). | Safe chunks age out, unsafe chunks remain hot or halt, and optional deep indices build without replacing authoritative replay. |
+| `interrupted_stream_recovery` | Implemented in [check-solver-contract-fixtures.mjs](../../../scripts/check-solver-contract-fixtures.mjs). | Partial writes, missing trailers, stale sidecars, and manifest mismatch produce deterministic recovery or quarantine events. |
+| `high_speed_readback_budget` | Implemented in [check-solver-contract-fixtures.mjs](../../../scripts/check-solver-contract-fixtures.mjs). | Indexed readback meets the declared range-read behavior without full-run scans under the test memory budget. |
+| `fast_spill_budget` | Implemented in [check-solver-contract-fixtures.mjs](../../../scripts/check-solver-contract-fixtures.mjs). | Long synthetic histories stay inside active-window memory by chunking, spilling, backpressure, or explicit halt. |
 
 ## Close And Remaining Status
 
-`path_history_stream_contract` is closed at the design-capture level by this note: the required storage artifacts, logical per-path stream model, chunk format obligations, manifest groups, dictionary, event store, binary index sidecar, summary record, memory budget, active-window age-out, optional deep-index store, fast spill, high-speed readback, checksums, recovery policy, and validation fixtures are now specified in one contract file.
+`path_history_stream_contract` is closed at the design-capture and schema-fixture level. The required storage artifacts, logical per-path stream model, chunk format obligations, manifest groups, dictionary, event store, binary index sidecar, summary record, memory budget, active-window age-out, optional deep-index store, fast spill, high-speed readback, checksums, recovery policy, and validation fixtures are specified here. The solver app-bridge schema now carries `solver-path-history-stream-contract-artifacts.v1`, and the contract fixture checker validates all six acceptance fixtures: `path_stream_round_trip`, `stream_replay_invariants`, `history_age_out_and_deep_index`, `interrupted_stream_recovery`, `high_speed_readback_budget`, and `fast_spill_budget`.
 
-The task remains open at the implementation and validation level until:
+The remaining runtime validation work is outside this contract artifact:
 
-1. the schema artifacts are encoded in the solver contract schema set;
-2. the fixtures above run in local CI;
-3. the storage lifecycle policy consumes the declared tier, quota, cleanup, export, and deletion fields;
-4. the work-packet transport contract references chunk handles and checksums without duplicating this storage model;
-5. benchmark runs measure spill, readback, index build, and recovery behavior under declared memory budgets.
+1. [storage-lifecycle-policy](storage-lifecycle-policy.md) already consumes the tier, quota, cleanup, export, deletion, active-window, and deep-index fields.
+2. [work-packet-transport-contract](work-packet-transport-contract.md) already references path-history chunk handles, byte spans, checksums, and deterministic merge keys without duplicating this storage model.
+3. `scripts/benchmark-solver.mjs` already runs the native `stream-and-assembly-store-io` case, which writes path-history chunks, reads the stream index and chunk table, and performs checked indexed readback. A later runtime-benchmark pass should split this into budgeted spill, readback, index-build, and recovery benchmark cases before claiming performance closure.

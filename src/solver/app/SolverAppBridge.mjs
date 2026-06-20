@@ -4027,6 +4027,12 @@ function solvePairInteractionPathF64(request, options = {}) {
     residualSummary.pathConstraintCount,
     guidanceSummary.pathConstraintGuidanceSampleCount,
   );
+  enforcePairInteractionBoundaryResidualTolerance(boundarySummary, normalized, {
+    ...options,
+    executionPath: "javascript_fallback",
+    pathConstraintSolverStatus: constraintSolverMetadata.pathConstraintSolverStatus,
+    pathConstraintSolverClaim: constraintSolverMetadata.pathConstraintSolverClaim,
+  });
   const status = createStatus("ok", "ok", "pair interaction paths integrated", {
     details: {
       requestedPrecisionPath: options.requestedPrecisionPath,
@@ -4049,6 +4055,9 @@ function solvePairInteractionPathF64(request, options = {}) {
       maxPathConstraintBoundaryResidual: boundarySummary.maxPathConstraintBoundaryResidual,
       meanPathConstraintBoundaryResidual: boundarySummary.meanPathConstraintBoundaryResidual,
       rmsPathConstraintBoundaryResidual: boundarySummary.rmsPathConstraintBoundaryResidual,
+      ...(Number.isFinite(normalized.pathConstraintBoundaryResidualTolerance)
+        ? { pathConstraintBoundaryResidualTolerance: normalized.pathConstraintBoundaryResidualTolerance }
+        : {}),
     },
   });
   return {
@@ -4089,6 +4098,9 @@ function solvePairInteractionPathF64(request, options = {}) {
       maxPathConstraintBoundaryResidual: boundarySummary.maxPathConstraintBoundaryResidual,
       meanPathConstraintBoundaryResidual: boundarySummary.meanPathConstraintBoundaryResidual,
       rmsPathConstraintBoundaryResidual: boundarySummary.rmsPathConstraintBoundaryResidual,
+      ...(Number.isFinite(normalized.pathConstraintBoundaryResidualTolerance)
+        ? { pathConstraintBoundaryResidualTolerance: normalized.pathConstraintBoundaryResidualTolerance }
+        : {}),
     },
     status,
     pathCount: normalized.initialStates.length,
@@ -4110,6 +4122,10 @@ function normalizePairInteractionReplayRequest(request) {
     softening: request.softening ?? 0,
     integrationTolerance: request.integrationTolerance ?? 0,
     interactionLaw: request.interactionLaw ?? "display_pair_attraction_v1",
+    pathConstraintBoundaryResidualTolerance:
+      request.pathConstraintBoundaryResidualTolerance == null
+        ? undefined
+        : Number(request.pathConstraintBoundaryResidualTolerance),
     duration,
     initialStates: request.initialStates.map((state) => ({
       pathKey: state.pathKey,
@@ -4121,6 +4137,44 @@ function normalizePairInteractionReplayRequest(request) {
     })),
     pathConstraints: normalizePairInteractionPathConstraints(request.pathConstraints),
   };
+}
+
+function enforcePairInteractionBoundaryResidualTolerance(boundarySummary, request, options = {}) {
+  const tolerance = Number(request.pathConstraintBoundaryResidualTolerance);
+  if (!Number.isFinite(tolerance)) {
+    return;
+  }
+  const sampleCount = Number(boundarySummary?.pathConstraintBoundaryResidualSampleCount);
+  const maxResidual = Number(boundarySummary?.maxPathConstraintBoundaryResidual);
+  if (
+    !Number.isFinite(sampleCount) ||
+    sampleCount <= 0 ||
+    !Number.isFinite(maxResidual) ||
+    maxResidual <= tolerance
+  ) {
+    return;
+  }
+  throw new SolverBridgeError(
+    createStatus(
+      "path_constraint_boundary_residual_exceeded",
+      "halt",
+      "path constraint boundary residual exceeded tolerance",
+      {
+        recoverable: true,
+        details: {
+          pathConstraintBoundaryResidualTolerance: tolerance,
+          maxPathConstraintBoundaryResidual: maxResidual,
+          pathConstraintBoundaryResidualSampleCount: sampleCount,
+          interactionLaw: request.interactionLaw,
+          executionPath: options.executionPath,
+          requestId: options.requestId,
+          runId: options.runId,
+          pathConstraintSolverStatus: options.pathConstraintSolverStatus,
+          pathConstraintSolverClaim: options.pathConstraintSolverClaim,
+        },
+      }
+    )
+  );
 }
 
 function normalizePairInteractionPathConstraints(constraints) {
@@ -6642,6 +6696,16 @@ function integratePairInteractionMotionF64WithModule(module, request, options = 
       nativeSummary.pathConstraintCount,
       nativeSummary.guidanceSampleCount,
     );
+    const nativeBoundarySummary = {
+      pathConstraintBoundaryResidualSampleCount: nativeSummary.boundaryResidualSampleCount,
+      maxPathConstraintBoundaryResidual: nativeSummary.maxBoundaryResidual,
+    };
+    enforcePairInteractionBoundaryResidualTolerance(nativeBoundarySummary, normalized, {
+      ...options,
+      executionPath: "native_c_abi",
+      pathConstraintSolverStatus: constraintSolverMetadata.pathConstraintSolverStatus,
+      pathConstraintSolverClaim: constraintSolverMetadata.pathConstraintSolverClaim,
+    });
     const pairStatus = createStatus("ok", "ok", "native pair interaction paths integrated", {
       details: {
         requestedPrecisionPath: options.requestedPrecisionPath,
@@ -6665,6 +6729,9 @@ function integratePairInteractionMotionF64WithModule(module, request, options = 
         maxPathConstraintBoundaryResidual: nativeSummary.maxBoundaryResidual,
         meanPathConstraintBoundaryResidual: nativeSummary.meanBoundaryResidual,
         rmsPathConstraintBoundaryResidual: nativeSummary.rmsBoundaryResidual,
+        ...(Number.isFinite(normalized.pathConstraintBoundaryResidualTolerance)
+          ? { pathConstraintBoundaryResidualTolerance: normalized.pathConstraintBoundaryResidualTolerance }
+          : {}),
       },
     });
     return {
@@ -6705,6 +6772,9 @@ function integratePairInteractionMotionF64WithModule(module, request, options = 
         maxPathConstraintBoundaryResidual: nativeSummary.maxBoundaryResidual,
         meanPathConstraintBoundaryResidual: nativeSummary.meanBoundaryResidual,
         rmsPathConstraintBoundaryResidual: nativeSummary.rmsBoundaryResidual,
+        ...(Number.isFinite(normalized.pathConstraintBoundaryResidualTolerance)
+          ? { pathConstraintBoundaryResidualTolerance: normalized.pathConstraintBoundaryResidualTolerance }
+          : {}),
       },
       status: pairStatus,
       pathCount: stateCount,
@@ -8659,6 +8729,12 @@ function validatePairInteractionRunConfig(config) {
   }
   if (request.integrationTolerance != null) {
     requireNonnegativeFiniteNumber(request.integrationTolerance, "pairInteractionRequest.integrationTolerance");
+  }
+  if (request.pathConstraintBoundaryResidualTolerance != null) {
+    requireNonnegativeFiniteNumber(
+      request.pathConstraintBoundaryResidualTolerance,
+      "pairInteractionRequest.pathConstraintBoundaryResidualTolerance",
+    );
   }
   if (config.streamId != null) {
     requireNonemptyString(config.streamId, "pairInteraction.streamId");

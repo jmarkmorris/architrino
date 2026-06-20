@@ -4205,6 +4205,25 @@ assert(
     causalDelayPairRunHandle.response.pathHistory.metadata.dynamicReplay.pathKeys.length === 2,
   "expected causal-delay pair dynamic replay metadata"
 );
+let causalDelayPairBoundaryToleranceRejected = false;
+try {
+  await client.runSimulation(
+    makeCausalDelayPairInteractionRunSimulationRequest({
+      runSuffix: "boundary-residual-reject",
+      pathConstraintBoundaryResidualTolerance: 1e-12,
+    })
+  );
+} catch (error) {
+  causalDelayPairBoundaryToleranceRejected =
+    error instanceof SolverBridgeError &&
+    error.status?.code === "path_constraint_boundary_residual_exceeded" &&
+    Number(error.status?.details?.maxPathConstraintBoundaryResidual) >
+      Number(error.status?.details?.pathConstraintBoundaryResidualTolerance);
+}
+assert(
+  causalDelayPairBoundaryToleranceRejected,
+  "expected causal-delay pair boundary residual tolerance rejection"
+);
 assert(
   causalDelayPairRunHandle.response.frames.length === 18 &&
     causalDelayPairRunHandle.response.frames.filter((frame) => frame.pathKey === 1).length === 9 &&
@@ -5232,6 +5251,7 @@ function makeCausalDelayMotionRunSimulationRequest() {
 
 function makeCausalDelayPairInteractionRunSimulationRequest({
   interactionLaw = "display_pair_attraction_v1",
+  pathConstraintBoundaryResidualTolerance,
   runSuffix = "",
 } = {}) {
   const admission = makeAdmissionRequest();
@@ -5260,6 +5280,9 @@ function makeCausalDelayPairInteractionRunSimulationRequest({
         softening: 0,
         integrationTolerance: 1e-12,
         interactionLaw,
+        ...(pathConstraintBoundaryResidualTolerance != null
+          ? { pathConstraintBoundaryResidualTolerance }
+          : {}),
         initialStates: [
           {
             pathKey: 1,

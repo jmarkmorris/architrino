@@ -31,7 +31,7 @@ const DEFAULT_RUN_DURATION = 1;
 const DEFAULT_PAIR_ACCELERATION_SCALE = 0.18;
 const DEFAULT_PAIR_SEGMENT_COUNT = 12;
 const DEFAULT_PAIR_INTERACTION_SOFTENING = 0;
-const DEFAULT_PAIR_INTERACTION_LAW = "display_pair_attraction_v1";
+const DEFAULT_PAIR_INTERACTION_LAW = "inverse_distance_pair_attraction_v1";
 const PAIR_SEGMENTED_ACCELERATION_POLICY = "pair_segmented_attraction_seed";
 const PAIR_INITIAL_ACCELERATION_POLICY = "pair_initial_attraction_seed";
 const EXPLICIT_ACCELERATION_POLICY = "explicit";
@@ -137,6 +137,10 @@ export function createCausalDelayFeedbackBridgeReplayRequest(input = {}) {
           input.pairInteractionLaw,
           DEFAULT_PAIR_INTERACTION_LAW,
           "pairInteractionLaw",
+        ),
+        pathConstraintBoundaryResidualTolerance: normalizeOptionalNonnegativeNumber(
+          input.pathConstraintBoundaryResidualTolerance ?? input.boundaryResidualTolerance,
+          "pathConstraintBoundaryResidualTolerance",
         ),
       },
     },
@@ -264,6 +268,7 @@ async function createMotionSolverReplayDataset(playbackRequest, options = {}, { 
           meanPathConstraintGuidanceAcceleration: motionReplay.meanPathConstraintGuidanceAcceleration,
           rmsPathConstraintGuidanceAcceleration: motionReplay.rmsPathConstraintGuidanceAcceleration,
           pathConstraintBoundaryResidualSampleCount: motionReplay.pathConstraintBoundaryResidualSampleCount,
+          pathConstraintBoundaryResidualTolerance: motionReplay.pathConstraintBoundaryResidualTolerance,
           maxPathConstraintBoundaryResidual: motionReplay.maxPathConstraintBoundaryResidual,
           meanPathConstraintBoundaryResidual: motionReplay.meanPathConstraintBoundaryResidual,
           rmsPathConstraintBoundaryResidual: motionReplay.rmsPathConstraintBoundaryResidual,
@@ -300,6 +305,7 @@ async function createMotionSolverReplayDataset(playbackRequest, options = {}, { 
           meanPathConstraintGuidanceAcceleration: motionReplay.meanPathConstraintGuidanceAcceleration,
           rmsPathConstraintGuidanceAcceleration: motionReplay.rmsPathConstraintGuidanceAcceleration,
           pathConstraintBoundaryResidualSampleCount: motionReplay.pathConstraintBoundaryResidualSampleCount,
+          pathConstraintBoundaryResidualTolerance: motionReplay.pathConstraintBoundaryResidualTolerance,
           maxPathConstraintBoundaryResidual: motionReplay.maxPathConstraintBoundaryResidual,
           meanPathConstraintBoundaryResidual: motionReplay.meanPathConstraintBoundaryResidual,
           rmsPathConstraintBoundaryResidual: motionReplay.rmsPathConstraintBoundaryResidual,
@@ -482,6 +488,11 @@ async function createPairInteractionSolverReplayFrames(playbackRequest, options 
     ),
     pathConstraintBoundaryResidualSampleCount: optionalFiniteNumber(
       pairSummary.pathConstraintBoundaryResidualSampleCount ?? pairInteraction.pathConstraintBoundaryResidualSampleCount
+    ),
+    pathConstraintBoundaryResidualTolerance: optionalFiniteNumber(
+      pairSummary.pathConstraintBoundaryResidualTolerance ??
+        pairInteraction.pathConstraintBoundaryResidualTolerance ??
+        request.config.pairInteractionRequest.pathConstraintBoundaryResidualTolerance
     ),
     maxPathConstraintBoundaryResidual: optionalFiniteNumber(
       pairSummary.maxPathConstraintBoundaryResidual ?? pairInteraction.maxPathConstraintBoundaryResidual
@@ -802,6 +813,12 @@ function createCausalDelayFeedbackPairInteractionRequest(playbackRequest) {
           step,
           maxFrames: frameCount + pathConstraints.length,
           pairAccelerationScale: playbackRequest.config.motion.pairAccelerationScale,
+          ...(playbackRequest.config.motion.pathConstraintBoundaryResidualTolerance != null
+            ? {
+                pathConstraintBoundaryResidualTolerance:
+                  playbackRequest.config.motion.pathConstraintBoundaryResidualTolerance,
+              }
+            : {}),
         softening: normalizeNonnegativeNumber(
           playbackRequest.config.motion.pairInteractionSoftening,
           DEFAULT_PAIR_INTERACTION_SOFTENING,
@@ -1381,6 +1398,9 @@ export function normalizeCausalDelayFeedbackBridgeReplay(runHandle = {}, options
     ...(Number.isFinite(Number(bridgeResponse.geometry?.pathConstraintBoundaryResidualSampleCount))
       ? { pathConstraintBoundaryResidualSampleCount: Number(bridgeResponse.geometry.pathConstraintBoundaryResidualSampleCount) }
       : {}),
+    ...(Number.isFinite(Number(bridgeResponse.geometry?.pathConstraintBoundaryResidualTolerance))
+      ? { pathConstraintBoundaryResidualTolerance: Number(bridgeResponse.geometry.pathConstraintBoundaryResidualTolerance) }
+      : {}),
     ...(Number.isFinite(Number(bridgeResponse.geometry?.maxPathConstraintBoundaryResidual))
       ? { maxPathConstraintBoundaryResidual: Number(bridgeResponse.geometry.maxPathConstraintBoundaryResidual) }
       : {}),
@@ -1951,6 +1971,13 @@ function normalizeOptionalArray(value) {
 function optionalFiniteNumber(value) {
   const number = Number(value);
   return Number.isFinite(number) ? number : undefined;
+}
+
+function normalizeOptionalNonnegativeNumber(value, label) {
+  if (value == null) {
+    return undefined;
+  }
+  return normalizeNonnegativeNumber(value, undefined, label);
 }
 
 function normalizeOptionalString(value, fallback, label) {

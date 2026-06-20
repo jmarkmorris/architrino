@@ -8,7 +8,6 @@ struct ReaderWebView: UIViewRepresentable {
     let theme: ReaderTheme
     let lineSpacing: ReaderLineSpacing
     let marginWidth: ReaderMarginWidth
-    let snapshotController: ReaderSnapshotController
     let onLinkTap: (Any) -> Void
     let onRenderComplete: (Any) -> Void
     let onScrollPositionChange: (Double) -> Void
@@ -43,7 +42,6 @@ struct ReaderWebView: UIViewRepresentable {
             view.loadFileURL(shellURL, allowingReadAccessTo: readAccessURL)
         }
         context.coordinator.webView = view
-        snapshotController.webView = view
 
         return view
     }
@@ -60,7 +58,6 @@ struct ReaderWebView: UIViewRepresentable {
             uiView.scrollView.backgroundColor = UIColor.readerBackground(for: theme)
         }
         context.coordinator.webView = uiView
-        snapshotController.webView = uiView
         uiView.scrollView.delegate = context.coordinator
         context.coordinator.pendingAppearance = appearance
         if let anchorCommand,

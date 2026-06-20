@@ -524,6 +524,20 @@ assert(schema.$defs?.pathHistoryStreamF64Request, "path-history stream request s
 assert(schema.$defs?.pathHistoryStreamF64Response, "path-history stream response schema missing");
 assert(schema.$defs?.pathHistoryStreamSummary, "path-history stream summary schema missing");
 assert(schema.$defs?.pathHistoryStreamMetadata, "path-history stream metadata schema missing");
+assert(schema.$defs?.pathHistoryStreamContractArtifacts, "path-history stream contract artifacts schema missing");
+assert(schema.$defs?.pathHistoryStreamContractManifest, "path-history stream contract manifest schema missing");
+assert(schema.$defs?.pathHistoryLogicalStreamTable, "path-history logical stream table schema missing");
+assert(schema.$defs?.pathHistoryChunkRecord, "path-history contract chunk record schema missing");
+assert(schema.$defs?.pathHistoryEncodingDictionary, "path-history encoding dictionary schema missing");
+assert(schema.$defs?.pathHistoryEventStore, "path-history event store schema missing");
+assert(schema.$defs?.pathHistoryEventRecord, "path-history event record schema missing");
+assert(schema.$defs?.pathHistoryContractSummaryRecord, "path-history contract summary record schema missing");
+assert(schema.$defs?.pathHistoryStreamMemoryBudget, "path-history stream memory budget schema missing");
+assert(schema.$defs?.pathHistoryChecksumPolicy, "path-history checksum policy schema missing");
+assert(
+  schema.$defs?.pathHistoryStreamContractFixtureEvidence,
+  "path-history stream contract fixture evidence schema missing"
+);
 assert(schema.$defs?.pathHistoryDynamicReplayMetadata, "path-history dynamic replay metadata schema missing");
 assert(schema.$defs?.pathHistoryDynamicReplayValidationRequest, "path-history dynamic replay request schema missing");
 assert(schema.$defs?.pathHistoryDynamicReplayValidationResponse, "path-history dynamic replay response schema missing");
@@ -1656,6 +1670,7 @@ function validatePathHistoryStreamResponseEnvelope(value) {
   assertRange(summary.frameRange, 0, 2, "path-history stream summary frame range");
   assertStoragePolicy(summary.storagePolicy, 288, "path-history stream summary storage policy");
   assertPathHistoryMetadata(summary.metadata, "path-history stream summary metadata");
+  assertPathHistoryContractArtifacts(responseValue.contractArtifacts);
 }
 
 function validateDescribeStreamRequestEnvelope(value) {
@@ -1911,6 +1926,118 @@ function assertPathHistoryMetadata(metadata, label) {
   assert(metadata.provenance.fixture === "path-history-contract-fixture", `${label} provenance mismatch`);
   assert(Array.isArray(metadata.diagnostics), `${label} diagnostics must be an array`);
   assert(metadata.diagnostics[0].code === "ok", `${label} diagnostic code mismatch`);
+}
+
+function assertPathHistoryContractArtifacts(artifacts) {
+  assert(artifacts.schema === "solver-path-history-stream-contract-artifacts.v1", "contract artifacts schema mismatch");
+  assert(artifacts.manifest.schema === "path_history_stream_manifest.v1", "contract manifest schema mismatch");
+  assert(artifacts.manifest.runId === "path-history-contract-run", "contract manifest run mismatch");
+  assert(artifacts.manifest.chunkStoreId === "fixture-path-chunk-store", "contract chunk store id mismatch");
+  assert(artifacts.manifest.encodingDictionaryId === "fixture-path-encoding-dictionary", "contract dictionary id mismatch");
+  assert(artifacts.manifest.eventStoreId === "fixture-path-event-store", "contract event store id mismatch");
+  assert(artifacts.manifest.indexSidecarId === "fixture-path-index-sidecar", "contract index sidecar id mismatch");
+  assert(artifacts.manifest.lifecycleStatus === "finalized", "contract manifest lifecycle mismatch");
+  assert(artifacts.logicalStreamTable.schema === "path_stream_table.v1", "logical stream table schema mismatch");
+  assert(artifacts.logicalStreamTable.streams.length === 2, "logical stream table count mismatch");
+  assert(
+    artifacts.logicalStreamTable.streams.every((stream) => stream.replayStatus === "complete"),
+    "logical stream replay status mismatch"
+  );
+  assert(artifacts.chunkRecords.length === 2, "contract chunk record count mismatch");
+  assert(artifacts.chunkRecords.every((chunk) => chunk.schema === "path_chunk.v1"), "contract chunk schema mismatch");
+  assert(artifacts.chunkRecords.every((chunk) => chunk.committed === true), "contract chunk commit mismatch");
+  assertRange(artifacts.chunkRecords[0].byteRange, 0, 192, "contract first chunk byte range");
+  assertRange(artifacts.chunkRecords[1].byteRange, 192, 288, "contract second chunk byte range");
+  assert(artifacts.encodingDictionary.schema === "path_encoding_dictionary.v1", "encoding dictionary schema mismatch");
+  assert(
+    artifacts.encodingDictionary.columnLayouts.includes("path_chunk.v1") &&
+      artifacts.encodingDictionary.columnLayouts.includes("stream_index.v1"),
+    "encoding dictionary layout coverage mismatch"
+  );
+  assert(
+    artifacts.checksumPolicy.scopes.includes("chunk_header") &&
+      artifacts.checksumPolicy.scopes.includes("chunk_payload") &&
+      artifacts.checksumPolicy.scopes.includes("chunk_trailer") &&
+      artifacts.checksumPolicy.scopes.includes("sidecar") &&
+      artifacts.checksumPolicy.scopes.includes("manifest"),
+    "checksum policy scope coverage mismatch"
+  );
+  assert(artifacts.eventStore.schema === "path_event_store.v1", "event store schema mismatch");
+  assert(
+    artifacts.eventStore.events.some((event) => event.eventClass === "chunk_committed") &&
+      artifacts.eventStore.events.some((event) => event.eventClass === "checksum_fault") &&
+      artifacts.eventStore.events.some((event) => event.eventClass === "run_finalized"),
+    "event store required classes mismatch"
+  );
+  assert(artifacts.indexSidecar.schema === "solver-stream-index.v1", "contract index sidecar schema mismatch");
+  assert(artifacts.indexSidecar.sidecar.rowCount === 3, "contract index sidecar row count mismatch");
+  assert(artifacts.indexSidecar.pathIndexRows.length === 3, "contract path index row count mismatch");
+  assert(artifacts.summary.schema === "path_history_summary.v1", "contract summary schema mismatch");
+  assert(artifacts.summary.rowCount === 3, "contract summary row count mismatch");
+  assert(artifacts.summary.chunkCount === 2, "contract summary chunk count mismatch");
+  assert(artifacts.summary.checksumFaultCount === 1, "contract summary checksum fault count mismatch");
+  assert(artifacts.summary.activeWindowMaxBytes <= artifacts.memoryBudget.activeWindowBytes, "active bytes exceed budget");
+  assert(artifacts.memoryBudget.schema === "path_history_stream_memory_budget.v1", "memory budget schema mismatch");
+  assert(artifacts.memoryBudget.onBudgetPressure === "spill", "memory budget pressure policy mismatch");
+  const fixtureById = new Map(artifacts.fixtures.map((fixture) => [fixture.fixtureId, fixture]));
+  const roundTrip = fixtureById.get("path_stream_round_trip");
+  const replayInvariants = fixtureById.get("stream_replay_invariants");
+  const ageOutDeepIndex = fixtureById.get("history_age_out_and_deep_index");
+  const interruptedRecovery = fixtureById.get("interrupted_stream_recovery");
+  const highSpeedReadback = fixtureById.get("high_speed_readback_budget");
+  const fastSpill = fixtureById.get("fast_spill_budget");
+  assert(roundTrip, "path_stream_round_trip fixture missing");
+  assert(replayInvariants, "stream_replay_invariants fixture missing");
+  assert(ageOutDeepIndex, "history_age_out_and_deep_index fixture missing");
+  assert(interruptedRecovery, "interrupted_stream_recovery fixture missing");
+  assert(highSpeedReadback, "high_speed_readback_budget fixture missing");
+  assert(fastSpill, "fast_spill_budget fixture missing");
+  assert(roundTrip.status === "passed", "path_stream_round_trip status mismatch");
+  assert(roundTrip.roundTripByteStable === true, "path_stream_round_trip byte stability mismatch");
+  assert(roundTrip.indexSeekMatched === true, "path_stream_round_trip index seek mismatch");
+  assert(roundTrip.fullRunScanRequired === false, "path_stream_round_trip full scan mismatch");
+  assert(roundTrip.checksumFaultDetected === true, "path_stream_round_trip checksum fault detection mismatch");
+  assert(
+    roundTrip.validatedArtifacts.includes("path_history_stream_manifest.v1") &&
+      roundTrip.validatedArtifacts.includes("path_chunk.v1") &&
+      roundTrip.validatedArtifacts.includes("stream_index.v1"),
+    "path_stream_round_trip artifact coverage mismatch"
+  );
+  assert(replayInvariants.status === "passed", "stream_replay_invariants status mismatch");
+  assert(replayInvariants.pathErrorBoundPreserved === true, "stream_replay_invariants path error mismatch");
+  assert(replayInvariants.rootCountPreserved === true, "stream_replay_invariants root count mismatch");
+  assert(replayInvariants.timeOrderingPreserved === true, "stream_replay_invariants ordering mismatch");
+  assert(replayInvariants.checksumIdentityPreserved === true, "stream_replay_invariants checksum mismatch");
+  assert(replayInvariants.projectionAuthorityPreserved === true, "stream_replay_invariants projection authority mismatch");
+  assert(ageOutDeepIndex.status === "passed", "history_age_out_and_deep_index status mismatch");
+  assert(ageOutDeepIndex.safeAgeOutCount > 0, "history_age_out safe count missing");
+  assert(ageOutDeepIndex.unsafeAgeOutCount > 0, "history_age_out unsafe count missing");
+  assert(ageOutDeepIndex.deepIndexBuilt === true, "history_age_out deep-index build mismatch");
+  assert(ageOutDeepIndex.authoritativeReplayReplaced === false, "history_age_out authoritative replay mismatch");
+  assert(
+    ageOutDeepIndex.validatedArtifacts.includes("solver-path-history-storage-lifecycle-summary.v1") &&
+      ageOutDeepIndex.validatedArtifacts.includes("solver-path-history-deep-index.v1"),
+    "history_age_out artifact coverage mismatch"
+  );
+  assert(interruptedRecovery.status === "passed", "interrupted_stream_recovery status mismatch");
+  assert(interruptedRecovery.partialWriteDetected === true, "interrupted recovery partial write mismatch");
+  assert(interruptedRecovery.staleSidecarDetected === true, "interrupted recovery stale sidecar mismatch");
+  assert(interruptedRecovery.manifestMismatchDetected === true, "interrupted recovery manifest mismatch");
+  assert(interruptedRecovery.recoveryEventAppended === true, "interrupted recovery event mismatch");
+  assert(interruptedRecovery.quarantinedChunkCount > 0, "interrupted recovery quarantine count mismatch");
+  assert(highSpeedReadback.status === "passed", "high_speed_readback_budget status mismatch");
+  assert(highSpeedReadback.indexedLookupUsed === true, "high speed readback indexed lookup mismatch");
+  assert(highSpeedReadback.fullRunScanRequired === false, "high speed readback full scan mismatch");
+  assert(highSpeedReadback.selectedRangeReadbackRows > 0, "high speed readback selected rows mismatch");
+  assert(highSpeedReadback.scannedChunkCount < highSpeedReadback.chunkCount, "high speed readback scan budget mismatch");
+  assert(highSpeedReadback.readbackBytes <= highSpeedReadback.readbackMemoryBudgetBytes, "readback memory budget exceeded");
+  assertPositiveFinite(highSpeedReadback.readbackThroughputRowsPerSecond, "high_speed_readback_budget readback throughput");
+  assert(fastSpill.status === "passed", "fast_spill_budget status mismatch");
+  assert(fastSpill.maxActiveBytes <= fastSpill.memoryBudgetBytes, "fast_spill_budget memory budget exceeded");
+  assert(fastSpill.spilledBytes > 0, "fast_spill_budget spilled bytes missing");
+  assert(fastSpill.backpressureApplied === true, "fast_spill_budget backpressure mismatch");
+  assert(fastSpill.halted === false, "fast_spill_budget halt mismatch");
+  assertPositiveFinite(fastSpill.spillThroughputRowsPerSecond, "fast_spill_budget spill throughput");
 }
 
 function assertBuffer(value, bufferId, layout, byteLength, rowCount) {
@@ -4638,6 +4765,7 @@ function createPathHistoryStreamResponseEnvelope() {
         },
         metadata,
       },
+      contractArtifacts: createPathHistoryStreamContractArtifactsFixture(),
       status: {
         code: "ok",
         severity: "ok",
@@ -4668,6 +4796,384 @@ function createPathHistoryStreamMetadata() {
         code: "ok",
         severity: "ok",
         message: "path history contract fixture",
+      },
+    ],
+  };
+}
+
+function createPathHistoryStreamContractArtifactsFixture() {
+  const metadata = createPathHistoryStreamMetadata();
+  return {
+    schema: "solver-path-history-stream-contract-artifacts.v1",
+    manifest: {
+      schema: "path_history_stream_manifest.v1",
+      runId: "path-history-contract-run",
+      modelId: "aaa.central-solver",
+      streamTableId: "fixture-path-stream-table",
+      chunkStoreId: "fixture-path-chunk-store",
+      encodingDictionaryId: "fixture-path-encoding-dictionary",
+      eventStoreId: "fixture-path-event-store",
+      indexSidecarId: "fixture-path-index-sidecar",
+      summaryRecordId: "fixture-path-history-summary",
+      checksumPolicyId: "fixture-path-checksum-policy",
+      memoryBudgetId: "fixture-path-memory-budget",
+      lifecycleStatus: "finalized",
+      precisionPath: metadata.precisionPath,
+      numericType: metadata.numericType,
+      numericChart: metadata.numericChart,
+      claimLevel: metadata.claimLevel,
+    },
+    logicalStreamTable: {
+      schema: "path_stream_table.v1",
+      tableId: "fixture-path-stream-table",
+      streams: [
+        {
+          streamId: "fixture-path-history-stream",
+          pathId: "fixture-source-path",
+          pathKey: 2000,
+          entityId: "fixture-source-entity",
+          pathRole: "source-history",
+          claimLevel: metadata.claimLevel,
+          precisionPath: metadata.precisionPath,
+          numericChart: metadata.numericChart,
+          timeRange: { start: 0, end: 3 },
+          frameRange: { start: 0, end: 2 },
+          chunkIds: ["fixture-path-chunk-0", "fixture-path-chunk-1"],
+          replayStatus: "complete",
+        },
+        {
+          streamId: "fixture-path-history-stream",
+          pathId: "fixture-receiver-path",
+          pathKey: 2001,
+          entityId: "fixture-receiver-entity",
+          pathRole: "receiver-history",
+          claimLevel: metadata.claimLevel,
+          precisionPath: metadata.precisionPath,
+          numericChart: metadata.numericChart,
+          timeRange: { start: 1, end: 2 },
+          frameRange: { start: 1, end: 1 },
+          chunkIds: ["fixture-path-chunk-0"],
+          replayStatus: "complete",
+        },
+      ],
+    },
+    chunkRecords: [
+      createPathHistoryContractChunkRecord("fixture-path-chunk-0", 0, 2000, 2001, 0, 2, 0, 2, 0, 1, 0, 192),
+      createPathHistoryContractChunkRecord("fixture-path-chunk-1", 1, 2000, 2000, 2, 1, 2, 3, 2, 2, 192, 288),
+    ],
+    encodingDictionary: {
+      schema: "path_encoding_dictionary.v1",
+      dictionaryId: "fixture-path-encoding-dictionary",
+      columnLayouts: ["path_chunk.v1", "path_segment.v1", "stream_index.v1"],
+      numericEncodings: ["f64"],
+      units: ["solver-si"],
+      eventCodes: ["stream_opened", "chunk_committed", "checksum_fault", "run_finalized"],
+      checksumAlgorithms: ["fnv1a64"],
+      dictionaryChecksum: "4444444444444444",
+    },
+    eventStore: {
+      schema: "path_event_store.v1",
+      eventStoreId: "fixture-path-event-store",
+      events: [
+        createPathHistoryContractEvent(0, "stream_opened", "info", "fixture-path-history-stream"),
+        createPathHistoryContractEvent(1, "chunk_committed", "info", "fixture-path-history-stream", "fixture-path-chunk-0"),
+        createPathHistoryContractEvent(2, "chunk_committed", "info", "fixture-path-history-stream", "fixture-path-chunk-1"),
+        createPathHistoryContractEvent(3, "active_window_aged_out", "info", "fixture-path-history-stream", "fixture-path-chunk-0"),
+        createPathHistoryContractEvent(4, "age_out_blocked", "warning", "fixture-path-history-stream", "fixture-path-chunk-1"),
+        createPathHistoryContractEvent(5, "index_built", "info", "fixture-path-history-stream", "fixture-path-chunk-0"),
+        createPathHistoryContractEvent(6, "checksum_fault", "warning", "fixture-path-history-stream", "fixture-path-chunk-corrupt"),
+        createPathHistoryContractEvent(7, "recovery_action", "warning", "fixture-path-history-stream", "fixture-path-chunk-corrupt"),
+        createPathHistoryContractEvent(8, "run_finalized", "ok", "fixture-path-history-stream"),
+      ],
+    },
+    indexSidecar: createPathHistoryContractIndexSidecarFixture(),
+    summary: {
+      schema: "path_history_summary.v1",
+      streamCount: 1,
+      pathCount: 2,
+      chunkCount: 2,
+      rowCount: 3,
+      byteCount: 288,
+      bytesByTier: { active: 96, warm: 192, cold: 0, deleted: 0, unknown: 0 },
+      activeWindowMaxBytes: 96,
+      checksumCleanCount: 2,
+      checksumFaultCount: 1,
+      spillThroughputRowsPerSecond: 48000,
+      readbackThroughputRowsPerSecond: 96000,
+      replayStatus: "complete",
+    },
+    memoryBudget: {
+      schema: "path_history_stream_memory_budget.v1",
+      activeWindowBytes: 128,
+      activeWindowTimeDepth: 1,
+      activeWindowFrameDepth: 1,
+      spillBufferBytes: 256,
+      indexMemoryBytes: 128,
+      deepIndexMemoryBytes: 0,
+      onBudgetPressure: "spill",
+    },
+    checksumPolicy: {
+      policyId: "fixture-path-checksum-policy",
+      algorithm: "fnv1a64",
+      scopes: [
+        "chunk_header",
+        "chunk_payload",
+        "chunk_trailer",
+        "chain",
+        "dictionary",
+        "sidecar",
+        "event_store",
+        "manifest",
+        "export_artifact",
+      ],
+    },
+    fixtures: [
+      {
+        fixtureId: "path_stream_round_trip",
+        status: "passed",
+        validatedArtifacts: [
+          "path_history_stream_manifest.v1",
+          "path_stream_table.v1",
+          "path_chunk.v1",
+          "path_encoding_dictionary.v1",
+          "path_event_store.v1",
+          "stream_index.v1",
+          "path_history_summary.v1",
+          "path_history_stream_memory_budget.v1",
+        ],
+        rowCount: 3,
+        chunkCount: 2,
+        pathCount: 2,
+        byteLength: 288,
+        memoryBudgetBytes: 128,
+        activeWindowBytes: 96,
+        maxActiveBytes: 96,
+        spilledBytes: 192,
+        checksumFaultDetected: true,
+        indexSeekMatched: true,
+        fullRunScanRequired: false,
+        roundTripByteStable: true,
+      },
+      {
+        fixtureId: "stream_replay_invariants",
+        status: "passed",
+        validatedArtifacts: [
+          "path_history_stream_manifest.v1",
+          "path_stream_table.v1",
+          "path_chunk.v1",
+          "stream_index.v1",
+          "path_history_summary.v1",
+        ],
+        rowCount: 3,
+        chunkCount: 2,
+        pathCount: 2,
+        byteLength: 288,
+        pathErrorBoundPreserved: true,
+        rootCountPreserved: true,
+        timeOrderingPreserved: true,
+        checksumIdentityPreserved: true,
+        projectionAuthorityPreserved: true,
+        indexSeekMatched: true,
+        fullRunScanRequired: false,
+      },
+      {
+        fixtureId: "history_age_out_and_deep_index",
+        status: "passed",
+        validatedArtifacts: [
+          "path_history_stream_manifest.v1",
+          "path_chunk.v1",
+          "path_event_store.v1",
+          "stream_index.v1",
+          "path_history_summary.v1",
+          "path_history_stream_memory_budget.v1",
+          "solver-path-history-storage-lifecycle-summary.v1",
+          "solver-path-history-deep-index.v1",
+        ],
+        rowCount: 3,
+        chunkCount: 2,
+        pathCount: 2,
+        byteLength: 288,
+        memoryBudgetBytes: 128,
+        activeWindowBytes: 96,
+        maxActiveBytes: 96,
+        spilledBytes: 192,
+        safeAgeOutCount: 1,
+        unsafeAgeOutCount: 1,
+        deepIndexBuilt: true,
+        authoritativeReplayReplaced: false,
+        fullRunScanRequired: false,
+      },
+      {
+        fixtureId: "interrupted_stream_recovery",
+        status: "passed",
+        validatedArtifacts: [
+          "path_history_stream_manifest.v1",
+          "path_chunk.v1",
+          "path_encoding_dictionary.v1",
+          "path_event_store.v1",
+          "stream_index.v1",
+          "path_history_summary.v1",
+        ],
+        rowCount: 3,
+        chunkCount: 2,
+        pathCount: 2,
+        byteLength: 288,
+        checksumFaultDetected: true,
+        partialWriteDetected: true,
+        staleSidecarDetected: true,
+        manifestMismatchDetected: true,
+        recoveryEventAppended: true,
+        quarantinedChunkCount: 1,
+        fullRunScanRequired: false,
+      },
+      {
+        fixtureId: "high_speed_readback_budget",
+        status: "passed",
+        validatedArtifacts: [
+          "path_history_stream_manifest.v1",
+          "path_chunk.v1",
+          "stream_index.v1",
+          "path_history_summary.v1",
+          "path_history_stream_memory_budget.v1",
+        ],
+        rowCount: 3,
+        chunkCount: 2,
+        pathCount: 2,
+        byteLength: 288,
+        activeWindowBytes: 96,
+        readbackMemoryBudgetBytes: 128,
+        readbackBytes: 96,
+        selectedRangeReadbackRows: 1,
+        scannedChunkCount: 1,
+        indexedLookupUsed: true,
+        indexSeekMatched: true,
+        fullRunScanRequired: false,
+        readbackThroughputRowsPerSecond: 96000,
+      },
+      {
+        fixtureId: "fast_spill_budget",
+        status: "passed",
+        validatedArtifacts: [
+          "path_history_stream_manifest.v1",
+          "path_chunk.v1",
+          "path_event_store.v1",
+          "stream_index.v1",
+          "path_history_summary.v1",
+          "path_history_stream_memory_budget.v1",
+        ],
+        rowCount: 3,
+        chunkCount: 2,
+        pathCount: 2,
+        byteLength: 288,
+        memoryBudgetBytes: 128,
+        activeWindowBytes: 96,
+        maxActiveBytes: 96,
+        spilledBytes: 192,
+        checksumFaultDetected: false,
+        indexSeekMatched: true,
+        fullRunScanRequired: false,
+        roundTripByteStable: true,
+        backpressureApplied: true,
+        halted: false,
+        spillThroughputRowsPerSecond: 48000,
+      },
+    ],
+  };
+}
+
+function createPathHistoryContractChunkRecord(
+  chunkId,
+  chunkIndex,
+  pathKeyStart,
+  pathKeyEnd,
+  rowOffset,
+  rowCount,
+  timeStart,
+  timeEnd,
+  frameStart,
+  frameEnd,
+  byteStart,
+  byteEnd
+) {
+  return {
+    schema: "path_chunk.v1",
+    chunkId,
+    chunkIndex,
+    streamId: "fixture-path-history-stream",
+    pathKeyStart,
+    pathKeyEnd,
+    rowOffset,
+    rowCount,
+    timeRange: { start: timeStart, end: timeEnd },
+    frameRange: { start: frameStart, end: frameEnd },
+    byteRange: { start: byteStart, end: byteEnd },
+    layout: "path_chunk.v1",
+    numericType: "f64",
+    headerChecksum: chunkIndex === 0 ? "aaaaaaaaaaaaaaaa" : "bbbbbbbbbbbbbbbb",
+    payloadChecksum: chunkIndex === 0 ? "1111111111111111" : "2222222222222222",
+    chunkChecksum: chunkIndex === 0 ? "cccccccccccccccc" : "dddddddddddddddd",
+    committed: true,
+  };
+}
+
+function createPathHistoryContractEvent(sequence, eventClass, severity, affectedStreamId, affectedChunkId) {
+  const event = {
+    sequence,
+    eventClass,
+    affectedStreamId,
+    severity,
+    recoverable: severity !== "error" && severity !== "halt",
+  };
+  if (affectedChunkId) {
+    event.affectedChunkId = affectedChunkId;
+  }
+  return event;
+}
+
+function createPathHistoryContractIndexSidecarFixture() {
+  return {
+    schema: "solver-stream-index.v1",
+    streamId: "fixture-path-history-stream",
+    indexLayout: "stream_index.v1",
+    chunkCount: 2,
+    sidecar: {
+      schema: "solver-stream-index-sidecar.v1",
+      indexLayout: "stream_index.v1",
+      numericType: "f64",
+      byteOrder: "little-endian",
+      rowSizeBytes: 64,
+      rowCount: 3,
+      byteLength: 192,
+      filePath: ".tmp/fixture-path-history-stream/stream-index.bin",
+      checksum: "eeeeeeeeeeeeeeee",
+    },
+    pathIndexRows: [
+      {
+        pathKey: 2000,
+        chunkIndex: 0,
+        rowOffset: 0,
+        rowCount: 1,
+        timeRange: { start: 0, end: 1 },
+        frameRange: { start: 0, end: 0 },
+        byteRange: { start: 0, end: 96 },
+      },
+      {
+        pathKey: 2001,
+        chunkIndex: 0,
+        rowOffset: 1,
+        rowCount: 1,
+        timeRange: { start: 1, end: 2 },
+        frameRange: { start: 1, end: 1 },
+        byteRange: { start: 96, end: 192 },
+      },
+      {
+        pathKey: 2000,
+        chunkIndex: 1,
+        rowOffset: 0,
+        rowCount: 1,
+        timeRange: { start: 2, end: 3 },
+        frameRange: { start: 2, end: 2 },
+        byteRange: { start: 192, end: 288 },
       },
     ],
   };

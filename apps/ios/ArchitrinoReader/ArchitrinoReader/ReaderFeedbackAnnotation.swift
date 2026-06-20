@@ -1,43 +1,35 @@
 import PencilKit
 import SwiftUI
 import UIKit
-import WebKit
-
-@MainActor
-final class ReaderSnapshotController: ObservableObject {
-    weak var webView: WKWebView?
-
-    func captureVisibleSnapshot() async throws -> UIImage {
-        guard let webView else {
-            throw ReaderFeedbackCaptureError.missingReaderView
-        }
-        guard webView.bounds.width > 1, webView.bounds.height > 1 else {
-            throw ReaderFeedbackCaptureError.emptyReaderView
-        }
-
-        let configuration = WKSnapshotConfiguration()
-        configuration.rect = webView.bounds
-
-        return try await withCheckedThrowingContinuation { continuation in
-            webView.takeSnapshot(with: configuration) { image, error in
-                if let image {
-                    continuation.resume(returning: image)
-                    return
-                }
-                if let error {
-                    continuation.resume(throwing: error)
-                    return
-                }
-                continuation.resume(throwing: ReaderFeedbackCaptureError.emptySnapshot)
-            }
-        }
-    }
-}
 
 enum ReaderFeedbackCaptureError: Error {
     case missingReaderView
     case emptyReaderView
     case emptySnapshot
+}
+
+@MainActor
+enum ReaderPageSnapshotCapture {
+    static func captureVisiblePageSnapshot() throws -> UIImage {
+        guard let window = UIApplication.shared.readerKeyWindow else {
+            throw ReaderFeedbackCaptureError.missingReaderView
+        }
+        guard window.bounds.width > 1, window.bounds.height > 1 else {
+            throw ReaderFeedbackCaptureError.emptyReaderView
+        }
+
+        let format = UIGraphicsImageRendererFormat.default()
+        format.scale = window.screen.scale
+        let renderer = UIGraphicsImageRenderer(bounds: window.bounds, format: format)
+        let image = renderer.image { _ in
+            window.drawHierarchy(in: window.bounds, afterScreenUpdates: true)
+        }
+
+        guard image.size.width > 1, image.size.height > 1 else {
+            throw ReaderFeedbackCaptureError.emptySnapshot
+        }
+        return image
+    }
 }
 
 struct ReaderFeedbackContext {
@@ -90,97 +82,87 @@ struct ReaderFeedbackContext {
     }
 }
 
-struct ReaderFeedbackDraft: Identifiable {
-    let id = UUID()
-    let context: ReaderFeedbackContext
+struct ReaderPageFeedbackOverlay: View {
     let baseImage: UIImage
-
-    init(snapshot: UIImage, context: ReaderFeedbackContext, theme: ReaderTheme) {
-        self.context = context
-        baseImage = ReaderFeedbackImageRenderer.makeBaseImage(from: snapshot, theme: theme)
-    }
-}
-
-struct ReaderFeedbackAnnotationSheet: View {
-    let draft: ReaderFeedbackDraft
+    let context: ReaderFeedbackContext
     let theme: ReaderTheme
+    let onClose: () -> Void
 
-    @Environment(\.dismiss) private var dismiss
     @State private var canvasView: PKCanvasView?
     @State private var hasDrawing = false
     @State private var sharePayload: ReaderFeedbackSharePayload?
 
     var body: some View {
-        NavigationStack {
-            ZStack {
-                Color(uiColor: theme.feedbackBackgroundUIColor)
-                    .ignoresSafeArea()
+        ZStack {
+            ReaderPageFeedbackCanvasView(canvasView: $canvasView, hasDrawing: $hasDrawing)
+                .ignoresSafeArea()
 
-                GeometryReader { geometry in
-                    ScrollView {
-                        ReaderFeedbackCanvasView(
-                            baseImage: draft.baseImage,
-                            canvasView: $canvasView,
-                            hasDrawing: $hasDrawing
-                        )
-                        .aspectRatio(draft.baseImage.size, contentMode: .fit)
-                        .frame(maxWidth: min(geometry.size.width - 24, 940))
-                        .padding(.vertical, 16)
-                        .frame(maxWidth: .infinity)
-                    }
-                    .scrollIndicators(.hidden)
-                }
-            }
-            .navigationTitle("Feedback")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbarBackground(Color(uiColor: theme.feedbackBackgroundUIColor), for: .navigationBar)
-            .toolbarBackground(.visible, for: .navigationBar)
-            .toolbarColorScheme(theme.feedbackToolbarColorScheme, for: .navigationBar)
-            .tint(theme.feedbackAccentColor)
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button {
-                        dismiss()
-                    } label: {
-                        Image(systemName: "xmark")
-                    }
-                    .accessibilityLabel("Close feedback")
-                }
+            Rectangle()
+                .stroke(Color.readerFeedbackOrange.opacity(0.86), lineWidth: 3)
+                .ignoresSafeArea()
+                .allowsHitTesting(false)
 
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    HStack(spacing: 16) {
-                        Button {
+            VStack {
+                HStack {
+                    feedbackIconButton(systemName: "xmark", accessibilityLabel: "Close feedback", action: onClose)
+
+                    Spacer()
+
+                    HStack(spacing: 8) {
+                        feedbackIconButton(
+                            systemName: "arrow.uturn.backward",
+                            accessibilityLabel: "Undo annotation",
+                            isDisabled: !hasDrawing
+                        ) {
                             canvasView?.undoManager?.undo()
                             updateDrawingState()
-                        } label: {
-                            Image(systemName: "arrow.uturn.backward")
                         }
-                        .disabled(!hasDrawing)
-                        .accessibilityLabel("Undo annotation")
 
-                        Button {
+                        feedbackIconButton(
+                            systemName: "trash",
+                            accessibilityLabel: "Clear annotation",
+                            isDisabled: !hasDrawing
+                        ) {
                             canvasView?.drawing = PKDrawing()
                             updateDrawingState()
-                        } label: {
-                            Image(systemName: "trash")
                         }
-                        .disabled(!hasDrawing)
-                        .accessibilityLabel("Clear annotation")
 
-                        Button {
+                        feedbackIconButton(systemName: "square.and.arrow.up", accessibilityLabel: "Share annotated feedback") {
                             shareAnnotatedFeedback()
-                        } label: {
-                            Image(systemName: "square.and.arrow.up")
                         }
-                        .accessibilityLabel("Share annotated feedback")
                     }
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 6)
+                    .background(theme.feedbackChromeBackgroundColor)
+                    .clipShape(Capsule())
                 }
+                .padding(.horizontal, 14)
+                .padding(.top, 8)
+
+                Spacer()
             }
         }
-        .preferredColorScheme(theme.feedbackToolbarColorScheme)
         .sheet(item: $sharePayload) { payload in
             ReaderFeedbackShareSheet(activityItems: payload.activityItems)
         }
+    }
+
+    private func feedbackIconButton(
+        systemName: String,
+        accessibilityLabel: String,
+        isDisabled: Bool = false,
+        action: @escaping () -> Void
+    ) -> some View {
+        Button(action: action) {
+            Image(systemName: systemName)
+                .font(.system(size: 17, weight: .semibold))
+                .foregroundStyle(isDisabled ? theme.feedbackDisabledColor : theme.feedbackActionColor)
+                .frame(width: 36, height: 36)
+                .background(theme.feedbackChromeBackgroundColor)
+                .clipShape(Circle())
+        }
+        .disabled(isDisabled)
+        .accessibilityLabel(accessibilityLabel)
     }
 
     private func updateDrawingState() {
@@ -193,38 +175,39 @@ struct ReaderFeedbackAnnotationSheet: View {
 
     private func shareAnnotatedFeedback() {
         guard let canvasView else {
-            sharePayload = ReaderFeedbackSharePayload(activityItems: [draft.context.shareText, draft.baseImage])
+            sharePayload = ReaderFeedbackSharePayload(activityItems: [context.shareText, baseImage])
             return
         }
 
         let image = ReaderFeedbackImageRenderer.renderAnnotatedImage(
-            baseImage: draft.baseImage,
+            baseImage: baseImage,
             drawing: canvasView.drawing,
             canvasBounds: canvasView.bounds
         )
-        sharePayload = ReaderFeedbackSharePayload(activityItems: [draft.context.shareText, image])
+        sharePayload = ReaderFeedbackSharePayload(activityItems: [context.shareText, image])
     }
 }
 
-private struct ReaderFeedbackCanvasView: UIViewRepresentable {
-    let baseImage: UIImage
+private struct ReaderPageFeedbackCanvasView: UIViewRepresentable {
     @Binding var canvasView: PKCanvasView?
     @Binding var hasDrawing: Bool
 
-    func makeUIView(context: Context) -> ReaderFeedbackCanvasContainerView {
-        let view = ReaderFeedbackCanvasContainerView()
-        view.configure(baseImage: baseImage)
-        view.canvasView.delegate = context.coordinator
+    func makeUIView(context: Context) -> PKCanvasView {
+        let view = PKCanvasView()
+        view.backgroundColor = .clear
+        view.isOpaque = false
+        view.isScrollEnabled = false
+        view.drawingPolicy = .anyInput
+        view.tool = PKInkingTool(.pen, color: .readerFeedbackOrange, width: 5.5)
+        view.delegate = context.coordinator
         DispatchQueue.main.async {
-            canvasView = view.canvasView
-            hasDrawing = view.canvasView.drawing.hasVisibleStrokes
+            canvasView = view
+            hasDrawing = view.drawing.hasVisibleStrokes
         }
         return view
     }
 
-    func updateUIView(_ uiView: ReaderFeedbackCanvasContainerView, context: Context) {
-        uiView.configure(baseImage: baseImage)
-    }
+    func updateUIView(_ uiView: PKCanvasView, context: Context) {}
 
     func makeCoordinator() -> Coordinator {
         Coordinator(hasDrawing: $hasDrawing)
@@ -240,52 +223,6 @@ private struct ReaderFeedbackCanvasView: UIViewRepresentable {
         func canvasViewDrawingDidChange(_ canvasView: PKCanvasView) {
             hasDrawing = canvasView.drawing.hasVisibleStrokes
         }
-    }
-}
-
-private final class ReaderFeedbackCanvasContainerView: UIView {
-    let imageView = UIImageView()
-    let canvasView = PKCanvasView()
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setup()
-    }
-
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        setup()
-    }
-
-    func configure(baseImage: UIImage) {
-        imageView.image = baseImage
-    }
-
-    private func setup() {
-        backgroundColor = .clear
-
-        imageView.contentMode = .scaleToFill
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(imageView)
-
-        canvasView.backgroundColor = .clear
-        canvasView.isOpaque = false
-        canvasView.isScrollEnabled = false
-        canvasView.drawingPolicy = .anyInput
-        canvasView.tool = PKInkingTool(.pen, color: .readerFeedbackOrange, width: 5.5)
-        canvasView.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(canvasView)
-
-        NSLayoutConstraint.activate([
-            imageView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            imageView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            imageView.topAnchor.constraint(equalTo: topAnchor),
-            imageView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            canvasView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            canvasView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            canvasView.topAnchor.constraint(equalTo: topAnchor),
-            canvasView.bottomAnchor.constraint(equalTo: bottomAnchor),
-        ])
     }
 }
 
@@ -305,59 +242,12 @@ private struct ReaderFeedbackShareSheet: UIViewControllerRepresentable {
 }
 
 private enum ReaderFeedbackImageRenderer {
-    static func makeBaseImage(from snapshot: UIImage, theme: ReaderTheme) -> UIImage {
-        let sourceSize = CGSize(
-            width: max(1, snapshot.size.width),
-            height: max(1, snapshot.size.height)
-        )
-        let horizontalMargin = max(48, sourceSize.width * 0.08)
-        let topMargin = max(28, sourceSize.height * 0.035)
-        let screenshotBottomSpacing: CGFloat = 34
-        let writingHeight = max(300, sourceSize.height * 0.42)
-        let bottomMargin = max(40, topMargin)
-        let canvasSize = CGSize(
-            width: sourceSize.width + (horizontalMargin * 2),
-            height: topMargin + sourceSize.height + screenshotBottomSpacing + writingHeight + bottomMargin
-        )
-
-        let format = UIGraphicsImageRendererFormat.default()
-        format.scale = max(2, snapshot.scale)
-        let renderer = UIGraphicsImageRenderer(size: canvasSize, format: format)
-
-        return renderer.image { context in
-            theme.feedbackBackgroundUIColor.setFill()
-            context.fill(CGRect(origin: .zero, size: canvasSize))
-
-            let screenshotRect = CGRect(
-                x: horizontalMargin,
-                y: topMargin,
-                width: sourceSize.width,
-                height: sourceSize.height
-            )
-            snapshot.draw(in: screenshotRect)
-
-            let borderPath = UIBezierPath(roundedRect: screenshotRect, cornerRadius: 16)
-            theme.feedbackRuleUIColor.withAlphaComponent(0.22).setStroke()
-            borderPath.lineWidth = 1
-            borderPath.stroke()
-
-            let writingRect = CGRect(
-                x: horizontalMargin,
-                y: screenshotRect.maxY + screenshotBottomSpacing,
-                width: sourceSize.width,
-                height: writingHeight
-            )
-            drawWritingRules(in: writingRect, theme: theme)
-        }
-    }
-
     static func renderAnnotatedImage(baseImage: UIImage, drawing: PKDrawing, canvasBounds: CGRect) -> UIImage {
         guard canvasBounds.width > 1, canvasBounds.height > 1 else {
             return baseImage
         }
 
-        let exportScale = baseImage.size.width / canvasBounds.width
-        let drawingImage = drawing.image(from: canvasBounds, scale: exportScale)
+        let drawingImage = drawing.image(from: canvasBounds, scale: max(1, baseImage.scale))
         let format = UIGraphicsImageRendererFormat.default()
         format.scale = max(2, baseImage.scale)
         let renderer = UIGraphicsImageRenderer(size: baseImage.size, format: format)
@@ -367,21 +257,14 @@ private enum ReaderFeedbackImageRenderer {
             drawingImage.draw(in: CGRect(origin: .zero, size: baseImage.size))
         }
     }
+}
 
-    private static func drawWritingRules(in rect: CGRect, theme: ReaderTheme) {
-        let path = UIBezierPath()
-        let lineSpacing: CGFloat = 58
-        var y = rect.minY + lineSpacing
-
-        while y < rect.maxY {
-            path.move(to: CGPoint(x: rect.minX, y: y))
-            path.addLine(to: CGPoint(x: rect.maxX, y: y))
-            y += lineSpacing
-        }
-
-        theme.feedbackRuleUIColor.setStroke()
-        path.lineWidth = 1
-        path.stroke()
+private extension UIApplication {
+    var readerKeyWindow: UIWindow? {
+        connectedScenes
+            .compactMap { $0 as? UIWindowScene }
+            .flatMap(\.windows)
+            .first { $0.isKeyWindow }
     }
 }
 
@@ -395,44 +278,36 @@ private extension UIColor {
     static let readerFeedbackOrange = UIColor(red: 1, green: 149 / 255, blue: 0, alpha: 1)
 }
 
+private extension Color {
+    static let readerFeedbackOrange = Color(uiColor: .readerFeedbackOrange)
+}
+
 private extension ReaderTheme {
-    var feedbackBackgroundUIColor: UIColor {
+    var feedbackChromeBackgroundColor: Color {
         switch self {
         case .architrinoPurple:
-            return UIColor(red: 75 / 255, green: 0, blue: 130 / 255, alpha: 1)
+            return Color(red: 106 / 255, green: 32 / 255, blue: 151 / 255).opacity(0.88)
         case .light:
-            return UIColor(red: 253 / 255, green: 253 / 255, blue: 253 / 255, alpha: 1)
+            return Color.white.opacity(0.88)
         case .warm:
-            return UIColor(red: 244 / 255, green: 236 / 255, blue: 216 / 255, alpha: 1)
+            return Color(red: 250 / 255, green: 244 / 255, blue: 229 / 255).opacity(0.9)
         case .dark:
-            return UIColor(red: 15 / 255, green: 23 / 255, blue: 42 / 255, alpha: 1)
+            return Color(red: 30 / 255, green: 41 / 255, blue: 59 / 255).opacity(0.9)
         }
     }
 
-    var feedbackRuleUIColor: UIColor {
-        switch self {
-        case .architrinoPurple, .dark:
-            return UIColor.white.withAlphaComponent(0.18)
-        case .light, .warm:
-            return UIColor.black.withAlphaComponent(0.14)
-        }
-    }
-
-    var feedbackAccentColor: Color {
+    var feedbackActionColor: Color {
         switch self {
         case .architrinoPurple, .dark:
             return .white
-        case .light, .warm:
-            return .blue
+        case .light:
+            return Color(red: 15 / 255, green: 23 / 255, blue: 42 / 255)
+        case .warm:
+            return Color(red: 60 / 255, green: 43 / 255, blue: 25 / 255)
         }
     }
 
-    var feedbackToolbarColorScheme: ColorScheme? {
-        switch self {
-        case .architrinoPurple, .dark:
-            return .dark
-        case .light, .warm:
-            return .light
-        }
+    var feedbackDisabledColor: Color {
+        feedbackActionColor.opacity(0.36)
     }
 }
