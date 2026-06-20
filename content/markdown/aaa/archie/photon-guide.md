@@ -91,9 +91,9 @@ The `x`, `y`, and `z` sliders mark the zero point and snap values very close to 
 
 `Signal c/c_f` sets the causal signal speed used by the current root solve. At the default value `1.00`, the branch signal speed is $c_f$. Lower values let the diagnostic inspect slower local-signal regimes.
 
-`Photon c_\gamma/c_f` sets the photon-channel translation speed used when `Absolute history` is enabled.
+`Photon c_\gamma/c_f` sets the photon-channel translation speed used by the default `Absolute history` calculation.
 
-`Absolute history` switches the solver request from the co-moving circular-source diagnostic to a segmented absolute-history diagnostic. In that mode, each architrino source history and the Virtual Observer history translate along $+\hat{\mathbf x}$ at $c_\gamma$, and the central solver bridge solves the retained roots on short moving linear segments. This is an approximation layer for the moving-apparatus calculation; the co-moving mode remains useful for comparison.
+`Absolute history` makes the Electric Field plot use the moving-apparatus diagnostic. In that mode, each architrino source history and the Virtual Observer history translate along $+\hat{\mathbf x}$ at $c_\gamma$, and the shared solver helper solves the moving circular source against the moving Virtual Observer. This remains a diagnostic layer for the moving-apparatus calculation; the co-moving mode remains useful for comparison.
 
 The plotted E curve is recalculated by solving the causal-root equation from every active architrino source history to the Virtual Observer point. Each retained root contributes a radial Master-EOM-style hit weighted by $1/(R^2 |J|)$, where $R$ is the source-to-observer distance at the root and $J$ is the delay-map Jacobian. The app then reconstructs the displayed $E_y$ and $E_z$ components from the transverse part of the summed receiver acceleration.
 
@@ -131,7 +131,7 @@ $$
 
 Here $\sigma_s=+1$ for the trailing counter-clockwise swarm and $\sigma_s=-1$ for the leading clockwise swarm.
 
-In absolute-history mode, the same circular source history is evaluated in short moving segments. The segment start point includes the translated center term $c_\gamma\tau\hat{\mathbf x}$, and the Virtual Observer segment includes $c_\gamma t\hat{\mathbf x}$. This makes the root solve ask whether a source history point moving with the photon channel can causally reach the moving Virtual Observer.
+In absolute-history mode, the same circular source history carries the translated center term $c_\gamma\tau\hat{\mathbf x}$, and the Virtual Observer history includes $c_\gamma t\hat{\mathbf x}$. This makes the root solve ask whether a source history point moving with the photon channel can causally reach the moving Virtual Observer. Retained roots also carry source phase-at-hit metadata so later diagnostics can ask whether stable phase families are emerging.
 
 For each active source row $i=(s,\ell,q)$, the retained source times solve
 
@@ -250,10 +250,16 @@ The live Diagnostics panel includes a quality word when a readout has a useful d
 | 10 | Self-hit&nbsp;roots | How many enabled binary layers produced a retained same-source self-hit span row in the shared-geometry solver. |
 | 11 | Self-hit&nbsp;max&nbsp;$v/c_{\mathrm{sig}}$ | The largest same-source speed ratio after combining photon-channel translation speed with transverse orbital speed. Values above `1` nominate a self-hit candidate regime. |
 | 12 | Missed&nbsp;sources | How many active source rows produced no retained root. For a clean solve, this should be `0`. |
-| 13 | Delay&nbsp;solve&nbsp;gap | The largest leftover mismatch in the causal-delay equation. Smaller means the root solve is tighter. |
-| 14 | Delay&nbsp;status | A simple stable/unstable flag based on root misses, delay gap, and small-Jacobian checks. |
-| 15 | Left&nbsp;phase&nbsp;spread | How evenly the left swarm's I/M/O phases are spaced. |
-| 16 | Right&nbsp;phase&nbsp;spread | How evenly the right swarm's I/M/O phases are spaced. |
+| 13 | No&nbsp;catch-up&nbsp;sources | How many source histories did not causally catch the moving Virtual Observer in the scanned window. This can be a real moving-apparatus result when $c_\gamma$ is close to $c_{\mathrm{sig}}$. |
+| 14 | Stale&nbsp;windows | How many scan windows looked too old for the selected hit time. |
+| 15 | Near&nbsp;misses | How many source histories came close to a root but did not retain one. These deserve numerical caution. |
+| 16 | Root&nbsp;cap&nbsp;hits | How many source histories found more candidate roots than the current root cap can keep. |
+| 17 | Delay&nbsp;solve&nbsp;gap | The largest leftover mismatch in the causal-delay equation. Smaller means the root solve is tighter. |
+| 18 | Delay&nbsp;status | A simple stable/catch-up-limited/unstable flag based on root misses, no-catch-up classification, delay gap, and small-Jacobian checks. |
+| 19 | Left&nbsp;phase&nbsp;spread | How evenly the left swarm's I/M/O phases are spaced. |
+| 20 | Right&nbsp;phase&nbsp;spread | How evenly the right swarm's I/M/O phases are spaced. |
+| 21 | Trailing&nbsp;hit&nbsp;phase&nbsp;spread | How tightly retained trailing-swarm source roots cluster by source phase. Smaller means the retained roots are more phase-aligned. |
+| 22 | Leading&nbsp;hit&nbsp;phase&nbsp;spread | How tightly retained leading-swarm source roots cluster by source phase. Smaller means the retained roots are more phase-aligned. |
 
 ## Formulas
 

@@ -490,7 +490,7 @@ does not vanish, the clean four-substep branch is not energy-closed. For $\omega
 
 This result is useful because it gives the first explicit failure gate as well as the first explicit success branch. The transition is allowed in the clean minimal chart only when the angular ledger, speed-regime inequalities, self-root parity, self-delay equation, and energy-frequency condition all hold.
 
-### Candidate 2026-06-20: Test $(O,M,I)=(f-1,f,f+2)$ Around The Middle Hinge
+### Candidate 2026-06-20: Test $(I,M,O)=(f+2,f,f-1)$ Around The Middle Hinge
 
 Status: priority-only candidate under `tri_binary_partition_rule` and `worked_three_layer_noether_transition`. This is not a theorem row, not a canonized tri-binary law, and not reader-facing corpus prose. Its value is that it turns the operator/developer's three-binary offset intuition into a branch-family test that the existing partition and certificate machinery can accept or reject.
 
@@ -499,16 +499,16 @@ Promotion decision: defer with blocker. Promote only after a retained branch cha
 The candidate relation is
 
 $$
-n_O=f-1,
+n_I=f+2,
 \qquad
 n_M=f,
 \qquad
-n_I=f+2,
+n_O=f-1,
 \qquad
 f\in\mathbb Z_{>1},
 $$
 
-where $n_O,n_M,n_I$ are integer phase-lock or resonance indices for the outer, middle, and inner layers in the declared branch chart. These indices must not be mistaken for raw speeds. The speed rows remain separate:
+where $n_I,n_M,n_O$ are integer phase-lock or resonance indices for the inner, middle, and outer layers in the declared branch chart. The canonical triplet order is `I:M:O`; the equivalent legacy internal order is $(O,M,I)=(f-1,f,f+2)$. These indices must not be mistaken for raw speeds. The speed rows remain separate:
 
 $$
 s_O=R_O\omega_O<c_f,
@@ -518,7 +518,7 @@ s_M=R_M\omega_M\approx c_f,
 s_I=R_I\omega_I>c_f.
 $$
 
-The reason this candidate outranks the symmetric relation $(O,M,I)=(f-1,f,f+1)$ is the already populated minimal four-substep scaffold: the clean branch assigns one outer substep, one middle hinge substep, and two equal inner self-hit substeps. The offset $f+2$ is therefore the natural first test for whether the inner layer's extra self-hit burden is a phase-lock or resonance-index echo of the action partition
+The reason this candidate outranks the symmetric relation $(I,M,O)=(f+1,f,f-1)$ is the already populated minimal four-substep scaffold: the clean branch assigns one outer substep, one middle hinge substep, and two equal inner self-hit substeps. The offset $f+2$ is therefore the natural first test for whether the inner layer's extra self-hit burden is a phase-lock or resonance-index echo of the action partition
 
 $$
 \Delta I_{\text{outer}}:\Delta I_{\text{middle}}:\Delta I_{\text{inner}}
@@ -529,14 +529,16 @@ $$
 The exact test is not to impose the offset relation as a premise of the theorem. For each admissible $f$, build a finite candidate family containing both
 
 $$
-(n_O,n_M,n_I)=(f-1,f,f+2)
+(n_I,n_M,n_O)=(f+2,f,f-1)
 $$
 
 and the symmetric control
 
 $$
-(n_O,n_M,n_I)=(f-1,f,f+1).
+(n_I,n_M,n_O)=(f+1,f,f-1).
 $$
+
+The current search set also includes the older dyadic lock and a finite general integer-lock grid. In canonical order the dyadic control is $(I,M,O)=(4f,2f,f)$, equivalent to outer-normalized $f_O:f_M:f_I=1:2:4$. The general controls sample $(I,M,O)=(nf,mf,f)$, equivalent to outer-normalized $1:m:n$, over the declared finite `m,n` range in the runner. These rows are search candidates only; they do not promote the dyadic lock or the integer-lock lattice to retained branch acceptance.
 
 Each candidate must carry the same retained rows already demanded by this workstream:
 

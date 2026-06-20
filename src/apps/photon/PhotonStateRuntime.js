@@ -190,7 +190,7 @@ export const DEFAULT_PHOTON_STATE = Object.freeze({
     analyzerAngleDeg: 0,
   },
   measurement: {
-    sourceHistoryMode: "co_moving",
+    sourceHistoryMode: "absolute_history",
     virtualObserver: {
       x: 0,
       y: 0,

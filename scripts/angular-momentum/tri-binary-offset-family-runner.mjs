@@ -43,8 +43,23 @@ const fMax = parsePositiveInteger(args.fMax ?? "8", "f-max");
 if (fMax < fMin) {
   throw new Error("--f-max must be greater than or equal to --f-min.");
 }
+const integerLockMMax = parsePositiveInteger(
+  args.integerLockMMax ?? "4",
+  "integer-lock-m-max"
+);
+const integerLockNMax = parsePositiveInteger(
+  args.integerLockNMax ?? "6",
+  "integer-lock-n-max"
+);
+if (integerLockNMax <= integerLockMMax) {
+  throw new Error("--integer-lock-n-max must be greater than --integer-lock-m-max.");
+}
 
 const policies = resolvePolicies(args.policy ?? "all");
+const integerLockPairs = createIntegerLockPairs({
+  mMax: integerLockMMax,
+  nMax: integerLockNMax,
+});
 const fValues = [];
 for (let f = fMin; f <= fMax; f += 1) {
   fValues.push(f);
@@ -85,7 +100,7 @@ try {
   const cases = [];
   for (const policy of policies) {
     for (const f of fValues) {
-      for (const family of createFamilies(f)) {
+      for (const family of createFamilies(f, { integerLockPairs })) {
         cases.push(await runFamilyCase({ client, policy, f, family }));
       }
     }
@@ -105,13 +120,15 @@ try {
     claimLevel: "priority-only evidence; not retained-branch certification",
     sourcePriorityFile:
       "reference/priorities/angular-momentum-spin/swarm-partition-and-spinor.md",
+    frequencyTripletNotation: createFrequencyTripletNotation(),
     solver: {
       apiVersion: SOLVER_APP_BRIDGE_API_VERSION,
       wasmLoaderPath: path.relative(rootDir, wasmLoaderPath),
       wasmBinaryPath: path.relative(rootDir, wasmBinaryPath),
       initStatus: initResponse.status,
     },
-    offsetFamilies: createFamilyDefinitions(),
+    offsetFamilies: createFamilyDefinitions({ integerLockPairs }),
+    frequencyTripletFamilies: createFamilyDefinitions({ integerLockPairs }),
     policies: createPolicyDefinitions(),
     fValues,
     tolerances: {
@@ -123,6 +140,7 @@ try {
     retainedBranchChartProjection: createReportBranchChartProjection(cases, retainedLineagePhaseProbe),
     retainedLineagePhaseProbe,
     comparisons,
+    frequencyTripletSearch: createFrequencyTripletSearchSummary(cases),
     closure: createClosureSummary(cases, retainedLineagePhaseProbe),
   };
 
@@ -133,12 +151,60 @@ try {
   await client.dispose();
 }
 
-function createFamilies(f) {
-  return [
+function createIntegerLockPairs({ mMax, nMax }) {
+  const pairs = [];
+  for (let m = 2; m <= mMax; m += 1) {
+    for (let n = m + 1; n <= nMax; n += 1) {
+      if (m === 2 && n === 4) {
+        continue;
+      }
+      pairs.push({ m, n });
+    }
+  }
+  return pairs;
+}
+
+function createFrequencyTripletNotation() {
+  return {
+    canonicalOrder: "I:M:O",
+    canonicalMeaning: "inner:middle:outer",
+    legacyOrder: "O:M:I",
+    legacyMeaning: "outer:middle:inner",
+    conversion:
+      "If an internal row is written as O:M:I=(a,b,c), the canonical I:M:O triplet is c:b:a.",
+  };
+}
+
+function createFrequencyTriplet(indices) {
+  const canonicalValues = {
+    inner: indices.inner,
+    middle: indices.middle,
+    outer: indices.outer,
+  };
+  const legacyValues = {
+    outer: indices.outer,
+    middle: indices.middle,
+    inner: indices.inner,
+  };
+  return {
+    canonicalOrder: "I:M:O",
+    canonicalValues,
+    canonicalLabel: `${indices.inner}:${indices.middle}:${indices.outer}`,
+    legacyOrder: "O:M:I",
+    legacyValues,
+    legacyLabel: `${indices.outer}:${indices.middle}:${indices.inner}`,
+  };
+}
+
+function createFamilies(f, { integerLockPairs = [] } = {}) {
+  const families = [
     {
       id: "middle-hinge-offset",
-      label: "(O,M,I)=(f-1,f,f+2)",
+      label: "IMO=(f+2,f,f-1)",
+      canonicalRelation: "(I,M,O)=(f+2,f,f-1)",
+      legacyRelation: "(O,M,I)=(f-1,f,f+2)",
       priorityCandidate: true,
+      candidateClass: "middle_hinge_offset",
       indices: {
         outer: f - 1,
         middle: f,
@@ -147,8 +213,11 @@ function createFamilies(f) {
     },
     {
       id: "symmetric-control",
-      label: "(O,M,I)=(f-1,f,f+1)",
+      label: "IMO=(f+1,f,f-1)",
+      canonicalRelation: "(I,M,O)=(f+1,f,f-1)",
+      legacyRelation: "(O,M,I)=(f-1,f,f+1)",
       priorityCandidate: false,
+      candidateClass: "symmetric_offset_control",
       indices: {
         outer: f - 1,
         middle: f,
@@ -156,25 +225,87 @@ function createFamilies(f) {
       },
     },
   ];
+  families.push({
+    id: "dyadic-lock-4-2-1",
+    label: "IMO=(4f,2f,f)",
+    canonicalRelation: "(I,M,O)=(4f,2f,f)",
+    legacyRelation: "(O,M,I)=(f,2f,4f)",
+    priorityCandidate: false,
+    candidateClass: "dyadic_lock_control",
+    integerLock: {
+      outerNormalized: "1:2:4",
+      canonicalTriplet: "4:2:1",
+      m: 2,
+      n: 4,
+    },
+    indices: {
+      outer: f,
+      middle: 2 * f,
+      inner: 4 * f,
+    },
+  });
+  for (const { m, n } of integerLockPairs) {
+    families.push({
+      id: `integer-lock-m${m}-n${n}`,
+      label: `IMO=(${n}f,${m}f,f)`,
+      canonicalRelation: `(I,M,O)=(${n}f,${m}f,f)`,
+      legacyRelation: `(O,M,I)=(f,${m}f,${n}f)`,
+      priorityCandidate: false,
+      candidateClass: "general_integer_lock_control",
+      integerLock: {
+        outerNormalized: `1:${m}:${n}`,
+        canonicalTriplet: `${n}:${m}:1`,
+        m,
+        n,
+      },
+      indices: {
+        outer: f,
+        middle: m * f,
+        inner: n * f,
+      },
+    });
+  }
+  return families;
 }
 
-function createFamilyDefinitions() {
-  return [
+function createFamilyDefinitions({ integerLockPairs = [] } = {}) {
+  const definitions = [
     {
       id: "middle-hinge-offset",
-      relation: "(O,M,I)=(f-1,f,f+2)",
+      canonicalRelation: "(I,M,O)=(f+2,f,f-1)",
+      legacyRelation: "(O,M,I)=(f-1,f,f+2)",
       role: "priority candidate",
       rationale:
         "Tests whether the inner layer's doubled self-hit burden echoes the populated 1:1:2 action partition around the middle field-speed hinge.",
     },
     {
       id: "symmetric-control",
-      relation: "(O,M,I)=(f-1,f,f+1)",
+      canonicalRelation: "(I,M,O)=(f+1,f,f-1)",
+      legacyRelation: "(O,M,I)=(f-1,f,f+1)",
       role: "control",
       rationale:
         "Tests whether a symmetric one-step inner offset passes the same solver rows with equal or better evidence.",
     },
   ];
+  definitions.push({
+    id: "dyadic-lock-4-2-1",
+    canonicalRelation: "(I,M,O)=(4f,2f,f)",
+    legacyRelation: "(O,M,I)=(f,2f,4f)",
+    role: "dyadic 4:2:1 control",
+    rationale:
+      "Tests the older dyadic lock hypothesis in the same reduced angular runner, without treating the lock as theorem-grade retained branch selection.",
+  });
+  for (const { m, n } of integerLockPairs) {
+    definitions.push({
+      id: `integer-lock-m${m}-n${n}`,
+      canonicalRelation: `(I,M,O)=(${n}f,${m}f,f)`,
+      legacyRelation: `(O,M,I)=(f,${m}f,${n}f)`,
+      role: "general 1:m:n integer-lock control",
+      rationale:
+        "Samples the broader outer-normalized integer-lock lattice f_O:f_M:f_I=1:m:n under the canonical I:M:O reporting order n:m:1.",
+    });
+  }
+  return definitions;
 }
 
 function createPolicyDefinitions() {
@@ -235,9 +366,14 @@ async function runFamilyCase({ client, policy, f, family }) {
     policy,
     familyId: family.id,
     familyLabel: family.label,
+    familyCanonicalRelation: family.canonicalRelation ?? null,
+    familyLegacyRelation: family.legacyRelation ?? null,
+    candidateClass: family.candidateClass ?? null,
+    integerLock: family.integerLock ?? null,
     priorityCandidate: family.priorityCandidate,
     f,
     indices: family.indices,
+    frequencyTriplet: createFrequencyTriplet(family.indices),
     layers: layerRows,
     rowVerdicts,
     branchChartProjection,
@@ -676,6 +812,11 @@ function createBranchChartProjection({ policy, f, family, layers, rowVerdicts })
     f,
     familyId: family.id,
     familyLabel: family.label,
+    familyCanonicalRelation: family.canonicalRelation ?? null,
+    familyLegacyRelation: family.legacyRelation ?? null,
+    candidateClass: family.candidateClass ?? null,
+    integerLock: family.integerLock ?? null,
+    frequencyTriplet: createFrequencyTriplet(family.indices),
     branchSelectionResidualStatus: "blocked_not_evaluable",
     auditPartition: {
       eval: [],
@@ -1960,6 +2101,9 @@ function createMinimalBranchTransactionFrequencyCertificate({
     selectedCaseId: selectedCase?.caseId ?? null,
     familyId: selectedCase?.familyId ?? null,
     familyLabel: selectedCase?.familyLabel ?? null,
+    familyCanonicalRelation: selectedCase?.familyCanonicalRelation ?? null,
+    familyLegacyRelation: selectedCase?.familyLegacyRelation ?? null,
+    frequencyTriplet: selectedCase?.frequencyTriplet ?? null,
     indices: selectedCase?.indices ?? null,
     indexOffset,
     minimalSubstepPatternPass,
@@ -1973,7 +2117,7 @@ function createMinimalBranchTransactionFrequencyCertificate({
     geometryTransportPass,
     acceptanceBlockers,
     retainedLimitation:
-      "The four-substep weighted frequency is exact for the selected reduced $(f-1,f,f+2)$ middle-hinge branch, but it is only an omega_tx source after the same route has an accepted retained point-event or positive-width retained domain, geometrically continuous branch transport, and same-event energy carrier population.",
+      "The four-substep weighted frequency is exact for the selected reduced canonical I:M:O=(f+2,f,f-1) middle-hinge branch, but it is only an omega_tx source after the same route has an accepted retained point-event or positive-width retained domain, geometrically continuous branch transport, and same-event energy carrier population.",
   };
 }
 
@@ -18841,6 +18985,82 @@ function createEvidenceVerdict(rowVerdicts) {
   };
 }
 
+function createFrequencyTripletSearchSummary(cases) {
+  const familyBuckets = new Map();
+  const bestByPolicyF = new Map();
+  for (const item of cases) {
+    const innerSelfHitSpan =
+      item.layers.find((row) => row.layer === "inner")?.selfHit?.span ?? null;
+    const familyBucket = familyBuckets.get(item.familyId) ?? {
+      familyId: item.familyId,
+      familyLabel: item.familyLabel,
+      familyCanonicalRelation: item.familyCanonicalRelation,
+      familyLegacyRelation: item.familyLegacyRelation,
+      candidateClass: item.candidateClass,
+      integerLock: item.integerLock,
+      caseCount: 0,
+      reducedPassCount: 0,
+      bestInnerSelfHitSpan: null,
+      bestInnerSelfHitSpanCaseId: null,
+      bestInnerSelfHitSpanTriplet: null,
+    };
+    familyBucket.caseCount += 1;
+    if (item.evidenceVerdict.status === "solver_rows_pass_reduced_probe") {
+      familyBucket.reducedPassCount += 1;
+    }
+    if (
+      Number.isFinite(innerSelfHitSpan) &&
+      (familyBucket.bestInnerSelfHitSpan == null ||
+        innerSelfHitSpan > familyBucket.bestInnerSelfHitSpan)
+    ) {
+      familyBucket.bestInnerSelfHitSpan = innerSelfHitSpan;
+      familyBucket.bestInnerSelfHitSpanCaseId = item.caseId;
+      familyBucket.bestInnerSelfHitSpanTriplet = item.frequencyTriplet;
+    }
+    familyBuckets.set(item.familyId, familyBucket);
+
+    const policyFKey = `${item.policy}:f${item.f}`;
+    const currentBest = bestByPolicyF.get(policyFKey);
+    if (
+      Number.isFinite(innerSelfHitSpan) &&
+      (!currentBest || innerSelfHitSpan > currentBest.innerSelfHitSpan)
+    ) {
+      bestByPolicyF.set(policyFKey, {
+        policyFKey,
+        policy: item.policy,
+        f: item.f,
+        caseId: item.caseId,
+        familyId: item.familyId,
+        familyLabel: item.familyLabel,
+        familyCanonicalRelation: item.familyCanonicalRelation,
+        candidateClass: item.candidateClass,
+        integerLock: item.integerLock,
+        frequencyTriplet: item.frequencyTriplet,
+        innerSelfHitSpan,
+        reducedRowsPass:
+          item.evidenceVerdict.status === "solver_rows_pass_reduced_probe",
+        retainedBranchClaim: false,
+      });
+    }
+  }
+  return {
+    schema: "aaa-tri-binary-frequency-triplet-search-summary.v1",
+    claimLevel:
+      "candidate search summary over canonical I:M:O frequency triplets; not retained-branch certification",
+    canonicalOrder: "I:M:O",
+    legacyOrder: "O:M:I",
+    caseCount: cases.length,
+    familyCount: familyBuckets.size,
+    familySummaries: Array.from(familyBuckets.values()).sort((left, right) =>
+      left.familyId.localeCompare(right.familyId)
+    ),
+    bestByPolicyF: Array.from(bestByPolicyF.values()).sort((left, right) =>
+      left.policyFKey.localeCompare(right.policyFKey)
+    ),
+    retainedBranchClaim: false,
+  };
+}
+
 function createComparisons(cases) {
   const grouped = new Map();
   for (const item of cases) {
@@ -18904,6 +19124,9 @@ function printSummary(report, absoluteOutputPath) {
   const relOutputPath = path.relative(rootDir, absoluteOutputPath);
   console.log(`tri-binary offset family solver report: ${relOutputPath}`);
   console.log(`solver-backed cases: ${report.cases.length}`);
+  console.log(
+    `frequency triplet families: ${report.frequencyTripletSearch?.familyCount ?? "unknown"} (canonical order I:M:O)`
+  );
   for (const comparison of report.comparisons) {
     console.log(
       [
@@ -19055,6 +19278,8 @@ function printUsage(exitCode) {
   console.log("Options:");
   console.log("  --f-min <n>       First f index to test. Default: 2");
   console.log("  --f-max <n>       Last f index to test. Default: 8");
+  console.log("  --integer-lock-m-max <n>  Last m in general 1:m:n controls. Default: 4");
+  console.log("  --integer-lock-n-max <n>  Last n in general 1:m:n controls. Default: 6");
   console.log("  --policy <name>   all | phase-lock | index-ratio. Default: all");
   console.log(`  --output <path>   JSON report path. Default: ${DEFAULT_OUTPUT_PATH}`);
   console.log("  --wasm-dir <path> Solver WASM build directory. Default: .tmp/solver-build/wasm");

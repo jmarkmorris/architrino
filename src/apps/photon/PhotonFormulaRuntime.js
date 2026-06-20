@@ -7,8 +7,10 @@ import {
 } from "../../solver/app/SolverAppBridgeClientResolver.mjs";
 import {
   createMovingCircularSourceLinearizedRootRequests,
+  createMovingCircularSourceRootRequest,
   evaluateLinearHistoryPoint,
   evaluateMovingCircularSourceHistory,
+  solveMovingCircularSourceCausalRoots,
 } from "../../solver/app/AbsoluteHistoryRootRuntime.mjs";
 import {
   PHOTON_LAYER_ORDER,
@@ -867,6 +869,48 @@ export function createPhotonAbsoluteSourceSegmentCausalRootRequests(
   });
 }
 
+export function createPhotonAbsoluteMovingCircularCausalRootRequest(
+  state,
+  sourceRef,
+  observationTime,
+  options = {}
+) {
+  const measurement = options.measurement ?? resolvePhotonMeasurementParameters(state);
+  const hitTime = Number(observationTime) || 0;
+  const maxDelay = normalizeNonnegativeSolverNumber(
+    options.maxDelay,
+    getPhotonAbsoluteSourceMaxDelay(state, sourceRef, measurement)
+  );
+  const sourceStartTime = Number.isFinite(Number(options.sourceStartTime))
+    ? Number(options.sourceStartTime)
+    : hitTime - maxDelay;
+  const sourceEndTime = Number.isFinite(Number(options.sourceEndTime))
+    ? Number(options.sourceEndTime)
+    : hitTime;
+  const layer = getPhotonLayer(state, sourceRef.swarmId, sourceRef.layerId);
+  const frequency = Math.max(0, Math.abs(Number(layer.frequencyHz) || 0));
+  const scanSubdivisions = normalizePositiveSolverInteger(
+    options.scanSubdivisions,
+    Math.min(
+      ROOT_SCAN_MAX_STEPS,
+      Math.max(ROOT_SCAN_MIN_STEPS, Math.ceil(maxDelay * frequency * ROOT_SCAN_STEPS_PER_CYCLE))
+    )
+  );
+  return createMovingCircularSourceRootRequest({
+    source: createPhotonAbsoluteMovingCircularSourceHistory(state, sourceRef, measurement),
+    receiver: createPhotonAbsoluteVirtualObserverHistory(measurement),
+    hitTime,
+    signalSpeed: measurement.emissionSpeedCf,
+    sourceStartTime,
+    sourceEndTime,
+    rootTolerance: options.rootTolerance ?? DEFAULT_PHOTON_ROOT_TOLERANCE,
+    maxIterations: options.maxIterations ?? 96,
+    scanSubdivisions,
+    maxRoots: normalizePositiveSolverInteger(options.maxRoots, Math.max(16, scanSubdivisions + 1)),
+    sourceRef,
+  });
+}
+
 function createPhotonPhaseAtHitRecord(state, sourceRef, emissionTime, sourcePhase = null) {
   const rawPhase = Number.isFinite(Number(sourcePhase?.rawRadians))
     ? Number(sourcePhase.rawRadians)
@@ -898,6 +942,65 @@ function createPhotonPhaseAtHitRecord(state, sourceRef, emissionTime, sourcePhas
     receiverPhaseRadians: null,
     receiverPhaseDegrees: null,
     receiverPhaseCycleIndex: null,
+  };
+}
+
+function mapPhotonMovingCircularRootToDelayedRoot(state, sourceRef, measurement, request, root = {}) {
+  const emissionTime = Number(root.emissionTime) || 0;
+  const hitTime = Number(root.hitTime) || request.hitTime || 0;
+  const delay = Number.isFinite(Number(root.delay))
+    ? Number(root.delay)
+    : Math.max(0, hitTime - emissionTime);
+  const movingSourceSample = evaluateMovingCircularSourceHistory(request.source, emissionTime);
+  const sourcePoint = root.sourcePoint && typeof root.sourcePoint === "object"
+    ? root.sourcePoint
+    : movingSourceSample.position;
+  const receiverPoint = root.receiverPoint && typeof root.receiverPoint === "object"
+    ? root.receiverPoint
+    : evaluateLinearHistoryPoint(request.receiver, hitTime);
+  const delta = subtractVector(receiverPoint, sourcePoint);
+  const { distance, direction } = safeDirectionVector(delta);
+  const coMovingKinematics = getPhotonArchitrinoKinematics(
+    state,
+    sourceRef.swarmId,
+    sourceRef.layerId,
+    sourceRef.chargeType,
+    emissionTime
+  );
+  return {
+    ...root,
+    emissionTime,
+    hitTime,
+    delay,
+    residual: Number.isFinite(Number(root.residual)) ? Number(root.residual) : 0,
+    distance: Number.isFinite(Number(root.distance)) ? Number(root.distance) : distance,
+    direction,
+    kinematics: {
+      ...coMovingKinematics,
+      sourceHistoryMode: "absolute_history_moving_circular",
+      position: {
+        x: Number(sourcePoint.x) || 0,
+        y: Number(sourcePoint.y) || 0,
+        z: Number(sourcePoint.z) || 0,
+      },
+      velocity: {
+        x: Number(root.sourceVelocity?.x ?? movingSourceSample.velocity.x) || 0,
+        y: Number(root.sourceVelocity?.y ?? movingSourceSample.velocity.y) || 0,
+        z: Number(root.sourceVelocity?.z ?? movingSourceSample.velocity.z) || 0,
+      },
+    },
+    receiverPoint,
+    sourceHistoryKind: root.sourceHistoryKind ?? request.sourceHistoryKind ?? "moving-circular-source",
+    phaseAtHit: createPhotonPhaseAtHitRecord(
+      state,
+      sourceRef,
+      emissionTime,
+      root.sourcePhase ?? movingSourceSample.phase
+    ),
+    solveIterations: Number.isFinite(Number(root.iterationCount))
+      ? Number(root.iterationCount)
+      : Number(root.solveIterations) || 0,
+    solverEngineId: PHOTON_SOLVER_BRIDGE_ENGINE_ID,
   };
 }
 
@@ -1094,8 +1197,23 @@ export async function solvePhotonAbsoluteCausalRootsForSourceWithSolverBridge(
   observationTime,
   options = {}
 ) {
+  const rootSet = await solvePhotonAbsoluteCausalRootSetForSourceWithSolverBridge(
+    state,
+    sourceRef,
+    observationTime,
+    options
+  );
+  return rootSet.roots;
+}
+
+async function solvePhotonAbsoluteCausalRootSetForSourceWithSolverBridge(
+  state,
+  sourceRef,
+  observationTime,
+  options = {}
+) {
   const measurement = options.measurement ?? resolvePhotonMeasurementParameters(state);
-  const requests = createPhotonAbsoluteSourceSegmentCausalRootRequests(
+  const request = createPhotonAbsoluteMovingCircularCausalRootRequest(
     state,
     sourceRef,
     observationTime,
@@ -1104,35 +1222,29 @@ export async function solvePhotonAbsoluteCausalRootsForSourceWithSolverBridge(
       measurement,
     }
   );
-  const solveRequest = async (request) => {
-    const segmentId = [
-      sourceRef.swarmId,
-      sourceRef.layerId,
-      sourceRef.chargeType,
-      request.segmentIndex,
-      formatSolverIdNumber(observationTime),
-    ].join("-");
-    const roots = await solvePhotonCausalRootsWithSolverBridge(request, {
-      ...options,
-      requestId: options.requestId ?? `photon-absolute-${segmentId}-request`,
-      runId: options.runId ?? `photon-absolute-${segmentId}`,
-      datasetId: options.datasetId ?? `photon-absolute-${segmentId}-dataset`,
-    });
-    return roots.map((root) => mapPhotonLinearSegmentRootToDelayedRoot(
+  const response = typeof options.solveMovingCircularSourceRoots === "function"
+    ? await options.solveMovingCircularSourceRoots(request)
+    : solveMovingCircularSourceCausalRoots(request);
+  const roots = Array.isArray(response?.roots) ? response.roots : [];
+  const mappedRoots = roots
+    .map((root) => mapPhotonMovingCircularRootToDelayedRoot(
       state,
       sourceRef,
       measurement,
       request,
       root
-    ));
+    ))
+    .sort((a, b) => a.delay - b.delay);
+  return {
+    sourceRef,
+    roots: mappedRoots,
+    rootDiagnostics: createPhotonSourceRootDiagnostics(
+      sourceRef,
+      measurement,
+      response,
+      mappedRoots
+    ),
   };
-  const rootsBySegment = options.parallel === false ? [] : await Promise.all(requests.map(solveRequest));
-  if (options.parallel === false) {
-    for (const request of requests) {
-      rootsBySegment.push(await solveRequest(request));
-    }
-  }
-  return dedupePhotonDelayedRoots(rootsBySegment.flat());
 }
 
 export async function solvePhotonCausalRootsForSourceWithSolverBridge(
@@ -1164,6 +1276,86 @@ export async function solvePhotonCausalRootsForSourceWithSolverBridge(
   );
 }
 
+function createPhotonSourceRootDiagnostics(sourceRef, measurement, response = {}, roots = []) {
+  const scan = response?.scan && typeof response.scan === "object" ? response.scan : null;
+  const status = response?.status && typeof response.status === "object" ? response.status : {};
+  const rootCount = Array.isArray(roots) ? roots.length : 0;
+  const rejectedReason = rootCount > 0
+    ? ""
+    : response?.rejectedReason || status.code || "no_roots";
+  return {
+    sourceRef,
+    sourceHistoryMode: measurement?.sourceHistoryMode ?? "co_moving",
+    rootCount,
+    statusCode: status.code ?? (rootCount > 0 ? "ok" : "no_roots"),
+    statusSeverity: status.severity ?? (rootCount > 0 ? "ok" : "warning"),
+    rejectedReason,
+    rootLimitReached: scan?.rootLimitReached === true || status.code === "partial",
+    signChangeCount: Number(scan?.signChangeCount) || 0,
+    minResidual: Number.isFinite(Number(scan?.minResidual)) ? Number(scan.minResidual) : 0,
+    maxResidual: Number.isFinite(Number(scan?.maxResidual)) ? Number(scan.maxResidual) : 0,
+    minAbsResidual: Number.isFinite(Number(scan?.minAbsResidual)) ? Number(scan.minAbsResidual) : 0,
+    minAbsTime: Number.isFinite(Number(scan?.minAbsTime)) ? Number(scan.minAbsTime) : null,
+    sourceStartTime: Number.isFinite(Number(scan?.sourceStartTime)) ? Number(scan.sourceStartTime) : null,
+    sourceEndTime: Number.isFinite(Number(scan?.sourceEndTime)) ? Number(scan.sourceEndTime) : null,
+  };
+}
+
+function summarizePhotonRootDiagnostics(rootSets = []) {
+  const sourceDiagnostics = rootSets
+    .map((rootSet) => rootSet.rootDiagnostics)
+    .filter((diagnostic) => diagnostic && typeof diagnostic === "object");
+  const rejectedReasonCounts = {};
+  let rejectedSourceCount = 0;
+  let noCatchUpSourceCount = 0;
+  let staleHistorySourceCount = 0;
+  let nearMissSourceCount = 0;
+  let unisolatedCandidateCount = 0;
+  let emptyWindowSourceCount = 0;
+  let rootLimitReachedCount = 0;
+  let closestMissResidual = Number.POSITIVE_INFINITY;
+
+  sourceDiagnostics.forEach((diagnostic) => {
+    if (diagnostic.rootLimitReached) {
+      rootLimitReachedCount += 1;
+    }
+    if (diagnostic.rootCount > 0) {
+      return;
+    }
+    rejectedSourceCount += 1;
+    const reason = diagnostic.rejectedReason || "no_roots";
+    rejectedReasonCounts[reason] = (rejectedReasonCounts[reason] ?? 0) + 1;
+    if (reason === "no_catch_up_root") {
+      noCatchUpSourceCount += 1;
+    } else if (reason === "stale_history_window") {
+      staleHistorySourceCount += 1;
+    } else if (reason === "near_miss") {
+      nearMissSourceCount += 1;
+    } else if (reason === "unisolated_root_candidate") {
+      unisolatedCandidateCount += 1;
+    } else if (reason === "empty_window") {
+      emptyWindowSourceCount += 1;
+    }
+    closestMissResidual = Math.min(
+      closestMissResidual,
+      Math.abs(Number(diagnostic.minAbsResidual) || 0)
+    );
+  });
+
+  return {
+    sourceDiagnostics,
+    rejectedSourceCount,
+    noCatchUpSourceCount,
+    staleHistorySourceCount,
+    nearMissSourceCount,
+    unisolatedCandidateCount,
+    emptyWindowSourceCount,
+    rootLimitReachedCount,
+    closestMissResidual: Number.isFinite(closestMissResidual) ? closestMissResidual : 0,
+    rejectedReasonCounts,
+  };
+}
+
 export async function computePhotonDelayedEmissionFieldWithSolverBridge(
   state,
   observationTime,
@@ -1171,18 +1363,32 @@ export async function computePhotonDelayedEmissionFieldWithSolverBridge(
 ) {
   const measurement = options.measurement ?? resolvePhotonMeasurementParameters(state);
   const sourceRefs = buildPhotonArchitrinoSourceRefs(state);
-  const solveRootSet = async (sourceRef) => ({
-    sourceRef,
-    roots: await solvePhotonCausalRootsForSourceWithSolverBridge(
-      state,
+  const solveRootSet = async (sourceRef) => {
+    if (measurement.sourceHistoryMode === "absolute_history") {
+      return solvePhotonAbsoluteCausalRootSetForSourceWithSolverBridge(
+        state,
+        sourceRef,
+        observationTime,
+        {
+          ...options,
+          measurement,
+        }
+      );
+    }
+    return {
       sourceRef,
-      observationTime,
-      {
-        ...options,
-        measurement,
-      }
-    ),
-  });
+      roots: await solvePhotonCoMovingCausalRootsForSourceWithSolverBridge(
+        state,
+        sourceRef,
+        observationTime,
+        {
+          ...options,
+          measurement,
+        }
+      ),
+      rootDiagnostics: null,
+    };
+  };
   const rootSets = options.parallel === false
     ? []
     : await Promise.all(sourceRefs.map((sourceRef) => solveRootSet(sourceRef)));
@@ -1225,10 +1431,11 @@ export async function computePhotonDelayedEmissionFieldWithSolverBridge(
       contribution.delaySolveGap > 0.05 ||
       contribution.jacobianAbs <= JACOBIAN_FLOOR
   ).length;
+  const rootDiagnostics = summarizePhotonRootDiagnostics(rootSets);
 
   return {
     sourceMode: measurement.sourceHistoryMode === "absolute_history"
-      ? "solver_bridge_absolute_history_segmented_branch_sum"
+      ? "solver_app_absolute_history_moving_circular_branch_sum"
       : "solver_bridge_circular_source_branch_sum",
     solverEngineId: PHOTON_SOLVER_BRIDGE_ENGINE_ID,
     measurement,
@@ -1241,6 +1448,12 @@ export async function computePhotonDelayedEmissionFieldWithSolverBridge(
     jacobianAbsMin: Number.isFinite(jacobianAbsMin) ? jacobianAbsMin : 0,
     unresolvedSourceCount,
     unstableSourceCount,
+    rootDiagnostics,
+    noCatchUpSourceCount: rootDiagnostics.noCatchUpSourceCount,
+    staleHistorySourceCount: rootDiagnostics.staleHistorySourceCount,
+    nearMissSourceCount: rootDiagnostics.nearMissSourceCount,
+    rootLimitReachedCount: rootDiagnostics.rootLimitReachedCount,
+    closestMissResidual: rootDiagnostics.closestMissResidual,
     nearestSourceDistance: Number.isFinite(distanceMin) ? distanceMin : 0,
     electric,
     comparisonB,
@@ -1280,6 +1493,12 @@ export async function computePhotonObserverFieldWithSolverBridge(state, timeSeco
     jacobianAbsMin: delayedField.jacobianAbsMin,
     unresolvedSourceCount: delayedField.unresolvedSourceCount,
     unstableSourceCount: delayedField.unstableSourceCount,
+    rootDiagnostics: delayedField.rootDiagnostics,
+    noCatchUpSourceCount: delayedField.noCatchUpSourceCount,
+    staleHistorySourceCount: delayedField.staleHistorySourceCount,
+    nearMissSourceCount: delayedField.nearMissSourceCount,
+    rootLimitReachedCount: delayedField.rootLimitReachedCount,
+    closestMissResidual: delayedField.closestMissResidual,
     nearestSourceDistance: delayedField.nearestSourceDistance,
     contributions: delayedField.contributions,
     receiverAcceleration: delayedField.electric,
@@ -1661,6 +1880,7 @@ export async function buildPhotonPlotSamplesWithSolverBridge(
   return {
     runDuration,
     currentTime,
+    sourceMode: fields[0]?.field?.sourceMode ?? "",
     solverEngineId: PHOTON_SOLVER_BRIDGE_ENGINE_ID,
     middleCycle: getPhotonMiddleCycleBounds(state),
     amplitudeScale,

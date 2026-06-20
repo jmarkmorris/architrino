@@ -342,7 +342,7 @@ test("default photon state encodes trailing and leading swarm convention", () =>
     });
   });
   assert.deepEqual(state.measurement.virtualObserver, { x: 0, y: 0, z: 0 });
-  assert.equal(state.measurement.sourceHistoryMode, "co_moving");
+  assert.equal(state.measurement.sourceHistoryMode, "absolute_history");
   assert.equal(state.measurement.signalSpeedCf, 1);
   assert.equal(state.measurement.emissionSpeedCf, 1);
   assert.equal(state.pair.photonSpeedCf, 1);
@@ -833,31 +833,29 @@ test("Photon circular-source roots, hits, and ledger rows can be routed through 
   assert.equal(roots[0].residual, 0);
 });
 
-test("Photon delayed emission field can use absolute-history segmented solver roots", async () => {
+test("Photon delayed emission field can use absolute-history moving circular solver roots", async () => {
   const state = createDefaultPhotonState();
-  state.measurement.sourceHistoryMode = "absolute_history";
   state.pair.photonSpeedCf = 0.5;
   state.measurement.signalSpeedCf = 0.9;
   state.measurement.emissionSpeedCf = 0.9;
-  const bridge = createPhotonLinearRootBridgeStub();
   const field = await computePhotonDelayedEmissionFieldWithSolverBridge(state, 0.75, {
-    runSolverBridge: bridge.runSolverBridge,
-    absoluteHistorySegments: 2,
     maxDelay: 0.25,
-    parallel: false,
   });
 
   assert.equal(field.solverEngineId, "architrino-solver-app-bridge");
-  assert.equal(field.sourceMode, "solver_bridge_absolute_history_segmented_branch_sum");
+  assert.equal(field.sourceMode, "solver_app_absolute_history_moving_circular_branch_sum");
   assert.equal(field.measurement.sourceHistoryMode, "absolute_history");
   assert.equal(field.sourceCount, buildPhotonArchitrinoSourceRefs(state).length);
-  assert.equal(bridge.calls.length, field.sourceCount * 2);
-  assert.ok(field.rootCount > field.sourceCount);
+  assert.ok(field.rootCount > 0);
+  assert.equal(field.unresolvedSourceCount, field.noCatchUpSourceCount);
+  assert.equal(field.staleHistorySourceCount, 0);
+  assert.equal(field.nearMissSourceCount, 0);
+  assert.equal(field.rootDiagnostics.rejectedReasonCounts.no_catch_up_root, field.noCatchUpSourceCount);
   assert.ok(field.contributions.every((contribution) =>
-    contribution.kinematics.sourceHistoryMode === "absolute_history_segmented"
+    contribution.kinematics.sourceHistoryMode === "absolute_history_moving_circular"
   ));
   assert.ok(field.contributions.every((contribution) =>
-    contribution.sourceHistoryKind === "moving-circular-source-linearized"
+    contribution.sourceHistoryKind === "moving-circular-source"
   ));
   assert.ok(field.contributions.every((contribution) =>
     Number.isFinite(contribution.phaseAtHit?.sourcePhaseCycleIndex)
@@ -922,6 +920,7 @@ test("Photon circular-source bridge can create and dispose a solver bridge clien
 
 test("Photon delayed emission field can be assembled from central solver circular-source roots", async () => {
   const state = createDefaultPhotonState();
+  state.measurement.sourceHistoryMode = "co_moving";
   const bridge = createPhotonCircularSourceBridgeStub();
   const field = await computePhotonDelayedEmissionFieldWithSolverBridge(state, 0.75, {
     solveCircularSourceRootsHitsLedger: bridge.solveCircularSourceRootsHitsLedger,
@@ -934,6 +933,13 @@ test("Photon delayed emission field can be assembled from central solver circula
   assert.equal(bridge.calls.length, field.sourceCount);
   assert.ok(field.contributions.every((contribution) =>
     contribution.solverEngineId === "architrino-solver-app-bridge"
+  ));
+  assert.ok(field.contributions.every((contribution) =>
+    contribution.sourceHistoryKind === "co_moving_circular_source"
+  ));
+  assert.ok(field.contributions.every((contribution) =>
+    contribution.phaseAtHit?.receiverKind === "virtual-observer" &&
+    Number.isFinite(contribution.phaseAtHit.sourcePhaseDegrees)
   ));
   assert.ok(Number.isFinite(field.electric.y));
   assert.ok(Number.isFinite(field.comparisonB.z));
@@ -950,16 +956,20 @@ test("Photon formula and plot APIs expose central solver bridge results", async 
 
   assert.equal(summary.solverEngineId, "architrino-solver-app-bridge");
   assert.equal(summary.field.solverEngineId, "architrino-solver-app-bridge");
+  assert.equal(summary.field.sourceMode, "solver_app_absolute_history_moving_circular_branch_sum");
   assert.equal(summary.polarization.solverEngineId, "architrino-solver-app-bridge");
   assert.ok(Number.isFinite(summary.polarization.amplitudes.y));
   assert.ok(Number.isFinite(summary.averageAnalyzerFraction));
-  assert.ok(summaryBridge.calls.length > buildPhotonArchitrinoSourceRefs(state).length);
+  assert.ok(summary.field.contributions.every((contribution) =>
+    contribution.kinematics.sourceHistoryMode === "absolute_history_moving_circular"
+  ));
 
   const observerBridge = createPhotonCircularSourceBridgeStub();
   const observerField = await computePhotonObserverFieldWithSolverBridge(state, 0.5, {
     solveCircularSourceRootsHitsLedger: observerBridge.solveCircularSourceRootsHitsLedger,
   });
   assert.equal(observerField.solverEngineId, "architrino-solver-app-bridge");
+  assert.equal(observerField.sourceMode, "solver_app_absolute_history_moving_circular_branch_sum");
   assert.ok(Number.isFinite(observerField.electric.magnitude));
 
   const plotBridge = createPhotonCircularSourceBridgeStub();
@@ -967,6 +977,7 @@ test("Photon formula and plot APIs expose central solver bridge results", async 
     solveCircularSourceRootsHitsLedger: plotBridge.solveCircularSourceRootsHitsLedger,
   });
   assert.equal(plot.solverEngineId, "architrino-solver-app-bridge");
+  assert.equal(plot.sourceMode, "solver_app_absolute_history_moving_circular_branch_sum");
   assert.equal(plot.samples.length, 5);
   assert.ok(Number.isFinite(plot.amplitudeScale));
 });
@@ -1261,7 +1272,7 @@ test("named photon presets expose the required candidate configurations", () => 
   assert.equal(radiusStress.pair.left.layers.O.radius, PHOTON_MAX_OUTER_RADIUS);
 });
 
-test("configuration search can score settings through the solver bridge", async () => {
+test("configuration search can score and compare settings through the solver path", async () => {
   const state = createDefaultPhotonState();
   const bridge = createPhotonCircularSourceBridgeStub();
   const results = await createPhotonConfigurationSearchResultsWithSolverBridge(state, {
@@ -1286,7 +1297,11 @@ test("configuration search can score settings through the solver bridge", async 
     assert.ok(Number.isFinite(result.score));
     assert.equal(result.state.app, "photon");
     assert.ok(Number.isFinite(result.diagnostics.rootCount));
-    assert.equal(result.comparison.status, "unavailable");
+    assert.equal(result.comparison.status, "ok");
+    assert.equal(
+      result.comparison.absoluteHistory.sourceMode,
+      "solver_app_absolute_history_moving_circular_branch_sum"
+    );
   });
 });
 
@@ -1322,14 +1337,14 @@ test("configuration search compares co-moving and absolute-history solver result
 
   assert.equal(results.length, 2);
   assert.ok(bridge.circularCalls.length > 0);
-  assert.ok(bridge.runCalls.some((runRequest) => runRequest.runKind === "causalRoots"));
+  assert.equal(bridge.runCalls.length, 0);
   assert.ok(!bridge.runCalls.some((runRequest) => runRequest.runKind === "sharedGeometry"));
   results.forEach((result) => {
     assert.equal(result.comparison.status, "ok");
     assert.equal(result.comparison.coMoving.sourceMode, "solver_bridge_circular_source_branch_sum");
     assert.equal(
       result.comparison.absoluteHistory.sourceMode,
-      "solver_bridge_absolute_history_segmented_branch_sum"
+      "solver_app_absolute_history_moving_circular_branch_sum"
     );
     assert.ok(Number.isFinite(result.comparison.deltas.strengthDelta));
     assert.ok(Number.isFinite(result.comparison.deltas.rootCountDelta));
@@ -1353,6 +1368,14 @@ test("bridge-backed photon diagnostics expose the active solver engine", async (
   assert.equal(rows.get("Solver engine"), "architrino-solver-app-bridge");
   assert.equal(rows.get("Self-hit roots"), "0 / 6");
   assert.equal(rows.get("Self-hit max v/c_sig"), "1.56");
+  assert.equal(rows.get("Missed sources"), "6");
+  assert.equal(rows.get("No catch-up sources"), "6");
+  assert.equal(rows.get("Stale windows"), "0");
+  assert.equal(rows.get("Near misses"), "0");
+  assert.equal(rows.get("Root cap hits"), "0");
+  assert.equal(rows.get("Delay status"), "catch-up limited");
+  assert.match(rows.get("Trailing hit phase spread"), / deg$/);
+  assert.match(rows.get("Leading hit phase spread"), / deg$/);
 });
 
 test("configuration search results export and import full settings", async () => {

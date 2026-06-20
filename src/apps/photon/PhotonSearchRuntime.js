@@ -366,16 +366,6 @@ function summarizePhotonSearchPerturbation(summary, nextSummary) {
   };
 }
 
-function hasAbsoluteHistorySearchBridgeOption(options = {}) {
-  return typeof options.runSolverBridge === "function" ||
-    (options.solverClient && typeof options.solverClient.runSimulation === "function") ||
-    typeof options.createSolverBridgeClient === "function" ||
-    options.solverWorker != null ||
-    typeof options.createWasmModule === "function" ||
-    options.allowNoWasmBridgeClient === true ||
-    options?.solverBridgeConfig?.allowNoWasmBridgeClient === true;
-}
-
 function createPhotonSearchModeState(state, sourceHistoryMode) {
   const next = cloneNormalizedPhotonState(state);
   next.measurement.sourceHistoryMode = sourceHistoryMode === "absolute_history"
@@ -459,13 +449,6 @@ async function comparePhotonSearchHistoryModes(state, summary, diagnostics, opti
   const coMoving = currentMode === "co_moving"
     ? summarizePhotonSearchMode(summary, diagnostics)
     : await computePhotonSearchModeSummary(state, "co_moving", options);
-  if (!hasAbsoluteHistorySearchBridgeOption(options) && currentMode !== "absolute_history") {
-    return {
-      status: "unavailable",
-      message: "Absolute-history comparison needs the linear-root solver bridge.",
-      coMoving,
-    };
-  }
   try {
     const absoluteHistory = currentMode === "absolute_history"
       ? summarizePhotonSearchMode(summary, diagnostics)
