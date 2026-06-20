@@ -8229,7 +8229,7 @@ $$
 \theta_I(t+T_O)=\theta_I(t)+2\pi n
 $$
 
-Therefore $f_O:f_M:f_I = 1:m:n$, with $f_M=m f_O$ and $f_I=n f_O$.
+Therefore the canonical `I:M:O` frequency triplet is $f_I:f_M:f_O=n:m:1$. Equivalently, in outer-normalized order, $f_O:f_M:f_I = 1:m:n$, with $f_M=m f_O$ and $f_I=n f_O$.
 
 Plain language: after one outer revolution, the middle and inner rings have completed whole numbers of revolutions as well, so the three-ring pattern closes exactly.
 
@@ -8354,15 +8354,15 @@ r_M=\frac{r_O}{m\beta_O},
 r_I=\frac{\beta_I}{n\beta_O}\,r_O
 $$
 
-They show that once the integer lock $(1:m:n)$ is fixed, the remaining geometry depends on the outer and inner speed factors $\beta_O$ and $\beta_I$. Thus a frequency hierarchy is not yet a radius hierarchy.
+They show that once the canonical integer lock $(n:m:1)$, equivalently outer-normalized $(1:m:n)$, is fixed, the remaining geometry depends on the outer and inner speed factors $\beta_O$ and $\beta_I$. Thus a frequency hierarchy is not yet a radius hierarchy.
 
 ### Proposition 1 (Exterior Integer Lock Formulas)
 
 Under Assumptions 1-2,
 $$
-f_O:f_M:f_I = 1:m:n
+f_I:f_M:f_O = n:m:1
 $$
-and
+equivalently, $f_O:f_M:f_I = 1:m:n$ in outer-normalized order, and
 $$
 r_O:r_M:r_I
 =
@@ -8387,8 +8387,9 @@ n=4
 $$
 then
 $$
-f_O:f_M:f_I = 1:2:4
+f_I:f_M:f_O = 4:2:1
 $$
+equivalently, $f_O:f_M:f_I = 1:2:4$ in outer-normalized order,
 but the radius ratios become
 $$
 r_O:r_M:r_I
@@ -8474,7 +8475,7 @@ $$
 
 The right theorem target is not "prove $1:2:4$ from kinematics alone." The stronger target is a proof route that keeps kinematics, branch dynamics, effective cancellation, and inference separate:
 
-1. classify the admissible integer locks $(1:m:n)$ under exact delayed phase closure,
+1. classify the admissible canonical integer locks $(n:m:1)$, equivalently outer-normalized $(1:m:n)$, under exact delayed phase closure,
 2. compute the corresponding radius relations under $\beta_M=1$,
 3. define a cycle-averaged cancellation functional for the low-order causal-wake multipole or effective potential,
 4. determine which integer lock minimizes that functional in the exterior/horizon regime,
