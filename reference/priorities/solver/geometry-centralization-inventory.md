@@ -7,7 +7,7 @@
 - Scope: Photon, Ideal Swarm, Animator
 - Status: `closed-inventory-capture`
 - Source inspection date: 2026-06-20
-- Edit boundary: source inspection only; app source files were not edited. [solver.md](solver.md) records the inventory closeout.
+- Edit boundary: created as source inspection; current notes also record the subsequent Animator delayed-hit descriptor migration. [solver.md](solver.md) records the inventory closeout.
 
 ## Purpose
 
@@ -35,8 +35,8 @@ Display-only geometry is classified by where it currently runs, but it is not a 
 | Ideal Swarm | Circular self-hit spans | `partially migrated` | Circular self-hit span rows and field-speed regime output are solver-backed. | Path-tint profile code still supplies fallback span profiles and pending-solver display rows. | Delete fallback span authority only after every rendered binary receives either a solver span row or an explicit solver failure row. Keep color and width mapping app-side. |
 | Ideal Swarm | Lorentz-state, orbit ribbons, and potential-surface mesh | `still app-local` | Delayed-potential samples can feed the surface. | Orbit basis, return-cycle chart state, ribbon points, surface vertices, color stops, and viewport transforms remain local. | Do not remove renderer geometry. Only migrate orbit/source kinematics if they become the authoritative source history for solver rows. |
 | Animator | Motion dataset and path-history stream | `migrated` for motion frames; `partially migrated` for full geometry | Motion simulation, path-history output, dataset manifest, and playback-facing frame buffers are bridge-owned. | Worker adapter still builds a linear fallback request from app config, and dataset conversion currently leaves `fieldShells` and `delayedHits` empty. | Keep dataset conversion. Remove the app-side linear fallback only after authoring emits an explicit solver motion request for every dataset path. |
-| Animator | Delayed-hit shell/path intersections | `partially migrated` | [AnimatorDelayedHitRows.mjs](../../../src/solver/app/AnimatorDelayedHitRows.mjs) emits `delayed_hit_events.v1`-shaped rows with hit time, emission point, receiver point, residual metadata, Jacobian, and branch weight. | Scene runtime still assembles emission samples and receiver tracks, then maps solver rows to existing delayed-hit visuals. | The local app bisection solver and `jacobian: 1` placeholder path are removed. Next cleanup is to route emission events and receiver paths through stream-backed solver descriptors rather than scene-built sample arrays. |
-| Animator | Field-shell expansion, emission cadence, and path sampling | `still app-local` | Motion path-history can supply frame buffers, and delayed-hit intersections now flow through solver-owned row output. | Scene runtime still samples assembly/core/member paths, creates field shells, and advances shell radius from field speed for rendering. | Keep radius and opacity calculation for rendering, but move emission event descriptors into solver-owned stream-backed requests before using them as diagnostics. |
+| Animator | Delayed-hit shell/path intersections | `migrated` | [AnimatorDelayedHitRows.mjs](../../../src/solver/app/AnimatorDelayedHitRows.mjs) consumes `animator-delayed-hit-stream-descriptors.v1` requests with explicit emission events and `path_segment.v1` receiver path descriptors, then emits `delayed_hit_events.v1` rows with hit time, emission point, receiver point, residual metadata, Jacobian, and branch weight. | Scene runtime still derives descriptor rows from document/simulation state and maps solver rows to existing delayed-hit visuals. | The local app bisection solver, `jacobian: 1` placeholder path, and scene-built receiver-track/sample-array boundary are removed. Keep descriptor construction only until bridge datasets can emit durable stream descriptors directly. |
+| Animator | Field-shell expansion, emission cadence, and path sampling | `still app-local` | Motion path-history can supply frame buffers, and delayed-hit intersections now consume stream-backed solver descriptors. | Scene runtime still samples assembly/core/member paths to build render field shells and descriptor segments, creates field shells, and advances shell radius from field speed for rendering. | Keep radius and opacity calculation for rendering, but move field-shell event and cadence generation into durable solver output before using those rows as diagnostics. |
 | Animator | Playback interpolation, camera bounds, and authoring preview geometry | `still app-local` | Solver frames provide authoritative sample rows. | Playback interpolation, bounds, viewport autoscale, curve previews, and authoring transforms remain renderer responsibilities. | Do not remove; this is presentation geometry, not solver-owned physics geometry. |
 
 ## Duplicated Geometry
@@ -53,19 +53,19 @@ Centralization target: solver-owned path descriptors or path-history buffers sho
 
 ### Delayed Direction, Distance, And Branch Weight
 
-Photon formula code reconstructs delayed emission point, receiver displacement, distance, direction, source radial speed, Jacobian denominator, and contribution vectors after solver root discovery. Ideal Swarm delayed potentials already expose distance, displacement, denominator, and potential rows through shared geometry. Animator delayed hits now consume solver-owned delayed-hit rows, with display strength kept as visual metadata.
+Photon formula code reconstructs delayed emission point, receiver displacement, distance, direction, source radial speed, Jacobian denominator, and contribution vectors after solver root discovery. Ideal Swarm delayed potentials already expose distance, displacement, denominator, and potential rows through shared geometry. Animator delayed hits now consume stream-backed solver descriptor rows, with display strength kept as visual metadata.
 
 Centralization target: delayed direction, distance, residual, branch weight, and contribution terms should be solver-owned row fields for causal-root, delayed-potential, circular-source, and path-history hit calculations. App code should render or rank those rows, not recompute their geometry.
 
 ### Source-Segment Normalization And Linearization
 
-Ideal Swarm builds solver requests by linearizing circular source histories into source segments. Photon builds circular-source request structures from app state. Animator builds a linear motion fallback request from app drift configuration.
+Ideal Swarm builds solver requests by linearizing circular source histories into source segments. Photon builds circular-source request structures from app state. Animator builds a linear motion fallback request from app drift configuration, while delayed-hit scene code now sends emission events and `path_segment.v1` receiver descriptors instead of receiver-track sample arrays.
 
 Centralization target: apps may translate UI state into a solver request, but source-history normalization, large-coordinate handling, path descriptor interpretation, and segment geometry should live in the solver bridge or a solver-owned adapter.
 
 ### Shell And Sphere Intersections
 
-Animator delayed-hit generation no longer computes shell/path intersections in the app delayed-hit runtime. [AnimatorDelayedHitRows.mjs](../../../src/solver/app/AnimatorDelayedHitRows.mjs) owns the path-history shell solve and emits `delayed_hit_events.v1`-shaped rows consumed by the app visual mapper.
+Animator delayed-hit generation no longer computes shell/path intersections in the app delayed-hit runtime. [AnimatorDelayedHitRows.mjs](../../../src/solver/app/AnimatorDelayedHitRows.mjs) owns the path-history shell solve from `animator-delayed-hit-stream-descriptors.v1` requests and emits `delayed_hit_events.v1` rows consumed by the app visual mapper.
 
 Centralization target: field shell, receiver path, residual, bracket, root, and hit-strength rows should be emitted by the solver. Animator keeps render fading, label placement, and row-to-visual mapping, but no longer owns the hit solve.
 
@@ -109,8 +109,8 @@ Centralization target: solver-owned observer-field sample buffers should expose 
 | --- | --- | --- | --- | --- |
 | Motion simulation and dataset frame buffers | [AnimatorSimulationWorkerCoreRuntime.js](../../../src/apps/animator/AnimatorSimulationWorkerCoreRuntime.js), [AnimatorSolverBridgeWorkerRuntime.js](../../../src/apps/animator/AnimatorSolverBridgeWorkerRuntime.js) | Solver app bridge motion simulation and path-history output. | `migrated` for motion frames; `partially migrated` for derived event geometry. | Keep dataset conversion. Remove only legacy or fallback app motion generation after every authoring path emits explicit solver requests. |
 | Linear motion fallback request | [AnimatorSimulationWorkerCoreRuntime.js](../../../src/apps/animator/AnimatorSimulationWorkerCoreRuntime.js) | Ideal Swarm source-segment construction and Photon app request descriptors. | `partially migrated` | Delete the fallback after the authoring runtime provides a solver-owned motion request for each dataset mode. |
-| Field-shell radius, emission center, and emission cadence | [AnimatorFieldShellRuntime.js](../../../src/apps/animator/AnimatorFieldShellRuntime.js), [ArchitrinoSceneAppRuntime.js](../../../src/apps/architrino/ArchitrinoSceneAppRuntime.js) | Animator delayed-hit shell intersection and solver shared-geometry sphere/point requests. | `still app-local` | Keep radius and opacity for rendering. Move emission event rows and shell geometry used for delayed-hit detection into the solver. |
-| Delayed-hit shell/path intersection | [AnimatorDelayedHitRows.mjs](../../../src/solver/app/AnimatorDelayedHitRows.mjs), [AnimatorDelayedHitRuntime.js](../../../src/apps/animator/AnimatorDelayedHitRuntime.js), [ArchitrinoSceneAppRuntime.js](../../../src/apps/architrino/ArchitrinoSceneAppRuntime.js) | Solver shared geometry, Photon delayed-hit ledgers, Ideal Swarm delayed-potential roots. | `partially migrated` | Local residual bracketing and bisection are removed from the app runtime. Continue by replacing scene-built emission/receiver sample arrays with stream-backed solver descriptors. |
+| Field-shell radius, emission center, and emission cadence | [AnimatorFieldShellRuntime.js](../../../src/apps/animator/AnimatorFieldShellRuntime.js), [ArchitrinoSceneAppRuntime.js](../../../src/apps/architrino/ArchitrinoSceneAppRuntime.js) | Animator delayed-hit shell intersection and solver shared-geometry sphere/point requests. | `still app-local` | Keep radius and opacity for rendering. Move field-shell event cadence and shell descriptor generation into durable solver output before using those rows as diagnostics. |
+| Delayed-hit shell/path intersection | [AnimatorDelayedHitRows.mjs](../../../src/solver/app/AnimatorDelayedHitRows.mjs), [AnimatorDelayedHitRuntime.js](../../../src/apps/animator/AnimatorDelayedHitRuntime.js), [ArchitrinoSceneAppRuntime.js](../../../src/apps/architrino/ArchitrinoSceneAppRuntime.js) | Solver shared geometry, Photon delayed-hit ledgers, Ideal Swarm delayed-potential roots. | `migrated` | Local residual bracketing, bisection, and scene-built receiver-track/sample-array inputs are removed. Keep the scene descriptor builder only until datasets can provide durable stream descriptors directly. |
 | Structure orbit basis, member endpoint positions, and path sample generation | [AnimatorStructureGeometryRuntime.js](../../../src/apps/animator/AnimatorStructureGeometryRuntime.js), [ArchitrinoSceneAppRuntime.js](../../../src/apps/architrino/ArchitrinoSceneAppRuntime.js) | Photon and Ideal Swarm circular source/path kinematics. | `still app-local` | Keep authoring previews and labels. Migrate only path samples that feed causal field shells, delayed hits, or solver diagnostics. |
 | Playback interpolation, bounds, camera scale, and renderer transforms | [AnimatorSimulationPlaybackRuntime.js](../../../src/apps/animator/AnimatorSimulationPlaybackRuntime.js), [AnimatorStructureGeometryRuntime.js](../../../src/apps/animator/AnimatorStructureGeometryRuntime.js) | Renderer-only geometry. | `still app-local` | Keep app-side. These transforms present solver frames and do not need solver ownership. |
 
@@ -120,7 +120,7 @@ Centralization target: solver-owned observer-field sample buffers should expose 
 2. Add solver output fields before deleting app geometry. Required fields include source point, receiver point, velocity, acceleration, delayed direction, distance, residual, denominator or branch weight, phase-at-hit, hit kind, and failure classification where applicable.
 3. Photon first safe removal: replace `PhotonFormulaRuntime.js` delayed-emission reconstruction with solver-emitted contribution rows, then remove the local kinematic fallback and Jacobian contribution path after parity baselines cover observer-field summaries.
 4. Ideal Swarm first safe removal: move circular source-history construction out of `IdealSwarmRuntime.js`, then remove the single-row flight-time wrapper and fallback span authority after batched solver rows are complete.
-5. Animator first safe removal: complete for the app-local shell/path solver. The remaining Animator cleanup is stream-backed descriptor migration for emission events and receiver paths.
+5. Animator first safe removal: complete for the app-local shell/path solver and scene-built receiver-track/sample-array boundary. The remaining Animator cleanup is durable field-shell event/cadence stream packaging, not local hit solving.
 6. Do not remove display-only geometry during solver centralization. Photon canvas trails, Ideal Swarm surface meshes and ribbons, Animator playback interpolation, camera bounds, opacity, labels, and authoring previews remain app responsibilities.
 
 ## Removal Guardrails
@@ -129,7 +129,7 @@ Centralization target: solver-owned observer-field sample buffers should expose 
 - Do not delete request-building code until the bridge accepts the app's state through a solver-owned descriptor or adapter.
 - Do not delete fallback profile code until solver failure rows are explicit enough for the UI to distinguish no-hit, pending-data, out-of-envelope, and numerical-failure cases.
 - Do not treat app search ranking as solver geometry. Ranking may stay app-owned as long as the physical inputs being ranked are solver-owned rows or summaries.
-- Do not claim full Animator geometry centralization while emission events and receiver tracks are still assembled as scene-local sample arrays rather than stream-backed solver descriptors.
+- Do not claim full Animator geometry centralization while field-shell event cadence, render shell construction, and durable stream packaging remain app-local. Delayed-hit shell/path solving now runs through stream-backed solver descriptors.
 
 ## Completion Judgment
 
@@ -137,8 +137,9 @@ Centralization target: solver-owned observer-field sample buffers should expose 
 in [solver.md](solver.md). The duplicated and app-local solver geometry in
 Photon, Ideal Swarm, and Animator is identified, classified, and sequenced for
 safe removal. Animator's local delayed-hit shell/path solver has been replaced
-by solver-owned delayed-hit rows; the remaining Animator boundary is descriptor
-and stream integration rather than local hit solving.
+by solver-owned delayed-hit rows fed by stream-backed descriptors; the remaining
+Animator boundary is durable field-shell event/cadence stream packaging rather
+than local hit solving.
 
 The remaining work is migration implementation: add solver-owned row fields and
 adapter paths before deleting the app-local geometry named above.

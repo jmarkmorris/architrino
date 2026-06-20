@@ -266,6 +266,7 @@ async function createMotionSolverReplayDataset(playbackRequest, options = {}, { 
           pathConstraintBoundaryRelaxationMode: motionReplay.pathConstraintBoundaryRelaxationMode,
           pathConstraintBoundaryRelaxationIterationCount:
             motionReplay.pathConstraintBoundaryRelaxationIterationCount,
+          pathConstraintBoundaryRelaxationStatus: motionReplay.pathConstraintBoundaryRelaxationStatus,
           pathConstraintBoundaryRelaxationResidualSampleCount:
             motionReplay.pathConstraintBoundaryRelaxationResidualSampleCount,
           maxPathConstraintBoundaryRelaxationResidualBefore:
@@ -316,6 +317,7 @@ async function createMotionSolverReplayDataset(playbackRequest, options = {}, { 
           pathConstraintBoundaryRelaxationMode: motionReplay.pathConstraintBoundaryRelaxationMode,
           pathConstraintBoundaryRelaxationIterationCount:
             motionReplay.pathConstraintBoundaryRelaxationIterationCount,
+          pathConstraintBoundaryRelaxationStatus: motionReplay.pathConstraintBoundaryRelaxationStatus,
           pathConstraintBoundaryRelaxationResidualSampleCount:
             motionReplay.pathConstraintBoundaryRelaxationResidualSampleCount,
           maxPathConstraintBoundaryRelaxationResidualBefore:
@@ -508,6 +510,8 @@ async function createPairInteractionSolverReplayFrames(playbackRequest, options 
       pairSummary.pathConstraintBoundaryRelaxationIterationCount ??
         pairInteraction.pathConstraintBoundaryRelaxationIterationCount
     ),
+    pathConstraintBoundaryRelaxationStatus:
+      pairSummary.pathConstraintBoundaryRelaxationStatus ?? pairInteraction.pathConstraintBoundaryRelaxationStatus,
     pathConstraintBoundaryRelaxationResidualSampleCount: optionalFiniteNumber(
       pairSummary.pathConstraintBoundaryRelaxationResidualSampleCount ??
         pairInteraction.pathConstraintBoundaryRelaxationResidualSampleCount
@@ -1443,6 +1447,9 @@ export function normalizeCausalDelayFeedbackBridgeReplay(runHandle = {}, options
             bridgeResponse.geometry.pathConstraintBoundaryRelaxationIterationCount
           ),
         }
+      : {}),
+    ...(bridgeResponse.geometry?.pathConstraintBoundaryRelaxationStatus
+      ? { pathConstraintBoundaryRelaxationStatus: String(bridgeResponse.geometry.pathConstraintBoundaryRelaxationStatus) }
       : {}),
     ...(Number.isFinite(Number(bridgeResponse.geometry?.pathConstraintBoundaryRelaxationResidualSampleCount))
       ? {

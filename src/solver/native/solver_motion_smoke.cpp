@@ -21,7 +21,7 @@ int main() {
   static_assert(sizeof(ArchitrinoSolverPairInteractionRequestF64) == 64);
   static_assert(sizeof(ArchitrinoSolverPairInteractionStateF64) == 80);
   static_assert(sizeof(ArchitrinoSolverPairInteractionPathConstraintF64) == 48);
-  static_assert(sizeof(ArchitrinoSolverPairInteractionSummaryF64) == 136);
+  static_assert(sizeof(ArchitrinoSolverPairInteractionSummaryF64) == 144);
 
   const architrino::solver::LinearPathSegment segment{
       "motion-path",
@@ -487,6 +487,7 @@ int main() {
           pairConstrained.maxPathConstraintBoundaryRelaxationResidualAfter &&
       pairConstrained.pathConstraintBoundaryRelaxationResidualRatio >= 0.0 &&
       pairConstrained.pathConstraintBoundaryRelaxationResidualRatio < 1.0 &&
+      pairConstrained.pathConstraintBoundaryRelaxationStatus == 1 &&
       nearly_equal(pairConstrained.frames[2].positionX, 1.97538, 1e-4) &&
       nearly_equal(pairConstrained.frames[2].positionY, 1.00158, 1e-4) &&
       nearly_equal(pairConstrained.frames[2].velocityX, 8.0, 1e-4) &&
@@ -540,6 +541,8 @@ int main() {
       nearly_equal(
           abiPairConstrainedSummary.boundary_relaxation_residual_ratio,
           pairConstrained.pathConstraintBoundaryRelaxationResidualRatio) &&
+      abiPairConstrainedSummary.boundary_relaxation_status ==
+          pairConstrained.pathConstraintBoundaryRelaxationStatus &&
       abiInfo.motion_integration_request_f64_bytes == 120;
 
   if (!ok) {

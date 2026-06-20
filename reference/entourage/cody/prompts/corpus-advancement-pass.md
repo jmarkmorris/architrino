@@ -524,7 +524,7 @@ Guardrails:
 
 ## Team-Agent Variant
 
-Use this version when the corpus is large enough that the comparison should be split into non-overlapping shards. Shard agents should report findings only; Coordinator Cody should merge, deduplicate, rank, and resolve terminology against canon.
+Use this version when the corpus is large enough that the comparison should be split into non-overlapping shards. Shard agents should report findings only; the coordinator should merge, deduplicate, rank, and resolve terminology against canon.
 
 ```text
 Closure goal:
@@ -532,7 +532,7 @@ Coordinate a non-overlapping team-agent corpus advancement pass that extracts co
 
 Perform a team-agent corpus advancement pass for the AAA markdown corpus.
 
-Coordinator Cody:
+Coordinator:
 1. Run `git status --short` before any edit-oriented work. Do not revert existing changes.
 2. Identify source signals autonomously: recent AAA changes, `reference/priorities/aaa-work-threads/priorities.md`, relevant files under `reference/priorities/`, and high-signal AAA documents discovered by targeted searches.
 3. Read the relevant Archie canon guides and glossaries:

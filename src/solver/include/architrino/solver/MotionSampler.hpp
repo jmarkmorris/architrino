@@ -104,6 +104,7 @@ struct PairInteractionSampleResult {
   double maxPathConstraintBoundaryRelaxationResidualBefore = 0.0;
   double maxPathConstraintBoundaryRelaxationResidualAfter = 0.0;
   double pathConstraintBoundaryRelaxationResidualRatio = 0.0;
+  std::uint32_t pathConstraintBoundaryRelaxationStatus = 0;
   ValidationReport validation;
 };
 

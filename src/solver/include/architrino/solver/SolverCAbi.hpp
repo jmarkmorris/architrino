@@ -389,6 +389,8 @@ struct ArchitrinoSolverPairInteractionSummaryF64 {
   double max_boundary_relaxation_residual_before;
   double max_boundary_relaxation_residual_after;
   double boundary_relaxation_residual_ratio;
+  std::uint32_t boundary_relaxation_status;
+  std::uint32_t reserved1;
 };
 
 struct ArchitrinoSolverMotionFrameRowF64 {

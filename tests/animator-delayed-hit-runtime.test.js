@@ -8,7 +8,7 @@ import {
   getAnimatorDelayedHitRenderState,
 } from "../src/apps/animator/AnimatorDelayedHitRuntime.js";
 import {
-  createAnimatorDelayedHitRowsFromPathSamples,
+  createAnimatorDelayedHitRowsFromStreamDescriptors,
 } from "../src/solver/app/AnimatorDelayedHitRows.mjs";
 
 test("animator delayed-hit runtime animates a connector from emission to receiver", () => {
@@ -75,30 +75,56 @@ test("animator delayed-hit runtime formats branch and Jacobian table rows", () =
 });
 
 test("animator delayed-hit runtime consumes solver-owned path-history hit rows", () => {
-  const rowResponse = createAnimatorDelayedHitRowsFromPathSamples(
-    [
-      {
+  const rowResponse = createAnimatorDelayedHitRowsFromStreamDescriptors(
+    {
+      streamId: "fixture-path-history-stream",
+      fieldSpeed: 1,
+      emissionEvents: [{
         emitterId: "source_a",
-        time: 0,
-        position: [0, 0, 0],
+        emissionTime: 0,
+        emissionPoint: [0, 0, 0],
         fieldSpeed: 1,
-      },
-    ],
-    [
-      {
+      }],
+      receiverPathDescriptors: [{
         receiverId: "receiver_b",
-        samples: [
-          { time: 0, position: [2, 0, 0] },
-          { time: 1, position: [2, 0, 0] },
-          { time: 2, position: [2, 0, 0] },
-          { time: 3, position: [2, 0, 0] },
+        pathKey: 2,
+        streamId: "fixture-path-history-stream",
+        rowLayout: "path_segment.v1",
+        segments: [
+          {
+            pathKey: 2,
+            segmentIndex: 0,
+            startTime: 0,
+            endTime: 1,
+            start: { x: 2, y: 0, z: 0 },
+            velocity: { x: 0, y: 0, z: 0 },
+          },
+          {
+            pathKey: 2,
+            segmentIndex: 1,
+            startTime: 1,
+            endTime: 2,
+            start: { x: 2, y: 0, z: 0 },
+            velocity: { x: 0, y: 0, z: 0 },
+          },
+          {
+            pathKey: 2,
+            segmentIndex: 2,
+            startTime: 2,
+            endTime: 3,
+            start: { x: 2, y: 0, z: 0 },
+            velocity: { x: 0, y: 0, z: 0 },
+          },
         ],
-      },
-    ],
+      }],
+    },
     { fieldSpeed: 1 }
   );
   assert.equal(rowResponse.schema, "animator-delayed-hit-rows.v1");
+  assert.equal(rowResponse.descriptorSchema, "animator-delayed-hit-stream-descriptors.v1");
   assert.equal(rowResponse.rowLayout, "delayed_hit_events.v1");
+  assert.equal(rowResponse.receiverRowLayout, "path_segment.v1");
+  assert.equal(rowResponse.streamId, "fixture-path-history-stream");
   assert.equal(rowResponse.rows.length, 1);
   assert.equal(rowResponse.rows[0].emitterId, "source_a");
   assert.equal(rowResponse.rows[0].receiverId, "receiver_b");
@@ -119,8 +145,11 @@ test("animator delayed-hit runtime consumes solver-owned path-history hit rows",
   assert.deepEqual(hits[0].emitterEmissionPosition, [0, 0, 0]);
   assert.deepEqual(hits[0].receiverPosition, [2, 0, 0]);
   assert.equal(hits[0].strength, 0.25);
-  assert.equal(hits[0].metadata.source, "solver-owned-emission-shell-path-row");
+  assert.equal(hits[0].metadata.source, "solver-owned-stream-descriptor-row");
   assert.equal(hits[0].metadata.rowLayout, "delayed_hit_events.v1");
+  assert.equal(hits[0].metadata.descriptorSchema, "animator-delayed-hit-stream-descriptors.v1");
+  assert.equal(hits[0].metadata.receiverStreamId, "fixture-path-history-stream");
+  assert.equal(hits[0].metadata.receiverRowLayout, "path_segment.v1");
   assert.equal(hits[0].metadata.solverBranchWeight, 1);
   assert.equal(hits[0].status, "path-history");
 });

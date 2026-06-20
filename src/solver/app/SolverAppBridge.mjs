@@ -643,13 +643,23 @@ const MOTION_INTEGRATION_REQUEST_F64_BYTES = 120;
 const PAIR_INTERACTION_REQUEST_F64_BYTES = 64;
 const PAIR_INTERACTION_STATE_F64_BYTES = 80;
 const PAIR_INTERACTION_PATH_CONSTRAINT_F64_BYTES = 48;
-const PAIR_INTERACTION_SUMMARY_F64_BYTES = 136;
+const PAIR_INTERACTION_SUMMARY_F64_BYTES = 144;
 const PAIR_INTERACTION_PATH_CONSTRAINT_GUIDANCE_MODE = "retained_knot_boundary";
 const PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_MODE = "retained_knot_boundary";
 const PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_MODE_LAW_AWARE = "law_aware_retained_knot_boundary";
 const PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_RELAXATION_MODE =
   "finite_difference_frame_relaxation_v1";
 const PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_RELAXATION_ITERATION_COUNT = 8;
+const PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_RELAXATION_STATUS_ACCEPTED = "accepted";
+const PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_RELAXATION_STATUS_REVERTED =
+  "reverted_no_improvement";
+const PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_RELAXATION_STATUS_NO_SAMPLES =
+  "no_relaxable_samples";
+const PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_RELAXATION_STATUS_BY_CODE = Object.freeze({
+  1: PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_RELAXATION_STATUS_ACCEPTED,
+  2: PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_RELAXATION_STATUS_REVERTED,
+  3: PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_RELAXATION_STATUS_NO_SAMPLES,
+});
 const PAIR_INTERACTION_CONSTRAINT_SOLVER_STATUS_GUIDED = "guided_constraint_path";
 const PAIR_INTERACTION_CONSTRAINT_SOLVER_STATUS_SNAP = "constraint_snap_only";
 const PAIR_INTERACTION_CONSTRAINT_SOLVER_STATUS_UNCONSTRAINED = "unconstrained";
@@ -3777,6 +3787,7 @@ function runSimulationWithModule(state, module, request, abiInfo) {
         pathCount: pair.pathCount,
         interactionLaw: pair.interactionLaw,
         pathConstraintBoundaryRelaxationMode: pair.summary?.pathConstraintBoundaryRelaxationMode,
+        pathConstraintBoundaryRelaxationStatus: pair.summary?.pathConstraintBoundaryRelaxationStatus,
         pathConstraintBoundaryRelaxationIterationCount:
           pair.summary?.pathConstraintBoundaryRelaxationIterationCount,
         pathConstraintBoundaryRelaxationResidualSampleCount:
@@ -3815,6 +3826,7 @@ function runSimulationWithModule(state, module, request, abiInfo) {
         pathConstraintGuidanceMode: pair.summary?.pathConstraintGuidanceMode,
         pathConstraintBoundaryMode: pair.summary?.pathConstraintBoundaryMode,
         pathConstraintBoundaryRelaxationMode: pair.summary?.pathConstraintBoundaryRelaxationMode,
+        pathConstraintBoundaryRelaxationStatus: pair.summary?.pathConstraintBoundaryRelaxationStatus,
         pathConstraintBoundaryRelaxationIterationCount:
           pair.summary?.pathConstraintBoundaryRelaxationIterationCount,
         pathConstraintBoundaryRelaxationResidualSampleCount:
@@ -4059,11 +4071,23 @@ function solvePairInteractionPathF64(request, options = {}) {
     frames,
     normalized,
   );
+  const framesBeforeBoundaryRelaxation = copyPairInteractionFrameStates(frames);
   relaxPairInteractionConstrainedFrames(frames, normalized);
-  const boundaryRelaxationResidualAfter = summarizePairInteractionBoundaryRelaxationResiduals(
+  let boundaryRelaxationResidualAfter = summarizePairInteractionBoundaryRelaxationResiduals(
     frames,
     normalized,
   );
+  const boundaryRelaxationStatus = getPairInteractionBoundaryRelaxationStatus(
+    boundaryRelaxationResidualBefore,
+    boundaryRelaxationResidualAfter,
+  );
+  if (
+    boundaryRelaxationStatus ===
+    PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_RELAXATION_STATUS_REVERTED
+  ) {
+    restorePairInteractionFrameStates(frames, framesBeforeBoundaryRelaxation);
+    boundaryRelaxationResidualAfter = boundaryRelaxationResidualBefore;
+  }
   const pathRows = createPairInteractionPathRows(frames);
   const residualSummary = summarizePairInteractionConstraintResiduals(frames, normalized);
   const boundarySummary = summarizePairInteractionBoundaryResiduals(normalized);
@@ -4075,6 +4099,7 @@ function solvePairInteractionPathF64(request, options = {}) {
     normalized,
     boundaryRelaxationResidualBefore,
     boundaryRelaxationResidualAfter,
+    boundaryRelaxationStatus,
   );
   const constraintSolverMetadata = createPairInteractionConstraintSolverMetadata(
     residualSummary.pathConstraintCount,
@@ -4364,7 +4389,41 @@ function createPairInteractionPathConstraintBoundaryMode(request) {
     : PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_MODE;
 }
 
-function createPairInteractionBoundaryRelaxationMetadata(request, residualBefore, residualAfter) {
+function copyPairInteractionFrameStates(frames) {
+  return frames.map((frame) => ({
+    position: copyVector(frame.position),
+    velocity: copyVector(frame.velocity),
+  }));
+}
+
+function restorePairInteractionFrameStates(frames, states) {
+  frames.forEach((frame, index) => {
+    const state = states[index];
+    if (!state) {
+      return;
+    }
+    frame.position = copyVector(state.position);
+    frame.velocity = copyVector(state.velocity);
+  });
+}
+
+function getPairInteractionBoundaryRelaxationStatus(residualBefore, residualAfter) {
+  const beforeSampleCount = Number(residualBefore?.pathConstraintBoundaryRelaxationResidualSampleCount);
+  const afterSampleCount = Number(residualAfter?.pathConstraintBoundaryRelaxationResidualSampleCount);
+  if (!Number.isFinite(beforeSampleCount) || beforeSampleCount <= 0 || !Number.isFinite(afterSampleCount) || afterSampleCount <= 0) {
+    return PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_RELAXATION_STATUS_NO_SAMPLES;
+  }
+  const beforeMax = Number(residualBefore?.maxPathConstraintBoundaryRelaxationResidual);
+  const afterMax = Number(residualAfter?.maxPathConstraintBoundaryRelaxationResidual);
+  if (!Number.isFinite(beforeMax) || !Number.isFinite(afterMax)) {
+    return PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_RELAXATION_STATUS_NO_SAMPLES;
+  }
+  return afterMax <= beforeMax
+    ? PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_RELAXATION_STATUS_ACCEPTED
+    : PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_RELAXATION_STATUS_REVERTED;
+}
+
+function createPairInteractionBoundaryRelaxationMetadata(request, residualBefore, residualAfter, status) {
   if (!request || !Array.isArray(request.pathConstraints) || request.pathConstraints.length === 0) {
     return {};
   }
@@ -4374,6 +4433,8 @@ function createPairInteractionBoundaryRelaxationMetadata(request, residualBefore
     pathConstraintBoundaryRelaxationMode: PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_RELAXATION_MODE,
     pathConstraintBoundaryRelaxationIterationCount:
       PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_RELAXATION_ITERATION_COUNT,
+    pathConstraintBoundaryRelaxationStatus:
+      status ?? getPairInteractionBoundaryRelaxationStatus(residualBefore, residualAfter),
     pathConstraintBoundaryRelaxationResidualSampleCount:
       residualAfter?.pathConstraintBoundaryRelaxationResidualSampleCount ?? 0,
     maxPathConstraintBoundaryRelaxationResidualBefore: Number.isFinite(beforeMax) ? beforeMax : 0,
@@ -7121,6 +7182,7 @@ function integratePairInteractionMotionF64WithModule(module, request, options = 
         maxPathConstraintBoundaryRelaxationResidual:
           nativeSummary.maxBoundaryRelaxationResidualAfter,
       },
+      nativeSummary.boundaryRelaxationStatus,
     );
     const constraintSolverMetadata = createPairInteractionConstraintSolverMetadata(
       nativeSummary.pathConstraintCount,
@@ -11509,6 +11571,10 @@ function readPairInteractionSummaryF64(module, ptr) {
     maxBoundaryRelaxationResidualBefore: module.getValue(ptr + 112, "double"),
     maxBoundaryRelaxationResidualAfter: module.getValue(ptr + 120, "double"),
     boundaryRelaxationResidualRatio: module.getValue(ptr + 128, "double"),
+    boundaryRelaxationStatus:
+      PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_RELAXATION_STATUS_BY_CODE[
+        module.getValue(ptr + 136, "i32") >>> 0
+      ],
   };
 }
 

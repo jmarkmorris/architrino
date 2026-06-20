@@ -645,6 +645,11 @@ assert(
     "#/$defs/workPacketResultRef",
   "emission-shell packet results response schema mismatch"
 );
+assert(
+  schema.$defs.emissionShellCandidateF64Response.properties.indexSummary.$ref ===
+    "#/$defs/emissionShellIndexedBroadPhaseSummary",
+  "emission-shell index summary response schema mismatch"
+);
 assert(schema.$defs?.emissionShellCandidateF64, "emission-shell candidate row schema missing");
 assert(schema.$defs?.emissionShellScanSummary, "emission-shell scan summary schema missing");
 assert(schema.$defs?.emissionShellFalsePositiveEstimate, "emission-shell false-positive estimate schema missing");
@@ -1624,6 +1629,10 @@ function validatePairInteractionRunSimulationResponseEnvelope(value) {
     "pair summary relaxation iteration mismatch"
   );
   assert(
+    runResponse.summary.pathConstraintBoundaryRelaxationStatus === "accepted",
+    "pair summary relaxation status mismatch"
+  );
+  assert(
     runResponse.summary.pathConstraintBoundaryRelaxationResidualSampleCount === 2,
     "pair summary relaxation residual sample count mismatch"
   );
@@ -1644,6 +1653,10 @@ function validatePairInteractionRunSimulationResponseEnvelope(value) {
   assert(
     runResponse.pairInteraction.pathConstraintBoundaryRelaxationIterationCount === 8,
     "pair interaction nested relaxation iteration mismatch"
+  );
+  assert(
+    runResponse.pairInteraction.pathConstraintBoundaryRelaxationStatus === "accepted",
+    "pair interaction nested relaxation status mismatch"
   );
   assert(
     runResponse.pairInteraction.pathConstraintBoundaryRelaxationResidualSampleCount === 2,
@@ -4645,6 +4658,7 @@ function createPairInteractionRunSummaryFixture() {
     pathConstraintBoundaryMode: "law_aware_retained_knot_boundary",
     pathConstraintBoundaryRelaxationMode: "finite_difference_frame_relaxation_v1",
     pathConstraintBoundaryRelaxationIterationCount: 8,
+    pathConstraintBoundaryRelaxationStatus: "accepted",
     pathConstraintBoundaryRelaxationResidualSampleCount: 2,
     maxPathConstraintBoundaryRelaxationResidualBefore: 8,
     maxPathConstraintBoundaryRelaxationResidualAfter: 2,

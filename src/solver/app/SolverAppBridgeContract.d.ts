@@ -2888,6 +2888,7 @@ export interface SolverRunSummary {
   pathConstraintBoundaryMode?: string;
   pathConstraintBoundaryRelaxationMode?: string;
   pathConstraintBoundaryRelaxationIterationCount?: number;
+  pathConstraintBoundaryRelaxationStatus?: string;
   pathConstraintBoundaryRelaxationResidualSampleCount?: number;
   maxPathConstraintBoundaryRelaxationResidualBefore?: number;
   maxPathConstraintBoundaryRelaxationResidualAfter?: number;
@@ -2932,6 +2933,7 @@ export interface SolverPairInteractionSummary {
   pathConstraintBoundaryMode?: string;
   pathConstraintBoundaryRelaxationMode?: string;
   pathConstraintBoundaryRelaxationIterationCount?: number;
+  pathConstraintBoundaryRelaxationStatus?: string;
   pathConstraintBoundaryRelaxationResidualSampleCount?: number;
   maxPathConstraintBoundaryRelaxationResidualBefore?: number;
   maxPathConstraintBoundaryRelaxationResidualAfter?: number;

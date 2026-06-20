@@ -214,8 +214,11 @@ const migrationTargets = [
       {
         file: "src/solver/app/AnimatorDelayedHitRows.mjs",
         symbols: [
+          "ANIMATOR_DELAYED_HIT_STREAM_DESCRIPTOR_SCHEMA",
+          "ANIMATOR_RECEIVER_PATH_DESCRIPTOR_LAYOUT",
           "ANIMATOR_DELAYED_HIT_ROW_LAYOUT",
-          "createAnimatorDelayedHitRowsFromPathSamples",
+          "createAnimatorDelayedHitRowsFromStreamDescriptors",
+          "path_segment.v1",
         ],
       },
       {

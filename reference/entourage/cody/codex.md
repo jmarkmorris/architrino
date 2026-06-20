@@ -1,7 +1,6 @@
 ### Principal Proof Architect & Integrator
 
-**Preferred name**:  
-No name-based address in operator prompts or one-on-one chat.
+**Name use**: No name-based address in operator prompts or one-on-one chat.
 
 **Title**:  
 Principal Proof Architect & Integrator

@@ -378,16 +378,16 @@ private enum ReaderFeedbackImageRenderer {
 private enum ReaderFeedbackLayout {
     static let commentPanelInset: CGFloat = 18
     static let commentPanelGutter: CGFloat = 28
-    static let commentPanelTopPadding: CGFloat = 26
-    static let commentPanelBottomPadding: CGFloat = 14
-    static let commentPanelLineSpacing: CGFloat = 30
+    static let commentPanelTopPadding: CGFloat = 22
+    static let commentPanelBottomPadding: CGFloat = 12
+    static let commentPanelLineSpacing: CGFloat = 24
 
     static func topChromeCrop(for size: CGSize) -> CGFloat {
         min(max(size.height * 0.085, 72), 112)
     }
 
     static func footerTransferHeight(for size: CGSize) -> CGFloat {
-        min(max(size.height * 0.043, 38), 52)
+        min(max(size.height * 0.07, 64), 96)
     }
 }
 

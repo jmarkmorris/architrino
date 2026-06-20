@@ -55,7 +55,7 @@ static_assert(sizeof(ArchitrinoSolverMotionIntegrationRequestF64) == 120);
 static_assert(sizeof(ArchitrinoSolverPairInteractionRequestF64) == 64);
 static_assert(sizeof(ArchitrinoSolverPairInteractionStateF64) == 80);
 static_assert(sizeof(ArchitrinoSolverPairInteractionPathConstraintF64) == 48);
-static_assert(sizeof(ArchitrinoSolverPairInteractionSummaryF64) == 136);
+static_assert(sizeof(ArchitrinoSolverPairInteractionSummaryF64) == 144);
 static_assert(sizeof(ArchitrinoSolverMotionFrameRowF64) == 88);
 static_assert(sizeof(ArchitrinoSolverPathHistoryRowF64) == 96);
 static_assert(sizeof(ArchitrinoSolverPathHistoryIndexRow) == 64);
@@ -146,6 +146,7 @@ static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, boundary_relax
 static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, max_boundary_relaxation_residual_before) == 112);
 static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, max_boundary_relaxation_residual_after) == 120);
 static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, boundary_relaxation_residual_ratio) == 128);
+static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, boundary_relaxation_status) == 136);
 static_assert(offsetof(ArchitrinoSolverMotionFrameRowF64, time) == 16);
 static_assert(offsetof(ArchitrinoSolverMotionFrameRowF64, state_flags) == 80);
 static_assert(offsetof(ArchitrinoSolverPathHistoryRowF64, start_time) == 16);
@@ -516,6 +517,8 @@ ArchitrinoSolverPairInteractionSummaryF64 to_pair_interaction_summary(
       result.maxPathConstraintBoundaryRelaxationResidualBefore,
       result.maxPathConstraintBoundaryRelaxationResidualAfter,
       result.pathConstraintBoundaryRelaxationResidualRatio,
+      result.pathConstraintBoundaryRelaxationStatus,
+      0,
   };
 }
 

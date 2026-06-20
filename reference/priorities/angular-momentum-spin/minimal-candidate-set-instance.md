@@ -125,7 +125,7 @@ $$
 
 The candidate is not locally excluded because no row proves an impossible branch, invalid parity, unsourced nonzero wake term, or forbidden routing event. It is blocked because the retained data needed by the branch-selection residual remain absent.
 
-Reduced solver projection 2026-06-20. [tri-binary-offset-family-runner.mjs](../../../scripts/angular-momentum/tri-binary-offset-family-runner.mjs) now supplies a reduced branch-chart projection for the $(f-1,f,f+2)$ candidate family and the $(f-1,f,f+1)$ control. This adds machine-readable proxy evidence for sampled root population, Jacobian floor, outer speed, middle hinge, inner self-hit, integer-cycle phase closure, the index-level self-root parity target, and the clean energy-frequency target $\omega_\ast$. It does not change the audit partition above because the retained row identity, retained phase lock, torque consistency, causal-wake pullback, vector partition, energy routing, section stability, and retained competitor rows remain missing.
+Reduced solver projection 2026-06-20. [tri-binary-offset-family-runner.mjs](../../../scripts/angular-momentum/tri-binary-offset-family-runner.mjs) now supplies a reduced branch-chart projection for the $(f-1,f,f+2)$ candidate family and the $(f-1,f,f+1)$ control. This adds machine-readable proxy evidence for sampled root population, sampled active-row lineage, same-row force / partition / torque / wake diagnostic row IDs, Jacobian floor, outer speed, middle hinge, inner self-hit, integer-cycle phase closure, solver phase-at-hit rows, the index-level self-root parity target, and the clean energy-frequency target $\omega_\ast$. It selects `index-ratio:f2` as the first partial retained-lineage / phase / torque-wake diagnostic payload because that case has the largest positive inner self-hit span separation. It does not change the audit partition above because time-integrated torque consistency, normalized action-kernel wake pullback, binary-to-binary retained phase lock, vector partition, energy routing, section stability, and retained competitor rows remain missing.
 
 ## Row Verdicts
 
@@ -136,9 +136,9 @@ Reduced solver projection 2026-06-20. [tri-binary-offset-family-runner.mjs](../.
 | Vector partition | $\mathcal R_{\mathbf J}^{B_{\min}}=\mathbf 0$ in the reduced certificate. | Conditional pass. |
 | Transverse bookkeeping | $\mathcal R_{\perp}^{B_{\min}}=\mathbf 0$ in the reduced certificate. | Conditional pass. |
 | Root replay | A reduced circular-root proxy is now populated, but individual continued active-root rows are not supplied through the full retained chart. | Blocked. |
-| Phase lock | Integer phase branches and branch-domain margins are not populated. | Blocked. |
-| Torque consistency | The force, torque, wake, and partition row sets are not yet shown to be identical. | Blocked. |
-| Causal-wake pullback | The normalized delayed-interior characteristic-tail angular-momentum increment is assumed away or routed, not retained. | Blocked. |
+| Phase lock | Solver phase-at-hit rows are now populated for the selected reduced payload, but binary-to-binary retained receiver phase, geometric phase, wake-return delay, and branch-domain margins are not populated. | Blocked. |
+| Torque consistency | The force, partition, torque, and wake diagnostic rows now share sampled row IDs, but the time-integrated torque residual and mechanical endpoint increment are not evaluated. | Blocked. |
+| Causal-wake pullback | A diagnostic wake torque sample is attached to each sampled row ID, but the normalized delayed-interior characteristic-tail angular-momentum increment is not evaluated. | Blocked. |
 | Stability | Section stability and inactive-root gap margins are not populated. | Blocked. |
 | Energy routing | The reduced energy-frequency residual is not paired with a declared route. | Blocked. |
 | Non-minimal competitors | No finite family of competing retained generator words has been evaluated. | Blocked. |

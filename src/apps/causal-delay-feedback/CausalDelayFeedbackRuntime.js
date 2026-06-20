@@ -572,6 +572,9 @@ class CausalDelayFeedbackRuntime {
           this.dataset?.pathConstraintBoundaryRelaxationIterationCount ??
             this.dataset?.solverSummary?.pathConstraintBoundaryRelaxationIterationCount
         );
+        const boundaryRelaxationStatus =
+          this.dataset?.pathConstraintBoundaryRelaxationStatus ??
+          this.dataset?.solverSummary?.pathConstraintBoundaryRelaxationStatus;
         const boundaryRelaxationResidualRatio = Number(
           this.dataset?.pathConstraintBoundaryRelaxationResidualRatio ??
             this.dataset?.solverSummary?.pathConstraintBoundaryRelaxationResidualRatio
@@ -627,6 +630,7 @@ class CausalDelayFeedbackRuntime {
               Number.isFinite(boundaryRelaxationResidualRatio)
                 ? ` relaxRatio=${formatCompactNumber(boundaryRelaxationResidualRatio)}`
                 : ""
+            }${boundaryRelaxationStatus ? ` relaxStatus=${formatCompactLabel(boundaryRelaxationStatus)}` : ""
             }`
           : "";
         const guidanceDetail = Number.isFinite(guidanceSampleCount) && guidanceSampleCount > 0
@@ -2838,6 +2842,8 @@ class CausalDelayFeedbackRuntime {
       this.dataset?.pathConstraintBoundaryRelaxationIterationCount ??
         summary.pathConstraintBoundaryRelaxationIterationCount,
     );
+    const boundaryRelaxationStatus =
+      this.dataset?.pathConstraintBoundaryRelaxationStatus ?? summary.pathConstraintBoundaryRelaxationStatus;
     const boundaryRelaxationResidualRatio = Number(
       this.dataset?.pathConstraintBoundaryRelaxationResidualRatio ??
         summary.pathConstraintBoundaryRelaxationResidualRatio,
@@ -2874,6 +2880,9 @@ class CausalDelayFeedbackRuntime {
         }
         if (Number.isFinite(boundaryRelaxationResidualRatio)) {
           details.push(`relaxRatio=${formatCompactNumber(boundaryRelaxationResidualRatio)}`);
+        }
+        if (boundaryRelaxationStatus) {
+          details.push(`relaxStatus=${formatCompactLabel(boundaryRelaxationStatus)}`);
         }
       }
       details.push(`guideRows=${guidanceSampleCount}`);

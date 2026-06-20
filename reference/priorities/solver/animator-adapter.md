@@ -33,11 +33,12 @@ playback surface.
 
 This closeout covers motion simulation frames, path-history stream identity,
 solver metadata, frame-buffer packaging, worker-owned bridge clients, worker
-bridge clients, and authoring payload configuration. It does not claim that
-field-shell event descriptors and receiver paths are fully stream-backed.
+bridge clients, authoring payload configuration, and the descriptor path for
+delayed-hit shell/path intersections. It does not claim that field-shell event
+cadence or durable stream packaging are fully solver-owned.
 Animator delayed-hit shell/path intersections now route through solver-owned
-`delayed_hit_events.v1`-shaped rows, while the scene still assembles the
-emission samples and receiver tracks consumed by that row helper.
+`animator-delayed-hit-stream-descriptors.v1` requests with `path_segment.v1`
+receiver descriptors and `delayed_hit_events.v1` row output.
 
 ## Current Bridge Path
 
@@ -78,8 +79,8 @@ Current validation evidence:
 
 Remaining Animator work is outside this adapter closeout:
 
-- replace scene-built emission samples and receiver tracks with stream-backed
-  solver descriptors for delayed-hit row generation;
+- promote field-shell event cadence and durable stream descriptor production out
+  of the scene runtime before those rows become diagnostic authority;
 - keep playback interpolation, camera bounds, opacity, labels, and authoring
   preview transforms app-side;
 - add adapter cases for any future non-linear or multi-path authoring mode before

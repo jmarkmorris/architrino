@@ -1169,6 +1169,22 @@ struct PairInteractionBoundaryRelaxationResidualSummary {
   double maxResidual = 0.0;
 };
 
+constexpr std::uint32_t kPairBoundaryRelaxationStatusAccepted = 1;
+constexpr std::uint32_t kPairBoundaryRelaxationStatusRevertedNoImprovement = 2;
+constexpr std::uint32_t kPairBoundaryRelaxationStatusNoRelaxableSamples = 3;
+
+std::uint32_t pair_boundary_relaxation_status(
+    const PairInteractionBoundaryRelaxationResidualSummary& before,
+    const PairInteractionBoundaryRelaxationResidualSummary& after) {
+  if (before.sampleCount == 0 || after.sampleCount == 0 ||
+      !std::isfinite(before.maxResidual) || !std::isfinite(after.maxResidual)) {
+    return kPairBoundaryRelaxationStatusNoRelaxableSamples;
+  }
+  return after.maxResidual <= before.maxResidual
+      ? kPairBoundaryRelaxationStatusAccepted
+      : kPairBoundaryRelaxationStatusRevertedNoImprovement;
+}
+
 PairInteractionBoundaryRelaxationResidualSummary measure_pair_interaction_boundary_relaxation_residuals(
     const PairInteractionSampleResult& result,
     const PairInteractionRequest& request,
@@ -1658,9 +1674,17 @@ PairInteractionSampleResult integrate_pair_interaction_motion(
 
   const PairInteractionBoundaryRelaxationResidualSummary relaxationResidualBefore =
       measure_pair_interaction_boundary_relaxation_residuals(result, request, initialStates);
+  const std::vector<MotionFrameRowF64> framesBeforeBoundaryRelaxation = result.frames;
   relax_pair_interaction_constrained_frames(result, request, initialStates);
-  const PairInteractionBoundaryRelaxationResidualSummary relaxationResidualAfter =
+  PairInteractionBoundaryRelaxationResidualSummary relaxationResidualAfter =
       measure_pair_interaction_boundary_relaxation_residuals(result, request, initialStates);
+  result.pathConstraintBoundaryRelaxationStatus =
+      pair_boundary_relaxation_status(relaxationResidualBefore, relaxationResidualAfter);
+  if (result.pathConstraintBoundaryRelaxationStatus ==
+      kPairBoundaryRelaxationStatusRevertedNoImprovement) {
+    result.frames = framesBeforeBoundaryRelaxation;
+    relaxationResidualAfter = relaxationResidualBefore;
+  }
   result.pathConstraintBoundaryRelaxationResidualSampleCount =
       relaxationResidualAfter.sampleCount;
   result.maxPathConstraintBoundaryRelaxationResidualBefore =

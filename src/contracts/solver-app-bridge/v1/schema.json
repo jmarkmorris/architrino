@@ -4487,6 +4487,10 @@
           "type": "integer",
           "minimum": 0
         },
+        "pathConstraintBoundaryRelaxationStatus": {
+          "type": "string",
+          "minLength": 1
+        },
         "pathConstraintBoundaryRelaxationResidualSampleCount": {
           "type": "integer",
           "minimum": 0
@@ -4614,6 +4618,10 @@
         "pathConstraintBoundaryRelaxationIterationCount": {
           "type": "integer",
           "minimum": 0
+        },
+        "pathConstraintBoundaryRelaxationStatus": {
+          "type": "string",
+          "minLength": 1
         },
         "pathConstraintBoundaryRelaxationResidualSampleCount": {
           "type": "integer",

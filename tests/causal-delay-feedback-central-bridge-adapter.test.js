@@ -185,6 +185,7 @@ function createPairInteractionRunResponse(request) {
         pathConstraintBoundaryRelaxationMode:
           guidanceSampleCount > 0 ? "finite_difference_frame_relaxation_v1" : undefined,
         pathConstraintBoundaryRelaxationIterationCount: guidanceSampleCount > 0 ? 8 : undefined,
+        pathConstraintBoundaryRelaxationStatus: guidanceSampleCount > 0 ? "accepted" : undefined,
         pathConstraintBoundaryRelaxationResidualSampleCount: guidanceSampleCount > 0 ? 6 : undefined,
         maxPathConstraintBoundaryRelaxationResidualBefore: guidanceSampleCount > 0 ? 24 : undefined,
         maxPathConstraintBoundaryRelaxationResidualAfter: guidanceSampleCount > 0 ? 6 : undefined,
@@ -586,6 +587,7 @@ test("causal delay central bridge adapter submits retained path constraints afte
   assert.equal(dataset.pathConstraintBoundaryMode, "law_aware_retained_knot_boundary");
   assert.equal(dataset.pathConstraintBoundaryRelaxationMode, "finite_difference_frame_relaxation_v1");
   assert.equal(dataset.pathConstraintBoundaryRelaxationIterationCount, 8);
+  assert.equal(dataset.pathConstraintBoundaryRelaxationStatus, "accepted");
   assert.equal(dataset.pathConstraintBoundaryRelaxationResidualSampleCount, 6);
   assert.equal(dataset.maxPathConstraintBoundaryRelaxationResidualBefore, 24);
   assert.equal(dataset.maxPathConstraintBoundaryRelaxationResidualAfter, 6);
@@ -605,6 +607,7 @@ test("causal delay central bridge adapter submits retained path constraints afte
   assert.equal(dataset.solverSummary.pathConstraintBoundaryMode, "law_aware_retained_knot_boundary");
   assert.equal(dataset.solverSummary.pathConstraintBoundaryRelaxationMode, "finite_difference_frame_relaxation_v1");
   assert.equal(dataset.solverSummary.pathConstraintBoundaryRelaxationIterationCount, 8);
+  assert.equal(dataset.solverSummary.pathConstraintBoundaryRelaxationStatus, "accepted");
   assert.equal(dataset.solverSummary.pathConstraintBoundaryRelaxationResidualSampleCount, 6);
   assert.equal(dataset.solverSummary.maxPathConstraintBoundaryRelaxationResidualBefore, 24);
   assert.equal(dataset.solverSummary.maxPathConstraintBoundaryRelaxationResidualAfter, 6);

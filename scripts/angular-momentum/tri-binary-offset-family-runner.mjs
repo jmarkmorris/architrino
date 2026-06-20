@@ -14,6 +14,7 @@ const FIELD_SPEED_TOLERANCE = 0.015;
 const ROOT_TOLERANCE = 1e-13;
 const SELF_HIT_TOLERANCE = 1e-12;
 const CLOSURE_PERIOD = 2 * Math.PI;
+const FIXED_RECEIVER_POSITION = { x: 2.5, y: 0, z: 0 };
 const DEFAULT_OUTPUT_PATH =
   ".tmp/angular-momentum-spin/tri-binary-offset-family-solver-report.json";
 
@@ -410,7 +411,6 @@ async function runSelfHitRows(client, layers) {
 }
 
 function createCircularSourceRequest({ policy, f, family, layer }) {
-  const receiverDistance = 2.5;
   return {
     source: {
       startTime: -CLOSURE_PERIOD,
@@ -426,7 +426,7 @@ function createCircularSourceRequest({ policy, f, family, layer }) {
     receiver: {
       startTime: 0,
       endTime: CLOSURE_PERIOD,
-      positionAtStart: { x: receiverDistance, y: 0, z: 0 },
+      positionAtStart: FIXED_RECEIVER_POSITION,
       velocity: { x: 0, y: 0, z: 0 },
       errorBound: 1e-15,
     },
@@ -440,7 +440,7 @@ function createCircularSourceRequest({ policy, f, family, layer }) {
   };
 }
 
-function projectLayerSolverRow({ layer, rootLedgerResponse }) {
+function projectLayerSolverRow({ layer, rootLedgerResponse, phaseDiagnostics }) {
   const roots = rootLedgerResponse.roots ?? [];
   const details = rootLedgerResponse.rootLedgerDetails ?? [];
   const activeDetails = details.filter((row) => row.entryKind === 1);
@@ -454,6 +454,7 @@ function projectLayerSolverRow({ layer, rootLedgerResponse }) {
     layer: layer.layer,
     index: layer.index,
     angularVelocity: layer.angularVelocity,
+    phaseAtEpoch: layer.phaseAtEpoch,
     radius: layer.radius,
     speedRatio: layer.speedRatio,
     speed: layer.speed,
@@ -479,19 +480,71 @@ function projectLayerSolverRow({ layer, rootLedgerResponse }) {
         residual: root.residual,
         jacobian: root.jacobian,
         branchWeight: root.branchWeight,
+        sourcePoint: root.sourcePoint,
+        receiverPoint: root.receiverPoint,
       })),
       activeDetails: activeDetails.map((row) => ({
+        ledgerKey: row.ledgerKey,
+        sourceKey: row.sourceKey,
+        receiverKey: row.receiverKey,
+        rootKey: row.rootKey,
         rootId: row.rootId,
         entryKind: row.entryKind,
+        rootKind: row.rootKind,
+        statusCode: row.statusCode,
         jacobianSignStratum: row.jacobianSignStratum,
+        sequenceIndex: row.sequenceIndex,
         iterationCount: row.iterationCount,
         intervalStart: row.intervalStart,
         intervalEnd: row.intervalEnd,
+        emissionTime: row.emissionTime,
+        hitTime: row.hitTime,
+        delay: row.delay,
         residual: row.residual,
+        residualScale: row.residualScale,
+        absoluteResidual: row.absoluteResidual,
         normalizedResidual: row.normalizedResidual,
         rootTolerance: row.rootTolerance,
+        jacobian: row.jacobian,
+        branchWeight: row.branchWeight,
+        bracketStart: row.bracketStart,
+        bracketEnd: row.bracketEnd,
+        sourcePoint: row.sourcePoint,
+        receiverPoint: row.receiverPoint,
+        stateFlags: row.stateFlags,
       })),
     },
+    phaseDiagnostics: projectPhaseDiagnostics(phaseDiagnostics),
+  };
+}
+
+function projectPhaseDiagnostics(phaseDiagnostics) {
+  return {
+    status: phaseDiagnostics.status,
+    sourceClock: phaseDiagnostics.sourceClock,
+    receiverClock: phaseDiagnostics.receiverClock,
+    rowCount: phaseDiagnostics.rows.length,
+    rows: phaseDiagnostics.rows.map((row) => ({
+      rootId: row.rootId,
+      statusCode: row.statusCode,
+      sourceCycleIndex: row.sourceCycleIndex,
+      receiverCycleIndex: row.receiverCycleIndex,
+      emissionTime: row.emissionTime,
+      hitTime: row.hitTime,
+      sourcePhase: row.sourcePhase,
+      receiverPhase: row.receiverPhase,
+      phaseDelta: row.phaseDelta,
+      phaseSpread: row.phaseSpread,
+      rootKind: row.rootKind,
+      sourceLayerCode: row.sourceLayerCode,
+      receiverLayerCode: row.receiverLayerCode,
+      sourceRoleCode: row.sourceRoleCode,
+      receiverRoleCode: row.receiverRoleCode,
+      sourceChargeSign: row.sourceChargeSign,
+      receiverChargeSign: row.receiverChargeSign,
+      stateFlags: row.stateFlags,
+    })),
+    summary: phaseDiagnostics.summary,
   };
 }
 
@@ -543,6 +596,25 @@ function evaluateRows(layerRows) {
       ),
       required: "each layer closes an integer number of cycles over the sampled closure period",
     },
+    phaseDiagnosticsPopulation: {
+      pass: layerRows.every(
+        (row) =>
+          row.phaseDiagnostics.status?.code === "ok" &&
+          row.phaseDiagnostics.rowCount === row.rootLedger.rootCount
+      ),
+      value: Object.fromEntries(
+        layerRows.map((row) => [
+          row.layer,
+          {
+            phaseRows: row.phaseDiagnostics.rowCount,
+            rootRows: row.rootLedger.rootCount,
+            meanPhaseSpread: row.phaseDiagnostics.summary?.meanPhaseSpread ?? null,
+            maxPhaseSpread: row.phaseDiagnostics.summary?.maxPhaseSpread ?? null,
+          },
+        ])
+      ),
+      required: "every sampled root row has a solver phase-at-hit diagnostic row",
+    },
     rootLedgerPopulation: {
       pass: layerRows.every((row) => row.rootLedger.rootCount > 0 && row.rootLedger.activeRootDetailCount > 0),
       value: Object.fromEntries(
@@ -566,11 +638,17 @@ function evaluateRows(layerRows) {
 }
 
 function createBranchChartProjection({ policy, f, family, layers, rowVerdicts }) {
+  const caseId = `${policy}:${family.id}:f${f}`;
   const byLayer = new Map(layers.map((row) => [row.layer, row]));
   const innerOffsetFromMiddle = family.indices.inner - family.indices.middle;
   const rootChartProxyPass =
     rowVerdicts.rootLedgerPopulation.pass === true && rowVerdicts.jacobianFloor.pass === true;
   const allReducedRowsPass = Object.values(rowVerdicts).every((row) => row.pass === true);
+  const activeRowLineageProbe = createActiveRowLineageProbe({ caseId, layers });
+  const phaseAtHitProbe = createPhaseAtHitProbe({ caseId, layers });
+  const torqueWakeDiagnosticProbe = createTorqueWakeDiagnosticProbe({
+    activeRowLineageProbe,
+  });
 
   return {
     schema: "aaa-tri-binary-retained-branch-chart-projection.v1",
@@ -584,7 +662,7 @@ function createBranchChartProjection({ policy, f, family, layers, rowVerdicts })
     branchSelectionResidualStatus: "blocked_not_evaluable",
     auditPartition: {
       eval: [],
-      blocked: [`${policy}:${family.id}:f${f}`],
+      blocked: [caseId],
       excluded: [],
     },
     reducedRowsPass: allReducedRowsPass,
@@ -601,6 +679,29 @@ function createBranchChartProjection({ policy, f, family, layers, rowVerdicts })
         },
         retainedLimitation:
           "Does not supply B^- and B^+ inactive-root gaps, root-transport residuals, or a common retained active-row set over W.",
+      }),
+      createProjectionRow({
+        id: "active_row_lineage_probe",
+        mapsTo: ["row_set_identity", "root_chart"],
+        status: activeRowLineageProbe.activeRowCount > 0 ? "sampled_lineage_populated" : "missing",
+        evidence:
+          "Names deterministic sampled active-row IDs, source lineage, receiver lineage, root timing, root residuals, and root-ledger detail keys.",
+        value: activeRowLineageProbe.summary,
+        retainedLimitation:
+          "The same rows are not yet proven to be the force, torque, normalized tail-wake, and partition row set.",
+      }),
+      createProjectionRow({
+        id: "torque_wake_same_row_diagnostic",
+        mapsTo: ["torque_consistency", "tail_wake_pullback", "row_set_identity"],
+        status:
+          torqueWakeDiagnosticProbe.rowSetStatus === "same_row_ids_attached"
+            ? "same_row_ids_attached_residual_blocked"
+            : "missing",
+        evidence:
+          "Attaches normalized force-like, instantaneous torque, and wake-diagnostic rows to the same sampled active row IDs.",
+        value: torqueWakeDiagnosticProbe.summary,
+        retainedLimitation:
+          "Does not evaluate the time-integrated torque residual or the normalized delayed-interior characteristic-tail wake charge.",
       }),
       createProjectionRow({
         id: "outer_speed",
@@ -640,6 +741,16 @@ function createBranchChartProjection({ policy, f, family, layers, rowVerdicts })
         value: rowVerdicts.cyclePhaseClosure.value,
         retainedLimitation:
           "Cycle closure is not the retained phase-lock residual; it omits root-continuation branches, geometric phase terms, and wake-return delay.",
+      }),
+      createProjectionRow({
+        id: "phase_at_hit_rows",
+        mapsTo: ["phase_lock"],
+        status: rowVerdicts.phaseDiagnosticsPopulation.pass ? "phase_rows_populated" : "phase_rows_missing",
+        evidence:
+          "Solver phase-at-hit diagnostics are computed for each sampled root using source and receiver phase clocks.",
+        value: phaseAtHitProbe.summary,
+        retainedLimitation:
+          "The receiver is still the fixed probe clock, so this does not prove binary-to-binary retained phase lock.",
       }),
       createProjectionRow({
         id: "self_root_parity_index_proxy",
@@ -715,15 +826,312 @@ function createBranchChartProjection({ policy, f, family, layers, rowVerdicts })
       }),
     ],
     residualVectorProjection: {
-      r_rows: "blocked",
+      r_rows:
+        torqueWakeDiagnosticProbe.rowSetStatus === "same_row_ids_attached"
+          ? "blocked_with_same_row_diagnostic_payload"
+          : "blocked",
       r_root: rootChartProxyPass ? "partial_proxy_pass" : "partial_proxy_fail",
-      r_phi: rowVerdicts.cyclePhaseClosure.pass ? "blocked_with_cycle_proxy_pass" : "blocked",
+      r_phi:
+        rowVerdicts.phaseDiagnosticsPopulation.pass && rowVerdicts.cyclePhaseClosure.pass
+          ? "blocked_with_phase_rows_and_cycle_proxy"
+          : "blocked",
       r_stab: "blocked",
       r_pull: "blocked",
       r_part: "blocked",
       r_route: "blocked",
     },
+    activeRowLineageProbe,
+    phaseAtHitProbe,
+    torqueWakeDiagnosticProbe,
   };
+}
+
+function createActiveRowLineageProbe({ caseId, layers }) {
+  const activeRows = [];
+  for (const layer of layers) {
+    for (const [rootIndex, root] of layer.rootLedger.roots.entries()) {
+      const detail = findProjectedActiveDetailForRoot(layer.rootLedger.activeDetails, root, rootIndex);
+      activeRows.push({
+        rowId: `${caseId}:${layer.layer}:root-${root.rootId}`,
+        layer: layer.layer,
+        sourceLineage: {
+          kind: "circular-source-layer",
+          layer: layer.layer,
+          index: layer.index,
+          angularVelocity: layer.angularVelocity,
+          radius: layer.radius,
+          phaseAtEpoch: layer.phaseAtEpoch,
+          sourceClock: layer.phaseDiagnostics.sourceClock,
+        },
+        receiverLineage: {
+          kind: "fixed-receiver-probe",
+          retainedBinary: false,
+          receiverClock: layer.phaseDiagnostics.receiverClock,
+        },
+        root: {
+          rootId: root.rootId,
+          emissionTime: root.emissionTime,
+          hitTime: root.hitTime,
+          delay: root.delay,
+          distance: root.distance,
+          residual: root.residual,
+          jacobian: root.jacobian,
+          branchWeight: root.branchWeight,
+        },
+        rootLedgerDetail: detail
+          ? {
+              ledgerKey: detail.ledgerKey,
+              sourceKey: detail.sourceKey,
+              receiverKey: detail.receiverKey,
+              rootKey: detail.rootKey,
+              rootKind: detail.rootKind,
+              entryKind: detail.entryKind,
+              sequenceIndex: detail.sequenceIndex,
+              bracketStart: detail.bracketStart,
+              bracketEnd: detail.bracketEnd,
+              normalizedResidual: detail.normalizedResidual,
+              jacobianSignStratum: detail.jacobianSignStratum,
+            }
+          : null,
+      });
+    }
+  }
+  const rowIds = activeRows.map((row) => row.rowId);
+  return {
+    status: activeRows.length > 0 ? "sampled_active_row_lineage_populated" : "no_active_rows",
+    claimLevel: "lineage payload for sampled solver roots; not common retained row-set proof",
+    activeRowCount: activeRows.length,
+    summary: {
+      activeRowCount: activeRows.length,
+      rowIds,
+      rowSetIdentity: {
+        forceRows: rowIds,
+        partitionRows: rowIds,
+        torqueRows: [],
+        wakeRows: [],
+        status: "blocked_until_torque_and_wake_use_same_rows",
+      },
+    },
+    activeRows,
+  };
+}
+
+function createPhaseAtHitProbe({ caseId, layers }) {
+  const phaseRows = [];
+  for (const layer of layers) {
+    for (const row of layer.phaseDiagnostics.rows) {
+      phaseRows.push({
+        rowId: `${caseId}:${layer.layer}:phase-root-${row.rootId}`,
+        layer: layer.layer,
+        rootId: row.rootId,
+        statusCode: row.statusCode,
+        sourceCycleIndex: row.sourceCycleIndex,
+        receiverCycleIndex: row.receiverCycleIndex,
+        emissionTime: row.emissionTime,
+        hitTime: row.hitTime,
+        sourcePhase: row.sourcePhase,
+        receiverPhase: row.receiverPhase,
+        phaseDelta: row.phaseDelta,
+        phaseSpread: row.phaseSpread,
+        rootKind: row.rootKind,
+        sourceLayerCode: row.sourceLayerCode,
+        receiverLayerCode: row.receiverLayerCode,
+        sourceRoleCode: row.sourceRoleCode,
+        receiverRoleCode: row.receiverRoleCode,
+        sourceChargeSign: row.sourceChargeSign,
+        receiverChargeSign: row.receiverChargeSign,
+        stateFlags: row.stateFlags,
+      });
+    }
+  }
+  const maxPhaseSpread = maxFinite(phaseRows.map((row) => row.phaseSpread));
+  return {
+    status: phaseRows.length > 0 ? "phase_at_hit_rows_populated" : "no_phase_rows",
+    claimLevel: "phase-at-hit payload for sampled roots; not retained phase-lock proof",
+    phaseRowCount: phaseRows.length,
+    summary: {
+      phaseRowCount: phaseRows.length,
+      maxPhaseSpread,
+      layerSummaries: Object.fromEntries(
+        layers.map((layer) => [
+          layer.layer,
+          {
+            phaseRows: layer.phaseDiagnostics.rowCount,
+            summary: layer.phaseDiagnostics.summary,
+          },
+        ])
+      ),
+    },
+    phaseRows,
+  };
+}
+
+function createTorqueWakeDiagnosticProbe({ activeRowLineageProbe }) {
+  const rowIds = activeRowLineageProbe.summary.rowIds;
+  const torqueRows = activeRowLineageProbe.activeRows.map((row) =>
+    createTorqueDiagnosticRow(row)
+  );
+  const wakeRows = torqueRows.map((row) => createWakeDiagnosticRow(row));
+  const torqueTimeIntegralBlocker = createTorqueTimeIntegralBlocker();
+  const wakeActionKernelBlocker = createWakeActionKernelBlocker();
+  return {
+    status:
+      torqueRows.length > 0
+        ? "same_row_force_torque_wake_diagnostics_populated"
+        : "no_rows_for_torque_wake_diagnostics",
+    claimLevel:
+      "same-row diagnostic payload with exact retained-integral blockers; not time-integrated torque consistency or normalized action-kernel wake pullback",
+    rowSetStatus:
+      rowIds.length > 0 &&
+      sameOrderedStrings(rowIds, torqueRows.map((row) => row.rowId)) &&
+      sameOrderedStrings(rowIds, wakeRows.map((row) => row.rowId))
+        ? "same_row_ids_attached"
+        : "row_id_mismatch",
+    summary: {
+      forceRows: rowIds,
+      partitionRows: rowIds,
+      torqueRows: torqueRows.map((row) => row.rowId),
+      wakeRows: wakeRows.map((row) => row.rowId),
+      maxInstantaneousTorqueNorm: maxFinite(torqueRows.map((row) => row.receiverTorqueNorm)),
+      diagnosticWakeRowCount: wakeRows.length,
+      torqueConsistencyStatus:
+        "blocked_until_retained_time_window_torque_integral_is_available",
+      torqueTimeIntegralBlocker,
+      wakePullbackStatus:
+        "blocked_until_normalized_action_kernel_boundary_charge_is_available",
+      wakeActionKernelBlocker,
+    },
+    torqueRows,
+    wakeRows,
+  };
+}
+
+function createTorqueTimeIntegralBlocker() {
+  return {
+    status: "blocked_missing_retained_time_window_torque_integral",
+    missing:
+      "A retained active-row stream over W with root-continuation labels, torque quadrature weights, and the mechanical endpoint increment for each layer.",
+    currentBridgePayload:
+      "The circular-source probe exposes sampled active roots at one hit time; it does not identify a continued retained active-row set over the full window W.",
+    requiredFields: [
+      "windowStart",
+      "windowEnd",
+      "sameRetainedActiveRowIds",
+      "rootContinuationLabels",
+      "torqueQuadratureWeights",
+      "mechanicalEndpointIncrement",
+    ],
+  };
+}
+
+function createWakeActionKernelBlocker() {
+  return {
+    status: "blocked_missing_normalized_action_kernel_boundary_charge",
+    missing:
+      "The normalized delayed-interior characteristic-tail boundary charge on the chart-restricted crossing domain for the same retained active rows.",
+    currentBridgePayload:
+      "The diagnostic wake row only attaches the negative instantaneous torque sample; it does not evaluate the Master-Equation action-kernel boundary integral.",
+    requiredFields: [
+      "eta",
+      "epsilonC",
+      "endpointConvention",
+      "sameRetainedActiveRowIds",
+      "chartRestrictedCrossingDomainRows",
+      "kernelGradientIntegral",
+    ],
+  };
+}
+
+function createTorqueDiagnosticRow(row) {
+  const sourcePoint =
+    row.root.sourcePoint ??
+    row.rootLedgerDetail?.sourcePoint ??
+    computeCircularSourcePoint(row.sourceLineage, row.root.emissionTime);
+  const receiverPoint =
+    row.root.receiverPoint ??
+    row.rootLedgerDetail?.receiverPoint ??
+    computeFixedReceiverPoint(row.root.hitTime);
+  const displacement = sourcePoint && receiverPoint ? subtractVectors(receiverPoint, sourcePoint) : null;
+  const distance = displacement ? vectorNorm(displacement) : row.root.distance;
+  const unitDirection = displacement && distance > 0 ? scaleVector(displacement, 1 / distance) : null;
+  const forceScale =
+    unitDirection && distance > 0 && Math.abs(row.root.jacobian) > 0
+      ? 1 / (distance * distance * Math.abs(row.root.jacobian))
+      : null;
+  const normalizedForce = unitDirection && forceScale != null ? scaleVector(unitDirection, forceScale) : null;
+  const receiverTorque =
+    receiverPoint && normalizedForce ? crossVectors(receiverPoint, normalizedForce) : null;
+  const sourceReactionTorque =
+    sourcePoint && normalizedForce ? crossVectors(sourcePoint, scaleVector(normalizedForce, -1)) : null;
+  return {
+    rowId: row.rowId,
+    layer: row.layer,
+    status: normalizedForce ? "instantaneous_torque_diagnostic_populated" : "missing_geometry",
+    coefficientConvention:
+      "mu_arch*kappa*|q_source*q_receiver|*sigma is set to +1 for this diagnostic row only",
+    sourcePoint,
+    receiverPoint,
+    displacement,
+    distance,
+    jacobian: row.root.jacobian,
+    normalizedForce,
+    receiverTorque,
+    receiverTorqueNorm: receiverTorque ? vectorNorm(receiverTorque) : null,
+    sourceReactionTorque,
+    sourceReactionTorqueNorm: sourceReactionTorque ? vectorNorm(sourceReactionTorque) : null,
+    residualStatus:
+      "not_evaluated_without_retained_time_window_torque_integral",
+  };
+}
+
+function computeCircularSourcePoint(sourceLineage, time) {
+  if (!sourceLineage || !Number.isFinite(time)) {
+    return null;
+  }
+  const phase = sourceLineage.angularVelocity * time + sourceLineage.phaseAtEpoch;
+  return {
+    x: sourceLineage.radius * Math.cos(phase),
+    y: sourceLineage.radius * Math.sin(phase),
+    z: 0,
+  };
+}
+
+function computeFixedReceiverPoint() {
+  return { ...FIXED_RECEIVER_POSITION };
+}
+
+function createWakeDiagnosticRow(torqueRow) {
+  const diagnosticWakeTorqueSample = torqueRow.receiverTorque
+    ? scaleVector(torqueRow.receiverTorque, -1)
+    : null;
+  return {
+    rowId: torqueRow.rowId,
+    layer: torqueRow.layer,
+    status: diagnosticWakeTorqueSample ? "wake_torque_sample_attached" : "missing_torque_sample",
+    diagnosticWakeTorqueSample,
+    diagnosticWakeTorqueSampleNorm: diagnosticWakeTorqueSample
+      ? vectorNorm(diagnosticWakeTorqueSample)
+      : null,
+    normalizedActionKernelWakeCharge: null,
+    residualStatus:
+      "not_evaluated_without_normalized_action_kernel_boundary_charge",
+  };
+}
+
+function sameOrderedStrings(left, right) {
+  return left.length === right.length && left.every((value, index) => value === right[index]);
+}
+
+function findProjectedActiveDetailForRoot(details, root, fallbackIndex) {
+  const exact = details.find(
+    (detail) =>
+      Math.abs(detail.emissionTime - root.emissionTime) <= 1e-10 &&
+      Math.abs(detail.hitTime - root.hitTime) <= 1e-10
+  );
+  if (exact) {
+    return exact;
+  }
+  return details[fallbackIndex] ?? null;
 }
 
 function computeEnergyFrequencyTarget(byLayer) {
@@ -778,14 +1186,124 @@ function createBlockedProjectionRow({ id, mapsTo, missing }) {
   };
 }
 
-function createReportBranchChartProjection(cases) {
+function createSelectedRetainedLineagePhaseProbe(cases, comparisons) {
+  const rankedComparisons = comparisons
+    .filter(
+      (comparison) =>
+        comparison.policy === "index-ratio" &&
+        comparison.reducedProbePreference === "both_pass_candidate_has_larger_inner_self_hit_span"
+    )
+    .sort((left, right) => right.innerSelfHitSpanDelta - left.innerSelfHitSpanDelta);
+  const selectedComparison =
+    rankedComparisons[0] ??
+    comparisons.find((comparison) => comparison.candidateRowsPass && comparison.policy === "phase-lock") ??
+    null;
+  if (!selectedComparison) {
+    return {
+      status: "no_selected_case",
+      retainedBranchClaim: false,
+      reason: "No passing candidate comparison was available for retained lineage and phase probing.",
+    };
+  }
+  const selectedCase = cases.find(
+    (item) =>
+      item.policy === selectedComparison.policy &&
+      item.f === selectedComparison.f &&
+      item.familyId === "middle-hinge-offset"
+  );
+  if (!selectedCase) {
+    return {
+      status: "selected_case_missing",
+      retainedBranchClaim: false,
+      comparisonId: selectedComparison.comparisonId,
+    };
+  }
+  const lineage = selectedCase.branchChartProjection.activeRowLineageProbe;
+  const phase = selectedCase.branchChartProjection.phaseAtHitProbe;
+  const torqueWake = selectedCase.branchChartProjection.torqueWakeDiagnosticProbe;
+  return {
+    schema: "aaa-tri-binary-selected-retained-lineage-phase-probe.v1",
+    status: "partial_payload_retained_certificate_blocked",
+    claimLevel:
+      "sampled active-row lineage and phase-at-hit payload; not a retained branch-chart certificate",
+    retainedBranchClaim: false,
+    promotionReady: false,
+    selectedCaseId: selectedCase.caseId,
+    selectedComparisonId: selectedComparison.comparisonId,
+    selectionReason:
+      "Largest positive inner self-hit span delta for the priority candidate among passing index-ratio stress comparisons.",
+    selectedComparison: {
+      policy: selectedComparison.policy,
+      f: selectedComparison.f,
+      innerSelfHitSpanDelta: selectedComparison.innerSelfHitSpanDelta,
+      reducedProbePreference: selectedComparison.reducedProbePreference,
+    },
+    auditPartition: {
+      eval: [],
+      blocked: [selectedCase.caseId],
+      excluded: [],
+    },
+    rowSetIdentity: {
+      status:
+        torqueWake.rowSetStatus === "same_row_ids_attached"
+          ? "blocked_with_same_row_force_partition_torque_wake_diagnostics"
+          : "blocked_with_sampled_active_row_lineage",
+      populatedRows: lineage.summary.rowIds,
+      forceRows: lineage.summary.rowSetIdentity.forceRows,
+      partitionRows: lineage.summary.rowSetIdentity.partitionRows,
+      torqueRows: torqueWake.summary.torqueRows,
+      wakeRows: torqueWake.summary.wakeRows,
+      missing:
+        "The row IDs now match at the diagnostic payload level, but row_set_identity cannot pass until the time-integrated torque residual and normalized action-kernel wake charge are evaluated on those same rows.",
+    },
+    torqueWake: {
+      status: "blocked_with_same_row_diagnostic_payload",
+      maxInstantaneousTorqueNorm: torqueWake.summary.maxInstantaneousTorqueNorm,
+      torqueConsistencyStatus: torqueWake.summary.torqueConsistencyStatus,
+      torqueTimeIntegralBlocker: torqueWake.summary.torqueTimeIntegralBlocker,
+      wakePullbackStatus: torqueWake.summary.wakePullbackStatus,
+      wakeActionKernelBlocker: torqueWake.summary.wakeActionKernelBlocker,
+    },
+    phaseLock: {
+      status: "blocked_with_phase_at_hit_rows",
+      phaseRowCount: phase.phaseRowCount,
+      maxPhaseSpread: phase.summary.maxPhaseSpread,
+      missing:
+        "Binary-to-binary retained receiver phase, geometric phase, wake-return delay, and root-continuation margin are not supplied by the fixed-receiver probe.",
+    },
+    activeRows: lineage.activeRows,
+    phaseRows: phase.phaseRows,
+    torqueRows: torqueWake.torqueRows,
+    wakeRows: torqueWake.wakeRows,
+    stillBlockedRows: [
+      "row_set_identity",
+      "phase_lock",
+      "torque_consistency",
+      "tail_wake_pullback",
+      "vector_partition_retained",
+      "energy_routing",
+      "section_stability",
+      "non_minimal_retained_competitors",
+    ],
+  };
+}
+
+function createReportBranchChartProjection(cases, retainedLineagePhaseProbe) {
   const populatedRowCounts = {};
   const blockedRowCounts = {};
   let reducedPassCases = 0;
   let selfRootParityProxyMatches = 0;
+  let activeLineageProbeCases = 0;
+  let phaseAtHitProbeCases = 0;
   for (const item of cases) {
     if (item.branchChartProjection?.reducedRowsPass) {
       reducedPassCases += 1;
+    }
+    if (item.branchChartProjection?.activeRowLineageProbe?.activeRowCount > 0) {
+      activeLineageProbeCases += 1;
+    }
+    if (item.branchChartProjection?.phaseAtHitProbe?.phaseRowCount > 0) {
+      phaseAtHitProbeCases += 1;
     }
     for (const row of item.branchChartProjection?.populatedRows ?? []) {
       populatedRowCounts[row.id] = (populatedRowCounts[row.id] ?? 0) + 1;
@@ -803,6 +1321,10 @@ function createReportBranchChartProjection(cases) {
     caseCount: cases.length,
     reducedPassCases,
     selfRootParityProxyMatches,
+    activeLineageProbeCases,
+    phaseAtHitProbeCases,
+    selectedRetainedLineagePhaseProbeStatus: retainedLineagePhaseProbe?.status ?? "missing",
+    selectedRetainedLineagePhaseProbeCaseId: retainedLineagePhaseProbe?.selectedCaseId ?? null,
     auditPartition: {
       evalCount: 0,
       blockedCount: cases.length,
@@ -815,14 +1337,16 @@ function createReportBranchChartProjection(cases) {
   };
 }
 
-function createClosureSummary(cases) {
-  const projection = createReportBranchChartProjection(cases);
+function createClosureSummary(cases, retainedLineagePhaseProbe) {
+  const projection = createReportBranchChartProjection(cases, retainedLineagePhaseProbe);
   return {
     status: "not_closed",
     retainedBranchClaim: false,
     reason:
-      "The runner now emits solver-backed reduced rows and a branch-chart projection, but promotion still requires a retained branch chart with common active-row lineage, phase, vector-ledger, energy-routing, torque, wake, and stability rows.",
+      "The runner now emits solver-backed reduced rows, sampled active-row lineage, phase-at-hit rows, and a branch-chart projection, but promotion still requires a retained branch chart with common active-row lineage across force, torque, wake, and partition rows plus binary-to-binary retained phase, vector-ledger, energy-routing, and stability rows.",
     reducedPassCases: projection.reducedPassCases,
+    activeLineageProbeCases: projection.activeLineageProbeCases,
+    phaseAtHitProbeCases: projection.phaseAtHitProbeCases,
     blockedCaseCount: projection.auditPartition.blockedCount,
   };
 }
@@ -972,6 +1496,39 @@ function assertFileExists(filePath) {
 
 function formatNumber(value) {
   return Number.isFinite(value) ? value.toPrecision(8) : String(value);
+}
+
+function subtractVectors(left, right) {
+  return {
+    x: left.x - right.x,
+    y: left.y - right.y,
+    z: left.z - right.z,
+  };
+}
+
+function scaleVector(vector, scale) {
+  return {
+    x: vector.x * scale,
+    y: vector.y * scale,
+    z: vector.z * scale,
+  };
+}
+
+function crossVectors(left, right) {
+  return {
+    x: left.y * right.z - left.z * right.y,
+    y: left.z * right.x - left.x * right.z,
+    z: left.x * right.y - left.y * right.x,
+  };
+}
+
+function vectorNorm(vector) {
+  return Math.hypot(vector.x, vector.y, vector.z);
+}
+
+function maxFinite(values) {
+  const finiteValues = values.filter((value) => Number.isFinite(value));
+  return finiteValues.length > 0 ? Math.max(...finiteValues) : null;
 }
 
 function printUsage(exitCode) {

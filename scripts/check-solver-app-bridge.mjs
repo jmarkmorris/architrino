@@ -4234,6 +4234,7 @@ assert(
     causalDelayPairRunHandle.response.summary.pathConstraintBoundaryRelaxationMode ===
       "finite_difference_frame_relaxation_v1" &&
     causalDelayPairRunHandle.response.summary.pathConstraintBoundaryRelaxationIterationCount === 8 &&
+    causalDelayPairRunHandle.response.summary.pathConstraintBoundaryRelaxationStatus === "accepted" &&
     causalDelayPairRunHandle.response.summary.pathConstraintBoundaryRelaxationResidualSampleCount > 0 &&
     causalDelayPairRunHandle.response.summary.maxPathConstraintBoundaryRelaxationResidualBefore >
       causalDelayPairRunHandle.response.summary.maxPathConstraintBoundaryRelaxationResidualAfter &&
