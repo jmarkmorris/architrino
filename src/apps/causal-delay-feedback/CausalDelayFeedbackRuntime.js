@@ -40,6 +40,17 @@ const ARCHITRINO_KINDS = Object.freeze(["positrino", "electrino"]);
 const ARCHITRINO_SPEED_FRACTIONS = Object.freeze([0.1, 0.3, 0.5, 0.7, 0.9, 0.99, 0.999, 0.9999, 0.99999, 0.999999]);
 const DEFAULT_ARCHITRINO_SPEED_INDEX = 3;
 const CENTRAL_PAIR_INTERACTION_REPLAY_MODE = "pairInteraction";
+const DISCRETE_BOUNDARY_VALUE_CONVERGED_STATUS = "discrete_boundary_value_converged";
+const DEFAULT_PATH_CONSTRAINT_BOUNDARY_RELAXATION_ITERATION_COUNT = 64;
+const DEFAULT_PATH_CONSTRAINT_BOUNDARY_RELAXATION_TOLERANCE = 10;
+const ADAPTIVE_PATH_CONSTRAINT_BOUNDARY_RELAXATION_ITERATION_COUNT = 256;
+const ADAPTIVE_PATH_CONSTRAINT_BOUNDARY_RELAXATION_TOLERANCE = 1;
+const WEAK_CONTRIBUTION_CUE_OFF = "off";
+const WEAK_CONTRIBUTION_CUE_THRESHOLD_ONLY = "threshold_only";
+const PATH_CONSTRAINT_DRAFT_REASONS = new Set([
+  "retained_point_drag_preview",
+  "reception_point_insert_preview",
+]);
 const VIRTUAL_OBSERVER = Object.freeze({ r: 74, g: 229, b: 255, a: 1 });
 const DEFAULT_VIRTUAL_OBSERVER_POINT = Object.freeze({
   kind: "virtualObserver",
@@ -49,6 +60,10 @@ const DEFAULT_VIRTUAL_OBSERVER_POINT = Object.freeze({
   y: 540,
 });
 const SPACE_KEYS = new Set([" ", "Space", "Spacebar"]);
+const REPLAY_STEP_KEYS = Object.freeze({
+  ArrowLeft: -1,
+  ArrowRight: 1,
+});
 const SPACEBAR_NATIVE_CONTROL_TAGS = new Set(["BUTTON", "INPUT", "SELECT", "TEXTAREA"]);
 const INACTIVE_WAKE_VISUAL_TIERS = Object.freeze({
   inactive: Object.freeze({
@@ -152,7 +167,13 @@ class CausalDelayFeedbackRuntime {
     this.animationFrame = null;
     this.lastFrameTime = 0;
     this.elapsedSeconds = 0;
-    this.isPlaying = true;
+    this.reducedMotionEnabled = this.normalizeBooleanSetting(
+      options.reducedMotionEnabled ?? this.prefersReducedMotion(),
+    );
+    this.highContrastPathsEnabled = this.normalizeBooleanSetting(options.highContrastPathsEnabled);
+    this.backgroundDepthFieldEnabled = this.normalizeBooleanSetting(options.backgroundDepthFieldEnabled);
+    this.weakContributionCueMode = this.normalizeWeakContributionCueMode(options.weakContributionCueMode);
+    this.isPlaying = !this.reducedMotionEnabled;
     this.fieldSpeedScale = this.normalizeFieldSpeedScale(options.fieldSpeedScale ?? DEFAULT_FIELD_SPEED_SCALE);
     this.architrinoSpeedIndex = this.normalizeArchitrinoSpeedIndex(
       options.architrinoSpeedIndex ?? DEFAULT_ARCHITRINO_SPEED_INDEX,
@@ -167,6 +188,18 @@ class CausalDelayFeedbackRuntime {
     this.fallbackReplayAdapter = options.fallbackReplayAdapter ?? createTemporaryMockReplayAdapter();
     this.replayAdapter = options.replayAdapter ?? this.fallbackReplayAdapter;
     this.replayRequestOptions = options.replayRequestOptions ?? {};
+    this.explicitBoundaryRelaxationIterationCount = Object.prototype.hasOwnProperty.call(
+      this.replayRequestOptions,
+      "pathConstraintBoundaryRelaxationIterationCount",
+    );
+    this.explicitBoundaryRelaxationTolerance = Object.prototype.hasOwnProperty.call(
+      this.replayRequestOptions,
+      "pathConstraintBoundaryRelaxationTolerance",
+    );
+    this.explicitBoundaryRelaxationStepTolerance = Object.prototype.hasOwnProperty.call(
+      this.replayRequestOptions,
+      "pathConstraintBoundaryRelaxationStepTolerance",
+    );
     this.autoLoadReplay = options.autoLoadReplay !== false;
     this.replayLoadSequence = 0;
     this.replayLoadState = "idle";
@@ -195,6 +228,7 @@ class CausalDelayFeedbackRuntime {
     this.populateCanvasSwatches();
     this.populateHistoryDepthControls();
     this.updateSpeedControls();
+    this.updateDisplaySettingControls();
     this.updateNowControl();
     this.updateReplayStatus();
     this.bindEvents();
@@ -215,6 +249,7 @@ class CausalDelayFeedbackRuntime {
       resetButton: queryRequiredElement(this.document, "#causal-delay-feedback-reset"),
       settingsButton: queryRequiredElement(this.document, "#causal-delay-feedback-settings"),
       settingsPanel: queryRequiredElement(this.document, "#causal-delay-feedback-settings-panel"),
+      resetPresetButton: queryRequiredElement(this.document, "#causal-delay-feedback-reset-preset"),
       colorSwatches: queryRequiredElement(this.document, "#causal-delay-feedback-color-swatches"),
       nowInput: queryRequiredElement(this.document, "#causal-delay-feedback-now"),
       nowValue: queryRequiredElement(this.document, "#causal-delay-feedback-now-value"),
@@ -223,6 +258,10 @@ class CausalDelayFeedbackRuntime {
       architrinoSpeedInput: queryRequiredElement(this.document, "#causal-delay-feedback-architrino-speed"),
       architrinoSpeedValue: queryRequiredElement(this.document, "#causal-delay-feedback-architrino-speed-value"),
       historyDepthControls: queryRequiredElement(this.document, "#causal-delay-feedback-history-depth"),
+      reducedMotionInput: queryRequiredElement(this.document, "#causal-delay-feedback-reduced-motion"),
+      highContrastPathsInput: queryRequiredElement(this.document, "#causal-delay-feedback-high-contrast-paths"),
+      backgroundDepthFieldInput: queryRequiredElement(this.document, "#causal-delay-feedback-depth-field"),
+      weakContributionCueInput: queryRequiredElement(this.document, "#causal-delay-feedback-weak-cue"),
       replayStatus: queryRequiredElement(this.document, "#causal-delay-feedback-replay-status"),
       hoverLabel: queryRequiredElement(this.document, "#causal-delay-feedback-hover-label"),
       readout: queryRequiredElement(this.document, "#causal-delay-feedback-readout"),
@@ -292,6 +331,9 @@ class CausalDelayFeedbackRuntime {
     this.dom.resetButton.addEventListener("click", () => {
       this.resetReplayTime();
     });
+    this.dom.resetPresetButton.addEventListener("click", () => {
+      void this.resetPreset();
+    });
     this.dom.settingsButton.addEventListener("click", () => {
       this.toggleSettings();
     });
@@ -327,6 +369,18 @@ class CausalDelayFeedbackRuntime {
         return;
       }
       this.setRetainedDepthLimit(Number(button.dataset.historyDepth));
+    });
+    this.dom.reducedMotionInput.addEventListener("change", () => {
+      this.setReducedMotionEnabled(this.dom.reducedMotionInput.checked);
+    });
+    this.dom.highContrastPathsInput.addEventListener("change", () => {
+      this.setHighContrastPathsEnabled(this.dom.highContrastPathsInput.checked);
+    });
+    this.dom.backgroundDepthFieldInput.addEventListener("change", () => {
+      this.setBackgroundDepthFieldEnabled(this.dom.backgroundDepthFieldInput.checked);
+    });
+    this.dom.weakContributionCueInput.addEventListener("change", () => {
+      this.setWeakContributionCueMode(this.dom.weakContributionCueInput.value);
     });
     this.dom.canvas.addEventListener("pointermove", (event) => {
       this.handleCanvasPointerMove(event);
@@ -414,12 +468,32 @@ class CausalDelayFeedbackRuntime {
     }
 
     try {
-      const dataset =
-        typeof adapter.createReplayAsync === "function"
-          ? await adapter.createReplayAsync({ presetId, requestOptions })
-          : adapter.createReplay({ presetId, requestOptions });
+      let dataset = await this.createReplayDataset(adapter, presetId, requestOptions);
       if (sequence !== this.replayLoadSequence) {
         return this.dataset;
+      }
+      const firstDataset = dataset;
+      const adaptiveRequestOptions = this.createAdaptivePathConstraintBoundaryRequestOptions(firstDataset, requestOptions);
+      if (adaptiveRequestOptions) {
+        try {
+          const retryDataset = await this.createReplayDataset(adapter, presetId, adaptiveRequestOptions);
+          if (this.isAdaptivePathConstraintBoundaryRetryBetter(firstDataset, retryDataset)) {
+            dataset = retryDataset;
+            this.annotateAdaptivePathConstraintBoundaryRetry(dataset, firstDataset, requestOptions, adaptiveRequestOptions);
+          } else {
+            this.annotateRejectedAdaptivePathConstraintBoundaryRetry(
+              dataset,
+              retryDataset,
+              requestOptions,
+              adaptiveRequestOptions,
+            );
+          }
+        } catch {
+          // Keep the first solver dataset if the stronger retry fails.
+        }
+        if (sequence !== this.replayLoadSequence) {
+          return this.dataset;
+        }
       }
       this.applyReplayDataset(dataset, { loadState: "ready" });
       this.elapsedSeconds = 0;
@@ -446,6 +520,12 @@ class CausalDelayFeedbackRuntime {
     }
   }
 
+  createReplayDataset(adapter, presetId, requestOptions) {
+    return typeof adapter.createReplayAsync === "function"
+      ? adapter.createReplayAsync({ presetId, requestOptions })
+      : adapter.createReplay({ presetId, requestOptions });
+  }
+
   applyReplayDataset(dataset, { loadState = this.replayLoadState } = {}) {
     this.dataset = dataset;
     this.replayLoadState = loadState;
@@ -469,7 +549,7 @@ class CausalDelayFeedbackRuntime {
     if (!this.dataset) {
       return;
     }
-    this.replayRequestOptions = {
+    const requestOptions = {
       ...this.replayRequestOptions,
       initialConditions: cloneJson(this.dataset.initialConditions ?? {}),
       virtualObserver: cloneJson(this.getVirtualObserver()),
@@ -478,6 +558,234 @@ class CausalDelayFeedbackRuntime {
       fieldSpeedScale: this.fieldSpeedScale,
       architrinoSpeedFraction: this.getArchitrinoSpeedFraction(),
     };
+    this.applyPathConstraintBoundaryDefaults(requestOptions);
+    this.replayRequestOptions = requestOptions;
+  }
+
+  applyPathConstraintBoundaryDefaults(requestOptions) {
+    const usesPathConstraints = this.usesPathConstraintDraft(this.dataset?.draftPreview);
+    if (!this.explicitBoundaryRelaxationIterationCount) {
+      if (usesPathConstraints) {
+        requestOptions.pathConstraintBoundaryRelaxationIterationCount =
+          DEFAULT_PATH_CONSTRAINT_BOUNDARY_RELAXATION_ITERATION_COUNT;
+      } else {
+        delete requestOptions.pathConstraintBoundaryRelaxationIterationCount;
+      }
+    }
+    if (!this.explicitBoundaryRelaxationTolerance) {
+      if (usesPathConstraints) {
+        requestOptions.pathConstraintBoundaryRelaxationTolerance =
+          DEFAULT_PATH_CONSTRAINT_BOUNDARY_RELAXATION_TOLERANCE;
+      } else {
+        delete requestOptions.pathConstraintBoundaryRelaxationTolerance;
+      }
+    }
+  }
+
+  usesPathConstraintDraft(draftPreview) {
+    return PATH_CONSTRAINT_DRAFT_REASONS.has(String(draftPreview?.reason ?? ""));
+  }
+
+  createAdaptivePathConstraintBoundaryRequestOptions(dataset, requestOptions) {
+    if (!this.usesPathConstraintDraft(requestOptions?.replayDataset?.draftPreview)) {
+      return null;
+    }
+    if (this.hasExplicitBoundaryRelaxationSettings(requestOptions)) {
+      return null;
+    }
+    const requestedIterationCount = Number(requestOptions?.pathConstraintBoundaryRelaxationIterationCount);
+    if (
+      Number.isFinite(requestedIterationCount) &&
+      requestedIterationCount >= ADAPTIVE_PATH_CONSTRAINT_BOUNDARY_RELAXATION_ITERATION_COUNT
+    ) {
+      return null;
+    }
+    if (!this.needsAdaptivePathConstraintBoundaryRetry(dataset)) {
+      return null;
+    }
+    return {
+      ...requestOptions,
+      pathConstraintBoundaryRelaxationIterationCount:
+        ADAPTIVE_PATH_CONSTRAINT_BOUNDARY_RELAXATION_ITERATION_COUNT,
+      pathConstraintBoundaryRelaxationTolerance:
+        ADAPTIVE_PATH_CONSTRAINT_BOUNDARY_RELAXATION_TOLERANCE,
+    };
+  }
+
+  hasExplicitBoundaryRelaxationSettings(requestOptions = this.replayRequestOptions) {
+    const hasIterationOverride =
+      Object.prototype.hasOwnProperty.call(requestOptions ?? {}, "pathConstraintBoundaryRelaxationIterationCount") &&
+      requestOptions?.pathConstraintBoundaryRelaxationIterationCount !==
+        DEFAULT_PATH_CONSTRAINT_BOUNDARY_RELAXATION_ITERATION_COUNT;
+    const hasToleranceOverride =
+      Object.prototype.hasOwnProperty.call(requestOptions ?? {}, "pathConstraintBoundaryRelaxationTolerance") &&
+      requestOptions?.pathConstraintBoundaryRelaxationTolerance !==
+        DEFAULT_PATH_CONSTRAINT_BOUNDARY_RELAXATION_TOLERANCE;
+    const hasStepToleranceOverride =
+      Object.prototype.hasOwnProperty.call(requestOptions ?? {}, "pathConstraintBoundaryRelaxationStepTolerance");
+    return (
+      this.explicitBoundaryRelaxationIterationCount ||
+      this.explicitBoundaryRelaxationTolerance ||
+      this.explicitBoundaryRelaxationStepTolerance ||
+      hasIterationOverride ||
+      hasToleranceOverride ||
+      hasStepToleranceOverride
+    );
+  }
+
+  needsAdaptivePathConstraintBoundaryRetry(dataset) {
+    const solverStatus = this.getDatasetPathConstraintSolverStatus(dataset);
+    if (solverStatus !== DISCRETE_BOUNDARY_VALUE_CONVERGED_STATUS) {
+      return true;
+    }
+    const residualAfter = this.getDatasetBoundaryRelaxationResidualAfter(dataset);
+    return (
+      !Number.isFinite(residualAfter) ||
+      residualAfter > ADAPTIVE_PATH_CONSTRAINT_BOUNDARY_RELAXATION_TOLERANCE
+    );
+  }
+
+  isAdaptivePathConstraintBoundaryRetryBetter(firstDataset, retryDataset) {
+    if (!retryDataset || typeof retryDataset !== "object") {
+      return false;
+    }
+    const firstRank = this.getDatasetPathConstraintBoundaryRank(firstDataset);
+    const retryRank = this.getDatasetPathConstraintBoundaryRank(retryDataset);
+    if (retryRank > firstRank) {
+      return true;
+    }
+    if (retryRank < firstRank) {
+      return false;
+    }
+
+    const firstResidualAfter = this.getDatasetBoundaryRelaxationResidualAfter(firstDataset);
+    const retryResidualAfter = this.getDatasetBoundaryRelaxationResidualAfter(retryDataset);
+    if (Number.isFinite(retryResidualAfter) && !Number.isFinite(firstResidualAfter)) {
+      return true;
+    }
+    if (!Number.isFinite(retryResidualAfter) && Number.isFinite(firstResidualAfter)) {
+      return false;
+    }
+    if (Number.isFinite(firstResidualAfter) && Number.isFinite(retryResidualAfter)) {
+      if (retryResidualAfter < firstResidualAfter) {
+        return true;
+      }
+      if (retryResidualAfter > firstResidualAfter) {
+        return false;
+      }
+    }
+
+    const firstResidualRatio = this.getDatasetBoundaryRelaxationResidualRatio(firstDataset);
+    const retryResidualRatio = this.getDatasetBoundaryRelaxationResidualRatio(retryDataset);
+    if (Number.isFinite(retryResidualRatio) && !Number.isFinite(firstResidualRatio)) {
+      return true;
+    }
+    if (!Number.isFinite(retryResidualRatio) && Number.isFinite(firstResidualRatio)) {
+      return false;
+    }
+    return Number.isFinite(firstResidualRatio) && Number.isFinite(retryResidualRatio)
+      ? retryResidualRatio < firstResidualRatio
+      : false;
+  }
+
+  getDatasetPathConstraintBoundaryRank(dataset) {
+    const solverStatus = this.getDatasetPathConstraintSolverStatus(dataset);
+    if (solverStatus === DISCRETE_BOUNDARY_VALUE_CONVERGED_STATUS) {
+      return 2;
+    }
+    return solverStatus ? 1 : 0;
+  }
+
+  getDatasetPathConstraintSolverStatus(dataset) {
+    return dataset?.pathConstraintSolverStatus ?? dataset?.solverSummary?.pathConstraintSolverStatus;
+  }
+
+  getDatasetBoundaryRelaxationResidualAfter(dataset) {
+    return Number(
+      dataset?.maxPathConstraintBoundaryRelaxationResidualAfter ??
+        dataset?.solverSummary?.maxPathConstraintBoundaryRelaxationResidualAfter,
+    );
+  }
+
+  getDatasetBoundaryRelaxationResidualRatio(dataset) {
+    return Number(
+      dataset?.pathConstraintBoundaryRelaxationResidualRatio ??
+        dataset?.solverSummary?.pathConstraintBoundaryRelaxationResidualRatio,
+    );
+  }
+
+  annotateAdaptivePathConstraintBoundaryRetry(dataset, firstDataset, firstRequestOptions, retryRequestOptions) {
+    if (!dataset || typeof dataset !== "object") {
+      return;
+    }
+    const metadata = {
+      pathConstraintBoundaryRelaxationAdaptiveRetry: true,
+      pathConstraintBoundaryRelaxationRetryCount: 1,
+      pathConstraintBoundaryRelaxationInitialIterationCount: Number(
+        firstRequestOptions?.pathConstraintBoundaryRelaxationIterationCount,
+      ),
+      pathConstraintBoundaryRelaxationInitialTolerance: Number(
+        firstRequestOptions?.pathConstraintBoundaryRelaxationTolerance,
+      ),
+      maxPathConstraintBoundaryRelaxationResidualAfterInitialAttempt: Number(
+        firstDataset?.maxPathConstraintBoundaryRelaxationResidualAfter ??
+          firstDataset?.solverSummary?.maxPathConstraintBoundaryRelaxationResidualAfter,
+      ),
+      pathConstraintBoundaryRelaxationResidualRatioInitialAttempt: Number(
+        firstDataset?.pathConstraintBoundaryRelaxationResidualRatio ??
+          firstDataset?.solverSummary?.pathConstraintBoundaryRelaxationResidualRatio,
+      ),
+      pathConstraintBoundaryRelaxationRetryIterationCount: Number(
+        retryRequestOptions?.pathConstraintBoundaryRelaxationIterationCount,
+      ),
+      pathConstraintBoundaryRelaxationRetryTolerance: Number(
+        retryRequestOptions?.pathConstraintBoundaryRelaxationTolerance,
+      ),
+    };
+    Object.assign(dataset, metadata);
+    if (dataset.solverSummary && typeof dataset.solverSummary === "object") {
+      Object.assign(dataset.solverSummary, metadata);
+    }
+  }
+
+  annotateRejectedAdaptivePathConstraintBoundaryRetry(
+    dataset,
+    rejectedDataset,
+    firstRequestOptions,
+    retryRequestOptions,
+  ) {
+    if (!dataset || typeof dataset !== "object") {
+      return;
+    }
+    const metadata = {
+      pathConstraintBoundaryRelaxationAdaptiveRetryRejected: true,
+      pathConstraintBoundaryRelaxationRetryCount: 1,
+      pathConstraintBoundaryRelaxationInitialIterationCount: Number(
+        firstRequestOptions?.pathConstraintBoundaryRelaxationIterationCount,
+      ),
+      pathConstraintBoundaryRelaxationInitialTolerance: Number(
+        firstRequestOptions?.pathConstraintBoundaryRelaxationTolerance,
+      ),
+      maxPathConstraintBoundaryRelaxationResidualAfterInitialAttempt:
+        this.getDatasetBoundaryRelaxationResidualAfter(dataset),
+      pathConstraintBoundaryRelaxationResidualRatioInitialAttempt:
+        this.getDatasetBoundaryRelaxationResidualRatio(dataset),
+      pathConstraintBoundaryRelaxationRejectedRetryIterationCount: Number(
+        retryRequestOptions?.pathConstraintBoundaryRelaxationIterationCount,
+      ),
+      pathConstraintBoundaryRelaxationRejectedRetryTolerance: Number(
+        retryRequestOptions?.pathConstraintBoundaryRelaxationTolerance,
+      ),
+      maxPathConstraintBoundaryRelaxationResidualAfterRejectedRetry:
+        this.getDatasetBoundaryRelaxationResidualAfter(rejectedDataset),
+      pathConstraintBoundaryRelaxationResidualRatioRejectedRetry:
+        this.getDatasetBoundaryRelaxationResidualRatio(rejectedDataset),
+      pathConstraintSolverStatusRejectedRetry: this.getDatasetPathConstraintSolverStatus(rejectedDataset),
+    };
+    Object.assign(dataset, metadata);
+    if (dataset.solverSummary && typeof dataset.solverSummary === "object") {
+      Object.assign(dataset.solverSummary, metadata);
+    }
   }
 
   refreshAfterReplayDatasetChange() {
@@ -565,6 +873,13 @@ class CausalDelayFeedbackRuntime {
         const boundaryMode =
           this.dataset?.pathConstraintBoundaryMode ??
           this.dataset?.solverSummary?.pathConstraintBoundaryMode;
+        const boundarySeedMode =
+          this.dataset?.pathConstraintBoundarySeedMode ??
+          this.dataset?.solverSummary?.pathConstraintBoundarySeedMode;
+        const boundarySeedSampleCount = Number(
+          this.dataset?.pathConstraintBoundarySeedSampleCount ??
+            this.dataset?.solverSummary?.pathConstraintBoundarySeedSampleCount
+        );
         const boundaryRelaxationMode =
           this.dataset?.pathConstraintBoundaryRelaxationMode ??
           this.dataset?.solverSummary?.pathConstraintBoundaryRelaxationMode;
@@ -572,12 +887,90 @@ class CausalDelayFeedbackRuntime {
           this.dataset?.pathConstraintBoundaryRelaxationIterationCount ??
             this.dataset?.solverSummary?.pathConstraintBoundaryRelaxationIterationCount
         );
+        const boundaryRelaxationAppliedIterationCount = Number(
+          this.dataset?.pathConstraintBoundaryRelaxationAppliedIterationCount ??
+            this.dataset?.solverSummary?.pathConstraintBoundaryRelaxationAppliedIterationCount
+        );
+        const boundaryRelaxationStopReason =
+          this.dataset?.pathConstraintBoundaryRelaxationStopReason ??
+          this.dataset?.solverSummary?.pathConstraintBoundaryRelaxationStopReason;
+        const boundaryRelaxationTolerance = Number(
+          this.dataset?.pathConstraintBoundaryRelaxationTolerance ??
+            this.dataset?.solverSummary?.pathConstraintBoundaryRelaxationTolerance
+        );
+        const boundaryRelaxationStepTolerance = Number(
+          this.dataset?.pathConstraintBoundaryRelaxationStepTolerance ??
+            this.dataset?.solverSummary?.pathConstraintBoundaryRelaxationStepTolerance
+        );
         const boundaryRelaxationStatus =
           this.dataset?.pathConstraintBoundaryRelaxationStatus ??
           this.dataset?.solverSummary?.pathConstraintBoundaryRelaxationStatus;
         const boundaryRelaxationResidualRatio = Number(
           this.dataset?.pathConstraintBoundaryRelaxationResidualRatio ??
             this.dataset?.solverSummary?.pathConstraintBoundaryRelaxationResidualRatio
+        );
+        const boundaryRelaxationRmsResidualRatio = Number(
+          this.dataset?.rmsPathConstraintBoundaryRelaxationResidualRatio ??
+            this.dataset?.solverSummary?.rmsPathConstraintBoundaryRelaxationResidualRatio
+        );
+        const boundaryRelaxationResidualSettlingRate = Number(
+          this.dataset?.pathConstraintBoundaryRelaxationResidualSettlingRate ??
+            this.dataset?.solverSummary?.pathConstraintBoundaryRelaxationResidualSettlingRate
+        );
+        const boundaryRelaxationRmsResidualSettlingRate = Number(
+          this.dataset?.rmsPathConstraintBoundaryRelaxationResidualSettlingRate ??
+            this.dataset?.solverSummary?.rmsPathConstraintBoundaryRelaxationResidualSettlingRate
+        );
+        const boundaryRelaxationRmsResidualAfter = Number(
+          this.dataset?.rmsPathConstraintBoundaryRelaxationResidualAfter ??
+            this.dataset?.solverSummary?.rmsPathConstraintBoundaryRelaxationResidualAfter
+        );
+        const boundaryRelaxationMaxStep = Number(
+          this.dataset?.pathConstraintBoundaryRelaxationMaxStep ??
+            this.dataset?.solverSummary?.pathConstraintBoundaryRelaxationMaxStep
+        );
+        const boundaryRelaxationFinalStepFactor = Number(
+          this.dataset?.pathConstraintBoundaryRelaxationFinalStepFactor ??
+            this.dataset?.solverSummary?.pathConstraintBoundaryRelaxationFinalStepFactor
+        );
+        const boundaryRelaxationSelectedCandidateKind =
+          this.dataset?.pathConstraintBoundaryRelaxationSelectedCandidateKind ??
+          this.dataset?.solverSummary?.pathConstraintBoundaryRelaxationSelectedCandidateKind;
+        const boundaryRelaxationCenterOfMassSelectedCount = Number(
+          this.dataset?.pathConstraintBoundaryRelaxationCenterOfMassSelectedCount ??
+            this.dataset?.solverSummary?.pathConstraintBoundaryRelaxationCenterOfMassSelectedCount
+        );
+        const boundaryRelaxationAdaptiveRetry = Boolean(
+          this.dataset?.pathConstraintBoundaryRelaxationAdaptiveRetry ??
+            this.dataset?.solverSummary?.pathConstraintBoundaryRelaxationAdaptiveRetry
+        );
+        const boundaryRelaxationAdaptiveRetryRejected = Boolean(
+          this.dataset?.pathConstraintBoundaryRelaxationAdaptiveRetryRejected ??
+            this.dataset?.solverSummary?.pathConstraintBoundaryRelaxationAdaptiveRetryRejected
+        );
+        const boundaryRelaxationInitialIterationCount = Number(
+          this.dataset?.pathConstraintBoundaryRelaxationInitialIterationCount ??
+            this.dataset?.solverSummary?.pathConstraintBoundaryRelaxationInitialIterationCount
+        );
+        const boundaryRelaxationInitialTolerance = Number(
+          this.dataset?.pathConstraintBoundaryRelaxationInitialTolerance ??
+            this.dataset?.solverSummary?.pathConstraintBoundaryRelaxationInitialTolerance
+        );
+        const boundaryRelaxationInitialResidualAfter = Number(
+          this.dataset?.maxPathConstraintBoundaryRelaxationResidualAfterInitialAttempt ??
+            this.dataset?.solverSummary?.maxPathConstraintBoundaryRelaxationResidualAfterInitialAttempt
+        );
+        const boundaryRelaxationRejectedRetryIterationCount = Number(
+          this.dataset?.pathConstraintBoundaryRelaxationRejectedRetryIterationCount ??
+            this.dataset?.solverSummary?.pathConstraintBoundaryRelaxationRejectedRetryIterationCount
+        );
+        const boundaryRelaxationRejectedRetryTolerance = Number(
+          this.dataset?.pathConstraintBoundaryRelaxationRejectedRetryTolerance ??
+            this.dataset?.solverSummary?.pathConstraintBoundaryRelaxationRejectedRetryTolerance
+        );
+        const boundaryRelaxationRejectedRetryResidualAfter = Number(
+          this.dataset?.maxPathConstraintBoundaryRelaxationResidualAfterRejectedRetry ??
+            this.dataset?.solverSummary?.maxPathConstraintBoundaryRelaxationResidualAfterRejectedRetry
         );
         const constraintSolverStatus =
           this.dataset?.pathConstraintSolverStatus ??
@@ -621,17 +1014,94 @@ class CausalDelayFeedbackRuntime {
         const boundaryStatusDetail =
           boundaryStatus && boundaryStatus !== "unchecked" ? ` bStatus=${formatCompactLabel(boundaryStatus)}` : "";
         const boundaryModeDetail = boundaryMode ? ` bMode=${formatCompactLabel(boundaryMode)}` : "";
+        const boundarySeedDetail =
+          boundarySeedMode || (Number.isFinite(boundarySeedSampleCount) && boundarySeedSampleCount > 0)
+            ? ` seed=${boundarySeedMode ? formatCompactLabel(boundarySeedMode) : "boundary"}${
+                Number.isFinite(boundarySeedSampleCount) && boundarySeedSampleCount > 0
+                  ? ` seedRows=${boundarySeedSampleCount}`
+                  : ""
+              }`
+            : "";
         const boundaryRelaxationDetail = boundaryRelaxationMode
-          ? ` relax=${formatCompactLabel(boundaryRelaxationMode)}${
+            ? ` relax=${formatCompactLabel(boundaryRelaxationMode)}${
               Number.isFinite(boundaryRelaxationIterationCount)
                 ? ` relaxIter=${boundaryRelaxationIterationCount}`
+                : ""
+            }${
+              Number.isFinite(boundaryRelaxationAppliedIterationCount)
+                ? ` relaxApplied=${boundaryRelaxationAppliedIterationCount}`
+                : ""
+            }${
+              boundaryRelaxationStopReason
+                ? ` relaxStop=${formatCompactLabel(boundaryRelaxationStopReason)}`
+                : ""
+            }${
+              Number.isFinite(boundaryRelaxationTolerance)
+                ? ` relaxTol=${formatCompactNumber(boundaryRelaxationTolerance)}`
+                : ""
+            }${
+              Number.isFinite(boundaryRelaxationStepTolerance)
+                ? ` relaxStepTol=${formatCompactNumber(boundaryRelaxationStepTolerance)}`
                 : ""
             }${
               Number.isFinite(boundaryRelaxationResidualRatio)
                 ? ` relaxRatio=${formatCompactNumber(boundaryRelaxationResidualRatio)}`
                 : ""
+            }${
+              Number.isFinite(boundaryRelaxationRmsResidualRatio)
+                ? ` relaxRmsRatio=${formatCompactNumber(boundaryRelaxationRmsResidualRatio)}`
+                : ""
+            }${
+              Number.isFinite(boundaryRelaxationResidualSettlingRate)
+                ? ` relaxRate=${formatCompactNumber(boundaryRelaxationResidualSettlingRate)}`
+                : ""
+            }${
+              Number.isFinite(boundaryRelaxationRmsResidualSettlingRate)
+                ? ` relaxRmsRate=${formatCompactNumber(boundaryRelaxationRmsResidualSettlingRate)}`
+                : ""
+            }${
+              Number.isFinite(boundaryRelaxationRmsResidualAfter)
+                ? ` relaxRms=${formatCompactNumber(boundaryRelaxationRmsResidualAfter)}`
+                : ""
+            }${
+              Number.isFinite(boundaryRelaxationMaxStep)
+                ? ` relaxStep=${formatCompactNumber(boundaryRelaxationMaxStep)}`
+                : ""
+            }${
+              Number.isFinite(boundaryRelaxationFinalStepFactor)
+                ? ` relaxFactor=${formatCompactNumber(boundaryRelaxationFinalStepFactor)}`
+                : ""
+            }${
+              boundaryRelaxationSelectedCandidateKind
+                ? ` relaxKind=${formatCompactLabel(boundaryRelaxationSelectedCandidateKind)}`
+                : ""
+            }${
+              Number.isFinite(boundaryRelaxationCenterOfMassSelectedCount)
+                ? ` relaxCom=${boundaryRelaxationCenterOfMassSelectedCount}`
+                : ""
             }${boundaryRelaxationStatus ? ` relaxStatus=${formatCompactLabel(boundaryRelaxationStatus)}` : ""
             }`
+          : "";
+        const boundaryAdaptiveDetail = boundaryRelaxationAdaptiveRetry
+          ? ` adaptiveRetry=${Number.isFinite(boundaryRelaxationInitialIterationCount) ? boundaryRelaxationInitialIterationCount : "?"}->${Number.isFinite(boundaryRelaxationIterationCount) ? boundaryRelaxationIterationCount : "?"}${
+              Number.isFinite(boundaryRelaxationInitialTolerance)
+                ? ` firstTol=${formatCompactNumber(boundaryRelaxationInitialTolerance)}`
+                : ""
+            }${
+              Number.isFinite(boundaryRelaxationInitialResidualAfter)
+                ? ` firstResidual=${formatCompactNumber(boundaryRelaxationInitialResidualAfter)}`
+                : ""
+            }`
+          : boundaryRelaxationAdaptiveRetryRejected
+            ? ` adaptiveRetryRejected=${Number.isFinite(boundaryRelaxationInitialIterationCount) ? boundaryRelaxationInitialIterationCount : "?"}->${Number.isFinite(boundaryRelaxationRejectedRetryIterationCount) ? boundaryRelaxationRejectedRetryIterationCount : "?"}${
+                Number.isFinite(boundaryRelaxationRejectedRetryTolerance)
+                  ? ` retryTol=${formatCompactNumber(boundaryRelaxationRejectedRetryTolerance)}`
+                  : ""
+              }${
+                Number.isFinite(boundaryRelaxationRejectedRetryResidualAfter)
+                  ? ` retryResidual=${formatCompactNumber(boundaryRelaxationRejectedRetryResidualAfter)}`
+                  : ""
+              }`
           : "";
         const guidanceDetail = Number.isFinite(guidanceSampleCount) && guidanceSampleCount > 0
           ? ` guidance=${guidanceSampleCount}${
@@ -641,17 +1111,29 @@ class CausalDelayFeedbackRuntime {
         const constraintSolverDetail = constraintSolverStatus
           ? ` constraint=${constraintSolverStatus}${constraintSolverClaim ? ` claim=${constraintSolverClaim}` : ""}`
           : "";
-        const guidanceBoundary = guidanceDetail
-          ? guidanceMode === "retained_knot_boundary"
-            ? " Retained path constraints used retained-knot boundary guidance; this is not yet the final physical boundary-value path solve."
-            : " Retained path constraints used finite-time guidance; this is not yet the final physical boundary-value path solve."
-          : "";
+        const isDiscreteBoundaryConverged =
+          constraintSolverStatus === DISCRETE_BOUNDARY_VALUE_CONVERGED_STATUS;
+        const constraintBoundary = isDiscreteBoundaryConverged
+          ? " Retained path constraints converged against the discrete finite-difference pair equation under the requested relaxation tolerance."
+          : guidanceDetail
+            ? guidanceMode === "retained_knot_boundary"
+              ? " Retained path constraints used retained-knot boundary guidance; this is not yet the final physical boundary-value path solve."
+              : " Retained path constraints used finite-time guidance; this is not yet the final physical boundary-value path solve."
+            : "";
         return {
-          state: guidanceDetail ? "bridge-guided" : "bridge",
-          label: guidanceDetail ? "solver guided replay" : "solver pair replay",
+          state: isDiscreteBoundaryConverged
+            ? "bridge-boundary"
+            : guidanceDetail
+              ? "bridge-guided"
+              : "bridge",
+          label: isDiscreteBoundaryConverged
+            ? "solver boundary replay"
+            : guidanceDetail
+              ? "solver guided replay"
+              : "solver pair replay",
           help:
-            `Showing central solver bridge replay from one mutual pair-interaction path run${stepDetail}${lawDetail}${pathDetail}${residualDetail}${boundaryDetail}${boundaryStatusDetail}${boundaryModeDetail}${boundaryRelaxationDetail}${guidanceDetail}${constraintSolverDetail}. ` +
-            `This replaces the segmented one-body seed replay for the default canvas path.${guidanceBoundary}`,
+            `Showing central solver bridge replay from one mutual pair-interaction path run${stepDetail}${lawDetail}${pathDetail}${residualDetail}${boundaryDetail}${boundaryStatusDetail}${boundaryModeDetail}${boundarySeedDetail}${boundaryRelaxationDetail}${boundaryAdaptiveDetail}${guidanceDetail}${constraintSolverDetail}. ` +
+            `This replaces the segmented one-body seed replay for the default canvas path.${constraintBoundary}`,
         };
       }
       const accelerationPolicy = this.getBridgeMotionAccelerationPolicy();
@@ -783,6 +1265,66 @@ class CausalDelayFeedbackRuntime {
     }
   }
 
+  setReducedMotionEnabled(isEnabled) {
+    const nextValue = this.normalizeBooleanSetting(isEnabled);
+    if (nextValue === this.reducedMotionEnabled) {
+      this.updateDisplaySettingControls();
+      return;
+    }
+    this.reducedMotionEnabled = nextValue;
+    if (this.reducedMotionEnabled) {
+      this.setPlaying(false);
+    } else {
+      this.updatePlayButton();
+    }
+    this.updateDisplaySettingControls();
+  }
+
+  setHighContrastPathsEnabled(isEnabled) {
+    const nextValue = this.normalizeBooleanSetting(isEnabled);
+    if (nextValue === this.highContrastPathsEnabled) {
+      this.updateDisplaySettingControls();
+      return;
+    }
+    this.highContrastPathsEnabled = nextValue;
+    this.updateDisplaySettingControls();
+    if (this.context) {
+      this.render();
+    }
+  }
+
+  setBackgroundDepthFieldEnabled(isEnabled) {
+    const nextValue = this.normalizeBooleanSetting(isEnabled);
+    if (nextValue === this.backgroundDepthFieldEnabled) {
+      this.updateDisplaySettingControls();
+      return;
+    }
+    this.backgroundDepthFieldEnabled = nextValue;
+    this.updateDisplaySettingControls();
+    if (this.context) {
+      this.render();
+    }
+  }
+
+  setWeakContributionCueMode(mode) {
+    const nextMode = this.normalizeWeakContributionCueMode(mode);
+    if (nextMode === this.weakContributionCueMode) {
+      this.updateDisplaySettingControls();
+      return;
+    }
+    this.weakContributionCueMode = nextMode;
+    this.updateDisplaySettingControls();
+    if (this.context) {
+      this.render();
+    }
+    if (this.dom?.readout) {
+      this.updateReadout();
+    }
+    if (this.dom?.settingsPanel) {
+      this.hideSettings();
+    }
+  }
+
   applyDatasetCanvasColor(dataset) {
     const colorId = dataset?.canvasColorId ?? dataset?.preset?.canvasColorId;
     if (!colorId) {
@@ -820,6 +1362,21 @@ class CausalDelayFeedbackRuntime {
   updateSpeedControls() {
     this.updateFieldSpeedControl();
     this.updateArchitrinoSpeedControl();
+  }
+
+  updateDisplaySettingControls() {
+    if (this.dom?.reducedMotionInput) {
+      this.dom.reducedMotionInput.checked = this.reducedMotionEnabled;
+    }
+    if (this.dom?.highContrastPathsInput) {
+      this.dom.highContrastPathsInput.checked = this.highContrastPathsEnabled;
+    }
+    if (this.dom?.backgroundDepthFieldInput) {
+      this.dom.backgroundDepthFieldInput.checked = this.backgroundDepthFieldEnabled;
+    }
+    if (this.dom?.weakContributionCueInput) {
+      this.dom.weakContributionCueInput.value = this.weakContributionCueMode;
+    }
   }
 
   updateFieldSpeedControl() {
@@ -870,6 +1427,27 @@ class CausalDelayFeedbackRuntime {
     const numericIndex = Number(speedIndex);
     const candidate = Number.isFinite(numericIndex) ? Math.round(numericIndex) : DEFAULT_ARCHITRINO_SPEED_INDEX;
     return clamp(candidate, 0, ARCHITRINO_SPEED_FRACTIONS.length - 1);
+  }
+
+  normalizeBooleanSetting(value) {
+    return value === true || value === "true" || value === "1" || value === 1;
+  }
+
+  normalizeWeakContributionCueMode(mode) {
+    return mode === WEAK_CONTRIBUTION_CUE_OFF
+      ? WEAK_CONTRIBUTION_CUE_OFF
+      : WEAK_CONTRIBUTION_CUE_THRESHOLD_ONLY;
+  }
+
+  prefersReducedMotion() {
+    if (typeof this.window?.matchMedia !== "function") {
+      return false;
+    }
+    try {
+      return Boolean(this.window.matchMedia("(prefers-reduced-motion: reduce)")?.matches);
+    } catch {
+      return false;
+    }
   }
 
   getArchitrinoSpeedFraction(index = this.architrinoSpeedIndex) {
@@ -928,11 +1506,14 @@ class CausalDelayFeedbackRuntime {
   }
 
   setPlaying(isPlaying) {
-    this.isPlaying = Boolean(isPlaying);
+    this.isPlaying = Boolean(isPlaying) && !this.reducedMotionEnabled;
     this.updatePlayButton();
   }
 
   updatePlayButton() {
+    if (!this.dom?.playButton) {
+      return;
+    }
     const help = this.isPlaying ? ICON_HELP.pause : ICON_HELP.play;
     this.dom.playButton.setAttribute("aria-label", help);
     this.dom.playButton.title = help;
@@ -952,6 +1533,13 @@ class CausalDelayFeedbackRuntime {
     if (this.context) {
       this.render();
     }
+  }
+
+  resetPreset() {
+    if (this.dom?.settingsPanel && this.dom?.settingsButton) {
+      this.hideSettings();
+    }
+    return this.setPreset(this.presetId);
   }
 
   setReplayNowSliderValue(value) {
@@ -1007,17 +1595,28 @@ class CausalDelayFeedbackRuntime {
   }
 
   handleKeyDown(event) {
-    if (!SPACE_KEYS.has(event.key) && !SPACE_KEYS.has(event.code)) {
+    if (SPACE_KEYS.has(event.key) || SPACE_KEYS.has(event.code)) {
+      if (this.shouldIgnoreKeyboardShortcutTarget(event.target)) {
+        return;
+      }
+      event.preventDefault();
+      this.setPlaying(!this.isPlaying);
       return;
     }
-    if (this.shouldIgnoreSpacebarTarget(event.target)) {
+
+    const stepDirection = REPLAY_STEP_KEYS[event.key] ?? REPLAY_STEP_KEYS[event.code] ?? 0;
+    if (stepDirection === 0) {
       return;
     }
-    event.preventDefault();
-    this.setPlaying(!this.isPlaying);
+    if (this.shouldIgnoreKeyboardShortcutTarget(event.target)) {
+      return;
+    }
+    if (this.stepReplayFrame(stepDirection)) {
+      event.preventDefault();
+    }
   }
 
-  shouldIgnoreSpacebarTarget(target) {
+  shouldIgnoreKeyboardShortcutTarget(target) {
     if (!target) {
       return false;
     }
@@ -1026,6 +1625,43 @@ class CausalDelayFeedbackRuntime {
     }
     const tagName = String(target.tagName ?? "").toUpperCase();
     return SPACEBAR_NATIVE_CONTROL_TAGS.has(tagName);
+  }
+
+  stepReplayFrame(direction) {
+    const step = Math.sign(Number(direction) || 0);
+    if (step === 0) {
+      return false;
+    }
+    const times = this.getReplayFrameStepTimes();
+    if (times.length === 0) {
+      return false;
+    }
+    const currentTime = this.getCurrentReplayTime();
+    const nextTime =
+      step > 0
+        ? times.find((time) => time > currentTime + TIME_EPSILON) ?? times[0]
+        : [...times].reverse().find((time) => time < currentTime - TIME_EPSILON) ?? times.at(-1);
+    this.setPlaying(false);
+    this.setCurrentReplayTime(nextTime);
+    this.updateNowControl(nextTime);
+    if (this.context) {
+      this.render(nextTime);
+    }
+    if (this.dom?.readout) {
+      this.updateReadout();
+    }
+    return true;
+  }
+
+  getReplayFrameStepTimes() {
+    const frameTimes = (this.dataset?.frames ?? [])
+      .map((frame) => Number(frame.t))
+      .filter(Number.isFinite);
+    if (frameTimes.length === 0) {
+      return [];
+    }
+    frameTimes.sort((left, right) => left - right);
+    return frameTimes.filter((time, index, rows) => index === 0 || Math.abs(time - rows[index - 1]) > TIME_EPSILON);
   }
 
   resize() {
@@ -1106,6 +1742,9 @@ class CausalDelayFeedbackRuntime {
     const canvasColor = getCanvasColorById(this.canvasColorId).color;
     ctx.fillStyle = canvasColor;
     ctx.fillRect(0, 0, this.canvasWidth, this.canvasHeight);
+    if (this.backgroundDepthFieldEnabled) {
+      this.drawBackgroundDepthField(ctx);
+    }
 
     const xAxisStart = this.worldToScreen({ x: 92, y: 908 });
     const xAxisEnd = this.worldToScreen({ x: 1810, y: 908 });
@@ -1127,6 +1766,32 @@ class CausalDelayFeedbackRuntime {
 
     this.drawText(ctx, "space", { x: 74, y: 165 }, 14, withAlpha(WHITE, 0.62), "left");
     this.drawText(ctx, "time", { x: 1788, y: 932 }, 14, withAlpha(WHITE, 0.72), "right");
+  }
+
+  drawBackgroundDepthField(ctx) {
+    const fieldColor = withAlpha({ r: 198, g: 166, b: 255, a: 1 }, 0.07);
+    const anchorRows = [
+      { y: 256, bend: 28 },
+      { y: 352, bend: -20 },
+      { y: 448, bend: 22 },
+      { y: 548, bend: -24 },
+      { y: 648, bend: 20 },
+      { y: 748, bend: -22 },
+      { y: 842, bend: 18 },
+    ];
+    anchorRows.forEach((row, rowIndex) => {
+      const points = [];
+      for (let index = 0; index <= 18; index += 1) {
+        const t = index / 18;
+        const x = 140 + t * 1640;
+        const phase = t * Math.PI * 2 + rowIndex * 0.62;
+        points.push(this.worldToScreen({
+          x,
+          y: row.y + Math.sin(phase) * row.bend,
+        }));
+      }
+      this.drawLine(ctx, points, fieldColor, 0.8);
+    });
   }
 
   drawWakes(ctx, replayTime = this.getCurrentReplayTime()) {
@@ -1229,19 +1894,26 @@ class CausalDelayFeedbackRuntime {
 
   drawPathTrail(ctx, kind, color) {
     const points = this.dataset.paths[kind].map((point) => this.worldToScreen(point));
-    this.drawLine(ctx, points, withAlpha(mixColor(color, WHITE, 0.45), 0.32), 14);
+    const haloWidth = this.highContrastPathsEnabled ? 18 : 14;
+    const haloAlpha = this.highContrastPathsEnabled ? 0.46 : 0.32;
+    this.drawLine(ctx, points, withAlpha(mixColor(color, WHITE, 0.45), haloAlpha), haloWidth);
 
     for (let index = 0; index < points.length - 1; index += 1) {
       const progress = index / Math.max(1, points.length - 1);
-      this.drawLine(ctx, [points[index], points[index + 1]], withAlpha(color, 0.36 + 0.54 * progress), 3 + 3.4 * progress);
+      const lineAlpha = this.highContrastPathsEnabled ? 0.58 + 0.4 * progress : 0.36 + 0.54 * progress;
+      const lineWidth = this.highContrastPathsEnabled ? 4.5 + 4.2 * progress : 3 + 3.4 * progress;
+      this.drawLine(ctx, [points[index], points[index + 1]], withAlpha(color, lineAlpha), lineWidth);
     }
   }
 
   drawHistoryPoints(ctx, kind, color) {
     this.getVisibleHistory(kind).forEach((point) => {
       const screen = this.worldToScreen(point);
-      this.drawCircle(ctx, screen, 8.5, withAlpha({ r: 8, g: 6, b: 18, a: 1 }, 0.82), withAlpha(WHITE, 0.68), 1.2);
-      this.drawCircle(ctx, screen, 4.3, color);
+      const outerRadius = this.highContrastPathsEnabled ? 9.8 : 8.5;
+      const innerRadius = this.highContrastPathsEnabled ? 5.1 : 4.3;
+      const outlineAlpha = this.highContrastPathsEnabled ? 0.9 : 0.68;
+      this.drawCircle(ctx, screen, outerRadius, withAlpha({ r: 8, g: 6, b: 18, a: 1 }, 0.82), withAlpha(WHITE, outlineAlpha), 1.2);
+      this.drawCircle(ctx, screen, innerRadius, color);
       const offset = kind === "positrino" ? { x: 14, y: -13 } : { x: 14, y: 15 };
       this.drawScreenText(ctx, String(point.depth), { x: screen.x + offset.x * this.viewport.scale, y: screen.y + offset.y * this.viewport.scale }, 13, withAlpha(WHITE, 0.82), "center", "bold");
     });
@@ -1321,7 +1993,8 @@ class CausalDelayFeedbackRuntime {
       if (!condition) {
         return;
       }
-      const screen = this.worldToScreen(this.initialConditionVelocityEnd(condition));
+      const anchorPoint = this.getInitialVelocityAnchorPoint(this.selectedItem.kind, condition);
+      const screen = this.worldToScreen(this.initialConditionVelocityEnd(condition, anchorPoint));
       this.drawCircle(ctx, screen, 18, withAlpha(WHITE, 0.05), withAlpha(WHITE, 0.9), 1.4);
       return;
     }
@@ -1360,8 +2033,8 @@ class CausalDelayFeedbackRuntime {
 
   drawLiveMarker(ctx, kind, color, point, label, labelOffset) {
     const screen = this.worldToScreen(point);
-    this.drawCircle(ctx, screen, 20, withAlpha(color, 0.12));
-    this.drawCircle(ctx, screen, 9, color, WHITE, 1.4);
+    this.drawCircle(ctx, screen, this.highContrastPathsEnabled ? 23 : 20, withAlpha(color, this.highContrastPathsEnabled ? 0.2 : 0.12));
+    this.drawCircle(ctx, screen, this.highContrastPathsEnabled ? 10.4 : 9, color, WHITE, this.highContrastPathsEnabled ? 2 : 1.4);
     this.drawScreenText(
       ctx,
       label,
@@ -1889,6 +2562,7 @@ class CausalDelayFeedbackRuntime {
     };
     this.replayLoadState = "draft";
     this.replayLoadError = null;
+    this.syncReplayRequestOptionsFromDataset();
     this.updateReplayStatus();
   }
 
@@ -2836,17 +3510,103 @@ class CausalDelayFeedbackRuntime {
     );
     const guidanceMode = this.dataset?.pathConstraintGuidanceMode ?? summary.pathConstraintGuidanceMode;
     const boundaryMode = this.dataset?.pathConstraintBoundaryMode ?? summary.pathConstraintBoundaryMode;
+    const boundarySeedMode = this.dataset?.pathConstraintBoundarySeedMode ?? summary.pathConstraintBoundarySeedMode;
+    const boundarySeedSampleCount = Number(
+      this.dataset?.pathConstraintBoundarySeedSampleCount ?? summary.pathConstraintBoundarySeedSampleCount,
+    );
     const boundaryRelaxationMode =
       this.dataset?.pathConstraintBoundaryRelaxationMode ?? summary.pathConstraintBoundaryRelaxationMode;
     const boundaryRelaxationIterationCount = Number(
       this.dataset?.pathConstraintBoundaryRelaxationIterationCount ??
         summary.pathConstraintBoundaryRelaxationIterationCount,
     );
+    const boundaryRelaxationAppliedIterationCount = Number(
+      this.dataset?.pathConstraintBoundaryRelaxationAppliedIterationCount ??
+        summary.pathConstraintBoundaryRelaxationAppliedIterationCount,
+    );
+    const boundaryRelaxationStopReason =
+      this.dataset?.pathConstraintBoundaryRelaxationStopReason ??
+      summary.pathConstraintBoundaryRelaxationStopReason;
+    const boundaryRelaxationTolerance = Number(
+      this.dataset?.pathConstraintBoundaryRelaxationTolerance ??
+        summary.pathConstraintBoundaryRelaxationTolerance,
+    );
+    const boundaryRelaxationStepTolerance = Number(
+      this.dataset?.pathConstraintBoundaryRelaxationStepTolerance ??
+        summary.pathConstraintBoundaryRelaxationStepTolerance,
+    );
     const boundaryRelaxationStatus =
       this.dataset?.pathConstraintBoundaryRelaxationStatus ?? summary.pathConstraintBoundaryRelaxationStatus;
     const boundaryRelaxationResidualRatio = Number(
       this.dataset?.pathConstraintBoundaryRelaxationResidualRatio ??
         summary.pathConstraintBoundaryRelaxationResidualRatio,
+    );
+    const boundaryRelaxationRmsResidualRatio = Number(
+      this.dataset?.rmsPathConstraintBoundaryRelaxationResidualRatio ??
+        summary.rmsPathConstraintBoundaryRelaxationResidualRatio,
+    );
+    const boundaryRelaxationResidualSettlingRate = Number(
+      this.dataset?.pathConstraintBoundaryRelaxationResidualSettlingRate ??
+        summary.pathConstraintBoundaryRelaxationResidualSettlingRate,
+    );
+    const boundaryRelaxationRmsResidualSettlingRate = Number(
+      this.dataset?.rmsPathConstraintBoundaryRelaxationResidualSettlingRate ??
+        summary.rmsPathConstraintBoundaryRelaxationResidualSettlingRate,
+    );
+    const boundaryRelaxationRmsResidualAfter = Number(
+      this.dataset?.rmsPathConstraintBoundaryRelaxationResidualAfter ??
+        summary.rmsPathConstraintBoundaryRelaxationResidualAfter,
+    );
+    const boundaryRelaxationMaxStep = Number(
+      this.dataset?.pathConstraintBoundaryRelaxationMaxStep ??
+        summary.pathConstraintBoundaryRelaxationMaxStep,
+    );
+    const boundaryRelaxationFinalStepFactor = Number(
+      this.dataset?.pathConstraintBoundaryRelaxationFinalStepFactor ??
+        summary.pathConstraintBoundaryRelaxationFinalStepFactor,
+    );
+    const boundaryRelaxationSelectedCandidateKind =
+      this.dataset?.pathConstraintBoundaryRelaxationSelectedCandidateKind ??
+      summary.pathConstraintBoundaryRelaxationSelectedCandidateKind;
+    const boundaryRelaxationCenterOfMassSelectedCount = Number(
+      this.dataset?.pathConstraintBoundaryRelaxationCenterOfMassSelectedCount ??
+        summary.pathConstraintBoundaryRelaxationCenterOfMassSelectedCount,
+    );
+    const boundaryRelaxationAdaptiveRetry = Boolean(
+      this.dataset?.pathConstraintBoundaryRelaxationAdaptiveRetry ??
+        summary.pathConstraintBoundaryRelaxationAdaptiveRetry,
+    );
+    const boundaryRelaxationAdaptiveRetryRejected = Boolean(
+      this.dataset?.pathConstraintBoundaryRelaxationAdaptiveRetryRejected ??
+        summary.pathConstraintBoundaryRelaxationAdaptiveRetryRejected,
+    );
+    const boundaryRelaxationInitialIterationCount = Number(
+      this.dataset?.pathConstraintBoundaryRelaxationInitialIterationCount ??
+        summary.pathConstraintBoundaryRelaxationInitialIterationCount,
+    );
+    const boundaryRelaxationInitialTolerance = Number(
+      this.dataset?.pathConstraintBoundaryRelaxationInitialTolerance ??
+        summary.pathConstraintBoundaryRelaxationInitialTolerance,
+    );
+    const boundaryRelaxationInitialResidualAfter = Number(
+      this.dataset?.maxPathConstraintBoundaryRelaxationResidualAfterInitialAttempt ??
+        summary.maxPathConstraintBoundaryRelaxationResidualAfterInitialAttempt,
+    );
+    const boundaryRelaxationRejectedRetryIterationCount = Number(
+      this.dataset?.pathConstraintBoundaryRelaxationRejectedRetryIterationCount ??
+        summary.pathConstraintBoundaryRelaxationRejectedRetryIterationCount,
+    );
+    const boundaryRelaxationRejectedRetryTolerance = Number(
+      this.dataset?.pathConstraintBoundaryRelaxationRejectedRetryTolerance ??
+        summary.pathConstraintBoundaryRelaxationRejectedRetryTolerance,
+    );
+    const boundaryRelaxationRejectedRetryResidualAfter = Number(
+      this.dataset?.maxPathConstraintBoundaryRelaxationResidualAfterRejectedRetry ??
+        summary.maxPathConstraintBoundaryRelaxationResidualAfterRejectedRetry,
+    );
+    const boundaryRelaxationRejectedRetryResidualRatio = Number(
+      this.dataset?.pathConstraintBoundaryRelaxationResidualRatioRejectedRetry ??
+        summary.pathConstraintBoundaryRelaxationResidualRatioRejectedRetry,
     );
     const constraintSolverStatus = this.dataset?.pathConstraintSolverStatus ?? summary.pathConstraintSolverStatus;
     const constraintSolverClaim = this.dataset?.pathConstraintSolverClaim ?? summary.pathConstraintSolverClaim;
@@ -2873,16 +3633,88 @@ class CausalDelayFeedbackRuntime {
       if (boundaryMode) {
         details.push(`bMode=${formatCompactLabel(boundaryMode)}`);
       }
+      if (boundarySeedMode) {
+        details.push(`seed=${formatCompactLabel(boundarySeedMode)}`);
+      }
+      if (Number.isFinite(boundarySeedSampleCount) && boundarySeedSampleCount > 0) {
+        details.push(`seedRows=${boundarySeedSampleCount}`);
+      }
       if (boundaryRelaxationMode) {
         details.push(`relax=${formatCompactLabel(boundaryRelaxationMode)}`);
         if (Number.isFinite(boundaryRelaxationIterationCount)) {
           details.push(`relaxIter=${boundaryRelaxationIterationCount}`);
         }
+      if (Number.isFinite(boundaryRelaxationAppliedIterationCount)) {
+        details.push(`relaxApplied=${boundaryRelaxationAppliedIterationCount}`);
+      }
+      if (boundaryRelaxationStopReason) {
+        details.push(`relaxStop=${formatCompactLabel(boundaryRelaxationStopReason)}`);
+      }
+      if (Number.isFinite(boundaryRelaxationTolerance)) {
+        details.push(`relaxTol=${formatCompactNumber(boundaryRelaxationTolerance)}`);
+      }
+      if (Number.isFinite(boundaryRelaxationStepTolerance)) {
+        details.push(`relaxStepTol=${formatCompactNumber(boundaryRelaxationStepTolerance)}`);
+      }
         if (Number.isFinite(boundaryRelaxationResidualRatio)) {
           details.push(`relaxRatio=${formatCompactNumber(boundaryRelaxationResidualRatio)}`);
         }
+        if (Number.isFinite(boundaryRelaxationRmsResidualRatio)) {
+          details.push(`relaxRmsRatio=${formatCompactNumber(boundaryRelaxationRmsResidualRatio)}`);
+        }
+        if (Number.isFinite(boundaryRelaxationResidualSettlingRate)) {
+          details.push(`relaxRate=${formatCompactNumber(boundaryRelaxationResidualSettlingRate)}`);
+        }
+        if (Number.isFinite(boundaryRelaxationRmsResidualSettlingRate)) {
+          details.push(`relaxRmsRate=${formatCompactNumber(boundaryRelaxationRmsResidualSettlingRate)}`);
+        }
+        if (Number.isFinite(boundaryRelaxationRmsResidualAfter)) {
+          details.push(`relaxRms=${formatCompactNumber(boundaryRelaxationRmsResidualAfter)}`);
+        }
+        if (Number.isFinite(boundaryRelaxationMaxStep)) {
+          details.push(`relaxStep=${formatCompactNumber(boundaryRelaxationMaxStep)}`);
+        }
+        if (Number.isFinite(boundaryRelaxationFinalStepFactor)) {
+          details.push(`relaxFactor=${formatCompactNumber(boundaryRelaxationFinalStepFactor)}`);
+        }
+        if (boundaryRelaxationSelectedCandidateKind) {
+          details.push(`relaxKind=${formatCompactLabel(boundaryRelaxationSelectedCandidateKind)}`);
+        }
+        if (Number.isFinite(boundaryRelaxationCenterOfMassSelectedCount)) {
+          details.push(`relaxCom=${boundaryRelaxationCenterOfMassSelectedCount}`);
+        }
         if (boundaryRelaxationStatus) {
           details.push(`relaxStatus=${formatCompactLabel(boundaryRelaxationStatus)}`);
+        }
+        if (boundaryRelaxationAdaptiveRetry) {
+          if (Number.isFinite(boundaryRelaxationInitialIterationCount)) {
+            details.push(`relaxRetry=${boundaryRelaxationInitialIterationCount}->${boundaryRelaxationIterationCount}`);
+          } else {
+            details.push("relaxRetry=adaptive");
+          }
+          if (Number.isFinite(boundaryRelaxationInitialTolerance)) {
+            details.push(`firstTol=${formatCompactNumber(boundaryRelaxationInitialTolerance)}`);
+          }
+          if (Number.isFinite(boundaryRelaxationInitialResidualAfter)) {
+            details.push(`firstResidual=${formatCompactNumber(boundaryRelaxationInitialResidualAfter)}`);
+          }
+        } else if (boundaryRelaxationAdaptiveRetryRejected) {
+          if (Number.isFinite(boundaryRelaxationInitialIterationCount)) {
+            details.push(
+              `relaxRetryRejected=${boundaryRelaxationInitialIterationCount}->${Number.isFinite(boundaryRelaxationRejectedRetryIterationCount) ? boundaryRelaxationRejectedRetryIterationCount : "?"}`,
+            );
+          } else {
+            details.push("relaxRetryRejected=adaptive");
+          }
+          if (Number.isFinite(boundaryRelaxationRejectedRetryTolerance)) {
+            details.push(`retryTol=${formatCompactNumber(boundaryRelaxationRejectedRetryTolerance)}`);
+          }
+          if (Number.isFinite(boundaryRelaxationRejectedRetryResidualAfter)) {
+            details.push(`retryResidual=${formatCompactNumber(boundaryRelaxationRejectedRetryResidualAfter)}`);
+          }
+          if (Number.isFinite(boundaryRelaxationRejectedRetryResidualRatio)) {
+            details.push(`retryRatio=${formatCompactNumber(boundaryRelaxationRejectedRetryResidualRatio)}`);
+          }
         }
       }
       details.push(`guideRows=${guidanceSampleCount}`);
@@ -2964,10 +3796,23 @@ class CausalDelayFeedbackRuntime {
     const status = this.getWakeStatus(link);
     const thresholdState = this.getWakeThresholdState(link);
     const contributionScale = clamp(this.getWakeContributionMagnitude(link) / this.getAssemblyThreshold(), 0, 1);
+    const usesWeakThresholdCue = this.weakContributionCueMode === WEAK_CONTRIBUTION_CUE_THRESHOLD_ONLY;
     const thresholdAlphaScale =
-      thresholdState === "below_threshold" ? 0.62 : thresholdState === "near_threshold" ? 0.82 : 1;
+      !usesWeakThresholdCue
+        ? 1
+        : thresholdState === "below_threshold"
+          ? 0.62
+          : thresholdState === "near_threshold"
+            ? 0.82
+            : 1;
     const thresholdRadiusScale =
-      thresholdState === "below_threshold" ? 0.78 : thresholdState === "near_threshold" ? 0.9 : 1;
+      !usesWeakThresholdCue
+        ? 1
+        : thresholdState === "below_threshold"
+          ? 0.78
+          : thresholdState === "near_threshold"
+            ? 0.9
+            : 1;
     if (status.status === "active") {
       return {
         status: status.status,
@@ -2975,7 +3820,7 @@ class CausalDelayFeedbackRuntime {
         contributionScale,
         alphaScale: thresholdAlphaScale,
         radiusScale: thresholdRadiusScale,
-        desaturation: thresholdState === "below_threshold" ? 0.18 : 0,
+        desaturation: usesWeakThresholdCue && thresholdState === "below_threshold" ? 0.18 : 0,
       };
     }
     const inactiveVisualTier = INACTIVE_WAKE_VISUAL_TIERS[status.status] ?? INACTIVE_WAKE_VISUAL_TIERS.rejected;

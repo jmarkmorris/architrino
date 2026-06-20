@@ -33,9 +33,26 @@ const PROOFS = Object.freeze([
     height: 1080,
     deviceScaleFactor: 1,
     query: "preset=accepted_tight_bright&canvas=architrinoPurple",
-    replayTime: 0.26,
+    replayTime: 0.2,
     wakeLabel: "blue 2 -> red 3",
     requiredDatasetSource: "central_solver_bridge_replay",
+    requiredTurnbackPaths: true,
+    minimumFinalSeparation: 220,
+    settingsOpen: false,
+  },
+  {
+    id: "central-portrait",
+    fileName: "central-pair-purple-390x844.png",
+    width: 390,
+    height: 844,
+    deviceScaleFactor: 2,
+    mobile: true,
+    query: "preset=accepted_tight_bright&canvas=architrinoPurple",
+    replayTime: 0.2,
+    wakeLabel: "blue 2 -> red 3",
+    requiredDatasetSource: "central_solver_bridge_replay",
+    requiredTurnbackPaths: true,
+    minimumFinalSeparation: 120,
     settingsOpen: false,
   },
   {
@@ -48,8 +65,42 @@ const PROOFS = Object.freeze([
     replayTime: 0.26,
     wakeLabel: "blue 2 -> red 3",
     requiredDatasetSource: "central_solver_bridge_replay",
-    requiredReplayStatus: "solver guided replay",
-    requiredPathConstraintSolverStatus: "guided_constraint_path",
+    requiredReplayStatus: "solver boundary replay",
+    requiredPathConstraintSolverStatus: "discrete_boundary_value_converged",
+    requiredPathConstraintSolverClaim: "finite_difference_pair_boundary_value_solve_converged",
+    requiredBoundaryRelaxationIterationCount: [64, 256],
+    requiredBoundaryRelaxationTolerance: [10, 1],
+    requiredMaxBoundaryRelaxationResidualAfter: 1,
+    requiredMaxBoundaryRelaxationResidualRatio: 0.02,
+    settingsOpen: false,
+    prepareAction: {
+      type: "retained-point-drag",
+      kind: "electrino",
+      depth: 3,
+      delta: { x: 46, y: -34 },
+    },
+  },
+  {
+    id: "central-boundary-retained-edit",
+    fileName: "central-boundary-retained-edit-purple-1920x1080.png",
+    width: 1920,
+    height: 1080,
+    deviceScaleFactor: 1,
+    query:
+      "preset=accepted_tight_bright&canvas=architrinoPurple" +
+      "&pathConstraintBoundaryRelaxationIterationCount=64" +
+      "&pathConstraintBoundaryRelaxationTolerance=10",
+    replayTime: 0.26,
+    wakeLabel: "blue 2 -> red 3",
+    requiredDatasetSource: "central_solver_bridge_replay",
+    requiredReplayStatus: "solver boundary replay",
+    requiredPathConstraintSolverStatus: "discrete_boundary_value_converged",
+    requiredPathConstraintSolverClaim: "finite_difference_pair_boundary_value_solve_converged",
+    requiredAdaptiveBoundaryRetry: false,
+    requiredBoundaryRelaxationIterationCount: 64,
+    requiredBoundaryRelaxationTolerance: 10,
+    requiredMaxBoundaryRelaxationResidualAfter: 10,
+    requiredMaxBoundaryRelaxationResidualRatio: 0.02,
     settingsOpen: false,
     prepareAction: {
       type: "retained-point-drag",
@@ -68,8 +119,13 @@ const PROOFS = Object.freeze([
     replayTime: 0.26,
     wakeLabel: "blue 2 -> red 3",
     requiredDatasetSource: "central_solver_bridge_replay",
-    requiredReplayStatus: "solver guided replay",
-    requiredPathConstraintSolverStatus: "guided_constraint_path",
+    requiredReplayStatus: "solver boundary replay",
+    requiredPathConstraintSolverStatus: "discrete_boundary_value_converged",
+    requiredPathConstraintSolverClaim: "finite_difference_pair_boundary_value_solve_converged",
+    requiredBoundaryRelaxationIterationCount: [64, 256],
+    requiredBoundaryRelaxationTolerance: [10, 1],
+    requiredMaxBoundaryRelaxationResidualAfter: 1,
+    requiredMaxBoundaryRelaxationResidualRatio: 0.02,
     settingsOpen: false,
     prepareAction: {
       type: "retained-point-drag",
@@ -89,8 +145,13 @@ const PROOFS = Object.freeze([
     replayTime: 0.91,
     wakeLabel: "red 5 -> blue 6",
     requiredDatasetSource: "central_solver_bridge_replay",
-    requiredReplayStatus: "solver guided replay",
-    requiredPathConstraintSolverStatus: "guided_constraint_path",
+    requiredReplayStatus: "solver boundary replay",
+    requiredPathConstraintSolverStatus: "discrete_boundary_value_converged",
+    requiredPathConstraintSolverClaim: "finite_difference_pair_boundary_value_solve_converged",
+    requiredBoundaryRelaxationIterationCount: [64, 256],
+    requiredBoundaryRelaxationTolerance: [10, 1],
+    requiredMaxBoundaryRelaxationResidualAfter: 1,
+    requiredMaxBoundaryRelaxationResidualRatio: 0.02,
     settingsOpen: false,
     prepareAction: {
       type: "retained-point-drag",
@@ -99,6 +160,35 @@ const PROOFS = Object.freeze([
       delta: { x: -32, y: 23 },
       requiredHistoryPointDelta: { x: -32, y: 23 },
       requiredFinalHistoryDepth: true,
+    },
+  },
+  {
+    id: "central-reception-insert",
+    fileName: "central-reception-insert-purple-1920x1080.png",
+    width: 1920,
+    height: 1080,
+    deviceScaleFactor: 1,
+    query: "preset=accepted_tight_bright&canvas=architrinoPurple",
+    replayTime: 0.52,
+    wakeLabel: "blue 3 -> red 4",
+    requiredDatasetSource: "central_solver_bridge_replay",
+    requiredReplayStatus: "solver boundary replay",
+    requiredPathConstraintSolverStatus: "discrete_boundary_value_converged",
+    requiredPathConstraintSolverClaim: "finite_difference_pair_boundary_value_solve_converged",
+    requiredBoundaryRelaxationIterationCount: [64, 256],
+    requiredBoundaryRelaxationTolerance: [10, 1],
+    requiredMaxBoundaryRelaxationResidualAfter: 1,
+    requiredMaxBoundaryRelaxationResidualRatio: 0.02,
+    settingsOpen: false,
+    prepareAction: {
+      type: "context-reception-point-insert",
+      kind: "positrino",
+      t: 0.48,
+      requiredHistoryDepth: 7,
+      requiredWakeLinkCount: 12,
+      requiredInsertedDepth: 4,
+      requiredInsertedKind: "positrino",
+      requiredWakeLabels: ["blue 3 -> red 4", "red 4 -> blue 5", "blue 6 -> red 7"],
     },
   },
   {
@@ -205,7 +295,7 @@ function printUsage(exitCode) {
   console.log("  --base-url=URL     Existing dev server URL. Default: http://127.0.0.1:5173");
   console.log("  --host=HOST        Host used when starting the dev server. Default: 127.0.0.1");
   console.log("  --port=PORT        Port used when starting the dev server. Default: 5173");
-  console.log("  --proof=ID         Capture only desktop or portrait.");
+  console.log("  --proof=ID         Capture only the named proof id.");
   process.exit(exitCode);
 }
 
@@ -384,7 +474,7 @@ async function captureProof(cdp, { proof, url, outputPath }) {
     width: proof.width,
     height: proof.height,
     deviceScaleFactor: proof.deviceScaleFactor,
-    mobile: proof.id === "portrait",
+    mobile: Boolean(proof.mobile),
   }, sessionId);
   await cdp.send("Page.navigate", { url }, sessionId);
   await waitFor(async () => {
@@ -496,6 +586,71 @@ function createPrepareProofExpression(proof) {
         }
       }
     }
+    if (prepareAction?.type === "context-reception-point-insert") {
+      const insertion = runtime.getReplayPathPoint(prepareAction.kind, prepareAction.t);
+      const screen = runtime.worldToScreen(insertion);
+      const rect = runtime.dom.canvas.getBoundingClientRect();
+      let preventedDefault = false;
+      await runtime.handleCanvasContextMenu({
+        clientX: rect.left + screen.x,
+        clientY: rect.top + screen.y,
+        preventDefault() {
+          preventedDefault = true;
+        },
+      });
+      if (!preventedDefault) {
+        return { ok: false, reason: "context_menu_insert_not_handled", action: prepareAction };
+      }
+      if (runtime.replayLoadState === "draft-rejected") {
+        return {
+          ok: false,
+          reason: "solver_rejected_reception_insert",
+          status: runtime.dom.replayStatus.textContent,
+          error: runtime.getDraftSolverRejectionMessage(),
+        };
+      }
+      const requiredDepth = Number(prepareAction.requiredHistoryDepth);
+      const requiredWakeLinkCount = Number(prepareAction.requiredWakeLinkCount);
+      const insertedKind = prepareAction.requiredInsertedKind ?? prepareAction.kind;
+      const insertedDepth = Number(prepareAction.requiredInsertedDepth);
+      const insertedPoint = runtime.dataset.history?.[insertedKind]?.find(
+        (point) => Number(point.depth) === insertedDepth
+      );
+      const historyDepths = Object.fromEntries(
+        ["positrino", "electrino"].map((kind) => [kind, runtime.dataset.history?.[kind]?.length ?? 0])
+      );
+      const missingWakeLabels = (prepareAction.requiredWakeLabels ?? []).filter(
+        (label) => !runtime.dataset.wakeLinks.some((link) => link.label === label)
+      );
+      if (
+        !insertedPoint ||
+        Object.values(historyDepths).some((depth) => Number(depth) !== requiredDepth) ||
+        Number(runtime.dataset.initialConditions?.historyDepth) !== requiredDepth ||
+        Number(runtime.dataset.wakeLinks?.length) !== requiredWakeLinkCount ||
+        !runtime.dataset.wakeLinks.every((link) => Number(link.receiverDepth) === Number(link.sourceDepth) + 1) ||
+        missingWakeLabels.length > 0
+      ) {
+        return {
+          ok: false,
+          reason: "reception_insert_not_preserved_after_central_replay",
+          expected: {
+            historyDepth: requiredDepth,
+            wakeLinkCount: requiredWakeLinkCount,
+            insertedKind,
+            insertedDepth,
+            wakeLabels: prepareAction.requiredWakeLabels ?? [],
+          },
+          actual: {
+            historyDepths,
+            initialHistoryDepth: runtime.dataset.initialConditions?.historyDepth,
+            wakeLinkCount: runtime.dataset.wakeLinks?.length,
+            insertedPoint,
+            missingWakeLabels,
+          },
+          status: runtime.dom.replayStatus.textContent,
+        };
+      }
+    }
     if (prepareAction?.type === "initial-velocity-drag") {
       const condition = runtime.dataset.initialConditions?.[prepareAction.kind];
       if (!condition) {
@@ -557,6 +712,24 @@ function createPrepareProofExpression(proof) {
         expected: requiredReplayStatus,
         actual: runtime.dom.replayStatus.textContent,
         source,
+        pathConstraintSolverStatus:
+          runtime.dataset?.pathConstraintSolverStatus ??
+          runtime.dataset?.solverSummary?.pathConstraintSolverStatus,
+        pathConstraintBoundaryRelaxationStatus:
+          runtime.dataset?.pathConstraintBoundaryRelaxationStatus ??
+          runtime.dataset?.solverSummary?.pathConstraintBoundaryRelaxationStatus,
+        pathConstraintBoundaryRelaxationTolerance:
+          runtime.dataset?.pathConstraintBoundaryRelaxationTolerance ??
+          runtime.dataset?.solverSummary?.pathConstraintBoundaryRelaxationTolerance,
+        maxPathConstraintBoundaryRelaxationResidualAfter:
+          runtime.dataset?.maxPathConstraintBoundaryRelaxationResidualAfter ??
+          runtime.dataset?.solverSummary?.maxPathConstraintBoundaryRelaxationResidualAfter,
+        maxPathConstraintBoundaryRelaxationResidualBefore:
+          runtime.dataset?.maxPathConstraintBoundaryRelaxationResidualBefore ??
+          runtime.dataset?.solverSummary?.maxPathConstraintBoundaryRelaxationResidualBefore,
+        pathConstraintBoundaryRelaxationResidualRatio:
+          runtime.dataset?.pathConstraintBoundaryRelaxationResidualRatio ??
+          runtime.dataset?.solverSummary?.pathConstraintBoundaryRelaxationResidualRatio,
       };
     }
     const requiredPathConstraintSolverStatus = ${JSON.stringify(proof.requiredPathConstraintSolverStatus ?? "")};
@@ -576,6 +749,204 @@ function createPrepareProofExpression(proof) {
         status: runtime.dom.replayStatus.textContent,
       };
     }
+    const requiredPathConstraintSolverClaim = ${JSON.stringify(proof.requiredPathConstraintSolverClaim ?? "")};
+    const pathConstraintSolverClaim =
+      runtime.dataset?.pathConstraintSolverClaim ??
+      runtime.dataset?.solverSummary?.pathConstraintSolverClaim;
+    if (
+      requiredPathConstraintSolverClaim &&
+      pathConstraintSolverClaim !== requiredPathConstraintSolverClaim
+    ) {
+      return {
+        ok: false,
+        reason: "path_constraint_solver_claim_mismatch",
+        expected: requiredPathConstraintSolverClaim,
+        actual: pathConstraintSolverClaim,
+        source,
+        status: runtime.dom.replayStatus.textContent,
+      };
+    }
+    const requiredAdaptiveBoundaryRetry =
+      ${proof.requiredAdaptiveBoundaryRetry == null ? "undefined" : JSON.stringify(proof.requiredAdaptiveBoundaryRetry)};
+    const adaptiveBoundaryRetry = Boolean(
+      runtime.dataset?.pathConstraintBoundaryRelaxationAdaptiveRetry ??
+        runtime.dataset?.solverSummary?.pathConstraintBoundaryRelaxationAdaptiveRetry
+    );
+    if (
+      typeof requiredAdaptiveBoundaryRetry === "boolean" &&
+      adaptiveBoundaryRetry !== requiredAdaptiveBoundaryRetry
+    ) {
+      return {
+        ok: false,
+        reason: "adaptive_boundary_retry_mismatch",
+        expected: requiredAdaptiveBoundaryRetry,
+        actual: adaptiveBoundaryRetry,
+        source,
+        status: runtime.dom.replayStatus.textContent,
+      };
+    }
+    const requiredBoundaryRelaxationIterationCount =
+      ${proof.requiredBoundaryRelaxationIterationCount == null
+        ? "undefined"
+        : JSON.stringify(proof.requiredBoundaryRelaxationIterationCount)};
+    const allowedBoundaryRelaxationIterationCounts = Array.isArray(requiredBoundaryRelaxationIterationCount)
+      ? requiredBoundaryRelaxationIterationCount
+      : Number.isFinite(requiredBoundaryRelaxationIterationCount)
+        ? [requiredBoundaryRelaxationIterationCount]
+        : [];
+    const boundaryRelaxationIterationCount = Number(
+      runtime.dataset?.pathConstraintBoundaryRelaxationIterationCount ??
+        runtime.dataset?.solverSummary?.pathConstraintBoundaryRelaxationIterationCount
+    );
+    if (
+      allowedBoundaryRelaxationIterationCounts.length > 0 &&
+      !allowedBoundaryRelaxationIterationCounts.includes(boundaryRelaxationIterationCount)
+    ) {
+      return {
+        ok: false,
+        reason: "boundary_relaxation_iteration_count_mismatch",
+        expected: allowedBoundaryRelaxationIterationCounts,
+        actual: boundaryRelaxationIterationCount,
+        adaptiveBoundaryRetry,
+        source,
+        status: runtime.dom.replayStatus.textContent,
+      };
+    }
+    const requiredBoundaryRelaxationTolerance =
+      ${proof.requiredBoundaryRelaxationTolerance == null
+        ? "undefined"
+        : JSON.stringify(proof.requiredBoundaryRelaxationTolerance)};
+    const allowedBoundaryRelaxationTolerances = Array.isArray(requiredBoundaryRelaxationTolerance)
+      ? requiredBoundaryRelaxationTolerance
+      : Number.isFinite(requiredBoundaryRelaxationTolerance)
+        ? [requiredBoundaryRelaxationTolerance]
+        : [];
+    const boundaryRelaxationTolerance = Number(
+      runtime.dataset?.pathConstraintBoundaryRelaxationTolerance ??
+        runtime.dataset?.solverSummary?.pathConstraintBoundaryRelaxationTolerance
+    );
+    if (
+      allowedBoundaryRelaxationTolerances.length > 0 &&
+      !allowedBoundaryRelaxationTolerances.includes(boundaryRelaxationTolerance)
+    ) {
+      return {
+        ok: false,
+        reason: "boundary_relaxation_tolerance_mismatch",
+        expected: allowedBoundaryRelaxationTolerances,
+        actual: boundaryRelaxationTolerance,
+        adaptiveBoundaryRetry,
+        source,
+        status: runtime.dom.replayStatus.textContent,
+      };
+    }
+    const requiredMaxBoundaryRelaxationResidualAfter =
+      ${proof.requiredMaxBoundaryRelaxationResidualAfter == null
+        ? "undefined"
+        : JSON.stringify(proof.requiredMaxBoundaryRelaxationResidualAfter)};
+    const maxBoundaryRelaxationResidualAfter = Number(
+      runtime.dataset?.maxPathConstraintBoundaryRelaxationResidualAfter ??
+        runtime.dataset?.solverSummary?.maxPathConstraintBoundaryRelaxationResidualAfter
+    );
+    if (
+      Number.isFinite(requiredMaxBoundaryRelaxationResidualAfter) &&
+      (
+        !Number.isFinite(maxBoundaryRelaxationResidualAfter) ||
+        maxBoundaryRelaxationResidualAfter > requiredMaxBoundaryRelaxationResidualAfter
+      )
+    ) {
+      return {
+        ok: false,
+        reason: "boundary_relaxation_residual_after_exceeded",
+        expectedMax: requiredMaxBoundaryRelaxationResidualAfter,
+        actual: maxBoundaryRelaxationResidualAfter,
+        relaxationStatus:
+          runtime.dataset?.pathConstraintBoundaryRelaxationStatus ??
+          runtime.dataset?.solverSummary?.pathConstraintBoundaryRelaxationStatus,
+        relaxationTolerance:
+          runtime.dataset?.pathConstraintBoundaryRelaxationTolerance ??
+          runtime.dataset?.solverSummary?.pathConstraintBoundaryRelaxationTolerance,
+        source,
+        status: runtime.dom.replayStatus.textContent,
+      };
+    }
+    const requiredMaxBoundaryRelaxationResidualRatio =
+      ${proof.requiredMaxBoundaryRelaxationResidualRatio == null
+        ? "undefined"
+        : JSON.stringify(proof.requiredMaxBoundaryRelaxationResidualRatio)};
+    const boundaryRelaxationResidualRatio = Number(
+      runtime.dataset?.pathConstraintBoundaryRelaxationResidualRatio ??
+        runtime.dataset?.solverSummary?.pathConstraintBoundaryRelaxationResidualRatio
+    );
+    if (
+      Number.isFinite(requiredMaxBoundaryRelaxationResidualRatio) &&
+      (
+        !Number.isFinite(boundaryRelaxationResidualRatio) ||
+        boundaryRelaxationResidualRatio > requiredMaxBoundaryRelaxationResidualRatio
+      )
+    ) {
+      return {
+        ok: false,
+        reason: "boundary_relaxation_residual_ratio_exceeded",
+        expectedMax: requiredMaxBoundaryRelaxationResidualRatio,
+        actual: boundaryRelaxationResidualRatio,
+        maxBoundaryRelaxationResidualAfter,
+        source,
+        status: runtime.dom.replayStatus.textContent,
+      };
+    }
+    if (${proof.requiredTurnbackPaths === true ? "true" : "false"}) {
+      const getPoint = (kind, depth) => runtime.dataset.history?.[kind]?.find(
+        (point) => Number(point.depth) === Number(depth)
+      );
+      const getFinalPoint = (kind) => {
+        const rows = runtime.dataset.history?.[kind] ?? [];
+        return rows.reduce((best, point) => {
+          if (!best || Number(point.depth) > Number(best.depth)) {
+            return point;
+          }
+          return best;
+        }, null);
+      };
+      const red1 = getPoint("positrino", 1);
+      const red4 = getPoint("positrino", 4);
+      const redFinal = getFinalPoint("positrino");
+      const blue1 = getPoint("electrino", 1);
+      const blue4 = getPoint("electrino", 4);
+      const blueFinal = getFinalPoint("electrino");
+      const finalSeparation = redFinal && blueFinal
+        ? Math.hypot(Number(redFinal.x) - Number(blueFinal.x), Number(redFinal.y) - Number(blueFinal.y))
+        : Number.NaN;
+      const turnSeparation = red4 && blue4
+        ? Math.hypot(Number(red4.x) - Number(blue4.x), Number(red4.y) - Number(blue4.y))
+        : Number.NaN;
+      const minimumFinalSeparation = ${JSON.stringify(proof.minimumFinalSeparation ?? 0)};
+      const ok =
+        red1 &&
+        red4 &&
+        redFinal &&
+        blue1 &&
+        blue4 &&
+        blueFinal &&
+        Number(red1.y) < Number(blue1.y) &&
+        Number(red4.y) > Number(blue4.y) &&
+        Number(redFinal.y) < Number(red4.y) &&
+        Number(blueFinal.y) > Number(blue4.y) &&
+        Number(finalSeparation) < Number(turnSeparation) &&
+        Number(finalSeparation) >= Number(minimumFinalSeparation);
+      if (!ok) {
+        return {
+          ok: false,
+          reason: "central_pair_paths_do_not_turn_back",
+          red: { point1: red1, point4: red4, final: redFinal },
+          blue: { point1: blue1, point4: blue4, final: blueFinal },
+          finalSeparation,
+          turnSeparation,
+          minimumFinalSeparation,
+          source,
+          status: runtime.dom.replayStatus.textContent,
+        };
+      }
+    }
     return {
       ok: true,
       preset: runtime.dataset.preset?.id,
@@ -583,6 +954,9 @@ function createPrepareProofExpression(proof) {
       selected: link.label,
       status: runtime.dom.replayStatus.textContent,
       pathConstraintSolverStatus,
+      pathConstraintSolverClaim,
+      maxBoundaryRelaxationResidualAfter,
+      boundaryRelaxationResidualRatio,
       readout: runtime.dom.readout.textContent,
     };
   })()`;

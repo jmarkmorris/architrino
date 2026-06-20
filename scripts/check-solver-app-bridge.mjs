@@ -10,6 +10,7 @@ import {
   createSolverAppBridgeClient,
   hasSolverCAbi,
 } from "../src/solver/app/SolverAppBridge.mjs";
+import { runSolverAppBridgeRequest } from "../src/solver/app/SolverAppBridgeClientResolver.mjs";
 import {
   SOLVER_APP_WORKER_PROTOCOL_VERSION,
   collectTransferables,
@@ -4231,15 +4232,46 @@ assert(
     causalDelayPairRunHandle.response.summary.pathConstraintGuidanceMode === "retained_knot_boundary" &&
     causalDelayPairRunHandle.response.summary.pathConstraintBoundaryMode ===
       "law_aware_retained_knot_boundary" &&
+    causalDelayPairRunHandle.response.summary.pathConstraintBoundarySeedMode ===
+      "law_aware_retained_knot_boundary_seed" &&
+    causalDelayPairRunHandle.response.summary.pathConstraintBoundarySeedSampleCount > 0 &&
     causalDelayPairRunHandle.response.summary.pathConstraintBoundaryRelaxationMode ===
       "finite_difference_frame_relaxation_v1" &&
     causalDelayPairRunHandle.response.summary.pathConstraintBoundaryRelaxationIterationCount === 8 &&
+    causalDelayPairRunHandle.response.summary.pathConstraintBoundaryRelaxationStopReason ===
+      "iteration_budget_exhausted" &&
     causalDelayPairRunHandle.response.summary.pathConstraintBoundaryRelaxationStatus === "accepted" &&
     causalDelayPairRunHandle.response.summary.pathConstraintBoundaryRelaxationResidualSampleCount > 0 &&
     causalDelayPairRunHandle.response.summary.maxPathConstraintBoundaryRelaxationResidualBefore >
       causalDelayPairRunHandle.response.summary.maxPathConstraintBoundaryRelaxationResidualAfter &&
     causalDelayPairRunHandle.response.summary.pathConstraintBoundaryRelaxationResidualRatio >= 0 &&
     causalDelayPairRunHandle.response.summary.pathConstraintBoundaryRelaxationResidualRatio < 1 &&
+    causalDelayPairRunHandle.response.summary.meanPathConstraintBoundaryRelaxationResidualRatio >= 0 &&
+    causalDelayPairRunHandle.response.summary.meanPathConstraintBoundaryRelaxationResidualRatio < 1 &&
+    causalDelayPairRunHandle.response.summary.rmsPathConstraintBoundaryRelaxationResidualRatio >= 0 &&
+    causalDelayPairRunHandle.response.summary.rmsPathConstraintBoundaryRelaxationResidualRatio < 1 &&
+    causalDelayPairRunHandle.response.summary.pathConstraintBoundaryRelaxationResidualSettlingRate >= 0 &&
+    causalDelayPairRunHandle.response.summary.pathConstraintBoundaryRelaxationResidualSettlingRate < 1 &&
+    causalDelayPairRunHandle.response.summary.meanPathConstraintBoundaryRelaxationResidualSettlingRate >= 0 &&
+    causalDelayPairRunHandle.response.summary.meanPathConstraintBoundaryRelaxationResidualSettlingRate < 1 &&
+    causalDelayPairRunHandle.response.summary.rmsPathConstraintBoundaryRelaxationResidualSettlingRate >= 0 &&
+    causalDelayPairRunHandle.response.summary.rmsPathConstraintBoundaryRelaxationResidualSettlingRate < 1 &&
+    causalDelayPairRunHandle.response.summary.rmsPathConstraintBoundaryRelaxationResidualBefore >
+      causalDelayPairRunHandle.response.summary.rmsPathConstraintBoundaryRelaxationResidualAfter &&
+    causalDelayPairRunHandle.response.summary.meanPathConstraintBoundaryRelaxationResidualBefore >
+      causalDelayPairRunHandle.response.summary.meanPathConstraintBoundaryRelaxationResidualAfter &&
+    causalDelayPairRunHandle.response.summary.pathConstraintBoundaryRelaxationMaxStep > 0 &&
+    causalDelayPairRunHandle.response.summary.pathConstraintBoundaryRelaxationFinalStepFactor > 0 &&
+    causalDelayPairRunHandle.response.summary.pathConstraintBoundaryRelaxationFinalStepFactor <= 1.25 &&
+    typeof causalDelayPairRunHandle.response.summary.pathConstraintBoundaryRelaxationSelectedCandidateKind ===
+      "string" &&
+    causalDelayPairRunHandle.response.summary.pathConstraintBoundaryRelaxationSelectedCandidateKind !== "none" &&
+    Number.isInteger(
+      causalDelayPairRunHandle.response.summary.pathConstraintBoundaryRelaxationCenterOfMassSelectedCount
+    ) &&
+    causalDelayPairRunHandle.response.summary.pathConstraintBoundaryRelaxationCenterOfMassSelectedCount >= 0 &&
+    causalDelayPairRunHandle.response.summary.pathConstraintBoundaryRelaxationCenterOfMassSelectedCount <=
+      causalDelayPairRunHandle.response.summary.pathConstraintBoundaryRelaxationAppliedIterationCount &&
     causalDelayPairRunHandle.response.summary.pathConstraintSolverStatus === "guided_constraint_path" &&
     causalDelayPairRunHandle.response.summary.pathConstraintSolverClaim ===
       "diagnostic_constraint_replay_not_boundary_value_solve" &&
@@ -4261,9 +4293,93 @@ const causalDelayPairMidRetainedFrame = causalDelayPairRunHandle.response.frames
 );
 assert(
   causalDelayPairMidRetainedFrame &&
-    Math.abs(causalDelayPairMidRetainedFrame.velocity.y - 76.01155034442922) < 1e-9,
+    Math.abs(causalDelayPairMidRetainedFrame.velocity.y - 77.03423085256793) < 1e-9,
   "expected relaxed retained-knot boundary-frame velocity"
 );
+const causalDelayPairJsFallbackRunHandle = await runSolverAppBridgeRequest({
+  appId: "causal-delay-feedback",
+  request: makeCausalDelayPairInteractionRunSimulationRequest({
+    runSuffix: "js-fallback",
+  }),
+  requestedCapabilities: ["pairInteraction"],
+  storagePolicy: {
+    target: "caller-buffer",
+    durable: false,
+    maxBytes: 64 * 1024 * 1024,
+  },
+  threadingPolicy: {
+    mode: "single-thread",
+    deterministic: true,
+  },
+  options: {
+    allowNoWasmBridgeClient: true,
+  },
+});
+assert(
+  causalDelayPairJsFallbackRunHandle.status.code === "ok" &&
+    causalDelayPairJsFallbackRunHandle.response.summary.executionPath === "javascript_fallback" &&
+    causalDelayPairJsFallbackRunHandle.response.summary.pathConstraintBoundarySeedMode ===
+      "law_aware_retained_knot_boundary_seed" &&
+    causalDelayPairJsFallbackRunHandle.response.summary.pathConstraintBoundarySeedSampleCount > 0 &&
+    causalDelayPairJsFallbackRunHandle.response.summary.pathConstraintBoundaryRelaxationAppliedIterationCount > 0 &&
+    causalDelayPairJsFallbackRunHandle.response.summary.pathConstraintBoundaryRelaxationAppliedIterationCount <= 8 &&
+    causalDelayPairJsFallbackRunHandle.response.summary.pathConstraintBoundaryRelaxationStopReason ===
+      "iteration_budget_exhausted" &&
+    causalDelayPairJsFallbackRunHandle.response.summary.maxPathConstraintBoundaryRelaxationResidualBefore >
+      causalDelayPairJsFallbackRunHandle.response.summary.maxPathConstraintBoundaryRelaxationResidualAfter &&
+    causalDelayPairJsFallbackRunHandle.response.summary.pathConstraintBoundaryRelaxationResidualRatio >= 0 &&
+    causalDelayPairJsFallbackRunHandle.response.summary.pathConstraintBoundaryRelaxationResidualRatio < 1 &&
+    causalDelayPairJsFallbackRunHandle.response.summary.meanPathConstraintBoundaryRelaxationResidualRatio >= 0 &&
+    causalDelayPairJsFallbackRunHandle.response.summary.meanPathConstraintBoundaryRelaxationResidualRatio < 1 &&
+    causalDelayPairJsFallbackRunHandle.response.summary.rmsPathConstraintBoundaryRelaxationResidualRatio >= 0 &&
+    causalDelayPairJsFallbackRunHandle.response.summary.rmsPathConstraintBoundaryRelaxationResidualRatio < 1 &&
+    causalDelayPairJsFallbackRunHandle.response.summary.pathConstraintBoundaryRelaxationResidualSettlingRate >= 0 &&
+    causalDelayPairJsFallbackRunHandle.response.summary.pathConstraintBoundaryRelaxationResidualSettlingRate < 1 &&
+    causalDelayPairJsFallbackRunHandle.response.summary.meanPathConstraintBoundaryRelaxationResidualSettlingRate >= 0 &&
+    causalDelayPairJsFallbackRunHandle.response.summary.meanPathConstraintBoundaryRelaxationResidualSettlingRate < 1 &&
+    causalDelayPairJsFallbackRunHandle.response.summary.rmsPathConstraintBoundaryRelaxationResidualSettlingRate >= 0 &&
+    causalDelayPairJsFallbackRunHandle.response.summary.rmsPathConstraintBoundaryRelaxationResidualSettlingRate < 1 &&
+    causalDelayPairJsFallbackRunHandle.response.summary.rmsPathConstraintBoundaryRelaxationResidualBefore >
+      causalDelayPairJsFallbackRunHandle.response.summary.rmsPathConstraintBoundaryRelaxationResidualAfter &&
+    causalDelayPairJsFallbackRunHandle.response.summary.meanPathConstraintBoundaryRelaxationResidualBefore >
+      causalDelayPairJsFallbackRunHandle.response.summary.meanPathConstraintBoundaryRelaxationResidualAfter &&
+    causalDelayPairJsFallbackRunHandle.response.summary.pathConstraintBoundaryRelaxationMaxStep > 0 &&
+    causalDelayPairJsFallbackRunHandle.response.summary.pathConstraintBoundaryRelaxationFinalStepFactor > 0 &&
+    causalDelayPairJsFallbackRunHandle.response.summary.pathConstraintBoundaryRelaxationFinalStepFactor <= 1.25 &&
+    typeof causalDelayPairJsFallbackRunHandle.response.summary
+      .pathConstraintBoundaryRelaxationSelectedCandidateKind === "string" &&
+    causalDelayPairJsFallbackRunHandle.response.summary
+      .pathConstraintBoundaryRelaxationSelectedCandidateKind !== "none" &&
+    Number.isInteger(
+      causalDelayPairJsFallbackRunHandle.response.summary
+        .pathConstraintBoundaryRelaxationCenterOfMassSelectedCount
+    ) &&
+    causalDelayPairJsFallbackRunHandle.response.summary
+      .pathConstraintBoundaryRelaxationCenterOfMassSelectedCount >= 0 &&
+    causalDelayPairJsFallbackRunHandle.response.summary
+      .pathConstraintBoundaryRelaxationCenterOfMassSelectedCount <=
+      causalDelayPairJsFallbackRunHandle.response.summary
+        .pathConstraintBoundaryRelaxationAppliedIterationCount &&
+    causalDelayPairJsFallbackRunHandle.response.summary.pathConstraintSolverStatus === "guided_constraint_path",
+  "expected no-WASM causal-delay pair interaction to use JS fallback with improved residual"
+);
+let noWasmMotionRejected = false;
+try {
+  await runSolverAppBridgeRequest({
+    appId: "causal-delay-feedback",
+    request: makeCausalDelayMotionRunSimulationRequest(),
+    requestedCapabilities: ["motionSimulation"],
+    options: {
+      allowNoWasmBridgeClient: true,
+    },
+  });
+} catch (error) {
+  noWasmMotionRejected =
+    error instanceof SolverBridgeError &&
+    error.status?.code === "app_contract_error" &&
+    /WebAssembly module factory is required/.test(error.status?.message ?? "");
+}
+assert(noWasmMotionRejected, "expected no-WASM motion simulation to remain module-required");
 const causalDelayPairBoundaryToleranceAcceptedRunHandle = await client.runSimulation(
   makeCausalDelayPairInteractionRunSimulationRequest({
     runSuffix: "boundary-residual-accept",
@@ -4276,6 +4392,88 @@ assert(
     causalDelayPairBoundaryToleranceAcceptedRunHandle.response.summary.pathConstraintBoundaryResidualTolerance === 1e9 &&
     causalDelayPairBoundaryToleranceAcceptedRunHandle.response.summary.pathConstraintBoundaryResidualSampleCount === 4,
   "expected causal-delay pair boundary residual tolerance acceptance"
+);
+const causalDelayPairBoundaryRelaxationTunedRunHandle = await client.runSimulation(
+  makeCausalDelayPairInteractionRunSimulationRequest({
+    runSuffix: "boundary-relaxation-12",
+    pathConstraintBoundaryRelaxationIterationCount: 12,
+    pathConstraintBoundaryRelaxationTolerance: 10,
+  })
+);
+assert(
+  causalDelayPairBoundaryRelaxationTunedRunHandle.response.summary.pathConstraintBoundaryRelaxationIterationCount ===
+    12 &&
+    causalDelayPairBoundaryRelaxationTunedRunHandle.response.summary
+      .pathConstraintBoundaryRelaxationAppliedIterationCount > 0 &&
+    causalDelayPairBoundaryRelaxationTunedRunHandle.response.summary
+      .pathConstraintBoundaryRelaxationAppliedIterationCount <= 12 &&
+    causalDelayPairBoundaryRelaxationTunedRunHandle.response.summary.pathConstraintBoundaryRelaxationTolerance ===
+      10 &&
+    causalDelayPairBoundaryRelaxationTunedRunHandle.response.summary
+      .maxPathConstraintBoundaryRelaxationResidualAfter <= 10 &&
+    causalDelayPairBoundaryRelaxationTunedRunHandle.response.summary
+      .pathConstraintBoundaryRelaxationResidualRatio < 0.02 &&
+    causalDelayPairBoundaryRelaxationTunedRunHandle.response.summary.pathConstraintBoundaryRelaxationStatus ===
+      "converged" &&
+    causalDelayPairBoundaryRelaxationTunedRunHandle.response.summary
+      .pathConstraintBoundaryRelaxationMaxStep > 0 &&
+    causalDelayPairBoundaryRelaxationTunedRunHandle.response.summary
+      .pathConstraintBoundaryRelaxationFinalStepFactor > 0 &&
+    causalDelayPairBoundaryRelaxationTunedRunHandle.response.summary
+      .pathConstraintBoundaryRelaxationFinalStepFactor <= 1.25 &&
+    causalDelayPairBoundaryRelaxationTunedRunHandle.response.summary.pathConstraintBoundaryRelaxationStopReason ===
+      "tolerance_reached" &&
+    causalDelayPairBoundaryRelaxationTunedRunHandle.response.summary.pathConstraintBoundaryRelaxationMode ===
+      "finite_difference_frame_relaxation_v1" &&
+    causalDelayPairBoundaryRelaxationTunedRunHandle.response.summary.pathConstraintSolverStatus ===
+      "discrete_boundary_value_converged" &&
+    causalDelayPairBoundaryRelaxationTunedRunHandle.response.summary.pathConstraintSolverClaim ===
+      "finite_difference_pair_boundary_value_solve_converged",
+  "expected causal-delay pair boundary relaxation convergence override"
+);
+const causalDelayPairBoundaryRelaxationStepTunedRunHandle = await client.runSimulation(
+  makeCausalDelayPairInteractionRunSimulationRequest({
+    runSuffix: "boundary-relaxation-step",
+    pathConstraintBoundaryRelaxationStepTolerance: 1e9,
+  })
+);
+assert(
+  causalDelayPairBoundaryRelaxationStepTunedRunHandle.response.summary
+    .pathConstraintBoundaryRelaxationStepTolerance === 1e9 &&
+    causalDelayPairBoundaryRelaxationStepTunedRunHandle.response.summary
+      .pathConstraintBoundaryRelaxationAppliedIterationCount > 0 &&
+    causalDelayPairBoundaryRelaxationStepTunedRunHandle.response.summary
+      .pathConstraintBoundaryRelaxationMaxStep > 0 &&
+    causalDelayPairBoundaryRelaxationStepTunedRunHandle.response.summary.pathConstraintBoundaryRelaxationStatus ===
+      "step_converged" &&
+    causalDelayPairBoundaryRelaxationStepTunedRunHandle.response.summary.pathConstraintBoundaryRelaxationStopReason ===
+      "step_tolerance_reached" &&
+    causalDelayPairBoundaryRelaxationStepTunedRunHandle.response.summary.pathConstraintSolverStatus ===
+      "guided_constraint_path" &&
+    causalDelayPairBoundaryRelaxationStepTunedRunHandle.response.summary.pathConstraintSolverClaim ===
+      "diagnostic_constraint_replay_not_boundary_value_solve",
+  "expected causal-delay pair boundary relaxation step-tolerance stop"
+);
+const causalDelayPairBoundaryRelaxationSkippedRunHandle = await client.runSimulation(
+  makeCausalDelayPairInteractionRunSimulationRequest({
+    runSuffix: "boundary-relaxation-skipped",
+    pathConstraintBoundaryRelaxationIterationCount: 0,
+  })
+);
+assert(
+  causalDelayPairBoundaryRelaxationSkippedRunHandle.response.summary
+    .pathConstraintBoundaryRelaxationIterationCount === 0 &&
+    causalDelayPairBoundaryRelaxationSkippedRunHandle.response.summary
+      .pathConstraintBoundaryRelaxationAppliedIterationCount === 0 &&
+    causalDelayPairBoundaryRelaxationSkippedRunHandle.response.summary
+      .pathConstraintBoundaryRelaxationStatus === "not_requested" &&
+    causalDelayPairBoundaryRelaxationSkippedRunHandle.response.summary
+      .pathConstraintBoundaryRelaxationStopReason === "not_requested" &&
+    causalDelayPairBoundaryRelaxationSkippedRunHandle.response.summary.pathConstraintSolverStatus ===
+      "guided_constraint_path" &&
+    causalDelayPairBoundaryRelaxationSkippedRunHandle.response.summary.pathConstraintSolverClaim ===
+      "diagnostic_constraint_replay_not_boundary_value_solve",
+  "expected zero-budget boundary relaxation to report not_requested without boundary-solve claim"
 );
 let causalDelayPairBoundaryToleranceRejected = false;
 try {
@@ -4307,8 +4505,8 @@ const causalDelayPairRedBoundary = causalDelayPairRunHandle.response.frames.find
   (frame) => frame.pathKey === 1 && frame.time === 0.125
 );
 assert(
-  Math.abs(causalDelayPairRedBoundary.position.x - 107.49967157958221) < 1e-9 &&
-    Math.abs(causalDelayPairRedBoundary.position.y - 224.35294925508552) < 1e-9,
+  Math.abs(causalDelayPairRedBoundary.position.x - 107.5) < 1e-9 &&
+    Math.abs(causalDelayPairRedBoundary.position.y - 224.35835161391412) < 1e-9,
   "expected causal-delay pair intermediate frame to follow the relaxed retained-knot boundary path"
 );
 const causalDelayPairRedInserted = causalDelayPairRunHandle.response.frames.find(
@@ -4317,9 +4515,75 @@ const causalDelayPairRedInserted = causalDelayPairRunHandle.response.frames.find
 assert(
   causalDelayPairRedInserted.position.x === 115 &&
     causalDelayPairRedInserted.position.y === 250 &&
-    Math.abs(causalDelayPairRedInserted.velocity.x - 60.00131368167115) < 1e-9 &&
-    Math.abs(causalDelayPairRedInserted.velocity.y - 120.43045034177851) < 1e-9,
+    Math.abs(causalDelayPairRedInserted.velocity.x - 60) < 1e-9 &&
+    Math.abs(causalDelayPairRedInserted.velocity.y - 120.39486054528368) < 1e-9,
   "expected causal-delay pair path constraints to emit the inserted red point with relaxed boundary-frame velocity"
+);
+const causalDelayPairNonuniformVelocityRun = await client.runSimulation(
+  makeCausalDelayPairInteractionRunSimulationRequest({
+    runSuffix: "nonuniform-velocity",
+    maxFrames: 10,
+    pathConstraints: [
+      {
+        pathKey: 1,
+        depth: 1,
+        time: 0,
+        position: { x: 100, y: 200, z: 0 },
+      },
+      {
+        pathKey: 1,
+        depth: 2,
+        time: 0.3,
+        position: { x: 118, y: 252, z: 0 },
+      },
+      {
+        pathKey: 1,
+        depth: 3,
+        time: 0.5,
+        position: { x: 130, y: 260, z: 0 },
+      },
+      {
+        pathKey: 1,
+        depth: 4,
+        time: 1,
+        position: { x: 160, y: 320, z: 0 },
+      },
+      {
+        pathKey: 2,
+        depth: 1,
+        time: 0,
+        position: { x: 100, y: 700, z: 0 },
+      },
+      {
+        pathKey: 2,
+        depth: 2,
+        time: 0.3,
+        position: { x: 118, y: 652, z: 0 },
+      },
+      {
+        pathKey: 2,
+        depth: 3,
+        time: 0.5,
+        position: { x: 130, y: 620, z: 0 },
+      },
+      {
+        pathKey: 2,
+        depth: 4,
+        time: 1,
+        position: { x: 160, y: 540, z: 0 },
+      },
+    ],
+  }),
+);
+assert(
+  causalDelayPairNonuniformVelocityRun.status.code === "ok",
+  "expected causal-delay nonuniform velocity run status ok"
+);
+assertNonuniformRelaxedFrameVelocity(
+  causalDelayPairNonuniformVelocityRun.response.frames,
+  1,
+  0.3,
+  "causal-delay nonuniform retained red frame"
 );
 const causalDelayPairBlueFinal = causalDelayPairRunHandle.response.frames.find(
   (frame) => frame.pathKey === 2 && frame.time === 1
@@ -5324,7 +5588,12 @@ function makeCausalDelayMotionRunSimulationRequest() {
 
 function makeCausalDelayPairInteractionRunSimulationRequest({
   interactionLaw = "display_pair_attraction_v1",
+  pathConstraintBoundaryRelaxationIterationCount,
+  pathConstraintBoundaryRelaxationTolerance,
+  pathConstraintBoundaryRelaxationStepTolerance,
   pathConstraintBoundaryResidualTolerance,
+  pathConstraints,
+  maxFrames = 9,
   runSuffix = "",
 } = {}) {
   const admission = makeAdmissionRequest();
@@ -5348,11 +5617,20 @@ function makeCausalDelayPairInteractionRunSimulationRequest({
         startTime: 0,
         endTime: 1,
         step: 0.125,
-        maxFrames: 9,
+        maxFrames,
         pairAccelerationScale: 0.18,
         softening: 0,
         integrationTolerance: 1e-12,
         interactionLaw,
+        ...(pathConstraintBoundaryRelaxationIterationCount != null
+          ? { pathConstraintBoundaryRelaxationIterationCount }
+          : {}),
+        ...(pathConstraintBoundaryRelaxationTolerance != null
+          ? { pathConstraintBoundaryRelaxationTolerance }
+          : {}),
+        ...(pathConstraintBoundaryRelaxationStepTolerance != null
+          ? { pathConstraintBoundaryRelaxationStepTolerance }
+          : {}),
         ...(pathConstraintBoundaryResidualTolerance != null
           ? { pathConstraintBoundaryResidualTolerance }
           : {}),
@@ -5374,7 +5652,7 @@ function makeCausalDelayPairInteractionRunSimulationRequest({
             stateFlags: 2,
           },
         ],
-        pathConstraints: [
+        pathConstraints: pathConstraints ?? [
           {
             pathKey: 1,
             depth: 1,
@@ -6047,6 +6325,62 @@ function assertVectorClose(actual, expected, label) {
   assertClose(actual?.x, expected.x, `${label}.x`);
   assertClose(actual?.y, expected.y, `${label}.y`);
   assertClose(actual?.z, expected.z, `${label}.z`);
+}
+
+function assertNonuniformRelaxedFrameVelocity(frames, pathKey, time, label) {
+  const sorted = frames
+    .filter((frame) => frame.pathKey === pathKey)
+    .slice()
+    .sort((left, right) => left.time - right.time || left.frameIndex - right.frameIndex);
+  const index = sorted.findIndex((frame) => Math.abs(frame.time - time) <= 1e-12);
+  assert(index > 0 && index + 1 < sorted.length, `${label}: expected interior retained frame`);
+  const previous = sorted[index - 1];
+  const current = sorted[index];
+  const next = sorted[index + 1];
+  const leftDt = current.time - previous.time;
+  const rightDt = next.time - current.time;
+  assert(leftDt > 0 && rightDt > 0, `${label}: expected increasing frame times`);
+  assert(Math.abs(leftDt - rightDt) > 1e-12, `${label}: expected nonuniform neighbor spans`);
+  const span = leftDt + rightDt;
+  const leftWeight = -rightDt / (leftDt * span);
+  const centerWeight = (rightDt - leftDt) / (leftDt * rightDt);
+  const rightWeight = leftDt / (rightDt * span);
+  const expectedVelocity = {
+    x:
+      leftWeight * previous.position.x +
+      centerWeight * current.position.x +
+      rightWeight * next.position.x,
+    y:
+      leftWeight * previous.position.y +
+      centerWeight * current.position.y +
+      rightWeight * next.position.y,
+    z:
+      leftWeight * previous.position.z +
+      centerWeight * current.position.z +
+      rightWeight * next.position.z,
+  };
+  const chordVelocity = {
+    x: (next.position.x - previous.position.x) / span,
+    y: (next.position.y - previous.position.y) / span,
+    z: (next.position.z - previous.position.z) / span,
+  };
+  const velocityDelta = Math.hypot(
+    expectedVelocity.x - chordVelocity.x,
+    expectedVelocity.y - chordVelocity.y,
+    expectedVelocity.z - chordVelocity.z,
+  );
+  assert(velocityDelta > 1e-6, `${label}: expected nonuniform derivative to differ from chord velocity`);
+  assertVectorTolerance(current.velocity, expectedVelocity, label, 1e-8);
+}
+
+function assertVectorTolerance(actual, expected, label, tolerance) {
+  ["x", "y", "z"].forEach((axis) => {
+    assert(
+      Number.isFinite(actual?.[axis]) &&
+        Math.abs(actual[axis] - expected[axis]) <= tolerance * Math.max(1, Math.abs(expected[axis])),
+      `${label}.${axis}: expected ${expected[axis]}, got ${actual?.[axis]}`
+    );
+  });
 }
 
 function assertClose(actual, expected, label) {

@@ -177,24 +177,24 @@ Latest local benchmark run on 2026-06-20:
 
 | Metric | Value |
 | --- | ---: |
-| Scenario count | 4 |
-| Path-count sweep | 16, 64, 256, 1024 |
-| Time-slab sweep | 32, 128 |
-| Brute-force replay pairs | 1,118,464 |
-| Brute-force candidates | 305 |
-| Indexed pair tests | 18,981 |
-| Indexed candidates | 305 |
+| Scenario count | 5 |
+| Path-count sweep | 16, 64, 256, 1024, 2048 |
+| Time-slab sweep | 32, 128, 256 |
+| Brute-force replay pairs | 5,312,768 |
+| Brute-force candidates | 24,625 |
+| Indexed pair tests | 360,597 |
+| Indexed candidates | 24,625 |
 | Missing oracle candidates | 0 |
 | Broad-phase recall | 1.0 |
-| Candidate count reduction | 0.999727 |
-| Indexed pair-test reduction | 0.983029 |
-| Sampled narrow-phase hits | 158 |
+| Candidate count reduction | 0.995365 |
+| Indexed pair-test reduction | 0.932126 |
+| Sampled narrow-phase hits | 16,502 |
 | Same-source candidates | 5 |
-| Speed-regime transition candidates | 105 |
-| Chunk replay rows | 2,720 |
-| Chunk replay bytes | 261,120 |
-| Work packets | 16 |
-| Work-packet candidates | 305 |
+| Speed-regime transition candidates | 8,877 |
+| Chunk replay rows | 6,816 |
+| Chunk replay bytes | 654,336 |
+| Work packets | 20 |
+| Work-packet candidates | 24,625 |
 | Work-packet missing candidates | 0 |
 | Work-packet extra candidates | 0 |
 | Work-packet merge-order mismatches | 0 |
@@ -209,12 +209,47 @@ The `emission-shell-broad-phase-v0` case must satisfy:
 
 | Threshold family | Required acceptance |
 | --- | --- |
-| Fixture stress | At least 4 scenarios, path-count coverage through 1024, time slabs through 128, at least 5 speed regimes, at least 3 density cases, same-source enabled, all-to-all enabled, and oracle replay sweeps for every scenario. |
-| Oracle correctness | At least 1,000,000 brute-force replay pairs, indexed candidates equal brute-force candidates, zero missing oracle candidates, zero extra indexed candidates, broad-phase recall at least 1.0, and sampled narrow-phase hits preserved. |
-| Broad-phase reduction | Indexed pair tests below brute-force pairs, candidate-count reduction at least 0.999, indexed pair-test reduction at least 0.98, and false-positive ratio no greater than 0.5. |
-| Stream and packet replay | At least 2,000 replayed path-history rows, at least 250,000 replayed chunk bytes, at least 16 deterministic work packets, packet candidates equal indexed candidates, packet header checksums for every packet, zero packet missing candidates, zero packet extra candidates, and zero merge-order mismatches. |
+| Fixture stress | At least 5 scenarios, path-count coverage through 2048, time slabs through 256, at least 5 speed regimes, at least 3 density cases, same-source enabled, all-to-all enabled, and oracle replay sweeps for every scenario. |
+| Oracle correctness | At least 5,000,000 brute-force replay pairs, at least 20,000 indexed candidates, indexed candidates equal brute-force candidates, zero missing oracle candidates, zero extra indexed candidates, broad-phase recall at least 1.0, and at least 16,000 sampled narrow-phase hits. |
+| Broad-phase reduction | Indexed pair tests below brute-force pairs, candidate-count reduction at least 0.995, indexed pair-test reduction at least 0.93, and false-positive ratio no greater than 0.35. |
+| Stream and packet replay | At least 6,000 replayed path-history rows, at least 650,000 replayed chunk bytes, at least 20 deterministic work packets, packet candidates equal indexed candidates, packet header checksums for every packet, zero packet missing candidates, zero packet extra candidates, and zero merge-order mismatches. |
 
 Latest local threshold status on 2026-06-20: pass, with 42 threshold checks over `.tmp/solver-build/benchmark/solver-benchmark-report.json`.
+
+## Default-Promotion Evidence Boundary
+
+Decision: the current stress-scale gate is necessary evidence, not sufficient
+evidence, for making `emission_shell_broad_phase_v0` the preferred default. The
+next promotion artifact should be `emission_shell_broad_phase_v0_default_promotion_v1`.
+It must prove app-facing packet execution and an envelope-specific performance
+budget before any default changes.
+
+Promotion scope is limited to path-vs-emission-shell broad-phase requests over
+complete chunk-backed path-history streams using `f64`, complete index coverage,
+and the same conservative padding policy as the benchmark. Requests with stale,
+partial, or unknown coverage still fall back to authoritative chunk replay or an
+explicit slow-path diagnostic.
+
+Required promotion gates:
+
+| Gate | Required evidence | Current status |
+| --- | --- | --- |
+| Native stress gate | `node scripts/benchmark-solver.mjs` must pass the 2048-path, 256-slab, 5M-pair, 20k-candidate threshold gate with zero missing oracle candidates and zero packet replay deltas. | Met for native direct indexed benchmark. |
+| App-facing packet gate | A bridge fixture must run `planPathHistoryWorkPackets` plus `queryEmissionShellCandidatePacketsF64` with `indexOptions.strategy = "emission_shell_broad_phase_v0"` over the stress envelope. Packets must be submitted out of merge order, merge through `packet_merge`, and match the single app-facing `native_c_abi_indexed_v0` result on candidate keys, candidate count, packet result refs, missing candidates, extra candidates, and deterministic merge order. | Not met at stress scale. Existing bridge checks prove the packet API only on smoke-scale fixtures. |
+| Envelope budget gate | A promotion report must declare the supported envelope before the default changes: path count, time-slab count, brute-force pair ceiling, indexed-pair-test ceiling, candidate ceiling, packet count, memory or transfer ceiling, target runtime surface, target hardware context, and p95 wall-clock budget over repeated runs. | Not met. The current benchmark records elapsed time, but the gate is not yet envelope-specific or app-facing. |
+| Default-scope gate | The app bridge may select v0 by default only inside the declared passing envelope. Outside that envelope, callers must still opt in through `indexOptions.strategy = "emission_shell_broad_phase_v0"` or use the existing fallback route. | Not met; the strategy remains opt-in. |
+
+Initial envelope budget decision:
+
+| Envelope | Default use allowed after passing gate | Required budget |
+| --- | --- | --- |
+| `interactive_preview_small_v0` | Preferred default for app preview candidate scans only. | Up to 256 source rows, 256 receiver rows, 128 time slabs, 4 packets, zero oracle loss, packet/direct equality, p95 app-facing packet query plus merge no greater than 100 ms on the declared target hardware. |
+| `background_validation_large_v0` | Preferred default for background or validation candidate scans, not UI-blocking preview. | Up to 2048 source rows, 2048 receiver rows, 256 time slabs, 20 packets, at least 5,000,000 brute-force replay pairs, at least 20,000 candidates, zero oracle loss, packet/direct equality, p95 app-facing packet query plus merge no greater than 5 s on the declared target hardware. |
+
+The boundary is deliberately envelope-specific. A pass for
+`background_validation_large_v0` does not make v0 the interactive default, and a
+pass for `interactive_preview_small_v0` does not authorize larger all-to-all or
+validation workloads.
 
 ## Decision
 
@@ -232,7 +267,8 @@ The first benchmark should answer one question before broadening: can the solver
 selection artifact. The survey compares the relevant query families, selects the
 emission-shell-specific hybrid, and records benchmark evidence for
 `emission-shell-broad-phase-v0` against brute-force chunk replay. The v0
-acceptance gate now enforces stress-scale, oracle, reduction, stream, and packet
-thresholds. Larger stress-scale breadth, app-facing packet execution, and
+acceptance gate now enforces the larger 2048-path stress-scale, oracle,
+reduction, stream, and packet thresholds. Still-larger stress breadth,
+app-facing stress-packet execution, envelope-specific p95 timing reports, and
 default-strategy promotion remain future scoped implementation work, not
 blockers for this survey closeout.

@@ -123,6 +123,25 @@ export async function resolveSolverAppBridgeClient({
 
   const createWasmModule = resolveSolverAppBridgeWasmModuleFactory({ options, bridgeConfig: config });
   if (typeof createWasmModule !== "function") {
+    if (options.allowNoWasmBridgeClient === true || config.allowNoWasmBridgeClient === true) {
+      const client = createSolverAppBridgeClient({
+        ...(config.clientOptions ?? {}),
+        ...(options.solverClientOptions ?? {}),
+      });
+      assertSolverBridgeClientMethod(client, requiredMethod, "solver app bridge client");
+      await client.init(
+        initRequest ??
+          createSolverAppBridgeInitRequest({
+            appId,
+            requestedCapabilities,
+            options,
+            bridgeConfig: config,
+            storagePolicy,
+            threadingPolicy,
+          })
+      );
+      return { client, disposeAfterRun: true, source: "no-wasm-client" };
+    }
     throw new Error(
       missingClientMessage ??
         "Solver bridge request requires a solver client, client factory, worker, run callback, or solver WASM module factory."

@@ -6,6 +6,8 @@ export const ANIMATOR_FIELD_SHELL_EVENT_ROW_LAYOUT = "field_shell_events.v1";
 export const ANIMATOR_FIELD_SHELL_EVENT_STORE_SCHEMA = "path_event_store.v1";
 export const ANIMATOR_FIELD_SHELL_EVENT_MANIFEST_SCHEMA =
   "animator-field-shell-event-stream-manifest.v1";
+export const ANIMATOR_FIELD_SHELL_EMITTER_SOURCE_HISTORY_SCHEMA =
+  "animator-field-shell-emitter-source-history.v1";
 export const ANIMATOR_FIELD_SHELL_EVENT_NATIVE_FILE_MANIFEST_SCHEMA =
   "solver-native-file-stream-manifest.v1";
 export const ANIMATOR_FIELD_SHELL_EVENT_STREAM_INDEX_SCHEMA = "solver-stream-index.v1";

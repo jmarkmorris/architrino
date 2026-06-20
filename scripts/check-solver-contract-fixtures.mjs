@@ -1610,6 +1610,18 @@ function validatePairInteractionRunSimulationRequestEnvelope(value) {
     requestValue.config.pairInteractionRequest.pathConstraintBoundaryResidualTolerance === 0.5,
     "pair boundary tolerance mismatch"
   );
+  assert(
+    requestValue.config.pairInteractionRequest.pathConstraintBoundaryRelaxationIterationCount === 12,
+    "pair boundary relaxation iteration mismatch"
+  );
+  assert(
+    requestValue.config.pairInteractionRequest.pathConstraintBoundaryRelaxationTolerance === 0.01,
+    "pair boundary relaxation tolerance mismatch"
+  );
+  assert(
+    requestValue.config.pairInteractionRequest.pathConstraintBoundaryRelaxationStepTolerance === 0.001,
+    "pair boundary relaxation step tolerance mismatch"
+  );
 }
 
 function validatePairInteractionRunSimulationResponseEnvelope(value) {
@@ -1626,8 +1638,20 @@ function validatePairInteractionRunSimulationResponseEnvelope(value) {
     "pair summary relaxation mode mismatch"
   );
   assert(
-    runResponse.summary.pathConstraintBoundaryRelaxationIterationCount === 8,
+    runResponse.summary.pathConstraintBoundaryRelaxationIterationCount === 12,
     "pair summary relaxation iteration mismatch"
+  );
+  assert(
+    runResponse.summary.pathConstraintBoundaryRelaxationAppliedIterationCount === 4,
+    "pair summary relaxation applied iteration mismatch"
+  );
+  assert(
+    runResponse.summary.pathConstraintBoundaryRelaxationTolerance === 0.01,
+    "pair summary relaxation tolerance mismatch"
+  );
+  assert(
+    runResponse.summary.pathConstraintBoundaryRelaxationStepTolerance === 0.001,
+    "pair summary relaxation step tolerance mismatch"
   );
   assert(
     runResponse.summary.pathConstraintBoundaryRelaxationStatus === "accepted",
@@ -1644,6 +1668,22 @@ function validatePairInteractionRunSimulationResponseEnvelope(value) {
     "pair summary relaxation residual improvement mismatch"
   );
   assert(
+    runResponse.summary.meanPathConstraintBoundaryRelaxationResidualBefore === 6 &&
+      runResponse.summary.meanPathConstraintBoundaryRelaxationResidualAfter === 1.5 &&
+      runResponse.summary.rmsPathConstraintBoundaryRelaxationResidualBefore === 6.5 &&
+      runResponse.summary.rmsPathConstraintBoundaryRelaxationResidualAfter === 1.75 &&
+      runResponse.summary.meanPathConstraintBoundaryRelaxationResidualRatio === 0.25 &&
+      runResponse.summary.rmsPathConstraintBoundaryRelaxationResidualRatio === 1.75 / 6.5,
+    "pair summary relaxation residual mean/rms mismatch"
+  );
+  assert(
+    runResponse.summary.pathConstraintBoundaryRelaxationResidualSettlingRate === Math.pow(0.25, 1 / 4) &&
+      runResponse.summary.meanPathConstraintBoundaryRelaxationResidualSettlingRate === Math.pow(0.25, 1 / 4) &&
+      runResponse.summary.rmsPathConstraintBoundaryRelaxationResidualSettlingRate ===
+        Math.pow(1.75 / 6.5, 1 / 4),
+    "pair summary relaxation residual settling-rate mismatch"
+  );
+  assert(
     runResponse.pairInteraction.pathConstraintBoundaryResidualStatus === "within_tolerance",
     "pair interaction nested status mismatch"
   );
@@ -1652,8 +1692,20 @@ function validatePairInteractionRunSimulationResponseEnvelope(value) {
     "pair interaction nested relaxation mode mismatch"
   );
   assert(
-    runResponse.pairInteraction.pathConstraintBoundaryRelaxationIterationCount === 8,
+    runResponse.pairInteraction.pathConstraintBoundaryRelaxationIterationCount === 12,
     "pair interaction nested relaxation iteration mismatch"
+  );
+  assert(
+    runResponse.pairInteraction.pathConstraintBoundaryRelaxationAppliedIterationCount === 4,
+    "pair interaction nested relaxation applied iteration mismatch"
+  );
+  assert(
+    runResponse.pairInteraction.pathConstraintBoundaryRelaxationTolerance === 0.01,
+    "pair interaction nested relaxation tolerance mismatch"
+  );
+  assert(
+    runResponse.pairInteraction.pathConstraintBoundaryRelaxationStepTolerance === 0.001,
+    "pair interaction nested relaxation step tolerance mismatch"
   );
   assert(
     runResponse.pairInteraction.pathConstraintBoundaryRelaxationStatus === "accepted",
@@ -1668,6 +1720,23 @@ function validatePairInteractionRunSimulationResponseEnvelope(value) {
       runResponse.pairInteraction.maxPathConstraintBoundaryRelaxationResidualAfter === 2 &&
       runResponse.pairInteraction.pathConstraintBoundaryRelaxationResidualRatio === 0.25,
     "pair interaction nested relaxation residual improvement mismatch"
+  );
+  assert(
+    runResponse.pairInteraction.meanPathConstraintBoundaryRelaxationResidualBefore === 6 &&
+      runResponse.pairInteraction.meanPathConstraintBoundaryRelaxationResidualAfter === 1.5 &&
+      runResponse.pairInteraction.rmsPathConstraintBoundaryRelaxationResidualBefore === 6.5 &&
+      runResponse.pairInteraction.rmsPathConstraintBoundaryRelaxationResidualAfter === 1.75 &&
+      runResponse.pairInteraction.meanPathConstraintBoundaryRelaxationResidualRatio === 0.25 &&
+      runResponse.pairInteraction.rmsPathConstraintBoundaryRelaxationResidualRatio === 1.75 / 6.5,
+    "pair interaction nested relaxation residual mean/rms mismatch"
+  );
+  assert(
+    runResponse.pairInteraction.pathConstraintBoundaryRelaxationResidualSettlingRate === Math.pow(0.25, 1 / 4) &&
+      runResponse.pairInteraction.meanPathConstraintBoundaryRelaxationResidualSettlingRate ===
+        Math.pow(0.25, 1 / 4) &&
+      runResponse.pairInteraction.rmsPathConstraintBoundaryRelaxationResidualSettlingRate ===
+        Math.pow(1.75 / 6.5, 1 / 4),
+    "pair interaction nested relaxation residual settling-rate mismatch"
   );
   assert(runResponse.frames.length === 4, "pair frame count mismatch");
   assert(runResponse.pathHistory.rowCount === 4, "pair path-history row count mismatch");
@@ -4603,6 +4672,9 @@ function createPairInteractionRequestFixture() {
     softening: 0,
     integrationTolerance: 1e-12,
     interactionLaw: "inverse_distance_pair_attraction_v1",
+    pathConstraintBoundaryRelaxationIterationCount: 12,
+    pathConstraintBoundaryRelaxationTolerance: 0.01,
+    pathConstraintBoundaryRelaxationStepTolerance: 0.001,
     pathConstraintBoundaryResidualTolerance: 0.5,
     initialStates: [
       {
@@ -4660,12 +4732,24 @@ function createPairInteractionRunSummaryFixture() {
     pathConstraintGuidanceMode: "retained_knot_boundary",
     pathConstraintBoundaryMode: "law_aware_retained_knot_boundary",
     pathConstraintBoundaryRelaxationMode: "finite_difference_frame_relaxation_v1",
-    pathConstraintBoundaryRelaxationIterationCount: 8,
+    pathConstraintBoundaryRelaxationIterationCount: 12,
+    pathConstraintBoundaryRelaxationAppliedIterationCount: 4,
+    pathConstraintBoundaryRelaxationTolerance: 0.01,
+    pathConstraintBoundaryRelaxationStepTolerance: 0.001,
     pathConstraintBoundaryRelaxationStatus: "accepted",
     pathConstraintBoundaryRelaxationResidualSampleCount: 2,
     maxPathConstraintBoundaryRelaxationResidualBefore: 8,
     maxPathConstraintBoundaryRelaxationResidualAfter: 2,
+    meanPathConstraintBoundaryRelaxationResidualBefore: 6,
+    meanPathConstraintBoundaryRelaxationResidualAfter: 1.5,
+    rmsPathConstraintBoundaryRelaxationResidualBefore: 6.5,
+    rmsPathConstraintBoundaryRelaxationResidualAfter: 1.75,
     pathConstraintBoundaryRelaxationResidualRatio: 0.25,
+    meanPathConstraintBoundaryRelaxationResidualRatio: 0.25,
+    rmsPathConstraintBoundaryRelaxationResidualRatio: 1.75 / 6.5,
+    pathConstraintBoundaryRelaxationResidualSettlingRate: Math.pow(0.25, 1 / 4),
+    meanPathConstraintBoundaryRelaxationResidualSettlingRate: Math.pow(0.25, 1 / 4),
+    rmsPathConstraintBoundaryRelaxationResidualSettlingRate: Math.pow(1.75 / 6.5, 1 / 4),
     pathConstraintSolverStatus: "guided_constraint_path",
     pathConstraintSolverClaim: "diagnostic_constraint_replay_not_boundary_value_solve",
     maxPathConstraintGuidanceAcceleration: 4.5,

@@ -64,6 +64,11 @@ function getInitialNonnegativeQueryNumber(windowLike, key) {
   return Number.isFinite(number) && number >= 0 ? number : undefined;
 }
 
+function getInitialNonnegativeQueryInteger(windowLike, key) {
+  const number = getInitialNonnegativeQueryNumber(windowLike, key);
+  return Number.isFinite(number) ? Math.floor(number) : undefined;
+}
+
 export function shouldUseCentralBridgeReplay(windowLike = globalThis.window) {
   if (shouldUseTemporaryMockReplay(windowLike)) {
     return false;
@@ -126,6 +131,27 @@ export function createCausalDelayFeedbackInitialReplayRequestOptions(windowLike 
     getInitialNonnegativeQueryNumber(windowLike, "boundaryResidualTolerance");
   if (pathConstraintBoundaryResidualTolerance != null) {
     requestOptions.pathConstraintBoundaryResidualTolerance = pathConstraintBoundaryResidualTolerance;
+  }
+  const pathConstraintBoundaryRelaxationIterationCount =
+    getInitialNonnegativeQueryInteger(windowLike, "pathConstraintBoundaryRelaxationIterationCount") ??
+    getInitialNonnegativeQueryInteger(windowLike, "boundaryRelaxationIterations");
+  if (pathConstraintBoundaryRelaxationIterationCount != null) {
+    requestOptions.pathConstraintBoundaryRelaxationIterationCount =
+      pathConstraintBoundaryRelaxationIterationCount;
+  }
+  const pathConstraintBoundaryRelaxationTolerance =
+    getInitialNonnegativeQueryNumber(windowLike, "pathConstraintBoundaryRelaxationTolerance") ??
+    getInitialNonnegativeQueryNumber(windowLike, "boundaryRelaxationTolerance");
+  if (pathConstraintBoundaryRelaxationTolerance != null) {
+    requestOptions.pathConstraintBoundaryRelaxationTolerance =
+      pathConstraintBoundaryRelaxationTolerance;
+  }
+  const pathConstraintBoundaryRelaxationStepTolerance =
+    getInitialNonnegativeQueryNumber(windowLike, "pathConstraintBoundaryRelaxationStepTolerance") ??
+    getInitialNonnegativeQueryNumber(windowLike, "boundaryRelaxationStepTolerance");
+  if (pathConstraintBoundaryRelaxationStepTolerance != null) {
+    requestOptions.pathConstraintBoundaryRelaxationStepTolerance =
+      pathConstraintBoundaryRelaxationStepTolerance;
   }
   return requestOptions;
 }

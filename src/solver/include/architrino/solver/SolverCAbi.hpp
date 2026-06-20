@@ -349,7 +349,9 @@ struct ArchitrinoSolverPairInteractionRequestF64 {
   double integration_tolerance;
   std::uint32_t interaction_law;
   std::uint32_t integration_method;
-  std::uint64_t reserved0;
+  std::uint64_t boundary_relaxation_iteration_count;
+  double boundary_relaxation_tolerance;
+  double boundary_relaxation_step_tolerance;
 };
 
 struct ArchitrinoSolverPairInteractionStateF64 {
@@ -372,7 +374,7 @@ struct ArchitrinoSolverPairInteractionPathConstraintF64 {
 
 struct ArchitrinoSolverPairInteractionSummaryF64 {
   std::uint32_t path_constraint_count;
-  std::uint32_t reserved0;
+  std::uint32_t boundary_relaxation_selected_candidate_kind;
   std::uint64_t residual_sample_count;
   double max_constraint_residual;
   double mean_constraint_residual;
@@ -390,7 +392,21 @@ struct ArchitrinoSolverPairInteractionSummaryF64 {
   double max_boundary_relaxation_residual_after;
   double boundary_relaxation_residual_ratio;
   std::uint32_t boundary_relaxation_status;
-  std::uint32_t reserved1;
+  std::uint32_t boundary_relaxation_applied_iteration_count;
+  std::uint32_t boundary_relaxation_stop_reason;
+  std::uint32_t boundary_relaxation_center_of_mass_selected_count;
+  std::uint64_t boundary_seed_sample_count;
+  double boundary_relaxation_max_step;
+  double boundary_relaxation_final_step_factor;
+  double mean_boundary_relaxation_residual_before;
+  double mean_boundary_relaxation_residual_after;
+  double rms_boundary_relaxation_residual_before;
+  double rms_boundary_relaxation_residual_after;
+  double mean_boundary_relaxation_residual_ratio;
+  double rms_boundary_relaxation_residual_ratio;
+  double boundary_relaxation_residual_settling_rate;
+  double mean_boundary_relaxation_residual_settling_rate;
+  double rms_boundary_relaxation_residual_settling_rate;
 };
 
 struct ArchitrinoSolverMotionFrameRowF64 {

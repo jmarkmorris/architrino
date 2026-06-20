@@ -152,6 +152,36 @@ function createPairInteractionRunResponse(request) {
       : "no_boundary_samples"
     : "unchecked";
   const guidanceSampleCount = constraints.length > 0 ? Math.max(0, constraints.length - 2) : 0;
+  const boundaryRelaxationIterationCount =
+    Number.isInteger(pair.pathConstraintBoundaryRelaxationIterationCount)
+      ? pair.pathConstraintBoundaryRelaxationIterationCount
+      : 8;
+  const boundaryRelaxationTolerance = Number(pair.pathConstraintBoundaryRelaxationTolerance);
+  const boundaryRelaxationStepTolerance = Number(pair.pathConstraintBoundaryRelaxationStepTolerance);
+  const boundaryRelaxationStatus =
+    guidanceSampleCount > 0 && Number.isFinite(boundaryRelaxationTolerance) && boundaryRelaxationTolerance >= 6
+      ? "converged"
+      : guidanceSampleCount > 0 &&
+          Number.isFinite(boundaryRelaxationStepTolerance) &&
+          boundaryRelaxationStepTolerance >= 9.5
+        ? "step_converged"
+        : "accepted";
+  const boundaryRelaxationStopReason =
+    guidanceSampleCount > 0
+      ? boundaryRelaxationIterationCount === 0
+        ? "not_requested"
+        : boundaryRelaxationStatus === "converged"
+          ? "tolerance_reached"
+          : boundaryRelaxationStatus === "step_converged"
+            ? "step_tolerance_reached"
+          : "iteration_budget_exhausted"
+      : undefined;
+  const boundaryRelaxationAppliedIterationCount =
+    guidanceSampleCount > 0
+      ? boundaryRelaxationStatus === "converged"
+        ? Math.min(2, boundaryRelaxationIterationCount)
+        : boundaryRelaxationIterationCount
+      : undefined;
   const times = constraints.length > 0
     ? Array.from(new Set([pair.startTime, pair.endTime, ...constraints.map((constraint) => constraint.time)]))
       .sort((left, right) => left - right)
@@ -160,6 +190,7 @@ function createPairInteractionRunResponse(request) {
         pair.startTime + (pair.endTime - pair.startTime) * 0.5,
         pair.endTime,
       ];
+  const boundarySeedSampleCount = guidanceSampleCount > 0 ? times.length * pair.initialStates.length : undefined;
   return {
     requestId: request.requestId,
     runId: request.runId,
@@ -182,14 +213,43 @@ function createPairInteractionRunResponse(request) {
         pathConstraintGuidanceSampleCount: guidanceSampleCount,
         pathConstraintGuidanceMode: guidanceSampleCount > 0 ? "retained_knot_boundary" : undefined,
         pathConstraintBoundaryMode: guidanceSampleCount > 0 ? "law_aware_retained_knot_boundary" : undefined,
+        pathConstraintBoundarySeedMode:
+          guidanceSampleCount > 0 ? "law_aware_retained_knot_boundary_seed" : undefined,
+        pathConstraintBoundarySeedSampleCount: boundarySeedSampleCount,
         pathConstraintBoundaryRelaxationMode:
           guidanceSampleCount > 0 ? "finite_difference_frame_relaxation_v1" : undefined,
-        pathConstraintBoundaryRelaxationIterationCount: guidanceSampleCount > 0 ? 8 : undefined,
-        pathConstraintBoundaryRelaxationStatus: guidanceSampleCount > 0 ? "accepted" : undefined,
+        pathConstraintBoundaryRelaxationIterationCount:
+          guidanceSampleCount > 0 ? boundaryRelaxationIterationCount : undefined,
+        pathConstraintBoundaryRelaxationAppliedIterationCount: boundaryRelaxationAppliedIterationCount,
+        pathConstraintBoundaryRelaxationStopReason: boundaryRelaxationStopReason,
+        pathConstraintBoundaryRelaxationTolerance:
+          guidanceSampleCount > 0 && Number.isFinite(boundaryRelaxationTolerance)
+            ? boundaryRelaxationTolerance
+            : undefined,
+        pathConstraintBoundaryRelaxationStepTolerance:
+          guidanceSampleCount > 0 && Number.isFinite(boundaryRelaxationStepTolerance)
+            ? boundaryRelaxationStepTolerance
+            : undefined,
+        pathConstraintBoundaryRelaxationStatus: guidanceSampleCount > 0 ? boundaryRelaxationStatus : undefined,
         pathConstraintBoundaryRelaxationResidualSampleCount: guidanceSampleCount > 0 ? 6 : undefined,
         maxPathConstraintBoundaryRelaxationResidualBefore: guidanceSampleCount > 0 ? 24 : undefined,
         maxPathConstraintBoundaryRelaxationResidualAfter: guidanceSampleCount > 0 ? 6 : undefined,
+        meanPathConstraintBoundaryRelaxationResidualBefore: guidanceSampleCount > 0 ? 18 : undefined,
+        meanPathConstraintBoundaryRelaxationResidualAfter: guidanceSampleCount > 0 ? 4.5 : undefined,
+        rmsPathConstraintBoundaryRelaxationResidualBefore: guidanceSampleCount > 0 ? 20 : undefined,
+        rmsPathConstraintBoundaryRelaxationResidualAfter: guidanceSampleCount > 0 ? 5 : undefined,
         pathConstraintBoundaryRelaxationResidualRatio: guidanceSampleCount > 0 ? 0.25 : undefined,
+        meanPathConstraintBoundaryRelaxationResidualRatio: guidanceSampleCount > 0 ? 0.25 : undefined,
+        rmsPathConstraintBoundaryRelaxationResidualRatio: guidanceSampleCount > 0 ? 0.25 : undefined,
+        pathConstraintBoundaryRelaxationResidualSettlingRate: guidanceSampleCount > 0 ? 0.5 : undefined,
+        meanPathConstraintBoundaryRelaxationResidualSettlingRate: guidanceSampleCount > 0 ? 0.5 : undefined,
+        rmsPathConstraintBoundaryRelaxationResidualSettlingRate: guidanceSampleCount > 0 ? 0.5 : undefined,
+        pathConstraintBoundaryRelaxationMaxStep: guidanceSampleCount > 0 ? 9.5 : undefined,
+        pathConstraintBoundaryRelaxationFinalStepFactor: guidanceSampleCount > 0 ? 0.5 : undefined,
+        pathConstraintBoundaryRelaxationSelectedCandidateKind:
+          guidanceSampleCount > 0 ? "first_corrector_center_of_mass_projected" : undefined,
+        pathConstraintBoundaryRelaxationCenterOfMassSelectedCount:
+          guidanceSampleCount > 0 ? 1 : undefined,
         pathConstraintSolverStatus: constraints.length > 0
           ? guidanceSampleCount > 0
             ? "guided_constraint_path"
@@ -484,7 +544,9 @@ test("causal delay central bridge adapter uses pair interaction by default", asy
   assert.equal(dataset.displayProjection, "time_space_canvas_fit_v1");
   assert.equal(dataset.pairInteractionStepCount, 2);
   assert.equal(pairRequests[0].config.pairInteractionRequest.interactionLaw, "inverse_distance_pair_attraction_v1");
+  assert.equal(pairRequests[0].config.pairInteractionRequest.pairAccelerationScale, 4000);
   assert.equal(dataset.interactionLaw, "inverse_distance_pair_attraction_v1");
+  assert.equal(dataset.pairAccelerationScale, 4000);
   assert.equal(dataset.wakeLinks.length, 10);
   assert.equal(dataset.frames[0].t, 0);
   assert.equal(dataset.frames.at(-1).t, 1);
@@ -543,6 +605,7 @@ test("causal delay central bridge adapter passes display pair interaction law re
 test("causal delay central bridge adapter submits retained path constraints after a draft point edit", async () => {
   const draftDataset = createMockCausalDelayReplayDataset("accepted_tight_bright");
   const finalPoint = draftDataset.history.electrino.at(-1);
+  const finalDepth = finalPoint.depth;
   finalPoint.x -= 72;
   finalPoint.y += 44;
   draftDataset.paths.electrino.at(-1).x = finalPoint.x;
@@ -568,16 +631,31 @@ test("causal delay central bridge adapter submits retained path constraints afte
       replayDataset: draftDataset,
       initialConditions: draftDataset.initialConditions,
       pathConstraintBoundaryResidualTolerance: 0.5,
+      pathConstraintBoundaryRelaxationIterationCount: 12,
+      pathConstraintBoundaryRelaxationTolerance: 6,
+      pathConstraintBoundaryRelaxationStepTolerance: 4.75,
     },
   });
   const constrainedFinal = capturedPairRequest.config.pairInteractionRequest.pathConstraints.find(
-    (constraint) => constraint.pathKey === 2 && constraint.depth === 6,
+    (constraint) => constraint.pathKey === 2 && constraint.depth === finalDepth,
   );
   const constrainedStart = capturedPairRequest.config.pairInteractionRequest.pathConstraints.find(
     (constraint) => constraint.pathKey === 1 && constraint.depth === 1,
   );
 
   assert.equal(capturedPairRequest.config.pairInteractionRequest.pathConstraints.length, 12);
+  assert.equal(
+    capturedPairRequest.config.pairInteractionRequest.pathConstraintBoundaryRelaxationIterationCount,
+    12,
+  );
+  assert.equal(
+    capturedPairRequest.config.pairInteractionRequest.pathConstraintBoundaryRelaxationTolerance,
+    6,
+  );
+  assert.equal(
+    capturedPairRequest.config.pairInteractionRequest.pathConstraintBoundaryRelaxationStepTolerance,
+    4.75,
+  );
   assert.equal(constrainedStart.time, draftDataset.history.positrino[0].t);
   assert.equal(constrainedStart.position.x, draftDataset.history.positrino[0].x);
   assert.equal(constrainedStart.position.y, draftDataset.history.positrino[0].y);
@@ -589,13 +667,35 @@ test("causal delay central bridge adapter submits retained path constraints afte
   assert.equal(dataset.pathConstraintGuidanceSampleCount, 10);
   assert.equal(dataset.pathConstraintGuidanceMode, "retained_knot_boundary");
   assert.equal(dataset.pathConstraintBoundaryMode, "law_aware_retained_knot_boundary");
+  assert.equal(dataset.pathConstraintBoundarySeedMode, "law_aware_retained_knot_boundary_seed");
+  assert.equal(dataset.pathConstraintBoundarySeedSampleCount, 12);
   assert.equal(dataset.pathConstraintBoundaryRelaxationMode, "finite_difference_frame_relaxation_v1");
-  assert.equal(dataset.pathConstraintBoundaryRelaxationIterationCount, 8);
-  assert.equal(dataset.pathConstraintBoundaryRelaxationStatus, "accepted");
+  assert.equal(dataset.pathConstraintBoundaryRelaxationIterationCount, 12);
+  assert.equal(dataset.pathConstraintBoundaryRelaxationAppliedIterationCount, 2);
+  assert.equal(dataset.pathConstraintBoundaryRelaxationStopReason, "tolerance_reached");
+  assert.equal(dataset.pathConstraintBoundaryRelaxationTolerance, 6);
+  assert.equal(dataset.pathConstraintBoundaryRelaxationStepTolerance, 4.75);
+  assert.equal(dataset.pathConstraintBoundaryRelaxationStatus, "converged");
   assert.equal(dataset.pathConstraintBoundaryRelaxationResidualSampleCount, 6);
   assert.equal(dataset.maxPathConstraintBoundaryRelaxationResidualBefore, 24);
   assert.equal(dataset.maxPathConstraintBoundaryRelaxationResidualAfter, 6);
+  assert.equal(dataset.meanPathConstraintBoundaryRelaxationResidualBefore, 18);
+  assert.equal(dataset.meanPathConstraintBoundaryRelaxationResidualAfter, 4.5);
+  assert.equal(dataset.rmsPathConstraintBoundaryRelaxationResidualBefore, 20);
+  assert.equal(dataset.rmsPathConstraintBoundaryRelaxationResidualAfter, 5);
   assert.equal(dataset.pathConstraintBoundaryRelaxationResidualRatio, 0.25);
+  assert.equal(dataset.meanPathConstraintBoundaryRelaxationResidualRatio, 0.25);
+  assert.equal(dataset.rmsPathConstraintBoundaryRelaxationResidualRatio, 0.25);
+  assert.equal(dataset.pathConstraintBoundaryRelaxationResidualSettlingRate, 0.5);
+  assert.equal(dataset.meanPathConstraintBoundaryRelaxationResidualSettlingRate, 0.5);
+  assert.equal(dataset.rmsPathConstraintBoundaryRelaxationResidualSettlingRate, 0.5);
+  assert.equal(dataset.pathConstraintBoundaryRelaxationMaxStep, 9.5);
+  assert.equal(dataset.pathConstraintBoundaryRelaxationFinalStepFactor, 0.5);
+  assert.equal(
+    dataset.pathConstraintBoundaryRelaxationSelectedCandidateKind,
+    "first_corrector_center_of_mass_projected",
+  );
+  assert.equal(dataset.pathConstraintBoundaryRelaxationCenterOfMassSelectedCount, 1);
   assert.equal(dataset.pathConstraintSolverStatus, "guided_constraint_path");
   assert.equal(dataset.pathConstraintSolverClaim, "diagnostic_constraint_replay_not_boundary_value_solve");
   assert.equal(dataset.maxPathConstraintGuidanceAcceleration, 4.5);
@@ -609,13 +709,35 @@ test("causal delay central bridge adapter submits retained path constraints afte
   assert.equal(dataset.solverSummary.pathConstraintGuidanceSampleCount, 10);
   assert.equal(dataset.solverSummary.pathConstraintGuidanceMode, "retained_knot_boundary");
   assert.equal(dataset.solverSummary.pathConstraintBoundaryMode, "law_aware_retained_knot_boundary");
+  assert.equal(dataset.solverSummary.pathConstraintBoundarySeedMode, "law_aware_retained_knot_boundary_seed");
+  assert.equal(dataset.solverSummary.pathConstraintBoundarySeedSampleCount, 12);
   assert.equal(dataset.solverSummary.pathConstraintBoundaryRelaxationMode, "finite_difference_frame_relaxation_v1");
-  assert.equal(dataset.solverSummary.pathConstraintBoundaryRelaxationIterationCount, 8);
-  assert.equal(dataset.solverSummary.pathConstraintBoundaryRelaxationStatus, "accepted");
+  assert.equal(dataset.solverSummary.pathConstraintBoundaryRelaxationIterationCount, 12);
+  assert.equal(dataset.solverSummary.pathConstraintBoundaryRelaxationAppliedIterationCount, 2);
+  assert.equal(dataset.solverSummary.pathConstraintBoundaryRelaxationStopReason, "tolerance_reached");
+  assert.equal(dataset.solverSummary.pathConstraintBoundaryRelaxationTolerance, 6);
+  assert.equal(dataset.solverSummary.pathConstraintBoundaryRelaxationStepTolerance, 4.75);
+  assert.equal(dataset.solverSummary.pathConstraintBoundaryRelaxationStatus, "converged");
   assert.equal(dataset.solverSummary.pathConstraintBoundaryRelaxationResidualSampleCount, 6);
   assert.equal(dataset.solverSummary.maxPathConstraintBoundaryRelaxationResidualBefore, 24);
   assert.equal(dataset.solverSummary.maxPathConstraintBoundaryRelaxationResidualAfter, 6);
+  assert.equal(dataset.solverSummary.meanPathConstraintBoundaryRelaxationResidualBefore, 18);
+  assert.equal(dataset.solverSummary.meanPathConstraintBoundaryRelaxationResidualAfter, 4.5);
+  assert.equal(dataset.solverSummary.rmsPathConstraintBoundaryRelaxationResidualBefore, 20);
+  assert.equal(dataset.solverSummary.rmsPathConstraintBoundaryRelaxationResidualAfter, 5);
   assert.equal(dataset.solverSummary.pathConstraintBoundaryRelaxationResidualRatio, 0.25);
+  assert.equal(dataset.solverSummary.meanPathConstraintBoundaryRelaxationResidualRatio, 0.25);
+  assert.equal(dataset.solverSummary.rmsPathConstraintBoundaryRelaxationResidualRatio, 0.25);
+  assert.equal(dataset.solverSummary.pathConstraintBoundaryRelaxationResidualSettlingRate, 0.5);
+  assert.equal(dataset.solverSummary.meanPathConstraintBoundaryRelaxationResidualSettlingRate, 0.5);
+  assert.equal(dataset.solverSummary.rmsPathConstraintBoundaryRelaxationResidualSettlingRate, 0.5);
+  assert.equal(dataset.solverSummary.pathConstraintBoundaryRelaxationMaxStep, 9.5);
+  assert.equal(dataset.solverSummary.pathConstraintBoundaryRelaxationFinalStepFactor, 0.5);
+  assert.equal(
+    dataset.solverSummary.pathConstraintBoundaryRelaxationSelectedCandidateKind,
+    "first_corrector_center_of_mass_projected",
+  );
+  assert.equal(dataset.solverSummary.pathConstraintBoundaryRelaxationCenterOfMassSelectedCount, 1);
   assert.equal(dataset.solverSummary.pathConstraintSolverStatus, "guided_constraint_path");
   assert.equal(dataset.solverSummary.pathConstraintSolverClaim, "diagnostic_constraint_replay_not_boundary_value_solve");
   assert.equal(dataset.solverSummary.pathConstraintBoundaryResidualSampleCount, 8);

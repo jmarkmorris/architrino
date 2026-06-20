@@ -40,6 +40,7 @@ export interface SolverAppBridgeClientResolverOptions {
   wasmFactoryGlobalName?: string;
   wasmFactoryGlobalNames?: string[];
   wasmBaseUrl?: string;
+  allowNoWasmBridgeClient?: boolean;
   scope?: Record<string, unknown>;
 }
 
@@ -68,6 +69,7 @@ export interface SolverAppBridgeConfig {
   wasmFactoryGlobalName?: string;
   wasmFactoryGlobalNames?: string[];
   wasmBaseUrl?: string;
+  allowNoWasmBridgeClient?: boolean;
   scope?: Record<string, unknown>;
 }
 
@@ -87,7 +89,8 @@ export interface SolverAppBridgeClientResolution {
     | "provided-worker-client"
     | "factory-worker-client"
     | "constructed-worker-client"
-    | "wasm-module-client";
+    | "wasm-module-client"
+    | "no-wasm-client";
 }
 
 export interface SolverAppBridgeRunOptions {

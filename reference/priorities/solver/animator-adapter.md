@@ -35,14 +35,15 @@ This closeout covers motion simulation frames, path-history stream identity,
 solver metadata, frame-buffer packaging, worker-owned bridge clients, worker
 bridge clients, authoring payload configuration, the descriptor path for
 delayed-hit shell/path intersections, and the solver app package for field-shell
-event cadence. It does not claim that emitter source histories or native-file
-binary storage for `field_shell_events.v1` are fully core-bridge-owned.
+event cadence. It does not claim that emitter source histories are fully
+core-bridge-owned or that `field_shell_events.v1` has a native C++ producer.
 Animator delayed-hit shell/path intersections now route through solver-owned
 `animator-delayed-hit-stream-descriptors.v1` requests with `path_segment.v1`
 receiver descriptors and `delayed_hit_events.v1` row output. Field-shell
 emission cadence now routes through `animator-field-shell-event-stream-package.v1`
-with `field_shell_events.v1` row metadata before delayed-hit descriptors consume
-those emission events.
+with bridge-catalogued `field_shell_events.v1` row metadata and durable
+native-file stream storage before delayed-hit descriptors consume those emission
+events.
 
 ## Current Bridge Path
 
@@ -86,9 +87,9 @@ Current validation evidence:
 
 Remaining Animator work is outside this adapter closeout:
 
-- promote emitter position history and any ABI-backed native-file
-  `field_shell_events.v1` stream storage into the core bridge before those rows
-  become validation-grade diagnostic authority;
+- promote emitter position history into the core bridge, and add a native C++
+  producer if `field_shell_events.v1` rows need validation-grade diagnostic
+  authority beyond the durable JS-side stream package;
 - keep playback interpolation, camera bounds, opacity, labels, and authoring
   preview transforms app-side;
 - add adapter cases for any future non-linear or multi-path authoring mode before

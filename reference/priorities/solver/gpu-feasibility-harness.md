@@ -36,6 +36,12 @@ This is not the central solver algorithm. It is a regular, massively parallel sh
 - Do not migrate app-facing solver paths to GPU from this harness.
 - Use results to decide whether a future native Metal or WebGPU acceleration tier deserves a dedicated design.
 
+## Initial Manual Observation
+
+Early browser measurements on macOS via the Apple/Metal WebGPU adapter do not yet justify moving GPU work into the production solver. A smaller benchmark run showed CPU ahead by roughly $5.3\times$ when total GPU dispatch/readback time was included. A larger run at about two million pairs and nine repetitions showed the GPU only about $1.06\times$ faster.
+
+Interpretation: the GPU can reach break-even on larger regular batches, but the observed gain is too small to justify production complexity by itself. The first production solver should remain CPU-first. GPU work should stay in the harness until a more solver-representative kernel shows a large, repeatable advantage after transfer, dispatch, readback, and CPU verification costs are included.
+
 ## Candidate Follow-Up Kernels
 
 - Broad causal-root bracketing over independent source-receiver pairs.

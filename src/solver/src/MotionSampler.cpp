@@ -3,9 +3,24 @@
 #include <algorithm>
 #include <cmath>
 #include <iterator>
+#include <limits>
+#include <utility>
 
 namespace architrino::solver {
 namespace {
+
+constexpr std::uint64_t kPairBoundaryRelaxationMaxIterationCount = 256;
+constexpr double kPairBoundaryRelaxationResidualEpsilon = 1e-12;
+constexpr double kPairBoundaryRelaxationLineSearchFactors[] = {
+    1.25,
+    1.0,
+    0.5,
+    0.25,
+    0.125,
+    0.0625,
+    0.03125,
+    0.015625,
+};
 
 bool finite_vector(Vector3 value) {
   return std::isfinite(value.x) && std::isfinite(value.y) && std::isfinite(value.z);
@@ -183,6 +198,32 @@ bool validate_pair_interaction_request(const PairInteractionRequest& request,
     validation.add(StatusCode::AppContractError,
                    StatusSeverity::Error,
                    "pair interaction integration method is not supported",
+                   "pair-interaction-integrator",
+                   false);
+    return false;
+  }
+  if (request.boundaryRelaxationIterationCount > kPairBoundaryRelaxationMaxIterationCount) {
+    validation.add(StatusCode::AppContractError,
+                   StatusSeverity::Error,
+                   "pair interaction boundary relaxation iteration count exceeds supported budget",
+                   "pair-interaction-integrator",
+                   false);
+    return false;
+  }
+  if (!std::isfinite(request.boundaryRelaxationTolerance) ||
+      request.boundaryRelaxationTolerance < 0.0) {
+    validation.add(StatusCode::AppContractError,
+                   StatusSeverity::Error,
+                   "pair interaction boundary relaxation tolerance must be finite and nonnegative",
+                   "pair-interaction-integrator",
+                   false);
+    return false;
+  }
+  if (!std::isfinite(request.boundaryRelaxationStepTolerance) ||
+      request.boundaryRelaxationStepTolerance < 0.0) {
+    validation.add(StatusCode::AppContractError,
+                   StatusSeverity::Error,
+                   "pair interaction boundary relaxation step tolerance must be finite and nonnegative",
                    "pair-interaction-integrator",
                    false);
     return false;
@@ -999,6 +1040,58 @@ double vector_norm(Vector3 value) {
   return std::sqrt(value.x * value.x + value.y * value.y + value.z * value.z);
 }
 
+double finite_nonnegative_ratio(double after, double before) {
+  return before > 0.0 && std::isfinite(before) && std::isfinite(after) ? after / before : 0.0;
+}
+
+double finite_nonnegative_settling_rate(double ratio, std::uint64_t appliedIterationCount) {
+  if (appliedIterationCount == 0 || !std::isfinite(ratio) || ratio < 0.0) {
+    return 0.0;
+  }
+  if (ratio == 0.0) {
+    return 0.0;
+  }
+  return std::pow(ratio, 1.0 / static_cast<double>(appliedIterationCount));
+}
+
+std::vector<double> solve_tridiagonal_system(const std::vector<double>& lower,
+                                             const std::vector<double>& diagonal,
+                                             const std::vector<double>& upper,
+                                             const std::vector<double>& rhs) {
+  const std::size_t count = diagonal.size();
+  if (count == 0 || lower.size() != count || upper.size() != count || rhs.size() != count) {
+    return {};
+  }
+  std::vector<double> cPrime(count, 0.0);
+  std::vector<double> dPrime(count, 0.0);
+  std::vector<double> solution(count, 0.0);
+  double pivot = diagonal[0];
+  if (!std::isfinite(pivot) || std::abs(pivot) <= std::numeric_limits<double>::epsilon()) {
+    return {};
+  }
+  cPrime[0] = count > 1 ? upper[0] / pivot : 0.0;
+  dPrime[0] = rhs[0] / pivot;
+  for (std::size_t index = 1; index < count; ++index) {
+    pivot = diagonal[index] - lower[index] * cPrime[index - 1];
+    if (!std::isfinite(pivot) || std::abs(pivot) <= std::numeric_limits<double>::epsilon()) {
+      return {};
+    }
+    cPrime[index] = index + 1 < count ? upper[index] / pivot : 0.0;
+    dPrime[index] = (rhs[index] - lower[index] * dPrime[index - 1]) / pivot;
+  }
+  solution[count - 1] = dPrime[count - 1];
+  for (std::size_t reverse = count - 1; reverse > 0; --reverse) {
+    const std::size_t index = reverse - 1;
+    solution[index] = dPrime[index] - cPrime[index] * solution[index + 1];
+  }
+  if (std::any_of(solution.begin(), solution.end(), [](double value) {
+        return !std::isfinite(value);
+      })) {
+    return {};
+  }
+  return solution;
+}
+
 PairInteractionState state_from_frame(const MotionFrameRowF64& frame,
                                       const std::vector<PairInteractionState>& initialStates) {
   const auto match = std::find_if(initialStates.begin(),
@@ -1053,6 +1146,51 @@ std::vector<PairInteractionState> states_at_frame_index(
               return left.pathKey < right.pathKey;
             });
   return states;
+}
+
+bool pair_interaction_acceleration_at_frame(
+    const std::vector<MotionFrameRowF64>& frames,
+    std::uint64_t frameIndex,
+    const PairInteractionRequest& request,
+    const std::vector<PairInteractionState>& initialStates,
+    std::uint64_t pathKey,
+    Vector3& acceleration) {
+  const std::vector<PairInteractionState> states =
+      states_at_frame_index(frames, frameIndex, initialStates);
+  if (states.size() != initialStates.size()) {
+    return false;
+  }
+  const std::vector<Vector3> lawAccelerations =
+      pair_interaction_accelerations(request, states);
+  const auto stateMatch = std::find_if(states.begin(),
+                                       states.end(),
+                                       [pathKey](const PairInteractionState& state) {
+                                         return state.pathKey == pathKey;
+                                       });
+  if (stateMatch == states.end()) {
+    return false;
+  }
+  const std::size_t stateIndex = static_cast<std::size_t>(
+      std::distance(states.begin(), stateMatch));
+  if (stateIndex >= lawAccelerations.size() || !finite_vector(lawAccelerations[stateIndex])) {
+    return false;
+  }
+  acceleration = lawAccelerations[stateIndex];
+  return true;
+}
+
+Vector3 blend_pair_interaction_acceleration(Vector3 primary,
+                                            Vector3 secondary,
+                                            double secondaryWeight) {
+  const double weight = std::isfinite(secondaryWeight)
+      ? std::clamp(secondaryWeight, 0.0, 1.0)
+      : 0.0;
+  const double primaryWeight = 1.0 - weight;
+  return Vector3{
+      primary.x * primaryWeight + secondary.x * weight,
+      primary.y * primaryWeight + secondary.y * weight,
+      primary.z * primaryWeight + secondary.z * weight,
+  };
 }
 
 bool has_pair_constraint_at_time(const PairInteractionRequest& request,
@@ -1110,6 +1248,51 @@ void snap_pair_interaction_frame_constraints(PairInteractionSampleResult& result
   }
 }
 
+void recompute_pair_interaction_frame_velocities(PairInteractionSampleResult& result);
+
+std::uint64_t seed_pair_interaction_frames_from_boundary_constraints(
+    PairInteractionSampleResult& result,
+    const PairInteractionRequest& request,
+    const std::vector<PairInteractionState>& initialStates,
+    double epsilon) {
+  if (request.pathConstraints.empty() || result.frames.empty()) {
+    return 0;
+  }
+
+  std::uint64_t seededCount = 0;
+  for (const PairInteractionState& initialState : initialStates) {
+    const std::vector<PairInteractionPathConstraint> constraints =
+        pair_constraints_for_path(request, initialState.pathKey);
+    if (constraints.empty()) {
+      continue;
+    }
+    const Vector3 firstTangent = initialState.initialVelocity;
+    for (MotionFrameRowF64& frame : result.frames) {
+      if (frame.pathKey != initialState.pathKey) {
+        continue;
+      }
+      Vector3 boundaryPosition{};
+      if (!pair_constraint_hermite_position_at_time(request,
+                                                    initialStates,
+                                                    constraints,
+                                                    firstTangent,
+                                                    frame.time,
+                                                    epsilon,
+                                                    boundaryPosition)) {
+        continue;
+      }
+      set_frame_position(frame, boundaryPosition);
+      ++seededCount;
+    }
+  }
+
+  if (seededCount > 0) {
+    snap_pair_interaction_frame_constraints(result, request, epsilon);
+    recompute_pair_interaction_frame_velocities(result);
+  }
+  return seededCount;
+}
+
 void recompute_pair_interaction_frame_velocities(PairInteractionSampleResult& result) {
   std::vector<std::uint64_t> pathKeys;
   for (const MotionFrameRowF64& frame : result.frames) {
@@ -1125,18 +1308,40 @@ void recompute_pair_interaction_frame_velocities(PairInteractionSampleResult& re
       continue;
     }
     for (std::size_t index = 0; index < indices.size(); ++index) {
+      MotionFrameRowF64& current = result.frames[indices[index]];
+      if (index > 0 && index + 1 < indices.size()) {
+        const MotionFrameRowF64& previous = result.frames[indices[index - 1]];
+        const MotionFrameRowF64& next = result.frames[indices[index + 1]];
+        const double leftDt = current.time - previous.time;
+        const double rightDt = next.time - current.time;
+        if (leftDt > 0.0 && rightDt > 0.0) {
+          const double span = leftDt + rightDt;
+          const double leftWeight = -rightDt / (leftDt * span);
+          const double centerWeight = (rightDt - leftDt) / (leftDt * rightDt);
+          const double rightWeight = leftDt / (rightDt * span);
+          current.velocityX = leftWeight * previous.positionX +
+              centerWeight * current.positionX +
+              rightWeight * next.positionX;
+          current.velocityY = leftWeight * previous.positionY +
+              centerWeight * current.positionY +
+              rightWeight * next.positionY;
+          current.velocityZ = leftWeight * previous.positionZ +
+              centerWeight * current.positionZ +
+              rightWeight * next.positionZ;
+          continue;
+        }
+      }
+
       const std::size_t previousIndex = indices[index == 0 ? 0 : index - 1];
       const std::size_t nextIndex = indices[index + 1 < indices.size() ? index + 1 : index];
       const MotionFrameRowF64& previous = result.frames[previousIndex];
       const MotionFrameRowF64& next = result.frames[nextIndex];
       const double span = next.time - previous.time;
-      if (span <= 0.0) {
-        continue;
+      if (span > 0.0) {
+        current.velocityX = (next.positionX - previous.positionX) / span;
+        current.velocityY = (next.positionY - previous.positionY) / span;
+        current.velocityZ = (next.positionZ - previous.positionZ) / span;
       }
-      MotionFrameRowF64& current = result.frames[indices[index]];
-      current.velocityX = (next.positionX - previous.positionX) / span;
-      current.velocityY = (next.positionY - previous.positionY) / span;
-      current.velocityZ = (next.positionZ - previous.positionZ) / span;
     }
   }
 }
@@ -1167,18 +1372,78 @@ void rebuild_pair_interaction_path_rows(PairInteractionSampleResult& result) {
 struct PairInteractionBoundaryRelaxationResidualSummary {
   std::uint64_t sampleCount = 0;
   double maxResidual = 0.0;
+  double meanResidual = 0.0;
+  double rmsResidual = 0.0;
 };
 
 constexpr std::uint32_t kPairBoundaryRelaxationStatusAccepted = 1;
 constexpr std::uint32_t kPairBoundaryRelaxationStatusRevertedNoImprovement = 2;
 constexpr std::uint32_t kPairBoundaryRelaxationStatusNoRelaxableSamples = 3;
+constexpr std::uint32_t kPairBoundaryRelaxationStatusConverged = 4;
+constexpr std::uint32_t kPairBoundaryRelaxationStatusNotRequested = 5;
+constexpr std::uint32_t kPairBoundaryRelaxationStatusStepConverged = 6;
+
+constexpr std::uint32_t kPairBoundaryRelaxationStopReasonNotRequested = 1;
+constexpr std::uint32_t kPairBoundaryRelaxationStopReasonNoRelaxableSamples = 2;
+constexpr std::uint32_t kPairBoundaryRelaxationStopReasonNoUpdateCandidates = 3;
+constexpr std::uint32_t kPairBoundaryRelaxationStopReasonLineSearchStalled = 4;
+constexpr std::uint32_t kPairBoundaryRelaxationStopReasonToleranceReached = 5;
+constexpr std::uint32_t kPairBoundaryRelaxationStopReasonIterationBudgetExhausted = 6;
+constexpr std::uint32_t kPairBoundaryRelaxationStopReasonStepToleranceReached = 7;
+
+constexpr std::uint32_t kPairBoundaryRelaxationCandidateNone = 0;
+constexpr std::uint32_t kPairBoundaryRelaxationCandidatePredictor = 1;
+constexpr std::uint32_t kPairBoundaryRelaxationCandidateFirstCorrector = 2;
+constexpr std::uint32_t kPairBoundaryRelaxationCandidateSecondCorrector = 3;
+constexpr std::uint32_t kPairBoundaryRelaxationCandidateDefectCorrection = 4;
+constexpr std::uint32_t kPairBoundaryRelaxationCandidatePredictedDefectCorrection = 5;
+constexpr std::uint32_t kPairBoundaryRelaxationCandidatePredictedBlend = 6;
+constexpr std::uint32_t kPairBoundaryRelaxationCandidateCorrectedDefectCorrection = 7;
+constexpr std::uint32_t kPairBoundaryRelaxationCandidateCorrectedBlend = 8;
+constexpr std::uint32_t kPairBoundaryRelaxationCandidateCenterOfMassOffset = 100;
+
+struct PairInteractionBoundaryRelaxationRun {
+  std::uint64_t appliedIterationCount = 0;
+  std::uint32_t stopReason = 0;
+  double maxAcceptedStep = 0.0;
+  double finalStepFactor = 0.0;
+  std::uint32_t selectedCandidateKind = 0;
+  std::uint32_t centerOfMassSelectedCount = 0;
+};
+
+struct PairInteractionRelaxationCandidate {
+  std::vector<Vector3> positions;
+  std::vector<bool> hasPosition;
+  std::uint32_t kind = kPairBoundaryRelaxationCandidateNone;
+};
+
+struct PairInteractionRelaxationStepSelection {
+  bool accepted = false;
+  double maxStep = 0.0;
+  double stepFactor = 0.0;
+  std::uint32_t candidateKind = kPairBoundaryRelaxationCandidateNone;
+  PairInteractionBoundaryRelaxationResidualSummary residual;
+  std::vector<MotionFrameRowF64> frames;
+};
 
 std::uint32_t pair_boundary_relaxation_status(
     const PairInteractionBoundaryRelaxationResidualSummary& before,
-    const PairInteractionBoundaryRelaxationResidualSummary& after) {
+    const PairInteractionBoundaryRelaxationResidualSummary& after,
+    const PairInteractionRequest& request,
+    const PairInteractionBoundaryRelaxationRun& run) {
+  if (!request.pathConstraints.empty() && request.boundaryRelaxationIterationCount == 0) {
+    return kPairBoundaryRelaxationStatusNotRequested;
+  }
   if (before.sampleCount == 0 || after.sampleCount == 0 ||
       !std::isfinite(before.maxResidual) || !std::isfinite(after.maxResidual)) {
     return kPairBoundaryRelaxationStatusNoRelaxableSamples;
+  }
+  if (request.boundaryRelaxationTolerance > 0.0 &&
+      after.maxResidual <= request.boundaryRelaxationTolerance) {
+    return kPairBoundaryRelaxationStatusConverged;
+  }
+  if (run.stopReason == kPairBoundaryRelaxationStopReasonStepToleranceReached) {
+    return kPairBoundaryRelaxationStatusStepConverged;
   }
   return after.maxResidual <= before.maxResidual
       ? kPairBoundaryRelaxationStatusAccepted
@@ -1203,6 +1468,8 @@ PairInteractionBoundaryRelaxationResidualSummary measure_pair_interaction_bounda
   std::sort(pathKeys.begin(), pathKeys.end());
 
   const double epsilon = pair_constraint_time_epsilon(request);
+  double residualSum = 0.0;
+  double residualSquareSum = 0.0;
   for (std::uint64_t pathKey : pathKeys) {
     const std::vector<const MotionFrameRowF64*> pathFrames =
         sorted_const_frames_for_path(result.frames, pathKey);
@@ -1256,19 +1523,732 @@ PairInteractionBoundaryRelaxationResidualSummary measure_pair_interaction_bounda
         continue;
       }
       summary.maxResidual = std::max(summary.maxResidual, residual);
+      residualSum += residual;
+      residualSquareSum += residual * residual;
       ++summary.sampleCount;
     }
+  }
+  if (summary.sampleCount > 0) {
+    summary.meanResidual = residualSum / static_cast<double>(summary.sampleCount);
+    summary.rmsResidual = std::sqrt(residualSquareSum / static_cast<double>(summary.sampleCount));
   }
 
   return summary;
 }
 
-void relax_pair_interaction_constrained_frames(
+std::vector<Vector3> solve_pair_interaction_relaxation_block(
+    const std::vector<std::size_t>& indices,
+    std::size_t blockStart,
+    std::size_t blockEnd,
+    const PairInteractionSampleResult& result,
+    const std::vector<MotionFrameRowF64>& accelerationFrames,
+    const PairInteractionRequest& request,
+    const std::vector<PairInteractionState>& initialStates,
+    const std::vector<MotionFrameRowF64>* secondaryAccelerationFrames = nullptr,
+    double secondaryAccelerationWeight = 0.0) {
+  const std::size_t count = blockEnd - blockStart;
+  if (count == 0) {
+    return {};
+  }
+  std::vector<double> lower(count, 0.0);
+  std::vector<double> diagonal(count, 0.0);
+  std::vector<double> upper(count, 0.0);
+  std::vector<double> rhsX(count, 0.0);
+  std::vector<double> rhsY(count, 0.0);
+  std::vector<double> rhsZ(count, 0.0);
+  const double epsilon = pair_constraint_time_epsilon(request);
+  for (std::size_t blockIndex = 0; blockIndex < count; ++blockIndex) {
+    const std::size_t pathIndex = blockStart + blockIndex;
+    const MotionFrameRowF64& previous = result.frames[indices[pathIndex - 1]];
+    const MotionFrameRowF64& current = result.frames[indices[pathIndex]];
+    const MotionFrameRowF64& next = result.frames[indices[pathIndex + 1]];
+    const double leftDt = current.time - previous.time;
+    const double rightDt = next.time - current.time;
+    if (leftDt <= epsilon || rightDt <= epsilon) {
+      return {};
+    }
+    Vector3 acceleration{};
+    if (!pair_interaction_acceleration_at_frame(accelerationFrames,
+                                                current.frameIndex,
+                                                request,
+                                                initialStates,
+                                                current.pathKey,
+                                                acceleration)) {
+      return {};
+    }
+    if (secondaryAccelerationFrames != nullptr) {
+      Vector3 secondaryAcceleration{};
+      if (!pair_interaction_acceleration_at_frame(*secondaryAccelerationFrames,
+                                                  current.frameIndex,
+                                                  request,
+                                                  initialStates,
+                                                  current.pathKey,
+                                                  secondaryAcceleration)) {
+        return {};
+      }
+      acceleration = blend_pair_interaction_acceleration(acceleration,
+                                                         secondaryAcceleration,
+                                                         secondaryAccelerationWeight);
+    }
+    const double leftCoefficient = 1.0 / leftDt;
+    const double rightCoefficient = 1.0 / rightDt;
+    diagonal[blockIndex] = leftCoefficient + rightCoefficient;
+    const double accelerationScale = 0.5 * (leftDt + rightDt);
+    rhsX[blockIndex] = -acceleration.x * accelerationScale;
+    rhsY[blockIndex] = -acceleration.y * accelerationScale;
+    rhsZ[blockIndex] = -acceleration.z * accelerationScale;
+    if (blockIndex > 0) {
+      lower[blockIndex] = -leftCoefficient;
+    } else {
+      rhsX[blockIndex] += previous.positionX * leftCoefficient;
+      rhsY[blockIndex] += previous.positionY * leftCoefficient;
+      rhsZ[blockIndex] += previous.positionZ * leftCoefficient;
+    }
+    if (blockIndex + 1 < count) {
+      upper[blockIndex] = -rightCoefficient;
+    } else {
+      rhsX[blockIndex] += next.positionX * rightCoefficient;
+      rhsY[blockIndex] += next.positionY * rightCoefficient;
+      rhsZ[blockIndex] += next.positionZ * rightCoefficient;
+    }
+  }
+  const std::vector<double> solvedX = solve_tridiagonal_system(lower, diagonal, upper, rhsX);
+  const std::vector<double> solvedY = solve_tridiagonal_system(lower, diagonal, upper, rhsY);
+  const std::vector<double> solvedZ = solve_tridiagonal_system(lower, diagonal, upper, rhsZ);
+  if (solvedX.size() != count || solvedY.size() != count || solvedZ.size() != count) {
+    return {};
+  }
+  std::vector<Vector3> solved;
+  solved.reserve(count);
+  for (std::size_t index = 0; index < count; ++index) {
+    const Vector3 position{solvedX[index], solvedY[index], solvedZ[index]};
+    if (!finite_vector(position)) {
+      return {};
+    }
+    solved.push_back(position);
+  }
+  return solved;
+}
+
+std::vector<Vector3> solve_pair_interaction_defect_correction_block(
+    const std::vector<std::size_t>& indices,
+    std::size_t blockStart,
+    std::size_t blockEnd,
+    const PairInteractionSampleResult& result,
+    const std::vector<MotionFrameRowF64>& accelerationFrames,
+    const PairInteractionRequest& request,
+    const std::vector<PairInteractionState>& initialStates) {
+  const std::size_t count = blockEnd - blockStart;
+  if (count == 0) {
+    return {};
+  }
+  std::vector<double> lower(count, 0.0);
+  std::vector<double> diagonal(count, 0.0);
+  std::vector<double> upper(count, 0.0);
+  std::vector<double> rhsX(count, 0.0);
+  std::vector<double> rhsY(count, 0.0);
+  std::vector<double> rhsZ(count, 0.0);
+  const double epsilon = pair_constraint_time_epsilon(request);
+  for (std::size_t blockIndex = 0; blockIndex < count; ++blockIndex) {
+    const std::size_t pathIndex = blockStart + blockIndex;
+    const MotionFrameRowF64& previous = result.frames[indices[pathIndex - 1]];
+    const MotionFrameRowF64& current = result.frames[indices[pathIndex]];
+    const MotionFrameRowF64& next = result.frames[indices[pathIndex + 1]];
+    const double leftDt = current.time - previous.time;
+    const double rightDt = next.time - current.time;
+    const double averageDt = 0.5 * (leftDt + rightDt);
+    if (leftDt <= epsilon || rightDt <= epsilon || averageDt <= epsilon) {
+      return {};
+    }
+    const Vector3 leftVelocity = vector_scale(
+        vector_subtract(frame_position(current), frame_position(previous)),
+        1.0 / leftDt);
+    const Vector3 rightVelocity = vector_scale(
+        vector_subtract(frame_position(next), frame_position(current)),
+        1.0 / rightDt);
+    const Vector3 finiteDifferenceAcceleration =
+        vector_scale(vector_subtract(rightVelocity, leftVelocity), 1.0 / averageDt);
+    const std::vector<PairInteractionState> states =
+        states_at_frame_index(accelerationFrames, current.frameIndex, initialStates);
+    if (states.size() != initialStates.size()) {
+      return {};
+    }
+    const std::vector<Vector3> lawAccelerations =
+        pair_interaction_accelerations(request, states);
+    const auto stateMatch = std::find_if(states.begin(),
+                                         states.end(),
+                                         [&current](const PairInteractionState& state) {
+                                           return state.pathKey == current.pathKey;
+                                         });
+    if (stateMatch == states.end()) {
+      return {};
+    }
+    const std::size_t stateIndex = static_cast<std::size_t>(
+        std::distance(states.begin(), stateMatch));
+    if (stateIndex >= lawAccelerations.size()) {
+      return {};
+    }
+    const Vector3 residual =
+        vector_subtract(finiteDifferenceAcceleration, lawAccelerations[stateIndex]);
+    const double leftCoefficient = 1.0 / leftDt;
+    const double rightCoefficient = 1.0 / rightDt;
+    diagonal[blockIndex] = leftCoefficient + rightCoefficient;
+    if (blockIndex > 0) {
+      lower[blockIndex] = -leftCoefficient;
+    }
+    if (blockIndex + 1 < count) {
+      upper[blockIndex] = -rightCoefficient;
+    }
+    rhsX[blockIndex] = residual.x * averageDt;
+    rhsY[blockIndex] = residual.y * averageDt;
+    rhsZ[blockIndex] = residual.z * averageDt;
+  }
+  const std::vector<double> solvedX = solve_tridiagonal_system(lower, diagonal, upper, rhsX);
+  const std::vector<double> solvedY = solve_tridiagonal_system(lower, diagonal, upper, rhsY);
+  const std::vector<double> solvedZ = solve_tridiagonal_system(lower, diagonal, upper, rhsZ);
+  if (solvedX.size() != count || solvedY.size() != count || solvedZ.size() != count) {
+    return {};
+  }
+  std::vector<Vector3> solved;
+  solved.reserve(count);
+  for (std::size_t index = 0; index < count; ++index) {
+    const MotionFrameRowF64& current = result.frames[indices[blockStart + index]];
+    const Vector3 correctedPosition{
+        current.positionX + solvedX[index],
+        current.positionY + solvedY[index],
+        current.positionZ + solvedZ[index],
+    };
+    if (!finite_vector(correctedPosition)) {
+      return {};
+    }
+    solved.push_back(correctedPosition);
+  }
+  return solved;
+}
+
+bool has_pair_interaction_relaxation_candidate(
+    const PairInteractionRelaxationCandidate& candidate) {
+  return std::any_of(candidate.hasPosition.begin(),
+                     candidate.hasPosition.end(),
+                     [](bool hasPosition) {
+                       return hasPosition;
+                     });
+}
+
+std::uint32_t pair_interaction_center_of_mass_candidate_kind(std::uint32_t kind) {
+  if (kind == kPairBoundaryRelaxationCandidateNone ||
+      kind >= kPairBoundaryRelaxationCandidateCenterOfMassOffset) {
+    return kPairBoundaryRelaxationCandidateNone;
+  }
+  return kind + kPairBoundaryRelaxationCandidateCenterOfMassOffset;
+}
+
+bool pair_interaction_candidate_is_center_of_mass_projected(std::uint32_t kind) {
+  return kind >= kPairBoundaryRelaxationCandidateCenterOfMassOffset;
+}
+
+PairInteractionRelaxationCandidate solve_pair_interaction_relaxation_candidate(
+    const PairInteractionSampleResult& result,
+    const PairInteractionRequest& request,
+    const std::vector<PairInteractionState>& initialStates,
+    const std::vector<std::uint64_t>& pathKeys,
+    double epsilon,
+    const std::vector<MotionFrameRowF64>& accelerationFrames,
+    const std::vector<MotionFrameRowF64>* secondaryAccelerationFrames = nullptr,
+    double secondaryAccelerationWeight = 0.0) {
+  PairInteractionRelaxationCandidate candidate{
+      std::vector<Vector3>(result.frames.size()),
+      std::vector<bool>(result.frames.size(), false),
+  };
+
+  for (std::uint64_t pathKey : pathKeys) {
+    const std::vector<std::size_t> indices = mutable_frame_indices_for_path(result.frames, pathKey);
+    if (indices.size() < 3) {
+      continue;
+    }
+    std::size_t index = 1;
+    while (index + 1 < indices.size()) {
+      const MotionFrameRowF64& currentFrame = result.frames[indices[index]];
+      if (has_pair_constraint_at_time(request, currentFrame.pathKey, currentFrame.time, epsilon)) {
+        ++index;
+        continue;
+      }
+      const std::size_t blockStart = index;
+      while (index + 1 < indices.size()) {
+        const MotionFrameRowF64& blockFrame = result.frames[indices[index]];
+        if (has_pair_constraint_at_time(request, blockFrame.pathKey, blockFrame.time, epsilon)) {
+          break;
+        }
+        ++index;
+      }
+      const std::size_t blockEnd = index;
+      const std::vector<Vector3> solvedPositions =
+          solve_pair_interaction_relaxation_block(
+              indices,
+              blockStart,
+              blockEnd,
+              result,
+              accelerationFrames,
+              request,
+              initialStates,
+              secondaryAccelerationFrames,
+              secondaryAccelerationWeight);
+      if (solvedPositions.size() != blockEnd - blockStart) {
+        continue;
+      }
+      for (std::size_t solvedIndex = 0; solvedIndex < solvedPositions.size(); ++solvedIndex) {
+        const std::size_t frameIndex = indices[blockStart + solvedIndex];
+        candidate.positions[frameIndex] = solvedPositions[solvedIndex];
+        candidate.hasPosition[frameIndex] = true;
+      }
+    }
+  }
+
+  return candidate;
+}
+
+PairInteractionRelaxationCandidate solve_pair_interaction_defect_correction_candidate(
+    const PairInteractionSampleResult& result,
+    const PairInteractionRequest& request,
+    const std::vector<PairInteractionState>& initialStates,
+    const std::vector<std::uint64_t>& pathKeys,
+    double epsilon,
+    const std::vector<MotionFrameRowF64>& accelerationFrames) {
+  PairInteractionRelaxationCandidate candidate{
+      std::vector<Vector3>(result.frames.size()),
+      std::vector<bool>(result.frames.size(), false),
+  };
+
+  for (std::uint64_t pathKey : pathKeys) {
+    const std::vector<std::size_t> indices = mutable_frame_indices_for_path(result.frames, pathKey);
+    if (indices.size() < 3) {
+      continue;
+    }
+    std::size_t index = 1;
+    while (index + 1 < indices.size()) {
+      const MotionFrameRowF64& currentFrame = result.frames[indices[index]];
+      if (has_pair_constraint_at_time(request, currentFrame.pathKey, currentFrame.time, epsilon)) {
+        ++index;
+        continue;
+      }
+      const std::size_t blockStart = index;
+      while (index + 1 < indices.size()) {
+        const MotionFrameRowF64& blockFrame = result.frames[indices[index]];
+        if (has_pair_constraint_at_time(request, blockFrame.pathKey, blockFrame.time, epsilon)) {
+          break;
+        }
+        ++index;
+      }
+      const std::size_t blockEnd = index;
+      const std::vector<Vector3> solvedPositions =
+          solve_pair_interaction_defect_correction_block(
+              indices,
+              blockStart,
+              blockEnd,
+              result,
+              accelerationFrames,
+              request,
+              initialStates);
+      if (solvedPositions.size() != blockEnd - blockStart) {
+        continue;
+      }
+      for (std::size_t solvedIndex = 0; solvedIndex < solvedPositions.size(); ++solvedIndex) {
+        const std::size_t frameIndex = indices[blockStart + solvedIndex];
+        candidate.positions[frameIndex] = solvedPositions[solvedIndex];
+        candidate.hasPosition[frameIndex] = true;
+      }
+    }
+  }
+
+  return candidate;
+}
+
+bool pair_constraint_center_of_mass_at_time(
+    const PairInteractionRequest& request,
+    const std::vector<PairInteractionState>& initialStates,
+    double time,
+    double epsilon,
+    Vector3& outCenterOfMass) {
+  Vector3 weighted{};
+  double totalMass = 0.0;
+  for (const PairInteractionState& state : initialStates) {
+    const std::vector<PairInteractionPathConstraint> constraints =
+        pair_constraints_for_path(request, state.pathKey);
+    const auto match = std::find_if(
+        constraints.begin(),
+        constraints.end(),
+        [time, epsilon](const PairInteractionPathConstraint& constraint) {
+          return std::abs(constraint.time - time) <= epsilon;
+        });
+    if (match == constraints.end() || !std::isfinite(state.mass) || state.mass <= 0.0) {
+      return false;
+    }
+    weighted.x += match->position.x * state.mass;
+    weighted.y += match->position.y * state.mass;
+    weighted.z += match->position.z * state.mass;
+    totalMass += state.mass;
+  }
+  if (totalMass <= 0.0) {
+    return false;
+  }
+  outCenterOfMass = vector_scale(weighted, 1.0 / totalMass);
+  return finite_vector(outCenterOfMass);
+}
+
+std::vector<std::pair<double, Vector3>> pair_constraint_center_of_mass_knots(
+    const PairInteractionRequest& request,
+    const std::vector<PairInteractionState>& initialStates,
+    double epsilon) {
+  std::vector<double> times;
+  for (const PairInteractionPathConstraint& constraint : request.pathConstraints) {
+    if (std::isfinite(constraint.time)) {
+      times.push_back(constraint.time);
+    }
+  }
+  std::sort(times.begin(), times.end());
+  times.erase(std::unique(times.begin(),
+                          times.end(),
+                          [epsilon](double left, double right) {
+                            return std::abs(left - right) <= epsilon;
+                          }),
+              times.end());
+  std::vector<std::pair<double, Vector3>> knots;
+  for (double time : times) {
+    Vector3 centerOfMass{};
+    if (pair_constraint_center_of_mass_at_time(
+            request,
+            initialStates,
+            time,
+            epsilon,
+            centerOfMass)) {
+      knots.push_back({time, centerOfMass});
+    }
+  }
+  return knots;
+}
+
+bool pair_constraint_center_of_mass_target_at_time(
+    const PairInteractionRequest& request,
+    const std::vector<PairInteractionState>& initialStates,
+    double time,
+    double epsilon,
+    Vector3& outCenterOfMass) {
+  const std::vector<std::pair<double, Vector3>> knots =
+      pair_constraint_center_of_mass_knots(request, initialStates, epsilon);
+  if (knots.size() < 2) {
+    return false;
+  }
+  const auto exact = std::find_if(knots.begin(), knots.end(), [time, epsilon](const auto& knot) {
+    return std::abs(knot.first - time) <= epsilon;
+  });
+  if (exact != knots.end()) {
+    outCenterOfMass = exact->second;
+    return true;
+  }
+  const auto right = std::find_if(knots.begin(), knots.end(), [time](const auto& knot) {
+    return knot.first >= time;
+  });
+  if (right == knots.begin() || right == knots.end()) {
+    return false;
+  }
+  const auto left = std::prev(right);
+  const double span = right->first - left->first;
+  if (span <= epsilon) {
+    return false;
+  }
+  const double amount = std::clamp((time - left->first) / span, 0.0, 1.0);
+  outCenterOfMass = Vector3{
+      left->second.x + (right->second.x - left->second.x) * amount,
+      left->second.y + (right->second.y - left->second.y) * amount,
+      left->second.z + (right->second.z - left->second.z) * amount,
+  };
+  return finite_vector(outCenterOfMass);
+}
+
+PairInteractionRelaxationCandidate project_pair_interaction_candidate_to_constraint_center_of_mass(
+    const PairInteractionSampleResult& result,
+    const PairInteractionRequest& request,
+    const std::vector<PairInteractionState>& initialStates,
+    const PairInteractionRelaxationCandidate& candidate,
+    double epsilon) {
+  PairInteractionRelaxationCandidate projected{
+      std::vector<Vector3>(result.frames.size()),
+      std::vector<bool>(result.frames.size(), false),
+      pair_interaction_center_of_mass_candidate_kind(candidate.kind),
+  };
+  if (!has_pair_interaction_relaxation_candidate(candidate)) {
+    return projected;
+  }
+
+  std::vector<std::uint64_t> frameIndices;
+  for (const MotionFrameRowF64& frame : result.frames) {
+    if (std::find(frameIndices.begin(), frameIndices.end(), frame.frameIndex) ==
+        frameIndices.end()) {
+      frameIndices.push_back(frame.frameIndex);
+    }
+  }
+  std::sort(frameIndices.begin(), frameIndices.end());
+
+  for (std::uint64_t frameIndex : frameIndices) {
+    std::vector<std::size_t> indices;
+    for (std::size_t index = 0; index < result.frames.size(); ++index) {
+      if (result.frames[index].frameIndex == frameIndex) {
+        indices.push_back(index);
+      }
+    }
+    if (indices.size() != initialStates.size()) {
+      continue;
+    }
+    const double time = result.frames[indices.front()].time;
+    if (!std::isfinite(time)) {
+      continue;
+    }
+    bool anyCandidateUpdate = false;
+    bool anyConstrained = false;
+    for (std::size_t index : indices) {
+      const MotionFrameRowF64& frame = result.frames[index];
+      anyCandidateUpdate = anyCandidateUpdate ||
+          (index < candidate.hasPosition.size() && candidate.hasPosition[index]);
+      anyConstrained = anyConstrained ||
+          has_pair_constraint_at_time(request, frame.pathKey, frame.time, epsilon);
+    }
+    if (!anyCandidateUpdate || anyConstrained) {
+      continue;
+    }
+    Vector3 targetCenterOfMass{};
+    if (!pair_constraint_center_of_mass_target_at_time(
+            request,
+            initialStates,
+            time,
+            epsilon,
+            targetCenterOfMass)) {
+      continue;
+    }
+    Vector3 weighted{};
+    double totalMass = 0.0;
+    std::vector<Vector3> candidatePositions(indices.size());
+    bool validGroup = true;
+    for (std::size_t localIndex = 0; localIndex < indices.size(); ++localIndex) {
+      const std::size_t index = indices[localIndex];
+      const MotionFrameRowF64& frame = result.frames[index];
+      const auto stateMatch = std::find_if(initialStates.begin(),
+                                           initialStates.end(),
+                                           [&frame](const PairInteractionState& state) {
+                                             return state.pathKey == frame.pathKey;
+                                           });
+      if (stateMatch == initialStates.end() ||
+          !std::isfinite(stateMatch->mass) ||
+          stateMatch->mass <= 0.0) {
+        validGroup = false;
+        break;
+      }
+      const Vector3 position =
+          index < candidate.hasPosition.size() && candidate.hasPosition[index]
+              ? candidate.positions[index]
+              : frame_position(frame);
+      if (!finite_vector(position)) {
+        validGroup = false;
+        break;
+      }
+      candidatePositions[localIndex] = position;
+      weighted.x += position.x * stateMatch->mass;
+      weighted.y += position.y * stateMatch->mass;
+      weighted.z += position.z * stateMatch->mass;
+      totalMass += stateMatch->mass;
+    }
+    if (!validGroup || totalMass <= 0.0) {
+      continue;
+    }
+    const Vector3 candidateCenterOfMass = vector_scale(weighted, 1.0 / totalMass);
+    const Vector3 shift = vector_subtract(targetCenterOfMass, candidateCenterOfMass);
+    for (std::size_t localIndex = 0; localIndex < indices.size(); ++localIndex) {
+      const std::size_t index = indices[localIndex];
+      projected.positions[index] = Vector3{
+          candidatePositions[localIndex].x + shift.x,
+          candidatePositions[localIndex].y + shift.y,
+          candidatePositions[localIndex].z + shift.z,
+      };
+      if (finite_vector(projected.positions[index])) {
+        projected.hasPosition[index] = true;
+      }
+    }
+  }
+
+  return projected;
+}
+
+bool pair_boundary_relaxation_residual_no_worse(
+    const PairInteractionBoundaryRelaxationResidualSummary& candidate,
+    const PairInteractionBoundaryRelaxationResidualSummary& baseline) {
+  if (baseline.sampleCount == 0 || !std::isfinite(baseline.maxResidual)) {
+    return true;
+  }
+  if (candidate.sampleCount == 0 || !std::isfinite(candidate.maxResidual) ||
+      !std::isfinite(candidate.meanResidual) || !std::isfinite(candidate.rmsResidual)) {
+    return false;
+  }
+  return candidate.maxResidual <= baseline.maxResidual + kPairBoundaryRelaxationResidualEpsilon &&
+      candidate.meanResidual <= baseline.meanResidual + kPairBoundaryRelaxationResidualEpsilon &&
+      candidate.rmsResidual <= baseline.rmsResidual + kPairBoundaryRelaxationResidualEpsilon;
+}
+
+bool pair_boundary_relaxation_residual_better(
+    const PairInteractionBoundaryRelaxationResidualSummary& candidate,
+    const PairInteractionBoundaryRelaxationResidualSummary& incumbent) {
+  if (candidate.maxResidual < incumbent.maxResidual - kPairBoundaryRelaxationResidualEpsilon) {
+    return true;
+  }
+  if (candidate.maxResidual > incumbent.maxResidual + kPairBoundaryRelaxationResidualEpsilon) {
+    return false;
+  }
+  if (candidate.rmsResidual < incumbent.rmsResidual - kPairBoundaryRelaxationResidualEpsilon) {
+    return true;
+  }
+  if (candidate.rmsResidual > incumbent.rmsResidual + kPairBoundaryRelaxationResidualEpsilon) {
+    return false;
+  }
+  return candidate.meanResidual < incumbent.meanResidual - kPairBoundaryRelaxationResidualEpsilon;
+}
+
+bool apply_pair_interaction_relaxation_positions(
+    PairInteractionSampleResult& result,
+    const std::vector<Vector3>& nextPositions,
+    const std::vector<bool>& hasNextPosition,
+    double factor) {
+  bool anyUpdated = false;
+  for (std::size_t index = 0; index < result.frames.size(); ++index) {
+    if (index >= hasNextPosition.size() || !hasNextPosition[index]) {
+      continue;
+    }
+    const MotionFrameRowF64& frame = result.frames[index];
+    const Vector3 current{frame.positionX, frame.positionY, frame.positionZ};
+    const Vector3 target = nextPositions[index];
+    set_frame_position(result.frames[index],
+                       Vector3{
+                           current.x + (target.x - current.x) * factor,
+                           current.y + (target.y - current.y) * factor,
+                           current.z + (target.z - current.z) * factor,
+                       });
+    anyUpdated = true;
+  }
+  return anyUpdated;
+}
+
+double measure_pair_interaction_relaxation_step(
+    const PairInteractionSampleResult& result,
+    const std::vector<Vector3>& nextPositions,
+    const std::vector<bool>& hasNextPosition,
+    double factor) {
+  double maxStep = 0.0;
+  for (std::size_t index = 0; index < result.frames.size(); ++index) {
+    if (index >= hasNextPosition.size() || !hasNextPosition[index]) {
+      continue;
+    }
+    const MotionFrameRowF64& frame = result.frames[index];
+    const Vector3 current{frame.positionX, frame.positionY, frame.positionZ};
+    const Vector3 target = nextPositions[index];
+    const Vector3 step = vector_scale(vector_subtract(target, current), factor);
+    const double stepNorm = vector_norm(step);
+    if (std::isfinite(stepNorm)) {
+      maxStep = std::max(maxStep, stepNorm);
+    }
+  }
+  return maxStep;
+}
+
+PairInteractionRelaxationStepSelection select_pair_interaction_relaxation_step(
+    PairInteractionSampleResult& result,
+    const PairInteractionRequest& request,
+    const std::vector<PairInteractionState>& initialStates,
+    const PairInteractionBoundaryRelaxationResidualSummary& residualBeforeIteration,
+    const std::vector<MotionFrameRowF64>& framesBeforeIteration,
+    const PairInteractionRelaxationCandidate& candidate) {
+  PairInteractionRelaxationStepSelection selection;
+
+  for (double factor : kPairBoundaryRelaxationLineSearchFactors) {
+    result.frames = framesBeforeIteration;
+    const double candidateStep =
+        measure_pair_interaction_relaxation_step(
+            result,
+            candidate.positions,
+            candidate.hasPosition,
+            factor);
+    if (!apply_pair_interaction_relaxation_positions(
+            result,
+            candidate.positions,
+            candidate.hasPosition,
+            factor)) {
+      continue;
+    }
+    const PairInteractionBoundaryRelaxationResidualSummary residual =
+        measure_pair_interaction_boundary_relaxation_residuals(result, request, initialStates);
+    if (!pair_boundary_relaxation_residual_no_worse(residual, residualBeforeIteration)) {
+      continue;
+    }
+    if (!selection.accepted ||
+        pair_boundary_relaxation_residual_better(residual, selection.residual)) {
+      selection.accepted = true;
+      selection.maxStep = candidateStep;
+      selection.stepFactor = factor;
+      selection.candidateKind = candidate.kind;
+      selection.residual = residual;
+      selection.frames = result.frames;
+    }
+  }
+
+  result.frames = framesBeforeIteration;
+  return selection;
+}
+
+bool pair_interaction_relaxation_selection_better(
+    const PairInteractionRelaxationStepSelection& candidate,
+    const PairInteractionRelaxationStepSelection& incumbent) {
+  if (!candidate.accepted) {
+    return false;
+  }
+  if (!incumbent.accepted) {
+    return true;
+  }
+  return pair_boundary_relaxation_residual_better(candidate.residual, incumbent.residual);
+}
+
+PairInteractionRelaxationStepSelection select_pair_interaction_relaxation_step_variants(
+    PairInteractionSampleResult& result,
+    const PairInteractionRequest& request,
+    const std::vector<PairInteractionState>& initialStates,
+    const PairInteractionBoundaryRelaxationResidualSummary& residualBeforeIteration,
+    const std::vector<MotionFrameRowF64>& framesBeforeIteration,
+    const std::vector<PairInteractionRelaxationCandidate>& candidates) {
+  PairInteractionRelaxationStepSelection selectedStep;
+  for (const PairInteractionRelaxationCandidate& candidate : candidates) {
+    if (!has_pair_interaction_relaxation_candidate(candidate)) {
+      continue;
+    }
+    result.frames = framesBeforeIteration;
+    const PairInteractionRelaxationStepSelection step =
+        select_pair_interaction_relaxation_step(result,
+                                                request,
+                                                initialStates,
+                                                residualBeforeIteration,
+                                                framesBeforeIteration,
+                                                candidate);
+    result.frames = framesBeforeIteration;
+    if (pair_interaction_relaxation_selection_better(step, selectedStep)) {
+      selectedStep = step;
+    }
+  }
+  return selectedStep;
+}
+
+PairInteractionBoundaryRelaxationRun relax_pair_interaction_constrained_frames(
     PairInteractionSampleResult& result,
     const PairInteractionRequest& request,
     const std::vector<PairInteractionState>& initialStates) {
   if (request.pathConstraints.empty() || result.frames.empty()) {
-    return;
+    return PairInteractionBoundaryRelaxationRun{
+        0,
+        kPairBoundaryRelaxationStopReasonNoRelaxableSamples,
+    };
   }
 
   std::vector<std::uint64_t> pathKeys;
@@ -1279,92 +2259,205 @@ void relax_pair_interaction_constrained_frames(
   }
   std::sort(pathKeys.begin(), pathKeys.end());
 
-  constexpr int relaxationIterations = 8;
-  constexpr double relaxationBlend = 0.55;
+  const std::uint64_t relaxationIterations = request.boundaryRelaxationIterationCount;
   const double epsilon = pair_constraint_time_epsilon(request);
-  for (int iteration = 0; iteration < relaxationIterations; ++iteration) {
-    std::vector<Vector3> nextPositions(result.frames.size());
-    std::vector<bool> hasNextPosition(result.frames.size(), false);
+  std::uint64_t appliedIterationCount = 0;
+  double maxAcceptedStep = 0.0;
+  double finalStepFactor = 0.0;
+  std::uint32_t selectedCandidateKind = kPairBoundaryRelaxationCandidateNone;
+  std::uint32_t centerOfMassSelectedCount = 0;
+  PairInteractionBoundaryRelaxationResidualSummary bestAcceptedResidual =
+      measure_pair_interaction_boundary_relaxation_residuals(result, request, initialStates);
+  bool hasBestAcceptedResidual = bestAcceptedResidual.sampleCount > 0;
+  std::vector<MotionFrameRowF64> bestAcceptedFrames = result.frames;
+  auto finish = [&](std::uint32_t stopReason) -> PairInteractionBoundaryRelaxationRun {
+    if (!bestAcceptedFrames.empty()) {
+      result.frames = bestAcceptedFrames;
+    }
+    snap_pair_interaction_frame_constraints(result, request, epsilon);
+    recompute_pair_interaction_frame_velocities(result);
+    return PairInteractionBoundaryRelaxationRun{
+        appliedIterationCount,
+        stopReason,
+        maxAcceptedStep,
+        finalStepFactor,
+        selectedCandidateKind,
+        centerOfMassSelectedCount,
+    };
+  };
+  if (relaxationIterations == 0) {
+    return finish(kPairBoundaryRelaxationStopReasonNotRequested);
+  }
+  for (std::uint64_t iteration = 0; iteration < relaxationIterations; ++iteration) {
+    PairInteractionRelaxationCandidate predictorCandidate =
+        solve_pair_interaction_relaxation_candidate(
+            result,
+            request,
+            initialStates,
+            pathKeys,
+            epsilon,
+            result.frames);
+    predictorCandidate.kind = kPairBoundaryRelaxationCandidatePredictor;
 
-    for (std::uint64_t pathKey : pathKeys) {
-      const std::vector<std::size_t> indices = mutable_frame_indices_for_path(result.frames, pathKey);
-      if (indices.size() < 3) {
-        continue;
-      }
-      for (std::size_t index = 1; index + 1 < indices.size(); ++index) {
-        const MotionFrameRowF64& previous = result.frames[indices[index - 1]];
-        const MotionFrameRowF64& current = result.frames[indices[index]];
-        const MotionFrameRowF64& next = result.frames[indices[index + 1]];
-        if (has_pair_constraint_at_time(request, current.pathKey, current.time, epsilon)) {
-          continue;
-        }
-        const double leftDt = current.time - previous.time;
-        const double rightDt = next.time - current.time;
-        if (leftDt <= epsilon || rightDt <= epsilon) {
-          continue;
-        }
-        const std::vector<PairInteractionState> states =
-            states_at_frame_index(result.frames, current.frameIndex, initialStates);
-        if (states.size() != initialStates.size()) {
-          continue;
-        }
-        const std::vector<Vector3> lawAccelerations =
-            pair_interaction_accelerations(request, states);
-        const auto stateMatch = std::find_if(states.begin(),
-                                             states.end(),
-                                             [&current](const PairInteractionState& state) {
-                                               return state.pathKey == current.pathKey;
-                                             });
-        if (stateMatch == states.end()) {
-          continue;
-        }
-        const std::size_t stateIndex = static_cast<std::size_t>(
-            std::distance(states.begin(), stateMatch));
-        if (stateIndex >= lawAccelerations.size()) {
-          continue;
-        }
-        const Vector3 acceleration = lawAccelerations[stateIndex];
-        const double denominator = 1.0 / rightDt + 1.0 / leftDt;
-        const double accelerationScale = 0.5 * (leftDt + rightDt);
-        const Vector3 target{
-            (next.positionX / rightDt + previous.positionX / leftDt -
-             acceleration.x * accelerationScale) /
-                denominator,
-            (next.positionY / rightDt + previous.positionY / leftDt -
-             acceleration.y * accelerationScale) /
-                denominator,
-            (next.positionZ / rightDt + previous.positionZ / leftDt -
-             acceleration.z * accelerationScale) /
-                denominator,
-        };
-        if (!finite_vector(target)) {
-          continue;
-        }
-        const std::size_t frameIndex = indices[index];
-        nextPositions[frameIndex] = Vector3{
-            current.positionX + (target.x - current.positionX) * relaxationBlend,
-            current.positionY + (target.y - current.positionY) * relaxationBlend,
-            current.positionZ + (target.z - current.positionZ) * relaxationBlend,
-        };
-        hasNextPosition[frameIndex] = true;
+    if (!has_pair_interaction_relaxation_candidate(predictorCandidate)) {
+      return finish(appliedIterationCount == 0
+                        ? kPairBoundaryRelaxationStopReasonNoRelaxableSamples
+                        : kPairBoundaryRelaxationStopReasonNoUpdateCandidates);
+    }
+    const PairInteractionBoundaryRelaxationResidualSummary residualBeforeIteration =
+        measure_pair_interaction_boundary_relaxation_residuals(result, request, initialStates);
+    const std::vector<MotionFrameRowF64> framesBeforeIteration = result.frames;
+    PairInteractionRelaxationCandidate defectCorrectionCandidate =
+        solve_pair_interaction_defect_correction_candidate(
+            result,
+            request,
+            initialStates,
+            pathKeys,
+            epsilon,
+            result.frames);
+    defectCorrectionCandidate.kind = kPairBoundaryRelaxationCandidateDefectCorrection;
+
+    PairInteractionSampleResult predictedResult = result;
+    apply_pair_interaction_relaxation_positions(
+        predictedResult,
+        predictorCandidate.positions,
+        predictorCandidate.hasPosition,
+        1.0);
+    PairInteractionRelaxationCandidate predictedDefectCorrectionCandidate =
+        solve_pair_interaction_defect_correction_candidate(
+            predictedResult,
+            request,
+            initialStates,
+            pathKeys,
+            epsilon,
+            predictedResult.frames);
+    predictedDefectCorrectionCandidate.kind =
+        kPairBoundaryRelaxationCandidatePredictedDefectCorrection;
+    PairInteractionRelaxationCandidate predictedBlendCandidate =
+        solve_pair_interaction_relaxation_candidate(
+            result,
+            request,
+            initialStates,
+            pathKeys,
+            epsilon,
+            result.frames,
+            &predictedResult.frames,
+            0.5);
+    predictedBlendCandidate.kind = kPairBoundaryRelaxationCandidatePredictedBlend;
+    PairInteractionRelaxationCandidate correctedCandidate =
+        solve_pair_interaction_relaxation_candidate(
+            result,
+            request,
+            initialStates,
+            pathKeys,
+            epsilon,
+            predictedResult.frames);
+    correctedCandidate.kind = kPairBoundaryRelaxationCandidateFirstCorrector;
+    PairInteractionRelaxationCandidate secondCorrectedCandidate;
+    PairInteractionRelaxationCandidate correctedDefectCorrectionCandidate;
+    PairInteractionRelaxationCandidate correctedBlendCandidate;
+    if (has_pair_interaction_relaxation_candidate(correctedCandidate)) {
+      PairInteractionSampleResult correctedPredictedResult = result;
+      apply_pair_interaction_relaxation_positions(
+          correctedPredictedResult,
+          correctedCandidate.positions,
+          correctedCandidate.hasPosition,
+          1.0);
+      correctedDefectCorrectionCandidate =
+          solve_pair_interaction_defect_correction_candidate(
+              correctedPredictedResult,
+              request,
+              initialStates,
+              pathKeys,
+              epsilon,
+              correctedPredictedResult.frames);
+      correctedDefectCorrectionCandidate.kind =
+          kPairBoundaryRelaxationCandidateCorrectedDefectCorrection;
+      correctedBlendCandidate =
+          solve_pair_interaction_relaxation_candidate(
+              result,
+              request,
+              initialStates,
+              pathKeys,
+              epsilon,
+              result.frames,
+              &correctedPredictedResult.frames,
+              0.5);
+      correctedBlendCandidate.kind = kPairBoundaryRelaxationCandidateCorrectedBlend;
+      secondCorrectedCandidate =
+          solve_pair_interaction_relaxation_candidate(
+              result,
+              request,
+              initialStates,
+              pathKeys,
+              epsilon,
+              correctedPredictedResult.frames);
+      secondCorrectedCandidate.kind = kPairBoundaryRelaxationCandidateSecondCorrector;
+    }
+
+    std::vector<PairInteractionRelaxationCandidate> candidateVariants{
+        predictorCandidate,
+        correctedCandidate,
+        secondCorrectedCandidate,
+        defectCorrectionCandidate,
+        predictedDefectCorrectionCandidate,
+        predictedBlendCandidate,
+        correctedDefectCorrectionCandidate,
+        correctedBlendCandidate,
+    };
+    const std::size_t candidateVariantCount = candidateVariants.size();
+    for (std::size_t index = 0; index < candidateVariantCount; ++index) {
+      const PairInteractionRelaxationCandidate projectedCandidate =
+          project_pair_interaction_candidate_to_constraint_center_of_mass(
+              result,
+              request,
+              initialStates,
+              candidateVariants[index],
+              epsilon);
+      if (has_pair_interaction_relaxation_candidate(projectedCandidate)) {
+        candidateVariants.push_back(projectedCandidate);
       }
     }
 
-    bool anyUpdated = false;
-    for (std::size_t index = 0; index < result.frames.size(); ++index) {
-      if (!hasNextPosition[index]) {
-        continue;
-      }
-      set_frame_position(result.frames[index], nextPositions[index]);
-      anyUpdated = true;
+    const PairInteractionRelaxationStepSelection selectedStep =
+        select_pair_interaction_relaxation_step_variants(
+            result,
+            request,
+            initialStates,
+            residualBeforeIteration,
+            framesBeforeIteration,
+            candidateVariants);
+    if (!selectedStep.accepted) {
+      result.frames = framesBeforeIteration;
+      return finish(kPairBoundaryRelaxationStopReasonLineSearchStalled);
     }
-    if (!anyUpdated) {
-      break;
+    result.frames = selectedStep.frames;
+    if (!hasBestAcceptedResidual ||
+        pair_boundary_relaxation_residual_better(selectedStep.residual, bestAcceptedResidual)) {
+      bestAcceptedResidual = selectedStep.residual;
+      hasBestAcceptedResidual = bestAcceptedResidual.sampleCount > 0;
+      bestAcceptedFrames = result.frames;
+    }
+    ++appliedIterationCount;
+    maxAcceptedStep = std::max(maxAcceptedStep, selectedStep.maxStep);
+    finalStepFactor = selectedStep.stepFactor;
+    selectedCandidateKind = selectedStep.candidateKind;
+    if (pair_interaction_candidate_is_center_of_mass_projected(selectedStep.candidateKind)) {
+      ++centerOfMassSelectedCount;
+    }
+    if (request.boundaryRelaxationTolerance > 0.0) {
+      if (selectedStep.residual.sampleCount > 0 &&
+          selectedStep.residual.maxResidual <= request.boundaryRelaxationTolerance) {
+        return finish(kPairBoundaryRelaxationStopReasonToleranceReached);
+      }
+    }
+    if (request.boundaryRelaxationStepTolerance > 0.0 &&
+        selectedStep.maxStep <= request.boundaryRelaxationStepTolerance) {
+      return finish(kPairBoundaryRelaxationStopReasonStepToleranceReached);
     }
   }
 
-  snap_pair_interaction_frame_constraints(result, request, epsilon);
-  recompute_pair_interaction_frame_velocities(result);
+  return finish(kPairBoundaryRelaxationStopReasonIterationBudgetExhausted);
 }
 
 void summarize_pair_interaction_constraint_residuals(
@@ -1672,14 +2765,44 @@ PairInteractionSampleResult integrate_pair_interaction_motion(
     }
   }
 
+  const double constraintEpsilon = pair_constraint_time_epsilon(request);
+  if (!request.pathConstraints.empty() && request.boundaryRelaxationIterationCount > 0) {
+    result.pathConstraintBoundarySeedSampleCount =
+        seed_pair_interaction_frames_from_boundary_constraints(
+        result,
+        request,
+        initialStates,
+        constraintEpsilon);
+  }
+
   const PairInteractionBoundaryRelaxationResidualSummary relaxationResidualBefore =
       measure_pair_interaction_boundary_relaxation_residuals(result, request, initialStates);
   const std::vector<MotionFrameRowF64> framesBeforeBoundaryRelaxation = result.frames;
-  relax_pair_interaction_constrained_frames(result, request, initialStates);
+  const PairInteractionBoundaryRelaxationRun boundaryRelaxationRun =
+      relax_pair_interaction_constrained_frames(result, request, initialStates);
+  result.pathConstraintBoundaryRelaxationAppliedIterationCount =
+      static_cast<std::uint32_t>(
+          std::min<std::uint64_t>(
+              boundaryRelaxationRun.appliedIterationCount,
+              std::numeric_limits<std::uint32_t>::max()));
+  result.pathConstraintBoundaryRelaxationStopReason =
+      boundaryRelaxationRun.stopReason;
+  result.pathConstraintBoundaryRelaxationSelectedCandidateKind =
+      boundaryRelaxationRun.selectedCandidateKind;
+  result.pathConstraintBoundaryRelaxationCenterOfMassSelectedCount =
+      boundaryRelaxationRun.centerOfMassSelectedCount;
+  result.pathConstraintBoundaryRelaxationMaxStep =
+      boundaryRelaxationRun.maxAcceptedStep;
+  result.pathConstraintBoundaryRelaxationFinalStepFactor =
+      boundaryRelaxationRun.finalStepFactor;
   PairInteractionBoundaryRelaxationResidualSummary relaxationResidualAfter =
       measure_pair_interaction_boundary_relaxation_residuals(result, request, initialStates);
   result.pathConstraintBoundaryRelaxationStatus =
-      pair_boundary_relaxation_status(relaxationResidualBefore, relaxationResidualAfter);
+      pair_boundary_relaxation_status(
+          relaxationResidualBefore,
+          relaxationResidualAfter,
+          request,
+          boundaryRelaxationRun);
   if (result.pathConstraintBoundaryRelaxationStatus ==
       kPairBoundaryRelaxationStatusRevertedNoImprovement) {
     result.frames = framesBeforeBoundaryRelaxation;
@@ -1691,10 +2814,35 @@ PairInteractionSampleResult integrate_pair_interaction_motion(
       relaxationResidualBefore.maxResidual;
   result.maxPathConstraintBoundaryRelaxationResidualAfter =
       relaxationResidualAfter.maxResidual;
+  result.meanPathConstraintBoundaryRelaxationResidualBefore =
+      relaxationResidualBefore.meanResidual;
+  result.meanPathConstraintBoundaryRelaxationResidualAfter =
+      relaxationResidualAfter.meanResidual;
+  result.rmsPathConstraintBoundaryRelaxationResidualBefore =
+      relaxationResidualBefore.rmsResidual;
+  result.rmsPathConstraintBoundaryRelaxationResidualAfter =
+      relaxationResidualAfter.rmsResidual;
   result.pathConstraintBoundaryRelaxationResidualRatio =
-      relaxationResidualBefore.maxResidual > 0.0
-          ? relaxationResidualAfter.maxResidual / relaxationResidualBefore.maxResidual
-          : 0.0;
+      finite_nonnegative_ratio(relaxationResidualAfter.maxResidual,
+                               relaxationResidualBefore.maxResidual);
+  result.meanPathConstraintBoundaryRelaxationResidualRatio =
+      finite_nonnegative_ratio(relaxationResidualAfter.meanResidual,
+                               relaxationResidualBefore.meanResidual);
+  result.rmsPathConstraintBoundaryRelaxationResidualRatio =
+      finite_nonnegative_ratio(relaxationResidualAfter.rmsResidual,
+                               relaxationResidualBefore.rmsResidual);
+  result.pathConstraintBoundaryRelaxationResidualSettlingRate =
+      finite_nonnegative_settling_rate(
+          result.pathConstraintBoundaryRelaxationResidualRatio,
+          boundaryRelaxationRun.appliedIterationCount);
+  result.meanPathConstraintBoundaryRelaxationResidualSettlingRate =
+      finite_nonnegative_settling_rate(
+          result.meanPathConstraintBoundaryRelaxationResidualRatio,
+          boundaryRelaxationRun.appliedIterationCount);
+  result.rmsPathConstraintBoundaryRelaxationResidualSettlingRate =
+      finite_nonnegative_settling_rate(
+          result.rmsPathConstraintBoundaryRelaxationResidualRatio,
+          boundaryRelaxationRun.appliedIterationCount);
   rebuild_pair_interaction_path_rows(result);
   summarize_pair_interaction_constraint_residuals(result, request, initialStates);
   summarize_pair_interaction_boundary_residuals(result, request, initialStates);

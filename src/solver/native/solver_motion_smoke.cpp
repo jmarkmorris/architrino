@@ -18,10 +18,10 @@ bool nearly_equal(double left, double right, double tolerance = 1e-12) {
 int main() {
   static_assert(sizeof(architrino::solver::MotionFrameRowF64) == 88);
   static_assert(sizeof(ArchitrinoSolverMotionIntegrationRequestF64) == 120);
-  static_assert(sizeof(ArchitrinoSolverPairInteractionRequestF64) == 64);
+  static_assert(sizeof(ArchitrinoSolverPairInteractionRequestF64) == 80);
   static_assert(sizeof(ArchitrinoSolverPairInteractionStateF64) == 80);
   static_assert(sizeof(ArchitrinoSolverPairInteractionPathConstraintF64) == 48);
-  static_assert(sizeof(ArchitrinoSolverPairInteractionSummaryF64) == 144);
+  static_assert(sizeof(ArchitrinoSolverPairInteractionSummaryF64) == 248);
 
   const architrino::solver::LinearPathSegment segment{
       "motion-path",
@@ -155,6 +155,9 @@ int main() {
               1e-10,
               1,
               1,
+              8,
+              0.0,
+              0.0,
           },
           std::vector<architrino::solver::PairInteractionState>{
               architrino::solver::PairInteractionState{
@@ -183,7 +186,9 @@ int main() {
       1e-10,
       1,
       1,
-      0,
+      8,
+      0.0,
+      0.0,
   };
   ArchitrinoSolverPairInteractionStateF64 abiPairStates[2]{
       ArchitrinoSolverPairInteractionStateF64{
@@ -233,6 +238,9 @@ int main() {
               1e-10,
               1,
               1,
+              8,
+              0.0,
+              0.0,
               std::vector<architrino::solver::PairInteractionPathConstraint>{
                   architrino::solver::PairInteractionPathConstraint{
                       101,
@@ -485,36 +493,52 @@ int main() {
       pairConstrained.pathConstraintBoundaryRelaxationResidualSampleCount > 0 &&
       pairConstrained.maxPathConstraintBoundaryRelaxationResidualBefore >
           pairConstrained.maxPathConstraintBoundaryRelaxationResidualAfter &&
+      pairConstrained.meanPathConstraintBoundaryRelaxationResidualBefore >
+          pairConstrained.meanPathConstraintBoundaryRelaxationResidualAfter &&
+      pairConstrained.rmsPathConstraintBoundaryRelaxationResidualBefore >
+          pairConstrained.rmsPathConstraintBoundaryRelaxationResidualAfter &&
       pairConstrained.pathConstraintBoundaryRelaxationResidualRatio >= 0.0 &&
       pairConstrained.pathConstraintBoundaryRelaxationResidualRatio < 1.0 &&
+      pairConstrained.meanPathConstraintBoundaryRelaxationResidualRatio >= 0.0 &&
+      pairConstrained.meanPathConstraintBoundaryRelaxationResidualRatio < 1.0 &&
+      pairConstrained.rmsPathConstraintBoundaryRelaxationResidualRatio >= 0.0 &&
+      pairConstrained.rmsPathConstraintBoundaryRelaxationResidualRatio < 1.0 &&
+      pairConstrained.pathConstraintBoundaryRelaxationResidualSettlingRate >= 0.0 &&
+      pairConstrained.pathConstraintBoundaryRelaxationResidualSettlingRate < 1.0 &&
+      pairConstrained.meanPathConstraintBoundaryRelaxationResidualSettlingRate >= 0.0 &&
+      pairConstrained.meanPathConstraintBoundaryRelaxationResidualSettlingRate < 1.0 &&
+      pairConstrained.rmsPathConstraintBoundaryRelaxationResidualSettlingRate >= 0.0 &&
+      pairConstrained.rmsPathConstraintBoundaryRelaxationResidualSettlingRate < 1.0 &&
       pairConstrained.pathConstraintBoundaryRelaxationStatus == 1 &&
-      nearly_equal(pairConstrained.frames[2].positionX, 1.97538, 1e-4) &&
+      pairConstrained.pathConstraintBoundaryRelaxationStopReason == 6 &&
+      pairConstrained.pathConstraintBoundarySeedSampleCount == 10 &&
+      nearly_equal(pairConstrained.frames[2].positionX, 1.97642, 1e-4) &&
       nearly_equal(pairConstrained.frames[2].positionY, 1.00158, 1e-4) &&
       nearly_equal(pairConstrained.frames[2].velocityX, 8.0, 1e-4) &&
       nearly_equal(pairConstrained.frames[2].velocityY, 4.0, 1e-4) &&
       nearly_equal(pairConstrained.frames[4].positionX, 4.0) &&
       nearly_equal(pairConstrained.frames[4].positionY, 2.0) &&
-      nearly_equal(pairConstrained.frames[4].velocityX, 8.03356, 1e-4) &&
-      nearly_equal(pairConstrained.frames[4].velocityY, -0.0052218, 1e-4) &&
+      nearly_equal(pairConstrained.frames[4].velocityX, 8.03145, 1e-4) &&
+      nearly_equal(pairConstrained.frames[4].velocityY, -0.0062893, 1e-4) &&
       nearly_equal(pairConstrained.frames[9].positionY, 2.0) &&
       pairConstrained.pathRows[0].pathKey == 101 &&
-      nearly_equal(pairConstrained.pathRows[0].velocityX, 7.9015, 1e-4) &&
-      nearly_equal(pairConstrained.pathRows[0].velocityY, 4.00631, 1e-4) &&
+      nearly_equal(pairConstrained.pathRows[0].velocityX, 7.90566, 1e-4) &&
+      nearly_equal(pairConstrained.pathRows[0].velocityY, 4.00629, 1e-4) &&
       abiPairConstrainedStatus == 0 &&
       abiPairConstrainedFrameCount == 10 &&
       abiPairConstrainedPathRowCount == 8 &&
-      nearly_equal(abiPairConstrainedFrames[2].position_x, 1.97538, 1e-4) &&
+      nearly_equal(abiPairConstrainedFrames[2].position_x, 1.97642, 1e-4) &&
       nearly_equal(abiPairConstrainedFrames[2].position_y, 1.00158, 1e-4) &&
       nearly_equal(abiPairConstrainedFrames[2].velocity_x, 8.0, 1e-4) &&
       nearly_equal(abiPairConstrainedFrames[2].velocity_y, 4.0, 1e-4) &&
       nearly_equal(abiPairConstrainedFrames[4].position_x, 4.0) &&
       nearly_equal(abiPairConstrainedFrames[4].position_y, 2.0) &&
-      nearly_equal(abiPairConstrainedFrames[4].velocity_x, 8.03356, 1e-4) &&
-      nearly_equal(abiPairConstrainedFrames[4].velocity_y, -0.0052218, 1e-4) &&
+      nearly_equal(abiPairConstrainedFrames[4].velocity_x, 8.03145, 1e-4) &&
+      nearly_equal(abiPairConstrainedFrames[4].velocity_y, -0.0062893, 1e-4) &&
       nearly_equal(abiPairConstrainedFrames[9].position_y, 2.0) &&
       abiPairConstrainedPathRows[0].path_key == 101 &&
-      nearly_equal(abiPairConstrainedPathRows[0].velocity_x, 7.9015, 1e-4) &&
-      nearly_equal(abiPairConstrainedPathRows[0].velocity_y, 4.00631, 1e-4) &&
+      nearly_equal(abiPairConstrainedPathRows[0].velocity_x, 7.90566, 1e-4) &&
+      nearly_equal(abiPairConstrainedPathRows[0].velocity_y, 4.00629, 1e-4) &&
       abiPairConstrainedSummary.path_constraint_count == 6 &&
       abiPairConstrainedSummary.residual_sample_count == 6 &&
       nearly_equal(
@@ -539,10 +563,43 @@ int main() {
           abiPairConstrainedSummary.max_boundary_relaxation_residual_after,
           pairConstrained.maxPathConstraintBoundaryRelaxationResidualAfter) &&
       nearly_equal(
+          abiPairConstrainedSummary.mean_boundary_relaxation_residual_before,
+          pairConstrained.meanPathConstraintBoundaryRelaxationResidualBefore) &&
+      nearly_equal(
+          abiPairConstrainedSummary.mean_boundary_relaxation_residual_after,
+          pairConstrained.meanPathConstraintBoundaryRelaxationResidualAfter) &&
+      nearly_equal(
+          abiPairConstrainedSummary.rms_boundary_relaxation_residual_before,
+          pairConstrained.rmsPathConstraintBoundaryRelaxationResidualBefore) &&
+      nearly_equal(
+          abiPairConstrainedSummary.rms_boundary_relaxation_residual_after,
+          pairConstrained.rmsPathConstraintBoundaryRelaxationResidualAfter) &&
+      nearly_equal(
+          abiPairConstrainedSummary.mean_boundary_relaxation_residual_ratio,
+          pairConstrained.meanPathConstraintBoundaryRelaxationResidualRatio) &&
+      nearly_equal(
+          abiPairConstrainedSummary.rms_boundary_relaxation_residual_ratio,
+          pairConstrained.rmsPathConstraintBoundaryRelaxationResidualRatio) &&
+      nearly_equal(
           abiPairConstrainedSummary.boundary_relaxation_residual_ratio,
           pairConstrained.pathConstraintBoundaryRelaxationResidualRatio) &&
+      nearly_equal(
+          abiPairConstrainedSummary.boundary_relaxation_residual_settling_rate,
+          pairConstrained.pathConstraintBoundaryRelaxationResidualSettlingRate) &&
+      nearly_equal(
+          abiPairConstrainedSummary.mean_boundary_relaxation_residual_settling_rate,
+          pairConstrained.meanPathConstraintBoundaryRelaxationResidualSettlingRate) &&
+      nearly_equal(
+          abiPairConstrainedSummary.rms_boundary_relaxation_residual_settling_rate,
+          pairConstrained.rmsPathConstraintBoundaryRelaxationResidualSettlingRate) &&
       abiPairConstrainedSummary.boundary_relaxation_status ==
           pairConstrained.pathConstraintBoundaryRelaxationStatus &&
+      abiPairConstrainedSummary.boundary_relaxation_applied_iteration_count ==
+          pairConstrained.pathConstraintBoundaryRelaxationAppliedIterationCount &&
+      abiPairConstrainedSummary.boundary_relaxation_stop_reason ==
+          pairConstrained.pathConstraintBoundaryRelaxationStopReason &&
+      abiPairConstrainedSummary.boundary_seed_sample_count ==
+          pairConstrained.pathConstraintBoundarySeedSampleCount &&
       abiInfo.motion_integration_request_f64_bytes == 120;
 
   if (!ok) {

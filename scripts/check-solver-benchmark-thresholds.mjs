@@ -47,17 +47,17 @@ if (benchmarkCase) {
   check("strategy", benchmarkCase.strategy, "interval-time-slab-spatial-hash-emission-shell-annulus-v0", (value) =>
     value === "interval-time-slab-spatial-hash-emission-shell-annulus-v0"
   );
-  check("operations", benchmarkCase.operations, ">= 1000000 brute-force replay pairs", (value) =>
-    finiteNumber(value) && value >= 1_000_000
+  check("operations", benchmarkCase.operations, ">= 5000000 brute-force replay pairs", (value) =>
+    finiteNumber(value) && value >= 5_000_000
   );
   check("observations", benchmarkCase.observations, "equals indexed_candidates", (value) =>
     finiteNumber(value) && value === metric("indexed_candidates")
   );
-  check("scenario_count", metric("scenario_count"), ">= 4", atLeast(4));
+  check("scenario_count", metric("scenario_count"), ">= 5", atLeast(5));
   check("path_count_min", metric("path_count_min"), "<= 16", atMost(16));
-  check("path_count_max", metric("path_count_max"), ">= 1024", atLeast(1024));
+  check("path_count_max", metric("path_count_max"), ">= 2048", atLeast(2048));
   check("time_slab_min", metric("time_slab_min"), "<= 32", atMost(32));
-  check("time_slab_max", metric("time_slab_max"), ">= 128", atLeast(128));
+  check("time_slab_max", metric("time_slab_max"), ">= 256", atLeast(256));
   check("speed_regime_count", metric("speed_regime_count"), ">= 5", atLeast(5));
   check("density_case_count", metric("density_case_count"), ">= 3", atLeast(3));
   check("same_source_enabled", metric("same_source_enabled"), "1", equalsNumber(1));
@@ -66,33 +66,33 @@ if (benchmarkCase) {
     finiteNumber(value) && finiteNumber(metric("scenario_count")) && value >= metric("scenario_count")
   );
 
-  check("brute_force_pairs", metric("brute_force_pairs"), "matches operations and >= 1000000", (value) =>
-    finiteNumber(value) && value === benchmarkCase.operations && value >= 1_000_000
+  check("brute_force_pairs", metric("brute_force_pairs"), "matches operations and >= 5000000", (value) =>
+    finiteNumber(value) && value === benchmarkCase.operations && value >= 5_000_000
   );
   check("brute_force_candidates", metric("brute_force_candidates"), "equals indexed_candidates", (value) =>
     finiteNumber(value) && value === metric("indexed_candidates")
   );
-  check("indexed_candidates", metric("indexed_candidates"), "> 0", greaterThan(0));
+  check("indexed_candidates", metric("indexed_candidates"), ">= 20000", atLeast(20_000));
   check("indexed_pair_tests", metric("indexed_pair_tests"), "> 0 and < brute_force_pairs", (value) =>
     finiteNumber(value) && value > 0 && value < metric("brute_force_pairs")
   );
   check("missing_oracle_candidates", metric("missing_oracle_candidates"), "0", equalsNumber(0));
   check("extra_indexed_candidates", metric("extra_indexed_candidates"), "0", equalsNumber(0));
   check("broad_phase_recall", metric("broad_phase_recall"), ">= 1.0", atLeast(1.0));
-  check("candidate_count_reduction", metric("candidate_count_reduction"), ">= 0.999", atLeast(0.999));
-  check("indexed_pair_test_reduction", metric("indexed_pair_test_reduction"), ">= 0.98", atLeast(0.98));
-  check("narrow_phase_hits", metric("narrow_phase_hits"), "> 0", greaterThan(0));
-  check("false_positive_ratio", metric("false_positive_ratio"), "<= 0.5", atMost(0.5));
+  check("candidate_count_reduction", metric("candidate_count_reduction"), ">= 0.995", atLeast(0.995));
+  check("indexed_pair_test_reduction", metric("indexed_pair_test_reduction"), ">= 0.93", atLeast(0.93));
+  check("narrow_phase_hits", metric("narrow_phase_hits"), ">= 16000", atLeast(16_000));
+  check("false_positive_ratio", metric("false_positive_ratio"), "<= 0.35", atMost(0.35));
 
   check("same_source_candidate_count", metric("same_source_candidate_count"), "> 0", greaterThan(0));
-  check("transition_candidate_count", metric("transition_candidate_count"), "> 0", greaterThan(0));
+  check("transition_candidate_count", metric("transition_candidate_count"), ">= 8000", atLeast(8_000));
   check("receiver_cell_rows", metric("receiver_cell_rows"), "> 0", greaterThan(0));
   check("shell_annulus_rows", metric("shell_annulus_rows"), "> 0", greaterThan(0));
   check("cell_lookups", metric("cell_lookups"), "> 0", greaterThan(0));
-  check("chunk_replay_rows", metric("chunk_replay_rows"), ">= 2000", atLeast(2000));
-  check("chunk_replay_bytes", metric("chunk_replay_bytes"), ">= 250000", atLeast(250000));
+  check("chunk_replay_rows", metric("chunk_replay_rows"), ">= 6000", atLeast(6000));
+  check("chunk_replay_bytes", metric("chunk_replay_bytes"), ">= 650000", atLeast(650000));
 
-  check("work_packet_count", metric("work_packet_count"), ">= 16", atLeast(16));
+  check("work_packet_count", metric("work_packet_count"), ">= 20", atLeast(20));
   check("work_packet_candidate_count", metric("work_packet_candidate_count"), "equals indexed_candidates", (value) =>
     finiteNumber(value) && value === metric("indexed_candidates")
   );

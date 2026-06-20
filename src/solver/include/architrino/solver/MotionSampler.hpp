@@ -80,6 +80,9 @@ struct PairInteractionRequest {
   double integrationTolerance = 0.0;
   std::uint32_t interactionLaw = 1;
   std::uint32_t integrationMethod = 1;
+  std::uint64_t boundaryRelaxationIterationCount = 8;
+  double boundaryRelaxationTolerance = 0.0;
+  double boundaryRelaxationStepTolerance = 0.0;
   std::vector<PairInteractionPathConstraint> pathConstraints{};
 };
 
@@ -103,8 +106,24 @@ struct PairInteractionSampleResult {
   std::uint64_t pathConstraintBoundaryRelaxationResidualSampleCount = 0;
   double maxPathConstraintBoundaryRelaxationResidualBefore = 0.0;
   double maxPathConstraintBoundaryRelaxationResidualAfter = 0.0;
+  double meanPathConstraintBoundaryRelaxationResidualBefore = 0.0;
+  double meanPathConstraintBoundaryRelaxationResidualAfter = 0.0;
+  double rmsPathConstraintBoundaryRelaxationResidualBefore = 0.0;
+  double rmsPathConstraintBoundaryRelaxationResidualAfter = 0.0;
   double pathConstraintBoundaryRelaxationResidualRatio = 0.0;
+  double meanPathConstraintBoundaryRelaxationResidualRatio = 0.0;
+  double rmsPathConstraintBoundaryRelaxationResidualRatio = 0.0;
+  double pathConstraintBoundaryRelaxationResidualSettlingRate = 0.0;
+  double meanPathConstraintBoundaryRelaxationResidualSettlingRate = 0.0;
+  double rmsPathConstraintBoundaryRelaxationResidualSettlingRate = 0.0;
   std::uint32_t pathConstraintBoundaryRelaxationStatus = 0;
+  std::uint32_t pathConstraintBoundaryRelaxationAppliedIterationCount = 0;
+  std::uint32_t pathConstraintBoundaryRelaxationStopReason = 0;
+  std::uint32_t pathConstraintBoundaryRelaxationSelectedCandidateKind = 0;
+  std::uint64_t pathConstraintBoundarySeedSampleCount = 0;
+  double pathConstraintBoundaryRelaxationMaxStep = 0.0;
+  double pathConstraintBoundaryRelaxationFinalStepFactor = 0.0;
+  std::uint32_t pathConstraintBoundaryRelaxationCenterOfMassSelectedCount = 0;
   ValidationReport validation;
 };
 

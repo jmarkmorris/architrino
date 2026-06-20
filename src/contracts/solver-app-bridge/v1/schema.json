@@ -4069,6 +4069,19 @@
           "type": "string",
           "minLength": 1
         },
+        "pathConstraintBoundaryRelaxationIterationCount": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 256
+        },
+        "pathConstraintBoundaryRelaxationTolerance": {
+          "type": "number",
+          "minimum": 0
+        },
+        "pathConstraintBoundaryRelaxationStepTolerance": {
+          "type": "number",
+          "minimum": 0
+        },
         "pathConstraintBoundaryResidualTolerance": {
           "type": "number",
           "minimum": 0
@@ -4480,12 +4493,36 @@
           "type": "string",
           "minLength": 1
         },
+        "pathConstraintBoundarySeedMode": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pathConstraintBoundarySeedSampleCount": {
+          "type": "integer",
+          "minimum": 0
+        },
         "pathConstraintBoundaryRelaxationMode": {
           "type": "string",
           "minLength": 1
         },
         "pathConstraintBoundaryRelaxationIterationCount": {
           "type": "integer",
+          "minimum": 0
+        },
+        "pathConstraintBoundaryRelaxationAppliedIterationCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pathConstraintBoundaryRelaxationStopReason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pathConstraintBoundaryRelaxationTolerance": {
+          "type": "number",
+          "minimum": 0
+        },
+        "pathConstraintBoundaryRelaxationStepTolerance": {
+          "type": "number",
           "minimum": 0
         },
         "pathConstraintBoundaryRelaxationStatus": {
@@ -4502,8 +4539,56 @@
         "maxPathConstraintBoundaryRelaxationResidualAfter": {
           "type": "number"
         },
+        "meanPathConstraintBoundaryRelaxationResidualBefore": {
+          "type": "number"
+        },
+        "meanPathConstraintBoundaryRelaxationResidualAfter": {
+          "type": "number"
+        },
+        "rmsPathConstraintBoundaryRelaxationResidualBefore": {
+          "type": "number"
+        },
+        "rmsPathConstraintBoundaryRelaxationResidualAfter": {
+          "type": "number"
+        },
         "pathConstraintBoundaryRelaxationResidualRatio": {
           "type": "number",
+          "minimum": 0
+        },
+        "meanPathConstraintBoundaryRelaxationResidualRatio": {
+          "type": "number",
+          "minimum": 0
+        },
+        "rmsPathConstraintBoundaryRelaxationResidualRatio": {
+          "type": "number",
+          "minimum": 0
+        },
+        "pathConstraintBoundaryRelaxationResidualSettlingRate": {
+          "type": "number",
+          "minimum": 0
+        },
+        "meanPathConstraintBoundaryRelaxationResidualSettlingRate": {
+          "type": "number",
+          "minimum": 0
+        },
+        "rmsPathConstraintBoundaryRelaxationResidualSettlingRate": {
+          "type": "number",
+          "minimum": 0
+        },
+        "pathConstraintBoundaryRelaxationMaxStep": {
+          "type": "number",
+          "minimum": 0
+        },
+        "pathConstraintBoundaryRelaxationFinalStepFactor": {
+          "type": "number",
+          "minimum": 0
+        },
+        "pathConstraintBoundaryRelaxationSelectedCandidateKind": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pathConstraintBoundaryRelaxationCenterOfMassSelectedCount": {
+          "type": "integer",
           "minimum": 0
         },
         "pathConstraintSolverStatus": {
@@ -4612,12 +4697,36 @@
           "type": "string",
           "minLength": 1
         },
+        "pathConstraintBoundarySeedMode": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pathConstraintBoundarySeedSampleCount": {
+          "type": "integer",
+          "minimum": 0
+        },
         "pathConstraintBoundaryRelaxationMode": {
           "type": "string",
           "minLength": 1
         },
         "pathConstraintBoundaryRelaxationIterationCount": {
           "type": "integer",
+          "minimum": 0
+        },
+        "pathConstraintBoundaryRelaxationAppliedIterationCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pathConstraintBoundaryRelaxationStopReason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pathConstraintBoundaryRelaxationTolerance": {
+          "type": "number",
+          "minimum": 0
+        },
+        "pathConstraintBoundaryRelaxationStepTolerance": {
+          "type": "number",
           "minimum": 0
         },
         "pathConstraintBoundaryRelaxationStatus": {
@@ -4634,8 +4743,56 @@
         "maxPathConstraintBoundaryRelaxationResidualAfter": {
           "type": "number"
         },
+        "meanPathConstraintBoundaryRelaxationResidualBefore": {
+          "type": "number"
+        },
+        "meanPathConstraintBoundaryRelaxationResidualAfter": {
+          "type": "number"
+        },
+        "rmsPathConstraintBoundaryRelaxationResidualBefore": {
+          "type": "number"
+        },
+        "rmsPathConstraintBoundaryRelaxationResidualAfter": {
+          "type": "number"
+        },
         "pathConstraintBoundaryRelaxationResidualRatio": {
           "type": "number",
+          "minimum": 0
+        },
+        "meanPathConstraintBoundaryRelaxationResidualRatio": {
+          "type": "number",
+          "minimum": 0
+        },
+        "rmsPathConstraintBoundaryRelaxationResidualRatio": {
+          "type": "number",
+          "minimum": 0
+        },
+        "pathConstraintBoundaryRelaxationResidualSettlingRate": {
+          "type": "number",
+          "minimum": 0
+        },
+        "meanPathConstraintBoundaryRelaxationResidualSettlingRate": {
+          "type": "number",
+          "minimum": 0
+        },
+        "rmsPathConstraintBoundaryRelaxationResidualSettlingRate": {
+          "type": "number",
+          "minimum": 0
+        },
+        "pathConstraintBoundaryRelaxationMaxStep": {
+          "type": "number",
+          "minimum": 0
+        },
+        "pathConstraintBoundaryRelaxationFinalStepFactor": {
+          "type": "number",
+          "minimum": 0
+        },
+        "pathConstraintBoundaryRelaxationSelectedCandidateKind": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pathConstraintBoundaryRelaxationCenterOfMassSelectedCount": {
+          "type": "integer",
           "minimum": 0
         },
         "pathConstraintSolverStatus": {

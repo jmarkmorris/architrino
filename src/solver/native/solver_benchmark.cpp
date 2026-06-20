@@ -912,6 +912,7 @@ BenchmarkOutcome benchmark_emission_shell_broad_phase_v0() {
       EmissionShellV0Scenario{64, 32, 0.5, 0.025, 0.18, true, true},
       EmissionShellV0Scenario{256, 128, 0.5, 0.02, 0.08, true, true},
       EmissionShellV0Scenario{1024, 128, 0.5, 0.02, 0.32, false, true},
+      EmissionShellV0Scenario{2048, 256, 0.5, 0.006, 0.06, true, true},
   };
 
   std::uint64_t brutePairCount = 0;
@@ -1190,9 +1191,9 @@ BenchmarkOutcome benchmark_emission_shell_broad_phase_v0() {
       {
           {"scenario_count", static_cast<double>(scenarios.size())},
           {"path_count_min", 16.0},
-          {"path_count_max", 1024.0},
+          {"path_count_max", 2048.0},
           {"time_slab_min", 32.0},
-          {"time_slab_max", 128.0},
+          {"time_slab_max", 256.0},
           {"speed_regime_count", 5.0},
           {"density_case_count", 3.0},
           {"same_source_enabled", 1.0},

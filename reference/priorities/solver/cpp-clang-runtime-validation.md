@@ -175,7 +175,7 @@ benchmark cases:
 | `causal-root-batch` | 512 | 512 | deterministic indexed batch, 2 workers used |
 | `causal-root-thread-scaling` | 1536 | 768 | single-worker vs bounded-worker checksum stable, speedup ratio recorded |
 | `emission-shell-broad-phase` | 36864 | 1054 | all-pairs AABB radius interval broad phase |
-| `emission-shell-broad-phase-v0` | 1118464 | 305 | solver-owned interval-time-slab / spatial-hash / emission-shell-annulus prototype, 0 missed oracle candidates, 0 packet replay deltas |
+| `emission-shell-broad-phase-v0` | 5312768 | 24625 | solver-owned interval-time-slab / spatial-hash / emission-shell-annulus prototype, 2048-path stress case, 0 missed oracle candidates, 0 packet replay deltas |
 | `spacetime-index-build-query` | 11238 | 608 | combined spacetime cell index |
 | `stream-and-assembly-store-io` | 5120 | 132 | path-history and assembly-store IO sanity |
 | `path-history-fast-spill-budget` | 8192 | 64 | bounded chunk spill behavior |
