@@ -4818,6 +4818,9 @@ function createPairInteractionRunSummaryFixture() {
     pathConstraintBoundaryRelaxationCandidateKindMask: 0x3ffffe,
     pathConstraintSolverStatus: "guided_constraint_path",
     pathConstraintSolverClaim: "diagnostic_constraint_replay_not_boundary_value_solve",
+    pathConstraintPhysicalBoundarySolverStatus: "physical_boundary_solver_pending",
+    pathConstraintPhysicalBoundarySolverClaim:
+      "retained_knot_guidance_not_physical_boundary_value_solve",
     maxPathConstraintGuidanceAcceleration: 4.5,
     meanPathConstraintGuidanceAcceleration: 2.25,
     rmsPathConstraintGuidanceAcceleration: 3.1,

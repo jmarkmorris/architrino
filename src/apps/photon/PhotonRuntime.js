@@ -79,13 +79,28 @@ const PHOTON_RUNTIME_SOLVER_SUMMARY_OPTIONS = Object.freeze({
   minimumAnalyzerSampleCount: 2,
 });
 const PHOTON_RUNTIME_SOLVER_SEARCH_OPTIONS = Object.freeze({
+  limit: 6,
+  maxCandidates: 6,
+  comparisonCandidateLimit: 1,
   summaryOptions: {
-    polarizationSampleCount: 24,
-    analyzerSampleCount: 8,
+    polarizationSampleCount: 8,
+    minimumPolarizationSampleCount: 6,
+    analyzerSampleCount: 2,
+    minimumAnalyzerSampleCount: 1,
   },
   perturbOptions: {
-    polarizationSampleCount: 16,
-    analyzerSampleCount: 6,
+    polarizationSampleCount: 4,
+    minimumPolarizationSampleCount: 3,
+    analyzerSampleCount: 1,
+    minimumAnalyzerSampleCount: 1,
+  },
+  comparisonOptions: {
+    polarizationSampleCount: 4,
+    minimumPolarizationSampleCount: 3,
+    analyzerSampleCount: 1,
+    minimumAnalyzerSampleCount: 1,
+    absoluteHistorySegments: 2,
+    maxDelay: 0.25,
   },
 });
 

@@ -775,6 +775,10 @@ const PAIR_INTERACTION_CONSTRAINT_SOLVER_CLAIM_CONSTRAINED =
   "diagnostic_constraint_replay_not_boundary_value_solve";
 const PAIR_INTERACTION_CONSTRAINT_SOLVER_CLAIM_DISCRETE_BOUNDARY_CONVERGED =
   "finite_difference_pair_boundary_value_solve_converged";
+const PAIR_INTERACTION_PHYSICAL_BOUNDARY_SOLVER_STATUS_PENDING =
+  "physical_boundary_solver_pending";
+const PAIR_INTERACTION_PHYSICAL_BOUNDARY_SOLVER_CLAIM_PENDING =
+  "retained_knot_guidance_not_physical_boundary_value_solve";
 const PAIR_INTERACTION_DERIVED_BOUNDARY_POSITION_RESIDUAL_TOLERANCE = 1e-9;
 const PAIR_INTERACTION_BOUNDARY_RESIDUAL_STATUS_UNCHECKED = "unchecked";
 const PAIR_INTERACTION_BOUNDARY_RESIDUAL_STATUS_NO_SAMPLES = "no_boundary_samples";
@@ -3986,6 +3990,10 @@ function runSimulationWithModule(state, module, request, abiInfo) {
           pair.summary?.pathConstraintBoundaryRelaxationCandidateKindMask,
         pathConstraintSolverStatus: pair.summary?.pathConstraintSolverStatus,
         pathConstraintSolverClaim: pair.summary?.pathConstraintSolverClaim,
+        pathConstraintPhysicalBoundarySolverStatus:
+          pair.summary?.pathConstraintPhysicalBoundarySolverStatus,
+        pathConstraintPhysicalBoundarySolverClaim:
+          pair.summary?.pathConstraintPhysicalBoundarySolverClaim,
         pathConstraintGuidanceAccelerationStatus:
           pair.summary?.pathConstraintGuidanceAccelerationStatus,
         pathConstraintGuidanceAccelerationTolerance:
@@ -4087,6 +4095,10 @@ function runSimulationWithModule(state, module, request, abiInfo) {
           pair.summary?.pathConstraintBoundaryRelaxationCandidateKindMask,
         pathConstraintSolverStatus: pair.summary?.pathConstraintSolverStatus,
         pathConstraintSolverClaim: pair.summary?.pathConstraintSolverClaim,
+        pathConstraintPhysicalBoundarySolverStatus:
+          pair.summary?.pathConstraintPhysicalBoundarySolverStatus,
+        pathConstraintPhysicalBoundarySolverClaim:
+          pair.summary?.pathConstraintPhysicalBoundarySolverClaim,
         maxPathConstraintGuidanceAcceleration: pair.summary?.maxPathConstraintGuidanceAcceleration ?? 0,
         meanPathConstraintGuidanceAcceleration: pair.summary?.meanPathConstraintGuidanceAcceleration ?? 0,
         rmsPathConstraintGuidanceAcceleration: pair.summary?.rmsPathConstraintGuidanceAcceleration ?? 0,
@@ -4377,6 +4389,9 @@ function solvePairInteractionPathF64(request, options = {}) {
     positionResidualSummary,
     normalized,
   );
+  const physicalBoundarySolverMetadata = createPairInteractionPhysicalBoundarySolverMetadata(
+    residualSummary.pathConstraintCount,
+  );
   const boundaryResidualAcceptanceMetadata = createPairInteractionBoundaryResidualAcceptanceMetadata(
     boundarySummary,
     normalized,
@@ -4435,6 +4450,7 @@ function solvePairInteractionPathF64(request, options = {}) {
       ...boundaryRelaxationMetadata,
       pathConstraintSolverStatus: constraintSolverMetadata.pathConstraintSolverStatus,
       pathConstraintSolverClaim: constraintSolverMetadata.pathConstraintSolverClaim,
+      ...physicalBoundarySolverMetadata,
       maxPathConstraintGuidanceAcceleration: guidanceSummary.maxPathConstraintGuidanceAcceleration,
       meanPathConstraintGuidanceAcceleration: guidanceSummary.meanPathConstraintGuidanceAcceleration,
       rmsPathConstraintGuidanceAcceleration: guidanceSummary.rmsPathConstraintGuidanceAcceleration,
@@ -4501,6 +4517,7 @@ function solvePairInteractionPathF64(request, options = {}) {
       ...boundaryRelaxationMetadata,
       pathConstraintSolverStatus: constraintSolverMetadata.pathConstraintSolverStatus,
       pathConstraintSolverClaim: constraintSolverMetadata.pathConstraintSolverClaim,
+      ...physicalBoundarySolverMetadata,
       maxPathConstraintGuidanceAcceleration: guidanceSummary.maxPathConstraintGuidanceAcceleration,
       meanPathConstraintGuidanceAcceleration: guidanceSummary.meanPathConstraintGuidanceAcceleration,
       rmsPathConstraintGuidanceAcceleration: guidanceSummary.rmsPathConstraintGuidanceAcceleration,
@@ -4985,6 +5002,18 @@ function createPairInteractionConstraintSolverMetadata(
         ? PAIR_INTERACTION_CONSTRAINT_SOLVER_STATUS_GUIDED
         : PAIR_INTERACTION_CONSTRAINT_SOLVER_STATUS_SNAP,
     pathConstraintSolverClaim: PAIR_INTERACTION_CONSTRAINT_SOLVER_CLAIM_CONSTRAINED,
+  };
+}
+
+function createPairInteractionPhysicalBoundarySolverMetadata(pathConstraintCount) {
+  if (!Number.isFinite(pathConstraintCount) || pathConstraintCount <= 0) {
+    return {};
+  }
+  return {
+    pathConstraintPhysicalBoundarySolverStatus:
+      PAIR_INTERACTION_PHYSICAL_BOUNDARY_SOLVER_STATUS_PENDING,
+    pathConstraintPhysicalBoundarySolverClaim:
+      PAIR_INTERACTION_PHYSICAL_BOUNDARY_SOLVER_CLAIM_PENDING,
   };
 }
 
@@ -9992,49 +10021,58 @@ function integratePairInteractionMotionF64WithModule(module, request, options = 
       ? PAIR_INTERACTION_PATH_CONSTRAINT_GUIDANCE_MODE
       : undefined;
     const pathConstraintBoundaryMode = createPairInteractionPathConstraintBoundaryMode(normalized);
+    const nativeBoundaryRelaxationResidualBefore = {
+      pathConstraintBoundaryRelaxationResidualSampleCount:
+        nativeSummary.boundaryRelaxationResidualSampleCount,
+      maxPathConstraintBoundaryRelaxationResidual:
+        nativeSummary.maxBoundaryRelaxationResidualBefore,
+      meanPathConstraintBoundaryRelaxationResidual:
+        nativeSummary.meanBoundaryRelaxationResidualBefore,
+      rmsPathConstraintBoundaryRelaxationResidual:
+        nativeSummary.rmsBoundaryRelaxationResidualBefore,
+    };
+    const nativeBoundaryRelaxationResidualAfter = {
+      pathConstraintBoundaryRelaxationResidualSampleCount:
+        nativeSummary.boundaryRelaxationResidualSampleCount,
+      maxPathConstraintBoundaryRelaxationResidual:
+        nativeSummary.maxBoundaryRelaxationResidualAfter,
+      meanPathConstraintBoundaryRelaxationResidual:
+        nativeSummary.meanBoundaryRelaxationResidualAfter,
+      rmsPathConstraintBoundaryRelaxationResidual:
+        nativeSummary.rmsBoundaryRelaxationResidualAfter,
+    };
+    const nativeBoundaryRelaxationRun = {
+      pathConstraintBoundaryRelaxationAppliedIterationCount:
+        nativeSummary.boundaryRelaxationAppliedIterationCount,
+      pathConstraintBoundaryRelaxationStopReason:
+        nativeSummary.boundaryRelaxationStopReason,
+      pathConstraintBoundaryRelaxationMaxStep:
+        nativeSummary.boundaryRelaxationMaxStep,
+      pathConstraintBoundaryRelaxationFinalStepFactor:
+        nativeSummary.boundaryRelaxationFinalStepFactor,
+      pathConstraintBoundaryRelaxationSelectedCandidateKind:
+        nativeSummary.boundaryRelaxationSelectedCandidateKind,
+      pathConstraintBoundaryRelaxationCenterOfMassSelectedCount:
+        nativeSummary.boundaryRelaxationCenterOfMassSelectedCount,
+      pathConstraintBoundaryRelaxationCandidateVariantCount:
+        nativeSummary.boundaryRelaxationCandidateVariantCount,
+      pathConstraintBoundaryRelaxationLineSearchTrialCount:
+        nativeSummary.boundaryRelaxationLineSearchTrialCount,
+      pathConstraintBoundaryRelaxationCandidateKindMask:
+        nativeSummary.boundaryRelaxationCandidateKindMask,
+    };
+    const nativeBoundaryRelaxationStatus = getPairInteractionBoundaryRelaxationStatus(
+      nativeBoundaryRelaxationResidualBefore,
+      nativeBoundaryRelaxationResidualAfter,
+      normalized,
+      nativeBoundaryRelaxationRun,
+    );
     const boundaryRelaxationMetadata = createPairInteractionBoundaryRelaxationMetadata(
       normalized,
-      {
-        pathConstraintBoundaryRelaxationResidualSampleCount:
-          nativeSummary.boundaryRelaxationResidualSampleCount,
-        maxPathConstraintBoundaryRelaxationResidual:
-          nativeSummary.maxBoundaryRelaxationResidualBefore,
-        meanPathConstraintBoundaryRelaxationResidual:
-          nativeSummary.meanBoundaryRelaxationResidualBefore,
-        rmsPathConstraintBoundaryRelaxationResidual:
-          nativeSummary.rmsBoundaryRelaxationResidualBefore,
-      },
-      {
-        pathConstraintBoundaryRelaxationResidualSampleCount:
-          nativeSummary.boundaryRelaxationResidualSampleCount,
-        maxPathConstraintBoundaryRelaxationResidual:
-          nativeSummary.maxBoundaryRelaxationResidualAfter,
-        meanPathConstraintBoundaryRelaxationResidual:
-          nativeSummary.meanBoundaryRelaxationResidualAfter,
-        rmsPathConstraintBoundaryRelaxationResidual:
-          nativeSummary.rmsBoundaryRelaxationResidualAfter,
-      },
-      nativeSummary.boundaryRelaxationStatus,
-      {
-        pathConstraintBoundaryRelaxationAppliedIterationCount:
-          nativeSummary.boundaryRelaxationAppliedIterationCount,
-        pathConstraintBoundaryRelaxationStopReason:
-          nativeSummary.boundaryRelaxationStopReason,
-        pathConstraintBoundaryRelaxationMaxStep:
-          nativeSummary.boundaryRelaxationMaxStep,
-        pathConstraintBoundaryRelaxationFinalStepFactor:
-          nativeSummary.boundaryRelaxationFinalStepFactor,
-        pathConstraintBoundaryRelaxationSelectedCandidateKind:
-          nativeSummary.boundaryRelaxationSelectedCandidateKind,
-        pathConstraintBoundaryRelaxationCenterOfMassSelectedCount:
-          nativeSummary.boundaryRelaxationCenterOfMassSelectedCount,
-        pathConstraintBoundaryRelaxationCandidateVariantCount:
-          nativeSummary.boundaryRelaxationCandidateVariantCount,
-        pathConstraintBoundaryRelaxationLineSearchTrialCount:
-          nativeSummary.boundaryRelaxationLineSearchTrialCount,
-        pathConstraintBoundaryRelaxationCandidateKindMask:
-          nativeSummary.boundaryRelaxationCandidateKindMask,
-      },
+      nativeBoundaryRelaxationResidualBefore,
+      nativeBoundaryRelaxationResidualAfter,
+      nativeBoundaryRelaxationStatus,
+      nativeBoundaryRelaxationRun,
     );
     const nativeBoundarySummary = {
       pathConstraintBoundaryResidualSampleCount: nativeSummary.boundaryResidualSampleCount,
@@ -10047,9 +10085,12 @@ function integratePairInteractionMotionF64WithModule(module, request, options = 
     const constraintSolverMetadata = createPairInteractionConstraintSolverMetadata(
       nativeSummary.pathConstraintCount,
       nativeSummary.guidanceSampleCount,
-      nativeSummary.boundaryRelaxationStatus,
+      nativeBoundaryRelaxationStatus,
       nativePositionSummary,
       normalized,
+    );
+    const physicalBoundarySolverMetadata = createPairInteractionPhysicalBoundarySolverMetadata(
+      nativeSummary.pathConstraintCount,
     );
     const nativeGuidanceSummary = {
       pathConstraintGuidanceSampleCount: nativeSummary.guidanceSampleCount,
@@ -10117,6 +10158,7 @@ function integratePairInteractionMotionF64WithModule(module, request, options = 
         ...boundaryRelaxationMetadata,
         pathConstraintSolverStatus: constraintSolverMetadata.pathConstraintSolverStatus,
         pathConstraintSolverClaim: constraintSolverMetadata.pathConstraintSolverClaim,
+        ...physicalBoundarySolverMetadata,
         maxPathConstraintGuidanceAcceleration: nativeSummary.maxGuidanceAcceleration,
         meanPathConstraintGuidanceAcceleration: nativeSummary.meanGuidanceAcceleration,
         rmsPathConstraintGuidanceAcceleration: nativeSummary.rmsGuidanceAcceleration,
@@ -10186,6 +10228,7 @@ function integratePairInteractionMotionF64WithModule(module, request, options = 
         ...boundaryRelaxationMetadata,
         pathConstraintSolverStatus: constraintSolverMetadata.pathConstraintSolverStatus,
         pathConstraintSolverClaim: constraintSolverMetadata.pathConstraintSolverClaim,
+        ...physicalBoundarySolverMetadata,
         maxPathConstraintGuidanceAcceleration: nativeSummary.maxGuidanceAcceleration,
         meanPathConstraintGuidanceAcceleration: nativeSummary.meanGuidanceAcceleration,
         rmsPathConstraintGuidanceAcceleration: nativeSummary.rmsGuidanceAcceleration,

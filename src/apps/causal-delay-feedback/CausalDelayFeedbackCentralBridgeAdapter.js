@@ -45,6 +45,9 @@ const FINITE_DIFFERENCE_FRAME_RELAXATION_NO_SAMPLES_STATUS = "no_relaxable_sampl
 const DISCRETE_BOUNDARY_VALUE_CONVERGED_STATUS = "discrete_boundary_value_converged";
 const FINITE_DIFFERENCE_PAIR_BOUNDARY_VALUE_SOLVE_CONVERGED_CLAIM =
   "finite_difference_pair_boundary_value_solve_converged";
+const PHYSICAL_BOUNDARY_SOLVER_PENDING_STATUS = "physical_boundary_solver_pending";
+const RETAINED_KNOT_GUIDANCE_NOT_PHYSICAL_BOUNDARY_VALUE_SOLVE_CLAIM =
+  "retained_knot_guidance_not_physical_boundary_value_solve";
 const BOUNDARY_RELAXATION_RESIDUAL_EVIDENCE_NO_SAMPLES = "no_samples";
 const BOUNDARY_RELAXATION_RESIDUAL_EVIDENCE_INCOMPLETE = "incomplete_evidence";
 const BOUNDARY_RELAXATION_RESIDUAL_EVIDENCE_NON_WORSENING = "aggregate_non_worsening";
@@ -372,6 +375,10 @@ async function createMotionSolverReplayDataset(playbackRequest, options = {}, { 
             motionReplay.pathConstraintBoundaryRelaxationCandidateKindMask,
           pathConstraintSolverStatus: motionReplay.pathConstraintSolverStatus,
           pathConstraintSolverClaim: motionReplay.pathConstraintSolverClaim,
+          pathConstraintPhysicalBoundarySolverStatus:
+            motionReplay.pathConstraintPhysicalBoundarySolverStatus,
+          pathConstraintPhysicalBoundarySolverClaim:
+            motionReplay.pathConstraintPhysicalBoundarySolverClaim,
           maxPathConstraintGuidanceAcceleration: motionReplay.maxPathConstraintGuidanceAcceleration,
           meanPathConstraintGuidanceAcceleration: motionReplay.meanPathConstraintGuidanceAcceleration,
           rmsPathConstraintGuidanceAcceleration: motionReplay.rmsPathConstraintGuidanceAcceleration,
@@ -482,6 +489,10 @@ async function createMotionSolverReplayDataset(playbackRequest, options = {}, { 
             motionReplay.pathConstraintBoundaryRelaxationCandidateKindMask,
           pathConstraintSolverStatus: motionReplay.pathConstraintSolverStatus,
           pathConstraintSolverClaim: motionReplay.pathConstraintSolverClaim,
+          pathConstraintPhysicalBoundarySolverStatus:
+            motionReplay.pathConstraintPhysicalBoundarySolverStatus,
+          pathConstraintPhysicalBoundarySolverClaim:
+            motionReplay.pathConstraintPhysicalBoundarySolverClaim,
           maxPathConstraintGuidanceAcceleration: motionReplay.maxPathConstraintGuidanceAcceleration,
           meanPathConstraintGuidanceAcceleration: motionReplay.meanPathConstraintGuidanceAcceleration,
           rmsPathConstraintGuidanceAcceleration: motionReplay.rmsPathConstraintGuidanceAcceleration,
@@ -647,6 +658,14 @@ async function createPairInteractionSolverReplayFrames(playbackRequest, options 
     pairInteraction,
     request.config.pairInteractionRequest,
   );
+  const pathConstraintCount = Number.isFinite(Number(pairSummary.pathConstraintCount))
+    ? Number(pairSummary.pathConstraintCount)
+    : request.config.pairInteractionRequest.pathConstraints?.length;
+  const physicalBoundarySolverMetadata = createPairInteractionPhysicalBoundarySolverMetadata(
+    pairSummary,
+    pairInteraction,
+    pathConstraintCount,
+  );
   return {
     bridgeFrames: normalizePairInteractionRunFrames(runHandle),
     motionRunHandles: [runHandle],
@@ -656,9 +675,7 @@ async function createPairInteractionSolverReplayFrames(playbackRequest, options 
       : undefined,
     interactionLaw: pairSummary.interactionLaw ?? pairInteraction.interactionLaw,
     executionPath: pairSummary.executionPath ?? pairInteraction.executionPath,
-    pathConstraintCount: Number.isFinite(Number(pairSummary.pathConstraintCount))
-      ? Number(pairSummary.pathConstraintCount)
-      : request.config.pairInteractionRequest.pathConstraints?.length,
+    pathConstraintCount,
     pathConstraintFrameRefinementSampleCount: optionalFiniteNumber(
       pairSummary.pathConstraintFrameRefinementSampleCount ??
         pairInteraction.pathConstraintFrameRefinementSampleCount
@@ -803,6 +820,7 @@ async function createPairInteractionSolverReplayFrames(playbackRequest, options 
     ),
     pathConstraintSolverStatus: constraintSolverMetadata.pathConstraintSolverStatus,
     pathConstraintSolverClaim: constraintSolverMetadata.pathConstraintSolverClaim,
+    ...physicalBoundarySolverMetadata,
     maxPathConstraintGuidanceAcceleration: optionalFiniteNumber(
       pairSummary.maxPathConstraintGuidanceAcceleration ?? pairInteraction.maxPathConstraintGuidanceAcceleration
     ),
@@ -1766,6 +1784,14 @@ export function normalizeCausalDelayFeedbackBridgeReplay(runHandle = {}, options
   if (virtualObserver && !initialConditions.virtualObserver) {
     initialConditions.virtualObserver = { ...virtualObserver };
   }
+  const geometryPathConstraintCount = Number.isFinite(Number(bridgeResponse.geometry?.pathConstraintCount))
+    ? Number(bridgeResponse.geometry.pathConstraintCount)
+    : undefined;
+  const geometryPhysicalBoundarySolverMetadata = createPairInteractionPhysicalBoundarySolverMetadata(
+    bridgeResponse.summary ?? {},
+    bridgeResponse.geometry ?? {},
+    geometryPathConstraintCount,
+  );
 
   return {
     runId: normalizeOptionalString(
@@ -2076,6 +2102,7 @@ export function normalizeCausalDelayFeedbackBridgeReplay(runHandle = {}, options
     ...(bridgeResponse.geometry?.pathConstraintSolverClaim
       ? { pathConstraintSolverClaim: String(bridgeResponse.geometry.pathConstraintSolverClaim) }
       : {}),
+    ...geometryPhysicalBoundarySolverMetadata,
     ...(Number.isFinite(Number(bridgeResponse.geometry?.maxPathConstraintGuidanceAcceleration))
       ? { maxPathConstraintGuidanceAcceleration: Number(bridgeResponse.geometry.maxPathConstraintGuidanceAcceleration) }
       : {}),
@@ -2780,13 +2807,6 @@ function createPairInteractionConstraintSolverMetadata(pairSummary, pairInteract
   const explicitClaim = optionalString(
     pairInteractionSummaryField(pairSummary, pairInteraction, "pathConstraintSolverClaim"),
   );
-  if (explicitStatus) {
-    return {
-      pathConstraintSolverStatus: explicitStatus,
-      pathConstraintSolverClaim: explicitClaim,
-    };
-  }
-
   const pathConstraintCount = Number(
     pairInteractionSummaryField(pairSummary, pairInteraction, "pathConstraintCount") ??
       pairRequest?.pathConstraints?.length,
@@ -2853,6 +2873,22 @@ function createPairInteractionConstraintSolverMetadata(pairSummary, pairInteract
     residualEvidenceStatus === BOUNDARY_RELAXATION_RESIDUAL_EVIDENCE_NON_WORSENING &&
     maxRelaxationResidualAfter <= relaxationTolerance;
 
+  if (explicitStatus) {
+    if (
+      explicitStatus !== DISCRETE_BOUNDARY_VALUE_CONVERGED_STATUS ||
+      hasConvergedFiniteDifferenceEvidence
+    ) {
+      return {
+        pathConstraintSolverStatus: explicitStatus,
+        pathConstraintSolverClaim: explicitClaim,
+      };
+    }
+    return {
+      pathConstraintSolverStatus: undefined,
+      pathConstraintSolverClaim: undefined,
+    };
+  }
+
   return {
     pathConstraintSolverStatus: hasConvergedFiniteDifferenceEvidence
       ? DISCRETE_BOUNDARY_VALUE_CONVERGED_STATUS
@@ -2862,6 +2898,30 @@ function createPairInteractionConstraintSolverMetadata(pairSummary, pairInteract
         ? FINITE_DIFFERENCE_PAIR_BOUNDARY_VALUE_SOLVE_CONVERGED_CLAIM
         : undefined
     ),
+  };
+}
+
+function createPairInteractionPhysicalBoundarySolverMetadata(pairSummary, pairInteraction, pathConstraintCount) {
+  const explicitStatus = optionalString(
+    pairInteractionSummaryField(pairSummary, pairInteraction, "pathConstraintPhysicalBoundarySolverStatus"),
+  );
+  const explicitClaim = optionalString(
+    pairInteractionSummaryField(pairSummary, pairInteraction, "pathConstraintPhysicalBoundarySolverClaim"),
+  );
+  if (explicitStatus || explicitClaim) {
+    return {
+      ...(explicitStatus ? { pathConstraintPhysicalBoundarySolverStatus: explicitStatus } : {}),
+      ...(explicitClaim ? { pathConstraintPhysicalBoundarySolverClaim: explicitClaim } : {}),
+    };
+  }
+  const constraintCount = Number(pathConstraintCount);
+  if (!Number.isFinite(constraintCount) || constraintCount <= 0) {
+    return {};
+  }
+  return {
+    pathConstraintPhysicalBoundarySolverStatus: PHYSICAL_BOUNDARY_SOLVER_PENDING_STATUS,
+    pathConstraintPhysicalBoundarySolverClaim:
+      RETAINED_KNOT_GUIDANCE_NOT_PHYSICAL_BOUNDARY_VALUE_SOLVE_CLAIM,
   };
 }
 

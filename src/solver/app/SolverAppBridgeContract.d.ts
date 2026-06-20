@@ -2931,6 +2931,8 @@ export interface SolverRunSummary {
   pathConstraintBoundaryRelaxationCandidateKindMask?: number;
   pathConstraintSolverStatus?: string;
   pathConstraintSolverClaim?: string;
+  pathConstraintPhysicalBoundarySolverStatus?: string;
+  pathConstraintPhysicalBoundarySolverClaim?: string;
   maxPathConstraintGuidanceAcceleration?: number;
   meanPathConstraintGuidanceAcceleration?: number;
   rmsPathConstraintGuidanceAcceleration?: number;
@@ -3022,6 +3024,8 @@ export interface SolverPairInteractionSummary {
   pathConstraintBoundaryRelaxationCandidateKindMask?: number;
   pathConstraintSolverStatus?: string;
   pathConstraintSolverClaim?: string;
+  pathConstraintPhysicalBoundarySolverStatus?: string;
+  pathConstraintPhysicalBoundarySolverClaim?: string;
   maxPathConstraintGuidanceAcceleration?: number;
   meanPathConstraintGuidanceAcceleration?: number;
   rmsPathConstraintGuidanceAcceleration?: number;

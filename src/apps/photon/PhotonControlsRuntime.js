@@ -667,6 +667,8 @@ function getPhotonSearchPrimaryReason(result) {
 function formatPhotonSearchMeta(result) {
   const polarization = result?.polarization ?? {};
   const diagnostics = result?.diagnostics ?? {};
+  const comparison = result?.comparison ?? {};
+  const comparisonDeltas = comparison?.deltas ?? {};
   const fitResidual = Number(polarization.fitResidual);
   const lag = Number(polarization.phaseLagDeg);
   const rootCount = Number(diagnostics.rootCount);
@@ -678,6 +680,20 @@ function formatPhotonSearchMeta(result) {
   ];
   if (polarization.phaseLagDefined !== false && Number.isFinite(lag)) {
     parts.push(`lag ${lag.toFixed(1)} deg`);
+  }
+  if (comparison.status === "ok") {
+    const strengthDelta = Number(comparisonDeltas.strengthDelta);
+    const rootDelta = Number(comparisonDeltas.rootCountDelta);
+    parts.push(
+      `abs ${Number.isFinite(strengthDelta) ? `${(strengthDelta * 100).toFixed(0)}%` : "ok"}` +
+      `${Number.isFinite(rootDelta) && rootDelta !== 0 ? `, roots ${rootDelta > 0 ? "+" : ""}${rootDelta}` : ""}`
+    );
+  } else if (
+    comparison.status === "unavailable" ||
+    comparison.status === "error" ||
+    comparison.status === "skipped"
+  ) {
+    parts.push("abs n/a");
   }
   return parts.join(" | ");
 }
@@ -963,6 +979,15 @@ export function createPhotonControlsRuntime({
   measurementZeroMarker.append(measurementZeroLine, measurementZeroLabel);
   measurementControls.append(measurementZeroMarker);
   measurementSection.append(measurementControls);
+  const absoluteHistoryControl = createCheckboxControl(documentLike, {
+    label: "Absolute history",
+    checked: state.measurement?.sourceHistoryMode === "absolute_history",
+    onChange: (checked) => {
+      getState().measurement.sourceHistoryMode = checked ? "absolute_history" : "co_moving";
+      onStateChange();
+    },
+  });
+  measurementSection.append(absoluteHistoryControl.row);
   [
     ["x", "Observer x", PHOTON_CONTROL_RANGES.virtualObserverX, 2],
     ["y", "Observer y", PHOTON_CONTROL_RANGES.virtualObserverY, 2],
@@ -976,6 +1001,31 @@ export function createPhotonControlsRuntime({
       snapToZero: true,
       onInput: (value) => {
         getState().measurement.virtualObserver[key] = value;
+        onRangeStateChange();
+      },
+    });
+    controls.push(control);
+    measurementControls.append(control.row);
+  });
+  [
+    ["signalSpeedCf", "Signal c/c_f", PHOTON_CONTROL_RANGES.signalSpeedCf, 2],
+    ["photonSpeedCf", "Photon cγ/c_f", PHOTON_CONTROL_RANGES.photonSpeedCf, 2],
+  ].forEach(([key, label, range, digits]) => {
+    const control = createRangeControl(documentLike, {
+      label,
+      value: key === "signalSpeedCf"
+        ? state.measurement.signalSpeedCf
+        : state.pair.photonSpeedCf,
+      range,
+      digits,
+      onInput: (value) => {
+        const nextState = getState();
+        if (key === "signalSpeedCf") {
+          nextState.measurement.signalSpeedCf = value;
+          nextState.measurement.emissionSpeedCf = value;
+        } else {
+          nextState.pair.photonSpeedCf = value;
+        }
         onRangeStateChange();
       },
     });
@@ -1077,6 +1127,10 @@ export function createPhotonControlsRuntime({
       syncRange(controls[index], nextState.measurement.virtualObserver[key]);
       index += 1;
     });
+    syncRange(controls[index], nextState.measurement.signalSpeedCf);
+    index += 1;
+    syncRange(controls[index], nextState.pair.photonSpeedCf);
+    index += 1;
     PHOTON_CONTROL_SWARM_ORDER.forEach((swarmId) => {
       PHOTON_LAYER_ORDER.forEach((layerId) => {
         const layer = getPhotonLayer(nextState, swarmId, layerId);
@@ -1093,6 +1147,7 @@ export function createPhotonControlsRuntime({
     binaryControls.forEach((control) => {
       control.input.checked = getPhotonLayer(nextState, control.swarmId, control.layerId).enabled !== false;
     });
+    absoluteHistoryControl.input.checked = nextState.measurement?.sourceHistoryMode === "absolute_history";
     ["analyzerAngleDeg"].forEach((key) => {
       syncRange(controls[index], nextState.polarization[key]);
       index += 1;

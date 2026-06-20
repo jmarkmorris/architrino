@@ -4344,6 +4344,10 @@ assert(
     causalDelayPairRunHandle.response.summary.pathConstraintSolverStatus === "guided_constraint_path" &&
     causalDelayPairRunHandle.response.summary.pathConstraintSolverClaim ===
       "diagnostic_constraint_replay_not_boundary_value_solve" &&
+    causalDelayPairRunHandle.response.summary.pathConstraintPhysicalBoundarySolverStatus ===
+      "physical_boundary_solver_pending" &&
+    causalDelayPairRunHandle.response.summary.pathConstraintPhysicalBoundarySolverClaim ===
+      "retained_knot_guidance_not_physical_boundary_value_solve" &&
     causalDelayPairRunHandle.response.summary.maxPathConstraintGuidanceAcceleration > 0 &&
     causalDelayPairRunHandle.response.summary.pathConstraintBoundaryResidualSampleCount === 4 &&
     causalDelayPairRunHandle.response.summary.pathConstraintBoundaryResidualStatus === "unchecked" &&
@@ -4445,7 +4449,11 @@ assert(
       .pathConstraintBoundaryRelaxationLineSearchTrialCount >=
       causalDelayPairJsFallbackRunHandle.response.summary
         .pathConstraintBoundaryRelaxationCandidateVariantCount &&
-    causalDelayPairJsFallbackRunHandle.response.summary.pathConstraintSolverStatus === "guided_constraint_path",
+    causalDelayPairJsFallbackRunHandle.response.summary.pathConstraintSolverStatus === "guided_constraint_path" &&
+    causalDelayPairJsFallbackRunHandle.response.summary.pathConstraintPhysicalBoundarySolverStatus ===
+      "physical_boundary_solver_pending" &&
+    causalDelayPairJsFallbackRunHandle.response.summary.pathConstraintPhysicalBoundarySolverClaim ===
+      "retained_knot_guidance_not_physical_boundary_value_solve",
   "expected no-WASM causal-delay pair interaction to use JS fallback with improved residual"
 );
 assertPairBoundaryRelaxationCandidateCoverage(
@@ -4656,7 +4664,12 @@ assert(
     causalDelayPairBoundaryRelaxationTunedRunHandle.response.summary.pathConstraintSolverStatus ===
       "discrete_boundary_value_converged" &&
     causalDelayPairBoundaryRelaxationTunedRunHandle.response.summary.pathConstraintSolverClaim ===
-      "finite_difference_pair_boundary_value_solve_converged",
+      "finite_difference_pair_boundary_value_solve_converged" &&
+    causalDelayPairBoundaryRelaxationTunedRunHandle.response.summary
+      .pathConstraintPhysicalBoundarySolverStatus === "physical_boundary_solver_pending" &&
+    causalDelayPairBoundaryRelaxationTunedRunHandle.response.summary
+      .pathConstraintPhysicalBoundarySolverClaim ===
+      "retained_knot_guidance_not_physical_boundary_value_solve",
   "expected causal-delay pair boundary relaxation convergence override"
 );
 const causalDelayPairBoundaryRelaxationStepTunedRunHandle = await client.runSimulation(

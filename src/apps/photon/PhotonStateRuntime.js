@@ -150,6 +150,8 @@ export const PHOTON_CONTROL_RANGES = Object.freeze({
     step: "any",
   },
   speedMultiplier: { min: 0.025, max: 1.6, step: 0.001 },
+  signalSpeedCf: { min: 0.05, max: 1, step: 0.01 },
+  photonSpeedCf: { min: 0, max: 1, step: 0.01 },
   analyzerAngleDeg: { min: 0, max: 180, step: 1 },
   virtualObserverX: { min: -10, max: 10, step: 0.05 },
   virtualObserverY: { min: -4, max: 4, step: 0.05 },
@@ -171,6 +173,7 @@ export const DEFAULT_PHOTON_STATE = Object.freeze({
   },
   pair: {
     speedMode: "cf",
+    photonSpeedCf: 1,
     pairSeparation: PHOTON_DEFAULT_LAYER_RADII.O,
     left: {
       role: "trailing",
@@ -187,11 +190,13 @@ export const DEFAULT_PHOTON_STATE = Object.freeze({
     analyzerAngleDeg: 0,
   },
   measurement: {
+    sourceHistoryMode: "co_moving",
     virtualObserver: {
       x: 0,
       y: 0,
       z: 0,
     },
+    signalSpeedCf: 1,
     emissionSpeedCf: 1,
   },
 });
@@ -301,6 +306,12 @@ export function normalizePhotonState(input = DEFAULT_PHOTON_STATE) {
     },
     pair: {
       speedMode: "cf",
+      photonSpeedCf: clampPhotonNumber(
+        state.pair?.photonSpeedCf,
+        PHOTON_CONTROL_RANGES.photonSpeedCf.min,
+        PHOTON_CONTROL_RANGES.photonSpeedCf.max,
+        fallback.pair.photonSpeedCf
+      ),
       pairSeparation: clampPhotonPairSeparationForState(
         pairShell,
         state.pair?.pairSeparation,
@@ -318,6 +329,9 @@ export function normalizePhotonState(input = DEFAULT_PHOTON_STATE) {
       ),
     },
     measurement: {
+      sourceHistoryMode: state.measurement?.sourceHistoryMode === "absolute_history"
+        ? "absolute_history"
+        : "co_moving",
       virtualObserver: {
         x: clampPhotonNumber(
           state.measurement?.virtualObserver?.x,
@@ -338,7 +352,18 @@ export function normalizePhotonState(input = DEFAULT_PHOTON_STATE) {
           fallback.measurement.virtualObserver.z
         ),
       },
-      emissionSpeedCf: 1,
+      signalSpeedCf: clampPhotonNumber(
+        state.measurement?.signalSpeedCf ?? state.measurement?.emissionSpeedCf,
+        PHOTON_CONTROL_RANGES.signalSpeedCf.min,
+        PHOTON_CONTROL_RANGES.signalSpeedCf.max,
+        fallback.measurement.signalSpeedCf
+      ),
+      emissionSpeedCf: clampPhotonNumber(
+        state.measurement?.signalSpeedCf ?? state.measurement?.emissionSpeedCf,
+        PHOTON_CONTROL_RANGES.signalSpeedCf.min,
+        PHOTON_CONTROL_RANGES.signalSpeedCf.max,
+        fallback.measurement.emissionSpeedCf
+      ),
     },
   };
 }

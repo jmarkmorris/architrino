@@ -48,8 +48,11 @@ import {
   computePhotonDelayedEmissionFieldWithSolverBridge,
   computePhotonFormulaSummaryWithSolverBridge,
   computePhotonObserverFieldWithSolverBridge,
+  createPhotonAbsoluteSourceSegmentCausalRootRequests,
   createPhotonCircularSourceCausalRootRequest,
+  createPhotonCircularSelfHitSpansRunRequest,
   createPhotonCausalRootsSolverRunRequest,
+  computePhotonSelfHitDiagnosticsWithSolverBridge,
   fitPhotonPolarizationFromSamples,
   getPhotonArchitrinoKinematics,
   solvePhotonCircularSourceCausalRootsWithSolverBridge,
@@ -87,6 +90,15 @@ function evaluateCircularSourceRequestPosition(segment, time) {
     x: segment.center.x + segment.radiusU.x * Math.cos(phase) + segment.radiusV.x * Math.sin(phase),
     y: segment.center.y + segment.radiusU.y * Math.cos(phase) + segment.radiusV.y * Math.sin(phase),
     z: segment.center.z + segment.radiusU.z * Math.cos(phase) + segment.radiusV.z * Math.sin(phase),
+  };
+}
+
+function evaluateLinearSegmentPosition(segment, time) {
+  const dt = time - segment.startTime;
+  return {
+    x: segment.positionAtStart.x + segment.velocity.x * dt,
+    y: segment.positionAtStart.y + segment.velocity.y * dt,
+    z: segment.positionAtStart.z + segment.velocity.z * dt,
   };
 }
 
@@ -152,6 +164,143 @@ function createPhotonCircularSourceBridgeStub() {
   return { calls, solveCircularSourceRootsHitsLedger };
 }
 
+function createPhotonLinearRootBridgeStub() {
+  const calls = [];
+  const runSolverBridge = async (runRequest) => {
+    const request = runRequest.config.rootRequest;
+    calls.push(request);
+    const emissionTime = (request.source.startTime + request.source.endTime) / 2;
+    const sourcePoint = evaluateLinearSegmentPosition(request.source, emissionTime);
+    const receiverPoint = evaluateLinearSegmentPosition(request.receiver, request.hitTime);
+    const distance = Math.hypot(
+      receiverPoint.x - sourcePoint.x,
+      receiverPoint.y - sourcePoint.y,
+      receiverPoint.z - sourcePoint.z
+    );
+    const delay = request.hitTime - emissionTime;
+    return {
+      requestId: runRequest.requestId,
+      runId: runRequest.runId,
+      datasetId: runRequest.datasetId,
+      status: { code: "ok", severity: "ok", message: "causal roots solved" },
+      response: {
+        runId: runRequest.runId,
+        datasetId: runRequest.datasetId,
+        roots: [
+          {
+            rootId: 0,
+            statusCode: 0,
+            emissionTime,
+            hitTime: request.hitTime,
+            delay,
+            distance,
+            residual: 0,
+            jacobian: 1,
+            branchWeight: 1,
+            sourcePoint,
+            receiverPoint,
+          },
+        ],
+        status: { code: "ok", severity: "ok", message: "causal roots solved" },
+      },
+    };
+  };
+  return { calls, runSolverBridge };
+}
+
+function createPhotonMixedSearchBridgeStub() {
+  const circularBridge = createPhotonCircularSourceBridgeStub();
+  const runCalls = [];
+  const runSolverBridge = async (runRequest) => {
+    runCalls.push(runRequest);
+    if (runRequest.runKind === "sharedGeometry") {
+      return createPhotonSelfHitRunHandle(
+        runRequest,
+        runRequest.config.geometryRequest.circularSelfHitSpans.map((request) =>
+          request.fieldSpeedRatio > 1.015 ? 1.25 : 0
+        )
+      );
+    }
+    const request = runRequest.config.rootRequest;
+    assert.ok(request, "mixed search bridge requires a rootRequest for causal root runs");
+    const emissionTime = (request.source.startTime + request.source.endTime) / 2;
+    const sourcePoint = evaluateLinearSegmentPosition(request.source, emissionTime);
+    const receiverPoint = evaluateLinearSegmentPosition(request.receiver, request.hitTime);
+    const distance = Math.hypot(
+      receiverPoint.x - sourcePoint.x,
+      receiverPoint.y - sourcePoint.y,
+      receiverPoint.z - sourcePoint.z
+    );
+    return {
+      requestId: runRequest.requestId,
+      runId: runRequest.runId,
+      datasetId: runRequest.datasetId,
+      status: { code: "ok", severity: "ok", message: "causal roots solved" },
+      response: {
+        runId: runRequest.runId,
+        datasetId: runRequest.datasetId,
+        roots: [
+          {
+            rootId: 0,
+            statusCode: 0,
+            emissionTime,
+            hitTime: request.hitTime,
+            delay: request.hitTime - emissionTime,
+            distance,
+            residual: 0,
+            jacobian: 1,
+            branchWeight: 1,
+            sourcePoint,
+            receiverPoint,
+          },
+        ],
+        status: { code: "ok", severity: "ok", message: "causal roots solved" },
+      },
+    };
+  };
+  return {
+    circularCalls: circularBridge.calls,
+    runCalls,
+    solveCircularSourceRootsHitsLedger: circularBridge.solveCircularSourceRootsHitsLedger,
+    runSolverBridge,
+  };
+}
+
+function createPhotonSelfHitRunHandle(runRequest, spans) {
+  const requests = runRequest.config.geometryRequest.circularSelfHitSpans;
+  return {
+    requestId: runRequest.requestId,
+    runId: runRequest.runId,
+    datasetId: runRequest.datasetId,
+    status: { code: "ok", severity: "ok", message: "shared geometry completed" },
+    response: {
+      runId: runRequest.runId,
+      datasetId: runRequest.datasetId,
+      geometry: {
+        circularSelfHitSpans: requests.map((request, index) => {
+          const span = spans[index] ?? 0;
+          const rootFound = span > 0;
+          return {
+            itemIndex: index,
+            statusCode: 0,
+            fieldSpeedRatio: request.fieldSpeedRatio,
+            fieldSpeedTolerance: request.fieldSpeedTolerance ?? 0.015,
+            regime: request.fieldSpeedRatio > 1.015 ? "super_field" : "sub_field",
+            resultKind: rootFound ? "root_solved" : "below_threshold",
+            span,
+            rootFound,
+            bracketLow: span,
+            bracketHigh: span,
+            residual: 0,
+            iterations: request.maxIterations ?? 28,
+          };
+        }),
+      },
+      status: { code: "ok", severity: "ok", message: "shared geometry completed" },
+    },
+  };
+}
+
 function buildSyntheticPolarizationSamples({ ampY = 1, ampZ = 0, phaseLag = 0, count = 144 } = {}) {
   return Array.from({ length: count }, (_, index) => {
     const progress = index / count;
@@ -193,7 +342,10 @@ test("default photon state encodes trailing and leading swarm convention", () =>
     });
   });
   assert.deepEqual(state.measurement.virtualObserver, { x: 0, y: 0, z: 0 });
+  assert.equal(state.measurement.sourceHistoryMode, "co_moving");
+  assert.equal(state.measurement.signalSpeedCf, 1);
   assert.equal(state.measurement.emissionSpeedCf, 1);
+  assert.equal(state.pair.photonSpeedCf, 1);
   assert.deepEqual(state.polarization, { analyzerAngleDeg: 0 });
   assert.equal(state.view.rawPolarizationVisible, true);
   assert.equal(state.pair.pairSeparation, getPhotonSeparationReferenceRadius(state));
@@ -461,6 +613,9 @@ test("Photon causal roots can create and dispose a solver bridge worker client",
 
 test("Photon circular-source solver request preserves source orbit geometry", () => {
   const state = createDefaultPhotonState();
+  state.measurement.signalSpeedCf = 0.72;
+  state.measurement.emissionSpeedCf = 0.72;
+  state.pair.photonSpeedCf = 0.72;
   const sourceRef = { swarmId: "left", layerId: "O", chargeType: "electrino" };
   const observationTime = 0.75;
   const request = createPhotonCircularSourceCausalRootRequest(state, sourceRef, observationTime);
@@ -478,11 +633,111 @@ test("Photon circular-source solver request preserves source orbit geometry", ()
   assert.equal(request.source.endTime, observationTime);
   assert.equal(request.receiver.endTime, observationTime);
   assert.equal(request.hitTime, observationTime);
-  assert.equal(request.signalSpeed, 1);
+  assert.equal(request.signalSpeed, 0.72);
+  assert.equal(request.receiver.velocity.x, 0);
   assertNear(requestPosition.x, kinematics.position.x);
   assertNear(requestPosition.y, kinematics.position.y);
   assertNear(requestPosition.z, kinematics.position.z);
   assertNear(request.source.angularVelocity, kinematics.angularVelocity);
+});
+
+test("Photon absolute-history segment requests move source and Virtual Observer at photon speed", () => {
+  const state = createDefaultPhotonState();
+  state.measurement.sourceHistoryMode = "absolute_history";
+  state.measurement.signalSpeedCf = 0.85;
+  state.measurement.emissionSpeedCf = 0.85;
+  state.pair.photonSpeedCf = 0.6;
+  state.measurement.virtualObserver.x = 0.25;
+  const sourceRef = { swarmId: "left", layerId: "O", chargeType: "positrino" };
+  const observationTime = 1.5;
+  const requests = createPhotonAbsoluteSourceSegmentCausalRootRequests(
+    state,
+    sourceRef,
+    observationTime,
+    {
+      maxDelay: 0.5,
+      absoluteHistorySegments: 2,
+    }
+  );
+  const first = requests[0];
+  const kinematics = getPhotonArchitrinoKinematics(
+    state,
+    sourceRef.swarmId,
+    sourceRef.layerId,
+    sourceRef.chargeType,
+    first.source.startTime
+  );
+
+  assert.equal(requests.length, 2);
+  assert.equal(first.signalSpeed, 0.85);
+  assert.equal(first.receiver.velocity.x, 0.6);
+  assert.equal(first.source.velocity.x, 0.6);
+  assert.equal(first.sourceHistory.kind, "moving-circular-source-linearized");
+  assert.equal(first.sourceHistory.approximationPolicy, "linearized-moving-circular-source-segments");
+  assert.equal(first.sourceHistory.source.centerVelocity.x, 0.6);
+  assert.deepEqual(first.sourceHistory.sourceRef, sourceRef);
+  assertNear(first.source.positionAtStart.x, kinematics.position.x + 0.6 * first.source.startTime);
+  assertNear(
+    first.receiver.positionAtStart.x,
+    state.measurement.virtualObserver.x + 0.6 * first.receiver.startTime
+  );
+});
+
+test("Photon self-hit span requests use absolute photon plus orbital speed ratios", () => {
+  const state = createDefaultPhotonState();
+  state.pair.photonSpeedCf = 0;
+  state.measurement.signalSpeedCf = 1;
+  state.measurement.emissionSpeedCf = 1;
+  const runRequest = createPhotonCircularSelfHitSpansRunRequest(state, {
+    requestId: "photon_self_hit_request",
+    runId: "photon_self_hit_run",
+    datasetId: "photon_self_hit_dataset",
+  });
+  const rows = runRequest.config.geometryRequest.circularSelfHitSpans;
+
+  assert.equal(runRequest.appId, "photon");
+  assert.equal(runRequest.runKind, "sharedGeometry");
+  assert.equal(rows.length, 6);
+  assertNear(rows[0].fieldSpeedRatio, 1.2);
+  assertNear(rows[1].fieldSpeedRatio, 1);
+  assertNear(rows[2].fieldSpeedRatio, 0.8);
+  assert.equal(runRequest.envelope.interactionPolicy, "same-source-enabled");
+});
+
+test("Photon self-hit diagnostics route same-source rows through the solver bridge", async () => {
+  const state = createDefaultPhotonState();
+  state.pair.photonSpeedCf = 0;
+  const spans = [2.05, 0, 0, 2.05, 0, 0];
+  const diagnostics = await computePhotonSelfHitDiagnosticsWithSolverBridge(state, {
+    requestId: "photon_self_hit_request",
+    runId: "photon_self_hit_run",
+    datasetId: "photon_self_hit_dataset",
+    async runSolverBridge(runRequest) {
+      assert.equal(runRequest.config.geometryRequest.circularSelfHitSpans.length, 6);
+      return createPhotonSelfHitRunHandle(runRequest, spans);
+    },
+  });
+
+  assert.equal(diagnostics.status, "ok");
+  assert.equal(diagnostics.rowCount, 6);
+  assert.equal(diagnostics.candidateCount, 2);
+  assert.equal(diagnostics.rootFoundCount, 2);
+  assert.equal(diagnostics.rows[0].role, "trailing");
+  assert.equal(diagnostics.rows[0].layerId, "I");
+  assert.equal(diagnostics.rows[0].resultKind, "root_solved");
+  assertNear(diagnostics.rows[0].span, spans[0]);
+});
+
+test("Photon self-hit diagnostics can fall back when only circular-source roots are injected", async () => {
+  const state = createDefaultPhotonState();
+  const diagnostics = await computePhotonSelfHitDiagnosticsWithSolverBridge(state, {
+    solveCircularSourceRootsHitsLedger: async () => ({ roots: [] }),
+  });
+
+  assert.equal(diagnostics.status, "unavailable");
+  assert.equal(diagnostics.rowCount, 6);
+  assert.equal(diagnostics.rootFoundCount, 0);
+  assert.ok(diagnostics.candidateCount >= 2);
 });
 
 test("Photon circular-source roots, hits, and ledger rows can be routed through the solver app bridge", async () => {
@@ -576,6 +831,38 @@ test("Photon circular-source roots, hits, and ledger rows can be routed through 
   assert.equal(roots.length, 1);
   assert.equal(roots[0].hitTime, observationTime);
   assert.equal(roots[0].residual, 0);
+});
+
+test("Photon delayed emission field can use absolute-history segmented solver roots", async () => {
+  const state = createDefaultPhotonState();
+  state.measurement.sourceHistoryMode = "absolute_history";
+  state.pair.photonSpeedCf = 0.5;
+  state.measurement.signalSpeedCf = 0.9;
+  state.measurement.emissionSpeedCf = 0.9;
+  const bridge = createPhotonLinearRootBridgeStub();
+  const field = await computePhotonDelayedEmissionFieldWithSolverBridge(state, 0.75, {
+    runSolverBridge: bridge.runSolverBridge,
+    absoluteHistorySegments: 2,
+    maxDelay: 0.25,
+    parallel: false,
+  });
+
+  assert.equal(field.solverEngineId, "architrino-solver-app-bridge");
+  assert.equal(field.sourceMode, "solver_bridge_absolute_history_segmented_branch_sum");
+  assert.equal(field.measurement.sourceHistoryMode, "absolute_history");
+  assert.equal(field.sourceCount, buildPhotonArchitrinoSourceRefs(state).length);
+  assert.equal(bridge.calls.length, field.sourceCount * 2);
+  assert.ok(field.rootCount > field.sourceCount);
+  assert.ok(field.contributions.every((contribution) =>
+    contribution.kinematics.sourceHistoryMode === "absolute_history_segmented"
+  ));
+  assert.ok(field.contributions.every((contribution) =>
+    contribution.sourceHistoryKind === "moving-circular-source-linearized"
+  ));
+  assert.ok(field.contributions.every((contribution) =>
+    Number.isFinite(contribution.phaseAtHit?.sourcePhaseCycleIndex)
+  ));
+  assert.ok(Number.isFinite(field.electric.y));
 });
 
 test("Photon circular-source bridge can create and dispose a solver bridge client", async () => {
@@ -999,7 +1286,58 @@ test("configuration search can score settings through the solver bridge", async 
     assert.ok(Number.isFinite(result.score));
     assert.equal(result.state.app, "photon");
     assert.ok(Number.isFinite(result.diagnostics.rootCount));
+    assert.equal(result.comparison.status, "unavailable");
   });
+});
+
+test("configuration search compares co-moving and absolute-history solver results when available", async () => {
+  const state = createDefaultPhotonState();
+  const bridge = createPhotonMixedSearchBridgeStub();
+  const results = await createPhotonConfigurationSearchResultsWithSolverBridge(state, {
+    solveCircularSourceRootsHitsLedger: bridge.solveCircularSourceRootsHitsLedger,
+    runSolverBridge: bridge.runSolverBridge,
+    limit: 2,
+    maxCandidates: 2,
+    summaryOptions: {
+      polarizationSampleCount: 6,
+      minimumPolarizationSampleCount: 4,
+      analyzerSampleCount: 3,
+      minimumAnalyzerSampleCount: 2,
+    },
+    perturbOptions: {
+      polarizationSampleCount: 4,
+      minimumPolarizationSampleCount: 3,
+      analyzerSampleCount: 2,
+      minimumAnalyzerSampleCount: 1,
+    },
+    comparisonOptions: {
+      polarizationSampleCount: 4,
+      minimumPolarizationSampleCount: 3,
+      analyzerSampleCount: 2,
+      minimumAnalyzerSampleCount: 1,
+      absoluteHistorySegments: 2,
+      maxDelay: 0.25,
+    },
+  });
+
+  assert.equal(results.length, 2);
+  assert.ok(bridge.circularCalls.length > 0);
+  assert.ok(bridge.runCalls.some((runRequest) => runRequest.runKind === "causalRoots"));
+  assert.ok(!bridge.runCalls.some((runRequest) => runRequest.runKind === "sharedGeometry"));
+  results.forEach((result) => {
+    assert.equal(result.comparison.status, "ok");
+    assert.equal(result.comparison.coMoving.sourceMode, "solver_bridge_circular_source_branch_sum");
+    assert.equal(
+      result.comparison.absoluteHistory.sourceMode,
+      "solver_bridge_absolute_history_segmented_branch_sum"
+    );
+    assert.ok(Number.isFinite(result.comparison.deltas.strengthDelta));
+    assert.ok(Number.isFinite(result.comparison.deltas.rootCountDelta));
+  });
+
+  const serialized = serializePhotonSearchResults(results);
+  const imported = parsePhotonSearchResultsJson(serialized);
+  assert.equal(imported[0].comparison.status, "ok");
 });
 
 test("bridge-backed photon diagnostics expose the active solver engine", async () => {
@@ -1013,6 +1351,8 @@ test("bridge-backed photon diagnostics expose the active solver engine", async (
   const rows = new Map(getPhotonDiagnosticRows(state, 0, summary));
 
   assert.equal(rows.get("Solver engine"), "architrino-solver-app-bridge");
+  assert.equal(rows.get("Self-hit roots"), "0 / 6");
+  assert.equal(rows.get("Self-hit max v/c_sig"), "1.56");
 });
 
 test("configuration search results export and import full settings", async () => {
@@ -1059,6 +1399,9 @@ test("photon state normalization preserves configured values", () => {
   state.polarization.analyzerAngleDeg = 45;
   state.pair.right.layers.M.frequencyHz = 7;
   state.pair.right.layers.O.enabled = false;
+  state.measurement.sourceHistoryMode = "absolute_history";
+  state.pair.photonSpeedCf = 0.83;
+  state.measurement.signalSpeedCf = 0.74;
   state.measurement.virtualObserver.x = 5.25;
   state.measurement.virtualObserver.y = -1.5;
   state.view.rawPolarizationVisible = false;
@@ -1068,6 +1411,10 @@ test("photon state normalization preserves configured values", () => {
   assert.equal(normalized.view.rawPolarizationVisible, false);
   assert.equal(normalized.pair.right.layers.M.frequencyHz, 8);
   assert.equal(normalized.pair.right.layers.O.enabled, false);
+  assert.equal(normalized.pair.photonSpeedCf, 0.83);
+  assert.equal(normalized.measurement.sourceHistoryMode, "absolute_history");
+  assert.equal(normalized.measurement.signalSpeedCf, 0.74);
+  assert.equal(normalized.measurement.emissionSpeedCf, 0.74);
   assert.equal(normalized.measurement.virtualObserver.x, 5.25);
   assert.equal(normalized.measurement.virtualObserver.y, -1.5);
   assert.deepEqual(normalized, normalizePhotonState(normalized));

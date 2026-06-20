@@ -4650,6 +4650,14 @@
           "type": "string",
           "minLength": 1
         },
+        "pathConstraintPhysicalBoundarySolverStatus": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pathConstraintPhysicalBoundarySolverClaim": {
+          "type": "string",
+          "minLength": 1
+        },
         "maxPathConstraintGuidanceAcceleration": {
           "type": "number"
         },
@@ -4901,6 +4909,14 @@
           "minLength": 1
         },
         "pathConstraintSolverClaim": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pathConstraintPhysicalBoundarySolverStatus": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pathConstraintPhysicalBoundarySolverClaim": {
           "type": "string",
           "minLength": 1
         },

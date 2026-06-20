@@ -50,7 +50,7 @@ Presets are starting points for inspection, not certified photon branches. They 
 
 The Search configurations button looks for photon settings that are worth inspecting more closely. It starts from the current app settings, then tries nearby or systematic variations of the enabled binaries, I/M/O frequency powers, radius lanes, phase offsets, $\Delta x$, Virtual Observer position, Analyzer angle, and available speed mode.
 
-The search generates a results list for the current session. Each result should include a short name, the full settings snapshot, the main plot and polarization summary, the diagnostics that made it stand out, and a plain-language reason to inspect it. Loading a result applies its settings to the app so it can be viewed, played, edited, or compared against a named preset.
+The search generates a results list for the current session. The interactive search is intentionally bounded: it samples representative configuration families rather than trying every possible combination. Each result should include a short name, the full settings snapshot, the main plot and polarization summary, the diagnostics that made it stand out, and a plain-language reason to inspect it. When the absolute-history solver path is available, top results also record a compact comparison between the co-moving diagnostic and the absolute-history moving-apparatus diagnostic. Loading a result applies its settings to the app so it can be viewed, played, edited, or compared against a named preset.
 
 Useful results can be exported as JSON. Exported settings can later be reviewed and, when they are worth keeping, incorporated into the named preset set. Until a result is promoted that way, treat it as a session finding rather than a durable app preset.
 
@@ -60,6 +60,7 @@ The search should flag a configuration as interesting when it has one or more of
 - Strong cancellation: many active binaries but a small net transverse field at the Virtual Observer.
 - Sharp transitions: small changes in phase, $\Delta x$, Virtual Observer position, or radius produce a large change in the fitted polarization.
 - Robust patterns: the same behavior survives small nudges to the settings instead of depending on one exact slider position.
+- Absolute-history agreement or divergence: the absolute-history comparison either preserves the co-moving behavior, which is a stability clue, or changes it strongly, which is a useful stress clue.
 - Causal-root structure: low missed-source count, healthy Jacobian values, repeatable phase-at-hit families, or organized same-source and partner-hit roots.
 - Simple explanations: fewer active binaries, integer frequency ratios, simple phase offsets, or clean leading/trailing symmetry are preferred when the diagnostic quality is similar.
 - Diversity: the results list should avoid many tiny variations of the same pattern and keep representative examples from different pattern families.
@@ -88,6 +89,12 @@ The Virtual Observer controls choose where the sample point is placed in the app
 
 The `x`, `y`, and `z` sliders mark the zero point and snap values very close to zero to exactly `0`.
 
+`Signal c/c_f` sets the causal signal speed used by the current root solve. At the default value `1.00`, the branch signal speed is $c_f$. Lower values let the diagnostic inspect slower local-signal regimes.
+
+`Photon c_\gamma/c_f` sets the photon-channel translation speed used when `Absolute history` is enabled.
+
+`Absolute history` switches the solver request from the co-moving circular-source diagnostic to a segmented absolute-history diagnostic. In that mode, each architrino source history and the Virtual Observer history translate along $+\hat{\mathbf x}$ at $c_\gamma$, and the central solver bridge solves the retained roots on short moving linear segments. This is an approximation layer for the moving-apparatus calculation; the co-moving mode remains useful for comparison.
+
 The plotted E curve is recalculated by solving the causal-root equation from every active architrino source history to the Virtual Observer point. Each retained root contributes a radial Master-EOM-style hit weighted by $1/(R^2 |J|)$, where $R$ is the source-to-observer distance at the root and $J$ is the delay-map Jacobian. The app then reconstructs the displayed $E_y$ and $E_z$ components from the transverse part of the summed receiver acceleration.
 
 The $\mathbf E$ graph auto-scales its vertical span from the maximum visible $|E_y|$ or $|E_z|$ sample, so the curve stays readable without changing the diagnostic field values. The displayed field comes directly from retained roots and the radial inverse-square causal-hit form rather than from a separate near/far mixing slider.
@@ -102,7 +109,7 @@ x_{\mathrm{VO}}\hat{\mathbf x}
 +z_{\mathrm{VO}}\hat{\mathbf z}
 $$
 
-For swarm $s$, layer $\ell$, and polarity sign $q\in\{+1,-1\}$, the app places the source at
+In co-moving mode, for swarm $s$, layer $\ell$, and polarity sign $q\in\{+1,-1\}$, the app places the source at
 
 $$
 \mathbf r_{s\ell q}(\tau)
@@ -122,7 +129,11 @@ $$
 +\pi\,\mathbf 1_{q=-1}
 $$
 
-Here $\sigma_s=+1$ for the trailing counter-clockwise swarm and $\sigma_s=-1$ for the leading clockwise swarm. For each active source row $i=(s,\ell,q)$, the retained source times solve
+Here $\sigma_s=+1$ for the trailing counter-clockwise swarm and $\sigma_s=-1$ for the leading clockwise swarm.
+
+In absolute-history mode, the same circular source history is evaluated in short moving segments. The segment start point includes the translated center term $c_\gamma\tau\hat{\mathbf x}$, and the Virtual Observer segment includes $c_\gamma t\hat{\mathbf x}$. This makes the root solve ask whether a source history point moving with the photon channel can causally reach the moving Virtual Observer.
+
+For each active source row $i=(s,\ell,q)$, the retained source times solve
 
 $$
 F_i(t;\tau)
@@ -130,7 +141,7 @@ F_i(t;\tau)
 \left\|
 \mathbf X_{\mathrm{VO}}-\mathbf r_i(\tau)
 \right\|
--c_f(t-\tau)
+-c_{\mathrm{sig}}(t-\tau)
 =0,
 \qquad
 \tau<t
@@ -156,7 +167,7 @@ and
 $$
 J_{i,k}
 =
-1-\frac{\mathbf v_i(\tau_{i,k})\cdot\mathbf n_{i,k}}{c_f}
+1-\frac{\mathbf v_i(\tau_{i,k})\cdot\mathbf n_{i,k}}{c_{\mathrm{sig}}}
 $$
 
 The displayed electric readout is reconstructed from the transverse part of the Jacobian-weighted radial hit sum
@@ -236,11 +247,13 @@ The live Diagnostics panel includes a quality word when a readout has a useful d
 | 7 | Root&nbsp;count | How many causal roots were retained after solving source histories. More than source count means at least one source has multiple roots. |
 | 8 | Max&nbsp;source&nbsp;v/c_f | The fastest active source speed compared with field speed. Above `1` means super-field-speed source motion is present; that is a regime indicator, not a delay-solve failure by itself. |
 | 9 | Min \|J\| | The smallest Jacobian magnitude in the causal-root sum. Very small values mean the branch is close to a pile-up or caustic. |
-| 10 | Missed&nbsp;sources | How many active source rows produced no retained root. For a clean solve, this should be `0`. |
-| 11 | Delay&nbsp;solve&nbsp;gap | The largest leftover mismatch in the causal-delay equation. Smaller means the root solve is tighter. |
-| 12 | Delay&nbsp;status | A simple stable/unstable flag based on root misses, delay gap, and small-Jacobian checks. |
-| 13 | Left&nbsp;phase&nbsp;spread | How evenly the left swarm's I/M/O phases are spaced. |
-| 14 | Right&nbsp;phase&nbsp;spread | How evenly the right swarm's I/M/O phases are spaced. |
+| 10 | Self-hit&nbsp;roots | How many enabled binary layers produced a retained same-source self-hit span row in the shared-geometry solver. |
+| 11 | Self-hit&nbsp;max&nbsp;$v/c_{\mathrm{sig}}$ | The largest same-source speed ratio after combining photon-channel translation speed with transverse orbital speed. Values above `1` nominate a self-hit candidate regime. |
+| 12 | Missed&nbsp;sources | How many active source rows produced no retained root. For a clean solve, this should be `0`. |
+| 13 | Delay&nbsp;solve&nbsp;gap | The largest leftover mismatch in the causal-delay equation. Smaller means the root solve is tighter. |
+| 14 | Delay&nbsp;status | A simple stable/unstable flag based on root misses, delay gap, and small-Jacobian checks. |
+| 15 | Left&nbsp;phase&nbsp;spread | How evenly the left swarm's I/M/O phases are spaced. |
+| 16 | Right&nbsp;phase&nbsp;spread | How evenly the right swarm's I/M/O phases are spaced. |
 
 ## Formulas
 

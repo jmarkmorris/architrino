@@ -44,6 +44,7 @@ const VIEWPORT_ZOOM_MAX = 3;
 const WHEEL_ZOOM_SENSITIVITY = 0.0015;
 const CENTRAL_PAIR_INTERACTION_REPLAY_MODE = "pairInteraction";
 const DISCRETE_BOUNDARY_VALUE_CONVERGED_STATUS = "discrete_boundary_value_converged";
+const PHYSICAL_BOUNDARY_SOLVER_PENDING_STATUS = "physical_boundary_solver_pending";
 const DEFAULT_PATH_CONSTRAINT_BOUNDARY_RELAXATION_ITERATION_COUNT = 64;
 const DEFAULT_PATH_CONSTRAINT_BOUNDARY_RELAXATION_TOLERANCE = 10;
 const ADAPTIVE_PATH_CONSTRAINT_BOUNDARY_RELAXATION_ITERATION_COUNT = 256;
@@ -922,6 +923,9 @@ class CausalDelayFeedbackRuntime {
         const boundaryRelaxationStatus =
           this.dataset?.pathConstraintBoundaryRelaxationStatus ??
           this.dataset?.solverSummary?.pathConstraintBoundaryRelaxationStatus;
+        const boundaryRelaxationResidualEvidenceStatus =
+          this.dataset?.pathConstraintBoundaryRelaxationResidualEvidenceStatus ??
+          this.dataset?.solverSummary?.pathConstraintBoundaryRelaxationResidualEvidenceStatus;
         const boundaryRelaxationResidualRatio = Number(
           this.dataset?.pathConstraintBoundaryRelaxationResidualRatio ??
             this.dataset?.solverSummary?.pathConstraintBoundaryRelaxationResidualRatio
@@ -1007,6 +1011,12 @@ class CausalDelayFeedbackRuntime {
         const constraintSolverClaim =
           this.dataset?.pathConstraintSolverClaim ??
           this.dataset?.solverSummary?.pathConstraintSolverClaim;
+        const physicalBoundarySolverStatus =
+          this.dataset?.pathConstraintPhysicalBoundarySolverStatus ??
+          this.dataset?.solverSummary?.pathConstraintPhysicalBoundarySolverStatus;
+        const physicalBoundarySolverClaim =
+          this.dataset?.pathConstraintPhysicalBoundarySolverClaim ??
+          this.dataset?.solverSummary?.pathConstraintPhysicalBoundarySolverClaim;
         const maxGuidanceAcceleration = Number(
           this.dataset?.maxPathConstraintGuidanceAcceleration ??
             this.dataset?.solverSummary?.maxPathConstraintGuidanceAcceleration
@@ -1158,6 +1168,10 @@ class CausalDelayFeedbackRuntime {
                 ? ` relaxKind=${formatCompactLabel(boundaryRelaxationSelectedCandidateKind)}`
                 : ""
             }${
+              boundaryRelaxationResidualEvidenceStatus
+                ? ` relaxEvidence=${formatCompactLabel(boundaryRelaxationResidualEvidenceStatus)}`
+                : ""
+            }${
               Number.isFinite(boundaryRelaxationCenterOfMassSelectedCount)
                 ? ` relaxCom=${boundaryRelaxationCenterOfMassSelectedCount}`
                 : ""
@@ -1213,6 +1227,11 @@ class CausalDelayFeedbackRuntime {
         const constraintSolverDetail = constraintSolverStatus
           ? ` constraint=${constraintSolverStatus}${constraintSolverClaim ? ` claim=${constraintSolverClaim}` : ""}`
           : "";
+        const physicalBoundarySolverDetail = physicalBoundarySolverStatus
+          ? ` physical=${formatCompactLabel(physicalBoundarySolverStatus)}${
+              physicalBoundarySolverClaim ? ` physicalClaim=${formatCompactLabel(physicalBoundarySolverClaim)}` : ""
+            }`
+          : "";
         const constraintBoundary = isDiscreteBoundaryConverged
           ? ` Retained path constraints converged against the discrete finite-difference pair equation under the requested relaxation tolerance.${
               effectiveBoundaryStatus === "unchecked"
@@ -1228,6 +1247,10 @@ class CausalDelayFeedbackRuntime {
               ? " Retained path constraints used retained-knot boundary guidance; this is not yet the final physical boundary-value path solve."
               : " Retained path constraints used finite-time guidance; this is not yet the final physical boundary-value path solve."
             : "";
+        const physicalBoundarySolverHelp =
+          physicalBoundarySolverStatus === PHYSICAL_BOUNDARY_SOLVER_PENDING_STATUS
+            ? " The full physical pair-interaction/path-constraint boundary-value solver is still pending behind this replay."
+            : "";
         return {
           state: isDiscreteBoundaryConverged
             ? "bridge-boundary"
@@ -1240,8 +1263,8 @@ class CausalDelayFeedbackRuntime {
               ? "solver guided replay"
               : "solver pair replay",
           help:
-            `Showing central solver bridge replay from one mutual pair-interaction path run${stepDetail}${frameRefinementDetail}${lawDetail}${pathDetail}${residualDetail}${positionResidualDetail}${positionResidualStatusDetail}${boundaryDetail}${boundaryStatusDetail}${boundaryModeDetail}${boundarySeedDetail}${boundaryRelaxationDetail}${boundaryAdaptiveDetail}${guidanceDetail}${constraintSolverDetail}. ` +
-            `This replaces the segmented one-body seed replay for the default canvas path.${constraintBoundary}`,
+            `Showing central solver bridge replay from one mutual pair-interaction path run${stepDetail}${frameRefinementDetail}${lawDetail}${pathDetail}${residualDetail}${positionResidualDetail}${positionResidualStatusDetail}${boundaryDetail}${boundaryStatusDetail}${boundaryModeDetail}${boundarySeedDetail}${boundaryRelaxationDetail}${boundaryAdaptiveDetail}${guidanceDetail}${constraintSolverDetail}${physicalBoundarySolverDetail}. ` +
+            `This replaces the segmented one-body seed replay for the default canvas path.${constraintBoundary}${physicalBoundarySolverHelp}`,
         };
       }
       const accelerationPolicy = this.getBridgeMotionAccelerationPolicy();
@@ -3915,6 +3938,12 @@ class CausalDelayFeedbackRuntime {
     );
     const constraintSolverStatus = this.dataset?.pathConstraintSolverStatus ?? summary.pathConstraintSolverStatus;
     const constraintSolverClaim = this.dataset?.pathConstraintSolverClaim ?? summary.pathConstraintSolverClaim;
+    const physicalBoundarySolverStatus =
+      this.dataset?.pathConstraintPhysicalBoundarySolverStatus ??
+      summary.pathConstraintPhysicalBoundarySolverStatus;
+    const physicalBoundarySolverClaim =
+      this.dataset?.pathConstraintPhysicalBoundarySolverClaim ??
+      summary.pathConstraintPhysicalBoundarySolverClaim;
     const isDiscreteBoundaryConverged = constraintSolverStatus === DISCRETE_BOUNDARY_VALUE_CONVERGED_STATUS;
     const maxGuidanceAcceleration = Number(
       this.dataset?.maxPathConstraintGuidanceAcceleration ?? summary.maxPathConstraintGuidanceAcceleration,
@@ -4077,6 +4106,12 @@ class CausalDelayFeedbackRuntime {
     }
     if (constraintSolverClaim) {
       details.push(`claim=${formatCompactLabel(constraintSolverClaim)}`);
+    }
+    if (physicalBoundarySolverStatus) {
+      details.push(`physical=${formatCompactLabel(physicalBoundarySolverStatus)}`);
+    }
+    if (physicalBoundarySolverClaim) {
+      details.push(`physicalClaim=${formatCompactLabel(physicalBoundarySolverClaim)}`);
     }
     if (Number.isFinite(boundarySampleCount) && boundarySampleCount > 0) {
       details.push(`boundary=${boundarySampleCount}`);

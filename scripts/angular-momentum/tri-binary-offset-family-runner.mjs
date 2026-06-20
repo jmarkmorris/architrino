@@ -4794,6 +4794,7 @@ function createWakeEnergyIncrementTarget({
       omegaStarWeightedBoundaryCharge,
       omegaStar,
       targetChargeNorm,
+      layerByName,
     });
   const sameEventEnergyRoutingTarget = createSameEventEnergyRoutingTarget({
     targetPopulated,
@@ -4924,6 +4925,25 @@ function createWakeEnergyIncrementTarget({
         target:
           actionBoundaryWakeEnergyLawCandidate.actionScaleDerivationTarget ??
           null,
+      },
+      {
+        id: "action_boundary_action_scale_independent_source_exclusion_summary",
+        status:
+          actionBoundaryWakeEnergyLawCandidate
+            .actionScaleIndependentSourceExclusionSummaryStatus ??
+          "blocked_missing_action_boundary_action_scale_derivation_target",
+        requiredPositiveActionScale:
+          actionBoundaryWakeEnergyLawCandidate
+            .positiveActionScaleForOmegaStarMagnitude,
+        currentSearchExhaustedPass:
+          actionBoundaryWakeEnergyLawCandidate
+            .currentActionScaleSearchExhaustedPass ?? false,
+        nextClosureRoute:
+          actionBoundaryWakeEnergyLawCandidate.actionScaleDerivationTarget
+            ?.independentSourceExclusionSummary?.nextClosureRoute ?? null,
+        target:
+          actionBoundaryWakeEnergyLawCandidate.actionScaleDerivationTarget
+            ?.independentSourceExclusionSummary ?? null,
       },
       {
         id: "energy_orientation_law_search",
@@ -5155,6 +5175,16 @@ function createSameEventEnergyRoutingTarget({
       normalizedActionKernelWakeCharge?.status ?? null,
     retainedCrossingDomainPullbackStatus:
       retainedActionKernelPullbackDomain?.status ?? null,
+    compensatedRoutePayloadStatus:
+      compensatedRoutePayloadCertificate?.status ?? null,
+    compensatedRoutePayloadComplete:
+      compensatedRoutePayloadCertificate?.complete === true,
+    compensatedRoutePayloadPopulatedFields:
+      compensatedRoutePayloadCertificate?.populatedPayloadFields ?? [],
+    compensatedRoutePayloadMissingFields:
+      compensatedRoutePayloadCertificate?.missingPayloadFields ?? [],
+    compensatedRoutePayloadRowCount:
+      compensatedRoutePayloadCertificate?.routeRowCount ?? null,
     routeRootKeys,
     sameRetainedActiveRowIds,
     routeRowCount: routeRows.length,
@@ -5243,6 +5273,9 @@ function createOmegaSameEventDependencyDiagnostic({
       hingeEventRowSetIdentity,
       retainedTimeDomainCoverage,
       omegaBlockersAfterCarrierPopulation,
+      minimalBranchTransactionFrequencyCertificate,
+      actionBoundaryWakeEnergyLawCandidate,
+      sameEventEnergyRoutingTarget,
       layerByName,
     });
 
@@ -5306,6 +5339,9 @@ function createOmegaRetainedEventGeometryBlockerDiagnostic({
   hingeEventRowSetIdentity = null,
   retainedTimeDomainCoverage = null,
   omegaBlockersAfterCarrierPopulation,
+  minimalBranchTransactionFrequencyCertificate = null,
+  actionBoundaryWakeEnergyLawCandidate = null,
+  sameEventEnergyRoutingTarget = null,
   layerByName = new Map(),
 }) {
   const routeRows = hingeRootBranchTransportRouteFeasibility?.rows ?? [];
@@ -5333,6 +5369,9 @@ function createOmegaRetainedEventGeometryBlockerDiagnostic({
       retainedTimeDomainCoverage,
       sameSourceEmissionClockTransportDiagnostic,
       retainedEventBlockers,
+      minimalBranchTransactionFrequencyCertificate,
+      actionBoundaryWakeEnergyLawCandidate,
+      sameEventEnergyRoutingTarget,
     });
   const rowSummaries = routeRows.map((row) => ({
     incomingPairKey: row.incomingPairKey ?? null,
@@ -5407,6 +5446,9 @@ function createRouteAuthorizedEndpointProviderGlobalDomainObstructionTarget({
   retainedTimeDomainCoverage,
   sameSourceEmissionClockTransportDiagnostic,
   retainedEventBlockers,
+  minimalBranchTransactionFrequencyCertificate = null,
+  actionBoundaryWakeEnergyLawCandidate = null,
+  sameEventEnergyRoutingTarget = null,
 }) {
   const acceptedEndpointProviderRows =
     sameSourceEmissionClockTransportDiagnostic?.rows?.filter(
@@ -5448,6 +5490,13 @@ function createRouteAuthorizedEndpointProviderGlobalDomainObstructionTarget({
       rootPayloadIntervalEnclosure,
       localEndpointProviderAcceptedPass,
     });
+  const endpointProviderAssistedBranchTransportGeometryTarget =
+    createEndpointProviderAssistedBranchTransportGeometryTarget({
+      hingeRootBranchTransportRouteFeasibility,
+      hingeEventRowSetIdentity,
+      acceptedEndpointProviderRows,
+      localEndpointProviderAcceptedPass,
+    });
   const fullPointEventRuleLiftTarget = createFullPointEventRuleLiftTarget({
     hingeRootBranchTransportRouteFeasibility,
     hingeEventRowSetIdentity,
@@ -5455,8 +5504,23 @@ function createRouteAuthorizedEndpointProviderGlobalDomainObstructionTarget({
     routeAuthorizedPointEventDomainTarget,
     rootPayloadIntervalEnclosure,
     positiveWidthRetainedDomainLiftTarget,
+    endpointProviderAssistedBranchTransportGeometryTarget,
+    minimalBranchTransactionFrequencyCertificate,
+    actionBoundaryWakeEnergyLawCandidate,
+    sameEventEnergyRoutingTarget,
     localEndpointProviderAcceptedPass,
   });
+  const endpointProviderGlobalRetainedTransportLiftTarget =
+    createEndpointProviderGlobalRetainedTransportLiftTarget({
+      hingeRootBranchTransportRouteFeasibility,
+      hingeEventRowSetIdentity,
+      routeAuthorizedPointEventDomainTarget,
+      positiveWidthRetainedDomainLiftTarget,
+      endpointProviderAssistedBranchTransportGeometryTarget,
+      fullPointEventRuleLiftTarget,
+      localEndpointProviderAcceptedPass,
+      positiveWidthCommonRetainedTimeDomainPass,
+    });
   const globalRetainedBranchClaimPass = false;
   const fullPointEventRulePass =
     fullPointEventRuleLiftTarget.fullPointEventRuleLiftPass === true &&
@@ -5528,6 +5592,12 @@ function createRouteAuthorizedEndpointProviderGlobalDomainObstructionTarget({
       routeAuthorizedPointEventDomainTarget?.status ?? null,
     routeAuthorizedPointEventDomainScope:
       routeAuthorizedPointEventDomainTarget?.domainScope ?? null,
+    endpointProviderAssistedBranchTransportGeometryStatus:
+      endpointProviderAssistedBranchTransportGeometryTarget.status,
+    endpointProviderAssistedBranchTransportGeometryTarget,
+    endpointProviderGlobalRetainedTransportLiftStatus:
+      endpointProviderGlobalRetainedTransportLiftTarget.status,
+    endpointProviderGlobalRetainedTransportLiftTarget,
     fullPointEventRuleLiftStatus: fullPointEventRuleLiftTarget.status,
     fullPointEventRuleLiftTarget,
     positiveWidthRetainedDomainLiftStatus:
@@ -5584,6 +5654,597 @@ function createRouteAuthorizedEndpointProviderGlobalDomainObstructionTarget({
   };
 }
 
+function createEndpointProviderGlobalRetainedTransportLiftTarget({
+  hingeRootBranchTransportRouteFeasibility,
+  hingeEventRowSetIdentity,
+  routeAuthorizedPointEventDomainTarget,
+  positiveWidthRetainedDomainLiftTarget,
+  endpointProviderAssistedBranchTransportGeometryTarget,
+  fullPointEventRuleLiftTarget,
+  localEndpointProviderAcceptedPass,
+  positiveWidthCommonRetainedTimeDomainPass,
+}) {
+  const routeRows = endpointProviderAssistedBranchTransportGeometryTarget?.rows ?? [];
+  const providerAssistedRows = routeRows.filter(
+    (row) => row.providerAssistedGeometryPass === true
+  );
+  const sampledZeroSlackRows = routeRows.filter(
+    (row) => row.sampledZeroSlackRoutePass === true
+  );
+  const substitutedRows = routeRows.filter(
+    (row) =>
+      row.providerAssistedGeometryPass === true &&
+      row.sampledZeroSlackRoutePass !== true
+  );
+  const providerAssistedOrZeroSlackRows = routeRows.filter(
+    (row) => row.providerAssistedOrZeroSlackGeometryPass === true
+  );
+  const routeSubstitutionCoveragePass =
+    routeRows.length > 0 &&
+    providerAssistedOrZeroSlackRows.length === routeRows.length;
+  const sampledZeroSlackBranchRoutePass =
+    hingeRootBranchTransportRouteFeasibility?.zeroSlackRoutePass === true;
+  const globalRetainedRowSetIdentityPass =
+    hingeEventRowSetIdentity?.globalRetainedRowSetIdentityStatus ===
+    "common_active_row_set_candidate_populated";
+  const fullPointEventRuleLiftPass =
+    fullPointEventRuleLiftTarget?.fullPointEventRuleLiftPass === true;
+  const positiveWidthRetainedDomainLiftPass =
+    positiveWidthRetainedDomainLiftTarget?.liftPass === true;
+  const retainedPayloadRowsPass =
+    fullPointEventRuleLiftTarget?.retainedPayloadRowsPass === true;
+  const acceptedRetainedEnergyRoutingPass =
+    fullPointEventRuleLiftTarget?.acceptedRetainedEnergyRoutingPass === true;
+  const acceptedFullPointEventRulePass =
+    fullPointEventRuleLiftTarget?.acceptedFullPointEventRulePass === true;
+  const routeAuthorizedPointEventOnly =
+    [
+      "same_source_endpoint_provider_route_only",
+      "route_authorized_endpoint_provider_point_event_only",
+    ].includes(routeAuthorizedPointEventDomainTarget?.domainScope);
+  const candidateGlobalTransportLiftPass =
+    localEndpointProviderAcceptedPass === true &&
+    routeSubstitutionCoveragePass &&
+    providerAssistedRows.length > 0;
+  const physicalRetainedProviderTransportLawTarget =
+    createPhysicalRetainedProviderTransportLawTarget({
+      routeRows,
+      substitutedRows,
+      sampledZeroSlackRows,
+      localEndpointProviderAcceptedPass,
+      routeSubstitutionCoveragePass,
+      routeAuthorizedPointEventDomainTarget,
+      globalRetainedRowSetIdentityPass,
+      fullPointEventRuleLiftPass,
+      positiveWidthRetainedDomainLiftPass,
+      retainedPayloadRowsPass,
+      acceptedRetainedEnergyRoutingPass,
+      acceptedFullPointEventRulePass,
+    });
+  const acceptedPhysicalRetainedProviderTransportLawPass =
+    physicalRetainedProviderTransportLawTarget
+      .acceptedPhysicalRetainedProviderTransportLawPass === true;
+  const acceptedGlobalRetainedTransportLiftPass =
+    candidateGlobalTransportLiftPass &&
+    (substitutedRows.length === 0 ||
+      acceptedPhysicalRetainedProviderTransportLawPass) &&
+    (sampledZeroSlackBranchRoutePass ||
+      acceptedPhysicalRetainedProviderTransportLawPass) &&
+    globalRetainedRowSetIdentityPass &&
+    (fullPointEventRuleLiftPass || positiveWidthRetainedDomainLiftPass) &&
+    retainedPayloadRowsPass &&
+    acceptedRetainedEnergyRoutingPass &&
+    acceptedFullPointEventRulePass;
+  const rows = routeRows.map((row) => {
+    const providerSubstitution =
+      row.providerAssistedGeometryPass === true &&
+      row.sampledZeroSlackRoutePass !== true;
+    const sampledZeroSlack = row.sampledZeroSlackRoutePass === true;
+    return {
+      incomingPairKey: row.incomingPairKey ?? null,
+      outgoingPairKey: row.outgoingPairKey ?? null,
+      continuityRole: row.continuityRole ?? null,
+      continuityLayer: row.continuityLayer ?? null,
+      routeRootKey: row.routeRootKey ?? null,
+      status: sampledZeroSlack
+        ? "sampled_zero_slack_route_transport_geometry_populated_global_domain_required"
+        : providerSubstitution
+          ? "endpoint_provider_substitution_geometry_populated_global_transport_lift_blocked"
+          : "global_retained_transport_lift_route_geometry_missing",
+      sampledZeroSlackRoutePass: sampledZeroSlack,
+      providerSubstitution,
+      providerAssistedGeometryPass: row.providerAssistedGeometryPass === true,
+      providerAssistedResidualNorm: finiteOrNull(row.providerAssistedResidualNorm),
+      sampledEndpointPairResidual: finiteOrNull(row.sampledEndpointPairResidual),
+      sampledRequiredEndpointCompensationNorm: finiteOrNull(
+        row.sampledRequiredEndpointCompensationNorm
+      ),
+      endpointProviderAcceptanceStatus:
+        row.endpointProviderAcceptanceStatus ?? null,
+      routeAuthorizedPointEventDomainStatus:
+        row.routeAuthorizedPointEventDomainStatus ?? null,
+      routeAuthorizedPointEventDomainPass:
+        row.routeAuthorizedPointEventDomainPass === true,
+      exactCircularReplacementTransportPass:
+        row.exactCircularReplacementTransportPass === true,
+      reducedProviderLawPass: row.reducedProviderLawPass === true,
+      globalTransportRowPass:
+        (sampledZeroSlack ||
+          (providerSubstitution &&
+            acceptedPhysicalRetainedProviderTransportLawPass)) &&
+        globalRetainedRowSetIdentityPass &&
+        (fullPointEventRuleLiftPass || positiveWidthRetainedDomainLiftPass),
+      retainedLimitation: sampledZeroSlack
+        ? "The sampled route has zero-slack geometry, but global retained transport still needs global row-set identity, a full point-event rule or positive-width retained domain, and retained payload rows."
+        : acceptedPhysicalRetainedProviderTransportLawPass
+          ? "The exact endpoint-provider substitution is accepted as a physical retained provider-transport row on the global retained row set."
+        : "The exact endpoint-provider substitution is local route-authorized point-event geometry. It is not a global retained transport row until a physical retained transport law promotes it on the common row set.",
+    };
+  });
+  const acceptanceBlockers = [
+    localEndpointProviderAcceptedPass
+      ? null
+      : "local_route_authorized_endpoint_provider_point_event_missing",
+    routeSubstitutionCoveragePass
+      ? null
+      : "route_substitution_coverage_missing",
+    substitutedRows.length > 0 &&
+    !acceptedPhysicalRetainedProviderTransportLawPass
+      ? "endpoint_provider_substitution_not_sampled_zero_slack_transport"
+      : null,
+    substitutedRows.length > 0 &&
+    !acceptedPhysicalRetainedProviderTransportLawPass
+      ? "accepted_physical_retained_provider_transport_law_missing"
+      : null,
+    routeAuthorizedPointEventOnly &&
+    !acceptedPhysicalRetainedProviderTransportLawPass
+      ? "endpoint_provider_domain_route_authorized_point_event_only"
+      : null,
+    sampledZeroSlackBranchRoutePass ||
+    acceptedPhysicalRetainedProviderTransportLawPass
+      ? null
+      : "sampled_zero_slack_branch_route_missing",
+    globalRetainedRowSetIdentityPass ? null : "global_retained_row_set_identity_missing",
+    positiveWidthCommonRetainedTimeDomainPass || fullPointEventRuleLiftPass
+      ? null
+      : "full_point_event_rule_or_positive_width_common_retained_domain_missing",
+    retainedPayloadRowsPass
+      ? null
+      : "retained_force_torque_wake_phase_partition_stability_payloads_missing",
+    acceptedRetainedEnergyRoutingPass ? null : "accepted_retained_energy_routing_missing",
+    acceptedFullPointEventRulePass ? null : "accepted_full_point_event_rule_missing",
+  ].filter(Boolean);
+
+  return {
+    schema:
+      "aaa-tri-binary-endpoint-provider-global-retained-transport-lift-target.v1",
+    status: !localEndpointProviderAcceptedPass
+      ? "endpoint_provider_global_retained_transport_lift_not_applicable_local_provider_missing"
+      : acceptedGlobalRetainedTransportLiftPass
+        ? "endpoint_provider_global_retained_transport_lift_accepted"
+        : candidateGlobalTransportLiftPass
+          ? "endpoint_provider_global_retained_transport_lift_candidate_populated_acceptance_blocked"
+          : "endpoint_provider_global_retained_transport_lift_candidate_incomplete",
+    claimLevel:
+      "fail-closed target for deciding whether route-authorized endpoint-provider geometry can lift to global retained branch transport; not a retained branch claim",
+    localEndpointProviderAcceptedPass,
+    candidateGlobalTransportLiftPass,
+    acceptedGlobalRetainedTransportLiftPass,
+    acceptedPhysicalRetainedProviderTransportLawPass,
+    retainedBranchClaim: false,
+    routeRowCount: routeRows.length,
+    providerAssistedRouteCount: providerAssistedRows.length,
+    providerSubstitutionRouteCount: substitutedRows.length,
+    sampledZeroSlackRouteCount: sampledZeroSlackRows.length,
+    providerAssistedOrZeroSlackRouteCount: providerAssistedOrZeroSlackRows.length,
+    routeSubstitutionCoveragePass,
+    sampledZeroSlackBranchRoutePass,
+    globalRetainedRowSetIdentityPass,
+    fullPointEventRuleLiftPass,
+    positiveWidthRetainedDomainLiftPass,
+    positiveWidthCommonRetainedTimeDomainPass,
+    retainedPayloadRowsPass,
+    acceptedRetainedEnergyRoutingPass,
+    acceptedFullPointEventRulePass,
+    routeAuthorizedPointEventOnly,
+    routeAuthorizedPointEventDomainStatus:
+      routeAuthorizedPointEventDomainTarget?.status ?? null,
+    routeAuthorizedPointEventDomainScope:
+      routeAuthorizedPointEventDomainTarget?.domainScope ?? null,
+    physicalRetainedProviderTransportLawStatus:
+      physicalRetainedProviderTransportLawTarget.status,
+    physicalRetainedProviderTransportLawTarget,
+    maxProviderAssistedResidualNorm:
+      endpointProviderAssistedBranchTransportGeometryTarget
+        ?.maxProviderAssistedResidualNorm ?? null,
+    maxSampledRequiredEndpointCompensationNorm:
+      endpointProviderAssistedBranchTransportGeometryTarget
+        ?.maxSampledRequiredEndpointCompensationNorm ?? null,
+    acceptanceBlockers,
+    rows,
+    retainedLimitation:
+      "Route-authorized endpoint-provider geometry can cover a compensated same-source route locally, but the current evidence does not lift it to global retained branch transport. A lift still needs sampled zero-slack transport or an accepted physical provider-transport law on a global retained row set, plus a full point-event rule or positive-width retained domain, retained payload rows, and retained energy routing.",
+  };
+}
+
+function createPhysicalRetainedProviderTransportLawTarget({
+  routeRows,
+  substitutedRows,
+  sampledZeroSlackRows,
+  localEndpointProviderAcceptedPass,
+  routeSubstitutionCoveragePass,
+  routeAuthorizedPointEventDomainTarget,
+  globalRetainedRowSetIdentityPass,
+  fullPointEventRuleLiftPass,
+  positiveWidthRetainedDomainLiftPass,
+  retainedPayloadRowsPass,
+  acceptedRetainedEnergyRoutingPass,
+  acceptedFullPointEventRulePass,
+}) {
+  const routeAuthorizedPointEventOnly =
+    [
+      "same_source_endpoint_provider_route_only",
+      "route_authorized_endpoint_provider_point_event_only",
+    ].includes(routeAuthorizedPointEventDomainTarget?.domainScope);
+  const candidateProviderRows = substitutedRows.filter((row) => {
+    const residualNorm = finiteOrNull(row.providerAssistedResidualNorm);
+    return (
+      row.providerAssistedGeometryPass === true &&
+      row.exactCircularReplacementTransportPass === true &&
+      row.reducedProviderLawPass === true &&
+      Number.isFinite(residualNorm) &&
+      residualNorm <= POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE
+    );
+  });
+  const candidateProviderTransportLawPass =
+    localEndpointProviderAcceptedPass === true &&
+    substitutedRows.length > 0 &&
+    candidateProviderRows.length === substitutedRows.length;
+  const globalLawDeclarationPass =
+    globalRetainedRowSetIdentityPass &&
+    (fullPointEventRuleLiftPass || positiveWidthRetainedDomainLiftPass) &&
+    retainedPayloadRowsPass &&
+    acceptedRetainedEnergyRoutingPass &&
+    acceptedFullPointEventRulePass;
+  const acceptedPhysicalRetainedProviderTransportLawPass =
+    candidateProviderTransportLawPass && globalLawDeclarationPass;
+  const candidateTransportRows = routeRows.map((row) => {
+    const providerSubstitution =
+      row.providerAssistedGeometryPass === true &&
+      row.sampledZeroSlackRoutePass !== true;
+    const sampledZeroSlack = row.sampledZeroSlackRoutePass === true;
+    const providerResidualNorm = finiteOrNull(row.providerAssistedResidualNorm);
+    const candidateProviderTransportRowPass =
+      providerSubstitution &&
+      row.exactCircularReplacementTransportPass === true &&
+      row.reducedProviderLawPass === true &&
+      Number.isFinite(providerResidualNorm) &&
+      providerResidualNorm <= POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE;
+
+    return {
+      incomingPairKey: row.incomingPairKey ?? null,
+      outgoingPairKey: row.outgoingPairKey ?? null,
+      continuityRole: row.continuityRole ?? null,
+      continuityLayer: row.continuityLayer ?? null,
+      routeRootKey: row.routeRootKey ?? null,
+      status: sampledZeroSlack
+        ? "sampled_zero_slack_transport_row_not_provider_law"
+        : candidateProviderTransportRowPass
+          ? acceptedPhysicalRetainedProviderTransportLawPass
+            ? "physical_provider_transport_law_row_accepted"
+            : "physical_provider_transport_law_candidate_geometry_populated_global_acceptance_blocked"
+          : providerSubstitution
+            ? "physical_provider_transport_law_candidate_geometry_incomplete"
+            : "physical_provider_transport_law_not_applicable_to_route_row",
+      providerSubstitution,
+      sampledZeroSlackRoutePass: sampledZeroSlack,
+      candidateProviderTransportRowPass,
+      providerAssistedGeometryPass: row.providerAssistedGeometryPass === true,
+      exactCircularReplacementTransportPass:
+        row.exactCircularReplacementTransportPass === true,
+      reducedProviderLawPass: row.reducedProviderLawPass === true,
+      providerResidualNorm,
+      tolerance: POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE,
+      endpointProviderAcceptanceStatus:
+        row.endpointProviderAcceptanceStatus ?? null,
+      routeAuthorizedPointEventDomainStatus:
+        row.routeAuthorizedPointEventDomainStatus ?? null,
+      routeAuthorizedPointEventDomainPass:
+        row.routeAuthorizedPointEventDomainPass === true,
+      retainedLimitation: sampledZeroSlack
+        ? "This row is already sampled zero-slack geometry; it is context for the mixed route set, not evidence for the provider-transport law."
+        : "This row supplies exact reduced endpoint-provider substitution geometry, but physical retained transport also requires declaration on the global retained row set with full-event/domain, payload, and energy-routing support.",
+    };
+  });
+  const acceptanceBlockers = [
+    localEndpointProviderAcceptedPass
+      ? null
+      : "local_route_authorized_endpoint_provider_point_event_missing",
+    routeSubstitutionCoveragePass
+      ? null
+      : "route_substitution_coverage_missing",
+    candidateProviderTransportLawPass
+      ? null
+      : "provider_transport_law_candidate_geometry_missing",
+    routeAuthorizedPointEventOnly
+      ? "provider_transport_law_still_route_authorized_point_event_only"
+      : null,
+    globalRetainedRowSetIdentityPass
+      ? null
+      : "provider_transport_law_not_declared_on_global_row_set",
+    globalRetainedRowSetIdentityPass
+      ? null
+      : "global_retained_row_set_identity_missing",
+    fullPointEventRuleLiftPass || positiveWidthRetainedDomainLiftPass
+      ? null
+      : "full_point_event_rule_or_positive_width_common_retained_domain_missing",
+    retainedPayloadRowsPass
+      ? null
+      : "retained_force_torque_wake_phase_partition_stability_payloads_missing",
+    acceptedRetainedEnergyRoutingPass
+      ? null
+      : "accepted_retained_energy_routing_missing",
+    acceptedFullPointEventRulePass ? null : "accepted_full_point_event_rule_missing",
+  ].filter(Boolean);
+
+  return {
+    schema:
+      "aaa-tri-binary-physical-retained-provider-transport-law-target.v1",
+    status: !localEndpointProviderAcceptedPass
+      ? "physical_retained_provider_transport_law_not_applicable_local_provider_missing"
+      : acceptedPhysicalRetainedProviderTransportLawPass
+        ? "physical_retained_provider_transport_law_accepted"
+        : candidateProviderTransportLawPass
+          ? "physical_retained_provider_transport_law_candidate_geometry_populated_global_acceptance_blocked"
+          : "physical_retained_provider_transport_law_candidate_incomplete",
+    claimLevel:
+      "fail-closed diagnostic for deciding whether exact endpoint-provider substitution geometry has become a physical retained transport law; not a retained branch claim",
+    localEndpointProviderAcceptedPass,
+    routeSubstitutionCoveragePass,
+    candidateProviderTransportLawPass,
+    acceptedPhysicalRetainedProviderTransportLawPass,
+    retainedBranchClaim: false,
+    providerSubstitutionRouteCount: substitutedRows.length,
+    candidateProviderTransportRouteCount: candidateProviderRows.length,
+    sampledZeroSlackRouteCount: sampledZeroSlackRows.length,
+    routeAuthorizedPointEventDomainStatus:
+      routeAuthorizedPointEventDomainTarget?.status ?? null,
+    routeAuthorizedPointEventDomainScope:
+      routeAuthorizedPointEventDomainTarget?.domainScope ?? null,
+    routeAuthorizedPointEventOnly,
+    globalLawDeclarationPass,
+    globalRetainedRowSetIdentityPass,
+    fullPointEventRuleLiftPass,
+    positiveWidthRetainedDomainLiftPass,
+    retainedPayloadRowsPass,
+    acceptedRetainedEnergyRoutingPass,
+    acceptedFullPointEventRulePass,
+    maxProviderTransportResidualNorm: maxFinite(
+      candidateProviderRows.map((row) => row.providerAssistedResidualNorm)
+    ),
+    acceptanceBlockers,
+    rows: candidateTransportRows,
+    retainedLimitation:
+      "The reduced circular endpoint provider is exact on the route-authorized point-event row, so the candidate physical law is populated geometrically. It is not accepted as retained provider transport until it is declared on the global retained row set and carries full-event or positive-width retained-domain support, retained payload rows, and retained energy routing.",
+  };
+}
+
+function createEndpointProviderAssistedBranchTransportGeometryTarget({
+  hingeRootBranchTransportRouteFeasibility,
+  hingeEventRowSetIdentity,
+  acceptedEndpointProviderRows,
+  localEndpointProviderAcceptedPass,
+}) {
+  const routeRows = hingeRootBranchTransportRouteFeasibility?.rows ?? [];
+  const rows = routeRows.map((routeRow) =>
+    createEndpointProviderAssistedBranchTransportGeometryRow({
+      routeRow,
+      acceptedEndpointProviderRows,
+    })
+  );
+  const providerAssistedRows = rows.filter(
+    (row) => row.providerAssistedGeometryPass === true
+  );
+  const providerAssistedOrZeroSlackRows = rows.filter(
+    (row) => row.providerAssistedOrZeroSlackGeometryPass === true
+  );
+  const sampledZeroSlackRows = rows.filter(
+    (row) => row.sampledZeroSlackRoutePass === true
+  );
+  const sampledCompensationRows = rows.filter(
+    (row) => row.sampledCompensationRequired === true
+  );
+  const providerAssistedBranchTransportGeometryPass =
+    rows.length > 0 && providerAssistedOrZeroSlackRows.length === rows.length;
+  const sampledZeroSlackBranchRoutePass =
+    hingeRootBranchTransportRouteFeasibility?.zeroSlackRoutePass === true;
+  const globalRetainedRowSetIdentityPass =
+    hingeEventRowSetIdentity?.globalRetainedRowSetIdentityStatus ===
+    "common_active_row_set_candidate_populated";
+  const blockers = [
+    localEndpointProviderAcceptedPass
+      ? null
+      : "local_route_authorized_endpoint_provider_point_event_missing",
+    providerAssistedBranchTransportGeometryPass
+      ? null
+      : "endpoint_provider_assisted_route_geometry_missing",
+    sampledZeroSlackBranchRoutePass
+      ? null
+      : "sampled_zero_slack_branch_route_missing",
+    providerAssistedRows.length > 0
+      ? "endpoint_provider_assisted_geometry_is_route_authorized_point_event_only"
+      : null,
+    globalRetainedRowSetIdentityPass ? null : "global_retained_row_set_identity_missing",
+    "full_point_event_rule_or_positive_width_common_retained_domain_missing",
+    "retained_force_torque_wake_phase_partition_stability_payloads_missing",
+  ].filter(Boolean);
+
+  return {
+    schema:
+      "aaa-tri-binary-endpoint-provider-assisted-branch-transport-geometry-target.v1",
+    status: !localEndpointProviderAcceptedPass
+      ? "endpoint_provider_assisted_branch_transport_geometry_not_applicable_local_provider_missing"
+      : providerAssistedBranchTransportGeometryPass &&
+          !sampledZeroSlackBranchRoutePass
+        ? "endpoint_provider_assisted_branch_transport_geometry_populated_sampled_route_compensation_remains"
+        : providerAssistedBranchTransportGeometryPass
+          ? "endpoint_provider_assisted_branch_transport_geometry_populated_formal_acceptance_blocked"
+          : "endpoint_provider_assisted_branch_transport_geometry_blocked",
+    claimLevel:
+      "fail-closed diagnostic asking whether the accepted route-authorized endpoint provider supplies local branch-transport geometry; not zero-slack retained branch transport",
+    localEndpointProviderAcceptedPass,
+    providerAssistedBranchTransportGeometryPass,
+    sampledZeroSlackBranchRoutePass,
+    retainedBranchClaim: false,
+    routeRowCount: rows.length,
+    providerAssistedRouteCount: providerAssistedRows.length,
+    sampledZeroSlackRouteCount: sampledZeroSlackRows.length,
+    sampledCompensationRequiredRouteCount: sampledCompensationRows.length,
+    providerAssistedOrZeroSlackRouteCount:
+      providerAssistedOrZeroSlackRows.length,
+    maxSampledRequiredEndpointCompensationNorm: maxFinite(
+      rows.map((row) => row.sampledRequiredEndpointCompensationNorm)
+    ),
+    maxProviderAssistedResidualNorm: maxFinite(
+      rows.map((row) => row.providerAssistedResidualNorm)
+    ),
+    maxReplacementAdvectionResidualNorm: maxFinite(
+      rows.map((row) => row.replacementAdvectionResidualNorm)
+    ),
+    maxProviderAdvectionResidualNorm: maxFinite(
+      rows.map((row) => row.providerAdvectionResidualNorm)
+    ),
+    globalRetainedRowSetIdentityPass,
+    globalRetainedRowSetIdentityStatus:
+      hingeEventRowSetIdentity?.globalRetainedRowSetIdentityStatus ?? null,
+    blockers,
+    rows,
+    retainedLimitation:
+      "Endpoint-provider assistance can replace the sampled same-source endpoint geometry by exact circular provider geometry on the route-authorized point-event domain. This does not change sampled zero-slack route status and does not certify global retained branch transport without a full point-event rule, positive-width common retained domain, and retained payload rows.",
+  };
+}
+
+function createEndpointProviderAssistedBranchTransportGeometryRow({
+  routeRow,
+  acceptedEndpointProviderRows,
+}) {
+  const providerRow = findAcceptedEndpointProviderRowForRoute({
+    routeRow,
+    acceptedEndpointProviderRows,
+  });
+  const providerTarget =
+    providerRow?.retainedEndpointProviderAcceptanceTarget ?? null;
+  const replacementTarget =
+    providerRow?.exactCircularEndpointReplacementTarget ?? null;
+  const provider =
+    replacementTarget?.reducedCircularEndpointProviderLawCandidate ?? null;
+  const sameSourceCompensatedRoute =
+    routeRow?.continuityRole === "same_source" &&
+    routeRow?.compensationRequired === true;
+  const sampledZeroSlackRoutePass = routeRow?.zeroSlackRoutePass === true;
+  const providerAssistedResidualNorm = maxFinite([
+    replacementTarget?.replacementAdvectionResidualNorm,
+    replacementTarget?.replacementEndpointPairResidualVsChartChord != null
+      ? Math.abs(replacementTarget.replacementEndpointPairResidualVsChartChord)
+      : null,
+    provider?.maxProviderPointResidualNorm,
+    provider?.providerAdvectionResidualNorm,
+  ]);
+  const providerAssistedGeometryPass =
+    sameSourceCompensatedRoute &&
+    providerTarget?.acceptedRetainedEndpointProviderPass === true &&
+    providerTarget?.sameRetainedRowSetProviderPass === true &&
+    replacementTarget?.exactCircularReplacementTransportPass === true &&
+    provider?.reducedProviderLawPass === true &&
+    Number.isFinite(providerAssistedResidualNorm) &&
+    providerAssistedResidualNorm <= POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE;
+  const providerAssistedOrZeroSlackGeometryPass =
+    sampledZeroSlackRoutePass || providerAssistedGeometryPass;
+
+  return {
+    incomingPairKey: routeRow?.incomingPairKey ?? null,
+    outgoingPairKey: routeRow?.outgoingPairKey ?? null,
+    continuityRole: routeRow?.continuityRole ?? null,
+    continuityLayer: routeRow?.continuityLayer ?? null,
+    routeRootKey: routeRow?.routeRootKey ?? null,
+    status: sampledZeroSlackRoutePass
+      ? "sampled_zero_slack_route_geometry_already_populated"
+      : providerAssistedGeometryPass
+        ? "endpoint_provider_assisted_route_geometry_populated_domain_blocked"
+        : sameSourceCompensatedRoute
+          ? "endpoint_provider_assisted_route_geometry_provider_missing_or_not_accepted"
+          : "endpoint_provider_assisted_route_geometry_not_applicable",
+    sampledCandidateRoutePass: routeRow?.candidateRoutePass === true,
+    sampledZeroSlackRoutePass,
+    sampledCompensationRequired: routeRow?.compensationRequired === true,
+    sampledGeometryPass: routeRow?.geometryPass === true,
+    sampledClockContinuityPass: routeRow?.clockContinuityPass === true,
+    sampledHingeChartContinuityPass: routeRow?.hingeChartContinuityPass === true,
+    sampledEndpointPairResidual: finiteOrNull(routeRow?.endpointPairResidual),
+    sampledEndpointToChartResidual: finiteOrNull(routeRow?.endpointToChartResidual),
+    sampledRequiredEndpointCompensationNorm: finiteOrNull(
+      routeRow?.requiredEndpointCompensationNorm
+    ),
+    sampledRequiredClockRetune: finiteOrNull(routeRow?.requiredClockRetune),
+    sampledRequiredPhaseCompensation: finiteOrNull(
+      routeRow?.requiredPhaseCompensation
+    ),
+    endpointProviderRowStatus: providerRow?.status ?? null,
+    endpointProviderAcceptanceStatus: providerTarget?.status ?? null,
+    endpointProviderAcceptedPass:
+      providerTarget?.acceptedRetainedEndpointProviderPass === true,
+    sameRetainedRowSetProviderPass:
+      providerTarget?.sameRetainedRowSetProviderPass === true,
+    routeAuthorizedPointEventDomainStatus:
+      providerTarget?.routeAuthorizedPointEventDomainTarget?.status ?? null,
+    routeAuthorizedPointEventDomainPass:
+      providerTarget?.routeAuthorizedPointEventDomainTarget
+        ?.acceptedRouteAuthorizedPointEventDomainPass === true,
+    exactCircularReplacementTransportPass:
+      replacementTarget?.exactCircularReplacementTransportPass === true,
+    reducedProviderLawPass: provider?.reducedProviderLawPass === true,
+    providerAssistedGeometryPass,
+    providerAssistedOrZeroSlackGeometryPass,
+    providerAssistedResidualNorm,
+    replacementAdvectionResidualNorm: finiteOrNull(
+      replacementTarget?.replacementAdvectionResidualNorm
+    ),
+    replacementEndpointPairResidualVsChartChord: finiteOrNull(
+      replacementTarget?.replacementEndpointPairResidualVsChartChord
+    ),
+    providerAdvectionResidualNorm: finiteOrNull(
+      provider?.providerAdvectionResidualNorm
+    ),
+    maxProviderPointResidualNorm: finiteOrNull(
+      provider?.maxProviderPointResidualNorm
+    ),
+    incomingProviderPoint: provider?.incomingProviderPoint ?? null,
+    outgoingProviderPoint: provider?.outgoingProviderPoint ?? null,
+    retainedLimitation: sampledZeroSlackRoutePass
+      ? "This route is already zero-slack under sampled endpoint geometry."
+      : "The exact circular endpoint provider supplies local route-authorized point-event geometry only. It does not by itself create sampled zero-slack branch transport or global retained branch acceptance.",
+  };
+}
+
+function findAcceptedEndpointProviderRowForRoute({
+  routeRow,
+  acceptedEndpointProviderRows,
+}) {
+  return (
+    (acceptedEndpointProviderRows ?? []).find((row) => {
+      const target = row.retainedEndpointProviderAcceptanceTarget ?? null;
+      return (
+        target?.acceptedRetainedEndpointProviderPass === true &&
+        target.incomingPairKey === routeRow?.incomingPairKey &&
+        target.outgoingPairKey === routeRow?.outgoingPairKey &&
+        target.continuityRole === routeRow?.continuityRole &&
+        target.continuityLayer === routeRow?.continuityLayer &&
+        target.routeRootKey === routeRow?.routeRootKey
+      );
+    }) ?? null
+  );
+}
+
 function createFullPointEventRuleLiftTarget({
   hingeRootBranchTransportRouteFeasibility,
   hingeEventRowSetIdentity,
@@ -5591,6 +6252,10 @@ function createFullPointEventRuleLiftTarget({
   routeAuthorizedPointEventDomainTarget,
   rootPayloadIntervalEnclosure,
   positiveWidthRetainedDomainLiftTarget,
+  endpointProviderAssistedBranchTransportGeometryTarget,
+  minimalBranchTransactionFrequencyCertificate = null,
+  actionBoundaryWakeEnergyLawCandidate = null,
+  sameEventEnergyRoutingTarget = null,
   localEndpointProviderAcceptedPass,
 }) {
   const pairRows = hingeEventRowSetIdentity?.rows ?? [];
@@ -5625,6 +6290,9 @@ function createFullPointEventRuleLiftTarget({
     hingeEventRowSetIdentity?.branchTransportPairMapTopologyPass === true;
   const branchTransportPairMapGeometryPass =
     hingeEventRowSetIdentity?.branchTransportPairMapGeometryPass === true;
+  const endpointProviderAssistedBranchTransportGeometryPass =
+    endpointProviderAssistedBranchTransportGeometryTarget
+      ?.providerAssistedBranchTransportGeometryPass === true;
   const routeRows = hingeRootBranchTransportRouteFeasibility?.rows ?? [];
   const routeRootKey =
     routeAuthorizedPointEventDomainTarget?.routeRootKey ??
@@ -5653,8 +6321,45 @@ function createFullPointEventRuleLiftTarget({
     (retainedTimeDomainCoverage?.maxCommonWidth ?? 0) > ROOT_TOLERANCE ||
     rootPayloadIntervalEnclosure?.positiveWidthCommonRootInterval === true ||
     rootPayloadIntervalEnclosure?.oneSidedPositiveWidthCommonInterval === true;
-  const retainedPayloadRowsPass = false;
-  const acceptedRetainedEnergyRoutingPass = false;
+  const fullPointEventPayloadCoverageTarget =
+    createFullPointEventPayloadCoverageTarget({
+      hingeRootBranchTransportRouteFeasibility,
+      hingeEventRowSetIdentity,
+      endpointProviderAssistedBranchTransportGeometryTarget,
+      routeAuthorizedPointEventDomainTarget,
+      minimalBranchTransactionFrequencyCertificate,
+      actionBoundaryWakeEnergyLawCandidate,
+      sameEventEnergyRoutingTarget,
+      pointOnlyDiagonalPairKeys,
+      localEndpointProviderAcceptedPass,
+      allPairPointEventInputPass,
+    });
+  const retainedPayloadRowsPass =
+    fullPointEventPayloadCoverageTarget.acceptedRetainedPayloadRowsPass === true;
+  const acceptedRetainedEnergyRoutingPass =
+    fullPointEventPayloadCoverageTarget.acceptedRetainedEnergyRoutingPass === true;
+  const fullPointEventDiagonalIdentityRuleTarget =
+    createFullPointEventDiagonalIdentityRuleTarget({
+      pairRows,
+      pairSideRows,
+      pointOnlyDiagonalPairKeys,
+      localEndpointProviderAcceptedPass,
+      allPairPointEventInputPass,
+      candidatePointEventAdmissibilityPass,
+      offDiagonalTorqueTolerancePass,
+      branchTransportIncidencePass,
+      branchTransportPairMapTopologyPass,
+      branchTransportPairMapGeometryPass,
+      endpointProviderAssistedBranchTransportGeometryPass,
+      zeroSlackBranchRoutePass,
+      routeCompensationRequired,
+      globalRetainedRowSetIdentityPass,
+      retainedPayloadRowsPass,
+      acceptedRetainedEnergyRoutingPass,
+    });
+  const acceptedFullPointEventDiagonalIdentityRulePass =
+    fullPointEventDiagonalIdentityRuleTarget
+      .acceptedFullPointEventDiagonalIdentityRulePass === true;
   const acceptedFullPointEventRulePass = false;
   const fullPointEventRuleLiftPass =
     localEndpointProviderAcceptedPass === true &&
@@ -5663,6 +6368,7 @@ function createFullPointEventRuleLiftTarget({
     globalRetainedRowSetIdentityPass &&
     retainedPayloadRowsPass &&
     acceptedRetainedEnergyRoutingPass &&
+    acceptedFullPointEventDiagonalIdentityRulePass &&
     acceptedFullPointEventRulePass;
   const fullPointEventRuleCandidatePass =
     localEndpointProviderAcceptedPass === true &&
@@ -5680,19 +6386,24 @@ function createFullPointEventRuleLiftTarget({
     branchTransportPairMapTopologyPass ? null : "branch_transport_pair_map_topology_missing",
     branchTransportPairMapGeometryPass
       ? null
-      : "geometrically_continuous_branch_transport_pair_map_missing",
+      : endpointProviderAssistedBranchTransportGeometryPass
+        ? "endpoint_provider_assisted_geometry_not_global_retained_transport"
+        : "geometrically_continuous_branch_transport_pair_map_missing",
     zeroSlackBranchRoutePass ? null : "zero_slack_branch_route_missing",
     routeCompensationRequired ? "same_source_route_compensation_required" : null,
     globalRetainedRowSetIdentityPass ? null : "global_retained_row_set_identity_missing",
     positiveWidthCommonRetainedTimeDomainPass
       ? null
       : "positive_width_common_retained_time_domain_missing",
-    pointOnlyDiagonalPairKeys.length > 0
+    pointOnlyDiagonalPairKeys.length > 0 &&
+    !acceptedFullPointEventDiagonalIdentityRulePass
       ? "point_only_diagonal_identity_rows_need_explicit_full_point_event_rule"
       : null,
     retainedPayloadRowsPass
       ? null
-      : "retained_force_torque_wake_phase_partition_stability_payloads_missing",
+      : fullPointEventPayloadCoverageTarget.partialCoveragePass
+        ? "retained_payload_rows_partial_acceptance_missing"
+        : "retained_force_torque_wake_phase_partition_stability_payloads_missing",
     acceptedRetainedEnergyRoutingPass ? null : "accepted_retained_energy_routing_missing",
     acceptedFullPointEventRulePass ? null : "accepted_full_point_event_rule_missing",
   ].filter(Boolean);
@@ -5758,6 +6469,9 @@ function createFullPointEventRuleLiftTarget({
       hingeEventRowSetIdentity?.branchTransportPairMapStatus ?? null,
     branchTransportPairMapTopologyPass,
     branchTransportPairMapGeometryPass,
+    endpointProviderAssistedBranchTransportGeometryPass,
+    endpointProviderAssistedBranchTransportGeometryStatus:
+      endpointProviderAssistedBranchTransportGeometryTarget?.status ?? null,
     branchTransportPairMapHingeChartPass:
       hingeEventRowSetIdentity?.branchTransportPairMapHingeChartPass === true,
     pointEventOneSidedPairCount:
@@ -5795,10 +6509,484 @@ function createFullPointEventRuleLiftTarget({
         ?.compensationRequiredMatchCount ?? null,
     retainedPayloadRowsPass,
     acceptedRetainedEnergyRoutingPass,
+    fullPointEventDiagonalIdentityRuleStatus:
+      fullPointEventDiagonalIdentityRuleTarget.status,
+    fullPointEventDiagonalIdentityRuleTarget,
+    fullPointEventPayloadCoverageStatus:
+      fullPointEventPayloadCoverageTarget.status,
+    fullPointEventPayloadCoverageTarget,
     fullPointEventRuleBlockers,
     routeRows: routeRowSummaries,
     retainedLimitation:
       "The hinge has point-event evidence, diagonal identity witnesses, and off-diagonal point-torque cancellation, but an accepted full point-event rule still needs geometrically continuous branch transport and retained force, torque, wake, phase, partition, stability, vector-ledger, and energy-routing rows on the same event. The point-only diagonal rows are useful hinge evidence, not positive-width retained-domain evidence.",
+  };
+}
+
+function createFullPointEventDiagonalIdentityRuleTarget({
+  pairRows,
+  pairSideRows,
+  pointOnlyDiagonalPairKeys,
+  localEndpointProviderAcceptedPass,
+  allPairPointEventInputPass,
+  candidatePointEventAdmissibilityPass,
+  offDiagonalTorqueTolerancePass,
+  branchTransportIncidencePass,
+  branchTransportPairMapTopologyPass,
+  branchTransportPairMapGeometryPass,
+  endpointProviderAssistedBranchTransportGeometryPass,
+  zeroSlackBranchRoutePass,
+  routeCompensationRequired,
+  globalRetainedRowSetIdentityPass,
+  retainedPayloadRowsPass,
+  acceptedRetainedEnergyRoutingPass,
+}) {
+  const diagonalRows = pairRows.filter((row) => isDiagonalLayerPairKey(row.pairKey));
+  const diagonalSideRows = diagonalRows.map((row) => {
+    const sideRow =
+      pairSideRows.find((candidate) => candidate.pairKey === row.pairKey) ??
+      null;
+    const pointOnly =
+      sideRow != null &&
+      sideRow.leftSidePositiveWidthPass !== true &&
+      sideRow.rightSidePositiveWidthPass !== true;
+    return {
+      pairKey: row.pairKey,
+      status: row.status ?? null,
+      identityWitnessPass:
+        row.status === "hinge_pair_common_root_key_witness_populated" &&
+        row.commonRootKeys.length > 0,
+      pointOnly,
+      commonRootKeys: row.commonRootKeys ?? [],
+      witnessEdgeCount: row.witnessEdgeCount ?? null,
+      rootIntervalCount: row.rootIntervalCount ?? null,
+      maxRootIntervalWidth: finiteOrNull(row.maxRootIntervalWidth),
+      leftSidePositiveWidthPass:
+        sideRow?.leftSidePositiveWidthPass === true,
+      leftSideMaxWidth: finiteOrNull(sideRow?.leftSideMaxWidth),
+      rightSidePositiveWidthPass:
+        sideRow?.rightSidePositiveWidthPass === true,
+      rightSideMaxWidth: finiteOrNull(sideRow?.rightSideMaxWidth),
+    };
+  });
+  const identityWitnessRows = diagonalSideRows.filter(
+    (row) => row.identityWitnessPass === true
+  );
+  const pointOnlyRows = diagonalSideRows.filter((row) => row.pointOnly === true);
+  const positiveWidthRows = diagonalSideRows.filter(
+    (row) =>
+      row.leftSidePositiveWidthPass === true ||
+      row.rightSidePositiveWidthPass === true
+  );
+  const missingIdentityRows = diagonalSideRows.filter(
+    (row) => row.identityWitnessPass !== true
+  );
+  const allDiagonalIdentityWitnessesPass =
+    diagonalSideRows.length > 0 &&
+    identityWitnessRows.length === diagonalSideRows.length;
+  const pointOnlyDiagonalRowsPass =
+    pointOnlyRows.length === pointOnlyDiagonalPairKeys.length &&
+    pointOnlyDiagonalPairKeys.every((pairKey) =>
+      pointOnlyRows.some((row) => row.pairKey === pairKey)
+    );
+  const candidateRulePass =
+    localEndpointProviderAcceptedPass === true &&
+    allPairPointEventInputPass === true &&
+    candidatePointEventAdmissibilityPass === true &&
+    offDiagonalTorqueTolerancePass === true &&
+    branchTransportIncidencePass === true &&
+    branchTransportPairMapTopologyPass === true &&
+    allDiagonalIdentityWitnessesPass &&
+    pointOnlyDiagonalRowsPass;
+  const acceptanceBlockers = [
+    localEndpointProviderAcceptedPass
+      ? null
+      : "local_route_authorized_endpoint_provider_point_event_missing",
+    allPairPointEventInputPass ? null : "all_pair_point_event_input_missing",
+    candidatePointEventAdmissibilityPass
+      ? null
+      : "candidate_point_event_rule_missing",
+    offDiagonalTorqueTolerancePass ? null : "off_diagonal_point_torque_not_cancelled",
+    branchTransportIncidencePass ? null : "branch_transport_incidence_missing",
+    branchTransportPairMapTopologyPass
+      ? null
+      : "branch_transport_pair_map_topology_missing",
+    allDiagonalIdentityWitnessesPass
+      ? null
+      : "diagonal_identity_witnesses_missing",
+    pointOnlyDiagonalRowsPass ? null : "point_only_diagonal_identity_rows_missing",
+    branchTransportPairMapGeometryPass
+      ? null
+      : endpointProviderAssistedBranchTransportGeometryPass
+        ? "endpoint_provider_assisted_geometry_not_global_retained_transport"
+        : "geometrically_continuous_branch_transport_pair_map_missing",
+    zeroSlackBranchRoutePass ? null : "zero_slack_branch_route_missing",
+    routeCompensationRequired ? "same_source_route_compensation_required" : null,
+    globalRetainedRowSetIdentityPass ? null : "global_retained_row_set_identity_missing",
+    retainedPayloadRowsPass
+      ? null
+      : "retained_force_torque_wake_phase_partition_stability_payloads_missing",
+    acceptedRetainedEnergyRoutingPass ? null : "accepted_retained_energy_routing_missing",
+    "accepted_full_point_event_rule_missing",
+  ].filter(Boolean);
+  const acceptedFullPointEventDiagonalIdentityRulePass = false;
+
+  return {
+    schema:
+      "aaa-tri-binary-full-point-event-diagonal-identity-rule-target.v1",
+    status:
+      diagonalSideRows.length === 0
+        ? "full_point_event_diagonal_identity_rule_not_applicable_no_diagonal_rows"
+        : candidateRulePass && acceptanceBlockers.length > 0
+          ? "full_point_event_diagonal_identity_rule_candidate_populated_acceptance_blocked"
+          : candidateRulePass
+            ? "full_point_event_diagonal_identity_rule_candidate_populated_formal_acceptance_blocked"
+            : "full_point_event_diagonal_identity_rule_candidate_incomplete",
+    claimLevel:
+      "fail-closed target for treating point-only diagonal identity rows as an explicit full point-event rule component; not retained branch acceptance",
+    localEndpointProviderAcceptedPass,
+    allPairPointEventInputPass,
+    candidatePointEventAdmissibilityPass,
+    offDiagonalTorqueTolerancePass,
+    branchTransportIncidencePass,
+    branchTransportPairMapTopologyPass,
+    branchTransportPairMapGeometryPass,
+    endpointProviderAssistedBranchTransportGeometryPass,
+    zeroSlackBranchRoutePass,
+    routeCompensationRequired,
+    globalRetainedRowSetIdentityPass,
+    retainedPayloadRowsPass,
+    acceptedRetainedEnergyRoutingPass,
+    candidateRulePass,
+    acceptedFullPointEventDiagonalIdentityRulePass,
+    retainedBranchClaim: false,
+    diagonalPairCount: diagonalSideRows.length,
+    diagonalIdentityWitnessCount: identityWitnessRows.length,
+    pointOnlyDiagonalPairCount: pointOnlyRows.length,
+    positiveWidthDiagonalPairCount: positiveWidthRows.length,
+    pointOnlyDiagonalPairKeys,
+    positiveWidthDiagonalPairKeys: positiveWidthRows.map((row) => row.pairKey),
+    missingDiagonalIdentityPairKeys: missingIdentityRows.map(
+      (row) => row.pairKey
+    ),
+    allDiagonalIdentityWitnessesPass,
+    pointOnlyDiagonalRowsPass,
+    dischargedCandidateEvidence: [
+      allDiagonalIdentityWitnessesPass
+        ? "diagonal_identity_witnesses_populated"
+        : null,
+      offDiagonalTorqueTolerancePass
+        ? "off_diagonal_point_torque_cancellation_populated"
+        : null,
+      branchTransportPairMapTopologyPass
+        ? "branch_transport_pair_map_topology_populated"
+        : null,
+      endpointProviderAssistedBranchTransportGeometryPass
+        ? "route_authorized_endpoint_provider_geometry_populated"
+        : null,
+    ].filter(Boolean),
+    acceptanceBlockers,
+    rows: diagonalSideRows,
+    retainedLimitation:
+      "Point-only diagonal identity rows can be treated as candidate point-event identity evidence at the common hinge root key. They do not supply positive-width retained time domain, global retained row-set identity, zero-slack branch transport, retained payload rows, or retained energy routing.",
+  };
+}
+
+function createFullPointEventPayloadCoverageTarget({
+  hingeRootBranchTransportRouteFeasibility,
+  hingeEventRowSetIdentity,
+  endpointProviderAssistedBranchTransportGeometryTarget,
+  routeAuthorizedPointEventDomainTarget,
+  minimalBranchTransactionFrequencyCertificate,
+  actionBoundaryWakeEnergyLawCandidate,
+  sameEventEnergyRoutingTarget,
+  pointOnlyDiagonalPairKeys,
+  localEndpointProviderAcceptedPass,
+  allPairPointEventInputPass,
+}) {
+  const routeRows = hingeRootBranchTransportRouteFeasibility?.rows ?? [];
+  const routeCandidatePass =
+    hingeRootBranchTransportRouteFeasibility?.candidateRoutePass === true;
+  const routeCompensationRequired =
+    (hingeRootBranchTransportRouteFeasibility?.compensationRequiredMatchCount ?? 0) >
+    0;
+  const pointEventTorqueCandidatePass =
+    hingeEventRowSetIdentity?.candidatePointEventAdmissibilityPass === true &&
+    Number.isFinite(hingeEventRowSetIdentity?.offDiagonalNetDiagnosticTorqueNorm) &&
+    Number.isFinite(hingeEventRowSetIdentity?.pointEventTorqueTolerance) &&
+    hingeEventRowSetIdentity.offDiagonalNetDiagnosticTorqueNorm <=
+      hingeEventRowSetIdentity.pointEventTorqueTolerance;
+  const providerAssistedBranchGeometryPass =
+    endpointProviderAssistedBranchTransportGeometryTarget
+      ?.providerAssistedBranchTransportGeometryPass === true;
+  const compensatedRoutePayloadComplete =
+    sameEventEnergyRoutingTarget?.compensatedRoutePayloadComplete === true;
+  const wakeBoundaryChargePullbackPopulated =
+    sameEventEnergyRoutingTarget?.targetPopulated === true;
+  const exactFormalSameEventCarrierRows =
+    sameEventEnergyRoutingTarget?.exactFormalCandidateRows ?? [];
+  const sameEventCarrierPopulationPass =
+    sameEventEnergyRoutingTarget?.sameEventRowsPass === true &&
+    exactFormalSameEventCarrierRows.length > 0;
+  const acceptedRetainedEnergyRoutingPass =
+    sameEventEnergyRoutingTarget?.acceptedSameEventEnergyRoutingPass === true;
+  const acceptedOmegaTxSource =
+    sameEventEnergyRoutingTarget?.acceptedOmegaTxSource === true;
+  const acceptedActionScale =
+    sameEventEnergyRoutingTarget?.acceptedActionScale === true;
+  const acceptedEnergyOrientation =
+    sameEventEnergyRoutingTarget?.acceptedEnergyOrientation === true;
+  const acceptedWakeEnergyIncrementLaw =
+    sameEventEnergyRoutingTarget?.acceptedWakeEnergyIncrementLaw === true;
+  const partialCoveragePass =
+    localEndpointProviderAcceptedPass === true &&
+    allPairPointEventInputPass === true &&
+    providerAssistedBranchGeometryPass &&
+    compensatedRoutePayloadComplete &&
+    wakeBoundaryChargePullbackPopulated &&
+    sameEventCarrierPopulationPass;
+  const payloadRows = [
+    {
+      payload: "point_event_force_torque",
+      state: pointEventTorqueCandidatePass ? "candidate" : "missing",
+      accepted: false,
+      status: pointEventTorqueCandidatePass
+        ? "point_event_force_torque_candidate_populated_retained_torque_missing"
+        : "point_event_force_torque_candidate_missing",
+      evidence: {
+        candidatePointEventAdmissibilityStatus:
+          hingeEventRowSetIdentity?.candidatePointEventAdmissibilityStatus ?? null,
+        offDiagonalNetDiagnosticTorqueNorm:
+          hingeEventRowSetIdentity?.offDiagonalNetDiagnosticTorqueNorm ?? null,
+        pointEventTorqueTolerance:
+          hingeEventRowSetIdentity?.pointEventTorqueTolerance ?? null,
+      },
+    },
+    {
+      payload: "endpoint_provider_branch_geometry",
+      state: providerAssistedBranchGeometryPass ? "local_accepted" : "missing",
+      accepted: false,
+      status: providerAssistedBranchGeometryPass
+        ? "endpoint_provider_assisted_geometry_local_route_authorized"
+        : "endpoint_provider_assisted_geometry_missing",
+      evidence: {
+        endpointProviderAssistedBranchTransportGeometryStatus:
+          endpointProviderAssistedBranchTransportGeometryTarget?.status ?? null,
+        routeAuthorizedPointEventDomainStatus:
+          routeAuthorizedPointEventDomainTarget?.status ?? null,
+        routeAuthorizedPointEventDomainScope:
+          routeAuthorizedPointEventDomainTarget?.domainScope ?? null,
+      },
+    },
+    {
+      payload: "route_payload",
+      state: compensatedRoutePayloadComplete ? "candidate" : "missing",
+      accepted: false,
+      status: compensatedRoutePayloadComplete
+        ? "compensated_route_payload_complete_candidate"
+        : "compensated_route_payload_missing",
+      evidence: {
+        compensatedRoutePayloadStatus:
+          sameEventEnergyRoutingTarget?.compensatedRoutePayloadStatus ?? null,
+        compensatedRoutePayloadPopulatedFields:
+          sameEventEnergyRoutingTarget?.compensatedRoutePayloadPopulatedFields ??
+          [],
+        compensatedRoutePayloadMissingFields:
+          sameEventEnergyRoutingTarget?.compensatedRoutePayloadMissingFields ??
+          [],
+        compensatedRoutePayloadRowCount:
+          sameEventEnergyRoutingTarget?.compensatedRoutePayloadRowCount ?? null,
+      },
+    },
+    {
+      payload: "wake_boundary_charge_pullback",
+      state: wakeBoundaryChargePullbackPopulated ? "local_accepted" : "missing",
+      accepted: false,
+      status: wakeBoundaryChargePullbackPopulated
+        ? "wake_boundary_charge_pullback_route_authorized_accepted"
+        : "wake_boundary_charge_pullback_missing",
+      evidence: {
+        normalizedBoundaryChargeStatus:
+          sameEventEnergyRoutingTarget?.normalizedBoundaryChargeStatus ?? null,
+        retainedCrossingDomainPullbackStatus:
+          sameEventEnergyRoutingTarget?.retainedCrossingDomainPullbackStatus ?? null,
+        targetChargeNorm:
+          sameEventEnergyRoutingTarget?.targetChargeNorm ?? null,
+      },
+    },
+    {
+      payload: "same_event_energy_carriers",
+      state: sameEventCarrierPopulationPass ? "formal" : "missing",
+      accepted: false,
+      status: sameEventCarrierPopulationPass
+        ? "same_event_energy_carriers_exact_formal_candidate_populated"
+        : "same_event_energy_carriers_missing",
+      evidence: {
+        sameEventEnergyRoutingStatus:
+          sameEventEnergyRoutingTarget?.status ?? null,
+        sameEventRowsPass:
+          sameEventEnergyRoutingTarget?.sameEventRowsPass ?? null,
+        exactFormalCandidateCount:
+          sameEventEnergyRoutingTarget?.exactFormalCandidateCount ?? null,
+        exactFormalCandidateRows: exactFormalSameEventCarrierRows.map((row) => ({
+          id: row.id,
+          status: row.status,
+          candidateWakeEnergyIncrement:
+            finiteOrNull(row.candidateWakeEnergyIncrement),
+          targetWakeEnergyIncrement:
+            finiteOrNull(row.targetWakeEnergyIncrement),
+          residualAbs: finiteOrNull(row.residualAbs),
+        })),
+      },
+    },
+    {
+      payload: "retained_energy_routing",
+      state: acceptedRetainedEnergyRoutingPass ? "accepted" : "formal",
+      accepted: acceptedRetainedEnergyRoutingPass,
+      status: acceptedRetainedEnergyRoutingPass
+        ? "retained_energy_routing_accepted"
+        : "retained_energy_routing_formal_carriers_acceptance_blocked",
+      evidence: {
+        sameEventEnergyRoutingStatus:
+          sameEventEnergyRoutingTarget?.status ?? null,
+        acceptedOmegaTxSource,
+        acceptedActionScale,
+        acceptedEnergyOrientation,
+        acceptedWakeEnergyIncrementLaw,
+        acceptanceBlockers:
+          sameEventEnergyRoutingTarget?.acceptanceBlockers ?? [],
+      },
+    },
+    {
+      payload: "phase_payload",
+      state: routeCompensationRequired ? "missing" : "not_required",
+      accepted: !routeCompensationRequired,
+      status: routeCompensationRequired
+        ? "retained_phase_payload_missing_for_compensated_route"
+        : "not_required_zero_slack_route",
+      evidence: {
+        maxRequiredPhaseCompensation:
+          hingeRootBranchTransportRouteFeasibility?.maxRequiredPhaseCompensation ??
+          null,
+      },
+    },
+    {
+      payload: "partition_payload",
+      state: routeCompensationRequired ? "missing" : "not_required",
+      accepted: !routeCompensationRequired,
+      status: routeCompensationRequired
+        ? "retained_vector_partition_payload_missing"
+        : "not_required_zero_slack_route",
+      evidence: {
+        routeCompensationRequired,
+      },
+    },
+    {
+      payload: "stability_payload",
+      state: routeCompensationRequired ? "blocked" : "not_required",
+      accepted: !routeCompensationRequired,
+      status: routeCompensationRequired
+        ? "retained_section_stability_payload_missing"
+        : "not_required_zero_slack_route",
+      evidence: {
+        routeCandidatePass,
+        routeRowCount: routeRows.length,
+      },
+    },
+    {
+      payload: "full_point_event_rule",
+      state: "missing",
+      accepted: false,
+      status: "accepted_full_point_event_rule_missing",
+      evidence: {
+        pointOnlyDiagonalPairKeys,
+      },
+    },
+  ];
+  const acceptedRows = payloadRows.filter((row) => row.accepted === true);
+  const candidateRows = payloadRows.filter((row) => row.state === "candidate");
+  const localAcceptedRows = payloadRows.filter(
+    (row) => row.state === "local_accepted"
+  );
+  const formalRows = payloadRows.filter((row) => row.state === "formal");
+  const missingRows = payloadRows.filter((row) => row.state === "missing");
+  const blockedRows = payloadRows.filter((row) => row.state === "blocked");
+  const acceptedRetainedPayloadRowsPass =
+    payloadRows.length > 0 &&
+    payloadRows.every((row) => row.accepted === true || row.state === "not_required");
+  const coverageBlockers = [
+    localEndpointProviderAcceptedPass
+      ? null
+      : "local_route_authorized_endpoint_provider_point_event_missing",
+    allPairPointEventInputPass ? null : "all_pair_point_event_input_missing",
+    providerAssistedBranchGeometryPass
+      ? null
+      : "endpoint_provider_assisted_branch_geometry_missing",
+    compensatedRoutePayloadComplete ? null : "compensated_route_payload_missing",
+    wakeBoundaryChargePullbackPopulated
+      ? null
+      : "wake_boundary_charge_pullback_missing",
+    sameEventCarrierPopulationPass ? null : "same_event_energy_carriers_missing",
+    acceptedOmegaTxSource ? null : "accepted_omega_tx_source_missing",
+    acceptedActionScale ? null : "derived_sigma_hbar_action_scale_missing",
+    acceptedWakeEnergyIncrementLaw ? null : "accepted_wake_energy_increment_law_missing",
+    acceptedRetainedEnergyRoutingPass ? null : "accepted_retained_energy_routing_missing",
+    pointOnlyDiagonalPairKeys.length > 0
+      ? "point_only_diagonal_identity_rows_need_explicit_full_point_event_rule"
+      : null,
+    routeCompensationRequired ? "retained_phase_payload_missing" : null,
+    routeCompensationRequired ? "retained_partition_payload_missing" : null,
+    routeCompensationRequired ? "retained_stability_payload_missing" : null,
+    pointEventTorqueCandidatePass ? "retained_torque_payload_missing" : null,
+    "accepted_full_point_event_rule_missing",
+  ].filter(Boolean);
+
+  return {
+    schema: "aaa-tri-binary-full-point-event-payload-coverage-target.v1",
+    status: !localEndpointProviderAcceptedPass
+      ? "full_point_event_payload_coverage_not_applicable_local_provider_missing"
+      : partialCoveragePass
+        ? "full_point_event_payload_coverage_partial_route_wake_energy_carriers_populated_acceptance_blocked"
+        : compensatedRoutePayloadComplete || wakeBoundaryChargePullbackPopulated
+          ? "full_point_event_payload_coverage_partial_route_or_wake_populated"
+          : "full_point_event_payload_coverage_blocked",
+    claimLevel:
+      "fail-closed coverage diagnostic for the payload rows needed by a full point-event rule; not accepted retained payload closure",
+    localEndpointProviderAcceptedPass,
+    allPairPointEventInputPass,
+    partialCoveragePass,
+    acceptedRetainedPayloadRowsPass,
+    acceptedRetainedEnergyRoutingPass,
+    acceptedFullPointEventRulePass: false,
+    retainedBranchClaim: false,
+    routeCandidatePass,
+    routeCompensationRequired,
+    pointEventTorqueCandidatePass,
+    providerAssistedBranchGeometryPass,
+    compensatedRoutePayloadComplete,
+    wakeBoundaryChargePullbackPopulated,
+    sameEventCarrierPopulationPass,
+    minimalBranchTransactionFrequencyStatus:
+      minimalBranchTransactionFrequencyCertificate?.status ?? null,
+    minimalBranchTransactionFrequencyAcceptedPass:
+      minimalBranchTransactionFrequencyCertificate
+        ?.acceptedTransactionFrequencyPass ?? null,
+    actionBoundaryWakeEnergyLawStatus:
+      actionBoundaryWakeEnergyLawCandidate?.status ?? null,
+    acceptedOmegaTxSource,
+    acceptedActionScale,
+    acceptedEnergyOrientation,
+    acceptedWakeEnergyIncrementLaw,
+    payloadRowCount: payloadRows.length,
+    acceptedPayloadRowCount: acceptedRows.length,
+    candidatePayloadRowCount: candidateRows.length,
+    localAcceptedPayloadRowCount: localAcceptedRows.length,
+    formalPayloadRowCount: formalRows.length,
+    missingPayloadRowCount: missingRows.length,
+    blockedPayloadRowCount: blockedRows.length,
+    coverageBlockers,
+    payloadRows,
+    retainedLimitation:
+      "Route payload, route-authorized wake pullback, and exact same-event carriers can be populated while the full point-event rule remains unaccepted. Retained promotion still needs accepted omega_tx, sigma*hbar action scale, wake-energy law, retained phase, torque, partition, stability, and an explicit full point-event rule for the point-only diagonal identity rows.",
   };
 }
 
@@ -7519,6 +8707,7 @@ function createActionBoundaryWakeEnergyLawCandidate({
   omegaStarWeightedBoundaryCharge,
   omegaStar,
   targetChargeNorm,
+  layerByName = new Map(),
 }) {
   const derivativeEvaluated =
     actionBoundaryDerivativeTarget?.normalizedHistoryIntegralPass === true;
@@ -7590,6 +8779,7 @@ function createActionBoundaryWakeEnergyLawCandidate({
       energyOrientationLawTarget,
       masterEquationCharacteristicTailPullbackCandidate,
       targetChargeNorm,
+      layerByName,
     });
   const actionScaleDerivationAccepted =
     actionScaleDerivationTarget.acceptedActionScaleDerivationPass === true;
@@ -7643,6 +8833,10 @@ function createActionBoundaryWakeEnergyLawCandidate({
     actionScaleLawSearchStatus: actionScaleLawSearchTarget.status,
     actionScaleLawSearchTarget,
     actionScaleDerivationStatus: actionScaleDerivationTarget.status,
+    actionScaleIndependentSourceExclusionSummaryStatus:
+      actionScaleDerivationTarget.independentSourceExclusionSummaryStatus,
+    currentActionScaleSearchExhaustedPass:
+      actionScaleDerivationTarget.currentActionScaleSearchExhaustedPass,
     actionScaleDerivationTarget,
     omegaTxLawSearchStatus: omegaTxLawSearchTarget.status,
     omegaTxLawSearchTarget,
@@ -8196,6 +9390,7 @@ function createActionBoundaryActionScaleDerivationTarget({
   energyOrientationLawTarget,
   masterEquationCharacteristicTailPullbackCandidate,
   targetChargeNorm,
+  layerByName = new Map(),
 }) {
   const routeLocalCoefficientAcceptanceTarget =
     masterEquationCharacteristicTailPullbackCandidate?.coefficientQuadratureTarget
@@ -8291,6 +9486,17 @@ function createActionBoundaryActionScaleDerivationTarget({
       leastNormBoundaryChargeAmplitudeLaw,
       routeLocalCoefficientAcceptanceTarget,
       bestRejectedCandidate,
+      layerByName,
+    });
+  const independentSourceExclusionSummary =
+    createActionBoundaryActionScaleIndependentSourceExclusionSummary({
+      requiredPositiveActionScale,
+      actionScaleLawSearchTarget,
+      acceptedActionScaleDerivationPass: acceptedRows.length > 0,
+      measuredScaleDiagnosticPass,
+      rowAmplitudeLawAccepted,
+      routeLocalCoefficientAccepted,
+      residualCorrectionDiagnostic,
     });
 
   return {
@@ -8332,14 +9538,237 @@ function createActionBoundaryActionScaleDerivationTarget({
     exactDiagnosticCount: exactDiagnosticRows.length,
     residualCorrectionDiagnosticStatus:
       residualCorrectionDiagnostic?.status ?? null,
+    independentSourceExclusionSummaryStatus:
+      independentSourceExclusionSummary.status,
+    currentActionScaleSearchExhaustedPass:
+      independentSourceExclusionSummary.currentSearchExhaustedPass,
     bestRejectedCandidate,
     bestRejectedDiagnosticOrIneligibleCandidate,
     residualCorrectionDiagnostic,
+    independentSourceExclusionSummary,
     exactDiagnosticRows,
     acceptedRows,
     rows: candidateRows,
     retainedLimitation:
       "This target keeps the action scale on the same route-local characteristic-tail and action-boundary rows. The required scale is measured by the boundary-charge comparison, but it remains blocked until a non-tautological route-local law supplies sigma*hbar without fitting the target.",
+  };
+}
+
+function createActionBoundaryActionScaleIndependentSourceExclusionSummary({
+  requiredPositiveActionScale,
+  actionScaleLawSearchTarget,
+  acceptedActionScaleDerivationPass,
+  measuredScaleDiagnosticPass,
+  rowAmplitudeLawAccepted,
+  routeLocalCoefficientAccepted,
+  residualCorrectionDiagnostic,
+}) {
+  const familyRows = [
+    {
+      id: "simple_existing_scalar_search",
+      source: "existing route, normalization, wake-charge, and unit-payload scalars",
+      status: actionScaleLawSearchTarget?.status ?? null,
+      finiteCandidateCount: actionScaleLawSearchTarget?.finiteCandidateCount ?? null,
+      acceptedCandidateCount:
+        actionScaleLawSearchTarget?.acceptedCandidateCount ?? null,
+      acceptedPass: actionScaleLawSearchTarget?.acceptedActionScaleLawPass === true,
+      exclusionPass:
+        actionScaleLawSearchTarget?.status ===
+        "action_boundary_action_scale_law_search_no_simple_candidate_accepted",
+    },
+    {
+      id: "route_local_derivation_candidates",
+      source:
+        "accepted route-local row-amplitude and characteristic-tail coefficient rows",
+      status:
+        acceptedActionScaleDerivationPass === true
+          ? "action_boundary_action_scale_derivation_target_route_local_candidate_accepted"
+          : measuredScaleDiagnosticPass === true &&
+              rowAmplitudeLawAccepted === true &&
+              routeLocalCoefficientAccepted === true
+            ? "action_boundary_action_scale_derivation_target_measured_scale_populated_route_local_candidates_rejected"
+            : "action_boundary_action_scale_derivation_target_incomplete",
+      acceptedPass: acceptedActionScaleDerivationPass === true,
+      exclusionPass:
+        acceptedActionScaleDerivationPass !== true &&
+        measuredScaleDiagnosticPass === true &&
+        rowAmplitudeLawAccepted === true &&
+        routeLocalCoefficientAccepted === true,
+    },
+    {
+      id: "residual_quadrature_and_endpoint_corrections",
+      source: "quadrature refinement and finite endpoint-leakage correction rows",
+      status: residualCorrectionDiagnostic?.status ?? null,
+      acceptedCandidateCount:
+        residualCorrectionDiagnostic?.acceptedEndpointCorrectionCount ?? null,
+      acceptedPass:
+        residualCorrectionDiagnostic?.acceptedEndpointCorrectionCount > 0 ||
+        residualCorrectionDiagnostic?.quadratureClearsResidual === true,
+      exclusionPass:
+        residualCorrectionDiagnostic?.status ===
+        "action_scale_residual_correction_diagnostic_quadrature_stable_endpoint_candidates_rejected",
+    },
+    {
+      id: "boundary_charge_increment_candidates",
+      source: "boundary-charge increment candidates mapped from the residual gap",
+      status:
+        residualCorrectionDiagnostic?.boundaryChargeIncrementCandidateStatus ??
+        null,
+      acceptedCandidateCount:
+        residualCorrectionDiagnostic?.acceptedBoundaryChargeIncrementCandidateCount ??
+        null,
+      exactDiagnosticCount:
+        residualCorrectionDiagnostic?.exactDiagnosticBoundaryChargeIncrementCount ??
+        null,
+      acceptedPass:
+        residualCorrectionDiagnostic?.acceptedBoundaryChargeIncrementCandidateCount >
+        0,
+      exclusionPass:
+        residualCorrectionDiagnostic?.boundaryChargeIncrementCandidateStatus ===
+          "boundary_charge_increment_candidates_rejected" ||
+        residualCorrectionDiagnostic?.boundaryChargeIncrementCandidateStatus ===
+          "boundary_charge_increment_candidates_rejected_target_derived_comparison_only",
+    },
+    {
+      id: "alternate_normalization_shift",
+      source: "alternate action-kernel normalization shifts",
+      status:
+        residualCorrectionDiagnostic?.alternateNormalizationShiftDiagnosticStatus ??
+        null,
+      acceptedCandidateCount:
+        residualCorrectionDiagnostic?.alternateNormalizationShiftDiagnostic
+          ?.acceptedCandidateCount ?? null,
+      exactDiagnosticCount:
+        residualCorrectionDiagnostic?.alternateNormalizationShiftDiagnostic
+          ?.exactDiagnosticCount ?? null,
+      acceptedPass:
+        residualCorrectionDiagnostic?.alternateNormalizationShiftDiagnostic
+          ?.acceptedCandidateCount > 0,
+      exclusionPass:
+        residualCorrectionDiagnostic?.alternateNormalizationShiftDiagnosticStatus ===
+          "alternate_normalization_shift_candidates_rejected" ||
+        residualCorrectionDiagnostic?.alternateNormalizationShiftDiagnosticStatus ===
+          "alternate_normalization_shift_candidates_rejected_target_derived_comparison_only",
+    },
+    {
+      id: "retained_work_action_scale",
+      source: "retained-work and route-payload action-scale candidates",
+      status:
+        residualCorrectionDiagnostic?.retainedWorkActionScaleDiagnosticStatus ??
+        null,
+      finiteCandidateCount:
+        residualCorrectionDiagnostic?.retainedWorkActionScaleDiagnostic
+          ?.finiteCandidateCount ?? null,
+      acceptedCandidateCount:
+        residualCorrectionDiagnostic?.retainedWorkActionScaleDiagnostic
+          ?.acceptedCandidateCount ?? null,
+      exactDiagnosticCount:
+        residualCorrectionDiagnostic?.retainedWorkActionScaleDiagnostic
+          ?.exactDiagnosticCount ?? null,
+      acceptedPass:
+        residualCorrectionDiagnostic?.retainedWorkActionScaleDiagnostic
+          ?.acceptedCandidateCount > 0,
+      exclusionPass:
+        residualCorrectionDiagnostic?.retainedWorkActionScaleDiagnosticStatus ===
+          "retained_work_action_scale_candidates_rejected" ||
+        residualCorrectionDiagnostic?.retainedWorkActionScaleDiagnosticStatus ===
+          "retained_work_action_scale_candidates_rejected_target_derived_comparison_only",
+    },
+    {
+      id: "coefficient_provenance",
+      source: "coefficient-provenance rows for the residual boundary-charge gap",
+      status:
+        residualCorrectionDiagnostic?.coefficientProvenanceDiagnosticStatus ?? null,
+      acceptedCandidateCount:
+        residualCorrectionDiagnostic?.coefficientProvenanceDiagnostic
+          ?.acceptedCandidateCount ?? null,
+      exactDiagnosticCount:
+        residualCorrectionDiagnostic?.coefficientProvenanceDiagnostic
+          ?.exactDiagnosticCount ?? null,
+      acceptedPass:
+        residualCorrectionDiagnostic?.coefficientProvenanceDiagnostic
+          ?.acceptedCandidateCount > 0,
+      exclusionPass:
+        residualCorrectionDiagnostic?.coefficientProvenanceDiagnosticStatus ===
+          "coefficient_provenance_candidates_rejected" ||
+        residualCorrectionDiagnostic?.coefficientProvenanceDiagnosticStatus ===
+          "coefficient_provenance_candidates_rejected_target_derived_comparison_only",
+    },
+    {
+      id: "exact_endpoint_provider",
+      source: "exact circular endpoint-provider correction rows",
+      status:
+        residualCorrectionDiagnostic?.exactEndpointProviderActionScaleDiagnosticStatus ??
+        null,
+      finiteCandidateCount:
+        residualCorrectionDiagnostic?.exactEndpointProviderActionScaleDiagnostic
+          ?.finiteCandidateCount ?? null,
+      exactDiagnosticCount:
+        residualCorrectionDiagnostic?.exactEndpointProviderActionScaleDiagnostic
+          ?.exactDiagnosticCount ?? null,
+      acceptedPass: false,
+      exclusionPass:
+        residualCorrectionDiagnostic?.exactEndpointProviderActionScaleDiagnosticStatus ===
+        "exact_endpoint_provider_action_scale_candidates_rejected",
+    },
+  ].map((row) => ({
+    ...row,
+    outcome:
+      row.acceptedPass === true
+        ? "accepted"
+        : row.exclusionPass === true
+          ? "excluded"
+          : row.exactDiagnosticCount > 0
+            ? "formal_target_derived_only"
+            : "incomplete_or_untested",
+  }));
+  const acceptedRows = familyRows.filter((row) => row.acceptedPass === true);
+  const excludedRows = familyRows.filter((row) => row.exclusionPass === true);
+  const formalOnlyRows = familyRows.filter(
+    (row) =>
+      row.acceptedPass !== true &&
+      row.exclusionPass !== true &&
+      row.exactDiagnosticCount > 0
+  );
+  const untestedRows = familyRows.filter(
+    (row) =>
+      row.acceptedPass !== true &&
+      row.exclusionPass !== true &&
+      !(row.exactDiagnosticCount > 0)
+  );
+  const currentSearchExhaustedPass =
+    Number.isFinite(requiredPositiveActionScale) &&
+    acceptedRows.length === 0 &&
+    untestedRows.length === 0;
+
+  return {
+    schema:
+      "aaa-tri-binary-action-scale-independent-source-exclusion-summary.v1",
+    status: !Number.isFinite(requiredPositiveActionScale)
+      ? "action_scale_independent_source_exclusion_blocked_until_required_scale"
+      : acceptedRows.length > 0
+        ? "action_scale_independent_source_candidate_accepted"
+        : currentSearchExhaustedPass
+          ? "action_scale_independent_source_current_search_exhausted_full_event_rule_or_new_law_required"
+          : "action_scale_independent_source_current_search_incomplete",
+    claimLevel:
+      "negative certificate over the current independent sigma*hbar action-scale search families; not a proof that no action-scale law exists",
+    requiredPositiveActionScale,
+    acceptedIndependentActionScaleSourcePass: acceptedRows.length > 0,
+    currentSearchExhaustedPass,
+    rejectedFamilyCount: excludedRows.length,
+    formalOnlyFamilyCount: formalOnlyRows.length,
+    incompleteOrUntestedFamilyCount: untestedRows.length,
+    nextClosureRoute:
+      "full_point_event_diagonal_identity_or_new_independent_action_scale_law",
+    retainedBranchClaim: false,
+    acceptedRows,
+    excludedRows,
+    formalOnlyRows,
+    untestedRows,
+    rows: familyRows,
+    retainedLimitation:
+      "This summary exhausts only the solver's current finite candidate families. It does not reject a new independent sigma*hbar law, and it does not accept retained branch transport, full point-event identity, or retained energy routing.",
   };
 }
 
@@ -8604,6 +10033,7 @@ function createActionBoundaryActionScaleResidualCorrectionDiagnostic({
   leastNormBoundaryChargeAmplitudeLaw,
   routeLocalCoefficientAcceptanceTarget,
   bestRejectedCandidate,
+  layerByName = new Map(),
 }) {
   const bestResidualAbs = bestRejectedCandidate?.residualAbs ?? null;
   const actionKernelMarginRatio =
@@ -8670,6 +10100,15 @@ function createActionBoundaryActionScaleResidualCorrectionDiagnostic({
       actionBoundaryDerivativeTarget,
       compensatedRoutePayloadCertificate,
       targetChargeNorm,
+    });
+  const exactEndpointProviderActionScaleDiagnostic =
+    createExactEndpointProviderActionScaleDiagnostic({
+      requiredPositiveActionScale,
+      omegaStarWeightedBoundaryCharge,
+      actionBoundaryDerivativeTarget,
+      compensatedRoutePayloadCertificate,
+      targetChargeNorm,
+      layerByName,
     });
   const acceptedBoundaryChargeIncrementRows =
     boundaryChargeIncrementCandidateRows.filter(
@@ -8758,6 +10197,9 @@ function createActionBoundaryActionScaleResidualCorrectionDiagnostic({
     retainedWorkActionScaleDiagnosticStatus:
       retainedWorkActionScaleDiagnostic?.status ?? null,
     retainedWorkActionScaleDiagnostic,
+    exactEndpointProviderActionScaleDiagnosticStatus:
+      exactEndpointProviderActionScaleDiagnostic?.status ?? null,
+    exactEndpointProviderActionScaleDiagnostic,
     convergenceRows,
     endpointCorrectionCandidateCount: endpointCorrectionRows.length,
     acceptedEndpointCorrectionCount: acceptedEndpointCorrectionRows.length,
@@ -9448,6 +10890,357 @@ function createActionBoundaryRetainedWorkActionScaleDiagnostic({
     retainedLimitation:
       "The tested rows use only existing compensated route-payload, root-energy, transport, recoil, endpoint, and slack diagnostics. These rows can narrow the retained-work route, but they do not become acceptance sources until the route has an accepted retained-work law on the same event.",
   };
+}
+
+function createExactEndpointProviderActionScaleDiagnostic({
+  requiredPositiveActionScale,
+  omegaStarWeightedBoundaryCharge,
+  actionBoundaryDerivativeTarget,
+  compensatedRoutePayloadCertificate,
+  targetChargeNorm,
+  layerByName = new Map(),
+}) {
+  const unitActionWakeEnergyIncrement =
+    actionBoundaryDerivativeTarget?.halfWeightedNormalizedPartialT1KernelTermSum ??
+    null;
+  const unitActionWakeEnergyMagnitude = Number.isFinite(
+    unitActionWakeEnergyIncrement
+  )
+    ? Math.abs(unitActionWakeEnergyIncrement)
+    : null;
+  const omegaStar =
+    Number.isFinite(omegaStarWeightedBoundaryCharge) &&
+    Number.isFinite(targetChargeNorm) &&
+    Math.abs(targetChargeNorm) > POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE
+      ? omegaStarWeightedBoundaryCharge / targetChargeNorm
+      : null;
+  const derivativeRows = actionBoundaryDerivativeTarget?.rows ?? [];
+  const eta = actionBoundaryDerivativeTarget?.eta ?? null;
+  const minHPlusRouteWidth = minFinite(
+    derivativeRows.map((row) => row.hPlusRouteWidth)
+  );
+  const actionKernelMarginRatio =
+    Number.isFinite(minHPlusRouteWidth) &&
+    Number.isFinite(eta) &&
+    Math.abs(eta) > POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE
+      ? minHPlusRouteWidth / eta
+      : null;
+  const scaleByUnitDerivative = (value) =>
+    Number.isFinite(value) &&
+    Number.isFinite(unitActionWakeEnergyMagnitude) &&
+    unitActionWakeEnergyMagnitude > POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE
+      ? Math.abs(value) / unitActionWakeEnergyMagnitude
+      : null;
+  const scaleByMargin = (value) =>
+    Number.isFinite(value) &&
+    Number.isFinite(actionKernelMarginRatio) &&
+    Math.abs(actionKernelMarginRatio) >
+      POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE
+      ? Math.abs(value) / Math.abs(actionKernelMarginRatio)
+      : null;
+  const omegaWeightedScaleByUnitDerivative = (value) =>
+    Number.isFinite(value) && Number.isFinite(omegaStar)
+      ? scaleByUnitDerivative(omegaStar * value)
+      : null;
+  const providerEligibleRouteRows = (compensatedRoutePayloadCertificate?.rows ?? [])
+    .filter(
+      (row) =>
+        row.continuityRole === "same_source" &&
+        row.compensationRequired === true
+    );
+  const endpointRows = providerEligibleRouteRows.map((row) =>
+    createExactEndpointProviderActionScaleEndpointRow({ row, layerByName })
+  );
+  const candidateRows = [];
+  const seenIds = new Set();
+  const addCandidate = ({
+    id,
+    source,
+    formula,
+    candidateActionScale,
+    evidence = null,
+  }) => {
+    if (seenIds.has(id)) {
+      return;
+    }
+    seenIds.add(id);
+    const finiteCandidateActionScale = finiteOrNull(candidateActionScale);
+    const residual =
+      finiteCandidateActionScale != null &&
+      Number.isFinite(requiredPositiveActionScale)
+        ? finiteCandidateActionScale - requiredPositiveActionScale
+        : null;
+    const residualAbs = Number.isFinite(residual) ? Math.abs(residual) : null;
+    candidateRows.push({
+      id,
+      status:
+        finiteCandidateActionScale != null
+          ? "exact_endpoint_provider_action_scale_candidate_evaluated_not_acceptance_source"
+          : "exact_endpoint_provider_action_scale_candidate_not_finite",
+      source,
+      formula,
+      acceptanceEligible: false,
+      acceptanceBlockers: ["exact_endpoint_provider_not_retained_action_scale_law"],
+      rejectionReason:
+        "Exact circular endpoint corrections are local endpoint-provider evidence, not an independent sigma*hbar action-scale law.",
+      evidence,
+      candidateActionScale: finiteCandidateActionScale,
+      requiredPositiveActionScale,
+      residual,
+      residualAbs,
+      exactEndpointProviderActionScaleCandidatePass:
+        Number.isFinite(residualAbs) &&
+        residualAbs <= POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE,
+    });
+  };
+
+  for (const row of endpointRows) {
+    const routeId =
+      row.continuityRole ??
+      `${row.incomingPairKey ?? "incoming"}_${row.outgoingPairKey ?? "outgoing"}`;
+    addCandidate({
+      id: `${routeId}_max_exact_endpoint_correction_norm`,
+      source: "exact circular endpoint-provider correction",
+      formula: "max(incoming endpoint correction norm, outgoing endpoint correction norm)",
+      candidateActionScale: row.maxEndpointCorrectionNorm,
+      evidence: row,
+    });
+    addCandidate({
+      id: `${routeId}_exact_endpoint_correction_difference_abs`,
+      source: "exact circular endpoint-provider correction",
+      formula: "abs(outgoing endpoint correction norm - incoming endpoint correction norm)",
+      candidateActionScale: row.endpointCorrectionDifferenceAbs,
+      evidence: row,
+    });
+    addCandidate({
+      id: `${routeId}_exact_endpoint_correction_sum`,
+      source: "exact circular endpoint-provider correction",
+      formula: "incoming endpoint correction norm + outgoing endpoint correction norm",
+      candidateActionScale: row.endpointCorrectionNormSum,
+      evidence: row,
+    });
+    addCandidate({
+      id: `${routeId}_max_exact_endpoint_correction_over_action_kernel_margin`,
+      source: "exact circular endpoint-provider correction and action-kernel margin",
+      formula:
+        "max endpoint correction norm / (min(h_+ route width) / eta)",
+      candidateActionScale: scaleByMargin(row.maxEndpointCorrectionNorm),
+      evidence: {
+        ...row,
+        actionKernelMarginRatio,
+      },
+    });
+    addCandidate({
+      id: `${routeId}_omega_weighted_endpoint_correction_over_unit_derivative`,
+      source: "exact circular endpoint-provider correction and action-boundary derivative",
+      formula:
+        "omega_* max endpoint correction norm / abs(unit action derivative)",
+      candidateActionScale: omegaWeightedScaleByUnitDerivative(
+        row.maxEndpointCorrectionNorm
+      ),
+      evidence: {
+        ...row,
+        omegaStar,
+        unitActionWakeEnergyMagnitude,
+      },
+    });
+  }
+
+  const finiteEndpointCorrections = endpointRows
+    .flatMap((row) => [
+      row.incomingEndpointCorrectionNorm,
+      row.outgoingEndpointCorrectionNorm,
+    ])
+    .filter(Number.isFinite);
+  const maxEndpointCorrection =
+    finiteEndpointCorrections.length > 0
+      ? maxFinite(finiteEndpointCorrections)
+      : null;
+  const minEndpointCorrection =
+    finiteEndpointCorrections.length > 0
+      ? minFinite(finiteEndpointCorrections)
+      : null;
+  const endpointCorrectionRange =
+    Number.isFinite(maxEndpointCorrection) && Number.isFinite(minEndpointCorrection)
+      ? maxEndpointCorrection - minEndpointCorrection
+      : null;
+  addCandidate({
+    id: "all_routes_max_exact_endpoint_correction_norm",
+    source: "exact circular endpoint-provider corrections",
+    formula: "max(all exact circular endpoint correction norms)",
+    candidateActionScale: maxEndpointCorrection,
+    evidence: {
+      endpointRowCount: endpointRows.length,
+      maxEndpointCorrection,
+    },
+  });
+  addCandidate({
+    id: "all_routes_endpoint_correction_range",
+    source: "exact circular endpoint-provider corrections",
+    formula: "max(endpoint correction norm) - min(endpoint correction norm)",
+    candidateActionScale: endpointCorrectionRange,
+    evidence: {
+      endpointRowCount: endpointRows.length,
+      maxEndpointCorrection,
+      minEndpointCorrection,
+    },
+  });
+
+  const finiteRows = candidateRows.filter((row) =>
+    Number.isFinite(row.candidateActionScale)
+  );
+  const exactDiagnosticRows = finiteRows.filter(
+    (row) => row.exactEndpointProviderActionScaleCandidatePass
+  );
+  const rejectedRows = finiteRows.filter(
+    (row) => row.exactEndpointProviderActionScaleCandidatePass !== true
+  );
+  const bestRejectedCandidate =
+    rejectedRows.length > 0
+      ? rejectedRows.reduce((best, row) =>
+          row.residualAbs < best.residualAbs ? row : best
+        )
+      : null;
+
+  return {
+    schema:
+      "aaa-tri-binary-exact-endpoint-provider-action-scale-diagnostic.v1",
+    status:
+      endpointRows.length === 0
+        ? "exact_endpoint_provider_action_scale_diagnostic_route_rows_missing"
+        : finiteRows.length === 0
+          ? "exact_endpoint_provider_action_scale_diagnostic_no_finite_candidates"
+          : exactDiagnosticRows.length > 0
+            ? "exact_endpoint_provider_action_scale_candidates_formal_match"
+            : "exact_endpoint_provider_action_scale_candidates_rejected",
+    claimLevel:
+      "fail-closed diagnostic comparing exact circular endpoint-provider corrections against the sigma*hbar action-scale gap; not an accepted action-scale law",
+    requiredPositiveActionScale,
+    omegaStar,
+    omegaStarWeightedBoundaryCharge,
+    targetChargeNorm,
+    unitActionWakeEnergyMagnitude,
+    actionKernelMarginRatio,
+    providerEligibleRouteRowCount: providerEligibleRouteRows.length,
+    endpointRowCount: endpointRows.length,
+    candidateCount: candidateRows.length,
+    finiteCandidateCount: finiteRows.length,
+    exactDiagnosticCount: exactDiagnosticRows.length,
+    bestRejectedCandidate,
+    exactDiagnosticRows,
+    endpointRows,
+    rows: candidateRows,
+    retainedLimitation:
+      "This diagnostic tests whether exact circular endpoint-provider corrections can explain the remaining action-scale gap. The rows are formal comparisons only because the provider remains route-authorized point-event evidence rather than an accepted retained sigma*hbar action-scale law.",
+  };
+}
+
+function createExactEndpointProviderActionScaleEndpointRow({ row, layerByName }) {
+  const layer = layerByName?.get?.(row.continuityLayer) ?? null;
+  const incomingEndpointGeometry = row.incomingPairEndpointGeometry ?? null;
+  const outgoingEndpointGeometry = row.outgoingPairEndpointGeometry ?? null;
+  const incomingEndpointPoint = selectContinuityEndpointPoint({
+    endpointGeometry: incomingEndpointGeometry,
+    continuityRole: row.continuityRole,
+  });
+  const outgoingEndpointPoint = selectContinuityEndpointPoint({
+    endpointGeometry: outgoingEndpointGeometry,
+    continuityRole: row.continuityRole,
+  });
+  const incomingExactPoint =
+    layer && Number.isFinite(incomingEndpointGeometry?.emissionTime)
+      ? computeCircularLayerPoint(layer, incomingEndpointGeometry.emissionTime)
+      : null;
+  const outgoingExactPoint =
+    layer && Number.isFinite(outgoingEndpointGeometry?.emissionTime)
+      ? computeCircularLayerPoint(layer, outgoingEndpointGeometry.emissionTime)
+      : null;
+  const incomingEndpointCorrectionVector =
+    isFiniteVector(incomingEndpointPoint) && isFiniteVector(incomingExactPoint)
+      ? subtractVectors(incomingExactPoint, incomingEndpointPoint)
+      : null;
+  const outgoingEndpointCorrectionVector =
+    isFiniteVector(outgoingEndpointPoint) && isFiniteVector(outgoingExactPoint)
+      ? subtractVectors(outgoingExactPoint, outgoingEndpointPoint)
+      : null;
+  const incomingEndpointCorrectionNorm = incomingEndpointCorrectionVector
+    ? vectorNorm(incomingEndpointCorrectionVector)
+    : null;
+  const outgoingEndpointCorrectionNorm = outgoingEndpointCorrectionVector
+    ? vectorNorm(outgoingEndpointCorrectionVector)
+    : null;
+  const maxEndpointCorrectionNorm = maxFinite([
+    incomingEndpointCorrectionNorm,
+    outgoingEndpointCorrectionNorm,
+  ]);
+  const endpointCorrectionNormSum =
+    Number.isFinite(incomingEndpointCorrectionNorm) &&
+    Number.isFinite(outgoingEndpointCorrectionNorm)
+      ? incomingEndpointCorrectionNorm + outgoingEndpointCorrectionNorm
+      : null;
+  const endpointCorrectionDifferenceAbs =
+    Number.isFinite(incomingEndpointCorrectionNorm) &&
+    Number.isFinite(outgoingEndpointCorrectionNorm)
+      ? Math.abs(outgoingEndpointCorrectionNorm - incomingEndpointCorrectionNorm)
+      : null;
+  const clockTimeJump =
+    Number.isFinite(incomingEndpointGeometry?.emissionTime) &&
+    Number.isFinite(outgoingEndpointGeometry?.emissionTime)
+      ? incomingEndpointGeometry.emissionTime - outgoingEndpointGeometry.emissionTime
+      : null;
+  const phaseJump =
+    layer && Number.isFinite(clockTimeJump)
+      ? layer.angularVelocity * clockTimeJump
+      : null;
+  const predictedOutgoingExactPoint =
+    isFiniteVector(incomingExactPoint) && Number.isFinite(phaseJump)
+      ? rotateVectorZ(incomingExactPoint, -phaseJump)
+      : null;
+  const replacementAdvectionResidualVector =
+    isFiniteVector(predictedOutgoingExactPoint) && isFiniteVector(outgoingExactPoint)
+      ? subtractVectors(predictedOutgoingExactPoint, outgoingExactPoint)
+      : null;
+  const replacementAdvectionResidualNorm = replacementAdvectionResidualVector
+    ? vectorNorm(replacementAdvectionResidualVector)
+    : null;
+  const exactEndpointProviderGeometryPass =
+    Number.isFinite(replacementAdvectionResidualNorm) &&
+    replacementAdvectionResidualNorm <= POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE;
+
+  return {
+    incomingPairKey: row.incomingPairKey ?? null,
+    outgoingPairKey: row.outgoingPairKey ?? null,
+    continuityRole: row.continuityRole ?? null,
+    continuityLayer: row.continuityLayer ?? null,
+    status: !layer
+      ? "exact_endpoint_provider_action_scale_row_layer_missing"
+      : exactEndpointProviderGeometryPass
+        ? "exact_endpoint_provider_action_scale_row_geometry_populated"
+        : "exact_endpoint_provider_action_scale_row_geometry_residual_blocked",
+    routeRootKey: row.routeRootKey ?? null,
+    compensationRequired: row.compensationRequired === true,
+    incomingEmissionTime: finiteOrNull(incomingEndpointGeometry?.emissionTime),
+    outgoingEmissionTime: finiteOrNull(outgoingEndpointGeometry?.emissionTime),
+    clockTimeJump,
+    phaseJump,
+    incomingEndpointCorrectionNorm,
+    outgoingEndpointCorrectionNorm,
+    maxEndpointCorrectionNorm,
+    endpointCorrectionNormSum,
+    endpointCorrectionDifferenceAbs,
+    replacementAdvectionResidualNorm,
+    exactEndpointProviderGeometryPass,
+  };
+}
+
+function selectContinuityEndpointPoint({ endpointGeometry, continuityRole }) {
+  if (continuityRole === "same_source") {
+    return endpointGeometry?.sourcePoint ?? null;
+  }
+  if (continuityRole === "same_receiver") {
+    return endpointGeometry?.receiverPoint ?? null;
+  }
+  return endpointGeometry?.sourcePoint ?? endpointGeometry?.receiverPoint ?? null;
 }
 
 function createActionBoundaryChargeIncrementCandidateRows({
@@ -17028,7 +18821,7 @@ function createClosureSummary(cases, retainedLineagePhaseProbe) {
     status: "not_closed",
     retainedBranchClaim: false,
     reason:
-      "The runner now emits solver-backed reduced rows, sampled active-row lineage, phase-at-hit rows, a branch-chart projection, a selected fixed-receiver time-window torque diagnostic, binary-to-binary path-history roots/hits, replayed binary-to-binary root-ledger-detail rows, solver root-key transition classification, inactive-gap margins, retained hit-time coverage, common hinge-point candidates, point-event witnesses, candidate point-event admissibility rows, candidate branch-transport incidence rows, a candidate branch-transport pair-map, a middle field-speed hinge-capture diagnostic, a fail-closed retained-chart feasibility diagnostic, a complete route-payload diagnostic, a route-authorized wake-charge/domain target, an action-kernel normalization-convention candidate, accepted chart-restricted crossing-domain rows, a least-norm route-gradient candidate, a finite endpoint-clear kernel-gradient candidate evaluation, a Master-Equation characteristic-tail pair-radial pullback target, a side-split radial-constrained boundary-charge solve, a delta_eta(g) quadrature target, a single-coefficient sign-pattern candidate, a layer-polarity assignment candidate, a source/receiver polarity row-binding candidate, an accepted normalized action-kernel wake charge, an accepted retained crossing-domain pullback, a populated wake-energy increment target, a finite-Gaussian endpoint-clearance gauge repair, a normalized action-boundary derivative history integral, an exact reduced four-substep transaction-frequency certificate, and partial retained chains, but promotion still requires an accepted retained point-event rule or a positive-width common retained time domain plus common active-row identity across force, torque, wake, partition, phase, stability, accepted layer-polarity assignment, accepted source/receiver polarity metadata, a sigma*hbar action scale, an accepted omega_tx source or energy route, an accepted action-boundary wake-energy increment law, vector-ledger, and energy-routing rows.",
+      "The runner now emits solver-backed reduced rows, sampled active-row lineage, phase-at-hit rows, a branch-chart projection, a selected fixed-receiver time-window torque diagnostic, binary-to-binary path-history roots/hits, replayed binary-to-binary root-ledger-detail rows, solver root-key transition classification, inactive-gap margins, retained hit-time coverage, common hinge-point candidates, point-event witnesses, candidate point-event admissibility rows, candidate branch-transport incidence rows, a candidate branch-transport pair-map, a middle field-speed hinge-capture diagnostic, a fail-closed retained-chart feasibility diagnostic, a complete route-payload diagnostic, a route-authorized wake-charge/domain target, an action-kernel normalization-convention candidate, accepted chart-restricted crossing-domain rows, a least-norm route-gradient candidate, a finite endpoint-clear kernel-gradient candidate evaluation, a Master-Equation characteristic-tail pair-radial pullback target, a side-split radial-constrained boundary-charge solve, a delta_eta(g) quadrature target, a single-coefficient sign-pattern candidate, a layer-polarity assignment candidate, a source/receiver polarity row-binding candidate, an accepted normalized action-kernel wake charge, an accepted retained crossing-domain pullback, a populated wake-energy increment target, a finite-Gaussian endpoint-clearance gauge repair, a normalized action-boundary derivative history integral, an exact reduced four-substep transaction-frequency certificate, a physical retained provider-transport law diagnostic, and partial retained chains, but promotion still requires an accepted retained point-event rule or a positive-width common retained time domain plus common active-row identity across force, torque, wake, partition, phase, stability, accepted layer-polarity assignment, accepted source/receiver polarity metadata, a sigma*hbar action scale, an accepted omega_tx source or energy route, an accepted action-boundary wake-energy increment law, vector-ledger, and energy-routing rows.",
     reducedPassCases: projection.reducedPassCases,
     activeLineageProbeCases: projection.activeLineageProbeCases,
     phaseAtHitProbeCases: projection.phaseAtHitProbeCases,

@@ -905,6 +905,8 @@ test("causal delay feedback aggregate summary surfaces compact pair solver diagn
     pathConstraintBoundaryRelaxationCandidateKindMask: 4194302,
     pathConstraintSolverStatus: "guided_constraint_path",
     pathConstraintSolverClaim: "diagnostic_constraint_replay_not_boundary_value_solve",
+    pathConstraintPhysicalBoundarySolverStatus: "physical_boundary_solver_pending",
+    pathConstraintPhysicalBoundarySolverClaim: "retained_knot_guidance_not_physical_boundary_value_solve",
     maxPathConstraintGuidanceAcceleration: 48.25,
     pathConstraintBoundaryResidualSampleCount: 10,
     pathConstraintBoundaryResidualStatus: "within_tolerance",
@@ -941,6 +943,8 @@ test("causal delay feedback aggregate summary surfaces compact pair solver diagn
   assert(readoutText.includes("maxA=48.25"));
   assert(readoutText.includes("constraint=guided_constraint_path"));
   assert(readoutText.includes("claim=diagnostic_constraint_replay_not_boundary_value_solve"));
+  assert(readoutText.includes("physical=physical_boundary_solver_pending"));
+  assert(readoutText.includes("physicalClaim=retained_knot_guidance_not_physical_boundary_value_solve"));
   assert(readoutText.includes("boundary=10"));
   assert(readoutText.includes("maxB=0.018"));
   assert(readoutText.includes("tolB=0.02"));
@@ -1452,6 +1456,7 @@ test("causal delay feedback status distinguishes constraint-guided pair replay",
     pathConstraintBoundaryRelaxationStopReason: "tolerance_reached",
     pathConstraintBoundaryRelaxationTolerance: 0.006,
     pathConstraintBoundaryRelaxationStatus: "converged",
+    pathConstraintBoundaryRelaxationResidualEvidenceStatus: "aggregate_non_worsening",
     pathConstraintBoundaryRelaxationResidualRatio: 0.25,
     rmsPathConstraintBoundaryRelaxationResidualRatio: 0.125,
     pathConstraintBoundaryRelaxationResidualSettlingRate: 0.6299605249474366,
@@ -1497,6 +1502,7 @@ test("causal delay feedback status distinguishes constraint-guided pair replay",
   assert.match(replayStatus.title, /relaxRmsRate=0\.5/);
   assert.match(replayStatus.title, /relaxStep=7\.25/);
   assert.match(replayStatus.title, /relaxFactor=0\.5/);
+  assert.match(replayStatus.title, /relaxEvidence=aggregate_non_worsening/);
   assert.match(replayStatus.title, /cand=14/);
   assert.match(replayStatus.title, /trials=112/);
   assert.match(replayStatus.title, /mask=0x3ffffe/);
@@ -1583,6 +1589,7 @@ test("causal delay feedback status distinguishes converged discrete boundary rep
     pathConstraintBoundaryRelaxationStopReason: "tolerance_reached",
     pathConstraintBoundaryRelaxationTolerance: 0.006,
     pathConstraintBoundaryRelaxationStatus: "converged",
+    pathConstraintBoundaryRelaxationResidualEvidenceStatus: "aggregate_non_worsening",
     pathConstraintBoundaryRelaxationResidualRatio: 0.25,
     rmsPathConstraintBoundaryRelaxationResidualRatio: 0.125,
     pathConstraintBoundaryRelaxationResidualSettlingRate: 0.6299605249474366,
@@ -1590,6 +1597,8 @@ test("causal delay feedback status distinguishes converged discrete boundary rep
     rmsPathConstraintBoundaryRelaxationResidualAfter: 0.003,
     pathConstraintSolverStatus: "discrete_boundary_value_converged",
     pathConstraintSolverClaim: "finite_difference_pair_boundary_value_solve_converged",
+    pathConstraintPhysicalBoundarySolverStatus: "physical_boundary_solver_pending",
+    pathConstraintPhysicalBoundarySolverClaim: "retained_knot_guidance_not_physical_boundary_value_solve",
     maxPathConstraintGuidanceAcceleration: 48.25,
   };
   runtime.dom = { replayStatus };
@@ -1609,12 +1618,16 @@ test("causal delay feedback status distinguishes converged discrete boundary rep
   assert.match(replayStatus.title, /relaxRate=0\.63/);
   assert.match(replayStatus.title, /relaxRmsRate=0\.5/);
   assert.match(replayStatus.title, /relaxStatus=converged/);
+  assert.match(replayStatus.title, /relaxEvidence=aggregate_non_worsening/);
   assert.match(replayStatus.title, /constraint=discrete_boundary_value_converged/);
   assert.match(replayStatus.title, /claim=finite_difference_pair_boundary_value_solve_converged/);
+  assert.match(replayStatus.title, /physical=physical_boundary_solver_pending/);
+  assert.match(replayStatus.title, /physicalClaim=retained_knot_guidance_not_physical_boundary_value_solve/);
   assert.match(replayStatus.title, /bStatus=within_tolerance/);
   assert.match(replayStatus.title, /converged against the discrete finite-difference pair equation/);
   assert.match(replayStatus.title, /finite-difference retained-knot boundary relaxation/);
   assert.match(replayStatus.title, /not the full physical pair-interaction\/path-constraint boundary-value solver/);
+  assert.match(replayStatus.title, /full physical pair-interaction\/path-constraint boundary-value solver is still pending/);
 });
 
 test("causal delay feedback status flags unchecked boundary residual acceptance on boundary replay", () => {

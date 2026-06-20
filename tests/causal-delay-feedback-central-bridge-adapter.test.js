@@ -817,6 +817,11 @@ test("causal delay central bridge adapter submits retained path constraints afte
   assert.equal(dataset.pathConstraintBoundaryRelaxationCandidateKindMask, 4194302);
   assert.equal(dataset.pathConstraintSolverStatus, "guided_constraint_path");
   assert.equal(dataset.pathConstraintSolverClaim, "diagnostic_constraint_replay_not_boundary_value_solve");
+  assert.equal(dataset.pathConstraintPhysicalBoundarySolverStatus, "physical_boundary_solver_pending");
+  assert.equal(
+    dataset.pathConstraintPhysicalBoundarySolverClaim,
+    "retained_knot_guidance_not_physical_boundary_value_solve",
+  );
   assert.equal(dataset.maxPathConstraintGuidanceAcceleration, 4.5);
   assert.equal(dataset.pathConstraintGuidanceAccelerationStatus, "within_tolerance");
   assert.equal(dataset.pathConstraintGuidanceAccelerationTolerance, 5);
@@ -873,6 +878,14 @@ test("causal delay central bridge adapter submits retained path constraints afte
   assert.equal(dataset.solverSummary.pathConstraintBoundaryRelaxationCandidateKindMask, 4194302);
   assert.equal(dataset.solverSummary.pathConstraintSolverStatus, "guided_constraint_path");
   assert.equal(dataset.solverSummary.pathConstraintSolverClaim, "diagnostic_constraint_replay_not_boundary_value_solve");
+  assert.equal(
+    dataset.solverSummary.pathConstraintPhysicalBoundarySolverStatus,
+    "physical_boundary_solver_pending",
+  );
+  assert.equal(
+    dataset.solverSummary.pathConstraintPhysicalBoundarySolverClaim,
+    "retained_knot_guidance_not_physical_boundary_value_solve",
+  );
   assert.equal(dataset.solverSummary.pathConstraintGuidanceAccelerationStatus, "within_tolerance");
   assert.equal(dataset.solverSummary.pathConstraintGuidanceAccelerationTolerance, 5);
   assert.equal(dataset.solverSummary.pathConstraintBoundaryResidualSampleCount, 8);
@@ -940,6 +953,46 @@ test("causal delay central bridge adapter requires retained-position evidence be
         const response = createPairInteractionRunResponse(request);
         delete response.response.summary.pathConstraintSolverStatus;
         delete response.response.summary.pathConstraintSolverClaim;
+        response.response.summary.pathConstraintPositionResidualSampleCount = 0;
+        response.response.summary.pathConstraintPositionResidualStatus = "no_position_samples";
+        return response;
+      }
+      return createDelayedHitRunResponse(request);
+    },
+  });
+
+  const dataset = await adapter.createReplayAsync({
+    presetId: "accepted_tight_bright",
+    requestOptions: {
+      replayDataset: draftDataset,
+      initialConditions: draftDataset.initialConditions,
+      pathConstraintBoundaryRelaxationIterationCount: 12,
+      pathConstraintBoundaryRelaxationTolerance: 6,
+    },
+  });
+
+  assert.equal(dataset.pathConstraintBoundaryRelaxationStatus, "converged");
+  assert.equal(dataset.pathConstraintPositionResidualSampleCount, 0);
+  assert.equal(dataset.pathConstraintPositionResidualStatus, "no_position_samples");
+  assert.equal(dataset.pathConstraintSolverStatus, undefined);
+  assert.equal(dataset.pathConstraintSolverClaim, undefined);
+  assert.equal(dataset.solverSummary.pathConstraintSolverStatus, undefined);
+  assert.equal(dataset.solverSummary.pathConstraintSolverClaim, undefined);
+});
+
+test("causal delay central bridge adapter rejects stale explicit boundary status without retained-position evidence", async () => {
+  const draftDataset = createMockCausalDelayReplayDataset("accepted_tight_bright");
+  draftDataset.draftPreview = {
+    reason: "retained_point_drag_preview",
+    authoritative: false,
+  };
+  const adapter = createCausalDelayFeedbackCentralBridgeAdapter({
+    async runSolverBridge(request) {
+      if (request.runKind === CENTRAL_SOLVER_PAIR_INTERACTION_REPLAY_MODE) {
+        const response = createPairInteractionRunResponse(request);
+        response.response.summary.pathConstraintSolverStatus = "discrete_boundary_value_converged";
+        response.response.summary.pathConstraintSolverClaim =
+          "finite_difference_pair_boundary_value_solve_converged";
         response.response.summary.pathConstraintPositionResidualSampleCount = 0;
         response.response.summary.pathConstraintPositionResidualStatus = "no_position_samples";
         return response;
@@ -1123,7 +1176,12 @@ test("causal delay central bridge adapter normalizes appPlayback-shaped bridge r
           summary: { frameCount: request.config.frames.length, pathCount: 2 },
           frames: request.config.frames,
           hits: request.config.hits,
-          geometry: request.config.geometry,
+          geometry: {
+            ...request.config.geometry,
+            pathConstraintCount: 4,
+            pathConstraintSolverStatus: "guided_constraint_path",
+            pathConstraintSolverClaim: "diagnostic_constraint_replay_not_boundary_value_solve",
+          },
           diagnostics: [{ code: "ok", severity: "ok", message: "bridge callback accepted" }],
         },
       };
@@ -1138,6 +1196,11 @@ test("causal delay central bridge adapter normalizes appPlayback-shaped bridge r
   assert.equal(dataset.frames.length, 180);
   assert.equal(dataset.wakeLinks.length, 10);
   assert.equal(dataset.history.electrino[1].depth, 2);
+  assert.equal(dataset.pathConstraintPhysicalBoundarySolverStatus, "physical_boundary_solver_pending");
+  assert.equal(
+    dataset.pathConstraintPhysicalBoundarySolverClaim,
+    "retained_knot_guidance_not_physical_boundary_value_solve",
+  );
 });
 
 test("causal delay central bridge adapter can build replay frames from central motion simulations", async () => {
