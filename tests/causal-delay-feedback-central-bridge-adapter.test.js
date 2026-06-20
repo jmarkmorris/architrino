@@ -104,11 +104,15 @@ function createMotionRunResponse(request) {
           frameIndex,
           time,
           position: {
-            x: motion.initialPosition.x + motion.initialVelocity.x * dt,
-            y: motion.initialPosition.y + motion.initialVelocity.y * dt,
-            z: 0,
+            x: motion.initialPosition.x + motion.initialVelocity.x * dt + 0.5 * motion.acceleration.x * dt * dt,
+            y: motion.initialPosition.y + motion.initialVelocity.y * dt + 0.5 * motion.acceleration.y * dt * dt,
+            z: motion.initialPosition.z + motion.initialVelocity.z * dt + 0.5 * motion.acceleration.z * dt * dt,
           },
-          velocity: motion.initialVelocity,
+          velocity: {
+            x: motion.initialVelocity.x + motion.acceleration.x * dt,
+            y: motion.initialVelocity.y + motion.acceleration.y * dt,
+            z: motion.initialVelocity.z + motion.acceleration.z * dt,
+          },
           errorBound: 0,
           stateFlags: motion.stateFlags,
         };
@@ -385,7 +389,7 @@ test("causal delay central bridge adapter can build replay frames from central m
       frameCount: 3,
       runDuration: 1,
       initialConditions: {
-        positrino: { kind: "positrino", t: 0, x: 10, y: 20, vx: 100, vy: 0 },
+        positrino: { kind: "positrino", t: 0, x: 10, y: 20, vx: 100, vy: 0, ax: 6, ay: -4 },
         electrino: { kind: "electrino", t: 0, x: 30, y: 700, vx: 80, vy: -50 },
       },
     },
@@ -399,11 +403,14 @@ test("causal delay central bridge adapter can build replay frames from central m
     [1, 2],
   );
   assert.equal(requests[0].config.motionIntegrationRequest.maxFrames, 3);
+  assert.deepEqual(requests[0].config.motionIntegrationRequest.acceleration, { x: 6, y: -4, z: 0 });
+  assert.deepEqual(requests[1].config.motionIntegrationRequest.acceleration, { x: 0, y: 0, z: 0 });
   assert.equal(requests.filter((request) => request.runKind === "delayedHits").length, 10);
   assert.equal(dataset.datasetSource, CENTRAL_SOLVER_REPLAY_DATASET_SOURCE);
   assert.equal(dataset.solverIntegrationPath, CENTRAL_SOLVER_REPLAY_ADAPTER);
   assert.equal(dataset.frames.length, 3);
-  assert.equal(dataset.frames[2].positrino.x, 110);
+  assert.equal(dataset.frames[2].positrino.x, 113);
+  assert.equal(dataset.frames[2].positrino.y, 18);
   assert.equal(dataset.frames[2].electrino.y, 650);
   assert.equal(dataset.history.positrino.length, 6);
   assert.equal(dataset.wakeLinks.length, 10);

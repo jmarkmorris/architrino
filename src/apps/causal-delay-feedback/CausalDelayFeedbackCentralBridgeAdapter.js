@@ -348,7 +348,11 @@ function createCausalDelayFeedbackMotionSimulationRequest(playbackRequest, kind)
           y: normalizeFiniteNumber(condition.vy, `initialConditions.${kind}.vy`),
           z: Number.isFinite(Number(condition.vz)) ? Number(condition.vz) : 0,
         },
-        acceleration: { x: 0, y: 0, z: 0 },
+        acceleration: {
+          x: normalizeOptionalMotionAxis(condition.ax ?? condition.acceleration?.x, 0),
+          y: normalizeOptionalMotionAxis(condition.ay ?? condition.acceleration?.y, 0),
+          z: normalizeOptionalMotionAxis(condition.az ?? condition.acceleration?.z, 0),
+        },
         integrationTolerance: playbackRequest.errorBudget.integrationTolerance,
         integrationMethod: 1,
         stateFlags: kind === "positrino" ? 1 : 2,
@@ -361,6 +365,11 @@ function createCausalDelayFeedbackMotionSimulationRequest(playbackRequest, kind)
       deterministic: playbackRequest.output.deterministic,
     },
   };
+}
+
+function normalizeOptionalMotionAxis(value, fallback) {
+  const numericValue = Number(value);
+  return Number.isFinite(numericValue) ? numericValue : fallback;
 }
 
 function createCausalDelayFeedbackDelayedHitRequest(playbackRequest, link, history, frames, index) {

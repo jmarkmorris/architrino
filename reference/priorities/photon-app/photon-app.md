@@ -374,12 +374,9 @@ $$
 
 can nominate self-hit candidate regimes, but a self-hit row exists only when the solver retains a positive same-source causal root with acceptable residual, Jacobian, and transverse geometry.
 
-#### Solver Precedents
+#### Solver Interface
 
-Existing code to mine first:
-
-- `src/apps/photon/PhotonFormulaRuntime.js` already contains the current co-moving branch-sum scanner. It is useful for the UI and formulas, but it is not the absolute moving-apparatus solver because source and receiver histories do not yet translate through the Noether sea.
-- `scripts/simulations/lib/assembly-dynamics-solver.mjs` is the closest reusable numerical pattern. It already keeps finite history, resolves all retained causal roots, separates self and partner roots, reports unresolved-root reasons, and applies the Jacobian factor $1/|J|$.
+Photon should use the central solver bridge for source histories, receiver histories, causal-root ledgers, same-source roots, phase-at-hit rows, rejected-root reasons, Jacobian diagnostics, and observer-field reconstruction.
 
 ### Polarization And Formulas
 
@@ -462,7 +459,7 @@ Suspect numerical cases should be labeled as suspect, not good. Missed roots, ve
 
 ## Open Work Queue
 
-1. `reusable_absolute_history_solver` - Build or extract a shared solver for absolute source histories, moving receiver histories, all retained causal roots, same-source self-hit roots, source and receiver phase-at-hit rows, phase-spread diagnostics, Jacobian floors, rejected-root reasons, receiver acceleration, and observer-level field reconstruction. Mine `scripts/simulations/lib/assembly-dynamics-solver.mjs` first, but adapt it for the photon app's 3D planar-pair histories and local-$c$ translation. Status: `open`.
+1. `reusable_absolute_history_solver` - Use the central solver bridge for absolute source histories, moving receiver histories, all retained causal roots, same-source self-hit roots, source and receiver phase-at-hit rows, phase-spread diagnostics, Jacobian floors, rejected-root reasons, receiver acceleration, and observer-level field reconstruction for the photon app's 3D planar-pair histories and local-$c$ translation. Status: `open`.
 2. `local_c_parameterization` - Add a speed mode that replaces fixed $c_f$ with local $c$ from either a direct $c_\gamma/c_f$ control, declared Noether sea state variables, or a Lorentz-factor chart mapping when that mapping is available. This is an input to the reusable absolute-history solver, not just a display label. Status: `open`.
 3. `moving_apparatus_delta_x_mapping` - Use the reusable absolute-history solver to replace the co-moving $\Delta x$ diagnostic with an optional absolute-history mode where the swarms and Virtual Observer translate at $c_\gamma$, then solve whether leading and trailing source histories can causally reach the moving Virtual Observer. Status: `open`.
 4. `absolute_source_history_self_hit` - Use the reusable absolute-history solver to add a local-$c$ helical source-history diagnostic that combines photon-channel translation with transverse binary motion, then reports same-source roots, Jacobian floors, and whether each layer is sub-field-speed or candidate self-hit. Status: `open`.

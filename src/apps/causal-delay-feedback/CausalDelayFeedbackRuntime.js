@@ -28,7 +28,7 @@ const ICON_HELP = Object.freeze({
 });
 const REPLAY_LOOP_SECONDS = 9;
 const TIME_EPSILON = 1e-6;
-const INITIAL_VELOCITY_ARROW_SCALE = 0.07;
+const INITIAL_VELOCITY_ARROW_SCALE = 0.04;
 const INITIAL_VELOCITY_PREVIEW_RESPONSE = 0.42;
 const DEFAULT_ASSEMBLY_THRESHOLD = 0.00075;
 const MIN_RETAINED_DEPTH_LIMIT = 2;
@@ -876,7 +876,7 @@ class CausalDelayFeedbackRuntime {
     this.drawWakes(ctx, replayTime);
     this.drawPathTrail(ctx, "positrino", POSITRINO);
     this.drawPathTrail(ctx, "electrino", ELECTRINO);
-    this.drawInitialConditionHandles(ctx);
+    this.drawInitialVelocityHandles(ctx);
     this.drawHistoryPoints(ctx, "positrino", POSITRINO);
     this.drawHistoryPoints(ctx, "electrino", ELECTRINO);
     this.drawVirtualObserver(ctx);
@@ -1029,24 +1029,22 @@ class CausalDelayFeedbackRuntime {
     });
   }
 
-  drawInitialConditionHandles(ctx) {
-    this.drawInitialConditionHandle(ctx, "positrino", POSITRINO);
-    this.drawInitialConditionHandle(ctx, "electrino", ELECTRINO);
+  drawInitialVelocityHandles(ctx) {
+    this.drawInitialVelocityHandle(ctx, "positrino", POSITRINO);
+    this.drawInitialVelocityHandle(ctx, "electrino", ELECTRINO);
   }
 
-  drawInitialConditionHandle(ctx, kind, color) {
+  drawInitialVelocityHandle(ctx, kind, color) {
     const condition = this.getInitialCondition(kind);
     if (!condition) {
       return;
     }
-    const point = this.initialConditionPoint(condition);
-    const velocityEnd = this.initialConditionVelocityEnd(condition);
+    const point = this.getHistoryStartPoint(kind) ?? this.initialConditionPoint(condition);
+    const velocityEnd = this.initialConditionVelocityEnd({ ...condition, x: point.x, y: point.y });
     const screen = this.worldToScreen(point);
     const velocityScreen = this.worldToScreen(velocityEnd);
     this.drawLine(ctx, [screen, velocityScreen], withAlpha(mixColor(color, WHITE, 0.42), 0.46), 2);
     this.drawCircle(ctx, velocityScreen, 5.6, withAlpha(color, 0.62), withAlpha(WHITE, 0.58), 1);
-    this.drawCircle(ctx, screen, 16, withAlpha(color, 0.13), withAlpha(WHITE, 0.62), 1.2);
-    this.drawCircle(ctx, screen, 6.4, color, WHITE, 1.2);
   }
 
   drawVirtualObserver(ctx) {
@@ -1077,15 +1075,6 @@ class CausalDelayFeedbackRuntime {
       }
       const screen = this.worldToScreen(point);
       this.drawCircle(ctx, screen, 18, withAlpha(WHITE, 0.05), withAlpha(WHITE, 0.86), 1.4);
-      return;
-    }
-    if (this.selectedItem.type === "initial-condition") {
-      const condition = this.getInitialCondition(this.selectedItem.kind);
-      if (!condition) {
-        return;
-      }
-      const screen = this.worldToScreen(this.initialConditionPoint(condition));
-      this.drawCircle(ctx, screen, 24, withAlpha(WHITE, 0.05), withAlpha(WHITE, 0.9), 1.5);
       return;
     }
     if (this.selectedItem.type === "initial-velocity") {
@@ -1239,8 +1228,6 @@ class CausalDelayFeedbackRuntime {
     if (this.dragState) {
       if (this.dragState.type === "initial-velocity") {
         this.dragSelectedInitialVelocity(event);
-      } else if (this.dragState.type === "initial-condition") {
-        this.dragSelectedInitialCondition(event);
       } else if (this.dragState.type === "virtual-observer") {
         this.dragSelectedVirtualObserver(event);
       } else {
@@ -1265,8 +1252,6 @@ class CausalDelayFeedbackRuntime {
     this.updateReadout(hit);
     if (hit.type === "initial-velocity") {
       this.startInitialVelocityDrag(event, hit);
-    } else if (hit.type === "initial-condition") {
-      this.startInitialConditionDrag(event, hit);
     } else if (hit.type === "virtual-observer") {
       this.startVirtualObserverDrag(event, hit);
     } else if (hit.type === "history") {
@@ -1275,7 +1260,7 @@ class CausalDelayFeedbackRuntime {
     this.render();
   }
 
-  handleCanvasContextMenu(event) {
+  async handleCanvasContextMenu(event) {
     const rect = this.dom.canvas.getBoundingClientRect();
     const screen = { x: event.clientX - rect.left, y: event.clientY - rect.top };
     const insertion = this.findNearestPathInsertion(screen);
@@ -1290,6 +1275,31 @@ class CausalDelayFeedbackRuntime {
     this.selectedItem = { type: "history", kind: point.kind, depth: point.depth };
     this.updateReadout(this.createHistoryHit(point, 0));
     this.render();
+    return this.submitReceptionPointInsertion();
+  }
+
+  async submitReceptionPointInsertion() {
+    if (this.usesFallbackReplayOnly() || this.shouldUseRepresentativeReplayOnly(this.presetId)) {
+      return this.dataset;
+    }
+    const selectedItem = this.selectedItem ? { ...this.selectedItem } : null;
+    const dataset = await this.loadReplay({
+      requestOptions: this.replayRequestOptions,
+      preserveDraftOnFailure: true,
+    });
+    if (this.canRestoreSelectedHistoryItem(selectedItem)) {
+      this.selectedItem = selectedItem;
+      this.updateReadout();
+      this.render();
+    }
+    return dataset;
+  }
+
+  canRestoreSelectedHistoryItem(selectedItem) {
+    if (selectedItem?.type !== "history") {
+      return false;
+    }
+    return this.getVisibleHistory(selectedItem.kind).some((point) => point.depth === selectedItem.depth);
   }
 
   startHistoryPointDrag(event, hit) {
@@ -1299,21 +1309,6 @@ class CausalDelayFeedbackRuntime {
       type: "history",
       kind: hit.selection.kind,
       depth: hit.selection.depth,
-      lastWorld: this.screenToWorld(screen),
-    };
-    this.setPlaying(false);
-    if (typeof this.dom.canvas.setPointerCapture === "function") {
-      this.dom.canvas.setPointerCapture(event.pointerId);
-    }
-    event.preventDefault();
-  }
-
-  startInitialConditionDrag(event, hit) {
-    const rect = this.dom.canvas.getBoundingClientRect();
-    const screen = { x: event.clientX - rect.left, y: event.clientY - rect.top };
-    this.dragState = {
-      type: "initial-condition",
-      kind: hit.selection.kind,
       lastWorld: this.screenToWorld(screen),
       didEdit: false,
     };
@@ -1365,21 +1360,6 @@ class CausalDelayFeedbackRuntime {
     };
     this.dragState.lastWorld = world;
     if (this.applyRetainedPointDrag(this.dragState.kind, this.dragState.depth, delta)) {
-      this.updateReadout();
-      this.render();
-    }
-  }
-
-  dragSelectedInitialCondition(event) {
-    const rect = this.dom.canvas.getBoundingClientRect();
-    const screen = { x: event.clientX - rect.left, y: event.clientY - rect.top };
-    const world = this.screenToWorld(screen);
-    const delta = {
-      x: world.x - this.dragState.lastWorld.x,
-      y: world.y - this.dragState.lastWorld.y,
-    };
-    this.dragState.lastWorld = world;
-    if (this.applyInitialConditionDrag(this.dragState.kind, delta)) {
       this.dragState.didEdit = true;
       this.updateReadout();
       this.render();
@@ -1417,17 +1397,20 @@ class CausalDelayFeedbackRuntime {
   finishDrag() {
     const completedDrag = this.dragState;
     this.dragState = null;
-    if (
-      (
-        completedDrag?.type === "initial-condition" ||
-        completedDrag?.type === "initial-velocity" ||
-        completedDrag?.type === "virtual-observer"
-      ) &&
-      completedDrag.didEdit
-    ) {
+    if (this.shouldRerunAfterCompletedDrag(completedDrag)) {
       return this.rerunAfterDirectManipulationDrag();
     }
     return this.dataset;
+  }
+
+  shouldRerunAfterCompletedDrag(completedDrag) {
+    if (!completedDrag?.didEdit) {
+      return false;
+    }
+    if (completedDrag.type === "initial-velocity" || completedDrag.type === "virtual-observer") {
+      return true;
+    }
+    return completedDrag.type === "history" && Number(completedDrag.depth) === 1;
   }
 
   rerunAfterDirectManipulationDrag() {
@@ -1448,17 +1431,6 @@ class CausalDelayFeedbackRuntime {
     this.updateWakeLinkGeometry();
     this.syncReplayRequestOptionsFromDataset();
     this.markDraftPreview("retained_point_drag_preview");
-    return true;
-  }
-
-  applyInitialConditionDrag(kind, delta) {
-    const didEdit = this.translateReplayPath(kind, delta);
-    if (!didEdit) {
-      return false;
-    }
-    this.updateWakeLinkGeometry();
-    this.syncReplayRequestOptionsFromDataset();
-    this.markDraftPreview("initial_condition_drag_preview");
     return true;
   }
 
@@ -1699,36 +1671,6 @@ class CausalDelayFeedbackRuntime {
       link.staleSolverRunId = link.solverRunId ?? link.staleSolverRunId;
       link.staleReplaySource = this.dataset.runId ?? this.dataset.datasetId ?? null;
     });
-  }
-
-  translateReplayPath(kind, delta) {
-    if (!delta || (delta.x === 0 && delta.y === 0)) {
-      return false;
-    }
-    const points = this.dataset.paths[kind];
-    const condition = this.getInitialCondition(kind);
-    if (!Array.isArray(points) || !condition) {
-      return false;
-    }
-    points.forEach((point) => {
-      point.x += delta.x;
-      point.y += delta.y;
-    });
-    this.dataset.frames.forEach((frame) => {
-      const point = frame[kind];
-      if (!point || points.includes(point)) {
-        return;
-      }
-      point.x += delta.x;
-      point.y += delta.y;
-    });
-    this.dataset.history[kind].forEach((point) => {
-      point.x += delta.x;
-      point.y += delta.y;
-    });
-    condition.x += delta.x;
-    condition.y += delta.y;
-    return true;
   }
 
   applyArchitrinoSpeedFraction(fraction) {
@@ -2008,6 +1950,10 @@ class CausalDelayFeedbackRuntime {
     return this.dataset.initialConditions?.[kind] ?? null;
   }
 
+  getHistoryStartPoint(kind) {
+    return this.dataset.history?.[kind]?.find((point) => Number(point.depth) === 1) ?? null;
+  }
+
   getVirtualObserver() {
     return this.dataset?.virtualObserver ?? this.dataset?.initialConditions?.virtualObserver ?? null;
   }
@@ -2208,10 +2154,6 @@ class CausalDelayFeedbackRuntime {
       const condition = this.getInitialCondition(this.selectedItem.kind);
       return condition ? this.createInitialVelocityHit(this.selectedItem.kind, condition, 0) : null;
     }
-    if (this.selectedItem?.type === "initial-condition") {
-      const condition = this.getInitialCondition(this.selectedItem.kind);
-      return condition ? this.createInitialConditionHit(this.selectedItem.kind, condition, 0) : null;
-    }
     if (this.selectedItem?.type === "virtual-observer") {
       const observer = this.getVirtualObserver();
       return observer ? this.createVirtualObserverHit(observer, 0) : null;
@@ -2251,6 +2193,7 @@ class CausalDelayFeedbackRuntime {
         ...(summary.inactiveCount > 0 ? [`inactive=${summary.inactiveCount}`] : []),
         ...(summary.staleCount > 0 ? [`stale=${summary.staleCount}`] : []),
         ...(summary.rejectedCount > 0 ? [`rejected=${summary.rejectedCount}`] : []),
+        ...this.createContributionSummaryDiagnosticDetails(summary),
       ],
       distance: 0,
       hitRadius: 0,
@@ -2328,21 +2271,6 @@ class CausalDelayFeedbackRuntime {
       return nearestHistory;
     }
 
-    const initialCandidates = [];
-    ["positrino", "electrino"].forEach((kind) => {
-      const condition = this.getInitialCondition(kind);
-      if (!condition) {
-        return;
-      }
-      const candidate = this.worldToScreen(this.initialConditionPoint(condition));
-      const distance = Math.hypot(screen.x - candidate.x, screen.y - candidate.y);
-      initialCandidates.push(this.createInitialConditionHit(kind, condition, distance));
-    });
-    const nearestInitial = initialCandidates.sort((a, b) => a.distance - b.distance)[0];
-    if (nearestInitial && nearestInitial.distance <= nearestInitial.hitRadius) {
-      return nearestInitial;
-    }
-
     const observer = this.getVirtualObserver();
     if (observer) {
       const candidate = this.worldToScreen(observer);
@@ -2373,32 +2301,31 @@ class CausalDelayFeedbackRuntime {
   }
 
   createHistoryHit(point, distance) {
+    const details = [
+      `t=${point.t.toFixed(2)}`,
+      `x=${Math.round(Number(point.x) || 0)}`,
+      `y=${Math.round(Number(point.y) || 0)}`,
+      `weight=${point.weight.toFixed(2)}`,
+      point.state,
+    ];
+    if (Number(point.depth) === 1) {
+      const condition = this.getInitialCondition(point.kind);
+      if (condition) {
+        details.push(
+          `vx=${(Number(condition.vx) || 0).toFixed(1)}`,
+          `vy=${(Number(condition.vy) || 0).toFixed(1)}`,
+        );
+      }
+    }
+    details.push(...this.createDraftSolverRejectionReadoutDetails());
     return {
       type: "history",
       title: `${point.kind} ${point.depth}`,
       label: `${point.kind} ${point.depth}`,
-      details: [`t=${point.t.toFixed(2)}`, `weight=${point.weight.toFixed(2)}`, point.state],
+      details,
       distance,
       hitRadius: 22,
       selection: { type: "history", kind: point.kind, depth: point.depth },
-    };
-  }
-
-  createInitialConditionHit(kind, condition, distance) {
-    return {
-      type: "initial-condition",
-      title: `${kind} initial`,
-      label: `${kind} initial`,
-      details: [
-        `x=${Math.round(Number(condition.x) || 0)}`,
-        `y=${Math.round(Number(condition.y) || 0)}`,
-        `vx=${(Number(condition.vx) || 0).toFixed(1)}`,
-        `vy=${(Number(condition.vy) || 0).toFixed(1)}`,
-        ...this.createDraftSolverRejectionReadoutDetails(),
-      ],
-      distance,
-      hitRadius: 24,
-      selection: { type: "initial-condition", kind },
     };
   }
 
@@ -2509,6 +2436,7 @@ class CausalDelayFeedbackRuntime {
       inactiveCount: 0,
       staleCount: 0,
       rejectedCount: 0,
+      invalidReasonCounts: {},
       positiveContribution: 0,
       negativeContribution: 0,
       netContribution: 0,
@@ -2524,11 +2452,16 @@ class CausalDelayFeedbackRuntime {
         } else {
           summary.rejectedCount += 1;
         }
+        this.recordContributionSummaryDiagnosticReason(summary, wakeStatus);
         return;
       }
       const timing = this.getWakeTiming(link, replayTime);
       if (!timing) {
         summary.rejectedCount += 1;
+        this.recordContributionSummaryDiagnosticReason(summary, {
+          status: "rejected",
+          reason: "missing_wake_timing",
+        });
         return;
       }
       summary.activeLinkCount += 1;
@@ -2551,6 +2484,23 @@ class CausalDelayFeedbackRuntime {
     });
 
     return summary;
+  }
+
+  recordContributionSummaryDiagnosticReason(summary, wakeStatus) {
+    const status = formatCompactLabel(wakeStatus?.status, "invalid");
+    const reason = formatCompactLabel(wakeStatus?.reason, "unresolved");
+    const key = `${status}:${reason}`;
+    summary.invalidReasonCounts[key] = (summary.invalidReasonCounts[key] ?? 0) + 1;
+  }
+
+  createContributionSummaryDiagnosticDetails(summary) {
+    const entries = Object.entries(summary.invalidReasonCounts ?? {})
+      .sort((left, right) => right[1] - left[1] || left[0].localeCompare(right[0]))
+      .slice(0, 3);
+    if (entries.length === 0) {
+      return [];
+    }
+    return [`why=${entries.map(([key, count]) => `${key}x${count}`).join(",")}`];
   }
 
   getWakeSignedContribution(link) {

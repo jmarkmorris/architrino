@@ -201,54 +201,6 @@ const migrationTargets = [
       "animator-worker-solver-bridge-smoke",
     ],
   },
-  {
-    id: "assembly-dynamics-reference-engine",
-    app: "Animator",
-    local: {
-      file: "scripts/simulations/lib/assembly-dynamics-solver.mjs",
-      symbols: [
-        "causal-delay Jacobian",
-        "unresolved_roots",
-        "self_hits",
-        "partner_hits",
-      ],
-    },
-    central: [
-      {
-        file: "src/solver/src/CausalRootSolver.cpp",
-        symbols: ["jacobian", "branchWeight"],
-      },
-      {
-        file: "src/solver/src/RootLedger.cpp",
-        symbols: ["RootLedgerDetailRowF64"],
-      },
-      {
-        file: "src/solver/src/InvariantChecks.cpp",
-        symbols: ["delayed-hit"],
-      },
-    ],
-    solverOwnership: [
-      "branch-resolved causal-root accounting",
-      "self and partner delayed-hit rows",
-      "unresolved-root diagnostics",
-      "Jacobian-weighted branch data",
-    ],
-    baselineCases: ["animator-causal-root-smoke", "animator-motion-dynamic-replay-smoke"],
-  },
-];
-
-const excludedSurfaces = [
-  {
-    id: "sim2",
-    formerPath: "src/apps/sim2",
-    policy: "removed from active scope",
-    reason: "sim2 was an early animation prototype and is not a migration target, adapter target, or parity target.",
-  },
-  {
-    id: "legacy-solver-families",
-    policy: "separate maintenance or artifact exchange only",
-    reason: "proof-program, mass-map, neutral-swarm, nested-shell, cosmology, and related solvers are outside central app migration.",
-  },
 ];
 
 const inventoryItems = migrationTargets.map(checkMigrationTarget);
@@ -264,7 +216,6 @@ const report = {
   schema: "solver-geometry-centralization-inventory.v1",
   migrationScope: {
     targets: ["Photon", "Ideal Swarm", "Animator"],
-    excluded: excludedSurfaces,
   },
   generatedAt: new Date().toISOString(),
   items: inventoryItems.map(({ missing, ...item }) => item),
