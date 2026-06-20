@@ -815,6 +815,8 @@ The same design should avoid painting the data model into a single-machine corne
 
 Current implementation note: path-history work-packet planning now returns deterministic source and receiver chunk-selection summaries plus a plan checksum over the selected chunks, pair counts, truncation state, and packet header checksums. Each packet still carries its own canonical header checksum and deterministic merge key; the plan checksum gives dispatchers one compact identity for replay, cross-worker transfer, service execution, and later GPU-style packet queues.
 
+Learning harness note: GPU acceleration remains deferred for production solver work, but a separate [GPU feasibility harness](gpu-feasibility-harness.md) may be used to learn WebGPU/Metal-style compute, measure regular parallel kernels, and collect exploratory CPU/GPU parity data without changing the central solver contract.
+
 The first performance focus is CPU-side: C++ data layout, cache locality, SIMD-friendly kernels, bounded multithreading, path-history streaming, indexed readback, and precision-path selection. GPU work should be reconsidered only after the CPU solver contract is stable and benchmark profiles show a regular, massively parallel hotspot that is worth isolating.
 
 Potential future GPU candidates include bulk field/grid sampling, display-oriented geometry projection, path downsampling, broad residual scans, and regular first-pass causal-root bracketing. GPU acceleration is not currently assigned to high-precision paths, arbitrary precision or interval-backed kernels, branch-heavy root isolation, deterministic validation replay, stream/index IO, or small $\lvert J_{ij} \rvert$ edge-case handling.

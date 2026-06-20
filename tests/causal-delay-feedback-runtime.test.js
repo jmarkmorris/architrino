@@ -604,6 +604,32 @@ test("causal delay feedback aggregate summary surfaces compact invalid root reas
   );
 });
 
+test("causal delay feedback aggregate summary surfaces compact pair solver diagnostics", () => {
+  const { runtime, readout } = createRuntimeForReadout();
+  runtime.dataset = {
+    ...createMockCausalDelayReplayDataset("partial_arcs"),
+    datasetSource: CENTRAL_SOLVER_REPLAY_DATASET_SOURCE,
+    solverIntegrationPath: CENTRAL_SOLVER_REPLAY_ADAPTER,
+    solverReplayMode: CENTRAL_SOLVER_PAIR_INTERACTION_REPLAY_MODE,
+    maxPathConstraintResidual: 0.004,
+    pathConstraintGuidanceSampleCount: 12,
+    pathConstraintGuidanceMode: "retained_knot_hermite_boundary",
+    maxPathConstraintGuidanceAcceleration: 48.25,
+    pathConstraintBoundaryResidualSampleCount: 10,
+    maxPathConstraintBoundaryResidual: 0.018,
+  };
+
+  runtime.updateReadout(runtime.createContributionSummaryHit(0.5));
+  const readoutText = readout.children.map((child) => child.textContent);
+
+  assert(readoutText.includes("guide=retained_knot_hermite_boundary"));
+  assert(readoutText.includes("guideRows=12"));
+  assert(readoutText.includes("maxA=48.25"));
+  assert(readoutText.includes("boundary=10"));
+  assert(readoutText.includes("maxB=0.018"));
+  assert(readoutText.includes("solverResid=0.004"));
+});
+
 test("causal delay feedback canvas swatches match the iOS reader theme colors", () => {
   assert.deepEqual(
     CANVAS_COLORS.map(({ id, label, color }) => ({ id, label, color })),

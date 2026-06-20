@@ -2743,13 +2743,55 @@ class CausalDelayFeedbackRuntime {
   }
 
   createContributionSummaryDiagnosticDetails(summary) {
+    const solverDetails = this.createContributionSummarySolverDetails();
     const entries = Object.entries(summary.invalidReasonCounts ?? {})
       .sort((left, right) => right[1] - left[1] || left[0].localeCompare(right[0]))
       .slice(0, 3);
-    if (entries.length === 0) {
+    return [
+      ...solverDetails,
+      ...(entries.length > 0 ? [`why=${entries.map(([key, count]) => `${key}x${count}`).join(",")}`] : []),
+    ];
+  }
+
+  createContributionSummarySolverDetails() {
+    if (this.dataset?.solverReplayMode !== CENTRAL_PAIR_INTERACTION_REPLAY_MODE) {
       return [];
     }
-    return [`why=${entries.map(([key, count]) => `${key}x${count}`).join(",")}`];
+    const summary = this.dataset?.solverSummary ?? {};
+    const guidanceSampleCount = Number(
+      this.dataset?.pathConstraintGuidanceSampleCount ?? summary.pathConstraintGuidanceSampleCount,
+    );
+    const guidanceMode = this.dataset?.pathConstraintGuidanceMode ?? summary.pathConstraintGuidanceMode;
+    const maxGuidanceAcceleration = Number(
+      this.dataset?.maxPathConstraintGuidanceAcceleration ?? summary.maxPathConstraintGuidanceAcceleration,
+    );
+    const boundarySampleCount = Number(
+      this.dataset?.pathConstraintBoundaryResidualSampleCount ?? summary.pathConstraintBoundaryResidualSampleCount,
+    );
+    const maxBoundaryResidual = Number(
+      this.dataset?.maxPathConstraintBoundaryResidual ?? summary.maxPathConstraintBoundaryResidual,
+    );
+    const maxConstraintResidual = Number(
+      this.dataset?.maxPathConstraintResidual ?? summary.maxPathConstraintResidual,
+    );
+    const details = [];
+    if (Number.isFinite(guidanceSampleCount) && guidanceSampleCount > 0) {
+      details.push(`guide=${formatCompactLabel(guidanceMode, "guided")}`);
+      details.push(`guideRows=${guidanceSampleCount}`);
+      if (Number.isFinite(maxGuidanceAcceleration)) {
+        details.push(`maxA=${formatCompactNumber(maxGuidanceAcceleration)}`);
+      }
+    }
+    if (Number.isFinite(boundarySampleCount) && boundarySampleCount > 0) {
+      details.push(`boundary=${boundarySampleCount}`);
+      if (Number.isFinite(maxBoundaryResidual)) {
+        details.push(`maxB=${formatCompactNumber(maxBoundaryResidual)}`);
+      }
+    }
+    if (Number.isFinite(maxConstraintResidual)) {
+      details.push(`solverResid=${formatCompactNumber(maxConstraintResidual)}`);
+    }
+    return details;
   }
 
   getWakeSignedContribution(link) {
