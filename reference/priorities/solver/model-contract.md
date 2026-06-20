@@ -99,8 +99,6 @@ This object is descriptive rather than a new schema demand. In the current bridg
 
 ## Completion Judgment
 
-`model_contract` can be marked complete once [solver.md](solver.md) is open for queue-status edits.
+`model_contract` is complete and recorded in [solver.md](solver.md).
 
 The closeout is complete because the required fields are defined, the live app schema and TypeScript surface contain the model object, app and native admission validate it, claim level and precision compatibility fail closed, and run manifests preserve the model contract with a `modelContractHash`.
-
-What remains is not model-contract design work. The only remaining action is administrative: update the task queue entry in [solver.md](solver.md) from `active` to complete, if the operator/developer wants the priority list to reflect this closeout.

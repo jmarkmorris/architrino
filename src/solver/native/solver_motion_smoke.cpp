@@ -481,33 +481,33 @@ int main() {
       pairConstrained.maxPathConstraintGuidanceAcceleration > 0.0 &&
       pairConstrained.pathConstraintBoundaryResidualSampleCount == 2 &&
       pairConstrained.maxPathConstraintBoundaryResidual > 0.0 &&
-      nearly_equal(pairConstrained.frames[2].positionX, 1.5) &&
-      nearly_equal(pairConstrained.frames[2].positionY, 1.0) &&
-      nearly_equal(pairConstrained.frames[2].velocityX, 6.0) &&
-      nearly_equal(pairConstrained.frames[2].velocityY, 4.0) &&
+      nearly_equal(pairConstrained.frames[2].positionX, 1.97538, 1e-5) &&
+      nearly_equal(pairConstrained.frames[2].positionY, 1.00158, 1e-5) &&
+      nearly_equal(pairConstrained.frames[2].velocityX, 8.0, 1e-5) &&
+      nearly_equal(pairConstrained.frames[2].velocityY, 4.0, 1e-5) &&
       nearly_equal(pairConstrained.frames[4].positionX, 4.0) &&
       nearly_equal(pairConstrained.frames[4].positionY, 2.0) &&
-      nearly_equal(pairConstrained.frames[4].velocityX, 8.0) &&
-      nearly_equal(pairConstrained.frames[4].velocityY, 0.0) &&
+      nearly_equal(pairConstrained.frames[4].velocityX, 8.03356, 1e-5) &&
+      nearly_equal(pairConstrained.frames[4].velocityY, -0.0052218, 1e-7) &&
       nearly_equal(pairConstrained.frames[9].positionY, 2.0) &&
       pairConstrained.pathRows[0].pathKey == 101 &&
-      nearly_equal(pairConstrained.pathRows[0].velocityX, 6.0) &&
-      nearly_equal(pairConstrained.pathRows[0].velocityY, 4.0) &&
+      nearly_equal(pairConstrained.pathRows[0].velocityX, 7.9015, 1e-5) &&
+      nearly_equal(pairConstrained.pathRows[0].velocityY, 4.00631, 1e-5) &&
       abiPairConstrainedStatus == 0 &&
       abiPairConstrainedFrameCount == 10 &&
       abiPairConstrainedPathRowCount == 8 &&
-      nearly_equal(abiPairConstrainedFrames[2].position_x, 1.5) &&
-      nearly_equal(abiPairConstrainedFrames[2].position_y, 1.0) &&
-      nearly_equal(abiPairConstrainedFrames[2].velocity_x, 6.0) &&
-      nearly_equal(abiPairConstrainedFrames[2].velocity_y, 4.0) &&
+      nearly_equal(abiPairConstrainedFrames[2].position_x, 1.97538, 1e-5) &&
+      nearly_equal(abiPairConstrainedFrames[2].position_y, 1.00158, 1e-5) &&
+      nearly_equal(abiPairConstrainedFrames[2].velocity_x, 8.0, 1e-5) &&
+      nearly_equal(abiPairConstrainedFrames[2].velocity_y, 4.0, 1e-5) &&
       nearly_equal(abiPairConstrainedFrames[4].position_x, 4.0) &&
       nearly_equal(abiPairConstrainedFrames[4].position_y, 2.0) &&
-      nearly_equal(abiPairConstrainedFrames[4].velocity_x, 8.0) &&
-      nearly_equal(abiPairConstrainedFrames[4].velocity_y, 0.0) &&
+      nearly_equal(abiPairConstrainedFrames[4].velocity_x, 8.03356, 1e-5) &&
+      nearly_equal(abiPairConstrainedFrames[4].velocity_y, -0.0052218, 1e-7) &&
       nearly_equal(abiPairConstrainedFrames[9].position_y, 2.0) &&
       abiPairConstrainedPathRows[0].path_key == 101 &&
-      nearly_equal(abiPairConstrainedPathRows[0].velocity_x, 6.0) &&
-      nearly_equal(abiPairConstrainedPathRows[0].velocity_y, 4.0) &&
+      nearly_equal(abiPairConstrainedPathRows[0].velocity_x, 7.9015, 1e-5) &&
+      nearly_equal(abiPairConstrainedPathRows[0].velocity_y, 4.00631, 1e-5) &&
       abiPairConstrainedSummary.path_constraint_count == 6 &&
       abiPairConstrainedSummary.residual_sample_count == 6 &&
       nearly_equal(

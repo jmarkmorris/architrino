@@ -447,6 +447,8 @@ assert(
 assert(
   capabilities.appBridge.streamQueries.schema === "solver-stream-query-capabilities.v1" &&
     capabilities.appBridge.streamQueries.helpers.includes("createPathHistoryStreamF64") &&
+    capabilities.appBridge.streamQueries.helpers.includes("planPathHistoryStorageLifecycleF64") &&
+    capabilities.appBridge.streamQueries.helpers.includes("applyPathHistoryStorageLifecycleF64") &&
     capabilities.appBridge.streamQueries.helpers.includes("describeStream") &&
     capabilities.appBridge.streamQueries.helpers.includes("validatePathHistoryDynamicReplayF64") &&
     capabilities.appBridge.streamQueries.helpers.includes("readStreamRange") &&
@@ -3151,6 +3153,32 @@ assertMergedEmissionShellPacketResults(batchPacketEmissionShellCandidates, [
   pathHistoryPacketPlan.packets[0],
   pathHistoryPacketPlan.packets[1],
 ]);
+const packetEmissionShellRootRefinement = await client.refineEmissionShellCandidateRootsF64(
+  createEmissionShellRootRefinementRequest({
+    streamId: "smoke-path-history",
+    packet: pathHistoryPacketPlan.packets[0],
+    candidates: packetQueryEmissionShellCandidates.candidates,
+    signalSpeed: 1,
+    tolerance: 1e-12,
+    rootTolerance: 1e-12,
+    workerCount: 2,
+  })
+);
+assert(
+  packetEmissionShellRootRefinement.status.code === "ok" &&
+    packetEmissionShellRootRefinement.packetId === pathHistoryPacketPlan.packets[0].packetId &&
+    packetEmissionShellRootRefinement.packetMergeOrder ===
+      pathHistoryPacketPlan.packets[0].mergeOrder &&
+    packetEmissionShellRootRefinement.packetMergeKey ===
+      pathHistoryPacketPlan.packets[0].mergeKey,
+  "expected packet-scoped emission-shell root refinement"
+);
+assertEmissionShellPacketResult(packetEmissionShellRootRefinement, pathHistoryPacketPlan.packets[0]);
+assert(
+  packetEmissionShellRootRefinement.rootCount >= 1 &&
+    packetEmissionShellRootRefinement.hitCount === packetEmissionShellRootRefinement.rootCount,
+  "expected packet-scoped emission-shell root refinement outputs"
+);
 assertEmissionShellScanSummary(
   batchPacketEmissionShellCandidates.scanSummary,
   {
@@ -4189,12 +4217,15 @@ assert(
     causalDelayPairRunHandle.response.summary.pathConstraintResidualSampleCount === 14 &&
     causalDelayPairRunHandle.response.summary.maxPathConstraintResidual > 0 &&
     causalDelayPairRunHandle.response.summary.pathConstraintGuidanceSampleCount > 0 &&
-    causalDelayPairRunHandle.response.summary.pathConstraintGuidanceMode === "retained_knot_hermite_boundary" &&
+    causalDelayPairRunHandle.response.summary.pathConstraintGuidanceMode === "retained_knot_boundary" &&
+    causalDelayPairRunHandle.response.summary.pathConstraintBoundaryMode ===
+      "law_aware_retained_knot_boundary" &&
     causalDelayPairRunHandle.response.summary.pathConstraintSolverStatus === "guided_constraint_path" &&
     causalDelayPairRunHandle.response.summary.pathConstraintSolverClaim ===
       "diagnostic_constraint_replay_not_boundary_value_solve" &&
     causalDelayPairRunHandle.response.summary.maxPathConstraintGuidanceAcceleration > 0 &&
     causalDelayPairRunHandle.response.summary.pathConstraintBoundaryResidualSampleCount === 4 &&
+    causalDelayPairRunHandle.response.summary.pathConstraintBoundaryResidualStatus === "unchecked" &&
     causalDelayPairRunHandle.response.summary.maxPathConstraintBoundaryResidual > 0 &&
     causalDelayPairRunHandle.response.summary.executionPath === "native_c_abi",
   "expected causal-delay pair run manifest"
@@ -4204,6 +4235,27 @@ assert(
     "pair-interaction-path-integration" &&
     causalDelayPairRunHandle.response.pathHistory.metadata.dynamicReplay.pathKeys.length === 2,
   "expected causal-delay pair dynamic replay metadata"
+);
+const causalDelayPairMidRetainedFrame = causalDelayPairRunHandle.response.frames.find(
+  (frame) => frame.pathKey === 1 && Math.abs(frame.time - 0.5) <= 1e-12
+);
+assert(
+  causalDelayPairMidRetainedFrame &&
+    Math.abs(causalDelayPairMidRetainedFrame.velocity.y - 85.23333333333333) < 1e-9,
+  "expected law-aware retained-knot tangent velocity"
+);
+const causalDelayPairBoundaryToleranceAcceptedRunHandle = await client.runSimulation(
+  makeCausalDelayPairInteractionRunSimulationRequest({
+    runSuffix: "boundary-residual-accept",
+    pathConstraintBoundaryResidualTolerance: 1e9,
+  })
+);
+assert(
+  causalDelayPairBoundaryToleranceAcceptedRunHandle.response.summary.pathConstraintBoundaryResidualStatus ===
+    "within_tolerance" &&
+    causalDelayPairBoundaryToleranceAcceptedRunHandle.response.summary.pathConstraintBoundaryResidualTolerance === 1e9 &&
+    causalDelayPairBoundaryToleranceAcceptedRunHandle.response.summary.pathConstraintBoundaryResidualSampleCount === 4,
+  "expected causal-delay pair boundary residual tolerance acceptance"
 );
 let causalDelayPairBoundaryToleranceRejected = false;
 try {
@@ -4217,6 +4269,7 @@ try {
   causalDelayPairBoundaryToleranceRejected =
     error instanceof SolverBridgeError &&
     error.status?.code === "path_constraint_boundary_residual_exceeded" &&
+    error.status?.details?.pathConstraintBoundaryResidualStatus === "exceeded_tolerance" &&
     Number(error.status?.details?.maxPathConstraintBoundaryResidual) >
       Number(error.status?.details?.pathConstraintBoundaryResidualTolerance);
 }
@@ -4230,13 +4283,13 @@ assert(
     causalDelayPairRunHandle.response.frames.filter((frame) => frame.pathKey === 2).length === 9,
   "expected causal-delay pair frames for both paths"
 );
-const causalDelayPairRedHermite = causalDelayPairRunHandle.response.frames.find(
+const causalDelayPairRedBoundary = causalDelayPairRunHandle.response.frames.find(
   (frame) => frame.pathKey === 1 && frame.time === 0.125
 );
 assert(
-  Math.abs(causalDelayPairRedHermite.position.x - 107.34375) < 1e-9 &&
-    Math.abs(causalDelayPairRedHermite.position.y - 221.875) < 1e-9,
-  "expected causal-delay pair intermediate frame to follow retained-knot Hermite boundary path"
+  Math.abs(causalDelayPairRedBoundary.position.x - 107.3046875) < 1e-9 &&
+    Math.abs(causalDelayPairRedBoundary.position.y - 221.2537109375) < 1e-9,
+  "expected causal-delay pair intermediate frame to follow the law-aware retained-knot boundary path"
 );
 const causalDelayPairRedInserted = causalDelayPairRunHandle.response.frames.find(
   (frame) => frame.pathKey === 1 && frame.time === 0.25

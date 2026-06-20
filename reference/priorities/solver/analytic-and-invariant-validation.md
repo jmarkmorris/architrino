@@ -1,6 +1,6 @@
 # Analytic And Invariant Validation
 
-Status: `validation-plan-defined`
+Status: `closed-validation-plan`
 
 Kind: `solver-validation-plan`
 
@@ -274,9 +274,10 @@ solver surface that the app will later consume.
 ## Closure Decision
 
 `analytic_and_invariant_validation` is complete as a standalone validation plan
-when this file exists and the repository checks accept it. Implementation
-coverage remains open under the fixture families above until native, WebAssembly,
-app-bridge, stream, and batch checks cover the full matrix.
+and closed in [solver.md](solver.md). Implementation coverage remains open under
+the fixture families above until native, WebAssembly, app-bridge, stream, and
+batch checks cover the full matrix.
 
-The main queue entry in [solver.md](solver.md) remains the queue authority. This
-file supplies the plan substance without changing that queue entry.
+The validation plan is no longer a queue blocker. Future work should add focused
+fixtures or smoke coverage under the fixture families above without reopening the
+definition task.

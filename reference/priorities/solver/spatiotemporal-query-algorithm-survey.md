@@ -1,6 +1,6 @@
 # Spatiotemporal Query Algorithm Survey
 
-Status: `survey-complete-ready-for-first-prototype`
+Status: `closed-prototype-benchmark-survey`
 
 Kind: `solver-acceleration-survey`
 
@@ -163,6 +163,42 @@ Initial benchmark target:
 4. Explicit diagnostic degradation on dense all-to-all cases rather than hidden candidate loss.
 5. Recorded fallback to authoritative chunk replay when coverage metadata is stale, partial, or missing.
 
+## Prototype Benchmark Evidence
+
+Implemented solver API: `query_emission_shell_broad_phase_indexed_v0` in [Geometry.hpp](../../../src/solver/include/architrino/solver/Geometry.hpp) and [Geometry.cpp](../../../src/solver/src/Geometry.cpp).
+
+Implemented benchmark case: `emission-shell-broad-phase-v0` in [solver_benchmark.cpp](../../../src/solver/native/solver_benchmark.cpp).
+
+The v0 fixture builds synthetic source and receiver path-history streams, replays the rows from chunk-backed storage, compares the solver-owned indexed candidate set against brute-force chunk replay, and fails if any oracle broad-phase candidate is missing or if sampled narrow-phase hit counts change. It also splits each scenario into deterministic work packets, validates `solver-work-packet.v1` headers with `emission_shell_candidate.v1` outputs, merges packet results through the solver merge-order helper, and fails if packet replay changes the indexed candidate set.
+
+Latest local benchmark run on 2026-06-20:
+
+| Metric | Value |
+| --- | ---: |
+| Scenario count | 4 |
+| Path-count sweep | 16, 64, 256, 1024 |
+| Time-slab sweep | 32, 128 |
+| Brute-force replay pairs | 1,118,464 |
+| Brute-force candidates | 305 |
+| Indexed pair tests | 18,981 |
+| Indexed candidates | 305 |
+| Missing oracle candidates | 0 |
+| Broad-phase recall | 1.0 |
+| Candidate count reduction | 0.999727 |
+| Indexed pair-test reduction | 0.983029 |
+| Sampled narrow-phase hits | 158 |
+| Same-source candidates | 5 |
+| Speed-regime transition candidates | 105 |
+| Chunk replay rows | 2,720 |
+| Chunk replay bytes | 261,120 |
+| Work packets | 16 |
+| Work-packet candidates | 305 |
+| Work-packet missing candidates | 0 |
+| Work-packet extra candidates | 0 |
+| Work-packet merge-order mismatches | 0 |
+
+This is a solver-owned native API and benchmark fixture, not yet a default app-bridge execution path. Future scoped work may add larger stress coverage, app-facing packet execution, and threshold-based performance acceptance.
+
 ## Decision
 
 Adopt the emission-shell-specific hybrid as the first prototype. Keep bounding-volume hierarchies, R-trees, and sweep-and-prune as comparison candidates after the v0 fixture exists:
@@ -172,3 +208,13 @@ Adopt the emission-shell-specific hybrid as the first prototype. Keep bounding-v
 - compare sweep-and-prune against the hash backend for hot active-window path-vs-path workloads.
 
 The first benchmark should answer one question before broadening: can the solver build a conservative, stream-backed path-vs-emission-shell broad phase that preserves every true candidate while reducing narrow-phase root work enough to justify the index?
+
+## Completion Judgment
+
+`spatiotemporal_query_algorithm_survey` is closed as a survey and first-prototype
+selection artifact. The survey compares the relevant query families, selects the
+emission-shell-specific hybrid, and records benchmark evidence for
+`emission-shell-broad-phase-v0` against brute-force chunk replay. Larger
+stress-scale thresholds, deterministic packet execution breadth, and solver
+contract integration are future scoped implementation work, not blockers for
+this survey closeout.

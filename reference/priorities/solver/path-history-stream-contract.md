@@ -1,6 +1,6 @@
 # Path-History Stream Contract
 
-Status: `closed-schema-fixture-set`
+Status: `closed-schema-fixture-benchmark-baseline`
 
 Kind: `solver-storage-contract`
 
@@ -336,10 +336,10 @@ The contract should be accepted only after these fixtures pass:
 
 ## Close And Remaining Status
 
-`path_history_stream_contract` is closed at the design-capture and schema-fixture level. The required storage artifacts, logical per-path stream model, chunk format obligations, manifest groups, dictionary, event store, binary index sidecar, summary record, memory budget, active-window age-out, optional deep-index store, fast spill, high-speed readback, checksums, recovery policy, and validation fixtures are specified here. The solver app-bridge schema now carries `solver-path-history-stream-contract-artifacts.v1`, and the contract fixture checker validates all six acceptance fixtures: `path_stream_round_trip`, `stream_replay_invariants`, `history_age_out_and_deep_index`, `interrupted_stream_recovery`, `high_speed_readback_budget`, and `fast_spill_budget`.
+`path_history_stream_contract` is closed at the design-capture, schema-fixture, and runtime-benchmark-baseline level. The required storage artifacts, logical per-path stream model, chunk format obligations, manifest groups, dictionary, event store, binary index sidecar, summary record, memory budget, active-window age-out, optional deep-index store, fast spill, high-speed readback, checksums, recovery policy, and validation fixtures are specified here. The solver app-bridge schema now carries `solver-path-history-stream-contract-artifacts.v1`, and the contract fixture checker validates all six acceptance fixtures: `path_stream_round_trip`, `stream_replay_invariants`, `history_age_out_and_deep_index`, `interrupted_stream_recovery`, `high_speed_readback_budget`, and `fast_spill_budget`.
 
 The remaining runtime validation work is outside this contract artifact:
 
 1. [storage-lifecycle-policy](storage-lifecycle-policy.md) already consumes the tier, quota, cleanup, export, deletion, active-window, and deep-index fields.
 2. [work-packet-transport-contract](work-packet-transport-contract.md) already references path-history chunk handles, byte spans, checksums, and deterministic merge keys without duplicating this storage model.
-3. `scripts/benchmark-solver.mjs` already runs the native `stream-and-assembly-store-io` case, which writes path-history chunks, reads the stream index and chunk table, and performs checked indexed readback. A later runtime-benchmark pass should split this into budgeted spill, readback, index-build, and recovery benchmark cases before claiming performance closure.
+3. `scripts/benchmark-solver.mjs` now runs the native `path-history-fast-spill-budget`, `path-history-high-speed-readback-budget`, `path-history-deep-index-build-budget`, and `path-history-recovery-detection-budget` cases, in addition to the broader `stream-and-assembly-store-io` case. These provide baseline measurements for chunked spill, selected indexed readback, optional deep-index construction, and checksum/partial-write/stale-sidecar detection. Later stage-level performance acceptance can add release thresholds and larger stress scales, but no further benchmark split is required to close this contract artifact.

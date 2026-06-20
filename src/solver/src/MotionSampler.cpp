@@ -425,10 +425,104 @@ double pair_constraint_time_epsilon(const PairInteractionRequest& request) {
 std::vector<PairInteractionPathConstraint> pair_constraints_for_path(
     const PairInteractionRequest& request,
     std::uint64_t pathKey);
+std::vector<PairInteractionState> states_from_constraints_at_time(
+    const PairInteractionRequest& request,
+    const std::vector<PairInteractionState>& initialStates,
+    double time);
+
+bool pair_constraint_law_acceleration_at_time(const PairInteractionRequest& request,
+                                              const std::vector<PairInteractionState>& initialStates,
+                                              std::uint64_t pathKey,
+                                              double time,
+                                              Vector3& outAcceleration) {
+  const std::vector<PairInteractionState> states =
+      states_from_constraints_at_time(request, initialStates, time);
+  if (states.size() != initialStates.size()) {
+    return false;
+  }
+  const std::vector<Vector3> accelerations = pair_interaction_accelerations(request, states);
+  const auto stateMatch = std::find_if(states.begin(),
+                                       states.end(),
+                                       [pathKey](const PairInteractionState& state) {
+                                         return state.pathKey == pathKey;
+                                       });
+  if (stateMatch == states.end()) {
+    return false;
+  }
+  const std::size_t stateIndex = static_cast<std::size_t>(
+      std::distance(states.begin(), stateMatch));
+  if (stateIndex >= accelerations.size()) {
+    return false;
+  }
+  outAcceleration = accelerations[stateIndex];
+  return finite_vector(outAcceleration);
+}
+
+bool pair_constraint_geometric_tangent_for_index(
+    const std::vector<PairInteractionPathConstraint>& constraints,
+    std::size_t index,
+    double epsilon,
+    Vector3& outVelocity);
+
+bool pair_constraint_law_aware_tangent_for_index(
+    const PairInteractionRequest& request,
+    const std::vector<PairInteractionState>& initialStates,
+    const std::vector<PairInteractionPathConstraint>& constraints,
+    std::size_t index,
+    double epsilon,
+    Vector3& outVelocity) {
+  if (index == 0 || index >= constraints.size()) {
+    return false;
+  }
+  const PairInteractionPathConstraint& current = constraints[index];
+  Vector3 acceleration{};
+  if (!pair_constraint_law_acceleration_at_time(
+          request,
+          initialStates,
+          current.pathKey,
+          current.time,
+          acceleration)) {
+    return false;
+  }
+  const PairInteractionPathConstraint& previous = constraints[index - 1];
+  if (index + 1 < constraints.size()) {
+    const PairInteractionPathConstraint& next = constraints[index + 1];
+    const double leftDt = current.time - previous.time;
+    const double rightDt = next.time - current.time;
+    const double span = leftDt + rightDt;
+    if (leftDt > epsilon && rightDt > epsilon && span > epsilon) {
+      const double accelerationTimeBias = 0.5 * (rightDt * rightDt - leftDt * leftDt);
+      outVelocity = Vector3{
+          (next.position.x - previous.position.x -
+           acceleration.x * accelerationTimeBias) /
+              span,
+          (next.position.y - previous.position.y -
+           acceleration.y * accelerationTimeBias) /
+              span,
+          (next.position.z - previous.position.z -
+           acceleration.z * accelerationTimeBias) /
+              span,
+      };
+      return finite_vector(outVelocity);
+    }
+  }
+  const double span = current.time - previous.time;
+  if (span <= epsilon) {
+    return false;
+  }
+  outVelocity = Vector3{
+      (current.position.x - previous.position.x) / span + 0.5 * acceleration.x * span,
+      (current.position.y - previous.position.y) / span + 0.5 * acceleration.y * span,
+      (current.position.z - previous.position.z) / span + 0.5 * acceleration.z * span,
+  };
+  return finite_vector(outVelocity);
+}
 
 bool pair_constraint_tangent_at_time(const std::vector<PairInteractionPathConstraint>& constraints,
                                      double time,
                                      double epsilon,
+                                     const PairInteractionRequest& request,
+                                     const std::vector<PairInteractionState>& initialStates,
                                      Vector3& outVelocity) {
   for (std::size_t index = 0; index < constraints.size(); ++index) {
     const PairInteractionPathConstraint& current = constraints[index];
@@ -438,45 +532,31 @@ bool pair_constraint_tangent_at_time(const std::vector<PairInteractionPathConstr
     if (index == 0) {
       return false;
     }
-    if (index + 1 < constraints.size()) {
-      const PairInteractionPathConstraint& previous = constraints[index - 1];
-      const PairInteractionPathConstraint& next = constraints[index + 1];
-      const double span = next.time - previous.time;
-      if (span > epsilon) {
-        outVelocity = Vector3{
-            (next.position.x - previous.position.x) / span,
-            (next.position.y - previous.position.y) / span,
-            (next.position.z - previous.position.z) / span,
-        };
-        return true;
-      }
+    if (pair_constraint_law_aware_tangent_for_index(
+            request,
+            initialStates,
+            constraints,
+            index,
+            epsilon,
+            outVelocity)) {
+      return true;
     }
-    const PairInteractionPathConstraint& previous = constraints[index - 1];
-    const double span = current.time - previous.time;
-    if (span <= epsilon) {
-      return false;
-    }
-    outVelocity = Vector3{
-        (current.position.x - previous.position.x) / span,
-        (current.position.y - previous.position.y) / span,
-        (current.position.z - previous.position.z) / span,
-    };
-    return true;
+    return pair_constraint_geometric_tangent_for_index(
+        constraints,
+        index,
+        epsilon,
+        outVelocity);
   }
   return false;
 }
 
-bool pair_constraint_tangent_for_index(const std::vector<PairInteractionPathConstraint>& constraints,
-                                       std::size_t index,
-                                       Vector3 firstTangent,
-                                       double epsilon,
-                                       Vector3& outVelocity) {
+bool pair_constraint_geometric_tangent_for_index(
+    const std::vector<PairInteractionPathConstraint>& constraints,
+    std::size_t index,
+    double epsilon,
+    Vector3& outVelocity) {
   if (index >= constraints.size()) {
     return false;
-  }
-  if (index == 0) {
-    outVelocity = firstTangent;
-    return finite_vector(outVelocity);
   }
   if (index + 1 < constraints.size()) {
     const PairInteractionPathConstraint& previous = constraints[index - 1];
@@ -505,7 +585,74 @@ bool pair_constraint_tangent_for_index(const std::vector<PairInteractionPathCons
   return true;
 }
 
+bool pair_constraint_tangent_for_index(const PairInteractionRequest& request,
+                                       const std::vector<PairInteractionState>& initialStates,
+                                       const std::vector<PairInteractionPathConstraint>& constraints,
+                                       std::size_t index,
+                                       Vector3 firstTangent,
+                                       double epsilon,
+                                       Vector3& outVelocity) {
+  if (index >= constraints.size()) {
+    return false;
+  }
+  if (index == 0) {
+    outVelocity = firstTangent;
+    return finite_vector(outVelocity);
+  }
+  if (pair_constraint_law_aware_tangent_for_index(
+          request,
+          initialStates,
+          constraints,
+          index,
+          epsilon,
+          outVelocity)) {
+    return true;
+  }
+  return pair_constraint_geometric_tangent_for_index(
+      constraints,
+      index,
+      epsilon,
+      outVelocity);
+}
+
+bool pair_constraint_quintic_boundary_position(
+    const PairInteractionPathConstraint& left,
+    const PairInteractionPathConstraint& right,
+    Vector3 leftTangent,
+    Vector3 rightTangent,
+    Vector3 leftAcceleration,
+    Vector3 rightAcceleration,
+    double u,
+    double span,
+    Vector3& outPosition) {
+  const double u2 = u * u;
+  const double u3 = u2 * u;
+  const double u4 = u3 * u;
+  const double u5 = u4 * u;
+  const double h00 = 1.0 - 10.0 * u3 + 15.0 * u4 - 6.0 * u5;
+  const double h10 = u - 6.0 * u3 + 8.0 * u4 - 3.0 * u5;
+  const double h20 = 0.5 * u2 - 1.5 * u3 + 1.5 * u4 - 0.5 * u5;
+  const double h01 = 10.0 * u3 - 15.0 * u4 + 6.0 * u5;
+  const double h11 = -4.0 * u3 + 7.0 * u4 - 3.0 * u5;
+  const double h21 = 0.5 * u3 - u4 + 0.5 * u5;
+  const double spanSquared = span * span;
+  outPosition = Vector3{
+      h00 * left.position.x + h10 * span * leftTangent.x +
+          h20 * spanSquared * leftAcceleration.x + h01 * right.position.x +
+          h11 * span * rightTangent.x + h21 * spanSquared * rightAcceleration.x,
+      h00 * left.position.y + h10 * span * leftTangent.y +
+          h20 * spanSquared * leftAcceleration.y + h01 * right.position.y +
+          h11 * span * rightTangent.y + h21 * spanSquared * rightAcceleration.y,
+      h00 * left.position.z + h10 * span * leftTangent.z +
+          h20 * spanSquared * leftAcceleration.z + h01 * right.position.z +
+          h11 * span * rightTangent.z + h21 * spanSquared * rightAcceleration.z,
+  };
+  return finite_vector(outPosition);
+}
+
 bool pair_constraint_hermite_position_at_time(
+    const PairInteractionRequest& request,
+    const std::vector<PairInteractionState>& initialStates,
     const std::vector<PairInteractionPathConstraint>& constraints,
     Vector3 firstTangent,
     double time,
@@ -544,11 +691,33 @@ bool pair_constraint_hermite_position_at_time(
   }
   Vector3 leftTangent{};
   Vector3 rightTangent{};
-  if (!pair_constraint_tangent_for_index(constraints, leftIndex, firstTangent, epsilon, leftTangent) ||
-      !pair_constraint_tangent_for_index(constraints, rightIndex, firstTangent, epsilon, rightTangent)) {
+  if (!pair_constraint_tangent_for_index(
+          request, initialStates, constraints, leftIndex, firstTangent, epsilon, leftTangent) ||
+      !pair_constraint_tangent_for_index(
+          request, initialStates, constraints, rightIndex, firstTangent, epsilon, rightTangent)) {
     return false;
   }
   const double u = std::clamp((time - left.time) / span, 0.0, 1.0);
+  Vector3 leftAcceleration{};
+  Vector3 rightAcceleration{};
+  if (pair_constraint_law_acceleration_at_time(
+          request, initialStates, left.pathKey, left.time, leftAcceleration) &&
+      pair_constraint_law_acceleration_at_time(request,
+                                               initialStates,
+                                               rightConstraint.pathKey,
+                                               rightConstraint.time,
+                                               rightAcceleration) &&
+      pair_constraint_quintic_boundary_position(left,
+                                                rightConstraint,
+                                                leftTangent,
+                                                rightTangent,
+                                                leftAcceleration,
+                                                rightAcceleration,
+                                                u,
+                                                span,
+                                                outPosition)) {
+    return true;
+  }
   const double u2 = u * u;
   const double u3 = u2 * u;
   const double h00 = 2.0 * u3 - 3.0 * u2 + 1.0;
@@ -579,7 +748,13 @@ void snap_pair_interaction_states_to_constraints(const PairInteractionRequest& r
       }
       state.initialPosition = constraint.position;
       Vector3 tangentVelocity{};
-      if (pair_constraint_tangent_at_time(constraints, time, epsilon, tangentVelocity)) {
+      if (pair_constraint_tangent_at_time(
+              constraints,
+              time,
+              epsilon,
+              request,
+              states,
+              tangentVelocity)) {
         state.initialVelocity = tangentVelocity;
       }
       break;
@@ -643,6 +818,8 @@ PairInteractionGuidedAcceleration pair_constraint_guided_acceleration(
       initialState == initialStates.end() ? state.initialVelocity : initialState->initialVelocity;
   Vector3 targetPosition{};
   if (!pair_constraint_hermite_position_at_time(
+          request,
+          initialStates,
           constraints,
           firstTangent,
           nextTime,
@@ -653,7 +830,7 @@ PairInteractionGuidedAcceleration pair_constraint_guided_acceleration(
 
   // The pair force is still evaluated first. This boundary correction is the
   // additional acceleration needed, under the solver's semi-implicit step rule,
-  // to land on the retained-knot Hermite path at the next emitted sample.
+  // to land on the retained-knot boundary path at the next emitted sample.
   const Vector3 requiredTotalAcceleration{
       (targetPosition.x - state.initialPosition.x -
        state.initialVelocity.x * dt) /
@@ -876,6 +1053,219 @@ std::vector<PairInteractionState> states_at_frame_index(
               return left.pathKey < right.pathKey;
             });
   return states;
+}
+
+bool has_pair_constraint_at_time(const PairInteractionRequest& request,
+                                 std::uint64_t pathKey,
+                                 double time,
+                                 double epsilon) {
+  const std::vector<PairInteractionPathConstraint> constraints =
+      pair_constraints_for_path(request, pathKey);
+  return std::any_of(constraints.begin(),
+                     constraints.end(),
+                     [time, epsilon](const PairInteractionPathConstraint& constraint) {
+                       return std::abs(constraint.time - time) <= epsilon;
+                     });
+}
+
+std::vector<std::size_t> mutable_frame_indices_for_path(
+    const std::vector<MotionFrameRowF64>& frames,
+    std::uint64_t pathKey) {
+  std::vector<std::size_t> indices;
+  for (std::size_t index = 0; index < frames.size(); ++index) {
+    if (frames[index].pathKey == pathKey) {
+      indices.push_back(index);
+    }
+  }
+  std::sort(indices.begin(), indices.end(), [&frames](std::size_t left, std::size_t right) {
+    if (frames[left].time == frames[right].time) {
+      return frames[left].frameIndex < frames[right].frameIndex;
+    }
+    return frames[left].time < frames[right].time;
+  });
+  return indices;
+}
+
+void set_frame_position(MotionFrameRowF64& frame, Vector3 position) {
+  frame.positionX = position.x;
+  frame.positionY = position.y;
+  frame.positionZ = position.z;
+}
+
+void snap_pair_interaction_frame_constraints(PairInteractionSampleResult& result,
+                                             const PairInteractionRequest& request,
+                                             double epsilon) {
+  for (MotionFrameRowF64& frame : result.frames) {
+    const std::vector<PairInteractionPathConstraint> constraints =
+        pair_constraints_for_path(request, frame.pathKey);
+    const auto match = std::find_if(
+        constraints.begin(),
+        constraints.end(),
+        [&frame, epsilon](const PairInteractionPathConstraint& constraint) {
+          return std::abs(constraint.time - frame.time) <= epsilon;
+        });
+    if (match != constraints.end()) {
+      set_frame_position(frame, match->position);
+    }
+  }
+}
+
+void recompute_pair_interaction_frame_velocities(PairInteractionSampleResult& result) {
+  std::vector<std::uint64_t> pathKeys;
+  for (const MotionFrameRowF64& frame : result.frames) {
+    if (std::find(pathKeys.begin(), pathKeys.end(), frame.pathKey) == pathKeys.end()) {
+      pathKeys.push_back(frame.pathKey);
+    }
+  }
+  std::sort(pathKeys.begin(), pathKeys.end());
+
+  for (std::uint64_t pathKey : pathKeys) {
+    const std::vector<std::size_t> indices = mutable_frame_indices_for_path(result.frames, pathKey);
+    if (indices.size() < 2) {
+      continue;
+    }
+    for (std::size_t index = 0; index < indices.size(); ++index) {
+      const std::size_t previousIndex = indices[index == 0 ? 0 : index - 1];
+      const std::size_t nextIndex = indices[index + 1 < indices.size() ? index + 1 : index];
+      const MotionFrameRowF64& previous = result.frames[previousIndex];
+      const MotionFrameRowF64& next = result.frames[nextIndex];
+      const double span = next.time - previous.time;
+      if (span <= 0.0) {
+        continue;
+      }
+      MotionFrameRowF64& current = result.frames[indices[index]];
+      current.velocityX = (next.positionX - previous.positionX) / span;
+      current.velocityY = (next.positionY - previous.positionY) / span;
+      current.velocityZ = (next.positionZ - previous.positionZ) / span;
+    }
+  }
+}
+
+void rebuild_pair_interaction_path_rows(PairInteractionSampleResult& result) {
+  result.pathRows.clear();
+  std::vector<std::uint64_t> pathKeys;
+  for (const MotionFrameRowF64& frame : result.frames) {
+    if (std::find(pathKeys.begin(), pathKeys.end(), frame.pathKey) == pathKeys.end()) {
+      pathKeys.push_back(frame.pathKey);
+    }
+  }
+  std::sort(pathKeys.begin(), pathKeys.end());
+
+  for (std::uint64_t pathKey : pathKeys) {
+    const std::vector<std::size_t> indices = mutable_frame_indices_for_path(result.frames, pathKey);
+    for (std::size_t index = 0; index + 1 < indices.size(); ++index) {
+      const MotionFrameRowF64& start = result.frames[indices[index]];
+      const MotionFrameRowF64& end = result.frames[indices[index + 1]];
+      if (end.time > start.time) {
+        result.pathRows.push_back(
+            make_pair_interaction_path_history_row(start, end, static_cast<std::uint64_t>(index)));
+      }
+    }
+  }
+}
+
+void relax_pair_interaction_constrained_frames(
+    PairInteractionSampleResult& result,
+    const PairInteractionRequest& request,
+    const std::vector<PairInteractionState>& initialStates) {
+  if (request.pathConstraints.empty() || result.frames.empty()) {
+    return;
+  }
+
+  std::vector<std::uint64_t> pathKeys;
+  for (const MotionFrameRowF64& frame : result.frames) {
+    if (std::find(pathKeys.begin(), pathKeys.end(), frame.pathKey) == pathKeys.end()) {
+      pathKeys.push_back(frame.pathKey);
+    }
+  }
+  std::sort(pathKeys.begin(), pathKeys.end());
+
+  constexpr int relaxationIterations = 8;
+  constexpr double relaxationBlend = 0.55;
+  const double epsilon = pair_constraint_time_epsilon(request);
+  for (int iteration = 0; iteration < relaxationIterations; ++iteration) {
+    std::vector<Vector3> nextPositions(result.frames.size());
+    std::vector<bool> hasNextPosition(result.frames.size(), false);
+
+    for (std::uint64_t pathKey : pathKeys) {
+      const std::vector<std::size_t> indices = mutable_frame_indices_for_path(result.frames, pathKey);
+      if (indices.size() < 3) {
+        continue;
+      }
+      for (std::size_t index = 1; index + 1 < indices.size(); ++index) {
+        const MotionFrameRowF64& previous = result.frames[indices[index - 1]];
+        const MotionFrameRowF64& current = result.frames[indices[index]];
+        const MotionFrameRowF64& next = result.frames[indices[index + 1]];
+        if (has_pair_constraint_at_time(request, current.pathKey, current.time, epsilon)) {
+          continue;
+        }
+        const double leftDt = current.time - previous.time;
+        const double rightDt = next.time - current.time;
+        if (leftDt <= epsilon || rightDt <= epsilon) {
+          continue;
+        }
+        const std::vector<PairInteractionState> states =
+            states_at_frame_index(result.frames, current.frameIndex, initialStates);
+        if (states.size() != initialStates.size()) {
+          continue;
+        }
+        const std::vector<Vector3> lawAccelerations =
+            pair_interaction_accelerations(request, states);
+        const auto stateMatch = std::find_if(states.begin(),
+                                             states.end(),
+                                             [&current](const PairInteractionState& state) {
+                                               return state.pathKey == current.pathKey;
+                                             });
+        if (stateMatch == states.end()) {
+          continue;
+        }
+        const std::size_t stateIndex = static_cast<std::size_t>(
+            std::distance(states.begin(), stateMatch));
+        if (stateIndex >= lawAccelerations.size()) {
+          continue;
+        }
+        const Vector3 acceleration = lawAccelerations[stateIndex];
+        const double denominator = 1.0 / rightDt + 1.0 / leftDt;
+        const double accelerationScale = 0.5 * (leftDt + rightDt);
+        const Vector3 target{
+            (next.positionX / rightDt + previous.positionX / leftDt -
+             acceleration.x * accelerationScale) /
+                denominator,
+            (next.positionY / rightDt + previous.positionY / leftDt -
+             acceleration.y * accelerationScale) /
+                denominator,
+            (next.positionZ / rightDt + previous.positionZ / leftDt -
+             acceleration.z * accelerationScale) /
+                denominator,
+        };
+        if (!finite_vector(target)) {
+          continue;
+        }
+        const std::size_t frameIndex = indices[index];
+        nextPositions[frameIndex] = Vector3{
+            current.positionX + (target.x - current.positionX) * relaxationBlend,
+            current.positionY + (target.y - current.positionY) * relaxationBlend,
+            current.positionZ + (target.z - current.positionZ) * relaxationBlend,
+        };
+        hasNextPosition[frameIndex] = true;
+      }
+    }
+
+    bool anyUpdated = false;
+    for (std::size_t index = 0; index < result.frames.size(); ++index) {
+      if (!hasNextPosition[index]) {
+        continue;
+      }
+      set_frame_position(result.frames[index], nextPositions[index]);
+      anyUpdated = true;
+    }
+    if (!anyUpdated) {
+      break;
+    }
+  }
+
+  snap_pair_interaction_frame_constraints(result, request, epsilon);
+  recompute_pair_interaction_frame_velocities(result);
 }
 
 void summarize_pair_interaction_constraint_residuals(
@@ -1183,6 +1573,8 @@ PairInteractionSampleResult integrate_pair_interaction_motion(
     }
   }
 
+  relax_pair_interaction_constrained_frames(result, request, initialStates);
+  rebuild_pair_interaction_path_rows(result);
   summarize_pair_interaction_constraint_residuals(result, request, initialStates);
   summarize_pair_interaction_boundary_residuals(result, request, initialStates);
   result.stepCount = times.empty() ? 0 : static_cast<std::uint64_t>(times.size() - 1);

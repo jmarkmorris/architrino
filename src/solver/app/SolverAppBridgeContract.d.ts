@@ -8,6 +8,7 @@ export type SolverRunKind =
   | "delayedHits"
   | "sharedGeometry"
   | "appPlayback"
+  | "pairInteraction"
   | "validationReplay";
 
 export type SolverPrecisionPath =
@@ -931,6 +932,7 @@ export interface SolverEmissionShellRootRefinementF64Request {
   streamId?: string;
   manifestPath?: string;
   candidates: SolverEmissionShellCandidateF64[];
+  packet?: SolverWorkPacketHeader;
   signalSpeed: number;
   tolerance?: number;
   rootTolerance?: number;
@@ -944,6 +946,10 @@ export interface SolverEmissionShellRootRefinementF64Request {
 
 export interface SolverEmissionShellRootRefinementF64Response {
   schema: "solver-emission-shell-root-refinement.v1";
+  packetId?: string;
+  packetMergeOrder?: number;
+  packetMergeKey?: string;
+  packetResult?: SolverWorkPacketResultRef;
   streamId: string;
   signalSpeed: number;
   tolerance: number;
@@ -1622,6 +1628,7 @@ export type SolverRunConfig =
   | PathHistorySolverConfig
   | DelayedHitsSolverConfig
   | SharedGeometrySolverConfig
+  | PairInteractionSolverConfig
   | MotionSimulationSolverConfig
   | AppPlaybackSolverConfig
   | AnimatorSolverConfig
@@ -1715,6 +1722,45 @@ export type MotionSimulationSolverConfig = {
     | { motionRequest: SolverLinearMotionSampleF64Request; motionIntegrationRequest?: never }
     | { motionRequest?: never; motionIntegrationRequest: SolverMotionIntegrationF64Request }
   );
+
+export interface PairInteractionSolverConfig {
+  appId: SolverAppId;
+  pairInteractionRequest: SolverPairInteractionF64Request;
+  streamId?: string;
+  rowsPerChunk?: number;
+  storagePolicy?: SolverStoragePolicy;
+  metadata?: Partial<SolverPathHistoryStreamMetadata>;
+}
+
+export interface SolverPairInteractionF64Request {
+  startTime: number;
+  endTime: number;
+  step: number;
+  maxFrames?: number;
+  pairAccelerationScale?: number;
+  softening?: number;
+  integrationTolerance?: number;
+  interactionLaw?: string;
+  pathConstraintBoundaryResidualTolerance?: number;
+  initialStates: SolverPairInteractionStateF64Request[];
+  pathConstraints?: SolverPairInteractionPathConstraintF64Request[];
+}
+
+export interface SolverPairInteractionStateF64Request {
+  pathKey: number;
+  initialPosition: SolverVector3F64;
+  initialVelocity: SolverVector3F64;
+  charge?: number;
+  mass?: number;
+  stateFlags?: number;
+}
+
+export interface SolverPairInteractionPathConstraintF64Request {
+  pathKey: number;
+  depth?: number;
+  time: number;
+  position: SolverVector3F64;
+}
 
 export interface AppPlaybackSolverConfig {
   appId: SolverAppId;
@@ -1812,6 +1858,7 @@ export interface SolverRunResponse {
   pathHistory?: SolverPathHistoryStreamSummary;
   geometry?: SolverSharedGeometryF64Response;
   validationReplay?: SolverBaselineComparisonResult;
+  pairInteraction?: SolverPairInteractionSummary;
   status: SolverStatusRecord;
 }
 
@@ -2240,6 +2287,8 @@ export interface SolverBridgeWorkerModelCapability {
 export interface SolverBridgeStorageFallbackCapability {
   preferredDurableBrowserTarget: "opfs";
   durableBrowserTargetAvailable: boolean;
+  preferredNativeFileTarget: "native-file";
+  nativeFileTargetAvailable: boolean;
   transientTarget: "caller-buffer";
   unsupportedStorageStatusCode: "unsupported_browser_storage";
 }
@@ -2327,6 +2376,8 @@ export interface SolverStreamQueryCapability {
   schema: "solver-stream-query-capabilities.v1";
   helpers: (
     | "createPathHistoryStreamF64"
+    | "planPathHistoryStorageLifecycleF64"
+    | "applyPathHistoryStorageLifecycleF64"
     | "describeStream"
     | "validatePathHistoryDynamicReplayF64"
     | "readStreamRange"
@@ -2797,6 +2848,66 @@ export interface SolverRunSummary {
   pathRowCount?: number;
   chunkCount?: number;
   streamCount?: number;
+  stepCount?: number;
+  interactionLaw?: string;
+  executionPath?: string;
+  pathConstraintCount?: number;
+  pathConstraintResidualSampleCount?: number;
+  maxPathConstraintResidual?: number;
+  meanPathConstraintResidual?: number;
+  rmsPathConstraintResidual?: number;
+  pathConstraintGuidanceSampleCount?: number;
+  pathConstraintGuidanceMode?: string;
+  pathConstraintBoundaryMode?: string;
+  pathConstraintSolverStatus?: string;
+  pathConstraintSolverClaim?: string;
+  maxPathConstraintGuidanceAcceleration?: number;
+  meanPathConstraintGuidanceAcceleration?: number;
+  rmsPathConstraintGuidanceAcceleration?: number;
+  pathConstraintBoundaryResidualSampleCount?: number;
+  pathConstraintBoundaryResidualStatus?: SolverPairInteractionBoundaryResidualStatus;
+  pathConstraintBoundaryResidualTolerance?: number;
+  maxPathConstraintBoundaryResidual?: number;
+  meanPathConstraintBoundaryResidual?: number;
+  rmsPathConstraintBoundaryResidual?: number;
+}
+
+export type SolverPairInteractionBoundaryResidualStatus =
+  | "unchecked"
+  | "no_boundary_samples"
+  | "unresolved"
+  | "within_tolerance"
+  | "exceeded_tolerance";
+
+export interface SolverPairInteractionSummary {
+  runId?: string;
+  claimLevel?: SolverClaimLevel;
+  precisionPath?: SolverPrecisionPath;
+  frameCount?: number;
+  pathCount?: number;
+  pathRowCount?: number;
+  stepCount?: number;
+  interactionLaw?: string;
+  executionPath?: string;
+  pathConstraintCount?: number;
+  pathConstraintResidualSampleCount?: number;
+  maxPathConstraintResidual?: number;
+  meanPathConstraintResidual?: number;
+  rmsPathConstraintResidual?: number;
+  pathConstraintGuidanceSampleCount?: number;
+  pathConstraintGuidanceMode?: string;
+  pathConstraintBoundaryMode?: string;
+  pathConstraintSolverStatus?: string;
+  pathConstraintSolverClaim?: string;
+  maxPathConstraintGuidanceAcceleration?: number;
+  meanPathConstraintGuidanceAcceleration?: number;
+  rmsPathConstraintGuidanceAcceleration?: number;
+  pathConstraintBoundaryResidualSampleCount?: number;
+  pathConstraintBoundaryResidualStatus?: SolverPairInteractionBoundaryResidualStatus;
+  pathConstraintBoundaryResidualTolerance?: number;
+  maxPathConstraintBoundaryResidual?: number;
+  meanPathConstraintBoundaryResidual?: number;
+  rmsPathConstraintBoundaryResidual?: number;
 }
 
 export interface SolverDiagnosticRecord {

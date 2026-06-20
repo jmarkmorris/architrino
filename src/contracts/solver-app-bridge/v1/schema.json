@@ -3101,6 +3101,8 @@
             "type": "string",
             "enum": [
               "createPathHistoryStreamF64",
+              "planPathHistoryStorageLifecycleF64",
+              "applyPathHistoryStorageLifecycleF64",
               "describeStream",
               "validatePathHistoryDynamicReplayF64",
               "readStreamRange",
@@ -4005,6 +4007,136 @@
         }
       }
     },
+    "pairInteractionRunConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["appId", "pairInteractionRequest"],
+      "properties": {
+        "appId": {
+          "$ref": "#/$defs/solverAppId"
+        },
+        "pairInteractionRequest": {
+          "$ref": "#/$defs/pairInteractionF64Request"
+        },
+        "streamId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "rowsPerChunk": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "storagePolicy": {
+          "$ref": "#/$defs/storagePolicy"
+        },
+        "metadata": {
+          "type": "object"
+        }
+      }
+    },
+    "pairInteractionF64Request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["startTime", "endTime", "step", "initialStates"],
+      "properties": {
+        "startTime": {
+          "type": "number"
+        },
+        "endTime": {
+          "type": "number"
+        },
+        "step": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "maxFrames": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "pairAccelerationScale": {
+          "type": "number"
+        },
+        "softening": {
+          "type": "number",
+          "minimum": 0
+        },
+        "integrationTolerance": {
+          "type": "number",
+          "minimum": 0
+        },
+        "interactionLaw": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pathConstraintBoundaryResidualTolerance": {
+          "type": "number",
+          "minimum": 0
+        },
+        "initialStates": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "$ref": "#/$defs/pairInteractionStateF64Request"
+          }
+        },
+        "pathConstraints": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/pairInteractionPathConstraintF64Request"
+          }
+        }
+      }
+    },
+    "pairInteractionStateF64Request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pathKey", "initialPosition", "initialVelocity"],
+      "properties": {
+        "pathKey": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "initialPosition": {
+          "$ref": "#/$defs/vector3F64"
+        },
+        "initialVelocity": {
+          "$ref": "#/$defs/vector3F64"
+        },
+        "charge": {
+          "type": "number"
+        },
+        "mass": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "stateFlags": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "pairInteractionPathConstraintF64Request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pathKey", "time", "position"],
+      "properties": {
+        "pathKey": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "depth": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "time": {
+          "type": "number"
+        },
+        "position": {
+          "$ref": "#/$defs/vector3F64"
+        }
+      }
+    },
     "solverRunConfig": {
       "anyOf": [
         {
@@ -4027,6 +4159,9 @@
         },
         {
           "$ref": "#/$defs/appPlaybackRunConfig"
+        },
+        {
+          "$ref": "#/$defs/pairInteractionRunConfig"
         },
         {
           "$ref": "#/$defs/motionSimulationRunConfig"
@@ -4245,6 +4380,9 @@
         "validationReplay": {
           "$ref": "#/$defs/baselineComparisonResult"
         },
+        "pairInteraction": {
+          "$ref": "#/$defs/pairInteractionRunSummary"
+        },
         "status": {
           "$ref": "#/$defs/statusRecord"
         }
@@ -4299,8 +4437,196 @@
         "streamCount": {
           "type": "integer",
           "minimum": 0
+        },
+        "stepCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "interactionLaw": {
+          "type": "string",
+          "minLength": 1
+        },
+        "executionPath": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pathConstraintCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pathConstraintResidualSampleCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "maxPathConstraintResidual": {
+          "type": "number"
+        },
+        "meanPathConstraintResidual": {
+          "type": "number"
+        },
+        "rmsPathConstraintResidual": {
+          "type": "number"
+        },
+        "pathConstraintGuidanceSampleCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pathConstraintGuidanceMode": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pathConstraintBoundaryMode": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pathConstraintSolverStatus": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pathConstraintSolverClaim": {
+          "type": "string",
+          "minLength": 1
+        },
+        "maxPathConstraintGuidanceAcceleration": {
+          "type": "number"
+        },
+        "meanPathConstraintGuidanceAcceleration": {
+          "type": "number"
+        },
+        "rmsPathConstraintGuidanceAcceleration": {
+          "type": "number"
+        },
+        "pathConstraintBoundaryResidualSampleCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pathConstraintBoundaryResidualStatus": {
+          "$ref": "#/$defs/pairInteractionBoundaryResidualStatus"
+        },
+        "pathConstraintBoundaryResidualTolerance": {
+          "type": "number",
+          "minimum": 0
+        },
+        "maxPathConstraintBoundaryResidual": {
+          "type": "number"
+        },
+        "meanPathConstraintBoundaryResidual": {
+          "type": "number"
+        },
+        "rmsPathConstraintBoundaryResidual": {
+          "type": "number"
         }
       }
+    },
+    "pairInteractionRunSummary": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "runId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "claimLevel": {
+          "$ref": "#/$defs/solverClaimLevel"
+        },
+        "precisionPath": {
+          "$ref": "#/$defs/precisionPathId"
+        },
+        "frameCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pathCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pathRowCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "stepCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "interactionLaw": {
+          "type": "string",
+          "minLength": 1
+        },
+        "executionPath": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pathConstraintCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pathConstraintResidualSampleCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "maxPathConstraintResidual": {
+          "type": "number"
+        },
+        "meanPathConstraintResidual": {
+          "type": "number"
+        },
+        "rmsPathConstraintResidual": {
+          "type": "number"
+        },
+        "pathConstraintGuidanceSampleCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pathConstraintGuidanceMode": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pathConstraintBoundaryMode": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pathConstraintSolverStatus": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pathConstraintSolverClaim": {
+          "type": "string",
+          "minLength": 1
+        },
+        "maxPathConstraintGuidanceAcceleration": {
+          "type": "number"
+        },
+        "meanPathConstraintGuidanceAcceleration": {
+          "type": "number"
+        },
+        "rmsPathConstraintGuidanceAcceleration": {
+          "type": "number"
+        },
+        "pathConstraintBoundaryResidualSampleCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pathConstraintBoundaryResidualStatus": {
+          "$ref": "#/$defs/pairInteractionBoundaryResidualStatus"
+        },
+        "pathConstraintBoundaryResidualTolerance": {
+          "type": "number",
+          "minimum": 0
+        },
+        "maxPathConstraintBoundaryResidual": {
+          "type": "number"
+        },
+        "meanPathConstraintBoundaryResidual": {
+          "type": "number"
+        },
+        "rmsPathConstraintBoundaryResidual": {
+          "type": "number"
+        }
+      }
+    },
+    "pairInteractionBoundaryResidualStatus": {
+      "type": "string",
+      "enum": ["unchecked", "no_boundary_samples", "unresolved", "within_tolerance", "exceeded_tolerance"]
     },
     "describeRunRequest": {
       "type": "object",
@@ -8778,6 +9104,9 @@
             "$ref": "#/$defs/emissionShellCandidateF64"
           }
         },
+        "packet": {
+          "$ref": "#/$defs/workPacketHeader"
+        },
         "signalSpeed": {
           "type": "number",
           "exclusiveMinimum": 0
@@ -8846,6 +9175,21 @@
       "properties": {
         "schema": {
           "const": "solver-emission-shell-root-refinement.v1"
+        },
+        "packetId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "packetMergeOrder": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "packetMergeKey": {
+          "type": "string",
+          "minLength": 1
+        },
+        "packetResult": {
+          "$ref": "#/$defs/workPacketResultRef"
         },
         "streamId": {
           "type": "string",
@@ -11535,7 +11879,7 @@
     },
     "solverAppId": {
       "type": "string",
-      "enum": ["animator", "photon", "ideal-swarm"]
+      "enum": ["animator", "photon", "ideal-swarm", "causal-delay-feedback"]
     },
     "solverRunKind": {
       "type": "string",
@@ -11547,6 +11891,7 @@
         "delayedHits",
         "sharedGeometry",
         "appPlayback",
+        "pairInteraction",
         "validationReplay"
       ]
     },

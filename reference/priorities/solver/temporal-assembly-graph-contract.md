@@ -5,14 +5,13 @@
 - Kind: `priority-detail`
 - Workstream: `solver`
 - Task id: `temporal_assembly_graph_contract`
-- Status: `ready-to-close`
-- Depends on: `virtual_observer_path_record_contract`
+- Status: `closed-design-capture`
+- Depends on: [virtual-observer-path-record-contract](virtual-observer-path-record-contract.md)
 - Promotion decision: `priority-only`
 
 This note defines the temporal assembly graph as a standalone solver contract.
-It completes the design substance for `temporal_assembly_graph_contract` without
-changing [solver.md](solver.md) or any runtime file. The main solver queue can
-mark the task complete once queue editing is allowed.
+It closes the design substance for `temporal_assembly_graph_contract` and the
+main solver queue records the task as complete.
 
 The contract defines how architrino path histories join to assembly-state
 history, membership intervals, parent-child hierarchy intervals, and assembly
@@ -463,8 +462,7 @@ Validation for this contract must prove:
 
 ## Completion Criteria
 
-`temporal_assembly_graph_contract` can be marked complete when this standalone
-contract is accepted as the priority artifact. Remaining implementation work
-belongs to broader solver tasks, especially `solver_contract` and
-`path_history_stream_contract`; it does not block completion of this isolated
-contract.
+`temporal_assembly_graph_contract` is closed as the standalone priority
+artifact. Remaining implementation work belongs to broader solver tasks,
+especially `solver_contract` and [path-history-stream-contract](path-history-stream-contract.md);
+it does not block completion of this isolated contract.

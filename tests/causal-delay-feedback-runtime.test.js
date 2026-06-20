@@ -634,24 +634,30 @@ test("causal delay feedback aggregate summary surfaces compact pair solver diagn
     solverReplayMode: CENTRAL_SOLVER_PAIR_INTERACTION_REPLAY_MODE,
     maxPathConstraintResidual: 0.004,
     pathConstraintGuidanceSampleCount: 12,
-    pathConstraintGuidanceMode: "retained_knot_hermite_boundary",
+    pathConstraintGuidanceMode: "retained_knot_boundary",
+    pathConstraintBoundaryMode: "law_aware_retained_knot_boundary",
     pathConstraintSolverStatus: "guided_constraint_path",
     pathConstraintSolverClaim: "diagnostic_constraint_replay_not_boundary_value_solve",
     maxPathConstraintGuidanceAcceleration: 48.25,
     pathConstraintBoundaryResidualSampleCount: 10,
+    pathConstraintBoundaryResidualStatus: "within_tolerance",
+    pathConstraintBoundaryResidualTolerance: 0.02,
     maxPathConstraintBoundaryResidual: 0.018,
   };
 
   runtime.updateReadout(runtime.createContributionSummaryHit(0.5));
   const readoutText = readout.children.map((child) => child.textContent);
 
-  assert(readoutText.includes("guide=retained_knot_hermite_boundary"));
+  assert(readoutText.includes("guide=retained_knot_boundary"));
+  assert(readoutText.includes("bMode=law_aware_retained_knot_boundary"));
   assert(readoutText.includes("guideRows=12"));
   assert(readoutText.includes("maxA=48.25"));
   assert(readoutText.includes("constraint=guided_constraint_path"));
   assert(readoutText.includes("claim=diagnostic_constraint_replay_not_boundary_value_solve"));
   assert(readoutText.includes("boundary=10"));
   assert(readoutText.includes("maxB=0.018"));
+  assert(readoutText.includes("tolB=0.02"));
+  assert(readoutText.includes("bStatus=within_tolerance"));
   assert(readoutText.includes("solverResid=0.004"));
 });
 
@@ -934,10 +940,12 @@ test("causal delay feedback status distinguishes constraint-guided pair replay",
     executionPath: "native_c_abi",
     maxPathConstraintResidual: 0.004,
     pathConstraintBoundaryResidualSampleCount: 10,
+    pathConstraintBoundaryResidualStatus: "within_tolerance",
     pathConstraintBoundaryResidualTolerance: 0.02,
     maxPathConstraintBoundaryResidual: 0.018,
     pathConstraintGuidanceSampleCount: 12,
-    pathConstraintGuidanceMode: "retained_knot_hermite_boundary",
+    pathConstraintGuidanceMode: "retained_knot_boundary",
+    pathConstraintBoundaryMode: "law_aware_retained_knot_boundary",
     pathConstraintSolverStatus: "guided_constraint_path",
     pathConstraintSolverClaim: "diagnostic_constraint_replay_not_boundary_value_solve",
     maxPathConstraintGuidanceAcceleration: 48.25,
@@ -951,12 +959,14 @@ test("causal delay feedback status distinguishes constraint-guided pair replay",
   assert.match(replayStatus.title, /boundary=10/);
   assert.match(replayStatus.title, /maxB=0\.018/);
   assert.match(replayStatus.title, /tolB=0\.02/);
+  assert.match(replayStatus.title, /bStatus=within_tolerance/);
+  assert.match(replayStatus.title, /bMode=law_aware_retained_knot_boundary/);
   assert.match(replayStatus.title, /guidance=12/);
-  assert.match(replayStatus.title, /mode=retained_knot_hermite_boundary/);
+  assert.match(replayStatus.title, /mode=retained_knot_boundary/);
   assert.match(replayStatus.title, /maxA=48\.25/);
   assert.match(replayStatus.title, /constraint=guided_constraint_path/);
   assert.match(replayStatus.title, /claim=diagnostic_constraint_replay_not_boundary_value_solve/);
-  assert.match(replayStatus.title, /retained-knot Hermite boundary guidance/);
+  assert.match(replayStatus.title, /retained-knot boundary guidance/);
   assert.match(replayStatus.title, /not yet the final physical boundary-value path solve/);
 });
 

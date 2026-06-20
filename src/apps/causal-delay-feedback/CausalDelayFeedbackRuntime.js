@@ -562,6 +562,9 @@ class CausalDelayFeedbackRuntime {
         const guidanceMode =
           this.dataset?.pathConstraintGuidanceMode ??
           this.dataset?.solverSummary?.pathConstraintGuidanceMode;
+        const boundaryMode =
+          this.dataset?.pathConstraintBoundaryMode ??
+          this.dataset?.solverSummary?.pathConstraintBoundaryMode;
         const constraintSolverStatus =
           this.dataset?.pathConstraintSolverStatus ??
           this.dataset?.solverSummary?.pathConstraintSolverStatus;
@@ -576,6 +579,9 @@ class CausalDelayFeedbackRuntime {
           this.dataset?.pathConstraintBoundaryResidualSampleCount ??
             this.dataset?.solverSummary?.pathConstraintBoundaryResidualSampleCount
         );
+        const boundaryStatus =
+          this.dataset?.pathConstraintBoundaryResidualStatus ??
+          this.dataset?.solverSummary?.pathConstraintBoundaryResidualStatus;
         const boundaryTolerance = Number(
           this.dataset?.pathConstraintBoundaryResidualTolerance ??
             this.dataset?.solverSummary?.pathConstraintBoundaryResidualTolerance
@@ -598,6 +604,9 @@ class CausalDelayFeedbackRuntime {
                 Number.isFinite(boundaryTolerance) ? ` tolB=${formatCompactNumber(boundaryTolerance)}` : ""
               }`
             : "";
+        const boundaryStatusDetail =
+          boundaryStatus && boundaryStatus !== "unchecked" ? ` bStatus=${formatCompactLabel(boundaryStatus)}` : "";
+        const boundaryModeDetail = boundaryMode ? ` bMode=${formatCompactLabel(boundaryMode)}` : "";
         const guidanceDetail = Number.isFinite(guidanceSampleCount) && guidanceSampleCount > 0
           ? ` guidance=${guidanceSampleCount}${
               guidanceMode ? ` mode=${guidanceMode}` : ""
@@ -607,15 +616,15 @@ class CausalDelayFeedbackRuntime {
           ? ` constraint=${constraintSolverStatus}${constraintSolverClaim ? ` claim=${constraintSolverClaim}` : ""}`
           : "";
         const guidanceBoundary = guidanceDetail
-          ? guidanceMode === "retained_knot_hermite_boundary"
-            ? " Retained path constraints used retained-knot Hermite boundary guidance; this is not yet the final physical boundary-value path solve."
+          ? guidanceMode === "retained_knot_boundary"
+            ? " Retained path constraints used retained-knot boundary guidance; this is not yet the final physical boundary-value path solve."
             : " Retained path constraints used finite-time guidance; this is not yet the final physical boundary-value path solve."
           : "";
         return {
           state: guidanceDetail ? "bridge-guided" : "bridge",
           label: guidanceDetail ? "solver guided replay" : "solver pair replay",
           help:
-            `Showing central solver bridge replay from one mutual pair-interaction path run${stepDetail}${lawDetail}${pathDetail}${residualDetail}${boundaryDetail}${guidanceDetail}${constraintSolverDetail}. ` +
+            `Showing central solver bridge replay from one mutual pair-interaction path run${stepDetail}${lawDetail}${pathDetail}${residualDetail}${boundaryDetail}${boundaryStatusDetail}${boundaryModeDetail}${guidanceDetail}${constraintSolverDetail}. ` +
             `This replaces the segmented one-body seed replay for the default canvas path.${guidanceBoundary}`,
         };
       }
@@ -2800,6 +2809,7 @@ class CausalDelayFeedbackRuntime {
       this.dataset?.pathConstraintGuidanceSampleCount ?? summary.pathConstraintGuidanceSampleCount,
     );
     const guidanceMode = this.dataset?.pathConstraintGuidanceMode ?? summary.pathConstraintGuidanceMode;
+    const boundaryMode = this.dataset?.pathConstraintBoundaryMode ?? summary.pathConstraintBoundaryMode;
     const constraintSolverStatus = this.dataset?.pathConstraintSolverStatus ?? summary.pathConstraintSolverStatus;
     const constraintSolverClaim = this.dataset?.pathConstraintSolverClaim ?? summary.pathConstraintSolverClaim;
     const maxGuidanceAcceleration = Number(
@@ -2808,6 +2818,8 @@ class CausalDelayFeedbackRuntime {
     const boundarySampleCount = Number(
       this.dataset?.pathConstraintBoundaryResidualSampleCount ?? summary.pathConstraintBoundaryResidualSampleCount,
     );
+    const boundaryStatus =
+      this.dataset?.pathConstraintBoundaryResidualStatus ?? summary.pathConstraintBoundaryResidualStatus;
     const boundaryTolerance = Number(
       this.dataset?.pathConstraintBoundaryResidualTolerance ?? summary.pathConstraintBoundaryResidualTolerance,
     );
@@ -2820,6 +2832,9 @@ class CausalDelayFeedbackRuntime {
     const details = [];
     if (Number.isFinite(guidanceSampleCount) && guidanceSampleCount > 0) {
       details.push(`guide=${formatCompactLabel(guidanceMode, "guided")}`);
+      if (boundaryMode) {
+        details.push(`bMode=${formatCompactLabel(boundaryMode)}`);
+      }
       details.push(`guideRows=${guidanceSampleCount}`);
       if (Number.isFinite(maxGuidanceAcceleration)) {
         details.push(`maxA=${formatCompactNumber(maxGuidanceAcceleration)}`);
@@ -2839,6 +2854,9 @@ class CausalDelayFeedbackRuntime {
       if (Number.isFinite(boundaryTolerance)) {
         details.push(`tolB=${formatCompactNumber(boundaryTolerance)}`);
       }
+    }
+    if (boundaryStatus && boundaryStatus !== "unchecked") {
+      details.push(`bStatus=${formatCompactLabel(boundaryStatus)}`);
     }
     if (Number.isFinite(maxConstraintResidual)) {
       details.push(`solverResid=${formatCompactNumber(maxConstraintResidual)}`);

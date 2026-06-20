@@ -80,6 +80,8 @@ const pathHistoryStreamResponse = createPathHistoryStreamResponseEnvelope();
 const runSimulationRequest = createRunSimulationRequestEnvelope();
 const runSimulationNormalizedRequest = createRunSimulationNormalizedRequestEnvelope();
 const runSimulationResponse = createRunSimulationResponseEnvelope();
+const pairInteractionRunSimulationRequest = createPairInteractionRunSimulationRequestEnvelope();
+const pairInteractionRunSimulationResponse = createPairInteractionRunSimulationResponseEnvelope();
 const describeRunRequest = createDescribeRunRequestEnvelope();
 const describeRunResponse = createDescribeRunResponseEnvelope();
 const cancelRunRequest = createCancelRunRequestEnvelope();
@@ -216,6 +218,8 @@ const schemaFixtures = [
   ["run simulation request", "runSimulationRequestEnvelope", runSimulationRequest],
   ["normalized run simulation request", "runSimulationRequestEnvelope", runSimulationNormalizedRequest],
   ["run simulation response", "runSimulationResponseEnvelope", runSimulationResponse],
+  ["pair interaction run simulation request", "runSimulationRequestEnvelope", pairInteractionRunSimulationRequest],
+  ["pair interaction run simulation response", "runSimulationResponseEnvelope", pairInteractionRunSimulationResponse],
   ["describe run request", "describeRunRequestEnvelope", describeRunRequest],
   ["describe run response", "describeRunResponseEnvelope", describeRunResponse],
   ["cancel run request", "cancelRunRequestEnvelope", cancelRunRequest],
@@ -671,6 +675,7 @@ assertEnumValues("solverRunKind", [
   "delayedHits",
   "sharedGeometry",
   "appPlayback",
+  "pairInteraction",
   "validationReplay",
 ]);
 assertNumericTypes(["f64", "scaled_i64", "interval_f64_pair", "decimal128", "mp_limb_block"]);
@@ -746,6 +751,8 @@ validateResponseEnvelope(response);
 validateRunSimulationRequestEnvelope(runSimulationRequest);
 validateRunSimulationNormalizedRequestEnvelope(runSimulationNormalizedRequest);
 validateRunSimulationResponseEnvelope(runSimulationResponse);
+validatePairInteractionRunSimulationRequestEnvelope(pairInteractionRunSimulationRequest);
+validatePairInteractionRunSimulationResponseEnvelope(pairInteractionRunSimulationResponse);
 validateDescribeRunRequestEnvelope(describeRunRequest);
 validateDescribeRunResponseEnvelope(describeRunResponse);
 validateCancelRunRequestEnvelope(cancelRunRequest);
@@ -1368,6 +1375,11 @@ function assertCapabilities(value, label) {
   );
   assert(value.appBridge.streamQueries.helpers.includes("readStreamRange"), `${label} stream query helper mismatch`);
   assert(
+    value.appBridge.streamQueries.helpers.includes("planPathHistoryStorageLifecycleF64") &&
+      value.appBridge.streamQueries.helpers.includes("applyPathHistoryStorageLifecycleF64"),
+    `${label} stream lifecycle helper mismatch`
+  );
+  assert(
     value.appBridge.streamQueries.helpers.includes("buildPathHistoryStreamSpaceTimeIndexF64"),
     `${label} stream space-time helper mismatch`
   );
@@ -1572,6 +1584,38 @@ function validateRunSimulationResponseEnvelope(value) {
   assert(responseValue.response.rootLedgerDetails[0].entryKind === 1, "run response detail row mismatch");
   assertRootLedgerDetailForensics(responseValue.response.rootLedgerDetails[0], 1e-16, "run response detail row");
   assert(responseValue.response.buffers.length === 3, "run response buffer count mismatch");
+}
+
+function validatePairInteractionRunSimulationRequestEnvelope(value) {
+  assert(value.schema === "solver-app-bridge/v1", "pair run request schema tag mismatch");
+  assert(value.kind === "run-simulation-request", "pair run request kind mismatch");
+  assertNonemptyString(value.requestId, "pair run request id");
+  const requestValue = value.request;
+  assert(requestValue.appId === "causal-delay-feedback", "pair run app id mismatch");
+  assert(requestValue.runKind === "pairInteraction", "pair run kind mismatch");
+  assert(requestValue.config.pairInteractionRequest.initialStates.length === 2, "pair initial state count mismatch");
+  assert(requestValue.config.pairInteractionRequest.pathConstraints.length === 2, "pair constraint count mismatch");
+  assert(
+    requestValue.config.pairInteractionRequest.pathConstraintBoundaryResidualTolerance === 0.5,
+    "pair boundary tolerance mismatch"
+  );
+}
+
+function validatePairInteractionRunSimulationResponseEnvelope(value) {
+  assert(value.schema === "solver-app-bridge/v1", "pair run response schema tag mismatch");
+  assert(value.kind === "run-simulation-response", "pair run response kind mismatch");
+  assertNonemptyString(value.requestId, "pair run response request id");
+  const responseValue = value.response;
+  assert(responseValue.runId === "pair-interaction-contract", "pair run handle id mismatch");
+  const runResponse = responseValue.response;
+  assert(runResponse.summary.pathConstraintBoundaryResidualStatus === "within_tolerance", "pair summary status mismatch");
+  assert(runResponse.summary.pathConstraintBoundaryResidualTolerance === 0.5, "pair summary tolerance mismatch");
+  assert(
+    runResponse.pairInteraction.pathConstraintBoundaryResidualStatus === "within_tolerance",
+    "pair interaction nested status mismatch"
+  );
+  assert(runResponse.frames.length === 4, "pair frame count mismatch");
+  assert(runResponse.pathHistory.rowCount === 4, "pair path-history row count mismatch");
 }
 
 function validateDescribeRunRequestEnvelope(value) {
@@ -1830,6 +1874,12 @@ function validateEmissionShellRootRefinementRequestEnvelope(value) {
   assertNonemptyString(value.requestId, "emission-shell refinement request id");
   const requestValue = value.request;
   assert(requestValue.streamId === "fixture-path-history-stream", "emission-shell refinement stream id mismatch");
+  assert(requestValue.packet.packetId === "packet-refine-a", "emission-shell refinement packet id mismatch");
+  assert(
+    requestValue.packet.expectedOutputs.includes("root_ledger.v1") &&
+      requestValue.packet.expectedOutputs.includes("delayed_hit_events.v1"),
+    "emission-shell refinement packet expected outputs mismatch"
+  );
   assert(requestValue.signalSpeed === 1, "emission-shell refinement signal speed mismatch");
   assert(requestValue.rootTolerance === 1e-12, "emission-shell refinement root tolerance mismatch");
   assert(requestValue.candidates.length === 1, "emission-shell refinement candidate count mismatch");
@@ -1842,6 +1892,10 @@ function validateEmissionShellRootRefinementResponseEnvelope(value) {
   assertNonemptyString(value.requestId, "emission-shell refinement response id");
   const responseValue = value.response;
   assert(responseValue.schema === "solver-emission-shell-root-refinement.v1", "emission-shell refinement schema mismatch");
+  assert(responseValue.packetId === "packet-refine-a", "emission-shell refinement packet id mismatch");
+  assert(responseValue.packetMergeOrder === 2, "emission-shell refinement packet merge order mismatch");
+  assert(responseValue.packetMergeKey === "source:0:receiver:1:refine", "emission-shell refinement packet merge key mismatch");
+  assertRootRefinementPacketResultRef(responseValue.packetResult, "packet-refine-a", 2, "source:0:receiver:1:refine");
   assert(responseValue.streamId === "fixture-path-history-stream", "emission-shell refinement response stream mismatch");
   assert(responseValue.candidateCount === 1, "emission-shell refinement candidate count mismatch");
   assert(responseValue.processedCandidateCount === 1, "emission-shell refinement processed count mismatch");
@@ -1854,8 +1908,8 @@ function validateEmissionShellRootRefinementResponseEnvelope(value) {
   assert(responseValue.items[0].hitOffset === 0, "emission-shell refinement hit offset mismatch");
   assert(responseValue.roots.length === 1, "emission-shell refinement roots mismatch");
   assert(responseValue.hits.length === 1, "emission-shell refinement hits mismatch");
-  assertBuffer(responseValue.buffers[0], "emission-shell-refined-root-ledger", "root_ledger.v1", 112, 1);
-  assertBuffer(responseValue.buffers[1], "emission-shell-refined-delayed-hits", "delayed_hit_events.v1", 128, 1);
+  assertBuffer(responseValue.buffers[0], "packet-refine-a:emission-shell-refined-root-ledger", "root_ledger.v1", 112, 1);
+  assertBuffer(responseValue.buffers[1], "packet-refine-a:emission-shell-refined-delayed-hits", "delayed_hit_events.v1", 128, 1);
   assert(responseValue.status.code === "ok", "emission-shell refinement status mismatch");
 }
 
@@ -1871,6 +1925,20 @@ function assertWorkPacketResultRef(result, packetId, mergeOrder, mergeKey) {
   );
   assert(result.outputs[0].checksum.length === 16, `${packetId} candidate output checksum mismatch`);
   assert(result.outputs[1].checksum.length === 16, `${packetId} narrow-phase output checksum mismatch`);
+}
+
+function assertRootRefinementPacketResultRef(result, packetId, mergeOrder, mergeKey) {
+  assert(result.packetId === packetId, `${packetId} refinement result packet id mismatch`);
+  assert(result.mergeOrder === mergeOrder, `${packetId} refinement result merge order mismatch`);
+  assert(result.mergeKey === mergeKey, `${packetId} refinement result merge key mismatch`);
+  assert(result.outputs.length === 2, `${packetId} refinement result output count mismatch`);
+  assert(
+    result.outputs[0].layout === "root_ledger.v1" &&
+      result.outputs[1].layout === "delayed_hit_events.v1",
+    `${packetId} refinement result output layout mismatch`
+  );
+  assert(result.outputs[0].checksum.length === 16, `${packetId} refinement root checksum mismatch`);
+  assert(result.outputs[1].checksum.length === 16, `${packetId} refinement hit checksum mismatch`);
 }
 
 function assertSegment(value, label) {
@@ -3917,6 +3985,8 @@ function createCapabilitiesFixture() {
         schema: "solver-stream-query-capabilities.v1",
         helpers: [
           "createPathHistoryStreamF64",
+          "planPathHistoryStorageLifecycleF64",
+          "applyPathHistoryStorageLifecycleF64",
           "describeStream",
           "validatePathHistoryDynamicReplayF64",
           "readStreamRange",
@@ -4218,6 +4288,141 @@ function createRunSimulationResponseEnvelope() {
   };
 }
 
+function createPairInteractionRunSimulationRequestEnvelope() {
+  const runRequest = {
+    ...createSolverRunRequest(),
+    requestId: "pair-interaction-contract-request",
+    runId: "pair-interaction-contract",
+    datasetId: "pair-interaction-contract-dataset",
+    appId: "causal-delay-feedback",
+    runKind: "pairInteraction",
+    configVersion: "pair-interaction-contract.v1",
+    configHash: "pair-interaction-contract",
+    config: {
+      appId: "causal-delay-feedback",
+      pairInteractionRequest: createPairInteractionRequestFixture(),
+      streamId: "pair-interaction-contract:path-history",
+      rowsPerChunk: 16,
+      storagePolicy: createStoragePolicyFixture(),
+      metadata: {
+        replayKind: "pair-interaction-path-integration",
+      },
+    },
+    output: {
+      outputs: ["summary", "frameBuffer", "pathStream", "diagnostics"],
+      streamTarget: "caller-buffer",
+      memoryBudgetBytes: 1048576,
+      deterministic: true,
+    },
+  };
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "run-simulation-request",
+    requestId: runRequest.requestId,
+    request: runRequest,
+  };
+}
+
+function createPairInteractionRunSimulationResponseEnvelope() {
+  const summary = createPairInteractionRunSummaryFixture();
+  const { status: _summaryStatus, ...pairInteractionSummary } = summary;
+  const pathHistorySummary = {
+    ...createPathHistoryStreamResponseEnvelope().response.summary,
+    runId: "pair-interaction-contract",
+    datasetId: "pair-interaction-contract-dataset",
+    streamId: "pair-interaction-contract:path-history",
+    rowCount: 4,
+    chunkCount: 1,
+    pathCount: 2,
+    byteLength: 384,
+    timeRange: { start: 0, end: 1 },
+    frameRange: { start: 0, end: 1 },
+  };
+  const runResponse = {
+    runId: "pair-interaction-contract",
+    datasetId: "pair-interaction-contract-dataset",
+    manifest: {
+      ...createRunManifest(),
+      requestId: "pair-interaction-contract-request",
+      runId: "pair-interaction-contract",
+      datasetId: "pair-interaction-contract-dataset",
+      appId: "causal-delay-feedback",
+      runKind: "pairInteraction",
+      configVersion: "pair-interaction-contract.v1",
+      configHash: "pair-interaction-contract",
+      output: {
+        outputs: ["summary", "frameBuffer", "pathStream", "diagnostics"],
+        streamTarget: "caller-buffer",
+        memoryBudgetBytes: 1048576,
+        deterministic: true,
+      },
+      buffers: [
+        createBufferDescriptorFixture("pair-interaction-contract:frames", "frame_buffer.v1", 352, 4),
+        createBufferDescriptorFixture("pair-interaction-contract:path-history", "path_segment.v1", 384, 4),
+      ].map(({ byteOffset, ...buffer }, index) => ({
+        ...buffer,
+        checksum: index === 0 ? "1212121212121212" : "3434343434343434",
+      })),
+      streams: [
+        {
+          streamId: "pair-interaction-contract:path-history",
+          manifestVersion: "solver-stream-manifest.v1",
+          indexLayout: "stream_index.v1",
+          rangeCount: 1,
+          storagePolicy: createStoragePolicyFixture(),
+          metadata: createPathHistoryStreamMetadata(),
+        },
+      ],
+    },
+    summary,
+    buffers: [
+      createBufferDescriptorFixture("pair-interaction-contract:frames", "frame_buffer.v1", 352, 4),
+      createBufferDescriptorFixture("pair-interaction-contract:path-history", "path_segment.v1", 384, 4),
+    ],
+    streams: [
+      {
+        streamId: "pair-interaction-contract:path-history",
+        manifestVersion: "solver-stream-manifest.v1",
+        indexLayout: "stream_index.v1",
+        availableRanges: [
+          {
+            timeRange: { start: 0, end: 1 },
+            frameRange: { start: 0, end: 1 },
+            byteRange: { start: 0, end: 384 },
+          },
+        ],
+        storagePolicy: createStoragePolicyFixture(),
+        metadata: createPathHistoryStreamMetadata(),
+      },
+    ],
+    diagnostics: [{ code: "ok", severity: "ok", message: "pair interaction contract fixture" }],
+    frames: [
+      createMotionFrameFixture({ pathKey: 1, frameIndex: 0, time: 0, x: 100, y: 220, z: 0, vx: 55, vy: 20, vz: 0 }),
+      createMotionFrameFixture({ pathKey: 2, frameIndex: 0, time: 0, x: 100, y: 860, z: 0, vx: 55, vy: -20, vz: 0 }),
+      createMotionFrameFixture({ pathKey: 1, frameIndex: 1, time: 1, x: 1820, y: 620, z: 0, vx: 55, vy: 20, vz: 0 }),
+      createMotionFrameFixture({ pathKey: 2, frameIndex: 1, time: 1, x: 1820, y: 460, z: 0, vx: 55, vy: -20, vz: 0 }),
+    ],
+    pathHistory: pathHistorySummary,
+    pairInteraction: pairInteractionSummary,
+    status: createStatusFixture("ok", "ok", "pair interaction completed"),
+  };
+  return {
+    schema: "solver-app-bridge/v1",
+    kind: "run-simulation-response",
+    requestId: "pair-interaction-contract-request",
+    response: {
+      requestId: "pair-interaction-contract-request",
+      runId: "pair-interaction-contract",
+      datasetId: "pair-interaction-contract-dataset",
+      cancellationToken: "pair-interaction-contract:cancel",
+      acceptedPrecisionPath: "scaled_f64_fast",
+      expectedOutputs: ["summary", "frameBuffer", "pathStream", "diagnostics"],
+      response: runResponse,
+      status: createStatusFixture("ok", "ok", "pair interaction run completed"),
+    },
+  };
+}
+
 function createDescribeRunRequestEnvelope() {
   return {
     schema: "solver-app-bridge/v1",
@@ -4325,6 +4530,86 @@ function createSolverRunRequest() {
       rootRequest: request.request,
     },
     output: createRunOutputRequest(),
+  };
+}
+
+function createPairInteractionRequestFixture() {
+  return {
+    startTime: 0,
+    endTime: 1,
+    step: 0.5,
+    maxFrames: 3,
+    pairAccelerationScale: 0.18,
+    softening: 0,
+    integrationTolerance: 1e-12,
+    interactionLaw: "inverse_distance_pair_attraction_v1",
+    pathConstraintBoundaryResidualTolerance: 0.5,
+    initialStates: [
+      {
+        pathKey: 1,
+        initialPosition: { x: 100, y: 220, z: 0 },
+        initialVelocity: { x: 55, y: 20, z: 0 },
+        charge: 1,
+        mass: 1,
+        stateFlags: 1,
+      },
+      {
+        pathKey: 2,
+        initialPosition: { x: 100, y: 860, z: 0 },
+        initialVelocity: { x: 55, y: -20, z: 0 },
+        charge: -1,
+        mass: 1,
+        stateFlags: 2,
+      },
+    ],
+    pathConstraints: [
+      {
+        pathKey: 1,
+        depth: 2,
+        time: 1,
+        position: { x: 1820, y: 620, z: 0 },
+      },
+      {
+        pathKey: 2,
+        depth: 2,
+        time: 1,
+        position: { x: 1820, y: 460, z: 0 },
+      },
+    ],
+  };
+}
+
+function createPairInteractionRunSummaryFixture() {
+  return {
+    runId: "pair-interaction-contract",
+    claimLevel: "interactive-preview",
+    precisionPath: "scaled_f64_fast",
+    status: createStatusFixture("ok", "ok", "pair interaction summary ready"),
+    frameCount: 4,
+    pathCount: 2,
+    pathRowCount: 4,
+    stepCount: 2,
+    interactionLaw: "inverse_distance_pair_attraction_v1",
+    executionPath: "native_c_abi",
+    pathConstraintCount: 2,
+    pathConstraintResidualSampleCount: 2,
+    maxPathConstraintResidual: 0.125,
+    meanPathConstraintResidual: 0.0625,
+    rmsPathConstraintResidual: 0.088,
+    pathConstraintGuidanceSampleCount: 2,
+    pathConstraintGuidanceMode: "retained_knot_boundary",
+    pathConstraintBoundaryMode: "law_aware_retained_knot_boundary",
+    pathConstraintSolverStatus: "guided_constraint_path",
+    pathConstraintSolverClaim: "diagnostic_constraint_replay_not_boundary_value_solve",
+    maxPathConstraintGuidanceAcceleration: 4.5,
+    meanPathConstraintGuidanceAcceleration: 2.25,
+    rmsPathConstraintGuidanceAcceleration: 3.1,
+    pathConstraintBoundaryResidualSampleCount: 2,
+    pathConstraintBoundaryResidualStatus: "within_tolerance",
+    pathConstraintBoundaryResidualTolerance: 0.5,
+    maxPathConstraintBoundaryResidual: 0.25,
+    meanPathConstraintBoundaryResidual: 0.125,
+    rmsPathConstraintBoundaryResidual: 0.177,
   };
 }
 
@@ -5857,6 +6142,36 @@ function createWorkPacketHeaderFixture() {
   };
 }
 
+function createRootRefinementWorkPacketHeaderFixture() {
+  return {
+    schema: "solver-work-packet.v1",
+    packetId: "packet-refine-a",
+    runId: "run-contract",
+    modelId: "aaa.central-solver",
+    precisionPath: "event_root_focused",
+    sourceBlock: { enabled: true, start: 0, end: 1 },
+    receiverBlock: { enabled: true, start: 1, end: 2 },
+    pathBlock: { enabled: true, start: 0, end: 2 },
+    timeRange: { start: 0, end: 2 },
+    expectedOutputs: ["root_ledger.v1", "delayed_hit_events.v1"],
+    inputBuffers: [
+      {
+        bufferId: "fixture-path-history-stream:path-chunk-0",
+        layout: "path_segment.v1",
+        numericType: "f64",
+        byteOffset: 0,
+        byteLength: 192,
+        rowOffset: 0,
+        rowCount: 2,
+        checksum: "0123456789abcdef",
+      },
+    ],
+    mergeOrder: 2,
+    mergeKey: "source:0:receiver:1:refine",
+    headerChecksum: "0123456789abcdef",
+  };
+}
+
 function createPathHistoryWorkPacketChunkSelectionFixture(chunkIndex, bufferId, rowOffset, rowCount, byteLength) {
   return {
     chunkIndex,
@@ -5990,6 +6305,7 @@ function createEmissionShellRootRefinementRequestEnvelope() {
     request: {
       streamId: "fixture-path-history-stream",
       candidates: [createEmissionShellCandidateFixture()],
+      packet: createRootRefinementWorkPacketHeaderFixture(),
       signalSpeed: 1,
       tolerance: 1e-12,
       rootTolerance: 1e-12,
@@ -6010,6 +6326,15 @@ function createEmissionShellRootRefinementResponseEnvelope() {
     requestId: "emission-shell-root-refinement-contract-request",
     response: {
       schema: "solver-emission-shell-root-refinement.v1",
+      packetId: "packet-refine-a",
+      packetMergeOrder: 2,
+      packetMergeKey: "source:0:receiver:1:refine",
+      packetResult: createRootRefinementPacketResult(
+        "packet-refine-a",
+        2,
+        "source:0:receiver:1:refine",
+        1
+      ),
       streamId: "fixture-path-history-stream",
       signalSpeed: 1,
       tolerance: 1e-12,
@@ -6042,7 +6367,7 @@ function createEmissionShellRootRefinementResponseEnvelope() {
       hits: [response.response.hits[0]],
       buffers: [
         {
-          bufferId: "emission-shell-refined-root-ledger",
+          bufferId: "packet-refine-a:emission-shell-refined-root-ledger",
           layout: "root_ledger.v1",
           byteOffset: 0,
           byteLength: 112,
@@ -6051,7 +6376,7 @@ function createEmissionShellRootRefinementResponseEnvelope() {
           checksum: "cccccccccccccccc",
         },
         {
-          bufferId: "emission-shell-refined-delayed-hits",
+          bufferId: "packet-refine-a:emission-shell-refined-delayed-hits",
           layout: "delayed_hit_events.v1",
           byteOffset: 0,
           byteLength: 128,
@@ -6090,6 +6415,36 @@ function createEmissionShellPacketResult(packetId, mergeOrder, mergeKey, rowCoun
         rowOffset: 0,
         rowCount,
         checksum: rowCount === 0 ? "cbf29ce484222325" : "bbbbbbbbbbbbbbbb",
+      },
+    ],
+  };
+}
+
+function createRootRefinementPacketResult(packetId, mergeOrder, mergeKey, rowCount) {
+  return {
+    packetId,
+    mergeOrder,
+    mergeKey,
+    outputs: [
+      {
+        bufferId: `${packetId}:emission-shell-refined-root-ledger`,
+        layout: "root_ledger.v1",
+        numericType: "f64",
+        byteOffset: 0,
+        byteLength: rowCount * 112,
+        rowOffset: 0,
+        rowCount,
+        checksum: "cccccccccccccccc",
+      },
+      {
+        bufferId: `${packetId}:emission-shell-refined-delayed-hits`,
+        layout: "delayed_hit_events.v1",
+        numericType: "f64",
+        byteOffset: 0,
+        byteLength: rowCount * 128,
+        rowOffset: 0,
+        rowCount,
+        checksum: "dddddddddddddddd",
       },
     ],
   };

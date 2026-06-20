@@ -1,6 +1,6 @@
 # Threading Execution Policy
 
-Status: `ready-to-close`
+Status: `closed-design-capture`
 
 Kind: `solver-execution-policy`
 
@@ -331,6 +331,35 @@ These rules help native CPU threads today. They also make later Metal, WebGPU,
 CUDA, service, or other accelerator experiments possible without rewriting the
 app bridge or solver artifact vocabulary.
 
+## First Packetized Dispatch Path
+
+The first packetized dispatch path is the emission-shell broad-phase plus
+exact-root refinement sequence:
+
+1. `planPathHistoryWorkPackets` prepares deterministic source/receiver
+   chunk-pair packets over `path_segment.v1` stream data.
+2. `queryEmissionShellCandidatePacketF64` executes one packet and publishes
+   packet-scoped `emission_shell_candidate.v1` and
+   `emission_shell_narrow_phase.v1` output references.
+3. `queryEmissionShellCandidatePacketsF64` accepts packets in arbitrary caller
+   order and merges results by `mergeKey`, `mergeOrder`, and `packetId`.
+4. `refineEmissionShellCandidateRootsF64` can consume the same packet header
+   with the candidate rows produced for that packet, verifies candidate chunk
+   ownership against the packet source/receiver ranges, and publishes
+   packet-scoped `root_ledger.v1` and `delayed_hit_events.v1` references.
+
+This gives worker, native-thread, process, service, and future GPU dispatchers
+one concrete packet contract for the first broad-phase / narrow-phase solver
+sequence. A dispatcher may schedule the broad-phase packets or exact-root
+refinement packets in any completion order, but authoritative output must still
+return through `workPacketResultRef` objects and deterministic merge ordering.
+
+This is dispatch closure, not performance acceptance. The bridge smoke and
+fixture checks prove packet identity, range ownership, packet-scoped outputs,
+and deterministic result ordering for the first emission-shell sequence.
+Promoting a threaded implementation of that sequence to the preferred runtime
+path still requires the benchmark and parity evidence in the speedup criteria.
+
 ## Bridge V1 Alignment
 
 | Policy area | Current alignment | Remaining pressure |
@@ -338,18 +367,18 @@ app bridge or solver artifact vocabulary.
 | App policy shape | `SolverThreadingPolicy` exposes `mode`, `maxThreads`, and `deterministic`. | No new runtime field is required for this policy closeout. |
 | Workload plan shape | `SolverThreadingPlanRequest` carries stage, item count, `minItemsPerWorker`, determinism requirement, and optional timing observations. | More stage-specific workload estimators can be added as app migration expands. |
 | Diagnostics | `solver-threading-plan.v1` carries active workers, scheduling mode, backend, capability flags, fallback reason, chunk plan, contention, timing, speedup, and statuses. | Stage-level benchmark artifacts should be attached before making threaded execution the default for a stage. |
-| Native bounded execution | Native helpers cap workers by request, item count, hardware, and `minItemsPerWorker`, and batch causal-root results merge by indexed output slots. | Additional stages should reuse the same bounded-packet pattern rather than adding ad hoc thread loops. |
+| Native bounded execution | Native helpers cap workers by request, item count, hardware, and `minItemsPerWorker`, and batch causal-root results merge by indexed output slots. The packetized emission-shell sequence now supplies the first deterministic broad-phase / narrow-phase packet contract for later worker and native-thread dispatch. | Additional stages should reuse the same bounded-packet pattern rather than adding ad hoc thread loops. |
 | Browser baseline | The shared app bridge and worker runtime let apps run through a solver worker while the bridge owns WebAssembly lifecycle. | App migrations should continue using the bridge instead of app-specific C++ or WebAssembly handling. |
 | WebAssembly threads | Capability and fallback diagnostics exist; unsupported threads fall back to sequential bridge execution. | Internal WebAssembly-thread execution remains gated until browser support, isolation, determinism, and benchmarks justify it. |
 | Benchmark hook | The native benchmark suite includes a deterministic single-worker versus bounded-worker causal-root comparison. | Performance closure for each promoted stage still needs target-machine and target-workload benchmark evidence. |
 
 ## Closure Decision
 
-`threading_execution_policy` can close as a policy-definition task when
-[solver.md](solver.md) is open for administrative queue edits. This file
+`threading_execution_policy` is closed as a policy-definition task. This file
 defines the native bounded task pool policy, browser worker baseline,
 deterministic mode, WebAssembly-thread gating, thread-count controls,
-diagnostics, speedup criteria, fallback behavior, and GPU-ready partitioning.
+diagnostics, speedup criteria, fallback behavior, GPU-ready partitioning, and
+the first packetized emission-shell dispatch path.
 
 It should not be closed as a performance-acceptance task. Stage-level threaded
 defaults still need benchmark reports before the solver claims material speedup

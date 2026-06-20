@@ -1,6 +1,6 @@
 # H39 Solver Impact Audit
 
-Status: `active-provider-boundary-replay-open`
+Status: `closed-retrospective-boundary-capture`
 
 Kind: `retrospective-impact-audit`
 
@@ -135,6 +135,19 @@ Therefore the best current retrospective classification is:
 | --- | --- |
 | H39 shared-domain primitive replay | `h39_refined_result`: the adapter preserves historical decisions and claim boundaries while adding solver-style precision metadata, primitive residual rows, hashes, and resource notes. |
 | H39 terminal graph remainder budget replay | `h39_refined_result`: the adapter preserves the historical positive-$\xi$ and symmetric cross-fold budget decisions while adding solver-style root ledger rows, terminal residual rows, replay hashes, interval authority notes, timing notes, and strict diff metadata. |
-| Other H39 solver-like subproblems | Provider-boundary and aggregate-$P$ cases remain unaudited fixture surfaces and are expected to require missing solver capability rather than only replay formatting. |
+| Other H39 solver-like subproblems | Provider-boundary and aggregate-$P$ cases are classified as missing-capability surfaces: they require H39 provider-object theorem schemas and upstream producer rows rather than only replay formatting. |
 | Final H39/H38 source-covariance blocker | `h39_no_material_effect` until the central solver gains an H39 provider-object branch schema and an upstream producer for $P_b$. |
 | Next audit action | Hold `h39_affine_endpoint_provider_boundary_replay` at missing-capability status until the solver owns H39 provider-boundary theorem objects. |
+
+## Completion Judgment
+
+`h39_solver_impact_audit` is complete as a retrospective solver-impact audit and
+closed in [solver.md](solver.md). Representative H39 replay surfaces were
+selected, two executable solver-style replay fixtures were built, historical
+artifact decisions were preserved, and the current classifications are recorded.
+
+The central solver would have improved replay discipline and diagnostics for the
+covered primitive and terminal graph budget surfaces, but it would not have
+removed the final H39/H38 source-covariance blocker. Reopening this audit should
+wait until the solver owns an H39 provider-object branch schema and an upstream
+producer for same-domain $P_b$ rows.

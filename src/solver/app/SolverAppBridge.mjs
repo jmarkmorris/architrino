@@ -644,12 +644,19 @@ const PAIR_INTERACTION_REQUEST_F64_BYTES = 64;
 const PAIR_INTERACTION_STATE_F64_BYTES = 80;
 const PAIR_INTERACTION_PATH_CONSTRAINT_F64_BYTES = 48;
 const PAIR_INTERACTION_SUMMARY_F64_BYTES = 104;
-const PAIR_INTERACTION_PATH_CONSTRAINT_GUIDANCE_MODE = "retained_knot_hermite_boundary";
+const PAIR_INTERACTION_PATH_CONSTRAINT_GUIDANCE_MODE = "retained_knot_boundary";
+const PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_MODE = "retained_knot_boundary";
+const PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_MODE_LAW_AWARE = "law_aware_retained_knot_boundary";
 const PAIR_INTERACTION_CONSTRAINT_SOLVER_STATUS_GUIDED = "guided_constraint_path";
 const PAIR_INTERACTION_CONSTRAINT_SOLVER_STATUS_SNAP = "constraint_snap_only";
 const PAIR_INTERACTION_CONSTRAINT_SOLVER_STATUS_UNCONSTRAINED = "unconstrained";
 const PAIR_INTERACTION_CONSTRAINT_SOLVER_CLAIM_CONSTRAINED =
   "diagnostic_constraint_replay_not_boundary_value_solve";
+const PAIR_INTERACTION_BOUNDARY_RESIDUAL_STATUS_UNCHECKED = "unchecked";
+const PAIR_INTERACTION_BOUNDARY_RESIDUAL_STATUS_NO_SAMPLES = "no_boundary_samples";
+const PAIR_INTERACTION_BOUNDARY_RESIDUAL_STATUS_UNRESOLVED = "unresolved";
+const PAIR_INTERACTION_BOUNDARY_RESIDUAL_STATUS_WITHIN_TOLERANCE = "within_tolerance";
+const PAIR_INTERACTION_BOUNDARY_RESIDUAL_STATUS_EXCEEDED_TOLERANCE = "exceeded_tolerance";
 const PHASE_CLOCK_F64_BYTES = 24;
 const PHASE_AT_HIT_ROW_F64_BYTES = 104;
 const PHASE_AT_HIT_METADATA_F64_BYTES = 32;
@@ -3789,12 +3796,15 @@ function runSimulationWithModule(state, module, request, abiInfo) {
         rmsPathConstraintResidual: pair.summary?.rmsPathConstraintResidual ?? 0,
         pathConstraintGuidanceSampleCount: pair.summary?.pathConstraintGuidanceSampleCount ?? 0,
         pathConstraintGuidanceMode: pair.summary?.pathConstraintGuidanceMode,
+        pathConstraintBoundaryMode: pair.summary?.pathConstraintBoundaryMode,
         pathConstraintSolverStatus: pair.summary?.pathConstraintSolverStatus,
         pathConstraintSolverClaim: pair.summary?.pathConstraintSolverClaim,
         maxPathConstraintGuidanceAcceleration: pair.summary?.maxPathConstraintGuidanceAcceleration ?? 0,
         meanPathConstraintGuidanceAcceleration: pair.summary?.meanPathConstraintGuidanceAcceleration ?? 0,
         rmsPathConstraintGuidanceAcceleration: pair.summary?.rmsPathConstraintGuidanceAcceleration ?? 0,
         pathConstraintBoundaryResidualSampleCount: pair.summary?.pathConstraintBoundaryResidualSampleCount ?? 0,
+        pathConstraintBoundaryResidualStatus: pair.summary?.pathConstraintBoundaryResidualStatus,
+        pathConstraintBoundaryResidualTolerance: pair.summary?.pathConstraintBoundaryResidualTolerance,
         maxPathConstraintBoundaryResidual: pair.summary?.maxPathConstraintBoundaryResidual ?? 0,
         meanPathConstraintBoundaryResidual: pair.summary?.meanPathConstraintBoundaryResidual ?? 0,
         rmsPathConstraintBoundaryResidual: pair.summary?.rmsPathConstraintBoundaryResidual ?? 0,
@@ -4017,15 +4027,21 @@ function solvePairInteractionPathF64(request, options = {}) {
     }
   }
 
+  relaxPairInteractionConstrainedFrames(frames, normalized);
   const pathRows = createPairInteractionPathRows(frames);
   const residualSummary = summarizePairInteractionConstraintResiduals(frames, normalized);
   const boundarySummary = summarizePairInteractionBoundaryResiduals(normalized);
   const pathConstraintGuidanceMode = normalized.pathConstraints.length > 0
     ? PAIR_INTERACTION_PATH_CONSTRAINT_GUIDANCE_MODE
     : undefined;
+  const pathConstraintBoundaryMode = createPairInteractionPathConstraintBoundaryMode(normalized);
   const constraintSolverMetadata = createPairInteractionConstraintSolverMetadata(
     residualSummary.pathConstraintCount,
     guidanceSummary.pathConstraintGuidanceSampleCount,
+  );
+  const boundaryResidualAcceptanceMetadata = createPairInteractionBoundaryResidualAcceptanceMetadata(
+    boundarySummary,
+    normalized,
   );
   enforcePairInteractionBoundaryResidualTolerance(boundarySummary, normalized, {
     ...options,
@@ -4046,6 +4062,7 @@ function solvePairInteractionPathF64(request, options = {}) {
       rmsPathConstraintResidual: residualSummary.rmsPathConstraintResidual,
       pathConstraintGuidanceSampleCount: guidanceSummary.pathConstraintGuidanceSampleCount,
       pathConstraintGuidanceMode,
+      pathConstraintBoundaryMode,
       pathConstraintSolverStatus: constraintSolverMetadata.pathConstraintSolverStatus,
       pathConstraintSolverClaim: constraintSolverMetadata.pathConstraintSolverClaim,
       maxPathConstraintGuidanceAcceleration: guidanceSummary.maxPathConstraintGuidanceAcceleration,
@@ -4055,6 +4072,7 @@ function solvePairInteractionPathF64(request, options = {}) {
       maxPathConstraintBoundaryResidual: boundarySummary.maxPathConstraintBoundaryResidual,
       meanPathConstraintBoundaryResidual: boundarySummary.meanPathConstraintBoundaryResidual,
       rmsPathConstraintBoundaryResidual: boundarySummary.rmsPathConstraintBoundaryResidual,
+      ...boundaryResidualAcceptanceMetadata,
       ...(Number.isFinite(normalized.pathConstraintBoundaryResidualTolerance)
         ? { pathConstraintBoundaryResidualTolerance: normalized.pathConstraintBoundaryResidualTolerance }
         : {}),
@@ -4089,6 +4107,7 @@ function solvePairInteractionPathF64(request, options = {}) {
       rmsPathConstraintResidual: residualSummary.rmsPathConstraintResidual,
       pathConstraintGuidanceSampleCount: guidanceSummary.pathConstraintGuidanceSampleCount,
       pathConstraintGuidanceMode,
+      pathConstraintBoundaryMode,
       pathConstraintSolverStatus: constraintSolverMetadata.pathConstraintSolverStatus,
       pathConstraintSolverClaim: constraintSolverMetadata.pathConstraintSolverClaim,
       maxPathConstraintGuidanceAcceleration: guidanceSummary.maxPathConstraintGuidanceAcceleration,
@@ -4098,6 +4117,7 @@ function solvePairInteractionPathF64(request, options = {}) {
       maxPathConstraintBoundaryResidual: boundarySummary.maxPathConstraintBoundaryResidual,
       meanPathConstraintBoundaryResidual: boundarySummary.meanPathConstraintBoundaryResidual,
       rmsPathConstraintBoundaryResidual: boundarySummary.rmsPathConstraintBoundaryResidual,
+      ...boundaryResidualAcceptanceMetadata,
       ...(Number.isFinite(normalized.pathConstraintBoundaryResidualTolerance)
         ? { pathConstraintBoundaryResidualTolerance: normalized.pathConstraintBoundaryResidualTolerance }
         : {}),
@@ -4163,6 +4183,7 @@ function enforcePairInteractionBoundaryResidualTolerance(boundarySummary, reques
         recoverable: true,
         details: {
           pathConstraintBoundaryResidualTolerance: tolerance,
+          pathConstraintBoundaryResidualStatus: PAIR_INTERACTION_BOUNDARY_RESIDUAL_STATUS_EXCEEDED_TOLERANCE,
           maxPathConstraintBoundaryResidual: maxResidual,
           pathConstraintBoundaryResidualSampleCount: sampleCount,
           interactionLaw: request.interactionLaw,
@@ -4271,6 +4292,62 @@ function createPairInteractionConstraintSolverMetadata(pathConstraintCount, guid
   };
 }
 
+function createPairInteractionPathConstraintBoundaryMode(request) {
+  if (!request || !Array.isArray(request.pathConstraints) || request.pathConstraints.length === 0) {
+    return undefined;
+  }
+  const epsilon = pairConstraintTimeEpsilon(request);
+  let hasBoundarySegment = false;
+  const pathKeys = Array.from(new Set(request.pathConstraints.map((constraint) => constraint.pathKey)));
+  for (const pathKey of pathKeys) {
+    const constraints = sortedPairConstraintsForPath(request, pathKey);
+    for (let index = 0; index + 1 < constraints.length; index += 1) {
+      const left = constraints[index];
+      const right = constraints[index + 1];
+      if (right.time - left.time <= epsilon) {
+        continue;
+      }
+      hasBoundarySegment = true;
+      if (
+        !pairConstraintLawAccelerationAtTime(request, left.pathKey, left.time) ||
+        !pairConstraintLawAccelerationAtTime(request, right.pathKey, right.time)
+      ) {
+        return PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_MODE;
+      }
+    }
+  }
+  return hasBoundarySegment
+    ? PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_MODE_LAW_AWARE
+    : PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_MODE;
+}
+
+function createPairInteractionBoundaryResidualAcceptanceMetadata(boundarySummary, request) {
+  const tolerance = Number(request.pathConstraintBoundaryResidualTolerance);
+  if (!Number.isFinite(tolerance)) {
+    return {
+      pathConstraintBoundaryResidualStatus: PAIR_INTERACTION_BOUNDARY_RESIDUAL_STATUS_UNCHECKED,
+    };
+  }
+  const sampleCount = Number(boundarySummary?.pathConstraintBoundaryResidualSampleCount);
+  if (!Number.isFinite(sampleCount) || sampleCount <= 0) {
+    return {
+      pathConstraintBoundaryResidualStatus: PAIR_INTERACTION_BOUNDARY_RESIDUAL_STATUS_NO_SAMPLES,
+    };
+  }
+  const maxResidual = Number(boundarySummary?.maxPathConstraintBoundaryResidual);
+  if (!Number.isFinite(maxResidual)) {
+    return {
+      pathConstraintBoundaryResidualStatus: PAIR_INTERACTION_BOUNDARY_RESIDUAL_STATUS_UNRESOLVED,
+    };
+  }
+  return {
+    pathConstraintBoundaryResidualStatus:
+      maxResidual <= tolerance
+        ? PAIR_INTERACTION_BOUNDARY_RESIDUAL_STATUS_WITHIN_TOLERANCE
+        : PAIR_INTERACTION_BOUNDARY_RESIDUAL_STATUS_EXCEEDED_TOLERANCE,
+  };
+}
+
 function recordPairConstraintGuidanceSample(summary, correctionMagnitude) {
   if (!Number.isFinite(correctionMagnitude) || correctionMagnitude < 0) {
     return;
@@ -4308,7 +4385,9 @@ function snapPairInteractionStateToConstraints(state, time, request) {
   if (!constraint) {
     return state;
   }
-  const tangentVelocity = pairConstraintTangentAtTime(constraints, time, epsilon);
+  const initialState = request.initialStates.find((candidate) => candidate.pathKey === state.pathKey);
+  const firstTangent = initialState?.initialVelocity ?? state.velocity;
+  const tangentVelocity = pairConstraintTangentAtTime(constraints, time, epsilon, request, firstTangent);
   return {
     ...state,
     position: copyVector(constraint.position),
@@ -4316,43 +4395,29 @@ function snapPairInteractionStateToConstraints(state, time, request) {
   };
 }
 
-function pairConstraintTangentAtTime(constraints, time, epsilon) {
+function pairConstraintTangentAtTime(constraints, time, epsilon, request, firstTangent) {
   const index = constraints.findIndex((constraint) => Math.abs(constraint.time - time) <= epsilon);
   if (index <= 0) {
     return null;
   }
-  const current = constraints[index];
-  if (index + 1 < constraints.length) {
-    const previous = constraints[index - 1];
-    const next = constraints[index + 1];
-    const span = next.time - previous.time;
-    if (span > epsilon) {
-      return {
-        x: (next.position.x - previous.position.x) / span,
-        y: (next.position.y - previous.position.y) / span,
-        z: (next.position.z - previous.position.z) / span,
-      };
-    }
-  }
-  const previous = constraints[index - 1];
-  const span = current.time - previous.time;
-  if (span <= epsilon) {
-    return null;
-  }
-  return {
-    x: (current.position.x - previous.position.x) / span,
-    y: (current.position.y - previous.position.y) / span,
-    z: (current.position.z - previous.position.z) / span,
-  };
+  return pairConstraintTangentForIndex(constraints, index, firstTangent, epsilon, request);
 }
 
-function pairConstraintTangentForIndex(constraints, index, firstTangent, epsilon) {
+function pairConstraintTangentForIndex(constraints, index, firstTangent, epsilon, request) {
   if (index < 0 || index >= constraints.length) {
     return null;
   }
   if (index === 0) {
     return copyVector(firstTangent);
   }
+  const lawAware = pairConstraintLawAwareTangentForIndex(constraints, index, epsilon, request);
+  if (lawAware) {
+    return lawAware;
+  }
+  return pairConstraintGeometricTangentForIndex(constraints, index, epsilon);
+}
+
+function pairConstraintGeometricTangentForIndex(constraints, index, epsilon) {
   if (index + 1 < constraints.length) {
     const previous = constraints[index - 1];
     const next = constraints[index + 1];
@@ -4378,7 +4443,52 @@ function pairConstraintTangentForIndex(constraints, index, firstTangent, epsilon
   };
 }
 
-function pairConstraintHermitePositionAtTime(constraints, firstTangent, time, epsilon) {
+function pairConstraintLawAwareTangentForIndex(constraints, index, epsilon, request) {
+  if (!request || index <= 0 || index >= constraints.length) {
+    return null;
+  }
+  const current = constraints[index];
+  const acceleration = pairConstraintLawAccelerationAtTime(request, current.pathKey, current.time);
+  if (!acceleration) {
+    return null;
+  }
+  const previous = constraints[index - 1];
+  if (index + 1 < constraints.length) {
+    const next = constraints[index + 1];
+    const leftDt = current.time - previous.time;
+    const rightDt = next.time - current.time;
+    const span = leftDt + rightDt;
+    if (leftDt > epsilon && rightDt > epsilon && span > epsilon) {
+      const accelerationTimeBias = 0.5 * (rightDt * rightDt - leftDt * leftDt);
+      return {
+        x: (next.position.x - previous.position.x - acceleration.x * accelerationTimeBias) / span,
+        y: (next.position.y - previous.position.y - acceleration.y * accelerationTimeBias) / span,
+        z: (next.position.z - previous.position.z - acceleration.z * accelerationTimeBias) / span,
+      };
+    }
+  }
+  const span = current.time - previous.time;
+  if (span <= epsilon) {
+    return null;
+  }
+  return {
+    x: (current.position.x - previous.position.x) / span + 0.5 * acceleration.x * span,
+    y: (current.position.y - previous.position.y) / span + 0.5 * acceleration.y * span,
+    z: (current.position.z - previous.position.z) / span + 0.5 * acceleration.z * span,
+  };
+}
+
+function pairConstraintLawAccelerationAtTime(request, pathKey, time) {
+  const states = statesFromPairConstraintsAtTime(request, time);
+  if (states.length !== request.initialStates.length) {
+    return null;
+  }
+  const lawAccelerations = computePairInteractionAccelerations(states, request);
+  const stateIndex = states.findIndex((state) => state.pathKey === pathKey);
+  return stateIndex >= 0 ? lawAccelerations[stateIndex] ?? null : null;
+}
+
+function pairConstraintHermitePositionAtTime(constraints, firstTangent, time, epsilon, request) {
   if (constraints.length === 0) {
     return null;
   }
@@ -4400,12 +4510,33 @@ function pairConstraintHermitePositionAtTime(constraints, firstTangent, time, ep
   if (span <= epsilon) {
     return null;
   }
-  const leftTangent = pairConstraintTangentForIndex(constraints, leftIndex, firstTangent, epsilon);
-  const rightTangent = pairConstraintTangentForIndex(constraints, rightIndex, firstTangent, epsilon);
+  const leftTangent = pairConstraintTangentForIndex(constraints, leftIndex, firstTangent, epsilon, request);
+  const rightTangent = pairConstraintTangentForIndex(constraints, rightIndex, firstTangent, epsilon, request);
   if (!leftTangent || !rightTangent) {
     return null;
   }
   const u = Math.max(0, Math.min(1, (time - left.time) / span));
+  const leftAcceleration = request
+    ? pairConstraintLawAccelerationAtTime(request, left.pathKey, left.time)
+    : null;
+  const rightAcceleration = request
+    ? pairConstraintLawAccelerationAtTime(request, right.pathKey, right.time)
+    : null;
+  if (leftAcceleration && rightAcceleration) {
+    const lawAwarePosition = pairConstraintQuinticBoundaryPosition(
+      left,
+      right,
+      leftTangent,
+      rightTangent,
+      leftAcceleration,
+      rightAcceleration,
+      u,
+      span,
+    );
+    if (lawAwarePosition) {
+      return lawAwarePosition;
+    }
+  }
   const u2 = u * u;
   const u3 = u2 * u;
   const h00 = 2 * u3 - 3 * u2 + 1;
@@ -4419,6 +4550,55 @@ function pairConstraintHermitePositionAtTime(constraints, firstTangent, time, ep
   };
 }
 
+function pairConstraintQuinticBoundaryPosition(
+  left,
+  right,
+  leftTangent,
+  rightTangent,
+  leftAcceleration,
+  rightAcceleration,
+  u,
+  span,
+) {
+  const u2 = u * u;
+  const u3 = u2 * u;
+  const u4 = u3 * u;
+  const u5 = u4 * u;
+  const h00 = 1 - 10 * u3 + 15 * u4 - 6 * u5;
+  const h10 = u - 6 * u3 + 8 * u4 - 3 * u5;
+  const h20 = 0.5 * u2 - 1.5 * u3 + 1.5 * u4 - 0.5 * u5;
+  const h01 = 10 * u3 - 15 * u4 + 6 * u5;
+  const h11 = -4 * u3 + 7 * u4 - 3 * u5;
+  const h21 = 0.5 * u3 - u4 + 0.5 * u5;
+  const spanSquared = span * span;
+  const position = {
+    x:
+      h00 * left.position.x +
+      h10 * span * leftTangent.x +
+      h20 * spanSquared * leftAcceleration.x +
+      h01 * right.position.x +
+      h11 * span * rightTangent.x +
+      h21 * spanSquared * rightAcceleration.x,
+    y:
+      h00 * left.position.y +
+      h10 * span * leftTangent.y +
+      h20 * spanSquared * leftAcceleration.y +
+      h01 * right.position.y +
+      h11 * span * rightTangent.y +
+      h21 * spanSquared * rightAcceleration.y,
+    z:
+      h00 * left.position.z +
+      h10 * span * leftTangent.z +
+      h20 * spanSquared * leftAcceleration.z +
+      h01 * right.position.z +
+      h11 * span * rightTangent.z +
+      h21 * spanSquared * rightAcceleration.z,
+  };
+  return Number.isFinite(position.x) && Number.isFinite(position.y) && Number.isFinite(position.z)
+    ? position
+    : null;
+}
+
 function computePairConstraintGuidedAcceleration(state, physicalAcceleration, currentTime, nextTime, request) {
   const epsilon = pairConstraintTimeEpsilon(request);
   const constraints = sortedPairConstraintsForPath(request, state.pathKey);
@@ -4428,7 +4608,7 @@ function computePairConstraintGuidedAcceleration(state, physicalAcceleration, cu
   }
   const initialState = request.initialStates.find((candidate) => candidate.pathKey === state.pathKey);
   const firstTangent = initialState?.initialVelocity ?? state.velocity;
-  const targetPosition = pairConstraintHermitePositionAtTime(constraints, firstTangent, nextTime, epsilon);
+  const targetPosition = pairConstraintHermitePositionAtTime(constraints, firstTangent, nextTime, epsilon, request);
   if (!targetPosition) {
     return { acceleration: physicalAcceleration, guidanceCorrectionMagnitude: 0, guided: false };
   }
@@ -4642,6 +4822,119 @@ function statesFromPairConstraintsAtTime(request, time) {
     })
     .filter(Boolean)
     .sort((left, right) => left.pathKey - right.pathKey);
+}
+
+function relaxPairInteractionConstrainedFrames(frames, request) {
+  if (!Array.isArray(frames) || frames.length === 0 || (request.pathConstraints ?? []).length === 0) {
+    return;
+  }
+  const epsilon = pairConstraintTimeEpsilon(request);
+  const pathKeys = Array.from(new Set(frames.map((frame) => frame.pathKey))).sort((left, right) => left - right);
+  const iterations = 8;
+  const blend = 0.55;
+  for (let iteration = 0; iteration < iterations; iteration += 1) {
+    const nextPositions = new Map();
+    pathKeys.forEach((pathKey) => {
+      const pathFrames = frames
+        .map((frame, index) => ({ frame, index }))
+        .filter((entry) => entry.frame.pathKey === pathKey)
+        .sort((left, right) => left.frame.time - right.frame.time || left.frame.frameIndex - right.frame.frameIndex);
+      for (let pathIndex = 1; pathIndex + 1 < pathFrames.length; pathIndex += 1) {
+        const previous = pathFrames[pathIndex - 1].frame;
+        const currentEntry = pathFrames[pathIndex];
+        const current = currentEntry.frame;
+        const next = pathFrames[pathIndex + 1].frame;
+        if (hasPairConstraintAtTime(request, current.pathKey, current.time, epsilon)) {
+          continue;
+        }
+        const leftDt = current.time - previous.time;
+        const rightDt = next.time - current.time;
+        if (leftDt <= epsilon || rightDt <= epsilon) {
+          continue;
+        }
+        const states = statesAtPairInteractionFrameIndex(frames, current.frameIndex, request.initialStates);
+        if (states.length !== request.initialStates.length) {
+          continue;
+        }
+        const lawAccelerations = computePairInteractionAccelerations(states, request);
+        const stateIndex = states.findIndex((state) => state.pathKey === current.pathKey);
+        const acceleration = stateIndex >= 0 ? lawAccelerations[stateIndex] : null;
+        if (!acceleration) {
+          continue;
+        }
+        const denominator = 1 / rightDt + 1 / leftDt;
+        const accelerationScale = (leftDt + rightDt) * 0.5;
+        const target = {
+          x: (next.position.x / rightDt + previous.position.x / leftDt - acceleration.x * accelerationScale) / denominator,
+          y: (next.position.y / rightDt + previous.position.y / leftDt - acceleration.y * accelerationScale) / denominator,
+          z: (next.position.z / rightDt + previous.position.z / leftDt - acceleration.z * accelerationScale) / denominator,
+        };
+        if (!Number.isFinite(target.x) || !Number.isFinite(target.y) || !Number.isFinite(target.z)) {
+          continue;
+        }
+        nextPositions.set(currentEntry.index, {
+          x: current.position.x + (target.x - current.position.x) * blend,
+          y: current.position.y + (target.y - current.position.y) * blend,
+          z: current.position.z + (target.z - current.position.z) * blend,
+        });
+      }
+    });
+    if (nextPositions.size === 0) {
+      break;
+    }
+    nextPositions.forEach((position, frameIndex) => {
+      frames[frameIndex].position = position;
+    });
+  }
+  snapPairInteractionFrameConstraints(frames, request, epsilon);
+  recomputePairInteractionFrameVelocities(frames);
+}
+
+function hasPairConstraintAtTime(request, pathKey, time, epsilon) {
+  return sortedPairConstraintsForPath(request, pathKey).some(
+    (constraint) => Math.abs(constraint.time - time) <= epsilon,
+  );
+}
+
+function snapPairInteractionFrameConstraints(frames, request, epsilon) {
+  frames.forEach((frame) => {
+    const constraint = sortedPairConstraintsForPath(request, frame.pathKey).find(
+      (candidate) => Math.abs(candidate.time - frame.time) <= epsilon,
+    );
+    if (constraint) {
+      frame.position = copyVector(constraint.position);
+    }
+  });
+}
+
+function recomputePairInteractionFrameVelocities(frames) {
+  const byPath = new Map();
+  frames.forEach((frame, index) => {
+    const entries = byPath.get(frame.pathKey) ?? [];
+    entries.push({ frame, index });
+    byPath.set(frame.pathKey, entries);
+  });
+  byPath.forEach((pathFrames) => {
+    const sorted = pathFrames.slice().sort(
+      (left, right) => left.frame.time - right.frame.time || left.frame.frameIndex - right.frame.frameIndex,
+    );
+    sorted.forEach((entry, index) => {
+      const previous = sorted[Math.max(0, index - 1)]?.frame;
+      const next = sorted[Math.min(sorted.length - 1, index + 1)]?.frame;
+      if (!previous || !next || previous === next) {
+        return;
+      }
+      const span = next.time - previous.time;
+      if (span <= 0) {
+        return;
+      }
+      frames[entry.index].velocity = {
+        x: (next.position.x - previous.position.x) / span,
+        y: (next.position.y - previous.position.y) / span,
+        z: (next.position.z - previous.position.z) / span,
+      };
+    });
+  });
 }
 
 function pairConstraintPositionAtTime(constraints, time, epsilon) {
@@ -6692,6 +6985,7 @@ function integratePairInteractionMotionF64WithModule(module, request, options = 
     const pathConstraintGuidanceMode = pathConstraintCount > 0
       ? PAIR_INTERACTION_PATH_CONSTRAINT_GUIDANCE_MODE
       : undefined;
+    const pathConstraintBoundaryMode = createPairInteractionPathConstraintBoundaryMode(normalized);
     const constraintSolverMetadata = createPairInteractionConstraintSolverMetadata(
       nativeSummary.pathConstraintCount,
       nativeSummary.guidanceSampleCount,
@@ -6700,6 +6994,10 @@ function integratePairInteractionMotionF64WithModule(module, request, options = 
       pathConstraintBoundaryResidualSampleCount: nativeSummary.boundaryResidualSampleCount,
       maxPathConstraintBoundaryResidual: nativeSummary.maxBoundaryResidual,
     };
+    const boundaryResidualAcceptanceMetadata = createPairInteractionBoundaryResidualAcceptanceMetadata(
+      nativeBoundarySummary,
+      normalized,
+    );
     enforcePairInteractionBoundaryResidualTolerance(nativeBoundarySummary, normalized, {
       ...options,
       executionPath: "native_c_abi",
@@ -6720,6 +7018,7 @@ function integratePairInteractionMotionF64WithModule(module, request, options = 
         rmsPathConstraintResidual: nativeSummary.rmsConstraintResidual,
         pathConstraintGuidanceSampleCount: nativeSummary.guidanceSampleCount,
         pathConstraintGuidanceMode,
+        pathConstraintBoundaryMode,
         pathConstraintSolverStatus: constraintSolverMetadata.pathConstraintSolverStatus,
         pathConstraintSolverClaim: constraintSolverMetadata.pathConstraintSolverClaim,
         maxPathConstraintGuidanceAcceleration: nativeSummary.maxGuidanceAcceleration,
@@ -6729,6 +7028,7 @@ function integratePairInteractionMotionF64WithModule(module, request, options = 
         maxPathConstraintBoundaryResidual: nativeSummary.maxBoundaryResidual,
         meanPathConstraintBoundaryResidual: nativeSummary.meanBoundaryResidual,
         rmsPathConstraintBoundaryResidual: nativeSummary.rmsBoundaryResidual,
+        ...boundaryResidualAcceptanceMetadata,
         ...(Number.isFinite(normalized.pathConstraintBoundaryResidualTolerance)
           ? { pathConstraintBoundaryResidualTolerance: normalized.pathConstraintBoundaryResidualTolerance }
           : {}),
@@ -6763,6 +7063,7 @@ function integratePairInteractionMotionF64WithModule(module, request, options = 
         rmsPathConstraintResidual: nativeSummary.rmsConstraintResidual,
         pathConstraintGuidanceSampleCount: nativeSummary.guidanceSampleCount,
         pathConstraintGuidanceMode,
+        pathConstraintBoundaryMode,
         pathConstraintSolverStatus: constraintSolverMetadata.pathConstraintSolverStatus,
         pathConstraintSolverClaim: constraintSolverMetadata.pathConstraintSolverClaim,
         maxPathConstraintGuidanceAcceleration: nativeSummary.maxGuidanceAcceleration,
@@ -6772,6 +7073,7 @@ function integratePairInteractionMotionF64WithModule(module, request, options = 
         maxPathConstraintBoundaryResidual: nativeSummary.maxBoundaryResidual,
         meanPathConstraintBoundaryResidual: nativeSummary.meanBoundaryResidual,
         rmsPathConstraintBoundaryResidual: nativeSummary.rmsBoundaryResidual,
+        ...boundaryResidualAcceptanceMetadata,
         ...(Number.isFinite(normalized.pathConstraintBoundaryResidualTolerance)
           ? { pathConstraintBoundaryResidualTolerance: normalized.pathConstraintBoundaryResidualTolerance }
           : {}),
@@ -12938,6 +13240,28 @@ function queryEmissionShellCandidatePacketsF64(state, request, module = null, ab
 
 function refineEmissionShellCandidateRootsF64(state, module, request, abiInfo) {
   validateEmissionShellRootRefinementRequest(request);
+  const preparedPacket = request.packet == null ? null : prepareWorkPacketHeader(request.packet);
+  if (preparedPacket && preparedPacket.status.code !== "ok") {
+    throw new SolverBridgeError(
+      createStatus(
+        preparedPacket.status.code,
+        preparedPacket.status.severity,
+        "emission-shell root-refinement rejected invalid work packet",
+        {
+          recoverable: false,
+          stage: "work_packet",
+          details: {
+            packetId: preparedPacket.packet.packetId,
+            diagnosticCount: preparedPacket.diagnostics.length,
+          },
+        }
+      )
+    );
+  }
+  const packet = preparedPacket?.packet ?? null;
+  if (packet) {
+    validateEmissionShellRootRefinementPacket(packet, request.candidates);
+  }
   const streamEntry = resolveStreamEntryByIdOrManifest(state, request);
   const maxCandidates = request.maxCandidates ?? request.candidates.length;
   const maxRootsPerCandidate = request.maxRootsPerCandidate ?? Math.max(DEFAULT_MAX_CAUSAL_ROOTS, 128);
@@ -13035,6 +13359,10 @@ function refineEmissionShellCandidateRootsF64(state, module, request, abiInfo) {
     ...findResponseBufferDescriptor(batchResponse, "delayed_hit_events.v1"),
     bufferId: "emission-shell-refined-delayed-hits",
   };
+  const buffers = packet
+    ? createPacketScopedOutputBuffers(packet.packetId, [rootBuffer, hitBuffer])
+    : [rootBuffer, hitBuffer];
+  const packetResult = packet ? createWorkPacketResultRef(packet, buffers) : null;
   for (let attemptedIndex = 0; attemptedIndex < attempted.length; attemptedIndex += 1) {
     const entry = attempted[attemptedIndex];
     const candidate = entry.candidate;
@@ -13077,6 +13405,14 @@ function refineEmissionShellCandidateRootsF64(state, module, request, abiInfo) {
   }
   return {
     schema: "solver-emission-shell-root-refinement.v1",
+    ...(packet
+      ? {
+          packetId: packet.packetId,
+          packetMergeOrder: packet.mergeOrder,
+          packetMergeKey: packet.mergeKey,
+          packetResult,
+        }
+      : {}),
     streamId: streamEntry.stream.streamId,
     signalSpeed: request.signalSpeed,
     tolerance: request.tolerance ?? 0,
@@ -13090,7 +13426,7 @@ function refineEmissionShellCandidateRootsF64(state, module, request, abiInfo) {
     items,
     roots,
     hits,
-    buffers: [rootBuffer, hitBuffer],
+    buffers,
     status: createStatus(
       truncated ? "stream_memory_pressure" : skippedCandidateCount > 0 ? "candidate_refinement_partial" : "ok",
       truncated || skippedCandidateCount > 0 ? "warning" : "ok",
@@ -13625,6 +13961,69 @@ function validateEmissionShellRootRefinementRequest(request) {
   }
   if (request.workerCount != null) {
     requireNonnegativeInt32(request.workerCount, "workerCount");
+  }
+  if (
+    request.packet != null &&
+    (!request.packet || typeof request.packet !== "object" || Array.isArray(request.packet))
+  ) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "packet must be a work packet object", {
+        recoverable: false,
+      })
+    );
+  }
+}
+
+function validateEmissionShellRootRefinementPacket(packet, candidates) {
+  for (const layout of ["root_ledger.v1", "delayed_hit_events.v1"]) {
+    if (!packet.expectedOutputs.includes(layout)) {
+      throw new SolverBridgeError(
+        createStatus("app_contract_error", "error", "root-refinement packet expected outputs are incomplete", {
+          recoverable: false,
+          stage: "work_packet",
+          details: {
+            packetId: packet.packetId,
+            missingLayout: layout,
+          },
+        })
+      );
+    }
+  }
+
+  candidates.forEach((candidate, index) => {
+    validatePacketRangeOwnsIndex(
+      packet.sourceBlock,
+      candidate.sourceChunkIndex,
+      `candidates[${index}].sourceChunkIndex`,
+      packet.packetId
+    );
+    validatePacketRangeOwnsIndex(
+      packet.receiverBlock,
+      candidate.receiverChunkIndex,
+      `candidates[${index}].receiverChunkIndex`,
+      packet.packetId
+    );
+  });
+}
+
+function validatePacketRangeOwnsIndex(range, value, label, packetId) {
+  if (!range.enabled) {
+    return;
+  }
+  if (value < range.start || value >= range.end) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", `${label} is outside packet range ownership`, {
+        recoverable: false,
+        stage: "work_packet",
+        details: {
+          packetId,
+          label,
+          value,
+          rangeStart: range.start,
+          rangeEnd: range.end,
+        },
+      })
+    );
   }
 }
 

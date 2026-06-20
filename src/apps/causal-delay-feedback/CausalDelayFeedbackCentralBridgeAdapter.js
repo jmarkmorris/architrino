@@ -262,12 +262,14 @@ async function createMotionSolverReplayDataset(playbackRequest, options = {}, { 
           rmsPathConstraintResidual: motionReplay.rmsPathConstraintResidual,
           pathConstraintGuidanceSampleCount: motionReplay.pathConstraintGuidanceSampleCount,
           pathConstraintGuidanceMode: motionReplay.pathConstraintGuidanceMode,
+          pathConstraintBoundaryMode: motionReplay.pathConstraintBoundaryMode,
           pathConstraintSolverStatus: motionReplay.pathConstraintSolverStatus,
           pathConstraintSolverClaim: motionReplay.pathConstraintSolverClaim,
           maxPathConstraintGuidanceAcceleration: motionReplay.maxPathConstraintGuidanceAcceleration,
           meanPathConstraintGuidanceAcceleration: motionReplay.meanPathConstraintGuidanceAcceleration,
           rmsPathConstraintGuidanceAcceleration: motionReplay.rmsPathConstraintGuidanceAcceleration,
           pathConstraintBoundaryResidualSampleCount: motionReplay.pathConstraintBoundaryResidualSampleCount,
+          pathConstraintBoundaryResidualStatus: motionReplay.pathConstraintBoundaryResidualStatus,
           pathConstraintBoundaryResidualTolerance: motionReplay.pathConstraintBoundaryResidualTolerance,
           maxPathConstraintBoundaryResidual: motionReplay.maxPathConstraintBoundaryResidual,
           meanPathConstraintBoundaryResidual: motionReplay.meanPathConstraintBoundaryResidual,
@@ -299,12 +301,14 @@ async function createMotionSolverReplayDataset(playbackRequest, options = {}, { 
           rmsPathConstraintResidual: motionReplay.rmsPathConstraintResidual,
           pathConstraintGuidanceSampleCount: motionReplay.pathConstraintGuidanceSampleCount,
           pathConstraintGuidanceMode: motionReplay.pathConstraintGuidanceMode,
+          pathConstraintBoundaryMode: motionReplay.pathConstraintBoundaryMode,
           pathConstraintSolverStatus: motionReplay.pathConstraintSolverStatus,
           pathConstraintSolverClaim: motionReplay.pathConstraintSolverClaim,
           maxPathConstraintGuidanceAcceleration: motionReplay.maxPathConstraintGuidanceAcceleration,
           meanPathConstraintGuidanceAcceleration: motionReplay.meanPathConstraintGuidanceAcceleration,
           rmsPathConstraintGuidanceAcceleration: motionReplay.rmsPathConstraintGuidanceAcceleration,
           pathConstraintBoundaryResidualSampleCount: motionReplay.pathConstraintBoundaryResidualSampleCount,
+          pathConstraintBoundaryResidualStatus: motionReplay.pathConstraintBoundaryResidualStatus,
           pathConstraintBoundaryResidualTolerance: motionReplay.pathConstraintBoundaryResidualTolerance,
           maxPathConstraintBoundaryResidual: motionReplay.maxPathConstraintBoundaryResidual,
           meanPathConstraintBoundaryResidual: motionReplay.meanPathConstraintBoundaryResidual,
@@ -475,6 +479,7 @@ async function createPairInteractionSolverReplayFrames(playbackRequest, options 
       pairSummary.pathConstraintGuidanceSampleCount ?? pairInteraction.pathConstraintGuidanceSampleCount
     ),
     pathConstraintGuidanceMode: pairSummary.pathConstraintGuidanceMode ?? pairInteraction.pathConstraintGuidanceMode,
+    pathConstraintBoundaryMode: pairSummary.pathConstraintBoundaryMode ?? pairInteraction.pathConstraintBoundaryMode,
     pathConstraintSolverStatus: pairSummary.pathConstraintSolverStatus ?? pairInteraction.pathConstraintSolverStatus,
     pathConstraintSolverClaim: pairSummary.pathConstraintSolverClaim ?? pairInteraction.pathConstraintSolverClaim,
     maxPathConstraintGuidanceAcceleration: optionalFiniteNumber(
@@ -489,6 +494,8 @@ async function createPairInteractionSolverReplayFrames(playbackRequest, options 
     pathConstraintBoundaryResidualSampleCount: optionalFiniteNumber(
       pairSummary.pathConstraintBoundaryResidualSampleCount ?? pairInteraction.pathConstraintBoundaryResidualSampleCount
     ),
+    pathConstraintBoundaryResidualStatus:
+      pairSummary.pathConstraintBoundaryResidualStatus ?? pairInteraction.pathConstraintBoundaryResidualStatus,
     pathConstraintBoundaryResidualTolerance: optionalFiniteNumber(
       pairSummary.pathConstraintBoundaryResidualTolerance ??
         pairInteraction.pathConstraintBoundaryResidualTolerance ??
@@ -1380,6 +1387,9 @@ export function normalizeCausalDelayFeedbackBridgeReplay(runHandle = {}, options
     ...(bridgeResponse.geometry?.pathConstraintGuidanceMode
       ? { pathConstraintGuidanceMode: String(bridgeResponse.geometry.pathConstraintGuidanceMode) }
       : {}),
+    ...(bridgeResponse.geometry?.pathConstraintBoundaryMode
+      ? { pathConstraintBoundaryMode: String(bridgeResponse.geometry.pathConstraintBoundaryMode) }
+      : {}),
     ...(bridgeResponse.geometry?.pathConstraintSolverStatus
       ? { pathConstraintSolverStatus: String(bridgeResponse.geometry.pathConstraintSolverStatus) }
       : {}),
@@ -1397,6 +1407,9 @@ export function normalizeCausalDelayFeedbackBridgeReplay(runHandle = {}, options
       : {}),
     ...(Number.isFinite(Number(bridgeResponse.geometry?.pathConstraintBoundaryResidualSampleCount))
       ? { pathConstraintBoundaryResidualSampleCount: Number(bridgeResponse.geometry.pathConstraintBoundaryResidualSampleCount) }
+      : {}),
+    ...(bridgeResponse.geometry?.pathConstraintBoundaryResidualStatus
+      ? { pathConstraintBoundaryResidualStatus: String(bridgeResponse.geometry.pathConstraintBoundaryResidualStatus) }
       : {}),
     ...(Number.isFinite(Number(bridgeResponse.geometry?.pathConstraintBoundaryResidualTolerance))
       ? { pathConstraintBoundaryResidualTolerance: Number(bridgeResponse.geometry.pathConstraintBoundaryResidualTolerance) }

@@ -1,6 +1,6 @@
 # Numeric Serialization Contract
 
-Status: `ready-to-close`
+Status: `closed-design-capture`
 
 Kind: `solver-contract`
 
@@ -89,4 +89,4 @@ The bridge-level descriptor list must contain exactly the five declared numeric 
 
 ## Closure Decision
 
-`numeric_serialization_contract` can be closed as a contract-definition task when [solver.md](solver.md) is allowed to be updated. The native descriptor, app bridge descriptor, TypeScript contract, JSON schema, and this priority note now define the requested byte order, signedness, scale factors, exponent and limb layout, interval endpoint convention, rounding mode, comparison semantics, JSON/export form, and validation obligations for every declared solver numeric type.
+`numeric_serialization_contract` is closed as a contract-definition task. The native descriptor, app bridge descriptor, TypeScript contract, JSON schema, and this priority note now define the requested byte order, signedness, scale factors, exponent and limb layout, interval endpoint convention, rounding mode, comparison semantics, JSON/export form, and validation obligations for every declared solver numeric type.

@@ -143,6 +143,14 @@ function createPairInteractionRunResponse(request) {
   const maxConstraintResidual = residualSampleCount > 0 ? 0.125 : 0;
   const boundaryResidualSampleCount = residualSampleCount;
   const maxBoundaryResidual = boundaryResidualSampleCount > 0 ? 0.25 : 0;
+  const boundaryResidualTolerance = Number(pair.pathConstraintBoundaryResidualTolerance);
+  const boundaryResidualStatus = Number.isFinite(boundaryResidualTolerance)
+    ? boundaryResidualSampleCount > 0
+      ? maxBoundaryResidual <= boundaryResidualTolerance
+        ? "within_tolerance"
+        : "exceeded_tolerance"
+      : "no_boundary_samples"
+    : "unchecked";
   const guidanceSampleCount = constraints.length > 0 ? Math.max(0, constraints.length - 2) : 0;
   const times = constraints.length > 0
     ? Array.from(new Set([pair.startTime, pair.endTime, ...constraints.map((constraint) => constraint.time)]))
@@ -172,7 +180,8 @@ function createPairInteractionRunResponse(request) {
         meanPathConstraintResidual: residualSampleCount > 0 ? 0.0625 : 0,
         rmsPathConstraintResidual: residualSampleCount > 0 ? 0.088 : 0,
         pathConstraintGuidanceSampleCount: guidanceSampleCount,
-        pathConstraintGuidanceMode: guidanceSampleCount > 0 ? "retained_knot_hermite_boundary" : undefined,
+        pathConstraintGuidanceMode: guidanceSampleCount > 0 ? "retained_knot_boundary" : undefined,
+        pathConstraintBoundaryMode: guidanceSampleCount > 0 ? "law_aware_retained_knot_boundary" : undefined,
         pathConstraintSolverStatus: constraints.length > 0
           ? guidanceSampleCount > 0
             ? "guided_constraint_path"
@@ -185,6 +194,7 @@ function createPairInteractionRunResponse(request) {
         meanPathConstraintGuidanceAcceleration: guidanceSampleCount > 0 ? 2.25 : 0,
         rmsPathConstraintGuidanceAcceleration: guidanceSampleCount > 0 ? 3.1 : 0,
         pathConstraintBoundaryResidualSampleCount: boundaryResidualSampleCount,
+        pathConstraintBoundaryResidualStatus: boundaryResidualStatus,
         pathConstraintBoundaryResidualTolerance: pair.pathConstraintBoundaryResidualTolerance,
         maxPathConstraintBoundaryResidual: maxBoundaryResidual,
         meanPathConstraintBoundaryResidual: boundaryResidualSampleCount > 0 ? 0.125 : 0,
@@ -498,7 +508,7 @@ test("causal delay central bridge adapter passes display pair interaction law re
     presetId: "accepted_tight_bright",
     requestOptions: {
       pairInteractionLaw: "display_pair_attraction_v1",
-      pathConstraintBoundaryResidualTolerance: 0.05,
+      pathConstraintBoundaryResidualTolerance: 0.5,
     },
   });
 
@@ -508,12 +518,14 @@ test("causal delay central bridge adapter passes display pair interaction law re
   );
   assert.equal(
     capturedPairRequest.config.pairInteractionRequest.pathConstraintBoundaryResidualTolerance,
-    0.05,
+    0.5,
   );
   assert.equal(dataset.interactionLaw, "display_pair_attraction_v1");
   assert.equal(dataset.solverSummary.interactionLaw, "display_pair_attraction_v1");
-  assert.equal(dataset.pathConstraintBoundaryResidualTolerance, 0.05);
-  assert.equal(dataset.solverSummary.pathConstraintBoundaryResidualTolerance, 0.05);
+  assert.equal(dataset.pathConstraintBoundaryResidualTolerance, 0.5);
+  assert.equal(dataset.pathConstraintBoundaryResidualStatus, "no_boundary_samples");
+  assert.equal(dataset.solverSummary.pathConstraintBoundaryResidualTolerance, 0.5);
+  assert.equal(dataset.solverSummary.pathConstraintBoundaryResidualStatus, "no_boundary_samples");
 });
 
 test("causal delay central bridge adapter submits retained path constraints after a draft point edit", async () => {
@@ -543,6 +555,7 @@ test("causal delay central bridge adapter submits retained path constraints afte
     requestOptions: {
       replayDataset: draftDataset,
       initialConditions: draftDataset.initialConditions,
+      pathConstraintBoundaryResidualTolerance: 0.5,
     },
   });
   const constrainedFinal = capturedPairRequest.config.pairInteractionRequest.pathConstraints.find(
@@ -562,20 +575,26 @@ test("causal delay central bridge adapter submits retained path constraints afte
   assert.equal(dataset.pathConstraintResidualSampleCount, 8);
   assert.equal(dataset.maxPathConstraintResidual, 0.125);
   assert.equal(dataset.pathConstraintGuidanceSampleCount, 10);
-  assert.equal(dataset.pathConstraintGuidanceMode, "retained_knot_hermite_boundary");
+  assert.equal(dataset.pathConstraintGuidanceMode, "retained_knot_boundary");
+  assert.equal(dataset.pathConstraintBoundaryMode, "law_aware_retained_knot_boundary");
   assert.equal(dataset.pathConstraintSolverStatus, "guided_constraint_path");
   assert.equal(dataset.pathConstraintSolverClaim, "diagnostic_constraint_replay_not_boundary_value_solve");
   assert.equal(dataset.maxPathConstraintGuidanceAcceleration, 4.5);
   assert.equal(dataset.pathConstraintBoundaryResidualSampleCount, 8);
+  assert.equal(dataset.pathConstraintBoundaryResidualStatus, "within_tolerance");
+  assert.equal(dataset.pathConstraintBoundaryResidualTolerance, 0.5);
   assert.equal(dataset.maxPathConstraintBoundaryResidual, 0.25);
   assert.equal(dataset.displayProjection, undefined);
   assert.equal(dataset.solverSummary.pathConstraintCount, 12);
   assert.equal(dataset.solverSummary.pathConstraintResidualSampleCount, 8);
   assert.equal(dataset.solverSummary.pathConstraintGuidanceSampleCount, 10);
-  assert.equal(dataset.solverSummary.pathConstraintGuidanceMode, "retained_knot_hermite_boundary");
+  assert.equal(dataset.solverSummary.pathConstraintGuidanceMode, "retained_knot_boundary");
+  assert.equal(dataset.solverSummary.pathConstraintBoundaryMode, "law_aware_retained_knot_boundary");
   assert.equal(dataset.solverSummary.pathConstraintSolverStatus, "guided_constraint_path");
   assert.equal(dataset.solverSummary.pathConstraintSolverClaim, "diagnostic_constraint_replay_not_boundary_value_solve");
   assert.equal(dataset.solverSummary.pathConstraintBoundaryResidualSampleCount, 8);
+  assert.equal(dataset.solverSummary.pathConstraintBoundaryResidualStatus, "within_tolerance");
+  assert.equal(dataset.solverSummary.pathConstraintBoundaryResidualTolerance, 0.5);
   assert.equal(dataset.history.electrino.at(-1).x, finalPoint.x);
   assert.equal(dataset.history.electrino.at(-1).y, finalPoint.y);
 });

@@ -175,11 +175,26 @@ function isGitIgnored(relativePath) {
   return ignored;
 }
 
-function shouldIgnoreRepoMarkdownAuditPath(relativePath) {
-  const normalized = normalizePath(relativePath);
-  return (
-    isGitIgnored(normalized) ||
-    REPO_MARKDOWN_AUDIT_IGNORED_PATH_PREFIXES.some((prefix) => normalized.startsWith(prefix))
+function gitIgnoredPathSet(relativePaths) {
+  const normalizedPaths = relativePaths.map(normalizePath).filter(Boolean);
+  if (!normalizedPaths.length) {
+    return new Set();
+  }
+
+  const result = spawnSync("git", ["check-ignore", "--stdin"], {
+    cwd: rootDir,
+    input: `${normalizedPaths.join("\n")}\n`,
+    encoding: "utf8",
+  });
+  if (result.status !== 0 && result.status !== 1) {
+    return new Set(normalizedPaths.filter((relativePath) => isGitIgnored(relativePath)));
+  }
+
+  return new Set(
+    (result.stdout || "")
+      .split(/\r?\n/)
+      .map(normalizePath)
+      .filter(Boolean)
   );
 }
 
@@ -910,10 +925,15 @@ const generatedPdfFiles = walkFiles(
 const indexableMarkdownFiles = allMarkdownFiles;
 const referencableMarkdownFiles = [...allMarkdownFiles, ...generatedMarkdownFiles];
 const referencablePdfFiles = generatedPdfFiles;
-const repoMarkdownAuditFiles = walkFiles(".", (name) => name.toLowerCase().endsWith(".md"), {
+const repoMarkdownAuditCandidateFiles = walkFiles(".", (name) => name.toLowerCase().endsWith(".md"), {
   ignoreDirNames: REPO_MARKDOWN_AUDIT_IGNORED_DIRS,
-  shouldIgnorePath: (relativePath) => shouldIgnoreRepoMarkdownAuditPath(relativePath),
 });
+const gitIgnoredMarkdownPaths = gitIgnoredPathSet(repoMarkdownAuditCandidateFiles);
+const repoMarkdownAuditFiles = repoMarkdownAuditCandidateFiles.filter(
+  (relativePath) =>
+    !gitIgnoredMarkdownPaths.has(relativePath) &&
+    !REPO_MARKDOWN_AUDIT_IGNORED_PATH_PREFIXES.some((prefix) => relativePath.startsWith(prefix))
+);
 
 const sceneConfigs = [];
 const ancillarySceneJson = [];

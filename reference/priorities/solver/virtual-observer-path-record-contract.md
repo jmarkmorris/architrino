@@ -1,6 +1,6 @@
 # Virtual Observer Path Record Contract
 
-Status: `ready-to-close`
+Status: `closed-design-capture`
 
 Kind: `solver-contract`
 
@@ -199,10 +199,9 @@ The design-level contract is accepted when these obligations are encoded in sche
 
 ## Close And Remaining Status
 
-`virtual_observer_path_record_contract` can be marked complete at the design-capture level. This note defines the minimal segment-level kinematic path record, the required path identity, time, frame, numeric, interpolation, payload, and error-bound fields, the attachment boundary for replay/audit/assembly/geometry data, the active-window versus aged-out behavior, and the future indexing rule.
+`virtual_observer_path_record_contract` is closed at the design-capture level. This note defines the minimal segment-level kinematic path record, the required path identity, time, frame, numeric, interpolation, payload, and error-bound fields, the attachment boundary for replay/audit/assembly/geometry data, the active-window versus aged-out behavior, and the future indexing rule.
 
-Remaining work is implementation and administrative:
+Remaining work is implementation:
 
 1. Encode any missing logical fields from this contract into the solver schema set when schema work is reopened.
 2. Add fixtures for non-linear payloads when Hermite or coefficient segments are implemented.
-3. Update the `virtual_observer_path_record_contract` queue entry in [solver.md](solver.md) when that file is allowed to change.

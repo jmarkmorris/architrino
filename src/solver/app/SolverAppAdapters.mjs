@@ -432,6 +432,7 @@ export function createEmissionShellRootRefinementRequest(input) {
     streamId: cloneOptionalString(input.streamId, "streamId"),
     manifestPath: cloneOptionalString(input.manifestPath, "manifestPath"),
     candidates: copyRequiredArray(input.candidates, "candidates"),
+    packet: cloneOptionalObject(input.packet, "packet"),
     signalSpeed: requirePositiveFiniteNumber(input.signalSpeed, "signalSpeed"),
     tolerance: cloneOptionalNonnegativeFiniteNumber(input.tolerance, "tolerance"),
     rootTolerance: cloneOptionalPositiveFiniteNumber(input.rootTolerance, "rootTolerance"),

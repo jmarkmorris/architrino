@@ -1,6 +1,6 @@
 # Precision Dynamic Range Contract
 
-Status: `ready-to-close`
+Status: `closed-design-capture`
 
 Kind: `solver-contract`
 
@@ -38,7 +38,7 @@ This contract does not own:
 - byte-level numeric encoding, which belongs to [numeric-serialization-contract.md](numeric-serialization-contract.md);
 - stream storage layout, which belongs to [path-history-stream-contract.md](path-history-stream-contract.md);
 - run admission, memory, storage, and latency bounds, which belong to `simulation_envelope_contract`;
-- final runtime performance acceptance, which belongs to `cpp_clang_runtime_validation`, `solver_contract`, and app migration parity tasks.
+- final runtime performance acceptance, which belongs to `solver_contract`, stage-level performance records, and app migration parity tasks.
 
 ## Run Precision Metadata
 
@@ -225,14 +225,14 @@ This is why the solver can carry huge absolute coordinates, tiny local separatio
 
 | Item | Status | Closeout decision |
 | --- | --- | --- |
-| Full arbitrary-precision runtime kernels for every solver family | Split into runtime validation and solver-core tasks. | This contract defines when stricter numeric types and paths are required; runtime breadth remains owned by `cpp_clang_runtime_validation`, `solver_contract`, and `minimal_causal_root_core`. |
-| Queue status in `solver.md` | Not updated here. | The operator/developer explicitly requested no edits to [solver.md](solver.md). |
+| Full arbitrary-precision runtime kernels for every solver family | Split into runtime-validation capture and solver-core tasks. | This contract defines when stricter numeric types and paths are required; runtime breadth remains owned by `solver_contract`, `minimal_causal_root_core`, and later stage-level performance acceptance. |
+| Queue status in `solver.md` | Closed in [solver.md](solver.md). | This contract is no longer an active queue item. |
 | Corpus promotion | Not promoted. | This is operational solver contract material under `reference/priorities`, not reader-facing AAA prose. |
 
 ## Completion Judgment
 
-`precision_dynamic_range_contract` can be marked complete as a contract-definition task once [solver.md](solver.md) is open for queue-status edits.
+`precision_dynamic_range_contract` is closed as a contract-definition task.
 
 The contract is complete because the automatic precision selector, numeric chart vocabulary, strict upward-only escalation rule, validation replay requirement, stage-level budgets, error-propagation metadata, run/stream precision metadata, and detailed root-ledger forensics are now stated in one isolated artifact and mapped to live implementation surfaces.
 
-Remaining work is downstream implementation and validation breadth, not this contract definition: extend and benchmark the solver core under the dependent runtime tasks, then use validation replay and migration parity to decide app migration readiness.
+Remaining work is future scoped implementation and validation breadth, not this contract definition: extend and benchmark the solver core under dependent runtime tasks, then use validation replay and migration parity to decide app migration readiness.

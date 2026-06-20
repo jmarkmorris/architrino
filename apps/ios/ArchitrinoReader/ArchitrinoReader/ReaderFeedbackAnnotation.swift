@@ -83,63 +83,81 @@ struct ReaderFeedbackContext {
 }
 
 struct ReaderPageFeedbackOverlay: View {
-    let baseImage: UIImage
     let context: ReaderFeedbackContext
     let theme: ReaderTheme
     let onClose: () -> Void
+    private let feedbackBaseImage: UIImage
 
     @State private var canvasView: PKCanvasView?
     @State private var hasDrawing = false
     @State private var sharePayload: ReaderFeedbackSharePayload?
 
+    init(baseImage: UIImage, context: ReaderFeedbackContext, theme: ReaderTheme, onClose: @escaping () -> Void) {
+        self.feedbackBaseImage = ReaderFeedbackImageRenderer.makeFeedbackBaseImage(
+            from: baseImage,
+            theme: theme
+        )
+        self.context = context
+        self.theme = theme
+        self.onClose = onClose
+    }
+
     var body: some View {
-        ZStack {
-            ReaderPageFeedbackCanvasView(canvasView: $canvasView, hasDrawing: $hasDrawing)
-                .ignoresSafeArea()
+        GeometryReader { proxy in
+            ZStack {
+                Image(uiImage: feedbackBaseImage)
+                    .resizable()
+                    .frame(width: proxy.size.width, height: proxy.size.height)
+                    .clipped()
+                    .ignoresSafeArea()
 
-            Rectangle()
-                .stroke(Color.readerFeedbackOrange.opacity(0.86), lineWidth: 3)
-                .ignoresSafeArea()
-                .allowsHitTesting(false)
+                ReaderPageFeedbackCanvasView(canvasView: $canvasView, hasDrawing: $hasDrawing)
+                    .ignoresSafeArea()
 
-            VStack {
-                HStack {
-                    feedbackIconButton(systemName: "xmark", accessibilityLabel: "Close feedback", action: onClose)
+                Rectangle()
+                    .stroke(Color.readerFeedbackOrange.opacity(0.86), lineWidth: 3)
+                    .ignoresSafeArea()
+                    .allowsHitTesting(false)
+
+                VStack {
+                    HStack {
+                        feedbackIconButton(systemName: "xmark", accessibilityLabel: "Close feedback", action: onClose)
+
+                        Spacer()
+
+                        HStack(spacing: 8) {
+                            feedbackIconButton(
+                                systemName: "arrow.uturn.backward",
+                                accessibilityLabel: "Undo annotation",
+                                isDisabled: !hasDrawing
+                            ) {
+                                canvasView?.undoManager?.undo()
+                                updateDrawingState()
+                            }
+
+                            feedbackIconButton(
+                                systemName: "trash",
+                                accessibilityLabel: "Clear annotation",
+                                isDisabled: !hasDrawing
+                            ) {
+                                canvasView?.drawing = PKDrawing()
+                                updateDrawingState()
+                            }
+
+                            feedbackIconButton(systemName: "square.and.arrow.up", accessibilityLabel: "Share annotated feedback") {
+                                shareAnnotatedFeedback()
+                            }
+                        }
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 6)
+                        .background(theme.feedbackChromeBackgroundColor)
+                        .clipShape(Capsule())
+                    }
+                    .padding(.horizontal, 14)
+                    .padding(.top, 8)
 
                     Spacer()
-
-                    HStack(spacing: 8) {
-                        feedbackIconButton(
-                            systemName: "arrow.uturn.backward",
-                            accessibilityLabel: "Undo annotation",
-                            isDisabled: !hasDrawing
-                        ) {
-                            canvasView?.undoManager?.undo()
-                            updateDrawingState()
-                        }
-
-                        feedbackIconButton(
-                            systemName: "trash",
-                            accessibilityLabel: "Clear annotation",
-                            isDisabled: !hasDrawing
-                        ) {
-                            canvasView?.drawing = PKDrawing()
-                            updateDrawingState()
-                        }
-
-                        feedbackIconButton(systemName: "square.and.arrow.up", accessibilityLabel: "Share annotated feedback") {
-                            shareAnnotatedFeedback()
-                        }
-                    }
-                    .padding(.horizontal, 8)
-                    .padding(.vertical, 6)
-                    .background(theme.feedbackChromeBackgroundColor)
-                    .clipShape(Capsule())
                 }
-                .padding(.horizontal, 14)
-                .padding(.top, 8)
-
-                Spacer()
             }
         }
         .sheet(item: $sharePayload) { payload in
@@ -175,12 +193,12 @@ struct ReaderPageFeedbackOverlay: View {
 
     private func shareAnnotatedFeedback() {
         guard let canvasView else {
-            sharePayload = ReaderFeedbackSharePayload(activityItems: [context.shareText, baseImage])
+            sharePayload = ReaderFeedbackSharePayload(activityItems: [context.shareText, feedbackBaseImage])
             return
         }
 
         let image = ReaderFeedbackImageRenderer.renderAnnotatedImage(
-            baseImage: baseImage,
+            baseImage: feedbackBaseImage,
             drawing: canvasView.drawing,
             canvasBounds: canvasView.bounds
         )
@@ -198,7 +216,7 @@ private struct ReaderPageFeedbackCanvasView: UIViewRepresentable {
         view.isOpaque = false
         view.isScrollEnabled = false
         view.drawingPolicy = .anyInput
-        view.tool = PKInkingTool(.pen, color: .readerFeedbackOrange, width: 5.5)
+        view.tool = PKInkingTool(.pen, color: .readerFeedbackOrange, width: 6.5)
         view.delegate = context.coordinator
         DispatchQueue.main.async {
             canvasView = view
@@ -242,6 +260,68 @@ private struct ReaderFeedbackShareSheet: UIViewControllerRepresentable {
 }
 
 private enum ReaderFeedbackImageRenderer {
+    static func makeFeedbackBaseImage(from baseImage: UIImage, theme: ReaderTheme) -> UIImage {
+        let size = baseImage.size
+        guard size.width > 1, size.height > 1 else {
+            return baseImage
+        }
+
+        let topChromeCrop = ReaderFeedbackLayout.topChromeCrop(for: size)
+        let footerTransferHeight = ReaderFeedbackLayout.footerTransferHeight(for: size)
+        let commentPanelHeight = topChromeCrop + footerTransferHeight
+        let remainingHeight = max(1, size.height - commentPanelHeight)
+
+        let format = UIGraphicsImageRendererFormat.default()
+        format.scale = max(2, baseImage.scale)
+        let renderer = UIGraphicsImageRenderer(size: size, format: format)
+
+        return renderer.image { context in
+            theme.feedbackBackgroundUIColor.setFill()
+            context.fill(CGRect(origin: .zero, size: size))
+
+            let sourceRect = CGRect(
+                x: 0,
+                y: topChromeCrop,
+                width: size.width,
+                height: remainingHeight
+            )
+            let destinationRect = CGRect(
+                x: 0,
+                y: commentPanelHeight,
+                width: size.width,
+                height: remainingHeight
+            )
+            if let croppedImage = croppedFeedbackImage(baseImage, sourceRect: sourceRect) {
+                croppedImage.draw(in: destinationRect)
+            }
+
+            drawCommentPanel(
+                in: CGRect(x: 0, y: 0, width: size.width, height: commentPanelHeight),
+                theme: theme,
+                context: context.cgContext
+            )
+        }
+    }
+
+    private static func croppedFeedbackImage(_ image: UIImage, sourceRect: CGRect) -> UIImage? {
+        guard let cgImage = image.cgImage else {
+            return nil
+        }
+
+        let scale = image.scale
+        let pixelRect = CGRect(
+            x: sourceRect.minX * scale,
+            y: sourceRect.minY * scale,
+            width: sourceRect.width * scale,
+            height: sourceRect.height * scale
+        ).integral
+
+        guard let cropped = cgImage.cropping(to: pixelRect) else {
+            return nil
+        }
+        return UIImage(cgImage: cropped, scale: scale, orientation: image.imageOrientation)
+    }
+
     static func renderAnnotatedImage(baseImage: UIImage, drawing: PKDrawing, canvasBounds: CGRect) -> UIImage {
         guard canvasBounds.width > 1, canvasBounds.height > 1 else {
             return baseImage
@@ -256,6 +336,58 @@ private enum ReaderFeedbackImageRenderer {
             baseImage.draw(in: CGRect(origin: .zero, size: baseImage.size))
             drawingImage.draw(in: CGRect(origin: .zero, size: baseImage.size))
         }
+    }
+
+    private static func drawCommentPanel(in rect: CGRect, theme: ReaderTheme, context: CGContext) {
+        theme.feedbackBackgroundUIColor.setFill()
+        context.fill(rect)
+
+        let inset = ReaderFeedbackLayout.commentPanelInset
+        let gutter = ReaderFeedbackLayout.commentPanelGutter
+        let columnWidth = (rect.width - (inset * 2) - gutter) / 2
+        let leftColumn = CGRect(x: rect.minX + inset, y: rect.minY, width: columnWidth, height: rect.height)
+        let rightColumn = CGRect(x: leftColumn.maxX + gutter, y: rect.minY, width: columnWidth, height: rect.height)
+        let rulePath = UIBezierPath()
+        let firstRuleY = rect.minY + ReaderFeedbackLayout.commentPanelTopPadding
+        let lastRuleY = rect.maxY - ReaderFeedbackLayout.commentPanelBottomPadding
+        var y = firstRuleY
+
+        while y <= lastRuleY {
+            rulePath.move(to: CGPoint(x: leftColumn.minX, y: y))
+            rulePath.addLine(to: CGPoint(x: leftColumn.maxX, y: y))
+            rulePath.move(to: CGPoint(x: rightColumn.minX, y: y))
+            rulePath.addLine(to: CGPoint(x: rightColumn.maxX, y: y))
+            y += ReaderFeedbackLayout.commentPanelLineSpacing
+        }
+
+        let dividerPath = UIBezierPath()
+        let dividerX = rect.midX
+        dividerPath.move(to: CGPoint(x: dividerX, y: rect.minY + 12))
+        dividerPath.addLine(to: CGPoint(x: dividerX, y: rect.maxY - 12))
+
+        theme.feedbackRuleUIColor.setStroke()
+        rulePath.lineWidth = 1
+        rulePath.stroke()
+
+        theme.feedbackRuleUIColor.withAlphaComponent(0.72).setStroke()
+        dividerPath.lineWidth = 1
+        dividerPath.stroke()
+    }
+}
+
+private enum ReaderFeedbackLayout {
+    static let commentPanelInset: CGFloat = 18
+    static let commentPanelGutter: CGFloat = 28
+    static let commentPanelTopPadding: CGFloat = 26
+    static let commentPanelBottomPadding: CGFloat = 14
+    static let commentPanelLineSpacing: CGFloat = 30
+
+    static func topChromeCrop(for size: CGSize) -> CGFloat {
+        min(max(size.height * 0.085, 72), 112)
+    }
+
+    static func footerTransferHeight(for size: CGSize) -> CGFloat {
+        min(max(size.height * 0.043, 38), 52)
     }
 }
 
@@ -283,6 +415,28 @@ private extension Color {
 }
 
 private extension ReaderTheme {
+    var feedbackBackgroundUIColor: UIColor {
+        switch self {
+        case .architrinoPurple:
+            return UIColor(red: 75 / 255, green: 0, blue: 130 / 255, alpha: 1)
+        case .light:
+            return UIColor(red: 253 / 255, green: 253 / 255, blue: 253 / 255, alpha: 1)
+        case .warm:
+            return UIColor(red: 244 / 255, green: 236 / 255, blue: 216 / 255, alpha: 1)
+        case .dark:
+            return UIColor(red: 15 / 255, green: 23 / 255, blue: 42 / 255, alpha: 1)
+        }
+    }
+
+    var feedbackRuleUIColor: UIColor {
+        switch self {
+        case .architrinoPurple, .dark:
+            return UIColor.white.withAlphaComponent(0.18)
+        case .light, .warm:
+            return UIColor.black.withAlphaComponent(0.14)
+        }
+    }
+
     var feedbackChromeBackgroundColor: Color {
         switch self {
         case .architrinoPurple:

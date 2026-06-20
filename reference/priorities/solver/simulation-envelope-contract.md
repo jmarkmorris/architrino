@@ -272,8 +272,8 @@ because this file defines every requested contract dimension, binds the
 dimension list to bridge-admission behavior, defines the admission decisions,
 and separates simplification from silent claim weakening.
 
-Implementation work remains under downstream tasks such as `solver_contract`,
-`path_history_stream_contract`, `work_packet_transport_contract`,
-`app_bridge_contract`, and `simulation_envelope_admission` fixture coverage.
-Those tasks decide how much of the full logical envelope is enforced by native
-ABI rows, bridge JSON, runtime stress scoring, and future validation fixtures.
+Implementation breadth belongs in future scoped work that consumes this
+contract, path-history streaming, work-packet transport, app bridge behavior,
+and `simulation_envelope_admission` fixture coverage. Those tasks decide how
+much of the full logical envelope is enforced by native ABI rows, bridge JSON,
+runtime stress scoring, and future validation fixtures.

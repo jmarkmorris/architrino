@@ -62,6 +62,43 @@ struct EmissionShellBroadPhaseResult {
   std::vector<EmissionShellBroadPhaseCandidate> candidates;
 };
 
+enum class EmissionShellIndexCoverageStatus {
+  Complete = 0,
+  Truncated = 1,
+  InvalidInput = 2,
+};
+
+struct EmissionShellIndexedBroadPhaseOptions {
+  std::size_t timeSlabCount = 64;
+  double spatialCellSize = 1.0;
+  std::uint64_t sourceRowOffset = 0;
+  std::uint64_t receiverRowOffset = 0;
+  bool useFixedTimeRange = false;
+  double timeRangeStart = 0.0;
+  double timeRangeEnd = 0.0;
+};
+
+struct EmissionShellIndexedBroadPhaseSummary {
+  std::size_t timeSlabCount = 0;
+  double spatialCellSize = 0.0;
+  double timeRangeStart = 0.0;
+  double timeRangeEnd = 0.0;
+  std::uint64_t sourceRowOffset = 0;
+  std::uint64_t receiverRowOffset = 0;
+  std::uint64_t receiverCellRows = 0;
+  std::uint64_t shellAnnulusRows = 0;
+  std::uint64_t cellLookups = 0;
+  std::uint64_t indexedPairTests = 0;
+  std::uint64_t duplicatePairTests = 0;
+  EmissionShellIndexCoverageStatus coverageStatus =
+      EmissionShellIndexCoverageStatus::Complete;
+};
+
+struct EmissionShellIndexedBroadPhaseResult {
+  EmissionShellBroadPhaseResult broadPhase;
+  EmissionShellIndexedBroadPhaseSummary index;
+};
+
 enum class EmissionShellNarrowPhaseClassification {
   SampledMiss = 0,
   SampledHit = 1,
@@ -165,6 +202,11 @@ EmissionShellBroadPhaseResult query_emission_shell_broad_phase_parallel(
     const std::vector<PathHistoryRowF64>& receiverRows,
     const EmissionShellBroadPhaseOptions& options,
     ParallelExecutionOptions parallelOptions = {});
+EmissionShellIndexedBroadPhaseResult query_emission_shell_broad_phase_indexed_v0(
+    const std::vector<PathHistoryRowF64>& sourceRows,
+    const std::vector<PathHistoryRowF64>& receiverRows,
+    const EmissionShellBroadPhaseOptions& broadPhaseOptions,
+    const EmissionShellIndexedBroadPhaseOptions& indexOptions);
 EmissionShellNarrowPhaseEstimate estimate_emission_shell_narrow_phase(
     const PathHistoryRowF64& source,
     const PathHistoryRowF64& receiver,
