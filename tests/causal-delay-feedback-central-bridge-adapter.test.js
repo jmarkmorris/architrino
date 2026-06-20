@@ -480,6 +480,33 @@ test("causal delay central bridge adapter uses pair interaction by default", asy
   assert(Math.max(...projectedYValues) <= 864.1);
 });
 
+test("causal delay central bridge adapter passes pair interaction law review option", async () => {
+  let capturedPairRequest = null;
+  const adapter = createCausalDelayFeedbackCentralBridgeAdapter({
+    async runSolverBridge(request) {
+      if (request.runKind === CENTRAL_SOLVER_PAIR_INTERACTION_REPLAY_MODE) {
+        capturedPairRequest = request;
+        return createPairInteractionRunResponse(request);
+      }
+      return createDelayedHitRunResponse(request);
+    },
+  });
+
+  const dataset = await adapter.createReplayAsync({
+    presetId: "accepted_tight_bright",
+    requestOptions: {
+      pairInteractionLaw: "inverse_distance_pair_attraction_v1",
+    },
+  });
+
+  assert.equal(
+    capturedPairRequest.config.pairInteractionRequest.interactionLaw,
+    "inverse_distance_pair_attraction_v1",
+  );
+  assert.equal(dataset.interactionLaw, "inverse_distance_pair_attraction_v1");
+  assert.equal(dataset.solverSummary.interactionLaw, "inverse_distance_pair_attraction_v1");
+});
+
 test("causal delay central bridge adapter submits retained path constraints after a draft point edit", async () => {
   const draftDataset = createMockCausalDelayReplayDataset("accepted_tight_bright");
   const finalPoint = draftDataset.history.electrino.at(-1);

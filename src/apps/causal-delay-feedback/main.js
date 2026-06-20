@@ -106,6 +106,12 @@ export function createCausalDelayFeedbackInitialReplayRequestOptions(windowLike 
   if (pairAccelerationScale != null) {
     requestOptions.pairAccelerationScale = pairAccelerationScale;
   }
+  const pairInteractionLaw =
+    getInitialQueryValue(windowLike, "pairInteractionLaw") ??
+    getInitialQueryValue(windowLike, "interactionLaw");
+  if (pairInteractionLaw) {
+    requestOptions.pairInteractionLaw = pairInteractionLaw;
+  }
   return requestOptions;
 }
 

@@ -1224,13 +1224,15 @@ test("causal delay feedback page accepts central motion policy review URL option
     location: {
       href:
         "http://localhost/causal-delay-feedback.html?motionPolicy=pair_initial_attraction_seed" +
-        "&pairSegmentCount=5.8&pairAccelerationScale=0.22",
+        "&pairSegmentCount=5.8&pairAccelerationScale=0.22" +
+        "&pairInteractionLaw=inverse_distance_pair_attraction_v1",
     },
   });
 
   assert.equal(options.motionAccelerationPolicy, "pair_initial_attraction_seed");
   assert.equal(options.pairSegmentCount, 5);
   assert.equal(options.pairAccelerationScale, 0.22);
+  assert.equal(options.pairInteractionLaw, "inverse_distance_pair_attraction_v1");
 });
 
 test("causal delay feedback solver bridge options resolve the default WASM loader path", () => {

@@ -31,6 +31,7 @@ const DEFAULT_RUN_DURATION = 1;
 const DEFAULT_PAIR_ACCELERATION_SCALE = 0.18;
 const DEFAULT_PAIR_SEGMENT_COUNT = 12;
 const DEFAULT_PAIR_INTERACTION_SOFTENING = 0;
+const DEFAULT_PAIR_INTERACTION_LAW = "display_pair_attraction_v1";
 const PAIR_SEGMENTED_ACCELERATION_POLICY = "pair_segmented_attraction_seed";
 const PAIR_INITIAL_ACCELERATION_POLICY = "pair_initial_attraction_seed";
 const EXPLICIT_ACCELERATION_POLICY = "explicit";
@@ -131,6 +132,11 @@ export function createCausalDelayFeedbackBridgeReplayRequest(input = {}) {
           input.pairSegmentCount,
           DEFAULT_PAIR_SEGMENT_COUNT,
           "pairSegmentCount",
+        ),
+        pairInteractionLaw: normalizeOptionalString(
+          input.pairInteractionLaw,
+          DEFAULT_PAIR_INTERACTION_LAW,
+          "pairInteractionLaw",
         ),
       },
     },
@@ -804,7 +810,7 @@ function createCausalDelayFeedbackPairInteractionRequest(playbackRequest) {
         integrationTolerance: playbackRequest.errorBudget.integrationTolerance,
         interactionLaw:
           playbackRequest.config.motion.pairInteractionLaw ??
-          "display_pair_attraction_v1",
+          DEFAULT_PAIR_INTERACTION_LAW,
         initialStates: ARCHITRINO_KINDS.map((kind) => {
           const condition = initialConditions[kind];
           requireObject(condition, `initialConditions.${kind}`);

@@ -4249,6 +4249,21 @@ assert(
     causalDelayPairReplayValidation.replayKind === "pair-interaction-path-integration",
   "expected causal-delay pair dynamic replay validation match"
 );
+const causalDelayInversePairRunHandle = await client.runSimulation(
+  makeCausalDelayPairInteractionRunSimulationRequest({
+    interactionLaw: "inverse_distance_pair_attraction_v1",
+    runSuffix: "inverse-distance",
+  }),
+);
+assert(causalDelayInversePairRunHandle.status.code === "ok", "expected inverse-distance pair run status ok");
+assert(
+  causalDelayInversePairRunHandle.response.summary.interactionLaw === "inverse_distance_pair_attraction_v1" &&
+    causalDelayInversePairRunHandle.response.pairInteraction.interactionLaw ===
+      "inverse_distance_pair_attraction_v1" &&
+    causalDelayInversePairRunHandle.response.pathHistory.metadata.dynamicReplay.interactionLaw ===
+      "inverse_distance_pair_attraction_v1",
+  "expected causal-delay inverse-distance pair law to round trip through the bridge"
+);
 const motionRunPathRead = await client.readStreamRange({
   streamId: "smoke-motion-run:motion-path-history",
   frameRange: { start: 0, end: 0 },
@@ -5215,18 +5230,22 @@ function makeCausalDelayMotionRunSimulationRequest() {
   });
 }
 
-function makeCausalDelayPairInteractionRunSimulationRequest() {
+function makeCausalDelayPairInteractionRunSimulationRequest({
+  interactionLaw = "display_pair_attraction_v1",
+  runSuffix = "",
+} = {}) {
   const admission = makeAdmissionRequest();
+  const suffix = runSuffix ? `-${runSuffix}` : "";
   return createSolverRunRequest({
-    requestId: "smoke-causal-delay-pair-run-request",
-    runId: "smoke-causal-delay-pair-run",
-    datasetId: "smoke-causal-delay-pair-run-dataset",
+    requestId: `smoke-causal-delay-pair-run${suffix}-request`,
+    runId: `smoke-causal-delay-pair-run${suffix}`,
+    datasetId: `smoke-causal-delay-pair-run${suffix}-dataset`,
     appId: "causal-delay-feedback",
     runKind: "pairInteraction",
     claimLevel: "interactive-preview",
     precisionPath: "auto",
     configVersion: "causal-delay-feedback-pair-run-smoke.v1",
-    configHash: "causal-delay-feedback-pair-run-smoke",
+    configHash: `causal-delay-feedback-pair-run-smoke${suffix}`,
     model: admission.model,
     envelope: admission.envelope,
     errorBudget: admission.errorBudget,
@@ -5240,7 +5259,7 @@ function makeCausalDelayPairInteractionRunSimulationRequest() {
         pairAccelerationScale: 0.18,
         softening: 0,
         integrationTolerance: 1e-12,
-        interactionLaw: "display_pair_attraction_v1",
+        interactionLaw,
         initialStates: [
           {
             pathKey: 1,
@@ -5310,7 +5329,7 @@ function makeCausalDelayPairInteractionRunSimulationRequest() {
           },
         ],
       },
-      streamId: "smoke-causal-delay-pair-run:pair-path-history",
+      streamId: `smoke-causal-delay-pair-run${suffix}:pair-path-history`,
       rowsPerChunk: 2,
       metadata: {
         precisionPath: "scaled_f64_strict",
