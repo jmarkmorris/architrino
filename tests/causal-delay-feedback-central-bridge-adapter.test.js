@@ -173,6 +173,14 @@ function createPairInteractionRunResponse(request) {
         rmsPathConstraintResidual: residualSampleCount > 0 ? 0.088 : 0,
         pathConstraintGuidanceSampleCount: guidanceSampleCount,
         pathConstraintGuidanceMode: guidanceSampleCount > 0 ? "retained_knot_hermite_boundary" : undefined,
+        pathConstraintSolverStatus: constraints.length > 0
+          ? guidanceSampleCount > 0
+            ? "guided_constraint_path"
+            : "constraint_snap_only"
+          : "unconstrained",
+        pathConstraintSolverClaim: constraints.length > 0
+          ? "diagnostic_constraint_replay_not_boundary_value_solve"
+          : undefined,
         maxPathConstraintGuidanceAcceleration: guidanceSampleCount > 0 ? 4.5 : 0,
         meanPathConstraintGuidanceAcceleration: guidanceSampleCount > 0 ? 2.25 : 0,
         rmsPathConstraintGuidanceAcceleration: guidanceSampleCount > 0 ? 3.1 : 0,
@@ -519,6 +527,8 @@ test("causal delay central bridge adapter submits retained path constraints afte
   assert.equal(dataset.maxPathConstraintResidual, 0.125);
   assert.equal(dataset.pathConstraintGuidanceSampleCount, 10);
   assert.equal(dataset.pathConstraintGuidanceMode, "retained_knot_hermite_boundary");
+  assert.equal(dataset.pathConstraintSolverStatus, "guided_constraint_path");
+  assert.equal(dataset.pathConstraintSolverClaim, "diagnostic_constraint_replay_not_boundary_value_solve");
   assert.equal(dataset.maxPathConstraintGuidanceAcceleration, 4.5);
   assert.equal(dataset.pathConstraintBoundaryResidualSampleCount, 8);
   assert.equal(dataset.maxPathConstraintBoundaryResidual, 0.25);
@@ -527,6 +537,8 @@ test("causal delay central bridge adapter submits retained path constraints afte
   assert.equal(dataset.solverSummary.pathConstraintResidualSampleCount, 8);
   assert.equal(dataset.solverSummary.pathConstraintGuidanceSampleCount, 10);
   assert.equal(dataset.solverSummary.pathConstraintGuidanceMode, "retained_knot_hermite_boundary");
+  assert.equal(dataset.solverSummary.pathConstraintSolverStatus, "guided_constraint_path");
+  assert.equal(dataset.solverSummary.pathConstraintSolverClaim, "diagnostic_constraint_replay_not_boundary_value_solve");
   assert.equal(dataset.solverSummary.pathConstraintBoundaryResidualSampleCount, 8);
   assert.equal(dataset.history.electrino.at(-1).x, finalPoint.x);
   assert.equal(dataset.history.electrino.at(-1).y, finalPoint.y);

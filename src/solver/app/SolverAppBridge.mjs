@@ -645,6 +645,11 @@ const PAIR_INTERACTION_STATE_F64_BYTES = 80;
 const PAIR_INTERACTION_PATH_CONSTRAINT_F64_BYTES = 48;
 const PAIR_INTERACTION_SUMMARY_F64_BYTES = 104;
 const PAIR_INTERACTION_PATH_CONSTRAINT_GUIDANCE_MODE = "retained_knot_hermite_boundary";
+const PAIR_INTERACTION_CONSTRAINT_SOLVER_STATUS_GUIDED = "guided_constraint_path";
+const PAIR_INTERACTION_CONSTRAINT_SOLVER_STATUS_SNAP = "constraint_snap_only";
+const PAIR_INTERACTION_CONSTRAINT_SOLVER_STATUS_UNCONSTRAINED = "unconstrained";
+const PAIR_INTERACTION_CONSTRAINT_SOLVER_CLAIM_CONSTRAINED =
+  "diagnostic_constraint_replay_not_boundary_value_solve";
 const PHASE_CLOCK_F64_BYTES = 24;
 const PHASE_AT_HIT_ROW_F64_BYTES = 104;
 const PHASE_AT_HIT_METADATA_F64_BYTES = 32;
@@ -3758,6 +3763,8 @@ function runSimulationWithModule(state, module, request, abiInfo) {
         frameCount: pair.frames.length,
         pathCount: pair.pathCount,
         interactionLaw: pair.interactionLaw,
+        pathConstraintSolverStatus: pair.summary?.pathConstraintSolverStatus,
+        pathConstraintSolverClaim: pair.summary?.pathConstraintSolverClaim,
       },
     });
     completedResponse = {
@@ -3782,6 +3789,8 @@ function runSimulationWithModule(state, module, request, abiInfo) {
         rmsPathConstraintResidual: pair.summary?.rmsPathConstraintResidual ?? 0,
         pathConstraintGuidanceSampleCount: pair.summary?.pathConstraintGuidanceSampleCount ?? 0,
         pathConstraintGuidanceMode: pair.summary?.pathConstraintGuidanceMode,
+        pathConstraintSolverStatus: pair.summary?.pathConstraintSolverStatus,
+        pathConstraintSolverClaim: pair.summary?.pathConstraintSolverClaim,
         maxPathConstraintGuidanceAcceleration: pair.summary?.maxPathConstraintGuidanceAcceleration ?? 0,
         meanPathConstraintGuidanceAcceleration: pair.summary?.meanPathConstraintGuidanceAcceleration ?? 0,
         rmsPathConstraintGuidanceAcceleration: pair.summary?.rmsPathConstraintGuidanceAcceleration ?? 0,
@@ -4014,6 +4023,10 @@ function solvePairInteractionPathF64(request, options = {}) {
   const pathConstraintGuidanceMode = normalized.pathConstraints.length > 0
     ? PAIR_INTERACTION_PATH_CONSTRAINT_GUIDANCE_MODE
     : undefined;
+  const constraintSolverMetadata = createPairInteractionConstraintSolverMetadata(
+    residualSummary.pathConstraintCount,
+    guidanceSummary.pathConstraintGuidanceSampleCount,
+  );
   const status = createStatus("ok", "ok", "pair interaction paths integrated", {
     details: {
       requestedPrecisionPath: options.requestedPrecisionPath,
@@ -4027,6 +4040,8 @@ function solvePairInteractionPathF64(request, options = {}) {
       rmsPathConstraintResidual: residualSummary.rmsPathConstraintResidual,
       pathConstraintGuidanceSampleCount: guidanceSummary.pathConstraintGuidanceSampleCount,
       pathConstraintGuidanceMode,
+      pathConstraintSolverStatus: constraintSolverMetadata.pathConstraintSolverStatus,
+      pathConstraintSolverClaim: constraintSolverMetadata.pathConstraintSolverClaim,
       maxPathConstraintGuidanceAcceleration: guidanceSummary.maxPathConstraintGuidanceAcceleration,
       meanPathConstraintGuidanceAcceleration: guidanceSummary.meanPathConstraintGuidanceAcceleration,
       rmsPathConstraintGuidanceAcceleration: guidanceSummary.rmsPathConstraintGuidanceAcceleration,
@@ -4065,6 +4080,8 @@ function solvePairInteractionPathF64(request, options = {}) {
       rmsPathConstraintResidual: residualSummary.rmsPathConstraintResidual,
       pathConstraintGuidanceSampleCount: guidanceSummary.pathConstraintGuidanceSampleCount,
       pathConstraintGuidanceMode,
+      pathConstraintSolverStatus: constraintSolverMetadata.pathConstraintSolverStatus,
+      pathConstraintSolverClaim: constraintSolverMetadata.pathConstraintSolverClaim,
       maxPathConstraintGuidanceAcceleration: guidanceSummary.maxPathConstraintGuidanceAcceleration,
       meanPathConstraintGuidanceAcceleration: guidanceSummary.meanPathConstraintGuidanceAcceleration,
       rmsPathConstraintGuidanceAcceleration: guidanceSummary.rmsPathConstraintGuidanceAcceleration,
@@ -4181,6 +4198,22 @@ function createPairConstraintGuidanceSummary() {
     maxPathConstraintGuidanceAcceleration: 0,
     meanPathConstraintGuidanceAcceleration: 0,
     rmsPathConstraintGuidanceAcceleration: 0,
+  };
+}
+
+function createPairInteractionConstraintSolverMetadata(pathConstraintCount, guidanceSampleCount) {
+  if (!Number.isFinite(pathConstraintCount) || pathConstraintCount <= 0) {
+    return {
+      pathConstraintSolverStatus: PAIR_INTERACTION_CONSTRAINT_SOLVER_STATUS_UNCONSTRAINED,
+      pathConstraintSolverClaim: undefined,
+    };
+  }
+  return {
+    pathConstraintSolverStatus:
+      Number.isFinite(guidanceSampleCount) && guidanceSampleCount > 0
+        ? PAIR_INTERACTION_CONSTRAINT_SOLVER_STATUS_GUIDED
+        : PAIR_INTERACTION_CONSTRAINT_SOLVER_STATUS_SNAP,
+    pathConstraintSolverClaim: PAIR_INTERACTION_CONSTRAINT_SOLVER_CLAIM_CONSTRAINED,
   };
 }
 
@@ -6605,6 +6638,10 @@ function integratePairInteractionMotionF64WithModule(module, request, options = 
     const pathConstraintGuidanceMode = pathConstraintCount > 0
       ? PAIR_INTERACTION_PATH_CONSTRAINT_GUIDANCE_MODE
       : undefined;
+    const constraintSolverMetadata = createPairInteractionConstraintSolverMetadata(
+      nativeSummary.pathConstraintCount,
+      nativeSummary.guidanceSampleCount,
+    );
     const pairStatus = createStatus("ok", "ok", "native pair interaction paths integrated", {
       details: {
         requestedPrecisionPath: options.requestedPrecisionPath,
@@ -6619,6 +6656,8 @@ function integratePairInteractionMotionF64WithModule(module, request, options = 
         rmsPathConstraintResidual: nativeSummary.rmsConstraintResidual,
         pathConstraintGuidanceSampleCount: nativeSummary.guidanceSampleCount,
         pathConstraintGuidanceMode,
+        pathConstraintSolverStatus: constraintSolverMetadata.pathConstraintSolverStatus,
+        pathConstraintSolverClaim: constraintSolverMetadata.pathConstraintSolverClaim,
         maxPathConstraintGuidanceAcceleration: nativeSummary.maxGuidanceAcceleration,
         meanPathConstraintGuidanceAcceleration: nativeSummary.meanGuidanceAcceleration,
         rmsPathConstraintGuidanceAcceleration: nativeSummary.rmsGuidanceAcceleration,
@@ -6657,6 +6696,8 @@ function integratePairInteractionMotionF64WithModule(module, request, options = 
         rmsPathConstraintResidual: nativeSummary.rmsConstraintResidual,
         pathConstraintGuidanceSampleCount: nativeSummary.guidanceSampleCount,
         pathConstraintGuidanceMode,
+        pathConstraintSolverStatus: constraintSolverMetadata.pathConstraintSolverStatus,
+        pathConstraintSolverClaim: constraintSolverMetadata.pathConstraintSolverClaim,
         maxPathConstraintGuidanceAcceleration: nativeSummary.maxGuidanceAcceleration,
         meanPathConstraintGuidanceAcceleration: nativeSummary.meanGuidanceAcceleration,
         rmsPathConstraintGuidanceAcceleration: nativeSummary.rmsGuidanceAcceleration,

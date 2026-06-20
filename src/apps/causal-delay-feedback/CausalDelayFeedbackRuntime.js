@@ -562,6 +562,12 @@ class CausalDelayFeedbackRuntime {
         const guidanceMode =
           this.dataset?.pathConstraintGuidanceMode ??
           this.dataset?.solverSummary?.pathConstraintGuidanceMode;
+        const constraintSolverStatus =
+          this.dataset?.pathConstraintSolverStatus ??
+          this.dataset?.solverSummary?.pathConstraintSolverStatus;
+        const constraintSolverClaim =
+          this.dataset?.pathConstraintSolverClaim ??
+          this.dataset?.solverSummary?.pathConstraintSolverClaim;
         const maxGuidanceAcceleration = Number(
           this.dataset?.maxPathConstraintGuidanceAcceleration ??
             this.dataset?.solverSummary?.maxPathConstraintGuidanceAcceleration
@@ -591,6 +597,9 @@ class CausalDelayFeedbackRuntime {
               guidanceMode ? ` mode=${guidanceMode}` : ""
             }${Number.isFinite(maxGuidanceAcceleration) ? ` maxA=${formatCompactNumber(maxGuidanceAcceleration)}` : ""}`
           : "";
+        const constraintSolverDetail = constraintSolverStatus
+          ? ` constraint=${constraintSolverStatus}${constraintSolverClaim ? ` claim=${constraintSolverClaim}` : ""}`
+          : "";
         const guidanceBoundary = guidanceDetail
           ? guidanceMode === "retained_knot_hermite_boundary"
             ? " Retained path constraints used retained-knot Hermite boundary guidance; this is not yet the final physical boundary-value path solve."
@@ -600,7 +609,7 @@ class CausalDelayFeedbackRuntime {
           state: guidanceDetail ? "bridge-guided" : "bridge",
           label: guidanceDetail ? "solver guided replay" : "solver pair replay",
           help:
-            `Showing central solver bridge replay from one mutual pair-interaction path run${stepDetail}${lawDetail}${pathDetail}${residualDetail}${boundaryDetail}${guidanceDetail}. ` +
+            `Showing central solver bridge replay from one mutual pair-interaction path run${stepDetail}${lawDetail}${pathDetail}${residualDetail}${boundaryDetail}${guidanceDetail}${constraintSolverDetail}. ` +
             `This replaces the segmented one-body seed replay for the default canvas path.${guidanceBoundary}`,
         };
       }
@@ -2762,6 +2771,8 @@ class CausalDelayFeedbackRuntime {
       this.dataset?.pathConstraintGuidanceSampleCount ?? summary.pathConstraintGuidanceSampleCount,
     );
     const guidanceMode = this.dataset?.pathConstraintGuidanceMode ?? summary.pathConstraintGuidanceMode;
+    const constraintSolverStatus = this.dataset?.pathConstraintSolverStatus ?? summary.pathConstraintSolverStatus;
+    const constraintSolverClaim = this.dataset?.pathConstraintSolverClaim ?? summary.pathConstraintSolverClaim;
     const maxGuidanceAcceleration = Number(
       this.dataset?.maxPathConstraintGuidanceAcceleration ?? summary.maxPathConstraintGuidanceAcceleration,
     );
@@ -2781,6 +2792,12 @@ class CausalDelayFeedbackRuntime {
       if (Number.isFinite(maxGuidanceAcceleration)) {
         details.push(`maxA=${formatCompactNumber(maxGuidanceAcceleration)}`);
       }
+    }
+    if (constraintSolverStatus) {
+      details.push(`constraint=${formatCompactLabel(constraintSolverStatus)}`);
+    }
+    if (constraintSolverClaim) {
+      details.push(`claim=${formatCompactLabel(constraintSolverClaim)}`);
     }
     if (Number.isFinite(boundarySampleCount) && boundarySampleCount > 0) {
       details.push(`boundary=${boundarySampleCount}`);

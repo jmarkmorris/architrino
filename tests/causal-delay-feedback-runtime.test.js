@@ -614,6 +614,8 @@ test("causal delay feedback aggregate summary surfaces compact pair solver diagn
     maxPathConstraintResidual: 0.004,
     pathConstraintGuidanceSampleCount: 12,
     pathConstraintGuidanceMode: "retained_knot_hermite_boundary",
+    pathConstraintSolverStatus: "guided_constraint_path",
+    pathConstraintSolverClaim: "diagnostic_constraint_replay_not_boundary_value_solve",
     maxPathConstraintGuidanceAcceleration: 48.25,
     pathConstraintBoundaryResidualSampleCount: 10,
     maxPathConstraintBoundaryResidual: 0.018,
@@ -625,6 +627,8 @@ test("causal delay feedback aggregate summary surfaces compact pair solver diagn
   assert(readoutText.includes("guide=retained_knot_hermite_boundary"));
   assert(readoutText.includes("guideRows=12"));
   assert(readoutText.includes("maxA=48.25"));
+  assert(readoutText.includes("constraint=guided_constraint_path"));
+  assert(readoutText.includes("claim=diagnostic_constraint_replay_not_boundary_value_solve"));
   assert(readoutText.includes("boundary=10"));
   assert(readoutText.includes("maxB=0.018"));
   assert(readoutText.includes("solverResid=0.004"));
@@ -912,6 +916,8 @@ test("causal delay feedback status distinguishes constraint-guided pair replay",
     maxPathConstraintBoundaryResidual: 0.018,
     pathConstraintGuidanceSampleCount: 12,
     pathConstraintGuidanceMode: "retained_knot_hermite_boundary",
+    pathConstraintSolverStatus: "guided_constraint_path",
+    pathConstraintSolverClaim: "diagnostic_constraint_replay_not_boundary_value_solve",
     maxPathConstraintGuidanceAcceleration: 48.25,
   };
   runtime.dom = { replayStatus };
@@ -925,6 +931,8 @@ test("causal delay feedback status distinguishes constraint-guided pair replay",
   assert.match(replayStatus.title, /guidance=12/);
   assert.match(replayStatus.title, /mode=retained_knot_hermite_boundary/);
   assert.match(replayStatus.title, /maxA=48\.25/);
+  assert.match(replayStatus.title, /constraint=guided_constraint_path/);
+  assert.match(replayStatus.title, /claim=diagnostic_constraint_replay_not_boundary_value_solve/);
   assert.match(replayStatus.title, /retained-knot Hermite boundary guidance/);
   assert.match(replayStatus.title, /not yet the final physical boundary-value path solve/);
 });

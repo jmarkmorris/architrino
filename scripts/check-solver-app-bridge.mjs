@@ -4190,6 +4190,9 @@ assert(
     causalDelayPairRunHandle.response.summary.maxPathConstraintResidual > 0 &&
     causalDelayPairRunHandle.response.summary.pathConstraintGuidanceSampleCount > 0 &&
     causalDelayPairRunHandle.response.summary.pathConstraintGuidanceMode === "retained_knot_hermite_boundary" &&
+    causalDelayPairRunHandle.response.summary.pathConstraintSolverStatus === "guided_constraint_path" &&
+    causalDelayPairRunHandle.response.summary.pathConstraintSolverClaim ===
+      "diagnostic_constraint_replay_not_boundary_value_solve" &&
     causalDelayPairRunHandle.response.summary.maxPathConstraintGuidanceAcceleration > 0 &&
     causalDelayPairRunHandle.response.summary.pathConstraintBoundaryResidualSampleCount === 4 &&
     causalDelayPairRunHandle.response.summary.maxPathConstraintBoundaryResidual > 0 &&
