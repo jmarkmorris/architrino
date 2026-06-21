@@ -541,6 +541,16 @@ final class ReaderViewModel: ObservableObject {
         saveReadingState()
     }
 
+    func persistReaderSessionStateNow() {
+        fontScalePersistenceTask?.cancel()
+        fontScalePersistenceTask = nil
+        defaults.set(fontScale, forKey: fontScaleKey)
+        defaults.set(theme.rawValue, forKey: themeKey)
+        defaults.set(lineSpacing.rawValue, forKey: lineSpacingKey)
+        defaults.set(marginWidth.rawValue, forKey: marginWidthKey)
+        persistReadingStateNow()
+    }
+
     private func persistReadingStateSoon() {
         readingStatePersistenceTask?.cancel()
         readingStatePersistenceTask = Task { [weak self] in

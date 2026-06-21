@@ -78,6 +78,7 @@ struct PairInteractionRequest {
   double pairAccelerationScale = 0.18;
   double softening = 0.0;
   double integrationTolerance = 0.0;
+  double signalSpeed = 0.0;
   std::uint32_t interactionLaw = 1;
   std::uint32_t integrationMethod = 1;
   std::uint64_t boundaryRelaxationIterationCount = 8;
@@ -96,6 +97,10 @@ struct PairInteractionSampleResult {
   double maxPathConstraintPositionResidual = 0.0;
   double meanPathConstraintPositionResidual = 0.0;
   double rmsPathConstraintPositionResidual = 0.0;
+  std::uint64_t pathConstraintInitialVelocityResidualSampleCount = 0;
+  double maxPathConstraintInitialVelocityResidual = 0.0;
+  double meanPathConstraintInitialVelocityResidual = 0.0;
+  double rmsPathConstraintInitialVelocityResidual = 0.0;
   std::uint64_t pathConstraintResidualSampleCount = 0;
   double maxPathConstraintResidual = 0.0;
   double meanPathConstraintResidual = 0.0;
@@ -108,6 +113,7 @@ struct PairInteractionSampleResult {
   double maxPathConstraintBoundaryResidual = 0.0;
   double meanPathConstraintBoundaryResidual = 0.0;
   double rmsPathConstraintBoundaryResidual = 0.0;
+  std::uint32_t pathConstraintBoundaryResidualMode = 1;
   std::uint64_t pathConstraintBoundaryRelaxationResidualSampleCount = 0;
   double maxPathConstraintBoundaryRelaxationResidualBefore = 0.0;
   double maxPathConstraintBoundaryRelaxationResidualAfter = 0.0;

@@ -140,6 +140,7 @@ enum ReaderFeedbackIssue {
 struct ReaderPageFeedbackOverlay: View {
     let context: ReaderFeedbackContext
     let theme: ReaderTheme
+    let onSubmit: () -> Void
     let onClose: () -> Void
     private let feedbackBaseImage: UIImage
 
@@ -148,13 +149,20 @@ struct ReaderPageFeedbackOverlay: View {
     @State private var sharePayload: ReaderFeedbackSharePayload?
     @State private var safariDestination: ReaderSafariDestination?
 
-    init(baseImage: UIImage, context: ReaderFeedbackContext, theme: ReaderTheme, onClose: @escaping () -> Void) {
+    init(
+        baseImage: UIImage,
+        context: ReaderFeedbackContext,
+        theme: ReaderTheme,
+        onSubmit: @escaping () -> Void,
+        onClose: @escaping () -> Void
+    ) {
         self.feedbackBaseImage = ReaderFeedbackImageRenderer.makeFeedbackBaseImage(
             from: baseImage,
             theme: theme
         )
         self.context = context
         self.theme = theme
+        self.onSubmit = onSubmit
         self.onClose = onClose
     }
 
@@ -282,6 +290,7 @@ struct ReaderPageFeedbackOverlay: View {
     }
 
     private func openGitHubIssue() {
+        onSubmit()
         UIPasteboard.general.image = currentFeedbackImage()
         safariDestination = ReaderSafariDestination(url: context.githubIssueURL)
     }

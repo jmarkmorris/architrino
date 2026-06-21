@@ -47,6 +47,12 @@ const packageArtifacts = [
     packageTarget: "browser-app-runtime",
   },
   {
+    role: "absolute-history-root-runtime",
+    kind: "javascript-module",
+    path: "src/solver/app/AbsoluteHistoryRootRuntime.mjs",
+    packageTarget: "browser-app-runtime",
+  },
+  {
     role: "app-adapters-runtime",
     kind: "javascript-module",
     path: "src/solver/app/SolverAppAdapters.mjs",

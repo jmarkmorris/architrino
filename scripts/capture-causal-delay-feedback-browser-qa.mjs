@@ -24,6 +24,9 @@ const DEFAULT_BROWSER_PATHS = [
   "chromium-browser",
   "google-chrome",
 ].filter(Boolean);
+const CONVERGED_BOUNDARY_EVIDENCE_QUERY =
+  "&pathConstraintInitialVelocityResidualTolerance=0.000000001" +
+  "&pathConstraintBoundaryResidualTolerance=1000000000";
 
 const PROOFS = Object.freeze([
   {
@@ -32,7 +35,9 @@ const PROOFS = Object.freeze([
     width: 1920,
     height: 1080,
     deviceScaleFactor: 1,
-    query: "preset=accepted_tight_bright&canvas=architrinoPurple",
+    query:
+      "preset=accepted_tight_bright&canvas=architrinoPurple" +
+      CONVERGED_BOUNDARY_EVIDENCE_QUERY,
     replayTime: 0.2,
     wakeLabel: "blue 2 -> red 3",
     requiredDatasetSource: "central_solver_bridge_replay",
@@ -65,7 +70,9 @@ const PROOFS = Object.freeze([
     width: 1920,
     height: 1080,
     deviceScaleFactor: 1,
-    query: "preset=accepted_tight_bright&canvas=architrinoPurple",
+    query:
+      "preset=accepted_tight_bright&canvas=architrinoPurple" +
+      CONVERGED_BOUNDARY_EVIDENCE_QUERY,
     replayTime: 0.26,
     wakeLabel: "blue 2 -> red 3",
     requiredDatasetSource: "central_solver_bridge_replay",
@@ -77,12 +84,16 @@ const PROOFS = Object.freeze([
     requiredPathConstraintPhysicalBoundarySolverStatus: "physical_boundary_solver_pending",
     requiredPathConstraintPhysicalBoundarySolverClaim:
       "retained_knot_guidance_not_physical_boundary_value_solve",
+    requiredPathConstraintPhysicalBoundarySolverBlockingReason:
+      "physical_boundary_solver_not_implemented",
     requiredBoundaryRelaxationIterationCount: [64, 256],
     requiredBoundaryRelaxationTolerance: [10, 1],
     requiredMaxBoundaryRelaxationResidualAfter: 1,
     requiredMaxBoundaryRelaxationResidualRatio: 0.02,
     requiredBoundaryRelaxationResidualEvidenceStatus: "aggregate_non_worsening",
     requiredRetainedPositionEvidence: true,
+    requiredInitialVelocityEvidence: true,
+    requiredBoundaryResidualEvidence: true,
     settingsOpen: false,
     prepareAction: {
       type: "retained-point-drag",
@@ -100,7 +111,8 @@ const PROOFS = Object.freeze([
     query:
       "preset=accepted_tight_bright&canvas=architrinoPurple" +
       "&pathConstraintBoundaryRelaxationIterationCount=64" +
-      "&pathConstraintBoundaryRelaxationTolerance=10",
+      "&pathConstraintBoundaryRelaxationTolerance=10" +
+      CONVERGED_BOUNDARY_EVIDENCE_QUERY,
     replayTime: 0.26,
     wakeLabel: "blue 2 -> red 3",
     requiredDatasetSource: "central_solver_bridge_replay",
@@ -112,6 +124,8 @@ const PROOFS = Object.freeze([
     requiredPathConstraintPhysicalBoundarySolverStatus: "physical_boundary_solver_pending",
     requiredPathConstraintPhysicalBoundarySolverClaim:
       "retained_knot_guidance_not_physical_boundary_value_solve",
+    requiredPathConstraintPhysicalBoundarySolverBlockingReason:
+      "physical_boundary_solver_not_implemented",
     requiredAdaptiveBoundaryRetry: false,
     requiredBoundaryRelaxationIterationCount: 64,
     requiredBoundaryRelaxationTolerance: 10,
@@ -119,6 +133,72 @@ const PROOFS = Object.freeze([
     requiredMaxBoundaryRelaxationResidualRatio: 0.02,
     requiredBoundaryRelaxationResidualEvidenceStatus: "aggregate_non_worsening",
     requiredRetainedPositionEvidence: true,
+    requiredInitialVelocityEvidence: true,
+    requiredBoundaryResidualEvidence: true,
+    settingsOpen: false,
+    prepareAction: {
+      type: "retained-point-drag",
+      kind: "electrino",
+      depth: 3,
+      delta: { x: 46, y: -34 },
+    },
+  },
+  {
+    id: "central-boundary-seeded-retained-edit",
+    fileName: "central-boundary-seeded-retained-edit-purple-1920x1080.png",
+    width: 1920,
+    height: 1080,
+    deviceScaleFactor: 1,
+    query:
+      "preset=accepted_tight_bright&canvas=architrinoPurple" +
+      "&pathConstraintBoundaryRelaxationIterationCount=1" +
+      "&pathConstraintBoundaryRelaxationTolerance=0.000001",
+    replayTime: 0.2,
+    wakeLabel: "blue 2 -> red 3",
+    requiredDatasetSource: "central_solver_bridge_replay",
+    requiredSolverIntegrationPath: "central_solver_bridge_replay_adapter",
+    requiredSolverReplayMode: "pairInteraction",
+    requiredReplayStatus: "solver boundary-seed replay",
+    requiredPathConstraintSolverStatus: "boundary_seeded_constraint_path",
+    requiredPathConstraintSolverClaim: "diagnostic_constraint_replay_not_boundary_value_solve",
+    requiredPathConstraintPhysicalBoundarySolverStatus: "physical_boundary_solver_pending",
+    requiredPathConstraintPhysicalBoundarySolverClaim:
+      "retained_knot_guidance_not_physical_boundary_value_solve",
+    requiredPathConstraintPhysicalBoundarySolverBlockingReason:
+      "finite_difference_boundary_relaxation_not_converged",
+    requiredAdaptiveBoundaryRetry: false,
+    requiredBoundaryRelaxationIterationCount: 1,
+    requiredBoundaryRelaxationTolerance: 0.000001,
+    requiredBoundaryRelaxationResidualEvidenceStatus: "aggregate_non_worsening",
+    requiredRetainedPositionEvidence: true,
+    settingsOpen: false,
+    prepareAction: {
+      type: "retained-point-drag",
+      kind: "electrino",
+      depth: 3,
+      delta: { x: 46, y: -34 },
+    },
+  },
+  {
+    id: "central-signal-speed-retained-edit",
+    fileName: "central-signal-speed-retained-edit-purple-1920x1080.png",
+    width: 1920,
+    height: 1080,
+    deviceScaleFactor: 1,
+    query:
+      "preset=accepted_tight_bright&canvas=architrinoPurple" +
+      "&pairInteractionSignalSpeed=8000" +
+      "&pathConstraintBoundaryRelaxationIterationCount=8" +
+      "&pathConstraintBoundaryRelaxationTolerance=0.000000000001",
+    replayTime: 0.2,
+    wakeLabel: "blue 2 -> red 3",
+    requiredDatasetSource: "central_solver_bridge_replay",
+    requiredSolverIntegrationPath: "central_solver_bridge_replay_adapter",
+    requiredSolverReplayMode: "pairInteraction",
+    requiredExecutionPath: "native_c_abi",
+    requiredSignalSpeed: 8000,
+    requiredBoundaryRelaxationResidualMode: "causal_delay_pair_law",
+    requiredBoundaryResidualMode: "causal_delay_pair_law",
     settingsOpen: false,
     prepareAction: {
       type: "retained-point-drag",
@@ -133,7 +213,9 @@ const PROOFS = Object.freeze([
     width: 1920,
     height: 1080,
     deviceScaleFactor: 1,
-    query: "preset=accepted_tight_bright&canvas=architrinoPurple",
+    query:
+      "preset=accepted_tight_bright&canvas=architrinoPurple" +
+      CONVERGED_BOUNDARY_EVIDENCE_QUERY,
     replayTime: 0.26,
     wakeLabel: "blue 2 -> red 3",
     requiredDatasetSource: "central_solver_bridge_replay",
@@ -145,12 +227,16 @@ const PROOFS = Object.freeze([
     requiredPathConstraintPhysicalBoundarySolverStatus: "physical_boundary_solver_pending",
     requiredPathConstraintPhysicalBoundarySolverClaim:
       "retained_knot_guidance_not_physical_boundary_value_solve",
+    requiredPathConstraintPhysicalBoundarySolverBlockingReason:
+      "physical_boundary_solver_not_implemented",
     requiredBoundaryRelaxationIterationCount: [64, 256],
     requiredBoundaryRelaxationTolerance: [10, 1],
     requiredMaxBoundaryRelaxationResidualAfter: 1,
     requiredMaxBoundaryRelaxationResidualRatio: 0.02,
     requiredBoundaryRelaxationResidualEvidenceStatus: "aggregate_non_worsening",
     requiredRetainedPositionEvidence: true,
+    requiredInitialVelocityEvidence: true,
+    requiredBoundaryResidualEvidence: true,
     settingsOpen: false,
     prepareAction: {
       type: "retained-point-drag",
@@ -166,7 +252,9 @@ const PROOFS = Object.freeze([
     width: 1920,
     height: 1080,
     deviceScaleFactor: 1,
-    query: "preset=accepted_tight_bright&canvas=architrinoPurple",
+    query:
+      "preset=accepted_tight_bright&canvas=architrinoPurple" +
+      CONVERGED_BOUNDARY_EVIDENCE_QUERY,
     replayTime: 0.91,
     wakeLabel: "red 5 -> blue 6",
     requiredDatasetSource: "central_solver_bridge_replay",
@@ -178,12 +266,16 @@ const PROOFS = Object.freeze([
     requiredPathConstraintPhysicalBoundarySolverStatus: "physical_boundary_solver_pending",
     requiredPathConstraintPhysicalBoundarySolverClaim:
       "retained_knot_guidance_not_physical_boundary_value_solve",
+    requiredPathConstraintPhysicalBoundarySolverBlockingReason:
+      "physical_boundary_solver_not_implemented",
     requiredBoundaryRelaxationIterationCount: [64, 256],
     requiredBoundaryRelaxationTolerance: [10, 1],
     requiredMaxBoundaryRelaxationResidualAfter: 1,
     requiredMaxBoundaryRelaxationResidualRatio: 0.02,
     requiredBoundaryRelaxationResidualEvidenceStatus: "aggregate_non_worsening",
     requiredRetainedPositionEvidence: true,
+    requiredInitialVelocityEvidence: true,
+    requiredBoundaryResidualEvidence: true,
     settingsOpen: false,
     prepareAction: {
       type: "retained-point-drag",
@@ -200,7 +292,9 @@ const PROOFS = Object.freeze([
     width: 1920,
     height: 1080,
     deviceScaleFactor: 1,
-    query: "preset=accepted_tight_bright&canvas=architrinoPurple",
+    query:
+      "preset=accepted_tight_bright&canvas=architrinoPurple" +
+      CONVERGED_BOUNDARY_EVIDENCE_QUERY,
     replayTime: 0.52,
     wakeLabel: "blue 3 -> red 4",
     requiredDatasetSource: "central_solver_bridge_replay",
@@ -212,12 +306,16 @@ const PROOFS = Object.freeze([
     requiredPathConstraintPhysicalBoundarySolverStatus: "physical_boundary_solver_pending",
     requiredPathConstraintPhysicalBoundarySolverClaim:
       "retained_knot_guidance_not_physical_boundary_value_solve",
+    requiredPathConstraintPhysicalBoundarySolverBlockingReason:
+      "physical_boundary_solver_not_implemented",
     requiredBoundaryRelaxationIterationCount: [64, 256],
     requiredBoundaryRelaxationTolerance: [10, 1],
     requiredMaxBoundaryRelaxationResidualAfter: 1,
     requiredMaxBoundaryRelaxationResidualRatio: 0.02,
     requiredBoundaryRelaxationResidualEvidenceStatus: "aggregate_non_worsening",
     requiredRetainedPositionEvidence: true,
+    requiredInitialVelocityEvidence: true,
+    requiredBoundaryResidualEvidence: true,
     settingsOpen: false,
     prepareAction: {
       type: "context-reception-point-insert",
@@ -283,6 +381,7 @@ if (args.unknown.length > 0) {
   console.error(`Unknown argument(s): ${args.unknown.join(", ")}`);
   printUsage(2);
 }
+validateProofConfigurations(PROOFS);
 
 const outputDir = path.resolve(REPO_ROOT, args.outputDir ?? DEFAULT_OUTPUT_DIR);
 const host = args.host ?? DEFAULT_HOST;
@@ -374,6 +473,31 @@ function parseArgs(argv) {
     }
   }
   return parsed;
+}
+
+function validateProofConfigurations(proofs) {
+  const errors = [];
+  for (const proof of proofs) {
+    const query = new URLSearchParams(proof.query);
+    if (
+      proof.requiredInitialVelocityEvidence === true &&
+      !(
+        query.has("pathConstraintInitialVelocityResidualTolerance") ||
+        query.has("initialVelocityResidualTolerance")
+      )
+    ) {
+      errors.push(`${proof.id} requires initial-velocity evidence without an initial-velocity tolerance query`);
+    }
+    if (
+      proof.requiredBoundaryResidualEvidence === true &&
+      !(query.has("pathConstraintBoundaryResidualTolerance") || query.has("boundaryResidualTolerance"))
+    ) {
+      errors.push(`${proof.id} requires boundary-residual evidence without a boundary-residual tolerance query`);
+    }
+  }
+  if (errors.length > 0) {
+    throw new Error(`Invalid proof configuration:\n- ${errors.join("\n- ")}`);
+  }
 }
 
 function findBrowserPath() {
@@ -775,6 +899,81 @@ function createPrepareProofExpression(proof) {
         status: runtime.dom.replayStatus.textContent,
       };
     }
+    const requiredExecutionPath = ${JSON.stringify(proof.requiredExecutionPath ?? "")};
+    const executionPath =
+      runtime.dataset?.executionPath ??
+        runtime.dataset?.solverSummary?.executionPath;
+    if (requiredExecutionPath && executionPath !== requiredExecutionPath) {
+      return {
+        ok: false,
+        reason: "execution_path_mismatch",
+        expected: requiredExecutionPath,
+        actual: executionPath,
+        solverReplayMode,
+        solverIntegrationPath,
+        source,
+        status: runtime.dom.replayStatus.textContent,
+      };
+    }
+    const requiredSignalSpeed =
+      ${proof.requiredSignalSpeed == null ? "undefined" : JSON.stringify(proof.requiredSignalSpeed)};
+    const signalSpeed = Number(
+      runtime.dataset?.signalSpeed ??
+        runtime.dataset?.solverSummary?.signalSpeed
+    );
+    if (
+      Number.isFinite(requiredSignalSpeed) &&
+      (
+        !Number.isFinite(signalSpeed) ||
+        Math.abs(signalSpeed - requiredSignalSpeed) > 1e-9
+      )
+    ) {
+      return {
+        ok: false,
+        reason: "signal_speed_mismatch",
+        expected: requiredSignalSpeed,
+        actual: signalSpeed,
+        executionPath,
+        source,
+        status: runtime.dom.replayStatus.textContent,
+      };
+    }
+    const requiredBoundaryRelaxationResidualMode =
+      ${JSON.stringify(proof.requiredBoundaryRelaxationResidualMode ?? "")};
+    const boundaryRelaxationResidualMode =
+      runtime.dataset?.pathConstraintBoundaryRelaxationResidualMode ??
+        runtime.dataset?.solverSummary?.pathConstraintBoundaryRelaxationResidualMode;
+    if (
+      requiredBoundaryRelaxationResidualMode &&
+      boundaryRelaxationResidualMode !== requiredBoundaryRelaxationResidualMode
+    ) {
+      return {
+        ok: false,
+        reason: "boundary_relaxation_residual_mode_mismatch",
+        expected: requiredBoundaryRelaxationResidualMode,
+        actual: boundaryRelaxationResidualMode,
+        signalSpeed,
+        executionPath,
+        source,
+        status: runtime.dom.replayStatus.textContent,
+      };
+    }
+    const requiredBoundaryResidualMode = ${JSON.stringify(proof.requiredBoundaryResidualMode ?? "")};
+    const boundaryResidualMode =
+      runtime.dataset?.pathConstraintBoundaryResidualMode ??
+        runtime.dataset?.solverSummary?.pathConstraintBoundaryResidualMode;
+    if (requiredBoundaryResidualMode && boundaryResidualMode !== requiredBoundaryResidualMode) {
+      return {
+        ok: false,
+        reason: "boundary_residual_mode_mismatch",
+        expected: requiredBoundaryResidualMode,
+        actual: boundaryResidualMode,
+        signalSpeed,
+        executionPath,
+        source,
+        status: runtime.dom.replayStatus.textContent,
+      };
+    }
     const requiredReplayStatus = ${JSON.stringify(proof.requiredReplayStatus ?? "")};
     if (requiredReplayStatus && runtime.dom.replayStatus.textContent !== requiredReplayStatus) {
       return {
@@ -870,6 +1069,25 @@ function createPrepareProofExpression(proof) {
         reason: "path_constraint_physical_boundary_solver_claim_mismatch",
         expected: requiredPathConstraintPhysicalBoundarySolverClaim,
         actual: pathConstraintPhysicalBoundarySolverClaim,
+        source,
+        status: runtime.dom.replayStatus.textContent,
+      };
+    }
+    const requiredPathConstraintPhysicalBoundarySolverBlockingReason =
+      ${JSON.stringify(proof.requiredPathConstraintPhysicalBoundarySolverBlockingReason ?? "")};
+    const pathConstraintPhysicalBoundarySolverBlockingReason =
+      runtime.dataset?.pathConstraintPhysicalBoundarySolverBlockingReason ??
+      runtime.dataset?.solverSummary?.pathConstraintPhysicalBoundarySolverBlockingReason;
+    if (
+      requiredPathConstraintPhysicalBoundarySolverBlockingReason &&
+      pathConstraintPhysicalBoundarySolverBlockingReason !==
+        requiredPathConstraintPhysicalBoundarySolverBlockingReason
+    ) {
+      return {
+        ok: false,
+        reason: "path_constraint_physical_boundary_solver_blocking_reason_mismatch",
+        expected: requiredPathConstraintPhysicalBoundarySolverBlockingReason,
+        actual: pathConstraintPhysicalBoundarySolverBlockingReason,
         source,
         status: runtime.dom.replayStatus.textContent,
       };
@@ -1088,6 +1306,116 @@ function createPrepareProofExpression(proof) {
         };
       }
     }
+    if (${proof.requiredInitialVelocityEvidence === true ? "true" : "false"}) {
+      const initialVelocityResidualSampleCount = Number(
+        runtime.dataset?.pathConstraintInitialVelocityResidualSampleCount ??
+          runtime.dataset?.solverSummary?.pathConstraintInitialVelocityResidualSampleCount
+      );
+      const initialVelocityResidualStatus =
+        runtime.dataset?.pathConstraintInitialVelocityResidualStatus ??
+        runtime.dataset?.solverSummary?.pathConstraintInitialVelocityResidualStatus;
+      const initialVelocityResidualTolerance = Number(
+        runtime.dataset?.pathConstraintInitialVelocityResidualTolerance ??
+          runtime.dataset?.solverSummary?.pathConstraintInitialVelocityResidualTolerance
+      );
+      const maxInitialVelocityResidual = Number(
+        runtime.dataset?.maxPathConstraintInitialVelocityResidual ??
+          runtime.dataset?.solverSummary?.maxPathConstraintInitialVelocityResidual
+      );
+      const effectiveInitialVelocityResidualTolerance = Number.isFinite(initialVelocityResidualTolerance)
+        ? initialVelocityResidualTolerance
+        : 1e-9;
+      const sourceChipHasRows = sourceChipTitle.includes(
+        \`initVelRows=\${initialVelocityResidualSampleCount}\`
+      );
+      const sourceChipHasAcceptedStatus = sourceChipTitle.includes("initVelStatus=within_tolerance");
+      if (
+        !Number.isFinite(initialVelocityResidualSampleCount) ||
+        initialVelocityResidualSampleCount < 2 ||
+        initialVelocityResidualStatus !== "within_tolerance" ||
+        !Number.isFinite(maxInitialVelocityResidual) ||
+        maxInitialVelocityResidual > effectiveInitialVelocityResidualTolerance ||
+        !sourceChipHasRows ||
+        !sourceChipHasAcceptedStatus ||
+        sourceChipTitle.includes("initVelStatus=unchecked")
+      ) {
+        return {
+          ok: false,
+          reason: "initial_velocity_evidence_missing",
+          expected: {
+            minimumSampleCount: 2,
+            status: "within_tolerance",
+            maximumResidual: effectiveInitialVelocityResidualTolerance,
+            sourceChipRows: \`initVelRows=\${initialVelocityResidualSampleCount}\`,
+            sourceChipStatus: "initVelStatus=within_tolerance",
+          },
+          actual: {
+            initialVelocityResidualSampleCount,
+            initialVelocityResidualStatus,
+            initialVelocityResidualTolerance,
+            maxInitialVelocityResidual,
+            sourceChipTitle,
+          },
+          source,
+          status: runtime.dom.replayStatus.textContent,
+        };
+      }
+    }
+    if (${proof.requiredBoundaryResidualEvidence === true ? "true" : "false"}) {
+      const boundaryResidualSampleCount = Number(
+        runtime.dataset?.pathConstraintBoundaryResidualSampleCount ??
+          runtime.dataset?.solverSummary?.pathConstraintBoundaryResidualSampleCount
+      );
+      const boundaryResidualStatus =
+        runtime.dataset?.pathConstraintBoundaryResidualStatus ??
+        runtime.dataset?.solverSummary?.pathConstraintBoundaryResidualStatus;
+      const boundaryResidualTolerance = Number(
+        runtime.dataset?.pathConstraintBoundaryResidualTolerance ??
+          runtime.dataset?.solverSummary?.pathConstraintBoundaryResidualTolerance
+      );
+      const maxBoundaryResidual = Number(
+        runtime.dataset?.maxPathConstraintBoundaryResidual ??
+          runtime.dataset?.solverSummary?.maxPathConstraintBoundaryResidual
+      );
+      const effectiveBoundaryResidualTolerance = Number.isFinite(boundaryResidualTolerance)
+        ? boundaryResidualTolerance
+        : Number.POSITIVE_INFINITY;
+      const sourceChipHasRows = sourceChipTitle.includes(\`boundary=\${boundaryResidualSampleCount}\`);
+      const sourceChipHasAcceptedStatus = sourceChipTitle.includes("bStatus=within_tolerance");
+      if (
+        !Number.isFinite(boundaryResidualSampleCount) ||
+        boundaryResidualSampleCount <= 0 ||
+        boundaryResidualStatus !== "within_tolerance" ||
+        !Number.isFinite(maxBoundaryResidual) ||
+        maxBoundaryResidual > effectiveBoundaryResidualTolerance ||
+        !Number.isFinite(boundaryResidualTolerance) ||
+        !sourceChipHasRows ||
+        !sourceChipHasAcceptedStatus ||
+        sourceChipTitle.includes("bStatus=unchecked")
+      ) {
+        return {
+          ok: false,
+          reason: "boundary_residual_evidence_missing",
+          expected: {
+            minimumSampleCount: 1,
+            status: "within_tolerance",
+            maximumResidual: effectiveBoundaryResidualTolerance,
+            finiteTolerance: true,
+            sourceChipRows: \`boundary=\${boundaryResidualSampleCount}\`,
+            sourceChipStatus: "bStatus=within_tolerance",
+          },
+          actual: {
+            boundaryResidualSampleCount,
+            boundaryResidualStatus,
+            boundaryResidualTolerance,
+            maxBoundaryResidual,
+            sourceChipTitle,
+          },
+          source,
+          status: runtime.dom.replayStatus.textContent,
+        };
+      }
+    }
     if (${proof.requiredTurnbackPaths === true ? "true" : "false"}) {
       const getPoint = (kind, depth) => runtime.dataset.history?.[kind]?.find(
         (point) => Number(point.depth) === Number(depth)
@@ -1151,6 +1479,7 @@ function createPrepareProofExpression(proof) {
       pathConstraintSolverClaim,
       pathConstraintPhysicalBoundarySolverStatus,
       pathConstraintPhysicalBoundarySolverClaim,
+      pathConstraintPhysicalBoundarySolverBlockingReason,
       maxBoundaryRelaxationResidualAfter,
       boundaryRelaxationResidualRatio,
       pathConstraintPositionResidualSampleCount:

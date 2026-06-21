@@ -66,6 +66,7 @@ struct ContentView: View {
                     baseImage: pageFeedbackBaseImage,
                     context: pageFeedbackContext,
                     theme: viewModel.theme,
+                    onSubmit: prepareForPageFeedbackSubmit,
                     onClose: endPageFeedbackCapture
                 )
             }
@@ -103,7 +104,7 @@ struct ContentView: View {
         }
         .onChange(of: scenePhase) { _, phase in
             if phase == .inactive || phase == .background {
-                viewModel.persistReadingStateNow()
+                viewModel.persistReaderSessionStateNow()
             }
         }
     }
@@ -387,8 +388,10 @@ struct ContentView: View {
     private func presentInitialTOCIfNeeded() {
         guard !didPresentInitialToc,
               !isRegularWidth,
+              !isPageFeedbackMode,
               viewModel.isReady,
               !viewModel.restoredReadingState,
+              viewModel.renderCommand == nil,
               viewModel.hasAnyContent() else {
             return
         }
@@ -419,6 +422,9 @@ struct ContentView: View {
             packageDate: viewModel.packageDateLabel
         )
         pageFeedbackBaseImage = nil
+        didPresentInitialToc = true
+        showToc = false
+        viewModel.persistReaderSessionStateNow()
         isPageFeedbackMode = true
 
         Task { @MainActor in
@@ -437,6 +443,12 @@ struct ContentView: View {
         pageFeedbackBaseImage = nil
         pageFeedbackContext = nil
         isPageFeedbackMode = false
+    }
+
+    private func prepareForPageFeedbackSubmit() {
+        didPresentInitialToc = true
+        showToc = false
+        viewModel.persistReaderSessionStateNow()
     }
 
     private func dismissTOCImmediately() {

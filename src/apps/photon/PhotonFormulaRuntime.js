@@ -25,6 +25,7 @@ import {
   getPhotonMiddleCycleBounds,
   wrapPhotonTime,
   getPhotonSeparationReferenceRadius,
+  resolvePhotonSpeedSettings,
 } from "./PhotonStateRuntime.js";
 
 const TWO_PI = Math.PI * 2;
@@ -91,11 +92,9 @@ function formatPhotonPolarizationClassification(classification, stokes = {}, pha
 }
 
 export function resolvePhotonMeasurementParameters(state) {
-  const signalSpeedCf = Math.max(
-    EPSILON,
-    Number(state?.measurement?.signalSpeedCf ?? state?.measurement?.emissionSpeedCf ?? 1) || 1
-  );
-  const photonSpeedCf = Math.max(0, Number(state?.pair?.photonSpeedCf ?? 1) || 0);
+  const speedSettings = resolvePhotonSpeedSettings(state);
+  const signalSpeedCf = Math.max(EPSILON, speedSettings.signalSpeedCf);
+  const photonSpeedCf = Math.max(0, speedSettings.photonSpeedCf);
   return {
     virtualObserver: {
       x: Number(state?.measurement?.virtualObserver?.x ?? 0) || 0,
@@ -105,6 +104,8 @@ export function resolvePhotonMeasurementParameters(state) {
     signalSpeedCf,
     emissionSpeedCf: signalSpeedCf,
     photonSpeedCf,
+    speedMode: speedSettings.speedMode,
+    localLorentzFactor: speedSettings.localLorentzFactor,
     sourceHistoryMode: state?.measurement?.sourceHistoryMode === "absolute_history"
       ? "absolute_history"
       : "co_moving",
@@ -683,6 +684,84 @@ function hasPhotonSelfHitSolverBridgeOption(options = {}) {
     options?.solverBridgeConfig?.allowNoWasmBridgeClient === true;
 }
 
+function hasPhotonMovingCircularSolverBridgeOption(options = {}, methodName) {
+  return (
+    typeof options[methodName] === "function" ||
+    (options.solverClient && typeof options.solverClient[methodName] === "function") ||
+    typeof options.createSolverBridgeClient === "function" ||
+    options.solverWorker != null ||
+    typeof options.createWasmModule === "function" ||
+    options.allowNoWasmBridgeClient === true ||
+    options?.solverBridgeConfig?.allowNoWasmBridgeClient === true
+  );
+}
+
+async function runPhotonMovingCircularSourceSolverBridgeClient(options, request) {
+  return runSolverAppBridgeRequest({
+    appId: "photon",
+    methodName: "solveMovingCircularSourceCausalRootsF64",
+    request,
+    options,
+    factoryRequest: request,
+    requestedCapabilities: ["causalRoots", "delayedHits"],
+    storagePolicy: {
+      target: options.streamTarget ?? "caller-buffer",
+      durable: options.streamTarget === "native-file",
+      maxBytes: options.memoryBudgetBytes ?? DEFAULT_SOLVER_MEMORY_BUDGET_BYTES,
+    },
+    threadingPolicy: {
+      mode: options.threadingMode ?? "single-thread",
+      deterministic: options.deterministic ?? true,
+    },
+    missingClientMessage:
+      "Photon moving-circular source solver bridge request requires a solver client, solveMovingCircularSourceCausalRootsF64 option, client factory, worker, or solver WASM module factory.",
+  });
+}
+
+async function runPhotonMovingCircularSameSourceSolverBridgeClient(options, request) {
+  return runSolverAppBridgeRequest({
+    appId: "photon",
+    methodName: "solveMovingCircularSameSourceCausalRootsF64",
+    request,
+    options,
+    factoryRequest: request,
+    requestedCapabilities: ["causalRoots", "delayedHits"],
+    storagePolicy: {
+      target: options.streamTarget ?? "caller-buffer",
+      durable: options.streamTarget === "native-file",
+      maxBytes: options.memoryBudgetBytes ?? DEFAULT_SOLVER_MEMORY_BUDGET_BYTES,
+    },
+    threadingPolicy: {
+      mode: options.threadingMode ?? "single-thread",
+      deterministic: options.deterministic ?? true,
+    },
+    missingClientMessage:
+      "Photon moving-circular same-source solver bridge request requires a solver client, solveMovingCircularSameSourceCausalRootsF64 option, client factory, worker, or solver WASM module factory.",
+  });
+}
+
+async function runPhotonMovingCircularObserverFieldSolverBridgeClient(options, request) {
+  return runSolverAppBridgeRequest({
+    appId: "photon",
+    methodName: "computeMovingCircularObserverFieldF64",
+    request,
+    options,
+    factoryRequest: request,
+    requestedCapabilities: ["causalRoots", "delayedHits"],
+    storagePolicy: {
+      target: options.streamTarget ?? "caller-buffer",
+      durable: options.streamTarget === "native-file",
+      maxBytes: options.memoryBudgetBytes ?? DEFAULT_SOLVER_MEMORY_BUDGET_BYTES,
+    },
+    threadingPolicy: {
+      mode: options.threadingMode ?? "single-thread",
+      deterministic: options.deterministic ?? true,
+    },
+    missingClientMessage:
+      "Photon moving-circular observer-field bridge request requires a solver client, computeMovingCircularObserverFieldF64 option, client factory, worker, or solver WASM module factory.",
+  });
+}
+
 async function runPhotonSelfHitSolverBridgeClient(options, descriptors, runRequest) {
   return runSolverAppBridgeRequest({
     appId: "photon",
@@ -738,9 +817,126 @@ function extractPhotonCircularSelfHitRows(runHandle = {}, descriptors = []) {
   });
 }
 
+function computePhotonCircularSpreadDegrees(phases = []) {
+  const finitePhases = phases
+    .map((phase) => Number(phase))
+    .filter((phase) => Number.isFinite(phase));
+  if (finitePhases.length <= 1) {
+    return 0;
+  }
+  const sum = finitePhases.reduce((accumulator, phase) => {
+    const radians = phase * Math.PI / 180;
+    accumulator.cos += Math.cos(radians);
+    accumulator.sin += Math.sin(radians);
+    return accumulator;
+  }, { cos: 0, sin: 0 });
+  const resultant = Math.hypot(sum.cos, sum.sin) / finitePhases.length;
+  return (1 - Math.min(1, Math.max(0, resultant))) * 180;
+}
+
+function formatPhotonChargeLabel(chargeType) {
+  if (chargeType === "positrino") {
+    return "+";
+  }
+  if (chargeType === "electrino") {
+    return "-";
+  }
+  return String(chargeType ?? "?");
+}
+
+function summarizePhotonHelicalSelfHitPhaseFamilies(helicalRows = []) {
+  const groups = new Map();
+  (Array.isArray(helicalRows) ? helicalRows : []).forEach((row) => {
+    const roots = Array.isArray(row.roots) ? row.roots : [];
+    roots.forEach((root) => {
+      const phase = root.phaseAtHit ?? row.phaseAtHit;
+      if (!phase || phase.rootKind !== "same-source") {
+        return;
+      }
+      const sourceCycleIndex = Number.isFinite(Number(phase.sourcePhaseCycleIndex))
+        ? Number(phase.sourcePhaseCycleIndex)
+        : 0;
+      const role = row.role ?? phase.sourceRole ?? row.swarmId ?? "source";
+      const layerId = row.layerId ?? phase.sourceLayerId ?? "?";
+      const chargeType = row.chargeType ?? phase.sourceChargeType ?? "?";
+      const chargeSign = Number.isFinite(Number(row.chargeSign))
+        ? Number(row.chargeSign)
+        : Number(phase.sourceChargeSign) || 0;
+      const key = [role, layerId, chargeType, sourceCycleIndex].join("|");
+      if (!groups.has(key)) {
+        groups.set(key, {
+          key,
+          role,
+          layerId,
+          chargeType,
+          chargeSign,
+          sourceCycleIndex,
+          sourcePhases: [],
+          receiverPhases: [],
+          minJacobianAbs: Number.POSITIVE_INFINITY,
+          rootCount: 0,
+        });
+      }
+      const group = groups.get(key);
+      group.rootCount += 1;
+      if (Number.isFinite(Number(phase.sourcePhaseDegrees))) {
+        group.sourcePhases.push(Number(phase.sourcePhaseDegrees));
+      }
+      if (Number.isFinite(Number(phase.receiverPhaseDegrees))) {
+        group.receiverPhases.push(Number(phase.receiverPhaseDegrees));
+      }
+      group.minJacobianAbs = Math.min(
+        group.minJacobianAbs,
+        Math.abs(Number(root.jacobian) || Number(row.jacobian) || 0)
+      );
+    });
+  });
+
+  const families = Array.from(groups.values())
+    .map((group) => {
+      const sourcePhaseSpreadDeg = computePhotonCircularSpreadDegrees(group.sourcePhases);
+      const receiverPhaseSpreadDeg = computePhotonCircularSpreadDegrees(group.receiverPhases);
+      const label = [
+        group.role,
+        group.layerId,
+        formatPhotonChargeLabel(group.chargeType),
+        `c${group.sourceCycleIndex}`,
+      ].join(" ");
+      return {
+        key: group.key,
+        label,
+        role: group.role,
+        layerId: group.layerId,
+        chargeType: group.chargeType,
+        chargeSign: group.chargeSign,
+        sourceCycleIndex: group.sourceCycleIndex,
+        rootCount: group.rootCount,
+        sourcePhaseSpreadDeg,
+        receiverPhaseSpreadDeg,
+        minJacobianAbs: Number.isFinite(group.minJacobianAbs) ? group.minJacobianAbs : 0,
+      };
+    })
+    .sort((a, b) =>
+      b.rootCount - a.rootCount ||
+      a.sourcePhaseSpreadDeg - b.sourcePhaseSpreadDeg ||
+      a.label.localeCompare(b.label)
+    );
+  const stableFamilies = families.filter(
+    (family) => family.rootCount >= 2 && family.sourcePhaseSpreadDeg <= 15
+  );
+  const bestFamily = stableFamilies[0] ?? families[0] ?? null;
+  return {
+    families,
+    familyCount: families.length,
+    stableFamilyCount: stableFamilies.length,
+    bestFamily,
+  };
+}
+
 function summarizePhotonSelfHitRows(rows = [], status = "ok", message = "", helicalRows = []) {
   const safeRows = Array.isArray(rows) ? rows : [];
   const safeHelicalRows = Array.isArray(helicalRows) ? helicalRows : [];
+  const helicalPhaseFamilies = summarizePhotonHelicalSelfHitPhaseFamilies(safeHelicalRows);
   const maxFieldSpeedRatio = safeRows.reduce(
     (maximum, row) => Math.max(maximum, Number(row.fieldSpeedRatio) || 0),
     0
@@ -771,6 +967,10 @@ function summarizePhotonSelfHitRows(rows = [], status = "ok", message = "", heli
     helicalCandidateCount,
     helicalRootFoundCount,
     helicalMaxFieldSpeedRatio,
+    helicalPhaseFamilies: helicalPhaseFamilies.families,
+    helicalPhaseFamilyCount: helicalPhaseFamilies.familyCount,
+    helicalStablePhaseFamilyCount: helicalPhaseFamilies.stableFamilyCount,
+    helicalBestPhaseFamily: helicalPhaseFamilies.bestFamily,
   };
 }
 
@@ -829,7 +1029,9 @@ async function createPhotonHelicalSelfHitRow(state, descriptor, chargeType, item
   const request = createPhotonHelicalSelfHitRootRequest(state, sourceRef, measurement, hitTime, options);
   const response = typeof options.solveMovingCircularSameSourceRoots === "function"
     ? await options.solveMovingCircularSameSourceRoots(request)
-    : solveMovingCircularSameSourceCausalRoots(request);
+    : hasPhotonMovingCircularSolverBridgeOption(options, "solveMovingCircularSameSourceCausalRootsF64")
+      ? await runPhotonMovingCircularSameSourceSolverBridgeClient(options, request)
+      : solveMovingCircularSameSourceCausalRoots(request);
   const roots = (Array.isArray(response?.roots) ? response.roots : [])
     .map((root) => ({
       ...root,
@@ -905,6 +1107,28 @@ export async function computePhotonSelfHitDiagnosticsWithSolverBridge(state, opt
     return summarizePhotonSelfHitRows([], "empty", "No enabled photon binaries.");
   }
   const helicalRows = await createPhotonHelicalSelfHitRows(state, measurement, descriptors, options);
+  if (options.skipSpanSelfHitDiagnostics === true) {
+    const rows = descriptors.map((descriptor, index) => ({
+      solverEngineId: PHOTON_SOLVER_BRIDGE_ENGINE_ID,
+      ...descriptor,
+      itemIndex: index,
+      statusCode: 0,
+      regime: getPhotonSelfHitRegime(descriptor.fieldSpeedRatio),
+      resultKind: "span_skipped",
+      span: 0,
+      rootFound: false,
+      bracketLow: 0,
+      bracketHigh: 0,
+      residual: 0,
+      iterations: 0,
+    }));
+    return summarizePhotonSelfHitRows(
+      rows,
+      "span-skipped",
+      "Self-hit span rows skipped; helical same-source rows computed.",
+      helicalRows
+    );
+  }
   if (!hasPhotonSelfHitSolverBridgeOption(options)) {
     const rows = descriptors.map((descriptor, index) => ({
       solverEngineId: PHOTON_SOLVER_BRIDGE_ENGINE_ID,
@@ -1292,6 +1516,93 @@ function computePhotonDelayedContribution(root, measurement) {
   };
 }
 
+function createPhotonObserverFieldBranchSumRequest(roots = [], measurement = {}) {
+  return {
+    signalSpeed: measurement.emissionSpeedCf,
+    jacobianFloor: JACOBIAN_FLOOR,
+    unstableGapThreshold: 0.05,
+    branches: roots.map((root) => ({
+      chargeSign: root.kinematics?.chargeSign ?? 0,
+      direction: root.direction,
+      sourceVelocity: root.kinematics?.velocity,
+      distance: root.distance,
+      residual: root.residual,
+      delay: root.delay,
+    })),
+  };
+}
+
+async function computePhotonAbsoluteObserverFieldContributionsWithSolverBridge(
+  roots,
+  measurement,
+  options = {}
+) {
+  const request = createPhotonObserverFieldBranchSumRequest(roots, measurement);
+  const response = typeof options.computeMovingCircularObserverField === "function"
+    ? await options.computeMovingCircularObserverField(request)
+    : hasPhotonMovingCircularSolverBridgeOption(options, "computeMovingCircularObserverFieldF64")
+      ? await runPhotonMovingCircularObserverFieldSolverBridgeClient(options, request)
+      : null;
+  if (!response) {
+    const contributions = roots.map((root) => computePhotonDelayedContribution(root, measurement));
+    return {
+      sourceMode: "app_absolute_history_moving_circular_branch_sum",
+      contributions,
+      electric: contributions.reduce(
+        (sum, contribution) => addVector(sum, contribution.electric),
+        { x: 0, y: 0, z: 0 }
+      ),
+      comparisonB: contributions.reduce(
+        (sum, contribution) => addVector(sum, contribution.comparisonB),
+        { x: 0, y: 0, z: 0 }
+      ),
+      averageDelay: contributions.length > 0
+        ? contributions.reduce((sum, contribution) => sum + contribution.delay, 0) / contributions.length
+        : 0,
+      delaySolveGapMax: contributions.reduce(
+        (maximum, contribution) => Math.max(maximum, contribution.delaySolveGap),
+        0
+      ),
+      maxSourceSpeedRatio: contributions.reduce(
+        (maximum, contribution) => Math.max(maximum, contribution.sourceSpeedRatio),
+        0
+      ),
+      jacobianAbsMin: contributions.reduce(
+        (minimum, contribution) => Math.min(minimum, contribution.jacobianAbs),
+        Number.POSITIVE_INFINITY
+      ),
+      unstableSourceCount: contributions.filter(
+        (contribution) =>
+          contribution.delaySolveGap > 0.05 ||
+          contribution.jacobianAbs <= JACOBIAN_FLOOR
+      ).length,
+      nearestSourceDistance: contributions.reduce(
+        (minimum, contribution) => Math.min(minimum, contribution.distance),
+        Number.POSITIVE_INFINITY
+      ),
+    };
+  }
+  const solverContributions = Array.isArray(response.contributions) ? response.contributions : [];
+  return {
+    sourceMode: "solver_bridge_absolute_history_moving_circular_branch_sum",
+    solverFieldSchema: response.schema ?? "",
+    contributions: roots.map((root, index) => ({
+      ...root,
+      ...(solverContributions[index] ?? computePhotonDelayedContribution(root, measurement)),
+    })),
+    electric: response.electric ?? { x: 0, y: 0, z: 0 },
+    comparisonB: response.comparisonB ?? { x: 0, y: 0, z: 0 },
+    averageDelay: Number(response.averageDelay) || 0,
+    delaySolveGapMax: Number(response.delaySolveGapMax) || 0,
+    maxSourceSpeedRatio: Number(response.maxSourceSpeedRatio) || 0,
+    jacobianAbsMin: Number.isFinite(Number(response.jacobianAbsMin))
+      ? Number(response.jacobianAbsMin)
+      : 0,
+    unstableSourceCount: Number(response.unstableContributionCount) || 0,
+    nearestSourceDistance: Number(response.nearestSourceDistance) || 0,
+  };
+}
+
 export function buildPhotonArchitrinoSourceRefs(state = null) {
   return ["left", "right"].flatMap((swarmId) =>
     PHOTON_LAYER_ORDER.flatMap((layerId) => {
@@ -1407,7 +1718,9 @@ async function solvePhotonAbsoluteCausalRootSetForSourceWithSolverBridge(
   );
   const response = typeof options.solveMovingCircularSourceRoots === "function"
     ? await options.solveMovingCircularSourceRoots(request)
-    : solveMovingCircularSourceCausalRoots(request);
+    : hasPhotonMovingCircularSolverBridgeOption(options, "solveMovingCircularSourceCausalRootsF64")
+      ? await runPhotonMovingCircularSourceSolverBridgeClient(options, request)
+      : solveMovingCircularSourceCausalRoots(request);
   const roots = Array.isArray(response?.roots) ? response.roots : [];
   const mappedRoots = roots
     .map((root) => mapPhotonMovingCircularRootToDelayedRoot(
@@ -1580,66 +1893,81 @@ export async function computePhotonDelayedEmissionFieldWithSolverBridge(
       rootSets.push(await solveRootSet(sourceRef));
     }
   }
-  const contributions = rootSets.flatMap(({ roots }) =>
-    roots.map((root) => computePhotonDelayedContribution(root, measurement))
-  );
-  const electric = contributions.reduce(
-    (sum, contribution) => addVector(sum, contribution.electric),
-    { x: 0, y: 0, z: 0 }
-  );
-  const comparisonB = contributions.reduce(
-    (sum, contribution) => addVector(sum, contribution.comparisonB),
-    { x: 0, y: 0, z: 0 }
-  );
-  const delaySum = contributions.reduce((sum, contribution) => sum + contribution.delay, 0);
-  const distanceMin = contributions.reduce(
-    (minimum, contribution) => Math.min(minimum, contribution.distance),
-    Number.POSITIVE_INFINITY
-  );
-  const delaySolveGapMax = contributions.reduce(
-    (maximum, contribution) => Math.max(maximum, contribution.delaySolveGap),
-    0
-  );
-  const maxSourceSpeedRatio = contributions.reduce(
-    (maximum, contribution) => Math.max(maximum, contribution.sourceSpeedRatio),
-    0
-  );
-  const jacobianAbsMin = contributions.reduce(
-    (minimum, contribution) => Math.min(minimum, contribution.jacobianAbs),
-    Number.POSITIVE_INFINITY
-  );
+  const roots = rootSets.flatMap((rootSet) => rootSet.roots);
+  const fieldSum = measurement.sourceHistoryMode === "absolute_history"
+    ? await computePhotonAbsoluteObserverFieldContributionsWithSolverBridge(
+        roots,
+        measurement,
+        options
+      )
+    : (() => {
+        const contributions = roots.map((root) => computePhotonDelayedContribution(root, measurement));
+        return {
+          sourceMode: "solver_bridge_circular_source_branch_sum",
+          contributions,
+          electric: contributions.reduce(
+            (sum, contribution) => addVector(sum, contribution.electric),
+            { x: 0, y: 0, z: 0 }
+          ),
+          comparisonB: contributions.reduce(
+            (sum, contribution) => addVector(sum, contribution.comparisonB),
+            { x: 0, y: 0, z: 0 }
+          ),
+          averageDelay: contributions.length > 0
+            ? contributions.reduce((sum, contribution) => sum + contribution.delay, 0) / contributions.length
+            : 0,
+          delaySolveGapMax: contributions.reduce(
+            (maximum, contribution) => Math.max(maximum, contribution.delaySolveGap),
+            0
+          ),
+          maxSourceSpeedRatio: contributions.reduce(
+            (maximum, contribution) => Math.max(maximum, contribution.sourceSpeedRatio),
+            0
+          ),
+          jacobianAbsMin: contributions.reduce(
+            (minimum, contribution) => Math.min(minimum, contribution.jacobianAbs),
+            Number.POSITIVE_INFINITY
+          ),
+          unstableSourceCount: contributions.filter(
+            (contribution) =>
+              contribution.delaySolveGap > 0.05 ||
+              contribution.jacobianAbs <= JACOBIAN_FLOOR
+          ).length,
+          nearestSourceDistance: contributions.reduce(
+            (minimum, contribution) => Math.min(minimum, contribution.distance),
+            Number.POSITIVE_INFINITY
+          ),
+        };
+      })();
+  const contributions = fieldSum.contributions;
   const unresolvedSourceCount = rootSets.filter((rootSet) => rootSet.roots.length === 0).length;
-  const unstableSourceCount = contributions.filter(
-    (contribution) =>
-      contribution.delaySolveGap > 0.05 ||
-      contribution.jacobianAbs <= JACOBIAN_FLOOR
-  ).length;
   const rootDiagnostics = summarizePhotonRootDiagnostics(rootSets);
 
   return {
-    sourceMode: measurement.sourceHistoryMode === "absolute_history"
-      ? "solver_app_absolute_history_moving_circular_branch_sum"
-      : "solver_bridge_circular_source_branch_sum",
+    sourceMode: fieldSum.sourceMode,
+    solverFieldSchema: fieldSum.solverFieldSchema ?? "",
     solverEngineId: PHOTON_SOLVER_BRIDGE_ENGINE_ID,
     measurement,
     contributions,
     sourceCount: sourceRefs.length,
     rootCount: contributions.length,
-    averageDelay: contributions.length > 0 ? delaySum / contributions.length : 0,
-    delaySolveGapMax,
-    maxSourceSpeedRatio,
-    jacobianAbsMin: Number.isFinite(jacobianAbsMin) ? jacobianAbsMin : 0,
+    averageDelay: fieldSum.averageDelay,
+    delaySolveGapMax: fieldSum.delaySolveGapMax,
+    maxSourceSpeedRatio: fieldSum.maxSourceSpeedRatio,
+    jacobianAbsMin: Number.isFinite(fieldSum.jacobianAbsMin) ? fieldSum.jacobianAbsMin : 0,
     unresolvedSourceCount,
-    unstableSourceCount,
+    unstableSourceCount: fieldSum.unstableSourceCount,
     rootDiagnostics,
     noCatchUpSourceCount: rootDiagnostics.noCatchUpSourceCount,
     staleHistorySourceCount: rootDiagnostics.staleHistorySourceCount,
     nearMissSourceCount: rootDiagnostics.nearMissSourceCount,
     rootLimitReachedCount: rootDiagnostics.rootLimitReachedCount,
     closestMissResidual: rootDiagnostics.closestMissResidual,
-    nearestSourceDistance: Number.isFinite(distanceMin) ? distanceMin : 0,
-    electric,
-    comparisonB,
+    nearestSourceDistance: Number.isFinite(fieldSum.nearestSourceDistance)
+      ? fieldSum.nearestSourceDistance
+      : 0,
+    electric: fieldSum.electric,
+    comparisonB: fieldSum.comparisonB,
   };
 }
 

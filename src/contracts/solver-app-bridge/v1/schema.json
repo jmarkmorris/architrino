@@ -321,6 +321,9 @@
         "solveCircularSourceCausalRootsF64",
         "solveCircularSourceRootsHitsLedgerF64",
         "solveCircularSourceRootsHitsLedgerNormalizedF64",
+        "solveMovingCircularSourceCausalRootsF64",
+        "solveMovingCircularSameSourceCausalRootsF64",
+        "computeMovingCircularObserverFieldF64",
         "solveCausalRootsNormalizedF64",
         "solveCausalRootBatchF64",
         "solveRootsAndHitsF64",
@@ -3175,6 +3178,8 @@
               "solveCausalRootsNormalizedF64",
               "solveCircularSourceRootsHitsLedgerF64",
               "solveCircularSourceRootsHitsLedgerNormalizedF64",
+              "solveMovingCircularSourceCausalRootsF64",
+              "solveMovingCircularSameSourceCausalRootsF64",
               "solveRootsAndHitsPrecisionF64",
               "solveRootsAndHitsF64",
               "refineEmissionShellCandidateRootsF64"
@@ -3319,7 +3324,8 @@
         "capabilityEnvelopeF64Bytes",
         "admissionStressSummaryF64Bytes",
         "statusRowBytes",
-        "admissionReportF64Bytes"
+        "admissionReportF64Bytes",
+        "pairInteractionRequestF64Bytes"
       ],
       "properties": {
         "abiMajor": { "type": "integer", "minimum": 0 },
@@ -3368,7 +3374,8 @@
         "capabilityEnvelopeF64Bytes": { "type": "integer", "minimum": 1 },
         "admissionStressSummaryF64Bytes": { "type": "integer", "minimum": 1 },
         "statusRowBytes": { "type": "integer", "minimum": 1 },
-        "admissionReportF64Bytes": { "type": "integer", "minimum": 1 }
+        "admissionReportF64Bytes": { "type": "integer", "minimum": 1 },
+        "pairInteractionRequestF64Bytes": { "type": "integer", "minimum": 1 }
       }
     },
     "threadingPolicy": {
@@ -4057,6 +4064,10 @@
         "pairAccelerationScale": {
           "type": "number"
         },
+        "signalSpeed": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
         "softening": {
           "type": "number",
           "minimum": 0
@@ -4091,6 +4102,10 @@
           "minimum": 0
         },
         "pathConstraintGuidanceAccelerationTolerance": {
+          "type": "number",
+          "minimum": 0
+        },
+        "pathConstraintInitialVelocityResidualTolerance": {
           "type": "number",
           "minimum": 0
         },
@@ -4468,6 +4483,10 @@
           "type": "string",
           "minLength": 1
         },
+        "signalSpeed": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
         "executionPath": {
           "type": "string",
           "minLength": 1
@@ -4500,6 +4519,29 @@
           "minimum": 0
         },
         "rmsPathConstraintPositionResidual": {
+          "type": "number",
+          "minimum": 0
+        },
+        "pathConstraintInitialVelocityResidualSampleCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pathConstraintInitialVelocityResidualStatus": {
+          "$ref": "#/$defs/pairInteractionInitialVelocityResidualStatus"
+        },
+        "pathConstraintInitialVelocityResidualTolerance": {
+          "type": "number",
+          "minimum": 0
+        },
+        "maxPathConstraintInitialVelocityResidual": {
+          "type": "number",
+          "minimum": 0
+        },
+        "meanPathConstraintInitialVelocityResidual": {
+          "type": "number",
+          "minimum": 0
+        },
+        "rmsPathConstraintInitialVelocityResidual": {
           "type": "number",
           "minimum": 0
         },
@@ -4571,6 +4613,10 @@
         "pathConstraintBoundaryRelaxationResidualSampleCount": {
           "type": "integer",
           "minimum": 0
+        },
+        "pathConstraintBoundaryRelaxationResidualMode": {
+          "type": "string",
+          "minLength": 1
         },
         "maxPathConstraintBoundaryRelaxationResidualBefore": {
           "type": "number"
@@ -4658,6 +4704,10 @@
           "type": "string",
           "minLength": 1
         },
+        "pathConstraintPhysicalBoundarySolverBlockingReason": {
+          "type": "string",
+          "minLength": 1
+        },
         "maxPathConstraintGuidanceAcceleration": {
           "type": "number"
         },
@@ -4677,6 +4727,10 @@
         "pathConstraintBoundaryResidualSampleCount": {
           "type": "integer",
           "minimum": 0
+        },
+        "pathConstraintBoundaryResidualMode": {
+          "type": "string",
+          "minLength": 1
         },
         "pathConstraintBoundaryResidualStatus": {
           "$ref": "#/$defs/pairInteractionBoundaryResidualStatus"
@@ -4730,6 +4784,10 @@
           "type": "string",
           "minLength": 1
         },
+        "signalSpeed": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
         "executionPath": {
           "type": "string",
           "minLength": 1
@@ -4762,6 +4820,29 @@
           "minimum": 0
         },
         "rmsPathConstraintPositionResidual": {
+          "type": "number",
+          "minimum": 0
+        },
+        "pathConstraintInitialVelocityResidualSampleCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pathConstraintInitialVelocityResidualStatus": {
+          "$ref": "#/$defs/pairInteractionInitialVelocityResidualStatus"
+        },
+        "pathConstraintInitialVelocityResidualTolerance": {
+          "type": "number",
+          "minimum": 0
+        },
+        "maxPathConstraintInitialVelocityResidual": {
+          "type": "number",
+          "minimum": 0
+        },
+        "meanPathConstraintInitialVelocityResidual": {
+          "type": "number",
+          "minimum": 0
+        },
+        "rmsPathConstraintInitialVelocityResidual": {
           "type": "number",
           "minimum": 0
         },
@@ -4833,6 +4914,10 @@
         "pathConstraintBoundaryRelaxationResidualSampleCount": {
           "type": "integer",
           "minimum": 0
+        },
+        "pathConstraintBoundaryRelaxationResidualMode": {
+          "type": "string",
+          "minLength": 1
         },
         "maxPathConstraintBoundaryRelaxationResidualBefore": {
           "type": "number"
@@ -4920,6 +5005,10 @@
           "type": "string",
           "minLength": 1
         },
+        "pathConstraintPhysicalBoundarySolverBlockingReason": {
+          "type": "string",
+          "minLength": 1
+        },
         "maxPathConstraintGuidanceAcceleration": {
           "type": "number"
         },
@@ -4939,6 +5028,10 @@
         "pathConstraintBoundaryResidualSampleCount": {
           "type": "integer",
           "minimum": 0
+        },
+        "pathConstraintBoundaryResidualMode": {
+          "type": "string",
+          "minLength": 1
         },
         "pathConstraintBoundaryResidualStatus": {
           "$ref": "#/$defs/pairInteractionBoundaryResidualStatus"
@@ -4965,6 +5058,10 @@
     "pairInteractionPositionResidualStatus": {
       "type": "string",
       "enum": ["unchecked", "no_position_samples", "unresolved", "within_tolerance", "exceeded_tolerance"]
+    },
+    "pairInteractionInitialVelocityResidualStatus": {
+      "type": "string",
+      "enum": ["unchecked", "no_initial_velocity_samples", "unresolved", "within_tolerance", "exceeded_tolerance"]
     },
     "pairInteractionGuidanceAccelerationStatus": {
       "type": "string",

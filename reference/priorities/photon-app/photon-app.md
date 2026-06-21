@@ -32,16 +32,16 @@ The current app implements:
 - Ideal Swarm-style architrino markers, orbit paths, and layered trails;
 - pause/play, Space bar pause/play, Reset time, Reset all, Paths, and Slow/Fast controls;
 - Virtual Observer $x$, $y$, and $z$ controls with visible zero markers and near-zero snap;
-- direct $c_{\mathrm{sig}}/c_f$ and $c_\gamma/c_f$ controls, with $c_{\mathrm{sig}}$ active in root solves and $c_\gamma$ active in the default `Absolute history` mode;
+- direct $c_{\mathrm{sig}}/c_f$ and $c_\gamma/c_f$ controls plus a first Lorentz-factor local-$c$ mode that derives both speeds from $\gamma$;
 - default `Absolute history` mode that translates source and Virtual Observer histories at $c_\gamma$ and uses a shared solver-layer moving-circular root solver as the first moving-apparatus solver path;
 - a three-cycle Electric Field plot based on causal-root branch sums;
 - absolute-history source-scan diagnostics for no-catch-up sources, stale windows, near misses, and root-cap hits;
 - a transverse polarization inset derived from a one-cycle branch-sum fit, with optional raw one-cycle branch-sum points behind the fit;
 - formula and diagnostic panels with quality words where the readout has a useful direction;
 - shared-geometry same-source self-hit span diagnostics for enabled leading/trailing Inner/Middle/Outer binaries, using the vector sum of photon-channel speed and transverse orbital speed as the solver speed ratio;
-- first-pass helical same-source root rows for individual architrino source histories, with source phase-at-hit and receiver phase-at-hit metadata;
+- first-pass helical same-source root rows for individual architrino source histories, with source phase-at-hit, receiver phase-at-hit, and phase-family grouping by role, layer, charge, and source cycle;
 - a named preset dropdown that can load a complete photon settings state and reset back to the last loaded preset;
-- a bounded `Search configurations` workflow that samples representative configuration families, generates session-local scored settings, compares top co-moving and absolute-history diagnostics when the solver path is available, supports preview/load/play, rename/delete, selected/all JSON export, JSON import, and promotion into session presets;
+- a bounded `Search configurations` workflow that samples representative configuration families, includes derived local-$c$ speed-mode candidates, generates session-local scored settings, compares top co-moving and absolute-history diagnostics when the solver path is available, includes helical same-source phase-family summaries for bounded comparison runs, supports preview/load/play, rename/delete, selected/all JSON export, JSON import, and promotion into session presets;
 - and in-app Markdown viewing for the user-facing guide and the two supporting corpus bridges.
 
 ## Candidate Model
@@ -51,7 +51,7 @@ The current candidate picture is:
 - A photon is represented as a pair of flat Noether swarms.
 - The current co-moving diagnostic exposes a branch signal speed control $c_{\mathrm{sig}}/c_f$.
 - The app uses a photon-channel translation speed control $c_\gamma/c_f$ in the default `Absolute history` mode.
-- A later version should derive local $c$ from declared Noether sea state variables rather than only direct slider input.
+- The app can either use direct speed sliders or a first Lorentz-factor local-$c$ mode; a later version should derive local $c$ from declared Noether sea state variables rather than only direct slider input or the provisional $\gamma$ mapping.
 - The trailing swarm is shown on the left in the face-on view and rotates counter-clockwise.
 - The leading swarm is shown on the right in the face-on view and rotates clockwise.
 - The 2D face-on view of each swarm does not rotate as a group; only the binaries and layer phases animate.
@@ -63,7 +63,8 @@ Use the canonical photon priority language where possible: the visual pair is a 
 
 Current defaults:
 
-- pair speed mode: fixed `cf`;
+- pair speed mode: `Direct`;
+- local Lorentz factor: `100`;
 - pair separation: $\Delta x=1r_{\mathrm{ref}}$;
 - cycle reference: middle layer `M`;
 - plotted cycle count: `3`;
@@ -133,6 +134,8 @@ Current control ranges remain:
 | O phase | `0 deg` | `0` to `360 deg` | `1 deg` |
 | $\Delta x$ ratio | `1 r` | `1e-10 r` to `1e5 r` | selectable `1` through `9` ticks per decade |
 | Slow/Fast animation scale | `0.20` | `0.025` to `1.600` | log slider |
+| Local $c$ mode | `Direct` | `Direct` or `Lorentz factor` | select |
+| Local $\gamma$ | `100.00` | `1.00` to `100.00` | `0.01` |
 | Signal $c_{\mathrm{sig}}/c_f$ | `1.00` | `0.05` to `1.00` | `0.01` |
 | Photon $c_\gamma/c_f$ | `1.00` | `0.00` to `1.00` | `0.01` |
 | Absolute history | `on` | `off` or `on` | checkbox |
@@ -313,10 +316,10 @@ $$
 
 which also becomes large as $c_\gamma\to c_{\mathrm{sig}}$.
 
-This means the current co-moving branch sum is not enough for photon-substrate closure. The app needs a later absolute-history mode that:
+This means the co-moving branch sum is not enough for photon-substrate closure. The app now has a first absolute-history mode that:
 
-- chooses $c_\gamma/c_f$ directly or derives it from declared Noether sea variables;
-- optionally derives $c_\gamma/c_f$ from a Lorentz-factor chart when that chart is the active local-$c$ parameterization;
+- chooses $c_\gamma/c_f$ directly or derives it from the provisional Lorentz-factor local-$c$ control;
+- derives $c_\gamma/c_f$ and $c_{\mathrm{sig}}/c_f$ from a first Lorentz-factor chart mode when that mode is active;
 - keeps $\chi_{\mathrm{VO}}$, $\chi_{\mathrm{trailing}}$, and $\chi_{\mathrm{leading}}$ explicit rather than assuming the fixed app-frame roots are physical roots;
 - solves all positive causal roots in the absolute frame;
 - reports when trailing or leading contributions have no catch-up root, very old roots, or small Jacobian margins;
@@ -472,12 +475,12 @@ Suspect numerical cases should be labeled as suspect, not good. Missed roots, ve
 
 ## Open Work Queue
 
-1. `reusable_absolute_history_solver` - A working central solver exists, and Photon now routes absolute-history source/observer roots through a shared solver-layer moving-circular root solver. Mapped co-moving and absolute-history contributions carry source phase-at-hit rows, Photon reports trailing/leading hit phase-spread diagnostics, Photon reports no-catch-up, stale-window, near-miss, and root-cap diagnostics for absolute-history source scans, Photon reports shared-geometry same-source self-hit span rows for enabled binary layers, and Photon now reports first-pass helical same-source root rows for individual architrino source histories with source and receiver phase-at-hit metadata. Remaining work: promote the moving-circular and same-source root paths into the native/WASM bridge row set, expose receiver phase rows where the receiver is not only the Virtual Observer or same source, broaden phase-spread diagnostics by layer, charge sign, root kind, and cycle, expand rejected-root reasons to singular-root/small-Jacobian/transversality-floor cases, and harden observer-level field reconstruction for the photon app's 3D planar-pair histories and local-$c$ translation. Status: `open`.
-2. `local_c_parameterization` - Direct $c_{\mathrm{sig}}/c_f$ and $c_\gamma/c_f$ controls exist. Remaining work: add a speed mode that derives local $c$ from declared Noether sea state variables or a Lorentz-factor chart mapping when that mapping is available, and feed that derived value into the absolute-history solver instead of using only direct slider input. Status: `open`.
-3. `moving_apparatus_delta_x_mapping` - Default absolute-history mode now translates source and Virtual Observer histories at $c_\gamma$ through the shared moving-circular root solver, and the diagnostics panel reports no-catch-up, stale-window, near-miss, and root-cap summaries. Remaining work: make this mode the authoritative $\Delta x$ diagnostic, add clearer stale-root aging thresholds, and promote the current shared JavaScript solver path into the native/WASM bridge when that row shape is available. Status: `open`.
-4. `absolute_source_history_self_hit` - First pass exists: Photon now combines photon-channel translation speed with transverse binary speed, reports legacy shared-geometry circular self-hit span rows, and computes helical same-source root rows against the moving source histories with retained roots, Jacobian values, and source/receiver phase-at-hit metadata. Remaining work: promote the helical same-source rows into the native/WASM bridge, add explicit sub-field-speed versus self-hit family summaries, and group the retained roots into stable phase families by layer, charge sign, role, and cycle. Status: `open`.
+1. `reusable_absolute_history_solver` - A working central solver slice now exists for Photon. Absolute-history source-to-Virtual-Observer roots route through a shared moving-circular bridge facade, first-pass helical same-source roots route through a shared same-source facade, and absolute-history observer-field branch sums can route through the shared `computeMovingCircularObserverFieldF64` facade when the bridge method is available. Mapped contributions carry source phase-at-hit rows, same-source rows carry source/receiver phase-at-hit metadata, Photon reports trailing/leading hit phase-spread diagnostics, and the app reports no-catch-up, stale-window, near-miss, root-cap, Jacobian, and grouped phase-family summaries. Remaining work: promote the moving-circular source, same-source, and observer-field facades into native/WASM ABI row production, generalize the facade beyond Photon-specific circular histories, expose receiver phase rows where the receiver is not only the Virtual Observer or same source, deepen phase-spread diagnostics across source-to-observer and same-source families, expand rejected-root reasons to singular-root/small-Jacobian/transversality-floor cases, and harden observer-level field reconstruction for local-$c$ translation. Status: `open`.
+2. `local_c_parameterization` - First pass exists: Photon supports direct $c_{\mathrm{sig}}/c_f$ and $c_\gamma/c_f$ controls, plus a `Lorentz factor` speed mode that derives both values from the selected local $\gamma$ and feeds that derived speed into the absolute-history solver. Remaining work: replace or supplement the provisional $\gamma$ mapping with declared Noether sea state variables when the local-$c$ theory input is available, and add richer diagnostics explaining when the derived speed creates no-catch-up or stale-root regimes. Status: `open`.
+3. `moving_apparatus_delta_x_mapping` - Default absolute-history mode now translates source and Virtual Observer histories at $c_\gamma$ through the shared moving-circular bridge facade, and the diagnostics panel reports no-catch-up, stale-window, near-miss, and root-cap summaries. Remaining work: make this mode the authoritative $\Delta x$ diagnostic, add clearer stale-root aging thresholds, and promote the current JavaScript-backed bridge facade into native/WASM row production when that row shape is available. Status: `open`.
+4. `absolute_source_history_self_hit` - First pass exists: Photon now combines photon-channel translation speed with transverse binary speed, reports legacy shared-geometry circular self-hit span rows, computes helical same-source root rows through the shared moving-circular same-source bridge facade with retained roots, Jacobian values, source/receiver phase-at-hit metadata, and groups retained roots into phase families by role, layer, charge, and source cycle. Remaining work: promote the helical same-source bridge facade into native/WASM row production, add explicit sub-field-speed versus self-hit family summaries, and sharpen family labels into stable phase-lock classifications. Status: `open`.
 5. `substrate_mapping_refinement` - Refine the Virtual Observer branch-sum mapping from I/M/O layer parameters to transverse observer-field amplitudes, while preserving claim discipline and distinguishing co-moving diagnostics from absolute-history results. Status: `open`.
-6. `configuration_search_absolute_history_comparison` - First pass exists: Configuration Search now stores and scores a compact co-moving versus absolute-history comparison for top results using the shared moving-circular absolute-history solver. Remaining work: add local-$c$ derived-speed modes, support deeper/background comparison runs when useful, and compare phase-at-hit and same-source root-family summaries once those rows are available. Status: `open`.
+6. `configuration_search_absolute_history_comparison` - First pass exists: Configuration Search now stores and scores a compact co-moving versus absolute-history comparison for top results using the shared moving-circular absolute-history solver, bounded comparison runs include helical same-source phase-family counts and stable-family deltas, and the candidate pool now includes representative direct and Lorentz-factor local-$c$ speed modes. Remaining work: support deeper/background comparison runs when useful, add search filters for local-$c$ and phase-family traits, and use the phase-family summaries in richer result filtering/export workflows. Status: `open`.
 7. `shared_visual_extraction` - Extract shared Ideal Swarm / photon architrino marker, orbit-path, tint-profile, and layered-trail helpers if the visual grammar needs to be maintained across both apps. Status: `open`.
 
 ## Deferred Non-Goals

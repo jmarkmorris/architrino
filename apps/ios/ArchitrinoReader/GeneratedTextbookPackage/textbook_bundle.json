@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "manifest_schema": "textbook_bundle_schema_v1",
-  "generated_at": "2026-06-20T22:38:56.449Z",
+  "generated_at": "2026-06-21T00:38:05.664Z",
   "package_version": "1.0.0-73672431",
   "schema_version_note": "content_bundle_schema_v1",
   "textbook_toc": {
@@ -220,16 +220,16 @@
       "sourcePath": "__generated__/reading-copies/foundations.html",
       "role": "chapter",
       "type": "html",
-      "size": 1621797,
-      "sha256": "2ed8ba72546df575063f9199088c26c0cf8dce1118362c7ef2d5244e30c6b719"
+      "size": 1622601,
+      "sha256": "16dfa9cbb5d63fe21224072e656b6efd5aa0ececd876e6c194439cba44269cce"
     },
     {
       "path": "reading-copies/foundations.md",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 184403,
-      "sha256": "83054407b03508baa73b9f9fc565c621003aca7ffcc13e75468b92de737b6010"
+      "size": 185012,
+      "sha256": "715797768bbb969844754ebe2170c49da79b4821eb06ca35ee9938b084e17518"
     },
     {
       "path": "reading-copies/noether-sea-and-effective-spacetime.html",
@@ -268,16 +268,16 @@
       "sourcePath": "__generated__/reading-copies/philosophy-history.html",
       "role": "chapter",
       "type": "html",
-      "size": 9586732,
-      "sha256": "d9c3663f11d6e305e66007eefe3e21bf2887c1053eed88080ed8892c61c2e470"
+      "size": 9589583,
+      "sha256": "c26f27841cf33d9b60e073c82f7f0fe9583f0a789fd0bbcd998ee1d19d3d8c17"
     },
     {
       "path": "reading-copies/philosophy-history.md",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 1615889,
-      "sha256": "04df63a60c3827604349b26523963d49264da10086508237a94b4dd58cccbd79"
+      "size": 1616718,
+      "sha256": "6f4d8975503002a4977d9229298a7900f6c9772900237ed58097f4db4275c994"
     },
     {
       "path": "reading-copies/quantum.html",
@@ -396,16 +396,16 @@
       "sourcePath": "__generated__/references/mathematics-terminology.html",
       "role": "reference",
       "type": "html",
-      "size": 443774,
-      "sha256": "06bb166232ceb1b7d99678dd2d4d145bb6ea1c05ac6e4b12ceadf7cdc5e32809"
+      "size": 446664,
+      "sha256": "10073c62cfa8f4caaf18b52ac0c03409c401b2ace864b3cc1347cdfe66ee692d"
     },
     {
       "path": "references/mathematics-terminology.md",
       "sourcePath": "content/markdown/aaa/archie/mathematics-terminology.md",
       "role": "reference",
       "type": "markdown",
-      "size": 31937,
-      "sha256": "bad02a75828a6eb56675cb668724dc7797b14e775b1a872fcd48ea83951749db"
+      "size": 31992,
+      "sha256": "70c5bfb74d6426df964e1cf818fa13e3812d2e028cc42468b310956a7e3c724e"
     },
     {
       "path": "references/terminology-usage.html",
@@ -428,8 +428,8 @@
       "sourcePath": "__generated__/textbook_bundle_search_index.json",
       "role": "search",
       "type": "json",
-      "size": 8725445,
-      "sha256": "4a9e0dcdedbfba0ecce58a99f44696d4c336b695bbbd7a2dfbaacdbddacd5ce4"
+      "size": 8726842,
+      "sha256": "782b271a8af5ac06892aa1da37287052884e03813127d69e99a4127b9b7afe58"
     }
   ],
   "links": []

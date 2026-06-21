@@ -20,6 +20,7 @@ const PHOTON_CONTROL_RANGES_MAX_PAIR_SEPARATION = 2.4 * 10 ** PHOTON_MAX_SEPARAT
 const PHOTON_MIN_FREQUENCY_EXPONENT = 0;
 const PHOTON_MAX_FREQUENCY_EXPONENT = 5;
 export const PHOTON_DEFAULT_PLAYBACK_SPEED_MULTIPLIER = 0.2;
+export const PHOTON_LOCAL_C_SPEED_MODES = Object.freeze(["direct", "lorentz_factor"]);
 
 export const PHOTON_LAYER_SPEED_RATIO_TARGETS = Object.freeze({
   I: 1.2,
@@ -150,6 +151,7 @@ export const PHOTON_CONTROL_RANGES = Object.freeze({
     step: "any",
   },
   speedMultiplier: { min: 0.025, max: 1.6, step: 0.001 },
+  localLorentzFactor: { min: 1, max: 100, step: 0.01 },
   signalSpeedCf: { min: 0.05, max: 1, step: 0.01 },
   photonSpeedCf: { min: 0, max: 1, step: 0.01 },
   analyzerAngleDeg: { min: 0, max: 180, step: 1 },
@@ -172,7 +174,8 @@ export const DEFAULT_PHOTON_STATE = Object.freeze({
     rawPolarizationVisible: true,
   },
   pair: {
-    speedMode: "cf",
+    speedMode: "direct",
+    localLorentzFactor: 100,
     photonSpeedCf: 1,
     pairSeparation: PHOTON_DEFAULT_LAYER_RADII.O,
     left: {
@@ -207,6 +210,65 @@ export function clampPhotonNumber(value, min, max, fallback = min) {
     return fallback;
   }
   return Math.min(max, Math.max(min, number));
+}
+
+export function getPhotonLocalCFromLorentzFactor(gamma) {
+  const gammaNumber = Number(gamma);
+  if (!Number.isFinite(gammaNumber) || gammaNumber <= 1) {
+    return 0;
+  }
+  return Math.sqrt(Math.max(0, 1 - 1 / (gammaNumber * gammaNumber)));
+}
+
+export function normalizePhotonSpeedMode(value) {
+  if (value === "lorentz_factor") {
+    return "lorentz_factor";
+  }
+  return "direct";
+}
+
+export function resolvePhotonSpeedSettings(state = DEFAULT_PHOTON_STATE) {
+  const fallback = DEFAULT_PHOTON_STATE;
+  const speedMode = normalizePhotonSpeedMode(state?.pair?.speedMode);
+  const localLorentzFactor = clampPhotonNumber(
+    state?.pair?.localLorentzFactor,
+    PHOTON_CONTROL_RANGES.localLorentzFactor.min,
+    PHOTON_CONTROL_RANGES.localLorentzFactor.max,
+    fallback.pair.localLorentzFactor
+  );
+  if (speedMode === "lorentz_factor") {
+    const derivedSpeedCf = clampPhotonNumber(
+      getPhotonLocalCFromLorentzFactor(localLorentzFactor),
+      PHOTON_CONTROL_RANGES.signalSpeedCf.min,
+      PHOTON_CONTROL_RANGES.signalSpeedCf.max,
+      PHOTON_CONTROL_RANGES.signalSpeedCf.min
+    );
+    return {
+      speedMode,
+      localLorentzFactor,
+      signalSpeedCf: derivedSpeedCf,
+      emissionSpeedCf: derivedSpeedCf,
+      photonSpeedCf: derivedSpeedCf,
+    };
+  }
+  const signalSpeedCf = clampPhotonNumber(
+    state?.measurement?.signalSpeedCf ?? state?.measurement?.emissionSpeedCf,
+    PHOTON_CONTROL_RANGES.signalSpeedCf.min,
+    PHOTON_CONTROL_RANGES.signalSpeedCf.max,
+    fallback.measurement.signalSpeedCf
+  );
+  return {
+    speedMode,
+    localLorentzFactor,
+    signalSpeedCf,
+    emissionSpeedCf: signalSpeedCf,
+    photonSpeedCf: clampPhotonNumber(
+      state?.pair?.photonSpeedCf,
+      PHOTON_CONTROL_RANGES.photonSpeedCf.min,
+      PHOTON_CONTROL_RANGES.photonSpeedCf.max,
+      fallback.pair.photonSpeedCf
+    ),
+  };
 }
 
 export function normalizePhotonDegrees(value, fallback = 0) {
@@ -284,6 +346,7 @@ export function normalizePhotonState(input = DEFAULT_PHOTON_STATE) {
   const left = normalizeSwarmState(state.pair?.left, fallback.pair.left, "left");
   const right = normalizeSwarmState(state.pair?.right, fallback.pair.right, "right");
   const pairShell = { pair: { left, right } };
+  const speedSettings = resolvePhotonSpeedSettings(state);
   return {
     app: "photon",
     version: 1,
@@ -305,13 +368,9 @@ export function normalizePhotonState(input = DEFAULT_PHOTON_STATE) {
       rawPolarizationVisible: state.view?.rawPolarizationVisible !== false,
     },
     pair: {
-      speedMode: "cf",
-      photonSpeedCf: clampPhotonNumber(
-        state.pair?.photonSpeedCf,
-        PHOTON_CONTROL_RANGES.photonSpeedCf.min,
-        PHOTON_CONTROL_RANGES.photonSpeedCf.max,
-        fallback.pair.photonSpeedCf
-      ),
+      speedMode: speedSettings.speedMode,
+      localLorentzFactor: speedSettings.localLorentzFactor,
+      photonSpeedCf: speedSettings.photonSpeedCf,
       pairSeparation: clampPhotonPairSeparationForState(
         pairShell,
         state.pair?.pairSeparation,
@@ -352,18 +411,8 @@ export function normalizePhotonState(input = DEFAULT_PHOTON_STATE) {
           fallback.measurement.virtualObserver.z
         ),
       },
-      signalSpeedCf: clampPhotonNumber(
-        state.measurement?.signalSpeedCf ?? state.measurement?.emissionSpeedCf,
-        PHOTON_CONTROL_RANGES.signalSpeedCf.min,
-        PHOTON_CONTROL_RANGES.signalSpeedCf.max,
-        fallback.measurement.signalSpeedCf
-      ),
-      emissionSpeedCf: clampPhotonNumber(
-        state.measurement?.signalSpeedCf ?? state.measurement?.emissionSpeedCf,
-        PHOTON_CONTROL_RANGES.signalSpeedCf.min,
-        PHOTON_CONTROL_RANGES.signalSpeedCf.max,
-        fallback.measurement.emissionSpeedCf
-      ),
+      signalSpeedCf: speedSettings.signalSpeedCf,
+      emissionSpeedCf: speedSettings.emissionSpeedCf,
     },
   };
 }

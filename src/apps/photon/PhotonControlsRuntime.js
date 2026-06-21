@@ -2,11 +2,14 @@ import {
   PHOTON_CONTROL_RANGES,
   PHOTON_LAYER_META,
   PHOTON_LAYER_ORDER,
+  PHOTON_LOCAL_C_SPEED_MODES,
   getPhotonFrequencyExponent,
   getPhotonFrequencyFromExponent,
   getPhotonLayer,
   getPhotonLayerRadiusBounds,
   getPhotonSeparationLog10Ratio,
+  normalizePhotonSpeedMode,
+  resolvePhotonSpeedSettings,
   setPhotonLayerEnabled,
   setPhotonPairSeparationLog10Ratio,
   setPhotonLayerValue,
@@ -593,6 +596,31 @@ function createCheckboxControl(documentLike, { label, checked, onChange }) {
   return { row, input };
 }
 
+function createSelectControl(documentLike, { label, value, options, onChange }) {
+  const row = createElement(documentLike, "label", "photon-control-row photon-select-control-row");
+  const span = createElement(documentLike, "span", "photon-control-label", label);
+  const select = createElement(documentLike, "select", "photon-select");
+  const output = createElement(documentLike, "output", "photon-control-output", "");
+  select.setAttribute("aria-label", label);
+  options.forEach((option) => {
+    const element = createElement(documentLike, "option", "", option.label);
+    element.value = option.value;
+    select.append(element);
+  });
+  select.value = value;
+  select.addEventListener("change", () => {
+    onChange(select.value);
+  });
+  row.append(span, select, output);
+  return {
+    row,
+    select,
+    sync(nextValue) {
+      select.value = nextValue;
+    },
+  };
+}
+
 function createPresetControl(
   documentLike,
   {
@@ -860,6 +888,11 @@ function syncRange(control, value) {
   control.output.textContent = formatControlValue(value, control.digits);
 }
 
+function setRangeControlDisabled(control, disabled) {
+  control.input.disabled = disabled;
+  control.row.classList.toggle("is-disabled", disabled);
+}
+
 function syncRadiusRange(control, state, swarmId, layerId) {
   const bounds = getPhotonLayerRadiusBounds(state, swarmId, layerId);
   control.input.min = String(bounds.min);
@@ -988,6 +1021,19 @@ export function createPhotonControlsRuntime({
     },
   });
   measurementSection.append(absoluteHistoryControl.row);
+  const speedModeControl = createSelectControl(documentLike, {
+    label: "Local c mode",
+    value: normalizePhotonSpeedMode(state.pair?.speedMode),
+    options: [
+      { value: "direct", label: "Direct" },
+      { value: "lorentz_factor", label: "Lorentz factor" },
+    ].filter((option) => PHOTON_LOCAL_C_SPEED_MODES.includes(option.value)),
+    onChange: (value) => {
+      getState().pair.speedMode = normalizePhotonSpeedMode(value);
+      onStateChange();
+    },
+  });
+  measurementControls.append(speedModeControl.row);
   [
     ["x", "Observer x", PHOTON_CONTROL_RANGES.virtualObserverX, 2],
     ["y", "Observer y", PHOTON_CONTROL_RANGES.virtualObserverY, 2],
@@ -1007,6 +1053,18 @@ export function createPhotonControlsRuntime({
     controls.push(control);
     measurementControls.append(control.row);
   });
+  const localLorentzControl = createRangeControl(documentLike, {
+    label: "Local γ",
+    value: state.pair.localLorentzFactor,
+    range: PHOTON_CONTROL_RANGES.localLorentzFactor,
+    digits: 2,
+    onInput: (value) => {
+      getState().pair.localLorentzFactor = value;
+      onStateChange({ syncControls: true, drawNow: false });
+    },
+  });
+  controls.push(localLorentzControl);
+  measurementControls.append(localLorentzControl.row);
   [
     ["signalSpeedCf", "Signal c/c_f", PHOTON_CONTROL_RANGES.signalSpeedCf, 2],
     ["photonSpeedCf", "Photon cγ/c_f", PHOTON_CONTROL_RANGES.photonSpeedCf, 2],
@@ -1118,6 +1176,7 @@ export function createPhotonControlsRuntime({
   function sync(nextState) {
     presetControl.sync(nextState);
     searchControl.sync(nextState);
+    const speedSettings = resolvePhotonSpeedSettings(nextState);
     let index = 0;
     syncRange(controls[index], nextState.pair.pairSeparation);
     index += 1;
@@ -1127,9 +1186,14 @@ export function createPhotonControlsRuntime({
       syncRange(controls[index], nextState.measurement.virtualObserver[key]);
       index += 1;
     });
-    syncRange(controls[index], nextState.measurement.signalSpeedCf);
+    syncRange(controls[index], speedSettings.localLorentzFactor);
+    setRangeControlDisabled(controls[index], speedSettings.speedMode !== "lorentz_factor");
     index += 1;
-    syncRange(controls[index], nextState.pair.photonSpeedCf);
+    syncRange(controls[index], speedSettings.signalSpeedCf);
+    setRangeControlDisabled(controls[index], speedSettings.speedMode !== "direct");
+    index += 1;
+    syncRange(controls[index], speedSettings.photonSpeedCf);
+    setRangeControlDisabled(controls[index], speedSettings.speedMode !== "direct");
     index += 1;
     PHOTON_CONTROL_SWARM_ORDER.forEach((swarmId) => {
       PHOTON_LAYER_ORDER.forEach((layerId) => {
@@ -1148,6 +1212,7 @@ export function createPhotonControlsRuntime({
       control.input.checked = getPhotonLayer(nextState, control.swarmId, control.layerId).enabled !== false;
     });
     absoluteHistoryControl.input.checked = nextState.measurement?.sourceHistoryMode === "absolute_history";
+    speedModeControl.sync(speedSettings.speedMode);
     ["analyzerAngleDeg"].forEach((key) => {
       syncRange(controls[index], nextState.polarization[key]);
       index += 1;

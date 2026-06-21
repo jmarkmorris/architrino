@@ -10,6 +10,7 @@ import {
   PHOTON_LAYER_SPEED_RATIO_TARGETS,
   PHOTON_MAX_OUTER_RADIUS,
   createDefaultPhotonState,
+  getPhotonLocalCFromLorentzFactor,
   getPhotonLayerEnabled,
   getPhotonLayerAngleRadians,
   getPhotonLayerRadiusBounds,
@@ -22,6 +23,7 @@ import {
   getPhotonMiddleCycleBounds,
   getPhotonRunDuration,
   normalizePhotonState,
+  resolvePhotonSpeedSettings,
   setPhotonLayerValue,
 } from "../src/apps/photon/PhotonStateRuntime.js";
 import {
@@ -48,6 +50,7 @@ import {
   computePhotonDelayedEmissionFieldWithSolverBridge,
   computePhotonFormulaSummaryWithSolverBridge,
   computePhotonObserverFieldWithSolverBridge,
+  createPhotonAbsoluteMovingCircularCausalRootRequest,
   createPhotonAbsoluteSourceSegmentCausalRootRequests,
   createPhotonCircularSourceCausalRootRequest,
   createPhotonCircularSelfHitSpansRunRequest,
@@ -55,6 +58,7 @@ import {
   computePhotonSelfHitDiagnosticsWithSolverBridge,
   fitPhotonPolarizationFromSamples,
   getPhotonArchitrinoKinematics,
+  solvePhotonAbsoluteCausalRootsForSourceWithSolverBridge,
   solvePhotonCircularSourceCausalRootsWithSolverBridge,
   solvePhotonCircularSourceRootsHitsLedgerWithSolverBridge,
   solvePhotonCausalRootsWithSolverBridge,
@@ -74,6 +78,9 @@ import {
   shouldHandlePhotonSpaceToggle,
 } from "../src/apps/photon/PhotonRuntime.js";
 import {
+  createSolverAppBridgeClient,
+} from "../src/solver/app/SolverAppBridge.mjs";
+import {
   computePhotonStageLayout,
   getPhotonFieldPlotSampleCount,
   isPhotonPlotSampleInForwardGap,
@@ -82,6 +89,23 @@ import { createSolverBridgeLoopbackWorker } from "./solver-worker-loopback.mjs";
 
 function assertNear(actual, expected, epsilon = 1e-12) {
   assert.ok(Math.abs(actual - expected) < epsilon, `${actual} should be near ${expected}`);
+}
+
+function createPhotonTestSolverInitRequest() {
+  return {
+    appId: "photon",
+    apiVersion: "solver-app-bridge.v1",
+    requestedCapabilities: ["causalRoots", "delayedHits"],
+    storagePolicy: {
+      target: "caller-buffer",
+      durable: false,
+      maxBytes: 64 * 1024 * 1024,
+    },
+    threadingPolicy: {
+      mode: "single-thread",
+      deterministic: true,
+    },
+  };
 }
 
 function evaluateCircularSourceRequestPosition(segment, time) {
@@ -343,6 +367,8 @@ test("default photon state encodes trailing and leading swarm convention", () =>
   });
   assert.deepEqual(state.measurement.virtualObserver, { x: 0, y: 0, z: 0 });
   assert.equal(state.measurement.sourceHistoryMode, "absolute_history");
+  assert.equal(state.pair.speedMode, "direct");
+  assert.equal(state.pair.localLorentzFactor, 100);
   assert.equal(state.measurement.signalSpeedCf, 1);
   assert.equal(state.measurement.emissionSpeedCf, 1);
   assert.equal(state.pair.photonSpeedCf, 1);
@@ -356,6 +382,28 @@ test("default photon state encodes trailing and leading swarm convention", () =>
     ),
     [true, true, true, true, true, true]
   );
+});
+
+test("photon Lorentz-factor speed mode derives signal and photon speeds", () => {
+  const state = createDefaultPhotonState();
+  state.pair.speedMode = "lorentz_factor";
+  state.pair.localLorentzFactor = 2;
+  state.measurement.signalSpeedCf = 0.2;
+  state.pair.photonSpeedCf = 0.4;
+  const normalized = normalizePhotonState(state);
+  const expectedSpeed = getPhotonLocalCFromLorentzFactor(2);
+  assert.equal(normalized.pair.speedMode, "lorentz_factor");
+  assert.equal(normalized.pair.localLorentzFactor, 2);
+  assertNear(normalized.measurement.signalSpeedCf, expectedSpeed);
+  assertNear(normalized.measurement.emissionSpeedCf, expectedSpeed);
+  assertNear(normalized.pair.photonSpeedCf, expectedSpeed);
+  assert.deepEqual(resolvePhotonSpeedSettings(normalized), {
+    speedMode: "lorentz_factor",
+    localLorentzFactor: 2,
+    signalSpeedCf: expectedSpeed,
+    emissionSpeedCf: expectedSpeed,
+    photonSpeedCf: expectedSpeed,
+  });
 });
 
 test("photon plot duration spans three middle-layer cycles", () => {
@@ -683,6 +731,150 @@ test("Photon absolute-history segment requests move source and Virtual Observer 
   );
 });
 
+test("Solver bridge exposes moving-circular absolute-history root methods without WASM", async () => {
+  const state = createDefaultPhotonState();
+  state.measurement.sourceHistoryMode = "absolute_history";
+  state.measurement.signalSpeedCf = 0.9;
+  state.measurement.emissionSpeedCf = 0.9;
+  state.pair.photonSpeedCf = 0.5;
+  const sourceRef = { swarmId: "right", layerId: "O", chargeType: "positrino" };
+  const request = createPhotonAbsoluteMovingCircularCausalRootRequest(
+    state,
+    sourceRef,
+    0.5,
+    { maxDelay: 0.4, scanSubdivisions: 24 }
+  );
+  const client = createSolverAppBridgeClient();
+  await client.init(createPhotonTestSolverInitRequest());
+
+  const response = await client.solveMovingCircularSourceCausalRootsF64(request);
+  const sameSourceResponse = await client.solveMovingCircularSameSourceCausalRootsF64({
+    source: request.source,
+    hitTime: request.hitTime,
+    signalSpeed: request.signalSpeed,
+    sourceStartTime: request.sourceStartTime,
+    sourceEndTime: request.sourceEndTime,
+    scanSubdivisions: 24,
+    maxRoots: 8,
+    sourceRef,
+  });
+  const observerFieldResponse = await client.computeMovingCircularObserverFieldF64({
+    signalSpeed: 1,
+    jacobianFloor: 1e-4,
+    branches: [
+      {
+        chargeSign: 1,
+        direction: { x: 0, y: 1, z: 0 },
+        sourceVelocity: { x: 0, y: 0, z: 0 },
+        distance: 2,
+        residual: 0,
+        delay: 0.25,
+      },
+    ],
+  });
+
+  assert.equal(response.schema, "solver-moving-circular-source-causal-roots-f64.v1");
+  assert.equal(response.sourceHistoryKind, "moving-circular-source");
+  assert.ok(Array.isArray(response.roots));
+  assert.ok(response.status.code);
+  assert.equal(
+    sameSourceResponse.schema,
+    "solver-moving-circular-same-source-causal-roots-f64.v1"
+  );
+  assert.equal(sameSourceResponse.sourceHistoryKind, "moving-circular-same-source");
+  assert.ok(Array.isArray(sameSourceResponse.roots));
+  assert.ok(sameSourceResponse.status.code);
+  assert.equal(
+    observerFieldResponse.schema,
+    "solver-moving-circular-observer-field-f64.v1"
+  );
+  assertNear(observerFieldResponse.electric.y, 0.25);
+  assertNear(observerFieldResponse.comparisonB.z, 0.25);
+  await client.dispose();
+});
+
+test("Photon absolute-history source roots route through the moving-circular solver bridge", async () => {
+  const state = createDefaultPhotonState();
+  state.measurement.sourceHistoryMode = "absolute_history";
+  state.measurement.signalSpeedCf = 0.9;
+  state.measurement.emissionSpeedCf = 0.9;
+  state.pair.photonSpeedCf = 0.5;
+  const sourceRef = { swarmId: "right", layerId: "O", chargeType: "electrino" };
+  const client = createSolverAppBridgeClient();
+  await client.init(createPhotonTestSolverInitRequest());
+  let movingCalls = 0;
+  const originalSolve = client.solveMovingCircularSourceCausalRootsF64.bind(client);
+  client.solveMovingCircularSourceCausalRootsF64 = async (request) => {
+    movingCalls += 1;
+    return originalSolve(request);
+  };
+
+  const roots = await solvePhotonAbsoluteCausalRootsForSourceWithSolverBridge(
+    state,
+    sourceRef,
+    0.5,
+    {
+      solverClient: client,
+      maxDelay: 0.4,
+      scanSubdivisions: 24,
+    }
+  );
+
+  assert.equal(movingCalls, 1);
+  assert.ok(Array.isArray(roots));
+  await client.dispose();
+});
+
+test("Photon absolute-history observer field routes through the moving-circular solver bridge", async () => {
+  const state = createDefaultPhotonState();
+  state.measurement.sourceHistoryMode = "absolute_history";
+  state.measurement.signalSpeedCf = 0.9;
+  state.measurement.emissionSpeedCf = 0.9;
+  state.pair.photonSpeedCf = 0.5;
+  const client = createSolverAppBridgeClient();
+  await client.init(createPhotonTestSolverInitRequest());
+  let observerFieldCalls = 0;
+  const originalObserverField = client.computeMovingCircularObserverFieldF64.bind(client);
+  client.computeMovingCircularObserverFieldF64 = async (request) => {
+    observerFieldCalls += 1;
+    return originalObserverField(request);
+  };
+
+  const field = await computePhotonDelayedEmissionFieldWithSolverBridge(state, 0.5, {
+    solverClient: client,
+    maxDelay: 0.4,
+    scanSubdivisions: 24,
+  });
+
+  assert.equal(observerFieldCalls, 1);
+  assert.equal(field.sourceMode, "solver_bridge_absolute_history_moving_circular_branch_sum");
+  assert.equal(field.solverFieldSchema, "solver-moving-circular-observer-field-f64.v1");
+  assert.ok(Number.isFinite(field.electric.y));
+  await client.dispose();
+});
+
+test("Photon helical same-source roots route through the moving-circular solver bridge", async () => {
+  const state = createDefaultPhotonState();
+  const client = createSolverAppBridgeClient();
+  await client.init(createPhotonTestSolverInitRequest());
+  let sameSourceCalls = 0;
+  const originalSolve = client.solveMovingCircularSameSourceCausalRootsF64.bind(client);
+  client.solveMovingCircularSameSourceCausalRootsF64 = async (request) => {
+    sameSourceCalls += 1;
+    return originalSolve(request);
+  };
+
+  const diagnostics = await computePhotonSelfHitDiagnosticsWithSolverBridge(state, {
+    solverClient: client,
+    skipSpanSelfHitDiagnostics: true,
+  });
+
+  assert.equal(sameSourceCalls, 12);
+  assert.equal(diagnostics.helicalRowCount, 12);
+  assert.equal(diagnostics.status, "span-skipped");
+  await client.dispose();
+});
+
 test("Photon self-hit span requests use absolute photon plus orbital speed ratios", () => {
   const state = createDefaultPhotonState();
   state.pair.photonSpeedCf = 0;
@@ -740,6 +932,9 @@ test("Photon self-hit diagnostics can fall back when only circular-source roots 
   assert.ok(diagnostics.candidateCount >= 2);
   assert.equal(diagnostics.helicalRowCount, 12);
   assert.equal(diagnostics.helicalRootFoundCount, 12);
+  assert.ok(diagnostics.helicalPhaseFamilyCount > 0);
+  assert.ok(diagnostics.helicalStablePhaseFamilyCount > 0);
+  assert.ok(diagnostics.helicalBestPhaseFamily.label.includes(" "));
   assert.ok(diagnostics.helicalRows.every((row) =>
     row.sourceHistoryKind === "moving-circular-same-source" &&
     row.phaseAtHit?.rootKind === "same-source" &&
@@ -850,7 +1045,7 @@ test("Photon delayed emission field can use absolute-history moving circular sol
   });
 
   assert.equal(field.solverEngineId, "architrino-solver-app-bridge");
-  assert.equal(field.sourceMode, "solver_app_absolute_history_moving_circular_branch_sum");
+  assert.equal(field.sourceMode, "app_absolute_history_moving_circular_branch_sum");
   assert.equal(field.measurement.sourceHistoryMode, "absolute_history");
   assert.equal(field.sourceCount, buildPhotonArchitrinoSourceRefs(state).length);
   assert.ok(field.rootCount > 0);
@@ -963,7 +1158,7 @@ test("Photon formula and plot APIs expose central solver bridge results", async 
 
   assert.equal(summary.solverEngineId, "architrino-solver-app-bridge");
   assert.equal(summary.field.solverEngineId, "architrino-solver-app-bridge");
-  assert.equal(summary.field.sourceMode, "solver_app_absolute_history_moving_circular_branch_sum");
+  assert.equal(summary.field.sourceMode, "app_absolute_history_moving_circular_branch_sum");
   assert.equal(summary.polarization.solverEngineId, "architrino-solver-app-bridge");
   assert.ok(Number.isFinite(summary.polarization.amplitudes.y));
   assert.ok(Number.isFinite(summary.averageAnalyzerFraction));
@@ -976,7 +1171,7 @@ test("Photon formula and plot APIs expose central solver bridge results", async 
     solveCircularSourceRootsHitsLedger: observerBridge.solveCircularSourceRootsHitsLedger,
   });
   assert.equal(observerField.solverEngineId, "architrino-solver-app-bridge");
-  assert.equal(observerField.sourceMode, "solver_app_absolute_history_moving_circular_branch_sum");
+  assert.equal(observerField.sourceMode, "app_absolute_history_moving_circular_branch_sum");
   assert.ok(Number.isFinite(observerField.electric.magnitude));
 
   const plotBridge = createPhotonCircularSourceBridgeStub();
@@ -984,7 +1179,7 @@ test("Photon formula and plot APIs expose central solver bridge results", async 
     solveCircularSourceRootsHitsLedger: plotBridge.solveCircularSourceRootsHitsLedger,
   });
   assert.equal(plot.solverEngineId, "architrino-solver-app-bridge");
-  assert.equal(plot.sourceMode, "solver_app_absolute_history_moving_circular_branch_sum");
+  assert.equal(plot.sourceMode, "app_absolute_history_moving_circular_branch_sum");
   assert.equal(plot.samples.length, 5);
   assert.ok(Number.isFinite(plot.amplitudeScale));
 });
@@ -1298,6 +1493,14 @@ test("configuration search can score and compare settings through the solver pat
 
   assert.equal(results.length, 2);
   assert.ok(bridge.calls.length > 0);
+  assert.ok(results.some((result) =>
+    result.comparison.absoluteHistory.helicalPhaseFamilyCount > 0 ||
+    result.comparison.coMoving.helicalPhaseFamilyCount > 0
+  ));
+  assert.ok(results.some((result) =>
+    result.state.pair.speedMode === "lorentz_factor" &&
+    result.diagnostics.speedMode === "lorentz_factor"
+  ));
   results.forEach((result) => {
     assert.ok(result.id.startsWith("photon-search-"));
     assert.equal(result.selected, true);
@@ -1307,8 +1510,14 @@ test("configuration search can score and compare settings through the solver pat
     assert.equal(result.comparison.status, "ok");
     assert.equal(
       result.comparison.absoluteHistory.sourceMode,
-      "solver_app_absolute_history_moving_circular_branch_sum"
+      "app_absolute_history_moving_circular_branch_sum"
     );
+    assert.ok(Number.isFinite(result.comparison.absoluteHistory.helicalPhaseFamilyCount));
+    assert.ok(Number.isFinite(result.comparison.absoluteHistory.helicalStablePhaseFamilyCount));
+    assert.ok(Number.isFinite(result.comparison.deltas.stableHelicalFamilyDelta));
+    assert.ok(Number.isFinite(result.diagnostics.localLorentzFactor));
+    assert.ok(Number.isFinite(result.diagnostics.signalSpeedCf));
+    assert.ok(Number.isFinite(result.diagnostics.photonSpeedCf));
   });
 });
 
@@ -1344,6 +1553,7 @@ test("configuration search compares co-moving and absolute-history solver result
 
   assert.equal(results.length, 2);
   assert.ok(bridge.circularCalls.length > 0);
+  assert.ok(results.some((result) => result.source === "local-c"));
   assert.equal(bridge.runCalls.length, 0);
   assert.ok(!bridge.runCalls.some((runRequest) => runRequest.runKind === "sharedGeometry"));
   results.forEach((result) => {
@@ -1351,7 +1561,7 @@ test("configuration search compares co-moving and absolute-history solver result
     assert.equal(result.comparison.coMoving.sourceMode, "solver_bridge_circular_source_branch_sum");
     assert.equal(
       result.comparison.absoluteHistory.sourceMode,
-      "solver_app_absolute_history_moving_circular_branch_sum"
+      "app_absolute_history_moving_circular_branch_sum"
     );
     assert.ok(Number.isFinite(result.comparison.deltas.strengthDelta));
     assert.ok(Number.isFinite(result.comparison.deltas.rootCountDelta));
@@ -1378,6 +1588,8 @@ test("bridge-backed photon diagnostics expose the active solver engine", async (
   assert.equal(rows.get("Helical self-hit roots"), "12 / 12");
   assert.equal(rows.get("Helical self-hit max v/c_sig"), "1.56");
   assert.match(rows.get("Helical self-hit phase spread"), / deg$/);
+  assert.match(rows.get("Helical phase families"), /^\d+ \/ \d+$/);
+  assert.match(rows.get("Best helical family"), / deg \(\d+\)$/);
   assert.equal(rows.get("Missed sources"), "6");
   assert.equal(rows.get("No catch-up sources"), "6");
   assert.equal(rows.get("Stale windows"), "0");

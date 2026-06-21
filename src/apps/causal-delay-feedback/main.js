@@ -120,6 +120,12 @@ export function createCausalDelayFeedbackInitialReplayRequestOptions(windowLike 
   if (pairAccelerationScale != null) {
     requestOptions.pairAccelerationScale = pairAccelerationScale;
   }
+  const pairInteractionSignalSpeed =
+    getInitialPositiveQueryNumber(windowLike, "pairInteractionSignalSpeed") ??
+    getInitialPositiveQueryNumber(windowLike, "signalSpeed");
+  if (pairInteractionSignalSpeed != null) {
+    requestOptions.pairInteractionSignalSpeed = pairInteractionSignalSpeed;
+  }
   const pairInteractionLaw =
     getInitialQueryValue(windowLike, "pairInteractionLaw") ??
     getInitialQueryValue(windowLike, "interactionLaw");
@@ -144,6 +150,13 @@ export function createCausalDelayFeedbackInitialReplayRequestOptions(windowLike 
   if (pathConstraintGuidanceAccelerationTolerance != null) {
     requestOptions.pathConstraintGuidanceAccelerationTolerance =
       pathConstraintGuidanceAccelerationTolerance;
+  }
+  const pathConstraintInitialVelocityResidualTolerance =
+    getInitialNonnegativeQueryNumber(windowLike, "pathConstraintInitialVelocityResidualTolerance") ??
+    getInitialNonnegativeQueryNumber(windowLike, "initialVelocityResidualTolerance");
+  if (pathConstraintInitialVelocityResidualTolerance != null) {
+    requestOptions.pathConstraintInitialVelocityResidualTolerance =
+      pathConstraintInitialVelocityResidualTolerance;
   }
   const pathConstraintBoundaryRelaxationIterationCount =
     getInitialNonnegativeQueryInteger(windowLike, "pathConstraintBoundaryRelaxationIterationCount") ??

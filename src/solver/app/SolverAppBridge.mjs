@@ -1,4 +1,10 @@
 import { SOLVER_APP_ADAPTERS_VERSION } from "./SolverAppAdapters.mjs";
+import {
+  createMovingCircularSameSourceRootRequest,
+  createMovingCircularSourceRootRequest,
+  solveMovingCircularSameSourceCausalRoots,
+  solveMovingCircularSourceCausalRoots,
+} from "./AbsoluteHistoryRootRuntime.mjs";
 import { classifySolverBaselineResponse } from "./SolverBaselineComparison.mjs";
 
 export const SOLVER_APP_BRIDGE_API_VERSION = "solver-app-bridge.v1";
@@ -644,10 +650,10 @@ const ERROR_BUDGET_STAGE_ROW_F64_BYTES = 40;
 const ERROR_BUDGET_SUMMARY_F64_BYTES = 32;
 const MOTION_SAMPLE_REQUEST_F64_BYTES = 112;
 const MOTION_INTEGRATION_REQUEST_F64_BYTES = 120;
-const PAIR_INTERACTION_REQUEST_F64_BYTES = 80;
+const PAIR_INTERACTION_REQUEST_F64_BYTES = 88;
 const PAIR_INTERACTION_STATE_F64_BYTES = 80;
 const PAIR_INTERACTION_PATH_CONSTRAINT_F64_BYTES = 48;
-const PAIR_INTERACTION_SUMMARY_F64_BYTES = 312;
+const PAIR_INTERACTION_SUMMARY_F64_BYTES = 352;
 const PAIR_INTERACTION_PATH_CONSTRAINT_GUIDANCE_MODE = "retained_knot_boundary";
 const PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_MODE = "retained_knot_boundary";
 const PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_MODE_LAW_AWARE = "law_aware_retained_knot_boundary";
@@ -694,6 +700,7 @@ const PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_RELAXATION_CANDIDATE_KIND_BY_COD
   19: "third_corrected_defect_correction",
   20: "third_corrected_block_coupled_newton_defect_correction",
   21: "third_corrected_blend",
+  22: "causal_delay_numerical_newton_defect_correction",
   101: "predictor_center_of_mass_projected",
   102: "first_corrector_center_of_mass_projected",
   103: "second_corrector_center_of_mass_projected",
@@ -715,6 +722,7 @@ const PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_RELAXATION_CANDIDATE_KIND_BY_COD
   119: "third_corrected_defect_correction_center_of_mass_projected",
   120: "third_corrected_block_coupled_newton_defect_correction_center_of_mass_projected",
   121: "third_corrected_blend_center_of_mass_projected",
+  122: "causal_delay_numerical_newton_defect_correction_center_of_mass_projected",
 });
 const PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_RELAXATION_CANDIDATE_CODE_BY_KIND = Object.freeze(
   Object.fromEntries(
@@ -767,6 +775,8 @@ const PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_RELAXATION_STOP_REASON_BY_CODE =
   7: PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_RELAXATION_STOP_REASON_STEP_TOLERANCE_REACHED,
 });
 const PAIR_INTERACTION_CONSTRAINT_SOLVER_STATUS_GUIDED = "guided_constraint_path";
+const PAIR_INTERACTION_CONSTRAINT_SOLVER_STATUS_BOUNDARY_SEEDED =
+  "boundary_seeded_constraint_path";
 const PAIR_INTERACTION_CONSTRAINT_SOLVER_STATUS_DISCRETE_BOUNDARY_CONVERGED =
   "discrete_boundary_value_converged";
 const PAIR_INTERACTION_CONSTRAINT_SOLVER_STATUS_SNAP = "constraint_snap_only";
@@ -779,17 +789,44 @@ const PAIR_INTERACTION_PHYSICAL_BOUNDARY_SOLVER_STATUS_PENDING =
   "physical_boundary_solver_pending";
 const PAIR_INTERACTION_PHYSICAL_BOUNDARY_SOLVER_CLAIM_PENDING =
   "retained_knot_guidance_not_physical_boundary_value_solve";
+const PAIR_INTERACTION_PHYSICAL_BOUNDARY_SOLVER_BLOCKING_REASON_GUIDANCE_ACCELERATION =
+  "retained_knot_guidance_acceleration_required";
+const PAIR_INTERACTION_PHYSICAL_BOUNDARY_SOLVER_BLOCKING_REASON_RELAXATION_UNCONVERGED =
+  "finite_difference_boundary_relaxation_not_converged";
+const PAIR_INTERACTION_PHYSICAL_BOUNDARY_SOLVER_BLOCKING_REASON_INITIAL_VELOCITY =
+  "initial_velocity_boundary_not_preserved";
+const PAIR_INTERACTION_PHYSICAL_BOUNDARY_SOLVER_BLOCKING_REASON_BOUNDARY_RESIDUAL =
+  "retained_knot_boundary_residual_not_preserved";
+const PAIR_INTERACTION_PHYSICAL_BOUNDARY_SOLVER_BLOCKING_REASON_NOT_IMPLEMENTED =
+  "physical_boundary_solver_not_implemented";
 const PAIR_INTERACTION_DERIVED_BOUNDARY_POSITION_RESIDUAL_TOLERANCE = 1e-9;
+const PAIR_INTERACTION_DERIVED_INITIAL_VELOCITY_RESIDUAL_TOLERANCE = 1e-9;
 const PAIR_INTERACTION_BOUNDARY_RESIDUAL_STATUS_UNCHECKED = "unchecked";
 const PAIR_INTERACTION_BOUNDARY_RESIDUAL_STATUS_NO_SAMPLES = "no_boundary_samples";
 const PAIR_INTERACTION_BOUNDARY_RESIDUAL_STATUS_UNRESOLVED = "unresolved";
 const PAIR_INTERACTION_BOUNDARY_RESIDUAL_STATUS_WITHIN_TOLERANCE = "within_tolerance";
 const PAIR_INTERACTION_BOUNDARY_RESIDUAL_STATUS_EXCEEDED_TOLERANCE = "exceeded_tolerance";
+const PAIR_INTERACTION_BOUNDARY_RESIDUAL_MODE_SAME_TIME_PAIR_LAW =
+  "same_time_pair_law";
+const PAIR_INTERACTION_BOUNDARY_RESIDUAL_MODE_CAUSAL_DELAY_PAIR_LAW =
+  "causal_delay_pair_law";
+const PAIR_INTERACTION_BOUNDARY_RESIDUAL_MODE_BY_CODE = Object.freeze({
+  1: PAIR_INTERACTION_BOUNDARY_RESIDUAL_MODE_SAME_TIME_PAIR_LAW,
+  2: PAIR_INTERACTION_BOUNDARY_RESIDUAL_MODE_CAUSAL_DELAY_PAIR_LAW,
+});
 const PAIR_INTERACTION_POSITION_RESIDUAL_STATUS_UNCHECKED = "unchecked";
 const PAIR_INTERACTION_POSITION_RESIDUAL_STATUS_NO_SAMPLES = "no_position_samples";
 const PAIR_INTERACTION_POSITION_RESIDUAL_STATUS_UNRESOLVED = "unresolved";
 const PAIR_INTERACTION_POSITION_RESIDUAL_STATUS_WITHIN_TOLERANCE = "within_tolerance";
 const PAIR_INTERACTION_POSITION_RESIDUAL_STATUS_EXCEEDED_TOLERANCE = "exceeded_tolerance";
+const PAIR_INTERACTION_INITIAL_VELOCITY_RESIDUAL_STATUS_UNCHECKED = "unchecked";
+const PAIR_INTERACTION_INITIAL_VELOCITY_RESIDUAL_STATUS_NO_SAMPLES =
+  "no_initial_velocity_samples";
+const PAIR_INTERACTION_INITIAL_VELOCITY_RESIDUAL_STATUS_UNRESOLVED = "unresolved";
+const PAIR_INTERACTION_INITIAL_VELOCITY_RESIDUAL_STATUS_WITHIN_TOLERANCE =
+  "within_tolerance";
+const PAIR_INTERACTION_INITIAL_VELOCITY_RESIDUAL_STATUS_EXCEEDED_TOLERANCE =
+  "exceeded_tolerance";
 const PAIR_INTERACTION_GUIDANCE_ACCELERATION_STATUS_UNCHECKED = "unchecked";
 const PAIR_INTERACTION_GUIDANCE_ACCELERATION_STATUS_NO_SAMPLES = "no_guidance_samples";
 const PAIR_INTERACTION_GUIDANCE_ACCELERATION_STATUS_UNRESOLVED = "unresolved";
@@ -832,7 +869,7 @@ const DEFAULT_MAX_ROOT_LEDGER_DETAIL_ROWS = 4096;
 const DEFAULT_MAX_MOTION_FRAMES = 65536;
 const DEFAULT_MAX_MOTION_PATH_ROWS = DEFAULT_MAX_MOTION_FRAMES;
 const DEFAULT_MAX_SPACETIME_INDEX_ROWS = 65536;
-const ABI_INFO_BYTES = 188;
+const ABI_INFO_BYTES = 192;
 
 export class SolverBridgeError extends Error {
   constructor(status) {
@@ -1099,6 +1136,21 @@ export function createSolverAppBridgeClient(options = {}) {
       );
       registerResponseStreams(state, response);
       return response;
+    },
+
+    async solveMovingCircularSourceCausalRootsF64(request) {
+      assertNotDisposed(state);
+      return solveMovingCircularSourceCausalRootsF64(request);
+    },
+
+    async solveMovingCircularSameSourceCausalRootsF64(request) {
+      assertNotDisposed(state);
+      return solveMovingCircularSameSourceCausalRootsF64(request);
+    },
+
+    async computeMovingCircularObserverFieldF64(request) {
+      assertNotDisposed(state);
+      return computeMovingCircularObserverFieldF64(request);
     },
 
     async solveCausalRootsNormalizedF64(request) {
@@ -1381,6 +1433,8 @@ function createCapabilities(hasWasmModuleFactory) {
               "solveCausalRootsNormalizedF64",
               "solveCircularSourceRootsHitsLedgerF64",
               "solveCircularSourceRootsHitsLedgerNormalizedF64",
+              "solveMovingCircularSourceCausalRootsF64",
+              "solveMovingCircularSameSourceCausalRootsF64",
               "solveRootsAndHitsPrecisionF64",
               "solveRootsAndHitsF64",
               "refineEmissionShellCandidateRootsF64",
@@ -1397,6 +1451,8 @@ function createCapabilities(hasWasmModuleFactory) {
               "solveCausalRootsNormalizedF64",
               "solveCircularSourceRootsHitsLedgerF64",
               "solveCircularSourceRootsHitsLedgerNormalizedF64",
+              "solveMovingCircularSourceCausalRootsF64",
+              "solveMovingCircularSameSourceCausalRootsF64",
               "solveRootsAndHitsPrecisionF64",
               "solveRootsAndHitsF64",
               "refineEmissionShellCandidateRootsF64",
@@ -1413,6 +1469,8 @@ function createCapabilities(hasWasmModuleFactory) {
               "solveCausalRootsNormalizedF64",
               "solveCircularSourceRootsHitsLedgerF64",
               "solveCircularSourceRootsHitsLedgerNormalizedF64",
+              "solveMovingCircularSourceCausalRootsF64",
+              "solveMovingCircularSameSourceCausalRootsF64",
               "solveRootsAndHitsPrecisionF64",
               "solveRootsAndHitsF64",
               "refineEmissionShellCandidateRootsF64",
@@ -3932,6 +3990,18 @@ function runSimulationWithModule(state, module, request, abiInfo) {
           pair.summary?.meanPathConstraintPositionResidual,
         rmsPathConstraintPositionResidual:
           pair.summary?.rmsPathConstraintPositionResidual,
+        pathConstraintInitialVelocityResidualSampleCount:
+          pair.summary?.pathConstraintInitialVelocityResidualSampleCount,
+        pathConstraintInitialVelocityResidualStatus:
+          pair.summary?.pathConstraintInitialVelocityResidualStatus,
+        pathConstraintInitialVelocityResidualTolerance:
+          pair.summary?.pathConstraintInitialVelocityResidualTolerance,
+        maxPathConstraintInitialVelocityResidual:
+          pair.summary?.maxPathConstraintInitialVelocityResidual,
+        meanPathConstraintInitialVelocityResidual:
+          pair.summary?.meanPathConstraintInitialVelocityResidual,
+        rmsPathConstraintInitialVelocityResidual:
+          pair.summary?.rmsPathConstraintInitialVelocityResidual,
         pathConstraintBoundarySeedMode: pair.summary?.pathConstraintBoundarySeedMode,
         pathConstraintBoundarySeedSampleCount: pair.summary?.pathConstraintBoundarySeedSampleCount,
         pathConstraintBoundaryRelaxationMode: pair.summary?.pathConstraintBoundaryRelaxationMode,
@@ -3950,6 +4020,8 @@ function runSimulationWithModule(state, module, request, abiInfo) {
           pair.summary?.pathConstraintBoundaryRelaxationResidualEvidenceStatus,
         pathConstraintBoundaryRelaxationResidualSampleCount:
           pair.summary?.pathConstraintBoundaryRelaxationResidualSampleCount,
+        pathConstraintBoundaryRelaxationResidualMode:
+          pair.summary?.pathConstraintBoundaryRelaxationResidualMode,
         maxPathConstraintBoundaryRelaxationResidualBefore:
           pair.summary?.maxPathConstraintBoundaryRelaxationResidualBefore,
         maxPathConstraintBoundaryRelaxationResidualAfter:
@@ -3994,6 +4066,8 @@ function runSimulationWithModule(state, module, request, abiInfo) {
           pair.summary?.pathConstraintPhysicalBoundarySolverStatus,
         pathConstraintPhysicalBoundarySolverClaim:
           pair.summary?.pathConstraintPhysicalBoundarySolverClaim,
+        pathConstraintPhysicalBoundarySolverBlockingReason:
+          pair.summary?.pathConstraintPhysicalBoundarySolverBlockingReason,
         pathConstraintGuidanceAccelerationStatus:
           pair.summary?.pathConstraintGuidanceAccelerationStatus,
         pathConstraintGuidanceAccelerationTolerance:
@@ -4014,6 +4088,9 @@ function runSimulationWithModule(state, module, request, abiInfo) {
         chunkCount: pathHistory?.summary.chunkCount ?? 0,
         stepCount: pair.stepCount,
         interactionLaw: pair.interactionLaw,
+        ...(Number.isFinite(Number(pair.summary?.signalSpeed))
+          ? { signalSpeed: Number(pair.summary.signalSpeed) }
+          : {}),
         executionPath: pair.executionPath,
         pathConstraintCount: pair.summary?.pathConstraintCount ?? 0,
         pathConstraintFrameRefinementSampleCount:
@@ -4030,6 +4107,18 @@ function runSimulationWithModule(state, module, request, abiInfo) {
           pair.summary?.meanPathConstraintPositionResidual ?? 0,
         rmsPathConstraintPositionResidual:
           pair.summary?.rmsPathConstraintPositionResidual ?? 0,
+        pathConstraintInitialVelocityResidualSampleCount:
+          pair.summary?.pathConstraintInitialVelocityResidualSampleCount ?? 0,
+        pathConstraintInitialVelocityResidualStatus:
+          pair.summary?.pathConstraintInitialVelocityResidualStatus,
+        pathConstraintInitialVelocityResidualTolerance:
+          pair.summary?.pathConstraintInitialVelocityResidualTolerance,
+        maxPathConstraintInitialVelocityResidual:
+          pair.summary?.maxPathConstraintInitialVelocityResidual ?? 0,
+        meanPathConstraintInitialVelocityResidual:
+          pair.summary?.meanPathConstraintInitialVelocityResidual ?? 0,
+        rmsPathConstraintInitialVelocityResidual:
+          pair.summary?.rmsPathConstraintInitialVelocityResidual ?? 0,
         pathConstraintResidualSampleCount: pair.summary?.pathConstraintResidualSampleCount ?? 0,
         maxPathConstraintResidual: pair.summary?.maxPathConstraintResidual ?? 0,
         meanPathConstraintResidual: pair.summary?.meanPathConstraintResidual ?? 0,
@@ -4055,6 +4144,8 @@ function runSimulationWithModule(state, module, request, abiInfo) {
           pair.summary?.pathConstraintBoundaryRelaxationResidualEvidenceStatus,
         pathConstraintBoundaryRelaxationResidualSampleCount:
           pair.summary?.pathConstraintBoundaryRelaxationResidualSampleCount,
+        pathConstraintBoundaryRelaxationResidualMode:
+          pair.summary?.pathConstraintBoundaryRelaxationResidualMode,
         maxPathConstraintBoundaryRelaxationResidualBefore:
           pair.summary?.maxPathConstraintBoundaryRelaxationResidualBefore,
         maxPathConstraintBoundaryRelaxationResidualAfter:
@@ -4099,6 +4190,8 @@ function runSimulationWithModule(state, module, request, abiInfo) {
           pair.summary?.pathConstraintPhysicalBoundarySolverStatus,
         pathConstraintPhysicalBoundarySolverClaim:
           pair.summary?.pathConstraintPhysicalBoundarySolverClaim,
+        pathConstraintPhysicalBoundarySolverBlockingReason:
+          pair.summary?.pathConstraintPhysicalBoundarySolverBlockingReason,
         maxPathConstraintGuidanceAcceleration: pair.summary?.maxPathConstraintGuidanceAcceleration ?? 0,
         meanPathConstraintGuidanceAcceleration: pair.summary?.meanPathConstraintGuidanceAcceleration ?? 0,
         rmsPathConstraintGuidanceAcceleration: pair.summary?.rmsPathConstraintGuidanceAcceleration ?? 0,
@@ -4107,6 +4200,8 @@ function runSimulationWithModule(state, module, request, abiInfo) {
         pathConstraintGuidanceAccelerationTolerance:
           pair.summary?.pathConstraintGuidanceAccelerationTolerance,
         pathConstraintBoundaryResidualSampleCount: pair.summary?.pathConstraintBoundaryResidualSampleCount ?? 0,
+        pathConstraintBoundaryResidualMode:
+          pair.summary?.pathConstraintBoundaryResidualMode,
         pathConstraintBoundaryResidualStatus: pair.summary?.pathConstraintBoundaryResidualStatus,
         pathConstraintBoundaryResidualTolerance: pair.summary?.pathConstraintBoundaryResidualTolerance,
         maxPathConstraintBoundaryResidual: pair.summary?.maxPathConstraintBoundaryResidual ?? 0,
@@ -4275,6 +4370,9 @@ function createPairInteractionDynamicReplayMetadata(config) {
     pathKeys: request.initialStates.map((state) => state.pathKey),
     interactionLaw: request.interactionLaw,
     pairAccelerationScale: request.pairAccelerationScale,
+    ...(Number.isFinite(request.signalSpeed)
+      ? { signalSpeed: request.signalSpeed }
+      : {}),
     softening: request.softening,
     integrationTolerance: request.integrationTolerance,
     pairInteractionRequest: request,
@@ -4284,7 +4382,9 @@ function createPairInteractionDynamicReplayMetadata(config) {
 
 function solvePairInteractionPathF64(request, options = {}) {
   const normalized = normalizePairInteractionReplayRequest(request);
-  if (typeof options.module?._architrino_solver_integrate_pair_interaction_motion_f64 === "function") {
+  if (
+    typeof options.module?._architrino_solver_integrate_pair_interaction_motion_f64 === "function"
+  ) {
     return integratePairInteractionMotionF64WithModule(options.module, normalized, {
       ...options,
       abiInfo: options.abiInfo ?? getStaticAbiInfo(),
@@ -4311,6 +4411,11 @@ function solvePairInteractionPathF64(request, options = {}) {
     stateFlags: state.stateFlags,
   }));
   const frames = [];
+  const boundaryRelaxationIterationCount = normalizePairInteractionBoundaryRelaxationIterationCount(
+    normalized.pathConstraintBoundaryRelaxationIterationCount,
+  );
+  const guidanceEnabled =
+    normalized.pathConstraints.length === 0 || boundaryRelaxationIterationCount === 0;
   const guidanceSummary = createPairConstraintGuidanceSummary();
   for (let frameIndex = 0; frameIndex < times.length; frameIndex += 1) {
     const time = times[frameIndex];
@@ -4328,16 +4433,20 @@ function solvePairInteractionPathF64(request, options = {}) {
     });
     const nextTime = times[frameIndex + 1];
     if (nextTime != null) {
-      states = advancePairInteractionStates(states, time, nextTime, normalized, guidanceSummary);
+      states = advancePairInteractionStates(
+        states,
+        time,
+        nextTime,
+        normalized,
+        guidanceEnabled ? guidanceSummary : null,
+      );
     }
   }
 
   let pathConstraintBoundarySeedSampleCount = 0;
   if (
     normalized.pathConstraints.length > 0 &&
-    normalizePairInteractionBoundaryRelaxationIterationCount(
-      normalized.pathConstraintBoundaryRelaxationIterationCount,
-    ) > 0
+    boundaryRelaxationIterationCount > 0
   ) {
     pathConstraintBoundarySeedSampleCount =
       seedPairInteractionFramesFromBoundaryConstraints(frames, normalized);
@@ -4369,9 +4478,11 @@ function solvePairInteractionPathF64(request, options = {}) {
   const pathRows = createPairInteractionPathRows(frames);
   const positionResidualSummary =
     summarizePairInteractionConstraintPositionResiduals(frames, normalized);
+  const initialVelocityResidualSummary =
+    summarizePairInteractionInitialVelocityResiduals(frames, normalized);
   const residualSummary = summarizePairInteractionConstraintResiduals(frames, normalized);
   const boundarySummary = summarizePairInteractionBoundaryResiduals(normalized);
-  const pathConstraintGuidanceMode = normalized.pathConstraints.length > 0
+  const pathConstraintGuidanceMode = guidanceSummary.pathConstraintGuidanceSampleCount > 0
     ? PAIR_INTERACTION_PATH_CONSTRAINT_GUIDANCE_MODE
     : undefined;
   const pathConstraintBoundaryMode = createPairInteractionPathConstraintBoundaryMode(normalized);
@@ -4385,12 +4496,21 @@ function solvePairInteractionPathF64(request, options = {}) {
   const constraintSolverMetadata = createPairInteractionConstraintSolverMetadata(
     residualSummary.pathConstraintCount,
     guidanceSummary.pathConstraintGuidanceSampleCount,
+    pathConstraintBoundarySeedSampleCount,
     boundaryRelaxationStatus,
     positionResidualSummary,
     normalized,
+    initialVelocityResidualSummary,
+    boundarySummary,
   );
   const physicalBoundarySolverMetadata = createPairInteractionPhysicalBoundarySolverMetadata(
     residualSummary.pathConstraintCount,
+    guidanceSummary,
+    boundaryRelaxationStatus,
+    positionResidualSummary,
+    normalized,
+    initialVelocityResidualSummary,
+    boundarySummary,
   );
   const boundaryResidualAcceptanceMetadata = createPairInteractionBoundaryResidualAcceptanceMetadata(
     boundarySummary,
@@ -4400,6 +4520,11 @@ function solvePairInteractionPathF64(request, options = {}) {
     positionResidualSummary,
     normalized,
   );
+  const initialVelocityResidualAcceptanceMetadata =
+    createPairInteractionInitialVelocityResidualAcceptanceMetadata(
+      initialVelocityResidualSummary,
+      normalized,
+    );
   const guidanceAccelerationAcceptanceMetadata =
     createPairInteractionGuidanceAccelerationAcceptanceMetadata(guidanceSummary, normalized);
   enforcePairInteractionPositionResidualTolerance(positionResidualSummary, normalized, {
@@ -4409,6 +4534,12 @@ function solvePairInteractionPathF64(request, options = {}) {
     pathConstraintSolverClaim: constraintSolverMetadata.pathConstraintSolverClaim,
   });
   enforcePairInteractionBoundaryResidualTolerance(boundarySummary, normalized, {
+    ...options,
+    executionPath: "javascript_fallback",
+    pathConstraintSolverStatus: constraintSolverMetadata.pathConstraintSolverStatus,
+    pathConstraintSolverClaim: constraintSolverMetadata.pathConstraintSolverClaim,
+  });
+  enforcePairInteractionInitialVelocityResidualTolerance(initialVelocityResidualSummary, normalized, {
     ...options,
     executionPath: "javascript_fallback",
     pathConstraintSolverStatus: constraintSolverMetadata.pathConstraintSolverStatus,
@@ -4425,14 +4556,25 @@ function solvePairInteractionPathF64(request, options = {}) {
       requestedPrecisionPath: options.requestedPrecisionPath,
       precisionPath: options.precisionPath,
       interactionLaw: normalized.interactionLaw,
+      ...(Number.isFinite(normalized.signalSpeed)
+        ? { signalSpeed: normalized.signalSpeed }
+        : {}),
       stepCount: Math.max(0, times.length - 1),
       pathConstraintFrameRefinementSampleCount:
         sampleSchedule.pathConstraintFrameRefinementSampleCount,
       pathConstraintCount: residualSummary.pathConstraintCount,
       ...positionResidualSummary,
+      ...initialVelocityResidualSummary,
       ...positionResidualAcceptanceMetadata,
+      ...initialVelocityResidualAcceptanceMetadata,
       ...(Number.isFinite(normalized.pathConstraintPositionResidualTolerance)
         ? { pathConstraintPositionResidualTolerance: normalized.pathConstraintPositionResidualTolerance }
+        : {}),
+      ...(Number.isFinite(normalized.pathConstraintInitialVelocityResidualTolerance)
+        ? {
+            pathConstraintInitialVelocityResidualTolerance:
+              normalized.pathConstraintInitialVelocityResidualTolerance,
+          }
         : {}),
       pathConstraintResidualSampleCount: residualSummary.pathConstraintResidualSampleCount,
       maxPathConstraintResidual: residualSummary.maxPathConstraintResidual,
@@ -4462,6 +4604,7 @@ function solvePairInteractionPathF64(request, options = {}) {
           }
         : {}),
       pathConstraintBoundaryResidualSampleCount: boundarySummary.pathConstraintBoundaryResidualSampleCount,
+      pathConstraintBoundaryResidualMode: boundarySummary.pathConstraintBoundaryResidualMode,
       maxPathConstraintBoundaryResidual: boundarySummary.maxPathConstraintBoundaryResidual,
       meanPathConstraintBoundaryResidual: boundarySummary.meanPathConstraintBoundaryResidual,
       rmsPathConstraintBoundaryResidual: boundarySummary.rmsPathConstraintBoundaryResidual,
@@ -4494,12 +4637,23 @@ function solvePairInteractionPathF64(request, options = {}) {
       pathConstraintFrameRefinementSampleCount:
         sampleSchedule.pathConstraintFrameRefinementSampleCount,
       interactionLaw: normalized.interactionLaw,
+      ...(Number.isFinite(normalized.signalSpeed)
+        ? { signalSpeed: normalized.signalSpeed }
+        : {}),
       executionPath: "javascript_fallback",
       pathConstraintCount: residualSummary.pathConstraintCount,
       ...positionResidualSummary,
+      ...initialVelocityResidualSummary,
       ...positionResidualAcceptanceMetadata,
+      ...initialVelocityResidualAcceptanceMetadata,
       ...(Number.isFinite(normalized.pathConstraintPositionResidualTolerance)
         ? { pathConstraintPositionResidualTolerance: normalized.pathConstraintPositionResidualTolerance }
+        : {}),
+      ...(Number.isFinite(normalized.pathConstraintInitialVelocityResidualTolerance)
+        ? {
+            pathConstraintInitialVelocityResidualTolerance:
+              normalized.pathConstraintInitialVelocityResidualTolerance,
+          }
         : {}),
       pathConstraintResidualSampleCount: residualSummary.pathConstraintResidualSampleCount,
       maxPathConstraintResidual: residualSummary.maxPathConstraintResidual,
@@ -4529,6 +4683,7 @@ function solvePairInteractionPathF64(request, options = {}) {
           }
         : {}),
       pathConstraintBoundaryResidualSampleCount: boundarySummary.pathConstraintBoundaryResidualSampleCount,
+      pathConstraintBoundaryResidualMode: boundarySummary.pathConstraintBoundaryResidualMode,
       maxPathConstraintBoundaryResidual: boundarySummary.maxPathConstraintBoundaryResidual,
       meanPathConstraintBoundaryResidual: boundarySummary.meanPathConstraintBoundaryResidual,
       rmsPathConstraintBoundaryResidual: boundarySummary.rmsPathConstraintBoundaryResidual,
@@ -4541,6 +4696,9 @@ function solvePairInteractionPathF64(request, options = {}) {
     pathCount: normalized.initialStates.length,
     stepCount: Math.max(0, times.length - 1),
     interactionLaw: normalized.interactionLaw,
+    ...(Number.isFinite(normalized.signalSpeed)
+      ? { signalSpeed: normalized.signalSpeed }
+      : {}),
     executionPath: "javascript_fallback",
   };
 }
@@ -4554,6 +4712,10 @@ function normalizePairInteractionReplayRequest(request) {
     step: request.step,
     maxFrames: request.maxFrames,
     pairAccelerationScale: request.pairAccelerationScale ?? 0.18,
+    signalSpeed:
+      request.signalSpeed == null
+        ? undefined
+        : Number(request.signalSpeed),
     softening: request.softening ?? 0,
     integrationTolerance: request.integrationTolerance ?? 0,
     interactionLaw: request.interactionLaw ?? "display_pair_attraction_v1",
@@ -4581,6 +4743,10 @@ function normalizePairInteractionReplayRequest(request) {
       request.pathConstraintGuidanceAccelerationTolerance == null
         ? undefined
         : Number(request.pathConstraintGuidanceAccelerationTolerance),
+    pathConstraintInitialVelocityResidualTolerance:
+      request.pathConstraintInitialVelocityResidualTolerance == null
+        ? undefined
+        : Number(request.pathConstraintInitialVelocityResidualTolerance),
     duration,
     initialStates: request.initialStates.map((state) => ({
       pathKey: state.pathKey,
@@ -4766,6 +4932,77 @@ function enforcePairInteractionPositionResidualTolerance(positionSummary, reques
             PAIR_INTERACTION_POSITION_RESIDUAL_STATUS_EXCEEDED_TOLERANCE,
           maxPathConstraintPositionResidual: maxResidual,
           pathConstraintPositionResidualSampleCount: sampleCount,
+          interactionLaw: request.interactionLaw,
+          executionPath: options.executionPath,
+          requestId: options.requestId,
+          runId: options.runId,
+          pathConstraintSolverStatus: options.pathConstraintSolverStatus,
+          pathConstraintSolverClaim: options.pathConstraintSolverClaim,
+        },
+      },
+    ),
+  );
+}
+
+function enforcePairInteractionInitialVelocityResidualTolerance(
+  initialVelocitySummary,
+  request,
+  options = {},
+) {
+  const tolerance = Number(request.pathConstraintInitialVelocityResidualTolerance);
+  if (!Number.isFinite(tolerance)) {
+    return;
+  }
+  const sampleCount = Number(
+    initialVelocitySummary?.pathConstraintInitialVelocityResidualSampleCount,
+  );
+  const maxResidual = Number(initialVelocitySummary?.maxPathConstraintInitialVelocityResidual);
+  if (!Number.isFinite(sampleCount) || sampleCount <= 0 || !Number.isFinite(maxResidual)) {
+    const residualStatus =
+      !Number.isFinite(sampleCount) || sampleCount <= 0
+        ? PAIR_INTERACTION_INITIAL_VELOCITY_RESIDUAL_STATUS_NO_SAMPLES
+        : PAIR_INTERACTION_INITIAL_VELOCITY_RESIDUAL_STATUS_UNRESOLVED;
+    throw new SolverBridgeError(
+      createStatus(
+        "path_constraint_initial_velocity_residual_unresolved",
+        "halt",
+        "path constraint initial velocity residual could not be measured for requested tolerance",
+        {
+          recoverable: true,
+          details: {
+            pathConstraintInitialVelocityResidualTolerance: tolerance,
+            pathConstraintInitialVelocityResidualStatus: residualStatus,
+            maxPathConstraintInitialVelocityResidual: Number.isFinite(maxResidual) ? maxResidual : null,
+            pathConstraintInitialVelocityResidualSampleCount: Number.isFinite(sampleCount)
+              ? sampleCount
+              : 0,
+            interactionLaw: request.interactionLaw,
+            executionPath: options.executionPath,
+            requestId: options.requestId,
+            runId: options.runId,
+            pathConstraintSolverStatus: options.pathConstraintSolverStatus,
+            pathConstraintSolverClaim: options.pathConstraintSolverClaim,
+          },
+        },
+      ),
+    );
+  }
+  if (maxResidual <= tolerance) {
+    return;
+  }
+  throw new SolverBridgeError(
+    createStatus(
+      "path_constraint_initial_velocity_residual_exceeded",
+      "halt",
+      "path constraint initial velocity residual exceeded tolerance",
+      {
+        recoverable: true,
+        details: {
+          pathConstraintInitialVelocityResidualTolerance: tolerance,
+          pathConstraintInitialVelocityResidualStatus:
+            PAIR_INTERACTION_INITIAL_VELOCITY_RESIDUAL_STATUS_EXCEEDED_TOLERANCE,
+          maxPathConstraintInitialVelocityResidual: maxResidual,
+          pathConstraintInitialVelocityResidualSampleCount: sampleCount,
           interactionLaw: request.interactionLaw,
           executionPath: options.executionPath,
           requestId: options.requestId,
@@ -4974,9 +5211,12 @@ function createPairConstraintGuidanceSummary() {
 function createPairInteractionConstraintSolverMetadata(
   pathConstraintCount,
   guidanceSampleCount,
+  boundarySeedSampleCount,
   boundaryRelaxationStatus,
   positionResidualSummary = {},
   request = {},
+  initialVelocityResidualSummary = {},
+  boundaryResidualSummary = {},
 ) {
   if (!Number.isFinite(pathConstraintCount) || pathConstraintCount <= 0) {
     return {
@@ -4987,7 +5227,9 @@ function createPairInteractionConstraintSolverMetadata(
   if (
     boundaryRelaxationStatus ===
       PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_RELAXATION_STATUS_CONVERGED &&
-    pairInteractionConstraintPositionsPreserved(pathConstraintCount, positionResidualSummary, request)
+    pairInteractionConstraintPositionsPreserved(pathConstraintCount, positionResidualSummary, request) &&
+    pairInteractionInitialVelocityBoundaryPreserved(initialVelocityResidualSummary, request) &&
+    pairInteractionBoundaryResidualAccepted(boundaryResidualSummary, request)
   ) {
     return {
       pathConstraintSolverStatus:
@@ -4997,24 +5239,116 @@ function createPairInteractionConstraintSolverMetadata(
     };
   }
   return {
-    pathConstraintSolverStatus:
-      Number.isFinite(guidanceSampleCount) && guidanceSampleCount > 0
+    pathConstraintSolverStatus: Number.isFinite(boundarySeedSampleCount) && boundarySeedSampleCount > 0
+      ? PAIR_INTERACTION_CONSTRAINT_SOLVER_STATUS_BOUNDARY_SEEDED
+      : Number.isFinite(guidanceSampleCount) && guidanceSampleCount > 0
         ? PAIR_INTERACTION_CONSTRAINT_SOLVER_STATUS_GUIDED
         : PAIR_INTERACTION_CONSTRAINT_SOLVER_STATUS_SNAP,
     pathConstraintSolverClaim: PAIR_INTERACTION_CONSTRAINT_SOLVER_CLAIM_CONSTRAINED,
   };
 }
 
-function createPairInteractionPhysicalBoundarySolverMetadata(pathConstraintCount) {
+function createPairInteractionPhysicalBoundarySolverMetadata(
+  pathConstraintCount,
+  guidanceSummary = {},
+  boundaryRelaxationStatus = undefined,
+  positionResidualSummary = {},
+  request = {},
+  initialVelocityResidualSummary = {},
+  boundaryResidualSummary = {},
+) {
   if (!Number.isFinite(pathConstraintCount) || pathConstraintCount <= 0) {
     return {};
+  }
+  const guidanceSampleCount = Number(guidanceSummary?.pathConstraintGuidanceSampleCount);
+  const maxGuidanceAcceleration = Number(guidanceSummary?.maxPathConstraintGuidanceAcceleration);
+  const retainedPositionsPreserved = pairInteractionConstraintPositionsPreserved(
+    pathConstraintCount,
+    positionResidualSummary,
+    request,
+  );
+  const initialVelocityPreserved = pairInteractionInitialVelocityBoundaryPreserved(
+    initialVelocityResidualSummary,
+    request,
+  );
+  const boundaryResidualAccepted = pairInteractionBoundaryResidualAccepted(
+    boundaryResidualSummary,
+    request,
+  );
+  const hasConvergedBoundaryEvidence =
+    boundaryRelaxationStatus ===
+      PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_RELAXATION_STATUS_CONVERGED &&
+    retainedPositionsPreserved &&
+    initialVelocityPreserved &&
+    boundaryResidualAccepted;
+  let blockingReason = PAIR_INTERACTION_PHYSICAL_BOUNDARY_SOLVER_BLOCKING_REASON_NOT_IMPLEMENTED;
+  if (hasConvergedBoundaryEvidence) {
+    blockingReason = PAIR_INTERACTION_PHYSICAL_BOUNDARY_SOLVER_BLOCKING_REASON_NOT_IMPLEMENTED;
+  } else if (
+    boundaryRelaxationStatus ===
+      PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_RELAXATION_STATUS_CONVERGED &&
+    retainedPositionsPreserved &&
+    !initialVelocityPreserved
+  ) {
+    blockingReason =
+      PAIR_INTERACTION_PHYSICAL_BOUNDARY_SOLVER_BLOCKING_REASON_INITIAL_VELOCITY;
+  } else if (
+    boundaryRelaxationStatus ===
+      PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_RELAXATION_STATUS_CONVERGED &&
+    retainedPositionsPreserved &&
+    initialVelocityPreserved &&
+    !boundaryResidualAccepted
+  ) {
+    blockingReason =
+      PAIR_INTERACTION_PHYSICAL_BOUNDARY_SOLVER_BLOCKING_REASON_BOUNDARY_RESIDUAL;
+  } else if (
+    Number.isFinite(guidanceSampleCount) &&
+    guidanceSampleCount > 0 &&
+    Number.isFinite(maxGuidanceAcceleration) &&
+    maxGuidanceAcceleration > 0
+  ) {
+    blockingReason = PAIR_INTERACTION_PHYSICAL_BOUNDARY_SOLVER_BLOCKING_REASON_GUIDANCE_ACCELERATION;
+  } else if (
+    boundaryRelaxationStatus !==
+    PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_RELAXATION_STATUS_CONVERGED
+  ) {
+    blockingReason = PAIR_INTERACTION_PHYSICAL_BOUNDARY_SOLVER_BLOCKING_REASON_RELAXATION_UNCONVERGED;
   }
   return {
     pathConstraintPhysicalBoundarySolverStatus:
       PAIR_INTERACTION_PHYSICAL_BOUNDARY_SOLVER_STATUS_PENDING,
     pathConstraintPhysicalBoundarySolverClaim:
       PAIR_INTERACTION_PHYSICAL_BOUNDARY_SOLVER_CLAIM_PENDING,
+    pathConstraintPhysicalBoundarySolverBlockingReason: blockingReason,
   };
+}
+
+function pairInteractionBoundaryResidualAccepted(boundaryResidualSummary, request) {
+  const requestedTolerance = Number(request?.pathConstraintBoundaryResidualTolerance);
+  if (!Number.isFinite(requestedTolerance)) {
+    return true;
+  }
+  const sampleCount = Number(
+    boundaryResidualSummary?.pathConstraintBoundaryResidualSampleCount,
+  );
+  const maxResidual = Number(boundaryResidualSummary?.maxPathConstraintBoundaryResidual);
+  return Number.isFinite(sampleCount) && sampleCount > 0 && Number.isFinite(maxResidual)
+    ? maxResidual <= requestedTolerance
+    : false;
+}
+
+function pairInteractionInitialVelocityBoundaryPreserved(initialVelocityResidualSummary, request) {
+  const requestedTolerance = Number(request.pathConstraintInitialVelocityResidualTolerance);
+  const tolerance = Number.isFinite(requestedTolerance)
+    ? requestedTolerance
+    : PAIR_INTERACTION_DERIVED_INITIAL_VELOCITY_RESIDUAL_TOLERANCE;
+  const sampleCount = Number(
+    initialVelocityResidualSummary?.pathConstraintInitialVelocityResidualSampleCount,
+  );
+  const maxResidual = Number(initialVelocityResidualSummary?.maxPathConstraintInitialVelocityResidual);
+  return Number.isFinite(sampleCount) && sampleCount > 0 && Number.isFinite(maxResidual)
+    ? maxResidual <= tolerance
+    : false;
 }
 
 function pairInteractionConstraintPositionsPreserved(pathConstraintCount, positionResidualSummary, request) {
@@ -5270,6 +5604,10 @@ function createPairInteractionBoundaryRelaxationMetadata(
     pathConstraintBoundaryRelaxationResidualEvidenceStatus: residualEvidenceStatus,
     pathConstraintBoundaryRelaxationResidualSampleCount:
       residualAfter?.pathConstraintBoundaryRelaxationResidualSampleCount ?? 0,
+    pathConstraintBoundaryRelaxationResidualMode:
+      residualAfter?.pathConstraintBoundaryRelaxationResidualMode ??
+      residualBefore?.pathConstraintBoundaryRelaxationResidualMode ??
+      pairInteractionPairLawResidualMode(request),
     maxPathConstraintBoundaryRelaxationResidualBefore: Number.isFinite(beforeMax) ? beforeMax : 0,
     maxPathConstraintBoundaryRelaxationResidualAfter: Number.isFinite(afterMax) ? afterMax : 0,
     meanPathConstraintBoundaryRelaxationResidualBefore: Number.isFinite(
@@ -5387,6 +5725,38 @@ function createPairInteractionPositionResidualAcceptanceMetadata(positionSummary
   };
 }
 
+function createPairInteractionInitialVelocityResidualAcceptanceMetadata(initialVelocitySummary, request) {
+  const tolerance = Number(request.pathConstraintInitialVelocityResidualTolerance);
+  if (!Number.isFinite(tolerance)) {
+    return {
+      pathConstraintInitialVelocityResidualStatus:
+        PAIR_INTERACTION_INITIAL_VELOCITY_RESIDUAL_STATUS_UNCHECKED,
+    };
+  }
+  const sampleCount = Number(
+    initialVelocitySummary?.pathConstraintInitialVelocityResidualSampleCount,
+  );
+  if (!Number.isFinite(sampleCount) || sampleCount <= 0) {
+    return {
+      pathConstraintInitialVelocityResidualStatus:
+        PAIR_INTERACTION_INITIAL_VELOCITY_RESIDUAL_STATUS_NO_SAMPLES,
+    };
+  }
+  const maxResidual = Number(initialVelocitySummary?.maxPathConstraintInitialVelocityResidual);
+  if (!Number.isFinite(maxResidual)) {
+    return {
+      pathConstraintInitialVelocityResidualStatus:
+        PAIR_INTERACTION_INITIAL_VELOCITY_RESIDUAL_STATUS_UNRESOLVED,
+    };
+  }
+  return {
+    pathConstraintInitialVelocityResidualStatus:
+      maxResidual <= tolerance
+        ? PAIR_INTERACTION_INITIAL_VELOCITY_RESIDUAL_STATUS_WITHIN_TOLERANCE
+        : PAIR_INTERACTION_INITIAL_VELOCITY_RESIDUAL_STATUS_EXCEEDED_TOLERANCE,
+  };
+}
+
 function createPairInteractionGuidanceAccelerationAcceptanceMetadata(guidanceSummary, request) {
   const tolerance = Number(request.pathConstraintGuidanceAccelerationTolerance);
   if (!Number.isFinite(tolerance)) {
@@ -5466,7 +5836,7 @@ function snapPairInteractionStateToConstraints(state, time, request) {
 
 function pairConstraintTangentAtTime(constraints, time, epsilon, request, firstTangent) {
   const index = constraints.findIndex((constraint) => Math.abs(constraint.time - time) <= epsilon);
-  if (index <= 0) {
+  if (index < 0) {
     return null;
   }
   return pairConstraintTangentForIndex(constraints, index, firstTangent, epsilon, request);
@@ -5700,29 +6070,226 @@ function computePairConstraintGuidedAcceleration(state, physicalAcceleration, cu
 }
 
 function computePairInteractionAccelerations(states, request) {
+  return states.map((state, index) =>
+    computePairInteractionAccelerationFromSources(
+      state,
+      states.filter((_, otherIndex) => otherIndex !== index),
+      request,
+    )
+  );
+}
+
+function computePairInteractionAccelerationFromSources(state, sourceStates, request) {
   const factor = request.pairAccelerationScale / Math.max(request.duration * request.duration, 1e-12);
   const softeningSquared = request.softening * request.softening;
-  return states.map((state, index) => {
-    const acceleration = { x: 0, y: 0, z: 0 };
-    states.forEach((other, otherIndex) => {
-      if (otherIndex === index) {
-        return;
-      }
-      const dx = other.position.x - state.position.x;
-      const dy = other.position.y - state.position.y;
-      const dz = other.position.z - state.position.z;
-      const distanceSquared = dx * dx + dy * dy + dz * dz + softeningSquared;
-      const attractionSign = state.charge * other.charge <= 0 ? 1 : -1;
-      const strength = (factor * attractionSign * Math.abs(other.charge)) / state.mass;
-      const attenuation = request.interactionLaw === "inverse_distance_pair_attraction_v1"
-        ? 1 / Math.max(Math.sqrt(distanceSquared), 1e-12)
-        : 1;
-      acceleration.x += dx * strength * attenuation;
-      acceleration.y += dy * strength * attenuation;
-      acceleration.z += dz * strength * attenuation;
-    });
-    return acceleration;
+  const acceleration = { x: 0, y: 0, z: 0 };
+  sourceStates.forEach((other) => {
+    const dx = other.position.x - state.position.x;
+    const dy = other.position.y - state.position.y;
+    const dz = other.position.z - state.position.z;
+    const distanceSquared = dx * dx + dy * dy + dz * dz + softeningSquared;
+    const attractionSign = state.charge * other.charge <= 0 ? 1 : -1;
+    const strength = (factor * attractionSign * Math.abs(other.charge)) / state.mass;
+    const attenuation = request.interactionLaw === "inverse_distance_pair_attraction_v1"
+      ? 1 / Math.max(Math.sqrt(distanceSquared), 1e-12)
+      : 1;
+    acceleration.x += dx * strength * attenuation;
+    acceleration.y += dy * strength * attenuation;
+    acceleration.z += dz * strength * attenuation;
   });
+  return acceleration;
+}
+
+function pairInteractionUsesFixedSignalSpeed(request) {
+  const signalSpeed = Number(request?.signalSpeed);
+  return Number.isFinite(signalSpeed) && signalSpeed > 0;
+}
+
+function pairInteractionPairLawResidualMode(request) {
+  return pairInteractionUsesFixedSignalSpeed(request)
+    ? PAIR_INTERACTION_BOUNDARY_RESIDUAL_MODE_CAUSAL_DELAY_PAIR_LAW
+    : PAIR_INTERACTION_BOUNDARY_RESIDUAL_MODE_SAME_TIME_PAIR_LAW;
+}
+
+function pairInteractionLawAccelerationForFrame(frames, request, currentFrame) {
+  if (!currentFrame) {
+    return null;
+  }
+  if (!pairInteractionUsesFixedSignalSpeed(request)) {
+    const states = statesAtPairInteractionFrameIndex(
+      frames,
+      currentFrame.frameIndex,
+      request.initialStates,
+    );
+    if (states.length !== request.initialStates.length) {
+      return null;
+    }
+    const lawAccelerations = computePairInteractionAccelerations(states, request);
+    const stateIndex = states.findIndex((state) => state.pathKey === currentFrame.pathKey);
+    return stateIndex >= 0 ? lawAccelerations[stateIndex] ?? null : null;
+  }
+
+  const signalSpeed = Number(request.signalSpeed);
+  const epsilon = pairConstraintTimeEpsilon(request);
+  const receiverInitialState = request.initialStates.find(
+    (candidate) => candidate.pathKey === currentFrame.pathKey,
+  );
+  if (!receiverInitialState) {
+    return null;
+  }
+  const sourceStates = request.initialStates
+    .filter((candidate) => candidate.pathKey !== currentFrame.pathKey)
+    .map((sourceInitialState) =>
+      pairInteractionDelayedSourceStateAtHitTime(
+        frames,
+        sourceInitialState,
+        currentFrame.position,
+        currentFrame.time,
+        signalSpeed,
+        epsilon,
+      )
+    )
+    .filter(Boolean);
+  if (sourceStates.length !== request.initialStates.length - 1) {
+    return null;
+  }
+  const receiverState = {
+    pathKey: currentFrame.pathKey,
+    position: copyVector(currentFrame.position),
+    velocity: copyVector(currentFrame.velocity ?? receiverInitialState.initialVelocity),
+    charge: receiverInitialState.charge,
+    mass: receiverInitialState.mass,
+    stateFlags: currentFrame.stateFlags ?? receiverInitialState.stateFlags,
+  };
+  return computePairInteractionAccelerationFromSources(receiverState, sourceStates, request);
+}
+
+function pairInteractionDelayedSourceStateAtHitTime(
+  frames,
+  sourceInitialState,
+  receiverPosition,
+  hitTime,
+  signalSpeed,
+  epsilon,
+) {
+  const sourceFrames = frames
+    .filter((frame) => frame.pathKey === sourceInitialState.pathKey)
+    .slice()
+    .sort((left, right) => left.time - right.time || left.frameIndex - right.frameIndex);
+  if (sourceFrames.length < 2) {
+    return null;
+  }
+  const lowerTime = sourceFrames[0].time;
+  const upperTime = Math.min(hitTime - epsilon, sourceFrames[sourceFrames.length - 1].time);
+  if (upperTime < lowerTime - epsilon) {
+    return null;
+  }
+  const residualAt = (time) => {
+    const sourceState = pairInteractionFrameStateAtTime(
+      sourceFrames,
+      sourceInitialState,
+      time,
+      epsilon,
+    );
+    if (!sourceState) {
+      return null;
+    }
+    const distance = vectorNorm(vectorSubtract(receiverPosition, sourceState.position));
+    const residual = distance - signalSpeed * (hitTime - time);
+    return Number.isFinite(residual) ? { time, residual, sourceState } : null;
+  };
+  const rootTolerance = Math.max(epsilon * signalSpeed, 1e-9);
+  let bestRoot = null;
+  let bestAbsResidual = Number.POSITIVE_INFINITY;
+  const considerRoot = (candidate) => {
+    if (!candidate) {
+      return;
+    }
+    const absResidual = Math.abs(candidate.residual);
+    if (
+      absResidual < bestAbsResidual ||
+      (Math.abs(absResidual - bestAbsResidual) <= rootTolerance &&
+        (!bestRoot || candidate.time > bestRoot.time))
+    ) {
+      bestRoot = candidate;
+      bestAbsResidual = absResidual;
+    }
+  };
+
+  for (let index = 0; index + 1 < sourceFrames.length; index += 1) {
+    const segmentStart = Math.max(lowerTime, sourceFrames[index].time);
+    const segmentEnd = Math.min(upperTime, sourceFrames[index + 1].time);
+    if (segmentEnd < segmentStart - epsilon) {
+      continue;
+    }
+    const subdivisionCount = 8;
+    let previous = residualAt(segmentStart);
+    considerRoot(previous);
+    for (let subdivision = 1; subdivision <= subdivisionCount; subdivision += 1) {
+      const time = segmentStart + (segmentEnd - segmentStart) * (subdivision / subdivisionCount);
+      const current = residualAt(time);
+      considerRoot(current);
+      if (previous && current && previous.residual * current.residual <= 0) {
+        considerRoot(
+          bisectPairConstraintDelayedSourceRoot(residualAt, previous.time, current.time, epsilon),
+        );
+      }
+      previous = current;
+    }
+  }
+
+  if (!bestRoot || bestAbsResidual > rootTolerance) {
+    return null;
+  }
+  return bestRoot.sourceState;
+}
+
+function pairInteractionFrameStateAtTime(sourceFrames, sourceInitialState, time, epsilon) {
+  const exact = sourceFrames.find((frame) => Math.abs(frame.time - time) <= epsilon);
+  if (exact) {
+    return {
+      pathKey: sourceInitialState.pathKey,
+      position: copyVector(exact.position),
+      velocity: copyVector(exact.velocity ?? sourceInitialState.initialVelocity),
+      charge: sourceInitialState.charge,
+      mass: sourceInitialState.mass,
+      stateFlags: exact.stateFlags ?? sourceInitialState.stateFlags,
+    };
+  }
+  if (
+    time < sourceFrames[0].time - epsilon ||
+    time > sourceFrames[sourceFrames.length - 1].time + epsilon
+  ) {
+    return null;
+  }
+  const rightIndex = sourceFrames.findIndex((frame) => frame.time >= time);
+  if (rightIndex <= 0) {
+    return null;
+  }
+  const left = sourceFrames[rightIndex - 1];
+  const right = sourceFrames[rightIndex];
+  const span = right.time - left.time;
+  if (span <= epsilon) {
+    return null;
+  }
+  const amount = Math.max(0, Math.min(1, (time - left.time) / span));
+  const lerp = (leftValue, rightValue) => leftValue + (rightValue - leftValue) * amount;
+  return {
+    pathKey: sourceInitialState.pathKey,
+    position: {
+      x: lerp(left.position.x, right.position.x),
+      y: lerp(left.position.y, right.position.y),
+      z: lerp(left.position.z, right.position.z),
+    },
+    velocity: {
+      x: lerp(left.velocity?.x ?? sourceInitialState.initialVelocity.x, right.velocity?.x ?? sourceInitialState.initialVelocity.x),
+      y: lerp(left.velocity?.y ?? sourceInitialState.initialVelocity.y, right.velocity?.y ?? sourceInitialState.initialVelocity.y),
+      z: lerp(left.velocity?.z ?? sourceInitialState.initialVelocity.z, right.velocity?.z ?? sourceInitialState.initialVelocity.z),
+    },
+    charge: sourceInitialState.charge,
+    mass: sourceInitialState.mass,
+    stateFlags: left.stateFlags ?? sourceInitialState.stateFlags,
+  };
 }
 
 function pairInteractionLawSelfDerivativeComponent(states, request, stateIndex, component) {
@@ -5896,10 +6463,66 @@ function summarizePairInteractionConstraintPositionResiduals(frames, request) {
   return summary;
 }
 
+function summarizePairInteractionInitialVelocityResiduals(frames, request) {
+  const summary = {
+    pathConstraintInitialVelocityResidualSampleCount: 0,
+    maxPathConstraintInitialVelocityResidual: 0,
+    meanPathConstraintInitialVelocityResidual: 0,
+    rmsPathConstraintInitialVelocityResidual: 0,
+  };
+  if (!Array.isArray(frames) || frames.length === 0) {
+    return summary;
+  }
+
+  let residualSum = 0;
+  let residualSquaredSum = 0;
+  let sampleCount = 0;
+  request.initialStates.forEach((initialState) => {
+    const pathFrames = frames
+      .filter((frame) => frame.pathKey === initialState.pathKey)
+      .slice()
+      .sort((left, right) => left.time - right.time || left.frameIndex - right.frameIndex);
+    if (pathFrames.length < 2) {
+      return;
+    }
+    const first = pathFrames[0];
+    if (!first.velocity) {
+      return;
+    }
+    const residual = vectorNorm(
+      vectorSubtract(first.velocity, initialState.initialVelocity),
+    );
+    if (!Number.isFinite(residual)) {
+      return;
+    }
+    summary.maxPathConstraintInitialVelocityResidual = Math.max(
+      summary.maxPathConstraintInitialVelocityResidual,
+      residual,
+    );
+    residualSum += residual;
+    residualSquaredSum += residual * residual;
+    sampleCount += 1;
+  });
+
+  summary.pathConstraintInitialVelocityResidualSampleCount = sampleCount;
+  if (sampleCount > 0) {
+    summary.meanPathConstraintInitialVelocityResidual = residualSum / sampleCount;
+    summary.rmsPathConstraintInitialVelocityResidual = Math.sqrt(
+      residualSquaredSum / sampleCount,
+    );
+  }
+  return summary;
+}
+
 function summarizePairInteractionBoundaryResiduals(request) {
   const constraints = request.pathConstraints ?? [];
+  const signalSpeed = Number(request.signalSpeed);
+  const useCausalDelayResidual = Number.isFinite(signalSpeed) && signalSpeed > 0;
   const summary = {
     pathConstraintBoundaryResidualSampleCount: 0,
+    pathConstraintBoundaryResidualMode: useCausalDelayResidual
+      ? PAIR_INTERACTION_BOUNDARY_RESIDUAL_MODE_CAUSAL_DELAY_PAIR_LAW
+      : PAIR_INTERACTION_BOUNDARY_RESIDUAL_MODE_SAME_TIME_PAIR_LAW,
     maxPathConstraintBoundaryResidual: 0,
     meanPathConstraintBoundaryResidual: 0,
     rmsPathConstraintBoundaryResidual: 0,
@@ -5933,16 +6556,13 @@ function summarizePairInteractionBoundaryResiduals(request) {
         vectorSubtract(rightVelocity, leftVelocity),
         1 / averageDt,
       );
-      const states = statesFromPairConstraintsAtTime(request, current.time);
-      if (states.length !== request.initialStates.length) {
+      const lawAcceleration = useCausalDelayResidual
+        ? pairConstraintCausalDelayLawAccelerationAtConstraint(request, current, signalSpeed, epsilon)
+        : pairConstraintSameTimeLawAccelerationAtTime(request, current.pathKey, current.time);
+      if (!lawAcceleration) {
         continue;
       }
-      const lawAccelerations = computePairInteractionAccelerations(states, request);
-      const stateIndex = states.findIndex((state) => state.pathKey === current.pathKey);
-      if (stateIndex < 0 || !lawAccelerations[stateIndex]) {
-        continue;
-      }
-      const residual = vectorNorm(vectorSubtract(finiteDifferenceAcceleration, lawAccelerations[stateIndex]));
+      const residual = vectorNorm(vectorSubtract(finiteDifferenceAcceleration, lawAcceleration));
       if (!Number.isFinite(residual)) {
         continue;
       }
@@ -5964,9 +6584,171 @@ function summarizePairInteractionBoundaryResiduals(request) {
   return summary;
 }
 
+function pairConstraintSameTimeLawAccelerationAtTime(request, pathKey, time) {
+  const states = statesFromPairConstraintBoundaryAtTime(request, time);
+  if (states.length !== request.initialStates.length) {
+    return null;
+  }
+  const lawAccelerations = computePairInteractionAccelerations(states, request);
+  const stateIndex = states.findIndex((state) => state.pathKey === pathKey);
+  return stateIndex >= 0 ? lawAccelerations[stateIndex] ?? null : null;
+}
+
+function pairConstraintCausalDelayLawAccelerationAtConstraint(request, receiverConstraint, signalSpeed, epsilon) {
+  const receiverInitialState = request.initialStates.find(
+    (candidate) => candidate.pathKey === receiverConstraint.pathKey,
+  );
+  if (!receiverInitialState || !Number.isFinite(signalSpeed) || signalSpeed <= 0) {
+    return null;
+  }
+  const sourceStates = request.initialStates
+    .filter((candidate) => candidate.pathKey !== receiverConstraint.pathKey)
+    .map((sourceInitialState) =>
+      pairConstraintDelayedSourceStateAtHitTime(
+        request,
+        sourceInitialState,
+        receiverConstraint.position,
+        receiverConstraint.time,
+        signalSpeed,
+        epsilon,
+      )
+    )
+    .filter(Boolean);
+  if (sourceStates.length !== request.initialStates.length - 1) {
+    return null;
+  }
+  const receiverState = {
+    pathKey: receiverInitialState.pathKey,
+    position: copyVector(receiverConstraint.position),
+    velocity: { x: 0, y: 0, z: 0 },
+    charge: receiverInitialState.charge,
+    mass: receiverInitialState.mass,
+    stateFlags: receiverInitialState.stateFlags,
+  };
+  return computePairInteractionAccelerationFromSources(receiverState, sourceStates, request);
+}
+
+function pairConstraintDelayedSourceStateAtHitTime(
+  request,
+  sourceInitialState,
+  receiverPosition,
+  hitTime,
+  signalSpeed,
+  epsilon,
+) {
+  const constraints = sortedPairConstraintsForPath(request, sourceInitialState.pathKey);
+  if (constraints.length < 2) {
+    return null;
+  }
+  const lowerTime = constraints[0].time;
+  const upperTime = Math.min(hitTime - epsilon, constraints[constraints.length - 1].time);
+  if (upperTime < lowerTime - epsilon) {
+    return null;
+  }
+  const residualAt = (time) => {
+    const sourcePosition = pairConstraintHermitePositionAtTime(
+      constraints,
+      sourceInitialState.initialVelocity,
+      time,
+      epsilon,
+      request,
+    );
+    if (!sourcePosition) {
+      return null;
+    }
+    const distance = vectorNorm(vectorSubtract(receiverPosition, sourcePosition));
+    const residual = distance - signalSpeed * (hitTime - time);
+    return Number.isFinite(residual) ? { time, residual, sourcePosition } : null;
+  };
+  const rootTolerance = Math.max(epsilon * signalSpeed, 1e-9);
+  let bestRoot = null;
+  let bestAbsResidual = Number.POSITIVE_INFINITY;
+  const considerRoot = (candidate) => {
+    if (!candidate) {
+      return;
+    }
+    const absResidual = Math.abs(candidate.residual);
+    if (
+      absResidual < bestAbsResidual ||
+      (Math.abs(absResidual - bestAbsResidual) <= rootTolerance &&
+        (!bestRoot || candidate.time > bestRoot.time))
+    ) {
+      bestRoot = candidate;
+      bestAbsResidual = absResidual;
+    }
+  };
+
+  for (let constraintIndex = 0; constraintIndex + 1 < constraints.length; constraintIndex += 1) {
+    const segmentStart = Math.max(lowerTime, constraints[constraintIndex].time);
+    const segmentEnd = Math.min(upperTime, constraints[constraintIndex + 1].time);
+    if (segmentEnd < segmentStart - epsilon) {
+      continue;
+    }
+    const subdivisionCount = 8;
+    let previous = residualAt(segmentStart);
+    considerRoot(previous);
+    for (let subdivision = 1; subdivision <= subdivisionCount; subdivision += 1) {
+      const time = segmentStart + (segmentEnd - segmentStart) * (subdivision / subdivisionCount);
+      const current = residualAt(time);
+      considerRoot(current);
+      if (previous && current && previous.residual * current.residual <= 0) {
+        considerRoot(
+          bisectPairConstraintDelayedSourceRoot(residualAt, previous.time, current.time, epsilon),
+        );
+      }
+      previous = current;
+    }
+  }
+
+  if (!bestRoot || bestAbsResidual > rootTolerance) {
+    return null;
+  }
+  return {
+    pathKey: sourceInitialState.pathKey,
+    position: copyVector(bestRoot.sourcePosition),
+    velocity: { x: 0, y: 0, z: 0 },
+    charge: sourceInitialState.charge,
+    mass: sourceInitialState.mass,
+    stateFlags: sourceInitialState.stateFlags,
+  };
+}
+
+function bisectPairConstraintDelayedSourceRoot(residualAt, leftTime, rightTime, epsilon) {
+  let left = residualAt(leftTime);
+  let right = residualAt(rightTime);
+  if (!left || !right) {
+    return null;
+  }
+  if (Math.abs(left.residual) <= Math.abs(right.residual) && Math.abs(left.residual) <= epsilon) {
+    return left;
+  }
+  if (Math.abs(right.residual) <= epsilon) {
+    return right;
+  }
+  for (let iteration = 0; iteration < 48 && rightTime - leftTime > epsilon; iteration += 1) {
+    const midTime = 0.5 * (leftTime + rightTime);
+    const mid = residualAt(midTime);
+    if (!mid) {
+      break;
+    }
+    if (Math.abs(mid.residual) <= epsilon) {
+      return mid;
+    }
+    if (left.residual * mid.residual <= 0) {
+      right = mid;
+      rightTime = midTime;
+    } else {
+      left = mid;
+      leftTime = midTime;
+    }
+  }
+  return Math.abs(left.residual) <= Math.abs(right.residual) ? left : right;
+}
+
 function summarizePairInteractionBoundaryRelaxationResiduals(frames, request) {
   const summary = {
     pathConstraintBoundaryRelaxationResidualSampleCount: 0,
+    pathConstraintBoundaryRelaxationResidualMode: pairInteractionPairLawResidualMode(request),
     maxPathConstraintBoundaryRelaxationResidual: 0,
     meanPathConstraintBoundaryRelaxationResidual: 0,
     rmsPathConstraintBoundaryRelaxationResidual: 0,
@@ -6002,16 +6784,11 @@ function summarizePairInteractionBoundaryRelaxationResiduals(frames, request) {
         vectorSubtract(rightVelocity, leftVelocity),
         1 / averageDt,
       );
-      const states = statesAtPairInteractionFrameIndex(frames, current.frameIndex, request.initialStates);
-      if (states.length !== request.initialStates.length) {
+      const lawAcceleration = pairInteractionLawAccelerationForFrame(frames, request, current);
+      if (!lawAcceleration) {
         continue;
       }
-      const lawAccelerations = computePairInteractionAccelerations(states, request);
-      const stateIndex = states.findIndex((state) => state.pathKey === current.pathKey);
-      if (stateIndex < 0 || !lawAccelerations[stateIndex]) {
-        continue;
-      }
-      const residual = vectorNorm(vectorSubtract(finiteDifferenceAcceleration, lawAccelerations[stateIndex]));
+      const residual = vectorNorm(vectorSubtract(finiteDifferenceAcceleration, lawAcceleration));
       if (!Number.isFinite(residual)) {
         continue;
       }
@@ -6088,16 +6865,11 @@ function pairInteractionBoundaryRelaxationResidualVectorForFrames(
     vectorSubtract(rightVelocity, leftVelocity),
     1 / averageDt,
   );
-  const states = statesAtPairInteractionFrameIndex(frames, current.frameIndex, request.initialStates);
-  if (states.length !== request.initialStates.length) {
+  const lawAcceleration = pairInteractionLawAccelerationForFrame(frames, request, current);
+  if (!lawAcceleration) {
     return null;
   }
-  const lawAccelerations = computePairInteractionAccelerations(states, request);
-  const stateIndex = states.findIndex((state) => state.pathKey === current.pathKey);
-  if (stateIndex < 0 || !lawAccelerations[stateIndex]) {
-    return null;
-  }
-  const residual = vectorSubtract(finiteDifferenceAcceleration, lawAccelerations[stateIndex]);
+  const residual = vectorSubtract(finiteDifferenceAcceleration, lawAcceleration);
   return (
     Number.isFinite(residual.x) &&
     Number.isFinite(residual.y) &&
@@ -6121,6 +6893,34 @@ function statesFromPairConstraintsAtTime(request, time) {
         sortedPairConstraintsForPath(request, initialState.pathKey),
         time,
         pairConstraintTimeEpsilon(request),
+      );
+      if (!position) {
+        return null;
+      }
+      return {
+        pathKey: initialState.pathKey,
+        position,
+        velocity: { x: 0, y: 0, z: 0 },
+        charge: initialState.charge,
+        mass: initialState.mass,
+        stateFlags: initialState.stateFlags,
+      };
+    })
+    .filter(Boolean)
+    .sort((left, right) => left.pathKey - right.pathKey);
+}
+
+function statesFromPairConstraintBoundaryAtTime(request, time) {
+  const epsilon = pairConstraintTimeEpsilon(request);
+  return request.initialStates
+    .map((initialState) => {
+      const constraints = sortedPairConstraintsForPath(request, initialState.pathKey);
+      const position = pairConstraintHermitePositionAtTime(
+        constraints,
+        initialState.initialVelocity,
+        time,
+        epsilon,
+        request,
       );
       if (!position) {
         return null;
@@ -6168,13 +6968,10 @@ function solveTridiagonalSystem(lower, diagonal, upper, rhs) {
 }
 
 function pairInteractionLawAccelerationAtFrame(frames, frameIndex, request, pathKey) {
-  const states = statesAtPairInteractionFrameIndex(frames, frameIndex, request.initialStates);
-  if (states.length !== request.initialStates.length) {
-    return null;
-  }
-  const lawAccelerations = computePairInteractionAccelerations(states, request);
-  const stateIndex = states.findIndex((state) => state.pathKey === pathKey);
-  return stateIndex >= 0 ? lawAccelerations[stateIndex] : null;
+  const currentFrame = frames.find(
+    (frame) => frame.frameIndex === frameIndex && frame.pathKey === pathKey,
+  );
+  return pairInteractionLawAccelerationForFrame(frames, request, currentFrame);
 }
 
 function blendPairInteractionLawAcceleration(primary, secondary, secondaryWeight) {
@@ -6320,13 +7117,12 @@ function solvePairInteractionDefectCorrectionBlock(
       vectorSubtract(rightVelocity, leftVelocity),
       1 / averageDt,
     );
-    const states = statesAtPairInteractionFrameIndex(accelerationFrames, current.frameIndex, request.initialStates);
-    if (states.length !== request.initialStates.length) {
-      return [];
-    }
-    const lawAccelerations = computePairInteractionAccelerations(states, request);
-    const stateIndex = states.findIndex((state) => state.pathKey === current.pathKey);
-    const acceleration = stateIndex >= 0 ? lawAccelerations[stateIndex] : null;
+    const acceleration = pairInteractionLawAccelerationAtFrame(
+      accelerationFrames,
+      current.frameIndex,
+      request,
+      current.pathKey,
+    );
     if (!acceleration) {
       return [];
     }
@@ -6631,6 +7427,9 @@ function buildPairInteractionBlockCoupledNewtonDefectCorrectionCandidate(
   epsilon,
   defectCorrectionPositions,
 ) {
+  if (pairInteractionUsesFixedSignalSpeed(request)) {
+    return new Map();
+  }
   const initialStates = request.initialStates ?? [];
   if (initialStates.length < 2) {
     return new Map();
@@ -6860,6 +7659,9 @@ function buildPairInteractionCoupledLocalNewtonDefectCorrectionCandidate(
   epsilon,
   defectCorrectionPositions,
 ) {
+  if (pairInteractionUsesFixedSignalSpeed(request)) {
+    return new Map();
+  }
   const initialStates = request.initialStates ?? [];
   if (initialStates.length < 2) {
     return new Map();
@@ -7038,6 +7840,9 @@ function buildPairInteractionLocalNewtonDefectCorrectionCandidate(
   epsilon,
   defectCorrectionPositions,
 ) {
+  if (pairInteractionUsesFixedSignalSpeed(request)) {
+    return new Map();
+  }
   const nextPositions = new Map();
   pathKeys.forEach((pathKey) => {
     const pathFrames = frames
@@ -7141,21 +7946,154 @@ function buildPairInteractionLocalNewtonDefectCorrectionCandidate(
   return nextPositions;
 }
 
+function buildPairInteractionCausalDelayNumericalNewtonDefectCorrectionCandidate(
+  frames,
+  request,
+  pathKeys,
+  epsilon,
+  defectCorrectionPositions,
+) {
+  if (!pairInteractionUsesFixedSignalSpeed(request)) {
+    return new Map();
+  }
+  const nextPositions = new Map();
+  const components = ["x", "y", "z"];
+  pathKeys.forEach((pathKey) => {
+    const pathFrames = frames
+      .map((frame, index) => ({ frame, index }))
+      .filter((entry) => entry.frame.pathKey === pathKey)
+      .sort((left, right) => left.frame.time - right.frame.time || left.frame.frameIndex - right.frame.frameIndex);
+    for (let pathIndex = 1; pathIndex + 1 < pathFrames.length; pathIndex += 1) {
+      const previousEntry = pathFrames[pathIndex - 1];
+      const currentEntry = pathFrames[pathIndex];
+      const nextEntry = pathFrames[pathIndex + 1];
+      const current = currentEntry.frame;
+      if (hasPairConstraintAtTime(request, current.pathKey, current.time, epsilon)) {
+        continue;
+      }
+      const residual = pairInteractionBoundaryRelaxationResidualVectorForFrames(
+        frames,
+        request,
+        previousEntry.frame,
+        current,
+        nextEntry.frame,
+        epsilon,
+      );
+      if (!residual) {
+        continue;
+      }
+      const leftSpacing = vectorNorm(vectorSubtract(current.position, previousEntry.frame.position));
+      const rightSpacing = vectorNorm(vectorSubtract(nextEntry.frame.position, current.position));
+      if (!Number.isFinite(leftSpacing) || !Number.isFinite(rightSpacing)) {
+        continue;
+      }
+      const spacingLimit = Math.max(epsilon, Math.min(leftSpacing, rightSpacing) * 0.5);
+      const defectPosition = defectCorrectionPositions instanceof Map
+        ? defectCorrectionPositions.get(currentEntry.index)
+        : null;
+      const defectStep = defectPosition ? vectorNorm(vectorSubtract(defectPosition, current.position)) : 0;
+      const defectLimit = Number.isFinite(defectStep) && defectStep > epsilon ? defectStep * 2 : spacingLimit;
+      const maxStep = Math.max(epsilon, Math.min(spacingLimit, defectLimit));
+      const probeStep = Math.max(
+        epsilon * 1000,
+        1e-6,
+        Math.min(leftSpacing, rightSpacing) * 1e-4,
+        vectorNorm(current.position) * 1e-9,
+      );
+      if (!Number.isFinite(probeStep) || probeStep <= 0) {
+        continue;
+      }
+
+      const matrix = Array.from({ length: components.length }, () => Array(components.length).fill(0));
+      let matrixComplete = true;
+      for (let column = 0; column < components.length; column += 1) {
+        const component = components[column];
+        const probeFrames = clonePairInteractionFramesForRelaxation(frames);
+        probeFrames[currentEntry.index].position = {
+          ...probeFrames[currentEntry.index].position,
+          [component]: probeFrames[currentEntry.index].position[component] + probeStep,
+        };
+        const probeResidual = pairInteractionBoundaryRelaxationResidualVectorForFrames(
+          probeFrames,
+          request,
+          probeFrames[previousEntry.index],
+          probeFrames[currentEntry.index],
+          probeFrames[nextEntry.index],
+          epsilon,
+        );
+        if (!probeResidual) {
+          matrixComplete = false;
+          break;
+        }
+        for (let row = 0; row < components.length; row += 1) {
+          const residualComponent = components[row];
+          matrix[row][column] = (probeResidual[residualComponent] - residual[residualComponent]) / probeStep;
+        }
+      }
+      if (!matrixComplete) {
+        continue;
+      }
+      const solution = solveDenseLinearSystem(
+        matrix,
+        components.map((component) => -residual[component]),
+        PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_RELAXATION_RESIDUAL_EPSILON,
+      );
+      if (!solution) {
+        continue;
+      }
+      const step = {
+        x: solution[0],
+        y: solution[1],
+        z: solution[2],
+      };
+      let stepNorm = vectorNorm(step);
+      if (!Number.isFinite(stepNorm) || stepNorm <= epsilon) {
+        continue;
+      }
+      if (stepNorm > maxStep) {
+        const scale = maxStep / stepNorm;
+        step.x *= scale;
+        step.y *= scale;
+        step.z *= scale;
+        stepNorm = maxStep;
+      }
+      const nextPosition = {
+        x: current.position.x + step.x,
+        y: current.position.y + step.y,
+        z: current.position.z + step.z,
+      };
+      if (
+        stepNorm > epsilon &&
+        Number.isFinite(nextPosition.x) &&
+        Number.isFinite(nextPosition.y) &&
+        Number.isFinite(nextPosition.z)
+      ) {
+        nextPositions.set(currentEntry.index, nextPosition);
+      }
+    }
+  });
+  return nextPositions;
+}
+
 function pairInteractionConstraintCenterOfMassAtTime(request, time, epsilon) {
   let weighted = { x: 0, y: 0, z: 0 };
   let totalMass = 0;
   for (const state of request.initialStates ?? []) {
-    const constraint = sortedPairConstraintsForPath(request, state.pathKey).find(
-      (candidate) => Math.abs(candidate.time - time) <= epsilon,
+    const position = pairConstraintHermitePositionAtTime(
+      sortedPairConstraintsForPath(request, state.pathKey),
+      state.initialVelocity,
+      time,
+      epsilon,
+      request,
     );
     const mass = Number(state.mass);
-    if (!constraint || !Number.isFinite(mass) || mass <= 0) {
+    if (!position || !Number.isFinite(mass) || mass <= 0) {
       return null;
     }
     weighted = {
-      x: weighted.x + constraint.position.x * mass,
-      y: weighted.y + constraint.position.y * mass,
-      z: weighted.z + constraint.position.z * mass,
+      x: weighted.x + position.x * mass,
+      y: weighted.y + position.y * mass,
+      z: weighted.z + position.z * mass,
     };
     totalMass += mass;
   }
@@ -7550,7 +8488,7 @@ function relaxPairInteractionConstrainedFrames(frames, request) {
   const finish = (stopReason) => {
     restorePairInteractionFrameStates(frames, bestFrameStates);
     snapPairInteractionFrameConstraints(frames, request, epsilon);
-    recomputePairInteractionFrameVelocities(frames);
+    recomputePairInteractionFrameVelocities(frames, request);
     return {
       pathConstraintBoundaryRelaxationAppliedIterationCount: appliedIterationCount,
       pathConstraintBoundaryRelaxationStopReason: stopReason,
@@ -7598,6 +8536,14 @@ function relaxPairInteractionConstrainedFrames(frames, request) {
       buildPairInteractionCoupledLocalNewtonDefectCorrectionCandidate(
         frames,
         request,
+        epsilon,
+        defectCorrectionPositions,
+      );
+    const causalDelayNumericalNewtonDefectCorrectionPositions =
+      buildPairInteractionCausalDelayNumericalNewtonDefectCorrectionCandidate(
+        frames,
+        request,
+        pathKeys,
         epsilon,
         defectCorrectionPositions,
       );
@@ -7771,6 +8717,10 @@ function relaxPairInteractionConstrainedFrames(frames, request) {
         coupledLocalNewtonDefectCorrectionPositions,
       ),
       createPairInteractionRelaxationCandidateEntry(
+        "causal_delay_numerical_newton_defect_correction",
+        causalDelayNumericalNewtonDefectCorrectionPositions,
+      ),
+      createPairInteractionRelaxationCandidateEntry(
         "block_coupled_newton_defect_correction",
         blockCoupledNewtonDefectCorrectionPositions,
       ),
@@ -7917,12 +8867,12 @@ function seedPairInteractionFramesFromBoundaryConstraints(frames, request) {
   });
   if (seededCount > 0) {
     snapPairInteractionFrameConstraints(frames, request, epsilon);
-    recomputePairInteractionFrameVelocities(frames);
+    recomputePairInteractionFrameVelocities(frames, request);
   }
   return seededCount;
 }
 
-function recomputePairInteractionFrameVelocities(frames) {
+function recomputePairInteractionFrameVelocities(frames, request = null) {
   const byPath = new Map();
   frames.forEach((frame, index) => {
     const entries = byPath.get(frame.pathKey) ?? [];
@@ -7935,6 +8885,22 @@ function recomputePairInteractionFrameVelocities(frames) {
     );
     sorted.forEach((entry, index) => {
       const current = entry.frame;
+      if (request) {
+        const constraints = sortedPairConstraintsForPath(request, current.pathKey);
+        const initialState = request.initialStates.find((state) => state.pathKey === current.pathKey);
+        const firstTangent = initialState?.initialVelocity ?? current.velocity;
+        const retainedTangent = pairConstraintTangentAtTime(
+          constraints,
+          current.time,
+          pairConstraintTimeEpsilon(request),
+          request,
+          firstTangent,
+        );
+        if (retainedTangent) {
+          frames[entry.index].velocity = retainedTangent;
+          return;
+        }
+      }
       if (index > 0 && index + 1 < sorted.length) {
         const previous = sorted[index - 1].frame;
         const next = sorted[index + 1].frame;
@@ -8286,6 +9252,186 @@ function createCircularSourceRunPrecisionSummary(response, precisionRequest) {
   return {
     ...summary,
     escalations: createPrecisionEscalationRecords(summary),
+  };
+}
+
+function solveMovingCircularSourceCausalRootsF64(request = {}) {
+  const normalizedRequest = createMovingCircularSourceRootRequest(request);
+  const response = solveMovingCircularSourceCausalRoots(normalizedRequest);
+  const status = response.status ?? createStatus(
+    "ok",
+    "ok",
+    "moving-circular source causal roots solved"
+  );
+  return {
+    schema: "solver-moving-circular-source-causal-roots-f64.v1",
+    sourceHistoryKind: "moving-circular-source",
+    request: normalizedRequest,
+    roots: response.roots ?? [],
+    scan: response.scan ?? null,
+    rejectedReason: response.rejectedReason ?? "",
+    status,
+    statuses: [status],
+  };
+}
+
+function solveMovingCircularSameSourceCausalRootsF64(request = {}) {
+  const normalizedRequest = createMovingCircularSameSourceRootRequest(request);
+  const response = solveMovingCircularSameSourceCausalRoots(normalizedRequest);
+  const status = response.status ?? createStatus(
+    "ok",
+    "ok",
+    "moving-circular same-source causal roots solved"
+  );
+  return {
+    schema: "solver-moving-circular-same-source-causal-roots-f64.v1",
+    sourceHistoryKind: "moving-circular-same-source",
+    request: normalizedRequest,
+    roots: response.roots ?? [],
+    scan: response.scan ?? null,
+    rejectedReason: response.rejectedReason ?? "",
+    status,
+    statuses: [status],
+  };
+}
+
+function bridgeFiniteNumber(value, fallback = 0) {
+  const number = Number(value);
+  return Number.isFinite(number) ? number : fallback;
+}
+
+function bridgeVector(value = {}) {
+  return {
+    x: bridgeFiniteNumber(value.x),
+    y: bridgeFiniteNumber(value.y),
+    z: bridgeFiniteNumber(value.z),
+  };
+}
+
+function bridgeDot(left, right) {
+  return left.x * right.x + left.y * right.y + left.z * right.z;
+}
+
+function bridgeScaleVector(vector, scalar) {
+  return {
+    x: vector.x * scalar,
+    y: vector.y * scalar,
+    z: vector.z * scalar,
+  };
+}
+
+function bridgeAddVector(left, right) {
+  return {
+    x: left.x + right.x,
+    y: left.y + right.y,
+    z: left.z + right.z,
+  };
+}
+
+function bridgeCrossVector(left, right) {
+  return {
+    x: left.y * right.z - left.z * right.y,
+    y: left.z * right.x - left.x * right.z,
+    z: left.x * right.y - left.y * right.x,
+  };
+}
+
+function bridgeMagnitude(vector) {
+  return Math.sqrt(bridgeDot(vector, vector));
+}
+
+function computeMovingCircularObserverFieldContribution(branch = {}, index = 0, request = {}) {
+  const signalSpeed = Math.max(1e-12, bridgeFiniteNumber(request.signalSpeed, 1));
+  const jacobianFloor = Math.max(1e-12, bridgeFiniteNumber(request.jacobianFloor, 1e-4));
+  const direction = bridgeVector(branch.direction);
+  const sourceVelocity = bridgeVector(branch.sourceVelocity);
+  const chargeSign = bridgeFiniteNumber(branch.chargeSign, 0);
+  const distance = Math.max(1e-12, bridgeFiniteNumber(branch.distance, 0));
+  const sourceRadialSpeed = bridgeDot(sourceVelocity, direction);
+  const jacobian = 1 - sourceRadialSpeed / signalSpeed;
+  const jacobianAbs = Math.abs(jacobian);
+  const jacobianWeight = 1 / Math.max(jacobianFloor, jacobianAbs);
+  const electric = bridgeScaleVector(
+    direction,
+    chargeSign * jacobianWeight / (distance * distance)
+  );
+  const comparisonB = bridgeScaleVector(
+    bridgeCrossVector({ x: 1, y: 0, z: 0 }, electric),
+    1 / signalSpeed
+  );
+  return {
+    branchIndex: index,
+    delay: Math.max(0, bridgeFiniteNumber(branch.delay, 0)),
+    distance,
+    delaySolveGap: Math.abs(bridgeFiniteNumber(branch.residual, 0)),
+    jacobian,
+    jacobianAbs,
+    jacobianWeight,
+    sourceRadialSpeed,
+    sourceSpeedRatio: bridgeMagnitude(sourceVelocity) / signalSpeed,
+    receiverAcceleration: electric,
+    electric,
+    comparisonB,
+  };
+}
+
+function computeMovingCircularObserverFieldF64(request = {}) {
+  const branches = Array.isArray(request.branches) ? request.branches : [];
+  const contributions = branches.map((branch, index) =>
+    computeMovingCircularObserverFieldContribution(branch, index, request)
+  );
+  const electric = contributions.reduce(
+    (sum, contribution) => bridgeAddVector(sum, contribution.electric),
+    { x: 0, y: 0, z: 0 }
+  );
+  const comparisonB = contributions.reduce(
+    (sum, contribution) => bridgeAddVector(sum, contribution.comparisonB),
+    { x: 0, y: 0, z: 0 }
+  );
+  const delaySum = contributions.reduce((sum, contribution) => sum + contribution.delay, 0);
+  const distanceMin = contributions.reduce(
+    (minimum, contribution) => Math.min(minimum, contribution.distance),
+    Number.POSITIVE_INFINITY
+  );
+  const delaySolveGapMax = contributions.reduce(
+    (maximum, contribution) => Math.max(maximum, contribution.delaySolveGap),
+    0
+  );
+  const maxSourceSpeedRatio = contributions.reduce(
+    (maximum, contribution) => Math.max(maximum, contribution.sourceSpeedRatio),
+    0
+  );
+  const jacobianAbsMin = contributions.reduce(
+    (minimum, contribution) => Math.min(minimum, contribution.jacobianAbs),
+    Number.POSITIVE_INFINITY
+  );
+  const unstableContributionCount = contributions.filter(
+    (contribution) =>
+      contribution.delaySolveGap > bridgeFiniteNumber(request.unstableGapThreshold, 0.05) ||
+      contribution.jacobianAbs <= Math.max(1e-12, bridgeFiniteNumber(request.jacobianFloor, 1e-4))
+  ).length;
+  const status = createStatus(
+    "ok",
+    "ok",
+    "moving-circular observer field computed"
+  );
+  return {
+    schema: "solver-moving-circular-observer-field-f64.v1",
+    sourceHistoryKind: "moving-circular-source",
+    branchCount: branches.length,
+    contributionCount: contributions.length,
+    contributions,
+    averageDelay: contributions.length > 0 ? delaySum / contributions.length : 0,
+    delaySolveGapMax,
+    maxSourceSpeedRatio,
+    jacobianAbsMin: Number.isFinite(jacobianAbsMin) ? jacobianAbsMin : 0,
+    unstableContributionCount,
+    nearestSourceDistance: Number.isFinite(distanceMin) ? distanceMin : 0,
+    receiverAcceleration: electric,
+    electric,
+    comparisonB,
+    status,
+    statuses: [status],
   };
 }
 
@@ -9928,7 +11074,7 @@ function integratePairInteractionMotionF64WithModule(module, request, options = 
   const pathConstraintCount = normalized.pathConstraints.length;
   const maxFrameRows = maxSampleFrames * stateCount;
   const estimatedPathRows = Math.max(0, times.length - 1) * stateCount;
-  const requestPtr = module._malloc(PAIR_INTERACTION_REQUEST_F64_BYTES);
+  const requestPtr = module._malloc(abiInfo.pairInteractionRequestF64Bytes);
   const statesPtr = module._malloc(PAIR_INTERACTION_STATE_F64_BYTES * stateCount);
   const pathConstraintsPtr = pathConstraintCount > 0
     ? module._malloc(PAIR_INTERACTION_PATH_CONSTRAINT_F64_BYTES * pathConstraintCount)
@@ -10017,13 +11163,15 @@ function integratePairInteractionMotionF64WithModule(module, request, options = 
         readPathHistoryRowFromView(pathRowsView, index * abiInfo.pathHistoryRowF64Bytes, 0, index)
       );
     }
-    const pathConstraintGuidanceMode = pathConstraintCount > 0
+    const pathConstraintGuidanceMode = nativeSummary.guidanceSampleCount > 0
       ? PAIR_INTERACTION_PATH_CONSTRAINT_GUIDANCE_MODE
       : undefined;
     const pathConstraintBoundaryMode = createPairInteractionPathConstraintBoundaryMode(normalized);
     const nativeBoundaryRelaxationResidualBefore = {
       pathConstraintBoundaryRelaxationResidualSampleCount:
         nativeSummary.boundaryRelaxationResidualSampleCount,
+      pathConstraintBoundaryRelaxationResidualMode:
+        nativeSummary.boundaryResidualMode,
       maxPathConstraintBoundaryRelaxationResidual:
         nativeSummary.maxBoundaryRelaxationResidualBefore,
       meanPathConstraintBoundaryRelaxationResidual:
@@ -10034,6 +11182,8 @@ function integratePairInteractionMotionF64WithModule(module, request, options = 
     const nativeBoundaryRelaxationResidualAfter = {
       pathConstraintBoundaryRelaxationResidualSampleCount:
         nativeSummary.boundaryRelaxationResidualSampleCount,
+      pathConstraintBoundaryRelaxationResidualMode:
+        nativeSummary.boundaryResidualMode,
       maxPathConstraintBoundaryRelaxationResidual:
         nativeSummary.maxBoundaryRelaxationResidualAfter,
       meanPathConstraintBoundaryRelaxationResidual:
@@ -10076,26 +11226,44 @@ function integratePairInteractionMotionF64WithModule(module, request, options = 
     );
     const nativeBoundarySummary = {
       pathConstraintBoundaryResidualSampleCount: nativeSummary.boundaryResidualSampleCount,
+      pathConstraintBoundaryResidualMode:
+        nativeSummary.boundaryResidualMode,
       maxPathConstraintBoundaryResidual: nativeSummary.maxBoundaryResidual,
     };
     const nativePositionSummary = {
       pathConstraintPositionResidualSampleCount: nativeSummary.positionResidualSampleCount,
       maxPathConstraintPositionResidual: nativeSummary.maxPositionResidual,
     };
+    const nativeInitialVelocitySummary = {
+      pathConstraintInitialVelocityResidualSampleCount:
+        nativeSummary.initialVelocityResidualSampleCount,
+      maxPathConstraintInitialVelocityResidual: nativeSummary.maxInitialVelocityResidual,
+      meanPathConstraintInitialVelocityResidual: nativeSummary.meanInitialVelocityResidual,
+      rmsPathConstraintInitialVelocityResidual: nativeSummary.rmsInitialVelocityResidual,
+    };
     const constraintSolverMetadata = createPairInteractionConstraintSolverMetadata(
       nativeSummary.pathConstraintCount,
       nativeSummary.guidanceSampleCount,
+      nativeSummary.boundarySeedSampleCount,
       nativeBoundaryRelaxationStatus,
       nativePositionSummary,
       normalized,
-    );
-    const physicalBoundarySolverMetadata = createPairInteractionPhysicalBoundarySolverMetadata(
-      nativeSummary.pathConstraintCount,
+      nativeInitialVelocitySummary,
+      nativeBoundarySummary,
     );
     const nativeGuidanceSummary = {
       pathConstraintGuidanceSampleCount: nativeSummary.guidanceSampleCount,
       maxPathConstraintGuidanceAcceleration: nativeSummary.maxGuidanceAcceleration,
     };
+    const physicalBoundarySolverMetadata = createPairInteractionPhysicalBoundarySolverMetadata(
+      nativeSummary.pathConstraintCount,
+      nativeGuidanceSummary,
+      nativeBoundaryRelaxationStatus,
+      nativePositionSummary,
+      normalized,
+      nativeInitialVelocitySummary,
+      nativeBoundarySummary,
+    );
     const boundaryResidualAcceptanceMetadata = createPairInteractionBoundaryResidualAcceptanceMetadata(
       nativeBoundarySummary,
       normalized,
@@ -10104,6 +11272,11 @@ function integratePairInteractionMotionF64WithModule(module, request, options = 
       nativePositionSummary,
       normalized,
     );
+    const initialVelocityResidualAcceptanceMetadata =
+      createPairInteractionInitialVelocityResidualAcceptanceMetadata(
+        nativeInitialVelocitySummary,
+        normalized,
+      );
     const guidanceAccelerationAcceptanceMetadata =
       createPairInteractionGuidanceAccelerationAcceptanceMetadata(nativeGuidanceSummary, normalized);
     enforcePairInteractionPositionResidualTolerance(nativePositionSummary, normalized, {
@@ -10113,6 +11286,12 @@ function integratePairInteractionMotionF64WithModule(module, request, options = 
       pathConstraintSolverClaim: constraintSolverMetadata.pathConstraintSolverClaim,
     });
     enforcePairInteractionBoundaryResidualTolerance(nativeBoundarySummary, normalized, {
+      ...options,
+      executionPath: "native_c_abi",
+      pathConstraintSolverStatus: constraintSolverMetadata.pathConstraintSolverStatus,
+      pathConstraintSolverClaim: constraintSolverMetadata.pathConstraintSolverClaim,
+    });
+    enforcePairInteractionInitialVelocityResidualTolerance(nativeInitialVelocitySummary, normalized, {
       ...options,
       executionPath: "native_c_abi",
       pathConstraintSolverStatus: constraintSolverMetadata.pathConstraintSolverStatus,
@@ -10129,6 +11308,9 @@ function integratePairInteractionMotionF64WithModule(module, request, options = 
         requestedPrecisionPath: options.requestedPrecisionPath,
         precisionPath: options.precisionPath,
         interactionLaw: normalized.interactionLaw,
+        ...(Number.isFinite(normalized.signalSpeed)
+          ? { signalSpeed: normalized.signalSpeed }
+          : {}),
         stepCount: Math.max(0, times.length - 1),
         pathConstraintFrameRefinementSampleCount:
           nativeSummary.frameRefinementSampleCount,
@@ -10138,9 +11320,21 @@ function integratePairInteractionMotionF64WithModule(module, request, options = 
         maxPathConstraintPositionResidual: nativeSummary.maxPositionResidual,
         meanPathConstraintPositionResidual: nativeSummary.meanPositionResidual,
         rmsPathConstraintPositionResidual: nativeSummary.rmsPositionResidual,
+        pathConstraintInitialVelocityResidualSampleCount:
+          nativeSummary.initialVelocityResidualSampleCount,
+        maxPathConstraintInitialVelocityResidual: nativeSummary.maxInitialVelocityResidual,
+        meanPathConstraintInitialVelocityResidual: nativeSummary.meanInitialVelocityResidual,
+        rmsPathConstraintInitialVelocityResidual: nativeSummary.rmsInitialVelocityResidual,
         ...positionResidualAcceptanceMetadata,
+        ...initialVelocityResidualAcceptanceMetadata,
         ...(Number.isFinite(normalized.pathConstraintPositionResidualTolerance)
           ? { pathConstraintPositionResidualTolerance: normalized.pathConstraintPositionResidualTolerance }
+          : {}),
+        ...(Number.isFinite(normalized.pathConstraintInitialVelocityResidualTolerance)
+          ? {
+              pathConstraintInitialVelocityResidualTolerance:
+                normalized.pathConstraintInitialVelocityResidualTolerance,
+            }
           : {}),
         pathConstraintResidualSampleCount: nativeSummary.residualSampleCount,
         maxPathConstraintResidual: nativeSummary.maxConstraintResidual,
@@ -10170,6 +11364,8 @@ function integratePairInteractionMotionF64WithModule(module, request, options = 
             }
           : {}),
         pathConstraintBoundaryResidualSampleCount: nativeSummary.boundaryResidualSampleCount,
+        pathConstraintBoundaryResidualMode:
+          nativeSummary.boundaryResidualMode,
         maxPathConstraintBoundaryResidual: nativeSummary.maxBoundaryResidual,
         meanPathConstraintBoundaryResidual: nativeSummary.meanBoundaryResidual,
         rmsPathConstraintBoundaryResidual: nativeSummary.rmsBoundaryResidual,
@@ -10202,15 +11398,30 @@ function integratePairInteractionMotionF64WithModule(module, request, options = 
         pathConstraintFrameRefinementSampleCount:
           nativeSummary.frameRefinementSampleCount,
         interactionLaw: normalized.interactionLaw,
+        ...(Number.isFinite(normalized.signalSpeed)
+          ? { signalSpeed: normalized.signalSpeed }
+          : {}),
         executionPath: "native_c_abi",
         pathConstraintCount: nativeSummary.pathConstraintCount,
         pathConstraintPositionResidualSampleCount: nativeSummary.positionResidualSampleCount,
         maxPathConstraintPositionResidual: nativeSummary.maxPositionResidual,
         meanPathConstraintPositionResidual: nativeSummary.meanPositionResidual,
         rmsPathConstraintPositionResidual: nativeSummary.rmsPositionResidual,
+        pathConstraintInitialVelocityResidualSampleCount:
+          nativeSummary.initialVelocityResidualSampleCount,
+        maxPathConstraintInitialVelocityResidual: nativeSummary.maxInitialVelocityResidual,
+        meanPathConstraintInitialVelocityResidual: nativeSummary.meanInitialVelocityResidual,
+        rmsPathConstraintInitialVelocityResidual: nativeSummary.rmsInitialVelocityResidual,
         ...positionResidualAcceptanceMetadata,
+        ...initialVelocityResidualAcceptanceMetadata,
         ...(Number.isFinite(normalized.pathConstraintPositionResidualTolerance)
           ? { pathConstraintPositionResidualTolerance: normalized.pathConstraintPositionResidualTolerance }
+          : {}),
+        ...(Number.isFinite(normalized.pathConstraintInitialVelocityResidualTolerance)
+          ? {
+              pathConstraintInitialVelocityResidualTolerance:
+                normalized.pathConstraintInitialVelocityResidualTolerance,
+            }
           : {}),
         pathConstraintResidualSampleCount: nativeSummary.residualSampleCount,
         maxPathConstraintResidual: nativeSummary.maxConstraintResidual,
@@ -10240,6 +11451,8 @@ function integratePairInteractionMotionF64WithModule(module, request, options = 
             }
           : {}),
         pathConstraintBoundaryResidualSampleCount: nativeSummary.boundaryResidualSampleCount,
+        pathConstraintBoundaryResidualMode:
+          nativeSummary.boundaryResidualMode,
         maxPathConstraintBoundaryResidual: nativeSummary.maxBoundaryResidual,
         meanPathConstraintBoundaryResidual: nativeSummary.meanBoundaryResidual,
         rmsPathConstraintBoundaryResidual: nativeSummary.rmsBoundaryResidual,
@@ -10252,6 +11465,9 @@ function integratePairInteractionMotionF64WithModule(module, request, options = 
       pathCount: stateCount,
       stepCount: Math.max(0, times.length - 1),
       interactionLaw: normalized.interactionLaw,
+      ...(Number.isFinite(normalized.signalSpeed)
+        ? { signalSpeed: normalized.signalSpeed }
+        : {}),
       executionPath: "native_c_abi",
     };
   } finally {
@@ -12196,6 +13412,9 @@ function validatePairInteractionRunConfig(config) {
   if (request.pairAccelerationScale != null) {
     requirePositiveFiniteNumber(request.pairAccelerationScale, "pairInteractionRequest.pairAccelerationScale");
   }
+  if (request.signalSpeed != null) {
+    requirePositiveFiniteNumber(request.signalSpeed, "pairInteractionRequest.signalSpeed");
+  }
   if (request.softening != null) {
     requireNonnegativeFiniteNumber(request.softening, "pairInteractionRequest.softening");
   }
@@ -12257,6 +13476,12 @@ function validatePairInteractionRunConfig(config) {
     requireNonnegativeFiniteNumber(
       request.pathConstraintGuidanceAccelerationTolerance,
       "pairInteractionRequest.pathConstraintGuidanceAccelerationTolerance",
+    );
+  }
+  if (request.pathConstraintInitialVelocityResidualTolerance != null) {
+    requireNonnegativeFiniteNumber(
+      request.pathConstraintInitialVelocityResidualTolerance,
+      "pairInteractionRequest.pathConstraintInitialVelocityResidualTolerance",
     );
   }
   if (config.streamId != null) {
@@ -12624,6 +13849,7 @@ function readAbiInfo(module) {
       admissionStressSummaryF64Bytes: module.getValue(ptr + 176, "i32"),
       statusRowBytes: module.getValue(ptr + 180, "i32"),
       admissionReportF64Bytes: module.getValue(ptr + 184, "i32"),
+      pairInteractionRequestF64Bytes: module.getValue(ptr + 188, "i32"),
     };
   } finally {
     module._free(ptr);
@@ -12633,7 +13859,7 @@ function readAbiInfo(module) {
 function defaultAbiInfo() {
   return {
     abiMajor: 0,
-    abiMinor: 11,
+    abiMinor: 13,
     abiPatch: 0,
     rootRequestF64Bytes: CAUSAL_ROOT_REQUEST_F64_BYTES,
     rootRowF64Bytes: CAUSAL_ROOT_ROW_F64_BYTES,
@@ -12679,11 +13905,15 @@ function defaultAbiInfo() {
     admissionStressSummaryF64Bytes: ADMISSION_STRESS_SUMMARY_F64_BYTES,
     statusRowBytes: STATUS_ROW_BYTES,
     admissionReportF64Bytes: ADMISSION_REPORT_F64_BYTES,
+    pairInteractionRequestF64Bytes: PAIR_INTERACTION_REQUEST_F64_BYTES,
   };
 }
 
 function assertAbiInfo(abiInfo) {
   if (
+    abiInfo.abiMajor !== 0 ||
+    abiInfo.abiMinor !== 13 ||
+    abiInfo.abiPatch !== 0 ||
     abiInfo.rootRequestF64Bytes !== CAUSAL_ROOT_REQUEST_F64_BYTES ||
     abiInfo.rootRowF64Bytes !== CAUSAL_ROOT_ROW_F64_BYTES ||
     abiInfo.delayedHitRowF64Bytes !== DELAYED_HIT_ROW_F64_BYTES ||
@@ -12727,7 +13957,8 @@ function assertAbiInfo(abiInfo) {
     abiInfo.capabilityEnvelopeF64Bytes !== CAPABILITY_ENVELOPE_F64_BYTES ||
     abiInfo.admissionStressSummaryF64Bytes !== ADMISSION_STRESS_SUMMARY_F64_BYTES ||
     abiInfo.statusRowBytes !== STATUS_ROW_BYTES ||
-    abiInfo.admissionReportF64Bytes !== ADMISSION_REPORT_F64_BYTES
+    abiInfo.admissionReportF64Bytes !== ADMISSION_REPORT_F64_BYTES ||
+    abiInfo.pairInteractionRequestF64Bytes !== PAIR_INTERACTION_REQUEST_F64_BYTES
   ) {
     throw new SolverBridgeError(
       createStatus("app_contract_error", "error", "solver ABI row sizes do not match bridge layout", {
@@ -14294,11 +15525,12 @@ function writePairInteractionRequestF64(module, ptr, request) {
   module.setValue(ptr + 24, request.pairAccelerationScale, "double");
   module.setValue(ptr + 32, request.softening ?? 0, "double");
   module.setValue(ptr + 40, request.integrationTolerance ?? 0, "double");
-  module.setValue(ptr + 48, pairInteractionLawId(request.interactionLaw), "i32");
-  module.setValue(ptr + 52, request.integrationMethod ?? 1, "i32");
-  writeUint64(module, ptr + 56, request.pathConstraintBoundaryRelaxationIterationCount);
-  module.setValue(ptr + 64, request.pathConstraintBoundaryRelaxationTolerance ?? 0, "double");
-  module.setValue(ptr + 72, request.pathConstraintBoundaryRelaxationStepTolerance ?? 0, "double");
+  module.setValue(ptr + 48, request.signalSpeed ?? 0, "double");
+  module.setValue(ptr + 56, pairInteractionLawId(request.interactionLaw), "i32");
+  module.setValue(ptr + 60, request.integrationMethod ?? 1, "i32");
+  writeUint64(module, ptr + 64, request.pathConstraintBoundaryRelaxationIterationCount);
+  module.setValue(ptr + 72, request.pathConstraintBoundaryRelaxationTolerance ?? 0, "double");
+  module.setValue(ptr + 80, request.pathConstraintBoundaryRelaxationStepTolerance ?? 0, "double");
 }
 
 function writePairInteractionStateF64(module, ptr, state) {
@@ -14628,6 +15860,13 @@ function readPairInteractionSummaryF64(module, ptr) {
     maxPositionResidual: module.getValue(ptr + 288, "double"),
     meanPositionResidual: module.getValue(ptr + 296, "double"),
     rmsPositionResidual: module.getValue(ptr + 304, "double"),
+    initialVelocityResidualSampleCount: readUint64(module, ptr + 312),
+    maxInitialVelocityResidual: module.getValue(ptr + 320, "double"),
+    meanInitialVelocityResidual: module.getValue(ptr + 328, "double"),
+    rmsInitialVelocityResidual: module.getValue(ptr + 336, "double"),
+    boundaryResidualMode:
+      PAIR_INTERACTION_BOUNDARY_RESIDUAL_MODE_BY_CODE[module.getValue(ptr + 344, "i32") >>> 0] ??
+      PAIR_INTERACTION_BOUNDARY_RESIDUAL_MODE_SAME_TIME_PAIR_LAW,
   };
 }
 

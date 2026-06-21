@@ -113,6 +113,11 @@ try {
     retainedLineagePhaseProbe: selectedRetainedLineagePhaseProbe,
   });
 
+  const retainedEventDomainFork = await createRetainedEventDomainForkSummary({
+    retainedLineagePhaseProbe,
+    client,
+  });
+
   const report = {
     schema: "aaa-tri-binary-offset-family-solver-report.v1",
     generatedAt: new Date().toISOString(),
@@ -139,6 +144,7 @@ try {
     cases,
     retainedBranchChartProjection: createReportBranchChartProjection(cases, retainedLineagePhaseProbe),
     retainedLineagePhaseProbe,
+    retainedEventDomainFork,
     comparisons,
     frequencyTripletSearch: createFrequencyTripletSearchSummary(cases),
     closure: createClosureSummary(cases, retainedLineagePhaseProbe),
@@ -168,10 +174,10 @@ function createFrequencyTripletNotation() {
   return {
     canonicalOrder: "I:M:O",
     canonicalMeaning: "inner:middle:outer",
-    legacyOrder: "O:M:I",
-    legacyMeaning: "outer:middle:inner",
+    outerNormalizedOrder: "f_O:f_M:f_I",
+    outerNormalizedMeaning: "outer:middle:inner with the outer frequency normalized first",
     conversion:
-      "If an internal row is written as O:M:I=(a,b,c), the canonical I:M:O triplet is c:b:a.",
+      "If an outer-normalized row is written as f_O:f_M:f_I=a:b:c, the canonical I:M:O triplet is c:b:a.",
   };
 }
 
@@ -181,7 +187,7 @@ function createFrequencyTriplet(indices) {
     middle: indices.middle,
     outer: indices.outer,
   };
-  const legacyValues = {
+  const outerNormalizedValues = {
     outer: indices.outer,
     middle: indices.middle,
     inner: indices.inner,
@@ -190,9 +196,9 @@ function createFrequencyTriplet(indices) {
     canonicalOrder: "I:M:O",
     canonicalValues,
     canonicalLabel: `${indices.inner}:${indices.middle}:${indices.outer}`,
-    legacyOrder: "O:M:I",
-    legacyValues,
-    legacyLabel: `${indices.outer}:${indices.middle}:${indices.inner}`,
+    outerNormalizedOrder: "f_O:f_M:f_I",
+    outerNormalizedValues,
+    outerNormalizedLabel: `${indices.outer}:${indices.middle}:${indices.inner}`,
   };
 }
 
@@ -200,9 +206,9 @@ function createFamilies(f, { integerLockPairs = [] } = {}) {
   const families = [
     {
       id: "middle-hinge-offset",
-      label: "IMO=(f+2,f,f-1)",
+      label: "I:M:O=(f+2,f,f-1)",
       canonicalRelation: "(I,M,O)=(f+2,f,f-1)",
-      legacyRelation: "(O,M,I)=(f-1,f,f+2)",
+      outerNormalizedRelation: "f_O:f_M:f_I=(f-1):f:(f+2)",
       priorityCandidate: true,
       candidateClass: "middle_hinge_offset",
       indices: {
@@ -213,9 +219,9 @@ function createFamilies(f, { integerLockPairs = [] } = {}) {
     },
     {
       id: "symmetric-control",
-      label: "IMO=(f+1,f,f-1)",
+      label: "I:M:O=(f+1,f,f-1)",
       canonicalRelation: "(I,M,O)=(f+1,f,f-1)",
-      legacyRelation: "(O,M,I)=(f-1,f,f+1)",
+      outerNormalizedRelation: "f_O:f_M:f_I=(f-1):f:(f+1)",
       priorityCandidate: false,
       candidateClass: "symmetric_offset_control",
       indices: {
@@ -227,9 +233,9 @@ function createFamilies(f, { integerLockPairs = [] } = {}) {
   ];
   families.push({
     id: "dyadic-lock-4-2-1",
-    label: "IMO=(4f,2f,f)",
+    label: "I:M:O=(4f,2f,f)",
     canonicalRelation: "(I,M,O)=(4f,2f,f)",
-    legacyRelation: "(O,M,I)=(f,2f,4f)",
+    outerNormalizedRelation: "f_O:f_M:f_I=f:2f:4f",
     priorityCandidate: false,
     candidateClass: "dyadic_lock_control",
     integerLock: {
@@ -247,9 +253,9 @@ function createFamilies(f, { integerLockPairs = [] } = {}) {
   for (const { m, n } of integerLockPairs) {
     families.push({
       id: `integer-lock-m${m}-n${n}`,
-      label: `IMO=(${n}f,${m}f,f)`,
+      label: `I:M:O=(${n}f,${m}f,f)`,
       canonicalRelation: `(I,M,O)=(${n}f,${m}f,f)`,
-      legacyRelation: `(O,M,I)=(f,${m}f,${n}f)`,
+      outerNormalizedRelation: `f_O:f_M:f_I=f:${m}f:${n}f`,
       priorityCandidate: false,
       candidateClass: "general_integer_lock_control",
       integerLock: {
@@ -273,7 +279,7 @@ function createFamilyDefinitions({ integerLockPairs = [] } = {}) {
     {
       id: "middle-hinge-offset",
       canonicalRelation: "(I,M,O)=(f+2,f,f-1)",
-      legacyRelation: "(O,M,I)=(f-1,f,f+2)",
+      outerNormalizedRelation: "f_O:f_M:f_I=(f-1):f:(f+2)",
       role: "priority candidate",
       rationale:
         "Tests whether the inner layer's doubled self-hit burden echoes the populated 1:1:2 action partition around the middle field-speed hinge.",
@@ -281,7 +287,7 @@ function createFamilyDefinitions({ integerLockPairs = [] } = {}) {
     {
       id: "symmetric-control",
       canonicalRelation: "(I,M,O)=(f+1,f,f-1)",
-      legacyRelation: "(O,M,I)=(f-1,f,f+1)",
+      outerNormalizedRelation: "f_O:f_M:f_I=(f-1):f:(f+1)",
       role: "control",
       rationale:
         "Tests whether a symmetric one-step inner offset passes the same solver rows with equal or better evidence.",
@@ -290,7 +296,7 @@ function createFamilyDefinitions({ integerLockPairs = [] } = {}) {
   definitions.push({
     id: "dyadic-lock-4-2-1",
     canonicalRelation: "(I,M,O)=(4f,2f,f)",
-    legacyRelation: "(O,M,I)=(f,2f,4f)",
+    outerNormalizedRelation: "f_O:f_M:f_I=f:2f:4f",
     role: "dyadic 4:2:1 control",
     rationale:
       "Tests the older dyadic lock hypothesis in the same reduced angular runner, without treating the lock as theorem-grade retained branch selection.",
@@ -299,7 +305,7 @@ function createFamilyDefinitions({ integerLockPairs = [] } = {}) {
     definitions.push({
       id: `integer-lock-m${m}-n${n}`,
       canonicalRelation: `(I,M,O)=(${n}f,${m}f,f)`,
-      legacyRelation: `(O,M,I)=(f,${m}f,${n}f)`,
+      outerNormalizedRelation: `f_O:f_M:f_I=f:${m}f:${n}f`,
       role: "general 1:m:n integer-lock control",
       rationale:
         "Samples the broader outer-normalized integer-lock lattice f_O:f_M:f_I=1:m:n under the canonical I:M:O reporting order n:m:1.",
@@ -367,7 +373,7 @@ async function runFamilyCase({ client, policy, f, family }) {
     familyId: family.id,
     familyLabel: family.label,
     familyCanonicalRelation: family.canonicalRelation ?? null,
-    familyLegacyRelation: family.legacyRelation ?? null,
+    familyOuterNormalizedRelation: family.outerNormalizedRelation ?? null,
     candidateClass: family.candidateClass ?? null,
     integerLock: family.integerLock ?? null,
     priorityCandidate: family.priorityCandidate,
@@ -813,7 +819,7 @@ function createBranchChartProjection({ policy, f, family, layers, rowVerdicts })
     familyId: family.id,
     familyLabel: family.label,
     familyCanonicalRelation: family.canonicalRelation ?? null,
-    familyLegacyRelation: family.legacyRelation ?? null,
+    familyOuterNormalizedRelation: family.outerNormalizedRelation ?? null,
     candidateClass: family.candidateClass ?? null,
     integerLock: family.integerLock ?? null,
     frequencyTriplet: createFrequencyTriplet(family.indices),
@@ -2102,7 +2108,8 @@ function createMinimalBranchTransactionFrequencyCertificate({
     familyId: selectedCase?.familyId ?? null,
     familyLabel: selectedCase?.familyLabel ?? null,
     familyCanonicalRelation: selectedCase?.familyCanonicalRelation ?? null,
-    familyLegacyRelation: selectedCase?.familyLegacyRelation ?? null,
+    familyOuterNormalizedRelation:
+      selectedCase?.familyOuterNormalizedRelation ?? null,
     frequencyTriplet: selectedCase?.frequencyTriplet ?? null,
     indices: selectedCase?.indices ?? null,
     indexOffset,
@@ -2203,7 +2210,7 @@ function createSelectedRetainedLineagePhaseProbe(cases, comparisons) {
     selectedCaseId: selectedCase.caseId,
     selectedComparisonId: selectedComparison.comparisonId,
     selectionReason:
-      "Largest positive inner self-hit span delta for the priority candidate among passing index-ratio stress comparisons.",
+      "Representative middle-hinge payload selected by the largest positive inner self-hit span delta among passing index-ratio stress comparisons; family-level branch-certificate ranking is reported separately and treats span as a tie-breaker after self-root parity coverage.",
     selectedComparison: {
       policy: selectedComparison.policy,
       f: selectedComparison.f,
@@ -2697,7 +2704,7 @@ async function createSelectedBinaryToBinaryPathHistoryProbe({
       : candidates.truncated || refinement.truncated
         ? "binary_to_binary_path_history_probe_truncated"
         : "binary_to_binary_path_history_roots_missing";
-  return {
+  const result = {
     schema: "aaa-tri-binary-selected-binary-to-binary-path-history-probe.v1",
     status,
     claimLevel:
@@ -3166,6 +3173,14 @@ async function createSelectedBinaryToBinaryPathHistoryProbe({
         "Supply the branch-transport rule or retained chart row that either upgrades the hinge-point contacts into an accepted retained point event or turns the partial retained transition chains into a positive-width common retained time domain and one common active row set over W, then evaluate torque, wake, phase, partition, and stability on that same retained active-row set.",
     },
   };
+  Object.defineProperty(result, "pathHistoryReplayContext", {
+    value: {
+      layerPathKeys,
+      pathRows,
+    },
+    enumerable: false,
+  });
+  return result;
 }
 
 async function createBinaryToBinaryLedgerDetailReplay({
@@ -3334,14 +3349,8 @@ async function classifyBinaryToBinaryRetainedTransitions({
     snapshotsByPair.set(snapshot.pairKey, bucket);
   }
 
-  const transitionKindCounts = {
-    retained: 0,
-    appeared: 0,
-    disappeared: 0,
-    folded: 0,
-    assimilated_from_tail: 0,
-    ledger_rerun_required: 0,
-  };
+  const transitionKindCounts = createEmptyTransitionKindCounts();
+  const transitionEdgeProfile = createEmptyTransitionEdgeProfile();
   let comparedSnapshotEdgeCount = 0;
   let transitionCount = 0;
   let retainedTransitionCount = 0;
@@ -3379,15 +3388,45 @@ async function classifyBinaryToBinaryRetainedTransitions({
       transitionCount += transitionResponse.transitions.length;
       const retainedNextRootKeys = [];
       const retainedTransitions = [];
+      const edgeProfile = createTransitionEdgeProfileUpdate({
+        transitions: transitionResponse.transitions,
+        prior,
+        next,
+      });
+      accumulateTransitionEdgeProfile(transitionEdgeProfile, edgeProfile);
+      if (pair) {
+        accumulateTransitionEdgeProfile(pair.transitionEdgeProfile, edgeProfile);
+        appendTransitionGapIntervals({
+          pair,
+          edgeProfile,
+          prior,
+          next,
+        });
+      }
       for (const transition of transitionResponse.transitions) {
-        if (transitionKindCounts[transition.kind] != null) {
-          transitionKindCounts[transition.kind] += 1;
+        incrementTransitionKindCount(transitionKindCounts, transition.kind);
+        if (pair) {
+          incrementTransitionKindCount(pair.transitionKindCounts, transition.kind);
         }
         if (transition.kind === "retained") {
           retainedTransitionCount += 1;
           retainedNextRootKeys.push(transition.nextRootKey);
           retainedTransitions.push(transition);
         }
+      }
+      if (pair) {
+        pair.transitionBoundaryEdges.push(
+          createTransitionBoundaryEdge({
+            pairKey,
+            edgeIndex: index - 1,
+            edgeProfile,
+            prior,
+            next,
+            transitionCount: transitionResponse.transitions.length,
+            transitions: transitionResponse.transitions,
+            retainedNextRootKeys,
+          })
+        );
       }
       if (retainedNextRootKeys.length > 0) {
         edgesWithRetainedTransition += 1;
@@ -3435,6 +3474,19 @@ async function classifyBinaryToBinaryRetainedTransitions({
         pair.transitionEdgeCount > 0
           ? pair.edgesWithRetainedTransition / pair.transitionEdgeCount
           : 0;
+      pair.edgesWithoutRetainedTransition =
+        pair.transitionEdgeCount - pair.edgesWithRetainedTransition;
+      pair.retainedRootTransitionSurplus =
+        pair.retainedTransitionCount - pair.edgesWithRetainedTransition;
+      pair.singleRetainedTransitionPerRetainedEdgePass =
+        pair.retainedRootTransitionSurplus === 0;
+      pair.transitionEdgeProfile = projectTransitionEdgeProfile(
+        pair.transitionEdgeProfile
+      );
+      pair.transitionGapCoverage = createTransitionGapCoverage(
+        pair.transitionGapIntervals
+      );
+      delete pair.transitionGapIntervals;
       pair.status =
         pair.transitionEdgeCount > 0 && pair.commonActiveRootKeyCount > 0
           ? "common_active_root_identity_candidate"
@@ -3491,6 +3543,7 @@ async function classifyBinaryToBinaryRetainedTransitions({
     edgesWithRetainedTransition,
     maxPairRetainedChainEdgeCount,
     transitionKindCounts,
+    transitionEdgeProfile: projectTransitionEdgeProfile(transitionEdgeProfile),
     commonActiveRowSetPairCount,
     retainedRowSetIdentity,
     retainedTimeDomainCoverage,
@@ -3500,6 +3553,1335 @@ async function classifyBinaryToBinaryRetainedTransitions({
     retainedLimitation:
       "The classifier uses solver root-key identity over adjacent chronological replay snapshots. If retained identity is absent, the missing object is the branch-transport rule that identifies the same active row across moving source and receiver path segments.",
   };
+}
+
+function createEmptyTransitionKindCounts() {
+  return {
+    retained: 0,
+    appeared: 0,
+    disappeared: 0,
+    folded: 0,
+    assimilated_from_tail: 0,
+    ledger_rerun_required: 0,
+  };
+}
+
+function incrementTransitionKindCount(counts, kind) {
+  if (counts?.[kind] != null) {
+    counts[kind] += 1;
+  }
+}
+
+function projectTransitionKindCounts(counts) {
+  return {
+    ...createEmptyTransitionKindCounts(),
+    ...(counts ?? {}),
+  };
+}
+
+function createEmptyTransitionEdgeProfile() {
+  return {
+    totalEdges: 0,
+    edgesWithRetainedTransition: 0,
+    edgesWithoutRetainedTransition: 0,
+    edgesWithNoRootLedgerTransitions: 0,
+    edgesWithOnlyNonRetainedTransitions: 0,
+    edgesWithMixedRetainedAndNonRetainedTransitions: 0,
+    edgesWithRetainedTransitionSurplus: 0,
+    edgesWithAppearedTransition: 0,
+    edgesWithDisappearedTransition: 0,
+    edgesWithFoldedTransition: 0,
+    edgesWithAssimilatedFromTailTransition: 0,
+    edgesWithLedgerRerunRequiredTransition: 0,
+    edgesWithoutRetainedTransitionAndNoRootLedgerTransitions: 0,
+    edgesWithoutRetainedTransitionAndOnlyNonRetainedTransitions: 0,
+    edgesWithoutRetainedTransitionAndAppearedTransition: 0,
+    edgesWithoutRetainedTransitionAndDisappearedTransition: 0,
+    edgesWithoutRetainedTransitionAndFoldedTransition: 0,
+    edgesWithoutRetainedTransitionAndAssimilatedFromTailTransition: 0,
+    edgesWithoutRetainedTransitionAndLedgerRerunRequiredTransition: 0,
+    edgesWithoutRetainedTransitionAndBothEndpointsInactive: 0,
+    edgesWithoutRetainedTransitionAndPriorEndpointActiveOnly: 0,
+    edgesWithoutRetainedTransitionAndNextEndpointActiveOnly: 0,
+    edgesWithoutRetainedTransitionAndBothEndpointsActive: 0,
+    edgesWithNoRootLedgerTransitionsAndBothEndpointsInactive: 0,
+    edgesWithNoRootLedgerTransitionsAndPriorEndpointActiveOnly: 0,
+    edgesWithNoRootLedgerTransitionsAndNextEndpointActiveOnly: 0,
+    edgesWithNoRootLedgerTransitionsAndBothEndpointsActive: 0,
+    edgesWithOnlyNonRetainedTransitionsAndBothEndpointsInactive: 0,
+    edgesWithOnlyNonRetainedTransitionsAndPriorEndpointActiveOnly: 0,
+    edgesWithOnlyNonRetainedTransitionsAndNextEndpointActiveOnly: 0,
+    edgesWithOnlyNonRetainedTransitionsAndBothEndpointsActive: 0,
+  };
+}
+
+function createTransitionEdgeProfileUpdate({ transitions, prior, next }) {
+  const profile = createEmptyTransitionEdgeProfile();
+  const kindSet = new Set(transitions.map((transition) => transition.kind));
+  const retainedTransitionCount = transitions.filter(
+    (transition) => transition.kind === "retained"
+  ).length;
+  const nonRetainedTransitionCount =
+    transitions.length - retainedTransitionCount;
+  const hasRetainedTransition = retainedTransitionCount > 0;
+  const hasNoTransitions = transitions.length === 0;
+  const endpointPresence = classifyTransitionEdgeEndpointPresence(prior, next);
+  profile.totalEdges = 1;
+  if (hasRetainedTransition) {
+    profile.edgesWithRetainedTransition = 1;
+  } else {
+    profile.edgesWithoutRetainedTransition = 1;
+    incrementTransitionEndpointPresenceProfile(
+      profile,
+      "edgesWithoutRetainedTransition",
+      endpointPresence
+    );
+  }
+  if (hasNoTransitions) {
+    profile.edgesWithNoRootLedgerTransitions = 1;
+    incrementTransitionEndpointPresenceProfile(
+      profile,
+      "edgesWithNoRootLedgerTransitions",
+      endpointPresence
+    );
+  }
+  if (!hasRetainedTransition && hasNoTransitions) {
+    profile.edgesWithoutRetainedTransitionAndNoRootLedgerTransitions = 1;
+  }
+  if (!hasRetainedTransition && nonRetainedTransitionCount > 0) {
+    profile.edgesWithOnlyNonRetainedTransitions = 1;
+    profile.edgesWithoutRetainedTransitionAndOnlyNonRetainedTransitions = 1;
+    incrementTransitionEndpointPresenceProfile(
+      profile,
+      "edgesWithOnlyNonRetainedTransitions",
+      endpointPresence
+    );
+  }
+  if (hasRetainedTransition && nonRetainedTransitionCount > 0) {
+    profile.edgesWithMixedRetainedAndNonRetainedTransitions = 1;
+  }
+  if (retainedTransitionCount > 1) {
+    profile.edgesWithRetainedTransitionSurplus = 1;
+  }
+  incrementTransitionEdgeKindProfile(profile, kindSet, hasRetainedTransition);
+  return profile;
+}
+
+function classifyTransitionEdgeEndpointPresence(prior, next) {
+  const priorActiveRootCount = prior?.activeRootKeys?.length ?? 0;
+  const nextActiveRootCount = next?.activeRootKeys?.length ?? 0;
+  const priorHasActiveRoots = priorActiveRootCount > 0;
+  const nextHasActiveRoots = nextActiveRootCount > 0;
+  if (priorHasActiveRoots && nextHasActiveRoots) {
+    return "both_endpoints_active";
+  }
+  if (priorHasActiveRoots) {
+    return "prior_endpoint_active_only";
+  }
+  if (nextHasActiveRoots) {
+    return "next_endpoint_active_only";
+  }
+  return "both_endpoints_inactive";
+}
+
+function incrementTransitionEndpointPresenceProfile(profile, prefix, presence) {
+  const suffixByPresence = {
+    both_endpoints_inactive: "AndBothEndpointsInactive",
+    prior_endpoint_active_only: "AndPriorEndpointActiveOnly",
+    next_endpoint_active_only: "AndNextEndpointActiveOnly",
+    both_endpoints_active: "AndBothEndpointsActive",
+  };
+  const suffix = suffixByPresence[presence];
+  if (!suffix) {
+    return;
+  }
+  const field = `${prefix}${suffix}`;
+  profile[field] = (profile[field] ?? 0) + 1;
+}
+
+function incrementTransitionEdgeKindProfile(
+  profile,
+  kindSet,
+  hasRetainedTransition
+) {
+  const kindFields = [
+    [
+      "appeared",
+      "edgesWithAppearedTransition",
+      "edgesWithoutRetainedTransitionAndAppearedTransition",
+    ],
+    [
+      "disappeared",
+      "edgesWithDisappearedTransition",
+      "edgesWithoutRetainedTransitionAndDisappearedTransition",
+    ],
+    [
+      "folded",
+      "edgesWithFoldedTransition",
+      "edgesWithoutRetainedTransitionAndFoldedTransition",
+    ],
+    [
+      "assimilated_from_tail",
+      "edgesWithAssimilatedFromTailTransition",
+      "edgesWithoutRetainedTransitionAndAssimilatedFromTailTransition",
+    ],
+    [
+      "ledger_rerun_required",
+      "edgesWithLedgerRerunRequiredTransition",
+      "edgesWithoutRetainedTransitionAndLedgerRerunRequiredTransition",
+    ],
+  ];
+  for (const [kind, edgeField, droppedEdgeField] of kindFields) {
+    if (!kindSet.has(kind)) {
+      continue;
+    }
+    profile[edgeField] += 1;
+    if (!hasRetainedTransition) {
+      profile[droppedEdgeField] += 1;
+    }
+  }
+}
+
+function accumulateTransitionEdgeProfile(target, addition) {
+  for (const key of Object.keys(createEmptyTransitionEdgeProfile())) {
+    target[key] = (target[key] ?? 0) + (addition?.[key] ?? 0);
+  }
+}
+
+function projectTransitionEdgeProfile(profile) {
+  return {
+    ...createEmptyTransitionEdgeProfile(),
+    ...(profile ?? {}),
+  };
+}
+
+function createEmptyTransitionGapIntervals() {
+  return {
+    noTransitionBothInactive: [],
+    noTransitionPriorActiveOnly: [],
+    noTransitionNextActiveOnly: [],
+    noTransitionBothActive: [],
+    onlyNonRetainedBothInactive: [],
+    onlyNonRetainedPriorActiveOnly: [],
+    onlyNonRetainedNextActiveOnly: [],
+    onlyNonRetainedBothActive: [],
+  };
+}
+
+function createTransitionBoundaryEdge({
+  pairKey,
+  edgeIndex,
+  edgeProfile,
+  prior,
+  next,
+  transitionCount,
+  transitions,
+  retainedNextRootKeys,
+}) {
+  const interval = createHitTimeInterval(prior.hitTime, next.hitTime);
+  const retainedRootKeys = [...new Set(retainedNextRootKeys)].sort(
+    (left, right) => left - right
+  );
+  return {
+    pairKey,
+    edgeIndex,
+    start: interval.start,
+    end: interval.end,
+    width: interval.end - interval.start,
+    priorHitTime: prior.hitTime,
+    nextHitTime: next.hitTime,
+    transitionCount,
+    hasRetainedTransition: retainedRootKeys.length > 0,
+    retainedRootKeys,
+    nonRetainedTransitions:
+      projectTransitionBoundaryNonRetainedTransitions(transitions),
+    endpointPresence: classifyTransitionEdgeEndpointPresence(prior, next),
+    gapKinds: createTransitionBoundaryGapKinds(edgeProfile),
+  };
+}
+
+function projectTransitionBoundaryNonRetainedTransitions(transitions = []) {
+  return (transitions ?? [])
+    .filter((transition) => transition.kind !== "retained")
+    .map((transition) => ({
+      transitionKey: transition.transitionKey,
+      kind: transition.kind,
+      priorRootKey: transition.priorRootKey,
+      nextRootKey: transition.nextRootKey,
+      sourceKey: transition.sourceKey,
+      receiverKey: transition.receiverKey,
+      priorJacobianSignStratum: transition.priorJacobianSignStratum,
+      nextJacobianSignStratum: transition.nextJacobianSignStratum,
+    }));
+}
+
+function createTransitionBoundaryGapKinds(edgeProfile) {
+  const gapKinds = [];
+  const gapKindFields = [
+    [
+      "noTransitionBothInactive",
+      "edgesWithNoRootLedgerTransitionsAndBothEndpointsInactive",
+    ],
+    [
+      "noTransitionPriorActiveOnly",
+      "edgesWithNoRootLedgerTransitionsAndPriorEndpointActiveOnly",
+    ],
+    [
+      "noTransitionNextActiveOnly",
+      "edgesWithNoRootLedgerTransitionsAndNextEndpointActiveOnly",
+    ],
+    [
+      "noTransitionBothActive",
+      "edgesWithNoRootLedgerTransitionsAndBothEndpointsActive",
+    ],
+    [
+      "onlyNonRetainedBothInactive",
+      "edgesWithOnlyNonRetainedTransitionsAndBothEndpointsInactive",
+    ],
+    [
+      "onlyNonRetainedPriorActiveOnly",
+      "edgesWithOnlyNonRetainedTransitionsAndPriorEndpointActiveOnly",
+    ],
+    [
+      "onlyNonRetainedNextActiveOnly",
+      "edgesWithOnlyNonRetainedTransitionsAndNextEndpointActiveOnly",
+    ],
+    [
+      "onlyNonRetainedBothActive",
+      "edgesWithOnlyNonRetainedTransitionsAndBothEndpointsActive",
+    ],
+  ];
+  for (const [gapKind, field] of gapKindFields) {
+    if ((edgeProfile?.[field] ?? 0) > 0) {
+      gapKinds.push(gapKind);
+    }
+  }
+  return gapKinds;
+}
+
+function appendTransitionGapIntervals({ pair, edgeProfile, prior, next }) {
+  const interval = createHitTimeInterval(prior.hitTime, next.hitTime);
+  if (edgeProfile.edgesWithNoRootLedgerTransitionsAndBothEndpointsInactive > 0) {
+    pair.transitionGapIntervals.noTransitionBothInactive.push(interval);
+  }
+  if (edgeProfile.edgesWithNoRootLedgerTransitionsAndPriorEndpointActiveOnly > 0) {
+    pair.transitionGapIntervals.noTransitionPriorActiveOnly.push(interval);
+  }
+  if (edgeProfile.edgesWithNoRootLedgerTransitionsAndNextEndpointActiveOnly > 0) {
+    pair.transitionGapIntervals.noTransitionNextActiveOnly.push(interval);
+  }
+  if (edgeProfile.edgesWithNoRootLedgerTransitionsAndBothEndpointsActive > 0) {
+    pair.transitionGapIntervals.noTransitionBothActive.push(interval);
+  }
+  if (edgeProfile.edgesWithOnlyNonRetainedTransitionsAndBothEndpointsInactive > 0) {
+    pair.transitionGapIntervals.onlyNonRetainedBothInactive.push(interval);
+  }
+  if (edgeProfile.edgesWithOnlyNonRetainedTransitionsAndPriorEndpointActiveOnly > 0) {
+    pair.transitionGapIntervals.onlyNonRetainedPriorActiveOnly.push(interval);
+  }
+  if (edgeProfile.edgesWithOnlyNonRetainedTransitionsAndNextEndpointActiveOnly > 0) {
+    pair.transitionGapIntervals.onlyNonRetainedNextActiveOnly.push(interval);
+  }
+  if (edgeProfile.edgesWithOnlyNonRetainedTransitionsAndBothEndpointsActive > 0) {
+    pair.transitionGapIntervals.onlyNonRetainedBothActive.push(interval);
+  }
+}
+
+function createTransitionGapCoverage(transitionGapIntervals) {
+  const intervals =
+    transitionGapIntervals ?? createEmptyTransitionGapIntervals();
+  return Object.fromEntries(
+    Object.entries(intervals).map(([key, value]) => [
+      key,
+      summarizeHitTimeIntervals(value, { intervalLimit: null }),
+    ])
+  );
+}
+
+function createTransitionGapSideProfile({ gapRows, hingeTime }) {
+  const rows = gapRows.map((row) => {
+    const intervals = row.coverage?.intervals ?? [];
+    const sideIntervals = splitHitTimeIntervalsByHinge({
+      intervals,
+      hingeTime,
+    });
+    const pointOnlyIntervalCount = intervals.filter(
+      (interval) =>
+        Number.isFinite(interval?.start) &&
+        Number.isFinite(interval?.end) &&
+        Math.abs(interval.end - interval.start) <= ROOT_TOLERANCE
+    ).length;
+    const positiveWidthIntervalCount =
+      (row.coverage?.intervalCount ?? intervals.length) -
+      pointOnlyIntervalCount;
+    const leftCoverage = summarizeHitTimeIntervals(sideIntervals.left, {
+      intervalLimit: null,
+    });
+    const rightCoverage = summarizeHitTimeIntervals(sideIntervals.right, {
+      intervalLimit: null,
+    });
+    const leftIntervalCount = leftCoverage.intervalCount;
+    const rightIntervalCount = rightCoverage.intervalCount;
+    return {
+      pairKey: row.pairKey,
+      sideStatus:
+        leftIntervalCount > 0 && rightIntervalCount > 0
+          ? "transition_gap_both_sides_of_hinge"
+          : leftIntervalCount > 0
+            ? "transition_gap_left_side_of_hinge"
+            : rightIntervalCount > 0
+              ? "transition_gap_right_side_of_hinge"
+              : "transition_gap_no_positive_side_width",
+      leftIntervalCount,
+      rightIntervalCount,
+      pointOnlyIntervalCount,
+      positiveWidthIntervalCount,
+      leftTotalWidth: leftCoverage.totalWidth,
+      rightTotalWidth: rightCoverage.totalWidth,
+      leftMaxWidth: leftCoverage.maxWidth,
+      rightMaxWidth: rightCoverage.maxWidth,
+      hingeCrossingIntervalCount: sideIntervals.hingeCrossingIntervals.length,
+      leftCoverage,
+      rightCoverage,
+    };
+  });
+  const leftRows = rows.filter((row) => row.leftIntervalCount > 0);
+  const rightRows = rows.filter((row) => row.rightIntervalCount > 0);
+  const bothSideRows = rows.filter(
+    (row) => row.leftIntervalCount > 0 && row.rightIntervalCount > 0
+  );
+  const leftOnlyRows = rows.filter(
+    (row) => row.leftIntervalCount > 0 && row.rightIntervalCount === 0
+  );
+  const rightOnlyRows = rows.filter(
+    (row) => row.rightIntervalCount > 0 && row.leftIntervalCount === 0
+  );
+  return {
+    status: Number.isFinite(hingeTime)
+      ? rows.length > 0
+        ? "transition_gap_side_profile_populated"
+        : "transition_gap_side_profile_empty"
+      : "transition_gap_side_profile_hinge_time_missing",
+    hingeTime: finiteOrNull(hingeTime),
+    pairCount: rows.length,
+    leftPairKeys: leftRows.map((row) => row.pairKey),
+    rightPairKeys: rightRows.map((row) => row.pairKey),
+    bothSidePairKeys: bothSideRows.map((row) => row.pairKey),
+    leftOnlyPairKeys: leftOnlyRows.map((row) => row.pairKey),
+    rightOnlyPairKeys: rightOnlyRows.map((row) => row.pairKey),
+    hingeCrossingPairKeys: rows
+      .filter((row) => row.hingeCrossingIntervalCount > 0)
+      .map((row) => row.pairKey),
+    pointOnlyPairKeys: rows
+      .filter((row) => row.pointOnlyIntervalCount > 0)
+      .map((row) => row.pairKey),
+    positiveWidthPairKeys: rows
+      .filter((row) => row.positiveWidthIntervalCount > 0)
+      .map((row) => row.pairKey),
+    pointOnlyIntervalCount: rows.reduce(
+      (sum, row) => sum + row.pointOnlyIntervalCount,
+      0
+    ),
+    positiveWidthIntervalCount: rows.reduce(
+      (sum, row) => sum + row.positiveWidthIntervalCount,
+      0
+    ),
+    leftIntervalCount: leftRows.reduce(
+      (sum, row) => sum + row.leftIntervalCount,
+      0
+    ),
+    rightIntervalCount: rightRows.reduce(
+      (sum, row) => sum + row.rightIntervalCount,
+      0
+    ),
+    totalLeftWidth: leftRows.reduce(
+      (sum, row) => sum + row.leftTotalWidth,
+      0
+    ),
+    totalRightWidth: rightRows.reduce(
+      (sum, row) => sum + row.rightTotalWidth,
+      0
+    ),
+    maxLeftWidth: maxFinite(leftRows.map((row) => row.leftMaxWidth)),
+    maxRightWidth: maxFinite(rightRows.map((row) => row.rightMaxWidth)),
+    rows,
+  };
+}
+
+function splitHitTimeIntervalsByHinge({ intervals, hingeTime }) {
+  const left = [];
+  const right = [];
+  const hingeCrossingIntervals = [];
+  if (!Number.isFinite(hingeTime)) {
+    return { left, right, hingeCrossingIntervals };
+  }
+  for (const interval of intervals) {
+    if (
+      !Number.isFinite(interval?.start) ||
+      !Number.isFinite(interval?.end)
+    ) {
+      continue;
+    }
+    const start = Math.min(interval.start, interval.end);
+    const end = Math.max(interval.start, interval.end);
+    const leftEnd = Math.min(end, hingeTime);
+    const rightStart = Math.max(start, hingeTime);
+    if (leftEnd - start > ROOT_TOLERANCE) {
+      left.push({ start, end: leftEnd });
+    }
+    if (end - rightStart > ROOT_TOLERANCE) {
+      right.push({ start: rightStart, end });
+    }
+    if (start < hingeTime - ROOT_TOLERANCE && end > hingeTime + ROOT_TOLERANCE) {
+      hingeCrossingIntervals.push({ start, end });
+    }
+  }
+  return { left, right, hingeCrossingIntervals };
+}
+
+function createTransitionGapBoundaryNeighborhoodProfile({
+  rows,
+  eventRootKey,
+  hingeTime,
+  gapKind,
+  positiveWidthOnly = true,
+}) {
+  const gapRows = [];
+  for (const row of rows) {
+    const edges = row.transitionBoundaryEdges ?? [];
+    for (let index = 0; index < edges.length; index += 1) {
+      const edge = edges[index];
+      if (!edge.gapKinds?.includes(gapKind)) {
+        continue;
+      }
+      if (positiveWidthOnly && (edge.width ?? 0) <= ROOT_TOLERANCE) {
+        continue;
+      }
+      const priorEventRootBoundary = findNearestRetainedBoundaryEdge({
+        edges,
+        startIndex: index,
+        direction: -1,
+        eventRootKey,
+      });
+      const nextEventRootBoundary = findNearestRetainedBoundaryEdge({
+        edges,
+        startIndex: index,
+        direction: 1,
+        eventRootKey,
+      });
+      const priorRetainedBoundary = findNearestRetainedBoundaryEdge({
+        edges,
+        startIndex: index,
+        direction: -1,
+      });
+      const nextRetainedBoundary = findNearestRetainedBoundaryEdge({
+        edges,
+        startIndex: index,
+        direction: 1,
+      });
+      const immediatePrior = edges[index - 1] ?? null;
+      const immediateNext = edges[index + 1] ?? null;
+      const immediatePriorEventRootPass =
+        retainedBoundaryHasRootKey(immediatePrior, eventRootKey);
+      const immediateNextEventRootPass =
+        retainedBoundaryHasRootKey(immediateNext, eventRootKey);
+      const bracketInteriorProfile = createTransitionBracketInteriorProfile({
+        edges,
+        priorEventRootBoundary,
+        nextEventRootBoundary,
+        eventRootKey,
+      });
+      gapRows.push({
+        pairKey: row.pairKey,
+        edgeIndex: edge.edgeIndex,
+        start: edge.start,
+        end: edge.end,
+        width: edge.width,
+        side: classifyTransitionGapSide(edge, hingeTime),
+        endpointPresence: edge.endpointPresence,
+        gapKind,
+        eventRootKey,
+        priorEventRootBoundaryPass: priorEventRootBoundary != null,
+        nextEventRootBoundaryPass: nextEventRootBoundary != null,
+        bothEventRootBoundaryPass:
+          priorEventRootBoundary != null && nextEventRootBoundary != null,
+        immediatePriorEventRootPass,
+        immediateNextEventRootPass,
+        immediateBothEventRootBoundaryPass:
+          immediatePriorEventRootPass && immediateNextEventRootPass,
+        priorRetainedBoundaryPass: priorRetainedBoundary != null,
+        nextRetainedBoundaryPass: nextRetainedBoundary != null,
+        bothRetainedBoundaryPass:
+          priorRetainedBoundary != null && nextRetainedBoundary != null,
+        priorEventRootBoundary: projectTransitionBoundaryEdgeDistance(
+          priorEventRootBoundary,
+          edge
+        ),
+        nextEventRootBoundary: projectTransitionBoundaryEdgeDistance(
+          nextEventRootBoundary,
+          edge
+        ),
+        priorRetainedBoundary: projectTransitionBoundaryEdgeDistance(
+          priorRetainedBoundary,
+          edge
+        ),
+        nextRetainedBoundary: projectTransitionBoundaryEdgeDistance(
+          nextRetainedBoundary,
+          edge
+        ),
+        bracketInteriorProfile,
+      });
+    }
+  }
+  const pairSummaries = createTransitionGapBoundaryPairSummaries(gapRows);
+  const eventRootBoundedGapRows = gapRows.filter(
+    (row) => row.bothEventRootBoundaryPass
+  );
+  const eventRootPriorOnlyGapRows = gapRows.filter(
+    (row) => row.priorEventRootBoundaryPass && !row.nextEventRootBoundaryPass
+  );
+  const eventRootNextOnlyGapRows = gapRows.filter(
+    (row) => row.nextEventRootBoundaryPass && !row.priorEventRootBoundaryPass
+  );
+  const eventRootUnboundedGapRows = gapRows.filter(
+    (row) => !row.priorEventRootBoundaryPass && !row.nextEventRootBoundaryPass
+  );
+  const widths = gapRows.map((row) => row.width).filter(Number.isFinite);
+  return {
+    status:
+      eventRootKey == null
+        ? "transition_gap_boundary_neighborhood_event_root_missing"
+        : gapRows.length === 0
+          ? "transition_gap_boundary_neighborhood_no_positive_width_gaps"
+          : eventRootBoundedGapRows.length === gapRows.length
+            ? "transition_gap_boundary_neighborhood_all_gaps_event_root_bounded"
+            : eventRootBoundedGapRows.length > 0
+              ? "transition_gap_boundary_neighborhood_partial_event_root_boundaries"
+              : "transition_gap_boundary_neighborhood_no_gaps_event_root_bounded",
+    claimLevel:
+      "nearest retained-edge boundary diagnostic for transition gaps; not an active-domain extension proof",
+    gapKind,
+    positiveWidthOnly,
+    eventRootKey,
+    hingeTime: finiteOrNull(hingeTime),
+    gapCount: gapRows.length,
+    pairCount: pairSummaries.length,
+    pairKeys: pairSummaries.map((row) => row.pairKey),
+    leftGapCount: gapRows.filter((row) => row.side === "left").length,
+    rightGapCount: gapRows.filter((row) => row.side === "right").length,
+    hingeCrossingGapCount: gapRows.filter(
+      (row) => row.side === "hinge_crossing"
+    ).length,
+    pointGapCount: gapRows.filter((row) => row.side === "point").length,
+    eventRootBoundedGapCount: eventRootBoundedGapRows.length,
+    eventRootPriorOnlyGapCount: eventRootPriorOnlyGapRows.length,
+    eventRootNextOnlyGapCount: eventRootNextOnlyGapRows.length,
+    eventRootUnboundedGapCount: eventRootUnboundedGapRows.length,
+    immediateEventRootBoundedGapCount: gapRows.filter(
+      (row) => row.immediateBothEventRootBoundaryPass
+    ).length,
+    retainedBoundedGapCount: gapRows.filter(
+      (row) => row.bothRetainedBoundaryPass
+    ).length,
+    totalGapWidth: widths.reduce((sum, value) => sum + value, 0),
+    maxGapWidth: maxFinite(widths),
+    eventRootBoundedPairKeys: [
+      ...new Set(eventRootBoundedGapRows.map((row) => row.pairKey)),
+    ],
+    eventRootUnboundedPairKeys: [
+      ...new Set(eventRootUnboundedGapRows.map((row) => row.pairKey)),
+    ],
+    eventRootPriorOnlyPairKeys: [
+      ...new Set(eventRootPriorOnlyGapRows.map((row) => row.pairKey)),
+    ],
+    eventRootNextOnlyPairKeys: [
+      ...new Set(eventRootNextOnlyGapRows.map((row) => row.pairKey)),
+    ],
+    pairSummaries,
+    rows: gapRows,
+  };
+}
+
+function classifyTransitionGapSide(edge, hingeTime) {
+  if (!Number.isFinite(hingeTime)) {
+    return "hinge_time_missing";
+  }
+  if ((edge.width ?? 0) <= ROOT_TOLERANCE) {
+    return "point";
+  }
+  if (edge.end <= hingeTime + ROOT_TOLERANCE) {
+    return "left";
+  }
+  if (edge.start >= hingeTime - ROOT_TOLERANCE) {
+    return "right";
+  }
+  return "hinge_crossing";
+}
+
+function findNearestRetainedBoundaryEdge({
+  edges,
+  startIndex,
+  direction,
+  eventRootKey = null,
+}) {
+  for (
+    let index = startIndex + direction;
+    index >= 0 && index < edges.length;
+    index += direction
+  ) {
+    const edge = edges[index];
+    if (!edge?.hasRetainedTransition) {
+      continue;
+    }
+    if (eventRootKey != null && !retainedBoundaryHasRootKey(edge, eventRootKey)) {
+      continue;
+    }
+    return edge;
+  }
+  return null;
+}
+
+function retainedBoundaryHasRootKey(edge, rootKey) {
+  return (
+    edge?.hasRetainedTransition === true &&
+    rootKey != null &&
+    edge.retainedRootKeys?.includes(rootKey)
+  );
+}
+
+function projectTransitionBoundaryEdgeDistance(boundaryEdge, gapEdge) {
+  if (!boundaryEdge) {
+    return null;
+  }
+  const distance =
+    boundaryEdge.end <= gapEdge.start
+      ? gapEdge.start - boundaryEdge.end
+      : boundaryEdge.start >= gapEdge.end
+        ? boundaryEdge.start - gapEdge.end
+        : 0;
+  return {
+    edgeIndex: boundaryEdge.edgeIndex,
+    start: boundaryEdge.start,
+    end: boundaryEdge.end,
+    width: boundaryEdge.width,
+    distance,
+    retainedRootKeys: boundaryEdge.retainedRootKeys,
+  };
+}
+
+function createTransitionBracketInteriorProfile({
+  edges,
+  priorEventRootBoundary,
+  nextEventRootBoundary,
+  eventRootKey,
+}) {
+  if (!priorEventRootBoundary || !nextEventRootBoundary) {
+    return null;
+  }
+  const priorEdgeIndex = priorEventRootBoundary.edgeIndex;
+  const nextEdgeIndex = nextEventRootBoundary.edgeIndex;
+  if (!Number.isFinite(priorEdgeIndex) || !Number.isFinite(nextEdgeIndex)) {
+    return null;
+  }
+  const lowerEdgeIndex = Math.min(priorEdgeIndex, nextEdgeIndex);
+  const upperEdgeIndex = Math.max(priorEdgeIndex, nextEdgeIndex);
+  const interiorEdges = (edges ?? []).filter(
+    (edge) =>
+      edge.edgeIndex > lowerEdgeIndex && edge.edgeIndex < upperEdgeIndex
+  );
+  return {
+    priorEventRootBoundaryEdgeIndex: priorEdgeIndex,
+    nextEventRootBoundaryEdgeIndex: nextEdgeIndex,
+    bracketEdgeSpan: upperEdgeIndex - lowerEdgeIndex,
+    ...createTransitionBracketInteriorEdgeCounts({
+      edges: interiorEdges,
+      eventRootKey,
+    }),
+    interiorEventRootTouchSamples:
+      sampleTransitionBracketInteriorEventRootTouches({
+        edges: interiorEdges,
+        eventRootKey,
+      }),
+    interiorEventRootTouchSourceReceiverPairs:
+      summarizeTransitionBracketInteriorEventRootTouchSourceReceiverPairs({
+        edges: interiorEdges,
+        eventRootKey,
+      }),
+    interiorEventRootTouchSequence:
+      summarizeTransitionBracketInteriorEventRootTouchSequence({
+        edges: interiorEdges,
+        eventRootKey,
+      }),
+    interiorEventRootOccupancyWalk:
+      summarizeTransitionBracketInteriorEventRootOccupancyWalk({
+        edges: interiorEdges,
+        eventRootKey,
+      }),
+  };
+}
+
+function createTransitionBracketInteriorEdgeCounts({ edges, eventRootKey }) {
+  const counts = {
+    interiorEdgeCount: 0,
+    interiorRetainedEventRootEdgeCount: 0,
+    interiorRetainedEdgeCount: 0,
+    interiorNonEventRootRetainedEdgeCount: 0,
+    interiorDroppedEdgeCount: 0,
+    interiorActiveEndpointEdgeCount: 0,
+    interiorBothInactiveEndpointEdgeCount: 0,
+    interiorNoTransitionBothInactiveEdgeCount: 0,
+    interiorOnlyNonRetainedEdgeCount: 0,
+    interiorOnlyNonRetainedPriorActiveOnlyEdgeCount: 0,
+    interiorOnlyNonRetainedNextActiveOnlyEdgeCount: 0,
+    interiorOnlyNonRetainedBothActiveEdgeCount: 0,
+    interiorZeroWidthEdgeCount: 0,
+    interiorPositiveWidthEdgeCount: 0,
+    interiorNonRetainedTransitionCount: 0,
+    interiorAppearedTransitionCount: 0,
+    interiorDisappearedTransitionCount: 0,
+    interiorFoldedTransitionCount: 0,
+    interiorAssimilatedFromTailTransitionCount: 0,
+    interiorLedgerRerunRequiredTransitionCount: 0,
+    interiorNonRetainedEventRootTouchTransitionCount: 0,
+    interiorNonRetainedEventRootTouchEdgeCount: 0,
+    interiorOnlyNonRetainedEventRootTouchEdgeCount: 0,
+    interiorAppearedEventRootTouchTransitionCount: 0,
+    interiorDisappearedEventRootTouchTransitionCount: 0,
+    interiorFoldedEventRootTouchTransitionCount: 0,
+  };
+  for (const edge of edges ?? []) {
+    counts.interiorEdgeCount += 1;
+    const hasRetainedTransition = edge.hasRetainedTransition === true;
+    const retainedRootKeys = edge.retainedRootKeys ?? [];
+    const hasEventRootRetainedTransition =
+      eventRootKey != null && retainedRootKeys.includes(eventRootKey);
+    if (hasRetainedTransition) {
+      counts.interiorRetainedEdgeCount += 1;
+    } else {
+      counts.interiorDroppedEdgeCount += 1;
+    }
+    if (hasEventRootRetainedTransition) {
+      counts.interiorRetainedEventRootEdgeCount += 1;
+    }
+    if (hasRetainedTransition && !hasEventRootRetainedTransition) {
+      counts.interiorNonEventRootRetainedEdgeCount += 1;
+    }
+    if (edge.endpointPresence === "both_endpoints_inactive") {
+      counts.interiorBothInactiveEndpointEdgeCount += 1;
+    } else {
+      counts.interiorActiveEndpointEdgeCount += 1;
+    }
+    const gapKinds = edge.gapKinds ?? [];
+    if (gapKinds.includes("noTransitionBothInactive")) {
+      counts.interiorNoTransitionBothInactiveEdgeCount += 1;
+    }
+    if (gapKinds.some((gapKind) => gapKind.startsWith("onlyNonRetained"))) {
+      counts.interiorOnlyNonRetainedEdgeCount += 1;
+    }
+    if (gapKinds.includes("onlyNonRetainedPriorActiveOnly")) {
+      counts.interiorOnlyNonRetainedPriorActiveOnlyEdgeCount += 1;
+    }
+    if (gapKinds.includes("onlyNonRetainedNextActiveOnly")) {
+      counts.interiorOnlyNonRetainedNextActiveOnlyEdgeCount += 1;
+    }
+    if (gapKinds.includes("onlyNonRetainedBothActive")) {
+      counts.interiorOnlyNonRetainedBothActiveEdgeCount += 1;
+    }
+    if ((edge.width ?? 0) <= ROOT_TOLERANCE) {
+      counts.interiorZeroWidthEdgeCount += 1;
+    } else {
+      counts.interiorPositiveWidthEdgeCount += 1;
+    }
+    const nonRetainedTransitions = edge.nonRetainedTransitions ?? [];
+    const eventRootTouchTransitions = nonRetainedTransitions.filter(
+      (transition) =>
+        transitionTouchesRootKey(transition, eventRootKey)
+    );
+    counts.interiorNonRetainedTransitionCount +=
+      nonRetainedTransitions.length;
+    counts.interiorAppearedTransitionCount += nonRetainedTransitions.filter(
+      (transition) => transition.kind === "appeared"
+    ).length;
+    counts.interiorDisappearedTransitionCount +=
+      nonRetainedTransitions.filter(
+        (transition) => transition.kind === "disappeared"
+      ).length;
+    counts.interiorFoldedTransitionCount += nonRetainedTransitions.filter(
+      (transition) => transition.kind === "folded"
+    ).length;
+    counts.interiorAssimilatedFromTailTransitionCount +=
+      nonRetainedTransitions.filter(
+        (transition) => transition.kind === "assimilated_from_tail"
+      ).length;
+    counts.interiorLedgerRerunRequiredTransitionCount +=
+      nonRetainedTransitions.filter(
+        (transition) => transition.kind === "ledger_rerun_required"
+      ).length;
+    counts.interiorNonRetainedEventRootTouchTransitionCount +=
+      eventRootTouchTransitions.length;
+    if (eventRootTouchTransitions.length > 0) {
+      counts.interiorNonRetainedEventRootTouchEdgeCount += 1;
+      if (gapKinds.some((gapKind) => gapKind.startsWith("onlyNonRetained"))) {
+        counts.interiorOnlyNonRetainedEventRootTouchEdgeCount += 1;
+      }
+    }
+    counts.interiorAppearedEventRootTouchTransitionCount +=
+      eventRootTouchTransitions.filter(
+        (transition) => transition.kind === "appeared"
+      ).length;
+    counts.interiorDisappearedEventRootTouchTransitionCount +=
+      eventRootTouchTransitions.filter(
+        (transition) => transition.kind === "disappeared"
+      ).length;
+    counts.interiorFoldedEventRootTouchTransitionCount +=
+      eventRootTouchTransitions.filter(
+        (transition) => transition.kind === "folded"
+      ).length;
+  }
+  return counts;
+}
+
+function sampleTransitionBracketInteriorEventRootTouches({
+  edges,
+  eventRootKey,
+  limit = Number.POSITIVE_INFINITY,
+}) {
+  const samples = [];
+  if (eventRootKey == null) {
+    return samples;
+  }
+  for (const edge of edges ?? []) {
+    for (const transition of edge.nonRetainedTransitions ?? []) {
+      if (!transitionTouchesRootKey(transition, eventRootKey)) {
+        continue;
+      }
+      samples.push({
+        pairKey: edge.pairKey,
+        edgeIndex: edge.edgeIndex,
+        start: edge.start,
+        end: edge.end,
+        endpointPresence: edge.endpointPresence,
+        gapKinds: edge.gapKinds,
+        transition,
+      });
+      if (samples.length >= limit) {
+        return samples;
+      }
+    }
+  }
+  return samples;
+}
+
+function summarizeTransitionBracketInteriorEventRootTouchSourceReceiverPairs({
+  edges,
+  eventRootKey,
+}) {
+  const pairs = new Map();
+  if (eventRootKey == null) {
+    return [];
+  }
+  for (const edge of edges ?? []) {
+    for (const transition of edge.nonRetainedTransitions ?? []) {
+      if (!transitionTouchesRootKey(transition, eventRootKey)) {
+        continue;
+      }
+      const key = `${transition.sourceKey}:${transition.receiverKey}`;
+      const summary = pairs.get(key) ?? {
+        sourceKey: transition.sourceKey,
+        receiverKey: transition.receiverKey,
+        transitionCount: 0,
+        appearedTransitionCount: 0,
+        disappearedTransitionCount: 0,
+        foldedTransitionCount: 0,
+        assimilatedFromTailTransitionCount: 0,
+        ledgerRerunRequiredTransitionCount: 0,
+      };
+      summary.transitionCount += 1;
+      if (transition.kind === "appeared") {
+        summary.appearedTransitionCount += 1;
+      }
+      if (transition.kind === "disappeared") {
+        summary.disappearedTransitionCount += 1;
+      }
+      if (transition.kind === "folded") {
+        summary.foldedTransitionCount += 1;
+      }
+      if (transition.kind === "assimilated_from_tail") {
+        summary.assimilatedFromTailTransitionCount += 1;
+      }
+      if (transition.kind === "ledger_rerun_required") {
+        summary.ledgerRerunRequiredTransitionCount += 1;
+      }
+      pairs.set(key, summary);
+    }
+  }
+  return [...pairs.values()].sort(
+    (left, right) =>
+      left.sourceKey - right.sourceKey ||
+      left.receiverKey - right.receiverKey
+  );
+}
+
+function summarizeTransitionBracketInteriorEventRootTouchSequence({
+  edges,
+  eventRootKey,
+  sampleLimit = 16,
+}) {
+  const events = [];
+  if (eventRootKey == null) {
+    return createEmptyEventRootTouchSequenceSummary();
+  }
+  for (const edge of edges ?? []) {
+    for (const transition of edge.nonRetainedTransitions ?? []) {
+      if (!transitionTouchesRootKey(transition, eventRootKey)) {
+        continue;
+      }
+      events.push({
+        edgeIndex: edge.edgeIndex,
+        kind: transition.kind,
+        endpointPresence: edge.endpointPresence,
+        gapKinds: edge.gapKinds ?? [],
+        priorRootKey: transition.priorRootKey,
+        nextRootKey: transition.nextRootKey,
+        priorJacobianSignStratum: transition.priorJacobianSignStratum,
+        nextJacobianSignStratum: transition.nextJacobianSignStratum,
+      });
+    }
+  }
+  const appearedDisappearedEvents = events.filter(
+    (event) => event.kind === "appeared" || event.kind === "disappeared"
+  );
+  let sameKindAdjacentViolationCount = 0;
+  let maxSameKindRunLength = appearedDisappearedEvents.length > 0 ? 1 : 0;
+  let currentRunLength = appearedDisappearedEvents.length > 0 ? 1 : 0;
+  for (let index = 1; index < appearedDisappearedEvents.length; index += 1) {
+    const prior = appearedDisappearedEvents[index - 1];
+    const next = appearedDisappearedEvents[index];
+    if (prior.kind === next.kind) {
+      sameKindAdjacentViolationCount += 1;
+      currentRunLength += 1;
+    } else {
+      currentRunLength = 1;
+    }
+    maxSameKindRunLength = Math.max(maxSameKindRunLength, currentRunLength);
+  }
+  const alternatingAppearedDisappearedPass =
+    appearedDisappearedEvents.length > 0 &&
+    sameKindAdjacentViolationCount === 0;
+  return {
+    eventRootTouchSequenceLength: events.length,
+    appearedDisappearedSequenceLength: appearedDisappearedEvents.length,
+    foldedEventRootTouchSequenceCount: events.filter(
+      (event) => event.kind === "folded"
+    ).length,
+    startAppearedDisappearedKind:
+      appearedDisappearedEvents[0]?.kind ?? null,
+    endAppearedDisappearedKind:
+      appearedDisappearedEvents[appearedDisappearedEvents.length - 1]?.kind ??
+      null,
+    alternatingAppearedDisappearedPass,
+    sameKindAdjacentViolationCount,
+    maxSameKindRunLength,
+    eventRootTouchKindSequenceSample: events
+      .slice(0, sampleLimit)
+      .map(projectEventRootTouchSequenceEvent),
+    appearedDisappearedKindSequenceSample: appearedDisappearedEvents
+      .slice(0, sampleLimit)
+      .map(projectEventRootTouchSequenceEvent),
+  };
+}
+
+function createEmptyEventRootTouchSequenceSummary() {
+  return {
+    eventRootTouchSequenceLength: 0,
+    appearedDisappearedSequenceLength: 0,
+    foldedEventRootTouchSequenceCount: 0,
+    startAppearedDisappearedKind: null,
+    endAppearedDisappearedKind: null,
+    alternatingAppearedDisappearedPass: false,
+    sameKindAdjacentViolationCount: 0,
+    maxSameKindRunLength: 0,
+    eventRootTouchKindSequenceSample: [],
+    appearedDisappearedKindSequenceSample: [],
+  };
+}
+
+function projectEventRootTouchSequenceEvent(event) {
+  return {
+    edgeIndex: event.edgeIndex,
+    kind: event.kind,
+    endpointPresence: event.endpointPresence,
+    gapKinds: event.gapKinds,
+    priorRootKey: event.priorRootKey,
+    nextRootKey: event.nextRootKey,
+    priorJacobianSignStratum: event.priorJacobianSignStratum,
+    nextJacobianSignStratum: event.nextJacobianSignStratum,
+  };
+}
+
+function summarizeTransitionBracketInteriorEventRootOccupancyWalk({
+  edges,
+  eventRootKey,
+  sampleLimit = 12,
+}) {
+  if (eventRootKey == null) {
+    return createEmptyEventRootOccupancyWalkSummary();
+  }
+
+  const orderedEdges = [...(edges ?? [])].sort(
+    (left, right) => (left.edgeIndex ?? 0) - (right.edgeIndex ?? 0)
+  );
+  let eventRootPresent = true;
+  let openAbsenceRun = null;
+  const absenceRunSamples = [];
+  const absentEdgeSamples = [];
+  const summary = createEmptyEventRootOccupancyWalkSummary();
+  summary.initialEventRootPresent = true;
+
+  for (const edge of orderedEdges) {
+    const eventRootTransitions = (edge.nonRetainedTransitions ?? []).filter(
+      (transition) => transitionTouchesRootKey(transition, eventRootKey)
+    );
+
+    if (eventRootTransitions.length === 0) {
+      if (!eventRootPresent) {
+        accumulateEventRootAbsentInteriorEdge(summary, edge);
+        if (absentEdgeSamples.length < sampleLimit) {
+          absentEdgeSamples.push(projectEventRootAbsentInteriorEdge(edge));
+        }
+      }
+      continue;
+    }
+
+    for (const transition of eventRootTransitions) {
+      if (transition.kind === "disappeared") {
+        summary.disappearedEventRootWalkCount += 1;
+        if (!eventRootPresent) {
+          summary.stateViolationCount += 1;
+          summary.disappearanceWithoutPresentStateCount += 1;
+        }
+        eventRootPresent = false;
+        openAbsenceRun = {
+          startEdgeIndex: edge.edgeIndex,
+          start: edge.end,
+          openingTransitionKind: transition.kind,
+        };
+        continue;
+      }
+
+      if (transition.kind === "appeared") {
+        summary.appearedEventRootWalkCount += 1;
+        if (eventRootPresent) {
+          summary.stateViolationCount += 1;
+          summary.appearanceWithoutAbsentStateCount += 1;
+        }
+        if (openAbsenceRun) {
+          const closedRun = closeEventRootAbsenceRun({
+            run: openAbsenceRun,
+            edge,
+            transition,
+          });
+          accumulateEventRootAbsenceRun(summary, closedRun);
+          if (absenceRunSamples.length < sampleLimit) {
+            absenceRunSamples.push(closedRun);
+          }
+        }
+        openAbsenceRun = null;
+        eventRootPresent = true;
+        continue;
+      }
+
+      if (transition.kind === "folded") {
+        summary.foldedEventRootWalkCount += 1;
+        if (!eventRootPresent) {
+          summary.stateViolationCount += 1;
+          summary.foldedWithoutPresentStateCount += 1;
+        }
+        eventRootPresent = true;
+      }
+    }
+  }
+
+  if (openAbsenceRun) {
+    summary.openAbsenceRunCount += 1;
+    summary.stateViolationCount += 1;
+  }
+
+  summary.finalEventRootPresent = eventRootPresent;
+  summary.balancedRecoveryWalkPass =
+    summary.stateViolationCount === 0 &&
+    summary.disappearedEventRootWalkCount ===
+      summary.appearedEventRootWalkCount &&
+    summary.disappearedEventRootWalkCount > 0 &&
+    summary.initialEventRootPresent === true &&
+    summary.finalEventRootPresent === true;
+  summary.retainedContinuityAcceptedPass =
+    summary.balancedRecoveryWalkPass &&
+    summary.positiveEventRootAbsenceRunCount === 0 &&
+    summary.eventRootAbsentInteriorEdgeCount === 0;
+  summary.firstOccupancyWalkBlocker = summary.retainedContinuityAcceptedPass
+    ? null
+    : summary.stateViolationCount > 0
+      ? "repair_event_root_occupancy_walk_state"
+      : summary.balancedRecoveryWalkPass
+        ? "prove_event_root_absence_bridge_fill_rule"
+        : "derive_balanced_event_root_recovery_walk";
+  summary.eventRootAbsenceRunSamples = absenceRunSamples;
+  summary.eventRootAbsentInteriorEdgeSamples = absentEdgeSamples;
+  return summary;
+}
+
+function createEmptyEventRootOccupancyWalkSummary() {
+  return {
+    initialEventRootPresent: false,
+    finalEventRootPresent: false,
+    balancedRecoveryWalkPass: false,
+    retainedContinuityAcceptedPass: false,
+    firstOccupancyWalkBlocker: "populate_event_root_occupancy_walk",
+    stateViolationCount: 0,
+    disappearanceWithoutPresentStateCount: 0,
+    appearanceWithoutAbsentStateCount: 0,
+    foldedWithoutPresentStateCount: 0,
+    openAbsenceRunCount: 0,
+    eventRootAbsenceRunCount: 0,
+    positiveEventRootAbsenceRunCount: 0,
+    zeroWidthEventRootAbsenceRunCount: 0,
+    totalEventRootAbsenceBridgeWidth: 0,
+    maxEventRootAbsenceBridgeWidth: 0,
+    eventRootAbsentInteriorEdgeCount: 0,
+    eventRootAbsentPositiveWidthInteriorEdgeCount: 0,
+    eventRootAbsentZeroWidthInteriorEdgeCount: 0,
+    eventRootAbsentNoTransitionBothInactiveEdgeCount: 0,
+    eventRootAbsentPositiveWidthNoTransitionBothInactiveEdgeCount: 0,
+    eventRootAbsentZeroWidthNoTransitionBothInactiveEdgeCount: 0,
+    totalEventRootAbsentNoTransitionBothInactiveWidth: 0,
+    maxEventRootAbsentNoTransitionBothInactiveWidth: 0,
+    disappearedEventRootWalkCount: 0,
+    appearedEventRootWalkCount: 0,
+    foldedEventRootWalkCount: 0,
+    eventRootAbsenceRunSamples: [],
+    eventRootAbsentInteriorEdgeSamples: [],
+    eventRootAbsentPositiveWidthNoTransitionBothInactiveEdges: [],
+  };
+}
+
+function closeEventRootAbsenceRun({ run, edge, transition }) {
+  const start = Number.isFinite(run.start) ? run.start : null;
+  const end = Number.isFinite(edge.start) ? edge.start : null;
+  const width =
+    start != null && end != null ? Math.max(0, end - start) : null;
+  return {
+    startEdgeIndex: run.startEdgeIndex,
+    endEdgeIndex: edge.edgeIndex,
+    start,
+    end,
+    width,
+    openingTransitionKind: run.openingTransitionKind,
+    closingTransitionKind: transition.kind,
+  };
+}
+
+function accumulateEventRootAbsenceRun(summary, run) {
+  summary.eventRootAbsenceRunCount += 1;
+  if (Number.isFinite(run.width) && run.width > ROOT_TOLERANCE) {
+    summary.positiveEventRootAbsenceRunCount += 1;
+    summary.totalEventRootAbsenceBridgeWidth += run.width;
+    summary.maxEventRootAbsenceBridgeWidth = Math.max(
+      summary.maxEventRootAbsenceBridgeWidth,
+      run.width
+    );
+  } else {
+    summary.zeroWidthEventRootAbsenceRunCount += 1;
+  }
+}
+
+function accumulateEventRootAbsentInteriorEdge(summary, edge) {
+  const width = edge.width ?? 0;
+  summary.eventRootAbsentInteriorEdgeCount += 1;
+  if (width > ROOT_TOLERANCE) {
+    summary.eventRootAbsentPositiveWidthInteriorEdgeCount += 1;
+  } else {
+    summary.eventRootAbsentZeroWidthInteriorEdgeCount += 1;
+  }
+  if (edge.gapKinds?.includes("noTransitionBothInactive")) {
+    summary.eventRootAbsentNoTransitionBothInactiveEdgeCount += 1;
+    if (width > ROOT_TOLERANCE) {
+      summary.eventRootAbsentPositiveWidthNoTransitionBothInactiveEdgeCount +=
+        1;
+      summary.totalEventRootAbsentNoTransitionBothInactiveWidth += width;
+      summary.maxEventRootAbsentNoTransitionBothInactiveWidth = Math.max(
+        summary.maxEventRootAbsentNoTransitionBothInactiveWidth,
+        width
+      );
+      summary.eventRootAbsentPositiveWidthNoTransitionBothInactiveEdges.push(
+        projectEventRootAbsentInteriorEdge(edge)
+      );
+    } else {
+      summary.eventRootAbsentZeroWidthNoTransitionBothInactiveEdgeCount += 1;
+    }
+  }
+}
+
+function projectEventRootAbsentInteriorEdge(edge) {
+  return {
+    pairKey: edge.pairKey,
+    edgeIndex: edge.edgeIndex,
+    start: edge.start,
+    end: edge.end,
+    width: edge.width,
+    endpointPresence: edge.endpointPresence,
+    gapKinds: edge.gapKinds,
+  };
+}
+
+function transitionTouchesRootKey(transition, rootKey) {
+  if (rootKey == null) {
+    return false;
+  }
+  return (
+    transition?.priorRootKey === rootKey ||
+    transition?.nextRootKey === rootKey
+  );
+}
+
+function createTransitionGapBoundaryPairSummaries(gapRows) {
+  const summaries = new Map();
+  for (const row of gapRows) {
+    const summary = summaries.get(row.pairKey) ?? {
+      pairKey: row.pairKey,
+      gapCount: 0,
+      leftGapCount: 0,
+      rightGapCount: 0,
+      eventRootBoundedGapCount: 0,
+      eventRootPriorOnlyGapCount: 0,
+      eventRootNextOnlyGapCount: 0,
+      eventRootUnboundedGapCount: 0,
+      totalGapWidth: 0,
+      maxGapWidth: 0,
+    };
+    summary.gapCount += 1;
+    if (row.side === "left") {
+      summary.leftGapCount += 1;
+    }
+    if (row.side === "right") {
+      summary.rightGapCount += 1;
+    }
+    if (row.bothEventRootBoundaryPass) {
+      summary.eventRootBoundedGapCount += 1;
+    } else if (row.priorEventRootBoundaryPass) {
+      summary.eventRootPriorOnlyGapCount += 1;
+    } else if (row.nextEventRootBoundaryPass) {
+      summary.eventRootNextOnlyGapCount += 1;
+    } else {
+      summary.eventRootUnboundedGapCount += 1;
+    }
+    summary.totalGapWidth += row.width ?? 0;
+    summary.maxGapWidth = Math.max(summary.maxGapWidth, row.width ?? 0);
+    summaries.set(row.pairKey, summary);
+  }
+  return [...summaries.values()].sort((left, right) =>
+    left.pairKey.localeCompare(right.pairKey)
+  );
 }
 
 function createEmptyBinaryPairTransitionSummaries(selectedCase) {
@@ -3515,7 +4897,14 @@ function createEmptyBinaryPairTransitionSummaries(selectedCase) {
         transitionCount: 0,
         retainedTransitionCount: 0,
         edgesWithRetainedTransition: 0,
+        edgesWithoutRetainedTransition: 0,
         retainedEdgeCoverage: 0,
+        retainedRootTransitionSurplus: 0,
+        singleRetainedTransitionPerRetainedEdgePass: true,
+        transitionKindCounts: createEmptyTransitionKindCounts(),
+        transitionEdgeProfile: createEmptyTransitionEdgeProfile(),
+        transitionGapIntervals: createEmptyTransitionGapIntervals(),
+        transitionBoundaryEdges: [],
         commonActiveRootKeyCount: 0,
         commonActiveRootKeys: [],
         longestRetainedChain: createEmptyRetainedChainSummary(),
@@ -3533,7 +4922,7 @@ function createHitTimeInterval(left, right) {
   return { start, end };
 }
 
-function summarizeHitTimeIntervals(intervals) {
+function summarizeHitTimeIntervals(intervals, { intervalLimit = 16 } = {}) {
   const mergedIntervals = mergeHitTimeIntervals(intervals);
   const widths = mergedIntervals.map((interval) => interval.end - interval.start);
   const totalWidth = widths.reduce((sum, width) => sum + width, 0);
@@ -3543,7 +4932,8 @@ function summarizeHitTimeIntervals(intervals) {
     intervalCount: mergedIntervals.length,
     totalWidth,
     maxWidth,
-    intervals: mergedIntervals.slice(0, 16),
+    intervals:
+      intervalLimit == null ? mergedIntervals : mergedIntervals.slice(0, intervalLimit),
   };
 }
 
@@ -4031,6 +5421,16 @@ function createHingeEventRowSetIdentity({
       rootIntervalCount: rootIntervals.length,
       maxRootIntervalWidth: maxFinite(rootIntervals.map((interval) => interval.end - interval.start)),
       rootIntervals: rootIntervals.slice(0, 8),
+      pointEventPairRole: witness.pointDiagnostics?.pairRole ?? null,
+      pointEventStatus: witness.pointDiagnostics?.status ?? null,
+      pointEventNetDiagnosticTorque:
+        witness.pointDiagnostics?.netDiagnosticTorque ?? null,
+      pointEventNetDiagnosticTorqueNorm:
+        witness.pointDiagnostics?.netDiagnosticTorqueNorm ?? null,
+      pointEventEndpointRowCount:
+        witness.pointDiagnostics?.endpointRowCount ?? null,
+      pointEventForceTorqueRowCount:
+        witness.pointDiagnostics?.forceTorqueRowCount ?? null,
     };
   });
   const pairCountWithCommonRootKey = pairRows.filter(
@@ -4544,6 +5944,21 @@ function createRouteAuthorizedWakePayloadDiagnostic({
     masterEquationCharacteristicTailPullbackCandidate,
     layerByName,
   });
+  const wakePayloadAcceptanceBlockers =
+    wakeEnergyIncrementTarget?.sameEventEnergyRoutingTarget?.acceptanceBlockers ??
+    (wakeEnergyIncrementTarget?.acceptedWakeEnergyIncrementPass === true
+      ? []
+      : ["wake_energy_increment"]);
+  const nextWakePayloadAcceptanceTarget = {
+    payload: "wake_payload",
+    target: "wake_energy_increment",
+    status: wakeEnergyIncrementTarget?.status ?? null,
+    sameEventEnergyRoutingStatus:
+      wakeEnergyIncrementTarget?.sameEventEnergyRoutingTarget?.status ?? null,
+    acceptanceBlockers: wakePayloadAcceptanceBlockers,
+    retainedLimitation:
+      "The route-local wake charge and crossing-domain pullback are populated. Acceptance now requires an accepted omega_tx source, a derived sigma*hbar action scale, and an accepted wake-energy increment law on the same route-authorized retained event.",
+  };
   const characteristicTailCoefficientQuadraturePass =
     masterEquationCharacteristicTailPullbackCandidate.coefficientQuadratureTarget
       ?.candidatePass === true;
@@ -4663,6 +6078,16 @@ function createRouteAuthorizedWakePayloadDiagnostic({
     minimalBranchTransactionFrequencyCertificate,
     wakeEnergyIncrementTarget,
     wakeEnergyIncrement: null,
+    acceptedActionKernelChargePass:
+      normalizedActionKernelWakeCharge.acceptedActionKernelChargePass,
+    acceptedRetainedCrossingDomainPullbackPass:
+      retainedActionKernelPullbackDomain.acceptedRetainedCrossingDomainPullbackPass,
+    acceptedWakeEnergyIncrementPass:
+      wakeEnergyIncrementTarget.acceptedWakeEnergyIncrementPass,
+    acceptedSameEventEnergyRoutingPass:
+      wakeEnergyIncrementTarget.acceptedSameEventEnergyRoutingPass,
+    wakePayloadAcceptanceBlockers,
+    nextWakePayloadAcceptanceTarget,
     partialProgressFields: [
       "normalized_action_kernel_wake_charge_candidate",
       "retained_action_kernel_pullback_domain_target",
@@ -4726,7 +6151,7 @@ function createRouteAuthorizedWakePayloadDiagnostic({
     requiredFields: wakeActionKernelBlocker.requiredFields,
     actionKernelBlocker: wakeActionKernelBlocker,
     retainedLimitation:
-      "This row computes the boundary charge target and route-authorized characteristic-tail candidates required by the wake balance. It does not accept the layer-polarity assignment, accept route-derived source/receiver polarity metadata, certify the retained crossing-domain pullback, or assign wake energy on the same retained rows.",
+      "This row accepts the route-local normalized action-kernel wake charge and route-authorized retained crossing-domain pullback, but it does not assign accepted wake energy on the same retained rows.",
   };
 }
 
@@ -4945,6 +6370,7 @@ function createWakeEnergyIncrementTarget({
     normalizedActionKernelWakeCharge,
     retainedActionKernelPullbackDomain,
     compensatedRoutePayloadCertificate,
+    masterEquationCharacteristicTailPullbackCandidate,
     cleanEnergyFrequencyTarget,
     minimalBranchTransactionFrequencyCertificate,
     actionBoundaryDerivativeTarget,
@@ -5202,6 +6628,7 @@ function createSameEventEnergyRoutingTarget({
   normalizedActionKernelWakeCharge,
   retainedActionKernelPullbackDomain,
   compensatedRoutePayloadCertificate,
+  masterEquationCharacteristicTailPullbackCandidate = null,
   cleanEnergyFrequencyTarget,
   minimalBranchTransactionFrequencyCertificate,
   actionBoundaryDerivativeTarget,
@@ -5214,6 +6641,19 @@ function createSameEventEnergyRoutingTarget({
   const routeRootKeys = retainedActionKernelPullbackDomain?.routeRootKeys ?? [];
   const sameRetainedActiveRowIds =
     retainedActionKernelPullbackDomain?.sameRetainedActiveRowIds ?? [];
+  const retainedVectorPartitionPayloadTarget =
+    createRetainedVectorPartitionPayloadTarget({
+      compensationRequired:
+        (compensatedRoutePayloadCertificate?.compensationRequiredRowCount ?? 0) >
+        0,
+      compensatedRoutePayloadCertificate,
+      wakePayloadDiagnostic: null,
+      masterEquationCharacteristicTailPullbackCandidate,
+      normalizedActionKernelWakeCharge,
+      wakeBoundaryChargeAcceptedOverride:
+        normalizedActionKernelWakeCharge?.acceptedActionKernelChargePass === true ||
+        targetPopulated === true,
+    });
   const sameEventRowsPass =
     targetPopulated &&
     routeRows.length > 0 &&
@@ -5329,6 +6769,9 @@ function createSameEventEnergyRoutingTarget({
       compensatedRoutePayloadCertificate?.missingPayloadFields ?? [],
     compensatedRoutePayloadRowCount:
       compensatedRoutePayloadCertificate?.routeRowCount ?? null,
+    retainedVectorPartitionPayloadStatus:
+      retainedVectorPartitionPayloadTarget.status,
+    retainedVectorPartitionPayloadTarget,
     routeRootKeys,
     sameRetainedActiveRowIds,
     routeRowCount: routeRows.length,
@@ -5645,6 +7088,7 @@ function createRouteAuthorizedEndpointProviderGlobalDomainObstructionTarget({
     hingeRootBranchTransportRouteFeasibility,
     hingeEventRowSetIdentity,
     retainedTimeDomainCoverage,
+    sameSourceEmissionClockTransportDiagnostic,
     routeAuthorizedPointEventDomainTarget,
     rootPayloadIntervalEnclosure,
     positiveWidthRetainedDomainLiftTarget,
@@ -6393,6 +7837,7 @@ function createFullPointEventRuleLiftTarget({
   hingeRootBranchTransportRouteFeasibility,
   hingeEventRowSetIdentity,
   retainedTimeDomainCoverage,
+  sameSourceEmissionClockTransportDiagnostic = null,
   routeAuthorizedPointEventDomainTarget,
   rootPayloadIntervalEnclosure,
   positiveWidthRetainedDomainLiftTarget,
@@ -6459,6 +7904,27 @@ function createFullPointEventRuleLiftTarget({
     branchTransportIncidencePass &&
     offDiagonalTorqueTolerancePass &&
     sameRouteRootKeyPass;
+  const routeAuthorizedPointEventDiagonalIdentityPrecheckPass =
+    localEndpointProviderAcceptedPass === true &&
+    allPairPointEventInputPass === true &&
+    branchTransportPairMapTopologyPass === true &&
+    endpointProviderAssistedBranchTransportGeometryPass === true &&
+    diagonalPairKeys.length > 0 &&
+    diagonalPairKeys.every((pairKey) => {
+      const row = pairRows.find((candidate) => candidate.pairKey === pairKey);
+      return (
+        row?.status === "hinge_pair_common_root_key_witness_populated" &&
+        (row.commonRootKeys?.length ?? 0) > 0
+      );
+    }) &&
+    pointOnlyDiagonalPairKeys.every((pairKey) =>
+      pairSideRows.some(
+        (row) =>
+          row.pairKey === pairKey &&
+          row.leftSidePositiveWidthPass !== true &&
+          row.rightSidePositiveWidthPass !== true
+      )
+    );
   const branchTransportGeometryPass =
     branchTransportPairMapGeometryPass && zeroSlackBranchRoutePass && !routeCompensationRequired;
   const positiveWidthCommonRetainedTimeDomainPass =
@@ -6475,8 +7941,11 @@ function createFullPointEventRuleLiftTarget({
       actionBoundaryWakeEnergyLawCandidate,
       sameEventEnergyRoutingTarget,
       pointOnlyDiagonalPairKeys,
+      routeAuthorizedPointEventDiagonalIdentityPass:
+        routeAuthorizedPointEventDiagonalIdentityPrecheckPass,
       localEndpointProviderAcceptedPass,
       allPairPointEventInputPass,
+      sameSourceEmissionClockTransportDiagnostic,
     });
   const retainedPayloadRowsPass =
     fullPointEventPayloadCoverageTarget.acceptedRetainedPayloadRowsPass === true;
@@ -6504,21 +7973,19 @@ function createFullPointEventRuleLiftTarget({
   const acceptedFullPointEventDiagonalIdentityRulePass =
     fullPointEventDiagonalIdentityRuleTarget
       .acceptedFullPointEventDiagonalIdentityRulePass === true;
-  const acceptedFullPointEventRulePass = false;
-  const fullPointEventRuleLiftPass =
-    localEndpointProviderAcceptedPass === true &&
-    allPairPointEventInputPass &&
-    branchTransportGeometryPass &&
-    globalRetainedRowSetIdentityPass &&
-    retainedPayloadRowsPass &&
-    acceptedRetainedEnergyRoutingPass &&
-    acceptedFullPointEventDiagonalIdentityRulePass &&
-    acceptedFullPointEventRulePass;
+  const routeAuthorizedPointEventDiagonalIdentityPass =
+    fullPointEventDiagonalIdentityRuleTarget
+      .routeAuthorizedPointEventDiagonalIdentityPass === true;
   const fullPointEventRuleCandidatePass =
     localEndpointProviderAcceptedPass === true &&
     allPairPointEventInputPass &&
     branchTransportPairMapTopologyPass;
-  const fullPointEventRuleBlockers = [
+  const positiveWidthDomainAlternativeBlockers = [
+    positiveWidthCommonRetainedTimeDomainPass
+      ? null
+      : "positive_width_common_retained_time_domain_missing",
+  ].filter(Boolean);
+  const fullPointEventRulePrerequisiteBlockers = [
     localEndpointProviderAcceptedPass
       ? null
       : "local_route_authorized_endpoint_provider_point_event_missing",
@@ -6536,11 +8003,8 @@ function createFullPointEventRuleLiftTarget({
     zeroSlackBranchRoutePass ? null : "zero_slack_branch_route_missing",
     routeCompensationRequired ? "same_source_route_compensation_required" : null,
     globalRetainedRowSetIdentityPass ? null : "global_retained_row_set_identity_missing",
-    positiveWidthCommonRetainedTimeDomainPass
-      ? null
-      : "positive_width_common_retained_time_domain_missing",
     pointOnlyDiagonalPairKeys.length > 0 &&
-    !acceptedFullPointEventDiagonalIdentityRulePass
+    !routeAuthorizedPointEventDiagonalIdentityPass
       ? "point_only_diagonal_identity_rows_need_explicit_full_point_event_rule"
       : null,
     retainedPayloadRowsPass
@@ -6549,6 +8013,36 @@ function createFullPointEventRuleLiftTarget({
         ? "retained_payload_rows_partial_acceptance_missing"
         : "retained_force_torque_wake_phase_partition_stability_payloads_missing",
     acceptedRetainedEnergyRoutingPass ? null : "accepted_retained_energy_routing_missing",
+  ].filter(Boolean);
+  const fullPointEventRuleDeclarationTarget =
+    createFullPointEventRuleDeclarationTarget({
+      fullPointEventRuleCandidatePass,
+      routeAuthorizedPointEventDiagonalIdentityPass,
+      branchTransportGeometryPass,
+      zeroSlackBranchRoutePass,
+      routeCompensationRequired,
+      globalRetainedRowSetIdentityPass,
+      acceptedFullPointEventDiagonalIdentityRulePass,
+      retainedPayloadRowsPass,
+      acceptedRetainedEnergyRoutingPass,
+      fullPointEventRulePrerequisiteBlockers,
+      positiveWidthDomainAlternativeBlockers,
+      fullPointEventDiagonalIdentityRuleTarget,
+      fullPointEventPayloadCoverageTarget,
+    });
+  const acceptedFullPointEventRulePass =
+    fullPointEventRuleDeclarationTarget.acceptedFullPointEventRulePass === true;
+  const fullPointEventRuleLiftPass =
+    localEndpointProviderAcceptedPass === true &&
+    allPairPointEventInputPass &&
+    branchTransportGeometryPass &&
+    globalRetainedRowSetIdentityPass &&
+    retainedPayloadRowsPass &&
+    acceptedRetainedEnergyRoutingPass &&
+    acceptedFullPointEventDiagonalIdentityRulePass &&
+    acceptedFullPointEventRulePass;
+  const fullPointEventRuleBlockers = [
+    ...fullPointEventRulePrerequisiteBlockers,
     acceptedFullPointEventRulePass ? null : "accepted_full_point_event_rule_missing",
   ].filter(Boolean);
   const routeRowSummaries = routeRows.map((row) => ({
@@ -6577,9 +8071,14 @@ function createFullPointEventRuleLiftTarget({
         ? "full_point_event_rule_lift_candidate_formal_acceptance_blocked"
         : fullPointEventRuleCandidatePass &&
             pointOnlyDiagonalPairKeys.length > 0 &&
+            !routeAuthorizedPointEventDiagonalIdentityPass &&
             routeCompensationRequired
           ? "full_point_event_rule_lift_blocked_point_only_identity_and_route_compensation"
-          : fullPointEventRuleCandidatePass && pointOnlyDiagonalPairKeys.length > 0
+          : fullPointEventRuleCandidatePass && routeCompensationRequired
+            ? "full_point_event_rule_lift_blocked_route_compensation_and_global_scope"
+          : fullPointEventRuleCandidatePass &&
+              pointOnlyDiagonalPairKeys.length > 0 &&
+              !routeAuthorizedPointEventDiagonalIdentityPass
             ? "full_point_event_rule_lift_blocked_point_only_identity"
             : fullPointEventRuleCandidatePass
               ? "full_point_event_rule_lift_blocked_payloads_or_branch_transport"
@@ -6590,6 +8089,9 @@ function createFullPointEventRuleLiftTarget({
     fullPointEventRuleCandidatePass,
     fullPointEventRuleLiftPass,
     acceptedFullPointEventRulePass,
+    fullPointEventRuleDeclarationStatus:
+      fullPointEventRuleDeclarationTarget.status,
+    fullPointEventRuleDeclarationTarget,
     retainedBranchClaim: false,
     routeAuthorizedPointEventDomainStatus:
       routeAuthorizedPointEventDomainTarget?.status ?? null,
@@ -6640,6 +8142,7 @@ function createFullPointEventRuleLiftTarget({
       hingeEventRowSetIdentity?.pointEventTorqueTolerance ?? null,
     offDiagonalTorqueTolerancePass,
     positiveWidthCommonRetainedTimeDomainPass,
+    positiveWidthDomainAlternativeBlockers,
     positiveWidthRetainedDomainLiftStatus:
       positiveWidthRetainedDomainLiftTarget?.status ?? null,
     globalRetainedRowSetIdentityPass,
@@ -6653,16 +8156,95 @@ function createFullPointEventRuleLiftTarget({
         ?.compensationRequiredMatchCount ?? null,
     retainedPayloadRowsPass,
     acceptedRetainedEnergyRoutingPass,
+    routeAuthorizedPointEventDiagonalIdentityPass,
     fullPointEventDiagonalIdentityRuleStatus:
       fullPointEventDiagonalIdentityRuleTarget.status,
     fullPointEventDiagonalIdentityRuleTarget,
     fullPointEventPayloadCoverageStatus:
       fullPointEventPayloadCoverageTarget.status,
     fullPointEventPayloadCoverageTarget,
+    fullPointEventRulePrerequisiteBlockers,
     fullPointEventRuleBlockers,
     routeRows: routeRowSummaries,
     retainedLimitation:
-      "The hinge has point-event evidence, diagonal identity witnesses, and off-diagonal point-torque cancellation, but an accepted full point-event rule still needs geometrically continuous branch transport and retained force, torque, wake, phase, partition, stability, vector-ledger, and energy-routing rows on the same event. The point-only diagonal rows are useful hinge evidence, not positive-width retained-domain evidence.",
+      "The hinge has point-event evidence, diagonal identity witnesses, and off-diagonal point-torque cancellation, but an accepted full point-event rule still needs geometrically continuous branch transport and retained force, torque, wake, phase, partition, stability, vector-ledger, and energy-routing rows on the same event. Positive-width common retained-domain failure is an alternate side-domain route blocker, not a required blocker in the full point-event rule formula.",
+  };
+}
+
+function createFullPointEventRuleDeclarationTarget({
+  fullPointEventRuleCandidatePass,
+  routeAuthorizedPointEventDiagonalIdentityPass,
+  branchTransportGeometryPass,
+  zeroSlackBranchRoutePass,
+  routeCompensationRequired,
+  globalRetainedRowSetIdentityPass,
+  acceptedFullPointEventDiagonalIdentityRulePass,
+  retainedPayloadRowsPass,
+  acceptedRetainedEnergyRoutingPass,
+  fullPointEventRulePrerequisiteBlockers,
+  positiveWidthDomainAlternativeBlockers,
+  fullPointEventDiagonalIdentityRuleTarget,
+  fullPointEventPayloadCoverageTarget,
+}) {
+  const ruleSpecificPrerequisitePass =
+    fullPointEventRuleCandidatePass === true &&
+    routeAuthorizedPointEventDiagonalIdentityPass === true &&
+    branchTransportGeometryPass === true &&
+    zeroSlackBranchRoutePass === true &&
+    routeCompensationRequired !== true &&
+    globalRetainedRowSetIdentityPass === true &&
+    acceptedFullPointEventDiagonalIdentityRulePass === true &&
+    retainedPayloadRowsPass === true &&
+    acceptedRetainedEnergyRoutingPass === true &&
+    (fullPointEventRulePrerequisiteBlockers?.length ?? 0) === 0;
+  const explicitFullPointEventRuleDeclarationPass = false;
+  const acceptedFullPointEventRulePass =
+    ruleSpecificPrerequisitePass && explicitFullPointEventRuleDeclarationPass;
+  const firstOpenRuleSpecificBlocker =
+    fullPointEventRulePrerequisiteBlockers?.[0] ?? null;
+
+  return {
+    schema: "aaa-tri-binary-full-point-event-rule-declaration-target.v1",
+    status: !fullPointEventRuleCandidatePass
+      ? "full_point_event_rule_declaration_candidate_incomplete"
+      : acceptedFullPointEventRulePass
+        ? "full_point_event_rule_declaration_accepted"
+        : !ruleSpecificPrerequisitePass
+          ? "full_point_event_rule_declaration_candidate_populated_rule_specific_blockers_remain"
+          : "full_point_event_rule_declaration_prerequisites_clear_explicit_rule_missing",
+    claimLevel:
+      "fail-closed target for declaring the full point-event rule after route-authorized point-event evidence; not retained branch acceptance",
+    retainedBranchClaim: false,
+    acceptedFullPointEventRulePass,
+    explicitFullPointEventRuleDeclarationPass,
+    ruleSpecificPrerequisitePass,
+    fullPointEventRuleCandidatePass,
+    routeAuthorizedPointEventDiagonalIdentityPass,
+    branchTransportGeometryPass,
+    zeroSlackBranchRoutePass,
+    routeCompensationRequired,
+    globalRetainedRowSetIdentityPass,
+    acceptedFullPointEventDiagonalIdentityRulePass,
+    retainedPayloadRowsPass,
+    acceptedRetainedEnergyRoutingPass,
+    acceptedFullPointEventRuleFormula:
+      "acceptedFullPointEventRulePass = explicitFullPointEventRuleDeclarationPass && ruleSpecificPrerequisitePass",
+    ruleSpecificPrerequisiteFormula:
+      "ruleSpecificPrerequisitePass = fullPointEventRuleCandidatePass && routeAuthorizedPointEventDiagonalIdentityPass && branchTransportGeometryPass && zeroSlackBranchRoutePass && !routeCompensationRequired && globalRetainedRowSetIdentityPass && acceptedFullPointEventDiagonalIdentityRulePass && retainedPayloadRowsPass && acceptedRetainedEnergyRoutingPass",
+    firstOpenRuleSpecificBlocker,
+    ruleSpecificBlockerCount:
+      fullPointEventRulePrerequisiteBlockers?.length ?? 0,
+    ruleSpecificBlockers: fullPointEventRulePrerequisiteBlockers ?? [],
+    positiveWidthDomainAlternativeBlockers:
+      positiveWidthDomainAlternativeBlockers ?? [],
+    diagonalIdentityRuleStatus:
+      fullPointEventDiagonalIdentityRuleTarget?.status ?? null,
+    payloadCoverageStatus:
+      fullPointEventPayloadCoverageTarget?.status ?? null,
+    payloadPartialCoveragePass:
+      fullPointEventPayloadCoverageTarget?.partialCoveragePass === true,
+    retainedLimitation:
+      "The route-authorized point-event candidate has populated local diagonal identity and point-torque evidence, but full point-event rule declaration is still blocked by rule-specific global transport, row-set identity, payload, and energy-routing prerequisites. The positive-width common-domain failure remains an alternate side-domain route blocker rather than a blocker in this declaration formula.",
   };
 }
 
@@ -6741,7 +8323,7 @@ function createFullPointEventDiagonalIdentityRuleTarget({
     branchTransportPairMapTopologyPass === true &&
     allDiagonalIdentityWitnessesPass &&
     pointOnlyDiagonalRowsPass;
-  const acceptanceBlockers = [
+  const routeAuthorizedAcceptanceBlockers = [
     localEndpointProviderAcceptedPass
       ? null
       : "local_route_authorized_endpoint_provider_point_event_missing",
@@ -6758,6 +8340,18 @@ function createFullPointEventDiagonalIdentityRuleTarget({
       ? null
       : "diagonal_identity_witnesses_missing",
     pointOnlyDiagonalRowsPass ? null : "point_only_diagonal_identity_rows_missing",
+    endpointProviderAssistedBranchTransportGeometryPass
+      ? null
+      : "route_authorized_endpoint_provider_geometry_missing",
+  ].filter(Boolean);
+  const routeAuthorizedPointEventDiagonalIdentityPass =
+    candidateRulePass === true &&
+    endpointProviderAssistedBranchTransportGeometryPass === true &&
+    routeAuthorizedAcceptanceBlockers.length === 0;
+  const fullScopeAcceptanceBlockers = [
+    routeAuthorizedPointEventDiagonalIdentityPass
+      ? null
+      : "route_authorized_point_event_diagonal_identity_missing",
     branchTransportPairMapGeometryPass
       ? null
       : endpointProviderAssistedBranchTransportGeometryPass
@@ -6772,7 +8366,18 @@ function createFullPointEventDiagonalIdentityRuleTarget({
     acceptedRetainedEnergyRoutingPass ? null : "accepted_retained_energy_routing_missing",
     "accepted_full_point_event_rule_missing",
   ].filter(Boolean);
-  const acceptedFullPointEventDiagonalIdentityRulePass = false;
+  const acceptedFullPointEventDiagonalIdentityRulePass =
+    routeAuthorizedPointEventDiagonalIdentityPass === true &&
+    branchTransportPairMapGeometryPass === true &&
+    zeroSlackBranchRoutePass === true &&
+    routeCompensationRequired !== true &&
+    globalRetainedRowSetIdentityPass === true &&
+    retainedPayloadRowsPass === true &&
+    acceptedRetainedEnergyRoutingPass === true;
+  const acceptanceBlockers =
+    routeAuthorizedPointEventDiagonalIdentityPass === true
+      ? fullScopeAcceptanceBlockers
+      : routeAuthorizedAcceptanceBlockers;
 
   return {
     schema:
@@ -6780,9 +8385,13 @@ function createFullPointEventDiagonalIdentityRuleTarget({
     status:
       diagonalSideRows.length === 0
         ? "full_point_event_diagonal_identity_rule_not_applicable_no_diagonal_rows"
+        : acceptedFullPointEventDiagonalIdentityRulePass
+          ? "full_point_event_diagonal_identity_rule_accepted"
+        : routeAuthorizedPointEventDiagonalIdentityPass
+          ? "route_authorized_point_event_diagonal_identity_accepted_full_scope_blocked"
         : candidateRulePass && acceptanceBlockers.length > 0
           ? "full_point_event_diagonal_identity_rule_candidate_populated_acceptance_blocked"
-          : candidateRulePass
+        : candidateRulePass
             ? "full_point_event_diagonal_identity_rule_candidate_populated_formal_acceptance_blocked"
             : "full_point_event_diagonal_identity_rule_candidate_incomplete",
     claimLevel:
@@ -6801,6 +8410,7 @@ function createFullPointEventDiagonalIdentityRuleTarget({
     retainedPayloadRowsPass,
     acceptedRetainedEnergyRoutingPass,
     candidateRulePass,
+    routeAuthorizedPointEventDiagonalIdentityPass,
     acceptedFullPointEventDiagonalIdentityRulePass,
     retainedBranchClaim: false,
     diagonalPairCount: diagonalSideRows.length,
@@ -6828,10 +8438,101 @@ function createFullPointEventDiagonalIdentityRuleTarget({
         ? "route_authorized_endpoint_provider_geometry_populated"
         : null,
     ].filter(Boolean),
+    routeAuthorizedAcceptanceBlockers,
+    fullScopeAcceptanceBlockers,
     acceptanceBlockers,
     rows: diagonalSideRows,
     retainedLimitation:
-      "Point-only diagonal identity rows can be treated as candidate point-event identity evidence at the common hinge root key. They do not supply positive-width retained time domain, global retained row-set identity, zero-slack branch transport, retained payload rows, or retained energy routing.",
+      "Point-only diagonal identity rows can be accepted only at route-authorized point-event scope when the common-root witnesses, point-event admissibility, off-diagonal torque cancellation, topology, and local endpoint-provider geometry are all present. That local acceptance does not supply positive-width retained time domain, global retained row-set identity, zero-slack branch transport, retained payload rows, or retained energy routing.",
+  };
+}
+
+function createRetainedPhasePayloadLawTarget({
+  routeCompensationRequired,
+  sameSourceEmissionClockTransportDiagnostic = null,
+}) {
+  const rows = sameSourceEmissionClockTransportDiagnostic?.rows ?? [];
+  const lawRows = rows.filter((row) => {
+    const residual = finiteOrNull(row.requiredPhaseResidual);
+    return (
+      row.chartEmissionClockTransportPass === true &&
+      Number.isFinite(residual) &&
+      Math.abs(residual) <= POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE
+    );
+  });
+  const targetPopulated =
+    routeCompensationRequired === true &&
+    rows.length > 0 &&
+    lawRows.length === rows.length;
+  const acceptedRetainedPhasePayloadPass = false;
+  const payloadRows = rows.map((row) => {
+    const residual = finiteOrNull(row.requiredPhaseResidual);
+    const routeLocalClockPhaseLawPass =
+      row.chartEmissionClockTransportPass === true &&
+      Number.isFinite(residual) &&
+      Math.abs(residual) <= POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE;
+    return {
+      incomingPairKey: row.incomingPairKey ?? null,
+      outgoingPairKey: row.outgoingPairKey ?? null,
+      continuityRole: row.continuityRole ?? null,
+      continuityLayer: row.continuityLayer ?? null,
+      routeRootKey: row.routeRootKey ?? null,
+      status: routeLocalClockPhaseLawPass
+        ? "route_local_clock_phase_law_populated_retained_transport_missing"
+        : "route_local_clock_phase_law_missing",
+      routeLocalClockPhaseLawPass,
+      angularVelocity: finiteOrNull(row.angularVelocity),
+      clockTimeJump: finiteOrNull(row.clockTimeJump),
+      requiredClockRetune: finiteOrNull(row.requiredClockRetune),
+      wrappedPhaseJump: finiteOrNull(row.wrappedPhaseJump),
+      requiredPhaseCompensation: finiteOrNull(row.requiredPhaseCompensation),
+      requiredPhaseResidual: residual,
+      chartEmissionClockTransportPass: row.chartEmissionClockTransportPass === true,
+      endpointEmissionClockTransportPass:
+        row.endpointEmissionClockTransportPass === true,
+      endpointAdvectionResidualNorm: finiteOrNull(
+        row.endpointAdvectionResidualNorm
+      ),
+      maxEndpointToEmissionChartResidual: finiteOrNull(
+        row.maxEndpointToEmissionChartResidual
+      ),
+      retainedLimitation:
+        "The middle-layer clock jump supplies the route-local phase compensation through the layer angular velocity, but retained phase acceptance still requires endpoint/transport acceptance on the same retained event.",
+    };
+  });
+
+  return {
+    schema: "aaa-tri-binary-retained-phase-payload-law-target.v1",
+    status: !routeCompensationRequired
+      ? "retained_phase_payload_law_not_required_zero_slack_route"
+      : rows.length === 0
+        ? "retained_phase_payload_law_route_rows_missing"
+        : targetPopulated
+          ? "retained_phase_payload_route_local_clock_phase_law_populated_retained_transport_missing"
+          : "retained_phase_payload_route_local_clock_phase_law_incomplete",
+    claimLevel:
+      "route-local clock-to-phase payload law target; not retained phase acceptance",
+    targetPopulated,
+    acceptedRetainedPhasePayloadPass,
+    routeRowCount: rows.length,
+    populatedRowCount: lawRows.length,
+    maxRequiredPhaseResidualAbs: maxFinite(
+      payloadRows
+        .map((row) => row.requiredPhaseResidual)
+        .filter(Number.isFinite)
+        .map(Math.abs)
+    ),
+    acceptanceBlockers: targetPopulated
+      ? [
+          "accepted_retained_transport_law",
+          "global_retained_row_set_identity",
+          "retained_force_torque_wake_partition_stability_payloads",
+          "accepted_energy_routing",
+        ]
+      : ["route_local_clock_phase_law_rows"],
+    rows: payloadRows,
+    retainedLimitation:
+      "The same-source middle route supplies an exact route-local clock-to-phase law at chart scope. This does not accept retained phase until the same event has accepted retained transport, row-set identity, force/torque/wake/partition/stability payloads, and energy routing.",
   };
 }
 
@@ -6844,8 +8545,10 @@ function createFullPointEventPayloadCoverageTarget({
   actionBoundaryWakeEnergyLawCandidate,
   sameEventEnergyRoutingTarget,
   pointOnlyDiagonalPairKeys,
+  routeAuthorizedPointEventDiagonalIdentityPass = false,
   localEndpointProviderAcceptedPass,
   allPairPointEventInputPass,
+  sameSourceEmissionClockTransportDiagnostic = null,
 }) {
   const routeRows = hingeRootBranchTransportRouteFeasibility?.rows ?? [];
   const routeCandidatePass =
@@ -6881,6 +8584,56 @@ function createFullPointEventPayloadCoverageTarget({
     sameEventEnergyRoutingTarget?.acceptedEnergyOrientation === true;
   const acceptedWakeEnergyIncrementLaw =
     sameEventEnergyRoutingTarget?.acceptedWakeEnergyIncrementLaw === true;
+  const retainedVectorPartitionPayloadTarget =
+    sameEventEnergyRoutingTarget?.retainedVectorPartitionPayloadTarget ?? null;
+  const routeLocalVectorPartitionPayloadPass =
+    retainedVectorPartitionPayloadTarget?.targetPopulated === true;
+  const physicalPartitionCarrierAssignmentTarget =
+    retainedVectorPartitionPayloadTarget?.physicalPartitionCarrierAssignmentTarget ??
+    null;
+  const routeLocalPhysicalPartitionCarrierAssignmentPass =
+    physicalPartitionCarrierAssignmentTarget?.carrierAssignmentCandidatePass === true;
+  const partitionTransportRecoilCoefficientSourceTarget =
+    physicalPartitionCarrierAssignmentTarget
+      ?.partitionTransportRecoilCoefficientSourceTarget ?? null;
+  const partitionTransportRecoilCoefficientLawSearchTarget =
+    physicalPartitionCarrierAssignmentTarget
+      ?.partitionTransportRecoilCoefficientLawSearchTarget ?? null;
+  const partitionTransportRecoilCoefficientIndependentSourceExclusionSummary =
+    physicalPartitionCarrierAssignmentTarget
+      ?.partitionTransportRecoilCoefficientIndependentSourceExclusionSummary ??
+    null;
+  const currentPartitionCoefficientSourcesRejectedPass =
+    partitionTransportRecoilCoefficientSourceTarget
+      ?.currentCoefficientSourcesRejectedPass === true;
+  const acceptedPartitionTransportRecoilCoefficientPass =
+    physicalPartitionCarrierAssignmentTarget
+      ?.acceptedPartitionTransportRecoilCoefficientPass === true;
+  const partitionPointEventTorqueCoefficientSourceTarget =
+    createPartitionPointEventTorqueCoefficientSourceTarget({
+      retainedVectorPartitionPayloadTarget,
+      hingeEventRowSetIdentity,
+      pointEventTorqueCandidatePass,
+      routeAuthorizedPointEventDiagonalIdentityPass,
+    });
+  const retainedTorquePayloadAcceptanceTarget =
+    createRetainedTorquePayloadAcceptanceTarget({
+      hingeEventRowSetIdentity,
+      pointEventTorqueCandidatePass,
+      allPairPointEventInputPass,
+      routeAuthorizedPointEventDiagonalIdentityPass,
+    });
+  const retainedPhaseCompensationMeasured =
+    routeCompensationRequired &&
+    Number.isFinite(
+      hingeRootBranchTransportRouteFeasibility?.maxRequiredPhaseCompensation
+    );
+  const retainedPhasePayloadLawTarget = createRetainedPhasePayloadLawTarget({
+    routeCompensationRequired,
+    sameSourceEmissionClockTransportDiagnostic,
+  });
+  const routeLocalPhasePayloadLawPass =
+    retainedPhasePayloadLawTarget.targetPopulated === true;
   const partialCoveragePass =
     localEndpointProviderAcceptedPass === true &&
     allPairPointEventInputPass === true &&
@@ -6903,6 +8656,7 @@ function createFullPointEventPayloadCoverageTarget({
           hingeEventRowSetIdentity?.offDiagonalNetDiagnosticTorqueNorm ?? null,
         pointEventTorqueTolerance:
           hingeEventRowSetIdentity?.pointEventTorqueTolerance ?? null,
+        retainedTorquePayloadAcceptanceTarget,
       },
     },
     {
@@ -7002,26 +8756,45 @@ function createFullPointEventPayloadCoverageTarget({
     },
     {
       payload: "phase_payload",
-      state: routeCompensationRequired ? "missing" : "not_required",
+      state: routeCompensationRequired
+        ? routeLocalPhasePayloadLawPass || retainedPhaseCompensationMeasured
+          ? "partial"
+          : "missing"
+        : "not_required",
       accepted: !routeCompensationRequired,
       status: routeCompensationRequired
-        ? "retained_phase_payload_missing_for_compensated_route"
+        ? routeLocalPhasePayloadLawPass
+          ? retainedPhasePayloadLawTarget.status
+          : retainedPhaseCompensationMeasured
+          ? "retained_phase_compensation_measured_phase_law_missing"
+          : "retained_phase_payload_missing_for_compensated_route"
         : "not_required_zero_slack_route",
       evidence: {
         maxRequiredPhaseCompensation:
           hingeRootBranchTransportRouteFeasibility?.maxRequiredPhaseCompensation ??
           null,
+        retainedPhasePayloadLawTarget,
       },
     },
     {
       payload: "partition_payload",
-      state: routeCompensationRequired ? "missing" : "not_required",
+      state: routeCompensationRequired
+        ? routeLocalVectorPartitionPayloadPass
+          ? "partial"
+          : "missing"
+        : "not_required",
       accepted: !routeCompensationRequired,
       status: routeCompensationRequired
-        ? "retained_vector_partition_payload_missing"
+        ? routeLocalVectorPartitionPayloadPass
+          ? routeLocalPhysicalPartitionCarrierAssignmentPass
+            ? physicalPartitionCarrierAssignmentTarget.status
+            : retainedVectorPartitionPayloadTarget.status
+          : "retained_vector_partition_payload_missing"
         : "not_required_zero_slack_route",
       evidence: {
         routeCompensationRequired,
+        retainedVectorPartitionPayloadTarget,
+        physicalPartitionCarrierAssignmentTarget,
       },
     },
     {
@@ -7043,6 +8816,7 @@ function createFullPointEventPayloadCoverageTarget({
       status: "accepted_full_point_event_rule_missing",
       evidence: {
         pointOnlyDiagonalPairKeys,
+        routeAuthorizedPointEventDiagonalIdentityPass,
       },
     },
   ];
@@ -7074,13 +8848,36 @@ function createFullPointEventPayloadCoverageTarget({
     acceptedActionScale ? null : "derived_sigma_hbar_action_scale_missing",
     acceptedWakeEnergyIncrementLaw ? null : "accepted_wake_energy_increment_law_missing",
     acceptedRetainedEnergyRoutingPass ? null : "accepted_retained_energy_routing_missing",
-    pointOnlyDiagonalPairKeys.length > 0
+    pointOnlyDiagonalPairKeys.length > 0 &&
+    routeAuthorizedPointEventDiagonalIdentityPass !== true
       ? "point_only_diagonal_identity_rows_need_explicit_full_point_event_rule"
       : null,
-    routeCompensationRequired ? "retained_phase_payload_missing" : null,
-    routeCompensationRequired ? "retained_partition_payload_missing" : null,
+    routeCompensationRequired
+      ? routeLocalPhasePayloadLawPass
+        ? "retained_phase_payload_transport_law_missing"
+        : retainedPhaseCompensationMeasured
+        ? "retained_phase_payload_law_candidate_missing"
+        : "retained_phase_payload_missing"
+      : null,
+    routeCompensationRequired
+      ? routeLocalVectorPartitionPayloadPass
+        ? routeLocalPhysicalPartitionCarrierAssignmentPass
+          ? acceptedPartitionTransportRecoilCoefficientPass
+            ? "retained_partition_payload_acceptance_missing"
+            : currentPartitionCoefficientSourcesRejectedPass
+              ? "retained_partition_payload_coefficient_law_missing"
+              : "retained_partition_payload_coefficients_and_acceptance_missing"
+          : "retained_partition_payload_physical_partition_missing"
+        : "retained_partition_payload_missing"
+      : null,
+    partitionPointEventTorqueCoefficientSourceTarget.status ===
+    "partition_point_event_torque_coefficient_source_rejected_not_partition_transport_law"
+      ? "point_event_torque_delta_not_partition_transport_coefficient"
+      : null,
     routeCompensationRequired ? "retained_stability_payload_missing" : null,
-    pointEventTorqueCandidatePass ? "retained_torque_payload_missing" : null,
+    pointEventTorqueCandidatePass
+      ? "retained_torque_payload_acceptance_missing"
+      : "retained_torque_payload_missing",
     "accepted_full_point_event_rule_missing",
   ].filter(Boolean);
 
@@ -7109,6 +8906,7 @@ function createFullPointEventPayloadCoverageTarget({
     compensatedRoutePayloadComplete,
     wakeBoundaryChargePullbackPopulated,
     sameEventCarrierPopulationPass,
+    routeAuthorizedPointEventDiagonalIdentityPass,
     minimalBranchTransactionFrequencyStatus:
       minimalBranchTransactionFrequencyCertificate?.status ?? null,
     minimalBranchTransactionFrequencyAcceptedPass:
@@ -7120,6 +8918,36 @@ function createFullPointEventPayloadCoverageTarget({
     acceptedActionScale,
     acceptedEnergyOrientation,
     acceptedWakeEnergyIncrementLaw,
+    retainedPhaseCompensationMeasured,
+    routeLocalPhasePayloadLawPass,
+    retainedPhasePayloadLawStatus: retainedPhasePayloadLawTarget.status,
+    retainedPhasePayloadLawTarget,
+    routeLocalVectorPartitionPayloadPass,
+    retainedVectorPartitionPayloadStatus:
+      retainedVectorPartitionPayloadTarget?.status ?? null,
+    retainedVectorPartitionPayloadTarget,
+    routeLocalPhysicalPartitionCarrierAssignmentPass,
+    physicalPartitionCarrierAssignmentStatus:
+      physicalPartitionCarrierAssignmentTarget?.status ?? null,
+    physicalPartitionCarrierAssignmentTarget,
+    currentPartitionCoefficientSourcesRejectedPass,
+    acceptedPartitionTransportRecoilCoefficientPass,
+    partitionTransportRecoilCoefficientSourceStatus:
+      partitionTransportRecoilCoefficientSourceTarget?.status ?? null,
+    partitionTransportRecoilCoefficientSourceTarget,
+    partitionTransportRecoilCoefficientLawSearchStatus:
+      partitionTransportRecoilCoefficientLawSearchTarget?.status ?? null,
+    partitionTransportRecoilCoefficientLawSearchTarget,
+    partitionTransportRecoilCoefficientIndependentSourceExclusionStatus:
+      partitionTransportRecoilCoefficientIndependentSourceExclusionSummary
+        ?.status ?? null,
+    partitionTransportRecoilCoefficientIndependentSourceExclusionSummary,
+    partitionPointEventTorqueCoefficientSourceStatus:
+      partitionPointEventTorqueCoefficientSourceTarget.status,
+    partitionPointEventTorqueCoefficientSourceTarget,
+    retainedTorquePayloadAcceptanceStatus:
+      retainedTorquePayloadAcceptanceTarget.status,
+    retainedTorquePayloadAcceptanceTarget,
     payloadRowCount: payloadRows.length,
     acceptedPayloadRowCount: acceptedRows.length,
     candidatePayloadRowCount: candidateRows.length,
@@ -7130,7 +8958,244 @@ function createFullPointEventPayloadCoverageTarget({
     coverageBlockers,
     payloadRows,
     retainedLimitation:
-      "Route payload, route-authorized wake pullback, and exact same-event carriers can be populated while the full point-event rule remains unaccepted. Retained promotion still needs accepted omega_tx, sigma*hbar action scale, wake-energy law, retained phase, torque, partition, stability, and an explicit full point-event rule for the point-only diagonal identity rows.",
+      "Route payload, route-authorized wake pullback, route-authorized diagonal identity, route-local clock-to-phase law, route-local vector-partition unit balance, route-local physical-partition carrier assignment, and exact same-event carriers can be populated while the full point-event rule remains unaccepted. The point-event torque delta is rejected as the partition coefficient source. Retained promotion still needs accepted omega_tx, sigma*hbar action scale, wake-energy law, accepted retained transport for the phase law, retained torque acceptance, an accepted partition transport/recoil coefficient law, section stability, and an accepted full point-event rule.",
+  };
+}
+
+function createRetainedTorquePayloadAcceptanceTarget({
+  hingeEventRowSetIdentity,
+  pointEventTorqueCandidatePass,
+  allPairPointEventInputPass,
+  routeAuthorizedPointEventDiagonalIdentityPass,
+}) {
+  const eventRows = hingeEventRowSetIdentity?.rows ?? [];
+  const offDiagonalRows = eventRows.filter(
+    (row) => row.pointEventPairRole === "off_diagonal_force_bearing"
+  );
+  const torqueTolerance = finiteOrNull(
+    hingeEventRowSetIdentity?.pointEventTorqueTolerance
+  );
+  const payloadRows = offDiagonalRows.map((row) => {
+    const torqueNorm = finiteOrNull(row.pointEventNetDiagnosticTorqueNorm);
+    const rowPass =
+      row.pointEventStatus === "point_endpoint_force_torque_diagnostics_populated" &&
+      Number.isFinite(torqueNorm) &&
+      Number.isFinite(torqueTolerance) &&
+      torqueNorm <= torqueTolerance;
+    return {
+      pairKey: row.pairKey ?? null,
+      pointEventStatus: row.pointEventStatus ?? null,
+      pointEventNetDiagnosticTorque:
+        row.pointEventNetDiagnosticTorque ?? null,
+      pointEventNetDiagnosticTorqueNorm: torqueNorm,
+      pointEventForceTorqueRowCount:
+        row.pointEventForceTorqueRowCount ?? null,
+      routeAuthorizedTorqueCandidatePass: rowPass,
+      retainedLimitation:
+        "This row supplies point-event force/torque diagnostics at the hinge. It is not retained torque acceptance until a full point-event rule or retained transport/domain accepts the same row set.",
+    };
+  });
+  const candidateRowCount = payloadRows.filter(
+    (row) => row.routeAuthorizedTorqueCandidatePass === true
+  ).length;
+  const maxPointEventTorqueNorm = maxFinite(
+    payloadRows.map((row) => row.pointEventNetDiagnosticTorqueNorm)
+  );
+  const candidatePopulated =
+    pointEventTorqueCandidatePass === true &&
+    allPairPointEventInputPass === true &&
+    payloadRows.length > 0 &&
+    candidateRowCount === payloadRows.length;
+  const acceptedRetainedTorquePayloadPass = false;
+
+  return {
+    schema: "aaa-tri-binary-retained-torque-payload-acceptance-target.v1",
+    status: candidatePopulated
+      ? "retained_torque_payload_point_event_candidate_populated_acceptance_blocked"
+      : pointEventTorqueCandidatePass === true
+        ? "retained_torque_payload_point_event_candidate_incomplete"
+        : "retained_torque_payload_point_event_candidate_missing",
+    claimLevel:
+      "fail-closed retained torque payload acceptance target; point-event torque cancellation is candidate evidence only",
+    pointEventTorqueCandidatePass,
+    allPairPointEventInputPass,
+    routeAuthorizedPointEventDiagonalIdentityPass,
+    candidatePopulated,
+    acceptedRetainedTorquePayloadPass,
+    retainedBranchClaim: false,
+    offDiagonalPairCount: offDiagonalRows.length,
+    candidateRowCount,
+    maxPointEventTorqueNorm,
+    pointEventTorqueTolerance: torqueTolerance,
+    offDiagonalNetDiagnosticTorqueNorm:
+      hingeEventRowSetIdentity?.offDiagonalNetDiagnosticTorqueNorm ?? null,
+    acceptanceBlockers: candidatePopulated
+      ? [
+          "accepted_retained_transport_law",
+          "global_retained_row_set_identity",
+          "accepted_full_point_event_rule",
+          "accepted_retained_energy_routing",
+        ]
+      : [
+          pointEventTorqueCandidatePass ? null : "point_event_torque_candidate",
+          allPairPointEventInputPass ? null : "all_pair_point_event_input",
+          payloadRows.length > 0 ? null : "off_diagonal_force_torque_rows",
+          candidateRowCount === payloadRows.length
+            ? null
+            : "off_diagonal_force_torque_candidate_rows",
+        ].filter(Boolean),
+    rows: payloadRows,
+    retainedLimitation:
+      "The off-diagonal point-event torque rows cancel at hinge scope, but retained torque payload acceptance still needs accepted retained transport or full point-event authority on the same event, global row-set identity, and retained energy routing.",
+  };
+}
+
+function createPartitionPointEventTorqueCoefficientSourceTarget({
+  retainedVectorPartitionPayloadTarget,
+  hingeEventRowSetIdentity,
+  pointEventTorqueCandidatePass,
+  routeAuthorizedPointEventDiagonalIdentityPass,
+}) {
+  const partitionRows = retainedVectorPartitionPayloadTarget?.rows ?? [];
+  const eventRowsByPairKey = new Map(
+    (hingeEventRowSetIdentity?.rows ?? []).map((row) => [row.pairKey, row])
+  );
+  const rows = partitionRows.map((partitionRow) =>
+    createPartitionPointEventTorqueCoefficientSourceRow({
+      partitionRow,
+      eventRowsByPairKey,
+    })
+  );
+  const finiteRows = rows.filter((row) => Number.isFinite(row.residualNorm));
+  const exactRows = finiteRows.filter(
+    (row) =>
+      Number.isFinite(row.residualNorm) &&
+      row.residualNorm <= POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE
+  );
+  const rejectedRows = finiteRows
+    .filter((row) => row.residualNorm > POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE)
+    .sort(
+      (left, right) =>
+        left.residualNorm - right.residualNorm ||
+        left.rowId.localeCompare(right.rowId)
+    );
+  const inputRowsComplete =
+    rows.length > 0 && finiteRows.length === rows.length;
+  const exactCandidatePass =
+    inputRowsComplete && exactRows.length === rows.length;
+
+  return {
+    schema:
+      "aaa-tri-binary-partition-point-event-torque-coefficient-source-target.v1",
+    status: partitionRows.length === 0
+      ? "partition_point_event_torque_coefficient_source_partition_rows_missing"
+      : pointEventTorqueCandidatePass !== true
+        ? "partition_point_event_torque_coefficient_source_point_torque_candidate_missing"
+        : !inputRowsComplete
+          ? "partition_point_event_torque_coefficient_source_inputs_incomplete"
+          : exactCandidatePass
+            ? "partition_point_event_torque_coefficient_source_exact_formal_full_event_acceptance_blocked"
+            : "partition_point_event_torque_coefficient_source_rejected_not_partition_transport_law",
+    claimLevel:
+      "full-event point-torque source test for partition transport/recoil coefficients; not accepted retained vector partition",
+    pointEventTorqueCandidatePass,
+    routeAuthorizedPointEventDiagonalIdentityPass,
+    retainedBranchClaim: false,
+    rowCount: rows.length,
+    finiteRowCount: finiteRows.length,
+    exactRowCount: exactRows.length,
+    rejectedRowCount: rejectedRows.length,
+    exactCandidatePass,
+    acceptedPartitionTransportRecoilCoefficientPass: false,
+    candidateEquation:
+      "Delta J_partition^point = J_point(outgoing pair) - J_point(incoming pair); Delta J_recoil^point = -Delta J_partition^point",
+    bestRejectedCandidate: rejectedRows[0] ?? null,
+    acceptanceBlockers: exactCandidatePass
+      ? [
+          "accepted_full_point_event_rule",
+          "accepted_retained_point_torque_law",
+          "accepted_partition_transport_recoil_coefficient_law",
+        ]
+      : ["point_event_torque_delta_not_partition_transport_coefficient"],
+    rows,
+    retainedLimitation:
+      "This target tests whether the pair-level hinge point-event torque difference supplies the partition transport/recoil coefficient. Current rows are diagnostic point-event torques only; even an exact match would need accepted full-event and retained point-torque authority before it could become a retained vector-partition coefficient law.",
+  };
+}
+
+function createPartitionPointEventTorqueCoefficientSourceRow({
+  partitionRow,
+  eventRowsByPairKey,
+}) {
+  const incomingPointEventRow =
+    eventRowsByPairKey.get(partitionRow.incomingPairKey) ?? null;
+  const outgoingPointEventRow =
+    eventRowsByPairKey.get(partitionRow.outgoingPairKey) ?? null;
+  const incomingTorque =
+    incomingPointEventRow?.pointEventNetDiagnosticTorque ?? null;
+  const outgoingTorque =
+    outgoingPointEventRow?.pointEventNetDiagnosticTorque ?? null;
+  const candidateTransportVector =
+    isFiniteVector(incomingTorque) && isFiniteVector(outgoingTorque)
+      ? subtractVectors(outgoingTorque, incomingTorque)
+      : null;
+  const targetTransportVector = isFiniteVector(
+    partitionRow.unitTransportAngularMomentum
+  )
+    ? partitionRow.unitTransportAngularMomentum
+    : null;
+  const targetRecoilVector = isFiniteVector(partitionRow.unitRecoilAngularMomentum)
+    ? partitionRow.unitRecoilAngularMomentum
+    : null;
+  const candidateRecoilVector = isFiniteVector(candidateTransportVector)
+    ? scaleVector(candidateTransportVector, -1)
+    : null;
+  const transportResidualVector =
+    isFiniteVector(candidateTransportVector) &&
+    isFiniteVector(targetTransportVector)
+      ? subtractVectors(candidateTransportVector, targetTransportVector)
+      : null;
+  const recoilResidualVector =
+    isFiniteVector(candidateRecoilVector) && isFiniteVector(targetRecoilVector)
+      ? subtractVectors(candidateRecoilVector, targetRecoilVector)
+      : null;
+  const transportResidualNorm = transportResidualVector
+    ? vectorNorm(transportResidualVector)
+    : null;
+  const recoilResidualNorm = recoilResidualVector
+    ? vectorNorm(recoilResidualVector)
+    : null;
+  const residualNorm = maxFinite([transportResidualNorm, recoilResidualNorm]);
+  return {
+    rowId: partitionRow.rowId ?? null,
+    status: Number.isFinite(residualNorm)
+      ? residualNorm <= POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE
+        ? "partition_point_event_torque_delta_exact_formal_acceptance_blocked"
+        : "partition_point_event_torque_delta_rejected"
+      : "partition_point_event_torque_delta_inputs_missing",
+    incomingPairKey: partitionRow.incomingPairKey ?? null,
+    outgoingPairKey: partitionRow.outgoingPairKey ?? null,
+    continuityRole: partitionRow.continuityRole ?? null,
+    continuityLayer: partitionRow.continuityLayer ?? null,
+    routeRootKey: partitionRow.routeRootKey ?? null,
+    incomingPointEventStatus: incomingPointEventRow?.pointEventStatus ?? null,
+    outgoingPointEventStatus: outgoingPointEventRow?.pointEventStatus ?? null,
+    incomingPointEventNetDiagnosticTorque: incomingTorque,
+    outgoingPointEventNetDiagnosticTorque: outgoingTorque,
+    candidateTransportVector,
+    targetTransportVector,
+    transportResidualVector,
+    transportResidualNorm,
+    candidateRecoilVector,
+    targetRecoilVector,
+    recoilResidualVector,
+    recoilResidualNorm,
+    residualNorm,
+    exactRowPass:
+      Number.isFinite(residualNorm) &&
+      residualNorm <= POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE,
+    retainedLimitation:
+      "This row compares pair-level point-event torque difference with the route-local partition transport vector. It does not accept point-event torque as a physical partition coefficient.",
   };
 }
 
@@ -9904,7 +11969,7 @@ function createActionBoundaryActionScaleIndependentSourceExclusionSummary({
     formalOnlyFamilyCount: formalOnlyRows.length,
     incompleteOrUntestedFamilyCount: untestedRows.length,
     nextClosureRoute:
-      "full_point_event_diagonal_identity_or_new_independent_action_scale_law",
+      "global_retained_full_point_event_or_positive_width_common_domain_or_new_independent_action_scale_law",
     retainedBranchClaim: false,
     acceptedRows,
     excludedRows,
@@ -9912,7 +11977,7 @@ function createActionBoundaryActionScaleIndependentSourceExclusionSummary({
     untestedRows,
     rows: familyRows,
     retainedLimitation:
-      "This summary exhausts only the solver's current finite candidate families. It does not reject a new independent sigma*hbar law, and it does not accept retained branch transport, full point-event identity, or retained energy routing.",
+      "This summary exhausts only the solver's current finite candidate families. It does not reject a new independent sigma*hbar law, and it does not accept global retained transport, a full point-event rule, a positive-width common retained domain, or retained energy routing.",
   };
 }
 
@@ -17017,6 +19082,12 @@ function createCompensatedRetainedChartPayloadInventory({
   const maxRequiredPhaseCompensation = maxFinite(
     compensationRequiredRows.map((row) => row.requiredPhaseCompensation)
   );
+  const retainedVectorPartitionPayloadTarget =
+    createRetainedVectorPartitionPayloadTarget({
+      compensationRequired,
+      compensatedRoutePayloadCertificate,
+      wakePayloadDiagnostic,
+    });
   const payloadRows = [
     {
       payload: "row_set_identity",
@@ -17107,12 +19178,17 @@ function createCompensatedRetainedChartPayloadInventory({
     },
     {
       payload: "partition_payload",
-      state: compensationRequired ? "missing" : "not_required",
+      state: compensationRequired
+        ? retainedVectorPartitionPayloadTarget.targetPopulated
+          ? "partial"
+          : "missing"
+        : "not_required",
       status: compensationRequired
-        ? "missing_retained_vector_partition_payload"
+        ? retainedVectorPartitionPayloadTarget.status
         : "not_required_zero_slack_route",
       evidence: {
         sameRetainedEventRequired: compensationRequired,
+        retainedVectorPartitionPayloadTarget,
       },
     },
     {
@@ -17250,7 +19326,1097 @@ function createCompensatedRetainedChartPayloadInventory({
     rootPayloadIntervalEnclosure,
     hingeRootBranchTransportRouteFeasibility,
     compensatedRoutePayloadCertificate,
+    retainedVectorPartitionPayloadTarget,
     payloadRows,
+  };
+}
+
+function createRetainedVectorPartitionPayloadTarget({
+  compensationRequired,
+  compensatedRoutePayloadCertificate,
+  wakePayloadDiagnostic,
+  masterEquationCharacteristicTailPullbackCandidate = null,
+  normalizedActionKernelWakeCharge = null,
+  wakeBoundaryChargeAcceptedOverride = null,
+}) {
+  const routeRows = compensatedRoutePayloadCertificate?.rows ?? [];
+  const partitionRows = routeRows.map((row) =>
+    createRetainedVectorPartitionPayloadRow(row)
+  );
+  const populatedRows = partitionRows.filter((row) => row.unitBalancePass);
+  const maxUnitBalanceResidualNorm = maxFinite(
+    partitionRows.map((row) => row.unitBalanceResidualNorm)
+  );
+  const targetPopulated =
+    compensationRequired &&
+    routeRows.length > 0 &&
+    populatedRows.length === routeRows.length &&
+    (maxUnitBalanceResidualNorm ?? Infinity) <= POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE;
+  const wakeBoundaryChargeAccepted =
+    wakeBoundaryChargeAcceptedOverride === true ||
+    wakePayloadDiagnostic?.normalizedActionKernelWakeCharge
+      ?.acceptedActionKernelChargePass === true ||
+    wakePayloadDiagnostic?.acceptedActionKernelChargePass === true ||
+    wakePayloadDiagnostic?.sameEventEnergyRoutingTarget?.targetPopulated === true;
+  const routeRootKeys = uniqueSortedNumbers(
+    partitionRows.map((row) => row.routeRootKey).filter(Number.isFinite)
+  );
+  const routeLocalCoefficientAcceptanceTarget =
+    masterEquationCharacteristicTailPullbackCandidate?.coefficientQuadratureTarget
+      ?.routeLocalCoefficientAcceptanceTarget ??
+    wakePayloadDiagnostic?.masterEquationCharacteristicTailPullbackCandidate
+      ?.coefficientQuadratureTarget?.routeLocalCoefficientAcceptanceTarget ??
+    null;
+  const acceptedNormalizedActionKernelWakeCharge =
+    normalizedActionKernelWakeCharge ??
+    wakePayloadDiagnostic?.normalizedActionKernelWakeCharge ??
+    null;
+  const physicalPartitionCarrierAssignmentTarget =
+    createPhysicalPartitionCarrierAssignmentTarget({
+      compensationRequired,
+      partitionRows,
+      targetPopulated,
+      wakeBoundaryChargeAccepted,
+      routeRootKeys,
+      routeLocalCoefficientAcceptanceTarget,
+      normalizedActionKernelWakeCharge:
+        acceptedNormalizedActionKernelWakeCharge,
+    });
+  const carrierAssignmentCandidatePass =
+    physicalPartitionCarrierAssignmentTarget.carrierAssignmentCandidatePass === true;
+  const partitionCoefficientSourceAudit =
+    physicalPartitionCarrierAssignmentTarget
+      .partitionTransportRecoilCoefficientSourceTarget ?? null;
+  const partitionCoefficientLawSearchTarget =
+    physicalPartitionCarrierAssignmentTarget
+      .partitionTransportRecoilCoefficientLawSearchTarget ?? null;
+  const partitionCoefficientIndependentSourceExclusionSummary =
+    physicalPartitionCarrierAssignmentTarget
+      .partitionTransportRecoilCoefficientIndependentSourceExclusionSummary ??
+    null;
+  const currentCoefficientSourcesRejectedPass =
+    partitionCoefficientSourceAudit?.currentCoefficientSourcesRejectedPass === true;
+  const acceptedPartitionTransportRecoilCoefficientPass =
+    physicalPartitionCarrierAssignmentTarget
+      ?.acceptedPartitionTransportRecoilCoefficientPass === true;
+  const transportRecoilCoefficientBlocker =
+    acceptedPartitionTransportRecoilCoefficientPass
+      ? null
+      : currentCoefficientSourcesRejectedPass
+        ? "accepted_partition_transport_recoil_coefficient_law"
+        : "accepted_transport_and_recoil_coefficients";
+  return {
+    schema: "aaa-tri-binary-retained-vector-partition-payload-target.v1",
+    status: !compensationRequired
+      ? "retained_vector_partition_payload_not_required_zero_slack_route"
+      : !routeRows.length
+        ? "retained_vector_partition_payload_route_rows_missing"
+        : carrierAssignmentCandidatePass
+          ? "retained_vector_partition_payload_unit_balance_and_carrier_assignment_populated_acceptance_blocked"
+        : targetPopulated
+          ? "retained_vector_partition_payload_unit_balance_populated_physical_partition_missing"
+          : "retained_vector_partition_payload_unit_balance_incomplete",
+    claimLevel:
+      "route-local unit vector-partition balance target; not retained vector-ledger acceptance",
+    targetPopulated,
+    carrierAssignmentCandidatePass,
+    currentCoefficientSourcesRejectedPass,
+    acceptedPartitionTransportRecoilCoefficientPass,
+    acceptedRetainedVectorPartitionPass: false,
+    routeRowCount: routeRows.length,
+    populatedRowCount: populatedRows.length,
+    maxUnitBalanceResidualNorm,
+    routeRootKeys,
+    wakeBoundaryChargeAccepted,
+    acceptanceBlockers: targetPopulated
+      ? carrierAssignmentCandidatePass
+        ? [
+            transportRecoilCoefficientBlocker,
+            "retained_force_torque_wake_rows",
+            "accepted_energy_routing",
+          ].filter(Boolean)
+        : [
+            "physical_partition_carrier_assignment",
+            "accepted_transport_and_recoil_coefficients",
+            "retained_force_torque_wake_rows",
+            "accepted_energy_routing",
+          ]
+      : ["route_local_unit_balance_rows"],
+    physicalPartitionCarrierAssignmentStatus:
+      physicalPartitionCarrierAssignmentTarget.status,
+    physicalPartitionCarrierAssignmentTarget,
+    partitionTransportRecoilCoefficientSourceStatus:
+      partitionCoefficientSourceAudit?.status ?? null,
+    partitionTransportRecoilCoefficientSourceTarget:
+      partitionCoefficientSourceAudit,
+    partitionTransportRecoilCoefficientLawSearchStatus:
+      partitionCoefficientLawSearchTarget?.status ?? null,
+    partitionTransportRecoilCoefficientLawSearchTarget:
+      partitionCoefficientLawSearchTarget,
+    partitionTransportRecoilCoefficientIndependentSourceExclusionStatus:
+      partitionCoefficientIndependentSourceExclusionSummary?.status ?? null,
+    partitionTransportRecoilCoefficientIndependentSourceExclusionSummary:
+      partitionCoefficientIndependentSourceExclusionSummary,
+    rows: partitionRows,
+    retainedLimitation:
+      "The route rows balance unit transport and unit recoil angular momentum on the same route root key and can now be assigned as a route-local physical partition carrier pair. This is not a retained vector partition until the coefficients, wake / torque rows, and energy-routing law are accepted on the same retained event.",
+  };
+}
+
+function createPhysicalPartitionCarrierAssignmentTarget({
+  compensationRequired,
+  partitionRows,
+  targetPopulated,
+  wakeBoundaryChargeAccepted,
+  routeRootKeys,
+  routeLocalCoefficientAcceptanceTarget = null,
+  normalizedActionKernelWakeCharge = null,
+}) {
+  const rows = partitionRows.map((row) =>
+    createPhysicalPartitionCarrierAssignmentRow(row)
+  );
+  const candidateRows = rows.filter((row) => row.carrierAssignmentRowPass);
+  const commonRouteRootKeyPass = routeRootKeys.length === 1;
+  const carrierAssignmentCandidatePass =
+    compensationRequired &&
+    targetPopulated &&
+    wakeBoundaryChargeAccepted &&
+    commonRouteRootKeyPass &&
+    rows.length > 0 &&
+    candidateRows.length === rows.length;
+  const partitionTransportRecoilCoefficientSourceTarget =
+    createPartitionTransportRecoilCoefficientSourceTarget({
+      carrierAssignmentCandidatePass,
+      partitionRows,
+      routeLocalCoefficientAcceptanceTarget,
+      normalizedActionKernelWakeCharge,
+    });
+  const partitionTransportRecoilCoefficientLawSearchTarget =
+    createPartitionTransportRecoilCoefficientLawSearchTarget({
+      carrierAssignmentCandidatePass,
+      partitionRows,
+      normalizedActionKernelWakeCharge,
+    });
+  const currentCoefficientSourcesRejectedPass =
+    partitionTransportRecoilCoefficientSourceTarget
+      .currentCoefficientSourcesRejectedPass === true;
+  const acceptedPartitionTransportRecoilCoefficientPass =
+    partitionTransportRecoilCoefficientSourceTarget
+      .acceptedPartitionTransportRecoilCoefficientPass === true ||
+    partitionTransportRecoilCoefficientLawSearchTarget
+      .acceptedPartitionTransportRecoilCoefficientPass === true;
+  const partitionTransportRecoilCoefficientIndependentSourceExclusionSummary =
+    createPartitionTransportRecoilCoefficientIndependentSourceExclusionSummary({
+      carrierAssignmentCandidatePass,
+      partitionTransportRecoilCoefficientSourceTarget,
+      partitionTransportRecoilCoefficientLawSearchTarget,
+      acceptedPartitionTransportRecoilCoefficientPass,
+    });
+  const maxCarrierBalanceResidualNorm = maxFinite(
+    rows.map((row) => row.unitBalanceResidualNorm)
+  );
+  const acceptanceBlockers = carrierAssignmentCandidatePass
+    ? [
+        acceptedPartitionTransportRecoilCoefficientPass
+          ? null
+          : currentCoefficientSourcesRejectedPass
+            ? "accepted_partition_transport_recoil_coefficient_law"
+            : "accepted_transport_and_recoil_coefficients",
+        "retained_force_torque_wake_rows",
+        "accepted_energy_routing",
+      ].filter(Boolean)
+    : [
+        compensationRequired ? null : "compensated_route_required",
+        targetPopulated ? null : "route_local_unit_balance_rows",
+        wakeBoundaryChargeAccepted ? null : "accepted_wake_boundary_charge",
+        commonRouteRootKeyPass ? null : "common_route_root_key",
+        candidateRows.length === rows.length && rows.length > 0
+          ? null
+          : "carrier_assignment_rows",
+      ].filter(Boolean);
+
+  return {
+    schema: "aaa-tri-binary-physical-partition-carrier-assignment-target.v1",
+    status: !compensationRequired
+      ? "physical_partition_carrier_assignment_not_required_zero_slack_route"
+      : !targetPopulated
+        ? "physical_partition_carrier_assignment_unit_balance_missing"
+        : !wakeBoundaryChargeAccepted
+          ? "physical_partition_carrier_assignment_wake_boundary_charge_missing"
+          : !commonRouteRootKeyPass
+            ? "physical_partition_carrier_assignment_common_route_root_missing"
+            : carrierAssignmentCandidatePass
+              ? "physical_partition_carrier_assignment_candidate_populated_coefficients_missing"
+              : "physical_partition_carrier_assignment_rows_incomplete",
+    claimLevel:
+      "route-local physical-partition carrier assignment target; not accepted retained vector partition",
+    targetPopulated: carrierAssignmentCandidatePass,
+    carrierAssignmentCandidatePass,
+    currentCoefficientSourcesRejectedPass,
+    acceptedPartitionTransportRecoilCoefficientPass,
+    acceptedPhysicalPartitionCarrierAssignmentPass: false,
+    compensationRequired,
+    wakeBoundaryChargeAccepted,
+    commonRouteRootKeyPass,
+    routeRootKeys,
+    rowCount: rows.length,
+    candidateRowCount: candidateRows.length,
+    maxCarrierBalanceResidualNorm,
+    tolerance: POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE,
+    acceptanceBlockers,
+    partitionTransportRecoilCoefficientSourceStatus:
+      partitionTransportRecoilCoefficientSourceTarget.status,
+    partitionTransportRecoilCoefficientSourceTarget,
+    partitionTransportRecoilCoefficientLawSearchStatus:
+      partitionTransportRecoilCoefficientLawSearchTarget.status,
+    partitionTransportRecoilCoefficientLawSearchTarget,
+    partitionTransportRecoilCoefficientIndependentSourceExclusionStatus:
+      partitionTransportRecoilCoefficientIndependentSourceExclusionSummary.status,
+    partitionTransportRecoilCoefficientIndependentSourceExclusionSummary,
+    rows,
+    retainedLimitation:
+      "The target assigns each route-local unit transport vector and its same-route recoil vector as the physical-partition carrier pair for the compensated hinge route. It still has unit coefficients only and does not accept retained force, torque, wake, energy routing, or section stability.",
+  };
+}
+
+function createPartitionTransportRecoilCoefficientLawSearchTarget({
+  carrierAssignmentCandidatePass,
+  partitionRows,
+  normalizedActionKernelWakeCharge,
+}) {
+  const targetCharge = normalizedActionKernelWakeCharge?.targetCharge ?? null;
+  const normalizedWakeChargeAccepted =
+    normalizedActionKernelWakeCharge?.acceptedActionKernelChargePass === true;
+  const fittedSameSourceScalar =
+    computeFittedSameSourcePartitionTransportScale(partitionRows);
+  const candidateRows = [
+    createPartitionTransportRecoilCoefficientLawCandidate({
+      lawId: "unit_transport_recoil_identity",
+      status: "exact_formal_unit_transport_identity_diagnostic_only",
+      source: "unit transport/recoil diagnostic identity",
+      sourceAccepted: carrierAssignmentCandidatePass,
+      acceptanceEligible: false,
+      partitionRows,
+      candidateVectorForRow: (row) =>
+        isFiniteVector(row.unitTransportAngularMomentum)
+          ? row.unitTransportAngularMomentum
+          : null,
+      retainedLimitation:
+        "The identity row is exact only because the target vector is the same unit transport diagnostic being tested. It is circular as a physical coefficient law.",
+    }),
+    createPartitionTransportRecoilCoefficientLawCandidate({
+      lawId: "route_geometry_cross_product_unit_impulse",
+      status: "exact_formal_route_geometry_cross_product_diagnostic_only",
+      source: "route geometry cross product using unit endpoint compensation impulse",
+      sourceAccepted: carrierAssignmentCandidatePass,
+      acceptanceEligible: false,
+      partitionRows,
+      candidateEquation:
+        "Delta J_partition^geom = r_mid x Delta p_route^unit; Delta J_recoil^geom = -Delta J_partition^geom",
+      candidateInputsForRow: (row) => ({
+        routeLeverArm: row.routeLeverArm ?? null,
+        endpointPairCompensationVector:
+          row.endpointPairCompensationVector ?? null,
+      }),
+      candidateVectorForRow: (row) =>
+        isFiniteVector(row.routeLeverArm) &&
+        isFiniteVector(row.endpointPairCompensationVector)
+          ? crossVectors(row.routeLeverArm, row.endpointPairCompensationVector)
+          : null,
+      retainedLimitation:
+        "The cross-product row is exact because it replays the route-local unit transport diagnostic from its lever arm and endpoint-compensation vector. It makes the missing law equation explicit, but it is still formal until a physical impulse, force/torque/wake row, or full-event rule supplies the coefficient independently.",
+    }),
+    createPartitionTransportRecoilCoefficientLawCandidate({
+      lawId: "fitted_same_source_partition_transport_scale",
+      status: "exact_formal_fitted_same_source_scale_acceptance_blocked",
+      source: "fitted same-source scalar from current partition rows",
+      sourceAccepted: carrierAssignmentCandidatePass,
+      acceptanceEligible: false,
+      partitionRows,
+      fittedScalar: fittedSameSourceScalar,
+      candidateVectorForRow: (row) =>
+        createSameSourcePartitionTransportScalarVector(
+          row,
+          fittedSameSourceScalar
+        ),
+      retainedLimitation:
+        "The same-source scalar reproduces the current two carrier rows, but it is fitted from the target partition row itself rather than derived from an independent route, wake, or action law.",
+    }),
+    createPartitionTransportRecoilCoefficientLawCandidate({
+      lawId: "normalized_boundary_charge_same_source_gate",
+      status: normalizedWakeChargeAccepted
+        ? "rejected_boundary_charge_same_source_gate_not_partition_transport_law"
+        : "blocked_boundary_charge_same_source_gate_unaccepted",
+      source: "accepted normalized action-kernel wake boundary charge",
+      sourceAccepted: normalizedWakeChargeAccepted,
+      acceptanceEligible: false,
+      partitionRows,
+      candidateVectorForRow: (row) =>
+        createSameSourcePartitionTransportScalarVector(
+          row,
+          Number.isFinite(targetCharge?.z) ? Math.abs(targetCharge.z) : null
+        ),
+      retainedLimitation:
+        "The normalized boundary charge is a wake action-kernel charge. Even with a same-source route gate it misses the nonzero partition transport vector and does not define the transport/recoil coefficient.",
+    }),
+    createPartitionTransportRecoilCoefficientLawCandidate({
+      lawId: "endpoint_pair_compensation_norm_same_source_gate",
+      status:
+        "rejected_endpoint_pair_compensation_norm_not_partition_transport_law",
+      source: "same-route endpoint-pair compensation norm",
+      sourceAccepted: carrierAssignmentCandidatePass,
+      acceptanceEligible: false,
+      partitionRows,
+      candidateVectorForRow: (row) =>
+        createSameSourcePartitionTransportScalarVector(
+          row,
+          row.endpointPairCompensationNorm
+        ),
+      retainedLimitation:
+        "The endpoint-pair compensation norm is a geometric discrepancy size, not an angular transport coefficient. It does not reproduce the transport/recoil partition vector.",
+    }),
+    createPartitionTransportRecoilCoefficientLawCandidate({
+      lawId: "endpoint_pair_compensation_norm_half_same_source_gate",
+      status:
+        "rejected_half_endpoint_pair_compensation_norm_not_partition_transport_law",
+      source: "half same-route endpoint-pair compensation norm",
+      sourceAccepted: carrierAssignmentCandidatePass,
+      acceptanceEligible: false,
+      partitionRows,
+      candidateVectorForRow: (row) =>
+        createSameSourcePartitionTransportScalarVector(
+          row,
+          Number.isFinite(row.endpointPairCompensationNorm)
+            ? 0.5 * row.endpointPairCompensationNorm
+            : null
+        ),
+      retainedLimitation:
+        "Half of the endpoint-pair compensation norm is a tempting near-field route scalar, but it is still a geometric discrepancy size and does not reproduce the transport/recoil coefficient.",
+    }),
+    createPartitionTransportRecoilCoefficientLawCandidate({
+      lawId: "endpoint_compensation_norm_upper_bound_same_source_gate",
+      status:
+        "rejected_endpoint_compensation_upper_bound_not_partition_transport_law",
+      source: "same-route endpoint compensation norm upper bound",
+      sourceAccepted: carrierAssignmentCandidatePass,
+      acceptanceEligible: false,
+      partitionRows,
+      candidateVectorForRow: (row) =>
+        createSameSourcePartitionTransportScalarVector(
+          row,
+          row.endpointCompensationNormUpperBound
+        ),
+      retainedLimitation:
+        "The endpoint compensation upper bound is a route-safety envelope. It is not the angular transport/recoil coefficient and overestimates the nonzero carrier row.",
+    }),
+    createPartitionTransportRecoilCoefficientLawCandidate({
+      lawId: "endpoint_point_norm_upper_bound_same_source_gate",
+      status:
+        "rejected_endpoint_point_norm_upper_bound_not_partition_transport_law",
+      source: "same-route endpoint point norm upper bound",
+      sourceAccepted: carrierAssignmentCandidatePass,
+      acceptanceEligible: false,
+      partitionRows,
+      candidateVectorForRow: (row) =>
+        createSameSourcePartitionTransportScalarVector(
+          row,
+          row.endpointPointNormUpperBound
+        ),
+      retainedLimitation:
+        "The endpoint point norm upper bound belongs to the route geometry envelope. It is not a transport/recoil coefficient and does not reproduce the carrier row.",
+    }),
+    createPartitionTransportRecoilCoefficientLawCandidate({
+      lawId: "unit_root_energy_same_source_gate",
+      status: "rejected_unit_root_energy_not_partition_transport_law",
+      source: "same-route unit root-energy increment",
+      sourceAccepted: carrierAssignmentCandidatePass,
+      acceptanceEligible: false,
+      partitionRows,
+      candidateVectorForRow: (row) =>
+        createSameSourcePartitionTransportScalarVector(
+          row,
+          row.unitRootEnergyIncrement
+        ),
+      retainedLimitation:
+        "The unit root-energy increment belongs to the route energy diagnostic; it is not the angular transport/recoil coefficient.",
+    }),
+    createPartitionTransportRecoilCoefficientLawCandidate({
+      lawId: "unit_root_energy_quarter_same_source_gate",
+      status: "rejected_unit_root_energy_quarter_not_partition_transport_law",
+      source: "quarter same-route unit root-energy increment",
+      sourceAccepted: carrierAssignmentCandidatePass,
+      acceptanceEligible: false,
+      partitionRows,
+      candidateVectorForRow: (row) =>
+        createSameSourcePartitionTransportScalarVector(
+          row,
+          Number.isFinite(row.unitRootEnergyIncrement)
+            ? 0.25 * row.unitRootEnergyIncrement
+            : null
+        ),
+      retainedLimitation:
+        "The quarter-root-energy scalar is tested because the minimal branch transaction uses a four-substep certificate. It remains an energy diagnostic, not an angular transport/recoil coefficient.",
+    }),
+    createPartitionTransportRecoilCoefficientLawCandidate({
+      lawId: "unit_endpoint_pair_angular_momentum_norm_same_source_gate",
+      status:
+        "exact_formal_unit_transport_norm_same_source_gate_diagnostic_only",
+      source: "unit endpoint-pair angular-momentum norm",
+      sourceAccepted: carrierAssignmentCandidatePass,
+      acceptanceEligible: false,
+      partitionRows,
+      candidateVectorForRow: (row) =>
+        createSameSourcePartitionTransportScalarVector(
+          row,
+          row.unitEndpointPairAngularMomentumNorm
+        ),
+      retainedLimitation:
+        "The unit endpoint-pair angular-momentum norm is exact because it is the norm of the same transport diagnostic target. It is a target-derived identity, not an independent coefficient law.",
+    }),
+    createPartitionTransportRecoilCoefficientLawCandidate({
+      lawId: "unit_angular_momentum_upper_bound_same_source_gate",
+      status:
+        "rejected_unit_angular_momentum_bound_not_partition_transport_law",
+      source: "unit angular-momentum norm upper bound",
+      sourceAccepted: carrierAssignmentCandidatePass,
+      acceptanceEligible: false,
+      partitionRows,
+      candidateVectorForRow: (row) =>
+        createSameSourcePartitionTransportScalarVector(
+          row,
+          row.unitAngularMomentumNormUpperBound
+        ),
+      retainedLimitation:
+        "The upper bound is a safety envelope for the diagnostic transport increment. It overestimates the nonzero partition transport vector and cannot serve as the coefficient law.",
+    }),
+  ];
+  const populatedRows = candidateRows.filter((row) => row.candidatePopulated);
+  const acceptedRows = populatedRows.filter(
+    (row) => row.acceptedPartitionTransportRecoilCoefficientPass === true
+  );
+  const exactFormalRows = populatedRows.filter(
+    (row) =>
+      row.exactLawPass === true &&
+      row.acceptedPartitionTransportRecoilCoefficientPass !== true
+  );
+  const rejectedRows = populatedRows
+    .filter((row) => row.exactLawPass !== true)
+    .sort(
+      (left, right) =>
+        (left.maxResidualNorm ?? Infinity) -
+          (right.maxResidualNorm ?? Infinity) ||
+        left.lawId.localeCompare(right.lawId)
+    );
+
+  return {
+    schema:
+      "aaa-tri-binary-partition-transport-recoil-coefficient-law-search-target.v1",
+    status: !carrierAssignmentCandidatePass
+      ? "partition_transport_recoil_coefficient_law_search_carrier_assignment_missing"
+      : acceptedRows.length > 0
+        ? "partition_transport_recoil_coefficient_law_search_candidate_accepted"
+        : exactFormalRows.some(
+              (row) => row.lawId === "fitted_same_source_partition_transport_scale"
+            )
+          ? "partition_transport_recoil_coefficient_law_search_fitted_same_source_scale_formal_acceptance_blocked"
+          : exactFormalRows.length > 0
+            ? "partition_transport_recoil_coefficient_law_search_exact_formal_identity_acceptance_blocked"
+            : rejectedRows.length > 0
+              ? "partition_transport_recoil_coefficient_law_search_simple_candidates_rejected"
+              : "partition_transport_recoil_coefficient_law_search_inputs_missing",
+    claimLevel:
+      "fail-closed partition transport/recoil coefficient law search; exact fitted or identity rows are not accepted retained vector partition",
+    carrierAssignmentCandidatePass,
+    normalizedWakeChargeAccepted,
+    fittedSameSourceScalar,
+    acceptedPartitionTransportRecoilCoefficientPass: acceptedRows.length > 0,
+    candidateCount: candidateRows.length,
+    populatedCandidateCount: populatedRows.length,
+    exactFormalCandidateCount: exactFormalRows.length,
+    acceptedCandidateCount: acceptedRows.length,
+    bestRejectedCandidate: rejectedRows[0] ?? null,
+    exactFormalRows,
+    acceptedRows,
+    rows: candidateRows,
+    acceptanceBlockers:
+      acceptedRows.length > 0
+        ? []
+        : ["independent_partition_transport_recoil_coefficient_law"],
+    retainedLimitation:
+      "The search tests simple existing route and wake scalars plus exact formal identities against both transport and recoil carrier rows. Exact identity and fitted same-source rows are recorded only as proof obligations; retained acceptance still requires an independent coefficient law on the same retained event.",
+  };
+}
+
+function createPartitionTransportRecoilCoefficientIndependentSourceExclusionSummary({
+  carrierAssignmentCandidatePass,
+  partitionTransportRecoilCoefficientSourceTarget,
+  partitionTransportRecoilCoefficientLawSearchTarget,
+  acceptedPartitionTransportRecoilCoefficientPass,
+}) {
+  const lawRows = partitionTransportRecoilCoefficientLawSearchTarget?.rows ?? [];
+  const exactFormalRows = lawRows.filter(
+    (row) =>
+      row.exactLawPass === true &&
+      row.acceptedPartitionTransportRecoilCoefficientPass !== true
+  );
+  const independentRejectedRows = lawRows.filter(
+    (row) =>
+      row.candidatePopulated === true &&
+      row.exactLawPass !== true &&
+      row.acceptedPartitionTransportRecoilCoefficientPass !== true
+  );
+  const independentUntestedRows = lawRows.filter(
+    (row) => row.candidatePopulated !== true
+  );
+  const sourceAuditExcluded =
+    partitionTransportRecoilCoefficientSourceTarget
+      ?.currentCoefficientSourcesRejectedPass === true;
+  const familyRows = [
+    {
+      id: "current_wake_coefficient_sources",
+      source: "accepted wake coefficient rows and normalized boundary charge",
+      status: partitionTransportRecoilCoefficientSourceTarget?.status ?? null,
+      testedCandidateCount:
+        partitionTransportRecoilCoefficientSourceTarget?.testedCandidateCount ??
+        null,
+      acceptedCandidateCount:
+        partitionTransportRecoilCoefficientSourceTarget?.acceptedCandidateCount ??
+        null,
+      exactDiagnosticCount:
+        partitionTransportRecoilCoefficientSourceTarget?.exactIneligibleRows
+          ?.length ?? null,
+      acceptedPass:
+        partitionTransportRecoilCoefficientSourceTarget
+          ?.acceptedPartitionTransportRecoilCoefficientPass === true,
+      exclusionPass: sourceAuditExcluded,
+    },
+    {
+      id: "target_derived_formal_partition_laws",
+      source:
+        "unit transport identity, route-geometry cross product, and fitted same-source scalar",
+      status: partitionTransportRecoilCoefficientLawSearchTarget?.status ?? null,
+      testedCandidateCount: exactFormalRows.length,
+      acceptedCandidateCount: 0,
+      exactDiagnosticCount: exactFormalRows.length,
+      acceptedPass: false,
+      exclusionPass: false,
+    },
+    {
+      id: "independent_route_wake_scalar_law_candidates",
+      source: "current route geometry, root-energy, wake-charge, and bound scalars",
+      status: partitionTransportRecoilCoefficientLawSearchTarget?.status ?? null,
+      testedCandidateCount: independentRejectedRows.length,
+      acceptedCandidateCount:
+        partitionTransportRecoilCoefficientLawSearchTarget
+          ?.acceptedCandidateCount ?? null,
+      exactDiagnosticCount: 0,
+      acceptedPass:
+        partitionTransportRecoilCoefficientLawSearchTarget
+          ?.acceptedPartitionTransportRecoilCoefficientPass === true,
+      exclusionPass:
+        independentRejectedRows.length > 0 &&
+        independentUntestedRows.length === 0 &&
+        partitionTransportRecoilCoefficientLawSearchTarget
+          ?.acceptedPartitionTransportRecoilCoefficientPass !== true,
+    },
+  ].map((row) => ({
+    ...row,
+    outcome:
+      row.acceptedPass === true
+        ? "accepted"
+        : row.exclusionPass === true
+          ? "excluded"
+          : row.exactDiagnosticCount > 0
+            ? "formal_target_derived_only"
+            : "incomplete_or_untested",
+  }));
+  const acceptedRows = familyRows.filter((row) => row.acceptedPass === true);
+  const excludedRows = familyRows.filter((row) => row.exclusionPass === true);
+  const formalOnlyRows = familyRows.filter(
+    (row) =>
+      row.acceptedPass !== true &&
+      row.exclusionPass !== true &&
+      row.exactDiagnosticCount > 0
+  );
+  const untestedRows = familyRows.filter(
+    (row) =>
+      row.acceptedPass !== true &&
+      row.exclusionPass !== true &&
+      !(row.exactDiagnosticCount > 0)
+  );
+  const currentSearchExhaustedPass =
+    carrierAssignmentCandidatePass === true &&
+    acceptedRows.length === 0 &&
+    untestedRows.length === 0;
+
+  return {
+    schema:
+      "aaa-tri-binary-partition-transport-recoil-coefficient-independent-source-exclusion-summary.v1",
+    status: carrierAssignmentCandidatePass !== true
+      ? "partition_transport_recoil_coefficient_independent_source_exclusion_carrier_assignment_missing"
+      : acceptedPartitionTransportRecoilCoefficientPass
+        ? "partition_transport_recoil_coefficient_independent_source_candidate_accepted"
+        : currentSearchExhaustedPass
+          ? "partition_transport_recoil_coefficient_independent_source_current_search_exhausted_new_law_required"
+          : "partition_transport_recoil_coefficient_independent_source_current_search_incomplete",
+    claimLevel:
+      "negative certificate over the current finite partition transport/recoil coefficient-source families; not a proof that no coefficient law exists",
+    carrierAssignmentCandidatePass,
+    acceptedPartitionTransportRecoilCoefficientPass:
+      acceptedPartitionTransportRecoilCoefficientPass === true,
+    currentSearchExhaustedPass,
+    rejectedFamilyCount: excludedRows.length,
+    formalOnlyFamilyCount: formalOnlyRows.length,
+    incompleteOrUntestedFamilyCount: untestedRows.length,
+    independentRejectedCandidateCount: independentRejectedRows.length,
+    exactFormalCandidateCount: exactFormalRows.length,
+    bestRejectedCandidate:
+      partitionTransportRecoilCoefficientLawSearchTarget?.bestRejectedCandidate ??
+      null,
+    nextClosureRoute:
+      "new_independent_partition_transport_recoil_coefficient_law_or_full_event_rule",
+    retainedBranchClaim: false,
+    acceptedRows,
+    excludedRows,
+    formalOnlyRows,
+    untestedRows,
+    rows: familyRows,
+    retainedLimitation:
+      "This summary exhausts only the current finite source-reuse and route-scalar families. It does not reject a new independent partition transport/recoil coefficient law and does not accept retained force, torque, wake, energy routing, section stability, or the full point-event rule.",
+  };
+}
+
+function createPartitionTransportRecoilCoefficientLawCandidate({
+  lawId,
+  status,
+  source,
+  sourceAccepted,
+  acceptanceEligible,
+  partitionRows,
+  candidateVectorForRow,
+  candidateEquation = null,
+  candidateInputsForRow = null,
+  fittedScalar = null,
+  retainedLimitation,
+}) {
+  const rows = partitionRows.map((row) => {
+    const targetTransportVector = isFiniteVector(row.unitTransportAngularMomentum)
+      ? row.unitTransportAngularMomentum
+      : null;
+    const targetRecoilVector = isFiniteVector(row.unitRecoilAngularMomentum)
+      ? row.unitRecoilAngularMomentum
+      : null;
+    const candidateTransportVector = candidateVectorForRow(row);
+    const candidateInputs =
+      typeof candidateInputsForRow === "function"
+        ? candidateInputsForRow(row)
+        : null;
+    const candidateRecoilVector = isFiniteVector(candidateTransportVector)
+      ? scaleVector(candidateTransportVector, -1)
+      : null;
+    const transportResidualVector =
+      isFiniteVector(candidateTransportVector) &&
+      isFiniteVector(targetTransportVector)
+        ? subtractVectors(candidateTransportVector, targetTransportVector)
+        : null;
+    const recoilResidualVector =
+      isFiniteVector(candidateRecoilVector) && isFiniteVector(targetRecoilVector)
+        ? subtractVectors(candidateRecoilVector, targetRecoilVector)
+        : null;
+    const transportResidualNorm = transportResidualVector
+      ? vectorNorm(transportResidualVector)
+      : null;
+    const recoilResidualNorm = recoilResidualVector
+      ? vectorNorm(recoilResidualVector)
+      : null;
+    const residualNorm = maxFinite([
+      transportResidualNorm,
+      recoilResidualNorm,
+    ]);
+    return {
+      rowId: row.rowId ?? null,
+      incomingPairKey: row.incomingPairKey ?? null,
+      outgoingPairKey: row.outgoingPairKey ?? null,
+      continuityRole: row.continuityRole ?? null,
+      continuityLayer: row.continuityLayer ?? null,
+      routeRootKey: row.routeRootKey ?? null,
+      candidateInputs,
+      targetTransportVector,
+      candidateTransportVector,
+      transportResidualVector,
+      transportResidualNorm,
+      targetRecoilVector,
+      candidateRecoilVector,
+      recoilResidualVector,
+      recoilResidualNorm,
+      residualNorm,
+      exactRowPass:
+        Number.isFinite(residualNorm) &&
+        residualNorm <= POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE,
+    };
+  });
+  const finiteRows = rows.filter((row) => Number.isFinite(row.residualNorm));
+  const maxResidualNorm = maxFinite(rows.map((row) => row.residualNorm));
+  const candidatePopulated =
+    rows.length > 0 && finiteRows.length === rows.length;
+  const exactLawPass =
+    candidatePopulated &&
+    Number.isFinite(maxResidualNorm) &&
+    maxResidualNorm <= POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE;
+
+  return {
+    lawId,
+    status,
+    source,
+    sourceAccepted,
+    acceptanceEligible,
+    candidateEquation,
+    fittedScalar,
+    candidatePopulated,
+    exactLawPass,
+    acceptedPartitionTransportRecoilCoefficientPass:
+      sourceAccepted === true && acceptanceEligible === true && exactLawPass,
+    maxResidualNorm,
+    tolerance: POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE,
+    rows,
+    retainedLimitation,
+  };
+}
+
+function computeFittedSameSourcePartitionTransportScale(partitionRows) {
+  const sameSourceTransportZ = partitionRows
+    .filter((row) => row.continuityRole === "same_source")
+    .map((row) => row.unitTransportAngularMomentum?.z)
+    .filter(Number.isFinite);
+  if (!sameSourceTransportZ.length) {
+    return null;
+  }
+  return (
+    sameSourceTransportZ.reduce((total, value) => total + value, 0) /
+    sameSourceTransportZ.length
+  );
+}
+
+function createSameSourcePartitionTransportScalarVector(partitionRow, scalar) {
+  if (partitionRow.continuityRole !== "same_source") {
+    return zeroVector();
+  }
+  if (!Number.isFinite(scalar)) {
+    return null;
+  }
+  const sign =
+    Number.isFinite(partitionRow.unitTransportAngularMomentum?.z) &&
+    Math.abs(partitionRow.unitTransportAngularMomentum.z) >
+      POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE
+      ? Math.sign(partitionRow.unitTransportAngularMomentum.z)
+      : 1;
+  return {
+    x: 0,
+    y: 0,
+    z: sign * Math.abs(scalar),
+  };
+}
+
+function createPartitionTransportRecoilCoefficientSourceTarget({
+  carrierAssignmentCandidatePass,
+  partitionRows,
+  routeLocalCoefficientAcceptanceTarget,
+  normalizedActionKernelWakeCharge,
+}) {
+  const coefficientRows = routeLocalCoefficientAcceptanceTarget?.rows ?? [];
+  const routeLocalCoefficientAccepted =
+    routeLocalCoefficientAcceptanceTarget?.acceptedCoefficientQuadraturePass ===
+    true;
+  const normalizedWakeChargeAccepted =
+    normalizedActionKernelWakeCharge?.acceptedActionKernelChargePass === true;
+  const targetCharge = normalizedActionKernelWakeCharge?.targetCharge ?? null;
+  const rows = partitionRows.map((row) =>
+    createPartitionTransportRecoilCoefficientSourceRow({
+      partitionRow: row,
+      coefficientRows,
+      routeLocalCoefficientAccepted,
+      normalizedWakeChargeAccepted,
+      targetCharge,
+    })
+  );
+  const testedCandidateRows = rows.flatMap((row) => row.candidateSources);
+  const acceptedCandidateRows = testedCandidateRows.filter(
+    (row) => row.acceptedPartitionCoefficientSourcePass === true
+  );
+  const bestRejectedCandidate =
+    testedCandidateRows
+      .filter(
+        (row) =>
+          row.sourceId !== "unit_transport_recoil_coefficient" &&
+          Number.isFinite(row.residualNorm)
+      )
+      .sort(
+        (left, right) =>
+          left.residualNorm - right.residualNorm ||
+          left.sourceId.localeCompare(right.sourceId)
+      )[0] ?? null;
+  const exactIneligibleRows = testedCandidateRows.filter(
+    (row) =>
+      row.exactVectorMatchPass === true &&
+      row.acceptedPartitionCoefficientSourcePass !== true
+  );
+  const currentCoefficientSourcesRejectedPass =
+    carrierAssignmentCandidatePass &&
+    rows.length > 0 &&
+    testedCandidateRows.length > 0 &&
+    acceptedCandidateRows.length === 0 &&
+    rows.every((row) => row.currentSourceRejectedPass);
+
+  return {
+    schema:
+      "aaa-tri-binary-partition-transport-recoil-coefficient-source-target.v1",
+    status: !carrierAssignmentCandidatePass
+      ? "partition_transport_recoil_coefficient_source_carrier_assignment_missing"
+      : acceptedCandidateRows.length > 0
+        ? "partition_transport_recoil_coefficient_source_candidate_populated_acceptance_blocked"
+        : currentCoefficientSourcesRejectedPass
+          ? "partition_transport_recoil_coefficient_source_current_wake_coefficients_rejected"
+          : "partition_transport_recoil_coefficient_source_inputs_missing",
+    claimLevel:
+      "fail-closed source audit for partition transport/recoil coefficients; not accepted retained vector partition",
+    carrierAssignmentCandidatePass,
+    routeLocalCoefficientAccepted,
+    normalizedWakeChargeAccepted,
+    currentCoefficientSourcesRejectedPass,
+    acceptedPartitionTransportRecoilCoefficientPass: false,
+    rowCount: rows.length,
+    testedCandidateCount: testedCandidateRows.length,
+    acceptedCandidateCount: acceptedCandidateRows.length,
+    bestRejectedCandidate,
+    exactIneligibleRows,
+    acceptanceBlockers: currentCoefficientSourcesRejectedPass
+      ? ["accepted_partition_transport_recoil_coefficient_law"]
+      : ["partition_transport_recoil_coefficient_source_rows"],
+    rows,
+    retainedLimitation:
+      "The audit tests whether the already accepted route-local wake coefficient rows or normalized boundary charge can also supply the physical transport/recoil coefficients for the partition carrier rows. Current rows do not match the partition transport vectors, so retained vector-partition acceptance still needs an independent coefficient law.",
+  };
+}
+
+function createPartitionTransportRecoilCoefficientSourceRow({
+  partitionRow,
+  coefficientRows,
+  routeLocalCoefficientAccepted,
+  normalizedWakeChargeAccepted,
+  targetCharge,
+}) {
+  const matchedCoefficientRows = coefficientRows.filter((row) =>
+    [partitionRow.incomingPairKey, partitionRow.outgoingPairKey].includes(row.pairKey)
+  );
+  const wakeContributionVector = sumVectors(
+    matchedCoefficientRows
+      .map((row) => row.reconstructedAngularContribution)
+      .filter(isFiniteVector)
+  );
+  const halfWakeContributionVector = scaleVector(wakeContributionVector, 0.5);
+  const unitTransport = isFiniteVector(partitionRow.unitTransportAngularMomentum)
+    ? partitionRow.unitTransportAngularMomentum
+    : zeroVector();
+  const candidateSources = [
+    createPartitionCoefficientCandidateSource({
+      sourceId: "unit_transport_recoil_coefficient",
+      status: "ineligible_unit_coefficient_diagnostic_only",
+      candidateVector: unitTransport,
+      targetVector: unitTransport,
+      acceptanceEligible: false,
+      sourceAccepted: partitionRow.unitBalancePass === true,
+      limitation:
+        "The unit transport/recoil coefficient is the diagnostic convention used to populate the carrier pair; it is not a physical partition coefficient law.",
+    }),
+    createPartitionCoefficientCandidateSource({
+      sourceId: "route_local_wake_coefficient_angular_sum",
+      status: routeLocalCoefficientAccepted
+        ? "rejected_wake_coefficient_rows_do_not_match_partition_transport"
+        : "blocked_route_local_wake_coefficients_unaccepted",
+      candidateVector: wakeContributionVector,
+      targetVector: unitTransport,
+      acceptanceEligible: false,
+      sourceAccepted: routeLocalCoefficientAccepted,
+      limitation:
+        "The accepted route-local coefficient rows reconstruct the characteristic-tail wake contribution, not the transport/recoil partition coefficient.",
+    }),
+    createPartitionCoefficientCandidateSource({
+      sourceId: "half_route_local_wake_coefficient_angular_sum",
+      status: routeLocalCoefficientAccepted
+        ? "rejected_half_wake_coefficient_rows_do_not_match_partition_transport"
+        : "blocked_route_local_wake_coefficients_unaccepted",
+      candidateVector: halfWakeContributionVector,
+      targetVector: unitTransport,
+      acceptanceEligible: false,
+      sourceAccepted: routeLocalCoefficientAccepted,
+      limitation:
+        "Half of the route-local wake angular contribution is tested as a simple coefficient reuse, but it does not match both partition carrier routes.",
+    }),
+    createPartitionCoefficientCandidateSource({
+      sourceId: "normalized_boundary_charge_vector",
+      status: normalizedWakeChargeAccepted
+        ? "rejected_boundary_charge_not_partition_transport_coefficient"
+        : "blocked_normalized_boundary_charge_unaccepted",
+      candidateVector: isFiniteVector(targetCharge) ? targetCharge : null,
+      targetVector: unitTransport,
+      acceptanceEligible: false,
+      sourceAccepted: normalizedWakeChargeAccepted,
+      limitation:
+        "The normalized boundary charge is accepted for the route-local wake action-kernel charge; it is not a transport/recoil partition coefficient.",
+    }),
+  ];
+  const rejectedRows = candidateSources.filter(
+    (row) => row.acceptedPartitionCoefficientSourcePass !== true
+  );
+  const currentSourceRejectedPass =
+    candidateSources.length > 0 && rejectedRows.length === candidateSources.length;
+
+  return {
+    rowId: partitionRow.rowId ?? null,
+    status: currentSourceRejectedPass
+      ? "partition_transport_recoil_coefficient_sources_rejected_for_route"
+      : "partition_transport_recoil_coefficient_source_candidate_present",
+    incomingPairKey: partitionRow.incomingPairKey ?? null,
+    outgoingPairKey: partitionRow.outgoingPairKey ?? null,
+    continuityRole: partitionRow.continuityRole ?? null,
+    continuityLayer: partitionRow.continuityLayer ?? null,
+    routeRootKey: partitionRow.routeRootKey ?? null,
+    unitTransportAngularMomentum: partitionRow.unitTransportAngularMomentum,
+    unitRecoilAngularMomentum: partitionRow.unitRecoilAngularMomentum,
+    matchedWakeCoefficientRowCount: matchedCoefficientRows.length,
+    wakeContributionVector,
+    halfWakeContributionVector,
+    currentSourceRejectedPass,
+    candidateSources,
+  };
+}
+
+function createPartitionCoefficientCandidateSource({
+  sourceId,
+  status,
+  candidateVector,
+  targetVector,
+  acceptanceEligible,
+  sourceAccepted,
+  limitation,
+}) {
+  const residualVector =
+    isFiniteVector(candidateVector) && isFiniteVector(targetVector)
+      ? subtractVectors(candidateVector, targetVector)
+      : null;
+  const residualNorm = residualVector ? vectorNorm(residualVector) : null;
+  const exactVectorMatchPass =
+    Number.isFinite(residualNorm) &&
+    residualNorm <= POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE;
+  return {
+    sourceId,
+    status,
+    sourceAccepted,
+    acceptanceEligible,
+    candidateVector,
+    targetVector,
+    residualVector,
+    residualNorm,
+    exactVectorMatchPass,
+    acceptedPartitionCoefficientSourcePass:
+      acceptanceEligible === true && sourceAccepted === true && exactVectorMatchPass,
+    limitation,
+  };
+}
+
+function createPhysicalPartitionCarrierAssignmentRow(partitionRow) {
+  const carrierAssignmentRowPass =
+    partitionRow.unitBalancePass === true &&
+    isFiniteVector(partitionRow.unitTransportAngularMomentum) &&
+    isFiniteVector(partitionRow.unitRecoilAngularMomentum) &&
+    Number.isFinite(partitionRow.unitBalanceResidualNorm) &&
+    partitionRow.unitBalanceResidualNorm <= POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE;
+
+  return {
+    rowId: partitionRow.rowId ?? null,
+    status: carrierAssignmentRowPass
+      ? "physical_partition_unit_transport_recoil_carrier_pair_populated"
+      : "physical_partition_unit_transport_recoil_carrier_pair_missing",
+    incomingPairKey: partitionRow.incomingPairKey ?? null,
+    outgoingPairKey: partitionRow.outgoingPairKey ?? null,
+    continuityRole: partitionRow.continuityRole ?? null,
+    continuityLayer: partitionRow.continuityLayer ?? null,
+    routeRootKey: partitionRow.routeRootKey ?? null,
+    continuityPointKind: partitionRow.continuityPointKind ?? null,
+    endpointPairCompensationVector:
+      partitionRow.endpointPairCompensationVector ?? null,
+    endpointPairCompensationNorm:
+      partitionRow.endpointPairCompensationNorm ?? null,
+    endpointCompensationNormUpperBound:
+      partitionRow.endpointCompensationNormUpperBound ?? null,
+    endpointPointNormUpperBound: partitionRow.endpointPointNormUpperBound ?? null,
+    unitEndpointPairAngularMomentumNorm:
+      partitionRow.unitEndpointPairAngularMomentumNorm ?? null,
+    unitAngularMomentumNormUpperBound:
+      partitionRow.unitAngularMomentumNormUpperBound ?? null,
+    unitRootEnergyIncrement: partitionRow.unitRootEnergyIncrement ?? null,
+    routeLeverArm: partitionRow.routeLeverArm ?? null,
+    carrierPair: "unit_transport_recoil",
+    unitTransportAngularMomentum: partitionRow.unitTransportAngularMomentum,
+    unitRecoilAngularMomentum: partitionRow.unitRecoilAngularMomentum,
+    unitBalanceResidual: partitionRow.unitBalanceResidual,
+    unitBalanceResidualNorm: partitionRow.unitBalanceResidualNorm,
+    carrierAssignmentRowPass,
+    retainedLimitation:
+      "This row assigns the existing unit transport/recoil balance as a carrier pair only. It does not supply physical coefficients, retained force/torque rows, wake-energy routing, or stability.",
+  };
+}
+
+function createRetainedVectorPartitionPayloadRow(routePayloadRow) {
+  const transport = routePayloadRow?.transportAngularMomentumIncrement ?? null;
+  const recoil = routePayloadRow?.recoilChannelData ?? null;
+  const unitTransportAngularMomentum =
+    transport?.unitEndpointPairAngularMomentum ?? null;
+  const unitRecoilAngularMomentum = recoil?.unitRecoilAngularMomentum ?? null;
+  const unitBalanceResidual =
+    isFiniteVector(unitTransportAngularMomentum) &&
+    isFiniteVector(unitRecoilAngularMomentum)
+      ? addVectors(unitTransportAngularMomentum, unitRecoilAngularMomentum)
+      : null;
+  const unitBalanceResidualNorm = unitBalanceResidual
+    ? vectorNorm(unitBalanceResidual)
+    : null;
+  const unitBalancePass =
+    transport?.transportAngularMomentumPass === true &&
+    recoil?.recoilChannelPass === true &&
+    Number.isFinite(unitBalanceResidualNorm) &&
+    unitBalanceResidualNorm <= POINT_EVENT_TRANSPORT_GEOMETRY_TOLERANCE;
+  return {
+    rowId: routePayloadRow?.rowId ?? null,
+    status: unitBalancePass
+      ? "route_local_unit_transport_recoil_vector_balance_populated"
+      : "route_local_unit_transport_recoil_vector_balance_missing",
+    incomingPairKey: routePayloadRow?.incomingPairKey ?? null,
+    outgoingPairKey: routePayloadRow?.outgoingPairKey ?? null,
+    continuityRole: routePayloadRow?.continuityRole ?? null,
+    continuityLayer: routePayloadRow?.continuityLayer ?? null,
+    routeRootKey: routePayloadRow?.routeRootKey ?? null,
+    continuityPointKind: transport?.continuityPointKind ?? null,
+    endpointPairCompensationVector:
+      transport?.endpointPairCompensationVector ?? null,
+    endpointPairCompensationNorm:
+      transport?.endpointPairCompensationNorm ?? null,
+    endpointCompensationNormUpperBound:
+      transport?.endpointCompensationNormUpperBound ?? null,
+    endpointPointNormUpperBound: transport?.endpointPointNormUpperBound ?? null,
+    unitEndpointPairAngularMomentumNorm:
+      transport?.unitEndpointPairAngularMomentumNorm ?? null,
+    unitAngularMomentumNormUpperBound:
+      transport?.unitAngularMomentumNormUpperBound ?? null,
+    unitRootEnergyIncrement: recoil?.unitRootEnergyIncrement ?? null,
+    routeLeverArm: transport?.leverArm ?? null,
+    unitTransportAngularMomentum,
+    unitRecoilAngularMomentum,
+    unitBalanceResidual,
+    unitBalanceResidualNorm,
+    unitBalancePass,
+    retainedLimitation:
+      "This row uses the unit transport and unit recoil diagnostics from the compensated route payload. It does not choose a physical partition carrier or accepted coefficient.",
   };
 }
 
@@ -17281,7 +20447,7 @@ function selectNextCompensatedPayloadClosureTarget({
           return {
             payload: "wake_payload",
             reason:
-              "The branch-transport route is payload-complete, and the wake charge, route-authorized pullback-domain, normalization-convention, accepted chart-restricted crossing-domain rows, route-gradient candidate, finite endpoint-clear kernel-gradient candidate evaluation, Master-Equation characteristic-tail pair-radial pullback target, side-split radial-constrained boundary-charge solve, delta_eta(g) quadrature target, single-coefficient sign-pattern candidate, layer-polarity assignment candidate, and source/receiver polarity row-binding candidate are populated, but accepted layer-polarity assignment, accepted source/receiver polarity metadata, accepted normalized action-kernel charge, retained crossing-domain pullback, and wake energy increment still block the same route-authorized retained event.",
+              "The branch-transport route is payload-complete, and the wake payload has route-local normalized action-kernel wake charge, route-authorized retained crossing-domain pullback, polarity/coefficient evidence, evaluated action-boundary derivative, exact formal same-event energy carrier rows, and accepted energy orientation populated. Accepted omega_tx source, derived sigma*hbar action scale, and accepted wake-energy increment law still block the same route-authorized retained event.",
           };
         }
         const firstBlockingPayload = payloadRows.find((row) =>
@@ -17396,6 +20562,14 @@ function finiteOrNull(value) {
 
 function unionStrings(values) {
   return [...new Set(values)].sort();
+}
+
+function uniqueSortedNumbers(values) {
+  return [...new Set(values)].sort((left, right) => left - right);
+}
+
+function sumVectors(vectors) {
+  return vectors.reduce((sum, vector) => addVectors(sum, vector), zeroVector());
 }
 
 function findActiveRootLedgerRowByKey(rows, rootKey) {
@@ -18696,6 +21870,58 @@ function pathHistoryRowToCausalSegment(row) {
   };
 }
 
+function createMidpointRootLedgerReplayContext({ client, replayContext }) {
+  if (
+    !client ||
+    !replayContext?.layerPathKeys ||
+    !Array.isArray(replayContext?.pathRows)
+  ) {
+    return null;
+  }
+  return {
+    client,
+    layerPathKeys: replayContext.layerPathKeys,
+    pathRowsByPathKey: createPathRowsByPathKey(replayContext.pathRows),
+  };
+}
+
+function createPathRowsByPathKey(pathRows) {
+  const rowsByPathKey = new Map();
+  for (const row of pathRows ?? []) {
+    const rows = rowsByPathKey.get(row.pathKey) ?? [];
+    rows.push(row);
+    rowsByPathKey.set(row.pathKey, rows);
+  }
+  for (const rows of rowsByPathKey.values()) {
+    rows.sort((left, right) => left.startTime - right.startTime);
+  }
+  return rowsByPathKey;
+}
+
+function parseLayerPairKey(pairKey) {
+  const [sourceLayer, receiverLayer, ...extraParts] = String(pairKey ?? "").split(
+    "->"
+  );
+  if (!sourceLayer || !receiverLayer || extraParts.length > 0) {
+    return null;
+  }
+  return { sourceLayer, receiverLayer };
+}
+
+function findPathHistorySegmentAtTime({ pathRowsByPathKey, pathKey, time }) {
+  if (!Number.isFinite(pathKey) || !Number.isFinite(time)) {
+    return null;
+  }
+  const rows = pathRowsByPathKey.get(pathKey) ?? [];
+  return (
+    rows.find(
+      (row) =>
+        row.startTime - ROOT_TOLERANCE <= time &&
+        time <= row.endTime + ROOT_TOLERANCE
+    ) ?? null
+  );
+}
+
 async function createLayerTimeWindowTorqueStream({
   client,
   selectedCase,
@@ -18973,6 +22199,11574 @@ function createClosureSummary(cases, retainedLineagePhaseProbe) {
   };
 }
 
+async function createRetainedEventDomainForkSummary({
+  retainedLineagePhaseProbe,
+  client,
+}) {
+  const transitionClassification =
+    retainedLineagePhaseProbe?.binaryToBinaryPathHistoryProbe?.ledgerDetailReplay
+      ?.transitionClassification ?? null;
+  const retainedRowSetIdentity =
+    transitionClassification?.retainedRowSetIdentity ?? null;
+  const retainedChartFeasibility =
+    transitionClassification?.retainedHingePointProbe
+      ?.preferredMiddleFieldSpeedHingeCapture?.retainedChartFeasibility ?? null;
+  const hingeEventRowSetIdentity =
+    retainedChartFeasibility?.compensatedPayloadInventory
+      ?.hingeEventRowSetIdentity ?? null;
+  const wakeEnergyIncrementTarget =
+    retainedChartFeasibility?.wakePayloadDiagnostic?.wakeEnergyIncrementTarget ??
+    null;
+  const actionBoundaryWakeEnergyLawCandidate =
+    wakeEnergyIncrementTarget?.actionBoundaryWakeEnergyLawCandidate ?? null;
+  const actionScaleExclusionSummary =
+    actionBoundaryWakeEnergyLawCandidate?.actionScaleDerivationTarget
+      ?.independentSourceExclusionSummary ?? null;
+  const omegaSameEventDependencyDiagnostic =
+    wakeEnergyIncrementTarget?.omegaSameEventDependencyDiagnostic ?? null;
+  const retainedEventGeometryBlockerDiagnostic =
+    omegaSameEventDependencyDiagnostic?.retainedEventGeometryBlockerDiagnostic ??
+    null;
+  const globalDomainObstructionTarget =
+    retainedEventGeometryBlockerDiagnostic
+      ?.routeAuthorizedEndpointProviderGlobalDomainObstructionTarget ?? null;
+  const fullPointEventRuleLiftTarget =
+    globalDomainObstructionTarget?.fullPointEventRuleLiftTarget ?? null;
+  const positiveWidthRetainedDomainLiftTarget =
+    globalDomainObstructionTarget?.positiveWidthRetainedDomainLiftTarget ?? null;
+  const endpointProviderGlobalRetainedTransportLiftTarget =
+    globalDomainObstructionTarget?.endpointProviderGlobalRetainedTransportLiftTarget ??
+    null;
+  const physicalRetainedProviderTransportLawTarget =
+    endpointProviderGlobalRetainedTransportLiftTarget
+      ?.physicalRetainedProviderTransportLawTarget ?? null;
+  const midpointReplayContext = createMidpointRootLedgerReplayContext({
+    client,
+    replayContext:
+      retainedLineagePhaseProbe?.binaryToBinaryPathHistoryProbe
+        ?.pathHistoryReplayContext ?? null,
+  });
+  const actionScaleSearchExhausted =
+    actionScaleExclusionSummary?.currentSearchExhaustedPass === true &&
+    actionScaleExclusionSummary?.acceptedIndependentActionScaleSourcePass !== true;
+  const globalEventOrDomainAcceptedPass =
+    fullPointEventRuleLiftTarget?.acceptedFullPointEventRulePass === true ||
+    positiveWidthRetainedDomainLiftTarget?.liftPass === true ||
+    endpointProviderGlobalRetainedTransportLiftTarget
+      ?.acceptedGlobalRetainedTransportLiftPass === true;
+  const localEventCandidatePopulatedPass =
+    globalDomainObstructionTarget?.localEndpointProviderAcceptedPass === true &&
+    fullPointEventRuleLiftTarget?.fullPointEventRuleCandidatePass === true &&
+    positiveWidthRetainedDomainLiftTarget?.routeRestrictedPositiveWidthPass === true;
+  const forkBlockers = [
+    fullPointEventRuleLiftTarget?.acceptedFullPointEventRulePass === true
+      ? null
+      : "accepted_full_point_event_rule_missing",
+    positiveWidthRetainedDomainLiftTarget?.liftPass === true
+      ? null
+      : "positive_width_common_retained_domain_missing",
+    endpointProviderGlobalRetainedTransportLiftTarget
+      ?.acceptedGlobalRetainedTransportLiftPass === true
+      ? null
+      : "accepted_global_retained_transport_lift_missing",
+    physicalRetainedProviderTransportLawTarget
+      ?.acceptedPhysicalRetainedProviderTransportLawPass === true
+      ? null
+      : "accepted_physical_provider_transport_law_missing",
+    actionScaleExclusionSummary?.acceptedIndependentActionScaleSourcePass === true
+      ? null
+      : actionScaleSearchExhausted
+        ? "new_independent_action_scale_law_required"
+        : "action_scale_source_search_incomplete",
+  ].filter(Boolean);
+  const retainedDomainSideBlockerProfile =
+    createRetainedDomainSideBlockerProfile(positiveWidthRetainedDomainLiftTarget);
+  const retainedRouteCompensationProfile =
+    createRetainedRouteCompensationProfile(positiveWidthRetainedDomainLiftTarget);
+  const retainedGlobalTransportDeclarationTarget =
+    createRetainedGlobalTransportDeclarationTarget({
+      endpointProviderGlobalRetainedTransportLiftTarget,
+      physicalRetainedProviderTransportLawTarget,
+      retainedRouteCompensationProfile,
+    });
+  const retainedForkProofRouteTarget = createRetainedForkProofRouteTarget({
+    fullPointEventRuleLiftTarget,
+    retainedDomainSideBlockerProfile,
+    retainedRouteCompensationProfile,
+    retainedGlobalTransportDeclarationTarget,
+    actionScaleSearchExhausted,
+  });
+  const retainedRowSetIdentityObstructionTarget =
+    await createRetainedRowSetIdentityObstructionTarget({
+      transitionClassification,
+      retainedRowSetIdentity,
+      hingeEventRowSetIdentity,
+      retainedForkProofRouteTarget,
+      retainedGlobalTransportDeclarationTarget,
+      midpointReplayContext,
+    });
+
+  return {
+    schema: "aaa-tri-binary-retained-event-domain-fork-summary.v1",
+    status: globalDomainObstructionTarget == null
+      ? "retained_event_domain_fork_not_populated"
+      : globalEventOrDomainAcceptedPass
+        ? "retained_event_domain_fork_global_event_or_domain_candidate_populated_formal_acceptance_blocked"
+        : actionScaleSearchExhausted
+          ? "retained_event_domain_fork_global_event_domain_blocked_action_scale_search_exhausted"
+          : "retained_event_domain_fork_global_event_domain_blocked_action_scale_search_open",
+    claimLevel:
+      "top-level retained event/domain fork summary; not retained branch acceptance",
+    selectedCaseId: retainedLineagePhaseProbe?.selectedCaseId ?? null,
+    retainedBranchClaim: false,
+    retainedChartFeasibilityStatus: retainedChartFeasibility?.status ?? null,
+    localEventCandidatePopulatedPass,
+    localEndpointProviderAcceptedPass:
+      globalDomainObstructionTarget?.localEndpointProviderAcceptedPass === true,
+    routeRootKey: globalDomainObstructionTarget?.routeRootKey ?? null,
+    fullPointEventRuleLiftStatus: fullPointEventRuleLiftTarget?.status ?? null,
+    fullPointEventRuleCandidatePass:
+      fullPointEventRuleLiftTarget?.fullPointEventRuleCandidatePass === true,
+    acceptedFullPointEventRulePass:
+      fullPointEventRuleLiftTarget?.acceptedFullPointEventRulePass === true,
+    positiveWidthRetainedDomainLiftStatus:
+      positiveWidthRetainedDomainLiftTarget?.status ?? null,
+    routeRestrictedPositiveWidthPass:
+      positiveWidthRetainedDomainLiftTarget?.routeRestrictedPositiveWidthPass === true,
+    allPairPositiveWidthCommonRetainedTimeDomainPass:
+      positiveWidthRetainedDomainLiftTarget
+        ?.allPairPositiveWidthCommonRetainedTimeDomainPass === true,
+    positiveWidthRetainedDomainLiftPass:
+      positiveWidthRetainedDomainLiftTarget?.liftPass === true,
+    endpointProviderGlobalRetainedTransportLiftStatus:
+      endpointProviderGlobalRetainedTransportLiftTarget?.status ?? null,
+    acceptedGlobalRetainedTransportLiftPass:
+      endpointProviderGlobalRetainedTransportLiftTarget
+        ?.acceptedGlobalRetainedTransportLiftPass === true,
+    physicalRetainedProviderTransportLawStatus:
+      physicalRetainedProviderTransportLawTarget?.status ?? null,
+    acceptedPhysicalRetainedProviderTransportLawPass:
+      physicalRetainedProviderTransportLawTarget
+        ?.acceptedPhysicalRetainedProviderTransportLawPass === true,
+    actionScaleIndependentSourceExclusionStatus:
+      actionScaleExclusionSummary?.status ?? null,
+    currentActionScaleSearchExhaustedPass: actionScaleSearchExhausted,
+    acceptedIndependentActionScaleSourcePass:
+      actionScaleExclusionSummary?.acceptedIndependentActionScaleSourcePass === true,
+    actionScaleRejectedFamilyCount:
+      actionScaleExclusionSummary?.rejectedFamilyCount ?? null,
+    actionScaleIncompleteOrUntestedFamilyCount:
+      actionScaleExclusionSummary?.incompleteOrUntestedFamilyCount ?? null,
+    retainedDomainSideBlockerProfile,
+    retainedRouteCompensationProfile,
+    retainedForkProofRouteTarget,
+    retainedGlobalTransportDeclarationTarget,
+    retainedRowSetIdentityObstructionTarget,
+    nextClosureRoute: globalEventOrDomainAcceptedPass
+      ? "retained_payload_energy_acceptance"
+      : actionScaleSearchExhausted
+        ? "global_retained_full_point_event_or_positive_width_common_domain_or_new_independent_action_scale_law"
+        : "complete_action_scale_source_exclusion_or_global_domain_lift",
+    forkBlockers,
+    retainedLimitation:
+      "The local route-authorized point event is populated, but global retained promotion still needs an accepted full point-event rule or all-pair positive-width common retained domain. The current finite sigma*hbar action-scale source families are exhausted, so a new action-scale law should not displace the global event/domain fork unless it is genuinely independent.",
+  };
+}
+
+function createRetainedDomainSideBlockerProfile(
+  positiveWidthRetainedDomainLiftTarget
+) {
+  const pairSideRows = positiveWidthRetainedDomainLiftTarget?.pairSideRows ?? [];
+  const pointOnlyPairKeys =
+    positiveWidthRetainedDomainLiftTarget?.pointOnlyPairKeys ?? [];
+  const leftMissingPairKeys =
+    positiveWidthRetainedDomainLiftTarget?.leftMissingPairKeys ?? [];
+  const rightMissingPairKeys =
+    positiveWidthRetainedDomainLiftTarget?.rightMissingPairKeys ?? [];
+  const bothSideMissingPairKeys = pairSideRows
+    .filter(
+      (row) =>
+        row.leftSidePositiveWidthPass !== true &&
+        row.rightSidePositiveWidthPass !== true
+    )
+    .map((row) => row.pairKey);
+  const leftOnlyMissingPairKeys = leftMissingPairKeys.filter(
+    (pairKey) => !rightMissingPairKeys.includes(pairKey)
+  );
+  const rightOnlyMissingPairKeys = rightMissingPairKeys.filter(
+    (pairKey) => !leftMissingPairKeys.includes(pairKey)
+  );
+  const allPairPositiveWidthCommonRetainedTimeDomainPass =
+    positiveWidthRetainedDomainLiftTarget
+      ?.allPairPositiveWidthCommonRetainedTimeDomainPass === true;
+  const pointOnlyDiagonalPairKeys = pointOnlyPairKeys.filter((pairKey) =>
+    isDiagonalLayerPairKey(pairKey)
+  );
+  const sideRows = pairSideRows.map((row) => ({
+    pairKey: row.pairKey,
+    incidence: row.incidence ?? null,
+    rootIntervalCount: row.rootIntervalCount ?? null,
+    maxRootIntervalWidth: finiteOrNull(row.maxRootIntervalWidth),
+    leftSidePositiveWidthPass: row.leftSidePositiveWidthPass === true,
+    leftSideMaxWidth: finiteOrNull(row.leftSideMaxWidth),
+    rightSidePositiveWidthPass: row.rightSidePositiveWidthPass === true,
+    rightSideMaxWidth: finiteOrNull(row.rightSideMaxWidth),
+  }));
+
+  return {
+    schema: "aaa-tri-binary-retained-domain-side-blocker-profile.v1",
+    status: positiveWidthRetainedDomainLiftTarget == null
+      ? "retained_domain_side_blocker_profile_not_populated"
+      : allPairPositiveWidthCommonRetainedTimeDomainPass
+        ? "retained_domain_side_blocker_profile_all_pair_side_domain_clear"
+        : "retained_domain_side_blocker_profile_all_pair_side_domain_blocked",
+    claimLevel:
+      "top-level profile of all-pair side-domain blockers; not positive-width retained-domain acceptance",
+    allPairPositiveWidthCommonRetainedTimeDomainPass,
+    positiveWidthRetainedDomainLiftStatus:
+      positiveWidthRetainedDomainLiftTarget?.status ?? null,
+    retainedTimeDomainMaxCommonWidth:
+      positiveWidthRetainedDomainLiftTarget?.retainedTimeDomainMaxCommonWidth ??
+      null,
+    leftAllPairSideCommonWidth:
+      positiveWidthRetainedDomainLiftTarget?.leftAllPairSideCommonWidth ?? null,
+    rightAllPairSideCommonWidth:
+      positiveWidthRetainedDomainLiftTarget?.rightAllPairSideCommonWidth ?? null,
+    pairCount: pairSideRows.length,
+    leftSidePositivePairCount:
+      positiveWidthRetainedDomainLiftTarget?.leftSidePositivePairCount ?? null,
+    rightSidePositivePairCount:
+      positiveWidthRetainedDomainLiftTarget?.rightSidePositivePairCount ?? null,
+    pointOnlyPairKeys,
+    pointOnlyDiagonalPairKeys,
+    leftMissingPairKeys,
+    rightMissingPairKeys,
+    bothSideMissingPairKeys,
+    leftOnlyMissingPairKeys,
+    rightOnlyMissingPairKeys,
+    minimalDomainLiftObligations: [
+      pointOnlyDiagonalPairKeys.length > 0
+        ? {
+            obligation:
+              "supply_positive_side_width_for_point_only_diagonal_pairs_or_accept_full_point_event_rule",
+            pairKeys: pointOnlyDiagonalPairKeys,
+          }
+        : null,
+      leftOnlyMissingPairKeys.length > 0
+        ? {
+            obligation: "supply_left_side_width_for_all_pair_intersection",
+            pairKeys: leftOnlyMissingPairKeys,
+          }
+        : null,
+      rightOnlyMissingPairKeys.length > 0
+        ? {
+            obligation: "supply_right_side_width_for_all_pair_intersection",
+            pairKeys: rightOnlyMissingPairKeys,
+          }
+        : null,
+    ].filter(Boolean),
+    rows: sideRows,
+    retainedLimitation:
+      "The all-pair retained-domain lift is blocked by side-domain intersection, not by route-restricted width alone. Point-only diagonal rows require either positive side width on the common retained domain or an accepted full point-event rule.",
+  };
+}
+
+function createRetainedRouteCompensationProfile(
+  positiveWidthRetainedDomainLiftTarget
+) {
+  const routeRows = positiveWidthRetainedDomainLiftTarget?.routeRows ?? [];
+  const compensationRows = routeRows.filter(
+    (row) => row.compensationRequired === true
+  );
+  const zeroSlackRows = routeRows.filter((row) => row.zeroSlackRoutePass === true);
+
+  return {
+    schema: "aaa-tri-binary-retained-route-compensation-profile.v1",
+    status: positiveWidthRetainedDomainLiftTarget == null
+      ? "retained_route_compensation_profile_not_populated"
+      : compensationRows.length > 0
+        ? "retained_route_compensation_profile_same_source_compensation_required"
+        : "retained_route_compensation_profile_zero_slack",
+    claimLevel:
+      "top-level profile of branch-route compensation blockers; not global retained transport acceptance",
+    routeRestrictedPositiveWidthPass:
+      positiveWidthRetainedDomainLiftTarget?.routeRestrictedPositiveWidthPass === true,
+    zeroSlackBranchRoutePass:
+      positiveWidthRetainedDomainLiftTarget?.zeroSlackBranchRoutePass === true,
+    routeCompensationRequired:
+      positiveWidthRetainedDomainLiftTarget?.routeCompensationRequired === true,
+    evaluatedRouteCount:
+      positiveWidthRetainedDomainLiftTarget?.evaluatedRouteCount ?? null,
+    zeroSlackRouteCount: zeroSlackRows.length,
+    compensationRequiredMatchCount:
+      positiveWidthRetainedDomainLiftTarget?.compensationRequiredMatchCount ??
+      null,
+    minRouteOneSidedWidth:
+      positiveWidthRetainedDomainLiftTarget?.minRouteOneSidedWidth ?? null,
+    maxRequiredEndpointCompensationNorm:
+      positiveWidthRetainedDomainLiftTarget?.maxRequiredEndpointCompensationNorm ??
+      null,
+    maxRequiredPhaseCompensation:
+      positiveWidthRetainedDomainLiftTarget?.maxRequiredPhaseCompensation ?? null,
+    compensationRouteKeys: compensationRows.map((row) => ({
+      incomingPairKey: row.incomingPairKey ?? null,
+      outgoingPairKey: row.outgoingPairKey ?? null,
+      continuityRole: row.continuityRole ?? null,
+      routeRootKey: row.routeRootKey ?? null,
+      minOneSidedRouteWidth: finiteOrNull(row.minOneSidedRouteWidth),
+      requiredEndpointCompensationNorm: finiteOrNull(
+        row.requiredEndpointCompensationNorm
+      ),
+      requiredClockRetune: finiteOrNull(row.requiredClockRetune),
+      requiredPhaseCompensation: finiteOrNull(row.requiredPhaseCompensation),
+    })),
+    zeroSlackRouteKeys: zeroSlackRows.map((row) => ({
+      incomingPairKey: row.incomingPairKey ?? null,
+      outgoingPairKey: row.outgoingPairKey ?? null,
+      continuityRole: row.continuityRole ?? null,
+      routeRootKey: row.routeRootKey ?? null,
+      minOneSidedRouteWidth: finiteOrNull(row.minOneSidedRouteWidth),
+    })),
+    retainedLimitation:
+      "The current route has positive one-sided width on each route row, but one same-source route still requires endpoint/clock/phase compensation. That compensation must become zero-slack transport or an accepted physical provider-transport law before global retained transport can close.",
+  };
+}
+
+function createRetainedForkProofRouteTarget({
+  fullPointEventRuleLiftTarget,
+  retainedDomainSideBlockerProfile,
+  retainedRouteCompensationProfile,
+  retainedGlobalTransportDeclarationTarget,
+  actionScaleSearchExhausted,
+}) {
+  const fullPointEventRuleCandidatePass =
+    fullPointEventRuleLiftTarget?.fullPointEventRuleCandidatePass === true;
+  const routeAuthorizedPointEventDiagonalIdentityPass =
+    fullPointEventRuleLiftTarget?.routeAuthorizedPointEventDiagonalIdentityPass ===
+    true;
+  const fullPointEventDiagonalIdentityRuleTarget =
+    fullPointEventRuleLiftTarget?.fullPointEventDiagonalIdentityRuleTarget ?? null;
+  const fullPointEventPayloadCoverageTarget =
+    fullPointEventRuleLiftTarget?.fullPointEventPayloadCoverageTarget ?? null;
+  const fullPointEventRuleDeclarationTarget =
+    fullPointEventRuleLiftTarget?.fullPointEventRuleDeclarationTarget ?? null;
+  const endpointProviderAssistedGeometryGlobalityTarget =
+    createEndpointProviderAssistedGeometryGlobalityTarget({
+      retainedGlobalTransportDeclarationTarget,
+      retainedRouteCompensationProfile,
+    });
+  const positiveWidthDomainBlocked =
+    retainedDomainSideBlockerProfile?.status ===
+    "retained_domain_side_blocker_profile_all_pair_side_domain_blocked";
+  const sameSourceRouteCompensationRequired =
+    retainedRouteCompensationProfile?.routeCompensationRequired === true;
+  const fullPointEventRouteCurrentlyPreferred =
+    positiveWidthDomainBlocked &&
+    fullPointEventRuleCandidatePass &&
+    routeAuthorizedPointEventDiagonalIdentityPass;
+  const fullScopeBlockers =
+    fullPointEventRuleLiftTarget?.fullPointEventRuleBlockers ?? [];
+  const positiveWidthDomainAlternativeBlockers =
+    fullPointEventRuleLiftTarget?.positiveWidthDomainAlternativeBlockers ?? [];
+  const sideDomainObligations =
+    retainedDomainSideBlockerProfile?.minimalDomainLiftObligations ?? [];
+
+  return {
+    schema: "aaa-tri-binary-retained-fork-proof-route-target.v1",
+    status: fullPointEventRuleLiftTarget == null
+      ? "retained_fork_proof_route_target_not_populated"
+      : fullPointEventRouteCurrentlyPreferred
+        ? "retained_fork_proof_route_full_point_event_rule_preferred_side_domain_blocked"
+        : positiveWidthDomainBlocked
+          ? "retained_fork_proof_route_side_domain_blocked_full_event_incomplete"
+          : "retained_fork_proof_route_positive_width_domain_still_live",
+    claimLevel:
+      "current proof-route target for the retained event/domain fork; not retained branch acceptance",
+    retainedBranchClaim: false,
+    fullPointEventRouteCurrentlyPreferred,
+    positiveWidthDomainBlocked,
+    fullPointEventRuleCandidatePass,
+    routeAuthorizedPointEventDiagonalIdentityPass,
+    fullPointEventRuleLiftStatus: fullPointEventRuleLiftTarget?.status ?? null,
+    fullPointEventDiagonalIdentityRuleStatus:
+      fullPointEventDiagonalIdentityRuleTarget?.status ?? null,
+    routeAuthorizedDiagonalEvidence:
+      fullPointEventDiagonalIdentityRuleTarget?.dischargedCandidateEvidence ?? [],
+    pointOnlyDiagonalPairKeys:
+      retainedDomainSideBlockerProfile?.pointOnlyDiagonalPairKeys ?? [],
+    sideDomainObligations,
+    sameSourceRouteCompensationRequired,
+    retainedRouteCompensationStatus:
+      retainedRouteCompensationProfile?.status ?? null,
+    compensationRouteKeys:
+      retainedRouteCompensationProfile?.compensationRouteKeys ?? [],
+    fullPointEventPayloadCoverageStatus:
+      fullPointEventPayloadCoverageTarget?.status ?? null,
+    fullPointEventPayloadPartialCoveragePass:
+      fullPointEventPayloadCoverageTarget?.partialCoveragePass === true,
+    fullPointEventRuleDeclarationStatus:
+      fullPointEventRuleDeclarationTarget?.status ?? null,
+    firstOpenFullPointEventRuleSpecificBlocker:
+      fullPointEventRuleDeclarationTarget?.firstOpenRuleSpecificBlocker ??
+      null,
+    fullPointEventRuleSpecificBlockerCount:
+      fullPointEventRuleDeclarationTarget?.ruleSpecificBlockerCount ?? null,
+    firstOpenFullPointEventRuleSpecificBlockerDetail:
+      fullPointEventRuleDeclarationTarget?.firstOpenRuleSpecificBlocker ===
+      "endpoint_provider_assisted_geometry_not_global_retained_transport"
+        ? endpointProviderAssistedGeometryGlobalityTarget
+            ?.firstOpenGlobalitySubBlocker ?? null
+        : null,
+    fullPointEventRuleDeclarationTarget,
+    endpointProviderAssistedGeometryGlobalityStatus:
+      endpointProviderAssistedGeometryGlobalityTarget?.status ?? null,
+    endpointProviderAssistedGeometryGlobalityTarget,
+    retainedPayloadRowsPass:
+      fullPointEventRuleLiftTarget?.retainedPayloadRowsPass === true,
+    acceptedRetainedEnergyRoutingPass:
+      fullPointEventRuleLiftTarget?.acceptedRetainedEnergyRoutingPass === true,
+    acceptedFullPointEventRulePass:
+      fullPointEventRuleLiftTarget?.acceptedFullPointEventRulePass === true,
+    currentActionScaleSearchExhaustedPass: actionScaleSearchExhausted === true,
+    fullPointEventRuleSpecificObligations: fullScopeBlockers,
+    positiveWidthDomainAlternativeBlockers,
+    proofRouteObligations: fullPointEventRouteCurrentlyPreferred
+      ? fullScopeBlockers
+      : sideDomainObligations.map((row) => row.obligation),
+    retainedLimitation:
+      "The current evidence favors the full point-event-rule route over a positive-width side-domain extension because the route-authorized diagonal identity and off-diagonal point-torque evidence are populated, while the all-pair side-domain intersection is blocked by point-only diagonal rows. Positive-width common-domain failure remains an alternate side-domain blocker, not a blocker in the full point-event rule formula. This preference is a proof-route target only; full retained acceptance still needs global transport, row-set identity, payload, energy-routing, and the full point-event rule.",
+  };
+}
+
+function createEndpointProviderAssistedGeometryGlobalityTarget({
+  retainedGlobalTransportDeclarationTarget,
+  retainedRouteCompensationProfile,
+}) {
+  const target = retainedGlobalTransportDeclarationTarget ?? null;
+  const zeroSlackBranchTransportRoutePass =
+    target?.sampledZeroSlackBranchRoutePass === true &&
+    target?.sameSourceRouteCompensationRequired !== true;
+  const physicalProviderTransportLawRoutePass =
+    target?.acceptedPhysicalRetainedProviderTransportLawPass === true;
+  const globalTransportDeclarationRoutePass =
+    target?.acceptedGlobalRetainedTransportLiftPass === true;
+  const zeroSlackRouteBlockers = [
+    target?.sampledZeroSlackBranchRoutePass === true
+      ? null
+      : "sampled_zero_slack_branch_route_missing",
+    target?.sameSourceRouteCompensationRequired === true
+      ? "same_source_route_compensation_required"
+      : null,
+  ].filter(Boolean);
+  const physicalProviderLawBlockers =
+    target?.physicalProviderAcceptanceBlockers ?? [];
+  const globalDeclarationBlockers = target?.declarationBlockers ?? [];
+  const globalTransportAcceptanceBlockers =
+    target?.globalTransportAcceptanceBlockers ?? [];
+  const firstOpenGlobalitySubBlocker =
+    target?.firstOpenTransportBlocker ??
+    physicalProviderLawBlockers[0] ??
+    zeroSlackRouteBlockers[0] ??
+    null;
+  const globalitySubBlockers = Array.from(
+    new Set([
+      ...zeroSlackRouteBlockers,
+      ...physicalProviderLawBlockers,
+      ...globalDeclarationBlockers,
+      ...globalTransportAcceptanceBlockers,
+    ])
+  );
+  const providerGeometryPopulated =
+    target?.candidateProviderTransportLawPass === true &&
+    (target?.providerSubstitutionRouteCount ?? 0) > 0;
+  const endpointProviderDomainScopeLiftTarget =
+    createEndpointProviderDomainScopeLiftTarget({
+      retainedGlobalTransportDeclarationTarget: target,
+    });
+
+  return {
+    schema:
+      "aaa-tri-binary-endpoint-provider-assisted-geometry-globality-target.v1",
+    status: target == null
+      ? "endpoint_provider_assisted_geometry_globality_target_not_populated"
+      : globalTransportDeclarationRoutePass
+        ? "endpoint_provider_assisted_geometry_globality_accepted"
+        : providerGeometryPopulated &&
+            target.routeAuthorizedPointEventOnly === true &&
+            target.globalRetainedRowSetIdentityPass !== true
+          ? "endpoint_provider_assisted_geometry_globality_candidate_geometry_populated_scope_and_row_set_blocked"
+          : providerGeometryPopulated
+            ? "endpoint_provider_assisted_geometry_globality_candidate_geometry_populated_declaration_blocked"
+            : target.candidateGlobalTransportLiftPass === true
+              ? "endpoint_provider_assisted_geometry_globality_transport_candidate_populated_provider_law_blocked"
+              : "endpoint_provider_assisted_geometry_globality_candidate_incomplete",
+    claimLevel:
+      "fail-closed proof target that decomposes endpoint-provider-assisted geometry not global retained transport; not retained branch acceptance",
+    retainedBranchClaim: false,
+    blockedFullPointEventRuleSpecificBlocker:
+      "endpoint_provider_assisted_geometry_not_global_retained_transport",
+    firstOpenGlobalitySubBlocker,
+    firstOpenGlobalitySubBlockerDetail:
+      firstOpenGlobalitySubBlocker ===
+      "endpoint_provider_domain_route_authorized_point_event_only"
+        ? endpointProviderDomainScopeLiftTarget
+            .firstOpenDomainScopeDeclarationBlocker
+        : null,
+    globalitySubBlockerCount: globalitySubBlockers.length,
+    globalitySubBlockers,
+    endpointProviderDomainScopeLiftStatus:
+      endpointProviderDomainScopeLiftTarget.status,
+    endpointProviderDomainScopeLiftTarget,
+    candidateGlobalTransportLiftPass:
+      target?.candidateGlobalTransportLiftPass === true,
+    acceptedGlobalRetainedTransportLiftPass:
+      target?.acceptedGlobalRetainedTransportLiftPass === true,
+    routeSubstitutionCoveragePass:
+      target?.routeSubstitutionCoveragePass === true,
+    providerSubstitutionRouteCount:
+      target?.providerSubstitutionRouteCount ?? null,
+    sampledZeroSlackRouteCount: target?.sampledZeroSlackRouteCount ?? null,
+    sampledZeroSlackBranchRoutePass:
+      target?.sampledZeroSlackBranchRoutePass === true,
+    sameSourceRouteCompensationRequired:
+      target?.sameSourceRouteCompensationRequired === true,
+    routeAuthorizedPointEventOnly: target?.routeAuthorizedPointEventOnly === true,
+    candidateProviderTransportLawPass:
+      target?.candidateProviderTransportLawPass === true,
+    acceptedPhysicalRetainedProviderTransportLawPass:
+      physicalProviderTransportLawRoutePass,
+    globalLawDeclarationPass: target?.globalLawDeclarationPass === true,
+    globalRetainedRowSetIdentityPass:
+      target?.globalRetainedRowSetIdentityPass === true,
+    fullPointEventRuleLiftPass: target?.fullPointEventRuleLiftPass === true,
+    positiveWidthRetainedDomainLiftPass:
+      target?.positiveWidthRetainedDomainLiftPass === true,
+    retainedPayloadRowsPass: target?.retainedPayloadRowsPass === true,
+    acceptedRetainedEnergyRoutingPass:
+      target?.acceptedRetainedEnergyRoutingPass === true,
+    acceptedFullPointEventRulePass:
+      target?.acceptedFullPointEventRulePass === true,
+    zeroSlackBranchTransportRoutePass,
+    physicalProviderTransportLawRoutePass,
+    globalTransportDeclarationRoutePass,
+    proofRouteFormula:
+      "endpointProviderGlobalityPass = sampledZeroSlackBranchRoutePass || acceptedPhysicalRetainedProviderTransportLawPass, then global declaration requires globalLawDeclarationPass",
+    zeroSlackRouteBlockers,
+    physicalProviderLawBlockers,
+    globalDeclarationBlockers,
+    globalTransportAcceptanceBlockers,
+    compensationRouteKeys:
+      retainedRouteCompensationProfile?.compensationRouteKeys ?? [],
+    nextTransportClosureRoute:
+      target?.nextTransportClosureRoute ??
+      "declare_physical_provider_transport_on_global_retained_row_set_or_derive_zero_slack_branch_transport",
+    noGoInterpretation:
+      "Current exact endpoint-provider substitution geometry is a route-authorized point-event object. It does not discharge global retained transport unless the same row set gains either sampled zero-slack branch transport or an accepted physical provider-transport law declared with global row-set identity, full-event or positive-width domain support, retained payload rows, energy routing, and accepted full point-event rule.",
+  };
+}
+
+function createEndpointProviderDomainScopeLiftTarget({
+  retainedGlobalTransportDeclarationTarget,
+}) {
+  const target = retainedGlobalTransportDeclarationTarget ?? null;
+  const candidateProviderTransportLawPass =
+    target?.candidateProviderTransportLawPass === true;
+  const routeAuthorizedPointEventOnly =
+    target?.routeAuthorizedPointEventOnly === true;
+  const acceptedPhysicalRetainedProviderTransportLawPass =
+    target?.acceptedPhysicalRetainedProviderTransportLawPass === true;
+  const globalRetainedRowSetIdentityPass =
+    target?.globalRetainedRowSetIdentityPass === true;
+  const fullEventOrDomainSupportPass =
+    target?.fullPointEventRuleLiftPass === true ||
+    target?.positiveWidthRetainedDomainLiftPass === true;
+  const retainedPayloadRowsPass = target?.retainedPayloadRowsPass === true;
+  const acceptedRetainedEnergyRoutingPass =
+    target?.acceptedRetainedEnergyRoutingPass === true;
+  const acceptedFullPointEventRulePass =
+    target?.acceptedFullPointEventRulePass === true;
+  const declarationPrerequisitePass =
+    globalRetainedRowSetIdentityPass &&
+    fullEventOrDomainSupportPass &&
+    retainedPayloadRowsPass &&
+    acceptedRetainedEnergyRoutingPass &&
+    acceptedFullPointEventRulePass;
+  const providerDomainScopeLiftPass =
+    candidateProviderTransportLawPass &&
+    acceptedPhysicalRetainedProviderTransportLawPass &&
+    declarationPrerequisitePass;
+  const domainScopeDeclarationBlockers = [
+    candidateProviderTransportLawPass
+      ? null
+      : "candidate_provider_transport_law_missing",
+    routeAuthorizedPointEventOnly && !acceptedPhysicalRetainedProviderTransportLawPass
+      ? "route_authorized_point_event_scope_requires_global_provider_law_declaration"
+      : null,
+    globalRetainedRowSetIdentityPass
+      ? null
+      : "global_retained_row_set_identity_missing",
+    fullEventOrDomainSupportPass
+      ? null
+      : "full_point_event_rule_or_positive_width_common_retained_domain_missing",
+    retainedPayloadRowsPass
+      ? null
+      : "retained_force_torque_wake_phase_partition_stability_payloads_missing",
+    acceptedRetainedEnergyRoutingPass
+      ? null
+      : "accepted_retained_energy_routing_missing",
+    acceptedFullPointEventRulePass
+      ? null
+      : "accepted_full_point_event_rule_missing",
+  ].filter(Boolean);
+  const declarationPrerequisiteBlockers = domainScopeDeclarationBlockers.filter(
+    (blocker) =>
+      blocker !==
+      "route_authorized_point_event_scope_requires_global_provider_law_declaration"
+  );
+  const firstOpenDomainScopeDeclarationBlocker =
+    declarationPrerequisiteBlockers[0] ??
+    domainScopeDeclarationBlockers[0] ??
+    null;
+
+  return {
+    schema:
+      "aaa-tri-binary-endpoint-provider-domain-scope-lift-target.v1",
+    status: target == null
+      ? "endpoint_provider_domain_scope_lift_target_not_populated"
+      : providerDomainScopeLiftPass
+        ? "endpoint_provider_domain_scope_lift_accepted"
+        : candidateProviderTransportLawPass && routeAuthorizedPointEventOnly
+          ? "endpoint_provider_domain_scope_lift_candidate_provider_law_global_declaration_blocked"
+          : candidateProviderTransportLawPass
+            ? "endpoint_provider_domain_scope_lift_candidate_provider_law_scope_blocked"
+            : "endpoint_provider_domain_scope_lift_candidate_incomplete",
+    claimLevel:
+      "fail-closed target for lifting route-authorized endpoint-provider scope to a global retained provider-transport declaration; not retained branch acceptance",
+    retainedBranchClaim: false,
+    blockedTransportBlocker:
+      "endpoint_provider_domain_route_authorized_point_event_only",
+    candidateProviderTransportLawPass,
+    routeAuthorizedPointEventOnly,
+    acceptedPhysicalRetainedProviderTransportLawPass,
+    providerDomainScopeLiftPass,
+    declarationPrerequisitePass,
+    globalRetainedRowSetIdentityPass,
+    fullEventOrDomainSupportPass,
+    fullPointEventRuleLiftPass: target?.fullPointEventRuleLiftPass === true,
+    positiveWidthRetainedDomainLiftPass:
+      target?.positiveWidthRetainedDomainLiftPass === true,
+    retainedPayloadRowsPass,
+    acceptedRetainedEnergyRoutingPass,
+    acceptedFullPointEventRulePass,
+    firstOpenDomainScopeDeclarationBlocker,
+    domainScopeDeclarationBlockerCount:
+      domainScopeDeclarationBlockers.length,
+    domainScopeDeclarationBlockers,
+    declarationPrerequisiteBlockers,
+    domainScopeLiftFormula:
+      "providerDomainScopeLiftPass = candidateProviderTransportLawPass && acceptedPhysicalRetainedProviderTransportLawPass && declarationPrerequisitePass",
+    declarationPrerequisiteFormula:
+      "declarationPrerequisitePass = globalRetainedRowSetIdentityPass && fullEventOrDomainSupportPass && retainedPayloadRowsPass && acceptedRetainedEnergyRoutingPass && acceptedFullPointEventRulePass",
+    nextDomainScopeClosureRoute:
+      "declare_provider_transport_law_on_global_retained_row_set_after_row_set_event_domain_payload_and_energy_acceptance",
+    noGoInterpretation:
+      "The exact reduced endpoint-provider map is locally populated, but its domain is still route-authorized point-event scope. The first declaration prerequisite that can move it toward a global retained provider-transport law is global retained row-set identity on the same event/domain row set; otherwise the zero-slack branch-transport route must carry the transport without endpoint-provider substitution.",
+  };
+}
+
+function createRetainedGlobalTransportDeclarationTarget({
+  endpointProviderGlobalRetainedTransportLiftTarget,
+  physicalRetainedProviderTransportLawTarget,
+  retainedRouteCompensationProfile,
+}) {
+  const transportTarget = endpointProviderGlobalRetainedTransportLiftTarget ?? null;
+  const physicalTarget = physicalRetainedProviderTransportLawTarget ?? null;
+  const candidateGlobalTransportLiftPass =
+    transportTarget?.candidateGlobalTransportLiftPass === true;
+  const acceptedGlobalRetainedTransportLiftPass =
+    transportTarget?.acceptedGlobalRetainedTransportLiftPass === true;
+  const candidateProviderTransportLawPass =
+    physicalTarget?.candidateProviderTransportLawPass === true;
+  const acceptedPhysicalRetainedProviderTransportLawPass =
+    physicalTarget?.acceptedPhysicalRetainedProviderTransportLawPass === true;
+  const globalLawDeclarationPass =
+    physicalTarget?.globalLawDeclarationPass === true;
+  const routeAuthorizedPointEventOnly =
+    transportTarget?.routeAuthorizedPointEventOnly === true ||
+    physicalTarget?.routeAuthorizedPointEventOnly === true;
+  const sampledZeroSlackBranchRoutePass =
+    transportTarget?.sampledZeroSlackBranchRoutePass === true;
+  const globalRetainedRowSetIdentityPass =
+    transportTarget?.globalRetainedRowSetIdentityPass === true ||
+    physicalTarget?.globalRetainedRowSetIdentityPass === true;
+  const fullPointEventRuleLiftPass =
+    transportTarget?.fullPointEventRuleLiftPass === true ||
+    physicalTarget?.fullPointEventRuleLiftPass === true;
+  const positiveWidthRetainedDomainLiftPass =
+    transportTarget?.positiveWidthRetainedDomainLiftPass === true ||
+    physicalTarget?.positiveWidthRetainedDomainLiftPass === true;
+  const retainedPayloadRowsPass =
+    transportTarget?.retainedPayloadRowsPass === true ||
+    physicalTarget?.retainedPayloadRowsPass === true;
+  const acceptedRetainedEnergyRoutingPass =
+    transportTarget?.acceptedRetainedEnergyRoutingPass === true ||
+    physicalTarget?.acceptedRetainedEnergyRoutingPass === true;
+  const acceptedFullPointEventRulePass =
+    transportTarget?.acceptedFullPointEventRulePass === true ||
+    physicalTarget?.acceptedFullPointEventRulePass === true;
+  const sameSourceRouteCompensationRequired =
+    retainedRouteCompensationProfile?.routeCompensationRequired === true;
+  const globalLawDeclarationFormula =
+    "globalLawDeclarationPass = globalRetainedRowSetIdentityPass && (fullPointEventRuleLiftPass || positiveWidthRetainedDomainLiftPass) && retainedPayloadRowsPass && acceptedRetainedEnergyRoutingPass && acceptedFullPointEventRulePass";
+  const declarationBlockers = [
+    candidateGlobalTransportLiftPass
+      ? null
+      : "candidate_global_transport_lift_missing",
+    transportTarget?.routeSubstitutionCoveragePass === true
+      ? null
+      : "route_substitution_coverage_missing",
+    candidateProviderTransportLawPass || sampledZeroSlackBranchRoutePass
+      ? null
+      : "provider_transport_law_candidate_or_zero_slack_branch_transport_missing",
+    routeAuthorizedPointEventOnly && !acceptedPhysicalRetainedProviderTransportLawPass
+      ? "endpoint_provider_domain_route_authorized_point_event_only"
+      : null,
+    acceptedPhysicalRetainedProviderTransportLawPass ||
+      sampledZeroSlackBranchRoutePass
+      ? null
+      : "accepted_physical_provider_transport_or_zero_slack_branch_transport_missing",
+    globalRetainedRowSetIdentityPass
+      ? null
+      : "global_retained_row_set_identity_missing",
+    fullPointEventRuleLiftPass || positiveWidthRetainedDomainLiftPass
+      ? null
+      : "full_point_event_rule_or_positive_width_common_retained_domain_missing",
+    retainedPayloadRowsPass
+      ? null
+      : "retained_force_torque_wake_phase_partition_stability_payloads_missing",
+    acceptedRetainedEnergyRoutingPass
+      ? null
+      : "accepted_retained_energy_routing_missing",
+    acceptedFullPointEventRulePass
+      ? null
+      : "accepted_full_point_event_rule_missing",
+  ].filter(Boolean);
+  const physicalProviderAcceptanceBlockers =
+    physicalTarget?.acceptanceBlockers ?? [];
+  const globalTransportAcceptanceBlockers =
+    transportTarget?.acceptanceBlockers ?? [];
+  const firstOpenTransportBlocker = declarationBlockers[0] ?? null;
+
+  return {
+    schema:
+      "aaa-tri-binary-retained-global-transport-declaration-target.v1",
+    status: transportTarget == null
+      ? "retained_global_transport_declaration_target_not_populated"
+      : acceptedGlobalRetainedTransportLiftPass
+        ? "retained_global_transport_declaration_accepted"
+        : candidateGlobalTransportLiftPass &&
+            candidateProviderTransportLawPass &&
+            !globalLawDeclarationPass
+          ? "retained_global_transport_declaration_candidate_geometry_populated_global_declaration_blocked"
+          : candidateGlobalTransportLiftPass
+            ? "retained_global_transport_declaration_candidate_populated_acceptance_blocked"
+            : "retained_global_transport_declaration_candidate_incomplete",
+    claimLevel:
+      "top-level declaration target for lifting endpoint-provider transport geometry to global retained branch transport; not retained branch acceptance",
+    retainedBranchClaim: false,
+    candidateGlobalTransportLiftPass,
+    acceptedGlobalRetainedTransportLiftPass,
+    routeSubstitutionCoveragePass:
+      transportTarget?.routeSubstitutionCoveragePass === true,
+    providerSubstitutionRouteCount:
+      transportTarget?.providerSubstitutionRouteCount ?? null,
+    sampledZeroSlackRouteCount:
+      transportTarget?.sampledZeroSlackRouteCount ?? null,
+    sampledZeroSlackBranchRoutePass,
+    sameSourceRouteCompensationRequired,
+    routeAuthorizedPointEventOnly,
+    physicalRetainedProviderTransportLawStatus:
+      physicalTarget?.status ?? null,
+    candidateProviderTransportLawPass,
+    acceptedPhysicalRetainedProviderTransportLawPass,
+    globalLawDeclarationPass,
+    globalLawDeclarationFormula,
+    globalRetainedRowSetIdentityPass,
+    fullPointEventRuleLiftPass,
+    positiveWidthRetainedDomainLiftPass,
+    retainedPayloadRowsPass,
+    acceptedRetainedEnergyRoutingPass,
+    acceptedFullPointEventRulePass,
+    firstOpenTransportBlocker,
+    declarationBlockers,
+    globalTransportAcceptanceBlockers,
+    physicalProviderAcceptanceBlockers,
+    compensationRouteKeys:
+      retainedRouteCompensationProfile?.compensationRouteKeys ?? [],
+    zeroSlackRouteKeys:
+      retainedRouteCompensationProfile?.zeroSlackRouteKeys ?? [],
+    nextTransportClosureRoute: acceptedGlobalRetainedTransportLiftPass
+      ? "retained_branch_selection_residual"
+      : candidateProviderTransportLawPass && !globalLawDeclarationPass
+        ? "declare_physical_provider_transport_on_global_retained_row_set_or_derive_zero_slack_branch_transport"
+        : "populate_provider_transport_candidate_or_zero_slack_branch_transport",
+    retainedLimitation:
+      "Endpoint-provider geometry is exact on the route-authorized point-event row, but it is not global retained transport. The next transport closure must either declare the physical provider-transport law on a global retained row set with full-event/domain, payload, and energy-routing support, or derive zero-slack branch transport without endpoint-provider substitution.",
+  };
+}
+
+async function createRetainedRowSetIdentityObstructionTarget({
+  transitionClassification,
+  retainedRowSetIdentity,
+  hingeEventRowSetIdentity,
+  retainedForkProofRouteTarget,
+  retainedGlobalTransportDeclarationTarget,
+  midpointReplayContext = null,
+}) {
+  const transitionPairSummaries =
+    transitionClassification?.pairSummaries ?? {};
+  const hingeRows = hingeEventRowSetIdentity?.rows ?? [];
+  const transitionRows = Object.entries(transitionPairSummaries).map(
+    ([pairKey, summary]) => {
+      const hingeRow =
+        hingeRows.find((row) => row.pairKey === pairKey) ?? null;
+      const transitionGlobalIdentityPass =
+        summary?.status === "common_active_root_identity_candidate";
+      const hingePointIdentityPass =
+        (hingeRow?.commonRootKeys?.length ?? 0) > 0;
+      return {
+        pairKey,
+        transitionStatus: summary?.status ?? null,
+        transitionGlobalIdentityPass,
+        hingePointIdentityPass,
+        transitionEdgeCount: summary?.transitionEdgeCount ?? null,
+        retainedTransitionCount: summary?.retainedTransitionCount ?? null,
+        edgesWithRetainedTransition:
+          summary?.edgesWithRetainedTransition ?? null,
+        edgesWithoutRetainedTransition:
+          summary?.edgesWithoutRetainedTransition ?? null,
+        retainedEdgeCoverage: finiteOrNull(summary?.retainedEdgeCoverage),
+        retainedRootTransitionSurplus:
+          summary?.retainedRootTransitionSurplus ?? null,
+        singleRetainedTransitionPerRetainedEdgePass:
+          summary?.singleRetainedTransitionPerRetainedEdgePass === true,
+        transitionKindCounts: projectTransitionKindCounts(
+          summary?.transitionKindCounts
+        ),
+        transitionEdgeProfile: projectTransitionEdgeProfile(
+          summary?.transitionEdgeProfile
+        ),
+        transitionGapCoverage: summary?.transitionGapCoverage ?? null,
+        transitionBoundaryEdges: summary?.transitionBoundaryEdges ?? [],
+        commonActiveRootKeyCount: summary?.commonActiveRootKeyCount ?? null,
+        commonActiveRootKeys: summary?.commonActiveRootKeys ?? [],
+        longestRetainedChainEdgeCount:
+          summary?.longestRetainedChain?.edgeCount ?? null,
+        longestRetainedChainCommonRootKeys:
+          summary?.longestRetainedChain?.commonRootKeys ?? [],
+        hingeIncidence: hingeRow?.incidence ?? null,
+        hingeRootIntervalCount: hingeRow?.rootIntervalCount ?? null,
+        hingeMaxRootIntervalWidth: finiteOrNull(hingeRow?.maxRootIntervalWidth),
+        hingeCommonRootKeys: hingeRow?.commonRootKeys ?? [],
+        pointEventPairRole: hingeRow?.pointEventPairRole ?? null,
+      };
+    }
+  );
+  const transitionGlobalPairKeys = transitionRows
+    .filter((row) => row.transitionGlobalIdentityPass)
+    .map((row) => row.pairKey);
+  const hingePointIdentityPairKeys = transitionRows
+    .filter((row) => row.hingePointIdentityPass)
+    .map((row) => row.pairKey);
+  const hingeOnlyPairKeys = transitionRows
+    .filter(
+      (row) => row.hingePointIdentityPass && !row.transitionGlobalIdentityPass
+    )
+    .map((row) => row.pairKey);
+  const transitionMissingPairKeys = transitionRows
+    .filter((row) => !row.transitionGlobalIdentityPass)
+    .map((row) => row.pairKey);
+  const pointOnlyPairKeys = hingeRows
+    .filter((row) => finiteOrNull(row.maxRootIntervalWidth) === 0)
+    .map((row) => row.pairKey);
+  const eventCommonRootKeys = hingeEventRowSetIdentity?.commonRootKeys ?? [];
+  const transitionGlobalRowSetIdentityPass =
+    retainedRowSetIdentity?.status === "common_active_row_set_candidate_populated";
+  const hingePointEventIdentityPass =
+    hingeEventRowSetIdentity?.status ===
+    "hinge_event_common_root_key_candidate_populated";
+  const retainedBranchClaim = false;
+  const rowSetIdentityObligations = [
+    transitionGlobalRowSetIdentityPass
+      ? null
+      : {
+          obligation:
+            "lift_hinge_common_root_key_to_all_pair_chronological_replay_identity",
+          missingPairKeys: transitionMissingPairKeys,
+        },
+    hingeEventRowSetIdentity?.rootPayloadIntervalEnclosure
+      ?.positiveWidthCommonRootInterval === true ||
+      hingeEventRowSetIdentity?.rootPayloadIntervalEnclosure
+        ?.oneSidedPositiveWidthCommonInterval === true
+      ? null
+      : {
+          obligation:
+            "supply_positive_width_common_retained_domain_or_accept_full_point_event_rule",
+          pointOnlyPairKeys,
+        },
+    retainedForkProofRouteTarget?.retainedPayloadRowsPass === true
+      ? null
+      : {
+          obligation:
+            "certify_retained_payload_rows_on_the_same_global_row_set",
+        },
+    retainedForkProofRouteTarget?.acceptedRetainedEnergyRoutingPass === true
+      ? null
+      : {
+          obligation:
+            "certify_retained_energy_routing_on_the_same_global_row_set",
+        },
+    retainedGlobalTransportDeclarationTarget
+      ?.acceptedGlobalRetainedTransportLiftPass === true
+      ? null
+      : {
+          obligation:
+            "declare_global_retained_transport_after_row_set_identity_or_derive_zero_slack_transport",
+        },
+  ].filter(Boolean);
+  const retainedHingeRootReplayLiftTarget =
+    createRetainedHingeRootReplayLiftTarget({
+      transitionRows,
+      hingeEventRowSetIdentity,
+      retainedRowSetIdentity,
+      rowSetIdentityObligations,
+    });
+  const globalRetainedRowSetIdentityLiftTarget =
+    await createGlobalRetainedRowSetIdentityLiftTarget({
+      retainedHingeRootReplayLiftTarget,
+      rowSetIdentityObligations,
+      midpointReplayContext,
+    });
+
+  return {
+    schema:
+      "aaa-tri-binary-retained-row-set-identity-obstruction-target.v1",
+    status: retainedRowSetIdentity == null || hingeEventRowSetIdentity == null
+      ? "retained_row_set_identity_obstruction_target_not_populated"
+      : transitionGlobalRowSetIdentityPass && hingePointEventIdentityPass
+        ? "retained_row_set_identity_obstruction_clear_candidate"
+        : hingePointEventIdentityPass && !transitionGlobalRowSetIdentityPass
+          ? "retained_row_set_identity_obstruction_hinge_point_identity_global_replay_missing"
+          : "retained_row_set_identity_obstruction_candidate_incomplete",
+    claimLevel:
+      "top-level obstruction target separating hinge-point common-root identity from global chronological retained row-set identity; not retained branch acceptance",
+    retainedBranchClaim,
+    transitionClassificationStatus: transitionClassification?.status ?? null,
+    retainedRowSetIdentityStatus: retainedRowSetIdentity?.status ?? null,
+    transitionGlobalRowSetIdentityPass,
+    transitionPairCount: retainedRowSetIdentity?.pairCount ?? null,
+    transitionPairCountWithCommonActiveRootKeys:
+      retainedRowSetIdentity?.pairCountWithCommonActiveRootKeys ?? null,
+    transitionMissingPairCount: transitionMissingPairKeys.length,
+    transitionGlobalPairKeys,
+    transitionMissingPairKeys,
+    hingeEventRowSetIdentityStatus: hingeEventRowSetIdentity?.status ?? null,
+    hingePointEventIdentityPass,
+    hingePairCount: hingeEventRowSetIdentity?.pairCount ?? null,
+    hingePairCountWithCommonRootKey:
+      hingeEventRowSetIdentity?.pairCountWithCommonRootKey ?? null,
+    hingeCommonRootKeyCount:
+      hingeEventRowSetIdentity?.commonRootKeyCount ?? null,
+    hingeCommonRootKeys: eventCommonRootKeys,
+    hingePointIdentityPairKeys,
+    hingeOnlyPairKeys,
+    pointOnlyPairKeys,
+    rootPayloadIntervalStatus:
+      hingeEventRowSetIdentity?.rootPayloadIntervalEnclosure?.status ?? null,
+    positiveWidthCommonRootInterval:
+      hingeEventRowSetIdentity?.rootPayloadIntervalEnclosure
+        ?.positiveWidthCommonRootInterval === true,
+    oneSidedPositiveWidthCommonInterval:
+      hingeEventRowSetIdentity?.rootPayloadIntervalEnclosure
+        ?.oneSidedPositiveWidthCommonInterval === true,
+    maxCommonRootIntervalWidth:
+      hingeEventRowSetIdentity?.rootPayloadIntervalEnclosure?.maxCommonWidth ??
+      null,
+    retainedForkProofRouteStatus:
+      retainedForkProofRouteTarget?.status ?? null,
+    retainedGlobalTransportDeclarationStatus:
+      retainedGlobalTransportDeclarationTarget?.status ?? null,
+    firstOpenRowSetBlocker:
+      rowSetIdentityObligations[0]?.obligation ?? null,
+    firstOpenRowSetBlockerDetail:
+      rowSetIdentityObligations[0]?.obligation ===
+      "lift_hinge_common_root_key_to_all_pair_chronological_replay_identity"
+        ? globalRetainedRowSetIdentityLiftTarget.firstOpenRowSetLiftBlocker
+        : null,
+    rowSetIdentityObligations,
+    globalRetainedRowSetIdentityLiftStatus:
+      globalRetainedRowSetIdentityLiftTarget.status,
+    globalRetainedRowSetIdentityLiftTarget,
+    retainedHingeRootReplayLiftTarget,
+    rows: transitionRows,
+    retainedLimitation:
+      "The hinge point has a common root key across all layer-pair witnesses, but this is not a global retained row-set identity. Global declaration still requires that the same active root-key set span all nine chronological replay channels and then carry the retained payload, transport, and energy-routing rows on that same row set.",
+  };
+}
+
+function createRetainedHingeRootReplayLiftTarget({
+  transitionRows,
+  hingeEventRowSetIdentity,
+  retainedRowSetIdentity,
+  rowSetIdentityObligations,
+}) {
+  const eventRootKey = hingeEventRowSetIdentity?.commonRootKeys?.[0] ?? null;
+  const rootPayloadIntervalEnclosure =
+    hingeEventRowSetIdentity?.rootPayloadIntervalEnclosure ?? null;
+  const rows = transitionRows.map((row) => {
+    const eventRootKeyGlobalReplayPass =
+      eventRootKey != null && row.commonActiveRootKeys.includes(eventRootKey);
+    const eventRootKeyPartialChainPass =
+      eventRootKey != null &&
+      row.longestRetainedChainCommonRootKeys.includes(eventRootKey);
+    return {
+      pairKey: row.pairKey,
+      eventRootKeyGlobalReplayPass,
+      eventRootKeyPartialChainPass,
+      transitionGlobalIdentityPass: row.transitionGlobalIdentityPass,
+      hingePointIdentityPass: row.hingePointIdentityPass,
+      transitionStatus: row.transitionStatus,
+      transitionEdgeCount: row.transitionEdgeCount,
+      retainedTransitionCount: row.retainedTransitionCount,
+      edgesWithRetainedTransition: row.edgesWithRetainedTransition,
+      edgesWithoutRetainedTransition: row.edgesWithoutRetainedTransition,
+      retainedEdgeCoverage: row.retainedEdgeCoverage,
+      retainedRootTransitionSurplus: row.retainedRootTransitionSurplus,
+      singleRetainedTransitionPerRetainedEdgePass:
+        row.singleRetainedTransitionPerRetainedEdgePass,
+      transitionKindCounts: row.transitionKindCounts,
+      transitionEdgeProfile: row.transitionEdgeProfile,
+      transitionGapCoverage: row.transitionGapCoverage,
+      transitionBoundaryEdges: row.transitionBoundaryEdges ?? [],
+      longestRetainedChainEdgeCount: row.longestRetainedChainEdgeCount,
+      commonActiveRootKeys: row.commonActiveRootKeys,
+      longestRetainedChainCommonRootKeys:
+        row.longestRetainedChainCommonRootKeys,
+      hingeMaxRootIntervalWidth: row.hingeMaxRootIntervalWidth,
+      pointEventPairRole: row.pointEventPairRole,
+    };
+  });
+  const eventRootKeyGlobalReplayPairKeys = rows
+    .filter((row) => row.eventRootKeyGlobalReplayPass)
+    .map((row) => row.pairKey);
+  const eventRootKeyPartialChainPairKeys = rows
+    .filter((row) => row.eventRootKeyPartialChainPass)
+    .map((row) => row.pairKey);
+  const partialOnlyPairKeys = rows
+    .filter(
+      (row) =>
+        row.eventRootKeyPartialChainPass && !row.eventRootKeyGlobalReplayPass
+    )
+    .map((row) => row.pairKey);
+  const eventRootKeyAbsentPairKeys = rows
+    .filter((row) => !row.eventRootKeyPartialChainPass)
+    .map((row) => row.pairKey);
+  const partialChainEdgeCounts = rows
+    .filter((row) => row.eventRootKeyPartialChainPass)
+    .map((row) => row.longestRetainedChainEdgeCount)
+    .filter(Number.isFinite);
+  const partialOnlyCoverageValues = rows
+    .filter(
+      (row) =>
+        row.eventRootKeyPartialChainPass && !row.eventRootKeyGlobalReplayPass
+    )
+    .map((row) => row.retainedEdgeCoverage)
+    .filter(Number.isFinite);
+  const allPairsHavePartialChain =
+    rows.length > 0 && eventRootKeyPartialChainPairKeys.length === rows.length;
+  const allPairsHaveGlobalReplay =
+    rows.length > 0 && eventRootKeyGlobalReplayPairKeys.length === rows.length;
+  const positiveWidthCommonRootInterval =
+    rootPayloadIntervalEnclosure?.positiveWidthCommonRootInterval === true;
+  const oneSidedPositiveWidthCommonInterval =
+    rootPayloadIntervalEnclosure?.oneSidedPositiveWidthCommonInterval === true;
+  const pointEventOnlyCommonRoot =
+    rootPayloadIntervalEnclosure?.pointOnlyCommonRootInterval === true &&
+    !positiveWidthCommonRootInterval &&
+    !oneSidedPositiveWidthCommonInterval;
+  const replayLiftObstructionTarget =
+    createRetainedHingeRootReplayLiftObstructionTarget({
+      rows,
+      eventRootKey,
+      hingeTime: hingeEventRowSetIdentity?.hingeTime ?? null,
+      allPairsHavePartialChain,
+      allPairsHaveGlobalReplay,
+      pointEventOnlyCommonRoot,
+      rootPayloadIntervalEnclosure,
+    });
+
+  return {
+    schema:
+      "aaa-tri-binary-retained-hinge-root-replay-lift-target.v1",
+    status: eventRootKey == null
+      ? "retained_hinge_root_replay_lift_target_not_populated"
+      : allPairsHaveGlobalReplay
+        ? "retained_hinge_root_replay_lift_global_replay_identity_populated"
+        : allPairsHavePartialChain && pointEventOnlyCommonRoot
+          ? "retained_hinge_root_replay_lift_partial_chains_point_event_only"
+          : allPairsHavePartialChain
+            ? "retained_hinge_root_replay_lift_partial_chains_global_identity_missing"
+            : "retained_hinge_root_replay_lift_partial_chain_missing",
+    claimLevel:
+      "restricted replay-lift target for the hinge common root key; not retained branch acceptance",
+    retainedBranchClaim: false,
+    eventRootKey,
+    retainedRowSetIdentityStatus: retainedRowSetIdentity?.status ?? null,
+    allPairsHavePartialChain,
+    allPairsHaveGlobalReplay,
+    eventRootKeyGlobalReplayPairCount:
+      eventRootKeyGlobalReplayPairKeys.length,
+    eventRootKeyPartialChainPairCount:
+      eventRootKeyPartialChainPairKeys.length,
+    eventRootKeyGlobalReplayPairKeys,
+    eventRootKeyPartialChainPairKeys,
+    partialOnlyPairKeys,
+    eventRootKeyAbsentPairKeys,
+    minPartialChainEdgeCount: minFinite(partialChainEdgeCounts),
+    maxPartialChainEdgeCount: maxFinite(partialChainEdgeCounts),
+    minPartialOnlyRetainedEdgeCoverage: minFinite(partialOnlyCoverageValues),
+    maxPartialOnlyRetainedEdgeCoverage: maxFinite(partialOnlyCoverageValues),
+    rootPayloadIntervalStatus: rootPayloadIntervalEnclosure?.status ?? null,
+    positiveWidthCommonRootInterval,
+    oneSidedPositiveWidthCommonInterval,
+    pointEventOnlyCommonRoot,
+    nextReplayLiftRoute: allPairsHaveGlobalReplay
+      ? "bind_retained_payload_transport_and_energy_to_global_row_set"
+      : allPairsHavePartialChain && pointEventOnlyCommonRoot
+        ? "extend_partial_chains_to_global_replay_identity_or_accept_full_point_event_rule"
+        : allPairsHavePartialChain
+          ? "extend_partial_chains_to_global_replay_identity"
+          : "populate_missing_hinge_root_partial_chains",
+    replayLiftObstructionTarget,
+    replayLiftObligations: [
+      allPairsHaveGlobalReplay
+        ? null
+        : {
+            obligation:
+              "extend_event_root_key_partial_chains_to_all_edge_chronological_replay_identity",
+            partialOnlyPairKeys,
+          },
+      pointEventOnlyCommonRoot
+        ? {
+            obligation:
+              "accept_full_point_event_rule_if_positive_width_replay_lift_fails",
+            rootPayloadIntervalStatus:
+              rootPayloadIntervalEnclosure?.status ?? null,
+          }
+        : null,
+      ...(rowSetIdentityObligations ?? []),
+    ].filter(Boolean),
+    rows,
+    retainedLimitation:
+      "Every layer-pair channel has a retained chain containing the hinge root key, but only outer->outer carries that key as a global chronological active-root identity. The current evidence supports a full point-event route or a new replay-lift proof; it does not yet support a global retained row-set declaration.",
+  };
+}
+
+async function createGlobalRetainedRowSetIdentityLiftTarget({
+  retainedHingeRootReplayLiftTarget,
+  rowSetIdentityObligations,
+  midpointReplayContext = null,
+}) {
+  const replayTarget = retainedHingeRootReplayLiftTarget ?? null;
+  const obstructionTarget = replayTarget?.replayLiftObstructionTarget ?? null;
+  const activeDomainGapPairKeys =
+    obstructionTarget?.noTransitionBothInactiveGapPairKeys ?? [];
+  const bothActiveConversionPairKeys =
+    obstructionTarget?.onlyNonRetainedBothActivePairKeys ?? [];
+  const bothActiveConversionGapPairKeys =
+    obstructionTarget?.onlyNonRetainedBothActiveGapPairKeys ?? [];
+  const obligationNames = new Set(
+    (rowSetIdentityObligations ?? []).map((entry) => entry.obligation)
+  );
+  const payloadEnergyTransportBindingsMissing =
+    obligationNames.has("certify_retained_payload_rows_on_the_same_global_row_set") ||
+    obligationNames.has("certify_retained_energy_routing_on_the_same_global_row_set") ||
+    obligationNames.has(
+      "declare_global_retained_transport_after_row_set_identity_or_derive_zero_slack_transport"
+    );
+  const rowSetLiftBlockers = [
+    activeDomainGapPairKeys.length > 0
+      ? {
+          blocker:
+            "extend_active_root_domain_across_both_inactive_no_transition_gaps",
+          pairKeys: activeDomainGapPairKeys,
+          intervalCount:
+            obstructionTarget?.noTransitionBothInactiveIntervalCount ?? null,
+          totalWidth:
+            obstructionTarget?.totalNoTransitionBothInactiveGapWidth ?? null,
+          maxWidth:
+            obstructionTarget?.maxNoTransitionBothInactiveGapWidth ?? null,
+        }
+      : null,
+    bothActiveConversionPairKeys.length > 0
+      ? {
+          blocker:
+            "convert_inner_both_active_non_retained_edges_to_event_root_continuity",
+          pairKeys: bothActiveConversionPairKeys,
+          gapPairKeys: bothActiveConversionGapPairKeys,
+          intervalCount:
+            obstructionTarget?.onlyNonRetainedBothActiveIntervalCount ?? null,
+          totalWidth:
+            obstructionTarget?.totalOnlyNonRetainedBothActiveGapWidth ?? null,
+          maxWidth:
+            obstructionTarget?.maxOnlyNonRetainedBothActiveGapWidth ?? null,
+        }
+      : null,
+    replayTarget?.pointEventOnlyCommonRoot === true
+      ? {
+          blocker:
+            "accept_full_point_event_rule_if_replay_lift_remains_point_only",
+          rootPayloadIntervalStatus:
+            replayTarget?.rootPayloadIntervalStatus ?? null,
+        }
+      : null,
+    payloadEnergyTransportBindingsMissing
+      ? {
+          blocker: "global_row_set_payload_energy_transport_bindings_missing",
+          missingObligations: [...obligationNames].filter((obligation) =>
+            [
+              "certify_retained_payload_rows_on_the_same_global_row_set",
+              "certify_retained_energy_routing_on_the_same_global_row_set",
+              "declare_global_retained_transport_after_row_set_identity_or_derive_zero_slack_transport",
+            ].includes(obligation)
+          ),
+        }
+      : null,
+  ].filter(Boolean);
+  const firstOpenRowSetLiftBlocker = rowSetLiftBlockers[0]?.blocker ?? null;
+  const retainedRowSetBindingContext =
+    createPartialSupportRetainedRowSetBindingContext({
+      replayTarget,
+      obstructionTarget,
+      rowSetLiftBlockers,
+    });
+  const activeDomainExtensionFillRuleTarget =
+    await createActiveDomainExtensionFillRuleTarget({
+      replayTarget,
+      obstructionTarget,
+      midpointReplayContext,
+      retainedRowSetBindingContext,
+    });
+  const status =
+    replayTarget == null
+      ? "global_retained_row_set_identity_lift_target_not_populated"
+      : replayTarget.allPairsHaveGlobalReplay === true
+        ? "global_retained_row_set_identity_lift_global_replay_identity_populated"
+        : activeDomainGapPairKeys.length > 0
+          ? "global_retained_row_set_identity_lift_blocked_active_domain_extension"
+          : bothActiveConversionPairKeys.length > 0
+            ? "global_retained_row_set_identity_lift_blocked_inner_conversion"
+            : replayTarget.pointEventOnlyCommonRoot === true
+              ? "global_retained_row_set_identity_lift_blocked_point_event_only"
+              : "global_retained_row_set_identity_lift_candidate_incomplete";
+  const nextRowSetLiftRoute =
+    activeDomainGapPairKeys.length > 0
+      ? "prove_active_domain_extension_for_both_inactive_gaps"
+      : bothActiveConversionPairKeys.length > 0
+        ? "convert_inner_both_active_non_retained_edges"
+        : replayTarget?.pointEventOnlyCommonRoot === true
+          ? "accept_full_point_event_rule_or_positive_width_domain"
+          : replayTarget?.allPairsHaveGlobalReplay === true
+            ? "bind_retained_payload_energy_and_transport_to_global_row_set"
+            : "complete_global_row_set_replay_lift_classification";
+
+  return {
+    schema:
+      "aaa-tri-binary-global-retained-row-set-identity-lift-target.v1",
+    status,
+    claimLevel:
+      "fail-closed target for lifting the hinge common root key to global chronological replay identity; not retained branch acceptance",
+    retainedBranchClaim: false,
+    blockedDeclarationPrerequisite: "global_retained_row_set_identity_missing",
+    firstOpenRowSetLiftBlocker,
+    rowSetLiftBlockers,
+    eventRootKey: replayTarget?.eventRootKey ?? null,
+    allPairsHavePartialChain: replayTarget?.allPairsHavePartialChain ?? false,
+    allPairsHaveGlobalReplay: replayTarget?.allPairsHaveGlobalReplay ?? false,
+    eventRootKeyGlobalReplayPairCount:
+      replayTarget?.eventRootKeyGlobalReplayPairCount ?? null,
+    eventRootKeyPartialChainPairCount:
+      replayTarget?.eventRootKeyPartialChainPairCount ?? null,
+    partialOnlyPairCount: obstructionTarget?.partialOnlyPairCount ?? null,
+    partialOnlyPairKeys: replayTarget?.partialOnlyPairKeys ?? [],
+    activeDomainGapPairKeys,
+    activeDomainGapIntervalCount:
+      obstructionTarget?.noTransitionBothInactiveIntervalCount ?? null,
+    activeDomainGapTotalWidth:
+      obstructionTarget?.totalNoTransitionBothInactiveGapWidth ?? null,
+    activeDomainGapMaxWidth:
+      obstructionTarget?.maxNoTransitionBothInactiveGapWidth ?? null,
+    bothActiveConversionPairKeys,
+    bothActiveConversionGapPairKeys,
+    bothActiveConversionIntervalCount:
+      obstructionTarget?.onlyNonRetainedBothActiveIntervalCount ?? null,
+    bothActiveConversionTotalWidth:
+      obstructionTarget?.totalOnlyNonRetainedBothActiveGapWidth ?? null,
+    bothActiveConversionMaxWidth:
+      obstructionTarget?.maxOnlyNonRetainedBothActiveGapWidth ?? null,
+    totalFullReplayEdgeDeficit:
+      obstructionTarget?.totalFullReplayEdgeDeficit ?? null,
+    totalEdgesWithoutRetainedTransition:
+      obstructionTarget?.totalEdgesWithoutRetainedTransition ?? null,
+    totalRetainedEdgeBeyondEventRootChainCount:
+      obstructionTarget?.totalRetainedEdgeBeyondEventRootChainCount ?? null,
+    pointEventOnlyCommonRoot:
+      replayTarget?.pointEventOnlyCommonRoot === true,
+    nextRowSetLiftRoute,
+    retainedRowSetBindingContext,
+    retainedLimitation:
+      "The hinge common root key has partial retained chains in every layer-pair channel, but current replay leaves positive-width both-inactive no-transition gaps before the same root key can be declared as a global chronological retained row set.",
+    activeDomainExtensionFillStatus:
+      activeDomainExtensionFillRuleTarget.status,
+    activeDomainExtensionFillRuleTarget,
+  };
+}
+
+function createPartialSupportRetainedRowSetBindingContext({
+  replayTarget,
+  obstructionTarget,
+  rowSetLiftBlockers,
+}) {
+  const replayRows = replayTarget?.rows ?? [];
+  const transitionGlobalPairKeys = replayRows
+    .filter((row) => row.transitionGlobalIdentityPass)
+    .map((row) => row.pairKey);
+  const transitionMissingPairKeys = replayRows
+    .filter((row) => !row.transitionGlobalIdentityPass)
+    .map((row) => row.pairKey);
+  const bothActiveConversionPairKeys =
+    obstructionTarget?.onlyNonRetainedBothActivePairKeys ?? [];
+  const bothActiveConversionGapPairKeys =
+    obstructionTarget?.onlyNonRetainedBothActiveGapPairKeys ?? [];
+  return {
+    schema:
+      "aaa-tri-binary-partial-support-retained-row-set-binding-context.v1",
+    contextPopulated: replayTarget != null,
+    retainedBranchClaim: false,
+    eventRootKey: replayTarget?.eventRootKey ?? null,
+    retainedRowSetIdentityStatus: replayTarget?.retainedRowSetIdentityStatus ?? null,
+    allPairsHaveGlobalReplay: replayTarget?.allPairsHaveGlobalReplay === true,
+    allPairsHavePartialChain: replayTarget?.allPairsHavePartialChain === true,
+    eventRootKeyGlobalReplayPairKeys:
+      replayTarget?.eventRootKeyGlobalReplayPairKeys ?? [],
+    eventRootKeyPartialChainPairKeys:
+      replayTarget?.eventRootKeyPartialChainPairKeys ?? [],
+    partialOnlyPairKeys: replayTarget?.partialOnlyPairKeys ?? [],
+    transitionGlobalPairKeys,
+    transitionMissingPairKeys,
+    activeDomainGapPairKeys:
+      obstructionTarget?.noTransitionBothInactiveGapPairKeys ?? [],
+    bothActiveConversionPairKeys,
+    bothActiveConversionGapPairKeys,
+    bothActiveConversionIntervalCount:
+      obstructionTarget?.onlyNonRetainedBothActiveIntervalCount ?? null,
+    bothActiveConversionTotalWidth:
+      obstructionTarget?.totalOnlyNonRetainedBothActiveGapWidth ?? null,
+    bothActiveConversionMaxWidth:
+      obstructionTarget?.maxOnlyNonRetainedBothActiveGapWidth ?? null,
+    bothActiveConversionSideProfile:
+      obstructionTarget?.onlyNonRetainedBothActiveSideProfile ?? null,
+    bothActiveConversionBoundaryNeighborhoodProfile:
+      obstructionTarget
+        ?.onlyNonRetainedBothActiveBoundaryNeighborhoodProfile ?? null,
+    firstOpenRowSetLiftBlocker: rowSetLiftBlockers?.[0]?.blocker ?? null,
+    rowSetLiftBlockers: (rowSetLiftBlockers ?? []).map((blocker) => ({
+      blocker: blocker.blocker,
+      pairKeys: blocker.pairKeys ?? [],
+      gapPairKeys: blocker.gapPairKeys ?? [],
+    })),
+  };
+}
+
+async function createActiveDomainExtensionFillRuleTarget({
+  replayTarget,
+  obstructionTarget,
+  midpointReplayContext = null,
+  retainedRowSetBindingContext = null,
+}) {
+  const boundaryProfile =
+    obstructionTarget?.noTransitionBothInactiveBoundaryNeighborhoodProfile ??
+    null;
+  const sideProfile =
+    obstructionTarget?.noTransitionBothInactiveSideProfile ?? null;
+  const eventRootUnboundedGapCount =
+    boundaryProfile?.eventRootUnboundedGapCount ?? 0;
+  const eventRootBoundedGapCount =
+    boundaryProfile?.eventRootBoundedGapCount ?? 0;
+  const eventRootPriorOnlyGapCount =
+    boundaryProfile?.eventRootPriorOnlyGapCount ?? 0;
+  const eventRootNextOnlyGapCount =
+    boundaryProfile?.eventRootNextOnlyGapCount ?? 0;
+  const pointOnlyIntervalCount = sideProfile?.pointOnlyIntervalCount ?? 0;
+  const positiveWidthIntervalCount =
+    sideProfile?.positiveWidthIntervalCount ?? 0;
+  const eventRootBoundedInteriorGapFillRuleTarget =
+    await createEventRootBoundedInteriorGapFillRuleTarget({
+      boundaryProfile,
+      midpointReplayContext,
+      retainedRowSetBindingContext,
+    });
+  const oneSidedGapCount =
+    eventRootPriorOnlyGapCount + eventRootNextOnlyGapCount;
+  const proofObligations = [
+    eventRootBoundedGapCount > 0
+      ? {
+          obligation: "prove_event_root_bounded_interior_inactive_gap_fill_rule",
+          gapCount: eventRootBoundedGapCount,
+          pairKeys: boundaryProfile?.eventRootBoundedPairKeys ?? [],
+        }
+      : null,
+    oneSidedGapCount > 0
+      ? {
+          obligation: "prove_one_sided_endpoint_inactive_gap_fill_rule",
+          eventRootPriorOnlyGapCount,
+          eventRootNextOnlyGapCount,
+          priorOnlyPairKeys: boundaryProfile?.eventRootPriorOnlyPairKeys ?? [],
+          nextOnlyPairKeys: boundaryProfile?.eventRootNextOnlyPairKeys ?? [],
+        }
+      : null,
+    pointOnlyIntervalCount > 0
+      ? {
+          obligation: "declare_point_contact_identity_rule_for_both_inactive_gap_contacts",
+          pointOnlyIntervalCount,
+          pointOnlyPairKeys: sideProfile?.pointOnlyPairKeys ?? [],
+        }
+      : null,
+  ].filter(Boolean);
+  const status =
+    replayTarget == null || obstructionTarget == null
+      ? "active_domain_extension_fill_rule_target_not_populated"
+      : positiveWidthIntervalCount === 0 && pointOnlyIntervalCount === 0
+        ? "active_domain_extension_fill_rule_no_active_domain_gaps"
+        : eventRootUnboundedGapCount > 0
+          ? "active_domain_extension_fill_rule_blocked_unbounded_gaps"
+          : oneSidedGapCount > 0
+            ? "active_domain_extension_fill_rule_candidate_event_root_bounded_endpoint_exceptions"
+            : eventRootBoundedGapCount > 0
+              ? "active_domain_extension_fill_rule_candidate_event_root_bounded"
+              : "active_domain_extension_fill_rule_candidate_point_contacts_only";
+  const firstActiveDomainExtensionBlocker =
+    proofObligations[0]?.obligation ?? null;
+  const nextActiveDomainExtensionRoute =
+    eventRootUnboundedGapCount > 0
+      ? "populate_event_root_boundaries_for_unbounded_inactive_gaps"
+      : eventRootBoundedGapCount > 0 && oneSidedGapCount > 0
+        ? "derive_event_root_bounded_inactive_gap_fill_rule_then_endpoint_one_sided_rules"
+        : eventRootBoundedGapCount > 0
+          ? "derive_event_root_bounded_inactive_gap_fill_rule"
+          : pointOnlyIntervalCount > 0
+            ? "declare_point_contact_identity_rule_or_defer_to_full_point_event_rule"
+            : "no_active_domain_extension_route_needed";
+
+  return {
+    schema:
+      "aaa-tri-binary-active-domain-extension-fill-rule-target.v1",
+    status,
+    claimLevel:
+      "proof target for extending the hinge root key across both-inactive no-transition replay gaps; not retained branch acceptance",
+    retainedBranchClaim: false,
+    parentRowSetLiftBlocker:
+      "extend_active_root_domain_across_both_inactive_no_transition_gaps",
+    firstActiveDomainExtensionBlocker,
+    proofObligations,
+    activeDomainGapIntervalCount:
+      obstructionTarget?.noTransitionBothInactiveIntervalCount ?? null,
+    activeDomainGapTotalWidth:
+      obstructionTarget?.totalNoTransitionBothInactiveGapWidth ?? null,
+    activeDomainGapMaxWidth:
+      obstructionTarget?.maxNoTransitionBothInactiveGapWidth ?? null,
+    pointOnlyIntervalCount,
+    positiveWidthIntervalCount,
+    leftIntervalCount: sideProfile?.leftIntervalCount ?? null,
+    rightIntervalCount: sideProfile?.rightIntervalCount ?? null,
+    totalLeftWidth: sideProfile?.totalLeftWidth ?? null,
+    totalRightWidth: sideProfile?.totalRightWidth ?? null,
+    positiveWidthPairKeys: sideProfile?.positiveWidthPairKeys ?? [],
+    pointOnlyPairKeys: sideProfile?.pointOnlyPairKeys ?? [],
+    rightOnlyPairKeys: sideProfile?.rightOnlyPairKeys ?? [],
+    bothSidePairKeys: sideProfile?.bothSidePairKeys ?? [],
+    positiveWidthBoundaryGapCount: boundaryProfile?.gapCount ?? null,
+    eventRootBoundedGapCount,
+    eventRootPriorOnlyGapCount,
+    eventRootNextOnlyGapCount,
+    eventRootUnboundedGapCount,
+    retainedBoundedGapCount: boundaryProfile?.retainedBoundedGapCount ?? null,
+    eventRootBoundedPairKeys: boundaryProfile?.eventRootBoundedPairKeys ?? [],
+    eventRootPriorOnlyPairKeys:
+      boundaryProfile?.eventRootPriorOnlyPairKeys ?? [],
+    eventRootNextOnlyPairKeys:
+      boundaryProfile?.eventRootNextOnlyPairKeys ?? [],
+    eventRootUnboundedPairKeys:
+      boundaryProfile?.eventRootUnboundedPairKeys ?? [],
+    boundaryPairSummaries: boundaryProfile?.pairSummaries ?? [],
+    nextActiveDomainExtensionRoute,
+    eventRootBoundedInteriorGapFillStatus:
+      eventRootBoundedInteriorGapFillRuleTarget.status,
+    eventRootBoundedInteriorGapFillRuleTarget,
+    retainedLimitation:
+      "Most positive-width inactive gaps are bounded by retained edges carrying the hinge root key, but the runner has not supplied a fill rule that converts those inactive intervals, the one-sided endpoint exceptions, or the point-only contacts into retained event-root continuity.",
+  };
+}
+
+async function createEventRootBoundedInteriorGapFillRuleTarget({
+  boundaryProfile,
+  midpointReplayContext = null,
+  retainedRowSetBindingContext = null,
+}) {
+  const boundedRows = (boundaryProfile?.rows ?? []).filter(
+    (row) => row.bothEventRootBoundaryPass === true
+  );
+  const widths = boundedRows.map((row) => row.width).filter(Number.isFinite);
+  const priorDistances = boundedRows
+    .map((row) => row.priorEventRootBoundary?.distance)
+    .filter(Number.isFinite);
+  const nextDistances = boundedRows
+    .map((row) => row.nextEventRootBoundary?.distance)
+    .filter(Number.isFinite);
+  const bracketSpans = boundedRows
+    .map((row) => {
+      const priorDistance = row.priorEventRootBoundary?.distance;
+      const nextDistance = row.nextEventRootBoundary?.distance;
+      if (
+        !Number.isFinite(priorDistance) ||
+        !Number.isFinite(row.width) ||
+        !Number.isFinite(nextDistance)
+      ) {
+        return null;
+      }
+      return priorDistance + row.width + nextDistance;
+    })
+    .filter(Number.isFinite);
+  const immediatePriorEventRootBoundaryCount = boundedRows.filter(
+    (row) => row.immediatePriorEventRootPass === true
+  ).length;
+  const immediateNextEventRootBoundaryCount = boundedRows.filter(
+    (row) => row.immediateNextEventRootPass === true
+  ).length;
+  const immediateBothEventRootBoundaryCount = boundedRows.filter(
+    (row) => row.immediateBothEventRootBoundaryPass === true
+  ).length;
+  const zeroPriorBoundaryDistanceCount = boundedRows.filter(
+    (row) => (row.priorEventRootBoundary?.distance ?? Infinity) <= ROOT_TOLERANCE
+  ).length;
+  const zeroNextBoundaryDistanceCount = boundedRows.filter(
+    (row) => (row.nextEventRootBoundary?.distance ?? Infinity) <= ROOT_TOLERANCE
+  ).length;
+  const zeroAnyBoundaryDistanceCount = boundedRows.filter(
+    (row) =>
+      (row.priorEventRootBoundary?.distance ?? Infinity) <= ROOT_TOLERANCE ||
+      (row.nextEventRootBoundary?.distance ?? Infinity) <= ROOT_TOLERANCE
+  ).length;
+  const zeroBothBoundaryDistanceCount = boundedRows.filter(
+    (row) =>
+      (row.priorEventRootBoundary?.distance ?? Infinity) <= ROOT_TOLERANCE &&
+      (row.nextEventRootBoundary?.distance ?? Infinity) <= ROOT_TOLERANCE
+  ).length;
+  const positiveDistanceBothBoundaryCount = boundedRows.filter(
+    (row) =>
+      (row.priorEventRootBoundary?.distance ?? 0) > ROOT_TOLERANCE &&
+      (row.nextEventRootBoundary?.distance ?? 0) > ROOT_TOLERANCE
+  ).length;
+  const bracketLatticeCandidateTarget =
+    await createEventRootBracketLatticeCandidateTarget({
+      boundedRows,
+      midpointReplayContext,
+      retainedRowSetBindingContext,
+    });
+  const nonlocalBracketGapCount =
+    boundedRows.length - immediateBothEventRootBoundaryCount;
+  const proofObligations = [
+    nonlocalBracketGapCount > 0
+      ? {
+          obligation: "derive_nonlocal_event_root_bracket_fill_rule",
+          gapCount: nonlocalBracketGapCount,
+          maxPriorBoundaryDistance: maxFinite(priorDistances),
+          maxNextBoundaryDistance: maxFinite(nextDistances),
+          maxBracketSpan: maxFinite(bracketSpans),
+        }
+      : null,
+    positiveDistanceBothBoundaryCount > 0
+      ? {
+          obligation: "bound_two_sided_positive_distance_bracket_transport",
+          gapCount: positiveDistanceBothBoundaryCount,
+        }
+      : null,
+    zeroAnyBoundaryDistanceCount > 0
+      ? {
+          obligation:
+            "prove_touching_boundary_limit_case_compatible_with_bracket_fill",
+          gapCount: zeroAnyBoundaryDistanceCount,
+          zeroPriorBoundaryDistanceCount,
+          zeroNextBoundaryDistanceCount,
+          zeroBothBoundaryDistanceCount,
+        }
+      : null,
+  ].filter(Boolean);
+  const status =
+    boundaryProfile == null
+      ? "event_root_bounded_interior_gap_fill_rule_target_not_populated"
+      : boundedRows.length === 0
+        ? "event_root_bounded_interior_gap_fill_rule_no_bounded_gaps"
+        : immediateBothEventRootBoundaryCount === boundedRows.length
+          ? "event_root_bounded_interior_gap_fill_rule_candidate_immediate_brackets"
+          : "event_root_bounded_interior_gap_fill_rule_blocked_nonlocal_bracket_rule_missing";
+
+  return {
+    schema:
+      "aaa-tri-binary-event-root-bounded-interior-gap-fill-rule-target.v1",
+    status,
+    claimLevel:
+      "proof target for filling both-inactive no-transition gaps bracketed by retained event-root boundaries; not retained branch acceptance",
+    retainedBranchClaim: false,
+    parentActiveDomainExtensionBlocker:
+      "prove_event_root_bounded_interior_inactive_gap_fill_rule",
+    firstInteriorGapFillBlocker: proofObligations[0]?.obligation ?? null,
+    proofObligations,
+    boundedGapCount: boundedRows.length,
+    pairCount: createEventRootBoundedInteriorGapPairSummaries(boundedRows).length,
+    pairKeys: [
+      ...new Set(boundedRows.map((row) => row.pairKey)),
+    ],
+    totalBoundedGapWidth: widths.reduce((sum, value) => sum + value, 0),
+    maxBoundedGapWidth: maxFinite(widths),
+    minPriorBoundaryDistance: minFinite(priorDistances),
+    maxPriorBoundaryDistance: maxFinite(priorDistances),
+    minNextBoundaryDistance: minFinite(nextDistances),
+    maxNextBoundaryDistance: maxFinite(nextDistances),
+    maxBracketSpan: maxFinite(bracketSpans),
+    immediatePriorEventRootBoundaryCount,
+    immediateNextEventRootBoundaryCount,
+    immediateBothEventRootBoundaryCount,
+    nonlocalBracketGapCount,
+    zeroPriorBoundaryDistanceCount,
+    zeroNextBoundaryDistanceCount,
+    zeroAnyBoundaryDistanceCount,
+    zeroBothBoundaryDistanceCount,
+    positiveDistanceBothBoundaryCount,
+    pairSummaries: createEventRootBoundedInteriorGapPairSummaries(boundedRows),
+    bracketLatticeCandidateStatus: bracketLatticeCandidateTarget.status,
+    bracketLatticeCandidateTarget,
+    nextInteriorGapFillRoute:
+      nonlocalBracketGapCount > 0
+        ? "derive_nonlocal_event_root_bracket_fill_rule_with_distance_bounds"
+        : "prove_immediate_event_root_boundary_fill_rule",
+    retainedLimitation:
+      "The bounded inactive gaps have event-root boundaries, but none has immediate event-root boundaries on both sides. A retained replay lift therefore needs a nonlocal bracket fill rule with distance and transport bounds, not only a local adjacency rule.",
+  };
+}
+
+async function createEventRootBracketLatticeCandidateTarget({
+  boundedRows,
+  midpointReplayContext = null,
+  retainedRowSetBindingContext = null,
+}) {
+  const latticeStep = CLOSURE_PERIOD / (2 * BINARY_TO_BINARY_PATH_SEGMENT_COUNT);
+  const rows = boundedRows.map((row) => {
+    const priorDistance = row.priorEventRootBoundary?.distance ?? null;
+    const nextDistance = row.nextEventRootBoundary?.distance ?? null;
+    const bracketSpan =
+      Number.isFinite(priorDistance) &&
+      Number.isFinite(row.width) &&
+      Number.isFinite(nextDistance)
+        ? priorDistance + row.width + nextDistance
+        : null;
+    const widthLattice = createLatticeProjection(row.width, latticeStep);
+    const priorDistanceLattice = createLatticeProjection(
+      priorDistance,
+      latticeStep
+    );
+    const nextDistanceLattice = createLatticeProjection(
+      nextDistance,
+      latticeStep
+    );
+    const bracketSpanLattice = createLatticeProjection(
+      bracketSpan,
+      latticeStep
+    );
+    return {
+      pairKey: row.pairKey,
+      edgeIndex: row.edgeIndex,
+      side: row.side,
+      width: row.width,
+      priorDistance,
+      nextDistance,
+      bracketSpan,
+      widthUnits: widthLattice.units,
+      priorDistanceUnits: priorDistanceLattice.units,
+      nextDistanceUnits: nextDistanceLattice.units,
+      bracketSpanUnits: bracketSpanLattice.units,
+      widthLatticeResidual: widthLattice.residual,
+      priorDistanceLatticeResidual: priorDistanceLattice.residual,
+      nextDistanceLatticeResidual: nextDistanceLattice.residual,
+      bracketSpanLatticeResidual: bracketSpanLattice.residual,
+      latticeAligned:
+        widthLattice.aligned &&
+        priorDistanceLattice.aligned &&
+        nextDistanceLattice.aligned &&
+        bracketSpanLattice.aligned,
+    };
+  });
+  const latticeAlignedRows = rows.filter((row) => row.latticeAligned);
+  const allBoundedGapsLatticeAligned =
+    rows.length > 0 && latticeAlignedRows.length === rows.length;
+  const widthResiduals = rows
+    .map((row) => row.widthLatticeResidual)
+    .filter(Number.isFinite);
+  const priorDistanceResiduals = rows
+    .map((row) => row.priorDistanceLatticeResidual)
+    .filter(Number.isFinite);
+  const nextDistanceResiduals = rows
+    .map((row) => row.nextDistanceLatticeResidual)
+    .filter(Number.isFinite);
+  const bracketSpanResiduals = rows
+    .map((row) => row.bracketSpanLatticeResidual)
+    .filter(Number.isFinite);
+  const bracketSpanUnitValues = [
+    ...new Set(rows.map((row) => row.bracketSpanUnits).filter(Number.isFinite)),
+  ].sort((left, right) => left - right);
+  const widthUnitValues = [
+    ...new Set(rows.map((row) => row.widthUnits).filter(Number.isFinite)),
+  ].sort((left, right) => left - right);
+  const transportLawTarget = await createEventRootBracketTransportLawTarget({
+    boundedRows,
+    latticeRows: rows,
+    latticeStep,
+    midpointReplayContext,
+    retainedRowSetBindingContext,
+  });
+  const status =
+    rows.length === 0
+      ? "event_root_bracket_lattice_candidate_no_bounded_gaps"
+      : allBoundedGapsLatticeAligned
+        ? "event_root_bracket_lattice_candidate_populated_transport_law_missing"
+        : "event_root_bracket_lattice_candidate_blocked_lattice_misalignment";
+
+  return {
+    schema:
+      "aaa-tri-binary-event-root-bracket-lattice-candidate-target.v1",
+    status,
+    claimLevel:
+      "geometry-only lattice candidate for nonlocal event-root bracket fill; not a retained transport law and not retained branch acceptance",
+    retainedBranchClaim: false,
+    parentInteriorGapFillBlocker: "derive_nonlocal_event_root_bracket_fill_rule",
+    firstBracketLatticeBlocker: allBoundedGapsLatticeAligned
+      ? "derive_nonlocal_event_root_bracket_transport_law"
+      : "resolve_nonlattice_event_root_bracket_geometry",
+    latticeStep,
+    boundedGapCount: rows.length,
+    latticeAlignedGapCount: latticeAlignedRows.length,
+    allBoundedGapsLatticeAligned,
+    widthUnitValues,
+    bracketSpanUnitValues,
+    minBracketSpanUnits: minFinite(bracketSpanUnitValues),
+    maxBracketSpanUnits: maxFinite(bracketSpanUnitValues),
+    maxWidthLatticeResidual: maxFinite(widthResiduals),
+    maxPriorDistanceLatticeResidual: maxFinite(priorDistanceResiduals),
+    maxNextDistanceLatticeResidual: maxFinite(nextDistanceResiduals),
+    maxBracketSpanLatticeResidual: maxFinite(bracketSpanResiduals),
+    pairSummaries: createEventRootBracketLatticePairSummaries(rows),
+    transportLawStatus: transportLawTarget.status,
+    transportLawTarget,
+    nextBracketLatticeRoute: allBoundedGapsLatticeAligned
+      ? "derive_transport_law_on_event_root_bracket_lattice"
+      : "repair_or_reject_nonlattice_event_root_bracket_rows",
+    rows,
+    retainedLimitation:
+      "The event-root-bounded inactive gaps lie on the sampled hit-time lattice, but no retained law has been supplied that transports the hinge root key across the nonlocal bracket spans.",
+  };
+}
+
+function createLatticeProjection(value, latticeStep) {
+  if (!Number.isFinite(value) || !Number.isFinite(latticeStep) || latticeStep <= 0) {
+    return {
+      units: null,
+      residual: null,
+      aligned: false,
+    };
+  }
+  const units = Math.round(value / latticeStep);
+  const residual = Math.abs(value - units * latticeStep);
+  return {
+    units,
+    residual,
+    aligned: residual <= ROOT_TOLERANCE,
+  };
+}
+
+function createEventRootBracketLatticePairSummaries(rows) {
+  const summaries = new Map();
+  for (const row of rows) {
+    const summary = summaries.get(row.pairKey) ?? {
+      pairKey: row.pairKey,
+      gapCount: 0,
+      latticeAlignedGapCount: 0,
+      widthUnitValues: new Set(),
+      bracketSpanUnitValues: new Set(),
+      minBracketSpanUnits: null,
+      maxBracketSpanUnits: null,
+      maxBracketSpanLatticeResidual: null,
+    };
+    summary.gapCount += 1;
+    if (row.latticeAligned) {
+      summary.latticeAlignedGapCount += 1;
+    }
+    if (Number.isFinite(row.widthUnits)) {
+      summary.widthUnitValues.add(row.widthUnits);
+    }
+    if (Number.isFinite(row.bracketSpanUnits)) {
+      summary.bracketSpanUnitValues.add(row.bracketSpanUnits);
+      summary.minBracketSpanUnits =
+        summary.minBracketSpanUnits == null
+          ? row.bracketSpanUnits
+          : Math.min(summary.minBracketSpanUnits, row.bracketSpanUnits);
+      summary.maxBracketSpanUnits =
+        summary.maxBracketSpanUnits == null
+          ? row.bracketSpanUnits
+          : Math.max(summary.maxBracketSpanUnits, row.bracketSpanUnits);
+    }
+    if (Number.isFinite(row.bracketSpanLatticeResidual)) {
+      summary.maxBracketSpanLatticeResidual =
+        summary.maxBracketSpanLatticeResidual == null
+          ? row.bracketSpanLatticeResidual
+          : Math.max(
+              summary.maxBracketSpanLatticeResidual,
+              row.bracketSpanLatticeResidual
+            );
+    }
+    summaries.set(row.pairKey, summary);
+  }
+  return Array.from(summaries.values())
+    .map((summary) => ({
+      ...summary,
+      widthUnitValues: [...summary.widthUnitValues].sort((left, right) => left - right),
+      bracketSpanUnitValues: [...summary.bracketSpanUnitValues].sort(
+        (left, right) => left - right
+      ),
+      allPairGapsLatticeAligned:
+        summary.gapCount > 0 &&
+        summary.latticeAlignedGapCount === summary.gapCount,
+    }))
+    .sort((left, right) => left.pairKey.localeCompare(right.pairKey));
+}
+
+async function createEventRootBracketTransportLawTarget({
+  boundedRows,
+  latticeRows,
+  latticeStep,
+  midpointReplayContext = null,
+  retainedRowSetBindingContext = null,
+}) {
+  const latticeRowsByKey = new Map(
+    latticeRows.map((row) => [createEventRootBracketGapKey(row), row])
+  );
+  const rows = boundedRows.map((row) => {
+    const latticeRow =
+      latticeRowsByKey.get(createEventRootBracketGapKey(row)) ?? null;
+    const priorRootKeys = row.priorEventRootBoundary?.retainedRootKeys ?? [];
+    const nextRootKeys = row.nextEventRootBoundary?.retainedRootKeys ?? [];
+    const endpointSharedRootKeys = priorRootKeys.filter((rootKey) =>
+      nextRootKeys.includes(rootKey)
+    );
+    const eventRootKey = row.eventRootKey ?? null;
+    const sameEventRootEndpointPass =
+      eventRootKey != null &&
+      priorRootKeys.includes(eventRootKey) &&
+      nextRootKeys.includes(eventRootKey);
+    const touchingPrior =
+      (row.priorEventRootBoundary?.distance ?? Infinity) <= ROOT_TOLERANCE;
+    const touchingNext =
+      (row.nextEventRootBoundary?.distance ?? Infinity) <= ROOT_TOLERANCE;
+    const positiveDistanceBothBoundaryPass =
+      (row.priorEventRootBoundary?.distance ?? 0) > ROOT_TOLERANCE &&
+      (row.nextEventRootBoundary?.distance ?? 0) > ROOT_TOLERANCE;
+    return {
+      pairKey: row.pairKey,
+      edgeIndex: row.edgeIndex,
+      side: row.side,
+      endpointPresence: row.endpointPresence ?? null,
+      gapKind: row.gapKind ?? null,
+      bracketInteriorProfile: row.bracketInteriorProfile ?? null,
+      eventRootKey,
+      sameEventRootEndpointPass,
+      endpointSharedRootKeys,
+      latticeAligned: latticeRow?.latticeAligned === true,
+      widthUnits: latticeRow?.widthUnits ?? null,
+      priorDistanceUnits: latticeRow?.priorDistanceUnits ?? null,
+      nextDistanceUnits: latticeRow?.nextDistanceUnits ?? null,
+      bracketSpanUnits: latticeRow?.bracketSpanUnits ?? null,
+      touchingPrior,
+      touchingNext,
+      touchingBoundaryCase: touchingPrior || touchingNext,
+      positiveDistanceBothBoundaryPass,
+      immediateBothEventRootBoundaryPass:
+        row.immediateBothEventRootBoundaryPass === true,
+      finiteTransportClassKey: createEventRootBracketTransportClassKey({
+        pairKey: row.pairKey,
+        side: row.side,
+        widthUnits: latticeRow?.widthUnits ?? null,
+        priorDistanceUnits: latticeRow?.priorDistanceUnits ?? null,
+        nextDistanceUnits: latticeRow?.nextDistanceUnits ?? null,
+        bracketSpanUnits: latticeRow?.bracketSpanUnits ?? null,
+      }),
+    };
+  });
+  const sameEventRootEndpointRows = rows.filter(
+    (row) => row.sameEventRootEndpointPass
+  );
+  const latticeAlignedRows = rows.filter((row) => row.latticeAligned);
+  const finiteClassRows = rows.filter((row) => row.finiteTransportClassKey);
+  const allRowsHaveSameEventRootEndpoints =
+    rows.length > 0 && sameEventRootEndpointRows.length === rows.length;
+  const allRowsLatticeAligned =
+    rows.length > 0 && latticeAlignedRows.length === rows.length;
+  const finiteTransportTableCoveragePass =
+    rows.length > 0 && finiteClassRows.length === rows.length;
+  const immediateBothEventRootBoundaryCount = rows.filter(
+    (row) => row.immediateBothEventRootBoundaryPass
+  ).length;
+  const localAdjacencyRulePass =
+    rows.length > 0 && immediateBothEventRootBoundaryCount === rows.length;
+  const widthOnlyAudit = createEventRootBracketWidthOnlyLawAudit(rows);
+  const finiteTransportClassSummaries =
+    createEventRootBracketTransportClassSummaries(rows);
+  const affineLatticeLawTarget =
+    await createEventRootBracketAffineLatticeLawTarget({
+      rows,
+      midpointReplayContext,
+      retainedRowSetBindingContext,
+    });
+  const positiveDistanceBothBoundaryCount = rows.filter(
+    (row) => row.positiveDistanceBothBoundaryPass
+  ).length;
+  const touchingBoundaryCount = rows.filter(
+    (row) => row.touchingBoundaryCase
+  ).length;
+  const rejectedShortcutAudits = [
+    localAdjacencyRulePass
+      ? null
+      : {
+          shortcut: "immediate_event_root_adjacency_rule",
+          status: "rejected_nonlocal_brackets_present",
+          nonImmediateGapCount: rows.length - immediateBothEventRootBoundaryCount,
+        },
+    widthOnlyAudit.widthOnlyTransportRulePass
+      ? null
+      : {
+          shortcut: "width_only_gap_rule",
+          status: "rejected_boundary_distance_and_bracket_span_required",
+          ambiguousWidthUnitCount:
+            widthOnlyAudit.ambiguousWidthUnitSummaries.length,
+        },
+  ].filter(Boolean);
+  const proofObligations = [
+    affineLatticeLawTarget.affineLatticeLawCandidatePass
+      ? {
+          obligation:
+            "prove_event_root_identity_conservation_on_affine_bracket_interval",
+          affineLawRowCount: affineLatticeLawTarget.affineLawRowCount,
+        }
+      : {
+          obligation:
+            "derive_affine_lattice_bracket_equation_or_reject_table_compression",
+          failedAffineLawRowCount:
+            affineLatticeLawTarget.failedAffineLawRowCount,
+        },
+    positiveDistanceBothBoundaryCount > 0
+      ? {
+          obligation: "bound_positive_distance_bracket_transport",
+          positiveDistanceBothBoundaryCount,
+        }
+      : null,
+    touchingBoundaryCount > 0
+      ? {
+          obligation: "prove_touching_boundary_transport_limit",
+          touchingBoundaryCount,
+        }
+      : null,
+    affineLatticeLawTarget.affineLatticeLawCandidatePass &&
+    finiteTransportTableCoveragePass
+      ? null
+      : {
+          obligation: "replace_finite_lattice_table_with_derived_transport_law",
+          finiteTransportClassCount: finiteTransportClassSummaries.length,
+        },
+  ].filter(Boolean);
+  const status =
+    rows.length === 0
+      ? "event_root_bracket_transport_law_target_no_bounded_gaps"
+      : !allRowsHaveSameEventRootEndpoints || !allRowsLatticeAligned
+        ? "event_root_bracket_transport_law_target_prerequisites_missing"
+        : affineLatticeLawTarget.affineLatticeLawCandidatePass
+          ? "event_root_bracket_transport_law_candidate_affine_lattice_law_populated_identity_conservation_missing"
+        : finiteTransportTableCoveragePass
+          ? "event_root_bracket_transport_law_candidate_finite_lattice_table_populated_derivation_missing"
+          : "event_root_bracket_transport_law_candidate_table_incomplete";
+
+  return {
+    schema: "aaa-tri-binary-event-root-bracket-transport-law-target.v1",
+    status,
+    claimLevel:
+      "formal candidate audit for transporting the hinge event-root identity across bounded inactive gaps; not an accepted retained transport law",
+    retainedBranchClaim: false,
+    acceptedTransportLawPass: false,
+    latticeStep,
+    boundedGapCount: rows.length,
+    sameEventRootEndpointCount: sameEventRootEndpointRows.length,
+    latticeAlignedGapCount: latticeAlignedRows.length,
+    allRowsHaveSameEventRootEndpoints,
+    allRowsLatticeAligned,
+    immediateBothEventRootBoundaryCount,
+    localAdjacencyRulePass,
+    widthOnlyTransportRulePass: widthOnlyAudit.widthOnlyTransportRulePass,
+    widthOnlyAudit,
+    rejectedShortcutAudits,
+    finiteTransportTableCoveragePass,
+    finiteTransportClassCount: finiteTransportClassSummaries.length,
+    finiteTransportClassSummaries,
+    affineLatticeLawStatus: affineLatticeLawTarget.status,
+    affineLatticeLawTarget,
+    firstTransportLawBlocker: proofObligations[0]?.obligation ?? null,
+    proofObligations,
+    nextTransportLawRoute:
+      affineLatticeLawTarget.affineLatticeLawCandidatePass
+        ? "prove_event_root_identity_conservation_on_affine_bracket_interval"
+        : finiteTransportTableCoveragePass
+          ? "derive_invariant_law_from_finite_event_root_bracket_lattice_table"
+        : "populate_missing_event_root_bracket_transport_prerequisites",
+    rows,
+    retainedLimitation:
+      "The affine bracket equation compresses the finite lattice table and every endpoint carries the same hinge event-root key, but geometric table compression is not yet dynamic identity transport. Retained replay identity still requires a proof that the event-root identity is conserved across the affine bracket interval, plus compatibility with positive-distance bounds and touching-boundary limits.",
+  };
+}
+
+function createEventRootBracketGapKey(row) {
+  return `${row.pairKey}:${row.edgeIndex}:${row.side}`;
+}
+
+function createEventRootBracketTransportClassKey({
+  pairKey,
+  side,
+  widthUnits,
+  priorDistanceUnits,
+  nextDistanceUnits,
+  bracketSpanUnits,
+}) {
+  if (
+    !Number.isFinite(widthUnits) ||
+    !Number.isFinite(priorDistanceUnits) ||
+    !Number.isFinite(nextDistanceUnits) ||
+    !Number.isFinite(bracketSpanUnits)
+  ) {
+    return null;
+  }
+  return [
+    pairKey,
+    side,
+    `w${widthUnits}`,
+    `p${priorDistanceUnits}`,
+    `n${nextDistanceUnits}`,
+    `b${bracketSpanUnits}`,
+  ].join("|");
+}
+
+function createEventRootBracketWidthOnlyLawAudit(rows) {
+  const summaries = new Map();
+  for (const row of rows) {
+    if (!Number.isFinite(row.widthUnits)) {
+      continue;
+    }
+    const summary = summaries.get(row.widthUnits) ?? {
+      widthUnits: row.widthUnits,
+      rowCount: 0,
+      bracketSpanUnitValues: new Set(),
+      endpointDistanceUnitPairs: new Set(),
+    };
+    summary.rowCount += 1;
+    if (Number.isFinite(row.bracketSpanUnits)) {
+      summary.bracketSpanUnitValues.add(row.bracketSpanUnits);
+    }
+    if (
+      Number.isFinite(row.priorDistanceUnits) &&
+      Number.isFinite(row.nextDistanceUnits)
+    ) {
+      summary.endpointDistanceUnitPairs.add(
+        `${row.priorDistanceUnits}:${row.nextDistanceUnits}`
+      );
+    }
+    summaries.set(row.widthUnits, summary);
+  }
+  const rowsOut = [...summaries.values()]
+    .map((summary) => ({
+      ...summary,
+      bracketSpanUnitValues: [...summary.bracketSpanUnitValues].sort(
+        (left, right) => left - right
+      ),
+      endpointDistanceUnitPairs: [...summary.endpointDistanceUnitPairs].sort(),
+    }))
+    .sort((left, right) => left.widthUnits - right.widthUnits);
+  const ambiguousWidthUnitSummaries = rowsOut.filter(
+    (summary) =>
+      summary.bracketSpanUnitValues.length > 1 ||
+      summary.endpointDistanceUnitPairs.length > 1
+  );
+  return {
+    schema: "aaa-tri-binary-event-root-bracket-width-only-law-audit.v1",
+    widthUnitCount: rowsOut.length,
+    widthOnlyTransportRulePass: ambiguousWidthUnitSummaries.length === 0,
+    ambiguousWidthUnitSummaries,
+    rows: rowsOut,
+  };
+}
+
+async function createEventRootBracketAffineLatticeLawTarget({
+  rows,
+  midpointReplayContext = null,
+  retainedRowSetBindingContext = null,
+}) {
+  const lawRows = rows.map((row) => {
+    const affineSpanUnits =
+      Number.isFinite(row.priorDistanceUnits) &&
+      Number.isFinite(row.widthUnits) &&
+      Number.isFinite(row.nextDistanceUnits)
+        ? row.priorDistanceUnits + row.widthUnits + row.nextDistanceUnits
+        : null;
+    const affineEquationResidualUnits =
+      Number.isFinite(affineSpanUnits) &&
+      Number.isFinite(row.bracketSpanUnits)
+        ? Math.abs(row.bracketSpanUnits - affineSpanUnits)
+        : null;
+    const inactiveGapStartUnits = row.priorDistanceUnits;
+    const inactiveGapEndUnits =
+      Number.isFinite(row.priorDistanceUnits) &&
+      Number.isFinite(row.widthUnits)
+        ? row.priorDistanceUnits + row.widthUnits
+        : null;
+    const inactiveGapInsideBracketPass =
+      Number.isFinite(inactiveGapStartUnits) &&
+      Number.isFinite(inactiveGapEndUnits) &&
+      Number.isFinite(row.bracketSpanUnits) &&
+      inactiveGapStartUnits >= 0 &&
+      inactiveGapEndUnits >= inactiveGapStartUnits &&
+      inactiveGapEndUnits <= row.bracketSpanUnits;
+    const affineEquationPass =
+      affineEquationResidualUnits === 0 &&
+      inactiveGapInsideBracketPass &&
+      row.widthUnits > 0;
+    const endpointIdentityAffineCandidatePass =
+      affineEquationPass &&
+      row.sameEventRootEndpointPass === true &&
+      row.latticeAligned === true;
+    return {
+      pairKey: row.pairKey,
+      edgeIndex: row.edgeIndex,
+      side: row.side,
+      endpointPresence: row.endpointPresence ?? null,
+      gapKind: row.gapKind ?? null,
+      bracketInteriorProfile: row.bracketInteriorProfile ?? null,
+      eventRootKey: row.eventRootKey,
+      widthUnits: row.widthUnits,
+      priorDistanceUnits: row.priorDistanceUnits,
+      nextDistanceUnits: row.nextDistanceUnits,
+      bracketSpanUnits: row.bracketSpanUnits,
+      affineSpanUnits,
+      affineEquationResidualUnits,
+      inactiveGapIntervalUnits: [
+        finiteOrNull(inactiveGapStartUnits),
+        finiteOrNull(inactiveGapEndUnits),
+      ],
+      bracketIntervalUnits: [0, finiteOrNull(row.bracketSpanUnits)],
+      inactiveGapInsideBracketPass,
+      affineEquationPass,
+      sameEventRootEndpointPass: row.sameEventRootEndpointPass === true,
+      endpointSharedRootKeys: row.endpointSharedRootKeys ?? [],
+      latticeAligned: row.latticeAligned === true,
+      touchingBoundaryCase: row.touchingBoundaryCase === true,
+      positiveDistanceBothBoundaryPass:
+        row.positiveDistanceBothBoundaryPass === true,
+      endpointIdentityAffineCandidatePass,
+    };
+  });
+  const affineLawRows = lawRows.filter(
+    (row) => row.endpointIdentityAffineCandidatePass
+  );
+  const failedAffineLawRows = lawRows.filter(
+    (row) => !row.endpointIdentityAffineCandidatePass
+  );
+  const positiveDistanceRows = lawRows.filter(
+    (row) => row.positiveDistanceBothBoundaryPass
+  );
+  const touchingBoundaryRows = lawRows.filter(
+    (row) => row.touchingBoundaryCase
+  );
+  const affineLatticeLawCandidatePass =
+    lawRows.length > 0 && affineLawRows.length === lawRows.length;
+  const spanSummaries = createEventRootBracketAffineSpanSummaries(lawRows);
+  const identityConservationTarget =
+    await createEventRootAffineBracketIdentityConservationTarget({
+      lawRows,
+      affineLatticeLawCandidatePass,
+      midpointReplayContext,
+      retainedRowSetBindingContext,
+    });
+
+  return {
+    schema: "aaa-tri-binary-event-root-bracket-affine-lattice-law-target.v1",
+    status: lawRows.length === 0
+      ? "event_root_bracket_affine_lattice_law_no_rows"
+      : affineLatticeLawCandidatePass
+        ? "event_root_bracket_affine_lattice_law_candidate_populated_identity_conservation_missing"
+        : "event_root_bracket_affine_lattice_law_candidate_rejected_by_rows",
+    claimLevel:
+      "geometry-level affine lattice equation for bounded event-root brackets; not accepted event-root identity transport",
+    retainedBranchClaim: false,
+    acceptedAffineBracketTransportLawPass: false,
+    affineLatticeLawCandidatePass,
+    affineLawFormula:
+      "For lattice units p,w,n,B, the bracket interval is [0,B], the inactive gap is [p,p+w], and B=p+w+n.",
+    affineLawRowCount: affineLawRows.length,
+    failedAffineLawRowCount: failedAffineLawRows.length,
+    positiveDistanceBothBoundaryCount: positiveDistanceRows.length,
+    touchingBoundaryCount: touchingBoundaryRows.length,
+    spanSummaries,
+    identityConservationTargetStatus: identityConservationTarget.status,
+    identityConservationTarget,
+    firstAffineLawBlocker: affineLatticeLawCandidatePass
+      ? identityConservationTarget.firstIdentityConservationBlocker
+      : "repair_affine_bracket_rows_or_reject_law_candidate",
+    nextAffineLawRoute: affineLatticeLawCandidatePass
+      ? identityConservationTarget.nextIdentityConservationRoute
+      : "repair_affine_bracket_rows_or_reject_law_candidate",
+    proofObligations: [
+      affineLatticeLawCandidatePass
+        ? identityConservationTarget.firstIdentityConservationBlocker
+        : "repair_affine_bracket_rows_or_reject_law_candidate",
+      positiveDistanceRows.length > 0
+        ? "prove_affine_positive_distance_transport_bound"
+        : null,
+      touchingBoundaryRows.length > 0
+        ? "prove_affine_touching_boundary_limit_compatibility"
+        : null,
+      "bind_affine_lattice_transport_to_global_retained_row_set",
+    ].filter(Boolean),
+    rows: lawRows,
+    retainedLimitation:
+      "The equation compresses the finite bracket table into one affine lattice form, but it still describes bracket geometry only. Acceptance requires a proof that the same event-root identity transported by the retained endpoints is conserved across the inactive affine interval on the global retained row set.",
+  };
+}
+
+async function createEventRootAffineBracketIdentityConservationTarget({
+  lawRows,
+  affineLatticeLawCandidatePass,
+  midpointReplayContext = null,
+  retainedRowSetBindingContext = null,
+}) {
+  const endpointIdentityRows = lawRows.filter(
+    (row) => row.sameEventRootEndpointPass === true
+  );
+  const affineGeometryRows = lawRows.filter((row) => row.affineEquationPass);
+  const candidateRows = lawRows.filter(
+    (row) => row.endpointIdentityAffineCandidatePass
+  );
+  const positiveDistanceRows = lawRows.filter(
+    (row) => row.positiveDistanceBothBoundaryPass
+  );
+  const touchingBoundaryRows = lawRows.filter(
+    (row) => row.touchingBoundaryCase
+  );
+  const endpointUniquenessAudit =
+    createEventRootAffineBracketEndpointUniquenessAudit(lawRows);
+  const rowProofs = lawRows.map((row) => {
+    const proofSubcase = row.positiveDistanceBothBoundaryPass
+      ? "positive_distance_affine_interior"
+      : "touching_boundary_affine_limit";
+    const endpointSharedRootKeys = row.endpointSharedRootKeys ?? [];
+    const endpointCompetitorRootKeys = endpointSharedRootKeys.filter(
+      (rootKey) => rootKey !== row.eventRootKey
+    );
+      return {
+        pairKey: row.pairKey,
+        edgeIndex: row.edgeIndex,
+        side: row.side,
+        endpointPresence: row.endpointPresence ?? null,
+        gapKind: row.gapKind ?? null,
+        bracketInteriorProfile: row.bracketInteriorProfile ?? null,
+        eventRootKey: row.eventRootKey,
+        endpointSharedRootKeys,
+      endpointCompetitorRootKeys,
+      uniqueEventRootEndpointPass:
+        endpointSharedRootKeys.length === 1 &&
+        endpointSharedRootKeys[0] === row.eventRootKey,
+      proofSubcase,
+      bracketIntervalUnits: row.bracketIntervalUnits,
+      inactiveGapIntervalUnits: row.inactiveGapIntervalUnits,
+      endpointIdentityAffineCandidatePass:
+        row.endpointIdentityAffineCandidatePass === true,
+      sameEventRootEndpointPass: row.sameEventRootEndpointPass === true,
+      affineEquationPass: row.affineEquationPass === true,
+      latticeAligned: row.latticeAligned === true,
+      positiveDistanceBothBoundaryPass:
+        row.positiveDistanceBothBoundaryPass === true,
+      touchingBoundaryCase: row.touchingBoundaryCase === true,
+      interiorEventRootIdentityConservationProofPopulated: false,
+      globalRetainedRowSetBindingProofPopulated: false,
+      acceptedIdentityConservationRowPass: false,
+      firstRowBlocker:
+        proofSubcase === "positive_distance_affine_interior"
+          ? "prove_positive_distance_event_root_identity_conservation"
+          : "prove_touching_boundary_event_root_identity_limit",
+    };
+  });
+  const acceptedRows = rowProofs.filter(
+    (row) => row.acceptedIdentityConservationRowPass
+  );
+  const interiorCoverageAudit =
+    createEventRootAffineBracketInteriorCoverageAudit(rowProofs);
+  const interiorTransitionSourceAudit =
+    createEventRootAffineBracketInteriorTransitionSourceAudit(rowProofs);
+  const interiorNonRetainedTransitionKeyAudit =
+    createEventRootAffineBracketInteriorNonRetainedTransitionKeyAudit(
+      rowProofs
+    );
+  const interiorTransitionConversionPatternAudit =
+    createEventRootAffineBracketInteriorTransitionConversionPatternAudit(
+      rowProofs
+    );
+  const interiorBalancedConversionOccupancyWalkAudit =
+    createEventRootAffineBracketBalancedConversionOccupancyWalkAudit(rowProofs);
+  const balancedTransitionConversionRuleTarget =
+    createEventRootAffineBracketBalancedTransitionConversionRuleTarget({
+      conversionPatternAudit: interiorTransitionConversionPatternAudit,
+      occupancyAudit: interiorBalancedConversionOccupancyWalkAudit,
+    });
+  const interiorAbsenceBridgeFillRuleTarget =
+    await createEventRootAffineBracketAbsenceBridgeFillRuleTarget({
+      occupancyAudit: interiorBalancedConversionOccupancyWalkAudit,
+      conversionPatternAudit: interiorTransitionConversionPatternAudit,
+      interiorNonRetainedTransitionKeyAudit,
+      balancedTransitionConversionRuleTarget,
+      midpointReplayContext,
+      retainedRowSetBindingContext,
+    });
+  const interiorContinuityBlocker =
+    createEventRootAffineBracketInteriorContinuityBlocker({
+      interiorTransitionSourceAudit,
+      interiorNonRetainedTransitionKeyAudit,
+      interiorTransitionConversionPatternAudit,
+      interiorBalancedConversionOccupancyWalkAudit,
+      interiorAbsenceBridgeFillRuleTarget,
+    });
+  const allRowsHaveEndpointIdentityAndAffineGeometry =
+    lawRows.length > 0 && candidateRows.length === lawRows.length;
+  const allRowsHaveUniqueEventRootEndpoints =
+    endpointUniquenessAudit.acceptedEndpointRootUniquenessPass === true;
+  const positiveDistanceProofRows = rowProofs.filter(
+    (row) =>
+      row.proofSubcase === "positive_distance_affine_interior" &&
+      row.interiorEventRootIdentityConservationProofPopulated
+  );
+  const touchingBoundaryProofRows = rowProofs.filter(
+    (row) =>
+      row.proofSubcase === "touching_boundary_affine_limit" &&
+      row.interiorEventRootIdentityConservationProofPopulated
+  );
+  const acceptedEventRootIdentityConservationPass =
+    rowProofs.length > 0 && acceptedRows.length === rowProofs.length;
+  const proofObligations = [
+    allRowsHaveEndpointIdentityAndAffineGeometry
+      ? {
+          obligation:
+            "prove_event_root_identity_conservation_on_affine_bracket_interval",
+          rowCount: candidateRows.length,
+        }
+      : {
+          obligation:
+            "repair_endpoint_identity_or_affine_geometry_before_identity_conservation",
+          failedRowCount: lawRows.length - candidateRows.length,
+        },
+    allRowsHaveUniqueEventRootEndpoints
+      ? null
+      : {
+          obligation: "exclude_endpoint_shared_root_competitors",
+          competitorRowCount: endpointUniquenessAudit.endpointCompetitorRowCount,
+        },
+    interiorCoverageAudit.acceptedInteriorCoveragePass
+      ? null
+      : {
+          obligation: "populate_interior_active_root_or_transition_continuity_rows",
+          rowCount: rowProofs.length,
+          interiorActiveRootCoverageRowCount:
+            interiorCoverageAudit.interiorActiveRootCoverageRowCount,
+          retainedTransitionInteriorRowCount:
+            interiorCoverageAudit.retainedTransitionInteriorRowCount,
+        },
+    interiorTransitionSourceAudit.acceptedRetainedInteriorContinuityPass
+      ? null
+      : {
+          obligation: interiorContinuityBlocker,
+          rowCount: rowProofs.length,
+          rowsWithInteriorActiveEndpointEvidence:
+            interiorTransitionSourceAudit
+              .rowsWithInteriorActiveEndpointEvidence,
+          interiorOnlyNonRetainedEdgeCount:
+            interiorTransitionSourceAudit
+              .interiorOnlyNonRetainedEdgeCount,
+          interiorNoTransitionBothInactiveEdgeCount:
+            interiorTransitionSourceAudit
+              .interiorNoTransitionBothInactiveEdgeCount,
+          interiorRetainedEventRootEdgeCount:
+            interiorTransitionSourceAudit
+              .interiorRetainedEventRootEdgeCount,
+          rowsWithInteriorNonRetainedEventRootTouches:
+            interiorNonRetainedTransitionKeyAudit
+              .rowsWithInteriorNonRetainedEventRootTouches,
+          interiorNonRetainedEventRootTouchTransitionCount:
+            interiorNonRetainedTransitionKeyAudit
+              .interiorNonRetainedEventRootTouchTransitionCount,
+          conversionPatternCandidateRowCount:
+            interiorTransitionConversionPatternAudit
+              .conversionPatternCandidateRowCount,
+          foldedEventRootTouchRowCount:
+            interiorTransitionConversionPatternAudit
+              .foldedEventRootTouchRowCount,
+          balancedRecoveryWalkCandidateRowCount:
+            interiorBalancedConversionOccupancyWalkAudit
+              .balancedRecoveryWalkCandidateRowCount,
+          balancedTransitionConversionRuleTargetStatus:
+            balancedTransitionConversionRuleTarget.status,
+          signedTransitionBalanceRowCount:
+            balancedTransitionConversionRuleTarget
+              .signedTransitionBalanceRowCount,
+          firstBalancedTransitionConversionRuleBlocker:
+            balancedTransitionConversionRuleTarget
+              .firstBalancedTransitionConversionRuleBlocker,
+          rowsWithPositiveEventRootAbsenceBridge:
+            interiorBalancedConversionOccupancyWalkAudit
+              .rowsWithPositiveEventRootAbsenceBridge,
+          eventRootAbsentNoTransitionBothInactiveEdgeCount:
+            interiorBalancedConversionOccupancyWalkAudit
+              .eventRootAbsentNoTransitionBothInactiveEdgeCount,
+          totalEventRootAbsenceBridgeWidth:
+            interiorBalancedConversionOccupancyWalkAudit
+              .totalEventRootAbsenceBridgeWidth,
+          absenceBridgeFillRuleTargetStatus:
+            interiorAbsenceBridgeFillRuleTarget.status,
+          uniquePositiveAbsenceBridgeCount:
+            interiorAbsenceBridgeFillRuleTarget
+              .uniquePositiveAbsenceBridgeCount,
+          acceptedAbsenceBridgeFillRulePass:
+            interiorAbsenceBridgeFillRuleTarget
+              .acceptedAbsenceBridgeFillRulePass,
+          derivedAbsenceBridgeFillLawRowCount:
+            interiorAbsenceBridgeFillRuleTarget
+              .derivedAbsenceBridgeFillLawRowCount,
+          dynamicLawSourceAuditStatus:
+            interiorAbsenceBridgeFillRuleTarget
+              .dynamicLawSourceAuditStatus,
+          firstDynamicLawSourceBlocker:
+            interiorAbsenceBridgeFillRuleTarget
+              .firstDynamicLawSourceBlocker,
+        },
+    positiveDistanceRows.length > 0
+      ? {
+          obligation:
+            "prove_positive_distance_event_root_identity_conservation",
+          rowCount: positiveDistanceRows.length,
+          proofRowsPopulated: positiveDistanceProofRows.length,
+        }
+      : null,
+    touchingBoundaryRows.length > 0
+      ? {
+          obligation: "prove_touching_boundary_event_root_identity_limit",
+          rowCount: touchingBoundaryRows.length,
+          proofRowsPopulated: touchingBoundaryProofRows.length,
+        }
+      : null,
+    {
+      obligation: "bind_affine_identity_conservation_to_global_retained_row_set",
+      proofRowsPopulated: 0,
+    },
+  ].filter(Boolean);
+
+  return {
+    schema:
+      "aaa-tri-binary-event-root-affine-bracket-identity-conservation-target.v1",
+    status: lawRows.length === 0
+      ? "event_root_affine_bracket_identity_conservation_no_rows"
+      : acceptedEventRootIdentityConservationPass
+        ? "event_root_affine_bracket_identity_conservation_accepted"
+      : allRowsHaveEndpointIdentityAndAffineGeometry &&
+            allRowsHaveUniqueEventRootEndpoints &&
+            !interiorTransitionSourceAudit.acceptedRetainedInteriorContinuityPass
+          ? "event_root_affine_bracket_identity_conservation_unique_endpoint_affine_geometry_interior_retained_continuity_missing"
+          : allRowsHaveEndpointIdentityAndAffineGeometry &&
+            allRowsHaveUniqueEventRootEndpoints &&
+            !interiorCoverageAudit.acceptedInteriorCoveragePass
+          ? "event_root_affine_bracket_identity_conservation_unique_endpoint_identity_and_affine_geometry_populated_interior_coverage_missing"
+          : allRowsHaveEndpointIdentityAndAffineGeometry &&
+              allRowsHaveUniqueEventRootEndpoints
+            ? "event_root_affine_bracket_identity_conservation_unique_endpoint_identity_and_affine_geometry_populated_interior_proof_missing"
+        : allRowsHaveEndpointIdentityAndAffineGeometry
+          ? "event_root_affine_bracket_identity_conservation_endpoint_identity_and_affine_geometry_populated_interior_proof_missing"
+          : "event_root_affine_bracket_identity_conservation_prerequisites_missing",
+    claimLevel:
+      "fail-closed proof target for conserving the hinge event-root identity across affine inactive bracket intervals; not retained branch acceptance",
+    retainedBranchClaim: false,
+    affineLatticeLawCandidatePass,
+    allRowsHaveEndpointIdentityAndAffineGeometry,
+    allRowsHaveUniqueEventRootEndpoints,
+    acceptedEventRootIdentityConservationPass,
+    endpointIdentityRowCount: endpointIdentityRows.length,
+    affineGeometryRowCount: affineGeometryRows.length,
+    endpointRootUniquenessAuditStatus: endpointUniquenessAudit.status,
+    endpointRootUniquenessAudit: endpointUniquenessAudit,
+    interiorCoverageAuditStatus: interiorCoverageAudit.status,
+    interiorCoverageAudit,
+    interiorTransitionSourceAuditStatus:
+      interiorTransitionSourceAudit.status,
+    interiorTransitionSourceAudit,
+    interiorNonRetainedTransitionKeyAuditStatus:
+      interiorNonRetainedTransitionKeyAudit.status,
+    interiorNonRetainedTransitionKeyAudit,
+    interiorTransitionConversionPatternAuditStatus:
+      interiorTransitionConversionPatternAudit.status,
+    interiorTransitionConversionPatternAudit,
+    interiorBalancedConversionOccupancyWalkAuditStatus:
+      interiorBalancedConversionOccupancyWalkAudit.status,
+    interiorBalancedConversionOccupancyWalkAudit,
+    balancedTransitionConversionRuleTargetStatus:
+      balancedTransitionConversionRuleTarget.status,
+    balancedTransitionConversionRuleTarget,
+    interiorAbsenceBridgeFillRuleTargetStatus:
+      interiorAbsenceBridgeFillRuleTarget.status,
+    interiorAbsenceBridgeFillRuleTarget,
+    uniqueEventRootEndpointRowCount:
+      endpointUniquenessAudit.uniqueEventRootEndpointRowCount,
+    endpointCompetitorRowCount: endpointUniquenessAudit.endpointCompetitorRowCount,
+    endpointIdentityAffineCandidateRowCount: candidateRows.length,
+    acceptedIdentityConservationRowCount: acceptedRows.length,
+    missingInteriorIdentityConservationRowCount:
+      rowProofs.length - acceptedRows.length,
+    positiveDistanceInteriorCaseCount: positiveDistanceRows.length,
+    positiveDistanceInteriorProofRowCount: positiveDistanceProofRows.length,
+    touchingBoundaryLimitCaseCount: touchingBoundaryRows.length,
+    touchingBoundaryLimitProofRowCount: touchingBoundaryProofRows.length,
+    globalRetainedRowSetBindingProofRowCount: 0,
+    firstIdentityConservationBlocker:
+      allRowsHaveEndpointIdentityAndAffineGeometry &&
+      !interiorTransitionSourceAudit.acceptedRetainedInteriorContinuityPass
+        ? interiorContinuityBlocker
+        : allRowsHaveEndpointIdentityAndAffineGeometry &&
+      !interiorCoverageAudit.acceptedInteriorCoveragePass
+        ? "populate_interior_active_root_or_transition_continuity_rows"
+        : allRowsHaveEndpointIdentityAndAffineGeometry
+        ? "prove_event_root_identity_conservation_on_affine_bracket_interval"
+        : "repair_endpoint_identity_or_affine_geometry_before_identity_conservation",
+    proofObligations,
+    pairSummaries:
+      createEventRootAffineBracketIdentityConservationPairSummaries(rowProofs),
+    nextIdentityConservationRoute:
+      allRowsHaveEndpointIdentityAndAffineGeometry &&
+      !interiorTransitionSourceAudit.acceptedRetainedInteriorContinuityPass
+        ? interiorContinuityBlocker ===
+            "derive_event_root_absence_bridge_fill_law"
+          ? "derive_no_transition_event_root_presence_law_or_reject_absence_bridge_fill"
+          : interiorContinuityBlocker ===
+            "prove_event_root_absence_bridge_fill_rule"
+          ? "prove_no_transition_absence_bridge_fill_or_reject_balanced_conversion_continuity"
+          : interiorContinuityBlocker ===
+            "prove_balanced_event_root_transition_conversion_rule"
+          ? "prove_balanced_appeared_disappeared_and_folded_event_root_conversion_or_reject_with_rule"
+          : interiorContinuityBlocker ===
+              "convert_event_root_nonretained_transition_keys_to_retained_event_root_continuity"
+            ? "promote_event_root_nonretained_transition_keys_to_retained_continuity_or_reject_with_rule"
+          : "derive_event_root_insertion_or_continuation_rule_for_nonretained_and_no_transition_interior_edges"
+        : allRowsHaveEndpointIdentityAndAffineGeometry &&
+      !interiorCoverageAudit.acceptedInteriorCoveragePass
+        ? "populate_interior_active_root_or_transition_continuity_rows_for_affine_bracket"
+        : allRowsHaveEndpointIdentityAndAffineGeometry
+        ? "prove_positive_distance_and_touching_limit_identity_on_affine_bracket_interval"
+        : "repair_endpoint_identity_or_affine_geometry_before_identity_conservation",
+    rows: rowProofs,
+    retainedLimitation:
+      "The affine rows prove same-key retained endpoints and a common bracket equation, but the current bracket interiors contain only dropped edges: active-endpoint non-retained transition edges and both-inactive no-transition edges. They do not yet populate retained event-root interior continuity, event-root identity conservation, or binding to the global retained row set.",
+  };
+}
+
+function createEventRootAffineBracketInteriorContinuityBlocker({
+  interiorTransitionSourceAudit,
+  interiorNonRetainedTransitionKeyAudit,
+  interiorTransitionConversionPatternAudit,
+  interiorBalancedConversionOccupancyWalkAudit,
+  interiorAbsenceBridgeFillRuleTarget,
+}) {
+  if (interiorTransitionSourceAudit.acceptedRetainedInteriorContinuityPass) {
+    return null;
+  }
+  if (
+    interiorAbsenceBridgeFillRuleTarget?.candidateDomainMatchedPass &&
+    !interiorAbsenceBridgeFillRuleTarget
+      ?.acceptedAbsenceBridgeFillRulePass
+  ) {
+    return "derive_event_root_absence_bridge_fill_law";
+  }
+  if (
+    interiorBalancedConversionOccupancyWalkAudit
+      .allRowsHaveBalancedRecoveryWalkPass &&
+    !interiorBalancedConversionOccupancyWalkAudit
+      .acceptedRetainedContinuityPass
+  ) {
+    return "prove_event_root_absence_bridge_fill_rule";
+  }
+  if (
+    interiorTransitionConversionPatternAudit
+      .allRowsHaveConversionPatternCandidatePass
+  ) {
+    return "prove_balanced_event_root_transition_conversion_rule";
+  }
+  if (
+    interiorNonRetainedTransitionKeyAudit
+      .rowsWithInteriorNonRetainedEventRootTouches > 0
+  ) {
+    return "convert_event_root_nonretained_transition_keys_to_retained_event_root_continuity";
+  }
+  if (
+    interiorNonRetainedTransitionKeyAudit
+      .rowsWithInteriorNonRetainedTransitionEvidence > 0
+  ) {
+    return "derive_event_root_insertion_or_continuation_rule_for_nonretained_interior_edges";
+  }
+  return "convert_affine_bracket_interior_transition_sources_to_retained_event_root_continuity";
+}
+
+function createEventRootAffineBracketInteriorTransitionSourceAudit(rowProofs) {
+  const rows = rowProofs.map((row) => {
+    const profile = row.bracketInteriorProfile ?? null;
+    const retainedInteriorContinuityCandidatePass =
+      (profile?.interiorRetainedEventRootEdgeCount ?? 0) > 0;
+    return {
+      pairKey: row.pairKey,
+      edgeIndex: row.edgeIndex,
+      side: row.side,
+      proofSubcase: row.proofSubcase,
+      eventRootKey: row.eventRootKey,
+      bracketInteriorProfilePopulated: profile != null,
+      retainedInteriorContinuityCandidatePass,
+      acceptedRetainedInteriorContinuityRowPass: false,
+      firstTransitionSourceBlocker: retainedInteriorContinuityCandidatePass
+        ? "prove_retained_event_root_interior_edges_conserve_identity"
+        : "convert_affine_bracket_interior_transition_sources_to_retained_event_root_continuity",
+      ...(profile ?? createEmptyAffineBracketInteriorTransitionCounts()),
+    };
+  });
+  const totals = rows.reduce((accumulator, row) => {
+    for (const key of Object.keys(createEmptyAffineBracketInteriorTransitionCounts())) {
+      accumulator[key] += row[key] ?? 0;
+    }
+    return accumulator;
+  }, createEmptyAffineBracketInteriorTransitionCounts());
+  const acceptedRows = rows.filter(
+    (row) => row.acceptedRetainedInteriorContinuityRowPass
+  );
+  const candidateRows = rows.filter(
+    (row) => row.retainedInteriorContinuityCandidatePass
+  );
+  const rowsWithInteriorProfiles = rows.filter(
+    (row) => row.bracketInteriorProfilePopulated
+  );
+  const rowsWithInteriorActiveEndpointEvidence = rows.filter(
+    (row) => row.interiorActiveEndpointEdgeCount > 0
+  );
+  const rowsWithInteriorOnlyNonRetainedEdges = rows.filter(
+    (row) => row.interiorOnlyNonRetainedEdgeCount > 0
+  );
+  const rowsWithInteriorNoTransitionBothInactiveEdges = rows.filter(
+    (row) => row.interiorNoTransitionBothInactiveEdgeCount > 0
+  );
+  const rowsWithOnlyDroppedInteriorEdges = rows.filter(
+    (row) =>
+      row.interiorEdgeCount > 0 &&
+      row.interiorDroppedEdgeCount === row.interiorEdgeCount
+  );
+  const acceptedRetainedInteriorContinuityPass =
+    rows.length > 0 && acceptedRows.length === rows.length;
+  return {
+    schema:
+      "aaa-tri-binary-event-root-affine-bracket-interior-transition-source-audit.v1",
+    status: rows.length === 0
+      ? "event_root_affine_bracket_interior_transition_source_no_rows"
+      : acceptedRetainedInteriorContinuityPass
+        ? "event_root_affine_bracket_interior_transition_source_accepted"
+        : candidateRows.length === 0 &&
+            rowsWithInteriorProfiles.length === rows.length &&
+            rowsWithInteriorActiveEndpointEvidence.length === rows.length &&
+            rowsWithInteriorOnlyNonRetainedEdges.length === rows.length
+          ? "event_root_affine_bracket_interior_transition_source_only_non_retained_active_endpoint_edges"
+          : "event_root_affine_bracket_interior_transition_source_incomplete_or_unclassified",
+    claimLevel:
+      "interior bracket transition-source audit for affine identity conservation; not retained continuity acceptance",
+    retainedBranchClaim: false,
+    acceptedRetainedInteriorContinuityPass,
+    rowCount: rows.length,
+    rowsWithInteriorProfileCount: rowsWithInteriorProfiles.length,
+    retainedInteriorContinuityCandidateRowCount: candidateRows.length,
+    acceptedRetainedInteriorContinuityRowCount: acceptedRows.length,
+    rowsWithInteriorActiveEndpointEvidence:
+      rowsWithInteriorActiveEndpointEvidence.length,
+    rowsWithInteriorOnlyNonRetainedEdges:
+      rowsWithInteriorOnlyNonRetainedEdges.length,
+    rowsWithInteriorNoTransitionBothInactiveEdges:
+      rowsWithInteriorNoTransitionBothInactiveEdges.length,
+    rowsWithOnlyDroppedInteriorEdges: rowsWithOnlyDroppedInteriorEdges.length,
+    rowsWithInteriorRetainedEventRootEdges: candidateRows.length,
+    ...totals,
+    firstInteriorTransitionSourceBlocker:
+      rows.find((row) => row.firstTransitionSourceBlocker)
+        ?.firstTransitionSourceBlocker ?? null,
+    pairSummaries:
+      createEventRootAffineBracketInteriorTransitionSourcePairSummaries(rows),
+    rows,
+    retainedLimitation:
+      "Every affine bracket contains interior active-endpoint evidence, but those interior edges are non-retained. The bracket interiors contain no retained event-root edge, so the current replay still lacks a retained continuity source across the affine interval.",
+  };
+}
+
+function createEventRootAffineBracketInteriorNonRetainedTransitionKeyAudit(
+  rowProofs
+) {
+  const rows = rowProofs.map((row) => {
+    const profile = row.bracketInteriorProfile ?? null;
+    const nonRetainedTransitionEvidence =
+      (profile?.interiorNonRetainedTransitionCount ?? 0) > 0;
+    const nonRetainedEventRootTouchEvidence =
+      (profile?.interiorNonRetainedEventRootTouchTransitionCount ?? 0) > 0;
+    return {
+      pairKey: row.pairKey,
+      edgeIndex: row.edgeIndex,
+      side: row.side,
+      proofSubcase: row.proofSubcase,
+      eventRootKey: row.eventRootKey,
+      bracketInteriorProfilePopulated: profile != null,
+      nonRetainedTransitionEvidence,
+      nonRetainedEventRootTouchEvidence,
+      firstTransitionKeyBlocker: nonRetainedEventRootTouchEvidence
+        ? "convert_event_root_nonretained_transition_keys_to_retained_event_root_continuity"
+        : nonRetainedTransitionEvidence
+          ? "derive_event_root_insertion_or_continuation_rule_for_nonretained_interior_edges"
+          : "populate_nonretained_transition_key_evidence_for_affine_bracket_interior",
+      interiorNonRetainedTransitionCount:
+        profile?.interiorNonRetainedTransitionCount ?? 0,
+      interiorAppearedTransitionCount:
+        profile?.interiorAppearedTransitionCount ?? 0,
+      interiorDisappearedTransitionCount:
+        profile?.interiorDisappearedTransitionCount ?? 0,
+      interiorFoldedTransitionCount:
+        profile?.interiorFoldedTransitionCount ?? 0,
+      interiorAssimilatedFromTailTransitionCount:
+        profile?.interiorAssimilatedFromTailTransitionCount ?? 0,
+      interiorLedgerRerunRequiredTransitionCount:
+        profile?.interiorLedgerRerunRequiredTransitionCount ?? 0,
+      interiorNonRetainedEventRootTouchTransitionCount:
+        profile?.interiorNonRetainedEventRootTouchTransitionCount ?? 0,
+      interiorNonRetainedEventRootTouchEdgeCount:
+        profile?.interiorNonRetainedEventRootTouchEdgeCount ?? 0,
+      interiorOnlyNonRetainedEventRootTouchEdgeCount:
+        profile?.interiorOnlyNonRetainedEventRootTouchEdgeCount ?? 0,
+      interiorAppearedEventRootTouchTransitionCount:
+        profile?.interiorAppearedEventRootTouchTransitionCount ?? 0,
+      interiorDisappearedEventRootTouchTransitionCount:
+        profile?.interiorDisappearedEventRootTouchTransitionCount ?? 0,
+      interiorFoldedEventRootTouchTransitionCount:
+        profile?.interiorFoldedEventRootTouchTransitionCount ?? 0,
+      interiorEventRootTouchSamples:
+        profile?.interiorEventRootTouchSamples ?? [],
+    };
+  });
+  const totals = rows.reduce(
+    (accumulator, row) => {
+      for (const key of Object.keys(accumulator)) {
+        accumulator[key] += row[key] ?? 0;
+      }
+      return accumulator;
+    },
+    createEmptyAffineBracketInteriorNonRetainedTransitionKeyCounts()
+  );
+  const rowsWithInteriorNonRetainedTransitionEvidence = rows.filter(
+    (row) => row.nonRetainedTransitionEvidence
+  );
+  const rowsWithInteriorNonRetainedEventRootTouches = rows.filter(
+    (row) => row.nonRetainedEventRootTouchEvidence
+  );
+  const rowsWithInteriorEventRootAbsentFromNonRetainedTransitions =
+    rows.filter(
+      (row) =>
+        row.nonRetainedTransitionEvidence &&
+        !row.nonRetainedEventRootTouchEvidence
+    );
+  return {
+    schema:
+      "aaa-tri-binary-event-root-affine-bracket-interior-nonretained-transition-key-audit.v1",
+    status: rows.length === 0
+      ? "event_root_affine_bracket_interior_nonretained_transition_key_no_rows"
+      : rowsWithInteriorNonRetainedEventRootTouches.length > 0
+        ? "event_root_affine_bracket_interior_nonretained_transition_key_event_root_touch_conversion_missing"
+        : rowsWithInteriorNonRetainedTransitionEvidence.length === rows.length
+          ? "event_root_affine_bracket_interior_nonretained_transition_key_event_root_absent"
+          : "event_root_affine_bracket_interior_nonretained_transition_key_incomplete_or_unclassified",
+    claimLevel:
+      "non-retained interior transition root-key audit for affine event-root identity conservation; not retained continuity acceptance",
+    retainedBranchClaim: false,
+    acceptedRetainedInteriorContinuityPass: false,
+    rowCount: rows.length,
+    rowsWithInteriorNonRetainedTransitionEvidence:
+      rowsWithInteriorNonRetainedTransitionEvidence.length,
+    rowsWithInteriorNonRetainedEventRootTouches:
+      rowsWithInteriorNonRetainedEventRootTouches.length,
+    rowsWithInteriorEventRootAbsentFromNonRetainedTransitions:
+      rowsWithInteriorEventRootAbsentFromNonRetainedTransitions.length,
+    ...totals,
+    firstTransitionKeyBlocker:
+      rows.find((row) => row.firstTransitionKeyBlocker)
+        ?.firstTransitionKeyBlocker ?? null,
+    pairSummaries:
+      createEventRootAffineBracketInteriorNonRetainedTransitionKeyPairSummaries(
+        rows
+      ),
+    rows,
+    retainedLimitation:
+      rowsWithInteriorNonRetainedEventRootTouches.length > 0
+        ? "Some bracket interiors contain non-retained transitions whose root keys touch the hinge event root. They still need a rule that converts those dropped transition keys into retained event-root continuity before identity conservation can be accepted."
+        : "The bracket interiors contain non-retained transition evidence, but no non-retained interior transition currently touches the hinge event-root key. The next proof must supply an event-root insertion or continuation rule rather than merely promote an existing dropped event-root transition.",
+  };
+}
+
+function createEmptyAffineBracketInteriorNonRetainedTransitionKeyCounts() {
+  return {
+    interiorNonRetainedTransitionCount: 0,
+    interiorAppearedTransitionCount: 0,
+    interiorDisappearedTransitionCount: 0,
+    interiorFoldedTransitionCount: 0,
+    interiorAssimilatedFromTailTransitionCount: 0,
+    interiorLedgerRerunRequiredTransitionCount: 0,
+    interiorNonRetainedEventRootTouchTransitionCount: 0,
+    interiorNonRetainedEventRootTouchEdgeCount: 0,
+    interiorOnlyNonRetainedEventRootTouchEdgeCount: 0,
+    interiorAppearedEventRootTouchTransitionCount: 0,
+    interiorDisappearedEventRootTouchTransitionCount: 0,
+    interiorFoldedEventRootTouchTransitionCount: 0,
+  };
+}
+
+function createEventRootAffineBracketInteriorTransitionConversionPatternAudit(
+  rowProofs
+) {
+  const rows = rowProofs.map((row) => {
+    const profile = row.bracketInteriorProfile ?? null;
+    const eventRootTouchTransitionCount =
+      profile?.interiorNonRetainedEventRootTouchTransitionCount ?? 0;
+    const appearedCount =
+      profile?.interiorAppearedEventRootTouchTransitionCount ?? 0;
+    const disappearedCount =
+      profile?.interiorDisappearedEventRootTouchTransitionCount ?? 0;
+    const foldedCount =
+      profile?.interiorFoldedEventRootTouchTransitionCount ?? 0;
+    const sourceReceiverPairs =
+      profile?.interiorEventRootTouchSourceReceiverPairs ?? [];
+    const sequence =
+      profile?.interiorEventRootTouchSequence ??
+      createEmptyEventRootTouchSequenceSummary();
+    const appearedDisappearedBalanced = appearedCount === disappearedCount;
+    const alternatingAppearedDisappearedPass =
+      sequence.alternatingAppearedDisappearedPass === true;
+    const singleSourceReceiverPairPass = sourceReceiverPairs.length === 1;
+    const conversionPatternCandidatePass =
+      eventRootTouchTransitionCount > 0 &&
+      appearedDisappearedBalanced &&
+      alternatingAppearedDisappearedPass &&
+      singleSourceReceiverPairPass;
+    return {
+      pairKey: row.pairKey,
+      edgeIndex: row.edgeIndex,
+      side: row.side,
+      proofSubcase: row.proofSubcase,
+      eventRootKey: row.eventRootKey,
+      bracketInteriorProfilePopulated: profile != null,
+      conversionPatternCandidatePass,
+      acceptedConversionPatternRowPass: false,
+      eventRootTouchTransitionCount,
+      appearedCount,
+      disappearedCount,
+      foldedCount,
+      appearedDisappearedBalanceResidual: appearedCount - disappearedCount,
+      appearedDisappearedBalanced,
+      alternatingAppearedDisappearedPass,
+      sameKindAdjacentViolationCount:
+        sequence.sameKindAdjacentViolationCount,
+      maxSameKindRunLength: sequence.maxSameKindRunLength,
+      eventRootTouchSequenceLength: sequence.eventRootTouchSequenceLength,
+      appearedDisappearedSequenceLength:
+        sequence.appearedDisappearedSequenceLength,
+      startAppearedDisappearedKind: sequence.startAppearedDisappearedKind,
+      endAppearedDisappearedKind: sequence.endAppearedDisappearedKind,
+      foldedEventRootTouchPresent: foldedCount > 0,
+      sourceReceiverPairCount: sourceReceiverPairs.length,
+      singleSourceReceiverPairPass,
+      sourceReceiverPairs,
+      eventRootTouchKindSequenceSample:
+        sequence.eventRootTouchKindSequenceSample,
+      appearedDisappearedKindSequenceSample:
+        sequence.appearedDisappearedKindSequenceSample,
+      firstConversionPatternBlocker: conversionPatternCandidatePass
+        ? "prove_balanced_event_root_transition_conversion_rule"
+        : eventRootTouchTransitionCount > 0
+          ? "repair_event_root_transition_conversion_pattern"
+          : "populate_event_root_transition_touch_pattern",
+    };
+  });
+  const candidateRows = rows.filter(
+    (row) => row.conversionPatternCandidatePass
+  );
+  const acceptedRows = rows.filter(
+    (row) => row.acceptedConversionPatternRowPass
+  );
+  const balancedRows = rows.filter((row) => row.appearedDisappearedBalanced);
+  const alternatingRows = rows.filter(
+    (row) => row.alternatingAppearedDisappearedPass
+  );
+  const foldedRows = rows.filter((row) => row.foldedEventRootTouchPresent);
+  const singleSourceReceiverRows = rows.filter(
+    (row) => row.singleSourceReceiverPairPass
+  );
+  const allRowsHaveConversionPatternCandidatePass =
+    rows.length > 0 && candidateRows.length === rows.length;
+  const acceptedConversionPatternPass =
+    rows.length > 0 && acceptedRows.length === rows.length;
+  const sourceReceiverPairKeys = new Set();
+  for (const row of rows) {
+    for (const pair of row.sourceReceiverPairs ?? []) {
+      sourceReceiverPairKeys.add(`${pair.sourceKey}:${pair.receiverKey}`);
+    }
+  }
+  return {
+    schema:
+      "aaa-tri-binary-event-root-affine-bracket-interior-transition-conversion-pattern-audit.v1",
+    status: rows.length === 0
+      ? "event_root_affine_bracket_interior_transition_conversion_pattern_no_rows"
+      : acceptedConversionPatternPass
+        ? "event_root_affine_bracket_interior_transition_conversion_pattern_accepted"
+        : allRowsHaveConversionPatternCandidatePass
+          ? "event_root_affine_bracket_interior_transition_conversion_pattern_balanced_alternating_event_root_touches_acceptance_missing"
+          : "event_root_affine_bracket_interior_transition_conversion_pattern_incomplete_or_unclassified",
+    claimLevel:
+      "conversion-pattern audit for event-root-touching non-retained interior transitions; not a retained continuity rule",
+    retainedBranchClaim: false,
+    acceptedRetainedInteriorContinuityPass: false,
+    acceptedConversionPatternPass,
+    rowCount: rows.length,
+    conversionPatternCandidateRowCount: candidateRows.length,
+    acceptedConversionPatternRowCount: acceptedRows.length,
+    balancedAppearedDisappearedRowCount: balancedRows.length,
+    alternatingAppearedDisappearedRowCount: alternatingRows.length,
+    foldedEventRootTouchRowCount: foldedRows.length,
+    singleSourceReceiverPairRowCount: singleSourceReceiverRows.length,
+    allRowsHaveConversionPatternCandidatePass,
+    uniqueSourceReceiverPairCount: sourceReceiverPairKeys.size,
+    uniqueSourceReceiverPairs: [...sourceReceiverPairKeys].sort(),
+    firstConversionPatternBlocker:
+      rows.find((row) => row.firstConversionPatternBlocker)
+        ?.firstConversionPatternBlocker ?? null,
+    pairSummaries:
+      createEventRootAffineBracketInteriorTransitionConversionPatternPairSummaries(
+        rows
+      ),
+    rows,
+    retainedLimitation:
+      "The event-root-touching dropped transitions form a coherent conversion-pattern candidate: appeared and disappeared counts balance row-locally, alternate in bracket order, and use one source/receiver pair. This still is not a retained continuity proof; acceptance requires a rule that turns the balanced alternating appeared/disappeared sequence, with folded same-key contacts, into retained event-root identity transport across the bracket.",
+  };
+}
+
+function createEventRootAffineBracketBalancedConversionOccupancyWalkAudit(
+  rowProofs
+) {
+  const uniquePositiveNoTransitionEdgesByKey = new Map();
+  const rows = rowProofs.map((row) => {
+    const profile = row.bracketInteriorProfile ?? null;
+    const walk =
+      profile?.interiorEventRootOccupancyWalk ??
+      createEmptyEventRootOccupancyWalkSummary();
+    for (const edge of walk.eventRootAbsentPositiveWidthNoTransitionBothInactiveEdges ??
+      []) {
+      const key = createEventRootAbsentNoTransitionEdgeKey(edge);
+      if (!uniquePositiveNoTransitionEdgesByKey.has(key)) {
+        uniquePositiveNoTransitionEdgesByKey.set(key, edge);
+      }
+    }
+    return {
+      pairKey: row.pairKey,
+      edgeIndex: row.edgeIndex,
+      side: row.side,
+      proofSubcase: row.proofSubcase,
+      eventRootKey: row.eventRootKey,
+      bracketInteriorProfilePopulated: profile != null,
+      occupancyWalkPopulated: profile?.interiorEventRootOccupancyWalk != null,
+      balancedRecoveryWalkPass: walk.balancedRecoveryWalkPass === true,
+      acceptedRetainedContinuityRowPass:
+        walk.retainedContinuityAcceptedPass === true,
+      firstOccupancyWalkBlocker: walk.firstOccupancyWalkBlocker,
+      ...projectEventRootOccupancyWalkAuditCounts(walk),
+      eventRootAbsenceRunSamples: walk.eventRootAbsenceRunSamples ?? [],
+      eventRootAbsentInteriorEdgeSamples:
+        walk.eventRootAbsentInteriorEdgeSamples ?? [],
+    };
+  });
+  const totals = rows.reduce(
+    (accumulator, row) =>
+      accumulateEventRootOccupancyWalkAuditCounts(accumulator, row),
+    createEmptyEventRootOccupancyWalkAuditCounts()
+  );
+  const balancedRows = rows.filter((row) => row.balancedRecoveryWalkPass);
+  const acceptedRows = rows.filter(
+    (row) => row.acceptedRetainedContinuityRowPass
+  );
+  const positiveAbsenceRows = rows.filter(
+    (row) => row.positiveEventRootAbsenceRunCount > 0
+  );
+  const absentNoTransitionRows = rows.filter(
+    (row) => row.eventRootAbsentNoTransitionBothInactiveEdgeCount > 0
+  );
+  const stateViolationRows = rows.filter((row) => row.stateViolationCount > 0);
+  const allRowsHaveBalancedRecoveryWalkPass =
+    rows.length > 0 && balancedRows.length === rows.length;
+  const acceptedRetainedContinuityPass =
+    rows.length > 0 && acceptedRows.length === rows.length;
+  const uniquePositiveNoTransitionEdges = [
+    ...uniquePositiveNoTransitionEdgesByKey.values(),
+  ].sort(
+    (left, right) =>
+      left.pairKey.localeCompare(right.pairKey) ||
+      left.start - right.start ||
+      left.end - right.end
+  );
+  const uniquePositiveNoTransitionWidths = uniquePositiveNoTransitionEdges.map(
+    (edge) => edge.width
+  );
+
+  return {
+    schema:
+      "aaa-tri-binary-event-root-affine-bracket-balanced-conversion-occupancy-walk-audit.v1",
+    status: rows.length === 0
+      ? "event_root_affine_bracket_balanced_conversion_occupancy_walk_no_rows"
+      : acceptedRetainedContinuityPass
+        ? "event_root_affine_bracket_balanced_conversion_occupancy_walk_retained_continuity_accepted"
+        : allRowsHaveBalancedRecoveryWalkPass &&
+            positiveAbsenceRows.length > 0
+          ? "event_root_affine_bracket_balanced_conversion_occupancy_walk_recovery_only_absence_bridge_fill_missing"
+          : stateViolationRows.length > 0
+            ? "event_root_affine_bracket_balanced_conversion_occupancy_walk_state_inconsistent"
+            : "event_root_affine_bracket_balanced_conversion_occupancy_walk_incomplete_or_unclassified",
+    claimLevel:
+      "fail-closed occupancy-walk audit for the balanced event-root conversion rule; not retained continuity acceptance",
+    retainedBranchClaim: false,
+    acceptedRetainedInteriorContinuityPass: acceptedRetainedContinuityPass,
+    acceptedRetainedContinuityPass,
+    rowCount: rows.length,
+    balancedRecoveryWalkCandidateRowCount: balancedRows.length,
+    acceptedRetainedContinuityRowCount: acceptedRows.length,
+    allRowsHaveBalancedRecoveryWalkPass,
+    rowsWithPositiveEventRootAbsenceBridge: positiveAbsenceRows.length,
+    rowsWithEventRootAbsentNoTransitionBothInactiveEdges:
+      absentNoTransitionRows.length,
+    uniquePositiveEventRootAbsentNoTransitionBothInactiveEdgeCount:
+      uniquePositiveNoTransitionEdges.length,
+    totalUniquePositiveEventRootAbsentNoTransitionBothInactiveWidth:
+      uniquePositiveNoTransitionWidths.reduce((sum, value) => sum + value, 0),
+    maxUniquePositiveEventRootAbsentNoTransitionBothInactiveWidth: maxFinite(
+      uniquePositiveNoTransitionWidths
+    ),
+    uniquePositiveEventRootAbsentNoTransitionBothInactivePairSummaries:
+      createUniqueEventRootAbsentNoTransitionPairSummaries(
+        uniquePositiveNoTransitionEdges
+      ),
+    uniquePositiveEventRootAbsentNoTransitionBothInactiveEdges:
+      uniquePositiveNoTransitionEdges,
+    uniquePositiveEventRootAbsentNoTransitionBothInactiveEdgeSamples:
+      uniquePositiveNoTransitionEdges.slice(0, 16),
+    stateViolationRowCount: stateViolationRows.length,
+    ...totals,
+    firstOccupancyWalkBlocker:
+      rows.find((row) => row.firstOccupancyWalkBlocker)
+        ?.firstOccupancyWalkBlocker ?? null,
+    pairSummaries:
+      createEventRootAffineBracketBalancedConversionOccupancyWalkPairSummaries(
+        rows
+      ),
+    rows,
+    retainedLimitation:
+      "The balanced appeared/disappeared sequence is a recovery walk: it starts from a retained event-root boundary, disappears, later reappears, and ends present on every affine bracket row. Because every row has positive-width event-root absence bridges and absent both-inactive no-transition edges, this audit rejects the balanced conversion pattern as a retained-continuity proof by itself. A separate absence-bridge fill rule is still required.",
+  };
+}
+
+function createEventRootAffineBracketBalancedTransitionConversionRuleTarget({
+  conversionPatternAudit,
+  occupancyAudit,
+}) {
+  const occupancyRowsByKey = new Map(
+    (occupancyAudit?.rows ?? []).map((row) => [
+      `${row.pairKey}:${row.edgeIndex}`,
+      row,
+    ])
+  );
+  const rows = (conversionPatternAudit?.rows ?? []).map((row) => {
+    const occupancyRow = occupancyRowsByKey.get(
+      `${row.pairKey}:${row.edgeIndex}`
+    );
+    const signedTransitionBalance = row.appearedCount - row.disappearedCount;
+    const signedTransitionBalancePass = signedTransitionBalance === 0;
+    const disappearanceOpensAppearanceClosesPass =
+      row.startAppearedDisappearedKind === "disappeared" &&
+      row.endAppearedDisappearedKind === "appeared";
+    const foldedNeutralityCandidatePass = row.foldedCount >= 0;
+    const positiveAbsenceBridgeCount =
+      occupancyRow?.positiveEventRootAbsenceRunCount ?? 0;
+    const noTransitionBothInactiveEdgeCount =
+      occupancyRow?.eventRootAbsentNoTransitionBothInactiveEdgeCount ?? 0;
+    const signedConversionCandidatePass =
+      row.conversionPatternCandidatePass === true &&
+      signedTransitionBalancePass &&
+      disappearanceOpensAppearanceClosesPass &&
+      row.singleSourceReceiverPairPass === true &&
+      row.alternatingAppearedDisappearedPass === true &&
+      foldedNeutralityCandidatePass;
+    return {
+      pairKey: row.pairKey,
+      edgeIndex: row.edgeIndex,
+      proofSubcase: row.proofSubcase,
+      eventRootKey: row.eventRootKey,
+      signedTransitionBalance,
+      signedTransitionBalancePass,
+      appearedCount: row.appearedCount,
+      disappearedCount: row.disappearedCount,
+      foldedCount: row.foldedCount,
+      foldedNeutralityCandidatePass,
+      disappearanceOpensAppearanceClosesPass,
+      startAppearedDisappearedKind: row.startAppearedDisappearedKind,
+      endAppearedDisappearedKind: row.endAppearedDisappearedKind,
+      alternatingAppearedDisappearedPass:
+        row.alternatingAppearedDisappearedPass === true,
+      singleSourceReceiverPairPass:
+        row.singleSourceReceiverPairPass === true,
+      conversionPatternCandidatePass:
+        row.conversionPatternCandidatePass === true,
+      positiveAbsenceBridgeCount,
+      noTransitionBothInactiveEdgeCount,
+      signedConversionCandidatePass,
+      acceptedBalancedTransitionConversionRuleRowPass: false,
+      firstBalancedTransitionConversionRuleRowBlocker:
+        positiveAbsenceBridgeCount > 0
+          ? "derive_positive_width_absence_bridge_fill_from_signed_transition_balance"
+          : signedConversionCandidatePass
+            ? "bind_signed_transition_balance_to_retained_event_root_continuity"
+            : "repair_signed_transition_balance_candidate",
+    };
+  });
+  const signedBalanceRows = rows.filter(
+    (row) => row.signedTransitionBalancePass
+  );
+  const disappearanceAppearanceRows = rows.filter(
+    (row) => row.disappearanceOpensAppearanceClosesPass
+  );
+  const foldedNeutralityRows = rows.filter(
+    (row) => row.foldedNeutralityCandidatePass
+  );
+  const signedConversionCandidateRows = rows.filter(
+    (row) => row.signedConversionCandidatePass
+  );
+  const positiveAbsenceRows = rows.filter(
+    (row) => row.positiveAbsenceBridgeCount > 0
+  );
+  const acceptedRows = rows.filter(
+    (row) => row.acceptedBalancedTransitionConversionRuleRowPass
+  );
+  const signedTransitionChargeResiduals = rows.map(
+    (row) => row.signedTransitionBalance
+  );
+  const foldedCounts = rows.map((row) => row.foldedCount);
+
+  return {
+    schema:
+      "aaa-tri-binary-event-root-affine-bracket-balanced-transition-conversion-rule-target.v1",
+    status: rows.length === 0
+      ? "event_root_affine_bracket_balanced_transition_conversion_rule_no_rows"
+      : acceptedRows.length === rows.length
+        ? "event_root_affine_bracket_balanced_transition_conversion_rule_accepted"
+        : signedConversionCandidateRows.length === rows.length &&
+            positiveAbsenceRows.length > 0
+          ? "event_root_affine_bracket_balanced_transition_conversion_rule_signed_charge_conserved_positive_absence_bridge_law_missing"
+          : signedConversionCandidateRows.length === rows.length
+            ? "event_root_affine_bracket_balanced_transition_conversion_rule_signed_charge_conserved_retained_binding_missing"
+            : "event_root_affine_bracket_balanced_transition_conversion_rule_incomplete_or_unclassified",
+    claimLevel:
+      "signed transition-balance target for the balanced event-root conversion rule; not retained continuity acceptance",
+    retainedBranchClaim: false,
+    rowCount: rows.length,
+    signedTransitionBalanceRowCount: signedBalanceRows.length,
+    disappearanceOpensAppearanceClosesRowCount:
+      disappearanceAppearanceRows.length,
+    foldedNeutralityCandidateRowCount: foldedNeutralityRows.length,
+    signedConversionCandidateRowCount: signedConversionCandidateRows.length,
+    acceptedBalancedTransitionConversionRuleRowCount: acceptedRows.length,
+    rowsWithPositiveAbsenceBridge: positiveAbsenceRows.length,
+    rowsWithNoTransitionBothInactiveEdges: rows.filter(
+      (row) => row.noTransitionBothInactiveEdgeCount > 0
+    ).length,
+    minSignedTransitionChargeResidual: minFinite(
+      signedTransitionChargeResiduals
+    ),
+    maxSignedTransitionChargeResidual: maxFinite(
+      signedTransitionChargeResiduals
+    ),
+    totalSignedTransitionChargeResidual:
+      signedTransitionChargeResiduals.reduce((sum, value) => sum + value, 0),
+    totalFoldedTransitionCount: foldedCounts.reduce(
+      (sum, value) => sum + value,
+      0
+    ),
+    firstBalancedTransitionConversionRuleBlocker:
+      acceptedRows.length === rows.length
+        ? null
+        : positiveAbsenceRows.length > 0
+          ? "derive_positive_width_absence_bridge_fill_from_signed_transition_balance"
+          : "bind_signed_transition_balance_to_retained_event_root_continuity",
+    rows,
+    retainedLimitation:
+      "The balanced transition pattern does populate a signed invariant: appeared minus disappeared is zero on every row, the appeared/disappeared sequence opens with disappearance and closes with appearance, and folded touches are neutral candidates. This still does not accept retained event-root continuity because every row has positive-width absence bridges that require a fill law.",
+  };
+}
+
+function createEventRootAffineBracketSignedBalanceFillObstructionTarget({
+  rows,
+  balancedTransitionConversionRuleTarget,
+}) {
+  const transitionRowsByKey = new Map(
+    (balancedTransitionConversionRuleTarget?.rows ?? []).map((row) => [
+      `${row.pairKey}:${row.edgeIndex}`,
+      row,
+    ])
+  );
+  const obstructionRows = rows.map((row) => {
+    const transitionRow = transitionRowsByKey.get(
+      `${row.pairKey}:${row.edgeIndex}`
+    );
+    const positiveWidthPass = row.width > ROOT_TOLERANCE;
+    const signedTransitionBalance =
+      transitionRow?.signedTransitionBalance ?? null;
+    const signedTransitionBalancePass =
+      transitionRow?.signedTransitionBalancePass === true;
+    const signedConversionCandidatePass =
+      transitionRow?.signedConversionCandidatePass === true;
+    const boundarySignedBalanceOnlyPass =
+      positiveWidthPass &&
+      signedTransitionBalancePass &&
+      signedConversionCandidatePass &&
+      row.interiorEventRootPresenceProofPopulated !== true &&
+      row.derivedAbsenceBridgeFillLawPopulated !== true;
+    return {
+      pairKey: row.pairKey,
+      edgeIndex: row.edgeIndex,
+      start: row.start,
+      end: row.end,
+      width: row.width,
+      positiveWidthPass,
+      signedTransitionBalance,
+      signedTransitionBalancePass,
+      signedConversionCandidatePass,
+      widthWeightedSignedTransitionResidual:
+        Number.isFinite(signedTransitionBalance) && Number.isFinite(row.width)
+          ? signedTransitionBalance * row.width
+          : null,
+      interiorEventRootPresenceProofPopulated:
+        row.interiorEventRootPresenceProofPopulated === true,
+      derivedAbsenceBridgeFillLawPopulated:
+        row.derivedAbsenceBridgeFillLawPopulated === true,
+      boundarySignedBalanceOnlyPass,
+      acceptedSignedBalanceFillLawRowPass: false,
+      firstSignedBalanceFillObstructionRowBlocker:
+        boundarySignedBalanceOnlyPass
+          ? "derive_dynamic_event_root_presence_law_from_signed_transition_balance"
+          : "populate_signed_transition_balance_for_fill_domain",
+    };
+  });
+  const positiveWidthRows = obstructionRows.filter(
+    (row) => row.positiveWidthPass
+  );
+  const signedBalanceRows = obstructionRows.filter(
+    (row) => row.signedTransitionBalancePass
+  );
+  const signedConversionRows = obstructionRows.filter(
+    (row) => row.signedConversionCandidatePass
+  );
+  const boundaryOnlyRows = obstructionRows.filter(
+    (row) => row.boundarySignedBalanceOnlyPass
+  );
+  const acceptedRows = obstructionRows.filter(
+    (row) => row.acceptedSignedBalanceFillLawRowPass
+  );
+  const widthWeightedResiduals = obstructionRows
+    .map((row) => row.widthWeightedSignedTransitionResidual)
+    .filter(Number.isFinite);
+  const widths = obstructionRows
+    .map((row) => row.width)
+    .filter(Number.isFinite);
+
+  return {
+    schema:
+      "aaa-tri-binary-event-root-affine-bracket-signed-balance-fill-obstruction-target.v1",
+    status: obstructionRows.length === 0
+      ? "event_root_affine_bracket_signed_balance_fill_obstruction_no_domain"
+      : acceptedRows.length === obstructionRows.length
+        ? "event_root_affine_bracket_signed_balance_fill_obstruction_accepted"
+        : boundaryOnlyRows.length === obstructionRows.length
+          ? "event_root_affine_bracket_signed_balance_fill_obstruction_boundary_balance_only_dynamic_presence_law_missing"
+          : "event_root_affine_bracket_signed_balance_fill_obstruction_incomplete_or_unclassified",
+    claimLevel:
+      "fail-closed obstruction target for using signed transition balance as a positive-width absence-bridge fill law; not retained continuity acceptance",
+    retainedBranchClaim: false,
+    rowCount: obstructionRows.length,
+    positiveWidthAbsenceBridgeRowCount: positiveWidthRows.length,
+    signedTransitionBalanceFillDomainRowCount: signedBalanceRows.length,
+    signedConversionFillDomainRowCount: signedConversionRows.length,
+    boundarySignedBalanceOnlyRowCount: boundaryOnlyRows.length,
+    acceptedSignedBalanceFillLawRowCount: acceptedRows.length,
+    totalPositiveWidth: widths.reduce((sum, value) => sum + value, 0),
+    maxPositiveWidth: maxFinite(widths),
+    totalWidthWeightedSignedTransitionResidual: widthWeightedResiduals.reduce(
+      (sum, value) => sum + value,
+      0
+    ),
+    firstSignedBalanceFillObstructionBlocker:
+      acceptedRows.length === obstructionRows.length
+        ? null
+        : boundaryOnlyRows.length === obstructionRows.length
+          ? "derive_dynamic_event_root_presence_law_from_signed_transition_balance"
+          : "populate_signed_transition_balance_for_fill_domain",
+    rows: obstructionRows,
+    retainedLimitation:
+      "Signed transition balance is currently boundary-only on the positive-width fill domain: the disappeared/appeared residual cancels row-wise, but no row supplies interior event-root presence or a derived dynamic event-root presence law across the inactive interval.",
+  };
+}
+
+function createEventRootAffineBracketSignedBalancePresenceMeasureTarget({
+  rows,
+  signedBalanceFillObstructionTarget,
+}) {
+  const signedRowsByKey = new Map(
+    (signedBalanceFillObstructionTarget?.rows ?? []).map((row) => [
+      `${row.pairKey}:${row.edgeIndex}`,
+      row,
+    ])
+  );
+  const measureRows = rows.map((row) => {
+    const signedRow = signedRowsByKey.get(`${row.pairKey}:${row.edgeIndex}`);
+    const positiveWidthPass = row.width > ROOT_TOLERANCE;
+    const currentLedgerPresenceMeasure =
+      row.endpointPresence === "both_endpoints_inactive" &&
+      (row.gapKinds ?? []).includes("noTransitionBothInactive")
+        ? 0
+        : null;
+    const requiredRetainedPresenceMeasure = positiveWidthPass ? row.width : 0;
+    const presenceMeasureDeficit =
+      Number.isFinite(currentLedgerPresenceMeasure) &&
+      Number.isFinite(requiredRetainedPresenceMeasure)
+        ? requiredRetainedPresenceMeasure - currentLedgerPresenceMeasure
+        : null;
+    const boundaryBalanceMeasureDeficitPass =
+      signedRow?.boundarySignedBalanceOnlyPass === true &&
+      Number.isFinite(presenceMeasureDeficit) &&
+      presenceMeasureDeficit > ROOT_TOLERANCE &&
+      signedRow.widthWeightedSignedTransitionResidual === 0;
+    return {
+      pairKey: row.pairKey,
+      edgeIndex: row.edgeIndex,
+      start: row.start,
+      end: row.end,
+      width: row.width,
+      endpointPresence: row.endpointPresence ?? null,
+      gapKinds: row.gapKinds ?? [],
+      signedTransitionBalance:
+        signedRow?.signedTransitionBalance ?? null,
+      widthWeightedSignedTransitionResidual:
+        signedRow?.widthWeightedSignedTransitionResidual ?? null,
+      currentLedgerPresenceMeasure,
+      requiredRetainedPresenceMeasure,
+      presenceMeasureDeficit,
+      boundaryBalanceMeasureDeficitPass,
+      acceptedDynamicPresenceMeasureSourceRowPass: false,
+      firstSignedBalancePresenceMeasureRowBlocker:
+        boundaryBalanceMeasureDeficitPass
+          ? "derive_presence_measure_source_from_signed_transition_balance"
+          : "populate_boundary_balance_presence_measure_deficit",
+    };
+  });
+  const boundaryDeficitRows = measureRows.filter(
+    (row) => row.boundaryBalanceMeasureDeficitPass
+  );
+  const acceptedRows = measureRows.filter(
+    (row) => row.acceptedDynamicPresenceMeasureSourceRowPass
+  );
+  const requiredMeasures = measureRows
+    .map((row) => row.requiredRetainedPresenceMeasure)
+    .filter(Number.isFinite);
+  const currentMeasures = measureRows
+    .map((row) => row.currentLedgerPresenceMeasure)
+    .filter(Number.isFinite);
+  const deficits = measureRows
+    .map((row) => row.presenceMeasureDeficit)
+    .filter(Number.isFinite);
+  const residuals = measureRows
+    .map((row) => row.widthWeightedSignedTransitionResidual)
+    .filter(Number.isFinite);
+
+  return {
+    schema:
+      "aaa-tri-binary-event-root-affine-bracket-signed-balance-presence-measure-target.v1",
+    status: measureRows.length === 0
+      ? "event_root_affine_bracket_signed_balance_presence_measure_no_domain"
+      : acceptedRows.length === measureRows.length
+        ? "event_root_affine_bracket_signed_balance_presence_measure_source_accepted"
+        : boundaryDeficitRows.length === measureRows.length
+          ? "event_root_affine_bracket_signed_balance_presence_measure_deficit_source_missing"
+          : "event_root_affine_bracket_signed_balance_presence_measure_incomplete_or_unclassified",
+    claimLevel:
+      "fail-closed measure target for converting signed transition balance into positive-width event-root presence; not retained continuity acceptance",
+    retainedBranchClaim: false,
+    rowCount: measureRows.length,
+    boundaryBalancePresenceMeasureDeficitRowCount: boundaryDeficitRows.length,
+    acceptedDynamicPresenceMeasureSourceRowCount: acceptedRows.length,
+    totalRequiredRetainedPresenceMeasure: requiredMeasures.reduce(
+      (sum, value) => sum + value,
+      0
+    ),
+    totalCurrentLedgerPresenceMeasure: currentMeasures.reduce(
+      (sum, value) => sum + value,
+      0
+    ),
+    totalPresenceMeasureDeficit: deficits.reduce(
+      (sum, value) => sum + value,
+      0
+    ),
+    maxPresenceMeasureDeficit: maxFinite(deficits),
+    totalWidthWeightedSignedTransitionResidual: residuals.reduce(
+      (sum, value) => sum + value,
+      0
+    ),
+    firstSignedBalancePresenceMeasureBlocker:
+      acceptedRows.length === measureRows.length
+        ? null
+        : boundaryDeficitRows.length === measureRows.length
+          ? "derive_presence_measure_source_from_signed_transition_balance"
+          : "populate_boundary_balance_presence_measure_deficit",
+    rows: measureRows,
+    retainedLimitation:
+      "The current ledger gives zero event-root presence measure across every positive-width both-inactive no-transition bridge, while retained fill would require presence measure equal to the bridge width. Signed transition balance supplies zero net boundary residual, not the missing positive interior measure.",
+  };
+}
+
+function createEventRootAffineBracketSignedBalancePresenceMeasureCoefficientAudit({
+  rows,
+  signedBalancePresenceMeasureTarget,
+  balancedTransitionConversionRuleTarget,
+}) {
+  const measureRowsByKey = new Map(
+    (signedBalancePresenceMeasureTarget?.rows ?? []).map((row) => [
+      `${row.pairKey}:${row.edgeIndex}`,
+      row,
+    ])
+  );
+  const transitionRowsByKey = new Map(
+    (balancedTransitionConversionRuleTarget?.rows ?? []).map((row) => [
+      `${row.pairKey}:${row.edgeIndex}`,
+      row,
+    ])
+  );
+  const candidateConfigs = [
+    {
+      candidateId: "appeared_count_coefficient",
+      sourceClass: "transition_count",
+      sourceClaim:
+        "A single coefficient times appeared-count supplies the presence-measure deficit.",
+      getSourceWeight: ({ transitionRow }) => transitionRow?.appearedCount,
+    },
+    {
+      candidateId: "disappeared_count_coefficient",
+      sourceClass: "transition_count",
+      sourceClaim:
+        "A single coefficient times disappeared-count supplies the presence-measure deficit.",
+      getSourceWeight: ({ transitionRow }) => transitionRow?.disappearedCount,
+    },
+    {
+      candidateId: "appeared_disappeared_pair_count_coefficient",
+      sourceClass: "transition_count",
+      sourceClaim:
+        "A single coefficient times the balanced appeared/disappeared pair count supplies the presence-measure deficit.",
+      getSourceWeight: ({ transitionRow }) =>
+        Math.min(transitionRow?.appearedCount ?? 0, transitionRow?.disappearedCount ?? 0),
+    },
+    {
+      candidateId: "total_appeared_disappeared_touch_count_coefficient",
+      sourceClass: "transition_count",
+      sourceClaim:
+        "A single coefficient times total appeared/disappeared touch count supplies the presence-measure deficit.",
+      getSourceWeight: ({ transitionRow }) =>
+        (transitionRow?.appearedCount ?? 0) +
+        (transitionRow?.disappearedCount ?? 0),
+    },
+    {
+      candidateId: "folded_touch_count_coefficient",
+      sourceClass: "folded_touch_count",
+      sourceClaim:
+        "A single coefficient times folded touch count supplies the presence-measure deficit.",
+      getSourceWeight: ({ transitionRow }) => transitionRow?.foldedCount,
+    },
+    {
+      candidateId: "positive_absence_bridge_count_coefficient",
+      sourceClass: "absence_bridge_count",
+      sourceClaim:
+        "A single coefficient times positive absence-bridge count supplies the presence-measure deficit.",
+      getSourceWeight: ({ transitionRow }) =>
+        transitionRow?.positiveAbsenceBridgeCount,
+    },
+    {
+      candidateId: "no_transition_both_inactive_edge_count_coefficient",
+      sourceClass: "gap_edge_count",
+      sourceClaim:
+        "A single coefficient times no-transition both-inactive edge count supplies the presence-measure deficit.",
+      getSourceWeight: ({ transitionRow }) =>
+        transitionRow?.noTransitionBothInactiveEdgeCount,
+    },
+    {
+      candidateId: "bridge_width_identity_coefficient",
+      sourceClass: "tautological_bridge_width",
+      sourceClaim:
+        "The bridge width itself supplies the presence-measure deficit.",
+      tautologicalGeometryPass: true,
+      getSourceWeight: ({ measureRow }) =>
+        measureRow?.requiredRetainedPresenceMeasure,
+    },
+  ];
+  const candidateRows = candidateConfigs.map((candidate) => {
+    const rowCoefficients = rows.map((row) => {
+      const key = `${row.pairKey}:${row.edgeIndex}`;
+      const measureRow = measureRowsByKey.get(key);
+      const transitionRow = transitionRowsByKey.get(key);
+      const sourceWeight = candidate.getSourceWeight({
+        row,
+        measureRow,
+        transitionRow,
+      });
+      const presenceMeasureDeficit =
+        measureRow?.presenceMeasureDeficit ?? null;
+      const coefficient =
+        Number.isFinite(sourceWeight) &&
+        Math.abs(sourceWeight) > ROOT_TOLERANCE &&
+        Number.isFinite(presenceMeasureDeficit)
+          ? presenceMeasureDeficit / sourceWeight
+          : null;
+      return {
+        pairKey: row.pairKey,
+        edgeIndex: row.edgeIndex,
+        sourceWeight: Number.isFinite(sourceWeight) ? sourceWeight : null,
+        presenceMeasureDeficit,
+        coefficient,
+      };
+    });
+    const finiteCoefficientRows = rowCoefficients.filter((row) =>
+      Number.isFinite(row.coefficient)
+    );
+    const coefficientValues = finiteCoefficientRows.map(
+      (row) => row.coefficient
+    );
+    const uniqueCoefficientClasses =
+      createRoundedCoefficientClasses(coefficientValues);
+    const uniformCoefficientCandidatePass =
+      rows.length > 0 &&
+      finiteCoefficientRows.length === rows.length &&
+      uniqueCoefficientClasses.length === 1;
+    const acceptedPresenceMeasureCoefficientSourcePass = false;
+    return {
+      candidateId: candidate.candidateId,
+      sourceClass: candidate.sourceClass,
+      sourceClaim: candidate.sourceClaim,
+      tautologicalGeometryPass: candidate.tautologicalGeometryPass === true,
+      rowCount: rows.length,
+      finiteCoefficientRowCount: finiteCoefficientRows.length,
+      zeroOrMissingSourceWeightRowCount:
+        rows.length - finiteCoefficientRows.length,
+      uniqueCoefficientClassCount: uniqueCoefficientClasses.length,
+      uniformCoefficientCandidatePass,
+      minCoefficient: minFinite(coefficientValues),
+      maxCoefficient: maxFinite(coefficientValues),
+      coefficientClassSamples: uniqueCoefficientClasses.slice(0, 12),
+      acceptedPresenceMeasureCoefficientSourcePass,
+      acceptedPresenceMeasureCoefficientSourceRowCount: 0,
+      firstCoefficientSourceBlocker:
+        candidate.tautologicalGeometryPass === true
+          ? "bridge_width_restates_required_measure_not_signed_balance_source"
+          : uniformCoefficientCandidatePass
+            ? "derive_physical_status_of_uniform_signed_balance_measure_coefficient"
+            : finiteCoefficientRows.length < rows.length
+              ? "candidate_has_zero_or_missing_source_weight_rows"
+              : "candidate_coefficient_not_uniform_across_fill_domain",
+      rowCoefficientSamples: rowCoefficients.slice(0, 16),
+    };
+  });
+  const acceptedRows = candidateRows.filter(
+    (row) => row.acceptedPresenceMeasureCoefficientSourcePass
+  );
+  const uniformNonTautologicalRows = candidateRows.filter(
+    (row) => row.uniformCoefficientCandidatePass && !row.tautologicalGeometryPass
+  );
+  const tautologicalRows = candidateRows.filter(
+    (row) => row.tautologicalGeometryPass
+  );
+
+  return {
+    schema:
+      "aaa-tri-binary-event-root-affine-bracket-signed-balance-presence-measure-coefficient-audit.v1",
+    status: rows.length === 0
+      ? "event_root_affine_bracket_signed_balance_presence_measure_coefficient_no_domain"
+      : acceptedRows.length > 0
+        ? "event_root_affine_bracket_signed_balance_presence_measure_coefficient_source_accepted"
+        : "event_root_affine_bracket_signed_balance_presence_measure_coefficient_current_sources_rejected",
+    claimLevel:
+      "current coefficient-source audit for deriving positive presence measure from signed transition balance; not an exhaustive dynamic-law search",
+    retainedBranchClaim: false,
+    rowCount: rows.length,
+    coefficientSourceCandidateCount: candidateRows.length,
+    acceptedCoefficientSourceCandidateCount: acceptedRows.length,
+    uniformNonTautologicalCoefficientCandidateCount:
+      uniformNonTautologicalRows.length,
+    tautologicalGeometryCandidateCount: tautologicalRows.length,
+    firstCoefficientAuditBlocker:
+      acceptedRows.length > 0
+        ? null
+        : uniformNonTautologicalRows.length > 0
+          ? "derive_physical_status_of_uniform_signed_balance_measure_coefficient"
+          : "derive_non_tautological_presence_measure_coefficient_from_signed_transition_balance",
+    candidateRows,
+    retainedLimitation:
+      "The current coefficient candidates do not derive the missing positive event-root presence measure from signed transition balance. Transition-count and gap-count coefficients are non-uniform or underpopulated, while bridge width merely restates the required measure.",
+  };
+}
+
+function createRoundedCoefficientClasses(values) {
+  return [...new Set(values.filter(Number.isFinite).map((value) => value.toPrecision(14)))].sort();
+}
+
+function sumSampleWidths(samples) {
+  return (samples ?? []).reduce((sum, sample) => {
+    const width =
+      Number.isFinite(sample?.start) && Number.isFinite(sample?.end)
+        ? sample.end - sample.start
+        : 0;
+    return sum + Math.max(0, width);
+  }, 0);
+}
+
+function createDisappearedAppearedDwellPairs(samples) {
+  const sortSamplesByTime = (left, right) =>
+    (left.start ?? 0) - (right.start ?? 0) ||
+    (left.end ?? 0) - (right.end ?? 0);
+  const disappearedSamples = (samples ?? [])
+    .filter((sample) => sample?.transition?.kind === "disappeared")
+    .sort(sortSamplesByTime);
+  const appearedSamples = (samples ?? [])
+    .filter((sample) => sample?.transition?.kind === "appeared")
+    .sort(sortSamplesByTime);
+  const pairCount = Math.min(disappearedSamples.length, appearedSamples.length);
+  const pairs = [];
+  for (let index = 0; index < pairCount; index += 1) {
+    const disappeared = disappearedSamples[index];
+    const appeared = appearedSamples[index];
+    const disappearedExitTime = Number.isFinite(disappeared?.end)
+      ? disappeared.end
+      : disappeared?.start;
+    const appearedEntryTime = Number.isFinite(appeared?.start)
+      ? appeared.start
+      : appeared?.end;
+    const dwellWidth =
+      Number.isFinite(disappearedExitTime) &&
+      Number.isFinite(appearedEntryTime)
+        ? appearedEntryTime - disappearedExitTime
+        : null;
+    pairs.push({
+      pairIndex: index,
+      disappearedEdgeIndex: disappeared?.edgeIndex ?? null,
+      appearedEdgeIndex: appeared?.edgeIndex ?? null,
+      disappearedExitTime,
+      appearedEntryTime,
+      dwellWidth,
+      positiveDwellWidth:
+        Number.isFinite(dwellWidth) && dwellWidth > 0 ? dwellWidth : 0,
+      chronologicalPairPass:
+        Number.isFinite(dwellWidth) && dwellWidth >= -ROOT_TOLERANCE,
+    });
+  }
+  return pairs;
+}
+
+function createEventRootAffineBracketSignedBalancePresenceMeasureSpanSourceAudit({
+  rows,
+  signedBalancePresenceMeasureTarget,
+  interiorNonRetainedTransitionKeyAudit,
+}) {
+  const measureRowsByKey = new Map(
+    (signedBalancePresenceMeasureTarget?.rows ?? []).map((row) => [
+      `${row.pairKey}:${row.edgeIndex}`,
+      row,
+    ])
+  );
+  const transitionRowsByKey = new Map(
+    (interiorNonRetainedTransitionKeyAudit?.rows ?? []).map((row) => [
+      `${row.pairKey}:${row.edgeIndex}`,
+      row,
+    ])
+  );
+  const rowSummaries = rows.map((row) => {
+    const key = `${row.pairKey}:${row.edgeIndex}`;
+    const measureRow = measureRowsByKey.get(key);
+    const transitionRow = transitionRowsByKey.get(key);
+    const samples = transitionRow?.interiorEventRootTouchSamples ?? [];
+    const sampleCount = samples.length;
+    const transitionCount =
+      transitionRow?.interiorNonRetainedEventRootTouchTransitionCount ?? 0;
+    const completeTouchSamplePass =
+      transitionCount > 0 && sampleCount === transitionCount;
+    const starts = samples.map((sample) => sample.start).filter(Number.isFinite);
+    const ends = samples.map((sample) => sample.end).filter(Number.isFinite);
+    const touchEnvelopeStart = minFinite(starts);
+    const touchEnvelopeEnd = maxFinite(ends);
+    const touchEnvelopeWidth =
+      Number.isFinite(touchEnvelopeStart) &&
+      Number.isFinite(touchEnvelopeEnd)
+        ? touchEnvelopeEnd - touchEnvelopeStart
+        : null;
+    const touchSupportWidth = sumSampleWidths(samples);
+    const appearedSupportWidth = sumSampleWidths(
+      samples.filter((sample) => sample.transition?.kind === "appeared")
+    );
+    const disappearedSupportWidth = sumSampleWidths(
+      samples.filter((sample) => sample.transition?.kind === "disappeared")
+    );
+    const presenceMeasureDeficit =
+      measureRow?.presenceMeasureDeficit ?? null;
+    return {
+      pairKey: row.pairKey,
+      edgeIndex: row.edgeIndex,
+      presenceMeasureDeficit,
+      transitionCount,
+      sampleCount,
+      completeTouchSamplePass,
+      touchEnvelopeStart,
+      touchEnvelopeEnd,
+      touchEnvelopeWidth,
+      touchSupportWidth,
+      appearedSupportWidth,
+      disappearedSupportWidth,
+    };
+  });
+  const candidateConfigs = [
+    {
+      candidateId: "touch_envelope_width_source",
+      sourceClaim:
+        "The full event-root touch envelope supplies the positive presence-measure deficit.",
+      getSourceWeight: (row) => row.touchEnvelopeWidth,
+    },
+    {
+      candidateId: "total_touch_support_width_source",
+      sourceClaim:
+        "The summed non-retained event-root touch support width supplies the positive presence-measure deficit.",
+      getSourceWeight: (row) => row.touchSupportWidth,
+    },
+    {
+      candidateId: "appeared_touch_support_width_source",
+      sourceClaim:
+        "The appeared-touch support width supplies the positive presence-measure deficit.",
+      getSourceWeight: (row) => row.appearedSupportWidth,
+    },
+    {
+      candidateId: "disappeared_touch_support_width_source",
+      sourceClaim:
+        "The disappeared-touch support width supplies the positive presence-measure deficit.",
+      getSourceWeight: (row) => row.disappearedSupportWidth,
+    },
+  ];
+  const candidateRows = candidateConfigs.map((candidate) => {
+    const sourceRows = rowSummaries.map((row) => {
+      const sourceWeight = candidate.getSourceWeight(row);
+      const exactMeasureMatchPass =
+        Number.isFinite(sourceWeight) &&
+        Number.isFinite(row.presenceMeasureDeficit) &&
+        Math.abs(sourceWeight - row.presenceMeasureDeficit) <= ROOT_TOLERANCE;
+      const coefficient =
+        Number.isFinite(sourceWeight) &&
+        Math.abs(sourceWeight) > ROOT_TOLERANCE &&
+        Number.isFinite(row.presenceMeasureDeficit)
+          ? row.presenceMeasureDeficit / sourceWeight
+          : null;
+      return {
+        pairKey: row.pairKey,
+        edgeIndex: row.edgeIndex,
+        completeTouchSamplePass: row.completeTouchSamplePass,
+        sourceWeight,
+        presenceMeasureDeficit: row.presenceMeasureDeficit,
+        exactMeasureMatchPass,
+        coefficient,
+      };
+    });
+    const completeRows = sourceRows.filter(
+      (row) => row.completeTouchSamplePass
+    );
+    const finiteSourceRows = sourceRows.filter((row) =>
+      Number.isFinite(row.sourceWeight)
+    );
+    const exactRows = sourceRows.filter((row) => row.exactMeasureMatchPass);
+    const coefficientValues = sourceRows
+      .map((row) => row.coefficient)
+      .filter(Number.isFinite);
+    const uniqueCoefficientClasses =
+      createRoundedCoefficientClasses(coefficientValues);
+    const completeDomainPass =
+      rows.length > 0 && completeRows.length === rows.length;
+    const uniformCoefficientCandidatePass =
+      completeDomainPass &&
+      finiteSourceRows.length === rows.length &&
+      uniqueCoefficientClasses.length === 1;
+    return {
+      candidateId: candidate.candidateId,
+      sourceClaim: candidate.sourceClaim,
+      rowCount: rows.length,
+      completeTouchSampleRowCount: completeRows.length,
+      finiteSourceRowCount: finiteSourceRows.length,
+      exactMeasureMatchRowCount: exactRows.length,
+      uniqueCoefficientClassCount: uniqueCoefficientClasses.length,
+      uniformCoefficientCandidatePass,
+      acceptedSpanSourceCandidatePass: false,
+      acceptedSpanSourceCandidateRowCount: 0,
+      firstSpanSourceCandidateBlocker:
+        !completeDomainPass
+          ? "populate_complete_event_root_touch_span_rows"
+          : exactRows.length === rows.length
+            ? "derive_physical_status_of_touch_span_presence_measure_source"
+            : uniformCoefficientCandidatePass
+              ? "derive_physical_status_of_uniform_touch_span_measure_coefficient"
+              : "touch_span_source_not_uniform_or_exact_presence_measure",
+      coefficientClassSamples: uniqueCoefficientClasses.slice(0, 12),
+      sourceRowSamples: sourceRows.slice(0, 16),
+    };
+  });
+  const completeRows = rowSummaries.filter((row) => row.completeTouchSamplePass);
+  const acceptedRows = candidateRows.filter(
+    (row) => row.acceptedSpanSourceCandidatePass
+  );
+  const exactCandidateRows = candidateRows.filter(
+    (row) => row.exactMeasureMatchRowCount === rows.length && rows.length > 0
+  );
+  const uniformCandidateRows = candidateRows.filter(
+    (row) => row.uniformCoefficientCandidatePass
+  );
+
+  return {
+    schema:
+      "aaa-tri-binary-event-root-affine-bracket-signed-balance-presence-measure-span-source-audit.v1",
+    status: rows.length === 0
+      ? "event_root_affine_bracket_signed_balance_presence_measure_span_source_no_domain"
+      : acceptedRows.length > 0
+        ? "event_root_affine_bracket_signed_balance_presence_measure_span_source_accepted"
+        : completeRows.length === rows.length
+          ? "event_root_affine_bracket_signed_balance_presence_measure_span_sources_populated_not_accepted"
+          : "event_root_affine_bracket_signed_balance_presence_measure_span_source_samples_incomplete",
+    claimLevel:
+      "current span-source audit for deriving positive presence measure from event-root touch timing; not retained continuity acceptance",
+    retainedBranchClaim: false,
+    rowCount: rows.length,
+    completeTouchSampleRowCount: completeRows.length,
+    spanSourceCandidateCount: candidateRows.length,
+    exactSpanSourceCandidateCount: exactCandidateRows.length,
+    uniformSpanCoefficientCandidateCount: uniformCandidateRows.length,
+    acceptedSpanSourceCandidateCount: acceptedRows.length,
+    firstSpanSourceAuditBlocker:
+      acceptedRows.length > 0
+        ? null
+        : completeRows.length < rows.length
+          ? "populate_complete_event_root_touch_span_rows"
+          : exactCandidateRows.length > 0
+            ? "derive_physical_status_of_touch_span_presence_measure_source"
+            : uniformCandidateRows.length > 0
+              ? "derive_physical_status_of_uniform_touch_span_measure_coefficient"
+              : "derive_non_tautological_touch_span_presence_measure_source",
+    rowSummaries: rowSummaries.slice(0, 24),
+    candidateRows,
+    retainedLimitation:
+      "The event-root touch timing rows are available for the fill domain, but current span candidates are not accepted as dynamic event-root presence measure sources. A valid route must derive why a touch span, not just a sampled time width, carries retained event-root presence.",
+  };
+}
+
+function createEventRootAffineBracketSignedBalancePresenceMeasureTransitionPairAudit({
+  rows,
+  signedBalancePresenceMeasureTarget,
+  interiorNonRetainedTransitionKeyAudit,
+}) {
+  const measureRowsByKey = new Map(
+    (signedBalancePresenceMeasureTarget?.rows ?? []).map((row) => [
+      `${row.pairKey}:${row.edgeIndex}`,
+      row,
+    ])
+  );
+  const transitionRowsByKey = new Map(
+    (interiorNonRetainedTransitionKeyAudit?.rows ?? []).map((row) => [
+      `${row.pairKey}:${row.edgeIndex}`,
+      row,
+    ])
+  );
+  const rowSummaries = rows.map((row) => {
+    const key = `${row.pairKey}:${row.edgeIndex}`;
+    const measureRow = measureRowsByKey.get(key);
+    const transitionRow = transitionRowsByKey.get(key);
+    const samples = transitionRow?.interiorEventRootTouchSamples ?? [];
+    const disappearedSamples = samples.filter(
+      (sample) => sample?.transition?.kind === "disappeared"
+    );
+    const appearedSamples = samples.filter(
+      (sample) => sample?.transition?.kind === "appeared"
+    );
+    const dwellPairs = createDisappearedAppearedDwellPairs(samples);
+    const dwellWidths = dwellPairs
+      .map((pair) => pair.dwellWidth)
+      .filter(Number.isFinite);
+    const positiveDwellWidths = dwellPairs
+      .map((pair) => pair.positiveDwellWidth)
+      .filter(Number.isFinite);
+    const completePairingPass =
+      disappearedSamples.length > 0 &&
+      disappearedSamples.length === appearedSamples.length &&
+      dwellPairs.length === disappearedSamples.length &&
+      dwellPairs.every((pair) => pair.chronologicalPairPass);
+    const pairedDwellTotalWidth = positiveDwellWidths.reduce(
+      (sum, value) => sum + value,
+      0
+    );
+    const pairedDwellMeanWidth =
+      positiveDwellWidths.length > 0
+        ? pairedDwellTotalWidth / positiveDwellWidths.length
+        : null;
+    return {
+      pairKey: row.pairKey,
+      edgeIndex: row.edgeIndex,
+      presenceMeasureDeficit:
+        measureRow?.presenceMeasureDeficit ?? null,
+      disappearedTouchCount: disappearedSamples.length,
+      appearedTouchCount: appearedSamples.length,
+      foldedTouchCount: samples.filter(
+        (sample) => sample?.transition?.kind === "folded"
+      ).length,
+      dwellPairCount: dwellPairs.length,
+      chronologicalDwellPairCount: dwellPairs.filter(
+        (pair) => pair.chronologicalPairPass
+      ).length,
+      completePairingPass,
+      pairedDwellTotalWidth,
+      pairedDwellMeanWidth,
+      pairedDwellMaxWidth: maxFinite(positiveDwellWidths),
+      pairedDwellMinWidth: minFinite(positiveDwellWidths),
+      firstPairedDwellWidth: dwellWidths[0] ?? null,
+      lastPairedDwellWidth: dwellWidths[dwellWidths.length - 1] ?? null,
+      dwellPairSamples: dwellPairs.slice(0, 8),
+    };
+  });
+  const candidateConfigs = [
+    {
+      candidateId: "total_paired_transition_dwell_width_source",
+      sourceClaim:
+        "The total paired disappeared-to-appeared dwell width supplies the positive presence-measure deficit.",
+      getSourceWeight: (row) => row.pairedDwellTotalWidth,
+    },
+    {
+      candidateId: "mean_paired_transition_dwell_width_source",
+      sourceClaim:
+        "The mean paired disappeared-to-appeared dwell width supplies the positive presence-measure deficit.",
+      getSourceWeight: (row) => row.pairedDwellMeanWidth,
+    },
+    {
+      candidateId: "max_paired_transition_dwell_width_source",
+      sourceClaim:
+        "The maximum paired disappeared-to-appeared dwell width supplies the positive presence-measure deficit.",
+      getSourceWeight: (row) => row.pairedDwellMaxWidth,
+    },
+    {
+      candidateId: "first_paired_transition_dwell_width_source",
+      sourceClaim:
+        "The first paired disappeared-to-appeared dwell width supplies the positive presence-measure deficit.",
+      getSourceWeight: (row) => row.firstPairedDwellWidth,
+    },
+    {
+      candidateId: "last_paired_transition_dwell_width_source",
+      sourceClaim:
+        "The last paired disappeared-to-appeared dwell width supplies the positive presence-measure deficit.",
+      getSourceWeight: (row) => row.lastPairedDwellWidth,
+    },
+  ];
+  const candidateRows = candidateConfigs.map((candidate) => {
+    const sourceRows = rowSummaries.map((row) => {
+      const sourceWeight = candidate.getSourceWeight(row);
+      const exactMeasureMatchPass =
+        Number.isFinite(sourceWeight) &&
+        Number.isFinite(row.presenceMeasureDeficit) &&
+        Math.abs(sourceWeight - row.presenceMeasureDeficit) <= ROOT_TOLERANCE;
+      const coefficient =
+        Number.isFinite(sourceWeight) &&
+        Math.abs(sourceWeight) > ROOT_TOLERANCE &&
+        Number.isFinite(row.presenceMeasureDeficit)
+          ? row.presenceMeasureDeficit / sourceWeight
+          : null;
+      return {
+        pairKey: row.pairKey,
+        edgeIndex: row.edgeIndex,
+        completePairingPass: row.completePairingPass,
+        sourceWeight,
+        presenceMeasureDeficit: row.presenceMeasureDeficit,
+        exactMeasureMatchPass,
+        coefficient,
+      };
+    });
+    const completeRows = sourceRows.filter((row) => row.completePairingPass);
+    const finiteSourceRows = sourceRows.filter((row) =>
+      Number.isFinite(row.sourceWeight)
+    );
+    const exactRows = sourceRows.filter((row) => row.exactMeasureMatchPass);
+    const coefficientValues = sourceRows
+      .map((row) => row.coefficient)
+      .filter(Number.isFinite);
+    const uniqueCoefficientClasses =
+      createRoundedCoefficientClasses(coefficientValues);
+    const completeDomainPass =
+      rows.length > 0 && completeRows.length === rows.length;
+    const uniformCoefficientCandidatePass =
+      completeDomainPass &&
+      finiteSourceRows.length === rows.length &&
+      uniqueCoefficientClasses.length === 1;
+    return {
+      candidateId: candidate.candidateId,
+      sourceClaim: candidate.sourceClaim,
+      rowCount: rows.length,
+      completePairingRowCount: completeRows.length,
+      finiteSourceRowCount: finiteSourceRows.length,
+      exactMeasureMatchRowCount: exactRows.length,
+      uniqueCoefficientClassCount: uniqueCoefficientClasses.length,
+      uniformCoefficientCandidatePass,
+      acceptedTransitionPairSourceCandidatePass: false,
+      acceptedTransitionPairSourceCandidateRowCount: 0,
+      firstTransitionPairSourceCandidateBlocker:
+        !completeDomainPass
+          ? "populate_complete_disappeared_appeared_transition_pair_rows"
+          : exactRows.length === rows.length
+            ? "derive_physical_status_of_transition_pair_dwell_presence_measure_source"
+            : uniformCoefficientCandidatePass
+              ? "derive_physical_status_of_uniform_transition_pair_dwell_measure_coefficient"
+              : "transition_pair_dwell_source_not_uniform_or_exact_presence_measure",
+      coefficientClassSamples: uniqueCoefficientClasses.slice(0, 12),
+      sourceRowSamples: sourceRows.slice(0, 16),
+    };
+  });
+  const completeRows = rowSummaries.filter((row) => row.completePairingPass);
+  const acceptedRows = candidateRows.filter(
+    (row) => row.acceptedTransitionPairSourceCandidatePass
+  );
+  const exactCandidateRows = candidateRows.filter(
+    (row) => row.exactMeasureMatchRowCount === rows.length && rows.length > 0
+  );
+  const uniformCandidateRows = candidateRows.filter(
+    (row) => row.uniformCoefficientCandidatePass
+  );
+
+  return {
+    schema:
+      "aaa-tri-binary-event-root-affine-bracket-signed-balance-presence-measure-transition-pair-audit.v1",
+    status: rows.length === 0
+      ? "event_root_affine_bracket_signed_balance_presence_measure_transition_pair_no_domain"
+      : acceptedRows.length > 0
+        ? "event_root_affine_bracket_signed_balance_presence_measure_transition_pair_source_accepted"
+        : completeRows.length === rows.length
+          ? "event_root_affine_bracket_signed_balance_presence_measure_transition_pair_sources_populated_not_accepted"
+          : "event_root_affine_bracket_signed_balance_presence_measure_transition_pair_incomplete",
+    claimLevel:
+      "current transition-pair dwell-source audit for deriving positive presence measure from signed appeared/disappeared balance; not retained continuity acceptance",
+    retainedBranchClaim: false,
+    rowCount: rows.length,
+    completeTransitionPairRowCount: completeRows.length,
+    transitionPairSourceCandidateCount: candidateRows.length,
+    exactTransitionPairSourceCandidateCount: exactCandidateRows.length,
+    uniformTransitionPairCoefficientCandidateCount:
+      uniformCandidateRows.length,
+    acceptedTransitionPairSourceCandidateCount: acceptedRows.length,
+    firstTransitionPairAuditBlocker:
+      acceptedRows.length > 0
+        ? null
+        : completeRows.length < rows.length
+          ? "populate_complete_disappeared_appeared_transition_pair_rows"
+          : exactCandidateRows.length > 0
+            ? "derive_physical_status_of_transition_pair_dwell_presence_measure_source"
+            : uniformCandidateRows.length > 0
+              ? "derive_physical_status_of_uniform_transition_pair_dwell_measure_coefficient"
+              : "derive_non_tautological_transition_pair_dwell_presence_measure_source",
+    rowSummaries: rowSummaries.slice(0, 24),
+    candidateRows,
+    retainedLimitation:
+      "The disappeared/appeared transition pairs are available as a signed-balance transport diagnostic, but current dwell-width candidates are not accepted as dynamic event-root presence measure sources. A valid route must derive why paired transition dwell carries retained event-root presence instead of merely measuring sampled transition spacing.",
+  };
+}
+
+function createEventRootAffineBracketSignedBalancePresenceMeasureCurrentSourceExclusionSummary({
+  signedBalancePresenceMeasureTarget,
+  signedBalancePresenceMeasureCoefficientAudit,
+  signedBalancePresenceMeasureSpanSourceAudit,
+  signedBalancePresenceMeasureTransitionPairAudit,
+}) {
+  const sourceFamilyRows = [
+    {
+      sourceFamilyId: "coefficient_sources",
+      status: signedBalancePresenceMeasureCoefficientAudit?.status ?? null,
+      candidateCount:
+        signedBalancePresenceMeasureCoefficientAudit
+          ?.coefficientSourceCandidateCount ?? 0,
+      acceptedCandidateCount:
+        signedBalancePresenceMeasureCoefficientAudit
+          ?.acceptedCoefficientSourceCandidateCount ?? 0,
+      exactCandidateCount: null,
+      uniformNonTautologicalCandidateCount:
+        signedBalancePresenceMeasureCoefficientAudit
+          ?.uniformNonTautologicalCoefficientCandidateCount ?? 0,
+      tautologicalCandidateCount:
+        signedBalancePresenceMeasureCoefficientAudit
+          ?.tautologicalGeometryCandidateCount ?? 0,
+      firstSourceFamilyBlocker:
+        signedBalancePresenceMeasureCoefficientAudit
+          ?.firstCoefficientAuditBlocker ?? null,
+      exclusionReason:
+        "transition-count and gap-count coefficients are non-uniform or underpopulated; bridge width is tautological",
+    },
+    {
+      sourceFamilyId: "touch_span_sources",
+      status: signedBalancePresenceMeasureSpanSourceAudit?.status ?? null,
+      candidateCount:
+        signedBalancePresenceMeasureSpanSourceAudit?.spanSourceCandidateCount ??
+        0,
+      acceptedCandidateCount:
+        signedBalancePresenceMeasureSpanSourceAudit
+          ?.acceptedSpanSourceCandidateCount ?? 0,
+      exactCandidateCount:
+        signedBalancePresenceMeasureSpanSourceAudit
+          ?.exactSpanSourceCandidateCount ?? 0,
+      uniformNonTautologicalCandidateCount:
+        signedBalancePresenceMeasureSpanSourceAudit
+          ?.uniformSpanCoefficientCandidateCount ?? 0,
+      tautologicalCandidateCount: 0,
+      firstSourceFamilyBlocker:
+        signedBalancePresenceMeasureSpanSourceAudit
+          ?.firstSpanSourceAuditBlocker ?? null,
+      exclusionReason:
+        "event-root touch span widths are populated but neither exact nor uniform sources for the required measure",
+    },
+    {
+      sourceFamilyId: "transition_pair_dwell_sources",
+      status:
+        signedBalancePresenceMeasureTransitionPairAudit?.status ?? null,
+      candidateCount:
+        signedBalancePresenceMeasureTransitionPairAudit
+          ?.transitionPairSourceCandidateCount ?? 0,
+      acceptedCandidateCount:
+        signedBalancePresenceMeasureTransitionPairAudit
+          ?.acceptedTransitionPairSourceCandidateCount ?? 0,
+      exactCandidateCount:
+        signedBalancePresenceMeasureTransitionPairAudit
+          ?.exactTransitionPairSourceCandidateCount ?? 0,
+      uniformNonTautologicalCandidateCount:
+        signedBalancePresenceMeasureTransitionPairAudit
+          ?.uniformTransitionPairCoefficientCandidateCount ?? 0,
+      tautologicalCandidateCount: 0,
+      firstSourceFamilyBlocker:
+        signedBalancePresenceMeasureTransitionPairAudit
+          ?.firstTransitionPairAuditBlocker ?? null,
+      exclusionReason:
+        "paired disappeared/appeared dwell widths are populated but neither exact nor uniform sources for the required measure",
+    },
+  ];
+  const populatedSourceFamilyRows = sourceFamilyRows.filter(
+    (row) => row.candidateCount > 0
+  );
+  const acceptedSourceFamilyRows = sourceFamilyRows.filter(
+    (row) => row.acceptedCandidateCount > 0
+  );
+  const currentFiniteSourceCandidateCount = sourceFamilyRows.reduce(
+    (sum, row) => sum + row.candidateCount,
+    0
+  );
+  const acceptedCurrentSourceCandidateCount = sourceFamilyRows.reduce(
+    (sum, row) => sum + row.acceptedCandidateCount,
+    0
+  );
+  const exactCurrentSourceCandidateCount = sourceFamilyRows.reduce(
+    (sum, row) => sum + (row.exactCandidateCount ?? 0),
+    0
+  );
+  const uniformNonTautologicalCurrentSourceCandidateCount =
+    sourceFamilyRows.reduce(
+      (sum, row) => sum + row.uniformNonTautologicalCandidateCount,
+      0
+    );
+  const tautologicalCurrentSourceCandidateCount = sourceFamilyRows.reduce(
+    (sum, row) => sum + row.tautologicalCandidateCount,
+    0
+  );
+  const currentSignedBalanceSourceExhaustedPass =
+    (signedBalancePresenceMeasureTarget?.rowCount ?? 0) > 0 &&
+    populatedSourceFamilyRows.length === sourceFamilyRows.length &&
+    acceptedCurrentSourceCandidateCount === 0 &&
+    exactCurrentSourceCandidateCount === 0 &&
+    uniformNonTautologicalCurrentSourceCandidateCount === 0;
+
+  return {
+    schema:
+      "aaa-tri-binary-event-root-affine-bracket-signed-balance-presence-measure-current-source-exclusion-summary.v1",
+    status: (signedBalancePresenceMeasureTarget?.rowCount ?? 0) === 0
+      ? "event_root_affine_bracket_signed_balance_presence_measure_current_source_exclusion_no_domain"
+      : acceptedSourceFamilyRows.length > 0
+        ? "event_root_affine_bracket_signed_balance_presence_measure_current_source_exclusion_has_accepted_source"
+        : currentSignedBalanceSourceExhaustedPass
+          ? "event_root_affine_bracket_signed_balance_presence_measure_current_sources_exhausted_new_dynamic_law_required"
+          : "event_root_affine_bracket_signed_balance_presence_measure_current_source_exclusion_incomplete",
+    claimLevel:
+      "negative certificate over current finite signed-balance presence-measure source families; not a proof that no dynamic law exists",
+    retainedBranchClaim: false,
+    rowCount: signedBalancePresenceMeasureTarget?.rowCount ?? 0,
+    totalPresenceMeasureDeficit:
+      signedBalancePresenceMeasureTarget?.totalPresenceMeasureDeficit ?? null,
+    currentSourceFamilyCount: sourceFamilyRows.length,
+    populatedSourceFamilyCount: populatedSourceFamilyRows.length,
+    currentFiniteSourceCandidateCount,
+    acceptedCurrentSourceCandidateCount,
+    exactCurrentSourceCandidateCount,
+    uniformNonTautologicalCurrentSourceCandidateCount,
+    tautologicalCurrentSourceCandidateCount,
+    currentSignedBalanceSourceExhaustedPass,
+    firstCurrentSourceExclusionBlocker:
+      acceptedSourceFamilyRows.length > 0
+        ? null
+        : currentSignedBalanceSourceExhaustedPass
+          ? "derive_new_dynamic_presence_measure_law_beyond_current_signed_balance_sources"
+          : "complete_current_signed_balance_presence_measure_source_audits",
+    sourceFamilyRows,
+    retainedLimitation:
+      "This summary exhausts only the current finite signed-balance source families: count/coefficient reuse, event-root touch spans, and disappeared/appeared dwell widths. It rejects another retry of those families as the active proof route, but it does not reject a new dynamic presence-measure law, new non-midpoint evidence, or direct interior event-root presence rows.",
+  };
+}
+
+function createEventRootAffineBracketDynamicPresenceMeasureLawTarget({
+  rows,
+  occupancyAudit,
+  interiorNonRetainedTransitionKeyAudit,
+  signedBalancePresenceMeasureTarget,
+  signedBalancePresenceMeasureCurrentSourceExclusionSummary,
+}) {
+  const measureRowsByKey = new Map(
+    (signedBalancePresenceMeasureTarget?.rows ?? []).map((row) => [
+      `${row.pairKey}:${row.edgeIndex}`,
+      row,
+    ])
+  );
+  const requiredLawFieldIds = [
+    "row_local_presence_density_or_source_kernel",
+    "dynamic_transport_operator_or_root_sheet_continuation",
+    "nonnegative_density_or_measure_certificate",
+    "rowwise_measure_integral",
+    "retained_row_set_binding",
+  ];
+  const currentSignedBalanceSourceExhaustedPass =
+    signedBalancePresenceMeasureCurrentSourceExclusionSummary
+      ?.currentSignedBalanceSourceExhaustedPass === true;
+  const baseLawRows = rows.map((row) => {
+    const measureRow = measureRowsByKey.get(`${row.pairKey}:${row.edgeIndex}`);
+    const requiredPresenceMeasure =
+      measureRow?.requiredRetainedPresenceMeasure ?? row.width ?? null;
+    const currentLedgerPresenceMeasure =
+      measureRow?.currentLedgerPresenceMeasure ?? null;
+    const presenceMeasureDeficit =
+      measureRow?.presenceMeasureDeficit ??
+      (Number.isFinite(requiredPresenceMeasure) &&
+      Number.isFinite(currentLedgerPresenceMeasure)
+        ? requiredPresenceMeasure - currentLedgerPresenceMeasure
+        : null);
+
+    return {
+      pairKey: row.pairKey,
+      edgeIndex: row.edgeIndex,
+      eventRootKey: row.eventRootKey ?? null,
+      start: row.start,
+      end: row.end,
+      width: row.width,
+      endpointPresence: row.endpointPresence ?? null,
+      gapKinds: row.gapKinds ?? [],
+      requiredPresenceMeasure,
+      currentLedgerPresenceMeasure,
+      presenceMeasureDeficit,
+    };
+  });
+  const unitDensityCandidate =
+    createEventRootAffineBracketUnitDensityPresenceMeasureLawCandidate({
+      rows: baseLawRows,
+    });
+  const transitionBracketUnitDensitySourceAudit =
+    createEventRootAffineBracketTransitionBracketUnitDensitySourceAudit({
+      rows: baseLawRows,
+      occupancyAudit,
+      interiorNonRetainedTransitionKeyAudit,
+      unitDensityCandidate,
+    });
+  const transitionBracketRootSheetContinuationAudit =
+    createEventRootAffineBracketTransitionBracketRootSheetContinuationAudit({
+      rows: baseLawRows,
+      transitionBracketUnitDensitySourceAudit,
+    });
+  const unitDensityRowsByKey = new Map(
+    unitDensityCandidate.rows.map((row) => [
+      createEventRootAbsentNoTransitionEdgeKey(row),
+      row,
+    ])
+  );
+  const transitionBracketRowsByKey = new Map(
+    transitionBracketUnitDensitySourceAudit.rows.map((row) => [
+      createEventRootAbsentNoTransitionEdgeKey(row),
+      row,
+    ])
+  );
+  const transitionBracketRootSheetRowsByKey = new Map(
+    transitionBracketRootSheetContinuationAudit.rows.map((row) => [
+      createEventRootAbsentNoTransitionEdgeKey(row),
+      row,
+    ])
+  );
+  const lawRows = baseLawRows.map((row) => {
+    const unitDensityRow = unitDensityRowsByKey.get(
+      createEventRootAbsentNoTransitionEdgeKey(row)
+    );
+    const transitionBracketRow = transitionBracketRowsByKey.get(
+      createEventRootAbsentNoTransitionEdgeKey(row)
+    );
+    const transitionBracketRootSheetRow =
+      transitionBracketRootSheetRowsByKey.get(
+        createEventRootAbsentNoTransitionEdgeKey(row)
+      );
+    const lawSuppliedPresenceMeasure =
+      unitDensityRow?.lawSuppliedPresenceMeasure ?? null;
+    const rowwiseMeasureResidual =
+      Number.isFinite(lawSuppliedPresenceMeasure) &&
+      Number.isFinite(row.requiredPresenceMeasure)
+        ? lawSuppliedPresenceMeasure - row.requiredPresenceMeasure
+        : null;
+    const rowLocalPresenceDensityOrSourceKernelPopulated =
+      unitDensityRow?.rowLocalPresenceDensityOrSourceKernelPopulated === true;
+    const nonnegativeDensityOrMeasureCertificatePass =
+      unitDensityRow?.nonnegativeDensityOrMeasureCertificatePass === true;
+    const rowwiseMeasureIntegralPopulated =
+      unitDensityRow?.rowwiseMeasureIntegralPopulated === true;
+    const transitionBracketRootSheetContinuationCandidatePopulated =
+      transitionBracketRootSheetRow
+        ?.rootSheetContinuationCandidatePopulated === true;
+    const transitionBracketZeroRootBridgeRejectedPass =
+      transitionBracketRootSheetRow?.zeroRootBridgeRejectedPass === true;
+    const retainedRootSheetContinuationPass =
+      transitionBracketRootSheetRow?.retainedRootSheetContinuationPass === true;
+    const dynamicTransportOperatorOrRootSheetContinuationPopulated =
+      retainedRootSheetContinuationPass;
+    const retainedRowSetBindingPass = false;
+    const nonTautologicalSourceKernelPass =
+      unitDensityRow?.tautologicalGeometryPass !== true &&
+      rowLocalPresenceDensityOrSourceKernelPopulated;
+    const transitionBracketSourcePopulated =
+      transitionBracketRow?.transitionBracketSourcePopulated === true;
+    const transitionBracketAbsencePolarityRejectedPass =
+      transitionBracketRow?.transitionBracketAbsencePolarityRejectedPass ===
+      true;
+    const lawOperatorFieldCompletePass =
+      nonTautologicalSourceKernelPass &&
+      dynamicTransportOperatorOrRootSheetContinuationPopulated &&
+      nonnegativeDensityOrMeasureCertificatePass &&
+      rowwiseMeasureIntegralPopulated &&
+      retainedRowSetBindingPass;
+    const acceptedDynamicPresenceMeasureLawRowPass =
+      lawOperatorFieldCompletePass &&
+      Number.isFinite(rowwiseMeasureResidual) &&
+      Math.abs(rowwiseMeasureResidual) <= ROOT_TOLERANCE;
+    const missingLawFieldIds = [
+      nonTautologicalSourceKernelPass
+        ? null
+        : "non_tautological_row_local_presence_density_or_source_kernel",
+      dynamicTransportOperatorOrRootSheetContinuationPopulated
+        ? null
+        : "dynamic_transport_operator_or_root_sheet_continuation",
+      nonnegativeDensityOrMeasureCertificatePass
+        ? null
+        : "nonnegative_density_or_measure_certificate",
+      rowwiseMeasureIntegralPopulated ? null : "rowwise_measure_integral",
+      retainedRowSetBindingPass ? null : "retained_row_set_binding",
+    ].filter(Boolean);
+
+    return {
+      ...row,
+      lawDensitySourceId: null,
+      candidateLawDensitySourceId:
+        unitDensityRow?.candidateLawDensitySourceId ?? null,
+      lawTransportOperatorId: null,
+      rootSheetContinuationId: null,
+      transitionBracketRootSheetContinuationCandidateId:
+        transitionBracketRootSheetRow
+          ?.transitionBracketRootSheetContinuationCandidateId ?? null,
+      transitionBracketSourceId:
+        transitionBracketRow?.transitionBracketSourceId ?? null,
+      transitionBracketSourcePopulated,
+      transitionBracketAbsencePolarityRejectedPass,
+      transitionBracketRootSheetContinuationCandidatePopulated,
+      transitionBracketZeroRootBridgeRejectedPass,
+      retainedRootSheetContinuationPass,
+      lawSuppliedPresenceMeasure,
+      rowwiseMeasureResidual,
+      rowLocalPresenceDensityOrSourceKernelPopulated,
+      nonTautologicalSourceKernelPass,
+      dynamicTransportOperatorOrRootSheetContinuationPopulated,
+      nonnegativeDensityOrMeasureCertificatePass,
+      rowwiseMeasureIntegralPopulated,
+      retainedRowSetBindingPass,
+      lawOperatorFieldCompletePass,
+      acceptedDynamicPresenceMeasureLawRowPass,
+      missingLawFieldIds,
+      firstDynamicPresenceMeasureLawRowBlocker:
+        acceptedDynamicPresenceMeasureLawRowPass
+          ? null
+          : transitionBracketZeroRootBridgeRejectedPass
+            ? "transition_bracket_root_sheet_candidate_collapses_to_zero_root_absence_bridge"
+          : transitionBracketAbsencePolarityRejectedPass
+            ? "transition_bracket_sources_absence_not_retained_presence_transport"
+          : unitDensityRow?.unitDensityIntegralRowPass === true
+            ? "unit_density_presence_measure_candidate_tautological_transport_and_retained_binding_missing"
+            : "dynamic_presence_measure_law_operator_fields_missing",
+    };
+  });
+  const requiredRows = lawRows.filter((row) =>
+    Number.isFinite(row.requiredPresenceMeasure)
+  );
+  const currentLedgerZeroRows = lawRows.filter(
+    (row) => row.currentLedgerPresenceMeasure === 0
+  );
+  const fieldCompleteRows = lawRows.filter(
+    (row) => row.lawOperatorFieldCompletePass
+  );
+  const unitDensityIntegralRows = lawRows.filter(
+    (row) =>
+      row.candidateLawDensitySourceId === "unit_bridge_presence_density" &&
+      Number.isFinite(row.rowwiseMeasureResidual) &&
+      Math.abs(row.rowwiseMeasureResidual) <= ROOT_TOLERANCE
+  );
+  const nonTautologicalSourceKernelRows = lawRows.filter(
+    (row) => row.nonTautologicalSourceKernelPass
+  );
+  const acceptedRows = lawRows.filter(
+    (row) => row.acceptedDynamicPresenceMeasureLawRowPass
+  );
+  const requiredMeasures = lawRows
+    .map((row) => row.requiredPresenceMeasure)
+    .filter(Number.isFinite);
+  const currentMeasures = lawRows
+    .map((row) => row.currentLedgerPresenceMeasure)
+    .filter(Number.isFinite);
+  const deficits = lawRows
+    .map((row) => row.presenceMeasureDeficit)
+    .filter(Number.isFinite);
+  const lawSuppliedMeasures = lawRows
+    .map((row) => row.lawSuppliedPresenceMeasure)
+    .filter(Number.isFinite);
+  const missingLawFieldIds = [
+    ...new Set(lawRows.flatMap((row) => row.missingLawFieldIds)),
+  ];
+  const unitDensityCandidateTautologicalPass =
+    unitDensityCandidate.unitDensityPresenceMeasureCandidatePass === true &&
+    unitDensityCandidate.tautologicalGeometryPass === true;
+  const transitionBracketSourceRejectedPass =
+    transitionBracketUnitDensitySourceAudit.transitionBracketSourcePopulatedPass ===
+      true &&
+    transitionBracketUnitDensitySourceAudit.transitionBracketAbsencePolarityRejectedPass ===
+      true;
+  const transitionBracketRootSheetRejectedPass =
+    transitionBracketRootSheetContinuationAudit
+      .zeroRootBridgeRejectedPass === true;
+
+  return {
+    schema:
+      "aaa-tri-binary-event-root-affine-bracket-dynamic-presence-measure-law-target.v1",
+    status: lawRows.length === 0
+      ? "event_root_affine_bracket_dynamic_presence_measure_law_no_domain"
+      : acceptedRows.length === lawRows.length
+        ? "event_root_affine_bracket_dynamic_presence_measure_law_accepted"
+        : currentSignedBalanceSourceExhaustedPass &&
+            transitionBracketRootSheetRejectedPass
+          ? "event_root_affine_bracket_dynamic_presence_measure_law_transition_bracket_root_sheet_rejected_zero_root_transport_and_retained_binding_missing"
+        : currentSignedBalanceSourceExhaustedPass &&
+            transitionBracketSourceRejectedPass
+          ? "event_root_affine_bracket_dynamic_presence_measure_law_transition_bracket_source_rejected_absence_polarity_transport_and_retained_binding_missing"
+        : currentSignedBalanceSourceExhaustedPass &&
+            unitDensityCandidateTautologicalPass
+          ? "event_root_affine_bracket_dynamic_presence_measure_law_unit_density_candidate_tautological_transport_and_retained_binding_missing"
+        : currentSignedBalanceSourceExhaustedPass
+          ? "event_root_affine_bracket_dynamic_presence_measure_law_operator_fields_missing_after_current_sources_exhausted"
+          : "event_root_affine_bracket_dynamic_presence_measure_law_current_source_exclusion_incomplete",
+    claimLevel:
+      "minimum equation target for a new dynamic presence-measure law on positive-width absence bridges; not retained continuity acceptance",
+    retainedBranchClaim: false,
+    currentSourceExclusionSummaryStatus:
+      signedBalancePresenceMeasureCurrentSourceExclusionSummary?.status ?? null,
+    currentSignedBalanceSourceExhaustedPass,
+    lawEquation: {
+      presenceDensity: "lambda_r(t) >= 0 on each bridge e=[a,b]",
+      lawMeasureEquation: "mu_law(e)=int_a^b lambda_r(t) dt",
+      currentLedgerEquation: "mu_current(e)=0",
+      requiredMeasureEquation: "mu_required(e)=b-a",
+      acceptanceEquation: "mu_law(e)=mu_required(e)",
+      deficitEquation: "Delta mu(e)=mu_required(e)-mu_current(e)",
+    },
+    requiredLawFieldIds,
+    missingLawFieldIds,
+    unitDensityCandidate,
+    transitionBracketUnitDensitySourceAudit,
+    transitionBracketRootSheetContinuationAudit,
+    rowCount: lawRows.length,
+    requiredPresenceMeasureRowCount: requiredRows.length,
+    currentLedgerZeroPresenceMeasureRowCount: currentLedgerZeroRows.length,
+    unitDensityIntegralRowCount: unitDensityIntegralRows.length,
+    nonTautologicalSourceKernelRowCount: nonTautologicalSourceKernelRows.length,
+    lawOperatorFieldCompleteRowCount: fieldCompleteRows.length,
+    acceptedDynamicPresenceMeasureLawRowCount: acceptedRows.length,
+    totalRequiredPresenceMeasure: requiredMeasures.reduce(
+      (sum, value) => sum + value,
+      0
+    ),
+    totalCurrentLedgerPresenceMeasure: currentMeasures.reduce(
+      (sum, value) => sum + value,
+      0
+    ),
+    totalPresenceMeasureDeficit: deficits.reduce(
+      (sum, value) => sum + value,
+      0
+    ),
+    totalLawSuppliedPresenceMeasure: lawSuppliedMeasures.length
+      ? lawSuppliedMeasures.reduce((sum, value) => sum + value, 0)
+      : null,
+    firstDynamicPresenceMeasureLawBlocker:
+      acceptedRows.length === lawRows.length
+        ? null
+        : transitionBracketRootSheetRejectedPass
+          ? "transition_bracket_root_sheet_candidate_collapses_to_zero_root_absence_bridge"
+        : transitionBracketSourceRejectedPass
+          ? "transition_bracket_sources_absence_not_retained_presence_transport"
+        : unitDensityCandidateTautologicalPass
+          ? "unit_density_presence_measure_candidate_tautological_transport_and_retained_binding_missing"
+          : "dynamic_presence_measure_law_operator_fields_missing",
+    rows: lawRows,
+    retainedLimitation:
+      "This target fixes the minimum row-wise equation a new law must satisfy after the current signed-balance source families are exhausted. The unit bridge-density candidate supplies a nonnegative row-wise integral exactly, but only by restating the bridge width. The disappeared-to-appeared transition bracket is populated for every bridge and returns to the endpoint event-root key, but its interior sheet collapses through root key 0, so it is a zero-root absence bridge rather than a retained root-sheet continuation. The target still lacks a retained presence source kernel, dynamic transport operator or retained root-sheet continuation, and retained row-set binding.",
+  };
+}
+
+function createEventRootAffineBracketTransitionBracketUnitDensitySourceAudit({
+  rows,
+  occupancyAudit,
+  interiorNonRetainedTransitionKeyAudit,
+  unitDensityCandidate,
+}) {
+  const transitionRowsByKey = new Map(
+    (interiorNonRetainedTransitionKeyAudit?.rows ?? []).map((row) => [
+      `${row.pairKey}:${row.edgeIndex}`,
+      row,
+    ])
+  );
+  const contextRowsByFillKey = new Map();
+  for (const occupancyRow of occupancyAudit?.rows ?? []) {
+    const transitionRow = transitionRowsByKey.get(
+      `${occupancyRow.pairKey}:${occupancyRow.edgeIndex}`
+    );
+    for (const edge of occupancyRow.eventRootAbsentInteriorEdgeSamples ?? []) {
+      if ((edge.width ?? 0) <= ROOT_TOLERANCE) {
+        continue;
+      }
+      const enclosingRun = findEventRootAbsenceRunContainingEdge({
+        runs: occupancyRow.eventRootAbsenceRunSamples ?? [],
+        edge,
+      });
+      const openingSample = findEventRootTransitionSampleByEdgeAndKind({
+        samples: transitionRow?.interiorEventRootTouchSamples ?? [],
+        edgeIndex: enclosingRun?.startEdgeIndex,
+        kind: "disappeared",
+      });
+      const closingSample = findEventRootTransitionSampleByEdgeAndKind({
+        samples: transitionRow?.interiorEventRootTouchSamples ?? [],
+        edgeIndex: enclosingRun?.endEdgeIndex,
+        kind: "appeared",
+      });
+      const key = createEventRootAbsentNoTransitionEdgeKey(edge);
+      if (!contextRowsByFillKey.has(key)) {
+        contextRowsByFillKey.set(key, {
+          occupancyRow,
+          transitionRow,
+          edge,
+          enclosingRun,
+          openingSample,
+          closingSample,
+        });
+      }
+    }
+  }
+  const unitRowsByKey = new Map(
+    (unitDensityCandidate?.rows ?? []).map((row) => [
+      createEventRootAbsentNoTransitionEdgeKey(row),
+      row,
+    ])
+  );
+  const auditRows = rows.map((row) => {
+    const key = createEventRootAbsentNoTransitionEdgeKey(row);
+    const context = contextRowsByFillKey.get(key);
+    const unitDensityRow = unitRowsByKey.get(key);
+    const openingTransition = context?.openingSample?.transition ?? null;
+    const closingTransition = context?.closingSample?.transition ?? null;
+    const transitionBracketSourcePopulated =
+      context?.enclosingRun != null &&
+      openingTransition?.kind === "disappeared" &&
+      closingTransition?.kind === "appeared";
+    const transitionBracketContainsBridgePass =
+      context?.enclosingRun != null &&
+      context.enclosingRun.start <= row.start + ROOT_TOLERANCE &&
+      context.enclosingRun.end + ROOT_TOLERANCE >= row.end;
+    const sameSourceReceiverPairPass =
+      openingTransition?.sourceKey != null &&
+      openingTransition.sourceKey === closingTransition?.sourceKey &&
+      openingTransition?.receiverKey != null &&
+      openingTransition.receiverKey === closingTransition?.receiverKey;
+    const disappearanceOpensAppearanceClosesPass =
+      context?.enclosingRun?.openingTransitionKind === "disappeared" &&
+      context?.enclosingRun?.closingTransitionKind === "appeared";
+    const absencePolarityPass =
+      openingTransition?.priorRootKey === row.eventRootKey &&
+      openingTransition?.nextRootKey === 0 &&
+      closingTransition?.priorRootKey === 0 &&
+      closingTransition?.nextRootKey === row.eventRootKey;
+    const transitionBracketAbsencePolarityRejectedPass =
+      transitionBracketSourcePopulated &&
+      transitionBracketContainsBridgePass &&
+      sameSourceReceiverPairPass &&
+      disappearanceOpensAppearanceClosesPass &&
+      absencePolarityPass;
+    const unitDensityIntegralRowPass =
+      unitDensityRow?.unitDensityIntegralRowPass === true;
+
+    return {
+      pairKey: row.pairKey,
+      edgeIndex: row.edgeIndex,
+      eventRootKey: row.eventRootKey ?? null,
+      start: row.start,
+      end: row.end,
+      width: row.width,
+      requiredPresenceMeasure: row.requiredPresenceMeasure ?? null,
+      presenceMeasureDeficit: row.presenceMeasureDeficit ?? null,
+      transitionBracketSourceId:
+        "disappeared_to_appeared_absence_bracket",
+      sourceAffineEdgeIndex: context?.occupancyRow?.edgeIndex ?? null,
+      enclosingAbsenceRunStartEdgeIndex:
+        context?.enclosingRun?.startEdgeIndex ?? null,
+      enclosingAbsenceRunEndEdgeIndex:
+        context?.enclosingRun?.endEdgeIndex ?? null,
+      enclosingAbsenceRunStart: context?.enclosingRun?.start ?? null,
+      enclosingAbsenceRunEnd: context?.enclosingRun?.end ?? null,
+      enclosingAbsenceRunWidth: context?.enclosingRun?.width ?? null,
+      openingTransitionEdgeIndex: context?.openingSample?.edgeIndex ?? null,
+      openingTransitionKind: openingTransition?.kind ?? null,
+      openingTransitionKey: openingTransition?.transitionKey ?? null,
+      openingPriorRootKey: openingTransition?.priorRootKey ?? null,
+      openingNextRootKey: openingTransition?.nextRootKey ?? null,
+      closingTransitionEdgeIndex: context?.closingSample?.edgeIndex ?? null,
+      closingTransitionKind: closingTransition?.kind ?? null,
+      closingTransitionKey: closingTransition?.transitionKey ?? null,
+      closingPriorRootKey: closingTransition?.priorRootKey ?? null,
+      closingNextRootKey: closingTransition?.nextRootKey ?? null,
+      sourceKey: openingTransition?.sourceKey ?? null,
+      receiverKey: openingTransition?.receiverKey ?? null,
+      sameSourceReceiverPairPass,
+      disappearanceOpensAppearanceClosesPass,
+      transitionBracketContainsBridgePass,
+      transitionBracketSourcePopulated,
+      absencePolarityPass,
+      transitionBracketAbsencePolarityRejectedPass,
+      unitDensityIntegralRowPass,
+      acceptedPresenceSourceKernelRowPass: false,
+      firstTransitionBracketUnitDensitySourceRowBlocker:
+        transitionBracketAbsencePolarityRejectedPass &&
+        unitDensityIntegralRowPass
+          ? "transition_bracket_sources_absence_not_retained_presence_transport"
+          : transitionBracketSourcePopulated
+            ? "bind_transition_bracket_to_retained_presence_transport"
+            : "populate_disappeared_appeared_absence_bracket_for_bridge",
+    };
+  });
+  const sourceRows = auditRows.filter(
+    (row) => row.transitionBracketSourcePopulated
+  );
+  const containsRows = auditRows.filter(
+    (row) => row.transitionBracketContainsBridgePass
+  );
+  const samePairRows = auditRows.filter((row) => row.sameSourceReceiverPairPass);
+  const unitIntegralRows = auditRows.filter(
+    (row) => row.unitDensityIntegralRowPass
+  );
+  const absencePolarityRows = auditRows.filter(
+    (row) => row.transitionBracketAbsencePolarityRejectedPass
+  );
+  const acceptedRows = auditRows.filter(
+    (row) => row.acceptedPresenceSourceKernelRowPass
+  );
+  const transitionBracketSourcePopulatedPass =
+    auditRows.length > 0 && sourceRows.length === auditRows.length;
+  const transitionBracketAbsencePolarityRejectedPass =
+    auditRows.length > 0 && absencePolarityRows.length === auditRows.length;
+
+  return {
+    schema:
+      "aaa-tri-binary-event-root-affine-bracket-transition-bracket-unit-density-source-audit.v1",
+    status: auditRows.length === 0
+      ? "event_root_affine_bracket_transition_bracket_unit_density_source_no_domain"
+      : acceptedRows.length === auditRows.length
+        ? "event_root_affine_bracket_transition_bracket_unit_density_source_accepted"
+        : transitionBracketAbsencePolarityRejectedPass
+          ? "event_root_affine_bracket_transition_bracket_unit_density_source_rejected_absence_polarity_not_presence_transport"
+          : transitionBracketSourcePopulatedPass
+            ? "event_root_affine_bracket_transition_bracket_unit_density_source_populated_transport_binding_missing"
+            : "event_root_affine_bracket_transition_bracket_unit_density_source_incomplete",
+    claimLevel:
+      "fail-closed source audit for the transition bracket behind the unit-density presence-measure candidate; not retained presence transport",
+    retainedBranchClaim: false,
+    rowCount: auditRows.length,
+    transitionBracketSourceRowCount: sourceRows.length,
+    transitionBracketContainsBridgeRowCount: containsRows.length,
+    sameSourceReceiverPairRowCount: samePairRows.length,
+    unitDensityIntegralRowCount: unitIntegralRows.length,
+    transitionBracketAbsencePolarityRejectedRowCount:
+      absencePolarityRows.length,
+    acceptedPresenceSourceKernelRowCount: acceptedRows.length,
+    transitionBracketSourcePopulatedPass,
+    transitionBracketAbsencePolarityRejectedPass,
+    firstTransitionBracketUnitDensitySourceBlocker:
+      acceptedRows.length === auditRows.length
+        ? null
+        : transitionBracketAbsencePolarityRejectedPass
+          ? "transition_bracket_sources_absence_not_retained_presence_transport"
+          : transitionBracketSourcePopulatedPass
+            ? "bind_transition_bracket_to_retained_presence_transport"
+            : "populate_disappeared_appeared_absence_bracket_for_bridge",
+    rowSamples: auditRows.slice(0, 16),
+    rows: auditRows,
+    retainedLimitation:
+      "Every fill-domain bridge lies inside a disappeared-to-appeared transition bracket with the same source/receiver pair, and the unit-density integral still supplies the row width. The bracket polarity is nevertheless absence polarity: disappeared maps the event-root key to zero, appeared maps zero back to the event-root key. This is evidence for an inactive interval, not a retained presence transport operator or retained row-set binding.",
+  };
+}
+
+function createEventRootAffineBracketTransitionBracketRootSheetContinuationAudit({
+  rows,
+  transitionBracketUnitDensitySourceAudit,
+}) {
+  const transitionRowsByKey = new Map(
+    (transitionBracketUnitDensitySourceAudit?.rows ?? []).map((row) => [
+      createEventRootAbsentNoTransitionEdgeKey(row),
+      row,
+    ])
+  );
+  const auditRows = rows.map((row) => {
+    const transitionRow = transitionRowsByKey.get(
+      createEventRootAbsentNoTransitionEdgeKey(row)
+    );
+    const transitionBracketSourcePopulated =
+      transitionRow?.transitionBracketSourcePopulated === true;
+    const sameSourceReceiverPairPass =
+      transitionRow?.sameSourceReceiverPairPass === true;
+    const disappearanceOpensAppearanceClosesPass =
+      transitionRow?.disappearanceOpensAppearanceClosesPass === true;
+    const absencePolarityPass =
+      transitionRow?.absencePolarityPass === true;
+    const zeroRootBridgePass =
+      transitionRow?.openingNextRootKey === 0 &&
+      transitionRow?.closingPriorRootKey === 0;
+    const endpointEventRootReturnPass =
+      transitionRow?.openingPriorRootKey === row.eventRootKey &&
+      transitionRow?.closingNextRootKey === row.eventRootKey;
+    const rootSheetContinuationCandidatePopulated =
+      transitionBracketSourcePopulated &&
+      sameSourceReceiverPairPass &&
+      disappearanceOpensAppearanceClosesPass &&
+      endpointEventRootReturnPass;
+    const zeroRootBridgeRejectedPass =
+      rootSheetContinuationCandidatePopulated &&
+      absencePolarityPass &&
+      zeroRootBridgePass;
+
+    return {
+      pairKey: row.pairKey,
+      edgeIndex: row.edgeIndex,
+      eventRootKey: row.eventRootKey ?? null,
+      start: row.start,
+      end: row.end,
+      width: row.width,
+      transitionBracketRootSheetContinuationCandidateId:
+        "disappeared_to_appeared_zero_root_bridge",
+      transitionBracketSourceId:
+        transitionRow?.transitionBracketSourceId ?? null,
+      openingTransitionKey: transitionRow?.openingTransitionKey ?? null,
+      openingPriorRootKey: transitionRow?.openingPriorRootKey ?? null,
+      openingNextRootKey: transitionRow?.openingNextRootKey ?? null,
+      closingTransitionKey: transitionRow?.closingTransitionKey ?? null,
+      closingPriorRootKey: transitionRow?.closingPriorRootKey ?? null,
+      closingNextRootKey: transitionRow?.closingNextRootKey ?? null,
+      sourceKey: transitionRow?.sourceKey ?? null,
+      receiverKey: transitionRow?.receiverKey ?? null,
+      sameSourceReceiverPairPass,
+      disappearanceOpensAppearanceClosesPass,
+      absencePolarityPass,
+      transitionBracketSourcePopulated,
+      rootSheetContinuationCandidatePopulated,
+      zeroRootBridgePass,
+      endpointEventRootReturnPass,
+      zeroRootBridgeRejectedPass,
+      retainedRootSheetContinuationPass: false,
+      acceptedRootSheetContinuationRowPass: false,
+      firstTransitionBracketRootSheetContinuationRowBlocker:
+        zeroRootBridgeRejectedPass
+          ? "transition_bracket_root_sheet_candidate_collapses_to_zero_root_absence_bridge"
+          : rootSheetContinuationCandidatePopulated
+            ? "derive_retained_root_sheet_continuation_from_transition_bracket"
+            : "populate_transition_bracket_root_sheet_candidate",
+    };
+  });
+  const candidateRows = auditRows.filter(
+    (row) => row.rootSheetContinuationCandidatePopulated
+  );
+  const zeroRootRows = auditRows.filter((row) => row.zeroRootBridgePass);
+  const endpointEventRootReturnRows = auditRows.filter(
+    (row) => row.endpointEventRootReturnPass
+  );
+  const rejectedRows = auditRows.filter(
+    (row) => row.zeroRootBridgeRejectedPass
+  );
+  const retainedRows = auditRows.filter(
+    (row) => row.retainedRootSheetContinuationPass
+  );
+  const acceptedRows = auditRows.filter(
+    (row) => row.acceptedRootSheetContinuationRowPass
+  );
+  const rootSheetContinuationCandidatePopulatedPass =
+    auditRows.length > 0 && candidateRows.length === auditRows.length;
+  const zeroRootBridgeRejectedPass =
+    auditRows.length > 0 && rejectedRows.length === auditRows.length;
+
+  return {
+    schema:
+      "aaa-tri-binary-event-root-affine-bracket-transition-bracket-root-sheet-continuation-audit.v1",
+    status: auditRows.length === 0
+      ? "event_root_affine_bracket_transition_bracket_root_sheet_continuation_no_domain"
+      : acceptedRows.length === auditRows.length
+        ? "event_root_affine_bracket_transition_bracket_root_sheet_continuation_accepted"
+        : zeroRootBridgeRejectedPass
+          ? "event_root_affine_bracket_transition_bracket_root_sheet_continuation_rejected_zero_root_absence_bridge"
+          : rootSheetContinuationCandidatePopulatedPass
+            ? "event_root_affine_bracket_transition_bracket_root_sheet_continuation_candidate_populated_retained_continuation_missing"
+            : "event_root_affine_bracket_transition_bracket_root_sheet_continuation_incomplete",
+    claimLevel:
+      "fail-closed root-sheet continuation audit for the disappeared-to-appeared transition bracket; not retained root-sheet transport",
+    retainedBranchClaim: false,
+    rowCount: auditRows.length,
+    rootSheetContinuationCandidateRowCount: candidateRows.length,
+    zeroRootBridgeRowCount: zeroRootRows.length,
+    endpointEventRootReturnRowCount: endpointEventRootReturnRows.length,
+    zeroRootBridgeRejectedRowCount: rejectedRows.length,
+    retainedRootSheetContinuationRowCount: retainedRows.length,
+    acceptedRootSheetContinuationRowCount: acceptedRows.length,
+    rootSheetContinuationCandidatePopulatedPass,
+    zeroRootBridgeRejectedPass,
+    firstTransitionBracketRootSheetContinuationBlocker:
+      acceptedRows.length === auditRows.length
+        ? null
+        : zeroRootBridgeRejectedPass
+          ? "transition_bracket_root_sheet_candidate_collapses_to_zero_root_absence_bridge"
+          : rootSheetContinuationCandidatePopulatedPass
+            ? "derive_retained_root_sheet_continuation_from_transition_bracket"
+            : "populate_transition_bracket_root_sheet_candidate",
+    rowSamples: auditRows.slice(0, 16),
+    rows: auditRows,
+    retainedLimitation:
+      "Every populated transition-bracket candidate returns from the endpoint event-root key to the same event-root key, but the bridge interior passes through root key 0. This is a zero-root absence bridge, not a retained root-sheet continuation. Closure still requires a nonzero retained root-sheet continuation or dynamic transport operator plus retained row-set binding.",
+  };
+}
+
+function findEventRootAbsenceRunContainingEdge({ runs, edge }) {
+  return (runs ?? []).find(
+    (run) =>
+      (run.width ?? 0) > ROOT_TOLERANCE &&
+      run.start <= edge.start + ROOT_TOLERANCE &&
+      run.end + ROOT_TOLERANCE >= edge.end
+  );
+}
+
+function findEventRootTransitionSampleByEdgeAndKind({
+  samples,
+  edgeIndex,
+  kind,
+}) {
+  return (samples ?? []).find(
+    (sample) =>
+      sample.edgeIndex === edgeIndex && sample.transition?.kind === kind
+  );
+}
+
+function createEventRootAffineBracketUnitDensityPresenceMeasureLawCandidate({
+  rows,
+}) {
+  const candidateRows = rows.map((row) => {
+    const candidateDensity = 1;
+    const lawSuppliedPresenceMeasure =
+      Number.isFinite(row.width) && row.width > 0
+        ? candidateDensity * row.width
+        : null;
+    const rowwiseMeasureResidual =
+      Number.isFinite(lawSuppliedPresenceMeasure) &&
+      Number.isFinite(row.requiredPresenceMeasure)
+        ? lawSuppliedPresenceMeasure - row.requiredPresenceMeasure
+        : null;
+    const unitDensityIntegralRowPass =
+      Number.isFinite(rowwiseMeasureResidual) &&
+      Math.abs(rowwiseMeasureResidual) <= ROOT_TOLERANCE;
+
+    return {
+      pairKey: row.pairKey,
+      edgeIndex: row.edgeIndex,
+      eventRootKey: row.eventRootKey ?? null,
+      start: row.start,
+      end: row.end,
+      width: row.width,
+      candidateLawDensitySourceId: "unit_bridge_presence_density",
+      candidateDensity,
+      lawSuppliedPresenceMeasure,
+      requiredPresenceMeasure: row.requiredPresenceMeasure ?? null,
+      currentLedgerPresenceMeasure: row.currentLedgerPresenceMeasure ?? null,
+      presenceMeasureDeficit: row.presenceMeasureDeficit ?? null,
+      rowwiseMeasureResidual,
+      rowLocalPresenceDensityOrSourceKernelPopulated: true,
+      nonnegativeDensityOrMeasureCertificatePass: candidateDensity >= 0,
+      rowwiseMeasureIntegralPopulated: Number.isFinite(
+        lawSuppliedPresenceMeasure
+      ),
+      unitDensityIntegralRowPass,
+      tautologicalGeometryPass: true,
+      acceptedDynamicPresenceMeasureLawRowPass: false,
+      firstUnitDensityCandidateRowBlocker:
+        unitDensityIntegralRowPass
+          ? "unit_density_restates_bridge_width_without_dynamic_source"
+          : "unit_density_integral_missing_or_residual",
+    };
+  });
+  const integralRows = candidateRows.filter(
+    (row) => row.unitDensityIntegralRowPass
+  );
+  const nonnegativeRows = candidateRows.filter(
+    (row) => row.nonnegativeDensityOrMeasureCertificatePass
+  );
+  const suppliedMeasures = candidateRows
+    .map((row) => row.lawSuppliedPresenceMeasure)
+    .filter(Number.isFinite);
+  const residuals = candidateRows
+    .map((row) => row.rowwiseMeasureResidual)
+    .filter(Number.isFinite);
+  const unitDensityPresenceMeasureCandidatePass =
+    candidateRows.length > 0 &&
+    integralRows.length === candidateRows.length &&
+    nonnegativeRows.length === candidateRows.length;
+
+  return {
+    schema:
+      "aaa-tri-binary-event-root-affine-bracket-unit-density-presence-measure-law-candidate.v1",
+    status: candidateRows.length === 0
+      ? "unit_density_presence_measure_law_candidate_no_domain"
+      : unitDensityPresenceMeasureCandidatePass
+        ? "unit_density_presence_measure_law_candidate_exact_tautological_source_rejected"
+        : "unit_density_presence_measure_law_candidate_residual_or_domain_blocked",
+    claimLevel:
+      "tautological unit-density comparison for the dynamic presence-measure equation; not a dynamic source law",
+    retainedBranchClaim: false,
+    candidateDensity: 1,
+    rowCount: candidateRows.length,
+    unitDensityIntegralRowCount: integralRows.length,
+    nonnegativeDensityRowCount: nonnegativeRows.length,
+    acceptedDynamicPresenceMeasureLawRowCount: 0,
+    totalLawSuppliedPresenceMeasure: suppliedMeasures.reduce(
+      (sum, value) => sum + value,
+      0
+    ),
+    maxAbsRowwiseMeasureResidual: maxFinite(
+      residuals.map((value) => Math.abs(value))
+    ),
+    tautologicalGeometryPass: true,
+    unitDensityPresenceMeasureCandidatePass,
+    firstUnitDensityCandidateBlocker:
+      unitDensityPresenceMeasureCandidatePass
+        ? "unit_density_restates_bridge_width_without_dynamic_source"
+        : "unit_density_integral_missing_or_residual",
+    rows: candidateRows,
+    retainedLimitation:
+      "The constant density lambda_r(t)=1 proves only that the required measure equals bridge width. It supplies no transition-derived source kernel, no transport/root-sheet evolution, and no retained row-set binding, so it is rejected as the dynamic law.",
+  };
+}
+
+async function createEventRootAffineBracketAbsenceBridgeFillRuleTarget({
+  occupancyAudit,
+  conversionPatternAudit,
+  interiorNonRetainedTransitionKeyAudit,
+  balancedTransitionConversionRuleTarget,
+  midpointReplayContext = null,
+  retainedRowSetBindingContext = null,
+}) {
+  const edges =
+    occupancyAudit
+      ?.uniquePositiveEventRootAbsentNoTransitionBothInactiveEdges ?? [];
+  const eventRootKey =
+    occupancyAudit?.rows?.find((row) => row.eventRootKey != null)
+      ?.eventRootKey ?? null;
+  const rows = edges.map((edge) => {
+    const noTransitionBothInactiveGapKindPass = (
+      edge.gapKinds ?? []
+    ).includes("noTransitionBothInactive");
+    const fillDomainCandidatePass =
+      edge.endpointPresence === "both_endpoints_inactive" &&
+      noTransitionBothInactiveGapKindPass &&
+      edge.width > 0;
+    return {
+      pairKey: edge.pairKey,
+      edgeIndex: edge.edgeIndex,
+      eventRootKey,
+      start: edge.start,
+      end: edge.end,
+      width: edge.width,
+      endpointPresence: edge.endpointPresence ?? null,
+      gapKinds: edge.gapKinds ?? [],
+      fillDomainCandidatePass,
+      interiorEventRootPresenceProofPopulated: false,
+      derivedAbsenceBridgeFillLawPopulated: false,
+      acceptedAbsenceBridgeFillRowPass: false,
+      firstAbsenceBridgeFillRowBlocker:
+        "derive_event_root_absence_bridge_fill_law",
+    };
+  });
+  const widths = rows.map((row) => row.width).filter(Number.isFinite);
+  const candidateRows = rows.filter((row) => row.fillDomainCandidatePass);
+  const acceptedRows = rows.filter(
+    (row) => row.acceptedAbsenceBridgeFillRowPass
+  );
+  const sourceRowCount = occupancyAudit?.rowCount ?? 0;
+  const candidateDomainMatchedPass =
+    rows.length > 0 &&
+    candidateRows.length === rows.length &&
+    rows.length === sourceRowCount &&
+    occupancyAudit?.allRowsHaveBalancedRecoveryWalkPass === true &&
+    occupancyAudit?.stateViolationRowCount === 0 &&
+    occupancyAudit?.rowsWithPositiveEventRootAbsenceBridge === sourceRowCount &&
+    occupancyAudit?.rowsWithEventRootAbsentNoTransitionBothInactiveEdges ===
+      sourceRowCount;
+  const acceptedAbsenceBridgeFillRulePass =
+    rows.length > 0 && acceptedRows.length === rows.length;
+  const currentLedgerPresenceAudit =
+    createEventRootAffineBracketAbsenceBridgeCurrentLedgerPresenceAudit(rows);
+  const directInteriorPresenceProbeTarget =
+    await createEventRootAffineBracketAbsenceBridgeDirectInteriorPresenceProbeTarget({
+      rows,
+      currentLedgerPresenceAudit,
+      midpointReplayContext,
+      retainedRowSetBindingContext,
+    });
+  const absenceBridgeFillLawSearchTarget =
+    createEventRootAffineBracketAbsenceBridgeFillLawSearchTarget({
+      rows,
+      occupancyAudit,
+      candidateDomainMatchedPass,
+    });
+  const signedBalanceFillObstructionTarget =
+    createEventRootAffineBracketSignedBalanceFillObstructionTarget({
+      rows,
+      balancedTransitionConversionRuleTarget,
+    });
+  const signedBalancePresenceMeasureTarget =
+    createEventRootAffineBracketSignedBalancePresenceMeasureTarget({
+      rows,
+      signedBalanceFillObstructionTarget,
+    });
+  const signedBalancePresenceMeasureCoefficientAudit =
+    createEventRootAffineBracketSignedBalancePresenceMeasureCoefficientAudit({
+      rows,
+      signedBalancePresenceMeasureTarget,
+      balancedTransitionConversionRuleTarget,
+    });
+  const signedBalancePresenceMeasureSpanSourceAudit =
+    createEventRootAffineBracketSignedBalancePresenceMeasureSpanSourceAudit({
+      rows,
+      signedBalancePresenceMeasureTarget,
+      interiorNonRetainedTransitionKeyAudit,
+    });
+  const signedBalancePresenceMeasureTransitionPairAudit =
+    createEventRootAffineBracketSignedBalancePresenceMeasureTransitionPairAudit({
+      rows,
+      signedBalancePresenceMeasureTarget,
+      interiorNonRetainedTransitionKeyAudit,
+    });
+  const signedBalancePresenceMeasureCurrentSourceExclusionSummary =
+    createEventRootAffineBracketSignedBalancePresenceMeasureCurrentSourceExclusionSummary({
+      signedBalancePresenceMeasureTarget,
+      signedBalancePresenceMeasureCoefficientAudit,
+      signedBalancePresenceMeasureSpanSourceAudit,
+      signedBalancePresenceMeasureTransitionPairAudit,
+    });
+  const dynamicPresenceMeasureLawTarget =
+    createEventRootAffineBracketDynamicPresenceMeasureLawTarget({
+      rows,
+      occupancyAudit,
+      interiorNonRetainedTransitionKeyAudit,
+      signedBalancePresenceMeasureTarget,
+      signedBalancePresenceMeasureCurrentSourceExclusionSummary,
+    });
+  const dynamicLawSourceAudit =
+    createEventRootAffineBracketAbsenceBridgeDynamicLawSourceAudit({
+      rows,
+      candidateDomainMatchedPass,
+      currentLedgerPresenceAudit,
+      directInteriorPresenceProbeTarget,
+      absenceBridgeFillLawSearchTarget,
+      signedBalanceFillObstructionTarget,
+      signedBalancePresenceMeasureTarget,
+      signedBalancePresenceMeasureCoefficientAudit,
+      signedBalancePresenceMeasureSpanSourceAudit,
+      signedBalancePresenceMeasureTransitionPairAudit,
+      signedBalancePresenceMeasureCurrentSourceExclusionSummary,
+      dynamicPresenceMeasureLawTarget,
+      occupancyAudit,
+      conversionPatternAudit,
+      balancedTransitionConversionRuleTarget,
+    });
+  const absenceBridgeFillLawRouteTarget =
+    createEventRootAffineBracketAbsenceBridgeFillLawRouteTarget({
+      rows,
+      candidateDomainMatchedPass,
+      acceptedAbsenceBridgeFillRulePass,
+      currentLedgerPresenceAudit,
+      directInteriorPresenceProbeTarget,
+      absenceBridgeFillLawSearchTarget,
+      dynamicLawSourceAudit,
+    });
+
+  return {
+    schema:
+      "aaa-tri-binary-event-root-affine-bracket-absence-bridge-fill-rule-target.v1",
+    status: rows.length === 0
+      ? "event_root_affine_bracket_absence_bridge_fill_rule_no_rows"
+      : acceptedAbsenceBridgeFillRulePass
+        ? "event_root_affine_bracket_absence_bridge_fill_rule_accepted"
+        : candidateDomainMatchedPass
+          ? "event_root_affine_bracket_absence_bridge_fill_rule_candidate_domain_matched_law_missing"
+          : candidateRows.length === rows.length
+            ? "event_root_affine_bracket_absence_bridge_fill_rule_candidate_domain_populated_row_match_missing"
+            : "event_root_affine_bracket_absence_bridge_fill_rule_domain_incomplete_or_unclassified",
+    claimLevel:
+      "fail-closed target for filling no-transition event-root absence bridges; not retained branch acceptance",
+    retainedBranchClaim: false,
+    candidateDomainMatchedPass,
+    acceptedAbsenceBridgeFillRulePass,
+    sourceAffineIdentityRowCount: sourceRowCount,
+    rowCount: rows.length,
+    fillDomainCandidateRowCount: candidateRows.length,
+    acceptedAbsenceBridgeFillRowCount: acceptedRows.length,
+    uniquePositiveAbsenceBridgeCount: rows.length,
+    rowLevelPositiveNoTransitionAbsenceEdgeCount:
+      occupancyAudit
+        ?.eventRootAbsentPositiveWidthNoTransitionBothInactiveEdgeCount ?? 0,
+    rowsWithPositiveEventRootAbsenceBridge:
+      occupancyAudit?.rowsWithPositiveEventRootAbsenceBridge ?? 0,
+    rowsWithEventRootAbsentNoTransitionBothInactiveEdges:
+      occupancyAudit?.rowsWithEventRootAbsentNoTransitionBothInactiveEdges ?? 0,
+    balancedRecoveryWalkCandidateRowCount:
+      occupancyAudit?.balancedRecoveryWalkCandidateRowCount ?? 0,
+    stateViolationRowCount: occupancyAudit?.stateViolationRowCount ?? 0,
+    interiorEventRootPresenceProofRowCount: 0,
+    derivedAbsenceBridgeFillLawRowCount: 0,
+    currentLedgerPresenceAuditStatus: currentLedgerPresenceAudit.status,
+    currentLedgerPresenceAudit,
+    currentLedgerEventRootPresenceRowCount:
+      currentLedgerPresenceAudit.currentLedgerEventRootPresenceRowCount,
+    currentLedgerEventRootAbsenceRowCount:
+      currentLedgerPresenceAudit.currentLedgerEventRootAbsenceRowCount,
+    directInteriorPresenceProbeTargetStatus:
+      directInteriorPresenceProbeTarget.status,
+    directInteriorPresenceProbeTarget,
+    requiredDirectInteriorProbeRowCount:
+      directInteriorPresenceProbeTarget.requiredDirectInteriorProbeRowCount,
+    populatedDirectInteriorProbeRowCount:
+      directInteriorPresenceProbeTarget.populatedDirectInteriorProbeRowCount,
+    acceptedDirectInteriorPresenceRowCount:
+      directInteriorPresenceProbeTarget.acceptedDirectInteriorPresenceRowCount,
+    firstDirectInteriorPresenceProbeBlocker:
+      directInteriorPresenceProbeTarget.firstDirectInteriorPresenceProbeBlocker,
+    absenceBridgeFillLawSearchTargetStatus:
+      absenceBridgeFillLawSearchTarget.status,
+    absenceBridgeFillLawSearchTarget,
+    currentFillLawCandidateCount:
+      absenceBridgeFillLawSearchTarget.currentFillLawCandidateCount,
+    acceptedFillLawCandidateCount:
+      absenceBridgeFillLawSearchTarget.acceptedFillLawCandidateCount,
+    signedBalanceFillObstructionTargetStatus:
+      signedBalanceFillObstructionTarget.status,
+    signedBalanceFillObstructionTarget,
+    boundarySignedBalanceOnlyRowCount:
+      signedBalanceFillObstructionTarget.boundarySignedBalanceOnlyRowCount,
+    acceptedSignedBalanceFillLawRowCount:
+      signedBalanceFillObstructionTarget.acceptedSignedBalanceFillLawRowCount,
+    firstSignedBalanceFillObstructionBlocker:
+      signedBalanceFillObstructionTarget.firstSignedBalanceFillObstructionBlocker,
+    signedBalancePresenceMeasureTargetStatus:
+      signedBalancePresenceMeasureTarget.status,
+    signedBalancePresenceMeasureTarget,
+    boundaryBalancePresenceMeasureDeficitRowCount:
+      signedBalancePresenceMeasureTarget
+        .boundaryBalancePresenceMeasureDeficitRowCount,
+    acceptedDynamicPresenceMeasureSourceRowCount:
+      signedBalancePresenceMeasureTarget
+        .acceptedDynamicPresenceMeasureSourceRowCount,
+    totalPresenceMeasureDeficit:
+      signedBalancePresenceMeasureTarget.totalPresenceMeasureDeficit,
+    firstSignedBalancePresenceMeasureBlocker:
+      signedBalancePresenceMeasureTarget
+        .firstSignedBalancePresenceMeasureBlocker,
+    signedBalancePresenceMeasureCoefficientAuditStatus:
+      signedBalancePresenceMeasureCoefficientAudit.status,
+    signedBalancePresenceMeasureCoefficientAudit,
+    coefficientSourceCandidateCount:
+      signedBalancePresenceMeasureCoefficientAudit
+        .coefficientSourceCandidateCount,
+    acceptedCoefficientSourceCandidateCount:
+      signedBalancePresenceMeasureCoefficientAudit
+        .acceptedCoefficientSourceCandidateCount,
+    uniformNonTautologicalCoefficientCandidateCount:
+      signedBalancePresenceMeasureCoefficientAudit
+        .uniformNonTautologicalCoefficientCandidateCount,
+    firstCoefficientAuditBlocker:
+      signedBalancePresenceMeasureCoefficientAudit.firstCoefficientAuditBlocker,
+    signedBalancePresenceMeasureSpanSourceAuditStatus:
+      signedBalancePresenceMeasureSpanSourceAudit.status,
+    signedBalancePresenceMeasureSpanSourceAudit,
+    spanSourceCandidateCount:
+      signedBalancePresenceMeasureSpanSourceAudit.spanSourceCandidateCount,
+    acceptedSpanSourceCandidateCount:
+      signedBalancePresenceMeasureSpanSourceAudit
+        .acceptedSpanSourceCandidateCount,
+    exactSpanSourceCandidateCount:
+      signedBalancePresenceMeasureSpanSourceAudit.exactSpanSourceCandidateCount,
+    uniformSpanCoefficientCandidateCount:
+      signedBalancePresenceMeasureSpanSourceAudit
+        .uniformSpanCoefficientCandidateCount,
+    firstSpanSourceAuditBlocker:
+      signedBalancePresenceMeasureSpanSourceAudit.firstSpanSourceAuditBlocker,
+    signedBalancePresenceMeasureTransitionPairAuditStatus:
+      signedBalancePresenceMeasureTransitionPairAudit.status,
+    signedBalancePresenceMeasureTransitionPairAudit,
+    transitionPairSourceCandidateCount:
+      signedBalancePresenceMeasureTransitionPairAudit
+        .transitionPairSourceCandidateCount,
+    acceptedTransitionPairSourceCandidateCount:
+      signedBalancePresenceMeasureTransitionPairAudit
+        .acceptedTransitionPairSourceCandidateCount,
+    exactTransitionPairSourceCandidateCount:
+      signedBalancePresenceMeasureTransitionPairAudit
+        .exactTransitionPairSourceCandidateCount,
+    uniformTransitionPairCoefficientCandidateCount:
+      signedBalancePresenceMeasureTransitionPairAudit
+        .uniformTransitionPairCoefficientCandidateCount,
+    firstTransitionPairAuditBlocker:
+      signedBalancePresenceMeasureTransitionPairAudit
+        .firstTransitionPairAuditBlocker,
+    signedBalancePresenceMeasureCurrentSourceExclusionSummaryStatus:
+      signedBalancePresenceMeasureCurrentSourceExclusionSummary.status,
+    signedBalancePresenceMeasureCurrentSourceExclusionSummary,
+    currentSignedBalanceSourceExhaustedPass:
+      signedBalancePresenceMeasureCurrentSourceExclusionSummary
+        .currentSignedBalanceSourceExhaustedPass,
+    currentFiniteSignedBalanceSourceCandidateCount:
+      signedBalancePresenceMeasureCurrentSourceExclusionSummary
+        .currentFiniteSourceCandidateCount,
+    firstCurrentSignedBalanceSourceExclusionBlocker:
+      signedBalancePresenceMeasureCurrentSourceExclusionSummary
+        .firstCurrentSourceExclusionBlocker,
+    dynamicPresenceMeasureLawTargetStatus:
+      dynamicPresenceMeasureLawTarget.status,
+    dynamicPresenceMeasureLawTarget,
+    transitionBracketUnitDensitySourceAuditStatus:
+      dynamicPresenceMeasureLawTarget.transitionBracketUnitDensitySourceAudit
+        .status,
+    transitionBracketUnitDensitySourceAudit:
+      dynamicPresenceMeasureLawTarget.transitionBracketUnitDensitySourceAudit,
+    transitionBracketRootSheetContinuationAuditStatus:
+      dynamicPresenceMeasureLawTarget.transitionBracketRootSheetContinuationAudit
+        .status,
+    transitionBracketRootSheetContinuationAudit:
+      dynamicPresenceMeasureLawTarget.transitionBracketRootSheetContinuationAudit,
+    transitionBracketSourceRowCount:
+      dynamicPresenceMeasureLawTarget.transitionBracketUnitDensitySourceAudit
+        .transitionBracketSourceRowCount,
+    transitionBracketAbsencePolarityRejectedRowCount:
+      dynamicPresenceMeasureLawTarget.transitionBracketUnitDensitySourceAudit
+        .transitionBracketAbsencePolarityRejectedRowCount,
+    acceptedTransitionBracketPresenceSourceKernelRowCount:
+      dynamicPresenceMeasureLawTarget.transitionBracketUnitDensitySourceAudit
+        .acceptedPresenceSourceKernelRowCount,
+    transitionBracketRootSheetContinuationCandidateRowCount:
+      dynamicPresenceMeasureLawTarget.transitionBracketRootSheetContinuationAudit
+        .rootSheetContinuationCandidateRowCount,
+    transitionBracketZeroRootBridgeRowCount:
+      dynamicPresenceMeasureLawTarget.transitionBracketRootSheetContinuationAudit
+        .zeroRootBridgeRowCount,
+    acceptedTransitionBracketRootSheetContinuationRowCount:
+      dynamicPresenceMeasureLawTarget.transitionBracketRootSheetContinuationAudit
+        .acceptedRootSheetContinuationRowCount,
+    requiredDynamicPresenceMeasureLawRowCount:
+      dynamicPresenceMeasureLawTarget.rowCount,
+    lawOperatorFieldCompleteRowCount:
+      dynamicPresenceMeasureLawTarget.lawOperatorFieldCompleteRowCount,
+    acceptedDynamicPresenceMeasureLawRowCount:
+      dynamicPresenceMeasureLawTarget.acceptedDynamicPresenceMeasureLawRowCount,
+    firstDynamicPresenceMeasureLawBlocker:
+      dynamicPresenceMeasureLawTarget.firstDynamicPresenceMeasureLawBlocker,
+    missingDynamicPresenceMeasureLawFieldIds:
+      dynamicPresenceMeasureLawTarget.missingLawFieldIds,
+    dynamicLawSourceAuditStatus: dynamicLawSourceAudit.status,
+    dynamicLawSourceAudit,
+    dynamicLawSourceCandidateCount:
+      dynamicLawSourceAudit.dynamicLawSourceCandidateCount,
+    acceptedDynamicLawSourceCount:
+      dynamicLawSourceAudit.acceptedDynamicLawSourceCount,
+    acceptedDynamicLawSourceRowCount:
+      dynamicLawSourceAudit.acceptedDynamicLawSourceRowCount,
+    firstDynamicLawSourceBlocker:
+      dynamicLawSourceAudit.firstDynamicLawSourceBlocker,
+    absenceBridgeFillLawRouteTargetStatus:
+      absenceBridgeFillLawRouteTarget.status,
+    absenceBridgeFillLawRouteTarget,
+    routeCandidateCount: absenceBridgeFillLawRouteTarget.routeCandidateCount,
+    acceptedRouteCandidateCount:
+      absenceBridgeFillLawRouteTarget.acceptedRouteCandidateCount,
+    firstAbsenceBridgeFillRouteBlocker:
+      absenceBridgeFillLawRouteTarget.firstFillLawRouteBlocker,
+    totalUniquePositiveAbsenceBridgeWidth: widths.reduce(
+      (sum, value) => sum + value,
+      0
+    ),
+    maxUniquePositiveAbsenceBridgeWidth: maxFinite(widths),
+    firstAbsenceBridgeFillBlocker:
+      acceptedAbsenceBridgeFillRulePass
+        ? null
+        : "derive_event_root_absence_bridge_fill_law",
+    pairSummaries: createUniqueEventRootAbsentNoTransitionPairSummaries(rows),
+    rows,
+    retainedLimitation:
+      "The fill-rule domain is matched to the deduplicated positive-width no-transition absence bridges, but no current row proves event-root presence inside those both-inactive intervals, no derived fill law is populated, and no accepted fill route exists. The target therefore rejects retained-continuity acceptance until an event-root absence-bridge fill law is derived and bound to the retained row set.",
+  };
+}
+
+function createEventRootAffineBracketAbsenceBridgeCurrentLedgerPresenceAudit(
+  rows
+) {
+  const auditRows = rows.map((row) => {
+    const noTransitionBothInactiveGapKindPass = (
+      row.gapKinds ?? []
+    ).includes("noTransitionBothInactive");
+    const positiveWidthPass = row.width > ROOT_TOLERANCE;
+    const currentLedgerEventRootAbsencePass =
+      row.endpointPresence === "both_endpoints_inactive" &&
+      noTransitionBothInactiveGapKindPass &&
+      positiveWidthPass;
+    return {
+      pairKey: row.pairKey,
+      edgeIndex: row.edgeIndex,
+      start: row.start,
+      end: row.end,
+      width: row.width,
+      endpointPresence: row.endpointPresence ?? null,
+      gapKinds: row.gapKinds ?? [],
+      positiveWidthPass,
+      currentLedgerEventRootPresenceCandidatePass: false,
+      currentLedgerEventRootAbsencePass,
+      acceptedCurrentLedgerPresenceRowPass: false,
+      firstCurrentLedgerPresenceRowBlocker:
+        "populate_interior_event_root_presence_rows",
+    };
+  });
+  const presenceRows = auditRows.filter(
+    (row) => row.currentLedgerEventRootPresenceCandidatePass
+  );
+  const absenceRows = auditRows.filter(
+    (row) => row.currentLedgerEventRootAbsencePass
+  );
+  const acceptedRows = auditRows.filter(
+    (row) => row.acceptedCurrentLedgerPresenceRowPass
+  );
+  const positiveWidthRows = auditRows.filter((row) => row.positiveWidthPass);
+  const bothInactiveNoTransitionRows = auditRows.filter(
+    (row) =>
+      row.endpointPresence === "both_endpoints_inactive" &&
+      (row.gapKinds ?? []).includes("noTransitionBothInactive")
+  );
+  const allRowsCurrentLedgerAbsentPass =
+    auditRows.length > 0 && absenceRows.length === auditRows.length;
+  const acceptedCurrentLedgerPresencePass =
+    auditRows.length > 0 && acceptedRows.length === auditRows.length;
+
+  return {
+    schema:
+      "aaa-tri-binary-event-root-affine-bracket-absence-bridge-current-ledger-presence-audit.v1",
+    status: auditRows.length === 0
+      ? "event_root_affine_bracket_absence_bridge_current_ledger_presence_no_rows"
+      : acceptedCurrentLedgerPresencePass
+        ? "event_root_affine_bracket_absence_bridge_current_ledger_presence_accepted"
+        : allRowsCurrentLedgerAbsentPass
+          ? "event_root_affine_bracket_absence_bridge_current_ledger_presence_rejected_all_edges_absent"
+          : "event_root_affine_bracket_absence_bridge_current_ledger_presence_incomplete_or_unclassified",
+    claimLevel:
+      "current root-ledger presence audit for the absence-bridge fill domain; not an all-laws no-go theorem",
+    retainedBranchClaim: false,
+    acceptedCurrentLedgerPresencePass,
+    rowCount: auditRows.length,
+    currentLedgerEventRootPresenceRowCount: presenceRows.length,
+    currentLedgerEventRootAbsenceRowCount: absenceRows.length,
+    positiveWidthRowCount: positiveWidthRows.length,
+    bothInactiveNoTransitionRowCount: bothInactiveNoTransitionRows.length,
+    allRowsCurrentLedgerAbsentPass,
+    acceptedCurrentLedgerPresenceRowCount: acceptedRows.length,
+    firstCurrentLedgerPresenceBlocker:
+      acceptedCurrentLedgerPresencePass
+        ? null
+        : "populate_interior_event_root_presence_rows",
+    pairSummaries:
+      createEventRootAffineBracketAbsenceBridgeCurrentLedgerPresencePairSummaries(
+        auditRows
+      ),
+    rows: auditRows,
+    retainedLimitation:
+      "Every fill-domain row is a positive-width both-inactive no-transition edge under the current root-ledger predicate. The current ledger therefore supplies absence evidence, not interior event-root presence. A fill law must add a dynamic event-root presence argument or new interior rows beyond the present ledger classification.",
+  };
+}
+
+function createEventRootAffineBracketAbsenceBridgeCurrentLedgerPresencePairSummaries(
+  rows
+) {
+  const summaries = new Map();
+  for (const row of rows) {
+    const summary = summaries.get(row.pairKey) ?? {
+      pairKey: row.pairKey,
+      rowCount: 0,
+      currentLedgerEventRootPresenceRowCount: 0,
+      currentLedgerEventRootAbsenceRowCount: 0,
+      positiveWidthRowCount: 0,
+      bothInactiveNoTransitionRowCount: 0,
+      acceptedCurrentLedgerPresenceRowCount: 0,
+    };
+    summary.rowCount += 1;
+    if (row.currentLedgerEventRootPresenceCandidatePass) {
+      summary.currentLedgerEventRootPresenceRowCount += 1;
+    }
+    if (row.currentLedgerEventRootAbsencePass) {
+      summary.currentLedgerEventRootAbsenceRowCount += 1;
+    }
+    if (row.positiveWidthPass) {
+      summary.positiveWidthRowCount += 1;
+    }
+    if (
+      row.endpointPresence === "both_endpoints_inactive" &&
+      (row.gapKinds ?? []).includes("noTransitionBothInactive")
+    ) {
+      summary.bothInactiveNoTransitionRowCount += 1;
+    }
+    if (row.acceptedCurrentLedgerPresenceRowPass) {
+      summary.acceptedCurrentLedgerPresenceRowCount += 1;
+    }
+    summaries.set(row.pairKey, summary);
+  }
+  return [...summaries.values()].sort((left, right) =>
+    left.pairKey.localeCompare(right.pairKey)
+  );
+}
+
+async function createEventRootAffineBracketAbsenceBridgeDirectInteriorPresenceProbeTarget({
+  rows,
+  currentLedgerPresenceAudit,
+  midpointReplayContext = null,
+  retainedRowSetBindingContext = null,
+}) {
+  const currentLedgerRowsByKey = new Map(
+    (currentLedgerPresenceAudit?.rows ?? []).map((row) => [
+      `${row.pairKey}:${row.edgeIndex}`,
+      row,
+    ])
+  );
+  const probeRows = [];
+  for (const row of rows) {
+    const currentLedgerRow = currentLedgerRowsByKey.get(
+      `${row.pairKey}:${row.edgeIndex}`
+    );
+    const midpoint =
+      Number.isFinite(row.start) && Number.isFinite(row.end)
+        ? (row.start + row.end) / 2
+        : null;
+    const replayRow = await createDirectInteriorPresenceMidpointReplayRow({
+      row,
+      midpoint,
+      currentLedgerRow,
+      midpointReplayContext,
+    });
+    probeRows.push({
+      pairKey: row.pairKey,
+      edgeIndex: row.edgeIndex,
+      eventRootKey: row.eventRootKey ?? null,
+      start: row.start,
+      end: row.end,
+      midpoint,
+      width: row.width,
+      endpointPresence: row.endpointPresence ?? null,
+      gapKinds: row.gapKinds ?? [],
+      currentLedgerEventRootAbsencePass:
+        currentLedgerRow?.currentLedgerEventRootAbsencePass === true,
+      ...replayRow,
+      firstDirectInteriorPresenceProbeRowBlocker:
+        replayRow.firstDirectInteriorPresenceProbeRowBlocker,
+    });
+  }
+  const requiredRows = probeRows.filter(
+    (row) =>
+      row.width > ROOT_TOLERANCE &&
+      row.endpointPresence === "both_endpoints_inactive" &&
+      (row.gapKinds ?? []).includes("noTransitionBothInactive")
+  );
+  const replayRows = probeRows.filter(
+    (row) => row.midpointRootLedgerReplayPopulated
+  );
+  const presenceRows = probeRows.filter(
+    (row) => row.midpointEventRootPresenceRowPass
+  );
+  const acceptedRows = probeRows.filter(
+    (row) => row.acceptedDirectInteriorPresenceRowPass
+  );
+  const missingInputRows = probeRows.filter(
+    (row) => row.directReplayInputPopulated !== true
+  );
+  const midpointAbsenceRows = replayRows.filter(
+    (row) => !row.midpointEventRootPresenceRowPass
+  );
+  const midpointPresenceIntervalBindingAudit =
+    await createEventRootAffineBracketAbsenceBridgeMidpointPresenceIntervalBindingAudit({
+      probeRows,
+      midpointReplayContext,
+    });
+  const threePointDirectInteriorReplayAudit =
+    await createEventRootAffineBracketAbsenceBridgeThreePointDirectInteriorReplayAudit({
+      probeRows,
+      midpointReplayContext,
+      retainedRowSetBindingContext,
+    });
+  const continuousIntervalLawSourceAudit =
+    midpointPresenceIntervalBindingAudit
+      ?.continuousIntervalLawSourceAudit ?? null;
+  const directMidpointIntervalRouteClassificationAudit =
+    createDirectMidpointIntervalRouteClassificationAudit({
+      requiredDirectInteriorProbeRowCount: requiredRows.length,
+      midpointPresenceRowCount: presenceRows.length,
+      midpointAbsenceRowCount: midpointAbsenceRows.length,
+      continuousIntervalLawSourceAudit,
+    });
+  const acceptedMidpointPresenceIntervalBindingRows =
+    midpointPresenceIntervalBindingAudit?.acceptedMidpointPresenceIntervalBindingRowCount ??
+    0;
+  const acceptedContinuousIntervalLawRows =
+    continuousIntervalLawSourceAudit?.acceptedContinuousIntervalLawRowCount ?? 0;
+  const rowsWithFullThreePointInteriorPresence =
+    midpointPresenceIntervalBindingAudit?.rowsWithFullThreePointInteriorPresenceCount ??
+    0;
+  return {
+    schema:
+      "aaa-tri-binary-event-root-affine-bracket-absence-bridge-direct-interior-presence-probe-target.v1",
+    status: probeRows.length === 0
+      ? "event_root_affine_bracket_absence_bridge_direct_interior_presence_probe_no_domain"
+      : acceptedRows.length === probeRows.length ||
+          acceptedMidpointPresenceIntervalBindingRows === probeRows.length
+        ? "event_root_affine_bracket_absence_bridge_direct_interior_presence_probe_accepted"
+      : missingInputRows.length === probeRows.length
+          ? "event_root_affine_bracket_absence_bridge_direct_interior_presence_probe_midpoint_replay_missing"
+          : replayRows.length === probeRows.length && presenceRows.length === 0
+            ? "event_root_affine_bracket_absence_bridge_direct_interior_presence_probe_midpoint_absence_confirmed"
+            : threePointDirectInteriorReplayAudit
+                .midpointAbsentNonMidpointPresenceRowCount > 0
+              ? "event_root_affine_bracket_absence_bridge_direct_interior_presence_probe_three_point_non_midpoint_evidence_interval_law_missing"
+            : replayRows.length === probeRows.length &&
+                presenceRows.length > 0 &&
+                rowsWithFullThreePointInteriorPresence === 0
+              ? "event_root_affine_bracket_absence_bridge_direct_interior_presence_probe_midpoint_presence_flank_support_missing"
+            : replayRows.length === probeRows.length && presenceRows.length > 0
+              ? "event_root_affine_bracket_absence_bridge_direct_interior_presence_probe_midpoint_presence_interval_binding_missing"
+              : "event_root_affine_bracket_absence_bridge_direct_interior_presence_probe_incomplete_or_unclassified",
+    claimLevel:
+      "direct midpoint replay target for populating event-root presence inside positive-width absence bridges; not retained continuity acceptance",
+    retainedBranchClaim: false,
+    rowCount: probeRows.length,
+    requiredDirectInteriorProbeRowCount: requiredRows.length,
+    populatedDirectInteriorProbeRowCount: replayRows.length,
+    midpointEventRootPresenceRowCount: presenceRows.length,
+    acceptedDirectInteriorPresenceRowCount: acceptedRows.length,
+    midpointPresenceIntervalBindingAuditStatus:
+      midpointPresenceIntervalBindingAudit?.status ?? null,
+    acceptedMidpointPresenceIntervalBindingRowCount:
+      acceptedMidpointPresenceIntervalBindingRows,
+    rowsWithFullThreePointInteriorPresenceCount:
+      rowsWithFullThreePointInteriorPresence,
+    midpointPresenceDenseInteriorSupportAuditStatus:
+      midpointPresenceIntervalBindingAudit
+        ?.denseInteriorSupportAuditStatus ?? null,
+    midpointPresenceContinuousIntervalLawSourceAuditStatus:
+      continuousIntervalLawSourceAudit?.status ?? null,
+    rowsWithFullDenseInteriorPresenceCount:
+      midpointPresenceIntervalBindingAudit
+        ?.rowsWithFullDenseInteriorPresenceCount ?? 0,
+    acceptedContinuousIntervalLawRowCount:
+      acceptedContinuousIntervalLawRows,
+    firstContinuousIntervalLawSourceBlocker:
+      continuousIntervalLawSourceAudit
+        ?.firstContinuousIntervalLawSourceBlocker ?? null,
+    directMidpointIntervalRouteClassificationAuditStatus:
+      directMidpointIntervalRouteClassificationAudit.status,
+    directMidpointIntervalRouteRejectedPass:
+      directMidpointIntervalRouteClassificationAudit
+        .directMidpointIntervalRouteRejectedPass,
+    threePointDirectInteriorReplayAuditStatus:
+      threePointDirectInteriorReplayAudit.status,
+    threePointInteriorSampleRowCount:
+      threePointDirectInteriorReplayAudit.interiorSampleRowCount,
+    threePointEventRootPresenceSampleRowCount:
+      threePointDirectInteriorReplayAudit.eventRootPresenceSampleRowCount,
+    threePointFullInteriorPresenceRowCount:
+      threePointDirectInteriorReplayAudit.fullThreePointInteriorPresenceRowCount,
+    threePointMidpointAbsentNonMidpointPresenceRowCount:
+      threePointDirectInteriorReplayAudit
+        .midpointAbsentNonMidpointPresenceRowCount,
+    threePointAcceptedDirectInteriorPresenceRowCount:
+      threePointDirectInteriorReplayAudit
+        .acceptedDirectInteriorPresenceRowCount,
+    firstThreePointDirectInteriorReplayBlocker:
+      threePointDirectInteriorReplayAudit
+        .firstThreePointDirectInteriorReplayBlocker,
+    firstDirectMidpointIntervalRouteBlocker:
+      directMidpointIntervalRouteClassificationAudit
+        .firstDirectMidpointIntervalRouteBlocker,
+    denseInteriorSampleRowCount:
+      midpointPresenceIntervalBindingAudit
+        ?.denseInteriorSampleRowCount ?? 0,
+    denseInteriorSampleEventRootPresenceRowCount:
+      midpointPresenceIntervalBindingAudit
+        ?.denseInteriorSampleEventRootPresenceRowCount ?? 0,
+    midpointPresenceInteriorSampleRowCount:
+      midpointPresenceIntervalBindingAudit?.interiorSampleRowCount ?? 0,
+    midpointPresenceInteriorSampleEventRootPresenceRowCount:
+      midpointPresenceIntervalBindingAudit
+        ?.eventRootPresenceInteriorSampleRowCount ?? 0,
+    currentLedgerAbsenceRowCount: probeRows.filter(
+      (row) => row.currentLedgerEventRootAbsencePass
+    ).length,
+    directReplayInputRowCount: probeRows.filter(
+      (row) => row.directReplayInputPopulated
+    ).length,
+    midpointEventRootAbsenceRowCount: midpointAbsenceRows.length,
+    midpointRootLedgerActiveRowCount: replayRows.reduce(
+      (sum, row) => sum + (row.midpointActiveRootDetailCount ?? 0),
+      0
+    ),
+    midpointRootLedgerInactiveGapRowCount: replayRows.reduce(
+      (sum, row) => sum + (row.midpointInactiveGapRowCount ?? 0),
+      0
+    ),
+    finiteMidpointRowCount: probeRows.filter((row) =>
+      Number.isFinite(row.midpoint)
+    ).length,
+    firstDirectInteriorPresenceProbeBlocker:
+      acceptedRows.length === probeRows.length
+        ? null
+        : missingInputRows.length > 0
+          ? "replay_fill_domain_midpoints_with_root_ledger_detail"
+        : threePointDirectInteriorReplayAudit
+              .midpointAbsentNonMidpointPresenceRowCount > 0
+          ? threePointDirectInteriorReplayAudit
+              .firstThreePointDirectInteriorReplayBlocker
+        : presenceRows.length === 0
+          ? "midpoint_root_ledger_event_root_absent"
+          : acceptedMidpointPresenceIntervalBindingRows < presenceRows.length
+              ? directMidpointIntervalRouteClassificationAudit
+                  .firstDirectMidpointIntervalRouteBlocker ??
+                continuousIntervalLawSourceAudit
+                  ?.firstContinuousIntervalLawSourceBlocker ??
+                midpointPresenceIntervalBindingAudit
+                  ?.firstMidpointPresenceIntervalBindingBlocker ??
+                "bind_midpoint_presence_rows_to_absence_bridge_interval"
+            : "bind_midpoint_presence_rows_to_retained_absence_bridge_fill",
+    replayInstruction:
+      "For each positive-width fill-domain row, replay root-ledger detail at the row midpoint using the corresponding source/receiver path-history segments, then test whether hinge event-root key presence is populated at that midpoint before accepting any direct interior-presence route.",
+    midpointPresenceIntervalBindingAudit,
+    threePointDirectInteriorReplayAudit,
+    directMidpointIntervalRouteClassificationAudit,
+    rowSamples: probeRows.slice(0, 24),
+    rows: probeRows,
+    retainedLimitation:
+      replayRows.length === 0
+        ? "The current fill-domain evidence has no direct midpoint root-ledger replay rows. Direct interior event-root presence remains an explicit measurement obligation, not a populated proof row."
+        : presenceRows.length === 0
+          ? "Midpoint root-ledger replay is populated for the fill domain, but the hinge event-root key is absent at every sampled midpoint. This rejects the midpoint-presence shortcut while leaving non-midpoint dynamic fill laws open."
+          : threePointDirectInteriorReplayAudit
+                .midpointAbsentNonMidpointPresenceRowCount > 0
+            ? "Three-point direct replay found partial non-midpoint event-root support beyond the midpoint route, but it is not yet an interval law, does not cover all bridges, and lacks retained row-set binding."
+          : rowsWithFullThreePointInteriorPresence === 0
+            ? "Midpoint root-ledger replay found event-root presence in sampled bridges, but the nested interval-binding audit has no bridge with event-root support at both flanking interior samples. This rejects the midpoint-presence shortcut as an interval law under the current sample set."
+            : "Midpoint root-ledger replay found event-root presence in at least one sampled bridge, but sampled interior support is not yet a continuous interval fill law or retained row-set binding.",
+  };
+}
+
+async function createEventRootAffineBracketAbsenceBridgeThreePointDirectInteriorReplayAudit({
+  probeRows,
+  midpointReplayContext,
+  retainedRowSetBindingContext = null,
+}) {
+  const rows = [];
+  for (const row of probeRows) {
+    rows.push(
+      await createThreePointDirectInteriorReplayAuditRow({
+        row,
+        midpointReplayContext,
+      })
+    );
+  }
+  const populatedRows = rows.filter(
+    (row) => row.populatedInteriorSampleRowCount === row.interiorSampleRowCount
+  );
+  const eventRootSupportRows = rows.filter(
+    (row) => row.anyInteriorSampleEventRootPresencePass
+  );
+  const fullRows = rows.filter((row) => row.fullThreePointInteriorPresencePass);
+  const midpointAbsentNonMidpointRows = rows.filter(
+    (row) => row.midpointAbsentNonMidpointPresencePass
+  );
+  const nonzeroJacobianRows = rows.filter(
+    (row) => row.nonzeroJacobianEventRootSampleRowCount > 0
+  );
+  const fullNonzeroJacobianRows = rows.filter(
+    (row) => row.fullThreePointNonzeroJacobianCandidatePass
+  );
+  const diagonalZeroDelayRows = rows.filter(
+    (row) => row.fullThreePointDiagonalZeroDelayIdentityPass
+  );
+  const acceptedRows = rows.filter(
+    (row) => row.acceptedDirectInteriorPresenceRowPass
+  );
+  const interiorSampleCount = rows.reduce(
+    (sum, row) => sum + row.interiorSampleRowCount,
+    0
+  );
+  const eventRootPresenceSampleCount = rows.reduce(
+    (sum, row) => sum + row.eventRootPresenceInteriorSampleRowCount,
+    0
+  );
+  const partialSupportIntervalWitnessAudit =
+    await createEventRootAffineBracketNonMidpointPartialSupportIntervalWitnessAudit({
+      threePointRows: rows,
+      midpointReplayContext,
+      retainedRowSetBindingContext,
+    });
+
+  return {
+    schema:
+      "aaa-tri-binary-event-root-affine-bracket-absence-bridge-three-point-direct-interior-replay-audit.v1",
+    status: rows.length === 0
+      ? "event_root_affine_bracket_three_point_direct_interior_replay_no_domain"
+      : acceptedRows.length === rows.length
+        ? "event_root_affine_bracket_three_point_direct_interior_replay_accepted"
+        : midpointAbsentNonMidpointRows.length > 0
+          ? "event_root_affine_bracket_three_point_direct_interior_replay_partial_non_midpoint_evidence_interval_law_missing"
+          : fullRows.length > 0
+            ? "event_root_affine_bracket_three_point_direct_interior_replay_midpoint_supported_identity_rows_interval_law_missing"
+            : eventRootSupportRows.length > 0
+              ? "event_root_affine_bracket_three_point_direct_interior_replay_partial_sample_support_interval_law_missing"
+              : populatedRows.length === rows.length
+                ? "event_root_affine_bracket_three_point_direct_interior_replay_no_event_root_support"
+                : "event_root_affine_bracket_three_point_direct_interior_replay_incomplete",
+    claimLevel:
+      "direct three-point replay audit over all positive-width absence bridges; sampled evidence only, not retained continuity acceptance",
+    retainedBranchClaim: false,
+    rowCount: rows.length,
+    interiorSampleFractions: [0.25, 0.5, 0.75],
+    interiorSampleRowCount: interiorSampleCount,
+    populatedInteriorSampleRowCount: rows.reduce(
+      (sum, row) => sum + row.populatedInteriorSampleRowCount,
+      0
+    ),
+    eventRootPresenceSampleRowCount: eventRootPresenceSampleCount,
+    rowsWithAnyInteriorSampleEventRootPresenceCount:
+      eventRootSupportRows.length,
+    fullThreePointInteriorPresenceRowCount: fullRows.length,
+    midpointAbsentNonMidpointPresenceRowCount:
+      midpointAbsentNonMidpointRows.length,
+    nonzeroJacobianEventRootSampleRowCount: rows.reduce(
+      (sum, row) => sum + row.nonzeroJacobianEventRootSampleRowCount,
+      0
+    ),
+    rowsWithNonzeroJacobianEventRootSamplesCount:
+      nonzeroJacobianRows.length,
+    fullThreePointNonzeroJacobianCandidateRowCount:
+      fullNonzeroJacobianRows.length,
+    fullThreePointDiagonalZeroDelayIdentityRowCount:
+      diagonalZeroDelayRows.length,
+    partialSupportIntervalWitnessAuditStatus:
+      partialSupportIntervalWitnessAudit.status,
+    partialSupportCandidateRowCount:
+      partialSupportIntervalWitnessAudit.partialSupportCandidateRowCount,
+    partialSupportDenseSampleRowCount:
+      partialSupportIntervalWitnessAudit.denseInteriorSampleRowCount,
+    partialSupportDenseEventRootPresenceSampleRowCount:
+      partialSupportIntervalWitnessAudit.eventRootPresenceDenseInteriorSampleRowCount,
+    partialSupportContiguousDenseSupportRowCount:
+      partialSupportIntervalWitnessAudit.contiguousDenseSupportRowCount,
+    partialSupportNonzeroJacobianDenseSupportRowCount:
+      partialSupportIntervalWitnessAudit.nonzeroJacobianDenseSupportRowCount,
+    partialSupportAcceptedIntervalWitnessRowCount:
+      partialSupportIntervalWitnessAudit.acceptedPartialSupportIntervalWitnessRowCount,
+    firstPartialSupportIntervalWitnessBlocker:
+      partialSupportIntervalWitnessAudit.firstPartialSupportIntervalWitnessBlocker,
+    acceptedDirectInteriorPresenceRowCount: acceptedRows.length,
+    firstThreePointDirectInteriorReplayBlocker:
+      acceptedRows.length === rows.length && rows.length > 0
+        ? null
+        : midpointAbsentNonMidpointRows.length > 0
+          ? partialSupportIntervalWitnessAudit
+              .firstPartialSupportIntervalWitnessBlocker ??
+            "derive_interval_law_from_partial_non_midpoint_sample_support"
+          : fullNonzeroJacobianRows.length > 0
+            ? "supply_interval_witnesses_for_three_point_nonzero_jacobian_rows"
+            : fullRows.length > 0
+              ? "three_point_full_support_rows_are_diagonal_zero_delay_identity_not_global_fill_law"
+              : eventRootSupportRows.length > 0
+                ? "three_point_sample_support_partial_not_interval_law"
+                : "three_point_direct_replay_event_root_absent",
+    rowSamples: rows.slice(0, 24),
+    rows,
+    partialSupportIntervalWitnessAudit,
+    retainedLimitation:
+      "Three-point replay searches beyond the midpoint on the same fill-domain rows, but finite sample support is not an interval law. Acceptance still requires continuous interval witnesses, a retained row-set binding, and coverage of all positive-width absence bridges.",
+  };
+}
+
+async function createEventRootAffineBracketNonMidpointPartialSupportIntervalWitnessAudit({
+  threePointRows,
+  midpointReplayContext,
+  retainedRowSetBindingContext = null,
+}) {
+  const candidateRows = threePointRows.filter(
+    (row) =>
+      row.nonzeroJacobianEventRootSampleRowCount > 0 &&
+      row.fullThreePointNonzeroJacobianCandidatePass !== true
+  );
+  const denseFractions = createDenseInteriorSampleFractions(32);
+  const initialRows = [];
+  for (const row of candidateRows) {
+    initialRows.push(
+      await createNonMidpointPartialSupportIntervalWitnessAuditRow({
+        row,
+        denseFractions,
+        midpointReplayContext,
+      })
+    );
+  }
+  const boundaryBracketAudit =
+    await createEventRootAffineBracketPartialSupportBoundaryBracketAudit({
+      rows: initialRows,
+      midpointReplayContext,
+    });
+  const intervalProofFieldAudit =
+    createEventRootAffineBracketPartialSupportIntervalProofFieldAudit({
+      boundaryBracketAudit,
+      retainedRowSetBindingContext,
+    });
+  const rows = applyPartialSupportBoundaryBracketWitness({
+    rows: initialRows,
+    boundaryBracketAudit,
+    intervalProofFieldAudit,
+  });
+  const supportRows = rows.filter(
+    (row) => row.eventRootPresenceDenseInteriorSampleRowCount > 0
+  );
+  const contiguousSupportRows = rows.filter(
+    (row) => row.contiguousDenseSupportRunPass
+  );
+  const nonzeroJacobianSupportRows = rows.filter(
+    (row) => row.nonzeroJacobianDenseSupportRowPass
+  );
+  const acceptedRows = rows.filter(
+    (row) => row.acceptedPartialSupportIntervalWitnessRowPass
+  );
+  const missingWitnessFieldIds = unionStrings(
+    rows.flatMap((row) => row.missingWitnessFieldIds ?? [])
+  );
+  return {
+    schema:
+      "aaa-tri-binary-event-root-affine-bracket-non-midpoint-partial-support-interval-witness-audit.v1",
+    status: rows.length === 0
+      ? "event_root_affine_bracket_non_midpoint_partial_support_interval_witness_no_domain"
+      : acceptedRows.length === rows.length
+        ? "event_root_affine_bracket_non_midpoint_partial_support_interval_witness_accepted"
+        : nonzeroJacobianSupportRows.length > 0 &&
+            contiguousSupportRows.length > 0
+          ? "event_root_affine_bracket_non_midpoint_partial_support_dense_subinterval_witness_missing"
+          : supportRows.length > 0
+            ? "event_root_affine_bracket_non_midpoint_partial_support_dense_sample_support_interval_witness_missing"
+            : "event_root_affine_bracket_non_midpoint_partial_support_dense_sample_support_missing",
+    claimLevel:
+      "dense replay audit for nonzero-Jacobian partial non-midpoint event-root support; not retained interval acceptance",
+    retainedBranchClaim: false,
+    partialSupportCandidateRowCount: rows.length,
+    denseInteriorSampleFractions: denseFractions,
+    denseInteriorSampleRowCount: rows.reduce(
+      (sum, row) => sum + row.denseInteriorSampleRowCount,
+      0
+    ),
+    populatedDenseInteriorSampleRowCount: rows.reduce(
+      (sum, row) => sum + row.populatedDenseInteriorSampleRowCount,
+      0
+    ),
+    eventRootPresenceDenseInteriorSampleRowCount: rows.reduce(
+      (sum, row) => sum + row.eventRootPresenceDenseInteriorSampleRowCount,
+      0
+    ),
+    absentDenseSampleCount: rows.reduce(
+      (sum, row) => sum + row.absentDenseSampleCount,
+      0
+    ),
+    supportCandidateRowCount: supportRows.length,
+    contiguousDenseSupportRowCount: contiguousSupportRows.length,
+    nonzeroJacobianDenseSupportRowCount: nonzeroJacobianSupportRows.length,
+    boundaryBracketAuditStatus: boundaryBracketAudit.status,
+    boundaryBracketCandidateRowCount:
+      boundaryBracketAudit.boundaryBracketCandidateRowCount,
+    boundaryBracketPopulatedRowCount:
+      boundaryBracketAudit.boundaryBracketPopulatedRowCount,
+    leftEntryBoundaryBracketRowCount:
+      boundaryBracketAudit.leftEntryBoundaryBracketRowCount,
+    rightExitBoundaryBracketRowCount:
+      boundaryBracketAudit.rightExitBoundaryBracketRowCount,
+    rightEndpointContinuationRowCount:
+      boundaryBracketAudit.rightEndpointContinuationRowCount,
+    completeSupportBoundaryBracketRowCount:
+      boundaryBracketAudit.completeSupportBoundaryBracketRowCount,
+    firstBoundaryBracketBlocker:
+      boundaryBracketAudit.firstBoundaryBracketBlocker,
+    intervalProofFieldAuditStatus: intervalProofFieldAudit.status,
+    sampledRootSheetEnclosureCandidateRowCount:
+      intervalProofFieldAudit.sampledRootSheetEnclosureCandidateRowCount,
+    sampledDerivativeSignMarginCandidateRowCount:
+      intervalProofFieldAudit.sampledDerivativeSignMarginCandidateRowCount,
+    retainedRowSetBindingProofRowCount:
+      intervalProofFieldAudit.retainedRowSetBindingProofRowCount,
+    firstIntervalProofFieldBlocker:
+      intervalProofFieldAudit.firstIntervalProofFieldBlocker,
+    acceptedPartialSupportIntervalWitnessRowCount: acceptedRows.length,
+    missingWitnessFieldIds,
+    firstPartialSupportIntervalWitnessBlocker:
+      acceptedRows.length === rows.length && rows.length > 0
+        ? null
+        : boundaryBracketAudit.completeSupportBoundaryBracketRowCount <
+            rows.length
+          ? boundaryBracketAudit.firstBoundaryBracketBlocker ??
+            "complete_support_boundary_bracket_missing"
+        : intervalProofFieldAudit.acceptedIntervalProofFieldRowCount <
+            rows.length
+          ? intervalProofFieldAudit.firstIntervalProofFieldBlocker ??
+            "partial_support_interval_proof_fields_missing"
+        : nonzeroJacobianSupportRows.length > 0 &&
+            contiguousSupportRows.length > 0
+          ? "supply_root_sheet_enclosure_derivative_bound_and_retained_binding_for_partial_support_brackets"
+          : supportRows.length > 0
+            ? "dense_partial_non_midpoint_support_not_yet_continuous_interval"
+            : rows.length > 0
+              ? "dense_partial_non_midpoint_event_root_support_missing"
+              : "partial_non_midpoint_nonzero_jacobian_domain_missing",
+    rowSamples: rows.slice(0, 8),
+    rows,
+    boundaryBracketAudit,
+    intervalProofFieldAudit,
+    retainedLimitation:
+      "Dense support near a non-midpoint sample only localizes a possible subinterval. Acceptance still requires explicit interval-witness fields, endpoint or derivative control, and retained row-set binding before any positive-width absence bridge can be filled.",
+  };
+}
+
+async function createEventRootAffineBracketPartialSupportBoundaryBracketAudit({
+  rows,
+  midpointReplayContext,
+}) {
+  const boundaryFractions = createDenseInteriorSampleFractions(64);
+  const auditRows = [];
+  for (const row of rows.filter((candidateRow) => candidateRow.nonzeroJacobianDenseSupportRowPass)) {
+    auditRows.push(
+      await createPartialSupportBoundaryBracketAuditRow({
+        row,
+        boundaryFractions,
+        midpointReplayContext,
+      })
+    );
+  }
+  const populatedRows = auditRows.filter(
+    (row) => row.populatedInteriorBoundarySampleRowCount === row.interiorBoundarySampleRowCount
+  );
+  const leftRows = auditRows.filter((row) => row.leftEntryBoundaryBracketPass);
+  const rightRows = auditRows.filter((row) => row.rightExitBoundaryBracketPass);
+  const rightEndpointContinuationRows = auditRows.filter(
+    (row) => row.rightEndpointContinuationPass
+  );
+  const completeRows = auditRows.filter(
+    (row) => row.completeSupportBoundaryBracketPass
+  );
+  return {
+    schema:
+      "aaa-tri-binary-event-root-affine-bracket-partial-support-boundary-bracket-audit.v1",
+    status: auditRows.length === 0
+      ? "event_root_affine_bracket_partial_support_boundary_bracket_no_domain"
+      : completeRows.length === auditRows.length
+        ? rightEndpointContinuationRows.length === auditRows.length
+          ? "event_root_affine_bracket_partial_support_boundary_bracket_right_endpoint_continuation_populated_interval_proof_fields_missing"
+          : "event_root_affine_bracket_partial_support_boundary_bracket_populated_interval_proof_fields_missing"
+        : leftRows.length > 0 || rightRows.length > 0
+          ? "event_root_affine_bracket_partial_support_boundary_bracket_one_sided_or_incomplete"
+          : "event_root_affine_bracket_partial_support_boundary_bracket_missing",
+    claimLevel:
+      "refined boundary bracket audit for dense nonzero-Jacobian partial event-root support; not root-sheet interval acceptance",
+    retainedBranchClaim: false,
+    boundaryBracketCandidateRowCount: auditRows.length,
+    boundarySampleFractions: boundaryFractions,
+    interiorBoundarySampleRowCount: auditRows.reduce(
+      (sum, row) => sum + row.interiorBoundarySampleRowCount,
+      0
+    ),
+    populatedInteriorBoundarySampleRowCount: auditRows.reduce(
+      (sum, row) => sum + row.populatedInteriorBoundarySampleRowCount,
+      0
+    ),
+    eventRootPresenceBoundarySampleRowCount: auditRows.reduce(
+      (sum, row) => sum + row.eventRootPresenceBoundarySampleRowCount,
+      0
+    ),
+    endpointProbeRowCount: auditRows.reduce(
+      (sum, row) => sum + row.endpointProbeRowCount,
+      0
+    ),
+    endpointEventRootAbsenceRowCount: auditRows.reduce(
+      (sum, row) => sum + row.endpointEventRootAbsenceRowCount,
+      0
+    ),
+    boundaryBracketPopulatedRowCount: populatedRows.length,
+    leftEntryBoundaryBracketRowCount: leftRows.length,
+    rightExitBoundaryBracketRowCount: rightRows.length,
+    rightEndpointContinuationRowCount: rightEndpointContinuationRows.length,
+    completeSupportBoundaryBracketRowCount: completeRows.length,
+    firstBoundaryBracketBlocker:
+      completeRows.length === auditRows.length && auditRows.length > 0
+        ? null
+        : leftRows.length < auditRows.length
+            ? "left_entry_boundary_bracket_missing_or_unpopulated"
+            : rightRows.length + rightEndpointContinuationRows.length <
+                auditRows.length
+              ? "right_exit_or_endpoint_continuation_missing_or_unpopulated"
+              : "support_boundary_bracket_missing",
+    rowSamples: auditRows.slice(0, 8),
+    rows: auditRows,
+    retainedLimitation:
+      "A populated boundary bracket only localizes where sampled event-root support enters and exits the bridge. Acceptance still requires a root-sheet interval enclosure, residual derivative or monotonicity bound, and retained row-set binding.",
+  };
+}
+
+function createEventRootAffineBracketPartialSupportIntervalProofFieldAudit({
+  boundaryBracketAudit,
+  retainedRowSetBindingContext = null,
+}) {
+  const baseRows = (boundaryBracketAudit?.rows ?? [])
+    .filter((row) => row.completeSupportBoundaryBracketPass)
+    .map(createPartialSupportIntervalProofFieldAuditRow);
+  const retainedRowSetBindingAudit =
+    createEventRootAffineBracketPartialSupportRetainedRowSetBindingAudit({
+      rows: baseRows,
+      retainedRowSetBindingContext,
+    });
+  const retainedBindingRowsByKey = new Map(
+    retainedRowSetBindingAudit.rows.map((row) => [
+      `${row.pairKey}:${row.edgeIndex}`,
+      row,
+    ])
+  );
+  const rows = baseRows.map((row) => {
+    const retainedBindingRow =
+      retainedBindingRowsByKey.get(`${row.pairKey}:${row.edgeIndex}`) ?? null;
+    const retainedRowSetBindingProofPass =
+      retainedBindingRow?.retainedRowSetBindingProofPass === true;
+    const acceptedIntervalProofFieldRowPass =
+      row.sampledRootSheetEnclosureCandidatePass &&
+      row.sampledDerivativeSignMarginCandidatePass &&
+      retainedRowSetBindingProofPass;
+    return {
+      ...row,
+      retainedRowSetBindingProofPass,
+      acceptedIntervalProofFieldRowPass,
+      firstIntervalProofFieldRowBlocker: acceptedIntervalProofFieldRowPass
+        ? null
+        : row.sampledRootSheetEnclosureCandidatePass !== true
+          ? "sampled_root_sheet_enclosure_candidate_missing"
+          : row.sampledDerivativeSignMarginCandidatePass !== true
+            ? "continuous_derivative_or_monotonicity_bound_missing"
+            : retainedBindingRow?.firstRetainedRowSetBindingRowBlocker ??
+              "retained_row_set_binding_proof_missing_for_partial_support_bracket",
+      retainedRowSetBindingAuditRow: retainedBindingRow,
+    };
+  });
+  const rootSheetRows = rows.filter(
+    (row) => row.sampledRootSheetEnclosureCandidatePass
+  );
+  const derivativeRows = rows.filter(
+    (row) => row.sampledDerivativeSignMarginCandidatePass
+  );
+  const retainedBindingRows = rows.filter(
+    (row) => row.retainedRowSetBindingProofPass
+  );
+  const acceptedRows = rows.filter((row) => row.acceptedIntervalProofFieldRowPass);
+  return {
+    schema:
+      "aaa-tri-binary-event-root-affine-bracket-partial-support-interval-proof-field-audit.v1",
+    status: rows.length === 0
+      ? "event_root_affine_bracket_partial_support_interval_proof_field_no_domain"
+      : acceptedRows.length === rows.length
+        ? "event_root_affine_bracket_partial_support_interval_proof_fields_accepted"
+        : rootSheetRows.length === rows.length &&
+            derivativeRows.length === rows.length
+          ? "event_root_affine_bracket_partial_support_interval_proof_sampled_root_sheet_and_derivative_populated_retained_binding_missing"
+          : rootSheetRows.length < rows.length
+            ? "event_root_affine_bracket_partial_support_interval_proof_sampled_root_sheet_enclosure_missing"
+            : "event_root_affine_bracket_partial_support_interval_proof_derivative_bound_missing",
+    claimLevel:
+      "sampled proof-field audit for partial support interval witnesses; not continuous interval or retained row-set acceptance",
+    retainedBranchClaim: false,
+    proofFieldCandidateRowCount: rows.length,
+    sampledRootSheetEnclosureCandidateRowCount: rootSheetRows.length,
+    sampledDerivativeSignMarginCandidateRowCount: derivativeRows.length,
+    retainedRowSetBindingProofRowCount: retainedBindingRows.length,
+    acceptedIntervalProofFieldRowCount: acceptedRows.length,
+    retainedRowSetBindingAuditStatus: retainedRowSetBindingAudit.status,
+    retainedRowSetBindingCandidateRowCount:
+      retainedRowSetBindingAudit.bindingCandidateRowCount,
+    retainedRowSetBindingGlobalReplayPairRowCount:
+      retainedRowSetBindingAudit.globalReplayPairRowCount,
+    retainedRowSetBindingMissingGlobalIdentityRowCount:
+      retainedRowSetBindingAudit.missingGlobalIdentityRowCount,
+    retainedRowSetBindingBothActiveConversionRowCount:
+      retainedRowSetBindingAudit.bothActiveConversionPairRowCount,
+    retainedRowSetBindingCompetitorRootRowCount:
+      retainedRowSetBindingAudit.competitorRootPresentRowCount,
+    firstRetainedRowSetBindingBlocker:
+      retainedRowSetBindingAudit.firstRetainedRowSetBindingBlocker,
+    firstIntervalProofFieldBlocker:
+      acceptedRows.length === rows.length && rows.length > 0
+        ? null
+        : rootSheetRows.length < rows.length
+          ? "sampled_root_sheet_enclosure_candidate_missing"
+            : derivativeRows.length < rows.length
+              ? "continuous_derivative_or_monotonicity_bound_missing"
+              : retainedRowSetBindingAudit.firstRetainedRowSetBindingBlocker ??
+                "retained_row_set_binding_proof_missing_for_partial_support_brackets",
+    rowSamples: rows.slice(0, 8),
+    rows,
+    retainedRowSetBindingAudit,
+    retainedLimitation:
+      "Stable sampled root-sheet and derivative-sign evidence does not prove a continuous interval enclosure and does not bind the local partial-support sheet to the global retained row set.",
+  };
+}
+
+function createEventRootAffineBracketPartialSupportRetainedRowSetBindingAudit({
+  rows,
+  retainedRowSetBindingContext,
+}) {
+  const baseAuditRows = (rows ?? []).map((row) =>
+    createPartialSupportRetainedRowSetBindingAuditRow({
+      row,
+      retainedRowSetBindingContext,
+    })
+  );
+  const innerBothActiveConversionRouteAudit =
+    createEventRootAffineBracketInnerBothActiveConversionRouteAudit({
+      rows: baseAuditRows,
+      retainedRowSetBindingContext,
+    });
+  const conversionRowsByKey = new Map(
+    innerBothActiveConversionRouteAudit.rows.map((row) => [
+      `${row.pairKey}:${row.edgeIndex}`,
+      row,
+    ])
+  );
+  const auditRows = baseAuditRows.map((row) => {
+    const conversionRow =
+      conversionRowsByKey.get(`${row.pairKey}:${row.edgeIndex}`) ?? null;
+    return {
+      ...row,
+      innerBothActiveConversionRouteAuditRow: conversionRow,
+      firstRetainedRowSetBindingRowBlocker:
+        conversionRow?.firstInnerBothActiveConversionRowBlocker ??
+        row.firstRetainedRowSetBindingRowBlocker,
+    };
+  });
+  const localCandidateRows = auditRows.filter(
+    (row) => row.localPartialSupportSheetCandidatePass
+  );
+  const globalReplayRows = auditRows.filter(
+    (row) => row.eventRootKeyGlobalReplayPairPass
+  );
+  const missingGlobalRows = auditRows.filter(
+    (row) => row.missingGlobalIdentityForPairPass
+  );
+  const bothActiveConversionRows = auditRows.filter(
+    (row) => row.bothActiveConversionPairPass
+  );
+  const competitorRows = auditRows.filter(
+    (row) => row.competitorRootPresentPass
+  );
+  const stableCompetitorRows = auditRows.filter(
+    (row) => row.stableActiveRootSetWithCompetitorPass
+  );
+  const acceptedRows = auditRows.filter(
+    (row) => row.retainedRowSetBindingProofPass
+  );
+  const firstRetainedRowSetBindingBlocker =
+    innerBothActiveConversionRouteAudit.firstInnerBothActiveConversionBlocker ??
+    auditRows.find((row) => row.firstRetainedRowSetBindingRowBlocker)
+      ?.firstRetainedRowSetBindingRowBlocker ??
+    null;
+  return {
+    schema:
+      "aaa-tri-binary-event-root-affine-bracket-partial-support-retained-row-set-binding-audit.v1",
+    status: auditRows.length === 0
+      ? "event_root_affine_bracket_partial_support_retained_row_set_binding_no_domain"
+      : acceptedRows.length === auditRows.length
+        ? "event_root_affine_bracket_partial_support_retained_row_set_binding_accepted"
+        : bothActiveConversionRows.length > 0 && competitorRows.length > 0
+          ? "event_root_affine_bracket_partial_support_retained_row_set_binding_rejected_inner_both_active_conversion_and_competitor_root"
+          : missingGlobalRows.length > 0
+            ? "event_root_affine_bracket_partial_support_retained_row_set_binding_rejected_global_identity_missing"
+            : competitorRows.length > 0
+              ? "event_root_affine_bracket_partial_support_retained_row_set_binding_rejected_competitor_root_present"
+              : "event_root_affine_bracket_partial_support_retained_row_set_binding_proof_missing",
+    claimLevel:
+      "fail-closed audit binding local partial-support sheets to the global retained row-set identity; not retained branch acceptance",
+    retainedBranchClaim: false,
+    bindingCandidateRowCount: auditRows.length,
+    localPartialSupportSheetCandidateRowCount: localCandidateRows.length,
+    globalReplayPairRowCount: globalReplayRows.length,
+    missingGlobalIdentityRowCount: missingGlobalRows.length,
+    bothActiveConversionPairRowCount: bothActiveConversionRows.length,
+    competitorRootPresentRowCount: competitorRows.length,
+    stableActiveRootSetWithCompetitorRowCount: stableCompetitorRows.length,
+    innerBothActiveConversionRouteAuditStatus:
+      innerBothActiveConversionRouteAudit.status,
+    innerBothActiveConversionRouteCandidateRowCount:
+      innerBothActiveConversionRouteAudit.conversionRouteCandidateRowCount,
+    innerBothActiveConversionRouteCompetitorBearingRowCount:
+      innerBothActiveConversionRouteAudit.competitorBearingSupportRowCount,
+    innerBothActiveConversionRouteGlobalReplayPairRowCount:
+      innerBothActiveConversionRouteAudit.globalReplayPairRowCount,
+    innerBothActiveConversionRouteAcceptedRowCount:
+      innerBothActiveConversionRouteAudit.acceptedEventRootContinuityConversionRowCount,
+    firstInnerBothActiveConversionBlocker:
+      innerBothActiveConversionRouteAudit.firstInnerBothActiveConversionBlocker,
+    retainedRowSetBindingProofRowCount: acceptedRows.length,
+    acceptedBindingRowCount: acceptedRows.length,
+    contextFirstOpenRowSetLiftBlocker:
+      retainedRowSetBindingContext?.firstOpenRowSetLiftBlocker ?? null,
+    firstRetainedRowSetBindingBlocker,
+    rowSamples: auditRows.slice(0, 8),
+    rows: auditRows,
+    innerBothActiveConversionRouteAudit,
+    retainedLimitation:
+      "The local partial-support sheets can be sampled, but they cannot supply retained interval continuity until their pair keys are lifted into the global retained row-set identity and competing active roots are excluded or bound by an accepted conversion law.",
+  };
+}
+
+function createEventRootAffineBracketInnerBothActiveConversionRouteAudit({
+  rows,
+  retainedRowSetBindingContext,
+}) {
+  const routeRows = (rows ?? [])
+    .filter((row) => row.bothActiveConversionPairPass)
+    .map(createInnerBothActiveConversionRouteAuditRow);
+  const localCandidateRows = routeRows.filter(
+    (row) => row.localPartialSupportSheetCandidatePass
+  );
+  const globalReplayRows = routeRows.filter(
+    (row) => row.eventRootKeyGlobalReplayPairPass
+  );
+  const missingGlobalRows = routeRows.filter(
+    (row) => row.missingGlobalIdentityForPairPass
+  );
+  const competitorRows = routeRows.filter(
+    (row) => row.competitorRootPresentPass
+  );
+  const stableCompetitorRows = routeRows.filter(
+    (row) => row.stableActiveRootSetWithCompetitorPass
+  );
+  const rejectedRows = routeRows.filter(
+    (row) => row.competitorBearingNonRetainedSupportPass
+  );
+  const acceptedRows = routeRows.filter(
+    (row) => row.acceptedEventRootContinuityConversionPass
+  );
+  const competitorExclusionAudit =
+    createEventRootAffineBracketInnerBothActiveCompetitorExclusionAudit({
+      rows: routeRows,
+    });
+  const firstInnerBothActiveConversionBlocker =
+    competitorExclusionAudit.firstCompetitorExclusionBlocker ??
+    routeRows.find((row) => row.firstInnerBothActiveConversionRowBlocker)
+      ?.firstInnerBothActiveConversionRowBlocker ??
+    null;
+  const sideProfile =
+    retainedRowSetBindingContext?.bothActiveConversionSideProfile ?? null;
+  const boundaryProfile =
+    retainedRowSetBindingContext
+      ?.bothActiveConversionBoundaryNeighborhoodProfile ?? null;
+  return {
+    schema:
+      "aaa-tri-binary-event-root-affine-bracket-inner-both-active-conversion-route-audit.v1",
+    status: routeRows.length === 0
+      ? "event_root_affine_bracket_inner_both_active_conversion_route_no_domain"
+      : acceptedRows.length === routeRows.length
+        ? "event_root_affine_bracket_inner_both_active_conversion_route_accepted"
+        : competitorExclusionAudit
+              .twoSheetRootSelectionCandidateRowCount === routeRows.length
+          ? "event_root_affine_bracket_inner_both_active_conversion_route_rejected_two_sheet_root_selector_law_missing"
+        : competitorExclusionAudit
+              .jacobianSignSelectionCandidateRowCount === routeRows.length
+          ? "event_root_affine_bracket_inner_both_active_conversion_route_rejected_jacobian_sign_selector_law_missing"
+        : competitorExclusionAudit
+              .regularOppositeSignCompetitorRootSheetRowCount ===
+            routeRows.length
+          ? "event_root_affine_bracket_inner_both_active_conversion_route_rejected_regular_opposite_sign_competitor_sheet"
+        : rejectedRows.length === routeRows.length
+          ? "event_root_affine_bracket_inner_both_active_conversion_route_rejected_competitor_bearing_nonretained_support"
+          : competitorRows.length > 0 && missingGlobalRows.length > 0
+            ? "event_root_affine_bracket_inner_both_active_conversion_route_rejected_competitor_and_global_identity_missing"
+            : competitorRows.length > 0
+              ? "event_root_affine_bracket_inner_both_active_conversion_route_rejected_competitor_root_present"
+              : missingGlobalRows.length > 0
+                ? "event_root_affine_bracket_inner_both_active_conversion_route_rejected_global_identity_missing"
+                : "event_root_affine_bracket_inner_both_active_conversion_route_proof_missing",
+    claimLevel:
+      "fail-closed audit for using inner both-active non-retained conversion evidence as retained event-root continuity; not retained branch acceptance",
+    retainedBranchClaim: false,
+    conversionRouteCandidateRowCount: routeRows.length,
+    localPartialSupportSheetCandidateRowCount: localCandidateRows.length,
+    globalReplayPairRowCount: globalReplayRows.length,
+    missingGlobalIdentityRowCount: missingGlobalRows.length,
+    competitorBearingSupportRowCount: competitorRows.length,
+    stableActiveRootSetWithCompetitorRowCount: stableCompetitorRows.length,
+    rejectedCompetitorBearingNonRetainedSupportRowCount: rejectedRows.length,
+    acceptedEventRootContinuityConversionRowCount: acceptedRows.length,
+    competitorExclusionAuditStatus: competitorExclusionAudit.status,
+    competitorExclusionCandidateRowCount:
+      competitorExclusionAudit.competitorExclusionCandidateRowCount,
+    regularCompetitorRootSheetRowCount:
+      competitorExclusionAudit.regularCompetitorRootSheetRowCount,
+    regularOppositeSignCompetitorRootSheetRowCount:
+      competitorExclusionAudit.regularOppositeSignCompetitorRootSheetRowCount,
+    acceptedCompetitorExclusionRowCount:
+      competitorExclusionAudit.acceptedCompetitorExclusionRowCount,
+    firstCompetitorExclusionBlocker:
+      competitorExclusionAudit.firstCompetitorExclusionBlocker,
+    jacobianSignSelectionAuditStatus:
+      competitorExclusionAudit.jacobianSignSelectionAuditStatus,
+    jacobianSignSelectionCandidateRowCount:
+      competitorExclusionAudit.jacobianSignSelectionCandidateRowCount,
+    acceptedJacobianSignSelectionRowCount:
+      competitorExclusionAudit.acceptedJacobianSignSelectionRowCount,
+    firstJacobianSignSelectionBlocker:
+      competitorExclusionAudit.firstJacobianSignSelectionBlocker,
+    emissionDelayOrderSelectionAuditStatus:
+      competitorExclusionAudit.emissionDelayOrderSelectionAuditStatus,
+    emissionDelayOrderSelectionCandidateRowCount:
+      competitorExclusionAudit.emissionDelayOrderSelectionCandidateRowCount,
+    acceptedEmissionDelayOrderSelectionRowCount:
+      competitorExclusionAudit.acceptedEmissionDelayOrderSelectionRowCount,
+    firstEmissionDelayOrderSelectionBlocker:
+      competitorExclusionAudit.firstEmissionDelayOrderSelectionBlocker,
+    twoSheetRootSelectionAuditStatus:
+      competitorExclusionAudit.twoSheetRootSelectionAuditStatus,
+    twoSheetRootSelectionCandidateRowCount:
+      competitorExclusionAudit.twoSheetRootSelectionCandidateRowCount,
+    acceptedTwoSheetRootSelectionRowCount:
+      competitorExclusionAudit.acceptedTwoSheetRootSelectionRowCount,
+    firstTwoSheetRootSelectionBlocker:
+      competitorExclusionAudit.firstTwoSheetRootSelectionBlocker,
+    contextBothActiveConversionIntervalCount:
+      retainedRowSetBindingContext?.bothActiveConversionIntervalCount ?? null,
+    contextBothActiveConversionTotalWidth:
+      retainedRowSetBindingContext?.bothActiveConversionTotalWidth ?? null,
+    contextBothActiveConversionMaxWidth:
+      retainedRowSetBindingContext?.bothActiveConversionMaxWidth ?? null,
+    contextBothActiveConversionSideProfileStatus: sideProfile?.status ?? null,
+    contextBothActiveConversionPositiveWidthIntervalCount:
+      sideProfile?.positiveWidthIntervalCount ?? null,
+    contextBothActiveConversionPointOnlyIntervalCount:
+      sideProfile?.pointOnlyIntervalCount ?? null,
+    contextBothActiveConversionRightIntervalCount:
+      sideProfile?.rightIntervalCount ?? null,
+    contextBothActiveConversionLeftIntervalCount:
+      sideProfile?.leftIntervalCount ?? null,
+    contextBothActiveConversionBoundaryNeighborhoodStatus:
+      boundaryProfile?.status ?? null,
+    contextBothActiveConversionBoundaryGapCount:
+      boundaryProfile?.gapCount ?? null,
+    contextBothActiveConversionEventRootBoundedGapCount:
+      boundaryProfile?.eventRootBoundedGapCount ?? null,
+    firstInnerBothActiveConversionBlocker,
+    rowSamples: routeRows.slice(0, 8),
+    rows: routeRows,
+    competitorExclusionAudit,
+    retainedLimitation:
+      "Both-active non-retained conversion evidence is usable for retained continuity only after the event-root sheet is shown to remain the retained row-set identity and competitor roots are excluded or explicitly bound by a conversion law.",
+  };
+}
+
+function createEventRootAffineBracketInnerBothActiveCompetitorExclusionAudit({
+  rows,
+}) {
+  const auditRows = (rows ?? [])
+    .filter((row) => row.competitorRootPresentPass)
+    .map(createInnerBothActiveCompetitorExclusionAuditRow);
+  const regularRows = auditRows.filter(
+    (row) => row.competitorRegularRootSheetPass
+  );
+  const oppositeSignRows = auditRows.filter(
+    (row) => row.competitorOppositeJacobianSignPass
+  );
+  const regularOppositeSignRows = auditRows.filter(
+    (row) => row.regularOppositeSignCompetitorRootSheetPass
+  );
+  const jacobianSignSelectionAudit =
+    createEventRootAffineBracketInnerBothActiveJacobianSignSelectionAudit({
+      rows: auditRows,
+    });
+  const emissionDelayOrderSelectionAudit =
+    createEventRootAffineBracketInnerBothActiveEmissionDelayOrderSelectionAudit({
+      rows: auditRows,
+    });
+  const twoSheetRootSelectionAudit =
+    createEventRootAffineBracketInnerBothActiveTwoSheetRootSelectionAudit({
+      rows: auditRows,
+    });
+  const acceptedRows = auditRows.filter(
+    (row) => row.acceptedCompetitorExclusionPass
+  );
+  const firstCompetitorExclusionBlocker =
+    twoSheetRootSelectionAudit.firstTwoSheetRootSelectionBlocker ??
+    jacobianSignSelectionAudit.firstJacobianSignSelectionBlocker ??
+    emissionDelayOrderSelectionAudit.firstEmissionDelayOrderSelectionBlocker ??
+    auditRows.find((row) => row.firstCompetitorExclusionRowBlocker)
+      ?.firstCompetitorExclusionRowBlocker ?? null;
+  return {
+    schema:
+      "aaa-tri-binary-event-root-affine-bracket-inner-both-active-competitor-exclusion-audit.v1",
+    status: auditRows.length === 0
+      ? "event_root_affine_bracket_inner_both_active_competitor_exclusion_no_domain"
+      : acceptedRows.length === auditRows.length
+        ? "event_root_affine_bracket_inner_both_active_competitor_exclusion_accepted"
+        : twoSheetRootSelectionAudit.twoSheetRootSelectionCandidateRowCount ===
+            auditRows.length
+          ? "event_root_affine_bracket_inner_both_active_competitor_exclusion_rejected_two_sheet_root_selector_law_missing"
+        : jacobianSignSelectionAudit.jacobianSignSelectionCandidateRowCount ===
+            auditRows.length
+          ? "event_root_affine_bracket_inner_both_active_competitor_exclusion_rejected_jacobian_sign_selector_law_missing"
+        : regularOppositeSignRows.length === auditRows.length
+          ? "event_root_affine_bracket_inner_both_active_competitor_exclusion_rejected_regular_opposite_sign_competitor_sheet"
+          : regularRows.length > 0
+            ? "event_root_affine_bracket_inner_both_active_competitor_exclusion_rejected_regular_competitor_sheet"
+            : "event_root_affine_bracket_inner_both_active_competitor_exclusion_evidence_incomplete",
+    claimLevel:
+      "fail-closed audit for excluding competitor roots from inner both-active partial-support sheets; not retained branch acceptance",
+    retainedBranchClaim: false,
+    competitorExclusionCandidateRowCount: auditRows.length,
+    competitorDetailCompleteRowCount: auditRows.filter(
+      (row) => row.allSupportSamplesHaveCompetitorDetailPass
+    ).length,
+    regularCompetitorRootSheetRowCount: regularRows.length,
+    oppositeJacobianSignCompetitorRowCount: oppositeSignRows.length,
+    regularOppositeSignCompetitorRootSheetRowCount:
+      regularOppositeSignRows.length,
+    acceptedCompetitorExclusionRowCount: acceptedRows.length,
+    firstCompetitorExclusionBlocker,
+    jacobianSignSelectionAuditStatus: jacobianSignSelectionAudit.status,
+    jacobianSignSelectionCandidateRowCount:
+      jacobianSignSelectionAudit.jacobianSignSelectionCandidateRowCount,
+    acceptedJacobianSignSelectionRowCount:
+      jacobianSignSelectionAudit.acceptedJacobianSignSelectionRowCount,
+    firstJacobianSignSelectionBlocker:
+      jacobianSignSelectionAudit.firstJacobianSignSelectionBlocker,
+    emissionDelayOrderSelectionAuditStatus:
+      emissionDelayOrderSelectionAudit.status,
+    emissionDelayOrderSelectionCandidateRowCount:
+      emissionDelayOrderSelectionAudit.emissionDelayOrderSelectionCandidateRowCount,
+    acceptedEmissionDelayOrderSelectionRowCount:
+      emissionDelayOrderSelectionAudit.acceptedEmissionDelayOrderSelectionRowCount,
+    firstEmissionDelayOrderSelectionBlocker:
+      emissionDelayOrderSelectionAudit.firstEmissionDelayOrderSelectionBlocker,
+    twoSheetRootSelectionAuditStatus: twoSheetRootSelectionAudit.status,
+    twoSheetRootSelectionCandidateRowCount:
+      twoSheetRootSelectionAudit.twoSheetRootSelectionCandidateRowCount,
+    acceptedTwoSheetRootSelectionRowCount:
+      twoSheetRootSelectionAudit.acceptedTwoSheetRootSelectionRowCount,
+    firstTwoSheetRootSelectionBlocker:
+      twoSheetRootSelectionAudit.firstTwoSheetRootSelectionBlocker,
+    rowSamples: auditRows.slice(0, 8),
+    rows: auditRows,
+    jacobianSignSelectionAudit,
+    emissionDelayOrderSelectionAudit,
+    twoSheetRootSelectionAudit,
+    retainedLimitation:
+      "A competitor root can be excluded from retained event-root continuity only by a branch-selection law, degeneracy rule, or retained row-set binding. Regular finite competitor sheets with opposite Jacobian sign are not numerical absence evidence.",
+  };
+}
+
+function createEventRootAffineBracketInnerBothActiveJacobianSignSelectionAudit({
+  rows,
+}) {
+  const auditRows = (rows ?? []).map(
+    createInnerBothActiveJacobianSignSelectionAuditRow
+  );
+  const candidateRows = auditRows.filter(
+    (row) => row.jacobianSignSelectionCandidatePass
+  );
+  const acceptedRows = auditRows.filter(
+    (row) => row.acceptedJacobianSignSelectionPass
+  );
+  const firstJacobianSignSelectionBlocker =
+    auditRows.find((row) => row.firstJacobianSignSelectionRowBlocker)
+      ?.firstJacobianSignSelectionRowBlocker ?? null;
+  return {
+    schema:
+      "aaa-tri-binary-event-root-affine-bracket-inner-both-active-jacobian-sign-selection-audit.v1",
+    status: auditRows.length === 0
+      ? "event_root_affine_bracket_inner_both_active_jacobian_sign_selection_no_domain"
+      : acceptedRows.length === auditRows.length
+        ? "event_root_affine_bracket_inner_both_active_jacobian_sign_selection_accepted"
+        : candidateRows.length === auditRows.length
+          ? "event_root_affine_bracket_inner_both_active_jacobian_sign_selection_candidate_populated_retained_law_missing"
+          : "event_root_affine_bracket_inner_both_active_jacobian_sign_selection_evidence_incomplete",
+    claimLevel:
+      "fail-closed audit for selecting the event-root sheet by Jacobian sign; not retained branch acceptance",
+    retainedBranchClaim: false,
+    jacobianSignSelectionAuditRowCount: auditRows.length,
+    jacobianSignSelectionCandidateRowCount: candidateRows.length,
+    acceptedJacobianSignSelectionRowCount: acceptedRows.length,
+    firstJacobianSignSelectionBlocker,
+    rowSamples: auditRows.slice(0, 8),
+    rows: auditRows,
+    retainedLimitation:
+      "A negative event-root Jacobian sign opposite a positive regular competitor sign is a populated selector candidate only. It is not a retained root-sheet law until the sign rule is derived on the global retained row set or bound to an accepted branch-selection law. Route-local energy orientation signs do not by themselves select retained root sheets.",
+  };
+}
+
+function createInnerBothActiveJacobianSignSelectionAuditRow(row) {
+  const eventRootJacobianSigns = (row.eventRootJacobianSigns ?? []).map(String);
+  const competitorJacobianSigns = (row.competitorJacobianSigns ?? []).map(String);
+  const eventRootNegativeJacobianSignPass =
+    eventRootJacobianSigns.length === 1 && eventRootJacobianSigns[0] === "-1";
+  const competitorPositiveJacobianSignPass =
+    competitorJacobianSigns.length === 1 && competitorJacobianSigns[0] === "1";
+  const jacobianSignSelectionCandidatePass =
+    row.regularOppositeSignCompetitorRootSheetPass === true &&
+    row.allSupportSamplesHaveCompetitorDetailPass === true &&
+    eventRootNegativeJacobianSignPass &&
+    competitorPositiveJacobianSignPass;
+  const acceptedJacobianSignSelectionPass = false;
+  const firstJacobianSignSelectionRowBlocker =
+    acceptedJacobianSignSelectionPass
+      ? null
+      : jacobianSignSelectionCandidatePass
+        ? "jacobian_sign_selection_requires_retained_root_sheet_law_or_row_set_binding"
+        : eventRootJacobianSigns.length === 0
+          ? "event_root_jacobian_sign_samples_missing"
+          : competitorJacobianSigns.length === 0
+            ? "competitor_jacobian_sign_samples_missing"
+            : "jacobian_sign_selection_candidate_incomplete";
+  return {
+    pairKey: row.pairKey,
+    edgeIndex: row.edgeIndex,
+    eventRootKey: row.eventRootKey ?? null,
+    competitorRootKeys: row.competitorRootKeys ?? [],
+    supportSampleCount: row.supportSampleCount ?? null,
+    eventRootJacobianSigns,
+    competitorJacobianSigns,
+    eventRootMinAbsJacobian: row.eventRootMinAbsJacobian ?? null,
+    competitorMinAbsJacobian: row.competitorMinAbsJacobian ?? null,
+    eventRootMaxAbsNormalizedResidual:
+      row.eventRootMaxAbsNormalizedResidual ?? null,
+    competitorMaxAbsNormalizedResidual:
+      row.competitorMaxAbsNormalizedResidual ?? null,
+    eventRootNegativeJacobianSignPass,
+    competitorPositiveJacobianSignPass,
+    regularOppositeSignCompetitorRootSheetPass:
+      row.regularOppositeSignCompetitorRootSheetPass === true,
+    jacobianSignSelectionCandidatePass,
+    acceptedJacobianSignSelectionPass,
+    firstJacobianSignSelectionRowBlocker,
+  };
+}
+
+function createEventRootAffineBracketInnerBothActiveEmissionDelayOrderSelectionAudit({
+  rows,
+}) {
+  const auditRows = (rows ?? []).map(
+    createInnerBothActiveEmissionDelayOrderSelectionAuditRow
+  );
+  const candidateRows = auditRows.filter(
+    (row) => row.emissionDelayOrderSelectionCandidatePass
+  );
+  const acceptedRows = auditRows.filter(
+    (row) => row.acceptedEmissionDelayOrderSelectionPass
+  );
+  const firstEmissionDelayOrderSelectionBlocker =
+    auditRows.find((row) => row.firstEmissionDelayOrderSelectionRowBlocker)
+      ?.firstEmissionDelayOrderSelectionRowBlocker ?? null;
+  return {
+    schema:
+      "aaa-tri-binary-event-root-affine-bracket-inner-both-active-emission-delay-order-selection-audit.v1",
+    status: auditRows.length === 0
+      ? "event_root_affine_bracket_inner_both_active_emission_delay_order_selection_no_domain"
+      : acceptedRows.length === auditRows.length
+        ? "event_root_affine_bracket_inner_both_active_emission_delay_order_selection_accepted"
+        : candidateRows.length === auditRows.length
+          ? "event_root_affine_bracket_inner_both_active_emission_delay_order_selection_candidate_populated_branch_law_missing"
+          : "event_root_affine_bracket_inner_both_active_emission_delay_order_selection_evidence_incomplete",
+    claimLevel:
+      "fail-closed audit for selecting the event-root sheet by emission-delay ordering; not retained branch acceptance",
+    retainedBranchClaim: false,
+    emissionDelayOrderSelectionAuditRowCount: auditRows.length,
+    emissionDelayOrderSelectionCandidateRowCount: candidateRows.length,
+    acceptedEmissionDelayOrderSelectionRowCount: acceptedRows.length,
+    firstEmissionDelayOrderSelectionBlocker,
+    rowSamples: auditRows.slice(0, 8),
+    rows: auditRows,
+    retainedLimitation:
+      "Earlier event-root emission and longer event-root delay relative to the regular competitor sheet is a branch-selection candidate only. It is not a retained event-root continuity law until tied to an accepted path-history branch-selection law or bound to the global retained row set.",
+  };
+}
+
+function createInnerBothActiveEmissionDelayOrderSelectionAuditRow(row) {
+  const eventRootEarlierEmissionThanCompetitorPass =
+    Number.isFinite(row.competitorEmissionMinusEventEmissionMin) &&
+    row.competitorEmissionMinusEventEmissionMin > ROOT_TOLERANCE;
+  const eventRootLongerDelayThanCompetitorPass =
+    Number.isFinite(row.competitorDelayMinusEventDelayMax) &&
+    row.competitorDelayMinusEventDelayMax < -ROOT_TOLERANCE;
+  const competitorSourceSeparatedPass =
+    Number.isFinite(row.competitorSourcePointSeparationMin) &&
+    row.competitorSourcePointSeparationMin > ROOT_TOLERANCE;
+  const emissionDelayOrderSelectionCandidatePass =
+    row.regularOppositeSignCompetitorRootSheetPass === true &&
+    row.allSupportSamplesHaveCompetitorDetailPass === true &&
+    eventRootEarlierEmissionThanCompetitorPass &&
+    eventRootLongerDelayThanCompetitorPass &&
+    competitorSourceSeparatedPass;
+  const acceptedEmissionDelayOrderSelectionPass = false;
+  const firstEmissionDelayOrderSelectionRowBlocker =
+    acceptedEmissionDelayOrderSelectionPass
+      ? null
+      : emissionDelayOrderSelectionCandidatePass
+        ? "emission_delay_order_selection_requires_retained_branch_selection_law_or_row_set_binding"
+        : row.allSupportSamplesHaveCompetitorDetailPass !== true
+          ? "competitor_root_detail_samples_missing"
+          : "emission_delay_order_selection_candidate_incomplete";
+  return {
+    pairKey: row.pairKey,
+    edgeIndex: row.edgeIndex,
+    eventRootKey: row.eventRootKey ?? null,
+    competitorRootKeys: row.competitorRootKeys ?? [],
+    supportSampleCount: row.supportSampleCount ?? null,
+    regularOppositeSignCompetitorRootSheetPass:
+      row.regularOppositeSignCompetitorRootSheetPass === true,
+    allSupportSamplesHaveCompetitorDetailPass:
+      row.allSupportSamplesHaveCompetitorDetailPass === true,
+    competitorDelayMinusEventDelayMin:
+      row.competitorDelayMinusEventDelayMin ?? null,
+    competitorDelayMinusEventDelayMax:
+      row.competitorDelayMinusEventDelayMax ?? null,
+    competitorEmissionMinusEventEmissionMin:
+      row.competitorEmissionMinusEventEmissionMin ?? null,
+    competitorEmissionMinusEventEmissionMax:
+      row.competitorEmissionMinusEventEmissionMax ?? null,
+    competitorSourcePointSeparationMin:
+      row.competitorSourcePointSeparationMin ?? null,
+    competitorSourcePointSeparationMax:
+      row.competitorSourcePointSeparationMax ?? null,
+    eventRootEarlierEmissionThanCompetitorPass,
+    eventRootLongerDelayThanCompetitorPass,
+    competitorSourceSeparatedPass,
+    emissionDelayOrderSelectionCandidatePass,
+    acceptedEmissionDelayOrderSelectionPass,
+    firstEmissionDelayOrderSelectionRowBlocker,
+  };
+}
+
+function createEventRootAffineBracketInnerBothActiveTwoSheetRootSelectionAudit({
+  rows,
+}) {
+  const auditRows = (rows ?? []).map(
+    createInnerBothActiveTwoSheetRootSelectionAuditRow
+  );
+  const candidateRows = auditRows.filter(
+    (row) => row.twoSheetRootSelectionCandidatePass
+  );
+  const acceptedRows = auditRows.filter(
+    (row) => row.acceptedTwoSheetRootSelectionPass
+  );
+  const eventRootKeys = unionStrings(
+    auditRows.map((row) => row.eventRootKey).filter((value) => value != null)
+  );
+  const competitorRootKeys = unionStrings(
+    auditRows.flatMap((row) => row.competitorRootKeys ?? [])
+  );
+  const firstTwoSheetRootSelectionBlocker =
+    auditRows.find((row) => row.firstTwoSheetRootSelectionRowBlocker)
+      ?.firstTwoSheetRootSelectionRowBlocker ?? null;
+  return {
+    schema:
+      "aaa-tri-binary-event-root-affine-bracket-inner-both-active-two-sheet-root-selection-audit.v1",
+    status: auditRows.length === 0
+      ? "event_root_affine_bracket_inner_both_active_two_sheet_root_selection_no_domain"
+      : acceptedRows.length === auditRows.length
+        ? "event_root_affine_bracket_inner_both_active_two_sheet_root_selection_accepted"
+        : candidateRows.length === auditRows.length
+          ? "event_root_affine_bracket_inner_both_active_two_sheet_root_selection_candidate_populated_retained_law_missing"
+          : "event_root_affine_bracket_inner_both_active_two_sheet_root_selection_evidence_incomplete",
+    claimLevel:
+      "fail-closed audit for combining stable two-sheet active-root, Jacobian-sign, and emission-delay order selectors; not retained branch acceptance",
+    retainedBranchClaim: false,
+    twoSheetRootSelectionAuditRowCount: auditRows.length,
+    twoSheetRootSelectionCandidateRowCount: candidateRows.length,
+    acceptedTwoSheetRootSelectionRowCount: acceptedRows.length,
+    uniqueEventRootKeys: eventRootKeys,
+    uniqueCompetitorRootKeys: competitorRootKeys,
+    consistentEventRootKeyPass: eventRootKeys.length === 1,
+    consistentCompetitorRootKeyPass: competitorRootKeys.length === 1,
+    firstTwoSheetRootSelectionBlocker,
+    rowSamples: auditRows.slice(0, 8),
+    rows: auditRows,
+    retainedLimitation:
+      "A stable two-sheet selector pattern compresses the current local evidence, but it is not a retained branch-selection law. Acceptance still requires a derivation that chooses the event-root sheet on the global retained row set or an accepted row-set binding that excludes the competitor sheet.",
+  };
+}
+
+function createInnerBothActiveTwoSheetRootSelectionAuditRow(row) {
+  const eventRootJacobianSigns = (row.eventRootJacobianSigns ?? []).map(String);
+  const competitorJacobianSigns = (row.competitorJacobianSigns ?? []).map(String);
+  const activeRootKeySets = row.activeRootKeySets ?? [];
+  const singleActiveRootSetPass = activeRootKeySets.length === 1;
+  const activeRootKeys =
+    singleActiveRootSetPass && typeof activeRootKeySets[0] === "string"
+      ? activeRootKeySets[0].split(",").filter(Boolean)
+      : [];
+  const singleCompetitorRootPass = (row.competitorRootKeys ?? []).length === 1;
+  const twoActiveRootSheetPass =
+    singleActiveRootSetPass &&
+    activeRootKeys.length === 2 &&
+    row.eventRootKey != null &&
+    activeRootKeys.includes(String(row.eventRootKey)) &&
+    singleCompetitorRootPass &&
+    activeRootKeys.includes(String(row.competitorRootKeys[0]));
+  const jacobianSelectorPass =
+    eventRootJacobianSigns.length === 1 &&
+    eventRootJacobianSigns[0] === "-1" &&
+    competitorJacobianSigns.length === 1 &&
+    competitorJacobianSigns[0] === "1" &&
+    row.regularOppositeSignCompetitorRootSheetPass === true;
+  const emissionDelaySelectorPass =
+    Number.isFinite(row.competitorEmissionMinusEventEmissionMin) &&
+    row.competitorEmissionMinusEventEmissionMin > ROOT_TOLERANCE &&
+    Number.isFinite(row.competitorDelayMinusEventDelayMax) &&
+    row.competitorDelayMinusEventDelayMax < -ROOT_TOLERANCE &&
+    Number.isFinite(row.competitorSourcePointSeparationMin) &&
+    row.competitorSourcePointSeparationMin > ROOT_TOLERANCE;
+  const twoSheetRootSelectionCandidatePass =
+    row.allSupportSamplesHaveCompetitorDetailPass === true &&
+    twoActiveRootSheetPass &&
+    jacobianSelectorPass &&
+    emissionDelaySelectorPass;
+  const acceptedTwoSheetRootSelectionPass = false;
+  const firstTwoSheetRootSelectionRowBlocker =
+    acceptedTwoSheetRootSelectionPass
+      ? null
+      : twoSheetRootSelectionCandidatePass
+        ? "two_sheet_root_selector_requires_retained_branch_selection_law_or_global_row_set_binding"
+        : twoActiveRootSheetPass !== true
+          ? "stable_two_sheet_active_root_set_missing"
+          : jacobianSelectorPass !== true
+            ? "jacobian_sign_selector_candidate_incomplete"
+            : emissionDelaySelectorPass !== true
+              ? "emission_delay_order_selector_candidate_incomplete"
+              : "two_sheet_root_selector_candidate_incomplete";
+  return {
+    pairKey: row.pairKey,
+    edgeIndex: row.edgeIndex,
+    eventRootKey: row.eventRootKey ?? null,
+    competitorRootKeys: row.competitorRootKeys ?? [],
+    supportSampleCount: row.supportSampleCount ?? null,
+    activeRootKeySets,
+    activeRootKeys,
+    singleActiveRootSetPass,
+    singleCompetitorRootPass,
+    twoActiveRootSheetPass,
+    jacobianSelectorPass,
+    emissionDelaySelectorPass,
+    twoSheetRootSelectionCandidatePass,
+    acceptedTwoSheetRootSelectionPass,
+    firstTwoSheetRootSelectionRowBlocker,
+  };
+}
+
+function createInnerBothActiveCompetitorExclusionAuditRow(row) {
+  const regularCompetitorRootSheetPass =
+    row.competitorRegularRootSheetPass === true;
+  const oppositeJacobianSignCompetitorPass =
+    row.competitorOppositeJacobianSignPass === true;
+  const regularOppositeSignCompetitorRootSheetPass =
+    regularCompetitorRootSheetPass && oppositeJacobianSignCompetitorPass;
+  const acceptedCompetitorExclusionPass = false;
+  const firstCompetitorExclusionRowBlocker =
+    acceptedCompetitorExclusionPass
+      ? null
+      : regularOppositeSignCompetitorRootSheetPass
+        ? "regular_opposite_sign_competitor_root_sheet_exclusion_or_binding_law_missing"
+        : regularCompetitorRootSheetPass
+          ? "regular_competitor_root_sheet_exclusion_or_binding_law_missing"
+          : row.allSupportSamplesHaveCompetitorDetailPass !== true
+            ? "competitor_root_detail_samples_missing"
+            : "competitor_exclusion_law_missing";
+  return {
+    pairKey: row.pairKey,
+    edgeIndex: row.edgeIndex,
+    eventRootKey: row.eventRootKey ?? null,
+    supportStartFraction: row.supportStartFraction ?? null,
+    supportEndFraction: row.supportEndFraction ?? null,
+    supportSampleCount: row.supportSampleCount ?? null,
+    activeRootKeySets: row.activeRootKeySets ?? [],
+    stableActiveRootSetPass: row.stableActiveRootSetPass === true,
+    competitorRootKeys: row.competitorRootKeys ?? [],
+    competitorRootDetailKeys: row.competitorRootDetailKeys ?? [],
+    competitorDetailSampleCount: row.competitorDetailSampleCount ?? null,
+    competitorDetailRowCount: row.competitorDetailRowCount ?? null,
+    eventRootCompetitorComparisonSampleCount:
+      row.eventRootCompetitorComparisonSampleCount ?? null,
+    eventRootJacobianSigns: row.eventRootJacobianSigns ?? [],
+    eventRootMinAbsJacobian: row.eventRootMinAbsJacobian ?? null,
+    eventRootMaxAbsNormalizedResidual:
+      row.eventRootMaxAbsNormalizedResidual ?? null,
+    allSupportSamplesHaveCompetitorDetailPass:
+      row.allSupportSamplesHaveCompetitorDetailPass === true,
+    competitorFiniteRootSheetPass:
+      row.competitorFiniteRootSheetPass === true,
+    competitorStableJacobianSignPass:
+      row.competitorStableJacobianSignPass === true,
+    competitorJacobianSigns: row.competitorJacobianSigns ?? [],
+    competitorMinAbsJacobian: row.competitorMinAbsJacobian ?? null,
+    competitorMaxAbsNormalizedResidual:
+      row.competitorMaxAbsNormalizedResidual ?? null,
+    competitorRegularRootSheetPass: regularCompetitorRootSheetPass,
+    competitorOppositeJacobianSignPass: oppositeJacobianSignCompetitorPass,
+    regularOppositeSignCompetitorRootSheetPass,
+    competitorDelayMinusEventDelayMin:
+      row.competitorDelayMinusEventDelayMin ?? null,
+    competitorDelayMinusEventDelayMax:
+      row.competitorDelayMinusEventDelayMax ?? null,
+    competitorEmissionMinusEventEmissionMin:
+      row.competitorEmissionMinusEventEmissionMin ?? null,
+    competitorEmissionMinusEventEmissionMax:
+      row.competitorEmissionMinusEventEmissionMax ?? null,
+    competitorSourcePointSeparationMin:
+      row.competitorSourcePointSeparationMin ?? null,
+    competitorSourcePointSeparationMax:
+      row.competitorSourcePointSeparationMax ?? null,
+    acceptedCompetitorExclusionPass,
+    firstCompetitorExclusionRowBlocker,
+  };
+}
+
+function createInnerBothActiveConversionRouteAuditRow(row) {
+  const competitorBearingNonRetainedSupportPass =
+    row.localPartialSupportSheetCandidatePass === true &&
+    row.bothActiveConversionPairPass === true &&
+    row.missingGlobalIdentityForPairPass === true &&
+    row.stableActiveRootSetWithCompetitorPass === true;
+  const acceptedEventRootContinuityConversionPass = false;
+  const firstInnerBothActiveConversionRowBlocker =
+    acceptedEventRootContinuityConversionPass
+      ? null
+      : competitorBearingNonRetainedSupportPass
+        ? "competitor_bearing_both_active_support_not_retained_event_root_continuity"
+        : row.localPartialSupportSheetCandidatePass !== true
+          ? "local_partial_support_sheet_candidate_missing"
+          : row.missingGlobalIdentityForPairPass === true
+            ? "global_replay_identity_missing_for_inner_both_active_conversion"
+            : row.competitorRootPresentPass === true
+              ? "competitor_root_present_in_inner_both_active_conversion_support"
+              : "accepted_inner_both_active_conversion_law_missing";
+  return {
+    pairKey: row.pairKey,
+    edgeIndex: row.edgeIndex,
+    eventRootKey: row.eventRootKey ?? null,
+    supportStartFraction: row.supportStartFraction ?? null,
+    supportEndFraction: row.supportEndFraction ?? null,
+    supportSampleCount: row.supportSampleCount ?? null,
+    localPartialSupportSheetCandidatePass:
+      row.localPartialSupportSheetCandidatePass === true,
+    sampledRootSheetEnclosureCandidatePass:
+      row.sampledRootSheetEnclosureCandidatePass === true,
+    sampledDerivativeSignMarginCandidatePass:
+      row.sampledDerivativeSignMarginCandidatePass === true,
+    stableActiveRootSetPass: row.stableActiveRootSetPass === true,
+    activeRootKeySets: row.activeRootKeySets ?? [],
+    competitorRootKeys: row.competitorRootKeys ?? [],
+    competitorRootPresentPass: row.competitorRootPresentPass === true,
+    stableActiveRootSetWithCompetitorPass:
+      row.stableActiveRootSetWithCompetitorPass === true,
+    competitorRootDetailKeys: row.competitorRootDetailKeys ?? [],
+    competitorDetailSampleCount: row.competitorDetailSampleCount ?? null,
+    competitorDetailRowCount: row.competitorDetailRowCount ?? null,
+    eventRootCompetitorComparisonSampleCount:
+      row.eventRootCompetitorComparisonSampleCount ?? null,
+    eventRootJacobianSigns: row.eventRootJacobianSigns ?? [],
+    eventRootMinAbsJacobian: row.eventRootMinAbsJacobian ?? null,
+    eventRootMaxAbsNormalizedResidual:
+      row.eventRootMaxAbsNormalizedResidual ?? null,
+    allSupportSamplesHaveCompetitorDetailPass:
+      row.allSupportSamplesHaveCompetitorDetailPass === true,
+    competitorFiniteRootSheetPass:
+      row.competitorFiniteRootSheetPass === true,
+    competitorStableJacobianSignPass:
+      row.competitorStableJacobianSignPass === true,
+    competitorJacobianSigns: row.competitorJacobianSigns ?? [],
+    competitorMinAbsJacobian: row.competitorMinAbsJacobian ?? null,
+    competitorMaxAbsNormalizedResidual:
+      row.competitorMaxAbsNormalizedResidual ?? null,
+    competitorRegularRootSheetPass:
+      row.competitorRegularRootSheetPass === true,
+    competitorOppositeJacobianSignPass:
+      row.competitorOppositeJacobianSignPass === true,
+    competitorDelayMinusEventDelayMin:
+      row.competitorDelayMinusEventDelayMin ?? null,
+    competitorDelayMinusEventDelayMax:
+      row.competitorDelayMinusEventDelayMax ?? null,
+    competitorEmissionMinusEventEmissionMin:
+      row.competitorEmissionMinusEventEmissionMin ?? null,
+    competitorEmissionMinusEventEmissionMax:
+      row.competitorEmissionMinusEventEmissionMax ?? null,
+    competitorSourcePointSeparationMin:
+      row.competitorSourcePointSeparationMin ?? null,
+    competitorSourcePointSeparationMax:
+      row.competitorSourcePointSeparationMax ?? null,
+    eventRootKeyGlobalReplayPairPass:
+      row.eventRootKeyGlobalReplayPairPass === true,
+    eventRootKeyPartialChainPairPass:
+      row.eventRootKeyPartialChainPairPass === true,
+    transitionGlobalIdentityPairPass:
+      row.transitionGlobalIdentityPairPass === true,
+    transitionMissingPairPass: row.transitionMissingPairPass === true,
+    partialOnlyPairPass: row.partialOnlyPairPass === true,
+    activeDomainGapPairPass: row.activeDomainGapPairPass === true,
+    bothActiveConversionPairPass: row.bothActiveConversionPairPass === true,
+    bothActiveConversionGapPairPass:
+      row.bothActiveConversionGapPairPass === true,
+    missingGlobalIdentityForPairPass:
+      row.missingGlobalIdentityForPairPass === true,
+    competitorBearingNonRetainedSupportPass,
+    acceptedEventRootContinuityConversionPass,
+    firstInnerBothActiveConversionRowBlocker,
+  };
+}
+
+function createPartialSupportRetainedRowSetBindingAuditRow({
+  row,
+  retainedRowSetBindingContext,
+}) {
+  const context = retainedRowSetBindingContext ?? {};
+  const eventRootKeyGlobalReplayPairPass = (
+    context.eventRootKeyGlobalReplayPairKeys ?? []
+  ).includes(row.pairKey);
+  const eventRootKeyPartialChainPairPass = (
+    context.eventRootKeyPartialChainPairKeys ?? []
+  ).includes(row.pairKey);
+  const transitionGlobalIdentityPairPass = (
+    context.transitionGlobalPairKeys ?? []
+  ).includes(row.pairKey);
+  const transitionMissingPairPass = (
+    context.transitionMissingPairKeys ?? []
+  ).includes(row.pairKey);
+  const partialOnlyPairPass = (context.partialOnlyPairKeys ?? []).includes(
+    row.pairKey
+  );
+  const bothActiveConversionPairPass = (
+    context.bothActiveConversionPairKeys ?? []
+  ).includes(row.pairKey);
+  const bothActiveConversionGapPairPass = (
+    context.bothActiveConversionGapPairKeys ?? []
+  ).includes(row.pairKey);
+  const activeDomainGapPairPass = (
+    context.activeDomainGapPairKeys ?? []
+  ).includes(row.pairKey);
+  const competitorRootPresentPass = (row.competitorRootKeys ?? []).length > 0;
+  const stableActiveRootSetWithCompetitorPass =
+    row.stableActiveRootSetPass === true && competitorRootPresentPass;
+  const localPartialSupportSheetCandidatePass =
+    row.sampledRootSheetEnclosureCandidatePass === true &&
+    row.sampledDerivativeSignMarginCandidatePass === true;
+  const missingGlobalIdentityForPairPass =
+    eventRootKeyGlobalReplayPairPass !== true ||
+    transitionGlobalIdentityPairPass !== true;
+  const retainedRowSetBindingProofPass = false;
+  const firstRetainedRowSetBindingRowBlocker =
+    context.contextPopulated !== true
+      ? "retained_row_set_binding_context_missing"
+      : bothActiveConversionPairPass
+        ? "competitor_bearing_both_active_support_not_retained_event_root_continuity"
+        : missingGlobalIdentityForPairPass
+          ? "global_retained_row_set_identity_missing_for_partial_support_pair"
+          : competitorRootPresentPass
+            ? "competitor_root_present_in_partial_support_sheet_requires_row_set_exclusion"
+            : "explicit_retained_row_set_binding_proof_missing_for_partial_support_sheet";
+  return {
+    pairKey: row.pairKey,
+    edgeIndex: row.edgeIndex,
+    eventRootKey: row.eventRootKey ?? null,
+    supportStartFraction: row.supportStartFraction ?? null,
+    supportEndFraction: row.supportEndFraction ?? null,
+    supportSampleCount: row.supportSampleCount ?? null,
+    localPartialSupportSheetCandidatePass,
+    sampledRootSheetEnclosureCandidatePass:
+      row.sampledRootSheetEnclosureCandidatePass === true,
+    sampledDerivativeSignMarginCandidatePass:
+      row.sampledDerivativeSignMarginCandidatePass === true,
+    stableActiveRootSetPass: row.stableActiveRootSetPass === true,
+    activeRootKeySets: row.activeRootKeySets ?? [],
+    competitorRootKeys: row.competitorRootKeys ?? [],
+    competitorRootPresentPass,
+    stableActiveRootSetWithCompetitorPass,
+    competitorRootDetailKeys: row.competitorRootDetailKeys ?? [],
+    competitorDetailSampleCount: row.competitorDetailSampleCount ?? null,
+    competitorDetailRowCount: row.competitorDetailRowCount ?? null,
+    eventRootCompetitorComparisonSampleCount:
+      row.eventRootCompetitorComparisonSampleCount ?? null,
+    eventRootJacobianSigns: row.jacobianSigns ?? [],
+    eventRootMinAbsJacobian: row.minAbsJacobian ?? null,
+    eventRootMaxAbsNormalizedResidual:
+      row.maxAbsNormalizedResidual ?? null,
+    allSupportSamplesHaveCompetitorDetailPass:
+      row.allSupportSamplesHaveCompetitorDetailPass === true,
+    competitorFiniteRootSheetPass:
+      row.competitorFiniteRootSheetPass === true,
+    competitorStableJacobianSignPass:
+      row.competitorStableJacobianSignPass === true,
+    competitorJacobianSigns: row.competitorJacobianSigns ?? [],
+    competitorMinAbsJacobian: row.competitorMinAbsJacobian ?? null,
+    competitorMaxAbsNormalizedResidual:
+      row.competitorMaxAbsNormalizedResidual ?? null,
+    competitorRegularRootSheetPass:
+      row.competitorRegularRootSheetPass === true,
+    competitorOppositeJacobianSignPass:
+      row.competitorOppositeJacobianSignPass === true,
+    competitorDelayMinusEventDelayMin:
+      row.competitorDelayMinusEventDelayMin ?? null,
+    competitorDelayMinusEventDelayMax:
+      row.competitorDelayMinusEventDelayMax ?? null,
+    competitorEmissionMinusEventEmissionMin:
+      row.competitorEmissionMinusEventEmissionMin ?? null,
+    competitorEmissionMinusEventEmissionMax:
+      row.competitorEmissionMinusEventEmissionMax ?? null,
+    competitorSourcePointSeparationMin:
+      row.competitorSourcePointSeparationMin ?? null,
+    competitorSourcePointSeparationMax:
+      row.competitorSourcePointSeparationMax ?? null,
+    contextPopulated: context.contextPopulated === true,
+    contextRetainedRowSetIdentityStatus:
+      context.retainedRowSetIdentityStatus ?? null,
+    contextAllPairsHaveGlobalReplay: context.allPairsHaveGlobalReplay === true,
+    contextAllPairsHavePartialChain: context.allPairsHavePartialChain === true,
+    contextFirstOpenRowSetLiftBlocker:
+      context.firstOpenRowSetLiftBlocker ?? null,
+    eventRootKeyGlobalReplayPairPass,
+    eventRootKeyPartialChainPairPass,
+    transitionGlobalIdentityPairPass,
+    transitionMissingPairPass,
+    partialOnlyPairPass,
+    activeDomainGapPairPass,
+    bothActiveConversionPairPass,
+    bothActiveConversionGapPairPass,
+    missingGlobalIdentityForPairPass,
+    retainedRowSetBindingProofPass,
+    firstRetainedRowSetBindingRowBlocker,
+  };
+}
+
+function createPartialSupportIntervalProofFieldAuditRow(row) {
+  const supportSamples = collectPartialSupportEventRootSamples(row);
+  const eventRootDetailsBySample = supportSamples.map((sample) =>
+    (sample.eventRootDetailRows ?? []).find(
+      (detailRow) => detailRow.rootKey === row.eventRootKey
+    ) ?? null
+  );
+  const eventRootDetails = eventRootDetailsBySample.filter(Boolean);
+  const jacobians = eventRootDetails.map((detailRow) => detailRow.jacobian);
+  const normalizedResiduals = eventRootDetails.map(
+    (detailRow) => detailRow.normalizedResidual
+  );
+  const sourceReceiverSegmentPairs = unionStrings(
+    supportSamples.map(
+      (sample) => `${sample.sourceSegmentIndex}:${sample.receiverSegmentIndex}`
+    )
+  );
+  const activeRootKeySets = unionStrings(
+    supportSamples.map((sample) => (sample.sampleActiveRootKeys ?? []).join(","))
+  );
+  const competitorRootKeys = unionStrings(
+    supportSamples.flatMap((sample) =>
+      (sample.sampleActiveRootKeys ?? [])
+        .filter((rootKey) => rootKey !== row.eventRootKey)
+        .map(String)
+    )
+  );
+  const activeRootDetailsBySample = supportSamples.map(
+    (sample) => sample.activeRootDetailRowSamples ?? []
+  );
+  const competitorDetailsBySample = activeRootDetailsBySample.map((details) =>
+    details.filter((detailRow) => detailRow.rootKey !== row.eventRootKey)
+  );
+  const competitorDetails = competitorDetailsBySample.flat();
+  const competitorDetailRowsByRootKey = new Map();
+  for (const detailRow of competitorDetails) {
+    const key = String(detailRow.rootKey);
+    const rowsForKey = competitorDetailRowsByRootKey.get(key) ?? [];
+    rowsForKey.push(detailRow);
+    competitorDetailRowsByRootKey.set(key, rowsForKey);
+  }
+  const eventCompetitorComparisonRows = [];
+  for (let index = 0; index < supportSamples.length; index += 1) {
+    const activeRootDetails = activeRootDetailsBySample[index] ?? [];
+    const eventRootDetail =
+      activeRootDetails.find(
+        (detailRow) => detailRow.rootKey === row.eventRootKey
+      ) ?? null;
+    if (!eventRootDetail) {
+      continue;
+    }
+    for (const competitorDetail of competitorDetailsBySample[index] ?? []) {
+      const sourcePointSeparation =
+        isFiniteVector(eventRootDetail.sourcePoint) &&
+        isFiniteVector(competitorDetail.sourcePoint)
+          ? vectorNorm({
+              x: competitorDetail.sourcePoint.x - eventRootDetail.sourcePoint.x,
+              y: competitorDetail.sourcePoint.y - eventRootDetail.sourcePoint.y,
+              z: competitorDetail.sourcePoint.z - eventRootDetail.sourcePoint.z,
+            })
+          : null;
+      eventCompetitorComparisonRows.push({
+        sampleFraction: supportSamples[index].sampleFraction,
+        competitorRootKey: competitorDetail.rootKey,
+        eventJacobianSign: Math.sign(eventRootDetail.jacobian),
+        competitorJacobianSign: Math.sign(competitorDetail.jacobian),
+        delayDelta:
+          Number.isFinite(competitorDetail.delay) &&
+          Number.isFinite(eventRootDetail.delay)
+            ? competitorDetail.delay - eventRootDetail.delay
+            : null,
+        emissionDelta:
+          Number.isFinite(competitorDetail.emissionTime) &&
+          Number.isFinite(eventRootDetail.emissionTime)
+            ? competitorDetail.emissionTime - eventRootDetail.emissionTime
+            : null,
+        sourcePointSeparation,
+      });
+    }
+  }
+  const competitorJacobianSigns = unionStrings(
+    competitorDetails
+      .map((detailRow) => detailRow.jacobian)
+      .filter(Number.isFinite)
+      .map((jacobian) => String(Math.sign(jacobian)))
+  );
+  const competitorResiduals = competitorDetails
+    .map((detailRow) => detailRow.normalizedResidual)
+    .filter(Number.isFinite);
+  const competitorJacobians = competitorDetails
+    .map((detailRow) => detailRow.jacobian)
+    .filter(Number.isFinite);
+  const allSupportSamplesHaveCompetitorDetailPass =
+    supportSamples.length > 0 &&
+    competitorDetailsBySample.every((details) => details.length > 0);
+  const competitorFiniteRootSheetPass =
+    competitorDetails.length > 0 &&
+    competitorDetails.every(
+      (detailRow) =>
+        Number.isFinite(detailRow.emissionTime) &&
+        Number.isFinite(detailRow.hitTime) &&
+        Number.isFinite(detailRow.delay) &&
+        Number.isFinite(detailRow.jacobian) &&
+        Number.isFinite(detailRow.normalizedResidual)
+    );
+  const competitorStableJacobianSignPass =
+    competitorJacobianSigns.length === 1 &&
+    competitorJacobianSigns[0] !== "0";
+  const competitorRegularRootSheetPass =
+    allSupportSamplesHaveCompetitorDetailPass &&
+    competitorFiniteRootSheetPass &&
+    competitorStableJacobianSignPass &&
+    Number.isFinite(minFinite(competitorJacobians.map((jacobian) => Math.abs(jacobian)))) &&
+    minFinite(competitorJacobians.map((jacobian) => Math.abs(jacobian))) >
+      ROOT_TOLERANCE;
+  const competitorOppositeJacobianSignPass =
+    eventCompetitorComparisonRows.length > 0 &&
+    eventCompetitorComparisonRows.every(
+      (comparisonRow) =>
+        Number.isFinite(comparisonRow.eventJacobianSign) &&
+        Number.isFinite(comparisonRow.competitorJacobianSign) &&
+        comparisonRow.eventJacobianSign !== 0 &&
+        comparisonRow.competitorJacobianSign !== 0 &&
+        comparisonRow.eventJacobianSign ===
+          -comparisonRow.competitorJacobianSign
+    );
+  const competitorDelayMinusEventDelayValues = eventCompetitorComparisonRows
+    .map((comparisonRow) => comparisonRow.delayDelta)
+    .filter(Number.isFinite);
+  const competitorEmissionMinusEventEmissionValues =
+    eventCompetitorComparisonRows
+      .map((comparisonRow) => comparisonRow.emissionDelta)
+      .filter(Number.isFinite);
+  const competitorSourcePointSeparationValues = eventCompetitorComparisonRows
+    .map((comparisonRow) => comparisonRow.sourcePointSeparation)
+    .filter(Number.isFinite);
+  const jacobianSigns = unionStrings(
+    jacobians
+      .filter((jacobian) => Number.isFinite(jacobian))
+      .map((jacobian) => String(Math.sign(jacobian)))
+  );
+  const hitTimeDirection = classifyFiniteSequenceDirection(
+    eventRootDetails.map((detailRow) => detailRow.hitTime)
+  );
+  const emissionTimeDirection = classifyFiniteSequenceDirection(
+    eventRootDetails.map((detailRow) => detailRow.emissionTime)
+  );
+  const delayDirection = classifyFiniteSequenceDirection(
+    eventRootDetails.map((detailRow) => detailRow.delay)
+  );
+  const allSamplesHaveEventRootDetailPass =
+    supportSamples.length > 0 &&
+    eventRootDetails.length === supportSamples.length;
+  const finiteRootSheetSamplePass =
+    allSamplesHaveEventRootDetailPass &&
+    eventRootDetails.every(
+      (detailRow) =>
+        Number.isFinite(detailRow.emissionTime) &&
+        Number.isFinite(detailRow.hitTime) &&
+        Number.isFinite(detailRow.delay) &&
+        Number.isFinite(detailRow.jacobian) &&
+        Number.isFinite(detailRow.normalizedResidual)
+    );
+  const stableSegmentPairPass = sourceReceiverSegmentPairs.length === 1;
+  const stableActiveRootSetPass = activeRootKeySets.length === 1;
+  const stableJacobianSignPass =
+    jacobianSigns.length === 1 && jacobianSigns[0] !== "0";
+  const minAbsJacobian = minFinite(jacobians.map((jacobian) => Math.abs(jacobian)));
+  const maxAbsNormalizedResidual = maxFinite(
+    normalizedResiduals.map((residual) => Math.abs(residual))
+  );
+  const sampledRootSheetEnclosureCandidatePass =
+    finiteRootSheetSamplePass &&
+    stableSegmentPairPass &&
+    stableActiveRootSetPass;
+  const sampledDerivativeSignMarginCandidatePass =
+    sampledRootSheetEnclosureCandidatePass &&
+    stableJacobianSignPass &&
+    Number.isFinite(minAbsJacobian) &&
+    minAbsJacobian > ROOT_TOLERANCE;
+  const retainedRowSetBindingProofPass = false;
+  const acceptedIntervalProofFieldRowPass =
+    sampledRootSheetEnclosureCandidatePass &&
+    sampledDerivativeSignMarginCandidatePass &&
+    retainedRowSetBindingProofPass;
+  return {
+    pairKey: row.pairKey,
+    edgeIndex: row.edgeIndex,
+    eventRootKey: row.eventRootKey ?? null,
+    supportSampleCount: supportSamples.length,
+    eventRootDetailSampleCount: eventRootDetails.length,
+    supportStartFraction: supportSamples[0]?.sampleFraction ?? null,
+    supportEndFraction:
+      supportSamples[supportSamples.length - 1]?.sampleFraction ?? null,
+    supportStartTime: supportSamples[0]?.sampleTime ?? null,
+    supportEndTime:
+      supportSamples[supportSamples.length - 1]?.sampleTime ?? null,
+    sourceReceiverSegmentPairs,
+    stableSegmentPairPass,
+    activeRootKeySets,
+    competitorRootKeys,
+    competitorRootDetailKeys: [...competitorDetailRowsByRootKey.keys()].sort(),
+    competitorDetailSampleCount: competitorDetailsBySample.filter(
+      (details) => details.length > 0
+    ).length,
+    competitorDetailRowCount: competitorDetails.length,
+    eventRootCompetitorComparisonSampleCount:
+      eventCompetitorComparisonRows.length,
+    allSupportSamplesHaveCompetitorDetailPass,
+    competitorFiniteRootSheetPass,
+    competitorStableJacobianSignPass,
+    competitorJacobianSigns,
+    competitorMinAbsJacobian: minFinite(
+      competitorJacobians.map((jacobian) => Math.abs(jacobian))
+    ),
+    competitorMaxAbsNormalizedResidual: maxFinite(
+      competitorResiduals.map((residual) => Math.abs(residual))
+    ),
+    competitorRegularRootSheetPass,
+    competitorOppositeJacobianSignPass,
+    competitorDelayMinusEventDelayMin: minFinite(
+      competitorDelayMinusEventDelayValues
+    ),
+    competitorDelayMinusEventDelayMax: maxFinite(
+      competitorDelayMinusEventDelayValues
+    ),
+    competitorEmissionMinusEventEmissionMin: minFinite(
+      competitorEmissionMinusEventEmissionValues
+    ),
+    competitorEmissionMinusEventEmissionMax: maxFinite(
+      competitorEmissionMinusEventEmissionValues
+    ),
+    competitorSourcePointSeparationMin: minFinite(
+      competitorSourcePointSeparationValues
+    ),
+    competitorSourcePointSeparationMax: maxFinite(
+      competitorSourcePointSeparationValues
+    ),
+    stableActiveRootSetPass,
+    jacobianSigns,
+    stableJacobianSignPass,
+    minAbsJacobian,
+    maxAbsNormalizedResidual,
+    hitTimeDirection,
+    emissionTimeDirection,
+    delayDirection,
+    finiteRootSheetSamplePass,
+    sampledRootSheetEnclosureCandidatePass,
+    sampledDerivativeSignMarginCandidatePass,
+    retainedRowSetBindingProofPass,
+    acceptedIntervalProofFieldRowPass,
+    firstIntervalProofFieldRowBlocker:
+      acceptedIntervalProofFieldRowPass
+        ? null
+        : sampledRootSheetEnclosureCandidatePass !== true
+          ? "sampled_root_sheet_enclosure_candidate_missing"
+          : sampledDerivativeSignMarginCandidatePass !== true
+            ? "continuous_derivative_or_monotonicity_bound_missing"
+            : "retained_row_set_binding_proof_missing_for_partial_support_bracket",
+    retainedLimitation:
+      "The sampled support run carries a stable local event-root sheet candidate, but the row still lacks a continuous interval proof and global retained row-set binding.",
+  };
+}
+
+function collectPartialSupportEventRootSamples(row) {
+  const interiorSamples = (row.boundarySampleRows ?? []).filter(
+    (sample) => sample.sampleEventRootPresenceRowPass
+  );
+  const endpointSamples = (row.endpointSamples ?? []).filter(
+    (sample) =>
+      sample.sampleEventRootPresenceRowPass &&
+      row.rightEndpointContinuationPass === true &&
+      sample.sampleFraction === 1
+  );
+  const samplesByFraction = new Map();
+  for (const sample of [...interiorSamples, ...endpointSamples]) {
+    samplesByFraction.set(sample.sampleFraction, sample);
+  }
+  return [...samplesByFraction.values()].sort(
+    (left, right) => left.sampleFraction - right.sampleFraction
+  );
+}
+
+function classifyFiniteSequenceDirection(values) {
+  const finiteValues = values.filter((value) => Number.isFinite(value));
+  if (finiteValues.length <= 1) {
+    return finiteValues.length === 1 ? "single_sample" : "empty";
+  }
+  let increasing = true;
+  let decreasing = true;
+  let constant = true;
+  for (let index = 1; index < finiteValues.length; index += 1) {
+    const delta = finiteValues[index] - finiteValues[index - 1];
+    if (Math.abs(delta) > ROOT_TOLERANCE) {
+      constant = false;
+    }
+    if (delta < -ROOT_TOLERANCE) {
+      increasing = false;
+    }
+    if (delta > ROOT_TOLERANCE) {
+      decreasing = false;
+    }
+  }
+  if (constant) {
+    return "constant";
+  }
+  if (increasing) {
+    return "nondecreasing";
+  }
+  if (decreasing) {
+    return "nonincreasing";
+  }
+  return "mixed";
+}
+
+async function createPartialSupportBoundaryBracketAuditRow({
+  row,
+  boundaryFractions,
+  midpointReplayContext,
+}) {
+  const interiorSamples = [];
+  for (const sampleFraction of boundaryFractions) {
+    const existingSample = row.denseSampleRows?.find(
+      (sample) => sample.sampleFraction === sampleFraction
+    );
+    const sampleTime = row.start + row.width * sampleFraction;
+    interiorSamples.push(
+      existingSample
+        ? { ...existingSample, sampleRole: "support_boundary_interior" }
+        : await createMidpointPresenceIntervalBindingSample({
+            row,
+            sampleFraction,
+            sampleRole: "support_boundary_interior",
+            sampleTime,
+            midpointReplayContext,
+          })
+    );
+  }
+  const endpointSamples = [];
+  for (const sampleFraction of [0, 1]) {
+    const sampleTime = row.start + row.width * sampleFraction;
+    endpointSamples.push(
+      await createMidpointPresenceIntervalBindingSample({
+        row,
+        sampleFraction,
+        sampleRole:
+          sampleFraction === 0
+            ? "support_boundary_left_endpoint"
+            : "support_boundary_right_endpoint",
+        sampleTime,
+        midpointReplayContext,
+      })
+    );
+  }
+  const populatedInteriorSamples = interiorSamples.filter(
+    (sample) => sample.sampleRootLedgerReplayPopulated
+  );
+  const eventRootInteriorSamples = interiorSamples.filter(
+    (sample) => sample.sampleEventRootPresenceRowPass
+  );
+  const eventRootEndpointSamples = endpointSamples.filter(
+    (sample) => sample.sampleEventRootPresenceRowPass
+  );
+  const allSamples = [...endpointSamples, ...interiorSamples].sort(
+    (left, right) => left.sampleFraction - right.sampleFraction
+  );
+  const supportRuns = createDenseEventRootSupportRuns(
+    interiorSamples,
+    row.width
+  );
+  const longestSupportRun =
+    supportRuns[0] ?? createEmptyDenseEventRootSupportRun();
+  const leftEntryBoundaryBracket = createSupportRunBoundaryBracket({
+    allSamples,
+    supportRun: longestSupportRun,
+    side: "left_entry",
+    width: row.width,
+  });
+  const rightExitBoundaryBracket = createSupportRunBoundaryBracket({
+    allSamples,
+    supportRun: longestSupportRun,
+    side: "right_exit",
+    width: row.width,
+  });
+  const rightEndpointSample =
+    endpointSamples.find((sample) => sample.sampleFraction === 1) ?? null;
+  const lastInteriorBoundarySample =
+    interiorSamples[interiorSamples.length - 1] ?? null;
+  const leftEntryBoundaryBracketPass =
+    leftEntryBoundaryBracket.boundaryBracketPass;
+  const rightExitBoundaryBracketPass =
+    rightExitBoundaryBracket.boundaryBracketPass;
+  const rightEndpointContinuationPass =
+    rightExitBoundaryBracketPass !== true &&
+    rightEndpointSample?.sampleRootLedgerReplayPopulated === true &&
+    rightEndpointSample.sampleEventRootPresenceRowPass === true &&
+    Number.isFinite(lastInteriorBoundarySample?.sampleFraction) &&
+    longestSupportRun.endFraction === lastInteriorBoundarySample.sampleFraction;
+  const completeSupportBoundaryBracketPass =
+    leftEntryBoundaryBracketPass &&
+    (rightExitBoundaryBracketPass || rightEndpointContinuationPass);
+  return {
+    pairKey: row.pairKey,
+    edgeIndex: row.edgeIndex,
+    eventRootKey: row.eventRootKey ?? null,
+    start: row.start,
+    end: row.end,
+    midpoint: row.midpoint,
+    width: row.width,
+    sourceLayer: row.sourceLayer ?? null,
+    receiverLayer: row.receiverLayer ?? null,
+    interiorBoundarySampleRowCount: interiorSamples.length,
+    populatedInteriorBoundarySampleRowCount: populatedInteriorSamples.length,
+    eventRootPresenceBoundarySampleRowCount: eventRootInteriorSamples.length,
+    endpointProbeRowCount: endpointSamples.length,
+    endpointEventRootPresenceRowCount: eventRootEndpointSamples.length,
+    endpointEventRootAbsenceRowCount:
+      endpointSamples.length - eventRootEndpointSamples.length,
+    supportRunCount: supportRuns.length,
+    longestSupportRun,
+    leftEntryBoundaryBracket,
+    rightExitBoundaryBracket,
+    rightEndpointContinuation: rightEndpointContinuationPass
+      ? {
+          endpointSample: projectBoundaryBracketSample(rightEndpointSample),
+          priorSupportSample: projectBoundaryBracketSample(
+            lastInteriorBoundarySample
+          ),
+          fractionWidth:
+            rightEndpointSample.sampleFraction -
+            lastInteriorBoundarySample.sampleFraction,
+          timeWidth:
+            (rightEndpointSample.sampleFraction -
+              lastInteriorBoundarySample.sampleFraction) *
+            row.width,
+        }
+      : null,
+    leftEntryBoundaryBracketPass,
+    rightExitBoundaryBracketPass,
+    rightEndpointContinuationPass,
+    completeSupportBoundaryBracketPass,
+    firstBoundaryBracketRowBlocker:
+      completeSupportBoundaryBracketPass
+        ? null
+        : leftEntryBoundaryBracketPass !== true
+          ? "left_entry_boundary_bracket_missing_or_unpopulated"
+          : "right_exit_or_endpoint_continuation_missing_or_unpopulated",
+    endpointSamples,
+    boundarySampleRows: interiorSamples,
+  };
+}
+
+function applyPartialSupportBoundaryBracketWitness({
+  rows,
+  boundaryBracketAudit,
+  intervalProofFieldAudit,
+}) {
+  const boundaryRowsByKey = new Map(
+    (boundaryBracketAudit?.rows ?? []).map((row) => [
+      `${row.pairKey}:${row.edgeIndex}`,
+      row,
+    ])
+  );
+  const proofRowsByKey = new Map(
+    (intervalProofFieldAudit?.rows ?? []).map((row) => [
+      `${row.pairKey}:${row.edgeIndex}`,
+      row,
+    ])
+  );
+  return rows.map((row) => {
+    const boundaryRow = boundaryRowsByKey.get(`${row.pairKey}:${row.edgeIndex}`);
+    const proofRow = proofRowsByKey.get(`${row.pairKey}:${row.edgeIndex}`);
+    const witnessChecks = (row.witnessChecks ?? []).map((check) =>
+      check.witnessFieldId === "support_boundary_bracket"
+        ? {
+            ...check,
+            witnessPresent:
+              boundaryRow?.completeSupportBoundaryBracketPass === true,
+            witnessDetail:
+              boundaryRow == null
+                ? null
+                : {
+                    leftEntryBoundaryBracketPass:
+                      boundaryRow.leftEntryBoundaryBracketPass,
+                    rightExitBoundaryBracketPass:
+                      boundaryRow.rightExitBoundaryBracketPass,
+                    rightEndpointContinuationPass:
+                      boundaryRow.rightEndpointContinuationPass,
+                    completeSupportBoundaryBracketPass:
+                      boundaryRow.completeSupportBoundaryBracketPass,
+                  },
+          }
+        : check.witnessFieldId === "root_sheet_interval_enclosure"
+          ? {
+              ...check,
+              witnessPresent: false,
+              witnessDetail:
+                proofRow == null
+                  ? null
+                  : {
+                      sampledRootSheetEnclosureCandidatePass:
+                        proofRow.sampledRootSheetEnclosureCandidatePass,
+                      finiteRootSheetSamplePass:
+                        proofRow.finiteRootSheetSamplePass,
+                      supportSampleCount: proofRow.supportSampleCount,
+                      sourceReceiverSegmentPairs:
+                        proofRow.sourceReceiverSegmentPairs,
+                      activeRootKeySets: proofRow.activeRootKeySets,
+                    },
+            }
+        : check.witnessFieldId === "residual_monotonicity_or_derivative_bound"
+          ? {
+              ...check,
+              witnessPresent: false,
+              witnessDetail:
+                proofRow == null
+                  ? null
+                  : {
+                      sampledDerivativeSignMarginCandidatePass:
+                        proofRow.sampledDerivativeSignMarginCandidatePass,
+                      stableJacobianSignPass: proofRow.stableJacobianSignPass,
+                      jacobianSigns: proofRow.jacobianSigns,
+                      minAbsJacobian: proofRow.minAbsJacobian,
+                      maxAbsNormalizedResidual:
+                        proofRow.maxAbsNormalizedResidual,
+                      hitTimeDirection: proofRow.hitTimeDirection,
+                      emissionTimeDirection: proofRow.emissionTimeDirection,
+                      delayDirection: proofRow.delayDirection,
+                    },
+            }
+        : check.witnessFieldId === "retained_row_set_binding"
+          ? {
+              ...check,
+              witnessPresent:
+                proofRow?.retainedRowSetBindingProofPass === true,
+              witnessDetail:
+                proofRow == null
+                  ? null
+                  : {
+                      retainedRowSetBindingProofPass:
+                        proofRow.retainedRowSetBindingProofPass,
+                      firstRetainedRowSetBindingRowBlocker:
+                        proofRow.retainedRowSetBindingAuditRow
+                          ?.firstRetainedRowSetBindingRowBlocker ?? null,
+                      contextRetainedRowSetIdentityStatus:
+                        proofRow.retainedRowSetBindingAuditRow
+                          ?.contextRetainedRowSetIdentityStatus ?? null,
+                      eventRootKeyGlobalReplayPairPass:
+                        proofRow.retainedRowSetBindingAuditRow
+                          ?.eventRootKeyGlobalReplayPairPass === true,
+                      transitionGlobalIdentityPairPass:
+                        proofRow.retainedRowSetBindingAuditRow
+                          ?.transitionGlobalIdentityPairPass === true,
+                      missingGlobalIdentityForPairPass:
+                        proofRow.retainedRowSetBindingAuditRow
+                          ?.missingGlobalIdentityForPairPass === true,
+                      bothActiveConversionPairPass:
+                        proofRow.retainedRowSetBindingAuditRow
+                          ?.bothActiveConversionPairPass === true,
+                      competitorRootKeys: proofRow.competitorRootKeys,
+                    },
+            }
+        : check
+    );
+    const missingWitnessFieldIds = witnessChecks
+      .filter((check) => check.witnessPresent !== true)
+      .map((check) => check.witnessFieldId);
+    const acceptedPartialSupportIntervalWitnessRowPass =
+      missingWitnessFieldIds.length === 0;
+    return {
+      ...row,
+      boundaryBracketAuditRow: boundaryRow ?? null,
+      supportBoundaryBracketPass:
+        boundaryRow?.completeSupportBoundaryBracketPass === true,
+      witnessChecks,
+      missingWitnessFieldIds,
+      acceptedPartialSupportIntervalWitnessRowPass,
+      firstPartialSupportIntervalWitnessRowBlocker:
+        acceptedPartialSupportIntervalWitnessRowPass
+          ? null
+          : boundaryRow?.completeSupportBoundaryBracketPass !== true
+            ? boundaryRow?.firstBoundaryBracketRowBlocker ??
+              "support_boundary_bracket_missing"
+            : proofRow?.firstIntervalProofFieldRowBlocker ??
+              "supply_root_sheet_enclosure_derivative_bound_and_retained_binding_for_partial_support_bracket",
+    };
+  });
+}
+
+function createSupportRunBoundaryBracket({ allSamples, supportRun, side, width }) {
+  if (supportRun.sampleCount <= 0) {
+    return {
+      side,
+      boundaryBracketPass: false,
+      firstBoundaryBracketBlocker: "support_run_missing",
+    };
+  }
+  const targetFraction =
+    side === "left_entry" ? supportRun.startFraction : supportRun.endFraction;
+  const supportIndex = allSamples.findIndex(
+    (sample) => sample.sampleFraction === targetFraction
+  );
+  const absentIndex = side === "left_entry" ? supportIndex - 1 : supportIndex + 1;
+  const supportSample = allSamples[supportIndex] ?? null;
+  const absentSample = allSamples[absentIndex] ?? null;
+  const boundaryBracketPass =
+    supportSample?.sampleEventRootPresenceRowPass === true &&
+    absentSample?.sampleRootLedgerReplayPopulated === true &&
+    absentSample.sampleEventRootPresenceRowPass !== true;
+  const lowerSample = side === "left_entry" ? absentSample : supportSample;
+  const upperSample = side === "left_entry" ? supportSample : absentSample;
+  const fractionWidth =
+    Number.isFinite(lowerSample?.sampleFraction) &&
+    Number.isFinite(upperSample?.sampleFraction)
+      ? Math.abs(upperSample.sampleFraction - lowerSample.sampleFraction)
+      : null;
+  return {
+    side,
+    boundaryBracketPass,
+    supportSample: projectBoundaryBracketSample(supportSample),
+    absentSample: projectBoundaryBracketSample(absentSample),
+    lowerFraction: lowerSample?.sampleFraction ?? null,
+    upperFraction: upperSample?.sampleFraction ?? null,
+    fractionWidth,
+    timeWidth:
+      Number.isFinite(fractionWidth) && Number.isFinite(width)
+        ? fractionWidth * width
+        : null,
+    firstBoundaryBracketBlocker: boundaryBracketPass
+      ? null
+      : supportSample == null
+        ? "support_boundary_sample_missing"
+        : absentSample == null
+          ? "adjacent_absence_sample_missing"
+          : absentSample.sampleRootLedgerReplayPopulated !== true
+            ? "adjacent_absence_sample_replay_missing"
+            : absentSample.sampleEventRootPresenceRowPass === true
+              ? "adjacent_sample_is_event_root_present_not_boundary"
+              : "support_boundary_bracket_unclassified",
+  };
+}
+
+function projectBoundaryBracketSample(sample) {
+  if (!sample) {
+    return null;
+  }
+  return {
+    sampleRole: sample.sampleRole,
+    sampleFraction: sample.sampleFraction,
+    sampleTime: sample.sampleTime,
+    sampleRootLedgerReplayPopulated:
+      sample.sampleRootLedgerReplayPopulated === true,
+    sampleEventRootPresenceRowPass:
+      sample.sampleEventRootPresenceRowPass === true,
+    sampleActiveRootKeys: sample.sampleActiveRootKeys ?? [],
+    maxSampleActiveNormalizedResidual:
+      sample.maxSampleActiveNormalizedResidual ?? null,
+    eventRootDetailRows: sample.eventRootDetailRows ?? [],
+  };
+}
+
+async function createNonMidpointPartialSupportIntervalWitnessAuditRow({
+  row,
+  denseFractions,
+  midpointReplayContext,
+}) {
+  const denseSampleRows = [];
+  for (const sampleFraction of denseFractions) {
+    const sampleTime = row.start + row.width * sampleFraction;
+    const existingSample = row.sampleRows?.find(
+      (sample) => sample.sampleFraction === sampleFraction
+    );
+    denseSampleRows.push(
+      existingSample
+        ? { ...existingSample, sampleRole: "dense_partial_support" }
+        : await createMidpointPresenceIntervalBindingSample({
+            row,
+            sampleFraction,
+            sampleRole: "dense_partial_support",
+            sampleTime,
+            midpointReplayContext,
+          })
+    );
+  }
+  const populatedSampleRows = denseSampleRows.filter(
+    (sample) => sample.sampleRootLedgerReplayPopulated
+  );
+  const eventRootPresenceSampleRows = denseSampleRows.filter(
+    (sample) => sample.sampleEventRootPresenceRowPass
+  );
+  const absentSampleRows = denseSampleRows.filter(
+    (sample) => sample.sampleEventRootPresenceRowPass !== true
+  );
+  const nonzeroJacobianSampleRows = denseSampleRows.filter((sample) =>
+    (sample.eventRootDetailRows ?? []).some(
+      (detailRow) => Math.abs(detailRow.jacobian ?? Number.NaN) > ROOT_TOLERANCE
+    )
+  );
+  const allEventRootDetails = denseSampleRows.flatMap(
+    (sample) => sample.eventRootDetailRows ?? []
+  );
+  const minAbsJacobian = minFinite(
+    allEventRootDetails.map((detailRow) => Math.abs(detailRow.jacobian))
+  );
+  const supportRuns = createDenseEventRootSupportRuns(denseSampleRows, row.width);
+  const longestSupportRun =
+    supportRuns[0] ?? createEmptyDenseEventRootSupportRun();
+  const contiguousDenseSupportRunPass = longestSupportRun.sampleCount >= 2;
+  const nonzeroJacobianDenseSupportRowPass =
+    nonzeroJacobianSampleRows.length > 0 &&
+    contiguousDenseSupportRunPass;
+  const witnessChecks = [
+    {
+      witnessFieldId: "dense_contiguous_event_root_support_run",
+      witnessPresent: contiguousDenseSupportRunPass,
+    },
+    {
+      witnessFieldId: "nonzero_jacobian_margin",
+      witnessPresent:
+        Number.isFinite(minAbsJacobian) && minAbsJacobian > ROOT_TOLERANCE,
+    },
+    {
+      witnessFieldId: "support_boundary_bracket",
+      witnessPresent: false,
+    },
+    {
+      witnessFieldId: "root_sheet_interval_enclosure",
+      witnessPresent: false,
+    },
+    {
+      witnessFieldId: "residual_monotonicity_or_derivative_bound",
+      witnessPresent: false,
+    },
+    {
+      witnessFieldId: "retained_row_set_binding",
+      witnessPresent: false,
+    },
+  ];
+  const missingWitnessFieldIds = witnessChecks
+    .filter((check) => check.witnessPresent !== true)
+    .map((check) => check.witnessFieldId);
+  const acceptedPartialSupportIntervalWitnessRowPass =
+    missingWitnessFieldIds.length === 0;
+  return {
+    pairKey: row.pairKey,
+    edgeIndex: row.edgeIndex,
+    eventRootKey: row.eventRootKey ?? null,
+    start: row.start,
+    end: row.end,
+    midpoint: row.midpoint,
+    width: row.width,
+    sourceLayer: row.sourceLayer ?? null,
+    receiverLayer: row.receiverLayer ?? null,
+    denseInteriorSampleRowCount: denseSampleRows.length,
+    populatedDenseInteriorSampleRowCount: populatedSampleRows.length,
+    eventRootPresenceDenseInteriorSampleRowCount:
+      eventRootPresenceSampleRows.length,
+    absentDenseSampleCount: absentSampleRows.length,
+    nonzeroJacobianDenseSampleRowCount: nonzeroJacobianSampleRows.length,
+    minAbsJacobian,
+    supportRunCount: supportRuns.length,
+    longestSupportRun,
+    contiguousDenseSupportRunPass,
+    nonzeroJacobianDenseSupportRowPass,
+    witnessChecks,
+    missingWitnessFieldIds,
+    acceptedPartialSupportIntervalWitnessRowPass,
+    firstPartialSupportIntervalWitnessRowBlocker:
+      acceptedPartialSupportIntervalWitnessRowPass
+        ? null
+        : eventRootPresenceSampleRows.length === 0
+          ? "dense_partial_non_midpoint_event_root_support_missing"
+          : contiguousDenseSupportRunPass !== true
+            ? "dense_partial_non_midpoint_support_not_yet_contiguous"
+            : nonzeroJacobianDenseSupportRowPass !== true
+              ? "dense_partial_non_midpoint_support_nonzero_jacobian_missing"
+              : "supply_interval_witness_fields_for_dense_partial_non_midpoint_support",
+    firstAbsentDenseSample: absentSampleRows[0] ?? null,
+    denseSampleRows,
+  };
+}
+
+function createDenseEventRootSupportRuns(sampleRows, width) {
+  const runs = [];
+  let currentRun = null;
+  for (const sample of sampleRows) {
+    if (sample.sampleEventRootPresenceRowPass === true) {
+      if (currentRun == null) {
+        currentRun = {
+          startFraction: sample.sampleFraction,
+          endFraction: sample.sampleFraction,
+          sampleCount: 0,
+          sampleFractions: [],
+          startTime: sample.sampleTime,
+          endTime: sample.sampleTime,
+        };
+      }
+      currentRun.endFraction = sample.sampleFraction;
+      currentRun.endTime = sample.sampleTime;
+      currentRun.sampleCount += 1;
+      currentRun.sampleFractions.push(sample.sampleFraction);
+      continue;
+    }
+    if (currentRun != null) {
+      runs.push(finalizeDenseEventRootSupportRun(currentRun, width));
+      currentRun = null;
+    }
+  }
+  if (currentRun != null) {
+    runs.push(finalizeDenseEventRootSupportRun(currentRun, width));
+  }
+  return runs.sort(
+    (left, right) =>
+      right.sampleCount - left.sampleCount ||
+      right.fractionSpan - left.fractionSpan ||
+      left.startFraction - right.startFraction
+  );
+}
+
+function finalizeDenseEventRootSupportRun(run, width) {
+  const fractionSpan = run.endFraction - run.startFraction;
+  return {
+    ...run,
+    fractionSpan,
+    sampleWidth: Number.isFinite(width) ? fractionSpan * width : null,
+    rightSideRunPass: run.endFraction > 0.5,
+    crossesMidpointPass: run.startFraction < 0.5 && run.endFraction > 0.5,
+  };
+}
+
+function createEmptyDenseEventRootSupportRun() {
+  return {
+    startFraction: null,
+    endFraction: null,
+    sampleCount: 0,
+    sampleFractions: [],
+    startTime: null,
+    endTime: null,
+    fractionSpan: 0,
+    sampleWidth: 0,
+    rightSideRunPass: false,
+    crossesMidpointPass: false,
+  };
+}
+
+async function createThreePointDirectInteriorReplayAuditRow({
+  row,
+  midpointReplayContext,
+}) {
+  const sampleFractions = [0.25, 0.5, 0.75];
+  const sampleRows = [];
+  for (const sampleFraction of sampleFractions) {
+    const sampleTime = row.start + row.width * sampleFraction;
+    const sampleRole =
+      sampleFraction === 0.25
+        ? "left_flank"
+        : sampleFraction === 0.75
+          ? "right_flank"
+          : "midpoint";
+    if (sampleFraction === 0.5) {
+      sampleRows.push(createMidpointPresenceIntervalBindingMidpointSample(row));
+      continue;
+    }
+    sampleRows.push(
+      await createMidpointPresenceIntervalBindingSample({
+        row,
+        sampleFraction,
+        sampleRole,
+        sampleTime,
+        midpointReplayContext,
+      })
+    );
+  }
+  const populatedSampleRows = sampleRows.filter(
+    (sample) => sample.sampleRootLedgerReplayPopulated
+  );
+  const eventRootPresenceSampleRows = sampleRows.filter(
+    (sample) => sample.sampleEventRootPresenceRowPass
+  );
+  const nonzeroJacobianEventRootSamples = sampleRows.filter((sample) =>
+    (sample.eventRootDetailRows ?? []).some(
+      (detailRow) => Math.abs(detailRow.jacobian ?? Number.NaN) > ROOT_TOLERANCE
+    )
+  );
+  const allEventRootDetails = sampleRows.flatMap(
+    (sample) => sample.eventRootDetailRows ?? []
+  );
+  const nonzeroJacobianEventRootDetailCount = allEventRootDetails.filter(
+    (detailRow) => Math.abs(detailRow.jacobian ?? Number.NaN) > ROOT_TOLERANCE
+  ).length;
+  const zeroDelayEventRootDetailCount = allEventRootDetails.filter(
+    (detailRow) => Math.abs(detailRow.delay ?? Number.NaN) <= ROOT_TOLERANCE
+  ).length;
+  const leftFlank = sampleRows.find((sample) => sample.sampleRole === "left_flank");
+  const midpoint = sampleRows.find((sample) => sample.sampleRole === "midpoint");
+  const rightFlank = sampleRows.find(
+    (sample) => sample.sampleRole === "right_flank"
+  );
+  const leftFlankEventRootPresencePass =
+    leftFlank?.sampleEventRootPresenceRowPass === true;
+  const midpointEventRootPresenceRowPass =
+    midpoint?.sampleEventRootPresenceRowPass === true;
+  const rightFlankEventRootPresencePass =
+    rightFlank?.sampleEventRootPresenceRowPass === true;
+  const nonMidpointEventRootPresencePass =
+    leftFlankEventRootPresencePass || rightFlankEventRootPresencePass;
+  const midpointAbsentNonMidpointPresencePass =
+    midpointEventRootPresenceRowPass !== true &&
+    nonMidpointEventRootPresencePass;
+  const fullThreePointInteriorPresencePass =
+    leftFlankEventRootPresencePass &&
+    midpointEventRootPresenceRowPass &&
+    rightFlankEventRootPresencePass;
+  const diagonalLayerPairPass = isDiagonalLayerPairKey(row.pairKey);
+  const allEventRootDetailsZeroDelayPass =
+    allEventRootDetails.length > 0 &&
+    zeroDelayEventRootDetailCount === allEventRootDetails.length;
+  const fullThreePointNonzeroJacobianCandidatePass =
+    fullThreePointInteriorPresencePass &&
+    nonzeroJacobianEventRootSamples.length === sampleRows.length;
+  const fullThreePointDiagonalZeroDelayIdentityPass =
+    fullThreePointInteriorPresencePass &&
+    diagonalLayerPairPass &&
+    allEventRootDetailsZeroDelayPass &&
+    fullThreePointNonzeroJacobianCandidatePass !== true;
+
+  return {
+    pairKey: row.pairKey,
+    edgeIndex: row.edgeIndex,
+    eventRootKey: row.eventRootKey ?? null,
+    start: row.start,
+    end: row.end,
+    midpoint: row.midpoint,
+    width: row.width,
+    sourceLayer: row.sourceLayer ?? null,
+    receiverLayer: row.receiverLayer ?? null,
+    interiorSampleRowCount: sampleRows.length,
+    populatedInteriorSampleRowCount: populatedSampleRows.length,
+    eventRootPresenceInteriorSampleRowCount:
+      eventRootPresenceSampleRows.length,
+    leftFlankEventRootPresencePass,
+    midpointEventRootPresenceRowPass,
+    rightFlankEventRootPresencePass,
+    nonMidpointEventRootPresencePass,
+    midpointAbsentNonMidpointPresencePass,
+    anyInteriorSampleEventRootPresencePass:
+      eventRootPresenceSampleRows.length > 0,
+    fullThreePointInteriorPresencePass,
+    nonzeroJacobianEventRootSampleRowCount:
+      nonzeroJacobianEventRootSamples.length,
+    nonzeroJacobianEventRootDetailCount,
+    zeroDelayEventRootDetailCount,
+    diagonalLayerPairPass,
+    allEventRootDetailsZeroDelayPass,
+    fullThreePointNonzeroJacobianCandidatePass,
+    fullThreePointDiagonalZeroDelayIdentityPass,
+    acceptedDirectInteriorPresenceRowPass: false,
+    firstThreePointDirectInteriorReplayRowBlocker:
+      midpointAbsentNonMidpointPresencePass
+        ? "derive_interval_law_from_partial_non_midpoint_sample_support"
+        : fullThreePointNonzeroJacobianCandidatePass
+          ? "supply_interval_witnesses_for_three_point_nonzero_jacobian_row"
+          : fullThreePointDiagonalZeroDelayIdentityPass
+            ? "three_point_full_support_row_is_diagonal_zero_delay_identity"
+          : fullThreePointInteriorPresencePass
+            ? "classify_three_point_full_support_row"
+          : eventRootPresenceSampleRows.length > 0
+            ? "three_point_sample_support_partial_not_interval_law"
+            : "three_point_direct_replay_event_root_absent",
+    sampleRows,
+  };
+}
+
+async function createDirectInteriorPresenceMidpointReplayRow({
+  row,
+  midpoint,
+  currentLedgerRow,
+  midpointReplayContext,
+}) {
+  const eventRootKey = row.eventRootKey ?? null;
+  const defaultRow = {
+    sourceLayer: null,
+    receiverLayer: null,
+    sourcePathKey: null,
+    receiverPathKey: null,
+    sourceSegmentIndex: null,
+    receiverSegmentIndex: null,
+    sourceSegmentStartTime: null,
+    sourceSegmentEndTime: null,
+    receiverSegmentStartTime: null,
+    receiverSegmentEndTime: null,
+    directReplayInputPopulated: false,
+    midpointRootLedgerReplayPopulated: false,
+    midpointRootLedgerRowCount: 0,
+    midpointActiveRootDetailCount: 0,
+    midpointInactiveGapRowCount: 0,
+    midpointTransitionRowCount: 0,
+    midpointFailureRowCount: 0,
+    midpointActiveRootKeys: [],
+    midpointEventRootPresenceRowPass: false,
+    acceptedDirectInteriorPresenceRowPass: false,
+    firstDirectInteriorPresenceProbeRowBlocker:
+      "replay_fill_domain_midpoint_with_root_ledger_detail",
+  };
+  const requiredDomainPass =
+    row.width > ROOT_TOLERANCE &&
+    row.endpointPresence === "both_endpoints_inactive" &&
+    (row.gapKinds ?? []).includes("noTransitionBothInactive") &&
+    currentLedgerRow?.currentLedgerEventRootAbsencePass === true;
+  if (!requiredDomainPass) {
+    return {
+      ...defaultRow,
+      firstDirectInteriorPresenceProbeRowBlocker:
+        "classify_required_absence_bridge_probe_domain",
+    };
+  }
+  if (eventRootKey == null) {
+    return {
+      ...defaultRow,
+      firstDirectInteriorPresenceProbeRowBlocker: "event_root_key_missing",
+    };
+  }
+  if (
+    !midpointReplayContext?.client ||
+    !midpointReplayContext?.layerPathKeys ||
+    !midpointReplayContext?.pathRowsByPathKey
+  ) {
+    return {
+      ...defaultRow,
+      firstDirectInteriorPresenceProbeRowBlocker:
+        "midpoint_replay_context_missing",
+    };
+  }
+
+  const pairLayers = parseLayerPairKey(row.pairKey);
+  const sourcePathKey =
+    pairLayers?.sourceLayer != null
+      ? midpointReplayContext.layerPathKeys[pairLayers.sourceLayer]
+      : null;
+  const receiverPathKey =
+    pairLayers?.receiverLayer != null
+      ? midpointReplayContext.layerPathKeys[pairLayers.receiverLayer]
+      : null;
+  const sourceSegmentRow = findPathHistorySegmentAtTime({
+    pathRowsByPathKey: midpointReplayContext.pathRowsByPathKey,
+    pathKey: sourcePathKey,
+    time: midpoint,
+  });
+  const receiverSegmentRow = findPathHistorySegmentAtTime({
+    pathRowsByPathKey: midpointReplayContext.pathRowsByPathKey,
+    pathKey: receiverPathKey,
+    time: midpoint,
+  });
+  const directReplayInputPopulated =
+    pairLayers != null &&
+    Number.isFinite(midpoint) &&
+    sourceSegmentRow != null &&
+    receiverSegmentRow != null;
+  const inputProjection = {
+    sourceLayer: pairLayers?.sourceLayer ?? null,
+    receiverLayer: pairLayers?.receiverLayer ?? null,
+    sourcePathKey,
+    receiverPathKey,
+    sourceSegmentIndex: sourceSegmentRow?.segmentIndex ?? null,
+    receiverSegmentIndex: receiverSegmentRow?.segmentIndex ?? null,
+    sourceSegmentStartTime: sourceSegmentRow?.startTime ?? null,
+    sourceSegmentEndTime: sourceSegmentRow?.endTime ?? null,
+    receiverSegmentStartTime: receiverSegmentRow?.startTime ?? null,
+    receiverSegmentEndTime: receiverSegmentRow?.endTime ?? null,
+    directReplayInputPopulated,
+  };
+  if (!directReplayInputPopulated) {
+    return {
+      ...defaultRow,
+      ...inputProjection,
+      firstDirectInteriorPresenceProbeRowBlocker:
+        pairLayers == null
+          ? "pair_key_unresolved"
+          : "midpoint_path_history_segment_missing",
+    };
+  }
+
+  try {
+    const response = await midpointReplayContext.client.buildRootLedgerDetailF64({
+      source: pathHistoryRowToCausalSegment(sourceSegmentRow),
+      receiver: pathHistoryRowToCausalSegment(receiverSegmentRow),
+      hitTime: midpoint,
+      signalSpeed: FIELD_SPEED,
+      rootTolerance: ROOT_TOLERANCE,
+      maxIterations: 128,
+      scanSubdivisions: 128,
+      maxRoots: 8,
+      maxHits: 8,
+      maxRows: 24,
+    });
+    const responseRows = response.rows ?? [];
+    const activeRows = responseRows.filter((detailRow) => detailRow.entryKind === 1);
+    const inactiveGapRows = responseRows.filter(
+      (detailRow) => detailRow.entryKind === 2
+    );
+    const transitionRows = responseRows.filter(
+      (detailRow) => detailRow.entryKind === 4
+    );
+    const failureRows = responseRows.filter((detailRow) => detailRow.entryKind === 5);
+    const midpointActiveRootKeys = uniqueSortedNumbers(
+      activeRows.map((detailRow) => detailRow.rootKey)
+    );
+    const eventRootRows = activeRows.filter(
+      (detailRow) => detailRow.rootKey === eventRootKey
+    );
+    const midpointEventRootPresenceRowPass = eventRootRows.length > 0;
+    return {
+      ...defaultRow,
+      ...inputProjection,
+      midpointRootLedgerReplayPopulated: true,
+      midpointRootLedgerRowCount: responseRows.length,
+      midpointActiveRootDetailCount: activeRows.length,
+      midpointInactiveGapRowCount: inactiveGapRows.length,
+      midpointTransitionRowCount: transitionRows.length,
+      midpointFailureRowCount: failureRows.length,
+      midpointActiveRootKeys,
+      midpointEventRootPresenceRowPass,
+      acceptedDirectInteriorPresenceRowPass: false,
+      maxMidpointActiveNormalizedResidual: maxFinite(
+        activeRows.map((detailRow) => Math.abs(detailRow.normalizedResidual))
+      ),
+      eventRootDetailRows: eventRootRows
+        .slice(0, 4)
+        .map(projectRootLedgerDetailForHinge),
+      activeRootDetailRowSamples: activeRows
+        .slice(0, 4)
+        .map(projectRootLedgerDetailForHinge),
+      firstDirectInteriorPresenceProbeRowBlocker:
+        midpointEventRootPresenceRowPass
+          ? "bind_midpoint_presence_rows_to_absence_bridge_interval"
+          : "midpoint_root_ledger_event_root_absent",
+    };
+  } catch (error) {
+    return {
+      ...defaultRow,
+      ...inputProjection,
+      midpointReplayError: error instanceof Error ? error.message : String(error),
+      firstDirectInteriorPresenceProbeRowBlocker:
+        "midpoint_root_ledger_replay_failed",
+    };
+  }
+}
+
+async function createEventRootAffineBracketAbsenceBridgeMidpointPresenceIntervalBindingAudit({
+  probeRows,
+  midpointReplayContext,
+}) {
+  const midpointPresenceRows = probeRows.filter(
+    (row) => row.midpointEventRootPresenceRowPass
+  );
+  const rows = [];
+  for (const row of midpointPresenceRows) {
+    rows.push(
+      await createMidpointPresenceIntervalBindingAuditRow({
+        row,
+        midpointReplayContext,
+      })
+    );
+  }
+  const fullThreePointRows = rows.filter(
+    (row) => row.fullThreePointInteriorPresencePass
+  );
+  const acceptedRows = rows.filter(
+    (row) => row.acceptedMidpointPresenceIntervalBindingRowPass
+  );
+  const flankSupportMissingRows = rows.filter(
+    (row) => !row.leftFlankEventRootPresencePass || !row.rightFlankEventRootPresencePass
+  );
+  const populatedRows = rows.filter(
+    (row) => row.populatedInteriorSampleRowCount === row.interiorSampleRowCount
+  );
+  const denseInteriorSupportAudit =
+    await createMidpointPresenceDenseInteriorSupportAudit({
+      rows,
+      midpointReplayContext,
+    });
+  const continuousIntervalLawSourceAudit =
+    denseInteriorSupportAudit?.continuousIntervalLawSourceAudit ?? null;
+  const rowsWithFullDenseInteriorPresence =
+    denseInteriorSupportAudit?.rowsWithFullDenseInteriorPresenceCount ?? 0;
+  const acceptedContinuousIntervalLawRows =
+    continuousIntervalLawSourceAudit?.acceptedContinuousIntervalLawRowCount ?? 0;
+  return {
+    schema:
+      "aaa-tri-binary-event-root-affine-bracket-absence-bridge-midpoint-presence-interval-binding-audit.v1",
+    status: midpointPresenceRows.length === 0
+      ? "event_root_affine_bracket_midpoint_presence_interval_binding_no_midpoint_presence_domain"
+      : acceptedRows.length === midpointPresenceRows.length
+        ? "event_root_affine_bracket_midpoint_presence_interval_binding_accepted"
+        : populatedRows.length < midpointPresenceRows.length
+          ? "event_root_affine_bracket_midpoint_presence_interval_binding_sample_replay_incomplete"
+          : fullThreePointRows.length === 0
+            ? "event_root_affine_bracket_midpoint_presence_interval_binding_flank_support_missing"
+            : "event_root_affine_bracket_midpoint_presence_interval_binding_sampled_support_continuity_law_missing",
+    claimLevel:
+      "three-point interior sampling audit for binding midpoint event-root presence to a positive-width absence bridge; not a continuous interval proof",
+    retainedBranchClaim: false,
+    rowCount: rows.length,
+    midpointPresenceCandidateRowCount: midpointPresenceRows.length,
+    interiorSampleFractions: [0.25, 0.5, 0.75],
+    interiorSampleRowCount: rows.reduce(
+      (sum, row) => sum + row.interiorSampleRowCount,
+      0
+    ),
+    populatedInteriorSampleRowCount: rows.reduce(
+      (sum, row) => sum + row.populatedInteriorSampleRowCount,
+      0
+    ),
+    eventRootPresenceInteriorSampleRowCount: rows.reduce(
+      (sum, row) => sum + row.eventRootPresenceInteriorSampleRowCount,
+      0
+    ),
+    rowsWithLeftFlankPresenceCount: rows.filter(
+      (row) => row.leftFlankEventRootPresencePass
+    ).length,
+    rowsWithRightFlankPresenceCount: rows.filter(
+      (row) => row.rightFlankEventRootPresencePass
+    ).length,
+    rowsWithBothFlankPresenceCount: rows.filter(
+      (row) => row.leftFlankEventRootPresencePass && row.rightFlankEventRootPresencePass
+    ).length,
+    rowsWithFullThreePointInteriorPresenceCount: fullThreePointRows.length,
+    denseInteriorSupportAuditStatus:
+      denseInteriorSupportAudit?.status ?? null,
+    continuousIntervalLawSourceAuditStatus:
+      continuousIntervalLawSourceAudit?.status ?? null,
+    rowsWithFullDenseInteriorPresenceCount:
+      rowsWithFullDenseInteriorPresence,
+    acceptedContinuousIntervalLawRowCount:
+      acceptedContinuousIntervalLawRows,
+    firstContinuousIntervalLawSourceBlocker:
+      continuousIntervalLawSourceAudit
+        ?.firstContinuousIntervalLawSourceBlocker ?? null,
+    denseInteriorSampleRowCount:
+      denseInteriorSupportAudit?.denseInteriorSampleRowCount ?? 0,
+    denseInteriorSampleEventRootPresenceRowCount:
+      denseInteriorSupportAudit
+        ?.eventRootPresenceDenseInteriorSampleRowCount ?? 0,
+    acceptedMidpointPresenceIntervalBindingRowCount: acceptedRows.length,
+    firstMidpointPresenceIntervalBindingBlocker:
+      acceptedRows.length === midpointPresenceRows.length &&
+      midpointPresenceRows.length > 0
+        ? null
+        : rowsWithFullDenseInteriorPresence > 0
+          ? continuousIntervalLawSourceAudit
+              ?.firstContinuousIntervalLawSourceBlocker ??
+            "derive_continuous_interval_law_from_dense_sampled_midpoint_presence"
+        : fullThreePointRows.length > 0
+          ? "derive_continuous_interval_law_from_sampled_midpoint_presence"
+          : flankSupportMissingRows.length > 0
+            ? "midpoint_presence_flank_support_missing"
+            : "bind_midpoint_presence_rows_to_absence_bridge_interval",
+    denseInteriorSupportAudit,
+    continuousIntervalLawSourceAudit,
+    rowSamples: rows.slice(0, 24),
+    rows,
+    retainedLimitation:
+      rowsWithFullDenseInteriorPresence > 0
+        ? "Dense interior replay preserves event-root support on a nonempty subset of midpoint-present absence bridges, but sampled support is still not a continuous fill law or retained row-set binding."
+        : "This audit samples only finite interior points of midpoint-present absence bridges. Missing dense support rejects the midpoint shortcut as an interval law under the current sample set; populated support would still require a continuous fill law before retained continuity acceptance.",
+  };
+}
+
+async function createMidpointPresenceDenseInteriorSupportAudit({
+  rows,
+  midpointReplayContext,
+}) {
+  const denseFractions = createDenseInteriorSampleFractions(16);
+  const auditRows = [];
+  for (const row of rows) {
+    auditRows.push(
+      await createMidpointPresenceDenseInteriorSupportAuditRow({
+        row,
+        denseFractions,
+        midpointReplayContext,
+      })
+    );
+  }
+  const populatedRows = auditRows.filter(
+    (row) => row.populatedDenseInteriorSampleRowCount === row.denseInteriorSampleRowCount
+  );
+  const fullDenseRows = auditRows.filter(
+    (row) => row.fullDenseInteriorPresencePass
+  );
+  const acceptedRows = auditRows.filter(
+    (row) => row.acceptedDenseInteriorSupportRowPass
+  );
+  const continuousIntervalLawSourceAudit =
+    createMidpointPresenceContinuousIntervalLawSourceAudit({
+      rows: auditRows,
+    });
+  return {
+    schema:
+      "aaa-tri-binary-event-root-affine-bracket-absence-bridge-midpoint-presence-dense-interior-support-audit.v1",
+    status: rows.length === 0
+      ? "event_root_affine_bracket_midpoint_presence_dense_support_no_domain"
+      : acceptedRows.length === rows.length
+        ? "event_root_affine_bracket_midpoint_presence_dense_support_accepted"
+        : populatedRows.length < rows.length
+          ? "event_root_affine_bracket_midpoint_presence_dense_support_sample_replay_incomplete"
+          : fullDenseRows.length === rows.length
+            ? "event_root_affine_bracket_midpoint_presence_dense_support_full_sampled_support_continuity_law_missing"
+            : fullDenseRows.length > 0
+              ? "event_root_affine_bracket_midpoint_presence_dense_support_partial_sampled_support_continuity_law_missing"
+              : "event_root_affine_bracket_midpoint_presence_dense_support_missing",
+    claimLevel:
+      "dense finite interior sampling audit for midpoint-present absence bridges; not a continuous interval proof",
+    retainedBranchClaim: false,
+    rowCount: auditRows.length,
+    denseInteriorSampleFractions: denseFractions,
+    denseInteriorSampleRowCount: auditRows.reduce(
+      (sum, row) => sum + row.denseInteriorSampleRowCount,
+      0
+    ),
+    populatedDenseInteriorSampleRowCount: auditRows.reduce(
+      (sum, row) => sum + row.populatedDenseInteriorSampleRowCount,
+      0
+    ),
+    eventRootPresenceDenseInteriorSampleRowCount: auditRows.reduce(
+      (sum, row) => sum + row.eventRootPresenceDenseInteriorSampleRowCount,
+      0
+    ),
+    rowsWithFullDenseInteriorPresenceCount: fullDenseRows.length,
+    acceptedDenseInteriorSupportRowCount: acceptedRows.length,
+    rowsWithDenseInteriorGapCount: auditRows.filter(
+      (row) => row.fullDenseInteriorPresencePass !== true
+    ).length,
+    continuousIntervalLawSourceAuditStatus:
+      continuousIntervalLawSourceAudit.status,
+    certifiedContinuousIntervalWitnessRowCount:
+      continuousIntervalLawSourceAudit.certifiedIntervalWitnessRowCount,
+    acceptedContinuousIntervalLawRowCount:
+      continuousIntervalLawSourceAudit.acceptedContinuousIntervalLawRowCount,
+    firstContinuousIntervalLawSourceBlocker:
+      continuousIntervalLawSourceAudit.firstContinuousIntervalLawSourceBlocker,
+    firstDenseInteriorSupportBlocker:
+      acceptedRows.length === rows.length && rows.length > 0
+        ? null
+        : fullDenseRows.length > 0
+          ? continuousIntervalLawSourceAudit
+              .firstContinuousIntervalLawSourceBlocker ??
+            "derive_continuous_interval_law_from_dense_sampled_midpoint_presence"
+          : "dense_sampled_midpoint_presence_support_missing",
+    continuousIntervalLawSourceAudit,
+    rowSamples: auditRows.slice(0, 24),
+    rows: auditRows,
+    retainedLimitation:
+      "Dense finite sampling can strengthen or falsify the midpoint-support route, but it remains sampled evidence. A continuous interval law or retained row-set binding is still required before these rows can count as accepted absence-bridge fills.",
+  };
+}
+
+function createMidpointPresenceContinuousIntervalLawSourceAudit({ rows }) {
+  const auditRows = rows.map(createContinuousIntervalLawSourceAuditRow);
+  const denseSupportRows = auditRows.filter(
+    (row) => row.denseSampleSupportCandidatePass
+  );
+  const denseGapRows = auditRows.filter(
+    (row) => row.denseSampleSupportCandidatePass !== true
+  );
+  const certifiedRows = auditRows.filter(
+    (row) => row.certifiedIntervalWitnessPass
+  );
+  const acceptedRows = auditRows.filter(
+    (row) => row.acceptedContinuousIntervalLawRowPass
+  );
+  const missingWitnessFieldIds = unionStrings(
+    auditRows.flatMap((row) => row.missingWitnessFieldIds ?? [])
+  );
+  return {
+    schema:
+      "aaa-tri-binary-event-root-affine-bracket-midpoint-presence-continuous-interval-law-source-audit.v1",
+    status: rows.length === 0
+      ? "event_root_affine_bracket_midpoint_presence_continuous_interval_law_source_no_domain"
+      : acceptedRows.length === rows.length
+        ? "event_root_affine_bracket_midpoint_presence_continuous_interval_law_source_accepted"
+        : denseSupportRows.length > 0 && denseGapRows.length > 0
+          ? "event_root_affine_bracket_midpoint_presence_continuous_interval_law_source_partial_dense_support_interval_witness_missing"
+          : denseSupportRows.length > 0
+            ? "event_root_affine_bracket_midpoint_presence_continuous_interval_law_source_dense_support_interval_witness_missing"
+            : "event_root_affine_bracket_midpoint_presence_continuous_interval_law_source_dense_support_missing",
+    claimLevel:
+      "fail-closed audit for promoting dense sampled event-root support to a continuous positive-width interval law; not retained continuity acceptance",
+    retainedBranchClaim: false,
+    rowCount: auditRows.length,
+    denseSupportCandidateRowCount: denseSupportRows.length,
+    denseGapRowCount: denseGapRows.length,
+    requiredWitnessFieldIds: createContinuousIntervalWitnessFieldIds(),
+    missingWitnessFieldIds,
+    certifiedIntervalWitnessRowCount: certifiedRows.length,
+    acceptedContinuousIntervalLawRowCount: acceptedRows.length,
+    rowsWithNonzeroJacobianMarginCount: auditRows.filter(
+      (row) => row.nonzeroJacobianMarginPass
+    ).length,
+    rowsWithCommonEventRootKeyCount: auditRows.filter(
+      (row) => row.commonEventRootKeyPass
+    ).length,
+    firstContinuousIntervalLawSourceBlocker:
+      acceptedRows.length === rows.length && rows.length > 0
+        ? null
+        : denseSupportRows.length > 0
+          ? "continuous_interval_witness_fields_missing"
+          : denseGapRows.length > 0
+            ? "dense_sampled_event_root_absence_present"
+            : "dense_sampled_midpoint_presence_support_missing",
+    secondaryBlockers: [
+      ...(denseGapRows.length > 0
+        ? ["resolve_dense_sampled_event_root_gap_before_global_interval_law"]
+        : []),
+      ...(missingWitnessFieldIds.length > 0
+        ? ["supply_interval_witness_fields_for_dense_supported_rows"]
+        : []),
+      "bind_any_interval_law_to_retained_row_set",
+    ],
+    rowSamples: auditRows.slice(0, 24),
+    rows: auditRows,
+    retainedLimitation:
+      "Dense sampled support does not by itself imply a positive-width root sheet. Acceptance still needs explicit interval witnesses such as endpoint sign brackets, monotonic or derivative bounds, root-sheet enclosures, nonzero Jacobian margins where the implicit-function route is used, and binding to the retained row set.",
+  };
+}
+
+function createDirectMidpointIntervalRouteClassificationAudit({
+  requiredDirectInteriorProbeRowCount,
+  midpointPresenceRowCount,
+  midpointAbsenceRowCount,
+  continuousIntervalLawSourceAudit,
+}) {
+  const rows = continuousIntervalLawSourceAudit?.rows ?? [];
+  const denseSupportRows = rows.filter(
+    (row) => row.denseSampleSupportCandidatePass
+  );
+  const denseGapRows = rows.filter(
+    (row) => row.denseSampleSupportCandidatePass !== true
+  );
+  const acceptedRows = rows.filter(
+    (row) => row.acceptedContinuousIntervalLawRowPass
+  );
+  const implicitFunctionRows = rows.filter(
+    (row) => row.implicitFunctionIntervalCandidatePass
+  );
+  const diagonalZeroDelayRows = rows.filter(
+    (row) => row.diagonalZeroDelayIdentityCandidatePass
+  );
+  const nonzeroJacobianDenseGapRows = denseGapRows.filter(
+    (row) => row.nonzeroJacobianMarginPass
+  );
+  const zeroJacobianDenseSupportRows = denseSupportRows.filter(
+    (row) => row.nonzeroJacobianMarginPass !== true
+  );
+  const directMidpointIntervalRouteRejectedPass =
+    requiredDirectInteriorProbeRowCount > 0 &&
+    acceptedRows.length === 0 &&
+    midpointAbsenceRowCount > 0 &&
+    denseSupportRows.length > 0 &&
+    implicitFunctionRows.length === 0 &&
+    diagonalZeroDelayRows.length === denseSupportRows.length &&
+    nonzeroJacobianDenseGapRows.length === denseGapRows.length &&
+    denseGapRows.length > 0;
+  return {
+    schema:
+      "aaa-tri-binary-event-root-affine-bracket-direct-midpoint-interval-route-classification-audit.v1",
+    status: rows.length === 0
+      ? "event_root_affine_bracket_direct_midpoint_interval_route_no_midpoint_presence_domain"
+      : acceptedRows.length === requiredDirectInteriorProbeRowCount &&
+          requiredDirectInteriorProbeRowCount > 0
+        ? "event_root_affine_bracket_direct_midpoint_interval_route_accepted"
+        : directMidpointIntervalRouteRejectedPass
+          ? "event_root_affine_bracket_direct_midpoint_interval_route_rejected_zero_jacobian_identity_dense_gap_and_midpoint_absence"
+          : implicitFunctionRows.length === 0 && denseSupportRows.length > 0
+            ? "event_root_affine_bracket_direct_midpoint_interval_route_implicit_function_source_absent"
+            : "event_root_affine_bracket_direct_midpoint_interval_route_incomplete_or_unclassified",
+    claimLevel:
+      "classification of the current direct midpoint interval route; rejects only the present sampled-evidence route, not all possible absence-bridge fill laws",
+    retainedBranchClaim: false,
+    requiredDirectInteriorProbeRowCount,
+    midpointPresenceRowCount,
+    midpointAbsenceRowCount,
+    continuousIntervalLawSourceAuditStatus:
+      continuousIntervalLawSourceAudit?.status ?? null,
+    denseSupportCandidateRowCount: denseSupportRows.length,
+    denseGapRowCount: denseGapRows.length,
+    acceptedContinuousIntervalLawRowCount: acceptedRows.length,
+    implicitFunctionIntervalCandidateRowCount: implicitFunctionRows.length,
+    diagonalZeroDelayIdentityCandidateRowCount: diagonalZeroDelayRows.length,
+    zeroJacobianDenseSupportRowCount: zeroJacobianDenseSupportRows.length,
+    nonzeroJacobianDenseGapRowCount: nonzeroJacobianDenseGapRows.length,
+    directMidpointIntervalRouteRejectedPass,
+    firstDirectMidpointIntervalRouteBlocker:
+      acceptedRows.length === requiredDirectInteriorProbeRowCount &&
+      requiredDirectInteriorProbeRowCount > 0
+        ? null
+        : directMidpointIntervalRouteRejectedPass
+          ? "direct_midpoint_interval_route_rejected_zero_jacobian_identity_dense_gap_and_midpoint_absence"
+          : implicitFunctionRows.length === 0 && denseSupportRows.length > 0
+            ? "implicit_function_interval_source_absent_on_dense_supported_rows"
+            : continuousIntervalLawSourceAudit
+                ?.firstContinuousIntervalLawSourceBlocker ??
+              "continuous_interval_witness_fields_missing",
+    routeRows: [
+      {
+        routeId: "implicit_function_interval_route",
+        routeClaim:
+          "A dense-supported row with a nonzero Jacobian margin and interval witnesses supplies a continuous root sheet.",
+        candidateRowCount: implicitFunctionRows.length,
+        acceptedRoutePass: false,
+        firstRouteBlocker:
+          implicitFunctionRows.length > 0
+            ? "supply_interval_witness_fields_and_retained_binding"
+            : "no_dense_supported_row_has_nonzero_jacobian_margin",
+      },
+      {
+        routeId: "diagonal_zero_delay_identity_route",
+        routeClaim:
+          "Dense-supported diagonal zero-delay identity rows alone supply the absence-bridge interval law.",
+        candidateRowCount: diagonalZeroDelayRows.length,
+        acceptedRoutePass: false,
+        firstRouteBlocker:
+          diagonalZeroDelayRows.length > 0
+            ? "zero_jacobian_diagonal_identity_rows_are_not_positive_width_root_sheet_witnesses"
+            : "diagonal_zero_delay_identity_rows_missing",
+      },
+      {
+        routeId: "non_diagonal_dense_gap_route",
+        routeClaim:
+          "The non-diagonal row supplies a nonzero-Jacobian interval route.",
+        candidateRowCount: nonzeroJacobianDenseGapRows.length,
+        acceptedRoutePass: false,
+        firstRouteBlocker:
+          nonzeroJacobianDenseGapRows.length > 0
+            ? "non_diagonal_nonzero_jacobian_row_has_dense_event_root_gap"
+            : "non_diagonal_nonzero_jacobian_row_missing",
+      },
+      {
+        routeId: "midpoint_absent_rows",
+        routeClaim:
+          "Rows without midpoint event-root presence are supplied by the direct midpoint interval route.",
+        candidateRowCount: midpointAbsenceRowCount,
+        acceptedRoutePass: false,
+        firstRouteBlocker:
+          midpointAbsenceRowCount > 0
+            ? "midpoint_absent_rows_need_non_midpoint_dynamic_fill_law"
+            : null,
+      },
+    ],
+    retainedLimitation:
+      "The current direct midpoint evidence is split between dense-supported diagonal zero-delay rows and a non-diagonal row that has a dense event-root gap. Since no row combines dense support with a nonzero-Jacobian interval source, the current direct midpoint interval route is rejected as a global absence-bridge fill law under present evidence.",
+  };
+}
+
+function createContinuousIntervalLawSourceAuditRow(row) {
+  const denseSampleRows = row.denseSampleRows ?? [];
+  const eventRootDetailRows = denseSampleRows.flatMap(
+    (sample) => sample.eventRootDetailRows ?? []
+  );
+  const eventRootDetailRowCount = eventRootDetailRows.length;
+  const uniqueEventRootKeys = uniqueSortedNumbers(
+    eventRootDetailRows.map((detailRow) => detailRow.rootKey)
+  );
+  const minAbsJacobian = minFinite(
+    eventRootDetailRows.map((detailRow) => Math.abs(detailRow.jacobian))
+  );
+  const denseSampleSupportCandidatePass =
+    row.fullDenseInteriorPresencePass === true;
+  const commonEventRootKeyPass =
+    row.eventRootKey != null &&
+    uniqueEventRootKeys.length === 1 &&
+    uniqueEventRootKeys[0] === row.eventRootKey;
+  const nonzeroJacobianMarginPass =
+    Number.isFinite(minAbsJacobian) && minAbsJacobian > ROOT_TOLERANCE;
+  const diagonalLayerPairPass = isDiagonalLayerPairKey(row.pairKey);
+  const zeroDelayEventRootDetailCount = eventRootDetailRows.filter(
+    (detailRow) => Math.abs(detailRow.delay ?? Number.NaN) <= ROOT_TOLERANCE
+  ).length;
+  const allEventRootDetailsZeroDelayPass =
+    eventRootDetailRowCount > 0 &&
+    zeroDelayEventRootDetailCount === eventRootDetailRowCount;
+  const implicitFunctionIntervalCandidatePass =
+    denseSampleSupportCandidatePass && nonzeroJacobianMarginPass;
+  const diagonalZeroDelayIdentityCandidatePass =
+    denseSampleSupportCandidatePass &&
+    diagonalLayerPairPass &&
+    allEventRootDetailsZeroDelayPass &&
+    nonzeroJacobianMarginPass !== true;
+  const witnessChecks = [
+    {
+      witnessFieldId: "root_sheet_interval_enclosure",
+      witnessPresent: hasAnyNestedField(eventRootDetailRows, [
+        "rootInterval",
+        "rootSheetInterval",
+        "emissionTimeInterval",
+      ]),
+    },
+    {
+      witnessFieldId: "endpoint_sign_bracket",
+      witnessPresent: hasAnyNestedField(eventRootDetailRows, [
+        "endpointSignBracket",
+        "leftResidualSign",
+        "rightResidualSign",
+      ]),
+    },
+    {
+      witnessFieldId: "residual_monotonicity_or_derivative_bound",
+      witnessPresent: hasAnyNestedField(eventRootDetailRows, [
+        "residualDerivativeBound",
+        "monotonicityCertificate",
+        "derivativeBound",
+      ]),
+    },
+    {
+      witnessFieldId: "segment_validity_interval",
+      witnessPresent: hasAnyNestedField(denseSampleRows, [
+        "sourceSegmentStartTime",
+        "sourceSegmentEndTime",
+        "receiverSegmentStartTime",
+        "receiverSegmentEndTime",
+      ]),
+    },
+    {
+      witnessFieldId: "nonzero_jacobian_margin",
+      witnessPresent: nonzeroJacobianMarginPass,
+    },
+    {
+      witnessFieldId: "retained_row_set_binding",
+      witnessPresent: row.acceptedDenseInteriorSupportRowPass === true,
+    },
+  ];
+  const missingWitnessFieldIds = witnessChecks
+    .filter((check) => check.witnessPresent !== true)
+    .map((check) => check.witnessFieldId);
+  const certifiedIntervalWitnessPass =
+    denseSampleSupportCandidatePass &&
+    commonEventRootKeyPass &&
+    missingWitnessFieldIds.length === 0;
+  return {
+    pairKey: row.pairKey,
+    edgeIndex: row.edgeIndex,
+    eventRootKey: row.eventRootKey ?? null,
+    start: row.start,
+    end: row.end,
+    midpoint: row.midpoint,
+    width: row.width,
+    sourceLayer: row.sourceLayer ?? null,
+    receiverLayer: row.receiverLayer ?? null,
+    denseInteriorSampleRowCount: row.denseInteriorSampleRowCount ?? 0,
+    eventRootPresenceDenseInteriorSampleRowCount:
+      row.eventRootPresenceDenseInteriorSampleRowCount ?? 0,
+    absentDenseSampleCount: row.absentDenseSampleCount ?? 0,
+    denseSampleSupportCandidatePass,
+    eventRootDetailRowCount,
+    uniqueEventRootKeys,
+    commonEventRootKeyPass,
+    minAbsJacobian,
+    nonzeroJacobianMarginPass,
+    diagonalLayerPairPass,
+    zeroDelayEventRootDetailCount,
+    allEventRootDetailsZeroDelayPass,
+    implicitFunctionIntervalCandidatePass,
+    diagonalZeroDelayIdentityCandidatePass,
+    witnessChecks,
+    missingWitnessFieldIds,
+    certifiedIntervalWitnessPass,
+    acceptedContinuousIntervalLawRowPass: false,
+    firstContinuousIntervalLawRowBlocker:
+      denseSampleSupportCandidatePass !== true
+        ? "dense_sampled_event_root_absence_present"
+        : commonEventRootKeyPass !== true
+          ? "dense_sampled_event_root_key_not_common"
+          : certifiedIntervalWitnessPass !== true
+            ? "continuous_interval_witness_fields_missing"
+            : "bind_interval_law_to_retained_row_set",
+  };
+}
+
+function createContinuousIntervalWitnessFieldIds() {
+  return [
+    "root_sheet_interval_enclosure",
+    "endpoint_sign_bracket",
+    "residual_monotonicity_or_derivative_bound",
+    "segment_validity_interval",
+    "nonzero_jacobian_margin",
+    "retained_row_set_binding",
+  ];
+}
+
+function hasAnyNestedField(rows, fieldNames) {
+  return rows.some((row) =>
+    fieldNames.some((fieldName) => row?.[fieldName] != null)
+  );
+}
+
+function createDenseInteriorSampleFractions(denominator) {
+  const fractions = [];
+  for (let numerator = 1; numerator < denominator; numerator += 1) {
+    fractions.push(numerator / denominator);
+  }
+  return fractions;
+}
+
+async function createMidpointPresenceDenseInteriorSupportAuditRow({
+  row,
+  denseFractions,
+  midpointReplayContext,
+}) {
+  const denseSampleRows = [];
+  for (const sampleFraction of denseFractions) {
+    const sampleTime = row.start + row.width * sampleFraction;
+    const sampleRole =
+      sampleFraction === 0.5 ? "dense_midpoint" : "dense_interior";
+    if (sampleFraction === 0.5) {
+      const existingMidpointSample = row.sampleRows?.find(
+        (sample) => sample.sampleRole === "midpoint"
+      );
+      denseSampleRows.push({
+        ...(existingMidpointSample ??
+          createMidpointPresenceIntervalBindingMidpointSample(row)),
+        sampleRole,
+      });
+      continue;
+    }
+    denseSampleRows.push(
+      await createMidpointPresenceIntervalBindingSample({
+        row,
+        sampleFraction,
+        sampleRole,
+        sampleTime,
+        midpointReplayContext,
+      })
+    );
+  }
+  const populatedSampleRows = denseSampleRows.filter(
+    (sample) => sample.sampleRootLedgerReplayPopulated
+  );
+  const eventRootPresenceSampleRows = denseSampleRows.filter(
+    (sample) => sample.sampleEventRootPresenceRowPass
+  );
+  const absentSampleRows = denseSampleRows.filter(
+    (sample) => sample.sampleEventRootPresenceRowPass !== true
+  );
+  const fullDenseInteriorPresencePass =
+    denseSampleRows.length > 0 &&
+    eventRootPresenceSampleRows.length === denseSampleRows.length;
+  return {
+    pairKey: row.pairKey,
+    edgeIndex: row.edgeIndex,
+    eventRootKey: row.eventRootKey ?? null,
+    start: row.start,
+    end: row.end,
+    midpoint: row.midpoint,
+    width: row.width,
+    sourceLayer: row.sourceLayer ?? null,
+    receiverLayer: row.receiverLayer ?? null,
+    denseInteriorSampleRowCount: denseSampleRows.length,
+    populatedDenseInteriorSampleRowCount: populatedSampleRows.length,
+    eventRootPresenceDenseInteriorSampleRowCount:
+      eventRootPresenceSampleRows.length,
+    fullDenseInteriorPresencePass,
+    acceptedDenseInteriorSupportRowPass: false,
+    firstAbsentDenseSample: absentSampleRows[0] ?? null,
+    absentDenseSampleCount: absentSampleRows.length,
+    firstDenseInteriorSupportRowBlocker:
+      fullDenseInteriorPresencePass
+        ? "derive_continuous_interval_law_from_dense_sampled_midpoint_presence"
+        : "dense_sampled_event_root_absence_present",
+    denseSampleRows,
+  };
+}
+
+async function createMidpointPresenceIntervalBindingAuditRow({
+  row,
+  midpointReplayContext,
+}) {
+  const sampleFractions = [0.25, 0.5, 0.75];
+  const sampleRows = [];
+  for (const sampleFraction of sampleFractions) {
+    const sampleTime = row.start + row.width * sampleFraction;
+    const sampleRole =
+      sampleFraction === 0.25
+        ? "left_flank"
+        : sampleFraction === 0.75
+          ? "right_flank"
+          : "midpoint";
+    if (sampleFraction === 0.5) {
+      sampleRows.push(createMidpointPresenceIntervalBindingMidpointSample(row));
+      continue;
+    }
+    sampleRows.push(
+      await createMidpointPresenceIntervalBindingSample({
+        row,
+        sampleFraction,
+        sampleRole,
+        sampleTime,
+        midpointReplayContext,
+      })
+    );
+  }
+  const populatedSampleRows = sampleRows.filter(
+    (sample) => sample.sampleRootLedgerReplayPopulated
+  );
+  const eventRootPresenceSampleRows = sampleRows.filter(
+    (sample) => sample.sampleEventRootPresenceRowPass
+  );
+  const leftFlank = sampleRows.find((sample) => sample.sampleRole === "left_flank");
+  const midpoint = sampleRows.find((sample) => sample.sampleRole === "midpoint");
+  const rightFlank = sampleRows.find(
+    (sample) => sample.sampleRole === "right_flank"
+  );
+  const leftFlankEventRootPresencePass =
+    leftFlank?.sampleEventRootPresenceRowPass === true;
+  const midpointEventRootPresenceRowPass =
+    midpoint?.sampleEventRootPresenceRowPass === true;
+  const rightFlankEventRootPresencePass =
+    rightFlank?.sampleEventRootPresenceRowPass === true;
+  const fullThreePointInteriorPresencePass =
+    leftFlankEventRootPresencePass &&
+    midpointEventRootPresenceRowPass &&
+    rightFlankEventRootPresencePass;
+  return {
+    pairKey: row.pairKey,
+    edgeIndex: row.edgeIndex,
+    eventRootKey: row.eventRootKey ?? null,
+    start: row.start,
+    end: row.end,
+    midpoint: row.midpoint,
+    width: row.width,
+    sourceLayer: row.sourceLayer ?? null,
+    receiverLayer: row.receiverLayer ?? null,
+    sourcePathKey: row.sourcePathKey ?? null,
+    receiverPathKey: row.receiverPathKey ?? null,
+    interiorSampleRowCount: sampleRows.length,
+    populatedInteriorSampleRowCount: populatedSampleRows.length,
+    eventRootPresenceInteriorSampleRowCount:
+      eventRootPresenceSampleRows.length,
+    leftFlankEventRootPresencePass,
+    midpointEventRootPresenceRowPass,
+    rightFlankEventRootPresencePass,
+    fullThreePointInteriorPresencePass,
+    acceptedMidpointPresenceIntervalBindingRowPass: false,
+    firstMidpointPresenceIntervalBindingRowBlocker:
+      fullThreePointInteriorPresencePass
+        ? "derive_continuous_interval_law_from_sampled_midpoint_presence"
+        : "midpoint_presence_flank_support_missing",
+    sampleRows,
+  };
+}
+
+function createMidpointPresenceIntervalBindingMidpointSample(row) {
+  return {
+    sampleRole: "midpoint",
+    sampleFraction: 0.5,
+    sampleTime: row.midpoint,
+    sourceSegmentIndex: row.sourceSegmentIndex ?? null,
+    receiverSegmentIndex: row.receiverSegmentIndex ?? null,
+    sampleRootLedgerReplayPopulated:
+      row.midpointRootLedgerReplayPopulated === true,
+    sampleRootLedgerRowCount: row.midpointRootLedgerRowCount ?? 0,
+    sampleActiveRootDetailCount: row.midpointActiveRootDetailCount ?? 0,
+    sampleInactiveGapRowCount: row.midpointInactiveGapRowCount ?? 0,
+    sampleTransitionRowCount: row.midpointTransitionRowCount ?? 0,
+    sampleFailureRowCount: row.midpointFailureRowCount ?? 0,
+    sampleActiveRootKeys: row.midpointActiveRootKeys ?? [],
+    sampleEventRootPresenceRowPass:
+      row.midpointEventRootPresenceRowPass === true,
+    maxSampleActiveNormalizedResidual:
+      row.maxMidpointActiveNormalizedResidual ?? null,
+    eventRootDetailRows: row.eventRootDetailRows ?? [],
+    activeRootDetailRowSamples: row.activeRootDetailRowSamples ?? [],
+    firstSampleBlocker:
+      row.midpointEventRootPresenceRowPass === true
+        ? null
+        : "midpoint_root_ledger_event_root_absent",
+  };
+}
+
+async function createMidpointPresenceIntervalBindingSample({
+  row,
+  sampleFraction,
+  sampleRole,
+  sampleTime,
+  midpointReplayContext,
+}) {
+  const defaultSample = {
+    sampleRole,
+    sampleFraction,
+    sampleTime,
+    sourceSegmentIndex: null,
+    receiverSegmentIndex: null,
+    sampleRootLedgerReplayPopulated: false,
+    sampleRootLedgerRowCount: 0,
+    sampleActiveRootDetailCount: 0,
+    sampleInactiveGapRowCount: 0,
+    sampleTransitionRowCount: 0,
+    sampleFailureRowCount: 0,
+    sampleActiveRootKeys: [],
+    sampleEventRootPresenceRowPass: false,
+    maxSampleActiveNormalizedResidual: null,
+    eventRootDetailRows: [],
+    activeRootDetailRowSamples: [],
+    firstSampleBlocker: "sample_replay_missing",
+  };
+  const eventRootKey = row.eventRootKey ?? null;
+  if (eventRootKey == null) {
+    return {
+      ...defaultSample,
+      firstSampleBlocker: "event_root_key_missing",
+    };
+  }
+  if (
+    !midpointReplayContext?.client ||
+    !midpointReplayContext?.layerPathKeys ||
+    !midpointReplayContext?.pathRowsByPathKey
+  ) {
+    return {
+      ...defaultSample,
+      firstSampleBlocker: "midpoint_replay_context_missing",
+    };
+  }
+  const pairLayers = parseLayerPairKey(row.pairKey);
+  const sourcePathKey =
+    pairLayers?.sourceLayer != null
+      ? midpointReplayContext.layerPathKeys[pairLayers.sourceLayer]
+      : null;
+  const receiverPathKey =
+    pairLayers?.receiverLayer != null
+      ? midpointReplayContext.layerPathKeys[pairLayers.receiverLayer]
+      : null;
+  const sourceSegmentRow = findPathHistorySegmentAtTime({
+    pathRowsByPathKey: midpointReplayContext.pathRowsByPathKey,
+    pathKey: sourcePathKey,
+    time: sampleTime,
+  });
+  const receiverSegmentRow = findPathHistorySegmentAtTime({
+    pathRowsByPathKey: midpointReplayContext.pathRowsByPathKey,
+    pathKey: receiverPathKey,
+    time: sampleTime,
+  });
+  const sampleProjection = {
+    sourceSegmentIndex: sourceSegmentRow?.segmentIndex ?? null,
+    receiverSegmentIndex: receiverSegmentRow?.segmentIndex ?? null,
+  };
+  if (
+    pairLayers == null ||
+    !Number.isFinite(sampleTime) ||
+    sourceSegmentRow == null ||
+    receiverSegmentRow == null
+  ) {
+    return {
+      ...defaultSample,
+      ...sampleProjection,
+      firstSampleBlocker:
+        pairLayers == null
+          ? "pair_key_unresolved"
+          : "sample_path_history_segment_missing",
+    };
+  }
+
+  try {
+    const response = await midpointReplayContext.client.buildRootLedgerDetailF64({
+      source: pathHistoryRowToCausalSegment(sourceSegmentRow),
+      receiver: pathHistoryRowToCausalSegment(receiverSegmentRow),
+      hitTime: sampleTime,
+      signalSpeed: FIELD_SPEED,
+      rootTolerance: ROOT_TOLERANCE,
+      maxIterations: 128,
+      scanSubdivisions: 128,
+      maxRoots: 8,
+      maxHits: 8,
+      maxRows: 24,
+    });
+    const responseRows = response.rows ?? [];
+    const activeRows = responseRows.filter(
+      (detailRow) => detailRow.entryKind === 1
+    );
+    const inactiveGapRows = responseRows.filter(
+      (detailRow) => detailRow.entryKind === 2
+    );
+    const transitionRows = responseRows.filter(
+      (detailRow) => detailRow.entryKind === 4
+    );
+    const failureRows = responseRows.filter(
+      (detailRow) => detailRow.entryKind === 5
+    );
+    const sampleActiveRootKeys = uniqueSortedNumbers(
+      activeRows.map((detailRow) => detailRow.rootKey)
+    );
+    const eventRootRows = activeRows.filter(
+      (detailRow) => detailRow.rootKey === eventRootKey
+    );
+    const sampleEventRootPresenceRowPass = eventRootRows.length > 0;
+    return {
+      ...defaultSample,
+      ...sampleProjection,
+      sampleRootLedgerReplayPopulated: true,
+      sampleRootLedgerRowCount: responseRows.length,
+      sampleActiveRootDetailCount: activeRows.length,
+      sampleInactiveGapRowCount: inactiveGapRows.length,
+      sampleTransitionRowCount: transitionRows.length,
+      sampleFailureRowCount: failureRows.length,
+      sampleActiveRootKeys,
+      sampleEventRootPresenceRowPass,
+      maxSampleActiveNormalizedResidual: maxFinite(
+        activeRows.map((detailRow) => Math.abs(detailRow.normalizedResidual))
+      ),
+      eventRootDetailRows: eventRootRows
+        .slice(0, 4)
+        .map(projectRootLedgerDetailForHinge),
+      activeRootDetailRowSamples: activeRows
+        .slice(0, 4)
+        .map(projectRootLedgerDetailForHinge),
+      firstSampleBlocker: sampleEventRootPresenceRowPass
+        ? null
+        : "sample_event_root_absent",
+    };
+  } catch (error) {
+    return {
+      ...defaultSample,
+      ...sampleProjection,
+      sampleReplayError: error instanceof Error ? error.message : String(error),
+      firstSampleBlocker: "sample_root_ledger_replay_failed",
+    };
+  }
+}
+
+function createEventRootAffineBracketAbsenceBridgeDynamicLawSourceAudit({
+  rows,
+  candidateDomainMatchedPass,
+  currentLedgerPresenceAudit,
+  directInteriorPresenceProbeTarget,
+  absenceBridgeFillLawSearchTarget,
+  signedBalanceFillObstructionTarget,
+  signedBalancePresenceMeasureTarget,
+  signedBalancePresenceMeasureCoefficientAudit,
+  signedBalancePresenceMeasureSpanSourceAudit,
+  signedBalancePresenceMeasureTransitionPairAudit,
+  signedBalancePresenceMeasureCurrentSourceExclusionSummary,
+  dynamicPresenceMeasureLawTarget,
+  occupancyAudit,
+  conversionPatternAudit,
+  balancedTransitionConversionRuleTarget,
+}) {
+  const currentLedgerPresenceRowCount =
+    currentLedgerPresenceAudit?.currentLedgerEventRootPresenceRowCount ?? 0;
+  const currentLedgerAbsenceRowCount =
+    currentLedgerPresenceAudit?.currentLedgerEventRootAbsenceRowCount ?? 0;
+  const requiredDirectInteriorProbeRowCount =
+    directInteriorPresenceProbeTarget?.requiredDirectInteriorProbeRowCount ?? 0;
+  const populatedDirectInteriorProbeRowCount =
+    directInteriorPresenceProbeTarget?.populatedDirectInteriorProbeRowCount ?? 0;
+  const acceptedDirectInteriorPresenceRowCount =
+    directInteriorPresenceProbeTarget?.acceptedDirectInteriorPresenceRowCount ??
+    0;
+  const midpointEventRootPresenceRowCount =
+    directInteriorPresenceProbeTarget?.midpointEventRootPresenceRowCount ?? 0;
+  const midpointPresenceIntervalBindingAuditStatus =
+    directInteriorPresenceProbeTarget
+      ?.midpointPresenceIntervalBindingAuditStatus ?? null;
+  const rowsWithFullThreePointInteriorPresenceCount =
+    directInteriorPresenceProbeTarget
+      ?.rowsWithFullThreePointInteriorPresenceCount ?? 0;
+  const midpointPresenceDenseInteriorSupportAuditStatus =
+    directInteriorPresenceProbeTarget
+      ?.midpointPresenceDenseInteriorSupportAuditStatus ?? null;
+  const midpointPresenceContinuousIntervalLawSourceAuditStatus =
+    directInteriorPresenceProbeTarget
+      ?.midpointPresenceContinuousIntervalLawSourceAuditStatus ?? null;
+  const rowsWithFullDenseInteriorPresenceCount =
+    directInteriorPresenceProbeTarget
+      ?.rowsWithFullDenseInteriorPresenceCount ?? 0;
+  const acceptedContinuousIntervalLawRowCount =
+    directInteriorPresenceProbeTarget?.acceptedContinuousIntervalLawRowCount ??
+    0;
+  const firstContinuousIntervalLawSourceBlocker =
+    directInteriorPresenceProbeTarget
+      ?.firstContinuousIntervalLawSourceBlocker ?? null;
+  const directMidpointIntervalRouteClassificationAuditStatus =
+    directInteriorPresenceProbeTarget
+      ?.directMidpointIntervalRouteClassificationAuditStatus ?? null;
+  const directMidpointIntervalRouteRejectedPass =
+    directInteriorPresenceProbeTarget?.directMidpointIntervalRouteRejectedPass ===
+    true;
+  const firstDirectMidpointIntervalRouteBlocker =
+    directInteriorPresenceProbeTarget
+      ?.firstDirectMidpointIntervalRouteBlocker ?? null;
+  const threePointDirectInteriorReplayAuditStatus =
+    directInteriorPresenceProbeTarget
+      ?.threePointDirectInteriorReplayAuditStatus ?? null;
+  const threePointInteriorSampleRowCount =
+    directInteriorPresenceProbeTarget?.threePointInteriorSampleRowCount ?? 0;
+  const threePointEventRootPresenceSampleRowCount =
+    directInteriorPresenceProbeTarget
+      ?.threePointEventRootPresenceSampleRowCount ?? 0;
+  const threePointFullInteriorPresenceRowCount =
+    directInteriorPresenceProbeTarget
+      ?.threePointFullInteriorPresenceRowCount ?? 0;
+  const threePointMidpointAbsentNonMidpointPresenceRowCount =
+    directInteriorPresenceProbeTarget
+      ?.threePointMidpointAbsentNonMidpointPresenceRowCount ?? 0;
+  const threePointAcceptedDirectInteriorPresenceRowCount =
+    directInteriorPresenceProbeTarget
+      ?.threePointAcceptedDirectInteriorPresenceRowCount ?? 0;
+  const firstThreePointDirectInteriorReplayBlocker =
+    directInteriorPresenceProbeTarget
+      ?.firstThreePointDirectInteriorReplayBlocker ?? null;
+  const threePointNonMidpointEvidencePass =
+    threePointMidpointAbsentNonMidpointPresenceRowCount > 0;
+  const acceptedMidpointPresenceIntervalBindingRowCount =
+    directInteriorPresenceProbeTarget
+      ?.acceptedMidpointPresenceIntervalBindingRowCount ?? 0;
+  const firstDirectInteriorPresenceProbeBlocker =
+    directInteriorPresenceProbeTarget
+      ?.firstDirectInteriorPresenceProbeBlocker ?? null;
+  const currentShortcutCandidateCount =
+    absenceBridgeFillLawSearchTarget?.currentFillLawCandidateCount ?? 0;
+  const acceptedShortcutCandidateCount =
+    absenceBridgeFillLawSearchTarget?.acceptedFillLawCandidateCount ?? 0;
+  const conversionPatternCandidateRowCount =
+    conversionPatternAudit?.conversionPatternCandidateRowCount ?? 0;
+  const acceptedConversionPatternRowCount =
+    conversionPatternAudit?.acceptedConversionPatternRowCount ?? 0;
+  const signedTransitionBalanceRowCount =
+    balancedTransitionConversionRuleTarget?.signedTransitionBalanceRowCount ??
+    0;
+  const signedConversionCandidateRowCount =
+    balancedTransitionConversionRuleTarget?.signedConversionCandidateRowCount ??
+    0;
+  const acceptedBalancedTransitionConversionRuleRowCount =
+    balancedTransitionConversionRuleTarget
+      ?.acceptedBalancedTransitionConversionRuleRowCount ?? 0;
+  const firstBalancedTransitionConversionRuleBlocker =
+    balancedTransitionConversionRuleTarget
+      ?.firstBalancedTransitionConversionRuleBlocker ?? null;
+  const signedBalanceBoundaryOnlyRowCount =
+    signedBalanceFillObstructionTarget?.boundarySignedBalanceOnlyRowCount ?? 0;
+  const acceptedSignedBalanceFillLawRowCount =
+    signedBalanceFillObstructionTarget?.acceptedSignedBalanceFillLawRowCount ??
+    0;
+  const firstSignedBalanceFillObstructionBlocker =
+    signedBalanceFillObstructionTarget
+      ?.firstSignedBalanceFillObstructionBlocker ?? null;
+  const boundaryBalancePresenceMeasureDeficitRowCount =
+    signedBalancePresenceMeasureTarget
+      ?.boundaryBalancePresenceMeasureDeficitRowCount ?? 0;
+  const acceptedDynamicPresenceMeasureSourceRowCount =
+    signedBalancePresenceMeasureTarget
+      ?.acceptedDynamicPresenceMeasureSourceRowCount ?? 0;
+  const totalPresenceMeasureDeficit =
+    signedBalancePresenceMeasureTarget?.totalPresenceMeasureDeficit ?? 0;
+  const firstSignedBalancePresenceMeasureBlocker =
+    signedBalancePresenceMeasureTarget
+      ?.firstSignedBalancePresenceMeasureBlocker ?? null;
+  const coefficientSourceCandidateCount =
+    signedBalancePresenceMeasureCoefficientAudit
+      ?.coefficientSourceCandidateCount ?? 0;
+  const acceptedCoefficientSourceCandidateCount =
+    signedBalancePresenceMeasureCoefficientAudit
+      ?.acceptedCoefficientSourceCandidateCount ?? 0;
+  const uniformNonTautologicalCoefficientCandidateCount =
+    signedBalancePresenceMeasureCoefficientAudit
+      ?.uniformNonTautologicalCoefficientCandidateCount ?? 0;
+  const firstCoefficientAuditBlocker =
+    signedBalancePresenceMeasureCoefficientAudit
+      ?.firstCoefficientAuditBlocker ?? null;
+  const spanSourceCandidateCount =
+    signedBalancePresenceMeasureSpanSourceAudit?.spanSourceCandidateCount ?? 0;
+  const acceptedSpanSourceCandidateCount =
+    signedBalancePresenceMeasureSpanSourceAudit
+      ?.acceptedSpanSourceCandidateCount ?? 0;
+  const exactSpanSourceCandidateCount =
+    signedBalancePresenceMeasureSpanSourceAudit?.exactSpanSourceCandidateCount ??
+    0;
+  const uniformSpanCoefficientCandidateCount =
+    signedBalancePresenceMeasureSpanSourceAudit
+      ?.uniformSpanCoefficientCandidateCount ?? 0;
+  const firstSpanSourceAuditBlocker =
+    signedBalancePresenceMeasureSpanSourceAudit?.firstSpanSourceAuditBlocker ??
+    null;
+  const transitionPairSourceCandidateCount =
+    signedBalancePresenceMeasureTransitionPairAudit
+      ?.transitionPairSourceCandidateCount ?? 0;
+  const acceptedTransitionPairSourceCandidateCount =
+    signedBalancePresenceMeasureTransitionPairAudit
+      ?.acceptedTransitionPairSourceCandidateCount ?? 0;
+  const exactTransitionPairSourceCandidateCount =
+    signedBalancePresenceMeasureTransitionPairAudit
+      ?.exactTransitionPairSourceCandidateCount ?? 0;
+  const uniformTransitionPairCoefficientCandidateCount =
+    signedBalancePresenceMeasureTransitionPairAudit
+      ?.uniformTransitionPairCoefficientCandidateCount ?? 0;
+  const firstTransitionPairAuditBlocker =
+    signedBalancePresenceMeasureTransitionPairAudit
+      ?.firstTransitionPairAuditBlocker ?? null;
+  const currentSignedBalanceSourceExhaustedPass =
+    signedBalancePresenceMeasureCurrentSourceExclusionSummary
+      ?.currentSignedBalanceSourceExhaustedPass === true;
+  const currentFiniteSignedBalanceSourceCandidateCount =
+    signedBalancePresenceMeasureCurrentSourceExclusionSummary
+      ?.currentFiniteSourceCandidateCount ?? 0;
+  const acceptedCurrentSignedBalanceSourceCandidateCount =
+    signedBalancePresenceMeasureCurrentSourceExclusionSummary
+      ?.acceptedCurrentSourceCandidateCount ?? 0;
+  const exactCurrentSignedBalanceSourceCandidateCount =
+    signedBalancePresenceMeasureCurrentSourceExclusionSummary
+      ?.exactCurrentSourceCandidateCount ?? 0;
+  const uniformNonTautologicalCurrentSignedBalanceSourceCandidateCount =
+    signedBalancePresenceMeasureCurrentSourceExclusionSummary
+      ?.uniformNonTautologicalCurrentSourceCandidateCount ?? 0;
+  const firstCurrentSignedBalanceSourceExclusionBlocker =
+    signedBalancePresenceMeasureCurrentSourceExclusionSummary
+      ?.firstCurrentSourceExclusionBlocker ?? null;
+  const requiredDynamicPresenceMeasureLawRowCount =
+    dynamicPresenceMeasureLawTarget?.rowCount ?? 0;
+  const acceptedDynamicPresenceMeasureLawRowCount =
+    dynamicPresenceMeasureLawTarget
+      ?.acceptedDynamicPresenceMeasureLawRowCount ?? 0;
+  const lawOperatorFieldCompleteRowCount =
+    dynamicPresenceMeasureLawTarget?.lawOperatorFieldCompleteRowCount ?? 0;
+  const firstDynamicPresenceMeasureLawBlocker =
+    dynamicPresenceMeasureLawTarget
+      ?.firstDynamicPresenceMeasureLawBlocker ?? null;
+  const transitionBracketUnitDensitySourceAudit =
+    dynamicPresenceMeasureLawTarget
+      ?.transitionBracketUnitDensitySourceAudit ?? null;
+  const transitionBracketUnitDensitySourceAuditStatus =
+    transitionBracketUnitDensitySourceAudit?.status ?? null;
+  const transitionBracketRootSheetContinuationAudit =
+    dynamicPresenceMeasureLawTarget
+      ?.transitionBracketRootSheetContinuationAudit ?? null;
+  const transitionBracketRootSheetContinuationAuditStatus =
+    transitionBracketRootSheetContinuationAudit?.status ?? null;
+  const transitionBracketSourceRowCount =
+    transitionBracketUnitDensitySourceAudit?.transitionBracketSourceRowCount ??
+    0;
+  const transitionBracketUnitDensityIntegralRowCount =
+    transitionBracketUnitDensitySourceAudit?.unitDensityIntegralRowCount ?? 0;
+  const transitionBracketAbsencePolarityRejectedRowCount =
+    transitionBracketUnitDensitySourceAudit
+      ?.transitionBracketAbsencePolarityRejectedRowCount ?? 0;
+  const acceptedTransitionBracketPresenceSourceKernelRowCount =
+    transitionBracketUnitDensitySourceAudit
+      ?.acceptedPresenceSourceKernelRowCount ?? 0;
+  const firstTransitionBracketUnitDensitySourceBlocker =
+    transitionBracketUnitDensitySourceAudit
+      ?.firstTransitionBracketUnitDensitySourceBlocker ?? null;
+  const transitionBracketRootSheetContinuationCandidateRowCount =
+    transitionBracketRootSheetContinuationAudit
+      ?.rootSheetContinuationCandidateRowCount ?? 0;
+  const transitionBracketZeroRootBridgeRowCount =
+    transitionBracketRootSheetContinuationAudit?.zeroRootBridgeRowCount ?? 0;
+  const transitionBracketEndpointEventRootReturnRowCount =
+    transitionBracketRootSheetContinuationAudit
+      ?.endpointEventRootReturnRowCount ?? 0;
+  const retainedTransitionBracketRootSheetContinuationRowCount =
+    transitionBracketRootSheetContinuationAudit
+      ?.retainedRootSheetContinuationRowCount ?? 0;
+  const acceptedTransitionBracketRootSheetContinuationRowCount =
+    transitionBracketRootSheetContinuationAudit
+      ?.acceptedRootSheetContinuationRowCount ?? 0;
+  const firstTransitionBracketRootSheetContinuationBlocker =
+    transitionBracketRootSheetContinuationAudit
+      ?.firstTransitionBracketRootSheetContinuationBlocker ?? null;
+  const dynamicPresenceMeasureLawOperatorFieldsMissingPass =
+    [
+      "event_root_affine_bracket_dynamic_presence_measure_law_operator_fields_missing_after_current_sources_exhausted",
+      "event_root_affine_bracket_dynamic_presence_measure_law_unit_density_candidate_tautological_transport_and_retained_binding_missing",
+      "event_root_affine_bracket_dynamic_presence_measure_law_transition_bracket_source_rejected_absence_polarity_transport_and_retained_binding_missing",
+      "event_root_affine_bracket_dynamic_presence_measure_law_transition_bracket_root_sheet_rejected_zero_root_transport_and_retained_binding_missing",
+    ].includes(dynamicPresenceMeasureLawTarget?.status);
+  const balancedRecoveryWalkCandidateRowCount =
+    occupancyAudit?.balancedRecoveryWalkCandidateRowCount ?? 0;
+  const acceptedRetainedContinuityRowCount =
+    occupancyAudit?.acceptedRetainedContinuityRowCount ?? 0;
+  const rowsWithPositiveEventRootAbsenceBridge =
+    occupancyAudit?.rowsWithPositiveEventRootAbsenceBridge ?? 0;
+  const rowsWithEventRootAbsentNoTransitionBothInactiveEdges =
+    occupancyAudit?.rowsWithEventRootAbsentNoTransitionBothInactiveEdges ?? 0;
+
+  const sourceRows = [
+    {
+      sourceId: "current_ledger_presence_rows",
+      sourceClaim:
+        "The current root-ledger already supplies event-root presence rows over the absence-bridge domain.",
+      prerequisitePass: candidateDomainMatchedPass,
+      evidenceRowCount: currentLedgerPresenceRowCount,
+      contradictionRowCount: currentLedgerAbsenceRowCount,
+      acceptedDynamicLawSourcePass:
+        rows.length > 0 && currentLedgerPresenceRowCount === rows.length,
+      acceptedDynamicLawSourceRowCount:
+        currentLedgerPresenceRowCount === rows.length
+          ? currentLedgerPresenceRowCount
+          : 0,
+      firstSourceBlocker:
+        currentLedgerPresenceRowCount === rows.length
+          ? null
+          : "populate_interior_event_root_presence_rows",
+    },
+    {
+      sourceId: "current_ledger_absence_rows",
+      sourceClaim:
+        "The current root-ledger absence predicate can itself source the dynamic event-root presence law.",
+      prerequisitePass: candidateDomainMatchedPass && rows.length > 0,
+      evidenceRowCount: currentLedgerAbsenceRowCount,
+      contradictionRowCount: currentLedgerAbsenceRowCount,
+      acceptedDynamicLawSourcePass: false,
+      acceptedDynamicLawSourceRowCount: 0,
+      firstSourceBlocker:
+        "current_ledger_rows_are_absence_not_presence_evidence",
+    },
+    {
+      sourceId: "direct_midpoint_interior_presence_probe",
+      sourceClaim:
+        "Direct midpoint root-ledger replay supplies event-root presence rows over the absence-bridge domain.",
+      prerequisitePass: rows.length > 0,
+      requiredDirectInteriorProbeRowCount,
+      evidenceRowCount: populatedDirectInteriorProbeRowCount,
+      midpointEventRootPresenceRowCount,
+      midpointPresenceIntervalBindingAuditStatus,
+      rowsWithFullThreePointInteriorPresenceCount,
+      midpointPresenceDenseInteriorSupportAuditStatus,
+      midpointPresenceContinuousIntervalLawSourceAuditStatus,
+      rowsWithFullDenseInteriorPresenceCount,
+      acceptedContinuousIntervalLawRowCount,
+      directMidpointIntervalRouteClassificationAuditStatus,
+      directMidpointIntervalRouteRejectedPass,
+      acceptedMidpointPresenceIntervalBindingRowCount,
+      acceptedDynamicLawSourcePass:
+        rows.length > 0 &&
+        acceptedDirectInteriorPresenceRowCount === rows.length,
+      acceptedDynamicLawSourceRowCount:
+        acceptedDirectInteriorPresenceRowCount,
+      firstSourceBlocker:
+        acceptedDirectInteriorPresenceRowCount === rows.length &&
+        rows.length > 0
+          ? null
+          : firstDirectMidpointIntervalRouteBlocker ??
+            firstContinuousIntervalLawSourceBlocker ??
+            firstDirectInteriorPresenceProbeBlocker ??
+            "replay_fill_domain_midpoints_with_root_ledger_detail",
+    },
+    {
+      sourceId: "three_point_direct_interior_replay",
+      sourceClaim:
+        "Three-point direct root-ledger replay supplies non-midpoint event-root support inside positive-width absence bridges.",
+      prerequisitePass:
+        threePointDirectInteriorReplayAuditStatus != null && rows.length > 0,
+      evidenceRowCount: threePointEventRootPresenceSampleRowCount,
+      interiorSampleRowCount: threePointInteriorSampleRowCount,
+      fullThreePointInteriorPresenceRowCount:
+        threePointFullInteriorPresenceRowCount,
+      midpointAbsentNonMidpointPresenceRowCount:
+        threePointMidpointAbsentNonMidpointPresenceRowCount,
+      acceptedDynamicLawSourcePass:
+        rows.length > 0 &&
+        threePointAcceptedDirectInteriorPresenceRowCount === rows.length,
+      acceptedDynamicLawSourceRowCount:
+        threePointAcceptedDirectInteriorPresenceRowCount,
+      firstSourceBlocker:
+        threePointAcceptedDirectInteriorPresenceRowCount === rows.length &&
+        rows.length > 0
+          ? null
+          : firstThreePointDirectInteriorReplayBlocker ??
+            "derive_interval_law_from_three_point_direct_replay",
+    },
+    {
+      sourceId: "balanced_alternating_conversion_pattern",
+      sourceClaim:
+        "The balanced alternating appeared/disappeared event-root transition pattern can source the absence-bridge fill law.",
+      prerequisitePass:
+        conversionPatternAudit?.allRowsHaveConversionPatternCandidatePass ===
+        true,
+      evidenceRowCount: conversionPatternCandidateRowCount,
+      signedTransitionBalanceRowCount,
+      signedConversionCandidateRowCount,
+      signedBalanceBoundaryOnlyRowCount,
+      acceptedDynamicLawSourcePass:
+        rows.length > 0 &&
+        acceptedSignedBalanceFillLawRowCount === rows.length,
+      acceptedDynamicLawSourceRowCount:
+        acceptedSignedBalanceFillLawRowCount,
+      firstSourceBlocker:
+        acceptedSignedBalanceFillLawRowCount === rows.length &&
+        rows.length > 0
+          ? null
+          : firstSignedBalanceFillObstructionBlocker ??
+            firstBalancedTransitionConversionRuleBlocker ??
+            "prove_balanced_event_root_transition_conversion_rule",
+    },
+    {
+      sourceId: "signed_balance_presence_measure_source",
+      sourceClaim:
+        "Signed transition balance supplies the positive event-root presence measure required to fill each absence bridge.",
+      prerequisitePass:
+        signedBalancePresenceMeasureTarget?.status != null &&
+        rows.length > 0,
+      evidenceRowCount: boundaryBalancePresenceMeasureDeficitRowCount,
+      totalPresenceMeasureDeficit,
+      acceptedDynamicLawSourcePass:
+        rows.length > 0 &&
+        acceptedDynamicPresenceMeasureSourceRowCount === rows.length,
+      acceptedDynamicLawSourceRowCount:
+        acceptedDynamicPresenceMeasureSourceRowCount,
+      firstSourceBlocker:
+        acceptedDynamicPresenceMeasureSourceRowCount === rows.length &&
+        rows.length > 0
+          ? null
+          : firstSignedBalancePresenceMeasureBlocker ??
+            "derive_presence_measure_source_from_signed_transition_balance",
+    },
+    {
+      sourceId: "signed_balance_presence_measure_coefficient_sources",
+      sourceClaim:
+        "A current transition-count, gap-count, or bridge-width coefficient source derives the positive presence measure from signed transition balance.",
+      prerequisitePass: coefficientSourceCandidateCount > 0,
+      evidenceRowCount: coefficientSourceCandidateCount,
+      uniformNonTautologicalCoefficientCandidateCount,
+      acceptedDynamicLawSourcePass: acceptedCoefficientSourceCandidateCount > 0,
+      acceptedDynamicLawSourceRowCount: acceptedCoefficientSourceCandidateCount,
+      firstSourceBlocker:
+        acceptedCoefficientSourceCandidateCount > 0
+          ? null
+          : firstCoefficientAuditBlocker ??
+            "derive_non_tautological_presence_measure_coefficient_from_signed_transition_balance",
+    },
+    {
+      sourceId: "signed_balance_presence_measure_span_sources",
+      sourceClaim:
+        "Event-root touch timing spans derive the positive presence measure from signed transition balance.",
+      prerequisitePass: spanSourceCandidateCount > 0,
+      evidenceRowCount: spanSourceCandidateCount,
+      exactSpanSourceCandidateCount,
+      uniformSpanCoefficientCandidateCount,
+      acceptedDynamicLawSourcePass: acceptedSpanSourceCandidateCount > 0,
+      acceptedDynamicLawSourceRowCount: acceptedSpanSourceCandidateCount,
+      firstSourceBlocker:
+        acceptedSpanSourceCandidateCount > 0
+          ? null
+          : firstSpanSourceAuditBlocker ??
+            "derive_non_tautological_touch_span_presence_measure_source",
+    },
+    {
+      sourceId: "signed_balance_presence_measure_transition_pair_sources",
+      sourceClaim:
+        "Paired disappeared/appeared event-root transition dwell widths derive the positive presence measure from signed transition balance.",
+      prerequisitePass: transitionPairSourceCandidateCount > 0,
+      evidenceRowCount: transitionPairSourceCandidateCount,
+      exactTransitionPairSourceCandidateCount,
+      uniformTransitionPairCoefficientCandidateCount,
+      acceptedDynamicLawSourcePass:
+        acceptedTransitionPairSourceCandidateCount > 0,
+      acceptedDynamicLawSourceRowCount:
+        acceptedTransitionPairSourceCandidateCount,
+      firstSourceBlocker:
+        acceptedTransitionPairSourceCandidateCount > 0
+          ? null
+          : firstTransitionPairAuditBlocker ??
+            "derive_non_tautological_transition_pair_dwell_presence_measure_source",
+    },
+    {
+      sourceId: "signed_balance_presence_measure_current_source_exclusion_summary",
+      sourceClaim:
+        "The current finite signed-balance presence-measure source families have been exhausted and a new dynamic law is required.",
+      prerequisitePass:
+        signedBalancePresenceMeasureCurrentSourceExclusionSummary?.status !=
+          null && rows.length > 0,
+      evidenceRowCount: currentFiniteSignedBalanceSourceCandidateCount,
+      acceptedCurrentSignedBalanceSourceCandidateCount,
+      exactCurrentSignedBalanceSourceCandidateCount,
+      uniformNonTautologicalCurrentSignedBalanceSourceCandidateCount,
+      currentSignedBalanceSourceExhaustedPass,
+      acceptedDynamicLawSourcePass: false,
+      acceptedDynamicLawSourceRowCount: 0,
+      firstSourceBlocker:
+        firstCurrentSignedBalanceSourceExclusionBlocker ??
+        "derive_new_dynamic_presence_measure_law_beyond_current_signed_balance_sources",
+    },
+    {
+      sourceId: "dynamic_presence_measure_law_operator_target",
+      sourceClaim:
+        "A new dynamic presence-measure law supplies mu_law(e)=int_a^b lambda_r(t) dt equal to the required bridge width row-wise.",
+      prerequisitePass:
+        currentSignedBalanceSourceExhaustedPass &&
+        dynamicPresenceMeasureLawTarget?.status != null &&
+        rows.length > 0,
+      evidenceRowCount: requiredDynamicPresenceMeasureLawRowCount,
+      requiredLawFieldIds:
+        dynamicPresenceMeasureLawTarget?.requiredLawFieldIds ?? [],
+      missingLawFieldIds:
+        dynamicPresenceMeasureLawTarget?.missingLawFieldIds ?? [],
+      lawOperatorFieldCompleteRowCount,
+      acceptedDynamicLawSourcePass:
+        rows.length > 0 &&
+        acceptedDynamicPresenceMeasureLawRowCount === rows.length,
+      acceptedDynamicLawSourceRowCount:
+        acceptedDynamicPresenceMeasureLawRowCount,
+      firstSourceBlocker:
+        acceptedDynamicPresenceMeasureLawRowCount === rows.length &&
+        rows.length > 0
+          ? null
+          : firstDynamicPresenceMeasureLawBlocker ??
+            "dynamic_presence_measure_law_operator_fields_missing",
+    },
+    {
+      sourceId: "transition_bracket_unit_density_source",
+      sourceClaim:
+        "The disappeared-to-appeared transition bracket upgrades the unit-density row integral into a dynamic event-root presence source.",
+      prerequisitePass:
+        currentSignedBalanceSourceExhaustedPass &&
+        transitionBracketUnitDensitySourceAuditStatus != null &&
+        rows.length > 0,
+      evidenceRowCount: transitionBracketSourceRowCount,
+      unitDensityIntegralRowCount: transitionBracketUnitDensityIntegralRowCount,
+      transitionBracketAbsencePolarityRejectedRowCount,
+      acceptedDynamicLawSourcePass:
+        rows.length > 0 &&
+        acceptedTransitionBracketPresenceSourceKernelRowCount === rows.length,
+      acceptedDynamicLawSourceRowCount:
+        acceptedTransitionBracketPresenceSourceKernelRowCount,
+      firstSourceBlocker:
+        acceptedTransitionBracketPresenceSourceKernelRowCount === rows.length &&
+        rows.length > 0
+          ? null
+          : firstTransitionBracketUnitDensitySourceBlocker ??
+            "transition_bracket_sources_absence_not_retained_presence_transport",
+    },
+    {
+      sourceId: "transition_bracket_root_sheet_continuation",
+      sourceClaim:
+        "The disappeared-to-appeared transition bracket supplies a retained root-sheet continuation for the dynamic presence-measure law.",
+      prerequisitePass:
+        currentSignedBalanceSourceExhaustedPass &&
+        transitionBracketRootSheetContinuationAuditStatus != null &&
+        rows.length > 0,
+      evidenceRowCount: transitionBracketRootSheetContinuationCandidateRowCount,
+      zeroRootBridgeRowCount: transitionBracketZeroRootBridgeRowCount,
+      endpointEventRootReturnRowCount:
+        transitionBracketEndpointEventRootReturnRowCount,
+      retainedRootSheetContinuationRowCount:
+        retainedTransitionBracketRootSheetContinuationRowCount,
+      acceptedDynamicLawSourcePass:
+        rows.length > 0 &&
+        acceptedTransitionBracketRootSheetContinuationRowCount === rows.length,
+      acceptedDynamicLawSourceRowCount:
+        acceptedTransitionBracketRootSheetContinuationRowCount,
+      firstSourceBlocker:
+        acceptedTransitionBracketRootSheetContinuationRowCount === rows.length &&
+        rows.length > 0
+          ? null
+          : firstTransitionBracketRootSheetContinuationBlocker ??
+            "transition_bracket_root_sheet_candidate_collapses_to_zero_root_absence_bridge",
+    },
+    {
+      sourceId: "balanced_recovery_occupancy_walk",
+      sourceClaim:
+        "The balanced recovery occupancy walk can source retained event-root presence across the explicit absence runs.",
+      prerequisitePass:
+        occupancyAudit?.allRowsHaveBalancedRecoveryWalkPass === true,
+      evidenceRowCount: balancedRecoveryWalkCandidateRowCount,
+      explicitAbsenceBridgeRowCount: rowsWithPositiveEventRootAbsenceBridge,
+      noTransitionBothInactiveRowCount:
+        rowsWithEventRootAbsentNoTransitionBothInactiveEdges,
+      acceptedDynamicLawSourcePass:
+        rows.length > 0 && acceptedRetainedContinuityRowCount === rows.length,
+      acceptedDynamicLawSourceRowCount: acceptedRetainedContinuityRowCount,
+      firstSourceBlocker:
+        acceptedRetainedContinuityRowCount === rows.length && rows.length > 0
+          ? null
+          : "balanced_recovery_walk_contains_explicit_absence_runs",
+    },
+    {
+      sourceId: "finite_shortcut_fill_law_search",
+      sourceClaim:
+        "One of the current finite shortcut candidates supplies the dynamic event-root presence law.",
+      prerequisitePass: currentShortcutCandidateCount > 0,
+      evidenceRowCount: currentShortcutCandidateCount,
+      acceptedDynamicLawSourcePass: acceptedShortcutCandidateCount > 0,
+      acceptedDynamicLawSourceRowCount: acceptedShortcutCandidateCount,
+      firstSourceBlocker:
+        acceptedShortcutCandidateCount > 0
+          ? null
+          : "current_shortcuts_rejected_as_presence_laws",
+    },
+  ];
+  const evidenceRows = sourceRows.filter((row) => row.evidenceRowCount > 0);
+  const acceptedRows = sourceRows.filter(
+    (row) => row.acceptedDynamicLawSourcePass
+  );
+  const acceptedDynamicLawSourceRowCount = Math.max(
+    0,
+    ...acceptedRows
+      .map((row) => row.acceptedDynamicLawSourceRowCount)
+      .filter(Number.isFinite)
+  );
+
+  return {
+    schema:
+      "aaa-tri-binary-event-root-affine-bracket-absence-bridge-dynamic-law-source-audit.v1",
+    status: rows.length === 0
+      ? "event_root_affine_bracket_absence_bridge_dynamic_law_source_no_domain"
+      : acceptedRows.length > 0
+        ? "event_root_affine_bracket_absence_bridge_dynamic_law_source_accepted"
+        : threePointNonMidpointEvidencePass
+          ? "event_root_affine_bracket_absence_bridge_dynamic_law_source_three_point_direct_evidence_interval_law_missing"
+        : currentSignedBalanceSourceExhaustedPass &&
+            dynamicPresenceMeasureLawOperatorFieldsMissingPass
+          ? "event_root_affine_bracket_absence_bridge_dynamic_law_source_current_sources_exhausted_dynamic_law_operator_missing"
+        : currentSignedBalanceSourceExhaustedPass
+          ? "event_root_affine_bracket_absence_bridge_dynamic_law_source_current_signed_balance_sources_exhausted_new_dynamic_law_required"
+        : evidenceRows.length > 0 &&
+            conversionPatternCandidateRowCount === rows.length &&
+            acceptedConversionPatternRowCount === 0
+          ? "event_root_affine_bracket_absence_bridge_dynamic_law_source_candidates_populated_conversion_rule_missing"
+          : evidenceRows.length > 0
+            ? "event_root_affine_bracket_absence_bridge_dynamic_law_source_candidates_populated_no_accepted_source"
+            : "event_root_affine_bracket_absence_bridge_dynamic_law_source_no_current_source_candidates",
+    claimLevel:
+      "current-source audit for deriving an event-root absence-bridge fill law; not an exhaustive dynamic-law search",
+    retainedBranchClaim: false,
+    candidateDomainMatchedPass,
+    rowCount: rows.length,
+    dynamicLawSourceCandidateCount: sourceRows.length,
+    evidenceSourceCount: evidenceRows.length,
+    acceptedDynamicLawSourceCount: acceptedRows.length,
+    acceptedDynamicLawSourceRowCount,
+    currentLedgerPresenceRowCount,
+    currentLedgerAbsenceRowCount,
+    directInteriorPresenceProbeTargetStatus:
+      directInteriorPresenceProbeTarget?.status ?? null,
+    requiredDirectInteriorProbeRowCount,
+    populatedDirectInteriorProbeRowCount,
+    midpointEventRootPresenceRowCount,
+    midpointPresenceIntervalBindingAuditStatus,
+    rowsWithFullThreePointInteriorPresenceCount,
+    midpointPresenceDenseInteriorSupportAuditStatus,
+    midpointPresenceContinuousIntervalLawSourceAuditStatus,
+    rowsWithFullDenseInteriorPresenceCount,
+    acceptedContinuousIntervalLawRowCount,
+    firstContinuousIntervalLawSourceBlocker,
+    directMidpointIntervalRouteClassificationAuditStatus,
+    directMidpointIntervalRouteRejectedPass,
+    firstDirectMidpointIntervalRouteBlocker,
+    threePointDirectInteriorReplayAuditStatus,
+    threePointInteriorSampleRowCount,
+    threePointEventRootPresenceSampleRowCount,
+    threePointFullInteriorPresenceRowCount,
+    threePointMidpointAbsentNonMidpointPresenceRowCount,
+    threePointAcceptedDirectInteriorPresenceRowCount,
+    firstThreePointDirectInteriorReplayBlocker,
+    acceptedMidpointPresenceIntervalBindingRowCount,
+    acceptedDirectInteriorPresenceRowCount,
+    conversionPatternCandidateRowCount,
+    acceptedConversionPatternRowCount,
+    balancedTransitionConversionRuleTargetStatus:
+      balancedTransitionConversionRuleTarget?.status ?? null,
+    signedBalanceFillObstructionTargetStatus:
+      signedBalanceFillObstructionTarget?.status ?? null,
+    signedBalancePresenceMeasureTargetStatus:
+      signedBalancePresenceMeasureTarget?.status ?? null,
+    signedBalancePresenceMeasureCoefficientAuditStatus:
+      signedBalancePresenceMeasureCoefficientAudit?.status ?? null,
+    signedBalancePresenceMeasureSpanSourceAuditStatus:
+      signedBalancePresenceMeasureSpanSourceAudit?.status ?? null,
+    signedBalancePresenceMeasureTransitionPairAuditStatus:
+      signedBalancePresenceMeasureTransitionPairAudit?.status ?? null,
+    signedBalancePresenceMeasureCurrentSourceExclusionSummaryStatus:
+      signedBalancePresenceMeasureCurrentSourceExclusionSummary?.status ?? null,
+    dynamicPresenceMeasureLawTargetStatus:
+      dynamicPresenceMeasureLawTarget?.status ?? null,
+    transitionBracketUnitDensitySourceAuditStatus,
+    transitionBracketRootSheetContinuationAuditStatus,
+    signedTransitionBalanceRowCount,
+    signedConversionCandidateRowCount,
+    acceptedBalancedTransitionConversionRuleRowCount,
+    signedBalanceBoundaryOnlyRowCount,
+    acceptedSignedBalanceFillLawRowCount,
+    boundaryBalancePresenceMeasureDeficitRowCount,
+    acceptedDynamicPresenceMeasureSourceRowCount,
+    totalPresenceMeasureDeficit,
+    coefficientSourceCandidateCount,
+    acceptedCoefficientSourceCandidateCount,
+    uniformNonTautologicalCoefficientCandidateCount,
+    spanSourceCandidateCount,
+    acceptedSpanSourceCandidateCount,
+    exactSpanSourceCandidateCount,
+    uniformSpanCoefficientCandidateCount,
+    transitionPairSourceCandidateCount,
+    acceptedTransitionPairSourceCandidateCount,
+    exactTransitionPairSourceCandidateCount,
+    uniformTransitionPairCoefficientCandidateCount,
+    currentSignedBalanceSourceExhaustedPass,
+    currentFiniteSignedBalanceSourceCandidateCount,
+    acceptedCurrentSignedBalanceSourceCandidateCount,
+    exactCurrentSignedBalanceSourceCandidateCount,
+    uniformNonTautologicalCurrentSignedBalanceSourceCandidateCount,
+    requiredDynamicPresenceMeasureLawRowCount,
+    lawOperatorFieldCompleteRowCount,
+    acceptedDynamicPresenceMeasureLawRowCount,
+    transitionBracketSourceRowCount,
+    transitionBracketUnitDensityIntegralRowCount,
+    transitionBracketAbsencePolarityRejectedRowCount,
+    acceptedTransitionBracketPresenceSourceKernelRowCount,
+    transitionBracketRootSheetContinuationCandidateRowCount,
+    transitionBracketZeroRootBridgeRowCount,
+    transitionBracketEndpointEventRootReturnRowCount,
+    retainedTransitionBracketRootSheetContinuationRowCount,
+    acceptedTransitionBracketRootSheetContinuationRowCount,
+    missingDynamicPresenceMeasureLawFieldIds:
+      dynamicPresenceMeasureLawTarget?.missingLawFieldIds ?? [],
+    balancedRecoveryWalkCandidateRowCount,
+    acceptedRetainedContinuityRowCount,
+    rowsWithPositiveEventRootAbsenceBridge,
+    rowsWithEventRootAbsentNoTransitionBothInactiveEdges,
+    currentShortcutCandidateCount,
+    acceptedShortcutCandidateCount,
+    firstDynamicLawSourceBlocker:
+      acceptedRows.length > 0
+        ? null
+        : threePointNonMidpointEvidencePass
+          ? firstThreePointDirectInteriorReplayBlocker ??
+            "derive_interval_law_from_partial_non_midpoint_sample_support"
+        : midpointEventRootPresenceRowCount > 0 &&
+            acceptedDirectInteriorPresenceRowCount < rows.length &&
+            !directMidpointIntervalRouteRejectedPass
+          ? firstDirectMidpointIntervalRouteBlocker ??
+            firstContinuousIntervalLawSourceBlocker ??
+            firstDirectInteriorPresenceProbeBlocker ??
+            "bind_midpoint_presence_rows_to_absence_bridge_interval"
+        : currentSignedBalanceSourceExhaustedPass
+          ? firstDynamicPresenceMeasureLawBlocker ??
+            firstCurrentSignedBalanceSourceExclusionBlocker ??
+            "dynamic_presence_measure_law_operator_fields_missing"
+        : firstSignedBalancePresenceMeasureBlocker
+          ? firstSignedBalancePresenceMeasureBlocker
+          : firstSignedBalanceFillObstructionBlocker
+            ? firstSignedBalanceFillObstructionBlocker
+          : firstBalancedTransitionConversionRuleBlocker
+            ? firstBalancedTransitionConversionRuleBlocker
+            : conversionPatternCandidateRowCount === rows.length &&
+                acceptedConversionPatternRowCount === 0
+              ? "prove_balanced_event_root_transition_conversion_rule"
+              : "derive_event_root_absence_bridge_fill_law",
+    sourceRows,
+    retainedLimitation:
+      midpointEventRootPresenceRowCount > 0
+        ? directMidpointIntervalRouteRejectedPass
+          ? threePointNonMidpointEvidencePass
+            ? "The present evidence has populated midpoint event-root presence rows and one non-midpoint flank recovery row, but the current three-point replay evidence is partial and lacks an interval law or retained row-set binding."
+            : currentSignedBalanceSourceExhaustedPass
+              ? "The present evidence has populated midpoint event-root presence rows, but the current direct midpoint interval route is rejected. The current finite signed-balance source families are also exhausted. The new dynamic presence-measure target has an exact nonnegative unit-density integral and a populated transition bracket on every bridge, but that bracket collapses through root key 0 rather than supplying retained root-sheet continuation and still lacks retained presence transport plus retained row-set binding."
+            : "The present evidence has populated midpoint event-root presence rows, but the current direct midpoint interval route is rejected: dense-supported rows are diagonal zero-delay rows, while the non-diagonal nonzero-Jacobian row has a dense event-root gap. The next source route is the non-tautological signed-balance presence-measure derivation or new non-midpoint evidence."
+          : "The present evidence has populated midpoint event-root presence rows, but no accepted interval binding or dynamic source. The direct route must bind those midpoint rows to positive-width absence-bridge intervals before retained continuity can use them."
+        : "The present evidence has populated source candidates but no accepted dynamic source. The strongest populated source is the balanced alternating event-root transition pattern, which covers all fill-domain rows but still needs an accepted conversion rule before it can supply an absence-bridge fill law.",
+  };
+}
+
+function createEventRootAffineBracketAbsenceBridgeFillLawRouteTarget({
+  rows,
+  candidateDomainMatchedPass,
+  acceptedAbsenceBridgeFillRulePass,
+  currentLedgerPresenceAudit,
+  directInteriorPresenceProbeTarget,
+  absenceBridgeFillLawSearchTarget,
+  dynamicLawSourceAudit,
+}) {
+  const currentLedgerPresenceRowCount =
+    currentLedgerPresenceAudit?.currentLedgerEventRootPresenceRowCount ?? 0;
+  const currentLedgerAbsenceRowCount =
+    currentLedgerPresenceAudit?.currentLedgerEventRootAbsenceRowCount ?? 0;
+  const acceptedShortcutCandidateCount =
+    absenceBridgeFillLawSearchTarget?.acceptedFillLawCandidateCount ?? 0;
+  const currentShortcutCandidateCount =
+    absenceBridgeFillLawSearchTarget?.currentFillLawCandidateCount ?? 0;
+  const requiredDirectInteriorProbeRowCount =
+    directInteriorPresenceProbeTarget?.requiredDirectInteriorProbeRowCount ?? 0;
+  const populatedDirectInteriorProbeRowCount =
+    directInteriorPresenceProbeTarget?.populatedDirectInteriorProbeRowCount ?? 0;
+  const acceptedDirectInteriorPresenceRowCount =
+    directInteriorPresenceProbeTarget?.acceptedDirectInteriorPresenceRowCount ??
+    0;
+  const firstDirectInteriorPresenceProbeBlocker =
+    directInteriorPresenceProbeTarget
+      ?.firstDirectInteriorPresenceProbeBlocker ?? null;
+  const midpointPresenceIntervalBindingAuditStatus =
+    directInteriorPresenceProbeTarget
+      ?.midpointPresenceIntervalBindingAuditStatus ?? null;
+  const rowsWithFullThreePointInteriorPresenceCount =
+    directInteriorPresenceProbeTarget
+      ?.rowsWithFullThreePointInteriorPresenceCount ?? 0;
+  const midpointPresenceDenseInteriorSupportAuditStatus =
+    directInteriorPresenceProbeTarget
+      ?.midpointPresenceDenseInteriorSupportAuditStatus ?? null;
+  const midpointPresenceContinuousIntervalLawSourceAuditStatus =
+    directInteriorPresenceProbeTarget
+      ?.midpointPresenceContinuousIntervalLawSourceAuditStatus ?? null;
+  const rowsWithFullDenseInteriorPresenceCount =
+    directInteriorPresenceProbeTarget
+      ?.rowsWithFullDenseInteriorPresenceCount ?? 0;
+  const acceptedContinuousIntervalLawRowCount =
+    directInteriorPresenceProbeTarget?.acceptedContinuousIntervalLawRowCount ??
+    0;
+  const firstContinuousIntervalLawSourceBlocker =
+    directInteriorPresenceProbeTarget
+      ?.firstContinuousIntervalLawSourceBlocker ?? null;
+  const directMidpointIntervalRouteClassificationAuditStatus =
+    directInteriorPresenceProbeTarget
+      ?.directMidpointIntervalRouteClassificationAuditStatus ?? null;
+  const directMidpointIntervalRouteRejectedPass =
+    directInteriorPresenceProbeTarget?.directMidpointIntervalRouteRejectedPass ===
+    true;
+  const firstDirectMidpointIntervalRouteBlocker =
+    directInteriorPresenceProbeTarget
+      ?.firstDirectMidpointIntervalRouteBlocker ?? null;
+  const threePointDirectInteriorReplayAuditStatus =
+    directInteriorPresenceProbeTarget
+      ?.threePointDirectInteriorReplayAuditStatus ?? null;
+  const threePointInteriorSampleRowCount =
+    directInteriorPresenceProbeTarget?.threePointInteriorSampleRowCount ?? 0;
+  const threePointEventRootPresenceSampleRowCount =
+    directInteriorPresenceProbeTarget
+      ?.threePointEventRootPresenceSampleRowCount ?? 0;
+  const threePointFullInteriorPresenceRowCount =
+    directInteriorPresenceProbeTarget
+      ?.threePointFullInteriorPresenceRowCount ?? 0;
+  const threePointMidpointAbsentNonMidpointPresenceRowCount =
+    directInteriorPresenceProbeTarget
+      ?.threePointMidpointAbsentNonMidpointPresenceRowCount ?? 0;
+  const threePointAcceptedDirectInteriorPresenceRowCount =
+    directInteriorPresenceProbeTarget
+      ?.threePointAcceptedDirectInteriorPresenceRowCount ?? 0;
+  const firstThreePointDirectInteriorReplayBlocker =
+    directInteriorPresenceProbeTarget
+      ?.firstThreePointDirectInteriorReplayBlocker ?? null;
+  const positiveWidthAbsenceBridgeCount = rows.filter(
+    (row) => row.width > ROOT_TOLERANCE
+  ).length;
+  const newInteriorEventRootPresenceRowCount =
+    acceptedDirectInteriorPresenceRowCount;
+  const dynamicEventRootPresenceLawRowCount =
+    dynamicLawSourceAudit?.acceptedDynamicLawSourceRowCount ?? 0;
+
+  const routeRows = [
+    {
+      routeId: "direct_midpoint_interior_presence_rows",
+      routeClaim:
+        "Direct midpoint root-ledger replay populates event-root presence across each positive-width absence bridge.",
+      prerequisitePass: candidateDomainMatchedPass,
+      requiredAbsenceBridgeRowCount: rows.length,
+      populatedRouteRowCount: acceptedDirectInteriorPresenceRowCount,
+      requiredDirectInteriorProbeRowCount,
+      populatedDirectInteriorProbeRowCount,
+      midpointPresenceIntervalBindingAuditStatus,
+      rowsWithFullThreePointInteriorPresenceCount,
+      midpointPresenceDenseInteriorSupportAuditStatus,
+      midpointPresenceContinuousIntervalLawSourceAuditStatus,
+      rowsWithFullDenseInteriorPresenceCount,
+      acceptedContinuousIntervalLawRowCount,
+      directMidpointIntervalRouteClassificationAuditStatus,
+      directMidpointIntervalRouteRejectedPass,
+      threePointDirectInteriorReplayAuditStatus,
+      threePointInteriorSampleRowCount,
+      threePointEventRootPresenceSampleRowCount,
+      threePointFullInteriorPresenceRowCount,
+      threePointMidpointAbsentNonMidpointPresenceRowCount,
+      threePointAcceptedDirectInteriorPresenceRowCount,
+      currentLedgerAbsenceRowCount,
+      acceptedFillRouteCandidatePass:
+        rows.length > 0 &&
+        acceptedDirectInteriorPresenceRowCount === rows.length,
+      firstRouteBlocker:
+        acceptedDirectInteriorPresenceRowCount === rows.length
+          ? null
+          : threePointMidpointAbsentNonMidpointPresenceRowCount > 0
+            ? firstThreePointDirectInteriorReplayBlocker ??
+              "derive_interval_law_from_partial_non_midpoint_sample_support"
+          : firstDirectMidpointIntervalRouteBlocker ??
+            firstContinuousIntervalLawSourceBlocker ??
+            firstDirectInteriorPresenceProbeBlocker ??
+            "replay_fill_domain_midpoints_with_root_ledger_detail",
+    },
+    {
+      routeId: "derived_event_root_absence_bridge_fill_law",
+      routeClaim:
+        "A derived event-root absence-bridge fill law supplies retained event-root presence over the inactive interval.",
+      prerequisitePass: candidateDomainMatchedPass && rows.length > 0,
+      requiredAbsenceBridgeRowCount: rows.length,
+      populatedRouteRowCount: dynamicEventRootPresenceLawRowCount,
+      newInteriorEventRootPresenceRowCount,
+      dynamicLawSourceAuditStatus: dynamicLawSourceAudit?.status ?? null,
+      dynamicPresenceMeasureLawTargetStatus:
+        dynamicLawSourceAudit?.dynamicPresenceMeasureLawTargetStatus ?? null,
+      acceptedDynamicPresenceMeasureLawRowCount:
+        dynamicLawSourceAudit?.acceptedDynamicPresenceMeasureLawRowCount ?? 0,
+      firstDynamicLawSourceBlocker:
+        dynamicLawSourceAudit?.firstDynamicLawSourceBlocker ?? null,
+      acceptedFillRouteCandidatePass:
+        rows.length > 0 &&
+        dynamicEventRootPresenceLawRowCount === rows.length,
+      firstRouteBlocker:
+        dynamicEventRootPresenceLawRowCount === rows.length
+          ? null
+          : dynamicLawSourceAudit?.firstDynamicLawSourceBlocker ??
+            "derive_event_root_absence_bridge_fill_law",
+    },
+    {
+      routeId: "boundary_only_identity_route",
+      routeClaim:
+        "Endpoint identity and boundary incidence alone authorize the positive-width absence bridge.",
+      prerequisitePass: candidateDomainMatchedPass && rows.length > 0,
+      requiredAbsenceBridgeRowCount: rows.length,
+      positiveWidthAbsenceBridgeCount,
+      acceptedFillRouteCandidatePass: false,
+      firstRouteBlocker:
+        "positive_width_absence_bridges_require_interior_presence_or_fill_law",
+    },
+    {
+      routeId: "accept_without_presence_or_law",
+      routeClaim:
+        "Retained identity is accepted directly without current-ledger presence rows or a derived fill law.",
+      prerequisitePass: candidateDomainMatchedPass && rows.length > 0,
+      requiredAbsenceBridgeRowCount: rows.length,
+      currentLedgerAbsenceRowCount,
+      acceptedShortcutCandidateCount,
+      currentShortcutCandidateCount,
+      acceptedFillRouteCandidatePass: false,
+      firstRouteBlocker:
+        "current_ledger_absence_and_shortcut_rejections_block_direct_acceptance",
+    },
+  ];
+  const acceptedRouteRows = routeRows.filter(
+    (row) => row.acceptedFillRouteCandidatePass
+  );
+
+  return {
+    schema:
+      "aaa-tri-binary-event-root-affine-bracket-absence-bridge-fill-law-route-target.v1",
+    status: rows.length === 0
+      ? "event_root_affine_bracket_absence_bridge_fill_law_route_no_domain"
+      : acceptedAbsenceBridgeFillRulePass || acceptedRouteRows.length > 0
+        ? "event_root_affine_bracket_absence_bridge_fill_law_route_accepted"
+        : candidateDomainMatchedPass &&
+            currentLedgerPresenceRowCount === 0 &&
+            currentLedgerAbsenceRowCount === rows.length &&
+            acceptedShortcutCandidateCount === 0
+          ? "event_root_affine_bracket_absence_bridge_fill_law_route_blocked_no_presence_or_dynamic_law"
+          : "event_root_affine_bracket_absence_bridge_fill_law_route_incomplete_or_unclassified",
+    claimLevel:
+      "fill-route classification for event-root absence bridges; not an exhaustive no-go theorem over all possible laws",
+    retainedBranchClaim: false,
+    candidateDomainMatchedPass,
+    acceptedAbsenceBridgeFillRulePass,
+    acceptedAbsenceBridgeFillRoutePass:
+      acceptedAbsenceBridgeFillRulePass || acceptedRouteRows.length > 0,
+    routeCandidateCount: routeRows.length,
+    acceptedRouteCandidateCount: acceptedRouteRows.length,
+    requiredAbsenceBridgeRowCount: rows.length,
+    positiveWidthAbsenceBridgeCount,
+    currentLedgerPresenceRowCount,
+    currentLedgerAbsenceRowCount,
+    currentShortcutCandidateCount,
+    acceptedShortcutCandidateCount,
+    requiredDirectInteriorProbeRowCount,
+    populatedDirectInteriorProbeRowCount,
+    acceptedDirectInteriorPresenceRowCount,
+    firstDirectInteriorPresenceProbeBlocker,
+    midpointPresenceIntervalBindingAuditStatus,
+    rowsWithFullThreePointInteriorPresenceCount,
+    midpointPresenceDenseInteriorSupportAuditStatus,
+    midpointPresenceContinuousIntervalLawSourceAuditStatus,
+    rowsWithFullDenseInteriorPresenceCount,
+    acceptedContinuousIntervalLawRowCount,
+    firstContinuousIntervalLawSourceBlocker,
+    directMidpointIntervalRouteClassificationAuditStatus,
+    directMidpointIntervalRouteRejectedPass,
+    firstDirectMidpointIntervalRouteBlocker,
+    threePointDirectInteriorReplayAuditStatus,
+    threePointInteriorSampleRowCount,
+    threePointEventRootPresenceSampleRowCount,
+    threePointFullInteriorPresenceRowCount,
+    threePointMidpointAbsentNonMidpointPresenceRowCount,
+    threePointAcceptedDirectInteriorPresenceRowCount,
+    firstThreePointDirectInteriorReplayBlocker,
+    newInteriorEventRootPresenceRowCount,
+    dynamicEventRootPresenceLawRowCount,
+    dynamicLawSourceAuditStatus: dynamicLawSourceAudit?.status ?? null,
+    dynamicPresenceMeasureLawTargetStatus:
+      dynamicLawSourceAudit?.dynamicPresenceMeasureLawTargetStatus ?? null,
+    requiredDynamicPresenceMeasureLawRowCount:
+      dynamicLawSourceAudit?.requiredDynamicPresenceMeasureLawRowCount ?? 0,
+    lawOperatorFieldCompleteRowCount:
+      dynamicLawSourceAudit?.lawOperatorFieldCompleteRowCount ?? 0,
+    acceptedDynamicPresenceMeasureLawRowCount:
+      dynamicLawSourceAudit?.acceptedDynamicPresenceMeasureLawRowCount ?? 0,
+    missingDynamicPresenceMeasureLawFieldIds:
+      dynamicLawSourceAudit?.missingDynamicPresenceMeasureLawFieldIds ?? [],
+    dynamicLawSourceCandidateCount:
+      dynamicLawSourceAudit?.dynamicLawSourceCandidateCount ?? 0,
+    acceptedDynamicLawSourceCount:
+      dynamicLawSourceAudit?.acceptedDynamicLawSourceCount ?? 0,
+    firstDynamicLawSourceBlocker:
+      dynamicLawSourceAudit?.firstDynamicLawSourceBlocker ?? null,
+    firstFillLawRouteBlocker:
+      acceptedAbsenceBridgeFillRulePass || acceptedRouteRows.length > 0
+        ? null
+        : threePointMidpointAbsentNonMidpointPresenceRowCount > 0
+          ? firstThreePointDirectInteriorReplayBlocker ??
+            "derive_interval_law_from_partial_non_midpoint_sample_support"
+        : dynamicLawSourceAudit?.firstDynamicLawSourceBlocker ??
+          firstDirectMidpointIntervalRouteBlocker ??
+          firstContinuousIntervalLawSourceBlocker ??
+          "derive_dynamic_event_root_presence_law_or_populate_interior_event_root_presence_rows",
+    routeRows,
+    retainedLimitation:
+      "The current legal routes are explicit: populate current-ledger interior event-root presence rows, derive an event-root absence-bridge fill law, restrict to boundary-only identity, or accept identity without presence or law. The first two have zero populated rows under the current evidence, while the last two are rejected for positive-width absence bridges and current-ledger absence evidence.",
+  };
+}
+
+function createEventRootAffineBracketAbsenceBridgeFillLawSearchTarget({
+  rows,
+  occupancyAudit,
+  candidateDomainMatchedPass,
+}) {
+  const sourceRowCount = occupancyAudit?.rowCount ?? 0;
+  const latticeStep = CLOSURE_PERIOD / (2 * BINARY_TO_BINARY_PATH_SEGMENT_COUNT);
+  const widthUnitValues = [
+    ...new Set(
+      rows
+        .map((row) => createLatticeProjection(row.width, latticeStep).units)
+        .filter(Number.isFinite)
+    ),
+  ].sort((left, right) => left - right);
+  const candidateRows = [
+    {
+      candidateId: "same_event_root_endpoint_identity",
+      candidateClaim:
+        "The same event-root key at both retained bracket endpoints fills the intervening absence bridge.",
+      prerequisitePass: candidateDomainMatchedPass,
+      coveredAbsenceBridgeRowCount: rows.length,
+      acceptedFillLawCandidatePass: false,
+      firstCandidateBlocker:
+        "endpoint_identity_does_not_populate_interior_event_root_presence",
+    },
+    {
+      candidateId: "balanced_recovery_walk_continuity",
+      candidateClaim:
+        "Balanced disappeared/appeared recovery walk promotes the absent interval to retained event-root continuity.",
+      prerequisitePass:
+        occupancyAudit?.allRowsHaveBalancedRecoveryWalkPass === true,
+      coveredAbsenceBridgeRowCount:
+        occupancyAudit?.balancedRecoveryWalkCandidateRowCount ?? 0,
+      acceptedFillLawCandidatePass: false,
+      firstCandidateBlocker:
+        "balanced_recovery_walk_contains_explicit_absence_runs",
+    },
+    {
+      candidateId: "affine_lattice_bracket_geometry",
+      candidateClaim:
+        "The affine bracket equation supplies the missing event-root presence law.",
+      prerequisitePass: candidateDomainMatchedPass,
+      coveredAbsenceBridgeRowCount: sourceRowCount,
+      acceptedFillLawCandidatePass: false,
+      firstCandidateBlocker:
+        "affine_geometry_is_table_compression_not_dynamic_presence",
+    },
+    {
+      candidateId: "width_class_fill_rule",
+      candidateClaim:
+        "A bridge-width class alone determines whether the absence bridge is filled.",
+      prerequisitePass: rows.length > 0 && widthUnitValues.length > 0,
+      coveredAbsenceBridgeRowCount: rows.length,
+      widthUnitClassCount: widthUnitValues.length,
+      widthUnitValues,
+      acceptedFillLawCandidatePass: false,
+      firstCandidateBlocker:
+        "width_class_does_not_supply_event_root_presence_evidence",
+    },
+    {
+      candidateId: "no_transition_both_inactive_gap_rule",
+      candidateClaim:
+        "The no-transition both-inactive gap classification is itself a fill rule.",
+      prerequisitePass:
+        rows.length > 0 &&
+        rows.every(
+          (row) =>
+            row.endpointPresence === "both_endpoints_inactive" &&
+            (row.gapKinds ?? []).includes("noTransitionBothInactive")
+        ),
+      coveredAbsenceBridgeRowCount: rows.length,
+      acceptedFillLawCandidatePass: false,
+      firstCandidateBlocker:
+        "no_transition_both_inactive_classification_is_absence_evidence",
+    },
+  ];
+  const acceptedCandidates = candidateRows.filter(
+    (row) => row.acceptedFillLawCandidatePass
+  );
+  const prerequisiteRows = candidateRows.filter((row) => row.prerequisitePass);
+
+  return {
+    schema:
+      "aaa-tri-binary-event-root-affine-bracket-absence-bridge-fill-law-search-target.v1",
+    status: rows.length === 0
+      ? "event_root_affine_bracket_absence_bridge_fill_law_search_no_domain"
+      : acceptedCandidates.length > 0
+        ? "event_root_affine_bracket_absence_bridge_fill_law_search_candidate_accepted"
+        : candidateDomainMatchedPass
+          ? "event_root_affine_bracket_absence_bridge_fill_law_search_current_candidates_rejected"
+          : "event_root_affine_bracket_absence_bridge_fill_law_search_domain_incomplete",
+    claimLevel:
+      "current-candidate rejection search for event-root absence-bridge fill laws; not exhaustive proof over all possible laws",
+    retainedBranchClaim: false,
+    candidateDomainMatchedPass,
+    currentFillLawCandidateCount: candidateRows.length,
+    prerequisiteFillLawCandidateCount: prerequisiteRows.length,
+    acceptedFillLawCandidateCount: acceptedCandidates.length,
+    sourceAffineIdentityRowCount: sourceRowCount,
+    uniquePositiveAbsenceBridgeCount: rows.length,
+    firstFillLawSearchBlocker:
+      acceptedCandidates.length > 0
+        ? null
+        : "derive_event_root_absence_bridge_fill_law",
+    candidateRows,
+    retainedLimitation:
+      "The current finite shortcut search rejects endpoint identity alone, balanced recovery alone, affine bracket geometry alone, width class alone, and the no-transition both-inactive label as fill laws. A valid fill law must add a dynamic event-root presence argument for the inactive bridge interval.",
+  };
+}
+
+function createEventRootAbsentNoTransitionEdgeKey(edge) {
+  return [
+    edge.pairKey,
+    formatNumberKey(edge.start),
+    formatNumberKey(edge.end),
+  ].join("|");
+}
+
+function formatNumberKey(value) {
+  return Number.isFinite(value) ? value.toPrecision(17) : String(value);
+}
+
+function createUniqueEventRootAbsentNoTransitionPairSummaries(edges) {
+  const summaries = new Map();
+  for (const edge of edges) {
+    const summary = summaries.get(edge.pairKey) ?? {
+      pairKey: edge.pairKey,
+      uniquePositiveEdgeCount: 0,
+      totalUniquePositiveWidth: 0,
+      maxUniquePositiveWidth: 0,
+    };
+    summary.uniquePositiveEdgeCount += 1;
+    summary.totalUniquePositiveWidth += edge.width ?? 0;
+    summary.maxUniquePositiveWidth = Math.max(
+      summary.maxUniquePositiveWidth,
+      edge.width ?? 0
+    );
+    summaries.set(edge.pairKey, summary);
+  }
+  return [...summaries.values()].sort((left, right) =>
+    left.pairKey.localeCompare(right.pairKey)
+  );
+}
+
+function createEmptyEventRootOccupancyWalkAuditCounts() {
+  return {
+    stateViolationCount: 0,
+    disappearanceWithoutPresentStateCount: 0,
+    appearanceWithoutAbsentStateCount: 0,
+    foldedWithoutPresentStateCount: 0,
+    openAbsenceRunCount: 0,
+    eventRootAbsenceRunCount: 0,
+    positiveEventRootAbsenceRunCount: 0,
+    zeroWidthEventRootAbsenceRunCount: 0,
+    totalEventRootAbsenceBridgeWidth: 0,
+    maxEventRootAbsenceBridgeWidth: 0,
+    eventRootAbsentInteriorEdgeCount: 0,
+    eventRootAbsentPositiveWidthInteriorEdgeCount: 0,
+    eventRootAbsentZeroWidthInteriorEdgeCount: 0,
+    eventRootAbsentNoTransitionBothInactiveEdgeCount: 0,
+    eventRootAbsentPositiveWidthNoTransitionBothInactiveEdgeCount: 0,
+    eventRootAbsentZeroWidthNoTransitionBothInactiveEdgeCount: 0,
+    totalEventRootAbsentNoTransitionBothInactiveWidth: 0,
+    maxEventRootAbsentNoTransitionBothInactiveWidth: 0,
+    disappearedEventRootWalkCount: 0,
+    appearedEventRootWalkCount: 0,
+    foldedEventRootWalkCount: 0,
+  };
+}
+
+function projectEventRootOccupancyWalkAuditCounts(walk) {
+  const counts = createEmptyEventRootOccupancyWalkAuditCounts();
+  for (const key of Object.keys(counts)) {
+    counts[key] = walk?.[key] ?? counts[key];
+  }
+  return counts;
+}
+
+function accumulateEventRootOccupancyWalkAuditCounts(accumulator, row) {
+  const maxKeys = new Set([
+    "maxEventRootAbsenceBridgeWidth",
+    "maxEventRootAbsentNoTransitionBothInactiveWidth",
+  ]);
+  for (const key of Object.keys(createEmptyEventRootOccupancyWalkAuditCounts())) {
+    if (maxKeys.has(key)) {
+      accumulator[key] = Math.max(accumulator[key], row[key] ?? 0);
+      continue;
+    }
+    accumulator[key] += row[key] ?? 0;
+  }
+  return accumulator;
+}
+
+function createEventRootAffineBracketBalancedConversionOccupancyWalkPairSummaries(
+  rows
+) {
+  const countKeys = Object.keys(createEmptyEventRootOccupancyWalkAuditCounts());
+  const summaries = new Map();
+  for (const row of rows) {
+    const summary = summaries.get(row.pairKey) ?? {
+      pairKey: row.pairKey,
+      rowCount: 0,
+      balancedRecoveryWalkCandidateRowCount: 0,
+      acceptedRetainedContinuityRowCount: 0,
+      rowsWithPositiveEventRootAbsenceBridge: 0,
+      rowsWithEventRootAbsentNoTransitionBothInactiveEdges: 0,
+      stateViolationRowCount: 0,
+      firstOccupancyWalkBlockers: new Set(),
+      ...createEmptyEventRootOccupancyWalkAuditCounts(),
+    };
+    summary.rowCount += 1;
+    if (row.balancedRecoveryWalkPass) {
+      summary.balancedRecoveryWalkCandidateRowCount += 1;
+    }
+    if (row.acceptedRetainedContinuityRowPass) {
+      summary.acceptedRetainedContinuityRowCount += 1;
+    }
+    if (row.positiveEventRootAbsenceRunCount > 0) {
+      summary.rowsWithPositiveEventRootAbsenceBridge += 1;
+    }
+    if (row.eventRootAbsentNoTransitionBothInactiveEdgeCount > 0) {
+      summary.rowsWithEventRootAbsentNoTransitionBothInactiveEdges += 1;
+    }
+    if (row.stateViolationCount > 0) {
+      summary.stateViolationRowCount += 1;
+    }
+    for (const key of countKeys) {
+      if (key.startsWith("max")) {
+        summary[key] = Math.max(summary[key], row[key] ?? 0);
+      } else {
+        summary[key] += row[key] ?? 0;
+      }
+    }
+    if (row.firstOccupancyWalkBlocker) {
+      summary.firstOccupancyWalkBlockers.add(row.firstOccupancyWalkBlocker);
+    }
+    summaries.set(row.pairKey, summary);
+  }
+  return [...summaries.values()]
+    .map((summary) => ({
+      ...summary,
+      firstOccupancyWalkBlockers: [
+        ...summary.firstOccupancyWalkBlockers,
+      ].sort(),
+    }))
+    .sort((left, right) => left.pairKey.localeCompare(right.pairKey));
+}
+
+function createEmptyAffineBracketInteriorTransitionCounts() {
+  return {
+    interiorEdgeCount: 0,
+    interiorRetainedEventRootEdgeCount: 0,
+    interiorRetainedEdgeCount: 0,
+    interiorNonEventRootRetainedEdgeCount: 0,
+    interiorDroppedEdgeCount: 0,
+    interiorActiveEndpointEdgeCount: 0,
+    interiorBothInactiveEndpointEdgeCount: 0,
+    interiorNoTransitionBothInactiveEdgeCount: 0,
+    interiorOnlyNonRetainedEdgeCount: 0,
+    interiorOnlyNonRetainedPriorActiveOnlyEdgeCount: 0,
+    interiorOnlyNonRetainedNextActiveOnlyEdgeCount: 0,
+    interiorOnlyNonRetainedBothActiveEdgeCount: 0,
+    interiorZeroWidthEdgeCount: 0,
+    interiorPositiveWidthEdgeCount: 0,
+    ...createEmptyAffineBracketInteriorNonRetainedTransitionKeyCounts(),
+  };
+}
+
+function createEventRootAffineBracketInteriorCoverageAudit(rowProofs) {
+  const rows = rowProofs.map((row) => {
+    const bothInactiveNoTransitionGapPass =
+      row.endpointPresence === "both_endpoints_inactive" &&
+      row.gapKind === "noTransitionBothInactive";
+    return {
+      pairKey: row.pairKey,
+      edgeIndex: row.edgeIndex,
+      side: row.side,
+      endpointPresence: row.endpointPresence ?? null,
+      gapKind: row.gapKind ?? null,
+      proofSubcase: row.proofSubcase,
+      eventRootKey: row.eventRootKey,
+      bothInactiveNoTransitionGapPass,
+      interiorActiveRootCoveragePopulated: false,
+      retainedTransitionInteriorRowPopulated: false,
+      acceptedInteriorCoverageRowPass: false,
+      firstCoverageBlocker: bothInactiveNoTransitionGapPass
+        ? "populate_interior_active_root_or_transition_continuity_rows"
+        : "classify_affine_bracket_source_gap_for_identity_conservation",
+    };
+  });
+  const bothInactiveNoTransitionRows = rows.filter(
+    (row) => row.bothInactiveNoTransitionGapPass
+  );
+  const interiorActiveRootCoverageRows = rows.filter(
+    (row) => row.interiorActiveRootCoveragePopulated
+  );
+  const retainedTransitionInteriorRows = rows.filter(
+    (row) => row.retainedTransitionInteriorRowPopulated
+  );
+  const acceptedRows = rows.filter((row) => row.acceptedInteriorCoverageRowPass);
+  const positiveDistanceRows = rows.filter(
+    (row) => row.proofSubcase === "positive_distance_affine_interior"
+  );
+  const touchingBoundaryRows = rows.filter(
+    (row) => row.proofSubcase === "touching_boundary_affine_limit"
+  );
+  const acceptedInteriorCoveragePass =
+    rows.length > 0 && acceptedRows.length === rows.length;
+  const allRowsAreBothInactiveNoTransitionGaps =
+    rows.length > 0 && bothInactiveNoTransitionRows.length === rows.length;
+
+  return {
+    schema:
+      "aaa-tri-binary-event-root-affine-bracket-interior-coverage-audit.v1",
+    status: rows.length === 0
+      ? "event_root_affine_bracket_interior_coverage_no_rows"
+      : acceptedInteriorCoveragePass
+        ? "event_root_affine_bracket_interior_coverage_accepted"
+        : allRowsAreBothInactiveNoTransitionGaps &&
+            interiorActiveRootCoverageRows.length === 0 &&
+            retainedTransitionInteriorRows.length === 0
+          ? "event_root_affine_bracket_interior_coverage_missing_both_inactive_no_transition_gaps"
+          : "event_root_affine_bracket_interior_coverage_incomplete_or_unclassified",
+    claimLevel:
+      "source-row coverage audit for affine bracket identity conservation; not an interior event-root proof",
+    retainedBranchClaim: false,
+    acceptedInteriorCoveragePass,
+    rowCount: rows.length,
+    bothInactiveNoTransitionRowCount: bothInactiveNoTransitionRows.length,
+    allRowsAreBothInactiveNoTransitionGaps,
+    interiorActiveRootCoverageRowCount: interiorActiveRootCoverageRows.length,
+    retainedTransitionInteriorRowCount: retainedTransitionInteriorRows.length,
+    acceptedInteriorCoverageRowCount: acceptedRows.length,
+    positiveDistanceInteriorCaseCount: positiveDistanceRows.length,
+    touchingBoundaryLimitCaseCount: touchingBoundaryRows.length,
+    firstInteriorCoverageBlocker:
+      rows.find((row) => row.firstCoverageBlocker)?.firstCoverageBlocker ??
+      null,
+    endpointPresenceValues: [
+      ...new Set(rows.map((row) => row.endpointPresence).filter(Boolean)),
+    ].sort(),
+    gapKindValues: [
+      ...new Set(rows.map((row) => row.gapKind).filter(Boolean)),
+    ].sort(),
+    pairSummaries:
+      createEventRootAffineBracketInteriorCoveragePairSummaries(rows),
+    rows,
+    retainedLimitation:
+      "Endpoint uniqueness and affine geometry do not supply an interior identity proof because every current affine bracket row is sourced from a both-inactive no-transition gap with no populated interior active-root coverage or retained-transition continuity row.",
+  };
+}
+
+function createEventRootAffineBracketEndpointUniquenessAudit(lawRows) {
+  const rows = lawRows.map((row) => {
+    const endpointSharedRootKeys = row.endpointSharedRootKeys ?? [];
+    const endpointCompetitorRootKeys = endpointSharedRootKeys.filter(
+      (rootKey) => rootKey !== row.eventRootKey
+    );
+    const uniqueEventRootEndpointPass =
+      endpointSharedRootKeys.length === 1 &&
+      endpointSharedRootKeys[0] === row.eventRootKey;
+    return {
+      pairKey: row.pairKey,
+      edgeIndex: row.edgeIndex,
+      side: row.side,
+      eventRootKey: row.eventRootKey,
+      endpointSharedRootKeys,
+      endpointSharedRootKeyCount: endpointSharedRootKeys.length,
+      endpointCompetitorRootKeys,
+      endpointCompetitorRootKeyCount: endpointCompetitorRootKeys.length,
+      uniqueEventRootEndpointPass,
+    };
+  });
+  const uniqueRows = rows.filter((row) => row.uniqueEventRootEndpointPass);
+  const competitorRows = rows.filter(
+    (row) => row.endpointCompetitorRootKeyCount > 0
+  );
+  const noSharedRootRows = rows.filter(
+    (row) => row.endpointSharedRootKeyCount === 0
+  );
+  const acceptedEndpointRootUniquenessPass =
+    rows.length > 0 && uniqueRows.length === rows.length;
+  return {
+    schema:
+      "aaa-tri-binary-event-root-affine-bracket-endpoint-uniqueness-audit.v1",
+    status: rows.length === 0
+      ? "event_root_affine_bracket_endpoint_uniqueness_no_rows"
+      : acceptedEndpointRootUniquenessPass
+        ? "event_root_affine_bracket_endpoint_uniqueness_accepted_no_competitors"
+        : "event_root_affine_bracket_endpoint_uniqueness_blocked_by_competitors_or_missing_shared_roots",
+    claimLevel:
+      "endpoint-root competitor exclusion audit for affine bracket identity conservation; not interior identity transport",
+    retainedBranchClaim: false,
+    acceptedEndpointRootUniquenessPass,
+    rowCount: rows.length,
+    uniqueEventRootEndpointRowCount: uniqueRows.length,
+    endpointCompetitorRowCount: competitorRows.length,
+    noSharedEndpointRootRowCount: noSharedRootRows.length,
+    endpointSharedRootKeyCountValues: [
+      ...new Set(rows.map((row) => row.endpointSharedRootKeyCount)),
+    ].sort((left, right) => left - right),
+    pairSummaries:
+      createEventRootAffineBracketEndpointUniquenessPairSummaries(rows),
+    rows,
+    retainedLimitation:
+      "The retained endpoint shared-root key is unique on every affine bracket row, so endpoint competitor ambiguity is discharged. Interior event-root identity conservation and global retained row-set binding remain unproven.",
+  };
+}
+
+function createEventRootAffineBracketEndpointUniquenessPairSummaries(rows) {
+  const summaries = new Map();
+  for (const row of rows) {
+    const summary = summaries.get(row.pairKey) ?? {
+      pairKey: row.pairKey,
+      rowCount: 0,
+      uniqueEventRootEndpointRowCount: 0,
+      endpointCompetitorRowCount: 0,
+      noSharedEndpointRootRowCount: 0,
+    };
+    summary.rowCount += 1;
+    if (row.uniqueEventRootEndpointPass) {
+      summary.uniqueEventRootEndpointRowCount += 1;
+    }
+    if (row.endpointCompetitorRootKeyCount > 0) {
+      summary.endpointCompetitorRowCount += 1;
+    }
+    if (row.endpointSharedRootKeyCount === 0) {
+      summary.noSharedEndpointRootRowCount += 1;
+    }
+    summaries.set(row.pairKey, summary);
+  }
+  return [...summaries.values()].sort((left, right) =>
+    left.pairKey.localeCompare(right.pairKey)
+  );
+}
+
+function createEventRootAffineBracketInteriorCoveragePairSummaries(rows) {
+  const summaries = new Map();
+  for (const row of rows) {
+    const summary = summaries.get(row.pairKey) ?? {
+      pairKey: row.pairKey,
+      rowCount: 0,
+      bothInactiveNoTransitionRowCount: 0,
+      interiorActiveRootCoverageRowCount: 0,
+      retainedTransitionInteriorRowCount: 0,
+      positiveDistanceInteriorCaseCount: 0,
+      touchingBoundaryLimitCaseCount: 0,
+      firstCoverageBlockers: new Set(),
+    };
+    summary.rowCount += 1;
+    if (row.bothInactiveNoTransitionGapPass) {
+      summary.bothInactiveNoTransitionRowCount += 1;
+    }
+    if (row.interiorActiveRootCoveragePopulated) {
+      summary.interiorActiveRootCoverageRowCount += 1;
+    }
+    if (row.retainedTransitionInteriorRowPopulated) {
+      summary.retainedTransitionInteriorRowCount += 1;
+    }
+    if (row.proofSubcase === "positive_distance_affine_interior") {
+      summary.positiveDistanceInteriorCaseCount += 1;
+    }
+    if (row.proofSubcase === "touching_boundary_affine_limit") {
+      summary.touchingBoundaryLimitCaseCount += 1;
+    }
+    if (row.firstCoverageBlocker) {
+      summary.firstCoverageBlockers.add(row.firstCoverageBlocker);
+    }
+    summaries.set(row.pairKey, summary);
+  }
+  return [...summaries.values()]
+    .map((summary) => ({
+      ...summary,
+      firstCoverageBlockers: [...summary.firstCoverageBlockers].sort(),
+    }))
+    .sort((left, right) => left.pairKey.localeCompare(right.pairKey));
+}
+
+function createEventRootAffineBracketInteriorTransitionSourcePairSummaries(
+  rows
+) {
+  const countKeys = Object.keys(createEmptyAffineBracketInteriorTransitionCounts());
+  const summaries = new Map();
+  for (const row of rows) {
+    const summary = summaries.get(row.pairKey) ?? {
+      pairKey: row.pairKey,
+      rowCount: 0,
+      rowsWithInteriorActiveEndpointEvidence: 0,
+      rowsWithInteriorOnlyNonRetainedEdges: 0,
+      rowsWithInteriorNoTransitionBothInactiveEdges: 0,
+      rowsWithOnlyDroppedInteriorEdges: 0,
+      retainedInteriorContinuityCandidateRowCount: 0,
+      acceptedRetainedInteriorContinuityRowCount: 0,
+      firstTransitionSourceBlockers: new Set(),
+      ...createEmptyAffineBracketInteriorTransitionCounts(),
+    };
+    summary.rowCount += 1;
+    if (row.interiorActiveEndpointEdgeCount > 0) {
+      summary.rowsWithInteriorActiveEndpointEvidence += 1;
+    }
+    if (row.interiorOnlyNonRetainedEdgeCount > 0) {
+      summary.rowsWithInteriorOnlyNonRetainedEdges += 1;
+    }
+    if (row.interiorNoTransitionBothInactiveEdgeCount > 0) {
+      summary.rowsWithInteriorNoTransitionBothInactiveEdges += 1;
+    }
+    if (
+      row.interiorEdgeCount > 0 &&
+      row.interiorDroppedEdgeCount === row.interiorEdgeCount
+    ) {
+      summary.rowsWithOnlyDroppedInteriorEdges += 1;
+    }
+    if (row.retainedInteriorContinuityCandidatePass) {
+      summary.retainedInteriorContinuityCandidateRowCount += 1;
+    }
+    if (row.acceptedRetainedInteriorContinuityRowPass) {
+      summary.acceptedRetainedInteriorContinuityRowCount += 1;
+    }
+    for (const key of countKeys) {
+      summary[key] += row[key] ?? 0;
+    }
+    if (row.firstTransitionSourceBlocker) {
+      summary.firstTransitionSourceBlockers.add(
+        row.firstTransitionSourceBlocker
+      );
+    }
+    summaries.set(row.pairKey, summary);
+  }
+  return [...summaries.values()]
+    .map((summary) => ({
+      ...summary,
+      firstTransitionSourceBlockers: [
+        ...summary.firstTransitionSourceBlockers,
+      ].sort(),
+    }))
+    .sort((left, right) => left.pairKey.localeCompare(right.pairKey));
+}
+
+function createEventRootAffineBracketInteriorNonRetainedTransitionKeyPairSummaries(
+  rows
+) {
+  const countKeys = Object.keys(
+    createEmptyAffineBracketInteriorNonRetainedTransitionKeyCounts()
+  );
+  const summaries = new Map();
+  for (const row of rows) {
+    const summary = summaries.get(row.pairKey) ?? {
+      pairKey: row.pairKey,
+      rowCount: 0,
+      rowsWithInteriorNonRetainedTransitionEvidence: 0,
+      rowsWithInteriorNonRetainedEventRootTouches: 0,
+      rowsWithInteriorEventRootAbsentFromNonRetainedTransitions: 0,
+      firstTransitionKeyBlockers: new Set(),
+      ...createEmptyAffineBracketInteriorNonRetainedTransitionKeyCounts(),
+    };
+    summary.rowCount += 1;
+    if (row.nonRetainedTransitionEvidence) {
+      summary.rowsWithInteriorNonRetainedTransitionEvidence += 1;
+    }
+    if (row.nonRetainedEventRootTouchEvidence) {
+      summary.rowsWithInteriorNonRetainedEventRootTouches += 1;
+    }
+    if (
+      row.nonRetainedTransitionEvidence &&
+      !row.nonRetainedEventRootTouchEvidence
+    ) {
+      summary.rowsWithInteriorEventRootAbsentFromNonRetainedTransitions += 1;
+    }
+    for (const key of countKeys) {
+      summary[key] += row[key] ?? 0;
+    }
+    if (row.firstTransitionKeyBlocker) {
+      summary.firstTransitionKeyBlockers.add(row.firstTransitionKeyBlocker);
+    }
+    summaries.set(row.pairKey, summary);
+  }
+  return [...summaries.values()]
+    .map((summary) => ({
+      ...summary,
+      firstTransitionKeyBlockers: [
+        ...summary.firstTransitionKeyBlockers,
+      ].sort(),
+    }))
+    .sort((left, right) => left.pairKey.localeCompare(right.pairKey));
+}
+
+function createEventRootAffineBracketInteriorTransitionConversionPatternPairSummaries(
+  rows
+) {
+  const summaries = new Map();
+  for (const row of rows) {
+    const summary = summaries.get(row.pairKey) ?? {
+      pairKey: row.pairKey,
+      rowCount: 0,
+      conversionPatternCandidateRowCount: 0,
+      acceptedConversionPatternRowCount: 0,
+      balancedAppearedDisappearedRowCount: 0,
+      alternatingAppearedDisappearedRowCount: 0,
+      foldedEventRootTouchRowCount: 0,
+      singleSourceReceiverPairRowCount: 0,
+      eventRootTouchTransitionCount: 0,
+      appearedCount: 0,
+      disappearedCount: 0,
+      foldedCount: 0,
+      sameKindAdjacentViolationCount: 0,
+      maxSameKindRunLength: 0,
+      sourceReceiverPairs: new Set(),
+      firstConversionPatternBlockers: new Set(),
+    };
+    summary.rowCount += 1;
+    if (row.conversionPatternCandidatePass) {
+      summary.conversionPatternCandidateRowCount += 1;
+    }
+    if (row.acceptedConversionPatternRowPass) {
+      summary.acceptedConversionPatternRowCount += 1;
+    }
+    if (row.appearedDisappearedBalanced) {
+      summary.balancedAppearedDisappearedRowCount += 1;
+    }
+    if (row.alternatingAppearedDisappearedPass) {
+      summary.alternatingAppearedDisappearedRowCount += 1;
+    }
+    if (row.foldedEventRootTouchPresent) {
+      summary.foldedEventRootTouchRowCount += 1;
+    }
+    if (row.singleSourceReceiverPairPass) {
+      summary.singleSourceReceiverPairRowCount += 1;
+    }
+    summary.eventRootTouchTransitionCount +=
+      row.eventRootTouchTransitionCount ?? 0;
+    summary.appearedCount += row.appearedCount ?? 0;
+    summary.disappearedCount += row.disappearedCount ?? 0;
+    summary.foldedCount += row.foldedCount ?? 0;
+    summary.sameKindAdjacentViolationCount +=
+      row.sameKindAdjacentViolationCount ?? 0;
+    summary.maxSameKindRunLength = Math.max(
+      summary.maxSameKindRunLength,
+      row.maxSameKindRunLength ?? 0
+    );
+    for (const pair of row.sourceReceiverPairs ?? []) {
+      summary.sourceReceiverPairs.add(`${pair.sourceKey}:${pair.receiverKey}`);
+    }
+    if (row.firstConversionPatternBlocker) {
+      summary.firstConversionPatternBlockers.add(
+        row.firstConversionPatternBlocker
+      );
+    }
+    summaries.set(row.pairKey, summary);
+  }
+  return [...summaries.values()]
+    .map((summary) => ({
+      ...summary,
+      sourceReceiverPairs: [...summary.sourceReceiverPairs].sort(),
+      firstConversionPatternBlockers: [
+        ...summary.firstConversionPatternBlockers,
+      ].sort(),
+    }))
+    .sort((left, right) => left.pairKey.localeCompare(right.pairKey));
+}
+
+function createEventRootAffineBracketIdentityConservationPairSummaries(rows) {
+  const summaries = new Map();
+  for (const row of rows) {
+    const summary = summaries.get(row.pairKey) ?? {
+      pairKey: row.pairKey,
+      rowCount: 0,
+      positiveDistanceInteriorCaseCount: 0,
+      touchingBoundaryLimitCaseCount: 0,
+      acceptedIdentityConservationRowCount: 0,
+      firstRowBlockers: new Set(),
+    };
+    summary.rowCount += 1;
+    if (row.proofSubcase === "positive_distance_affine_interior") {
+      summary.positiveDistanceInteriorCaseCount += 1;
+    }
+    if (row.proofSubcase === "touching_boundary_affine_limit") {
+      summary.touchingBoundaryLimitCaseCount += 1;
+    }
+    if (row.acceptedIdentityConservationRowPass) {
+      summary.acceptedIdentityConservationRowCount += 1;
+    }
+    if (row.firstRowBlocker) {
+      summary.firstRowBlockers.add(row.firstRowBlocker);
+    }
+    summaries.set(row.pairKey, summary);
+  }
+  return [...summaries.values()]
+    .map((summary) => ({
+      ...summary,
+      firstRowBlockers: [...summary.firstRowBlockers].sort(),
+    }))
+    .sort((left, right) => left.pairKey.localeCompare(right.pairKey));
+}
+
+function createEventRootBracketAffineSpanSummaries(rows) {
+  const summaries = new Map();
+  for (const row of rows) {
+    if (!Number.isFinite(row.bracketSpanUnits)) {
+      continue;
+    }
+    const summary = summaries.get(row.bracketSpanUnits) ?? {
+      bracketSpanUnits: row.bracketSpanUnits,
+      rowCount: 0,
+      widthUnitValues: new Set(),
+      endpointDistanceUnitPairs: new Set(),
+      pairKeys: new Set(),
+      positiveDistanceBothBoundaryCount: 0,
+      touchingBoundaryCount: 0,
+    };
+    summary.rowCount += 1;
+    if (Number.isFinite(row.widthUnits)) {
+      summary.widthUnitValues.add(row.widthUnits);
+    }
+    if (
+      Number.isFinite(row.priorDistanceUnits) &&
+      Number.isFinite(row.nextDistanceUnits)
+    ) {
+      summary.endpointDistanceUnitPairs.add(
+        `${row.priorDistanceUnits}:${row.nextDistanceUnits}`
+      );
+    }
+    summary.pairKeys.add(row.pairKey);
+    if (row.positiveDistanceBothBoundaryPass) {
+      summary.positiveDistanceBothBoundaryCount += 1;
+    }
+    if (row.touchingBoundaryCase) {
+      summary.touchingBoundaryCount += 1;
+    }
+    summaries.set(row.bracketSpanUnits, summary);
+  }
+  return [...summaries.values()]
+    .map((summary) => ({
+      ...summary,
+      widthUnitValues: [...summary.widthUnitValues].sort(
+        (left, right) => left - right
+      ),
+      endpointDistanceUnitPairs: [...summary.endpointDistanceUnitPairs].sort(),
+      pairKeys: [...summary.pairKeys].sort(),
+    }))
+    .sort((left, right) => left.bracketSpanUnits - right.bracketSpanUnits);
+}
+
+function createEventRootBracketTransportClassSummaries(rows) {
+  const summaries = new Map();
+  for (const row of rows) {
+    if (!row.finiteTransportClassKey) {
+      continue;
+    }
+    const summary = summaries.get(row.finiteTransportClassKey) ?? {
+      finiteTransportClassKey: row.finiteTransportClassKey,
+      pairKey: row.pairKey,
+      side: row.side,
+      widthUnits: row.widthUnits,
+      priorDistanceUnits: row.priorDistanceUnits,
+      nextDistanceUnits: row.nextDistanceUnits,
+      bracketSpanUnits: row.bracketSpanUnits,
+      rowCount: 0,
+      edgeIndices: [],
+    };
+    summary.rowCount += 1;
+    summary.edgeIndices.push(row.edgeIndex);
+    summaries.set(row.finiteTransportClassKey, summary);
+  }
+  return [...summaries.values()].sort((left, right) =>
+    left.finiteTransportClassKey.localeCompare(right.finiteTransportClassKey)
+  );
+}
+
+function createEventRootBoundedInteriorGapPairSummaries(rows) {
+  const summaries = new Map();
+  for (const row of rows) {
+    const summary = summaries.get(row.pairKey) ?? {
+      pairKey: row.pairKey,
+      gapCount: 0,
+      totalGapWidth: 0,
+      maxGapWidth: null,
+      minPriorBoundaryDistance: null,
+      maxPriorBoundaryDistance: null,
+      minNextBoundaryDistance: null,
+      maxNextBoundaryDistance: null,
+      zeroPriorBoundaryDistanceCount: 0,
+      zeroNextBoundaryDistanceCount: 0,
+      zeroBothBoundaryDistanceCount: 0,
+      positiveDistanceBothBoundaryCount: 0,
+    };
+    const priorDistance = row.priorEventRootBoundary?.distance;
+    const nextDistance = row.nextEventRootBoundary?.distance;
+    summary.gapCount += 1;
+    if (Number.isFinite(row.width)) {
+      summary.totalGapWidth += row.width;
+      summary.maxGapWidth =
+        summary.maxGapWidth == null
+          ? row.width
+          : Math.max(summary.maxGapWidth, row.width);
+    }
+    if (Number.isFinite(priorDistance)) {
+      summary.minPriorBoundaryDistance =
+        summary.minPriorBoundaryDistance == null
+          ? priorDistance
+          : Math.min(summary.minPriorBoundaryDistance, priorDistance);
+      summary.maxPriorBoundaryDistance =
+        summary.maxPriorBoundaryDistance == null
+          ? priorDistance
+          : Math.max(summary.maxPriorBoundaryDistance, priorDistance);
+    }
+    if (Number.isFinite(nextDistance)) {
+      summary.minNextBoundaryDistance =
+        summary.minNextBoundaryDistance == null
+          ? nextDistance
+          : Math.min(summary.minNextBoundaryDistance, nextDistance);
+      summary.maxNextBoundaryDistance =
+        summary.maxNextBoundaryDistance == null
+          ? nextDistance
+          : Math.max(summary.maxNextBoundaryDistance, nextDistance);
+    }
+    const zeroPrior =
+      (row.priorEventRootBoundary?.distance ?? Infinity) <= ROOT_TOLERANCE;
+    const zeroNext =
+      (row.nextEventRootBoundary?.distance ?? Infinity) <= ROOT_TOLERANCE;
+    if (zeroPrior) {
+      summary.zeroPriorBoundaryDistanceCount += 1;
+    }
+    if (zeroNext) {
+      summary.zeroNextBoundaryDistanceCount += 1;
+    }
+    if (zeroPrior && zeroNext) {
+      summary.zeroBothBoundaryDistanceCount += 1;
+    }
+    if (
+      (row.priorEventRootBoundary?.distance ?? 0) > ROOT_TOLERANCE &&
+      (row.nextEventRootBoundary?.distance ?? 0) > ROOT_TOLERANCE
+    ) {
+      summary.positiveDistanceBothBoundaryCount += 1;
+    }
+    summaries.set(row.pairKey, summary);
+  }
+  return Array.from(summaries.values()).sort((left, right) =>
+    left.pairKey.localeCompare(right.pairKey)
+  );
+}
+
+function createRetainedHingeRootReplayLiftObstructionTarget({
+  rows,
+  eventRootKey,
+  hingeTime,
+  allPairsHavePartialChain,
+  allPairsHaveGlobalReplay,
+  pointEventOnlyCommonRoot,
+  rootPayloadIntervalEnclosure,
+}) {
+  const partialOnlyRows = rows.filter(
+    (row) =>
+      row.eventRootKeyPartialChainPass && !row.eventRootKeyGlobalReplayPass
+  );
+  const obstructionRows = partialOnlyRows.map((row) => {
+    const transitionEdgeCount = Number.isFinite(row.transitionEdgeCount)
+      ? row.transitionEdgeCount
+      : null;
+    const retainedTransitionCount = Number.isFinite(
+      row.retainedTransitionCount
+    )
+      ? row.retainedTransitionCount
+      : null;
+    const edgesWithRetainedTransition = Number.isFinite(
+      row.edgesWithRetainedTransition
+    )
+      ? row.edgesWithRetainedTransition
+      : null;
+    const edgesWithoutRetainedTransition = Number.isFinite(
+      row.edgesWithoutRetainedTransition
+    )
+      ? row.edgesWithoutRetainedTransition
+      : transitionEdgeCount != null && edgesWithRetainedTransition != null
+        ? transitionEdgeCount - edgesWithRetainedTransition
+        : null;
+    const longestRetainedChainEdgeCount = Number.isFinite(
+      row.longestRetainedChainEdgeCount
+    )
+      ? row.longestRetainedChainEdgeCount
+      : null;
+    const fullReplayEdgeDeficit =
+      transitionEdgeCount != null && longestRetainedChainEdgeCount != null
+        ? transitionEdgeCount - longestRetainedChainEdgeCount
+        : null;
+    const retainedTransitionBeyondEventRootChainCount =
+      retainedTransitionCount != null && longestRetainedChainEdgeCount != null
+        ? retainedTransitionCount - longestRetainedChainEdgeCount
+        : null;
+    const retainedEdgeBeyondEventRootChainCount =
+      edgesWithRetainedTransition != null &&
+      longestRetainedChainEdgeCount != null
+        ? edgesWithRetainedTransition - longestRetainedChainEdgeCount
+        : null;
+    const droppedTransitionCount =
+      transitionEdgeCount != null && retainedTransitionCount != null
+        ? transitionEdgeCount - retainedTransitionCount
+        : null;
+    const retainedRootTransitionSurplus = Number.isFinite(
+      row.retainedRootTransitionSurplus
+    )
+      ? row.retainedRootTransitionSurplus
+      : retainedTransitionCount != null && edgesWithRetainedTransition != null
+        ? retainedTransitionCount - edgesWithRetainedTransition
+        : null;
+    const transitionKindCounts = projectTransitionKindCounts(
+      row.transitionKindCounts
+    );
+    const transitionEdgeProfile = projectTransitionEdgeProfile(
+      row.transitionEdgeProfile
+    );
+    const transitionKindDroppedCount =
+      transitionKindCounts.appeared +
+      transitionKindCounts.disappeared +
+      transitionKindCounts.folded +
+      transitionKindCounts.assimilated_from_tail +
+      transitionKindCounts.ledger_rerun_required;
+    return {
+      pairKey: row.pairKey,
+      pointEventPairRole: row.pointEventPairRole,
+      transitionStatus: row.transitionStatus,
+      transitionEdgeCount,
+      retainedTransitionCount,
+      edgesWithRetainedTransition,
+      edgesWithoutRetainedTransition,
+      retainedRootTransitionSurplus,
+      singleRetainedTransitionPerRetainedEdgePass:
+        retainedRootTransitionSurplus != null &&
+        retainedRootTransitionSurplus === 0,
+      transitionKindCounts,
+      transitionEdgeProfile,
+      transitionGapCoverage: row.transitionGapCoverage ?? null,
+      transitionBoundaryEdges: row.transitionBoundaryEdges ?? [],
+      transitionKindDroppedCount,
+      droppedEdgePresenceSplitPass:
+        edgesWithoutRetainedTransition != null &&
+        edgesWithoutRetainedTransition ===
+          transitionEdgeProfile
+            .edgesWithoutRetainedTransitionAndNoRootLedgerTransitions +
+            transitionEdgeProfile
+              .edgesWithoutRetainedTransitionAndOnlyNonRetainedTransitions,
+      longestRetainedChainEdgeCount,
+      fullReplayEdgeDeficit,
+      retainedTransitionBeyondEventRootChainCount,
+      droppedTransitionCount,
+      retainedEdgeBeyondEventRootChainCount,
+      edgeDeficitEdgeSplitPass:
+        fullReplayEdgeDeficit != null &&
+        retainedEdgeBeyondEventRootChainCount != null &&
+        edgesWithoutRetainedTransition != null &&
+        fullReplayEdgeDeficit ===
+          retainedEdgeBeyondEventRootChainCount +
+            edgesWithoutRetainedTransition,
+      edgeDeficitDecompositionPass:
+        fullReplayEdgeDeficit != null &&
+        retainedTransitionBeyondEventRootChainCount != null &&
+        droppedTransitionCount != null &&
+        fullReplayEdgeDeficit ===
+          retainedTransitionBeyondEventRootChainCount +
+            droppedTransitionCount,
+      droppedTransitionsDominateDeficit:
+        droppedTransitionCount != null &&
+        retainedTransitionBeyondEventRootChainCount != null &&
+        droppedTransitionCount > retainedTransitionBeyondEventRootChainCount,
+      droppedEdgesDominateEdgeDeficit:
+        edgesWithoutRetainedTransition != null &&
+        retainedEdgeBeyondEventRootChainCount != null &&
+        edgesWithoutRetainedTransition >
+          retainedEdgeBeyondEventRootChainCount,
+      eventRootKeyReplayCoverage:
+        transitionEdgeCount != null &&
+        transitionEdgeCount > 0 &&
+        longestRetainedChainEdgeCount != null
+          ? longestRetainedChainEdgeCount / transitionEdgeCount
+          : null,
+      eventRootKeyShareOfRetainedTransitions:
+        retainedTransitionCount != null &&
+        retainedTransitionCount > 0 &&
+        longestRetainedChainEdgeCount != null
+          ? longestRetainedChainEdgeCount / retainedTransitionCount
+          : null,
+      hingeMaxRootIntervalWidth: row.hingeMaxRootIntervalWidth,
+    };
+  });
+  const fullReplayEdgeDeficits = obstructionRows
+    .map((row) => row.fullReplayEdgeDeficit)
+    .filter(Number.isFinite);
+  const retainedBeyondEventRootChainCounts = obstructionRows
+    .map((row) => row.retainedTransitionBeyondEventRootChainCount)
+    .filter(Number.isFinite);
+  const retainedEdgeBeyondEventRootChainCounts = obstructionRows
+    .map((row) => row.retainedEdgeBeyondEventRootChainCount)
+    .filter(Number.isFinite);
+  const droppedTransitionCounts = obstructionRows
+    .map((row) => row.droppedTransitionCount)
+    .filter(Number.isFinite);
+  const edgesWithoutRetainedTransitionCounts = obstructionRows
+    .map((row) => row.edgesWithoutRetainedTransition)
+    .filter(Number.isFinite);
+  const retainedRootTransitionSurpluses = obstructionRows
+    .map((row) => row.retainedRootTransitionSurplus)
+    .filter(Number.isFinite);
+  const replayCoverages = obstructionRows
+    .map((row) => row.eventRootKeyReplayCoverage)
+    .filter(Number.isFinite);
+  const aggregateTransitionKindCounts = obstructionRows.reduce(
+    (counts, row) => {
+      for (const [kind, value] of Object.entries(row.transitionKindCounts)) {
+        counts[kind] = (counts[kind] ?? 0) + value;
+      }
+      return counts;
+    },
+    createEmptyTransitionKindCounts()
+  );
+  const aggregateTransitionEdgeProfile = obstructionRows.reduce(
+    (profile, row) => {
+      accumulateTransitionEdgeProfile(profile, row.transitionEdgeProfile);
+      return profile;
+    },
+    createEmptyTransitionEdgeProfile()
+  );
+  const noTransitionBothInactiveGapRows = obstructionRows
+    .map((row) => ({
+      pairKey: row.pairKey,
+      coverage: row.transitionGapCoverage?.noTransitionBothInactive ?? null,
+    }))
+    .filter((row) => (row.coverage?.intervalCount ?? 0) > 0);
+  const onlyNonRetainedBothActiveGapRows = obstructionRows
+    .map((row) => ({
+      pairKey: row.pairKey,
+      coverage: row.transitionGapCoverage?.onlyNonRetainedBothActive ?? null,
+    }))
+    .filter((row) => (row.coverage?.intervalCount ?? 0) > 0);
+  const noTransitionBothInactiveGapWidths =
+    noTransitionBothInactiveGapRows.map(
+      (row) => row.coverage?.maxWidth ?? null
+    );
+  const noTransitionBothInactiveTotalWidth =
+    noTransitionBothInactiveGapRows.reduce(
+      (sum, row) => sum + (row.coverage?.totalWidth ?? 0),
+      0
+    );
+  const noTransitionBothInactiveIntervalCount =
+    noTransitionBothInactiveGapRows.reduce(
+      (sum, row) => sum + (row.coverage?.intervalCount ?? 0),
+      0
+    );
+  const onlyNonRetainedBothActiveGapWidths =
+    onlyNonRetainedBothActiveGapRows.map(
+      (row) => row.coverage?.maxWidth ?? null
+    );
+  const onlyNonRetainedBothActiveTotalWidth =
+    onlyNonRetainedBothActiveGapRows.reduce(
+      (sum, row) => sum + (row.coverage?.totalWidth ?? 0),
+      0
+    );
+  const onlyNonRetainedBothActiveIntervalCount =
+    onlyNonRetainedBothActiveGapRows.reduce(
+      (sum, row) => sum + (row.coverage?.intervalCount ?? 0),
+      0
+    );
+  const noTransitionBothInactiveSideProfile =
+    createTransitionGapSideProfile({
+      gapRows: noTransitionBothInactiveGapRows,
+      hingeTime,
+    });
+  const onlyNonRetainedBothActiveSideProfile =
+    createTransitionGapSideProfile({
+      gapRows: onlyNonRetainedBothActiveGapRows,
+      hingeTime,
+    });
+  const noTransitionBothInactiveBoundaryNeighborhoodProfile =
+    createTransitionGapBoundaryNeighborhoodProfile({
+      rows: obstructionRows,
+      eventRootKey,
+      hingeTime,
+      gapKind: "noTransitionBothInactive",
+      positiveWidthOnly: true,
+    });
+  const onlyNonRetainedBothActiveBoundaryNeighborhoodProfile =
+    createTransitionGapBoundaryNeighborhoodProfile({
+      rows: obstructionRows,
+      eventRootKey,
+      hingeTime,
+      gapKind: "onlyNonRetainedBothActive",
+      positiveWidthOnly: true,
+    });
+  const endpointPresenceDroppedEdgeCount =
+    aggregateTransitionEdgeProfile
+      .edgesWithoutRetainedTransitionAndBothEndpointsInactive +
+    aggregateTransitionEdgeProfile
+      .edgesWithoutRetainedTransitionAndPriorEndpointActiveOnly +
+    aggregateTransitionEdgeProfile
+      .edgesWithoutRetainedTransitionAndNextEndpointActiveOnly +
+    aggregateTransitionEdgeProfile
+      .edgesWithoutRetainedTransitionAndBothEndpointsActive;
+  const endpointPresenceNoTransitionEdgeCount =
+    aggregateTransitionEdgeProfile
+      .edgesWithNoRootLedgerTransitionsAndBothEndpointsInactive +
+    aggregateTransitionEdgeProfile
+      .edgesWithNoRootLedgerTransitionsAndPriorEndpointActiveOnly +
+    aggregateTransitionEdgeProfile
+      .edgesWithNoRootLedgerTransitionsAndNextEndpointActiveOnly +
+    aggregateTransitionEdgeProfile
+      .edgesWithNoRootLedgerTransitionsAndBothEndpointsActive;
+  const endpointPresenceOnlyNonRetainedEdgeCount =
+    aggregateTransitionEdgeProfile
+      .edgesWithOnlyNonRetainedTransitionsAndBothEndpointsInactive +
+    aggregateTransitionEdgeProfile
+      .edgesWithOnlyNonRetainedTransitionsAndPriorEndpointActiveOnly +
+    aggregateTransitionEdgeProfile
+      .edgesWithOnlyNonRetainedTransitionsAndNextEndpointActiveOnly +
+    aggregateTransitionEdgeProfile
+      .edgesWithOnlyNonRetainedTransitionsAndBothEndpointsActive;
+  const allDroppedEdgesClassifiedByEndpointPresence =
+    endpointPresenceDroppedEdgeCount ===
+    aggregateTransitionEdgeProfile.edgesWithoutRetainedTransition;
+  const allNoTransitionEdgesClassifiedByEndpointPresence =
+    endpointPresenceNoTransitionEdgeCount ===
+    aggregateTransitionEdgeProfile.edgesWithNoRootLedgerTransitions;
+  const allOnlyNonRetainedEdgesClassifiedByEndpointPresence =
+    endpointPresenceOnlyNonRetainedEdgeCount ===
+    aggregateTransitionEdgeProfile.edgesWithOnlyNonRetainedTransitions;
+  const noTransitionActiveEndpointPairKeys = obstructionRows
+    .filter(
+      (row) =>
+        (row.transitionEdgeProfile
+          ?.edgesWithNoRootLedgerTransitionsAndPriorEndpointActiveOnly ?? 0) >
+          0 ||
+        (row.transitionEdgeProfile
+          ?.edgesWithNoRootLedgerTransitionsAndNextEndpointActiveOnly ?? 0) >
+          0 ||
+        (row.transitionEdgeProfile
+          ?.edgesWithNoRootLedgerTransitionsAndBothEndpointsActive ?? 0) > 0
+    )
+    .map((row) => row.pairKey);
+  const onlyNonRetainedBothActivePairKeys = obstructionRows
+    .filter(
+      (row) =>
+        (row.transitionEdgeProfile
+          ?.edgesWithOnlyNonRetainedTransitionsAndBothEndpointsActive ?? 0) > 0
+    )
+    .map((row) => row.pairKey);
+  const retainedRootTransitionSurplusPairKeys = obstructionRows
+    .filter((row) => (row.retainedRootTransitionSurplus ?? 0) > 0)
+    .map((row) => row.pairKey);
+  const foldedTransitionPairKeys = obstructionRows
+    .filter((row) => (row.transitionKindCounts?.folded ?? 0) > 0)
+    .map((row) => row.pairKey);
+  const allEdgeDeficitsSplitByRetainedEdgesAndDroppedEdges =
+    obstructionRows.length > 0 &&
+    obstructionRows.every((row) => row.edgeDeficitEdgeSplitPass === true);
+  const allEdgeDeficitsDecompose =
+    obstructionRows.length > 0 &&
+    obstructionRows.every((row) => row.edgeDeficitDecompositionPass === true);
+  const allPartialOnlyRowsHavePositiveFullReplayEdgeDeficit =
+    obstructionRows.length > 0 &&
+    obstructionRows.every((row) => (row.fullReplayEdgeDeficit ?? 0) > 0);
+  const allPartialOnlyRowsHaveRetainedTransitionsBeyondEventRootChain =
+    obstructionRows.length > 0 &&
+    obstructionRows.every(
+      (row) => (row.retainedTransitionBeyondEventRootChainCount ?? 0) > 0
+    );
+  const allPartialOnlyRowsHaveDroppedTransitions =
+    obstructionRows.length > 0 &&
+    obstructionRows.every((row) => (row.droppedTransitionCount ?? 0) > 0);
+  const allPartialOnlyRowsHaveEdgesWithoutRetainedTransition =
+    obstructionRows.length > 0 &&
+    obstructionRows.every(
+      (row) => (row.edgesWithoutRetainedTransition ?? 0) > 0
+    );
+  const allPartialOnlyRowsDroppedTransitionsDominateDeficit =
+    obstructionRows.length > 0 &&
+    obstructionRows.every(
+      (row) => row.droppedTransitionsDominateDeficit === true
+    );
+  const allPartialOnlyRowsDroppedEdgesDominateDeficit =
+    obstructionRows.length > 0 &&
+    obstructionRows.every(
+      (row) => row.droppedEdgesDominateEdgeDeficit === true
+    );
+  const allPartialOnlyRowsSingleRetainedTransitionPerRetainedEdge =
+    obstructionRows.length > 0 &&
+    obstructionRows.every(
+      (row) => row.singleRetainedTransitionPerRetainedEdgePass === true
+    );
+  const allDroppedEdgesClassifiedByTransitionPresence =
+    obstructionRows.length > 0 &&
+    obstructionRows.every((row) => row.droppedEdgePresenceSplitPass === true);
+  const pointOnlyDiagonalBlockerPairKeys = rows
+    .filter(
+      (row) =>
+        row.pointEventPairRole === "diagonal_identity" &&
+        finiteOrNull(row.hingeMaxRootIntervalWidth) === 0
+    )
+    .map((row) => row.pairKey);
+  const positiveSidePartialOnlyPairKeys = obstructionRows
+    .filter((row) => (row.hingeMaxRootIntervalWidth ?? 0) > 0)
+    .map((row) => row.pairKey);
+
+  return {
+    schema:
+      "aaa-tri-binary-retained-hinge-root-replay-lift-obstruction-target.v1",
+    status: eventRootKey == null
+      ? "retained_hinge_root_replay_lift_obstruction_not_populated"
+      : allPairsHaveGlobalReplay
+        ? "retained_hinge_root_replay_lift_obstruction_clear_current_replay"
+        : allPairsHavePartialChain &&
+            pointEventOnlyCommonRoot &&
+            allPartialOnlyRowsHavePositiveFullReplayEdgeDeficit
+          ? "retained_hinge_root_replay_lift_obstruction_current_replay_point_only_positive_edge_deficits"
+          : allPairsHavePartialChain &&
+              allPartialOnlyRowsHavePositiveFullReplayEdgeDeficit
+            ? "retained_hinge_root_replay_lift_obstruction_current_replay_positive_edge_deficits"
+            : "retained_hinge_root_replay_lift_obstruction_incomplete",
+    claimLevel:
+      "current finite chronological replay obstruction for the hinge root key; not a no-go theorem and not retained branch acceptance",
+    retainedBranchClaim: false,
+    eventRootKey,
+    hingeTime: finiteOrNull(hingeTime),
+    currentReplayLiftPass: allPairsHaveGlobalReplay,
+    allPairsHavePartialChain,
+    allPairsHaveGlobalReplay,
+    pointEventOnlyCommonRoot,
+    rootPayloadIntervalStatus: rootPayloadIntervalEnclosure?.status ?? null,
+    partialOnlyPairCount: obstructionRows.length,
+    partialOnlyPairKeys: obstructionRows.map((row) => row.pairKey),
+    edgeDeficitDecompositionFormula:
+      "fullReplayEdgeDeficit = retainedTransitionBeyondEventRootChainCount + droppedTransitionCount",
+    edgeDeficitEdgeSplitFormula:
+      "fullReplayEdgeDeficit = retainedEdgeBeyondEventRootChainCount + edgesWithoutRetainedTransition",
+    allEdgeDeficitsSplitByRetainedEdgesAndDroppedEdges,
+    allEdgeDeficitsDecompose,
+    allPartialOnlyRowsHavePositiveFullReplayEdgeDeficit,
+    allPartialOnlyRowsHaveRetainedTransitionsBeyondEventRootChain,
+    allPartialOnlyRowsHaveDroppedTransitions,
+    allPartialOnlyRowsHaveEdgesWithoutRetainedTransition,
+    allPartialOnlyRowsDroppedTransitionsDominateDeficit,
+    allPartialOnlyRowsDroppedEdgesDominateDeficit,
+    allPartialOnlyRowsSingleRetainedTransitionPerRetainedEdge,
+    allDroppedEdgesClassifiedByTransitionPresence,
+    allDroppedEdgesClassifiedByEndpointPresence,
+    allNoTransitionEdgesClassifiedByEndpointPresence,
+    allOnlyNonRetainedEdgesClassifiedByEndpointPresence,
+    noTransitionActiveEndpointPairKeys,
+    onlyNonRetainedBothActivePairKeys,
+    noTransitionBothInactiveGapPairKeys: noTransitionBothInactiveGapRows.map(
+      (row) => row.pairKey
+    ),
+    noTransitionBothInactiveIntervalCount,
+    totalNoTransitionBothInactiveGapWidth:
+      noTransitionBothInactiveTotalWidth,
+    maxNoTransitionBothInactiveGapWidth: maxFinite(
+      noTransitionBothInactiveGapWidths
+    ),
+    noTransitionBothInactiveSideProfile,
+    noTransitionBothInactiveBoundaryNeighborhoodProfile,
+    onlyNonRetainedBothActiveGapPairKeys:
+      onlyNonRetainedBothActiveGapRows.map((row) => row.pairKey),
+    onlyNonRetainedBothActiveIntervalCount,
+    totalOnlyNonRetainedBothActiveGapWidth:
+      onlyNonRetainedBothActiveTotalWidth,
+    maxOnlyNonRetainedBothActiveGapWidth: maxFinite(
+      onlyNonRetainedBothActiveGapWidths
+    ),
+    onlyNonRetainedBothActiveSideProfile,
+    onlyNonRetainedBothActiveBoundaryNeighborhoodProfile,
+    retainedRootTransitionSurplusPairKeys,
+    foldedTransitionPairKeys,
+    aggregateTransitionKindCounts,
+    aggregateTransitionEdgeProfile,
+    pointOnlyDiagonalBlockerPairKeys,
+    positiveSidePartialOnlyPairKeys,
+    minFullReplayEdgeDeficit: minFinite(fullReplayEdgeDeficits),
+    maxFullReplayEdgeDeficit: maxFinite(fullReplayEdgeDeficits),
+    totalFullReplayEdgeDeficit: fullReplayEdgeDeficits.reduce(
+      (sum, value) => sum + value,
+      0
+    ),
+    minRetainedTransitionBeyondEventRootChainCount: minFinite(
+      retainedBeyondEventRootChainCounts
+    ),
+    maxRetainedTransitionBeyondEventRootChainCount: maxFinite(
+      retainedBeyondEventRootChainCounts
+    ),
+    totalRetainedTransitionBeyondEventRootChainCount:
+      retainedBeyondEventRootChainCounts.reduce(
+        (sum, value) => sum + value,
+        0
+      ),
+    minRetainedEdgeBeyondEventRootChainCount: minFinite(
+      retainedEdgeBeyondEventRootChainCounts
+    ),
+    maxRetainedEdgeBeyondEventRootChainCount: maxFinite(
+      retainedEdgeBeyondEventRootChainCounts
+    ),
+    totalRetainedEdgeBeyondEventRootChainCount:
+      retainedEdgeBeyondEventRootChainCounts.reduce(
+        (sum, value) => sum + value,
+        0
+      ),
+    minDroppedTransitionCount: minFinite(droppedTransitionCounts),
+    maxDroppedTransitionCount: maxFinite(droppedTransitionCounts),
+    totalDroppedTransitionCount: droppedTransitionCounts.reduce(
+      (sum, value) => sum + value,
+      0
+    ),
+    minEdgesWithoutRetainedTransition: minFinite(
+      edgesWithoutRetainedTransitionCounts
+    ),
+    maxEdgesWithoutRetainedTransition: maxFinite(
+      edgesWithoutRetainedTransitionCounts
+    ),
+    totalEdgesWithoutRetainedTransition:
+      edgesWithoutRetainedTransitionCounts.reduce(
+        (sum, value) => sum + value,
+        0
+      ),
+    minRetainedRootTransitionSurplus: minFinite(
+      retainedRootTransitionSurpluses
+    ),
+    maxRetainedRootTransitionSurplus: maxFinite(
+      retainedRootTransitionSurpluses
+    ),
+    totalRetainedRootTransitionSurplus:
+      retainedRootTransitionSurpluses.reduce((sum, value) => sum + value, 0),
+    totalTransitionKindDroppedCount:
+      aggregateTransitionKindCounts.appeared +
+      aggregateTransitionKindCounts.disappeared +
+      aggregateTransitionKindCounts.folded +
+      aggregateTransitionKindCounts.assimilated_from_tail +
+      aggregateTransitionKindCounts.ledger_rerun_required,
+    totalEdgesWithoutRetainedTransitionAndNoRootLedgerTransitions:
+      aggregateTransitionEdgeProfile
+        .edgesWithoutRetainedTransitionAndNoRootLedgerTransitions,
+    totalEdgesWithoutRetainedTransitionAndOnlyNonRetainedTransitions:
+      aggregateTransitionEdgeProfile
+        .edgesWithoutRetainedTransitionAndOnlyNonRetainedTransitions,
+    totalEdgesWithoutRetainedTransitionAndAppearedTransition:
+      aggregateTransitionEdgeProfile
+        .edgesWithoutRetainedTransitionAndAppearedTransition,
+    totalEdgesWithoutRetainedTransitionAndDisappearedTransition:
+      aggregateTransitionEdgeProfile
+        .edgesWithoutRetainedTransitionAndDisappearedTransition,
+    totalEdgesWithoutRetainedTransitionAndFoldedTransition:
+      aggregateTransitionEdgeProfile
+        .edgesWithoutRetainedTransitionAndFoldedTransition,
+    totalEdgesWithoutRetainedTransitionAndBothEndpointsInactive:
+      aggregateTransitionEdgeProfile
+        .edgesWithoutRetainedTransitionAndBothEndpointsInactive,
+    totalEdgesWithoutRetainedTransitionAndPriorEndpointActiveOnly:
+      aggregateTransitionEdgeProfile
+        .edgesWithoutRetainedTransitionAndPriorEndpointActiveOnly,
+    totalEdgesWithoutRetainedTransitionAndNextEndpointActiveOnly:
+      aggregateTransitionEdgeProfile
+        .edgesWithoutRetainedTransitionAndNextEndpointActiveOnly,
+    totalEdgesWithoutRetainedTransitionAndBothEndpointsActive:
+      aggregateTransitionEdgeProfile
+        .edgesWithoutRetainedTransitionAndBothEndpointsActive,
+    totalEdgesWithNoRootLedgerTransitionsAndBothEndpointsInactive:
+      aggregateTransitionEdgeProfile
+        .edgesWithNoRootLedgerTransitionsAndBothEndpointsInactive,
+    totalEdgesWithNoRootLedgerTransitionsAndPriorEndpointActiveOnly:
+      aggregateTransitionEdgeProfile
+        .edgesWithNoRootLedgerTransitionsAndPriorEndpointActiveOnly,
+    totalEdgesWithNoRootLedgerTransitionsAndNextEndpointActiveOnly:
+      aggregateTransitionEdgeProfile
+        .edgesWithNoRootLedgerTransitionsAndNextEndpointActiveOnly,
+    totalEdgesWithNoRootLedgerTransitionsAndBothEndpointsActive:
+      aggregateTransitionEdgeProfile
+        .edgesWithNoRootLedgerTransitionsAndBothEndpointsActive,
+    totalEdgesWithOnlyNonRetainedTransitionsAndBothEndpointsInactive:
+      aggregateTransitionEdgeProfile
+        .edgesWithOnlyNonRetainedTransitionsAndBothEndpointsInactive,
+    totalEdgesWithOnlyNonRetainedTransitionsAndPriorEndpointActiveOnly:
+      aggregateTransitionEdgeProfile
+        .edgesWithOnlyNonRetainedTransitionsAndPriorEndpointActiveOnly,
+    totalEdgesWithOnlyNonRetainedTransitionsAndNextEndpointActiveOnly:
+      aggregateTransitionEdgeProfile
+        .edgesWithOnlyNonRetainedTransitionsAndNextEndpointActiveOnly,
+    totalEdgesWithOnlyNonRetainedTransitionsAndBothEndpointsActive:
+      aggregateTransitionEdgeProfile
+        .edgesWithOnlyNonRetainedTransitionsAndBothEndpointsActive,
+    minEventRootKeyReplayCoverage: minFinite(replayCoverages),
+    maxEventRootKeyReplayCoverage: maxFinite(replayCoverages),
+    nextObstructionRoute: allPairsHaveGlobalReplay
+      ? "bind_retained_payload_transport_and_energy_to_global_row_set"
+      : allPartialOnlyRowsHavePositiveFullReplayEdgeDeficit &&
+          pointEventOnlyCommonRoot
+        ? "extend_positive_deficit_pair_replay_or_accept_full_point_event_rule"
+        : "identify_missing_replay_lift_rows",
+    rows: obstructionRows,
+    retainedLimitation:
+      "The current chronological replay does not already lift the hinge root key into global identity. Every partial-only pair has a positive edge deficit between its full replay and the longest retained chain carrying the hinge root key. The edge-correct split separates retained edges outside the event-root chain from edges with no retained transition. All no-transition dropped edges have inactive active-root endpoints on both sides; the remaining dropped-edge burden is active-domain coverage plus conversion of appeared/disappeared/folded-only edges into retained root-key continuity, or a full point-event rule.",
+  };
+}
+
 function createEvidenceVerdict(rowVerdicts) {
   const hardRowsPass = Object.values(rowVerdicts).every((row) => row.pass);
   return {
@@ -18985,28 +33779,217 @@ function createEvidenceVerdict(rowVerdicts) {
   };
 }
 
+function findProjectionRow(caseItem, rowId) {
+  return (
+    caseItem?.branchChartProjection?.populatedRows?.find((row) => row.id === rowId) ??
+    null
+  );
+}
+
+function getInnerSelfHitSpan(caseItem) {
+  return caseItem?.layers?.find((row) => row.layer === "inner")?.selfHit?.span ?? null;
+}
+
+function createBranchCertificateCaseRank(caseItem, innerSelfHitSpan = getInnerSelfHitSpan(caseItem)) {
+  const selfRootParityRow = findProjectionRow(caseItem, "self_root_parity_index_proxy");
+  const selfRootParityTargetPass =
+    selfRootParityRow?.status === "index_proxy_matches_target";
+  return {
+    caseId: caseItem.caseId,
+    familyId: caseItem.familyId,
+    familyLabel: caseItem.familyLabel,
+    policy: caseItem.policy,
+    f: caseItem.f,
+    frequencyTriplet: caseItem.frequencyTriplet,
+    rankKeys: {
+      selfRootParityTargetPass,
+      phaseLockPremise: caseItem.policy === "phase-lock",
+      priorityCandidate: caseItem.priorityCandidate === true,
+      reducedRowsPass: caseItem.branchChartProjection?.reducedRowsPass === true,
+      innerSelfHitSpan,
+    },
+    selfRootParityIndexProxy: selfRootParityRow
+      ? {
+          status: selfRootParityRow.status,
+          innerOffsetFromMiddle: selfRootParityRow.value?.innerOffsetFromMiddle ?? null,
+          requiredInnerSelfHitSubsteps:
+            selfRootParityRow.value?.requiredInnerSelfHitSubsteps ?? null,
+        }
+      : null,
+    retainedBranchClaim: false,
+  };
+}
+
+function compareBranchCertificateCaseRank(left, right) {
+  const leftKeys = left.rankKeys;
+  const rightKeys = right.rankKeys;
+  const booleanComparisons = [
+    "selfRootParityTargetPass",
+    "phaseLockPremise",
+    "priorityCandidate",
+    "reducedRowsPass",
+  ];
+  for (const key of booleanComparisons) {
+    const leftValue = leftKeys[key] === true ? 1 : 0;
+    const rightValue = rightKeys[key] === true ? 1 : 0;
+    if (leftValue !== rightValue) {
+      return rightValue - leftValue;
+    }
+  }
+  const leftSpan = Number.isFinite(leftKeys.innerSelfHitSpan)
+    ? leftKeys.innerSelfHitSpan
+    : -Infinity;
+  const rightSpan = Number.isFinite(rightKeys.innerSelfHitSpan)
+    ? rightKeys.innerSelfHitSpan
+    : -Infinity;
+  if (leftSpan !== rightSpan) {
+    return rightSpan - leftSpan;
+  }
+  return left.caseId.localeCompare(right.caseId);
+}
+
+function compareBranchCertificateFamilyRank(left, right) {
+  const criteria = [
+    "selfRootParityTargetCoverage",
+    "phaseLockSelfRootParityTargetPassCount",
+    "priorityCandidateRank",
+    "reducedPassCoverage",
+    "bestInnerSelfHitSpan",
+  ];
+  for (const key of criteria) {
+    const leftValue = Number.isFinite(left[key]) ? left[key] : -Infinity;
+    const rightValue = Number.isFinite(right[key]) ? right[key] : -Infinity;
+    if (leftValue !== rightValue) {
+      return rightValue - leftValue;
+    }
+  }
+  return left.familyId.localeCompare(right.familyId);
+}
+
+function classifyBranchCertificateFamilyRank(bucket) {
+  if (
+    bucket.priorityCandidate === true &&
+    bucket.selfRootParityTargetPassCount === bucket.caseCount &&
+    bucket.caseCount > 0
+  ) {
+    return "stable_priority_family_self_root_parity_proxy_across_sampled_f";
+  }
+  if (bucket.selfRootParityTargetPassCount > 0) {
+    return "partial_self_root_parity_proxy_only_at_sampled_f";
+  }
+  if (bucket.candidateClass === "symmetric_offset_control") {
+    return "symmetric_control_no_self_root_parity_proxy";
+  }
+  if (bucket.candidateClass === "dyadic_lock_control") {
+    return "dyadic_control_no_self_root_parity_proxy";
+  }
+  if (Number.isFinite(bucket.bestInnerSelfHitSpan) && bucket.bestInnerSelfHitSpan > 0) {
+    return "span_only_reduced_probe_no_self_root_parity_proxy";
+  }
+  return "reduced_rows_only_no_branch_certificate_signal";
+}
+
+function createNonMinimalCompetitorAudit(branchCertificateFamilyRanking) {
+  const candidate = branchCertificateFamilyRanking.find(
+    (family) => family.priorityCandidate === true
+  );
+  const competitors = branchCertificateFamilyRanking.filter(
+    (family) => family.priorityCandidate !== true
+  );
+  const retainedCompetitors = competitors.filter(
+    (family) => family.retainedBranchClaim === true
+  );
+  const selfRootParityProxyCompetitors = competitors.filter(
+    (family) => family.selfRootParityTargetPassCount > 0
+  );
+  const spanOnlyCompetitors = competitors.filter(
+    (family) =>
+      family.selfRootParityTargetPassCount === 0 &&
+      Number.isFinite(family.bestInnerSelfHitSpan) &&
+      family.bestInnerSelfHitSpan > 0
+  );
+  const competitorCaseCount = competitors.reduce(
+    (total, family) => total + family.caseCount,
+    0
+  );
+  const reducedCompetitorCaseCount = competitors.reduce(
+    (total, family) => total + family.reducedPassCount,
+    0
+  );
+  return {
+    schema: "aaa-tri-binary-non-minimal-competitor-reduced-audit.v1",
+    claimLevel:
+      "finite reduced competitor-family audit; not retained competitor exclusion",
+    status:
+      retainedCompetitors.length > 0
+        ? "retained_competitor_candidate_present_requires_branch_selection"
+        : "finite_reduced_competitor_families_populated_retained_competitors_not_evaluable",
+    candidateFamilyId: candidate?.familyId ?? null,
+    candidateRank: candidate?.rank ?? null,
+    competitorFamilyCount: competitors.length,
+    competitorCaseCount,
+    reducedCompetitorCaseCount,
+    selfRootParityProxyCompetitorFamilyCount: selfRootParityProxyCompetitors.length,
+    retainedCompetitorFamilyCount: retainedCompetitors.length,
+    closestReducedCompetitors: competitors.slice(0, 5).map((family) => ({
+      rank: family.rank,
+      familyId: family.familyId,
+      familyLabel: family.familyLabel,
+      candidateClass: family.candidateClass,
+      selfRootParityTargetCoverage: family.selfRootParityTargetCoverage,
+      phaseLockSelfRootParityTargetPassCount:
+        family.phaseLockSelfRootParityTargetPassCount,
+      reducedPassCoverage: family.reducedPassCoverage,
+      bestInnerSelfHitSpan: family.bestInnerSelfHitSpan,
+      bestBranchCertificateCaseId: family.bestBranchCertificateCase?.caseId ?? null,
+      branchCertificateInterpretation: family.branchCertificateInterpretation,
+      retainedBranchClaim: false,
+    })),
+    spanOnlyCompetitorFamilyIds: spanOnlyCompetitors.map((family) => family.familyId),
+    blocker:
+      "The sampled symmetric, dyadic, and integer-lock competitors are finite reduced controls only. None has retained row-set identity, retained phase lock, torque consistency, tail-wake pullback, vector partition, energy routing, section stability, or retained branch claim.",
+    failureMode:
+      "A non-minimal competitor can still defeat the middle-hinge candidate if it later populates the same retained branch-selection residual rows with lower cost or an accepted route while the middle-hinge branch remains blocked.",
+  };
+}
+
 function createFrequencyTripletSearchSummary(cases) {
   const familyBuckets = new Map();
   const bestByPolicyF = new Map();
   for (const item of cases) {
-    const innerSelfHitSpan =
-      item.layers.find((row) => row.layer === "inner")?.selfHit?.span ?? null;
+    const innerSelfHitSpan = getInnerSelfHitSpan(item);
+    const branchCertificateCaseRank = createBranchCertificateCaseRank(
+      item,
+      innerSelfHitSpan
+    );
     const familyBucket = familyBuckets.get(item.familyId) ?? {
       familyId: item.familyId,
       familyLabel: item.familyLabel,
       familyCanonicalRelation: item.familyCanonicalRelation,
-      familyLegacyRelation: item.familyLegacyRelation,
+      familyOuterNormalizedRelation: item.familyOuterNormalizedRelation,
       candidateClass: item.candidateClass,
       integerLock: item.integerLock,
+      priorityCandidate: item.priorityCandidate === true,
       caseCount: 0,
       reducedPassCount: 0,
+      selfRootParityTargetPassCount: 0,
+      phaseLockSelfRootParityTargetPassCount: 0,
       bestInnerSelfHitSpan: null,
       bestInnerSelfHitSpanCaseId: null,
       bestInnerSelfHitSpanTriplet: null,
+      bestBranchCertificateCase: null,
+      selfRootParityTargetCaseIds: [],
     };
     familyBucket.caseCount += 1;
     if (item.evidenceVerdict.status === "solver_rows_pass_reduced_probe") {
       familyBucket.reducedPassCount += 1;
+    }
+    if (branchCertificateCaseRank.rankKeys.selfRootParityTargetPass) {
+      familyBucket.selfRootParityTargetPassCount += 1;
+      familyBucket.selfRootParityTargetCaseIds.push(item.caseId);
+      if (item.policy === "phase-lock") {
+        familyBucket.phaseLockSelfRootParityTargetPassCount += 1;
+      }
     }
     if (
       Number.isFinite(innerSelfHitSpan) &&
@@ -19016,6 +33999,15 @@ function createFrequencyTripletSearchSummary(cases) {
       familyBucket.bestInnerSelfHitSpan = innerSelfHitSpan;
       familyBucket.bestInnerSelfHitSpanCaseId = item.caseId;
       familyBucket.bestInnerSelfHitSpanTriplet = item.frequencyTriplet;
+    }
+    if (
+      !familyBucket.bestBranchCertificateCase ||
+      compareBranchCertificateCaseRank(
+        branchCertificateCaseRank,
+        familyBucket.bestBranchCertificateCase
+      ) < 0
+    ) {
+      familyBucket.bestBranchCertificateCase = branchCertificateCaseRank;
     }
     familyBuckets.set(item.familyId, familyBucket);
 
@@ -19033,6 +34025,7 @@ function createFrequencyTripletSearchSummary(cases) {
         familyId: item.familyId,
         familyLabel: item.familyLabel,
         familyCanonicalRelation: item.familyCanonicalRelation,
+        familyOuterNormalizedRelation: item.familyOuterNormalizedRelation,
         candidateClass: item.candidateClass,
         integerLock: item.integerLock,
         frequencyTriplet: item.frequencyTriplet,
@@ -19043,17 +34036,88 @@ function createFrequencyTripletSearchSummary(cases) {
       });
     }
   }
+  const familySummaries = Array.from(familyBuckets.values())
+    .map((bucket) => {
+      const reducedPassCoverage = bucket.caseCount > 0 ? bucket.reducedPassCount / bucket.caseCount : 0;
+      const selfRootParityTargetCoverage =
+        bucket.caseCount > 0
+          ? bucket.selfRootParityTargetPassCount / bucket.caseCount
+          : 0;
+      return {
+        ...bucket,
+        reducedPassCoverage,
+        selfRootParityTargetCoverage,
+        priorityCandidateRank: bucket.priorityCandidate ? 1 : 0,
+        branchCertificateInterpretation: classifyBranchCertificateFamilyRank(bucket),
+      };
+    })
+    .sort((left, right) => left.familyId.localeCompare(right.familyId));
+  const branchCertificateFamilyRanking = familySummaries
+    .map((bucket) => ({
+      familyId: bucket.familyId,
+      familyLabel: bucket.familyLabel,
+      familyCanonicalRelation: bucket.familyCanonicalRelation,
+      familyOuterNormalizedRelation: bucket.familyOuterNormalizedRelation,
+      candidateClass: bucket.candidateClass,
+      integerLock: bucket.integerLock,
+      priorityCandidate: bucket.priorityCandidate,
+      caseCount: bucket.caseCount,
+      reducedPassCount: bucket.reducedPassCount,
+      reducedPassCoverage: bucket.reducedPassCoverage,
+      selfRootParityTargetPassCount: bucket.selfRootParityTargetPassCount,
+      selfRootParityTargetCoverage: bucket.selfRootParityTargetCoverage,
+      phaseLockSelfRootParityTargetPassCount:
+        bucket.phaseLockSelfRootParityTargetPassCount,
+      priorityCandidateRank: bucket.priorityCandidateRank,
+      bestInnerSelfHitSpan: bucket.bestInnerSelfHitSpan,
+      bestInnerSelfHitSpanCaseId: bucket.bestInnerSelfHitSpanCaseId,
+      bestBranchCertificateCase: bucket.bestBranchCertificateCase,
+      selfRootParityTargetCaseIds: bucket.selfRootParityTargetCaseIds,
+      branchCertificateInterpretation: bucket.branchCertificateInterpretation,
+      retainedBranchClaim: false,
+    }))
+    .sort(compareBranchCertificateFamilyRank)
+    .map((bucket, index) => ({
+      rank: index + 1,
+      ...bucket,
+    }));
+  const nonMinimalCompetitorAudit =
+    createNonMinimalCompetitorAudit(branchCertificateFamilyRanking);
   return {
     schema: "aaa-tri-binary-frequency-triplet-search-summary.v1",
     claimLevel:
       "candidate search summary over canonical I:M:O frequency triplets; not retained-branch certification",
     canonicalOrder: "I:M:O",
-    legacyOrder: "O:M:I",
+    outerNormalizedOrder: "f_O:f_M:f_I",
     caseCount: cases.length,
     familyCount: familyBuckets.size,
-    familySummaries: Array.from(familyBuckets.values()).sort((left, right) =>
-      left.familyId.localeCompare(right.familyId)
-    ),
+    familySummaries,
+    branchCertificateRankingPolicy: {
+      schema: "aaa-tri-binary-branch-certificate-family-ranking-policy.v1",
+      claimLevel:
+        "reduced branch-certificate proximity ranking; not retained-branch certification",
+      primaryCriteria: [
+        "self_root_parity_index_proxy coverage across sampled cases",
+        "phase-lock premise coverage for the same self-root parity target",
+        "priority-candidate status",
+        "reduced-row pass coverage",
+      ],
+      tieBreaker:
+        "inner self-hit span is used only after branch-certificate criteria; span-only winners are diagnostic controls.",
+      sharedBlockers: [
+        "row_set_identity",
+        "phase_lock",
+        "torque_consistency",
+        "tail_wake_pullback",
+        "vector_partition_retained",
+        "energy_routing",
+        "section_stability",
+        "non_minimal_retained_competitors",
+      ],
+    },
+    branchCertificateFamilyRanking,
+    bestByBranchCertificate: branchCertificateFamilyRanking[0] ?? null,
+    nonMinimalCompetitorAudit,
     bestByPolicyF: Array.from(bestByPolicyF.values()).sort((left, right) =>
       left.policyFKey.localeCompare(right.policyFKey)
     ),
@@ -19127,6 +34191,33 @@ function printSummary(report, absoluteOutputPath) {
   console.log(
     `frequency triplet families: ${report.frequencyTripletSearch?.familyCount ?? "unknown"} (canonical order I:M:O)`
   );
+  const topBranchCertificateFamily =
+    report.frequencyTripletSearch?.bestByBranchCertificate ?? null;
+  if (topBranchCertificateFamily) {
+    console.log(
+      [
+        "branch-certificate top family:",
+        topBranchCertificateFamily.familyId,
+        topBranchCertificateFamily.familyLabel,
+        `selfRootParityCoverage=${formatNumber(
+          topBranchCertificateFamily.selfRootParityTargetCoverage
+        )}`,
+        "retainedBranchClaim=false",
+      ].join(" ")
+    );
+  }
+  const competitorAudit =
+    report.frequencyTripletSearch?.nonMinimalCompetitorAudit ?? null;
+  if (competitorAudit) {
+    console.log(
+      [
+        "non-minimal competitor audit:",
+        competitorAudit.status,
+        `competitorFamilies=${competitorAudit.competitorFamilyCount}`,
+        `retainedCompetitors=${competitorAudit.retainedCompetitorFamilyCount}`,
+      ].join(" ")
+    );
+  }
   for (const comparison of report.comparisons) {
     console.log(
       [

@@ -347,6 +347,7 @@ struct ArchitrinoSolverPairInteractionRequestF64 {
   double pair_acceleration_scale;
   double softening;
   double integration_tolerance;
+  double signal_speed;
   std::uint32_t interaction_law;
   std::uint32_t integration_method;
   std::uint64_t boundary_relaxation_iteration_count;
@@ -415,6 +416,12 @@ struct ArchitrinoSolverPairInteractionSummaryF64 {
   double max_position_residual;
   double mean_position_residual;
   double rms_position_residual;
+  std::uint64_t initial_velocity_residual_sample_count;
+  double max_initial_velocity_residual;
+  double mean_initial_velocity_residual;
+  double rms_initial_velocity_residual;
+  std::uint32_t boundary_residual_mode;
+  std::uint32_t reserved0;
 };
 
 struct ArchitrinoSolverMotionFrameRowF64 {
@@ -895,6 +902,7 @@ struct ArchitrinoSolverAbiInfo {
   int admission_stress_summary_f64_bytes;
   int status_row_bytes;
   int admission_report_f64_bytes;
+  int pair_interaction_request_f64_bytes;
 };
 
 ArchitrinoSolverAbiInfo architrino_solver_abi_info();
