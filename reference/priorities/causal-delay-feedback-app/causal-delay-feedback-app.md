@@ -13,7 +13,7 @@
 
 This folder owns the priority packet for a single-page animation app that teaches causal-delay feedback depth in $\mathbb{A}\mathbb{A}\mathbb{A}$.
 
-The app should make one point visually clear: the present Virtual Observer readout is not determined only by current source and Virtual Observer positions. It depends on causal-delay hits from retained source history, and deeper retained histories can still affect the outcome when their contribution remains active.
+The app should make one point visually clear: the present feedback state is not determined only by current architrino positions. It depends on causal-delay hits from retained source history, and deeper retained histories can still affect the outcome when their contribution remains active.
 
 ## Objective
 
@@ -27,7 +27,7 @@ The first runnable version uses a temporary mock replay adapter that matches the
 - Each active feedback depth represents another retained causal-delay contribution.
 - Older contributions should fade only because the declared geometry, $1/r$ falloff, and coupling make them weaker, not because old history is assumed irrelevant.
 - Invalid or inactive causal-wake paths should be visible as rejected rows or faded paths, so the user can see why they do not contribute.
-- The Virtual Observer readout is a sum of active contributions, not a single nearest or most recent event.
+- The active feedback readout is a sum of active cross-path contributions, not a single nearest or most recent event.
 - Moving architrino paths must be computed from starting conditions rather than hand-shaped by the display layer.
 
 ## App Shape
@@ -56,7 +56,7 @@ The first runnable version uses a temporary mock replay adapter that matches the
 Recent app work has several reusable design patterns for this app:
 
 - [Molecule Visualization](../../../molecule.html) provides the best compact app-shell reference: a full canvas, top floating title block, small toolbar, color legend chips, hover label, and compact bottom readout.
-- [MoleculeRuntime.js](../../../src/apps/molecule/MoleculeRuntime.js) has useful viewport-fit logic that keeps the main object clear of the readout. Reuse that idea so the Virtual Observer, moving architrino paths, and contribution stack do not collide at different canvas sizes.
+- [MoleculeRuntime.js](../../../src/apps/molecule/MoleculeRuntime.js) has useful viewport-fit logic that keeps the main object clear of the readout. Reuse that idea so moving architrino paths and compact readouts do not collide at different canvas sizes.
 - [IdealSwarmRuntime.js](../../../src/apps/ideal-swarm/IdealSwarmRuntime.js) remains the primary marker and trail grammar reference for architrino motion: glow-backed positrino/electrino markers, layered path ribbons, faded wake layers, and dark full-canvas atmosphere.
 - [PhotonSwarmVisualRuntime.js](../../../src/apps/photon/PhotonSwarmVisualRuntime.js) has a useful 2D arc-tail primitive: segmented curved arcs with width and alpha falloff. Adapt that pattern for causal-wake arcs and $1/r$ thinning.
 - Do not import Molecule's dense side preset rail or Ideal Swarm's four-corner panel layout into v1. The causal-delay app should keep the canvas-first, low-control direction already selected.
@@ -116,7 +116,6 @@ The direct-manipulation canvas sets initial conditions:
 - path beginning and ending positions as first-class numbered path-history markers, with the beginning always numbered `1` and the ending numbered as the final retained point after any insertion or renumbering;
 - architrino initial velocity;
 - polarity or role when shown;
-- Virtual Observer position;
 - run duration;
 - output stride;
 - and retained history depth.
@@ -128,7 +127,7 @@ The solver returns:
 - active causal-root rows;
 - delayed-hit rows;
 - rejected or unresolved root diagnostics;
-- and compact contribution summaries for the Virtual Observer readout.
+- and compact contribution summaries for the active cross-path feedback readout.
 
 The app renders solver-shaped datasets. It should not draw physically meaningful architrino trajectories from CSS, pointer interpolation, or hand-authored Bezier paths except as temporary proof data or a temporary drag preview before a solver run completes.
 
@@ -139,7 +138,7 @@ The app renders solver-shaped datasets. It should not draw physically meaningful
 3. App replays the dataset on the canvas.
 4. User changes the named preset, play state, canvas color, compact speed settings, or `now` time without opening a dense control panel.
 5. The compact `now` scrubber pauses replay, moves live architrino markers and wake fronts to the selected replay time, and refreshes any selected path-history or wake readout.
-6. After the central solver bridge is available, dragging any path-history point, including start point `1` and the final endpoint, the velocity arrow, or the Virtual Observer should submit the setup to the solver or app-worker adapter.
+6. After the central solver bridge is available, dragging any path-history point, including start point `1` and the final endpoint, or the velocity arrow should submit the setup to the solver or app-worker adapter.
 7. Solver computes the architrino path history, causal roots, delayed hits, and diagnostics.
 8. App replaces the draft or mock replay with the solver dataset.
 
@@ -161,7 +160,7 @@ Mock proof datasets must be labeled as `representative mock solver replay` in th
 - contribution summaries;
 - and inactive or rejected rows for at least one proof variant.
 
-The current contact sheet scene is one pair shown in a time-space diagram: the electrino path starts at the lower-left, the positrino path starts at the upper-left, both paths move left to right, cross near the middle, and then begin turning back toward each other as if attraction is bending the later motion. The proof images do not draw a Virtual Observer. The retained history labels are ordered from older to newer: `1` through `6`, with the path start as `1` and the path end as `6`. The visible wake links test cross-path causal feedback from each point `n` to the opposite path point `n+1`.
+The current contact sheet scene is one pair shown in a time-space diagram: the electrino path starts at the lower-left, the positrino path starts at the upper-left, both paths move left to right, cross near the middle, and then begin turning back toward each other as if attraction is bending the later motion. The proof images do not draw a separate observation point. The retained history labels are ordered from older to newer: `1` through `6`, with the path start as `1` and the path end as `6`. The visible wake links test cross-path causal feedback from each point `n` to the opposite path point `n+1`.
 
 The contact-sheet frame should be YouTube-compatible landscape. The standard target is 16:9, with 1920x1080 as the primary proof tile. Scale checks may use other 16:9 YouTube resolutions, but the first proof should not mix 16:10 or 4:3 frames.
 
@@ -219,7 +218,7 @@ Browser QA proof artifacts:
 - [central-reception-insert-purple-1920x1080.png](browser-qa/central-reception-insert-purple-1920x1080.png) - 1920x1080 runtime capture after a scripted canvas context-menu insertion, proving retained points renumber to seven per path, wake links rebuild as `source n -> receiver n+1`, and the central replay returns a converged discrete boundary dataset with `maxPathConstraintBoundaryRelaxationResidualAfter <= 1`, `pathConstraintBoundaryRelaxationResidualEvidenceStatus=aggregate_non_worsening`, initial-velocity evidence, and explicit retained-knot boundary-residual acceptance.
 - [central-initial-velocity-edit-purple-1920x1080.png](browser-qa/central-initial-velocity-edit-purple-1920x1080.png) - 1920x1080 runtime capture after a scripted initial-velocity handle drag and central replay rerun, proving source velocity edits return a central pair replay instead of staying in mock or draft state.
 - [contrast-stress-purple-1920x1080.png](browser-qa/contrast-stress-purple-1920x1080.png) - 1920x1080 runtime capture of `?preset=contrast_stress&replay=mock` with the iOS Purple canvas, selected rejected-wake diagnostics, and the settings panel open.
-- [contrast-stress-purple-390x844.png](browser-qa/contrast-stress-purple-390x844.png) - 390x844 portrait runtime capture of `?preset=contrast_stress&replay=mock` at 2x device scale with the iOS Purple canvas, compact toolbar, settings panel, readable path labels, active wake readout, and right-edge Virtual Observer label kept inside the canvas.
+- [contrast-stress-purple-390x844.png](browser-qa/contrast-stress-purple-390x844.png) - 390x844 portrait runtime capture of `?preset=contrast_stress&replay=mock` at 2x device scale with the iOS Purple canvas, compact toolbar, settings panel, readable path labels, and active wake readout kept inside the canvas.
 
 ## Resolved Landscape Design Decisions
 
@@ -227,7 +226,7 @@ Browser QA proof artifacts:
 - Use the official polarity colors in proof images: positrino red `#ff0000` and electrino blue `#0000ff`, with halo/outline treatment only for readability on purple.
 - The landscape app layout may use compact runtime readouts, but the contact-sheet proof layout should be a full 16:9 canvas with only the compact floating toolbar and small legend.
 - The comparison proof layout should use a time-space diagram: time on the horizontal axis, space on the vertical axis, and both paths moving left to right.
-- The current comparison proof should not draw the Virtual Observer; it should show cross-path causal feedback between retained positrino and electrino history points.
+- The current comparison proof should not draw a separate observation point; it should show cross-path causal feedback between retained positrino and electrino history points.
 - The representative pair should start separated on the left side: blue/electrino at lower-left and red/positrino at upper-left.
 - The representative pair should cross near the middle and then begin bending back toward each other so the mock replay suggests attraction after the crossover.
 - The final red/blue positions should remain separated enough that the late wake fronts are readable and do not overlap into a single bundle.
@@ -247,7 +246,7 @@ Browser QA proof artifacts:
 - Prototype proof tiles should not draw pulse dots or architrino-like markers on top of dotted wake arcs; the dotted wake stroke itself carries the wake geometry.
 - A full-circular-arc preset should exist because it teaches the complete emitted wake geometry.
 - The default teaching view should use smaller outward-propagating arcs moving toward each intersection, because partial arcs keep the screen less busy and make feedback arrivals easier to see.
-- The first contact sheet proof scope is accepted: one positrino path, one electrino path, no Virtual Observer drawn, six retained path points per path, five cross-path feedback links per direction, and six 16:9 proof variants that compare undecided growing-arc treatments.
+- The first contact sheet proof scope is accepted: one positrino path, one electrino path, no separate observation point, six retained path points per path, five cross-path feedback links per direction, and six 16:9 proof variants that compare undecided growing-arc treatments.
 - The revised contact sheet proof canvas should be a solid purple field with no grid.
 - Prototype canvases should not include a per-tile title panel; variant names belong in the contact-sheet manifest or surrounding review sheet, not inside each 1920x1080 proof tile.
 - Contact-sheet proof tiles should not include the bottom data/readout panel or the right-edge `Feedback Links` panel; keep proof metadata in the manifest or review sheet.
@@ -264,8 +263,7 @@ Browser QA proof artifacts:
 - The first visual proof should use 2D canvas/SVG-style mock proof generation. Three.js can be deferred until runtime needs it.
 - Contact sheet proofs can proceed with representative mock solver-replay paths before the real solver bridge is selected.
 - The first landscape proof should not reserve a right-edge contribution stack.
-- Use `Virtual Observer` as the end-user UI term for the observation point. Retain `receiver` only when referring to canonical causal-root math and solver/data fields.
-- When the Virtual Observer appears in runtime app modes, it is not an architrino. The current contact-sheet proof omits it so the cross-path feedback links are easier to read.
+- Use `receiver` only when referring to canonical causal-root math and solver/data fields. The runtime teaching view uses cross-path retained history points rather than a separate observation point.
 - Signed positrino/electrino polarity color should be visible from the start.
 - The settings gear is accepted; canvas color should be one of the first settings so purple-background variants can be tested without adding a dense control panel.
 - Six landscape contact sheet variants are enough for the first visual proof pass.
@@ -289,8 +287,7 @@ Browser QA proof artifacts:
 ### Objects
 
 - Draw path-history point `1` as the draggable initial-position marker for each architrino path.
-- In runtime modes that include an observation point, draw the Virtual Observer as a draggable sample point with a visible `now` marker.
-- In the current contact-sheet proof, omit the Virtual Observer and draw each retained cross-path feedback link as a separate curved dotted causal-wake arc with its own retained-hit index and emitter color.
+- Draw each retained cross-path feedback link as a separate curved dotted causal-wake arc with its own retained-hit index and emitter color.
 - Do not draw separate pulse or particle markers on the causal-wake paths in the first proof; the dotted wake segment itself is the arrival cue.
 - Draw inactive or invalid paths as faint dashed paths with a rejection reason.
 - Draw a draggable velocity arrow attached to the source. Pulling the arrow should change speed and direction without requiring a numeric control.
@@ -336,7 +333,6 @@ Named presets should load complete app state:
 - initial positions;
 - initial velocities;
 - polarity or role;
-- Virtual Observer position;
 - run duration;
 - retained history depth;
 - wake-arc display mode;
@@ -354,7 +350,7 @@ Initial preset set:
 | `full_circular_arcs` | Full emitted circular wake geometry using the same progressing wake-front series as the partial arc mode, with each front drawn as a complete circle. |
 | `partial_propagating_arcs` | Default teaching view with smaller outward-propagating arcs moving toward each active intersection. |
 | `wide_delay_gap` | Clearer teaching preset with long travel times and visibly separated arrivals. |
-| `near_virtual_observer` | Short-delay preset where current position and recent history compete visually. |
+| `close_delay_crossing` | Short-delay preset where current path position and recent history compete visually. |
 | `contrast_stress` | Visual QA preset for red/blue wakes, faded depths, selection cyan, warnings, and white text. |
 
 Search, export, import, and session-preset promotion should stay out of v1. They can follow the Photon pattern later if configuration exploration becomes useful.
@@ -397,7 +393,6 @@ Orientation behavior should be planned early:
 Primary interactions:
 
 - Drag path-history point `1` to change the source initial position.
-- Drag the Virtual Observer to change the contribution readout geometry.
 - Drag the source velocity arrow to change source initial velocity.
 - Drag interior or final path-history points as retained path-constraint handles; after release, central pair replay receives those constraints and returns a solver-shaped constrained replay. Ordinary replay paths remain solver-owned.
 - Right-click a path to insert a retained reception point at that replay time; the app also inserts the paired retained point on the opposite path, renumbers both paths, and rebuilds all valid cross-path wake links from point `n` to point `n+1`.
@@ -411,7 +406,7 @@ Secondary interactions:
 - Click the contribution stack to highlight the path that produced that contribution.
 - Use the mouse wheel or pinch to zoom only when the pointer is over the canvas background, not while dragging an object.
 
-The runtime now implements background-only wheel and pinch zoom as viewport operations: wheel zoom anchors under the cursor, pinch zoom anchors under the initial two-finger midpoint, minimum zoom clamps back to the fitted 16:9 view, and zoom refuses to activate while dragging or when the pointer is over a selectable path-history point, velocity handle, Virtual Observer, or wake link. This keeps zoom separate from solver input, replay timing, and direct-manipulation handles.
+The runtime now implements background-only wheel and pinch zoom as viewport operations: wheel zoom anchors under the cursor, pinch zoom anchors under the initial two-finger midpoint, minimum zoom clamps back to the fitted 16:9 view, and zoom refuses to activate while dragging or when the pointer is over a selectable path-history point, velocity handle, or wake link. This keeps zoom separate from solver input, replay timing, and direct-manipulation handles.
 
 ## Controls
 
@@ -443,14 +438,13 @@ Canvas handles should replace these traditional controls:
 | Traditional control | V1 replacement |
 | --- | --- |
 | Source speed | Drag the initial-velocity arrow, or use the compact architrino-speed fraction setting when an exact $v/c_f$ value is needed. |
-| Contribution distance | Drag the Virtual Observer or source/path-history marker. |
+| Contribution distance | Drag source/path-history markers and rerun the solver-shaped replay. |
 | Retained wake-hit count | Use the retained-points selector in the settings popover. |
 | History window length | Use the retained-points selector until a solver-backed history-window drag exists. |
 | Minimum contribution threshold | Use the weak contribution cue setting; threshold dragging can wait until there is a compact stack design that does not recreate the removed side panel. |
 
 Later controls may include:
 
-- Virtual Observer motion.
 - Coupling sign and strength.
 - Noise or perturbation seed for threshold demonstrations.
 - Multi-source background mode.
@@ -465,7 +459,7 @@ Always-visible readouts:
 - current `now`;
 - solver status;
 - active retained wake-hit count;
-- total Virtual Observer readout;
+- total active feedback readout;
 - strongest active contribution;
 - and selected object label.
 
@@ -480,14 +474,13 @@ Selected-depth readouts:
 - $1/r$ falloff factor;
 - assembly-relevance threshold state;
 - active, inactive, or rejected state;
-- and total Virtual Observer readout from the active contribution sum.
+- and total active feedback readout from the active contribution sum.
 
 Do not add a root-ledger inspector, large diagnostic table, or persistent diagnostics panel in v1. Selected wake rows already expose compact root-ledger details, solver status, timing, contribution, and threshold state in the readout strip; deeper root-ledger inspection can wait until it has a compact canvas-first interaction that does not recreate the removed side-panel layout.
 
 ## Interaction Requirements
 
 - Scrubbing time should move the visible `now` marker and recompute which history rows are active.
-- Dragging the Virtual Observer should update receiver-to-observer contribution distances and contribution rows in real time, without rewriting the retained source/receiver wake hits.
 - Changing retained wake-hit count should add or remove rows without losing the current source-motion settings.
 - Toggling inactive paths should preserve rejected rows in the table when they are relevant to understanding the geometry.
 - Selecting a contribution-stack entry should highlight the causal-wake path that produced it.
@@ -495,7 +488,7 @@ Do not add a root-ledger inspector, large diagnostic table, or persistent diagno
 - Dragging a marker must update the visual paths first, then the numeric readout; the app should feel spatial before it feels tabular.
 - Pressing the spacebar should toggle play/pause unless focus is inside a native control such as the preset dropdown or a toolbar button.
 - Pressing the left/right arrow keys should pause replay and step backward or forward through solver frame samples unless focus is inside a native control.
-- Releasing a dragged path-history point `1`, velocity arrow, or Virtual Observer should enqueue or rerun the solver and mark previous paths as preview or stale until the new solver result arrives.
+- Releasing a dragged path-history point `1`, final/interior retained point, inserted reception point, or velocity arrow should enqueue or rerun the solver and mark previous paths as preview or stale until the new solver result arrives.
 - If the dragged state creates no active paths, the canvas should show an empty active set and name why rather than freezing the prior paths.
 - The initial scene should teach without any required setup: one moving positrino/electrino pair, retained path-history points, and visible cross-path causal-wake arrivals.
 
@@ -513,7 +506,7 @@ Each retained depth row should be represented as structured state:
 | `hitTime` | Receiver hit time. |
 | `travelTime` | Delay between source emission and retained receiver hit. |
 | `sourcePosition` | Source position at emission. |
-| `receiverPosition` | Solver receiver position at hit; separate from the Virtual Observer coordinate in cross-path feedback modes. |
+| `receiverPosition` | Solver receiver position at hit. |
 | `pathDistance` | Spatial distance used by the causal-delay calculation. |
 | `falloffLaw` | Contribution falloff law; v1 uses `$1/r$`. |
 | `falloffFactor` | Computed distance factor from the $1/r$ falloff. |
@@ -655,11 +648,10 @@ Each solver run should also carry a compact setup record:
 - `path_start_history_drag_preview` - Use path-history point `1` as the draggable initial-position handle, deform the path start and nearby replay samples during a draft preview, then submit edited initial positions through the central replay adapter on release when that adapter is active.
 - `path_start_single_history_handle` - Remove the legacy separate initial-position canvas hit path so the beginning marker is only path-history point `1`; its readout now carries source setup fields and solver-rejection details.
 - `initial_velocity_arrow_drag_preview` - Make the attached velocity arrow endpoint a draggable handle; pulling it updates the selected architrino's initial `vx/vy`, bends the draft preview path forward from the initial time, and submits edited velocity through the central replay adapter on release.
-- `virtual_observer_drag_preview` - Add a draggable Virtual Observer handle that updates the live contribution readout through the receiver-to-observer $1/r$ factor, carries the edited observer point in replay request options, and submits it through the central replay adapter on release without marking already solved cross-path wake roots stale.
-- `background_only_wheel_and_pinch_zoom` - Add background-only canvas wheel and pinch zoom. Wheel zoom anchors under the cursor; pinch zoom anchors under the initial two-finger midpoint; both clamp back to the fitted 16:9 composition at minimum zoom and refuse to activate over selectable path-history points, velocity handles, the Virtual Observer, wake links, or active drags. The zoom is a viewport-only operation and does not change replay data, solver requests, wake timing, or contribution math.
-- `direct_edit_rejection_diagnostics` - If a central replay rerun rejects an edited path-history point `1`, velocity, or Virtual Observer state, keep the edited draft on the canvas, show `solver rejected edit` in the status chip, and surface the compact rejection reason in the current readout instead of replacing the edit with the representative fallback.
+- `background_only_wheel_and_pinch_zoom` - Add background-only canvas wheel and pinch zoom. Wheel zoom anchors under the cursor; pinch zoom anchors under the initial two-finger midpoint; both clamp back to the fitted 16:9 composition at minimum zoom and refuse to activate over selectable path-history points, velocity handles, wake links, or active drags. The zoom is a viewport-only operation and does not change replay data, solver requests, wake timing, or contribution math.
+- `direct_edit_rejection_diagnostics` - If a central replay rerun rejects an edited path-history point `1`, retained path point, inserted reception point, or velocity state, keep the edited draft on the canvas, show `solver rejected edit` in the status chip, and surface the compact rejection reason in the current readout instead of replacing the edit with the representative fallback.
 - `context_reception_point_insert` - Add a canvas context-menu path insertion gesture that creates a retained reception point, inserts the paired opposite-path point at the same replay time, renumbers retained points on both paths, refreshes retained-depth controls, rebuilds cross-path wake links dynamically as `source n -> receiver n+1`, and submits the updated retained-history template through the central replay adapter when available.
-- `drag_to_solver_loop` - Complete the direct-manipulation submission loop for v1: path-history point `1`, final/interior retained points, context-menu reception insertion, the Virtual Observer, and initial-velocity handle all update setup/draft state and rerun central replay on release when the central adapter is active. Retained path-history drafts submit retained constraints and adaptive finite boundary-relaxation defaults; Virtual Observer and velocity edits submit setup changes without forcing retained-path relaxation. The remaining physical-solver work is tracked by `central_solver_runtime_switch`.
+- `drag_to_solver_loop` - Complete the direct-manipulation submission loop for v1: path-history point `1`, final/interior retained points, context-menu reception insertion, and initial-velocity handle all update setup/draft state and rerun central replay on release when the central adapter is active. Retained path-history drafts submit retained constraints and adaptive finite boundary-relaxation defaults; velocity edits submit setup changes without forcing retained-path relaxation. The remaining physical-solver work is tracked by `central_solver_runtime_switch`.
 - `native_pair_interaction_cabi_lane` - Add an optional native C/WASM C ABI lane for the central `pairInteraction` replay so the shared solver bridge can return pair frame samples and path-history rows through the same motion-row contract; keep the JavaScript bridge integrator as a fallback when the loaded solver artifact lacks the optional native export.
 - `retained_path_constraint_pair_replay` - Carry retained-history path constraints through the central `pairInteraction` request after retained-point drag or insertion drafts, pass those constraints into the optional native C/WASM C ABI pair lane, rebuild path-history rows and frame buffers from the constrained integration result, and preserve the constraints in dynamic replay validation.
 - `constraint_guided_pair_integration` - Move retained path constraints into the native and JavaScript pair-integration loop: add non-step-aligned constraint times to the emitted sample-time set, advance with a finite-time correction toward the next retained target, make the native C ABI result authoritative without a second JS repaint pass, report residual and guidance-acceleration diagnostics through the C ABI/JS bridge/runtime source chip, and verify a `t=0.25` inserted retained point plus nonzero guidance metrics through the solver app bridge smoke.
@@ -712,7 +704,7 @@ Each solver run should also carry a compact setup record:
 - `pair_interaction_law_default` - Make `inverse_distance_pair_attraction_v1` the causal-delay central-pair default so the app uses the existing $1/r$-attenuated pair law by default, while preserving `pairInteractionLaw=display_pair_attraction_v1` as an explicit comparison URL.
 - `browser_qa_capture_script` - Add a reproducible browser-capture script for the contrast-stress purple runtime proofs, including 1920x1080 landscape and 390x844-at-2x portrait captures with pinned replay time, selected wake diagnostics, and the settings panel open.
 - `purple_browser_screenshot_proof` - Capture a 1920x1080 browser proof of the contrast-stress purple canvas with selected rejected-wake diagnostics and open settings controls, confirming the canvas, labels, compact readout, and themed controls remain legible together.
-- `portrait_browser_screenshot_proof` - Capture a 390x844 portrait browser proof of the contrast-stress purple canvas and flip the Virtual Observer label to the left when it would clip against the portrait right edge.
+- `portrait_browser_screenshot_proof` - Capture a 390x844 portrait browser proof of the contrast-stress purple canvas with the compact toolbar, settings popover, path labels, wake readout, and replay geometry kept inside the portrait canvas.
 - `central_browser_screenshot_proof` - Capture a 1920x1080 browser proof of the default central `pairInteraction` replay and fail the proof if the runtime silently falls back to `representative_mock_solver_replay`, `temporary_mock_adapter`, or a non-`pairInteraction` central replay mode.
 - `central_portrait_browser_screenshot_proof` - Capture a 390x844 phone-shaped browser proof of the default central `pairInteraction` replay and fail the proof if the runtime silently falls back to `representative_mock_solver_replay`, `temporary_mock_adapter`, or a non-`pairInteraction` central replay mode, so the future iPhone integration path has central-replay evidence rather than only mock portrait evidence.
 - `central_direct_edit_browser_screenshot_proof` - Capture a 1920x1080 browser proof after a scripted retained-point drag, wait for the central replay rerun, and fail the proof unless the returned dataset is `central_solver_bridge_replay` through `central_solver_bridge_replay_adapter` with `solverReplayMode=pairInteraction`, `pathConstraintSolverStatus=discrete_boundary_value_converged`, `pathConstraintSolverClaim=finite_difference_pair_boundary_value_solve_converged`, `pathConstraintPhysicalBoundarySolverStatus=physical_boundary_solver_pending`, `pathConstraintPhysicalBoundarySolverClaim=retained_knot_guidance_not_physical_boundary_value_solve`, the edited retained point preserved, retained-position residual evidence covering every submitted path-history marker, initial-velocity evidence accepted, retained-knot boundary-residual evidence accepted, aggregate residual evidence marked `aggregate_non_worsening`, and the source chip reading `solver boundary replay` with `posRows`, `posStatus=within_tolerance`, `initVelRows`, `initVelStatus=within_tolerance`, `boundary`, `bStatus=within_tolerance`, and `relaxEvidence=aggregate_non_worsening`.
@@ -747,7 +739,7 @@ Physical-boundary-solver pending status now includes `pathConstraintPhysicalBoun
 - Keep the page as a usable animation app first, not a prose explainer with a small graphic.
 - Keep any end-user language plain: explain causal delay as influence arriving after travel time.
 - Do not let the app grow into another control-dense inspector before the direct-manipulation loop is working.
-- Do not use the word `electron` for the draggable primitives in the app UI when the object is meant to be an architrino, electrino, positrino, source marker, or Virtual Observer.
+- Do not use the word `electron` for the draggable primitives in the app UI when the object is meant to be an architrino, electrino, positrino, source marker, path-history point, or velocity handle.
 
 ## Resolved Implementation Direction
 

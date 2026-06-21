@@ -4,9 +4,10 @@ import {
   DEFAULT_CANVAS_ID,
   DEFAULT_PRESET_ID,
   DESIGN_HEIGHT,
-  DESIGN_WIDTH,
   ELECTRINO_WAKE,
   FULL_CIRCULAR_ARCS,
+  PATH_TIME_END_X,
+  PATH_TIME_START_X,
   PARTIAL_PROPAGATING_ARCS,
   POSITRINO_WAKE,
   getDistance,
@@ -66,8 +67,6 @@ const BOUNDARY_RELAXATION_RESIDUAL_EVIDENCE_WORSENED = "aggregate_worsened";
 const DERIVED_BOUNDARY_POSITION_RESIDUAL_TOLERANCE = 1e-9;
 const DERIVED_INITIAL_VELOCITY_RESIDUAL_TOLERANCE = 1e-9;
 const TIME_SPACE_CANVAS_FIT_PROJECTION = "time_space_canvas_fit_v1";
-const TIME_AXIS_START_X = DESIGN_WIDTH * 0.05;
-const TIME_AXIS_END_X = DESIGN_WIDTH * 0.95;
 const SPACE_AXIS_TOP_Y = DESIGN_HEIGHT * 0.2;
 const SPACE_AXIS_BOTTOM_Y = DESIGN_HEIGHT * 0.8;
 const PATH_CONSTRAINT_DRAFT_REASONS = new Set([
@@ -647,7 +646,7 @@ function projectBridgeFramesToTimeSpaceCanvas(frames, playbackRequest) {
     return {
       ...frame,
       position: {
-        x: TIME_AXIS_START_X + timeAmount * (TIME_AXIS_END_X - TIME_AXIS_START_X),
+        x: PATH_TIME_START_X + timeAmount * (PATH_TIME_END_X - PATH_TIME_START_X),
         y: SPACE_AXIS_TOP_Y + spaceAmount * (SPACE_AXIS_BOTTOM_Y - SPACE_AXIS_TOP_Y),
         z: Number.isFinite(Number(frame.position?.z)) ? Number(frame.position.z) : 0,
       },
@@ -1875,15 +1874,8 @@ export function normalizeCausalDelayFeedbackBridgeReplay(runHandle = {}, options
     bridgeResponse.initialConditions ?? bridgeResponse.geometry?.initialConditions ?? {},
     "bridge response initialConditions",
   );
+  delete initialConditions.virtualObserver;
   syncInitialConditionsToHistoryStarts(initialConditions, history);
-  const virtualObserver = normalizeOptionalVirtualObserver(
-    bridgeResponse.virtualObserver ??
-      bridgeResponse.geometry?.virtualObserver ??
-      initialConditions.virtualObserver,
-  );
-  if (virtualObserver && !initialConditions.virtualObserver) {
-    initialConditions.virtualObserver = { ...virtualObserver };
-  }
   const geometryPathConstraintCount = Number.isFinite(Number(bridgeResponse.geometry?.pathConstraintCount))
     ? Number(bridgeResponse.geometry.pathConstraintCount)
     : undefined;
@@ -1919,7 +1911,6 @@ export function normalizeCausalDelayFeedbackBridgeReplay(runHandle = {}, options
       DEFAULT_CANVAS_ID,
     preset,
     initialConditions,
-    ...(virtualObserver ? { virtualObserver } : {}),
     paths: {
       positrino: frames.map((frame) => ({ t: frame.t, ...frame.positrino })),
       electrino: frames.map((frame) => ({ t: frame.t, ...frame.electrino })),
@@ -2572,20 +2563,6 @@ function normalizeOptionalVector(point, label) {
   return normalizeVectorPoint(point, label);
 }
 
-function normalizeOptionalVirtualObserver(point) {
-  if (point == null) {
-    return null;
-  }
-  const normalized = normalizePoint(point, "virtualObserver");
-  return {
-    ...point,
-    ...normalized,
-    kind: "virtualObserver",
-    label: typeof point.label === "string" && point.label.length > 0 ? point.label : "Virtual Observer",
-    role: typeof point.role === "string" && point.role.length > 0 ? point.role : "observer",
-  };
-}
-
 function findHistoryPoint(history, kind, depth, label) {
   const row = history[kind].find((candidate) => candidate.depth === depth);
   if (!row) {
@@ -2777,13 +2754,11 @@ function createBridgeDelayedHitFromWakeLink(replayDataset, link, index) {
 
 function createBridgeGeometryFromReplayDataset(replayDataset, { initialConditions = {} } = {}) {
   requireObject(replayDataset, "replayDataset");
-  const virtualObserver = replayDataset.virtualObserver ?? initialConditions.virtualObserver ?? null;
   return {
     pathBounds: [],
     spherePointIntersections: [],
     history: cloneObject(replayDataset.history, "replayDataset.history"),
     initialConditions: cloneObject(initialConditions, "initialConditions"),
-    ...(virtualObserver ? { virtualObserver: cloneObject(virtualObserver, "virtualObserver") } : {}),
     presetId: replayDataset.preset?.id ?? DEFAULT_PRESET_ID,
     canvasColorId: replayDataset.canvasColorId ?? replayDataset.preset?.canvasColorId ?? DEFAULT_CANVAS_ID,
     wakeArcDisplayMode: replayDataset.wakeArcDisplayMode ?? PARTIAL_PROPAGATING_ARCS,

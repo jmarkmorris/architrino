@@ -8,6 +8,10 @@ import {
   ELECTRINO,
   ELECTRINO_WAKE,
   FULL_CIRCULAR_ARCS,
+  SPACE_AXIS_TOP_Y,
+  TIME_AXIS_BASELINE_Y,
+  TIME_AXIS_END_X,
+  TIME_AXIS_ORIGIN_X,
   POSITRINO,
   POSITRINO_WAKE,
   PRESETS,
@@ -30,6 +34,7 @@ const REPLAY_LOOP_SECONDS = 9;
 const TIME_EPSILON = 1e-6;
 const INITIAL_VELOCITY_ARROW_SCALE = 0.04;
 const INITIAL_VELOCITY_PREVIEW_RESPONSE = 0.42;
+const RETAINED_PATH_SPLINE_TANGENT_SCALE = 0.72;
 const NOW_SLIDER_MAX = 1000;
 const DEFAULT_ASSEMBLY_THRESHOLD = 0.00075;
 const MIN_RETAINED_DEPTH_LIMIT = 2;
@@ -58,14 +63,6 @@ const PATH_CONSTRAINT_DRAFT_REASONS = new Set([
   "retained_point_drag_preview",
   "reception_point_insert_preview",
 ]);
-const VIRTUAL_OBSERVER = Object.freeze({ r: 74, g: 229, b: 255, a: 1 });
-const DEFAULT_VIRTUAL_OBSERVER_POINT = Object.freeze({
-  kind: "virtualObserver",
-  label: "Virtual Observer",
-  role: "observer",
-  x: 1600,
-  y: 540,
-});
 const SPACE_KEYS = new Set([" ", "Space", "Spacebar"]);
 const REPLAY_STEP_KEYS = Object.freeze({
   ArrowLeft: -1,
@@ -182,7 +179,6 @@ class CausalDelayFeedbackRuntime {
       options.reducedMotionEnabled ?? this.prefersReducedMotion(),
     );
     this.backgroundDepthFieldEnabled = this.normalizeBooleanSetting(options.backgroundDepthFieldEnabled);
-    this.virtualObserverVisible = this.normalizeBooleanSetting(options.virtualObserverVisible ?? true);
     this.weakContributionCueMode = this.normalizeWeakContributionCueMode(options.weakContributionCueMode);
     this.isPlaying = !this.reducedMotionEnabled;
     this.fieldSpeedScale = this.normalizeFieldSpeedScale(options.fieldSpeedScale ?? DEFAULT_FIELD_SPEED_SCALE);
@@ -260,6 +256,7 @@ class CausalDelayFeedbackRuntime {
       canvas: queryRequiredElement(this.document, "#causal-delay-feedback-canvas"),
       preset: queryRequiredElement(this.document, "#causal-delay-feedback-preset"),
       playButton: queryRequiredElement(this.document, "#causal-delay-feedback-play"),
+      pauseButton: queryRequiredElement(this.document, "#causal-delay-feedback-pause"),
       resetButton: queryRequiredElement(this.document, "#causal-delay-feedback-reset"),
       settingsButton: queryRequiredElement(this.document, "#causal-delay-feedback-settings"),
       settingsPanel: queryRequiredElement(this.document, "#causal-delay-feedback-settings-panel"),
@@ -272,10 +269,8 @@ class CausalDelayFeedbackRuntime {
       architrinoSpeedInput: queryRequiredElement(this.document, "#causal-delay-feedback-architrino-speed"),
       architrinoSpeedValue: queryRequiredElement(this.document, "#causal-delay-feedback-architrino-speed-value"),
       historyDepthControls: queryRequiredElement(this.document, "#causal-delay-feedback-history-depth"),
-      virtualObserverInput: queryRequiredElement(this.document, "#causal-delay-feedback-virtual-observer"),
       weakContributionCueInput: queryRequiredElement(this.document, "#causal-delay-feedback-weak-cue"),
       replayStatus: queryRequiredElement(this.document, "#causal-delay-feedback-replay-status"),
-      hoverLabel: queryRequiredElement(this.document, "#causal-delay-feedback-hover-label"),
       readout: queryRequiredElement(this.document, "#causal-delay-feedback-readout"),
     };
   }
@@ -332,7 +327,10 @@ class CausalDelayFeedbackRuntime {
       void this.setPreset(this.dom.preset.value);
     });
     this.dom.playButton.addEventListener("click", () => {
-      this.setPlaying(!this.isPlaying);
+      this.setPlaying(true);
+    });
+    this.dom.pauseButton.addEventListener("click", () => {
+      this.setPlaying(false);
     });
     this.dom.resetButton.addEventListener("click", () => {
       this.resetReplayTime();
@@ -376,9 +374,6 @@ class CausalDelayFeedbackRuntime {
       }
       this.setRetainedDepthLimit(Number(button.dataset.historyDepth));
     });
-    this.dom.virtualObserverInput.addEventListener("change", () => {
-      this.setVirtualObserverVisible(this.dom.virtualObserverInput.checked);
-    });
     this.dom.weakContributionCueInput.addEventListener("change", () => {
       this.setWeakContributionCueMode(this.dom.weakContributionCueInput.value);
     });
@@ -397,11 +392,6 @@ class CausalDelayFeedbackRuntime {
     );
     this.dom.canvas.addEventListener("contextmenu", (event) => {
       this.handleCanvasContextMenu(event);
-    });
-    this.dom.canvas.addEventListener("pointerleave", () => {
-      if (!this.dragState) {
-        this.dom.hoverLabel.hidden = true;
-      }
     });
     this.window.addEventListener("pointerup", (event) => {
       void this.finishDrag(event);
@@ -538,7 +528,6 @@ class CausalDelayFeedbackRuntime {
     this.replayLoadState = loadState;
     this.retainedDepthLimit = this.normalizeRetainedDepthLimit(this.retainedDepthLimit);
     this.applyDatasetCanvasColor(dataset);
-    this.syncVirtualObserverState();
     this.updateWakeLinkGeometry();
     this.resetArchitrinoVelocityReference();
     this.syncReplayRequestOptionsFromDataset();
@@ -559,7 +548,6 @@ class CausalDelayFeedbackRuntime {
     const requestOptions = {
       ...this.replayRequestOptions,
       initialConditions: cloneJson(this.dataset.initialConditions ?? {}),
-      virtualObserver: cloneJson(this.getVirtualObserver()),
       replayDataset: this.dataset,
       retainedDepthLimit: this.retainedDepthLimit,
       fieldSpeedScale: this.fieldSpeedScale,
@@ -1467,29 +1455,6 @@ class CausalDelayFeedbackRuntime {
     }
   }
 
-  setVirtualObserverVisible(isVisible) {
-    const nextValue = this.normalizeBooleanSetting(isVisible);
-    if (nextValue === this.virtualObserverVisible) {
-      this.updateDisplaySettingControls();
-      return;
-    }
-    this.virtualObserverVisible = nextValue;
-    if (!this.virtualObserverVisible && this.selectedItem?.type === "virtual-observer") {
-      this.selectedItem = null;
-      this.dragState = null;
-      if (this.dom?.readout) {
-        this.updateReadout();
-      }
-    }
-    this.updateDisplaySettingControls();
-    if (this.context) {
-      this.render();
-    }
-    if (this.dom?.readout && this.selectedItem?.type !== "virtual-observer") {
-      this.updateReadout();
-    }
-  }
-
   setWeakContributionCueMode(mode) {
     const nextMode = this.normalizeWeakContributionCueMode(mode);
     if (nextMode === this.weakContributionCueMode) {
@@ -1518,11 +1483,6 @@ class CausalDelayFeedbackRuntime {
     this.updateCanvasSwatchSelection();
   }
 
-  syncVirtualObserverState() {
-    const observer = this.getVirtualObserver() ?? DEFAULT_VIRTUAL_OBSERVER_POINT;
-    this.setVirtualObserverPosition(observer);
-  }
-
   updateCanvasSwatchSelection() {
     if (!this.dom?.colorSwatches) {
       return;
@@ -1549,9 +1509,6 @@ class CausalDelayFeedbackRuntime {
   }
 
   updateDisplaySettingControls() {
-    if (this.dom?.virtualObserverInput) {
-      this.dom.virtualObserverInput.checked = this.virtualObserverVisible;
-    }
     if (this.dom?.weakContributionCueInput) {
       this.dom.weakContributionCueInput.value = this.weakContributionCueMode;
     }
@@ -1698,16 +1655,22 @@ class CausalDelayFeedbackRuntime {
   }
 
   updatePlayButton() {
-    if (!this.dom?.playButton) {
-      return;
+    if (this.dom?.playButton) {
+      this.dom.playButton.setAttribute("aria-label", ICON_HELP.play);
+      this.dom.playButton.setAttribute("aria-pressed", this.isPlaying ? "true" : "false");
+      this.dom.playButton.title = ICON_HELP.play;
+      this.dom.playButton.dataset.tooltip = ICON_HELP.play;
+      this.dom.playButton.innerHTML =
+        '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l10-7z"></path></svg>';
     }
-    const help = this.isPlaying ? ICON_HELP.pause : ICON_HELP.play;
-    this.dom.playButton.setAttribute("aria-label", help);
-    this.dom.playButton.title = help;
-    this.dom.playButton.dataset.tooltip = help;
-    this.dom.playButton.innerHTML = this.isPlaying
-      ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14"></path><path d="M16 5v14"></path></svg>'
-      : '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l10-7z"></path></svg>';
+    if (this.dom?.pauseButton) {
+      this.dom.pauseButton.setAttribute("aria-label", ICON_HELP.pause);
+      this.dom.pauseButton.setAttribute("aria-pressed", this.isPlaying ? "false" : "true");
+      this.dom.pauseButton.title = ICON_HELP.pause;
+      this.dom.pauseButton.dataset.tooltip = ICON_HELP.pause;
+      this.dom.pauseButton.innerHTML =
+        '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14"></path><path d="M16 5v14"></path></svg>';
+    }
   }
 
   resetReplayTime() {
@@ -2026,9 +1989,6 @@ class CausalDelayFeedbackRuntime {
     this.drawPathTrail(ctx, "electrino", ELECTRINO);
     this.drawHistoryPoints(ctx, "positrino", POSITRINO);
     this.drawHistoryPoints(ctx, "electrino", ELECTRINO);
-    if (this.virtualObserverVisible) {
-      this.drawVirtualObserver(ctx);
-    }
     this.drawSelection(ctx);
     this.drawLiveMarkers(ctx, replayTime);
   }
@@ -2041,22 +2001,22 @@ class CausalDelayFeedbackRuntime {
       this.drawBackgroundDepthField(ctx);
     }
 
-    const xAxisStart = this.worldToScreen({ x: 92, y: 908 });
-    const xAxisEnd = this.worldToScreen({ x: 1810, y: 908 });
-    const yAxisStart = this.worldToScreen({ x: 92, y: 908 });
-    const yAxisEnd = this.worldToScreen({ x: 92, y: 182 });
+    const xAxisStart = this.worldToScreen({ x: TIME_AXIS_ORIGIN_X, y: TIME_AXIS_BASELINE_Y });
+    const xAxisEnd = this.worldToScreen({ x: TIME_AXIS_END_X, y: TIME_AXIS_BASELINE_Y });
+    const yAxisStart = this.worldToScreen({ x: TIME_AXIS_ORIGIN_X, y: TIME_AXIS_BASELINE_Y });
+    const yAxisEnd = this.worldToScreen({ x: TIME_AXIS_ORIGIN_X, y: SPACE_AXIS_TOP_Y });
     this.drawLine(ctx, [xAxisStart, xAxisEnd], withAlpha(WHITE, 0.42), 1.2);
     this.drawLine(ctx, [yAxisStart, yAxisEnd], withAlpha(WHITE, 0.32), 1.2);
 
     this.drawTriangle(ctx, [
-      this.worldToScreen({ x: 1810, y: 908 }),
-      this.worldToScreen({ x: 1796, y: 900 }),
-      this.worldToScreen({ x: 1796, y: 916 }),
+      this.worldToScreen({ x: TIME_AXIS_END_X, y: TIME_AXIS_BASELINE_Y }),
+      this.worldToScreen({ x: TIME_AXIS_END_X - 14, y: TIME_AXIS_BASELINE_Y - 8 }),
+      this.worldToScreen({ x: TIME_AXIS_END_X - 14, y: TIME_AXIS_BASELINE_Y + 8 }),
     ], withAlpha(WHITE, 0.48));
     this.drawTriangle(ctx, [
-      this.worldToScreen({ x: 92, y: 182 }),
-      this.worldToScreen({ x: 84, y: 196 }),
-      this.worldToScreen({ x: 100, y: 196 }),
+      this.worldToScreen({ x: TIME_AXIS_ORIGIN_X, y: SPACE_AXIS_TOP_Y }),
+      this.worldToScreen({ x: TIME_AXIS_ORIGIN_X - 8, y: SPACE_AXIS_TOP_Y + 14 }),
+      this.worldToScreen({ x: TIME_AXIS_ORIGIN_X + 8, y: SPACE_AXIS_TOP_Y + 14 }),
     ], withAlpha(WHITE, 0.3));
 
     this.drawText(ctx, "space", { x: 74, y: 165 }, 14, withAlpha(WHITE, 0.62), "left");
@@ -2209,42 +2169,6 @@ class CausalDelayFeedbackRuntime {
     });
   }
 
-  drawVirtualObserver(ctx) {
-    const observer = this.getVirtualObserver();
-    if (!observer) {
-      return;
-    }
-    const screen = this.worldToScreen(observer);
-    const arm = 18 * this.viewport.scale;
-    this.drawCircle(ctx, screen, 22, withAlpha(VIRTUAL_OBSERVER, 0.1), withAlpha(VIRTUAL_OBSERVER, 0.58), 1.2);
-    this.drawCircle(ctx, screen, 8.4, withAlpha({ r: 8, g: 6, b: 18, a: 1 }, 0.86), withAlpha(WHITE, 0.74), 1);
-    this.drawCircle(ctx, screen, 3.6, VIRTUAL_OBSERVER);
-    this.drawLine(ctx, [{ x: screen.x - arm, y: screen.y }, { x: screen.x + arm, y: screen.y }], withAlpha(VIRTUAL_OBSERVER, 0.54), 1.2);
-    this.drawLine(ctx, [{ x: screen.x, y: screen.y - arm }, { x: screen.x, y: screen.y + arm }], withAlpha(VIRTUAL_OBSERVER, 0.54), 1.2);
-    const label = this.getVirtualObserverLabelPlacement(screen);
-    this.drawScreenText(ctx, "Virtual Observer", label, 13, withAlpha(WHITE, 0.76), label.align, "bold");
-  }
-
-  getVirtualObserverLabelPlacement(screen, text = "Virtual Observer", size = 13) {
-    const fontSize = Math.max(9, size * this.viewport.scale);
-    const estimatedWidth = text.length * fontSize * 0.68;
-    const labelGap = Math.max(12, 30 * this.viewport.scale);
-    const rightPadding = Math.max(12, 28 * this.viewport.scale);
-    const labelY = screen.y - Math.max(12, 20 * this.viewport.scale);
-    if (screen.x + labelGap + estimatedWidth > this.canvasWidth - rightPadding) {
-      return {
-        x: screen.x - labelGap,
-        y: labelY,
-        align: "right",
-      };
-    }
-    return {
-      x: screen.x + labelGap,
-      y: labelY,
-      align: "left",
-    };
-  }
-
   drawSelection(ctx) {
     if (!this.selectedItem) {
       return;
@@ -2260,19 +2184,6 @@ class CausalDelayFeedbackRuntime {
       this.drawCircle(ctx, screen, 18, withAlpha(WHITE, 0.05), withAlpha(WHITE, 0.86), 1.4);
       return;
     }
-    if (this.selectedItem.type === "virtual-observer") {
-      if (!this.virtualObserverVisible) {
-        return;
-      }
-      const observer = this.getVirtualObserver();
-      if (!observer) {
-        return;
-      }
-      const screen = this.worldToScreen(observer);
-      this.drawCircle(ctx, screen, 30, withAlpha(VIRTUAL_OBSERVER, 0.08), withAlpha(WHITE, 0.9), 1.5);
-      return;
-    }
-
     const link = this.getVisibleWakeLinks().find((candidate) => candidate.id === this.selectedItem.linkId);
     if (!link) {
       return;
@@ -2387,42 +2298,10 @@ class CausalDelayFeedbackRuntime {
     ctx.restore();
   }
 
-  updateHoverLabel(event) {
-    const rect = this.dom.canvas.getBoundingClientRect();
-    const screen = { x: event.clientX - rect.left, y: event.clientY - rect.top };
-    const hit = this.findNearestHit(screen, { includeWakes: true });
-    if (!hit) {
-      this.dom.hoverLabel.hidden = true;
-      return;
-    }
-    this.dom.hoverLabel.textContent = this.createHoverLabel(hit);
-    this.dom.hoverLabel.style.left = `${event.clientX}px`;
-    this.dom.hoverLabel.style.top = `${event.clientY}px`;
-    this.dom.hoverLabel.hidden = false;
-  }
-
-  createHoverLabel(hit) {
-    if (hit?.type !== "wake") {
-      return hit?.label ?? "";
-    }
-    const hoverDetails = (hit.details ?? []).filter((detail) => (
-      detail.startsWith("emit=") ||
-      detail.startsWith("hit=") ||
-      detail.startsWith("travel=") ||
-      detail.startsWith("contrib=") ||
-      detail.startsWith("state=") ||
-      detail.startsWith("reason=") ||
-      detail.startsWith("solver=")
-    ));
-    return [hit.label, ...hoverDetails].join("  ");
-  }
-
   handleCanvasPointerMove(event) {
     if (this.dragState) {
       if (this.dragState.type === "initial-velocity") {
         this.dragSelectedInitialVelocity(event);
-      } else if (this.dragState.type === "virtual-observer") {
-        this.dragSelectedVirtualObserver(event);
       } else {
         this.dragSelectedHistoryPoint(event);
       }
@@ -2430,9 +2309,7 @@ class CausalDelayFeedbackRuntime {
     }
     if (this.backgroundPointers.has(this.pointerKey(event))) {
       this.handleBackgroundPointerMove(event);
-      return;
     }
-    this.updateHoverLabel(event);
   }
 
   handleCanvasPointerDown(event) {
@@ -2450,8 +2327,6 @@ class CausalDelayFeedbackRuntime {
     this.updateReadout(hit);
     if (hit.type === "initial-velocity") {
       this.startInitialVelocityDrag(event, hit);
-    } else if (hit.type === "virtual-observer") {
-      this.startVirtualObserverDrag(event, hit);
     } else if (hit.type === "history") {
       this.startHistoryPointDrag(event, hit);
     }
@@ -2598,21 +2473,6 @@ class CausalDelayFeedbackRuntime {
     event.preventDefault();
   }
 
-  startVirtualObserverDrag(event, hit) {
-    this.clearBackgroundPointers();
-    const screen = this.canvasScreenPointFromEvent(event);
-    this.dragState = {
-      type: "virtual-observer",
-      lastWorld: this.screenToWorld(screen),
-      didEdit: false,
-    };
-    this.setPlaying(false);
-    if (typeof this.dom.canvas.setPointerCapture === "function") {
-      this.dom.canvas.setPointerCapture(event.pointerId);
-    }
-    event.preventDefault();
-  }
-
   dragSelectedHistoryPoint(event) {
     const rect = this.dom.canvas.getBoundingClientRect();
     const screen = { x: event.clientX - rect.left, y: event.clientY - rect.top };
@@ -2635,22 +2495,6 @@ class CausalDelayFeedbackRuntime {
     const world = this.screenToWorld(screen);
     this.dragState.lastWorld = world;
     if (this.applyInitialVelocityDrag(this.dragState.kind, world)) {
-      this.dragState.didEdit = true;
-      this.updateReadout();
-      this.render();
-    }
-  }
-
-  dragSelectedVirtualObserver(event) {
-    const rect = this.dom.canvas.getBoundingClientRect();
-    const screen = { x: event.clientX - rect.left, y: event.clientY - rect.top };
-    const world = this.screenToWorld(screen);
-    const delta = {
-      x: world.x - this.dragState.lastWorld.x,
-      y: world.y - this.dragState.lastWorld.y,
-    };
-    this.dragState.lastWorld = world;
-    if (this.applyVirtualObserverDrag(delta)) {
       this.dragState.didEdit = true;
       this.updateReadout();
       this.render();
@@ -2727,22 +2571,6 @@ class CausalDelayFeedbackRuntime {
     return true;
   }
 
-  applyVirtualObserverDrag(delta) {
-    if (!delta || (delta.x === 0 && delta.y === 0)) {
-      return false;
-    }
-    const observer = this.getVirtualObserver();
-    if (!observer) {
-      return false;
-    }
-    this.setVirtualObserverPosition({
-      x: observer.x + delta.x,
-      y: observer.y + delta.y,
-    });
-    this.syncReplayRequestOptionsFromDataset();
-    return true;
-  }
-
   addReceptionPointAtPath(kind, point) {
     if (!this.dataset?.history?.[kind] || !point) {
       return null;
@@ -2758,6 +2586,8 @@ class CausalDelayFeedbackRuntime {
     if (this.insertHistoryPoint(oppositeKind, oppositePoint)) {
       this.renumberHistoryPoints(oppositeKind);
     }
+    this.rebuildSmoothPathFromHistory(kind);
+    this.rebuildSmoothPathFromHistory(oppositeKind);
     this.syncHistoryDepthState();
     this.rebuildWakeLinksFromHistory();
     this.retainedDepthLimit = this.normalizeRetainedDepthLimit(this.getMaxRetainedDepthLimit());
@@ -3077,51 +2907,126 @@ class CausalDelayFeedbackRuntime {
     if (!selectedPoint) {
       return false;
     }
-    const centerT = selectedPoint.t;
-    const influenceWidth = 0.17;
-    this.dataset.paths[kind].forEach((point) => {
-      const weight = Math.exp(-Math.pow((point.t - centerT) / influenceWidth, 2));
-      point.x += delta.x * weight;
-      point.y += delta.y * weight;
-    });
-    this.dataset.frames.forEach((frame) => {
-      const point = frame[kind];
-      if (!point || this.dataset.paths[kind].includes(point)) {
-        return;
-      }
-      const sampleT = Number.isFinite(Number(point.t)) ? Number(point.t) : Number(frame.t);
-      const weight = Math.exp(-Math.pow((sampleT - centerT) / influenceWidth, 2));
-      point.x += delta.x * weight;
-      point.y += delta.y * weight;
-    });
-    this.dataset.history[kind].forEach((point) => {
-      const weight = point.depth === depth ? 1 : Math.exp(-Math.pow((point.t - centerT) / influenceWidth, 2));
-      point.x += delta.x * weight;
-      point.y += delta.y * weight;
-    });
-    this.syncPathSamplesToHistoryPoint(kind, selectedPoint);
+    selectedPoint.x += delta.x;
+    selectedPoint.y += delta.y;
+    this.rebuildSmoothPathFromHistory(kind);
     this.syncInitialConditionToHistoryStart(kind, selectedPoint);
     return true;
   }
 
-  syncPathSamplesToHistoryPoint(kind, historyPoint) {
-    const targetT = Number(historyPoint?.t);
-    if (!Number.isFinite(targetT)) {
-      return;
+  rebuildSmoothPathFromHistory(kind) {
+    const path = this.dataset?.paths?.[kind];
+    const history = this.getSortedFiniteHistory(kind);
+    if (!Array.isArray(path) || history.length < 2) {
+      return false;
     }
-    const syncPoint = (point, fallbackT = point?.t) => {
-      const sampleT = Number(fallbackT);
-      if (!point || !Number.isFinite(sampleT) || Math.abs(sampleT - targetT) > TIME_EPSILON) {
-        return;
+    const sampleTimes = this.getSmoothPathSampleTimes(path, history);
+    this.dataset.paths[kind] = sampleTimes.map((sampleT) => {
+      const point = this.findPathSampleAtTime(path, sampleT) ?? { t: sampleT };
+      const smoothPoint = this.sampleSmoothHistoryPath(history, sampleT);
+      point.t = sampleT;
+      point.x = smoothPoint.x;
+      point.y = smoothPoint.y;
+      return point;
+    });
+    this.updateFrameSamplesFromSmoothHistoryPath(kind, history);
+    return true;
+  }
+
+  getSortedFiniteHistory(kind) {
+    return (this.dataset?.history?.[kind] ?? [])
+      .filter((point) => (
+        Number.isFinite(Number(point.t)) &&
+        Number.isFinite(Number(point.x)) &&
+        Number.isFinite(Number(point.y))
+      ))
+      .slice()
+      .sort((left, right) => left.t - right.t);
+  }
+
+  getSmoothPathSampleTimes(path, history) {
+    const times = [
+      ...path.map((point) => Number(point.t)),
+      ...history.map((point) => Number(point.t)),
+    ]
+      .filter(Number.isFinite)
+      .sort((left, right) => left - right);
+    const uniqueTimes = [];
+    times.forEach((time) => {
+      if (uniqueTimes.length === 0 || Math.abs(time - uniqueTimes.at(-1)) > TIME_EPSILON) {
+        uniqueTimes.push(time);
       }
-      point.x = Number(historyPoint.x) || 0;
-      point.y = Number(historyPoint.y) || 0;
+    });
+    return uniqueTimes;
+  }
+
+  findPathSampleAtTime(path, sampleT) {
+    return path.find((point) => Math.abs((Number(point.t) || 0) - sampleT) <= TIME_EPSILON) ?? null;
+  }
+
+  sampleSmoothHistoryPath(history, sampleT) {
+    const t = Number(sampleT);
+    const exactPoint = history.find((point) => Math.abs(point.t - t) <= TIME_EPSILON);
+    if (exactPoint) {
+      return { t, x: exactPoint.x, y: exactPoint.y };
+    }
+    const first = history[0];
+    const last = history.at(-1);
+    if (t <= first.t) {
+      return { t, x: first.x, y: first.y };
+    }
+    if (t >= last.t) {
+      return { t, x: last.x, y: last.y };
+    }
+
+    const rightIndex = history.findIndex((point) => point.t >= t);
+    const leftIndex = Math.max(0, rightIndex - 1);
+    const left = history[leftIndex];
+    const right = history[rightIndex];
+    const span = right.t - left.t;
+    if (!Number.isFinite(span) || span <= TIME_EPSILON) {
+      return { t, x: left.x, y: left.y };
+    }
+    const amount = clamp((t - left.t) / span, 0, 1);
+    const leftTangent = this.getSmoothHistoryPathTangent(history, leftIndex);
+    const rightTangent = this.getSmoothHistoryPathTangent(history, rightIndex);
+    const amount2 = amount * amount;
+    const amount3 = amount2 * amount;
+    const h00 = 2 * amount3 - 3 * amount2 + 1;
+    const h10 = amount3 - 2 * amount2 + amount;
+    const h01 = -2 * amount3 + 3 * amount2;
+    const h11 = amount3 - amount2;
+    return {
+      t,
+      x: h00 * left.x + h10 * span * leftTangent.x + h01 * right.x + h11 * span * rightTangent.x,
+      y: h00 * left.y + h10 * span * leftTangent.y + h01 * right.y + h11 * span * rightTangent.y,
     };
-    (this.dataset.paths?.[kind] ?? []).forEach((point) => syncPoint(point));
-    (this.dataset.frames ?? []).forEach((frame) => {
+  }
+
+  getSmoothHistoryPathTangent(history, index) {
+    const previous = history[Math.max(0, index - 1)];
+    const next = history[Math.min(history.length - 1, index + 1)];
+    const span = next.t - previous.t;
+    if (!Number.isFinite(span) || span <= TIME_EPSILON) {
+      return { x: 0, y: 0 };
+    }
+    return {
+      x: ((next.x - previous.x) / span) * RETAINED_PATH_SPLINE_TANGENT_SCALE,
+      y: ((next.y - previous.y) / span) * RETAINED_PATH_SPLINE_TANGENT_SCALE,
+    };
+  }
+
+  updateFrameSamplesFromSmoothHistoryPath(kind, history) {
+    (this.dataset?.frames ?? []).forEach((frame) => {
       const point = frame?.[kind];
       const sampleT = Number.isFinite(Number(point?.t)) ? Number(point.t) : Number(frame?.t);
-      syncPoint(point, sampleT);
+      if (!point || !Number.isFinite(sampleT)) {
+        return;
+      }
+      const smoothPoint = this.sampleSmoothHistoryPath(history, sampleT);
+      point.t = sampleT;
+      point.x = smoothPoint.x;
+      point.y = smoothPoint.y;
     });
   }
 
@@ -3243,33 +3148,6 @@ class CausalDelayFeedbackRuntime {
 
   getHistoryStartPoint(kind) {
     return this.dataset.history?.[kind]?.find((point) => Number(point.depth) === 1) ?? null;
-  }
-
-  getVirtualObserver() {
-    return this.dataset?.virtualObserver ?? this.dataset?.initialConditions?.virtualObserver ?? null;
-  }
-
-  setVirtualObserverPosition(point) {
-    if (!this.dataset || !point) {
-      return null;
-    }
-    const current = this.getVirtualObserver() ?? {
-      ...DEFAULT_VIRTUAL_OBSERVER_POINT,
-    };
-    const next = {
-      ...current,
-      kind: "virtualObserver",
-      label: current.label ?? "Virtual Observer",
-      role: current.role ?? "observer",
-      x: Number(point.x) || 0,
-      y: Number(point.y) || 0,
-    };
-    this.dataset.virtualObserver = next;
-    if (!this.dataset.initialConditions) {
-      this.dataset.initialConditions = {};
-    }
-    this.dataset.initialConditions.virtualObserver = { ...next };
-    return next;
   }
 
   initialConditionPoint(condition) {
@@ -3487,13 +3365,6 @@ class CausalDelayFeedbackRuntime {
       const condition = this.getInitialCondition(this.selectedItem.kind);
       return condition ? this.createInitialVelocityHit(this.selectedItem.kind, condition, 0) : null;
     }
-    if (this.selectedItem?.type === "virtual-observer") {
-      if (!this.virtualObserverVisible) {
-        return null;
-      }
-      const observer = this.getVirtualObserver();
-      return observer ? this.createVirtualObserverHit(observer, 0) : null;
-    }
     if (this.selectedItem?.type === "history") {
       const point = this.getVisibleHistory(this.selectedItem.kind).find(
         (candidate) => candidate.depth === this.selectedItem.depth,
@@ -3599,16 +3470,6 @@ class CausalDelayFeedbackRuntime {
       return nearestHistory;
     }
 
-    const observer = this.virtualObserverVisible ? this.getVirtualObserver() : null;
-    if (observer) {
-      const candidate = this.worldToScreen(observer);
-      const distance = Math.hypot(screen.x - candidate.x, screen.y - candidate.y);
-      const observerHit = this.createVirtualObserverHit(observer, distance);
-      if (observerHit.distance <= observerHit.hitRadius) {
-        return observerHit;
-      }
-    }
-
     const candidates = [];
     if (includeWakes) {
       this.getVisibleWakeLinks().forEach((link) => {
@@ -3672,29 +3533,6 @@ class CausalDelayFeedbackRuntime {
       distance,
       hitRadius: 20,
       selection: { type: "initial-velocity", kind },
-    };
-  }
-
-  createVirtualObserverHit(observer, distance) {
-    const summary = this.getContributionSummary(this.getCurrentReplayTime());
-    return {
-      type: "virtual-observer",
-      title: "Virtual Observer",
-      label: "Virtual Observer",
-      details: [
-        `x=${Math.round(Number(observer.x) || 0)}`,
-        `y=${Math.round(Number(observer.y) || 0)}`,
-        ...(summary
-          ? [
-              `received=${summary.receivedCount}/${summary.activeLinkCount}`,
-              `net=${formatCompactNumber(summary.netContribution)}`,
-            ]
-          : []),
-        ...this.createDraftSolverRejectionReadoutDetails(),
-      ],
-      distance,
-      hitRadius: 28,
-      selection: { type: "virtual-observer" },
     };
   }
 
@@ -4470,12 +4308,9 @@ class CausalDelayFeedbackRuntime {
 
   getWakeContributionFalloff(link) {
     const endpoints = this.getWakeEndpoints(link);
-    const observer = this.virtualObserverVisible ? this.getVirtualObserver() : null;
-    const distance = endpoints && observer
-      ? getDistance(endpoints.receiver, observer)
-      : endpoints
-        ? getDistance(endpoints.source, endpoints.receiver)
-        : Number(link.distance);
+    const distance = endpoints
+      ? getDistance(endpoints.source, endpoints.receiver)
+      : Number(link.distance);
     return distance > 0 ? 1 / distance : 0;
   }
 

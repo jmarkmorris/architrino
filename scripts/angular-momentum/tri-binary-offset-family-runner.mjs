@@ -23566,6 +23566,11 @@ function createPartialSupportRetainedRowSetBindingContext({
     transitionMissingPairKeys,
     activeDomainGapPairKeys:
       obstructionTarget?.noTransitionBothInactiveGapPairKeys ?? [],
+    activeDomainGapSideProfile:
+      obstructionTarget?.noTransitionBothInactiveSideProfile ?? null,
+    activeDomainGapBoundaryNeighborhoodProfile:
+      obstructionTarget?.noTransitionBothInactiveBoundaryNeighborhoodProfile ??
+      null,
     bothActiveConversionPairKeys,
     bothActiveConversionGapPairKeys,
     bothActiveConversionIntervalCount:
@@ -23584,6 +23589,11 @@ function createPartialSupportRetainedRowSetBindingContext({
       blocker: blocker.blocker,
       pairKeys: blocker.pairKeys ?? [],
       gapPairKeys: blocker.gapPairKeys ?? [],
+      intervalCount: blocker.intervalCount ?? null,
+      totalWidth: blocker.totalWidth ?? null,
+      maxWidth: blocker.maxWidth ?? null,
+      rootPayloadIntervalStatus: blocker.rootPayloadIntervalStatus ?? null,
+      missingObligations: blocker.missingObligations ?? [],
     })),
   };
 }
@@ -27387,6 +27397,11 @@ async function createEventRootAffineBracketAbsenceBridgeFillRuleTarget({
       absenceBridgeFillLawSearchTarget,
       dynamicLawSourceAudit,
     });
+  const selectedActiveDomainBoundedGapFillSourceAudit =
+    createSelectedActiveDomainBoundedGapFillSourceAudit({
+      retainedRowSetBindingContext,
+      directInteriorPresenceProbeTarget,
+    });
 
   return {
     schema:
@@ -27587,6 +27602,69 @@ async function createEventRootAffineBracketAbsenceBridgeFillRuleTarget({
       absenceBridgeFillLawRouteTarget.acceptedRouteCandidateCount,
     firstAbsenceBridgeFillRouteBlocker:
       absenceBridgeFillLawRouteTarget.firstFillLawRouteBlocker,
+    selectedActiveDomainBoundedGapFillSourceAuditStatus:
+      selectedActiveDomainBoundedGapFillSourceAudit.status,
+    selectedActiveDomainBoundedGapFillSourceAudit,
+    selectedActiveDomainBoundedGapRowCount:
+      selectedActiveDomainBoundedGapFillSourceAudit
+        .selectedActiveDomainBoundedGapRowCount,
+    selectedActiveDomainBoundedGapDirectSupportRowCount:
+      selectedActiveDomainBoundedGapFillSourceAudit
+        .selectedActiveDomainBoundedGapDirectSupportRowCount,
+    selectedActiveDomainBoundedGapDirectAbsenceRowCount:
+      selectedActiveDomainBoundedGapFillSourceAudit
+        .selectedActiveDomainBoundedGapDirectAbsenceRowCount,
+    selectedActiveDomainBoundedGapPartialSupportRetainedBindingBlockedRowCount:
+      selectedActiveDomainBoundedGapFillSourceAudit
+        .selectedActiveDomainBoundedGapPartialSupportRetainedBindingBlockedRowCount,
+    firstSelectedActiveDomainBoundedGapFillSourceBlocker:
+      selectedActiveDomainBoundedGapFillSourceAudit
+        .firstSelectedActiveDomainBoundedGapFillSourceBlocker,
+    selectedActiveDomainDirectAbsenceLatticeLawAuditStatus:
+      selectedActiveDomainBoundedGapFillSourceAudit
+        .directAbsenceLatticeLawAuditStatus,
+    selectedActiveDomainDirectAbsenceLatticeLawAudit:
+      selectedActiveDomainBoundedGapFillSourceAudit
+        .directAbsenceLatticeLawAudit,
+    selectedActiveDomainDirectAbsenceLatticeMixedGeometryRowCount:
+      selectedActiveDomainBoundedGapFillSourceAudit
+        .directAbsenceLatticeMixedGeometryRowCount,
+    selectedActiveDomainDirectAbsencePairSpecificUnsupportedSingletonRowCount:
+      selectedActiveDomainBoundedGapFillSourceAudit
+        .directAbsencePairSpecificUnsupportedSingletonRowCount,
+    firstSelectedActiveDomainDirectAbsenceLatticeLawBlocker:
+      selectedActiveDomainBoundedGapFillSourceAudit
+        .firstDirectAbsenceLatticeLawBlocker,
+    selectedActiveDomainDirectAbsenceSupportSourceAuditStatus:
+      selectedActiveDomainBoundedGapFillSourceAudit
+        .directAbsenceSupportSourceAuditStatus,
+    selectedActiveDomainDirectAbsenceSupportSourceAudit:
+      selectedActiveDomainBoundedGapFillSourceAudit
+        .directAbsenceSupportSourceAudit,
+    selectedActiveDomainDirectAbsenceSamePairSupportSourceRowCount:
+      selectedActiveDomainBoundedGapFillSourceAudit
+        .directAbsenceSamePairSupportSourceRowCount,
+    selectedActiveDomainDirectAbsenceMissingSamePairSupportSourceRowCount:
+      selectedActiveDomainBoundedGapFillSourceAudit
+        .directAbsenceMissingSamePairSupportSourceRowCount,
+    selectedActiveDomainDirectAbsenceSupportSourceRetainedBindingBlockedRowCount:
+      selectedActiveDomainBoundedGapFillSourceAudit
+        .directAbsenceSupportSourceRetainedBindingBlockedRowCount,
+    firstSelectedActiveDomainDirectAbsenceSupportSourceBlocker:
+      selectedActiveDomainBoundedGapFillSourceAudit
+        .firstDirectAbsenceSupportSourceBlocker,
+    selectedActiveDomainDirectAbsenceOffsetTransportLawAuditStatus:
+      selectedActiveDomainBoundedGapFillSourceAudit
+        .directAbsenceOffsetTransportLawAuditStatus,
+    selectedActiveDomainDirectAbsenceOffsetTransportLawAudit:
+      selectedActiveDomainBoundedGapFillSourceAudit
+        .directAbsenceOffsetTransportLawAudit,
+    selectedActiveDomainDirectAbsenceOffsetTransportUniqueOffsetUnitCount:
+      selectedActiveDomainBoundedGapFillSourceAudit
+        .directAbsenceOffsetTransportUniqueOffsetUnitCount,
+    firstSelectedActiveDomainDirectAbsenceOffsetTransportLawBlocker:
+      selectedActiveDomainBoundedGapFillSourceAudit
+        .firstDirectAbsenceOffsetTransportLawBlocker,
     totalUniquePositiveAbsenceBridgeWidth: widths.reduce(
       (sum, value) => sum + value,
       0
@@ -27600,6 +27678,733 @@ async function createEventRootAffineBracketAbsenceBridgeFillRuleTarget({
     rows,
     retainedLimitation:
       "The fill-rule domain is matched to the deduplicated positive-width no-transition absence bridges, but no current row proves event-root presence inside those both-inactive intervals, no derived fill law is populated, and no accepted fill route exists. The target therefore rejects retained-continuity acceptance until an event-root absence-bridge fill law is derived and bound to the retained row set.",
+  };
+}
+
+function createSelectedActiveDomainBoundedGapFillSourceAudit({
+  retainedRowSetBindingContext = null,
+  directInteriorPresenceProbeTarget = null,
+}) {
+  const partialSupportSourceRows =
+    directInteriorPresenceProbeTarget?.threePointDirectInteriorReplayAudit
+      ?.partialSupportIntervalWitnessAudit?.rows ?? [];
+  const selectedPairKeys = unionStrings(
+    partialSupportSourceRows
+      .filter((row) => row.nonzeroJacobianDenseSupportRowPass === true)
+      .map((row) => row.pairKey)
+  );
+  const boundaryRows = (
+    retainedRowSetBindingContext?.activeDomainGapBoundaryNeighborhoodProfile
+      ?.rows ?? []
+  ).filter(
+    (row) =>
+      selectedPairKeys.includes(row.pairKey) &&
+      row.bothEventRootBoundaryPass === true
+  );
+  const rowsByKey = (sourceRows) =>
+    new Map(
+      (sourceRows ?? []).map((row) => [
+        `${row.pairKey}:${row.edgeIndex}`,
+        row,
+      ])
+    );
+  const directRowsByKey = rowsByKey(directInteriorPresenceProbeTarget?.rows);
+  const threePointRowsByKey = rowsByKey(
+    directInteriorPresenceProbeTarget?.threePointDirectInteriorReplayAudit?.rows
+  );
+  const partialSupportRowsByKey = rowsByKey(
+    partialSupportSourceRows
+  );
+  const intervalProofRowsByKey = rowsByKey(
+    directInteriorPresenceProbeTarget?.threePointDirectInteriorReplayAudit
+      ?.partialSupportIntervalWitnessAudit?.intervalProofFieldAudit?.rows
+  );
+  const retainedBindingRowsByKey = rowsByKey(
+    directInteriorPresenceProbeTarget?.threePointDirectInteriorReplayAudit
+      ?.partialSupportIntervalWitnessAudit?.intervalProofFieldAudit
+      ?.retainedRowSetBindingAudit?.rows
+  );
+  const latticeStep = CLOSURE_PERIOD / (2 * BINARY_TO_BINARY_PATH_SEGMENT_COUNT);
+  const auditRows = boundaryRows.map((boundaryRow) =>
+    createSelectedActiveDomainBoundedGapFillSourceAuditRow({
+      boundaryRow,
+      directRow: directRowsByKey.get(
+        `${boundaryRow.pairKey}:${boundaryRow.edgeIndex}`
+      ),
+      threePointRow: threePointRowsByKey.get(
+        `${boundaryRow.pairKey}:${boundaryRow.edgeIndex}`
+      ),
+      partialSupportRow: partialSupportRowsByKey.get(
+        `${boundaryRow.pairKey}:${boundaryRow.edgeIndex}`
+      ),
+      intervalProofRow: intervalProofRowsByKey.get(
+        `${boundaryRow.pairKey}:${boundaryRow.edgeIndex}`
+      ),
+      retainedBindingRow: retainedBindingRowsByKey.get(
+        `${boundaryRow.pairKey}:${boundaryRow.edgeIndex}`
+      ),
+      latticeStep,
+    })
+  );
+  const directSupportRows = auditRows.filter(
+    (row) => row.anyDirectEventRootSupportPass
+  );
+  const directAbsenceRows = auditRows.filter(
+    (row) => row.directReplayEventRootAbsentPass
+  );
+  const partialSupportRows = auditRows.filter(
+    (row) => row.partialSupportCandidatePass
+  );
+  const retainedBindingBlockedRows = auditRows.filter(
+    (row) => row.partialSupportRetainedBindingBlockedPass
+  );
+  const acceptedRows = auditRows.filter(
+    (row) => row.acceptedSelectedBoundedGapFillSourcePass
+  );
+  const directAbsenceLatticeLawAudit =
+    createSelectedActiveDomainDirectAbsenceLatticeLawAudit({
+      rows: auditRows,
+    });
+  const directAbsenceSupportSourceAudit =
+    createSelectedActiveDomainDirectAbsenceSupportSourceAudit({
+      rows: auditRows,
+      latticeStep,
+    });
+  const firstSelectedActiveDomainBoundedGapFillSourceBlocker =
+    auditRows.find((row) => row.firstSelectedBoundedGapFillSourceRowBlocker)
+      ?.firstSelectedBoundedGapFillSourceRowBlocker ?? null;
+  return {
+    schema:
+      "aaa-tri-binary-selected-active-domain-bounded-gap-fill-source-audit.v1",
+    status: auditRows.length === 0
+      ? "selected_active_domain_bounded_gap_fill_source_no_domain"
+      : acceptedRows.length === auditRows.length
+        ? "selected_active_domain_bounded_gap_fill_source_accepted"
+        : directAbsenceRows.length > 0 && retainedBindingBlockedRows.length > 0
+          ? "selected_active_domain_bounded_gap_fill_source_blocked_partial_support_and_direct_absence"
+        : directAbsenceRows.length > 0
+          ? "selected_active_domain_bounded_gap_fill_source_blocked_direct_absence"
+        : retainedBindingBlockedRows.length > 0
+          ? "selected_active_domain_bounded_gap_fill_source_blocked_retained_binding"
+        : directSupportRows.length > 0
+          ? "selected_active_domain_bounded_gap_fill_source_support_unaccepted"
+        : "selected_active_domain_bounded_gap_fill_source_proof_missing",
+    claimLevel:
+      "source audit for event-root presence evidence on selected active-domain bounded gaps before two-sheet global binding; not retained branch acceptance",
+    retainedBranchClaim: false,
+    selectedPairKeys,
+    selectedActiveDomainBoundedGapRowCount: auditRows.length,
+    selectedActiveDomainBoundedGapDirectSupportRowCount:
+      directSupportRows.length,
+    selectedActiveDomainBoundedGapDirectAbsenceRowCount:
+      directAbsenceRows.length,
+    selectedActiveDomainBoundedGapPartialSupportRowCount:
+      partialSupportRows.length,
+    selectedActiveDomainBoundedGapPartialSupportRetainedBindingBlockedRowCount:
+      retainedBindingBlockedRows.length,
+    acceptedSelectedActiveDomainBoundedGapFillSourceRowCount:
+      acceptedRows.length,
+    firstSelectedActiveDomainBoundedGapFillSourceBlocker,
+    directAbsenceLatticeLawAuditStatus:
+      directAbsenceLatticeLawAudit.status,
+    directAbsenceLatticeLawAudit,
+    directAbsenceLatticeMixedGeometryRowCount:
+      directAbsenceLatticeLawAudit.mixedGeometryClassDirectAbsenceRowCount,
+    directAbsencePairSpecificUnsupportedSingletonRowCount:
+      directAbsenceLatticeLawAudit
+        .pairSpecificUnsupportedSingletonDirectAbsenceRowCount,
+    firstDirectAbsenceLatticeLawBlocker:
+      directAbsenceLatticeLawAudit.firstDirectAbsenceLatticeLawBlocker,
+    directAbsenceSupportSourceAuditStatus:
+      directAbsenceSupportSourceAudit.status,
+    directAbsenceSupportSourceAudit,
+    directAbsenceSamePairSupportSourceRowCount:
+      directAbsenceSupportSourceAudit.samePairSupportSourceRowCount,
+    directAbsenceMissingSamePairSupportSourceRowCount:
+      directAbsenceSupportSourceAudit.missingSamePairSupportSourceRowCount,
+    directAbsenceSupportSourceRetainedBindingBlockedRowCount:
+      directAbsenceSupportSourceAudit
+        .supportSourceRetainedBindingBlockedRowCount,
+    firstDirectAbsenceSupportSourceBlocker:
+      directAbsenceSupportSourceAudit.firstDirectAbsenceSupportSourceBlocker,
+    directAbsenceOffsetTransportLawAuditStatus:
+      directAbsenceSupportSourceAudit.offsetTransportLawAuditStatus,
+    directAbsenceOffsetTransportLawAudit:
+      directAbsenceSupportSourceAudit.offsetTransportLawAudit,
+    directAbsenceOffsetTransportUniqueOffsetUnitCount:
+      directAbsenceSupportSourceAudit.offsetTransportUniqueOffsetUnitCount,
+    firstDirectAbsenceOffsetTransportLawBlocker:
+      directAbsenceSupportSourceAudit.firstOffsetTransportLawBlocker,
+    rowSamples: auditRows.slice(0, 8),
+    rows: auditRows,
+    retainedLimitation:
+      "The selected bounded touching-boundary gaps cannot be filled by local direct support alone: some selected gaps have only direct absence under the current replay, while the supported gaps are competitor-bearing partial-support rows without retained row-set binding.",
+  };
+}
+
+function createSelectedActiveDomainDirectAbsenceSupportSourceAudit({
+  rows = [],
+  latticeStep,
+} = {}) {
+  const selectedRows = rows ?? [];
+  const directAbsenceRows = selectedRows.filter(
+    (row) => row.directReplayEventRootAbsentPass === true
+  );
+  const directSupportRows = selectedRows.filter(
+    (row) => row.anyDirectEventRootSupportPass === true
+  );
+  const classValue = (value) =>
+    value === null || value === undefined ? "na" : String(value);
+  const geometryClassKey = (row) => [
+    `w=${classValue(row.widthUnits)}`,
+    `p=${classValue(row.priorDistanceUnits)}`,
+    `n=${classValue(row.nextDistanceUnits)}`,
+    `b=${classValue(row.bracketSpanUnits)}`,
+    `tp=${row.touchingPrior ? 1 : 0}`,
+    `tn=${row.touchingNext ? 1 : 0}`,
+  ].join("|");
+  const nearestSource = (row, candidates) => {
+    const sourceRows = (candidates ?? []).map((source) => {
+      const offset = row.start - source.start;
+      const offsetLattice = createLatticeProjection(offset, latticeStep);
+      return {
+        source,
+        offset,
+        offsetUnits: offsetLattice.units,
+        offsetLatticeAligned: offsetLattice.aligned,
+        absOffset: Math.abs(offset),
+      };
+    });
+    sourceRows.sort(
+      (left, right) =>
+        left.absOffset - right.absOffset ||
+        left.source.edgeIndex - right.source.edgeIndex
+    );
+    return sourceRows[0] ?? null;
+  };
+  const auditRows = directAbsenceRows.map((row) => {
+    const key = geometryClassKey(row);
+    const samePairSameGeometrySources = directSupportRows.filter(
+      (source) =>
+        source.pairKey === row.pairKey && geometryClassKey(source) === key
+    );
+    const pairAgnosticSameGeometrySources = directSupportRows.filter(
+      (source) => geometryClassKey(source) === key
+    );
+    const samePairSource = nearestSource(row, samePairSameGeometrySources);
+    const pairAgnosticSource = nearestSource(
+      row,
+      pairAgnosticSameGeometrySources
+    );
+    const selectedSource = samePairSource ?? pairAgnosticSource;
+    const supportSourceKind = samePairSource
+      ? "same_pair_same_geometry"
+      : pairAgnosticSource
+        ? "pair_agnostic_same_geometry"
+        : null;
+    const missingSamePairSupportSourcePass =
+      samePairSameGeometrySources.length === 0;
+    const crossPairOnlySupportSourcePass =
+      missingSamePairSupportSourcePass &&
+      pairAgnosticSameGeometrySources.length > 0;
+    const supportSourceRetainedBindingBlockedPass =
+      selectedSource?.source.partialSupportRetainedBindingBlockedPass === true;
+    const supportSourceAcceptedFillPass =
+      selectedSource?.source.acceptedSelectedBoundedGapFillSourcePass === true;
+    const acceptedDirectAbsenceSupportSourcePass = false;
+    const firstDirectAbsenceSupportSourceRowBlocker =
+      acceptedDirectAbsenceSupportSourcePass
+        ? null
+        : selectedSource == null
+          ? "direct_absence_support_source_missing"
+          : missingSamePairSupportSourcePass
+            ? "same_pair_support_source_missing_cross_pair_source_unaccepted"
+          : supportSourceAcceptedFillPass !== true
+            ? "same_pair_support_source_not_accepted_retained_fill"
+          : "derive_direct_absence_support_source_transport_law";
+    return {
+      pairKey: row.pairKey,
+      edgeIndex: row.edgeIndex,
+      side: row.side,
+      eventRootKey: row.eventRootKey,
+      geometryClassKey: key,
+      samePairSameGeometrySupportSourceCount:
+        samePairSameGeometrySources.length,
+      samePairSameGeometrySupportEdgeIndices:
+        samePairSameGeometrySources.map((source) => source.edgeIndex),
+      pairAgnosticSameGeometrySupportSourceCount:
+        pairAgnosticSameGeometrySources.length,
+      pairAgnosticSameGeometrySupportKeys:
+        pairAgnosticSameGeometrySources.map(
+          (source) => `${source.pairKey}:${source.edgeIndex}`
+        ),
+      supportSourceKind,
+      supportSourcePairKey: selectedSource?.source.pairKey ?? null,
+      supportSourceEdgeIndex: selectedSource?.source.edgeIndex ?? null,
+      supportSourceSide: selectedSource?.source.side ?? null,
+      supportSourcePartialSupportPass:
+        selectedSource?.source.partialSupportCandidatePass === true,
+      supportSourceRetainedBindingBlockedPass,
+      supportSourceAcceptedFillPass,
+      supportSourceStartOffset: selectedSource?.offset ?? null,
+      supportSourceStartOffsetUnits: selectedSource?.offsetUnits ?? null,
+      supportSourceStartOffsetLatticeAligned:
+        selectedSource?.offsetLatticeAligned ?? false,
+      missingSamePairSupportSourcePass,
+      crossPairOnlySupportSourcePass,
+      acceptedDirectAbsenceSupportSourcePass,
+      firstDirectAbsenceSupportSourceRowBlocker,
+    };
+  });
+  const acceptedRows = auditRows.filter(
+    (row) => row.acceptedDirectAbsenceSupportSourcePass
+  );
+  const samePairSourceRows = auditRows.filter(
+    (row) => row.samePairSameGeometrySupportSourceCount > 0
+  );
+  const missingSamePairSourceRows = auditRows.filter(
+    (row) => row.missingSamePairSupportSourcePass
+  );
+  const crossPairOnlySourceRows = auditRows.filter(
+    (row) => row.crossPairOnlySupportSourcePass
+  );
+  const retainedBindingBlockedRows = auditRows.filter(
+    (row) => row.supportSourceRetainedBindingBlockedPass
+  );
+  const offsetTransportLawAudit =
+    createSelectedActiveDomainDirectAbsenceOffsetTransportLawAudit({
+      supportSourceRows: auditRows,
+    });
+  const firstDirectAbsenceSupportSourceBlocker =
+    auditRows.find((row) => row.firstDirectAbsenceSupportSourceRowBlocker)
+      ?.firstDirectAbsenceSupportSourceRowBlocker ?? null;
+  return {
+    schema:
+      "aaa-tri-binary-selected-active-domain-direct-absence-support-source-audit.v1",
+    status: selectedRows.length === 0
+      ? "selected_active_domain_direct_absence_support_source_no_domain"
+      : directAbsenceRows.length === 0
+        ? "selected_active_domain_direct_absence_support_source_no_direct_absence"
+        : acceptedRows.length === directAbsenceRows.length
+          ? "selected_active_domain_direct_absence_support_source_accepted"
+        : missingSamePairSourceRows.length > 0 &&
+            retainedBindingBlockedRows.length > 0
+          ? "selected_active_domain_direct_absence_support_source_rejected_unaccepted_sources_and_missing_same_pair_source"
+        : retainedBindingBlockedRows.length > 0
+          ? "selected_active_domain_direct_absence_support_source_rejected_unaccepted_sources"
+        : missingSamePairSourceRows.length > 0
+          ? "selected_active_domain_direct_absence_support_source_rejected_missing_same_pair_source"
+        : "selected_active_domain_direct_absence_support_source_rejected_transport_law_missing",
+    claimLevel:
+      "fail-closed audit for sourcing selected direct-absence gaps from same-geometry support rows; not retained continuity acceptance",
+    retainedBranchClaim: false,
+    selectedBoundedGapRowCount: selectedRows.length,
+    directAbsenceRowCount: directAbsenceRows.length,
+    directSupportRowCount: directSupportRows.length,
+    samePairSupportSourceRowCount: samePairSourceRows.length,
+    missingSamePairSupportSourceRowCount: missingSamePairSourceRows.length,
+    crossPairOnlySupportSourceRowCount: crossPairOnlySourceRows.length,
+    supportSourceRetainedBindingBlockedRowCount:
+      retainedBindingBlockedRows.length,
+    acceptedDirectAbsenceSupportSourceRowCount: acceptedRows.length,
+    firstDirectAbsenceSupportSourceBlocker,
+    offsetTransportLawAuditStatus: offsetTransportLawAudit.status,
+    offsetTransportLawAudit,
+    offsetTransportUniqueOffsetUnitCount:
+      offsetTransportLawAudit.uniqueSupportSourceOffsetUnitCount,
+    firstOffsetTransportLawBlocker:
+      offsetTransportLawAudit.firstOffsetTransportLawBlocker,
+    rows: auditRows,
+    retainedLimitation:
+      "Same-geometry support rows do not supply a retained fill source for the selected direct-absence gaps: the available same-pair sources are themselves unaccepted retained-binding-blocked partial-support rows, while one direct-absence row has only a cross-pair same-geometry source. A derived nonlocal dynamic law or explicit rejection is still required.",
+  };
+}
+
+function createSelectedActiveDomainDirectAbsenceOffsetTransportLawAudit({
+  supportSourceRows = [],
+} = {}) {
+  const rows = (supportSourceRows ?? []).filter(
+    (row) => row.supportSourceEdgeIndex != null
+  );
+  const finiteOffsetUnitRows = rows.filter((row) =>
+    Number.isFinite(row.supportSourceStartOffsetUnits)
+  );
+  const uniqueOffsetUnits = Array.from(
+    new Set(finiteOffsetUnitRows.map((row) => row.supportSourceStartOffsetUnits))
+  ).sort((left, right) => left - right);
+  const samePairRows = finiteOffsetUnitRows.filter(
+    (row) => row.supportSourceKind === "same_pair_same_geometry"
+  );
+  const uniqueSamePairOffsetUnits = Array.from(
+    new Set(samePairRows.map((row) => row.supportSourceStartOffsetUnits))
+  ).sort((left, right) => left - right);
+  const crossPairRows = finiteOffsetUnitRows.filter(
+    (row) => row.supportSourceKind === "pair_agnostic_same_geometry"
+  );
+  const acceptedSourceRows = rows.filter(
+    (row) => row.supportSourceAcceptedFillPass === true
+  );
+  const retainedBindingBlockedRows = rows.filter(
+    (row) => row.supportSourceRetainedBindingBlockedPass === true
+  );
+  const auditRows = rows.map((row) => {
+    const fixedOffsetCandidatePass =
+      uniqueOffsetUnits.length === 1 &&
+      row.supportSourceAcceptedFillPass === true;
+    const firstOffsetTransportLawRowBlocker = fixedOffsetCandidatePass
+      ? null
+      : uniqueOffsetUnits.length > 1
+        ? "single_offset_transport_law_nonuniform_support_offsets"
+        : row.supportSourceAcceptedFillPass !== true
+          ? "support_source_not_accepted_for_offset_transport"
+        : "derive_offset_transport_law_from_retained_dynamics";
+    return {
+      pairKey: row.pairKey,
+      edgeIndex: row.edgeIndex,
+      supportSourceKind: row.supportSourceKind,
+      supportSourcePairKey: row.supportSourcePairKey,
+      supportSourceEdgeIndex: row.supportSourceEdgeIndex,
+      supportSourceStartOffsetUnits: row.supportSourceStartOffsetUnits,
+      supportSourceStartOffsetLatticeAligned:
+        row.supportSourceStartOffsetLatticeAligned,
+      supportSourceAcceptedFillPass: row.supportSourceAcceptedFillPass,
+      supportSourceRetainedBindingBlockedPass:
+        row.supportSourceRetainedBindingBlockedPass,
+      fixedOffsetCandidatePass,
+      firstOffsetTransportLawRowBlocker,
+    };
+  });
+  const acceptedRows = auditRows.filter(
+    (row) => row.fixedOffsetCandidatePass
+  );
+  const firstOffsetTransportLawBlocker =
+    auditRows.find((row) => row.firstOffsetTransportLawRowBlocker)
+      ?.firstOffsetTransportLawRowBlocker ?? null;
+  return {
+    schema:
+      "aaa-tri-binary-selected-active-domain-direct-absence-offset-transport-law-audit.v1",
+    status: supportSourceRows.length === 0
+      ? "selected_active_domain_direct_absence_offset_transport_law_no_domain"
+      : rows.length === 0
+        ? "selected_active_domain_direct_absence_offset_transport_law_no_support_sources"
+        : acceptedRows.length === rows.length
+          ? "selected_active_domain_direct_absence_offset_transport_law_accepted"
+        : uniqueOffsetUnits.length > 1 && retainedBindingBlockedRows.length > 0
+          ? "selected_active_domain_direct_absence_offset_transport_law_rejected_nonuniform_offsets_and_unaccepted_sources"
+        : uniqueOffsetUnits.length > 1
+          ? "selected_active_domain_direct_absence_offset_transport_law_rejected_nonuniform_offsets"
+        : retainedBindingBlockedRows.length > 0
+          ? "selected_active_domain_direct_absence_offset_transport_law_rejected_unaccepted_sources"
+        : "selected_active_domain_direct_absence_offset_transport_law_rejected_dynamic_law_missing",
+    claimLevel:
+      "fail-closed audit for a fixed lattice-offset transport law from selected support-source rows to selected direct-absence rows; not retained continuity acceptance",
+    retainedBranchClaim: false,
+    supportSourceRowCount: supportSourceRows.length,
+    finiteSupportSourceOffsetRowCount: finiteOffsetUnitRows.length,
+    supportSourceAcceptedFillRowCount: acceptedSourceRows.length,
+    supportSourceRetainedBindingBlockedRowCount:
+      retainedBindingBlockedRows.length,
+    supportSourceOffsetUnits: uniqueOffsetUnits,
+    uniqueSupportSourceOffsetUnitCount: uniqueOffsetUnits.length,
+    samePairSupportSourceOffsetUnits: uniqueSamePairOffsetUnits,
+    uniqueSamePairSupportSourceOffsetUnitCount:
+      uniqueSamePairOffsetUnits.length,
+    crossPairSupportSourceRowCount: crossPairRows.length,
+    acceptedOffsetTransportLawRowCount: acceptedRows.length,
+    firstOffsetTransportLawBlocker,
+    rows: auditRows,
+    retainedLimitation:
+      "A fixed lattice-offset copy law cannot source the selected direct-absence gaps: the available support-source offsets are nonuniform and every support source is still unaccepted retained-binding-blocked partial support. A row-dependent dynamic law or explicit rejection remains required.",
+  };
+}
+
+function createSelectedActiveDomainDirectAbsenceLatticeLawAudit({
+  rows = [],
+} = {}) {
+  const selectedRows = rows ?? [];
+  const directAbsenceRows = selectedRows.filter(
+    (row) => row.directReplayEventRootAbsentPass === true
+  );
+  const directSupportRows = selectedRows.filter(
+    (row) => row.anyDirectEventRootSupportPass === true
+  );
+  const classValue = (value) =>
+    value === null || value === undefined ? "na" : String(value);
+  const geometryClassKey = (row) => [
+    `w=${classValue(row.widthUnits)}`,
+    `p=${classValue(row.priorDistanceUnits)}`,
+    `n=${classValue(row.nextDistanceUnits)}`,
+    `b=${classValue(row.bracketSpanUnits)}`,
+    `tp=${row.touchingPrior ? 1 : 0}`,
+    `tn=${row.touchingNext ? 1 : 0}`,
+  ].join("|");
+  const pairSpecificGeometryClassKey = (row) =>
+    `${row.pairKey}|${geometryClassKey(row)}`;
+  const createClassStats = (keyFn) => {
+    const statsByKey = new Map();
+    for (const row of selectedRows) {
+      const key = keyFn(row);
+      const stats = statsByKey.get(key) ?? {
+        key,
+        rowCount: 0,
+        directSupportRowCount: 0,
+        directAbsenceRowCount: 0,
+        partialSupportRowCount: 0,
+        edgeIndices: [],
+        pairKeys: [],
+      };
+      stats.rowCount += 1;
+      if (row.anyDirectEventRootSupportPass === true) {
+        stats.directSupportRowCount += 1;
+      }
+      if (row.directReplayEventRootAbsentPass === true) {
+        stats.directAbsenceRowCount += 1;
+      }
+      if (row.partialSupportCandidatePass === true) {
+        stats.partialSupportRowCount += 1;
+      }
+      stats.edgeIndices.push(row.edgeIndex);
+      stats.pairKeys.push(row.pairKey);
+      statsByKey.set(key, stats);
+    }
+    return new Map(
+      Array.from(statsByKey.entries()).map(([key, stats]) => [
+        key,
+        {
+          ...stats,
+          pairKeys: unionStrings(stats.pairKeys),
+        },
+      ])
+    );
+  };
+  const geometryStatsByKey = createClassStats(geometryClassKey);
+  const pairSpecificGeometryStatsByKey = createClassStats(
+    pairSpecificGeometryClassKey
+  );
+  const auditRows = directAbsenceRows.map((row) => {
+    const geometryKey = geometryClassKey(row);
+    const pairGeometryKey = pairSpecificGeometryClassKey(row);
+    const geometryStats = geometryStatsByKey.get(geometryKey);
+    const pairGeometryStats = pairSpecificGeometryStatsByKey.get(
+      pairGeometryKey
+    );
+    const geometryClassMixedSupportAndAbsencePass =
+      (geometryStats?.directSupportRowCount ?? 0) > 0 &&
+      (geometryStats?.directAbsenceRowCount ?? 0) > 0;
+    const pairSpecificClassMixedSupportAndAbsencePass =
+      (pairGeometryStats?.directSupportRowCount ?? 0) > 0 &&
+      (pairGeometryStats?.directAbsenceRowCount ?? 0) > 0;
+    const pairSpecificUnsupportedSingletonPass =
+      (pairGeometryStats?.directSupportRowCount ?? 0) === 0 &&
+      (pairGeometryStats?.directAbsenceRowCount ?? 0) === 1;
+    const acceptedDirectAbsenceLatticeLawPass = false;
+    const firstDirectAbsenceLatticeLawRowBlocker =
+      acceptedDirectAbsenceLatticeLawPass
+        ? null
+        : geometryClassMixedSupportAndAbsencePass
+          ? "lattice_touching_geometry_class_mixed_support_and_absence"
+          : pairSpecificClassMixedSupportAndAbsencePass
+            ? "pair_specific_lattice_class_mixed_support_and_absence"
+          : pairSpecificUnsupportedSingletonPass
+            ? "pair_specific_lattice_singleton_has_no_positive_source"
+          : "derive_nonlocal_dynamic_fill_law_beyond_lattice_touching_geometry";
+    return {
+      pairKey: row.pairKey,
+      edgeIndex: row.edgeIndex,
+      side: row.side,
+      eventRootKey: row.eventRootKey,
+      widthUnits: row.widthUnits,
+      priorDistanceUnits: row.priorDistanceUnits,
+      nextDistanceUnits: row.nextDistanceUnits,
+      bracketSpanUnits: row.bracketSpanUnits,
+      touchingPrior: row.touchingPrior,
+      touchingNext: row.touchingNext,
+      geometryClassKey: geometryKey,
+      geometryClassRowCount: geometryStats?.rowCount ?? 0,
+      geometryClassDirectSupportRowCount:
+        geometryStats?.directSupportRowCount ?? 0,
+      geometryClassDirectAbsenceRowCount:
+        geometryStats?.directAbsenceRowCount ?? 0,
+      geometryClassPartialSupportRowCount:
+        geometryStats?.partialSupportRowCount ?? 0,
+      geometryClassPairKeys: geometryStats?.pairKeys ?? [],
+      pairSpecificGeometryClassKey: pairGeometryKey,
+      pairSpecificGeometryClassRowCount: pairGeometryStats?.rowCount ?? 0,
+      pairSpecificGeometryClassDirectSupportRowCount:
+        pairGeometryStats?.directSupportRowCount ?? 0,
+      pairSpecificGeometryClassDirectAbsenceRowCount:
+        pairGeometryStats?.directAbsenceRowCount ?? 0,
+      pairSpecificGeometryClassPartialSupportRowCount:
+        pairGeometryStats?.partialSupportRowCount ?? 0,
+      pairSpecificGeometryClassEdgeIndices:
+        pairGeometryStats?.edgeIndices ?? [],
+      geometryClassMixedSupportAndAbsencePass,
+      pairSpecificClassMixedSupportAndAbsencePass,
+      pairSpecificUnsupportedSingletonPass,
+      acceptedDirectAbsenceLatticeLawPass,
+      firstDirectAbsenceLatticeLawRowBlocker,
+    };
+  });
+  const acceptedRows = auditRows.filter(
+    (row) => row.acceptedDirectAbsenceLatticeLawPass
+  );
+  const mixedGeometryRows = auditRows.filter(
+    (row) => row.geometryClassMixedSupportAndAbsencePass
+  );
+  const mixedPairSpecificRows = auditRows.filter(
+    (row) => row.pairSpecificClassMixedSupportAndAbsencePass
+  );
+  const pairSpecificUnsupportedSingletonRows = auditRows.filter(
+    (row) => row.pairSpecificUnsupportedSingletonPass
+  );
+  const firstDirectAbsenceLatticeLawBlocker =
+    auditRows.find((row) => row.firstDirectAbsenceLatticeLawRowBlocker)
+      ?.firstDirectAbsenceLatticeLawRowBlocker ?? null;
+  return {
+    schema:
+      "aaa-tri-binary-selected-active-domain-direct-absence-lattice-law-audit.v1",
+    status: selectedRows.length === 0
+      ? "selected_active_domain_direct_absence_lattice_law_no_domain"
+      : directAbsenceRows.length === 0
+        ? "selected_active_domain_direct_absence_lattice_law_no_direct_absence"
+        : acceptedRows.length === directAbsenceRows.length
+          ? "selected_active_domain_direct_absence_lattice_law_accepted"
+        : mixedGeometryRows.length === directAbsenceRows.length
+          ? "selected_active_domain_direct_absence_lattice_law_rejected_geometry_class_mixed_support_and_absence"
+        : pairSpecificUnsupportedSingletonRows.length > 0
+          ? "selected_active_domain_direct_absence_lattice_law_rejected_pair_specific_singleton_no_source"
+        : "selected_active_domain_direct_absence_lattice_law_rejected_dynamic_law_missing",
+    claimLevel:
+      "fail-closed audit for local lattice/touching-boundary fill laws on selected direct-absence gaps; not retained continuity acceptance",
+    retainedBranchClaim: false,
+    selectedBoundedGapRowCount: selectedRows.length,
+    directAbsenceRowCount: directAbsenceRows.length,
+    directSupportRowCount: directSupportRows.length,
+    acceptedDirectAbsenceLatticeLawRowCount: acceptedRows.length,
+    mixedGeometryClassDirectAbsenceRowCount: mixedGeometryRows.length,
+    mixedPairSpecificGeometryClassDirectAbsenceRowCount:
+      mixedPairSpecificRows.length,
+    pairSpecificUnsupportedSingletonDirectAbsenceRowCount:
+      pairSpecificUnsupportedSingletonRows.length,
+    firstDirectAbsenceLatticeLawBlocker,
+    rows: auditRows,
+    retainedLimitation:
+      "The selected direct-absence gaps cannot be filled by a local lattice/touching-boundary shortcut: every direct-absence row lies in a pair-agnostic geometry class that also contains direct support, while pair-specific refinement either remains mixed or becomes a source-free singleton. A nonlocal dynamic fill law or explicit rejection is still required.",
+  };
+}
+
+function createSelectedActiveDomainBoundedGapFillSourceAuditRow({
+  boundaryRow,
+  directRow = null,
+  threePointRow = null,
+  partialSupportRow = null,
+  intervalProofRow = null,
+  retainedBindingRow = null,
+  latticeStep,
+}) {
+  const priorDistance = boundaryRow.priorEventRootBoundary?.distance ?? null;
+  const nextDistance = boundaryRow.nextEventRootBoundary?.distance ?? null;
+  const bracketSpan =
+    Number.isFinite(priorDistance) &&
+    Number.isFinite(boundaryRow.width) &&
+    Number.isFinite(nextDistance)
+      ? priorDistance + boundaryRow.width + nextDistance
+      : null;
+  const widthLattice = createLatticeProjection(boundaryRow.width, latticeStep);
+  const priorDistanceLattice = createLatticeProjection(
+    priorDistance,
+    latticeStep
+  );
+  const nextDistanceLattice = createLatticeProjection(nextDistance, latticeStep);
+  const bracketSpanLattice = createLatticeProjection(bracketSpan, latticeStep);
+  const midpointPresencePass =
+    directRow?.midpointEventRootPresenceRowPass === true;
+  const threePointSupportPass =
+    threePointRow?.anyInteriorSampleEventRootPresencePass === true;
+  const partialSupportCandidatePass =
+    partialSupportRow?.nonzeroJacobianDenseSupportRowPass === true;
+  const retainedBindingPass =
+    intervalProofRow?.retainedRowSetBindingProofPass === true ||
+    retainedBindingRow?.retainedRowSetBindingProofPass === true;
+  const anyDirectEventRootSupportPass =
+    midpointPresencePass || threePointSupportPass || partialSupportCandidatePass;
+  const directReplayEventRootAbsentPass =
+    directRow?.midpointRootLedgerReplayPopulated === true &&
+    anyDirectEventRootSupportPass !== true;
+  const partialSupportRetainedBindingBlockedPass =
+    partialSupportCandidatePass && retainedBindingPass !== true;
+  const acceptedSelectedBoundedGapFillSourcePass = false;
+  const firstSelectedBoundedGapFillSourceRowBlocker =
+    acceptedSelectedBoundedGapFillSourcePass
+      ? null
+      : directReplayEventRootAbsentPass
+        ? "derive_selected_bounded_gap_fill_law_for_direct_absence_row"
+        : partialSupportRetainedBindingBlockedPass
+          ? "bind_selected_partial_support_row_to_global_retained_row_set"
+        : anyDirectEventRootSupportPass
+          ? "promote_selected_direct_support_to_retained_fill_law"
+        : "populate_selected_bounded_gap_direct_support_or_dynamic_fill_law";
+  return {
+    pairKey: boundaryRow.pairKey,
+    edgeIndex: boundaryRow.edgeIndex,
+    side: boundaryRow.side,
+    eventRootKey: boundaryRow.eventRootKey ?? null,
+    start: boundaryRow.start,
+    end: boundaryRow.end,
+    width: boundaryRow.width,
+    priorBoundaryEdgeIndex:
+      boundaryRow.priorEventRootBoundary?.edgeIndex ?? null,
+    nextBoundaryEdgeIndex: boundaryRow.nextEventRootBoundary?.edgeIndex ?? null,
+    priorDistance,
+    nextDistance,
+    bracketSpan,
+    widthUnits: widthLattice.units,
+    priorDistanceUnits: priorDistanceLattice.units,
+    nextDistanceUnits: nextDistanceLattice.units,
+    bracketSpanUnits: bracketSpanLattice.units,
+    latticeAligned:
+      widthLattice.aligned &&
+      priorDistanceLattice.aligned &&
+      nextDistanceLattice.aligned &&
+      bracketSpanLattice.aligned,
+    touchingPrior:
+      (boundaryRow.priorEventRootBoundary?.distance ?? Infinity) <=
+      ROOT_TOLERANCE,
+    touchingNext:
+      (boundaryRow.nextEventRootBoundary?.distance ?? Infinity) <=
+      ROOT_TOLERANCE,
+    midpointReplayPopulated:
+      directRow?.midpointRootLedgerReplayPopulated === true,
+    midpointEventRootPresencePass: midpointPresencePass,
+    midpointActiveRootKeys: directRow?.midpointActiveRootKeys ?? [],
+    threePointAnyEventRootSupportPass: threePointSupportPass,
+    threePointEventRootPresenceSampleCount:
+      threePointRow?.eventRootPresenceInteriorSampleRowCount ?? 0,
+    threePointMidpointAbsentNonMidpointPresencePass:
+      threePointRow?.midpointAbsentNonMidpointPresencePass === true,
+    threePointNonzeroJacobianEventRootSampleCount:
+      threePointRow?.nonzeroJacobianEventRootSampleRowCount ?? 0,
+    partialSupportCandidatePass,
+    partialSupportDenseEventRootPresenceSampleCount:
+      partialSupportRow?.eventRootPresenceDenseInteriorSampleRowCount ?? 0,
+    partialSupportAbsentDenseSampleCount:
+      partialSupportRow?.absentDenseSampleCount ?? 0,
+    partialSupportMinAbsJacobian:
+      partialSupportRow?.minAbsJacobian ?? null,
+    sampledRootSheetEnclosureCandidatePass:
+      intervalProofRow?.sampledRootSheetEnclosureCandidatePass === true,
+    sampledDerivativeSignMarginCandidatePass:
+      intervalProofRow?.sampledDerivativeSignMarginCandidatePass === true,
+    retainedRowSetBindingProofPass: retainedBindingPass,
+    retainedBindingBothActiveConversionPairPass:
+      retainedBindingRow?.bothActiveConversionPairPass === true,
+    retainedBindingCompetitorRootPresentPass:
+      retainedBindingRow?.competitorRootPresentPass === true,
+    anyDirectEventRootSupportPass,
+    directReplayEventRootAbsentPass,
+    partialSupportRetainedBindingBlockedPass,
+    acceptedSelectedBoundedGapFillSourcePass,
+    firstSelectedBoundedGapFillSourceRowBlocker,
   };
 }
 
@@ -28563,6 +29368,7 @@ function createEventRootAffineBracketInnerBothActiveConversionRouteAudit({
   const competitorExclusionAudit =
     createEventRootAffineBracketInnerBothActiveCompetitorExclusionAudit({
       rows: routeRows,
+      retainedRowSetBindingContext,
     });
   const firstInnerBothActiveConversionBlocker =
     competitorExclusionAudit.firstCompetitorExclusionBlocker ??
@@ -28581,6 +29387,10 @@ function createEventRootAffineBracketInnerBothActiveConversionRouteAudit({
       ? "event_root_affine_bracket_inner_both_active_conversion_route_no_domain"
       : acceptedRows.length === routeRows.length
         ? "event_root_affine_bracket_inner_both_active_conversion_route_accepted"
+        : competitorExclusionAudit
+              .twoSheetGlobalBindingMissingGlobalIdentityRowCount ===
+            routeRows.length
+          ? "event_root_affine_bracket_inner_both_active_conversion_route_rejected_two_sheet_global_binding_missing"
         : competitorExclusionAudit
               .twoSheetRootSelectionCandidateRowCount === routeRows.length
           ? "event_root_affine_bracket_inner_both_active_conversion_route_rejected_two_sheet_root_selector_law_missing"
@@ -28646,6 +29456,16 @@ function createEventRootAffineBracketInnerBothActiveConversionRouteAudit({
       competitorExclusionAudit.acceptedTwoSheetRootSelectionRowCount,
     firstTwoSheetRootSelectionBlocker:
       competitorExclusionAudit.firstTwoSheetRootSelectionBlocker,
+    twoSheetGlobalBindingAuditStatus:
+      competitorExclusionAudit.twoSheetGlobalBindingAuditStatus,
+    twoSheetGlobalBindingCandidateRowCount:
+      competitorExclusionAudit.twoSheetGlobalBindingCandidateRowCount,
+    twoSheetGlobalBindingMissingGlobalIdentityRowCount:
+      competitorExclusionAudit.twoSheetGlobalBindingMissingGlobalIdentityRowCount,
+    acceptedTwoSheetGlobalBindingRowCount:
+      competitorExclusionAudit.acceptedTwoSheetGlobalBindingRowCount,
+    firstTwoSheetGlobalBindingBlocker:
+      competitorExclusionAudit.firstTwoSheetGlobalBindingBlocker,
     contextBothActiveConversionIntervalCount:
       retainedRowSetBindingContext?.bothActiveConversionIntervalCount ?? null,
     contextBothActiveConversionTotalWidth:
@@ -28678,6 +29498,7 @@ function createEventRootAffineBracketInnerBothActiveConversionRouteAudit({
 
 function createEventRootAffineBracketInnerBothActiveCompetitorExclusionAudit({
   rows,
+  retainedRowSetBindingContext,
 }) {
   const auditRows = (rows ?? [])
     .filter((row) => row.competitorRootPresentPass)
@@ -28702,11 +29523,13 @@ function createEventRootAffineBracketInnerBothActiveCompetitorExclusionAudit({
   const twoSheetRootSelectionAudit =
     createEventRootAffineBracketInnerBothActiveTwoSheetRootSelectionAudit({
       rows: auditRows,
+      retainedRowSetBindingContext,
     });
   const acceptedRows = auditRows.filter(
     (row) => row.acceptedCompetitorExclusionPass
   );
   const firstCompetitorExclusionBlocker =
+    twoSheetRootSelectionAudit.firstTwoSheetGlobalBindingBlocker ??
     twoSheetRootSelectionAudit.firstTwoSheetRootSelectionBlocker ??
     jacobianSignSelectionAudit.firstJacobianSignSelectionBlocker ??
     emissionDelayOrderSelectionAudit.firstEmissionDelayOrderSelectionBlocker ??
@@ -28719,6 +29542,10 @@ function createEventRootAffineBracketInnerBothActiveCompetitorExclusionAudit({
       ? "event_root_affine_bracket_inner_both_active_competitor_exclusion_no_domain"
       : acceptedRows.length === auditRows.length
         ? "event_root_affine_bracket_inner_both_active_competitor_exclusion_accepted"
+        : twoSheetRootSelectionAudit
+              .twoSheetGlobalBindingMissingGlobalIdentityRowCount ===
+            auditRows.length
+          ? "event_root_affine_bracket_inner_both_active_competitor_exclusion_rejected_two_sheet_global_binding_missing"
         : twoSheetRootSelectionAudit.twoSheetRootSelectionCandidateRowCount ===
             auditRows.length
           ? "event_root_affine_bracket_inner_both_active_competitor_exclusion_rejected_two_sheet_root_selector_law_missing"
@@ -28765,6 +29592,16 @@ function createEventRootAffineBracketInnerBothActiveCompetitorExclusionAudit({
       twoSheetRootSelectionAudit.acceptedTwoSheetRootSelectionRowCount,
     firstTwoSheetRootSelectionBlocker:
       twoSheetRootSelectionAudit.firstTwoSheetRootSelectionBlocker,
+    twoSheetGlobalBindingAuditStatus:
+      twoSheetRootSelectionAudit.twoSheetGlobalBindingAuditStatus,
+    twoSheetGlobalBindingCandidateRowCount:
+      twoSheetRootSelectionAudit.twoSheetGlobalBindingCandidateRowCount,
+    twoSheetGlobalBindingMissingGlobalIdentityRowCount:
+      twoSheetRootSelectionAudit.twoSheetGlobalBindingMissingGlobalIdentityRowCount,
+    acceptedTwoSheetGlobalBindingRowCount:
+      twoSheetRootSelectionAudit.acceptedTwoSheetGlobalBindingRowCount,
+    firstTwoSheetGlobalBindingBlocker:
+      twoSheetRootSelectionAudit.firstTwoSheetGlobalBindingBlocker,
     rowSamples: auditRows.slice(0, 8),
     rows: auditRows,
     jacobianSignSelectionAudit,
@@ -28958,6 +29795,7 @@ function createInnerBothActiveEmissionDelayOrderSelectionAuditRow(row) {
 
 function createEventRootAffineBracketInnerBothActiveTwoSheetRootSelectionAudit({
   rows,
+  retainedRowSetBindingContext,
 }) {
   const auditRows = (rows ?? []).map(
     createInnerBothActiveTwoSheetRootSelectionAuditRow
@@ -28974,7 +29812,13 @@ function createEventRootAffineBracketInnerBothActiveTwoSheetRootSelectionAudit({
   const competitorRootKeys = unionStrings(
     auditRows.flatMap((row) => row.competitorRootKeys ?? [])
   );
+  const globalBindingAudit =
+    createEventRootAffineBracketInnerBothActiveTwoSheetGlobalBindingAudit({
+      rows: auditRows,
+      retainedRowSetBindingContext,
+    });
   const firstTwoSheetRootSelectionBlocker =
+    globalBindingAudit.firstTwoSheetGlobalBindingBlocker ??
     auditRows.find((row) => row.firstTwoSheetRootSelectionRowBlocker)
       ?.firstTwoSheetRootSelectionRowBlocker ?? null;
   return {
@@ -28984,6 +29828,9 @@ function createEventRootAffineBracketInnerBothActiveTwoSheetRootSelectionAudit({
       ? "event_root_affine_bracket_inner_both_active_two_sheet_root_selection_no_domain"
       : acceptedRows.length === auditRows.length
         ? "event_root_affine_bracket_inner_both_active_two_sheet_root_selection_accepted"
+        : globalBindingAudit.twoSheetGlobalBindingMissingGlobalIdentityRowCount >
+            0
+          ? "event_root_affine_bracket_inner_both_active_two_sheet_root_selection_global_binding_blocked_missing_global_row_set_identity"
         : candidateRows.length === auditRows.length
           ? "event_root_affine_bracket_inner_both_active_two_sheet_root_selection_candidate_populated_retained_law_missing"
           : "event_root_affine_bracket_inner_both_active_two_sheet_root_selection_evidence_incomplete",
@@ -28998,10 +29845,657 @@ function createEventRootAffineBracketInnerBothActiveTwoSheetRootSelectionAudit({
     consistentEventRootKeyPass: eventRootKeys.length === 1,
     consistentCompetitorRootKeyPass: competitorRootKeys.length === 1,
     firstTwoSheetRootSelectionBlocker,
+    twoSheetGlobalBindingAuditStatus: globalBindingAudit.status,
+    twoSheetGlobalBindingCandidateRowCount:
+      globalBindingAudit.twoSheetGlobalBindingCandidateRowCount,
+    twoSheetGlobalBindingMissingGlobalIdentityRowCount:
+      globalBindingAudit.twoSheetGlobalBindingMissingGlobalIdentityRowCount,
+    acceptedTwoSheetGlobalBindingRowCount:
+      globalBindingAudit.acceptedTwoSheetGlobalBindingRowCount,
+    firstTwoSheetGlobalBindingBlocker:
+      globalBindingAudit.firstTwoSheetGlobalBindingBlocker,
+    rowSamples: auditRows.slice(0, 8),
+    rows: auditRows,
+    twoSheetGlobalBindingAudit: globalBindingAudit,
+    retainedLimitation:
+      "A stable two-sheet selector pattern compresses the current local evidence, but it is not a retained branch-selection law. Acceptance still requires a derivation that chooses the event-root sheet on the global retained row set or an accepted row-set binding that excludes the competitor sheet.",
+  };
+}
+
+function createEventRootAffineBracketInnerBothActiveTwoSheetGlobalBindingAudit({
+  rows,
+  retainedRowSetBindingContext,
+}) {
+  const auditRows = (rows ?? []).map((row) =>
+    createInnerBothActiveTwoSheetGlobalBindingAuditRow({
+      row,
+      retainedRowSetBindingContext,
+    })
+  );
+  const candidateRows = auditRows.filter(
+    (row) => row.twoSheetGlobalBindingCandidatePass
+  );
+  const globalReplayRows = candidateRows.filter(
+    (row) => row.eventRootKeyGlobalReplayPairPass
+  );
+  const transitionGlobalRows = candidateRows.filter(
+    (row) => row.transitionGlobalIdentityPairPass
+  );
+  const missingGlobalRows = candidateRows.filter(
+    (row) => row.missingGlobalIdentityForPairPass
+  );
+  const bothActiveConversionRows = candidateRows.filter(
+    (row) => row.bothActiveConversionPairPass
+  );
+  const activeDomainGapRows = candidateRows.filter(
+    (row) => row.activeDomainGapPairPass
+  );
+  const acceptedRows = candidateRows.filter(
+    (row) => row.acceptedTwoSheetGlobalBindingPass
+  );
+  const dependencyAudit =
+    createEventRootAffineBracketInnerBothActiveTwoSheetGlobalBindingDependencyAudit({
+      rows: candidateRows,
+      retainedRowSetBindingContext,
+    });
+  const firstTwoSheetGlobalBindingBlocker =
+    dependencyAudit.firstTwoSheetGlobalBindingDependencyBlocker ??
+    auditRows.find((row) => row.firstTwoSheetGlobalBindingRowBlocker)
+      ?.firstTwoSheetGlobalBindingRowBlocker ?? null;
+  const context = retainedRowSetBindingContext ?? {};
+  return {
+    schema:
+      "aaa-tri-binary-event-root-affine-bracket-inner-both-active-two-sheet-global-binding-audit.v1",
+    status: auditRows.length === 0
+      ? "event_root_affine_bracket_inner_both_active_two_sheet_global_binding_no_domain"
+      : candidateRows.length === 0
+        ? "event_root_affine_bracket_inner_both_active_two_sheet_global_binding_selector_candidate_missing"
+      : acceptedRows.length === candidateRows.length
+        ? "event_root_affine_bracket_inner_both_active_two_sheet_global_binding_accepted"
+        : missingGlobalRows.length > 0
+          ? "event_root_affine_bracket_inner_both_active_two_sheet_global_binding_rejected_missing_global_row_set_identity"
+        : bothActiveConversionRows.length > 0
+          ? "event_root_affine_bracket_inner_both_active_two_sheet_global_binding_rejected_competitor_bearing_both_active_support"
+          : "event_root_affine_bracket_inner_both_active_two_sheet_global_binding_proof_missing",
+    claimLevel:
+      "fail-closed audit for binding the two-sheet event-root selector to the global retained row-set identity; not retained branch acceptance",
+    retainedBranchClaim: false,
+    twoSheetGlobalBindingAuditRowCount: auditRows.length,
+    twoSheetGlobalBindingCandidateRowCount: candidateRows.length,
+    eventRootKeyGlobalReplayPairRowCount: globalReplayRows.length,
+    transitionGlobalIdentityPairRowCount: transitionGlobalRows.length,
+    twoSheetGlobalBindingMissingGlobalIdentityRowCount:
+      missingGlobalRows.length,
+    twoSheetGlobalBindingBothActiveConversionRowCount:
+      bothActiveConversionRows.length,
+    twoSheetGlobalBindingActiveDomainGapRowCount:
+      activeDomainGapRows.length,
+    acceptedTwoSheetGlobalBindingRowCount: acceptedRows.length,
+    twoSheetGlobalBindingDependencyAuditStatus: dependencyAudit.status,
+    activeDomainExtensionRequiredForTwoSheetRowCount:
+      dependencyAudit.activeDomainExtensionRequiredForTwoSheetRowCount,
+    innerBothActiveConversionRequiredForTwoSheetRowCount:
+      dependencyAudit.innerBothActiveConversionRequiredForTwoSheetRowCount,
+    acceptedTwoSheetGlobalBindingDependencyRowCount:
+      dependencyAudit.acceptedTwoSheetGlobalBindingDependencyRowCount,
+    firstTwoSheetGlobalBindingDependencyBlocker:
+      dependencyAudit.firstTwoSheetGlobalBindingDependencyBlocker,
+    contextRetainedRowSetIdentityStatus:
+      context.retainedRowSetIdentityStatus ?? null,
+    contextAllPairsHaveGlobalReplay:
+      context.allPairsHaveGlobalReplay === true,
+    contextAllPairsHavePartialChain:
+      context.allPairsHavePartialChain === true,
+    contextFirstOpenRowSetLiftBlocker:
+      context.firstOpenRowSetLiftBlocker ?? null,
+    firstTwoSheetGlobalBindingBlocker,
+    rowSamples: auditRows.slice(0, 8),
+    rows: auditRows,
+    twoSheetGlobalBindingDependencyAudit: dependencyAudit,
+    retainedLimitation:
+      "The two-sheet selector can bind to retained event-root continuity only after the selected event-root sheet has global retained row-set identity and the competitor sheet is excluded or explicitly bound on that same row set.",
+  };
+}
+
+function createEventRootAffineBracketInnerBothActiveTwoSheetGlobalBindingDependencyAudit({
+  rows,
+  retainedRowSetBindingContext,
+}) {
+  const auditRows = (rows ?? []).map((row) =>
+    createInnerBothActiveTwoSheetGlobalBindingDependencyAuditRow({
+      row,
+      retainedRowSetBindingContext,
+    })
+  );
+  const activeDomainRows = auditRows.filter(
+    (row) => row.activeDomainExtensionRequiredPass
+  );
+  const innerConversionRows = auditRows.filter(
+    (row) => row.innerBothActiveConversionRequiredPass
+  );
+  const pointEventRows = auditRows.filter(
+    (row) => row.fullPointEventRuleRequiredPass
+  );
+  const payloadEnergyRows = auditRows.filter(
+    (row) => row.payloadEnergyTransportBindingRequiredPass
+  );
+  const acceptedRows = auditRows.filter(
+    (row) => row.acceptedTwoSheetGlobalBindingDependencyPass
+  );
+  const activeDomainExtensionDependencyAudit =
+    createEventRootAffineBracketInnerBothActiveTwoSheetActiveDomainExtensionDependencyAudit({
+      rows: auditRows,
+      retainedRowSetBindingContext,
+    });
+  const firstTwoSheetGlobalBindingDependencyBlocker =
+    auditRows.find((row) => row.firstTwoSheetGlobalBindingDependencyRowBlocker)
+      ?.firstTwoSheetGlobalBindingDependencyRowBlocker ?? null;
+  return {
+    schema:
+      "aaa-tri-binary-event-root-affine-bracket-inner-both-active-two-sheet-global-binding-dependency-audit.v1",
+    status: auditRows.length === 0
+      ? "event_root_affine_bracket_inner_both_active_two_sheet_global_binding_dependency_no_domain"
+      : acceptedRows.length === auditRows.length
+        ? "event_root_affine_bracket_inner_both_active_two_sheet_global_binding_dependency_accepted"
+        : activeDomainRows.length > 0 && innerConversionRows.length > 0
+          ? "event_root_affine_bracket_inner_both_active_two_sheet_global_binding_dependency_blocked_active_domain_extension_and_inner_conversion"
+        : activeDomainRows.length > 0
+          ? "event_root_affine_bracket_inner_both_active_two_sheet_global_binding_dependency_blocked_active_domain_extension"
+        : innerConversionRows.length > 0
+          ? "event_root_affine_bracket_inner_both_active_two_sheet_global_binding_dependency_blocked_inner_conversion"
+        : pointEventRows.length > 0
+          ? "event_root_affine_bracket_inner_both_active_two_sheet_global_binding_dependency_blocked_point_event_rule"
+        : payloadEnergyRows.length > 0
+          ? "event_root_affine_bracket_inner_both_active_two_sheet_global_binding_dependency_blocked_payload_energy_transport_binding"
+          : "event_root_affine_bracket_inner_both_active_two_sheet_global_binding_dependency_proof_missing",
+    claimLevel:
+      "fail-closed audit for the row-set lift dependencies that must close before two-sheet global binding can be accepted; not retained branch acceptance",
+    retainedBranchClaim: false,
+    twoSheetGlobalBindingDependencyAuditRowCount: auditRows.length,
+    activeDomainExtensionRequiredForTwoSheetRowCount:
+      activeDomainRows.length,
+    innerBothActiveConversionRequiredForTwoSheetRowCount:
+      innerConversionRows.length,
+    fullPointEventRuleRequiredForTwoSheetRowCount: pointEventRows.length,
+    payloadEnergyTransportBindingRequiredForTwoSheetRowCount:
+      payloadEnergyRows.length,
+    acceptedTwoSheetGlobalBindingDependencyRowCount: acceptedRows.length,
+    firstTwoSheetGlobalBindingDependencyBlocker,
+    activeDomainExtensionDependencyAuditStatus:
+      activeDomainExtensionDependencyAudit.status,
+    selectedActiveDomainExtensionDependencyRowCount:
+      activeDomainExtensionDependencyAudit
+        .selectedActiveDomainExtensionDependencyRowCount,
+    selectedActiveDomainBoundedGapRowCount:
+      activeDomainExtensionDependencyAudit.selectedActiveDomainBoundedGapRowCount,
+    selectedActiveDomainOneSidedEndpointGapRowCount:
+      activeDomainExtensionDependencyAudit
+        .selectedActiveDomainOneSidedEndpointGapRowCount,
+    selectedActiveDomainPointOnlyContactCount:
+      activeDomainExtensionDependencyAudit
+        .selectedActiveDomainPointOnlyContactCount,
+    firstSelectedActiveDomainExtensionDependencyBlocker:
+      activeDomainExtensionDependencyAudit
+        .firstSelectedActiveDomainExtensionDependencyBlocker,
+    rowSamples: auditRows.slice(0, 8),
+    rows: auditRows,
+    activeDomainExtensionDependencyAudit,
+    retainedLimitation:
+      "The selected two-sheet rows inherit global row-set lift blockers from their pair channels. A local selector cannot be accepted while active-domain replay extension, inner both-active conversion, full point-event authority, or global payload/energy/transport binding remains open.",
+  };
+}
+
+function createEventRootAffineBracketInnerBothActiveTwoSheetActiveDomainExtensionDependencyAudit({
+  rows,
+  retainedRowSetBindingContext,
+}) {
+  const auditRows = (rows ?? [])
+    .filter((row) => row.activeDomainExtensionRequiredPass)
+    .map((row) =>
+      createInnerBothActiveTwoSheetActiveDomainExtensionDependencyAuditRow({
+        row,
+        retainedRowSetBindingContext,
+      })
+    );
+  const boundedRows = auditRows.filter(
+    (row) => row.eventRootBoundedGapCount > 0
+  );
+  const endpointRows = auditRows.filter(
+    (row) => row.eventRootOneSidedEndpointGapCount > 0
+  );
+  const pointOnlyRows = auditRows.filter(
+    (row) => row.pointOnlyIntervalCount > 0
+  );
+  const unboundedRows = auditRows.filter(
+    (row) => row.eventRootUnboundedGapCount > 0
+  );
+  const acceptedRows = auditRows.filter(
+    (row) => row.acceptedSelectedActiveDomainExtensionDependencyPass
+  );
+  const firstSelectedActiveDomainExtensionDependencyBlocker =
+    auditRows.find((row) => row.firstSelectedActiveDomainExtensionDependencyRowBlocker)
+      ?.firstSelectedActiveDomainExtensionDependencyRowBlocker ?? null;
+  return {
+    schema:
+      "aaa-tri-binary-event-root-affine-bracket-inner-both-active-two-sheet-active-domain-extension-dependency-audit.v1",
+    status: auditRows.length === 0
+      ? "event_root_affine_bracket_inner_both_active_two_sheet_active_domain_extension_dependency_no_domain"
+      : acceptedRows.length === auditRows.length
+        ? "event_root_affine_bracket_inner_both_active_two_sheet_active_domain_extension_dependency_accepted"
+        : unboundedRows.length > 0
+          ? "event_root_affine_bracket_inner_both_active_two_sheet_active_domain_extension_dependency_blocked_unbounded_gap"
+        : boundedRows.length > 0 && endpointRows.length > 0
+          ? "event_root_affine_bracket_inner_both_active_two_sheet_active_domain_extension_dependency_blocked_bounded_fill_and_endpoint_rule"
+        : boundedRows.length > 0
+          ? "event_root_affine_bracket_inner_both_active_two_sheet_active_domain_extension_dependency_blocked_bounded_fill_rule"
+        : endpointRows.length > 0
+          ? "event_root_affine_bracket_inner_both_active_two_sheet_active_domain_extension_dependency_blocked_endpoint_rule"
+        : pointOnlyRows.length > 0
+          ? "event_root_affine_bracket_inner_both_active_two_sheet_active_domain_extension_dependency_blocked_point_contact_rule"
+        : "event_root_affine_bracket_inner_both_active_two_sheet_active_domain_extension_dependency_proof_missing",
+    claimLevel:
+      "pair-channel audit for the active-domain extension rows inherited by the selected two-sheet global-binding candidates; not retained branch acceptance",
+    retainedBranchClaim: false,
+    selectedActiveDomainExtensionDependencyRowCount: auditRows.length,
+    selectedActiveDomainBoundedGapRowCount:
+      auditRows.reduce((sum, row) => sum + row.eventRootBoundedGapCount, 0),
+    selectedActiveDomainOneSidedEndpointGapRowCount:
+      auditRows.reduce(
+        (sum, row) => sum + row.eventRootOneSidedEndpointGapCount,
+        0
+      ),
+    selectedActiveDomainUnboundedGapRowCount:
+      auditRows.reduce((sum, row) => sum + row.eventRootUnboundedGapCount, 0),
+    selectedActiveDomainPointOnlyContactCount:
+      auditRows.reduce((sum, row) => sum + row.pointOnlyIntervalCount, 0),
+    selectedActiveDomainTouchingBoundaryGapCount:
+      auditRows.reduce((sum, row) => sum + row.touchingBoundaryGapCount, 0),
+    selectedActiveDomainPositiveDistanceBothBoundaryGapCount:
+      auditRows.reduce(
+        (sum, row) => sum + row.positiveDistanceBothBoundaryGapCount,
+        0
+      ),
+    selectedActiveDomainBoundedLatticeAlignedGapCount:
+      auditRows.reduce(
+        (sum, row) => sum + row.boundedLatticeAlignedGapCount,
+        0
+      ),
+    selectedActiveDomainTotalGapWidth:
+      auditRows.reduce((sum, row) => sum + row.totalGapWidth, 0),
+    selectedActiveDomainMaxGapWidth: maxFinite(
+      auditRows.map((row) => row.maxGapWidth).filter(Number.isFinite)
+    ),
+    acceptedSelectedActiveDomainExtensionDependencyRowCount:
+      acceptedRows.length,
+    firstSelectedActiveDomainExtensionDependencyBlocker,
     rowSamples: auditRows.slice(0, 8),
     rows: auditRows,
     retainedLimitation:
-      "A stable two-sheet selector pattern compresses the current local evidence, but it is not a retained branch-selection law. Acceptance still requires a derivation that chooses the event-root sheet on the global retained row set or an accepted row-set binding that excludes the competitor sheet.",
+      "The selected two-sheet pair channels have finite, classified active-domain extension burdens. That local classification narrows the proof route, but it still supplies no accepted fill law for bounded no-transition gaps, one-sided endpoint exceptions, or point-only contacts.",
+  };
+}
+
+function createInnerBothActiveTwoSheetActiveDomainExtensionDependencyAuditRow({
+  row,
+  retainedRowSetBindingContext,
+}) {
+  const sideProfile = findTransitionGapSideProfileRow(
+    retainedRowSetBindingContext?.activeDomainGapSideProfile,
+    row.pairKey
+  );
+  const boundaryProfile =
+    retainedRowSetBindingContext?.activeDomainGapBoundaryNeighborhoodProfile ??
+    null;
+  const boundaryRows = (boundaryProfile?.rows ?? []).filter(
+    (boundaryRow) => boundaryRow.pairKey === row.pairKey
+  );
+  const eventRootBoundedRows = boundaryRows.filter(
+    (boundaryRow) => boundaryRow.bothEventRootBoundaryPass === true
+  );
+  const eventRootPriorOnlyRows = boundaryRows.filter(
+    (boundaryRow) =>
+      boundaryRow.priorEventRootBoundaryPass === true &&
+      boundaryRow.nextEventRootBoundaryPass !== true
+  );
+  const eventRootNextOnlyRows = boundaryRows.filter(
+    (boundaryRow) =>
+      boundaryRow.nextEventRootBoundaryPass === true &&
+      boundaryRow.priorEventRootBoundaryPass !== true
+  );
+  const eventRootUnboundedRows = boundaryRows.filter(
+    (boundaryRow) =>
+      boundaryRow.priorEventRootBoundaryPass !== true &&
+      boundaryRow.nextEventRootBoundaryPass !== true
+  );
+  const touchingBoundaryRows = eventRootBoundedRows.filter(
+    (boundaryRow) =>
+      (boundaryRow.priorEventRootBoundary?.distance ?? Infinity) <=
+        ROOT_TOLERANCE ||
+      (boundaryRow.nextEventRootBoundary?.distance ?? Infinity) <=
+        ROOT_TOLERANCE
+  );
+  const positiveDistanceBothBoundaryRows = eventRootBoundedRows.filter(
+    (boundaryRow) =>
+      (boundaryRow.priorEventRootBoundary?.distance ?? 0) > ROOT_TOLERANCE &&
+      (boundaryRow.nextEventRootBoundary?.distance ?? 0) > ROOT_TOLERANCE
+  );
+  const latticeStep = CLOSURE_PERIOD / (2 * BINARY_TO_BINARY_PATH_SEGMENT_COUNT);
+  const boundaryLatticeRows = boundaryRows.map((boundaryRow) =>
+    createSelectedActiveDomainExtensionBoundaryLatticeRow({
+      row: boundaryRow,
+      latticeStep,
+    })
+  );
+  const boundedBoundaryLatticeRows = boundaryLatticeRows.filter(
+    (boundaryRow) => boundaryRow.bothEventRootBoundaryPass
+  );
+  const acceptedSelectedActiveDomainExtensionDependencyPass = false;
+  const eventRootOneSidedEndpointGapCount =
+    eventRootPriorOnlyRows.length + eventRootNextOnlyRows.length;
+  const pointOnlyIntervalCount = sideProfile?.pointOnlyIntervalCount ?? 0;
+  const firstSelectedActiveDomainExtensionDependencyRowBlocker =
+    acceptedSelectedActiveDomainExtensionDependencyPass
+      ? null
+      : eventRootUnboundedRows.length > 0
+        ? "populate_event_root_boundaries_for_selected_two_sheet_active_domain_gap"
+        : eventRootBoundedRows.length > 0
+          ? "prove_event_root_bounded_interior_inactive_gap_fill_rule_before_selected_two_sheet_global_binding"
+        : eventRootOneSidedEndpointGapCount > 0
+          ? "prove_one_sided_endpoint_inactive_gap_fill_rule_before_selected_two_sheet_global_binding"
+        : pointOnlyIntervalCount > 0
+          ? "declare_point_contact_identity_rule_before_selected_two_sheet_global_binding"
+        : "selected_active_domain_extension_dependency_proof_missing";
+  return {
+    pairKey: row.pairKey,
+    selectedTwoSheetEdgeIndex: row.edgeIndex,
+    eventRootKey: row.eventRootKey ?? null,
+    activeDomainExtensionRequiredPass:
+      row.activeDomainExtensionRequiredPass === true,
+    activeDomainPairSideStatus: row.activeDomainPairSideStatus ?? null,
+    activeDomainPairPositiveWidthIntervalCount:
+      row.activeDomainPairPositiveWidthIntervalCount ?? null,
+    activeDomainPairPointOnlyIntervalCount:
+      row.activeDomainPairPointOnlyIntervalCount ?? null,
+    activeDomainPairLeftIntervalCount:
+      row.activeDomainPairLeftIntervalCount ?? null,
+    activeDomainPairRightIntervalCount:
+      row.activeDomainPairRightIntervalCount ?? null,
+    activeDomainPairLeftTotalWidth:
+      row.activeDomainPairLeftTotalWidth ?? null,
+    activeDomainPairRightTotalWidth:
+      row.activeDomainPairRightTotalWidth ?? null,
+    boundaryGapCount: boundaryRows.length,
+    eventRootBoundedGapCount: eventRootBoundedRows.length,
+    eventRootPriorOnlyGapCount: eventRootPriorOnlyRows.length,
+    eventRootNextOnlyGapCount: eventRootNextOnlyRows.length,
+    eventRootOneSidedEndpointGapCount,
+    eventRootUnboundedGapCount: eventRootUnboundedRows.length,
+    touchingBoundaryGapCount: touchingBoundaryRows.length,
+    positiveDistanceBothBoundaryGapCount:
+      positiveDistanceBothBoundaryRows.length,
+    pointOnlyIntervalCount,
+    totalGapWidth: boundaryRows.reduce(
+      (sum, boundaryRow) => sum + (boundaryRow.width ?? 0),
+      0
+    ),
+    maxGapWidth: maxFinite(
+      boundaryRows.map((boundaryRow) => boundaryRow.width).filter(Number.isFinite)
+    ),
+    allBoundaryRowsLatticeAligned:
+      boundaryLatticeRows.length > 0 &&
+      boundaryLatticeRows.every((boundaryRow) => boundaryRow.latticeAligned),
+    boundedLatticeAlignedGapCount:
+      boundedBoundaryLatticeRows.filter((boundaryRow) => boundaryRow.latticeAligned)
+        .length,
+    allBoundedBoundaryRowsLatticeAligned:
+      boundedBoundaryLatticeRows.length > 0 &&
+      boundedBoundaryLatticeRows.every((boundaryRow) => boundaryRow.latticeAligned),
+    boundaryLatticeRows,
+    acceptedSelectedActiveDomainExtensionDependencyPass,
+    firstSelectedActiveDomainExtensionDependencyRowBlocker,
+  };
+}
+
+function createSelectedActiveDomainExtensionBoundaryLatticeRow({
+  row,
+  latticeStep,
+}) {
+  const priorDistance = row.priorEventRootBoundary?.distance ?? null;
+  const nextDistance = row.nextEventRootBoundary?.distance ?? null;
+  const bracketSpan =
+    Number.isFinite(priorDistance) &&
+    Number.isFinite(row.width) &&
+    Number.isFinite(nextDistance)
+      ? priorDistance + row.width + nextDistance
+      : null;
+  const widthLattice = createLatticeProjection(row.width, latticeStep);
+  const priorDistanceLattice = createLatticeProjection(
+    priorDistance,
+    latticeStep
+  );
+  const nextDistanceLattice = createLatticeProjection(nextDistance, latticeStep);
+  const bracketSpanLattice = createLatticeProjection(bracketSpan, latticeStep);
+  return {
+    pairKey: row.pairKey,
+    edgeIndex: row.edgeIndex,
+    side: row.side,
+    width: row.width,
+    priorBoundaryEdgeIndex: row.priorEventRootBoundary?.edgeIndex ?? null,
+    nextBoundaryEdgeIndex: row.nextEventRootBoundary?.edgeIndex ?? null,
+    priorDistance,
+    nextDistance,
+    bracketSpan,
+    widthUnits: widthLattice.units,
+    priorDistanceUnits: priorDistanceLattice.units,
+    nextDistanceUnits: nextDistanceLattice.units,
+    bracketSpanUnits: bracketSpanLattice.units,
+    touchingPrior:
+      (row.priorEventRootBoundary?.distance ?? Infinity) <= ROOT_TOLERANCE,
+    touchingNext:
+      (row.nextEventRootBoundary?.distance ?? Infinity) <= ROOT_TOLERANCE,
+    bothEventRootBoundaryPass: row.bothEventRootBoundaryPass === true,
+    priorEventRootBoundaryPass:
+      row.priorEventRootBoundaryPass === true,
+    nextEventRootBoundaryPass: row.nextEventRootBoundaryPass === true,
+    latticeAligned:
+      widthLattice.aligned &&
+      priorDistanceLattice.aligned &&
+      nextDistanceLattice.aligned &&
+      bracketSpanLattice.aligned,
+  };
+}
+
+function createInnerBothActiveTwoSheetGlobalBindingDependencyAuditRow({
+  row,
+  retainedRowSetBindingContext,
+}) {
+  const blockers = retainedRowSetBindingContext?.rowSetLiftBlockers ?? [];
+  const activeDomainPairProfile = findTransitionGapSideProfileRow(
+    retainedRowSetBindingContext?.activeDomainGapSideProfile,
+    row.pairKey
+  );
+  const innerConversionPairProfile = findTransitionGapSideProfileRow(
+    retainedRowSetBindingContext?.bothActiveConversionSideProfile,
+    row.pairKey
+  );
+  const blockerFor = (blockerId) =>
+    blockers.find(
+      (blocker) =>
+        blocker.blocker === blockerId &&
+        ((blocker.pairKeys ?? []).includes(row.pairKey) ||
+          (blocker.gapPairKeys ?? []).includes(row.pairKey) ||
+          blockerId === "accept_full_point_event_rule_if_replay_lift_remains_point_only" ||
+          blockerId === "global_row_set_payload_energy_transport_bindings_missing")
+    ) ?? null;
+  const activeDomainBlocker = blockerFor(
+    "extend_active_root_domain_across_both_inactive_no_transition_gaps"
+  );
+  const innerConversionBlocker = blockerFor(
+    "convert_inner_both_active_non_retained_edges_to_event_root_continuity"
+  );
+  const pointEventBlocker = blockerFor(
+    "accept_full_point_event_rule_if_replay_lift_remains_point_only"
+  );
+  const payloadEnergyBlocker = blockerFor(
+    "global_row_set_payload_energy_transport_bindings_missing"
+  );
+  const activeDomainExtensionRequiredPass =
+    row.activeDomainGapPairPass === true && activeDomainBlocker != null;
+  const innerBothActiveConversionRequiredPass =
+    row.bothActiveConversionPairPass === true && innerConversionBlocker != null;
+  const fullPointEventRuleRequiredPass = pointEventBlocker != null;
+  const payloadEnergyTransportBindingRequiredPass =
+    payloadEnergyBlocker != null;
+  const acceptedTwoSheetGlobalBindingDependencyPass = false;
+  const firstTwoSheetGlobalBindingDependencyRowBlocker =
+    acceptedTwoSheetGlobalBindingDependencyPass
+      ? null
+      : activeDomainExtensionRequiredPass
+        ? "active_domain_extension_required_before_two_sheet_global_binding"
+        : innerBothActiveConversionRequiredPass
+          ? "inner_both_active_conversion_required_before_two_sheet_global_binding"
+          : fullPointEventRuleRequiredPass
+            ? "full_point_event_rule_required_before_two_sheet_global_binding"
+            : payloadEnergyTransportBindingRequiredPass
+              ? "payload_energy_transport_binding_required_before_two_sheet_global_binding"
+              : "two_sheet_global_binding_dependency_proof_missing";
+  return {
+    pairKey: row.pairKey,
+    edgeIndex: row.edgeIndex,
+    eventRootKey: row.eventRootKey ?? null,
+    competitorRootKeys: row.competitorRootKeys ?? [],
+    eventRootKeyGlobalReplayPairPass:
+      row.eventRootKeyGlobalReplayPairPass === true,
+    transitionGlobalIdentityPairPass:
+      row.transitionGlobalIdentityPairPass === true,
+    missingGlobalIdentityForPairPass:
+      row.missingGlobalIdentityForPairPass === true,
+    activeDomainGapPairPass: row.activeDomainGapPairPass === true,
+    bothActiveConversionPairPass: row.bothActiveConversionPairPass === true,
+    bothActiveConversionGapPairPass:
+      row.bothActiveConversionGapPairPass === true,
+    activeDomainExtensionRequiredPass,
+    activeDomainExtensionIntervalCount:
+      activeDomainBlocker?.intervalCount ?? null,
+    activeDomainExtensionTotalWidth: activeDomainBlocker?.totalWidth ?? null,
+    activeDomainExtensionMaxWidth: activeDomainBlocker?.maxWidth ?? null,
+    activeDomainPairSideStatus: activeDomainPairProfile?.sideStatus ?? null,
+    activeDomainPairPositiveWidthIntervalCount:
+      activeDomainPairProfile?.positiveWidthIntervalCount ?? null,
+    activeDomainPairPointOnlyIntervalCount:
+      activeDomainPairProfile?.pointOnlyIntervalCount ?? null,
+    activeDomainPairLeftIntervalCount:
+      activeDomainPairProfile?.leftIntervalCount ?? null,
+    activeDomainPairRightIntervalCount:
+      activeDomainPairProfile?.rightIntervalCount ?? null,
+    activeDomainPairLeftTotalWidth:
+      activeDomainPairProfile?.leftTotalWidth ?? null,
+    activeDomainPairRightTotalWidth:
+      activeDomainPairProfile?.rightTotalWidth ?? null,
+    activeDomainPairMaxRightWidth:
+      activeDomainPairProfile?.rightMaxWidth ?? null,
+    innerBothActiveConversionRequiredPass,
+    innerBothActiveConversionIntervalCount:
+      innerConversionBlocker?.intervalCount ?? null,
+    innerBothActiveConversionTotalWidth:
+      innerConversionBlocker?.totalWidth ?? null,
+    innerBothActiveConversionMaxWidth:
+      innerConversionBlocker?.maxWidth ?? null,
+    innerConversionPairSideStatus:
+      innerConversionPairProfile?.sideStatus ?? null,
+    innerConversionPairPositiveWidthIntervalCount:
+      innerConversionPairProfile?.positiveWidthIntervalCount ?? null,
+    innerConversionPairPointOnlyIntervalCount:
+      innerConversionPairProfile?.pointOnlyIntervalCount ?? null,
+    innerConversionPairLeftIntervalCount:
+      innerConversionPairProfile?.leftIntervalCount ?? null,
+    innerConversionPairRightIntervalCount:
+      innerConversionPairProfile?.rightIntervalCount ?? null,
+    innerConversionPairLeftTotalWidth:
+      innerConversionPairProfile?.leftTotalWidth ?? null,
+    innerConversionPairRightTotalWidth:
+      innerConversionPairProfile?.rightTotalWidth ?? null,
+    innerConversionPairMaxRightWidth:
+      innerConversionPairProfile?.rightMaxWidth ?? null,
+    fullPointEventRuleRequiredPass,
+    rootPayloadIntervalStatus:
+      pointEventBlocker?.rootPayloadIntervalStatus ?? null,
+    payloadEnergyTransportBindingRequiredPass,
+    missingPayloadEnergyTransportObligations:
+      payloadEnergyBlocker?.missingObligations ?? [],
+    acceptedTwoSheetGlobalBindingDependencyPass,
+    firstTwoSheetGlobalBindingDependencyRowBlocker,
+  };
+}
+
+function findTransitionGapSideProfileRow(profile, pairKey) {
+  return (profile?.rows ?? []).find((row) => row.pairKey === pairKey) ?? null;
+}
+
+function createInnerBothActiveTwoSheetGlobalBindingAuditRow({
+  row,
+  retainedRowSetBindingContext,
+}) {
+  const context = retainedRowSetBindingContext ?? {};
+  const eventRootKeyGlobalReplayPairPass =
+    row.eventRootKeyGlobalReplayPairPass === true;
+  const transitionGlobalIdentityPairPass =
+    row.transitionGlobalIdentityPairPass === true;
+  const missingGlobalIdentityForPairPass =
+    row.missingGlobalIdentityForPairPass === true ||
+    eventRootKeyGlobalReplayPairPass !== true ||
+    transitionGlobalIdentityPairPass !== true;
+  const competitorRootPresentPass = (row.competitorRootKeys ?? []).length > 0;
+  const twoSheetGlobalBindingCandidatePass =
+    row.twoSheetRootSelectionCandidatePass === true;
+  const acceptedTwoSheetGlobalBindingPass = false;
+  const firstTwoSheetGlobalBindingRowBlocker =
+    acceptedTwoSheetGlobalBindingPass
+      ? null
+      : twoSheetGlobalBindingCandidatePass !== true
+        ? "two_sheet_root_selector_candidate_missing"
+        : context.contextPopulated !== true
+          ? "retained_row_set_binding_context_missing"
+          : missingGlobalIdentityForPairPass
+            ? "global_retained_row_set_identity_missing_for_two_sheet_selector"
+            : row.bothActiveConversionPairPass === true &&
+                competitorRootPresentPass
+              ? "competitor_sheet_requires_global_row_set_exclusion_or_binding"
+              : "explicit_two_sheet_retained_row_set_binding_proof_missing";
+  return {
+    pairKey: row.pairKey,
+    edgeIndex: row.edgeIndex,
+    eventRootKey: row.eventRootKey ?? null,
+    competitorRootKeys: row.competitorRootKeys ?? [],
+    supportSampleCount: row.supportSampleCount ?? null,
+    activeRootKeySets: row.activeRootKeySets ?? [],
+    activeRootKeys: row.activeRootKeys ?? [],
+    twoSheetRootSelectionCandidatePass:
+      row.twoSheetRootSelectionCandidatePass === true,
+    contextPopulated: context.contextPopulated === true,
+    contextRetainedRowSetIdentityStatus:
+      context.retainedRowSetIdentityStatus ?? null,
+    contextAllPairsHaveGlobalReplay:
+      context.allPairsHaveGlobalReplay === true,
+    contextAllPairsHavePartialChain:
+      context.allPairsHavePartialChain === true,
+    contextFirstOpenRowSetLiftBlocker:
+      context.firstOpenRowSetLiftBlocker ?? null,
+    eventRootKeyGlobalReplayPairPass,
+    eventRootKeyPartialChainPairPass:
+      row.eventRootKeyPartialChainPairPass === true,
+    transitionGlobalIdentityPairPass,
+    transitionMissingPairPass: row.transitionMissingPairPass === true,
+    partialOnlyPairPass: row.partialOnlyPairPass === true,
+    activeDomainGapPairPass: row.activeDomainGapPairPass === true,
+    bothActiveConversionPairPass: row.bothActiveConversionPairPass === true,
+    bothActiveConversionGapPairPass:
+      row.bothActiveConversionGapPairPass === true,
+    missingGlobalIdentityForPairPass,
+    competitorRootPresentPass,
+    twoSheetGlobalBindingCandidatePass,
+    acceptedTwoSheetGlobalBindingPass,
+    firstTwoSheetGlobalBindingRowBlocker,
   };
 }
 
@@ -29066,6 +30560,20 @@ function createInnerBothActiveTwoSheetRootSelectionAuditRow(row) {
     twoActiveRootSheetPass,
     jacobianSelectorPass,
     emissionDelaySelectorPass,
+    eventRootKeyGlobalReplayPairPass:
+      row.eventRootKeyGlobalReplayPairPass === true,
+    eventRootKeyPartialChainPairPass:
+      row.eventRootKeyPartialChainPairPass === true,
+    transitionGlobalIdentityPairPass:
+      row.transitionGlobalIdentityPairPass === true,
+    transitionMissingPairPass: row.transitionMissingPairPass === true,
+    partialOnlyPairPass: row.partialOnlyPairPass === true,
+    activeDomainGapPairPass: row.activeDomainGapPairPass === true,
+    bothActiveConversionPairPass: row.bothActiveConversionPairPass === true,
+    bothActiveConversionGapPairPass:
+      row.bothActiveConversionGapPairPass === true,
+    missingGlobalIdentityForPairPass:
+      row.missingGlobalIdentityForPairPass === true,
     twoSheetRootSelectionCandidatePass,
     acceptedTwoSheetRootSelectionPass,
     firstTwoSheetRootSelectionRowBlocker,
@@ -29134,6 +30642,20 @@ function createInnerBothActiveCompetitorExclusionAuditRow(row) {
       row.competitorSourcePointSeparationMin ?? null,
     competitorSourcePointSeparationMax:
       row.competitorSourcePointSeparationMax ?? null,
+    eventRootKeyGlobalReplayPairPass:
+      row.eventRootKeyGlobalReplayPairPass === true,
+    eventRootKeyPartialChainPairPass:
+      row.eventRootKeyPartialChainPairPass === true,
+    transitionGlobalIdentityPairPass:
+      row.transitionGlobalIdentityPairPass === true,
+    transitionMissingPairPass: row.transitionMissingPairPass === true,
+    partialOnlyPairPass: row.partialOnlyPairPass === true,
+    activeDomainGapPairPass: row.activeDomainGapPairPass === true,
+    bothActiveConversionPairPass: row.bothActiveConversionPairPass === true,
+    bothActiveConversionGapPairPass:
+      row.bothActiveConversionGapPairPass === true,
+    missingGlobalIdentityForPairPass:
+      row.missingGlobalIdentityForPairPass === true,
     acceptedCompetitorExclusionPass,
     firstCompetitorExclusionRowBlocker,
   };

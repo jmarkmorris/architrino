@@ -9,11 +9,13 @@ import {
   CENTRAL_SOLVER_REPLAY_DATASET_SOURCE,
   CENTRAL_SOLVER_MOTION_REPLAY_MODE,
   CENTRAL_SOLVER_PAIR_INTERACTION_REPLAY_MODE,
+  normalizeCausalDelayFeedbackBridgeReplay,
 } from "../src/apps/causal-delay-feedback/CausalDelayFeedbackCentralBridgeAdapter.js";
 import {
   CANVAS_COLORS,
-  DESIGN_WIDTH,
   DIRECT_MANIPULATION_DRAFT_PREVIEW,
+  PATH_TIME_END_X,
+  PATH_TIME_START_X,
   PRESETS,
   REPRESENTATIVE_MOCK_SOLVER_REPLAY,
   TEMPORARY_MOCK_ADAPTER,
@@ -166,52 +168,6 @@ test("causal delay feedback readout summarizes selected wake link", () => {
   assert.match(readout.children[8].textContent, /^contrib=/);
   assert.match(readout.children[9].textContent, /^(threshold=above_threshold|threshold=near_threshold|threshold=below_threshold)$/);
   assert.equal(readout.children[10].textContent, "partial arc");
-});
-
-test("causal delay feedback wake hover shows timing and contribution diagnostics", () => {
-  const runtime = createCausalDelayFeedbackRuntime({
-    document: new FakeDocument(),
-    window: fakeWindow,
-  });
-  const hoverLabel = new FakeElement();
-  runtime.dom = {
-    canvas: { getBoundingClientRect: () => ({ left: 0, top: 0 }) },
-    hoverLabel,
-  };
-  const link = runtime.dataset.wakeLinks[0];
-  const endpoints = runtime.getWakeEndpoints(link);
-  const midpoint = runtime.worldToScreen({
-    x: (endpoints.source.x + endpoints.receiver.x) * 0.5,
-    y: (endpoints.source.y + endpoints.receiver.y) * 0.5,
-  });
-
-  runtime.updateHoverLabel({ clientX: midpoint.x, clientY: midpoint.y });
-
-  assert.equal(hoverLabel.hidden, false);
-  assert.match(hoverLabel.textContent, /^red 1 -> blue 2/);
-  assert(hoverLabel.textContent.includes("emit=0.00"));
-  assert(hoverLabel.textContent.includes("hit=0.08"));
-  assert(hoverLabel.textContent.includes("travel=0.08"));
-  assert(hoverLabel.textContent.includes("contrib="));
-});
-
-test("causal delay feedback path point hover stays compact", () => {
-  const runtime = createCausalDelayFeedbackRuntime({
-    document: new FakeDocument(),
-    window: fakeWindow,
-  });
-  const hoverLabel = new FakeElement();
-  runtime.dom = {
-    canvas: { getBoundingClientRect: () => ({ left: 0, top: 0 }) },
-    hoverLabel,
-  };
-  const point = runtime.dataset.history.positrino[0];
-  const screen = runtime.worldToScreen(point);
-
-  runtime.updateHoverLabel({ clientX: screen.x, clientY: screen.y });
-
-  assert.equal(hoverLabel.hidden, false);
-  assert.equal(hoverLabel.textContent, "positrino 1");
 });
 
 test("causal delay feedback wake readout includes central solver diagnostics", () => {
@@ -793,13 +749,13 @@ test("causal delay feedback mock paths span five to ninety-five percent of the t
     document: new FakeDocument(),
     window: fakeWindow,
   });
-  const expectedStartX = DESIGN_WIDTH * 0.05;
-  const expectedEndX = DESIGN_WIDTH * 0.95;
 
   ["positrino", "electrino"].forEach((kind) => {
     const points = runtime.dataset.paths[kind];
-    assertNear(points[0].x, expectedStartX);
-    assertNear(points.at(-1).x, expectedEndX);
+    const startHistory = runtime.dataset.history[kind].find((point) => point.depth === 1);
+    assertNear(points[0].x, PATH_TIME_START_X);
+    assertNear(points.at(-1).x, PATH_TIME_END_X);
+    assertNear(startHistory.x, PATH_TIME_START_X);
   });
 });
 
@@ -996,11 +952,12 @@ test("causal delay feedback settings popover includes reset preset without addin
   assert.equal(html.includes("High contrast paths"), false);
   assert.equal(html.includes('id="causal-delay-feedback-depth-field"'), false);
   assert.equal(html.includes("Depth field"), false);
-  assert.equal(html.includes('id="causal-delay-feedback-virtual-observer"'), true);
+  assert.equal(html.includes('id="causal-delay-feedback-virtual-observer"'), false);
+  assert.equal(html.includes("Virtual observer"), false);
   assert.equal(html.includes('id="causal-delay-feedback-weak-cue"'), true);
   assert.equal(html.includes('value="threshold_only"'), true);
   assert.equal(html.includes('value="off"'), true);
-  assert.equal(html.includes(".causal-toggle-row"), true);
+  assert.equal(html.includes(".causal-toggle-row"), false);
   assert.equal(html.includes(".causal-setting-select"), true);
   assert.equal(html.includes("Hide path history"), false);
   assert.equal(html.includes("Show path history"), false);
@@ -1012,6 +969,58 @@ test("causal delay feedback settings popover includes reset preset without addin
   assert.equal(html.includes("root ledger inspector"), false);
   assert.equal(html.includes("diagnostic table"), false);
   assert.equal(html.includes("diagnostics panel"), false);
+});
+
+test("causal delay feedback settings button uses a gear icon", () => {
+  const html = readCausalDelayFeedbackHtml();
+  const settingsIndex = html.indexOf('id="causal-delay-feedback-settings"');
+  const legendIndex = html.indexOf('class="causal-legend"');
+  const settingsButtonHtml = html.slice(settingsIndex, legendIndex);
+
+  assert(settingsIndex > 0);
+  assert(legendIndex > settingsIndex);
+  assert.match(settingsButtonHtml, /<circle cx="12" cy="12" r="3" \/>/);
+  assert.match(settingsButtonHtml, /a2 2 0 0 0-2-2z/);
+  assert.equal(settingsButtonHtml.includes('d="M12 2.8v3"'), false);
+  assert.equal(settingsButtonHtml.includes('d="M2.8 12h3"'), false);
+});
+
+test("causal delay feedback toolbar uses separate play and pause buttons without visible source chip", () => {
+  const html = readCausalDelayFeedbackHtml();
+  const playIndex = html.indexOf('id="causal-delay-feedback-play"');
+  const scrubIndex = html.indexOf('id="causal-delay-feedback-now"');
+  const pauseIndex = html.indexOf('id="causal-delay-feedback-pause"');
+  const replayStatusIndex = html.indexOf('id="causal-delay-feedback-replay-status"');
+
+  assert(playIndex > 0);
+  assert(scrubIndex > playIndex);
+  assert(pauseIndex > scrubIndex);
+  assert(replayStatusIndex > pauseIndex);
+  assert.match(html.slice(playIndex, scrubIndex), /aria-label="Play replay"/);
+  assert.match(html.slice(pauseIndex, replayStatusIndex), /aria-label="Pause replay"/);
+  assert.match(html.slice(replayStatusIndex, replayStatusIndex + 180), /hidden/);
+});
+
+test("causal delay feedback legend lives inside the toolbar after settings", () => {
+  const html = readCausalDelayFeedbackHtml();
+  const toolbarIndex = html.indexOf('class="causal-toolbar"');
+  const settingsIndex = html.indexOf('id="causal-delay-feedback-settings"');
+  const legendIndex = html.indexOf('class="causal-legend"');
+  const replayStatusIndex = html.indexOf('id="causal-delay-feedback-replay-status"');
+
+  assert(toolbarIndex > 0);
+  assert(settingsIndex > toolbarIndex);
+  assert(legendIndex > settingsIndex);
+  assert(replayStatusIndex > legendIndex);
+  assert.match(html.slice(toolbarIndex, replayStatusIndex), /solid path history/);
+  assert.match(html.slice(toolbarIndex, replayStatusIndex), /dotted wakes/);
+});
+
+test("causal delay feedback does not render a floating hover overlay", () => {
+  const html = readCausalDelayFeedbackHtml();
+
+  assert.equal(html.includes("causal-delay-feedback-hover-label"), false);
+  assert.equal(html.includes("causal-hover-label"), false);
 });
 
 test("causal delay feedback replay datasets can load preset canvas color state", () => {
@@ -1158,12 +1167,34 @@ test("causal delay feedback replay keeps initial conditions synced to path start
 
   assert.equal(runtime.dataset.initialConditions.positrino.kind, "positrino");
   assert.equal(runtime.dataset.initialConditions.electrino.kind, "electrino");
-  assert.equal(runtime.dataset.initialConditions.virtualObserver.label, "Virtual Observer");
-  assert.equal(runtime.dataset.virtualObserver.x, runtime.dataset.initialConditions.virtualObserver.x);
   assert.equal(runtime.dataset.initialConditions.historyDepth, 6);
   assert.equal(runtime.replayRequestOptions.initialConditions.positrino.x, runtime.dataset.paths.positrino[0].x);
   assert.equal(runtime.replayRequestOptions.initialConditions.electrino.y, runtime.dataset.paths.electrino[0].y);
-  assert.equal(runtime.replayRequestOptions.virtualObserver.x, runtime.dataset.virtualObserver.x);
+  assert.equal("virtualObserver" in runtime.dataset.initialConditions, false);
+  assert.equal("virtualObserver" in runtime.dataset, false);
+  assert.equal("virtualObserver" in runtime.replayRequestOptions, false);
+});
+
+test("causal delay feedback bridge normalization strips stale virtual observer payloads", () => {
+  const source = createMockCausalDelayReplayDataset("accepted_tight_bright");
+  const staleObserver = { kind: "virtualObserver", label: "Virtual Observer", role: "observer", x: 1600, y: 540 };
+  const normalized = normalizeCausalDelayFeedbackBridgeReplay({
+    response: {
+      ...source,
+      datasetId: "stale-virtual-observer-payload",
+      initialConditions: {
+        ...source.initialConditions,
+        virtualObserver: staleObserver,
+      },
+      virtualObserver: staleObserver,
+      geometry: {
+        virtualObserver: staleObserver,
+      },
+    },
+  });
+
+  assert.equal("virtualObserver" in normalized, false);
+  assert.equal("virtualObserver" in normalized.initialConditions, false);
 });
 
 test("causal delay feedback does not expose initial velocity handles on the canvas", () => {
@@ -1177,55 +1208,20 @@ test("causal delay feedback does not expose initial velocity handles on the canv
   assert.notEqual(hit?.type, "initial-velocity");
 });
 
-test("causal delay feedback exposes a draggable Virtual Observer handle", () => {
+test("causal delay feedback does not expose a Virtual Observer handle", () => {
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
     window: fakeWindow,
   });
-  const hit = runtime.findNearestHit(runtime.worldToScreen(runtime.getVirtualObserver()));
+  const hits = [
+    runtime.findNearestHit(runtime.worldToScreen({ x: 1600, y: 540 })),
+    runtime.findNearestHit(runtime.worldToScreen({ x: 1600, y: 540 }), { includeWakes: true }),
+  ].filter(Boolean);
 
-  assert.equal(hit.type, "virtual-observer");
-  assert.deepEqual(hit.selection, { type: "virtual-observer" });
-  assert.equal(hit.title, "Virtual Observer");
-});
-
-test("causal delay feedback can hide the Virtual Observer handle", () => {
-  const readout = new FakeElement();
-  const runtime = createCausalDelayFeedbackRuntime({
-    document: new FakeDocument(),
-    window: fakeWindow,
-  });
-  runtime.dom = {
-    virtualObserverInput: new FakeElement(),
-    readout,
-  };
-  runtime.selectedItem = { type: "virtual-observer" };
-
-  runtime.setVirtualObserverVisible(false);
-  const hit = runtime.findNearestHit(runtime.worldToScreen(runtime.getVirtualObserver()));
-
-  assert.equal(runtime.virtualObserverVisible, false);
-  assert.equal(runtime.selectedItem, null);
-  assert.equal(hit, null);
-  assert.equal(runtime.dom.virtualObserverInput.checked, false);
-  assert.equal(readout.hidden, true);
-});
-
-test("causal delay feedback flips the Virtual Observer label away from the portrait right edge", () => {
-  const runtime = createCausalDelayFeedbackRuntime({
-    document: new FakeDocument(),
-    window: fakeWindow,
-  });
-  runtime.viewport = { scale: 0.2, offsetX: 0, offsetY: 0 };
-  runtime.canvasWidth = 390;
-
-  const rightEdgePlacement = runtime.getVirtualObserverLabelPlacement({ x: 330, y: 420 });
-  const centerPlacement = runtime.getVirtualObserverLabelPlacement({ x: 160, y: 420 });
-
-  assert.equal(rightEdgePlacement.align, "right");
-  assert(rightEdgePlacement.x < 330);
-  assert.equal(centerPlacement.align, "left");
-  assert(centerPlacement.x > 160);
+  assert.equal(runtime.getVirtualObserver, undefined);
+  assert.equal(runtime.setVirtualObserverVisible, undefined);
+  assert.equal(runtime.applyVirtualObserverDrag, undefined);
+  assert.equal(hits.some((hit) => hit.type === "virtual-observer"), false);
 });
 
 test("causal delay feedback wheel zoom anchors on empty canvas background", () => {
@@ -2770,6 +2766,31 @@ test("causal delay feedback retained point drag deforms the path and updates wak
   assert.equal(wakeLink.receiver.y, receptionPoint.y);
 });
 
+test("causal delay feedback retained point drag rebuilds a smooth path through the moved point", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  const retainedPoint = runtime.dataset.history.positrino.find((point) => point.depth === 4);
+
+  runtime.applyRetainedPointDrag("positrino", 4, { x: -84, y: -62 });
+
+  const path = runtime.dataset.paths.positrino;
+  const retainedPathIndex = path.findIndex((point) => Math.abs(point.t - retainedPoint.t) <= 1e-6);
+  const pathPoint = path[retainedPathIndex];
+  const previous = path[retainedPathIndex - 1];
+  const next = path[retainedPathIndex + 1];
+  const incoming = { x: pathPoint.x - previous.x, y: pathPoint.y - previous.y };
+  const outgoing = { x: next.x - pathPoint.x, y: next.y - pathPoint.y };
+  const dot = incoming.x * outgoing.x + incoming.y * outgoing.y;
+
+  assert(retainedPathIndex > 0);
+  assert(retainedPathIndex < path.length - 1);
+  assert.equal(pathPoint.x, retainedPoint.x);
+  assert.equal(pathPoint.y, retainedPoint.y);
+  assert(dot > 0);
+});
+
 test("causal delay feedback retained start point drag updates the initial condition", () => {
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
@@ -3002,43 +3023,6 @@ test("causal delay feedback initial velocity drag updates setup and bends the pr
   assertNear(runtime.replayRequestOptions.initialConditions.positrino.vx, condition.vx);
   assert.equal(runtime.replayRequestOptions.replayDataset, runtime.dataset);
   assert.equal(replayStatus.textContent, "draft preview");
-});
-
-test("causal delay feedback Virtual Observer drag updates diagnostic contribution without staling wake roots", () => {
-  const replayStatus = new FakeElement();
-  const runtime = createCausalDelayFeedbackRuntime({
-    document: new FakeDocument(),
-    window: fakeWindow,
-  });
-  runtime.dom = { replayStatus };
-  const link = runtime.dataset.wakeLinks[0];
-  Object.assign(link, {
-    solverRunId: "central-solved-red1-blue2",
-    rootCount: 1,
-    solverHitCount: 1,
-    solverHitTime: link.hitTime,
-  });
-  const endpoints = runtime.getWakeEndpoints(link);
-  const observer = runtime.getVirtualObserver();
-  const before = runtime.getWakeContributionMagnitude(link);
-
-  const didEdit = runtime.applyVirtualObserverDrag({
-    x: endpoints.receiver.x + 120 - observer.x,
-    y: endpoints.receiver.y - observer.y,
-  });
-  const after = runtime.getWakeContributionMagnitude(link);
-
-  assert.equal(didEdit, true);
-  assert(after > before);
-  assert.equal(runtime.dataset.datasetSource, REPRESENTATIVE_MOCK_SOLVER_REPLAY);
-  assert.equal(runtime.dataset.draftPreview, undefined);
-  assertNear(runtime.dataset.virtualObserver.x, endpoints.receiver.x + 120);
-  assertNear(runtime.dataset.initialConditions.virtualObserver.x, runtime.dataset.virtualObserver.x);
-  assertNear(runtime.replayRequestOptions.virtualObserver.x, runtime.dataset.virtualObserver.x);
-  assertNear(runtime.replayRequestOptions.initialConditions.virtualObserver.x, runtime.dataset.virtualObserver.x);
-  assert.equal(runtime.getWakeStatus(link).status, "active");
-  assert.equal(link.status, undefined);
-  assert.equal(replayStatus.textContent, "");
 });
 
 test("causal delay feedback point 1 release reruns central replay with edited setup", async () => {
@@ -3336,43 +3320,6 @@ test("causal delay feedback retained depth survives central replay reruns", asyn
   assert.equal(runtime.dataset.datasetSource, CENTRAL_SOLVER_REPLAY_DATASET_SOURCE);
 });
 
-test("causal delay feedback Virtual Observer release does not rerun central replay", async () => {
-  const replayStatus = new FakeElement();
-  let capturedRequestOptions = null;
-  let callCount = 0;
-  const adapter = {
-    id: CENTRAL_SOLVER_REPLAY_ADAPTER,
-    async createReplayAsync({ presetId, requestOptions }) {
-      callCount += 1;
-      capturedRequestOptions = requestOptions;
-      return {
-        ...createMockCausalDelayReplayDataset(presetId),
-        initialConditions: requestOptions.initialConditions,
-        virtualObserver: requestOptions.virtualObserver,
-        datasetSource: CENTRAL_SOLVER_REPLAY_DATASET_SOURCE,
-        solverIntegrationPath: CENTRAL_SOLVER_REPLAY_ADAPTER,
-      };
-    },
-  };
-  const runtime = createCausalDelayFeedbackRuntime({
-    document: new FakeDocument(),
-    window: fakeWindow,
-    replayAdapter: adapter,
-    autoLoadReplay: false,
-  });
-  runtime.dom = { replayStatus };
-
-  runtime.applyVirtualObserverDrag({ x: -180, y: 44 });
-  runtime.dragState = { type: "virtual-observer", didEdit: true };
-  await runtime.finishDrag();
-
-  assert.equal(callCount, 0);
-  assert.equal(capturedRequestOptions, null);
-  assert.equal(runtime.dataset.initialConditions.virtualObserver.y, runtime.dataset.virtualObserver.y);
-  assert.equal(runtime.dataset.datasetSource, REPRESENTATIVE_MOCK_SOLVER_REPLAY);
-  assert.equal(replayStatus.textContent, "");
-});
-
 test("causal delay feedback initial velocity release reruns central replay with edited setup", async () => {
   const replayStatus = new FakeElement();
   let capturedRequestOptions = null;
@@ -3533,6 +3480,32 @@ test("causal delay feedback spacebar toggles play state", () => {
 
   assert.equal(prevented, true);
   assert.equal(runtime.isPlaying, false);
+});
+
+test("causal delay feedback playback buttons stay explicit play and pause controls", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  const playButton = new FakeElement();
+  const pauseButton = new FakeElement();
+  runtime.dom = { playButton, pauseButton };
+
+  runtime.setPlaying(true);
+
+  assert.equal(playButton.attributes["aria-label"], "Play replay");
+  assert.equal(pauseButton.attributes["aria-label"], "Pause replay");
+  assert.equal(playButton.attributes["aria-pressed"], "true");
+  assert.equal(pauseButton.attributes["aria-pressed"], "false");
+  assert.match(playButton.innerHTML, /M8 5v14l10-7z/);
+  assert.match(pauseButton.innerHTML, /M8 5v14/);
+
+  runtime.setPlaying(false);
+
+  assert.equal(playButton.attributes["aria-label"], "Play replay");
+  assert.equal(pauseButton.attributes["aria-label"], "Pause replay");
+  assert.equal(playButton.attributes["aria-pressed"], "false");
+  assert.equal(pauseButton.attributes["aria-pressed"], "true");
 });
 
 test("causal delay feedback spacebar leaves native controls alone", () => {
