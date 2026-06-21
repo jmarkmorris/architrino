@@ -6659,15 +6659,25 @@ The force-as-gradient identity is valid only when taking the gradient at fixed c
 
 ##### Macroscopic Cancellation and Localized Resonance
 
-Constant causal emission by many architrinos does not imply a large random macroscopic force. The net causal-wake potential is a superposition, and in a large, incoherent population the leading gradients arrive with many signs, distances, phases, and line-of-action directions. For a receiver sampling such a population, positive and negative gradient influences cancel statistically:
+Constant causal emission by many architrinos does not imply a large random macroscopic force. The net causal-wake potential is a superposition, and in a large, incoherent population the leading gradients arrive with many signs, distances, phases, and line-of-action directions. For a receiver sampling such a population, macroscopic quietness is a two-moment condition, not only a mean-zero statement:
 
 $$
-\left\langle \nabla \Phi_{\text{net}}\right\rangle_{\text{incoherent}}
-\approx
-\mathbf{0}
+\left\|
+\left\langle \nabla \Phi_{\text{net}}\right\rangle_W
+\right\|
+\le
+\epsilon_{\text{mean}},
+\qquad
+\frac{
+\operatorname{Var}_W\!\left(\nabla\Phi_{\text{net}}\right)
+}{
+\left\|\nabla\Phi_{\text{coh}}^{\text{bound}}\right\|^2
+}
+\le
+\epsilon_{\text{var}}
 $$
 
-This cancellation is one reason the Noether sea can be densely active while remaining macroscopically quiet. What standard prose may call a vacuum state is not empty Euclidean void; it is the effective limit in which the local Noether sea assemblies and their causal wakes balance so well that only small residual gradients remain available to ordinary probes.
+Both bounds must use the same horizon, screening, and summation prescription that makes the many-source wake sum converge. The variance bound is the load-bearing part: incoherent fluctuation must remain small compared with the coherent bound-state gradient that phase-locked assemblies preserve. This cancellation is one reason the Noether sea can be densely active while remaining macroscopically quiet. What standard prose may call a vacuum state is not empty Euclidean void; it is the effective limit in which the local Noether sea assemblies and their causal wakes balance so well that only small residual gradients remain available to ordinary probes.
 
 Phase-locked bound states are the important exception. In a localized assembly, nearby constituents do not sample random phases; their active causal roots are correlated, and the $1/r^2$ distance factor lets the nearest coherent branches dominate over the far incoherent background. A [collinear breather](../../../../markdown/aaa/proof-programs/collinear-breather.md), for example, is precisely a reduced setting in which two opposite-polarity architrinos can form a localized, non-canceling causal resonance. The breather ansatz isolates this effect: instead of averaging away, the partner-hit and self-hit branches stay phase organized enough to exchange kinetic and potential energy across a bounded cycle.
 
@@ -6837,7 +6847,7 @@ $$
 $$
 Here $\Pi^{ij}$ and $\Lambda^{ij}$ are finite-window flux diagnostics for retained causal wakes and assembly crossings, not new substrate fields. $\tau_{\mathrm{ext},W}^i$ is the external torque about the same origin $\mathbf{x}_0$. If the energy, momentum, and angular-momentum residuals can be made small only by changing the window measure, boundary wake record, or regularization separately for each observable, the calculation has fitted separate summaries rather than demonstrated one causal-history conservation law.
 
-Cosmological inventory comparisons add one more finite-window caution. A gravitational binding contribution is negative relative to dispersed matter in the declared window, but the sign is meaningful only after the boundary and coarse-graining are fixed. For a component inventory over $W$,
+Cosmological inventory comparisons add one more finite-window caution. A gravitational binding contribution is negative relative to dispersed matter in the declared window, but the sign is meaningful only after the boundary and coarse-graining are fixed. In this chapter, $G_{\mathrm{eff}}$ in the binding line is a provisional external comparison input until the mass map and Noether sea response tensor independently derive it. For a component inventory over $W$,
 $$
 E_{\mathrm{bind},W}^{\mathrm{grav}}
 =
@@ -6864,7 +6874,25 @@ E_{\mathrm{bind},W}^{\mathrm{obs}}
 +
 \frac{|\mathcal{B}_{\partial W}|}{\epsilon_{\partial W}}
 $$
-This keeps gravitational binding from being used as an adjustable bookkeeping sign that can repair the cosmic energy inventory without specifying the same window, boundary wake history, and effective $G_{\mathrm{eff}}$ used by the rest of the cosmology branch.
+The circularity check is the post-handoff residual
+$$
+\mathcal{R}_{G\text{-consist},W}
+=
+\frac{
+\left|
+G_{\mathrm{eff}}^{\mathrm{bind}}
+-
+G_{\mathrm{eff}}^{(\zeta,\mathcal{M})}
+\right|
+}{
+\left|G_{\mathrm{eff}}^{(\zeta,\mathcal{M})}\right|
++
+\varepsilon_G
+}
+\le
+\epsilon_G
+$$
+where $G_{\mathrm{eff}}^{\mathrm{bind}}$ is the value used in the inventory comparison and $G_{\mathrm{eff}}^{(\zeta,\mathcal{M})}$ is the value derived from shielding, exposed response, and the Noether sea response tensor. Until $\mathcal{R}_{G\text{-consist},W}$ is reported on the same window, the cosmological binding line is comparison bookkeeping only, not a derived inventory contribution. This keeps gravitational binding from being used as an adjustable bookkeeping sign that can repair the cosmic energy inventory without specifying the same window, boundary wake history, and effective $G_{\mathrm{eff}}$ used by the rest of the cosmology branch.
 
 **Theorem target (center of response).** The standard center-of-mass theorem depends on equal-time internal force cancellation. In delayed causal dynamics that cancellation is not available as a particle-only statement on $\Sigma_t$: the reciprocal hit generally belongs to a different emission time, a different causal-root branch, or a boundary wake record not retained by the finite window. For an assembly window $W_A(t)$, the replacement target is to prove that there is a response center $\mathbf{X}_{\mathrm{resp}}(t)$ and an assembly response tensor $M_A^{ij}$ such that the finite-window momentum balance reduces, over resolved windows, to
 $$
@@ -6948,7 +6976,27 @@ where $[x]_+=\max(x,0)$ and $\mathcal D_{\mathcal Q}$ is the declared coherent-t
 
 For the consolidated mapping from legacy entropy formulas into $\mathbb{A}\mathbb{A}\mathbb{A}$ record projections, see [Entropy and Record Coarse-Graining](../../../../markdown/aaa/dynamics/entropy.md).
 
-In near-equilibrium comparison runs, response and fluctuation must also come from one record. If an observable $O_A$ has response kernel $\chi_{AB}(\omega)$ to a controlled source coupled to $O_B$, the causal-response check is that the dissipative part and the equilibrium fluctuation spectrum $S_{AB}(\omega)$ obey a declared classical or quantum fluctuation-dissipation row. A dimensionless packet residual can be written as
+In near-equilibrium comparison runs, response and fluctuation must also come from one record. The fluctuation-dissipation map may be invoked only after that same retained record supplies an admissible temperature channel. Concretely, the record $\theta_W$ that supplies $\chi_{AB}''$ and $S_{AB}^{\mathrm{meas}}$ must pass $\mathcal R_{S,W}$ and must yield consistent temperatures from at least two independent observable pairs:
+$$
+\mathcal{R}_{T,W}
+=
+\frac{
+\left|
+T_{\mathcal Q}^{(AB)}
+-
+T_{\mathcal Q}^{(A'B')}
+\right|
+}{
+\left|T_{\mathcal Q}^{(AB)}\right|
++
+\left|T_{\mathcal Q}^{(A'B')}\right|
++
+\varepsilon_T
+}
+\le
+\epsilon_T
+$$
+If this sea-temperature admissibility check fails, the packet may report the dissipative response $\chi_{AB}''$ alone, but it may not use an equilibrium fluctuation-dissipation map as closure evidence. If an observable $O_A$ has response kernel $\chi_{AB}(\omega)$ to a controlled source coupled to $O_B$, the causal-response check is that the dissipative part and the equilibrium fluctuation spectrum $S_{AB}(\omega)$ obey a declared classical or quantum fluctuation-dissipation row. A dimensionless packet residual can be written as
 $$
 \mathcal R_{\mathrm{FD}}(A,B)
 =
@@ -7047,6 +7095,40 @@ $$E_{\text{apparent}}(A) \sim \zeta(A)\,E_{\text{internal}}(A),$$
 
 This is a roadmap relation, not a substrate identity; proportionality constants must be fixed by matching to effective low-energy theory (e.g. mapping to $mc^2$).
 
+The exposed energy cannot be counted twice as both the direct probe readout and the sea-retuning source. On a declared comparison window, split the exposed ledger into a probe channel and a sea-coupled channel:
+$$
+\zeta(A)E_{\text{internal}}(A)
+=
+E_{\text{probe}}(A)
++
+E_{\text{sea-coupled}}(A)
++
+E_{\text{unresolved}}(A),
+\qquad
+E_{\text{probe}}(A)+E_{\text{sea-coupled}}(A)
+\le
+\zeta(A)E_{\text{internal}}(A)
+$$
+with partition residual
+$$
+\mathcal R_{\text{part}}(A)
+=
+\frac{
+\left|
+\zeta(A)E_{\text{internal}}(A)
+-
+E_{\text{probe}}(A)
+-
+E_{\text{sea-coupled}}(A)
+\right|
+}{
+\left|\zeta(A)E_{\text{internal}}(A)\right|
++
+\varepsilon_{\text{part}}
+}
+$$
+The mass map couples distant probes to $E_{\text{probe}}$ through the retuned Noether sea; the matter-to-sea source uses $E_{\text{sea-coupled}}$. A calculation that uses the raw $\zeta E_{\text{internal}}$ in both roles must report $\mathcal R_{\text{part}}$ as unresolved rather than treating the two uses as independent evidence.
+
 ---
 
 #### Emergent Inertia (Mass) from Shielded Energy
@@ -7063,11 +7145,11 @@ For an assembly $A$, define its inertial mass $m_{\text{inertial}}(A)$ operation
 
 $$m_{\text{inertial}}(A) \equiv \frac{\|\mathbf{F}_{\text{ext}}\|}{\|\mathbf{a}_{\text{cm}}\|}.$$
 
-Because the external wake couples mainly to the **apparent energy**, not the full internal circulation, the scalar roadmap limit is:
+Because the external wake couples mainly to the probe-facing exposed energy, not the full internal circulation, the scalar roadmap limit is:
 
-$$m_{\text{inertial}}(A) \approx \alpha_{\mathrm{m}}\,\frac{\zeta(A)\,E_{\text{internal}}(A)}{c_{\text{eff}}^2}.$$
+$$m_{\text{inertial}}(A) \approx \alpha_{\mathrm{m}}\,\frac{E_{\text{probe}}(A)}{c_{\text{eff}}^2}.$$
 
-The tensor handoff is more precise. For a small center-of-mass velocity $V_{\text{cm},b}$ through a declared Noether sea response record,
+The tensor handoff is more precise. In the formulas below, $\mathcal{Z}_A^{ab}$ is the probe-channel exposure tensor after the exposed-energy partition has been declared; the sea-coupled channel enters through $S_{\mathrm{mat}\to\mathrm{sea}}^{(\ell)}$ and the resulting Noether sea response, not as a second direct inertial source. For a small center-of-mass velocity $V_{\text{cm},b}$ through a declared Noether sea response record,
 $$
 p_{\text{int}}^{a}
 \approx
@@ -7157,7 +7239,7 @@ S_{\mathrm{mat}\to\mathrm{sea}}^{(\ell)}(\mathbf{x},t)
 =
 \sum_{A\subset\Omega_\ell}
 W_\ell(\mathbf{x}-\mathbf{X}_A(t))\,
-\zeta(A)E_{\text{internal}}(A)
+E_{\text{sea-coupled}}(A)
 +
 S_{\mathrm{aniso}}^{(\ell)}(\mathbf{x},t)
 $$
@@ -7177,11 +7259,40 @@ $$
 
 with $\delta\theta_{\mathrm{sea}}^{(\ell)}$ projecting into $n$, $\chi_{\text{sea}}$, $\Gamma_N$, strain, orientation, cadence, and envelope-scale variables. In this language, saying that neighboring Noether swarms absorb the exposed potential means that they retune their branch state. Depending on the accepted branch, that retuning may appear as higher cadence, changed strain, stronger alignment, envelope-scale shift, or altered coupling to nearby Noether swarms; it should not be compressed into a generic statement that the cores simply gain energy and expand.
 
-This is the same shielding-based logic developed more directly in [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md). The matching factor $\alpha_{\mathrm{m}}$ should be fixed only after a calibration-free reference attractor has supplied $E_{\text{internal}}$, $\zeta$, and the medium-response map; it should not be fitted separately to each particle species.
+This is the same shielding-based logic developed more directly in [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md). The matching factor $\alpha_{\mathrm{m}}$ should be fixed only after a calibration-free reference attractor has supplied $E_{\text{internal}}$, $\zeta$, and the medium-response map; it should not be fitted separately to each particle species. Universality is a cross-species invariant, not a notation choice. For any certified assembly $A$, define the back-solved value
+$$
+\alpha_{\mathrm{m}}(A)
+\equiv
+\frac{
+m_{\mathrm{tr}}(A)c_{\text{eff},0}^2
+}{
+E_{\text{internal}}(A)
+\left[
+\zeta(A)(1+\delta\mathcal M_0)
++
+\frac{1}{3}\mathcal Z_{\mathrm{tf},ab}(A)\delta\mathcal M_{\mathrm{tf}}^{ab}
+\right]
+}
+$$
+on branches that pass the positivity gate above. For any pair $A,A'$ in the mass-map test set, require
+$$
+\mathcal R_{\alpha}(A,A')
+\equiv
+\frac{
+\left|\alpha_{\mathrm{m}}(A)-\alpha_{\mathrm{m}}(A')\right|
+}{
+\left|\alpha_{\mathrm{m}}(A)\right|
++
+\left|\alpha_{\mathrm{m}}(A')\right|
+}
+\le
+\epsilon_{\alpha}
+$$
+with $\epsilon_{\alpha}$ declared before promotion. If this residual cannot be held small without per-species tuning, the universality claim fails and the parameter count must be raised explicitly.
 
 Thermodynamic or entropic derivations of gravitational force are therefore comparison benchmarks for this chapter, not replacements for the mass mechanism. They may sharpen the observer-level equation-of-state target for gravity, but $m_{\text{inertial}}(A)$ is not closed until the same assembly ledger supplies its closed internal causal-history record, shielding extraction, Noether sea response tensor, and acceleration response.
 
-The immediate hand-off is the $A_0$ reference attractor gate. The energy chapter owns the internal-energy and apparent-energy definitions that $A_0$ must report: layer energies, interaction and wake terms, total $E_{\text{internal}}(A_0)$, far-field wake coefficients, and the exposed-energy combination $\zeta(A_0)E_{\text{internal}}(A_0)$. Those outputs are still closure targets until a stable branch, shielding extraction, and response tensor are computed. Compact finite-coordinate no-go records and branch-chart checker results cannot be consumed as energy-accounting inputs: a rejection blocks the chart path, and a clearance authorizes only a rerun candidate until Tier 2 shielding exists on an accepted branch.
+The immediate hand-off is the $A_0$ reference attractor gate. The energy chapter owns the internal-energy and apparent-energy definitions that $A_0$ must report: layer energies, interaction and wake terms, total $E_{\text{internal}}(A_0)$, far-field wake coefficients, $E_{\text{probe}}(A_0)$, $E_{\text{sea-coupled}}(A_0)$, and $\mathcal R_{\text{part}}(A_0)$. Those outputs are still closure targets until a stable branch, shielding extraction, and response tensor are computed. Compact finite-coordinate no-go records and branch-chart checker results cannot be consumed as energy-accounting inputs: a rejection blocks the chart path, and a clearance authorizes only a rerun candidate until Tier 2 shielding exists on an accepted branch.
 
 The multi-scale status of $A_0$ matters for this accounting. Fast internal corrections should not be removed until they are classified. Nonresonant inner-layer motion may average out of the leading apparent-energy fit, but corrections that change self-hit counts, the branch Jacobian near $c_f$, or the leakage tensor can change $E_{\text{internal}}(A_0)$, $\zeta(A_0)$, or both. Apparent energy is therefore downstream of closure and stability, not an input used to force a convenient branch.
 
@@ -7215,7 +7326,30 @@ $$
 Here:
 - $M_0$ is the assembly rest/internal invariant extracted at $v_{\text{CM}}=0$ in a locally homogeneous sea.
 - $E_{\text{CM}}$ and $p_{\text{CM}}$ are the total center-of-mass energy and momentum measured from trajectory dynamics.
-- $c_{\text{eff}}$ is the emergent signal speed of the local Noether sea response record; in weak-field isotropic conditions, $c_{\text{eff}}\to c_f$.
+- $c_{\text{eff}}$ is the isotropic projection of the local Noether sea response-speed record; in weak-field homogeneous and neutral conditions that also pass the two-moment quietness condition above, $c_{\text{eff}}\to c_f$.
+
+More precisely, the response-speed tensor may be written schematically as
+$$
+\left(c_{\text{eff}}^2\right)^{ab}
+=
+c_f^2
+\left[
+(1+\delta c_0)h^{ab}
++
+\delta c_{\mathrm{tf}}^{ab}
+\right],
+\qquad
+c_{\text{eff}}^2
+\equiv
+\frac{1}{3}h_{ab}\left(c_{\text{eff}}^2\right)^{ab}
+$$
+The scalar mass-shell closure is admissible only when the anisotropic propagation correction is bounded,
+$$
+\left\|\delta c_{\mathrm{tf}}\right\|
+\le
+\epsilon_{c,\mathrm{tf}}
+$$
+on the same comparison window. The scalar offset $\delta c_0\to0$ is not assumed by isotropy language alone; it must follow from the same homogeneous neutral summation and screening conditions that make the Noether sea macroscopically quiet.
 
 Equivalent parameterization:
 $$
@@ -7425,7 +7559,17 @@ Per-step increments (explicit, no deltas):
 
 Constraints to apply across the $f-1 \to f$ transition (bookkeeping level):
 
-- **Angular momentum / rotational action**: $\Delta I_{\text{out}} + \Delta I_{\text{mid}} + \Delta I_{\text{in}} + \Delta I_{\text{wake}} = +\hbar$. For a **net positive** transaction, all binaries should register **nonnegative** increments (no mixed signs): $\Delta I_{\text{out}}, \Delta I_{\text{mid}}, \Delta I_{\text{in}} \ge 0$ with $\Delta I_{\text{wake}} \approx 0$, and the distribution is left unspecified. For a **net negative** transaction, all three should be nonpositive. This preserves a consistent sign across the assemblies while still allowing arbitrary partitioning.
+- **Angular momentum / rotational action**: the sign rule is gauge-invariant only after declaring the allowed wake share:
+  $$
+  \Delta I_{\text{out}}+\Delta I_{\text{mid}}+\Delta I_{\text{in}}+\Delta I_{\text{wake}}
+  =
+  +\hbar,
+  \qquad
+  |\Delta I_{\text{wake}}|
+  \le
+  \epsilon_w\hbar
+  $$
+  For a **net positive** transaction, the layer increments must satisfy $\Delta I_k\ge-\epsilon_w\hbar$ for $k\in\{\text{out},\text{mid},\text{in}\}$. For a **net negative** transaction, the same bound applies with signs reversed. The nonnegative-increment claim is therefore an up-to-wake-tolerance statement, not a gauge-free statement that the wake channel carries exactly zero rotational action.
 - **Energy**: $(k_o+u_o) + (k_m+u_m) + 2(k_i+u_i) = \varepsilon_o + \varepsilon_w$. This is the explicit version of conservation using the per-step increments defined above.
 - **Root-ledger closure**: the transition must move from one admissible integer causal-root ledger to another and then close consistently over the full cycle. In a raw self-root table, separator crossings obey the parity rule $\Delta N\in 2\mathbb{Z}$ and $\Delta D=0$; in a grouped channel ledger, the same event may be recorded as one newly active channel.
 - **Cross-ledger gauge matching**: any jump in $r_{\min}^{(b)}$ and $B_{\max}^{(b)}$ is part of the declared $\Delta_{\text{ledger}}$ budget above. A table row may not count the same gauge-origin shift once in $U^{(b)}$ and again as an extra wake or oscillator energy.
@@ -7475,15 +7619,36 @@ T_a(\lambda(t))\,
 \right)
 \ll1
 $$
-and the path remains inside the same causal-root ledger cell, the theorem target is
+and the path remains a positive distance from the causal-root ledger-cell boundary,
+$$
+\operatorname{dist}\!\left(\gamma_a(\lambda),\partial\mathcal{G}_a\right)
+\ge
+\delta_{\text{cell}}
+>
+0
+$$
+the interior adiabatic theorem target is
 $$
 \frac{dI_a}{dt}
 =
 O(\epsilon_{\mathrm{ad},a})
 +
-\mathcal{R}_{\mathrm{branch},a}(t)
+\mathcal{R}_{\mathrm{int},a}(t)
 $$
-Here $\ell_{\lambda}$ is the declared scale over which the reduced Hamiltonian changes appreciably, and $\mathcal{R}_{\mathrm{branch},a}$ records branch folds, omitted wake-history exchange, non-characteristic boundary leakage, or failure of the reduced symplectic chart. Thus the action variable is expected to drift only adiabatically between separator crossings, while a root-ledger transition may produce the discrete $\Delta I$ recorded above. This turns the $h$-like bookkeeping into a branch invariant target rather than an assumption that energy itself is quantized at the primitive level.
+Here $\ell_{\lambda}$ is the declared scale over which the reduced Hamiltonian changes appreciably, and $\mathcal{R}_{\mathrm{int},a}$ records omitted wake-history exchange, non-characteristic boundary leakage, or small chart error while the branch stays inside one ledger cell. At a separator crossing or root-fold boundary, the interior estimate is void. The crossing rule is instead
+$$
+\Delta I_a\big|_{\mathrm{fold}}
+=
+\frac{1}{2\pi}
+\left(
+\oint_{\gamma_a'}\Pi_a\,dQ_a
+-
+\oint_{\gamma_a}\Pi_a\,dQ_a
+\right)
+=
+\Delta I_{\mathrm{ledger},a}
+$$
+where $\Delta I_{\mathrm{ledger},a}$ is the declared quantized ledger increment associated with the change in active causal-root multiplicity or branch chart. Thus the action variable is expected to drift only adiabatically inside a ledger cell, while a root-ledger transition may produce the discrete $\Delta I$ recorded above. This turns the $h$-like bookkeeping into a branch-boundary invariant target rather than an assumption that energy itself is quantized at the primitive level.
 
 ### Action-Energy
 
@@ -7944,6 +8109,79 @@ Methodological priority:
   }
   $$
   Here $E_b^{(\eta)}(\lambda)$ denotes the candidate branch energy extracted at fixed $\lambda$ by the same declared construction route. The test is valid only while the same signed causal-root ledger persists with positive Jacobian and inactive-root gap floors. A jump in the ledger is a bifurcation, not a failure of adiabatic energy consistency.
+- Branch-virial theorem target: separate the kinematic virial identity from the stronger classical potential virial theorem. On a fixed finite-$\eta$ branch chart $b$ over an averaging window $W=[t_a,t_b]$, define the branch virial diagnostic
+  $$
+  \mathcal{G}_b^{(\eta)}(t)
+  =
+  \sum_i
+  \mu_{\text{arch}}\,
+  \mathbf{x}_i(t)\cdot\mathbf{v}_i(t)
+  $$
+  and the quadratic kinetic bookkeeping scalar
+  $$
+  T_{\mu,b}^{(\eta)}(t)
+  =
+  \frac{1}{2}
+  \sum_i
+  \mu_{\text{arch}}\,
+  \|\mathbf{v}_i(t)\|^2
+  $$
+  When the branch is differentiable after mollification and the same signed causal-root ledger is retained, direct differentiation gives the finite-window identity
+  $$
+  \left\langle
+  2T_{\mu,b}^{(\eta)}
+  +
+  \sum_i
+  \mu_{\text{arch}}\,
+  \mathbf{x}_i(t)\cdot\mathbf{a}_{i,b}^{(\eta)}(t)
+  \right\rangle_W
+  =
+  \frac{
+  \mathcal{G}_b^{(\eta)}(t_b)
+  -
+  \mathcal{G}_b^{(\eta)}(t_a)
+  }{
+  t_b-t_a
+  }
+  $$
+  The branch-virial closure target is the special bounded or periodic case in which the right-hand side is zero or below the declared tolerance:
+  $$
+  \mathcal{R}_{\mathrm{vir},b}^{(\eta)}(W)
+  =
+  \left|
+  \left\langle
+  2T_{\mu,b}^{(\eta)}
+  +
+  \sum_i
+  \mu_{\text{arch}}\,
+  \mathbf{x}_i(t)\cdot\mathbf{a}_{i,b}^{(\eta)}(t)
+  \right\rangle_W
+  \right|
+  \le
+  \epsilon_{\mathrm{vir}}
+  $$
+  This is not yet the classical potential statement. The reduction to
+  $\langle 2T-pU\rangle=0$ additionally requires a branch-local potential
+  $U_b^{(\eta)}$ whose scale variation is controlled by a homogeneity degree
+  $p$,
+  $$
+  U_b^{(\eta)}(\lambda\mathbf{x})
+  =
+  \lambda^p U_b^{(\eta)}(\mathbf{x})
+  $$
+  together with a proof that the same branch acceleration is generated by that
+  potential over $W$. A scale/virial residual that contains zero is therefore
+  diagnostic only until it supplies the same-domain scale generator, homogeneity
+  degree, and branch coordinate needed for this stronger reduction.
+- Velocity-regime scope for the branch-virial target:
+  - Strict sub-field-speed branch windows are the closest to the classical comparison because nontrivial self-hit roots are excluded on the strictly sub-field-speed interval; delayed partner hits and Jacobian weighting still remain in the acceleration term.
+  - Field-speed or near-field-speed windows are threshold-sensitive. They require an explicit Jacobian floor, inactive-root gap floor, and unchanged causal-root ledger before the virial residual is meaningful.
+  - Super-field-speed history requires the retained self-hit and multi-root rows to be included in $\mathbf{a}_{i,b}^{(\eta)}(t)$. A speed label alone never certifies the branch; root existence, transversality, and bounded endpoint virial drift do the work.
+- Failure modes:
+  - $\mathcal{G}_b^{(\eta)}$ has unbounded secular drift on $W$.
+  - The causal-root ledger changes, an inactive-root gap closes, or the Jacobian floor fails.
+  - Collision support or the $\eta\to0$ limit is not controlled.
+  - No branch-local potential, scale generator, or homogeneity degree is supplied, so the classical potential virial theorem has not been recovered.
 
 Symmetric two-body on a line (exact DDE; challenges):
 - Let $x_1(t)=+\tfrac{1}{2}r(t)$ and $x_2(t)=-\tfrac{1}{2}r(t)$ with $r(t)>0$ and $v=1$. The causal-time condition implies
@@ -7996,7 +8234,7 @@ Deliverables:
   - symmetric two-body delayed dynamics,
   - finite-$\eta$ two-body binary closure packet with branch floors and characteristic frequency extraction,
   - work-energy balance on resolved windows,
-  - virial-like time averages where periodic or quasi-periodic regimes exist.
+  - branch-virial residuals where periodic, quasi-periodic, or bounded-drift regimes exist.
 
 Plain language: We give only the exact delayed equations; where an exact solution exists (fixed source), we present it, and where it does not (mutual interaction), we say so without approximations.
 
@@ -9009,7 +9247,17 @@ The quantum version says the same thing in a sharper language. A complete compar
 
 #### Core Definition
 
-Let $\mu_t$ be a measure on complete deterministic histories compatible with a declared preparation. Let $W(t)$ be the access window and let $\mathcal{Q}$ be the coarse-graining used by a Physical Observer, apparatus, or simulation packet. The record projection
+Let $\mu_t$ be a measure on complete deterministic histories compatible with a declared preparation. In a deterministic substrate this measure is not fundamental randomness. It is the pushforward of preparation-limited ignorance over the unresolved initial history and incoming-wake data. If the preparation fixes the present record at $t_0$ only up to a retained history depth $h$, let $\nu_{\mathrm{prep}}$ be the measure on the unfixed segment $[t_0-h,t_0]$ and let $\mathcal{F}_{t_0\to t}$ be the deterministic delayed-flow map. Then
+
+$$
+\mu_t
+=
+\left(\mathcal{F}_{t_0\to t}\right)_*\nu_{\mathrm{prep}}
+$$
+
+This is the official reading of $\mu_t$ in this chapter: probabilities describe unresolved retained history under a declared preparation, not stochastic substrate law. Deterministic multistability becomes important because $\nu_{\mathrm{prep}}$ can spread over multiple basins before the flow sharpens it into a record-limited outcome distribution.
+
+Let $W(t)$ be the access window and let $\mathcal{Q}$ be the coarse-graining used by a Physical Observer, apparatus, or simulation packet. The record projection
 
 $$
 \Pi_{\mathcal{Q},W}:\Gamma_t\longrightarrow \mathcal{Z}_{\mathcal{Q},W}
@@ -9054,6 +9302,48 @@ where $\Gamma_{\mathcal{Q},W(t)}$ is the set of complete microhistories compatib
 Plain language: entropy is not counted over reality in the abstract. It is counted over the alternatives left unresolved after the record map, measure, coarse-graining, and access window have been specified.
 
 The exact-record limit is useful as a guardrail. If the retained partition distinguishes one complete deterministic history from every other complete deterministic history, then the active cell has probability one and the corresponding entropy is zero. That does not mean thermodynamics has disappeared from the world. It means the record has been refined until it no longer asks a thermodynamic question. A thermodynamic macrostate is a physically declared grouping of histories: a pressure, temperature, density, spectral, boundary, apparatus, or control-relevant record that a real system can retain and use.
+
+##### Receiver Inference Fibers And Provenance Graphs
+
+The wake-inclusive form has a canonical substrate construction. For a receiver $i$ at event $(\mathbf{x}_i(t),t)$, let the retained hit record be
+
+$$
+\mathcal{H}_i^{\mathrm{hit}}(t)
+=
+\left\{
+\left(\ell_a,\|\mathbf{a}_a\|\right)
+\right\}_{a\in A_i(t)}
+$$
+
+where $\ell_a$ is the retained unoriented line of action and $\|\mathbf{a}_a\|$ is the retained hit strength for an active received root. If an apparatus retains oriented directions or source tags, those data are added to $\mathcal{H}_i^{\mathrm{hit}}$ explicitly. The receiver inference fiber is
+
+$$
+\Gamma_i^{\mathrm{hit}}(t)
+=
+\left\{
+\gamma\in\Gamma_t:
+\text{the delayed branch sum of }\gamma
+\text{ reproduces }
+\mathcal{H}_i^{\mathrm{hit}}(t)
+\right\}
+$$
+
+and the receiver-hit entropy is
+
+$$
+S_i^{\mathrm{hit}}(t)
+=
+k_B\,\mathcal{H}
+\left(
+\mu_t\big|_{\Gamma_i^{\mathrm{hit}}(t)}
+\right)
+$$
+
+This is the entropy of the receiver's inference fiber. The electrino/positrino antipode ambiguity and the surrogate-location recast described in [Master Equation of Motion](../../../../markdown/aaa/dynamics/master-equation.md#informational-ambiguity-at-the-receiver) are then measure-preserving involutions on $\Gamma_i^{\mathrm{hit}}(t)$ whenever the retained hit record is unchanged by the recast. Measurement uncertainty at this level is therefore a computable fiber multiplicity, not a slogan added after the dynamics.
+
+When $\mathcal{H}$ is evaluated as a probability entropy, the restricted measure is normalized on $\Gamma_i^{\mathrm{hit}}(t)$. If the fiber has zero or undefined measure under the declared preparation, the receiver-hit entropy is not licensed for that packet.
+
+For windows with many retained roots, define the causal-wake provenance graph $G_{\mathrm{prov}}(W)$: vertices are retained causal roots in $W$, and two vertices are joined when their roots trace to a common emitter worldline segment in the compatible complete histories. This graph is the common native carrier for three entropy uses below: its connectedness supplies history-backed concordance, its edge cuts supply access-cut entropy, and its boundary-crossing edges supply the wake-escapement contribution to the arrow-of-time ledger.
 
 #### Minimum Specification
 
@@ -9107,7 +9397,25 @@ $$
 W_{\max}\!\left(\theta_W(t);\mathcal{C}^{\mathrm{ctrl}}_W,R_f\right)
 $$
 
-A heat-death statement for that control family means $\mathcal{A}_{\mathrm{use}}$ tends to zero or below the declared operational threshold. It does not prove that every possible future record system, assembly class, or Noether sea access channel has no usable distinction. It proves only the exhaustion of usable gradients for the stated comparison class.
+For $\mathbb{A}\mathbb{A}\mathbb{A}$ this envelope must distinguish exposed gradients from shielded internal assembly energy. If the declared control class includes operations that can change shielding, write schematically
+
+$$
+\mathcal{A}_{\mathrm{use}}
+=
+\mathcal{A}_{\mathrm{exposed}}
++
+\mathcal{A}_{\mathrm{deshield}},
+\qquad
+\mathcal{A}_{\mathrm{deshield}}
+=
+\sup_{\alpha\in\mathcal{C}^{\mathrm{ctrl}}_{\mathrm{shield}}}
+\sum_A
+\left(1-\zeta_\alpha(A)\right)E_{\text{internal}}(A)
+$$
+
+Here $\mathcal{C}^{\mathrm{ctrl}}_{\mathrm{shield}}$ is the possibly empty class of operations that can lower an assembly's shielding factor in the declared window. If topological assembly protection forbids such operations, $\mathcal{A}_{\mathrm{deshield}}$ is not available to the control family. If shielding is reversible or partially controllable, heat-death language is stronger than exposed-gradient exhaustion and must include the shielded-reservoir term.
+
+A heat-death statement for that control family means $\mathcal{A}_{\mathrm{use}}$ tends to zero or below the declared operational threshold. It does not prove that every possible future record system, assembly class, or Noether sea access channel has no usable distinction. It proves only the exhaustion of usable gradients and accessible shielded reservoirs for the stated comparison class.
 
 For open windows, the same point must be stated with boundary records. A planetary, biological, or engineered window may receive and emit nearly equal total energy while still being driven by low-entropy input. The relevant record distinguishes incoming concentrated photon-channel packets, chemical gradients, or potential-gradient data from outgoing lower-frequency radiation, heat, and boundary-wake history:
 
@@ -9145,6 +9453,23 @@ where both terms are computed from the same access window, coarse-graining, and 
 
 Origin-of-life and metabolism-first arguments are useful comparison pressure at this level. They do not show that entropy creates life, and they do not add biological ontology to $\mathbb{A}\mathbb{A}\mathbb{A}$. They say that a plausible prebiotic reaction window must name usable gradients, compartment-like retention, reaction throughput, and entropy export. In native terms, that becomes a finite-window reaction-ledger problem: the source record must show how low-entropy chemical, photon-channel, geothermal, or potential-gradient input is converted into persistent organized records while the boundary ledger exports a larger entropy burden.
 
+For assembly formation, the driven intermediate window can be made into an order parameter rather than only a qualitative contrast. Split the retained wake record in $W$ into a coherent phase-locked part and an incoherent exported or background part under the same coarse-graining $\mathcal Q$. Define
+
+$$
+\mathcal{C}_W
+=
+\frac{S_{\mathcal{Q},W}^{\mathrm{incoh}}}
+{S_{\mathcal{Q},W}^{\max}}
+\left(
+1
+-
+\frac{S_{\mathcal{Q},W}^{\mathrm{coh}}}
+{S_{\mathcal{Q},W}^{\max}}
+\right)
+$$
+
+The quantity peaks when a sharply organized coherent core coexists with substantial exported or surrounding incoherent entropy. Stable assemblies are therefore candidate local maxima or ridges of $\mathcal{C}_W$ under the second-law export constraint above. The collinear-breather and nested shell swarm programs can test this directly by asking whether phase-locked trajectory bundles sit on such ridges while the surrounding Noether sea and wake-boundary ledger pay the entropy cost.
+
 #### Mapping In From Standard Entropies
 
 Legacy entropy formulas survive as effective projections with different prerequisites.
@@ -9169,6 +9494,20 @@ $$
 
 become path-independent. In this chapter, a claim that "entropy broke the second law" must therefore specify which entropy is being used. If the Clausius integrability condition fails, the thermodynamic entropy used in that comparison was not well-defined in the first place.
 
+The framework also predicts where this integrability fails. Let the Noether sea retuning lag on a thermodynamic cycle be
+
+$$
+\Lambda_{\text{sea}}(W)
+=
+\frac{
+\tau_{\text{retune}}\!\left(\theta_{\text{sea}}\right)
+}{
+\tau_{\text{cycle}}
+}
+$$
+
+where $\tau_{\text{retune}}$ is the relaxation time for the Noether sea response variables retained by the packet and $\tau_{\text{cycle}}$ is the duration of the reversible-comparison cycle. Clausius entropy is expected to be path-independent only in the regime $\Lambda_{\text{sea}}\ll1$. When $\Lambda_{\text{sea}}\gtrsim1$, the sea carries cycle-scale hysteresis, the heat channel is history-dependent, and $\oint\delta Q_{\mathrm{rev}}/T$ is not a well-defined state function for that record.
+
 Boltzmann entropy, $S=k_B\log \Omega$, maps to the count or measure of complete architrino and assembly histories compatible with the retained macrostate. The textbook counting form is the uniform-weight special case of Gibbs/Shannon entropy:
 
 $$
@@ -9184,6 +9523,24 @@ Thus the count is not licensed by cardinality alone. It also assumes the measure
 Elementary thermal examples often count energy-quanta arrangements: one macrostate may specify only how much energy lies in each body, while many bond-level or molecule-level allocations remain unresolved. The $\mathbb{A}\mathbb{A}\mathbb{A}$ replacement is the same mathematical role with a deeper state space: count complete deterministic histories compatible with the retained energy, wake, boundary, apparatus, and Noether sea records.
 
 Gibbs and Shannon entropies map to pushed-forward measures over unresolved alternatives. They are useful for apparatus states, basin weights, branch records, and coding descriptions, but they become thermodynamic only when the apparatus, environment, boundary exchange, and work or heat ledger are physical parts of the same packet. Gibbs entropy is the natural comparison when the retained measure encodes uncertainty over alternatives that change available work under a declared control class; Boltzmann entropy is tied to the retained macrostate partition itself. Both are valid only with their intended job stated.
+
+At deterministic-multistability points, the same measure gives the effective branch weights a record-limited observer must assign. If the unresolved preparation fiber is $\Gamma_{\mathrm{prep}}$ and the deterministic basins $\{B_k\}$ partition the post-event branch outcomes, define
+
+$$
+w_k
+=
+\frac{
+\mu_t\!\left(
+\mathcal{F}_{t\to t_+}^{-1}(B_k)
+\cap
+\Gamma_{\mathrm{prep}}
+\right)
+}{
+\mu_t\!\left(\Gamma_{\mathrm{prep}}\right)
+}
+$$
+
+and the effective outcome entropy is $-k_B\sum_k w_k\log w_k$. Entropy does not select which branch the actual complete microstate takes. The measure $\mu_t$ predicts the branch weights that any record-limited observer must assign before the missing path-history distinctions are recovered. This is the direct entropy handoff to Born-rule closure.
 
 Von Neumann and entanglement entropies map to a declared quantum comparison record, factorization, and access cut. For a retained sector $A$ and unresolved complement $\bar A$, the standard reduced record is
 
@@ -9202,6 +9559,34 @@ S_A(\theta)
 $$
 
 Even when the full comparison state is pure, reversible, or measure-preserving, $S_A$ can be nonzero because correlations with $\bar A$ have been excluded from the retained record. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is an access-cut entropy: the same mathematical role must be recovered as coarse-graining over unresolved path-history, apparatus, boundary-wake, and Noether sea correlations that cross the declared cut.
+
+The native carrier is the provenance graph across the access cut. For a cut $\Sigma$ separating retained sector $A$ from complement $\bar A$, build
+
+$$
+G_{\mathrm{prov}}(\Sigma)
+=
+\left(
+V_A\sqcup V_{\bar A},
+E_{\Sigma}
+\right)
+$$
+
+where vertices are retained roots on the two sides and an edge records that two roots share a compatible emitter worldline segment. The record entropy across the cut is governed by the number of emitter-history assignments compatible with the same boundary hit record,
+
+$$
+S_{\Sigma}^{\mathrm{rec}}
+\sim
+k_B\log
+\left|
+\operatorname{Assign}
+\left(
+G_{\mathrm{prov}}(\Sigma),
+\mathcal{B}_{\Sigma}
+\right)
+\right|
+$$
+
+The global record can remain pure or closed because $G_{\mathrm{prov}}$ is connected in the complete history, while the retained subregion is mixed because the edge cut has hidden the complementary provenance.
 
 For a coding record with source distribution $P=\{p_i\}$, the Shannon entropy in bits is
 
@@ -9251,12 +9636,17 @@ $$
 \sigma_W(t)
 -
 \int_{\partial W(t)}
-\mathbf{J}_S\cdot\hat{\mathbf{n}}\,dA
+\left(
+\mathbf{J}_S
+-
+s_{\mathcal{Q}}\mathbf{v}_{\partial W}
+\right)
+\cdot\hat{\mathbf{n}}\,dA
 +
 \mathcal{R}_{\mathcal{Q}}(t)
 $$
 
-Here $\sigma_W$ is local production inside the retained window, $\mathbf{J}_S$ is entropy flux through the boundary, and $\mathcal{R}_{\mathcal{Q}}$ records changes in the coarse-graining or retained record set. A monotone entropy statement is therefore conditional:
+Here $\sigma_W$ is local production inside the retained window, $\mathbf{J}_S$ is entropy flux through the boundary, $s_{\mathcal{Q}}$ is the retained entropy density, $\mathbf{v}_{\partial W}$ is the velocity of a moving window boundary, and $\mathcal{R}_{\mathcal{Q}}$ records changes in the coarse-graining or retained record set. For a fixed window, $\mathbf{v}_{\partial W}=0$ and the expression reduces to the ordinary boundary-flux form. A monotone entropy statement is therefore conditional:
 
 $$
 \frac{dS_{\mathcal{Q},W}}{dt}\ge 0
@@ -9264,10 +9654,33 @@ $$
 \sigma_W(t)+\mathcal{R}_{\mathcal{Q}}(t)
 \ge
 \int_{\partial W(t)}
-\mathbf{J}_S\cdot\hat{\mathbf{n}}\,dA
+\left(
+\mathbf{J}_S
+-
+s_{\mathcal{Q}}\mathbf{v}_{\partial W}
+\right)
+\cdot\hat{\mathbf{n}}\,dA
 $$
 
 for the declared record. The phrase "entropy of the universe" is not a complete claim unless it supplies the measure, window, boundary, and residual terms.
+
+The entropy-arrow theorem target ties this boundary term to wake escapement. Let $\mathcal{E}_{\mathrm{esc}}(W)$ be the wake-escapement set defined in [Kinetic and Potential Energy](../../../../markdown/aaa/dynamics/energy.md#wake-escapement), and let $\Sigma_{\mathrm{esc}}(\mathcal{E}_{\mathrm{esc}}(W),t)$ be the rate at which retained path-history distinctions leave $W$ on causal wakes that no longer hit a retained receiver. The structural target is
+
+$$
+\frac{d}{dt}S_{\Pi,W}(t)
+=
+k_B\,\sigma_W^{\mathrm{int}}(t)
++
+k_B\,\Sigma_{\mathrm{esc}}
+\left(
+\mathcal{E}_{\mathrm{esc}}(W),
+t
+\right)
++
+\mathcal{R}_{\Pi,W}(t)
+$$
+
+on a fixed coarse-graining and boundary convention. In words: observer-window entropy production is bounded below by the retained-history distinctions lost to escaping wakes, up to declared interior production and projection residuals. The thermodynamic arrow is therefore a theorem target about the same causal-wake boundary ledger used by finite-window energy bookkeeping, not a second primitive arrow.
 
 #### Second Law And Same-Record Monotonicity
 
@@ -9358,6 +9771,25 @@ $$
 $$
 
 for the same declared measure, coarse-graining, and access window. A mature same-record entropy cosmology requires $\mathcal{R}_{\mathrm{BB}}(\theta)\ll 1$ or an explicit reason why the comparison class is not admissible. Otherwise the theory has only renamed the circularity: records infer a low-entropy past, while the assumed low-entropy past is what made the records trustworthy.
+
+The delayed dynamics supply a sharper discriminator than the bare measure ratio. For a candidate observer record $O_W$, define the wake-concordance order parameter
+
+$$
+\mathcal{K}(O_W)
+=
+\frac{
+\#\left\{
+\text{roots at }O_W
+\text{ sharing an emitter worldline with roots at neighboring receivers}
+\right\}
+}{
+\#\left\{
+\text{incoming roots at }O_W
+\right\}
+}
+$$
+
+with the denominator restricted to the retained incoming roots in the declared window. History-backed records are expected to have $\mathcal{K}\to1$ because the same matter and Noether sea emitters illuminate a neighborhood with correlated causal timing. Isolated fluctuation records have $\mathcal{K}\to0$ unless they also fabricate shared-emitter concordance across neighboring receivers. Thus low-$\mathcal{K}$ configurations are dynamically suppressed by provenance mismatch, and high-$\mathcal{K}$ fluctuation records are costly because they require coherent emitter-history coincidences, not only a memory snapshot.
 
 #### Measurement And Computation
 
@@ -9460,6 +9892,28 @@ $$
 $$
 
 This target avoids a false one-patch interpretation. The coefficient is a block entropy density and patch-area normalization, not a literal independent count on one microscopic patch.
+
+The label set is not arbitrary. At terminal alignment the tri-binary collapses its orbital-plane normals onto one interface axis, so the surviving discrete labels are the handedness assignment and the causal-root ledger index still carried by the aligned branch. In a block $U$,
+
+$$
+\left|
+\mathcal{L}_U(\theta)
+\right|
+=
+\prod_{u\in U}
+\#
+\left\{
+\left(
+\chi_u,
+N_{s,u},
+M_{p,u}
+\right)
+:
+\text{admissible at patch }u
+\right\}
+$$
+
+where $\chi_u$ is the retained terminal-alignment handedness label and $(N_{s,u},M_{p,u})$ is the local self-hit and partner-hit root-ledger index. The $1/4$ coefficient is therefore a falsifiable statement about the per-patch admissible ledger multiplicity and the patch area $a_{\theta}$ in the accepted alignment units, not a coefficient to fit after the fact.
 
 Page-curve, island, replica-wormhole, Ryu-Takayanagi, and AdS/CFT calculations remain high-value comparison mathematics. They sharpen the required entropy and unitarity bookkeeping. They do not provide the $\mathbb{A}\mathbb{A}\mathbb{A}$ mechanism unless their constraints are recovered from horizon-interface labels, path-history bookkeeping, Noether sea storage, and release-channel selection.
 
@@ -11923,6 +12377,32 @@ m\ddot{x}=-kx
 $$
 which is the same equation obtained from Newton's law and Hooke's law. The value of the example is not that Lagrangian mechanics replaces the tested motion, but that it recovers the same equation from an energy scalar and generalizes cleanly to many coordinates.
 
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ correction to this toy example is more informative than the recovery itself. A real assembly-level spring is a delayed restoring channel, so the first effective model is not exactly $m\ddot x=-kx$ but
+
+$$
+m\ddot x(t)
+=
+-k\,x(t-\tau_{\mathrm{eff}})
++\cdots
+$$
+
+for an effective causal-wake delay $\tau_{\mathrm{eff}}$ across the assembly. Expanding the delayed displacement gives
+
+$$
+\left(
+m+\frac{1}{2}k\tau_{\mathrm{eff}}^2
+\right)
+\ddot x
+-
+k\tau_{\mathrm{eff}}\dot x
++
+kx
+=
+O(k\tau_{\mathrm{eff}}^3 x^{(3)})
+$$
+
+on a slowly varying branch. The leading correction is therefore sign-definite once the branch delay orientation is fixed. For the causal restoring convention displayed above it is anti-damping, the same local pattern that appears as positive tangential work in the circular binary. The mass-like coefficient is also shifted by the delayed response. This does not prove the full assembly mass map, but it shows in the simplest chart why inertia and dissipation-like terms are delayed-response quantities rather than primitive architrino constants.
+
 Historically, the route into this form matters. Newtonian force balance can be projected along fixed-endpoint variations as virtual work. For conservative interactions, $\mathbf{F}=-\nabla V$ turns the work term into a variation of potential energy, while the inertial term supplies a variation of kinetic energy plus an endpoint term. When the endpoint variation vanishes, Hamilton's construction turns that differential relation into the stationary action of $T-V$. The useful condition is therefore stationarity of the action, not a literal minimum in every case.
 
 The same idea survives in $\mathbb{A}\mathbb{A}\mathbb{A}$ only after changing the object being varied. The Master EOM is not local in the instantaneous variables $(\mathbf{x}_i(t),\dot{\mathbf{x}}_i(t))$: receiver acceleration depends on delayed source coordinates, causal-root branches, Jacobian weights, and the retained causal-wake history. A local expression $L(\mathbf{x},\dot{\mathbf{x}},t)$ therefore cannot be the substrate-level action for the exact law. The appropriate candidate is a multi-time path-history functional whose variation must reproduce the delayed, Jacobian-weighted branch law.
@@ -11986,6 +12466,19 @@ sub-assembly adds its own phase-action pair. Surrounding influences are
 admissible only when they are represented as fixed branch data, slow parameters,
 or additional coordinates over the comparison window; otherwise the chart is a
 driven open system rather than a closed Hamiltonian phase space.
+
+The action variables are local objects unless the phase torus is globally unobstructed. For a three-layer nested shell swarm chart, the phase circles of the outer, middle, and inner binaries need not form a trivial $T^3$ bundle over the retained branch family. A cycle that exchanges two orbital planes can carry an integer phase-bundle winding
+
+$$
+c_1[\theta^O,\theta^M,\theta^I]
+=
+\frac{1}{2\pi}
+\oint_{\gamma}
+d(\text{relative phase})
+\in\mathbb{Z}
+$$
+
+when the relative phase closes on the branch. This is the topological content of integer resonance lock: the lock ratios $(m,n)$ in [Dyadic Resonance Lock](../../../../markdown/aaa/dynamics/dyadic-resonance-lock.md) make the phase-bundle data integral rather than irrationally drifting. The effective Hamiltonian chart is therefore globally promotable only on resonance-locked branches where the returned phase torus and causal-root ledger close together. Off-lock, the same $I_\alpha$ may exist on a local patch but acquires monodromy under return, so quantization and measure preservation become local fitting statements rather than global chart facts.
 
 ##### Regularized Nonlocal Action and Variation
 
@@ -12133,6 +12626,30 @@ $$
 The scale-only branch law is theorem-grade on $W$ only when this residual tends to zero with the declared branch floors and boundary convention. The broader action-derived dynamics may instead be theorem-grade with nonzero $\mathbf{C}_{ij}^{(\eta)}$ if that term is retained as mechanical recoil and the same action closes the energy, momentum, and angular-momentum ledgers. If neither condition is reported, the local effective Lagrangian remains a fitted chart.
 
 The current status is therefore a conditional theorem schema, not a universal action theorem. The pure scalar $1/r$ action is not a universal exact action for the scale-only Master EOM; it is valid as that derivation only on residual-closed charts. On charts where the interior residual survives, $\mathbf{C}_{ij}^{(\eta)}$ is the strict mechanical recoil (wake-emission resistance) required by a purely delayed action. It is the same bookkeeping channel that balances the positive tangential drive and wake escapement described in [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md#tangential-drive-and-wake-escapement) and [Kinetic and Potential Energy](../../../../markdown/aaa/dynamics/energy.md#wake-escapement).
+
+The recoil-inclusive reading also supplies the native seed of effective gauge structure. The scale term is a spatial gradient of the causal scale kernel and coarse-grains into an effective scalar wake potential. The derivative-of-constraint term is different: it differentiates the causal phase function $g_{ij}$ itself. On an effective product chart with coordinates $(t,\mathbf{x})$, write the recoil current schematically as
+
+$$
+\mathcal{A}_{\mu}^{\mathrm{wake}}(\mathbf{x},t)
+\propto
+\left\langle
+\phi_{\eta}'(g_{ij})\,\partial_{\mu}g_{ij}
+\right\rangle_{\mathrm{cg}}
+$$
+
+where $\mu$ indexes the absolute-time component and the three spatial components of the effective chart; this is not a substrate Lorentz four-vector. The point is structural: the scalar/vector split $(\Phi_{\mathrm{wake}},\mathbf{A}_{\mathrm{wake}})$ introduced in the continuum reduction is forced by the scale/recoil split of the first variation. The scale term is the scalar-potential channel, while the retained recoil current is the vector-transport channel.
+
+Thus a chart that keeps $\mathbf{C}_{ij}^{(\eta)}$ should not treat it as noise to be hidden in a residual. It should compute the effective field-strength candidate
+
+$$
+F_{\mu\nu}^{\mathrm{wake}}
+=
+\partial_{\mu}\mathcal{A}_{\nu}^{\mathrm{wake}}
+-
+\partial_{\nu}\mathcal{A}_{\mu}^{\mathrm{wake}}
+$$
+
+as the curl of the coarse recoil current and test whether its spatial and temporal components reproduce the effective electric-like and magnetic-like response. The no-go against same-support scalar cancellation then has a positive corollary: on a recoil-inclusive action branch, magnetic-like response is not an optional extra law. It is the effective expression of the non-cancellable derivative-of-causal-phase channel. If a scale-only repair cancels this channel by a characteristic-tail kernel or richer invariant counterterm, that repair must also explain where the corresponding vector-potential response has gone.
 
 The same-support local scalar route and its finite delta-jet extension are ruled out under the restricted assumptions in [master-equation](../../../../markdown/aaa/dynamics/master-equation.md#exact-nonlocal-lagrangian): cancelling the derivative residual forces the counterterm to change the accepted inverse-square scale term. The remaining minimal scale-only repair is the delayed-interior characteristic-tail kernel stated there. With
 $$
@@ -12323,6 +12840,27 @@ J_{\mathrm{eff}}(\mathbf{x},t;\mathbf{x}',t')
 $$
 This functional is the continuum inheritance of the discrete delayed causal $1/r$ action kernel together with the same Jacobian branch weight that appears in the Master EOM. Source emission remains isotropic at the microscopic level, but the received coarse flux is compressed or dilated by delayed transport geometry. Differentiating this delayed action with respect to receiver coordinates produces the corresponding Jacobian-weighted inverse-square force density plus velocity-dependent correction terms. In the quasi-static limit $\|\mathbf{u}\|/c_f\to0$, one recovers $J_{\mathrm{eff}}\to 1$ and the leading force law reduces to the familiar inverse-square form.
 
+The $J_{\mathrm{eff}}$ denominator is also the continuum location of the per-hit third-law defect. It is evaluated using the delayed source velocity $\mathbf{u}(\mathbf{x}',t')$, so the receiver/source exchange is not represented by a symmetric mechanical stress alone. Translation invariance still protects total momentum when the wake momentum is included, but the mechanical current must split as
+
+$$
+\Pi_q^{ij}
+=
+\Pi_{q,\mathrm{sym}}^{ij}
++
+\Pi_{q,J}^{ij},
+\qquad
+\Pi_{q,J}^{[ij]}
+\equiv
+\frac{1}{2}
+\left(
+\Pi_{q,J}^{ij}
+-
+\Pi_{q,J}^{ji}
+\right)
+$$
+
+where $\Pi_{q,J}^{[ij]}$ is generated by the source-only velocity dependence of the Jacobian factor. The antisymmetric part is not a new force; it is the continuum expression of wake momentum that the particle-only mechanical ledger has omitted. This identifies three equivalent diagnostics of the same effective channel: the discrete recoil term $\mathbf{C}_{ij}^{(\eta)}$, the vector transport potential $\mathbf{A}_{\mathrm{wake}}$, and the antisymmetric stress contribution $\Pi_{q,J}^{[ij]}$. A continuum simulation can therefore test magnetic-like emergence by measuring whether these three reconstructions agree on the same branch window.
+
 The continuum variables are admitted only through balance laws inherited from resolved histories. A coarse polarity density and current must satisfy
 $$
 \partial_t\rho_q+\nabla\cdot\mathbf{j}_q
@@ -12359,7 +12897,33 @@ E^{ij}-\frac{1}{3}(\nabla\cdot\mathbf{u})h^{ij}
 \zeta_{\mathrm{cg}}(\nabla\cdot\mathbf{u})h^{ij}
 +\Pi_{\mathrm{mem}}^{ij}
 $$
-where $E^{ij}=\frac{1}{2}(\partial^iu^j+\partial^ju^i)$. This is a comparison form borrowed from continuum mechanics and kinetic theory. In $\mathbb{A}\mathbb{A}\mathbb{A}$ it becomes native only after $\eta_{\mathrm{cg}}$, $\zeta_{\mathrm{cg}}$, and $\Pi_{\mathrm{mem}}^{ij}$ are derived from the same delayed branch record that supplies the force law. The corresponding dissipation residual is
+where $E^{ij}=\frac{1}{2}(\partial^iu^j+\partial^ju^i)$. This is a comparison form borrowed from continuum mechanics and kinetic theory. In $\mathbb{A}\mathbb{A}\mathbb{A}$ it becomes native only after $\eta_{\mathrm{cg}}$, $\zeta_{\mathrm{cg}}$, and $\Pi_{\mathrm{mem}}^{ij}$ are derived from the same delayed branch record that supplies the force law.
+
+The constructive route is to read the transport coefficients as low-frequency moments of the delayed response kernel, not as independent material constants. If $\widetilde K_{\mathrm{shear}}(\omega)$ and $\widetilde K_{\mathrm{bulk}}(\omega)$ are the shear and bulk projections of the same branch-derived causal kernel, then the leading near-equilibrium coefficients have the schematic form
+
+$$
+\eta_{\mathrm{cg}}
+\sim
+\lim_{\omega\to0}
+\frac{
+\operatorname{Im}\widetilde K_{\mathrm{shear}}(\omega)
+}{
+\omega
+},
+\qquad
+\zeta_{\mathrm{cg}}
+\sim
+\lim_{\omega\to0}
+\frac{
+\operatorname{Im}\widetilde K_{\mathrm{bulk}}(\omega)
+}{
+\omega
+}
+$$
+
+and $\Pi_{\mathrm{mem}}^{ij}$ carries the finite-frequency remainder. This makes the viscosity-like channel an odd-frequency readout of the delayed force kernel. The ratio between $\eta_{\mathrm{cg}}$, $\zeta_{\mathrm{cg}}$, and the force-law coupling $\kappa$ is therefore a kernel-shape consequence on a certified branch, not an additional parameter family.
+
+The corresponding dissipation residual is
 $$
 \mathcal R_{\mathrm{diss}}(W)
 =
@@ -12418,15 +12982,80 @@ context that actually control the return map. Dropping an active sub-assembly
 phase can make a closed chart look dissipative or probabilistic merely because
 the chart has thrown away one of the variables that carries the recurrence.
 
+The preserved two-form is likewise not the naive instantaneous form alone. On a delayed branch the candidate symplectic structure has a memory correction,
+
+$$
+\omega_{\mathcal{Q}}
+=
+\omega_0+\omega_{\mathrm{mem}},
+\qquad
+\omega_0
+=
+\sum_A dQ^A\wedge d\Pi_A
++
+\sum_\alpha d\theta^\alpha\wedge dI_\alpha
+$$
+
+with
+
+$$
+\omega_{\mathrm{mem}}
+=
+\int_{-h}^{0}
+\mathcal K_{\mathrm{symp}}(\vartheta)\,
+\delta\mathbf{x}(\vartheta)
+\wedge
+\delta\dot{\mathbf{x}}(\vartheta)
+\,d\vartheta
+$$
+
+where $h$ is the retained memory depth and $\mathcal K_{\mathrm{symp}}$ is built from the same branch causal kernel that supplies the force. The residual $\epsilon_{\omega}$ is small only when this memory term is replayable: after one return, the retained history segment $[-h,0]$ must map to a congruent segment with the same branch rows and boundary convention. This is why phase-locked branches are the natural Hamiltonian domain. They replay the history window that carries $\omega_{\mathrm{mem}}$, while off-lock branches leak symplectic content through the memory boundary and can look dissipative after projection.
+
 This gate keeps the exact and effective levels separate. The Master Equation owns the delayed causal dynamics; the effective Hamiltonian owns only those regimes where internal wake memory, branch changes, and unresolved Noether sea exchange have been compressed without losing the observer-level invariants being compared.
 
 The same domain restriction applies before translating an effective Hamiltonian chart into quantum operators. The admissible observable set in [Quantum Operator Mapping](../../../../markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md#admissible-quantization-domain-guardrail) must be derived from this retained coarse-graining and record window, not chosen afterward as a free quantization convention.
+
+The positive selection rule is that the quantizable algebra is generated by the globally defined branch variables,
+
+$$
+\{Q^A,\Pi_A\}
+\cup
+\{e^{i\theta^\alpha},I_\alpha\}
+$$
+
+not by arbitrary functions on a projected chart. The phases enter through the single-valued observables $e^{i\theta^\alpha}$, while $I_\alpha$ records the corresponding action. A Bohr-Sommerfeld-like integer is admissible only when it is forced by single-valuedness around the resonance-locked phase bundle,
+
+$$
+\oint_{\gamma_\alpha}\Pi\,dQ
+\in
+2\pi\hbar_{\mathrm{eff}}\mathbb{Z}
+$$
+
+with the integer tied to the phase-bundle winding above. Thus quantization in this reduction is a topological single-valuedness condition on a retained phase-locked bundle, not a global quantization convention imposed on every smooth effective observable.
 
 ##### Topological Constraints and Assembly Stability
 
 The delayed action, after branch reduction to causal-locus and root-ledger data, constrains the allowed topological configurations of architrino assemblies in the Noether sea. Stable assemblies, such as nested maximal-curvature candidates inside nested shell swarms, should therefore be treated as theorem targets for localized, phase-locked causal-locus classes rather than as already-proved vortices or continuum topological defects.
 
 The stability of these assemblies must be checked by the nonlinear self-hit feedback embedded in the interaction functional. When internal circulation velocities exceed $c_f$, the non-Markovian repulsion supplies a candidate branch-trapping mechanism; it becomes a robust geometric attractor only after a branch chart, Lyapunov or Floquet diagnostic, and history-aware energy bound are supplied. Likewise, mass-gap language is a closure target tied to discrete admissible branch classes, not an automatic consequence of writing the effective action.
+
+The native topological sector is the stabilized causal-root ledger, not a borrowed field-theory vortex number. On a branch chart whose roots remain transversal, define
+
+$$
+[\mathfrak B]
+=
+\left(
+N_s,\,
+M_p,\,
+c_1[\theta^O,\theta^M,\theta^I]
+\right)
+\in
+\mathbb{Z}^2\times\mathbb{Z}
+$$
+
+where $N_s$ counts active self-hit roots, $M_p$ counts active partner-hit roots, and $c_1[\theta^O,\theta^M,\theta^I]$ is the phase-bundle winding of the resonance-locked tri-binary chart. This class is deformation-stable only inside the nondegenerate branch domain: a causal-root fold, reconnection, or loss of phase-bundle closure changes the sector.
+
+The corresponding mass-gap target is therefore native and computable. The gap is the minimum action cost to change $[\mathfrak B]$ by an admissible branch transition, such as a $\Delta N_s=\pm2$ root birth or death under the same Jacobian floor and boundary convention. In a caustic-grazing transition this cost should be estimated from the finite impulse and wake-history increment across the fold. If that minimum vanishes under refinement, the action chart has no protected assembly gap; if it remains positive, the gap is a property of the branch ledger and delayed action, not an imported continuum-defect assumption.
 
 ##### Closure Interface: Action-to-Envelope Reduction
 
@@ -12438,6 +13067,29 @@ $$
 \mathbf{j}_{\mathrm{env}}=\frac{\hbar_{\mathrm{eff}}}{m_{\mathrm{eff}}}\Im(\psi^*\nabla\psi)
 $$
 Here $m_{\mathrm{eff}}$ is the retained envelope mass parameter of the benchmark chart, not a primitive architrino mass. The projection from the signed polarity/current data $(\rho_q,\mathbf{j}_q)$ to the nonnegative envelope channel must be declared before $\rho_{\mathrm{env}}$ is interpreted as $|\psi|^2$.
+
+That projection has a topological cost. The signed polarity density carries a polarity-sign sheet
+
+$$
+\sigma(\mathbf{x},t)
+=
+\operatorname{sign}\rho_q(\mathbf{x},t)
+\qquad
+(\rho_q\neq0)
+$$
+
+and the interfaces $\rho_q=0$ are polarity domain walls. The envelope map is faithful only on a region where $\sigma$ is constant. When a loop $\gamma$ encloses domain-wall crossings, the phase chart must carry the lost sign sheet as a $\mathbb{Z}_2$ bundle datum:
+
+$$
+\oint_{\gamma}
+\nabla S_{\mathrm{env}}\cdot d\boldsymbol{\ell}
+=
+\pi\,N_{\mathrm{wall}}(\gamma)
+\quad
+(\mathrm{mod}\ 2\pi)
+$$
+
+where $N_{\mathrm{wall}}(\gamma)$ is the parity count of enclosed polarity-domain-wall intersections in the retained projection. The memory current is therefore not generic residue in this regime. Its circulation classifies the polarity-domain-wall topology that the nonnegative envelope has forgotten. A spin-$\tfrac12$-like double-valued envelope can be promoted only if this $\mathbb{Z}_2$ sign-sheet circulation is recovered from the same $(\rho_q,\mathbf{j}_q)$ history and persists under branch-preserving deformation.
 
 The handoff must report the continuity residual
 $$
