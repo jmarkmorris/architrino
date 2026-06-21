@@ -5,6 +5,7 @@ import {
   getPhotonSeparationLog10Ratio,
   normalizePhotonDegrees,
   normalizePhotonState,
+  resolvePhotonSpeedSettings,
   setPhotonLayerEnabled,
   setPhotonLayerValue,
   setPhotonPairSeparationLog10Ratio,
@@ -40,7 +41,8 @@ const PHOTON_SEARCH_COMPARISON_OPTIONS = Object.freeze({
   minimumAnalyzerSampleCount: 1,
   absoluteHistorySegments: 2,
   maxDelay: 0.25,
-  skipSelfHitDiagnostics: true,
+  skipSelfHitDiagnostics: false,
+  skipSpanSelfHitDiagnostics: true,
 });
 const PHOTON_SEARCH_COMPARISON_CANDIDATE_LIMIT = 3;
 const PHOTON_SEARCH_EXPORT_KIND = "photon-configuration-search-results";
@@ -71,6 +73,8 @@ function getStateSearchKey(state) {
   return JSON.stringify({
     pair: {
       separation: Number(normalized.pair.pairSeparation).toPrecision(10),
+      speedMode: normalized.pair.speedMode,
+      localLorentzFactor: Number(normalized.pair.localLorentzFactor ?? 1).toPrecision(10),
       photonSpeedCf: Number(normalized.pair.photonSpeedCf ?? 1).toPrecision(10),
       left: normalized.pair.left.layers,
       right: normalized.pair.right.layers,
@@ -118,6 +122,13 @@ function setVirtualObserver(state, observer) {
   };
 }
 
+function setLocalCSpeedMode(state, speedMode, localLorentzFactor) {
+  state.pair.speedMode = speedMode === "lorentz_factor" ? "lorentz_factor" : "direct";
+  if (Number.isFinite(Number(localLorentzFactor))) {
+    state.pair.localLorentzFactor = Number(localLorentzFactor);
+  }
+}
+
 function mutateCandidateState(baseState, mutate) {
   const state = clonePhotonState(baseState);
   mutate(state);
@@ -146,6 +157,22 @@ function buildPhotonSearchCandidates(baseState) {
   pushCandidate("Current settings", base, "current");
   PHOTON_NAMED_PRESETS.forEach((preset) => {
     pushCandidate(preset.name, createPhotonPresetState(preset.id), "preset");
+  });
+
+  [
+    ["Direct speed controls", "direct", base.pair.localLorentzFactor],
+    ["Local c gamma 2", "lorentz_factor", 2],
+    ["Local c gamma 5", "lorentz_factor", 5],
+    ["Local c gamma 20", "lorentz_factor", 20],
+    ["Local c gamma 100", "lorentz_factor", 100],
+  ].forEach(([name, speedMode, localLorentzFactor]) => {
+    pushCandidate(
+      name,
+      mutateCandidateState(base, (state) => {
+        setLocalCSpeedMode(state, speedMode, localLorentzFactor);
+      }),
+      "local-c"
+    );
   });
 
   [
@@ -265,6 +292,7 @@ function selectPhotonSearchCandidatePool(candidates, maxCandidates = Number.POSI
 
   const preferredSources = [
     "current",
+    "local-c",
     "preset",
     "enabled-layers",
     "phase",
@@ -393,6 +421,10 @@ function summarizePhotonSearchMode(summary, diagnostics) {
     delaySolveGapMax: diagnostics.delaySolveGapMax,
     jacobianAbsMin: diagnostics.jacobianAbsMin,
     averageDelay: diagnostics.averageDelay,
+    helicalPhaseFamilyCount: diagnostics.helicalPhaseFamilyCount,
+    helicalStablePhaseFamilyCount: diagnostics.helicalStablePhaseFamilyCount,
+    helicalBestPhaseFamilyLabel: diagnostics.helicalBestPhaseFamily?.label ?? "",
+    helicalBestPhaseFamilySpreadDeg: diagnostics.helicalBestPhaseFamily?.sourcePhaseSpreadDeg ?? 0,
   };
 }
 
@@ -411,6 +443,9 @@ function computePhotonSearchComparisonDeltas(coMoving, absoluteHistory) {
     rootCountDelta: absoluteHistory.rootCount - coMoving.rootCount,
     unresolvedDelta: absoluteHistory.unresolvedSourceCount - coMoving.unresolvedSourceCount,
     jacobianRatio: absoluteHistory.jacobianAbsMin / Math.max(EPSILON, coMoving.jacobianAbsMin),
+    stableHelicalFamilyDelta:
+      (absoluteHistory.helicalStablePhaseFamilyCount ?? 0) -
+      (coMoving.helicalStablePhaseFamilyCount ?? 0),
   };
 }
 
@@ -523,6 +558,7 @@ function buildPhotonSearchCandidateResult(
   const polarization = summary.polarization;
   const classification = polarization.classification;
   const strength = getPolarizationStrength(summary);
+  const speedSettings = resolvePhotonSpeedSettings(state);
   const enabledCount = countEnabledLayers(state);
   const suspect =
     diagnostics.unresolvedSourceCount > 0 ||
@@ -590,6 +626,19 @@ function buildPhotonSearchCandidateResult(
     );
   }
 
+  const helicalFamilySummary = diagnostics.helicalStablePhaseFamilyCount > 0
+    ? diagnostics
+    : comparison?.absoluteHistory;
+  if ((helicalFamilySummary?.helicalStablePhaseFamilyCount ?? 0) > 0) {
+    components.helicalPhaseFamily = pushReason(
+      reasons,
+      "helical-phase-family",
+      "Helical phase family",
+      `${helicalFamilySummary.helicalStablePhaseFamilyCount} stable families, best ${helicalFamilySummary.helicalBestPhaseFamilyLabel || "n/a"}`,
+      9
+    );
+  }
+
   if (
     perturbation.classificationChanged ||
     perturbation.phaseDelta >= 25 ||
@@ -620,6 +669,16 @@ function buildPhotonSearchCandidateResult(
       "Simple explanation",
       `${enabledCount} enabled binaries with phase values on 45 deg steps`,
       5
+    );
+  }
+
+  if (speedSettings.speedMode === "lorentz_factor") {
+    components.derivedLocalC = pushReason(
+      reasons,
+      "derived-local-c",
+      "Derived local c",
+      `gamma ${speedSettings.localLorentzFactor.toFixed(2)}, c/c_f ${speedSettings.photonSpeedCf.toFixed(3)}`,
+      6
     );
   }
 
@@ -724,6 +783,14 @@ function buildPhotonSearchCandidateResult(
       delaySolveGapMax: diagnostics.delaySolveGapMax,
       jacobianAbsMin: diagnostics.jacobianAbsMin,
       averageDelay: diagnostics.averageDelay,
+      helicalPhaseFamilyCount: diagnostics.helicalPhaseFamilyCount,
+      helicalStablePhaseFamilyCount: diagnostics.helicalStablePhaseFamilyCount,
+      helicalBestPhaseFamilyLabel: diagnostics.helicalBestPhaseFamily?.label ?? "",
+      helicalBestPhaseFamilySpreadDeg: diagnostics.helicalBestPhaseFamily?.sourcePhaseSpreadDeg ?? 0,
+      speedMode: speedSettings.speedMode,
+      localLorentzFactor: speedSettings.localLorentzFactor,
+      signalSpeedCf: speedSettings.signalSpeedCf,
+      photonSpeedCf: speedSettings.photonSpeedCf,
     },
     comparison: comparison ?? {
       status: "unavailable",

@@ -174,6 +174,33 @@ function getHitPhaseSpreadQuality(spread) {
   );
 }
 
+function getPhaseFamilyQuality(stableCount, familyCount) {
+  if (!Number.isFinite(stableCount) || !Number.isFinite(familyCount) || familyCount <= 0) {
+    return "info";
+  }
+  if (stableCount >= 3) {
+    return "great";
+  }
+  if (stableCount >= 2) {
+    return "good";
+  }
+  if (stableCount >= 1) {
+    return "ok";
+  }
+  return "poor";
+}
+
+function formatPhaseFamilyValue(family) {
+  if (!family || typeof family !== "object") {
+    return "n/a";
+  }
+  const spread = Number.isFinite(Number(family.sourcePhaseSpreadDeg))
+    ? Number(family.sourcePhaseSpreadDeg)
+    : 0;
+  const roots = Number.isFinite(Number(family.rootCount)) ? Number(family.rootCount) : 0;
+  return `${family.label ?? "family"} ${formatPhotonFixed(spread, 1)} deg (${roots})`;
+}
+
 function requirePhotonFormulaSummary(formulaSummary) {
   if (!formulaSummary || typeof formulaSummary !== "object") {
     throw new Error("Photon diagnostics require a solver-backed formula summary.");
@@ -228,6 +255,9 @@ export function computePhotonDiagnostics(state, timeSeconds, formulaSummary = nu
     helicalSelfHitCandidateCount: formula.selfHitDiagnostics?.helicalCandidateCount ?? 0,
     helicalSelfHitRootFoundCount: formula.selfHitDiagnostics?.helicalRootFoundCount ?? 0,
     helicalSelfHitMaxFieldSpeedRatio: formula.selfHitDiagnostics?.helicalMaxFieldSpeedRatio ?? 0,
+    helicalPhaseFamilyCount: formula.selfHitDiagnostics?.helicalPhaseFamilyCount ?? 0,
+    helicalStablePhaseFamilyCount: formula.selfHitDiagnostics?.helicalStablePhaseFamilyCount ?? 0,
+    helicalBestPhaseFamily: formula.selfHitDiagnostics?.helicalBestPhaseFamily ?? null,
     helicalSelfHitJacobianAbsMin: Number.isFinite(helicalSelfHitJacobianAbsMin)
       ? helicalSelfHitJacobianAbsMin
       : 0,
@@ -306,6 +336,16 @@ export function getPhotonDiagnosticRows(state, timeSeconds, formulaSummary = nul
       "Helical self-hit phase spread",
       `${formatPhotonFixed(diagnostics.helicalSelfHitPhaseSpread.spreadDeg, 1)} deg`,
       getHitPhaseSpreadQuality(diagnostics.helicalSelfHitPhaseSpread),
+    ],
+    [
+      "Helical phase families",
+      `${diagnostics.helicalStablePhaseFamilyCount} / ${diagnostics.helicalPhaseFamilyCount}`,
+      getPhaseFamilyQuality(diagnostics.helicalStablePhaseFamilyCount, diagnostics.helicalPhaseFamilyCount),
+    ],
+    [
+      "Best helical family",
+      formatPhaseFamilyValue(diagnostics.helicalBestPhaseFamily),
+      diagnostics.helicalBestPhaseFamily ? "info" : "poor",
     ],
     ["Missed sources", String(diagnostics.unresolvedSourceCount), getMissedSourceQuality(diagnostics)],
     [

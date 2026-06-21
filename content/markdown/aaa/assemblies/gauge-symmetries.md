@@ -31,7 +31,9 @@ U(1)_Y\times SU(2)_L\times SU(3)_c,
 Q=T_3+\frac{Y}{2}
 $$
 
-together with the observed charge assignments, chiral weak couplings, anomaly cancellations, running couplings, and mixing data consumed by the fermion and reaction chapters. A compact residual for this chapter is
+together with the observed charge assignments, chiral weak couplings, anomaly cancellations, running couplings, and mixing data consumed by the fermion and reaction chapters.
+
+This chapter uses the weak-hypercharge convention in the displayed relation. Sources that use $Q=T^3_L+Y_{\mathrm{SM}}$ must be converted by $Y=2Y_{\mathrm{SM}}$ before their charge tables or anomaly coefficients are compared to this residual. A compact residual for this chapter is
 
 $$
 \mathcal{R}_{\mathrm{gauge}}(\theta)
@@ -61,6 +63,8 @@ $$
 $$
 
 with $\mathcal{R}_{\mathrm{null}}$ defined in [Failure Criteria](../validation/failure-criteria.md#null-result-residual-for-added-channels). Thus larger group unification, supersymmetry, Kaluza-Klein-style geometry, and similar constructions remain comparison frameworks unless an $\mathbb{A}\mathbb{A}\mathbb{A}$ branch record recovers the observed gauge sector while also suppressing every added observable channel from the same shared state variables.
+
+The representation term is local gauge bookkeeping unless the branch also makes claims about global line or bundle sectors. The local product notation $U(1)_Y\times SU(2)_L\times SU(3)_c$ is enough for the charge and anomaly residual above, but it does not by itself decide the global quotient or the allowed line-operator spectrum. A branch that uses those global sectors must declare the additional bundle and line data as part of $d_{\mathrm{rep}}$ rather than hiding it inside the local Lie-algebra match.
 
 ### Gauge Redundancy and Anomaly Ledger
 
@@ -101,6 +105,8 @@ $$
 \mathcal{A}_{\mathrm{gauge}}(\theta)=(0,0,0,0,0,0)
 $$
 The second entry is the non-perturbative $SU(2)$ Witten check: the number of left-handed $SU(2)$ doublets must be even. Global anomalies that are part of known physics, such as axial-current violation and pion-to-photon anomaly matching, may be retained as observer-level recovery targets, but a gauge anomaly is a consistency failure rather than an optional correction.
+
+When this vector is evaluated from a fermion table, all entries are counted generation-by-generation with the correct spectator multiplicities and left-handed conjugate fields. For example, color multiplicity contributes to weak-doublet counting and weak multiplicity contributes to color anomaly sums. A visually correct charge table that passes only after dropping these multiplicities has not passed the Standard Model recovery gate.
 
 ### Running-Coupling Bridge
 

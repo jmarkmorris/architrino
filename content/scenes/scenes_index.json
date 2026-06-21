@@ -1597,7 +1597,7 @@
     },
     {
       "id": "archie__ideal_swarm",
-      "name": "Ideal Noether Swarm: Lorentz Geometry",
+      "name": "Ideal Noether Swarm: Lorentz Geometry App",
       "path": "content/scenes/archie/ideal_swarm.json"
     },
     {
@@ -1607,7 +1607,7 @@
     },
     {
       "id": "archie__photon",
-      "name": "Photon and Polarization Visualization",
+      "name": "Photon and Polarization Visualization App",
       "path": "content/scenes/archie/photon.json"
     },
     {

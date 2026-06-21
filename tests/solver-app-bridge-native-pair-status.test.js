@@ -216,6 +216,9 @@ function writeStaleConvergedSummary(module, ptr) {
   module.setValue(ptr, 2, "i32");
   module.setValue(ptr + 4, 0, "i32");
   writeUint64(module, ptr + 40, 1);
+  module.setValue(ptr + 48, 2.5, "double");
+  module.setValue(ptr + 56, 2.5, "double");
+  module.setValue(ptr + 64, 2.5, "double");
   writeUint64(module, ptr + 104, 0);
   module.setValue(ptr + 112, 0, "double");
   module.setValue(ptr + 120, 0, "double");
@@ -250,5 +253,9 @@ test("central bridge re-derives stale native boundary convergence from residual 
   assert.equal(
     summary.pathConstraintPhysicalBoundarySolverClaim,
     "retained_knot_guidance_not_physical_boundary_value_solve",
+  );
+  assert.equal(
+    summary.pathConstraintPhysicalBoundarySolverBlockingReason,
+    "retained_knot_guidance_acceleration_required",
   );
 });

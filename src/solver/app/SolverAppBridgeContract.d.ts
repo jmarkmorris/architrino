@@ -74,6 +74,15 @@ export interface SolverClient {
   solveCircularSourceRootsHitsLedgerNormalizedF64(
     request: SolverCircularSourceRootsHitsLedgerNormalizedF64Request
   ): Promise<SolverCircularSourceRootsHitsLedgerNormalizedF64Response>;
+  solveMovingCircularSourceCausalRootsF64(
+    request: SolverMovingCircularSourceCausalRootsF64Request
+  ): Promise<SolverMovingCircularSourceCausalRootsF64Response>;
+  solveMovingCircularSameSourceCausalRootsF64(
+    request: SolverMovingCircularSameSourceCausalRootsF64Request
+  ): Promise<SolverMovingCircularSameSourceCausalRootsF64Response>;
+  computeMovingCircularObserverFieldF64(
+    request: SolverMovingCircularObserverFieldF64Request
+  ): Promise<SolverMovingCircularObserverFieldF64Response>;
   solveCausalRootsPrecisionF64(
     request: SolverCausalRootsPrecisionF64Request
   ): Promise<SolverCausalRootsPrecisionF64Response>;
@@ -1146,6 +1155,69 @@ export interface SolverCircularSourceCausalRootsF64Request {
   streamId?: string;
 }
 
+export interface SolverMovingCircularSourceHistoryF64 {
+  centerAtEpoch?: SolverVector3F64;
+  center?: SolverVector3F64;
+  centerVelocity: SolverVector3F64;
+  radiusU: SolverVector3F64;
+  radiusV: SolverVector3F64;
+  angularVelocity: number;
+  phaseAtEpoch?: number;
+  epochTime?: number;
+  errorBound?: number;
+}
+
+export interface SolverMovingCircularPhaseF64 {
+  rawRadians: number;
+  radians: number;
+  degrees: number;
+  cycleIndex: number;
+}
+
+export interface SolverMovingCircularSourceCausalRootsF64Request {
+  sourceRef?: unknown;
+  source: SolverMovingCircularSourceHistoryF64;
+  receiver: SolverLinearPathSegmentF64;
+  hitTime: number;
+  signalSpeed: number;
+  sourceStartTime: number;
+  sourceEndTime: number;
+  rootTolerance?: number;
+  maxIterations?: number;
+  scanSubdivisions?: number;
+  maxRoots?: number;
+}
+
+export interface SolverMovingCircularSameSourceCausalRootsF64Request {
+  sourceRef?: unknown;
+  source: SolverMovingCircularSourceHistoryF64;
+  hitTime: number;
+  signalSpeed: number;
+  sourceStartTime: number;
+  sourceEndTime: number;
+  minimumDelay?: number;
+  rootTolerance?: number;
+  maxIterations?: number;
+  scanSubdivisions?: number;
+  maxRoots?: number;
+}
+
+export interface SolverMovingCircularObserverFieldBranchF64 {
+  chargeSign: number;
+  direction: SolverVector3F64;
+  sourceVelocity: SolverVector3F64;
+  distance: number;
+  residual?: number;
+  delay?: number;
+}
+
+export interface SolverMovingCircularObserverFieldF64Request {
+  signalSpeed: number;
+  jacobianFloor?: number;
+  unstableGapThreshold?: number;
+  branches: SolverMovingCircularObserverFieldBranchF64[];
+}
+
 export interface SolverRootLedgerDetailF64Request extends SolverCausalRootsF64Request {
   maxRows?: number;
 }
@@ -1303,6 +1375,72 @@ export interface SolverRootsAndHitsPrecisionF64Response extends SolverRootsAndHi
 export interface SolverCircularSourceRootsHitsLedgerF64Response extends SolverRootsAndHitsF64Response {
   schema: "solver-circular-source-roots-hits-ledger-f64.v1";
   rootLedgerDetails: SolverRootLedgerDetailF64[];
+  statuses: SolverStatusRecord[];
+}
+
+export interface SolverMovingCircularCausalRootF64 extends SolverCausalRootF64 {
+  sourceVelocity: SolverVector3F64;
+  receiverVelocity?: SolverVector3F64;
+  sourcePhase: SolverMovingCircularPhaseF64;
+  receiverPhase?: SolverMovingCircularPhaseF64;
+  sourceHistoryKind: "moving-circular-source" | "moving-circular-same-source";
+  rootKind?: "same-source";
+  iterationCount?: number;
+}
+
+export interface SolverMovingCircularSourceCausalRootsF64Response {
+  schema: "solver-moving-circular-source-causal-roots-f64.v1";
+  sourceHistoryKind: "moving-circular-source";
+  request: SolverMovingCircularSourceCausalRootsF64Request;
+  roots: SolverMovingCircularCausalRootF64[];
+  scan?: Record<string, unknown> | null;
+  rejectedReason?: string;
+  status: SolverStatusRecord;
+  statuses: SolverStatusRecord[];
+}
+
+export interface SolverMovingCircularSameSourceCausalRootsF64Response {
+  schema: "solver-moving-circular-same-source-causal-roots-f64.v1";
+  sourceHistoryKind: "moving-circular-same-source";
+  request: SolverMovingCircularSameSourceCausalRootsF64Request;
+  roots: SolverMovingCircularCausalRootF64[];
+  scan?: Record<string, unknown> | null;
+  rejectedReason?: string;
+  status: SolverStatusRecord;
+  statuses: SolverStatusRecord[];
+}
+
+export interface SolverMovingCircularObserverFieldContributionF64 {
+  branchIndex: number;
+  delay: number;
+  distance: number;
+  delaySolveGap: number;
+  jacobian: number;
+  jacobianAbs: number;
+  jacobianWeight: number;
+  sourceRadialSpeed: number;
+  sourceSpeedRatio: number;
+  receiverAcceleration: SolverVector3F64;
+  electric: SolverVector3F64;
+  comparisonB: SolverVector3F64;
+}
+
+export interface SolverMovingCircularObserverFieldF64Response {
+  schema: "solver-moving-circular-observer-field-f64.v1";
+  sourceHistoryKind: "moving-circular-source";
+  branchCount: number;
+  contributionCount: number;
+  contributions: SolverMovingCircularObserverFieldContributionF64[];
+  averageDelay: number;
+  delaySolveGapMax: number;
+  maxSourceSpeedRatio: number;
+  jacobianAbsMin: number;
+  unstableContributionCount: number;
+  nearestSourceDistance: number;
+  receiverAcceleration: SolverVector3F64;
+  electric: SolverVector3F64;
+  comparisonB: SolverVector3F64;
+  status: SolverStatusRecord;
   statuses: SolverStatusRecord[];
 }
 
@@ -1765,6 +1903,7 @@ export interface SolverPairInteractionF64Request {
   step: number;
   maxFrames?: number;
   pairAccelerationScale?: number;
+  signalSpeed?: number;
   softening?: number;
   integrationTolerance?: number;
   interactionLaw?: string;
@@ -1774,6 +1913,7 @@ export interface SolverPairInteractionF64Request {
   pathConstraintBoundaryResidualTolerance?: number;
   pathConstraintPositionResidualTolerance?: number;
   pathConstraintGuidanceAccelerationTolerance?: number;
+  pathConstraintInitialVelocityResidualTolerance?: number;
   initialStates: SolverPairInteractionStateF64Request[];
   pathConstraints?: SolverPairInteractionPathConstraintF64Request[];
 }
@@ -2440,6 +2580,8 @@ export interface SolverBroadPhaseQueryCapability {
     | "solveCausalRootsNormalizedF64"
     | "solveCircularSourceRootsHitsLedgerF64"
     | "solveCircularSourceRootsHitsLedgerNormalizedF64"
+    | "solveMovingCircularSourceCausalRootsF64"
+    | "solveMovingCircularSameSourceCausalRootsF64"
     | "solveRootsAndHitsPrecisionF64"
     | "solveRootsAndHitsF64"
     | "refineEmissionShellCandidateRootsF64"
@@ -2514,6 +2656,7 @@ export interface SolverAbiInfo {
   admissionStressSummaryF64Bytes: number;
   statusRowBytes: number;
   admissionReportF64Bytes: number;
+  pairInteractionRequestF64Bytes: number;
 }
 
 export interface SolverNumericSerializationDescriptor {
@@ -2883,6 +3026,7 @@ export interface SolverRunSummary {
   streamCount?: number;
   stepCount?: number;
   interactionLaw?: string;
+  signalSpeed?: number;
   executionPath?: string;
   pathConstraintCount?: number;
   pathConstraintFrameRefinementSampleCount?: number;
@@ -2892,6 +3036,12 @@ export interface SolverRunSummary {
   maxPathConstraintPositionResidual?: number;
   meanPathConstraintPositionResidual?: number;
   rmsPathConstraintPositionResidual?: number;
+  pathConstraintInitialVelocityResidualSampleCount?: number;
+  pathConstraintInitialVelocityResidualStatus?: SolverPairInteractionInitialVelocityResidualStatus;
+  pathConstraintInitialVelocityResidualTolerance?: number;
+  maxPathConstraintInitialVelocityResidual?: number;
+  meanPathConstraintInitialVelocityResidual?: number;
+  rmsPathConstraintInitialVelocityResidual?: number;
   pathConstraintResidualSampleCount?: number;
   maxPathConstraintResidual?: number;
   meanPathConstraintResidual?: number;
@@ -2910,6 +3060,7 @@ export interface SolverRunSummary {
   pathConstraintBoundaryRelaxationStatus?: string;
   pathConstraintBoundaryRelaxationResidualEvidenceStatus?: string;
   pathConstraintBoundaryRelaxationResidualSampleCount?: number;
+  pathConstraintBoundaryRelaxationResidualMode?: string;
   maxPathConstraintBoundaryRelaxationResidualBefore?: number;
   maxPathConstraintBoundaryRelaxationResidualAfter?: number;
   meanPathConstraintBoundaryRelaxationResidualBefore?: number;
@@ -2933,12 +3084,14 @@ export interface SolverRunSummary {
   pathConstraintSolverClaim?: string;
   pathConstraintPhysicalBoundarySolverStatus?: string;
   pathConstraintPhysicalBoundarySolverClaim?: string;
+  pathConstraintPhysicalBoundarySolverBlockingReason?: string;
   maxPathConstraintGuidanceAcceleration?: number;
   meanPathConstraintGuidanceAcceleration?: number;
   rmsPathConstraintGuidanceAcceleration?: number;
   pathConstraintGuidanceAccelerationStatus?: SolverPairInteractionGuidanceAccelerationStatus;
   pathConstraintGuidanceAccelerationTolerance?: number;
   pathConstraintBoundaryResidualSampleCount?: number;
+  pathConstraintBoundaryResidualMode?: string;
   pathConstraintBoundaryResidualStatus?: SolverPairInteractionBoundaryResidualStatus;
   pathConstraintBoundaryResidualTolerance?: number;
   maxPathConstraintBoundaryResidual?: number;
@@ -2960,6 +3113,13 @@ export type SolverPairInteractionPositionResidualStatus =
   | "within_tolerance"
   | "exceeded_tolerance";
 
+export type SolverPairInteractionInitialVelocityResidualStatus =
+  | "unchecked"
+  | "no_initial_velocity_samples"
+  | "unresolved"
+  | "within_tolerance"
+  | "exceeded_tolerance";
+
 export type SolverPairInteractionGuidanceAccelerationStatus =
   | "unchecked"
   | "no_guidance_samples"
@@ -2976,6 +3136,7 @@ export interface SolverPairInteractionSummary {
   pathRowCount?: number;
   stepCount?: number;
   interactionLaw?: string;
+  signalSpeed?: number;
   executionPath?: string;
   pathConstraintCount?: number;
   pathConstraintFrameRefinementSampleCount?: number;
@@ -2985,6 +3146,12 @@ export interface SolverPairInteractionSummary {
   maxPathConstraintPositionResidual?: number;
   meanPathConstraintPositionResidual?: number;
   rmsPathConstraintPositionResidual?: number;
+  pathConstraintInitialVelocityResidualSampleCount?: number;
+  pathConstraintInitialVelocityResidualStatus?: SolverPairInteractionInitialVelocityResidualStatus;
+  pathConstraintInitialVelocityResidualTolerance?: number;
+  maxPathConstraintInitialVelocityResidual?: number;
+  meanPathConstraintInitialVelocityResidual?: number;
+  rmsPathConstraintInitialVelocityResidual?: number;
   pathConstraintResidualSampleCount?: number;
   maxPathConstraintResidual?: number;
   meanPathConstraintResidual?: number;
@@ -3003,6 +3170,7 @@ export interface SolverPairInteractionSummary {
   pathConstraintBoundaryRelaxationStatus?: string;
   pathConstraintBoundaryRelaxationResidualEvidenceStatus?: string;
   pathConstraintBoundaryRelaxationResidualSampleCount?: number;
+  pathConstraintBoundaryRelaxationResidualMode?: string;
   maxPathConstraintBoundaryRelaxationResidualBefore?: number;
   maxPathConstraintBoundaryRelaxationResidualAfter?: number;
   meanPathConstraintBoundaryRelaxationResidualBefore?: number;
@@ -3026,12 +3194,14 @@ export interface SolverPairInteractionSummary {
   pathConstraintSolverClaim?: string;
   pathConstraintPhysicalBoundarySolverStatus?: string;
   pathConstraintPhysicalBoundarySolverClaim?: string;
+  pathConstraintPhysicalBoundarySolverBlockingReason?: string;
   maxPathConstraintGuidanceAcceleration?: number;
   meanPathConstraintGuidanceAcceleration?: number;
   rmsPathConstraintGuidanceAcceleration?: number;
   pathConstraintGuidanceAccelerationStatus?: SolverPairInteractionGuidanceAccelerationStatus;
   pathConstraintGuidanceAccelerationTolerance?: number;
   pathConstraintBoundaryResidualSampleCount?: number;
+  pathConstraintBoundaryResidualMode?: string;
   pathConstraintBoundaryResidualStatus?: SolverPairInteractionBoundaryResidualStatus;
   pathConstraintBoundaryResidualTolerance?: number;
   maxPathConstraintBoundaryResidual?: number;

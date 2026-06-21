@@ -48,9 +48,9 @@ Presets are starting points for inspection, not certified photon branches. They 
 
 ## Configuration Search
 
-The Search configurations button looks for photon settings that are worth inspecting more closely. It starts from the current app settings, then tries nearby or systematic variations of the enabled binaries, I/M/O frequency powers, radius lanes, phase offsets, $\Delta x$, Virtual Observer position, Analyzer angle, and available speed mode.
+The Search configurations button looks for photon settings that are worth inspecting more closely. It starts from the current app settings, then tries nearby or systematic variations of the enabled binaries, I/M/O frequency powers, radius lanes, phase offsets, $\Delta x$, Virtual Observer position, Analyzer angle, and speed mode. The search includes a small set of `Lorentz factor` local-$c$ candidates so the results can expose configurations where derived $c_{\mathrm{sig}}/c_f$ and $c_\gamma/c_f$ materially change the moving-apparatus solve.
 
-The search generates a results list for the current session. The interactive search is intentionally bounded: it samples representative configuration families rather than trying every possible combination. Each result should include a short name, the full settings snapshot, the main plot and polarization summary, the diagnostics that made it stand out, and a plain-language reason to inspect it. When the absolute-history solver path is available, top results also record a compact comparison between the co-moving diagnostic and the absolute-history moving-apparatus diagnostic. Loading a result applies its settings to the app so it can be viewed, played, edited, or compared against a named preset.
+The search generates a results list for the current session. The interactive search is intentionally bounded: it samples representative configuration families rather than trying every possible combination. Each result should include a short name, the full settings snapshot, the main plot and polarization summary, the diagnostics that made it stand out, and a plain-language reason to inspect it. When the absolute-history solver path is available, top results also record a compact comparison between the co-moving diagnostic and the absolute-history moving-apparatus diagnostic, including helical same-source phase-family counts when those rows are computed. Loading a result applies its settings to the app so it can be viewed, played, edited, or compared against a named preset.
 
 Useful results can be exported as JSON. Exported settings can later be reviewed and, when they are worth keeping, incorporated into the named preset set. Until a result is promoted that way, treat it as a session finding rather than a durable app preset.
 
@@ -89,9 +89,13 @@ The Virtual Observer controls choose where the sample point is placed in the app
 
 The `x`, `y`, and `z` sliders mark the zero point and snap values very close to zero to exactly `0`.
 
+`Local c mode` chooses how the app sets the speeds used by the moving-apparatus solver. `Direct` uses the two speed sliders. `Lorentz factor` derives both speeds from `Local γ` as a first chart-style approximation of local $c/c_f$.
+
 `Signal c/c_f` sets the causal signal speed used by the current root solve. At the default value `1.00`, the branch signal speed is $c_f$. Lower values let the diagnostic inspect slower local-signal regimes.
 
 `Photon c_\gamma/c_f` sets the photon-channel translation speed used by the default `Absolute history` calculation.
+
+When `Local c mode` is `Lorentz factor`, the `Signal c/c_f` and `Photon c_\gamma/c_f` sliders become readouts for the derived value. Change `Local γ` to change the solver speed in that mode.
 
 `Absolute history` makes the Electric Field plot use the moving-apparatus diagnostic. In that mode, each architrino source history and the Virtual Observer history translate along $+\hat{\mathbf x}$ at $c_\gamma$, and the shared solver helper solves the moving circular source against the moving Virtual Observer. This remains a diagnostic layer for the moving-apparatus calculation; the co-moving mode remains useful for comparison.
 
@@ -253,17 +257,19 @@ The live Diagnostics panel includes a quality word when a readout has a useful d
 | 13 | Helical&nbsp;self-hit&nbsp;max&nbsp;$v/c_{\mathrm{sig}}$ | The largest same-source speed ratio in the helical source-history rows. Values above `1` nominate a self-hit candidate regime. |
 | 14 | Helical&nbsp;self-hit&nbsp;min&nbsp;\|J\| | The smallest Jacobian magnitude among retained helical same-source roots. Very small values mean the self-hit family is close to a pile-up or caustic. |
 | 15 | Helical&nbsp;self-hit&nbsp;phase&nbsp;spread | How tightly retained helical same-source roots cluster by source phase. Smaller means the roots are more phase-aligned. |
-| 16 | Missed&nbsp;sources | How many active source rows produced no retained root. For a clean solve, this should be `0`. |
-| 17 | No&nbsp;catch-up&nbsp;sources | How many source histories did not causally catch the moving Virtual Observer in the scanned window. This can be a real moving-apparatus result when $c_\gamma$ is close to $c_{\mathrm{sig}}$. |
-| 18 | Stale&nbsp;windows | How many scan windows looked too old for the selected hit time. |
-| 19 | Near&nbsp;misses | How many source histories came close to a root but did not retain one. These deserve numerical caution. |
-| 20 | Root&nbsp;cap&nbsp;hits | How many source histories found more candidate roots than the current root cap can keep. |
-| 21 | Delay&nbsp;solve&nbsp;gap | The largest leftover mismatch in the causal-delay equation. Smaller means the root solve is tighter. |
-| 22 | Delay&nbsp;status | A simple stable/catch-up-limited/unstable flag based on root misses, no-catch-up classification, delay gap, and small-Jacobian checks. |
-| 23 | Left&nbsp;phase&nbsp;spread | How evenly the left swarm's I/M/O phases are spaced. |
-| 24 | Right&nbsp;phase&nbsp;spread | How evenly the right swarm's I/M/O phases are spaced. |
-| 25 | Trailing&nbsp;hit&nbsp;phase&nbsp;spread | How tightly retained trailing-swarm source roots cluster by source phase. Smaller means the retained roots are more phase-aligned. |
-| 26 | Leading&nbsp;hit&nbsp;phase&nbsp;spread | How tightly retained leading-swarm source roots cluster by source phase. Smaller means the retained roots are more phase-aligned. |
+| 16 | Helical&nbsp;phase&nbsp;families | How many helical same-source root families are phase-stable after grouping by role, layer, charge, and source cycle. |
+| 17 | Best&nbsp;helical&nbsp;family | The most stable helical same-source family label, spread, and root count. |
+| 18 | Missed&nbsp;sources | How many active source rows produced no retained root. For a clean solve, this should be `0`. |
+| 19 | No&nbsp;catch-up&nbsp;sources | How many source histories did not causally catch the moving Virtual Observer in the scanned window. This can be a real moving-apparatus result when $c_\gamma$ is close to $c_{\mathrm{sig}}$. |
+| 20 | Stale&nbsp;windows | How many scan windows looked too old for the selected hit time. |
+| 21 | Near&nbsp;misses | How many source histories came close to a root but did not retain one. These deserve numerical caution. |
+| 22 | Root&nbsp;cap&nbsp;hits | How many source histories found more candidate roots than the current root cap can keep. |
+| 23 | Delay&nbsp;solve&nbsp;gap | The largest leftover mismatch in the causal-delay equation. Smaller means the root solve is tighter. |
+| 24 | Delay&nbsp;status | A simple stable/catch-up-limited/unstable flag based on root misses, no-catch-up classification, delay gap, and small-Jacobian checks. |
+| 25 | Left&nbsp;phase&nbsp;spread | How evenly the left swarm's I/M/O phases are spaced. |
+| 26 | Right&nbsp;phase&nbsp;spread | How evenly the right swarm's I/M/O phases are spaced. |
+| 27 | Trailing&nbsp;hit&nbsp;phase&nbsp;spread | How tightly retained trailing-swarm source roots cluster by source phase. Smaller means the retained roots are more phase-aligned. |
+| 28 | Leading&nbsp;hit&nbsp;phase&nbsp;spread | How tightly retained leading-swarm source roots cluster by source phase. Smaller means the retained roots are more phase-aligned. |
 
 ## Formulas
 

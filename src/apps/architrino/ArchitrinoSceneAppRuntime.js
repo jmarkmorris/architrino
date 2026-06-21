@@ -7191,10 +7191,18 @@ function isPointerWithinInteractiveViewport(clientX, clientY, paddingPx = 0) {
   return dx * dx + dy * dy <= effectiveRadius * effectiveRadius;
 }
 
-function getSafeViewportWorld() {
+function getSafeViewportWorld(fitMode = "focus") {
   const aspect = window.innerWidth / window.innerHeight;
   const viewWidth = baseViewHeight * aspect;
   const worldPerPixel = viewWidth / Math.max(window.innerWidth, 1);
+  if (fitMode === "viewport") {
+    const safeWidthPx = Math.max(2, window.innerWidth - defaultRootLayoutMarginPx.x * 2);
+    const safeHeightPx = Math.max(2, window.innerHeight - defaultRootLayoutMarginPx.y * 2);
+    return {
+      safeWidth: Math.max(2, safeWidthPx * worldPerPixel),
+      safeHeight: Math.max(2, safeHeightPx * worldPerPixel),
+    };
+  }
   const { radius } = getFocusSphereMetrics();
   const safeDiameterPx = Math.max(2, radius * 2);
   const safeWorldDiameter = safeDiameterPx * worldPerPixel;
@@ -7441,7 +7449,9 @@ function computeFitZoomForLevel(level) {
     return camera.zoom;
   }
 
-  const { safeWidth, safeHeight } = getSafeViewportWorld();
+  const { safeWidth, safeHeight } = getSafeViewportWorld(
+    level.viewportFit === "viewport" ? "viewport" : "focus"
+  );
   return clampZoom(
     computeBoundsSceneFitZoom({
       safeWidth,
@@ -7787,7 +7797,7 @@ function updateLevelLabelWrap(level) {
     }, 1);
     const sizeByDiameter = diameter * 0.15;
     const sizeByToken = maxWidth / (longestToken * 0.58);
-    let titleSize = clamp(Math.min(sizeByDiameter, sizeByToken + 0.5), 8.5, 16);
+    let titleSize = clamp(Math.min(sizeByDiameter, sizeByToken + 0.5), 8.5, 20);
     let titleLineCount = 1;
     let lineHeight = 1.14;
     let badgeSize = 14;

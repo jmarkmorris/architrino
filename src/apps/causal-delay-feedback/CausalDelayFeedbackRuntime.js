@@ -8,6 +8,10 @@ import {
   ELECTRINO,
   ELECTRINO_WAKE,
   FULL_CIRCULAR_ARCS,
+  SPACE_AXIS_TOP_Y,
+  TIME_AXIS_BASELINE_Y,
+  TIME_AXIS_END_X,
+  TIME_AXIS_ORIGIN_X,
   POSITRINO,
   POSITRINO_WAKE,
   PRESETS,
@@ -30,9 +34,11 @@ const REPLAY_LOOP_SECONDS = 9;
 const TIME_EPSILON = 1e-6;
 const INITIAL_VELOCITY_ARROW_SCALE = 0.04;
 const INITIAL_VELOCITY_PREVIEW_RESPONSE = 0.42;
+const RETAINED_PATH_SPLINE_TANGENT_SCALE = 0.72;
 const NOW_SLIDER_MAX = 1000;
 const DEFAULT_ASSEMBLY_THRESHOLD = 0.00075;
 const MIN_RETAINED_DEPTH_LIMIT = 2;
+const RETAINED_DEPTH_LIMIT_OPTIONS = Object.freeze([2, 4, 8, 16, 32, 64]);
 const FIELD_SPEED_MIN = 0.25;
 const FIELD_SPEED_MAX = 2.5;
 const DEFAULT_FIELD_SPEED_SCALE = 1;
@@ -42,7 +48,15 @@ const DEFAULT_ARCHITRINO_SPEED_INDEX = 3;
 const VIEWPORT_ZOOM_MIN = 1;
 const VIEWPORT_ZOOM_MAX = 3;
 const WHEEL_ZOOM_SENSITIVITY = 0.0015;
+const WAKE_FRONT_CADENCE_TIME_DIVISIONS = 144;
+const LIVE_WAKE_FRONT_SPACING = 18;
+const LIVE_WAKE_ROOT_SCAN_STEPS = 96;
+const LIVE_WAKE_ROOT_REFINE_STEPS = 32;
+const DEFAULT_LIVE_WAKE_SIGNAL_SPEED = 3000;
+const PATH_LINE_HIT_RADIUS = 18;
+const PATH_LINE_DRAG_FALLOFF_TIME = 0.32;
 const CENTRAL_PAIR_INTERACTION_REPLAY_MODE = "pairInteraction";
+const BOUNDARY_SEEDED_CONSTRAINT_PATH_STATUS = "boundary_seeded_constraint_path";
 const DISCRETE_BOUNDARY_VALUE_CONVERGED_STATUS = "discrete_boundary_value_converged";
 const PHYSICAL_BOUNDARY_SOLVER_PENDING_STATUS = "physical_boundary_solver_pending";
 const DEFAULT_PATH_CONSTRAINT_BOUNDARY_RELAXATION_ITERATION_COUNT = 64;
@@ -53,22 +67,14 @@ const WEAK_CONTRIBUTION_CUE_OFF = "off";
 const WEAK_CONTRIBUTION_CUE_THRESHOLD_ONLY = "threshold_only";
 const PATH_CONSTRAINT_DRAFT_REASONS = new Set([
   "retained_point_drag_preview",
-  "reception_point_insert_preview",
+  "path_line_drag_preview",
 ]);
-const VIRTUAL_OBSERVER = Object.freeze({ r: 74, g: 229, b: 255, a: 1 });
-const DEFAULT_VIRTUAL_OBSERVER_POINT = Object.freeze({
-  kind: "virtualObserver",
-  label: "Virtual Observer",
-  role: "observer",
-  x: 1600,
-  y: 540,
-});
 const SPACE_KEYS = new Set([" ", "Space", "Spacebar"]);
 const REPLAY_STEP_KEYS = Object.freeze({
   ArrowLeft: -1,
   ArrowRight: 1,
 });
-const SPACEBAR_NATIVE_CONTROL_TAGS = new Set(["BUTTON", "INPUT", "SELECT", "TEXTAREA"]);
+const SPACEBAR_NATIVE_CONTROL_TAGS = new Set(["INPUT", "SELECT", "TEXTAREA"]);
 const INACTIVE_WAKE_VISUAL_TIERS = Object.freeze({
   inactive: Object.freeze({
     alphaScale: 0.46,
@@ -178,7 +184,6 @@ class CausalDelayFeedbackRuntime {
     this.reducedMotionEnabled = this.normalizeBooleanSetting(
       options.reducedMotionEnabled ?? this.prefersReducedMotion(),
     );
-    this.highContrastPathsEnabled = this.normalizeBooleanSetting(options.highContrastPathsEnabled);
     this.backgroundDepthFieldEnabled = this.normalizeBooleanSetting(options.backgroundDepthFieldEnabled);
     this.weakContributionCueMode = this.normalizeWeakContributionCueMode(options.weakContributionCueMode);
     this.isPlaying = !this.reducedMotionEnabled;
@@ -237,7 +242,6 @@ class CausalDelayFeedbackRuntime {
 
     this.populatePresets();
     this.populateCanvasSwatches();
-    this.populateHistoryDepthControls();
     this.updateSpeedControls();
     this.updateDisplaySettingControls();
     this.updateNowControl();
@@ -257,6 +261,7 @@ class CausalDelayFeedbackRuntime {
       canvas: queryRequiredElement(this.document, "#causal-delay-feedback-canvas"),
       preset: queryRequiredElement(this.document, "#causal-delay-feedback-preset"),
       playButton: queryRequiredElement(this.document, "#causal-delay-feedback-play"),
+      pauseButton: queryRequiredElement(this.document, "#causal-delay-feedback-pause"),
       resetButton: queryRequiredElement(this.document, "#causal-delay-feedback-reset"),
       settingsButton: queryRequiredElement(this.document, "#causal-delay-feedback-settings"),
       settingsPanel: queryRequiredElement(this.document, "#causal-delay-feedback-settings-panel"),
@@ -268,13 +273,8 @@ class CausalDelayFeedbackRuntime {
       cfSpeedValue: queryRequiredElement(this.document, "#causal-delay-feedback-cf-speed-value"),
       architrinoSpeedInput: queryRequiredElement(this.document, "#causal-delay-feedback-architrino-speed"),
       architrinoSpeedValue: queryRequiredElement(this.document, "#causal-delay-feedback-architrino-speed-value"),
-      historyDepthControls: queryRequiredElement(this.document, "#causal-delay-feedback-history-depth"),
-      reducedMotionInput: queryRequiredElement(this.document, "#causal-delay-feedback-reduced-motion"),
-      highContrastPathsInput: queryRequiredElement(this.document, "#causal-delay-feedback-high-contrast-paths"),
-      backgroundDepthFieldInput: queryRequiredElement(this.document, "#causal-delay-feedback-depth-field"),
       weakContributionCueInput: queryRequiredElement(this.document, "#causal-delay-feedback-weak-cue"),
       replayStatus: queryRequiredElement(this.document, "#causal-delay-feedback-replay-status"),
-      hoverLabel: queryRequiredElement(this.document, "#causal-delay-feedback-hover-label"),
       readout: queryRequiredElement(this.document, "#causal-delay-feedback-readout"),
     };
   }
@@ -306,27 +306,6 @@ class CausalDelayFeedbackRuntime {
     this.updateCanvasSwatchSelection();
   }
 
-  populateHistoryDepthControls() {
-    const maxDepth = this.getMaxRetainedDepthLimit();
-    const minDepth = Math.min(MIN_RETAINED_DEPTH_LIMIT, maxDepth);
-    const options = [];
-    for (let depth = minDepth; depth <= maxDepth; depth += 1) {
-      options.push(depth);
-    }
-    this.dom.historyDepthControls.replaceChildren(
-      ...options.map((depth) => {
-        const button = this.document.createElement("button");
-        button.type = "button";
-        button.className = "causal-depth-button";
-        button.textContent = String(depth);
-        button.dataset.historyDepth = String(depth);
-        button.setAttribute("aria-label", `${depth} retained path points`);
-        return button;
-      }),
-    );
-    this.updateHistoryDepthSelection();
-  }
-
   bindEvents() {
     this.boundResize = () => this.resize();
     this.window.addEventListener("resize", this.boundResize);
@@ -337,7 +316,10 @@ class CausalDelayFeedbackRuntime {
       void this.setPreset(this.dom.preset.value);
     });
     this.dom.playButton.addEventListener("click", () => {
-      this.setPlaying(!this.isPlaying);
+      this.setPlaying(true);
+    });
+    this.dom.pauseButton.addEventListener("click", () => {
+      this.setPlaying(false);
     });
     this.dom.resetButton.addEventListener("click", () => {
       this.resetReplayTime();
@@ -374,22 +356,6 @@ class CausalDelayFeedbackRuntime {
       }
       void this.stepArchitrinoSpeedIndex(Number(button.dataset.architrinoSpeedStep));
     });
-    this.dom.historyDepthControls.addEventListener("click", (event) => {
-      const button = event.target.closest("[data-history-depth]");
-      if (!button) {
-        return;
-      }
-      this.setRetainedDepthLimit(Number(button.dataset.historyDepth));
-    });
-    this.dom.reducedMotionInput.addEventListener("change", () => {
-      this.setReducedMotionEnabled(this.dom.reducedMotionInput.checked);
-    });
-    this.dom.highContrastPathsInput.addEventListener("change", () => {
-      this.setHighContrastPathsEnabled(this.dom.highContrastPathsInput.checked);
-    });
-    this.dom.backgroundDepthFieldInput.addEventListener("change", () => {
-      this.setBackgroundDepthFieldEnabled(this.dom.backgroundDepthFieldInput.checked);
-    });
     this.dom.weakContributionCueInput.addEventListener("change", () => {
       this.setWeakContributionCueMode(this.dom.weakContributionCueInput.value);
     });
@@ -406,14 +372,6 @@ class CausalDelayFeedbackRuntime {
       },
       { passive: false },
     );
-    this.dom.canvas.addEventListener("contextmenu", (event) => {
-      this.handleCanvasContextMenu(event);
-    });
-    this.dom.canvas.addEventListener("pointerleave", () => {
-      if (!this.dragState) {
-        this.dom.hoverLabel.hidden = true;
-      }
-    });
     this.window.addEventListener("pointerup", (event) => {
       void this.finishDrag(event);
     });
@@ -549,15 +507,11 @@ class CausalDelayFeedbackRuntime {
     this.replayLoadState = loadState;
     this.retainedDepthLimit = this.normalizeRetainedDepthLimit(this.retainedDepthLimit);
     this.applyDatasetCanvasColor(dataset);
-    this.syncVirtualObserverState();
     this.updateWakeLinkGeometry();
     this.resetArchitrinoVelocityReference();
     this.syncReplayRequestOptionsFromDataset();
     if (this.dom?.preset) {
       this.dom.preset.value = this.presetId;
-    }
-    if (this.dom?.historyDepthControls) {
-      this.populateHistoryDepthControls();
     }
     this.updateSpeedControls();
     this.updateReplayStatus();
@@ -570,7 +524,6 @@ class CausalDelayFeedbackRuntime {
     const requestOptions = {
       ...this.replayRequestOptions,
       initialConditions: cloneJson(this.dataset.initialConditions ?? {}),
-      virtualObserver: cloneJson(this.getVirtualObserver()),
       replayDataset: this.dataset,
       retainedDepthLimit: this.retainedDepthLimit,
       fieldSpeedScale: this.fieldSpeedScale,
@@ -926,6 +879,9 @@ class CausalDelayFeedbackRuntime {
         const boundaryRelaxationResidualEvidenceStatus =
           this.dataset?.pathConstraintBoundaryRelaxationResidualEvidenceStatus ??
           this.dataset?.solverSummary?.pathConstraintBoundaryRelaxationResidualEvidenceStatus;
+        const boundaryRelaxationResidualMode =
+          this.dataset?.pathConstraintBoundaryRelaxationResidualMode ??
+          this.dataset?.solverSummary?.pathConstraintBoundaryRelaxationResidualMode;
         const boundaryRelaxationResidualRatio = Number(
           this.dataset?.pathConstraintBoundaryRelaxationResidualRatio ??
             this.dataset?.solverSummary?.pathConstraintBoundaryRelaxationResidualRatio
@@ -1017,6 +973,9 @@ class CausalDelayFeedbackRuntime {
         const physicalBoundarySolverClaim =
           this.dataset?.pathConstraintPhysicalBoundarySolverClaim ??
           this.dataset?.solverSummary?.pathConstraintPhysicalBoundarySolverClaim;
+        const physicalBoundarySolverBlockingReason =
+          this.dataset?.pathConstraintPhysicalBoundarySolverBlockingReason ??
+          this.dataset?.solverSummary?.pathConstraintPhysicalBoundarySolverBlockingReason;
         const maxGuidanceAcceleration = Number(
           this.dataset?.maxPathConstraintGuidanceAcceleration ??
             this.dataset?.solverSummary?.maxPathConstraintGuidanceAcceleration
@@ -1058,6 +1017,21 @@ class CausalDelayFeedbackRuntime {
           this.dataset?.maxPathConstraintPositionResidual ??
             this.dataset?.solverSummary?.maxPathConstraintPositionResidual
         );
+        const initialVelocityResidualSampleCount = Number(
+          this.dataset?.pathConstraintInitialVelocityResidualSampleCount ??
+            this.dataset?.solverSummary?.pathConstraintInitialVelocityResidualSampleCount
+        );
+        const initialVelocityResidualStatus =
+          this.dataset?.pathConstraintInitialVelocityResidualStatus ??
+          this.dataset?.solverSummary?.pathConstraintInitialVelocityResidualStatus;
+        const initialVelocityResidualTolerance = Number(
+          this.dataset?.pathConstraintInitialVelocityResidualTolerance ??
+            this.dataset?.solverSummary?.pathConstraintInitialVelocityResidualTolerance
+        );
+        const maxInitialVelocityResidual = Number(
+          this.dataset?.maxPathConstraintInitialVelocityResidual ??
+            this.dataset?.solverSummary?.maxPathConstraintInitialVelocityResidual
+        );
         const frameRefinementSampleCount = Number(
           this.dataset?.pathConstraintFrameRefinementSampleCount ??
             this.dataset?.solverSummary?.pathConstraintFrameRefinementSampleCount
@@ -1074,6 +1048,8 @@ class CausalDelayFeedbackRuntime {
           : "";
         const isDiscreteBoundaryConverged =
           constraintSolverStatus === DISCRETE_BOUNDARY_VALUE_CONVERGED_STATUS;
+        const isBoundarySeededConstraint =
+          constraintSolverStatus === BOUNDARY_SEEDED_CONSTRAINT_PATH_STATUS;
         const effectiveBoundaryStatus =
           boundaryStatus || (isDiscreteBoundaryConverged ? "unchecked" : "");
         const effectivePositionResidualStatus =
@@ -1100,6 +1076,23 @@ class CausalDelayFeedbackRuntime {
           effectivePositionResidualStatus &&
             (effectivePositionResidualStatus !== "unchecked" || isDiscreteBoundaryConverged)
             ? ` posStatus=${formatCompactLabel(effectivePositionResidualStatus)}`
+            : "";
+        const initialVelocityResidualDetail =
+          Number.isFinite(initialVelocityResidualSampleCount) &&
+          initialVelocityResidualSampleCount > 0
+            ? ` initVelRows=${initialVelocityResidualSampleCount}${
+                Number.isFinite(maxInitialVelocityResidual)
+                  ? ` initVelErr=${formatCompactNumber(maxInitialVelocityResidual)}`
+                  : ""
+              }${
+                Number.isFinite(initialVelocityResidualTolerance)
+                  ? ` initVelTol=${formatCompactNumber(initialVelocityResidualTolerance)}`
+                  : ""
+              }${
+                initialVelocityResidualStatus && initialVelocityResidualStatus !== "unchecked"
+                  ? ` initVelStatus=${formatCompactLabel(initialVelocityResidualStatus)}`
+                  : ""
+              }`
             : "";
         const boundaryStatusDetail =
           effectiveBoundaryStatus && (effectiveBoundaryStatus !== "unchecked" || isDiscreteBoundaryConverged)
@@ -1172,6 +1165,10 @@ class CausalDelayFeedbackRuntime {
                 ? ` relaxEvidence=${formatCompactLabel(boundaryRelaxationResidualEvidenceStatus)}`
                 : ""
             }${
+              boundaryRelaxationResidualMode
+                ? ` relaxLaw=${formatCompactLabel(boundaryRelaxationResidualMode)}`
+                : ""
+            }${
               Number.isFinite(boundaryRelaxationCenterOfMassSelectedCount)
                 ? ` relaxCom=${boundaryRelaxationCenterOfMassSelectedCount}`
                 : ""
@@ -1230,6 +1227,10 @@ class CausalDelayFeedbackRuntime {
         const physicalBoundarySolverDetail = physicalBoundarySolverStatus
           ? ` physical=${formatCompactLabel(physicalBoundarySolverStatus)}${
               physicalBoundarySolverClaim ? ` physicalClaim=${formatCompactLabel(physicalBoundarySolverClaim)}` : ""
+            }${
+              physicalBoundarySolverBlockingReason
+                ? ` physicalWhy=${formatCompactLabel(physicalBoundarySolverBlockingReason)}`
+                : ""
             }`
           : "";
         const constraintBoundary = isDiscreteBoundaryConverged
@@ -1246,6 +1247,8 @@ class CausalDelayFeedbackRuntime {
             ? guidanceMode === "retained_knot_boundary"
               ? " Retained path constraints used retained-knot boundary guidance; this is not yet the final physical boundary-value path solve."
               : " Retained path constraints used finite-time guidance; this is not yet the final physical boundary-value path solve."
+            : isBoundarySeededConstraint
+              ? " Retained path constraints were reseeded from the retained-knot boundary before finite-difference relaxation; this is not yet the final physical boundary-value path solve."
             : "";
         const physicalBoundarySolverHelp =
           physicalBoundarySolverStatus === PHYSICAL_BOUNDARY_SOLVER_PENDING_STATUS
@@ -1254,16 +1257,20 @@ class CausalDelayFeedbackRuntime {
         return {
           state: isDiscreteBoundaryConverged
             ? "bridge-boundary"
+            : isBoundarySeededConstraint
+              ? "bridge-boundary-seed"
             : guidanceDetail
               ? "bridge-guided"
               : "bridge",
           label: isDiscreteBoundaryConverged
             ? "solver boundary replay"
+            : isBoundarySeededConstraint
+              ? "solver boundary-seed replay"
             : guidanceDetail
               ? "solver guided replay"
               : "solver pair replay",
           help:
-            `Showing central solver bridge replay from one mutual pair-interaction path run${stepDetail}${frameRefinementDetail}${lawDetail}${pathDetail}${residualDetail}${positionResidualDetail}${positionResidualStatusDetail}${boundaryDetail}${boundaryStatusDetail}${boundaryModeDetail}${boundarySeedDetail}${boundaryRelaxationDetail}${boundaryAdaptiveDetail}${guidanceDetail}${constraintSolverDetail}${physicalBoundarySolverDetail}. ` +
+            `Showing central solver bridge replay from one mutual pair-interaction path run${stepDetail}${frameRefinementDetail}${lawDetail}${pathDetail}${residualDetail}${positionResidualDetail}${positionResidualStatusDetail}${initialVelocityResidualDetail}${boundaryDetail}${boundaryStatusDetail}${boundaryModeDetail}${boundarySeedDetail}${boundaryRelaxationDetail}${boundaryAdaptiveDetail}${guidanceDetail}${constraintSolverDetail}${physicalBoundarySolverDetail}. ` +
             `This replaces the segmented one-body seed replay for the default canvas path.${constraintBoundary}${physicalBoundarySolverHelp}`,
         };
       }
@@ -1384,7 +1391,6 @@ class CausalDelayFeedbackRuntime {
     if (!this.isSelectionVisible()) {
       this.selectedItem = null;
     }
-    this.updateHistoryDepthSelection();
     if (this.dom?.readout) {
       this.updateReadout();
     }
@@ -1409,19 +1415,6 @@ class CausalDelayFeedbackRuntime {
       this.updatePlayButton();
     }
     this.updateDisplaySettingControls();
-  }
-
-  setHighContrastPathsEnabled(isEnabled) {
-    const nextValue = this.normalizeBooleanSetting(isEnabled);
-    if (nextValue === this.highContrastPathsEnabled) {
-      this.updateDisplaySettingControls();
-      return;
-    }
-    this.highContrastPathsEnabled = nextValue;
-    this.updateDisplaySettingControls();
-    if (this.context) {
-      this.render();
-    }
   }
 
   setBackgroundDepthFieldEnabled(isEnabled) {
@@ -1465,11 +1458,6 @@ class CausalDelayFeedbackRuntime {
     this.updateCanvasSwatchSelection();
   }
 
-  syncVirtualObserverState() {
-    const observer = this.getVirtualObserver() ?? DEFAULT_VIRTUAL_OBSERVER_POINT;
-    this.setVirtualObserverPosition(observer);
-  }
-
   updateCanvasSwatchSelection() {
     if (!this.dom?.colorSwatches) {
       return;
@@ -1479,32 +1467,12 @@ class CausalDelayFeedbackRuntime {
     });
   }
 
-  updateHistoryDepthSelection() {
-    if (!this.dom?.historyDepthControls) {
-      return;
-    }
-    Array.from(this.dom.historyDepthControls.children).forEach((button) => {
-      const isActive = Number(button.dataset.historyDepth) === this.retainedDepthLimit;
-      button.classList.toggle("is-active", isActive);
-      button.setAttribute("aria-pressed", isActive ? "true" : "false");
-    });
-  }
-
   updateSpeedControls() {
     this.updateFieldSpeedControl();
     this.updateArchitrinoSpeedControl();
   }
 
   updateDisplaySettingControls() {
-    if (this.dom?.reducedMotionInput) {
-      this.dom.reducedMotionInput.checked = this.reducedMotionEnabled;
-    }
-    if (this.dom?.highContrastPathsInput) {
-      this.dom.highContrastPathsInput.checked = this.highContrastPathsEnabled;
-    }
-    if (this.dom?.backgroundDepthFieldInput) {
-      this.dom.backgroundDepthFieldInput.checked = this.backgroundDepthFieldEnabled;
-    }
     if (this.dom?.weakContributionCueInput) {
       this.dom.weakContributionCueInput.value = this.weakContributionCueMode;
     }
@@ -1524,7 +1492,10 @@ class CausalDelayFeedbackRuntime {
       this.dom.architrinoSpeedInput.value = String(this.architrinoSpeedIndex);
     }
     if (this.dom?.architrinoSpeedValue) {
-      this.dom.architrinoSpeedValue.textContent = `${this.formatArchitrinoSpeedFraction(this.getArchitrinoSpeedFraction())} c_f`;
+      const value = this.formatArchitrinoSpeedFraction(this.getArchitrinoSpeedFraction());
+      this.dom.architrinoSpeedValue.textContent = `${value} c_f`;
+      this.dom.architrinoSpeedValue.setAttribute("aria-label", `${value} c f`);
+      this.dom.architrinoSpeedValue.innerHTML = `${value} c<sub>f</sub>`;
     }
   }
 
@@ -1541,11 +1512,17 @@ class CausalDelayFeedbackRuntime {
   }
 
   normalizeRetainedDepthLimit(depthLimit) {
-    const maxDepth = this.getMaxRetainedDepthLimit();
-    const minDepth = Math.min(MIN_RETAINED_DEPTH_LIMIT, maxDepth);
     const numericDepth = Number(depthLimit);
-    const candidate = Number.isFinite(numericDepth) ? Math.floor(numericDepth) : maxDepth;
-    return clamp(candidate, minDepth, maxDepth);
+    const candidate = Number.isFinite(numericDepth)
+      ? Math.floor(numericDepth)
+      : this.getMaxRetainedDepthLimit();
+    return this.snapRetainedDepthLimit(candidate);
+  }
+
+  snapRetainedDepthLimit(depthLimit) {
+    const numericDepth = Number(depthLimit);
+    const candidate = Number.isFinite(numericDepth) ? numericDepth : RETAINED_DEPTH_LIMIT_OPTIONS[2];
+    return RETAINED_DEPTH_LIMIT_OPTIONS.find((depth) => depth >= candidate) ?? RETAINED_DEPTH_LIMIT_OPTIONS.at(-1);
   }
 
   normalizeFieldSpeedScale(speedScale) {
@@ -1604,6 +1581,124 @@ class CausalDelayFeedbackRuntime {
     );
   }
 
+  getVisibleWakeSeries(replayTime = this.getCurrentReplayTime()) {
+    return ARCHITRINO_KINDS
+      .map((sourceKind) => this.createLiveWakeSeries(sourceKind, replayTime))
+      .filter(Boolean);
+  }
+
+  createLiveWakeSeries(sourceKind, replayTime = this.getCurrentReplayTime()) {
+    const receiverKind = this.getOppositeArchitrinoKind(sourceKind);
+    if (!receiverKind) {
+      return null;
+    }
+    const receiver = this.getReplayPathPoint(receiverKind, replayTime);
+    const signalSpeed = this.getLiveWakeSignalSpeed();
+    const emission = this.solveLiveWakeEmissionPoint(sourceKind, receiver, replayTime, signalSpeed);
+    if (!emission) {
+      return null;
+    }
+    const source = emission.source;
+    const distance = getDistance(source, receiver);
+    return {
+      id: `live-${sourceKind}-to-${receiverKind}`,
+      label: `${sourceKind} wake -> ${receiverKind} now`,
+      sourceKind,
+      receiverKind,
+      source,
+      receiver,
+      color: this.getWakeColorForKind(sourceKind),
+      weight: 1,
+      signalSpeed,
+      distance,
+      emissionTime: source.t,
+      hitTime: receiver.t,
+      travelTime: receiver.t - source.t,
+      liveWakeSeries: true,
+      rootResidual: emission.residual,
+    };
+  }
+
+  getOppositeArchitrinoKind(kind) {
+    if (kind === "positrino") {
+      return "electrino";
+    }
+    if (kind === "electrino") {
+      return "positrino";
+    }
+    return null;
+  }
+
+  getLiveWakeSignalSpeed() {
+    const summarySignalSpeed = Number(this.dataset?.solverSummary?.signalSpeed);
+    const datasetSignalSpeed = Number(this.dataset?.signalSpeed);
+    const baseSignalSpeed =
+      Number.isFinite(datasetSignalSpeed) && datasetSignalSpeed > 0
+        ? datasetSignalSpeed
+        : Number.isFinite(summarySignalSpeed) && summarySignalSpeed > 0
+          ? summarySignalSpeed
+          : DEFAULT_LIVE_WAKE_SIGNAL_SPEED;
+    return baseSignalSpeed * this.normalizeFieldSpeedScale(this.fieldSpeedScale);
+  }
+
+  solveLiveWakeEmissionPoint(sourceKind, receiver, replayTime, signalSpeed) {
+    const now = Number(replayTime);
+    const speed = Number(signalSpeed);
+    if (!Number.isFinite(now) || !Number.isFinite(speed) || speed <= 0) {
+      return null;
+    }
+    const [pathStart] = this.getReplayTimeRange();
+    if (!Number.isFinite(pathStart) || now <= pathStart + TIME_EPSILON) {
+      return null;
+    }
+    const residualAt = (candidateTime) => {
+      const source = this.getReplayPathPoint(sourceKind, candidateTime);
+      return getDistance(source, receiver) - speed * Math.max(0, now - candidateTime);
+    };
+    let highT = now;
+    let highResidual = residualAt(highT);
+    if (!Number.isFinite(highResidual)) {
+      return null;
+    }
+    if (Math.abs(highResidual) <= TIME_EPSILON) {
+      const source = this.getReplayPathPoint(sourceKind, highT);
+      return { source, residual: highResidual };
+    }
+
+    const scanSpan = now - pathStart;
+    let previousT = highT;
+    let previousResidual = highResidual;
+    for (let step = 1; step <= LIVE_WAKE_ROOT_SCAN_STEPS; step += 1) {
+      const candidateT = now - scanSpan * (step / LIVE_WAKE_ROOT_SCAN_STEPS);
+      const candidateResidual = residualAt(candidateT);
+      if (!Number.isFinite(candidateResidual)) {
+        continue;
+      }
+      if (candidateResidual <= 0 && previousResidual >= 0) {
+        let lowT = candidateT;
+        highT = previousT;
+        for (let refine = 0; refine < LIVE_WAKE_ROOT_REFINE_STEPS; refine += 1) {
+          const midT = (lowT + highT) * 0.5;
+          const midResidual = residualAt(midT);
+          if (!Number.isFinite(midResidual)) {
+            break;
+          }
+          if (midResidual <= 0) {
+            lowT = midT;
+          } else {
+            highT = midT;
+          }
+        }
+        const emissionT = (lowT + highT) * 0.5;
+        const source = this.getReplayPathPoint(sourceKind, emissionT);
+        return { source, residual: residualAt(emissionT) };
+      }
+      previousT = candidateT;
+      previousResidual = candidateResidual;
+    }
+    return null;
+  }
+
   isSelectionVisible() {
     if (!this.selectedItem) {
       return true;
@@ -1612,7 +1707,7 @@ class CausalDelayFeedbackRuntime {
       return this.isVisibleHistoryDepth(this.selectedItem.kind, this.selectedItem.depth);
     }
     if (this.selectedItem.type === "wake") {
-      return this.getVisibleWakeLinks().some((link) => link.id === this.selectedItem.linkId);
+      return this.getVisibleWakeSeries().some((link) => link.id === this.selectedItem.linkId);
     }
     return true;
   }
@@ -1637,21 +1732,27 @@ class CausalDelayFeedbackRuntime {
   }
 
   setPlaying(isPlaying) {
-    this.isPlaying = Boolean(isPlaying) && !this.reducedMotionEnabled;
+    this.isPlaying = Boolean(isPlaying);
     this.updatePlayButton();
   }
 
   updatePlayButton() {
-    if (!this.dom?.playButton) {
-      return;
+    if (this.dom?.playButton) {
+      this.dom.playButton.setAttribute("aria-label", ICON_HELP.play);
+      this.dom.playButton.setAttribute("aria-pressed", this.isPlaying ? "true" : "false");
+      this.dom.playButton.title = ICON_HELP.play;
+      this.dom.playButton.dataset.tooltip = ICON_HELP.play;
+      this.dom.playButton.innerHTML =
+        '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l10-7z"></path></svg>';
     }
-    const help = this.isPlaying ? ICON_HELP.pause : ICON_HELP.play;
-    this.dom.playButton.setAttribute("aria-label", help);
-    this.dom.playButton.title = help;
-    this.dom.playButton.dataset.tooltip = help;
-    this.dom.playButton.innerHTML = this.isPlaying
-      ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14"></path><path d="M16 5v14"></path></svg>'
-      : '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l10-7z"></path></svg>';
+    if (this.dom?.pauseButton) {
+      this.dom.pauseButton.setAttribute("aria-label", ICON_HELP.pause);
+      this.dom.pauseButton.setAttribute("aria-pressed", this.isPlaying ? "false" : "true");
+      this.dom.pauseButton.title = ICON_HELP.pause;
+      this.dom.pauseButton.dataset.tooltip = ICON_HELP.pause;
+      this.dom.pauseButton.innerHTML =
+        '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14"></path><path d="M16 5v14"></path></svg>';
+    }
   }
 
   resetReplayTime() {
@@ -1968,10 +2069,6 @@ class CausalDelayFeedbackRuntime {
     this.drawWakes(ctx, replayTime);
     this.drawPathTrail(ctx, "positrino", POSITRINO);
     this.drawPathTrail(ctx, "electrino", ELECTRINO);
-    this.drawInitialVelocityHandles(ctx);
-    this.drawHistoryPoints(ctx, "positrino", POSITRINO);
-    this.drawHistoryPoints(ctx, "electrino", ELECTRINO);
-    this.drawVirtualObserver(ctx);
     this.drawSelection(ctx);
     this.drawLiveMarkers(ctx, replayTime);
   }
@@ -1984,22 +2081,22 @@ class CausalDelayFeedbackRuntime {
       this.drawBackgroundDepthField(ctx);
     }
 
-    const xAxisStart = this.worldToScreen({ x: 92, y: 908 });
-    const xAxisEnd = this.worldToScreen({ x: 1810, y: 908 });
-    const yAxisStart = this.worldToScreen({ x: 92, y: 908 });
-    const yAxisEnd = this.worldToScreen({ x: 92, y: 182 });
+    const xAxisStart = this.worldToScreen({ x: TIME_AXIS_ORIGIN_X, y: TIME_AXIS_BASELINE_Y });
+    const xAxisEnd = this.worldToScreen({ x: TIME_AXIS_END_X, y: TIME_AXIS_BASELINE_Y });
+    const yAxisStart = this.worldToScreen({ x: TIME_AXIS_ORIGIN_X, y: TIME_AXIS_BASELINE_Y });
+    const yAxisEnd = this.worldToScreen({ x: TIME_AXIS_ORIGIN_X, y: SPACE_AXIS_TOP_Y });
     this.drawLine(ctx, [xAxisStart, xAxisEnd], withAlpha(WHITE, 0.42), 1.2);
     this.drawLine(ctx, [yAxisStart, yAxisEnd], withAlpha(WHITE, 0.32), 1.2);
 
     this.drawTriangle(ctx, [
-      this.worldToScreen({ x: 1810, y: 908 }),
-      this.worldToScreen({ x: 1796, y: 900 }),
-      this.worldToScreen({ x: 1796, y: 916 }),
+      this.worldToScreen({ x: TIME_AXIS_END_X, y: TIME_AXIS_BASELINE_Y }),
+      this.worldToScreen({ x: TIME_AXIS_END_X - 14, y: TIME_AXIS_BASELINE_Y - 8 }),
+      this.worldToScreen({ x: TIME_AXIS_END_X - 14, y: TIME_AXIS_BASELINE_Y + 8 }),
     ], withAlpha(WHITE, 0.48));
     this.drawTriangle(ctx, [
-      this.worldToScreen({ x: 92, y: 182 }),
-      this.worldToScreen({ x: 84, y: 196 }),
-      this.worldToScreen({ x: 100, y: 196 }),
+      this.worldToScreen({ x: TIME_AXIS_ORIGIN_X, y: SPACE_AXIS_TOP_Y }),
+      this.worldToScreen({ x: TIME_AXIS_ORIGIN_X - 8, y: SPACE_AXIS_TOP_Y + 14 }),
+      this.worldToScreen({ x: TIME_AXIS_ORIGIN_X + 8, y: SPACE_AXIS_TOP_Y + 14 }),
     ], withAlpha(WHITE, 0.3));
 
     this.drawText(ctx, "space", { x: 74, y: 165 }, 14, withAlpha(WHITE, 0.62), "left");
@@ -2037,13 +2134,13 @@ class CausalDelayFeedbackRuntime {
       this.drawFullCircularWakes(ctx, replayTime);
       return;
     }
-    this.getVisibleWakeLinks().forEach((link) => {
+    this.getVisibleWakeSeries(replayTime).forEach((link) => {
       this.drawWakeProgression(ctx, link, replayTime);
     });
   }
 
   drawFullCircularWakes(ctx, replayTime) {
-    this.getVisibleWakeLinks().forEach((link) => {
+    this.getVisibleWakeSeries(replayTime).forEach((link) => {
       this.drawFullCircularWakeProgression(ctx, link, replayTime);
     });
   }
@@ -2054,21 +2151,21 @@ class CausalDelayFeedbackRuntime {
       return;
     }
     const preset = this.dataset.preset;
-    const visualWeight = this.getWakeVisualWeight(link);
     const radius = getDistance(timing.source, timing.receiver);
-    const bandCount = Math.max(2, preset.wakeBands);
-    const alpha = (preset.fullCircleAlpha ?? 0.14) * preset.alphaScale * visualWeight.alphaScale;
-    const color = withAlpha(mixColor(link.color, WHITE, 0.2 + visualWeight.desaturation * 0.5), alpha);
-    const dotRadius = Math.max(0.9, preset.dotRadius * visualWeight.radiusScale);
-    const visibleProgress = clamp(timing.progress, 0, 1);
+    const theta = getAngleDegrees(timing.source, timing.receiver);
+    const falloffWeight = Math.pow(link.weight, preset.falloffPower);
+    const visualWeight = this.getWakeVisualWeight(link);
+    const frontProgresses = this.getWakeFrontProgresses(timing, link);
 
-    for (let index = 0; index < bandCount + 1; index += 1) {
-      const progress = (index + 1) / bandCount;
-      if (progress <= 0 || progress > visibleProgress) {
-        continue;
-      }
-      this.drawDottedArc(ctx, timing.source, radius * progress, 0, 360, color, dotRadius);
-    }
+    this.drawWakeBuildProgression(ctx, link, {
+      source: timing.source,
+      radius,
+      theta,
+      falloffWeight,
+      frontProgresses,
+      visualWeight,
+      fullCircle: true,
+    });
   }
 
   drawWakeProgression(ctx, link, replayTime) {
@@ -2080,50 +2177,54 @@ class CausalDelayFeedbackRuntime {
     const radius = getDistance(timing.source, timing.receiver);
     const theta = getAngleDegrees(timing.source, timing.receiver);
     const falloffWeight = Math.pow(link.weight, preset.falloffPower);
-    const bandCount = Math.max(2, preset.wakeBands);
     const visualWeight = this.getWakeVisualWeight(link);
+    const frontProgresses = this.getWakeFrontProgresses(timing, link);
 
     this.drawWakeBuildProgression(ctx, link, {
       source: timing.source,
       radius,
       theta,
       falloffWeight,
-      bandCount,
-      buildProgress: timing.progress,
+      frontProgresses,
       visualWeight,
     });
   }
 
-  drawWakeBuildProgression(ctx, link, { source, radius, theta, falloffWeight, bandCount, buildProgress, visualWeight }) {
+  drawWakeBuildProgression(
+    ctx,
+    link,
+    { source, radius, theta, falloffWeight, frontProgresses, visualWeight, fullCircle = false },
+  ) {
     const preset = this.dataset.preset;
-    const visibleProgress = clamp(buildProgress, 0.02, 1);
 
-    for (let index = 0; index < bandCount + 1; index += 1) {
-      const progress = (index + 1) / bandCount;
-      if (progress <= 0 || progress > visibleProgress) {
+    for (const progress of frontProgresses) {
+      if (progress <= 0) {
         continue;
       }
       const bandRadius = radius * progress;
-      const wakeSpan = preset.startSpan + (preset.finalSpan - preset.startSpan) * progress;
-      const frontDistance = clamp((visibleProgress - progress) * bandCount, 0, 1);
-      const frontBias = 1 - frontDistance;
+      const wakeSpan = fullCircle
+        ? 360
+        : preset.startSpan + (preset.finalSpan - preset.startSpan) * progress;
+      const emitterBias = 1 - progress;
       const alpha =
-        ((70 + 138 * frontBias) / 255) *
+        ((84 + 124 * emitterBias) / 255) *
         (0.48 + 0.52 * falloffWeight) *
         preset.alphaScale *
         visualWeight.alphaScale;
       const dotRadius =
         preset.dotRadius *
-        (0.82 + 0.38 * frontBias) *
+        (0.82 + 0.34 * emitterBias) *
         (0.72 + 0.3 * falloffWeight) *
         visualWeight.radiusScale;
       const wakeColor = mixColor(link.color, WHITE, visualWeight.desaturation);
+      const startDeg = fullCircle ? 0 : theta - wakeSpan * 0.5;
+      const endDeg = fullCircle ? 360 : theta + wakeSpan * 0.5;
       this.drawDottedArc(
         ctx,
         source,
         bandRadius,
-        theta - wakeSpan * 0.5,
-        theta + wakeSpan * 0.5,
+        startDeg,
+        endDeg,
         withAlpha(wakeColor, alpha),
         Math.max(1.05, dotRadius),
       );
@@ -2132,121 +2233,14 @@ class CausalDelayFeedbackRuntime {
 
   drawPathTrail(ctx, kind, color) {
     const points = this.dataset.paths[kind].map((point) => this.worldToScreen(point));
-    const haloWidth = this.highContrastPathsEnabled ? 18 : 14;
-    const haloAlpha = this.highContrastPathsEnabled ? 0.46 : 0.32;
-    this.drawLine(ctx, points, withAlpha(mixColor(color, WHITE, 0.45), haloAlpha), haloWidth);
-
-    for (let index = 0; index < points.length - 1; index += 1) {
-      const progress = index / Math.max(1, points.length - 1);
-      const lineAlpha = this.highContrastPathsEnabled ? 0.58 + 0.4 * progress : 0.36 + 0.54 * progress;
-      const lineWidth = this.highContrastPathsEnabled ? 4.5 + 4.2 * progress : 3 + 3.4 * progress;
-      this.drawLine(ctx, [points[index], points[index + 1]], withAlpha(color, lineAlpha), lineWidth);
-    }
-  }
-
-  drawHistoryPoints(ctx, kind, color) {
-    this.getVisibleHistory(kind).forEach((point) => {
-      const screen = this.worldToScreen(point);
-      const outerRadius = this.highContrastPathsEnabled ? 9.8 : 8.5;
-      const innerRadius = this.highContrastPathsEnabled ? 5.1 : 4.3;
-      const outlineAlpha = this.highContrastPathsEnabled ? 0.9 : 0.68;
-      this.drawCircle(ctx, screen, outerRadius, withAlpha({ r: 8, g: 6, b: 18, a: 1 }, 0.82), withAlpha(WHITE, outlineAlpha), 1.2);
-      this.drawCircle(ctx, screen, innerRadius, color);
-      const offset = kind === "positrino" ? { x: 14, y: -13 } : { x: 14, y: 15 };
-      this.drawScreenText(ctx, String(point.depth), { x: screen.x + offset.x * this.viewport.scale, y: screen.y + offset.y * this.viewport.scale }, 13, withAlpha(WHITE, 0.82), "center", "bold");
-    });
-  }
-
-  drawInitialVelocityHandles(ctx) {
-    this.drawInitialVelocityHandle(ctx, "positrino", POSITRINO);
-    this.drawInitialVelocityHandle(ctx, "electrino", ELECTRINO);
-  }
-
-  drawInitialVelocityHandle(ctx, kind, color) {
-    const condition = this.getInitialCondition(kind);
-    if (!condition) {
-      return;
-    }
-    const point = this.getInitialVelocityAnchorPoint(kind, condition);
-    const velocityEnd = this.initialConditionVelocityEnd(condition, point);
-    const screen = this.worldToScreen(point);
-    const velocityScreen = this.worldToScreen(velocityEnd);
-    this.drawLine(ctx, [screen, velocityScreen], withAlpha(mixColor(color, WHITE, 0.42), 0.46), 2);
-    this.drawCircle(ctx, velocityScreen, 5.6, withAlpha(color, 0.62), withAlpha(WHITE, 0.58), 1);
-  }
-
-  drawVirtualObserver(ctx) {
-    const observer = this.getVirtualObserver();
-    if (!observer) {
-      return;
-    }
-    const screen = this.worldToScreen(observer);
-    const arm = 18 * this.viewport.scale;
-    this.drawCircle(ctx, screen, 22, withAlpha(VIRTUAL_OBSERVER, 0.1), withAlpha(VIRTUAL_OBSERVER, 0.58), 1.2);
-    this.drawCircle(ctx, screen, 8.4, withAlpha({ r: 8, g: 6, b: 18, a: 1 }, 0.86), withAlpha(WHITE, 0.74), 1);
-    this.drawCircle(ctx, screen, 3.6, VIRTUAL_OBSERVER);
-    this.drawLine(ctx, [{ x: screen.x - arm, y: screen.y }, { x: screen.x + arm, y: screen.y }], withAlpha(VIRTUAL_OBSERVER, 0.54), 1.2);
-    this.drawLine(ctx, [{ x: screen.x, y: screen.y - arm }, { x: screen.x, y: screen.y + arm }], withAlpha(VIRTUAL_OBSERVER, 0.54), 1.2);
-    const label = this.getVirtualObserverLabelPlacement(screen);
-    this.drawScreenText(ctx, "Virtual Observer", label, 13, withAlpha(WHITE, 0.76), label.align, "bold");
-  }
-
-  getVirtualObserverLabelPlacement(screen, text = "Virtual Observer", size = 13) {
-    const fontSize = Math.max(9, size * this.viewport.scale);
-    const estimatedWidth = text.length * fontSize * 0.68;
-    const labelGap = Math.max(12, 30 * this.viewport.scale);
-    const rightPadding = Math.max(12, 28 * this.viewport.scale);
-    const labelY = screen.y - Math.max(12, 20 * this.viewport.scale);
-    if (screen.x + labelGap + estimatedWidth > this.canvasWidth - rightPadding) {
-      return {
-        x: screen.x - labelGap,
-        y: labelY,
-        align: "right",
-      };
-    }
-    return {
-      x: screen.x + labelGap,
-      y: labelY,
-      align: "left",
-    };
+    this.drawLine(ctx, points, color, 5);
   }
 
   drawSelection(ctx) {
     if (!this.selectedItem) {
       return;
     }
-    if (this.selectedItem.type === "history") {
-      const point = this.getVisibleHistory(this.selectedItem.kind).find(
-        (candidate) => candidate.depth === this.selectedItem.depth,
-      );
-      if (!point) {
-        return;
-      }
-      const screen = this.worldToScreen(point);
-      this.drawCircle(ctx, screen, 18, withAlpha(WHITE, 0.05), withAlpha(WHITE, 0.86), 1.4);
-      return;
-    }
-    if (this.selectedItem.type === "initial-velocity") {
-      const condition = this.getInitialCondition(this.selectedItem.kind);
-      if (!condition) {
-        return;
-      }
-      const anchorPoint = this.getInitialVelocityAnchorPoint(this.selectedItem.kind, condition);
-      const screen = this.worldToScreen(this.initialConditionVelocityEnd(condition, anchorPoint));
-      this.drawCircle(ctx, screen, 18, withAlpha(WHITE, 0.05), withAlpha(WHITE, 0.9), 1.4);
-      return;
-    }
-    if (this.selectedItem.type === "virtual-observer") {
-      const observer = this.getVirtualObserver();
-      if (!observer) {
-        return;
-      }
-      const screen = this.worldToScreen(observer);
-      this.drawCircle(ctx, screen, 30, withAlpha(VIRTUAL_OBSERVER, 0.08), withAlpha(WHITE, 0.9), 1.5);
-      return;
-    }
-
-    const link = this.getVisibleWakeLinks().find((candidate) => candidate.id === this.selectedItem.linkId);
+    const link = this.getVisibleWakeSeries().find((candidate) => candidate.id === this.selectedItem.linkId);
     if (!link) {
       return;
     }
@@ -2260,19 +2254,19 @@ class CausalDelayFeedbackRuntime {
 
   drawLiveMarkers(ctx, replayTime = this.getCurrentReplayTime()) {
     this.drawLiveMarker(ctx, "positrino", POSITRINO, this.getReplayPathPoint("positrino", replayTime), "positrino", {
-      x: 16,
-      y: 24,
+      x: 0,
+      y: -36,
     });
     this.drawLiveMarker(ctx, "electrino", ELECTRINO, this.getReplayPathPoint("electrino", replayTime), "electrino", {
-      x: 16,
-      y: -30,
+      x: 0,
+      y: 36,
     });
   }
 
   drawLiveMarker(ctx, kind, color, point, label, labelOffset) {
     const screen = this.worldToScreen(point);
-    this.drawCircle(ctx, screen, this.highContrastPathsEnabled ? 23 : 20, withAlpha(color, this.highContrastPathsEnabled ? 0.2 : 0.12));
-    this.drawCircle(ctx, screen, this.highContrastPathsEnabled ? 10.4 : 9, color, WHITE, this.highContrastPathsEnabled ? 2 : 1.4);
+    this.drawCircle(ctx, screen, 20, withAlpha(color, 0.12));
+    this.drawCircle(ctx, screen, 9, color, WHITE, 1.4);
     this.drawScreenText(
       ctx,
       label,
@@ -2282,7 +2276,7 @@ class CausalDelayFeedbackRuntime {
       },
       14,
       withAlpha(color, 0.9),
-      "left",
+      "center",
       "bold",
     );
   }
@@ -2360,57 +2354,24 @@ class CausalDelayFeedbackRuntime {
     ctx.restore();
   }
 
-  updateHoverLabel(event) {
-    const rect = this.dom.canvas.getBoundingClientRect();
-    const screen = { x: event.clientX - rect.left, y: event.clientY - rect.top };
-    const hit = this.findNearestHit(screen, { includeWakes: true });
-    if (!hit) {
-      this.dom.hoverLabel.hidden = true;
-      return;
-    }
-    this.dom.hoverLabel.textContent = this.createHoverLabel(hit);
-    this.dom.hoverLabel.style.left = `${event.clientX}px`;
-    this.dom.hoverLabel.style.top = `${event.clientY}px`;
-    this.dom.hoverLabel.hidden = false;
-  }
-
-  createHoverLabel(hit) {
-    if (hit?.type !== "wake") {
-      return hit?.label ?? "";
-    }
-    const hoverDetails = (hit.details ?? []).filter((detail) => (
-      detail.startsWith("emit=") ||
-      detail.startsWith("hit=") ||
-      detail.startsWith("travel=") ||
-      detail.startsWith("contrib=") ||
-      detail.startsWith("state=") ||
-      detail.startsWith("reason=") ||
-      detail.startsWith("solver=")
-    ));
-    return [hit.label, ...hoverDetails].join("  ");
-  }
-
   handleCanvasPointerMove(event) {
     if (this.dragState) {
       if (this.dragState.type === "initial-velocity") {
         this.dragSelectedInitialVelocity(event);
-      } else if (this.dragState.type === "virtual-observer") {
-        this.dragSelectedVirtualObserver(event);
-      } else {
-        this.dragSelectedHistoryPoint(event);
+      }
+      if (this.dragState.type === "path-line") {
+        this.dragSelectedPathLine(event);
       }
       return;
     }
     if (this.backgroundPointers.has(this.pointerKey(event))) {
       this.handleBackgroundPointerMove(event);
-      return;
     }
-    this.updateHoverLabel(event);
   }
 
   handleCanvasPointerDown(event) {
     const screen = this.canvasScreenPointFromEvent(event);
-    const hit = this.findNearestHit(screen, { includeWakes: true });
+    const hit = this.findNearestHit(screen, { includeWakes: true, includePaths: true });
     if (!hit) {
       this.selectedItem = null;
       this.updateReadout();
@@ -2423,10 +2384,9 @@ class CausalDelayFeedbackRuntime {
     this.updateReadout(hit);
     if (hit.type === "initial-velocity") {
       this.startInitialVelocityDrag(event, hit);
-    } else if (hit.type === "virtual-observer") {
-      this.startVirtualObserverDrag(event, hit);
-    } else if (hit.type === "history") {
-      this.startHistoryPointDrag(event, hit);
+    }
+    if (hit.type === "path-line") {
+      this.startPathLineDrag(event, hit);
     }
     this.render();
   }
@@ -2496,65 +2456,6 @@ class CausalDelayFeedbackRuntime {
     return didZoom;
   }
 
-  async handleCanvasContextMenu(event) {
-    const rect = this.dom.canvas.getBoundingClientRect();
-    const screen = { x: event.clientX - rect.left, y: event.clientY - rect.top };
-    const insertion = this.findNearestPathInsertion(screen);
-    if (!insertion) {
-      return;
-    }
-    event.preventDefault();
-    const point = this.addReceptionPointAtPath(insertion.kind, insertion);
-    if (!point) {
-      return;
-    }
-    this.selectedItem = { type: "history", kind: point.kind, depth: point.depth };
-    this.updateReadout(this.createHistoryHit(point, 0));
-    this.render();
-    return this.submitReceptionPointInsertion();
-  }
-
-  async submitReceptionPointInsertion() {
-    if (this.usesFallbackReplayOnly() || this.shouldUseRepresentativeReplayOnly(this.presetId)) {
-      return this.dataset;
-    }
-    const selectedItem = this.selectedItem ? { ...this.selectedItem } : null;
-    const dataset = await this.loadReplay({
-      requestOptions: this.replayRequestOptions,
-      preserveDraftOnFailure: true,
-    });
-    if (this.canRestoreSelectedHistoryItem(selectedItem)) {
-      this.selectedItem = selectedItem;
-      this.updateReadout();
-      this.render();
-    }
-    return dataset;
-  }
-
-  canRestoreSelectedHistoryItem(selectedItem) {
-    if (selectedItem?.type !== "history") {
-      return false;
-    }
-    return this.getVisibleHistory(selectedItem.kind).some((point) => point.depth === selectedItem.depth);
-  }
-
-  startHistoryPointDrag(event, hit) {
-    this.clearBackgroundPointers();
-    const screen = this.canvasScreenPointFromEvent(event);
-    this.dragState = {
-      type: "history",
-      kind: hit.selection.kind,
-      depth: hit.selection.depth,
-      lastWorld: this.screenToWorld(screen),
-      didEdit: false,
-    };
-    this.setPlaying(false);
-    if (typeof this.dom.canvas.setPointerCapture === "function") {
-      this.dom.canvas.setPointerCapture(event.pointerId);
-    }
-    event.preventDefault();
-  }
-
   startInitialVelocityDrag(event, hit) {
     this.clearBackgroundPointers();
     const screen = this.canvasScreenPointFromEvent(event);
@@ -2571,37 +2472,6 @@ class CausalDelayFeedbackRuntime {
     event.preventDefault();
   }
 
-  startVirtualObserverDrag(event, hit) {
-    this.clearBackgroundPointers();
-    const screen = this.canvasScreenPointFromEvent(event);
-    this.dragState = {
-      type: "virtual-observer",
-      lastWorld: this.screenToWorld(screen),
-      didEdit: false,
-    };
-    this.setPlaying(false);
-    if (typeof this.dom.canvas.setPointerCapture === "function") {
-      this.dom.canvas.setPointerCapture(event.pointerId);
-    }
-    event.preventDefault();
-  }
-
-  dragSelectedHistoryPoint(event) {
-    const rect = this.dom.canvas.getBoundingClientRect();
-    const screen = { x: event.clientX - rect.left, y: event.clientY - rect.top };
-    const world = this.screenToWorld(screen);
-    const delta = {
-      x: world.x - this.dragState.lastWorld.x,
-      y: world.y - this.dragState.lastWorld.y,
-    };
-    this.dragState.lastWorld = world;
-    if (this.applyRetainedPointDrag(this.dragState.kind, this.dragState.depth, delta)) {
-      this.dragState.didEdit = true;
-      this.updateReadout();
-      this.render();
-    }
-  }
-
   dragSelectedInitialVelocity(event) {
     const rect = this.dom.canvas.getBoundingClientRect();
     const screen = { x: event.clientX - rect.left, y: event.clientY - rect.top };
@@ -2614,16 +2484,32 @@ class CausalDelayFeedbackRuntime {
     }
   }
 
-  dragSelectedVirtualObserver(event) {
-    const rect = this.dom.canvas.getBoundingClientRect();
-    const screen = { x: event.clientX - rect.left, y: event.clientY - rect.top };
+  startPathLineDrag(event, hit) {
+    this.clearBackgroundPointers();
+    const screen = this.canvasScreenPointFromEvent(event);
+    this.dragState = {
+      type: "path-line",
+      kind: hit.selection.kind,
+      anchorT: hit.selection.anchorT,
+      lastWorld: this.screenToWorld(screen),
+      didEdit: false,
+    };
+    this.setPlaying(false);
+    if (typeof this.dom.canvas.setPointerCapture === "function") {
+      this.dom.canvas.setPointerCapture(event.pointerId);
+    }
+    event.preventDefault?.();
+  }
+
+  dragSelectedPathLine(event) {
+    const screen = this.canvasScreenPointFromEvent(event);
     const world = this.screenToWorld(screen);
     const delta = {
       x: world.x - this.dragState.lastWorld.x,
       y: world.y - this.dragState.lastWorld.y,
     };
     this.dragState.lastWorld = world;
-    if (this.applyVirtualObserverDrag(delta)) {
+    if (this.applyPathLineDrag(this.dragState.kind, this.dragState.anchorT, delta)) {
       this.dragState.didEdit = true;
       this.updateReadout();
       this.render();
@@ -2644,10 +2530,10 @@ class CausalDelayFeedbackRuntime {
     if (!completedDrag?.didEdit) {
       return false;
     }
-    if (completedDrag.type === "initial-velocity" || completedDrag.type === "virtual-observer") {
+    if (completedDrag.type === "initial-velocity") {
       return true;
     }
-    return completedDrag.type === "history";
+    return completedDrag.type === "history" || completedDrag.type === "path-line";
   }
 
   rerunAfterDirectManipulationDrag() {
@@ -2668,6 +2554,17 @@ class CausalDelayFeedbackRuntime {
     this.updateWakeLinkGeometry();
     this.syncReplayRequestOptionsFromDataset();
     this.markDraftPreview("retained_point_drag_preview");
+    return true;
+  }
+
+  applyPathLineDrag(kind, anchorT, delta) {
+    const didEdit = this.deformPathAroundPathTime(kind, anchorT, delta);
+    if (!didEdit) {
+      return false;
+    }
+    this.updateWakeLinkGeometry();
+    this.syncReplayRequestOptionsFromDataset();
+    this.markDraftPreview("path_line_drag_preview");
     return true;
   }
 
@@ -2698,159 +2595,6 @@ class CausalDelayFeedbackRuntime {
     this.syncReplayRequestOptionsFromDataset();
     this.markDraftPreview("initial_velocity_drag_preview");
     return true;
-  }
-
-  applyVirtualObserverDrag(delta) {
-    if (!delta || (delta.x === 0 && delta.y === 0)) {
-      return false;
-    }
-    const observer = this.getVirtualObserver();
-    if (!observer) {
-      return false;
-    }
-    this.setVirtualObserverPosition({
-      x: observer.x + delta.x,
-      y: observer.y + delta.y,
-    });
-    this.syncReplayRequestOptionsFromDataset();
-    this.markDraftPreview("virtual_observer_drag_preview", { staleSolverRows: false });
-    return true;
-  }
-
-  addReceptionPointAtPath(kind, point) {
-    if (!this.dataset?.history?.[kind] || !point) {
-      return null;
-    }
-    const insertedPoint = this.insertHistoryPoint(kind, point);
-    if (!insertedPoint) {
-      return null;
-    }
-
-    this.renumberHistoryPoints(kind);
-    const oppositeKind = kind === "positrino" ? "electrino" : "positrino";
-    const oppositePoint = this.getReplayPathPoint(oppositeKind, insertedPoint.t);
-    if (this.insertHistoryPoint(oppositeKind, oppositePoint)) {
-      this.renumberHistoryPoints(oppositeKind);
-    }
-    this.syncHistoryDepthState();
-    this.rebuildWakeLinksFromHistory();
-    this.retainedDepthLimit = this.getMaxRetainedDepthLimit();
-    this.syncReplayRequestOptionsFromDataset();
-    this.markDraftPreview("reception_point_insert_preview", { staleSolverRows: false });
-    if (this.dom?.historyDepthControls) {
-      this.populateHistoryDepthControls();
-    }
-    return insertedPoint;
-  }
-
-  insertHistoryPoint(kind, point) {
-    const rows = this.dataset?.history?.[kind];
-    if (!Array.isArray(rows) || !point) {
-      return null;
-    }
-    const historyPoint = {
-      kind,
-      t: Number(point.t),
-      x: Number(point.x),
-      y: Number(point.y),
-      weight: 1,
-      state: "active",
-    };
-    if (
-      !Number.isFinite(historyPoint.t) ||
-      !Number.isFinite(historyPoint.x) ||
-      !Number.isFinite(historyPoint.y)
-    ) {
-      return null;
-    }
-    if (rows.some((row) => Math.abs(row.t - historyPoint.t) <= TIME_EPSILON)) {
-      return null;
-    }
-    rows.push(historyPoint);
-    return historyPoint;
-  }
-
-  renumberHistoryPoints(kind) {
-    const rows = this.dataset?.history?.[kind];
-    if (!Array.isArray(rows)) {
-      return;
-    }
-    rows.sort((left, right) => left.t - right.t);
-    const count = rows.length;
-    rows.forEach((point, index) => {
-      point.kind = kind;
-      point.depth = index + 1;
-      point.weight = count > 1 ? (index + 1) / count : 1;
-      point.state = this.getHistoryPointState(index, count);
-    });
-  }
-
-  getHistoryPointState(index, count) {
-    if (index === 0) {
-      return "older";
-    }
-    if (index === count - 1) {
-      return "newer";
-    }
-    return "active";
-  }
-
-  syncHistoryDepthState() {
-    const maxDepth = Math.max(
-      1,
-      ...Object.values(this.dataset?.history ?? {})
-        .flat()
-        .map((point) => Number(point.depth))
-        .filter(Number.isFinite),
-    );
-    if (!this.dataset.initialConditions) {
-      this.dataset.initialConditions = {};
-    }
-    this.dataset.initialConditions.historyDepth = maxDepth;
-  }
-
-  rebuildWakeLinksFromHistory() {
-    const links = [];
-    this.appendHistoryWakeLinks(links, "positrino", "electrino");
-    this.appendHistoryWakeLinks(links, "electrino", "positrino");
-    this.dataset.wakeLinks = links;
-  }
-
-  appendHistoryWakeLinks(links, sourceKind, receiverKind) {
-    const sourceRows = this.dataset?.history?.[sourceKind] ?? [];
-    const receiverRows = this.dataset?.history?.[receiverKind] ?? [];
-    const maxDepth = Math.max(sourceRows.length, receiverRows.length);
-    for (let depth = 1; depth < maxDepth; depth += 1) {
-      const source = sourceRows.find((point) => point.depth === depth);
-      const receiver = receiverRows.find((point) => point.depth === depth + 1);
-      if (!source || !receiver || receiver.t <= source.t) {
-        continue;
-      }
-      links.push(this.createHistoryWakeLink(sourceKind, receiverKind, source, receiver));
-    }
-  }
-
-  createHistoryWakeLink(sourceKind, receiverKind, source, receiver) {
-    return {
-      id: `${sourceKind}-${source.depth}-to-${receiverKind}-${receiver.depth}`,
-      label: `${this.getKindShortLabel(sourceKind)} ${source.depth} -> ${this.getKindShortLabel(receiverKind)} ${receiver.depth}`,
-      sourceKind,
-      receiverKind,
-      sourceDepth: source.depth,
-      receiverDepth: receiver.depth,
-      source: { x: source.x, y: source.y, t: source.t },
-      receiver: { x: receiver.x, y: receiver.y, t: receiver.t },
-      emissionTime: source.t,
-      hitTime: receiver.t,
-      travelTime: receiver.t - source.t,
-      color: this.getWakeColorForKind(sourceKind),
-      weight: Math.min(source.weight, receiver.weight),
-      mode: this.dataset.wakeArcDisplayMode,
-    };
-  }
-
-  getKindShortLabel(kind) {
-    return kind === "positrino" ? "red" : "blue";
   }
 
   getWakeColorForKind(kind) {
@@ -3051,51 +2795,183 @@ class CausalDelayFeedbackRuntime {
     if (!selectedPoint) {
       return false;
     }
-    const centerT = selectedPoint.t;
-    const influenceWidth = 0.17;
-    this.dataset.paths[kind].forEach((point) => {
-      const weight = Math.exp(-Math.pow((point.t - centerT) / influenceWidth, 2));
-      point.x += delta.x * weight;
-      point.y += delta.y * weight;
-    });
-    this.dataset.frames.forEach((frame) => {
-      const point = frame[kind];
-      if (!point || this.dataset.paths[kind].includes(point)) {
-        return;
-      }
-      const sampleT = Number.isFinite(Number(point.t)) ? Number(point.t) : Number(frame.t);
-      const weight = Math.exp(-Math.pow((sampleT - centerT) / influenceWidth, 2));
-      point.x += delta.x * weight;
-      point.y += delta.y * weight;
-    });
-    this.dataset.history[kind].forEach((point) => {
-      const weight = point.depth === depth ? 1 : Math.exp(-Math.pow((point.t - centerT) / influenceWidth, 2));
-      point.x += delta.x * weight;
-      point.y += delta.y * weight;
-    });
-    this.syncPathSamplesToHistoryPoint(kind, selectedPoint);
+    selectedPoint.x += delta.x;
+    selectedPoint.y += delta.y;
+    this.rebuildSmoothPathFromHistory(kind);
     this.syncInitialConditionToHistoryStart(kind, selectedPoint);
     return true;
   }
 
-  syncPathSamplesToHistoryPoint(kind, historyPoint) {
-    const targetT = Number(historyPoint?.t);
-    if (!Number.isFinite(targetT)) {
-      return;
+  deformPathAroundPathTime(kind, anchorT, delta) {
+    if (!delta || (delta.x === 0 && delta.y === 0)) {
+      return false;
     }
-    const syncPoint = (point, fallbackT = point?.t) => {
-      const sampleT = Number(fallbackT);
-      if (!point || !Number.isFinite(sampleT) || Math.abs(sampleT - targetT) > TIME_EPSILON) {
+    const path = this.dataset?.paths?.[kind];
+    if (!Array.isArray(path) || path.length === 0) {
+      return false;
+    }
+    const pathPointSet = new Set(path);
+    let didEdit = false;
+    const applyDelta = (point, fallbackT = point?.t) => {
+      if (!point) {
         return;
       }
-      point.x = Number(historyPoint.x) || 0;
-      point.y = Number(historyPoint.y) || 0;
+      const weight = this.getPathLineDragWeight(anchorT, fallbackT);
+      if (weight <= 0) {
+        return;
+      }
+      point.x += delta.x * weight;
+      point.y += delta.y * weight;
+      didEdit = true;
     };
-    (this.dataset.paths?.[kind] ?? []).forEach((point) => syncPoint(point));
-    (this.dataset.frames ?? []).forEach((frame) => {
+
+    path.forEach((point) => {
+      applyDelta(point, point.t);
+    });
+    (this.dataset?.frames ?? []).forEach((frame) => {
+      const point = frame?.[kind];
+      if (!point || pathPointSet.has(point)) {
+        return;
+      }
+      applyDelta(point, Number.isFinite(Number(point.t)) ? point.t : frame.t);
+    });
+    (this.dataset?.history?.[kind] ?? []).forEach((point) => {
+      applyDelta(point, point.t);
+    });
+    const startPoint = this.getHistoryStartPoint(kind);
+    if (startPoint) {
+      this.syncInitialConditionToHistoryStart(kind, startPoint);
+    }
+    return didEdit;
+  }
+
+  getPathLineDragWeight(anchorT, sampleT) {
+    const anchor = Number(anchorT);
+    const sample = Number(sampleT);
+    if (!Number.isFinite(anchor) || !Number.isFinite(sample)) {
+      return 0;
+    }
+    const normalizedDistance = Math.abs(sample - anchor) / PATH_LINE_DRAG_FALLOFF_TIME;
+    if (normalizedDistance >= 1) {
+      return 0;
+    }
+    const amount = 1 - normalizedDistance;
+    return amount * amount * (3 - 2 * amount);
+  }
+
+  rebuildSmoothPathFromHistory(kind) {
+    const path = this.dataset?.paths?.[kind];
+    const history = this.getSortedFiniteHistory(kind);
+    if (!Array.isArray(path) || history.length < 2) {
+      return false;
+    }
+    const sampleTimes = this.getSmoothPathSampleTimes(path, history);
+    this.dataset.paths[kind] = sampleTimes.map((sampleT) => {
+      const point = this.findPathSampleAtTime(path, sampleT) ?? { t: sampleT };
+      const smoothPoint = this.sampleSmoothHistoryPath(history, sampleT);
+      point.t = sampleT;
+      point.x = smoothPoint.x;
+      point.y = smoothPoint.y;
+      return point;
+    });
+    this.updateFrameSamplesFromSmoothHistoryPath(kind, history);
+    return true;
+  }
+
+  getSortedFiniteHistory(kind) {
+    return (this.dataset?.history?.[kind] ?? [])
+      .filter((point) => (
+        Number.isFinite(Number(point.t)) &&
+        Number.isFinite(Number(point.x)) &&
+        Number.isFinite(Number(point.y))
+      ))
+      .slice()
+      .sort((left, right) => left.t - right.t);
+  }
+
+  getSmoothPathSampleTimes(path, history) {
+    const times = [
+      ...path.map((point) => Number(point.t)),
+      ...history.map((point) => Number(point.t)),
+    ]
+      .filter(Number.isFinite)
+      .sort((left, right) => left - right);
+    const uniqueTimes = [];
+    times.forEach((time) => {
+      if (uniqueTimes.length === 0 || Math.abs(time - uniqueTimes.at(-1)) > TIME_EPSILON) {
+        uniqueTimes.push(time);
+      }
+    });
+    return uniqueTimes;
+  }
+
+  findPathSampleAtTime(path, sampleT) {
+    return path.find((point) => Math.abs((Number(point.t) || 0) - sampleT) <= TIME_EPSILON) ?? null;
+  }
+
+  sampleSmoothHistoryPath(history, sampleT) {
+    const t = Number(sampleT);
+    const exactPoint = history.find((point) => Math.abs(point.t - t) <= TIME_EPSILON);
+    if (exactPoint) {
+      return { t, x: exactPoint.x, y: exactPoint.y };
+    }
+    const first = history[0];
+    const last = history.at(-1);
+    if (t <= first.t) {
+      return { t, x: first.x, y: first.y };
+    }
+    if (t >= last.t) {
+      return { t, x: last.x, y: last.y };
+    }
+
+    const rightIndex = history.findIndex((point) => point.t >= t);
+    const leftIndex = Math.max(0, rightIndex - 1);
+    const left = history[leftIndex];
+    const right = history[rightIndex];
+    const span = right.t - left.t;
+    if (!Number.isFinite(span) || span <= TIME_EPSILON) {
+      return { t, x: left.x, y: left.y };
+    }
+    const amount = clamp((t - left.t) / span, 0, 1);
+    const leftTangent = this.getSmoothHistoryPathTangent(history, leftIndex);
+    const rightTangent = this.getSmoothHistoryPathTangent(history, rightIndex);
+    const amount2 = amount * amount;
+    const amount3 = amount2 * amount;
+    const h00 = 2 * amount3 - 3 * amount2 + 1;
+    const h10 = amount3 - 2 * amount2 + amount;
+    const h01 = -2 * amount3 + 3 * amount2;
+    const h11 = amount3 - amount2;
+    return {
+      t,
+      x: h00 * left.x + h10 * span * leftTangent.x + h01 * right.x + h11 * span * rightTangent.x,
+      y: h00 * left.y + h10 * span * leftTangent.y + h01 * right.y + h11 * span * rightTangent.y,
+    };
+  }
+
+  getSmoothHistoryPathTangent(history, index) {
+    const previous = history[Math.max(0, index - 1)];
+    const next = history[Math.min(history.length - 1, index + 1)];
+    const span = next.t - previous.t;
+    if (!Number.isFinite(span) || span <= TIME_EPSILON) {
+      return { x: 0, y: 0 };
+    }
+    return {
+      x: ((next.x - previous.x) / span) * RETAINED_PATH_SPLINE_TANGENT_SCALE,
+      y: ((next.y - previous.y) / span) * RETAINED_PATH_SPLINE_TANGENT_SCALE,
+    };
+  }
+
+  updateFrameSamplesFromSmoothHistoryPath(kind, history) {
+    (this.dataset?.frames ?? []).forEach((frame) => {
       const point = frame?.[kind];
       const sampleT = Number.isFinite(Number(point?.t)) ? Number(point.t) : Number(frame?.t);
-      syncPoint(point, sampleT);
+      if (!point || !Number.isFinite(sampleT)) {
+        return;
+      }
+      const smoothPoint = this.sampleSmoothHistoryPath(history, sampleT);
+      point.t = sampleT;
+      point.x = smoothPoint.x;
+      point.y = smoothPoint.y;
     });
   }
 
@@ -3153,29 +3029,9 @@ class CausalDelayFeedbackRuntime {
   }
 
   getFrameReceptionReplayTime(previousReplayTime, replayTime) {
-    if (!Number.isFinite(previousReplayTime) || !Number.isFinite(replayTime)) {
-      return null;
-    }
-    const [start, end] = this.getReplayTimeRange();
-    if (!Number.isFinite(start) || !Number.isFinite(end) || end <= start) {
-      return null;
-    }
-
-    const candidates = [];
-    this.getVisibleWakeLinks().forEach((link) => {
-      const timing = this.getWakeTiming(link, replayTime);
-      const receiverT = timing?.receiverT;
-      if (!Number.isFinite(receiverT)) {
-        return;
-      }
-      const advance = this.getReplayTimeAdvanceToCrossedPoint(previousReplayTime, replayTime, receiverT, start, end);
-      if (Number.isFinite(advance)) {
-        candidates.push({ replayTime: receiverT, advance });
-      }
-    });
-
-    candidates.sort((left, right) => left.advance - right.advance);
-    return candidates[0]?.replayTime ?? null;
+    void previousReplayTime;
+    void replayTime;
+    return null;
   }
 
   getReplayTimeAdvanceToCrossedPoint(previousReplayTime, replayTime, crossedReplayTime, start, end) {
@@ -3217,33 +3073,6 @@ class CausalDelayFeedbackRuntime {
 
   getHistoryStartPoint(kind) {
     return this.dataset.history?.[kind]?.find((point) => Number(point.depth) === 1) ?? null;
-  }
-
-  getVirtualObserver() {
-    return this.dataset?.virtualObserver ?? this.dataset?.initialConditions?.virtualObserver ?? null;
-  }
-
-  setVirtualObserverPosition(point) {
-    if (!this.dataset || !point) {
-      return null;
-    }
-    const current = this.getVirtualObserver() ?? {
-      ...DEFAULT_VIRTUAL_OBSERVER_POINT,
-    };
-    const next = {
-      ...current,
-      kind: "virtualObserver",
-      label: current.label ?? "Virtual Observer",
-      role: current.role ?? "observer",
-      x: Number(point.x) || 0,
-      y: Number(point.y) || 0,
-    };
-    this.dataset.virtualObserver = next;
-    if (!this.dataset.initialConditions) {
-      this.dataset.initialConditions = {};
-    }
-    this.dataset.initialConditions.virtualObserver = { ...next };
-    return next;
   }
 
   initialConditionPoint(condition) {
@@ -3308,7 +3137,58 @@ class CausalDelayFeedbackRuntime {
       active: startedForLoop && !completedForLoop,
       startedForLoop,
       completedForLoop,
+      liveWakeSeries: Boolean(link.liveWakeSeries),
     };
+  }
+
+  getWakeFrontProgresses(timing, link = null) {
+    if (!timing) {
+      return [];
+    }
+    if (link?.liveWakeSeries || timing.liveWakeSeries) {
+      return this.getLiveWakeFrontProgresses(timing, link);
+    }
+    const duration = timing.receiverT - timing.sourceT;
+    if (!Number.isFinite(duration) || duration <= 0) {
+      return [];
+    }
+    const [start, end] = this.getReplayTimeRange();
+    const replaySpan = Number.isFinite(end - start) && end > start ? end - start : 1;
+    const frontTimeStep = replaySpan / WAKE_FRONT_CADENCE_TIME_DIVISIONS;
+    const elapsed = clamp(timing.progress, 0, 1) * duration;
+    const frontCount = Math.floor((elapsed + TIME_EPSILON) / frontTimeStep);
+    const progresses = [];
+    for (let index = 1; index <= frontCount; index += 1) {
+      const progress = (index * frontTimeStep) / duration;
+      if (progress > 1 + TIME_EPSILON) {
+        break;
+      }
+      progresses.push(clamp(progress, 0, 1));
+    }
+    if (timing.progress >= 1 - TIME_EPSILON && (progresses.at(-1) ?? 0) < 1) {
+      progresses.push(1);
+    }
+    return progresses;
+  }
+
+  getLiveWakeFrontProgresses(timing, link = null) {
+    const endpointDistance =
+      timing?.source && timing?.receiver ? getDistance(timing.source, timing.receiver) : Number.NaN;
+    const linkDistance = Number(link?.distance);
+    const distance =
+      Number.isFinite(endpointDistance) && endpointDistance > 0
+        ? endpointDistance
+        : Number.isFinite(linkDistance) && linkDistance > 0
+          ? linkDistance
+          : Number.NaN;
+    if (!Number.isFinite(distance) || distance <= 0) {
+      return [];
+    }
+    const frontCount = Math.max(1, Math.ceil(distance / LIVE_WAKE_FRONT_SPACING));
+    return Array.from({ length: frontCount }, (_unused, index) => {
+      const frontDistance = Math.min(distance, (index + 1) * LIVE_WAKE_FRONT_SPACING);
+      return clamp(frontDistance / distance, 0, 1);
+    });
   }
 
   shouldDrawWakeSeries(timing) {
@@ -3434,10 +3314,6 @@ class CausalDelayFeedbackRuntime {
       const condition = this.getInitialCondition(this.selectedItem.kind);
       return condition ? this.createInitialVelocityHit(this.selectedItem.kind, condition, 0) : null;
     }
-    if (this.selectedItem?.type === "virtual-observer") {
-      const observer = this.getVirtualObserver();
-      return observer ? this.createVirtualObserverHit(observer, 0) : null;
-    }
     if (this.selectedItem?.type === "history") {
       const point = this.getVisibleHistory(this.selectedItem.kind).find(
         (candidate) => candidate.depth === this.selectedItem.depth,
@@ -3445,8 +3321,11 @@ class CausalDelayFeedbackRuntime {
       return point ? this.createHistoryHit(point, 0) : null;
     }
     if (this.selectedItem?.type === "wake") {
-      const link = this.getVisibleWakeLinks().find((candidate) => candidate.id === this.selectedItem.linkId);
+      const link = this.getVisibleWakeSeries().find((candidate) => candidate.id === this.selectedItem.linkId);
       return link ? this.createWakeHit(link, 0) : null;
+    }
+    if (this.selectedItem?.type === "path-line") {
+      return this.createPathLineHit(this.selectedItem.kind, this.selectedItem.anchorT, 0);
     }
     return null;
   }
@@ -3488,91 +3367,18 @@ class CausalDelayFeedbackRuntime {
     };
   }
 
-  findNearestPathInsertion(screen) {
+  findNearestHit(screen, { includeWakes = false, includePaths = false } = {}) {
     const candidates = [];
-    ["positrino", "electrino"].forEach((kind) => {
-      const points = this.dataset?.paths?.[kind] ?? [];
-      for (let index = 0; index < points.length - 1; index += 1) {
-        const left = points[index];
-        const right = points[index + 1];
-        const start = this.worldToScreen(left);
-        const end = this.worldToScreen(right);
-        const projection = this.projectScreenPointToSegment(screen, start, end);
-        const amount = projection.amount;
-        candidates.push({
-          kind,
-          distance: projection.distance,
-          x: left.x + (right.x - left.x) * amount,
-          y: left.y + (right.y - left.y) * amount,
-          t: left.t + (right.t - left.t) * amount,
-        });
-      }
-    });
-    const nearest = candidates.sort((left, right) => left.distance - right.distance)[0];
-    return nearest && nearest.distance <= 28 ? nearest : null;
-  }
-
-  projectScreenPointToSegment(point, start, end) {
-    const dx = end.x - start.x;
-    const dy = end.y - start.y;
-    const lengthSquared = dx * dx + dy * dy;
-    if (lengthSquared === 0) {
-      return {
-        amount: 0,
-        distance: Math.hypot(point.x - start.x, point.y - start.y),
-      };
-    }
-    const amount = clamp(((point.x - start.x) * dx + (point.y - start.y) * dy) / lengthSquared, 0, 1);
-    return {
-      amount,
-      distance: Math.hypot(point.x - (start.x + dx * amount), point.y - (start.y + dy * amount)),
-    };
-  }
-
-  findNearestHit(screen, { includeWakes = false } = {}) {
-    const velocityCandidates = [];
-    ["positrino", "electrino"].forEach((kind) => {
-      const condition = this.getInitialCondition(kind);
-      if (!condition) {
-        return;
-      }
-      const candidate = this.worldToScreen(
-        this.initialConditionVelocityEnd(condition, this.getInitialVelocityAnchorPoint(kind, condition)),
-      );
-      const distance = Math.hypot(screen.x - candidate.x, screen.y - candidate.y);
-      velocityCandidates.push(this.createInitialVelocityHit(kind, condition, distance));
-    });
-    const nearestVelocity = velocityCandidates.sort((a, b) => a.distance - b.distance)[0];
-    if (nearestVelocity && nearestVelocity.distance <= nearestVelocity.hitRadius) {
-      return nearestVelocity;
-    }
-
-    const historyCandidates = [];
-    ["positrino", "electrino"].forEach((kind) => {
-      this.getVisibleHistory(kind).forEach((point) => {
-        const candidate = this.worldToScreen(point);
-        const distance = Math.hypot(screen.x - candidate.x, screen.y - candidate.y);
-        historyCandidates.push(this.createHistoryHit(point, distance));
+    if (includePaths) {
+      ARCHITRINO_KINDS.forEach((kind) => {
+        const hit = this.findNearestPathLineHit(kind, screen);
+        if (hit) {
+          candidates.push(hit);
+        }
       });
-    });
-    const nearestHistory = historyCandidates.sort((a, b) => a.distance - b.distance)[0];
-    if (nearestHistory && nearestHistory.distance <= nearestHistory.hitRadius) {
-      return nearestHistory;
     }
-
-    const observer = this.getVirtualObserver();
-    if (observer) {
-      const candidate = this.worldToScreen(observer);
-      const distance = Math.hypot(screen.x - candidate.x, screen.y - candidate.y);
-      const observerHit = this.createVirtualObserverHit(observer, distance);
-      if (observerHit.distance <= observerHit.hitRadius) {
-        return observerHit;
-      }
-    }
-
-    const candidates = [];
     if (includeWakes) {
-      this.getVisibleWakeLinks().forEach((link) => {
+      this.getVisibleWakeSeries().forEach((link) => {
         const endpoints = this.getWakeEndpoints(link);
         if (!endpoints) {
           return;
@@ -3587,6 +3393,60 @@ class CausalDelayFeedbackRuntime {
     }
     const nearest = candidates.sort((a, b) => a.distance - b.distance)[0];
     return nearest && nearest.distance <= nearest.hitRadius ? nearest : null;
+  }
+
+  findNearestPathLineHit(kind, screen) {
+    const path = this.dataset?.paths?.[kind] ?? [];
+    if (path.length < 2) {
+      return null;
+    }
+    let nearest = null;
+    for (let index = 1; index < path.length; index += 1) {
+      const left = path[index - 1];
+      const right = path[index];
+      const projection = this.getScreenSegmentProjection(
+        screen,
+        this.worldToScreen(left),
+        this.worldToScreen(right),
+      );
+      if (!projection || (nearest && projection.distance >= nearest.distance)) {
+        continue;
+      }
+      const leftT = Number(left.t);
+      const rightT = Number(right.t);
+      const anchorT =
+        Number.isFinite(leftT) && Number.isFinite(rightT)
+          ? leftT + (rightT - leftT) * projection.amount
+          : Number.isFinite(leftT)
+            ? leftT
+            : Number.isFinite(rightT)
+              ? rightT
+              : 0;
+      nearest = {
+        distance: projection.distance,
+        anchorT,
+      };
+    }
+    return nearest ? this.createPathLineHit(kind, nearest.anchorT, nearest.distance) : null;
+  }
+
+  createPathLineHit(kind, anchorT, distance) {
+    const point = this.getReplayPathPoint(kind, anchorT);
+    return {
+      type: "path-line",
+      title: `${kind} path`,
+      label: `${kind} path`,
+      details: [
+        `t=${point.t.toFixed(2)}`,
+        `x=${Math.round(Number(point.x) || 0)}`,
+        `y=${Math.round(Number(point.y) || 0)}`,
+        "drag=path",
+        ...this.createDraftSolverRejectionReadoutDetails(),
+      ],
+      distance,
+      hitRadius: PATH_LINE_HIT_RADIUS,
+      selection: { type: "path-line", kind, anchorT: point.t },
+    };
   }
 
   createHistoryHit(point, distance) {
@@ -3633,29 +3493,6 @@ class CausalDelayFeedbackRuntime {
       distance,
       hitRadius: 20,
       selection: { type: "initial-velocity", kind },
-    };
-  }
-
-  createVirtualObserverHit(observer, distance) {
-    const summary = this.getContributionSummary(this.getCurrentReplayTime());
-    return {
-      type: "virtual-observer",
-      title: "Virtual Observer",
-      label: "Virtual Observer",
-      details: [
-        `x=${Math.round(Number(observer.x) || 0)}`,
-        `y=${Math.round(Number(observer.y) || 0)}`,
-        ...(summary
-          ? [
-              `received=${summary.receivedCount}/${summary.activeLinkCount}`,
-              `net=${formatCompactNumber(summary.netContribution)}`,
-            ]
-          : []),
-        ...this.createDraftSolverRejectionReadoutDetails(),
-      ],
-      distance,
-      hitRadius: 28,
-      selection: { type: "virtual-observer" },
     };
   }
 
@@ -3710,7 +3547,7 @@ class CausalDelayFeedbackRuntime {
   }
 
   getContributionSummary(replayTime = this.getCurrentReplayTime()) {
-    const wakeLinks = this.getVisibleWakeLinks();
+    const wakeLinks = this.getVisibleWakeSeries(replayTime);
     const summary = {
       replayTime,
       threshold: this.getAssemblyThreshold(),
@@ -3853,6 +3690,9 @@ class CausalDelayFeedbackRuntime {
     const boundaryRelaxationResidualEvidenceStatus =
       this.dataset?.pathConstraintBoundaryRelaxationResidualEvidenceStatus ??
       summary.pathConstraintBoundaryRelaxationResidualEvidenceStatus;
+    const boundaryRelaxationResidualMode =
+      this.dataset?.pathConstraintBoundaryRelaxationResidualMode ??
+      summary.pathConstraintBoundaryRelaxationResidualMode;
     const boundaryRelaxationResidualRatio = Number(
       this.dataset?.pathConstraintBoundaryRelaxationResidualRatio ??
         summary.pathConstraintBoundaryRelaxationResidualRatio,
@@ -3944,6 +3784,9 @@ class CausalDelayFeedbackRuntime {
     const physicalBoundarySolverClaim =
       this.dataset?.pathConstraintPhysicalBoundarySolverClaim ??
       summary.pathConstraintPhysicalBoundarySolverClaim;
+    const physicalBoundarySolverBlockingReason =
+      this.dataset?.pathConstraintPhysicalBoundarySolverBlockingReason ??
+      summary.pathConstraintPhysicalBoundarySolverBlockingReason;
     const isDiscreteBoundaryConverged = constraintSolverStatus === DISCRETE_BOUNDARY_VALUE_CONVERGED_STATUS;
     const maxGuidanceAcceleration = Number(
       this.dataset?.maxPathConstraintGuidanceAcceleration ?? summary.maxPathConstraintGuidanceAcceleration,
@@ -3958,6 +3801,9 @@ class CausalDelayFeedbackRuntime {
     const boundarySampleCount = Number(
       this.dataset?.pathConstraintBoundaryResidualSampleCount ?? summary.pathConstraintBoundaryResidualSampleCount,
     );
+    const boundaryResidualMode =
+      this.dataset?.pathConstraintBoundaryResidualMode ??
+      summary.pathConstraintBoundaryResidualMode;
     const boundaryStatus =
       this.dataset?.pathConstraintBoundaryResidualStatus ?? summary.pathConstraintBoundaryResidualStatus;
     const effectiveBoundaryStatus =
@@ -3968,6 +3814,7 @@ class CausalDelayFeedbackRuntime {
     const maxBoundaryResidual = Number(
       this.dataset?.maxPathConstraintBoundaryResidual ?? summary.maxPathConstraintBoundaryResidual,
     );
+    const signalSpeed = Number(this.dataset?.signalSpeed ?? summary.signalSpeed);
     const maxConstraintResidual = Number(
       this.dataset?.maxPathConstraintResidual ?? summary.maxPathConstraintResidual,
     );
@@ -3985,26 +3832,42 @@ class CausalDelayFeedbackRuntime {
     const maxPositionResidual = Number(
       this.dataset?.maxPathConstraintPositionResidual ?? summary.maxPathConstraintPositionResidual,
     );
+    const initialVelocityResidualSampleCount = Number(
+      this.dataset?.pathConstraintInitialVelocityResidualSampleCount ??
+        summary.pathConstraintInitialVelocityResidualSampleCount,
+    );
+    const initialVelocityResidualStatus =
+      this.dataset?.pathConstraintInitialVelocityResidualStatus ??
+      summary.pathConstraintInitialVelocityResidualStatus;
+    const initialVelocityResidualTolerance = Number(
+      this.dataset?.pathConstraintInitialVelocityResidualTolerance ??
+        summary.pathConstraintInitialVelocityResidualTolerance,
+    );
+    const maxInitialVelocityResidual = Number(
+      this.dataset?.maxPathConstraintInitialVelocityResidual ??
+        summary.maxPathConstraintInitialVelocityResidual,
+    );
     const details = [];
     if (Number.isFinite(frameRefinementSampleCount) && frameRefinementSampleCount > 0) {
       details.push(`refined=${frameRefinementSampleCount}`);
     }
     if (Number.isFinite(guidanceSampleCount) && guidanceSampleCount > 0) {
       details.push(`guide=${formatCompactLabel(guidanceMode, "guided")}`);
-      if (boundaryMode) {
-        details.push(`bMode=${formatCompactLabel(boundaryMode)}`);
+    }
+    if (boundaryMode) {
+      details.push(`bMode=${formatCompactLabel(boundaryMode)}`);
+    }
+    if (boundarySeedMode) {
+      details.push(`seed=${formatCompactLabel(boundarySeedMode)}`);
+    }
+    if (Number.isFinite(boundarySeedSampleCount) && boundarySeedSampleCount > 0) {
+      details.push(`seedRows=${boundarySeedSampleCount}`);
+    }
+    if (boundaryRelaxationMode) {
+      details.push(`relax=${formatCompactLabel(boundaryRelaxationMode)}`);
+      if (Number.isFinite(boundaryRelaxationIterationCount)) {
+        details.push(`relaxIter=${boundaryRelaxationIterationCount}`);
       }
-      if (boundarySeedMode) {
-        details.push(`seed=${formatCompactLabel(boundarySeedMode)}`);
-      }
-      if (Number.isFinite(boundarySeedSampleCount) && boundarySeedSampleCount > 0) {
-        details.push(`seedRows=${boundarySeedSampleCount}`);
-      }
-      if (boundaryRelaxationMode) {
-        details.push(`relax=${formatCompactLabel(boundaryRelaxationMode)}`);
-        if (Number.isFinite(boundaryRelaxationIterationCount)) {
-          details.push(`relaxIter=${boundaryRelaxationIterationCount}`);
-        }
       if (Number.isFinite(boundaryRelaxationAppliedIterationCount)) {
         details.push(`relaxApplied=${boundaryRelaxationAppliedIterationCount}`);
       }
@@ -4017,79 +3880,83 @@ class CausalDelayFeedbackRuntime {
       if (Number.isFinite(boundaryRelaxationStepTolerance)) {
         details.push(`relaxStepTol=${formatCompactNumber(boundaryRelaxationStepTolerance)}`);
       }
-        if (Number.isFinite(boundaryRelaxationResidualRatio)) {
-          details.push(`relaxRatio=${formatCompactNumber(boundaryRelaxationResidualRatio)}`);
+      if (Number.isFinite(boundaryRelaxationResidualRatio)) {
+        details.push(`relaxRatio=${formatCompactNumber(boundaryRelaxationResidualRatio)}`);
+      }
+      if (Number.isFinite(boundaryRelaxationRmsResidualRatio)) {
+        details.push(`relaxRmsRatio=${formatCompactNumber(boundaryRelaxationRmsResidualRatio)}`);
+      }
+      if (Number.isFinite(boundaryRelaxationResidualSettlingRate)) {
+        details.push(`relaxRate=${formatCompactNumber(boundaryRelaxationResidualSettlingRate)}`);
+      }
+      if (Number.isFinite(boundaryRelaxationRmsResidualSettlingRate)) {
+        details.push(`relaxRmsRate=${formatCompactNumber(boundaryRelaxationRmsResidualSettlingRate)}`);
+      }
+      if (Number.isFinite(boundaryRelaxationRmsResidualAfter)) {
+        details.push(`relaxRms=${formatCompactNumber(boundaryRelaxationRmsResidualAfter)}`);
+      }
+      if (Number.isFinite(boundaryRelaxationMaxStep)) {
+        details.push(`relaxStep=${formatCompactNumber(boundaryRelaxationMaxStep)}`);
+      }
+      if (Number.isFinite(boundaryRelaxationFinalStepFactor)) {
+        details.push(`relaxFactor=${formatCompactNumber(boundaryRelaxationFinalStepFactor)}`);
+      }
+      if (boundaryRelaxationSelectedCandidateKind) {
+        details.push(`relaxKind=${formatCompactLabel(boundaryRelaxationSelectedCandidateKind)}`);
+      }
+      if (Number.isFinite(boundaryRelaxationCenterOfMassSelectedCount)) {
+        details.push(`relaxCom=${boundaryRelaxationCenterOfMassSelectedCount}`);
+      }
+      if (Number.isFinite(boundaryRelaxationCandidateVariantCount)) {
+        details.push(`cand=${boundaryRelaxationCandidateVariantCount}`);
+      }
+      if (Number.isFinite(boundaryRelaxationLineSearchTrialCount)) {
+        details.push(`trials=${boundaryRelaxationLineSearchTrialCount}`);
+      }
+      if (Number.isFinite(boundaryRelaxationCandidateKindMask)) {
+        details.push(`mask=0x${boundaryRelaxationCandidateKindMask.toString(16)}`);
+      }
+      if (boundaryRelaxationStatus) {
+        details.push(`relaxStatus=${formatCompactLabel(boundaryRelaxationStatus)}`);
+      }
+      if (boundaryRelaxationResidualEvidenceStatus) {
+        details.push(`relaxEvidence=${formatCompactLabel(boundaryRelaxationResidualEvidenceStatus)}`);
+      }
+      if (boundaryRelaxationResidualMode) {
+        details.push(`relaxLaw=${formatCompactLabel(boundaryRelaxationResidualMode)}`);
+      }
+      if (boundaryRelaxationAdaptiveRetry) {
+        if (Number.isFinite(boundaryRelaxationInitialIterationCount)) {
+          details.push(`relaxRetry=${boundaryRelaxationInitialIterationCount}->${boundaryRelaxationIterationCount}`);
+        } else {
+          details.push("relaxRetry=adaptive");
         }
-        if (Number.isFinite(boundaryRelaxationRmsResidualRatio)) {
-          details.push(`relaxRmsRatio=${formatCompactNumber(boundaryRelaxationRmsResidualRatio)}`);
+        if (Number.isFinite(boundaryRelaxationInitialTolerance)) {
+          details.push(`firstTol=${formatCompactNumber(boundaryRelaxationInitialTolerance)}`);
         }
-        if (Number.isFinite(boundaryRelaxationResidualSettlingRate)) {
-          details.push(`relaxRate=${formatCompactNumber(boundaryRelaxationResidualSettlingRate)}`);
+        if (Number.isFinite(boundaryRelaxationInitialResidualAfter)) {
+          details.push(`firstResidual=${formatCompactNumber(boundaryRelaxationInitialResidualAfter)}`);
         }
-        if (Number.isFinite(boundaryRelaxationRmsResidualSettlingRate)) {
-          details.push(`relaxRmsRate=${formatCompactNumber(boundaryRelaxationRmsResidualSettlingRate)}`);
+      } else if (boundaryRelaxationAdaptiveRetryRejected) {
+        if (Number.isFinite(boundaryRelaxationInitialIterationCount)) {
+          details.push(
+            `relaxRetryRejected=${boundaryRelaxationInitialIterationCount}->${Number.isFinite(boundaryRelaxationRejectedRetryIterationCount) ? boundaryRelaxationRejectedRetryIterationCount : "?"}`,
+          );
+        } else {
+          details.push("relaxRetryRejected=adaptive");
         }
-        if (Number.isFinite(boundaryRelaxationRmsResidualAfter)) {
-          details.push(`relaxRms=${formatCompactNumber(boundaryRelaxationRmsResidualAfter)}`);
+        if (Number.isFinite(boundaryRelaxationRejectedRetryTolerance)) {
+          details.push(`retryTol=${formatCompactNumber(boundaryRelaxationRejectedRetryTolerance)}`);
         }
-        if (Number.isFinite(boundaryRelaxationMaxStep)) {
-          details.push(`relaxStep=${formatCompactNumber(boundaryRelaxationMaxStep)}`);
+        if (Number.isFinite(boundaryRelaxationRejectedRetryResidualAfter)) {
+          details.push(`retryResidual=${formatCompactNumber(boundaryRelaxationRejectedRetryResidualAfter)}`);
         }
-        if (Number.isFinite(boundaryRelaxationFinalStepFactor)) {
-          details.push(`relaxFactor=${formatCompactNumber(boundaryRelaxationFinalStepFactor)}`);
-        }
-        if (boundaryRelaxationSelectedCandidateKind) {
-          details.push(`relaxKind=${formatCompactLabel(boundaryRelaxationSelectedCandidateKind)}`);
-        }
-        if (Number.isFinite(boundaryRelaxationCenterOfMassSelectedCount)) {
-          details.push(`relaxCom=${boundaryRelaxationCenterOfMassSelectedCount}`);
-        }
-        if (Number.isFinite(boundaryRelaxationCandidateVariantCount)) {
-          details.push(`cand=${boundaryRelaxationCandidateVariantCount}`);
-        }
-        if (Number.isFinite(boundaryRelaxationLineSearchTrialCount)) {
-          details.push(`trials=${boundaryRelaxationLineSearchTrialCount}`);
-        }
-        if (Number.isFinite(boundaryRelaxationCandidateKindMask)) {
-          details.push(`mask=0x${boundaryRelaxationCandidateKindMask.toString(16)}`);
-        }
-        if (boundaryRelaxationStatus) {
-          details.push(`relaxStatus=${formatCompactLabel(boundaryRelaxationStatus)}`);
-        }
-        if (boundaryRelaxationResidualEvidenceStatus) {
-          details.push(`evidence=${formatCompactLabel(boundaryRelaxationResidualEvidenceStatus)}`);
-        }
-        if (boundaryRelaxationAdaptiveRetry) {
-          if (Number.isFinite(boundaryRelaxationInitialIterationCount)) {
-            details.push(`relaxRetry=${boundaryRelaxationInitialIterationCount}->${boundaryRelaxationIterationCount}`);
-          } else {
-            details.push("relaxRetry=adaptive");
-          }
-          if (Number.isFinite(boundaryRelaxationInitialTolerance)) {
-            details.push(`firstTol=${formatCompactNumber(boundaryRelaxationInitialTolerance)}`);
-          }
-          if (Number.isFinite(boundaryRelaxationInitialResidualAfter)) {
-            details.push(`firstResidual=${formatCompactNumber(boundaryRelaxationInitialResidualAfter)}`);
-          }
-        } else if (boundaryRelaxationAdaptiveRetryRejected) {
-          if (Number.isFinite(boundaryRelaxationInitialIterationCount)) {
-            details.push(
-              `relaxRetryRejected=${boundaryRelaxationInitialIterationCount}->${Number.isFinite(boundaryRelaxationRejectedRetryIterationCount) ? boundaryRelaxationRejectedRetryIterationCount : "?"}`,
-            );
-          } else {
-            details.push("relaxRetryRejected=adaptive");
-          }
-          if (Number.isFinite(boundaryRelaxationRejectedRetryTolerance)) {
-            details.push(`retryTol=${formatCompactNumber(boundaryRelaxationRejectedRetryTolerance)}`);
-          }
-          if (Number.isFinite(boundaryRelaxationRejectedRetryResidualAfter)) {
-            details.push(`retryResidual=${formatCompactNumber(boundaryRelaxationRejectedRetryResidualAfter)}`);
-          }
-          if (Number.isFinite(boundaryRelaxationRejectedRetryResidualRatio)) {
-            details.push(`retryRatio=${formatCompactNumber(boundaryRelaxationRejectedRetryResidualRatio)}`);
-          }
+        if (Number.isFinite(boundaryRelaxationRejectedRetryResidualRatio)) {
+          details.push(`retryRatio=${formatCompactNumber(boundaryRelaxationRejectedRetryResidualRatio)}`);
         }
       }
+    }
+    if (Number.isFinite(guidanceSampleCount) && guidanceSampleCount > 0) {
       details.push(`guideRows=${guidanceSampleCount}`);
       if (Number.isFinite(maxGuidanceAcceleration)) {
         details.push(`maxA=${formatCompactNumber(maxGuidanceAcceleration)}`);
@@ -4113,8 +3980,17 @@ class CausalDelayFeedbackRuntime {
     if (physicalBoundarySolverClaim) {
       details.push(`physicalClaim=${formatCompactLabel(physicalBoundarySolverClaim)}`);
     }
+    if (physicalBoundarySolverBlockingReason) {
+      details.push(`physicalWhy=${formatCompactLabel(physicalBoundarySolverBlockingReason)}`);
+    }
+    if (Number.isFinite(signalSpeed)) {
+      details.push(`signal=${formatCompactNumber(signalSpeed)}`);
+    }
     if (Number.isFinite(boundarySampleCount) && boundarySampleCount > 0) {
       details.push(`boundary=${boundarySampleCount}`);
+      if (boundaryResidualMode) {
+        details.push(`bLaw=${formatCompactLabel(boundaryResidualMode)}`);
+      }
       if (Number.isFinite(maxBoundaryResidual)) {
         details.push(`maxB=${formatCompactNumber(maxBoundaryResidual)}`);
       }
@@ -4135,6 +4011,21 @@ class CausalDelayFeedbackRuntime {
       }
       if (positionResidualStatus && positionResidualStatus !== "unchecked") {
         details.push(`posStatus=${formatCompactLabel(positionResidualStatus)}`);
+      }
+    }
+    if (
+      Number.isFinite(initialVelocityResidualSampleCount) &&
+      initialVelocityResidualSampleCount > 0
+    ) {
+      details.push(`initVelRows=${initialVelocityResidualSampleCount}`);
+      if (Number.isFinite(maxInitialVelocityResidual)) {
+        details.push(`initVelErr=${formatCompactNumber(maxInitialVelocityResidual)}`);
+      }
+      if (Number.isFinite(initialVelocityResidualTolerance)) {
+        details.push(`initVelTol=${formatCompactNumber(initialVelocityResidualTolerance)}`);
+      }
+      if (initialVelocityResidualStatus && initialVelocityResidualStatus !== "unchecked") {
+        details.push(`initVelStatus=${formatCompactLabel(initialVelocityResidualStatus)}`);
       }
     }
     if (Number.isFinite(maxConstraintResidual)) {
@@ -4358,6 +4249,9 @@ class CausalDelayFeedbackRuntime {
     if (!timing) {
       return "unresolved";
     }
+    if (timing.liveWakeSeries && timing.progress >= 1 - TIME_EPSILON) {
+      return "received";
+    }
     if (timing.active) {
       return `active=${timing.progress.toFixed(2)}`;
     }
@@ -4377,24 +4271,37 @@ class CausalDelayFeedbackRuntime {
 
   getWakeContributionFalloff(link) {
     const endpoints = this.getWakeEndpoints(link);
-    const observer = this.getVirtualObserver();
-    const distance = endpoints && observer
-      ? getDistance(endpoints.receiver, observer)
-      : endpoints
-        ? getDistance(endpoints.source, endpoints.receiver)
-        : Number(link.distance);
+    const distance = endpoints
+      ? getDistance(endpoints.source, endpoints.receiver)
+      : Number(link.distance);
     return distance > 0 ? 1 / distance : 0;
   }
 
   getScreenDistanceToSegment(point, start, end) {
+    return this.getScreenSegmentProjection(point, start, end)?.distance ?? Number.POSITIVE_INFINITY;
+  }
+
+  getScreenSegmentProjection(point, start, end) {
     const dx = end.x - start.x;
     const dy = end.y - start.y;
     const lengthSquared = dx * dx + dy * dy;
     if (lengthSquared === 0) {
-      return Math.hypot(point.x - start.x, point.y - start.y);
+      return {
+        amount: 0,
+        x: start.x,
+        y: start.y,
+        distance: Math.hypot(point.x - start.x, point.y - start.y),
+      };
     }
     const t = clamp(((point.x - start.x) * dx + (point.y - start.y) * dy) / lengthSquared, 0, 1);
-    return Math.hypot(point.x - (start.x + dx * t), point.y - (start.y + dy * t));
+    const x = start.x + dx * t;
+    const y = start.y + dy * t;
+    return {
+      amount: t,
+      x,
+      y,
+      distance: Math.hypot(point.x - x, point.y - y),
+    };
   }
 }
 

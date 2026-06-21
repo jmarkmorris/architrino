@@ -3,6 +3,7 @@
 #include "architrino/solver/SolverCAbi.hpp"
 
 #include <cmath>
+#include <cstdint>
 #include <iomanip>
 #include <iostream>
 #include <vector>
@@ -13,15 +14,17 @@ bool nearly_equal(double left, double right, double tolerance = 1e-12) {
   return std::abs(left - right) <= tolerance;
 }
 
+constexpr std::uint64_t kCausalDelayNumericalNewtonCandidateMask = std::uint64_t{1} << 22;
+
 }  // namespace
 
 int main() {
   static_assert(sizeof(architrino::solver::MotionFrameRowF64) == 88);
   static_assert(sizeof(ArchitrinoSolverMotionIntegrationRequestF64) == 120);
-  static_assert(sizeof(ArchitrinoSolverPairInteractionRequestF64) == 80);
+  static_assert(sizeof(ArchitrinoSolverPairInteractionRequestF64) == 88);
   static_assert(sizeof(ArchitrinoSolverPairInteractionStateF64) == 80);
   static_assert(sizeof(ArchitrinoSolverPairInteractionPathConstraintF64) == 48);
-  static_assert(sizeof(ArchitrinoSolverPairInteractionSummaryF64) == 312);
+  static_assert(sizeof(ArchitrinoSolverPairInteractionSummaryF64) == 352);
 
   const architrino::solver::LinearPathSegment segment{
       "motion-path",
@@ -153,6 +156,7 @@ int main() {
               0.1,
               0.0,
               1e-10,
+              0.0,
               1,
               1,
               8,
@@ -184,6 +188,7 @@ int main() {
       0.1,
       0.0,
       1e-10,
+      0.0,
       1,
       1,
       8,
@@ -236,6 +241,7 @@ int main() {
               0.1,
               0.0,
               1e-10,
+              0.0,
               1,
               1,
               8,
@@ -362,6 +368,28 @@ int main() {
       16,
       &abiPairConstrainedPathRowCount,
       &abiPairConstrainedSummary);
+  ArchitrinoSolverPairInteractionRequestF64 abiPairCausalDelayBoundaryRequest =
+      abiPairConstrainedRequest;
+  abiPairCausalDelayBoundaryRequest.signal_speed = 30.0;
+  ArchitrinoSolverMotionFrameRowF64 abiPairCausalDelayBoundaryFrames[18]{};
+  int abiPairCausalDelayBoundaryFrameCount = 0;
+  ArchitrinoSolverPathHistoryRowF64 abiPairCausalDelayBoundaryPathRows[16]{};
+  int abiPairCausalDelayBoundaryPathRowCount = 0;
+  ArchitrinoSolverPairInteractionSummaryF64 abiPairCausalDelayBoundarySummary{};
+  const int abiPairCausalDelayBoundaryStatus =
+      architrino_solver_integrate_pair_interaction_motion_f64(
+          &abiPairCausalDelayBoundaryRequest,
+          abiPairStates,
+          2,
+          abiPairConstraints,
+          6,
+          abiPairCausalDelayBoundaryFrames,
+          18,
+          &abiPairCausalDelayBoundaryFrameCount,
+          abiPairCausalDelayBoundaryPathRows,
+          16,
+          &abiPairCausalDelayBoundaryPathRowCount,
+          &abiPairCausalDelayBoundarySummary);
   const ArchitrinoSolverAbiInfo abiInfo = architrino_solver_abi_info();
   const double expectedPathInterpolationBound = 1e-11 + 0.125 * std::sqrt(5.25);
 
@@ -487,10 +515,12 @@ int main() {
       pairConstrained.pathConstraintFrameRefinementSampleCount == 4 &&
       pairConstrained.pathConstraintPositionResidualSampleCount == 6 &&
       nearly_equal(pairConstrained.maxPathConstraintPositionResidual, 0.0) &&
+      pairConstrained.pathConstraintInitialVelocityResidualSampleCount == 2 &&
+      nearly_equal(pairConstrained.maxPathConstraintInitialVelocityResidual, 0.0) &&
       pairConstrained.pathConstraintResidualSampleCount == 14 &&
       pairConstrained.maxPathConstraintResidual > 0.0 &&
-      pairConstrained.pathConstraintGuidanceSampleCount > 0 &&
-      pairConstrained.maxPathConstraintGuidanceAcceleration > 0.0 &&
+      pairConstrained.pathConstraintGuidanceSampleCount == 0 &&
+      nearly_equal(pairConstrained.maxPathConstraintGuidanceAcceleration, 0.0) &&
       pairConstrained.pathConstraintBoundaryResidualSampleCount == 2 &&
       pairConstrained.maxPathConstraintBoundaryResidual > 0.0 &&
       pairConstrained.pathConstraintBoundaryRelaxationResidualSampleCount > 0 &&
@@ -521,9 +551,11 @@ int main() {
       nearly_equal(pairConstrained.frames[2].velocityY, 4.00628, 1e-4) &&
       nearly_equal(pairConstrained.frames[8].positionX, 4.0) &&
       nearly_equal(pairConstrained.frames[8].positionY, 2.0) &&
-      nearly_equal(pairConstrained.frames[8].velocityX, 8.03930, 1e-4) &&
-      nearly_equal(pairConstrained.frames[8].velocityY, -0.0078591, 1e-4) &&
+      nearly_equal(pairConstrained.frames[8].velocityX, 8.0, 1e-4) &&
+      nearly_equal(pairConstrained.frames[8].velocityY, 0.0, 1e-4) &&
       nearly_equal(pairConstrained.frames[17].positionY, 2.0) &&
+      nearly_equal(pairConstrained.frames[0].velocityX, 0.0) &&
+      nearly_equal(pairConstrained.frames[0].velocityY, 0.0) &&
       pairConstrained.pathRows[0].pathKey == 101 &&
       nearly_equal(pairConstrained.pathRows[0].velocityX, 7.85081, 1e-4) &&
       nearly_equal(pairConstrained.pathRows[0].velocityY, 4.00786, 1e-4) &&
@@ -536,9 +568,11 @@ int main() {
       nearly_equal(abiPairConstrainedFrames[2].velocity_y, 4.00628, 1e-4) &&
       nearly_equal(abiPairConstrainedFrames[8].position_x, 4.0) &&
       nearly_equal(abiPairConstrainedFrames[8].position_y, 2.0) &&
-      nearly_equal(abiPairConstrainedFrames[8].velocity_x, 8.03930, 1e-4) &&
-      nearly_equal(abiPairConstrainedFrames[8].velocity_y, -0.0078591, 1e-4) &&
+      nearly_equal(abiPairConstrainedFrames[8].velocity_x, 8.0, 1e-4) &&
+      nearly_equal(abiPairConstrainedFrames[8].velocity_y, 0.0, 1e-4) &&
       nearly_equal(abiPairConstrainedFrames[17].position_y, 2.0) &&
+      nearly_equal(abiPairConstrainedFrames[0].velocity_x, 0.0) &&
+      nearly_equal(abiPairConstrainedFrames[0].velocity_y, 0.0) &&
       abiPairConstrainedPathRows[0].path_key == 101 &&
       nearly_equal(abiPairConstrainedPathRows[0].velocity_x, 7.85081, 1e-4) &&
       nearly_equal(abiPairConstrainedPathRows[0].velocity_y, 4.00786, 1e-4) &&
@@ -554,6 +588,17 @@ int main() {
       nearly_equal(
           abiPairConstrainedSummary.rms_position_residual,
           pairConstrained.rmsPathConstraintPositionResidual) &&
+      abiPairConstrainedSummary.initial_velocity_residual_sample_count ==
+          pairConstrained.pathConstraintInitialVelocityResidualSampleCount &&
+      nearly_equal(
+          abiPairConstrainedSummary.max_initial_velocity_residual,
+          pairConstrained.maxPathConstraintInitialVelocityResidual) &&
+      nearly_equal(
+          abiPairConstrainedSummary.mean_initial_velocity_residual,
+          pairConstrained.meanPathConstraintInitialVelocityResidual) &&
+      nearly_equal(
+          abiPairConstrainedSummary.rms_initial_velocity_residual,
+          pairConstrained.rmsPathConstraintInitialVelocityResidual) &&
       abiPairConstrainedSummary.residual_sample_count == 14 &&
       nearly_equal(
           abiPairConstrainedSummary.max_constraint_residual,
@@ -565,6 +610,7 @@ int main() {
           pairConstrained.maxPathConstraintGuidanceAcceleration) &&
       abiPairConstrainedSummary.boundary_residual_sample_count ==
           pairConstrained.pathConstraintBoundaryResidualSampleCount &&
+      abiPairConstrainedSummary.boundary_residual_mode == 1 &&
       nearly_equal(
           abiPairConstrainedSummary.max_boundary_residual,
           pairConstrained.maxPathConstraintBoundaryResidual) &&
@@ -626,7 +672,17 @@ int main() {
       abiPairConstrainedSummary.boundary_relaxation_line_search_trial_count >=
           abiPairConstrainedSummary.boundary_relaxation_candidate_variant_count &&
       abiPairConstrainedSummary.boundary_relaxation_candidate_kind_mask != 0 &&
-      abiInfo.motion_integration_request_f64_bytes == 120;
+      abiPairCausalDelayBoundaryStatus == 0 &&
+      abiPairCausalDelayBoundarySummary.boundary_residual_mode == 2 &&
+      abiPairCausalDelayBoundarySummary.boundary_residual_sample_count > 0 &&
+      abiPairCausalDelayBoundarySummary.boundary_relaxation_residual_sample_count > 0 &&
+      abiPairCausalDelayBoundarySummary.max_boundary_residual > 0.0 &&
+      abiPairCausalDelayBoundarySummary.max_boundary_relaxation_residual_after > 0.0 &&
+      (abiPairCausalDelayBoundarySummary.boundary_relaxation_candidate_kind_mask &
+       kCausalDelayNumericalNewtonCandidateMask) == kCausalDelayNumericalNewtonCandidateMask &&
+      abiInfo.abi_minor == 13 &&
+      abiInfo.motion_integration_request_f64_bytes == 120 &&
+      abiInfo.pair_interaction_request_f64_bytes == 88;
 
   if (!ok) {
     std::cerr << std::setprecision(17);
@@ -645,6 +701,10 @@ int main() {
                 << pairConstrained.frames[4].positionY << ") vel=("
                 << pairConstrained.frames[4].velocityX << ','
                 << pairConstrained.frames[4].velocityY << ")\n";
+      std::cerr << "frame8 pos=(" << pairConstrained.frames[8].positionX << ','
+                << pairConstrained.frames[8].positionY << ") vel=("
+                << pairConstrained.frames[8].velocityX << ','
+                << pairConstrained.frames[8].velocityY << ")\n";
       std::cerr << "frame9 pos=(" << pairConstrained.frames[9].positionX << ','
                 << pairConstrained.frames[9].positionY << ") vel=("
                 << pairConstrained.frames[9].velocityX << ','
@@ -663,7 +723,9 @@ int main() {
               << " guidance native=" << pairConstrained.maxPathConstraintGuidanceAcceleration
               << " abi=" << abiPairConstrainedSummary.max_guidance_acceleration
               << " boundary native=" << pairConstrained.maxPathConstraintBoundaryResidual
-              << " abi=" << abiPairConstrainedSummary.max_boundary_residual << '\n';
+              << " abi=" << abiPairConstrainedSummary.max_boundary_residual
+              << " initVel native=" << pairConstrained.maxPathConstraintInitialVelocityResidual
+              << " abi=" << abiPairConstrainedSummary.max_initial_velocity_residual << '\n';
     if (abiPairConstrainedFrameCount > 4) {
       std::cerr << "abi frame2 pos=(" << abiPairConstrainedFrames[2].position_x << ','
                 << abiPairConstrainedFrames[2].position_y << ") vel=("
@@ -673,6 +735,10 @@ int main() {
                 << abiPairConstrainedFrames[4].position_y << ") vel=("
                 << abiPairConstrainedFrames[4].velocity_x << ','
                 << abiPairConstrainedFrames[4].velocity_y << ")\n";
+      std::cerr << "abi frame8 pos=(" << abiPairConstrainedFrames[8].position_x << ','
+                << abiPairConstrainedFrames[8].position_y << ") vel=("
+                << abiPairConstrainedFrames[8].velocity_x << ','
+                << abiPairConstrainedFrames[8].velocity_y << ")\n";
       std::cerr << "abi frame9 pos=(" << abiPairConstrainedFrames[9].position_x << ','
                 << abiPairConstrainedFrames[9].position_y << ") vel=("
                 << abiPairConstrainedFrames[9].velocity_x << ','

@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "archie__ideal_swarm",
-    "title": "Ideal Noether Swarm: Lorentz Geometry",
+    "title": "Ideal Noether Swarm: Lorentz Geometry App",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,

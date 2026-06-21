@@ -1022,6 +1022,7 @@ Keep the maximum-curvature-wall question tied to both tracks. The Jacobian-null 
 - Derive the weak-field map from hit-density and medium variables to $g_{\mathrm{eff}}$ constraints in [emergent-metric](../../../content/markdown/aaa/spacetime/emergent-metric.md) and [proper-time-and-time-dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md).
 - Derive the constitutive closure from the coarse-grained medium itself rather than postulating it:
   - take the continuum limit of the $\eta$-regularized delayed action and effective medium Lagrangian seriously;
+  - declare the scaling-limit datum for any $\eta\to0^+$ claim: regulator family, scaling trajectory, observable maps, normalization or mixing rules, test-window class, convergence topology, and the uniform-control or reconstruction condition required by the promoted statement;
   - compute the relevant continuum stress-strain or equivalent constitutive variables of the causal medium;
   - derive the PPN numbers $\gamma$, $\beta$, and $\alpha_i$ to the Will benchmark rows: $|\gamma_{\mathrm{PPN}}-1|\le2.3\times10^{-5}$, $|\beta_{\mathrm{PPN}}-1|\le8\times10^{-5}$, $|\alpha_1|\le4\times10^{-5}$, $|\alpha_2|\le2\times10^{-9}$, and $|\alpha_3|\le4\times10^{-20}$;
   - recover the weak-field targets $\gamma_{\mathrm{eff}} = 1$, $\beta_{\mathrm{eff}} = 1$, and vanishing preferred-frame coefficients $\alpha_1$, $\alpha_2$, $\alpha_3$;

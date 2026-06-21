@@ -83,6 +83,21 @@ export class SceneRepository {
     };
   }
 
+  resolveViewportFit(entry) {
+    const rawFit = entry?.view?.fit;
+    if (typeof rawFit !== "string") {
+      return null;
+    }
+    const normalized = rawFit.trim().toLowerCase();
+    if (normalized === "viewport" || normalized === "rect" || normalized === "rectangle") {
+      return "viewport";
+    }
+    if (normalized === "focus" || normalized === "sphere" || normalized === "square") {
+      return "focus";
+    }
+    return null;
+  }
+
   resolveFileConfig(entry) {
     const source = entry?.source ?? null;
     const view = entry?.view ?? null;
@@ -176,9 +191,9 @@ export class SceneRepository {
           ? view.columns
           : null,
       splitIncludeExistingInLayout: split?.includeExistingInLayout === true,
-      splitNodeRadius: null,
-      splitRingRadius: null,
-      splitMaxRingCount: null,
+      splitNodeRadius: optionalPositiveNumber(split?.nodeRadius),
+      splitRingRadius: optionalPositiveNumber(split?.ringRadius),
+      splitMaxRingCount: optionalPositiveNumber(split?.maxRingCount),
       splitGridSpacing: optionalPositiveNumber(split?.gridSpacing),
       splitGridGapMultiplier: optionalPositiveNumber(split?.gridGapMultiplier),
       splitPalette: null,
@@ -691,6 +706,7 @@ export class SceneRepository {
       sceneMeta.layout && typeof sceneMeta.layout === "object" && !Array.isArray(sceneMeta.layout)
         ? sceneMeta.layout
         : null;
+    const sceneViewportFit = this.resolveViewportFit(sceneMeta);
     const splitScene = this.resolveSplitSceneConfig(sceneMeta);
     const wrapLabels = sceneMeta.wrapLabels ?? true;
     const sceneChildRefByNodeId = this.buildSceneChildRefMap(sceneMeta);
@@ -721,6 +737,7 @@ export class SceneRepository {
       ...splitScene,
       layoutType: rawLayoutType,
       layoutConfig: rawLayoutConfig,
+      viewportFit: sceneViewportFit,
     };
     const autoNodes = await this.buildAutoMarkdownNodes(splitRuntimeScene, nodes);
     if (autoNodes.length) {
@@ -757,6 +774,7 @@ export class SceneRepository {
       markdownShowTitle: sceneMeta.markdownShowTitle ?? true,
       markdownAutoOpen: sceneMarkdown.markdownAutoOpen ?? true,
       markdownDownloadOnly: sceneMarkdown.markdownDownloadOnly === true,
+      viewportFit: sceneViewportFit,
       centerOn: sceneMeta.centerOn ?? null,
       splitSourcePath: splitScene.splitSourcePath,
       splitSection: splitScene.splitSection,

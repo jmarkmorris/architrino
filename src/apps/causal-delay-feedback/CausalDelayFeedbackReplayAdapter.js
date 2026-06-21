@@ -16,8 +16,14 @@ export const POSITRINO_WAKE = Object.freeze({ r: 255, g: 150, b: 166, a: 1 });
 export const ELECTRINO_WAKE = Object.freeze({ r: 150, g: 170, b: 255, a: 1 });
 export const WHITE = Object.freeze({ r: 246, g: 247, b: 255, a: 1 });
 export const ARCHITRINO_KINDS = Object.freeze(["positrino", "electrino"]);
-const PATH_TIME_START_X = DESIGN_WIDTH * 0.05;
-const PATH_TIME_END_X = DESIGN_WIDTH * 0.95;
+export const TIME_AXIS_ORIGIN_X = 92;
+export const TIME_AXIS_END_X = 1810;
+export const TIME_AXIS_BASELINE_Y = 908;
+export const SPACE_AXIS_TOP_Y = 182;
+export const PATH_TIME_START_X =
+  TIME_AXIS_ORIGIN_X + (TIME_AXIS_END_X - TIME_AXIS_ORIGIN_X) * 0.05;
+export const PATH_TIME_END_X =
+  TIME_AXIS_ORIGIN_X + (TIME_AXIS_END_X - TIME_AXIS_ORIGIN_X) * 0.95;
 
 export const CANVAS_COLORS = Object.freeze([
   { id: "architrinoPurple", label: "Purple", color: "#4b0082" },
@@ -31,7 +37,6 @@ export const PRESETS = Object.freeze([
     id: "accepted_tight_bright",
     label: "Accepted - tight bright fronts",
     wakeArcDisplayMode: PARTIAL_PROPAGATING_ARCS,
-    wakeBands: 30,
     finalSpan: 14,
     startSpan: 2.5,
     dotRadius: 1.8,
@@ -42,7 +47,6 @@ export const PRESETS = Object.freeze([
     id: "tighter_sector",
     label: "Tighter sector - cleaner arrivals",
     wakeArcDisplayMode: PARTIAL_PROPAGATING_ARCS,
-    wakeBands: 30,
     finalSpan: 10,
     startSpan: 1.8,
     dotRadius: 1.8,
@@ -53,7 +57,6 @@ export const PRESETS = Object.freeze([
     id: "slightly_wider",
     label: "Slightly wider sector",
     wakeArcDisplayMode: PARTIAL_PROPAGATING_ARCS,
-    wakeBands: 30,
     finalSpan: 20,
     startSpan: 3.5,
     dotRadius: 1.8,
@@ -64,7 +67,6 @@ export const PRESETS = Object.freeze([
     id: "thin_fronts",
     label: "Thin fronts - lighter trace weight",
     wakeArcDisplayMode: PARTIAL_PROPAGATING_ARCS,
-    wakeBands: 30,
     finalSpan: 14,
     startSpan: 2.5,
     dotRadius: 1.35,
@@ -75,7 +77,6 @@ export const PRESETS = Object.freeze([
     id: "bright_fronts",
     label: "Brighter fronts - visibility stress",
     wakeArcDisplayMode: PARTIAL_PROPAGATING_ARCS,
-    wakeBands: 30,
     finalSpan: 14,
     startSpan: 2.5,
     dotRadius: 2.05,
@@ -86,7 +87,6 @@ export const PRESETS = Object.freeze([
     id: "strong_falloff",
     label: "Strong falloff - older wakes fade harder",
     wakeArcDisplayMode: PARTIAL_PROPAGATING_ARCS,
-    wakeBands: 30,
     finalSpan: 14,
     startSpan: 2.5,
     dotRadius: 1.8,
@@ -97,17 +97,16 @@ export const PRESETS = Object.freeze([
     id: "full_circular_arcs",
     label: "Full circular wakes",
     wakeArcDisplayMode: FULL_CIRCULAR_ARCS,
-    wakeBands: 5,
-    dotRadius: 1.2,
-    alphaScale: 1,
+    finalSpan: 360,
+    startSpan: 360,
+    dotRadius: 1.8,
+    alphaScale: 1.18,
     falloffPower: 1,
-    fullCircleAlpha: 0.16,
   },
   {
     id: "contrast_stress",
     label: "Contrast stress - mixed wake states",
     wakeArcDisplayMode: PARTIAL_PROPAGATING_ARCS,
-    wakeBands: 36,
     finalSpan: 16,
     startSpan: 2.8,
     dotRadius: 1.95,
@@ -128,14 +127,6 @@ const HISTORY_POINTS = Object.freeze([
   { depth: 5, t: 0.88, weight: 5 / 6, state: "active" },
   { depth: 6, t: 1, weight: 1, state: "newer" },
 ]);
-
-const DEFAULT_VIRTUAL_OBSERVER = Object.freeze({
-  kind: "virtualObserver",
-  label: "Virtual Observer",
-  role: "observer",
-  x: 1600,
-  y: 540,
-});
 
 const PATH_ANCHORS = Object.freeze({
   positrino: stretchPathToTimeAxis([
@@ -290,7 +281,6 @@ export function createMockCausalDelayReplayDataset(presetId = DEFAULT_PRESET_ID)
       : {}),
     preset,
     initialConditions,
-    virtualObserver: { ...initialConditions.virtualObserver },
     paths,
     history,
     wakeLinks,
@@ -375,7 +365,6 @@ function createInitialConditionsFromPaths(paths) {
     historyDepth: HISTORY_POINTS.length,
     outputStride: 1,
     runDuration: 1,
-    virtualObserver: { ...DEFAULT_VIRTUAL_OBSERVER },
   };
   ARCHITRINO_KINDS.forEach((kind) => {
     const points = paths[kind];

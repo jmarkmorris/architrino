@@ -20,6 +20,10 @@ const CHECKS = [
     args: ["scripts/export-ios-textbook-package.mjs", "--check", "--strict"],
   },
   {
+    name: "Check frequency-triplet notation drift",
+    args: ["scripts/angular-momentum/check-frequency-triplet-notation-drift.mjs"],
+  },
+  {
     name: "Smoke test manifest runtime routes/search",
     args: ["scripts/smoke-option3.mjs"],
   },

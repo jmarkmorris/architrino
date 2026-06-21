@@ -207,7 +207,7 @@ All subsequent chapters build on these foundations. This hub intentionally point
 
 ## Architrino
 
-This chapter is the canonical primitive-entity specification for the **architrino** in $\mathbb{A}\mathbb{A}\mathbb{A}$. It defines the architrino as a point transceiver of potential-bearing causal wakes, with definite polarity, persistent identity, complete path history, and non-creation/non-destruction at the substrate level.
+This chapter is the canonical primitive-entity specification for the **architrino** in $\mathbb{A}\mathbb{A}\mathbb{A}$. It defines the architrino as a point transceiver of potential-bearing causal wakes: each architrino continuously emits source-provenanced wake history, universally receives causal-wake intersections, and responds through receiver-local acceleration; effective equilibration appears only as a collective assembly response built from those received wakes. The primitive definition also includes definite polarity, persistent identity, complete path history, and non-creation/non-destruction at the substrate level.
 
 Architrinos live in [absolute timespace](../../../../markdown/aaa/foundations/absolute-timespace.md): absolute time $t$ together with the [Euclidean void](../../../../markdown/aaa/foundations/euclidean-void.md). They are not particles in the Standard Model sense. Standard particles, effective fields, clocks, rulers, and observer-level spacetime behavior are downstream assembly phenomena built from architrino configurations and wake dynamics.
 
@@ -266,9 +266,9 @@ q_a=\sigma_a\epsilon,
 \qquad
 \sigma_a\in\{-1,+1\}
 $$
-with magnitude
+The observer-level electron-charge benchmark is then
 $$
-\epsilon=\frac{|e|}{6}
+|e|=6\epsilon
 $$
 
 The two polarity names are:
@@ -278,7 +278,7 @@ The two polarity names are:
 
 Like polarities repel; unlike polarities attract in the universal interaction law. At the assembly level, electric charge is the coarse bookkeeping summary of the signed architrino inventory. For example, quark and lepton electric charges are built from integer counts of $\epsilon$ units in stable assembly patterns rather than from a separate primitive charge substance.
 
-The value $\epsilon=|e|/6$ is currently an input parameter and a high-priority explanatory target. The working hypothesis is that six-site nested shell swarm organization supplies the deeper reason for the observed electric-charge fractionation, but that explanation belongs to assembly closure rather than to the primitive definition of an architrino.
+The normalization $|e|=6\epsilon$ is currently an input parameter and a high-priority explanatory target. In this convention, the architrino polarity unit is primitive for bookkeeping, and the observed electron or positron charge is a six-unit assembly-level multiple. The working hypothesis is that six-site nested shell swarm organization supplies the deeper reason for that six-unit mapping, but that explanation belongs to assembly closure rather than to the primitive definition of an architrino.
 
 ### Provenance and Persistence
 
@@ -337,7 +337,7 @@ If a discussion becomes meta-theoretic, the careful wording is that architrinos 
 
 An architrino is a point transceiver: it emits and receives continuously.
 
-Its emitted structure is a potential-bearing **causal wake**. The wake is physically real: it propagates at finite wake speed, carries source provenance, and is received through later causal intersections. It is not an independent substance because it has no freely specifiable state apart from the source architrino's path history. At the effective level, many such wake contributions may be summarized as a field, but the substrate term remains causal wake.
+Its emitted structure is a potential-bearing **causal wake**. The wake is physically real: it propagates at the primitive causal-wake speed $c_f$, the field propagation speed relative to the Euclidean-void rest frame; carries source provenance; and is received through later causal intersections. It is not an independent substance because it has no freely specifiable state apart from the source architrino's path history. At the effective level, many such wake contributions may be summarized as a field, but the substrate term remains causal wake.
 
 Schematically, if the source history has time domain $I_a$, the wake emitted by architrino $a$ is a source-history functional
 $$
@@ -715,7 +715,7 @@ There are **no instantaneous actions-at-a-distance** and **no advanced potential
 
 A critical feature of $\mathbb{A}\mathbb{A}\mathbb{A}$ is that **all interactions are mediated by path history**: the cumulative effect of the causal wake surfaces that reach an architrino from prior emission events.
 
-At time $t$, an architrino at position $\mathbf{x}(t)$ experiences forces from all other architrinos based on the **intersection of its worldline with causal wake surfaces** emitted at all past times $t' < t$. This is naturally encoded in the [Master Equation of Motion](../../../../markdown/aaa/dynamics/master-equation.md) and gives rise to **non-Markovian memory effects**, including the self-hit regime where an architrino interacts with its own past emissions.
+At time $t$, an architrino at position $\mathbf{x}(t)$ receives wake contributions where its worldline intersects **causal wake surfaces** emitted at all past times $t' < t$; through the [Master Equation of Motion](../../../../markdown/aaa/dynamics/master-equation.md), those received wakes determine receiver-local acceleration rather than a primitive force. This gives rise to **non-Markovian memory effects**, including the self-hit regime where an architrino interacts with its own past emissions.
 
 Because $t$ is universal and absolute, the past (all $t' < t$) is unambiguous, and the theory can sum or integrate over admissible delayed contributions. This allows for a mechanistic model of interaction without invoking action-at-a-distance, while still permitting **deterministic multistability** at self-hit thresholds.
 

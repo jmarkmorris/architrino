@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#080b12" />
-    <title>Photon and Polarization Visualization</title>
+    <title>Photon and Polarization Visualization App</title>
     <link
       rel="stylesheet"
       href="./apps/ios/ArchitrinoReader/ArchitrinoReader/ReaderAssets/katex/katex.min.css"
@@ -275,6 +275,14 @@
       .photon-control-label {
         color: rgba(203, 213, 225, 0.78);
         font-size: 11px;
+      }
+
+      .photon-control-row.is-disabled {
+        opacity: 0.6;
+      }
+
+      .photon-control-row.is-disabled .photon-control-input {
+        cursor: not-allowed;
       }
 
       .photon-measurement-controls {
@@ -1099,7 +1107,7 @@
       <aside class="photon-inspector">
         <header class="photon-inspector-header">
           <div class="photon-inspector-title">
-            <h1>Photon and Polarization Visualization</h1>
+            <h1>Photon and Polarization Visualization App</h1>
           </div>
           <div class="photon-inspector-actions">
             <button id="photon-home-button" type="button" aria-label="Go to home">

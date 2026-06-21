@@ -106,6 +106,26 @@ test("markdown grid gap multiplier scales the open grid gap", async () => {
   assert.ok(Math.abs(expandedGap / defaultGap - 2) < 0.04);
 });
 
+test("markdown split node radius controls generated sphere radius", async () => {
+  const markdown = "## Section One\n\nBody";
+  const builder = createBuilder({
+    "content/markdown/example.md": markdown,
+  });
+
+  const [node] = await builder(
+    {
+      layoutType: "grid",
+      splitSourcePath: "content/markdown/example.md",
+      splitHeadingLevel: 2,
+      splitMaxDepth: 1,
+      splitNodeRadius: 1.76,
+    },
+    []
+  );
+
+  assert.equal(node.radius, 1.76);
+});
+
 test("markdown split nodes derive title and date labels from dated headings", async () => {
   const builder = createBuilder({
     "content/markdown/example.md": "## 2026-06-10: Ideal Noether Swarm Lorentz Geometry\n\nBody",

@@ -12,6 +12,8 @@ namespace {
 
 constexpr std::uint64_t kPairBoundaryRelaxationMaxIterationCount = 256;
 constexpr double kPairBoundaryRelaxationResidualEpsilon = 1e-12;
+constexpr std::uint32_t kPairBoundaryResidualModeSameTimePairLaw = 1;
+constexpr std::uint32_t kPairBoundaryResidualModeCausalDelayPairLaw = 2;
 constexpr double kPairBoundaryRelaxationLineSearchFactors[] = {
     1.25,
     1.0,
@@ -185,6 +187,15 @@ bool validate_pair_interaction_request(const PairInteractionRequest& request,
     validation.add(StatusCode::AppContractError,
                    StatusSeverity::Error,
                    "pair interaction scale, softening, and tolerance must be finite",
+                   "pair-interaction-integrator",
+                   false);
+    return false;
+  }
+  if (request.signalSpeed != 0.0 &&
+      (!std::isfinite(request.signalSpeed) || request.signalSpeed <= 0.0)) {
+    validation.add(StatusCode::AppContractError,
+                   StatusSeverity::Error,
+                   "pair interaction signal speed must be zero or positive finite",
                    "pair-interaction-integrator",
                    false);
     return false;
@@ -654,6 +665,16 @@ bool pair_constraint_law_acceleration_at_time(const PairInteractionRequest& requ
   return finite_vector(outAcceleration);
 }
 
+bool pair_interaction_uses_fixed_signal_speed(const PairInteractionRequest& request) {
+  return std::isfinite(request.signalSpeed) && request.signalSpeed > 0.0;
+}
+
+std::uint32_t pair_boundary_residual_mode_for_request(const PairInteractionRequest& request) {
+  return pair_interaction_uses_fixed_signal_speed(request)
+      ? kPairBoundaryResidualModeCausalDelayPairLaw
+      : kPairBoundaryResidualModeSameTimePairLaw;
+}
+
 bool pair_constraint_geometric_tangent_for_index(
     const std::vector<PairInteractionPathConstraint>& constraints,
     std::size_t index,
@@ -726,7 +747,17 @@ bool pair_constraint_tangent_at_time(const std::vector<PairInteractionPathConstr
       continue;
     }
     if (index == 0) {
-      return false;
+      const auto initialState = std::find_if(
+          initialStates.begin(),
+          initialStates.end(),
+          [&current](const PairInteractionState& state) {
+            return state.pathKey == current.pathKey;
+          });
+      if (initialState == initialStates.end()) {
+        return false;
+      }
+      outVelocity = initialState->initialVelocity;
+      return finite_vector(outVelocity);
     }
     if (pair_constraint_law_aware_tangent_for_index(
             request,
@@ -1055,7 +1086,8 @@ void advance_pair_interaction_states(const PairInteractionRequest& request,
                                      PairInteractionSampleResult& result,
                                      const std::vector<PairInteractionState>& initialStates,
                                      double currentTime,
-                                     double nextTime) {
+                                     double nextTime,
+                                     bool useConstraintGuidance) {
   const double dt = nextTime - currentTime;
   if (dt <= 0.0) {
     return;
@@ -1063,19 +1095,22 @@ void advance_pair_interaction_states(const PairInteractionRequest& request,
   const std::vector<Vector3> accelerations = pair_interaction_accelerations(request, states);
   for (std::size_t index = 0; index < states.size(); ++index) {
     PairInteractionState& state = states[index];
-    const PairInteractionGuidedAcceleration guidedAcceleration = pair_constraint_guided_acceleration(
-        request,
-        state,
-        accelerations[index],
-        initialStates,
-        currentTime,
-        nextTime);
-    if (guidedAcceleration.guided) {
-      record_pair_constraint_guidance_sample(
-          result,
-          guidedAcceleration.guidanceCorrectionNorm);
+    Vector3 acceleration = accelerations[index];
+    if (useConstraintGuidance) {
+      const PairInteractionGuidedAcceleration guidedAcceleration = pair_constraint_guided_acceleration(
+          request,
+          state,
+          accelerations[index],
+          initialStates,
+          currentTime,
+          nextTime);
+      if (guidedAcceleration.guided) {
+        record_pair_constraint_guidance_sample(
+            result,
+            guidedAcceleration.guidanceCorrectionNorm);
+      }
+      acceleration = guidedAcceleration.acceleration;
     }
-    const Vector3 acceleration = guidedAcceleration.acceleration;
     state.initialVelocity.x += acceleration.x * dt;
     state.initialVelocity.y += acceleration.y * dt;
     state.initialVelocity.z += acceleration.z * dt;
@@ -1177,6 +1212,295 @@ std::vector<PairInteractionState> states_from_constraints_at_time(
               return left.pathKey < right.pathKey;
             });
   return states;
+}
+
+std::vector<PairInteractionState> states_from_constraint_boundary_at_time(
+    const PairInteractionRequest& request,
+    const std::vector<PairInteractionState>& initialStates,
+    double time) {
+  const double epsilon = pair_constraint_time_epsilon(request);
+  std::vector<PairInteractionState> states;
+  states.reserve(initialStates.size());
+  for (const PairInteractionState& initialState : initialStates) {
+    const std::vector<PairInteractionPathConstraint> constraints =
+        pair_constraints_for_path(request, initialState.pathKey);
+    Vector3 position{};
+    if (!pair_constraint_hermite_position_at_time(request,
+                                                  initialStates,
+                                                  constraints,
+                                                  initialState.initialVelocity,
+                                                  time,
+                                                  epsilon,
+                                                  position)) {
+      states.clear();
+      return states;
+    }
+    states.push_back(PairInteractionState{
+        initialState.pathKey,
+        position,
+        Vector3{},
+        initialState.charge,
+        initialState.mass == 0.0 ? 1.0 : initialState.mass,
+        initialState.stateFlags,
+    });
+  }
+  std::sort(states.begin(),
+            states.end(),
+            [](const PairInteractionState& left, const PairInteractionState& right) {
+              return left.pathKey < right.pathKey;
+  });
+  return states;
+}
+
+Vector3 vector_subtract(Vector3 left, Vector3 right);
+double vector_norm(Vector3 value);
+
+struct PairDelayedSourceRootCandidate {
+  double time = 0.0;
+  double residual = 0.0;
+  Vector3 position{};
+  bool valid = false;
+};
+
+PairDelayedSourceRootCandidate pair_constraint_delayed_source_root_candidate(
+    const PairInteractionRequest& request,
+    const std::vector<PairInteractionState>& initialStates,
+    const std::vector<PairInteractionPathConstraint>& sourceConstraints,
+    const PairInteractionState& sourceInitialState,
+    Vector3 receiverPosition,
+    double hitTime,
+    double signalSpeed,
+    double epsilon,
+    double emissionTime) {
+  Vector3 sourcePosition{};
+  if (!pair_constraint_hermite_position_at_time(request,
+                                                initialStates,
+                                                sourceConstraints,
+                                                sourceInitialState.initialVelocity,
+                                                emissionTime,
+                                                epsilon,
+                                                sourcePosition)) {
+    return PairDelayedSourceRootCandidate{};
+  }
+  const double distance = vector_norm(vector_subtract(receiverPosition, sourcePosition));
+  const double residual = distance - signalSpeed * (hitTime - emissionTime);
+  if (!std::isfinite(residual)) {
+    return PairDelayedSourceRootCandidate{};
+  }
+  return PairDelayedSourceRootCandidate{emissionTime, residual, sourcePosition, true};
+}
+
+PairDelayedSourceRootCandidate bisect_pair_constraint_delayed_source_root(
+    const PairInteractionRequest& request,
+    const std::vector<PairInteractionState>& initialStates,
+    const std::vector<PairInteractionPathConstraint>& sourceConstraints,
+    const PairInteractionState& sourceInitialState,
+    Vector3 receiverPosition,
+    double hitTime,
+    double signalSpeed,
+    double epsilon,
+    PairDelayedSourceRootCandidate left,
+    PairDelayedSourceRootCandidate right) {
+  if (!left.valid || !right.valid || right.time < left.time) {
+    return PairDelayedSourceRootCandidate{};
+  }
+  for (std::uint32_t iteration = 0; iteration < 64; ++iteration) {
+    const double midpoint = 0.5 * (left.time + right.time);
+    if (std::abs(right.time - left.time) <= epsilon) {
+      break;
+    }
+    PairDelayedSourceRootCandidate middle = pair_constraint_delayed_source_root_candidate(
+        request,
+        initialStates,
+        sourceConstraints,
+        sourceInitialState,
+        receiverPosition,
+        hitTime,
+        signalSpeed,
+        epsilon,
+        midpoint);
+    if (!middle.valid) {
+      return PairDelayedSourceRootCandidate{};
+    }
+    if (left.residual * middle.residual <= 0.0) {
+      right = middle;
+    } else {
+      left = middle;
+    }
+  }
+  return std::abs(left.residual) <= std::abs(right.residual) ? left : right;
+}
+
+bool pair_constraint_delayed_source_state_at_hit_time(
+    const PairInteractionRequest& request,
+    const std::vector<PairInteractionState>& initialStates,
+    const PairInteractionState& sourceInitialState,
+    Vector3 receiverPosition,
+    double hitTime,
+    double signalSpeed,
+    double epsilon,
+    PairInteractionState& outState) {
+  const std::vector<PairInteractionPathConstraint> sourceConstraints =
+      pair_constraints_for_path(request, sourceInitialState.pathKey);
+  if (sourceConstraints.size() < 2 || !std::isfinite(signalSpeed) || signalSpeed <= 0.0) {
+    return false;
+  }
+  const double lowerTime = sourceConstraints.front().time;
+  const double upperTime = std::min(hitTime - epsilon, sourceConstraints.back().time);
+  if (upperTime < lowerTime - epsilon) {
+    return false;
+  }
+
+  const double rootTolerance = std::max(epsilon * signalSpeed, 1e-9);
+  PairDelayedSourceRootCandidate best;
+  double bestAbsResidual = std::numeric_limits<double>::infinity();
+  const auto considerCandidate = [&](const PairDelayedSourceRootCandidate& candidate) {
+    if (!candidate.valid) {
+      return;
+    }
+    const double absResidual = std::abs(candidate.residual);
+    if (absResidual < bestAbsResidual ||
+        (std::abs(absResidual - bestAbsResidual) <= rootTolerance &&
+         (!best.valid || candidate.time > best.time))) {
+      best = candidate;
+      bestAbsResidual = absResidual;
+    }
+  };
+
+  for (std::size_t constraintIndex = 0;
+       constraintIndex + 1 < sourceConstraints.size();
+       ++constraintIndex) {
+    const double segmentStart = std::max(lowerTime, sourceConstraints[constraintIndex].time);
+    const double segmentEnd = std::min(upperTime, sourceConstraints[constraintIndex + 1].time);
+    if (segmentEnd < segmentStart - epsilon) {
+      continue;
+    }
+    PairDelayedSourceRootCandidate previous = pair_constraint_delayed_source_root_candidate(
+        request,
+        initialStates,
+        sourceConstraints,
+        sourceInitialState,
+        receiverPosition,
+        hitTime,
+        signalSpeed,
+        epsilon,
+        segmentStart);
+    considerCandidate(previous);
+    constexpr std::uint32_t subdivisionCount = 8;
+    for (std::uint32_t subdivision = 1; subdivision <= subdivisionCount; ++subdivision) {
+      const double emissionTime =
+          segmentStart + (segmentEnd - segmentStart) *
+              (static_cast<double>(subdivision) / static_cast<double>(subdivisionCount));
+      const PairDelayedSourceRootCandidate current = pair_constraint_delayed_source_root_candidate(
+          request,
+          initialStates,
+          sourceConstraints,
+          sourceInitialState,
+          receiverPosition,
+          hitTime,
+          signalSpeed,
+          epsilon,
+          emissionTime);
+      considerCandidate(current);
+      if (previous.valid && current.valid && previous.residual * current.residual <= 0.0) {
+        considerCandidate(bisect_pair_constraint_delayed_source_root(request,
+                                                                     initialStates,
+                                                                     sourceConstraints,
+                                                                     sourceInitialState,
+                                                                     receiverPosition,
+                                                                     hitTime,
+                                                                     signalSpeed,
+                                                                     epsilon,
+                                                                     previous,
+                                                                     current));
+      }
+      previous = current;
+    }
+  }
+
+  if (!best.valid || bestAbsResidual > rootTolerance) {
+    return false;
+  }
+  outState = PairInteractionState{
+      sourceInitialState.pathKey,
+      best.position,
+      Vector3{},
+      sourceInitialState.charge,
+      sourceInitialState.mass == 0.0 ? 1.0 : sourceInitialState.mass,
+      sourceInitialState.stateFlags,
+  };
+  return true;
+}
+
+bool pair_constraint_causal_delay_law_acceleration_at_constraint(
+    const PairInteractionRequest& request,
+    const std::vector<PairInteractionState>& initialStates,
+    const PairInteractionPathConstraint& receiverConstraint,
+    double epsilon,
+    Vector3& outAcceleration) {
+  if (!pair_interaction_uses_fixed_signal_speed(request)) {
+    return false;
+  }
+  const auto receiverInitialState = std::find_if(
+      initialStates.begin(),
+      initialStates.end(),
+      [&receiverConstraint](const PairInteractionState& state) {
+        return state.pathKey == receiverConstraint.pathKey;
+      });
+  if (receiverInitialState == initialStates.end()) {
+    return false;
+  }
+  std::vector<PairInteractionState> states;
+  states.reserve(initialStates.size());
+  states.push_back(PairInteractionState{
+      receiverInitialState->pathKey,
+      receiverConstraint.position,
+      Vector3{},
+      receiverInitialState->charge,
+      receiverInitialState->mass == 0.0 ? 1.0 : receiverInitialState->mass,
+      receiverInitialState->stateFlags,
+  });
+  for (const PairInteractionState& sourceInitialState : initialStates) {
+    if (sourceInitialState.pathKey == receiverConstraint.pathKey) {
+      continue;
+    }
+    PairInteractionState delayedSource{};
+    if (!pair_constraint_delayed_source_state_at_hit_time(request,
+                                                          initialStates,
+                                                          sourceInitialState,
+                                                          receiverConstraint.position,
+                                                          receiverConstraint.time,
+                                                          request.signalSpeed,
+                                                          epsilon,
+                                                          delayedSource)) {
+      return false;
+    }
+    states.push_back(delayedSource);
+  }
+  if (states.size() != initialStates.size()) {
+    return false;
+  }
+  std::sort(states.begin(),
+            states.end(),
+            [](const PairInteractionState& left, const PairInteractionState& right) {
+              return left.pathKey < right.pathKey;
+            });
+  const std::vector<Vector3> lawAccelerations = pair_interaction_accelerations(request, states);
+  const auto stateMatch = std::find_if(states.begin(),
+                                       states.end(),
+                                       [&receiverConstraint](const PairInteractionState& state) {
+                                         return state.pathKey == receiverConstraint.pathKey;
+                                       });
+  if (stateMatch == states.end()) {
+    return false;
+  }
+  const std::size_t stateIndex = static_cast<std::size_t>(
+      std::distance(states.begin(), stateMatch));
+  if (stateIndex >= lawAccelerations.size()) {
+    return false;
+  }
+  outAcceleration = lawAccelerations[stateIndex];
+  return finite_vector(outAcceleration);
 }
 
 Vector3 frame_position(const MotionFrameRowF64& frame) {
@@ -1352,6 +1676,225 @@ std::vector<const MotionFrameRowF64*> sorted_const_frames_for_path(
   return pathFrames;
 }
 
+bool pair_interaction_frame_state_at_time(
+    const std::vector<const MotionFrameRowF64*>& sourceFrames,
+    const PairInteractionState& sourceInitialState,
+    double time,
+    double epsilon,
+    PairInteractionState& outState) {
+  if (sourceFrames.empty()) {
+    return false;
+  }
+  const auto exact = std::find_if(sourceFrames.begin(),
+                                  sourceFrames.end(),
+                                  [time, epsilon](const MotionFrameRowF64* frame) {
+                                    return frame != nullptr &&
+                                        std::abs(frame->time - time) <= epsilon;
+                                  });
+  if (exact != sourceFrames.end()) {
+    const MotionFrameRowF64& frame = **exact;
+    outState = PairInteractionState{
+        sourceInitialState.pathKey,
+        frame_position(frame),
+        Vector3{frame.velocityX, frame.velocityY, frame.velocityZ},
+        sourceInitialState.charge,
+        sourceInitialState.mass == 0.0 ? 1.0 : sourceInitialState.mass,
+        frame.stateFlags,
+    };
+    return true;
+  }
+  if (time < sourceFrames.front()->time - epsilon ||
+      time > sourceFrames.back()->time + epsilon) {
+    return false;
+  }
+  const auto right = std::find_if(sourceFrames.begin(),
+                                  sourceFrames.end(),
+                                  [time](const MotionFrameRowF64* frame) {
+                                    return frame != nullptr && frame->time >= time;
+                                  });
+  if (right == sourceFrames.begin() || right == sourceFrames.end()) {
+    return false;
+  }
+  const MotionFrameRowF64& leftFrame = **std::prev(right);
+  const MotionFrameRowF64& rightFrame = **right;
+  const double span = rightFrame.time - leftFrame.time;
+  if (span <= epsilon) {
+    return false;
+  }
+  const double amount = std::clamp((time - leftFrame.time) / span, 0.0, 1.0);
+  const auto lerp = [amount](double left, double rightValue) {
+    return left + (rightValue - left) * amount;
+  };
+  outState = PairInteractionState{
+      sourceInitialState.pathKey,
+      Vector3{
+          lerp(leftFrame.positionX, rightFrame.positionX),
+          lerp(leftFrame.positionY, rightFrame.positionY),
+          lerp(leftFrame.positionZ, rightFrame.positionZ),
+      },
+      Vector3{
+          lerp(leftFrame.velocityX, rightFrame.velocityX),
+          lerp(leftFrame.velocityY, rightFrame.velocityY),
+          lerp(leftFrame.velocityZ, rightFrame.velocityZ),
+      },
+      sourceInitialState.charge,
+      sourceInitialState.mass == 0.0 ? 1.0 : sourceInitialState.mass,
+      leftFrame.stateFlags,
+  };
+  return finite_vector(outState.initialPosition) && finite_vector(outState.initialVelocity);
+}
+
+PairDelayedSourceRootCandidate pair_interaction_delayed_source_root_candidate(
+    const std::vector<const MotionFrameRowF64*>& sourceFrames,
+    const PairInteractionState& sourceInitialState,
+    Vector3 receiverPosition,
+    double hitTime,
+    double signalSpeed,
+    double epsilon,
+    double emissionTime) {
+  PairInteractionState sourceState{};
+  if (!pair_interaction_frame_state_at_time(
+          sourceFrames,
+          sourceInitialState,
+          emissionTime,
+          epsilon,
+          sourceState)) {
+    return PairDelayedSourceRootCandidate{};
+  }
+  const double distance = vector_norm(vector_subtract(receiverPosition, sourceState.initialPosition));
+  const double residual = distance - signalSpeed * (hitTime - emissionTime);
+  if (!std::isfinite(residual)) {
+    return PairDelayedSourceRootCandidate{};
+  }
+  return PairDelayedSourceRootCandidate{emissionTime, residual, sourceState.initialPosition, true};
+}
+
+PairDelayedSourceRootCandidate bisect_pair_interaction_delayed_source_root(
+    const std::vector<const MotionFrameRowF64*>& sourceFrames,
+    const PairInteractionState& sourceInitialState,
+    Vector3 receiverPosition,
+    double hitTime,
+    double signalSpeed,
+    double epsilon,
+    PairDelayedSourceRootCandidate left,
+    PairDelayedSourceRootCandidate right) {
+  if (!left.valid || !right.valid || right.time < left.time) {
+    return PairDelayedSourceRootCandidate{};
+  }
+  for (std::uint32_t iteration = 0; iteration < 64; ++iteration) {
+    const double midpoint = 0.5 * (left.time + right.time);
+    if (std::abs(right.time - left.time) <= epsilon) {
+      break;
+    }
+    PairDelayedSourceRootCandidate middle = pair_interaction_delayed_source_root_candidate(
+        sourceFrames,
+        sourceInitialState,
+        receiverPosition,
+        hitTime,
+        signalSpeed,
+        epsilon,
+        midpoint);
+    if (!middle.valid) {
+      return PairDelayedSourceRootCandidate{};
+    }
+    if (left.residual * middle.residual <= 0.0) {
+      right = middle;
+    } else {
+      left = middle;
+    }
+  }
+  return std::abs(left.residual) <= std::abs(right.residual) ? left : right;
+}
+
+bool pair_interaction_delayed_source_state_at_hit_time(
+    const std::vector<MotionFrameRowF64>& frames,
+    const PairInteractionState& sourceInitialState,
+    Vector3 receiverPosition,
+    double hitTime,
+    double signalSpeed,
+    double epsilon,
+    PairInteractionState& outState) {
+  const std::vector<const MotionFrameRowF64*> sourceFrames =
+      sorted_const_frames_for_path(frames, sourceInitialState.pathKey);
+  if (sourceFrames.size() < 2 || !std::isfinite(signalSpeed) || signalSpeed <= 0.0) {
+    return false;
+  }
+  const double lowerTime = sourceFrames.front()->time;
+  const double upperTime = std::min(hitTime - epsilon, sourceFrames.back()->time);
+  if (upperTime < lowerTime - epsilon) {
+    return false;
+  }
+
+  const double rootTolerance = std::max(epsilon * signalSpeed, 1e-9);
+  PairDelayedSourceRootCandidate best;
+  double bestAbsResidual = std::numeric_limits<double>::infinity();
+  const auto considerCandidate = [&](const PairDelayedSourceRootCandidate& candidate) {
+    if (!candidate.valid) {
+      return;
+    }
+    const double absResidual = std::abs(candidate.residual);
+    if (absResidual < bestAbsResidual ||
+        (std::abs(absResidual - bestAbsResidual) <= rootTolerance &&
+         (!best.valid || candidate.time > best.time))) {
+      best = candidate;
+      bestAbsResidual = absResidual;
+    }
+  };
+
+  for (std::size_t frameIndex = 0; frameIndex + 1 < sourceFrames.size(); ++frameIndex) {
+    const double segmentStart = std::max(lowerTime, sourceFrames[frameIndex]->time);
+    const double segmentEnd = std::min(upperTime, sourceFrames[frameIndex + 1]->time);
+    if (segmentEnd < segmentStart - epsilon) {
+      continue;
+    }
+    PairDelayedSourceRootCandidate previous = pair_interaction_delayed_source_root_candidate(
+        sourceFrames,
+        sourceInitialState,
+        receiverPosition,
+        hitTime,
+        signalSpeed,
+        epsilon,
+        segmentStart);
+    considerCandidate(previous);
+    constexpr std::uint32_t subdivisionCount = 8;
+    for (std::uint32_t subdivision = 1; subdivision <= subdivisionCount; ++subdivision) {
+      const double emissionTime =
+          segmentStart + (segmentEnd - segmentStart) *
+              (static_cast<double>(subdivision) / static_cast<double>(subdivisionCount));
+      const PairDelayedSourceRootCandidate current = pair_interaction_delayed_source_root_candidate(
+          sourceFrames,
+          sourceInitialState,
+          receiverPosition,
+          hitTime,
+          signalSpeed,
+          epsilon,
+          emissionTime);
+      considerCandidate(current);
+      if (previous.valid && current.valid && previous.residual * current.residual <= 0.0) {
+        considerCandidate(bisect_pair_interaction_delayed_source_root(sourceFrames,
+                                                                      sourceInitialState,
+                                                                      receiverPosition,
+                                                                      hitTime,
+                                                                      signalSpeed,
+                                                                      epsilon,
+                                                                      previous,
+                                                                      current));
+      }
+      previous = current;
+    }
+  }
+
+  if (!best.valid || bestAbsResidual > rootTolerance) {
+    return false;
+  }
+  return pair_interaction_frame_state_at_time(
+      sourceFrames,
+      sourceInitialState,
+      best.time,
+      epsilon,
+      outState);
+}
+
 std::vector<PairInteractionState> states_at_frame_index(
     const std::vector<MotionFrameRowF64>& frames,
     std::uint64_t frameIndex,
@@ -1377,6 +1920,79 @@ bool pair_interaction_acceleration_at_frame(
     const std::vector<PairInteractionState>& initialStates,
     std::uint64_t pathKey,
     Vector3& acceleration) {
+  if (pair_interaction_uses_fixed_signal_speed(request)) {
+    const auto receiverFrame = std::find_if(frames.begin(),
+                                            frames.end(),
+                                            [frameIndex, pathKey](const MotionFrameRowF64& frame) {
+                                              return frame.frameIndex == frameIndex &&
+                                                  frame.pathKey == pathKey;
+                                            });
+    if (receiverFrame == frames.end()) {
+      return false;
+    }
+    const auto receiverInitialState = std::find_if(
+        initialStates.begin(),
+        initialStates.end(),
+        [pathKey](const PairInteractionState& state) {
+          return state.pathKey == pathKey;
+        });
+    if (receiverInitialState == initialStates.end()) {
+      return false;
+    }
+    std::vector<PairInteractionState> states;
+    states.reserve(initialStates.size());
+    states.push_back(PairInteractionState{
+        receiverInitialState->pathKey,
+        frame_position(*receiverFrame),
+        Vector3{receiverFrame->velocityX, receiverFrame->velocityY, receiverFrame->velocityZ},
+        receiverInitialState->charge,
+        receiverInitialState->mass == 0.0 ? 1.0 : receiverInitialState->mass,
+        receiverFrame->stateFlags,
+    });
+    const double epsilon = pair_constraint_time_epsilon(request);
+    for (const PairInteractionState& sourceInitialState : initialStates) {
+      if (sourceInitialState.pathKey == pathKey) {
+        continue;
+      }
+      PairInteractionState delayedSource{};
+      if (!pair_interaction_delayed_source_state_at_hit_time(frames,
+                                                             sourceInitialState,
+                                                             frame_position(*receiverFrame),
+                                                             receiverFrame->time,
+                                                             request.signalSpeed,
+                                                             epsilon,
+                                                             delayedSource)) {
+        return false;
+      }
+      states.push_back(delayedSource);
+    }
+    if (states.size() != initialStates.size()) {
+      return false;
+    }
+    std::sort(states.begin(),
+              states.end(),
+              [](const PairInteractionState& left, const PairInteractionState& right) {
+                return left.pathKey < right.pathKey;
+              });
+    const std::vector<Vector3> lawAccelerations =
+        pair_interaction_accelerations(request, states);
+    const auto stateMatch = std::find_if(states.begin(),
+                                         states.end(),
+                                         [pathKey](const PairInteractionState& state) {
+                                           return state.pathKey == pathKey;
+                                         });
+    if (stateMatch == states.end()) {
+      return false;
+    }
+    const std::size_t stateIndex = static_cast<std::size_t>(
+        std::distance(states.begin(), stateMatch));
+    if (stateIndex >= lawAccelerations.size() || !finite_vector(lawAccelerations[stateIndex])) {
+      return false;
+    }
+    acceleration = lawAccelerations[stateIndex];
+    return true;
+  }
+
   const std::vector<PairInteractionState> states =
       states_at_frame_index(frames, frameIndex, initialStates);
   if (states.size() != initialStates.size()) {
@@ -1470,7 +2086,10 @@ void snap_pair_interaction_frame_constraints(PairInteractionSampleResult& result
   }
 }
 
-void recompute_pair_interaction_frame_velocities(PairInteractionSampleResult& result);
+void recompute_pair_interaction_frame_velocities(
+    PairInteractionSampleResult& result,
+    const PairInteractionRequest* request = nullptr,
+    const std::vector<PairInteractionState>* initialStates = nullptr);
 
 std::uint64_t seed_pair_interaction_frames_from_boundary_constraints(
     PairInteractionSampleResult& result,
@@ -1510,12 +2129,15 @@ std::uint64_t seed_pair_interaction_frames_from_boundary_constraints(
 
   if (seededCount > 0) {
     snap_pair_interaction_frame_constraints(result, request, epsilon);
-    recompute_pair_interaction_frame_velocities(result);
+    recompute_pair_interaction_frame_velocities(result, &request, &initialStates);
   }
   return seededCount;
 }
 
-void recompute_pair_interaction_frame_velocities(PairInteractionSampleResult& result) {
+void recompute_pair_interaction_frame_velocities(
+    PairInteractionSampleResult& result,
+    const PairInteractionRequest* request,
+    const std::vector<PairInteractionState>* initialStates) {
   std::vector<std::uint64_t> pathKeys;
   for (const MotionFrameRowF64& frame : result.frames) {
     if (std::find(pathKeys.begin(), pathKeys.end(), frame.pathKey) == pathKeys.end()) {
@@ -1531,6 +2153,22 @@ void recompute_pair_interaction_frame_velocities(PairInteractionSampleResult& re
     }
     for (std::size_t index = 0; index < indices.size(); ++index) {
       MotionFrameRowF64& current = result.frames[indices[index]];
+      if (request != nullptr && initialStates != nullptr) {
+        const std::vector<PairInteractionPathConstraint> constraints =
+            pair_constraints_for_path(*request, pathKey);
+        Vector3 retainedTangent{};
+        if (pair_constraint_tangent_at_time(constraints,
+                                            current.time,
+                                            pair_constraint_time_epsilon(*request),
+                                            *request,
+                                            *initialStates,
+                                            retainedTangent)) {
+          current.velocityX = retainedTangent.x;
+          current.velocityY = retainedTangent.y;
+          current.velocityZ = retainedTangent.z;
+          continue;
+        }
+      }
       if (index > 0 && index + 1 < indices.size()) {
         const MotionFrameRowF64& previous = result.frames[indices[index - 1]];
         const MotionFrameRowF64& next = result.frames[indices[index + 1]];
@@ -1640,6 +2278,7 @@ constexpr std::uint32_t kPairBoundaryRelaxationCandidateThirdCorrector = 18;
 constexpr std::uint32_t kPairBoundaryRelaxationCandidateThirdCorrectedDefectCorrection = 19;
 constexpr std::uint32_t kPairBoundaryRelaxationCandidateThirdCorrectedBlockCoupledNewtonDefectCorrection = 20;
 constexpr std::uint32_t kPairBoundaryRelaxationCandidateThirdCorrectedBlend = 21;
+constexpr std::uint32_t kPairBoundaryRelaxationCandidateCausalDelayNumericalNewtonDefectCorrection = 22;
 constexpr std::uint32_t kPairBoundaryRelaxationCandidateCenterOfMassOffset = 100;
 
 struct PairInteractionBoundaryRelaxationRun {
@@ -1760,28 +2399,17 @@ PairInteractionBoundaryRelaxationResidualSummary measure_pair_interaction_bounda
           1.0 / rightDt);
       const Vector3 finiteDifferenceAcceleration =
           vector_scale(vector_subtract(rightVelocity, leftVelocity), 1.0 / averageDt);
-      const std::vector<PairInteractionState> states =
-          states_at_frame_index(result.frames, current.frameIndex, initialStates);
-      if (states.size() != initialStates.size()) {
-        continue;
-      }
-      const std::vector<Vector3> lawAccelerations =
-          pair_interaction_accelerations(request, states);
-      const auto stateMatch = std::find_if(states.begin(),
-                                           states.end(),
-                                           [&current](const PairInteractionState& state) {
-                                             return state.pathKey == current.pathKey;
-                                           });
-      if (stateMatch == states.end()) {
-        continue;
-      }
-      const std::size_t stateIndex = static_cast<std::size_t>(
-          std::distance(states.begin(), stateMatch));
-      if (stateIndex >= lawAccelerations.size()) {
+      Vector3 lawAcceleration{};
+      if (!pair_interaction_acceleration_at_frame(result.frames,
+                                                  current.frameIndex,
+                                                  request,
+                                                  initialStates,
+                                                  current.pathKey,
+                                                  lawAcceleration)) {
         continue;
       }
       const double residual = vector_norm(
-          vector_subtract(finiteDifferenceAcceleration, lawAccelerations[stateIndex]));
+          vector_subtract(finiteDifferenceAcceleration, lawAcceleration));
       if (!std::isfinite(residual)) {
         continue;
       }
@@ -1841,28 +2469,17 @@ measure_pair_interaction_boundary_relaxation_residual_vectors(
           1.0 / rightDt);
       const Vector3 finiteDifferenceAcceleration =
           vector_scale(vector_subtract(rightVelocity, leftVelocity), 1.0 / averageDt);
-      const std::vector<PairInteractionState> states =
-          states_at_frame_index(result.frames, current.frameIndex, initialStates);
-      if (states.size() != initialStates.size()) {
-        continue;
-      }
-      const std::vector<Vector3> lawAccelerations =
-          pair_interaction_accelerations(request, states);
-      const auto stateMatch = std::find_if(states.begin(),
-                                           states.end(),
-                                           [&current](const PairInteractionState& state) {
-                                             return state.pathKey == current.pathKey;
-                                           });
-      if (stateMatch == states.end()) {
-        continue;
-      }
-      const std::size_t stateIndex = static_cast<std::size_t>(
-          std::distance(states.begin(), stateMatch));
-      if (stateIndex >= lawAccelerations.size()) {
+      Vector3 lawAcceleration{};
+      if (!pair_interaction_acceleration_at_frame(result.frames,
+                                                  current.frameIndex,
+                                                  request,
+                                                  initialStates,
+                                                  current.pathKey,
+                                                  lawAcceleration)) {
         continue;
       }
       const Vector3 residual =
-          vector_subtract(finiteDifferenceAcceleration, lawAccelerations[stateIndex]);
+          vector_subtract(finiteDifferenceAcceleration, lawAcceleration);
       if (finite_vector(residual)) {
         rows.residuals[frameIndex] = residual;
         rows.hasResidual[frameIndex] = true;
@@ -1895,27 +2512,16 @@ bool pair_interaction_boundary_relaxation_residual_vector_for_frames(
       1.0 / rightDt);
   const Vector3 finiteDifferenceAcceleration =
       vector_scale(vector_subtract(rightVelocity, leftVelocity), 1.0 / averageDt);
-  const std::vector<PairInteractionState> states =
-      states_at_frame_index(frames, current.frameIndex, initialStates);
-  if (states.size() != initialStates.size()) {
+  Vector3 lawAcceleration{};
+  if (!pair_interaction_acceleration_at_frame(frames,
+                                              current.frameIndex,
+                                              request,
+                                              initialStates,
+                                              current.pathKey,
+                                              lawAcceleration)) {
     return false;
   }
-  const std::vector<Vector3> lawAccelerations =
-      pair_interaction_accelerations(request, states);
-  const auto stateMatch = std::find_if(states.begin(),
-                                       states.end(),
-                                       [&current](const PairInteractionState& state) {
-                                         return state.pathKey == current.pathKey;
-                                       });
-  if (stateMatch == states.end()) {
-    return false;
-  }
-  const std::size_t stateIndex = static_cast<std::size_t>(
-      std::distance(states.begin(), stateMatch));
-  if (stateIndex >= lawAccelerations.size()) {
-    return false;
-  }
-  outResidual = vector_subtract(finiteDifferenceAcceleration, lawAccelerations[stateIndex]);
+  outResidual = vector_subtract(finiteDifferenceAcceleration, lawAcceleration);
   return finite_vector(outResidual);
 }
 
@@ -2043,36 +2649,18 @@ std::vector<Vector3> solve_pair_interaction_defect_correction_block(
     if (leftDt <= epsilon || rightDt <= epsilon || averageDt <= epsilon) {
       return {};
     }
-    const Vector3 leftVelocity = vector_scale(
-        vector_subtract(frame_position(current), frame_position(previous)),
-        1.0 / leftDt);
-    const Vector3 rightVelocity = vector_scale(
-        vector_subtract(frame_position(next), frame_position(current)),
-        1.0 / rightDt);
-    const Vector3 finiteDifferenceAcceleration =
-        vector_scale(vector_subtract(rightVelocity, leftVelocity), 1.0 / averageDt);
-    const std::vector<PairInteractionState> states =
-        states_at_frame_index(accelerationFrames, current.frameIndex, initialStates);
-    if (states.size() != initialStates.size()) {
+    Vector3 residual{};
+    if (!pair_interaction_boundary_relaxation_residual_vector_for_frames(
+            accelerationFrames,
+            request,
+            initialStates,
+            previous,
+            current,
+            next,
+            epsilon,
+            residual)) {
       return {};
     }
-    const std::vector<Vector3> lawAccelerations =
-        pair_interaction_accelerations(request, states);
-    const auto stateMatch = std::find_if(states.begin(),
-                                         states.end(),
-                                         [&current](const PairInteractionState& state) {
-                                           return state.pathKey == current.pathKey;
-                                         });
-    if (stateMatch == states.end()) {
-      return {};
-    }
-    const std::size_t stateIndex = static_cast<std::size_t>(
-        std::distance(states.begin(), stateMatch));
-    if (stateIndex >= lawAccelerations.size()) {
-      return {};
-    }
-    const Vector3 residual =
-        vector_subtract(finiteDifferenceAcceleration, lawAccelerations[stateIndex]);
     const double leftCoefficient = 1.0 / leftDt;
     const double rightCoefficient = 1.0 / rightDt;
     diagonal[blockIndex] = leftCoefficient + rightCoefficient;
@@ -2360,6 +2948,9 @@ PairInteractionRelaxationCandidate solve_pair_interaction_local_newton_defect_co
       std::vector<bool>(result.frames.size(), false),
       kPairBoundaryRelaxationCandidateLocalNewtonDefectCorrection,
   };
+  if (pair_interaction_uses_fixed_signal_speed(request)) {
+    return candidate;
+  }
 
   for (std::uint64_t pathKey : pathKeys) {
     const std::vector<std::size_t> indices = mutable_frame_indices_for_path(result.frames, pathKey);
@@ -2480,6 +3071,9 @@ PairInteractionRelaxationCandidate solve_pair_interaction_coupled_local_newton_d
       std::vector<bool>(result.frames.size(), false),
       kPairBoundaryRelaxationCandidateCoupledLocalNewtonDefectCorrection,
   };
+  if (pair_interaction_uses_fixed_signal_speed(request)) {
+    return candidate;
+  }
   if (initialStates.size() < 2) {
     return candidate;
   }
@@ -2702,6 +3296,142 @@ PairInteractionRelaxationCandidate solve_pair_interaction_coupled_local_newton_d
   return candidate;
 }
 
+PairInteractionRelaxationCandidate solve_pair_interaction_causal_delay_numerical_newton_defect_correction_candidate(
+    const PairInteractionSampleResult& result,
+    const PairInteractionRequest& request,
+    const std::vector<PairInteractionState>& initialStates,
+    const std::vector<std::uint64_t>& pathKeys,
+    double epsilon,
+    const PairInteractionRelaxationCandidate& defectCorrectionCandidate) {
+  PairInteractionRelaxationCandidate candidate{
+      std::vector<Vector3>(result.frames.size()),
+      std::vector<bool>(result.frames.size(), false),
+      kPairBoundaryRelaxationCandidateCausalDelayNumericalNewtonDefectCorrection,
+  };
+  if (!pair_interaction_uses_fixed_signal_speed(request)) {
+    return candidate;
+  }
+
+  constexpr std::size_t componentCount = 3;
+  for (std::uint64_t pathKey : pathKeys) {
+    const std::vector<std::size_t> indices = mutable_frame_indices_for_path(result.frames, pathKey);
+    if (indices.size() < 3) {
+      continue;
+    }
+    for (std::size_t pathIndex = 1; pathIndex + 1 < indices.size(); ++pathIndex) {
+      const std::size_t frameIndex = indices[pathIndex];
+      const MotionFrameRowF64& previous = result.frames[indices[pathIndex - 1]];
+      const MotionFrameRowF64& current = result.frames[frameIndex];
+      const MotionFrameRowF64& next = result.frames[indices[pathIndex + 1]];
+      if (has_pair_constraint_at_time(request, current.pathKey, current.time, epsilon)) {
+        continue;
+      }
+      Vector3 residual{};
+      if (!pair_interaction_boundary_relaxation_residual_vector_for_frames(
+              result.frames,
+              request,
+              initialStates,
+              previous,
+              current,
+              next,
+              epsilon,
+              residual)) {
+        continue;
+      }
+
+      const double leftSpacing =
+          vector_norm(vector_subtract(frame_position(current), frame_position(previous)));
+      const double rightSpacing =
+          vector_norm(vector_subtract(frame_position(next), frame_position(current)));
+      if (!std::isfinite(leftSpacing) || !std::isfinite(rightSpacing)) {
+        continue;
+      }
+      const double spacingLimit = std::max(epsilon, std::min(leftSpacing, rightSpacing) * 0.5);
+      double defectStep = 0.0;
+      if (frameIndex < defectCorrectionCandidate.hasPosition.size() &&
+          defectCorrectionCandidate.hasPosition[frameIndex]) {
+        defectStep = vector_norm(
+            vector_subtract(defectCorrectionCandidate.positions[frameIndex],
+                            frame_position(current)));
+      }
+      const double defectLimit =
+          std::isfinite(defectStep) && defectStep > epsilon ? defectStep * 2.0 : spacingLimit;
+      const double maxStep = std::max(epsilon, std::min(spacingLimit, defectLimit));
+      const Vector3 currentPosition = frame_position(current);
+      const double probeStep = std::max(
+          std::max(epsilon * 1000.0, 1e-6),
+          std::max(std::min(leftSpacing, rightSpacing) * 1e-4,
+                   vector_norm(currentPosition) * 1e-9));
+      if (!std::isfinite(probeStep) || probeStep <= 0.0) {
+        continue;
+      }
+
+      std::vector<std::vector<double>> matrix(
+          componentCount,
+          std::vector<double>(componentCount, 0.0));
+      bool matrixComplete = true;
+      for (std::size_t column = 0; column < componentCount; ++column) {
+        std::vector<MotionFrameRowF64> probeFrames = result.frames;
+        Vector3 probePosition = frame_position(probeFrames[frameIndex]);
+        set_vector_component(probePosition,
+                             column,
+                             vector_component(probePosition, column) + probeStep);
+        set_frame_position(probeFrames[frameIndex], probePosition);
+        Vector3 probeResidual{};
+        if (!pair_interaction_boundary_relaxation_residual_vector_for_frames(
+                probeFrames,
+                request,
+                initialStates,
+                probeFrames[indices[pathIndex - 1]],
+                probeFrames[frameIndex],
+                probeFrames[indices[pathIndex + 1]],
+                epsilon,
+                probeResidual)) {
+          matrixComplete = false;
+          break;
+        }
+        for (std::size_t row = 0; row < componentCount; ++row) {
+          matrix[row][column] =
+              (vector_component(probeResidual, row) - vector_component(residual, row)) /
+              probeStep;
+        }
+      }
+      if (!matrixComplete) {
+        continue;
+      }
+
+      const std::vector<double> solution = solve_dense_linear_system(
+          matrix,
+          std::vector<double>{-residual.x, -residual.y, -residual.z},
+          kPairBoundaryRelaxationResidualEpsilon);
+      if (solution.size() != componentCount) {
+        continue;
+      }
+      Vector3 step{solution[0], solution[1], solution[2]};
+      double stepNorm = vector_norm(step);
+      if (!std::isfinite(stepNorm) || stepNorm <= epsilon) {
+        continue;
+      }
+      if (stepNorm > maxStep) {
+        const double scale = maxStep / stepNorm;
+        step = vector_scale(step, scale);
+        stepNorm = maxStep;
+      }
+      const Vector3 target{
+          currentPosition.x + step.x,
+          currentPosition.y + step.y,
+          currentPosition.z + step.z,
+      };
+      if (stepNorm > epsilon && finite_vector(target)) {
+        candidate.positions[frameIndex] = target;
+        candidate.hasPosition[frameIndex] = true;
+      }
+    }
+  }
+
+  return candidate;
+}
+
 std::vector<double> pair_interaction_constraint_boundary_times(
     const PairInteractionRequest& request,
     double epsilon) {
@@ -2751,6 +3481,9 @@ PairInteractionRelaxationCandidate solve_pair_interaction_block_coupled_newton_d
       std::vector<bool>(result.frames.size(), false),
       kPairBoundaryRelaxationCandidateBlockCoupledNewtonDefectCorrection,
   };
+  if (pair_interaction_uses_fixed_signal_speed(request)) {
+    return candidate;
+  }
   if (initialStates.size() < 2) {
     return candidate;
   }
@@ -3022,18 +3755,20 @@ bool pair_constraint_center_of_mass_at_time(
   for (const PairInteractionState& state : initialStates) {
     const std::vector<PairInteractionPathConstraint> constraints =
         pair_constraints_for_path(request, state.pathKey);
-    const auto match = std::find_if(
-        constraints.begin(),
-        constraints.end(),
-        [time, epsilon](const PairInteractionPathConstraint& constraint) {
-          return std::abs(constraint.time - time) <= epsilon;
-        });
-    if (match == constraints.end() || !std::isfinite(state.mass) || state.mass <= 0.0) {
+    Vector3 position{};
+    if (!pair_constraint_hermite_position_at_time(request,
+                                                  initialStates,
+                                                  constraints,
+                                                  state.initialVelocity,
+                                                  time,
+                                                  epsilon,
+                                                  position) ||
+        !std::isfinite(state.mass) || state.mass <= 0.0) {
       return false;
     }
-    weighted.x += match->position.x * state.mass;
-    weighted.y += match->position.y * state.mass;
-    weighted.z += match->position.z * state.mass;
+    weighted.x += position.x * state.mass;
+    weighted.y += position.y * state.mass;
+    weighted.z += position.z * state.mass;
     totalMass += state.mass;
   }
   if (totalMass <= 0.0) {
@@ -3436,7 +4171,7 @@ PairInteractionBoundaryRelaxationRun relax_pair_interaction_constrained_frames(
       result.frames = bestAcceptedFrames;
     }
     snap_pair_interaction_frame_constraints(result, request, epsilon);
-    recompute_pair_interaction_frame_velocities(result);
+    recompute_pair_interaction_frame_velocities(result, &request, &initialStates);
     return PairInteractionBoundaryRelaxationRun{
         appliedIterationCount,
         stopReason,
@@ -3501,6 +4236,14 @@ PairInteractionBoundaryRelaxationRun relax_pair_interaction_constrained_frames(
             result,
             request,
             initialStates,
+            epsilon,
+            defectCorrectionCandidate);
+    PairInteractionRelaxationCandidate causalDelayNumericalNewtonDefectCorrectionCandidate =
+        solve_pair_interaction_causal_delay_numerical_newton_defect_correction_candidate(
+            result,
+            request,
+            initialStates,
+            pathKeys,
             epsilon,
             defectCorrectionCandidate);
     PairInteractionRelaxationCandidate blockCoupledNewtonDefectCorrectionCandidate =
@@ -3713,6 +4456,7 @@ PairInteractionBoundaryRelaxationRun relax_pair_interaction_constrained_frames(
         linearizedDefectCorrectionCandidate,
         localNewtonDefectCorrectionCandidate,
         coupledLocalNewtonDefectCorrectionCandidate,
+        causalDelayNumericalNewtonDefectCorrectionCandidate,
         blockCoupledNewtonDefectCorrectionCandidate,
         predictedDefectCorrectionCandidate,
         predictedBlockCoupledNewtonDefectCorrectionCandidate,
@@ -3908,6 +4652,48 @@ void summarize_pair_interaction_constraint_position_residuals(
   }
 }
 
+void summarize_pair_interaction_initial_velocity_residuals(
+    PairInteractionSampleResult& result,
+    const std::vector<PairInteractionState>& initialStates) {
+  if (initialStates.empty() || result.frames.empty()) {
+    return;
+  }
+
+  double sumResidual = 0.0;
+  double sumResidualSquared = 0.0;
+  double maxResidual = 0.0;
+  std::uint64_t sampleCount = 0;
+
+  for (const PairInteractionState& initialState : initialStates) {
+    const std::vector<const MotionFrameRowF64*> pathFrames =
+        sorted_const_frames_for_path(result.frames, initialState.pathKey);
+    if (pathFrames.size() < 2) {
+      continue;
+    }
+    const MotionFrameRowF64& first = *pathFrames[0];
+    const Vector3 firstStepVelocity{
+        first.velocityX,
+        first.velocityY,
+        first.velocityZ,
+    };
+    const double residual = vector_norm(
+        vector_subtract(firstStepVelocity, initialState.initialVelocity));
+    if (!std::isfinite(residual)) {
+      continue;
+    }
+    record_residual_sample(residual, maxResidual, sumResidual, sumResidualSquared, sampleCount);
+  }
+
+  result.pathConstraintInitialVelocityResidualSampleCount = sampleCount;
+  result.maxPathConstraintInitialVelocityResidual = maxResidual;
+  if (sampleCount > 0) {
+    result.meanPathConstraintInitialVelocityResidual =
+        sumResidual / static_cast<double>(sampleCount);
+    result.rmsPathConstraintInitialVelocityResidual =
+        std::sqrt(sumResidualSquared / static_cast<double>(sampleCount));
+  }
+}
+
 void summarize_pair_interaction_boundary_residuals(
     PairInteractionSampleResult& result,
     const PairInteractionRequest& request,
@@ -3916,6 +4702,10 @@ void summarize_pair_interaction_boundary_residuals(
     return;
   }
 
+  const bool useCausalDelayResidual = pair_interaction_uses_fixed_signal_speed(request);
+  result.pathConstraintBoundaryResidualMode = useCausalDelayResidual
+      ? kPairBoundaryResidualModeCausalDelayPairLaw
+      : kPairBoundaryResidualModeSameTimePairLaw;
   double sumResidual = 0.0;
   double sumResidualSquared = 0.0;
   double maxResidual = 0.0;
@@ -3946,28 +4736,41 @@ void summarize_pair_interaction_boundary_residuals(
           1.0 / rightDt);
       const Vector3 finiteDifferenceAcceleration =
           vector_scale(vector_subtract(rightVelocity, leftVelocity), 1.0 / averageDt);
-      const std::vector<PairInteractionState> states =
-          states_from_constraints_at_time(request, initialStates, current.time);
-      if (states.empty()) {
-        continue;
-      }
-      const std::vector<Vector3> lawAccelerations =
-          pair_interaction_accelerations(request, states);
-      const auto stateMatch = std::find_if(states.begin(),
-                                           states.end(),
-                                           [&current](const PairInteractionState& state) {
-                                             return state.pathKey == current.pathKey;
-                                           });
-      if (stateMatch == states.end()) {
-        continue;
-      }
-      const std::size_t stateIndex = static_cast<std::size_t>(
-          std::distance(states.begin(), stateMatch));
-      if (stateIndex >= lawAccelerations.size()) {
-        continue;
+      Vector3 lawAcceleration{};
+      if (useCausalDelayResidual) {
+        if (!pair_constraint_causal_delay_law_acceleration_at_constraint(
+                request,
+                initialStates,
+                current,
+                epsilon,
+                lawAcceleration)) {
+          continue;
+        }
+      } else {
+        const std::vector<PairInteractionState> states =
+            states_from_constraint_boundary_at_time(request, initialStates, current.time);
+        if (states.empty()) {
+          continue;
+        }
+        const std::vector<Vector3> lawAccelerations =
+            pair_interaction_accelerations(request, states);
+        const auto stateMatch = std::find_if(states.begin(),
+                                             states.end(),
+                                             [&current](const PairInteractionState& state) {
+                                               return state.pathKey == current.pathKey;
+                                             });
+        if (stateMatch == states.end()) {
+          continue;
+        }
+        const std::size_t stateIndex = static_cast<std::size_t>(
+            std::distance(states.begin(), stateMatch));
+        if (stateIndex >= lawAccelerations.size()) {
+          continue;
+        }
+        lawAcceleration = lawAccelerations[stateIndex];
       }
       const double residual = vector_norm(
-          vector_subtract(finiteDifferenceAcceleration, lawAccelerations[stateIndex]));
+          vector_subtract(finiteDifferenceAcceleration, lawAcceleration));
       record_residual_sample(residual, maxResidual, sumResidual, sumResidualSquared, sampleCount);
     }
   }
@@ -4093,12 +4896,15 @@ PairInteractionSampleResult integrate_pair_interaction_motion(
     return result;
   }
 
+  result.pathConstraintBoundaryResidualMode = pair_boundary_residual_mode_for_request(request);
   std::vector<PairInteractionState> states = initialStates;
   const PairInteractionSampleSchedule sampleSchedule = pair_interaction_sample_schedule(request);
   const std::vector<double>& times = sampleSchedule.times;
   result.pathConstraintFrameRefinementSampleCount =
       sampleSchedule.pathConstraintFrameRefinementSampleCount;
   std::vector<MotionFrameRowF64> previousFrames;
+  const bool useConstraintGuidance =
+      request.pathConstraints.empty() || request.boundaryRelaxationIterationCount == 0;
 
   for (std::size_t frameIndex = 0; frameIndex < times.size(); ++frameIndex) {
     const double time = times[frameIndex];
@@ -4132,7 +4938,8 @@ PairInteractionSampleResult integrate_pair_interaction_motion(
           result,
           initialStates,
           time,
-          times[frameIndex + 1]);
+          times[frameIndex + 1],
+          useConstraintGuidance);
     }
   }
 
@@ -4222,6 +5029,7 @@ PairInteractionSampleResult integrate_pair_interaction_motion(
           boundaryRelaxationRun.appliedIterationCount);
   rebuild_pair_interaction_path_rows(result);
   summarize_pair_interaction_constraint_position_residuals(result, request);
+  summarize_pair_interaction_initial_velocity_residuals(result, initialStates);
   summarize_pair_interaction_constraint_residuals(result, request, initialStates);
   summarize_pair_interaction_boundary_residuals(result, request, initialStates);
   result.stepCount = times.empty() ? 0 : static_cast<std::uint64_t>(times.size() - 1);

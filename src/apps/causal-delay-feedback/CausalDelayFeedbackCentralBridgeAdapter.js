@@ -4,9 +4,10 @@ import {
   DEFAULT_CANVAS_ID,
   DEFAULT_PRESET_ID,
   DESIGN_HEIGHT,
-  DESIGN_WIDTH,
   ELECTRINO_WAKE,
   FULL_CIRCULAR_ARCS,
+  PATH_TIME_END_X,
+  PATH_TIME_START_X,
   PARTIAL_PROPAGATING_ARCS,
   POSITRINO_WAKE,
   getDistance,
@@ -42,25 +43,35 @@ const FINITE_DIFFERENCE_FRAME_RELAXATION_CONVERGED_STATUS = "converged";
 const FINITE_DIFFERENCE_FRAME_RELAXATION_STEP_CONVERGED_STATUS = "step_converged";
 const FINITE_DIFFERENCE_FRAME_RELAXATION_REVERTED_STATUS = "reverted_no_improvement";
 const FINITE_DIFFERENCE_FRAME_RELAXATION_NO_SAMPLES_STATUS = "no_relaxable_samples";
+const BOUNDARY_SEEDED_CONSTRAINT_PATH_STATUS = "boundary_seeded_constraint_path";
 const DISCRETE_BOUNDARY_VALUE_CONVERGED_STATUS = "discrete_boundary_value_converged";
 const FINITE_DIFFERENCE_PAIR_BOUNDARY_VALUE_SOLVE_CONVERGED_CLAIM =
   "finite_difference_pair_boundary_value_solve_converged";
 const PHYSICAL_BOUNDARY_SOLVER_PENDING_STATUS = "physical_boundary_solver_pending";
 const RETAINED_KNOT_GUIDANCE_NOT_PHYSICAL_BOUNDARY_VALUE_SOLVE_CLAIM =
   "retained_knot_guidance_not_physical_boundary_value_solve";
+const PHYSICAL_BOUNDARY_SOLVER_BLOCKING_REASON_GUIDANCE_ACCELERATION =
+  "retained_knot_guidance_acceleration_required";
+const PHYSICAL_BOUNDARY_SOLVER_BLOCKING_REASON_RELAXATION_UNCONVERGED =
+  "finite_difference_boundary_relaxation_not_converged";
+const PHYSICAL_BOUNDARY_SOLVER_BLOCKING_REASON_INITIAL_VELOCITY =
+  "initial_velocity_boundary_not_preserved";
+const PHYSICAL_BOUNDARY_SOLVER_BLOCKING_REASON_BOUNDARY_RESIDUAL =
+  "retained_knot_boundary_residual_not_preserved";
+const PHYSICAL_BOUNDARY_SOLVER_BLOCKING_REASON_NOT_IMPLEMENTED =
+  "physical_boundary_solver_not_implemented";
 const BOUNDARY_RELAXATION_RESIDUAL_EVIDENCE_NO_SAMPLES = "no_samples";
 const BOUNDARY_RELAXATION_RESIDUAL_EVIDENCE_INCOMPLETE = "incomplete_evidence";
 const BOUNDARY_RELAXATION_RESIDUAL_EVIDENCE_NON_WORSENING = "aggregate_non_worsening";
 const BOUNDARY_RELAXATION_RESIDUAL_EVIDENCE_WORSENED = "aggregate_worsened";
 const DERIVED_BOUNDARY_POSITION_RESIDUAL_TOLERANCE = 1e-9;
+const DERIVED_INITIAL_VELOCITY_RESIDUAL_TOLERANCE = 1e-9;
 const TIME_SPACE_CANVAS_FIT_PROJECTION = "time_space_canvas_fit_v1";
-const TIME_AXIS_START_X = DESIGN_WIDTH * 0.05;
-const TIME_AXIS_END_X = DESIGN_WIDTH * 0.95;
 const SPACE_AXIS_TOP_Y = DESIGN_HEIGHT * 0.2;
 const SPACE_AXIS_BOTTOM_Y = DESIGN_HEIGHT * 0.8;
 const PATH_CONSTRAINT_DRAFT_REASONS = new Set([
   "retained_point_drag_preview",
-  "reception_point_insert_preview",
+  "path_line_drag_preview",
 ]);
 const ARCHITRINO_KINDS = Object.freeze(["positrino", "electrino"]);
 const PATH_KEYS_BY_KIND = Object.freeze({ positrino: 1, electrino: 2 });
@@ -156,6 +167,10 @@ export function createCausalDelayFeedbackBridgeReplayRequest(input = {}) {
           DEFAULT_PAIR_INTERACTION_LAW,
           "pairInteractionLaw",
         ),
+        pairInteractionSignalSpeed: normalizeOptionalPositiveNumber(
+          input.pairInteractionSignalSpeed ?? input.signalSpeed,
+          "pairInteractionSignalSpeed",
+        ),
         pathConstraintBoundaryResidualTolerance: normalizeOptionalNonnegativeNumber(
           input.pathConstraintBoundaryResidualTolerance ?? input.boundaryResidualTolerance,
           "pathConstraintBoundaryResidualTolerance",
@@ -167,6 +182,10 @@ export function createCausalDelayFeedbackBridgeReplayRequest(input = {}) {
         pathConstraintGuidanceAccelerationTolerance: normalizeOptionalNonnegativeNumber(
           input.pathConstraintGuidanceAccelerationTolerance ?? input.guidanceAccelerationTolerance,
           "pathConstraintGuidanceAccelerationTolerance",
+        ),
+        pathConstraintInitialVelocityResidualTolerance: normalizeOptionalNonnegativeNumber(
+          input.pathConstraintInitialVelocityResidualTolerance ?? input.initialVelocityResidualTolerance,
+          "pathConstraintInitialVelocityResidualTolerance",
         ),
         pathConstraintBoundaryRelaxationIterationCount: normalizeOptionalNonnegativeInteger(
           input.pathConstraintBoundaryRelaxationIterationCount ?? input.boundaryRelaxationIterations,
@@ -295,6 +314,7 @@ async function createMotionSolverReplayDataset(playbackRequest, options = {}, { 
           replayMode: resolvedReplayMode,
           motionAccelerationPolicy: playbackRequest.config.motion.accelerationPolicy,
           pairSegmentCount: motionReplay.pairSegmentCount,
+          signalSpeed: motionReplay.signalSpeed,
           pairInteractionStepCount: motionReplay.pairInteractionStepCount,
           interactionLaw: motionReplay.interactionLaw,
           executionPath: motionReplay.executionPath,
@@ -310,6 +330,18 @@ async function createMotionSolverReplayDataset(playbackRequest, options = {}, { 
           maxPathConstraintPositionResidual: motionReplay.maxPathConstraintPositionResidual,
           meanPathConstraintPositionResidual: motionReplay.meanPathConstraintPositionResidual,
           rmsPathConstraintPositionResidual: motionReplay.rmsPathConstraintPositionResidual,
+          pathConstraintInitialVelocityResidualSampleCount:
+            motionReplay.pathConstraintInitialVelocityResidualSampleCount,
+          pathConstraintInitialVelocityResidualStatus:
+            motionReplay.pathConstraintInitialVelocityResidualStatus,
+          pathConstraintInitialVelocityResidualTolerance:
+            motionReplay.pathConstraintInitialVelocityResidualTolerance,
+          maxPathConstraintInitialVelocityResidual:
+            motionReplay.maxPathConstraintInitialVelocityResidual,
+          meanPathConstraintInitialVelocityResidual:
+            motionReplay.meanPathConstraintInitialVelocityResidual,
+          rmsPathConstraintInitialVelocityResidual:
+            motionReplay.rmsPathConstraintInitialVelocityResidual,
           pathConstraintResidualSampleCount: motionReplay.pathConstraintResidualSampleCount,
           maxPathConstraintResidual: motionReplay.maxPathConstraintResidual,
           meanPathConstraintResidual: motionReplay.meanPathConstraintResidual,
@@ -335,6 +367,8 @@ async function createMotionSolverReplayDataset(playbackRequest, options = {}, { 
             motionReplay.pathConstraintBoundaryRelaxationResidualEvidenceStatus,
           pathConstraintBoundaryRelaxationResidualSampleCount:
             motionReplay.pathConstraintBoundaryRelaxationResidualSampleCount,
+          pathConstraintBoundaryRelaxationResidualMode:
+            motionReplay.pathConstraintBoundaryRelaxationResidualMode,
           maxPathConstraintBoundaryRelaxationResidualBefore:
             motionReplay.maxPathConstraintBoundaryRelaxationResidualBefore,
           maxPathConstraintBoundaryRelaxationResidualAfter:
@@ -379,6 +413,8 @@ async function createMotionSolverReplayDataset(playbackRequest, options = {}, { 
             motionReplay.pathConstraintPhysicalBoundarySolverStatus,
           pathConstraintPhysicalBoundarySolverClaim:
             motionReplay.pathConstraintPhysicalBoundarySolverClaim,
+          pathConstraintPhysicalBoundarySolverBlockingReason:
+            motionReplay.pathConstraintPhysicalBoundarySolverBlockingReason,
           maxPathConstraintGuidanceAcceleration: motionReplay.maxPathConstraintGuidanceAcceleration,
           meanPathConstraintGuidanceAcceleration: motionReplay.meanPathConstraintGuidanceAcceleration,
           rmsPathConstraintGuidanceAcceleration: motionReplay.rmsPathConstraintGuidanceAcceleration,
@@ -387,6 +423,7 @@ async function createMotionSolverReplayDataset(playbackRequest, options = {}, { 
           pathConstraintGuidanceAccelerationTolerance:
             motionReplay.pathConstraintGuidanceAccelerationTolerance,
           pathConstraintBoundaryResidualSampleCount: motionReplay.pathConstraintBoundaryResidualSampleCount,
+          pathConstraintBoundaryResidualMode: motionReplay.pathConstraintBoundaryResidualMode,
           pathConstraintBoundaryResidualStatus: motionReplay.pathConstraintBoundaryResidualStatus,
           pathConstraintBoundaryResidualTolerance: motionReplay.pathConstraintBoundaryResidualTolerance,
           maxPathConstraintBoundaryResidual: motionReplay.maxPathConstraintBoundaryResidual,
@@ -409,6 +446,7 @@ async function createMotionSolverReplayDataset(playbackRequest, options = {}, { 
           motionAccelerationPolicy: playbackRequest.config.motion.accelerationPolicy,
           pairSegmentCount: motionReplay.pairSegmentCount,
           pairAccelerationScale: playbackRequest.config.motion.pairAccelerationScale,
+          signalSpeed: motionReplay.signalSpeed,
           pairInteractionStepCount: motionReplay.pairInteractionStepCount,
           interactionLaw: motionReplay.interactionLaw,
           executionPath: motionReplay.executionPath,
@@ -424,6 +462,18 @@ async function createMotionSolverReplayDataset(playbackRequest, options = {}, { 
           maxPathConstraintPositionResidual: motionReplay.maxPathConstraintPositionResidual,
           meanPathConstraintPositionResidual: motionReplay.meanPathConstraintPositionResidual,
           rmsPathConstraintPositionResidual: motionReplay.rmsPathConstraintPositionResidual,
+          pathConstraintInitialVelocityResidualSampleCount:
+            motionReplay.pathConstraintInitialVelocityResidualSampleCount,
+          pathConstraintInitialVelocityResidualStatus:
+            motionReplay.pathConstraintInitialVelocityResidualStatus,
+          pathConstraintInitialVelocityResidualTolerance:
+            motionReplay.pathConstraintInitialVelocityResidualTolerance,
+          maxPathConstraintInitialVelocityResidual:
+            motionReplay.maxPathConstraintInitialVelocityResidual,
+          meanPathConstraintInitialVelocityResidual:
+            motionReplay.meanPathConstraintInitialVelocityResidual,
+          rmsPathConstraintInitialVelocityResidual:
+            motionReplay.rmsPathConstraintInitialVelocityResidual,
           pathConstraintResidualSampleCount: motionReplay.pathConstraintResidualSampleCount,
           maxPathConstraintResidual: motionReplay.maxPathConstraintResidual,
           meanPathConstraintResidual: motionReplay.meanPathConstraintResidual,
@@ -449,6 +499,8 @@ async function createMotionSolverReplayDataset(playbackRequest, options = {}, { 
             motionReplay.pathConstraintBoundaryRelaxationResidualEvidenceStatus,
           pathConstraintBoundaryRelaxationResidualSampleCount:
             motionReplay.pathConstraintBoundaryRelaxationResidualSampleCount,
+          pathConstraintBoundaryRelaxationResidualMode:
+            motionReplay.pathConstraintBoundaryRelaxationResidualMode,
           maxPathConstraintBoundaryRelaxationResidualBefore:
             motionReplay.maxPathConstraintBoundaryRelaxationResidualBefore,
           maxPathConstraintBoundaryRelaxationResidualAfter:
@@ -493,6 +545,8 @@ async function createMotionSolverReplayDataset(playbackRequest, options = {}, { 
             motionReplay.pathConstraintPhysicalBoundarySolverStatus,
           pathConstraintPhysicalBoundarySolverClaim:
             motionReplay.pathConstraintPhysicalBoundarySolverClaim,
+          pathConstraintPhysicalBoundarySolverBlockingReason:
+            motionReplay.pathConstraintPhysicalBoundarySolverBlockingReason,
           maxPathConstraintGuidanceAcceleration: motionReplay.maxPathConstraintGuidanceAcceleration,
           meanPathConstraintGuidanceAcceleration: motionReplay.meanPathConstraintGuidanceAcceleration,
           rmsPathConstraintGuidanceAcceleration: motionReplay.rmsPathConstraintGuidanceAcceleration,
@@ -501,6 +555,7 @@ async function createMotionSolverReplayDataset(playbackRequest, options = {}, { 
           pathConstraintGuidanceAccelerationTolerance:
             motionReplay.pathConstraintGuidanceAccelerationTolerance,
           pathConstraintBoundaryResidualSampleCount: motionReplay.pathConstraintBoundaryResidualSampleCount,
+          pathConstraintBoundaryResidualMode: motionReplay.pathConstraintBoundaryResidualMode,
           pathConstraintBoundaryResidualStatus: motionReplay.pathConstraintBoundaryResidualStatus,
           pathConstraintBoundaryResidualTolerance: motionReplay.pathConstraintBoundaryResidualTolerance,
           maxPathConstraintBoundaryResidual: motionReplay.maxPathConstraintBoundaryResidual,
@@ -591,7 +646,7 @@ function projectBridgeFramesToTimeSpaceCanvas(frames, playbackRequest) {
     return {
       ...frame,
       position: {
-        x: TIME_AXIS_START_X + timeAmount * (TIME_AXIS_END_X - TIME_AXIS_START_X),
+        x: PATH_TIME_START_X + timeAmount * (PATH_TIME_END_X - PATH_TIME_START_X),
         y: SPACE_AXIS_TOP_Y + spaceAmount * (SPACE_AXIS_BOTTOM_Y - SPACE_AXIS_TOP_Y),
         z: Number.isFinite(Number(frame.position?.z)) ? Number(frame.position.z) : 0,
       },
@@ -665,6 +720,7 @@ async function createPairInteractionSolverReplayFrames(playbackRequest, options 
     pairSummary,
     pairInteraction,
     pathConstraintCount,
+    request.config.pairInteractionRequest,
   );
   return {
     bridgeFrames: normalizePairInteractionRunFrames(runHandle),
@@ -674,6 +730,9 @@ async function createPairInteractionSolverReplayFrames(playbackRequest, options 
       ? Number(pairSummary.stepCount)
       : undefined,
     interactionLaw: pairSummary.interactionLaw ?? pairInteraction.interactionLaw,
+    signalSpeed: optionalFiniteNumber(
+      pairSummary.signalSpeed ?? pairInteraction.signalSpeed ?? request.config.pairInteractionRequest.signalSpeed
+    ),
     executionPath: pairSummary.executionPath ?? pairInteraction.executionPath,
     pathConstraintCount,
     pathConstraintFrameRefinementSampleCount: optionalFiniteNumber(
@@ -692,6 +751,30 @@ async function createPairInteractionSolverReplayFrames(playbackRequest, options 
     ),
     rmsPathConstraintPositionResidual: optionalFiniteNumber(
       pairSummary.rmsPathConstraintPositionResidual ?? pairInteraction.rmsPathConstraintPositionResidual
+    ),
+    pathConstraintInitialVelocityResidualSampleCount: optionalFiniteNumber(
+      pairSummary.pathConstraintInitialVelocityResidualSampleCount ??
+        pairInteraction.pathConstraintInitialVelocityResidualSampleCount
+    ),
+    pathConstraintInitialVelocityResidualStatus:
+      pairSummary.pathConstraintInitialVelocityResidualStatus ??
+      pairInteraction.pathConstraintInitialVelocityResidualStatus,
+    pathConstraintInitialVelocityResidualTolerance: optionalFiniteNumber(
+      pairSummary.pathConstraintInitialVelocityResidualTolerance ??
+        pairInteraction.pathConstraintInitialVelocityResidualTolerance ??
+        request.config.pairInteractionRequest.pathConstraintInitialVelocityResidualTolerance
+    ),
+    maxPathConstraintInitialVelocityResidual: optionalFiniteNumber(
+      pairSummary.maxPathConstraintInitialVelocityResidual ??
+        pairInteraction.maxPathConstraintInitialVelocityResidual
+    ),
+    meanPathConstraintInitialVelocityResidual: optionalFiniteNumber(
+      pairSummary.meanPathConstraintInitialVelocityResidual ??
+        pairInteraction.meanPathConstraintInitialVelocityResidual
+    ),
+    rmsPathConstraintInitialVelocityResidual: optionalFiniteNumber(
+      pairSummary.rmsPathConstraintInitialVelocityResidual ??
+        pairInteraction.rmsPathConstraintInitialVelocityResidual
     ),
     pathConstraintResidualSampleCount: optionalFiniteNumber(
       pairSummary.pathConstraintResidualSampleCount ?? pairInteraction.pathConstraintResidualSampleCount
@@ -743,6 +826,9 @@ async function createPairInteractionSolverReplayFrames(playbackRequest, options 
       pairSummary.pathConstraintBoundaryRelaxationResidualSampleCount ??
         pairInteraction.pathConstraintBoundaryRelaxationResidualSampleCount
     ),
+    pathConstraintBoundaryRelaxationResidualMode:
+      pairSummary.pathConstraintBoundaryRelaxationResidualMode ??
+      pairInteraction.pathConstraintBoundaryRelaxationResidualMode,
     maxPathConstraintBoundaryRelaxationResidualBefore: optionalFiniteNumber(
       pairSummary.maxPathConstraintBoundaryRelaxationResidualBefore ??
         pairInteraction.maxPathConstraintBoundaryRelaxationResidualBefore
@@ -849,6 +935,8 @@ async function createPairInteractionSolverReplayFrames(playbackRequest, options 
     pathConstraintBoundaryResidualSampleCount: optionalFiniteNumber(
       pairSummary.pathConstraintBoundaryResidualSampleCount ?? pairInteraction.pathConstraintBoundaryResidualSampleCount
     ),
+    pathConstraintBoundaryResidualMode:
+      pairSummary.pathConstraintBoundaryResidualMode ?? pairInteraction.pathConstraintBoundaryResidualMode,
     pathConstraintBoundaryResidualStatus:
       pairSummary.pathConstraintBoundaryResidualStatus ?? pairInteraction.pathConstraintBoundaryResidualStatus,
     pathConstraintBoundaryResidualTolerance: optionalFiniteNumber(
@@ -1181,6 +1269,11 @@ function createCausalDelayFeedbackPairInteractionRequest(playbackRequest) {
         step,
         maxFrames,
         pairAccelerationScale: playbackRequest.config.motion.pairAccelerationScale,
+        ...(playbackRequest.config.motion.pairInteractionSignalSpeed != null
+          ? {
+              signalSpeed: playbackRequest.config.motion.pairInteractionSignalSpeed,
+            }
+          : {}),
         ...(playbackRequest.config.motion.pathConstraintBoundaryResidualTolerance != null
           ? {
               pathConstraintBoundaryResidualTolerance:
@@ -1197,6 +1290,12 @@ function createCausalDelayFeedbackPairInteractionRequest(playbackRequest) {
           ? {
               pathConstraintGuidanceAccelerationTolerance:
                 playbackRequest.config.motion.pathConstraintGuidanceAccelerationTolerance,
+            }
+          : {}),
+        ...(playbackRequest.config.motion.pathConstraintInitialVelocityResidualTolerance != null
+          ? {
+              pathConstraintInitialVelocityResidualTolerance:
+                playbackRequest.config.motion.pathConstraintInitialVelocityResidualTolerance,
             }
           : {}),
         ...(playbackRequest.config.motion.pathConstraintBoundaryRelaxationIterationCount != null
@@ -1775,15 +1874,8 @@ export function normalizeCausalDelayFeedbackBridgeReplay(runHandle = {}, options
     bridgeResponse.initialConditions ?? bridgeResponse.geometry?.initialConditions ?? {},
     "bridge response initialConditions",
   );
+  delete initialConditions.virtualObserver;
   syncInitialConditionsToHistoryStarts(initialConditions, history);
-  const virtualObserver = normalizeOptionalVirtualObserver(
-    bridgeResponse.virtualObserver ??
-      bridgeResponse.geometry?.virtualObserver ??
-      initialConditions.virtualObserver,
-  );
-  if (virtualObserver && !initialConditions.virtualObserver) {
-    initialConditions.virtualObserver = { ...virtualObserver };
-  }
   const geometryPathConstraintCount = Number.isFinite(Number(bridgeResponse.geometry?.pathConstraintCount))
     ? Number(bridgeResponse.geometry.pathConstraintCount)
     : undefined;
@@ -1819,7 +1911,6 @@ export function normalizeCausalDelayFeedbackBridgeReplay(runHandle = {}, options
       DEFAULT_CANVAS_ID,
     preset,
     initialConditions,
-    ...(virtualObserver ? { virtualObserver } : {}),
     paths: {
       positrino: frames.map((frame) => ({ t: frame.t, ...frame.positrino })),
       electrino: frames.map((frame) => ({ t: frame.t, ...frame.electrino })),
@@ -1838,6 +1929,9 @@ export function normalizeCausalDelayFeedbackBridgeReplay(runHandle = {}, options
       : {}),
     ...(Number.isFinite(Number(bridgeResponse.geometry?.pairAccelerationScale))
       ? { pairAccelerationScale: Number(bridgeResponse.geometry.pairAccelerationScale) }
+      : {}),
+    ...(Number.isFinite(Number(bridgeResponse.geometry?.signalSpeed))
+      ? { signalSpeed: Number(bridgeResponse.geometry.signalSpeed) }
       : {}),
     ...(Number.isFinite(Number(bridgeResponse.geometry?.pairSegmentCount))
       ? { pairSegmentCount: Number(bridgeResponse.geometry.pairSegmentCount) }
@@ -1876,6 +1970,48 @@ export function normalizeCausalDelayFeedbackBridgeReplay(runHandle = {}, options
       : {}),
     ...(Number.isFinite(Number(bridgeResponse.geometry?.rmsPathConstraintPositionResidual))
       ? { rmsPathConstraintPositionResidual: Number(bridgeResponse.geometry.rmsPathConstraintPositionResidual) }
+      : {}),
+    ...(Number.isFinite(Number(bridgeResponse.geometry?.pathConstraintInitialVelocityResidualSampleCount))
+      ? {
+          pathConstraintInitialVelocityResidualSampleCount: Number(
+            bridgeResponse.geometry.pathConstraintInitialVelocityResidualSampleCount
+          ),
+        }
+      : {}),
+    ...(bridgeResponse.geometry?.pathConstraintInitialVelocityResidualStatus
+      ? {
+          pathConstraintInitialVelocityResidualStatus: String(
+            bridgeResponse.geometry.pathConstraintInitialVelocityResidualStatus
+          ),
+        }
+      : {}),
+    ...(Number.isFinite(Number(bridgeResponse.geometry?.pathConstraintInitialVelocityResidualTolerance))
+      ? {
+          pathConstraintInitialVelocityResidualTolerance: Number(
+            bridgeResponse.geometry.pathConstraintInitialVelocityResidualTolerance
+          ),
+        }
+      : {}),
+    ...(Number.isFinite(Number(bridgeResponse.geometry?.maxPathConstraintInitialVelocityResidual))
+      ? {
+          maxPathConstraintInitialVelocityResidual: Number(
+            bridgeResponse.geometry.maxPathConstraintInitialVelocityResidual
+          ),
+        }
+      : {}),
+    ...(Number.isFinite(Number(bridgeResponse.geometry?.meanPathConstraintInitialVelocityResidual))
+      ? {
+          meanPathConstraintInitialVelocityResidual: Number(
+            bridgeResponse.geometry.meanPathConstraintInitialVelocityResidual
+          ),
+        }
+      : {}),
+    ...(Number.isFinite(Number(bridgeResponse.geometry?.rmsPathConstraintInitialVelocityResidual))
+      ? {
+          rmsPathConstraintInitialVelocityResidual: Number(
+            bridgeResponse.geometry.rmsPathConstraintInitialVelocityResidual
+          ),
+        }
       : {}),
     ...(Number.isFinite(Number(bridgeResponse.geometry?.pathConstraintResidualSampleCount))
       ? { pathConstraintResidualSampleCount: Number(bridgeResponse.geometry.pathConstraintResidualSampleCount) }
@@ -1960,6 +2096,13 @@ export function normalizeCausalDelayFeedbackBridgeReplay(runHandle = {}, options
       ? {
           pathConstraintBoundaryRelaxationResidualSampleCount: Number(
             bridgeResponse.geometry.pathConstraintBoundaryRelaxationResidualSampleCount
+          ),
+        }
+      : {}),
+    ...(bridgeResponse.geometry?.pathConstraintBoundaryRelaxationResidualMode
+      ? {
+          pathConstraintBoundaryRelaxationResidualMode: String(
+            bridgeResponse.geometry.pathConstraintBoundaryRelaxationResidualMode
           ),
         }
       : {}),
@@ -2128,6 +2271,9 @@ export function normalizeCausalDelayFeedbackBridgeReplay(runHandle = {}, options
       : {}),
     ...(Number.isFinite(Number(bridgeResponse.geometry?.pathConstraintBoundaryResidualSampleCount))
       ? { pathConstraintBoundaryResidualSampleCount: Number(bridgeResponse.geometry.pathConstraintBoundaryResidualSampleCount) }
+      : {}),
+    ...(bridgeResponse.geometry?.pathConstraintBoundaryResidualMode
+      ? { pathConstraintBoundaryResidualMode: String(bridgeResponse.geometry.pathConstraintBoundaryResidualMode) }
       : {}),
     ...(bridgeResponse.geometry?.pathConstraintBoundaryResidualStatus
       ? { pathConstraintBoundaryResidualStatus: String(bridgeResponse.geometry.pathConstraintBoundaryResidualStatus) }
@@ -2417,20 +2563,6 @@ function normalizeOptionalVector(point, label) {
   return normalizeVectorPoint(point, label);
 }
 
-function normalizeOptionalVirtualObserver(point) {
-  if (point == null) {
-    return null;
-  }
-  const normalized = normalizePoint(point, "virtualObserver");
-  return {
-    ...point,
-    ...normalized,
-    kind: "virtualObserver",
-    label: typeof point.label === "string" && point.label.length > 0 ? point.label : "Virtual Observer",
-    role: typeof point.role === "string" && point.role.length > 0 ? point.role : "observer",
-  };
-}
-
 function findHistoryPoint(history, kind, depth, label) {
   const row = history[kind].find((candidate) => candidate.depth === depth);
   if (!row) {
@@ -2622,13 +2754,11 @@ function createBridgeDelayedHitFromWakeLink(replayDataset, link, index) {
 
 function createBridgeGeometryFromReplayDataset(replayDataset, { initialConditions = {} } = {}) {
   requireObject(replayDataset, "replayDataset");
-  const virtualObserver = replayDataset.virtualObserver ?? initialConditions.virtualObserver ?? null;
   return {
     pathBounds: [],
     spherePointIntersections: [],
     history: cloneObject(replayDataset.history, "replayDataset.history"),
     initialConditions: cloneObject(initialConditions, "initialConditions"),
-    ...(virtualObserver ? { virtualObserver: cloneObject(virtualObserver, "virtualObserver") } : {}),
     presetId: replayDataset.preset?.id ?? DEFAULT_PRESET_ID,
     canvasColorId: replayDataset.canvasColorId ?? replayDataset.preset?.canvasColorId ?? DEFAULT_CANVAS_ID,
     wakeArcDisplayMode: replayDataset.wakeArcDisplayMode ?? PARTIAL_PROPAGATING_ARCS,
@@ -2842,6 +2972,13 @@ function createPairInteractionConstraintSolverMetadata(pairSummary, pairInteract
       "maxPathConstraintBoundaryRelaxationResidualAfter",
     ),
   );
+  const boundarySeedSampleCount = Number(
+    pairInteractionSummaryField(
+      pairSummary,
+      pairInteraction,
+      "pathConstraintBoundarySeedSampleCount",
+    ),
+  );
   const maxRelaxationResidualBefore = Number(
     pairInteractionSummaryField(
       pairSummary,
@@ -2859,10 +2996,22 @@ function createPairInteractionConstraintSolverMetadata(pairSummary, pairInteract
     pairRequest,
     pathConstraintCount,
   );
+  const initialVelocityPreserved = pairInteractionInitialVelocityBoundaryPreserved(
+    pairSummary,
+    pairInteraction,
+    pairRequest,
+  );
+  const boundaryResidualAccepted = pairInteractionBoundaryResidualAccepted(
+    pairSummary,
+    pairInteraction,
+    pairRequest,
+  );
   const hasConvergedFiniteDifferenceEvidence =
     Number.isFinite(pathConstraintCount) &&
     pathConstraintCount > 0 &&
     retainedPositionsPreserved &&
+    initialVelocityPreserved &&
+    boundaryResidualAccepted &&
     relaxationMode === FINITE_DIFFERENCE_FRAME_RELAXATION_MODE &&
     relaxationStatus === FINITE_DIFFERENCE_FRAME_RELAXATION_CONVERGED_STATUS &&
     Number.isFinite(relaxationSampleCount) &&
@@ -2892,37 +3041,236 @@ function createPairInteractionConstraintSolverMetadata(pairSummary, pairInteract
   return {
     pathConstraintSolverStatus: hasConvergedFiniteDifferenceEvidence
       ? DISCRETE_BOUNDARY_VALUE_CONVERGED_STATUS
-      : undefined,
+      : Number.isFinite(boundarySeedSampleCount) && boundarySeedSampleCount > 0
+        ? BOUNDARY_SEEDED_CONSTRAINT_PATH_STATUS
+        : undefined,
     pathConstraintSolverClaim: explicitClaim ?? (
       hasConvergedFiniteDifferenceEvidence
         ? FINITE_DIFFERENCE_PAIR_BOUNDARY_VALUE_SOLVE_CONVERGED_CLAIM
-        : undefined
+        : Number.isFinite(boundarySeedSampleCount) && boundarySeedSampleCount > 0
+          ? "diagnostic_constraint_replay_not_boundary_value_solve"
+          : undefined
     ),
   };
 }
 
-function createPairInteractionPhysicalBoundarySolverMetadata(pairSummary, pairInteraction, pathConstraintCount) {
+function createPairInteractionPhysicalBoundarySolverMetadata(
+  pairSummary,
+  pairInteraction,
+  pathConstraintCount,
+  pairRequest = undefined,
+) {
   const explicitStatus = optionalString(
     pairInteractionSummaryField(pairSummary, pairInteraction, "pathConstraintPhysicalBoundarySolverStatus"),
   );
   const explicitClaim = optionalString(
     pairInteractionSummaryField(pairSummary, pairInteraction, "pathConstraintPhysicalBoundarySolverClaim"),
   );
-  if (explicitStatus || explicitClaim) {
+  const explicitBlockingReason = optionalString(
+    pairInteractionSummaryField(pairSummary, pairInteraction, "pathConstraintPhysicalBoundarySolverBlockingReason"),
+  );
+  if (explicitStatus || explicitClaim || explicitBlockingReason) {
     return {
       ...(explicitStatus ? { pathConstraintPhysicalBoundarySolverStatus: explicitStatus } : {}),
       ...(explicitClaim ? { pathConstraintPhysicalBoundarySolverClaim: explicitClaim } : {}),
+      ...(explicitBlockingReason
+        ? { pathConstraintPhysicalBoundarySolverBlockingReason: explicitBlockingReason }
+        : {}),
     };
   }
   const constraintCount = Number(pathConstraintCount);
   if (!Number.isFinite(constraintCount) || constraintCount <= 0) {
     return {};
   }
+  const guidanceSampleCount = Number(
+    pairInteractionSummaryField(pairSummary, pairInteraction, "pathConstraintGuidanceSampleCount"),
+  );
+  const maxGuidanceAcceleration = Number(
+    pairInteractionSummaryField(pairSummary, pairInteraction, "maxPathConstraintGuidanceAcceleration"),
+  );
+  const relaxationStatus = pairInteractionSummaryField(
+    pairSummary,
+    pairInteraction,
+    "pathConstraintBoundaryRelaxationStatus",
+  );
+  const relaxationMode = pairInteractionSummaryField(
+    pairSummary,
+    pairInteraction,
+    "pathConstraintBoundaryRelaxationMode",
+  );
+  const relaxationSampleCount = Number(
+    pairInteractionSummaryField(
+      pairSummary,
+      pairInteraction,
+      "pathConstraintBoundaryRelaxationResidualSampleCount",
+    ),
+  );
+  const relaxationTolerance = Number(
+    pairInteractionSummaryField(
+      pairSummary,
+      pairInteraction,
+      "pathConstraintBoundaryRelaxationTolerance",
+    ),
+  );
+  const maxRelaxationResidualAfter = Number(
+    pairInteractionSummaryField(
+      pairSummary,
+      pairInteraction,
+      "maxPathConstraintBoundaryRelaxationResidualAfter",
+    ),
+  );
+  const residualEvidenceStatus = pairInteractionRelaxationResidualEvidenceStatus(
+    pairSummary,
+    pairInteraction,
+  );
+  const retainedPositionsPreserved = pairInteractionRetainedPositionsPreserved(
+    pairSummary,
+    pairInteraction,
+    pairRequest,
+    pathConstraintCount,
+  );
+  const initialVelocityPreserved = pairInteractionInitialVelocityBoundaryPreserved(
+    pairSummary,
+    pairInteraction,
+    pairRequest,
+  );
+  const boundaryResidualAccepted = pairInteractionBoundaryResidualAccepted(
+    pairSummary,
+    pairInteraction,
+    pairRequest,
+  );
+  const hasConvergedBoundaryEvidence =
+    retainedPositionsPreserved &&
+    initialVelocityPreserved &&
+    boundaryResidualAccepted &&
+    relaxationMode === FINITE_DIFFERENCE_FRAME_RELAXATION_MODE &&
+    relaxationStatus === FINITE_DIFFERENCE_FRAME_RELAXATION_CONVERGED_STATUS &&
+    Number.isFinite(relaxationSampleCount) &&
+    relaxationSampleCount > 0 &&
+    Number.isFinite(relaxationTolerance) &&
+    Number.isFinite(maxRelaxationResidualAfter) &&
+    residualEvidenceStatus === BOUNDARY_RELAXATION_RESIDUAL_EVIDENCE_NON_WORSENING &&
+    maxRelaxationResidualAfter <= relaxationTolerance;
+  let blockingReason = PHYSICAL_BOUNDARY_SOLVER_BLOCKING_REASON_NOT_IMPLEMENTED;
+  if (hasConvergedBoundaryEvidence) {
+    blockingReason = PHYSICAL_BOUNDARY_SOLVER_BLOCKING_REASON_NOT_IMPLEMENTED;
+  } else if (
+    retainedPositionsPreserved &&
+    relaxationMode === FINITE_DIFFERENCE_FRAME_RELAXATION_MODE &&
+    relaxationStatus === FINITE_DIFFERENCE_FRAME_RELAXATION_CONVERGED_STATUS &&
+    !initialVelocityPreserved
+  ) {
+    blockingReason = PHYSICAL_BOUNDARY_SOLVER_BLOCKING_REASON_INITIAL_VELOCITY;
+  } else if (
+    retainedPositionsPreserved &&
+    initialVelocityPreserved &&
+    relaxationMode === FINITE_DIFFERENCE_FRAME_RELAXATION_MODE &&
+    relaxationStatus === FINITE_DIFFERENCE_FRAME_RELAXATION_CONVERGED_STATUS &&
+    !boundaryResidualAccepted
+  ) {
+    blockingReason = PHYSICAL_BOUNDARY_SOLVER_BLOCKING_REASON_BOUNDARY_RESIDUAL;
+  } else if (
+    Number.isFinite(guidanceSampleCount) &&
+    guidanceSampleCount > 0 &&
+    Number.isFinite(maxGuidanceAcceleration) &&
+    maxGuidanceAcceleration > 0
+  ) {
+    blockingReason = PHYSICAL_BOUNDARY_SOLVER_BLOCKING_REASON_GUIDANCE_ACCELERATION;
+  } else if (relaxationStatus !== FINITE_DIFFERENCE_FRAME_RELAXATION_CONVERGED_STATUS) {
+    blockingReason = PHYSICAL_BOUNDARY_SOLVER_BLOCKING_REASON_RELAXATION_UNCONVERGED;
+  }
   return {
     pathConstraintPhysicalBoundarySolverStatus: PHYSICAL_BOUNDARY_SOLVER_PENDING_STATUS,
     pathConstraintPhysicalBoundarySolverClaim:
       RETAINED_KNOT_GUIDANCE_NOT_PHYSICAL_BOUNDARY_VALUE_SOLVE_CLAIM,
+    pathConstraintPhysicalBoundarySolverBlockingReason: blockingReason,
   };
+}
+
+function pairInteractionBoundaryResidualAccepted(pairSummary, pairInteraction, pairRequest) {
+  const requestedTolerance = Number(
+    pairInteractionSummaryField(
+      pairSummary,
+      pairInteraction,
+      "pathConstraintBoundaryResidualTolerance",
+    ) ?? pairRequest?.pathConstraintBoundaryResidualTolerance,
+  );
+  if (!Number.isFinite(requestedTolerance)) {
+    return true;
+  }
+  const status = pairInteractionSummaryField(
+    pairSummary,
+    pairInteraction,
+    "pathConstraintBoundaryResidualStatus",
+  );
+  if (status === "within_tolerance") {
+    return true;
+  }
+  if (
+    status === "exceeded_tolerance" ||
+    status === "no_boundary_samples" ||
+    status === "unresolved"
+  ) {
+    return false;
+  }
+  const sampleCount = Number(
+    pairInteractionSummaryField(
+      pairSummary,
+      pairInteraction,
+      "pathConstraintBoundaryResidualSampleCount",
+    ),
+  );
+  const maxResidual = Number(
+    pairInteractionSummaryField(pairSummary, pairInteraction, "maxPathConstraintBoundaryResidual"),
+  );
+  return Number.isFinite(sampleCount) && sampleCount > 0 && Number.isFinite(maxResidual)
+    ? maxResidual <= requestedTolerance
+    : false;
+}
+
+function pairInteractionInitialVelocityBoundaryPreserved(pairSummary, pairInteraction, pairRequest) {
+  const requestedTolerance = Number(
+    pairInteractionSummaryField(
+      pairSummary,
+      pairInteraction,
+      "pathConstraintInitialVelocityResidualTolerance",
+    ) ?? pairRequest?.pathConstraintInitialVelocityResidualTolerance,
+  );
+  const tolerance = Number.isFinite(requestedTolerance)
+    ? requestedTolerance
+    : DERIVED_INITIAL_VELOCITY_RESIDUAL_TOLERANCE;
+  const status = pairInteractionSummaryField(
+    pairSummary,
+    pairInteraction,
+    "pathConstraintInitialVelocityResidualStatus",
+  );
+  if (status === "within_tolerance") {
+    return true;
+  }
+  if (
+    status === "exceeded_tolerance" ||
+    status === "no_initial_velocity_samples" ||
+    status === "unresolved"
+  ) {
+    return false;
+  }
+  const sampleCount = Number(
+    pairInteractionSummaryField(
+      pairSummary,
+      pairInteraction,
+      "pathConstraintInitialVelocityResidualSampleCount",
+    ),
+  );
+  const maxResidual = Number(
+    pairInteractionSummaryField(
+      pairSummary,
+      pairInteraction,
+      "maxPathConstraintInitialVelocityResidual",
+    ),
+  );
+  return Number.isFinite(sampleCount) && sampleCount > 0 && Number.isFinite(maxResidual)
+    ? maxResidual <= tolerance
+    : false;
 }
 
 function pairInteractionRetainedPositionsPreserved(pairSummary, pairInteraction, pairRequest, pathConstraintCount) {
@@ -2980,6 +3328,13 @@ function normalizeOptionalNonnegativeNumber(value, label) {
     return undefined;
   }
   return normalizeNonnegativeNumber(value, undefined, label);
+}
+
+function normalizeOptionalPositiveNumber(value, label) {
+  if (value == null) {
+    return undefined;
+  }
+  return normalizePositiveNumber(value, undefined, label);
 }
 
 function normalizeOptionalString(value, fallback, label) {

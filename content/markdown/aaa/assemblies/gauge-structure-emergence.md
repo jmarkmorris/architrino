@@ -54,6 +54,10 @@ Here $\theta$ is the retained Noether sea state and assembly branch record, $d_Q
 
 This working map starts from the measured low-energy pattern, not from a larger symmetry that must later be hidden. The durable observer-level target is the Standard Model gauge record: $U(1)_Y\times SU(2)_L\times SU(3)_c$, the charge relation $Q=T_3+Y/2$, the observed chiral weak couplings, the charge and generation tables, the running of $g_1,g_2,g_3$, and the absence of additional low-energy partners or transport modes above current bounds.
 
+The hypercharge symbol must be read with its local convention. This chapter uses the weak-hypercharge convention $Q=T_3+Y/2$. If a source instead uses the left-Weyl convention $Q=T^3_L+Y_{\mathrm{SM}}$, convert by $Y=2Y_{\mathrm{SM}}$ before comparing charge tables, anomaly sums, or electroweak mixing records.
+
+The recovery target is hybrid rather than a single declared finite-cutoff path integral. Color-sector comparisons consume nonperturbative QCD matrix elements or color-singlet operator data; electroweak comparisons consume a renormalized perturbative chiral-gauge chart or a matched weak effective theory; reaction chapters consume the matching map that connects those records to a measured channel. A finite regulator, when present, is auxiliary evidence until its removal or matching map and systematic error budget are declared. It is not a physical Standard Model parameter in the observer-level recovery residual.
+
 The familiar running-coupling plot is a useful bridge for this target. It says that the effective $SU(3)_c$, $SU(2)_L$, and $U(1)_Y$ interaction strengths change with observer-level probe scale, with approximate high-scale convergence in many normalizations. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is not treated as proof of grand-unified ontology. It is a pressure on the mapping: the same Noether sea response, axial-layer exposure, and color axis-exceptionality bookkeeping must generate the scale-dependent effective record discussed in [Gauge Symmetries](gauge-symmetries.md#running-coupling-bridge), while the same branch record keeps non-baseline channels absent.
 
 There is a second consistency pressure that is just as important as the charge table. The Standard Model is a chiral gauge theory, so the low-energy fermion collection must cancel gauge anomalies and the $SU(2)$ Witten obstruction as a set. In this working emergence map, anomaly cancellation is read as a recovery condition on the assembly dictionary:
@@ -291,6 +295,9 @@ The loop-phase target above then requires the same branch record to support both
 ## Observer-Level Electroweak Closure Map (Working)
 
 To connect microdynamics to observer-sector electroweak equations, start from the causal path-history action:
+
+In this map, electroweak "breaking" means a stabilizer and mass-coordinate recovery problem for the effective gauge chart. It does not mean that gauge redundancy is a primitive substrate symmetry that literally breaks. The substrate task is to derive the observer-level photon, $W^\pm$, $Z$, charge, and weak-mixing records from one branch state while preserving the gauge-invariant record of measured reactions.
+
 $$
 S_{\text{fund}}
 =

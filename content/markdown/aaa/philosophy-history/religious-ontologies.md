@@ -125,6 +125,8 @@ The strongest comparative overlap lies in traditions that allow beginningless or
 
 The most important contrast for $\mathbb{A}\mathbb{A}\mathbb{A}$ is that it does not require a terminal cosmic state carrying moral or salvific completion. It also does not require dissolution into a higher metaphysical principle. Its future-facing picture is open-ended transformation under lawful dynamics. In this respect it stands furthest from judgment-centered eschatology and somewhat closer in style to non-apocalyptic process traditions.
 
+A living body makes this distinction concrete. In this framework, a body is an assembly-level organization whose architrino membership changes over time. Biological death may end the organism-level organization, record-making capacity, and agency carried by that organization, but it does not remove the participating architrinos from the substrate inventory. Those architrinos remain provenance-bearing entities in $\mathbb{U}_{\text{now}}\equiv S(t)$ and continue along later worldlines wherever subsequent dynamics carry them. The comparison therefore cuts between personal survival and constituent persistence: $\mathbb{A}\mathbb{A}\mathbb{A}$ does not infer soul survival, resurrection, or reincarnation after biological death, but it does make the material provenance of the former body literal rather than merely poetic.
+
 This does not render $\mathbb{A}\mathbb{A}\mathbb{A}$ equivalent to those traditions. It means only that, at the level of cosmological grammar, $\mathbb{A}\mathbb{A}\mathbb{A}$ belongs more closely to non-creator, non-teleological, process-centered accounts than to one-time creation narratives culminating in final redemption.
 
 ### Conclusion

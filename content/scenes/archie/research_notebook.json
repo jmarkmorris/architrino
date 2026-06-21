@@ -10,6 +10,7 @@
     "layout": {
       "type": "grid"
     },
+    "layoutColumns": 6,
     "labelDocIconOwnLine": true,
     "source": {
       "type": "markdown",
@@ -17,7 +18,8 @@
       "split": {
         "headingLevel": 2,
         "maxDepth": 1,
-        "gridGapMultiplier": 2,
+        "nodeRadius": 2.15,
+        "gridGapMultiplier": 1,
         "overrides": {
           "overview": {
             "id": "research_notebook_overview",
@@ -29,16 +31,32 @@
             "labelTitle": "Molecule Visualization App",
             "labelSubtitle": "2026-06-14"
           },
-          "2026 06 13 photon and polarization visualization": {
-            "labelTitle": "Photon and Polarization Visualization",
+          "2026 06 20 central solver workstream and benchmark gate": {
+            "labelTitle": "Solver Benchmark Gate",
+            "labelSubtitle": "2026-06-20"
+          },
+          "2026 06 20 tri binary middle hinge candidate narrowing": {
+            "labelTitle": "Tri-Binary Hinge Candidate",
+            "labelSubtitle": "2026-06-20"
+          },
+          "2026 06 16 entropy and record coarse graining chapter": {
+            "labelTitle": "Entropy Coarse-Graining",
+            "labelSubtitle": "2026-06-16"
+          },
+          "2026 06 13 photon and polarization visualization app": {
+            "labelTitle": "Photon and Polarization Visualization App",
             "labelSubtitle": "2026-06-13"
+          },
+          "2026 06 10 ideal noether swarm lorentz geometry app": {
+            "labelTitle": "Swarm Lorentz Geometry App",
+            "labelSubtitle": "2026-06-10"
           },
           "2026 03 17 planar three body breather bridge frozen": {
             "labelTitle": "3-Body Breather Frozen",
             "labelSubtitle": "2026-03-17"
           },
           "2026 03 16 1d collinear breather scaffold reaches fixed point closure": {
-            "labelTitle": "1D Collinear Breather Scaffold Closure",
+            "labelTitle": "1D Collinear Breather Closure",
             "labelSubtitle": "2026-03-16"
           },
           "2026 03 14 dyadic resonance lock": {
@@ -81,7 +99,8 @@
       }
     },
     "view": {
-      "columns": 1
+      "columns": 1,
+      "fit": "viewport"
     }
   },
   "objects": []

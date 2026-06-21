@@ -209,7 +209,7 @@ All subsequent chapters build on these foundations. This hub intentionally point
 
 ### Architrino
 
-This chapter is the canonical primitive-entity specification for the **architrino** in $\mathbb{A}\mathbb{A}\mathbb{A}$. It defines the architrino as a point transceiver of potential-bearing causal wakes, with definite polarity, persistent identity, complete path history, and non-creation/non-destruction at the substrate level.
+This chapter is the canonical primitive-entity specification for the **architrino** in $\mathbb{A}\mathbb{A}\mathbb{A}$. It defines the architrino as a point transceiver of potential-bearing causal wakes: each architrino continuously emits source-provenanced wake history, universally receives causal-wake intersections, and responds through receiver-local acceleration; effective equilibration appears only as a collective assembly response built from those received wakes. The primitive definition also includes definite polarity, persistent identity, complete path history, and non-creation/non-destruction at the substrate level.
 
 Architrinos live in [absolute timespace](../../../../markdown/aaa/foundations/absolute-timespace.md): absolute time $t$ together with the [Euclidean void](../../../../markdown/aaa/foundations/euclidean-void.md). They are not particles in the Standard Model sense. Standard particles, effective fields, clocks, rulers, and observer-level spacetime behavior are downstream assembly phenomena built from architrino configurations and wake dynamics.
 
@@ -268,9 +268,9 @@ q_a=\sigma_a\epsilon,
 \qquad
 \sigma_a\in\{-1,+1\}
 $$
-with magnitude
+The observer-level electron-charge benchmark is then
 $$
-\epsilon=\frac{|e|}{6}
+|e|=6\epsilon
 $$
 
 The two polarity names are:
@@ -280,7 +280,7 @@ The two polarity names are:
 
 Like polarities repel; unlike polarities attract in the universal interaction law. At the assembly level, electric charge is the coarse bookkeeping summary of the signed architrino inventory. For example, quark and lepton electric charges are built from integer counts of $\epsilon$ units in stable assembly patterns rather than from a separate primitive charge substance.
 
-The value $\epsilon=|e|/6$ is currently an input parameter and a high-priority explanatory target. The working hypothesis is that six-site nested shell swarm organization supplies the deeper reason for the observed electric-charge fractionation, but that explanation belongs to assembly closure rather than to the primitive definition of an architrino.
+The normalization $|e|=6\epsilon$ is currently an input parameter and a high-priority explanatory target. In this convention, the architrino polarity unit is primitive for bookkeeping, and the observed electron or positron charge is a six-unit assembly-level multiple. The working hypothesis is that six-site nested shell swarm organization supplies the deeper reason for that six-unit mapping, but that explanation belongs to assembly closure rather than to the primitive definition of an architrino.
 
 #### Provenance and Persistence
 
@@ -339,7 +339,7 @@ If a discussion becomes meta-theoretic, the careful wording is that architrinos 
 
 An architrino is a point transceiver: it emits and receives continuously.
 
-Its emitted structure is a potential-bearing **causal wake**. The wake is physically real: it propagates at finite wake speed, carries source provenance, and is received through later causal intersections. It is not an independent substance because it has no freely specifiable state apart from the source architrino's path history. At the effective level, many such wake contributions may be summarized as a field, but the substrate term remains causal wake.
+Its emitted structure is a potential-bearing **causal wake**. The wake is physically real: it propagates at the primitive causal-wake speed $c_f$, the field propagation speed relative to the Euclidean-void rest frame; carries source provenance; and is received through later causal intersections. It is not an independent substance because it has no freely specifiable state apart from the source architrino's path history. At the effective level, many such wake contributions may be summarized as a field, but the substrate term remains causal wake.
 
 Schematically, if the source history has time domain $I_a$, the wake emitted by architrino $a$ is a source-history functional
 $$
@@ -717,7 +717,7 @@ There are **no instantaneous actions-at-a-distance** and **no advanced potential
 
 A critical feature of $\mathbb{A}\mathbb{A}\mathbb{A}$ is that **all interactions are mediated by path history**: the cumulative effect of the causal wake surfaces that reach an architrino from prior emission events.
 
-At time $t$, an architrino at position $\mathbf{x}(t)$ experiences forces from all other architrinos based on the **intersection of its worldline with causal wake surfaces** emitted at all past times $t' < t$. This is naturally encoded in the [Master Equation of Motion](../../../../markdown/aaa/dynamics/master-equation.md) and gives rise to **non-Markovian memory effects**, including the self-hit regime where an architrino interacts with its own past emissions.
+At time $t$, an architrino at position $\mathbf{x}(t)$ receives wake contributions where its worldline intersects **causal wake surfaces** emitted at all past times $t' < t$; through the [Master Equation of Motion](../../../../markdown/aaa/dynamics/master-equation.md), those received wakes determine receiver-local acceleration rather than a primitive force. This gives rise to **non-Markovian memory effects**, including the self-hit regime where an architrino interacts with its own past emissions.
 
 Because $t$ is universal and absolute, the past (all $t' < t$) is unambiguous, and the theory can sum or integrate over admissible delayed contributions. This allows for a mechanistic model of interaction without invoking action-at-a-distance, while still permitting **deterministic multistability** at self-hit thresholds.
 
@@ -11772,6 +11772,8 @@ driven open system rather than a closed Hamiltonian phase space.
 The Master Equation of Motion for architrinos is non-Markovian, driven by intersections between receiver trajectories and past causal wake surfaces. Consequently, any action-level scaffold for this law cannot be a local integral over instantaneous states. It must be a multi-time functional over path history, and its variation residual must be identified before the scaffold is treated as an exact action derivation. A scale-only derivation requires that residual to vanish or become a boundary term; a recoil-inclusive derivation may instead retain it as a mechanical wake-emission resistance term.
 
 For a finite, isolated set of architrinos parameterized by absolute time $t$ in the Euclidean void, use the $\eta>0$ regularized delayed action below. The exact causal wake kernel is recovered in the weak branch limit as $\eta\to0^+$. The admissible interaction sum excludes trivial self-coincidence: $i\ne j$ terms are retained, and $i=j$ terms are retained only on nontrivial self-hit branches with $t-t_0\ge\tau_{\min}>0$ or with an explicitly declared core regularization.
+
+The $\eta\to0^+$ statement is a weak or distributional scaling claim over declared observables unless a stronger topology is explicitly supplied. A finite-regulator trend supports this action scaffold only after the observable map, normalization, admissible test functions, and uniform control needed for the limit are stated. It is not by itself a proof of the exact causal-wake action.
 
 $$
 S_\eta[\{\mathbf{x}_i\}]
@@ -40901,7 +40903,7 @@ This chapter is the focused program statement for deriving operational Lorentz b
 
 The opening abstract states the target; the later sections move through the governing delayed dynamics, the anisotropy mechanism, and the conditions under which assembly-built observers could recover standard Lorentz kinematics.
 
-For the theory-bridge version that maps special-relativistic terms directly to the deformable Noether swarm story, see [the special-relativity bridge](../../../../markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md). For the reader-facing synthesis of the branch-quantized Lorentz milestone, see [Return-Cycle Lorentz Quantization](../../../../markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md). For the interactive geometry surface, open [Ideal Noether Swarm: Lorentz Geometry](../../../../../ideal-swarm.html).
+For the theory-bridge version that maps special-relativistic terms directly to the deformable Noether swarm story, see [the special-relativity bridge](../../../../markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md). For the reader-facing synthesis of the branch-quantized Lorentz milestone, see [Return-Cycle Lorentz Quantization](../../../../markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md). For the interactive geometry surface, open [Ideal Noether Swarm: Lorentz Geometry App](../../../../../ideal-swarm.html).
 
 ##### Abstract
 
@@ -46158,6 +46160,10 @@ Here $\theta$ is the retained Noether sea state and assembly branch record, $d_Q
 
 This working map starts from the measured low-energy pattern, not from a larger symmetry that must later be hidden. The durable observer-level target is the Standard Model gauge record: $U(1)_Y\times SU(2)_L\times SU(3)_c$, the charge relation $Q=T_3+Y/2$, the observed chiral weak couplings, the charge and generation tables, the running of $g_1,g_2,g_3$, and the absence of additional low-energy partners or transport modes above current bounds.
 
+The hypercharge symbol must be read with its local convention. This chapter uses the weak-hypercharge convention $Q=T_3+Y/2$. If a source instead uses the left-Weyl convention $Q=T^3_L+Y_{\mathrm{SM}}$, convert by $Y=2Y_{\mathrm{SM}}$ before comparing charge tables, anomaly sums, or electroweak mixing records.
+
+The recovery target is hybrid rather than a single declared finite-cutoff path integral. Color-sector comparisons consume nonperturbative QCD matrix elements or color-singlet operator data; electroweak comparisons consume a renormalized perturbative chiral-gauge chart or a matched weak effective theory; reaction chapters consume the matching map that connects those records to a measured channel. A finite regulator, when present, is auxiliary evidence until its removal or matching map and systematic error budget are declared. It is not a physical Standard Model parameter in the observer-level recovery residual.
+
 The familiar running-coupling plot is a useful bridge for this target. It says that the effective $SU(3)_c$, $SU(2)_L$, and $U(1)_Y$ interaction strengths change with observer-level probe scale, with approximate high-scale convergence in many normalizations. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is not treated as proof of grand-unified ontology. It is a pressure on the mapping: the same Noether sea response, axial-layer exposure, and color axis-exceptionality bookkeeping must generate the scale-dependent effective record discussed in [Gauge Symmetries](../../../../markdown/aaa/assemblies/gauge-symmetries.md#running-coupling-bridge), while the same branch record keeps non-baseline channels absent.
 
 There is a second consistency pressure that is just as important as the charge table. The Standard Model is a chiral gauge theory, so the low-energy fermion collection must cancel gauge anomalies and the $SU(2)$ Witten obstruction as a set. In this working emergence map, anomaly cancellation is read as a recovery condition on the assembly dictionary:
@@ -46395,6 +46401,9 @@ The loop-phase target above then requires the same branch record to support both
 #### Observer-Level Electroweak Closure Map (Working)
 
 To connect microdynamics to observer-sector electroweak equations, start from the causal path-history action:
+
+In this map, electroweak "breaking" means a stabilizer and mass-coordinate recovery problem for the effective gauge chart. It does not mean that gauge redundancy is a primitive substrate symmetry that literally breaks. The substrate task is to derive the observer-level photon, $W^\pm$, $Z$, charge, and weak-mixing records from one branch state while preserving the gauge-invariant record of measured reactions.
+
 $$
 S_{\text{fund}}
 =
@@ -46524,7 +46533,9 @@ U(1)_Y\times SU(2)_L\times SU(3)_c,
 Q=T_3+\frac{Y}{2}
 $$
 
-together with the observed charge assignments, chiral weak couplings, anomaly cancellations, running couplings, and mixing data consumed by the fermion and reaction chapters. A compact residual for this chapter is
+together with the observed charge assignments, chiral weak couplings, anomaly cancellations, running couplings, and mixing data consumed by the fermion and reaction chapters.
+
+This chapter uses the weak-hypercharge convention in the displayed relation. Sources that use $Q=T^3_L+Y_{\mathrm{SM}}$ must be converted by $Y=2Y_{\mathrm{SM}}$ before their charge tables or anomaly coefficients are compared to this residual. A compact residual for this chapter is
 
 $$
 \mathcal{R}_{\mathrm{gauge}}(\theta)
@@ -46554,6 +46565,8 @@ $$
 $$
 
 with $\mathcal{R}_{\mathrm{null}}$ defined in [Failure Criteria](../../../../markdown/aaa/validation/failure-criteria.md#null-result-residual-for-added-channels). Thus larger group unification, supersymmetry, Kaluza-Klein-style geometry, and similar constructions remain comparison frameworks unless an $\mathbb{A}\mathbb{A}\mathbb{A}$ branch record recovers the observed gauge sector while also suppressing every added observable channel from the same shared state variables.
+
+The representation term is local gauge bookkeeping unless the branch also makes claims about global line or bundle sectors. The local product notation $U(1)_Y\times SU(2)_L\times SU(3)_c$ is enough for the charge and anomaly residual above, but it does not by itself decide the global quotient or the allowed line-operator spectrum. A branch that uses those global sectors must declare the additional bundle and line data as part of $d_{\mathrm{rep}}$ rather than hiding it inside the local Lie-algebra match.
 
 ##### Gauge Redundancy and Anomaly Ledger
 
@@ -46594,6 +46607,8 @@ $$
 \mathcal{A}_{\mathrm{gauge}}(\theta)=(0,0,0,0,0,0)
 $$
 The second entry is the non-perturbative $SU(2)$ Witten check: the number of left-handed $SU(2)$ doublets must be even. Global anomalies that are part of known physics, such as axial-current violation and pion-to-photon anomaly matching, may be retained as observer-level recovery targets, but a gauge anomaly is a consistency failure rather than an optional correction.
+
+When this vector is evaluated from a fermion table, all entries are counted generation-by-generation with the correct spectator multiplicities and left-handed conjugate fields. For example, color multiplicity contributes to weak-doublet counting and weak multiplicity contributes to color anomaly sums. A visually correct charge table that passes only after dropping these multiplicities has not passed the Standard Model recovery gate.
 
 ##### Running-Coupling Bridge
 
@@ -53853,6 +53868,19 @@ This section is the canonical stepwise map for low-energy Standard Model channel
 - Low-energy means interaction scales where validated SM/QED/QCD effective descriptions already succeed and no beyond-tested deviation is introduced by default.
 - The substrate is modeled as the Noether sea, which can store, transport, and relock assembly content under local conservation constraints.
 - "Low-energy" here includes laboratory, beamline, plasma, and most astrophysical transport contexts outside unresolved near-horizon/extreme-density limits.
+
+##### Hybrid Standard Model Routing
+
+A Standard Model comparison row must name which effective layer supplies the observer-level prediction. $\mathbb{A}\mathbb{A}\mathbb{A}$ reaction language may then map the provenance and assembly changes, but it may not replace the validated Standard Model source lane with an unmarked substrate story.
+
+| Channel use | Observer-level source lane | Required matching record |
+| --- | --- | --- |
+| Short-distance electroweak or collider channel | Renormalized perturbative chiral-gauge chart, with declared input scheme | Gauge-invariant amplitude or detector-level observable, scheme, order, expansion parameter, and systematic remainder |
+| Low-energy weak or nuclear channel | Matched weak effective theory plus QCD or nuclear matrix elements | Operator basis, normalization, CKM/PMNS factor when applicable, matrix-element source, and uncertainty class |
+| Hadronic strong channel | QCD calculation, lattice-QCD matrix element, factorization theorem, or validated phenomenological input | Color-singlet operator or infrared-safe observable, scale, scheme, and truncation or lattice-continuum record |
+| Pure QED or transport channel | Validated QED, kinetic, or material-response model | Observable definition, medium assumptions, boundary conditions, and error budget |
+
+The reaction row therefore records a Standard Model prediction as a structured object: energy regime, operator or detector functional, matching map, expansion or scaling parameter, remainder estimate, and consistency statements such as gauge invariance, unitarity, positivity, or infrared safety when those are part of the source lane. A finite regulator or fit trend is evidence only after this record states how the regulator is removed, matched, or bounded.
 
 ##### Canonical Stepwise Workflow
 
@@ -64927,7 +64955,8 @@ Each reaction record should state:
 6. **Energy-momentum and angular-momentum accounting:** where kinetic energy, internal binding energy, photon assemblies, recoil, medium excitation, spin/vector ledger terms, and wake-carried angular momentum enter and exit.
 7. **Path-history provenance:** which emitted causal wakes, source identities, and delayed interactions are needed to make the reaction deterministic in absolute time.
 8. **Radiation event record, when applicable:** for emitted, absorbed, shifted, captured, or failed photon channels, attach the shared event fields from [Radiation](../../../../markdown/aaa/reactions/radiation.md#radiation-event-record-schema), including $E_{\text{exc}}$, $E_\gamma$, recoil, medium excitation, polarization handoff, and causal-wake ledger.
-9. **Closure status:** baseline, provisional map, derivation target, failed map, or inherited gate.
+9. **Hybrid Standard Model matching, when applicable:** identify the source lane for the observer-level prediction: perturbative electroweak chart, matched weak effective theory, lattice-QCD or nuclear matrix element, infrared-safe QCD observable, QED, kinetic model, or detector functional. Include the scheme, operator or observable definition, matching normalization, CKM/PMNS factor when applicable, expansion or scaling parameter, systematic remainder, and regulator-removal or continuum record when one is used.
+10. **Closure status:** baseline, provisional map, derivation target, failed map, or inherited gate.
 
 #### Record Template
 
@@ -64940,6 +64969,7 @@ Each reaction record should state:
 | Energy-momentum and angular-momentum ledger | Internal energy, recoil, emitted assemblies, spin/vector ledger terms, wake-carried angular momentum, and medium excitation |
 | Radiation event record, when applicable | Source assembly, source-depletion row, trigger geometry, $\delta\Theta_a$, $E_{\text{exc}}$, $E_\gamma$, recoil, medium excitation, polarization handoff, causal-wake ledger, photon Gate B event residual when $E_\gamma\ne0$, and closure status |
 | Provenance data | Source identity, emission time, causal-root branch, and local Noether sea state |
+| Hybrid Standard Model matching, when applicable | Source lane, scheme, operator or observable, matching normalization, CKM/PMNS factor when applicable, matrix-element or factorization source, expansion or scaling parameter, systematic remainder, and regulator-removal or continuum record |
 | Closure status | What is established, what is assumed, and what remains to derive |
 
 #### Residual-Routing Event-Ledger Contract
@@ -66899,6 +66929,10 @@ Every promoted claim must emit `convergence_table.csv` with one row for each req
 
 For continuum or stochastic promotions, append rows for `moment-closure`, `distribution-moments`, `diffusion-tensor`, `causal-response`, and `fluctuation-dissipation` when those channels are claimed. These rows must include the artifact hash of the direct event-root run and the artifact hash of the reduced continuum or stochastic run being compared.
 
+For field-theory or continuum-limit promotions, the packet must also declare the scaling-limit datum: regulator family, scaling trajectory, volume or window trajectory when relevant, test-observable class, observable maps from the regulated state to the promoted variables, normalization and mixing rules for composite observables, convergence topology, positivity or reconstruction condition when the claim uses a quantum-field analogue, and the artifact hashes for every regulated run consumed by the limit. Without this datum, a finite-regulator trend is a diagnostic, not a promoted continuum claim.
+
+If the promoted claim invokes an Osterwalder-Schrader-like or Wightman-like field-theory reconstruction, the packet must identify the full reconstruction package it is borrowing: positivity, covariance or symmetry, locality or support condition, vacuum-sector or clustering condition, test-function space, regularity and growth control, and the target reconstructed object. Reflection positivity alone is not enough to promote a regulated numerical family into a local quantum-field analogue.
+
 For revised branch-coordinate promotions, append rows for `branch-coordinate-source`, `branch-coordinate-heldout`, `branch-coordinate-phase-origin` when applicable, `branch-coordinate-design`, and `branch-identity-refinement`. These rows must include the artifact hash of the predeclared coordinate packet and the rerun candidate that consumes it.
 
 The regulator row must include each promoted observable $Y$ and the value of
@@ -66909,6 +66943,8 @@ E_\eta(Y;\eta,\eta/2)
 {\|R(Y_{\eta/2})\|_{L^2(W,\{x_k\})}+10^{-12}}
 $$
 It also records whether active root-ledger entries match between $\eta$ and $\eta/2$ after matching source, receiver, root class, and branch status. A convergence plot is not promotion evidence unless the table row containing the plotted quantity is present and tied to the campaign artifact hash.
+
+Regulator extrapolation fits must report the fitted observable, the regulator ladder, the assumed asymptotic form, excluded points if any, stability under fit-window changes, endpoint or singular-window controls when they affect the extrapolation, and a negative-control observable. A fit that behaves smoothly but has no declared observable map, topology, normalization, volume or window estimate when relevant, remainder bound, or independent continuum reconstruction remains below theorem-grade evidence.
 
 ###### Negative control (null test, mandatory)
 
@@ -67258,6 +67294,10 @@ I_h^q,
 \big)
 $$
 Here $\mathsf{id}$ fixes the run identifier and source commit, $S_\eta$ is the regularized state history, $\mathcal{G}_h$ is the spatial and history mesh, $\Delta t$ is the absolute-time step, $\eta > 0$ is the causal-wake regularization width, $I_h^q$ is the declared order-$q$ history interpolation operator, $\mathcal{L}_{\mathrm{root}}$ is the causal-root ledger, $\mathcal{T}_{\eta}$ is the transition-record family for fold-layer, separator, or active-root status windows, $\mathcal{R}_{\mathrm{branch}}$ is the named branch-residual vector, $\Pi_{\mathbb{U}_{\text{now}}}$ is the provenance log, $\mathcal{E}_{\mathrm{conv}}$ is the convergence-measure vector, and $\mathcal{F}$ is the finite failure-code set.
+
+When a campaign is used for a continuum, field-theory, or regulator-removal claim, it must also attach an extraction map: the regulated observables, test windows, volume or window trajectory when relevant, normalization and mixing rules, convergence topology, positivity or reconstruction condition when applicable, and the artifact hashes for the regulator ladder. If independent methods or benchmarks are used, the packet must expose their normalization conventions and error envelopes before comparing coordinates. These fields tell reviewers exactly what is claimed to survive the finite run and what remains only a regulator-level diagnostic.
+
+For a QFT-like reconstruction claim, the campaign must also state the presentation being targeted, such as Wightman data, Osterwalder-Schrader data, a local observable net, or a weaker named comparison. The packet must then list the hypotheses required by that presentation rather than using generic terms such as `continuum field` or `reconstructed field`.
 
 The state history is
 $$
@@ -85734,7 +85774,7 @@ To promote this bridge from mapping to derivation, the following targets must cl
 
 This bridge gives a compact reader-facing account of the Lorentz milestone developed in the spacetime and Noether swarm chapters. Its preferred name is **Return-Cycle Lorentz Quantization**. The name is more precise than `quantized Lorentz factor` because the smooth observer-level Lorentz function is not replaced by a step function. The quantized object is the material realization of that function: a discrete admissible return-cycle branch of the Noether swarm causal-root ledger.
 
-The formal derivation of the axis-ratio law belongs to [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md#closed-return-derivation-of-the-lorentz-axis-ratio). The canonical geometry variables belong to [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md#canonical-geometry-variables). The special-relativity dictionary remains in [Special Relativity and Deformable Noether Swarms](../../../../markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md). For the interactive geometry surface, open [Ideal Noether Swarm: Lorentz Geometry](../../../../../ideal-swarm.html).
+The formal derivation of the axis-ratio law belongs to [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md#closed-return-derivation-of-the-lorentz-axis-ratio). The canonical geometry variables belong to [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md#canonical-geometry-variables). The special-relativity dictionary remains in [Special Relativity and Deformable Noether Swarms](../../../../markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md). For the interactive geometry surface, open [Ideal Noether Swarm: Lorentz Geometry App](../../../../../ideal-swarm.html).
 
 ###### Naming And Scope
 
@@ -90225,6 +90265,8 @@ The strongest comparative overlap lies in traditions that allow beginningless or
 ###### Eschatological Implications
 
 The most important contrast for $\mathbb{A}\mathbb{A}\mathbb{A}$ is that it does not require a terminal cosmic state carrying moral or salvific completion. It also does not require dissolution into a higher metaphysical principle. Its future-facing picture is open-ended transformation under lawful dynamics. In this respect it stands furthest from judgment-centered eschatology and somewhat closer in style to non-apocalyptic process traditions.
+
+A living body makes this distinction concrete. In this framework, a body is an assembly-level organization whose architrino membership changes over time. Biological death may end the organism-level organization, record-making capacity, and agency carried by that organization, but it does not remove the participating architrinos from the substrate inventory. Those architrinos remain provenance-bearing entities in $\mathbb{U}_{\text{now}}\equiv S(t)$ and continue along later worldlines wherever subsequent dynamics carry them. The comparison therefore cuts between personal survival and constituent persistence: $\mathbb{A}\mathbb{A}\mathbb{A}$ does not infer soul survival, resurrection, or reincarnation after biological death, but it does make the material provenance of the former body literal rather than merely poetic.
 
 This does not render $\mathbb{A}\mathbb{A}\mathbb{A}$ equivalent to those traditions. It means only that, at the level of cosmological grammar, $\mathbb{A}\mathbb{A}\mathbb{A}$ belongs more closely to non-creator, non-teleological, process-centered accounts than to one-time creation narratives culminating in final redemption.
 
