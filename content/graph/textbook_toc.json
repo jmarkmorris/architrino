@@ -8,8 +8,8 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 174,
-      "sections": 1415
+      "entries": 175,
+      "sections": 1421
     }
   },
   "tocRoot": {
@@ -1616,6 +1616,64 @@
                 "markdownPath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
                 "markdownSection": "Ancillary Symmetry Check",
                 "sectionKey": "ancillary symmetry check",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "dynamics__assembly_topological_charge",
+            "title": "Assembly Topological Charge",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/dynamics/assembly_topological_charge.json",
+            "markdownPath": "content/markdown/aaa/dynamics/assembly-topological-charge.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Source Of The Three Entries",
+                "markdownPath": "content/markdown/aaa/dynamics/assembly-topological-charge.md",
+                "markdownSection": "Source Of The Three Entries",
+                "sectionKey": "source of the three entries",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Candidate Definition",
+                "markdownPath": "content/markdown/aaa/dynamics/assembly-topological-charge.md",
+                "markdownSection": "Candidate Definition",
+                "sectionKey": "candidate definition",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Invariance And Allowed Transitions",
+                "markdownPath": "content/markdown/aaa/dynamics/assembly-topological-charge.md",
+                "markdownSection": "Invariance And Allowed Transitions",
+                "sectionKey": "invariance and allowed transitions",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Role In The Assembly Atlas",
+                "markdownPath": "content/markdown/aaa/dynamics/assembly-topological-charge.md",
+                "markdownSection": "Role In The Assembly Atlas",
+                "sectionKey": "role in the assembly atlas",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Simulation Extraction",
+                "markdownPath": "content/markdown/aaa/dynamics/assembly-topological-charge.md",
+                "markdownSection": "Simulation Extraction",
+                "sectionKey": "simulation extraction",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Current Status",
+                "markdownPath": "content/markdown/aaa/dynamics/assembly-topological-charge.md",
+                "markdownSection": "Current Status",
+                "sectionKey": "current status",
                 "headingLevel": 2
               }
             ]

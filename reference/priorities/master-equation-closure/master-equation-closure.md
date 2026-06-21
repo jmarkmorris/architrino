@@ -110,6 +110,12 @@ Keep dynamics, geometry, and mapping centered on [master-equation.md](../../../c
 
 This file remains the control surface for the workstream. No sibling detailed priority file is needed yet; if the program grows, the natural split is one action-kernel / Noether-boundary packet, one circular/spiral closure packet, and one Lorentz/GR bridge packet.
 
+## Foundation/Dynamics Impact 2026-06-21
+
+The updated [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md) promotes the causal-root complex, singular-stratum routing, local-to-global branch-chart gluing target, finite-continuation cardinality, starvation scale for forward partner rows, and finite-window wake-escapement boundary identity into the core closure grammar. This does not restart the active spiral/A1 work. It tightens promotion: a local residual or pointwise branch trace is not enough unless the retained chart also reports signed root-complex data, fold versus higher-stratum routing, finite memory, overlap/gluing consistency where a global claim is made, and boundary wake-history charges on the same retained row set.
+
+Practical condition: active proof and simulation packets should treat this as `schema_update_required` for promoted branch certificates, not as rejection of existing diagnostics. Existing finite-collar, transport, and action-kernel rows remain useful evidence, but theorem-level promotion now needs the causal-root section data that lets local branch charts glue into a finite labeled continuation family.
+
 ## Promotion Map
 
 | Task | Detailed source | Primary promotion target | Promotion gate |

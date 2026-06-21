@@ -1714,6 +1714,11 @@
       "id": "validation_simulations__sim_metric_observer__sim_thermodynamic_residual",
       "name": "Thermodynamic Residual Protocol",
       "path": "content/scenes/validation/sim_thermodynamic_residual.json"
+    },
+    {
+      "id": "dynamics__assembly_topological_charge",
+      "name": "Assembly Topological Charge",
+      "path": "content/scenes/dynamics/assembly_topological_charge.json"
     }
   ]
 }

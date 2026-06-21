@@ -477,7 +477,7 @@ where $T_{\mathrm{global}}$ is the global time or phase shift, $\mathfrak{so}(3)
 
 If the minimizer turns out to be the outer-normalized lock $1{:}2{:}4$, equivalently $(m,n)=(2,4)$, then the dyadic hierarchy would be a derived selection result rather than a starting assumption.
 
-In the invariant language inherited by [Effective Lagrangian](effective-lagrangian.md#topological-constraints-and-assembly-stability), the reduced theorem target is to find an admissible topological sector
+In the invariant language of [Assembly Topological Charge](assembly-topological-charge.md), the reduced theorem target is to find an admissible topological sector
 
 $$
 [\mathfrak B]_{\mathrm{tri}}

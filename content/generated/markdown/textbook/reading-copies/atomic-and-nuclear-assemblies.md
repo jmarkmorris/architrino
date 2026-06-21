@@ -1776,30 +1776,30 @@ In the Hyde artwork used in this project, small numeric annotations and labels a
 
 #### Genealogy of the Hyde form
 
-The Benfey (2009) analysis gives an explicit lineage for the Hyde table.[2]
+The Benfey (2009) analysis gives an explicit lineage for the Hyde table.
 
-1. Clark (1933): early oval/spiral periodic chart architecture.[3]
-2. Life (1949): high-visibility oval adaptation for a broad scientific audience.[4]
-3. Benfey/Jacobs Chemistry spiral (1964): the recognizable “snail” rendering, first used in Seaborg’s plutonium context.[2][8]
-4. Hyde (1976): axis-modified refinement with H-C-Si central alignment.[7]
+1. Clark (1933): early oval/spiral periodic chart architecture.
+2. Life (1949): high-visibility oval adaptation for a broad scientific audience.
+3. Benfey/Jacobs Chemistry spiral (1964): the recognizable “snail” rendering, first used in Seaborg’s plutonium context.
+4. Hyde (1976): axis-modified refinement with H-C-Si central alignment.
 
 Therefore Hyde did not originate the spiral family; he modified an existing spiral lineage with a specific structural emphasis.
 
 #### Shape evolution: protrusions and speculative extensions
 
-The same source records two distinct geometric modifications over time.[2]
+The historical account records two distinct geometric modifications over time.
 
 1. First protrusion: introduced to avoid severe lanthanide compression in the earlier oval/spiral form.
 2. Later protrusion logic: associated with superactinide-era shell-filling discussions, including the Weiner-Seaborg exchange.
-3. Historical extension argument: a 50-element period expectation based on $2+6+10+14+18$ was explicitly discussed in that speculative context.[2][10][11]
+3. Historical extension argument: a 50-element period expectation based on $2+6+10+14+18$ was explicitly discussed in later superheavy-period speculation.
 
 #### Hyde’s conceptual intervention
 
-Hyde’s specific move was to place a horizontal axis through H, C, and Si, emphasizing C/Si centrality between electropositive and electronegative regions, with explicit biosphere/lithosphere framing in the historical account.[2][7]
+Hyde’s specific move was to place a horizontal axis through H, C, and Si, emphasizing C/Si centrality between electropositive and electronegative regions, with explicit biosphere/lithosphere framing in the historical account.
 
 #### Historical intent statement
 
-In Benfey’s own account, the spiral was designed to improve visibility of periodic pattern structure relative to fragmented rectangular presentations; it was not presented as a replacement for the underlying periodic law.[2]
+In Benfey’s own account, the spiral was designed to improve visibility of periodic pattern structure relative to fragmented rectangular presentations; it was not presented as a replacement for the underlying periodic law.
 
 ---
 
@@ -1819,13 +1819,13 @@ The two-lobed (peanut/lemniscate-like) morphology separates strongly electroposi
 
 #### Carbon-silicon axis emphasis
 
-Hyde’s explicit H-C-Si axis emphasizes group-14 centrality between electropositive and electronegative domains and links carbon-rich and silicon-rich materials regimes.[2][7]
+Hyde’s explicit H-C-Si axis emphasizes group-14 centrality between electropositive and electronegative domains and links carbon-rich and silicon-rich materials regimes.
 
 In the $\mathbb{A}\mathbb{A}\mathbb{A}$ working interpretation, this axis corresponds to the radial tier where four outer nested shell swarms can achieve a near-symmetric tetrahedral docking arrangement with maximally exposed neutral axes, giving a geometric route to catenation and directional covalency.
 
 #### Branches and heavy-series treatment
 
-Historical Hyde-lineage forms use protrusions to avoid severe compression of lanthanides and to depict speculative superheavy continuations in a geometrically attached manner.[2]
+Historical Hyde-lineage forms use protrusions to avoid severe compression of lanthanides and to depict speculative superheavy continuations in a geometrically attached manner.
 
 ---
 
@@ -1890,37 +1890,6 @@ The first constrained benchmark should be the Neon core ($Z=10$), with explicit 
 The outer-shell success criterion is that the eight outer assemblies converge to a stable cubic-like or antiprismatic phase-locked lattice that minimizes transport stress without exclusion-volume intersection. The important test is dynamical: this eight-body outer geometry must appear as an attractor of the modeled constraints, not merely as a manually tuned configuration.
 
 Only after Neon stability and node discreteness are established should the program extend to higher-$Z$ shells. At that point, the predicted high-$Z$ ionization-energy deviations can be compared against known relativistic, QED, and finite-nuclear-size corrections.
-
----
-
-### References
-
-[1] Science History Institute Digital Collections, *The Chemical Elements and Their Periodic Relationships* (J. F. Hyde, 1975):<br>
-https://digital.sciencehistory.org/works/8p58pf13g
-
-[2] O. T. Benfey, *The Biography of a Periodic Spiral: From Chemistry Magazine, via Industry, to a Foucault Pendulum*, *Bull. Hist. Chem.* 34(2), 141-145 (2009). Local copy:<br>
-`content/assets/bhc2009v034p141.pdf`
-
-[3] J. D. Clark, “A New Periodic Chart,” *J. Chem. Educ.* 10 (1933) 675-677.
-
-[4] “The Atom: A Layman’s Primer on what the World is made of,” *Life*, May 16, 1949, 26(20), 68-88.
-
-[5] IUPAC, *Periodic Table of Elements* (policy context: group conventions, naming, updates):<br>
-https://iupac.org/what-we-do/periodic-table-of-elements/
-
-[6] IUPAC Recommendations on naming superheavy elements and naming procedures:<br>
-https://iupac.org/recommendation/names-and-symbols-of-the-elements-with-atomic-numbers-113-115-117-and-118/<br>
-https://iupac.org/recommendation/how-to-name-new-chemical-elements/
-
-[7] J. F. Hyde, “A Newly Arranged Periodic Chart,” *Chemistry*, Sept 1976, 49(7), 15-18.
-
-[8] G. T. Seaborg, “Plutonium: the Ornery Element,” *Chemistry*, June 1964, 37(6), 12-17.
-
-[9] G. T. Seaborg, “Progress beyond Plutonium,” *Chem. Eng. News* 44(25) (1966), 76-88.
-
-[10] H. Weiner, Letter to the editor with Seaborg response and revised spiral, *Chemistry*, March 1967, 40(3), 42.
-
-[11] G. T. Seaborg, “From Mendeleev to Mendelevium and Beyond,” *Chemistry*, Jan 1970, 43(1), 6-9.
 
 ## Molecular Geometry
 

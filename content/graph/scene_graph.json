@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 520,
-      "edges": 1273,
-      "scenes": 343,
+      "nodes": 522,
+      "edges": 1275,
+      "scenes": 344,
       "markdownIndexes": 0,
-      "markdownDocs": 164,
+      "markdownDocs": 165,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -2207,6 +2207,12 @@
       "nodeType": "scene"
     },
     {
+      "id": "dynamics__assembly_topological_charge",
+      "name": "Assembly Topological Charge",
+      "path": "content/scenes/dynamics/assembly_topological_charge.json",
+      "nodeType": "scene"
+    },
+    {
       "id": "content/generated/markdown/textbook/toc.md",
       "name": "Textbook TOC",
       "path": "content/generated/markdown/textbook/toc.md",
@@ -2438,6 +2444,12 @@
       "id": "content/markdown/aaa/cosmology/structure-formation.md",
       "name": "Structure Formation",
       "path": "content/markdown/aaa/cosmology/structure-formation.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/dynamics/assembly-topological-charge.md",
+      "name": "Assembly Topological Charge",
+      "path": "content/markdown/aaa/dynamics/assembly-topological-charge.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -3721,6 +3733,15 @@
       "name": "Universe",
       "path": "content/scenes/cosmology/universe.json",
       "searchTarget": "content/scenes/cosmology/universe.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/dynamics/assembly_topological_charge.json",
+      "nodeType": "scene",
+      "id": "dynamics__assembly_topological_charge",
+      "name": "Assembly Topological Charge",
+      "path": "content/scenes/dynamics/assembly_topological_charge.json",
+      "searchTarget": "content/scenes/dynamics/assembly_topological_charge.json",
       "implicit": false
     },
     {
@@ -6631,6 +6652,15 @@
       "implicit": false
     },
     {
+      "nodeId": "markdown_doc:content/markdown/aaa/dynamics/assembly-topological-charge.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/dynamics/assembly-topological-charge.md",
+      "name": "Assembly Topological Charge",
+      "path": "content/markdown/aaa/dynamics/assembly-topological-charge.md",
+      "searchTarget": "content/markdown/aaa/dynamics/assembly-topological-charge.md",
+      "implicit": false
+    },
+    {
       "nodeId": "markdown_doc:content/markdown/aaa/dynamics/binary-dynamics.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/dynamics/binary-dynamics.md",
@@ -8443,6 +8473,13 @@
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
+      "to": "scene:content/scenes/dynamics/assembly_topological_charge.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/dynamics/dynamics.json",
+      "field": "scene.children[6]"
+    },
+    {
+      "from": "scene:content/scenes/dynamics/dynamics.json",
       "to": "scene:content/scenes/dynamics/binary_dynamics.json",
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
@@ -8453,7 +8490,7 @@
       "to": "scene:content/scenes/dynamics/causal_action_functional.json",
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
@@ -8467,7 +8504,7 @@
       "to": "scene:content/scenes/dynamics/effective_lagrangian.json",
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[7]"
+      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
@@ -8495,7 +8532,7 @@
       "to": "scene:content/scenes/proof-programs/proof_programs.json",
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[8]"
+      "field": "scene.children[9]"
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
@@ -12478,6 +12515,13 @@
       "to": "markdown_doc:content/markdown/aaa/cosmology/structure-formation.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/cosmology/structure_formation.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/dynamics/assembly_topological_charge.json",
+      "to": "markdown_doc:content/markdown/aaa/dynamics/assembly-topological-charge.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/dynamics/assembly_topological_charge.json",
       "field": "scene.source.path"
     },
     {

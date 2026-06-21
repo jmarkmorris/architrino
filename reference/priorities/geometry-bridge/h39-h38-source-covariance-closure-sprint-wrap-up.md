@@ -31,11 +31,15 @@ stratum, branch-Jacobian or fold status, signed root-degree contribution,
 projection or pushforward weights, and any assembly-level framing, linking, or
 holonomy labels the consuming branch chart declares.
 
-That is a schema-strengthening condition, not a new proof result. Existing H39
-diagnostics and blocker classifications remain valid. The resume condition is
-still the same-domain branch-bearing provider object before aggregate $P$, now
-with the explicit warning that later branch-fold or phase-bundle data cannot be
-recovered after aggregation has erased provenance.
+The Master Equation causal-root sheaf framing makes the same condition sharper:
+the future provider must preserve the local section or stalk identity of each
+branch row, its overlap or gluing provenance, and the finite continuation
+cardinality needed by a consuming branch chart. That is a schema-strengthening
+condition, not a new proof result. Existing H39 diagnostics and blocker
+classifications remain valid. The resume condition is still the same-domain
+branch-bearing provider object before aggregate $P$, now with the explicit
+warning that later branch-fold, gluing, finite-continuation, or phase-bundle
+data cannot be recovered after aggregation has erased provenance.
 
 ## What Was Proven By Execution
 

@@ -712,7 +712,7 @@ The delayed action, after branch reduction to causal-locus and root-ledger data,
 
 The stability of these assemblies must be checked by the nonlinear self-hit feedback embedded in the interaction functional. When internal circulation velocities exceed $c_f$, the non-Markovian repulsion supplies a candidate branch-trapping mechanism; it becomes a robust geometric attractor only after a branch chart, Lyapunov or Floquet diagnostic, and history-aware energy bound are supplied. Likewise, mass-gap language is a closure target tied to discrete admissible branch classes, not an automatic consequence of writing the effective action.
 
-The native topological sector is the stabilized causal-root ledger, not a borrowed field-theory vortex number. On a branch chart whose roots remain transversal, define
+The native topological sector is the stabilized causal-root ledger, not a borrowed field-theory vortex number. The canonical definition is given in [Assembly Topological Charge](assembly-topological-charge.md); in the effective-action chart, the same charge is the retained sector
 
 $$
 [\mathfrak B]
@@ -723,7 +723,7 @@ M_p,\,
 c_1[\theta^O,\theta^M,\theta^I]
 \right)
 \in
-\mathbb{Z}^2\times\mathbb{Z}
+\mathbb{Z}_{\ge0}\times\mathbb{Z}_{\ge0}\times\mathbb{Z}^2
 $$
 
 where $N_s$ counts active self-hit roots, $M_p$ counts active partner-hit roots, and $c_1[\theta^O,\theta^M,\theta^I]$ is the phase-bundle winding of the resonance-locked tri-binary chart. This class is deformation-stable only inside the nondegenerate branch domain: a causal-root fold, reconnection, or loss of phase-bundle closure changes the sector.

@@ -254,7 +254,7 @@ Think of a $W^\pm$ as a short-lived corridor built from **two neutral Noether sw
 The two cores provide the massive, phase-stable bundle; the charge excess rides on their decorations. During emission/absorption the excess transfers to the quark/lepton legs, and the cores relax back to neutral sea content. Corridor sourcing is assumed forward of the translating assembly (outside its wake); core/charge numbers must close under this budget.
 Ontology note ($\mathbb{A}\mathbb{A}\mathbb{A}$): this corridor is a transient bound excitation of the Noether sea assembled from local polarization + transferred Active-Triad excess, not ex nihilo particle creation.
 
-### PDG CKM (2024 central values, magnitude)
+### CKM Benchmark (Rounded Magnitudes)
 
 $$
 \begin{array}{c|ccc}
@@ -265,7 +265,7 @@ c & 0.225 & 0.973 & 0.041\\
 t & 0.0087 & 0.040 & 0.999
 \end{array}
 $$
-Data note (source/uncertainty): values shown are rounded PDG 2024 central values for readability. For uncertainties and global-fit intervals, see Particle Data Group, *Review of Particle Physics* (2024), CKM quark-mixing review/table.
+The values are rounded for readability and serve as a compact benchmark for the shielding-tier mapping. Uncertainty handling and global-fit ranges belong in the validation data layer rather than in this reader-facing comparison table.
 
 ### $\mathbb{A}\mathbb{A}\mathbb{A}$ shielding-tier view (IMO = Inner/Middle/Outer present)
 

@@ -175,6 +175,14 @@ $$
 
 The same conclusion holds for a finite-order algebraic caustic $g\sim (s-s_\ast)^m-\lambda(t-t_\ast)$ with finite $m > 1$: the branch weight scales like $|t-t_\ast|^{-(m-1)/m}$, which is locally integrable in receiver time. A persistent interval with $J=0$, a cusp with no finite-order normal form, or a simultaneous collision-floor failure is not covered by this impulse lemma and must remain in the regularized chart. The simulation rule is therefore: integrate the regularized acceleration through a caustic transit and record the finite $\Delta\mathbf{v}$; do not hold the state exactly on $J=0$ as an infinite-force constraint.
 
+The singular set should be routed by stratum, not by the single phrase "small denominator." Let
+$$
+\Sigma_{ij}
+=
+\{(t,s,\lambda): g(t,s;\lambda)=0,\ \partial_s g(t,s;\lambda)=0\}
+$$
+inside a declared one- or multi-parameter branch family. The finite-impulse lemma covers the fold stratum $\Sigma^1$, where $\partial_{ss}g\ne0$ and the control parameter crosses the fold transversely. Cusp and higher strata, such as $\Sigma^{1,1}$, require extra degeneracy conditions and are not ordinary force rows. They may merge or split more than one opposite-sign root pair at once, so their ledger transition is not certified by the generic $\Delta N=\pm2,\ \Delta D=0$ fold law until a separate regularized normal form is supplied. Thus $\Sigma^1$ routes to finite impulse plus transition metadata, while $\Sigma^{1,1}$ or deeper routes to a singular-stratum chart before promotion.
+
 The word "set" in $\mathcal{C}_{ij}(t)$ should therefore be read as a root set extracted from a continuous path-history integral, not as a replacement for that history. The source worldline is continuous data. In the sharp causal-wake limit the delta constraint collapses the received contribution to the emission times in $\mathcal{C}_{ij}(t)$; with $\eta > 0$ mollification, the received contribution comes from finite-width neighborhoods of those roots. A single source can contribute more than one root at the same receiver event when its worldline crosses the receiver's backward causal surface more than once, especially in curved or super-field-speed history. The same bookkeeping applies to nontrivial self-history roots when $j=i$.
 
 Writing
@@ -280,6 +288,18 @@ and if every inactive complement remains separated by the declared positive gap.
 
 This compatibility condition is a theorem-target requirement, not a new force law. It says that a promoted branch chart must define a locally replayable delayed functional system: nearby retained histories must keep the same root identities, positive Jacobian floor, inactive gaps, and finite memory depth until a declared fold, branch transition, or chart boundary is reached.
 
+##### Local-To-Global Branch-Chart Gluing Target
+
+The branch-chart object above also defines a candidate causal-root sheaf for global closure. For an open history or parameter neighborhood $U$, let
+$$
+\mathcal{F}_{\mathrm{root}}(U)
+=
+\{\text{admissible branch charts on }U\text{ with the declared regularization data}\}
+$$
+and restrict a chart from $U$ to $V\subset U$ by restricting its active-root rows, inactive gaps, memory tube, and endpoint convention. The implicit-function theorem supplies the local restriction maps while the root identities remain simple.
+
+Global closure is the additional statement that local sections of $\mathcal{F}_{\mathrm{root}}$ glue. On an overlap $U_\alpha\cap U_\beta$, two local charts must agree not merely on the plotted trajectory but on the signed causal-root ledger, branch labels, endpoint convention, wake-history charges, and transition metadata. A mismatch on triple overlaps is a Cech-style gluing obstruction: locally replayable charts may exist while no single global branch chart exists. This is a theorem target, not a new postulate. It gives proof programs an explicit failure mode between "local residuals are small" and "the Master Equation branch is globally closed."
+
 ##### Dual-Mollified Absolute-Time Evolution Law
 
 For proof work, branch sums should be derived from one regularized absolute-time law rather than treated as the primary definition through every causal fold. Fix a memory horizon
@@ -376,6 +396,7 @@ Under these assumptions, the finite-$\eta$ theorem packet should prove the follo
   then $K_{\mu}(t)$ remains bounded on $W$. A branch with $v_{\max}\to\infty$ must therefore leave the admissible class by driving the interaction charge downward without bound, losing a floor, or breaking the declared action-energy residual.
 - **Pre-acceleration is excluded at finite $\eta$.** The acceleration at $t$ is a functional of the retained history segment $[t-h,t)$, together with the current receiver event, and contains no future state. A proposed action repair is admissible only when its endpoint convention contributes a wake-history boundary term or a vanishing residual, not a future-boundary force selection rule.
 - **Caustic and Jacobian blow-up are quarantined.** Simple-root charts require $\nu_J > 0$. A finite-order caustic may be crossed only through the dual-mollified equation with finite integrated impulse and stable transition metadata. Persistent $J=0$, cusp behavior outside a finite-order normal form, simultaneous collision-floor failure, or regulator-dependent transition observables are chart failures rather than ordinary force rows.
+- **Finite deterministic multistability is routed, not quarantined.** At a fold boundary, if the regularized post-transit data supply exactly one admissible continuation chart, the event is an ordinary branch transition. If they supply two or more inequivalent admissible charts with positive floors and finite memory, the complete microstate still selects one deterministic continuation, but a record-limited comparison must route the event to a finite basin-weight or multistability record. Multistability is a failure only when the finite continuation family is empty, infinite, unlabeled, or lacks the common branch data needed for comparison.
 
 The failure boundary for the theorem packet is the union of the following conditions:
 $$
@@ -393,7 +414,17 @@ $$
 \cup
 \{\text{non-vanishing action or boundary residual}\}
 $$
-A trajectory crossing this boundary is not promoted as a closed Master Equation solution. It is routed to branch transition, caustic transit, core-regularization repair, finite-window leakage, or $\eta$-ladder failure according to which boundary component is reached.
+The first component is refined as
+$$
+\{\nu_J=0\}
+=
+\Sigma_{\mathrm{transit}}
+\sqcup
+\Sigma_{\mathrm{bif}}^{\mathrm{multi}}
+\sqcup
+\Sigma_{\mathrm{sing}}^{\mathrm{fail}}
+$$
+where $\Sigma_{\mathrm{transit}}$ has a unique finite post-transit chart, $\Sigma_{\mathrm{bif}}^{\mathrm{multi}}$ has a finite labeled family of admissible continuations, and $\Sigma_{\mathrm{sing}}^{\mathrm{fail}}$ lacks a promoted finite chart. A trajectory crossing this boundary is not promoted as a closed Master Equation solution until the appropriate route is certified. It is routed to branch transition, finite multistability, caustic transit, core-regularization repair, finite-window leakage, or $\eta$-ladder failure according to which boundary component is reached.
 
 The validation residuals consumed by this theorem target are the root residual, root-transport residual, active Jacobian floor, inactive-gap residual, finite-memory residual, return residual, finite-window energy residual $\mathcal{R}_E$, momentum residual $\mathcal{R}_P$, angular-momentum residual $\mathcal{R}_J$, Euler residual of the same action, endpoint or period-cut leakage, transition-observable residuals across $\eta$ refinement, and the symplectic residual $\mathcal{R}_{\Omega}$ when the branch is promoted to a reduced Hamiltonian chart. The theorem is finite-$\eta$ only; any zero-width or infinite-system statement requires the separate convergence boundary stated in the regularization package.
 
@@ -518,6 +549,28 @@ between regular intervals.
 
 This delay-map theorem pack is foundational rather than merely model-specific. Within this chapter it serves as the fold-geometry reference for delayed-root constructions: regular charts preserve signed degree, while branch creation or annihilation requires a Jacobian-degenerate fold.
 
+##### Signed Causal-Root Complex
+
+For a receiver-source pair $(i,j)$ on a regular interval, the root ledger can be sharpened from an unsigned set to a two-term signed complex. Split the simple active roots by Jacobian sign:
+$$
+C_+^{ij}(t)
+=
+\mathrm{span}\{s_\ell\in\mathcal{C}_{ij}(t): \partial_sF_t^{(ij)}(s_\ell)>0\},
+\qquad
+C_-^{ij}(t)
+=
+\mathrm{span}\{s_\ell\in\mathcal{C}_{ij}(t): \partial_sF_t^{(ij)}(s_\ell)<0\}.
+$$
+Then
+$$
+N_{ij}=\dim C_+^{ij}+\dim C_-^{ij},
+\qquad
+D_{ij}=\dim C_+^{ij}-\dim C_-^{ij}.
+$$
+At a generic fold, the local boundary pairing creates or removes one positive and one negative generator, preserving $D_{ij}$ while changing $N_{ij}$ by two. In this reading, Theorem 1 is invariance of the Euler-characteristic-like signed count, and Proposition 3 is the elementary opposite-sign pair surgery.
+
+For assembly work, solver artifacts should therefore report the signed grading $(C_+^{ij},C_-^{ij})$, not only raw hit counts. The binary and tri-binary ledgers $N_s$ and $M_p$ are admissible topological labels only after their self-hit and partner-hit rows inherit this signed-root-complex data, together with the phase-bundle integer used by the [assembly topological charge](../../../../markdown/aaa/dynamics/assembly-topological-charge.md) and resonance-lock chapters.
+
 **Proposition 4 (forward partner-root starvation under field-speed drift).**
 Let a candidate translating branch have center drift $u\hat{\mathbf e}$ on the retained interval, with $u\ge0$ and $\|\hat{\mathbf e}\|=1$. Write two partner constituents as
 $$
@@ -558,6 +611,22 @@ $$
 so the required memory depth diverges as $u\to c_f^-$.
 
 This is a kinematic starvation result, not a force-balance approximation. It says that a forward structural partner row cannot be retained at or above field-speed center drift because the causal wake cannot catch the leading receiver. A bound assembly branch that requires at least one such forward partner row for structural closure therefore cannot preserve the same causal-root ledger for sustained drift $u\ge c_f$. The proposition does not impose a speed cap on a single architrino, on internal curved self-hit motion, or on history-supported super-field-speed components; it applies to center translation of an internally bound branch whose leading-side partner closure is part of the retained ledger.
+
+With finite retained memory $h$ and internal branch period $T_{\mathrm{int}}$, the same obstruction has a graded scale:
+$$
+\Lambda_{\mathrm{starv}}
+=
+\frac{\tau_{\mathrm{fwd}}}{T_{\mathrm{int}}}
+\ge
+\frac{d_{\min}}{(c_f-u)T_{\mathrm{int}}}.
+$$
+The forward row remains available to the retained chart only while $\tau_{\mathrm{fwd}}<h$, equivalently
+$$
+u<u_{\mathrm{crit}}
+\equiv
+c_f-\frac{d_{\min}}{h}.
+$$
+Thus starvation is a root-complex obstruction before it is a speed slogan: if the assembly requires that forward generator, the bare causal kernel cannot carry the same branch chart through $u_{\mathrm{crit}}$. Any promoted supra-$u_{\mathrm{crit}}$ branch must show a Noether-sea or assembly reorganization that removes or replaces the forward row without hiding a memory-window failure.
 
 ##### Single-Hit Regime (Unique $t_0$)
 
@@ -684,6 +753,12 @@ T_0=\frac{2L_0}{c_f}
 $$
 
 This gives a purely substrate-level period-stretch checkpoint. It says only that preserving the same internal phase closure while the receiver translates forces the physical period $T$ to increase in absolute time unless the longitudinal leg shortens. The full unresolved step is proving the same absolute-period scaling for the complete multi-hit NFDE nested shell swarm dynamics without reducing to a two-leg closure model.
+
+The forward parallel leg carries the same starvation constraint as Proposition 4 with $d_{\min}$ replaced by the leading longitudinal leg length $L_\parallel$. Therefore the two-leg checkpoint is admissible as a retained-row model only in the starvation-free regime
+$$
+v<c_f-\frac{L_\parallel}{h}.
+$$
+Above that scale, the checkpoint no longer tracks the same causal-root ledger: the full nested shell swarm proof must show a ledger reorganization, a sea-mediated replacement row, or a declared failure of the translating-loop reduction.
 
 The two-leg loop is only a checkpoint. It has two phase points and one chosen orientation relative to the absolute motion. A real assembly has an effective internal phase distribution over a finite three-dimensional volume, and operational isotropy has to hold for all loop orientations at once. The closure target is therefore a full oblate-envelope-to-sphere reduction in the internal nested shell swarm phase space, not just the equality
 $$
@@ -964,6 +1039,14 @@ $$
 $$
 up to the common inverse-square dilution and coupling normalization. The formula is not a Lorentz transformation and does not add electrodynamic velocity-field or acceleration-field terms. It is the microscopic source of leading/trailing wake-density asymmetry: forward directions with $\cos\theta>0$ receive compressed isochron spacing, while trailing directions receive diluted spacing. Doppler shift, aberration, magnetic-like response, preferred-frame leakage estimates, and translating-binary asymmetry must be derived from this branch geometry plus assembly and observer-channel closure rather than inserted as independent laws.
 
+For $\beta\ll1$,
+$$
+\mathcal{D}_{\mathrm{wake}}(\theta;\beta)
+=
+1+\beta\cos\theta+O(\beta^2).
+$$
+The even scalar part feeds the coarse scalar wake potential, while the odd velocity-directed part is the single-hit seed of the recoil and vector-transport channel described in [Effective Lagrangian](../../../../markdown/aaa/dynamics/effective-lagrangian.md#regularized-nonlocal-action-and-variation). Under coarse-graining this is the same source of $\mathbf{A}_{\mathrm{wake}}$ and antisymmetric wake-stress diagnostics; it is not an independent magnetic law added on top of the Master Equation.
+
 **Causal-flux modulation:** Unlike models that make source strength itself a function of speed, the velocity dependence here enters through the **moving-source geometry** of emission, the **geometry of causal intersections**, and the **bunching or dilation of received wake flux** in the Euclidean void. This is the origin of the Jacobian denominator and the seed of relativistic and magnetic behavior in the emergent theory.
 
 ---
@@ -1121,6 +1204,15 @@ $$
 0<\left|\mathfrak{S}_{\Omega,W}^{\mathrm{ME},\eta}\right|<\infty
 $$
 with every element carrying the causal-root ledger, energy diagnostic or exact charge used for the run, and the boundary wake data that selected it. Empty, infinite, or unlabeled families are not global closure; they mark an unresolved continuation ambiguity. A later strong-field or cosmology chapter may quotient this family by observer-accessible records, but the quotient must be derived from the same master-equation data rather than imposed as a global-hyperbolicity assumption.
+
+The cardinality is itself a structural diagnostic:
+
+- $\left|\mathfrak{S}_{\Omega,W}^{\mathrm{ME},\eta}\right|=0$ means no compatible global section of the declared branch-chart data exists.
+- $\left|\mathfrak{S}_{\Omega,W}^{\mathrm{ME},\eta}\right|=1$ means the finite data select a unique deterministic continuation.
+- $2\le\left|\mathfrak{S}_{\Omega,W}^{\mathrm{ME},\eta}\right|<\infty$ means deterministic multistability: the complete state occupies one branch, while record-limited comparisons must use the basin weights induced on the finite labeled family.
+- $\left|\mathfrak{S}_{\Omega,W}^{\mathrm{ME},\eta}\right|=\infty$ means root accumulation, noncompact branch freedom, or unresolved chart gluing, not a mature global comparison.
+
+Equivalently, this is the section count of the causal-root gluing target over the finite window. Finite labeled multistability is an admissible branch-statistics object; empty, infinite, or unlabeled continuation families remain closure failures.
 
 ### Operational Principles, Self-Interaction, and Examples
 
@@ -3392,6 +3484,22 @@ $$
 \int_W\boldsymbol{\mathcal{B}}_{J,\mathfrak{B}}^{(\eta)}(t)\,dt
 $$
 The theorem-level branch claim requires the three residual balances to converge to zero with $\epsilon_{\mathrm{var}}^{(\eta)}(W)\to0$, vanishing declared endpoint or period-cut leakage, stable branch floors, and the same retained row set in the force residuals and in the three wake-history charges. A work-integral reconstruction $U(t)$ or a projected torque increment is only a numerical diagnostic unless it is derived from this same action kernel, endpoint convention, and retained branch chart.
+
+For a finite spatial window, the energy boundary row can be read as the wake-escapement flux defined in [Kinetic and Potential Energy](../../../../markdown/aaa/dynamics/energy.md#wake-escapement). In that notation, a theorem-level conservation packet should be able to rewrite the energy balance in the form
+$$
+\frac{dE_W}{dt}
+=
+-\Phi_{\mathrm{wake},\partial W}(t)
++P_{\mathrm{ext},W}(t)
++\mathcal{R}_{E,W}(t),
+\qquad
+\Phi_{\mathrm{wake},\partial W}(t)
+=
+\frac{d}{dt}
+\sum_{\alpha\in\mathcal{E}_{\mathrm{esc}}(W)}
+E_\alpha^{\mathrm{emit}}.
+$$
+This does not add a second energy channel. It identifies the endpoint and boundary term of the delayed action with the causal-wake history that exits the retained window without a retained receiver. The same boundary object is the entropy-arrow theorem target in [Entropy and Record Coarse-Graining](../../../../markdown/aaa/dynamics/entropy.md#second-law-and-same-record-monotonicity): energy flux, wake escapement, and observer-window entropy production are three projections of one finite-window path-history defect.
 
 Self‑interaction ($i=j$) is included by adding $S_{ii}$ with the same kernel, but explicitly excluding the trivial coincidence $t'=t$ (no instantaneous self‑push at the moment of emission). Self‑hit corresponds to nontrivial roots $t_0<t$ where the worldline re‑intersects its own causal isochrons, which are captured naturally by the same double‑integral structure.
 
@@ -8056,7 +8164,7 @@ D_{ij}(s)
 \sum_{t_0\in\mathcal{C}_{ij}(t;s)}
 \operatorname{sign}\!\left(\partial_{t_0}F_{ij}(t_0;s)\right)
 $$
-is locally constant, while the unsigned counts $N_s$ and $M_p$ track the ranks of the same-source and partner-root rows. This is the binary version of the assembly topological charge: the later tri-binary label $(N_s,M_p,c_1)$ uses the two root-complex integers from this chapter and the phase-bundle Chern data from the resonance-lock chart. A solver that reports only raw root counts loses the signed degree needed to distinguish a true branch fold from a harmless relabeling of rows.
+is locally constant, while the unsigned counts $N_s$ and $M_p$ track the ranks of the same-source and partner-root rows. This is the binary version of the [assembly topological charge](../../../../markdown/aaa/dynamics/assembly-topological-charge.md): the later tri-binary label $(N_s,M_p,c_1)$ uses the two root-complex integers from this chapter and the phase-bundle Chern data from the resonance-lock chart. A solver that reports only raw root counts loses the signed degree needed to distinguish a true branch fold from a harmless relabeling of rows.
 
 ##### Parameter-Free Circular Branch Packet
 
@@ -9261,7 +9369,7 @@ where $T_{\mathrm{global}}$ is the global time or phase shift, $\mathfrak{so}(3)
 
 If the minimizer turns out to be the outer-normalized lock $1{:}2{:}4$, equivalently $(m,n)=(2,4)$, then the dyadic hierarchy would be a derived selection result rather than a starting assumption.
 
-In the invariant language inherited by [Effective Lagrangian](../../../../markdown/aaa/dynamics/effective-lagrangian.md#topological-constraints-and-assembly-stability), the reduced theorem target is to find an admissible topological sector
+In the invariant language of [Assembly Topological Charge](../../../../markdown/aaa/dynamics/assembly-topological-charge.md), the reduced theorem target is to find an admissible topological sector
 
 $$
 [\mathfrak B]_{\mathrm{tri}}
@@ -9339,6 +9447,213 @@ $$
 The two mechanisms can both reduce exposed causal-wake leakage, but they do it through different topology. Planar cyclic symmetry cancels inside one plane; the dyadic tri-binary lock distributes the phase-bundle covering across three independent orbital planes. The $\mathbb{Z}_3$ identity should therefore not be used as evidence for or against the frequency-selection assumptions above.
 
 For neighboring closure problems, see [Planar Bridge Closure](../../../../markdown/aaa/proof-programs/planar-bridge-closure.md) and [Horizon Chirality](../../../../markdown/aaa/spacetime/horizon-chirality.md).
+
+## Assembly Topological Charge
+
+This chapter gives a first-class home to the candidate topological label of an architrino assembly. The label combines the causal-root ledger of the delayed dynamics with the phase-bundle winding of a resonance-locked nested shell swarm. Its purpose is to state what can be computed from a retained branch chart, what is invariant inside a nondegenerate branch domain, and what remains a theorem target before the label can serve as a topological periodic table of assemblies.
+
+The compact notation is
+$$
+[\mathfrak B]_{\mathrm{top}}
+=
+\left(
+N_s,\,
+M_p,\,
+c_1
+\right)
+$$
+where $N_s$ counts active self-hit roots, $M_p$ counts active partner-hit roots, and $c_1$ denotes the phase-bundle winding data of the retained resonance lock. For a tri-binary lock this last entry is usually a pair
+$$
+c_1=(m,n)\in\mathbb{Z}^2
+$$
+rather than a scalar integer: $m$ and $n$ are the middle and inner winding numbers over one outer period.
+
+This is a definition and closure target, not a completed classification theorem. It becomes a physical assembly label only after the same retained branch chart supplies positive root floors, finite memory, finite local-to-global gluing, stable return data, and a closed wake-history boundary ledger.
+
+### Source Of The Three Entries
+
+The first two entries come from the causal-root complex of the Master Equation. On a retained branch chart, active roots are split by source identity and by Jacobian sign. For the self-hit sector,
+$$
+C_{s,+}(\mathfrak B)
+=
+\mathrm{span}\{s_\ell:\text{self root},\ J_\ell>0\},
+\qquad
+C_{s,-}(\mathfrak B)
+=
+\mathrm{span}\{s_\ell:\text{self root},\ J_\ell<0\}.
+$$
+For the partner-hit sector,
+$$
+C_{p,+}(\mathfrak B)
+=
+\mathrm{span}\{s_\ell:\text{partner root},\ J_\ell>0\},
+\qquad
+C_{p,-}(\mathfrak B)
+=
+\mathrm{span}\{s_\ell:\text{partner root},\ J_\ell<0\}.
+$$
+The unsigned ledgers are
+$$
+N_s
+=
+\dim C_{s,+}+\dim C_{s,-},
+\qquad
+M_p
+=
+\dim C_{p,+}+\dim C_{p,-}.
+$$
+The signed degrees
+$$
+D_s
+=
+\dim C_{s,+}-\dim C_{s,-},
+\qquad
+D_p
+=
+\dim C_{p,+}-\dim C_{p,-}
+$$
+are not extra entries in the compact charge, but they are required side data. A solver that reports only $N_s$ and $M_p$ has counted roots without proving which opposite-sign pairs can be born, die, or persist under deformation.
+
+The third entry comes from the phase bundle of a resonance-locked tri-binary. Let $\theta^O,\theta^M,\theta^I$ be the outer, middle, and inner phase coordinates on the retained return chart. Exact integer closure over one outer period $T_O$ means
+$$
+\theta_O(t+T_O)=\theta_O(t)+2\pi,
+$$
+$$
+\theta_M(t+T_O)=\theta_M(t)+2\pi m,
+\qquad
+\theta_I(t+T_O)=\theta_I(t)+2\pi n.
+$$
+Equivalently, the relative-phase one-forms
+$$
+\vartheta_M=d\theta^M-m\,d\theta^O,
+\qquad
+\vartheta_I=d\theta^I-n\,d\theta^O
+$$
+have integer holonomy and become flat on a promoted phase-locked branch. The shorthand
+$$
+c_1[\theta^O,\theta^M,\theta^I]=(m,n)
+$$
+records this phase-bundle winding data. The dyadic candidate is the outer-normalized case $(m,n)=(2,4)$, equivalently canonical `I:M:O` frequency order $4:2:1$.
+
+### Candidate Definition
+
+For a finite-$\eta$ branch chart $\mathfrak B$, the assembly topological charge is admissible only when the following data are present on the same retained row set:
+
+1. Active root rows split by source identity: self-hit and partner-hit.
+2. Jacobian-sign grading for those rows: $C_{s,+},C_{s,-},C_{p,+},C_{p,-}$.
+3. Positive transversality floors away from declared finite caustic transits.
+4. Finite memory depth and positive inactive-root gaps.
+5. A finite local-to-global gluing result for the branch chart, or an explicit finite multistability family.
+6. For a tri-binary, integer phase closure and flat relative-phase connection.
+7. A return-map stability certificate, such as a Floquet or Conley-style branch certificate, after quotienting only true symmetry directions.
+
+Under those conditions the compact topological charge is
+$$
+[\mathfrak B]_{\mathrm{top}}
+=
+\left(
+N_s,\,
+M_p,\,
+c_1[\theta^O,\theta^M,\theta^I]
+\right)
+\in
+\mathbb{Z}_{\ge0}\times\mathbb{Z}_{\ge0}\times\mathbb{Z}^2.
+$$
+For a non-tri-binary branch, the partial charge $(N_s,M_p)$ may be recorded, but $c_1$ is not assigned until a phase-bundle chart exists.
+
+A useful refinement is a branch-preserving chirality label
+$$
+\chi_{\mathrm{fr}}\in\mathbb{Z}_2.
+$$
+This is not part of the base triple until the branch chart supplies a deformation-stable handed marker, such as framed self-linking parity or a certified maximal-curvature-binary circulation sign. It is the natural place to record handedness, but it must not be substituted for the root and phase-bundle data.
+
+### Invariance And Allowed Transitions
+
+The charge is designed to be locally invariant. Between branch boundaries, the implicit-function theorem transports each simple active root continuously, so $N_s$, $M_p$, $D_s$, and $D_p$ remain constant. At a generic fold, one positive and one negative root are created or annihilated. Therefore
+$$
+\Delta N_s\in 2\mathbb{Z}
+\quad\text{or}\quad
+\Delta M_p\in 2\mathbb{Z},
+\qquad
+\Delta D_s=\Delta D_p=0
+$$
+for an ordinary fold-pair event in the corresponding sector.
+
+Cusp or higher singular strata are not automatically governed by the generic fold law. They require a separate regularized normal form before their ledger surgery can be promoted. Likewise, $c_1=(m,n)$ remains fixed under deformation only while the phase connection stays flat and the phase torus returns without monodromy. A loss of resonance lock, a plane-degeneracy transition, or a branch-fold event that changes the return chart can change the phase-bundle entry.
+
+The transition catalogue therefore has a native form:
+
+| Event | Charge effect | Required certificate |
+| --- | --- | --- |
+| Branch-preserving deformation | No change to $(N_s,M_p,c_1)$ | Positive floors, finite memory, stable gluing |
+| Self-root fold | $\Delta N_s=\pm2$ generically | Fold normal form and post-transit chart |
+| Partner-root fold | $\Delta M_p=\pm2$ generically | Fold normal form and post-transit chart |
+| Phase-lock jump | $\Delta c_1\ne0$ | Holonomy change and return-map transition |
+| Framing or chirality flip | $\Delta\chi_{\mathrm{fr}}\ne0$ | Framed-linking or handedness transition certificate |
+| Cusp or deeper singular stratum | Not inferred from fold law | Singular-stratum chart and regulator-stable transition data |
+
+This is why the triple belongs in one object. The root ledgers describe which delayed causal channels are live, while the phase-bundle entry describes how the multi-layer branch returns to itself. Both are characteristic data of the same retained causal-root sheaf: local root sections, overlap gluing, and phase holonomy must agree before an assembly label is promoted.
+
+### Role In The Assembly Atlas
+
+The topological atlas of assemblies should not classify objects by visual similarity alone. It should classify retained branches by deformation-stable integers that can be extracted from the same simulation record used to test the dynamics. The candidate atlas entry for a stable assembly is therefore
+$$
+\mathcal{Q}_{\mathrm{asm}}
+=
+\left(
+N_s,\,
+M_p,\,
+c_1,\,
+\chi_{\mathrm{fr}}\ \text{when certified}
+\right)
+$$
+together with its stability margins, energy/wake ledger, and gluing status.
+
+The intended use is constrained:
+
+- $(N_s,M_p)$ records the binding-channel census: self-hit channels, partner-hit channels, and their signed degrees.
+- $c_1=(m,n)$ records the resonance-lock winding of a promoted tri-binary branch.
+- $\chi_{\mathrm{fr}}$ records handedness only after a framed handed marker is certified.
+- Physical particle identity, generation structure, spin-statistics, exclusion, and Standard Model quantum numbers are downstream mappings, not consequences of the notation alone.
+
+Thus $(N_s,M_p,c_1)$ is the candidate conserved label that says when two assemblies occupy the same topological sector. It is not yet a proof that a given sector is an electron analogue, photon analogue, or quark analogue.
+
+### Simulation Extraction
+
+A branch solver should extract the charge in this order:
+
+1. Build the finite-$\eta$ retained branch chart and declare its memory window.
+2. Find active causal roots on the same retained row set.
+3. Label each root by source identity: self or partner.
+4. Record the Jacobian sign and compute $C_{s,+},C_{s,-},C_{p,+},C_{p,-}$.
+5. Compute $N_s$, $M_p$, $D_s$, and $D_p$.
+6. Track fold, caustic, cusp, or inactive-gap transition metadata.
+7. For tri-binary branches, compute phase holonomy $(m,n)$ from the returned phase chart.
+8. Test gluing and finite continuation cardinality for the local charts.
+9. Test the return-map stability gap off true symmetry directions.
+10. Report $[\mathfrak B]_{\mathrm{top}}$ only after the same retained rows pass these checks.
+
+The failure modes are equally important. A candidate is not promoted if the roots are counted without signs, if self and partner rows are mixed, if the phase lock is inferred from frequency ratios without holonomy recurrence, if local branch charts do not glue, or if the continuation family is empty, infinite, or unlabeled.
+
+### Current Status
+
+The established pieces are local:
+
+- The delay-map theorem pack in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#delay-map-theorem-pack-formalized) proves signed degree invariance on regular families and the generic opposite-sign fold-pair law.
+- The signed causal-root complex in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#signed-causal-root-complex) supplies the local chain-complex reading of active roots.
+- [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md#super-field-speed-root-ledgers-and-resonance-lock) supplies the self-hit and partner-hit ledger notation used by $(N_s,M_p)$.
+- [Dyadic Resonance Lock](../../../../markdown/aaa/dynamics/dyadic-resonance-lock.md#exact-integer-phase-closure) supplies the integer phase-closure data whose winding is recorded as $c_1=(m,n)$.
+- [Effective Lagrangian](../../../../markdown/aaa/dynamics/effective-lagrangian.md#topological-constraints-and-assembly-stability) uses the same topological sector in the action and mass-gap theorem target.
+
+The open proof burden is global:
+
+- prove that a stable assembly realizes a fixed charge over a finite branch domain;
+- prove gluing of the local causal-root charts into a finite labeled continuation family;
+- prove a positive stability gap for the charge sector;
+- determine whether the entries are independent or constrained by radial balance, phase flatness, and Noether sea response;
+- map any certified sectors to observer-level particle quantum numbers without fitting the labels afterward.
+
+The chapter should therefore be read as the canonical definition and proof target for assembly topological charge, not as the completed topological periodic table.
 
 ## Causal Action Functional
 
@@ -10618,7 +10933,7 @@ The delayed action, after branch reduction to causal-locus and root-ledger data,
 
 The stability of these assemblies must be checked by the nonlinear self-hit feedback embedded in the interaction functional. When internal circulation velocities exceed $c_f$, the non-Markovian repulsion supplies a candidate branch-trapping mechanism; it becomes a robust geometric attractor only after a branch chart, Lyapunov or Floquet diagnostic, and history-aware energy bound are supplied. Likewise, mass-gap language is a closure target tied to discrete admissible branch classes, not an automatic consequence of writing the effective action.
 
-The native topological sector is the stabilized causal-root ledger, not a borrowed field-theory vortex number. On a branch chart whose roots remain transversal, define
+The native topological sector is the stabilized causal-root ledger, not a borrowed field-theory vortex number. The canonical definition is given in [Assembly Topological Charge](../../../../markdown/aaa/dynamics/assembly-topological-charge.md); in the effective-action chart, the same charge is the retained sector
 
 $$
 [\mathfrak B]
@@ -10629,7 +10944,7 @@ M_p,\,
 c_1[\theta^O,\theta^M,\theta^I]
 \right)
 \in
-\mathbb{Z}^2\times\mathbb{Z}
+\mathbb{Z}_{\ge0}\times\mathbb{Z}_{\ge0}\times\mathbb{Z}^2
 $$
 
 where $N_s$ counts active self-hit roots, $M_p$ counts active partner-hit roots, and $c_1[\theta^O,\theta^M,\theta^I]$ is the phase-bundle winding of the resonance-locked tri-binary chart. This class is deformation-stable only inside the nondegenerate branch domain: a causal-root fold, reconnection, or loss of phase-bundle closure changes the sector.
