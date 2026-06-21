@@ -266,7 +266,7 @@ body {
   padding: 8px 12px;
   background: rgba(8, 10, 18, 0.6);
   border: 1px solid rgba(160, 170, 220, 0.25);
-  border-radius: 8px;
+  border-radius: 999px;
   backdrop-filter: blur(6px);
   font-size: 12px;
   font-weight: 600;
@@ -340,9 +340,9 @@ body {
   border-color: rgba(213, 220, 255, 0.6);
 }
 
-#doc-button {
+#textbook-toc-button {
   position: relative;
-  width: 32px;
+  min-width: 48px;
   height: 32px;
   border-radius: 999px;
   border: 1px solid rgba(160, 170, 220, 0.25);
@@ -352,30 +352,36 @@ body {
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  padding: 0 12px;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
 }
 
-#doc-button::after {
+#textbook-toc-button::after {
   content: none;
   display: none;
 }
 
-#doc-button svg {
-  width: 18px;
-  height: 18px;
-}
-
-#doc-button.is-active {
+#textbook-toc-button.is-active {
   background: rgba(92, 36, 164, 0.92);
   border-color: rgba(176, 136, 255, 0.7);
 }
 
-#doc-button.is-hidden {
+#textbook-toc-button:not(:disabled):hover,
+#textbook-toc-button:not(:disabled):focus-visible {
+  border-color: rgba(213, 220, 255, 0.6);
+}
+
+#textbook-toc-button.is-hidden {
   visibility: hidden;
   opacity: 0;
   pointer-events: none;
 }
 
-#doc-button:disabled {
+#textbook-toc-button:disabled {
   opacity: 0.5;
   cursor: default;
 }

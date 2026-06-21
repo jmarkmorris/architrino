@@ -62,7 +62,7 @@ D_p
 =
 \dim C_{p,+}-\dim C_{p,-}
 $$
-are not extra entries in the compact charge, but they are required side data. A solver that reports only $N_s$ and $M_p$ has counted roots without proving which opposite-sign pairs can be born, die, or persist under deformation.
+are not extra entries in the compact assembly topological charge, but they are required side data. A solver that reports only $N_s$ and $M_p$ has counted roots without proving which opposite-sign pairs can be born, die, or persist under deformation.
 
 The third entry comes from the phase bundle of a resonance-locked tri-binary. Let $\theta^O,\theta^M,\theta^I$ be the outer, middle, and inner phase coordinates on the retained return chart. Exact integer closure over one outer period $T_O$ means
 $$
@@ -97,7 +97,7 @@ For a finite-$\eta$ branch chart $\mathfrak B$, the assembly topological charge 
 6. For a tri-binary, integer phase closure and flat relative-phase connection.
 7. A return-map stability certificate, such as a Floquet or Conley-style branch certificate, after quotienting only true symmetry directions.
 
-Under those conditions the compact topological charge is
+Under those conditions the compact assembly topological charge is
 $$
 [\mathfrak B]_{\mathrm{top}}
 =
@@ -109,7 +109,7 @@ c_1[\theta^O,\theta^M,\theta^I]
 \in
 \mathbb{Z}_{\ge0}\times\mathbb{Z}_{\ge0}\times\mathbb{Z}^2.
 $$
-For a non-tri-binary branch, the partial charge $(N_s,M_p)$ may be recorded, but $c_1$ is not assigned until a phase-bundle chart exists.
+For a non-tri-binary branch, the partial assembly topological charge $(N_s,M_p)$ may be recorded, but $c_1$ is not assigned until a phase-bundle chart exists.
 
 A useful refinement is a branch-preserving chirality label
 $$
@@ -119,7 +119,7 @@ This is not part of the base triple until the branch chart supplies a deformatio
 
 ## Invariance And Allowed Transitions
 
-The charge is designed to be locally invariant. Between branch boundaries, the implicit-function theorem transports each simple active root continuously, so $N_s$, $M_p$, $D_s$, and $D_p$ remain constant. At a generic fold, one positive and one negative root are created or annihilated. Therefore
+The assembly topological charge is designed to be locally invariant. Between branch boundaries, the implicit-function theorem transports each simple active root continuously, so $N_s$, $M_p$, $D_s$, and $D_p$ remain constant. At a generic fold, one positive and one negative root are created or annihilated. Therefore
 $$
 \Delta N_s\in 2\mathbb{Z}
 \quad\text{or}\quad
@@ -133,7 +133,7 @@ Cusp or higher singular strata are not automatically governed by the generic fol
 
 The transition catalogue therefore has a native form:
 
-| Event | Charge effect | Required certificate |
+| Event | Assembly topological charge effect | Required certificate |
 | --- | --- | --- |
 | Branch-preserving deformation | No change to $(N_s,M_p,c_1)$ | Positive floors, finite memory, stable gluing |
 | Self-root fold | $\Delta N_s=\pm2$ generically | Fold normal form and post-transit chart |
@@ -170,7 +170,7 @@ Thus $(N_s,M_p,c_1)$ is the candidate conserved label that says when two assembl
 
 ## Simulation Extraction
 
-A branch solver should extract the charge in this order:
+A branch solver should extract the assembly topological charge in this order:
 
 1. Build the finite-$\eta$ retained branch chart and declare its memory window.
 2. Find active causal roots on the same retained row set.
@@ -197,9 +197,9 @@ The established pieces are local:
 
 The open proof burden is global:
 
-- prove that a stable assembly realizes a fixed charge over a finite branch domain;
+- prove that a stable assembly realizes a fixed assembly topological charge over a finite branch domain;
 - prove gluing of the local causal-root charts into a finite labeled continuation family;
-- prove a positive stability gap for the charge sector;
+- prove a positive stability gap for the assembly topological charge sector;
 - determine whether the entries are independent or constrained by radial balance, phase flatness, and Noether sea response;
 - map any certified sectors to observer-level particle quantum numbers without fitting the labels afterward.
 

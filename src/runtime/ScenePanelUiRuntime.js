@@ -1,6 +1,6 @@
 export function createScenePanelUiRuntime(deps) {
   const {
-    docButton,
+    textbookTocButton,
     detailClose,
     markdownClose,
     markdownDocButton,
@@ -32,8 +32,8 @@ export function createScenePanelUiRuntime(deps) {
   }
 
   function wireListeners() {
-    if (docButton) {
-      docButton.addEventListener("click", () => {
+    if (textbookTocButton) {
+      textbookTocButton.addEventListener("click", () => {
         if (typeof toggleTextbookToc === "function") {
           toggleTextbookToc();
         }
