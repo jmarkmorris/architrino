@@ -8,9 +8,72 @@ Each dated section should preserve the reasoning of the moment closely enough th
 
 Entries are maintained in descending date order, with the newest `##` section first.
 
-## 2026-06-17: iOS Textbook Reader
+## 2026-06-21: Causal Delay Feedback Visualization App
 
-The Architrino iOS app became the first Apple-native reading surface for the $\mathbb{A}\mathbb{A}\mathbb{A}$ textbook. Its first release scope is deliberately narrow: the app is a textbook reader, not a flashcard system, not a molecule viewer, and not a general replacement for the website. The point is to give the book a quiet, durable, touch-native home on iPhone and iPad while keeping the theory itself at the center of the screen.
+Relevant files:
+
+- [Causal Delay Feedback](../../../../causal-delay-feedback.html)
+
+The standalone [Causal Delay Feedback](../../../../causal-delay-feedback.html) app became the project surface for making causal-delay feedback depth visible. Its core lesson is that the present interaction state is not determined only by where the two architrinos are at the displayed instant. It also depends on retained source history, causal-root status, delayed-hit rows, and the active or rejected contribution records that determine which path-history terms can reach the other architrino now.
+
+The app presents that lesson as a time-space canvas rather than as a formula panel. A positrino path and an electrino path are drawn as solid solver-owned trajectories. The dotted causal-wake arc series are not displayed as connections between fixed history markers. Each visible arc series is recomputed from the replay paths: it begins at the back-solved emission point on the emitting architrino path and ends at the reception point on the partner architrino path at the current replay time. The partial-arc view keeps the screen focused on the active emitter-to-receiver sector, while the full-circular-arc preset remains available for showing the complete emitted wake geometry.
+
+The runtime moved the app beyond a hand-drawn demonstration. The standalone page defaults to the central solver bridge `pairInteraction` replay path when that bridge is available, with the representative mock replay preserved as an explicit `?replay=mock` review mode. The central path advances the positrino and electrino together from declared initial positions and velocities, publishes frame samples and path-history data, and leaves the canvas runtime to derive the two live wake series by back-solving emission points against the current reception points. Both central and mock paths preserve a solver-shaped dataset contract: frames, retained path-history samples, delayed-hit diagnostics, rejected or unresolved root diagnostics, and compact contribution summaries.
+
+The interface also settled into a cleaner teaching grammar. The canvas exposes preset selection, play and pause, reset, the `now` scrubber, canvas color, $c_f$ replay speed, architrino speed as $v/c_f$, weak-contribution cue mode, wake selection, and compact contribution readout. Fixed numbered retained path-history dots are no longer part of the default canvas grammar. Retained path-history samples and retained path constraints remain solver or input data, and scripted review paths can still submit retained start, interior, final-position, fixed-signal-speed, and initial-velocity constraints through the central replay contract.
+
+The strongest current solver evidence is the boundary-replay path. Constrained central replays can surface as `solver boundary-seed replay` when finite-difference relaxation has seeded the retained path without a convergence claim, or as `solver boundary replay` when the discrete finite-difference retained-knot boundary relaxation converges under the requested residual tolerance. Those statuses carry retained-position evidence, initial-velocity evidence, retained-knot boundary-residual evidence, relaxation residual evidence, and the explicit physical-boundary status `physical_boundary_solver_pending`. The important boundary is therefore still visible: the app can show a converged discrete retained-knot boundary replay, but it does not claim the full physical pair-interaction/path-constraint boundary-value solver is complete.
+
+This milestone matters because it turns causal-delay language into an inspectable object without letting the picture outrun the solver evidence. A reader can see the emitting point, the reception point, the two live causal-wake series, the active cross-path contribution readout, and the distinction between visual replay, central bridge evidence, finite-difference boundary relaxation, and still-pending physical closure. For $\mathbb{A}\mathbb{A}\mathbb{A}$, that is useful pressure: the app has to keep teaching geometry, solver-shaped replay, and proof status separate instead of letting them collapse into a single animation.
+
+## 2026-06-20: Central Solver Workstream and Benchmark Gate
+
+Relevant files:
+
+- [Photon and Polarization Visualization App](../../../../photon.html)
+- [Ideal Noether Swarm Lorentz Geometry App](../../../../ideal-swarm.html)
+- [Animator](../../../../animator.html)
+- [Causal Delay Feedback](../../../../causal-delay-feedback.html)
+
+The central solver workstream became the shared engineering and validation target for architrino motion, causal roots, delayed hits, and path-history geometry. Instead of letting each app carry an isolated solver grammar, the work defines a common request and response contract: model identity, equation or force-law version, constants, branch policy, precision path, path-history streams, indexed readback, diagnostics, and app adapters.
+
+This milestone matters because it changes app computation from local demonstration logic into a migration path. Photon, Ideal Swarm, Animator, and Causal Delay Feedback can ask the same solver bridge for causal-root, delayed-hit, geometry, dataset, and diagnostic outputs while their interfaces remain presentation surfaces. That separation is important: a visual surface can be solver-derived without pretending the solver has already closed every proof obligation behind the picture.
+
+The benchmark side also became more disciplined. The widened emission-shell v0 stress envelope preserved oracle equality under larger replay pressure and introduced a threshold check that is not merely wall-clock timing. The result is developer-test readiness, not default replacement. In notebook terms, the accomplishment is the discipline: centralize the geometry solver, measure the bridge under stress, and keep opt-in strategies opt-in until breadth and parity evidence justify promotion.
+
+## 2026-06-20: Tri-Binary Middle-Hinge Candidate Narrowing
+
+Relevant files:
+
+- [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md)
+- [Kinetic and Potential Energy](../dynamics/energy.md)
+- [Nested Shell Swarm Dynamics](../noether-swarm/nested-shell-swarm-dynamics.md)
+
+The angular-momentum and spin proof route gained a sharper reduced candidate target around the tri-binary middle-hinge family. The work used canonical `(I,M,O)` frequency-triplet notation to compare the $(f+2,f,f-1)$ middle-hinge family against symmetric, dyadic, and finite integer-lock controls. The point was not to accept a retained branch; it was to narrow the proof burden by making the candidate and its competitors machine-readable.
+
+The strongest evidence came from the combination of row lineage, self-hit parity, phase-lock coverage, point-event witnesses, route-local transport and recoil balance, and competitor auditing. The middle-hinge family remains on the candidate path because it keeps the strongest self-root parity proxy and phase-lock coverage among the tested families. At the same time, the retained branch claim remains false: common positive-width retained time-domain coverage, zero-slack retained transport, accepted wake energy, action scale, energy routing, and full point-event rules are still missing.
+
+This milestone matters because it replaced a broad question about whether a tri-binary rotational-action pattern could carry angular-momentum and spin structure with a narrower branch-certificate problem. The live question is whether the route-authorized point-event and wake payloads can be lifted into one retained row set with accepted transport, partition, torque, phase, stability, and energy-routing rows. That is a much better mathematical target.
+
+## 2026-06-20 Closure Scorecard Update
+
+The 2026-06-20 scorecard cycle applied the validated-closure lens to the current corpus and recorded a weighted $\mathbb{A}\mathbb{A}\mathbb{A}$ score of `65` after a full read of the `163` markdown files under `content/markdown/aaa`. The same table gives modern physics an operational score of `88` and a mechanism score of `67`, so the latest total $\Delta$ remains `-23`. The result is a stronger score than the early validated-closure baseline, but it still treats missing coefficients, unfixed parameters, and unvalidated benchmark recovery as real deficits.
+
+Relevant files:
+
+- [Closure scorecard](../validation/closure-scorecard.md)
+- [Assessment table](../validation/closure-scorecard.md#assessment-table)
+- [2026-06-20 assessment notes](../validation/closure-scorecard.md#2026-06-20-assessment-notes)
+
+The strongest rows show where the corpus has become unusually coherent. Axiom+Notation and Theory Architecture+Ontic Logic both score `99`, Coverage+Interface Readiness scores `96`, Falsification Gates scores `95`, Master EOM+Local Dynamics scores `80`, and Internal Constituent Dynamics scores `78`. Those numbers reflect stable canonical language, broad interface coverage, explicit failure conditions, stronger delayed path-history dynamics, and a more developed nested shell swarm and Noether swarm account.
+
+The same update keeps the main closure burdens visible. Empirical Precision+Benchmark Validation is `39` with $\Delta=-59$, Formula+Coefficient Recovery is `48` with $\Delta=-48$, Parameter+Scale Closure is `42` with $\Delta=-28$, Potential+Action Closure and Conservation+Invariant Closure are both `71` with $\Delta=-27$, and UV/IR+Regularization Completion is `49` with $\Delta=-21$. The scorecard therefore refuses to let architecture substitute for a retained native record that derives central constants, Lorentz/PPN coefficients, photon-channel coefficients, Born/Bell measures, Standard Model mass and mixing values, radiation benchmarks, and shared cosmology residual fits.
+
+This milestone matters because it turns the project's strongest and weakest mathematical surfaces into a single repeatable assessment. The corpus now has high auditability, strong ontology, and near-modern falsification discipline, but the validated-closure total remains below modern operational physics until branch-derived coefficients, fixed parameters, and benchmark passes arrive under the same native record.
+
+## 2026-06-17: iOS and iPadOS Textbook Reader
+
+The Architrino iOS app became the first Apple-native reading surface for the $\mathbb{A}\mathbb{A}\mathbb{A}$ textbook, and the iPadOS app was developed as part of the same reader effort. The iOS and iPadOS apps are available through the project repository now, and they will appear in the App Store soon. Their first release scope is deliberately narrow: the apps are textbook readers, not a flashcard system, not a molecule viewer, and not a general replacement for the website. The point is to give the book a quiet, durable, touch-native home on iPhone and iPad while keeping the theory itself at the center of the screen.
 
 The app uses a SwiftUI shell around a local rendered-textbook runtime. The bundled package contains chapter-level reading copies, rendered HTML, a table of contents, a link map, a search index, and selected reference material such as glossary and style-guide files. The package is generated and checked against a deterministic book contract, so the reader does not depend on live website state.
 
@@ -18,9 +81,23 @@ This choice made the textbook more book-like. Chapters and in-app markdown refer
 
 The interface also settled into a reader-first grammar. The main screen has minimal chrome, large touch targets, a persistent bottom control row, local bookmarks, theme selection, margin and spacing controls, and the `AAA` font-size control where the center `A` returns the reader to the default size. The standard purple theme became the default reading surface, with the table of contents, search, bookmarks, settings, and about views using the same selected reader colors instead of switching to unrelated system panels.
 
+The iOS and iPadOS apps also include a page-feedback path: from the reading surface, a reader can capture the visible page, annotate the screenshot, copy the annotated image, and open a prefilled GitHub issue for submission. GitHub login is required before the issue can be filed.
+
 The app keeps user state local. Font size, theme, spacing, margins, bookmarks, and reading position are stored on the device rather than in a cloud account. That keeps the v1 reader simple and honest: updates can replace the bundled textbook package, but the reader does not require a server, login, or shared storage service to function.
 
 This milestone matters because it changed the textbook from a generated artifact that could be read on the web into a packaged, inspectable corpus with its own runtime contract. The strict package check records the current book as 11 chapters with mapped files, captured links, and search entries. In practice, the app now tests the corpus as a navigable book: headings need stable anchors, links need deterministic targets, search snippets need faithful rendering, and the table of contents has to carry the reader to the intended place. That is a different kind of pressure than ordinary website browsing, and it is useful pressure for a theory that values parsimony.
+
+## 2026-06-16: Entropy and Record Coarse-Graining Chapter
+
+Relevant files:
+
+- [Entropy and Record Coarse-Graining](../dynamics/entropy.md)
+
+The entropy work became a dedicated dynamics chapter rather than scattered explanatory prose. The chapter states the governing idea directly: entropy is a record-coarse-graining concept in $\mathbb{A}\mathbb{A}\mathbb{A}$, not a primitive substance, not a field in the Euclidean void, not the generator of absolute time, and not an independent gravitational mechanism. It is the value obtained after complete deterministic history is projected into a retained record, access window, and declared coarse-graining.
+
+The mathematical center is the same-record rule. A packet may not fit entropy, temperature, flux, probability weights, apparatus cost, or horizon labels from separate hidden ensembles. If a thermal, quantum, horizon, or computational comparison is claimed, the entropy in that comparison must be a projection of the same record that supplies the other quantities. In formal terms, the chapter makes entropy depend on a record projection $\Pi_{\mathcal{Q},W}$ from complete histories into retained record variables, then applies the entropy functional to the pushed-forward measure.
+
+This milestone matters because it turns entropy from an inherited word into a controlled diagnostic. Thermodynamics, measurement, computation, horizon bookkeeping, quantum mixed-state language, and cosmology can all be compared by asking the same question: which histories are retained, which histories are grouped together, and which boundary records enter the ledger? That gives entropy a strong role without letting it become final ontology.
 
 ## 2026-06-14: Molecule Visualization App
 
@@ -38,18 +115,18 @@ The display is meant for direct inspection rather than a static illustration. Re
 
 The app also carries an $\mathbb{A}\mathbb{A}\mathbb{A}$ bookkeeping layer. For the displayed molecule, and for each hovered atom, it reports formula or atom label, atom count, bond count, protons, neutrons, electrons, electrinos, positrinos, and total architrinos using the current typical neutral-atom estimate. This keeps molecule visualization tied to the same ledger language as the atom and periodic-table apps rather than treating chemistry as a separate visual island.
 
-## 2026-06-13: Photon and Polarization Visualization
+## 2026-06-13: Photon and Polarization Visualization App
 
 Relevant files:
 
-- [Photon and Polarization Visualization](../../../../photon.html)
+- [Photon and Polarization Visualization App](../../../../photon.html)
 - [Photon Guide](photon-guide.md)
 - [Mode Taxonomy](../reactions/mode-taxonomy.md)
 - [Horizon Chirality and Planar Spin](../spacetime/horizon-chirality.md)
 - [Quantum Summary](../quantum/quantum-summary.md)
 - [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md)
 
-The standalone [Photon and Polarization Visualization](../../../../photon.html) app became the workbench for one simple photon idea: a photon-like packet might be modeled as two flat Noether swarms moving together along $x$. The trailing swarm rotates counter-clockwise, the leading swarm rotates clockwise, and the app shows both a face-on view for inspection and a side view closer to the actual geometry.
+The standalone [Photon and Polarization Visualization App](../../../../photon.html) became the workbench for one simple photon idea: a photon-like packet might be modeled as two flat Noether swarms moving together along $x$. The trailing swarm rotates counter-clockwise, the leading swarm rotates clockwise, and the app shows both a face-on view for inspection and a side view closer to the actual geometry.
 
 The app lets the reader change the candidate instead of only looking at a picture. Each swarm has `I`, `M`, and `O` binaries with enable switches, frequency, radius, and phase controls. The $\Delta x$ control changes the gap between the two swarms in the side view, while the Virtual Observer controls choose the $(x,y,z)$ point where the app calculates the displayed electric-field readout.
 
@@ -59,16 +136,16 @@ The polarization panel asks what kind of field the candidate actually produces. 
 
 The supporting documents keep that boundary clear. [Photon Guide](photon-guide.md) explains how to use the app. [Mode Taxonomy](../reactions/mode-taxonomy.md), [Horizon Chirality and Planar Spin](../spacetime/horizon-chirality.md), [Quantum Summary](../quantum/quantum-summary.md), and [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md) state what still has to be recovered: stable transverse behavior, polarization, helicity, analyzer response, and no free longitudinal photon mode.
 
-## 2026-06-10: Ideal Noether Swarm Lorentz Geometry
+## 2026-06-10: Ideal Noether Swarm Lorentz Geometry App
 
 Relevant files:
 
-- [Ideal Noether Swarm: Lorentz Geometry](../../../../ideal-swarm.html)
+- [Ideal Noether Swarm Lorentz Geometry App](../../../../ideal-swarm.html)
 - [Ideal Swarm Guide](ideal-swarm-guide.md)
 - [Return-Cycle Lorentz Quantization](../philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md)
 - [Lorentz Kinematics](../spacetime/lorentz-kinematics.md)
 
-The standalone [Ideal Noether Swarm: Lorentz Geometry](../../../../ideal-swarm.html) app became the interactive inspection surface for the Noether swarm Lorentz-geometry lesson built around an oblate spheroidal envelope. Its purpose is to make one candidate Noether swarm deformation concrete: a nested swarm is shown inside a velocity-dependent envelope, the user adjusts $\beta=v/c_f$, and the app ties the visible flattening to $\gamma$, $\xi=R_{\parallel}/R_{\perp}$, relative time, relative length, and the normalized center-of-mass energy ledger. The controls also keep the lesson inspectable rather than merely illustrative: paths, surface, axes, orbit scale, cycle speed, and markdown overlays let the reader compare the moving geometry with the equations on the same screen.
+The standalone [Ideal Noether Swarm Lorentz Geometry App](../../../../ideal-swarm.html) became the interactive inspection surface for the Noether swarm Lorentz-geometry lesson built around an oblate spheroidal envelope. Its purpose is to make one candidate Noether swarm deformation concrete: a nested swarm is shown inside a velocity-dependent envelope, the user adjusts $\beta=v/c_f$, and the app ties the visible flattening to $\gamma$, $\xi=R_{\parallel}/R_{\perp}$, relative time, relative length, and the normalized center-of-mass energy ledger. The controls also keep the lesson inspectable rather than merely illustrative: paths, surface, axes, orbit scale, cycle speed, and markdown overlays let the reader compare the moving geometry with the equations on the same screen.
 
 The app deliberately does not claim to prove Lorentz kinematics from Noether swarm dynamics. It records the target geometry in a form that can be checked visually and algebraically: in the zero-extra-scale lesson case, the displayed oblate spheroidal envelope satisfies $R_{\parallel}=R_{\perp}/\gamma$ and $\xi=1/\gamma$. That makes the Lorentz factor more than a formula in a side panel; it becomes the aspect ratio of the displayed envelope. The app is therefore a dictionary between the formula, the return-cycle picture, and the geometry that a later branch-ledger derivation would have to recover.
 

@@ -124,6 +124,10 @@ Every promoted claim must emit `convergence_table.csv` with one row for each req
 
 For continuum or stochastic promotions, append rows for `moment-closure`, `distribution-moments`, `diffusion-tensor`, `causal-response`, and `fluctuation-dissipation` when those channels are claimed. These rows must include the artifact hash of the direct event-root run and the artifact hash of the reduced continuum or stochastic run being compared.
 
+For field-theory or continuum-limit promotions, the packet must also declare the scaling-limit datum: regulator family, scaling trajectory, volume or window trajectory when relevant, test-observable class, observable maps from the regulated state to the promoted variables, normalization and mixing rules for composite observables, convergence topology, positivity or reconstruction condition when the claim uses a quantum-field analogue, and the artifact hashes for every regulated run consumed by the limit. Without this datum, a finite-regulator trend is a diagnostic, not a promoted continuum claim.
+
+If the promoted claim invokes an Osterwalder-Schrader-like or Wightman-like field-theory reconstruction, the packet must identify the full reconstruction package it is borrowing: positivity, covariance or symmetry, locality or support condition, vacuum-sector or clustering condition, test-function space, regularity and growth control, and the target reconstructed object. Reflection positivity alone is not enough to promote a regulated numerical family into a local quantum-field analogue.
+
 For revised branch-coordinate promotions, append rows for `branch-coordinate-source`, `branch-coordinate-heldout`, `branch-coordinate-phase-origin` when applicable, `branch-coordinate-design`, and `branch-identity-refinement`. These rows must include the artifact hash of the predeclared coordinate packet and the rerun candidate that consumes it.
 
 The regulator row must include each promoted observable $Y$ and the value of
@@ -134,6 +138,8 @@ E_\eta(Y;\eta,\eta/2)
 {\|R(Y_{\eta/2})\|_{L^2(W,\{x_k\})}+10^{-12}}
 $$
 It also records whether active root-ledger entries match between $\eta$ and $\eta/2$ after matching source, receiver, root class, and branch status. A convergence plot is not promotion evidence unless the table row containing the plotted quantity is present and tied to the campaign artifact hash.
+
+Regulator extrapolation fits must report the fitted observable, the regulator ladder, the assumed asymptotic form, excluded points if any, stability under fit-window changes, endpoint or singular-window controls when they affect the extrapolation, and a negative-control observable. A fit that behaves smoothly but has no declared observable map, topology, normalization, volume or window estimate when relevant, remainder bound, or independent continuum reconstruction remains below theorem-grade evidence.
 
 ### Negative control (null test, mandatory)
 

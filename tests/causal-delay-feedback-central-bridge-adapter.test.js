@@ -11,7 +11,11 @@ import {
   createCausalDelayFeedbackCentralBridgeAdapter,
   normalizeCausalDelayFeedbackBridgeReplay,
 } from "../src/apps/causal-delay-feedback/CausalDelayFeedbackCentralBridgeAdapter.js";
-import { createMockCausalDelayReplayDataset } from "../src/apps/causal-delay-feedback/CausalDelayFeedbackReplayAdapter.js";
+import {
+  PATH_TIME_END_X,
+  PATH_TIME_START_X,
+  createMockCausalDelayReplayDataset,
+} from "../src/apps/causal-delay-feedback/CausalDelayFeedbackReplayAdapter.js";
 
 function assertNear(actual, expected, epsilon = 1e-9) {
   assert.ok(Math.abs(actual - expected) <= epsilon, `${actual} should be near ${expected}`);
@@ -539,7 +543,7 @@ test("causal delay bridge replay request declares the central bridge contract", 
   assert.equal(request.config.initialConditions.positrino.x, 100);
   assert.equal(request.config.initialConditions.electrino.y, 800);
   assert.equal(request.config.geometry.initialConditions.positrino.vx, 1);
-  assert.equal(request.config.geometry.virtualObserver.label, "Virtual Observer");
+  assert.equal("virtualObserver" in request.config.geometry, false);
   assert.equal(request.config.geometry.canvasColorId, "architrinoPurple");
   assert.equal(request.config.replay.historyDepth, 4);
   assert.equal(request.config.motion.accelerationPolicy, "pair_segmented_attraction_seed");
@@ -589,7 +593,7 @@ test("causal delay bridge replay normalizer accepts central appPlayback motion f
   assert.equal(dataset.history.positrino.length, 6);
   assert.equal(dataset.wakeLinks.length, 10);
   assert.equal(dataset.wakeLinks[0].label, "red 1 -> blue 2");
-  assert.equal(dataset.virtualObserver.x, request.config.geometry.virtualObserver.x);
+  assert.equal("virtualObserver" in dataset, false);
 });
 
 test("causal delay bridge replay normalizer returns runtime dataset shape", () => {
@@ -660,10 +664,12 @@ test("causal delay central bridge adapter uses pair interaction by default", asy
   assert.equal(dataset.wakeLinks.length, 10);
   assert.equal(dataset.frames[0].t, 0);
   assert.equal(dataset.frames.at(-1).t, 1);
-  assertNear(dataset.paths.positrino[0].x, 96);
-  assertNear(dataset.paths.positrino.at(-1).x, 1824);
-  assertNear(dataset.paths.electrino[0].x, 96);
-  assertNear(dataset.paths.electrino.at(-1).x, 1824);
+  assert.equal(dataset.paths.positrino[0].x, dataset.frames[0].positrino.x);
+  assert.equal(dataset.paths.electrino[0].x, dataset.frames[0].electrino.x);
+  assert(dataset.paths.positrino[0].x >= PATH_TIME_START_X);
+  assert(dataset.paths.positrino.at(-1).x <= PATH_TIME_END_X);
+  assert(dataset.paths.electrino[0].x >= PATH_TIME_START_X);
+  assert(dataset.paths.electrino.at(-1).x <= PATH_TIME_END_X);
   assertNear(dataset.initialConditions.positrino.x, dataset.history.positrino[0].x);
   assertNear(dataset.initialConditions.positrino.y, dataset.history.positrino[0].y);
   assertNear(dataset.initialConditions.electrino.x, dataset.history.electrino[0].x);

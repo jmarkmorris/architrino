@@ -264,6 +264,11 @@
                 "sectionDepth": { "type": "number" },
                 "maxDepth": { "type": "number" },
                 "section": { "type": "string" },
+                "nodeRadius": { "type": "number", "exclusiveMinimum": 0 },
+                "ringRadius": { "type": "number", "exclusiveMinimum": 0 },
+                "maxRingCount": { "type": "number", "exclusiveMinimum": 0 },
+                "gridSpacing": { "type": "number", "exclusiveMinimum": 0 },
+                "gridGapMultiplier": { "type": "number", "exclusiveMinimum": 0 },
                 "overrides": { "type": "object" }
               }
             },

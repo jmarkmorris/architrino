@@ -27401,6 +27401,7 @@ async function createEventRootAffineBracketAbsenceBridgeFillRuleTarget({
     createSelectedActiveDomainBoundedGapFillSourceAudit({
       retainedRowSetBindingContext,
       directInteriorPresenceProbeTarget,
+      dynamicPresenceMeasureLawTarget,
     });
 
   return {
@@ -27665,6 +27666,123 @@ async function createEventRootAffineBracketAbsenceBridgeFillRuleTarget({
     firstSelectedActiveDomainDirectAbsenceOffsetTransportLawBlocker:
       selectedActiveDomainBoundedGapFillSourceAudit
         .firstDirectAbsenceOffsetTransportLawBlocker,
+    selectedActiveDomainDirectAbsenceRowLocalEvidenceAuditStatus:
+      selectedActiveDomainBoundedGapFillSourceAudit
+        .directAbsenceRowLocalEvidenceAuditStatus,
+    selectedActiveDomainDirectAbsenceRowLocalEvidenceAudit:
+      selectedActiveDomainBoundedGapFillSourceAudit
+        .directAbsenceRowLocalEvidenceAudit,
+    selectedActiveDomainDirectAbsenceRowLocalEvidenceCandidateRowCount:
+      selectedActiveDomainBoundedGapFillSourceAudit
+        .directAbsenceRowLocalEvidenceCandidateRowCount,
+    firstSelectedActiveDomainDirectAbsenceRowLocalEvidenceBlocker:
+      selectedActiveDomainBoundedGapFillSourceAudit
+        .firstDirectAbsenceRowLocalEvidenceBlocker,
+    selectedActiveDomainDirectAbsenceNonlocalSourceBoundDependencyAuditStatus:
+      selectedActiveDomainBoundedGapFillSourceAudit
+        .directAbsenceNonlocalSourceBoundDependencyAuditStatus,
+    selectedActiveDomainDirectAbsenceNonlocalSourceBoundDependencyAudit:
+      selectedActiveDomainBoundedGapFillSourceAudit
+        .directAbsenceNonlocalSourceBoundDependencyAudit,
+    selectedActiveDomainDirectAbsenceNonlocalSourceBoundCandidateRowCount:
+      selectedActiveDomainBoundedGapFillSourceAudit
+        .directAbsenceNonlocalSourceBoundCandidateRowCount,
+    firstSelectedActiveDomainDirectAbsenceNonlocalSourceBoundDependencyBlocker:
+      selectedActiveDomainBoundedGapFillSourceAudit
+        .firstDirectAbsenceNonlocalSourceBoundDependencyBlocker,
+    selectedActiveDomainDirectAbsenceSourceBindingDependencyAuditStatus:
+      selectedActiveDomainBoundedGapFillSourceAudit
+        .directAbsenceSourceBindingDependencyAuditStatus,
+    selectedActiveDomainDirectAbsenceSourceBindingDependencyAudit:
+      selectedActiveDomainBoundedGapFillSourceAudit
+        .directAbsenceSourceBindingDependencyAudit,
+    selectedActiveDomainDirectAbsenceSourceBindingDependencyCandidateRowCount:
+      selectedActiveDomainBoundedGapFillSourceAudit
+        .directAbsenceSourceBindingDependencyCandidateRowCount,
+    selectedActiveDomainDirectAbsenceSourceBindingSelectedSourceUniqueRowCount:
+      selectedActiveDomainBoundedGapFillSourceAudit
+        .directAbsenceSourceBindingSelectedSourceUniqueRowCount,
+    firstSelectedActiveDomainDirectAbsenceSourceBindingDependencyBlocker:
+      selectedActiveDomainBoundedGapFillSourceAudit
+        .firstDirectAbsenceSourceBindingDependencyBlocker,
+    selectedActiveDomainDirectAbsenceSourceBindingProofBaseAuditStatus:
+      selectedActiveDomainBoundedGapFillSourceAudit
+        .directAbsenceSourceBindingProofBaseAuditStatus,
+    selectedActiveDomainDirectAbsenceSourceBindingProofBaseAudit:
+      selectedActiveDomainBoundedGapFillSourceAudit
+        .directAbsenceSourceBindingProofBaseAudit,
+    selectedActiveDomainDirectAbsenceSourceBindingProofBaseCandidateRowCount:
+      selectedActiveDomainBoundedGapFillSourceAudit
+        .directAbsenceSourceBindingProofBaseCandidateRowCount,
+    firstSelectedActiveDomainDirectAbsenceSourceBindingProofBaseBlocker:
+      selectedActiveDomainBoundedGapFillSourceAudit
+        .firstDirectAbsenceSourceBindingProofBaseBlocker,
+    selectedActiveDomainDirectAbsenceSourceBindingTwoSheetDependencyAuditStatus:
+      selectedActiveDomainBoundedGapFillSourceAudit
+        .directAbsenceSourceBindingTwoSheetDependencyAuditStatus,
+    selectedActiveDomainDirectAbsenceSourceBindingTwoSheetDependencyRowCount:
+      selectedActiveDomainBoundedGapFillSourceAudit
+        .directAbsenceSourceBindingTwoSheetDependencyRowCount,
+    selectedActiveDomainDirectAbsenceSourceBindingTwoSheetActiveDomainRequiredRowCount:
+      selectedActiveDomainBoundedGapFillSourceAudit
+        .directAbsenceSourceBindingTwoSheetActiveDomainRequiredRowCount,
+    selectedActiveDomainDirectAbsenceSourceBindingTwoSheetInnerConversionRequiredRowCount:
+      selectedActiveDomainBoundedGapFillSourceAudit
+        .directAbsenceSourceBindingTwoSheetInnerConversionRequiredRowCount,
+    firstSelectedActiveDomainDirectAbsenceSourceBindingTwoSheetDependencyBlocker:
+      selectedActiveDomainBoundedGapFillSourceAudit
+        .firstDirectAbsenceSourceBindingTwoSheetDependencyBlocker,
+    selectedActiveDomainDirectAbsenceSourceBindingActiveDomainCycleAuditStatus:
+      selectedActiveDomainBoundedGapFillSourceAudit
+        .directAbsenceSourceBindingActiveDomainCycleAuditStatus,
+    selectedActiveDomainDirectAbsenceSourceBindingActiveDomainCycleAudit:
+      selectedActiveDomainBoundedGapFillSourceAudit
+        .directAbsenceSourceBindingActiveDomainCycleAudit,
+    selectedActiveDomainDirectAbsenceSourceBindingActiveDomainCycleCandidateRowCount:
+      selectedActiveDomainBoundedGapFillSourceAudit
+        .directAbsenceSourceBindingActiveDomainCycleCandidateRowCount,
+    firstSelectedActiveDomainDirectAbsenceSourceBindingActiveDomainCycleBlocker:
+      selectedActiveDomainBoundedGapFillSourceAudit
+        .firstDirectAbsenceSourceBindingActiveDomainCycleBlocker,
+    selectedActiveDomainDirectAbsenceSourceBindingCycleBreakRouteAuditStatus:
+      selectedActiveDomainBoundedGapFillSourceAudit
+        .directAbsenceSourceBindingCycleBreakRouteAuditStatus,
+    selectedActiveDomainDirectAbsenceSourceBindingCycleBreakRouteAudit:
+      selectedActiveDomainBoundedGapFillSourceAudit
+        .directAbsenceSourceBindingCycleBreakRouteAudit,
+    selectedActiveDomainDirectAbsenceSourceBindingCycleBreakRouteCandidateCount:
+      selectedActiveDomainBoundedGapFillSourceAudit
+        .directAbsenceSourceBindingCycleBreakRouteCandidateCount,
+    selectedActiveDomainDirectAbsenceSourceBindingAcceptedCycleBreakRouteCount:
+      selectedActiveDomainBoundedGapFillSourceAudit
+        .directAbsenceSourceBindingAcceptedCycleBreakRouteCount,
+    firstSelectedActiveDomainDirectAbsenceSourceBindingCycleBreakRouteBlocker:
+      selectedActiveDomainBoundedGapFillSourceAudit
+        .firstDirectAbsenceSourceBindingCycleBreakRouteBlocker,
+    selectedActiveDomainDirectAbsenceCurrentRouteDispositionTargetStatus:
+      selectedActiveDomainBoundedGapFillSourceAudit
+        .directAbsenceCurrentRouteDispositionTargetStatus,
+    selectedActiveDomainDirectAbsenceCurrentRouteDispositionTarget:
+      selectedActiveDomainBoundedGapFillSourceAudit
+        .directAbsenceCurrentRouteDispositionTarget,
+    selectedActiveDomainDirectAbsenceAcceptedCurrentRouteCount:
+      selectedActiveDomainBoundedGapFillSourceAudit
+        .directAbsenceAcceptedCurrentRouteCount,
+    firstSelectedActiveDomainDirectAbsenceCurrentRouteDispositionBlocker:
+      selectedActiveDomainBoundedGapFillSourceAudit
+        .firstDirectAbsenceCurrentRouteDispositionBlocker,
+    selectedActiveDomainDirectAbsenceIndependentFillLawCurrentSourceExclusionAuditStatus:
+      selectedActiveDomainBoundedGapFillSourceAudit
+        .directAbsenceIndependentFillLawCurrentSourceExclusionAuditStatus,
+    selectedActiveDomainDirectAbsenceIndependentFillLawCurrentSourceExclusionAudit:
+      selectedActiveDomainBoundedGapFillSourceAudit
+        .directAbsenceIndependentFillLawCurrentSourceExclusionAudit,
+    selectedActiveDomainDirectAbsenceCurrentIndependentFillSourceFamilyCount:
+      selectedActiveDomainBoundedGapFillSourceAudit
+        .directAbsenceCurrentIndependentFillSourceFamilyCount,
+    selectedActiveDomainDirectAbsenceCurrentIndependentFillSourceExhaustedPass:
+      selectedActiveDomainBoundedGapFillSourceAudit
+        .directAbsenceCurrentIndependentFillSourceExhaustedPass,
     totalUniquePositiveAbsenceBridgeWidth: widths.reduce(
       (sum, value) => sum + value,
       0
@@ -27684,6 +27802,7 @@ async function createEventRootAffineBracketAbsenceBridgeFillRuleTarget({
 function createSelectedActiveDomainBoundedGapFillSourceAudit({
   retainedRowSetBindingContext = null,
   directInteriorPresenceProbeTarget = null,
+  dynamicPresenceMeasureLawTarget = null,
 }) {
   const partialSupportSourceRows =
     directInteriorPresenceProbeTarget?.threePointDirectInteriorReplayAudit
@@ -27719,11 +27838,18 @@ function createSelectedActiveDomainBoundedGapFillSourceAudit({
     directInteriorPresenceProbeTarget?.threePointDirectInteriorReplayAudit
       ?.partialSupportIntervalWitnessAudit?.intervalProofFieldAudit?.rows
   );
-  const retainedBindingRowsByKey = rowsByKey(
+  const retainedRowSetBindingAudit =
     directInteriorPresenceProbeTarget?.threePointDirectInteriorReplayAudit
       ?.partialSupportIntervalWitnessAudit?.intervalProofFieldAudit
-      ?.retainedRowSetBindingAudit?.rows
+      ?.retainedRowSetBindingAudit ?? null;
+  const retainedBindingRowsByKey = rowsByKey(
+    retainedRowSetBindingAudit?.rows
   );
+  const twoSheetGlobalBindingDependencyAudit =
+    retainedRowSetBindingAudit?.innerBothActiveConversionRouteAudit
+      ?.competitorExclusionAudit?.twoSheetRootSelectionAudit
+      ?.twoSheetGlobalBindingAudit?.twoSheetGlobalBindingDependencyAudit ??
+    null;
   const latticeStep = CLOSURE_PERIOD / (2 * BINARY_TO_BINARY_PATH_SEGMENT_COUNT);
   const auditRows = boundaryRows.map((boundaryRow) =>
     createSelectedActiveDomainBoundedGapFillSourceAuditRow({
@@ -27769,6 +27895,35 @@ function createSelectedActiveDomainBoundedGapFillSourceAudit({
     createSelectedActiveDomainDirectAbsenceSupportSourceAudit({
       rows: auditRows,
       latticeStep,
+    });
+  const directAbsenceRowLocalEvidenceAudit =
+    createSelectedActiveDomainDirectAbsenceRowLocalEvidenceAudit({
+      rows: auditRows,
+    });
+  const directAbsenceNonlocalSourceBoundDependencyAudit =
+    createSelectedActiveDomainDirectAbsenceNonlocalSourceBoundDependencyAudit({
+      supportSourceRows: directAbsenceSupportSourceAudit.rows,
+      rowLocalEvidenceRows: directAbsenceRowLocalEvidenceAudit.rows,
+      offsetTransportLawAudit:
+        directAbsenceSupportSourceAudit.offsetTransportLawAudit,
+    });
+  const directAbsenceSourceBindingDependencyAudit =
+    createSelectedActiveDomainDirectAbsenceSourceBindingDependencyAudit({
+      selectedRows: auditRows,
+      nonlocalSourceBoundDependencyAudit:
+        directAbsenceNonlocalSourceBoundDependencyAudit,
+      twoSheetGlobalBindingDependencyAudit,
+    });
+  const directAbsenceSourceBindingActiveDomainCycleAudit =
+    createSelectedActiveDomainDirectAbsenceSourceBindingActiveDomainCycleAudit({
+      selectedRows: auditRows,
+      sourceBindingDependencyAudit:
+        directAbsenceSourceBindingDependencyAudit,
+      directAbsenceLatticeLawAudit,
+      directAbsenceSupportSourceAudit,
+      directAbsenceRowLocalEvidenceAudit,
+      directAbsenceNonlocalSourceBoundDependencyAudit,
+      dynamicPresenceMeasureLawTarget,
     });
   const firstSelectedActiveDomainBoundedGapFillSourceBlocker =
     auditRows.find((row) => row.firstSelectedBoundedGapFillSourceRowBlocker)
@@ -27835,10 +27990,1977 @@ function createSelectedActiveDomainBoundedGapFillSourceAudit({
       directAbsenceSupportSourceAudit.offsetTransportUniqueOffsetUnitCount,
     firstDirectAbsenceOffsetTransportLawBlocker:
       directAbsenceSupportSourceAudit.firstOffsetTransportLawBlocker,
+    directAbsenceRowLocalEvidenceAuditStatus:
+      directAbsenceRowLocalEvidenceAudit.status,
+    directAbsenceRowLocalEvidenceAudit,
+    directAbsenceRowLocalEvidenceCandidateRowCount:
+      directAbsenceRowLocalEvidenceAudit.rowLocalEvidenceCandidateRowCount,
+    firstDirectAbsenceRowLocalEvidenceBlocker:
+      directAbsenceRowLocalEvidenceAudit.firstRowLocalEvidenceBlocker,
+    directAbsenceNonlocalSourceBoundDependencyAuditStatus:
+      directAbsenceNonlocalSourceBoundDependencyAudit.status,
+    directAbsenceNonlocalSourceBoundDependencyAudit,
+    directAbsenceNonlocalSourceBoundCandidateRowCount:
+      directAbsenceNonlocalSourceBoundDependencyAudit
+        .nonlocalSourceBoundCandidateRowCount,
+    firstDirectAbsenceNonlocalSourceBoundDependencyBlocker:
+      directAbsenceNonlocalSourceBoundDependencyAudit
+        .firstNonlocalSourceBoundDependencyBlocker,
+    directAbsenceSourceBindingDependencyAuditStatus:
+      directAbsenceSourceBindingDependencyAudit.status,
+    directAbsenceSourceBindingDependencyAudit,
+    directAbsenceSourceBindingDependencyCandidateRowCount:
+      directAbsenceSourceBindingDependencyAudit
+        .sourceBindingDependencyCandidateRowCount,
+    directAbsenceSourceBindingSelectedSourceUniqueRowCount:
+      directAbsenceSourceBindingDependencyAudit
+        .selectedSourceUniqueRowCount,
+    firstDirectAbsenceSourceBindingDependencyBlocker:
+      directAbsenceSourceBindingDependencyAudit
+        .firstSourceBindingDependencyBlocker,
+    directAbsenceSourceBindingProofBaseAuditStatus:
+      directAbsenceSourceBindingDependencyAudit.sourceBindingProofBaseAuditStatus,
+    directAbsenceSourceBindingProofBaseAudit:
+      directAbsenceSourceBindingDependencyAudit.sourceBindingProofBaseAudit,
+    directAbsenceSourceBindingProofBaseCandidateRowCount:
+      directAbsenceSourceBindingDependencyAudit
+        .sourceBindingProofBaseCandidateRowCount,
+    firstDirectAbsenceSourceBindingProofBaseBlocker:
+      directAbsenceSourceBindingDependencyAudit
+        .firstSourceBindingProofBaseBlocker,
+    directAbsenceSourceBindingTwoSheetDependencyAuditStatus:
+      directAbsenceSourceBindingDependencyAudit
+        .sourceBindingTwoSheetDependencyAuditStatus,
+    directAbsenceSourceBindingTwoSheetDependencyRowCount:
+      directAbsenceSourceBindingDependencyAudit
+        .sourceBindingTwoSheetDependencyRowCount,
+    directAbsenceSourceBindingTwoSheetActiveDomainRequiredRowCount:
+      directAbsenceSourceBindingDependencyAudit
+        .sourceBindingTwoSheetActiveDomainRequiredRowCount,
+    directAbsenceSourceBindingTwoSheetInnerConversionRequiredRowCount:
+      directAbsenceSourceBindingDependencyAudit
+        .sourceBindingTwoSheetInnerConversionRequiredRowCount,
+    firstDirectAbsenceSourceBindingTwoSheetDependencyBlocker:
+      directAbsenceSourceBindingDependencyAudit
+        .firstSourceBindingTwoSheetDependencyBlocker,
+    directAbsenceSourceBindingActiveDomainCycleAuditStatus:
+      directAbsenceSourceBindingActiveDomainCycleAudit.status,
+    directAbsenceSourceBindingActiveDomainCycleAudit:
+      directAbsenceSourceBindingActiveDomainCycleAudit,
+    directAbsenceSourceBindingActiveDomainCycleCandidateRowCount:
+      directAbsenceSourceBindingActiveDomainCycleAudit
+        .activeDomainCycleCandidateRowCount,
+    firstDirectAbsenceSourceBindingActiveDomainCycleBlocker:
+      directAbsenceSourceBindingActiveDomainCycleAudit
+        .firstSourceBindingActiveDomainCycleBlocker,
+    directAbsenceSourceBindingCycleBreakRouteAuditStatus:
+      directAbsenceSourceBindingActiveDomainCycleAudit
+        .cycleBreakRouteAuditStatus,
+    directAbsenceSourceBindingCycleBreakRouteAudit:
+      directAbsenceSourceBindingActiveDomainCycleAudit.cycleBreakRouteAudit,
+    directAbsenceSourceBindingCycleBreakRouteCandidateCount:
+      directAbsenceSourceBindingActiveDomainCycleAudit
+        .cycleBreakRouteCandidateCount,
+    directAbsenceSourceBindingAcceptedCycleBreakRouteCount:
+      directAbsenceSourceBindingActiveDomainCycleAudit
+        .acceptedCycleBreakRouteCount,
+    firstDirectAbsenceSourceBindingCycleBreakRouteBlocker:
+      directAbsenceSourceBindingActiveDomainCycleAudit
+        .firstCycleBreakRouteBlocker,
+    directAbsenceIndependentFillLawCurrentSourceExclusionAuditStatus:
+      directAbsenceSourceBindingActiveDomainCycleAudit.cycleBreakRouteAudit
+        .independentFillCurrentSourceExclusionAuditStatus,
+    directAbsenceIndependentFillLawCurrentSourceExclusionAudit:
+      directAbsenceSourceBindingActiveDomainCycleAudit.cycleBreakRouteAudit
+        .independentFillCurrentSourceExclusionAudit,
+    directAbsenceCurrentIndependentFillSourceFamilyCount:
+      directAbsenceSourceBindingActiveDomainCycleAudit.cycleBreakRouteAudit
+        .currentIndependentFillSourceFamilyCount,
+    directAbsenceCurrentIndependentFillSourceExhaustedPass:
+      directAbsenceSourceBindingActiveDomainCycleAudit.cycleBreakRouteAudit
+        .currentIndependentFillSourceExhaustedPass,
+    directAbsenceDynamicFillLawTargetStatus:
+      directAbsenceSourceBindingActiveDomainCycleAudit.cycleBreakRouteAudit
+        .directAbsenceDynamicFillLawTargetStatus,
+    directAbsenceDynamicFillLawTarget:
+      directAbsenceSourceBindingActiveDomainCycleAudit.cycleBreakRouteAudit
+        .directAbsenceDynamicFillLawTarget,
+    directAbsenceDynamicFillLawAcceptedRowCount:
+      directAbsenceSourceBindingActiveDomainCycleAudit.cycleBreakRouteAudit
+        .directAbsenceDynamicFillLawAcceptedRowCount,
+    firstDirectAbsenceDynamicFillLawBlocker:
+      directAbsenceSourceBindingActiveDomainCycleAudit.cycleBreakRouteAudit
+        .firstDirectAbsenceDynamicFillLawBlocker,
+    directAbsenceCurrentRouteDispositionTargetStatus:
+      directAbsenceSourceBindingActiveDomainCycleAudit.cycleBreakRouteAudit
+        .directAbsenceCurrentRouteDispositionTargetStatus,
+    directAbsenceCurrentRouteDispositionTarget:
+      directAbsenceSourceBindingActiveDomainCycleAudit.cycleBreakRouteAudit
+        .directAbsenceCurrentRouteDispositionTarget,
+    directAbsenceAcceptedCurrentRouteCount:
+      directAbsenceSourceBindingActiveDomainCycleAudit.cycleBreakRouteAudit
+        .directAbsenceAcceptedCurrentRouteCount,
+    firstDirectAbsenceCurrentRouteDispositionBlocker:
+      directAbsenceSourceBindingActiveDomainCycleAudit.cycleBreakRouteAudit
+        .firstDirectAbsenceCurrentRouteDispositionBlocker,
     rowSamples: auditRows.slice(0, 8),
     rows: auditRows,
     retainedLimitation:
       "The selected bounded touching-boundary gaps cannot be filled by local direct support alone: some selected gaps have only direct absence under the current replay, while the supported gaps are competitor-bearing partial-support rows without retained row-set binding.",
+  };
+}
+
+function createSelectedActiveDomainDirectAbsenceSourceBindingDependencyAudit({
+  selectedRows = [],
+  nonlocalSourceBoundDependencyAudit = null,
+  twoSheetGlobalBindingDependencyAudit = null,
+} = {}) {
+  const selectedRowsByKey = new Map(
+    (selectedRows ?? []).map((row) => [
+      `${row.pairKey}:${row.edgeIndex}`,
+      row,
+    ])
+  );
+  const sourceBoundRows = nonlocalSourceBoundDependencyAudit?.rows ?? [];
+  const selectedDirectAbsenceRows = (selectedRows ?? []).filter(
+    (row) => row.directReplayEventRootAbsentPass === true
+  );
+  const rows = sourceBoundRows.map((row) => {
+    const sourceKey =
+      row.supportSourcePairKey != null && row.supportSourceEdgeIndex != null
+        ? `${row.supportSourcePairKey}:${row.supportSourceEdgeIndex}`
+        : null;
+    const selectedSourceRow =
+      sourceKey == null ? null : selectedRowsByKey.get(sourceKey) ?? null;
+    const sourceSelectedBoundedGapPass = selectedSourceRow != null;
+    const sourceDirectEventRootSupportPass =
+      selectedSourceRow?.anyDirectEventRootSupportPass === true;
+    const sourcePartialSupportCandidatePass =
+      selectedSourceRow?.partialSupportCandidatePass === true;
+    const sourceAcceptedFillPass =
+      row.sourceAcceptedPass === true ||
+      selectedSourceRow?.acceptedSelectedBoundedGapFillSourcePass === true;
+    const sourceRetainedBindingBlockedPass =
+      row.sourceRetainedBindingBlockedPass === true ||
+      selectedSourceRow?.partialSupportRetainedBindingBlockedPass === true;
+    const independentSourceBindingProofPresentPass =
+      selectedSourceRow?.retainedRowSetBindingProofPass === true ||
+      sourceAcceptedFillPass;
+    const sameSelectedFillPacketDirectAbsenceBlockerPass =
+      sourceSelectedBoundedGapPass && selectedDirectAbsenceRows.length > 0;
+    const sourceBindingDependencyCandidatePass =
+      row.nonlocalSourceBoundCandidatePass === true &&
+      sourceSelectedBoundedGapPass &&
+      sourceAcceptedFillPass !== true;
+    const acceptedSourceBindingDependencyPass = false;
+    const firstSourceBindingDependencyRowBlocker =
+      acceptedSourceBindingDependencyPass
+        ? null
+        : row.hasSupportSourcePass !== true
+          ? "support_source_missing"
+          : sourceSelectedBoundedGapPass !== true
+            ? "support_source_outside_selected_bounded_gap_packet"
+            : sourceAcceptedFillPass !== true &&
+                sourceRetainedBindingBlockedPass === true
+              ? "selected_source_row_requires_retained_row_set_binding"
+              : sourceAcceptedFillPass !== true
+                ? "selected_source_row_not_accepted"
+                : row.uniformOffsetTransportPass !== true
+                  ? "source_binding_independent_but_transport_operator_missing"
+                  : "derive_selected_source_binding_dependency_break";
+    return {
+      pairKey: row.pairKey,
+      edgeIndex: row.edgeIndex,
+      side: row.side,
+      eventRootKey: row.eventRootKey,
+      supportSourceKind: row.supportSourceKind,
+      supportSourcePairKey: row.supportSourcePairKey,
+      supportSourceEdgeIndex: row.supportSourceEdgeIndex,
+      supportSourceKey: sourceKey,
+      supportSourceStartOffsetUnits: row.supportSourceStartOffsetUnits,
+      supportSourceStartOffsetLatticeAligned:
+        row.supportSourceStartOffsetLatticeAligned,
+      samePairSourcePass: row.samePairSourcePass,
+      crossPairOnlySourcePass: row.crossPairOnlySourcePass,
+      rowLocalEvidenceCandidatePass: row.rowLocalEvidenceCandidatePass,
+      uniformOffsetTransportPass: row.uniformOffsetTransportPass,
+      sourceSelectedBoundedGapPass,
+      sourceDirectEventRootSupportPass,
+      sourcePartialSupportCandidatePass,
+      sourceRetainedBindingBlockedPass,
+      sourceAcceptedFillPass,
+      sourceFirstSelectedBoundedGapFillSourceRowBlocker:
+        selectedSourceRow?.firstSelectedBoundedGapFillSourceRowBlocker ?? null,
+      independentSourceBindingProofPresentPass,
+      sameSelectedFillPacketDirectAbsenceBlockerPass,
+      sourceBindingDependencyCandidatePass,
+      acceptedSourceBindingDependencyPass,
+      firstSourceBindingDependencyRowBlocker,
+    };
+  });
+  const candidateRows = rows.filter(
+    (row) => row.sourceBindingDependencyCandidatePass
+  );
+  const acceptedRows = rows.filter(
+    (row) => row.acceptedSourceBindingDependencyPass
+  );
+  const selectedSourceRows = rows.filter(
+    (row) => row.sourceSelectedBoundedGapPass
+  );
+  const retainedBindingBlockedRows = rows.filter(
+    (row) => row.sourceRetainedBindingBlockedPass
+  );
+  const acceptedSourceRows = rows.filter((row) => row.sourceAcceptedFillPass);
+  const samePacketDirectAbsenceRows = rows.filter(
+    (row) => row.sameSelectedFillPacketDirectAbsenceBlockerPass
+  );
+  const uniqueSourceKeys = unionStrings(
+    rows.map((row) => row.supportSourceKey).filter(Boolean)
+  );
+  const uniqueSelectedSourceKeys = unionStrings(
+    selectedSourceRows.map((row) => row.supportSourceKey).filter(Boolean)
+  );
+  const uniqueRetainedBindingBlockedSourceKeys = unionStrings(
+    retainedBindingBlockedRows
+      .map((row) => row.supportSourceKey)
+      .filter(Boolean)
+  );
+  const uniqueSelectedSourceRows = uniqueSelectedSourceKeys
+    .map((key) => selectedRowsByKey.get(key))
+    .filter(Boolean);
+  const sourceBindingProofBaseAudit =
+    createSelectedActiveDomainDirectAbsenceSourceBindingProofBaseAudit({
+      sourceRows: uniqueSelectedSourceRows,
+      twoSheetGlobalBindingDependencyAudit,
+    });
+  const firstSourceBindingDependencyBlocker =
+    rows.find((row) => row.firstSourceBindingDependencyRowBlocker)
+      ?.firstSourceBindingDependencyRowBlocker ?? null;
+  return {
+    schema:
+      "aaa-tri-binary-selected-active-domain-direct-absence-source-binding-dependency-audit.v1",
+    status: sourceBoundRows.length === 0
+      ? "selected_active_domain_direct_absence_source_binding_dependency_no_domain"
+      : acceptedRows.length === sourceBoundRows.length
+        ? "selected_active_domain_direct_absence_source_binding_dependency_accepted"
+        : candidateRows.length === sourceBoundRows.length &&
+            retainedBindingBlockedRows.length === sourceBoundRows.length &&
+            samePacketDirectAbsenceRows.length === sourceBoundRows.length
+          ? "selected_active_domain_direct_absence_source_binding_dependency_blocked_selected_sources_retained_binding_same_fill_packet"
+        : retainedBindingBlockedRows.length > 0
+          ? "selected_active_domain_direct_absence_source_binding_dependency_blocked_retained_binding"
+        : selectedSourceRows.length > 0
+          ? "selected_active_domain_direct_absence_source_binding_dependency_blocked_selected_sources_unaccepted"
+        : "selected_active_domain_direct_absence_source_binding_dependency_blocked_independent_source_proof_missing",
+    claimLevel:
+      "fail-closed audit for whether the remaining selected direct-absence nonlocal route has independent accepted source binding; not retained continuity acceptance",
+    retainedBranchClaim: false,
+    directAbsenceSourceBoundRowCount: sourceBoundRows.length,
+    selectedBoundedGapRowCount: selectedRows.length,
+    selectedDirectAbsenceRowCount: selectedDirectAbsenceRows.length,
+    supportSourceUniqueRowCount: uniqueSourceKeys.length,
+    selectedSourceRowCount: selectedSourceRows.length,
+    selectedSourceUniqueRowCount: uniqueSelectedSourceKeys.length,
+    retainedBindingBlockedSourceRowCount: retainedBindingBlockedRows.length,
+    retainedBindingBlockedSourceUniqueRowCount:
+      uniqueRetainedBindingBlockedSourceKeys.length,
+    acceptedSourceRowCount: acceptedSourceRows.length,
+    sourceBindingDependencyCandidateRowCount: candidateRows.length,
+    acceptedSourceBindingDependencyRowCount: acceptedRows.length,
+    sameSelectedFillPacketDirectAbsenceDependencyRowCount:
+      samePacketDirectAbsenceRows.length,
+    firstSourceBindingDependencyBlocker,
+    sourceBindingProofBaseAuditStatus: sourceBindingProofBaseAudit.status,
+    sourceBindingProofBaseAudit,
+    sourceBindingProofBaseCandidateRowCount:
+      sourceBindingProofBaseAudit.sourceBindingProofBaseCandidateRowCount,
+    acceptedSourceBindingProofBaseRowCount:
+      sourceBindingProofBaseAudit.acceptedSourceBindingProofBaseRowCount,
+    firstSourceBindingProofBaseBlocker:
+      sourceBindingProofBaseAudit.firstSourceBindingProofBaseBlocker,
+    sourceBindingTwoSheetDependencyAuditStatus:
+      sourceBindingProofBaseAudit.sourceBindingTwoSheetDependencyAuditStatus,
+    sourceBindingTwoSheetDependencyRowCount:
+      sourceBindingProofBaseAudit.sourceBindingTwoSheetDependencyRowCount,
+    sourceBindingTwoSheetActiveDomainRequiredRowCount:
+      sourceBindingProofBaseAudit
+        .sourceBindingTwoSheetActiveDomainRequiredRowCount,
+    sourceBindingTwoSheetInnerConversionRequiredRowCount:
+      sourceBindingProofBaseAudit
+        .sourceBindingTwoSheetInnerConversionRequiredRowCount,
+    firstSourceBindingTwoSheetDependencyBlocker:
+      sourceBindingProofBaseAudit.firstSourceBindingTwoSheetDependencyBlocker,
+    uniqueSourceKeys,
+    uniqueSelectedSourceKeys,
+    uniqueRetainedBindingBlockedSourceKeys,
+    rows,
+    retainedLimitation:
+      "The source-bound direct-absence route does not yet have an independent accepted source-binding base: every candidate source is itself a selected bounded-gap partial-support row, every mapped source remains retained-row-set-binding blocked, and the same selected fill packet still contains directly absent target rows. Closure therefore requires an independent retained source-binding proof, a row-dependent transport operator after source acceptance, new direct evidence, or explicit rejection.",
+  };
+}
+
+function createSelectedActiveDomainDirectAbsenceSourceBindingActiveDomainCycleAudit({
+  selectedRows = [],
+  sourceBindingDependencyAudit = null,
+  directAbsenceLatticeLawAudit = null,
+  directAbsenceSupportSourceAudit = null,
+  directAbsenceRowLocalEvidenceAudit = null,
+  directAbsenceNonlocalSourceBoundDependencyAudit = null,
+  dynamicPresenceMeasureLawTarget = null,
+} = {}) {
+  const sourceTwoSheetRows =
+    sourceBindingDependencyAudit?.sourceBindingProofBaseAudit
+      ?.sourceBindingTwoSheetDependencyAudit?.rows ?? [];
+  const selectedDirectAbsenceRows = (selectedRows ?? []).filter(
+    (row) => row.directReplayEventRootAbsentPass === true
+  );
+  const selectedPartialSupportRows = (selectedRows ?? []).filter(
+    (row) => row.partialSupportCandidatePass === true
+  );
+  const acceptedSelectedRows = (selectedRows ?? []).filter(
+    (row) => row.acceptedSelectedBoundedGapFillSourcePass === true
+  );
+  const directAbsenceRouteDependsOnSourceBindingPass =
+    (sourceBindingDependencyAudit
+      ?.sameSelectedFillPacketDirectAbsenceDependencyRowCount ?? 0) > 0;
+  const selectedFillAcceptedPass =
+    selectedRows.length > 0 && acceptedSelectedRows.length === selectedRows.length;
+  const rows = sourceTwoSheetRows.map((row) => {
+    const activeDomainCycleCandidatePass =
+      row.activeDomainExtensionRequiredPass === true &&
+      selectedDirectAbsenceRows.length > 0 &&
+      directAbsenceRouteDependsOnSourceBindingPass &&
+      selectedFillAcceptedPass !== true;
+    const acceptedSourceBindingActiveDomainCycleBreakPass = false;
+    const firstSourceBindingActiveDomainCycleRowBlocker =
+      acceptedSourceBindingActiveDomainCycleBreakPass
+        ? null
+        : activeDomainCycleCandidatePass
+          ? "source_binding_active_domain_extension_depends_on_selected_direct_absence_fill"
+          : row.activeDomainExtensionRequiredPass !== true
+            ? "source_binding_active_domain_extension_not_required"
+            : selectedDirectAbsenceRows.length === 0
+              ? "selected_fill_packet_has_no_direct_absence_rows"
+              : directAbsenceRouteDependsOnSourceBindingPass !== true
+                ? "selected_direct_absence_route_not_source_binding_dependent"
+                : "source_binding_active_domain_cycle_candidate_incomplete";
+    return {
+      pairKey: row.pairKey,
+      edgeIndex: row.edgeIndex,
+      sourceKey: row.sourceKey,
+      activeDomainExtensionRequiredPass:
+        row.activeDomainExtensionRequiredPass === true,
+      innerBothActiveConversionRequiredPass:
+        row.innerBothActiveConversionRequiredPass === true,
+      selectedBoundedGapRowCount: selectedRows.length,
+      selectedDirectAbsenceRowCount: selectedDirectAbsenceRows.length,
+      selectedPartialSupportRowCount: selectedPartialSupportRows.length,
+      acceptedSelectedBoundedGapFillSourceRowCount:
+        acceptedSelectedRows.length,
+      directAbsenceRouteDependsOnSourceBindingPass,
+      selectedFillAcceptedPass,
+      selectedActiveDomainBoundedGapCount:
+        row.selectedActiveDomainBoundedGapCount ?? null,
+      selectedActiveDomainOneSidedEndpointGapCount:
+        row.selectedActiveDomainOneSidedEndpointGapCount ?? null,
+      selectedActiveDomainPointOnlyContactCount:
+        row.selectedActiveDomainPointOnlyContactCount ?? null,
+      activeDomainCycleCandidatePass,
+      acceptedSourceBindingActiveDomainCycleBreakPass,
+      firstSourceBindingActiveDomainCycleRowBlocker,
+    };
+  });
+  const cycleRows = rows.filter(
+    (row) => row.activeDomainCycleCandidatePass
+  );
+  const acceptedRows = rows.filter(
+    (row) => row.acceptedSourceBindingActiveDomainCycleBreakPass
+  );
+  const firstSourceBindingActiveDomainCycleBlocker =
+    rows.find((row) => row.firstSourceBindingActiveDomainCycleRowBlocker)
+      ?.firstSourceBindingActiveDomainCycleRowBlocker ?? null;
+  const cycleBreakRouteAudit =
+    createSelectedActiveDomainDirectAbsenceSourceBindingCycleBreakRouteAudit({
+      selectedRows,
+      sourceBindingDependencyAudit,
+      directAbsenceLatticeLawAudit,
+      directAbsenceSupportSourceAudit,
+      directAbsenceRowLocalEvidenceAudit,
+      directAbsenceNonlocalSourceBoundDependencyAudit,
+      dynamicPresenceMeasureLawTarget,
+      cycleRows,
+    });
+  return {
+    schema:
+      "aaa-tri-binary-selected-active-domain-direct-absence-source-binding-active-domain-cycle-audit.v1",
+    status: rows.length === 0
+      ? "selected_active_domain_direct_absence_source_binding_active_domain_cycle_no_domain"
+      : acceptedRows.length === rows.length
+        ? "selected_active_domain_direct_absence_source_binding_active_domain_cycle_accepted"
+        : cycleRows.length === rows.length
+          ? "selected_active_domain_direct_absence_source_binding_active_domain_cycle_blocked_selected_fill_requires_source_binding"
+        : cycleRows.length > 0
+          ? "selected_active_domain_direct_absence_source_binding_active_domain_cycle_partial"
+        : "selected_active_domain_direct_absence_source_binding_active_domain_cycle_not_detected",
+    claimLevel:
+      "fail-closed audit for whether selected direct-absence source binding and selected active-domain extension currently form a dependency cycle; not retained continuity acceptance",
+    retainedBranchClaim: false,
+    sourceBindingActiveDomainCycleRowCount: rows.length,
+    activeDomainCycleCandidateRowCount: cycleRows.length,
+    acceptedSourceBindingActiveDomainCycleBreakRowCount: acceptedRows.length,
+    selectedBoundedGapRowCount: selectedRows.length,
+    selectedDirectAbsenceRowCount: selectedDirectAbsenceRows.length,
+    selectedPartialSupportRowCount: selectedPartialSupportRows.length,
+    acceptedSelectedBoundedGapFillSourceRowCount:
+      acceptedSelectedRows.length,
+    directAbsenceRouteDependsOnSourceBindingPass,
+    firstSourceBindingActiveDomainCycleBlocker,
+    cycleBreakRouteAuditStatus: cycleBreakRouteAudit.status,
+    cycleBreakRouteAudit,
+    cycleBreakRouteCandidateCount: cycleBreakRouteAudit.routeCandidateCount,
+    acceptedCycleBreakRouteCount:
+      cycleBreakRouteAudit.acceptedCycleBreakRouteCount,
+    firstCycleBreakRouteBlocker:
+      cycleBreakRouteAudit.firstCycleBreakRouteBlocker,
+    independentFillCurrentSourceExclusionAuditStatus:
+      cycleBreakRouteAudit.independentFillCurrentSourceExclusionAuditStatus,
+    independentFillCurrentSourceExclusionAudit:
+      cycleBreakRouteAudit.independentFillCurrentSourceExclusionAudit,
+    currentIndependentFillSourceFamilyCount:
+      cycleBreakRouteAudit.currentIndependentFillSourceFamilyCount,
+    currentIndependentFillSourceExhaustedPass:
+      cycleBreakRouteAudit.currentIndependentFillSourceExhaustedPass,
+    directAbsenceDynamicFillLawTargetStatus:
+      cycleBreakRouteAudit.directAbsenceDynamicFillLawTargetStatus,
+    directAbsenceDynamicFillLawTarget:
+      cycleBreakRouteAudit.directAbsenceDynamicFillLawTarget,
+    directAbsenceDynamicFillLawAcceptedRowCount:
+      cycleBreakRouteAudit.directAbsenceDynamicFillLawAcceptedRowCount,
+    firstDirectAbsenceDynamicFillLawBlocker:
+      cycleBreakRouteAudit.firstDirectAbsenceDynamicFillLawBlocker,
+    directAbsenceCurrentRouteDispositionTargetStatus:
+      cycleBreakRouteAudit.directAbsenceCurrentRouteDispositionTargetStatus,
+    directAbsenceCurrentRouteDispositionTarget:
+      cycleBreakRouteAudit.directAbsenceCurrentRouteDispositionTarget,
+    directAbsenceAcceptedCurrentRouteCount:
+      cycleBreakRouteAudit.directAbsenceAcceptedCurrentRouteCount,
+    firstDirectAbsenceCurrentRouteDispositionBlocker:
+      cycleBreakRouteAudit.firstDirectAbsenceCurrentRouteDispositionBlocker,
+    rows,
+    retainedLimitation:
+      "The selected source rows require active-domain extension, while the selected active-domain fill packet contains direct-absence rows whose current nonlocal route requires those same source rows to become retained bindings. This is a dependency cycle, not a retained no-go theorem: it can be broken by an independent selected active-domain fill law, independent retained source binding, new direct evidence, or explicit rejection of the route.",
+  };
+}
+
+function createSelectedActiveDomainDirectAbsenceSourceBindingCycleBreakRouteAudit({
+  selectedRows = [],
+  sourceBindingDependencyAudit = null,
+  directAbsenceLatticeLawAudit = null,
+  directAbsenceSupportSourceAudit = null,
+  directAbsenceRowLocalEvidenceAudit = null,
+  directAbsenceNonlocalSourceBoundDependencyAudit = null,
+  dynamicPresenceMeasureLawTarget = null,
+  cycleRows = [],
+} = {}) {
+  const selectedDirectAbsenceRows = (selectedRows ?? []).filter(
+    (row) => row.directReplayEventRootAbsentPass === true
+  );
+  const selectedPartialSupportRows = (selectedRows ?? []).filter(
+    (row) => row.partialSupportCandidatePass === true
+  );
+  const acceptedSelectedRows = (selectedRows ?? []).filter(
+    (row) => row.acceptedSelectedBoundedGapFillSourcePass === true
+  );
+  const selectedFillAcceptedPass =
+    selectedRows.length > 0 && acceptedSelectedRows.length === selectedRows.length;
+  const sourceBindingProofBaseAudit =
+    sourceBindingDependencyAudit?.sourceBindingProofBaseAudit ?? null;
+  const sourceBindingTwoSheetDependencyAudit =
+    sourceBindingProofBaseAudit?.sourceBindingTwoSheetDependencyAudit ?? null;
+  const sourceBindingAcceptedPass =
+    (sourceBindingProofBaseAudit?.sourceBindingProofBaseRowCount ?? 0) > 0 &&
+    sourceBindingProofBaseAudit.acceptedSourceBindingProofBaseRowCount ===
+      sourceBindingProofBaseAudit.sourceBindingProofBaseRowCount;
+  const directEvidenceAcceptedPass =
+    selectedDirectAbsenceRows.length > 0 &&
+    directAbsenceRowLocalEvidenceAudit?.acceptedRowLocalEvidenceLawRowCount ===
+      selectedDirectAbsenceRows.length;
+  const explicitRejectionDeclaredPass = false;
+  const independentFillCurrentSourceExclusionAudit =
+    createSelectedActiveDomainDirectAbsenceIndependentFillLawCurrentSourceExclusionAudit({
+      selectedDirectAbsenceRows,
+      directAbsenceLatticeLawAudit,
+      directAbsenceSupportSourceAudit,
+      directAbsenceRowLocalEvidenceAudit,
+      directAbsenceNonlocalSourceBoundDependencyAudit,
+    });
+  const directAbsenceDynamicFillLawTarget =
+    createSelectedActiveDomainDirectAbsenceDynamicFillLawTarget({
+      selectedDirectAbsenceRows,
+      dynamicPresenceMeasureLawTarget,
+      independentFillCurrentSourceExclusionAudit,
+    });
+  const directAbsenceDynamicFillLawAcceptedPass =
+    selectedDirectAbsenceRows.length > 0 &&
+    directAbsenceDynamicFillLawTarget.acceptedDynamicSelectedFillLawRowCount ===
+      selectedDirectAbsenceRows.length;
+
+  const routeRows = [
+    {
+      routeId: "independent_selected_active_domain_fill_law",
+      routeKind: "derive_independent_fill_law",
+      routeCandidatePass: selectedRows.length > 0,
+      selectedBoundedGapRowCount: selectedRows.length,
+      selectedDirectAbsenceRowCount: selectedDirectAbsenceRows.length,
+      selectedPartialSupportRowCount: selectedPartialSupportRows.length,
+      acceptedSelectedBoundedGapFillSourceRowCount: acceptedSelectedRows.length,
+      nonlocalSourceBoundStatus:
+        directAbsenceNonlocalSourceBoundDependencyAudit?.status ?? null,
+      nonlocalSourceBoundCandidateRowCount:
+        directAbsenceNonlocalSourceBoundDependencyAudit
+          ?.nonlocalSourceBoundCandidateRowCount ?? 0,
+      acceptedNonlocalSourceBoundRowCount:
+        directAbsenceNonlocalSourceBoundDependencyAudit
+          ?.acceptedNonlocalSourceBoundRowCount ?? 0,
+      uniqueSupportSourceOffsetUnitCount:
+        directAbsenceNonlocalSourceBoundDependencyAudit
+          ?.uniqueSupportSourceOffsetUnitCount ?? null,
+      dynamicFillLawTargetStatus: directAbsenceDynamicFillLawTarget.status,
+      dynamicFillLawAcceptedRowCount:
+        directAbsenceDynamicFillLawTarget.acceptedDynamicSelectedFillLawRowCount,
+      acceptedCycleBreakRoutePass:
+        selectedFillAcceptedPass || directAbsenceDynamicFillLawAcceptedPass,
+      firstCycleBreakRouteRowBlocker:
+        selectedFillAcceptedPass || directAbsenceDynamicFillLawAcceptedPass
+        ? null
+        : selectedDirectAbsenceRows.length === 0
+          ? "selected_fill_packet_has_no_direct_absence_rows"
+          : directAbsenceDynamicFillLawTarget
+                .firstDynamicSelectedFillLawBlocker != null
+            ? directAbsenceDynamicFillLawTarget
+                .firstDynamicSelectedFillLawBlocker
+          : independentFillCurrentSourceExclusionAudit
+                .currentIndependentFillSourceExhaustedPass
+            ? "current_independent_fill_sources_exhausted_new_dynamic_law_required"
+            : "derive_independent_selected_active_domain_fill_law",
+    },
+    {
+      routeId: "independent_retained_source_binding",
+      routeKind: "derive_source_binding_law",
+      routeCandidatePass:
+        (sourceBindingProofBaseAudit?.sourceBindingProofBaseCandidateRowCount ??
+          0) > 0,
+      sourceBindingProofBaseStatus: sourceBindingProofBaseAudit?.status ?? null,
+      sourceBindingProofBaseRowCount:
+        sourceBindingProofBaseAudit?.sourceBindingProofBaseRowCount ?? 0,
+      sourceBindingProofBaseCandidateRowCount:
+        sourceBindingProofBaseAudit?.sourceBindingProofBaseCandidateRowCount ?? 0,
+      acceptedSourceBindingProofBaseRowCount:
+        sourceBindingProofBaseAudit?.acceptedSourceBindingProofBaseRowCount ?? 0,
+      sourceBindingTwoSheetDependencyStatus:
+        sourceBindingTwoSheetDependencyAudit?.status ?? null,
+      sourceBindingTwoSheetDependencyRowCount:
+        sourceBindingTwoSheetDependencyAudit?.sourceBindingTwoSheetDependencyRowCount ??
+        0,
+      sourceBindingTwoSheetActiveDomainRequiredRowCount:
+        sourceBindingTwoSheetDependencyAudit?.activeDomainExtensionRequiredRowCount ??
+        0,
+      sourceBindingTwoSheetInnerConversionRequiredRowCount:
+        sourceBindingTwoSheetDependencyAudit
+          ?.innerBothActiveConversionRequiredRowCount ?? 0,
+      acceptedCycleBreakRoutePass: sourceBindingAcceptedPass,
+      firstCycleBreakRouteRowBlocker: sourceBindingAcceptedPass
+        ? null
+        : sourceBindingTwoSheetDependencyAudit
+            ?.firstSourceBindingTwoSheetDependencyBlocker ??
+          sourceBindingProofBaseAudit?.firstSourceBindingProofBaseBlocker ??
+          "derive_independent_retained_source_binding",
+    },
+    {
+      routeId: "new_direct_event_root_evidence",
+      routeKind: "populate_direct_evidence",
+      routeCandidatePass: selectedDirectAbsenceRows.length > 0,
+      directAbsenceRowCount: selectedDirectAbsenceRows.length,
+      rowLocalEvidenceAuditStatus:
+        directAbsenceRowLocalEvidenceAudit?.status ?? null,
+      rowLocalEvidenceCandidateRowCount:
+        directAbsenceRowLocalEvidenceAudit?.rowLocalEvidenceCandidateRowCount ??
+        0,
+      acceptedRowLocalEvidenceLawRowCount:
+        directAbsenceRowLocalEvidenceAudit?.acceptedRowLocalEvidenceLawRowCount ??
+        0,
+      acceptedCycleBreakRoutePass: directEvidenceAcceptedPass,
+      firstCycleBreakRouteRowBlocker: directEvidenceAcceptedPass
+        ? null
+        : directAbsenceRowLocalEvidenceAudit?.firstRowLocalEvidenceBlocker ??
+          "populate_new_direct_event_root_evidence",
+    },
+    {
+      routeId: "explicit_rejection_or_alternate_route",
+      routeKind: "declare_rejection_or_alternate_route",
+      routeCandidatePass: cycleRows.length > 0,
+      activeDomainCycleCandidateRowCount: cycleRows.length,
+      explicitRejectionDeclaredPass,
+      acceptedCycleBreakRoutePass: explicitRejectionDeclaredPass,
+      firstCycleBreakRouteRowBlocker: explicitRejectionDeclaredPass
+        ? null
+        : "explicit_rejection_or_alternate_route_not_declared",
+    },
+  ];
+
+  const candidateRows = routeRows.filter((row) => row.routeCandidatePass);
+  const acceptedRows = routeRows.filter(
+    (row) => row.acceptedCycleBreakRoutePass
+  );
+  const firstCycleBreakRouteBlocker =
+    routeRows.find((row) => row.firstCycleBreakRouteRowBlocker)
+      ?.firstCycleBreakRouteRowBlocker ?? null;
+  const currentRouteDispositionTarget =
+    createSelectedActiveDomainDirectAbsenceCurrentRouteDispositionTarget({
+      selectedDirectAbsenceRows,
+      routeRows,
+      cycleRows,
+      independentFillCurrentSourceExclusionAudit,
+      directAbsenceDynamicFillLawTarget,
+      sourceBindingProofBaseAudit,
+      sourceBindingTwoSheetDependencyAudit,
+      directAbsenceRowLocalEvidenceAudit,
+      selectedFillAcceptedPass,
+      sourceBindingAcceptedPass,
+      directEvidenceAcceptedPass,
+      directAbsenceDynamicFillLawAcceptedPass,
+      explicitRejectionDeclaredPass,
+    });
+  return {
+    schema:
+      "aaa-tri-binary-selected-active-domain-direct-absence-source-binding-cycle-break-route-audit.v1",
+    status: cycleRows.length === 0
+      ? "selected_active_domain_direct_absence_source_binding_cycle_break_route_no_cycle_domain"
+      : acceptedRows.length > 0
+        ? "selected_active_domain_direct_absence_source_binding_cycle_break_route_accepted"
+        : "selected_active_domain_direct_absence_source_binding_cycle_break_routes_classified_no_accepted_break",
+    claimLevel:
+      "fail-closed route audit for breaking the selected direct-absence source-binding active-domain dependency cycle; not retained continuity acceptance",
+    retainedBranchClaim: false,
+    activeDomainCycleCandidateRowCount: cycleRows.length,
+    independentFillCurrentSourceExclusionAuditStatus:
+      independentFillCurrentSourceExclusionAudit.status,
+    independentFillCurrentSourceExclusionAudit,
+    currentIndependentFillSourceFamilyCount:
+      independentFillCurrentSourceExclusionAudit.currentSourceFamilyCount,
+    acceptedCurrentIndependentFillSourceFamilyCount:
+      independentFillCurrentSourceExclusionAudit.acceptedCurrentSourceFamilyCount,
+    currentIndependentFillSourceExhaustedPass:
+      independentFillCurrentSourceExclusionAudit
+        .currentIndependentFillSourceExhaustedPass,
+    directAbsenceDynamicFillLawTargetStatus:
+      directAbsenceDynamicFillLawTarget.status,
+    directAbsenceDynamicFillLawTarget,
+    directAbsenceDynamicFillLawAcceptedRowCount:
+      directAbsenceDynamicFillLawTarget.acceptedDynamicSelectedFillLawRowCount,
+    firstDirectAbsenceDynamicFillLawBlocker:
+      directAbsenceDynamicFillLawTarget.firstDynamicSelectedFillLawBlocker,
+    routeCandidateCount: candidateRows.length,
+    routeCount: routeRows.length,
+    acceptedCycleBreakRouteCount: acceptedRows.length,
+    independentSelectedFillLawRouteAcceptedPass: selectedFillAcceptedPass,
+    independentRetainedSourceBindingRouteAcceptedPass:
+      sourceBindingAcceptedPass,
+    newDirectEvidenceRouteAcceptedPass: directEvidenceAcceptedPass,
+    explicitRejectionRouteAcceptedPass: explicitRejectionDeclaredPass,
+    firstCycleBreakRouteBlocker,
+    directAbsenceCurrentRouteDispositionTargetStatus:
+      currentRouteDispositionTarget.status,
+    directAbsenceCurrentRouteDispositionTarget:
+      currentRouteDispositionTarget,
+    directAbsenceAcceptedCurrentRouteCount:
+      currentRouteDispositionTarget.acceptedCurrentRouteCount,
+    firstDirectAbsenceCurrentRouteDispositionBlocker:
+      currentRouteDispositionTarget.firstCurrentRouteDispositionBlocker,
+    rows: routeRows,
+    retainedLimitation:
+      "The cycle has four explicit exits, but none is currently populated: the selected fill packet has no independent direct-absence fill law, source binding remains two-sheet/global-binding blocked, the direct-absence rows have no row-local evidence, and no explicit rejection or alternate route has been declared.",
+  };
+}
+
+function createSelectedActiveDomainDirectAbsenceCurrentRouteDispositionTarget({
+  selectedDirectAbsenceRows = [],
+  routeRows = [],
+  cycleRows = [],
+  independentFillCurrentSourceExclusionAudit = null,
+  directAbsenceDynamicFillLawTarget = null,
+  sourceBindingProofBaseAudit = null,
+  sourceBindingTwoSheetDependencyAudit = null,
+  directAbsenceRowLocalEvidenceAudit = null,
+  selectedFillAcceptedPass = false,
+  sourceBindingAcceptedPass = false,
+  directEvidenceAcceptedPass = false,
+  directAbsenceDynamicFillLawAcceptedPass = false,
+  explicitRejectionDeclaredPass = false,
+} = {}) {
+  const sourceFamilyRows =
+    independentFillCurrentSourceExclusionAudit?.rows ?? [];
+  const nonzeroRootSheetContinuationTarget =
+    directAbsenceDynamicFillLawTarget
+      ?.nonzeroRootSheetContinuationExhaustionTarget ?? null;
+  const currentIndependentFillSourceExhaustedPass =
+    independentFillCurrentSourceExclusionAudit
+      ?.currentIndependentFillSourceExhaustedPass === true;
+  const dynamicFillLawAcceptedRowCount =
+    directAbsenceDynamicFillLawTarget
+      ?.acceptedDynamicSelectedFillLawRowCount ?? 0;
+  const nonzeroRootSheetContinuationAcceptedRowCount =
+    nonzeroRootSheetContinuationTarget
+      ?.acceptedNonzeroRootSheetContinuationRowCount ?? 0;
+  const sourceFamilyDispositionRows = sourceFamilyRows.map((row) => ({
+    routeId: row.sourceFamilyId,
+    routeGroup: "current_independent_fill_source",
+    auditStatus: row.auditStatus ?? null,
+    currentCandidateRowCount: row.currentCandidateRowCount ?? 0,
+    acceptedRowCount: row.acceptedRowCount ?? 0,
+    sourceBindingDependentPass: row.sourceBindingDependentPass === true,
+    acceptedCurrentRoutePass: (row.acceptedRowCount ?? 0) > 0,
+    firstCurrentRouteBlocker:
+      (row.acceptedRowCount ?? 0) > 0
+        ? null
+        : row.firstSourceFamilyBlocker ??
+          "current_independent_fill_source_not_accepted",
+  }));
+  const dispositionRows = [
+    ...sourceFamilyDispositionRows,
+    {
+      routeId: "independent_fill_current_sources",
+      routeGroup: "current_independent_fill_source_summary",
+      auditStatus: independentFillCurrentSourceExclusionAudit?.status ?? null,
+      currentCandidateRowCount:
+        independentFillCurrentSourceExclusionAudit?.currentSourceFamilyCount ??
+        0,
+      acceptedRowCount:
+        independentFillCurrentSourceExclusionAudit
+          ?.acceptedCurrentSourceFamilyCount ?? 0,
+      currentIndependentFillSourceExhaustedPass,
+      acceptedCurrentRoutePass:
+        (independentFillCurrentSourceExclusionAudit
+          ?.acceptedCurrentSourceFamilyCount ?? 0) > 0,
+      firstCurrentRouteBlocker:
+        (independentFillCurrentSourceExclusionAudit
+          ?.acceptedCurrentSourceFamilyCount ?? 0) > 0
+          ? null
+          : independentFillCurrentSourceExclusionAudit
+              ?.firstCurrentSourceExclusionBlocker ??
+            "current_independent_fill_sources_not_accepted",
+    },
+    {
+      routeId: "dynamic_presence_measure_projection",
+      routeGroup: "dynamic_fill_law",
+      auditStatus: directAbsenceDynamicFillLawTarget?.status ?? null,
+      currentCandidateRowCount:
+        directAbsenceDynamicFillLawTarget
+          ?.selectedDirectAbsenceRowCount ?? 0,
+      acceptedRowCount: dynamicFillLawAcceptedRowCount,
+      nonzeroRootSheetContinuationTargetStatus:
+        nonzeroRootSheetContinuationTarget?.status ?? null,
+      acceptedCurrentRoutePass: directAbsenceDynamicFillLawAcceptedPass,
+      firstCurrentRouteBlocker:
+        directAbsenceDynamicFillLawAcceptedPass
+          ? null
+          : directAbsenceDynamicFillLawTarget
+              ?.firstDynamicSelectedFillLawBlocker ??
+            "dynamic_presence_measure_projection_not_accepted",
+    },
+    {
+      routeId: "nonzero_root_sheet_continuation",
+      routeGroup: "dynamic_fill_law",
+      auditStatus: nonzeroRootSheetContinuationTarget?.status ?? null,
+      currentCandidateRowCount:
+        nonzeroRootSheetContinuationTarget
+          ?.nonzeroRootSheetContinuationCandidateRowCount ?? 0,
+      acceptedRowCount: nonzeroRootSheetContinuationAcceptedRowCount,
+      allRowsZeroRootBridgePass:
+        nonzeroRootSheetContinuationTarget?.allRowsZeroRootBridgePass === true,
+      acceptedCurrentRoutePass:
+        nonzeroRootSheetContinuationAcceptedRowCount > 0,
+      firstCurrentRouteBlocker:
+        nonzeroRootSheetContinuationAcceptedRowCount > 0
+          ? null
+          : nonzeroRootSheetContinuationTarget
+              ?.firstNonzeroRootSheetContinuationBlocker ??
+            "nonzero_root_sheet_continuation_not_accepted",
+    },
+    {
+      routeId: "independent_retained_source_binding",
+      routeGroup: "source_binding",
+      auditStatus: sourceBindingProofBaseAudit?.status ?? null,
+      currentCandidateRowCount:
+        sourceBindingProofBaseAudit?.sourceBindingProofBaseCandidateRowCount ??
+        0,
+      acceptedRowCount:
+        sourceBindingProofBaseAudit?.acceptedSourceBindingProofBaseRowCount ?? 0,
+      sourceBindingTwoSheetDependencyStatus:
+        sourceBindingTwoSheetDependencyAudit?.status ?? null,
+      acceptedCurrentRoutePass: sourceBindingAcceptedPass,
+      firstCurrentRouteBlocker:
+        sourceBindingAcceptedPass
+          ? null
+          : sourceBindingTwoSheetDependencyAudit
+              ?.firstSourceBindingTwoSheetDependencyBlocker ??
+            sourceBindingProofBaseAudit?.firstSourceBindingProofBaseBlocker ??
+            "independent_retained_source_binding_not_accepted",
+    },
+    {
+      routeId: "new_direct_event_root_evidence",
+      routeGroup: "direct_evidence",
+      auditStatus: directAbsenceRowLocalEvidenceAudit?.status ?? null,
+      currentCandidateRowCount:
+        directAbsenceRowLocalEvidenceAudit?.rowLocalEvidenceCandidateRowCount ??
+        0,
+      acceptedRowCount:
+        directAbsenceRowLocalEvidenceAudit
+          ?.acceptedRowLocalEvidenceLawRowCount ?? 0,
+      acceptedCurrentRoutePass: directEvidenceAcceptedPass,
+      firstCurrentRouteBlocker:
+        directEvidenceAcceptedPass
+          ? null
+          : directAbsenceRowLocalEvidenceAudit?.firstRowLocalEvidenceBlocker ??
+            "new_direct_event_root_evidence_not_accepted",
+    },
+    {
+      routeId: "explicit_rejection_or_alternate_route",
+      routeGroup: "disposition",
+      auditStatus: explicitRejectionDeclaredPass
+        ? "explicit_rejection_or_alternate_route_declared"
+        : "explicit_rejection_or_alternate_route_not_declared",
+      currentCandidateRowCount: cycleRows.length,
+      acceptedRowCount: explicitRejectionDeclaredPass ? 1 : 0,
+      acceptedCurrentRoutePass: explicitRejectionDeclaredPass,
+      firstCurrentRouteBlocker: explicitRejectionDeclaredPass
+        ? null
+        : "explicit_rejection_or_alternate_route_not_declared",
+    },
+  ];
+  const acceptedRows = dispositionRows.filter(
+    (row) => row.acceptedCurrentRoutePass
+  );
+  const blockedRows = dispositionRows.filter(
+    (row) => row.firstCurrentRouteBlocker != null
+  );
+  const cycleBreakAcceptedRows = (routeRows ?? []).filter(
+    (row) => row.acceptedCycleBreakRoutePass === true
+  );
+  const currentRoutesExhaustedPass =
+    selectedDirectAbsenceRows.length > 0 &&
+    acceptedRows.length === 0 &&
+    cycleBreakAcceptedRows.length === 0 &&
+    currentIndependentFillSourceExhaustedPass &&
+    directAbsenceDynamicFillLawAcceptedPass !== true &&
+    dynamicFillLawAcceptedRowCount === 0 &&
+    nonzeroRootSheetContinuationAcceptedRowCount === 0 &&
+    selectedFillAcceptedPass !== true &&
+    sourceBindingAcceptedPass !== true &&
+    directEvidenceAcceptedPass !== true &&
+    explicitRejectionDeclaredPass !== true;
+  const firstCurrentRouteDispositionBlocker =
+    acceptedRows.length > 0
+      ? null
+      : currentRoutesExhaustedPass
+        ? "derive_new_selected_direct_absence_dynamic_transport_or_declare_explicit_rejection"
+        : blockedRows[0]?.firstCurrentRouteBlocker ?? null;
+  return {
+    schema:
+      "aaa-tri-binary-selected-active-domain-direct-absence-current-route-disposition-target.v1",
+    status: selectedDirectAbsenceRows.length === 0
+      ? "selected_active_domain_direct_absence_current_route_disposition_no_direct_absence_domain"
+      : acceptedRows.length > 0
+        ? "selected_active_domain_direct_absence_current_route_disposition_has_accepted_route"
+        : currentRoutesExhaustedPass
+          ? "selected_active_domain_direct_absence_current_routes_exhausted_new_law_or_explicit_rejection_required"
+        : "selected_active_domain_direct_absence_current_route_disposition_incomplete",
+    claimLevel:
+      "fail-closed disposition target over the current finite selected direct-absence route classes; not a no-go theorem for new laws",
+    retainedBranchClaim: false,
+    selectedDirectAbsenceRowCount: selectedDirectAbsenceRows.length,
+    activeDomainCycleCandidateRowCount: cycleRows.length,
+    classifiedCycleBreakRouteCount: routeRows.length,
+    acceptedClassifiedCycleBreakRouteCount: cycleBreakAcceptedRows.length,
+    currentRouteFamilyCount: dispositionRows.length,
+    acceptedCurrentRouteCount: acceptedRows.length,
+    blockedCurrentRouteCount: blockedRows.length,
+    currentIndependentFillSourceExhaustedPass,
+    dynamicFillLawAcceptedRowCount,
+    nonzeroRootSheetContinuationAcceptedRowCount,
+    selectedFillAcceptedPass,
+    sourceBindingAcceptedPass,
+    directEvidenceAcceptedPass,
+    explicitRejectionDeclaredPass,
+    currentRoutesExhaustedPass,
+    firstCurrentRouteDispositionBlocker,
+    rows: dispositionRows,
+    retainedLimitation:
+      "The selected direct-absence packet has no accepted current route: the finite independent fill-source families are exhausted, the dynamic presence-measure projection remains a zero-root absence bridge rather than retained transport, nonzero root-sheet continuation is absent, independent retained source binding remains two-sheet/global-binding blocked, row-local direct evidence is absent, and no explicit rejection or alternate route has been declared. This only exhausts the current finite report routes; closure still requires a new dynamic transport law, a new independent source-binding proof, new direct evidence, or explicit rejection of the selected direct-absence route.",
+  };
+}
+
+function createSelectedActiveDomainDirectAbsenceDynamicFillLawTarget({
+  selectedDirectAbsenceRows = [],
+  dynamicPresenceMeasureLawTarget = null,
+  independentFillCurrentSourceExclusionAudit = null,
+} = {}) {
+  const rowKey = (row) => `${row.pairKey}:${row.edgeIndex}`;
+  const dynamicRowsByKey = new Map(
+    (dynamicPresenceMeasureLawTarget?.rows ?? []).map((row) => [
+      rowKey(row),
+      row,
+    ])
+  );
+  const unitDensityRowsByKey = new Map(
+    (dynamicPresenceMeasureLawTarget?.unitDensityCandidate?.rows ?? []).map(
+      (row) => [rowKey(row), row]
+    )
+  );
+  const transitionBracketRowsByKey = new Map(
+    (
+      dynamicPresenceMeasureLawTarget?.transitionBracketUnitDensitySourceAudit
+        ?.rows ?? []
+    ).map((row) => [rowKey(row), row])
+  );
+  const transitionBracketRootSheetRowsByKey = new Map(
+    (
+      dynamicPresenceMeasureLawTarget
+        ?.transitionBracketRootSheetContinuationAudit?.rows ?? []
+    ).map((row) => [rowKey(row), row])
+  );
+  const currentIndependentFillSourceExhaustedPass =
+    independentFillCurrentSourceExclusionAudit
+      ?.currentIndependentFillSourceExhaustedPass === true;
+  const requiredLawFieldIds = [
+    "non_tautological_selected_fill_source_kernel",
+    "dynamic_transport_operator_or_root_sheet_continuation",
+    "nonnegative_density_or_measure_certificate",
+    "rowwise_measure_integral",
+    "retained_row_set_binding",
+  ];
+  const rows = (selectedDirectAbsenceRows ?? []).map((sourceRow) => {
+    const dynamicRow = dynamicRowsByKey.get(rowKey(sourceRow)) ?? null;
+    const unitDensityRow = unitDensityRowsByKey.get(rowKey(sourceRow)) ?? null;
+    const transitionBracketRow =
+      transitionBracketRowsByKey.get(rowKey(sourceRow)) ?? null;
+    const transitionBracketRootSheetRow =
+      transitionBracketRootSheetRowsByKey.get(rowKey(sourceRow)) ?? null;
+    const dynamicPresenceMeasureLawRowPresentPass = dynamicRow != null;
+    const unitDensityIntegralRowPass =
+      unitDensityRow?.unitDensityIntegralRowPass === true;
+    const unitDensityTautologicalPass =
+      unitDensityRow?.tautologicalGeometryPass === true;
+    const transitionBracketSourcePopulated =
+      transitionBracketRow?.transitionBracketSourcePopulated === true;
+    const transitionBracketAbsencePolarityRejectedPass =
+      transitionBracketRow?.transitionBracketAbsencePolarityRejectedPass === true;
+    const transitionBracketRootSheetContinuationCandidatePopulated =
+      transitionBracketRootSheetRow
+        ?.rootSheetContinuationCandidatePopulated === true;
+    const transitionBracketZeroRootBridgeRejectedPass =
+      transitionBracketRootSheetRow?.zeroRootBridgeRejectedPass === true;
+    const retainedRootSheetContinuationPass =
+      transitionBracketRootSheetRow?.retainedRootSheetContinuationPass === true;
+    const nonTautologicalSelectedFillSourceKernelPass =
+      dynamicRow?.nonTautologicalSourceKernelPass === true;
+    const dynamicTransportOperatorOrRootSheetContinuationPopulated =
+      dynamicRow?.dynamicTransportOperatorOrRootSheetContinuationPopulated ===
+      true;
+    const nonnegativeDensityOrMeasureCertificatePass =
+      dynamicRow?.nonnegativeDensityOrMeasureCertificatePass === true;
+    const rowwiseMeasureIntegralPopulated =
+      dynamicRow?.rowwiseMeasureIntegralPopulated === true;
+    const retainedRowSetBindingPass =
+      dynamicRow?.retainedRowSetBindingPass === true;
+    const lawOperatorFieldCompletePass =
+      nonTautologicalSelectedFillSourceKernelPass &&
+      dynamicTransportOperatorOrRootSheetContinuationPopulated &&
+      nonnegativeDensityOrMeasureCertificatePass &&
+      rowwiseMeasureIntegralPopulated &&
+      retainedRowSetBindingPass;
+    const acceptedDynamicSelectedFillLawRowPass =
+      dynamicRow?.acceptedDynamicPresenceMeasureLawRowPass === true &&
+      lawOperatorFieldCompletePass;
+    const missingLawFieldIds = [
+      nonTautologicalSelectedFillSourceKernelPass
+        ? null
+        : "non_tautological_selected_fill_source_kernel",
+      dynamicTransportOperatorOrRootSheetContinuationPopulated
+        ? null
+        : "dynamic_transport_operator_or_root_sheet_continuation",
+      nonnegativeDensityOrMeasureCertificatePass
+        ? null
+        : "nonnegative_density_or_measure_certificate",
+      rowwiseMeasureIntegralPopulated ? null : "rowwise_measure_integral",
+      retainedRowSetBindingPass ? null : "retained_row_set_binding",
+    ].filter(Boolean);
+    const firstDynamicSelectedFillLawRowBlocker =
+      acceptedDynamicSelectedFillLawRowPass
+        ? null
+        : dynamicPresenceMeasureLawRowPresentPass !== true
+          ? "selected_direct_absence_dynamic_presence_measure_row_missing"
+          : transitionBracketZeroRootBridgeRejectedPass
+            ? "selected_direct_absence_transition_bracket_root_sheet_collapses_to_zero_root_absence_bridge"
+          : transitionBracketAbsencePolarityRejectedPass
+            ? "selected_direct_absence_transition_bracket_sources_absence_not_presence_transport"
+          : unitDensityTautologicalPass
+            ? "selected_direct_absence_unit_density_fill_candidate_tautological_source"
+          : nonTautologicalSelectedFillSourceKernelPass !== true
+            ? "selected_direct_absence_non_tautological_source_kernel_missing"
+          : dynamicTransportOperatorOrRootSheetContinuationPopulated !== true
+            ? "selected_direct_absence_dynamic_transport_operator_or_root_sheet_continuation_missing"
+          : retainedRowSetBindingPass !== true
+            ? "selected_direct_absence_retained_row_set_binding_missing"
+          : "derive_selected_direct_absence_dynamic_fill_law";
+    return {
+      pairKey: sourceRow.pairKey,
+      edgeIndex: sourceRow.edgeIndex,
+      side: sourceRow.side,
+      eventRootKey: sourceRow.eventRootKey,
+      start: sourceRow.start,
+      end: sourceRow.end,
+      width: sourceRow.width,
+      widthUnits: sourceRow.widthUnits,
+      priorDistanceUnits: sourceRow.priorDistanceUnits,
+      nextDistanceUnits: sourceRow.nextDistanceUnits,
+      bracketSpanUnits: sourceRow.bracketSpanUnits,
+      touchingPrior: sourceRow.touchingPrior,
+      touchingNext: sourceRow.touchingNext,
+      currentLedgerPresenceMeasure:
+        dynamicRow?.currentLedgerPresenceMeasure ?? null,
+      requiredPresenceMeasure: dynamicRow?.requiredPresenceMeasure ?? null,
+      presenceMeasureDeficit: dynamicRow?.presenceMeasureDeficit ?? null,
+      lawSuppliedPresenceMeasure:
+        dynamicRow?.lawSuppliedPresenceMeasure ?? null,
+      rowwiseMeasureResidual: dynamicRow?.rowwiseMeasureResidual ?? null,
+      dynamicPresenceMeasureLawRowPresentPass,
+      candidateLawDensitySourceId:
+        dynamicRow?.candidateLawDensitySourceId ?? null,
+      unitDensityIntegralRowPass,
+      unitDensityTautologicalPass,
+      transitionBracketSourceId:
+        transitionBracketRow?.transitionBracketSourceId ?? null,
+      transitionBracketSourcePopulated,
+      transitionBracketAbsencePolarityRejectedPass,
+      transitionBracketRootSheetContinuationCandidateId:
+        transitionBracketRootSheetRow
+          ?.transitionBracketRootSheetContinuationCandidateId ?? null,
+      transitionBracketOpeningTransitionKey:
+        transitionBracketRootSheetRow?.openingTransitionKey ?? null,
+      transitionBracketOpeningPriorRootKey:
+        transitionBracketRootSheetRow?.openingPriorRootKey ?? null,
+      transitionBracketOpeningNextRootKey:
+        transitionBracketRootSheetRow?.openingNextRootKey ?? null,
+      transitionBracketClosingTransitionKey:
+        transitionBracketRootSheetRow?.closingTransitionKey ?? null,
+      transitionBracketClosingPriorRootKey:
+        transitionBracketRootSheetRow?.closingPriorRootKey ?? null,
+      transitionBracketClosingNextRootKey:
+        transitionBracketRootSheetRow?.closingNextRootKey ?? null,
+      transitionBracketRootSheetContinuationCandidatePopulated,
+      transitionBracketZeroRootBridgePass:
+        transitionBracketRootSheetRow?.zeroRootBridgePass === true,
+      transitionBracketEndpointEventRootReturnPass:
+        transitionBracketRootSheetRow?.endpointEventRootReturnPass === true,
+      transitionBracketZeroRootBridgeRejectedPass,
+      retainedRootSheetContinuationPass,
+      nonTautologicalSelectedFillSourceKernelPass,
+      dynamicTransportOperatorOrRootSheetContinuationPopulated,
+      nonnegativeDensityOrMeasureCertificatePass,
+      rowwiseMeasureIntegralPopulated,
+      retainedRowSetBindingPass,
+      lawOperatorFieldCompletePass,
+      acceptedDynamicSelectedFillLawRowPass,
+      missingLawFieldIds,
+      firstDynamicSelectedFillLawRowBlocker,
+    };
+  });
+  const presentRows = rows.filter(
+    (row) => row.dynamicPresenceMeasureLawRowPresentPass
+  );
+  const unitDensityRows = rows.filter((row) => row.unitDensityIntegralRowPass);
+  const unitDensityTautologicalRows = rows.filter(
+    (row) => row.unitDensityTautologicalPass
+  );
+  const transitionBracketRows = rows.filter(
+    (row) => row.transitionBracketSourcePopulated
+  );
+  const transitionBracketAbsenceRows = rows.filter(
+    (row) => row.transitionBracketAbsencePolarityRejectedPass
+  );
+  const transitionBracketRootSheetRows = rows.filter(
+    (row) => row.transitionBracketRootSheetContinuationCandidatePopulated
+  );
+  const zeroRootBridgeRows = rows.filter(
+    (row) => row.transitionBracketZeroRootBridgeRejectedPass
+  );
+  const retainedRootSheetRows = rows.filter(
+    (row) => row.retainedRootSheetContinuationPass
+  );
+  const nonTautologicalSourceRows = rows.filter(
+    (row) => row.nonTautologicalSelectedFillSourceKernelPass
+  );
+  const fieldCompleteRows = rows.filter((row) => row.lawOperatorFieldCompletePass);
+  const acceptedRows = rows.filter(
+    (row) => row.acceptedDynamicSelectedFillLawRowPass
+  );
+  const missingLawFieldIds = [
+    ...new Set(rows.flatMap((row) => row.missingLawFieldIds)),
+  ];
+  const firstDynamicSelectedFillLawBlocker =
+    rows.find((row) => row.firstDynamicSelectedFillLawRowBlocker)
+      ?.firstDynamicSelectedFillLawRowBlocker ?? null;
+  const nonzeroRootSheetContinuationExhaustionTarget =
+    createSelectedActiveDomainDirectAbsenceNonzeroRootSheetContinuationExhaustionTarget({
+      rows,
+    });
+  return {
+    schema:
+      "aaa-tri-binary-selected-active-domain-direct-absence-dynamic-fill-law-target.v1",
+    status: rows.length === 0
+      ? "selected_active_domain_direct_absence_dynamic_fill_law_no_domain"
+      : acceptedRows.length === rows.length
+        ? "selected_active_domain_direct_absence_dynamic_fill_law_accepted"
+        : presentRows.length < rows.length
+          ? "selected_active_domain_direct_absence_dynamic_fill_law_missing_dynamic_presence_rows"
+        : currentIndependentFillSourceExhaustedPass &&
+            zeroRootBridgeRows.length === rows.length
+          ? "selected_active_domain_direct_absence_dynamic_fill_law_transition_bracket_root_sheet_rejected_zero_root_transport_and_retained_binding_missing"
+        : currentIndependentFillSourceExhaustedPass &&
+            transitionBracketAbsenceRows.length === rows.length
+          ? "selected_active_domain_direct_absence_dynamic_fill_law_transition_bracket_source_rejected_absence_polarity_transport_and_retained_binding_missing"
+        : currentIndependentFillSourceExhaustedPass &&
+            unitDensityTautologicalRows.length === rows.length
+          ? "selected_active_domain_direct_absence_dynamic_fill_law_unit_density_candidate_tautological_transport_and_retained_binding_missing"
+        : currentIndependentFillSourceExhaustedPass
+          ? "selected_active_domain_direct_absence_dynamic_fill_law_operator_fields_missing_after_current_sources_exhausted"
+        : "selected_active_domain_direct_absence_dynamic_fill_law_current_source_exclusion_incomplete",
+    claimLevel:
+      "minimum dynamic fill-law target for selected direct-absence active-domain gaps; not retained continuity acceptance",
+    retainedBranchClaim: false,
+    currentSourceExclusionAuditStatus:
+      independentFillCurrentSourceExclusionAudit?.status ?? null,
+    currentIndependentFillSourceExhaustedPass,
+    lawEquation: {
+      selectedFillDensity:
+        "lambda_selected(t) >= 0 on each selected direct-absence gap e=[a,b]",
+      selectedFillMeasureEquation:
+        "mu_selected(e)=int_a^b lambda_selected(t) dt",
+      currentLedgerEquation: "mu_current(e)=0",
+      requiredMeasureEquation: "mu_required(e)=b-a",
+      acceptanceEquation:
+        "mu_selected(e)=mu_required(e) with a non-tautological source kernel, dynamic transport or root-sheet continuation, and retained row-set binding",
+    },
+    requiredLawFieldIds,
+    missingLawFieldIds,
+    selectedDirectAbsenceRowCount: rows.length,
+    dynamicPresenceMeasureLawRowPresentCount: presentRows.length,
+    unitDensityIntegralRowCount: unitDensityRows.length,
+    unitDensityTautologicalRowCount: unitDensityTautologicalRows.length,
+    transitionBracketSourceRowCount: transitionBracketRows.length,
+    transitionBracketAbsencePolarityRejectedRowCount:
+      transitionBracketAbsenceRows.length,
+    transitionBracketRootSheetContinuationCandidateRowCount:
+      transitionBracketRootSheetRows.length,
+    transitionBracketZeroRootBridgeRowCount: zeroRootBridgeRows.length,
+    retainedRootSheetContinuationRowCount: retainedRootSheetRows.length,
+    nonTautologicalSelectedFillSourceKernelRowCount:
+      nonTautologicalSourceRows.length,
+    lawOperatorFieldCompleteRowCount: fieldCompleteRows.length,
+    acceptedDynamicSelectedFillLawRowCount: acceptedRows.length,
+    firstDynamicSelectedFillLawBlocker,
+    nonzeroRootSheetContinuationExhaustionTargetStatus:
+      nonzeroRootSheetContinuationExhaustionTarget.status,
+    nonzeroRootSheetContinuationExhaustionTarget,
+    nonzeroRootSheetContinuationCandidateRowCount:
+      nonzeroRootSheetContinuationExhaustionTarget
+        .nonzeroRootSheetContinuationCandidateRowCount,
+    acceptedNonzeroRootSheetContinuationRowCount:
+      nonzeroRootSheetContinuationExhaustionTarget
+        .acceptedNonzeroRootSheetContinuationRowCount,
+    firstNonzeroRootSheetContinuationBlocker:
+      nonzeroRootSheetContinuationExhaustionTarget
+        .firstNonzeroRootSheetContinuationBlocker,
+    rows,
+    retainedLimitation:
+      "The selected direct-absence rows inherit the full absence-bridge dynamic-law evidence, but the current projected operator still fails closed: unit density is tautological, the transition bracket is absence-polarity rather than retained presence transport, the root-sheet continuation collapses through the zero root across the bridge, and retained row-set binding is missing.",
+  };
+}
+
+function createSelectedActiveDomainDirectAbsenceNonzeroRootSheetContinuationExhaustionTarget({
+  rows = [],
+} = {}) {
+  const auditRows = (rows ?? []).map((row) => {
+    const openingNextRootKey = row.transitionBracketOpeningNextRootKey ?? null;
+    const closingPriorRootKey = row.transitionBracketClosingPriorRootKey ?? null;
+    const openingNextNonzeroRootPass =
+      Number.isFinite(openingNextRootKey) && openingNextRootKey !== 0;
+    const closingPriorNonzeroRootPass =
+      Number.isFinite(closingPriorRootKey) && closingPriorRootKey !== 0;
+    const sameNonzeroInteriorRootKeyPass =
+      openingNextNonzeroRootPass &&
+      closingPriorNonzeroRootPass &&
+      openingNextRootKey === closingPriorRootKey;
+    const nonzeroRootSheetContinuationCandidatePass =
+      row.transitionBracketRootSheetContinuationCandidatePopulated === true &&
+      row.transitionBracketEndpointEventRootReturnPass === true &&
+      sameNonzeroInteriorRootKeyPass;
+    const acceptedNonzeroRootSheetContinuationRowPass =
+      nonzeroRootSheetContinuationCandidatePass &&
+      row.retainedRootSheetContinuationPass === true &&
+      row.retainedRowSetBindingPass === true;
+    const firstNonzeroRootSheetContinuationRowBlocker =
+      acceptedNonzeroRootSheetContinuationRowPass
+        ? null
+        : row.transitionBracketZeroRootBridgeRejectedPass === true
+          ? "selected_direct_absence_nonzero_root_sheet_continuation_absent_zero_root_bridge"
+          : nonzeroRootSheetContinuationCandidatePass
+            ? "selected_direct_absence_nonzero_root_sheet_continuation_retained_binding_missing"
+          : row.transitionBracketRootSheetContinuationCandidatePopulated === true
+            ? "selected_direct_absence_transition_bracket_has_no_nonzero_interior_root_key"
+            : "populate_selected_direct_absence_transition_bracket_root_sheet_candidate";
+    return {
+      pairKey: row.pairKey,
+      edgeIndex: row.edgeIndex,
+      side: row.side,
+      eventRootKey: row.eventRootKey,
+      start: row.start,
+      end: row.end,
+      width: row.width,
+      transitionBracketRootSheetContinuationCandidateId:
+        row.transitionBracketRootSheetContinuationCandidateId,
+      transitionBracketOpeningTransitionKey:
+        row.transitionBracketOpeningTransitionKey,
+      transitionBracketOpeningPriorRootKey:
+        row.transitionBracketOpeningPriorRootKey,
+      transitionBracketOpeningNextRootKey: openingNextRootKey,
+      transitionBracketClosingTransitionKey:
+        row.transitionBracketClosingTransitionKey,
+      transitionBracketClosingPriorRootKey: closingPriorRootKey,
+      transitionBracketClosingNextRootKey:
+        row.transitionBracketClosingNextRootKey,
+      transitionBracketRootSheetContinuationCandidatePopulated:
+        row.transitionBracketRootSheetContinuationCandidatePopulated === true,
+      transitionBracketEndpointEventRootReturnPass:
+        row.transitionBracketEndpointEventRootReturnPass === true,
+      transitionBracketZeroRootBridgePass:
+        row.transitionBracketZeroRootBridgePass === true,
+      transitionBracketZeroRootBridgeRejectedPass:
+        row.transitionBracketZeroRootBridgeRejectedPass === true,
+      openingNextNonzeroRootPass,
+      closingPriorNonzeroRootPass,
+      sameNonzeroInteriorRootKeyPass,
+      nonzeroRootSheetContinuationCandidatePass,
+      retainedRootSheetContinuationPass:
+        row.retainedRootSheetContinuationPass === true,
+      retainedRowSetBindingPass: row.retainedRowSetBindingPass === true,
+      acceptedNonzeroRootSheetContinuationRowPass,
+      firstNonzeroRootSheetContinuationRowBlocker,
+    };
+  });
+  const candidateRows = auditRows.filter(
+    (row) => row.transitionBracketRootSheetContinuationCandidatePopulated
+  );
+  const endpointReturnRows = auditRows.filter(
+    (row) => row.transitionBracketEndpointEventRootReturnPass
+  );
+  const zeroRootBridgeRows = auditRows.filter(
+    (row) => row.transitionBracketZeroRootBridgePass
+  );
+  const zeroRootRejectedRows = auditRows.filter(
+    (row) => row.transitionBracketZeroRootBridgeRejectedPass
+  );
+  const nonzeroCandidateRows = auditRows.filter(
+    (row) => row.nonzeroRootSheetContinuationCandidatePass
+  );
+  const sameNonzeroRows = auditRows.filter(
+    (row) => row.sameNonzeroInteriorRootKeyPass
+  );
+  const acceptedRows = auditRows.filter(
+    (row) => row.acceptedNonzeroRootSheetContinuationRowPass
+  );
+  const allRowsZeroRootBridgePass =
+    auditRows.length > 0 && zeroRootRejectedRows.length === auditRows.length;
+  const firstNonzeroRootSheetContinuationBlocker =
+    auditRows.find((row) => row.firstNonzeroRootSheetContinuationRowBlocker)
+      ?.firstNonzeroRootSheetContinuationRowBlocker ?? null;
+  return {
+    schema:
+      "aaa-tri-binary-selected-active-domain-direct-absence-nonzero-root-sheet-continuation-exhaustion-target.v1",
+    status: auditRows.length === 0
+      ? "selected_active_domain_direct_absence_nonzero_root_sheet_continuation_no_domain"
+      : acceptedRows.length === auditRows.length
+        ? "selected_active_domain_direct_absence_nonzero_root_sheet_continuation_accepted"
+        : allRowsZeroRootBridgePass
+          ? "selected_active_domain_direct_absence_nonzero_root_sheet_continuation_exhausted_zero_root_bridge"
+        : nonzeroCandidateRows.length > 0
+          ? "selected_active_domain_direct_absence_nonzero_root_sheet_continuation_candidate_retained_binding_missing"
+        : candidateRows.length === auditRows.length
+          ? "selected_active_domain_direct_absence_nonzero_root_sheet_continuation_absent_no_nonzero_interior_root_key"
+        : "selected_active_domain_direct_absence_nonzero_root_sheet_continuation_incomplete",
+    claimLevel:
+      "selected-row exhaustion target for nonzero-root retained root-sheet continuation; not a proof that no other dynamic law exists",
+    retainedBranchClaim: false,
+    rowCount: auditRows.length,
+    rootSheetContinuationCandidateRowCount: candidateRows.length,
+    endpointEventRootReturnRowCount: endpointReturnRows.length,
+    zeroRootBridgeRowCount: zeroRootBridgeRows.length,
+    zeroRootBridgeRejectedRowCount: zeroRootRejectedRows.length,
+    sameNonzeroInteriorRootKeyRowCount: sameNonzeroRows.length,
+    nonzeroRootSheetContinuationCandidateRowCount:
+      nonzeroCandidateRows.length,
+    acceptedNonzeroRootSheetContinuationRowCount: acceptedRows.length,
+    allRowsZeroRootBridgePass,
+    firstNonzeroRootSheetContinuationBlocker,
+    rows: auditRows,
+    retainedLimitation:
+      "The selected direct-absence transition-bracket rows return to the endpoint event root, but each bridge interior is root key 0 rather than a nonzero retained root key. Current report data therefore exhausts the nonzero-root retained root-sheet continuation route for the selected rows; closure still requires a different dynamic transport operator, a new non-tautological fill source, retained row-set binding, new direct evidence, independent source binding, or explicit rejection.",
+  };
+}
+
+function createSelectedActiveDomainDirectAbsenceIndependentFillLawCurrentSourceExclusionAudit({
+  selectedDirectAbsenceRows = [],
+  directAbsenceLatticeLawAudit = null,
+  directAbsenceSupportSourceAudit = null,
+  directAbsenceRowLocalEvidenceAudit = null,
+  directAbsenceNonlocalSourceBoundDependencyAudit = null,
+} = {}) {
+  const directAbsenceRowCount = selectedDirectAbsenceRows.length;
+  const offsetTransportLawAudit =
+    directAbsenceSupportSourceAudit?.offsetTransportLawAudit ?? null;
+  const sourceRows = [
+    {
+      sourceFamilyId: "row_local_direct_evidence",
+      auditStatus: directAbsenceRowLocalEvidenceAudit?.status ?? null,
+      currentCandidateRowCount:
+        directAbsenceRowLocalEvidenceAudit?.rowLocalEvidenceCandidateRowCount ??
+        0,
+      acceptedRowCount:
+        directAbsenceRowLocalEvidenceAudit?.acceptedRowLocalEvidenceLawRowCount ??
+        0,
+      sourceBindingDependentPass: false,
+      firstSourceFamilyBlocker:
+        directAbsenceRowLocalEvidenceAudit?.firstRowLocalEvidenceBlocker ??
+        "row_local_direct_evidence_not_populated",
+    },
+    {
+      sourceFamilyId: "local_lattice_touching_geometry",
+      auditStatus: directAbsenceLatticeLawAudit?.status ?? null,
+      currentCandidateRowCount:
+        directAbsenceLatticeLawAudit?.directAbsenceRowCount ?? 0,
+      acceptedRowCount:
+        directAbsenceLatticeLawAudit?.acceptedDirectAbsenceLatticeLawRowCount ??
+        0,
+      sourceBindingDependentPass: false,
+      firstSourceFamilyBlocker:
+        directAbsenceLatticeLawAudit?.firstDirectAbsenceLatticeLawBlocker ??
+        "local_lattice_touching_geometry_not_accepted",
+    },
+    {
+      sourceFamilyId: "same_geometry_support_source",
+      auditStatus: directAbsenceSupportSourceAudit?.status ?? null,
+      currentCandidateRowCount:
+        directAbsenceSupportSourceAudit?.samePairSupportSourceRowCount ?? 0,
+      acceptedRowCount:
+        directAbsenceSupportSourceAudit
+          ?.acceptedDirectAbsenceSupportSourceRowCount ?? 0,
+      sourceBindingDependentPass:
+        (directAbsenceSupportSourceAudit
+          ?.supportSourceRetainedBindingBlockedRowCount ?? 0) > 0,
+      firstSourceFamilyBlocker:
+        directAbsenceSupportSourceAudit?.firstDirectAbsenceSupportSourceBlocker ??
+        "same_geometry_support_source_not_accepted",
+    },
+    {
+      sourceFamilyId: "fixed_lattice_offset_transport",
+      auditStatus: offsetTransportLawAudit?.status ?? null,
+      currentCandidateRowCount:
+        offsetTransportLawAudit?.finiteSupportSourceOffsetRowCount ?? 0,
+      acceptedRowCount:
+        offsetTransportLawAudit?.acceptedOffsetTransportLawRowCount ?? 0,
+      sourceBindingDependentPass:
+        (offsetTransportLawAudit?.supportSourceRetainedBindingBlockedRowCount ??
+          0) > 0,
+      uniqueSupportSourceOffsetUnitCount:
+        offsetTransportLawAudit?.uniqueSupportSourceOffsetUnitCount ?? null,
+      firstSourceFamilyBlocker:
+        offsetTransportLawAudit?.firstOffsetTransportLawBlocker ??
+        "fixed_lattice_offset_transport_not_accepted",
+    },
+    {
+      sourceFamilyId: "source_bound_nonlocal_transport",
+      auditStatus: directAbsenceNonlocalSourceBoundDependencyAudit?.status ?? null,
+      currentCandidateRowCount:
+        directAbsenceNonlocalSourceBoundDependencyAudit
+          ?.nonlocalSourceBoundCandidateRowCount ?? 0,
+      acceptedRowCount:
+        directAbsenceNonlocalSourceBoundDependencyAudit
+          ?.acceptedNonlocalSourceBoundRowCount ?? 0,
+      sourceBindingDependentPass:
+        (directAbsenceNonlocalSourceBoundDependencyAudit
+          ?.sourceRetainedBindingBlockedRowCount ?? 0) > 0 ||
+        (directAbsenceNonlocalSourceBoundDependencyAudit
+          ?.sourceAcceptedRowCount ?? 0) === 0,
+      uniqueSupportSourceOffsetUnitCount:
+        directAbsenceNonlocalSourceBoundDependencyAudit
+          ?.uniqueSupportSourceOffsetUnitCount ?? null,
+      firstSourceFamilyBlocker:
+        directAbsenceNonlocalSourceBoundDependencyAudit
+          ?.firstNonlocalSourceBoundDependencyBlocker ??
+        "source_bound_nonlocal_transport_not_accepted",
+    },
+  ];
+  const acceptedRows = sourceRows.filter((row) => row.acceptedRowCount > 0);
+  const sourceBindingDependentRows = sourceRows.filter(
+    (row) => row.sourceBindingDependentPass
+  );
+  const blockedRows = sourceRows.filter((row) => row.firstSourceFamilyBlocker);
+  const currentIndependentFillSourceExhaustedPass =
+    directAbsenceRowCount > 0 &&
+    acceptedRows.length === 0 &&
+    blockedRows.length === sourceRows.length;
+  const firstCurrentSourceExclusionBlocker =
+    currentIndependentFillSourceExhaustedPass
+      ? "derive_new_independent_selected_direct_absence_fill_law"
+      : sourceRows.find((row) => row.firstSourceFamilyBlocker)
+          ?.firstSourceFamilyBlocker ?? null;
+  return {
+    schema:
+      "aaa-tri-binary-selected-active-domain-direct-absence-independent-fill-law-current-source-exclusion-audit.v1",
+    status: directAbsenceRowCount === 0
+      ? "selected_active_domain_direct_absence_independent_fill_law_current_sources_no_direct_absence_domain"
+      : acceptedRows.length > 0
+        ? "selected_active_domain_direct_absence_independent_fill_law_current_sources_have_accepted_source"
+        : currentIndependentFillSourceExhaustedPass
+          ? "selected_active_domain_direct_absence_independent_fill_law_current_sources_exhausted_new_dynamic_law_required"
+          : "selected_active_domain_direct_absence_independent_fill_law_current_sources_incomplete",
+    claimLevel:
+      "fail-closed exclusion summary for current independent selected direct-absence fill-law sources; not a no-go theorem for new dynamic laws",
+    retainedBranchClaim: false,
+    selectedDirectAbsenceRowCount: directAbsenceRowCount,
+    currentSourceFamilyCount: sourceRows.length,
+    acceptedCurrentSourceFamilyCount: acceptedRows.length,
+    sourceBindingDependentCurrentSourceFamilyCount:
+      sourceBindingDependentRows.length,
+    currentIndependentFillSourceExhaustedPass,
+    firstCurrentSourceExclusionBlocker,
+    rows: sourceRows,
+    retainedLimitation:
+      "The current finite source families do not supply an independent selected direct-absence fill law: row-local evidence is absent, local lattice geometry is mixed, same-geometry support and fixed-offset transport depend on unaccepted retained source rows, and the nonlocal source-bound route is source-binding dependent. This excludes the current sources only; a new dynamic fill law or explicit rejection remains open.",
+  };
+}
+
+function createSelectedActiveDomainDirectAbsenceSourceBindingProofBaseAudit({
+  sourceRows = [],
+  twoSheetGlobalBindingDependencyAudit = null,
+} = {}) {
+  const rows = (sourceRows ?? []).map((row) => {
+    const localIntervalProofCandidatePass =
+      row.partialSupportCandidatePass === true &&
+      row.sampledRootSheetEnclosureCandidatePass === true &&
+      row.sampledDerivativeSignMarginCandidatePass === true;
+    const twoSheetGlobalBindingBlockedPass =
+      row.retainedRowSetBindingProofPass !== true &&
+      row.retainedBindingBothActiveConversionPairPass === true &&
+      row.retainedBindingCompetitorRootPresentPass === true;
+    const globalRetainedRowSetBindingProofPass =
+      row.retainedRowSetBindingProofPass === true;
+    const acceptedSourceBindingProofBasePass = false;
+    const firstSourceBindingProofBaseRowBlocker =
+      acceptedSourceBindingProofBasePass
+        ? null
+        : localIntervalProofCandidatePass !== true
+          ? "source_binding_local_interval_candidate_missing"
+          : twoSheetGlobalBindingBlockedPass
+            ? "source_binding_requires_two_sheet_global_binding"
+            : globalRetainedRowSetBindingProofPass !== true
+              ? "source_binding_requires_global_retained_row_set_identity"
+              : "derive_source_binding_acceptance_law";
+    return {
+      pairKey: row.pairKey,
+      edgeIndex: row.edgeIndex,
+      side: row.side,
+      eventRootKey: row.eventRootKey,
+      directEventRootSupportPass: row.anyDirectEventRootSupportPass === true,
+      partialSupportCandidatePass: row.partialSupportCandidatePass === true,
+      sampledRootSheetEnclosureCandidatePass:
+        row.sampledRootSheetEnclosureCandidatePass === true,
+      sampledDerivativeSignMarginCandidatePass:
+        row.sampledDerivativeSignMarginCandidatePass === true,
+      partialSupportMinAbsJacobian: row.partialSupportMinAbsJacobian ?? null,
+      retainedBindingBothActiveConversionPairPass:
+        row.retainedBindingBothActiveConversionPairPass === true,
+      retainedBindingCompetitorRootPresentPass:
+        row.retainedBindingCompetitorRootPresentPass === true,
+      retainedRowSetBindingProofPass: globalRetainedRowSetBindingProofPass,
+      localIntervalProofCandidatePass,
+      twoSheetGlobalBindingBlockedPass,
+      acceptedSourceBindingProofBasePass,
+      firstSourceBindingProofBaseRowBlocker,
+    };
+  });
+  const localCandidateRows = rows.filter(
+    (row) => row.localIntervalProofCandidatePass
+  );
+  const twoSheetBlockedRows = rows.filter(
+    (row) => row.twoSheetGlobalBindingBlockedPass
+  );
+  const acceptedRows = rows.filter(
+    (row) => row.acceptedSourceBindingProofBasePass
+  );
+  const twoSheetDependencyAudit =
+    createSelectedActiveDomainDirectAbsenceSourceBindingTwoSheetDependencyAudit({
+      sourceRows: rows,
+      twoSheetGlobalBindingDependencyAudit,
+    });
+  const firstSourceBindingProofBaseBlocker =
+    twoSheetDependencyAudit.firstSourceBindingTwoSheetDependencyBlocker ??
+    rows.find((row) => row.firstSourceBindingProofBaseRowBlocker)
+      ?.firstSourceBindingProofBaseRowBlocker ??
+    null;
+  return {
+    schema:
+      "aaa-tri-binary-selected-active-domain-direct-absence-source-binding-proof-base-audit.v1",
+    status: rows.length === 0
+      ? "selected_active_domain_direct_absence_source_binding_proof_base_no_domain"
+      : acceptedRows.length === rows.length
+        ? "selected_active_domain_direct_absence_source_binding_proof_base_accepted"
+        : localCandidateRows.length === rows.length &&
+            twoSheetBlockedRows.length === rows.length
+          ? "selected_active_domain_direct_absence_source_binding_proof_base_blocked_two_sheet_global_binding"
+        : localCandidateRows.length < rows.length
+          ? "selected_active_domain_direct_absence_source_binding_proof_base_blocked_local_interval_candidate_missing"
+        : "selected_active_domain_direct_absence_source_binding_proof_base_blocked_global_row_set_identity",
+    claimLevel:
+      "fail-closed proof-base audit for the selected source rows needed by the selected direct-absence nonlocal route; not retained continuity acceptance",
+    retainedBranchClaim: false,
+    sourceBindingProofBaseRowCount: rows.length,
+    sourceBindingProofBaseCandidateRowCount: localCandidateRows.length,
+    twoSheetGlobalBindingBlockedRowCount: twoSheetBlockedRows.length,
+    acceptedSourceBindingProofBaseRowCount: acceptedRows.length,
+    firstSourceBindingProofBaseBlocker,
+    sourceBindingTwoSheetDependencyAuditStatus:
+      twoSheetDependencyAudit.status,
+    sourceBindingTwoSheetDependencyAudit: twoSheetDependencyAudit,
+    sourceBindingTwoSheetDependencyRowCount:
+      twoSheetDependencyAudit.sourceBindingTwoSheetDependencyRowCount,
+    sourceBindingTwoSheetActiveDomainRequiredRowCount:
+      twoSheetDependencyAudit.activeDomainExtensionRequiredRowCount,
+    sourceBindingTwoSheetInnerConversionRequiredRowCount:
+      twoSheetDependencyAudit.innerBothActiveConversionRequiredRowCount,
+    firstSourceBindingTwoSheetDependencyBlocker:
+      twoSheetDependencyAudit.firstSourceBindingTwoSheetDependencyBlocker,
+    rows,
+    retainedLimitation:
+      "The selected source rows have local interval proof candidates, but those candidates are not independent retained source bindings because both source rows remain competitor-bearing inner both-active conversion pairs without two-sheet global binding or global retained row-set identity.",
+  };
+}
+
+function createSelectedActiveDomainDirectAbsenceSourceBindingTwoSheetDependencyAudit({
+  sourceRows = [],
+  twoSheetGlobalBindingDependencyAudit = null,
+} = {}) {
+  const dependencyRowsByKey = new Map(
+    (twoSheetGlobalBindingDependencyAudit?.rows ?? []).map((row) => [
+      `${row.pairKey}:${row.edgeIndex}`,
+      row,
+    ])
+  );
+  const activeDomainRowsByKey = new Map(
+    (
+      twoSheetGlobalBindingDependencyAudit?.activeDomainExtensionDependencyAudit
+        ?.rows ?? []
+    ).map((row) => [
+      `${row.pairKey}:${row.selectedTwoSheetEdgeIndex}`,
+      row,
+    ])
+  );
+  const rows = (sourceRows ?? []).map((sourceRow) => {
+    const sourceKey = `${sourceRow.pairKey}:${sourceRow.edgeIndex}`;
+    const dependencyRow = dependencyRowsByKey.get(sourceKey) ?? null;
+    const activeDomainRow = activeDomainRowsByKey.get(sourceKey) ?? null;
+    const twoSheetDependencyRowPresentPass = dependencyRow != null;
+    const activeDomainExtensionRequiredPass =
+      dependencyRow?.activeDomainExtensionRequiredPass === true;
+    const innerBothActiveConversionRequiredPass =
+      dependencyRow?.innerBothActiveConversionRequiredPass === true;
+    const fullPointEventRuleRequiredPass =
+      dependencyRow?.fullPointEventRuleRequiredPass === true;
+    const payloadEnergyTransportBindingRequiredPass =
+      dependencyRow?.payloadEnergyTransportBindingRequiredPass === true;
+    const acceptedTwoSheetGlobalBindingDependencyPass =
+      dependencyRow?.acceptedTwoSheetGlobalBindingDependencyPass === true;
+    const acceptedSourceBindingTwoSheetDependencyPass = false;
+    const firstSourceBindingTwoSheetDependencyRowBlocker =
+      acceptedSourceBindingTwoSheetDependencyPass
+        ? null
+        : twoSheetDependencyRowPresentPass !== true
+          ? "source_binding_two_sheet_dependency_row_missing"
+          : activeDomainExtensionRequiredPass
+            ? "active_domain_extension_required_before_source_binding_two_sheet_global_binding"
+            : innerBothActiveConversionRequiredPass
+              ? "inner_both_active_conversion_required_before_source_binding_two_sheet_global_binding"
+              : fullPointEventRuleRequiredPass
+                ? "full_point_event_rule_required_before_source_binding_two_sheet_global_binding"
+                : payloadEnergyTransportBindingRequiredPass
+                  ? "payload_energy_transport_binding_required_before_source_binding_two_sheet_global_binding"
+                  : acceptedTwoSheetGlobalBindingDependencyPass !== true
+                    ? "source_binding_two_sheet_dependency_proof_missing"
+                    : "derive_source_binding_two_sheet_acceptance_law";
+    return {
+      pairKey: sourceRow.pairKey,
+      edgeIndex: sourceRow.edgeIndex,
+      side: sourceRow.side,
+      eventRootKey: sourceRow.eventRootKey,
+      sourceKey,
+      localIntervalProofCandidatePass:
+        sourceRow.localIntervalProofCandidatePass === true,
+      twoSheetDependencyRowPresentPass,
+      activeDomainExtensionRequiredPass,
+      innerBothActiveConversionRequiredPass,
+      fullPointEventRuleRequiredPass,
+      payloadEnergyTransportBindingRequiredPass,
+      missingPayloadEnergyTransportObligations:
+        dependencyRow?.missingPayloadEnergyTransportObligations ?? [],
+      activeDomainPairSideStatus:
+        dependencyRow?.activeDomainPairSideStatus ?? null,
+      activeDomainPairPositiveWidthIntervalCount:
+        dependencyRow?.activeDomainPairPositiveWidthIntervalCount ?? null,
+      activeDomainPairPointOnlyIntervalCount:
+        dependencyRow?.activeDomainPairPointOnlyIntervalCount ?? null,
+      innerConversionPairPositiveWidthIntervalCount:
+        dependencyRow?.innerConversionPairPositiveWidthIntervalCount ?? null,
+      innerConversionPairPointOnlyIntervalCount:
+        dependencyRow?.innerConversionPairPointOnlyIntervalCount ?? null,
+      selectedActiveDomainBoundaryGapCount:
+        activeDomainRow?.boundaryGapCount ?? null,
+      selectedActiveDomainBoundedGapCount:
+        activeDomainRow?.eventRootBoundedGapCount ?? null,
+      selectedActiveDomainOneSidedEndpointGapCount:
+        activeDomainRow?.eventRootOneSidedEndpointGapCount ?? null,
+      selectedActiveDomainPointOnlyContactCount:
+        activeDomainRow?.pointOnlyIntervalCount ?? null,
+      selectedActiveDomainTouchingBoundaryGapCount:
+        activeDomainRow?.touchingBoundaryGapCount ?? null,
+      selectedActiveDomainPositiveDistanceBothBoundaryGapCount:
+        activeDomainRow?.positiveDistanceBothBoundaryGapCount ?? null,
+      selectedActiveDomainTotalGapWidth:
+        activeDomainRow?.totalGapWidth ?? null,
+      selectedActiveDomainMaxGapWidth:
+        activeDomainRow?.maxGapWidth ?? null,
+      selectedActiveDomainFirstRowBlocker:
+        activeDomainRow?.firstSelectedActiveDomainExtensionDependencyRowBlocker ??
+        null,
+      acceptedTwoSheetGlobalBindingDependencyPass,
+      acceptedSourceBindingTwoSheetDependencyPass,
+      firstSourceBindingTwoSheetDependencyRowBlocker,
+    };
+  });
+  const presentRows = rows.filter(
+    (row) => row.twoSheetDependencyRowPresentPass
+  );
+  const activeDomainRows = rows.filter(
+    (row) => row.activeDomainExtensionRequiredPass
+  );
+  const innerConversionRows = rows.filter(
+    (row) => row.innerBothActiveConversionRequiredPass
+  );
+  const pointEventRows = rows.filter(
+    (row) => row.fullPointEventRuleRequiredPass
+  );
+  const payloadEnergyRows = rows.filter(
+    (row) => row.payloadEnergyTransportBindingRequiredPass
+  );
+  const acceptedRows = rows.filter(
+    (row) => row.acceptedSourceBindingTwoSheetDependencyPass
+  );
+  const firstSourceBindingTwoSheetDependencyBlocker =
+    rows.find((row) => row.firstSourceBindingTwoSheetDependencyRowBlocker)
+      ?.firstSourceBindingTwoSheetDependencyRowBlocker ?? null;
+  return {
+    schema:
+      "aaa-tri-binary-selected-active-domain-direct-absence-source-binding-two-sheet-dependency-audit.v1",
+    status: rows.length === 0
+      ? "selected_active_domain_direct_absence_source_binding_two_sheet_dependency_no_domain"
+      : acceptedRows.length === rows.length
+        ? "selected_active_domain_direct_absence_source_binding_two_sheet_dependency_accepted"
+        : presentRows.length < rows.length
+          ? "selected_active_domain_direct_absence_source_binding_two_sheet_dependency_blocked_dependency_rows_missing"
+        : activeDomainRows.length > 0 && innerConversionRows.length > 0
+          ? "selected_active_domain_direct_absence_source_binding_two_sheet_dependency_blocked_active_domain_extension_and_inner_conversion"
+        : activeDomainRows.length > 0
+          ? "selected_active_domain_direct_absence_source_binding_two_sheet_dependency_blocked_active_domain_extension"
+        : innerConversionRows.length > 0
+          ? "selected_active_domain_direct_absence_source_binding_two_sheet_dependency_blocked_inner_conversion"
+        : pointEventRows.length > 0
+          ? "selected_active_domain_direct_absence_source_binding_two_sheet_dependency_blocked_point_event_rule"
+        : payloadEnergyRows.length > 0
+          ? "selected_active_domain_direct_absence_source_binding_two_sheet_dependency_blocked_payload_energy_transport_binding"
+        : "selected_active_domain_direct_absence_source_binding_two_sheet_dependency_proof_missing",
+    claimLevel:
+      "fail-closed dependency audit for the selected source rows' two-sheet/global retained binding route; not retained continuity acceptance",
+    retainedBranchClaim: false,
+    sourceBindingTwoSheetDependencyRowCount: rows.length,
+    twoSheetDependencyRowPresentCount: presentRows.length,
+    activeDomainExtensionRequiredRowCount: activeDomainRows.length,
+    innerBothActiveConversionRequiredRowCount: innerConversionRows.length,
+    fullPointEventRuleRequiredRowCount: pointEventRows.length,
+    payloadEnergyTransportBindingRequiredRowCount: payloadEnergyRows.length,
+    acceptedSourceBindingTwoSheetDependencyRowCount: acceptedRows.length,
+    selectedActiveDomainBoundedGapRowCount:
+      rows.reduce(
+        (sum, row) => sum + (row.selectedActiveDomainBoundedGapCount ?? 0),
+        0
+      ),
+    selectedActiveDomainOneSidedEndpointGapRowCount:
+      rows.reduce(
+        (sum, row) =>
+          sum + (row.selectedActiveDomainOneSidedEndpointGapCount ?? 0),
+        0
+      ),
+    selectedActiveDomainPointOnlyContactCount:
+      rows.reduce(
+        (sum, row) =>
+          sum + (row.selectedActiveDomainPointOnlyContactCount ?? 0),
+        0
+      ),
+    firstSourceBindingTwoSheetDependencyBlocker,
+    rows,
+    retainedLimitation:
+      "The selected source rows inherit the same two-sheet/global row-set blockers as the upstream partial-support route: active-domain extension must close first, then inner both-active conversion, full point-event authority, and global payload/energy/transport binding before these local source rows can become retained source bindings.",
+  };
+}
+
+function createSelectedActiveDomainDirectAbsenceNonlocalSourceBoundDependencyAudit({
+  supportSourceRows = [],
+  rowLocalEvidenceRows = [],
+  offsetTransportLawAudit = null,
+} = {}) {
+  const rowLocalEvidenceByKey = new Map(
+    (rowLocalEvidenceRows ?? []).map((row) => [
+      `${row.pairKey}:${row.edgeIndex}`,
+      row,
+    ])
+  );
+  const rows = (supportSourceRows ?? []).map((row) => {
+    const rowLocalEvidence = rowLocalEvidenceByKey.get(
+      `${row.pairKey}:${row.edgeIndex}`
+    );
+    const hasSupportSourcePass = row.supportSourceEdgeIndex != null;
+    const sourceAcceptedPass = row.supportSourceAcceptedFillPass === true;
+    const sourceRetainedBindingBlockedPass =
+      row.supportSourceRetainedBindingBlockedPass === true;
+    const rowLocalEvidenceCandidatePass =
+      rowLocalEvidence?.rowLocalEvidenceCandidatePass === true;
+    const samePairSourcePass =
+      row.supportSourceKind === "same_pair_same_geometry";
+    const crossPairOnlySourcePass = row.crossPairOnlySupportSourcePass === true;
+    const offsetLatticeAlignedPass =
+      row.supportSourceStartOffsetLatticeAligned === true;
+    const uniqueOffsetUnitCount =
+      offsetTransportLawAudit?.uniqueSupportSourceOffsetUnitCount ?? null;
+    const uniformOffsetTransportPass = uniqueOffsetUnitCount === 1;
+    const nonlocalSourceBoundCandidatePass =
+      hasSupportSourcePass && rowLocalEvidenceCandidatePass === false;
+    const acceptedNonlocalSourceBoundPass = false;
+    const firstNonlocalSourceBoundRowBlocker = acceptedNonlocalSourceBoundPass
+      ? null
+      : sourceAcceptedPass !== true
+        ? "nonlocal_source_bound_route_requires_accepted_source_binding"
+        : uniformOffsetTransportPass !== true
+          ? "nonlocal_source_bound_route_requires_row_dependent_transport_operator"
+          : crossPairOnlySourcePass
+            ? "nonlocal_source_bound_route_requires_cross_pair_transport_rule"
+            : "derive_nonlocal_source_bound_transport_operator";
+    return {
+      pairKey: row.pairKey,
+      edgeIndex: row.edgeIndex,
+      side: row.side,
+      eventRootKey: row.eventRootKey,
+      rowLocalEvidenceCandidatePass,
+      hasSupportSourcePass,
+      supportSourceKind: row.supportSourceKind,
+      supportSourcePairKey: row.supportSourcePairKey,
+      supportSourceEdgeIndex: row.supportSourceEdgeIndex,
+      supportSourceSide: row.supportSourceSide,
+      supportSourceStartOffsetUnits: row.supportSourceStartOffsetUnits,
+      supportSourceStartOffsetLatticeAligned: offsetLatticeAlignedPass,
+      sourceAcceptedPass,
+      sourceRetainedBindingBlockedPass,
+      samePairSourcePass,
+      crossPairOnlySourcePass,
+      uniformOffsetTransportPass,
+      nonlocalSourceBoundCandidatePass,
+      acceptedNonlocalSourceBoundPass,
+      firstNonlocalSourceBoundRowBlocker,
+    };
+  });
+  const directAbsenceRowCount = rows.length;
+  const candidateRows = rows.filter(
+    (row) => row.nonlocalSourceBoundCandidatePass
+  );
+  const acceptedRows = rows.filter(
+    (row) => row.acceptedNonlocalSourceBoundPass
+  );
+  const sourceRows = rows.filter((row) => row.hasSupportSourcePass);
+  const acceptedSourceRows = rows.filter((row) => row.sourceAcceptedPass);
+  const retainedBindingBlockedRows = rows.filter(
+    (row) => row.sourceRetainedBindingBlockedPass
+  );
+  const rowLocalEvidenceCandidateRows = rows.filter(
+    (row) => row.rowLocalEvidenceCandidatePass
+  );
+  const samePairSourceRows = rows.filter((row) => row.samePairSourcePass);
+  const crossPairOnlyRows = rows.filter((row) => row.crossPairOnlySourcePass);
+  const uniqueOffsetUnitCount =
+    offsetTransportLawAudit?.uniqueSupportSourceOffsetUnitCount ?? 0;
+  const firstNonlocalSourceBoundDependencyBlocker =
+    rows.find((row) => row.firstNonlocalSourceBoundRowBlocker)
+      ?.firstNonlocalSourceBoundRowBlocker ?? null;
+  return {
+    schema:
+      "aaa-tri-binary-selected-active-domain-direct-absence-nonlocal-source-bound-dependency-audit.v1",
+    status: supportSourceRows.length === 0
+      ? "selected_active_domain_direct_absence_nonlocal_source_bound_dependency_no_domain"
+      : directAbsenceRowCount === 0
+        ? "selected_active_domain_direct_absence_nonlocal_source_bound_dependency_no_direct_absence"
+        : acceptedRows.length === directAbsenceRowCount
+          ? "selected_active_domain_direct_absence_nonlocal_source_bound_dependency_accepted"
+        : candidateRows.length === directAbsenceRowCount &&
+            acceptedSourceRows.length === 0 &&
+            uniqueOffsetUnitCount > 1 &&
+            rowLocalEvidenceCandidateRows.length === 0
+          ? "selected_active_domain_direct_absence_nonlocal_source_bound_dependency_blocked_unaccepted_sources_nonuniform_transport_and_row_local_absence"
+        : acceptedSourceRows.length === 0
+          ? "selected_active_domain_direct_absence_nonlocal_source_bound_dependency_blocked_unaccepted_sources"
+        : uniqueOffsetUnitCount > 1
+          ? "selected_active_domain_direct_absence_nonlocal_source_bound_dependency_blocked_nonuniform_transport"
+        : "selected_active_domain_direct_absence_nonlocal_source_bound_dependency_blocked_transport_operator_missing",
+    claimLevel:
+      "fail-closed dependency audit for the remaining nonlocal source-bound selected direct-absence route; not a no-go theorem for all nonlocal laws and not retained continuity acceptance",
+    retainedBranchClaim: false,
+    directAbsenceRowCount,
+    supportSourceRowCount: sourceRows.length,
+    samePairSourceRowCount: samePairSourceRows.length,
+    crossPairOnlySourceRowCount: crossPairOnlyRows.length,
+    sourceAcceptedRowCount: acceptedSourceRows.length,
+    sourceRetainedBindingBlockedRowCount: retainedBindingBlockedRows.length,
+    uniqueSupportSourceOffsetUnitCount: uniqueOffsetUnitCount,
+    rowLocalEvidenceCandidateRowCount: rowLocalEvidenceCandidateRows.length,
+    nonlocalSourceBoundCandidateRowCount: candidateRows.length,
+    acceptedNonlocalSourceBoundRowCount: acceptedRows.length,
+    firstNonlocalSourceBoundDependencyBlocker,
+    rows,
+    retainedLimitation:
+      "The remaining selected direct-absence route is source-bound rather than row-local: every target row has a candidate source but no row-local event-root evidence. The current source-bound chain is blocked because every source remains unaccepted retained-binding-blocked partial support and the source offsets are nonuniform, so closure requires accepted source binding plus a row-dependent transport operator, new evidence, or explicit rejection.",
+  };
+}
+
+function createSelectedActiveDomainDirectAbsenceRowLocalEvidenceAudit({
+  rows = [],
+} = {}) {
+  const selectedRows = rows ?? [];
+  const directAbsenceRows = selectedRows.filter(
+    (row) => row.directReplayEventRootAbsentPass === true
+  );
+  const auditRows = directAbsenceRows.map((row) => {
+    const midpointPresencePass = row.midpointEventRootPresencePass === true;
+    const threePointSupportPass =
+      row.threePointAnyEventRootSupportPass === true;
+    const threePointNonMidpointRecoveryPass =
+      row.threePointMidpointAbsentNonMidpointPresencePass === true;
+    const partialSupportPass = row.partialSupportCandidatePass === true;
+    const rowLocalEvidenceCandidatePass =
+      midpointPresencePass ||
+      threePointSupportPass ||
+      threePointNonMidpointRecoveryPass ||
+      partialSupportPass;
+    const acceptedRowLocalEvidenceLawPass = false;
+    const firstRowLocalEvidenceRowBlocker = acceptedRowLocalEvidenceLawPass
+      ? null
+      : rowLocalEvidenceCandidatePass
+        ? "derive_row_local_interval_law_and_retained_binding"
+        : "no_row_local_event_root_evidence_on_direct_absence_gap";
+    return {
+      pairKey: row.pairKey,
+      edgeIndex: row.edgeIndex,
+      side: row.side,
+      eventRootKey: row.eventRootKey,
+      widthUnits: row.widthUnits,
+      priorDistanceUnits: row.priorDistanceUnits,
+      nextDistanceUnits: row.nextDistanceUnits,
+      bracketSpanUnits: row.bracketSpanUnits,
+      touchingPrior: row.touchingPrior,
+      touchingNext: row.touchingNext,
+      midpointReplayPopulated: row.midpointReplayPopulated,
+      midpointEventRootPresencePass: midpointPresencePass,
+      midpointActiveRootKeys: row.midpointActiveRootKeys ?? [],
+      threePointAnyEventRootSupportPass: threePointSupportPass,
+      threePointEventRootPresenceSampleCount:
+        row.threePointEventRootPresenceSampleCount ?? 0,
+      threePointMidpointAbsentNonMidpointPresencePass:
+        threePointNonMidpointRecoveryPass,
+      threePointNonzeroJacobianEventRootSampleCount:
+        row.threePointNonzeroJacobianEventRootSampleCount ?? 0,
+      partialSupportCandidatePass: partialSupportPass,
+      partialSupportDenseEventRootPresenceSampleCount:
+        row.partialSupportDenseEventRootPresenceSampleCount ?? 0,
+      partialSupportAbsentDenseSampleCount:
+        row.partialSupportAbsentDenseSampleCount ?? 0,
+      partialSupportMinAbsJacobian: row.partialSupportMinAbsJacobian ?? null,
+      rowLocalEvidenceCandidatePass,
+      acceptedRowLocalEvidenceLawPass,
+      firstRowLocalEvidenceRowBlocker,
+    };
+  });
+  const midpointRows = auditRows.filter(
+    (row) => row.midpointEventRootPresencePass
+  );
+  const threePointRows = auditRows.filter(
+    (row) => row.threePointAnyEventRootSupportPass
+  );
+  const threePointNonMidpointRows = auditRows.filter(
+    (row) => row.threePointMidpointAbsentNonMidpointPresencePass
+  );
+  const partialSupportRows = auditRows.filter(
+    (row) => row.partialSupportCandidatePass
+  );
+  const candidateRows = auditRows.filter(
+    (row) => row.rowLocalEvidenceCandidatePass
+  );
+  const acceptedRows = auditRows.filter(
+    (row) => row.acceptedRowLocalEvidenceLawPass
+  );
+  const firstRowLocalEvidenceBlocker =
+    auditRows.find((row) => row.firstRowLocalEvidenceRowBlocker)
+      ?.firstRowLocalEvidenceRowBlocker ?? null;
+  return {
+    schema:
+      "aaa-tri-binary-selected-active-domain-direct-absence-row-local-evidence-audit.v1",
+    status: selectedRows.length === 0
+      ? "selected_active_domain_direct_absence_row_local_evidence_no_domain"
+      : directAbsenceRows.length === 0
+        ? "selected_active_domain_direct_absence_row_local_evidence_no_direct_absence"
+        : acceptedRows.length === directAbsenceRows.length
+          ? "selected_active_domain_direct_absence_row_local_evidence_accepted"
+        : candidateRows.length === 0
+          ? "selected_active_domain_direct_absence_row_local_evidence_rejected_no_midpoint_three_point_or_partial_support"
+        : "selected_active_domain_direct_absence_row_local_evidence_rejected_interval_law_and_retained_binding_missing",
+    claimLevel:
+      "fail-closed audit for row-local midpoint, three-point, and partial-support evidence on selected direct-absence gaps; not retained continuity acceptance",
+    retainedBranchClaim: false,
+    directAbsenceRowCount: directAbsenceRows.length,
+    midpointPresenceRowCount: midpointRows.length,
+    threePointSupportRowCount: threePointRows.length,
+    threePointNonMidpointRecoveryRowCount: threePointNonMidpointRows.length,
+    partialSupportCandidateRowCount: partialSupportRows.length,
+    rowLocalEvidenceCandidateRowCount: candidateRows.length,
+    acceptedRowLocalEvidenceLawRowCount: acceptedRows.length,
+    firstRowLocalEvidenceBlocker,
+    rows: auditRows,
+    retainedLimitation:
+      "The selected direct-absence gaps have no row-local midpoint, three-point, or partial-support event-root evidence under the current replay. A row-local dynamic law is therefore rejected unless new evidence is introduced; remaining routes must be nonlocal/source-bound or explicitly rejected.",
   };
 }
 

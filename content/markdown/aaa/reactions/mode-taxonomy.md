@@ -33,6 +33,19 @@ This section is the canonical stepwise map for low-energy Standard Model channel
 - The substrate is modeled as the Noether sea, which can store, transport, and relock assembly content under local conservation constraints.
 - "Low-energy" here includes laboratory, beamline, plasma, and most astrophysical transport contexts outside unresolved near-horizon/extreme-density limits.
 
+### Hybrid Standard Model Routing
+
+A Standard Model comparison row must name which effective layer supplies the observer-level prediction. $\mathbb{A}\mathbb{A}\mathbb{A}$ reaction language may then map the provenance and assembly changes, but it may not replace the validated Standard Model source lane with an unmarked substrate story.
+
+| Channel use | Observer-level source lane | Required matching record |
+| --- | --- | --- |
+| Short-distance electroweak or collider channel | Renormalized perturbative chiral-gauge chart, with declared input scheme | Gauge-invariant amplitude or detector-level observable, scheme, order, expansion parameter, and systematic remainder |
+| Low-energy weak or nuclear channel | Matched weak effective theory plus QCD or nuclear matrix elements | Operator basis, normalization, CKM/PMNS factor when applicable, matrix-element source, and uncertainty class |
+| Hadronic strong channel | QCD calculation, lattice-QCD matrix element, factorization theorem, or validated phenomenological input | Color-singlet operator or infrared-safe observable, scale, scheme, and truncation or lattice-continuum record |
+| Pure QED or transport channel | Validated QED, kinetic, or material-response model | Observable definition, medium assumptions, boundary conditions, and error budget |
+
+The reaction row therefore records a Standard Model prediction as a structured object: energy regime, operator or detector functional, matching map, expansion or scaling parameter, remainder estimate, and consistency statements such as gauge invariance, unitarity, positivity, or infrared safety when those are part of the source lane. A finite regulator or fit trend is evidence only after this record states how the regulator is removed, matched, or bounded.
+
 ### Canonical Stepwise Workflow
 
 1. **Define observer-level channel**

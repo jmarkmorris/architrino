@@ -51,7 +51,7 @@
     },
     {
       "id": "photon",
-      "title": "Photon and Polarization Visualization",
+      "title": "Photon and Polarization Visualization App",
       "radius": 2.2,
       "color": "#2563eb",
       "labelTitle": "Photon",

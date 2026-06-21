@@ -97,6 +97,14 @@ function createCanonicalSurfacePatterns() {
       label: "ambiguous bare IMO frequency label",
       pattern: /\bIMO\s*=\s*\(/g,
     },
+    {
+      label: "unlabeled outer-normalized middle-hinge tuple",
+      pattern: /\(\s*f\s*-\s*1\s*,\s*f\s*,\s*f\s*\+\s*2\s*\)/g,
+    },
+    {
+      label: "unlabeled outer-normalized symmetric-control tuple",
+      pattern: /\(\s*f\s*-\s*1\s*,\s*f\s*,\s*f\s*\+\s*1\s*\)/g,
+    },
   ];
 }
 

@@ -7787,7 +7787,7 @@ function updateLevelLabelWrap(level) {
     }, 1);
     const sizeByDiameter = diameter * 0.15;
     const sizeByToken = maxWidth / (longestToken * 0.58);
-    let titleSize = clamp(Math.min(sizeByDiameter, sizeByToken + 0.5), 8.5, 16);
+    let titleSize = clamp(Math.min(sizeByDiameter, sizeByToken + 0.5), 8.5, 20);
     let titleLineCount = 1;
     let lineHeight = 1.14;
     let badgeSize = 14;

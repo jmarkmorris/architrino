@@ -120,6 +120,8 @@ The Master Equation of Motion for architrinos is non-Markovian, driven by inters
 
 For a finite, isolated set of architrinos parameterized by absolute time $t$ in the Euclidean void, use the $\eta>0$ regularized delayed action below. The exact causal wake kernel is recovered in the weak branch limit as $\eta\to0^+$. The admissible interaction sum excludes trivial self-coincidence: $i\ne j$ terms are retained, and $i=j$ terms are retained only on nontrivial self-hit branches with $t-t_0\ge\tau_{\min}>0$ or with an explicitly declared core regularization.
 
+The $\eta\to0^+$ statement is a weak or distributional scaling claim over declared observables unless a stronger topology is explicitly supplied. A finite-regulator trend supports this action scaffold only after the observable map, normalization, admissible test functions, and uniform control needed for the limit are stated. It is not by itself a proof of the exact causal-wake action.
+
 $$
 S_\eta[\{\mathbf{x}_i\}]
 =

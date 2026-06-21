@@ -39,7 +39,7 @@ const PROOFS = Object.freeze([
       "preset=accepted_tight_bright&canvas=architrinoPurple" +
       CONVERGED_BOUNDARY_EVIDENCE_QUERY,
     replayTime: 0.2,
-    wakeLabel: "blue 2 -> red 3",
+    wakeSeriesId: "live-electrino-to-positrino",
     requiredDatasetSource: "central_solver_bridge_replay",
     requiredSolverIntegrationPath: "central_solver_bridge_replay_adapter",
     requiredSolverReplayMode: "pairInteraction",
@@ -56,7 +56,7 @@ const PROOFS = Object.freeze([
     mobile: true,
     query: "preset=accepted_tight_bright&canvas=architrinoPurple",
     replayTime: 0.2,
-    wakeLabel: "blue 2 -> red 3",
+    wakeSeriesId: "live-electrino-to-positrino",
     requiredDatasetSource: "central_solver_bridge_replay",
     requiredSolverIntegrationPath: "central_solver_bridge_replay_adapter",
     requiredSolverReplayMode: "pairInteraction",
@@ -74,7 +74,7 @@ const PROOFS = Object.freeze([
       "preset=accepted_tight_bright&canvas=architrinoPurple" +
       CONVERGED_BOUNDARY_EVIDENCE_QUERY,
     replayTime: 0.26,
-    wakeLabel: "blue 2 -> red 3",
+    wakeSeriesId: "live-electrino-to-positrino",
     requiredDatasetSource: "central_solver_bridge_replay",
     requiredSolverIntegrationPath: "central_solver_bridge_replay_adapter",
     requiredSolverReplayMode: "pairInteraction",
@@ -114,7 +114,7 @@ const PROOFS = Object.freeze([
       "&pathConstraintBoundaryRelaxationTolerance=10" +
       CONVERGED_BOUNDARY_EVIDENCE_QUERY,
     replayTime: 0.26,
-    wakeLabel: "blue 2 -> red 3",
+    wakeSeriesId: "live-electrino-to-positrino",
     requiredDatasetSource: "central_solver_bridge_replay",
     requiredSolverIntegrationPath: "central_solver_bridge_replay_adapter",
     requiredSolverReplayMode: "pairInteraction",
@@ -154,7 +154,7 @@ const PROOFS = Object.freeze([
       "&pathConstraintBoundaryRelaxationIterationCount=1" +
       "&pathConstraintBoundaryRelaxationTolerance=0.000001",
     replayTime: 0.2,
-    wakeLabel: "blue 2 -> red 3",
+    wakeSeriesId: "live-electrino-to-positrino",
     requiredDatasetSource: "central_solver_bridge_replay",
     requiredSolverIntegrationPath: "central_solver_bridge_replay_adapter",
     requiredSolverReplayMode: "pairInteraction",
@@ -191,7 +191,7 @@ const PROOFS = Object.freeze([
       "&pathConstraintBoundaryRelaxationIterationCount=8" +
       "&pathConstraintBoundaryRelaxationTolerance=0.000000000001",
     replayTime: 0.2,
-    wakeLabel: "blue 2 -> red 3",
+    wakeSeriesId: "live-electrino-to-positrino",
     requiredDatasetSource: "central_solver_bridge_replay",
     requiredSolverIntegrationPath: "central_solver_bridge_replay_adapter",
     requiredSolverReplayMode: "pairInteraction",
@@ -217,7 +217,7 @@ const PROOFS = Object.freeze([
       "preset=accepted_tight_bright&canvas=architrinoPurple" +
       CONVERGED_BOUNDARY_EVIDENCE_QUERY,
     replayTime: 0.26,
-    wakeLabel: "blue 2 -> red 3",
+    wakeSeriesId: "live-electrino-to-positrino",
     requiredDatasetSource: "central_solver_bridge_replay",
     requiredSolverIntegrationPath: "central_solver_bridge_replay_adapter",
     requiredSolverReplayMode: "pairInteraction",
@@ -256,7 +256,7 @@ const PROOFS = Object.freeze([
       "preset=accepted_tight_bright&canvas=architrinoPurple" +
       CONVERGED_BOUNDARY_EVIDENCE_QUERY,
     replayTime: 0.91,
-    wakeLabel: "red 5 -> blue 6",
+    wakeSeriesId: "live-positrino-to-electrino",
     requiredDatasetSource: "central_solver_bridge_replay",
     requiredSolverIntegrationPath: "central_solver_bridge_replay_adapter",
     requiredSolverReplayMode: "pairInteraction",
@@ -287,48 +287,6 @@ const PROOFS = Object.freeze([
     },
   },
   {
-    id: "central-reception-insert",
-    fileName: "central-reception-insert-purple-1920x1080.png",
-    width: 1920,
-    height: 1080,
-    deviceScaleFactor: 1,
-    query:
-      "preset=accepted_tight_bright&canvas=architrinoPurple" +
-      CONVERGED_BOUNDARY_EVIDENCE_QUERY,
-    replayTime: 0.52,
-    wakeLabel: "blue 3 -> red 4",
-    requiredDatasetSource: "central_solver_bridge_replay",
-    requiredSolverIntegrationPath: "central_solver_bridge_replay_adapter",
-    requiredSolverReplayMode: "pairInteraction",
-    requiredReplayStatus: "solver boundary replay",
-    requiredPathConstraintSolverStatus: "discrete_boundary_value_converged",
-    requiredPathConstraintSolverClaim: "finite_difference_pair_boundary_value_solve_converged",
-    requiredPathConstraintPhysicalBoundarySolverStatus: "physical_boundary_solver_pending",
-    requiredPathConstraintPhysicalBoundarySolverClaim:
-      "retained_knot_guidance_not_physical_boundary_value_solve",
-    requiredPathConstraintPhysicalBoundarySolverBlockingReason:
-      "physical_boundary_solver_not_implemented",
-    requiredBoundaryRelaxationIterationCount: [64, 256],
-    requiredBoundaryRelaxationTolerance: [10, 1],
-    requiredMaxBoundaryRelaxationResidualAfter: 1,
-    requiredMaxBoundaryRelaxationResidualRatio: 0.02,
-    requiredBoundaryRelaxationResidualEvidenceStatus: "aggregate_non_worsening",
-    requiredRetainedPositionEvidence: true,
-    requiredInitialVelocityEvidence: true,
-    requiredBoundaryResidualEvidence: true,
-    settingsOpen: false,
-    prepareAction: {
-      type: "context-reception-point-insert",
-      kind: "positrino",
-      t: 0.48,
-      requiredHistoryDepth: 7,
-      requiredWakeLinkCount: 12,
-      requiredInsertedDepth: 4,
-      requiredInsertedKind: "positrino",
-      requiredWakeLabels: ["blue 3 -> red 4", "red 4 -> blue 5", "blue 6 -> red 7"],
-    },
-  },
-  {
     id: "central-initial-velocity-edit",
     fileName: "central-initial-velocity-edit-purple-1920x1080.png",
     width: 1920,
@@ -336,7 +294,7 @@ const PROOFS = Object.freeze([
     deviceScaleFactor: 1,
     query: "preset=accepted_tight_bright&canvas=architrinoPurple",
     replayTime: 0.26,
-    wakeLabel: "blue 2 -> red 3",
+    wakeSeriesId: "live-electrino-to-positrino",
     requiredDatasetSource: "central_solver_bridge_replay",
     requiredSolverIntegrationPath: "central_solver_bridge_replay_adapter",
     requiredSolverReplayMode: "pairInteraction",
@@ -356,7 +314,7 @@ const PROOFS = Object.freeze([
     deviceScaleFactor: 1,
     query: "preset=contrast_stress&replay=mock&canvas=architrinoPurple",
     replayTime: 0.26,
-    wakeLabel: "blue 2 -> red 3",
+    wakeSeriesId: "live-electrino-to-positrino",
     settingsOpen: true,
   },
   {
@@ -367,7 +325,7 @@ const PROOFS = Object.freeze([
     deviceScaleFactor: 2,
     query: "preset=contrast_stress&replay=mock&canvas=architrinoPurple",
     replayTime: 0.075,
-    wakeLabel: "red 1 -> blue 2",
+    wakeSeriesId: "live-positrino-to-electrino",
     settingsOpen: true,
   },
 ]);
@@ -751,71 +709,6 @@ function createPrepareProofExpression(proof) {
         }
       }
     }
-    if (prepareAction?.type === "context-reception-point-insert") {
-      const insertion = runtime.getReplayPathPoint(prepareAction.kind, prepareAction.t);
-      const screen = runtime.worldToScreen(insertion);
-      const rect = runtime.dom.canvas.getBoundingClientRect();
-      let preventedDefault = false;
-      await runtime.handleCanvasContextMenu({
-        clientX: rect.left + screen.x,
-        clientY: rect.top + screen.y,
-        preventDefault() {
-          preventedDefault = true;
-        },
-      });
-      if (!preventedDefault) {
-        return { ok: false, reason: "context_menu_insert_not_handled", action: prepareAction };
-      }
-      if (runtime.replayLoadState === "draft-rejected") {
-        return {
-          ok: false,
-          reason: "solver_rejected_reception_insert",
-          status: runtime.dom.replayStatus.textContent,
-          error: runtime.getDraftSolverRejectionMessage(),
-        };
-      }
-      const requiredDepth = Number(prepareAction.requiredHistoryDepth);
-      const requiredWakeLinkCount = Number(prepareAction.requiredWakeLinkCount);
-      const insertedKind = prepareAction.requiredInsertedKind ?? prepareAction.kind;
-      const insertedDepth = Number(prepareAction.requiredInsertedDepth);
-      const insertedPoint = runtime.dataset.history?.[insertedKind]?.find(
-        (point) => Number(point.depth) === insertedDepth
-      );
-      const historyDepths = Object.fromEntries(
-        ["positrino", "electrino"].map((kind) => [kind, runtime.dataset.history?.[kind]?.length ?? 0])
-      );
-      const missingWakeLabels = (prepareAction.requiredWakeLabels ?? []).filter(
-        (label) => !runtime.dataset.wakeLinks.some((link) => link.label === label)
-      );
-      if (
-        !insertedPoint ||
-        Object.values(historyDepths).some((depth) => Number(depth) !== requiredDepth) ||
-        Number(runtime.dataset.initialConditions?.historyDepth) !== requiredDepth ||
-        Number(runtime.dataset.wakeLinks?.length) !== requiredWakeLinkCount ||
-        !runtime.dataset.wakeLinks.every((link) => Number(link.receiverDepth) === Number(link.sourceDepth) + 1) ||
-        missingWakeLabels.length > 0
-      ) {
-        return {
-          ok: false,
-          reason: "reception_insert_not_preserved_after_central_replay",
-          expected: {
-            historyDepth: requiredDepth,
-            wakeLinkCount: requiredWakeLinkCount,
-            insertedKind,
-            insertedDepth,
-            wakeLabels: prepareAction.requiredWakeLabels ?? [],
-          },
-          actual: {
-            historyDepths,
-            initialHistoryDepth: runtime.dataset.initialConditions?.historyDepth,
-            wakeLinkCount: runtime.dataset.wakeLinks?.length,
-            insertedPoint,
-            missingWakeLabels,
-          },
-          status: runtime.dom.replayStatus.textContent,
-        };
-      }
-    }
     if (prepareAction?.type === "initial-velocity-drag") {
       const condition = runtime.dataset.initialConditions?.[prepareAction.kind];
       if (!condition) {
@@ -843,11 +736,14 @@ function createPrepareProofExpression(proof) {
     runtime.setPlaying(false);
     runtime.setCurrentReplayTime(${JSON.stringify(proof.replayTime)});
     runtime.updateNowControl(${JSON.stringify(proof.replayTime)});
+    const liveWakeSeries = runtime.getVisibleWakeSeries(runtime.getCurrentReplayTime());
     const link =
-      runtime.dataset.wakeLinks.find((candidate) => candidate.label === ${JSON.stringify(proof.wakeLabel)}) ||
+      liveWakeSeries.find((candidate) => candidate.id === ${JSON.stringify(proof.wakeSeriesId ?? "")}) ||
+      liveWakeSeries[0] ||
+      runtime.dataset.wakeLinks.find((candidate) => candidate.label === ${JSON.stringify(proof.wakeLabel ?? "")}) ||
       runtime.dataset.wakeLinks[0];
     if (!link) {
-      return { ok: false, reason: "wake_link_missing" };
+      return { ok: false, reason: "wake_series_missing" };
     }
     runtime.selectedItem = { type: "wake", linkId: link.id };
     runtime.dom.settingsPanel.hidden = ${proof.settingsOpen === false ? "true" : "false"};

@@ -48,7 +48,11 @@ const DEFAULT_ARCHITRINO_SPEED_INDEX = 3;
 const VIEWPORT_ZOOM_MIN = 1;
 const VIEWPORT_ZOOM_MAX = 3;
 const WHEEL_ZOOM_SENSITIVITY = 0.0015;
-const WAKE_FRONT_CADENCE_TIME_DIVISIONS = 72;
+const WAKE_FRONT_CADENCE_TIME_DIVISIONS = 144;
+const LIVE_WAKE_FRONT_COUNT = 12;
+const LIVE_WAKE_ROOT_SCAN_STEPS = 96;
+const LIVE_WAKE_ROOT_REFINE_STEPS = 32;
+const DEFAULT_LIVE_WAKE_SIGNAL_SPEED = 3000;
 const CENTRAL_PAIR_INTERACTION_REPLAY_MODE = "pairInteraction";
 const BOUNDARY_SEEDED_CONSTRAINT_PATH_STATUS = "boundary_seeded_constraint_path";
 const DISCRETE_BOUNDARY_VALUE_CONVERGED_STATUS = "discrete_boundary_value_converged";
@@ -61,7 +65,6 @@ const WEAK_CONTRIBUTION_CUE_OFF = "off";
 const WEAK_CONTRIBUTION_CUE_THRESHOLD_ONLY = "threshold_only";
 const PATH_CONSTRAINT_DRAFT_REASONS = new Set([
   "retained_point_drag_preview",
-  "reception_point_insert_preview",
 ]);
 const SPACE_KEYS = new Set([" ", "Space", "Spacebar"]);
 const REPLAY_STEP_KEYS = Object.freeze({
@@ -236,7 +239,6 @@ class CausalDelayFeedbackRuntime {
 
     this.populatePresets();
     this.populateCanvasSwatches();
-    this.populateHistoryDepthControls();
     this.updateSpeedControls();
     this.updateDisplaySettingControls();
     this.updateNowControl();
@@ -268,7 +270,6 @@ class CausalDelayFeedbackRuntime {
       cfSpeedValue: queryRequiredElement(this.document, "#causal-delay-feedback-cf-speed-value"),
       architrinoSpeedInput: queryRequiredElement(this.document, "#causal-delay-feedback-architrino-speed"),
       architrinoSpeedValue: queryRequiredElement(this.document, "#causal-delay-feedback-architrino-speed-value"),
-      historyDepthControls: queryRequiredElement(this.document, "#causal-delay-feedback-history-depth"),
       weakContributionCueInput: queryRequiredElement(this.document, "#causal-delay-feedback-weak-cue"),
       replayStatus: queryRequiredElement(this.document, "#causal-delay-feedback-replay-status"),
       readout: queryRequiredElement(this.document, "#causal-delay-feedback-readout"),
@@ -300,21 +301,6 @@ class CausalDelayFeedbackRuntime {
       }),
     );
     this.updateCanvasSwatchSelection();
-  }
-
-  populateHistoryDepthControls() {
-    this.dom.historyDepthControls.replaceChildren(
-      ...RETAINED_DEPTH_LIMIT_OPTIONS.map((depth) => {
-        const button = this.document.createElement("button");
-        button.type = "button";
-        button.className = "causal-depth-button";
-        button.textContent = String(depth);
-        button.dataset.historyDepth = String(depth);
-        button.setAttribute("aria-label", `${depth} retained path points`);
-        return button;
-      }),
-    );
-    this.updateHistoryDepthSelection();
   }
 
   bindEvents() {
@@ -367,13 +353,6 @@ class CausalDelayFeedbackRuntime {
       }
       void this.stepArchitrinoSpeedIndex(Number(button.dataset.architrinoSpeedStep));
     });
-    this.dom.historyDepthControls.addEventListener("click", (event) => {
-      const button = event.target.closest("[data-history-depth]");
-      if (!button) {
-        return;
-      }
-      this.setRetainedDepthLimit(Number(button.dataset.historyDepth));
-    });
     this.dom.weakContributionCueInput.addEventListener("change", () => {
       this.setWeakContributionCueMode(this.dom.weakContributionCueInput.value);
     });
@@ -390,9 +369,6 @@ class CausalDelayFeedbackRuntime {
       },
       { passive: false },
     );
-    this.dom.canvas.addEventListener("contextmenu", (event) => {
-      this.handleCanvasContextMenu(event);
-    });
     this.window.addEventListener("pointerup", (event) => {
       void this.finishDrag(event);
     });
@@ -533,9 +509,6 @@ class CausalDelayFeedbackRuntime {
     this.syncReplayRequestOptionsFromDataset();
     if (this.dom?.preset) {
       this.dom.preset.value = this.presetId;
-    }
-    if (this.dom?.historyDepthControls) {
-      this.populateHistoryDepthControls();
     }
     this.updateSpeedControls();
     this.updateReplayStatus();
@@ -1415,7 +1388,6 @@ class CausalDelayFeedbackRuntime {
     if (!this.isSelectionVisible()) {
       this.selectedItem = null;
     }
-    this.updateHistoryDepthSelection();
     if (this.dom?.readout) {
       this.updateReadout();
     }
@@ -1489,17 +1461,6 @@ class CausalDelayFeedbackRuntime {
     }
     Array.from(this.dom.colorSwatches.children).forEach((button) => {
       button.classList.toggle("is-active", button.dataset.colorId === this.canvasColorId);
-    });
-  }
-
-  updateHistoryDepthSelection() {
-    if (!this.dom?.historyDepthControls) {
-      return;
-    }
-    Array.from(this.dom.historyDepthControls.children).forEach((button) => {
-      const isActive = Number(button.dataset.historyDepth) === this.retainedDepthLimit;
-      button.classList.toggle("is-active", isActive);
-      button.setAttribute("aria-pressed", isActive ? "true" : "false");
     });
   }
 
@@ -1617,6 +1578,124 @@ class CausalDelayFeedbackRuntime {
     );
   }
 
+  getVisibleWakeSeries(replayTime = this.getCurrentReplayTime()) {
+    return ARCHITRINO_KINDS
+      .map((sourceKind) => this.createLiveWakeSeries(sourceKind, replayTime))
+      .filter(Boolean);
+  }
+
+  createLiveWakeSeries(sourceKind, replayTime = this.getCurrentReplayTime()) {
+    const receiverKind = this.getOppositeArchitrinoKind(sourceKind);
+    if (!receiverKind) {
+      return null;
+    }
+    const receiver = this.getReplayPathPoint(receiverKind, replayTime);
+    const signalSpeed = this.getLiveWakeSignalSpeed();
+    const emission = this.solveLiveWakeEmissionPoint(sourceKind, receiver, replayTime, signalSpeed);
+    if (!emission) {
+      return null;
+    }
+    const source = emission.source;
+    const distance = getDistance(source, receiver);
+    return {
+      id: `live-${sourceKind}-to-${receiverKind}`,
+      label: `${sourceKind} wake -> ${receiverKind} now`,
+      sourceKind,
+      receiverKind,
+      source,
+      receiver,
+      color: this.getWakeColorForKind(sourceKind),
+      weight: 1,
+      signalSpeed,
+      distance,
+      emissionTime: source.t,
+      hitTime: receiver.t,
+      travelTime: receiver.t - source.t,
+      liveWakeSeries: true,
+      rootResidual: emission.residual,
+    };
+  }
+
+  getOppositeArchitrinoKind(kind) {
+    if (kind === "positrino") {
+      return "electrino";
+    }
+    if (kind === "electrino") {
+      return "positrino";
+    }
+    return null;
+  }
+
+  getLiveWakeSignalSpeed() {
+    const summarySignalSpeed = Number(this.dataset?.solverSummary?.signalSpeed);
+    const datasetSignalSpeed = Number(this.dataset?.signalSpeed);
+    const baseSignalSpeed =
+      Number.isFinite(datasetSignalSpeed) && datasetSignalSpeed > 0
+        ? datasetSignalSpeed
+        : Number.isFinite(summarySignalSpeed) && summarySignalSpeed > 0
+          ? summarySignalSpeed
+          : DEFAULT_LIVE_WAKE_SIGNAL_SPEED;
+    return baseSignalSpeed * this.normalizeFieldSpeedScale(this.fieldSpeedScale);
+  }
+
+  solveLiveWakeEmissionPoint(sourceKind, receiver, replayTime, signalSpeed) {
+    const now = Number(replayTime);
+    const speed = Number(signalSpeed);
+    if (!Number.isFinite(now) || !Number.isFinite(speed) || speed <= 0) {
+      return null;
+    }
+    const [pathStart] = this.getReplayTimeRange();
+    if (!Number.isFinite(pathStart) || now <= pathStart + TIME_EPSILON) {
+      return null;
+    }
+    const residualAt = (candidateTime) => {
+      const source = this.getReplayPathPoint(sourceKind, candidateTime);
+      return getDistance(source, receiver) - speed * Math.max(0, now - candidateTime);
+    };
+    let highT = now;
+    let highResidual = residualAt(highT);
+    if (!Number.isFinite(highResidual)) {
+      return null;
+    }
+    if (Math.abs(highResidual) <= TIME_EPSILON) {
+      const source = this.getReplayPathPoint(sourceKind, highT);
+      return { source, residual: highResidual };
+    }
+
+    const scanSpan = now - pathStart;
+    let previousT = highT;
+    let previousResidual = highResidual;
+    for (let step = 1; step <= LIVE_WAKE_ROOT_SCAN_STEPS; step += 1) {
+      const candidateT = now - scanSpan * (step / LIVE_WAKE_ROOT_SCAN_STEPS);
+      const candidateResidual = residualAt(candidateT);
+      if (!Number.isFinite(candidateResidual)) {
+        continue;
+      }
+      if (candidateResidual <= 0 && previousResidual >= 0) {
+        let lowT = candidateT;
+        highT = previousT;
+        for (let refine = 0; refine < LIVE_WAKE_ROOT_REFINE_STEPS; refine += 1) {
+          const midT = (lowT + highT) * 0.5;
+          const midResidual = residualAt(midT);
+          if (!Number.isFinite(midResidual)) {
+            break;
+          }
+          if (midResidual <= 0) {
+            lowT = midT;
+          } else {
+            highT = midT;
+          }
+        }
+        const emissionT = (lowT + highT) * 0.5;
+        const source = this.getReplayPathPoint(sourceKind, emissionT);
+        return { source, residual: residualAt(emissionT) };
+      }
+      previousT = candidateT;
+      previousResidual = candidateResidual;
+    }
+    return null;
+  }
+
   isSelectionVisible() {
     if (!this.selectedItem) {
       return true;
@@ -1625,7 +1704,7 @@ class CausalDelayFeedbackRuntime {
       return this.isVisibleHistoryDepth(this.selectedItem.kind, this.selectedItem.depth);
     }
     if (this.selectedItem.type === "wake") {
-      return this.getVisibleWakeLinks().some((link) => link.id === this.selectedItem.linkId);
+      return this.getVisibleWakeSeries().some((link) => link.id === this.selectedItem.linkId);
     }
     return true;
   }
@@ -1987,8 +2066,6 @@ class CausalDelayFeedbackRuntime {
     this.drawWakes(ctx, replayTime);
     this.drawPathTrail(ctx, "positrino", POSITRINO);
     this.drawPathTrail(ctx, "electrino", ELECTRINO);
-    this.drawHistoryPoints(ctx, "positrino", POSITRINO);
-    this.drawHistoryPoints(ctx, "electrino", ELECTRINO);
     this.drawSelection(ctx);
     this.drawLiveMarkers(ctx, replayTime);
   }
@@ -2054,13 +2131,13 @@ class CausalDelayFeedbackRuntime {
       this.drawFullCircularWakes(ctx, replayTime);
       return;
     }
-    this.getVisibleWakeLinks().forEach((link) => {
+    this.getVisibleWakeSeries(replayTime).forEach((link) => {
       this.drawWakeProgression(ctx, link, replayTime);
     });
   }
 
   drawFullCircularWakes(ctx, replayTime) {
-    this.getVisibleWakeLinks().forEach((link) => {
+    this.getVisibleWakeSeries(replayTime).forEach((link) => {
       this.drawFullCircularWakeProgression(ctx, link, replayTime);
     });
   }
@@ -2075,7 +2152,7 @@ class CausalDelayFeedbackRuntime {
     const theta = getAngleDegrees(timing.source, timing.receiver);
     const falloffWeight = Math.pow(link.weight, preset.falloffPower);
     const visualWeight = this.getWakeVisualWeight(link);
-    const frontProgresses = this.getWakeFrontProgresses(timing);
+    const frontProgresses = this.getWakeFrontProgresses(timing, link);
 
     this.drawWakeBuildProgression(ctx, link, {
       source: timing.source,
@@ -2098,7 +2175,7 @@ class CausalDelayFeedbackRuntime {
     const theta = getAngleDegrees(timing.source, timing.receiver);
     const falloffWeight = Math.pow(link.weight, preset.falloffPower);
     const visualWeight = this.getWakeVisualWeight(link);
-    const frontProgresses = this.getWakeFrontProgresses(timing);
+    const frontProgresses = this.getWakeFrontProgresses(timing, link);
 
     this.drawWakeBuildProgression(ctx, link, {
       source: timing.source,
@@ -2156,35 +2233,11 @@ class CausalDelayFeedbackRuntime {
     this.drawLine(ctx, points, color, 5);
   }
 
-  drawHistoryPoints(ctx, kind, color) {
-    this.getVisibleHistory(kind).forEach((point) => {
-      const screen = this.worldToScreen(point);
-      const outerRadius = 8.5;
-      const innerRadius = 4.3;
-      const outlineAlpha = 0.68;
-      this.drawCircle(ctx, screen, outerRadius, withAlpha({ r: 8, g: 6, b: 18, a: 1 }, 0.82), withAlpha(WHITE, outlineAlpha), 1.2);
-      this.drawCircle(ctx, screen, innerRadius, color);
-      const offset = kind === "positrino" ? { x: 14, y: -13 } : { x: 14, y: 15 };
-      this.drawScreenText(ctx, String(point.depth), { x: screen.x + offset.x * this.viewport.scale, y: screen.y + offset.y * this.viewport.scale }, 13, withAlpha(WHITE, 0.82), "center", "bold");
-    });
-  }
-
   drawSelection(ctx) {
     if (!this.selectedItem) {
       return;
     }
-    if (this.selectedItem.type === "history") {
-      const point = this.getVisibleHistory(this.selectedItem.kind).find(
-        (candidate) => candidate.depth === this.selectedItem.depth,
-      );
-      if (!point) {
-        return;
-      }
-      const screen = this.worldToScreen(point);
-      this.drawCircle(ctx, screen, 18, withAlpha(WHITE, 0.05), withAlpha(WHITE, 0.86), 1.4);
-      return;
-    }
-    const link = this.getVisibleWakeLinks().find((candidate) => candidate.id === this.selectedItem.linkId);
+    const link = this.getVisibleWakeSeries().find((candidate) => candidate.id === this.selectedItem.linkId);
     if (!link) {
       return;
     }
@@ -2302,8 +2355,6 @@ class CausalDelayFeedbackRuntime {
     if (this.dragState) {
       if (this.dragState.type === "initial-velocity") {
         this.dragSelectedInitialVelocity(event);
-      } else {
-        this.dragSelectedHistoryPoint(event);
       }
       return;
     }
@@ -2327,8 +2378,6 @@ class CausalDelayFeedbackRuntime {
     this.updateReadout(hit);
     if (hit.type === "initial-velocity") {
       this.startInitialVelocityDrag(event, hit);
-    } else if (hit.type === "history") {
-      this.startHistoryPointDrag(event, hit);
     }
     this.render();
   }
@@ -2398,65 +2447,6 @@ class CausalDelayFeedbackRuntime {
     return didZoom;
   }
 
-  async handleCanvasContextMenu(event) {
-    const rect = this.dom.canvas.getBoundingClientRect();
-    const screen = { x: event.clientX - rect.left, y: event.clientY - rect.top };
-    const insertion = this.findNearestPathInsertion(screen);
-    if (!insertion) {
-      return;
-    }
-    event.preventDefault();
-    const point = this.addReceptionPointAtPath(insertion.kind, insertion);
-    if (!point) {
-      return;
-    }
-    this.selectedItem = { type: "history", kind: point.kind, depth: point.depth };
-    this.updateReadout(this.createHistoryHit(point, 0));
-    this.render();
-    return this.submitReceptionPointInsertion();
-  }
-
-  async submitReceptionPointInsertion() {
-    if (this.usesFallbackReplayOnly() || this.shouldUseRepresentativeReplayOnly(this.presetId)) {
-      return this.dataset;
-    }
-    const selectedItem = this.selectedItem ? { ...this.selectedItem } : null;
-    const dataset = await this.loadReplay({
-      requestOptions: this.replayRequestOptions,
-      preserveDraftOnFailure: true,
-    });
-    if (this.canRestoreSelectedHistoryItem(selectedItem)) {
-      this.selectedItem = selectedItem;
-      this.updateReadout();
-      this.render();
-    }
-    return dataset;
-  }
-
-  canRestoreSelectedHistoryItem(selectedItem) {
-    if (selectedItem?.type !== "history") {
-      return false;
-    }
-    return this.getVisibleHistory(selectedItem.kind).some((point) => point.depth === selectedItem.depth);
-  }
-
-  startHistoryPointDrag(event, hit) {
-    this.clearBackgroundPointers();
-    const screen = this.canvasScreenPointFromEvent(event);
-    this.dragState = {
-      type: "history",
-      kind: hit.selection.kind,
-      depth: hit.selection.depth,
-      lastWorld: this.screenToWorld(screen),
-      didEdit: false,
-    };
-    this.setPlaying(false);
-    if (typeof this.dom.canvas.setPointerCapture === "function") {
-      this.dom.canvas.setPointerCapture(event.pointerId);
-    }
-    event.preventDefault();
-  }
-
   startInitialVelocityDrag(event, hit) {
     this.clearBackgroundPointers();
     const screen = this.canvasScreenPointFromEvent(event);
@@ -2471,22 +2461,6 @@ class CausalDelayFeedbackRuntime {
       this.dom.canvas.setPointerCapture(event.pointerId);
     }
     event.preventDefault();
-  }
-
-  dragSelectedHistoryPoint(event) {
-    const rect = this.dom.canvas.getBoundingClientRect();
-    const screen = { x: event.clientX - rect.left, y: event.clientY - rect.top };
-    const world = this.screenToWorld(screen);
-    const delta = {
-      x: world.x - this.dragState.lastWorld.x,
-      y: world.y - this.dragState.lastWorld.y,
-    };
-    this.dragState.lastWorld = world;
-    if (this.applyRetainedPointDrag(this.dragState.kind, this.dragState.depth, delta)) {
-      this.dragState.didEdit = true;
-      this.updateReadout();
-      this.render();
-    }
   }
 
   dragSelectedInitialVelocity(event) {
@@ -2569,144 +2543,6 @@ class CausalDelayFeedbackRuntime {
     this.syncReplayRequestOptionsFromDataset();
     this.markDraftPreview("initial_velocity_drag_preview");
     return true;
-  }
-
-  addReceptionPointAtPath(kind, point) {
-    if (!this.dataset?.history?.[kind] || !point) {
-      return null;
-    }
-    const insertedPoint = this.insertHistoryPoint(kind, point);
-    if (!insertedPoint) {
-      return null;
-    }
-
-    this.renumberHistoryPoints(kind);
-    const oppositeKind = kind === "positrino" ? "electrino" : "positrino";
-    const oppositePoint = this.getReplayPathPoint(oppositeKind, insertedPoint.t);
-    if (this.insertHistoryPoint(oppositeKind, oppositePoint)) {
-      this.renumberHistoryPoints(oppositeKind);
-    }
-    this.rebuildSmoothPathFromHistory(kind);
-    this.rebuildSmoothPathFromHistory(oppositeKind);
-    this.syncHistoryDepthState();
-    this.rebuildWakeLinksFromHistory();
-    this.retainedDepthLimit = this.normalizeRetainedDepthLimit(this.getMaxRetainedDepthLimit());
-    this.syncReplayRequestOptionsFromDataset();
-    this.markDraftPreview("reception_point_insert_preview", { staleSolverRows: false });
-    if (this.dom?.historyDepthControls) {
-      this.populateHistoryDepthControls();
-    }
-    return insertedPoint;
-  }
-
-  insertHistoryPoint(kind, point) {
-    const rows = this.dataset?.history?.[kind];
-    if (!Array.isArray(rows) || !point) {
-      return null;
-    }
-    const historyPoint = {
-      kind,
-      t: Number(point.t),
-      x: Number(point.x),
-      y: Number(point.y),
-      weight: 1,
-      state: "active",
-    };
-    if (
-      !Number.isFinite(historyPoint.t) ||
-      !Number.isFinite(historyPoint.x) ||
-      !Number.isFinite(historyPoint.y)
-    ) {
-      return null;
-    }
-    if (rows.some((row) => Math.abs(row.t - historyPoint.t) <= TIME_EPSILON)) {
-      return null;
-    }
-    rows.push(historyPoint);
-    return historyPoint;
-  }
-
-  renumberHistoryPoints(kind) {
-    const rows = this.dataset?.history?.[kind];
-    if (!Array.isArray(rows)) {
-      return;
-    }
-    rows.sort((left, right) => left.t - right.t);
-    const count = rows.length;
-    rows.forEach((point, index) => {
-      point.kind = kind;
-      point.depth = index + 1;
-      point.weight = count > 1 ? (index + 1) / count : 1;
-      point.state = this.getHistoryPointState(index, count);
-    });
-  }
-
-  getHistoryPointState(index, count) {
-    if (index === 0) {
-      return "older";
-    }
-    if (index === count - 1) {
-      return "newer";
-    }
-    return "active";
-  }
-
-  syncHistoryDepthState() {
-    const maxDepth = Math.max(
-      1,
-      ...Object.values(this.dataset?.history ?? {})
-        .flat()
-        .map((point) => Number(point.depth))
-        .filter(Number.isFinite),
-    );
-    if (!this.dataset.initialConditions) {
-      this.dataset.initialConditions = {};
-    }
-    this.dataset.initialConditions.historyDepth = maxDepth;
-  }
-
-  rebuildWakeLinksFromHistory() {
-    const links = [];
-    this.appendHistoryWakeLinks(links, "positrino", "electrino");
-    this.appendHistoryWakeLinks(links, "electrino", "positrino");
-    this.dataset.wakeLinks = links;
-  }
-
-  appendHistoryWakeLinks(links, sourceKind, receiverKind) {
-    const sourceRows = this.dataset?.history?.[sourceKind] ?? [];
-    const receiverRows = this.dataset?.history?.[receiverKind] ?? [];
-    const maxDepth = Math.max(sourceRows.length, receiverRows.length);
-    for (let depth = 1; depth < maxDepth; depth += 1) {
-      const source = sourceRows.find((point) => point.depth === depth);
-      const receiver = receiverRows.find((point) => point.depth === depth + 1);
-      if (!source || !receiver || receiver.t <= source.t) {
-        continue;
-      }
-      links.push(this.createHistoryWakeLink(sourceKind, receiverKind, source, receiver));
-    }
-  }
-
-  createHistoryWakeLink(sourceKind, receiverKind, source, receiver) {
-    return {
-      id: `${sourceKind}-${source.depth}-to-${receiverKind}-${receiver.depth}`,
-      label: `${this.getKindShortLabel(sourceKind)} ${source.depth} -> ${this.getKindShortLabel(receiverKind)} ${receiver.depth}`,
-      sourceKind,
-      receiverKind,
-      sourceDepth: source.depth,
-      receiverDepth: receiver.depth,
-      source: { x: source.x, y: source.y, t: source.t },
-      receiver: { x: receiver.x, y: receiver.y, t: receiver.t },
-      emissionTime: source.t,
-      hitTime: receiver.t,
-      travelTime: receiver.t - source.t,
-      color: this.getWakeColorForKind(sourceKind),
-      weight: Math.min(source.weight, receiver.weight),
-      mode: this.dataset.wakeArcDisplayMode,
-    };
-  }
-
-  getKindShortLabel(kind) {
-    return kind === "positrino" ? "red" : "blue";
   }
 
   getWakeColorForKind(kind) {
@@ -3084,29 +2920,9 @@ class CausalDelayFeedbackRuntime {
   }
 
   getFrameReceptionReplayTime(previousReplayTime, replayTime) {
-    if (!Number.isFinite(previousReplayTime) || !Number.isFinite(replayTime)) {
-      return null;
-    }
-    const [start, end] = this.getReplayTimeRange();
-    if (!Number.isFinite(start) || !Number.isFinite(end) || end <= start) {
-      return null;
-    }
-
-    const candidates = [];
-    this.getVisibleWakeLinks().forEach((link) => {
-      const timing = this.getWakeTiming(link, replayTime);
-      const receiverT = timing?.receiverT;
-      if (!Number.isFinite(receiverT)) {
-        return;
-      }
-      const advance = this.getReplayTimeAdvanceToCrossedPoint(previousReplayTime, replayTime, receiverT, start, end);
-      if (Number.isFinite(advance)) {
-        candidates.push({ replayTime: receiverT, advance });
-      }
-    });
-
-    candidates.sort((left, right) => left.advance - right.advance);
-    return candidates[0]?.replayTime ?? null;
+    void previousReplayTime;
+    void replayTime;
+    return null;
   }
 
   getReplayTimeAdvanceToCrossedPoint(previousReplayTime, replayTime, crossedReplayTime, start, end) {
@@ -3212,12 +3028,16 @@ class CausalDelayFeedbackRuntime {
       active: startedForLoop && !completedForLoop,
       startedForLoop,
       completedForLoop,
+      liveWakeSeries: Boolean(link.liveWakeSeries),
     };
   }
 
-  getWakeFrontProgresses(timing) {
+  getWakeFrontProgresses(timing, link = null) {
     if (!timing) {
       return [];
+    }
+    if (link?.liveWakeSeries || timing.liveWakeSeries) {
+      return Array.from({ length: LIVE_WAKE_FRONT_COUNT }, (_unused, index) => (index + 1) / LIVE_WAKE_FRONT_COUNT);
     }
     const duration = timing.receiverT - timing.sourceT;
     if (!Number.isFinite(duration) || duration <= 0) {
@@ -3372,7 +3192,7 @@ class CausalDelayFeedbackRuntime {
       return point ? this.createHistoryHit(point, 0) : null;
     }
     if (this.selectedItem?.type === "wake") {
-      const link = this.getVisibleWakeLinks().find((candidate) => candidate.id === this.selectedItem.linkId);
+      const link = this.getVisibleWakeSeries().find((candidate) => candidate.id === this.selectedItem.linkId);
       return link ? this.createWakeHit(link, 0) : null;
     }
     return null;
@@ -3415,64 +3235,10 @@ class CausalDelayFeedbackRuntime {
     };
   }
 
-  findNearestPathInsertion(screen) {
-    const candidates = [];
-    ["positrino", "electrino"].forEach((kind) => {
-      const points = this.dataset?.paths?.[kind] ?? [];
-      for (let index = 0; index < points.length - 1; index += 1) {
-        const left = points[index];
-        const right = points[index + 1];
-        const start = this.worldToScreen(left);
-        const end = this.worldToScreen(right);
-        const projection = this.projectScreenPointToSegment(screen, start, end);
-        const amount = projection.amount;
-        candidates.push({
-          kind,
-          distance: projection.distance,
-          x: left.x + (right.x - left.x) * amount,
-          y: left.y + (right.y - left.y) * amount,
-          t: left.t + (right.t - left.t) * amount,
-        });
-      }
-    });
-    const nearest = candidates.sort((left, right) => left.distance - right.distance)[0];
-    return nearest && nearest.distance <= 28 ? nearest : null;
-  }
-
-  projectScreenPointToSegment(point, start, end) {
-    const dx = end.x - start.x;
-    const dy = end.y - start.y;
-    const lengthSquared = dx * dx + dy * dy;
-    if (lengthSquared === 0) {
-      return {
-        amount: 0,
-        distance: Math.hypot(point.x - start.x, point.y - start.y),
-      };
-    }
-    const amount = clamp(((point.x - start.x) * dx + (point.y - start.y) * dy) / lengthSquared, 0, 1);
-    return {
-      amount,
-      distance: Math.hypot(point.x - (start.x + dx * amount), point.y - (start.y + dy * amount)),
-    };
-  }
-
   findNearestHit(screen, { includeWakes = false } = {}) {
-    const historyCandidates = [];
-    ["positrino", "electrino"].forEach((kind) => {
-      this.getVisibleHistory(kind).forEach((point) => {
-        const candidate = this.worldToScreen(point);
-        const distance = Math.hypot(screen.x - candidate.x, screen.y - candidate.y);
-        historyCandidates.push(this.createHistoryHit(point, distance));
-      });
-    });
-    const nearestHistory = historyCandidates.sort((a, b) => a.distance - b.distance)[0];
-    if (nearestHistory && nearestHistory.distance <= nearestHistory.hitRadius) {
-      return nearestHistory;
-    }
-
     const candidates = [];
     if (includeWakes) {
-      this.getVisibleWakeLinks().forEach((link) => {
+      this.getVisibleWakeSeries().forEach((link) => {
         const endpoints = this.getWakeEndpoints(link);
         if (!endpoints) {
           return;
@@ -3587,7 +3353,7 @@ class CausalDelayFeedbackRuntime {
   }
 
   getContributionSummary(replayTime = this.getCurrentReplayTime()) {
-    const wakeLinks = this.getVisibleWakeLinks();
+    const wakeLinks = this.getVisibleWakeSeries(replayTime);
     const summary = {
       replayTime,
       threshold: this.getAssemblyThreshold(),
@@ -4288,6 +4054,9 @@ class CausalDelayFeedbackRuntime {
   getWakeTimingState(timing) {
     if (!timing) {
       return "unresolved";
+    }
+    if (timing.liveWakeSeries && timing.progress >= 1 - TIME_EPSILON) {
+      return "received";
     }
     if (timing.active) {
       return `active=${timing.progress.toFixed(2)}`;

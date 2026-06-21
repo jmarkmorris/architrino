@@ -176,9 +176,9 @@ export class SceneRepository {
           ? view.columns
           : null,
       splitIncludeExistingInLayout: split?.includeExistingInLayout === true,
-      splitNodeRadius: null,
-      splitRingRadius: null,
-      splitMaxRingCount: null,
+      splitNodeRadius: optionalPositiveNumber(split?.nodeRadius),
+      splitRingRadius: optionalPositiveNumber(split?.ringRadius),
+      splitMaxRingCount: optionalPositiveNumber(split?.maxRingCount),
       splitGridSpacing: optionalPositiveNumber(split?.gridSpacing),
       splitGridGapMultiplier: optionalPositiveNumber(split?.gridGapMultiplier),
       splitPalette: null,

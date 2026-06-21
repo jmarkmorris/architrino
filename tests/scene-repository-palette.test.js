@@ -333,6 +333,7 @@ test("markdown split grid gap options propagate to runtime config", async () => 
           split: {
             headingLevel: 2,
             maxDepth: 1,
+            nodeRadius: 1.76,
             gridGapMultiplier: 2,
             gridSpacing: 4.75,
           },
@@ -344,6 +345,8 @@ test("markdown split grid gap options propagate to runtime config", async () => 
 
   assert.equal(config.splitGridGapMultiplier, 2);
   assert.equal(config.splitGridSpacing, 4.75);
+  assert.equal(config.splitNodeRadius, 1.76);
   assert.equal(capturedScene?.splitGridGapMultiplier, 2);
   assert.equal(capturedScene?.splitGridSpacing, 4.75);
+  assert.equal(capturedScene?.splitNodeRadius, 1.76);
 });

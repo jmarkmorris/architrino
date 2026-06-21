@@ -118,7 +118,7 @@ enum ReaderFeedbackIssue {
         includesClipboardScreenshot: Bool
     ) -> String {
         let screenshotInstruction = includesClipboardScreenshot
-            ? "\n\nThe app copied an annotated screenshot to the clipboard. Paste it into this issue if GitHub does not insert it automatically."
+            ? "\n\nAnnotated image copied. Paste it into this issue."
             : ""
 
         return """
@@ -148,6 +148,8 @@ struct ReaderPageFeedbackOverlay: View {
     @State private var hasDrawing = false
     @State private var sharePayload: ReaderFeedbackSharePayload?
     @State private var safariDestination: ReaderSafariDestination?
+    @State private var pendingIssueDestination: ReaderSafariDestination?
+    @State private var showClipboardGuidance = false
 
     init(
         baseImage: UIImage,
@@ -235,6 +237,18 @@ struct ReaderPageFeedbackOverlay: View {
             ReaderSafariView(url: destination.url)
                 .ignoresSafeArea()
         }
+        .alert("Image copied", isPresented: $showClipboardGuidance) {
+            Button("Open GitHub") {
+                safariDestination = pendingIssueDestination
+                pendingIssueDestination = nil
+            }
+
+            Button("Cancel", role: .cancel) {
+                pendingIssueDestination = nil
+            }
+        } message: {
+            Text("Paste it into the issue.")
+        }
     }
 
     private func feedbackIconButton(
@@ -292,7 +306,8 @@ struct ReaderPageFeedbackOverlay: View {
     private func openGitHubIssue() {
         onSubmit()
         UIPasteboard.general.image = currentFeedbackImage()
-        safariDestination = ReaderSafariDestination(url: context.githubIssueURL)
+        pendingIssueDestination = ReaderSafariDestination(url: context.githubIssueURL)
+        showClipboardGuidance = true
     }
 
     private func currentFeedbackImage() -> UIImage {

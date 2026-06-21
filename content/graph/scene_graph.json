@@ -2064,7 +2064,7 @@
     },
     {
       "id": "archie__ideal_swarm",
-      "name": "Ideal Noether Swarm: Lorentz Geometry",
+      "name": "Ideal Noether Swarm: Lorentz Geometry App",
       "path": "content/scenes/archie/ideal_swarm.json",
       "nodeType": "scene"
     },
@@ -2076,7 +2076,7 @@
     },
     {
       "id": "archie__photon",
-      "name": "Photon and Polarization Visualization",
+      "name": "Photon and Polarization Visualization App",
       "path": "content/scenes/archie/photon.json",
       "nodeType": "scene"
     },
@@ -3268,7 +3268,7 @@
       "nodeId": "scene:content/scenes/archie/ideal_swarm.json",
       "nodeType": "scene",
       "id": "archie__ideal_swarm",
-      "name": "Ideal Noether Swarm: Lorentz Geometry",
+      "name": "Ideal Noether Swarm: Lorentz Geometry App",
       "path": "content/scenes/archie/ideal_swarm.json",
       "searchTarget": "content/scenes/archie/ideal_swarm.json",
       "implicit": false
@@ -3313,7 +3313,7 @@
       "nodeId": "scene:content/scenes/archie/photon.json",
       "nodeType": "scene",
       "id": "archie__photon",
-      "name": "Photon and Polarization Visualization",
+      "name": "Photon and Polarization Visualization App",
       "path": "content/scenes/archie/photon.json",
       "searchTarget": "content/scenes/archie/photon.json",
       "implicit": false
