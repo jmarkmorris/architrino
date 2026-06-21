@@ -26,6 +26,8 @@ $$
 \sim
 \kappa\,\sigma_{ij}\frac{\lvert q_iq_j\rvert}{r_{ij}^2\lvert J_{ij}\rvert}\hat{\mathbf{r}}_{ij}
 $$
+Here $J_{ij}$ is not an adjustable constant. If $F_{ij}$ denotes the normalized causal-delay constraint on a retained source-time root, then $J_{ij}=\partial_s F_{ij}$ is the causal-root transversality Jacobian. In the [Master Equation](../dynamics/master-equation.md#the-master-equation-canonical-form) notation, $c_fJ_{ij}=\partial_{t_0}g_{ij}$ up to the chosen normalization, so the factor $\lvert J_{ij}\rvert^{-1}$ is the simple-root Jacobian weight, not a free inverse-strength parameter. Using this branch denominator requires the corresponding simple-root floor, for example $\lvert\partial_{t_0}g_{ij}\rvert \ge \kappa_{\mathrm{hit}} > 0$, before the schematic acceleration law is treated as an ordinary row rather than a caustic or regularized chart.
+
 In dimensional form $\kappa$ has units
 $$
 [\kappa]=\mathrm{L}^3\,\mathrm{T}^{-2}\,\mathrm{Q}^{-2}
@@ -71,7 +73,7 @@ The two polarity names are:
 
 Like polarities repel; unlike polarities attract in the universal interaction law. At the assembly level, electric charge is the coarse bookkeeping summary of the signed architrino inventory. For example, quark and lepton electric charges are built from integer counts of $\epsilon$ units in stable assembly patterns rather than from a separate primitive charge substance.
 
-The normalization $|e|=6\epsilon$ is currently an input parameter and a high-priority explanatory target. In this convention, the architrino polarity unit is primitive for bookkeeping, and the observed electron or positron charge is a six-unit assembly-level multiple. The working hypothesis is that six-site nested shell swarm organization supplies the deeper reason for that six-unit mapping, but that explanation belongs to assembly closure rather than to the primitive definition of an architrino.
+The normalization $|e|=6\epsilon$ is currently an input parameter and a high-priority explanatory target. In this convention, the architrino polarity unit is primitive for bookkeeping, and the observed electron or positron charge is a six-unit assembly-level multiple. The current structural target is a closed six-polar-site axial-layer branch record: three polar dyads on the H/M/L axial frame, with each polar site occupied by one axial architrino of sign $\pm\epsilon$. If assembly closure retains exactly that six-site axial inventory, the allowed observer-level charge table follows as a finite signed inventory result. Deriving why the Noether swarm supplies those six protected polar sites belongs to [Quantum Number Mapping](../assemblies/fermions/quantum-number-mapping.md#the-axial-layer) and [Gauge Structure Emergence](../assemblies/gauge-structure-emergence.md#quantization-from-stability-selection-rules), not to the primitive definition of an architrino.
 
 ## Provenance and Persistence
 
@@ -102,19 +104,7 @@ $$
 +
 O(\epsilon_{\mathrm{prov}})
 $$
-The closure condition has two levels. The provenance-leakage bound $\epsilon_{\mathrm{prov}}$ only says that inaccessible architrino labels do not leak into observer-accessible quantities. Fermionic and bosonic statistics require a stronger effective-state result:
-$$
-P_-\mathcal{E}_{N,\theta}(\mu_{\mathrm{fermion}})
-=
-\mathcal{E}_{N,\theta}(\mu_{\mathrm{fermion}})
-+O(\varepsilon_-),
-\qquad
-P_+\mathcal{E}_{N,\theta}(\mu_{\mathrm{boson}})
-=
-\mathcal{E}_{N,\theta}(\mu_{\mathrm{boson}})
-+O(\varepsilon_+)
-$$
-Here $P_-$ and $P_+$ are the antisymmetric and symmetric exchange projectors used by the observer-level quantum chart, and $\mathcal{E}_{N,\theta}$ is the effective $N$-assembly state extraction map. Pauli exclusion is therefore not satisfied merely by hiding labels; the fermionic branch must recover antisymmetrized effective states, including the same-state vanishing and exchange-energy structure described in [Fermi-Dirac and Bose-Einstein Statistics](../quantum/quantum-statistics.md). Exact architrino identities remain present in $\mathbb{U}_{\text{now}}$; ordinary particle indistinguishability is recovered only after the Physical Observer projection suppresses label-specific differences and the exchange-statistics residual closes.
+This is only the provenance-leakage closure. It says that inaccessible architrino labels do not leak into observer-accessible quantities beyond the residual $\epsilon_{\mathrm{prov}}$. Fermionic and bosonic exchange statistics require the stronger projector residuals owned by [Fermi-Dirac and Bose-Einstein Statistics](../quantum/quantum-statistics.md). Exact architrino identities remain present in $\mathbb{U}_{\text{now}}$; ordinary particle indistinguishability begins with the leakage bound and then depends on the separate exchange-statistics closure after the Physical Observer projection and effective assembly-state extraction are specified.
 
 ## Non-Creation and Non-Destruction
 
@@ -148,6 +138,8 @@ $$
 The kernel $K$ is only a schematic placeholder here; the exact causal-root sets, Jacobian weights, kernels, and regularization belong to the dynamics chapter. The ontology claim is the dependency claim: after the source identity, polarity, and path history are fixed, there is no second material inventory or autonomous field state left to specify.
 
 Point-source causal-delay theories carry a known pathology class. Classical point-charge electrodynamics develops divergent self-energy at zero radius, runaway solution branches, and pre-acceleration in Abraham-Lorentz-Dirac-type reductions. This chapter does not solve those issues by naming the architrino primitive. It routes them to the dynamics layer: coincidence handling, self-hit admissibility, regularized or weak-limit kernels, Jacobian/transversality floors, and energy-momentum accounting must remove or quarantine those pathology channels in the branch being used.
+
+A retained point-transceiver branch is admissible as an ordinary ontology branch only if its regularized self-energy and self-force rows remain finite under the declared regulator removal $\eta\to0$ or weak limit, with the active causal roots still protected by a transversality floor such as $\kappa_{\mathrm{hit}} > 0$. If finite self-response or simple-root transversality fails, the branch is not an ordinary point-transceiver case; it must be rejected, moved to a caustic or regularized chart, or quarantined as a pathology channel in the dynamics chapter.
 
 Ontologically, the causal wake is a **dynamical geometry**: a source-provenanced interaction structure generated by the path history of the source architrino. It is not a material ether or hidden fluid in the Euclidean void. Distinct wakes superpose perfectly and do not scatter, bind, fragment, or interact with one another as substances. Their entire substrate-level content is therefore computable from the historical trajectories of the source architrinos that emitted them.
 
@@ -215,13 +207,15 @@ Determinism does not imply practical predictability. The dynamics are nonlinear 
 
 ## Absolute Rest Case
 
+The preferred rest frame is defined first by the propagation law: primitive causal wakes expand isotropically at speed $c_f$ in the Euclidean-void rest frame. A stationary architrino is a sufficient diagnostic exposer of that frame, not the definition of the frame itself.
+
 A stationary architrino, with
 $$
 \mathbf{v}_a=\mathbf{0}
 $$
 emits a concentric wake stream centered on one fixed point of the Euclidean void. This state is physically distinct from nonzero motion, where wake centers trace a path and the wake stream becomes non-concentric.
 
-The stationary case supplies a convenient primitive diagnostic for the absolute rest frame: the frame in which wake speed $c_f$ is isotropic and stationary-source wakes are concentric. The existence of a stationary architrino is sufficient for choosing a material origin, but it is not necessary for defining the preferred rest frame. If no architrino is stationary over a diagnostic interval, complete-state reconstruction may still recover the rest-frame structure from source-tagged wake centers. This is a substrate-level diagnostic, not by itself an operational measurement procedure. Whether physical observers can detect that frame is a separate emergent-observer question addressed by [Detecting the Absolute Frame](detecting-the-absolute-frame.md), [Lorentz Kinematics](../spacetime/lorentz-kinematics.md), and [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md).
+The existence of a stationary architrino is sufficient for choosing a material origin and for exposing concentric stationary-source wakes, but it is not necessary for defining the preferred rest frame. If no architrino is stationary over a diagnostic interval, complete-state reconstruction may still recover the rest-frame structure from source-tagged wake centers. This is a substrate-level diagnostic, not by itself an operational measurement procedure. Whether physical observers can detect that frame is a separate emergent-observer question addressed by [Detecting the Absolute Frame](detecting-the-absolute-frame.md), [Lorentz Kinematics](../spacetime/lorentz-kinematics.md), and [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md).
 
 ## Boundary With Assemblies and Effective Particles
 

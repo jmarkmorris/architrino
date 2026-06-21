@@ -388,6 +388,7 @@ private enum ReaderFeedbackImageRenderer {
         let commentPanelHeight = topChromeCrop + footerTransferHeight
         let sourceTopCrop = ReaderFeedbackLayout.sourceTopCrop(for: size)
         let sourceBottomCrop = ReaderFeedbackLayout.sourceBottomCrop(for: size)
+        let shouldDrawCommentRules = !ReaderFeedbackLayout.usesPhoneFeedbackLayout(size)
         let sourceHeight = max(1, size.height - sourceTopCrop - sourceBottomCrop)
         let destinationHeight = max(1, size.height - commentPanelHeight)
 
@@ -418,7 +419,8 @@ private enum ReaderFeedbackImageRenderer {
             drawCommentPanel(
                 in: CGRect(x: 0, y: 0, width: size.width, height: commentPanelHeight),
                 theme: theme,
-                context: context.cgContext
+                context: context.cgContext,
+                drawRules: shouldDrawCommentRules
             )
         }
     }
@@ -458,9 +460,15 @@ private enum ReaderFeedbackImageRenderer {
         }
     }
 
-    private static func drawCommentPanel(in rect: CGRect, theme: ReaderTheme, context: CGContext) {
+    private static func drawCommentPanel(
+        in rect: CGRect,
+        theme: ReaderTheme,
+        context: CGContext,
+        drawRules: Bool
+    ) {
         theme.feedbackBackgroundUIColor.setFill()
         context.fill(rect)
+        guard drawRules else { return }
 
         let inset = ReaderFeedbackLayout.commentPanelInset
         let writableRect = rect.insetBy(dx: inset, dy: 0)
@@ -500,7 +508,14 @@ private enum ReaderFeedbackLayout {
     }
 
     static func sourceBottomCrop(for size: CGSize) -> CGFloat {
-        min(max(size.height * 0.058, 54), 78)
+        if usesPhoneFeedbackLayout(size) {
+            return min(max(size.height * 0.13, 96), 132)
+        }
+        return min(max(size.height * 0.058, 54), 78)
+    }
+
+    static func usesPhoneFeedbackLayout(_ size: CGSize) -> Bool {
+        UIDevice.current.userInterfaceIdiom == .phone || min(size.width, size.height) < 430
     }
 }
 

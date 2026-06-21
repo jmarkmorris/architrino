@@ -19,7 +19,18 @@ All subsequent dynamical laws, assembly mappings, and emergent phenomena depend 
 
 The teaching order is controlled by four levels. Substrate ontology names absolute time, the Euclidean void, and architrino identities. Assembly and medium behavior names organized architrino configurations and the Noether sea. Effective description names the metric, field, particle, and clock language reconstructed from those dynamics. Observer inference names the records available to embedded Physical Observers, not the complete state itself.
 
+The same level discipline can be read through the canonical symbol map:
+
+| Level | Canonical variables or records | Owning chapters |
+|:---|:---|:---|
+| Substrate ontology | $t$, $\Sigma_t$, $h_{ij}$, $\mathbf{s}_a(t)$, $q_a$, causal-wake support | [Absolute Time](./absolute-time.md), [Euclidean Void](./euclidean-void.md), [Absolute Timespace](./absolute-timespace.md), [Architrino](./architrino.md) |
+| Assembly and medium behavior | assembly branch records, $\Lambda_{\text{NS}}$, $\rho_{\text{NS}}(\mathbf{x},t)$, $\Sigma_{\text{sea}}(\mathbf{x},t)$, $\mathbf{u}_{\text{sea}}(\mathbf{x},t)$ | [Noether Swarm](../noether-swarm/noether-swarm.md), [Nested Shell Swarm Geometry](../noether-swarm/nested-shell-swarm-geometry.md), [Noether sea](../spacetime/noether-sea.md) |
+| Effective description | $A(\mathcal{N}_{\mathrm{sea}})$, $B_{ij}(\mathcal{N}_{\mathrm{sea}})$, $u^i_{\text{sea}}$, $g^{\text{eff}}_{\mu\nu}$, $\Phi_{\text{eff}}$ | [Emergent Metric](../spacetime/emergent-metric.md), [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md), [Particle Masses](../assemblies/particle-masses.md) |
+| Observer inference | $\Pi_{\mathrm{obs}}:S(t)\to\bar S(t)$, Physical Observer records $\Theta_A^{(O,W)}$, detector and measurement records | [Observer Framework](../spacetime/observer-framework.md), [Wavefunction Ontology](../quantum/wavefunction-ontology.md), [Measurement Ontology](../quantum/measurement-ontology.md) |
+
 Two category distinctions govern the rest of this hub. First, fundamental material is not the same as emergent matter: the architrino is primitive substance, while matter begins only as assembly-level behavior with mass, exclusion, and persistent organization. Second, physical reality is not the same as autonomous material inventory: causal wakes are physically real, finite-speed, potential-bearing causal records, but their substrate-level content is fixed by source identity, polarity, and path history rather than by an additional material ingredient in the void.
+
+A conservative entry criterion for emergent matter status is therefore two-part. A stable assembly $A$ must carry a nonzero closed internal causal-history ledger, $E_{\text{internal}}(A) > 0$, and it must carry an assembly-level exclusion record protected by the retained branch topology, such as an oblate spheroidal exclusion envelope together with the ordered-frame or causal-writhe data needed for fermionic matter. This is an entry criterion for the mass-map and exclusion programs, not a completed derivation of particle masses or spin-statistics.
 
 ## The Substrate (What Exists Fundamentally)
 
@@ -63,7 +74,7 @@ For the factor-level specifications, see [Absolute Time](./absolute-time.md) and
 
 [Architrino](./architrino.md) is the canonical primitive-entity specification for $\mathbb{A}\mathbb{A}\mathbb{A}$. It defines the architrino as a point transceiver in absolute timespace with definite polarity, persistent identity, continuous causal-wake emission, universal wake reception, and non-creation/non-destruction at the ontological level.
 
-The architrino is the sole primitive material substance of the theory. This does not make an isolated architrino a matter particle: rest mass, spatial exclusion, fermionic behavior, and particle species are downstream assembly properties. Its intrinsic polarity is likewise not the full observer-level charge record. Electric, weak, color, and particle labels are effective bookkeeping to be recovered from assembly geometry and medium response. The emitted causal wake is not another primitive substance, but it is not unreal or merely verbal. It is the source-dependent, potential-bearing causal record by which path history becomes delayed interaction.
+The architrino is the sole primitive material substance of the theory. This does not make an isolated architrino a matter particle: rest mass, spatial exclusion, fermionic behavior, and particle species are downstream assembly properties. Likewise, fermion and boson exchange behavior is an assembly-level recovery target rather than an inserted projector postulate: any effective antisymmetric or symmetric exchange label must be routed through a retained branch record, currently the ordered-frame spinor program and the nested shell swarm closure label $\Lambda_{\text{NS}}$, whose $\chi_c$ entry names the candidate topological carrier through ordered-frame chirality, $Wr_c$, or multi-component causal-writhe parity rather than a hand-selected exchange sign. Its intrinsic polarity is likewise not the full observer-level charge record. Electric, weak, color, and particle labels are effective bookkeeping to be recovered from assembly geometry and medium response. The emitted causal wake is not another primitive substance, but it is not unreal or merely verbal. It is the source-dependent, potential-bearing causal record by which path history becomes delayed interaction.
 
 For an architrino $a$ with worldline $\mathbf{s}_a(t)$ on time domain $I_a$ and polarity $q_a$, the wake may be read schematically as a functional of that source history:
 $$
@@ -78,6 +89,8 @@ K\!\left(\mathbf{x},t;\mathbf{s}_a(s),s\right)
 \subseteq
 \left\{\|\mathbf{x}-\mathbf{s}_a(s)\|=c_f(t-s)\right\}
 $$
+
+The $ds$ integral is schematic because the support condition selects causal roots of $F_a(\mathbf{x},t;s)=\|\mathbf{x}-\mathbf{s}_a(s)\|-c_f(t-s)$ rather than an ordinary interval of source times. In the Master Equation this is implemented by a surface-delta or root-sum expression with the simple-root transversality floor $|\partial_sF_a| \ge \kappa_{\mathrm{hit}} > 0$; if that floor fails, the contribution belongs to branch-chart or regularization analysis rather than to this ontology-level functional.
 
 This formula is a level assignment, not a replacement for the Master Equation. It states the ontological dependency: once the source identity, polarity, and path history are fixed, no additional freely specifiable wake substance remains. Effective field language may summarize many such wake contributions, but the substrate account remains source-provenanced causal-wake history.
 
@@ -138,6 +151,8 @@ without adding instantaneous causal influence between detectors. If instead meas
 
 - **Substrate nonseparability:** retain strict measurement independence and no-signaling; Bell violation is recovered through nonfactorizable pair-provenance and apparatus-response coupling.
 - **Controlled relaxation of measurement independence:** relax measurement independence in the declared substrate response variables; the relaxation must be bounded to prevent macroscopic backward causation or signaling claims.
+
+Current working selection, still provisional until the Bell derivation closes: $\mathbb{A}\mathbb{A}\mathbb{A}$ follows the substrate-nonseparability route, meaning measurement independence and no-signaling are retained while the completed pair-provenance and apparatus-response law must fail product screening. Controlled measurement-independence relaxation remains a comparison or failure route, not the active ontology-hub selection.
 
 A mere shared-source story is not enough: if the retained provenance screens the two detector wings into independent local laws, the account has fallen back into the Bell-local class. The detailed derivation and residual tests belong to [Bell's Theorem](../philosophy-history/theory-bridges/bell-theorem.md) and [Entanglement and Nonlocality](../philosophy-history/theory-bridges/entanglement-nonlocality.md).
 
