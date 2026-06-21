@@ -7327,9 +7327,22 @@ By contrast, the maximum-curvature binary section studies a **uniform circular b
 
 This subsection records a modeling hypothesis rather than a derived law. The desired closure would link the spiral path, the per-hit force law, and the angular-momentum budget across the full velocity range. Below the wake speed, the binary feels only partner hits, and the principal circular branch has positive tangential work. A contraction ansatz must therefore explain how radial tightening survives that anti-damping row through non-circular geometry, wake-flux export, recoil, or a later multi-root ledger. We introduce a per-cycle gain parameter $\Delta L_c$ only as a provisional bookkeeping variable for that unresolved branch-history calculation.
 
-**Speculative continuity assumption:** as $s\to1$, the per-cycle mechanical gain transitions smoothly from $\Delta L_\text{cycle} = \Delta L_c$ (sub-field-speed) to $\Delta L_\text{cycle} = 2\Delta L_c$ (self-hit active). This is not a claim that total angular momentum is created; the missing balance must be carried by a history-aware wake angular-momentum functional.
+**Branch-birth jump target:** a smooth doubling rule is too strong unless the active causal-root ledger stays unchanged. On a fixed signed branch chart $b(s)$, the per-cycle escaped angular-momentum entry should instead be written
+$$
+\Delta L_{\mathrm{cycle}}(s)
+=
+\sum_{\rho\in b(s)}
+\ell_{\rho}^{\mathrm{esc}}(s),
+$$
+where $\rho$ ranges over the active partner and self rows that actually send wake angular momentum through the window boundary. At a branch birth the ledger changes, so the cycle budget has a jump law rather than an automatic smooth continuation. At the principal self-hit hinge,
+$$
+\Delta L_{\mathrm{cycle}}(1^+)-\Delta L_{\mathrm{cycle}}(1^-)
+=
+\ell_{\mathrm{self},0}^{\mathrm{esc}}(1^+),
+$$
+with the right-hand side evaluated in the same finite-$\eta$ chart that regularizes the caustic. The older heuristic $\Delta L_c\mapsto2\Delta L_c$ is recovered only in the special case where the newly born principal self row exports exactly the same cycle increment as the pre-hinge partner ledger.
 
-This section treats an exponential-in-angle spiral (logarithmic spiral) as a **modeling assumption** rather than a derived law. It simply sets the bookkeeping target: a path-history force sum that yields a smooth, finite increase in $\Delta L_\text{cycle}$ at the hinge. The detailed link between the summed per-hit forces and the spiral shape remains to be derived.
+This section treats an exponential-in-angle spiral (logarithmic spiral) as a **modeling assumption** rather than a derived law. It sets the bookkeeping target: a path-history force sum whose signed branch-birth increments and boundary wake fluxes yield the spiral contraction. Near $s=1^+$ the principal self row inherits the caustic onset already displayed below; after finite-window averaging its branch-entry impulse should still report the $(s-1)^{-3/2}$ wall inherited from the self radial coefficient, while the sharper raw tangential coefficient must be regularized before it is used in a cycle ledger.
 
 ### Spiral Binary Symmetry-Breaking Point ($\|\mathbf{v}\| = c_f$)
 
@@ -7438,6 +7451,25 @@ $$
 \gamma_f(u)=\left(1-\frac{u^2}{c_f^2}\right)^{-1/2}
 $$
 The exact residual definitions and Theorem G role are recorded in [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md#translating-binary-benchmark). A Lorentzian result would make the two-body branch the first derived substrate clock. A non-Lorentzian residual would be equally informative because it would identify the first place where the primitive two-body kernel pressures the larger Lorentz-closure program.
+
+The moving-branch test also has a root-starvation obligation. If a forward source row has minimum forward separation $d_{\min}$ in the direction of motion, then the causal delay needed to receive that row obeys the elementary bound
+$$
+\tau_{\mathrm{forward}}(u)\geq \frac{d_{\min}}{c_f-u}.
+$$
+This divergence is stronger than the Lorentz factor divergence,
+$$
+\gamma_f(u)\sim(c_f-u)^{-1/2},
+$$
+as $u\to c_f^-$. Therefore a bare translating binary cannot be promoted to the Lorentz handoff merely by showing that one clock period stretches. It must also show that the locked branch retains enough memory depth to supply the forward roots it claims. One diagnostic target is
+$$
+\mathcal{R}_{\mathrm{Lor\text{-}root}}(u)
+=
+\frac{\tau_{\mathrm{forward}}(u)/T_u}
+{M_b^{\mathrm{mem}}(u)+\epsilon_h},
+\qquad
+M_b^{\mathrm{mem}}(u)=\frac{h_b^{\mathrm{lock}}(u)}{T_u},
+$$
+where $h_b^{\mathrm{lock}}$ is the declared retained-history depth of the moving branch and $\epsilon_h>0$ is a fixed normalization floor. If this residual diverges on the finite-$\eta$ moving chart, the two-body branch has run out of retained causal roots before it has derived Lorentz closure; the handoff must then move to a Noether-sea or larger assembly response rather than being booked as a bare-binary result.
 
 Let $C_i(t_\text{emit})$ denote the causal wake surface emitted by architrino $i$ at emission time $t_\text{emit}$. For uniform circular motion, self-hit events are discrete intersections between the worldline and its own wake surfaces. Define the **principal self-delay angle** $\tilde{\delta}_s \in (0, \pi]$ as the minimal angular separation between the current position and the emission point that yields a hit. Additional self-hits occur at longer delays indexed by winding number $m \ge 0$, giving a discrete family $\delta_s(m) = \tilde{\delta}_s + 2\pi m$.
 
@@ -7595,7 +7627,7 @@ In the same-sheet convention used for the first circular no-go, the full familie
 - The minimal separations $\tilde{\delta}_s$, $\tilde{\delta}_p$ determine the **same-sheet principal geometry** (chord lengths, force directions).
 - The winding index $m$ affects **timing/ordering** of multiple hits inside that same-sheet convention.
 
-**Signed-sheet caveat:** A full circular root certificate must also track whether the full delay angle is represented as $2\pi m+\alpha$ or $2\pi m-\alpha$ for a minimal chord angle $\alpha\in(0,\pi]$. Opposite signed sheets can reverse the tangential projection of a self-hit line of action. The sign-invariant statements below are therefore certified only on the same-sheet principal branch chart unless the signed sheet has been explicitly included in the root ledger.
+**Signed-sheet completion:** A full circular root certificate must also track whether the full delay angle is represented as $2\pi m+\alpha$ or $2\pi m-\alpha$ for a minimal chord angle $\alpha\in(0,\pi]$. Opposite signed sheets can reverse the tangential projection of a self-hit line of action. The sign-invariant statements below are therefore certified only on the same-sheet principal branch chart unless the signed sheet has been explicitly included in the root ledger.
 
 For the full signed ledger, write
 $$
@@ -7611,11 +7643,15 @@ $$
 \qquad
 2\pi m+\sigma\alpha_p=2s\cos(\alpha_p/2)
 $$
-The corresponding tangential signs are $\sigma\cos(\alpha_s/2)$ for self roots and $\sigma\sin(\alpha_p/2)$ for partner roots, up to positive branch weights. The first negative self sheet, $m=1,\sigma=-1$, obeys
+The corresponding tangential signs are $\sigma\cos(\alpha_s/2)$ for self roots and $\sigma\sin(\alpha_p/2)$ for partner roots, up to positive branch weights. The signed sheet is therefore not a cosmetic ledger choice: it is the first place the bare circular kernel can acquire a same-source tangential contribution with the opposite sign from the same-sheet no-go row. The first negative self sheet, $m=1,\sigma=-1$, obeys
 $$
 2\pi-\alpha=2s\sin(\alpha/2)
 $$
-and appears at $s=\pi/2$ with $\alpha=\pi$. For $s>\pi/2$ it contributes negative tangential drive. This does not prove circular closure, but it prevents the same-sheet no-go from being promoted to a full signed-ledger theorem.
+and appears at $s=\pi/2$ with $\alpha=\pi$. For $s>\pi/2$ it contributes negative tangential drive. This does not prove circular closure, but it makes the $\sigma=-1$ sheet a necessary closure channel rather than a caveat. A useful floor conjecture is:
+
+> No isolated, bare, constant-speed circular MCB branch can close for $s<\pi/2$, because the first negative same-source sheet is absent and the same-sheet tangential cohomology class has no internal cancellation channel.
+
+For $s\geq\pi/2$, closure is still not automatic. The negative sheet must survive the finite-$\eta$ branch chart, satisfy the Jacobian and inactive-gap floors, and balance the remaining tangential class through signed-root cancellation, wake escapement, recoil, or multi-body exchange.
 
 ---
 
@@ -7844,6 +7880,27 @@ with no boundary wake flux and no recoil term is impossible. Any MCB-like steady
 
 **Interpretation.** The positive tangential component is not merely an obstruction to be erased. In a finite local window, partner and self wakes are continually emitted while only a subset of their causal isochrons later hit a local receiver. The unreceived portion exits the local window as wake-history flux. The same-sheet tangential drive is therefore the mechanical pump that can replace the interaction energy exported by those escaping causal wakes. A local binary can look particle-only conservative only if the outgoing wake record, recoil channel, and retained branch ledger are all included in the same balance law.
 
+**Cohomology reading.** On a closed circular branch, write $\theta$ for the receiver phase and let
+$$
+\omega_T^{(b)} = R\,T_{\mathrm{net}}^{(b)}(\theta)\,d\theta
+$$
+be the tangential torque one-form on the retained signed ledger $b$. Same-sheet rows give a positive period integral, so $\omega_T^{(b)}$ is not an exact derivative of a single-valued mechanical angular-momentum potential on the particle-only chart. Closure requires a coboundary supplied by retained non-particle channels:
+$$
+\left[\omega_T^{(b)}
++\omega_{\partial W}^{(b)}
++\omega_{\mathrm{recoil}}^{(b)}
++\omega_{\mathrm{multi}}^{(b)}
+\right]=0
+$$
+in the cycle cohomology of the branch chart. A compact escaped-action diagnostic is
+$$
+N_{\mathrm{esc}}^{(b)}
+=
+\frac{1}{h}
+\oint R\,T_{\mathrm{net}}^{(b)}(\theta)\,d\theta,
+$$
+where $h$ is the declared action unit used by the branch packet. A bare two-body circular closure can pass only when this class is cancelled by an explicitly retained signed sheet, wake-boundary, recoil, or multi-body exchange row.
+
 **Plain language**: On the same-sheet chart, the isolated pair shows persistent tangential drive at the per-hit level; cancellation is hard because every certified root pushes the same way. The stable-branch question is not "how can the drive disappear?" but "which wake flux, recoil, or multi-body channel balances the drive without destroying the retained branch?" This is a primary test of the MCB attractor hypothesis.
 
 ---
@@ -7872,6 +7929,8 @@ Two distinct balance mechanisms are now mathematically visible:
    At larger $s$, additional self branches turn on and redistribute the outward response across several winding sectors. In that regime the detailed balance depends on the full weighted sum over all active branches rather than on the principal branch alone.
 
 **However**: Due to the same-sheet per-hit $T > 0$ result, this "maximum curvature" state remains unverified for the isolated two-body system. Its stability must be tested by the full, signed, multi-root time-averaged dynamics.
+
+Because the desired MCB branch is expected to graze the $J=0$ wall, the stability target is not only a smooth Floquet calculation. On smooth arcs with a fixed ledger, Floquet multipliers are the right local test. At the null separatrix itself, the branch is a caustic-grazing limit cycle: the appropriate theorem target is an isolating block in history space that straddles the $J=0$ wall and has a persistent Conley index under finite-$\eta$ continuation. In that reading, the MCB branch is stable only if the orbit returns through the grazing chart without escaping the isolating block or changing its declared signed ledger except at the certified fold rows.
 
 ---
 
@@ -7911,6 +7970,14 @@ $$
 $$
 
 In this view, any ruler or clock built from architrino assemblies ultimately reduces to multiples of $(d_0, T_0)$. Measurement standards are therefore **dynamical invariants** of the two-body attractor: they persist because the underlying limit cycle (if realized) is stable and reproducible across assemblies.
+
+A certified MCB would also define the first handedness marker. In the binary plane set
+$$
+\hat{\mathbf n}_{\mathrm{MCB}}
+=
+\hat{\mathbf r}\times\hat{\mathbf v},
+$$
+with $\hat{\mathbf r}$ pointing from the center to one chosen polarity row and $\hat{\mathbf v}$ its direction of motion. The two signs of $\hat{\mathbf n}_{\mathrm{MCB}}$ label two branch basins, $B_+$ and $B_-$, not two coordinate conventions. A branch-preserving deformation can rotate the plane, but it cannot flip this $\mathbb{Z}_2$ label without passing through a degeneracy where the circular plane, source order, or signed causal-root ledger changes. Thus chirality is carried by the joint path-history and signed-root framing of the branch, not by a freely chosen drawing orientation.
 
 If the MCB does not exist as a stable attractor, these emergent standards must be replaced by whatever stable limit structure the dynamics actually support.
 
@@ -7964,6 +8031,32 @@ $$
 s=\frac{\|\mathbf{v}\|}{c_f}
 $$
 is the chapter's speed ratio, equivalent to $\beta$ in the usual notation. Between neighboring branch-birth thresholds, the active self-root ledger $N_s(s)$ is constant and the same root labels can be transported. At the thresholds, the delay equation has a tangency and the newly born circular root lies on a Jacobian-null boundary. Thus the root census, the caustic locations, and the ledger-transition speeds are one computed object rather than three separate assumptions.
+
+##### Root Ledger as a One-Parameter Morse Complex
+
+For a fixed reception event on a one-parameter family of branch histories, write the root function as
+$$
+F_{ij}(t_0;s)
+=
+\|\mathbf{x}_i(t;s)-\mathbf{x}_j(t_0;s)\|
+-c_f(t-t_0).
+$$
+Active causal roots are the zeros of $F_{ij}$. A branch birth or death is a fold row:
+$$
+F_{ij}=0,
+\qquad
+\partial_{t_0}F_{ij}=0,
+\qquad
+\partial_{t_0t_0}F_{ij}\neq0.
+$$
+Away from those folds, the signed degree
+$$
+D_{ij}(s)
+=
+\sum_{t_0\in\mathcal{C}_{ij}(t;s)}
+\operatorname{sign}\!\left(\partial_{t_0}F_{ij}(t_0;s)\right)
+$$
+is locally constant, while the unsigned counts $N_s$ and $M_p$ track the ranks of the same-source and partner-root rows. This is the binary version of the assembly topological charge: the later tri-binary label $(N_s,M_p,c_1)$ uses the two root-complex integers from this chapter and the phase-bundle Chern data from the resonance-lock chart. A solver that reports only raw root counts loses the signed degree needed to distinguish a true branch fold from a harmless relabeling of rows.
 
 ##### Parameter-Free Circular Branch Packet
 
@@ -8191,7 +8284,7 @@ H_{ab}(q_\star)=\partial_a\partial_b V_{\mathrm{eff}}(q_\star)
 $$
 tests local stiffness in the non-symmetry directions. This is useful as comparison language, but it is not yet a stability proof for an architrino binary because the force law depends on path-history, the active signed causal-root ledger, and the branch Jacobian floors.
 
-The $\mathbb{A}\mathbb{A}\mathbb{A}$ branch-stability target is therefore a cycle-averaged stiffness matrix on a fixed branch chart. Let $b$ denote a fixed signed causal-root ledger and let $\mathbf{X}_b(t)$ be a candidate periodic history with period $P_b$. For reduced branch coordinates $y^a$ transverse to time-shift and rotation symmetries, define the diagnostic stiffness target
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ branch-stability target is therefore a cycle-averaged stiffness matrix on a fixed branch chart. Let $b$ denote a fixed signed causal-root ledger and let $\mathbf{X}_b(t)$ be a candidate periodic history with period $P_b$. For reduced branch coordinates $y^a$ transverse to time shift, period reparameterization, Euclidean motions, and any phase-locked flat-connection moduli retained by an enclosing assembly chart, define the diagnostic stiffness target
 $$
 K^{(b)}_{ab}
 =
@@ -8217,7 +8310,7 @@ and the non-symmetry Floquet multipliers of $D\mathcal{P}_b[\mathbf{X}_b]$ to sa
 $$
 |\mu_\alpha|<1
 $$
-Only that return-map condition would upgrade the Hessian-style stiffness picture into branch stability. Until it is supplied, MCB stability remains a conditional target rather than a completed proof.
+Only that return-map condition would upgrade the Hessian-style stiffness picture into branch stability. If the candidate touches a branch-fold or $J=0$ wall, this smooth Floquet test must be supplemented by the Conley-index isolating-block certificate named above; otherwise the multiplier calculation has evaluated the smooth arcs while missing the grazing transition. Until those certificates are supplied, MCB stability remains a conditional target rather than a completed proof.
 
 ##### Finite-dimensional projection caveat
 
@@ -8334,6 +8427,8 @@ $$
 
 where $E_\perp$ removes the neutral phase and symmetry directions. A numerical orbit without this projected return-map certificate is an existence candidate, not a stable binary certificate.
 
+For a standalone circular binary, the neutral quotient includes the global time phase, the period-reparameterization direction, and Euclidean translations and rotations of the complete history. When the same two-body packet is embedded into a phase-locked tri-binary or larger assembly chart, $E_\perp$ must also quotient the flat-connection moduli declared by that enclosing chart; otherwise a slow drift of relative phase can be hidden as an allowed symmetry even though it breaks the lock.
+
 The energy packet is
 
 $$
@@ -8384,7 +8479,7 @@ $$
 {|2\pi/P_b|+|s_b/R_b|+\epsilon_{\omega}},
 $$
 
-when the circular reduction is claimed. For a noncircular branch, $\omega_b=2\pi/P_b$ remains the fundamental return frequency, but the $s_b/R_b$ comparison is replaced by the declared harmonic-extraction rule.
+when the circular reduction is claimed. For a noncircular branch, $\omega_b=2\pi/P_b$ remains the fundamental return frequency, but the $s_b/R_b$ comparison is inadmissible unless an effective radius and speed have been independently defined. A breather or spiral candidate must instead report its harmonic-extraction rule on the retained history record and compare the extracted fundamental or locked harmonic to $2\pi/P_b$.
 
 The theorem target is therefore:
 
@@ -8407,17 +8502,27 @@ We denote the position of the $i$-th architrino as $\mathbf{x}_i(t) \in \mathbb{
 To define the evolution at time $t$, we require knowledge of the trajectory over an interval $[t - \tau_{\max}, t]$, where $\tau_{\max}$ is the maximum causal lookback time relevant to the current dynamics.
 
 ##### Definition 1 (The History Space)
-Let $h > 0$ be a history horizon (sufficiently large to capture all active causal roots). The **history space** $\mathcal{H}$ is defined as the Banach space of continuously differentiable functions mapping the delay interval to the configuration space:
+Let $h > 0$ be a history horizon (sufficiently large to capture all active causal roots). On a smooth simple-root branch, the **smooth history space** $\mathcal{H}_{\mathrm{sm}}$ is the Banach space of continuously differentiable functions mapping the delay interval to the configuration space:
 $$
-\mathcal{H} = C^1\left([-h, 0]; (\mathbb{R}^3)^N\right)
+\mathcal{H}_{\mathrm{sm}} = C^1\left([-h, 0]; (\mathbb{R}^3)^N\right).
 $$
-For a trajectory $\mathbf{x}: [-h, \infty) \to (\mathbb{R}^3)^N$, the **state at time $t$**, denoted $\mathbf{x}_t$, is the element of $\mathcal{H}$ given by:
+For a trajectory $\mathbf{x}: [-h, \infty) \to (\mathbb{R}^3)^N$, the **state at time $t$**, denoted $\mathbf{x}_t$, is the element of $\mathcal{H}_{\mathrm{sm}}$ on smooth charts, or of $\mathcal{H}_*$ on caustic-extension charts, given by:
 $$
 \mathbf{x}_t(\theta) = \mathbf{x}(t + \theta), \quad \theta \in [-h, 0]
 $$
-The norm is the standard $C^1$ sup-norm: $\|\phi\|_\mathcal{H} = \sup_{\theta \in [-h,0]} (\|\phi(\theta)\| + \|\dot{\phi}(\theta)\|)$.
+The norm on the smooth chart is the standard $C^1$ sup-norm: $\|\phi\|_{\mathcal{H}_{\mathrm{sm}}} = \sup_{\theta \in [-h,0]} (\|\phi(\theta)\| + \|\dot{\phi}(\theta)\|)$.
 
 **Remark:** We require $C^1$ rather than $C^0$ because the delay $\tau$ depends on the state (state-dependent delay). In such systems, the vector field is typically not Lipschitz continuous in the $C^0$ topology, endangering uniqueness.
+
+For caustic-grazing packets this smooth space is not the whole story. The working extension is
+$$
+\mathcal{H}_*
+=
+W^{1,\infty}\left([-h,0];(\mathbb{R}^3)^N\right),
+$$
+with $C^1$ regularity retained on smooth arcs and finite impulse transitions handled by the finite-$\eta$ kernel before any $\eta\to0$ statement is made. The existence theorem below is a smooth-chart theorem. A branch that crosses a $J=0$ wall must supply a separate impulse lemma or isolating-block continuation certificate showing that the finite-$\eta$ solutions converge in $\mathcal{H}_*$ with bounded velocity and finite total impulse.
+
+Below, $\mathcal{H}$ denotes the declared history chart for the packet being tested. Unless a caustic-extension certificate is explicitly named, $\mathcal{H}=\mathcal{H}_{\mathrm{sm}}$.
 
 ---
 
@@ -8464,6 +8569,8 @@ $$
 F_i(\phi) = \sum_{j} \kappa \sigma_{ij} |q_i q_j| \int_{-h}^0 \frac{\phi_i(0) - \phi_j(\theta)}{\|\phi_i(0) - \phi_j(\theta)\|^3} \, \delta_\eta\left( \|\phi_i(0) - \phi_j(\theta)\| + c_f \theta \right) \, d\theta
 $$
 **Crucial Property:** For $\eta > 0$ and smooth $\delta_\eta$, this integral operator maps $C^1$ histories to continuous accelerations.
+
+On $\mathcal{H}_*$ this same formula is interpreted through the finite-$\eta$ integral first. The admissibility claim is weaker: the packet must show bounded velocity and finite total impulse across the grazing chart before it can pass to the $\eta\to0$ limit.
 
 ---
 
@@ -8623,7 +8730,7 @@ $$
 *Physical interpretation:* The "missing" momentum is accounted for by the causal wake surfaces currently traversing the space between sources and receivers in an action-derived model; otherwise this balance is the momentum diagnostic to verify.
 
 **Corollary (Center of Mass Motion):**
-For an isolated binary, the center of mass $\mathbf{x}_{\text{cm}}$ need not move at constant velocity in the mechanical coordinates alone. Instead, it can oscillate around a mean trajectory while wake momentum carries the compensating history term. A runaway center-of-mass self-acceleration is forbidden only in an action-derived model whose regularization preserves translation symmetry; in working regularized models this is a conservation diagnostic to be checked.
+For an isolated binary, the center of mass $\mathbf{x}_{\text{cm}}$ need not move at constant velocity in the mechanical coordinates alone. Instead, it can oscillate around a mean trajectory while wake momentum carries the compensating history term. This is the two-body version of the [center-of-response theorem target](../../../../markdown/aaa/dynamics/energy.md#theorem-target-center-of-response): in an exactly symmetric circular binary, the exposed-energy response center $\mathbf{X}_{\mathrm{resp}}$ is pinned to the circle center by symmetry, while the particle-only mechanical center can still show finite-window oscillatory bookkeeping if wake momentum is not included. A runaway center-of-mass self-acceleration is forbidden only in an action-derived model whose regularization preserves translation symmetry; in working regularized models this is a conservation diagnostic to be checked.
 
 ---
 
