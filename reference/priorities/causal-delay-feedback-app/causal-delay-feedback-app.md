@@ -235,9 +235,9 @@ Browser QA proof artifacts:
 - Causal wakes should be drawn as curved arcs, not straight rays.
 - Architrino path history should be drawn as solid trails, while causal wakes should be drawn as dotted arcs so the two uses of positrino/electrino color remain distinct.
 - Active dotted wake arcs in the proof tiles should begin at a back-solved emission point on the emitter path and end at the partner architrino's current replay position.
-- Each live wake series should keep a fixed number of visible fronts. Do not animate the series by adding more fronts over time; instead, continuously recompute the source emission point and receiver point so the series changes slope and length with the replay.
+- Each live wake series should keep fixed separation between visible fronts. Longer source-to-receiver action lines should draw more fronts, while the final front still lands on the current receiver point. The front count is derived from current action-line length, not from an elapsed-time buildup control.
 - The source emission point is the latest point on the emitter path satisfying the causal-delay equation against the partner's current path position. It should visibly trail the live emitter by a distance that changes with path geometry and $c_f$.
-- Partial wake presets should use dense fixed bands so the changing source-to-receiver series is easy to read.
+- Partial wake presets should use dense, fixed-separation bands so the changing source-to-receiver series is easy to read.
 - Clicking a live wake series selects the wake and shows its back-solved source, travel, falloff, and contribution details. Fixed retained path-history points are not canvas hit targets.
 - Scripted retained-constraint edits may deform the displayed path with a smooth local spline-style falloff, recompute the two live wake series from the edited paths, and move the live architrino marker along the edited path. Solver-backed modes should replace this preview with a solver rerun.
 - The accepted default wake-front treatment combines the tighter receiver sector from sample `2` with the brighter visibility treatment from sample `5`.
@@ -298,8 +298,8 @@ Browser QA proof artifacts:
 - Animate architrino markers along solver-returned path samples.
 - Use linear or gently curved path-history motion for the first proof scenes.
 - Animate partial dotted causal-wake arcs by continuously recomputing their source emission point and current receiver point from the replay paths.
-- Keep one fixed, tight causal-wake front count across all presets; do not expose a control or preset field that changes spacing between successive wake fronts.
-- In full-circular-arc mode, use the same live emission-point backsolve and fixed front count as the partial arc mode, but draw each visible front as a complete 360-degree circle.
+- Keep one fixed, tight causal-wake front separation across all presets; do not expose a control or preset field that changes spacing between successive wake fronts.
+- In full-circular-arc mode, use the same live emission-point backsolve and fixed front separation as the partial arc mode, but draw each visible front as a complete 360-degree circle.
 - Keep every wake arc color-locked to its emitter for the full trip, including faded older depths.
 - Fade and thin older paths by computed contribution strength using the $1/r$ falloff while keeping their depth index and emission time readable.
 - Let weak paths approach a thin or desaturated endpoint state below the assembly-relevance threshold, provided the wake's emitter identity remains clear from the active segment, depth row, or endpoint label.
@@ -390,6 +390,7 @@ Primary interactions:
 - Use play/pause, reset, scrubber, and keyboard frame-step controls to inspect replay time.
 - Use settings for canvas color, $c_f$ replay speed, architrino speed, weak contribution cues, and preset reset.
 - Click a live wake series to select it and show its current back-solved emission, travel, falloff, and contribution row in the compact readout.
+- Click and drag a visible positrino or electrino path line to make a smooth temporary path edit. The drag should deform the dense path samples and retained solver constraints together, then submit the edited constraints to the solver bridge on release.
 - Do not expose fixed path-history point handles, endpoint handles, retained-depth controls, or right-click insertion in v1.
 
 Secondary interactions:
@@ -398,7 +399,7 @@ Secondary interactions:
 - Click the contribution stack to highlight the path that produced that contribution.
 - Use the mouse wheel or pinch to zoom only when the pointer is over the canvas background, not while dragging an object.
 
-The runtime now implements background-only wheel and pinch zoom as viewport operations: wheel zoom anchors under the cursor, pinch zoom anchors under the initial two-finger midpoint, minimum zoom clamps back to the fitted 16:9 view, and zoom refuses to activate while dragging or when the pointer is over a selected live wake series. Former retained-point locations are treated as background because those points are no longer canvas objects.
+The runtime now implements background-only wheel and pinch zoom as viewport operations: wheel zoom anchors under the cursor, pinch zoom anchors under the initial two-finger midpoint, minimum zoom clamps back to the fitted 16:9 view, and zoom refuses to activate while dragging or when the pointer is over a selected live wake series. Former retained-point locations are no longer fixed canvas objects; if the pointer is on the visible path stroke, the path line is the direct-edit target.
 
 ## Controls
 
@@ -617,7 +618,7 @@ Each solver run should also carry a compact setup record:
 - `empty_active_wake_summary` - When the current replay time is too early to back-solve a visible live wake series, keep the compact contribution summary available with zero counts and a `why=no_visible_wake_links` reason instead of hiding the readout or preserving stale path context.
 - `aggregate_pair_solver_diagnostic_summary` - Surface compact central pair replay diagnostics in the default feedback summary, including retained-knot guidance mode, guidance sample count, max guidance acceleration, retained-knot boundary residual count/max, and max pair-law residual, without adding a side panel.
 - `replay_source_status_chip` - Show a compact toolbar chip for `representative replay`, `solver bridge loading`, `solver pair replay`, `solver bridge replay`, `solver seed replay`, `representative fallback`, and `draft preview` so the operator can tell which data source is currently driving the canvas.
-- `live_wake_series_backsolve` - Draw one live wake series per architrino. For each replay frame, sample the partner's current path position, back-solve the latest emission point on the source path satisfying the causal-delay equation, and draw the fixed-front emitter-colored series from that trailing source point to the current receiver point.
+- `live_wake_series_backsolve` - Draw one live wake series per architrino. For each replay frame, sample the partner's current path position, back-solve the latest emission point on the source path satisfying the causal-delay equation, and draw the fixed-separation emitter-colored series from that trailing source point to the current receiver point.
 - `wake_arrival_animation` - Animate source motion and dotted causal-wake arcs by changing the back-solved source and current receiver endpoints each frame, without particle-like markers on wake paths.
 - `wake_receiver_arrival_sync` - Treat the final front of each live wake series as continuously received at the partner's current path position. Do not snap skipped animation frames to retained receiver points; retained delayed-hit times remain diagnostics rather than the canvas arrival schedule.
 - `hidden_retained_history_markers` - Keep retained path-history samples in the replay and solver data, but do not draw them as visible numbered path markers or expose them as canvas hit targets.
@@ -633,7 +634,7 @@ Each solver run should also carry a compact setup record:
 - `stale_solver_draft_state` - When a draft path edit changes geometry that has solver diagnostics attached, mark those wake rows `stale` so prior solver hits remain visible as context but no longer count as current solved contributions.
 - `path_history_handle_removal` - Remove fixed retained path-history dots, numeric labels, start/end handles, and history-point hit testing from the runtime canvas.
 - `initial_velocity_scripted_preview` - Keep initial-velocity edit support as a scripted/review path through the central replay adapter, while the visible v1 UI uses the compact architrino-speed setting rather than a canvas velocity handle.
-- `background_only_wheel_and_pinch_zoom` - Add background-only canvas wheel and pinch zoom. Wheel zoom anchors under the cursor; pinch zoom anchors under the initial two-finger midpoint; both clamp back to the fitted 16:9 composition at minimum zoom and refuse to activate over live wake series or active drags. Former retained-point locations are treated as background. The zoom is a viewport-only operation and does not change replay data, solver requests, wake timing, or contribution math.
+- `background_only_wheel_and_pinch_zoom` - Add background-only canvas wheel and pinch zoom. Wheel zoom anchors under the cursor; pinch zoom anchors under the initial two-finger midpoint; both clamp back to the fitted 16:9 composition at minimum zoom and refuse to activate over live wake series or active drags. Former retained-point locations are not fixed point handles; they are background unless the pointer is on the visible editable path stroke. The zoom is a viewport-only operation and does not change replay data, solver requests, wake timing, or contribution math.
 - `direct_edit_rejection_diagnostics` - If a central replay rerun rejects a scripted retained-constraint edit or velocity state, keep the edited draft on the canvas, show `solver rejected edit` in the status chip, and surface the compact rejection reason in the current readout instead of replacing the edit with the representative fallback.
 - `context_reception_point_insert_removed` - Remove the canvas context-menu path insertion gesture and the proof that expected renumbered retained points. Retained samples are not user-addable in v1.
 - `drag_to_solver_loop` - Keep the solver submission loop for scripted retained constraints and velocity review hooks. Visible v1 interaction stays focused on replay, settings, wake selection, and keyboard/scrubber timing; the remaining physical-solver work is tracked by `central_solver_runtime_switch`.

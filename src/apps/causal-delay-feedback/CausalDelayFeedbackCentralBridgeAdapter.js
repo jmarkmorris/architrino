@@ -71,6 +71,7 @@ const SPACE_AXIS_TOP_Y = DESIGN_HEIGHT * 0.2;
 const SPACE_AXIS_BOTTOM_Y = DESIGN_HEIGHT * 0.8;
 const PATH_CONSTRAINT_DRAFT_REASONS = new Set([
   "retained_point_drag_preview",
+  "path_line_drag_preview",
 ]);
 const ARCHITRINO_KINDS = Object.freeze(["positrino", "electrino"]);
 const PATH_KEYS_BY_KIND = Object.freeze({ positrino: 1, electrino: 2 });

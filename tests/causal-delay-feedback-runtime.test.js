@@ -86,6 +86,35 @@ function assertNear(actual, expected, epsilon = 1e-9) {
   assert.ok(Math.abs(actual - expected) <= epsilon, `${actual} should be near ${expected}`);
 }
 
+function getTimingDistance(timing, link = null) {
+  if (timing?.source && timing?.receiver) {
+    return Math.hypot(timing.receiver.x - timing.source.x, timing.receiver.y - timing.source.y);
+  }
+  const linkDistance = Number(link?.distance);
+  return Number.isFinite(linkDistance) ? linkDistance : Number.NaN;
+}
+
+function getWakeFrontDistances(runtime, timing, link = null) {
+  const distance = getTimingDistance(timing, link);
+  return runtime.getWakeFrontProgresses(timing, link).map((progress) => progress * distance);
+}
+
+function assertConstantWakeFrontSeparation(frontDistances, totalDistance) {
+  assert(frontDistances.length > 0);
+  assertNear(frontDistances.at(-1), totalDistance, 1e-6);
+  const standardSpacing = frontDistances[0];
+  assert(standardSpacing > 0);
+  for (let index = 1; index < frontDistances.length - 1; index += 1) {
+    assertNear(frontDistances[index] - frontDistances[index - 1], standardSpacing, 1e-6);
+  }
+  if (frontDistances.length > 1) {
+    const finalSpacing = frontDistances.at(-1) - frontDistances.at(-2);
+    assert(finalSpacing > 0);
+    assert(finalSpacing <= standardSpacing + 1e-6);
+  }
+  return standardSpacing;
+}
+
 function createArcRecordingContext() {
   return {
     arcs: [],
@@ -144,6 +173,27 @@ test("causal delay feedback readout summarizes selected path history point", () 
       "older",
       `vx=${condition.vx.toFixed(1)}`,
       `vy=${condition.vy.toFixed(1)}`,
+    ],
+  );
+});
+
+test("causal delay feedback readout summarizes selected path line", () => {
+  const { runtime, readout } = createRuntimeForReadout();
+  const point = runtime.dataset.paths.positrino[75];
+  const hit = runtime.createPathLineHit("positrino", point.t, 0);
+
+  runtime.selectedItem = hit.selection;
+  runtime.updateReadout(hit);
+
+  assert.equal(readout.hidden, false);
+  assert.deepEqual(
+    readout.children.map((child) => child.textContent),
+    [
+      "positrino path",
+      `t=${point.t.toFixed(2)}`,
+      `x=${Math.round(point.x)}`,
+      `y=${Math.round(point.y)}`,
+      "drag=path",
     ],
   );
 });
@@ -712,7 +762,7 @@ test("causal delay feedback aggregate summary excludes rejected solver links", (
   assert.equal(readoutText.includes("rejected=1"), false);
 });
 
-test("causal delay feedback wake-front cadence is fixed and not preset configurable", () => {
+test("causal delay feedback wake-front separation is fixed and not preset configurable", () => {
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
     window: fakeWindow,
@@ -723,21 +773,34 @@ test("causal delay feedback wake-front cadence is fixed and not preset configura
       location: { href: "http://localhost/causal-delay-feedback.html?preset=contrast_stress&replay=mock" },
     },
   });
-  const link = runtime.dataset.wakeLinks[0];
-  const contrastLink = contrastRuntime.dataset.wakeLinks[0];
-  const receiverPoint = runtime.dataset.history[link.receiverKind].find((point) => point.depth === link.receiverDepth);
-  const contrastReceiverPoint = contrastRuntime.dataset.history[contrastLink.receiverKind].find(
-    (point) => point.depth === contrastLink.receiverDepth,
-  );
+  const replayTime = 0.25;
+  const link = runtime.getVisibleWakeSeries(replayTime)[0];
+  const contrastLink = contrastRuntime.getVisibleWakeSeries(replayTime)[0];
+  const timing = runtime.getWakeTiming(link, replayTime);
+  const contrastTiming = contrastRuntime.getWakeTiming(contrastLink, replayTime);
+  const frontDistances = getWakeFrontDistances(runtime, timing, link);
+  const contrastFrontDistances = getWakeFrontDistances(contrastRuntime, contrastTiming, contrastLink);
+  const shortTiming = {
+    liveWakeSeries: true,
+    source: { x: 0, y: 0 },
+    receiver: { x: 72, y: 0 },
+  };
+  const longTiming = {
+    liveWakeSeries: true,
+    source: { x: 0, y: 0 },
+    receiver: { x: 180, y: 0 },
+  };
+  const shortFronts = runtime.getWakeFrontProgresses(shortTiming);
+  const longFronts = runtime.getWakeFrontProgresses(longTiming);
 
   assert(PRESETS.every((preset) => !("wakeBands" in preset)));
-  assert.equal(runtime.getWakeFrontProgresses(runtime.getWakeTiming(link, receiverPoint.t)).length, 12);
-  assert.equal(
-    contrastRuntime.getWakeFrontProgresses(
-      contrastRuntime.getWakeTiming(contrastLink, contrastReceiverPoint.t),
-    ).length,
-    12,
+  const spacing = assertConstantWakeFrontSeparation(frontDistances, getTimingDistance(timing, link));
+  assertNear(
+    assertConstantWakeFrontSeparation(contrastFrontDistances, getTimingDistance(contrastTiming, contrastLink)),
+    spacing,
+    1e-6,
   );
+  assert(longFronts.length > shortFronts.length);
 });
 
 test("causal delay feedback live wake series back-solves one emission point per architrino", () => {
@@ -763,7 +826,7 @@ test("causal delay feedback live wake series back-solves one emission point per 
     assertNear(distance, causalDistance, 1e-3);
     assert.equal(timing.liveWakeSeries, true);
     assert.equal(timing.progress, 1);
-    assert.equal(runtime.getWakeFrontProgresses(timing).length, 12);
+    assertConstantWakeFrontSeparation(getWakeFrontDistances(runtime, timing, link), distance);
   });
 });
 
@@ -1234,6 +1297,23 @@ test("causal delay feedback does not expose a Virtual Observer handle", () => {
   assert.equal(hits.some((hit) => hit.type === "virtual-observer"), false);
 });
 
+test("causal delay feedback exposes visible path lines only for path editing hits", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  const point = runtime.dataset.paths.electrino[80];
+  const screen = runtime.worldToScreen(point);
+
+  const defaultHit = runtime.findNearestHit(screen);
+  const pathHit = runtime.findNearestHit(screen, { includePaths: true });
+
+  assert.equal(defaultHit, null);
+  assert.equal(pathHit.type, "path-line");
+  assert.equal(pathHit.selection.kind, "electrino");
+  assertNear(pathHit.selection.anchorT, point.t, 0.01);
+});
+
 test("causal delay feedback wheel zoom anchors on empty canvas background", () => {
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
@@ -1381,7 +1461,7 @@ test("causal delay feedback pinch state clears as touch pointers release", () =>
   assert.equal(runtime.pinchState, null);
 });
 
-test("causal delay feedback pinch can start over removed history point positions", () => {
+test("causal delay feedback path line drag can start over removed history point positions", () => {
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
     window: fakeWindow,
@@ -1408,9 +1488,10 @@ test("causal delay feedback pinch can start over removed history point positions
   });
 
   assert.equal(prevented, true);
-  assert.equal(runtime.backgroundPointers.size, 1);
+  assert.equal(runtime.backgroundPointers.size, 0);
   assert.equal(runtime.pinchState, null);
-  assert.equal(runtime.dragState, null);
+  assert.equal(runtime.dragState.type, "path-line");
+  assert.equal(runtime.dragState.kind, "positrino");
 });
 
 test("causal delay feedback runtime loads an async bridge replay over the mock fallback", async () => {
@@ -2571,6 +2652,83 @@ test("causal delay feedback does not expose path-history insertion entry points"
   assert.equal(runtime.findNearestPathInsertion, undefined);
 });
 
+test("causal delay feedback path line drag deforms the visible path without adding fixed points", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  const path = runtime.dataset.paths.electrino;
+  const anchorIndex = 90;
+  const anchor = path[anchorIndex];
+  const before = {
+    anchorX: anchor.x,
+    anchorY: anchor.y,
+    neighborY: path[anchorIndex + 4].y,
+    farStartX: path[0].x,
+    farStartY: path[0].y,
+    historyLength: runtime.dataset.history.electrino.length,
+    liveY: runtime.getReplayPathPoint("electrino", anchor.t).y,
+  };
+
+  const didEdit = runtime.applyPathLineDrag("electrino", anchor.t, { x: 28, y: -42 });
+
+  assert.equal(didEdit, true);
+  assert.equal(anchor.x, before.anchorX + 28);
+  assert.equal(anchor.y, before.anchorY - 42);
+  assert(path[anchorIndex + 4].y < before.neighborY);
+  assert.equal(path[0].x, before.farStartX);
+  assert.equal(path[0].y, before.farStartY);
+  assert.equal(runtime.dataset.history.electrino.length, before.historyLength);
+  assert(runtime.getReplayPathPoint("electrino", anchor.t).y < before.liveY);
+  assert.equal(runtime.dataset.datasetSource, DIRECT_MANIPULATION_DRAFT_PREVIEW);
+  assert.equal(runtime.dataset.draftPreview.reason, "path_line_drag_preview");
+  assert.equal(runtime.replayRequestOptions.replayDataset, runtime.dataset);
+});
+
+test("causal delay feedback pointer drag on path line updates the path preview", () => {
+  const readout = new FakeElement();
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  runtime.dom = {
+    canvas: {
+      getBoundingClientRect: () => ({ left: 0, top: 0 }),
+      setPointerCapture() {},
+    },
+    readout,
+  };
+  runtime.render = () => {};
+  const anchor = runtime.dataset.paths.positrino[60];
+  const beforeY = anchor.y;
+  const screen = runtime.worldToScreen(anchor);
+  let prevented = false;
+
+  runtime.handleCanvasPointerDown({
+    pointerId: 7,
+    pointerType: "mouse",
+    clientX: screen.x,
+    clientY: screen.y,
+    preventDefault() {
+      prevented = true;
+    },
+  });
+  runtime.handleCanvasPointerMove({
+    pointerId: 7,
+    pointerType: "mouse",
+    clientX: screen.x,
+    clientY: screen.y - 30,
+    preventDefault() {},
+  });
+
+  assert.equal(prevented, true);
+  assert.equal(runtime.dragState.type, "path-line");
+  assert.equal(runtime.dragState.didEdit, true);
+  assert(anchor.y < beforeY);
+  assert.equal(runtime.dataset.draftPreview.reason, "path_line_drag_preview");
+  assert.equal(readout.hidden, false);
+});
+
 test("causal delay feedback retained point drag deforms the path and updates wake endpoints", () => {
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
@@ -2915,6 +3073,43 @@ test("causal delay feedback final path point release submits central replay cons
 
   assert.equal(capturedRequestOptions.replayDataset.draftPreview.reason, "retained_point_drag_preview");
   assert.equal(capturedRequestOptions.replayDataset.history.electrino.at(-1).x, runtime.dataset.history.electrino.at(-1).x);
+  assert.equal(capturedRequestOptions.pathConstraintBoundaryRelaxationIterationCount, 256);
+  assert.equal(capturedRequestOptions.pathConstraintBoundaryRelaxationTolerance, 1);
+  assert.equal(runtime.dataset.datasetSource, CENTRAL_SOLVER_REPLAY_DATASET_SOURCE);
+  assert.equal(replayStatus.textContent, "solver bridge replay");
+});
+
+test("causal delay feedback path line release submits central replay constraints", async () => {
+  const replayStatus = new FakeElement();
+  let capturedRequestOptions = null;
+  const adapter = {
+    id: CENTRAL_SOLVER_REPLAY_ADAPTER,
+    async createReplayAsync({ presetId, requestOptions }) {
+      capturedRequestOptions = requestOptions;
+      return {
+        ...createMockCausalDelayReplayDataset(presetId),
+        history: requestOptions.replayDataset.history,
+        wakeLinks: requestOptions.replayDataset.wakeLinks,
+        initialConditions: requestOptions.initialConditions,
+        datasetSource: CENTRAL_SOLVER_REPLAY_DATASET_SOURCE,
+        solverIntegrationPath: CENTRAL_SOLVER_REPLAY_ADAPTER,
+      };
+    },
+  };
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+    replayAdapter: adapter,
+    autoLoadReplay: false,
+  });
+  runtime.dom = { replayStatus };
+  const anchor = runtime.dataset.paths.positrino[82];
+
+  runtime.applyPathLineDrag("positrino", anchor.t, { x: 26, y: -31 });
+  runtime.dragState = { type: "path-line", kind: "positrino", anchorT: anchor.t, didEdit: true };
+  await runtime.finishDrag();
+
+  assert.equal(capturedRequestOptions.replayDataset.draftPreview.reason, "path_line_drag_preview");
   assert.equal(capturedRequestOptions.pathConstraintBoundaryRelaxationIterationCount, 256);
   assert.equal(capturedRequestOptions.pathConstraintBoundaryRelaxationTolerance, 1);
   assert.equal(runtime.dataset.datasetSource, CENTRAL_SOLVER_REPLAY_DATASET_SOURCE);

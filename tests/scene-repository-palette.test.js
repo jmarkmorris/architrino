@@ -327,6 +327,9 @@ test("markdown split grid gap options propagate to runtime config", async () => 
         layout: {
           type: "grid",
         },
+        view: {
+          fit: "viewport",
+        },
         source: {
           type: "markdown",
           path: "content/markdown/example.md",
@@ -346,7 +349,9 @@ test("markdown split grid gap options propagate to runtime config", async () => 
   assert.equal(config.splitGridGapMultiplier, 2);
   assert.equal(config.splitGridSpacing, 4.75);
   assert.equal(config.splitNodeRadius, 1.76);
+  assert.equal(config.viewportFit, "viewport");
   assert.equal(capturedScene?.splitGridGapMultiplier, 2);
   assert.equal(capturedScene?.splitGridSpacing, 4.75);
   assert.equal(capturedScene?.splitNodeRadius, 1.76);
+  assert.equal(capturedScene?.viewportFit, "viewport");
 });

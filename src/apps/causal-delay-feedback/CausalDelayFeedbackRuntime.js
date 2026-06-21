@@ -49,10 +49,12 @@ const VIEWPORT_ZOOM_MIN = 1;
 const VIEWPORT_ZOOM_MAX = 3;
 const WHEEL_ZOOM_SENSITIVITY = 0.0015;
 const WAKE_FRONT_CADENCE_TIME_DIVISIONS = 144;
-const LIVE_WAKE_FRONT_COUNT = 12;
+const LIVE_WAKE_FRONT_SPACING = 18;
 const LIVE_WAKE_ROOT_SCAN_STEPS = 96;
 const LIVE_WAKE_ROOT_REFINE_STEPS = 32;
 const DEFAULT_LIVE_WAKE_SIGNAL_SPEED = 3000;
+const PATH_LINE_HIT_RADIUS = 18;
+const PATH_LINE_DRAG_FALLOFF_TIME = 0.32;
 const CENTRAL_PAIR_INTERACTION_REPLAY_MODE = "pairInteraction";
 const BOUNDARY_SEEDED_CONSTRAINT_PATH_STATUS = "boundary_seeded_constraint_path";
 const DISCRETE_BOUNDARY_VALUE_CONVERGED_STATUS = "discrete_boundary_value_converged";
@@ -65,6 +67,7 @@ const WEAK_CONTRIBUTION_CUE_OFF = "off";
 const WEAK_CONTRIBUTION_CUE_THRESHOLD_ONLY = "threshold_only";
 const PATH_CONSTRAINT_DRAFT_REASONS = new Set([
   "retained_point_drag_preview",
+  "path_line_drag_preview",
 ]);
 const SPACE_KEYS = new Set([" ", "Space", "Spacebar"]);
 const REPLAY_STEP_KEYS = Object.freeze({
@@ -2356,6 +2359,9 @@ class CausalDelayFeedbackRuntime {
       if (this.dragState.type === "initial-velocity") {
         this.dragSelectedInitialVelocity(event);
       }
+      if (this.dragState.type === "path-line") {
+        this.dragSelectedPathLine(event);
+      }
       return;
     }
     if (this.backgroundPointers.has(this.pointerKey(event))) {
@@ -2365,7 +2371,7 @@ class CausalDelayFeedbackRuntime {
 
   handleCanvasPointerDown(event) {
     const screen = this.canvasScreenPointFromEvent(event);
-    const hit = this.findNearestHit(screen, { includeWakes: true });
+    const hit = this.findNearestHit(screen, { includeWakes: true, includePaths: true });
     if (!hit) {
       this.selectedItem = null;
       this.updateReadout();
@@ -2378,6 +2384,9 @@ class CausalDelayFeedbackRuntime {
     this.updateReadout(hit);
     if (hit.type === "initial-velocity") {
       this.startInitialVelocityDrag(event, hit);
+    }
+    if (hit.type === "path-line") {
+      this.startPathLineDrag(event, hit);
     }
     this.render();
   }
@@ -2475,6 +2484,38 @@ class CausalDelayFeedbackRuntime {
     }
   }
 
+  startPathLineDrag(event, hit) {
+    this.clearBackgroundPointers();
+    const screen = this.canvasScreenPointFromEvent(event);
+    this.dragState = {
+      type: "path-line",
+      kind: hit.selection.kind,
+      anchorT: hit.selection.anchorT,
+      lastWorld: this.screenToWorld(screen),
+      didEdit: false,
+    };
+    this.setPlaying(false);
+    if (typeof this.dom.canvas.setPointerCapture === "function") {
+      this.dom.canvas.setPointerCapture(event.pointerId);
+    }
+    event.preventDefault?.();
+  }
+
+  dragSelectedPathLine(event) {
+    const screen = this.canvasScreenPointFromEvent(event);
+    const world = this.screenToWorld(screen);
+    const delta = {
+      x: world.x - this.dragState.lastWorld.x,
+      y: world.y - this.dragState.lastWorld.y,
+    };
+    this.dragState.lastWorld = world;
+    if (this.applyPathLineDrag(this.dragState.kind, this.dragState.anchorT, delta)) {
+      this.dragState.didEdit = true;
+      this.updateReadout();
+      this.render();
+    }
+  }
+
   finishDrag(event = null) {
     this.releaseCanvasPointer(event);
     const completedDrag = this.dragState;
@@ -2492,7 +2533,7 @@ class CausalDelayFeedbackRuntime {
     if (completedDrag.type === "initial-velocity") {
       return true;
     }
-    return completedDrag.type === "history";
+    return completedDrag.type === "history" || completedDrag.type === "path-line";
   }
 
   rerunAfterDirectManipulationDrag() {
@@ -2513,6 +2554,17 @@ class CausalDelayFeedbackRuntime {
     this.updateWakeLinkGeometry();
     this.syncReplayRequestOptionsFromDataset();
     this.markDraftPreview("retained_point_drag_preview");
+    return true;
+  }
+
+  applyPathLineDrag(kind, anchorT, delta) {
+    const didEdit = this.deformPathAroundPathTime(kind, anchorT, delta);
+    if (!didEdit) {
+      return false;
+    }
+    this.updateWakeLinkGeometry();
+    this.syncReplayRequestOptionsFromDataset();
+    this.markDraftPreview("path_line_drag_preview");
     return true;
   }
 
@@ -2748,6 +2800,63 @@ class CausalDelayFeedbackRuntime {
     this.rebuildSmoothPathFromHistory(kind);
     this.syncInitialConditionToHistoryStart(kind, selectedPoint);
     return true;
+  }
+
+  deformPathAroundPathTime(kind, anchorT, delta) {
+    if (!delta || (delta.x === 0 && delta.y === 0)) {
+      return false;
+    }
+    const path = this.dataset?.paths?.[kind];
+    if (!Array.isArray(path) || path.length === 0) {
+      return false;
+    }
+    const pathPointSet = new Set(path);
+    let didEdit = false;
+    const applyDelta = (point, fallbackT = point?.t) => {
+      if (!point) {
+        return;
+      }
+      const weight = this.getPathLineDragWeight(anchorT, fallbackT);
+      if (weight <= 0) {
+        return;
+      }
+      point.x += delta.x * weight;
+      point.y += delta.y * weight;
+      didEdit = true;
+    };
+
+    path.forEach((point) => {
+      applyDelta(point, point.t);
+    });
+    (this.dataset?.frames ?? []).forEach((frame) => {
+      const point = frame?.[kind];
+      if (!point || pathPointSet.has(point)) {
+        return;
+      }
+      applyDelta(point, Number.isFinite(Number(point.t)) ? point.t : frame.t);
+    });
+    (this.dataset?.history?.[kind] ?? []).forEach((point) => {
+      applyDelta(point, point.t);
+    });
+    const startPoint = this.getHistoryStartPoint(kind);
+    if (startPoint) {
+      this.syncInitialConditionToHistoryStart(kind, startPoint);
+    }
+    return didEdit;
+  }
+
+  getPathLineDragWeight(anchorT, sampleT) {
+    const anchor = Number(anchorT);
+    const sample = Number(sampleT);
+    if (!Number.isFinite(anchor) || !Number.isFinite(sample)) {
+      return 0;
+    }
+    const normalizedDistance = Math.abs(sample - anchor) / PATH_LINE_DRAG_FALLOFF_TIME;
+    if (normalizedDistance >= 1) {
+      return 0;
+    }
+    const amount = 1 - normalizedDistance;
+    return amount * amount * (3 - 2 * amount);
   }
 
   rebuildSmoothPathFromHistory(kind) {
@@ -3037,7 +3146,7 @@ class CausalDelayFeedbackRuntime {
       return [];
     }
     if (link?.liveWakeSeries || timing.liveWakeSeries) {
-      return Array.from({ length: LIVE_WAKE_FRONT_COUNT }, (_unused, index) => (index + 1) / LIVE_WAKE_FRONT_COUNT);
+      return this.getLiveWakeFrontProgresses(timing, link);
     }
     const duration = timing.receiverT - timing.sourceT;
     if (!Number.isFinite(duration) || duration <= 0) {
@@ -3060,6 +3169,26 @@ class CausalDelayFeedbackRuntime {
       progresses.push(1);
     }
     return progresses;
+  }
+
+  getLiveWakeFrontProgresses(timing, link = null) {
+    const endpointDistance =
+      timing?.source && timing?.receiver ? getDistance(timing.source, timing.receiver) : Number.NaN;
+    const linkDistance = Number(link?.distance);
+    const distance =
+      Number.isFinite(endpointDistance) && endpointDistance > 0
+        ? endpointDistance
+        : Number.isFinite(linkDistance) && linkDistance > 0
+          ? linkDistance
+          : Number.NaN;
+    if (!Number.isFinite(distance) || distance <= 0) {
+      return [];
+    }
+    const frontCount = Math.max(1, Math.ceil(distance / LIVE_WAKE_FRONT_SPACING));
+    return Array.from({ length: frontCount }, (_unused, index) => {
+      const frontDistance = Math.min(distance, (index + 1) * LIVE_WAKE_FRONT_SPACING);
+      return clamp(frontDistance / distance, 0, 1);
+    });
   }
 
   shouldDrawWakeSeries(timing) {
@@ -3195,6 +3324,9 @@ class CausalDelayFeedbackRuntime {
       const link = this.getVisibleWakeSeries().find((candidate) => candidate.id === this.selectedItem.linkId);
       return link ? this.createWakeHit(link, 0) : null;
     }
+    if (this.selectedItem?.type === "path-line") {
+      return this.createPathLineHit(this.selectedItem.kind, this.selectedItem.anchorT, 0);
+    }
     return null;
   }
 
@@ -3235,8 +3367,16 @@ class CausalDelayFeedbackRuntime {
     };
   }
 
-  findNearestHit(screen, { includeWakes = false } = {}) {
+  findNearestHit(screen, { includeWakes = false, includePaths = false } = {}) {
     const candidates = [];
+    if (includePaths) {
+      ARCHITRINO_KINDS.forEach((kind) => {
+        const hit = this.findNearestPathLineHit(kind, screen);
+        if (hit) {
+          candidates.push(hit);
+        }
+      });
+    }
     if (includeWakes) {
       this.getVisibleWakeSeries().forEach((link) => {
         const endpoints = this.getWakeEndpoints(link);
@@ -3253,6 +3393,60 @@ class CausalDelayFeedbackRuntime {
     }
     const nearest = candidates.sort((a, b) => a.distance - b.distance)[0];
     return nearest && nearest.distance <= nearest.hitRadius ? nearest : null;
+  }
+
+  findNearestPathLineHit(kind, screen) {
+    const path = this.dataset?.paths?.[kind] ?? [];
+    if (path.length < 2) {
+      return null;
+    }
+    let nearest = null;
+    for (let index = 1; index < path.length; index += 1) {
+      const left = path[index - 1];
+      const right = path[index];
+      const projection = this.getScreenSegmentProjection(
+        screen,
+        this.worldToScreen(left),
+        this.worldToScreen(right),
+      );
+      if (!projection || (nearest && projection.distance >= nearest.distance)) {
+        continue;
+      }
+      const leftT = Number(left.t);
+      const rightT = Number(right.t);
+      const anchorT =
+        Number.isFinite(leftT) && Number.isFinite(rightT)
+          ? leftT + (rightT - leftT) * projection.amount
+          : Number.isFinite(leftT)
+            ? leftT
+            : Number.isFinite(rightT)
+              ? rightT
+              : 0;
+      nearest = {
+        distance: projection.distance,
+        anchorT,
+      };
+    }
+    return nearest ? this.createPathLineHit(kind, nearest.anchorT, nearest.distance) : null;
+  }
+
+  createPathLineHit(kind, anchorT, distance) {
+    const point = this.getReplayPathPoint(kind, anchorT);
+    return {
+      type: "path-line",
+      title: `${kind} path`,
+      label: `${kind} path`,
+      details: [
+        `t=${point.t.toFixed(2)}`,
+        `x=${Math.round(Number(point.x) || 0)}`,
+        `y=${Math.round(Number(point.y) || 0)}`,
+        "drag=path",
+        ...this.createDraftSolverRejectionReadoutDetails(),
+      ],
+      distance,
+      hitRadius: PATH_LINE_HIT_RADIUS,
+      selection: { type: "path-line", kind, anchorT: point.t },
+    };
   }
 
   createHistoryHit(point, distance) {
@@ -4084,14 +4278,30 @@ class CausalDelayFeedbackRuntime {
   }
 
   getScreenDistanceToSegment(point, start, end) {
+    return this.getScreenSegmentProjection(point, start, end)?.distance ?? Number.POSITIVE_INFINITY;
+  }
+
+  getScreenSegmentProjection(point, start, end) {
     const dx = end.x - start.x;
     const dy = end.y - start.y;
     const lengthSquared = dx * dx + dy * dy;
     if (lengthSquared === 0) {
-      return Math.hypot(point.x - start.x, point.y - start.y);
+      return {
+        amount: 0,
+        x: start.x,
+        y: start.y,
+        distance: Math.hypot(point.x - start.x, point.y - start.y),
+      };
     }
     const t = clamp(((point.x - start.x) * dx + (point.y - start.y) * dy) / lengthSquared, 0, 1);
-    return Math.hypot(point.x - (start.x + dx * t), point.y - (start.y + dy * t));
+    const x = start.x + dx * t;
+    const y = start.y + dy * t;
+    return {
+      amount: t,
+      x,
+      y,
+      distance: Math.hypot(point.x - x, point.y - y),
+    };
   }
 }
 

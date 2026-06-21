@@ -18,8 +18,8 @@
       "split": {
         "headingLevel": 2,
         "maxDepth": 1,
-        "nodeRadius": 1.76,
-        "gridGapMultiplier": 2,
+        "nodeRadius": 2.15,
+        "gridGapMultiplier": 1,
         "overrides": {
           "overview": {
             "id": "research_notebook_overview",
@@ -99,7 +99,8 @@
       }
     },
     "view": {
-      "columns": 1
+      "columns": 1,
+      "fit": "viewport"
     }
   },
   "objects": []
