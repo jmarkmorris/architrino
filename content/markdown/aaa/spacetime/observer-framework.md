@@ -1,6 +1,6 @@
 # Observer Framework
 
-This chapter is the canonical home for the observer framework in $\mathbb{A}\mathbb{A}\mathbb{A}$. It distinguishes the complete ontic universe-state perspective from Physical Observers, and it states how absolute simultaneity, operational simultaneity, proper time, and effective metric descriptions fit together.
+This chapter is the canonical home for the observer framework in $\mathbb{A}\mathbb{A}\mathbb{A}$. It distinguishes the complete ontic universe-state perspective from Physical Observers, and it states how absolute simultaneity, operational simultaneity, derived clock time, and effective metric descriptions fit together.
 
 The key split is:
 
@@ -41,7 +41,7 @@ A Physical Observer has access only to:
 
 - local interactions,
 - finite-speed signals,
-- proper time measured by physical clocks,
+- derived clock time measured by physical clocks,
 - coarse-grained effective fields,
 - finite records,
 - and statistical summaries of unresolved microstate structure.
@@ -78,7 +78,7 @@ $\mathbb{A}\mathbb{A}\mathbb{A}$ uses a two-level distinction:
 | **Level** | **What It Means** | **Typical Description** |
 |:---|:---|:---|
 | Ontic | What exists and evolves in the complete microstate | Architrinos in absolute timespace with path-history dynamics |
-| Epistemic | What embedded assemblies can access and summarize | Proper time, measured distance, effective fields, wavefunctions, thermodynamic quantities |
+| Epistemic | What embedded assemblies can access and summarize | Derived clock time, measured distance, effective fields, wavefunctions, thermodynamic quantities |
 
 The ontic level is not observer-dependent. It is the complete state of the modeled world at absolute time $t$, together with the path-history information needed for deterministic continuation.
 
@@ -293,7 +293,7 @@ d_{\mathrm{ord}}\!\left(\prec_{\mathrm{eff}}(\theta),\prec_{\mathrm{GR}}\right)
 $$
 Here $d_{\mathrm{ord}}$ measures mismatch of inferred causal order on the comparison domain, the clock term supplies the missing local scale, and the preferred-frame term penalizes residual PPN drift coefficients. This is a closure target for the observer layer, not a claim that substrate spacetime is Lorentzian.
 
-A causal-set comparison adds a useful uniqueness discipline. It is not enough for Physical Observer records to fit one effective metric; the same causal-order, clock, ruler, and preferred-frame data should not also fit macroscopically distinct effective metrics at the same declared coarse-graining scale. For a scale $\ell$ and tolerance $\varepsilon$, let $\mathcal{G}_{\ell,\varepsilon}(\theta)$ be the family of GR comparison metrics on the domain whose coarse-grained causal-order and clock/ruler diagnostics satisfy $\mathcal{R}_{\mathrm{causal}}(\theta;g)\le\varepsilon$, using the same residual above with $g$ supplying the target causal order and proper-time terms. Define the effective reconstruction-uniqueness residual
+A causal-set comparison adds a useful uniqueness discipline. It is not enough for Physical Observer records to fit one effective metric; the same causal-order, clock, ruler, and preferred-frame data should not also fit macroscopically distinct effective metrics at the same declared coarse-graining scale. For a scale $\ell$ and tolerance $\varepsilon$, let $\mathcal{G}_{\ell,\varepsilon}(\theta)$ be the family of GR comparison metrics on the domain whose coarse-grained causal-order and clock/ruler diagnostics satisfy $\mathcal{R}_{\mathrm{causal}}(\theta;g)\le\varepsilon$, using the same residual above with $g$ supplying the target causal order and GR proper-time terms. Define the effective reconstruction-uniqueness residual
 $$
 \mathcal{H}_{\mathrm{eff}}(\theta;\ell,\varepsilon)
 =
@@ -317,7 +317,7 @@ Small process-table mismatch with large $\mathcal{R}_{\mathrm{causal}}$ is a war
 
 ## Physical Observer Clocks and Rulers
 
-A Physical Observer clock measures **proper time** $\tau$, not the substrate parameter $t$ directly. A ruler is likewise an assembly whose measured length depends on its internal dynamics and medium coupling.
+A Physical Observer clock measures **derived clock time** $\tau$ (standard bridge term: proper time), not the substrate parameter $t$ directly. A ruler is likewise an assembly whose measured length depends on its internal dynamics and medium coupling. In this observer-layer use, `proper` means clock-carried in the relativity comparison sense; it does not mean substrate-level or exemplary time.
 
 This page does not own the clock law. Once a discussion asks how an internal clock frequency changes with velocity, Noether sea density, effective potential, or clock geometry, use [Proper Time and Time Dilation](proper-time-and-time-dilation.md).
 

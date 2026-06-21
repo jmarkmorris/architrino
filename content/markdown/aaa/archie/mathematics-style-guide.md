@@ -58,7 +58,7 @@ Plain language: Objects move as dots in 3D through successive instants; speeds a
 - Field speed is $v$; by default we non-dimensionalize to $v=1$.
 - Causal-time condition (CT):
   $$
-  \tau = t - t_0,\quad r = \|\mathbf{s}_{o'}(t) - \mathbf{s}_j(t_0)\|,\quad r = v\,\tau
+  \Delta_{o'j}=t-t_0,\quad r = \|\mathbf{s}_{o'}(t) - \mathbf{s}_j(t_0)\|,\quad r = v\,\Delta_{o'j}
   $$
 - Causal set:
   $$
@@ -66,7 +66,7 @@ Plain language: Objects move as dots in 3D through successive instants; speeds a
   $$
 - Conventions:
   - $H(0)=0$ (no instantaneous self-kick).
-  - No $r=0$ causal roots beyond $\tau=0$: because $r = v(t - t_0)$, $r=0$ implies $\tau=0$; the $\tau=0$ case is excluded by $H(0)=0$. Under mollification, the symmetric limit as $r\to 0$ yields zero net push.
+  - No $r=0$ causal roots beyond $\Delta_{o'j}=0$: because $r = v(t - t_0)$, $r=0$ implies $\Delta_{o'j}=0$; that coincident-time case is excluded by $H(0)=0$. Under mollification, the symmetric limit as $r\to 0$ yields zero net push.
 
 Plain language: A push now only happens if a past causal wake surface has had exactly enough time to reach the receiver.
 
@@ -80,14 +80,14 @@ Plain language: A push now only happens if a past causal wake surface has had ex
   $$
 -- Expanding causal wake surface at speed v:
   $$
-  \rho(t,\mathbf{s}) = \frac{q}{4\pi r^2}\,\delta(r - v\,\tau)\,H(\tau),\quad r=\|\mathbf{s}-\mathbf{s}_0\|,\ \tau=t-t_0
+  \rho(t,\mathbf{s}) = \frac{q}{4\pi r^2}\,\delta(r - v\,\Delta)\,H(\Delta),\quad r=\|\mathbf{s}-\mathbf{s}_0\|,\ \Delta=t-t_0
   $$
   $$
-  \rho = \frac{q}{4\pi r^2}\,\delta_{S_{v\tau}}(\mathbf{s}-\mathbf{s}_0)\,H(\tau)
+  \rho = \frac{q}{4\pi r^2}\,\delta_{S_{v\Delta}}(\mathbf{s}-\mathbf{s}_0)\,H(\Delta)
   $$
 - Regularization:
   $$
-  \delta(r - v\,\tau)\ \to\ \delta_\eta(r - v\,\tau) \;=\; \frac{1}{\sqrt{2\pi}\,\eta}\,\exp\!\Big(\!-\frac{(r - v\,\tau)^2}{2\,\eta^2}\Big)
+  \delta(r - v\,\Delta)\ \to\ \delta_\eta(r - v\,\Delta) \;=\; \frac{1}{\sqrt{2\pi}\,\eta}\,\exp\!\Big(\!-\frac{(r - v\,\Delta)^2}{2\,\eta^2}\Big)
   $$
   - Use $\eta$ > 0 when differentiability is required; take $\eta$ → 0 limits in the weak/integrated sense.
 
@@ -123,9 +123,9 @@ $$
 
 DDE view: let state $x = (\mathbf{s}, \mathbf{v})$. With $\eta>0$ regularization, the dynamics admit a causal functional form
 $$
-\frac{d x}{d t} = F\big(x(t), \{x_j(t - \tau_j)\}_j, t\big)
+\frac{d x}{d t} = F\big(x(t), \{x_j(t - \Delta_j)\}_j, t\big)
 $$
-with $\tau_j$ determined implicitly by $\|\mathbf{s}(t)-\mathbf{s}_j(t-\tau_j)\| = v\,\tau_j$, and per-hit contributions summed over all roots. In the $\eta\to 0$ limit interpret in the weak sense.
+with $\Delta_j$ determined implicitly by $\|\mathbf{s}(t)-\mathbf{s}_j(t-\Delta_j)\| = v\,\Delta_j$, and per-hit contributions summed over all roots. In the $\eta\to 0$ limit interpret in the weak sense.
 
 Notes:
 - Emission cadence and per-wavefront amplitude are constant at the source; the received force magnitude is modulated by the Jacobian factor $|J|^{-1}$.

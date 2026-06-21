@@ -46,13 +46,22 @@ $$
 \qquad\text{or}\qquad
 \|\mathbf{d}_1\times\mathbf{d}_2\|=0
 $$
+For simulation and finite-precision reconstruction, exact nondegeneracy is not enough. The ordered tuple should also carry a conditioning floor
+$$
+\frac{\|\mathbf{d}_1\times\mathbf{d}_2\|}
+{\|\mathbf{d}_1\|\,\|\mathbf{d}_2\|}
+\ge
+\sin\theta_{\min} > 0
+$$
+on the retained reconstruction window. If this floor is small, the projection defining $\hat{\mathbf{y}}$ is ill-conditioned and the completed $\hat{\mathbf{z}}$ amplifies roundoff or perturbation error. The simulator should then choose a better-conditioned tuple rather than treating the near-collinear basis as an ordinary pass.
+
 If a fourth architrino $C$ is introduced, it is non-coplanar with the first three exactly when
 $$
 \mathbf{d}_3=\mathbf{x}_C(t_\ast)-\mathbf{x}_O(t_\ast),
 \qquad
 V=\mathbf{d}_3\cdot(\mathbf{d}_1\times\mathbf{d}_2)\ne0
 $$
-The sign of $V$ selects a side of the already oriented plane. It does not by itself turn coordinate parity into a dynamical chirality claim.
+Here $V\ne0$ is the structural non-coplanarity test for basis completion. The sign $\operatorname{sgn}V$ only reports which side of the already oriented plane the marker occupies relative to a declared orientation. It does not by itself turn coordinate parity into a dynamical chirality claim.
 
 This lemma is an existence claim at the complete-state level. It does not say that the Euclidean void contains an origin or preferred axes. It says that once a nondegenerate ordered tuple is selected, the Euclidean metric supplies enough invariant structure to construct a coordinate basis for calculation.
 
@@ -65,7 +74,9 @@ The lemma above is the full construction. Complete-state bookkeeping performs fo
 3. Choose a non-collinear architrino $B$ and use the orthogonal projection of $\mathbf{d}_2$ to define $\hat{\mathbf{y}}$. This fixes the remaining continuous roll around $\hat{\mathbf{x}}$.
 4. Declare a parity convention and set $\hat{\mathbf{z}}=\hat{\mathbf{x}}\times\hat{\mathbf{y}}$, or use a non-coplanar fourth architrino only as a side marker for reporting the chosen convention.
 
-The continuous freedoms removed are translation and rotation. Absolute time zero remains a separate temporal convention. The reconstruction fails only for degenerate reference data: $\|\mathbf{d}_1\|=0$ or $\|\mathbf{d}_1\times\mathbf{d}_2\|=0$. In that case complete-state bookkeeping must choose a different ordered tuple; the failure is not a failure of the Euclidean void.
+The continuous freedoms removed are translation and rotation. Absolute time zero remains a separate temporal convention. The spatial basis does not need to be re-derived on every slice: once the chart is fixed on $\Sigma_{t_\ast}$, it transports rigidly across absolute-time slices because Euclidean-void points have fixed identity. The delayed root condition $\|\mathbf{s}_{o'}(t)-\mathbf{s}_j(s)\|=c_f(t-s)$ therefore compares positions at different times inside the same spatial chart, not inside separately reconstructed per-slice frames.
+
+The reconstruction fails only for degenerate or ill-conditioned reference data: $\|\mathbf{d}_1\|=0$, $\|\mathbf{d}_1\times\mathbf{d}_2\|=0$, or a violated conditioning floor. In that case complete-state bookkeeping must choose a different ordered tuple; the failure is not a failure of the Euclidean void.
 
 ## Parity Convention and Dynamical Chirality
 
@@ -75,7 +86,13 @@ V=\mathbf{d}_3\cdot(\mathbf{d}_1\times\mathbf{d}_2)
 $$
 with $V>0$ and $V<0$ selecting opposite sides of the plane after the orientation convention has been declared. The sign of $V$ does not turn coordinate parity into a dynamical handedness law.
 
-Dynamical chirality is reserved for ordered precession, axial-frame exposure, reaction provenance, and Noether swarm handedness. If a later assembly-level model supplies a persistent handed marker, a simulation may choose the coordinate parity convention that reports that marker with a positive sign. That is a reporting alignment, not a derivation of the marker.
+Dynamical chirality is reserved for an assembly-level handed marker carried by the retained branch record. Ordered precession, axial-frame exposure, reaction provenance, and Noether swarm handedness may feed that marker, but the deformation-stable object should be a framed topology invariant, such as framed self-linking parity
+$$
+Lk(\gamma,\gamma^{\mathrm{fr}})
+=
+\operatorname{Wr}(\gamma)+\operatorname{Tw}(\gamma)
+$$
+for a closed framed constituent trace, or the linking number of distinct constituent worldlines. If that branch record supplies a nonzero handed marker, a simulation may choose the coordinate parity convention so that $\operatorname{sgn}V$ reports the same sign as $\operatorname{sgn}(Lk)$. If the framed self-linking or linking row is zero, uncomputed, or not protected under branch-preserving deformation, the coordinate parity remains a reporting convention with no dynamical chirality content.
 
 ## Coordinate Frames Are Not Ontology
 
@@ -103,6 +120,8 @@ Physical Observers cannot directly measure the complete source-tagged wake-cente
 - **Proper time** $\tau$, not absolute time $t$
 - **Effective coordinates** via local rulers
 - **Relative velocities** via Doppler shifts and aberration
+
+The obstruction is structural: no operator acting on the superposed received potential alone recovers the source-tagged center set $\{\mathbf{z}_a(s)\}$ without provenance data already in hand. Source identity, emission time, and wake-center provenance are complete-state ledger entries; once a Physical Observer has only a summed effective record, those tags are not restored by a more clever coordinate reconstruction.
 
 The reconstruction described here is a **foundational consistency proof**: it shows the theory has the mathematical structure necessary to define absolute rest and an absolute-frame coordinate system **in principle** from complete ontic data. It does not claim that an embedded observer can perform the reconstruction directly. At accessible energies, the Lorentz-closure target is that moving-assembly deformation, clock/ruler retuning, and two-way signal synchronization bound preferred-frame leakage enough that Physical Observers cannot detect the absolute frame operationally, while the frame remains the ontological background beneath the effective geometry.
 
