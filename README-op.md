@@ -29,7 +29,7 @@ This file is the agent's living feedback backlog for improving operator/develope
 ## Clarity
 
 - [ ] Name the canonical project term when a concept has multiple nearby aliases.
-- [ ] For frequency triplet work, state canonical `I:M:O` order up front and mark `O:M:I` only as legacy translation metadata.
+- [ ] For frequency triplet work, state raw `B_1:B_2:B_3` search order up front and attach `I:M:O` only as a retained role map.
 - [ ] For solver geometry reports, state the retained physical model separately from the reduced executable chart.
 - [ ] State the intended claim level: ontology, derivation, effective summary, comparison, or speculation.
 - [ ] Attach the expected output shape to requests: patch, report, PR, checklist, proof route, or prose draft.

@@ -235,7 +235,7 @@ This is not yet an acceptance claim. The proof burden is to show that the same r
 
 ## Sampled Runner Row Population
 
-[tri-binary-offset-family-runner.mjs](../../../scripts/angular-momentum/tri-binary-offset-family-runner.mjs) now emits `aaa-tri-binary-frequency-candidate-solver-report.v27`. The v27 report exposes raw search labels `B_1:B_2:B_3`, emits `I:M:O` only as a role-assigned chart projection after a retained role map is supplied, and retains outer-normalized `O:M:I` only as legacy translation metadata. The runner includes an `equal-frequency` policy and an equal-frequency phase-profile catalog for the common-frequency relation `(f_1,f_2,f_3)=(f,f,f)`. The sampled replay
+[tri-binary-offset-family-runner.mjs](../../../scripts/angular-momentum/tri-binary-offset-family-runner.mjs) now emits `aaa-tri-binary-frequency-candidate-solver-report.v27`. The v27 report exposes raw search labels `B_1:B_2:B_3`, emits `I:M:O` only as a role-assigned chart projection after a retained role map is supplied, and retains outer-normalized forms only as translation metadata. The runner includes an `equal-frequency` policy and an equal-frequency phase-profile catalog for the common-frequency relation `(f_1,f_2,f_3)=(f,f,f)`. The sampled replay
 
 ```sh
 node scripts/angular-momentum/tri-binary-offset-family-runner.mjs --policy all --f-min 2 --f-max 8 --output .tmp/angular-momentum-spin/frequency-candidate-current-report-v27.json
@@ -329,7 +329,7 @@ The search summary now emits `aaa-tri-binary-frequency-triplet-search-summary.v2
 | Dyadic integer-lock control | $(I,M,O)=(4f,2f,f)$ | Span-only / dyadic control under the current proxy. |
 | General integer-lock controls | $(I,M,O)=(nf,mf,f)$ with $1<m<n$ | Finite $m:n$ competitor lattice; no retained competitor exclusion or acceptance. |
 
-The same review records the old-order disposition explicitly: `O:M:I` is only outer-normalized translation metadata, not the primary solver order.
+The same review records the old-order disposition explicitly: outer-normalized translation metadata is not the primary solver order.
 
 The v24 review also emits `aaa-tri-binary-frequency-triplet-comparison-axis-review.v2`. This keeps every investigated row on the same evidence axes: frequency relation, radius/velocity relation, phase relation, and retained acceptance. Under that comparison rule, equal-frequency, middle-hinge offset, symmetric offset, dyadic, and general $m:n$ controls remain live evidence rows, but none may exclude another candidate until retained row-set identity, retained phase-bundle or sector rows, wake/energy routing, angular-momentum ledger rows, and stability evidence are populated on the same retained branch record.
 

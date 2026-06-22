@@ -229,9 +229,9 @@ function createFrequencyTripletNotation() {
     roleAssignedMeaning: "inner:middle:outer after a retained branch supplies the role map",
     displayOrder: "role-assigned I:M:O",
     compatibility:
-      "Raw search rows are generic B_1:B_2:B_3 rows. I:M:O is a role-assigned chart projection after branch evidence supplies the role map. Outer-normalized O:M:I forms are legacy translation metadata only.",
+      "Raw search rows are generic B_1:B_2:B_3 rows. I:M:O is a role-assigned chart projection after branch evidence supplies the role map. Outer-normalized forms are translation metadata only.",
     legacyOuterNormalized: {
-      order: "O:M:I",
+      order: "outer:middle:inner",
       notation: "f_O:f_M:f_I",
       meaning: "outer:middle:inner with the outer frequency normalized first",
       conversion:
@@ -456,7 +456,7 @@ function createFrequencyTriplet(indices) {
     roleAssignedValues,
     roleAssignedLabel: `${indices.inner}:${indices.middle}:${indices.outer}`,
     legacyOuterNormalized: {
-      order: "O:M:I",
+      order: "outer:middle:inner",
       notation: "f_O:f_M:f_I",
       values: legacyOuterNormalizedValues,
       label: `${indices.outer}:${indices.middle}:${indices.inner}`,
@@ -43989,7 +43989,7 @@ function createFrequencyTripletCandidateSetReview({
     rawSearchLabels: GENERIC_TRI_BINARY_LABELS,
     roleAssignedOrder: "I:M:O",
     legacyOrderDisposition:
-      "O:M:I appears only as outer-normalized translation metadata; it is not the primary solver order.",
+      "Outer-normalized translation metadata is not the primary solver order.",
     comparisonAxisReview: createFrequencyTripletComparisonAxisReview(rows),
     residualMatrixReview: createFrequencyTripletResidualMatrixReview(rows),
     rows,
