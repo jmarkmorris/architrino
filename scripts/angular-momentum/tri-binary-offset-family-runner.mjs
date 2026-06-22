@@ -164,7 +164,7 @@ try {
   });
 
   const report = {
-    schema: "aaa-tri-binary-frequency-candidate-solver-report.v32",
+    schema: "aaa-tri-binary-frequency-candidate-solver-report.v33",
     generatedAt: new Date().toISOString(),
     solverBacked: true,
     claimLevel: "priority-only evidence; not retained-branch certification",
@@ -275,7 +275,7 @@ function createSolverGeometryPublicContract() {
     fixedSphereOrbitClaim: false,
     nestedShellRadiusClaim: false,
     compatibility:
-      "Old report consumers that read layers[].radius, layers[].solverGeometry.circularSourceRadius, layers[].solverGeometryRadius, geometryLiftTarget, retainedLiftTarget, or currentExecutableChart as the retained model must migrate; no compatibility shim is emitted in v32 reports.",
+      "Old report consumers that read layers[].radius, layers[].solverGeometry.circularSourceRadius, layers[].solverGeometryRadius, geometryLiftTarget, retainedLiftTarget, or currentExecutableChart as the retained model must migrate; no compatibility shim is emitted in v33 reports.",
   };
 }
 
@@ -39775,6 +39775,11 @@ function createEqualFrequencyEnergyRadiusAudit(cases) {
     createEqualFrequencyFieldSpeedHingeSliceSelectionFunctionalAudit(
       fieldSpeedHingeSliceSelectorAudit
     );
+  const sliceEnergyActionIndependenceAudit =
+    createEqualFrequencySliceEnergyActionIndependenceAudit({
+      rhoOmegaDeformationSliceAudit,
+      fieldSpeedHingeSliceSelectionFunctionalAudit,
+    });
   const actionLedgerAudit =
     createEqualFrequencyActionLedgerAudit(priorityCaseSummaries);
   const energyAngularMomentumClosureAudit =
@@ -39846,7 +39851,7 @@ function createEqualFrequencyEnergyRadiusAudit(cases) {
       retainedFrequencyPhasePacket,
     });
   return {
-    schema: "aaa-equal-frequency-energy-radius-audit.v31",
+    schema: "aaa-equal-frequency-energy-radius-audit.v32",
     claimLevel:
       "priority-only equal-frequency energy-radius-phase audit; not retained-branch certification or hbar derivation",
     priority: "high",
@@ -39877,6 +39882,7 @@ function createEqualFrequencyEnergyRadiusAudit(cases) {
     rhoOmegaDeformationSliceAudit,
     fieldSpeedHingeSliceSelectorAudit,
     fieldSpeedHingeSliceSelectionFunctionalAudit,
+    sliceEnergyActionIndependenceAudit,
     actionLedgerAudit,
     energyAngularMomentumClosureAudit,
     phaseDeformationBalanceAudit,
@@ -41110,6 +41116,274 @@ function createEqualFrequencyFieldSpeedHingeSliceSelectionFunctionalTerms(
       : null,
     targetSpeedSplitResidualSquared,
     functionalTotal,
+  };
+}
+
+function createEqualFrequencySliceEnergyActionIndependenceAudit({
+  rhoOmegaDeformationSliceAudit,
+  fieldSpeedHingeSliceSelectionFunctionalAudit,
+}) {
+  const sourceRows = rhoOmegaDeformationSliceAudit?.rows ?? [];
+  const sliceIds =
+    rhoOmegaDeformationSliceAudit?.sliceSummaries?.map((summary) => summary.sliceId) ??
+    [];
+  const rows = sourceRows.map((row) =>
+    createEqualFrequencySliceEnergyActionIndependenceRow({ row, sliceIds })
+  );
+  const sliceSummaries = sliceIds.map((sliceId) => {
+    const sliceRows = rows.map((row) => row.slices[sliceId]).filter(Boolean);
+    const unitInnerHalfPassCount = sliceRows.filter(
+      (slice) => slice.unitInertiaActionLedger.innerHalfActionPass === true
+    ).length;
+    const unitFullPartitionPassCount = sliceRows.filter(
+      (slice) => slice.unitInertiaActionLedger.fourSubstepPartitionPass === true
+    ).length;
+    const targetWeightedInertiaPassCount = sliceRows.filter(
+      (slice) =>
+        slice.targetWeightedEffectiveInertiaLedger.fourSubstepTargetPass === true
+    ).length;
+    return {
+      sliceId,
+      rowCount: sliceRows.length,
+      unitInnerHalfPassCount,
+      unitInnerHalfPass:
+        rows.length > 0 && unitInnerHalfPassCount === rows.length,
+      unitFullPartitionPassCount,
+      unitFullPartitionPass:
+        rows.length > 0 && unitFullPartitionPassCount === rows.length,
+      targetWeightedInertiaPassCount,
+      targetWeightedInertiaPass:
+        rows.length > 0 && targetWeightedInertiaPassCount === rows.length,
+      unitInnerHalfResidualStats: createFiniteStats(
+        sliceRows.map(
+          (slice) => slice.unitInertiaActionLedger.innerHalfActionResidual
+        )
+      ),
+      unitFullPartitionResidualStats: createFiniteStats(
+        sliceRows.map(
+          (slice) => slice.unitInertiaActionLedger.maxAbsFourSubstepResidual
+        )
+      ),
+      targetWeightedInertiaResidualStats: createFiniteStats(
+        sliceRows.map(
+          (slice) => slice.targetWeightedEffectiveInertiaLedger.maxAbsResidual
+        )
+      ),
+      retainedEnergyActionSelectionAcceptedCount: 0,
+    };
+  });
+  const unitInnerHalfSelectedSliceIds = sliceSummaries
+    .filter((summary) => summary.unitInnerHalfPass === true)
+    .map((summary) => summary.sliceId);
+  const unitFullPartitionSelectedSliceIds = sliceSummaries
+    .filter((summary) => summary.unitFullPartitionPass === true)
+    .map((summary) => summary.sliceId);
+  const targetWeightedInertiaSelectedSliceIds = sliceSummaries
+    .filter((summary) => summary.targetWeightedInertiaPass === true)
+    .map((summary) => summary.sliceId);
+  const hingeFunctionalMinimizerSliceIds =
+    fieldSpeedHingeSliceSelectionFunctionalAudit?.selectedMinimizerSliceIds ?? [];
+  const unitInnerHalfMatchesHingeFunctional =
+    sameStringSet(unitInnerHalfSelectedSliceIds, hingeFunctionalMinimizerSliceIds);
+  const unitFullPartitionMatchesHingeFunctional =
+    sameStringSet(unitFullPartitionSelectedSliceIds, hingeFunctionalMinimizerSliceIds);
+  const targetWeightedInertiaDiscriminatesHingeFunctional =
+    sameStringSet(
+      targetWeightedInertiaSelectedSliceIds,
+      hingeFunctionalMinimizerSliceIds
+    );
+  return {
+    schema: "aaa-equal-frequency-slice-energy-action-independence-audit.v1",
+    claimLevel:
+      "current slice energy/action independence audit; not retained energy stationarity or hbar-unit acceptance",
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
+    canonicalFamily: "I:M:O=(f,f,f)",
+    sourceRhoOmegaDeformationSliceAuditSchema:
+      rhoOmegaDeformationSliceAudit?.schema ?? null,
+    sourceFieldSpeedHingeSliceSelectionFunctionalAuditSchema:
+      fieldSpeedHingeSliceSelectionFunctionalAudit?.schema ?? null,
+    auditedCaseCount: rows.length,
+    targetFourSubstepWeights: { ...FOUR_SUBSTEP_ACTION_WEIGHTS },
+    targetFourSubstepFractions: normalizeRoleWeights(FOUR_SUBSTEP_ACTION_WEIGHTS),
+    hingeFunctionalMinimizerSliceIds,
+    unitInnerHalfSelectedSliceIds,
+    unitFullPartitionSelectedSliceIds,
+    targetWeightedInertiaSelectedSliceIds,
+    unitInnerHalfMatchesHingeFunctional,
+    unitFullPartitionMatchesHingeFunctional,
+    targetWeightedInertiaDiscriminatesHingeFunctional,
+    sliceSummaries,
+    retainedEnergyActionSelectionAcceptedCount: 0,
+    rows,
+    status:
+      unitInnerHalfMatchesHingeFunctional === true &&
+      unitFullPartitionSelectedSliceIds.length === 0 &&
+      targetWeightedInertiaDiscriminatesHingeFunctional === false
+        ? "unit_inertia_inner_half_selects_hinge_minimizers_full_partition_not_independently_selected"
+        : unitInnerHalfMatchesHingeFunctional === true
+          ? "unit_inertia_inner_half_selects_hinge_minimizers_status_mixed"
+          : rows.length > 0
+            ? "slice_energy_action_independence_audit_populated_no_independent_selector"
+            : "slice_energy_action_independence_audit_no_priority_rows",
+    interpretation:
+      "The unit-inertia action proxy independently recovers the same current oblate and flattened-projection slices as the field-speed hinge functional by making the inner role carry one half of the action. That support is only partial: unit inertia does not close the full 2:1:1 four-substep partition, and the target-weighted effective-inertia row is not an independent selector because it is target-derived and also accepts the positive-lever-arm spherical control.",
+    retainedReplayBurden:
+      "A retained replay must derive energy stationarity, effective inertia, wake/coupling angular momentum, or action partition rows on S_eq before this current inner-half support can become a retained hbar-unit or slice-selection result.",
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencySliceEnergyActionIndependenceRow({ row, sliceIds }) {
+  const slices = Object.fromEntries(
+    sliceIds.map((sliceId) => {
+      const sourceSlice = row.slices?.[sliceId] ?? {};
+      const leverArms = sourceSlice.effectiveLeverArms ?? {};
+      const commonOmega = row.commonOmega;
+      const unitInertiaActionLedger =
+        createSliceUnitInertiaActionLedger({ leverArms, commonOmega });
+      const targetWeightedEffectiveInertiaLedger =
+        createSliceTargetWeightedEffectiveInertiaLedger({ leverArms });
+      return [
+        sliceId,
+        {
+          sliceId,
+          label: sourceSlice.label ?? null,
+          chart: sourceSlice.chart ?? null,
+          populated: sourceSlice.populated === true,
+          effectiveLeverArms: leverArms,
+          commonOmega,
+          unitInertiaActionLedger,
+          targetWeightedEffectiveInertiaLedger,
+          retainedEnergyActionSelectionAccepted: false,
+        },
+      ];
+    })
+  );
+  return {
+    rowId: `S_eq-slice-energy-action-independence-f${row.f}`,
+    retainedRowSetId: "S_eq",
+    caseId: row.caseId,
+    f: row.f,
+    phaseProfileId: row.phaseProfileId,
+    commonOmega: row.commonOmega,
+    slices,
+    retainedBranchClaim: false,
+  };
+}
+
+function createSliceUnitInertiaActionLedger({ leverArms, commonOmega }) {
+  const angularMomentumWeights = Object.fromEntries(
+    LAYER_ROLES.map((role) => {
+      const rho = leverArms[role];
+      return [
+        role,
+        Number.isFinite(rho) && Number.isFinite(commonOmega)
+          ? rho ** 2 * commonOmega
+          : null,
+      ];
+    })
+  );
+  const actionFractions = normalizeRoleWeights(angularMomentumWeights);
+  const targetFractions = normalizeRoleWeights(FOUR_SUBSTEP_ACTION_WEIGHTS);
+  const residualsAgainstFourSubstepTarget = residualRoleWeights({
+    actual: actionFractions,
+    target: targetFractions,
+  });
+  const maxAbsFourSubstepResidual = maxFinite(
+    Object.values(residualsAgainstFourSubstepTarget).map((value) =>
+      Number.isFinite(value) ? Math.abs(value) : null
+    )
+  );
+  const innerHalfActionResidual =
+    Number.isFinite(actionFractions.inner) ? actionFractions.inner - 0.5 : null;
+  const innerHalfActionPass =
+    Number.isFinite(innerHalfActionResidual) &&
+    Math.abs(innerHalfActionResidual) <= ROOT_TOLERANCE;
+  const fourSubstepPartitionPass =
+    Number.isFinite(maxAbsFourSubstepResidual) &&
+    maxAbsFourSubstepResidual <= ROOT_TOLERANCE;
+  return {
+    formula: "mu_a=1, J_a=rho_a^2 omega_f",
+    angularMomentumWeights,
+    actionFractions,
+    targetFourSubstepFractions: targetFractions,
+    residualsAgainstFourSubstepTarget,
+    maxAbsFourSubstepResidual,
+    innerHalfActionResidual,
+    innerHalfActionPass,
+    fourSubstepPartitionPass,
+  };
+}
+
+function createSliceTargetWeightedEffectiveInertiaLedger({ leverArms }) {
+  const targetFractions = normalizeRoleWeights(FOUR_SUBSTEP_ACTION_WEIGHTS);
+  const unnormalizedEffectiveInertias = Object.fromEntries(
+    LAYER_ROLES.map((role) => {
+      const rho = leverArms[role];
+      const weight = FOUR_SUBSTEP_ACTION_WEIGHTS[role];
+      return [
+        role,
+        Number.isFinite(rho) &&
+        Math.abs(rho) > ROOT_TOLERANCE &&
+        Number.isFinite(weight)
+          ? weight / rho ** 2
+          : null,
+      ];
+    })
+  );
+  const middleScale = unnormalizedEffectiveInertias.middle;
+  const relativeEffectiveInertiasNormalizedToMiddle = Object.fromEntries(
+    LAYER_ROLES.map((role) => [
+      role,
+      Number.isFinite(unnormalizedEffectiveInertias[role]) &&
+      Number.isFinite(middleScale) &&
+      Math.abs(middleScale) > ROOT_TOLERANCE
+        ? unnormalizedEffectiveInertias[role] / middleScale
+        : null,
+    ])
+  );
+  const angularMomentumWeightsByRole = Object.fromEntries(
+    LAYER_ROLES.map((role) => {
+      const mu = relativeEffectiveInertiasNormalizedToMiddle[role];
+      const rho = leverArms[role];
+      return [
+        role,
+        Number.isFinite(mu) && Number.isFinite(rho) ? mu * rho ** 2 : null,
+      ];
+    })
+  );
+  const actionFractions = normalizeRoleWeights(angularMomentumWeightsByRole);
+  const residualsAgainstTarget = residualRoleWeights({
+    actual: actionFractions,
+    target: targetFractions,
+  });
+  const maxAbsResidual = maxFinite(
+    Object.values(residualsAgainstTarget).map((value) =>
+      Number.isFinite(value) ? Math.abs(value) : null
+    )
+  );
+  const positiveInertiaPass = LAYER_ROLES.every((role) => {
+    const inertia = relativeEffectiveInertiasNormalizedToMiddle[role];
+    return Number.isFinite(inertia) && inertia > 0;
+  });
+  const fourSubstepTargetPass =
+    positiveInertiaPass === true &&
+    Number.isFinite(maxAbsResidual) &&
+    maxAbsResidual <= ROOT_TOLERANCE;
+  return {
+    formula: "mu_a proportional to w_a/rho_a^2",
+    derivationClass: "target_weighted_law",
+    unnormalizedEffectiveInertias,
+    relativeEffectiveInertiasNormalizedToMiddle,
+    angularMomentumWeightsByRole,
+    actionFractions,
+    targetFourSubstepFractions: targetFractions,
+    residualsAgainstTarget,
+    maxAbsResidual,
+    positiveInertiaPass,
+    fourSubstepTargetPass,
   };
 }
 
@@ -44309,6 +44583,15 @@ function normalizeWeightsToMiddle(weightsByRole) {
   );
 }
 
+function sameStringSet(left, right) {
+  if (!Array.isArray(left) || !Array.isArray(right) || left.length !== right.length) {
+    return false;
+  }
+  const leftSorted = left.slice().sort();
+  const rightSorted = right.slice().sort();
+  return leftSorted.every((value, index) => value === rightSorted[index]);
+}
+
 function normalizeRoleWeights(weightsByRole) {
   const values = LAYER_ROLES.map((role) => weightsByRole[role]);
   if (!values.every(Number.isFinite)) {
@@ -44805,7 +45088,7 @@ function createFrequencyTripletSearchSummary(cases) {
     equalFrequencyEnergyRadiusAudit,
   });
   return {
-    schema: "aaa-tri-binary-frequency-triplet-search-summary.v33",
+    schema: "aaa-tri-binary-frequency-triplet-search-summary.v34",
     claimLevel:
       "candidate search summary over generic tri-binary rows with role-assigned I:M:O projections; not retained-branch certification",
     rawSearchLabels: GENERIC_TRI_BINARY_LABELS,
@@ -44898,7 +45181,7 @@ function createFrequencyTripletCandidateSetReview({
     }),
   ];
   return {
-    schema: "aaa-tri-binary-frequency-triplet-candidate-set-review.v29",
+    schema: "aaa-tri-binary-frequency-triplet-candidate-set-review.v30",
     claimLevel:
       "generic-row candidate-set review with role-assigned I:M:O projections; not retained branch selection",
     rawSearchLabels: GENERIC_TRI_BINARY_LABELS,
@@ -45497,6 +45780,24 @@ function createEqualFrequencyCandidateReviewRow(equalFrequencyEnergyRadiusAudit)
     fieldSpeedHingeSelectionFunctionalCurrentOblatePlanarOnlyPass:
       equalFrequencyEnergyRadiusAudit.fieldSpeedHingeSliceSelectionFunctionalAudit
         ?.currentOblatePlanarOnlyFunctionalPass ?? null,
+    sliceEnergyActionIndependenceAuditSchema:
+      equalFrequencyEnergyRadiusAudit.sliceEnergyActionIndependenceAudit?.schema ??
+      null,
+    sliceEnergyActionIndependenceStatus:
+      equalFrequencyEnergyRadiusAudit.sliceEnergyActionIndependenceAudit?.status ??
+      null,
+    sliceEnergyActionUnitInnerHalfSelectedSliceIds:
+      equalFrequencyEnergyRadiusAudit.sliceEnergyActionIndependenceAudit
+        ?.unitInnerHalfSelectedSliceIds ?? null,
+    sliceEnergyActionUnitInnerHalfMatchesHingeFunctional:
+      equalFrequencyEnergyRadiusAudit.sliceEnergyActionIndependenceAudit
+        ?.unitInnerHalfMatchesHingeFunctional ?? null,
+    sliceEnergyActionTargetWeightedInertiaSelectedSliceIds:
+      equalFrequencyEnergyRadiusAudit.sliceEnergyActionIndependenceAudit
+        ?.targetWeightedInertiaSelectedSliceIds ?? null,
+    sliceEnergyActionTargetWeightedInertiaDiscriminatesHingeFunctional:
+      equalFrequencyEnergyRadiusAudit.sliceEnergyActionIndependenceAudit
+        ?.targetWeightedInertiaDiscriminatesHingeFunctional ?? null,
     actionLedgerAuditSchema:
       equalFrequencyEnergyRadiusAudit.actionLedgerAudit?.schema ?? null,
     actionLedgerStatus:
@@ -46063,6 +46364,21 @@ function printSummary(report, absoluteOutputPath) {
           `minimizers=${fieldSpeedHingeSelectionFunctionalAudit.selectedMinimizerSliceIds.join(",")}`,
           `zero=${fieldSpeedHingeSelectionFunctionalAudit.currentOblatePlanarOnlyFunctionalPass}`,
           `retainedAccepted=${fieldSpeedHingeSelectionFunctionalAudit.retainedSelectionFunctionalAcceptedCount}`,
+        ].join(" ")
+      );
+    }
+    const sliceEnergyActionIndependenceAudit =
+      equalFrequencyAudit.sliceEnergyActionIndependenceAudit ?? null;
+    if (sliceEnergyActionIndependenceAudit) {
+      console.log(
+        [
+          "slice energy/action independence:",
+          sliceEnergyActionIndependenceAudit.status,
+          `unitInnerHalf=${sliceEnergyActionIndependenceAudit.unitInnerHalfSelectedSliceIds.join(",")}`,
+          `unitMatchesHinge=${sliceEnergyActionIndependenceAudit.unitInnerHalfMatchesHingeFunctional}`,
+          `targetWeighted=${sliceEnergyActionIndependenceAudit.targetWeightedInertiaSelectedSliceIds.join(",")}`,
+          `targetDiscriminates=${sliceEnergyActionIndependenceAudit.targetWeightedInertiaDiscriminatesHingeFunctional}`,
+          `retainedAccepted=${sliceEnergyActionIndependenceAudit.retainedEnergyActionSelectionAcceptedCount}`,
         ].join(" ")
       );
     }
