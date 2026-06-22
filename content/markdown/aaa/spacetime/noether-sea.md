@@ -386,7 +386,7 @@ $$
 \right]
 $$
 
-where $\chi_{\mathrm{comp}}^{(\ell)}$ removes branches phase-locked to resolved assemblies, $\Delta_{\mathrm{cad}}$ compares the branch cadence with $\left\langle\nu\right\rangle_{\mathrm{sea},\ell}$, and $\Delta_{\mathrm{bal}}$ measures the residual neutral-pairing and orientation imbalance of the same window. The assembly-facing definition is given in [Nested Shell Braid Geometry](../noether-swarm/nested-shell-swarm-geometry.md#assembly-noether-sea-interface-diagnostic). The conceptual point is that a matter Noether braid can sit inside the same coordinate window as ambient Noether sea braids without becoming part of the ambient Noether sea record; ledger complement, not mere spatial proximity, makes the separation.
+where $\chi_{\mathrm{comp}}^{(\ell)}$ removes branches phase-locked to resolved assemblies, $\Delta_{\mathrm{cad}}$ compares the branch cadence with $\left\langle\nu\right\rangle_{\mathrm{sea},\ell}$, and $\Delta_{\mathrm{bal}}$ measures the residual neutral-pairing and orientation imbalance of the same window. The assembly-facing definition is given in [Nested Shell Braid Geometry](../noether-braid/nested-shell-braid-geometry.md#assembly-noether-sea-interface-diagnostic). The conceptual point is that a matter Noether braid can sit inside the same coordinate window as ambient Noether sea braids without becoming part of the ambient Noether sea record; ledger complement, not mere spatial proximity, makes the separation.
 
 A candidate equilibrium-transport equation is
 
@@ -939,8 +939,8 @@ This page owns:
 
 This page does not own:
 
-- Noether braid internal architecture; see [Noether Braid](../noether-swarm/noether-swarm.md).
-- Noether braid exclusion-envelope geometry; see [Nested Shell Braid Geometry](../noether-swarm/nested-shell-swarm-geometry.md).
+- Noether braid internal architecture; see [Noether Braid](../noether-braid/noether-braid.md).
+- Noether braid exclusion-envelope geometry; see [Nested Shell Braid Geometry](../noether-braid/nested-shell-braid-geometry.md).
 - Pro/anti coupling hypotheses and cluster motifs; see [Noether Sea Pro/Anti Coupling](noether-sea-pro-anti-coupling.md).
 - Effective metric derivation; see [Emergent Metric](emergent-metric.md).
 - Clock and ruler behavior; see [Proper Time and Time Dilation](proper-time-and-time-dilation.md).

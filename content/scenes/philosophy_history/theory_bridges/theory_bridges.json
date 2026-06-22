@@ -47,8 +47,8 @@
         "scenePath": "content/scenes/philosophy_history/theory_bridges/bell_theorem.json"
       },
       {
-        "nodeId": "special_relativity_noether_swarm",
-        "scenePath": "content/scenes/philosophy_history/theory_bridges/special_relativity_noether_swarm.json"
+        "nodeId": "special_relativity_noether_braid",
+        "scenePath": "content/scenes/philosophy_history/theory_bridges/special_relativity_noether_braid.json"
       },
       {
         "nodeId": "return_cycle_lorentz_quantization",
@@ -67,8 +67,8 @@
         "scenePath": "content/scenes/philosophy_history/theory_bridges/weak_mixing_ckm.json"
       },
       {
-        "nodeId": "planck_scale_nested_shell_swarm_alignment",
-        "scenePath": "content/scenes/philosophy_history/theory_bridges/planck_scale_nested_shell_swarm_alignment.json"
+        "nodeId": "planck_scale_nested_shell_braid_alignment",
+        "scenePath": "content/scenes/philosophy_history/theory_bridges/planck_scale_nested_shell_braid_alignment.json"
       }
     ]
   },
@@ -138,7 +138,7 @@
       "labelBadge": "doc"
     },
     {
-      "id": "special_relativity_noether_swarm",
+      "id": "special_relativity_noether_braid",
       "title": "Special Relativity and Deformable Noether Braids",
       "radius": 2.688,
       "color": "#4f5d75",
@@ -178,7 +178,7 @@
       "labelBadge": "doc"
     },
     {
-      "id": "planck_scale_nested_shell_swarm_alignment",
+      "id": "planck_scale_nested_shell_braid_alignment",
       "title": "Planck Scale Nested Shell Braid Alignment",
       "radius": 2.688,
       "color": "#7a4a1f",

@@ -8,7 +8,7 @@ This chapter gives the current assembly-level interpretation of color charge and
 
 ### Nested Shell Braid Scaffold
 
-Each fermion is built on a **nested shell braid scaffold**: three nested electrino:positrino binaries sharing a center. We use **Noether braid** for the broader class of conserved-quantity-bearing braids; see [Noether Braid](../../noether-swarm/noether-swarm.md).
+Each fermion is built on a **nested shell braid scaffold**: three nested electrino:positrino binaries sharing a center. We use **Noether braid** for the broader class of conserved-quantity-bearing braids; see [Noether Braid](../../noether-braid/noether-braid.md).
 
 We label the three binaries by their dynamical regime:
 

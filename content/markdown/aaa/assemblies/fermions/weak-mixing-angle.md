@@ -30,7 +30,7 @@ We separate two structures that are often spoken about together but should not b
 
 ### 1. Core frame
 
-The [Noether braid](../../noether-swarm/noether-swarm.md) is the neutral nested shell braid scaffold. It defines:
+The [Noether braid](../../noether-braid/noether-braid.md) is the neutral nested shell braid scaffold. It defines:
 
 - generation via shielding level,
 - matter/antimatter braid orientation,

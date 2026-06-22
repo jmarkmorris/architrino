@@ -4,7 +4,7 @@ Promotion status: `priority-only`.
 
 Claim level: explanatory visualization scaffold. This packet assumes the master equation of motion is true for the purpose of visualizing assembly dynamics. It does not retain a branch, close a certificate, prove stability, or authorize migration into `content/markdown/aaa`.
 
-Related anchors: [Nested Shell Braid Model Card](nested-shell-swarm-model-card.md), [Nested Shell Braid Reduction Row](nested-shell-swarm-reduction-row.md), [Nested Shell Braid Dynamics](../../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md), and [Master Equation](../../../../content/markdown/aaa/dynamics/master-equation.md).
+Related anchors: [Nested Shell Braid Model Card](nested-shell-swarm-model-card.md), [Nested Shell Braid Reduction Row](nested-shell-swarm-reduction-row.md), [Nested Shell Braid Dynamics](../../../../content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md), and [Master Equation](../../../../content/markdown/aaa/dynamics/master-equation.md).
 
 ---
 
@@ -157,6 +157,6 @@ This packet may not be used as:
 
 ## 7. Likely Reader-Facing Destination
 
-If this scaffold becomes stable enough for corpus prose, the most natural destination is a short explanatory subsection near the spiral-helical motion picture in [Nested Shell Braid Dynamics](../../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md).
+If this scaffold becomes stable enough for corpus prose, the most natural destination is a short explanatory subsection near the spiral-helical motion picture in [Nested Shell Braid Dynamics](../../../../content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md).
 
 Before promotion, it should be rewritten as reader-facing explanation and stripped of priority-side workflow language.

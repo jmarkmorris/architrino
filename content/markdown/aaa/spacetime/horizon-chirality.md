@@ -137,7 +137,7 @@ The next question is whether a rapidly translating nested shell braid should dri
 
 The answer is dynamical rather than purely kinematic. Straight-line translation does **not** require that result merely from conservation laws. In the path-history dynamics, total linear momentum and total angular momentum are distinct conserved quantities, so an isolated translating assembly may in principle carry internal angular momentum whose axis is not parallel to the center-of-mass velocity.
 
-The stronger argument comes from the high-velocity delay geometry. Let the translation direction define the $z$-axis and use the oblate envelope from [Nested Shell Braid Geometry](../noether-swarm/nested-shell-swarm-geometry.md) and its dynamics treatment in [Nested Shell Braid Dynamics](../noether-swarm/nested-shell-swarm-dynamics.md):
+The stronger argument comes from the high-velocity delay geometry. Let the translation direction define the $z$-axis and use the oblate envelope from [Nested Shell Braid Geometry](../noether-braid/nested-shell-braid-geometry.md) and its dynamics treatment in [Nested Shell Braid Dynamics](../noether-braid/nested-shell-braid-dynamics.md):
 
 $$
 \frac{x^2+y^2}{R_\perp^2} + \frac{z^2}{R_\parallel^2} = 1,
@@ -380,8 +380,8 @@ That yields a disciplined provisional picture:
 
 - [singularity-resolution.md](./singularity-resolution.md): canonical horizon alignment condition.
 - [black-holes.md](./black-holes.md): horizon interface and strong-field ontology.
-- [Nested Shell Braid Dynamics](../noether-swarm/nested-shell-swarm-dynamics.md): regime map, planarity diagnostics, and alignment observables.
-- [Mapping the Planck Scale to the Nested Shell Braid Geometry](../philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md): terminal planar lock and alignment-horizon interpretation.
+- [Nested Shell Braid Dynamics](../noether-braid/nested-shell-braid-dynamics.md): regime map, planarity diagnostics, and alignment observables.
+- [Mapping the Planck Scale to the Nested Shell Braid Geometry](../philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md): terminal planar lock and alignment-horizon interpretation.
 - [angular-momentum-and-spin.md](../philosophy-history/theory-bridges/angular-momentum-and-spin.md): shared proof ledger for promoting boundary-helicity proxy language into observer-level spin or helicity claims.
 - [../assemblies/fermions/color-charge-su3.md](../assemblies/fermions/color-charge-su3.md): matter/antimatter chirality convention.
 - [../assemblies/fermions/quantum-number-mapping.md](../assemblies/fermions/quantum-number-mapping.md): ordered-triad and chirality language.

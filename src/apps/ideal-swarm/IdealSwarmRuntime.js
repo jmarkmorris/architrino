@@ -91,7 +91,7 @@ const ASSEMBLY_TRANSVERSE_AXIS_V = new THREE.Vector3(
 const IDEAL_SWARM_DOCS = {
   notes: {
     name: "Ideal Braid Guide",
-    markdownPath: "content/markdown/aaa/archie/ideal-swarm-guide.md",
+    markdownPath: "content/markdown/aaa/archie/ideal-braid-guide.md",
     markdownColumns: 1,
   },
   returnCycle: {

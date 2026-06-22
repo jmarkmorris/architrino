@@ -305,8 +305,8 @@ for which $h^{ij}\delta\gamma_{ij}=-6\Psi_{\mathrm{sp}}/c_0^2$. Thus $\Psi_{\mat
 
 | Priority artifact | Candidate corpus destination | Promotion gate |
 | --- | --- | --- |
-| Branch-local response theorem target | [Nested Shell Braid Dynamics](../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md) | $\mathcal{R}_B$, root-sensitive linearization, and gauge quotient are stated without claiming branch retention. |
-| Assembly interface variation | [Nested Shell Braid Geometry](../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md) | The level-set variation uses the existing $D_{a,X}$ diagnostic and one consistent branch ledger. |
+| Branch-local response theorem target | [Nested Shell Braid Dynamics](../../../content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md) | $\mathcal{R}_B$, root-sensitive linearization, and gauge quotient are stated without claiming branch retention. |
+| Assembly interface variation | [Nested Shell Braid Geometry](../../../content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md) | The level-set variation uses the existing $D_{a,X}$ diagnostic and one consistent branch ledger. |
 | ADM/Cartan projection row | [Emergent Metric](../../../content/markdown/aaa/spacetime/emergent-metric.md) | The projection consumes $\mathcal{K}_{B}^{\mathrm{geom}}$ and keeps metric language observer-level. |
 | Action compatibility result | [Causal Action Functional](../../../content/markdown/aaa/dynamics/causal-action-functional.md) or [Effective Lagrangian](../../../content/markdown/aaa/dynamics/effective-lagrangian.md) | The virtual-work curl test passes or fails with a clear status and root convention. |
 

@@ -26,8 +26,8 @@
         "scenePath": "content/scenes/dynamics/dynamics.json"
       },
       {
-        "nodeId": "noether_swarm",
-        "scenePath": "content/scenes/noether-swarm/noether_swarm.json"
+        "nodeId": "noether_braid",
+        "scenePath": "content/scenes/noether-braid/noether_braid.json"
       },
       {
         "nodeId": "spacetime",
@@ -86,7 +86,7 @@
       "labelTitle": "Dynamics"
     },
     {
-      "id": "noether_swarm",
+      "id": "noether_braid",
       "title": "Noether Braid",
       "radius": 2.688,
       "color": "#2f6b6f",

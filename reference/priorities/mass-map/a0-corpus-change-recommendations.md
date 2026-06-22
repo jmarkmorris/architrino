@@ -50,7 +50,7 @@ This is a derivation / closure negative result. It is not an $A_0$ attractor, no
 
 ### 3. Nested Shell Braid Dynamics
 
-- Target: [Nested Shell Braid Dynamics](../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md)
+- Target: [Nested Shell Braid Dynamics](../../../content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md)
 - Priority: medium
 - Claim bucket: derivation / closure target
 - Risk: medium

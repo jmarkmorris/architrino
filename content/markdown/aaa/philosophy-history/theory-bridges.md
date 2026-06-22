@@ -17,7 +17,7 @@ Use this lane for documents that:
 Do not use this lane as the primary home for:
 
 - substrate ontology; use [Foundations](../foundations/ontology.md),
-- assembly definitions; use [Assemblies](../noether-swarm/noether-swarm.md),
+- assembly definitions; use [Assemblies](../noether-braid/noether-braid.md),
 - dynamical laws; use [Dynamics](../dynamics/master-equation.md),
 - canonical spacetime mechanism chapters; use [Spacetime](../spacetime/observer-framework.md),
 - broad historical orientation; use [Philosophy and History](theory-mapping.md).
@@ -42,10 +42,10 @@ Each mature bridge should include:
 - [Entanglement and Nonlocality](theory-bridges/entanglement-nonlocality.md)
 - [Relativistic Scalar Fields and the Klein-Gordon Equation](theory-bridges/klein-gordon-scalar-fields.md)
 - [Pilot-Wave Character](theory-bridges/pilot-wave-character.md)
-- [Mapping the Planck Scale to the Nested Shell Braid Geometry](theory-bridges/planck-scale-nested-shell-swarm-alignment.md)
+- [Mapping the Planck Scale to the Nested Shell Braid Geometry](theory-bridges/planck-scale-nested-shell-braid-alignment.md)
 - [Quantum Operator Mapping](theory-bridges/quantum-operator-mapping.md)
 - [Return-Cycle Lorentz Quantization](theory-bridges/return-cycle-lorentz-quantization.md)
-- [Special Relativity and Deformable Noether Braids](theory-bridges/special-relativity-noether-swarm.md)
+- [Special Relativity and Deformable Noether Braids](theory-bridges/special-relativity-noether-braid.md)
 - [Spacetime Models and the Noether sea](theory-bridges/spacetime-models-and-noether-sea.md)
 - [Superposition Mechanism](theory-bridges/superposition-mechanism.md)
 - [Weak Mixing and CKM](theory-bridges/weak-mixing-ckm.md)

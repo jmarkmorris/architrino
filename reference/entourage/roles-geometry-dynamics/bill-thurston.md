@@ -4,7 +4,7 @@
 Develop the **Assembly Atlas**: a low-dimensional topological classification of stable and metastable architrino assemblies in the fixed Euclidean void, emphasizing trajectory bundles, knotted structures, and foliation-like patterns.
 
 **Current theory alignment**:
-- Topological classification should track the canonical nested shell swarm framing in `noether-swarm/noether-swarm.md`, `noether-swarm/nested-shell-swarm-geometry.md`, and `noether-swarm/nested-shell-swarm-dynamics.md`.
+- Topological classification should track the canonical nested shell swarm framing in `noether-braid/noether-braid.md`, `noether-braid/nested-shell-braid-geometry.md`, and `noether-braid/nested-shell-braid-dynamics.md`.
 - Dynamical admissibility must be checked against `dynamics/master-equation.md` and `dynamics/causal-action-functional.md`.
 - Stability claims should be wired to `validation/constraint-ledger.md` and `validation/failure-criteria.md`.
 

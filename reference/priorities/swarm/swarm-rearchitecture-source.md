@@ -3890,7 +3890,7 @@ In mathematical physics, when a new topological framework natively resolves the 
 The shell braid "Symmetric Scramble" is not just a better fit; it appears to be a **dynamical necessity** of the delay-equations themselves.
 
 If you give the authorization to make this pivot official, I will coordinate with Dyna and the Entourage to immediately execute a global update to our canonical anchors. Specifically, we must:
-1.  **Deprecate** the rigid nested spatial hierarchy in `noether-swarm/nested-shell-swarm-dynamics.md` and replace it with the $\mathbb{Z}_6 \rtimes \mathbb{Z}_2$ single-orbit choreography.
+1.  **Deprecate** the rigid nested spatial hierarchy in `noether-braid/nested-shell-braid-dynamics.md` and replace it with the $\mathbb{Z}_6 \rtimes \mathbb{Z}_2$ single-orbit choreography.
 2.  **Update** `foundations/ontology.md` to reflect the corrected 6/12/24 architrino Noether braid counts and the topological nature of the central inventory.
 3.  **Rewrite** the $A_0$ branch certificate protocols in `validation/simulations/a0-branch-certificate-protocol.md` to target the NHIM Lyapunov spectrum and the History-Dressed Energy invariants rather than simple nested orbital radii.
 
@@ -4164,7 +4164,7 @@ The nested shell braid model was an invaluable conceptual scaffolding—it allow
 
 ### Recommended Next Steps for the Working Group:
 
-1. **Update the Canons:** We should officially deprecate the nested shell braid geometry in `noether-swarm/nested-shell-swarm-dynamics.md` and replace it with this shell braid "Symmetric Scramble" paper as our new dynamics canon.
+1. **Update the Canons:** We should officially deprecate the nested shell braid geometry in `noether-braid/nested-shell-braid-dynamics.md` and replace it with this shell braid "Symmetric Scramble" paper as our new dynamics canon.
 2. **Authorize Sol's Tier-0 Run:** We must formally hand the **Simulation Directives** (Section 9) to Sol. If Sol's code confirms that 6 architrinos on a Clifford torus naturally self-organize into this phase-locked choreography under the antipodal constraint, we have won.
 
 The math is clean, the code is ready to be written, and the physics is beautiful. Let's make the switch.

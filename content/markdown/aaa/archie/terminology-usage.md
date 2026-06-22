@@ -140,7 +140,7 @@ Use `Noether braid` as the canonical reader-facing term for the neutral six-arch
 
 The word `braid` is chosen because the object is a collection of persistent worldline strands whose delayed histories remain coupled. It should not be overread. A Noether braid is not automatically a braid-group invariant, a knot invariant, or a proof of fermionic exchange behavior. Those are additional theorem targets. When a sentence needs that stronger claim, name the actual invariant, such as a linking number, framed self-linking parity, flat phase-bundle holonomy, or the full assembly topological charge.
 
-Durable symbols and repository paths may still contain `NS` or `noether-swarm` during the notation migration. Treat those strings as stable identifiers, not as preferred prose. Do not invent alternate synonyms such as `Noether nucleus`, `Noether cluster`, or `Noether core` unless a later canon decision explicitly changes the taxonomy.
+Durable symbols and internal runtime identifiers may still contain `NS`, `noether_swarm`, or `nested-shell-swarm` during the notation migration. Treat those strings as stable implementation identifiers, not as preferred prose or source-title guidance. Do not invent alternate synonyms such as `Noether nucleus`, `Noether cluster`, or `Noether core` unless a later canon decision explicitly changes the taxonomy.
 
 ## Oblate Spheroidal Envelope, Spheroid, and Ellipsoid
 

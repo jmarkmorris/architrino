@@ -4,7 +4,7 @@ Status: `closed-app-adapter`
 
 Kind: `solver-app-adapter-closeout`
 
-Source task: `ideal_swarm_adapter` in [solver.md](solver.md)
+Source task: `ideal_braid_adapter` in [solver.md](solver.md)
 
 Primary dependencies:
 
@@ -70,7 +70,7 @@ Remaining Ideal Braid work is not this adapter task:
 
 ## Completion Judgment
 
-`ideal_swarm_adapter` is complete for delayed-potential, flight-time, and
+`ideal_braid_adapter` is complete for delayed-potential, flight-time, and
 circular self-hit solver geometry. The app routes those calculations through the
 shared solver bridge, and the baseline/migration parity harness covers the
 required Ideal Braid bridge cases.

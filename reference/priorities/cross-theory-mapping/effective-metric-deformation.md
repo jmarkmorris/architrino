@@ -1,6 +1,6 @@
 # Cross-Theory Source Packet: Ellipsoidal Deformation and the Effective Metric
 
-Status note: this source packet is a candidate deformation map, not a completed physical theorem and not a separate priority lane. Any usable result must be routed through the current master-equation, Lorentz/GR bridge, Noether sea constitutive-closure, or [Ideal Braid Guide](../../../content/markdown/aaa/archie/ideal-swarm-guide.md) app-inspection targets before being promoted into corpus prose.
+Status note: this source packet is a candidate deformation map, not a completed physical theorem and not a separate priority lane. Any usable result must be routed through the current master-equation, Lorentz/GR bridge, Noether sea constitutive-closure, or [Ideal Braid Guide](../../../content/markdown/aaa/archie/ideal-braid-guide.md) app-inspection targets before being promoted into corpus prose.
 
 ## Motivation
 
@@ -167,4 +167,4 @@ The reader-facing Noether sea pro/anti coupling chapter should state the provisi
 - [lorentz-kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md)
 - [proper-time-and-time-dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md)
 - [emergent-metric](../../../content/markdown/aaa/spacetime/emergent-metric.md)
-- [nested-shell-braid-dynamics](../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md)
+- [nested-shell-braid-dynamics](../../../content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md)

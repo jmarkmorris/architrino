@@ -189,6 +189,6 @@ The remaining table is kept only as raw kinematic scratch work for the 1:2:4 clo
 ## Related $\mathbb{A}\mathbb{A}\mathbb{A}$ Notes
 
 - [dyadic-resonance-lock](../../../content/markdown/aaa/dynamics/dyadic-resonance-lock.md)
-- [nested-shell-braid-dynamics](../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md)
+- [nested-shell-braid-dynamics](../../../content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md)
 - [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md)
 - [cosmology-ontology](../../../content/markdown/aaa/cosmology/cosmology-ontology.md)

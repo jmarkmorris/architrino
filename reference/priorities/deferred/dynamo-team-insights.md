@@ -234,4 +234,4 @@ The mathematical challenge is to rigorously connect these scales:
 - [ontology](../../../content/markdown/aaa/foundations/ontology.md)
 - [emergence-of-structure](../../../content/markdown/aaa/foundations/emergence-of-structure.md)
 - [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md)
-- [nested-shell-braid-dynamics](../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md)
+- [nested-shell-braid-dynamics](../../../content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md)

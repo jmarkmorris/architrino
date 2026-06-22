@@ -18,7 +18,7 @@ The answer must not erase substrate identity. Individual architrinos remain prov
 
 ## Nested Shell Braid Geometry Basis
 
-The relevant object is the nested shell braid described in [Noether Braid](../noether-swarm/noether-swarm.md). Its geometric footprint is the dynamic exclusion envelope described in [Nested Shell Braid Geometry](../noether-swarm/nested-shell-swarm-geometry.md).
+The relevant object is the nested shell braid described in [Noether Braid](../noether-braid/noether-braid.md). Its geometric footprint is the dynamic exclusion envelope described in [Nested Shell Braid Geometry](../noether-braid/nested-shell-braid-geometry.md).
 
 In the low-apparent-energy matter regime, the three nested binaries maintain separated orbital scales and a three-dimensional orientation structure. The outer binary sets the leading equatorial boundary of an oblate spheroidal exclusion envelope, while the inner and middle binaries provide high-frequency stabilizing wake structure.
 
@@ -67,7 +67,7 @@ Photon-like channel behavior is the cleanest target for this mechanism. A bosoni
 
 ## The 3D-to-2D Transition
 
-The transition can be summarized by the canonical nested shell braid shape ratio from [Nested Shell Braid Geometry](../noether-swarm/nested-shell-swarm-geometry.md#canonical-geometry-variables). Let $R_{\parallel}$ denote the semiaxis along the contraction or drift-aligned direction and $R_{\perp}$ the transverse semiaxis. Then
+The transition can be summarized by the canonical nested shell braid shape ratio from [Nested Shell Braid Geometry](../noether-braid/nested-shell-braid-geometry.md#canonical-geometry-variables). Let $R_{\parallel}$ denote the semiaxis along the contraction or drift-aligned direction and $R_{\perp}$ the transverse semiaxis. Then
 
 $$
 \xi\equiv\frac{R_{\parallel}}{R_{\perp}}
@@ -167,9 +167,9 @@ For the fermionic branch, $\mathcal{R}_{\mathrm{ex}}$ is admissible only on reco
 
 This chapter depends on:
 
-- [Nested Shell Braid Geometry](../noether-swarm/nested-shell-swarm-geometry.md) for the oblate spheroidal exclusion envelope,
-- [Noether Braid](../noether-swarm/noether-swarm.md) for the braid taxonomy and nested shell braid scaffold,
-- [Nested Shell Braid Dynamics](../noether-swarm/nested-shell-swarm-dynamics.md) for the delayed-dynamics regime map,
+- [Nested Shell Braid Geometry](../noether-braid/nested-shell-braid-geometry.md) for the oblate spheroidal exclusion envelope,
+- [Noether Braid](../noether-braid/noether-braid.md) for the braid taxonomy and nested shell braid scaffold,
+- [Nested Shell Braid Dynamics](../noether-braid/nested-shell-braid-dynamics.md) for the delayed-dynamics regime map,
 - [Wavefunction Ontology](./wavefunction-ontology.md) for the effective probability bookkeeping seen by physical observers,
 - and [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md) for the photon-channel case where coherent planar-pair modes must recover Bose-Einstein occupation behavior.
 

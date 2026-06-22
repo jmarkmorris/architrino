@@ -33,7 +33,7 @@ The branch is genuinely three-dimensional only when $D_{\mathrm{plane}}\ne0$. Ne
 
 This is a statement about a derived orientation frame, not a claim that the constituent architrino paths are axial. The actual six paths may be braided, quasiperiodic, chaotic, shell-supported, or otherwise noncircular while still emitting retained angular-momentum rows from which principal directions can be extracted. Axis language in this chapter therefore means a ledger or envelope direction derived from the branch record, not a primitive path pattern.
 
-The claim is not that every stable assembly must be an exact tri-binary. The broader [Noether braid](../noether-swarm/noether-swarm.md) class permits six-body branches before exact binary grouping is certified. The tri-binary search is the minimal exact-binary architecture that can test full three-dimensional frame closure.
+The claim is not that every stable assembly must be an exact tri-binary. The broader [Noether braid](../noether-braid/noether-braid.md) class permits six-body branches before exact binary grouping is certified. The tri-binary search is the minimal exact-binary architecture that can test full three-dimensional frame closure.
 
 ## General Branch State
 

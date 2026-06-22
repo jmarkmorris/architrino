@@ -5,7 +5,7 @@ Shape the **qualitative dynamical skeleton** of the architrino system--especiall
 
 **Current theory alignment**:
 - Phase-space and attractor work should be derived from `dynamics/master-equation.md`.
-- Bifurcation and regime-transition claims should stay synchronized with `noether-swarm/nested-shell-swarm-dynamics.md` and `dynamics/binary-dynamics.md`.
+- Bifurcation and regime-transition claims should stay synchronized with `noether-braid/nested-shell-braid-dynamics.md` and `dynamics/binary-dynamics.md`.
 - Numerical diagnostics should map to `validation/simulations/convergence-tests.md` and `validation/simulations/run-protocols.md`.
 
 **Core responsibilities**:

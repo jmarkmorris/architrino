@@ -196,8 +196,8 @@ The canonical homes are:
 
 - [Master Equation](../dynamics/master-equation.md) for causal hits, delay roots, Jacobian weights, received acceleration, and branch topology.
 - [Binary Dynamics](../dynamics/binary-dynamics.md) for wake-speed regimes, partner hit versus self-hit behavior, spiral contraction, and maximum-curvature binary analysis.
-- [Nested Shell Braid Dynamics](../noether-swarm/nested-shell-swarm-dynamics.md) for coupled three-binary speed regimes, alignment behavior, and assembly-stability mechanisms.
-- [Noether Braid](../noether-swarm/noether-swarm.md) for the assembly-level Noether braid architecture built from those dynamics.
+- [Nested Shell Braid Dynamics](../noether-braid/nested-shell-braid-dynamics.md) for coupled three-binary speed regimes, alignment behavior, and assembly-stability mechanisms.
+- [Noether Braid](../noether-braid/noether-braid.md) for the assembly-level Noether braid architecture built from those dynamics.
 
 ## Determinism and Multistability
 

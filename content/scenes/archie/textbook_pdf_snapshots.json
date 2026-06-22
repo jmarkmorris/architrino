@@ -113,7 +113,7 @@
       }
     },
     {
-      "id": "pdf_snapshot_noether_swarm",
+      "id": "pdf_snapshot_noether_braid",
       "title": "Noether Braid",
       "radius": 1.55,
       "color": "#2f6b6f",
@@ -124,7 +124,7 @@
       "labelBadge": "pdf",
       "source": {
         "type": "pdf",
-        "path": "content/generated/pdf/textbook/review-copies/noether-swarm.pdf"
+        "path": "content/generated/pdf/textbook/review-copies/noether-braid.pdf"
       },
       "view": {
         "openMode": "new-tab"

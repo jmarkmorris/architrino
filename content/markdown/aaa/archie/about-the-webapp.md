@@ -16,7 +16,7 @@ This guide should be read alongside:
 - [software-architecture-and-maintenance.md](software-architecture-and-maintenance.md)
 - [comparative-glossary.md](comparative-glossary.md)
 - [github-presence-and-community.md](github-presence-and-community.md)
-- [Ideal Noether Braid Guide](ideal-swarm-guide.md)
+- [Ideal Noether Braid Guide](ideal-braid-guide.md)
 - [photon-guide.md](photon-guide.md)
 - [research-notebook.md](research-notebook.md)
 

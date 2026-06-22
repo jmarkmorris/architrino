@@ -20,7 +20,7 @@ This system prompt governs **how the team thinks, communicates, critiques, simul
 - Theory/math-first drafting: prioritize formal derivations, definitions, geometry, and dynamics; minimize forward-looking TODO statements framed around future observations or experiments unless explicitly requested.
 
 ### Current canonical anchors
-- Dynamics canon: `dynamics/master-equation.md`, `dynamics/causal-action-functional.md`, `dynamics/binary-dynamics.md`, and `noether-swarm/nested-shell-swarm-dynamics.md`.
+- Dynamics canon: `dynamics/master-equation.md`, `dynamics/causal-action-functional.md`, `dynamics/binary-dynamics.md`, and `noether-braid/nested-shell-braid-dynamics.md`.
 - Ontology canon: `foundations/ontology.md`, `foundations/absolute-time-defense.md`, `foundations/detecting-the-absolute-frame.md`, and `foundations/constructing-the-absolute-frame.md`.
 - Parameter canon: `validation/parameter-ledger.md` (fundamental parameters, regulators, geometric closure targets, constitutive closure targets, state variables, and observer-level benchmarks are distinct classes).
 - Cosmology canon: `cosmology/cosmology-ontology.md`, `spacetime/noether-sea.md`, `spacetime/emergent-metric.md`, `spacetime/lorentz-kinematics.md`, and `spacetime/ppn-parameters.md` (fixed Euclidean container; Noether sea state variables; observer-level projection interfaces).

@@ -1943,9 +1943,9 @@
       "nodeType": "scene"
     },
     {
-      "id": "theory_bridges__planck_scale_nested_shell_swarm_alignment",
+      "id": "theory_bridges__planck_scale_nested_shell_braid_alignment",
       "name": "Planck Scale Nested Shell Braid Alignment",
-      "path": "content/scenes/philosophy_history/theory_bridges/planck_scale_nested_shell_swarm_alignment.json",
+      "path": "content/scenes/philosophy_history/theory_bridges/planck_scale_nested_shell_braid_alignment.json",
       "nodeType": "scene"
     },
     {
@@ -1955,9 +1955,9 @@
       "nodeType": "scene"
     },
     {
-      "id": "theory_bridges__special_relativity_noether_swarm",
+      "id": "theory_bridges__special_relativity_noether_braid",
       "name": "Special Relativity and Deformable Noether Braids",
-      "path": "content/scenes/philosophy_history/theory_bridges/special_relativity_noether_swarm.json",
+      "path": "content/scenes/philosophy_history/theory_bridges/special_relativity_noether_braid.json",
       "nodeType": "scene"
     },
     {
@@ -2015,27 +2015,27 @@
       "nodeType": "scene"
     },
     {
-      "id": "noether_swarm__nested_shell_swarm",
+      "id": "noether_braid__nested_shell_braid",
       "name": "Nested Shell Braid",
-      "path": "content/scenes/noether-swarm/nested_shell_swarm.json",
+      "path": "content/scenes/noether-braid/nested_shell_braid.json",
       "nodeType": "scene"
     },
     {
-      "id": "noether_swarm__neutral_swarm",
+      "id": "noether_braid__neutral_braid",
       "name": "Neutral Braid",
-      "path": "content/scenes/noether-swarm/neutral_swarm.json",
+      "path": "content/scenes/noether-braid/neutral_braid.json",
       "nodeType": "scene"
     },
     {
-      "id": "noether_swarm",
+      "id": "noether_braid",
       "name": "Noether Braid",
-      "path": "content/scenes/noether-swarm/noether_swarm.json",
+      "path": "content/scenes/noether-braid/noether_braid.json",
       "nodeType": "scene"
     },
     {
-      "id": "noether_swarm__shell_swarm",
+      "id": "noether_braid__shell_braid",
       "name": "Shell Braid",
-      "path": "content/scenes/noether-swarm/shell_swarm.json",
+      "path": "content/scenes/noether-braid/shell_braid.json",
       "nodeType": "scene"
     },
     {
@@ -2057,21 +2057,21 @@
       "nodeType": "scene"
     },
     {
-      "id": "noether_swarm__nested_shell_swarm_dynamics",
+      "id": "noether_braid__nested_shell_braid_dynamics",
       "name": "Nested Shell Braid Dynamics",
-      "path": "content/scenes/noether-swarm/nested_shell_swarm_dynamics.json",
+      "path": "content/scenes/noether-braid/nested_shell_braid_dynamics.json",
       "nodeType": "scene"
     },
     {
-      "id": "noether_swarm__overview",
+      "id": "noether_braid__overview",
       "name": "Noether Braid",
-      "path": "content/scenes/noether-swarm/noether_swarm_overview.json",
+      "path": "content/scenes/noether-braid/noether_braid_overview.json",
       "nodeType": "scene"
     },
     {
-      "id": "noether_swarm__nested_shell_swarm_geometry",
+      "id": "noether_braid__nested_shell_braid_geometry",
       "name": "Nested Shell Braid Geometry",
-      "path": "content/scenes/noether-swarm/nested_shell_swarm_geometry.json",
+      "path": "content/scenes/noether-braid/nested_shell_braid_geometry.json",
       "nodeType": "scene"
     },
     {
@@ -2081,9 +2081,9 @@
       "nodeType": "scene"
     },
     {
-      "id": "archie__ideal_swarm",
+      "id": "archie__ideal_braid",
       "name": "Ideal Noether Braid: Lorentz Geometry App",
-      "path": "content/scenes/archie/ideal_swarm.json",
+      "path": "content/scenes/archie/ideal_braid.json",
       "nodeType": "scene"
     },
     {
@@ -2195,9 +2195,9 @@
       "nodeType": "scene"
     },
     {
-      "id": "validation_simulations__sim_branch_quantum__sim_nested_shell_swarm_action_increment_protocol",
+      "id": "validation_simulations__sim_branch_quantum__sim_nested_shell_braid_action_increment_protocol",
       "name": "Nested Shell Braid Action-Increment Protocol",
-      "path": "content/scenes/validation/sim_nested_shell_swarm_action_increment_protocol.json",
+      "path": "content/scenes/validation/sim_nested_shell_braid_action_increment_protocol.json",
       "nodeType": "scene"
     },
     {
@@ -2261,9 +2261,9 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/archie/ideal-swarm-guide.md",
+      "id": "content/markdown/aaa/archie/ideal-braid-guide.md",
       "name": "Ideal Braid Guide",
-      "path": "content/markdown/aaa/archie/ideal-swarm-guide.md",
+      "path": "content/markdown/aaa/archie/ideal-braid-guide.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -2573,21 +2573,21 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+      "id": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
       "name": "Nested Shell Braid Dynamics",
-      "path": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+      "path": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
+      "id": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
       "name": "Nested Shell Braid Geometry",
-      "path": "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
+      "path": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/noether-swarm/noether-swarm.md",
+      "id": "content/markdown/aaa/noether-braid/noether-braid.md",
       "name": "Noether Braid",
-      "path": "content/markdown/aaa/noether-swarm/noether-swarm.md",
+      "path": "content/markdown/aaa/noether-braid/noether-braid.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -2735,9 +2735,9 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md",
+      "id": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
       "name": "Mapping the Planck Scale to the Nested Shell Braid Geometry",
-      "path": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md",
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -2759,9 +2759,9 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
+      "id": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md",
       "name": "Special Relativity and Deformable Noether Braids",
-      "path": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -3167,9 +3167,9 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/validation/simulations/nested-shell-swarm-action-increment-protocol.md",
+      "id": "content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
       "name": "Nested Shell Braid Action-Increment Protocol",
-      "path": "content/markdown/aaa/validation/simulations/nested-shell-swarm-action-increment-protocol.md",
+      "path": "content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -3301,12 +3301,12 @@
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/archie/ideal_swarm.json",
+      "nodeId": "scene:content/scenes/archie/ideal_braid.json",
       "nodeType": "scene",
-      "id": "archie__ideal_swarm",
+      "id": "archie__ideal_braid",
       "name": "Ideal Noether Braid: Lorentz Geometry App",
-      "path": "content/scenes/archie/ideal_swarm.json",
-      "searchTarget": "content/scenes/archie/ideal_swarm.json",
+      "path": "content/scenes/archie/ideal_braid.json",
+      "searchTarget": "content/scenes/archie/ideal_braid.json",
       "implicit": false
     },
     {
@@ -5011,66 +5011,66 @@
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/noether-swarm/nested_shell_swarm_dynamics.json",
+      "nodeId": "scene:content/scenes/noether-braid/nested_shell_braid_dynamics.json",
       "nodeType": "scene",
-      "id": "noether_swarm__nested_shell_swarm_dynamics",
+      "id": "noether_braid__nested_shell_braid_dynamics",
       "name": "Nested Shell Braid Dynamics",
-      "path": "content/scenes/noether-swarm/nested_shell_swarm_dynamics.json",
-      "searchTarget": "content/scenes/noether-swarm/nested_shell_swarm_dynamics.json",
+      "path": "content/scenes/noether-braid/nested_shell_braid_dynamics.json",
+      "searchTarget": "content/scenes/noether-braid/nested_shell_braid_dynamics.json",
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/noether-swarm/nested_shell_swarm_geometry.json",
+      "nodeId": "scene:content/scenes/noether-braid/nested_shell_braid_geometry.json",
       "nodeType": "scene",
-      "id": "noether_swarm__nested_shell_swarm_geometry",
+      "id": "noether_braid__nested_shell_braid_geometry",
       "name": "Nested Shell Braid Geometry",
-      "path": "content/scenes/noether-swarm/nested_shell_swarm_geometry.json",
-      "searchTarget": "content/scenes/noether-swarm/nested_shell_swarm_geometry.json",
+      "path": "content/scenes/noether-braid/nested_shell_braid_geometry.json",
+      "searchTarget": "content/scenes/noether-braid/nested_shell_braid_geometry.json",
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/noether-swarm/nested_shell_swarm.json",
+      "nodeId": "scene:content/scenes/noether-braid/nested_shell_braid.json",
       "nodeType": "scene",
-      "id": "noether_swarm__nested_shell_swarm",
+      "id": "noether_braid__nested_shell_braid",
       "name": "Nested Shell Braid",
-      "path": "content/scenes/noether-swarm/nested_shell_swarm.json",
-      "searchTarget": "content/scenes/noether-swarm/nested_shell_swarm.json",
+      "path": "content/scenes/noether-braid/nested_shell_braid.json",
+      "searchTarget": "content/scenes/noether-braid/nested_shell_braid.json",
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/noether-swarm/neutral_swarm.json",
+      "nodeId": "scene:content/scenes/noether-braid/neutral_braid.json",
       "nodeType": "scene",
-      "id": "noether_swarm__neutral_swarm",
+      "id": "noether_braid__neutral_braid",
       "name": "Neutral Braid",
-      "path": "content/scenes/noether-swarm/neutral_swarm.json",
-      "searchTarget": "content/scenes/noether-swarm/neutral_swarm.json",
+      "path": "content/scenes/noether-braid/neutral_braid.json",
+      "searchTarget": "content/scenes/noether-braid/neutral_braid.json",
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/noether-swarm/noether_swarm_overview.json",
+      "nodeId": "scene:content/scenes/noether-braid/noether_braid_overview.json",
       "nodeType": "scene",
-      "id": "noether_swarm__overview",
+      "id": "noether_braid__overview",
       "name": "Noether Braid",
-      "path": "content/scenes/noether-swarm/noether_swarm_overview.json",
-      "searchTarget": "content/scenes/noether-swarm/noether_swarm_overview.json",
+      "path": "content/scenes/noether-braid/noether_braid_overview.json",
+      "searchTarget": "content/scenes/noether-braid/noether_braid_overview.json",
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/noether-swarm/noether_swarm.json",
+      "nodeId": "scene:content/scenes/noether-braid/noether_braid.json",
       "nodeType": "scene",
-      "id": "noether_swarm",
+      "id": "noether_braid",
       "name": "Noether Braid",
-      "path": "content/scenes/noether-swarm/noether_swarm.json",
-      "searchTarget": "content/scenes/noether-swarm/noether_swarm.json",
+      "path": "content/scenes/noether-braid/noether_braid.json",
+      "searchTarget": "content/scenes/noether-braid/noether_braid.json",
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/noether-swarm/shell_swarm.json",
+      "nodeId": "scene:content/scenes/noether-braid/shell_braid.json",
       "nodeType": "scene",
-      "id": "noether_swarm__shell_swarm",
+      "id": "noether_braid__shell_braid",
       "name": "Shell Braid",
-      "path": "content/scenes/noether-swarm/shell_swarm.json",
-      "searchTarget": "content/scenes/noether-swarm/shell_swarm.json",
+      "path": "content/scenes/noether-braid/shell_braid.json",
+      "searchTarget": "content/scenes/noether-braid/shell_braid.json",
       "implicit": false
     },
     {
@@ -5362,12 +5362,12 @@
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/philosophy_history/theory_bridges/planck_scale_nested_shell_swarm_alignment.json",
+      "nodeId": "scene:content/scenes/philosophy_history/theory_bridges/planck_scale_nested_shell_braid_alignment.json",
       "nodeType": "scene",
-      "id": "theory_bridges__planck_scale_nested_shell_swarm_alignment",
+      "id": "theory_bridges__planck_scale_nested_shell_braid_alignment",
       "name": "Planck Scale Nested Shell Braid Alignment",
-      "path": "content/scenes/philosophy_history/theory_bridges/planck_scale_nested_shell_swarm_alignment.json",
-      "searchTarget": "content/scenes/philosophy_history/theory_bridges/planck_scale_nested_shell_swarm_alignment.json",
+      "path": "content/scenes/philosophy_history/theory_bridges/planck_scale_nested_shell_braid_alignment.json",
+      "searchTarget": "content/scenes/philosophy_history/theory_bridges/planck_scale_nested_shell_braid_alignment.json",
       "implicit": false
     },
     {
@@ -5398,12 +5398,12 @@
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/philosophy_history/theory_bridges/special_relativity_noether_swarm.json",
+      "nodeId": "scene:content/scenes/philosophy_history/theory_bridges/special_relativity_noether_braid.json",
       "nodeType": "scene",
-      "id": "theory_bridges__special_relativity_noether_swarm",
+      "id": "theory_bridges__special_relativity_noether_braid",
       "name": "Special Relativity and Deformable Noether Braids",
-      "path": "content/scenes/philosophy_history/theory_bridges/special_relativity_noether_swarm.json",
-      "searchTarget": "content/scenes/philosophy_history/theory_bridges/special_relativity_noether_swarm.json",
+      "path": "content/scenes/philosophy_history/theory_bridges/special_relativity_noether_braid.json",
+      "searchTarget": "content/scenes/philosophy_history/theory_bridges/special_relativity_noether_braid.json",
       "implicit": false
     },
     {
@@ -6217,12 +6217,12 @@
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/validation/sim_nested_shell_swarm_action_increment_protocol.json",
+      "nodeId": "scene:content/scenes/validation/sim_nested_shell_braid_action_increment_protocol.json",
       "nodeType": "scene",
-      "id": "validation_simulations__sim_branch_quantum__sim_nested_shell_swarm_action_increment_protocol",
+      "id": "validation_simulations__sim_branch_quantum__sim_nested_shell_braid_action_increment_protocol",
       "name": "Nested Shell Braid Action-Increment Protocol",
-      "path": "content/scenes/validation/sim_nested_shell_swarm_action_increment_protocol.json",
-      "searchTarget": "content/scenes/validation/sim_nested_shell_swarm_action_increment_protocol.json",
+      "path": "content/scenes/validation/sim_nested_shell_braid_action_increment_protocol.json",
+      "searchTarget": "content/scenes/validation/sim_nested_shell_braid_action_increment_protocol.json",
       "implicit": false
     },
     {
@@ -6397,12 +6397,12 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/archie/ideal-swarm-guide.md",
+      "nodeId": "markdown_doc:content/markdown/aaa/archie/ideal-braid-guide.md",
       "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/archie/ideal-swarm-guide.md",
+      "id": "content/markdown/aaa/archie/ideal-braid-guide.md",
       "name": "Ideal Braid Guide",
-      "path": "content/markdown/aaa/archie/ideal-swarm-guide.md",
-      "searchTarget": "content/markdown/aaa/archie/ideal-swarm-guide.md",
+      "path": "content/markdown/aaa/archie/ideal-braid-guide.md",
+      "searchTarget": "content/markdown/aaa/archie/ideal-braid-guide.md",
       "implicit": false
     },
     {
@@ -6865,30 +6865,30 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+      "nodeId": "markdown_doc:content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
       "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+      "id": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
       "name": "Nested Shell Braid Dynamics",
-      "path": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
-      "searchTarget": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+      "path": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
+      "searchTarget": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
+      "nodeId": "markdown_doc:content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
       "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
+      "id": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
       "name": "Nested Shell Braid Geometry",
-      "path": "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
-      "searchTarget": "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
+      "path": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
+      "searchTarget": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/noether-swarm/noether-swarm.md",
+      "nodeId": "markdown_doc:content/markdown/aaa/noether-braid/noether-braid.md",
       "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/noether-swarm/noether-swarm.md",
+      "id": "content/markdown/aaa/noether-braid/noether-braid.md",
       "name": "Noether Braid",
-      "path": "content/markdown/aaa/noether-swarm/noether-swarm.md",
-      "searchTarget": "content/markdown/aaa/noether-swarm/noether-swarm.md",
+      "path": "content/markdown/aaa/noether-braid/noether-braid.md",
+      "searchTarget": "content/markdown/aaa/noether-braid/noether-braid.md",
       "implicit": false
     },
     {
@@ -7108,12 +7108,12 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md",
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
       "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md",
+      "id": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
       "name": "Mapping the Planck Scale to the Nested Shell Braid Geometry",
-      "path": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md",
-      "searchTarget": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md",
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
       "implicit": false
     },
     {
@@ -7144,12 +7144,12 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md",
       "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
+      "id": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md",
       "name": "Special Relativity and Deformable Noether Braids",
-      "path": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
-      "searchTarget": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md",
       "implicit": false
     },
     {
@@ -7756,12 +7756,12 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/validation/simulations/nested-shell-swarm-action-increment-protocol.md",
+      "nodeId": "markdown_doc:content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
       "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/validation/simulations/nested-shell-swarm-action-increment-protocol.md",
+      "id": "content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
       "name": "Nested Shell Braid Action-Increment Protocol",
-      "path": "content/markdown/aaa/validation/simulations/nested-shell-swarm-action-increment-protocol.md",
-      "searchTarget": "content/markdown/aaa/validation/simulations/nested-shell-swarm-action-increment-protocol.md",
+      "path": "content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
+      "searchTarget": "content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
       "implicit": false
     },
     {
@@ -7900,21 +7900,21 @@
       "implicit": false
     },
     {
+      "nodeId": "asset:content/generated/pdf/textbook/review-copies/noether-braid.pdf",
+      "nodeType": "asset",
+      "id": "content/generated/pdf/textbook/review-copies/noether-braid.pdf",
+      "name": "Noether Braid",
+      "path": "content/generated/pdf/textbook/review-copies/noether-braid.pdf",
+      "searchTarget": "content/generated/pdf/textbook/review-copies/noether-braid.pdf",
+      "implicit": false
+    },
+    {
       "nodeId": "asset:content/generated/pdf/textbook/review-copies/noether-sea-and-effective-spacetime.pdf",
       "nodeType": "asset",
       "id": "content/generated/pdf/textbook/review-copies/noether-sea-and-effective-spacetime.pdf",
       "name": "Noether Sea And Effective Spacetime",
       "path": "content/generated/pdf/textbook/review-copies/noether-sea-and-effective-spacetime.pdf",
       "searchTarget": "content/generated/pdf/textbook/review-copies/noether-sea-and-effective-spacetime.pdf",
-      "implicit": false
-    },
-    {
-      "nodeId": "asset:content/generated/pdf/textbook/review-copies/noether-swarm.pdf",
-      "nodeType": "asset",
-      "id": "content/generated/pdf/textbook/review-copies/noether-swarm.pdf",
-      "name": "Noether Swarm",
-      "path": "content/generated/pdf/textbook/review-copies/noether-swarm.pdf",
-      "searchTarget": "content/generated/pdf/textbook/review-copies/noether-swarm.pdf",
       "implicit": false
     },
     {
@@ -7933,7 +7933,7 @@
       "name": "Quantum",
       "path": "content/generated/pdf/textbook/review-copies/quantum.pdf",
       "searchTarget": "content/generated/pdf/textbook/review-copies/quantum.pdf",
-      "implicit": false
+      "implicit": true
     },
     {
       "nodeId": "asset:content/generated/pdf/textbook/review-copies/reactions.pdf",
@@ -7966,7 +7966,7 @@
   "edges": [
     {
       "from": "scene:content/scenes/archie/applications.json",
-      "to": "scene:content/scenes/archie/ideal_swarm.json",
+      "to": "scene:content/scenes/archie/ideal_braid.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/applications.json",
       "field": "scene.children[0]"
@@ -8183,7 +8183,7 @@
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
-      "to": "scene:content/scenes/noether-swarm/noether_swarm.json",
+      "to": "scene:content/scenes/noether-braid/noether_braid.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
       "field": "scene.children[2]"
@@ -11171,24 +11171,24 @@
       "field": "scene.children[0]"
     },
     {
-      "from": "scene:content/scenes/noether-swarm/noether_swarm.json",
-      "to": "scene:content/scenes/noether-swarm/nested_shell_swarm_dynamics.json",
+      "from": "scene:content/scenes/noether-braid/noether_braid.json",
+      "to": "scene:content/scenes/noether-braid/nested_shell_braid_dynamics.json",
       "edgeType": "subscene",
-      "source": "content/scenes/noether-swarm/noether_swarm.json",
+      "source": "content/scenes/noether-braid/noether_braid.json",
       "field": "scene.children[1]"
     },
     {
-      "from": "scene:content/scenes/noether-swarm/noether_swarm.json",
-      "to": "scene:content/scenes/noether-swarm/nested_shell_swarm_geometry.json",
+      "from": "scene:content/scenes/noether-braid/noether_braid.json",
+      "to": "scene:content/scenes/noether-braid/nested_shell_braid_geometry.json",
       "edgeType": "subscene",
-      "source": "content/scenes/noether-swarm/noether_swarm.json",
+      "source": "content/scenes/noether-braid/noether_braid.json",
       "field": "scene.children[2]"
     },
     {
-      "from": "scene:content/scenes/noether-swarm/noether_swarm.json",
-      "to": "scene:content/scenes/noether-swarm/noether_swarm_overview.json",
+      "from": "scene:content/scenes/noether-braid/noether_braid.json",
+      "to": "scene:content/scenes/noether-braid/noether_braid_overview.json",
       "edgeType": "subscene",
-      "source": "content/scenes/noether-swarm/noether_swarm.json",
+      "source": "content/scenes/noether-braid/noether_braid.json",
       "field": "scene.children[0]"
     },
     {
@@ -11487,7 +11487,7 @@
     },
     {
       "from": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
-      "to": "scene:content/scenes/philosophy_history/theory_bridges/planck_scale_nested_shell_swarm_alignment.json",
+      "to": "scene:content/scenes/philosophy_history/theory_bridges/planck_scale_nested_shell_braid_alignment.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
       "field": "scene.children[13]"
@@ -11515,7 +11515,7 @@
     },
     {
       "from": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
-      "to": "scene:content/scenes/philosophy_history/theory_bridges/special_relativity_noether_swarm.json",
+      "to": "scene:content/scenes/philosophy_history/theory_bridges/special_relativity_noether_braid.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
       "field": "scene.children[8]"
@@ -12124,7 +12124,7 @@
     },
     {
       "from": "scene:content/scenes/validation/sim_branch_quantum.json",
-      "to": "scene:content/scenes/validation/sim_nested_shell_swarm_action_increment_protocol.json",
+      "to": "scene:content/scenes/validation/sim_nested_shell_braid_action_increment_protocol.json",
       "edgeType": "subscene",
       "source": "content/scenes/validation/sim_branch_quantum.json",
       "field": "scene.children[2]"
@@ -12361,10 +12361,10 @@
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/archie/ideal_swarm.json",
-      "to": "markdown_doc:content/markdown/aaa/archie/ideal-swarm-guide.md",
+      "from": "scene:content/scenes/archie/ideal_braid.json",
+      "to": "markdown_doc:content/markdown/aaa/archie/ideal-braid-guide.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/archie/ideal_swarm.json",
+      "source": "content/scenes/archie/ideal_braid.json",
       "field": "scene.source.path"
     },
     {
@@ -12725,24 +12725,24 @@
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/noether-swarm/nested_shell_swarm_dynamics.json",
-      "to": "markdown_doc:content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+      "from": "scene:content/scenes/noether-braid/nested_shell_braid_dynamics.json",
+      "to": "markdown_doc:content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/noether-swarm/nested_shell_swarm_dynamics.json",
+      "source": "content/scenes/noether-braid/nested_shell_braid_dynamics.json",
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/noether-swarm/nested_shell_swarm_geometry.json",
-      "to": "markdown_doc:content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
+      "from": "scene:content/scenes/noether-braid/nested_shell_braid_geometry.json",
+      "to": "markdown_doc:content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/noether-swarm/nested_shell_swarm_geometry.json",
+      "source": "content/scenes/noether-braid/nested_shell_braid_geometry.json",
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/noether-swarm/noether_swarm_overview.json",
-      "to": "markdown_doc:content/markdown/aaa/noether-swarm/noether-swarm.md",
+      "from": "scene:content/scenes/noether-braid/noether_braid_overview.json",
+      "to": "markdown_doc:content/markdown/aaa/noether-braid/noether-braid.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/noether-swarm/noether_swarm_overview.json",
+      "source": "content/scenes/noether-braid/noether_braid_overview.json",
       "field": "scene.source.path"
     },
     {
@@ -12914,10 +12914,10 @@
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/philosophy_history/theory_bridges/planck_scale_nested_shell_swarm_alignment.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md",
+      "from": "scene:content/scenes/philosophy_history/theory_bridges/planck_scale_nested_shell_braid_alignment.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/theory_bridges/planck_scale_nested_shell_swarm_alignment.json",
+      "source": "content/scenes/philosophy_history/theory_bridges/planck_scale_nested_shell_braid_alignment.json",
       "field": "scene.source.path"
     },
     {
@@ -12942,10 +12942,10 @@
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/philosophy_history/theory_bridges/special_relativity_noether_swarm.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
+      "from": "scene:content/scenes/philosophy_history/theory_bridges/special_relativity_noether_braid.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/theory_bridges/special_relativity_noether_swarm.json",
+      "source": "content/scenes/philosophy_history/theory_bridges/special_relativity_noether_braid.json",
       "field": "scene.source.path"
     },
     {
@@ -13418,10 +13418,10 @@
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/validation/sim_nested_shell_swarm_action_increment_protocol.json",
-      "to": "markdown_doc:content/markdown/aaa/validation/simulations/nested-shell-swarm-action-increment-protocol.md",
+      "from": "scene:content/scenes/validation/sim_nested_shell_braid_action_increment_protocol.json",
+      "to": "markdown_doc:content/markdown/aaa/validation/simulations/nested-shell-braid-action-increment-protocol.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/validation/sim_nested_shell_swarm_action_increment_protocol.json",
+      "source": "content/scenes/validation/sim_nested_shell_braid_action_increment_protocol.json",
       "field": "scene.source.path"
     },
     {
@@ -16884,17 +16884,17 @@
     },
     {
       "from": "scene:content/scenes/archie/textbook_pdf_snapshots.json",
+      "to": "asset:content/generated/pdf/textbook/review-copies/noether-braid.pdf",
+      "edgeType": "asset",
+      "source": "content/scenes/archie/textbook_pdf_snapshots.json",
+      "field": "pdf_snapshot_noether_braid.source.path"
+    },
+    {
+      "from": "scene:content/scenes/archie/textbook_pdf_snapshots.json",
       "to": "asset:content/generated/pdf/textbook/review-copies/noether-sea-and-effective-spacetime.pdf",
       "edgeType": "asset",
       "source": "content/scenes/archie/textbook_pdf_snapshots.json",
       "field": "pdf_snapshot_spacetime.source.path"
-    },
-    {
-      "from": "scene:content/scenes/archie/textbook_pdf_snapshots.json",
-      "to": "asset:content/generated/pdf/textbook/review-copies/noether-swarm.pdf",
-      "edgeType": "asset",
-      "source": "content/scenes/archie/textbook_pdf_snapshots.json",
-      "field": "pdf_snapshot_noether_swarm.source.path"
     },
     {
       "from": "scene:content/scenes/archie/textbook_pdf_snapshots.json",

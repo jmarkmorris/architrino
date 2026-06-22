@@ -4,7 +4,7 @@
 
 This is the active-development workbench for [Nested Shell Braid Causal Closure](nested-shell-swarm-causal-closure.md). Its job is to make the proof ladder explicit before the synthesis is promoted into deployed or textbook-facing material.
 
-The deployed dynamics baseline is [nested shell braid dynamics](../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md). That chapter owns the mechanism definitions; this map owns the proof burdens that determine whether those mechanisms can carry the causal-closure synthesis.
+The deployed dynamics baseline is [nested shell braid dynamics](../../../content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md). That chapter owns the mechanism definitions; this map owns the proof burdens that determine whether those mechanisms can carry the causal-closure synthesis.
 
 Each claim is tracked as:
 
@@ -35,7 +35,7 @@ The deployment gate is passed only when every non-closed item in this map has a 
 
 ### 0. Nested Shell Braid Dynamics Baseline
 
-- Inputs: [nested shell braid dynamics](../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md), [Noether Braid](../../../content/markdown/aaa/noether-swarm/noether-swarm.md), and [Binary Dynamics](../../../content/markdown/aaa/dynamics/binary-dynamics.md).
+- Inputs: [nested shell braid dynamics](../../../content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md), [Noether Braid](../../../content/markdown/aaa/noether-braid/noether-braid.md), and [Binary Dynamics](../../../content/markdown/aaa/dynamics/binary-dynamics.md).
 - Mechanism: use the AAA dynamics chapter as the canonical source for Noether braid roles, speed-regime conventions, delay-envelope geometry, gradient response, local clock diagnostics, and alignment/stability tests.
 - Output: a stable baseline vocabulary and mechanism set for the causal-closure synthesis.
 - Proof burden: keep the priority synthesis from silently redefining the mechanism; any stronger claim about mass, proper time, photons, measurement, or relativistic limits must be carried as a theorem target, priority route, or cut item here.

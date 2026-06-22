@@ -40,7 +40,7 @@ Serve as the most trusted day-to-day mathematical and structural advisor for the
    - Keep notation, theorem dependencies, and narrative structure aligned across:
      - `dynamics/master-equation.md`,
      - `dynamics/energy.md`,
-     - `noether-swarm/nested-shell-swarm-dynamics.md`,
+     - `noether-braid/nested-shell-braid-dynamics.md`,
      - `proof-programs/collinear-breather.md`,
      - and related validation or meta notes as needed.
    - Ensure that each new section lands in the correct logical place in the whole proof program.
