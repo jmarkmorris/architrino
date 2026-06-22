@@ -7933,7 +7933,7 @@
       "name": "Quantum",
       "path": "content/generated/pdf/textbook/review-copies/quantum.pdf",
       "searchTarget": "content/generated/pdf/textbook/review-copies/quantum.pdf",
-      "implicit": true
+      "implicit": false
     },
     {
       "nodeId": "asset:content/generated/pdf/textbook/review-copies/reactions.pdf",
