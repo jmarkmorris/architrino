@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 522,
-      "edges": 1275,
-      "scenes": 344,
+      "nodes": 524,
+      "edges": 1277,
+      "scenes": 345,
       "markdownIndexes": 0,
-      "markdownDocs": 165,
+      "markdownDocs": 166,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -1250,6 +1250,12 @@
       "id": "dynamics__causal_action_functional",
       "name": "Causal Action Functional",
       "path": "content/scenes/dynamics/causal_action_functional.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "dynamics__tri_binary_configuration_space",
+      "name": "Tri-Binary Configuration Space",
+      "path": "content/scenes/dynamics/tri_binary_configuration_space.json",
       "nodeType": "scene"
     },
     {
@@ -2492,6 +2498,12 @@
       "id": "content/markdown/aaa/dynamics/master-equation.md",
       "name": "Master Equation of Motion",
       "path": "content/markdown/aaa/dynamics/master-equation.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md",
+      "name": "Tri-Binary Configuration Space",
+      "path": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -3814,6 +3826,15 @@
       "name": "Master Equation of Motion",
       "path": "content/scenes/dynamics/master_equation_of_motion.json",
       "searchTarget": "content/scenes/dynamics/master_equation_of_motion.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/dynamics/tri_binary_configuration_space.json",
+      "nodeType": "scene",
+      "id": "dynamics__tri_binary_configuration_space",
+      "name": "Tri-Binary Configuration Space",
+      "path": "content/scenes/dynamics/tri_binary_configuration_space.json",
+      "searchTarget": "content/scenes/dynamics/tri_binary_configuration_space.json",
       "implicit": false
     },
     {
@@ -6724,6 +6745,15 @@
       "implicit": false
     },
     {
+      "nodeId": "markdown_doc:content/markdown/aaa/dynamics/tri-binary-configuration-space.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md",
+      "name": "Tri-Binary Configuration Space",
+      "path": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md",
+      "searchTarget": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md",
+      "implicit": false
+    },
+    {
       "nodeId": "markdown_doc:content/markdown/aaa/foundations/absolute-time-defense.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/foundations/absolute-time-defense.md",
@@ -8476,7 +8506,7 @@
       "to": "scene:content/scenes/dynamics/assembly_topological_charge.json",
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
@@ -8490,21 +8520,21 @@
       "to": "scene:content/scenes/dynamics/causal_action_functional.json",
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[7]"
+      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
       "to": "scene:content/scenes/dynamics/dyadic_resonance_lock.json",
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[5]"
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
       "to": "scene:content/scenes/dynamics/effective_lagrangian.json",
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[8]"
+      "field": "scene.children[9]"
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
@@ -8529,10 +8559,17 @@
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
+      "to": "scene:content/scenes/dynamics/tri_binary_configuration_space.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/dynamics/dynamics.json",
+      "field": "scene.children[5]"
+    },
+    {
+      "from": "scene:content/scenes/dynamics/dynamics.json",
       "to": "scene:content/scenes/proof-programs/proof_programs.json",
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[9]"
+      "field": "scene.children[10]"
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
@@ -12571,6 +12608,13 @@
       "to": "markdown_doc:content/markdown/aaa/dynamics/master-equation.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/dynamics/master_equation_of_motion.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/dynamics/tri_binary_configuration_space.json",
+      "to": "markdown_doc:content/markdown/aaa/dynamics/tri-binary-configuration-space.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/dynamics/tri_binary_configuration_space.json",
       "field": "scene.source.path"
     },
     {

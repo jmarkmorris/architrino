@@ -26,20 +26,21 @@ The queue favors app concepts that make the theory's native mechanisms visible: 
 ## Priority Queue
 
 1. [Causal Delay Feedback Depth](../causal-delay-feedback-app/causal-delay-feedback-app.md). Status: `promoted`.
-2. `path_history_ledger` - Path-History Ledger. Status: `idea`.
-3. `self_hit_near_cf` - Self-Hit Near $c_f$. Status: `idea`.
-4. `branch_geometry_explorer` - Branch Geometry Explorer. Status: `idea`.
-5. `threshold_crossing_map` - Threshold Crossing Map. Status: `idea`.
-6. `born_rule_basin_measure` - Born Rule As Basin Measure. Status: `idea`.
-7. `record_autonomy_restartability` - Record Autonomy And Restartability. Status: `idea`.
-8. `noether_sea_reversible_retuning` - Noether Sea Reversible Retuning. Status: `idea`.
-9. `nested_shell_swarm_exclusion` - Nested Shell Swarm Exclusion. Status: `idea`.
-10. `photon_surface_routing` - Photon Surface Routing. Status: `idea`.
-11. `clock_cadence_retuning` - Clock-Cadence Retuning. Status: `idea`.
-12. `two_way_signal_recovery` - Two-Way Signal Recovery. Status: `idea`.
-13. `action_ledger_conservation` - Action Ledger Conservation. Status: `idea`.
-14. `noether_sea_response_tensor` - Noether Sea Response Tensor. Status: `idea`.
-15. `mass_map_exposure_viewer` - Mass-Map Exposure Viewer. Status: `idea`.
+2. [Assembly Configuration Explorer](../assembly-explorer/assembly-configuration-explorer.md). Status: `promoted`.
+3. `path_history_ledger` - Path-History Ledger. Status: `idea`.
+4. `self_hit_near_cf` - Self-Hit Near $c_f$. Status: `idea`.
+5. `branch_geometry_explorer` - Branch Geometry Explorer. Status: `idea`.
+6. `threshold_crossing_map` - Threshold Crossing Map. Status: `idea`.
+7. `born_rule_basin_measure` - Born Rule As Basin Measure. Status: `idea`.
+8. `record_autonomy_restartability` - Record Autonomy And Restartability. Status: `idea`.
+9. `noether_sea_reversible_retuning` - Noether Sea Reversible Retuning. Status: `idea`.
+10. `nested_shell_swarm_exclusion` - Nested Shell Swarm Exclusion. Status: `idea`.
+11. `photon_surface_routing` - Photon Surface Routing. Status: `idea`.
+12. `clock_cadence_retuning` - Clock-Cadence Retuning. Status: `idea`.
+13. `two_way_signal_recovery` - Two-Way Signal Recovery. Status: `idea`.
+14. `action_ledger_conservation` - Action Ledger Conservation. Status: `idea`.
+15. `noether_sea_response_tensor` - Noether Sea Response Tensor. Status: `idea`.
+16. `mass_map_exposure_viewer` - Mass-Map Exposure Viewer. Status: `idea`.
 
 ## App Ideas
 
@@ -49,7 +50,13 @@ The queue favors app concepts that make the theory's native mechanisms visible: 
 - The dedicated app packet owns the description, visualization, controls, diagnostics, and first-build requirements.
 - Summary: one main canvas shows a moving source, Virtual Observer, retained causal-delay paths, arriving pulses, and a contribution stack so users can see how active path-history changes the present Virtual Observer readout.
 
-### 2. Path-History Ledger
+### 2. [Assembly Configuration Explorer](../assembly-explorer/assembly-configuration-explorer.md)
+
+- Status: `promoted`.
+- The dedicated app packet owns the unquotiented tri-binary dataset contract, comparison diagnostics, and solver-output adapter boundary.
+- Summary: inspect candidate rows from the unordered tri-binary configuration space, preserve $S_3$-equivalent repeats, compare speed regimes and energy differentials, and prepare stable-sector and accessory-capture views without replacing solver authority.
+
+### 3. Path-History Ledger
 
 Description:
 
@@ -73,7 +80,7 @@ Requirements:
 - Include a small table of retained path-history rows and allow selecting one row to highlight it in the animation.
 - Support a simple two-body mode before adding many-source Noether sea background.
 
-### 3. Self-Hit Near $c_f$
+### 4. Self-Hit Near $c_f$
 
 Description:
 
@@ -97,7 +104,7 @@ Requirements:
 - Plot $J=1-\mathbf v\cdot\mathbf n/c_f$ for selected roots without treating $1/|J|$ as a speed-only effect.
 - Include a slow-motion mode around the threshold regime.
 
-### 4. Branch Geometry Explorer
+### 5. Branch Geometry Explorer
 
 Description:
 
@@ -121,7 +128,7 @@ Requirements:
 - Include a branch table with emission time, distance, $J$, contribution, and accept/reject reason.
 - Keep branch labels stable while the animation runs so users can track one branch through time.
 
-### 5. Threshold Crossing Map
+### 6. Threshold Crossing Map
 
 Description:
 
@@ -145,7 +152,7 @@ Requirements:
 - Include repeated trials from near-identical initial states to show sensitive dependence near the threshold.
 - Display the action increment or threshold residual that triggers the crossing.
 
-### 6. Born Rule As Basin Measure
+### 7. Born Rule As Basin Measure
 
 Description:
 
@@ -169,7 +176,7 @@ Requirements:
 - Distinguish individual deterministic paths from the ensemble summary.
 - Include a warning state when the retained coarse-graining is too poor to claim stable weights.
 
-### 7. Record Autonomy And Restartability
+### 8. Record Autonomy And Restartability
 
 Description:
 
@@ -193,7 +200,7 @@ Requirements:
 - Let users insert or remove a record device and watch interference-like structure change.
 - Keep the app language focused on retained records and path-history rather than many-world branching.
 
-### 8. Noether Sea Reversible Retuning
+### 9. Noether Sea Reversible Retuning
 
 Description:
 
@@ -217,7 +224,7 @@ Requirements:
 - Below threshold, show stress return with no net heating channel.
 - Above threshold, route energy into visible excitation, heating, radiation-like shedding, or branch transition.
 
-### 9. Nested Shell Swarm Exclusion
+### 10. Nested Shell Swarm Exclusion
 
 Description:
 
@@ -241,7 +248,7 @@ Requirements:
 - Switch into a coherent planar-channel mode when support becomes effectively two-dimensional.
 - Label the transition as a geometry hypothesis unless the app is later backed by a completed spin-statistics derivation.
 
-### 10. Photon Surface Routing
+### 11. Photon Surface Routing
 
 Description:
 
@@ -265,7 +272,7 @@ Requirements:
 - Display the local surface residual and selected routing reason.
 - Reuse Photon app visual grammar for planar-pair motion where possible.
 
-### 11. Clock-Cadence Retuning
+### 12. Clock-Cadence Retuning
 
 Description:
 
@@ -289,7 +296,7 @@ Requirements:
 - Keep the assembly identity fixed while local cadence changes.
 - Include a mode that shows when the branch becomes unstable rather than continuing as a valid clock.
 
-### 12. Two-Way Signal Recovery
+### 13. Two-Way Signal Recovery
 
 Description:
 
@@ -313,7 +320,7 @@ Requirements:
 - Include a mismatch warning when clock, ruler, and signal parameters are tuned independently.
 - Keep this as a recovery-target app, not a proof that Lorentz invariance has been derived.
 
-### 13. Action Ledger Conservation
+### 14. Action Ledger Conservation
 
 Description:
 
@@ -337,7 +344,7 @@ Requirements:
 - Highlight any unbalanced residual in red with the missing channel named.
 - Allow users to click a channel and see its physical interpretation in plain language.
 
-### 14. Noether Sea Response Tensor
+### 15. Noether Sea Response Tensor
 
 Description:
 
@@ -361,7 +368,7 @@ Requirements:
 - Let users rotate the response basis and watch transport and clock diagnostics change.
 - Keep any tensor notation secondary to the animation and explain symbols in the diagnostics panel.
 
-### 15. Mass-Map Exposure Viewer
+### 16. Mass-Map Exposure Viewer
 
 Description:
 

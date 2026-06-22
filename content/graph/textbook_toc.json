@@ -8,8 +8,8 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 175,
-      "sections": 1421
+      "entries": 176,
+      "sections": 1434
     }
   },
   "tocRoot": {
@@ -1539,6 +1539,112 @@
             ]
           },
           {
+            "id": "dynamics__tri_binary_configuration_space",
+            "title": "Tri-Binary Configuration Space",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/dynamics/tri_binary_configuration_space.json",
+            "markdownPath": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Scope Of The Hypothesis",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md",
+                "markdownSection": "Scope Of The Hypothesis",
+                "sectionKey": "scope of the hypothesis",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Why Three Binaries",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md",
+                "markdownSection": "Why Three Binaries",
+                "sectionKey": "why three binaries",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "General Branch State",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md",
+                "markdownSection": "General Branch State",
+                "sectionKey": "general branch state",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Branch Group Velocity",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md",
+                "markdownSection": "Branch Group Velocity",
+                "sectionKey": "branch group velocity",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Eigen-Swarm Candidates",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md",
+                "markdownSection": "Eigen-Swarm Candidates",
+                "sectionKey": "eigen swarm candidates",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Momentum And Axis Decomposition",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md",
+                "markdownSection": "Momentum And Axis Decomposition",
+                "sectionKey": "momentum and axis decomposition",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Unordered Layer Semantics",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md",
+                "markdownSection": "Unordered Layer Semantics",
+                "sectionKey": "unordered layer semantics",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Super-Field-Speed Carrier Rows",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md",
+                "markdownSection": "Super-Field-Speed Carrier Rows",
+                "sectionKey": "super field speed carrier rows",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Stability In A Sea Of Like Assemblies",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md",
+                "markdownSection": "Stability In A Sea Of Like Assemblies",
+                "sectionKey": "stability in a sea of like assemblies",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Toward A Periodic Table Of The Noether Swarm",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md",
+                "markdownSection": "Toward A Periodic Table Of The Noether Swarm",
+                "sectionKey": "toward a periodic table of the noether swarm",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Accessory-Architrino Capture",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md",
+                "markdownSection": "Accessory-Architrino Capture",
+                "sectionKey": "accessory architrino capture",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Relation To The Dyadic Chapter",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md",
+                "markdownSection": "Relation To The Dyadic Chapter",
+                "sectionKey": "relation to the dyadic chapter",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
             "id": "dynamics__dyadic_resonance_lock",
             "title": "Dyadic Resonance Lock",
             "kind": "markdown-view",
@@ -1546,6 +1652,14 @@
             "scenePath": "content/scenes/dynamics/dyadic_resonance_lock.json",
             "markdownPath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
             "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "General Tri-Binary Branch State",
+                "markdownPath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
+                "markdownSection": "General Tri-Binary Branch State",
+                "sectionKey": "general tri binary branch state",
+                "headingLevel": 2
+              },
               {
                 "kind": "markdown-section",
                 "title": "Status and Assumptions",

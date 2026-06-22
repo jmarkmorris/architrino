@@ -8,6 +8,7 @@ This file records completed source-mining targets. When a new source or source f
 
 | Source mined | Date mined |
 | --- | --- |
+| William Thurston-style review attachment, `# Review: Causal Action Functional & Assembly Topological Charge`, covering `causal-action-functional.md` and `assembly-topological-charge.md`; local attachment `/Users/markmorris/.codex/attachments/df1232bc-e7b3-4ceb-b517-a6c4d7787a69/pasted-text.txt` | June 21, 2026 |
 | Assumptions of Physics - The Research, [Open problems in Reverse Physics](https://www.youtube.com/watch?v=KxyH3mITjcE), fifth 2025 Summer School session covering classical field theory extension, process entropy and thermodynamics, quantum measurement as equilibration, QFT/degree-of-freedom counting, observer issues, and mathematical-methods gaps; transcript artifact `/tmp/KxyH3mITjcE.transcript.txt` | June 21, 2026 |
 | Assumptions of Physics - The Research, [Introduction to Reverse Physics](https://www.youtube.com/watch?v=EjP38CT46HQ), first 2025 Summer School session on reverse physics, physical mathematics, Hamiltonian mechanics, entropy/uncertainty, and model-assumption domains; transcript artifact `/tmp/EjP38CT46HQ.transcript.txt` | June 21, 2026 |
 | Xiyin Tang, [AI-generated QFT repository](https://github.com/xiyin137/QFT), especially `chapter19c_standard_model_hybrid_definition.tex`, `chapter08_lattice_to_continuum_local_qft.tex`, finite-regulator scripts, and accompanying TeX/source files for Standard Model hybrid-definition and finite-regulator/scaling-limit discipline | June 21, 2026 |

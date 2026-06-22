@@ -1,0 +1,228 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://architrino.local/contracts/assembly-configuration-explorer/v1/schema.json",
+  "title": "Assembly Configuration Explorer Dataset",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "datasetId", "fieldSpeed", "searchSemantics", "branches"],
+  "properties": {
+    "schema": {
+      "const": "assembly-configuration-explorer.dataset.v1"
+    },
+    "datasetId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "fieldSpeed": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "searchSemantics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["layerOrdering", "permutationPolicy"],
+      "properties": {
+        "layerOrdering": {
+          "const": "unquotiented-labeled"
+        },
+        "permutationPolicy": {
+          "type": "string",
+          "enum": ["keep-repeated-solutions", "analysis-collapse-only"]
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "branches": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/branch"
+      }
+    }
+  },
+  "$defs": {
+    "vector3": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["x", "y", "z"],
+      "properties": {
+        "x": { "type": "number" },
+        "y": { "type": "number" },
+        "z": { "type": "number" }
+      }
+    },
+    "layer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["layerId", "frequency", "radius", "energy", "phase", "normal"],
+      "properties": {
+        "layerId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "frequency": {
+          "type": "number",
+          "minimum": 0
+        },
+        "radius": {
+          "type": "number",
+          "minimum": 0
+        },
+        "energy": {
+          "type": "number"
+        },
+        "speed": {
+          "type": "number",
+          "minimum": 0
+        },
+        "phase": {
+          "type": "number"
+        },
+        "normal": {
+          "$ref": "#/$defs/vector3"
+        },
+        "ledger": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    },
+    "stability": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "root": { "type": "string" },
+        "phase": { "type": "string" },
+        "energy": { "type": "string" },
+        "return": { "type": "string" },
+        "sea": { "type": "string" }
+      }
+    },
+    "eigenSwarm": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["not-evaluated", "candidate", "relative-return-passed", "retained-eigen-swarm", "rejected"]
+        },
+        "period": {
+          "type": "number",
+          "minimum": 0
+        },
+        "returnResidual": {
+          "type": "number",
+          "minimum": 0
+        },
+        "floquetGap": {
+          "type": "number"
+        },
+        "allowedSymmetries": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "lorentzExportStatus": {
+          "type": "string",
+          "enum": ["not-evaluated", "downstream-target", "passed", "failed"]
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "axisAlignment": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["not-evaluated", "candidate", "passed", "failed"]
+        },
+        "angularMomentumResidual": {
+          "type": "number",
+          "minimum": 0
+        },
+        "weights": {
+          "type": "string"
+        },
+        "envelopeAxisStatus": {
+          "type": "string",
+          "enum": ["not-evaluated", "rest-branch", "moving-branch", "failed"]
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "branch": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["branchId", "layers"],
+      "properties": {
+        "branchId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "family": {
+          "type": "string"
+        },
+        "claimLevel": {
+          "type": "string",
+          "enum": ["candidate", "diagnostic", "retained-branch-target", "retained-branch"]
+        },
+        "layers": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {
+            "$ref": "#/$defs/layer"
+          }
+        },
+        "responseCenter": {
+          "$ref": "#/$defs/vector3"
+        },
+        "groupVelocity": {
+          "$ref": "#/$defs/vector3"
+        },
+        "totalMomentum": {
+          "$ref": "#/$defs/vector3"
+        },
+        "totalAngularMomentum": {
+          "$ref": "#/$defs/vector3"
+        },
+        "seaRecord": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "eigenSwarm": {
+          "$ref": "#/$defs/eigenSwarm"
+        },
+        "axisAlignment": {
+          "$ref": "#/$defs/axisAlignment"
+        },
+        "stability": {
+          "$ref": "#/$defs/stability"
+        },
+        "assemblyTopologicalCharge": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "capture": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "solverRefs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        }
+      }
+    }
+  }
+}
