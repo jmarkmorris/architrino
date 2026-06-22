@@ -164,7 +164,7 @@ try {
   });
 
   const report = {
-    schema: "aaa-tri-binary-frequency-candidate-solver-report.v66",
+    schema: "aaa-tri-binary-frequency-candidate-solver-report.v72",
     generatedAt: new Date().toISOString(),
     solverBacked: true,
     claimLevel: "priority-only evidence; not retained-branch certification",
@@ -275,7 +275,7 @@ function createSolverGeometryPublicContract() {
     fixedSphereOrbitClaim: false,
     nestedShellRadiusClaim: false,
     compatibility:
-      "Old report consumers that read layers[].radius, layers[].solverGeometry.circularSourceRadius, layers[].solverGeometryRadius, geometryLiftTarget, retainedLiftTarget, or currentExecutableChart as the retained model must migrate; no compatibility shim is emitted in v66 reports.",
+      "Old report consumers that read layers[].radius, layers[].solverGeometry.circularSourceRadius, layers[].solverGeometryRadius, geometryLiftTarget, retainedLiftTarget, or currentExecutableChart as the retained model must migrate; no compatibility shim is emitted in v72 reports.",
   };
 }
 
@@ -39955,6 +39955,71 @@ function createEqualFrequencyEnergyRadiusAudit(cases) {
       retainedEventDomainLiftTarget,
       retainedEventDomainSelector,
     });
+  const retainedPhaseHistoryTemplatePopulationAttemptAudit =
+    createEqualFrequencyRetainedPhaseHistoryTemplatePopulationAttemptAudit({
+      binaryToBinaryPhaseHistoryLiftTarget,
+      phaseCarrierTransferAlignmentAudit,
+      retainedPhaseHistoryCarrierReadinessAudit,
+      retainedPhaseHistoryCarrierEventDomainRowModel,
+      retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit,
+      retainedPhaseHistoryCarrierEventIdProvenanceAudit,
+      retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit,
+      retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit,
+      phaseCurrentRetainedKernelDerivationTarget,
+    });
+  const retainedSourceEventDomainAcceptanceAttemptAudit =
+    createEqualFrequencyRetainedSourceEventDomainAcceptanceAttemptAudit({
+      retainedPhaseHistoryTemplatePopulationAttemptAudit,
+      retainedPhaseHistoryCarrierEventIdProvenanceAudit,
+      retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit,
+      retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit,
+      retainedEventDomainLiftTarget,
+      retainedEventDomainSelector,
+    });
+  const retainedSourceEventIdAcceptanceAttemptAudit =
+    createEqualFrequencyRetainedSourceEventIdAcceptanceAttemptAudit({
+      retainedSourceEventDomainAcceptanceAttemptAudit,
+      retainedPhaseHistoryTemplatePopulationAttemptAudit,
+      retainedPhaseHistoryCarrierEventIdProvenanceAudit,
+      retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit,
+      retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit,
+      retainedEventDomainLiftTarget,
+      retainedEventDomainSelector,
+    });
+  const retainedSourceEventCandidateIdentityAudit =
+    createEqualFrequencyRetainedSourceEventCandidateIdentityAudit({
+      retainedSourceEventIdAcceptanceAttemptAudit,
+      retainedSourceEventDomainAcceptanceAttemptAudit,
+      retainedPhaseHistoryTemplatePopulationAttemptAudit,
+      retainedPhaseHistoryCarrierEventIdProvenanceAudit,
+      retainedEventDomainLiftTarget,
+      retainedEventDomainSelector,
+    });
+  const retainedSourceEventIdentityConstructionAudit =
+    createEqualFrequencyRetainedSourceEventIdentityConstructionAudit({
+      retainedSourceEventCandidateIdentityAudit,
+      retainedSourceEventIdAcceptanceAttemptAudit,
+      retainedSourceEventDomainAcceptanceAttemptAudit,
+      retainedPhaseHistoryTemplatePopulationAttemptAudit,
+      retainedPhaseHistoryCarrierEventIdProvenanceAudit,
+      retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit,
+      retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit,
+      retainedEventDomainLiftTarget,
+      retainedEventDomainSelector,
+    });
+  const retainedSourceEventIdentityAcceptanceAudit =
+    createEqualFrequencyRetainedSourceEventIdentityAcceptanceAudit({
+      retainedSourceEventIdentityConstructionAudit,
+      retainedSourceEventCandidateIdentityAudit,
+      retainedSourceEventIdAcceptanceAttemptAudit,
+      retainedSourceEventDomainAcceptanceAttemptAudit,
+      retainedPhaseHistoryTemplatePopulationAttemptAudit,
+      retainedPhaseHistoryCarrierEventIdProvenanceAudit,
+      retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit,
+      retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit,
+      retainedEventDomainLiftTarget,
+      retainedEventDomainSelector,
+    });
   const sameEventTransferLiftDependencyAudit =
     createEqualFrequencySameEventTransferLiftDependencyAudit({
       priorityCaseSummaries,
@@ -39972,6 +40037,12 @@ function createEqualFrequencyEnergyRadiusAudit(cases) {
       retainedPhaseHistoryCarrierEventIdProvenanceAudit,
       retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit,
       retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit,
+      retainedPhaseHistoryTemplatePopulationAttemptAudit,
+      retainedSourceEventDomainAcceptanceAttemptAudit,
+      retainedSourceEventIdAcceptanceAttemptAudit,
+      retainedSourceEventCandidateIdentityAudit,
+      retainedSourceEventIdentityConstructionAudit,
+      retainedSourceEventIdentityAcceptanceAudit,
     });
   const retainedRowSetIdentityStructuralWitnessAudit =
     createEqualFrequencyRetainedRowSetIdentityStructuralWitnessAudit({
@@ -40004,6 +40075,12 @@ function createEqualFrequencyEnergyRadiusAudit(cases) {
       retainedPhaseHistoryCarrierEventIdProvenanceAudit,
       retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit,
       retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit,
+      retainedPhaseHistoryTemplatePopulationAttemptAudit,
+      retainedSourceEventDomainAcceptanceAttemptAudit,
+      retainedSourceEventIdAcceptanceAttemptAudit,
+      retainedSourceEventCandidateIdentityAudit,
+      retainedSourceEventIdentityConstructionAudit,
+      retainedSourceEventIdentityAcceptanceAudit,
       retainedEventDomainSelector,
       retainedRowSetIdentityStructuralWitnessAudit,
     });
@@ -40034,6 +40111,10 @@ function createEqualFrequencyEnergyRadiusAudit(cases) {
       retainedPhaseHistoryCarrierReadinessAudit,
       retainedBinaryToBinaryPhaseHistoryAudit:
         retainedBinaryToBinaryPhaseHistoryAuditWithRowSet,
+      retainedSourceEventDomainAcceptanceAttemptAudit,
+      retainedSourceEventIdAcceptanceAttemptAudit,
+      retainedSourceEventCandidateIdentityAudit,
+      retainedSourceEventIdentityAcceptanceAudit,
       retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit,
       phaseCurrentRetainedKernelDerivationTarget,
       retainedRowSetIdentityStructuralWitnessAudit,
@@ -40069,6 +40150,12 @@ function createEqualFrequencyEnergyRadiusAudit(cases) {
       retainedPhaseHistoryCarrierEventIdProvenanceAudit,
       retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit,
       retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit,
+      retainedPhaseHistoryTemplatePopulationAttemptAudit,
+      retainedSourceEventDomainAcceptanceAttemptAudit,
+      retainedSourceEventIdAcceptanceAttemptAudit,
+      retainedSourceEventCandidateIdentityAudit,
+      retainedSourceEventIdentityConstructionAudit,
+      retainedSourceEventIdentityAcceptanceAudit,
       sameEventTransferLiftDependencyAudit,
       deformationContinuationAudit,
       actionLedgerAudit,
@@ -40085,7 +40172,7 @@ function createEqualFrequencyEnergyRadiusAudit(cases) {
       retainedFrequencyPhasePacket,
     });
   return {
-    schema: "aaa-equal-frequency-energy-radius-audit.v63",
+    schema: "aaa-equal-frequency-energy-radius-audit.v69",
     claimLevel:
       "priority-only equal-frequency energy-radius-phase audit; not retained-branch certification or hbar derivation",
     priority: "high",
@@ -40139,6 +40226,12 @@ function createEqualFrequencyEnergyRadiusAudit(cases) {
     retainedPhaseHistoryCarrierEventIdProvenanceAudit,
     retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit,
     retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit,
+    retainedPhaseHistoryTemplatePopulationAttemptAudit,
+    retainedSourceEventDomainAcceptanceAttemptAudit,
+    retainedSourceEventIdAcceptanceAttemptAudit,
+    retainedSourceEventCandidateIdentityAudit,
+    retainedSourceEventIdentityConstructionAudit,
+    retainedSourceEventIdentityAcceptanceAudit,
     retainedBinaryToBinaryPhaseHistoryAudit:
       retainedBinaryToBinaryPhaseHistoryAuditWithRowSet,
     sameEventTransferLiftDependencyAudit,
@@ -45493,6 +45586,10 @@ function createEqualFrequencyRetainedPhaseBundleHolonomyAudit({
   phaseChannelClassificationAudit,
   retainedPhaseHistoryCarrierReadinessAudit,
   retainedBinaryToBinaryPhaseHistoryAudit,
+  retainedSourceEventDomainAcceptanceAttemptAudit,
+  retainedSourceEventIdAcceptanceAttemptAudit,
+  retainedSourceEventCandidateIdentityAudit,
+  retainedSourceEventIdentityAcceptanceAudit,
   retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit,
   phaseCurrentRetainedKernelDerivationTarget,
   retainedRowSetIdentityStructuralWitnessAudit,
@@ -45556,10 +45653,22 @@ function createEqualFrequencyRetainedPhaseBundleHolonomyAudit({
     retainedRowSetIdentityStructuralWitnessAudit?.retainedRowSetIdentityPass ===
     true;
   const currentEventDomainProxyPass =
+    retainedSourceEventIdentityAcceptanceAudit
+      ?.sourceEventIdentityAcceptanceCurrentProxyPass === true ||
+    retainedSourceEventCandidateIdentityAudit
+      ?.sourceEventCandidateIdentityCurrentProxyPass === true ||
+    retainedSourceEventIdAcceptanceAttemptAudit
+      ?.sourceEventIdAcceptanceCurrentProxyPass === true ||
+    retainedSourceEventDomainAcceptanceAttemptAudit
+      ?.sourceEventDomainAcceptanceCurrentProxyPass === true ||
     retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
       ?.currentBindingCandidateRowCount > 0 ||
     retainedEventDomainSelector?.currentProxyRouteCount > 0;
   const retainedEventDomainPass =
+    retainedSourceEventIdentityAcceptanceAudit
+      ?.retainedSourceEventIdentityAcceptancePass === true ||
+    retainedSourceEventCandidateIdentityAudit
+      ?.retainedSourceEventCandidateIdentityPass === true ||
     retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
       ?.retainedEventDomainBindingAttemptPass === true ||
     retainedEventDomainSelector?.retainedSelectorAcceptancePass === true;
@@ -45680,6 +45789,14 @@ function createEqualFrequencyRetainedPhaseBundleHolonomyAudit({
       currentProxyPass: currentEventDomainProxyPass,
       retainedAcceptancePass: retainedEventDomainPass,
       currentEvidenceCount:
+        retainedSourceEventIdentityAcceptanceAudit
+          ?.currentEvidenceResidualCount ??
+        retainedSourceEventCandidateIdentityAudit
+          ?.currentEvidenceResidualCount ??
+        retainedSourceEventIdAcceptanceAttemptAudit
+          ?.currentEvidenceResidualCount ??
+        retainedSourceEventDomainAcceptanceAttemptAudit
+          ?.currentEvidenceResidualCount ??
         retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
           ?.currentBindingCandidateRowCount ??
         retainedEventDomainSelector?.currentProxyRouteCount ??
@@ -45688,15 +45805,31 @@ function createEqualFrequencyRetainedPhaseBundleHolonomyAudit({
         retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit?.rowCount ??
         null,
       acceptedEvidenceCount:
+        retainedSourceEventIdentityAcceptanceAudit?.acceptedResidualCount ??
+        retainedSourceEventCandidateIdentityAudit?.acceptedResidualCount ??
+        retainedSourceEventIdAcceptanceAttemptAudit
+          ?.acceptedResidualCount ??
+        retainedSourceEventDomainAcceptanceAttemptAudit
+          ?.acceptedResidualCount ??
         retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
           ?.retainedAcceptedBindingCount ??
         retainedEventDomainSelector?.acceptedRouteCount ??
         null,
       sourceSchema:
+        retainedSourceEventIdentityAcceptanceAudit?.schema ??
+        retainedSourceEventCandidateIdentityAudit?.schema ??
+        retainedSourceEventIdAcceptanceAttemptAudit?.schema ??
+        retainedSourceEventDomainAcceptanceAttemptAudit?.schema ??
         retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit?.schema ??
         retainedEventDomainSelector?.schema ??
         null,
       missingRetainedInputs: [
+        ...(retainedSourceEventIdentityAcceptanceAudit
+          ?.firstMissingRetainedInputs ?? []),
+        ...(retainedSourceEventCandidateIdentityAudit
+          ?.firstMissingRetainedInputs ?? []),
+        ...(retainedSourceEventIdAcceptanceAttemptAudit
+          ?.firstMissingRetainedInputs ?? []),
         "same_retained_event_or_positive_width_domain",
       ],
     },
@@ -50071,6 +50204,2256 @@ function createEqualFrequencyRetainedPhaseHistoryCarrierEventDomainBindingAttemp
   };
 }
 
+function createEqualFrequencyRetainedPhaseHistoryTemplatePopulationAttemptAudit({
+  binaryToBinaryPhaseHistoryLiftTarget,
+  phaseCarrierTransferAlignmentAudit,
+  retainedPhaseHistoryCarrierReadinessAudit,
+  retainedPhaseHistoryCarrierEventDomainRowModel,
+  retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit,
+  retainedPhaseHistoryCarrierEventIdProvenanceAudit,
+  retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit,
+  retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit,
+  phaseCurrentRetainedKernelDerivationTarget,
+}) {
+  const sourceRows =
+    retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit?.rows ?? [];
+  const eventDomainRows =
+    retainedPhaseHistoryCarrierEventDomainRowModel?.rows ?? [];
+  const readinessRows = retainedPhaseHistoryCarrierReadinessAudit?.rows ?? [];
+  const liftRows = binaryToBinaryPhaseHistoryLiftTarget?.rows ?? [];
+  const provenanceRows =
+    retainedPhaseHistoryCarrierEventIdProvenanceAudit?.rows ?? [];
+  const ruleRows =
+    retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit?.rows ?? [];
+  const bindingRows =
+    retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit?.rows ?? [];
+  const alignmentRows = phaseCarrierTransferAlignmentAudit?.rows ?? [];
+  const retainedRowSetId =
+    retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit?.retainedRowSetId ??
+    retainedPhaseHistoryCarrierEventDomainRowModel?.retainedRowSetId ??
+    binaryToBinaryPhaseHistoryLiftTarget?.retainedRowSetId ??
+    "S_eq";
+  const carrierChannelId =
+    retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit?.carrierChannelId ??
+    retainedPhaseHistoryCarrierReadinessAudit?.carrierChannelId ??
+    phaseCarrierTransferAlignmentAudit?.selectedCarrierChannelId ??
+    "middle->outer";
+  const selectedEventDomainRoute =
+    retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit
+      ?.selectedEventDomainRoute ??
+    retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
+      ?.selectedEventDomainRoute ??
+    null;
+  const signedRootCurrentProxyPass =
+    phaseCurrentRetainedKernelDerivationTarget
+      ?.phaseCurrentSourceBridgeSignedRootCurrentProxyPass === true;
+  const finiteImpulseCurrentProxyPass =
+    phaseCurrentRetainedKernelDerivationTarget
+      ?.phaseCurrentSourceBridgeFiniteImpulseCurrentProxyPass === true ||
+    phaseCurrentRetainedKernelDerivationTarget
+      ?.phaseCurrentSourceBridgeCurrentProxyRowCount >= 2;
+  const selectedCarrierCandidate =
+    phaseCarrierTransferAlignmentAudit?.selectedCarrierChannelId ??
+    carrierChannelId;
+  const rows = sourceRows.map((eventIdRow) => {
+    const eventDomainRow =
+      eventDomainRows.find(
+        (candidate) => candidate.rowId === eventIdRow.sourceEventDomainRowId
+      ) ?? null;
+    const readinessRow =
+      readinessRows.find(
+        (candidate) =>
+          candidate.rowId === eventDomainRow?.sourceReadinessRowId ||
+          (candidate.f === eventIdRow.f &&
+            candidate.sourceRole === eventIdRow.sourceRole &&
+            candidate.receiverRole === eventIdRow.receiverRole)
+      ) ?? null;
+    const liftRow =
+      liftRows.find(
+        (candidate) =>
+          candidate.f === eventIdRow.f &&
+          candidate.sourceRole === eventIdRow.sourceRole &&
+          candidate.receiverRole === eventIdRow.receiverRole
+      ) ?? null;
+    const provenanceRow =
+      provenanceRows.find(
+        (candidate) =>
+          candidate.sourceEventIdPopulationAttemptRowId === eventIdRow.rowId
+      ) ?? null;
+    const ruleRow =
+      ruleRows.find(
+        (candidate) =>
+          candidate.sourceEventIdPopulationAttemptRowId === eventIdRow.rowId
+      ) ?? null;
+    const bindingRow =
+      bindingRows.find(
+        (candidate) =>
+          candidate.sourceEventIdPopulationAttemptRowId === eventIdRow.rowId
+      ) ?? null;
+    const alignmentRow =
+      alignmentRows.find((candidate) => candidate.f === eventIdRow.f) ?? null;
+    const eventPairCandidate =
+      provenanceRow?.eventIdPairCandidate ??
+      eventIdRow.eventIdPairCandidate ??
+      eventDomainRow?.eventPairIdTemplate ??
+      null;
+    const branchHistorySegmentCandidate =
+      typeof eventDomainRow?.eventPairIdTemplate === "string"
+        ? `${eventDomainRow.eventPairIdTemplate}-history-segment`
+        : typeof eventPairCandidate === "string"
+          ? `${eventPairCandidate}-history-segment`
+          : null;
+    const signedRootOrientationCandidate =
+      signedRootCurrentProxyPass === true
+        ? "phase_current_source_bridge_signed_root_orientation_current_proxy"
+        : null;
+    const finiteImpulseHistoryClassCandidate =
+      finiteImpulseCurrentProxyPass === true
+        ? "finite_impulse_history_class_H_star_current_proxy"
+        : null;
+    const wakeCouplingCarrierCandidate =
+      typeof selectedCarrierCandidate === "string"
+        ? selectedCarrierCandidate
+        : null;
+    const bindingCandidate =
+      bindingRow?.bindingCandidateId ??
+      retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
+        ?.firstAttemptBindingCandidateId ??
+      null;
+    const residualChecks = [
+      {
+        residualId: "r_src_evt",
+        label: "source retained event ID",
+        currentProxyValue: eventIdRow.sourceEventIdCandidate,
+        currentProxyPass:
+          typeof eventIdRow.sourceEventIdCandidate === "string",
+        retainedAcceptancePass:
+          eventIdRow.retainedSourceEventIdAccepted === true,
+        missingRetainedInput: "retained_source_event_id",
+        sourceSchema:
+          retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit?.schema ??
+          null,
+      },
+      {
+        residualId: "r_recv_evt",
+        label: "receiver retained event ID",
+        currentProxyValue: eventIdRow.receiverEventIdCandidate,
+        currentProxyPass:
+          typeof eventIdRow.receiverEventIdCandidate === "string",
+        retainedAcceptancePass:
+          eventIdRow.retainedReceiverEventIdAccepted === true,
+        missingRetainedInput: "retained_receiver_event_id",
+        sourceSchema:
+          retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit?.schema ??
+          null,
+      },
+      {
+        residualId: "r_src_root",
+        label: "source retained root key",
+        currentProxyValue: eventDomainRow?.sourceRootKeyTemplate ?? null,
+        currentProxyPass:
+          typeof eventDomainRow?.sourceRootKeyTemplate === "string",
+        retainedAcceptancePass:
+          eventDomainRow?.retainedSourceRootKeyAccepted === true,
+        missingRetainedInput: "source_retained_root_key",
+        sourceSchema:
+          retainedPhaseHistoryCarrierEventDomainRowModel?.schema ?? null,
+      },
+      {
+        residualId: "r_recv_root",
+        label: "receiver retained root key",
+        currentProxyValue: eventDomainRow?.receiverRootKeyTemplate ?? null,
+        currentProxyPass:
+          typeof eventDomainRow?.receiverRootKeyTemplate === "string",
+        retainedAcceptancePass:
+          eventDomainRow?.retainedReceiverRootKeyAccepted === true,
+        missingRetainedInput: "receiver_retained_root_key",
+        sourceSchema:
+          retainedPhaseHistoryCarrierEventDomainRowModel?.schema ?? null,
+      },
+      {
+        residualId: "r_phi_src",
+        label: "emitted source phase",
+        currentProxyValue:
+          eventDomainRow?.sourcePhaseTurnsCurrentProxy ??
+          readinessRow?.sourcePhaseTurns ??
+          liftRow?.sourcePhaseTurns ??
+          null,
+        currentProxyPass: Number.isFinite(
+          eventDomainRow?.sourcePhaseTurnsCurrentProxy ??
+            readinessRow?.sourcePhaseTurns ??
+            liftRow?.sourcePhaseTurns
+        ),
+        retainedAcceptancePass:
+          eventDomainRow?.retainedEmittedPhaseAccepted === true,
+        missingRetainedInput: "emitted_phase_phi_source",
+        sourceSchema:
+          retainedPhaseHistoryCarrierEventDomainRowModel?.schema ?? null,
+      },
+      {
+        residualId: "r_phi_recv",
+        label: "received receiver phase",
+        currentProxyValue:
+          eventDomainRow?.receiverPhaseTurnsCurrentProxy ??
+          readinessRow?.receiverPhaseTurns ??
+          liftRow?.receiverPhaseTurns ??
+          null,
+        currentProxyPass: Number.isFinite(
+          eventDomainRow?.receiverPhaseTurnsCurrentProxy ??
+            readinessRow?.receiverPhaseTurns ??
+            liftRow?.receiverPhaseTurns
+        ),
+        retainedAcceptancePass:
+          eventDomainRow?.retainedReceivedPhaseAccepted === true,
+        missingRetainedInput: "received_phase_phi_receiver",
+        sourceSchema:
+          retainedPhaseHistoryCarrierEventDomainRowModel?.schema ?? null,
+      },
+      {
+        residualId: "r_segment",
+        label: "branch-history source-to-receiver segment",
+        currentProxyValue: branchHistorySegmentCandidate,
+        currentProxyPass:
+          typeof branchHistorySegmentCandidate === "string",
+        retainedAcceptancePass:
+          eventDomainRow?.retainedBranchHistorySegmentAccepted === true,
+        missingRetainedInput: "branch_history_segment_source_to_receiver",
+        sourceSchema:
+          retainedPhaseHistoryCarrierEventDomainRowModel?.schema ?? null,
+      },
+      {
+        residualId: "r_orientation",
+        label: "signed-root-complex orientation",
+        currentProxyValue: signedRootOrientationCandidate,
+        currentProxyPass: signedRootCurrentProxyPass,
+        retainedAcceptancePass: false,
+        missingRetainedInput: "signed_root_complex_orientation",
+        sourceSchema:
+          phaseCurrentRetainedKernelDerivationTarget
+            ?.phaseCurrentSourceBridgeTargetSchema ??
+          phaseCurrentRetainedKernelDerivationTarget?.schema ??
+          null,
+      },
+      {
+        residualId: "r_impulse",
+        label: "finite-impulse history class",
+        currentProxyValue: finiteImpulseHistoryClassCandidate,
+        currentProxyPass: finiteImpulseCurrentProxyPass,
+        retainedAcceptancePass: false,
+        missingRetainedInput: "finite_impulse_history_class",
+        sourceSchema:
+          phaseCurrentRetainedKernelDerivationTarget
+            ?.phaseCurrentSourceBridgeTargetSchema ??
+          phaseCurrentRetainedKernelDerivationTarget?.schema ??
+          null,
+      },
+      {
+        residualId: "r_carrier",
+        label: "wake/coupling current carrier",
+        currentProxyValue: wakeCouplingCarrierCandidate,
+        currentProxyPass:
+          typeof wakeCouplingCarrierCandidate === "string" &&
+          (alignmentRow?.currentProxyPass === true ||
+            phaseCarrierTransferAlignmentAudit
+              ?.phaseCarrierTransferAlignmentCurrentProxyPass === true),
+        retainedAcceptancePass:
+          alignmentRow?.retainedCarrierTransferAlignmentPass === true,
+        missingRetainedInput: "wake_coupling_current_carrier",
+        sourceSchema: phaseCarrierTransferAlignmentAudit?.schema ?? null,
+      },
+      {
+        residualId: "r_bind",
+        label: "same-event or positive-width-domain binding",
+        currentProxyValue: bindingCandidate,
+        currentProxyPass:
+          typeof bindingCandidate === "string" &&
+          (bindingRow?.currentBindingCandidatePass === true ||
+            ruleRow?.currentRuleCandidatePass === true),
+        retainedAcceptancePass:
+          bindingRow?.retainedEventDomainBindingAccepted === true,
+        missingRetainedInput:
+          "same_event_or_positive_width_domain_binding",
+        sourceSchema:
+          retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit?.schema ??
+          null,
+      },
+    ];
+    const currentEvidenceResidualCount = residualChecks.filter(
+      (check) => check.currentProxyPass === true
+    ).length;
+    const acceptedResidualCount = residualChecks.filter(
+      (check) => check.retainedAcceptancePass === true
+    ).length;
+    const firstBlockingResidual =
+      residualChecks.find((check) => check.retainedAcceptancePass !== true) ??
+      null;
+    return {
+      rowId: `${eventIdRow.sourceEventDomainRowId}-template-population-attempt`,
+      sourceEventIdPopulationAttemptRowId: eventIdRow.rowId,
+      sourceEventDomainRowId: eventIdRow.sourceEventDomainRowId,
+      sourceBinaryToBinaryRowId:
+        liftRow?.rowId ?? readinessRow?.sourceBinaryToBinaryRowId ?? null,
+      sourceReadinessRowId: readinessRow?.rowId ?? null,
+      sourceAlignmentRowId: alignmentRow?.rowId ?? null,
+      retainedRowSetId,
+      f: eventIdRow.f,
+      carrierChannelId: eventIdRow.carrierChannelId,
+      sourceRole: eventIdRow.sourceRole,
+      receiverRole: eventIdRow.receiverRole,
+      selectedEventDomainRoute,
+      sourceEventIdCandidate: eventIdRow.sourceEventIdCandidate,
+      receiverEventIdCandidate: eventIdRow.receiverEventIdCandidate,
+      eventPairCandidate,
+      sourceRootKeyTemplate: eventDomainRow?.sourceRootKeyTemplate ?? null,
+      receiverRootKeyTemplate: eventDomainRow?.receiverRootKeyTemplate ?? null,
+      sourcePhaseTurnsCurrentProxy:
+        eventDomainRow?.sourcePhaseTurnsCurrentProxy ??
+        readinessRow?.sourcePhaseTurns ??
+        liftRow?.sourcePhaseTurns ??
+        null,
+      receiverPhaseTurnsCurrentProxy:
+        eventDomainRow?.receiverPhaseTurnsCurrentProxy ??
+        readinessRow?.receiverPhaseTurns ??
+        liftRow?.receiverPhaseTurns ??
+        null,
+      sourceToReceiverPhaseOffsetTurns:
+        eventDomainRow?.sourceToReceiverPhaseOffsetTurns ??
+        readinessRow?.sourceToReceiverPhaseOffsetTurns ??
+        liftRow?.sourceToReceiverPhaseOffsetTurns ??
+        null,
+      branchHistorySegmentCandidate,
+      signedRootOrientationCandidate,
+      finiteImpulseHistoryClassCandidate,
+      wakeCouplingCarrierCandidate,
+      bindingCandidate,
+      eventIdProvenanceRowId: provenanceRow?.rowId ?? null,
+      pointEventOrDomainRuleRowId: ruleRow?.rowId ?? null,
+      eventDomainBindingAttemptRowId: bindingRow?.rowId ?? null,
+      residualChecks,
+      residualCount: residualChecks.length,
+      currentEvidenceResidualCount,
+      acceptedResidualCount,
+      currentProxyPass:
+        residualChecks.length > 0 &&
+        currentEvidenceResidualCount === residualChecks.length,
+      retainedTemplatePopulationAttemptPass:
+        residualChecks.length > 0 &&
+        acceptedResidualCount === residualChecks.length,
+      firstBlockingResidualId: firstBlockingResidual?.residualId ?? null,
+      missingRetainedInputs: residualChecks
+        .filter((check) => check.retainedAcceptancePass !== true)
+        .map((check) => check.missingRetainedInput),
+      status:
+        residualChecks.length > 0 &&
+        acceptedResidualCount === residualChecks.length
+          ? "retained_phase_history_template_population_attempt_accepted"
+          : residualChecks.length > 0 &&
+              currentEvidenceResidualCount === residualChecks.length
+            ? "retained_phase_history_template_population_current_proxy_populated_retained_inputs_missing"
+            : currentEvidenceResidualCount > 0
+              ? "retained_phase_history_template_population_partial_current_proxy"
+              : "retained_phase_history_template_population_missing",
+      retainedBranchClaim: false,
+    };
+  });
+  const firstAttemptRow = rows[0] ?? null;
+  const currentTemplatePopulationRowCount = rows.filter(
+    (row) => row.currentProxyPass === true
+  ).length;
+  const acceptedTemplatePopulationRowCount = rows.filter(
+    (row) => row.retainedTemplatePopulationAttemptPass === true
+  ).length;
+  const currentEvidenceResidualCount =
+    firstAttemptRow?.currentEvidenceResidualCount ?? 0;
+  const acceptedResidualCount = firstAttemptRow?.acceptedResidualCount ?? 0;
+  const residualCount = firstAttemptRow?.residualCount ?? 11;
+  const firstMissingRetainedInputs =
+    firstAttemptRow?.missingRetainedInputs ?? [];
+  return {
+    schema:
+      "aaa-equal-frequency-retained-phase-history-template-population-attempt-audit.v1",
+    claimLevel:
+      "first retained source/receiver phase-history template population attempt for the middle-to-outer carrier; current proxy only",
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
+    currentExecutableChart: CURRENT_EXECUTABLE_GEOMETRY_CHART,
+    canonicalFamily: "I:M:O=(f,f,f)",
+    retainedRowSetId,
+    carrierChannelId,
+    selectedEventDomainRoute,
+    sourceBinaryToBinaryPhaseHistoryLiftTargetSchema:
+      binaryToBinaryPhaseHistoryLiftTarget?.schema ?? null,
+    sourceBinaryToBinaryPhaseHistoryLiftTargetStatus:
+      binaryToBinaryPhaseHistoryLiftTarget?.status ?? null,
+    sourceCarrierReadinessAuditSchema:
+      retainedPhaseHistoryCarrierReadinessAudit?.schema ?? null,
+    sourceCarrierReadinessStatus:
+      retainedPhaseHistoryCarrierReadinessAudit?.status ?? null,
+    sourceEventDomainRowModelSchema:
+      retainedPhaseHistoryCarrierEventDomainRowModel?.schema ?? null,
+    sourceEventDomainRowModelStatus:
+      retainedPhaseHistoryCarrierEventDomainRowModel?.status ?? null,
+    sourceEventIdPopulationAttemptAuditSchema:
+      retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit?.schema ?? null,
+    sourceEventIdPopulationAttemptStatus:
+      retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit?.status ?? null,
+    sourceEventIdProvenanceAuditSchema:
+      retainedPhaseHistoryCarrierEventIdProvenanceAudit?.schema ?? null,
+    sourceEventIdProvenanceStatus:
+      retainedPhaseHistoryCarrierEventIdProvenanceAudit?.status ?? null,
+    sourcePointEventOrDomainRuleAttemptAuditSchema:
+      retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit?.schema ??
+      null,
+    sourcePointEventOrDomainRuleAttemptStatus:
+      retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit?.status ??
+      null,
+    sourceEventDomainBindingAttemptAuditSchema:
+      retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit?.schema ?? null,
+    sourceEventDomainBindingAttemptStatus:
+      retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit?.status ??
+      null,
+    phaseCarrierTransferAlignmentAuditSchema:
+      phaseCarrierTransferAlignmentAudit?.schema ?? null,
+    phaseCarrierTransferAlignmentStatus:
+      phaseCarrierTransferAlignmentAudit?.status ?? null,
+    phaseCurrentRetainedKernelDerivationTargetSchema:
+      phaseCurrentRetainedKernelDerivationTarget?.schema ?? null,
+    phaseCurrentRetainedKernelDerivationTargetStatus:
+      phaseCurrentRetainedKernelDerivationTarget?.status ?? null,
+    residualVector:
+      "R_template=(r_src_evt,r_recv_evt,r_src_root,r_recv_root,r_phi_src,r_phi_recv,r_segment,r_orientation,r_impulse,r_carrier,r_bind)",
+    populationEquation:
+      "populate(template) iff source/receiver event IDs, root-key templates, emitted/received phase, branch-history segment, signed-root orientation, finite-impulse class, wake/coupling carrier, and same-event/domain binding are all current-populated on one S_eq carrier row",
+    rowCount: rows.length,
+    attemptedTemplateCount: firstAttemptRow ? 1 : 0,
+    currentTemplatePopulationRowCount,
+    acceptedTemplatePopulationRowCount,
+    residualCount,
+    currentEvidenceResidualCount,
+    acceptedResidualCount,
+    templatePopulationCurrentProxyPass:
+      firstAttemptRow?.currentProxyPass ?? false,
+    retainedTemplatePopulationAttemptPass:
+      firstAttemptRow?.retainedTemplatePopulationAttemptPass ?? false,
+    firstAttemptRowId: firstAttemptRow?.rowId ?? null,
+    firstAttemptSourceEventIdCandidate:
+      firstAttemptRow?.sourceEventIdCandidate ?? null,
+    firstAttemptReceiverEventIdCandidate:
+      firstAttemptRow?.receiverEventIdCandidate ?? null,
+    firstAttemptEventPairCandidate:
+      firstAttemptRow?.eventPairCandidate ?? null,
+    firstAttemptBindingCandidate:
+      firstAttemptRow?.bindingCandidate ?? null,
+    firstBlockingResidualId: firstAttemptRow?.firstBlockingResidualId ?? null,
+    firstMissingRetainedInputs,
+    rows,
+    blockingConditionIds: Array.from(
+      new Set([
+        ...firstMissingRetainedInputs.map((id) => `${id}_missing`),
+        ...(retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit
+          ?.blockingConditionIds ?? []),
+        ...(retainedPhaseHistoryCarrierEventIdProvenanceAudit
+          ?.blockingConditionIds ?? []),
+        ...(retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit
+          ?.blockingConditionIds ?? []),
+        ...(retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
+          ?.blockingConditionIds ?? []),
+        ...(phaseCarrierTransferAlignmentAudit?.blockingConditionIds ?? []),
+      ])
+    ),
+    status:
+      acceptedResidualCount === residualCount && residualCount > 0
+        ? "retained_phase_history_template_population_attempt_accepted"
+        : currentEvidenceResidualCount === residualCount && residualCount > 0
+          ? "retained_phase_history_template_population_current_proxy_populated_retained_inputs_missing"
+          : currentEvidenceResidualCount > 0
+            ? "retained_phase_history_template_population_partial_current_proxy"
+            : "retained_phase_history_template_population_missing",
+    interpretation:
+      "The first middle-to-outer carrier row now has a concrete source/receiver phase-history population attempt. It names the f=2 source event, receiver event, root-key templates, emitted and received phase, branch segment, signed-root orientation proxy, finite-impulse class proxy, wake/coupling carrier, and binding candidate. These are current proxy fields only.",
+    retainedReplayBurden:
+      "Accept the first S_eq source and receiver retained event IDs, source and receiver root keys, emitted and received phase rows, branch-history segment, signed-root orientation, finite-impulse class, wake/coupling carrier, and same-event or positive-width-domain binding before treating r_templates as retained.",
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyRetainedSourceEventDomainAcceptanceAttemptAudit({
+  retainedPhaseHistoryTemplatePopulationAttemptAudit,
+  retainedPhaseHistoryCarrierEventIdProvenanceAudit,
+  retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit,
+  retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit,
+  retainedEventDomainLiftTarget,
+  retainedEventDomainSelector,
+}) {
+  const templateRow =
+    retainedPhaseHistoryTemplatePopulationAttemptAudit?.rows?.[0] ?? null;
+  const provenanceRow =
+    retainedPhaseHistoryCarrierEventIdProvenanceAudit?.rows?.find(
+      (candidate) => candidate.rowId === templateRow?.eventIdProvenanceRowId
+    ) ?? null;
+  const ruleRow =
+    retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit?.rows?.find(
+      (candidate) => candidate.rowId === templateRow?.pointEventOrDomainRuleRowId
+    ) ?? null;
+  const bindingRow =
+    retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit?.rows?.find(
+      (candidate) => candidate.rowId === templateRow?.eventDomainBindingAttemptRowId
+    ) ?? null;
+  const retainedRowSetId =
+    templateRow?.retainedRowSetId ??
+    retainedPhaseHistoryTemplatePopulationAttemptAudit?.retainedRowSetId ??
+    "S_eq";
+  const selectedEventDomainRoute =
+    templateRow?.selectedEventDomainRoute ??
+    retainedPhaseHistoryTemplatePopulationAttemptAudit?.selectedEventDomainRoute ??
+    retainedEventDomainSelector?.selectedRoute ??
+    null;
+  const retainedEventDomainAccepted =
+    retainedEventDomainSelector?.retainedSelectorAcceptancePass === true ||
+    retainedEventDomainLiftTarget?.retainedEventDomainLiftPass === true;
+  const residualChecks = templateRow
+    ? [
+        {
+          residualId: "r_event_id",
+          label: "retained source event ID",
+          currentProxyValue: templateRow.sourceEventIdCandidate,
+          currentProxyPass:
+            typeof templateRow.sourceEventIdCandidate === "string",
+          retainedAcceptancePass:
+            templateRow.residualChecks?.find(
+              (check) => check.residualId === "r_src_evt"
+            )?.retainedAcceptancePass === true,
+          missingRetainedInput: "retained_source_event_id",
+          sourceSchema:
+            retainedPhaseHistoryTemplatePopulationAttemptAudit
+              ?.sourceEventIdPopulationAttemptAuditSchema ?? null,
+        },
+        {
+          residualId: "r_rows",
+          label: "same retained row set for the source event",
+          currentProxyValue: retainedRowSetId,
+          currentProxyPass: typeof retainedRowSetId === "string",
+          retainedAcceptancePass: false,
+          missingRetainedInput: "same_retained_row_set_identity",
+          sourceSchema:
+            retainedPhaseHistoryTemplatePopulationAttemptAudit?.schema ?? null,
+        },
+        {
+          residualId: "r_route",
+          label: "selected event/domain route",
+          currentProxyValue: selectedEventDomainRoute,
+          currentProxyPass: typeof selectedEventDomainRoute === "string",
+          retainedAcceptancePass: retainedEventDomainAccepted,
+          missingRetainedInput: "accepted_event_domain_route",
+          sourceSchema:
+            retainedEventDomainSelector?.schema ??
+            retainedEventDomainLiftTarget?.schema ??
+            null,
+        },
+        {
+          residualId: "r_domain",
+          label: "point-event or positive-width-domain rule",
+          currentProxyValue:
+            ruleRow?.selectedRuleCandidateId ??
+            bindingRow?.bindingCandidateId ??
+            templateRow.bindingCandidate ??
+            null,
+          currentProxyPass:
+            typeof (
+              ruleRow?.selectedRuleCandidateId ??
+              bindingRow?.bindingCandidateId ??
+              templateRow.bindingCandidate
+            ) === "string",
+          retainedAcceptancePass:
+            ruleRow?.retainedPointEventOrDomainRuleAccepted === true ||
+            retainedEventDomainAccepted,
+          missingRetainedInput:
+            "accepted_full_point_event_rule_or_positive_width_domain",
+          sourceSchema:
+            retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit
+              ?.schema ??
+            retainedEventDomainLiftTarget?.schema ??
+            null,
+        },
+        {
+          residualId: "r_root",
+          label: "source retained root key",
+          currentProxyValue: templateRow.sourceRootKeyTemplate,
+          currentProxyPass:
+            typeof templateRow.sourceRootKeyTemplate === "string",
+          retainedAcceptancePass:
+            templateRow.residualChecks?.find(
+              (check) => check.residualId === "r_src_root"
+            )?.retainedAcceptancePass === true,
+          missingRetainedInput: "source_retained_root_key",
+          sourceSchema:
+            retainedPhaseHistoryTemplatePopulationAttemptAudit
+              ?.sourceEventDomainRowModelSchema ?? null,
+        },
+        {
+          residualId: "r_phi",
+          label: "emitted source phase",
+          currentProxyValue: templateRow.sourcePhaseTurnsCurrentProxy,
+          currentProxyPass: Number.isFinite(
+            templateRow.sourcePhaseTurnsCurrentProxy
+          ),
+          retainedAcceptancePass:
+            templateRow.residualChecks?.find(
+              (check) => check.residualId === "r_phi_src"
+            )?.retainedAcceptancePass === true,
+          missingRetainedInput: "emitted_phase_phi_source",
+          sourceSchema:
+            retainedPhaseHistoryTemplatePopulationAttemptAudit
+              ?.sourceEventDomainRowModelSchema ?? null,
+        },
+        {
+          residualId: "r_segment",
+          label: "source-to-receiver branch-history segment",
+          currentProxyValue: templateRow.branchHistorySegmentCandidate,
+          currentProxyPass:
+            typeof templateRow.branchHistorySegmentCandidate === "string",
+          retainedAcceptancePass:
+            templateRow.residualChecks?.find(
+              (check) => check.residualId === "r_segment"
+            )?.retainedAcceptancePass === true,
+          missingRetainedInput: "branch_history_segment_source_to_receiver",
+          sourceSchema:
+            retainedPhaseHistoryTemplatePopulationAttemptAudit
+              ?.sourceEventDomainRowModelSchema ?? null,
+        },
+        {
+          residualId: "r_pair",
+          label: "source/receiver same-event or same-domain binding",
+          currentProxyValue:
+            bindingRow?.bindingCandidateId ??
+            templateRow.bindingCandidate ??
+            templateRow.eventPairCandidate ??
+            null,
+          currentProxyPass:
+            typeof (
+              bindingRow?.bindingCandidateId ??
+              templateRow.bindingCandidate ??
+              templateRow.eventPairCandidate
+            ) === "string",
+          retainedAcceptancePass:
+            bindingRow?.retainedEventDomainBindingAccepted === true,
+          missingRetainedInput:
+            "same_event_or_positive_width_domain_binding",
+          sourceSchema:
+            retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit?.schema ??
+            null,
+        },
+      ]
+    : [];
+  const currentEvidenceResidualCount = residualChecks.filter(
+    (check) => check.currentProxyPass === true
+  ).length;
+  const acceptedResidualCount = residualChecks.filter(
+    (check) => check.retainedAcceptancePass === true
+  ).length;
+  const residualCount = residualChecks.length;
+  const firstBlockingResidual =
+    residualChecks.find((check) => check.retainedAcceptancePass !== true) ??
+    null;
+  const firstMissingRetainedInputs = residualChecks
+    .filter((check) => check.retainedAcceptancePass !== true)
+    .map((check) => check.missingRetainedInput);
+  const currentProxyPass =
+    residualCount > 0 && currentEvidenceResidualCount === residualCount;
+  const retainedSourceEventDomainAcceptancePass =
+    residualCount > 0 && acceptedResidualCount === residualCount;
+  const rows = templateRow
+    ? [
+        {
+          rowId: `${templateRow.sourceEventIdCandidate}-source-event-domain-acceptance-attempt`,
+          sourceTemplatePopulationAttemptRowId: templateRow.rowId,
+          sourceEventDomainRowId: templateRow.sourceEventDomainRowId,
+          sourceEventIdPopulationAttemptRowId:
+            templateRow.sourceEventIdPopulationAttemptRowId,
+          sourceEventIdProvenanceRowId:
+            templateRow.eventIdProvenanceRowId ?? null,
+          pointEventOrDomainRuleRowId:
+            templateRow.pointEventOrDomainRuleRowId ?? null,
+          eventDomainBindingAttemptRowId:
+            templateRow.eventDomainBindingAttemptRowId ?? null,
+          retainedRowSetId,
+          f: templateRow.f,
+          carrierChannelId: templateRow.carrierChannelId,
+          sourceRole: templateRow.sourceRole,
+          receiverRole: templateRow.receiverRole,
+          selectedEventDomainRoute,
+          sourceEventIdCandidate: templateRow.sourceEventIdCandidate,
+          receiverEventIdCandidate: templateRow.receiverEventIdCandidate,
+          sourceRootKeyTemplate: templateRow.sourceRootKeyTemplate,
+          sourcePhaseTurnsCurrentProxy:
+            templateRow.sourcePhaseTurnsCurrentProxy,
+          branchHistorySegmentCandidate:
+            templateRow.branchHistorySegmentCandidate,
+          eventPairCandidate: templateRow.eventPairCandidate,
+          bindingCandidate:
+            bindingRow?.bindingCandidateId ??
+            templateRow.bindingCandidate ??
+            null,
+          residualChecks,
+          residualCount,
+          currentEvidenceResidualCount,
+          acceptedResidualCount,
+          currentProxyPass,
+          retainedSourceEventDomainAcceptancePass,
+          firstBlockingResidualId: firstBlockingResidual?.residualId ?? null,
+          missingRetainedInputs: firstMissingRetainedInputs,
+          status:
+            retainedSourceEventDomainAcceptancePass === true
+              ? "retained_source_event_domain_acceptance_attempt_accepted"
+              : currentProxyPass === true
+                ? "retained_source_event_domain_acceptance_current_proxy_populated_retained_inputs_missing"
+                : currentEvidenceResidualCount > 0
+                  ? "retained_source_event_domain_acceptance_partial_current_proxy"
+                  : "retained_source_event_domain_acceptance_missing",
+          retainedBranchClaim: false,
+        },
+      ]
+    : [];
+  return {
+    schema:
+      "aaa-equal-frequency-retained-source-event-domain-acceptance-attempt-audit.v1",
+    claimLevel:
+      "first retained source-event/domain acceptance attempt under the equal-frequency phase-history template; current proxy only",
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
+    currentExecutableChart: CURRENT_EXECUTABLE_GEOMETRY_CHART,
+    canonicalFamily: "I:M:O=(f,f,f)",
+    retainedRowSetId,
+    selectedEventDomainRoute,
+    sourceTemplatePopulationAttemptAuditSchema:
+      retainedPhaseHistoryTemplatePopulationAttemptAudit?.schema ?? null,
+    sourceTemplatePopulationAttemptStatus:
+      retainedPhaseHistoryTemplatePopulationAttemptAudit?.status ?? null,
+    sourceEventIdProvenanceAuditSchema:
+      retainedPhaseHistoryCarrierEventIdProvenanceAudit?.schema ?? null,
+    sourcePointEventOrDomainRuleAttemptAuditSchema:
+      retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit?.schema ??
+      null,
+    sourceEventDomainBindingAttemptAuditSchema:
+      retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit?.schema ?? null,
+    retainedEventDomainLiftTargetSchema:
+      retainedEventDomainLiftTarget?.schema ?? null,
+    retainedEventDomainSelectorSchema:
+      retainedEventDomainSelector?.schema ?? null,
+    residualVector:
+      "R_src_evt=(r_event_id,r_rows,r_route,r_domain,r_root,r_phi,r_segment,r_pair)",
+    acceptanceEquation:
+      "accept(src_evt) iff the source event ID, S_eq row identity, event/domain route, retained point-event or positive-width domain, source root key, emitted source phase, branch-history segment, and source/receiver binding are all retained on the same carrier row",
+    rowCount: rows.length,
+    attemptedSourceEventCount: templateRow ? 1 : 0,
+    currentEvidenceResidualCount,
+    acceptedResidualCount,
+    residualCount,
+    sourceEventDomainAcceptanceCurrentProxyPass: currentProxyPass,
+    retainedSourceEventDomainAcceptancePass,
+    firstAttemptRowId: rows[0]?.rowId ?? null,
+    firstAttemptSourceEventIdCandidate:
+      templateRow?.sourceEventIdCandidate ?? null,
+    firstAttemptReceiverEventIdCandidate:
+      templateRow?.receiverEventIdCandidate ?? null,
+    firstAttemptBindingCandidate:
+      bindingRow?.bindingCandidateId ?? templateRow?.bindingCandidate ?? null,
+    firstBlockingResidualId: firstBlockingResidual?.residualId ?? null,
+    firstMissingRetainedInputs,
+    rows,
+    blockingConditionIds: firstMissingRetainedInputs.map(
+      (id) => `${id}_missing`
+    ),
+    status:
+      retainedSourceEventDomainAcceptancePass === true
+        ? "retained_source_event_domain_acceptance_attempt_accepted"
+        : currentProxyPass === true
+          ? "retained_source_event_domain_acceptance_current_proxy_populated_retained_inputs_missing"
+          : currentEvidenceResidualCount > 0
+            ? "retained_source_event_domain_acceptance_partial_current_proxy"
+            : "retained_source_event_domain_acceptance_missing",
+    interpretation:
+      "The first f=2 middle-to-outer source event now has a source-event/domain acceptance attempt. The report can name the source event, row set, route, candidate domain rule, source root, source phase, branch segment, and source/receiver binding, but those are still current proxy fields.",
+    retainedReplayBurden:
+      "Accept the source retained event ID on S_eq, the same retained event or positive-width domain, the source root key, emitted phase row, branch-history segment, and source/receiver binding before treating r_src_evt as retained evidence.",
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyRetainedSourceEventIdAcceptanceAttemptAudit({
+  retainedSourceEventDomainAcceptanceAttemptAudit,
+  retainedPhaseHistoryTemplatePopulationAttemptAudit,
+  retainedPhaseHistoryCarrierEventIdProvenanceAudit,
+  retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit,
+  retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit,
+  retainedEventDomainLiftTarget,
+  retainedEventDomainSelector,
+}) {
+  const sourceRow =
+    retainedSourceEventDomainAcceptanceAttemptAudit?.rows?.[0] ?? null;
+  const templateRow =
+    retainedPhaseHistoryTemplatePopulationAttemptAudit?.rows?.find(
+      (candidate) =>
+        candidate.rowId === sourceRow?.sourceTemplatePopulationAttemptRowId
+    ) ?? null;
+  const provenanceRow =
+    retainedPhaseHistoryCarrierEventIdProvenanceAudit?.rows?.find(
+      (candidate) =>
+        candidate.rowId === sourceRow?.sourceEventIdProvenanceRowId ||
+        candidate.sourceEventIdPopulationAttemptRowId ===
+          sourceRow?.sourceEventIdPopulationAttemptRowId
+    ) ?? null;
+  const ruleRow =
+    retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit?.rows?.find(
+      (candidate) =>
+        candidate.rowId === sourceRow?.pointEventOrDomainRuleRowId ||
+        candidate.sourceEventIdPopulationAttemptRowId ===
+          sourceRow?.sourceEventIdPopulationAttemptRowId
+    ) ?? null;
+  const bindingRow =
+    retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit?.rows?.find(
+      (candidate) =>
+        candidate.rowId === sourceRow?.eventDomainBindingAttemptRowId ||
+        candidate.sourceEventIdPopulationAttemptRowId ===
+          sourceRow?.sourceEventIdPopulationAttemptRowId
+    ) ?? null;
+  const retainedRowSetId =
+    sourceRow?.retainedRowSetId ??
+    templateRow?.retainedRowSetId ??
+    retainedSourceEventDomainAcceptanceAttemptAudit?.retainedRowSetId ??
+    "S_eq";
+  const selectedEventDomainRoute =
+    sourceRow?.selectedEventDomainRoute ??
+    templateRow?.selectedEventDomainRoute ??
+    retainedSourceEventDomainAcceptanceAttemptAudit
+      ?.selectedEventDomainRoute ??
+    retainedEventDomainSelector?.selectedRoute ??
+    null;
+  const sourceEventIdCandidate =
+    sourceRow?.sourceEventIdCandidate ??
+    templateRow?.sourceEventIdCandidate ??
+    null;
+  const receiverEventIdCandidate =
+    sourceRow?.receiverEventIdCandidate ??
+    templateRow?.receiverEventIdCandidate ??
+    null;
+  const sourceEventIdAccepted =
+    sourceRow?.residualChecks?.find(
+      (check) => check.residualId === "r_event_id"
+    )?.retainedAcceptancePass === true ||
+    templateRow?.residualChecks?.find(
+      (check) => check.residualId === "r_src_evt"
+    )?.retainedAcceptancePass === true;
+  const retainedEventDomainAccepted =
+    retainedEventDomainSelector?.retainedSelectorAcceptancePass === true ||
+    retainedEventDomainLiftTarget?.retainedEventDomainLiftPass === true;
+  const residualChecks = sourceRow
+    ? [
+        {
+          residualId: "r_candidate",
+          label: "source event-ID candidate",
+          currentProxyValue: sourceEventIdCandidate,
+          currentProxyPass: typeof sourceEventIdCandidate === "string",
+          retainedAcceptancePass: sourceEventIdAccepted,
+          missingRetainedInput: "retained_source_event_id",
+          sourceSchema:
+            retainedSourceEventDomainAcceptanceAttemptAudit?.schema ?? null,
+        },
+        {
+          residualId: "r_provenance",
+          label: "accepted source event-ID provenance",
+          currentProxyValue: provenanceRow?.rowId ?? null,
+          currentProxyPass:
+            provenanceRow?.currentProvenancePass === true ||
+            typeof sourceRow.sourceEventIdProvenanceRowId === "string",
+          retainedAcceptancePass:
+            provenanceRow?.retainedEventIdProvenanceAccepted === true,
+          missingRetainedInput: "accepted_retained_event_id_provenance",
+          sourceSchema:
+            retainedPhaseHistoryCarrierEventIdProvenanceAudit?.schema ?? null,
+        },
+        {
+          residualId: "r_rows",
+          label: "same retained row-set identity",
+          currentProxyValue: retainedRowSetId,
+          currentProxyPass: typeof retainedRowSetId === "string",
+          retainedAcceptancePass:
+            sourceRow.residualChecks?.find(
+              (check) => check.residualId === "r_rows"
+            )?.retainedAcceptancePass === true,
+          missingRetainedInput: "same_retained_row_set_identity",
+          sourceSchema:
+            retainedSourceEventDomainAcceptanceAttemptAudit?.schema ?? null,
+        },
+        {
+          residualId: "r_route",
+          label: "accepted event/domain route",
+          currentProxyValue: selectedEventDomainRoute,
+          currentProxyPass: typeof selectedEventDomainRoute === "string",
+          retainedAcceptancePass: retainedEventDomainAccepted,
+          missingRetainedInput: "accepted_event_domain_route",
+          sourceSchema:
+            retainedEventDomainSelector?.schema ??
+            retainedEventDomainLiftTarget?.schema ??
+            null,
+        },
+        {
+          residualId: "r_membership",
+          label: "same retained point-event or positive-width-domain membership",
+          currentProxyValue:
+            sourceRow.eventPairCandidate ??
+            bindingRow?.bindingCandidateId ??
+            ruleRow?.selectedRuleCandidateId ??
+            null,
+          currentProxyPass:
+            typeof (
+              sourceRow.eventPairCandidate ??
+              bindingRow?.bindingCandidateId ??
+              ruleRow?.selectedRuleCandidateId
+            ) === "string",
+          retainedAcceptancePass:
+            ruleRow?.sameRetainedPointEventOrDomainMembershipAccepted === true,
+          missingRetainedInput:
+            "same_retained_point_event_or_positive_width_domain_membership",
+          sourceSchema:
+            retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit
+              ?.schema ?? null,
+        },
+        {
+          residualId: "r_rule",
+          label: "accepted full point-event rule or positive-width domain",
+          currentProxyValue: ruleRow?.selectedRuleCandidateId ?? null,
+          currentProxyPass:
+            typeof ruleRow?.selectedRuleCandidateId === "string",
+          retainedAcceptancePass:
+            ruleRow?.retainedPointEventOrDomainRuleAccepted === true,
+          missingRetainedInput:
+            "accepted_full_point_event_rule_or_positive_width_domain",
+          sourceSchema:
+            retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit
+              ?.schema ??
+            retainedEventDomainLiftTarget?.schema ??
+            null,
+        },
+        {
+          residualId: "r_binding",
+          label: "same-event or positive-width-domain binding",
+          currentProxyValue:
+            bindingRow?.bindingCandidateId ??
+            sourceRow.bindingCandidate ??
+            null,
+          currentProxyPass:
+            typeof (
+              bindingRow?.bindingCandidateId ??
+              sourceRow.bindingCandidate
+            ) === "string",
+          retainedAcceptancePass:
+            bindingRow?.retainedEventDomainBindingAccepted === true,
+          missingRetainedInput:
+            "same_event_or_positive_width_domain_binding",
+          sourceSchema:
+            retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit?.schema ??
+            null,
+        },
+      ]
+    : [];
+  const currentEvidenceResidualCount = residualChecks.filter(
+    (check) => check.currentProxyPass === true
+  ).length;
+  const acceptedResidualCount = residualChecks.filter(
+    (check) => check.retainedAcceptancePass === true
+  ).length;
+  const residualCount = residualChecks.length;
+  const firstBlockingResidual =
+    residualChecks.find((check) => check.retainedAcceptancePass !== true) ??
+    null;
+  const firstMissingRetainedInputs = residualChecks
+    .filter((check) => check.retainedAcceptancePass !== true)
+    .map((check) => check.missingRetainedInput);
+  const currentProxyPass =
+    residualCount > 0 && currentEvidenceResidualCount === residualCount;
+  const retainedSourceEventIdAcceptancePass =
+    residualCount > 0 && acceptedResidualCount === residualCount;
+  const rows = sourceRow
+    ? [
+        {
+          rowId: `${sourceEventIdCandidate}-source-event-id-acceptance-attempt`,
+          sourceEventDomainAcceptanceAttemptRowId: sourceRow.rowId,
+          sourceTemplatePopulationAttemptRowId:
+            sourceRow.sourceTemplatePopulationAttemptRowId,
+          sourceEventIdProvenanceRowId:
+            sourceRow.sourceEventIdProvenanceRowId ?? null,
+          pointEventOrDomainRuleRowId:
+            sourceRow.pointEventOrDomainRuleRowId ?? null,
+          eventDomainBindingAttemptRowId:
+            sourceRow.eventDomainBindingAttemptRowId ?? null,
+          retainedRowSetId,
+          f: sourceRow.f,
+          carrierChannelId: sourceRow.carrierChannelId,
+          sourceRole: sourceRow.sourceRole,
+          receiverRole: sourceRow.receiverRole,
+          selectedEventDomainRoute,
+          sourceEventIdCandidate,
+          receiverEventIdCandidate,
+          eventIdPairCandidate:
+            provenanceRow?.eventIdPairCandidate ??
+            (typeof sourceEventIdCandidate === "string" &&
+            typeof receiverEventIdCandidate === "string"
+              ? `${sourceEventIdCandidate}::${receiverEventIdCandidate}`
+              : null),
+          selectedRuleCandidateId:
+            ruleRow?.selectedRuleCandidateId ?? null,
+          bindingCandidate:
+            bindingRow?.bindingCandidateId ??
+            sourceRow.bindingCandidate ??
+            null,
+          residualChecks,
+          residualCount,
+          currentEvidenceResidualCount,
+          acceptedResidualCount,
+          currentProxyPass,
+          retainedSourceEventIdAcceptancePass,
+          firstBlockingResidualId: firstBlockingResidual?.residualId ?? null,
+          missingRetainedInputs: firstMissingRetainedInputs,
+          status:
+            retainedSourceEventIdAcceptancePass === true
+              ? "retained_source_event_id_acceptance_attempt_accepted"
+              : currentProxyPass === true
+                ? "retained_source_event_id_acceptance_current_proxy_populated_retained_inputs_missing"
+                : currentEvidenceResidualCount > 0
+                  ? "retained_source_event_id_acceptance_partial_current_proxy"
+                  : "retained_source_event_id_acceptance_missing",
+          retainedBranchClaim: false,
+        },
+      ]
+    : [];
+  return {
+    schema:
+      "aaa-equal-frequency-retained-source-event-id-acceptance-attempt-audit.v1",
+    claimLevel:
+      "first retained source-event-ID acceptance attempt under the source-event/domain row; current proxy only",
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
+    currentExecutableChart: CURRENT_EXECUTABLE_GEOMETRY_CHART,
+    canonicalFamily: "I:M:O=(f,f,f)",
+    retainedRowSetId,
+    selectedEventDomainRoute,
+    sourceEventDomainAcceptanceAttemptAuditSchema:
+      retainedSourceEventDomainAcceptanceAttemptAudit?.schema ?? null,
+    sourceEventDomainAcceptanceAttemptStatus:
+      retainedSourceEventDomainAcceptanceAttemptAudit?.status ?? null,
+    sourceTemplatePopulationAttemptAuditSchema:
+      retainedPhaseHistoryTemplatePopulationAttemptAudit?.schema ?? null,
+    sourceTemplatePopulationAttemptStatus:
+      retainedPhaseHistoryTemplatePopulationAttemptAudit?.status ?? null,
+    sourceEventIdProvenanceAuditSchema:
+      retainedPhaseHistoryCarrierEventIdProvenanceAudit?.schema ?? null,
+    sourcePointEventOrDomainRuleAttemptAuditSchema:
+      retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit?.schema ??
+      null,
+    sourceEventDomainBindingAttemptAuditSchema:
+      retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit?.schema ?? null,
+    retainedEventDomainLiftTargetSchema:
+      retainedEventDomainLiftTarget?.schema ?? null,
+    retainedEventDomainSelectorSchema:
+      retainedEventDomainSelector?.schema ?? null,
+    residualVector:
+      "R_event_id_src=(r_candidate,r_provenance,r_rows,r_route,r_membership,r_rule,r_binding)",
+    acceptanceEquation:
+      "accept(src_event_id) iff the source event-ID candidate, accepted provenance, S_eq row identity, accepted event/domain route, same retained event/domain membership, accepted point-event/domain rule, and binding all hold for one retained source event",
+    rowCount: rows.length,
+    attemptedSourceEventIdCount: sourceRow ? 1 : 0,
+    currentEvidenceResidualCount,
+    acceptedResidualCount,
+    residualCount,
+    sourceEventIdAcceptanceCurrentProxyPass: currentProxyPass,
+    retainedSourceEventIdAcceptancePass,
+    firstAttemptRowId: rows[0]?.rowId ?? null,
+    firstAttemptSourceEventIdCandidate: sourceEventIdCandidate,
+    firstAttemptReceiverEventIdCandidate: receiverEventIdCandidate,
+    firstAttemptEventIdPairCandidate:
+      rows[0]?.eventIdPairCandidate ?? null,
+    firstAttemptRuleCandidate:
+      rows[0]?.selectedRuleCandidateId ?? null,
+    firstAttemptBindingCandidate:
+      rows[0]?.bindingCandidate ?? null,
+    firstBlockingResidualId: firstBlockingResidual?.residualId ?? null,
+    firstMissingRetainedInputs,
+    rows,
+    blockingConditionIds: firstMissingRetainedInputs.map(
+      (id) => `${id}_missing`
+    ),
+    status:
+      retainedSourceEventIdAcceptancePass === true
+        ? "retained_source_event_id_acceptance_attempt_accepted"
+        : currentProxyPass === true
+          ? "retained_source_event_id_acceptance_current_proxy_populated_retained_inputs_missing"
+          : currentEvidenceResidualCount > 0
+            ? "retained_source_event_id_acceptance_partial_current_proxy"
+            : "retained_source_event_id_acceptance_missing",
+    interpretation:
+      "The first f=2 middle-to-outer source event now has a source-event-ID acceptance attempt. The report can name the candidate event ID, provenance row, row set, route, membership candidate, selected point-event/domain rule, and binding candidate, but those are current proxy fields only.",
+    retainedReplayBurden:
+      "Promote the source event-ID candidate into retained evidence by accepting its provenance, S_eq row identity, event/domain route, same retained event/domain membership, point-event or positive-width-domain rule, and binding.",
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyRetainedSourceEventCandidateIdentityAudit({
+  retainedSourceEventIdAcceptanceAttemptAudit,
+  retainedSourceEventDomainAcceptanceAttemptAudit,
+  retainedPhaseHistoryTemplatePopulationAttemptAudit,
+  retainedPhaseHistoryCarrierEventIdProvenanceAudit,
+  retainedEventDomainLiftTarget,
+  retainedEventDomainSelector,
+}) {
+  const sourceEventIdRow =
+    retainedSourceEventIdAcceptanceAttemptAudit?.rows?.[0] ?? null;
+  const sourceEventDomainRow =
+    retainedSourceEventDomainAcceptanceAttemptAudit?.rows?.find(
+      (candidate) =>
+        candidate.rowId ===
+        sourceEventIdRow?.sourceEventDomainAcceptanceAttemptRowId
+    ) ??
+    retainedSourceEventDomainAcceptanceAttemptAudit?.rows?.[0] ??
+    null;
+  const templateRow =
+    retainedPhaseHistoryTemplatePopulationAttemptAudit?.rows?.find(
+      (candidate) =>
+        candidate.rowId ===
+          sourceEventIdRow?.sourceTemplatePopulationAttemptRowId ||
+        candidate.rowId ===
+          sourceEventDomainRow?.sourceTemplatePopulationAttemptRowId
+    ) ?? null;
+  const provenanceRow =
+    retainedPhaseHistoryCarrierEventIdProvenanceAudit?.rows?.find(
+      (candidate) =>
+        candidate.rowId === sourceEventIdRow?.sourceEventIdProvenanceRowId ||
+        candidate.rowId === sourceEventDomainRow?.sourceEventIdProvenanceRowId
+    ) ?? null;
+  const retainedRowSetId =
+    sourceEventIdRow?.retainedRowSetId ??
+    sourceEventDomainRow?.retainedRowSetId ??
+    templateRow?.retainedRowSetId ??
+    retainedSourceEventIdAcceptanceAttemptAudit?.retainedRowSetId ??
+    "S_eq";
+  const selectedEventDomainRoute =
+    sourceEventIdRow?.selectedEventDomainRoute ??
+    sourceEventDomainRow?.selectedEventDomainRoute ??
+    templateRow?.selectedEventDomainRoute ??
+    retainedSourceEventIdAcceptanceAttemptAudit?.selectedEventDomainRoute ??
+    retainedSourceEventDomainAcceptanceAttemptAudit?.selectedEventDomainRoute ??
+    retainedEventDomainSelector?.selectedRoute ??
+    null;
+  const sourceEventIdCandidate =
+    sourceEventIdRow?.sourceEventIdCandidate ??
+    sourceEventDomainRow?.sourceEventIdCandidate ??
+    templateRow?.sourceEventIdCandidate ??
+    null;
+  const receiverEventIdCandidate =
+    sourceEventIdRow?.receiverEventIdCandidate ??
+    sourceEventDomainRow?.receiverEventIdCandidate ??
+    templateRow?.receiverEventIdCandidate ??
+    null;
+  const eventIdPairCandidate =
+    sourceEventIdRow?.eventIdPairCandidate ??
+    provenanceRow?.eventIdPairCandidate ??
+    (typeof sourceEventIdCandidate === "string" &&
+    typeof receiverEventIdCandidate === "string"
+      ? `${sourceEventIdCandidate}::${receiverEventIdCandidate}`
+      : null);
+  const sourceRole =
+    sourceEventIdRow?.sourceRole ??
+    sourceEventDomainRow?.sourceRole ??
+    templateRow?.sourceRole ??
+    null;
+  const receiverRole =
+    sourceEventIdRow?.receiverRole ??
+    sourceEventDomainRow?.receiverRole ??
+    templateRow?.receiverRole ??
+    null;
+  const carrierChannelId =
+    sourceEventIdRow?.carrierChannelId ??
+    sourceEventDomainRow?.carrierChannelId ??
+    templateRow?.carrierChannelId ??
+    null;
+  const f =
+    sourceEventIdRow?.f ?? sourceEventDomainRow?.f ?? templateRow?.f ?? null;
+  const sourceEventIdAcceptanceCurrentProxyPass =
+    retainedSourceEventIdAcceptanceAttemptAudit
+      ?.sourceEventIdAcceptanceCurrentProxyPass === true;
+  const sourceEventDomainAcceptanceCurrentProxyPass =
+    retainedSourceEventDomainAcceptanceAttemptAudit
+      ?.sourceEventDomainAcceptanceCurrentProxyPass === true;
+  const retainedEventDomainAccepted =
+    retainedEventDomainSelector?.retainedSelectorAcceptancePass === true ||
+    retainedEventDomainLiftTarget?.retainedEventDomainLiftPass === true;
+  const retainedSourceEventCandidateIdentityPass = false;
+  const currentIdentityProxyPass =
+    sourceEventIdAcceptanceCurrentProxyPass === true &&
+    typeof sourceEventIdCandidate === "string" &&
+    typeof retainedRowSetId === "string" &&
+    typeof selectedEventDomainRoute === "string" &&
+    typeof sourceRole === "string" &&
+    Number.isFinite(f) &&
+    typeof carrierChannelId === "string";
+  const residualChecks = sourceEventIdRow
+    ? [
+        {
+          residualId: "r_retained_identity",
+          label: "retained source-event candidate identity",
+          currentProxyValue: sourceEventIdCandidate,
+          currentProxyPass: currentIdentityProxyPass,
+          retainedAcceptancePass: retainedSourceEventCandidateIdentityPass,
+          missingRetainedInput: "accepted_retained_source_event_identity",
+          sourceSchema:
+            retainedSourceEventIdAcceptanceAttemptAudit?.schema ?? null,
+        },
+        {
+          residualId: "r_label",
+          label: "source event label",
+          currentProxyValue: sourceEventIdCandidate,
+          currentProxyPass: typeof sourceEventIdCandidate === "string",
+          retainedAcceptancePass: false,
+          missingRetainedInput: "retained_source_event_label_binding",
+          sourceSchema:
+            retainedSourceEventDomainAcceptanceAttemptAudit?.schema ??
+            retainedSourceEventIdAcceptanceAttemptAudit?.schema ??
+            null,
+        },
+        {
+          residualId: "r_population",
+          label: "source event-ID population row",
+          currentProxyValue:
+            sourceEventDomainRow?.sourceEventIdPopulationAttemptRowId ?? null,
+          currentProxyPass:
+            typeof sourceEventDomainRow?.sourceEventIdPopulationAttemptRowId ===
+            "string",
+          retainedAcceptancePass: false,
+          missingRetainedInput:
+            "retained_source_event_population_row_identity",
+          sourceSchema:
+            retainedSourceEventDomainAcceptanceAttemptAudit?.schema ?? null,
+        },
+        {
+          residualId: "r_provenance",
+          label: "source event-ID provenance row",
+          currentProxyValue: provenanceRow?.rowId ?? null,
+          currentProxyPass:
+            provenanceRow?.currentProvenancePass === true ||
+            typeof sourceEventIdRow.sourceEventIdProvenanceRowId === "string",
+          retainedAcceptancePass:
+            provenanceRow?.retainedEventIdProvenanceAccepted === true,
+          missingRetainedInput: "accepted_retained_event_id_provenance",
+          sourceSchema:
+            retainedPhaseHistoryCarrierEventIdProvenanceAudit?.schema ?? null,
+        },
+        {
+          residualId: "r_role",
+          label: "source and receiver role map",
+          currentProxyValue:
+            typeof sourceRole === "string" && typeof receiverRole === "string"
+              ? `${sourceRole}->${receiverRole}`
+              : null,
+          currentProxyPass:
+            typeof sourceRole === "string" &&
+            typeof receiverRole === "string",
+          retainedAcceptancePass: false,
+          missingRetainedInput: "retained_source_receiver_role_map",
+          sourceSchema:
+            retainedSourceEventDomainAcceptanceAttemptAudit?.schema ??
+            retainedPhaseHistoryTemplatePopulationAttemptAudit?.schema ??
+            null,
+        },
+        {
+          residualId: "r_frequency",
+          label: "common-frequency row",
+          currentProxyValue: f,
+          currentProxyPass: Number.isFinite(f),
+          retainedAcceptancePass: false,
+          missingRetainedInput:
+            "same_retained_frequency_row_for_source_event",
+          sourceSchema:
+            retainedSourceEventDomainAcceptanceAttemptAudit?.schema ??
+            retainedPhaseHistoryTemplatePopulationAttemptAudit?.schema ??
+            null,
+        },
+        {
+          residualId: "r_channel",
+          label: "source-to-receiver carrier channel",
+          currentProxyValue: carrierChannelId,
+          currentProxyPass: typeof carrierChannelId === "string",
+          retainedAcceptancePass: false,
+          missingRetainedInput:
+            "retained_source_receiver_carrier_channel_identity",
+          sourceSchema:
+            retainedSourceEventDomainAcceptanceAttemptAudit?.schema ??
+            retainedPhaseHistoryTemplatePopulationAttemptAudit?.schema ??
+            null,
+        },
+        {
+          residualId: "r_route",
+          label: "selected event/domain route",
+          currentProxyValue: selectedEventDomainRoute,
+          currentProxyPass: typeof selectedEventDomainRoute === "string",
+          retainedAcceptancePass: retainedEventDomainAccepted,
+          missingRetainedInput: "accepted_event_domain_route",
+          sourceSchema:
+            retainedEventDomainSelector?.schema ??
+            retainedEventDomainLiftTarget?.schema ??
+            null,
+        },
+      ]
+    : [];
+  const currentEvidenceResidualCount = residualChecks.filter(
+    (check) => check.currentProxyPass === true
+  ).length;
+  const acceptedResidualCount = residualChecks.filter(
+    (check) => check.retainedAcceptancePass === true
+  ).length;
+  const residualCount = residualChecks.length;
+  const firstBlockingResidual =
+    residualChecks.find((check) => check.retainedAcceptancePass !== true) ??
+    null;
+  const firstMissingRetainedInputs = residualChecks
+    .filter((check) => check.retainedAcceptancePass !== true)
+    .map((check) => check.missingRetainedInput);
+  const currentProxyPass =
+    residualCount > 0 && currentEvidenceResidualCount === residualCount;
+  const rows = sourceEventIdRow
+    ? [
+        {
+          rowId: `${sourceEventIdCandidate}-source-event-candidate-identity-attempt`,
+          sourceEventIdAcceptanceAttemptRowId: sourceEventIdRow.rowId,
+          sourceEventDomainAcceptanceAttemptRowId:
+            sourceEventDomainRow?.rowId ?? null,
+          sourceTemplatePopulationAttemptRowId:
+            sourceEventIdRow.sourceTemplatePopulationAttemptRowId ??
+            sourceEventDomainRow?.sourceTemplatePopulationAttemptRowId ??
+            null,
+          sourceEventIdProvenanceRowId:
+            sourceEventIdRow.sourceEventIdProvenanceRowId ??
+            sourceEventDomainRow?.sourceEventIdProvenanceRowId ??
+            null,
+          sourceEventIdPopulationAttemptRowId:
+            sourceEventDomainRow?.sourceEventIdPopulationAttemptRowId ?? null,
+          retainedRowSetId,
+          f,
+          carrierChannelId,
+          sourceRole,
+          receiverRole,
+          selectedEventDomainRoute,
+          sourceEventIdCandidate,
+          receiverEventIdCandidate,
+          eventIdPairCandidate,
+          sourceRootKeyTemplate:
+            sourceEventDomainRow?.sourceRootKeyTemplate ??
+            templateRow?.sourceRootKeyTemplate ??
+            null,
+          sourcePhaseTurnsCurrentProxy:
+            sourceEventDomainRow?.sourcePhaseTurnsCurrentProxy ??
+            templateRow?.sourcePhaseTurnsCurrentProxy ??
+            null,
+          branchHistorySegmentCandidate:
+            sourceEventDomainRow?.branchHistorySegmentCandidate ??
+            templateRow?.branchHistorySegmentCandidate ??
+            null,
+          bindingCandidate:
+            sourceEventIdRow.bindingCandidate ??
+            sourceEventDomainRow?.bindingCandidate ??
+            null,
+          residualChecks,
+          residualCount,
+          currentEvidenceResidualCount,
+          acceptedResidualCount,
+          currentProxyPass,
+          retainedSourceEventCandidateIdentityPass,
+          firstBlockingResidualId: firstBlockingResidual?.residualId ?? null,
+          missingRetainedInputs: firstMissingRetainedInputs,
+          status:
+            retainedSourceEventCandidateIdentityPass === true
+              ? "retained_source_event_candidate_identity_accepted"
+              : currentProxyPass === true
+                ? "retained_source_event_candidate_identity_current_proxy_populated_retained_identity_missing"
+                : currentEvidenceResidualCount > 0
+                  ? "retained_source_event_candidate_identity_partial_current_proxy"
+                  : "retained_source_event_candidate_identity_missing",
+          retainedBranchClaim: false,
+        },
+      ]
+    : [];
+  return {
+    schema:
+      "aaa-equal-frequency-retained-source-event-candidate-identity-audit.v1",
+    claimLevel:
+      "first retained source-event candidate identity audit under the source-event-ID attempt; current proxy only",
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
+    currentExecutableChart: CURRENT_EXECUTABLE_GEOMETRY_CHART,
+    canonicalFamily: "I:M:O=(f,f,f)",
+    retainedRowSetId,
+    selectedEventDomainRoute,
+    sourceEventIdAcceptanceAttemptAuditSchema:
+      retainedSourceEventIdAcceptanceAttemptAudit?.schema ?? null,
+    sourceEventIdAcceptanceAttemptStatus:
+      retainedSourceEventIdAcceptanceAttemptAudit?.status ?? null,
+    sourceEventDomainAcceptanceAttemptAuditSchema:
+      retainedSourceEventDomainAcceptanceAttemptAudit?.schema ?? null,
+    sourceEventDomainAcceptanceAttemptStatus:
+      retainedSourceEventDomainAcceptanceAttemptAudit?.status ?? null,
+    sourceTemplatePopulationAttemptAuditSchema:
+      retainedPhaseHistoryTemplatePopulationAttemptAudit?.schema ?? null,
+    sourceEventIdProvenanceAuditSchema:
+      retainedPhaseHistoryCarrierEventIdProvenanceAudit?.schema ?? null,
+    retainedEventDomainLiftTargetSchema:
+      retainedEventDomainLiftTarget?.schema ?? null,
+    retainedEventDomainSelectorSchema:
+      retainedEventDomainSelector?.schema ?? null,
+    residualVector:
+      "R_candidate_src=(r_retained_identity,r_label,r_population,r_provenance,r_role,r_frequency,r_channel,r_route)",
+    acceptanceEquation:
+      "accept(src_event_candidate_identity) iff the source-event label, event-ID population row, accepted provenance, source/receiver role map, frequency row, carrier channel, event/domain route, and retained identity all refer to one retained source event on S_eq",
+    rowCount: rows.length,
+    attemptedSourceEventCandidateCount: sourceEventIdRow ? 1 : 0,
+    currentEvidenceResidualCount,
+    acceptedResidualCount,
+    residualCount,
+    sourceEventCandidateIdentityCurrentProxyPass: currentProxyPass,
+    retainedSourceEventCandidateIdentityPass,
+    firstAttemptRowId: rows[0]?.rowId ?? null,
+    firstAttemptSourceEventIdCandidate: sourceEventIdCandidate,
+    firstAttemptReceiverEventIdCandidate: receiverEventIdCandidate,
+    firstAttemptEventIdPairCandidate: eventIdPairCandidate,
+    firstAttemptCarrierChannelId: carrierChannelId,
+    firstBlockingResidualId: firstBlockingResidual?.residualId ?? null,
+    firstMissingRetainedInputs,
+    rows,
+    blockingConditionIds: firstMissingRetainedInputs.map(
+      (id) => `${id}_missing`
+    ),
+    status:
+      retainedSourceEventCandidateIdentityPass === true
+        ? "retained_source_event_candidate_identity_accepted"
+        : currentProxyPass === true
+          ? "retained_source_event_candidate_identity_current_proxy_populated_retained_identity_missing"
+          : currentEvidenceResidualCount > 0
+            ? "retained_source_event_candidate_identity_partial_current_proxy"
+            : "retained_source_event_candidate_identity_missing",
+    interpretation:
+      "The first f=2 middle-to-outer source event now has a candidate identity row. The row can name the event label, population attempt, provenance, role map, common frequency, carrier channel, and route, but it still has no accepted retained source-event identity.",
+    retainedReplayBurden:
+      "Accept the source-event candidate as one retained source-event identity on S_eq, with provenance, role map, frequency row, carrier channel, event/domain route, and row binding all pointing to the same retained event or positive-width domain.",
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyRetainedSourceEventIdentityConstructionAudit({
+  retainedSourceEventCandidateIdentityAudit,
+  retainedSourceEventIdAcceptanceAttemptAudit,
+  retainedSourceEventDomainAcceptanceAttemptAudit,
+  retainedPhaseHistoryTemplatePopulationAttemptAudit,
+  retainedPhaseHistoryCarrierEventIdProvenanceAudit,
+  retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit,
+  retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit,
+  retainedEventDomainLiftTarget,
+  retainedEventDomainSelector,
+}) {
+  const candidateIdentityRow =
+    retainedSourceEventCandidateIdentityAudit?.rows?.[0] ?? null;
+  const sourceEventIdRow =
+    retainedSourceEventIdAcceptanceAttemptAudit?.rows?.find(
+      (candidate) =>
+        candidate.rowId ===
+        candidateIdentityRow?.sourceEventIdAcceptanceAttemptRowId
+    ) ??
+    retainedSourceEventIdAcceptanceAttemptAudit?.rows?.[0] ??
+    null;
+  const sourceEventDomainRow =
+    retainedSourceEventDomainAcceptanceAttemptAudit?.rows?.find(
+      (candidate) =>
+        candidate.rowId ===
+        candidateIdentityRow?.sourceEventDomainAcceptanceAttemptRowId
+    ) ??
+    retainedSourceEventDomainAcceptanceAttemptAudit?.rows?.[0] ??
+    null;
+  const templateRow =
+    retainedPhaseHistoryTemplatePopulationAttemptAudit?.rows?.find(
+      (candidate) =>
+        candidate.rowId ===
+          candidateIdentityRow?.sourceTemplatePopulationAttemptRowId ||
+        candidate.rowId ===
+          sourceEventIdRow?.sourceTemplatePopulationAttemptRowId ||
+        candidate.rowId ===
+          sourceEventDomainRow?.sourceTemplatePopulationAttemptRowId
+    ) ?? null;
+  const provenanceRow =
+    retainedPhaseHistoryCarrierEventIdProvenanceAudit?.rows?.find(
+      (candidate) =>
+        candidate.rowId ===
+          candidateIdentityRow?.sourceEventIdProvenanceRowId ||
+        candidate.rowId === sourceEventIdRow?.sourceEventIdProvenanceRowId ||
+        candidate.rowId === sourceEventDomainRow?.sourceEventIdProvenanceRowId
+    ) ?? null;
+  const ruleRow =
+    retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit?.rows?.find(
+      (candidate) =>
+        candidate.rowId === sourceEventIdRow?.pointEventOrDomainRuleRowId ||
+        candidate.rowId === sourceEventDomainRow?.pointEventOrDomainRuleRowId
+    ) ?? null;
+  const bindingRow =
+    retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit?.rows?.find(
+      (candidate) =>
+        candidate.rowId === sourceEventIdRow?.eventDomainBindingAttemptRowId ||
+        candidate.rowId === sourceEventDomainRow?.eventDomainBindingAttemptRowId
+    ) ?? null;
+  const retainedRowSetId =
+    candidateIdentityRow?.retainedRowSetId ??
+    sourceEventIdRow?.retainedRowSetId ??
+    sourceEventDomainRow?.retainedRowSetId ??
+    templateRow?.retainedRowSetId ??
+    retainedSourceEventCandidateIdentityAudit?.retainedRowSetId ??
+    "S_eq";
+  const selectedEventDomainRoute =
+    candidateIdentityRow?.selectedEventDomainRoute ??
+    sourceEventIdRow?.selectedEventDomainRoute ??
+    sourceEventDomainRow?.selectedEventDomainRoute ??
+    templateRow?.selectedEventDomainRoute ??
+    retainedEventDomainSelector?.selectedRoute ??
+    null;
+  const sourceEventIdCandidate =
+    candidateIdentityRow?.sourceEventIdCandidate ??
+    sourceEventIdRow?.sourceEventIdCandidate ??
+    sourceEventDomainRow?.sourceEventIdCandidate ??
+    templateRow?.sourceEventIdCandidate ??
+    null;
+  const receiverEventIdCandidate =
+    candidateIdentityRow?.receiverEventIdCandidate ??
+    sourceEventIdRow?.receiverEventIdCandidate ??
+    sourceEventDomainRow?.receiverEventIdCandidate ??
+    templateRow?.receiverEventIdCandidate ??
+    null;
+  const sourceRole =
+    candidateIdentityRow?.sourceRole ??
+    sourceEventIdRow?.sourceRole ??
+    sourceEventDomainRow?.sourceRole ??
+    templateRow?.sourceRole ??
+    null;
+  const receiverRole =
+    candidateIdentityRow?.receiverRole ??
+    sourceEventIdRow?.receiverRole ??
+    sourceEventDomainRow?.receiverRole ??
+    templateRow?.receiverRole ??
+    null;
+  const f =
+    candidateIdentityRow?.f ??
+    sourceEventIdRow?.f ??
+    sourceEventDomainRow?.f ??
+    templateRow?.f ??
+    null;
+  const carrierChannelId =
+    candidateIdentityRow?.carrierChannelId ??
+    sourceEventIdRow?.carrierChannelId ??
+    sourceEventDomainRow?.carrierChannelId ??
+    templateRow?.carrierChannelId ??
+    null;
+  const bindingCandidate =
+    candidateIdentityRow?.bindingCandidate ??
+    sourceEventIdRow?.bindingCandidate ??
+    sourceEventDomainRow?.bindingCandidate ??
+    bindingRow?.bindingCandidateId ??
+    null;
+  const eventIdPairCandidate =
+    candidateIdentityRow?.eventIdPairCandidate ??
+    sourceEventIdRow?.eventIdPairCandidate ??
+    provenanceRow?.eventIdPairCandidate ??
+    (typeof sourceEventIdCandidate === "string" &&
+    typeof receiverEventIdCandidate === "string"
+      ? `${sourceEventIdCandidate}::${receiverEventIdCandidate}`
+      : null);
+  const historyRowCurrentProxyPass =
+    typeof templateRow?.sourceRootKeyTemplate === "string" &&
+    Number.isFinite(templateRow?.sourcePhaseTurnsCurrentProxy) &&
+    typeof templateRow?.branchHistorySegmentCandidate === "string";
+  const rowSetCandidateIds = [
+    candidateIdentityRow?.retainedRowSetId,
+    sourceEventIdRow?.retainedRowSetId,
+    sourceEventDomainRow?.retainedRowSetId,
+    templateRow?.retainedRowSetId,
+  ].filter((value) => typeof value === "string");
+  const uniqueRowSetCandidateIds = Array.from(new Set(rowSetCandidateIds));
+  const retainedIdentityConstructionPass = false;
+  const roleChannelCurrentProxyPass =
+    typeof sourceRole === "string" &&
+    typeof receiverRole === "string" &&
+    typeof carrierChannelId === "string" &&
+    Number.isFinite(f);
+  const residualChecks = candidateIdentityRow
+    ? [
+        {
+          residualId: "r_label",
+          label: "source-event identity label",
+          currentProxyValue: sourceEventIdCandidate,
+          currentProxyPass: typeof sourceEventIdCandidate === "string",
+          retainedAcceptancePass: false,
+          missingRetainedInput: "accepted_source_event_identity_label",
+          sourceSchema:
+            retainedSourceEventCandidateIdentityAudit?.schema ?? null,
+        },
+        {
+          residualId: "r_event_id_key",
+          label: "source-event ID key",
+          currentProxyValue: sourceEventIdCandidate,
+          currentProxyPass:
+            typeof sourceEventIdCandidate === "string" &&
+            typeof provenanceRow?.rowId === "string",
+          retainedAcceptancePass: false,
+          missingRetainedInput: "retained_source_event_id_key",
+          sourceSchema:
+            retainedSourceEventIdAcceptanceAttemptAudit?.schema ??
+            retainedPhaseHistoryCarrierEventIdProvenanceAudit?.schema ??
+            null,
+        },
+        {
+          residualId: "r_row_set_key",
+          label: "source-event row-set key",
+          currentProxyValue: retainedRowSetId,
+          currentProxyPass:
+            uniqueRowSetCandidateIds.length === 1 &&
+            typeof retainedRowSetId === "string",
+          retainedAcceptancePass: false,
+          missingRetainedInput: "accepted_source_event_row_set_key",
+          sourceSchema:
+            retainedSourceEventCandidateIdentityAudit?.schema ??
+            retainedSourceEventDomainAcceptanceAttemptAudit?.schema ??
+            null,
+        },
+        {
+          residualId: "r_route_key",
+          label: "source-event event/domain route key",
+          currentProxyValue: selectedEventDomainRoute,
+          currentProxyPass: typeof selectedEventDomainRoute === "string",
+          retainedAcceptancePass: false,
+          missingRetainedInput: "accepted_source_event_domain_route_key",
+          sourceSchema:
+            retainedEventDomainSelector?.schema ??
+            retainedEventDomainLiftTarget?.schema ??
+            null,
+        },
+        {
+          residualId: "r_role_channel_key",
+          label: "source-event role and carrier channel key",
+          currentProxyValue: carrierChannelId,
+          currentProxyPass: roleChannelCurrentProxyPass,
+          retainedAcceptancePass: false,
+          missingRetainedInput: "accepted_source_event_role_channel_key",
+          sourceSchema:
+            retainedSourceEventCandidateIdentityAudit?.schema ?? null,
+        },
+        {
+          residualId: "r_history_key",
+          label: "source-event history key",
+          currentProxyValue:
+            templateRow?.branchHistorySegmentCandidate ??
+            candidateIdentityRow?.branchHistorySegmentCandidate ??
+            null,
+          currentProxyPass: historyRowCurrentProxyPass,
+          retainedAcceptancePass: false,
+          missingRetainedInput: "accepted_source_event_history_key",
+          sourceSchema:
+            retainedPhaseHistoryTemplatePopulationAttemptAudit?.schema ??
+            null,
+        },
+        {
+          residualId: "r_binding_key",
+          label: "source-event binding key",
+          currentProxyValue: bindingCandidate,
+          currentProxyPass:
+            typeof bindingCandidate === "string" &&
+            typeof eventIdPairCandidate === "string",
+          retainedAcceptancePass: false,
+          missingRetainedInput: "accepted_source_event_binding_key",
+          sourceSchema:
+            retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit?.schema ??
+            null,
+        },
+        {
+          residualId: "r_identity_rule",
+          label: "retained source-event identity rule",
+          currentProxyValue:
+            ruleRow?.selectedRuleCandidateId ??
+            sourceEventIdRow?.selectedRuleCandidateId ??
+            null,
+          currentProxyPass:
+            roleChannelCurrentProxyPass &&
+            historyRowCurrentProxyPass &&
+            typeof bindingCandidate === "string" &&
+            typeof selectedEventDomainRoute === "string",
+          retainedAcceptancePass: retainedIdentityConstructionPass,
+          missingRetainedInput: "accepted_retained_source_event_identity_rule",
+          sourceSchema:
+            retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit
+              ?.schema ??
+            retainedEventDomainLiftTarget?.schema ??
+            null,
+        },
+      ]
+    : [];
+  const currentEvidenceResidualCount = residualChecks.filter(
+    (check) => check.currentProxyPass === true
+  ).length;
+  const acceptedResidualCount = residualChecks.filter(
+    (check) => check.retainedAcceptancePass === true
+  ).length;
+  const residualCount = residualChecks.length;
+  const firstBlockingResidual =
+    residualChecks.find((check) => check.retainedAcceptancePass !== true) ??
+    null;
+  const firstMissingRetainedInputs = residualChecks
+    .filter((check) => check.retainedAcceptancePass !== true)
+    .map((check) => check.missingRetainedInput);
+  const currentProxyPass =
+    residualCount > 0 && currentEvidenceResidualCount === residualCount;
+  const rows = candidateIdentityRow
+    ? [
+        {
+          rowId: `${sourceEventIdCandidate}-source-event-identity-construction-attempt`,
+          sourceEventCandidateIdentityAttemptRowId:
+            candidateIdentityRow.rowId,
+          sourceEventIdAcceptanceAttemptRowId:
+            candidateIdentityRow.sourceEventIdAcceptanceAttemptRowId ?? null,
+          sourceEventDomainAcceptanceAttemptRowId:
+            candidateIdentityRow.sourceEventDomainAcceptanceAttemptRowId ??
+            null,
+          sourceTemplatePopulationAttemptRowId:
+            candidateIdentityRow.sourceTemplatePopulationAttemptRowId ?? null,
+          sourceEventIdProvenanceRowId:
+            candidateIdentityRow.sourceEventIdProvenanceRowId ?? null,
+          retainedRowSetId,
+          rowSetCandidateIds,
+          uniqueRowSetCandidateIds,
+          f,
+          carrierChannelId,
+          sourceRole,
+          receiverRole,
+          selectedEventDomainRoute,
+          sourceEventIdCandidate,
+          receiverEventIdCandidate,
+          eventIdPairCandidate,
+          sourceRootKeyTemplate:
+            templateRow?.sourceRootKeyTemplate ??
+            candidateIdentityRow.sourceRootKeyTemplate ??
+            null,
+          sourcePhaseTurnsCurrentProxy:
+            templateRow?.sourcePhaseTurnsCurrentProxy ??
+            candidateIdentityRow.sourcePhaseTurnsCurrentProxy ??
+            null,
+          branchHistorySegmentCandidate:
+            templateRow?.branchHistorySegmentCandidate ??
+            candidateIdentityRow.branchHistorySegmentCandidate ??
+            null,
+          selectedRuleCandidateId:
+            ruleRow?.selectedRuleCandidateId ??
+            sourceEventIdRow?.selectedRuleCandidateId ??
+            null,
+          bindingCandidate,
+          residualChecks,
+          residualCount,
+          currentEvidenceResidualCount,
+          acceptedResidualCount,
+          currentProxyPass,
+          retainedIdentityConstructionPass,
+          firstBlockingResidualId: firstBlockingResidual?.residualId ?? null,
+          missingRetainedInputs: firstMissingRetainedInputs,
+          status:
+            retainedIdentityConstructionPass === true
+              ? "retained_source_event_identity_constructed_and_accepted"
+              : currentProxyPass === true
+                ? "retained_source_event_identity_construction_current_proxy_populated_acceptance_missing"
+                : currentEvidenceResidualCount > 0
+                  ? "retained_source_event_identity_construction_partial_current_proxy"
+                  : "retained_source_event_identity_construction_missing",
+          retainedBranchClaim: false,
+        },
+      ]
+    : [];
+  return {
+    schema:
+      "aaa-equal-frequency-retained-source-event-identity-construction-audit.v1",
+    claimLevel:
+      "first retained source-event identity construction audit under r_identity; current proxy only",
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
+    currentExecutableChart: CURRENT_EXECUTABLE_GEOMETRY_CHART,
+    canonicalFamily: "I:M:O=(f,f,f)",
+    retainedRowSetId,
+    selectedEventDomainRoute,
+    sourceEventCandidateIdentityAuditSchema:
+      retainedSourceEventCandidateIdentityAudit?.schema ?? null,
+    sourceEventIdAcceptanceAttemptAuditSchema:
+      retainedSourceEventIdAcceptanceAttemptAudit?.schema ?? null,
+    sourceEventDomainAcceptanceAttemptAuditSchema:
+      retainedSourceEventDomainAcceptanceAttemptAudit?.schema ?? null,
+    sourceTemplatePopulationAttemptAuditSchema:
+      retainedPhaseHistoryTemplatePopulationAttemptAudit?.schema ?? null,
+    sourceEventIdProvenanceAuditSchema:
+      retainedPhaseHistoryCarrierEventIdProvenanceAudit?.schema ?? null,
+    sourcePointEventOrDomainRuleAttemptAuditSchema:
+      retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit?.schema ??
+      null,
+    sourceEventDomainBindingAttemptAuditSchema:
+      retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit?.schema ?? null,
+    residualVector:
+      "R_identity_core=(r_label,r_event_id_key,r_row_set_key,r_route_key,r_role_channel_key,r_history_key,r_binding_key,r_identity_rule)",
+    constructionEquation:
+      "construct(src_event_identity) iff one label, source event-ID key, row-set key, event/domain route, role/channel key, history key, binding key, and retained identity rule all point to the same S_eq source event",
+    rowCount: rows.length,
+    attemptedSourceEventIdentityCount: candidateIdentityRow ? 1 : 0,
+    currentEvidenceResidualCount,
+    acceptedResidualCount,
+    residualCount,
+    sourceEventIdentityConstructionCurrentProxyPass: currentProxyPass,
+    retainedIdentityConstructionPass,
+    firstAttemptRowId: rows[0]?.rowId ?? null,
+    firstAttemptSourceEventIdCandidate: sourceEventIdCandidate,
+    firstAttemptReceiverEventIdCandidate: receiverEventIdCandidate,
+    firstAttemptEventIdPairCandidate: eventIdPairCandidate,
+    firstAttemptCarrierChannelId: carrierChannelId,
+    firstAttemptBindingCandidate: bindingCandidate,
+    firstBlockingResidualId: firstBlockingResidual?.residualId ?? null,
+    firstMissingRetainedInputs,
+    rows,
+    blockingConditionIds: firstMissingRetainedInputs.map(
+      (id) => `${id}_missing`
+    ),
+    status:
+      retainedIdentityConstructionPass === true
+        ? "retained_source_event_identity_constructed_and_accepted"
+        : currentProxyPass === true
+          ? "retained_source_event_identity_construction_current_proxy_populated_acceptance_missing"
+          : currentEvidenceResidualCount > 0
+            ? "retained_source_event_identity_construction_partial_current_proxy"
+            : "retained_source_event_identity_construction_missing",
+    interpretation:
+      "The first f=2 middle-to-outer source event now has a construction row for r_identity. The row can align the source label, event-ID key, row-set key, route key, role/channel key, history key, binding key, and identity-rule candidate, but none is retained-accepted.",
+    retainedReplayBurden:
+      "Turn the current construction row into one accepted retained source-event identity on S_eq by accepting each key and the retained identity rule on the same event or positive-width domain.",
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyRetainedSourceEventIdentityAcceptanceAudit({
+  retainedSourceEventIdentityConstructionAudit,
+  retainedSourceEventCandidateIdentityAudit,
+  retainedSourceEventIdAcceptanceAttemptAudit,
+  retainedSourceEventDomainAcceptanceAttemptAudit,
+  retainedPhaseHistoryTemplatePopulationAttemptAudit,
+  retainedPhaseHistoryCarrierEventIdProvenanceAudit,
+  retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit,
+  retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit,
+  retainedEventDomainLiftTarget,
+  retainedEventDomainSelector,
+}) {
+  const candidateIdentityRow =
+    retainedSourceEventCandidateIdentityAudit?.rows?.[0] ?? null;
+  const sourceEventIdRow =
+    retainedSourceEventIdAcceptanceAttemptAudit?.rows?.find(
+      (candidate) =>
+        candidate.rowId ===
+        candidateIdentityRow?.sourceEventIdAcceptanceAttemptRowId
+    ) ??
+    retainedSourceEventIdAcceptanceAttemptAudit?.rows?.[0] ??
+    null;
+  const sourceEventDomainRow =
+    retainedSourceEventDomainAcceptanceAttemptAudit?.rows?.find(
+      (candidate) =>
+        candidate.rowId ===
+        candidateIdentityRow?.sourceEventDomainAcceptanceAttemptRowId
+    ) ??
+    retainedSourceEventDomainAcceptanceAttemptAudit?.rows?.[0] ??
+    null;
+  const templateRow =
+    retainedPhaseHistoryTemplatePopulationAttemptAudit?.rows?.find(
+      (candidate) =>
+        candidate.rowId ===
+          candidateIdentityRow?.sourceTemplatePopulationAttemptRowId ||
+        candidate.rowId ===
+          sourceEventIdRow?.sourceTemplatePopulationAttemptRowId ||
+        candidate.rowId ===
+          sourceEventDomainRow?.sourceTemplatePopulationAttemptRowId
+    ) ?? null;
+  const provenanceRow =
+    retainedPhaseHistoryCarrierEventIdProvenanceAudit?.rows?.find(
+      (candidate) =>
+        candidate.rowId ===
+          candidateIdentityRow?.sourceEventIdProvenanceRowId ||
+        candidate.rowId === sourceEventIdRow?.sourceEventIdProvenanceRowId ||
+        candidate.rowId === sourceEventDomainRow?.sourceEventIdProvenanceRowId
+    ) ?? null;
+  const ruleRow =
+    retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit?.rows?.find(
+      (candidate) =>
+        candidate.rowId === sourceEventIdRow?.pointEventOrDomainRuleRowId ||
+        candidate.rowId === sourceEventDomainRow?.pointEventOrDomainRuleRowId
+    ) ?? null;
+  const bindingRow =
+    retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit?.rows?.find(
+      (candidate) =>
+        candidate.rowId === sourceEventIdRow?.eventDomainBindingAttemptRowId ||
+        candidate.rowId === sourceEventDomainRow?.eventDomainBindingAttemptRowId
+    ) ?? null;
+  const retainedRowSetId =
+    candidateIdentityRow?.retainedRowSetId ??
+    sourceEventIdRow?.retainedRowSetId ??
+    sourceEventDomainRow?.retainedRowSetId ??
+    templateRow?.retainedRowSetId ??
+    retainedSourceEventCandidateIdentityAudit?.retainedRowSetId ??
+    "S_eq";
+  const selectedEventDomainRoute =
+    candidateIdentityRow?.selectedEventDomainRoute ??
+    sourceEventIdRow?.selectedEventDomainRoute ??
+    sourceEventDomainRow?.selectedEventDomainRoute ??
+    templateRow?.selectedEventDomainRoute ??
+    retainedEventDomainSelector?.selectedRoute ??
+    null;
+  const sourceEventIdCandidate =
+    candidateIdentityRow?.sourceEventIdCandidate ??
+    sourceEventIdRow?.sourceEventIdCandidate ??
+    sourceEventDomainRow?.sourceEventIdCandidate ??
+    templateRow?.sourceEventIdCandidate ??
+    null;
+  const receiverEventIdCandidate =
+    candidateIdentityRow?.receiverEventIdCandidate ??
+    sourceEventIdRow?.receiverEventIdCandidate ??
+    sourceEventDomainRow?.receiverEventIdCandidate ??
+    templateRow?.receiverEventIdCandidate ??
+    null;
+  const sourceRole =
+    candidateIdentityRow?.sourceRole ??
+    sourceEventIdRow?.sourceRole ??
+    sourceEventDomainRow?.sourceRole ??
+    templateRow?.sourceRole ??
+    null;
+  const receiverRole =
+    candidateIdentityRow?.receiverRole ??
+    sourceEventIdRow?.receiverRole ??
+    sourceEventDomainRow?.receiverRole ??
+    templateRow?.receiverRole ??
+    null;
+  const f =
+    candidateIdentityRow?.f ??
+    sourceEventIdRow?.f ??
+    sourceEventDomainRow?.f ??
+    templateRow?.f ??
+    null;
+  const carrierChannelId =
+    candidateIdentityRow?.carrierChannelId ??
+    sourceEventIdRow?.carrierChannelId ??
+    sourceEventDomainRow?.carrierChannelId ??
+    templateRow?.carrierChannelId ??
+    null;
+  const bindingCandidate =
+    candidateIdentityRow?.bindingCandidate ??
+    sourceEventIdRow?.bindingCandidate ??
+    sourceEventDomainRow?.bindingCandidate ??
+    bindingRow?.bindingCandidateId ??
+    null;
+  const eventIdPairCandidate =
+    candidateIdentityRow?.eventIdPairCandidate ??
+    sourceEventIdRow?.eventIdPairCandidate ??
+    provenanceRow?.eventIdPairCandidate ??
+    (typeof sourceEventIdCandidate === "string" &&
+    typeof receiverEventIdCandidate === "string"
+      ? `${sourceEventIdCandidate}::${receiverEventIdCandidate}`
+      : null);
+  const retainedEventDomainAccepted =
+    retainedEventDomainSelector?.retainedSelectorAcceptancePass === true ||
+    retainedEventDomainLiftTarget?.retainedEventDomainLiftPass === true;
+  const historyRowCurrentProxyPass =
+    typeof templateRow?.sourceRootKeyTemplate === "string" &&
+    Number.isFinite(templateRow?.sourcePhaseTurnsCurrentProxy) &&
+    typeof templateRow?.branchHistorySegmentCandidate === "string";
+  const retainedSourceEventIdentityAcceptancePass = false;
+  const identityConstructionFirstMissingInput =
+    retainedSourceEventIdentityConstructionAudit?.firstMissingRetainedInputs?.[0] ??
+    "accepted_retained_source_event_identity";
+  const residualChecks = candidateIdentityRow
+    ? [
+        {
+          residualId: "r_identity",
+          label: "accepted retained source-event identity",
+          currentProxyValue: sourceEventIdCandidate,
+          currentProxyPass:
+            retainedSourceEventIdentityConstructionAudit
+              ?.sourceEventIdentityConstructionCurrentProxyPass === true ||
+            candidateIdentityRow.currentProxyPass === true ||
+            retainedSourceEventCandidateIdentityAudit
+              ?.sourceEventCandidateIdentityCurrentProxyPass === true,
+          retainedAcceptancePass: retainedSourceEventIdentityAcceptancePass,
+          missingRetainedInput: identityConstructionFirstMissingInput,
+          sourceSchema:
+            retainedSourceEventIdentityConstructionAudit?.schema ??
+            retainedSourceEventCandidateIdentityAudit?.schema ?? null,
+        },
+        {
+          residualId: "r_event_id",
+          label: "retained source event ID",
+          currentProxyValue: sourceEventIdCandidate,
+          currentProxyPass: typeof sourceEventIdCandidate === "string",
+          retainedAcceptancePass:
+            retainedSourceEventIdAcceptanceAttemptAudit
+              ?.retainedSourceEventIdAcceptancePass === true,
+          missingRetainedInput: "retained_source_event_id",
+          sourceSchema:
+            retainedSourceEventIdAcceptanceAttemptAudit?.schema ?? null,
+        },
+        {
+          residualId: "r_provenance",
+          label: "accepted source event-ID provenance",
+          currentProxyValue: provenanceRow?.rowId ?? null,
+          currentProxyPass:
+            provenanceRow?.currentProvenancePass === true ||
+            typeof candidateIdentityRow.sourceEventIdProvenanceRowId ===
+              "string",
+          retainedAcceptancePass:
+            provenanceRow?.retainedEventIdProvenanceAccepted === true,
+          missingRetainedInput: "accepted_retained_event_id_provenance",
+          sourceSchema:
+            retainedPhaseHistoryCarrierEventIdProvenanceAudit?.schema ?? null,
+        },
+        {
+          residualId: "r_rows",
+          label: "same retained row-set identity",
+          currentProxyValue: retainedRowSetId,
+          currentProxyPass: typeof retainedRowSetId === "string",
+          retainedAcceptancePass: false,
+          missingRetainedInput: "same_retained_row_set_identity",
+          sourceSchema:
+            retainedSourceEventCandidateIdentityAudit?.schema ??
+            retainedSourceEventDomainAcceptanceAttemptAudit?.schema ??
+            null,
+        },
+        {
+          residualId: "r_event_domain",
+          label: "accepted retained point event or positive-width domain",
+          currentProxyValue: selectedEventDomainRoute,
+          currentProxyPass: typeof selectedEventDomainRoute === "string",
+          retainedAcceptancePass: retainedEventDomainAccepted,
+          missingRetainedInput:
+            "accepted_same_retained_event_or_positive_width_domain",
+          sourceSchema:
+            retainedEventDomainSelector?.schema ??
+            retainedEventDomainLiftTarget?.schema ??
+            null,
+        },
+        {
+          residualId: "r_rule",
+          label: "accepted point-event or positive-width-domain rule",
+          currentProxyValue:
+            ruleRow?.selectedRuleCandidateId ??
+            sourceEventIdRow?.selectedRuleCandidateId ??
+            null,
+          currentProxyPass:
+            typeof (
+              ruleRow?.selectedRuleCandidateId ??
+              sourceEventIdRow?.selectedRuleCandidateId
+            ) === "string",
+          retainedAcceptancePass:
+            ruleRow?.retainedPointEventOrDomainRuleAccepted === true,
+          missingRetainedInput:
+            "accepted_full_point_event_rule_or_positive_width_domain",
+          sourceSchema:
+            retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit
+              ?.schema ??
+            retainedEventDomainLiftTarget?.schema ??
+            null,
+        },
+        {
+          residualId: "r_binding",
+          label: "same-event or positive-width-domain binding",
+          currentProxyValue: bindingCandidate,
+          currentProxyPass: typeof bindingCandidate === "string",
+          retainedAcceptancePass:
+            bindingRow?.retainedEventDomainBindingAccepted === true,
+          missingRetainedInput:
+            "same_event_or_positive_width_domain_binding",
+          sourceSchema:
+            retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit?.schema ??
+            null,
+        },
+        {
+          residualId: "r_history",
+          label: "source retained history row",
+          currentProxyValue:
+            templateRow?.branchHistorySegmentCandidate ??
+            candidateIdentityRow?.branchHistorySegmentCandidate ??
+            null,
+          currentProxyPass: historyRowCurrentProxyPass,
+          retainedAcceptancePass:
+            sourceEventDomainRow?.retainedSourceEventDomainAcceptancePass ===
+            true,
+          missingRetainedInput: "retained_source_history_row_binding",
+          sourceSchema:
+            retainedPhaseHistoryTemplatePopulationAttemptAudit?.schema ??
+            retainedSourceEventDomainAcceptanceAttemptAudit?.schema ??
+            null,
+        },
+      ]
+    : [];
+  const currentEvidenceResidualCount = residualChecks.filter(
+    (check) => check.currentProxyPass === true
+  ).length;
+  const acceptedResidualCount = residualChecks.filter(
+    (check) => check.retainedAcceptancePass === true
+  ).length;
+  const residualCount = residualChecks.length;
+  const firstBlockingResidual =
+    residualChecks.find((check) => check.retainedAcceptancePass !== true) ??
+    null;
+  const firstMissingRetainedInputs = residualChecks
+    .filter((check) => check.retainedAcceptancePass !== true)
+    .map((check) => check.missingRetainedInput);
+  const currentProxyPass =
+    residualCount > 0 && currentEvidenceResidualCount === residualCount;
+  const rows = candidateIdentityRow
+    ? [
+        {
+          rowId: `${sourceEventIdCandidate}-source-event-identity-acceptance-attempt`,
+          sourceEventCandidateIdentityAttemptRowId:
+            candidateIdentityRow.rowId,
+          sourceEventIdAcceptanceAttemptRowId:
+            candidateIdentityRow.sourceEventIdAcceptanceAttemptRowId ?? null,
+          sourceEventDomainAcceptanceAttemptRowId:
+            candidateIdentityRow.sourceEventDomainAcceptanceAttemptRowId ??
+            null,
+          sourceTemplatePopulationAttemptRowId:
+            candidateIdentityRow.sourceTemplatePopulationAttemptRowId ?? null,
+          sourceEventIdProvenanceRowId:
+            candidateIdentityRow.sourceEventIdProvenanceRowId ?? null,
+          sourceEventIdPopulationAttemptRowId:
+            candidateIdentityRow.sourceEventIdPopulationAttemptRowId ?? null,
+          retainedRowSetId,
+          f,
+          carrierChannelId,
+          sourceRole,
+          receiverRole,
+          selectedEventDomainRoute,
+          sourceEventIdCandidate,
+          receiverEventIdCandidate,
+          eventIdPairCandidate,
+          sourceRootKeyTemplate:
+            templateRow?.sourceRootKeyTemplate ??
+            candidateIdentityRow.sourceRootKeyTemplate ??
+            null,
+          sourcePhaseTurnsCurrentProxy:
+            templateRow?.sourcePhaseTurnsCurrentProxy ??
+            candidateIdentityRow.sourcePhaseTurnsCurrentProxy ??
+            null,
+          branchHistorySegmentCandidate:
+            templateRow?.branchHistorySegmentCandidate ??
+            candidateIdentityRow.branchHistorySegmentCandidate ??
+            null,
+          selectedRuleCandidateId:
+            ruleRow?.selectedRuleCandidateId ??
+            sourceEventIdRow?.selectedRuleCandidateId ??
+            null,
+          bindingCandidate,
+          residualChecks,
+          residualCount,
+          currentEvidenceResidualCount,
+          acceptedResidualCount,
+          currentProxyPass,
+          retainedSourceEventIdentityAcceptancePass,
+          firstBlockingResidualId: firstBlockingResidual?.residualId ?? null,
+          missingRetainedInputs: firstMissingRetainedInputs,
+          status:
+            retainedSourceEventIdentityAcceptancePass === true
+              ? "retained_source_event_identity_accepted"
+              : currentProxyPass === true
+                ? "retained_source_event_identity_current_proxy_populated_retained_acceptance_missing"
+                : currentEvidenceResidualCount > 0
+                  ? "retained_source_event_identity_partial_current_proxy"
+                  : "retained_source_event_identity_missing",
+          retainedBranchClaim: false,
+        },
+      ]
+    : [];
+  return {
+    schema:
+      "aaa-equal-frequency-retained-source-event-identity-acceptance-audit.v1",
+    claimLevel:
+      "first retained source-event identity acceptance audit under the source-event candidate identity row; current proxy only",
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
+    currentExecutableChart: CURRENT_EXECUTABLE_GEOMETRY_CHART,
+    canonicalFamily: "I:M:O=(f,f,f)",
+    retainedRowSetId,
+    selectedEventDomainRoute,
+    sourceEventCandidateIdentityAuditSchema:
+      retainedSourceEventCandidateIdentityAudit?.schema ?? null,
+    sourceEventCandidateIdentityStatus:
+      retainedSourceEventCandidateIdentityAudit?.status ?? null,
+    sourceEventIdAcceptanceAttemptAuditSchema:
+      retainedSourceEventIdAcceptanceAttemptAudit?.schema ?? null,
+    sourceEventDomainAcceptanceAttemptAuditSchema:
+      retainedSourceEventDomainAcceptanceAttemptAudit?.schema ?? null,
+    sourceTemplatePopulationAttemptAuditSchema:
+      retainedPhaseHistoryTemplatePopulationAttemptAudit?.schema ?? null,
+    sourceEventIdProvenanceAuditSchema:
+      retainedPhaseHistoryCarrierEventIdProvenanceAudit?.schema ?? null,
+    sourcePointEventOrDomainRuleAttemptAuditSchema:
+      retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit?.schema ??
+      null,
+    sourceEventDomainBindingAttemptAuditSchema:
+      retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit?.schema ?? null,
+    retainedEventDomainLiftTargetSchema:
+      retainedEventDomainLiftTarget?.schema ?? null,
+    retainedEventDomainSelectorSchema:
+      retainedEventDomainSelector?.schema ?? null,
+    residualVector:
+      "R_identity_src=(r_identity,r_event_id,r_provenance,r_rows,r_event_domain,r_rule,r_binding,r_history)",
+    acceptanceEquation:
+      "accept(src_event_identity) iff the source event has one accepted retained identity, retained event ID, accepted provenance, same retained row set, accepted event/domain, accepted point-event or domain rule, binding, and retained history row",
+    rowCount: rows.length,
+    attemptedSourceEventIdentityCount: candidateIdentityRow ? 1 : 0,
+    currentEvidenceResidualCount,
+    acceptedResidualCount,
+    residualCount,
+    sourceEventIdentityAcceptanceCurrentProxyPass: currentProxyPass,
+    retainedSourceEventIdentityAcceptancePass,
+    firstAttemptRowId: rows[0]?.rowId ?? null,
+    firstAttemptSourceEventIdCandidate: sourceEventIdCandidate,
+    firstAttemptReceiverEventIdCandidate: receiverEventIdCandidate,
+    firstAttemptEventIdPairCandidate: eventIdPairCandidate,
+    firstAttemptCarrierChannelId: carrierChannelId,
+    firstAttemptBindingCandidate: bindingCandidate,
+    firstBlockingResidualId: firstBlockingResidual?.residualId ?? null,
+    firstMissingRetainedInputs,
+    rows,
+    blockingConditionIds: firstMissingRetainedInputs.map(
+      (id) => `${id}_missing`
+    ),
+    status:
+      retainedSourceEventIdentityAcceptancePass === true
+        ? "retained_source_event_identity_accepted"
+        : currentProxyPass === true
+          ? "retained_source_event_identity_current_proxy_populated_retained_acceptance_missing"
+          : currentEvidenceResidualCount > 0
+            ? "retained_source_event_identity_partial_current_proxy"
+            : "retained_source_event_identity_missing",
+    interpretation:
+      "The first f=2 middle-to-outer source event now has an identity-acceptance row. The row can name the retained identity candidate, event ID, provenance, row set, event/domain route, rule, binding, and history segment, but none is retained-accepted.",
+    retainedReplayBurden:
+      "Accept one retained source-event identity on S_eq by accepting the event ID, provenance, same row set, event/domain route, point-event or positive-width-domain rule, same-event binding, and source history row as the same retained event.",
+    retainedBranchClaim: false,
+  };
+}
+
 function createEqualFrequencyRetainedBinaryToBinaryPhaseHistoryAudit({
   binaryToBinaryPhaseHistoryLiftTarget,
   phaseChannelClassificationAudit,
@@ -50082,6 +52465,12 @@ function createEqualFrequencyRetainedBinaryToBinaryPhaseHistoryAudit({
   retainedPhaseHistoryCarrierEventIdProvenanceAudit,
   retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit,
   retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit,
+  retainedPhaseHistoryTemplatePopulationAttemptAudit,
+  retainedSourceEventDomainAcceptanceAttemptAudit,
+  retainedSourceEventIdAcceptanceAttemptAudit,
+  retainedSourceEventCandidateIdentityAudit,
+  retainedSourceEventIdentityConstructionAudit,
+  retainedSourceEventIdentityAcceptanceAudit,
   retainedEventDomainSelector,
   retainedRowSetIdentityStructuralWitnessAudit,
 }) {
@@ -50091,10 +52480,20 @@ function createEqualFrequencyRetainedBinaryToBinaryPhaseHistoryAudit({
     binaryToBinaryPhaseHistoryLiftTarget?.retainedRowSetId ??
     "S_eq";
   const currentEventDomainProxyPass =
+    retainedSourceEventIdentityAcceptanceAudit
+      ?.sourceEventIdentityAcceptanceCurrentProxyPass === true ||
+    retainedSourceEventCandidateIdentityAudit
+      ?.sourceEventCandidateIdentityCurrentProxyPass === true ||
+    retainedSourceEventIdAcceptanceAttemptAudit
+      ?.sourceEventIdAcceptanceCurrentProxyPass === true ||
     retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
       ?.currentBindingCandidateRowCount > 0 ||
     retainedEventDomainSelector?.currentProxyRouteCount > 0;
   const retainedEventDomainPass =
+    retainedSourceEventIdentityAcceptanceAudit
+      ?.retainedSourceEventIdentityAcceptancePass === true ||
+    retainedSourceEventCandidateIdentityAudit
+      ?.retainedSourceEventCandidateIdentityPass === true ||
     retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
       ?.retainedEventDomainBindingAttemptPass === true ||
     retainedEventDomainSelector?.retainedSelectorAcceptancePass === true;
@@ -50107,18 +52506,39 @@ function createEqualFrequencyRetainedBinaryToBinaryPhaseHistoryAudit({
       currentProxyPass: isFullPositiveCount(
         binaryToBinaryPhaseHistoryLiftTarget?.currentSeedRowCount,
         binaryToBinaryPhaseHistoryLiftTarget?.rowCount
-      ),
+      ) ||
+        retainedPhaseHistoryTemplatePopulationAttemptAudit
+          ?.templatePopulationCurrentProxyPass === true,
       retainedAcceptancePass:
         binaryToBinaryPhaseHistoryLiftTarget?.retainedPhaseHistoryLiftPass ===
-        true,
+          true ||
+        retainedPhaseHistoryTemplatePopulationAttemptAudit
+          ?.retainedTemplatePopulationAttemptPass === true,
       currentEvidenceCount:
-        binaryToBinaryPhaseHistoryLiftTarget?.currentSeedRowCount ?? null,
+        retainedPhaseHistoryTemplatePopulationAttemptAudit
+          ?.currentEvidenceResidualCount ??
+        binaryToBinaryPhaseHistoryLiftTarget?.currentSeedRowCount ??
+        null,
       expectedEvidenceCount:
-        binaryToBinaryPhaseHistoryLiftTarget?.rowCount ?? null,
+        retainedPhaseHistoryTemplatePopulationAttemptAudit?.residualCount ??
+        binaryToBinaryPhaseHistoryLiftTarget?.rowCount ??
+        null,
       acceptedEvidenceCount:
-        binaryToBinaryPhaseHistoryLiftTarget?.acceptedRowCount ?? null,
-      sourceSchema: binaryToBinaryPhaseHistoryLiftTarget?.schema ?? null,
+        retainedPhaseHistoryTemplatePopulationAttemptAudit
+          ?.acceptedResidualCount ??
+        binaryToBinaryPhaseHistoryLiftTarget?.acceptedRowCount ??
+        null,
+      sourceSchema:
+        retainedPhaseHistoryTemplatePopulationAttemptAudit?.schema ??
+        binaryToBinaryPhaseHistoryLiftTarget?.schema ??
+        null,
       missingRetainedInputs:
+        retainedSourceEventIdAcceptanceAttemptAudit
+          ?.firstMissingRetainedInputs ??
+        retainedSourceEventDomainAcceptanceAttemptAudit
+          ?.firstMissingRetainedInputs ??
+        retainedPhaseHistoryTemplatePopulationAttemptAudit
+          ?.firstMissingRetainedInputs ??
         binaryToBinaryPhaseHistoryLiftTarget?.blockingConditionIds ?? [
           "binary_to_binary_retained_history_rows",
         ],
@@ -50384,6 +52804,12 @@ function createEqualFrequencyRetainedBinaryToBinaryPhaseHistoryAudit({
       currentProxyPass: currentEventDomainProxyPass,
       retainedAcceptancePass: retainedEventDomainPass,
       currentEvidenceCount:
+        retainedSourceEventIdentityAcceptanceAudit
+          ?.currentEvidenceResidualCount ??
+        retainedSourceEventCandidateIdentityAudit
+          ?.currentEvidenceResidualCount ??
+        retainedSourceEventIdAcceptanceAttemptAudit
+          ?.currentEvidenceResidualCount ??
         retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
           ?.currentBindingCandidateRowCount ??
         retainedEventDomainSelector?.currentProxyRouteCount ??
@@ -50392,17 +52818,29 @@ function createEqualFrequencyRetainedBinaryToBinaryPhaseHistoryAudit({
         retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit?.rowCount ??
         null,
       acceptedEvidenceCount:
+        retainedSourceEventIdentityAcceptanceAudit?.acceptedResidualCount ??
+        retainedSourceEventCandidateIdentityAudit?.acceptedResidualCount ??
+        retainedSourceEventIdAcceptanceAttemptAudit
+          ?.acceptedResidualCount ??
         retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
           ?.retainedAcceptedBindingCount ??
         retainedEventDomainSelector?.acceptedRouteCount ??
         null,
       sourceSchema:
+        retainedSourceEventIdentityAcceptanceAudit?.schema ??
+        retainedSourceEventCandidateIdentityAudit?.schema ??
+        retainedSourceEventIdAcceptanceAttemptAudit?.schema ??
         retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit?.schema ??
         retainedEventDomainSelector?.schema ??
         null,
-      missingRetainedInputs: [
-        "same_retained_event_or_positive_width_domain",
-      ],
+      missingRetainedInputs:
+        retainedSourceEventIdentityAcceptanceAudit?.firstMissingRetainedInputs ??
+        retainedSourceEventCandidateIdentityAudit
+          ?.firstMissingRetainedInputs ??
+        retainedSourceEventIdAcceptanceAttemptAudit
+          ?.firstMissingRetainedInputs ?? [
+          "same_retained_event_or_positive_width_domain",
+        ],
     },
   ];
   const currentEvidenceResidualCount = residualRows.filter(
@@ -50444,6 +52882,134 @@ function createEqualFrequencyRetainedBinaryToBinaryPhaseHistoryAudit({
     retainedBinaryToBinaryPhaseHistoryAccepted,
     firstBlockingResidualId: firstBlockingResidual?.residualId ?? null,
     firstMissingRetainedInputs,
+    retainedSourceEventDomainAcceptanceAttemptAuditSchema:
+      retainedSourceEventDomainAcceptanceAttemptAudit?.schema ?? null,
+    retainedSourceEventDomainAcceptanceAttemptStatus:
+      retainedSourceEventDomainAcceptanceAttemptAudit?.status ?? null,
+    retainedSourceEventDomainAcceptanceResidualVector:
+      retainedSourceEventDomainAcceptanceAttemptAudit?.residualVector ?? null,
+    retainedSourceEventDomainAcceptanceCurrentProxyPass:
+      retainedSourceEventDomainAcceptanceAttemptAudit
+        ?.sourceEventDomainAcceptanceCurrentProxyPass ?? null,
+    retainedSourceEventDomainAcceptanceCurrentEvidenceResidualCount:
+      retainedSourceEventDomainAcceptanceAttemptAudit
+        ?.currentEvidenceResidualCount ?? null,
+    retainedSourceEventDomainAcceptanceAcceptedResidualCount:
+      retainedSourceEventDomainAcceptanceAttemptAudit
+        ?.acceptedResidualCount ?? null,
+    retainedSourceEventDomainAcceptanceResidualCount:
+      retainedSourceEventDomainAcceptanceAttemptAudit?.residualCount ?? null,
+    retainedSourceEventDomainAcceptanceFirstBlockingResidualId:
+      retainedSourceEventDomainAcceptanceAttemptAudit
+        ?.firstBlockingResidualId ?? null,
+    retainedSourceEventDomainAcceptanceFirstMissingInputs:
+      retainedSourceEventDomainAcceptanceAttemptAudit
+        ?.firstMissingRetainedInputs ?? [],
+    retainedSourceEventDomainAcceptanceAccepted:
+      retainedSourceEventDomainAcceptanceAttemptAudit
+        ?.retainedSourceEventDomainAcceptancePass ?? null,
+    retainedSourceEventIdAcceptanceAttemptAuditSchema:
+      retainedSourceEventIdAcceptanceAttemptAudit?.schema ?? null,
+    retainedSourceEventIdAcceptanceAttemptStatus:
+      retainedSourceEventIdAcceptanceAttemptAudit?.status ?? null,
+    retainedSourceEventIdAcceptanceResidualVector:
+      retainedSourceEventIdAcceptanceAttemptAudit?.residualVector ?? null,
+    retainedSourceEventIdAcceptanceCurrentProxyPass:
+      retainedSourceEventIdAcceptanceAttemptAudit
+        ?.sourceEventIdAcceptanceCurrentProxyPass ?? null,
+    retainedSourceEventIdAcceptanceCurrentEvidenceResidualCount:
+      retainedSourceEventIdAcceptanceAttemptAudit
+        ?.currentEvidenceResidualCount ?? null,
+    retainedSourceEventIdAcceptanceAcceptedResidualCount:
+      retainedSourceEventIdAcceptanceAttemptAudit?.acceptedResidualCount ??
+      null,
+    retainedSourceEventIdAcceptanceResidualCount:
+      retainedSourceEventIdAcceptanceAttemptAudit?.residualCount ?? null,
+    retainedSourceEventIdAcceptanceFirstBlockingResidualId:
+      retainedSourceEventIdAcceptanceAttemptAudit?.firstBlockingResidualId ??
+      null,
+    retainedSourceEventIdAcceptanceFirstMissingInputs:
+      retainedSourceEventIdAcceptanceAttemptAudit?.firstMissingRetainedInputs ??
+      [],
+    retainedSourceEventIdAcceptanceAccepted:
+      retainedSourceEventIdAcceptanceAttemptAudit
+        ?.retainedSourceEventIdAcceptancePass ?? null,
+    retainedSourceEventCandidateIdentityAuditSchema:
+      retainedSourceEventCandidateIdentityAudit?.schema ?? null,
+    retainedSourceEventCandidateIdentityStatus:
+      retainedSourceEventCandidateIdentityAudit?.status ?? null,
+    retainedSourceEventCandidateIdentityResidualVector:
+      retainedSourceEventCandidateIdentityAudit?.residualVector ?? null,
+    retainedSourceEventCandidateIdentityCurrentProxyPass:
+      retainedSourceEventCandidateIdentityAudit
+        ?.sourceEventCandidateIdentityCurrentProxyPass ?? null,
+    retainedSourceEventCandidateIdentityCurrentEvidenceResidualCount:
+      retainedSourceEventCandidateIdentityAudit?.currentEvidenceResidualCount ??
+      null,
+    retainedSourceEventCandidateIdentityAcceptedResidualCount:
+      retainedSourceEventCandidateIdentityAudit?.acceptedResidualCount ?? null,
+    retainedSourceEventCandidateIdentityResidualCount:
+      retainedSourceEventCandidateIdentityAudit?.residualCount ?? null,
+    retainedSourceEventCandidateIdentityFirstBlockingResidualId:
+      retainedSourceEventCandidateIdentityAudit?.firstBlockingResidualId ??
+      null,
+    retainedSourceEventCandidateIdentityFirstMissingInputs:
+      retainedSourceEventCandidateIdentityAudit?.firstMissingRetainedInputs ??
+      [],
+    retainedSourceEventCandidateIdentityAccepted:
+      retainedSourceEventCandidateIdentityAudit
+        ?.retainedSourceEventCandidateIdentityPass ?? null,
+    retainedSourceEventIdentityConstructionAuditSchema:
+      retainedSourceEventIdentityConstructionAudit?.schema ?? null,
+    retainedSourceEventIdentityConstructionStatus:
+      retainedSourceEventIdentityConstructionAudit?.status ?? null,
+    retainedSourceEventIdentityConstructionResidualVector:
+      retainedSourceEventIdentityConstructionAudit?.residualVector ?? null,
+    retainedSourceEventIdentityConstructionCurrentProxyPass:
+      retainedSourceEventIdentityConstructionAudit
+        ?.sourceEventIdentityConstructionCurrentProxyPass ?? null,
+    retainedSourceEventIdentityConstructionCurrentEvidenceResidualCount:
+      retainedSourceEventIdentityConstructionAudit?.currentEvidenceResidualCount ??
+      null,
+    retainedSourceEventIdentityConstructionAcceptedResidualCount:
+      retainedSourceEventIdentityConstructionAudit?.acceptedResidualCount ??
+      null,
+    retainedSourceEventIdentityConstructionResidualCount:
+      retainedSourceEventIdentityConstructionAudit?.residualCount ?? null,
+    retainedSourceEventIdentityConstructionFirstBlockingResidualId:
+      retainedSourceEventIdentityConstructionAudit?.firstBlockingResidualId ??
+      null,
+    retainedSourceEventIdentityConstructionFirstMissingInputs:
+      retainedSourceEventIdentityConstructionAudit?.firstMissingRetainedInputs ??
+      [],
+    retainedSourceEventIdentityConstructionAccepted:
+      retainedSourceEventIdentityConstructionAudit
+        ?.retainedIdentityConstructionPass ?? null,
+    retainedSourceEventIdentityAcceptanceAuditSchema:
+      retainedSourceEventIdentityAcceptanceAudit?.schema ?? null,
+    retainedSourceEventIdentityAcceptanceStatus:
+      retainedSourceEventIdentityAcceptanceAudit?.status ?? null,
+    retainedSourceEventIdentityAcceptanceResidualVector:
+      retainedSourceEventIdentityAcceptanceAudit?.residualVector ?? null,
+    retainedSourceEventIdentityAcceptanceCurrentProxyPass:
+      retainedSourceEventIdentityAcceptanceAudit
+        ?.sourceEventIdentityAcceptanceCurrentProxyPass ?? null,
+    retainedSourceEventIdentityAcceptanceCurrentEvidenceResidualCount:
+      retainedSourceEventIdentityAcceptanceAudit?.currentEvidenceResidualCount ??
+      null,
+    retainedSourceEventIdentityAcceptanceAcceptedResidualCount:
+      retainedSourceEventIdentityAcceptanceAudit?.acceptedResidualCount ?? null,
+    retainedSourceEventIdentityAcceptanceResidualCount:
+      retainedSourceEventIdentityAcceptanceAudit?.residualCount ?? null,
+    retainedSourceEventIdentityAcceptanceFirstBlockingResidualId:
+      retainedSourceEventIdentityAcceptanceAudit?.firstBlockingResidualId ??
+      null,
+    retainedSourceEventIdentityAcceptanceFirstMissingInputs:
+      retainedSourceEventIdentityAcceptanceAudit?.firstMissingRetainedInputs ??
+      [],
+    retainedSourceEventIdentityAcceptanceAccepted:
+      retainedSourceEventIdentityAcceptanceAudit
+        ?.retainedSourceEventIdentityAcceptancePass ?? null,
     status:
       retainedBinaryToBinaryPhaseHistoryAccepted === true
         ? "retained_binary_to_binary_phase_history_accepted"
@@ -50476,6 +53042,12 @@ function createEqualFrequencySameEventTransferLiftDependencyAudit({
   retainedPhaseHistoryCarrierEventIdProvenanceAudit,
   retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit,
   retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit,
+  retainedPhaseHistoryTemplatePopulationAttemptAudit,
+  retainedSourceEventDomainAcceptanceAttemptAudit,
+  retainedSourceEventIdAcceptanceAttemptAudit,
+  retainedSourceEventCandidateIdentityAudit,
+  retainedSourceEventIdentityConstructionAudit,
+  retainedSourceEventIdentityAcceptanceAudit,
 }) {
   const retainedRowSetId =
     retainedEventDomainSelector?.retainedRowSetId ??
@@ -50544,6 +53116,36 @@ function createEqualFrequencySameEventTransferLiftDependencyAudit({
   const retainedPhaseHistoryCarrierEventDomainBindingAttemptPass =
     retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
       ?.retainedEventDomainBindingAttemptPass === true;
+  const retainedPhaseHistoryTemplatePopulationCurrentProxyPass =
+    retainedPhaseHistoryTemplatePopulationAttemptAudit
+      ?.templatePopulationCurrentProxyPass === true;
+  const retainedPhaseHistoryTemplatePopulationAttemptPass =
+    retainedPhaseHistoryTemplatePopulationAttemptAudit
+      ?.retainedTemplatePopulationAttemptPass === true;
+  const retainedSourceEventDomainAcceptanceCurrentProxyPass =
+    retainedSourceEventDomainAcceptanceAttemptAudit
+      ?.sourceEventDomainAcceptanceCurrentProxyPass === true;
+  const retainedSourceEventDomainAcceptancePass =
+    retainedSourceEventDomainAcceptanceAttemptAudit
+      ?.retainedSourceEventDomainAcceptancePass === true;
+  const retainedSourceEventIdAcceptanceCurrentProxyPass =
+    retainedSourceEventIdAcceptanceAttemptAudit
+      ?.sourceEventIdAcceptanceCurrentProxyPass === true;
+  const retainedSourceEventIdAcceptancePass =
+    retainedSourceEventIdAcceptanceAttemptAudit
+      ?.retainedSourceEventIdAcceptancePass === true;
+  const retainedSourceEventCandidateIdentityCurrentProxyPass =
+    retainedSourceEventCandidateIdentityAudit
+      ?.sourceEventCandidateIdentityCurrentProxyPass === true;
+  const retainedSourceEventCandidateIdentityPass =
+    retainedSourceEventCandidateIdentityAudit
+      ?.retainedSourceEventCandidateIdentityPass === true;
+  const retainedSourceEventIdentityAcceptanceCurrentProxyPass =
+    retainedSourceEventIdentityAcceptanceAudit
+      ?.sourceEventIdentityAcceptanceCurrentProxyPass === true;
+  const retainedSourceEventIdentityAcceptancePass =
+    retainedSourceEventIdentityAcceptanceAudit
+      ?.retainedSourceEventIdentityAcceptancePass === true;
   const dependencyRows = priorityCaseSummaries.map((summary, index) => ({
     rowId: `S_eq-same-event-transfer-lift-dependency-f${summary.f}`,
     retainedRowSetId,
@@ -50593,6 +53195,26 @@ function createEqualFrequencySameEventTransferLiftDependencyAudit({
     retainedPhaseHistoryCarrierEventDomainBindingAttemptPass,
     retainedPhaseHistoryCarrierEventDomainBindingAttemptStatus:
       retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit?.status ?? null,
+    retainedPhaseHistoryTemplatePopulationCurrentProxyPass,
+    retainedPhaseHistoryTemplatePopulationAttemptPass,
+    retainedPhaseHistoryTemplatePopulationAttemptStatus:
+      retainedPhaseHistoryTemplatePopulationAttemptAudit?.status ?? null,
+    retainedSourceEventDomainAcceptanceCurrentProxyPass,
+    retainedSourceEventDomainAcceptancePass,
+    retainedSourceEventDomainAcceptanceStatus:
+      retainedSourceEventDomainAcceptanceAttemptAudit?.status ?? null,
+    retainedSourceEventIdAcceptanceCurrentProxyPass,
+    retainedSourceEventIdAcceptancePass,
+    retainedSourceEventIdAcceptanceStatus:
+      retainedSourceEventIdAcceptanceAttemptAudit?.status ?? null,
+    retainedSourceEventCandidateIdentityCurrentProxyPass,
+    retainedSourceEventCandidateIdentityPass,
+    retainedSourceEventCandidateIdentityStatus:
+      retainedSourceEventCandidateIdentityAudit?.status ?? null,
+    retainedSourceEventIdentityAcceptanceCurrentProxyPass,
+    retainedSourceEventIdentityAcceptancePass,
+    retainedSourceEventIdentityAcceptanceStatus:
+      retainedSourceEventIdentityAcceptanceAudit?.status ?? null,
     retainedPayloadRowsPass: false,
     sameEventMomentumAngularMomentumRowsPass: false,
     NoetherSeaRecordEventDomainBindingPass: false,
@@ -50609,6 +53231,11 @@ function createEqualFrequencySameEventTransferLiftDependencyAudit({
       "retained_phase_history_carrier_source_receiver_rows",
       "retained_phase_history_carrier_event_id_provenance",
       "retained_phase_history_carrier_same_event_or_domain_binding",
+      "retained_phase_history_template_population",
+      "retained_source_event_domain_acceptance",
+      "retained_source_event_id_acceptance",
+      "retained_source_event_candidate_identity",
+      "retained_source_event_identity_acceptance",
       "retained_phase_history_carrier_event_domain_rows",
       "retained_phase_carrier_transfer_alignment_rows",
       "retained_payload_rows",
@@ -50626,7 +53253,12 @@ function createEqualFrequencySameEventTransferLiftDependencyAudit({
       row.retainedPhaseHistoryCarrierEventIdCurrentProvenancePass === true &&
       row.retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptStatus !==
         null &&
-      row.retainedPhaseHistoryCarrierEventDomainBindingAttemptStatus !== null
+      row.retainedPhaseHistoryCarrierEventDomainBindingAttemptStatus !== null &&
+      row.retainedPhaseHistoryTemplatePopulationCurrentProxyPass === true &&
+      row.retainedSourceEventDomainAcceptanceCurrentProxyPass === true &&
+      row.retainedSourceEventIdAcceptanceCurrentProxyPass === true &&
+      row.retainedSourceEventCandidateIdentityCurrentProxyPass === true &&
+      row.retainedSourceEventIdentityAcceptanceCurrentProxyPass === true
   ).length;
   const acceptedDependencyRowCount = dependencyRows.filter(
     (row) => row.retainedTransferLiftPass === true
@@ -50651,6 +53283,16 @@ function createEqualFrequencySameEventTransferLiftDependencyAudit({
         ?.blockingConditionIds ?? []),
       ...(retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
         ?.blockingConditionIds ?? []),
+      ...(retainedPhaseHistoryTemplatePopulationAttemptAudit
+        ?.blockingConditionIds ?? []),
+      ...(retainedSourceEventDomainAcceptanceAttemptAudit
+        ?.blockingConditionIds ?? []),
+      ...(retainedSourceEventIdAcceptanceAttemptAudit
+        ?.blockingConditionIds ?? []),
+      ...(retainedSourceEventCandidateIdentityAudit?.blockingConditionIds ??
+        []),
+      ...(retainedSourceEventIdentityAcceptanceAudit?.blockingConditionIds ??
+        []),
       "same_event_transfer_lift_retained_event_domain_missing",
       "binary_to_binary_phase_history_rows_missing",
       "retained_phase_history_carrier_rows_missing",
@@ -50888,6 +53530,155 @@ function createEqualFrequencySameEventTransferLiftDependencyAudit({
     retainedPhaseHistoryCarrierEventDomainBindingFirstMissingInputs:
       retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
         ?.firstAttemptMissingRetainedBindingInputs ?? [],
+    retainedPhaseHistoryTemplatePopulationAttemptAuditSchema:
+      retainedPhaseHistoryTemplatePopulationAttemptAudit?.schema ?? null,
+    retainedPhaseHistoryTemplatePopulationAttemptStatus:
+      retainedPhaseHistoryTemplatePopulationAttemptAudit?.status ?? null,
+    retainedPhaseHistoryTemplatePopulationCurrentProxyPass,
+    retainedPhaseHistoryTemplatePopulationAttemptPass,
+    retainedPhaseHistoryTemplatePopulationCurrentEvidenceResidualCount:
+      retainedPhaseHistoryTemplatePopulationAttemptAudit
+        ?.currentEvidenceResidualCount ?? null,
+    retainedPhaseHistoryTemplatePopulationAcceptedResidualCount:
+      retainedPhaseHistoryTemplatePopulationAttemptAudit
+        ?.acceptedResidualCount ?? null,
+    retainedPhaseHistoryTemplatePopulationResidualCount:
+      retainedPhaseHistoryTemplatePopulationAttemptAudit?.residualCount ??
+      null,
+    retainedPhaseHistoryTemplatePopulationFirstBlockingResidualId:
+      retainedPhaseHistoryTemplatePopulationAttemptAudit
+        ?.firstBlockingResidualId ?? null,
+    retainedPhaseHistoryTemplatePopulationFirstMissingInputs:
+      retainedPhaseHistoryTemplatePopulationAttemptAudit
+        ?.firstMissingRetainedInputs ?? [],
+    retainedSourceEventDomainAcceptanceAttemptAuditSchema:
+      retainedSourceEventDomainAcceptanceAttemptAudit?.schema ?? null,
+    retainedSourceEventDomainAcceptanceAttemptStatus:
+      retainedSourceEventDomainAcceptanceAttemptAudit?.status ?? null,
+    retainedSourceEventDomainAcceptanceResidualVector:
+      retainedSourceEventDomainAcceptanceAttemptAudit?.residualVector ?? null,
+    retainedSourceEventDomainAcceptanceCurrentProxyPass:
+      retainedSourceEventDomainAcceptanceAttemptAudit
+        ?.sourceEventDomainAcceptanceCurrentProxyPass ?? null,
+    retainedSourceEventDomainAcceptanceCurrentEvidenceResidualCount:
+      retainedSourceEventDomainAcceptanceAttemptAudit
+        ?.currentEvidenceResidualCount ?? null,
+    retainedSourceEventDomainAcceptanceAcceptedResidualCount:
+      retainedSourceEventDomainAcceptanceAttemptAudit
+        ?.acceptedResidualCount ?? null,
+    retainedSourceEventDomainAcceptanceResidualCount:
+      retainedSourceEventDomainAcceptanceAttemptAudit?.residualCount ?? null,
+    retainedSourceEventDomainAcceptanceFirstBlockingResidualId:
+      retainedSourceEventDomainAcceptanceAttemptAudit
+        ?.firstBlockingResidualId ?? null,
+    retainedSourceEventDomainAcceptanceFirstMissingInputs:
+      retainedSourceEventDomainAcceptanceAttemptAudit
+        ?.firstMissingRetainedInputs ?? [],
+    retainedSourceEventDomainAcceptanceAccepted:
+      retainedSourceEventDomainAcceptanceAttemptAudit
+        ?.retainedSourceEventDomainAcceptancePass ?? null,
+    retainedSourceEventIdAcceptanceAttemptAuditSchema:
+      retainedSourceEventIdAcceptanceAttemptAudit?.schema ?? null,
+    retainedSourceEventIdAcceptanceAttemptStatus:
+      retainedSourceEventIdAcceptanceAttemptAudit?.status ?? null,
+    retainedSourceEventIdAcceptanceResidualVector:
+      retainedSourceEventIdAcceptanceAttemptAudit?.residualVector ?? null,
+    retainedSourceEventIdAcceptanceCurrentProxyPass:
+      retainedSourceEventIdAcceptanceAttemptAudit
+        ?.sourceEventIdAcceptanceCurrentProxyPass ?? null,
+    retainedSourceEventIdAcceptanceCurrentEvidenceResidualCount:
+      retainedSourceEventIdAcceptanceAttemptAudit
+        ?.currentEvidenceResidualCount ?? null,
+    retainedSourceEventIdAcceptanceAcceptedResidualCount:
+      retainedSourceEventIdAcceptanceAttemptAudit?.acceptedResidualCount ??
+      null,
+    retainedSourceEventIdAcceptanceResidualCount:
+      retainedSourceEventIdAcceptanceAttemptAudit?.residualCount ?? null,
+    retainedSourceEventIdAcceptanceFirstBlockingResidualId:
+      retainedSourceEventIdAcceptanceAttemptAudit?.firstBlockingResidualId ??
+      null,
+    retainedSourceEventIdAcceptanceFirstMissingInputs:
+      retainedSourceEventIdAcceptanceAttemptAudit?.firstMissingRetainedInputs ??
+      [],
+    retainedSourceEventIdAcceptanceAccepted:
+      retainedSourceEventIdAcceptanceAttemptAudit
+        ?.retainedSourceEventIdAcceptancePass ?? null,
+    retainedSourceEventCandidateIdentityAuditSchema:
+      retainedSourceEventCandidateIdentityAudit?.schema ?? null,
+    retainedSourceEventCandidateIdentityStatus:
+      retainedSourceEventCandidateIdentityAudit?.status ?? null,
+    retainedSourceEventCandidateIdentityResidualVector:
+      retainedSourceEventCandidateIdentityAudit?.residualVector ?? null,
+    retainedSourceEventCandidateIdentityCurrentProxyPass:
+      retainedSourceEventCandidateIdentityAudit
+        ?.sourceEventCandidateIdentityCurrentProxyPass ?? null,
+    retainedSourceEventCandidateIdentityCurrentEvidenceResidualCount:
+      retainedSourceEventCandidateIdentityAudit?.currentEvidenceResidualCount ??
+      null,
+    retainedSourceEventCandidateIdentityAcceptedResidualCount:
+      retainedSourceEventCandidateIdentityAudit?.acceptedResidualCount ?? null,
+    retainedSourceEventCandidateIdentityResidualCount:
+      retainedSourceEventCandidateIdentityAudit?.residualCount ?? null,
+    retainedSourceEventCandidateIdentityFirstBlockingResidualId:
+      retainedSourceEventCandidateIdentityAudit?.firstBlockingResidualId ??
+      null,
+    retainedSourceEventCandidateIdentityFirstMissingInputs:
+      retainedSourceEventCandidateIdentityAudit?.firstMissingRetainedInputs ??
+      [],
+    retainedSourceEventCandidateIdentityAccepted:
+      retainedSourceEventCandidateIdentityAudit
+        ?.retainedSourceEventCandidateIdentityPass ?? null,
+    retainedSourceEventIdentityConstructionAuditSchema:
+      retainedSourceEventIdentityConstructionAudit?.schema ?? null,
+    retainedSourceEventIdentityConstructionStatus:
+      retainedSourceEventIdentityConstructionAudit?.status ?? null,
+    retainedSourceEventIdentityConstructionResidualVector:
+      retainedSourceEventIdentityConstructionAudit?.residualVector ?? null,
+    retainedSourceEventIdentityConstructionCurrentProxyPass:
+      retainedSourceEventIdentityConstructionAudit
+        ?.sourceEventIdentityConstructionCurrentProxyPass ?? null,
+    retainedSourceEventIdentityConstructionCurrentEvidenceResidualCount:
+      retainedSourceEventIdentityConstructionAudit?.currentEvidenceResidualCount ??
+      null,
+    retainedSourceEventIdentityConstructionAcceptedResidualCount:
+      retainedSourceEventIdentityConstructionAudit?.acceptedResidualCount ??
+      null,
+    retainedSourceEventIdentityConstructionResidualCount:
+      retainedSourceEventIdentityConstructionAudit?.residualCount ?? null,
+    retainedSourceEventIdentityConstructionFirstBlockingResidualId:
+      retainedSourceEventIdentityConstructionAudit?.firstBlockingResidualId ??
+      null,
+    retainedSourceEventIdentityConstructionFirstMissingInputs:
+      retainedSourceEventIdentityConstructionAudit?.firstMissingRetainedInputs ??
+      [],
+    retainedSourceEventIdentityConstructionAccepted:
+      retainedSourceEventIdentityConstructionAudit
+        ?.retainedIdentityConstructionPass ?? null,
+    retainedSourceEventIdentityAcceptanceAuditSchema:
+      retainedSourceEventIdentityAcceptanceAudit?.schema ?? null,
+    retainedSourceEventIdentityAcceptanceStatus:
+      retainedSourceEventIdentityAcceptanceAudit?.status ?? null,
+    retainedSourceEventIdentityAcceptanceResidualVector:
+      retainedSourceEventIdentityAcceptanceAudit?.residualVector ?? null,
+    retainedSourceEventIdentityAcceptanceCurrentProxyPass:
+      retainedSourceEventIdentityAcceptanceAudit
+        ?.sourceEventIdentityAcceptanceCurrentProxyPass ?? null,
+    retainedSourceEventIdentityAcceptanceCurrentEvidenceResidualCount:
+      retainedSourceEventIdentityAcceptanceAudit?.currentEvidenceResidualCount ??
+      null,
+    retainedSourceEventIdentityAcceptanceAcceptedResidualCount:
+      retainedSourceEventIdentityAcceptanceAudit?.acceptedResidualCount ?? null,
+    retainedSourceEventIdentityAcceptanceResidualCount:
+      retainedSourceEventIdentityAcceptanceAudit?.residualCount ?? null,
+    retainedSourceEventIdentityAcceptanceFirstBlockingResidualId:
+      retainedSourceEventIdentityAcceptanceAudit?.firstBlockingResidualId ??
+      null,
+    retainedSourceEventIdentityAcceptanceFirstMissingInputs:
+      retainedSourceEventIdentityAcceptanceAudit?.firstMissingRetainedInputs ??
+      [],
+    retainedSourceEventIdentityAcceptanceAccepted:
+      retainedSourceEventIdentityAcceptanceAudit
+        ?.retainedSourceEventIdentityAcceptancePass ?? null,
     selectedEventDomainRoute,
     retainedEventDomainAccepted,
     acceptedFullPointEventRulePass,
@@ -50927,6 +53718,12 @@ function createEqualFrequencyRetainedReplayAcceptanceBlueprint({
   retainedPhaseHistoryCarrierEventIdProvenanceAudit,
   retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit,
   retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit,
+  retainedPhaseHistoryTemplatePopulationAttemptAudit,
+  retainedSourceEventDomainAcceptanceAttemptAudit,
+  retainedSourceEventIdAcceptanceAttemptAudit,
+  retainedSourceEventCandidateIdentityAudit,
+  retainedSourceEventIdentityConstructionAudit,
+  retainedSourceEventIdentityAcceptanceAudit,
   sameEventTransferLiftDependencyAudit,
   deformationContinuationAudit,
   actionLedgerAudit,
@@ -50991,6 +53788,12 @@ function createEqualFrequencyRetainedReplayAcceptanceBlueprint({
       expression:
         "All S_eq rows are evaluated on one accepted retained point event or on one positive-width retained time domain before branch acceptance",
       currentSubauditSchema:
+        retainedSourceEventIdentityAcceptanceAudit?.schema ??
+        retainedSourceEventIdentityConstructionAudit?.schema ??
+        retainedSourceEventCandidateIdentityAudit?.schema ??
+        retainedSourceEventIdAcceptanceAttemptAudit?.schema ??
+        retainedSourceEventDomainAcceptanceAttemptAudit?.schema ??
+        retainedPhaseHistoryTemplatePopulationAttemptAudit?.schema ??
         retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit?.schema ??
         retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit?.schema ??
         retainedPhaseHistoryCarrierEventIdProvenanceAudit?.schema ??
@@ -51000,6 +53803,18 @@ function createEqualFrequencyRetainedReplayAcceptanceBlueprint({
         retainedEventDomainLiftTarget?.schema ??
         null,
       currentEvidencePopulated:
+        retainedSourceEventIdentityAcceptanceAudit
+          ?.sourceEventIdentityAcceptanceCurrentProxyPass === true ||
+        retainedSourceEventIdentityConstructionAudit
+          ?.sourceEventIdentityConstructionCurrentProxyPass === true ||
+        retainedSourceEventCandidateIdentityAudit
+          ?.sourceEventCandidateIdentityCurrentProxyPass === true ||
+        retainedSourceEventIdAcceptanceAttemptAudit
+          ?.sourceEventIdAcceptanceCurrentProxyPass === true ||
+        retainedSourceEventDomainAcceptanceAttemptAudit
+          ?.sourceEventDomainAcceptanceCurrentProxyPass === true ||
+        retainedPhaseHistoryTemplatePopulationAttemptAudit
+          ?.templatePopulationCurrentProxyPass === true ||
         retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
           ?.currentBindingCandidateRowCount > 0 ||
         retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit
@@ -51016,6 +53831,12 @@ function createEqualFrequencyRetainedReplayAcceptanceBlueprint({
         retainedEventDomainSelector?.retainedSelectorAcceptancePass === true ||
         retainedEventDomainLiftTarget?.retainedEventDomainLiftPass === true,
       currentStatus:
+        retainedSourceEventIdentityAcceptanceAudit?.status ??
+        retainedSourceEventIdentityConstructionAudit?.status ??
+        retainedSourceEventCandidateIdentityAudit?.status ??
+        retainedSourceEventIdAcceptanceAttemptAudit?.status ??
+        retainedSourceEventDomainAcceptanceAttemptAudit?.status ??
+        retainedPhaseHistoryTemplatePopulationAttemptAudit?.status ??
         retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit?.status ??
         retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit?.status ??
         retainedPhaseHistoryCarrierEventIdProvenanceAudit?.status ??
@@ -51025,6 +53846,18 @@ function createEqualFrequencyRetainedReplayAcceptanceBlueprint({
         retainedEventDomainLiftTarget?.status ??
         "missing_retained_event_domain_lift_target",
       currentEvidencePassCount:
+        retainedSourceEventIdentityAcceptanceAudit
+          ?.currentEvidenceResidualCount ??
+        retainedSourceEventIdentityConstructionAudit
+          ?.currentEvidenceResidualCount ??
+        retainedSourceEventCandidateIdentityAudit
+          ?.currentEvidenceResidualCount ??
+        retainedSourceEventIdAcceptanceAttemptAudit
+          ?.currentEvidenceResidualCount ??
+        retainedSourceEventDomainAcceptanceAttemptAudit
+          ?.currentEvidenceResidualCount ??
+        retainedPhaseHistoryTemplatePopulationAttemptAudit
+          ?.currentEvidenceResidualCount ??
         retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
           ?.currentBindingCandidateRowCount ??
         retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit
@@ -51041,6 +53874,18 @@ function createEqualFrequencyRetainedReplayAcceptanceBlueprint({
       retainedCertificatePassCount:
         retainedEventDomainSelector?.acceptedRouteCount ?? 0,
       requiredRows:
+        retainedSourceEventIdentityAcceptanceAudit
+          ?.firstMissingRetainedInputs ??
+        retainedSourceEventIdentityConstructionAudit
+          ?.firstMissingRetainedInputs ??
+        retainedSourceEventCandidateIdentityAudit
+          ?.firstMissingRetainedInputs ??
+        retainedSourceEventIdAcceptanceAttemptAudit
+          ?.firstMissingRetainedInputs ??
+        retainedSourceEventDomainAcceptanceAttemptAudit
+          ?.firstMissingRetainedInputs ??
+        retainedPhaseHistoryTemplatePopulationAttemptAudit
+          ?.firstMissingRetainedInputs ??
         retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
           ?.firstAttemptMissingRetainedBindingInputs ??
         retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit
@@ -51180,6 +54025,11 @@ function createEqualFrequencyRetainedReplayAcceptanceBlueprint({
         phaseHolonomyUnitClockWeightSourceAudit?.schema ??
         retainedPhaseBundleHolonomyAudit?.schema ??
         retainedBinaryToBinaryPhaseHistoryAudit?.schema ??
+        retainedSourceEventIdentityAcceptanceAudit?.schema ??
+        retainedSourceEventCandidateIdentityAudit?.schema ??
+        retainedSourceEventIdAcceptanceAttemptAudit?.schema ??
+        retainedSourceEventDomainAcceptanceAttemptAudit?.schema ??
+        retainedPhaseHistoryTemplatePopulationAttemptAudit?.schema ??
         retainedWeightLedgerSourceAcceptanceAttemptAudit?.schema ??
         retainedWeightLedgerSelectionTarget?.schema ??
         retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit?.schema ??
@@ -51195,6 +54045,16 @@ function createEqualFrequencyRetainedReplayAcceptanceBlueprint({
         phaseHolonomyUnitClockWeightSourceAudit?.currentProxyPass === true ||
         retainedPhaseBundleHolonomyAudit?.currentProxyPass === true ||
         retainedBinaryToBinaryPhaseHistoryAudit?.currentProxyPass === true ||
+        retainedSourceEventIdentityAcceptanceAudit
+          ?.sourceEventIdentityAcceptanceCurrentProxyPass === true ||
+        retainedSourceEventCandidateIdentityAudit
+          ?.sourceEventCandidateIdentityCurrentProxyPass === true ||
+        retainedSourceEventIdAcceptanceAttemptAudit
+          ?.sourceEventIdAcceptanceCurrentProxyPass === true ||
+        retainedSourceEventDomainAcceptanceAttemptAudit
+          ?.sourceEventDomainAcceptanceCurrentProxyPass === true ||
+        retainedPhaseHistoryTemplatePopulationAttemptAudit
+          ?.templatePopulationCurrentProxyPass === true ||
         retainedWeightLedgerSourceAcceptanceAttemptAudit
           ?.currentProxySourceAttemptCount > 0 ||
         retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
@@ -51235,6 +54095,11 @@ function createEqualFrequencyRetainedReplayAcceptanceBlueprint({
       currentStatus:
         phaseHolonomyUnitClockWeightSourceAudit?.status ??
         retainedPhaseBundleHolonomyAudit?.status ??
+        retainedSourceEventIdentityAcceptanceAudit?.status ??
+        retainedSourceEventCandidateIdentityAudit?.status ??
+        retainedSourceEventIdAcceptanceAttemptAudit?.status ??
+        retainedSourceEventDomainAcceptanceAttemptAudit?.status ??
+        retainedPhaseHistoryTemplatePopulationAttemptAudit?.status ??
         retainedWeightLedgerSourceAcceptanceAttemptAudit?.status ??
         retainedWeightLedgerSelectionTarget?.status ??
         retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit?.status ??
@@ -51250,6 +54115,16 @@ function createEqualFrequencyRetainedReplayAcceptanceBlueprint({
         phaseHolonomyUnitClockWeightSourceAudit
           ?.currentEvidenceResidualCount ??
         retainedPhaseBundleHolonomyAudit?.currentEvidenceResidualCount ??
+        retainedSourceEventIdentityAcceptanceAudit
+          ?.currentEvidenceResidualCount ??
+        retainedSourceEventCandidateIdentityAudit
+          ?.currentEvidenceResidualCount ??
+        retainedSourceEventIdAcceptanceAttemptAudit
+          ?.currentEvidenceResidualCount ??
+        retainedSourceEventDomainAcceptanceAttemptAudit
+          ?.currentEvidenceResidualCount ??
+        retainedPhaseHistoryTemplatePopulationAttemptAudit
+          ?.currentEvidenceResidualCount ??
         retainedWeightLedgerSourceAcceptanceAttemptAudit
           ?.currentProxySourceAttemptCount ??
         retainedWeightLedgerSelectionTarget?.currentEvidenceSourceCount ??
@@ -51284,6 +54159,16 @@ function createEqualFrequencyRetainedReplayAcceptanceBlueprint({
           ...(retainedPhaseBundleHolonomyAudit
           ?.firstMissingRetainedInputs ?? []),
           ...(retainedBinaryToBinaryPhaseHistoryAudit
+            ?.firstMissingRetainedInputs ?? []),
+          ...(retainedSourceEventIdentityAcceptanceAudit
+            ?.firstMissingRetainedInputs ?? []),
+          ...(retainedSourceEventCandidateIdentityAudit
+            ?.firstMissingRetainedInputs ?? []),
+          ...(retainedSourceEventIdAcceptanceAttemptAudit
+            ?.firstMissingRetainedInputs ?? []),
+          ...(retainedSourceEventDomainAcceptanceAttemptAudit
+            ?.firstMissingRetainedInputs ?? []),
+          ...(retainedPhaseHistoryTemplatePopulationAttemptAudit
             ?.firstMissingRetainedInputs ?? []),
           ...(retainedWeightLedgerSourceAcceptanceAttemptAudit
             ?.firstAttemptMissingRetainedInputs ?? []),
@@ -51347,7 +54232,7 @@ function createEqualFrequencyRetainedReplayAcceptanceBlueprint({
     .filter((condition) => condition.retainedAcceptancePass !== true)
     .map((condition) => condition.id);
   return {
-    schema: "aaa-equal-frequency-retained-replay-acceptance-blueprint.v28",
+    schema: "aaa-equal-frequency-retained-replay-acceptance-blueprint.v34",
     claimLevel:
       "retained replay acceptance residual blueprint; no retained branch acceptance",
     retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
@@ -51425,6 +54310,136 @@ function createEqualFrequencyRetainedReplayAcceptanceBlueprint({
     retainedBinaryToBinaryPhaseHistoryAccepted:
       retainedBinaryToBinaryPhaseHistoryAudit
         ?.retainedBinaryToBinaryPhaseHistoryAccepted ?? null,
+    retainedPhaseHistoryTemplatePopulationAttemptAuditSchema:
+      retainedPhaseHistoryTemplatePopulationAttemptAudit?.schema ?? null,
+    retainedPhaseHistoryTemplatePopulationAttemptStatus:
+      retainedPhaseHistoryTemplatePopulationAttemptAudit?.status ?? null,
+    retainedPhaseHistoryTemplatePopulationResidualVector:
+      retainedPhaseHistoryTemplatePopulationAttemptAudit?.residualVector ??
+      null,
+    retainedPhaseHistoryTemplatePopulationCurrentProxyPass:
+      retainedPhaseHistoryTemplatePopulationAttemptAudit
+        ?.templatePopulationCurrentProxyPass ?? null,
+    retainedPhaseHistoryTemplatePopulationCurrentEvidenceResidualCount:
+      retainedPhaseHistoryTemplatePopulationAttemptAudit
+        ?.currentEvidenceResidualCount ?? null,
+    retainedPhaseHistoryTemplatePopulationAcceptedResidualCount:
+      retainedPhaseHistoryTemplatePopulationAttemptAudit
+        ?.acceptedResidualCount ?? null,
+    retainedPhaseHistoryTemplatePopulationResidualCount:
+      retainedPhaseHistoryTemplatePopulationAttemptAudit?.residualCount ??
+      null,
+    retainedPhaseHistoryTemplatePopulationFirstBlockingResidualId:
+      retainedPhaseHistoryTemplatePopulationAttemptAudit
+        ?.firstBlockingResidualId ?? null,
+    retainedPhaseHistoryTemplatePopulationFirstMissingInputs:
+      retainedPhaseHistoryTemplatePopulationAttemptAudit
+        ?.firstMissingRetainedInputs ?? [],
+    retainedPhaseHistoryTemplatePopulationAccepted:
+      retainedPhaseHistoryTemplatePopulationAttemptAudit
+        ?.retainedTemplatePopulationAttemptPass ?? null,
+    retainedSourceEventDomainAcceptanceAttemptAuditSchema:
+      retainedSourceEventDomainAcceptanceAttemptAudit?.schema ?? null,
+    retainedSourceEventDomainAcceptanceAttemptStatus:
+      retainedSourceEventDomainAcceptanceAttemptAudit?.status ?? null,
+    retainedSourceEventDomainAcceptanceResidualVector:
+      retainedSourceEventDomainAcceptanceAttemptAudit?.residualVector ?? null,
+    retainedSourceEventDomainAcceptanceCurrentProxyPass:
+      retainedSourceEventDomainAcceptanceAttemptAudit
+        ?.sourceEventDomainAcceptanceCurrentProxyPass ?? null,
+    retainedSourceEventDomainAcceptanceCurrentEvidenceResidualCount:
+      retainedSourceEventDomainAcceptanceAttemptAudit
+        ?.currentEvidenceResidualCount ?? null,
+    retainedSourceEventDomainAcceptanceAcceptedResidualCount:
+      retainedSourceEventDomainAcceptanceAttemptAudit
+        ?.acceptedResidualCount ?? null,
+    retainedSourceEventDomainAcceptanceResidualCount:
+      retainedSourceEventDomainAcceptanceAttemptAudit?.residualCount ?? null,
+    retainedSourceEventDomainAcceptanceFirstBlockingResidualId:
+      retainedSourceEventDomainAcceptanceAttemptAudit
+        ?.firstBlockingResidualId ?? null,
+    retainedSourceEventDomainAcceptanceFirstMissingInputs:
+      retainedSourceEventDomainAcceptanceAttemptAudit
+        ?.firstMissingRetainedInputs ?? [],
+    retainedSourceEventDomainAcceptanceAccepted:
+      retainedSourceEventDomainAcceptanceAttemptAudit
+        ?.retainedSourceEventDomainAcceptancePass ?? null,
+    retainedSourceEventIdAcceptanceAttemptAuditSchema:
+      retainedSourceEventIdAcceptanceAttemptAudit?.schema ?? null,
+    retainedSourceEventIdAcceptanceAttemptStatus:
+      retainedSourceEventIdAcceptanceAttemptAudit?.status ?? null,
+    retainedSourceEventIdAcceptanceResidualVector:
+      retainedSourceEventIdAcceptanceAttemptAudit?.residualVector ?? null,
+    retainedSourceEventIdAcceptanceCurrentProxyPass:
+      retainedSourceEventIdAcceptanceAttemptAudit
+        ?.sourceEventIdAcceptanceCurrentProxyPass ?? null,
+    retainedSourceEventIdAcceptanceCurrentEvidenceResidualCount:
+      retainedSourceEventIdAcceptanceAttemptAudit
+        ?.currentEvidenceResidualCount ?? null,
+    retainedSourceEventIdAcceptanceAcceptedResidualCount:
+      retainedSourceEventIdAcceptanceAttemptAudit?.acceptedResidualCount ??
+      null,
+    retainedSourceEventIdAcceptanceResidualCount:
+      retainedSourceEventIdAcceptanceAttemptAudit?.residualCount ?? null,
+    retainedSourceEventIdAcceptanceFirstBlockingResidualId:
+      retainedSourceEventIdAcceptanceAttemptAudit?.firstBlockingResidualId ??
+      null,
+    retainedSourceEventIdAcceptanceFirstMissingInputs:
+      retainedSourceEventIdAcceptanceAttemptAudit?.firstMissingRetainedInputs ??
+      [],
+    retainedSourceEventIdAcceptanceAccepted:
+      retainedSourceEventIdAcceptanceAttemptAudit
+        ?.retainedSourceEventIdAcceptancePass ?? null,
+    retainedSourceEventCandidateIdentityAuditSchema:
+      retainedSourceEventCandidateIdentityAudit?.schema ?? null,
+    retainedSourceEventCandidateIdentityStatus:
+      retainedSourceEventCandidateIdentityAudit?.status ?? null,
+    retainedSourceEventCandidateIdentityResidualVector:
+      retainedSourceEventCandidateIdentityAudit?.residualVector ?? null,
+    retainedSourceEventCandidateIdentityCurrentProxyPass:
+      retainedSourceEventCandidateIdentityAudit
+        ?.sourceEventCandidateIdentityCurrentProxyPass ?? null,
+    retainedSourceEventCandidateIdentityCurrentEvidenceResidualCount:
+      retainedSourceEventCandidateIdentityAudit?.currentEvidenceResidualCount ??
+      null,
+    retainedSourceEventCandidateIdentityAcceptedResidualCount:
+      retainedSourceEventCandidateIdentityAudit?.acceptedResidualCount ?? null,
+    retainedSourceEventCandidateIdentityResidualCount:
+      retainedSourceEventCandidateIdentityAudit?.residualCount ?? null,
+    retainedSourceEventCandidateIdentityFirstBlockingResidualId:
+      retainedSourceEventCandidateIdentityAudit?.firstBlockingResidualId ??
+      null,
+    retainedSourceEventCandidateIdentityFirstMissingInputs:
+      retainedSourceEventCandidateIdentityAudit?.firstMissingRetainedInputs ??
+      [],
+    retainedSourceEventCandidateIdentityAccepted:
+      retainedSourceEventCandidateIdentityAudit
+        ?.retainedSourceEventCandidateIdentityPass ?? null,
+    retainedSourceEventIdentityAcceptanceAuditSchema:
+      retainedSourceEventIdentityAcceptanceAudit?.schema ?? null,
+    retainedSourceEventIdentityAcceptanceStatus:
+      retainedSourceEventIdentityAcceptanceAudit?.status ?? null,
+    retainedSourceEventIdentityAcceptanceResidualVector:
+      retainedSourceEventIdentityAcceptanceAudit?.residualVector ?? null,
+    retainedSourceEventIdentityAcceptanceCurrentProxyPass:
+      retainedSourceEventIdentityAcceptanceAudit
+        ?.sourceEventIdentityAcceptanceCurrentProxyPass ?? null,
+    retainedSourceEventIdentityAcceptanceCurrentEvidenceResidualCount:
+      retainedSourceEventIdentityAcceptanceAudit?.currentEvidenceResidualCount ??
+      null,
+    retainedSourceEventIdentityAcceptanceAcceptedResidualCount:
+      retainedSourceEventIdentityAcceptanceAudit?.acceptedResidualCount ?? null,
+    retainedSourceEventIdentityAcceptanceResidualCount:
+      retainedSourceEventIdentityAcceptanceAudit?.residualCount ?? null,
+    retainedSourceEventIdentityAcceptanceFirstBlockingResidualId:
+      retainedSourceEventIdentityAcceptanceAudit?.firstBlockingResidualId ??
+      null,
+    retainedSourceEventIdentityAcceptanceFirstMissingInputs:
+      retainedSourceEventIdentityAcceptanceAudit?.firstMissingRetainedInputs ??
+      [],
+    retainedSourceEventIdentityAcceptanceAccepted:
+      retainedSourceEventIdentityAcceptanceAudit
+        ?.retainedSourceEventIdentityAcceptancePass ?? null,
     phaseHolonomyUnitClockWeightSourceAuditSchema:
       phaseHolonomyUnitClockWeightSourceAudit?.schema ?? null,
     phaseHolonomyUnitClockWeightSourceStatus:
@@ -52938,7 +55953,7 @@ function createFrequencyTripletSearchSummary(cases) {
     equalFrequencyEnergyRadiusAudit,
   });
   return {
-    schema: "aaa-tri-binary-frequency-triplet-search-summary.v66",
+    schema: "aaa-tri-binary-frequency-triplet-search-summary.v72",
     claimLevel:
       "candidate search summary over generic tri-binary rows with role-assigned I:M:O projections; not retained-branch certification",
     rawSearchLabels: GENERIC_TRI_BINARY_LABELS,
@@ -53031,7 +56046,7 @@ function createFrequencyTripletCandidateSetReview({
     }),
   ];
   return {
-    schema: "aaa-tri-binary-frequency-triplet-candidate-set-review.v62",
+    schema: "aaa-tri-binary-frequency-triplet-candidate-set-review.v68",
     claimLevel:
       "generic-row candidate-set review with role-assigned I:M:O projections; not retained branch selection",
     rawSearchLabels: GENERIC_TRI_BINARY_LABELS,
@@ -53107,7 +56122,7 @@ function createFrequencyTripletPhaseRelationReview(rows) {
       (row) => row.candidateKey === "equal-frequency-energy-radius"
     ) ?? null;
   return {
-    schema: "aaa-tri-binary-frequency-triplet-phase-relation-review.v7",
+    schema: "aaa-tri-binary-frequency-triplet-phase-relation-review.v13",
     claimLevel:
       "phase-relation comparison across candidate frequency triples; current proxies only, not retained phase-bundle acceptance",
     fairComparisonRule:
@@ -53159,6 +56174,24 @@ function createFrequencyTripletPhaseRelationReviewRow(row) {
   const retainedBinaryToBinaryPhaseHistoryAuditPass =
     isEqualFrequency &&
     row.retainedBinaryToBinaryPhaseHistoryCurrentProxyPass === true;
+  const retainedPhaseHistoryTemplatePopulationAttemptPass =
+    isEqualFrequency &&
+    row.retainedPhaseHistoryTemplatePopulationCurrentProxyPass === true;
+  const retainedSourceEventDomainAcceptanceAttemptPass =
+    isEqualFrequency &&
+    row.retainedSourceEventDomainAcceptanceCurrentProxyPass === true;
+  const retainedSourceEventIdAcceptanceAttemptPass =
+    isEqualFrequency &&
+    row.retainedSourceEventIdAcceptanceCurrentProxyPass === true;
+  const retainedSourceEventCandidateIdentityPass =
+    isEqualFrequency &&
+    row.retainedSourceEventCandidateIdentityCurrentProxyPass === true;
+  const retainedSourceEventIdentityConstructionPass =
+    isEqualFrequency &&
+    row.retainedSourceEventIdentityConstructionCurrentProxyPass === true;
+  const retainedSourceEventIdentityAcceptancePass =
+    isEqualFrequency &&
+    row.retainedSourceEventIdentityAcceptanceCurrentProxyPass === true;
   const phaseCurrentKernelPass =
     isEqualFrequency &&
     row.wakeCouplingTransferPhaseCurrentRetainedKernelCurrentProxyPass === true;
@@ -53198,6 +56231,12 @@ function createFrequencyTripletPhaseRelationReviewRow(row) {
     retainedWeightLedgerSourceAcceptanceAttemptPass,
     retainedPhaseBundleHolonomyAuditPass,
     retainedBinaryToBinaryPhaseHistoryAuditPass,
+    retainedPhaseHistoryTemplatePopulationAttemptPass,
+    retainedSourceEventDomainAcceptanceAttemptPass,
+    retainedSourceEventIdAcceptanceAttemptPass,
+    retainedSourceEventCandidateIdentityPass,
+    retainedSourceEventIdentityConstructionPass,
+    retainedSourceEventIdentityAcceptancePass,
     phaseHolonomyUnitClockWeightSourcePass,
     phaseCurrentKernelPass,
     sameEventTransferLedgerProxyPass,
@@ -53249,6 +56288,12 @@ function createFrequencyTripletPhaseRelationReviewRow(row) {
     retainedWeightLedgerSourceAcceptanceAttemptPass,
     retainedPhaseBundleHolonomyAuditPass,
     retainedBinaryToBinaryPhaseHistoryAuditPass,
+    retainedPhaseHistoryTemplatePopulationAttemptPass,
+    retainedSourceEventDomainAcceptanceAttemptPass,
+    retainedSourceEventIdAcceptanceAttemptPass,
+    retainedSourceEventCandidateIdentityPass,
+    retainedSourceEventIdentityConstructionPass,
+    retainedSourceEventIdentityAcceptancePass,
     phaseHolonomyUnitClockWeightSourcePass,
     phaseCurrentKernelPass,
     sameEventTransferLedgerProxyPass,
@@ -53308,7 +56353,7 @@ function createFrequencyTripletResidualMatrixReview(rows) {
       return left.missingResidualCount - right.missingResidualCount;
     });
   return {
-    schema: "aaa-tri-binary-frequency-triplet-residual-matrix-review.v9",
+    schema: "aaa-tri-binary-frequency-triplet-residual-matrix-review.v15",
     claimLevel:
       "retained residual-vector comparison matrix; current proxies only, not branch selection",
     residualVector:
@@ -53494,6 +56539,30 @@ function createEqualFrequencyResidualMatrixResiduals(row) {
     positiveNumberOrNull(
       row.retainedBinaryToBinaryPhaseHistoryCurrentEvidenceResidualCount
     );
+  const retainedPhaseHistoryTemplatePopulationCurrentResidualCount =
+    positiveNumberOrNull(
+      row.retainedPhaseHistoryTemplatePopulationCurrentEvidenceResidualCount
+    );
+  const retainedSourceEventDomainAcceptanceCurrentResidualCount =
+    positiveNumberOrNull(
+      row.retainedSourceEventDomainAcceptanceCurrentEvidenceResidualCount
+    );
+  const retainedSourceEventIdAcceptanceCurrentResidualCount =
+    positiveNumberOrNull(
+      row.retainedSourceEventIdAcceptanceCurrentEvidenceResidualCount
+    );
+  const retainedSourceEventCandidateIdentityCurrentResidualCount =
+    positiveNumberOrNull(
+      row.retainedSourceEventCandidateIdentityCurrentEvidenceResidualCount
+    );
+  const retainedSourceEventIdentityConstructionCurrentResidualCount =
+    positiveNumberOrNull(
+      row.retainedSourceEventIdentityConstructionCurrentEvidenceResidualCount
+    );
+  const retainedSourceEventIdentityAcceptanceCurrentResidualCount =
+    positiveNumberOrNull(
+      row.retainedSourceEventIdentityAcceptanceCurrentEvidenceResidualCount
+    );
   return {
     r_rows: createResidualEvidence({
       accepted:
@@ -53516,6 +56585,12 @@ function createEqualFrequencyResidualMatrixResiduals(row) {
         eventSelectorAcceptedCount !== null,
       currentProxy:
         eventSelectorProxyCount !== null ||
+        retainedSourceEventIdentityAcceptanceCurrentResidualCount !== null ||
+        retainedSourceEventIdentityConstructionCurrentResidualCount !== null ||
+        retainedSourceEventCandidateIdentityCurrentResidualCount !== null ||
+        retainedSourceEventIdAcceptanceCurrentResidualCount !== null ||
+        retainedSourceEventDomainAcceptanceCurrentResidualCount !== null ||
+        retainedPhaseHistoryTemplatePopulationCurrentResidualCount !== null ||
         carrierEventDomainBindingRowCount !== null ||
         carrierPointEventOrDomainRuleRowCount !== null ||
         carrierEventIdProvenanceRowCount !== null ||
@@ -53527,6 +56602,12 @@ function createEqualFrequencyResidualMatrixResiduals(row) {
         ) ||
         row.currentProxyPointRowsPopulated === true,
       source:
+        row.retainedSourceEventIdentityAcceptanceAuditSchema ??
+        row.retainedSourceEventIdentityConstructionAuditSchema ??
+        row.retainedSourceEventCandidateIdentityAuditSchema ??
+        row.retainedSourceEventIdAcceptanceAttemptAuditSchema ??
+        row.retainedSourceEventDomainAcceptanceAttemptAuditSchema ??
+        row.retainedPhaseHistoryTemplatePopulationAttemptAuditSchema ??
         row.retainedPhaseHistoryCarrierEventDomainBindingAttemptAuditSchema ??
         row.retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAuditSchema ??
         row.retainedPhaseHistoryCarrierEventIdProvenanceAuditSchema ??
@@ -53537,7 +56618,7 @@ function createEqualFrequencyResidualMatrixResiduals(row) {
         row.retainedEventDomainLiftTargetSchema,
       blocker: "same_retained_event_or_positive_width_domain",
       note:
-        "S_eq has a retained event/domain route selector, middle-to-outer event-domain templates, a first-row acceptance attempt, event-ID candidates, current event-ID provenance, point-event/domain rule candidates, and same-event/domain binding candidates populated from current proxy evidence, but no accepted retained point event or positive-width retained domain.",
+        "S_eq has a retained event/domain route selector, middle-to-outer event-domain templates, a first-row acceptance attempt, event-ID candidates, current event-ID provenance, point-event/domain rule candidates, same-event/domain binding candidates, a first source/receiver phase-history template population attempt, a first retained source-event/domain acceptance attempt, a first retained source-event-ID acceptance attempt, a first retained source-event candidate identity audit, a first retained source-event identity construction audit, and a first retained source-event identity acceptance audit populated from current proxy evidence, but no accepted retained point event or positive-width retained domain.",
     }),
     r_P: createResidualEvidence({
       accepted: isFullPositiveCount(
@@ -53615,6 +56696,12 @@ function createEqualFrequencyResidualMatrixResiduals(row) {
         row.retainedBinaryToBinaryPhaseHistoryCurrentProxyPass === true ||
         retainedPhaseBundleHolonomyCurrentResidualCount !== null ||
         retainedBinaryToBinaryPhaseHistoryCurrentResidualCount !== null ||
+        retainedSourceEventIdentityAcceptanceCurrentResidualCount !== null ||
+        retainedSourceEventIdentityConstructionCurrentResidualCount !== null ||
+        retainedSourceEventCandidateIdentityCurrentResidualCount !== null ||
+        retainedSourceEventIdAcceptanceCurrentResidualCount !== null ||
+        retainedSourceEventDomainAcceptanceCurrentResidualCount !== null ||
+        retainedPhaseHistoryTemplatePopulationCurrentResidualCount !== null ||
         phaseHolonomyUnitClockWeightSourceCurrentResidualCount !== null ||
         retainedWeightLedgerSourceAttemptCount !== null ||
         row.retainedWeightLedgerSelectionTargetCurrentProxyPass === true ||
@@ -53641,6 +56728,18 @@ function createEqualFrequencyResidualMatrixResiduals(row) {
         row.retainedPhaseBundleHolonomyAuditSchema !== null ||
         retainedBinaryToBinaryPhaseHistoryCurrentResidualCount !== null ||
         row.retainedBinaryToBinaryPhaseHistoryAuditSchema !== null ||
+        retainedSourceEventIdentityAcceptanceCurrentResidualCount !== null ||
+        row.retainedSourceEventIdentityAcceptanceAuditSchema !== null ||
+        retainedSourceEventIdentityConstructionCurrentResidualCount !== null ||
+        row.retainedSourceEventIdentityConstructionAuditSchema !== null ||
+        retainedSourceEventCandidateIdentityCurrentResidualCount !== null ||
+        row.retainedSourceEventCandidateIdentityAuditSchema !== null ||
+        retainedSourceEventIdAcceptanceCurrentResidualCount !== null ||
+        row.retainedSourceEventIdAcceptanceAttemptAuditSchema !== null ||
+        retainedSourceEventDomainAcceptanceCurrentResidualCount !== null ||
+        row.retainedSourceEventDomainAcceptanceAttemptAuditSchema !== null ||
+        retainedPhaseHistoryTemplatePopulationCurrentResidualCount !== null ||
+        row.retainedPhaseHistoryTemplatePopulationAttemptAuditSchema !== null ||
         phaseHolonomyUnitClockWeightSourceCurrentResidualCount !== null ||
         row.phaseHolonomyUnitClockWeightSourceAuditSchema !== null ||
         retainedWeightLedgerSelectionSourceCount !== null ||
@@ -53651,6 +56750,12 @@ function createEqualFrequencyResidualMatrixResiduals(row) {
         row.phaseHolonomyUnitClockWeightSourceAuditSchema ??
         row.retainedPhaseBundleHolonomyAuditSchema ??
         row.retainedBinaryToBinaryPhaseHistoryAuditSchema ??
+        row.retainedSourceEventIdentityAcceptanceAuditSchema ??
+        row.retainedSourceEventIdentityConstructionAuditSchema ??
+        row.retainedSourceEventCandidateIdentityAuditSchema ??
+        row.retainedSourceEventIdAcceptanceAttemptAuditSchema ??
+        row.retainedSourceEventDomainAcceptanceAttemptAuditSchema ??
+        row.retainedPhaseHistoryTemplatePopulationAttemptAuditSchema ??
         row.retainedWeightLedgerSourceAcceptanceAttemptAuditSchema ??
         row.retainedWeightLedgerSelectionTargetSchema ??
         row.phaseRadiusActionClosureSplitAuditSchema ??
@@ -53664,7 +56769,7 @@ function createEqualFrequencyResidualMatrixResiduals(row) {
         row.phaseDeformationBalanceAuditSchema,
       blocker: "phase_deformation_wake_coupling_weight_balance",
       note:
-        "The phase-holonomy unit-clock W_a source audit, retained phase-bundle holonomy audit, retained binary-to-binary phase-history audit, retained W_a source-acceptance attempt, retained W_a selection target, analytic phase/radius/action closure split, phase-current source-readiness residual, middle-to-outer event-domain row model, first-row acceptance attempt, event-ID candidates, current event-ID provenance, point-event/domain rule candidates, and same-event/domain binding candidates supply current proxy evidence only; retained phase-deformation, wake, recoil, or coupling balance is still missing.",
+        "The phase-holonomy unit-clock W_a source audit, retained phase-bundle holonomy audit, retained binary-to-binary phase-history audit, first source/receiver phase-history template population attempt, first retained source-event/domain acceptance attempt, first retained source-event-ID acceptance attempt, first retained source-event candidate identity audit, first retained source-event identity construction audit, first retained source-event identity acceptance audit, retained W_a source-acceptance attempt, retained W_a selection target, analytic phase/radius/action closure split, phase-current source-readiness residual, middle-to-outer event-domain row model, first-row acceptance attempt, event-ID candidates, current event-ID provenance, point-event/domain rule candidates, and same-event/domain binding candidates supply current proxy evidence only; retained phase-deformation, wake, recoil, or coupling balance is still missing.",
     }),
     r_J: createResidualEvidence({
       accepted: false,
@@ -53857,8 +56962,18 @@ function createEqualFrequencyCandidateReviewRow(equalFrequencyEnergyRadiusAudit)
         ? "effective_lever_arm_speed_rows_and_deformation_projection_witness_populated_retained_energy_radius_missing"
         : "effective_lever_arm_speed_rows_incomplete_or_not_replayed",
     phaseEvidenceStatus:
+      equalFrequencyEnergyRadiusAudit
+        .retainedSourceEventIdentityAcceptanceAudit?.status ??
+      equalFrequencyEnergyRadiusAudit
+        .retainedSourceEventCandidateIdentityAudit?.status ??
+      equalFrequencyEnergyRadiusAudit
+        .retainedSourceEventIdAcceptanceAttemptAudit?.status ??
+      equalFrequencyEnergyRadiusAudit
+        .retainedSourceEventDomainAcceptanceAttemptAudit?.status ??
       equalFrequencyEnergyRadiusAudit.retainedBinaryToBinaryPhaseHistoryAudit
         ?.status ??
+      equalFrequencyEnergyRadiusAudit
+        .retainedPhaseHistoryTemplatePopulationAttemptAudit?.status ??
       equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
         ?.status ??
       equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit
@@ -54417,6 +57532,210 @@ function createEqualFrequencyCandidateReviewRow(equalFrequencyEnergyRadiusAudit)
     retainedBinaryToBinaryPhaseHistoryAccepted:
       equalFrequencyEnergyRadiusAudit.retainedBinaryToBinaryPhaseHistoryAudit
         ?.retainedBinaryToBinaryPhaseHistoryAccepted ?? null,
+    retainedPhaseHistoryTemplatePopulationAttemptAuditSchema:
+      equalFrequencyEnergyRadiusAudit
+        .retainedPhaseHistoryTemplatePopulationAttemptAudit?.schema ?? null,
+    retainedPhaseHistoryTemplatePopulationAttemptStatus:
+      equalFrequencyEnergyRadiusAudit
+        .retainedPhaseHistoryTemplatePopulationAttemptAudit?.status ?? null,
+    retainedPhaseHistoryTemplatePopulationResidualVector:
+      equalFrequencyEnergyRadiusAudit
+        .retainedPhaseHistoryTemplatePopulationAttemptAudit?.residualVector ??
+      null,
+    retainedPhaseHistoryTemplatePopulationCurrentProxyPass:
+      equalFrequencyEnergyRadiusAudit
+        .retainedPhaseHistoryTemplatePopulationAttemptAudit
+        ?.templatePopulationCurrentProxyPass ?? null,
+    retainedPhaseHistoryTemplatePopulationCurrentEvidenceResidualCount:
+      equalFrequencyEnergyRadiusAudit
+        .retainedPhaseHistoryTemplatePopulationAttemptAudit
+        ?.currentEvidenceResidualCount ?? null,
+    retainedPhaseHistoryTemplatePopulationAcceptedResidualCount:
+      equalFrequencyEnergyRadiusAudit
+        .retainedPhaseHistoryTemplatePopulationAttemptAudit
+        ?.acceptedResidualCount ?? null,
+    retainedPhaseHistoryTemplatePopulationResidualCount:
+      equalFrequencyEnergyRadiusAudit
+        .retainedPhaseHistoryTemplatePopulationAttemptAudit?.residualCount ??
+      null,
+    retainedPhaseHistoryTemplatePopulationFirstBlockingResidualId:
+      equalFrequencyEnergyRadiusAudit
+        .retainedPhaseHistoryTemplatePopulationAttemptAudit
+        ?.firstBlockingResidualId ?? null,
+    retainedPhaseHistoryTemplatePopulationFirstMissingInputs:
+      equalFrequencyEnergyRadiusAudit
+        .retainedPhaseHistoryTemplatePopulationAttemptAudit
+        ?.firstMissingRetainedInputs ?? null,
+    retainedPhaseHistoryTemplatePopulationAccepted:
+      equalFrequencyEnergyRadiusAudit
+        .retainedPhaseHistoryTemplatePopulationAttemptAudit
+        ?.retainedTemplatePopulationAttemptPass ?? null,
+    retainedSourceEventDomainAcceptanceAttemptAuditSchema:
+      equalFrequencyEnergyRadiusAudit
+        .retainedSourceEventDomainAcceptanceAttemptAudit?.schema ?? null,
+    retainedSourceEventDomainAcceptanceAttemptStatus:
+      equalFrequencyEnergyRadiusAudit
+        .retainedSourceEventDomainAcceptanceAttemptAudit?.status ?? null,
+    retainedSourceEventDomainAcceptanceResidualVector:
+      equalFrequencyEnergyRadiusAudit
+        .retainedSourceEventDomainAcceptanceAttemptAudit?.residualVector ??
+      null,
+    retainedSourceEventDomainAcceptanceCurrentProxyPass:
+      equalFrequencyEnergyRadiusAudit
+        .retainedSourceEventDomainAcceptanceAttemptAudit
+        ?.sourceEventDomainAcceptanceCurrentProxyPass ?? null,
+    retainedSourceEventDomainAcceptanceCurrentEvidenceResidualCount:
+      equalFrequencyEnergyRadiusAudit
+        .retainedSourceEventDomainAcceptanceAttemptAudit
+        ?.currentEvidenceResidualCount ?? null,
+    retainedSourceEventDomainAcceptanceAcceptedResidualCount:
+      equalFrequencyEnergyRadiusAudit
+        .retainedSourceEventDomainAcceptanceAttemptAudit
+        ?.acceptedResidualCount ?? null,
+    retainedSourceEventDomainAcceptanceResidualCount:
+      equalFrequencyEnergyRadiusAudit
+        .retainedSourceEventDomainAcceptanceAttemptAudit?.residualCount ??
+      null,
+    retainedSourceEventDomainAcceptanceFirstBlockingResidualId:
+      equalFrequencyEnergyRadiusAudit
+        .retainedSourceEventDomainAcceptanceAttemptAudit
+        ?.firstBlockingResidualId ?? null,
+    retainedSourceEventDomainAcceptanceFirstMissingInputs:
+      equalFrequencyEnergyRadiusAudit
+        .retainedSourceEventDomainAcceptanceAttemptAudit
+        ?.firstMissingRetainedInputs ?? null,
+    retainedSourceEventDomainAcceptanceAccepted:
+      equalFrequencyEnergyRadiusAudit
+        .retainedSourceEventDomainAcceptanceAttemptAudit
+        ?.retainedSourceEventDomainAcceptancePass ?? null,
+    retainedSourceEventIdAcceptanceAttemptAuditSchema:
+      equalFrequencyEnergyRadiusAudit
+        .retainedSourceEventIdAcceptanceAttemptAudit?.schema ?? null,
+    retainedSourceEventIdAcceptanceAttemptStatus:
+      equalFrequencyEnergyRadiusAudit
+        .retainedSourceEventIdAcceptanceAttemptAudit?.status ?? null,
+    retainedSourceEventIdAcceptanceResidualVector:
+      equalFrequencyEnergyRadiusAudit
+        .retainedSourceEventIdAcceptanceAttemptAudit?.residualVector ??
+      null,
+    retainedSourceEventIdAcceptanceCurrentProxyPass:
+      equalFrequencyEnergyRadiusAudit
+        .retainedSourceEventIdAcceptanceAttemptAudit
+        ?.sourceEventIdAcceptanceCurrentProxyPass ?? null,
+    retainedSourceEventIdAcceptanceCurrentEvidenceResidualCount:
+      equalFrequencyEnergyRadiusAudit
+        .retainedSourceEventIdAcceptanceAttemptAudit
+        ?.currentEvidenceResidualCount ?? null,
+    retainedSourceEventIdAcceptanceAcceptedResidualCount:
+      equalFrequencyEnergyRadiusAudit
+        .retainedSourceEventIdAcceptanceAttemptAudit?.acceptedResidualCount ??
+      null,
+    retainedSourceEventIdAcceptanceResidualCount:
+      equalFrequencyEnergyRadiusAudit
+        .retainedSourceEventIdAcceptanceAttemptAudit?.residualCount ??
+      null,
+    retainedSourceEventIdAcceptanceFirstBlockingResidualId:
+      equalFrequencyEnergyRadiusAudit
+        .retainedSourceEventIdAcceptanceAttemptAudit?.firstBlockingResidualId ??
+      null,
+    retainedSourceEventIdAcceptanceFirstMissingInputs:
+      equalFrequencyEnergyRadiusAudit
+        .retainedSourceEventIdAcceptanceAttemptAudit
+        ?.firstMissingRetainedInputs ?? null,
+    retainedSourceEventIdAcceptanceAccepted:
+      equalFrequencyEnergyRadiusAudit
+        .retainedSourceEventIdAcceptanceAttemptAudit
+        ?.retainedSourceEventIdAcceptancePass ?? null,
+    retainedSourceEventCandidateIdentityAuditSchema:
+      equalFrequencyEnergyRadiusAudit.retainedSourceEventCandidateIdentityAudit
+        ?.schema ?? null,
+    retainedSourceEventCandidateIdentityStatus:
+      equalFrequencyEnergyRadiusAudit.retainedSourceEventCandidateIdentityAudit
+        ?.status ?? null,
+    retainedSourceEventCandidateIdentityResidualVector:
+      equalFrequencyEnergyRadiusAudit.retainedSourceEventCandidateIdentityAudit
+        ?.residualVector ?? null,
+    retainedSourceEventCandidateIdentityCurrentProxyPass:
+      equalFrequencyEnergyRadiusAudit.retainedSourceEventCandidateIdentityAudit
+        ?.sourceEventCandidateIdentityCurrentProxyPass ?? null,
+    retainedSourceEventCandidateIdentityCurrentEvidenceResidualCount:
+      equalFrequencyEnergyRadiusAudit.retainedSourceEventCandidateIdentityAudit
+        ?.currentEvidenceResidualCount ?? null,
+    retainedSourceEventCandidateIdentityAcceptedResidualCount:
+      equalFrequencyEnergyRadiusAudit.retainedSourceEventCandidateIdentityAudit
+        ?.acceptedResidualCount ?? null,
+    retainedSourceEventCandidateIdentityResidualCount:
+      equalFrequencyEnergyRadiusAudit.retainedSourceEventCandidateIdentityAudit
+        ?.residualCount ?? null,
+    retainedSourceEventCandidateIdentityFirstBlockingResidualId:
+      equalFrequencyEnergyRadiusAudit.retainedSourceEventCandidateIdentityAudit
+        ?.firstBlockingResidualId ?? null,
+    retainedSourceEventCandidateIdentityFirstMissingInputs:
+      equalFrequencyEnergyRadiusAudit.retainedSourceEventCandidateIdentityAudit
+        ?.firstMissingRetainedInputs ?? null,
+    retainedSourceEventCandidateIdentityAccepted:
+      equalFrequencyEnergyRadiusAudit.retainedSourceEventCandidateIdentityAudit
+        ?.retainedSourceEventCandidateIdentityPass ?? null,
+    retainedSourceEventIdentityConstructionAuditSchema:
+      equalFrequencyEnergyRadiusAudit.retainedSourceEventIdentityConstructionAudit
+        ?.schema ?? null,
+    retainedSourceEventIdentityConstructionStatus:
+      equalFrequencyEnergyRadiusAudit.retainedSourceEventIdentityConstructionAudit
+        ?.status ?? null,
+    retainedSourceEventIdentityConstructionResidualVector:
+      equalFrequencyEnergyRadiusAudit.retainedSourceEventIdentityConstructionAudit
+        ?.residualVector ?? null,
+    retainedSourceEventIdentityConstructionCurrentProxyPass:
+      equalFrequencyEnergyRadiusAudit.retainedSourceEventIdentityConstructionAudit
+        ?.sourceEventIdentityConstructionCurrentProxyPass ?? null,
+    retainedSourceEventIdentityConstructionCurrentEvidenceResidualCount:
+      equalFrequencyEnergyRadiusAudit.retainedSourceEventIdentityConstructionAudit
+        ?.currentEvidenceResidualCount ?? null,
+    retainedSourceEventIdentityConstructionAcceptedResidualCount:
+      equalFrequencyEnergyRadiusAudit.retainedSourceEventIdentityConstructionAudit
+        ?.acceptedResidualCount ?? null,
+    retainedSourceEventIdentityConstructionResidualCount:
+      equalFrequencyEnergyRadiusAudit.retainedSourceEventIdentityConstructionAudit
+        ?.residualCount ?? null,
+    retainedSourceEventIdentityConstructionFirstBlockingResidualId:
+      equalFrequencyEnergyRadiusAudit.retainedSourceEventIdentityConstructionAudit
+        ?.firstBlockingResidualId ?? null,
+    retainedSourceEventIdentityConstructionFirstMissingInputs:
+      equalFrequencyEnergyRadiusAudit.retainedSourceEventIdentityConstructionAudit
+        ?.firstMissingRetainedInputs ?? null,
+    retainedSourceEventIdentityConstructionAccepted:
+      equalFrequencyEnergyRadiusAudit.retainedSourceEventIdentityConstructionAudit
+        ?.retainedIdentityConstructionPass ?? null,
+    retainedSourceEventIdentityAcceptanceAuditSchema:
+      equalFrequencyEnergyRadiusAudit.retainedSourceEventIdentityAcceptanceAudit
+        ?.schema ?? null,
+    retainedSourceEventIdentityAcceptanceStatus:
+      equalFrequencyEnergyRadiusAudit.retainedSourceEventIdentityAcceptanceAudit
+        ?.status ?? null,
+    retainedSourceEventIdentityAcceptanceResidualVector:
+      equalFrequencyEnergyRadiusAudit.retainedSourceEventIdentityAcceptanceAudit
+        ?.residualVector ?? null,
+    retainedSourceEventIdentityAcceptanceCurrentProxyPass:
+      equalFrequencyEnergyRadiusAudit.retainedSourceEventIdentityAcceptanceAudit
+        ?.sourceEventIdentityAcceptanceCurrentProxyPass ?? null,
+    retainedSourceEventIdentityAcceptanceCurrentEvidenceResidualCount:
+      equalFrequencyEnergyRadiusAudit.retainedSourceEventIdentityAcceptanceAudit
+        ?.currentEvidenceResidualCount ?? null,
+    retainedSourceEventIdentityAcceptanceAcceptedResidualCount:
+      equalFrequencyEnergyRadiusAudit.retainedSourceEventIdentityAcceptanceAudit
+        ?.acceptedResidualCount ?? null,
+    retainedSourceEventIdentityAcceptanceResidualCount:
+      equalFrequencyEnergyRadiusAudit.retainedSourceEventIdentityAcceptanceAudit
+        ?.residualCount ?? null,
+    retainedSourceEventIdentityAcceptanceFirstBlockingResidualId:
+      equalFrequencyEnergyRadiusAudit.retainedSourceEventIdentityAcceptanceAudit
+        ?.firstBlockingResidualId ?? null,
+    retainedSourceEventIdentityAcceptanceFirstMissingInputs:
+      equalFrequencyEnergyRadiusAudit.retainedSourceEventIdentityAcceptanceAudit
+        ?.firstMissingRetainedInputs ?? null,
+    retainedSourceEventIdentityAcceptanceAccepted:
+      equalFrequencyEnergyRadiusAudit.retainedSourceEventIdentityAcceptanceAudit
+        ?.retainedSourceEventIdentityAcceptancePass ?? null,
     phaseHolonomyUnitClockWeightSourceAuditSchema:
       equalFrequencyEnergyRadiusAudit.phaseHolonomyUnitClockWeightSourceAudit
         ?.schema ?? null,
@@ -55447,6 +58766,86 @@ function printSummary(report, absoluteOutputPath) {
           `current=${retainedWeightLedgerSourceAcceptanceAttemptAudit.currentProxySourceAttemptCount}`,
           `accepted=${retainedWeightLedgerSourceAcceptanceAttemptAudit.acceptedSourceAttemptCount}`,
           `first=${retainedWeightLedgerSourceAcceptanceAttemptAudit.firstAttemptSourceId}`,
+        ].join(" ")
+      );
+    }
+    const retainedPhaseHistoryTemplatePopulationAttemptAudit =
+      equalFrequencyAudit.retainedPhaseHistoryTemplatePopulationAttemptAudit ??
+      null;
+    const retainedSourceEventDomainAcceptanceAttemptAudit =
+      equalFrequencyAudit.retainedSourceEventDomainAcceptanceAttemptAudit ??
+      null;
+    const retainedSourceEventIdAcceptanceAttemptAudit =
+      equalFrequencyAudit.retainedSourceEventIdAcceptanceAttemptAudit ?? null;
+    const retainedSourceEventCandidateIdentityAudit =
+      equalFrequencyAudit.retainedSourceEventCandidateIdentityAudit ?? null;
+    const retainedSourceEventIdentityConstructionAudit =
+      equalFrequencyAudit.retainedSourceEventIdentityConstructionAudit ?? null;
+    const retainedSourceEventIdentityAcceptanceAudit =
+      equalFrequencyAudit.retainedSourceEventIdentityAcceptanceAudit ?? null;
+    if (retainedSourceEventIdentityConstructionAudit) {
+      console.log(
+        [
+          "retained source-event identity construction:",
+          retainedSourceEventIdentityConstructionAudit.status,
+          `current=${retainedSourceEventIdentityConstructionAudit.currentEvidenceResidualCount}/${retainedSourceEventIdentityConstructionAudit.residualCount}`,
+          `accepted=${retainedSourceEventIdentityConstructionAudit.acceptedResidualCount}/${retainedSourceEventIdentityConstructionAudit.residualCount}`,
+          `first=${retainedSourceEventIdentityConstructionAudit.firstBlockingResidualId}`,
+        ].join(" ")
+      );
+    }
+    if (retainedSourceEventIdentityAcceptanceAudit) {
+      console.log(
+        [
+          "retained source-event identity acceptance:",
+          retainedSourceEventIdentityAcceptanceAudit.status,
+          `current=${retainedSourceEventIdentityAcceptanceAudit.currentEvidenceResidualCount}/${retainedSourceEventIdentityAcceptanceAudit.residualCount}`,
+          `accepted=${retainedSourceEventIdentityAcceptanceAudit.acceptedResidualCount}/${retainedSourceEventIdentityAcceptanceAudit.residualCount}`,
+          `first=${retainedSourceEventIdentityAcceptanceAudit.firstBlockingResidualId}`,
+        ].join(" ")
+      );
+    }
+    if (retainedSourceEventCandidateIdentityAudit) {
+      console.log(
+        [
+          "retained source-event candidate identity:",
+          retainedSourceEventCandidateIdentityAudit.status,
+          `current=${retainedSourceEventCandidateIdentityAudit.currentEvidenceResidualCount}/${retainedSourceEventCandidateIdentityAudit.residualCount}`,
+          `accepted=${retainedSourceEventCandidateIdentityAudit.acceptedResidualCount}/${retainedSourceEventCandidateIdentityAudit.residualCount}`,
+          `first=${retainedSourceEventCandidateIdentityAudit.firstBlockingResidualId}`,
+        ].join(" ")
+      );
+    }
+    if (retainedSourceEventIdAcceptanceAttemptAudit) {
+      console.log(
+        [
+          "retained source-event ID acceptance:",
+          retainedSourceEventIdAcceptanceAttemptAudit.status,
+          `current=${retainedSourceEventIdAcceptanceAttemptAudit.currentEvidenceResidualCount}/${retainedSourceEventIdAcceptanceAttemptAudit.residualCount}`,
+          `accepted=${retainedSourceEventIdAcceptanceAttemptAudit.acceptedResidualCount}/${retainedSourceEventIdAcceptanceAttemptAudit.residualCount}`,
+          `first=${retainedSourceEventIdAcceptanceAttemptAudit.firstBlockingResidualId}`,
+        ].join(" ")
+      );
+    }
+    if (retainedSourceEventDomainAcceptanceAttemptAudit) {
+      console.log(
+        [
+          "retained source-event/domain acceptance:",
+          retainedSourceEventDomainAcceptanceAttemptAudit.status,
+          `current=${retainedSourceEventDomainAcceptanceAttemptAudit.currentEvidenceResidualCount}/${retainedSourceEventDomainAcceptanceAttemptAudit.residualCount}`,
+          `accepted=${retainedSourceEventDomainAcceptanceAttemptAudit.acceptedResidualCount}/${retainedSourceEventDomainAcceptanceAttemptAudit.residualCount}`,
+          `first=${retainedSourceEventDomainAcceptanceAttemptAudit.firstBlockingResidualId}`,
+        ].join(" ")
+      );
+    }
+    if (retainedPhaseHistoryTemplatePopulationAttemptAudit) {
+      console.log(
+        [
+          "retained phase-history template population:",
+          retainedPhaseHistoryTemplatePopulationAttemptAudit.status,
+          `current=${retainedPhaseHistoryTemplatePopulationAttemptAudit.currentEvidenceResidualCount}/${retainedPhaseHistoryTemplatePopulationAttemptAudit.residualCount}`,
+          `accepted=${retainedPhaseHistoryTemplatePopulationAttemptAudit.acceptedResidualCount}/${retainedPhaseHistoryTemplatePopulationAttemptAudit.residualCount}`,
+          `first=${retainedPhaseHistoryTemplatePopulationAttemptAudit.firstBlockingResidualId}`,
         ].join(" ")
       );
     }
