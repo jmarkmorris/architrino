@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 178,
-      "sections": 1444
+      "sections": 1445
     }
   },
   "tocRoot": {
@@ -1632,6 +1632,14 @@
                 "markdownPath": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md",
                 "markdownSection": "Accessory-Architrino Capture",
                 "sectionKey": "accessory architrino capture",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Frame Orthogonality And Framing Anisotropy",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md",
+                "markdownSection": "Frame Orthogonality And Framing Anisotropy",
+                "sectionKey": "frame orthogonality and framing anisotropy",
                 "headingLevel": 2
               },
               {

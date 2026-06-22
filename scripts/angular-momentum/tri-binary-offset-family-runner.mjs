@@ -164,7 +164,7 @@ try {
   });
 
   const report = {
-    schema: "aaa-tri-binary-frequency-candidate-solver-report.v43",
+    schema: "aaa-tri-binary-frequency-candidate-solver-report.v44",
     generatedAt: new Date().toISOString(),
     solverBacked: true,
     claimLevel: "priority-only evidence; not retained-branch certification",
@@ -275,7 +275,7 @@ function createSolverGeometryPublicContract() {
     fixedSphereOrbitClaim: false,
     nestedShellRadiusClaim: false,
     compatibility:
-      "Old report consumers that read layers[].radius, layers[].solverGeometry.circularSourceRadius, layers[].solverGeometryRadius, geometryLiftTarget, retainedLiftTarget, or currentExecutableChart as the retained model must migrate; no compatibility shim is emitted in v42 reports.",
+      "Old report consumers that read layers[].radius, layers[].solverGeometry.circularSourceRadius, layers[].solverGeometryRadius, geometryLiftTarget, retainedLiftTarget, or currentExecutableChart as the retained model must migrate; no compatibility shim is emitted in v44 reports.",
   };
 }
 
@@ -47165,7 +47165,7 @@ function createFrequencyTripletSearchSummary(cases) {
     equalFrequencyEnergyRadiusAudit,
   });
   return {
-    schema: "aaa-tri-binary-frequency-triplet-search-summary.v44",
+    schema: "aaa-tri-binary-frequency-triplet-search-summary.v45",
     claimLevel:
       "candidate search summary over generic tri-binary rows with role-assigned I:M:O projections; not retained-branch certification",
     rawSearchLabels: GENERIC_TRI_BINARY_LABELS,
@@ -47258,7 +47258,7 @@ function createFrequencyTripletCandidateSetReview({
     }),
   ];
   return {
-    schema: "aaa-tri-binary-frequency-triplet-candidate-set-review.v40",
+    schema: "aaa-tri-binary-frequency-triplet-candidate-set-review.v41",
     claimLevel:
       "generic-row candidate-set review with role-assigned I:M:O projections; not retained branch selection",
     rawSearchLabels: GENERIC_TRI_BINARY_LABELS,
@@ -47266,6 +47266,7 @@ function createFrequencyTripletCandidateSetReview({
     legacyOrderDisposition:
       "Outer-normalized translation metadata is not the primary solver order.",
     comparisonAxisReview: createFrequencyTripletComparisonAxisReview(rows),
+    phaseRelationReview: createFrequencyTripletPhaseRelationReview(rows),
     residualMatrixReview: createFrequencyTripletResidualMatrixReview(rows),
     rows,
     reviewFinding:
@@ -47299,6 +47300,161 @@ function createFrequencyTripletComparisonAxisReview(rows) {
       fairComparisonRule: row.fairComparisonRule ?? null,
       retainedBranchClaim: false,
     })),
+    retainedBranchClaim: false,
+  };
+}
+
+function createFrequencyTripletPhaseRelationReview(rows) {
+  const reviewRows = rows.map(createFrequencyTripletPhaseRelationReviewRow);
+  const retainedAcceptedRows = reviewRows.filter(
+    (row) => row.retainedPhaseAcceptancePass === true
+  );
+  const currentProxyRows = reviewRows.filter(
+    (row) => row.currentPhaseProxyPass === true
+  );
+  const partialProxyRows = reviewRows.filter(
+    (row) => row.partialPhaseProxyPass === true
+  );
+  const strongestPhaseProxyRows = reviewRows
+    .slice()
+    .sort((left, right) => {
+      if (left.retainedPhaseAcceptancePass !== right.retainedPhaseAcceptancePass) {
+        return left.retainedPhaseAcceptancePass ? -1 : 1;
+      }
+      if (left.currentPhaseProxyScore !== right.currentPhaseProxyScore) {
+        return right.currentPhaseProxyScore - left.currentPhaseProxyScore;
+      }
+      if (left.partialPhaseProxyPass !== right.partialPhaseProxyPass) {
+        return left.partialPhaseProxyPass ? -1 : 1;
+      }
+      return left.candidateKey.localeCompare(right.candidateKey);
+    });
+  const equalFrequencyRow =
+    reviewRows.find(
+      (row) => row.candidateKey === "equal-frequency-energy-radius"
+    ) ?? null;
+  return {
+    schema: "aaa-tri-binary-frequency-triplet-phase-relation-review.v1",
+    claimLevel:
+      "phase-relation comparison across candidate frequency triples; current proxies only, not retained phase-bundle acceptance",
+    fairComparisonRule:
+      "Treat phase as its own comparison axis. A frequency family may have strong frequency or radius/velocity proxy evidence without having retained phase-bundle, plane-sector, wake/coupling, or same-event angular-momentum phase evidence.",
+    rowCount: reviewRows.length,
+    retainedAcceptedRowCount: retainedAcceptedRows.length,
+    currentProxyRowCount: currentProxyRows.length,
+    partialProxyRowCount: partialProxyRows.length,
+    strongestPhaseProxyRows,
+    rows: reviewRows,
+    finding:
+      retainedAcceptedRows.length > 0
+        ? "one_or_more_frequency_triplets_have_retained_phase_relation_acceptance"
+        : equalFrequencyRow?.currentPhaseProxyPass === true
+          ? "equal_frequency_has_strongest_current_phase_proxy_no_retained_phase_acceptance"
+          : partialProxyRows.length > 0
+            ? "only_partial_phase_relation_proxies_populated"
+            : "no_phase_relation_proxy_populated",
+    retainedBranchClaim: false,
+  };
+}
+
+function createFrequencyTripletPhaseRelationReviewRow(row) {
+  const isEqualFrequency = row.candidateKey === "equal-frequency-energy-radius";
+  const phaseProfileCatalogPass =
+    isEqualFrequency && typeof row.priorityPhaseProfileId === "string";
+  const phaseResponseDiscriminationPass =
+    isEqualFrequency && typeof row.phaseResponseStatus === "string";
+  const phaseLatticePass =
+    isEqualFrequency && positiveNumberOrNull(row.phaseLatticeRowCount) !== null;
+  const phaseCurrentKernelPass =
+    isEqualFrequency &&
+    row.wakeCouplingTransferPhaseCurrentRetainedKernelCurrentProxyPass === true;
+  const sameEventTransferLedgerProxyPass =
+    isEqualFrequency &&
+    row
+      .wakeCouplingTransferPhaseCurrentSameEventTransferLedgerCurrentProxyPass ===
+      true;
+  const sourceReadinessAllProxyPass =
+    isEqualFrequency &&
+    isFullPositiveCount(
+      row.wakeCouplingTransferPhaseCurrentRetainedSourceReadinessCurrentProxyRowCount,
+      row.wakeCouplingTransferPhaseCurrentRetainedKernelSourceRowCount
+    );
+  const retainedFrequencyPhasePacketProxyPass =
+    isEqualFrequency &&
+    isFullPositiveCount(
+      row.retainedFrequencyPhasePacketPhaseBundleCurrentProxyPassCount,
+      row.retainedFrequencyPhasePacketRowCount
+    );
+  const phaseLockProxyPass =
+    !isEqualFrequency &&
+    positiveNumberOrNull(row.phaseLockSelfRootParityTargetPassCount) !== null;
+  const currentPhaseProxyScore = [
+    phaseProfileCatalogPass,
+    phaseResponseDiscriminationPass,
+    phaseLatticePass,
+    phaseCurrentKernelPass,
+    sameEventTransferLedgerProxyPass,
+    sourceReadinessAllProxyPass,
+    retainedFrequencyPhasePacketProxyPass,
+  ].filter(Boolean).length;
+  const currentPhaseProxyPass = currentPhaseProxyScore > 0;
+  const partialPhaseProxyPass =
+    currentPhaseProxyPass === true ||
+    phaseLockProxyPass === true ||
+    typeof row.phaseEvidenceStatus === "string";
+  const retainedPhaseAcceptancePass =
+    isEqualFrequency
+      ? row.retainedFrequencyPhasePacketAcceptedRowCount > 0 ||
+        row.wakeCouplingTransferPhaseCurrentRetainedKernelAccepted === true ||
+        row
+          .wakeCouplingTransferPhaseCurrentSameEventTransferLedgerRetainedAcceptancePass ===
+          true
+      : false;
+  const phaseRelationClass = isEqualFrequency
+    ? "equal_frequency_phase_profile_current_proxy"
+    : row.candidateKey === "middle-hinge-offset" ||
+        row.candidateKey === "symmetric-control"
+      ? "offset_phase_lock_index_proxy"
+      : row.candidateKey === "dyadic-lock-4-2-1"
+        ? "dyadic_integer_lock_phase_control"
+        : row.candidateKey === "general-integer-lock-controls"
+          ? "finite_integer_lock_phase_control_lattice"
+          : "phase_relation_unknown";
+  const nextPhaseBurden = isEqualFrequency
+    ? "derive retained phase-return degree or holonomy, retained signed-root complex, retained finite-impulse history class, retained wake/coupling current source, retained action-gap source, and retained same-event transfer ledger on S_eq"
+    : "replace phase-lock or integer-lock index proxy with retained phase-bundle or plane-sector rows on the same retained branch record before comparing against equal-frequency";
+  return {
+    candidateKey: row.candidateKey,
+    reviewRole: row.reviewRole,
+    roleAssignedRelation: row.roleAssignedRelation ?? null,
+    phaseRelationClass,
+    phaseEvidenceStatus: row.phaseEvidenceStatus ?? null,
+    phaseProfileCatalogPass,
+    phaseResponseDiscriminationPass,
+    phaseLatticePass,
+    phaseCurrentKernelPass,
+    sameEventTransferLedgerProxyPass,
+    sourceReadinessAllProxyPass,
+    retainedFrequencyPhasePacketProxyPass,
+    phaseLockProxyPass,
+    phaseLockSelfRootParityTargetPassCount:
+      row.phaseLockSelfRootParityTargetPassCount ?? null,
+    currentPhaseProxyScore,
+    currentPhaseProxyPass,
+    partialPhaseProxyPass,
+    retainedPhaseAcceptancePass,
+    retainedAcceptanceStatus: row.retainedAcceptanceStatus ?? null,
+    status:
+      retainedPhaseAcceptancePass === true
+        ? "retained_phase_relation_accepted"
+        : currentPhaseProxyPass === true
+          ? "current_phase_relation_proxy_populated_retained_phase_acceptance_missing"
+          : phaseLockProxyPass === true
+            ? "phase_lock_index_proxy_populated_retained_phase_acceptance_missing"
+            : partialPhaseProxyPass === true
+              ? "phase_relation_partial_proxy_only"
+              : "phase_relation_missing",
+    nextPhaseBurden,
     retainedBranchClaim: false,
   };
 }
@@ -48919,6 +49075,30 @@ function printSummary(report, absoluteOutputPath) {
           ? `partialProxy=${strongestRow.partialProxyResidualCount}`
           : null,
         strongestRow ? `missing=${strongestRow.missingResidualCount}` : null,
+      ]
+        .filter((part) => part !== null)
+        .join(" ")
+    );
+  }
+  const phaseRelationReview =
+    report.frequencyTripletSearch?.candidateSetReview?.phaseRelationReview ??
+    null;
+  if (phaseRelationReview) {
+    const strongestPhaseRow =
+      phaseRelationReview.strongestPhaseProxyRows?.[0] ?? null;
+    console.log(
+      [
+        "frequency phase-relation review:",
+        phaseRelationReview.finding,
+        `currentProxyRows=${phaseRelationReview.currentProxyRowCount}`,
+        `partialProxyRows=${phaseRelationReview.partialProxyRowCount}`,
+        strongestPhaseRow
+          ? `strongest=${strongestPhaseRow.candidateKey}`
+          : "strongest=none",
+        strongestPhaseRow
+          ? `score=${strongestPhaseRow.currentPhaseProxyScore}`
+          : null,
+        strongestPhaseRow ? `retained=${strongestPhaseRow.retainedPhaseAcceptancePass}` : null,
       ]
         .filter((part) => part !== null)
         .join(" ")
