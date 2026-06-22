@@ -164,7 +164,7 @@ try {
   });
 
   const report = {
-    schema: "aaa-tri-binary-frequency-candidate-solver-report.v31",
+    schema: "aaa-tri-binary-frequency-candidate-solver-report.v32",
     generatedAt: new Date().toISOString(),
     solverBacked: true,
     claimLevel: "priority-only evidence; not retained-branch certification",
@@ -275,7 +275,7 @@ function createSolverGeometryPublicContract() {
     fixedSphereOrbitClaim: false,
     nestedShellRadiusClaim: false,
     compatibility:
-      "Old report consumers that read layers[].radius, layers[].solverGeometry.circularSourceRadius, layers[].solverGeometryRadius, geometryLiftTarget, retainedLiftTarget, or currentExecutableChart as the retained model must migrate; no compatibility shim is emitted in v30 reports.",
+      "Old report consumers that read layers[].radius, layers[].solverGeometry.circularSourceRadius, layers[].solverGeometryRadius, geometryLiftTarget, retainedLiftTarget, or currentExecutableChart as the retained model must migrate; no compatibility shim is emitted in v32 reports.",
   };
 }
 
@@ -39771,6 +39771,10 @@ function createEqualFrequencyEnergyRadiusAudit(cases) {
     createEqualFrequencyFieldSpeedHingeSliceSelectorAudit(
       rhoOmegaDeformationSliceAudit
     );
+  const fieldSpeedHingeSliceSelectionFunctionalAudit =
+    createEqualFrequencyFieldSpeedHingeSliceSelectionFunctionalAudit(
+      fieldSpeedHingeSliceSelectorAudit
+    );
   const actionLedgerAudit =
     createEqualFrequencyActionLedgerAudit(priorityCaseSummaries);
   const energyAngularMomentumClosureAudit =
@@ -39842,7 +39846,7 @@ function createEqualFrequencyEnergyRadiusAudit(cases) {
       retainedFrequencyPhasePacket,
     });
   return {
-    schema: "aaa-equal-frequency-energy-radius-audit.v30",
+    schema: "aaa-equal-frequency-energy-radius-audit.v31",
     claimLevel:
       "priority-only equal-frequency energy-radius-phase audit; not retained-branch certification or hbar derivation",
     priority: "high",
@@ -39872,6 +39876,7 @@ function createEqualFrequencyEnergyRadiusAudit(cases) {
     deformationContinuationAudit,
     rhoOmegaDeformationSliceAudit,
     fieldSpeedHingeSliceSelectorAudit,
+    fieldSpeedHingeSliceSelectionFunctionalAudit,
     actionLedgerAudit,
     energyAngularMomentumClosureAudit,
     phaseDeformationBalanceAudit,
@@ -40842,6 +40847,8 @@ function createEqualFrequencyFieldSpeedHingeSliceSelectorRow({ row, sliceIds }) 
         innerOuterFieldSpeedBracketingPass === true &&
         orderedSpeedSplitPass === true &&
         sourceSlice.targetSpeedSplitPass === true;
+      const targetSpeedResidualsByRole =
+        sourceSlice.residualsAgainstTargetSpeedSplit ?? {};
       return [
         sliceId,
         {
@@ -40855,6 +40862,8 @@ function createEqualFrequencyFieldSpeedHingeSliceSelectorRow({ row, sliceIds }) 
           middleResidual,
           innerMinusFieldSpeed,
           fieldSpeedMinusOuter,
+          targetSpeedRatios: sourceSlice.targetSpeedRatios ?? null,
+          targetSpeedResidualsByRole,
           middleFieldSpeedHingePass,
           innerSuperFieldPass,
           outerSubFieldPass,
@@ -40879,6 +40888,228 @@ function createEqualFrequencyFieldSpeedHingeSliceSelectorRow({ row, sliceIds }) 
       .filter((slice) => slice.fieldSpeedHingeSelectorPass === true)
       .map((slice) => slice.sliceId),
     retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyFieldSpeedHingeSliceSelectionFunctionalAudit(
+  fieldSpeedHingeSliceSelectorAudit
+) {
+  const sourceRows = fieldSpeedHingeSliceSelectorAudit?.rows ?? [];
+  const sliceIds =
+    fieldSpeedHingeSliceSelectorAudit?.sliceSummaries?.map(
+      (summary) => summary.sliceId
+    ) ?? [];
+  const rows = sourceRows.map((row) =>
+    createEqualFrequencyFieldSpeedHingeSliceSelectionFunctionalRow({
+      row,
+      sliceIds,
+    })
+  );
+  const sliceSummaries = sliceIds.map((sliceId) => {
+    const sliceRows = rows.map((row) => row.slices[sliceId]).filter(Boolean);
+    const functionalTotals = sliceRows.map((slice) => slice.functionalTotal);
+    const zeroFunctionalPassCount = sliceRows.filter(
+      (slice) => slice.zeroFunctionalPass === true
+    ).length;
+    const minimizerPassCount = rows.filter((row) =>
+      row.minimizerSliceIds.includes(sliceId)
+    ).length;
+    return {
+      sliceId,
+      rowCount: sliceRows.length,
+      functionalTotalStats: createFiniteStats(functionalTotals),
+      zeroFunctionalPassCount,
+      zeroFunctionalPass: rows.length > 0 && zeroFunctionalPassCount === rows.length,
+      minimizerPassCount,
+      minimizerPass: rows.length > 0 && minimizerPassCount === rows.length,
+      retainedSelectionFunctionalAcceptedCount: 0,
+    };
+  });
+  const zeroFunctionalSliceIds = sliceSummaries
+    .filter((summary) => summary.zeroFunctionalPass === true)
+    .map((summary) => summary.sliceId);
+  const allRowMinimizerSets = rows.map((row) => row.minimizerSliceIds.join(","));
+  const minimizerSetStableAcrossRows =
+    allRowMinimizerSets.length > 0 &&
+    allRowMinimizerSets.every((value) => value === allRowMinimizerSets[0]);
+  const selectedMinimizerSliceIds =
+    minimizerSetStableAcrossRows === true && rows.length > 0
+      ? rows[0].minimizerSliceIds
+      : [];
+  const currentOblatePlanarZeroFunctionalPass =
+    zeroFunctionalSliceIds.length === 2 &&
+    zeroFunctionalSliceIds.includes("current_oblate_slice") &&
+    zeroFunctionalSliceIds.includes("flattened_limit_projection");
+  const currentOblatePlanarMinimizerPass =
+    selectedMinimizerSliceIds.length === 2 &&
+    selectedMinimizerSliceIds.includes("current_oblate_slice") &&
+    selectedMinimizerSliceIds.includes("flattened_limit_projection");
+  const currentOblatePlanarOnlyFunctionalPass =
+    currentOblatePlanarZeroFunctionalPass === true &&
+    currentOblatePlanarMinimizerPass === true;
+  return {
+    schema:
+      "aaa-equal-frequency-field-speed-hinge-slice-selection-functional-audit.v1",
+    claimLevel:
+      "current squared-residual field-speed hinge slice-selection functional; not retained branch variational acceptance",
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
+    canonicalFamily: "I:M:O=(f,f,f)",
+    sourceFieldSpeedHingeSliceSelectorAuditSchema:
+      fieldSpeedHingeSliceSelectorAudit?.schema ?? null,
+    fieldSpeed: FIELD_SPEED,
+    fieldSpeedTolerance: FIELD_SPEED_TOLERANCE,
+    functional:
+      "Phi_hinge = (s_M-c_f)^2 + max(0,c_f+epsilon-s_I)^2 + max(0,s_O-c_f+epsilon)^2 + ordered-speed deficits^2 + sum_a(s_a-s_a^target)^2",
+    auditedCaseCount: rows.length,
+    sliceSummaries,
+    selectedMinimizerSliceIds,
+    zeroFunctionalSliceIds,
+    minimizerSetStableAcrossRows,
+    currentOblatePlanarZeroFunctionalPass,
+    currentOblatePlanarMinimizerPass,
+    currentOblatePlanarOnlyFunctionalPass,
+    retainedSelectionFunctionalAcceptedCount: 0,
+    rows,
+    status:
+      currentOblatePlanarOnlyFunctionalPass === true
+        ? "field_speed_hinge_selection_functional_zero_minimizers_current_oblate_and_planar_retained_functional_missing"
+        : selectedMinimizerSliceIds.length > 0
+          ? "field_speed_hinge_selection_functional_populated_unexpected_minimizers"
+          : rows.length > 0
+            ? "field_speed_hinge_selection_functional_populated_no_minimizer"
+            : "field_speed_hinge_selection_functional_no_priority_rows",
+    interpretation:
+      "The current slice selector is now a squared residual functional rather than only a Boolean rule. The current oblate slice and flattened-limit projection are the stable zero minimizers across the sampled equal-frequency rows; the restricted spherical endpoint and formal flat-limit forecast carry positive residual.",
+    retainedReplayBurden:
+      "A retained replay must derive a branch energy/action or causal-delay selection functional whose stationarity or minimum reproduces this slice choice on S_eq, or replace the current proxy functional with retained dynamics.",
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyFieldSpeedHingeSliceSelectionFunctionalRow({
+  row,
+  sliceIds,
+}) {
+  const slices = Object.fromEntries(
+    sliceIds.map((sliceId) => {
+      const sourceSlice = row.slices?.[sliceId] ?? {};
+      const functionalTerms =
+        createEqualFrequencyFieldSpeedHingeSliceSelectionFunctionalTerms(
+          sourceSlice
+        );
+      return [
+        sliceId,
+        {
+          sliceId,
+          label: sourceSlice.label ?? null,
+          chart: sourceSlice.chart ?? null,
+          populated: sourceSlice.populated === true,
+          functionalTerms,
+          functionalTotal: functionalTerms.functionalTotal,
+          zeroFunctionalPass:
+            Number.isFinite(functionalTerms.functionalTotal) &&
+            Math.abs(functionalTerms.functionalTotal) <= ROOT_TOLERANCE,
+          retainedSelectionFunctionalAccepted: false,
+        },
+      ];
+    })
+  );
+  const minFunctionalTotal = minFinite(
+    Object.values(slices).map((slice) => slice.functionalTotal)
+  );
+  const minimizerSliceIds =
+    Number.isFinite(minFunctionalTotal)
+      ? Object.values(slices)
+          .filter(
+            (slice) =>
+              Number.isFinite(slice.functionalTotal) &&
+              Math.abs(slice.functionalTotal - minFunctionalTotal) <=
+                ROOT_TOLERANCE
+          )
+          .map((slice) => slice.sliceId)
+      : [];
+  return {
+    rowId: `S_eq-field-speed-hinge-slice-selection-functional-f${row.f}`,
+    retainedRowSetId: row.retainedRowSetId ?? "S_eq",
+    sourceSelectorRowId: row.rowId,
+    caseId: row.caseId,
+    f: row.f,
+    phaseProfileId: row.phaseProfileId,
+    commonOmega: row.commonOmega,
+    minFunctionalTotal,
+    minimizerSliceIds,
+    zeroFunctionalSliceIds: Object.values(slices)
+      .filter((slice) => slice.zeroFunctionalPass === true)
+      .map((slice) => slice.sliceId),
+    slices,
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyFieldSpeedHingeSliceSelectionFunctionalTerms(
+  sourceSlice
+) {
+  const speeds = sourceSlice.speedsByRole ?? {};
+  const targetResiduals = sourceSlice.targetSpeedResidualsByRole ?? {};
+  const middleHingeResidualSquared = Number.isFinite(sourceSlice.middleResidual)
+    ? sourceSlice.middleResidual ** 2
+    : null;
+  const innerSuperFieldDeficit = Number.isFinite(speeds.inner)
+    ? Math.max(0, FIELD_SPEED + FIELD_SPEED_TOLERANCE - speeds.inner)
+    : null;
+  const outerSubFieldDeficit = Number.isFinite(speeds.outer)
+    ? Math.max(0, speeds.outer - FIELD_SPEED + FIELD_SPEED_TOLERANCE)
+    : null;
+  const innerMiddleOrderDeficit =
+    Number.isFinite(speeds.inner) && Number.isFinite(speeds.middle)
+      ? Math.max(0, speeds.middle + FIELD_SPEED_TOLERANCE - speeds.inner)
+      : null;
+  const middleOuterOrderDeficit =
+    Number.isFinite(speeds.middle) && Number.isFinite(speeds.outer)
+      ? Math.max(0, speeds.outer + FIELD_SPEED_TOLERANCE - speeds.middle)
+      : null;
+  const targetSpeedSplitResidualSquared = LAYER_ROLES.every((role) =>
+    Number.isFinite(targetResiduals[role])
+  )
+    ? sumFinite(LAYER_ROLES.map((role) => targetResiduals[role] ** 2))
+    : null;
+  const finiteTerms = [
+    middleHingeResidualSquared,
+    Number.isFinite(innerSuperFieldDeficit)
+      ? innerSuperFieldDeficit ** 2
+      : null,
+    Number.isFinite(outerSubFieldDeficit)
+      ? outerSubFieldDeficit ** 2
+      : null,
+    Number.isFinite(innerMiddleOrderDeficit)
+      ? innerMiddleOrderDeficit ** 2
+      : null,
+    Number.isFinite(middleOuterOrderDeficit)
+      ? middleOuterOrderDeficit ** 2
+      : null,
+    targetSpeedSplitResidualSquared,
+  ];
+  const functionalTotal = finiteTerms.every(Number.isFinite)
+    ? sumFinite(finiteTerms)
+    : null;
+  return {
+    middleHingeResidualSquared,
+    innerSuperFieldDeficitSquared: Number.isFinite(innerSuperFieldDeficit)
+      ? innerSuperFieldDeficit ** 2
+      : null,
+    outerSubFieldDeficitSquared: Number.isFinite(outerSubFieldDeficit)
+      ? outerSubFieldDeficit ** 2
+      : null,
+    innerMiddleOrderDeficitSquared: Number.isFinite(innerMiddleOrderDeficit)
+      ? innerMiddleOrderDeficit ** 2
+      : null,
+    middleOuterOrderDeficitSquared: Number.isFinite(middleOuterOrderDeficit)
+      ? middleOuterOrderDeficit ** 2
+      : null,
+    targetSpeedSplitResidualSquared,
+    functionalTotal,
   };
 }
 
@@ -44574,7 +44805,7 @@ function createFrequencyTripletSearchSummary(cases) {
     equalFrequencyEnergyRadiusAudit,
   });
   return {
-    schema: "aaa-tri-binary-frequency-triplet-search-summary.v32",
+    schema: "aaa-tri-binary-frequency-triplet-search-summary.v33",
     claimLevel:
       "candidate search summary over generic tri-binary rows with role-assigned I:M:O projections; not retained-branch certification",
     rawSearchLabels: GENERIC_TRI_BINARY_LABELS,
@@ -44667,7 +44898,7 @@ function createFrequencyTripletCandidateSetReview({
     }),
   ];
   return {
-    schema: "aaa-tri-binary-frequency-triplet-candidate-set-review.v28",
+    schema: "aaa-tri-binary-frequency-triplet-candidate-set-review.v29",
     claimLevel:
       "generic-row candidate-set review with role-assigned I:M:O projections; not retained branch selection",
     rawSearchLabels: GENERIC_TRI_BINARY_LABELS,
@@ -45251,6 +45482,21 @@ function createEqualFrequencyCandidateReviewRow(equalFrequencyEnergyRadiusAudit)
     fieldSpeedHingeCurrentOblatePlanarOnlySelectorPass:
       equalFrequencyEnergyRadiusAudit.fieldSpeedHingeSliceSelectorAudit
         ?.currentOblatePlanarOnlySelectorPass ?? null,
+    fieldSpeedHingeSelectionFunctionalAuditSchema:
+      equalFrequencyEnergyRadiusAudit.fieldSpeedHingeSliceSelectionFunctionalAudit
+        ?.schema ?? null,
+    fieldSpeedHingeSelectionFunctionalStatus:
+      equalFrequencyEnergyRadiusAudit.fieldSpeedHingeSliceSelectionFunctionalAudit
+        ?.status ?? null,
+    fieldSpeedHingeSelectionFunctionalMinimizerSliceIds:
+      equalFrequencyEnergyRadiusAudit.fieldSpeedHingeSliceSelectionFunctionalAudit
+        ?.selectedMinimizerSliceIds ?? null,
+    fieldSpeedHingeSelectionFunctionalZeroSliceIds:
+      equalFrequencyEnergyRadiusAudit.fieldSpeedHingeSliceSelectionFunctionalAudit
+        ?.zeroFunctionalSliceIds ?? null,
+    fieldSpeedHingeSelectionFunctionalCurrentOblatePlanarOnlyPass:
+      equalFrequencyEnergyRadiusAudit.fieldSpeedHingeSliceSelectionFunctionalAudit
+        ?.currentOblatePlanarOnlyFunctionalPass ?? null,
     actionLedgerAuditSchema:
       equalFrequencyEnergyRadiusAudit.actionLedgerAudit?.schema ?? null,
     actionLedgerStatus:
@@ -45804,6 +46050,19 @@ function printSummary(report, absoluteOutputPath) {
           `selected=${fieldSpeedHingeSliceSelectorAudit.selectedCurrentProxySliceIds.join(",")}`,
           `currentOblatePlanarOnly=${fieldSpeedHingeSliceSelectorAudit.currentOblatePlanarOnlySelectorPass}`,
           `retainedAccepted=${fieldSpeedHingeSliceSelectorAudit.retainedSliceSelectionAcceptedCount}`,
+        ].join(" ")
+      );
+    }
+    const fieldSpeedHingeSelectionFunctionalAudit =
+      equalFrequencyAudit.fieldSpeedHingeSliceSelectionFunctionalAudit ?? null;
+    if (fieldSpeedHingeSelectionFunctionalAudit) {
+      console.log(
+        [
+          "field-speed hinge selection functional:",
+          fieldSpeedHingeSelectionFunctionalAudit.status,
+          `minimizers=${fieldSpeedHingeSelectionFunctionalAudit.selectedMinimizerSliceIds.join(",")}`,
+          `zero=${fieldSpeedHingeSelectionFunctionalAudit.currentOblatePlanarOnlyFunctionalPass}`,
+          `retainedAccepted=${fieldSpeedHingeSelectionFunctionalAudit.retainedSelectionFunctionalAcceptedCount}`,
         ].join(" ")
       );
     }
