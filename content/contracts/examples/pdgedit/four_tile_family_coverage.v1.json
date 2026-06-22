@@ -216,7 +216,7 @@
       "type": "anti-noether-swarm-assembly",
       "x": 2,
       "y": 5,
-      "title": "Anti Noether Swarm Row 6",
+      "title": "Anti Noether Braid Row 6",
       "role": "intermediate",
       "tiles": [
         "anti-noether-swarm",
@@ -286,7 +286,7 @@
       "type": "pro-noether-swarm-assembly",
       "x": 2,
       "y": 7,
-      "title": "Pro Noether Swarm Row 8",
+      "title": "Pro Noether Braid Row 8",
       "role": "intermediate",
       "tiles": [
         "pro-noether-swarm",

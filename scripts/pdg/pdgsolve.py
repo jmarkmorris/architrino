@@ -246,7 +246,7 @@ PDGEDIT_COMPOSITE_LABEL_OCCURRENCE_ROLE_BY_SIDE = {
 
 ASSEMBLY_DISPLAY = {
     "pro_noether_swarm_I": {
-        "title": "Pro Noether Swarm",
+        "title": "Pro Noether Braid",
         "pdgeditType": "pro-noether-swarm-assembly",
         "tiles": [
             "pro-noether-swarm",
@@ -258,7 +258,7 @@ ASSEMBLY_DISPLAY = {
         "positrinoCount": 3,
     },
     "anti_noether_swarm_I": {
-        "title": "Anti Noether Swarm",
+        "title": "Anti Noether Braid",
         "pdgeditType": "anti-noether-swarm-assembly",
         "tiles": [
             "anti-noether-swarm",
