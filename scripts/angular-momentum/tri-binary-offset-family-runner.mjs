@@ -164,7 +164,7 @@ try {
   });
 
   const report = {
-    schema: "aaa-tri-binary-frequency-candidate-solver-report.v45",
+    schema: "aaa-tri-binary-frequency-candidate-solver-report.v66",
     generatedAt: new Date().toISOString(),
     solverBacked: true,
     claimLevel: "priority-only evidence; not retained-branch certification",
@@ -275,7 +275,7 @@ function createSolverGeometryPublicContract() {
     fixedSphereOrbitClaim: false,
     nestedShellRadiusClaim: false,
     compatibility:
-      "Old report consumers that read layers[].radius, layers[].solverGeometry.circularSourceRadius, layers[].solverGeometryRadius, geometryLiftTarget, retainedLiftTarget, or currentExecutableChart as the retained model must migrate; no compatibility shim is emitted in v45 reports.",
+      "Old report consumers that read layers[].radius, layers[].solverGeometry.circularSourceRadius, layers[].solverGeometryRadius, geometryLiftTarget, retainedLiftTarget, or currentExecutableChart as the retained model must migrate; no compatibility shim is emitted in v66 reports.",
   };
 }
 
@@ -574,6 +574,7 @@ function createEqualFrequencyPhaseProfiles() {
       rationale:
         "Uses the obvious 360/3 separation under one common binary clock.",
     }),
+    ...createEqualFrequencyLeverSpeedDetunedPhaseProfiles(),
     createPhaseProfile({
       id: "aligned-0",
       label: "aligned-0",
@@ -607,6 +608,29 @@ function createEqualFrequencyPhaseProfiles() {
         "Tests the exact phase-vector balance for the target 2:1:1 root/action weights by putting the middle and outer rows opposite the doubled inner row.",
     }),
   ];
+}
+
+function createEqualFrequencyLeverSpeedDetunedPhaseProfiles() {
+  const targets = createAnalyticPhaseClosureTargets({
+    weightsByRole: { inner: 5, middle: 4, outer: 3 },
+    closureClass: "nondegenerate_triangle_phase_detuning",
+  });
+  return targets.map((target, index) =>
+    createPhaseProfile({
+      id:
+        index === 0
+          ? "lever-speed-detuned-positive"
+          : "lever-speed-detuned-negative",
+      label:
+        index === 0
+          ? "lever-speed-detuned-positive"
+          : "lever-speed-detuned-negative",
+      role: "phase control",
+      phaseTurnsByLayer: target.phaseTurns,
+      rationale:
+        "Tests the exact triangle-law phase closure for the current 5:4:3 effective-lever-arm and common-omega speed weights.",
+    })
+  );
 }
 
 function createPhaseProfile({
@@ -39801,6 +39825,18 @@ function createEqualFrequencyEnergyRadiusAudit(cases) {
     });
   const phaseDeformationBalanceAudit =
     createEqualFrequencyPhaseDeformationBalanceAudit(caseSummaries);
+  const phaseRadiusActionClosureSplitAudit =
+    createEqualFrequencyPhaseRadiusActionClosureSplitAudit({
+      priorityCaseSummaries,
+      phaseDeformationBalanceAudit,
+      phaseLatticeAudit,
+    });
+  const phaseProfileWeightLedgerDiscriminator =
+    createEqualFrequencyPhaseProfileWeightLedgerDiscriminator({
+      phaseProfileRanking,
+      phaseDeformationBalanceAudit,
+      phaseRadiusActionClosureSplitAudit,
+    });
   const returnPeriodFrequencyAudit =
     createEqualFrequencyReturnPeriodFrequencyAudit(caseSummaries);
   const planeSectorDiscriminatorAudit =
@@ -39850,6 +39886,75 @@ function createEqualFrequencyEnergyRadiusAudit(cases) {
   const phaseCurrentRetainedKernelDerivationTarget =
     wakeCouplingTransferPhaseOriginAudit?.phaseWakeKernelAnsatzAudit
       ?.phaseCurrentRetainedKernelDerivationTarget ?? null;
+  const binaryToBinaryPhaseHistoryLiftTarget =
+    createEqualFrequencyBinaryToBinaryPhaseHistoryLiftTarget({
+      priorityCaseSummaries,
+      retainedEventDomainLiftTarget,
+      retainedEventDomainSelector,
+      retainedFrequencyPhasePacket,
+      phaseCurrentRetainedKernelDerivationTarget,
+    });
+  const phaseChannelClassificationAudit =
+    createEqualFrequencyPhaseChannelClassificationAudit(
+      binaryToBinaryPhaseHistoryLiftTarget
+    );
+  const phaseCarrierTransferAlignmentAudit =
+    createEqualFrequencyPhaseCarrierTransferAlignmentAudit({
+      wakeCouplingTransferTargetAudit,
+      binaryToBinaryPhaseHistoryLiftTarget,
+      phaseChannelClassificationAudit,
+    });
+  const retainedPhaseHistoryCarrierReadinessAudit =
+    createEqualFrequencyRetainedPhaseHistoryCarrierReadinessAudit({
+      binaryToBinaryPhaseHistoryLiftTarget,
+      phaseChannelClassificationAudit,
+      phaseCarrierTransferAlignmentAudit,
+      retainedEventDomainLiftTarget,
+      retainedEventDomainSelector,
+      retainedFrequencyPhasePacket,
+      phaseCurrentRetainedKernelDerivationTarget,
+    });
+  const retainedPhaseHistoryCarrierEventDomainRowModel =
+    createEqualFrequencyRetainedPhaseHistoryCarrierEventDomainRowModel({
+      retainedPhaseHistoryCarrierReadinessAudit,
+      retainedEventDomainLiftTarget,
+      retainedEventDomainSelector,
+      binaryToBinaryPhaseHistoryLiftTarget,
+    });
+  const retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit =
+    createEqualFrequencyRetainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit({
+      retainedPhaseHistoryCarrierEventDomainRowModel,
+      retainedEventDomainLiftTarget,
+      retainedEventDomainSelector,
+    });
+  const retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit =
+    createEqualFrequencyRetainedPhaseHistoryCarrierEventIdPopulationAttemptAudit({
+      retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit,
+      retainedEventDomainLiftTarget,
+      retainedEventDomainSelector,
+    });
+  const retainedPhaseHistoryCarrierEventIdProvenanceAudit =
+    createEqualFrequencyRetainedPhaseHistoryCarrierEventIdProvenanceAudit({
+      retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit,
+      retainedRowSetScaffold,
+      retainedEventDomainSelector,
+    });
+  const retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit =
+    createEqualFrequencyRetainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit({
+      retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit,
+      retainedPhaseHistoryCarrierEventIdProvenanceAudit,
+      retainedRowSetScaffold,
+      retainedEventDomainLiftTarget,
+      retainedEventDomainSelector,
+    });
+  const retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit =
+    createEqualFrequencyRetainedPhaseHistoryCarrierEventDomainBindingAttemptAudit({
+      retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit,
+      retainedPhaseHistoryCarrierEventIdProvenanceAudit,
+      retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit,
+      retainedEventDomainLiftTarget,
+      retainedEventDomainSelector,
+    });
   const sameEventTransferLiftDependencyAudit =
     createEqualFrequencySameEventTransferLiftDependencyAudit({
       priorityCaseSummaries,
@@ -39857,18 +39962,122 @@ function createEqualFrequencyEnergyRadiusAudit(cases) {
       retainedEventDomainSelector,
       retainedFrequencyPhasePacket,
       phaseCurrentRetainedKernelDerivationTarget,
+      binaryToBinaryPhaseHistoryLiftTarget,
+      phaseChannelClassificationAudit,
+      phaseCarrierTransferAlignmentAudit,
+      retainedPhaseHistoryCarrierReadinessAudit,
+      retainedPhaseHistoryCarrierEventDomainRowModel,
+      retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit,
+      retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit,
+      retainedPhaseHistoryCarrierEventIdProvenanceAudit,
+      retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit,
+      retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit,
+    });
+  const retainedRowSetIdentityStructuralWitnessAudit =
+    createEqualFrequencyRetainedRowSetIdentityStructuralWitnessAudit({
+      priorityCaseSummaries,
+      retainedRowSetScaffold,
+      retainedFrequencyPhasePacket,
+      retainedEventDomainLiftTarget,
+      retainedEventDomainSelector,
+      binaryToBinaryPhaseHistoryLiftTarget,
+      phaseChannelClassificationAudit,
+      phaseCarrierTransferAlignmentAudit,
+      retainedPhaseHistoryCarrierReadinessAudit,
+      retainedPhaseHistoryCarrierEventDomainRowModel,
+      retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit,
+      retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit,
+      retainedPhaseHistoryCarrierEventIdProvenanceAudit,
+      retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit,
+      retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit,
+      sameEventTransferLiftDependencyAudit,
+    });
+  const retainedBinaryToBinaryPhaseHistoryAuditWithRowSet =
+    createEqualFrequencyRetainedBinaryToBinaryPhaseHistoryAudit({
+      binaryToBinaryPhaseHistoryLiftTarget,
+      phaseChannelClassificationAudit,
+      phaseCarrierTransferAlignmentAudit,
+      retainedPhaseHistoryCarrierReadinessAudit,
+      retainedPhaseHistoryCarrierEventDomainRowModel,
+      retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit,
+      retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit,
+      retainedPhaseHistoryCarrierEventIdProvenanceAudit,
+      retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit,
+      retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit,
+      retainedEventDomainSelector,
+      retainedRowSetIdentityStructuralWitnessAudit,
+    });
+  const retainedWeightLedgerSelectionTarget =
+    createEqualFrequencyRetainedWeightLedgerSelectionTarget({
+      phaseProfileWeightLedgerDiscriminator,
+      phaseRadiusActionClosureSplitAudit,
+      phaseDeformationBalanceAudit,
+      retainedRowSetScaffold,
+      retainedRowSetIdentityStructuralWitnessAudit,
+      retainedEventDomainSelector,
+      retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit,
+      energyAngularMomentumClosureAudit,
+      deformationContinuationAudit,
+      wakeCouplingTransferTargetAudit,
+      sameEventTransferLiftDependencyAudit,
+      planeSectorDiscriminatorAudit,
+    });
+  const retainedWeightLedgerSourceAcceptanceAttemptAudit =
+    createEqualFrequencyRetainedWeightLedgerSourceAcceptanceAttemptAudit({
+      retainedWeightLedgerSelectionTarget,
+    });
+  const retainedPhaseBundleHolonomyAudit =
+    createEqualFrequencyRetainedPhaseBundleHolonomyAudit({
+      retainedFrequencyPhasePacket,
+      binaryToBinaryPhaseHistoryLiftTarget,
+      phaseChannelClassificationAudit,
+      retainedPhaseHistoryCarrierReadinessAudit,
+      retainedBinaryToBinaryPhaseHistoryAudit:
+        retainedBinaryToBinaryPhaseHistoryAuditWithRowSet,
+      retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit,
+      phaseCurrentRetainedKernelDerivationTarget,
+      retainedRowSetIdentityStructuralWitnessAudit,
+      retainedEventDomainSelector,
+      planeSectorDiscriminatorAudit,
+    });
+  const phaseHolonomyUnitClockWeightSourceAudit =
+    createEqualFrequencyPhaseHolonomyUnitClockWeightSourceAudit({
+      retainedWeightLedgerSourceAcceptanceAttemptAudit,
+      retainedPhaseBundleHolonomyAudit,
+      retainedRowSetIdentityStructuralWitnessAudit,
+      retainedEventDomainSelector,
+      retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit,
+      retainedFrequencyPhasePacket,
+      planeSectorDiscriminatorAudit,
     });
   const retainedReplayAcceptanceBlueprint =
     createEqualFrequencyRetainedReplayAcceptanceBlueprint({
       priorityCaseSummaries,
       retainedRowSetScaffold,
+      retainedRowSetIdentityStructuralWitnessAudit,
       retainedEventDomainLiftTarget,
       retainedEventDomainSelector,
+      binaryToBinaryPhaseHistoryLiftTarget,
+      phaseChannelClassificationAudit,
+      phaseCarrierTransferAlignmentAudit,
+      retainedPhaseHistoryCarrierReadinessAudit,
+      retainedBinaryToBinaryPhaseHistoryAudit:
+        retainedBinaryToBinaryPhaseHistoryAuditWithRowSet,
+      retainedPhaseHistoryCarrierEventDomainRowModel,
+      retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit,
+      retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit,
+      retainedPhaseHistoryCarrierEventIdProvenanceAudit,
+      retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit,
+      retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit,
       sameEventTransferLiftDependencyAudit,
       deformationContinuationAudit,
       actionLedgerAudit,
       energyAngularMomentumClosureAudit,
       phaseDeformationBalanceAudit,
+      retainedWeightLedgerSelectionTarget,
+      retainedWeightLedgerSourceAcceptanceAttemptAudit,
+      retainedPhaseBundleHolonomyAudit,
+      phaseHolonomyUnitClockWeightSourceAudit,
       phaseCurrentRetainedKernelDerivationTarget,
       returnPeriodFrequencyAudit,
       planeSectorDiscriminatorAudit,
@@ -39876,7 +40085,7 @@ function createEqualFrequencyEnergyRadiusAudit(cases) {
       retainedFrequencyPhasePacket,
     });
   return {
-    schema: "aaa-equal-frequency-energy-radius-audit.v43",
+    schema: "aaa-equal-frequency-energy-radius-audit.v63",
     claimLevel:
       "priority-only equal-frequency energy-radius-phase audit; not retained-branch certification or hbar derivation",
     priority: "high",
@@ -39913,12 +40122,31 @@ function createEqualFrequencyEnergyRadiusAudit(cases) {
     actionLedgerAudit,
     energyAngularMomentumClosureAudit,
     phaseDeformationBalanceAudit,
+    phaseRadiusActionClosureSplitAudit,
+    phaseProfileWeightLedgerDiscriminator,
     returnPeriodFrequencyAudit,
     planeSectorDiscriminatorAudit,
     retainedRowSetScaffold,
     retainedEventDomainLiftTarget,
     retainedEventDomainSelector,
+    binaryToBinaryPhaseHistoryLiftTarget,
+    phaseChannelClassificationAudit,
+    phaseCarrierTransferAlignmentAudit,
+    retainedPhaseHistoryCarrierReadinessAudit,
+    retainedPhaseHistoryCarrierEventDomainRowModel,
+    retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit,
+    retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit,
+    retainedPhaseHistoryCarrierEventIdProvenanceAudit,
+    retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit,
+    retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit,
+    retainedBinaryToBinaryPhaseHistoryAudit:
+      retainedBinaryToBinaryPhaseHistoryAuditWithRowSet,
     sameEventTransferLiftDependencyAudit,
+    retainedRowSetIdentityStructuralWitnessAudit,
+    retainedWeightLedgerSelectionTarget,
+    retainedWeightLedgerSourceAcceptanceAttemptAudit,
+    retainedPhaseBundleHolonomyAudit,
+    phaseHolonomyUnitClockWeightSourceAudit,
     firstRetainedPacketTemplate,
     retainedFrequencyPhasePacket,
     retainedReplayAcceptanceBlueprint,
@@ -39945,6 +40173,10 @@ function createEqualFrequencyEnergyRadiusAudit(cases) {
       "phase_current_retained_kernel_derivation",
       "branch_return_period_or_locked_harmonic_frequency_certificate",
       "retained_binary_to_binary_phase_lock",
+      "retained_weight_ledger_selection",
+      "retained_weight_ledger_source_acceptance",
+      "retained_phase_bundle_holonomy",
+      "phase_holonomy_unit_clock_weight_source_acceptance",
       "phase_deformation_weight_balance",
       "plane_topology_sector_discriminator",
       "row_set_identity",
@@ -44439,6 +44671,9 @@ function createEqualFrequencyPhaseDeformationBalanceAudit(caseSummaries) {
   const priorityLeverArmPassCount = priorityRows.filter(
     (row) => row.leverArmWeightedBalance.pass === true
   ).length;
+  const prioritySpeedWeightedPassCount = priorityRows.filter(
+    (row) => row.speedWeightedBalance.pass === true
+  ).length;
   const priorityUnitInertiaActionPassCount = priorityRows.filter(
     (row) => row.unitInertiaActionWeightedBalance.pass === true
   ).length;
@@ -44450,10 +44685,11 @@ function createEqualFrequencyPhaseDeformationBalanceAudit(caseSummaries) {
   const priorityWeightedBalancesFail =
     priorityRows.length > 0 &&
     priorityLeverArmPassCount === 0 &&
+    prioritySpeedWeightedPassCount === 0 &&
     priorityUnitInertiaActionPassCount === 0 &&
     priorityRootWeightedActionPassCount === 0;
   return {
-    schema: "aaa-equal-frequency-phase-deformation-balance-audit.v2",
+    schema: "aaa-equal-frequency-phase-deformation-balance-audit.v3",
     claimLevel:
       "phase/deformation weight-balance proxy; not retained phase row-set identity or momentum closure",
     retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
@@ -44477,6 +44713,7 @@ function createEqualFrequencyPhaseDeformationBalanceAudit(caseSummaries) {
     priorityCaseCount: priorityRows.length,
     priorityPhaseOnlyPassCount,
     priorityLeverArmPassCount,
+    prioritySpeedWeightedPassCount,
     priorityUnitInertiaActionPassCount,
     priorityRootWeightedActionPassCount,
     phaseProfileSummaries,
@@ -44647,6 +44884,9 @@ function createPhaseDeformationBalanceProfileSummaries(rows) {
       leverArmMeanResidual: meanFinite(
         bucket.rows.map((row) => row.leverArmWeightedBalance.normalizedMagnitude)
       ),
+      speedWeightedMeanResidual: meanFinite(
+        bucket.rows.map((row) => row.speedWeightedBalance.normalizedMagnitude)
+      ),
       unitInertiaActionMeanResidual: meanFinite(
         bucket.rows.map(
           (row) => row.unitInertiaActionWeightedBalance.normalizedMagnitude
@@ -44660,6 +44900,9 @@ function createPhaseDeformationBalanceProfileSummaries(rows) {
       ).length,
       leverArmPassCount: bucket.rows.filter(
         (row) => row.leverArmWeightedBalance.pass === true
+      ).length,
+      speedWeightedPassCount: bucket.rows.filter(
+        (row) => row.speedWeightedBalance.pass === true
       ).length,
       unitInertiaActionPassCount: bucket.rows.filter(
         (row) => row.unitInertiaActionWeightedBalance.pass === true
@@ -44679,6 +44922,1531 @@ function createPhaseDeformationBalanceProfileSummaries(rows) {
       }
       return left.phaseProfileId.localeCompare(right.phaseProfileId);
     });
+}
+
+function createEqualFrequencyPhaseProfileWeightLedgerDiscriminator({
+  phaseProfileRanking,
+  phaseDeformationBalanceAudit,
+  phaseRadiusActionClosureSplitAudit,
+}) {
+  const ledgerSpecs = [
+    {
+      ledgerKey: "phaseOnly",
+      balanceModelKey: "phaseOnly",
+      displayName: "phase-only unit weights",
+      passCountField: "phaseOnlyPassCount",
+      meanResidualField: "phaseOnlyMeanResidual",
+    },
+    {
+      ledgerKey: "leverArm",
+      balanceModelKey: "leverArm",
+      displayName: "effective lever-arm weights",
+      passCountField: "leverArmPassCount",
+      meanResidualField: "leverArmMeanResidual",
+    },
+    {
+      ledgerKey: "commonOmegaSpeed",
+      balanceModelKey: "commonOmegaSpeed",
+      displayName: "common-omega speed weights",
+      passCountField: "speedWeightedPassCount",
+      meanResidualField: "speedWeightedMeanResidual",
+    },
+    {
+      ledgerKey: "unitInertiaAction",
+      balanceModelKey: "unitInertiaAction",
+      displayName: "unit-inertia action weights",
+      passCountField: "unitInertiaActionPassCount",
+      meanResidualField: "unitInertiaActionMeanResidual",
+    },
+    {
+      ledgerKey: "rootWeightedAction",
+      balanceModelKey: "rootWeightedAction",
+      displayName: "target 2:1:1 root/action weights",
+      passCountField: "rootWeightedActionPassCount",
+      meanResidualField: "rootWeightedActionMeanResidual",
+    },
+  ];
+  const profileRankingById = new Map(
+    (phaseProfileRanking ?? []).map((profile) => [
+      profile.phaseProfileId,
+      profile,
+    ])
+  );
+  const splitRowByKey = new Map(
+    (phaseRadiusActionClosureSplitAudit?.modelRows ?? []).map((row) => [
+      row.balanceModelKey,
+      row,
+    ])
+  );
+  const profileRows = (phaseDeformationBalanceAudit?.phaseProfileSummaries ?? [])
+    .map((summary) => {
+      const ranking = profileRankingById.get(summary.phaseProfileId) ?? null;
+      const passCountByLedger = Object.fromEntries(
+        ledgerSpecs.map((spec) => [
+          spec.ledgerKey,
+          summary[spec.passCountField] ?? null,
+        ])
+      );
+      const meanResidualByLedger = Object.fromEntries(
+        ledgerSpecs.map((spec) => [
+          spec.ledgerKey,
+          summary[spec.meanResidualField] ?? null,
+        ])
+      );
+      const closedLedgerKeys = ledgerSpecs
+        .filter(
+          (spec) =>
+            Number.isFinite(summary.caseCount) &&
+            summary.caseCount > 0 &&
+            summary[spec.passCountField] === summary.caseCount
+        )
+        .map((spec) => spec.ledgerKey);
+      return {
+        rank: ranking?.rank ?? null,
+        phaseProfileId: summary.phaseProfileId,
+        phaseProfileRole: summary.phaseProfileRole,
+        priorityPhaseProfile: summary.priorityPhaseProfile === true,
+        phaseTurnsByLayer:
+          ranking?.phaseProfile?.phaseTurnsByLayer ??
+          ranking?.phaseProfile?.phaseTurns ??
+          null,
+        caseCount: summary.caseCount,
+        passCountByLedger,
+        meanResidualByLedger,
+        closedLedgerKeys,
+        closesAnyCurrentLedger: closedLedgerKeys.length > 0,
+        closesAllCurrentLedgers: closedLedgerKeys.length === ledgerSpecs.length,
+        retainedPhaseProfileAccepted: false,
+      };
+    })
+    .sort((left, right) => {
+      const leftRank = left.rank ?? Number.POSITIVE_INFINITY;
+      const rightRank = right.rank ?? Number.POSITIVE_INFINITY;
+      if (leftRank !== rightRank) {
+        return leftRank - rightRank;
+      }
+      return left.phaseProfileId.localeCompare(right.phaseProfileId);
+    });
+  const ledgerRows = ledgerSpecs.map((spec) => {
+    const splitRow = splitRowByKey.get(spec.balanceModelKey) ?? null;
+    const currentClosingProfiles = profileRows.filter(
+      (profile) =>
+        Number.isFinite(profile.caseCount) &&
+        profile.caseCount > 0 &&
+        profile.passCountByLedger[spec.ledgerKey] === profile.caseCount
+    );
+    const bestProfile =
+      profileRows
+        .slice()
+        .sort((left, right) => {
+          const leftResidual =
+            left.meanResidualByLedger[spec.ledgerKey] ??
+            Number.POSITIVE_INFINITY;
+          const rightResidual =
+            right.meanResidualByLedger[spec.ledgerKey] ??
+            Number.POSITIVE_INFINITY;
+          if (leftResidual !== rightResidual) {
+            return leftResidual - rightResidual;
+          }
+          return left.phaseProfileId.localeCompare(right.phaseProfileId);
+        })[0] ?? null;
+    return {
+      ledgerKey: spec.ledgerKey,
+      balanceModelKey: spec.balanceModelKey,
+      displayName: spec.displayName,
+      closureClass: splitRow?.closureClass ?? null,
+      analyticTargetPhaseTurns:
+        splitRow?.analyticExactBestPhaseTurns ?? null,
+      analyticTargetResidual:
+        splitRow?.analyticExactBestNormalizedResidual ?? null,
+      currentClosingProfileIds: currentClosingProfiles.map(
+        (profile) => profile.phaseProfileId
+      ),
+      currentClosingProfileCount: currentClosingProfiles.length,
+      bestCurrentProfileId: bestProfile?.phaseProfileId ?? null,
+      bestMeanResidual:
+        bestProfile?.meanResidualByLedger?.[spec.ledgerKey] ?? null,
+      allRowsClosedByAtLeastOneProfile: currentClosingProfiles.length > 0,
+      retainedWeightLedgerSelected: false,
+      retainedBranchClaim: false,
+    };
+  });
+  const profileIdsClosingAllCurrentLedgers = profileRows
+    .filter((profile) => profile.closesAllCurrentLedgers === true)
+    .map((profile) => profile.phaseProfileId);
+  const allLedgersHaveCurrentClosingProfile = ledgerRows.every(
+    (row) => row.allRowsClosedByAtLeastOneProfile === true
+  );
+  const ledgerToProfileIdSets = ledgerRows.map((row) =>
+    row.currentClosingProfileIds.join("|")
+  );
+  const distinctClosingProfileSetCount = new Set(ledgerToProfileIdSets).size;
+  const retainedSelectionReady =
+    allLedgersHaveCurrentClosingProfile &&
+    profileIdsClosingAllCurrentLedgers.length === 0;
+  return {
+    schema:
+      "aaa-equal-frequency-phase-profile-weight-ledger-discriminator.v1",
+    claimLevel:
+      "current-proxy discriminator mapping equal-frequency phase profiles to weight ledgers; not retained phase selection",
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    currentExecutableChart: CURRENT_EXECUTABLE_GEOMETRY_CHART,
+    canonicalFamily: "I:M:O=(f,f,f)",
+    phaseDeformationBalanceAuditSchema:
+      phaseDeformationBalanceAudit?.schema ?? null,
+    phaseRadiusActionClosureSplitAuditSchema:
+      phaseRadiusActionClosureSplitAudit?.schema ?? null,
+    ledgerCount: ledgerRows.length,
+    phaseProfileCount: profileRows.length,
+    allLedgersHaveCurrentClosingProfile,
+    profileIdsClosingAllCurrentLedgers,
+    noSingleProfileClosesAllCurrentLedgers:
+      profileIdsClosingAllCurrentLedgers.length === 0,
+    distinctClosingProfileSetCount,
+    retainedSelectionReady,
+    retainedWeightLedgerSelected: false,
+    retainedPhaseProfileAccepted: false,
+    ledgerRows,
+    profileRows,
+    selectedCurrentProxyProfileIdsByLedger: Object.fromEntries(
+      ledgerRows.map((row) => [row.ledgerKey, row.currentClosingProfileIds])
+    ),
+    retainedRowsRequired: [
+      "retained_weight_ledger_W_a_selection",
+      "retained_phase_profile_or_phase_detuning_policy",
+      "retained_energy_radius_or_effective_lever_arm_rows",
+      "retained_wake_coupling_or_action_gap_rows",
+      "retained_same_event_angular_momentum_ledger",
+      "retained_plane_sector_and_phase_holonomy_rows",
+    ],
+    status:
+      retainedSelectionReady === true
+        ? "phase_profile_weight_ledger_discriminator_populated_ledger_split_retained_selection_missing"
+        : allLedgersHaveCurrentClosingProfile === true
+          ? "phase_profile_weight_ledger_discriminator_populated_single_profile_candidate_present"
+          : profileRows.length > 0
+            ? "phase_profile_weight_ledger_discriminator_populated_some_ledgers_without_closing_profile"
+            : "phase_profile_weight_ledger_discriminator_no_phase_profiles",
+    interpretation:
+      "The sampled equal-frequency phase profiles do not form one universal phase answer. Triadic 120 closes the phase-only clock ledger, the detuned pair closes the 5:4:3 lever/speed ledgers, and middle/outer opposition closes the action-weight ledgers. A retained replay must derive which W_a ledger is physical on S_eq before accepting a phase profile.",
+    retainedReplayBurden:
+      "Select or derive W_a on the same retained event/domain as the phase offsets, branch energy/radius rows, wake/coupling transfer rows, and one-unit angular-momentum ledger.",
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyRetainedWeightLedgerSelectionTarget({
+  phaseProfileWeightLedgerDiscriminator,
+  phaseRadiusActionClosureSplitAudit,
+  phaseDeformationBalanceAudit,
+  retainedRowSetScaffold,
+  retainedRowSetIdentityStructuralWitnessAudit,
+  retainedEventDomainSelector,
+  retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit,
+  energyAngularMomentumClosureAudit,
+  deformationContinuationAudit,
+  wakeCouplingTransferTargetAudit,
+  sameEventTransferLiftDependencyAudit,
+  planeSectorDiscriminatorAudit,
+}) {
+  const selectedProfilesByLedger =
+    phaseProfileWeightLedgerDiscriminator?.selectedCurrentProxyProfileIdsByLedger ??
+    {};
+  const ledgerRowsByKey = new Map(
+    (phaseProfileWeightLedgerDiscriminator?.ledgerRows ?? []).map((row) => [
+      row.ledgerKey,
+      row,
+    ])
+  );
+  const sourceRows = [
+    {
+      sourceId: "phase_holonomy_unit_clock_weight",
+      ledgerKey: "phaseOnly",
+      selectedCurrentProfileIds: selectedProfilesByLedger.phaseOnly ?? [],
+      closureClass: ledgerRowsByKey.get("phaseOnly")?.closureClass ?? null,
+      currentEvidencePopulated:
+        ledgerRowsByKey.get("phaseOnly")?.allRowsClosedByAtLeastOneProfile ===
+          true &&
+        phaseDeformationBalanceAudit?.priorityPhaseOnlyPassCount > 0,
+      retainedSourceAccepted:
+        planeSectorDiscriminatorAudit?.retainedPlaneSectorCertificatePassCount >
+        0,
+      candidateWeightFormula:
+        "W_a = 1 after retained phase-bundle holonomy and plane-sector rows make the unit clock the physical ledger",
+      requiredRetainedInputs: [
+        "retained_phase_bundle_holonomy_Theta",
+        "retained_plane_normals_or_angular_momentum_bivectors_N_a",
+        "retained_plane_sector_disposition",
+        "same_retained_row_set_identity",
+        "same_retained_event_or_positive_width_domain",
+      ],
+    },
+    {
+      sourceId: "effective_lever_arm_branch_weight",
+      ledgerKey: "leverArm",
+      selectedCurrentProfileIds: selectedProfilesByLedger.leverArm ?? [],
+      closureClass: ledgerRowsByKey.get("leverArm")?.closureClass ?? null,
+      currentEvidencePopulated:
+        ledgerRowsByKey.get("leverArm")?.allRowsClosedByAtLeastOneProfile ===
+          true &&
+        phaseRadiusActionClosureSplitAudit?.leverArmAnalyticDetunedClosurePass ===
+          true &&
+        deformationContinuationAudit?.planarProjectionAgreementPassCount > 0,
+      retainedSourceAccepted: false,
+      candidateWeightFormula:
+        "W_a = rho_a(B_3B) after retained branch dynamics derives the effective-lever-arm projection law",
+      requiredRetainedInputs: [
+        "retained_energy_radius_effective_lever_arm_law",
+        "velocity_deformation_branch_continuation_map",
+        "retained_effective_lever_arm_projection_rows_rho_a",
+        "partial_rho_E_branch_rows",
+        "same_retained_row_set_identity",
+        "same_retained_event_or_positive_width_domain",
+      ],
+    },
+    {
+      sourceId: "common_omega_speed_weight",
+      ledgerKey: "commonOmegaSpeed",
+      selectedCurrentProfileIds:
+        selectedProfilesByLedger.commonOmegaSpeed ?? [],
+      closureClass:
+        ledgerRowsByKey.get("commonOmegaSpeed")?.closureClass ?? null,
+      currentEvidencePopulated:
+        ledgerRowsByKey.get("commonOmegaSpeed")
+          ?.allRowsClosedByAtLeastOneProfile === true &&
+        phaseRadiusActionClosureSplitAudit
+          ?.commonOmegaSpeedAnalyticDetunedClosurePass === true &&
+        deformationContinuationAudit?.planarProjectionAgreementPassCount > 0,
+      retainedSourceAccepted: false,
+      candidateWeightFormula:
+        "W_a = rho_a omega_f after retained return-period or locked-harmonic rows certify common omega_f on the same branch",
+      requiredRetainedInputs: [
+        "branch_history_return_periods_or_locked_harmonics",
+        "retained_effective_lever_arm_projection_rows_rho_a",
+        "retained_speed_rows_s_a",
+        "same_retained_row_set_identity",
+        "same_retained_event_or_positive_width_domain",
+      ],
+    },
+    {
+      sourceId: "unit_inertia_action_weight",
+      ledgerKey: "unitInertiaAction",
+      selectedCurrentProfileIds:
+        selectedProfilesByLedger.unitInertiaAction ?? [],
+      closureClass:
+        ledgerRowsByKey.get("unitInertiaAction")?.closureClass ?? null,
+      currentEvidencePopulated:
+        ledgerRowsByKey.get("unitInertiaAction")
+          ?.allRowsClosedByAtLeastOneProfile === true &&
+        phaseRadiusActionClosureSplitAudit
+          ?.unitInertiaActionDegenerateOppositionPass === true,
+      retainedSourceAccepted: false,
+      candidateWeightFormula:
+        "W_a = mu_a rho_a^2 omega_f with mu_a=1 only if retained inertia rows derive unit inertia on S_eq",
+      requiredRetainedInputs: [
+        "retained_effective_inertia_rows_mu_a",
+        "retained_action_partition_rows",
+        "same_event_angular_momentum_residual_r_J",
+        "same_retained_row_set_identity",
+        "same_retained_event_or_positive_width_domain",
+      ],
+    },
+    {
+      sourceId: "target_root_action_weight",
+      ledgerKey: "rootWeightedAction",
+      selectedCurrentProfileIds:
+        selectedProfilesByLedger.rootWeightedAction ?? [],
+      closureClass:
+        ledgerRowsByKey.get("rootWeightedAction")?.closureClass ?? null,
+      currentEvidencePopulated:
+        ledgerRowsByKey.get("rootWeightedAction")
+          ?.allRowsClosedByAtLeastOneProfile === true &&
+        phaseRadiusActionClosureSplitAudit
+          ?.rootWeightedActionDegenerateOppositionPass === true &&
+        energyAngularMomentumClosureAudit?.targetEffectiveInertiaClosurePassCount >
+          0,
+      retainedSourceAccepted: false,
+      candidateWeightFormula:
+        "W_a = (2,1,1) in I:M:O order only after retained root multiplicity, effective inertia, or hbar-unit rows derive that burden",
+      requiredRetainedInputs: [
+        "retained_root_multiplicity_or_action_burden_rows",
+        "derived_effective_inertia_mu_a",
+        "accepted_sigma_hbar_or_hbar_unit_scale_law",
+        "same_event_one_unit_angular_momentum_ledger",
+        "same_retained_row_set_identity",
+        "same_retained_event_or_positive_width_domain",
+      ],
+    },
+    {
+      sourceId: "wake_coupling_reconciliation_weight",
+      ledgerKey: "wakeCouplingReconciliation",
+      selectedCurrentProfileIds: [],
+      closureClass: "reconcile_split_ledgers_through_same_event_transfer",
+      currentEvidencePopulated:
+        wakeCouplingTransferTargetAudit?.middleToOuterOnlyPass === true &&
+        wakeCouplingTransferTargetAudit?.selectedTransferStableAcrossRows ===
+          true &&
+        sameEventTransferLiftDependencyAudit?.currentProxyDependencyRowCount >
+          0,
+      retainedSourceAccepted:
+        sameEventTransferLiftDependencyAudit?.acceptedDependencyRowCount > 0,
+      candidateWeightFormula:
+        "W_a is selected only after retained wake/coupling transfer rows reconcile the clock, speed, and action ledgers on one event/domain",
+      requiredRetainedInputs: [
+        "retained_wake_coupling_transfer_law",
+        "retained_middle_to_outer_phase_history_carrier_rows",
+        "accepted_same_event_transfer_ledger",
+        "same_event_energy_momentum_angular_momentum_rows",
+        "same_retained_row_set_identity",
+        "same_retained_event_or_positive_width_domain",
+      ],
+    },
+  ];
+  const currentEvidenceSourceCount = sourceRows.filter(
+    (row) => row.currentEvidencePopulated === true
+  ).length;
+  const retainedAcceptedSourceCount = sourceRows.filter(
+    (row) => row.retainedSourceAccepted === true
+  ).length;
+  const sameRetainedRowSetReady =
+    retainedRowSetIdentityStructuralWitnessAudit?.retainedRowSetIdentityPass ===
+      true ||
+    retainedRowSetScaffold?.retainedRowSetIdentityPass === true;
+  const sameEventDomainReady =
+    retainedEventDomainSelector?.retainedSelectorAcceptancePass === true ||
+    retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
+      ?.retainedEventDomainBindingAttemptPass === true;
+  const firstRequiredRetainedInputs = [
+    ...new Set(
+      sourceRows
+        .filter((row) => row.retainedSourceAccepted !== true)
+        .flatMap((row) => row.requiredRetainedInputs)
+    ),
+  ];
+  const currentProxyTargetPass =
+    phaseProfileWeightLedgerDiscriminator?.retainedSelectionReady === true &&
+    currentEvidenceSourceCount > 0;
+  const retainedSelectionAccepted =
+    sameRetainedRowSetReady === true &&
+    sameEventDomainReady === true &&
+    retainedAcceptedSourceCount === 1;
+  return {
+    schema:
+      "aaa-equal-frequency-retained-weight-ledger-selection-target.v1",
+    claimLevel:
+      "retained weight-ledger selection target; current source candidates only",
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    canonicalFamily: "I:M:O=(f,f,f)",
+    selectedRetainedRowSetId: "S_eq",
+    selectionEquation:
+      "R_W(phi;B_3B)=sum_a W_a(B_3B) exp(i phi_a)=0",
+    sourceCandidateCount: sourceRows.length,
+    currentEvidenceSourceCount,
+    retainedAcceptedSourceCount,
+    sameRetainedRowSetReady,
+    sameEventDomainReady,
+    currentProxyTargetPass,
+    retainedWeightLedgerSelected: retainedSelectionAccepted,
+    retainedSelectionAccepted,
+    selectedCurrentProxyProfileIdsByLedger: selectedProfilesByLedger,
+    sourceRows,
+    firstRequiredRetainedInputs,
+    status:
+      retainedSelectionAccepted === true
+        ? "retained_weight_ledger_selection_accepted"
+        : currentProxyTargetPass === true
+          ? "retained_weight_ledger_selection_target_populated_sources_unaccepted"
+          : sourceRows.length > 0
+            ? "retained_weight_ledger_selection_target_sources_incomplete"
+            : "retained_weight_ledger_selection_target_missing",
+    interpretation:
+      "The next retained decision is a source-law selection for W_a, not another phase-profile ranking. The current rows offer unit-clock, lever-arm, speed, unit-inertia action, target root/action, and wake/coupling reconciliation sources, but none is accepted on one retained S_eq row set and event/domain.",
+    retainedReplayBurden:
+      "Derive exactly one physical W_a source, or a declared reconciliation law, on the same retained row set and accepted event/domain as phi_a, rho_a, E_branch, wake/coupling transfer, and the one-unit angular-momentum ledger.",
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyRetainedWeightLedgerSourceAcceptanceAttemptAudit({
+  retainedWeightLedgerSelectionTarget,
+}) {
+  const sameRetainedRowSetReady =
+    retainedWeightLedgerSelectionTarget?.sameRetainedRowSetReady === true;
+  const sameEventDomainReady =
+    retainedWeightLedgerSelectionTarget?.sameEventDomainReady === true;
+  const sourceAttemptRows = (
+    retainedWeightLedgerSelectionTarget?.sourceRows ?? []
+  ).map((sourceRow) => {
+    const requiredRetainedInputs = [
+      ...new Set(sourceRow.requiredRetainedInputs ?? []),
+    ];
+    const missingRetainedInputs = requiredRetainedInputs.filter((inputId) => {
+      if (
+        inputId === "same_retained_row_set_identity" &&
+        sameRetainedRowSetReady === true
+      ) {
+        return false;
+      }
+      if (
+        inputId === "same_retained_event_or_positive_width_domain" &&
+        sameEventDomainReady === true
+      ) {
+        return false;
+      }
+      return sourceRow.retainedSourceAccepted !== true;
+    });
+    const retainedSourceAccepted =
+      sourceRow.retainedSourceAccepted === true &&
+      sameRetainedRowSetReady === true &&
+      sameEventDomainReady === true &&
+      missingRetainedInputs.length === 0;
+    const currentEvidencePopulated =
+      sourceRow.currentEvidencePopulated === true;
+    return {
+      rowId: `S_eq-retained-weight-ledger-source-${sourceRow.sourceId}`,
+      sourceId: sourceRow.sourceId,
+      ledgerKey: sourceRow.ledgerKey,
+      selectedCurrentProfileIds: sourceRow.selectedCurrentProfileIds ?? [],
+      closureClass: sourceRow.closureClass ?? null,
+      candidateWeightFormula: sourceRow.candidateWeightFormula ?? null,
+      currentEvidencePopulated,
+      sameRetainedRowSetReady,
+      sameEventDomainReady,
+      requiredRetainedInputs,
+      missingRetainedInputs,
+      retainedInputCount: requiredRetainedInputs.length,
+      acceptedRetainedInputCount:
+        requiredRetainedInputs.length - missingRetainedInputs.length,
+      retainedSourceAccepted,
+      status:
+        retainedSourceAccepted === true
+          ? "retained_weight_ledger_source_accepted"
+          : currentEvidencePopulated === true &&
+              missingRetainedInputs.length === requiredRetainedInputs.length
+            ? "retained_weight_ledger_source_attempt_current_proxy_all_retained_inputs_missing"
+            : currentEvidencePopulated === true
+              ? "retained_weight_ledger_source_attempt_current_proxy_retained_inputs_incomplete"
+              : "retained_weight_ledger_source_attempt_current_proxy_missing",
+    };
+  });
+  const currentProxySourceAttemptCount = sourceAttemptRows.filter(
+    (row) => row.currentEvidencePopulated === true
+  ).length;
+  const acceptedSourceAttemptCount = sourceAttemptRows.filter(
+    (row) => row.retainedSourceAccepted === true
+  ).length;
+  const firstBlockingAttempt =
+    sourceAttemptRows.find((row) => row.retainedSourceAccepted !== true) ??
+    null;
+  return {
+    schema:
+      "aaa-equal-frequency-retained-weight-ledger-source-acceptance-attempt-audit.v1",
+    claimLevel:
+      "retained W_a source acceptance-attempt audit; current source rows only",
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    canonicalFamily: "I:M:O=(f,f,f)",
+    selectedRetainedRowSetId:
+      retainedWeightLedgerSelectionTarget?.selectedRetainedRowSetId ?? "S_eq",
+    retainedWeightLedgerSelectionTargetSchema:
+      retainedWeightLedgerSelectionTarget?.schema ?? null,
+    retainedWeightLedgerSelectionTargetStatus:
+      retainedWeightLedgerSelectionTarget?.status ?? null,
+    sameRetainedRowSetReady,
+    sameEventDomainReady,
+    sourceAttemptRowCount: sourceAttemptRows.length,
+    currentProxySourceAttemptCount,
+    acceptedSourceAttemptCount,
+    retainedSourceAcceptancePass: acceptedSourceAttemptCount === 1,
+    firstAttemptSourceId: firstBlockingAttempt?.sourceId ?? null,
+    firstAttemptMissingRetainedInputs:
+      firstBlockingAttempt?.missingRetainedInputs ?? [],
+    sourceAttemptRows,
+    status:
+      acceptedSourceAttemptCount === 1
+        ? "retained_weight_ledger_source_acceptance_attempt_accepted"
+        : currentProxySourceAttemptCount > 0 &&
+            sourceAttemptRows.every(
+              (row) =>
+                row.currentEvidencePopulated !== true ||
+                row.missingRetainedInputs.length === row.retainedInputCount
+            )
+          ? "retained_weight_ledger_source_acceptance_attempts_current_proxy_all_retained_inputs_missing"
+          : currentProxySourceAttemptCount > 0
+            ? "retained_weight_ledger_source_acceptance_attempts_current_proxy_retained_inputs_incomplete"
+            : sourceAttemptRows.length > 0
+              ? "retained_weight_ledger_source_acceptance_attempts_current_proxy_missing"
+              : "retained_weight_ledger_source_acceptance_attempts_missing",
+    interpretation:
+      "Each current W_a source candidate is expanded into an attempted retained-source row on S_eq. The audit asks which source law, if any, has the retained row-set identity and retained event/domain needed to become the physical phase-deformation weight.",
+    retainedReplayBurden:
+      "Accept exactly one retained W_a source row, or declare a reconciliation law, after the same retained row set and same retained point event or positive-width retained domain are accepted.",
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyRetainedPhaseBundleHolonomyAudit({
+  retainedFrequencyPhasePacket,
+  binaryToBinaryPhaseHistoryLiftTarget,
+  phaseChannelClassificationAudit,
+  retainedPhaseHistoryCarrierReadinessAudit,
+  retainedBinaryToBinaryPhaseHistoryAudit,
+  retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit,
+  phaseCurrentRetainedKernelDerivationTarget,
+  retainedRowSetIdentityStructuralWitnessAudit,
+  retainedEventDomainSelector,
+  planeSectorDiscriminatorAudit,
+}) {
+  const packetRowCount = retainedFrequencyPhasePacket?.rowCount ?? null;
+  const priorityCaseCount =
+    planeSectorDiscriminatorAudit?.priorityCaseCount ?? packetRowCount;
+  const phaseReturnReadinessRow =
+    phaseCurrentRetainedKernelDerivationTarget?.sourceReadinessAudit?.rows?.find(
+      (row) => row.rowId === "retained_phase_return_degree_row"
+    ) ?? null;
+  const currentSpacingProxyPass = isFullPositiveCount(
+    retainedFrequencyPhasePacket?.phaseBundleCurrentProxyPassCount,
+    packetRowCount
+  );
+  const retainedSpacingAcceptedCount = (
+    retainedFrequencyPhasePacket?.rows ?? []
+  ).filter(
+    (row) =>
+      row.phaseBundleCertificate?.retainedPhaseBundleHolonomyPass === true
+  ).length;
+  const currentHistoryProxyPass =
+    retainedBinaryToBinaryPhaseHistoryAudit?.currentProxyPass === true ||
+    (isFullPositiveCount(
+      binaryToBinaryPhaseHistoryLiftTarget?.currentSeedRowCount,
+      binaryToBinaryPhaseHistoryLiftTarget?.rowCount
+    ) &&
+      phaseChannelClassificationAudit?.middleToOuterCarrierCurrentSeedPass ===
+        true &&
+      retainedPhaseHistoryCarrierReadinessAudit?.currentReadinessPass === true);
+  const retainedHistoryAccepted =
+    retainedBinaryToBinaryPhaseHistoryAudit
+      ?.retainedBinaryToBinaryPhaseHistoryAccepted === true ||
+    (binaryToBinaryPhaseHistoryLiftTarget?.retainedPhaseHistoryLiftPass ===
+      true &&
+      retainedPhaseHistoryCarrierReadinessAudit
+        ?.retainedPhaseHistoryCarrierReadinessPass === true);
+  const currentReturnProxyPass =
+    phaseReturnReadinessRow?.currentProxyPass === true;
+  const retainedReturnAccepted =
+    phaseReturnReadinessRow?.retainedAcceptancePass === true;
+  const currentPlaneSectorProxyPass =
+    isFullPositiveCount(
+      planeSectorDiscriminatorAudit?.priorityCoplanarSectorPassCount,
+      priorityCaseCount
+    ) &&
+    isFullPositiveCount(
+      planeSectorDiscriminatorAudit?.priorityPlanarZ3PassCount,
+      priorityCaseCount
+    );
+  const retainedPlaneSectorPass = isFullPositiveCount(
+    planeSectorDiscriminatorAudit?.retainedPlaneSectorCertificatePassCount,
+    priorityCaseCount
+  );
+  const currentRowSetProxyPass =
+    retainedRowSetIdentityStructuralWitnessAudit?.currentStructuralWitnessPass ===
+    true;
+  const retainedRowSetPass =
+    retainedRowSetIdentityStructuralWitnessAudit?.retainedRowSetIdentityPass ===
+    true;
+  const currentEventDomainProxyPass =
+    retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
+      ?.currentBindingCandidateRowCount > 0 ||
+    retainedEventDomainSelector?.currentProxyRouteCount > 0;
+  const retainedEventDomainPass =
+    retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
+      ?.retainedEventDomainBindingAttemptPass === true ||
+    retainedEventDomainSelector?.retainedSelectorAcceptancePass === true;
+  const residualRows = [
+    {
+      residualId: "r_spacing",
+      label: "triadic 120 phase-spacing residual",
+      expression:
+        "theta_edges=(Delta phi_IM-1/3,Delta phi_MO-1/3,Delta phi_OI-1/3)=0 in the current chart",
+      currentProxyPass: currentSpacingProxyPass,
+      retainedAcceptancePass: isFullPositiveCount(
+        retainedSpacingAcceptedCount,
+        packetRowCount
+      ),
+      currentEvidenceCount:
+        retainedFrequencyPhasePacket?.phaseBundleCurrentProxyPassCount ?? null,
+      expectedEvidenceCount: packetRowCount,
+      acceptedEvidenceCount: retainedSpacingAcceptedCount,
+      sourceSchema: retainedFrequencyPhasePacket?.schema ?? null,
+      missingRetainedInputs: ["retained_holonomy_Theta"],
+    },
+    {
+      residualId: "r_history",
+      label: "binary-to-binary retained phase-history carrier",
+      expression:
+        "phase-history rows carry the I->M, M->O, and O->I phase channels on S_eq",
+      currentProxyPass: currentHistoryProxyPass,
+      retainedAcceptancePass: retainedHistoryAccepted,
+      currentEvidenceCount:
+        retainedBinaryToBinaryPhaseHistoryAudit?.currentEvidenceResidualCount ??
+        retainedPhaseHistoryCarrierReadinessAudit?.currentReadinessRowCount ??
+        binaryToBinaryPhaseHistoryLiftTarget?.currentSeedRowCount ??
+        null,
+      expectedEvidenceCount:
+        retainedBinaryToBinaryPhaseHistoryAudit?.residualCount ??
+        retainedPhaseHistoryCarrierReadinessAudit?.rowCount ??
+        binaryToBinaryPhaseHistoryLiftTarget?.rowCount ??
+        null,
+      acceptedEvidenceCount:
+        retainedBinaryToBinaryPhaseHistoryAudit?.acceptedResidualCount ??
+        retainedPhaseHistoryCarrierReadinessAudit?.retainedAcceptedRowCount ??
+        binaryToBinaryPhaseHistoryLiftTarget?.acceptedRowCount ??
+        null,
+      sourceSchema:
+        retainedBinaryToBinaryPhaseHistoryAudit?.schema ??
+        retainedPhaseHistoryCarrierReadinessAudit?.schema ??
+        binaryToBinaryPhaseHistoryLiftTarget?.schema ??
+        null,
+      missingRetainedInputs:
+        retainedBinaryToBinaryPhaseHistoryAudit?.firstMissingRetainedInputs ?? [
+          "binary_to_binary_retained_phase_rows",
+          "retained_phase_history_carrier_source_receiver_rows",
+        ],
+    },
+    {
+      residualId: "r_return",
+      label: "phase-return degree or holonomy source row",
+      expression:
+        "phase_return_degree_or_holonomy(z_M,z_O;S_eq) matches the declared triadic phase row",
+      currentProxyPass: currentReturnProxyPass,
+      retainedAcceptancePass: retainedReturnAccepted,
+      currentEvidenceCount: currentReturnProxyPass === true ? 1 : 0,
+      expectedEvidenceCount: 1,
+      acceptedEvidenceCount: retainedReturnAccepted === true ? 1 : 0,
+      sourceSchema:
+        phaseCurrentRetainedKernelDerivationTarget?.sourceReadinessAuditSchema ??
+        phaseCurrentRetainedKernelDerivationTarget?.schema ??
+        null,
+      missingRetainedInputs:
+        phaseReturnReadinessRow?.requiredRetainedInputs ?? [
+          "phase_return_degree_or_holonomy_m_n",
+          "retained_phase_rows_phi_a",
+          "same_row_set_S_eq_binding",
+        ],
+    },
+    {
+      residualId: "r_plane",
+      label: "retained plane-sector support",
+      expression:
+        "retained N_a or angular-momentum bivectors support the phase-bundle sector disposition",
+      currentProxyPass: currentPlaneSectorProxyPass,
+      retainedAcceptancePass: retainedPlaneSectorPass,
+      currentEvidenceCount:
+        planeSectorDiscriminatorAudit?.priorityPlanarZ3PassCount ?? null,
+      expectedEvidenceCount: priorityCaseCount,
+      acceptedEvidenceCount:
+        planeSectorDiscriminatorAudit?.retainedPlaneSectorCertificatePassCount ??
+        null,
+      sourceSchema: planeSectorDiscriminatorAudit?.schema ?? null,
+      missingRetainedInputs: [
+        "retained_plane_normals_or_angular_momentum_bivectors_N_a",
+        "retained_plane_sector_disposition",
+      ],
+    },
+    {
+      residualId: "r_rows",
+      label: "same retained row-set identity",
+      expression:
+        "the holonomy row is evaluated on the same S_eq record as the frequency, plane, wake, and angular-momentum rows",
+      currentProxyPass: currentRowSetProxyPass,
+      retainedAcceptancePass: retainedRowSetPass,
+      currentEvidenceCount:
+        retainedRowSetIdentityStructuralWitnessAudit
+          ?.currentStructuralWitnessPopulatedCount ?? null,
+      expectedEvidenceCount:
+        retainedRowSetIdentityStructuralWitnessAudit?.sourceCount ?? null,
+      acceptedEvidenceCount:
+        retainedRowSetIdentityStructuralWitnessAudit
+          ?.acceptedRetainedIdentityRequirementCount ?? null,
+      sourceSchema: retainedRowSetIdentityStructuralWitnessAudit?.schema ?? null,
+      missingRetainedInputs: ["same_retained_row_set_identity"],
+    },
+    {
+      residualId: "r_evt",
+      label: "same retained event or positive-width domain",
+      expression:
+        "the retained phase-bundle holonomy is evaluated on the selected point event or positive-width retained domain",
+      currentProxyPass: currentEventDomainProxyPass,
+      retainedAcceptancePass: retainedEventDomainPass,
+      currentEvidenceCount:
+        retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
+          ?.currentBindingCandidateRowCount ??
+        retainedEventDomainSelector?.currentProxyRouteCount ??
+        null,
+      expectedEvidenceCount:
+        retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit?.rowCount ??
+        null,
+      acceptedEvidenceCount:
+        retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
+          ?.retainedAcceptedBindingCount ??
+        retainedEventDomainSelector?.acceptedRouteCount ??
+        null,
+      sourceSchema:
+        retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit?.schema ??
+        retainedEventDomainSelector?.schema ??
+        null,
+      missingRetainedInputs: [
+        "same_retained_event_or_positive_width_domain",
+      ],
+    },
+  ];
+  const currentEvidenceResidualCount = residualRows.filter(
+    (row) => row.currentProxyPass === true
+  ).length;
+  const acceptedResidualCount = residualRows.filter(
+    (row) => row.retainedAcceptancePass === true
+  ).length;
+  const firstBlockingResidual =
+    residualRows.find(
+      (row) =>
+        row.retainedAcceptancePass !== true &&
+        !(row.residualId === "r_spacing" && row.currentProxyPass === true)
+    ) ??
+    residualRows.find((row) => row.retainedAcceptancePass !== true) ??
+    null;
+  const firstMissingRetainedInputs = [
+    ...new Set(
+      residualRows
+        .filter((row) => row.retainedAcceptancePass !== true)
+        .flatMap((row) => row.missingRetainedInputs)
+    ),
+  ];
+  const currentProxyPass =
+    residualRows.length > 0 &&
+    currentEvidenceResidualCount === residualRows.length;
+  const retainedPhaseBundleHolonomyAccepted =
+    residualRows.length > 0 && acceptedResidualCount === residualRows.length;
+  return {
+    schema: "aaa-equal-frequency-retained-phase-bundle-holonomy-audit.v1",
+    claimLevel:
+      "retained phase-bundle holonomy residual audit; current proxy only",
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    canonicalFamily: "I:M:O=(f,f,f)",
+    retainedRowSetId:
+      retainedFrequencyPhasePacket?.retainedRowSetId ??
+      retainedRowSetIdentityStructuralWitnessAudit?.retainedRowSetId ??
+      "S_eq",
+    residualVector:
+      "R_Theta=(r_spacing,r_history,r_return,r_plane,r_rows,r_evt)",
+    phaseBundleEquation:
+      "Theta=0 only after the triadic phase spacing, retained binary-to-binary phase history, retained return-degree or holonomy row, plane-sector support, row-set identity, and event/domain binding all refer to the same retained S_eq branch record",
+    phaseReturnReadinessRowId: phaseReturnReadinessRow?.rowId ?? null,
+    residualRows,
+    residualCount: residualRows.length,
+    currentEvidenceResidualCount,
+    acceptedResidualCount,
+    currentProxyPass,
+    retainedPhaseBundleHolonomyAccepted,
+    firstBlockingResidualId: firstBlockingResidual?.residualId ?? null,
+    firstMissingRetainedInputs,
+    status:
+      retainedPhaseBundleHolonomyAccepted === true
+        ? "retained_phase_bundle_holonomy_accepted"
+        : currentProxyPass === true
+          ? "retained_phase_bundle_holonomy_current_proxy_populated_retained_rows_missing"
+          : currentEvidenceResidualCount > 0
+            ? "retained_phase_bundle_holonomy_partial_current_proxy"
+            : "retained_phase_bundle_holonomy_missing",
+    interpretation:
+      "The current 120-degree phase spacing is only the first component of Theta. Retained holonomy requires the same phase offsets to be carried by retained binary-to-binary history rows, a retained phase-return degree or holonomy source, retained plane-sector support, S_eq row-set identity, and an accepted event or positive-width domain.",
+    retainedReplayBurden:
+      "Promote or reject the triadic phase-bundle holonomy by accepting every component of R_Theta on the same retained branch record.",
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyPhaseHolonomyUnitClockWeightSourceAudit({
+  retainedWeightLedgerSourceAcceptanceAttemptAudit,
+  retainedPhaseBundleHolonomyAudit,
+  retainedRowSetIdentityStructuralWitnessAudit,
+  retainedEventDomainSelector,
+  retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit,
+  retainedFrequencyPhasePacket,
+  planeSectorDiscriminatorAudit,
+}) {
+  const sourceAttemptRow =
+    retainedWeightLedgerSourceAcceptanceAttemptAudit?.sourceAttemptRows?.find(
+      (row) => row.sourceId === "phase_holonomy_unit_clock_weight"
+    ) ?? null;
+  const priorityCaseCount = planeSectorDiscriminatorAudit?.priorityCaseCount ?? null;
+  const currentPlaneSectorProxyPass =
+    isFullPositiveCount(
+      planeSectorDiscriminatorAudit?.priorityCoplanarSectorPassCount,
+      priorityCaseCount
+    ) &&
+    isFullPositiveCount(
+      planeSectorDiscriminatorAudit?.priorityPlanarZ3PassCount,
+      priorityCaseCount
+    );
+  const retainedPlaneSectorPass = isFullPositiveCount(
+    planeSectorDiscriminatorAudit?.retainedPlaneSectorCertificatePassCount,
+    priorityCaseCount
+  );
+  const currentRowSetProxyPass =
+    retainedRowSetIdentityStructuralWitnessAudit?.currentStructuralWitnessPass ===
+    true;
+  const retainedRowSetPass =
+    retainedRowSetIdentityStructuralWitnessAudit?.retainedRowSetIdentityPass ===
+    true;
+  const currentEventDomainProxyPass =
+    retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
+      ?.currentBindingCandidateRowCount > 0 ||
+    retainedEventDomainSelector?.currentProxyRouteCount > 0;
+  const retainedEventDomainPass =
+    retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
+      ?.retainedEventDomainBindingAttemptPass === true ||
+    retainedEventDomainSelector?.retainedSelectorAcceptancePass === true;
+  const residualRows = [
+    {
+      residualId: "r_Theta",
+      label: "retained phase-bundle holonomy",
+      expression:
+        "R_Theta=(r_spacing,r_history,r_return,r_plane,r_rows,r_evt)=0",
+      currentProxyPass:
+        retainedPhaseBundleHolonomyAudit?.currentProxyPass === true,
+      retainedAcceptancePass:
+        retainedPhaseBundleHolonomyAudit
+          ?.retainedPhaseBundleHolonomyAccepted === true,
+      currentEvidenceCount:
+        retainedPhaseBundleHolonomyAudit?.currentEvidenceResidualCount ?? null,
+      expectedEvidenceCount:
+        retainedPhaseBundleHolonomyAudit?.residualCount ?? null,
+      acceptedEvidenceCount:
+        retainedPhaseBundleHolonomyAudit?.acceptedResidualCount ?? null,
+      sourceSchema: retainedPhaseBundleHolonomyAudit?.schema ?? null,
+      missingRetainedInputs:
+        retainedPhaseBundleHolonomyAudit?.firstMissingRetainedInputs ?? [
+          "retained_phase_bundle_holonomy_Theta",
+        ],
+    },
+    {
+      residualId: "r_D",
+      label: "retained plane-sector disposition",
+      expression:
+        "D_plane=N_I dot (N_M x N_O) with retained N_a or angular-momentum bivectors",
+      currentProxyPass: currentPlaneSectorProxyPass,
+      retainedAcceptancePass: retainedPlaneSectorPass,
+      currentEvidenceCount:
+        planeSectorDiscriminatorAudit?.priorityPlanarZ3PassCount ?? null,
+      expectedEvidenceCount: priorityCaseCount,
+      acceptedEvidenceCount:
+        planeSectorDiscriminatorAudit?.retainedPlaneSectorCertificatePassCount ??
+        null,
+      sourceSchema: planeSectorDiscriminatorAudit?.schema ?? null,
+      missingRetainedInputs: [
+        "retained_plane_normals_or_angular_momentum_bivectors_N_a",
+        "retained_plane_sector_disposition",
+      ],
+    },
+    {
+      residualId: "r_rows",
+      label: "same retained row-set identity",
+      expression:
+        "S_eq binds the phase, plane-sector, weight, energy, wake, and angular-momentum rows",
+      currentProxyPass: currentRowSetProxyPass,
+      retainedAcceptancePass: retainedRowSetPass,
+      currentEvidenceCount:
+        retainedRowSetIdentityStructuralWitnessAudit
+          ?.currentStructuralWitnessPopulatedCount ?? null,
+      expectedEvidenceCount:
+        retainedRowSetIdentityStructuralWitnessAudit?.sourceCount ?? null,
+      acceptedEvidenceCount:
+        retainedRowSetIdentityStructuralWitnessAudit
+          ?.acceptedRetainedIdentityRequirementCount ?? null,
+      sourceSchema: retainedRowSetIdentityStructuralWitnessAudit?.schema ?? null,
+      missingRetainedInputs: ["same_retained_row_set_identity"],
+    },
+    {
+      residualId: "r_evt",
+      label: "same retained event or positive-width domain",
+      expression:
+        "The unit-clock W_a row is evaluated on the same retained point event or positive-width retained domain as the phase rows",
+      currentProxyPass: currentEventDomainProxyPass,
+      retainedAcceptancePass: retainedEventDomainPass,
+      currentEvidenceCount:
+        retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
+          ?.currentBindingCandidateRowCount ??
+        retainedEventDomainSelector?.currentProxyRouteCount ??
+        null,
+      expectedEvidenceCount:
+        retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit?.rowCount ??
+        null,
+      acceptedEvidenceCount:
+        retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
+          ?.retainedAcceptedBindingCount ??
+        retainedEventDomainSelector?.acceptedRouteCount ??
+        null,
+      sourceSchema:
+        retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit?.schema ??
+        retainedEventDomainSelector?.schema ??
+        null,
+      missingRetainedInputs: [
+        "same_retained_event_or_positive_width_domain",
+      ],
+    },
+    {
+      residualId: "r_source",
+      label: "unit-clock W_a source row",
+      expression: "W_a=1 and R_W=sum_a exp(i phi_a)=0 on S_eq",
+      currentProxyPass: sourceAttemptRow?.currentEvidencePopulated === true,
+      retainedAcceptancePass: sourceAttemptRow?.retainedSourceAccepted === true,
+      currentEvidenceCount:
+        sourceAttemptRow?.currentEvidencePopulated === true ? 1 : 0,
+      expectedEvidenceCount: 1,
+      acceptedEvidenceCount:
+        sourceAttemptRow?.retainedSourceAccepted === true ? 1 : 0,
+      sourceSchema:
+        retainedWeightLedgerSourceAcceptanceAttemptAudit?.schema ?? null,
+      missingRetainedInputs:
+        sourceAttemptRow?.missingRetainedInputs ?? [
+          "retained_phase_bundle_holonomy_Theta",
+          "retained_plane_normals_or_angular_momentum_bivectors_N_a",
+          "retained_plane_sector_disposition",
+          "same_retained_row_set_identity",
+          "same_retained_event_or_positive_width_domain",
+        ],
+    },
+  ];
+  const currentEvidenceResidualCount = residualRows.filter(
+    (row) => row.currentProxyPass === true
+  ).length;
+  const acceptedResidualCount = residualRows.filter(
+    (row) => row.retainedAcceptancePass === true
+  ).length;
+  const firstBlockingResidual =
+    residualRows.find((row) => row.retainedAcceptancePass !== true) ?? null;
+  const firstMissingRetainedInputs = [
+    ...new Set(
+      residualRows
+        .filter((row) => row.retainedAcceptancePass !== true)
+        .flatMap((row) => row.missingRetainedInputs)
+    ),
+  ];
+  const currentProxyPass =
+    residualRows.length > 0 &&
+    currentEvidenceResidualCount === residualRows.length;
+  const retainedSourceAccepted =
+    residualRows.length > 0 && acceptedResidualCount === residualRows.length;
+  return {
+    schema:
+      "aaa-equal-frequency-phase-holonomy-unit-clock-weight-source-audit.v1",
+    claimLevel:
+      "first retained W_a source audit for unit-clock phase holonomy; current proxy only",
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    canonicalFamily: "I:M:O=(f,f,f)",
+    sourceId: "phase_holonomy_unit_clock_weight",
+    selectedRetainedRowSetId:
+      retainedWeightLedgerSourceAcceptanceAttemptAudit?.selectedRetainedRowSetId ??
+      "S_eq",
+    candidateWeightFormula:
+      sourceAttemptRow?.candidateWeightFormula ??
+      "W_a = 1 after retained phase-bundle holonomy and plane-sector rows make the unit clock the physical ledger",
+    residualVector:
+      "R_W,clock=(r_Theta,r_D,r_rows,r_evt,r_source)",
+    closureEquation: "R_W=sum_a exp(i phi_a)=0",
+    sourceAttemptRowId: sourceAttemptRow?.rowId ?? null,
+    selectedCurrentProfileIds:
+      sourceAttemptRow?.selectedCurrentProfileIds ?? [],
+    residualRows,
+    residualCount: residualRows.length,
+    currentEvidenceResidualCount,
+    acceptedResidualCount,
+    currentProxyPass,
+    retainedSourceAccepted,
+    firstBlockingResidualId: firstBlockingResidual?.residualId ?? null,
+    firstMissingRetainedInputs,
+    status:
+      retainedSourceAccepted === true
+        ? "phase_holonomy_unit_clock_weight_source_retained_accepted"
+        : currentProxyPass === true
+          ? "phase_holonomy_unit_clock_weight_source_current_proxy_populated_retained_inputs_missing"
+          : currentEvidenceResidualCount > 0
+            ? "phase_holonomy_unit_clock_weight_source_partial_current_proxy"
+            : "phase_holonomy_unit_clock_weight_source_missing",
+    interpretation:
+      "The unit-clock route is not a free choice of equal weights. It requires retained phase-bundle holonomy, retained plane-sector rows, the same S_eq row-set identity, and the same retained event or positive-width domain before W_a=1 can be physical.",
+    retainedReplayBurden:
+      "Promote or reject the phase-holonomy source by accepting r_Theta, r_D, r_rows, r_evt, and r_source on the same retained branch record.",
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyPhaseRadiusActionClosureSplitAudit({
+  priorityCaseSummaries,
+  phaseDeformationBalanceAudit,
+  phaseLatticeAudit,
+}) {
+  const priorityBalanceRows = (phaseDeformationBalanceAudit?.rows ?? []).filter(
+    (row) => row.priorityPhaseProfile === true
+  );
+  const modelRows = [
+    createPhaseRadiusActionClosureSplitRow({
+      balanceModelKey: "phaseOnly",
+      balanceField: "phaseOnlyBalance",
+      displayName: "phase-only unit weights",
+      priorityBalanceRows,
+      phaseLatticeAudit,
+    }),
+    createPhaseRadiusActionClosureSplitRow({
+      balanceModelKey: "leverArm",
+      balanceField: "leverArmWeightedBalance",
+      displayName: "effective lever-arm weights",
+      priorityBalanceRows,
+      phaseLatticeAudit,
+    }),
+    createPhaseRadiusActionClosureSplitRow({
+      balanceModelKey: "commonOmegaSpeed",
+      latticeModelKey: "leverArm",
+      balanceField: "speedWeightedBalance",
+      displayName: "common-omega speed weights",
+      priorityBalanceRows,
+      phaseLatticeAudit,
+    }),
+    createPhaseRadiusActionClosureSplitRow({
+      balanceModelKey: "unitInertiaAction",
+      balanceField: "unitInertiaActionWeightedBalance",
+      displayName: "unit-inertia action weights",
+      priorityBalanceRows,
+      phaseLatticeAudit,
+    }),
+    createPhaseRadiusActionClosureSplitRow({
+      balanceModelKey: "rootWeightedAction",
+      balanceField: "rootWeightedActionBalance",
+      displayName: "target 2:1:1 root/action weights",
+      priorityBalanceRows,
+      phaseLatticeAudit,
+    }),
+  ];
+  const rowByKey = Object.fromEntries(
+    modelRows.map((row) => [row.balanceModelKey, row])
+  );
+  const phaseOnlyTriadicExactPass =
+    rowByKey.phaseOnly?.closureClass === "equal_weight_triadic_120" &&
+    rowByKey.phaseOnly?.triadicAllPriorityRowsPass === true;
+  const leverArmTriangleDetuningRequired =
+    rowByKey.leverArm?.closureClass ===
+    "nondegenerate_triangle_phase_detuning";
+  const leverArmAnalyticDetunedClosurePass =
+    leverArmTriangleDetuningRequired &&
+    rowByKey.leverArm?.analyticExactClosurePass === true;
+  const commonOmegaSpeedTriangleDetuningRequired =
+    rowByKey.commonOmegaSpeed?.closureClass ===
+    "nondegenerate_triangle_phase_detuning";
+  const commonOmegaSpeedAnalyticDetunedClosurePass =
+    commonOmegaSpeedTriangleDetuningRequired &&
+    rowByKey.commonOmegaSpeed?.analyticExactClosurePass === true;
+  const unitInertiaActionDegenerateOppositionPass =
+    rowByKey.unitInertiaAction?.closureClass === "degenerate_opposition" &&
+    rowByKey.unitInertiaAction?.largestRole === "inner" &&
+    rowByKey.unitInertiaAction?.bestLatticeAllPriorityRowsPass === true &&
+    rowByKey.unitInertiaAction?.analyticExactClosurePass === true;
+  const rootWeightedActionDegenerateOppositionPass =
+    rowByKey.rootWeightedAction?.closureClass === "degenerate_opposition" &&
+    rowByKey.rootWeightedAction?.largestRole === "inner" &&
+    rowByKey.rootWeightedAction?.bestLatticeAllPriorityRowsPass === true &&
+    rowByKey.rootWeightedAction?.analyticExactClosurePass === true;
+  const analyticCurrentProxyPass =
+    phaseOnlyTriadicExactPass &&
+    leverArmAnalyticDetunedClosurePass &&
+    commonOmegaSpeedAnalyticDetunedClosurePass &&
+    unitInertiaActionDegenerateOppositionPass &&
+    rootWeightedActionDegenerateOppositionPass;
+  return {
+    schema:
+      "aaa-equal-frequency-phase-radius-action-closure-split-audit.v2",
+    claimLevel:
+      "analytic current-proxy split between unit-clock phase closure and radius/action-weighted phase closure; not retained branch acceptance",
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
+    currentExecutableChart: CURRENT_EXECUTABLE_GEOMETRY_CHART,
+    canonicalFamily: "I:M:O=(f,f,f)",
+    balanceEquation:
+      "R_W(phi)=sum_a W_a exp(i phi_a); exact three-row closure is classified by the triangle inequalities on W_I,W_M,W_O",
+    priorityCaseCount: priorityCaseSummaries.length,
+    priorityBalanceRowCount: priorityBalanceRows.length,
+    phaseDeformationBalanceAuditSchema:
+      phaseDeformationBalanceAudit?.schema ?? null,
+    phaseLatticeAuditSchema: phaseLatticeAudit?.schema ?? null,
+    currentTriadicProfileRowId: phaseLatticeAudit?.currentTriadicProfileRowId ?? null,
+    degenerateOppositionProfileRowId:
+      phaseLatticeAudit?.rootWeightedActionProfileRowId ?? null,
+    phaseOnlyTriadicExactPass,
+    leverArmTriangleDetuningRequired,
+    leverArmAnalyticDetunedClosurePass,
+    leverArmAnalyticDetunedTargetPhaseTurns:
+      rowByKey.leverArm?.analyticExactBestPhaseTurns ?? null,
+    leverArmAnalyticDetunedTargetResidual:
+      rowByKey.leverArm?.analyticExactBestNormalizedResidual ?? null,
+    commonOmegaSpeedTriangleDetuningRequired,
+    commonOmegaSpeedAnalyticDetunedClosurePass,
+    commonOmegaSpeedAnalyticDetunedTargetPhaseTurns:
+      rowByKey.commonOmegaSpeed?.analyticExactBestPhaseTurns ?? null,
+    commonOmegaSpeedAnalyticDetunedTargetResidual:
+      rowByKey.commonOmegaSpeed?.analyticExactBestNormalizedResidual ?? null,
+    unitInertiaActionDegenerateOppositionPass,
+    rootWeightedActionDegenerateOppositionPass,
+    analyticCurrentProxyPass,
+    retainedWeightRowsAccepted: false,
+    retainedPhaseOffsetRowsAccepted: false,
+    retainedSameEventAngularMomentumLedgerAccepted: false,
+    triadicWeightedClosureResiduals: Object.fromEntries(
+      modelRows.map((row) => [
+        row.balanceModelKey,
+        row.triadicRepresentativeNormalizedResidual,
+      ])
+    ),
+    modelRows,
+    retainedRowsRequired: [
+      "retained_weight_rows_W_a_on_S_eq",
+      "retained_phase_offsets_phi_a_on_S_eq",
+      "phase_detuning_or_degenerate_opposition_policy",
+      "wake_coupling_recoil_or_action_gap_source",
+      "same_event_angular_momentum_ledger",
+      "plane_sector_and_phase_holonomy_rows",
+    ],
+    status:
+      analyticCurrentProxyPass === true
+        ? "phase_radius_action_closure_split_exact_detuning_current_proxy_populated_retained_weight_rows_missing"
+        : priorityBalanceRows.length > 0
+          ? "phase_radius_action_closure_split_populated_status_mixed"
+          : "phase_radius_action_closure_split_no_priority_rows",
+    interpretation:
+      "Equal frequency does not force equal speed or equal effective lever arm. In the current chart, unit-clock phase weights close at triadic 120 degrees, while radius/action-derived weights split into either a degenerate opposition target or a nontrivial triangle-law detuning target. The retained branch must therefore choose or derive the weight model on S_eq before any phase profile is accepted.",
+    retainedReplayBurden:
+      "Bind W_a, phi_a, branch energy/radius rows, wake/coupling recoil, and the one-unit angular-momentum ledger to the same retained event or positive-width domain on S_eq.",
+    retainedBranchClaim: false,
+  };
+}
+
+function createPhaseRadiusActionClosureSplitRow({
+  balanceModelKey,
+  latticeModelKey = balanceModelKey,
+  balanceField,
+  displayName,
+  priorityBalanceRows,
+  phaseLatticeAudit,
+}) {
+  const balances = priorityBalanceRows
+    .map((row) => row[balanceField])
+    .filter(Boolean);
+  const representativeBalance = balances[0] ?? null;
+  const representativeWeightsByRole = Object.fromEntries(
+    LAYER_ROLES.map((role) => {
+      const balanceRow = representativeBalance?.rows?.find(
+        (row) => row.role === role
+      );
+      return [role, balanceRow?.weight ?? null];
+    })
+  );
+  const classification = classifyPhaseClosureWeights(representativeWeightsByRole);
+  const analyticExactPhaseTargets = createAnalyticPhaseClosureTargets({
+    weightsByRole: representativeWeightsByRole,
+    closureClass: classification.closureClass,
+  });
+  const analyticExactBestTarget =
+    analyticExactPhaseTargets
+      .slice()
+      .sort((left, right) => {
+        const leftResidual =
+          left.weightedBalance?.normalizedMagnitude ?? Number.POSITIVE_INFINITY;
+        const rightResidual =
+          right.weightedBalance?.normalizedMagnitude ?? Number.POSITIVE_INFINITY;
+        if (leftResidual !== rightResidual) {
+          return leftResidual - rightResidual;
+        }
+        return left.targetId.localeCompare(right.targetId);
+      })[0] ?? null;
+  const analyticExactBestNormalizedResidual =
+    analyticExactBestTarget?.weightedBalance?.normalizedMagnitude ?? null;
+  const bestLatticeRow =
+    phaseLatticeAudit?.bestRowsByBalanceModel?.[latticeModelKey]?.[0] ?? null;
+  const triadicPassCount = balances.filter(
+    (balance) => balance.pass === true
+  ).length;
+  return {
+    balanceModelKey,
+    weightModel: representativeBalance?.weightModel ?? null,
+    displayName,
+    priorityCaseCount: balances.length,
+    representativeWeightsByRole,
+    normalizedWeightsByRole: classification.normalizedWeightsByRole,
+    totalWeight: classification.totalWeight,
+    largestRole: classification.largestRole,
+    largestWeight: classification.largestWeight,
+    largestNormalizedWeight: classification.largestNormalizedWeight,
+    otherWeightSum: classification.otherWeightSum,
+    otherNormalizedWeightSum: classification.otherNormalizedWeightSum,
+    equalWeightTriadicClosurePass:
+      classification.equalWeightTriadicClosurePass,
+    degenerateOppositionClosurePass:
+      classification.degenerateOppositionClosurePass,
+    nondegenerateTriangleClosurePass:
+      classification.nondegenerateTriangleClosurePass,
+    exactThreePhasorClosurePossible:
+      classification.exactThreePhasorClosurePossible,
+    closureClass: classification.closureClass,
+    analyticPhaseClosureTarget: classification.analyticPhaseClosureTarget,
+    analyticExactPhaseTargets,
+    analyticExactTargetCount: analyticExactPhaseTargets.length,
+    analyticExactBestTargetId: analyticExactBestTarget?.targetId ?? null,
+    analyticExactBestPhaseTurns: analyticExactBestTarget?.phaseTurns ?? null,
+    analyticExactBestPhaseDegrees: analyticExactBestTarget?.phaseDegrees ?? null,
+    analyticExactBestNormalizedResidual,
+    analyticExactClosurePass:
+      Number.isFinite(analyticExactBestNormalizedResidual) &&
+      analyticExactBestNormalizedResidual <= ROOT_TOLERANCE,
+    triadicPriorityPassCount: triadicPassCount,
+    triadicAllPriorityRowsPass:
+      balances.length > 0 && triadicPassCount === balances.length,
+    triadicRepresentativeNormalizedResidual:
+      representativeBalance?.normalizedMagnitude ?? null,
+    triadicMeanNormalizedResidual: meanFinite(
+      balances.map((balance) => balance.normalizedMagnitude)
+    ),
+    bestLatticeRowId: bestLatticeRow?.rowId ?? null,
+    bestLatticeMeanResidual: bestLatticeRow?.meanResidual ?? null,
+    bestLatticeAllPriorityRowsPass:
+      bestLatticeRow?.allPriorityRowsPass === true,
+    retainedBranchClaim: false,
+  };
+}
+
+function createAnalyticPhaseClosureTargets({ weightsByRole, closureClass }) {
+  if (closureClass === "weights_incomplete") {
+    return [];
+  }
+  if (closureClass === "no_three_phasor_closure_without_extra_weight") {
+    return [];
+  }
+  if (closureClass === "equal_weight_triadic_120") {
+    return [
+      createAnalyticPhaseClosureTarget({
+        targetId: "equal-weight-forward-triadic-120",
+        targetClass: closureClass,
+        weightsByRole,
+        phaseTurns: { inner: 0, middle: 1 / 3, outer: 2 / 3 },
+      }),
+      createAnalyticPhaseClosureTarget({
+        targetId: "equal-weight-reverse-triadic-120",
+        targetClass: closureClass,
+        weightsByRole,
+        phaseTurns: { inner: 0, middle: 2 / 3, outer: 1 / 3 },
+      }),
+    ];
+  }
+  const values = LAYER_ROLES.map((role) => weightsByRole?.[role]);
+  if (!values.every(Number.isFinite)) {
+    return [];
+  }
+  const sorted = LAYER_ROLES.map((role) => ({
+    role,
+    weight: weightsByRole[role],
+  })).sort((left, right) => right.weight - left.weight);
+  const largest = sorted[0];
+  const otherRows = sorted.slice(1);
+  if (closureClass === "degenerate_opposition") {
+    return [
+      createAnalyticPhaseClosureTarget({
+        targetId: `${largest.role}-degenerate-opposition`,
+        targetClass: closureClass,
+        weightsByRole,
+        phaseTurns: gaugePhaseTurnsToInnerZero(
+          Object.fromEntries(
+            LAYER_ROLES.map((role) => [
+              role,
+              role === largest.role ? 0 : 1 / 2,
+            ])
+          )
+        ),
+      }),
+    ];
+  }
+  if (closureClass !== "nondegenerate_triangle_phase_detuning") {
+    return [];
+  }
+  const [firstOther, secondOther] = otherRows;
+  const alpha = Math.acos(
+    clampUnit(
+      (largest.weight ** 2 + firstOther.weight ** 2 - secondOther.weight ** 2) /
+        (2 * largest.weight * firstOther.weight)
+    )
+  );
+  const beta = Math.acos(
+    clampUnit(
+      (largest.weight ** 2 + secondOther.weight ** 2 - firstOther.weight ** 2) /
+        (2 * largest.weight * secondOther.weight)
+    )
+  );
+  const alphaTurns = alpha / CLOSURE_PERIOD;
+  const betaTurns = beta / CLOSURE_PERIOD;
+  return [
+    createAnalyticPhaseClosureTarget({
+      targetId: `${largest.role}-${firstOther.role}-${secondOther.role}-triangle-detuning-positive`,
+      targetClass: closureClass,
+      weightsByRole,
+      phaseTurns: gaugePhaseTurnsToInnerZero({
+        [largest.role]: 0,
+        [firstOther.role]: 1 / 2 - alphaTurns,
+        [secondOther.role]: 1 / 2 + betaTurns,
+      }),
+    }),
+    createAnalyticPhaseClosureTarget({
+      targetId: `${largest.role}-${firstOther.role}-${secondOther.role}-triangle-detuning-negative`,
+      targetClass: closureClass,
+      weightsByRole,
+      phaseTurns: gaugePhaseTurnsToInnerZero({
+        [largest.role]: 0,
+        [firstOther.role]: 1 / 2 + alphaTurns,
+        [secondOther.role]: 1 / 2 - betaTurns,
+      }),
+    }),
+  ];
+}
+
+function createAnalyticPhaseClosureTarget({
+  targetId,
+  targetClass,
+  weightsByRole,
+  phaseTurns,
+}) {
+  const normalizedPhaseTurns = Object.fromEntries(
+    LAYER_ROLES.map((role) => [role, normalizeTurn(phaseTurns?.[role] ?? 0)])
+  );
+  const weightedBalance = createWeightedPhaseBalance({
+    weightModel: "analytic_phase_closure_target",
+    weightsByRole,
+    phaseTurns: normalizedPhaseTurns,
+  });
+  return {
+    targetId,
+    targetClass,
+    phaseTurns: normalizedPhaseTurns,
+    phaseDegrees: Object.fromEntries(
+      LAYER_ROLES.map((role) => [role, normalizedPhaseTurns[role] * 360])
+    ),
+    weightedBalance,
+    retainedBranchClaim: false,
+  };
+}
+
+function gaugePhaseTurnsToInnerZero(phaseTurns) {
+  const innerTurn = phaseTurns?.inner ?? 0;
+  return Object.fromEntries(
+    LAYER_ROLES.map((role) => [
+      role,
+      normalizeTurn((phaseTurns?.[role] ?? 0) - innerTurn),
+    ])
+  );
+}
+
+function clampUnit(value) {
+  if (!Number.isFinite(value)) {
+    return value;
+  }
+  return Math.max(-1, Math.min(1, value));
+}
+
+function classifyPhaseClosureWeights(weightsByRole) {
+  const values = LAYER_ROLES.map((role) => weightsByRole?.[role]);
+  const finiteWeights = values.every(Number.isFinite);
+  if (!finiteWeights) {
+    return {
+      normalizedWeightsByRole: Object.fromEntries(
+        LAYER_ROLES.map((role) => [role, null])
+      ),
+      totalWeight: null,
+      largestRole: null,
+      largestWeight: null,
+      largestNormalizedWeight: null,
+      otherWeightSum: null,
+      otherNormalizedWeightSum: null,
+      equalWeightTriadicClosurePass: false,
+      degenerateOppositionClosurePass: false,
+      nondegenerateTriangleClosurePass: false,
+      exactThreePhasorClosurePossible: false,
+      closureClass: "weights_incomplete",
+      analyticPhaseClosureTarget: "weights_missing",
+    };
+  }
+  const totalWeight = sumFinite(values);
+  const normalizedWeightsByRole = normalizeRoleWeights(weightsByRole);
+  const entries = LAYER_ROLES.map((role) => ({
+    role,
+    weight: weightsByRole[role],
+    normalizedWeight: normalizedWeightsByRole[role],
+  })).sort((left, right) => right.weight - left.weight);
+  const largest = entries[0];
+  const otherWeightSum = totalWeight - largest.weight;
+  const otherNormalizedWeightSum = 1 - largest.normalizedWeight;
+  const weightTolerance = ROOT_TOLERANCE * Math.max(1, Math.abs(totalWeight));
+  const minWeight = Math.min(...values);
+  const maxWeight = Math.max(...values);
+  const equalWeightTriadicClosurePass =
+    Math.abs(maxWeight - minWeight) <= weightTolerance;
+  const degenerateOppositionClosurePass =
+    !equalWeightTriadicClosurePass &&
+    Math.abs(largest.weight - otherWeightSum) <= weightTolerance;
+  const nondegenerateTriangleClosurePass =
+    !equalWeightTriadicClosurePass &&
+    !degenerateOppositionClosurePass &&
+    largest.weight < otherWeightSum - weightTolerance;
+  const exactThreePhasorClosurePossible =
+    equalWeightTriadicClosurePass ||
+    degenerateOppositionClosurePass ||
+    nondegenerateTriangleClosurePass;
+  const closureClass = equalWeightTriadicClosurePass
+    ? "equal_weight_triadic_120"
+    : degenerateOppositionClosurePass
+      ? "degenerate_opposition"
+      : nondegenerateTriangleClosurePass
+        ? "nondegenerate_triangle_phase_detuning"
+        : "no_three_phasor_closure_without_extra_weight";
+  return {
+    normalizedWeightsByRole,
+    totalWeight,
+    largestRole: largest.role,
+    largestWeight: largest.weight,
+    largestNormalizedWeight: largest.normalizedWeight,
+    otherWeightSum,
+    otherNormalizedWeightSum,
+    equalWeightTriadicClosurePass,
+    degenerateOppositionClosurePass,
+    nondegenerateTriangleClosurePass,
+    exactThreePhasorClosurePossible,
+    closureClass,
+    analyticPhaseClosureTarget:
+      createAnalyticPhaseClosureTargetDescription(closureClass, largest.role),
+  };
+}
+
+function createAnalyticPhaseClosureTargetDescription(closureClass, largestRole) {
+  if (closureClass === "equal_weight_triadic_120") {
+    return "triadic_120_or_reverse_triadic_120";
+  }
+  if (closureClass === "degenerate_opposition") {
+    return `${largestRole}_opposed_by_the_other_two_aligned_rows`;
+  }
+  if (closureClass === "nondegenerate_triangle_phase_detuning") {
+    return "continuous_triangle_law_phase_detuning_from_triadic_120";
+  }
+  if (closureClass === "no_three_phasor_closure_without_extra_weight") {
+    return "additional_weight_wake_recoil_or_coupling_required";
+  }
+  return "weights_missing";
 }
 
 function createEqualFrequencyPhaseLatticeAudit(priorityCaseSummaries) {
@@ -45373,6 +47141,333 @@ function createEqualFrequencyRetainedRowSetScaffold({
   };
 }
 
+function createEqualFrequencyRetainedRowSetIdentityStructuralWitnessAudit({
+  priorityCaseSummaries,
+  retainedRowSetScaffold,
+  retainedFrequencyPhasePacket,
+  retainedEventDomainLiftTarget,
+  retainedEventDomainSelector,
+  binaryToBinaryPhaseHistoryLiftTarget,
+  phaseChannelClassificationAudit,
+  phaseCarrierTransferAlignmentAudit,
+  retainedPhaseHistoryCarrierReadinessAudit,
+  retainedPhaseHistoryCarrierEventDomainRowModel,
+  retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit,
+  retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit,
+  retainedPhaseHistoryCarrierEventIdProvenanceAudit,
+  retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit,
+  retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit,
+  sameEventTransferLiftDependencyAudit,
+}) {
+  const retainedRowSetId = retainedRowSetScaffold?.retainedRowSetId ?? "S_eq";
+  const canonicalFamily = "I:M:O=(f,f,f)";
+  const priorityCaseCount = priorityCaseSummaries.length;
+  const makeSource = ({
+    id,
+    residualComponents,
+    audit,
+    currentEvidencePopulated,
+    currentEvidenceRowCount = null,
+    expectedRowCount = null,
+  }) => {
+    const rows = Array.isArray(audit?.rows)
+      ? audit.rows
+      : Array.isArray(audit?.dependencyRows)
+        ? audit.dependencyRows
+        : [];
+    const rowSetMatchRows = rows.filter(
+      (row) => row.retainedRowSetId === retainedRowSetId
+    ).length;
+    const directRowSetMatch = audit?.retainedRowSetId === retainedRowSetId;
+    const rowSetIdentityCandidatePass =
+      directRowSetMatch ||
+      (rows.length > 0 && rowSetMatchRows === rows.length);
+    const canonicalFamilyPass = audit?.canonicalFamily === canonicalFamily;
+    const currentStructuralWitnessPass =
+      audit !== null &&
+      rowSetIdentityCandidatePass === true &&
+      canonicalFamilyPass === true &&
+      currentEvidencePopulated === true;
+    return {
+      id,
+      residualComponents,
+      schema: audit?.schema ?? null,
+      status: audit?.status ?? null,
+      retainedRowSetId,
+      directRowSetMatch,
+      rowSetMatchRowCount: rowSetMatchRows,
+      rowSetRowCount: rows.length,
+      rowSetIdentityCandidatePass,
+      canonicalFamilyPass,
+      currentEvidencePopulated: currentEvidencePopulated === true,
+      currentEvidenceRowCount,
+      expectedRowCount,
+      currentStructuralWitnessPass,
+      retainedAcceptancePass: false,
+    };
+  };
+  const sources = [
+    makeSource({
+      id: "retained_row_set_scaffold",
+      residualComponents: ["r_rows"],
+      audit: retainedRowSetScaffold,
+      currentEvidencePopulated:
+        retainedRowSetScaffold?.currentProxyEvidencePopulated === true,
+      currentEvidenceRowCount:
+        retainedRowSetScaffold?.currentProxyEvidencePopulatedCount ?? null,
+      expectedRowCount:
+        retainedRowSetScaffold?.currentProxyEvidenceSourceCount ?? null,
+    }),
+    makeSource({
+      id: "retained_frequency_phase_packet",
+      residualComponents: ["r_P", "r_D"],
+      audit: retainedFrequencyPhasePacket,
+      currentEvidencePopulated: isFullPositiveCount(
+        retainedFrequencyPhasePacket?.currentProxyPacketPassCount,
+        retainedFrequencyPhasePacket?.rowCount
+      ),
+      currentEvidenceRowCount:
+        retainedFrequencyPhasePacket?.currentProxyPacketPassCount ?? null,
+      expectedRowCount: retainedFrequencyPhasePacket?.rowCount ?? null,
+    }),
+    makeSource({
+      id: "retained_event_domain_lift_target",
+      residualComponents: ["r_evt"],
+      audit: retainedEventDomainLiftTarget,
+      currentEvidencePopulated:
+        retainedEventDomainLiftTarget?.currentProxyPointRowsPopulated === true,
+      currentEvidenceRowCount:
+        retainedEventDomainLiftTarget?.currentProxyEvidencePopulatedCount ??
+        null,
+      expectedRowCount:
+        retainedEventDomainLiftTarget?.currentProxyEvidenceRows?.length ?? null,
+    }),
+    makeSource({
+      id: "retained_event_domain_selector",
+      residualComponents: ["r_evt"],
+      audit: retainedEventDomainSelector,
+      currentEvidencePopulated:
+        retainedEventDomainSelector?.currentProxyRouteCount > 0 &&
+        retainedEventDomainSelector?.firstRunnableRowCount === priorityCaseCount,
+      currentEvidenceRowCount:
+        retainedEventDomainSelector?.firstRunnableRowCount ?? null,
+      expectedRowCount: priorityCaseCount,
+    }),
+    makeSource({
+      id: "binary_to_binary_phase_history_lift_target",
+      residualComponents: ["r_evt", "r_W", "r_J"],
+      audit: binaryToBinaryPhaseHistoryLiftTarget,
+      currentEvidencePopulated: isFullPositiveCount(
+        binaryToBinaryPhaseHistoryLiftTarget?.currentSeedRowCount,
+        binaryToBinaryPhaseHistoryLiftTarget?.rowCount
+      ),
+      currentEvidenceRowCount:
+        binaryToBinaryPhaseHistoryLiftTarget?.currentSeedRowCount ?? null,
+      expectedRowCount: binaryToBinaryPhaseHistoryLiftTarget?.rowCount ?? null,
+    }),
+    makeSource({
+      id: "phase_channel_classification_audit",
+      residualComponents: ["r_W"],
+      audit: phaseChannelClassificationAudit,
+      currentEvidencePopulated:
+        phaseChannelClassificationAudit?.phaseClassPartitionPass === true &&
+        phaseChannelClassificationAudit?.middleToOuterCarrierCurrentSeedPass ===
+          true,
+      currentEvidenceRowCount:
+        phaseChannelClassificationAudit?.currentSeedClassifiedRowCount ?? null,
+      expectedRowCount: phaseChannelClassificationAudit?.rowCount ?? null,
+    }),
+    makeSource({
+      id: "phase_carrier_transfer_alignment_audit",
+      residualComponents: ["r_W", "r_J"],
+      audit: phaseCarrierTransferAlignmentAudit,
+      currentEvidencePopulated:
+        phaseCarrierTransferAlignmentAudit
+          ?.phaseCarrierTransferAlignmentCurrentProxyPass === true,
+      currentEvidenceRowCount:
+        phaseCarrierTransferAlignmentAudit?.currentProxyAlignmentRowCount ??
+        null,
+      expectedRowCount: phaseCarrierTransferAlignmentAudit?.rowCount ?? null,
+    }),
+    makeSource({
+      id: "retained_phase_history_carrier_readiness_audit",
+      residualComponents: ["r_evt", "r_W"],
+      audit: retainedPhaseHistoryCarrierReadinessAudit,
+      currentEvidencePopulated:
+        retainedPhaseHistoryCarrierReadinessAudit?.currentReadinessPass === true,
+      currentEvidenceRowCount:
+        retainedPhaseHistoryCarrierReadinessAudit?.currentReadinessRowCount ??
+        null,
+      expectedRowCount:
+        retainedPhaseHistoryCarrierReadinessAudit?.rowCount ?? null,
+    }),
+    makeSource({
+      id: "retained_phase_history_carrier_event_domain_row_model",
+      residualComponents: ["r_evt", "r_W"],
+      audit: retainedPhaseHistoryCarrierEventDomainRowModel,
+      currentEvidencePopulated:
+        retainedPhaseHistoryCarrierEventDomainRowModel
+          ?.currentEventDomainTemplatePass === true,
+      currentEvidenceRowCount:
+        retainedPhaseHistoryCarrierEventDomainRowModel
+          ?.currentTemplatePassCount ?? null,
+      expectedRowCount:
+        retainedPhaseHistoryCarrierEventDomainRowModel?.rowCount ?? null,
+    }),
+    makeSource({
+      id: "retained_phase_history_carrier_event_domain_acceptance_attempt",
+      residualComponents: ["r_evt", "r_W"],
+      audit: retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit,
+      currentEvidencePopulated: isFullPositiveCount(
+        retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit
+          ?.currentTemplateAttemptRowCount,
+        retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit?.rowCount
+      ),
+      currentEvidenceRowCount:
+        retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit
+          ?.currentTemplateAttemptRowCount ?? null,
+      expectedRowCount:
+        retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit?.rowCount ??
+        null,
+    }),
+    makeSource({
+      id: "retained_phase_history_carrier_event_id_population_attempt",
+      residualComponents: ["r_evt"],
+      audit: retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit,
+      currentEvidencePopulated: isFullPositiveCount(
+        retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit
+          ?.currentEventIdCandidateRowCount,
+        retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit?.rowCount
+      ),
+      currentEvidenceRowCount:
+        retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit
+          ?.currentEventIdCandidateRowCount ?? null,
+      expectedRowCount:
+        retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit?.rowCount ??
+        null,
+    }),
+    makeSource({
+      id: "retained_phase_history_carrier_event_id_provenance_audit",
+      residualComponents: ["r_rows", "r_evt"],
+      audit: retainedPhaseHistoryCarrierEventIdProvenanceAudit,
+      currentEvidencePopulated:
+        retainedPhaseHistoryCarrierEventIdProvenanceAudit
+          ?.currentEventIdProvenancePass === true,
+      currentEvidenceRowCount:
+        retainedPhaseHistoryCarrierEventIdProvenanceAudit
+          ?.currentProvenanceRowCount ?? null,
+      expectedRowCount:
+        retainedPhaseHistoryCarrierEventIdProvenanceAudit?.rowCount ?? null,
+    }),
+    makeSource({
+      id: "retained_phase_history_carrier_point_event_or_domain_rule_attempt",
+      residualComponents: ["r_rows", "r_evt"],
+      audit: retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit,
+      currentEvidencePopulated: isFullPositiveCount(
+        retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit
+          ?.currentRuleCandidateRowCount,
+        retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit?.rowCount
+      ),
+      currentEvidenceRowCount:
+        retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit
+          ?.currentRuleCandidateRowCount ?? null,
+      expectedRowCount:
+        retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit
+          ?.rowCount ?? null,
+    }),
+    makeSource({
+      id: "retained_phase_history_carrier_event_domain_binding_attempt",
+      residualComponents: ["r_evt", "r_W"],
+      audit: retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit,
+      currentEvidencePopulated: isFullPositiveCount(
+        retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
+          ?.currentBindingCandidateRowCount,
+        retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit?.rowCount
+      ),
+      currentEvidenceRowCount:
+        retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
+          ?.currentBindingCandidateRowCount ?? null,
+      expectedRowCount:
+        retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit?.rowCount ??
+        null,
+    }),
+    makeSource({
+      id: "same_event_transfer_lift_dependency_audit",
+      residualComponents: ["r_evt", "r_W", "r_J"],
+      audit: sameEventTransferLiftDependencyAudit,
+      currentEvidencePopulated: isFullPositiveCount(
+        sameEventTransferLiftDependencyAudit?.currentProxyDependencyRowCount,
+        sameEventTransferLiftDependencyAudit?.rowCount
+      ),
+      currentEvidenceRowCount:
+        sameEventTransferLiftDependencyAudit?.currentProxyDependencyRowCount ??
+        null,
+      expectedRowCount: sameEventTransferLiftDependencyAudit?.rowCount ?? null,
+    }),
+  ];
+  const currentStructuralWitnessPopulatedCount = sources.filter(
+    (source) => source.currentStructuralWitnessPass === true
+  ).length;
+  const rowSetIdentityCandidatePassCount = sources.filter(
+    (source) => source.rowSetIdentityCandidatePass === true
+  ).length;
+  const canonicalFamilyPassCount = sources.filter(
+    (source) => source.canonicalFamilyPass === true
+  ).length;
+  const retainedIdentityRequirementIds =
+    retainedRowSetScaffold?.blockingRequirementIds ?? [
+      "raw_labeled_rows_preserved_on_retained_history",
+      "role_map_selected_or_quotient_policy_declared",
+      "shared_retained_event_or_positive_width_domain",
+      "binary_to_binary_phase_row_set_identity",
+    ];
+  const acceptedRetainedIdentityRequirementCount = 0;
+  return {
+    schema:
+      "aaa-equal-frequency-retained-row-set-identity-structural-witness-audit.v1",
+    claimLevel:
+      "current structural witness that equal-frequency subaudits reference S_eq; retained row-set identity remains unaccepted",
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
+    currentExecutableChart: CURRENT_EXECUTABLE_GEOMETRY_CHART,
+    canonicalFamily,
+    retainedRowSetId,
+    residualComponent: "r_rows",
+    priorityCaseCount,
+    sourceCount: sources.length,
+    rowSetIdentityCandidatePassCount,
+    canonicalFamilyPassCount,
+    currentStructuralWitnessPopulatedCount,
+    currentStructuralWitnessPass:
+      sources.length > 0 &&
+      currentStructuralWitnessPopulatedCount === sources.length,
+    retainedIdentityRequirementCount: retainedIdentityRequirementIds.length,
+    acceptedRetainedIdentityRequirementCount,
+    retainedRowSetIdentityPass: false,
+    firstMissingRetainedIdentityInputs: retainedIdentityRequirementIds,
+    sources,
+    blockingConditionIds: Array.from(
+      new Set([
+        "retained_row_set_identity_acceptance_missing",
+        ...retainedIdentityRequirementIds.map((id) => `${id}_missing`),
+      ])
+    ),
+    status:
+      sources.length > 0 &&
+      currentStructuralWitnessPopulatedCount === sources.length
+        ? "retained_row_set_identity_structural_witness_current_proxy_populated_retained_identity_missing"
+        : currentStructuralWitnessPopulatedCount > 0
+          ? "retained_row_set_identity_structural_witness_partial_current_proxy"
+          : "retained_row_set_identity_structural_witness_missing",
+    interpretation:
+      "The equal-frequency current proxy subaudits consistently name S_eq and the I:M:O=(f,f,f) role-assigned family, but this is only structural provenance across generated current rows. It is not retained row-set identity for the branch.",
+    retainedReplayBurden:
+      "Populate retained raw labeled rows, role-map or quotient policy, path-history rows, causal-root ledger, wake-tail rows, energy/action rows, momentum and angular-momentum rows, phase rows, retained plane-orientation rows, response-center rows, group-velocity rows, and the Noether sea record on one accepted S_eq event or positive-width domain.",
+    retainedBranchClaim: false,
+  };
+}
+
 function createEqualFrequencyRetainedEventDomainLiftTarget({
   priorityCaseSummaries,
   retainedRowSetScaffold,
@@ -45697,12 +47792,2690 @@ function createEqualFrequencyRetainedEventDomainSelector({
   };
 }
 
+function createEqualFrequencyBinaryToBinaryPhaseHistoryLiftTarget({
+  priorityCaseSummaries,
+  retainedEventDomainLiftTarget,
+  retainedEventDomainSelector,
+  retainedFrequencyPhasePacket,
+  phaseCurrentRetainedKernelDerivationTarget,
+}) {
+  const retainedRowSetId =
+    retainedEventDomainSelector?.retainedRowSetId ??
+    retainedEventDomainLiftTarget?.retainedRowSetId ??
+    retainedFrequencyPhasePacket?.retainedRowSetId ??
+    "S_eq";
+  const pairChannels = LAYER_ROLES.flatMap((sourceRole) =>
+    LAYER_ROLES.map((receiverRole) => ({
+      channelId: `${sourceRole}->${receiverRole}`,
+      sourceRole,
+      receiverRole,
+      diagonalChannel: sourceRole === receiverRole,
+    }))
+  );
+  const retainedEventDomainAccepted =
+    retainedEventDomainSelector?.retainedSelectorAcceptancePass === true ||
+    retainedEventDomainLiftTarget?.retainedEventDomainLiftPass === true;
+  const selectedEventDomainRoute =
+    retainedEventDomainSelector?.selectedRoute ?? null;
+  const frequencyPhasePacketCurrentProxyPass =
+    isFullPositiveCount(
+      retainedFrequencyPhasePacket?.currentProxyPacketPassCount,
+      retainedFrequencyPhasePacket?.rowCount
+    );
+  const phaseCurrentKernelCurrentProxyPass =
+    phaseCurrentRetainedKernelDerivationTarget?.currentProxyTransferPass === true ||
+    isFullPositiveCount(
+      phaseCurrentRetainedKernelDerivationTarget
+        ?.sourceReadinessCurrentProxyRowCount,
+      phaseCurrentRetainedKernelDerivationTarget?.sourceReadinessBlockingRowCount
+    );
+  const rows = priorityCaseSummaries.flatMap((summary) => {
+    const phaseTurnsByRole =
+      summary.phaseProfile?.phaseTurnsByLayer ??
+      summary.triadic120Phase?.phaseTurns ??
+      {};
+    return pairChannels.map((channel) => {
+      const sourcePhaseTurns = phaseTurnsByRole[channel.sourceRole];
+      const receiverPhaseTurns = phaseTurnsByRole[channel.receiverRole];
+      const sourceToReceiverPhaseOffsetTurns =
+        Number.isFinite(sourcePhaseTurns) && Number.isFinite(receiverPhaseTurns)
+          ? normalizeSignedTurnDelta(receiverPhaseTurns - sourcePhaseTurns)
+          : null;
+      const sourceToReceiverPhaseOffsetRadians = Number.isFinite(
+        sourceToReceiverPhaseOffsetTurns
+      )
+        ? sourceToReceiverPhaseOffsetTurns * CLOSURE_PERIOD
+        : null;
+      const currentSeedPass =
+        frequencyPhasePacketCurrentProxyPass === true &&
+        phaseCurrentKernelCurrentProxyPass === true &&
+        selectedEventDomainRoute !== null;
+      return {
+        rowId: `S_eq-binary-to-binary-phase-history-f${summary.f}-${channel.sourceRole}-to-${channel.receiverRole}`,
+        retainedRowSetId,
+        f: summary.f,
+        sourceRole: channel.sourceRole,
+        receiverRole: channel.receiverRole,
+        channelId: channel.channelId,
+        diagonalChannel: channel.diagonalChannel,
+        rawSearchRelation: "(B_1,B_2,B_3)=(f,f,f)",
+        roleAssignedRelation: "(I,M,O)=(f,f,f)",
+        phaseProfileId: summary.phaseProfileId ?? null,
+        priorityPhaseProfile: summary.priorityPhaseProfile === true,
+        phaseTurnsByRole,
+        sourcePhaseTurns: Number.isFinite(sourcePhaseTurns)
+          ? sourcePhaseTurns
+          : null,
+        receiverPhaseTurns: Number.isFinite(receiverPhaseTurns)
+          ? receiverPhaseTurns
+          : null,
+        sourceToReceiverPhaseOffsetTurns,
+        sourceToReceiverPhaseOffsetRadians,
+        currentFrequencyPhasePacketProxyPass:
+          frequencyPhasePacketCurrentProxyPass,
+        currentPhaseKernelProxyPass: phaseCurrentKernelCurrentProxyPass,
+        selectedEventDomainRoute,
+        retainedEventDomainAccepted,
+        currentSeedPass,
+        binaryToBinaryRetainedHistoryPass: false,
+        retainedPhaseHistoryLiftPass: false,
+        requiredRows: [
+          "retained_source_event_id",
+          "retained_receiver_event_id",
+          "source_retained_root_key",
+          "receiver_retained_root_key",
+          "emitted_phase_phi_source",
+          "received_phase_phi_receiver",
+          "branch_history_segment_source_to_receiver",
+          "signed_root_complex_orientation",
+          "finite_impulse_history_class",
+          "wake_coupling_current_carrier",
+          "same_event_or_positive_width_domain_binding",
+        ],
+        status: currentSeedPass
+          ? "binary_to_binary_phase_history_current_seed_populated_retained_history_missing"
+          : "binary_to_binary_phase_history_current_seed_incomplete",
+        retainedBranchClaim: false,
+      };
+    });
+  });
+  const currentSeedRowCount = rows.filter(
+    (row) => row.currentSeedPass === true
+  ).length;
+  const acceptedRowCount = rows.filter(
+    (row) => row.retainedPhaseHistoryLiftPass === true
+  ).length;
+  const blockingConditionIds = Array.from(
+    new Set([
+      "binary_to_binary_retained_history_rows_missing",
+      "binary_to_binary_retained_phase_history_rows_missing",
+      "signed_root_complex_retained_orientation_missing",
+      "finite_impulse_history_class_missing",
+      "wake_coupling_current_carrier_missing",
+      "same_event_or_positive_width_domain_binding_missing",
+      ...(retainedEventDomainLiftTarget?.blockingConditionIds ?? []),
+      ...(retainedEventDomainSelector?.blockingConditionIds ?? []),
+    ])
+  );
+  return {
+    schema:
+      "aaa-equal-frequency-binary-to-binary-phase-history-lift-target.v1",
+    claimLevel:
+      "binary-to-binary phase/history lift target for S_eq; current seeds populated, no retained history rows accepted",
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
+    currentExecutableChart: CURRENT_EXECUTABLE_GEOMETRY_CHART,
+    canonicalFamily: "I:M:O=(f,f,f)",
+    retainedRowSetId,
+    residualComponents: ["r_evt", "r_W", "r_J"],
+    selectedEventDomainRoute,
+    retainedEventDomainAccepted,
+    pairChannelCount: pairChannels.length,
+    pairChannels,
+    priorityCaseCount: priorityCaseSummaries.length,
+    rowCount: rows.length,
+    currentSeedRowCount,
+    acceptedRowCount,
+    frequencyPhasePacketSchema: retainedFrequencyPhasePacket?.schema ?? null,
+    frequencyPhasePacketStatus: retainedFrequencyPhasePacket?.status ?? null,
+    frequencyPhasePacketCurrentProxyPass,
+    phaseCurrentKernelTargetSchema:
+      phaseCurrentRetainedKernelDerivationTarget?.schema ?? null,
+    phaseCurrentKernelTargetStatus:
+      phaseCurrentRetainedKernelDerivationTarget?.status ?? null,
+    phaseCurrentKernelCurrentProxyPass,
+    retainedPhaseHistoryLiftPass: acceptedRowCount > 0,
+    blockingConditionIds,
+    rows,
+    liftStatement:
+      "The equal-frequency phase candidate needs explicit source/receiver retained history rows before the phase-current kernel or no-slack transfer ledger can count as retained r_W or r_J evidence.",
+    nextSolverAction:
+      "Populate retained source/receiver events, causal root keys, emitted/received phase, signed-root-complex orientation, finite-impulse class, wake/coupling carrier, and same-event/domain binding for each source-to-receiver channel.",
+    status:
+      acceptedRowCount > 0
+        ? "binary_to_binary_phase_history_lift_retained_rows_accepted"
+        : currentSeedRowCount > 0
+          ? "binary_to_binary_phase_history_lift_current_seed_populated_retained_history_missing"
+          : "binary_to_binary_phase_history_lift_current_seed_incomplete",
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyPhaseChannelClassificationAudit(
+  binaryToBinaryPhaseHistoryLiftTarget
+) {
+  const sourceRows = binaryToBinaryPhaseHistoryLiftTarget?.rows ?? [];
+  const classifiedRows = sourceRows.map((row) => {
+    const phaseChannelClass = classifyEqualFrequencyPhaseChannel(
+      row.sourceToReceiverPhaseOffsetTurns
+    );
+    const phaseKernelSign =
+      phaseChannelClass === "forward_triadic_120_phase_current"
+        ? 1
+        : phaseChannelClass === "reverse_triadic_120_phase_return"
+          ? -1
+          : 0;
+    const middleToOuterCarrier =
+      row.sourceRole === "middle" &&
+      row.receiverRole === "outer" &&
+      phaseChannelClass === "forward_triadic_120_phase_current";
+    return {
+      rowId: `${row.rowId}-phase-channel-class`,
+      sourceRowId: row.rowId,
+      retainedRowSetId: row.retainedRowSetId,
+      f: row.f,
+      channelId: row.channelId,
+      sourceRole: row.sourceRole,
+      receiverRole: row.receiverRole,
+      phaseProfileId: row.phaseProfileId,
+      sourceToReceiverPhaseOffsetTurns: row.sourceToReceiverPhaseOffsetTurns,
+      sourceToReceiverPhaseOffsetRadians: row.sourceToReceiverPhaseOffsetRadians,
+      phaseChannelClass,
+      phaseKernelSign,
+      currentSeedPass: row.currentSeedPass === true,
+      retainedPhaseHistoryLiftPass:
+        row.retainedPhaseHistoryLiftPass === true,
+      middleToOuterCarrier,
+      retainedBranchClaim: false,
+    };
+  });
+  const rowsByClass = classifiedRows.reduce((summary, row) => {
+    summary[row.phaseChannelClass] =
+      (summary[row.phaseChannelClass] ?? 0) + 1;
+    return summary;
+  }, {});
+  const channelSummaries = LAYER_ROLES.flatMap((sourceRole) =>
+    LAYER_ROLES.map((receiverRole) => {
+      const channelRows = classifiedRows.filter(
+        (row) =>
+          row.sourceRole === sourceRole && row.receiverRole === receiverRole
+      );
+      const firstRow = channelRows[0] ?? null;
+      return {
+        channelId: `${sourceRole}->${receiverRole}`,
+        sourceRole,
+        receiverRole,
+        rowCount: channelRows.length,
+        currentSeedRowCount: channelRows.filter(
+          (row) => row.currentSeedPass === true
+        ).length,
+        acceptedRowCount: channelRows.filter(
+          (row) => row.retainedPhaseHistoryLiftPass === true
+        ).length,
+        phaseChannelClass: firstRow?.phaseChannelClass ?? null,
+        phaseKernelSign: firstRow?.phaseKernelSign ?? null,
+        phaseOffsetTurns:
+          firstRow?.sourceToReceiverPhaseOffsetTurns ?? null,
+        phaseOffsetRadians:
+          firstRow?.sourceToReceiverPhaseOffsetRadians ?? null,
+        middleToOuterCarrier:
+          firstRow?.middleToOuterCarrier === true,
+      };
+    })
+  );
+  const priorityCaseCount =
+    binaryToBinaryPhaseHistoryLiftTarget?.priorityCaseCount ?? 0;
+  const currentSeedClassifiedRowCount = classifiedRows.filter(
+    (row) => row.currentSeedPass === true
+  ).length;
+  const retainedAcceptedClassifiedRowCount = classifiedRows.filter(
+    (row) => row.retainedPhaseHistoryLiftPass === true
+  ).length;
+  const identityRowCount =
+    rowsByClass.identity_zero_phase_offset ?? 0;
+  const forwardTriadic120RowCount =
+    rowsByClass.forward_triadic_120_phase_current ?? 0;
+  const reverseTriadic120RowCount =
+    rowsByClass.reverse_triadic_120_phase_return ?? 0;
+  const unclassifiedRowCount =
+    rowsByClass.unclassified_phase_offset ?? 0;
+  const middleToOuterCarrierRowCount = classifiedRows.filter(
+    (row) => row.middleToOuterCarrier === true
+  ).length;
+  const phaseClassPartitionPass =
+    sourceRows.length > 0 &&
+    identityRowCount + forwardTriadic120RowCount + reverseTriadic120RowCount ===
+      sourceRows.length &&
+    unclassifiedRowCount === 0;
+  const forwardReverseBalancePass =
+    forwardTriadic120RowCount > 0 &&
+    forwardTriadic120RowCount === reverseTriadic120RowCount;
+  const middleToOuterCarrierCurrentSeedPass =
+    priorityCaseCount > 0 &&
+    middleToOuterCarrierRowCount === priorityCaseCount;
+  return {
+    schema: "aaa-equal-frequency-phase-channel-classification-audit.v1",
+    claimLevel:
+      "current phase-channel classification for equal-frequency binary-to-binary rows; no retained phase-history acceptance",
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
+    currentExecutableChart: CURRENT_EXECUTABLE_GEOMETRY_CHART,
+    canonicalFamily: "I:M:O=(f,f,f)",
+    retainedRowSetId:
+      binaryToBinaryPhaseHistoryLiftTarget?.retainedRowSetId ?? "S_eq",
+    sourceAuditSchema: binaryToBinaryPhaseHistoryLiftTarget?.schema ?? null,
+    sourceAuditStatus: binaryToBinaryPhaseHistoryLiftTarget?.status ?? null,
+    rowCount: classifiedRows.length,
+    currentSeedClassifiedRowCount,
+    retainedAcceptedClassifiedRowCount,
+    identityRowCount,
+    forwardTriadic120RowCount,
+    reverseTriadic120RowCount,
+    unclassifiedRowCount,
+    phaseClassPartitionPass,
+    forwardReverseBalancePass,
+    middleToOuterCarrierChannelId: "middle->outer",
+    middleToOuterCarrierRowCount,
+    middleToOuterCarrierCurrentSeedPass,
+    middleToOuterCarrierAcceptedRowCount: classifiedRows.filter(
+      (row) =>
+        row.middleToOuterCarrier === true &&
+        row.retainedPhaseHistoryLiftPass === true
+    ).length,
+    phaseKernelSignConvention:
+      "+1 means receiver phase is +1/3 turn ahead of source; -1 means receiver phase is -1/3 turn behind source; 0 means identity channel.",
+    selectedCurrentCarrier:
+      channelSummaries.find((row) => row.middleToOuterCarrier === true) ?? null,
+    rowsByClass,
+    channelSummaries,
+    classifiedRows,
+    blockingConditionIds: [
+      "retained_source_receiver_phase_history_rows_missing",
+      "signed_root_complex_retained_orientation_missing",
+      "finite_impulse_history_class_missing",
+      "wake_coupling_current_carrier_missing",
+      "same_event_or_positive_width_domain_binding_missing",
+    ],
+    status:
+      phaseClassPartitionPass &&
+      middleToOuterCarrierCurrentSeedPass &&
+      retainedAcceptedClassifiedRowCount === 0
+        ? "phase_channel_classes_populated_triadic_forward_reverse_identity_retained_history_missing"
+        : phaseClassPartitionPass
+          ? "phase_channel_classes_populated_retained_history_missing"
+          : "phase_channel_classes_incomplete",
+    retainedBranchClaim: false,
+  };
+}
+
+function classifyEqualFrequencyPhaseChannel(phaseOffsetTurns) {
+  if (!Number.isFinite(phaseOffsetTurns)) {
+    return "unclassified_phase_offset";
+  }
+  if (Math.abs(phaseOffsetTurns) <= ROOT_TOLERANCE) {
+    return "identity_zero_phase_offset";
+  }
+  if (Math.abs(phaseOffsetTurns - 1 / 3) <= ROOT_TOLERANCE) {
+    return "forward_triadic_120_phase_current";
+  }
+  if (Math.abs(phaseOffsetTurns + 1 / 3) <= ROOT_TOLERANCE) {
+    return "reverse_triadic_120_phase_return";
+  }
+  return "unclassified_phase_offset";
+}
+
+function createEqualFrequencyPhaseCarrierTransferAlignmentAudit({
+  wakeCouplingTransferTargetAudit,
+  binaryToBinaryPhaseHistoryLiftTarget,
+  phaseChannelClassificationAudit,
+}) {
+  const selectedCarrier =
+    phaseChannelClassificationAudit?.selectedCurrentCarrier ?? null;
+  const selectedTransferSliceIds =
+    wakeCouplingTransferTargetAudit?.selectedTransferSliceIds ?? [];
+  const selectedTransferSignature =
+    wakeCouplingTransferTargetAudit?.selectedTransferSignature ?? {};
+  const priorityCaseCount =
+    binaryToBinaryPhaseHistoryLiftTarget?.priorityCaseCount ??
+    phaseChannelClassificationAudit?.middleToOuterCarrierRowCount ??
+    0;
+  const expectedSelectedTransferEntryCount =
+    priorityCaseCount * selectedTransferSliceIds.length;
+  const selectedTransferEntryCount =
+    wakeCouplingTransferTargetAudit?.selectedTransferEntryCount ?? 0;
+  const transferEntryCoveragePass =
+    expectedSelectedTransferEntryCount > 0 &&
+    selectedTransferEntryCount === expectedSelectedTransferEntryCount;
+  const transferSignatureInnerZeroPass =
+    Number.isFinite(selectedTransferSignature.inner) &&
+    Math.abs(selectedTransferSignature.inner) <= ROOT_TOLERANCE;
+  const transferSignatureMiddleShedsPass =
+    Number.isFinite(selectedTransferSignature.middle) &&
+    selectedTransferSignature.middle < -ROOT_TOLERANCE;
+  const transferSignatureOuterReceivesPass =
+    Number.isFinite(selectedTransferSignature.outer) &&
+    selectedTransferSignature.outer > ROOT_TOLERANCE;
+  const transferSignatureMiddleOuterBalancePass =
+    Number.isFinite(selectedTransferSignature.middle) &&
+    Number.isFinite(selectedTransferSignature.outer) &&
+    Math.abs(
+      selectedTransferSignature.middle + selectedTransferSignature.outer
+    ) <= ROOT_TOLERANCE;
+  const signedMiddleToOuterTransferPass =
+    wakeCouplingTransferTargetAudit?.selectedFiniteBalancedTransferPass ===
+      true &&
+    wakeCouplingTransferTargetAudit?.middleToOuterOnlyPass === true &&
+    wakeCouplingTransferTargetAudit?.selectedTransferStableAcrossRows ===
+      true &&
+    transferSignatureInnerZeroPass === true &&
+    transferSignatureMiddleShedsPass === true &&
+    transferSignatureOuterReceivesPass === true &&
+    transferSignatureMiddleOuterBalancePass === true &&
+    transferEntryCoveragePass === true;
+  const carrierPhaseOffsetTurns =
+    selectedCarrier?.phaseOffsetTurns ?? null;
+  const carrierPhaseOffsetRadians =
+    selectedCarrier?.phaseOffsetRadians ?? null;
+  const phaseCarrierDirectionPass =
+    selectedCarrier?.channelId === "middle->outer" &&
+    selectedCarrier?.sourceRole === "middle" &&
+    selectedCarrier?.receiverRole === "outer" &&
+    selectedCarrier?.phaseChannelClass ===
+      "forward_triadic_120_phase_current";
+  const phaseCarrierKernelSignPass =
+    selectedCarrier?.phaseKernelSign === 1;
+  const phaseCarrierOffsetPass =
+    Number.isFinite(carrierPhaseOffsetTurns) &&
+    Math.abs(carrierPhaseOffsetTurns - 1 / 3) <= ROOT_TOLERANCE;
+  const middleToOuterCarrierCurrentSeedPass =
+    phaseChannelClassificationAudit?.middleToOuterCarrierCurrentSeedPass ===
+    true;
+  const phaseCarrierTransferAlignmentCurrentProxyPass =
+    signedMiddleToOuterTransferPass === true &&
+    phaseCarrierDirectionPass === true &&
+    phaseCarrierKernelSignPass === true &&
+    phaseCarrierOffsetPass === true &&
+    middleToOuterCarrierCurrentSeedPass === true;
+  const transferRowsByF = new Map(
+    (wakeCouplingTransferTargetAudit?.rows ?? []).map((row) => [row.f, row])
+  );
+  const carrierRows = (
+    phaseChannelClassificationAudit?.classifiedRows ?? []
+  ).filter((row) => row.middleToOuterCarrier === true);
+  const rows = carrierRows.map((carrierRow) => {
+    const transferRow = transferRowsByF.get(carrierRow.f) ?? null;
+    const selectedSliceRows = selectedTransferSliceIds
+      .map((sliceId) => transferRow?.slices?.[sliceId])
+      .filter(Boolean);
+    const selectedSlicePass =
+      selectedSliceRows.length === selectedTransferSliceIds.length &&
+      selectedSliceRows.length > 0 &&
+      selectedSliceRows.every(
+        (slice) => slice.middleToOuterOnlyTransferPass === true
+      );
+    const currentProxyPass =
+      carrierRow.currentSeedPass === true &&
+      carrierRow.phaseChannelClass ===
+        "forward_triadic_120_phase_current" &&
+      selectedSlicePass === true &&
+      phaseCarrierTransferAlignmentCurrentProxyPass === true;
+    return {
+      rowId: `S_eq-phase-carrier-transfer-alignment-f${carrierRow.f}`,
+      retainedRowSetId: carrierRow.retainedRowSetId,
+      sourcePhaseChannelRowId: carrierRow.rowId,
+      sourceTransferTargetRowId: transferRow?.rowId ?? null,
+      f: carrierRow.f,
+      channelId: carrierRow.channelId,
+      sourceRole: carrierRow.sourceRole,
+      receiverRole: carrierRow.receiverRole,
+      phaseProfileId: carrierRow.phaseProfileId,
+      phaseChannelClass: carrierRow.phaseChannelClass,
+      phaseKernelSign: carrierRow.phaseKernelSign,
+      phaseOffsetTurns: carrierRow.sourceToReceiverPhaseOffsetTurns,
+      phaseOffsetRadians: carrierRow.sourceToReceiverPhaseOffsetRadians,
+      selectedTransferSliceIds,
+      selectedTransferSliceCount: selectedSliceRows.length,
+      selectedSliceMiddleToOuterPass: selectedSlicePass,
+      selectedTransferSignature,
+      currentProxyPass,
+      retainedCarrierTransferAlignmentPass: false,
+      retainedBranchClaim: false,
+    };
+  });
+  const currentProxyAlignmentRowCount = rows.filter(
+    (row) => row.currentProxyPass === true
+  ).length;
+  const retainedAcceptedAlignmentRowCount = rows.filter(
+    (row) => row.retainedCarrierTransferAlignmentPass === true
+  ).length;
+  return {
+    schema:
+      "aaa-equal-frequency-phase-carrier-transfer-alignment-audit.v1",
+    claimLevel:
+      "current phase-carrier to signed transfer alignment; not retained same-event wake/coupling acceptance",
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
+    currentExecutableChart: CURRENT_EXECUTABLE_GEOMETRY_CHART,
+    canonicalFamily: "I:M:O=(f,f,f)",
+    retainedRowSetId:
+      binaryToBinaryPhaseHistoryLiftTarget?.retainedRowSetId ?? "S_eq",
+    sourceWakeCouplingTransferTargetAuditSchema:
+      wakeCouplingTransferTargetAudit?.schema ?? null,
+    sourceWakeCouplingTransferTargetStatus:
+      wakeCouplingTransferTargetAudit?.status ?? null,
+    sourceBinaryToBinaryPhaseHistoryLiftTargetSchema:
+      binaryToBinaryPhaseHistoryLiftTarget?.schema ?? null,
+    sourceBinaryToBinaryPhaseHistoryLiftTargetStatus:
+      binaryToBinaryPhaseHistoryLiftTarget?.status ?? null,
+    sourcePhaseChannelClassificationAuditSchema:
+      phaseChannelClassificationAudit?.schema ?? null,
+    sourcePhaseChannelClassificationStatus:
+      phaseChannelClassificationAudit?.status ?? null,
+    selectedCarrierChannelId: selectedCarrier?.channelId ?? null,
+    selectedCarrier,
+    selectedTransferDirection: "middle->outer",
+    selectedTransferSliceIds,
+    selectedTransferEntryCount,
+    expectedSelectedTransferEntryCount,
+    transferEntryCoveragePass,
+    selectedTransferSignature,
+    transferSignatureInnerZeroPass,
+    transferSignatureMiddleShedsPass,
+    transferSignatureOuterReceivesPass,
+    transferSignatureMiddleOuterBalancePass,
+    selectedFiniteBalancedTransferPass:
+      wakeCouplingTransferTargetAudit?.selectedFiniteBalancedTransferPass ??
+      false,
+    selectedTransferStableAcrossRows:
+      wakeCouplingTransferTargetAudit?.selectedTransferStableAcrossRows ??
+      false,
+    middleToOuterOnlyPass:
+      wakeCouplingTransferTargetAudit?.middleToOuterOnlyPass ?? false,
+    signedMiddleToOuterTransferPass,
+    phaseCarrierDirectionPass,
+    phaseCarrierKernelSignPass,
+    phaseCarrierOffsetPass,
+    carrierPhaseOffsetTurns,
+    carrierPhaseOffsetRadians,
+    middleToOuterCarrierRowCount:
+      phaseChannelClassificationAudit?.middleToOuterCarrierRowCount ?? 0,
+    middleToOuterCarrierCurrentSeedPass,
+    middleToOuterCarrierAcceptedRowCount:
+      phaseChannelClassificationAudit?.middleToOuterCarrierAcceptedRowCount ??
+      0,
+    pairEqualizationExactSelectedCount:
+      wakeCouplingTransferTargetAudit?.transferLawScan
+        ?.pairEqualizationExactSelectedCount ?? null,
+    pairEqualizationExactControlCount:
+      wakeCouplingTransferTargetAudit?.transferLawScan
+        ?.pairEqualizationExactControlCount ?? null,
+    rowCount: rows.length,
+    currentProxyAlignmentRowCount,
+    retainedAcceptedAlignmentRowCount,
+    phaseCarrierTransferAlignmentCurrentProxyPass:
+      phaseCarrierTransferAlignmentCurrentProxyPass === true &&
+      rows.length > 0 &&
+      currentProxyAlignmentRowCount === rows.length,
+    retainedCarrierTransferAlignmentAcceptancePass:
+      retainedAcceptedAlignmentRowCount > 0,
+    rows,
+    blockingConditionIds: [
+      "retained_source_receiver_phase_history_rows_missing",
+      "retained_wake_coupling_transfer_law_missing",
+      "same_event_or_positive_width_domain_binding_missing",
+      "same_event_angular_momentum_ledger_missing",
+      "Noether_sea_record_event_or_domain_binding_missing",
+    ],
+    status:
+      phaseCarrierTransferAlignmentCurrentProxyPass === true &&
+      rows.length > 0 &&
+      currentProxyAlignmentRowCount === rows.length &&
+      retainedAcceptedAlignmentRowCount === 0
+        ? "phase_carrier_transfer_alignment_current_proxy_populated_retained_rows_missing"
+        : signedMiddleToOuterTransferPass === true
+          ? "phase_carrier_transfer_alignment_phase_channel_incomplete"
+          : middleToOuterCarrierCurrentSeedPass === true
+            ? "phase_carrier_transfer_alignment_transfer_target_incomplete"
+            : "phase_carrier_transfer_alignment_current_proxy_incomplete",
+    interpretation:
+      "The current equal-frequency rows align the 120-degree middle-to-outer phase carrier with the signed transfer target: middle sheds angular momentum, outer receives the same amount, and inner contributes no transfer. This records a current-proxy alignment only; it does not derive the wake/coupling law or bind the rows to one retained event/domain.",
+    retainedReplayBurden:
+      "Replay the same middle-to-outer carrier and transfer equation as retained binary-to-binary phase/history rows, retained wake/coupling rows, and a no-slack angular-momentum ledger on one accepted S_eq retained event or positive-width domain.",
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyRetainedPhaseHistoryCarrierReadinessAudit({
+  binaryToBinaryPhaseHistoryLiftTarget,
+  phaseChannelClassificationAudit,
+  phaseCarrierTransferAlignmentAudit,
+  retainedEventDomainLiftTarget,
+  retainedEventDomainSelector,
+  retainedFrequencyPhasePacket,
+  phaseCurrentRetainedKernelDerivationTarget,
+}) {
+  const carrierChannelId =
+    phaseCarrierTransferAlignmentAudit?.selectedCarrierChannelId ??
+    phaseChannelClassificationAudit?.middleToOuterCarrierChannelId ??
+    "middle->outer";
+  const sourceRowsByF = new Map(
+    (binaryToBinaryPhaseHistoryLiftTarget?.rows ?? [])
+      .filter((row) => row.channelId === carrierChannelId)
+      .map((row) => [row.f, row])
+  );
+  const alignmentRowsByF = new Map(
+    (phaseCarrierTransferAlignmentAudit?.rows ?? []).map((row) => [
+      row.f,
+      row,
+    ])
+  );
+  const carrierRows = Array.from(sourceRowsByF.values()).sort(
+    (left, right) => left.f - right.f
+  );
+  const frequencyPhasePacketCurrentProxyPass = isFullPositiveCount(
+    retainedFrequencyPhasePacket?.currentProxyPacketPassCount,
+    retainedFrequencyPhasePacket?.rowCount
+  );
+  const selectedEventDomainRoute =
+    retainedEventDomainSelector?.selectedRoute ??
+    binaryToBinaryPhaseHistoryLiftTarget?.selectedEventDomainRoute ??
+    null;
+  const retainedEventDomainAccepted =
+    retainedEventDomainSelector?.retainedSelectorAcceptancePass === true ||
+    retainedEventDomainLiftTarget?.retainedEventDomainLiftPass === true ||
+    binaryToBinaryPhaseHistoryLiftTarget?.retainedEventDomainAccepted === true;
+  const sourceReadinessAllProxyPass =
+    isFullPositiveCount(
+      phaseCurrentRetainedKernelDerivationTarget
+        ?.sourceReadinessCurrentProxyRowCount,
+      phaseCurrentRetainedKernelDerivationTarget?.sourceReadinessBlockingRowCount
+    ) ||
+    phaseCurrentRetainedKernelDerivationTarget?.sourceReadinessAudit
+      ?.currentProxyRowCount ===
+      phaseCurrentRetainedKernelDerivationTarget?.sourceReadinessAudit
+        ?.rowCount;
+  const signedRootCurrentProxyPass =
+    phaseCurrentRetainedKernelDerivationTarget
+      ?.phaseCurrentSourceBridgeSignedRootCurrentProxyPass === true;
+  const finiteImpulseCurrentProxyPass =
+    phaseCurrentRetainedKernelDerivationTarget
+      ?.phaseCurrentSourceBridgeFiniteImpulseCurrentProxyPass === true ||
+    phaseCurrentRetainedKernelDerivationTarget
+      ?.phaseCurrentSourceBridgeCurrentProxyRowCount >= 2;
+  const sameEventTransferLedgerCurrentProxyPass =
+    phaseCurrentRetainedKernelDerivationTarget
+      ?.sameEventTransferLedgerCurrentProxyPass === true;
+  const phaseCarrierTransferAlignmentCurrentProxyPass =
+    phaseCarrierTransferAlignmentAudit
+      ?.phaseCarrierTransferAlignmentCurrentProxyPass === true;
+  const retainedRequirementRows = [
+    {
+      id: "retained_source_event_id",
+      currentProxyField: "selectedEventDomainRoute",
+    },
+    {
+      id: "retained_receiver_event_id",
+      currentProxyField: "selectedEventDomainRoute",
+    },
+    {
+      id: "source_retained_root_key",
+      currentProxyField: "phaseCurrentSourceReadiness",
+    },
+    {
+      id: "receiver_retained_root_key",
+      currentProxyField: "phaseCurrentSourceReadiness",
+    },
+    {
+      id: "emitted_phase_phi_source",
+      currentProxyField: "finiteSourcePhase",
+    },
+    {
+      id: "received_phase_phi_receiver",
+      currentProxyField: "finiteReceiverPhase",
+    },
+    {
+      id: "branch_history_segment_source_to_receiver",
+      currentProxyField: "frequencyPhasePacket",
+    },
+    {
+      id: "signed_root_complex_orientation",
+      currentProxyField: "signedRootCurrentProxy",
+    },
+    {
+      id: "finite_impulse_history_class",
+      currentProxyField: "finiteImpulseCurrentProxy",
+    },
+    {
+      id: "wake_coupling_current_carrier",
+      currentProxyField: "phaseCarrierTransferAlignment",
+    },
+    {
+      id: "same_event_or_positive_width_domain_binding",
+      currentProxyField: "sameEventTransferLedger",
+    },
+  ];
+  const rows = carrierRows.map((carrierRow) => {
+    const alignmentRow = alignmentRowsByF.get(carrierRow.f) ?? null;
+    const finiteSourcePhasePass = Number.isFinite(carrierRow.sourcePhaseTurns);
+    const finiteReceiverPhasePass = Number.isFinite(
+      carrierRow.receiverPhaseTurns
+    );
+    const phaseOffset120Pass =
+      Number.isFinite(carrierRow.sourceToReceiverPhaseOffsetTurns) &&
+      Math.abs(carrierRow.sourceToReceiverPhaseOffsetTurns - 1 / 3) <=
+        ROOT_TOLERANCE;
+    const currentReadinessVector = {
+      frequencyPhasePacketCurrentProxyPass,
+      selectedEventDomainRoutePopulated: selectedEventDomainRoute !== null,
+      sourceReceiverTemplateCurrentSeedPass:
+        carrierRow.currentSeedPass === true,
+      finiteSourcePhasePass,
+      finiteReceiverPhasePass,
+      phaseOffset120Pass,
+      signedRootCurrentProxyPass,
+      finiteImpulseCurrentProxyPass,
+      sourceReadinessAllProxyPass,
+      sameEventTransferLedgerCurrentProxyPass,
+      phaseCarrierTransferAlignmentCurrentProxyPass:
+        alignmentRow?.currentProxyPass === true &&
+        phaseCarrierTransferAlignmentCurrentProxyPass === true,
+    };
+    const currentReadinessPass = Object.values(currentReadinessVector).every(
+      (value) => value === true
+    );
+    return {
+      rowId: `S_eq-retained-phase-history-carrier-readiness-f${carrierRow.f}`,
+      retainedRowSetId: carrierRow.retainedRowSetId,
+      sourceBinaryToBinaryRowId: carrierRow.rowId,
+      sourceAlignmentRowId: alignmentRow?.rowId ?? null,
+      f: carrierRow.f,
+      channelId: carrierRow.channelId,
+      sourceRole: carrierRow.sourceRole,
+      receiverRole: carrierRow.receiverRole,
+      phaseProfileId: carrierRow.phaseProfileId,
+      sourcePhaseTurns: carrierRow.sourcePhaseTurns,
+      receiverPhaseTurns: carrierRow.receiverPhaseTurns,
+      sourceToReceiverPhaseOffsetTurns:
+        carrierRow.sourceToReceiverPhaseOffsetTurns,
+      sourceToReceiverPhaseOffsetRadians:
+        carrierRow.sourceToReceiverPhaseOffsetRadians,
+      selectedEventDomainRoute,
+      retainedEventDomainAccepted,
+      currentReadinessVector,
+      currentReadinessPass,
+      retainedRequirementRows: retainedRequirementRows.map((row) => ({
+        ...row,
+        retainedAcceptancePass: false,
+      })),
+      retainedRequirementAcceptedCount: 0,
+      retainedPhaseHistoryCarrierReadinessPass: false,
+      status: currentReadinessPass
+        ? "retained_phase_history_carrier_current_readiness_populated_retained_rows_missing"
+        : "retained_phase_history_carrier_current_readiness_incomplete",
+      retainedBranchClaim: false,
+    };
+  });
+  const currentReadinessRowCount = rows.filter(
+    (row) => row.currentReadinessPass === true
+  ).length;
+  const retainedAcceptedRowCount = rows.filter(
+    (row) => row.retainedPhaseHistoryCarrierReadinessPass === true
+  ).length;
+  const retainedRequirementCount =
+    rows.length * retainedRequirementRows.length;
+  const retainedRequirementAcceptedCount = sumFinite(
+    rows.map((row) => row.retainedRequirementAcceptedCount)
+  );
+  return {
+    schema:
+      "aaa-equal-frequency-retained-phase-history-carrier-readiness-audit.v1",
+    claimLevel:
+      "current readiness audit for retained middle-to-outer phase-history carrier rows; no retained source/receiver row acceptance",
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
+    currentExecutableChart: CURRENT_EXECUTABLE_GEOMETRY_CHART,
+    canonicalFamily: "I:M:O=(f,f,f)",
+    retainedRowSetId:
+      binaryToBinaryPhaseHistoryLiftTarget?.retainedRowSetId ?? "S_eq",
+    carrierChannelId,
+    sourceBinaryToBinaryPhaseHistoryLiftTargetSchema:
+      binaryToBinaryPhaseHistoryLiftTarget?.schema ?? null,
+    sourceBinaryToBinaryPhaseHistoryLiftTargetStatus:
+      binaryToBinaryPhaseHistoryLiftTarget?.status ?? null,
+    sourcePhaseChannelClassificationAuditSchema:
+      phaseChannelClassificationAudit?.schema ?? null,
+    sourcePhaseChannelClassificationStatus:
+      phaseChannelClassificationAudit?.status ?? null,
+    sourcePhaseCarrierTransferAlignmentAuditSchema:
+      phaseCarrierTransferAlignmentAudit?.schema ?? null,
+    sourcePhaseCarrierTransferAlignmentStatus:
+      phaseCarrierTransferAlignmentAudit?.status ?? null,
+    retainedEventDomainSelectorSchema:
+      retainedEventDomainSelector?.schema ?? null,
+    retainedEventDomainSelectorStatus:
+      retainedEventDomainSelector?.status ?? null,
+    retainedEventDomainLiftTargetSchema:
+      retainedEventDomainLiftTarget?.schema ?? null,
+    retainedEventDomainLiftStatus:
+      retainedEventDomainLiftTarget?.status ?? null,
+    retainedFrequencyPhasePacketSchema:
+      retainedFrequencyPhasePacket?.schema ?? null,
+    retainedFrequencyPhasePacketStatus:
+      retainedFrequencyPhasePacket?.status ?? null,
+    phaseCurrentRetainedKernelDerivationTargetSchema:
+      phaseCurrentRetainedKernelDerivationTarget?.schema ?? null,
+    phaseCurrentRetainedKernelDerivationTargetStatus:
+      phaseCurrentRetainedKernelDerivationTarget?.status ?? null,
+    selectedEventDomainRoute,
+    retainedEventDomainAccepted,
+    frequencyPhasePacketCurrentProxyPass,
+    signedRootCurrentProxyPass,
+    finiteImpulseCurrentProxyPass,
+    sourceReadinessAllProxyPass,
+    sameEventTransferLedgerCurrentProxyPass,
+    phaseCarrierTransferAlignmentCurrentProxyPass,
+    retainedRequirementRows,
+    retainedRequirementCount,
+    retainedRequirementAcceptedCount,
+    rowCount: rows.length,
+    currentReadinessRowCount,
+    retainedAcceptedRowCount,
+    currentReadinessPass:
+      rows.length > 0 && currentReadinessRowCount === rows.length,
+    retainedPhaseHistoryCarrierReadinessPass: retainedAcceptedRowCount > 0,
+    rows,
+    blockingConditionIds: [
+      "retained_source_event_id_missing",
+      "retained_receiver_event_id_missing",
+      "source_retained_root_key_missing",
+      "receiver_retained_root_key_missing",
+      "emitted_phase_phi_source_retained_row_missing",
+      "received_phase_phi_receiver_retained_row_missing",
+      "branch_history_segment_source_to_receiver_missing",
+      "signed_root_complex_retained_orientation_missing",
+      "finite_impulse_history_class_missing",
+      "wake_coupling_current_carrier_retained_row_missing",
+      "same_event_or_positive_width_domain_binding_missing",
+      ...(binaryToBinaryPhaseHistoryLiftTarget?.blockingConditionIds ?? []),
+      ...(phaseCarrierTransferAlignmentAudit?.blockingConditionIds ?? []),
+    ],
+    status:
+      rows.length > 0 &&
+      currentReadinessRowCount === rows.length &&
+      retainedAcceptedRowCount === 0
+        ? "retained_phase_history_carrier_current_readiness_populated_retained_rows_missing"
+        : currentReadinessRowCount > 0
+          ? "retained_phase_history_carrier_current_readiness_partial_retained_rows_missing"
+          : "retained_phase_history_carrier_current_readiness_incomplete",
+    interpretation:
+      "The selected middle-to-outer carrier now has finite current source/receiver phases, a selected current event/domain route, current phase-kernel/source-readiness proxies, current signed-root and finite-impulse proxies, a no-slack transfer ledger proxy, and carrier-transfer alignment. None of those current fields is yet a retained source/receiver phase-history row.",
+    retainedReplayBurden:
+      "Promote the middle-to-outer carrier by populating retained source and receiver event IDs, retained root keys, emitted and received phase rows, a branch-history segment, signed-root-complex orientation, finite-impulse class, wake/coupling current carrier, and same-event or positive-width-domain binding on S_eq.",
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyRetainedPhaseHistoryCarrierEventDomainRowModel({
+  retainedPhaseHistoryCarrierReadinessAudit,
+  retainedEventDomainLiftTarget,
+  retainedEventDomainSelector,
+  binaryToBinaryPhaseHistoryLiftTarget,
+}) {
+  const retainedRowSetId =
+    retainedPhaseHistoryCarrierReadinessAudit?.retainedRowSetId ??
+    binaryToBinaryPhaseHistoryLiftTarget?.retainedRowSetId ??
+    "S_eq";
+  const selectedEventDomainRoute =
+    retainedPhaseHistoryCarrierReadinessAudit?.selectedEventDomainRoute ??
+    retainedEventDomainSelector?.selectedRoute ??
+    null;
+  const retainedEventDomainAccepted =
+    retainedPhaseHistoryCarrierReadinessAudit?.retainedEventDomainAccepted ===
+      true ||
+    retainedEventDomainSelector?.retainedSelectorAcceptancePass === true ||
+    retainedEventDomainLiftTarget?.retainedEventDomainLiftPass === true;
+  const routeKind =
+    selectedEventDomainRoute === "point_event_current_proxy_first"
+      ? "retained_point_event_candidate"
+      : selectedEventDomainRoute === "positive_width_domain_search_required"
+        ? "positive_width_retained_domain_candidate"
+        : "unselected_event_domain_route";
+  const carrierChannelId =
+    retainedPhaseHistoryCarrierReadinessAudit?.carrierChannelId ??
+    "middle->outer";
+  const rows = (retainedPhaseHistoryCarrierReadinessAudit?.rows ?? []).map(
+    (readinessRow) => {
+      const phaseOffsetResidual = Number.isFinite(
+        readinessRow.sourceToReceiverPhaseOffsetTurns
+      )
+        ? readinessRow.sourceToReceiverPhaseOffsetTurns - 1 / 3
+        : null;
+      const currentPointEventTemplatePass =
+        readinessRow.currentReadinessPass === true &&
+        selectedEventDomainRoute !== null &&
+        Number.isFinite(phaseOffsetResidual) &&
+        Math.abs(phaseOffsetResidual) <= ROOT_TOLERANCE;
+      const sourceEventIdTemplate = `${retainedRowSetId}-f${readinessRow.f}-${readinessRow.sourceRole}-source-event`;
+      const receiverEventIdTemplate = `${retainedRowSetId}-f${readinessRow.f}-${readinessRow.receiverRole}-receiver-event`;
+      const eventPairIdTemplate = `${retainedRowSetId}-f${readinessRow.f}-${readinessRow.sourceRole}-to-${readinessRow.receiverRole}-event-pair`;
+      return {
+        rowId: `S_eq-retained-phase-history-carrier-event-domain-f${readinessRow.f}`,
+        retainedRowSetId,
+        sourceReadinessRowId: readinessRow.rowId,
+        f: readinessRow.f,
+        carrierChannelId: readinessRow.channelId,
+        sourceRole: readinessRow.sourceRole,
+        receiverRole: readinessRow.receiverRole,
+        phaseProfileId: readinessRow.phaseProfileId,
+        routeKind,
+        selectedEventDomainRoute,
+        sourceEventIdTemplate,
+        receiverEventIdTemplate,
+        eventPairIdTemplate,
+        sourceRootKeyTemplate: `${sourceEventIdTemplate}-root-key`,
+        receiverRootKeyTemplate: `${receiverEventIdTemplate}-root-key`,
+        sourcePhaseTurnsCurrentProxy: readinessRow.sourcePhaseTurns,
+        receiverPhaseTurnsCurrentProxy: readinessRow.receiverPhaseTurns,
+        sourceToReceiverPhaseOffsetTurns:
+          readinessRow.sourceToReceiverPhaseOffsetTurns,
+        sourceToReceiverPhaseOffsetRadians:
+          readinessRow.sourceToReceiverPhaseOffsetRadians,
+        phaseOffsetResidual,
+        eventDomainEquation:
+          "E_src,E_recv in S_eq and either event(E_src)=event(E_recv)=E_eq or E_src,E_recv lie in one positive-width retained domain D_eq; phi_recv-phi_src=1/3 turn on the same retained carrier row",
+        currentPointEventTemplatePass,
+        retainedSourceEventAccepted: false,
+        retainedReceiverEventAccepted: false,
+        retainedSourceRootKeyAccepted: false,
+        retainedReceiverRootKeyAccepted: false,
+        retainedEmittedPhaseAccepted: false,
+        retainedReceivedPhaseAccepted: false,
+        retainedBranchHistorySegmentAccepted: false,
+        retainedEventPairBindingAccepted: false,
+        retainedPositiveWidthDomainAccepted: false,
+        retainedEventDomainRowAccepted: false,
+        acceptedRetainedRequirementCount: 0,
+        requiredRetainedInputs: [
+          "retained_source_event_id",
+          "retained_receiver_event_id",
+          "source_retained_root_key",
+          "receiver_retained_root_key",
+          "emitted_phase_phi_source",
+          "received_phase_phi_receiver",
+          "branch_history_segment_source_to_receiver",
+          "same_event_or_positive_width_domain_binding",
+        ],
+        status: currentPointEventTemplatePass
+          ? "carrier_event_domain_row_model_current_template_populated_retained_event_missing"
+          : "carrier_event_domain_row_model_current_template_incomplete",
+        retainedBranchClaim: false,
+      };
+    }
+  );
+  const currentTemplatePassCount = rows.filter(
+    (row) => row.currentPointEventTemplatePass === true
+  ).length;
+  const retainedAcceptedRowCount = rows.filter(
+    (row) => row.retainedEventDomainRowAccepted === true
+  ).length;
+  const acceptedRetainedRequirementCount = sumFinite(
+    rows.map((row) => row.acceptedRetainedRequirementCount)
+  );
+  const retainedRequirementCount = sumFinite(
+    rows.map((row) => row.requiredRetainedInputs.length)
+  );
+  return {
+    schema:
+      "aaa-equal-frequency-retained-phase-history-carrier-event-domain-row-model.v1",
+    claimLevel:
+      "first retained source/receiver event-domain row model for the middle-to-outer carrier; no retained event/domain acceptance",
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
+    currentExecutableChart: CURRENT_EXECUTABLE_GEOMETRY_CHART,
+    canonicalFamily: "I:M:O=(f,f,f)",
+    retainedRowSetId,
+    carrierChannelId,
+    selectedEventDomainRoute,
+    routeKind,
+    retainedEventDomainAccepted,
+    sourceReadinessAuditSchema:
+      retainedPhaseHistoryCarrierReadinessAudit?.schema ?? null,
+    sourceReadinessStatus:
+      retainedPhaseHistoryCarrierReadinessAudit?.status ?? null,
+    retainedEventDomainLiftTargetSchema:
+      retainedEventDomainLiftTarget?.schema ?? null,
+    retainedEventDomainLiftStatus:
+      retainedEventDomainLiftTarget?.status ?? null,
+    retainedEventDomainSelectorSchema:
+      retainedEventDomainSelector?.schema ?? null,
+    retainedEventDomainSelectorStatus:
+      retainedEventDomainSelector?.status ?? null,
+    eventDomainEquation:
+      "E_src,E_recv in S_eq and either event(E_src)=event(E_recv)=E_eq or E_src,E_recv lie in one positive-width retained domain D_eq; phi_recv-phi_src=1/3 turn on the same retained carrier row",
+    residualVector:
+      "R_phi_evt=(r_event,r_domain,r_root_src,r_root_recv,r_phi_src,r_phi_recv,r_segment,r_bind)",
+    rowCount: rows.length,
+    currentTemplatePassCount,
+    retainedAcceptedRowCount,
+    retainedRequirementCount,
+    acceptedRetainedRequirementCount,
+    currentEventDomainTemplatePass:
+      rows.length > 0 && currentTemplatePassCount === rows.length,
+    retainedEventDomainRowAcceptancePass: retainedAcceptedRowCount > 0,
+    rows,
+    blockingConditionIds: [
+      "retained_source_event_id_missing",
+      "retained_receiver_event_id_missing",
+      "source_retained_root_key_missing",
+      "receiver_retained_root_key_missing",
+      "emitted_phase_phi_source_retained_row_missing",
+      "received_phase_phi_receiver_retained_row_missing",
+      "branch_history_segment_source_to_receiver_missing",
+      "same_event_or_positive_width_domain_binding_missing",
+      "accepted_retained_event_domain_missing",
+      ...(retainedPhaseHistoryCarrierReadinessAudit?.blockingConditionIds ??
+        []),
+      ...(retainedEventDomainLiftTarget?.blockingConditionIds ?? []),
+      ...(retainedEventDomainSelector?.blockingConditionIds ?? []),
+    ],
+    status:
+      rows.length > 0 &&
+      currentTemplatePassCount === rows.length &&
+      retainedAcceptedRowCount === 0
+        ? "carrier_event_domain_row_model_current_templates_populated_retained_event_missing"
+        : currentTemplatePassCount > 0
+          ? "carrier_event_domain_row_model_current_templates_partial_retained_event_missing"
+          : "carrier_event_domain_row_model_current_templates_incomplete",
+    interpretation:
+      "The middle-to-outer carrier now has explicit source/receiver event-domain row templates and a residual vector for the first retained replay. These templates name what must be accepted, but they do not accept a retained event, retained domain, retained root key, retained phase row, or branch-history segment.",
+    retainedReplayBurden:
+      "Instantiate the templates with accepted S_eq source/receiver event IDs or one positive-width retained domain, retained root keys, emitted/received phase rows, a branch-history segment, and event/domain binding before using the carrier as retained phase-history evidence.",
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyRetainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit({
+  retainedPhaseHistoryCarrierEventDomainRowModel,
+  retainedEventDomainLiftTarget,
+  retainedEventDomainSelector,
+}) {
+  const sourceRows =
+    retainedPhaseHistoryCarrierEventDomainRowModel?.rows ?? [];
+  const retainedRowSetId =
+    retainedPhaseHistoryCarrierEventDomainRowModel?.retainedRowSetId ?? "S_eq";
+  const carrierChannelId =
+    retainedPhaseHistoryCarrierEventDomainRowModel?.carrierChannelId ??
+    "middle->outer";
+  const selectedEventDomainRoute =
+    retainedPhaseHistoryCarrierEventDomainRowModel
+      ?.selectedEventDomainRoute ??
+    retainedEventDomainSelector?.selectedRoute ??
+    null;
+  const retainedEventDomainAccepted =
+    retainedPhaseHistoryCarrierEventDomainRowModel
+      ?.retainedEventDomainAccepted === true ||
+    retainedEventDomainSelector?.retainedSelectorAcceptancePass === true ||
+    retainedEventDomainLiftTarget?.retainedEventDomainLiftPass === true;
+  const rows = sourceRows.map((row, index) => {
+    const retainedRequirementChecks = [
+      {
+        id: "retained_source_event_id",
+        residualComponent: "r_event",
+        template: row.sourceEventIdTemplate,
+        accepted: row.retainedSourceEventAccepted === true,
+      },
+      {
+        id: "retained_receiver_event_id",
+        residualComponent: "r_event",
+        template: row.receiverEventIdTemplate,
+        accepted: row.retainedReceiverEventAccepted === true,
+      },
+      {
+        id: "source_retained_root_key",
+        residualComponent: "r_root_src",
+        template: row.sourceRootKeyTemplate,
+        accepted: row.retainedSourceRootKeyAccepted === true,
+      },
+      {
+        id: "receiver_retained_root_key",
+        residualComponent: "r_root_recv",
+        template: row.receiverRootKeyTemplate,
+        accepted: row.retainedReceiverRootKeyAccepted === true,
+      },
+      {
+        id: "emitted_phase_phi_source",
+        residualComponent: "r_phi_src",
+        currentProxyValue: row.sourcePhaseTurnsCurrentProxy,
+        accepted: row.retainedEmittedPhaseAccepted === true,
+      },
+      {
+        id: "received_phase_phi_receiver",
+        residualComponent: "r_phi_recv",
+        currentProxyValue: row.receiverPhaseTurnsCurrentProxy,
+        accepted: row.retainedReceivedPhaseAccepted === true,
+      },
+      {
+        id: "branch_history_segment_source_to_receiver",
+        residualComponent: "r_segment",
+        template: `${row.eventPairIdTemplate}-history-segment`,
+        accepted: row.retainedBranchHistorySegmentAccepted === true,
+      },
+      {
+        id: "same_event_or_positive_width_domain_binding",
+        residualComponent: "r_bind",
+        template: row.eventPairIdTemplate,
+        accepted:
+          row.retainedEventPairBindingAccepted === true ||
+          row.retainedPositiveWidthDomainAccepted === true,
+      },
+    ];
+    const acceptedRetainedRequirementCount =
+      retainedRequirementChecks.filter((check) => check.accepted === true)
+        .length;
+    const missingRetainedRequirementIds = retainedRequirementChecks
+      .filter((check) => check.accepted !== true)
+      .map((check) => check.id);
+    const currentTemplateAttemptPass =
+      row.currentPointEventTemplatePass === true;
+    const retainedEventDomainAcceptanceAttemptPass =
+      currentTemplateAttemptPass === true &&
+      retainedEventDomainAccepted === true &&
+      acceptedRetainedRequirementCount === retainedRequirementChecks.length;
+    return {
+      rowId: `${row.rowId}-acceptance-attempt`,
+      sourceEventDomainRowId: row.rowId,
+      retainedRowSetId,
+      f: row.f,
+      carrierChannelId: row.carrierChannelId,
+      sourceRole: row.sourceRole,
+      receiverRole: row.receiverRole,
+      selectedEventDomainRoute,
+      firstRunnableAttemptRow: index === 0,
+      currentTemplateAttemptPass,
+      retainedEventDomainAccepted,
+      retainedRequirementChecks,
+      retainedRequirementCount: retainedRequirementChecks.length,
+      acceptedRetainedRequirementCount,
+      missingRetainedRequirementIds,
+      acceptanceEquation:
+        "accept(row) iff r_event=r_domain=r_root_src=r_root_recv=r_phi_src=r_phi_recv=r_segment=r_bind=0 on one retained S_eq event or positive-width domain",
+      retainedEventDomainAcceptanceAttemptPass,
+      status:
+        retainedEventDomainAcceptanceAttemptPass === true
+          ? "carrier_event_domain_acceptance_attempt_retained_row_accepted"
+          : currentTemplateAttemptPass === true &&
+              acceptedRetainedRequirementCount === 0
+            ? "carrier_event_domain_acceptance_attempt_current_template_only_all_retained_inputs_missing"
+            : currentTemplateAttemptPass === true
+              ? "carrier_event_domain_acceptance_attempt_partial_retained_inputs_missing"
+              : "carrier_event_domain_acceptance_attempt_template_incomplete",
+      retainedBranchClaim: false,
+    };
+  });
+  const firstAttemptRow = rows.find((row) => row.firstRunnableAttemptRow) ?? null;
+  const currentTemplateAttemptRowCount = rows.filter(
+    (row) => row.currentTemplateAttemptPass === true
+  ).length;
+  const acceptedAttemptRowCount = rows.filter(
+    (row) => row.retainedEventDomainAcceptanceAttemptPass === true
+  ).length;
+  const retainedRequirementCount = sumFinite(
+    rows.map((row) => row.retainedRequirementCount)
+  );
+  const acceptedRetainedRequirementCount = sumFinite(
+    rows.map((row) => row.acceptedRetainedRequirementCount)
+  );
+  const firstAttemptMissingRetainedRequirementIds =
+    firstAttemptRow?.missingRetainedRequirementIds ?? [];
+  return {
+    schema:
+      "aaa-equal-frequency-retained-phase-history-carrier-event-domain-acceptance-attempt-audit.v1",
+    claimLevel:
+      "first retained event-domain acceptance attempt for the middle-to-outer carrier; current templates only, no retained acceptance",
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
+    currentExecutableChart: CURRENT_EXECUTABLE_GEOMETRY_CHART,
+    canonicalFamily: "I:M:O=(f,f,f)",
+    retainedRowSetId,
+    carrierChannelId,
+    selectedEventDomainRoute,
+    retainedEventDomainAccepted,
+    sourceEventDomainRowModelSchema:
+      retainedPhaseHistoryCarrierEventDomainRowModel?.schema ?? null,
+    sourceEventDomainRowModelStatus:
+      retainedPhaseHistoryCarrierEventDomainRowModel?.status ?? null,
+    retainedEventDomainLiftTargetSchema:
+      retainedEventDomainLiftTarget?.schema ?? null,
+    retainedEventDomainLiftStatus:
+      retainedEventDomainLiftTarget?.status ?? null,
+    retainedEventDomainSelectorSchema:
+      retainedEventDomainSelector?.schema ?? null,
+    retainedEventDomainSelectorStatus:
+      retainedEventDomainSelector?.status ?? null,
+    residualVector:
+      retainedPhaseHistoryCarrierEventDomainRowModel?.residualVector ??
+      "R_phi_evt=(r_event,r_domain,r_root_src,r_root_recv,r_phi_src,r_phi_recv,r_segment,r_bind)",
+    acceptanceEquation:
+      "accept(row) iff r_event=r_domain=r_root_src=r_root_recv=r_phi_src=r_phi_recv=r_segment=r_bind=0 on one retained S_eq event or positive-width domain",
+    rowCount: rows.length,
+    currentTemplateAttemptRowCount,
+    acceptedAttemptRowCount,
+    retainedRequirementCount,
+    acceptedRetainedRequirementCount,
+    firstAttemptRowId: firstAttemptRow?.rowId ?? null,
+    firstAttemptSourceRowId: firstAttemptRow?.sourceEventDomainRowId ?? null,
+    firstAttemptF: firstAttemptRow?.f ?? null,
+    firstAttemptAcceptedRequirementCount:
+      firstAttemptRow?.acceptedRetainedRequirementCount ?? null,
+    firstAttemptRequirementCount:
+      firstAttemptRow?.retainedRequirementCount ?? null,
+    firstAttemptMissingRetainedRequirementIds,
+    firstAttemptAcceptancePass:
+      firstAttemptRow?.retainedEventDomainAcceptanceAttemptPass ?? false,
+    retainedEventDomainAcceptanceAttemptPass: acceptedAttemptRowCount > 0,
+    rows,
+    blockingConditionIds: Array.from(
+      new Set([
+        ...firstAttemptMissingRetainedRequirementIds.map(
+          (id) => `${id}_missing`
+        ),
+        "accepted_retained_event_domain_missing",
+        ...(retainedPhaseHistoryCarrierEventDomainRowModel
+          ?.blockingConditionIds ?? []),
+        ...(retainedEventDomainLiftTarget?.blockingConditionIds ?? []),
+        ...(retainedEventDomainSelector?.blockingConditionIds ?? []),
+      ])
+    ),
+    status:
+      acceptedAttemptRowCount > 0
+        ? "carrier_event_domain_acceptance_attempt_retained_rows_accepted"
+        : currentTemplateAttemptRowCount > 0 &&
+            acceptedRetainedRequirementCount === 0
+          ? "carrier_event_domain_acceptance_attempt_current_templates_only_all_retained_inputs_missing"
+          : currentTemplateAttemptRowCount > 0
+            ? "carrier_event_domain_acceptance_attempt_current_templates_partial_retained_inputs_missing"
+            : "carrier_event_domain_acceptance_attempt_templates_incomplete",
+    interpretation:
+      "The first runnable middle-to-outer carrier event-domain row can be templated, but the current report cannot accept it because every retained source event, receiver event, root key, phase row, branch-history segment, and event/domain binding input is still absent.",
+    retainedReplayBurden:
+      "Populate the first S_eq middle-to-outer source and receiver event IDs, retained root keys, emitted and received phase rows, branch-history segment, and same-event or positive-width-domain binding, then rerun this acceptance attempt.",
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyRetainedPhaseHistoryCarrierEventIdPopulationAttemptAudit({
+  retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit,
+  retainedEventDomainLiftTarget,
+  retainedEventDomainSelector,
+}) {
+  const sourceRows =
+    retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit?.rows ?? [];
+  const retainedRowSetId =
+    retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit
+      ?.retainedRowSetId ?? "S_eq";
+  const carrierChannelId =
+    retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit
+      ?.carrierChannelId ?? "middle->outer";
+  const selectedEventDomainRoute =
+    retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit
+      ?.selectedEventDomainRoute ??
+    retainedEventDomainSelector?.selectedRoute ??
+    null;
+  const retainedEventDomainAccepted =
+    retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit
+      ?.retainedEventDomainAccepted === true ||
+    retainedEventDomainSelector?.retainedSelectorAcceptancePass === true ||
+    retainedEventDomainLiftTarget?.retainedEventDomainLiftPass === true;
+  const rows = sourceRows.map((row) => {
+    const sourceEventCheck =
+      row.retainedRequirementChecks?.find(
+        (check) => check.id === "retained_source_event_id"
+      ) ?? null;
+    const receiverEventCheck =
+      row.retainedRequirementChecks?.find(
+        (check) => check.id === "retained_receiver_event_id"
+      ) ?? null;
+    const currentEventIdCandidatePass =
+      row.currentTemplateAttemptPass === true &&
+      typeof sourceEventCheck?.template === "string" &&
+      typeof receiverEventCheck?.template === "string" &&
+      selectedEventDomainRoute !== null;
+    const retainedSourceEventIdAccepted =
+      sourceEventCheck?.accepted === true;
+    const retainedReceiverEventIdAccepted =
+      receiverEventCheck?.accepted === true;
+    const sameRetainedEventOrDomainAccepted =
+      retainedEventDomainAccepted === true;
+    const retainedEventIdPairAccepted =
+      currentEventIdCandidatePass === true &&
+      retainedSourceEventIdAccepted === true &&
+      retainedReceiverEventIdAccepted === true &&
+      sameRetainedEventOrDomainAccepted === true;
+    const missingRetainedEventIdInputs = [
+      retainedSourceEventIdAccepted === true
+        ? null
+        : "retained_source_event_id",
+      retainedReceiverEventIdAccepted === true
+        ? null
+        : "retained_receiver_event_id",
+      sameRetainedEventOrDomainAccepted === true
+        ? null
+        : "accepted_same_retained_event_or_positive_width_domain",
+    ].filter(Boolean);
+    return {
+      rowId: `${row.sourceEventDomainRowId}-event-id-population-attempt`,
+      sourceAcceptanceAttemptRowId: row.rowId,
+      sourceEventDomainRowId: row.sourceEventDomainRowId,
+      retainedRowSetId,
+      f: row.f,
+      carrierChannelId: row.carrierChannelId,
+      sourceRole: row.sourceRole,
+      receiverRole: row.receiverRole,
+      selectedEventDomainRoute,
+      sourceEventIdCandidate: sourceEventCheck?.template ?? null,
+      receiverEventIdCandidate: receiverEventCheck?.template ?? null,
+      eventIdPairCandidate:
+        typeof sourceEventCheck?.template === "string" &&
+        typeof receiverEventCheck?.template === "string"
+          ? `${sourceEventCheck.template}::${receiverEventCheck.template}`
+          : null,
+      currentEventIdCandidatePass,
+      retainedSourceEventIdAccepted,
+      retainedReceiverEventIdAccepted,
+      sameRetainedEventOrDomainAccepted,
+      retainedEventIdPairAccepted,
+      retainedEventIdRequirementCount: 3,
+      acceptedRetainedEventIdRequirementCount: [
+        retainedSourceEventIdAccepted,
+        retainedReceiverEventIdAccepted,
+        sameRetainedEventOrDomainAccepted,
+      ].filter(Boolean).length,
+      missingRetainedEventIdInputs,
+      residualVector: "R_evt_id=(r_event_src,r_event_recv,r_same_domain)",
+      acceptanceEquation:
+        "accept(event_id_pair) iff retained_source_event_id, retained_receiver_event_id, and accepted same retained event or positive-width domain are all populated on S_eq",
+      status:
+        retainedEventIdPairAccepted === true
+          ? "retained_event_id_pair_accepted"
+          : currentEventIdCandidatePass === true
+            ? "retained_event_id_pair_current_candidates_populated_acceptance_missing"
+            : "retained_event_id_pair_candidate_incomplete",
+      retainedBranchClaim: false,
+    };
+  });
+  const firstAttemptRow = rows[0] ?? null;
+  const currentEventIdCandidateRowCount = rows.filter(
+    (row) => row.currentEventIdCandidatePass === true
+  ).length;
+  const retainedAcceptedEventIdPairCount = rows.filter(
+    (row) => row.retainedEventIdPairAccepted === true
+  ).length;
+  const retainedEventIdRequirementCount = sumFinite(
+    rows.map((row) => row.retainedEventIdRequirementCount)
+  );
+  const acceptedRetainedEventIdRequirementCount = sumFinite(
+    rows.map((row) => row.acceptedRetainedEventIdRequirementCount)
+  );
+  return {
+    schema:
+      "aaa-equal-frequency-retained-phase-history-carrier-event-id-population-attempt-audit.v1",
+    claimLevel:
+      "first retained event-ID population attempt for the middle-to-outer carrier; current event-ID candidates only, no retained event acceptance",
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
+    currentExecutableChart: CURRENT_EXECUTABLE_GEOMETRY_CHART,
+    canonicalFamily: "I:M:O=(f,f,f)",
+    retainedRowSetId,
+    carrierChannelId,
+    selectedEventDomainRoute,
+    retainedEventDomainAccepted,
+    sourceAcceptanceAttemptAuditSchema:
+      retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit?.schema ??
+      null,
+    sourceAcceptanceAttemptStatus:
+      retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit?.status ??
+      null,
+    retainedEventDomainLiftTargetSchema:
+      retainedEventDomainLiftTarget?.schema ?? null,
+    retainedEventDomainLiftStatus:
+      retainedEventDomainLiftTarget?.status ?? null,
+    retainedEventDomainSelectorSchema:
+      retainedEventDomainSelector?.schema ?? null,
+    retainedEventDomainSelectorStatus:
+      retainedEventDomainSelector?.status ?? null,
+    residualVector: "R_evt_id=(r_event_src,r_event_recv,r_same_domain)",
+    acceptanceEquation:
+      "accept(event_id_pair) iff retained_source_event_id, retained_receiver_event_id, and accepted same retained event or positive-width domain are all populated on S_eq",
+    rowCount: rows.length,
+    currentEventIdCandidateRowCount,
+    retainedAcceptedEventIdPairCount,
+    retainedEventIdRequirementCount,
+    acceptedRetainedEventIdRequirementCount,
+    firstAttemptRowId: firstAttemptRow?.rowId ?? null,
+    firstAttemptSourceEventIdCandidate:
+      firstAttemptRow?.sourceEventIdCandidate ?? null,
+    firstAttemptReceiverEventIdCandidate:
+      firstAttemptRow?.receiverEventIdCandidate ?? null,
+    firstAttemptMissingRetainedEventIdInputs:
+      firstAttemptRow?.missingRetainedEventIdInputs ?? [],
+    firstAttemptAcceptedRequirementCount:
+      firstAttemptRow?.acceptedRetainedEventIdRequirementCount ?? null,
+    firstAttemptRequirementCount:
+      firstAttemptRow?.retainedEventIdRequirementCount ?? null,
+    retainedEventIdPopulationAttemptPass:
+      retainedAcceptedEventIdPairCount > 0,
+    rows,
+    blockingConditionIds: Array.from(
+      new Set([
+        ...(firstAttemptRow?.missingRetainedEventIdInputs ?? []).map(
+          (id) => `${id}_missing`
+        ),
+        ...(retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit
+          ?.blockingConditionIds ?? []),
+        ...(retainedEventDomainLiftTarget?.blockingConditionIds ?? []),
+        ...(retainedEventDomainSelector?.blockingConditionIds ?? []),
+      ])
+    ),
+    status:
+      retainedAcceptedEventIdPairCount > 0
+        ? "retained_event_id_population_attempt_retained_pairs_accepted"
+        : currentEventIdCandidateRowCount > 0 &&
+            acceptedRetainedEventIdRequirementCount === 0
+          ? "retained_event_id_population_attempt_current_candidates_only_all_retained_inputs_missing"
+          : currentEventIdCandidateRowCount > 0
+            ? "retained_event_id_population_attempt_current_candidates_partial_retained_inputs_missing"
+            : "retained_event_id_population_attempt_candidates_incomplete",
+    interpretation:
+      "The first middle-to-outer carrier row now has explicit source and receiver event-ID candidates, but neither ID is accepted because the same retained S_eq event or positive-width domain is still absent.",
+    retainedReplayBurden:
+      "Populate retained source and receiver event IDs on one accepted S_eq retained point event or positive-width domain, then re-evaluate the remaining root-key, phase, branch-history segment, and binding inputs.",
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyRetainedPhaseHistoryCarrierEventIdProvenanceAudit({
+  retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit,
+  retainedRowSetScaffold,
+  retainedEventDomainSelector,
+}) {
+  const sourceRows =
+    retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit?.rows ?? [];
+  const retainedRowSetId =
+    retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit?.retainedRowSetId ??
+    retainedRowSetScaffold?.retainedRowSetId ??
+    "S_eq";
+  const carrierChannelId =
+    retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit?.carrierChannelId ??
+    "middle->outer";
+  const selectedEventDomainRoute =
+    retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit
+      ?.selectedEventDomainRoute ??
+    retainedEventDomainSelector?.selectedRoute ??
+    null;
+  const retainedRowSetIdentityAccepted =
+    retainedRowSetScaffold?.retainedRowSetIdentityPass === true;
+  const rows = sourceRows.map((row) => {
+    const currentProvenanceChecks = [
+      {
+        id: "retained_row_set_id_candidate",
+        value: retainedRowSetId,
+        populated: typeof retainedRowSetId === "string",
+      },
+      {
+        id: "source_event_id_candidate",
+        value: row.sourceEventIdCandidate,
+        populated: typeof row.sourceEventIdCandidate === "string",
+      },
+      {
+        id: "receiver_event_id_candidate",
+        value: row.receiverEventIdCandidate,
+        populated: typeof row.receiverEventIdCandidate === "string",
+      },
+      {
+        id: "event_id_pair_candidate",
+        value: row.eventIdPairCandidate,
+        populated: typeof row.eventIdPairCandidate === "string",
+      },
+      {
+        id: "selected_event_domain_route_candidate",
+        value: selectedEventDomainRoute,
+        populated: typeof selectedEventDomainRoute === "string",
+      },
+      {
+        id: "source_acceptance_attempt_link",
+        value: row.sourceAcceptanceAttemptRowId,
+        populated: typeof row.sourceAcceptanceAttemptRowId === "string",
+      },
+      {
+        id: "source_event_domain_row_link",
+        value: row.sourceEventDomainRowId,
+        populated: typeof row.sourceEventDomainRowId === "string",
+      },
+    ];
+    const currentProvenancePopulatedCount = currentProvenanceChecks.filter(
+      (check) => check.populated === true
+    ).length;
+    const currentProvenancePass =
+      currentProvenanceChecks.length > 0 &&
+      currentProvenancePopulatedCount === currentProvenanceChecks.length &&
+      row.currentEventIdCandidatePass === true;
+    const retainedProvenanceChecks = [
+      {
+        id: "same_retained_row_set_identity",
+        residualComponent: "r_rows",
+        accepted: retainedRowSetIdentityAccepted,
+      },
+      {
+        id: "retained_source_event_id",
+        residualComponent: "r_event_src",
+        template: row.sourceEventIdCandidate,
+        accepted: row.retainedSourceEventIdAccepted === true,
+      },
+      {
+        id: "retained_receiver_event_id",
+        residualComponent: "r_event_recv",
+        template: row.receiverEventIdCandidate,
+        accepted: row.retainedReceiverEventIdAccepted === true,
+      },
+      {
+        id: "accepted_same_retained_event_or_positive_width_domain",
+        residualComponent: "r_same_domain",
+        accepted: row.sameRetainedEventOrDomainAccepted === true,
+      },
+    ];
+    const acceptedRetainedProvenanceCount = retainedProvenanceChecks.filter(
+      (check) => check.accepted === true
+    ).length;
+    const missingRetainedProvenanceInputs = retainedProvenanceChecks
+      .filter((check) => check.accepted !== true)
+      .map((check) => check.id);
+    return {
+      rowId: `${row.sourceEventDomainRowId}-event-id-provenance`,
+      sourceEventIdPopulationAttemptRowId: row.rowId,
+      sourceAcceptanceAttemptRowId: row.sourceAcceptanceAttemptRowId,
+      sourceEventDomainRowId: row.sourceEventDomainRowId,
+      retainedRowSetId,
+      f: row.f,
+      carrierChannelId: row.carrierChannelId,
+      sourceRole: row.sourceRole,
+      receiverRole: row.receiverRole,
+      selectedEventDomainRoute,
+      sourceEventIdCandidate: row.sourceEventIdCandidate,
+      receiverEventIdCandidate: row.receiverEventIdCandidate,
+      eventIdPairCandidate: row.eventIdPairCandidate,
+      currentEventIdCandidatePass: row.currentEventIdCandidatePass === true,
+      currentProvenanceChecks,
+      currentProvenanceRequirementCount: currentProvenanceChecks.length,
+      currentProvenancePopulatedCount,
+      currentProvenancePass,
+      retainedProvenanceChecks,
+      retainedProvenanceRequirementCount: retainedProvenanceChecks.length,
+      acceptedRetainedProvenanceCount,
+      missingRetainedProvenanceInputs,
+      residualVector:
+        "R_evt_prov=(p_rows,p_src,p_recv,p_pair,p_route,p_links; r_rows,r_event_src,r_event_recv,r_same_domain)",
+      acceptanceEquation:
+        "current provenance is populated by deterministic S_eq row-set, source-event, receiver-event, pair, route, and source-row links; retained provenance is accepted only when row-set identity and both event IDs belong to one accepted retained event or positive-width domain",
+      retainedEventIdProvenanceAccepted:
+        currentProvenancePass === true &&
+        acceptedRetainedProvenanceCount === retainedProvenanceChecks.length,
+      status:
+        currentProvenancePass === true &&
+        acceptedRetainedProvenanceCount === retainedProvenanceChecks.length
+          ? "retained_event_id_provenance_accepted"
+          : currentProvenancePass === true
+            ? "retained_event_id_current_provenance_populated_retained_identity_missing"
+            : "retained_event_id_current_provenance_incomplete",
+      retainedBranchClaim: false,
+    };
+  });
+  const firstAttemptRow = rows[0] ?? null;
+  const currentProvenanceRowCount = rows.filter(
+    (row) => row.currentProvenancePass === true
+  ).length;
+  const retainedAcceptedProvenanceRowCount = rows.filter(
+    (row) => row.retainedEventIdProvenanceAccepted === true
+  ).length;
+  const currentProvenanceRequirementCount = sumFinite(
+    rows.map((row) => row.currentProvenanceRequirementCount)
+  );
+  const currentProvenancePopulatedCount = sumFinite(
+    rows.map((row) => row.currentProvenancePopulatedCount)
+  );
+  const retainedProvenanceRequirementCount = sumFinite(
+    rows.map((row) => row.retainedProvenanceRequirementCount)
+  );
+  const acceptedRetainedProvenanceCount = sumFinite(
+    rows.map((row) => row.acceptedRetainedProvenanceCount)
+  );
+  return {
+    schema:
+      "aaa-equal-frequency-retained-phase-history-carrier-event-id-provenance-audit.v1",
+    claimLevel:
+      "current provenance audit for middle-to-outer carrier event-ID candidates; retained event identity remains unaccepted",
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
+    currentExecutableChart: CURRENT_EXECUTABLE_GEOMETRY_CHART,
+    canonicalFamily: "I:M:O=(f,f,f)",
+    retainedRowSetId,
+    carrierChannelId,
+    selectedEventDomainRoute,
+    sourceEventIdPopulationAttemptAuditSchema:
+      retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit?.schema ?? null,
+    sourceEventIdPopulationAttemptStatus:
+      retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit?.status ?? null,
+    retainedRowSetScaffoldSchema: retainedRowSetScaffold?.schema ?? null,
+    retainedRowSetScaffoldStatus: retainedRowSetScaffold?.status ?? null,
+    retainedEventDomainSelectorSchema:
+      retainedEventDomainSelector?.schema ?? null,
+    retainedEventDomainSelectorStatus:
+      retainedEventDomainSelector?.status ?? null,
+    residualVector:
+      "R_evt_prov=(p_rows,p_src,p_recv,p_pair,p_route,p_links; r_rows,r_event_src,r_event_recv,r_same_domain)",
+    rowCount: rows.length,
+    currentProvenanceRowCount,
+    retainedAcceptedProvenanceRowCount,
+    currentProvenanceRequirementCount,
+    currentProvenancePopulatedCount,
+    retainedProvenanceRequirementCount,
+    acceptedRetainedProvenanceCount,
+    currentEventIdProvenancePass:
+      rows.length > 0 && currentProvenanceRowCount === rows.length,
+    retainedEventIdProvenancePass: retainedAcceptedProvenanceRowCount > 0,
+    firstAttemptRowId: firstAttemptRow?.rowId ?? null,
+    firstAttemptSourceEventIdCandidate:
+      firstAttemptRow?.sourceEventIdCandidate ?? null,
+    firstAttemptReceiverEventIdCandidate:
+      firstAttemptRow?.receiverEventIdCandidate ?? null,
+    firstAttemptEventIdPairCandidate:
+      firstAttemptRow?.eventIdPairCandidate ?? null,
+    firstAttemptMissingRetainedProvenanceInputs:
+      firstAttemptRow?.missingRetainedProvenanceInputs ?? [],
+    firstAttemptCurrentProvenancePopulatedCount:
+      firstAttemptRow?.currentProvenancePopulatedCount ?? null,
+    firstAttemptCurrentProvenanceRequirementCount:
+      firstAttemptRow?.currentProvenanceRequirementCount ?? null,
+    firstAttemptAcceptedRetainedProvenanceCount:
+      firstAttemptRow?.acceptedRetainedProvenanceCount ?? null,
+    firstAttemptRetainedProvenanceRequirementCount:
+      firstAttemptRow?.retainedProvenanceRequirementCount ?? null,
+    rows,
+    blockingConditionIds: Array.from(
+      new Set([
+        ...(firstAttemptRow?.missingRetainedProvenanceInputs ?? []).map(
+          (id) => `${id}_missing`
+        ),
+        ...(retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit
+          ?.blockingConditionIds ?? []),
+        ...(retainedRowSetScaffold?.blockingRequirementIds ?? []).map(
+          (id) => `${id}_missing`
+        ),
+        ...(retainedEventDomainSelector?.blockingConditionIds ?? []),
+      ])
+    ),
+    status:
+      retainedAcceptedProvenanceRowCount > 0
+        ? "retained_event_id_provenance_retained_rows_accepted"
+        : currentProvenanceRowCount > 0 &&
+            currentProvenanceRowCount === rows.length &&
+            acceptedRetainedProvenanceCount === 0
+          ? "retained_event_id_current_provenance_populated_all_retained_identity_inputs_missing"
+          : currentProvenanceRowCount > 0
+            ? "retained_event_id_current_provenance_partial_retained_identity_missing"
+            : "retained_event_id_current_provenance_incomplete",
+    interpretation:
+      "The middle-to-outer carrier now has deterministic S_eq provenance for its source event ID, receiver event ID, event-ID pair, selected route, and source row links. This is current provenance only; it does not accept row-set identity, retained event IDs, or same-event/domain membership.",
+    retainedReplayBurden:
+      "Convert the current provenance row into retained evidence by accepting S_eq row-set identity, retained source and receiver event IDs, and one same retained point event or positive-width domain.",
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyRetainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit({
+  retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit,
+  retainedPhaseHistoryCarrierEventIdProvenanceAudit,
+  retainedRowSetScaffold,
+  retainedEventDomainLiftTarget,
+  retainedEventDomainSelector,
+}) {
+  const sourceRows =
+    retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit?.rows ?? [];
+  const provenanceRows =
+    retainedPhaseHistoryCarrierEventIdProvenanceAudit?.rows ?? [];
+  const retainedRowSetId =
+    retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit?.retainedRowSetId ??
+    retainedRowSetScaffold?.retainedRowSetId ??
+    "S_eq";
+  const carrierChannelId =
+    retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit?.carrierChannelId ??
+    "middle->outer";
+  const selectedEventDomainRoute =
+    retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit
+      ?.selectedEventDomainRoute ??
+    retainedEventDomainSelector?.selectedRoute ??
+    null;
+  const selectedRouteCandidate =
+    retainedEventDomainSelector?.routeCandidates?.find(
+      (route) => route.routeId === selectedEventDomainRoute
+    ) ?? null;
+  const selectedRouteKind =
+    selectedRouteCandidate?.routeKind ??
+    (selectedEventDomainRoute === "point_event_current_proxy_first"
+      ? "retained_point_event"
+      : selectedEventDomainRoute === "positive_width_domain_search_required"
+        ? "positive_width_retained_domain"
+        : null);
+  const retainedRowSetIdentityAccepted =
+    retainedRowSetScaffold?.retainedRowSetIdentityPass === true;
+  const acceptedFullPointEventRulePass =
+    retainedEventDomainLiftTarget?.acceptedFullPointEventRulePass === true;
+  const positiveWidthRetainedDomainPass =
+    retainedEventDomainLiftTarget?.positiveWidthRetainedDomainPass === true;
+  const acceptedFullPointOrPositiveWidthDomain =
+    acceptedFullPointEventRulePass === true ||
+    positiveWidthRetainedDomainPass === true;
+  const rows = sourceRows.map((row) => {
+    const provenanceRow =
+      provenanceRows.find(
+        (candidate) =>
+          candidate.sourceEventIdPopulationAttemptRowId === row.rowId
+      ) ?? null;
+    const currentRuleCandidatePass =
+      row.currentEventIdCandidatePass === true &&
+      typeof row.sourceEventIdCandidate === "string" &&
+      typeof row.receiverEventIdCandidate === "string" &&
+      selectedEventDomainRoute !== null;
+    const currentEventIdProvenancePass =
+      provenanceRow?.currentProvenancePass === true;
+    const retainedSourceEventIdAccepted =
+      row.retainedSourceEventIdAccepted === true;
+    const retainedReceiverEventIdAccepted =
+      row.retainedReceiverEventIdAccepted === true;
+    const sameRetainedPointEventOrDomainMembershipAccepted =
+      row.sameRetainedEventOrDomainAccepted === true;
+    const pointEventRuleCandidateId =
+      currentRuleCandidatePass === true
+        ? `${row.sourceEventIdCandidate}<->${row.receiverEventIdCandidate}@full_point_event_rule`
+        : null;
+    const positiveWidthDomainCandidateId =
+      currentRuleCandidatePass === true
+        ? `${row.sourceEventIdCandidate}<->${row.receiverEventIdCandidate}@positive_width_retained_domain`
+        : null;
+    const selectedRuleCandidateId =
+      selectedRouteKind === "positive_width_retained_domain"
+        ? positiveWidthDomainCandidateId
+        : pointEventRuleCandidateId;
+    const ruleRequirementChecks = [
+      {
+        id: "same_retained_row_set_identity",
+        residualComponent: "r_rows",
+        accepted: retainedRowSetIdentityAccepted,
+      },
+      {
+        id: "retained_source_event_id",
+        residualComponent: "r_event_src",
+        template: row.sourceEventIdCandidate,
+        accepted: retainedSourceEventIdAccepted,
+      },
+      {
+        id: "retained_receiver_event_id",
+        residualComponent: "r_event_recv",
+        template: row.receiverEventIdCandidate,
+        accepted: retainedReceiverEventIdAccepted,
+      },
+      {
+        id: "same_retained_point_event_or_positive_width_domain_membership",
+        residualComponent: "r_membership",
+        accepted: sameRetainedPointEventOrDomainMembershipAccepted,
+      },
+      {
+        id: "accepted_full_point_event_rule_or_positive_width_domain",
+        residualComponent: "r_route",
+        selectedEventDomainRoute,
+        selectedRouteKind,
+        template: selectedRuleCandidateId,
+        accepted: acceptedFullPointOrPositiveWidthDomain,
+      },
+      {
+        id: "binary_to_binary_retained_history_rows",
+        residualComponent: "r_history",
+        accepted: false,
+      },
+      {
+        id: "retained_payload_rows",
+        residualComponent: "r_payload",
+        accepted: false,
+      },
+      {
+        id: "same_event_energy_momentum_angular_momentum_rows",
+        residualComponent: "r_ledger",
+        accepted: false,
+      },
+    ];
+    const acceptedRetainedRuleRequirementCount =
+      ruleRequirementChecks.filter((check) => check.accepted === true).length;
+    const missingRetainedRuleInputs = ruleRequirementChecks
+      .filter((check) => check.accepted !== true)
+      .map((check) => check.id);
+    const retainedPointEventOrDomainRuleAccepted =
+      currentRuleCandidatePass === true &&
+      acceptedRetainedRuleRequirementCount === ruleRequirementChecks.length;
+    return {
+      rowId: `${row.sourceEventDomainRowId}-point-event-or-domain-rule-attempt`,
+      sourceEventIdPopulationAttemptRowId: row.rowId,
+      sourceEventDomainRowId: row.sourceEventDomainRowId,
+      retainedRowSetId,
+      f: row.f,
+      carrierChannelId: row.carrierChannelId,
+      sourceRole: row.sourceRole,
+      receiverRole: row.receiverRole,
+      selectedEventDomainRoute,
+      selectedRouteKind,
+      sourceEventIdCandidate: row.sourceEventIdCandidate,
+      receiverEventIdCandidate: row.receiverEventIdCandidate,
+      pointEventRuleCandidateId,
+      positiveWidthDomainCandidateId,
+      selectedRuleCandidateId,
+      currentRuleCandidatePass,
+      eventIdProvenanceRowId: provenanceRow?.rowId ?? null,
+      currentEventIdProvenancePass,
+      currentEventIdProvenancePopulatedCount:
+        provenanceRow?.currentProvenancePopulatedCount ?? null,
+      currentEventIdProvenanceRequirementCount:
+        provenanceRow?.currentProvenanceRequirementCount ?? null,
+      retainedRowSetIdentityAccepted,
+      retainedSourceEventIdAccepted,
+      retainedReceiverEventIdAccepted,
+      sameRetainedPointEventOrDomainMembershipAccepted,
+      acceptedFullPointEventRulePass,
+      positiveWidthRetainedDomainPass,
+      acceptedFullPointOrPositiveWidthDomain,
+      ruleRequirementChecks,
+      retainedRuleRequirementCount: ruleRequirementChecks.length,
+      acceptedRetainedRuleRequirementCount,
+      missingRetainedRuleInputs,
+      residualVector:
+        "R_rule=(r_rows,r_event_src,r_event_recv,r_membership,r_route,r_history,r_payload,r_ledger)",
+      acceptanceEquation:
+        "accept(rule) iff source and receiver retained event IDs belong to one accepted S_eq point event or positive-width retained domain, with row-set identity, retained history, payload, and same-event ledgers populated",
+      retainedPointEventOrDomainRuleAccepted,
+      status:
+        retainedPointEventOrDomainRuleAccepted === true
+          ? "retained_point_event_or_domain_rule_accepted"
+          : currentRuleCandidatePass === true &&
+              currentEventIdProvenancePass === true
+            ? "retained_point_event_or_domain_rule_current_provenance_populated_acceptance_missing"
+          : currentRuleCandidatePass === true
+            ? "retained_point_event_or_domain_rule_current_candidate_populated_acceptance_missing"
+            : "retained_point_event_or_domain_rule_candidate_incomplete",
+      retainedBranchClaim: false,
+    };
+  });
+  const firstAttemptRow = rows[0] ?? null;
+  const currentRuleCandidateRowCount = rows.filter(
+    (row) => row.currentRuleCandidatePass === true
+  ).length;
+  const retainedAcceptedRuleCount = rows.filter(
+    (row) => row.retainedPointEventOrDomainRuleAccepted === true
+  ).length;
+  const retainedRuleRequirementCount = sumFinite(
+    rows.map((row) => row.retainedRuleRequirementCount)
+  );
+  const acceptedRetainedRuleRequirementCount = sumFinite(
+    rows.map((row) => row.acceptedRetainedRuleRequirementCount)
+  );
+  return {
+    schema:
+      "aaa-equal-frequency-retained-phase-history-carrier-point-event-or-domain-rule-attempt-audit.v1",
+    claimLevel:
+      "first full point-event rule or positive-width retained-domain rule attempt for the middle-to-outer carrier; current candidates only, no retained rule acceptance",
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
+    currentExecutableChart: CURRENT_EXECUTABLE_GEOMETRY_CHART,
+    canonicalFamily: "I:M:O=(f,f,f)",
+    retainedRowSetId,
+    carrierChannelId,
+    selectedEventDomainRoute,
+    selectedRouteKind,
+    retainedRowSetIdentityAccepted,
+    acceptedFullPointEventRulePass,
+    positiveWidthRetainedDomainPass,
+    acceptedFullPointOrPositiveWidthDomainPass:
+      retainedAcceptedRuleCount > 0,
+    sourceEventIdPopulationAttemptAuditSchema:
+      retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit?.schema ?? null,
+    sourceEventIdPopulationAttemptStatus:
+      retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit?.status ?? null,
+    retainedRowSetScaffoldSchema: retainedRowSetScaffold?.schema ?? null,
+    retainedRowSetScaffoldStatus: retainedRowSetScaffold?.status ?? null,
+    retainedEventDomainLiftTargetSchema:
+      retainedEventDomainLiftTarget?.schema ?? null,
+    retainedEventDomainLiftStatus:
+      retainedEventDomainLiftTarget?.status ?? null,
+    retainedEventDomainSelectorSchema:
+      retainedEventDomainSelector?.schema ?? null,
+    retainedEventDomainSelectorStatus:
+      retainedEventDomainSelector?.status ?? null,
+    retainedEventIdProvenanceAuditSchema:
+      retainedPhaseHistoryCarrierEventIdProvenanceAudit?.schema ?? null,
+    retainedEventIdProvenanceStatus:
+      retainedPhaseHistoryCarrierEventIdProvenanceAudit?.status ?? null,
+    retainedEventIdProvenanceCurrentRowCount:
+      retainedPhaseHistoryCarrierEventIdProvenanceAudit
+        ?.currentProvenanceRowCount ?? null,
+    retainedEventIdProvenanceAcceptedRowCount:
+      retainedPhaseHistoryCarrierEventIdProvenanceAudit
+        ?.retainedAcceptedProvenanceRowCount ?? null,
+    retainedEventIdProvenanceCurrentRequirementCount:
+      retainedPhaseHistoryCarrierEventIdProvenanceAudit
+        ?.currentProvenanceRequirementCount ?? null,
+    retainedEventIdProvenanceCurrentPopulatedCount:
+      retainedPhaseHistoryCarrierEventIdProvenanceAudit
+        ?.currentProvenancePopulatedCount ?? null,
+    retainedEventIdProvenanceRetainedRequirementCount:
+      retainedPhaseHistoryCarrierEventIdProvenanceAudit
+        ?.retainedProvenanceRequirementCount ?? null,
+    retainedEventIdProvenanceAcceptedRequirementCount:
+      retainedPhaseHistoryCarrierEventIdProvenanceAudit
+        ?.acceptedRetainedProvenanceCount ?? null,
+    residualVector:
+      "R_rule=(r_rows,r_event_src,r_event_recv,r_membership,r_route,r_history,r_payload,r_ledger)",
+    acceptanceEquation:
+      "accept(rule) iff source and receiver retained event IDs belong to one accepted S_eq point event or positive-width retained domain, with row-set identity, retained history, payload, and same-event ledgers populated",
+    rowCount: rows.length,
+    currentRuleCandidateRowCount,
+    retainedAcceptedRuleCount,
+    retainedRuleRequirementCount,
+    acceptedRetainedRuleRequirementCount,
+    firstAttemptRowId: firstAttemptRow?.rowId ?? null,
+    firstAttemptSelectedRuleCandidateId:
+      firstAttemptRow?.selectedRuleCandidateId ?? null,
+    firstAttemptSourceEventIdCandidate:
+      firstAttemptRow?.sourceEventIdCandidate ?? null,
+    firstAttemptReceiverEventIdCandidate:
+      firstAttemptRow?.receiverEventIdCandidate ?? null,
+    firstAttemptMissingRetainedRuleInputs:
+      firstAttemptRow?.missingRetainedRuleInputs ?? [],
+    firstAttemptAcceptedRequirementCount:
+      firstAttemptRow?.acceptedRetainedRuleRequirementCount ?? null,
+    firstAttemptRequirementCount:
+      firstAttemptRow?.retainedRuleRequirementCount ?? null,
+    firstAttemptCurrentEventIdProvenancePass:
+      firstAttemptRow?.currentEventIdProvenancePass ?? false,
+    firstAttemptEventIdProvenanceRowId:
+      firstAttemptRow?.eventIdProvenanceRowId ?? null,
+    retainedPointEventOrDomainRuleAttemptPass:
+      retainedAcceptedRuleCount > 0,
+    rows,
+    blockingConditionIds: Array.from(
+      new Set([
+        ...(firstAttemptRow?.missingRetainedRuleInputs ?? []).map(
+          (id) => `${id}_missing`
+        ),
+        ...(retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit
+          ?.blockingConditionIds ?? []),
+        ...(retainedPhaseHistoryCarrierEventIdProvenanceAudit
+          ?.blockingConditionIds ?? []),
+        ...(retainedRowSetScaffold?.blockingRequirementIds ?? []).map(
+          (id) => `${id}_missing`
+        ),
+        ...(retainedEventDomainLiftTarget?.blockingConditionIds ?? []),
+        ...(retainedEventDomainSelector?.blockingConditionIds ?? []),
+      ])
+    ),
+    status:
+      retainedAcceptedRuleCount > 0
+        ? "retained_point_event_or_domain_rule_attempt_retained_rules_accepted"
+      : currentRuleCandidateRowCount > 0 &&
+            retainedPhaseHistoryCarrierEventIdProvenanceAudit
+              ?.currentEventIdProvenancePass === true &&
+            acceptedRetainedRuleRequirementCount === 0
+          ? "retained_point_event_or_domain_rule_attempt_current_provenance_populated_all_retained_inputs_missing"
+          : currentRuleCandidateRowCount > 0 &&
+            acceptedRetainedRuleRequirementCount === 0
+          ? "retained_point_event_or_domain_rule_attempt_current_candidates_only_all_retained_inputs_missing"
+          : currentRuleCandidateRowCount > 0
+            ? "retained_point_event_or_domain_rule_attempt_current_candidates_partial_retained_inputs_missing"
+            : "retained_point_event_or_domain_rule_attempt_candidates_incomplete",
+    interpretation:
+      "The first middle-to-outer event-ID pair is now tested against the selected S_eq point-event/domain route. The current row supplies event-ID provenance and a rule candidate, but no retained row-set, event-ID, membership, history, payload, or ledger input is accepted.",
+    retainedReplayBurden:
+      "Accept the selected full point-event rule or a positive-width retained domain for the source/receiver event-ID pair before treating the binding candidate as a retained same-event/domain carrier.",
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyRetainedPhaseHistoryCarrierEventDomainBindingAttemptAudit({
+  retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit,
+  retainedPhaseHistoryCarrierEventIdProvenanceAudit,
+  retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit,
+  retainedEventDomainLiftTarget,
+  retainedEventDomainSelector,
+}) {
+  const sourceRows =
+    retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit?.rows ?? [];
+  const provenanceRows =
+    retainedPhaseHistoryCarrierEventIdProvenanceAudit?.rows ?? [];
+  const retainedRowSetId =
+    retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit?.retainedRowSetId ??
+    "S_eq";
+  const carrierChannelId =
+    retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit?.carrierChannelId ??
+    "middle->outer";
+  const selectedEventDomainRoute =
+    retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit
+      ?.selectedEventDomainRoute ??
+    retainedEventDomainSelector?.selectedRoute ??
+    null;
+  const acceptedFullPointEventRulePass =
+    retainedEventDomainLiftTarget?.acceptedFullPointEventRulePass === true;
+  const positiveWidthRetainedDomainPass =
+    retainedEventDomainLiftTarget?.positiveWidthRetainedDomainPass === true;
+  const retainedPointEventOrDomainRuleAttemptPass =
+    retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit
+      ?.retainedPointEventOrDomainRuleAttemptPass === true;
+  const retainedEventDomainAccepted =
+    retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit
+      ?.retainedEventDomainAccepted === true ||
+    retainedEventDomainSelector?.retainedSelectorAcceptancePass === true ||
+    retainedEventDomainLiftTarget?.retainedEventDomainLiftPass === true ||
+    retainedPointEventOrDomainRuleAttemptPass === true;
+  const rows = sourceRows.map((row) => {
+    const provenanceRow =
+      provenanceRows.find(
+        (candidate) =>
+          candidate.sourceEventIdPopulationAttemptRowId === row.rowId
+      ) ?? null;
+    const currentBindingCandidatePass =
+      row.currentEventIdCandidatePass === true &&
+      typeof row.sourceEventIdCandidate === "string" &&
+      typeof row.receiverEventIdCandidate === "string" &&
+      selectedEventDomainRoute !== null;
+    const currentEventIdProvenancePass =
+      provenanceRow?.currentProvenancePass === true;
+    const retainedSourceEventIdAccepted =
+      row.retainedSourceEventIdAccepted === true;
+    const retainedReceiverEventIdAccepted =
+      row.retainedReceiverEventIdAccepted === true;
+    const acceptedFullPointOrPositiveWidthDomain =
+      retainedPointEventOrDomainRuleAttemptPass === true ||
+      retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit
+        ?.acceptedFullPointOrPositiveWidthDomainPass === true ||
+      acceptedFullPointEventRulePass === true ||
+      positiveWidthRetainedDomainPass === true ||
+      row.sameRetainedEventOrDomainAccepted === true;
+    const bindingCandidateId =
+      currentBindingCandidatePass === true
+        ? `${row.sourceEventIdCandidate}<->${row.receiverEventIdCandidate}@${selectedEventDomainRoute}`
+        : null;
+    const sameEventOrPositiveWidthDomainBindingAccepted =
+      row.retainedEventIdPairAccepted === true &&
+      acceptedFullPointOrPositiveWidthDomain === true;
+    const bindingRequirementChecks = [
+      {
+        id: "retained_source_event_id",
+        residualComponent: "r_event_src",
+        template: row.sourceEventIdCandidate,
+        accepted: retainedSourceEventIdAccepted,
+      },
+      {
+        id: "retained_receiver_event_id",
+        residualComponent: "r_event_recv",
+        template: row.receiverEventIdCandidate,
+        accepted: retainedReceiverEventIdAccepted,
+      },
+      {
+        id: "accepted_full_point_event_rule_or_positive_width_domain",
+        residualComponent: "r_domain_or_event",
+        selectedEventDomainRoute,
+        accepted: acceptedFullPointOrPositiveWidthDomain,
+      },
+      {
+        id: "same_event_or_positive_width_domain_binding",
+        residualComponent: "r_bind",
+        template: bindingCandidateId,
+        accepted: sameEventOrPositiveWidthDomainBindingAccepted,
+      },
+    ];
+    const acceptedRetainedBindingRequirementCount =
+      bindingRequirementChecks.filter((check) => check.accepted === true)
+        .length;
+    const missingRetainedBindingInputs = bindingRequirementChecks
+      .filter((check) => check.accepted !== true)
+      .map((check) => check.id);
+    const retainedEventDomainBindingAccepted =
+      currentBindingCandidatePass === true &&
+      acceptedRetainedBindingRequirementCount ===
+        bindingRequirementChecks.length;
+    return {
+      rowId: `${row.sourceEventDomainRowId}-event-domain-binding-attempt`,
+      sourceEventIdPopulationAttemptRowId: row.rowId,
+      sourceAcceptanceAttemptRowId: row.sourceAcceptanceAttemptRowId,
+      sourceEventDomainRowId: row.sourceEventDomainRowId,
+      retainedRowSetId,
+      f: row.f,
+      carrierChannelId: row.carrierChannelId,
+      sourceRole: row.sourceRole,
+      receiverRole: row.receiverRole,
+      selectedEventDomainRoute,
+      sourceEventIdCandidate: row.sourceEventIdCandidate,
+      receiverEventIdCandidate: row.receiverEventIdCandidate,
+      eventIdPairCandidate: row.eventIdPairCandidate,
+      bindingCandidateId,
+      currentBindingCandidatePass,
+      eventIdProvenanceRowId: provenanceRow?.rowId ?? null,
+      currentEventIdProvenancePass,
+      currentEventIdProvenancePopulatedCount:
+        provenanceRow?.currentProvenancePopulatedCount ?? null,
+      currentEventIdProvenanceRequirementCount:
+        provenanceRow?.currentProvenanceRequirementCount ?? null,
+      retainedSourceEventIdAccepted,
+      retainedReceiverEventIdAccepted,
+      acceptedFullPointEventRulePass,
+      positiveWidthRetainedDomainPass,
+      retainedPointEventOrDomainRuleAttemptPass,
+      retainedPointEventOrDomainRuleAttemptStatus:
+        retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit?.status ??
+        null,
+      retainedEventDomainAccepted,
+      acceptedFullPointOrPositiveWidthDomain,
+      sameEventOrPositiveWidthDomainBindingAccepted,
+      bindingRequirementChecks,
+      retainedBindingRequirementCount: bindingRequirementChecks.length,
+      acceptedRetainedBindingRequirementCount,
+      missingRetainedBindingInputs,
+      residualVector: "R_bind=(r_event_src,r_event_recv,r_domain_or_event,r_bind)",
+      acceptanceEquation:
+        "accept(binding) iff retained source and receiver event IDs are accepted, either a full point-event rule or positive-width domain is accepted, and same_event_or_positive_width_domain_binding is populated on S_eq",
+      retainedEventDomainBindingAccepted,
+      status:
+        retainedEventDomainBindingAccepted === true
+          ? "retained_event_domain_binding_accepted"
+          : currentBindingCandidatePass === true &&
+              currentEventIdProvenancePass === true
+            ? "retained_event_domain_binding_current_provenance_populated_acceptance_missing"
+          : currentBindingCandidatePass === true
+            ? "retained_event_domain_binding_current_candidate_populated_acceptance_missing"
+            : "retained_event_domain_binding_candidate_incomplete",
+      retainedBranchClaim: false,
+    };
+  });
+  const firstAttemptRow = rows[0] ?? null;
+  const currentBindingCandidateRowCount = rows.filter(
+    (row) => row.currentBindingCandidatePass === true
+  ).length;
+  const retainedAcceptedBindingCount = rows.filter(
+    (row) => row.retainedEventDomainBindingAccepted === true
+  ).length;
+  const retainedBindingRequirementCount = sumFinite(
+    rows.map((row) => row.retainedBindingRequirementCount)
+  );
+  const acceptedRetainedBindingRequirementCount = sumFinite(
+    rows.map((row) => row.acceptedRetainedBindingRequirementCount)
+  );
+  return {
+    schema:
+      "aaa-equal-frequency-retained-phase-history-carrier-event-domain-binding-attempt-audit.v1",
+    claimLevel:
+      "first same-event or positive-width retained-domain binding attempt for the middle-to-outer carrier; current binding candidates only, no retained binding acceptance",
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
+    currentExecutableChart: CURRENT_EXECUTABLE_GEOMETRY_CHART,
+    canonicalFamily: "I:M:O=(f,f,f)",
+    retainedRowSetId,
+    carrierChannelId,
+    selectedEventDomainRoute,
+    acceptedFullPointEventRulePass,
+    positiveWidthRetainedDomainPass,
+    retainedEventDomainAccepted,
+    sourceEventIdPopulationAttemptAuditSchema:
+      retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit?.schema ?? null,
+    sourceEventIdPopulationAttemptStatus:
+      retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit?.status ?? null,
+    retainedEventIdProvenanceAuditSchema:
+      retainedPhaseHistoryCarrierEventIdProvenanceAudit?.schema ?? null,
+    retainedEventIdProvenanceStatus:
+      retainedPhaseHistoryCarrierEventIdProvenanceAudit?.status ?? null,
+    retainedEventIdProvenanceCurrentRowCount:
+      retainedPhaseHistoryCarrierEventIdProvenanceAudit
+        ?.currentProvenanceRowCount ?? null,
+    retainedEventIdProvenanceAcceptedRowCount:
+      retainedPhaseHistoryCarrierEventIdProvenanceAudit
+        ?.retainedAcceptedProvenanceRowCount ?? null,
+    retainedEventIdProvenanceCurrentRequirementCount:
+      retainedPhaseHistoryCarrierEventIdProvenanceAudit
+        ?.currentProvenanceRequirementCount ?? null,
+    retainedEventIdProvenanceCurrentPopulatedCount:
+      retainedPhaseHistoryCarrierEventIdProvenanceAudit
+        ?.currentProvenancePopulatedCount ?? null,
+    retainedEventIdProvenanceRetainedRequirementCount:
+      retainedPhaseHistoryCarrierEventIdProvenanceAudit
+        ?.retainedProvenanceRequirementCount ?? null,
+    retainedEventIdProvenanceAcceptedRequirementCount:
+      retainedPhaseHistoryCarrierEventIdProvenanceAudit
+        ?.acceptedRetainedProvenanceCount ?? null,
+    retainedEventDomainLiftTargetSchema:
+      retainedEventDomainLiftTarget?.schema ?? null,
+    retainedEventDomainLiftStatus:
+      retainedEventDomainLiftTarget?.status ?? null,
+    retainedEventDomainSelectorSchema:
+      retainedEventDomainSelector?.schema ?? null,
+    retainedEventDomainSelectorStatus:
+      retainedEventDomainSelector?.status ?? null,
+    retainedPointEventOrDomainRuleAttemptAuditSchema:
+      retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit?.schema ??
+      null,
+    retainedPointEventOrDomainRuleAttemptStatus:
+      retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit?.status ??
+      null,
+    retainedPointEventOrDomainRuleAttemptPass,
+    retainedPointEventOrDomainRuleCurrentCandidateRowCount:
+      retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit
+        ?.currentRuleCandidateRowCount ?? null,
+    retainedPointEventOrDomainRuleAcceptedCount:
+      retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit
+        ?.retainedAcceptedRuleCount ?? null,
+    retainedPointEventOrDomainRuleRequirementCount:
+      retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit
+        ?.retainedRuleRequirementCount ?? null,
+    retainedPointEventOrDomainRuleAcceptedRequirementCount:
+      retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit
+        ?.acceptedRetainedRuleRequirementCount ?? null,
+    retainedPointEventOrDomainRuleFirstCandidateId:
+      retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit
+        ?.firstAttemptSelectedRuleCandidateId ?? null,
+    retainedPointEventOrDomainRuleFirstMissingInputs:
+      retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit
+        ?.firstAttemptMissingRetainedRuleInputs ?? [],
+    residualVector: "R_bind=(r_event_src,r_event_recv,r_domain_or_event,r_bind)",
+    acceptanceEquation:
+      "accept(binding) iff retained source and receiver event IDs are accepted, either a full point-event rule or positive-width domain is accepted, and same_event_or_positive_width_domain_binding is populated on S_eq",
+    rowCount: rows.length,
+    currentBindingCandidateRowCount,
+    retainedAcceptedBindingCount,
+    retainedBindingRequirementCount,
+    acceptedRetainedBindingRequirementCount,
+    firstAttemptRowId: firstAttemptRow?.rowId ?? null,
+    firstAttemptBindingCandidateId:
+      firstAttemptRow?.bindingCandidateId ?? null,
+    firstAttemptSourceEventIdCandidate:
+      firstAttemptRow?.sourceEventIdCandidate ?? null,
+    firstAttemptReceiverEventIdCandidate:
+      firstAttemptRow?.receiverEventIdCandidate ?? null,
+    firstAttemptMissingRetainedBindingInputs:
+      firstAttemptRow?.missingRetainedBindingInputs ?? [],
+    firstAttemptAcceptedRequirementCount:
+      firstAttemptRow?.acceptedRetainedBindingRequirementCount ?? null,
+    firstAttemptRequirementCount:
+      firstAttemptRow?.retainedBindingRequirementCount ?? null,
+    firstAttemptCurrentEventIdProvenancePass:
+      firstAttemptRow?.currentEventIdProvenancePass ?? false,
+    firstAttemptEventIdProvenanceRowId:
+      firstAttemptRow?.eventIdProvenanceRowId ?? null,
+    retainedEventDomainBindingAttemptPass: retainedAcceptedBindingCount > 0,
+    rows,
+    blockingConditionIds: Array.from(
+      new Set([
+        ...(firstAttemptRow?.missingRetainedBindingInputs ?? []).map(
+          (id) => `${id}_missing`
+        ),
+        ...(retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit
+          ?.blockingConditionIds ?? []),
+        ...(retainedPhaseHistoryCarrierEventIdProvenanceAudit
+          ?.blockingConditionIds ?? []),
+        ...(retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit
+          ?.blockingConditionIds ?? []),
+        ...(retainedEventDomainLiftTarget?.blockingConditionIds ?? []),
+        ...(retainedEventDomainSelector?.blockingConditionIds ?? []),
+      ])
+    ),
+    status:
+      retainedAcceptedBindingCount > 0
+        ? "retained_event_domain_binding_attempt_retained_bindings_accepted"
+      : currentBindingCandidateRowCount > 0 &&
+            retainedPhaseHistoryCarrierEventIdProvenanceAudit
+              ?.currentEventIdProvenancePass === true &&
+            acceptedRetainedBindingRequirementCount === 0
+          ? "retained_event_domain_binding_attempt_current_provenance_populated_all_retained_inputs_missing"
+          : currentBindingCandidateRowCount > 0 &&
+            acceptedRetainedBindingRequirementCount === 0
+          ? "retained_event_domain_binding_attempt_current_candidates_only_all_retained_inputs_missing"
+          : currentBindingCandidateRowCount > 0
+            ? "retained_event_domain_binding_attempt_current_candidates_partial_retained_inputs_missing"
+            : "retained_event_domain_binding_attempt_candidates_incomplete",
+    interpretation:
+      "The first middle-to-outer carrier now has current event-ID provenance plus an explicit binding candidate that asks whether the source and receiver event IDs are the same retained point event or lie in one positive-width retained domain. The current report cannot accept that binding.",
+    retainedReplayBurden:
+      "Accept either the full S_eq point-event rule or a positive-width retained domain for the source/receiver event-ID pair, then re-evaluate root keys, phase rows, branch-history segment, transfer lift, and angular-momentum ledger on that same binding.",
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyRetainedBinaryToBinaryPhaseHistoryAudit({
+  binaryToBinaryPhaseHistoryLiftTarget,
+  phaseChannelClassificationAudit,
+  phaseCarrierTransferAlignmentAudit,
+  retainedPhaseHistoryCarrierReadinessAudit,
+  retainedPhaseHistoryCarrierEventDomainRowModel,
+  retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit,
+  retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit,
+  retainedPhaseHistoryCarrierEventIdProvenanceAudit,
+  retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit,
+  retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit,
+  retainedEventDomainSelector,
+  retainedRowSetIdentityStructuralWitnessAudit,
+}) {
+  const retainedRowSetId =
+    retainedRowSetIdentityStructuralWitnessAudit?.retainedRowSetId ??
+    retainedPhaseHistoryCarrierReadinessAudit?.retainedRowSetId ??
+    binaryToBinaryPhaseHistoryLiftTarget?.retainedRowSetId ??
+    "S_eq";
+  const currentEventDomainProxyPass =
+    retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
+      ?.currentBindingCandidateRowCount > 0 ||
+    retainedEventDomainSelector?.currentProxyRouteCount > 0;
+  const retainedEventDomainPass =
+    retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
+      ?.retainedEventDomainBindingAttemptPass === true ||
+    retainedEventDomainSelector?.retainedSelectorAcceptancePass === true;
+  const residualRows = [
+    {
+      residualId: "r_templates",
+      label: "binary-to-binary phase/history row templates",
+      expression:
+        "S_eq carries source/receiver retained-history templates for all I:M:O role channels",
+      currentProxyPass: isFullPositiveCount(
+        binaryToBinaryPhaseHistoryLiftTarget?.currentSeedRowCount,
+        binaryToBinaryPhaseHistoryLiftTarget?.rowCount
+      ),
+      retainedAcceptancePass:
+        binaryToBinaryPhaseHistoryLiftTarget?.retainedPhaseHistoryLiftPass ===
+        true,
+      currentEvidenceCount:
+        binaryToBinaryPhaseHistoryLiftTarget?.currentSeedRowCount ?? null,
+      expectedEvidenceCount:
+        binaryToBinaryPhaseHistoryLiftTarget?.rowCount ?? null,
+      acceptedEvidenceCount:
+        binaryToBinaryPhaseHistoryLiftTarget?.acceptedRowCount ?? null,
+      sourceSchema: binaryToBinaryPhaseHistoryLiftTarget?.schema ?? null,
+      missingRetainedInputs:
+        binaryToBinaryPhaseHistoryLiftTarget?.blockingConditionIds ?? [
+          "binary_to_binary_retained_history_rows",
+        ],
+    },
+    {
+      residualId: "r_channel",
+      label: "phase-channel classification",
+      expression:
+        "source/receiver phase offsets classify into identity, forward 120-degree current, and reverse 120-degree return channels",
+      currentProxyPass:
+        phaseChannelClassificationAudit?.phaseClassPartitionPass === true &&
+        phaseChannelClassificationAudit?.middleToOuterCarrierCurrentSeedPass ===
+          true,
+      retainedAcceptancePass:
+        phaseChannelClassificationAudit?.retainedAcceptedClassifiedRowCount > 0,
+      currentEvidenceCount:
+        phaseChannelClassificationAudit?.currentSeedClassifiedRowCount ?? null,
+      expectedEvidenceCount: phaseChannelClassificationAudit?.rowCount ?? null,
+      acceptedEvidenceCount:
+        phaseChannelClassificationAudit?.retainedAcceptedClassifiedRowCount ??
+        null,
+      sourceSchema: phaseChannelClassificationAudit?.schema ?? null,
+      missingRetainedInputs:
+        phaseChannelClassificationAudit?.blockingConditionIds ?? [
+          "retained_source_receiver_phase_history_rows",
+        ],
+    },
+    {
+      residualId: "r_carrier",
+      label: "middle-to-outer phase carrier and transfer alignment",
+      expression:
+        "the selected middle->outer +120-degree carrier aligns with the signed middle-sheds/outer-receives transfer row",
+      currentProxyPass:
+        phaseCarrierTransferAlignmentAudit
+          ?.phaseCarrierTransferAlignmentCurrentProxyPass === true,
+      retainedAcceptancePass:
+        phaseCarrierTransferAlignmentAudit
+          ?.retainedCarrierTransferAlignmentAcceptancePass === true,
+      currentEvidenceCount:
+        phaseCarrierTransferAlignmentAudit?.currentProxyAlignmentRowCount ??
+        null,
+      expectedEvidenceCount:
+        phaseCarrierTransferAlignmentAudit?.rowCount ?? null,
+      acceptedEvidenceCount:
+        phaseCarrierTransferAlignmentAudit?.retainedAcceptedAlignmentRowCount ??
+        null,
+      sourceSchema: phaseCarrierTransferAlignmentAudit?.schema ?? null,
+      missingRetainedInputs:
+        phaseCarrierTransferAlignmentAudit?.blockingConditionIds ?? [
+          "retained_phase_carrier_transfer_alignment_rows",
+        ],
+    },
+    {
+      residualId: "r_readiness",
+      label: "retained phase-history carrier readiness",
+      expression:
+        "the selected carrier has finite source/receiver phase, root, impulse, wake/coupling, and same-event readiness proxies",
+      currentProxyPass:
+        retainedPhaseHistoryCarrierReadinessAudit?.currentReadinessPass === true,
+      retainedAcceptancePass:
+        retainedPhaseHistoryCarrierReadinessAudit
+          ?.retainedPhaseHistoryCarrierReadinessPass === true,
+      currentEvidenceCount:
+        retainedPhaseHistoryCarrierReadinessAudit?.currentReadinessRowCount ??
+        null,
+      expectedEvidenceCount:
+        retainedPhaseHistoryCarrierReadinessAudit?.rowCount ?? null,
+      acceptedEvidenceCount:
+        retainedPhaseHistoryCarrierReadinessAudit?.retainedAcceptedRowCount ??
+        null,
+      sourceSchema: retainedPhaseHistoryCarrierReadinessAudit?.schema ?? null,
+      missingRetainedInputs:
+        retainedPhaseHistoryCarrierReadinessAudit?.blockingConditionIds ?? [
+          "retained_phase_history_carrier_source_receiver_rows",
+        ],
+    },
+    {
+      residualId: "r_event_domain",
+      label: "carrier source/receiver event-domain rows",
+      expression:
+        "source and receiver carrier rows are represented as one retained point-event candidate or one positive-width retained domain candidate",
+      currentProxyPass:
+        retainedPhaseHistoryCarrierEventDomainRowModel
+          ?.currentEventDomainTemplatePass === true,
+      retainedAcceptancePass:
+        retainedPhaseHistoryCarrierEventDomainRowModel
+          ?.retainedEventDomainRowAcceptancePass === true ||
+        retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit
+          ?.retainedEventDomainAcceptanceAttemptPass === true,
+      currentEvidenceCount:
+        retainedPhaseHistoryCarrierEventDomainRowModel
+          ?.currentTemplatePassCount ?? null,
+      expectedEvidenceCount:
+        retainedPhaseHistoryCarrierEventDomainRowModel?.rowCount ?? null,
+      acceptedEvidenceCount:
+        retainedPhaseHistoryCarrierEventDomainRowModel
+          ?.retainedAcceptedRowCount ??
+        retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit
+          ?.acceptedAttemptRowCount ??
+        null,
+      sourceSchema:
+        retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit?.schema ??
+        retainedPhaseHistoryCarrierEventDomainRowModel?.schema ??
+        null,
+      missingRetainedInputs:
+        retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit
+          ?.firstAttemptMissingRetainedRequirementIds ??
+        retainedPhaseHistoryCarrierEventDomainRowModel?.blockingConditionIds ??
+        ["retained_phase_history_carrier_event_domain_rows"],
+    },
+    {
+      residualId: "r_event_id",
+      label: "source/receiver event-ID population",
+      expression:
+        "source and receiver event IDs are populated for each selected carrier row",
+      currentProxyPass: isFullPositiveCount(
+        retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit
+          ?.currentEventIdCandidateRowCount,
+        retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit?.rowCount
+      ),
+      retainedAcceptancePass:
+        retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit
+          ?.retainedEventIdPopulationAttemptPass === true,
+      currentEvidenceCount:
+        retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit
+          ?.currentEventIdCandidateRowCount ?? null,
+      expectedEvidenceCount:
+        retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit?.rowCount ??
+        null,
+      acceptedEvidenceCount:
+        retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit
+          ?.retainedAcceptedEventIdPairCount ?? null,
+      sourceSchema:
+        retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit?.schema ?? null,
+      missingRetainedInputs:
+        retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit
+          ?.firstAttemptMissingRetainedEventIdInputs ?? [
+          "retained_source_event_id",
+          "retained_receiver_event_id",
+        ],
+    },
+    {
+      residualId: "r_provenance",
+      label: "event-ID provenance",
+      expression:
+        "candidate event IDs carry current source row, role, phase, root-key template, and row-set provenance",
+      currentProxyPass:
+        retainedPhaseHistoryCarrierEventIdProvenanceAudit
+          ?.currentEventIdProvenancePass === true,
+      retainedAcceptancePass:
+        retainedPhaseHistoryCarrierEventIdProvenanceAudit
+          ?.retainedEventIdProvenancePass === true,
+      currentEvidenceCount:
+        retainedPhaseHistoryCarrierEventIdProvenanceAudit
+          ?.currentProvenanceRowCount ?? null,
+      expectedEvidenceCount:
+        retainedPhaseHistoryCarrierEventIdProvenanceAudit?.rowCount ?? null,
+      acceptedEvidenceCount:
+        retainedPhaseHistoryCarrierEventIdProvenanceAudit
+          ?.retainedAcceptedProvenanceRowCount ?? null,
+      sourceSchema:
+        retainedPhaseHistoryCarrierEventIdProvenanceAudit?.schema ?? null,
+      missingRetainedInputs:
+        retainedPhaseHistoryCarrierEventIdProvenanceAudit
+          ?.firstAttemptMissingRetainedProvenanceInputs ?? [
+          "retained_event_id_provenance",
+        ],
+    },
+    {
+      residualId: "r_rule",
+      label: "point-event or positive-width-domain rule",
+      expression:
+        "the selected source/receiver event-ID pair satisfies a retained same-point event rule or one retained positive-width domain rule",
+      currentProxyPass: isFullPositiveCount(
+        retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit
+          ?.currentRuleCandidateRowCount,
+        retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit?.rowCount
+      ),
+      retainedAcceptancePass:
+        retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit
+          ?.retainedPointEventOrDomainRuleAttemptPass === true,
+      currentEvidenceCount:
+        retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit
+          ?.currentRuleCandidateRowCount ?? null,
+      expectedEvidenceCount:
+        retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit
+          ?.rowCount ?? null,
+      acceptedEvidenceCount:
+        retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit
+          ?.retainedAcceptedRuleCount ?? null,
+      sourceSchema:
+        retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit?.schema ??
+        null,
+      missingRetainedInputs:
+        retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit
+          ?.firstAttemptMissingRetainedRuleInputs ?? [
+          "accepted_full_point_event_rule_or_positive_width_domain",
+        ],
+    },
+    {
+      residualId: "r_bind",
+      label: "same-event or same-domain binding",
+      expression:
+        "the source/receiver carrier pair is bound to the accepted retained event or positive-width domain",
+      currentProxyPass: isFullPositiveCount(
+        retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
+          ?.currentBindingCandidateRowCount,
+        retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit?.rowCount
+      ),
+      retainedAcceptancePass:
+        retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
+          ?.retainedEventDomainBindingAttemptPass === true,
+      currentEvidenceCount:
+        retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
+          ?.currentBindingCandidateRowCount ?? null,
+      expectedEvidenceCount:
+        retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit?.rowCount ??
+        null,
+      acceptedEvidenceCount:
+        retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
+          ?.retainedAcceptedBindingCount ?? null,
+      sourceSchema:
+        retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit?.schema ??
+        null,
+      missingRetainedInputs:
+        retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
+          ?.firstAttemptMissingRetainedBindingInputs ?? [
+          "same_event_or_positive_width_domain_binding",
+        ],
+    },
+    {
+      residualId: "r_rows",
+      label: "same retained row-set identity",
+      expression:
+        "the binary-to-binary phase-history rows share S_eq with the phase, plane, wake, energy, and angular-momentum rows",
+      currentProxyPass:
+        retainedRowSetIdentityStructuralWitnessAudit
+          ?.currentStructuralWitnessPass === true,
+      retainedAcceptancePass:
+        retainedRowSetIdentityStructuralWitnessAudit
+          ?.retainedRowSetIdentityPass === true,
+      currentEvidenceCount:
+        retainedRowSetIdentityStructuralWitnessAudit
+          ?.currentStructuralWitnessPopulatedCount ?? null,
+      expectedEvidenceCount:
+        retainedRowSetIdentityStructuralWitnessAudit?.sourceCount ?? null,
+      acceptedEvidenceCount:
+        retainedRowSetIdentityStructuralWitnessAudit
+          ?.acceptedRetainedIdentityRequirementCount ?? null,
+      sourceSchema:
+        retainedRowSetIdentityStructuralWitnessAudit?.schema ?? null,
+      missingRetainedInputs:
+        retainedRowSetIdentityStructuralWitnessAudit
+          ?.firstMissingRetainedIdentityInputs ?? [
+          "same_retained_row_set_identity",
+        ],
+    },
+    {
+      residualId: "r_evt",
+      label: "same retained event or positive-width domain",
+      expression:
+        "the binary-to-binary phase-history row is evaluated on the selected retained point event or retained domain",
+      currentProxyPass: currentEventDomainProxyPass,
+      retainedAcceptancePass: retainedEventDomainPass,
+      currentEvidenceCount:
+        retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
+          ?.currentBindingCandidateRowCount ??
+        retainedEventDomainSelector?.currentProxyRouteCount ??
+        null,
+      expectedEvidenceCount:
+        retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit?.rowCount ??
+        null,
+      acceptedEvidenceCount:
+        retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
+          ?.retainedAcceptedBindingCount ??
+        retainedEventDomainSelector?.acceptedRouteCount ??
+        null,
+      sourceSchema:
+        retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit?.schema ??
+        retainedEventDomainSelector?.schema ??
+        null,
+      missingRetainedInputs: [
+        "same_retained_event_or_positive_width_domain",
+      ],
+    },
+  ];
+  const currentEvidenceResidualCount = residualRows.filter(
+    (row) => row.currentProxyPass === true
+  ).length;
+  const acceptedResidualCount = residualRows.filter(
+    (row) => row.retainedAcceptancePass === true
+  ).length;
+  const firstBlockingResidual =
+    residualRows.find((row) => row.retainedAcceptancePass !== true) ?? null;
+  const firstMissingRetainedInputs = [
+    ...new Set(
+      residualRows
+        .filter((row) => row.retainedAcceptancePass !== true)
+        .flatMap((row) => row.missingRetainedInputs)
+    ),
+  ];
+  const currentProxyPass =
+    residualRows.length > 0 &&
+    currentEvidenceResidualCount === residualRows.length;
+  const retainedBinaryToBinaryPhaseHistoryAccepted =
+    residualRows.length > 0 && acceptedResidualCount === residualRows.length;
+  return {
+    schema:
+      "aaa-equal-frequency-retained-binary-to-binary-phase-history-audit.v1",
+    claimLevel:
+      "retained binary-to-binary phase-history residual audit; current proxy only",
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    canonicalFamily: "I:M:O=(f,f,f)",
+    retainedRowSetId,
+    residualVector:
+      "R_history=(r_templates,r_channel,r_carrier,r_readiness,r_event_domain,r_event_id,r_provenance,r_rule,r_bind,r_rows,r_evt)",
+    residualRows,
+    residualCount: residualRows.length,
+    currentEvidenceResidualCount,
+    acceptedResidualCount,
+    currentProxyPass,
+    retainedBinaryToBinaryPhaseHistoryAccepted,
+    firstBlockingResidualId: firstBlockingResidual?.residualId ?? null,
+    firstMissingRetainedInputs,
+    status:
+      retainedBinaryToBinaryPhaseHistoryAccepted === true
+        ? "retained_binary_to_binary_phase_history_accepted"
+        : currentProxyPass === true
+          ? "retained_binary_to_binary_phase_history_current_proxy_populated_retained_rows_missing"
+          : currentEvidenceResidualCount > 0
+            ? "retained_binary_to_binary_phase_history_partial_current_proxy"
+            : "retained_binary_to_binary_phase_history_missing",
+    interpretation:
+      "The current equal-frequency chart now has source/receiver templates, triadic channel classification, a middle-to-outer carrier, source/receiver event templates, event-ID candidates, provenance, rule candidates, binding candidates, and row-set/event-domain current proxies. None of these rows is yet retained phase-history acceptance.",
+    retainedReplayBurden:
+      "Accept the source and receiver retained event IDs, root keys, emitted/received phase rows, branch-history segment, signed-root orientation, finite-impulse class, wake/coupling carrier, same retained row-set identity, and same event or positive-width domain before using r_history as retained phase-bundle holonomy evidence.",
+    retainedBranchClaim: false,
+  };
+}
+
 function createEqualFrequencySameEventTransferLiftDependencyAudit({
   priorityCaseSummaries,
   retainedEventDomainLiftTarget,
   retainedEventDomainSelector,
   retainedFrequencyPhasePacket,
   phaseCurrentRetainedKernelDerivationTarget,
+  binaryToBinaryPhaseHistoryLiftTarget,
+  phaseChannelClassificationAudit,
+  phaseCarrierTransferAlignmentAudit,
+  retainedPhaseHistoryCarrierReadinessAudit,
+  retainedPhaseHistoryCarrierEventDomainRowModel,
+  retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit,
+  retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit,
+  retainedPhaseHistoryCarrierEventIdProvenanceAudit,
+  retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit,
+  retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit,
 }) {
   const retainedRowSetId =
     retainedEventDomainSelector?.retainedRowSetId ??
@@ -45734,6 +50507,43 @@ function createEqualFrequencySameEventTransferLiftDependencyAudit({
     retainedEventDomainLiftTarget?.positiveWidthRetainedDomainPass === true;
   const selectedEventDomainRoute =
     retainedEventDomainSelector?.selectedRoute ?? null;
+  const binaryToBinaryPhaseHistoryCurrentSeedPass =
+    isFullPositiveCount(
+      binaryToBinaryPhaseHistoryLiftTarget?.currentSeedRowCount,
+      binaryToBinaryPhaseHistoryLiftTarget?.rowCount
+    );
+  const binaryToBinaryPhaseHistoryAccepted =
+    binaryToBinaryPhaseHistoryLiftTarget?.retainedPhaseHistoryLiftPass === true;
+  const phaseChannelClassificationCurrentSeedPass =
+    phaseChannelClassificationAudit?.phaseClassPartitionPass === true &&
+    phaseChannelClassificationAudit?.middleToOuterCarrierCurrentSeedPass ===
+      true;
+  const phaseCarrierTransferAlignmentCurrentProxyPass =
+    phaseCarrierTransferAlignmentAudit
+      ?.phaseCarrierTransferAlignmentCurrentProxyPass === true;
+  const retainedPhaseHistoryCarrierCurrentReadinessPass =
+    retainedPhaseHistoryCarrierReadinessAudit?.currentReadinessPass === true;
+  const retainedPhaseHistoryCarrierEventDomainCurrentTemplatePass =
+    retainedPhaseHistoryCarrierEventDomainRowModel
+      ?.currentEventDomainTemplatePass === true;
+  const retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptPass =
+    retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit
+      ?.retainedEventDomainAcceptanceAttemptPass === true;
+  const retainedPhaseHistoryCarrierEventIdPopulationAttemptPass =
+    retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit
+      ?.retainedEventIdPopulationAttemptPass === true;
+  const retainedPhaseHistoryCarrierEventIdCurrentProvenancePass =
+    retainedPhaseHistoryCarrierEventIdProvenanceAudit
+      ?.currentEventIdProvenancePass === true;
+  const retainedPhaseHistoryCarrierEventIdProvenancePass =
+    retainedPhaseHistoryCarrierEventIdProvenanceAudit
+      ?.retainedEventIdProvenancePass === true;
+  const retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptPass =
+    retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit
+      ?.retainedPointEventOrDomainRuleAttemptPass === true;
+  const retainedPhaseHistoryCarrierEventDomainBindingAttemptPass =
+    retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
+      ?.retainedEventDomainBindingAttemptPass === true;
   const dependencyRows = priorityCaseSummaries.map((summary, index) => ({
     rowId: `S_eq-same-event-transfer-lift-dependency-f${summary.f}`,
     retainedRowSetId,
@@ -45748,7 +50558,41 @@ function createEqualFrequencySameEventTransferLiftDependencyAudit({
     retainedEventDomainAccepted,
     acceptedFullPointEventRulePass,
     positiveWidthRetainedDomainPass,
-    binaryToBinaryRetainedHistoryRowsPass: false,
+    binaryToBinaryRetainedHistoryRowsPass:
+      binaryToBinaryPhaseHistoryAccepted,
+    binaryToBinaryPhaseHistoryCurrentSeedPass,
+    binaryToBinaryPhaseHistoryLiftTargetStatus:
+      binaryToBinaryPhaseHistoryLiftTarget?.status ?? null,
+    phaseChannelClassificationCurrentSeedPass,
+    phaseChannelClassificationStatus:
+      phaseChannelClassificationAudit?.status ?? null,
+    phaseCarrierTransferAlignmentCurrentProxyPass,
+    phaseCarrierTransferAlignmentStatus:
+      phaseCarrierTransferAlignmentAudit?.status ?? null,
+    retainedPhaseHistoryCarrierCurrentReadinessPass,
+    retainedPhaseHistoryCarrierReadinessStatus:
+      retainedPhaseHistoryCarrierReadinessAudit?.status ?? null,
+    retainedPhaseHistoryCarrierEventDomainCurrentTemplatePass,
+    retainedPhaseHistoryCarrierEventDomainStatus:
+      retainedPhaseHistoryCarrierEventDomainRowModel?.status ?? null,
+    retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptPass,
+    retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptStatus:
+      retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit?.status ??
+      null,
+    retainedPhaseHistoryCarrierEventIdPopulationAttemptPass,
+    retainedPhaseHistoryCarrierEventIdPopulationAttemptStatus:
+      retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit?.status ?? null,
+    retainedPhaseHistoryCarrierEventIdCurrentProvenancePass,
+    retainedPhaseHistoryCarrierEventIdProvenancePass,
+    retainedPhaseHistoryCarrierEventIdProvenanceStatus:
+      retainedPhaseHistoryCarrierEventIdProvenanceAudit?.status ?? null,
+    retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptPass,
+    retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptStatus:
+      retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit?.status ??
+      null,
+    retainedPhaseHistoryCarrierEventDomainBindingAttemptPass,
+    retainedPhaseHistoryCarrierEventDomainBindingAttemptStatus:
+      retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit?.status ?? null,
     retainedPayloadRowsPass: false,
     sameEventMomentumAngularMomentumRowsPass: false,
     NoetherSeaRecordEventDomainBindingPass: false,
@@ -45761,6 +50605,12 @@ function createEqualFrequencySameEventTransferLiftDependencyAudit({
     nextRows: [
       "accepted_full_point_event_rule_or_positive_width_domain",
       "binary_to_binary_retained_history_rows",
+      "binary_to_binary_retained_phase_history_rows",
+      "retained_phase_history_carrier_source_receiver_rows",
+      "retained_phase_history_carrier_event_id_provenance",
+      "retained_phase_history_carrier_same_event_or_domain_binding",
+      "retained_phase_history_carrier_event_domain_rows",
+      "retained_phase_carrier_transfer_alignment_rows",
       "retained_payload_rows",
       "same_event_momentum_angular_momentum_rows",
       "Noether_sea_record_event_or_domain_binding",
@@ -45769,7 +50619,14 @@ function createEqualFrequencySameEventTransferLiftDependencyAudit({
   const currentProxyDependencyRowCount = dependencyRows.filter(
     (row) =>
       row.currentSameEventTransferLedgerProxyPass === true &&
-      row.currentFrequencyPhasePacketProxyPass === true
+      row.currentFrequencyPhasePacketProxyPass === true &&
+      row.phaseCarrierTransferAlignmentCurrentProxyPass === true &&
+      row.retainedPhaseHistoryCarrierCurrentReadinessPass === true &&
+      row.retainedPhaseHistoryCarrierEventDomainCurrentTemplatePass === true &&
+      row.retainedPhaseHistoryCarrierEventIdCurrentProvenancePass === true &&
+      row.retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptStatus !==
+        null &&
+      row.retainedPhaseHistoryCarrierEventDomainBindingAttemptStatus !== null
   ).length;
   const acceptedDependencyRowCount = dependencyRows.filter(
     (row) => row.retainedTransferLiftPass === true
@@ -45778,8 +50635,28 @@ function createEqualFrequencySameEventTransferLiftDependencyAudit({
     new Set([
       ...(retainedEventDomainLiftTarget?.blockingConditionIds ?? []),
       ...(retainedEventDomainSelector?.blockingConditionIds ?? []),
+      ...(binaryToBinaryPhaseHistoryLiftTarget?.blockingConditionIds ?? []),
+      ...(phaseChannelClassificationAudit?.blockingConditionIds ?? []),
+      ...(phaseCarrierTransferAlignmentAudit?.blockingConditionIds ?? []),
+      ...(retainedPhaseHistoryCarrierReadinessAudit?.blockingConditionIds ?? []),
+      ...(retainedPhaseHistoryCarrierEventDomainRowModel?.blockingConditionIds ??
+        []),
+      ...(retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit
+        ?.blockingConditionIds ?? []),
+      ...(retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit
+        ?.blockingConditionIds ?? []),
+      ...(retainedPhaseHistoryCarrierEventIdProvenanceAudit
+        ?.blockingConditionIds ?? []),
+      ...(retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit
+        ?.blockingConditionIds ?? []),
+      ...(retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
+        ?.blockingConditionIds ?? []),
       "same_event_transfer_lift_retained_event_domain_missing",
       "binary_to_binary_phase_history_rows_missing",
+      "retained_phase_history_carrier_rows_missing",
+      "retained_phase_history_carrier_same_event_or_domain_binding_missing",
+      "retained_phase_history_carrier_event_domain_rows_missing",
+      "phase_carrier_transfer_alignment_retained_rows_missing",
     ])
   );
   return {
@@ -45813,6 +50690,204 @@ function createEqualFrequencySameEventTransferLiftDependencyAudit({
       retainedEventDomainSelector?.schema ?? null,
     retainedEventDomainSelectorStatus:
       retainedEventDomainSelector?.status ?? null,
+    binaryToBinaryPhaseHistoryLiftTargetSchema:
+      binaryToBinaryPhaseHistoryLiftTarget?.schema ?? null,
+    binaryToBinaryPhaseHistoryLiftTargetStatus:
+      binaryToBinaryPhaseHistoryLiftTarget?.status ?? null,
+    binaryToBinaryPhaseHistoryPairChannelCount:
+      binaryToBinaryPhaseHistoryLiftTarget?.pairChannelCount ?? null,
+    binaryToBinaryPhaseHistoryRowCount:
+      binaryToBinaryPhaseHistoryLiftTarget?.rowCount ?? null,
+    binaryToBinaryPhaseHistoryCurrentSeedRowCount:
+      binaryToBinaryPhaseHistoryLiftTarget?.currentSeedRowCount ?? null,
+    binaryToBinaryPhaseHistoryAcceptedRowCount:
+      binaryToBinaryPhaseHistoryLiftTarget?.acceptedRowCount ?? null,
+    binaryToBinaryPhaseHistoryCurrentSeedPass,
+    binaryToBinaryPhaseHistoryAccepted,
+    phaseChannelClassificationAuditSchema:
+      phaseChannelClassificationAudit?.schema ?? null,
+    phaseChannelClassificationStatus:
+      phaseChannelClassificationAudit?.status ?? null,
+    phaseChannelClassificationRowCount:
+      phaseChannelClassificationAudit?.rowCount ?? null,
+    phaseChannelIdentityRowCount:
+      phaseChannelClassificationAudit?.identityRowCount ?? null,
+    phaseChannelForwardTriadic120RowCount:
+      phaseChannelClassificationAudit?.forwardTriadic120RowCount ?? null,
+    phaseChannelReverseTriadic120RowCount:
+      phaseChannelClassificationAudit?.reverseTriadic120RowCount ?? null,
+    phaseChannelMiddleToOuterCarrierRowCount:
+      phaseChannelClassificationAudit?.middleToOuterCarrierRowCount ?? null,
+    phaseChannelMiddleToOuterCarrierCurrentSeedPass:
+      phaseChannelClassificationAudit
+        ?.middleToOuterCarrierCurrentSeedPass ?? null,
+    phaseCarrierTransferAlignmentAuditSchema:
+      phaseCarrierTransferAlignmentAudit?.schema ?? null,
+    phaseCarrierTransferAlignmentStatus:
+      phaseCarrierTransferAlignmentAudit?.status ?? null,
+    phaseCarrierTransferAlignmentCurrentProxyPass:
+      phaseCarrierTransferAlignmentCurrentProxyPass,
+    phaseCarrierTransferAlignmentCurrentProxyRowCount:
+      phaseCarrierTransferAlignmentAudit?.currentProxyAlignmentRowCount ??
+      null,
+    phaseCarrierTransferAlignmentAcceptedRowCount:
+      phaseCarrierTransferAlignmentAudit?.retainedAcceptedAlignmentRowCount ??
+      null,
+    retainedPhaseHistoryCarrierReadinessAuditSchema:
+      retainedPhaseHistoryCarrierReadinessAudit?.schema ?? null,
+    retainedPhaseHistoryCarrierReadinessStatus:
+      retainedPhaseHistoryCarrierReadinessAudit?.status ?? null,
+    retainedPhaseHistoryCarrierCurrentReadinessPass:
+      retainedPhaseHistoryCarrierCurrentReadinessPass,
+    retainedPhaseHistoryCarrierCurrentReadinessRowCount:
+      retainedPhaseHistoryCarrierReadinessAudit?.currentReadinessRowCount ??
+      null,
+    retainedPhaseHistoryCarrierAcceptedRowCount:
+      retainedPhaseHistoryCarrierReadinessAudit?.retainedAcceptedRowCount ??
+      null,
+    retainedPhaseHistoryCarrierEventDomainRowModelSchema:
+      retainedPhaseHistoryCarrierEventDomainRowModel?.schema ?? null,
+    retainedPhaseHistoryCarrierEventDomainStatus:
+      retainedPhaseHistoryCarrierEventDomainRowModel?.status ?? null,
+    retainedPhaseHistoryCarrierEventDomainCurrentTemplatePass:
+      retainedPhaseHistoryCarrierEventDomainCurrentTemplatePass,
+    retainedPhaseHistoryCarrierEventDomainCurrentTemplatePassCount:
+      retainedPhaseHistoryCarrierEventDomainRowModel
+        ?.currentTemplatePassCount ?? null,
+    retainedPhaseHistoryCarrierEventDomainRowCount:
+      retainedPhaseHistoryCarrierEventDomainRowModel?.rowCount ?? null,
+    retainedPhaseHistoryCarrierEventDomainAcceptedRowCount:
+      retainedPhaseHistoryCarrierEventDomainRowModel
+        ?.retainedAcceptedRowCount ?? null,
+    retainedPhaseHistoryCarrierEventDomainRequirementCount:
+      retainedPhaseHistoryCarrierEventDomainRowModel
+        ?.retainedRequirementCount ?? null,
+    retainedPhaseHistoryCarrierEventDomainAcceptedRequirementCount:
+      retainedPhaseHistoryCarrierEventDomainRowModel
+        ?.acceptedRetainedRequirementCount ?? null,
+    retainedPhaseHistoryCarrierEventDomainResidualVector:
+      retainedPhaseHistoryCarrierEventDomainRowModel?.residualVector ?? null,
+    retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAuditSchema:
+      retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit?.schema ??
+      null,
+    retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptStatus:
+      retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit?.status ??
+      null,
+    retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptPass:
+      retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptPass,
+    retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptCurrentTemplateRowCount:
+      retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit
+        ?.currentTemplateAttemptRowCount ?? null,
+    retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAcceptedRowCount:
+      retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit
+        ?.acceptedAttemptRowCount ?? null,
+    retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAcceptedRequirementCount:
+      retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit
+        ?.acceptedRetainedRequirementCount ?? null,
+    retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptRequirementCount:
+      retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit
+        ?.retainedRequirementCount ?? null,
+    retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptFirstMissingIds:
+      retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit
+        ?.firstAttemptMissingRetainedRequirementIds ?? [],
+    retainedPhaseHistoryCarrierEventIdPopulationAttemptAuditSchema:
+      retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit?.schema ?? null,
+    retainedPhaseHistoryCarrierEventIdPopulationAttemptStatus:
+      retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit?.status ?? null,
+    retainedPhaseHistoryCarrierEventIdPopulationAttemptPass:
+      retainedPhaseHistoryCarrierEventIdPopulationAttemptPass,
+    retainedPhaseHistoryCarrierEventIdPopulationCurrentCandidateRowCount:
+      retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit
+        ?.currentEventIdCandidateRowCount ?? null,
+    retainedPhaseHistoryCarrierEventIdPopulationAcceptedPairCount:
+      retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit
+        ?.retainedAcceptedEventIdPairCount ?? null,
+    retainedPhaseHistoryCarrierEventIdPopulationAcceptedRequirementCount:
+      retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit
+        ?.acceptedRetainedEventIdRequirementCount ?? null,
+    retainedPhaseHistoryCarrierEventIdProvenanceAuditSchema:
+      retainedPhaseHistoryCarrierEventIdProvenanceAudit?.schema ?? null,
+    retainedPhaseHistoryCarrierEventIdProvenanceStatus:
+      retainedPhaseHistoryCarrierEventIdProvenanceAudit?.status ?? null,
+    retainedPhaseHistoryCarrierEventIdCurrentProvenancePass,
+    retainedPhaseHistoryCarrierEventIdProvenancePass,
+    retainedPhaseHistoryCarrierEventIdProvenanceCurrentRowCount:
+      retainedPhaseHistoryCarrierEventIdProvenanceAudit
+        ?.currentProvenanceRowCount ?? null,
+    retainedPhaseHistoryCarrierEventIdProvenanceAcceptedRowCount:
+      retainedPhaseHistoryCarrierEventIdProvenanceAudit
+        ?.retainedAcceptedProvenanceRowCount ?? null,
+    retainedPhaseHistoryCarrierEventIdProvenanceCurrentRequirementCount:
+      retainedPhaseHistoryCarrierEventIdProvenanceAudit
+        ?.currentProvenanceRequirementCount ?? null,
+    retainedPhaseHistoryCarrierEventIdProvenanceCurrentPopulatedCount:
+      retainedPhaseHistoryCarrierEventIdProvenanceAudit
+        ?.currentProvenancePopulatedCount ?? null,
+    retainedPhaseHistoryCarrierEventIdProvenanceRetainedRequirementCount:
+      retainedPhaseHistoryCarrierEventIdProvenanceAudit
+        ?.retainedProvenanceRequirementCount ?? null,
+    retainedPhaseHistoryCarrierEventIdProvenanceAcceptedRequirementCount:
+      retainedPhaseHistoryCarrierEventIdProvenanceAudit
+        ?.acceptedRetainedProvenanceCount ?? null,
+    retainedPhaseHistoryCarrierEventIdProvenanceFirstMissingInputs:
+      retainedPhaseHistoryCarrierEventIdProvenanceAudit
+        ?.firstAttemptMissingRetainedProvenanceInputs ?? [],
+    retainedPhaseHistoryCarrierEventIdPopulationRequirementCount:
+      retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit
+        ?.retainedEventIdRequirementCount ?? null,
+    retainedPhaseHistoryCarrierEventIdPopulationFirstMissingInputs:
+      retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit
+        ?.firstAttemptMissingRetainedEventIdInputs ?? [],
+    retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAuditSchema:
+      retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit?.schema ??
+      null,
+    retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptStatus:
+      retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit?.status ??
+      null,
+    retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptPass:
+      retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptPass,
+    retainedPhaseHistoryCarrierPointEventOrDomainRuleCurrentCandidateRowCount:
+      retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit
+        ?.currentRuleCandidateRowCount ?? null,
+    retainedPhaseHistoryCarrierPointEventOrDomainRuleAcceptedCount:
+      retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit
+        ?.retainedAcceptedRuleCount ?? null,
+    retainedPhaseHistoryCarrierPointEventOrDomainRuleAcceptedRequirementCount:
+      retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit
+        ?.acceptedRetainedRuleRequirementCount ?? null,
+    retainedPhaseHistoryCarrierPointEventOrDomainRuleRequirementCount:
+      retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit
+        ?.retainedRuleRequirementCount ?? null,
+    retainedPhaseHistoryCarrierPointEventOrDomainRuleFirstCandidateId:
+      retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit
+        ?.firstAttemptSelectedRuleCandidateId ?? null,
+    retainedPhaseHistoryCarrierPointEventOrDomainRuleFirstMissingInputs:
+      retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit
+        ?.firstAttemptMissingRetainedRuleInputs ?? [],
+    retainedPhaseHistoryCarrierEventDomainBindingAttemptAuditSchema:
+      retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit?.schema ?? null,
+    retainedPhaseHistoryCarrierEventDomainBindingAttemptStatus:
+      retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit?.status ?? null,
+    retainedPhaseHistoryCarrierEventDomainBindingAttemptPass:
+      retainedPhaseHistoryCarrierEventDomainBindingAttemptPass,
+    retainedPhaseHistoryCarrierEventDomainBindingCurrentCandidateRowCount:
+      retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
+        ?.currentBindingCandidateRowCount ?? null,
+    retainedPhaseHistoryCarrierEventDomainBindingAcceptedCount:
+      retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
+        ?.retainedAcceptedBindingCount ?? null,
+    retainedPhaseHistoryCarrierEventDomainBindingAcceptedRequirementCount:
+      retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
+        ?.acceptedRetainedBindingRequirementCount ?? null,
+    retainedPhaseHistoryCarrierEventDomainBindingRequirementCount:
+      retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
+        ?.retainedBindingRequirementCount ?? null,
+    retainedPhaseHistoryCarrierEventDomainBindingFirstCandidateId:
+      retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
+        ?.firstAttemptBindingCandidateId ?? null,
+    retainedPhaseHistoryCarrierEventDomainBindingFirstMissingInputs:
+      retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
+        ?.firstAttemptMissingRetainedBindingInputs ?? [],
     selectedEventDomainRoute,
     retainedEventDomainAccepted,
     acceptedFullPointEventRulePass,
@@ -45830,7 +50905,7 @@ function createEqualFrequencySameEventTransferLiftDependencyAudit({
           ? "same_event_transfer_lift_dependency_current_proxy_populated_retained_event_domain_missing"
           : "same_event_transfer_lift_dependency_proxy_incomplete",
     retainedReplayBurden:
-      "Populate binary-to-binary retained phase/history rows and an accepted S_eq retained point event or positive-width domain before treating the no-slack transfer ledger as retained r_W or r_J evidence.",
+      "Populate retained source/receiver phase-history rows, retained carrier-transfer alignment rows, and an accepted S_eq retained point event or positive-width domain before treating the no-slack transfer ledger as retained r_W or r_J evidence.",
     retainedBranchClaim: false,
   };
 }
@@ -45838,13 +50913,29 @@ function createEqualFrequencySameEventTransferLiftDependencyAudit({
 function createEqualFrequencyRetainedReplayAcceptanceBlueprint({
   priorityCaseSummaries,
   retainedRowSetScaffold,
+  retainedRowSetIdentityStructuralWitnessAudit,
   retainedEventDomainLiftTarget,
   retainedEventDomainSelector,
+  binaryToBinaryPhaseHistoryLiftTarget,
+  phaseChannelClassificationAudit,
+  phaseCarrierTransferAlignmentAudit,
+  retainedPhaseHistoryCarrierReadinessAudit,
+  retainedBinaryToBinaryPhaseHistoryAudit,
+  retainedPhaseHistoryCarrierEventDomainRowModel,
+  retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit,
+  retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit,
+  retainedPhaseHistoryCarrierEventIdProvenanceAudit,
+  retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit,
+  retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit,
   sameEventTransferLiftDependencyAudit,
   deformationContinuationAudit,
   actionLedgerAudit,
   energyAngularMomentumClosureAudit,
   phaseDeformationBalanceAudit,
+  retainedWeightLedgerSelectionTarget,
+  retainedWeightLedgerSourceAcceptanceAttemptAudit,
+  retainedPhaseBundleHolonomyAudit,
+  phaseHolonomyUnitClockWeightSourceAudit,
   phaseCurrentRetainedKernelDerivationTarget,
   returnPeriodFrequencyAudit,
   planeSectorDiscriminatorAudit,
@@ -45858,19 +50949,40 @@ function createEqualFrequencyRetainedReplayAcceptanceBlueprint({
       residualComponent: "r_rows",
       expression:
         "R_eq uses one retained row set S_eq for P_a, N_a, phi_a, rho_a, E_branch, W_a, J_branch, L_wake, coupling rows, response-center rows, group-velocity rows, and the Noether sea record",
-      currentSubauditSchema: retainedRowSetScaffold?.schema ?? null,
+      currentSubauditSchema:
+        retainedRowSetIdentityStructuralWitnessAudit?.schema ??
+        retainedRowSetScaffold?.schema ??
+        null,
       currentEvidencePopulated:
+        retainedRowSetIdentityStructuralWitnessAudit
+          ?.currentStructuralWitnessPass === true ||
         retainedRowSetScaffold?.currentProxyEvidencePopulated === true,
       retainedAcceptancePass:
+        retainedRowSetIdentityStructuralWitnessAudit
+          ?.retainedRowSetIdentityPass === true ||
         retainedRowSetScaffold?.retainedRowSetIdentityPass === true,
       currentStatus:
+        retainedRowSetIdentityStructuralWitnessAudit?.status ??
         retainedRowSetScaffold?.status ?? "missing_same_retained_row_set_identity",
-      requiredRows: retainedRowSetScaffold?.blockingRequirementIds ?? [
-        "raw_labeled_rows_B_1_B_2_B_3",
-        "role_map_I_M_O",
-        "shared_retained_event_or_positive_width_domain",
-        "binary_to_binary_row_set_identity",
-      ],
+      currentEvidencePassCount:
+        retainedRowSetIdentityStructuralWitnessAudit
+          ?.currentStructuralWitnessPopulatedCount ??
+        retainedRowSetScaffold?.currentProxyEvidencePopulatedCount ??
+        null,
+      retainedCertificatePassCount:
+        retainedRowSetIdentityStructuralWitnessAudit
+          ?.acceptedRetainedIdentityRequirementCount ??
+        retainedRowSetScaffold?.retainedAcceptancePassCount ??
+        0,
+      requiredRows:
+        retainedRowSetIdentityStructuralWitnessAudit
+          ?.firstMissingRetainedIdentityInputs ??
+        retainedRowSetScaffold?.blockingRequirementIds ?? [
+          "raw_labeled_rows_B_1_B_2_B_3",
+          "role_map_I_M_O",
+          "shared_retained_event_or_positive_width_domain",
+          "binary_to_binary_row_set_identity",
+        ],
       blocker: "row_set_identity",
     },
     {
@@ -45879,26 +50991,66 @@ function createEqualFrequencyRetainedReplayAcceptanceBlueprint({
       expression:
         "All S_eq rows are evaluated on one accepted retained point event or on one positive-width retained time domain before branch acceptance",
       currentSubauditSchema:
+        retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit?.schema ??
+        retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit?.schema ??
+        retainedPhaseHistoryCarrierEventIdProvenanceAudit?.schema ??
+        retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit?.schema ??
+        retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit?.schema ??
         retainedEventDomainSelector?.schema ??
         retainedEventDomainLiftTarget?.schema ??
         null,
       currentEvidencePopulated:
+        retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
+          ?.currentBindingCandidateRowCount > 0 ||
+        retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit
+          ?.currentRuleCandidateRowCount > 0 ||
+        retainedPhaseHistoryCarrierEventIdProvenanceAudit
+          ?.currentProvenanceRowCount > 0 ||
+        retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit
+          ?.currentEventIdCandidateRowCount > 0 ||
+        retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit
+          ?.currentTemplateAttemptRowCount > 0 ||
         retainedEventDomainSelector?.currentProxyRouteCount > 0 ||
         retainedEventDomainLiftTarget?.currentProxyPointRowsPopulated === true,
       retainedAcceptancePass:
         retainedEventDomainSelector?.retainedSelectorAcceptancePass === true ||
         retainedEventDomainLiftTarget?.retainedEventDomainLiftPass === true,
       currentStatus:
+        retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit?.status ??
+        retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit?.status ??
+        retainedPhaseHistoryCarrierEventIdProvenanceAudit?.status ??
+        retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit?.status ??
+        retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit?.status ??
         retainedEventDomainSelector?.status ??
         retainedEventDomainLiftTarget?.status ??
         "missing_retained_event_domain_lift_target",
       currentEvidencePassCount:
+        retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
+          ?.currentBindingCandidateRowCount ??
+        retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit
+          ?.currentRuleCandidateRowCount ??
+        retainedPhaseHistoryCarrierEventIdProvenanceAudit
+          ?.currentProvenanceRowCount ??
+        retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit
+          ?.currentEventIdCandidateRowCount ??
+        retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit
+          ?.currentTemplateAttemptRowCount ??
         retainedEventDomainSelector?.currentProxyRouteCount ??
         retainedEventDomainLiftTarget?.currentProxyEvidencePopulatedCount ??
         null,
       retainedCertificatePassCount:
         retainedEventDomainSelector?.acceptedRouteCount ?? 0,
       requiredRows:
+        retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
+          ?.firstAttemptMissingRetainedBindingInputs ??
+        retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit
+          ?.firstAttemptMissingRetainedRuleInputs ??
+        retainedPhaseHistoryCarrierEventIdProvenanceAudit
+          ?.firstAttemptMissingRetainedProvenanceInputs ??
+        retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit
+          ?.firstAttemptMissingRetainedEventIdInputs ??
+        retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit
+          ?.firstAttemptMissingRetainedRequirementIds ??
         retainedEventDomainSelector?.acceptanceInputsRequired ??
         retainedEventDomainLiftTarget?.blockingConditionIds ?? [
           "accepted_full_point_event_rule",
@@ -46025,17 +51177,54 @@ function createEqualFrequencyRetainedReplayAcceptanceBlueprint({
       expression:
         "r_W = sum_a W_a(B_3B) exp(i phi_a), or an accepted antisymmetric phase-current wake/coupling kernel on S_eq",
       currentSubauditSchema:
+        phaseHolonomyUnitClockWeightSourceAudit?.schema ??
+        retainedPhaseBundleHolonomyAudit?.schema ??
+        retainedBinaryToBinaryPhaseHistoryAudit?.schema ??
+        retainedWeightLedgerSourceAcceptanceAttemptAudit?.schema ??
+        retainedWeightLedgerSelectionTarget?.schema ??
+        retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit?.schema ??
+        retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit?.schema ??
+        retainedPhaseHistoryCarrierEventIdProvenanceAudit?.schema ??
+        retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit?.schema ??
+        retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit?.schema ??
+        retainedPhaseHistoryCarrierEventDomainRowModel?.schema ??
         phaseCurrentRetainedKernelDerivationTarget?.schema ??
         phaseDeformationBalanceAudit?.schema ??
         null,
       currentEvidencePopulated:
+        phaseHolonomyUnitClockWeightSourceAudit?.currentProxyPass === true ||
+        retainedPhaseBundleHolonomyAudit?.currentProxyPass === true ||
+        retainedBinaryToBinaryPhaseHistoryAudit?.currentProxyPass === true ||
+        retainedWeightLedgerSourceAcceptanceAttemptAudit
+          ?.currentProxySourceAttemptCount > 0 ||
+        retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
+          ?.currentBindingCandidateRowCount > 0 ||
+        retainedWeightLedgerSelectionTarget?.currentProxyTargetPass === true ||
+        retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit
+          ?.currentRuleCandidateRowCount > 0 ||
+        retainedPhaseHistoryCarrierEventIdProvenanceAudit
+          ?.currentProvenanceRowCount > 0 ||
+        retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit
+          ?.currentEventIdCandidateRowCount > 0 ||
+        retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit
+          ?.currentTemplateAttemptRowCount > 0 ||
+        retainedPhaseHistoryCarrierEventDomainRowModel
+          ?.currentEventDomainTemplatePass === true ||
         phaseCurrentRetainedKernelDerivationTarget?.currentProxyTransferPass ===
           true ||
         phaseDeformationBalanceAudit?.priorityPhaseOnlyPassCount ===
           priorityCaseCount,
       retainedAcceptancePass:
         priorityCaseCount > 0 &&
-        (phaseCurrentRetainedKernelDerivationTarget
+        (phaseHolonomyUnitClockWeightSourceAudit?.retainedSourceAccepted ===
+          true ||
+          retainedWeightLedgerSourceAcceptanceAttemptAudit
+          ?.retainedSourceAcceptancePass === true ||
+          retainedPhaseBundleHolonomyAudit
+          ?.retainedPhaseBundleHolonomyAccepted === true ||
+          retainedWeightLedgerSelectionTarget?.retainedSelectionAccepted ===
+          true ||
+          phaseCurrentRetainedKernelDerivationTarget
           ?.retainedKernelDerivationAccepted === true ||
           phaseDeformationBalanceAudit?.priorityLeverArmPassCount ===
             priorityCaseCount ||
@@ -46044,25 +51233,73 @@ function createEqualFrequencyRetainedReplayAcceptanceBlueprint({
           phaseDeformationBalanceAudit?.priorityRootWeightedActionPassCount ===
               priorityCaseCount),
       currentStatus:
+        phaseHolonomyUnitClockWeightSourceAudit?.status ??
+        retainedPhaseBundleHolonomyAudit?.status ??
+        retainedWeightLedgerSourceAcceptanceAttemptAudit?.status ??
+        retainedWeightLedgerSelectionTarget?.status ??
+        retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit?.status ??
+        retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit?.status ??
+        retainedPhaseHistoryCarrierEventIdProvenanceAudit?.status ??
+        retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit?.status ??
+        retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit?.status ??
+        retainedPhaseHistoryCarrierEventDomainRowModel?.status ??
         phaseCurrentRetainedKernelDerivationTarget?.status ??
         phaseDeformationBalanceAudit?.status ??
         null,
       currentEvidencePassCount:
+        phaseHolonomyUnitClockWeightSourceAudit
+          ?.currentEvidenceResidualCount ??
+        retainedPhaseBundleHolonomyAudit?.currentEvidenceResidualCount ??
+        retainedWeightLedgerSourceAcceptanceAttemptAudit
+          ?.currentProxySourceAttemptCount ??
+        retainedWeightLedgerSelectionTarget?.currentEvidenceSourceCount ??
+        retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
+          ?.currentBindingCandidateRowCount ??
+        retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit
+          ?.currentRuleCandidateRowCount ??
+        retainedPhaseHistoryCarrierEventIdProvenanceAudit
+          ?.currentProvenanceRowCount ??
+        retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit
+          ?.currentEventIdCandidateRowCount ??
+        retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit
+          ?.currentTemplateAttemptRowCount ??
+        retainedPhaseHistoryCarrierEventDomainRowModel
+          ?.currentTemplatePassCount ??
         phaseCurrentRetainedKernelDerivationTarget
           ?.currentProxyEvidencePopulatedCount ??
         phaseDeformationBalanceAudit?.priorityPhaseOnlyPassCount ??
         null,
       retainedCertificatePassCount:
+        phaseHolonomyUnitClockWeightSourceAudit?.acceptedResidualCount ??
+        retainedPhaseBundleHolonomyAudit?.acceptedResidualCount ??
+        retainedWeightLedgerSourceAcceptanceAttemptAudit
+          ?.acceptedSourceAttemptCount ??
+        retainedWeightLedgerSelectionTarget?.retainedAcceptedSourceCount ??
         phaseCurrentRetainedKernelDerivationTarget
           ?.retainedAcceptancePassCount ?? 0,
       requiredRows: [
-        "retained_phase_offsets_phi_a",
-        "retained_weight_rows_W_a",
-        "phase_deformation_weight_residual_r_W",
-        "wake_or_coupling_recoil_balance",
-        ...(phaseCurrentRetainedKernelDerivationTarget?.retainedSourceRows?.map(
-          (row) => row.rowId
-        ) ?? []),
+        ...new Set([
+          ...(phaseHolonomyUnitClockWeightSourceAudit
+            ?.firstMissingRetainedInputs ?? []),
+          ...(retainedPhaseBundleHolonomyAudit
+          ?.firstMissingRetainedInputs ?? []),
+          ...(retainedBinaryToBinaryPhaseHistoryAudit
+            ?.firstMissingRetainedInputs ?? []),
+          ...(retainedWeightLedgerSourceAcceptanceAttemptAudit
+            ?.firstAttemptMissingRetainedInputs ?? []),
+          ...(retainedWeightLedgerSelectionTarget
+            ?.firstRequiredRetainedInputs ?? []),
+          "retained_phase_offsets_phi_a",
+          "retained_weight_rows_W_a",
+          "retained_phase_history_carrier_source_receiver_rows",
+          "retained_phase_history_carrier_event_domain_rows",
+          "retained_phase_carrier_transfer_alignment_rows",
+          "phase_deformation_weight_residual_r_W",
+          "wake_or_coupling_recoil_balance",
+          ...(phaseCurrentRetainedKernelDerivationTarget?.retainedSourceRows?.map(
+            (row) => row.rowId
+          ) ?? []),
+        ]),
       ],
       blocker: "phase_deformation_weight_balance",
     },
@@ -46110,7 +51347,7 @@ function createEqualFrequencyRetainedReplayAcceptanceBlueprint({
     .filter((condition) => condition.retainedAcceptancePass !== true)
     .map((condition) => condition.id);
   return {
-    schema: "aaa-equal-frequency-retained-replay-acceptance-blueprint.v12",
+    schema: "aaa-equal-frequency-retained-replay-acceptance-blueprint.v28",
     claimLevel:
       "retained replay acceptance residual blueprint; no retained branch acceptance",
     retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
@@ -46125,6 +51362,86 @@ function createEqualFrequencyRetainedReplayAcceptanceBlueprint({
     acceptedConditionCount,
     blockingConditionCount: blockingConditionIds.length,
     blockingConditionIds,
+    retainedWeightLedgerSelectionTargetSchema:
+      retainedWeightLedgerSelectionTarget?.schema ?? null,
+    retainedWeightLedgerSelectionTargetStatus:
+      retainedWeightLedgerSelectionTarget?.status ?? null,
+    retainedWeightLedgerSelectionTargetCurrentProxyPass:
+      retainedWeightLedgerSelectionTarget?.currentProxyTargetPass ?? null,
+    retainedWeightLedgerSelectionAccepted:
+      retainedWeightLedgerSelectionTarget?.retainedSelectionAccepted ?? null,
+    retainedWeightLedgerSourceAcceptanceAttemptAuditSchema:
+      retainedWeightLedgerSourceAcceptanceAttemptAudit?.schema ?? null,
+    retainedWeightLedgerSourceAcceptanceAttemptStatus:
+      retainedWeightLedgerSourceAcceptanceAttemptAudit?.status ?? null,
+    retainedWeightLedgerSourceAcceptanceAttemptRowCount:
+      retainedWeightLedgerSourceAcceptanceAttemptAudit?.sourceAttemptRowCount ??
+      null,
+    retainedWeightLedgerSourceAcceptanceAttemptCurrentProxyCount:
+      retainedWeightLedgerSourceAcceptanceAttemptAudit
+        ?.currentProxySourceAttemptCount ?? null,
+    retainedWeightLedgerSourceAcceptedCount:
+      retainedWeightLedgerSourceAcceptanceAttemptAudit
+        ?.acceptedSourceAttemptCount ?? null,
+    retainedWeightLedgerSourceAcceptanceAttemptFirstSourceId:
+      retainedWeightLedgerSourceAcceptanceAttemptAudit?.firstAttemptSourceId ??
+      null,
+    retainedPhaseBundleHolonomyAuditSchema:
+      retainedPhaseBundleHolonomyAudit?.schema ?? null,
+    retainedPhaseBundleHolonomyStatus:
+      retainedPhaseBundleHolonomyAudit?.status ?? null,
+    retainedPhaseBundleHolonomyResidualVector:
+      retainedPhaseBundleHolonomyAudit?.residualVector ?? null,
+    retainedPhaseBundleHolonomyCurrentProxyPass:
+      retainedPhaseBundleHolonomyAudit?.currentProxyPass ?? null,
+    retainedPhaseBundleHolonomyCurrentEvidenceResidualCount:
+      retainedPhaseBundleHolonomyAudit?.currentEvidenceResidualCount ?? null,
+    retainedPhaseBundleHolonomyAcceptedResidualCount:
+      retainedPhaseBundleHolonomyAudit?.acceptedResidualCount ?? null,
+    retainedPhaseBundleHolonomyFirstBlockingResidualId:
+      retainedPhaseBundleHolonomyAudit?.firstBlockingResidualId ?? null,
+    retainedPhaseBundleHolonomyFirstMissingInputs:
+      retainedPhaseBundleHolonomyAudit?.firstMissingRetainedInputs ?? [],
+    retainedPhaseBundleHolonomyAccepted:
+      retainedPhaseBundleHolonomyAudit?.retainedPhaseBundleHolonomyAccepted ??
+      null,
+    retainedBinaryToBinaryPhaseHistoryAuditSchema:
+      retainedBinaryToBinaryPhaseHistoryAudit?.schema ?? null,
+    retainedBinaryToBinaryPhaseHistoryStatus:
+      retainedBinaryToBinaryPhaseHistoryAudit?.status ?? null,
+    retainedBinaryToBinaryPhaseHistoryResidualVector:
+      retainedBinaryToBinaryPhaseHistoryAudit?.residualVector ?? null,
+    retainedBinaryToBinaryPhaseHistoryCurrentProxyPass:
+      retainedBinaryToBinaryPhaseHistoryAudit?.currentProxyPass ?? null,
+    retainedBinaryToBinaryPhaseHistoryCurrentEvidenceResidualCount:
+      retainedBinaryToBinaryPhaseHistoryAudit?.currentEvidenceResidualCount ??
+      null,
+    retainedBinaryToBinaryPhaseHistoryAcceptedResidualCount:
+      retainedBinaryToBinaryPhaseHistoryAudit?.acceptedResidualCount ?? null,
+    retainedBinaryToBinaryPhaseHistoryFirstBlockingResidualId:
+      retainedBinaryToBinaryPhaseHistoryAudit?.firstBlockingResidualId ?? null,
+    retainedBinaryToBinaryPhaseHistoryFirstMissingInputs:
+      retainedBinaryToBinaryPhaseHistoryAudit?.firstMissingRetainedInputs ?? [],
+    retainedBinaryToBinaryPhaseHistoryAccepted:
+      retainedBinaryToBinaryPhaseHistoryAudit
+        ?.retainedBinaryToBinaryPhaseHistoryAccepted ?? null,
+    phaseHolonomyUnitClockWeightSourceAuditSchema:
+      phaseHolonomyUnitClockWeightSourceAudit?.schema ?? null,
+    phaseHolonomyUnitClockWeightSourceStatus:
+      phaseHolonomyUnitClockWeightSourceAudit?.status ?? null,
+    phaseHolonomyUnitClockWeightSourceCurrentProxyPass:
+      phaseHolonomyUnitClockWeightSourceAudit?.currentProxyPass ?? null,
+    phaseHolonomyUnitClockWeightSourceCurrentEvidenceResidualCount:
+      phaseHolonomyUnitClockWeightSourceAudit?.currentEvidenceResidualCount ??
+      null,
+    phaseHolonomyUnitClockWeightSourceAcceptedResidualCount:
+      phaseHolonomyUnitClockWeightSourceAudit?.acceptedResidualCount ?? null,
+    phaseHolonomyUnitClockWeightSourceFirstBlockingResidualId:
+      phaseHolonomyUnitClockWeightSourceAudit?.firstBlockingResidualId ?? null,
+    phaseHolonomyUnitClockWeightSourceFirstMissingInputs:
+      phaseHolonomyUnitClockWeightSourceAudit?.firstMissingRetainedInputs ?? [],
+    phaseHolonomyUnitClockWeightSourceRetainedAccepted:
+      phaseHolonomyUnitClockWeightSourceAudit?.retainedSourceAccepted ?? null,
     firstRetainedPacketTemplateSchema:
       firstRetainedPacketTemplate?.schema ?? null,
     firstRetainedPacketTemplateStatus:
@@ -46156,6 +51473,24 @@ function createEqualFrequencyRetainedReplayAcceptanceBlueprint({
       retainedRowSetScaffold?.retainedRowSetIdentityPass ?? false,
     retainedRowSetBlockingRequirementIds:
       retainedRowSetScaffold?.blockingRequirementIds ?? [],
+    retainedRowSetIdentityStructuralWitnessAuditSchema:
+      retainedRowSetIdentityStructuralWitnessAudit?.schema ?? null,
+    retainedRowSetIdentityStructuralWitnessStatus:
+      retainedRowSetIdentityStructuralWitnessAudit?.status ?? null,
+    retainedRowSetIdentityStructuralWitnessSourceCount:
+      retainedRowSetIdentityStructuralWitnessAudit?.sourceCount ?? null,
+    retainedRowSetIdentityStructuralWitnessCurrentPass:
+      retainedRowSetIdentityStructuralWitnessAudit
+        ?.currentStructuralWitnessPass ?? false,
+    retainedRowSetIdentityStructuralWitnessCurrentPopulatedCount:
+      retainedRowSetIdentityStructuralWitnessAudit
+        ?.currentStructuralWitnessPopulatedCount ?? null,
+    retainedRowSetIdentityStructuralWitnessRetainedPass:
+      retainedRowSetIdentityStructuralWitnessAudit?.retainedRowSetIdentityPass ??
+      false,
+    retainedRowSetIdentityStructuralWitnessFirstMissingInputs:
+      retainedRowSetIdentityStructuralWitnessAudit
+        ?.firstMissingRetainedIdentityInputs ?? [],
     retainedEventDomainLiftTargetSchema:
       retainedEventDomainLiftTarget?.schema ?? null,
     retainedEventDomainLiftStatus:
@@ -46172,6 +51507,272 @@ function createEqualFrequencyRetainedReplayAcceptanceBlueprint({
       retainedEventDomainSelector?.acceptedRouteCount ?? null,
     retainedEventDomainSelectorFirstRunnableRowCount:
       retainedEventDomainSelector?.firstRunnableRowCount ?? null,
+    binaryToBinaryPhaseHistoryLiftTargetSchema:
+      binaryToBinaryPhaseHistoryLiftTarget?.schema ?? null,
+    binaryToBinaryPhaseHistoryLiftTargetStatus:
+      binaryToBinaryPhaseHistoryLiftTarget?.status ?? null,
+    binaryToBinaryPhaseHistoryPairChannelCount:
+      binaryToBinaryPhaseHistoryLiftTarget?.pairChannelCount ?? null,
+    binaryToBinaryPhaseHistoryRowCount:
+      binaryToBinaryPhaseHistoryLiftTarget?.rowCount ?? null,
+    binaryToBinaryPhaseHistoryCurrentSeedRowCount:
+      binaryToBinaryPhaseHistoryLiftTarget?.currentSeedRowCount ?? null,
+    binaryToBinaryPhaseHistoryAcceptedRowCount:
+      binaryToBinaryPhaseHistoryLiftTarget?.acceptedRowCount ?? null,
+    binaryToBinaryPhaseHistoryRetainedLiftPass:
+      binaryToBinaryPhaseHistoryLiftTarget?.retainedPhaseHistoryLiftPass ??
+      false,
+    binaryToBinaryPhaseHistoryBlockingConditionIds:
+      binaryToBinaryPhaseHistoryLiftTarget?.blockingConditionIds ?? [],
+    phaseChannelClassificationAuditSchema:
+      phaseChannelClassificationAudit?.schema ?? null,
+    phaseChannelClassificationStatus:
+      phaseChannelClassificationAudit?.status ?? null,
+    phaseChannelClassificationRowCount:
+      phaseChannelClassificationAudit?.rowCount ?? null,
+    phaseChannelIdentityRowCount:
+      phaseChannelClassificationAudit?.identityRowCount ?? null,
+    phaseChannelForwardTriadic120RowCount:
+      phaseChannelClassificationAudit?.forwardTriadic120RowCount ?? null,
+    phaseChannelReverseTriadic120RowCount:
+      phaseChannelClassificationAudit?.reverseTriadic120RowCount ?? null,
+    phaseChannelMiddleToOuterCarrierRowCount:
+      phaseChannelClassificationAudit?.middleToOuterCarrierRowCount ?? null,
+    phaseChannelMiddleToOuterCarrierCurrentSeedPass:
+      phaseChannelClassificationAudit
+        ?.middleToOuterCarrierCurrentSeedPass ?? null,
+    phaseChannelSelectedCurrentCarrier:
+      phaseChannelClassificationAudit?.selectedCurrentCarrier ?? null,
+    phaseCarrierTransferAlignmentAuditSchema:
+      phaseCarrierTransferAlignmentAudit?.schema ?? null,
+    phaseCarrierTransferAlignmentStatus:
+      phaseCarrierTransferAlignmentAudit?.status ?? null,
+    phaseCarrierTransferAlignmentCurrentProxyPass:
+      phaseCarrierTransferAlignmentAudit
+        ?.phaseCarrierTransferAlignmentCurrentProxyPass ?? null,
+    phaseCarrierTransferAlignmentSelectedDirection:
+      phaseCarrierTransferAlignmentAudit?.selectedTransferDirection ?? null,
+    phaseCarrierTransferAlignmentSelectedCarrier:
+      phaseCarrierTransferAlignmentAudit?.selectedCarrier ?? null,
+    phaseCarrierTransferAlignmentSelectedTransferSignature:
+      phaseCarrierTransferAlignmentAudit?.selectedTransferSignature ?? null,
+    phaseCarrierTransferAlignmentCurrentProxyRowCount:
+      phaseCarrierTransferAlignmentAudit?.currentProxyAlignmentRowCount ?? null,
+    phaseCarrierTransferAlignmentAcceptedRowCount:
+      phaseCarrierTransferAlignmentAudit?.retainedAcceptedAlignmentRowCount ??
+      null,
+    phaseCarrierTransferAlignmentBlockingConditionIds:
+      phaseCarrierTransferAlignmentAudit?.blockingConditionIds ?? [],
+    retainedPhaseHistoryCarrierReadinessAuditSchema:
+      retainedPhaseHistoryCarrierReadinessAudit?.schema ?? null,
+    retainedPhaseHistoryCarrierReadinessStatus:
+      retainedPhaseHistoryCarrierReadinessAudit?.status ?? null,
+    retainedPhaseHistoryCarrierChannelId:
+      retainedPhaseHistoryCarrierReadinessAudit?.carrierChannelId ?? null,
+    retainedPhaseHistoryCarrierCurrentReadinessPass:
+      retainedPhaseHistoryCarrierReadinessAudit?.currentReadinessPass ?? null,
+    retainedPhaseHistoryCarrierCurrentReadinessRowCount:
+      retainedPhaseHistoryCarrierReadinessAudit?.currentReadinessRowCount ??
+      null,
+    retainedPhaseHistoryCarrierAcceptedRowCount:
+      retainedPhaseHistoryCarrierReadinessAudit?.retainedAcceptedRowCount ??
+      null,
+    retainedPhaseHistoryCarrierRequirementCount:
+      retainedPhaseHistoryCarrierReadinessAudit?.retainedRequirementCount ??
+      null,
+    retainedPhaseHistoryCarrierAcceptedRequirementCount:
+      retainedPhaseHistoryCarrierReadinessAudit
+        ?.retainedRequirementAcceptedCount ?? null,
+    retainedPhaseHistoryCarrierBlockingConditionIds:
+      retainedPhaseHistoryCarrierReadinessAudit?.blockingConditionIds ?? [],
+    retainedPhaseHistoryCarrierEventDomainRowModelSchema:
+      retainedPhaseHistoryCarrierEventDomainRowModel?.schema ?? null,
+    retainedPhaseHistoryCarrierEventDomainRowModelStatus:
+      retainedPhaseHistoryCarrierEventDomainRowModel?.status ?? null,
+    retainedPhaseHistoryCarrierEventDomainResidualVector:
+      retainedPhaseHistoryCarrierEventDomainRowModel?.residualVector ?? null,
+    retainedPhaseHistoryCarrierEventDomainCurrentTemplatePass:
+      retainedPhaseHistoryCarrierEventDomainRowModel
+        ?.currentEventDomainTemplatePass ?? null,
+    retainedPhaseHistoryCarrierEventDomainCurrentTemplatePassCount:
+      retainedPhaseHistoryCarrierEventDomainRowModel
+        ?.currentTemplatePassCount ?? null,
+    retainedPhaseHistoryCarrierEventDomainRowCount:
+      retainedPhaseHistoryCarrierEventDomainRowModel?.rowCount ?? null,
+    retainedPhaseHistoryCarrierEventDomainAcceptedRowCount:
+      retainedPhaseHistoryCarrierEventDomainRowModel
+        ?.retainedAcceptedRowCount ?? null,
+    retainedPhaseHistoryCarrierEventDomainRequirementCount:
+      retainedPhaseHistoryCarrierEventDomainRowModel
+        ?.retainedRequirementCount ?? null,
+    retainedPhaseHistoryCarrierEventDomainAcceptedRequirementCount:
+      retainedPhaseHistoryCarrierEventDomainRowModel
+        ?.acceptedRetainedRequirementCount ?? null,
+    retainedPhaseHistoryCarrierEventDomainBlockingConditionIds:
+      retainedPhaseHistoryCarrierEventDomainRowModel?.blockingConditionIds ??
+      [],
+    retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAuditSchema:
+      retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit?.schema ??
+      null,
+    retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptStatus:
+      retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit?.status ??
+      null,
+    retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptPass:
+      retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit
+        ?.retainedEventDomainAcceptanceAttemptPass ?? null,
+    retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptCurrentTemplateRowCount:
+      retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit
+        ?.currentTemplateAttemptRowCount ?? null,
+    retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAcceptedRowCount:
+      retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit
+        ?.acceptedAttemptRowCount ?? null,
+    retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptRequirementCount:
+      retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit
+        ?.retainedRequirementCount ?? null,
+    retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAcceptedRequirementCount:
+      retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit
+        ?.acceptedRetainedRequirementCount ?? null,
+    retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptFirstRowId:
+      retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit
+        ?.firstAttemptRowId ?? null,
+    retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptFirstMissingIds:
+      retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit
+        ?.firstAttemptMissingRetainedRequirementIds ?? [],
+    retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptBlockingConditionIds:
+      retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit
+        ?.blockingConditionIds ?? [],
+    retainedPhaseHistoryCarrierEventIdPopulationAttemptAuditSchema:
+      retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit?.schema ?? null,
+    retainedPhaseHistoryCarrierEventIdPopulationAttemptStatus:
+      retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit?.status ?? null,
+    retainedPhaseHistoryCarrierEventIdPopulationAttemptPass:
+      retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit
+        ?.retainedEventIdPopulationAttemptPass ?? null,
+    retainedPhaseHistoryCarrierEventIdPopulationCurrentCandidateRowCount:
+      retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit
+        ?.currentEventIdCandidateRowCount ?? null,
+    retainedPhaseHistoryCarrierEventIdPopulationAcceptedPairCount:
+      retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit
+        ?.retainedAcceptedEventIdPairCount ?? null,
+    retainedPhaseHistoryCarrierEventIdPopulationRequirementCount:
+      retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit
+        ?.retainedEventIdRequirementCount ?? null,
+    retainedPhaseHistoryCarrierEventIdPopulationAcceptedRequirementCount:
+      retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit
+        ?.acceptedRetainedEventIdRequirementCount ?? null,
+    retainedPhaseHistoryCarrierEventIdPopulationFirstSourceEventIdCandidate:
+      retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit
+        ?.firstAttemptSourceEventIdCandidate ?? null,
+    retainedPhaseHistoryCarrierEventIdPopulationFirstReceiverEventIdCandidate:
+      retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit
+        ?.firstAttemptReceiverEventIdCandidate ?? null,
+    retainedPhaseHistoryCarrierEventIdPopulationFirstMissingInputs:
+      retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit
+        ?.firstAttemptMissingRetainedEventIdInputs ?? [],
+    retainedPhaseHistoryCarrierEventIdPopulationBlockingConditionIds:
+      retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit
+        ?.blockingConditionIds ?? [],
+    retainedPhaseHistoryCarrierEventIdProvenanceAuditSchema:
+      retainedPhaseHistoryCarrierEventIdProvenanceAudit?.schema ?? null,
+    retainedPhaseHistoryCarrierEventIdProvenanceStatus:
+      retainedPhaseHistoryCarrierEventIdProvenanceAudit?.status ?? null,
+    retainedPhaseHistoryCarrierEventIdCurrentProvenancePass:
+      retainedPhaseHistoryCarrierEventIdProvenanceAudit
+        ?.currentEventIdProvenancePass ?? null,
+    retainedPhaseHistoryCarrierEventIdProvenancePass:
+      retainedPhaseHistoryCarrierEventIdProvenanceAudit
+        ?.retainedEventIdProvenancePass ?? null,
+    retainedPhaseHistoryCarrierEventIdProvenanceCurrentRowCount:
+      retainedPhaseHistoryCarrierEventIdProvenanceAudit
+        ?.currentProvenanceRowCount ?? null,
+    retainedPhaseHistoryCarrierEventIdProvenanceAcceptedRowCount:
+      retainedPhaseHistoryCarrierEventIdProvenanceAudit
+        ?.retainedAcceptedProvenanceRowCount ?? null,
+    retainedPhaseHistoryCarrierEventIdProvenanceCurrentRequirementCount:
+      retainedPhaseHistoryCarrierEventIdProvenanceAudit
+        ?.currentProvenanceRequirementCount ?? null,
+    retainedPhaseHistoryCarrierEventIdProvenanceCurrentPopulatedCount:
+      retainedPhaseHistoryCarrierEventIdProvenanceAudit
+        ?.currentProvenancePopulatedCount ?? null,
+    retainedPhaseHistoryCarrierEventIdProvenanceRetainedRequirementCount:
+      retainedPhaseHistoryCarrierEventIdProvenanceAudit
+        ?.retainedProvenanceRequirementCount ?? null,
+    retainedPhaseHistoryCarrierEventIdProvenanceAcceptedRequirementCount:
+      retainedPhaseHistoryCarrierEventIdProvenanceAudit
+        ?.acceptedRetainedProvenanceCount ?? null,
+    retainedPhaseHistoryCarrierEventIdProvenanceFirstSourceEventIdCandidate:
+      retainedPhaseHistoryCarrierEventIdProvenanceAudit
+        ?.firstAttemptSourceEventIdCandidate ?? null,
+    retainedPhaseHistoryCarrierEventIdProvenanceFirstReceiverEventIdCandidate:
+      retainedPhaseHistoryCarrierEventIdProvenanceAudit
+        ?.firstAttemptReceiverEventIdCandidate ?? null,
+    retainedPhaseHistoryCarrierEventIdProvenanceFirstPairCandidate:
+      retainedPhaseHistoryCarrierEventIdProvenanceAudit
+        ?.firstAttemptEventIdPairCandidate ?? null,
+    retainedPhaseHistoryCarrierEventIdProvenanceFirstMissingInputs:
+      retainedPhaseHistoryCarrierEventIdProvenanceAudit
+        ?.firstAttemptMissingRetainedProvenanceInputs ?? [],
+    retainedPhaseHistoryCarrierEventIdProvenanceBlockingConditionIds:
+      retainedPhaseHistoryCarrierEventIdProvenanceAudit?.blockingConditionIds ??
+      [],
+    retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAuditSchema:
+      retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit?.schema ??
+      null,
+    retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptStatus:
+      retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit?.status ??
+      null,
+    retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptPass:
+      retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit
+        ?.retainedPointEventOrDomainRuleAttemptPass ?? null,
+    retainedPhaseHistoryCarrierPointEventOrDomainRuleCurrentCandidateRowCount:
+      retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit
+        ?.currentRuleCandidateRowCount ?? null,
+    retainedPhaseHistoryCarrierPointEventOrDomainRuleAcceptedCount:
+      retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit
+        ?.retainedAcceptedRuleCount ?? null,
+    retainedPhaseHistoryCarrierPointEventOrDomainRuleRequirementCount:
+      retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit
+        ?.retainedRuleRequirementCount ?? null,
+    retainedPhaseHistoryCarrierPointEventOrDomainRuleAcceptedRequirementCount:
+      retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit
+        ?.acceptedRetainedRuleRequirementCount ?? null,
+    retainedPhaseHistoryCarrierPointEventOrDomainRuleFirstCandidateId:
+      retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit
+        ?.firstAttemptSelectedRuleCandidateId ?? null,
+    retainedPhaseHistoryCarrierPointEventOrDomainRuleFirstMissingInputs:
+      retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit
+        ?.firstAttemptMissingRetainedRuleInputs ?? [],
+    retainedPhaseHistoryCarrierPointEventOrDomainRuleBlockingConditionIds:
+      retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit
+        ?.blockingConditionIds ?? [],
+    retainedPhaseHistoryCarrierEventDomainBindingAttemptAuditSchema:
+      retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit?.schema ?? null,
+    retainedPhaseHistoryCarrierEventDomainBindingAttemptStatus:
+      retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit?.status ?? null,
+    retainedPhaseHistoryCarrierEventDomainBindingAttemptPass:
+      retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
+        ?.retainedEventDomainBindingAttemptPass ?? null,
+    retainedPhaseHistoryCarrierEventDomainBindingCurrentCandidateRowCount:
+      retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
+        ?.currentBindingCandidateRowCount ?? null,
+    retainedPhaseHistoryCarrierEventDomainBindingAcceptedCount:
+      retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
+        ?.retainedAcceptedBindingCount ?? null,
+    retainedPhaseHistoryCarrierEventDomainBindingRequirementCount:
+      retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
+        ?.retainedBindingRequirementCount ?? null,
+    retainedPhaseHistoryCarrierEventDomainBindingAcceptedRequirementCount:
+      retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
+        ?.acceptedRetainedBindingRequirementCount ?? null,
+    retainedPhaseHistoryCarrierEventDomainBindingFirstCandidateId:
+      retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
+        ?.firstAttemptBindingCandidateId ?? null,
+    retainedPhaseHistoryCarrierEventDomainBindingFirstMissingInputs:
+      retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
+        ?.firstAttemptMissingRetainedBindingInputs ?? [],
+    retainedPhaseHistoryCarrierEventDomainBindingBlockingConditionIds:
+      retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
+        ?.blockingConditionIds ?? [],
     sameEventTransferLiftDependencyAuditSchema:
       sameEventTransferLiftDependencyAudit?.schema ?? null,
     sameEventTransferLiftDependencyStatus:
@@ -46279,6 +51880,13 @@ function createEqualFrequencyRetainedReplayAcceptanceBlueprint({
     firstRunnableRetainedPacket: [
       "preserve raw labeled B_1,B_2,B_3 rows and attach I:M:O only as role_map",
       "select a retained point event or positive-width retained domain for S_eq before accepting any residual row",
+      "populate the first middle-to-outer retained source and receiver event IDs on that accepted S_eq event/domain",
+      "attempt and accept the selected full point-event rule or positive-width retained domain for that source/receiver event-ID pair",
+      "populate binary-to-binary source/receiver phase-history rows on the selected S_eq event or domain",
+      "instantiate the middle-to-outer source/receiver event-domain row model with accepted S_eq event IDs, retained root keys, emitted/received phase rows, branch-history segment, and event/domain binding",
+      "rerun the first middle-to-outer event-domain acceptance attempt after those eight retained inputs are populated",
+      "promote the middle-to-outer carrier readiness rows into retained source/receiver event IDs, root keys, emitted/received phase rows, branch-history segments, signed-root-complex rows, finite-impulse rows, and wake/coupling carrier rows",
+      "derive the retained phase-channel class and middle-to-outer current carrier on those source/receiver rows",
       "lift the reduced no-slack same-event transfer ledger onto that accepted event/domain carrier before counting it as retained r_W or r_J evidence",
       "add P_a or k_a/P_branch rows to compute r_P",
       "add N_a, Theta, and D_plane rows to compute r_D and sector disposition",
@@ -47330,7 +52938,7 @@ function createFrequencyTripletSearchSummary(cases) {
     equalFrequencyEnergyRadiusAudit,
   });
   return {
-    schema: "aaa-tri-binary-frequency-triplet-search-summary.v46",
+    schema: "aaa-tri-binary-frequency-triplet-search-summary.v66",
     claimLevel:
       "candidate search summary over generic tri-binary rows with role-assigned I:M:O projections; not retained-branch certification",
     rawSearchLabels: GENERIC_TRI_BINARY_LABELS,
@@ -47423,7 +53031,7 @@ function createFrequencyTripletCandidateSetReview({
     }),
   ];
   return {
-    schema: "aaa-tri-binary-frequency-triplet-candidate-set-review.v42",
+    schema: "aaa-tri-binary-frequency-triplet-candidate-set-review.v62",
     claimLevel:
       "generic-row candidate-set review with role-assigned I:M:O projections; not retained branch selection",
     rawSearchLabels: GENERIC_TRI_BINARY_LABELS,
@@ -47499,7 +53107,7 @@ function createFrequencyTripletPhaseRelationReview(rows) {
       (row) => row.candidateKey === "equal-frequency-energy-radius"
     ) ?? null;
   return {
-    schema: "aaa-tri-binary-frequency-triplet-phase-relation-review.v1",
+    schema: "aaa-tri-binary-frequency-triplet-phase-relation-review.v7",
     claimLevel:
       "phase-relation comparison across candidate frequency triples; current proxies only, not retained phase-bundle acceptance",
     fairComparisonRule:
@@ -47530,6 +53138,27 @@ function createFrequencyTripletPhaseRelationReviewRow(row) {
     isEqualFrequency && typeof row.phaseResponseStatus === "string";
   const phaseLatticePass =
     isEqualFrequency && positiveNumberOrNull(row.phaseLatticeRowCount) !== null;
+  const phaseRadiusActionClosureSplitPass =
+    isEqualFrequency &&
+    row.phaseRadiusActionClosureSplitCurrentProxyPass === true;
+  const phaseProfileWeightLedgerDiscriminatorPass =
+    isEqualFrequency &&
+    row.phaseProfileWeightLedgerDiscriminatorCurrentProxyPass === true;
+  const retainedWeightLedgerSelectionTargetPass =
+    isEqualFrequency &&
+    row.retainedWeightLedgerSelectionTargetCurrentProxyPass === true;
+  const retainedWeightLedgerSourceAcceptanceAttemptPass =
+    isEqualFrequency &&
+    row.retainedWeightLedgerSourceAcceptanceAttemptCurrentProxyPass === true;
+  const phaseHolonomyUnitClockWeightSourcePass =
+    isEqualFrequency &&
+    row.phaseHolonomyUnitClockWeightSourceCurrentProxyPass === true;
+  const retainedPhaseBundleHolonomyAuditPass =
+    isEqualFrequency &&
+    row.retainedPhaseBundleHolonomyCurrentProxyPass === true;
+  const retainedBinaryToBinaryPhaseHistoryAuditPass =
+    isEqualFrequency &&
+    row.retainedBinaryToBinaryPhaseHistoryCurrentProxyPass === true;
   const phaseCurrentKernelPass =
     isEqualFrequency &&
     row.wakeCouplingTransferPhaseCurrentRetainedKernelCurrentProxyPass === true;
@@ -47550,6 +53179,12 @@ function createFrequencyTripletPhaseRelationReviewRow(row) {
       row.retainedFrequencyPhasePacketPhaseBundleCurrentProxyPassCount,
       row.retainedFrequencyPhasePacketRowCount
     );
+  const retainedCarrierEventDomainTemplatePass =
+    isEqualFrequency &&
+    row.retainedPhaseHistoryCarrierEventDomainCurrentTemplatePass === true;
+  const retainedEventIdProvenanceCurrentPass =
+    isEqualFrequency &&
+    row.retainedPhaseHistoryCarrierEventIdCurrentProvenancePass === true;
   const phaseLockProxyPass =
     !isEqualFrequency &&
     positiveNumberOrNull(row.phaseLockSelfRootParityTargetPassCount) !== null;
@@ -47557,10 +53192,19 @@ function createFrequencyTripletPhaseRelationReviewRow(row) {
     phaseProfileCatalogPass,
     phaseResponseDiscriminationPass,
     phaseLatticePass,
+    phaseRadiusActionClosureSplitPass,
+    phaseProfileWeightLedgerDiscriminatorPass,
+    retainedWeightLedgerSelectionTargetPass,
+    retainedWeightLedgerSourceAcceptanceAttemptPass,
+    retainedPhaseBundleHolonomyAuditPass,
+    retainedBinaryToBinaryPhaseHistoryAuditPass,
+    phaseHolonomyUnitClockWeightSourcePass,
     phaseCurrentKernelPass,
     sameEventTransferLedgerProxyPass,
     sourceReadinessAllProxyPass,
     retainedFrequencyPhasePacketProxyPass,
+    retainedCarrierEventDomainTemplatePass,
+    retainedEventIdProvenanceCurrentPass,
   ].filter(Boolean).length;
   const currentPhaseProxyPass = currentPhaseProxyScore > 0;
   const partialPhaseProxyPass =
@@ -47569,7 +53213,9 @@ function createFrequencyTripletPhaseRelationReviewRow(row) {
     typeof row.phaseEvidenceStatus === "string";
   const retainedPhaseAcceptancePass =
     isEqualFrequency
-      ? row.retainedFrequencyPhasePacketAcceptedRowCount > 0 ||
+      ? row.retainedWeightLedgerSourceAcceptedCount > 0 ||
+        row.phaseHolonomyUnitClockWeightSourceRetainedAccepted === true ||
+        row.retainedFrequencyPhasePacketAcceptedRowCount > 0 ||
         row.wakeCouplingTransferPhaseCurrentRetainedKernelAccepted === true ||
         row
           .wakeCouplingTransferPhaseCurrentSameEventTransferLedgerRetainedAcceptancePass ===
@@ -47586,7 +53232,7 @@ function createFrequencyTripletPhaseRelationReviewRow(row) {
           ? "finite_integer_lock_phase_control_lattice"
           : "phase_relation_unknown";
   const nextPhaseBurden = isEqualFrequency
-    ? "derive retained phase-return degree or holonomy, retained signed-root complex, retained finite-impulse history class, retained wake/coupling current source, retained action-gap source, and retained same-event transfer ledger on S_eq"
+    ? "derive retained phase-return degree or holonomy, retained phase/radius/action weights W_a, retained signed-root complex, retained finite-impulse history class, retained wake/coupling current source, retained action-gap source, and retained same-event transfer ledger on S_eq"
     : "replace phase-lock or integer-lock index proxy with retained phase-bundle or plane-sector rows on the same retained branch record before comparing against equal-frequency";
   return {
     candidateKey: row.candidateKey,
@@ -47597,10 +53243,19 @@ function createFrequencyTripletPhaseRelationReviewRow(row) {
     phaseProfileCatalogPass,
     phaseResponseDiscriminationPass,
     phaseLatticePass,
+    phaseRadiusActionClosureSplitPass,
+    phaseProfileWeightLedgerDiscriminatorPass,
+    retainedWeightLedgerSelectionTargetPass,
+    retainedWeightLedgerSourceAcceptanceAttemptPass,
+    retainedPhaseBundleHolonomyAuditPass,
+    retainedBinaryToBinaryPhaseHistoryAuditPass,
+    phaseHolonomyUnitClockWeightSourcePass,
     phaseCurrentKernelPass,
     sameEventTransferLedgerProxyPass,
     sourceReadinessAllProxyPass,
     retainedFrequencyPhasePacketProxyPass,
+    retainedCarrierEventDomainTemplatePass,
+    retainedEventIdProvenanceCurrentPass,
     phaseLockProxyPass,
     phaseLockSelfRootParityTargetPassCount:
       row.phaseLockSelfRootParityTargetPassCount ?? null,
@@ -47653,7 +53308,7 @@ function createFrequencyTripletResidualMatrixReview(rows) {
       return left.missingResidualCount - right.missingResidualCount;
     });
   return {
-    schema: "aaa-tri-binary-frequency-triplet-residual-matrix-review.v3",
+    schema: "aaa-tri-binary-frequency-triplet-residual-matrix-review.v9",
     claimLevel:
       "retained residual-vector comparison matrix; current proxies only, not branch selection",
     residualVector:
@@ -47771,6 +53426,9 @@ function createEqualFrequencyResidualMatrixResiduals(row) {
   const retainedRowSetProxyCount = positiveNumberOrNull(
     row.retainedRowSetCurrentProxyEvidencePopulatedCount
   );
+  const retainedRowSetStructuralWitnessCount = positiveNumberOrNull(
+    row.retainedRowSetIdentityStructuralWitnessCurrentPopulatedCount
+  );
   const frequencyProxyCount = positiveNumberOrNull(
     row.retainedFrequencyPhasePacketFrequencyCurrentProxyPassCount
   );
@@ -47782,6 +53440,27 @@ function createEqualFrequencyResidualMatrixResiduals(row) {
   );
   const eventSelectorAcceptedCount = positiveNumberOrNull(
     row.retainedEventDomainSelectorAcceptedRouteCount
+  );
+  const carrierEventDomainTemplateCount = positiveNumberOrNull(
+    row.retainedPhaseHistoryCarrierEventDomainCurrentTemplatePassCount
+  );
+  const carrierEventDomainRowCount = positiveNumberOrNull(
+    row.retainedPhaseHistoryCarrierEventDomainRowCount
+  );
+  const carrierEventDomainAttemptRowCount = positiveNumberOrNull(
+    row.retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptCurrentTemplateRowCount
+  );
+  const carrierEventIdPopulationRowCount = positiveNumberOrNull(
+    row.retainedPhaseHistoryCarrierEventIdPopulationCurrentCandidateRowCount
+  );
+  const carrierEventIdProvenanceRowCount = positiveNumberOrNull(
+    row.retainedPhaseHistoryCarrierEventIdProvenanceCurrentRowCount
+  );
+  const carrierPointEventOrDomainRuleRowCount = positiveNumberOrNull(
+    row.retainedPhaseHistoryCarrierPointEventOrDomainRuleCurrentCandidateRowCount
+  );
+  const carrierEventDomainBindingRowCount = positiveNumberOrNull(
+    row.retainedPhaseHistoryCarrierEventDomainBindingCurrentCandidateRowCount
   );
   const energyAngularMomentumTargetInertiaClosureCount = positiveNumberOrNull(
     row.energyAngularMomentumTargetInertiaClosurePassCount
@@ -47795,14 +53474,41 @@ function createEqualFrequencyResidualMatrixResiduals(row) {
   const phaseCurrentSourceReadinessProxyCount = positiveNumberOrNull(
     row.wakeCouplingTransferPhaseCurrentRetainedSourceReadinessCurrentProxyRowCount
   );
+  const retainedWeightLedgerSelectionSourceCount = positiveNumberOrNull(
+    row.retainedWeightLedgerSelectionTargetCurrentEvidenceSourceCount
+  );
+  const retainedWeightLedgerSourceAttemptCount = positiveNumberOrNull(
+    row.retainedWeightLedgerSourceCurrentProxyAttemptCount
+  );
+  const retainedWeightLedgerSourceAcceptedCount = positiveNumberOrNull(
+    row.retainedWeightLedgerSourceAcceptedCount
+  );
+  const phaseHolonomyUnitClockWeightSourceCurrentResidualCount =
+    positiveNumberOrNull(
+      row.phaseHolonomyUnitClockWeightSourceCurrentEvidenceResidualCount
+    );
+  const retainedPhaseBundleHolonomyCurrentResidualCount = positiveNumberOrNull(
+    row.retainedPhaseBundleHolonomyCurrentEvidenceResidualCount
+  );
+  const retainedBinaryToBinaryPhaseHistoryCurrentResidualCount =
+    positiveNumberOrNull(
+      row.retainedBinaryToBinaryPhaseHistoryCurrentEvidenceResidualCount
+    );
   return {
     r_rows: createResidualEvidence({
-      accepted: row.retainedRowSetIdentityPass === true,
-      currentProxy: retainedRowSetProxyCount !== null,
-      source: row.retainedRowSetScaffoldSchema,
+      accepted:
+        row.retainedRowSetIdentityStructuralWitnessRetainedPass === true ||
+        row.retainedRowSetIdentityPass === true,
+      currentProxy:
+        row.retainedRowSetIdentityStructuralWitnessCurrentPass === true ||
+        retainedRowSetStructuralWitnessCount !== null ||
+        retainedRowSetProxyCount !== null,
+      source:
+        row.retainedRowSetIdentityStructuralWitnessAuditSchema ??
+        row.retainedRowSetScaffoldSchema,
       blocker: "same_retained_row_set_identity",
       note:
-        "S_eq scaffold is populated from current proxy subaudits, but retained row-set identity is not accepted.",
+        "S_eq scaffold and structural current-proxy witness are populated across equal-frequency subaudits, but retained row-set identity is not accepted.",
     }),
     r_evt: createResidualEvidence({
       accepted:
@@ -47810,13 +53516,28 @@ function createEqualFrequencyResidualMatrixResiduals(row) {
         eventSelectorAcceptedCount !== null,
       currentProxy:
         eventSelectorProxyCount !== null ||
+        carrierEventDomainBindingRowCount !== null ||
+        carrierPointEventOrDomainRuleRowCount !== null ||
+        carrierEventIdProvenanceRowCount !== null ||
+        carrierEventIdPopulationRowCount !== null ||
+        carrierEventDomainAttemptRowCount !== null ||
+        isFullPositiveCount(
+          carrierEventDomainTemplateCount,
+          carrierEventDomainRowCount
+        ) ||
         row.currentProxyPointRowsPopulated === true,
       source:
+        row.retainedPhaseHistoryCarrierEventDomainBindingAttemptAuditSchema ??
+        row.retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAuditSchema ??
+        row.retainedPhaseHistoryCarrierEventIdProvenanceAuditSchema ??
+        row.retainedPhaseHistoryCarrierEventIdPopulationAttemptAuditSchema ??
+        row.retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAuditSchema ??
+        row.retainedPhaseHistoryCarrierEventDomainRowModelSchema ??
         row.retainedEventDomainSelectorSchema ??
         row.retainedEventDomainLiftTargetSchema,
       blocker: "same_retained_event_or_positive_width_domain",
       note:
-        "S_eq has a retained event/domain route selector populated from current point-event proxy evidence, but no accepted retained point event or positive-width retained domain.",
+        "S_eq has a retained event/domain route selector, middle-to-outer event-domain templates, a first-row acceptance attempt, event-ID candidates, current event-ID provenance, point-event/domain rule candidates, and same-event/domain binding candidates populated from current proxy evidence, but no accepted retained point event or positive-width retained domain.",
     }),
     r_P: createResidualEvidence({
       accepted: isFullPositiveCount(
@@ -47884,21 +53605,66 @@ function createEqualFrequencyResidualMatrixResiduals(row) {
         "The current chart supplies coplanar Z3 sector proxy evidence; retained N_a, Theta, and D_plane are missing.",
     }),
     r_W: createResidualEvidence({
-      accepted: false,
-      currentProxy: isFullPositiveCount(
-        phaseCurrentSourceReadinessProxyCount,
-        phaseCurrentSourceRowCount
-      ),
+      accepted:
+        row.phaseHolonomyUnitClockWeightSourceRetainedAccepted === true ||
+        row.retainedPhaseBundleHolonomyAccepted === true ||
+        retainedWeightLedgerSourceAcceptedCount !== null,
+      currentProxy:
+        row.phaseHolonomyUnitClockWeightSourceCurrentProxyPass === true ||
+        row.retainedPhaseBundleHolonomyCurrentProxyPass === true ||
+        row.retainedBinaryToBinaryPhaseHistoryCurrentProxyPass === true ||
+        retainedPhaseBundleHolonomyCurrentResidualCount !== null ||
+        retainedBinaryToBinaryPhaseHistoryCurrentResidualCount !== null ||
+        phaseHolonomyUnitClockWeightSourceCurrentResidualCount !== null ||
+        retainedWeightLedgerSourceAttemptCount !== null ||
+        row.retainedWeightLedgerSelectionTargetCurrentProxyPass === true ||
+        row.phaseRadiusActionClosureSplitCurrentProxyPass === true ||
+        isFullPositiveCount(
+          phaseCurrentSourceReadinessProxyCount,
+          phaseCurrentSourceRowCount
+        ) ||
+        carrierEventDomainBindingRowCount !== null ||
+        carrierPointEventOrDomainRuleRowCount !== null ||
+        carrierEventIdProvenanceRowCount !== null ||
+        carrierEventIdPopulationRowCount !== null ||
+        carrierEventDomainAttemptRowCount !== null ||
+        isFullPositiveCount(
+          carrierEventDomainTemplateCount,
+          carrierEventDomainRowCount
+        ),
       partialProxy: isFullPositiveCount(
         row.priorityPhaseOnlyBalancePassCount,
         packetRowCount
-      ) || phaseCurrentSourceReadinessProxyCount !== null,
+      ) || phaseCurrentSourceReadinessProxyCount !== null ||
+        retainedWeightLedgerSourceAttemptCount !== null ||
+        retainedPhaseBundleHolonomyCurrentResidualCount !== null ||
+        row.retainedPhaseBundleHolonomyAuditSchema !== null ||
+        retainedBinaryToBinaryPhaseHistoryCurrentResidualCount !== null ||
+        row.retainedBinaryToBinaryPhaseHistoryAuditSchema !== null ||
+        phaseHolonomyUnitClockWeightSourceCurrentResidualCount !== null ||
+        row.phaseHolonomyUnitClockWeightSourceAuditSchema !== null ||
+        retainedWeightLedgerSelectionSourceCount !== null ||
+        row.retainedWeightLedgerSourceAcceptanceAttemptAuditSchema !== null ||
+        row.retainedWeightLedgerSelectionTargetSchema !== null ||
+        row.phaseRadiusActionClosureSplitAuditSchema !== null,
       source:
+        row.phaseHolonomyUnitClockWeightSourceAuditSchema ??
+        row.retainedPhaseBundleHolonomyAuditSchema ??
+        row.retainedBinaryToBinaryPhaseHistoryAuditSchema ??
+        row.retainedWeightLedgerSourceAcceptanceAttemptAuditSchema ??
+        row.retainedWeightLedgerSelectionTargetSchema ??
+        row.phaseRadiusActionClosureSplitAuditSchema ??
+        row.retainedPhaseHistoryCarrierEventDomainBindingAttemptAuditSchema ??
+        row.retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAuditSchema ??
+        row.retainedPhaseHistoryCarrierEventIdProvenanceAuditSchema ??
+        row.retainedPhaseHistoryCarrierEventIdPopulationAttemptAuditSchema ??
+        row.retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAuditSchema ??
+        row.retainedPhaseHistoryCarrierEventDomainRowModelSchema ??
         row.wakeCouplingTransferPhaseCurrentRetainedSourceReadinessAuditSchema ??
         row.phaseDeformationBalanceAuditSchema,
       blocker: "phase_deformation_wake_coupling_weight_balance",
       note:
-        "The phase-current source-readiness residual supplies current proxy evidence only when every R_K row is populated; retained phase-deformation, wake, recoil, or coupling balance is still missing.",
+        "The phase-holonomy unit-clock W_a source audit, retained phase-bundle holonomy audit, retained binary-to-binary phase-history audit, retained W_a source-acceptance attempt, retained W_a selection target, analytic phase/radius/action closure split, phase-current source-readiness residual, middle-to-outer event-domain row model, first-row acceptance attempt, event-ID candidates, current event-ID provenance, point-event/domain rule candidates, and same-event/domain binding candidates supply current proxy evidence only; retained phase-deformation, wake, recoil, or coupling balance is still missing.",
     }),
     r_J: createResidualEvidence({
       accepted: false,
@@ -48091,6 +53857,25 @@ function createEqualFrequencyCandidateReviewRow(equalFrequencyEnergyRadiusAudit)
         ? "effective_lever_arm_speed_rows_and_deformation_projection_witness_populated_retained_energy_radius_missing"
         : "effective_lever_arm_speed_rows_incomplete_or_not_replayed",
     phaseEvidenceStatus:
+      equalFrequencyEnergyRadiusAudit.retainedBinaryToBinaryPhaseHistoryAudit
+        ?.status ??
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
+        ?.status ??
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit
+        ?.status ??
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierEventIdProvenanceAudit
+        ?.status ??
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit
+        ?.status ??
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit
+        ?.status ??
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierEventDomainRowModel
+        ?.status ??
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierReadinessAudit
+        ?.status ??
+      equalFrequencyEnergyRadiusAudit.phaseCarrierTransferAlignmentAudit
+        ?.status ??
+      equalFrequencyEnergyRadiusAudit.phaseChannelClassificationAudit?.status ??
       equalFrequencyEnergyRadiusAudit.phaseLatticeAudit?.status ??
       equalFrequencyEnergyRadiusAudit.phaseDeformationBalanceAudit?.status ??
       "phase_rows_missing",
@@ -48459,12 +54244,203 @@ function createEqualFrequencyCandidateReviewRow(equalFrequencyEnergyRadiusAudit)
     priorityLeverArmBalancePassCount:
       equalFrequencyEnergyRadiusAudit.phaseDeformationBalanceAudit
         ?.priorityLeverArmPassCount ?? null,
+    prioritySpeedWeightedBalancePassCount:
+      equalFrequencyEnergyRadiusAudit.phaseDeformationBalanceAudit
+        ?.prioritySpeedWeightedPassCount ?? null,
     priorityUnitInertiaActionBalancePassCount:
       equalFrequencyEnergyRadiusAudit.phaseDeformationBalanceAudit
         ?.priorityUnitInertiaActionPassCount ?? null,
     priorityRootWeightedActionBalancePassCount:
       equalFrequencyEnergyRadiusAudit.phaseDeformationBalanceAudit
         ?.priorityRootWeightedActionPassCount ?? null,
+    phaseRadiusActionClosureSplitAuditSchema:
+      equalFrequencyEnergyRadiusAudit.phaseRadiusActionClosureSplitAudit
+        ?.schema ?? null,
+    phaseRadiusActionClosureSplitStatus:
+      equalFrequencyEnergyRadiusAudit.phaseRadiusActionClosureSplitAudit
+        ?.status ?? null,
+    phaseRadiusActionClosureSplitCurrentProxyPass:
+      equalFrequencyEnergyRadiusAudit.phaseRadiusActionClosureSplitAudit
+        ?.analyticCurrentProxyPass ?? null,
+    phaseOnlyTriadicExactPass:
+      equalFrequencyEnergyRadiusAudit.phaseRadiusActionClosureSplitAudit
+        ?.phaseOnlyTriadicExactPass ?? null,
+    leverArmTriangleDetuningRequired:
+      equalFrequencyEnergyRadiusAudit.phaseRadiusActionClosureSplitAudit
+        ?.leverArmTriangleDetuningRequired ?? null,
+    leverArmAnalyticDetunedClosurePass:
+      equalFrequencyEnergyRadiusAudit.phaseRadiusActionClosureSplitAudit
+        ?.leverArmAnalyticDetunedClosurePass ?? null,
+    leverArmAnalyticDetunedTargetPhaseTurns:
+      equalFrequencyEnergyRadiusAudit.phaseRadiusActionClosureSplitAudit
+        ?.leverArmAnalyticDetunedTargetPhaseTurns ?? null,
+    leverArmAnalyticDetunedTargetResidual:
+      equalFrequencyEnergyRadiusAudit.phaseRadiusActionClosureSplitAudit
+        ?.leverArmAnalyticDetunedTargetResidual ?? null,
+    commonOmegaSpeedTriangleDetuningRequired:
+      equalFrequencyEnergyRadiusAudit.phaseRadiusActionClosureSplitAudit
+        ?.commonOmegaSpeedTriangleDetuningRequired ?? null,
+    commonOmegaSpeedAnalyticDetunedClosurePass:
+      equalFrequencyEnergyRadiusAudit.phaseRadiusActionClosureSplitAudit
+        ?.commonOmegaSpeedAnalyticDetunedClosurePass ?? null,
+    commonOmegaSpeedAnalyticDetunedTargetPhaseTurns:
+      equalFrequencyEnergyRadiusAudit.phaseRadiusActionClosureSplitAudit
+        ?.commonOmegaSpeedAnalyticDetunedTargetPhaseTurns ?? null,
+    commonOmegaSpeedAnalyticDetunedTargetResidual:
+      equalFrequencyEnergyRadiusAudit.phaseRadiusActionClosureSplitAudit
+        ?.commonOmegaSpeedAnalyticDetunedTargetResidual ?? null,
+    unitInertiaActionDegenerateOppositionPass:
+      equalFrequencyEnergyRadiusAudit.phaseRadiusActionClosureSplitAudit
+        ?.unitInertiaActionDegenerateOppositionPass ?? null,
+    rootWeightedActionDegenerateOppositionPass:
+      equalFrequencyEnergyRadiusAudit.phaseRadiusActionClosureSplitAudit
+        ?.rootWeightedActionDegenerateOppositionPass ?? null,
+    phaseRadiusActionTriadicWeightedClosureResiduals:
+      equalFrequencyEnergyRadiusAudit.phaseRadiusActionClosureSplitAudit
+        ?.triadicWeightedClosureResiduals ?? null,
+    phaseProfileWeightLedgerDiscriminatorSchema:
+      equalFrequencyEnergyRadiusAudit.phaseProfileWeightLedgerDiscriminator
+        ?.schema ?? null,
+    phaseProfileWeightLedgerDiscriminatorStatus:
+      equalFrequencyEnergyRadiusAudit.phaseProfileWeightLedgerDiscriminator
+        ?.status ?? null,
+    phaseProfileWeightLedgerDiscriminatorCurrentProxyPass:
+      equalFrequencyEnergyRadiusAudit.phaseProfileWeightLedgerDiscriminator
+        ?.retainedSelectionReady ?? null,
+    phaseProfileWeightLedgerAllLedgersHaveClosingProfile:
+      equalFrequencyEnergyRadiusAudit.phaseProfileWeightLedgerDiscriminator
+        ?.allLedgersHaveCurrentClosingProfile ?? null,
+    phaseProfileWeightLedgerNoSingleProfileClosesAll:
+      equalFrequencyEnergyRadiusAudit.phaseProfileWeightLedgerDiscriminator
+        ?.noSingleProfileClosesAllCurrentLedgers ?? null,
+    phaseProfileWeightLedgerSelectedCurrentProxyProfileIdsByLedger:
+      equalFrequencyEnergyRadiusAudit.phaseProfileWeightLedgerDiscriminator
+        ?.selectedCurrentProxyProfileIdsByLedger ?? null,
+    phaseProfileWeightLedgerRetainedWeightLedgerSelected:
+      equalFrequencyEnergyRadiusAudit.phaseProfileWeightLedgerDiscriminator
+        ?.retainedWeightLedgerSelected ?? null,
+    retainedWeightLedgerSelectionTargetSchema:
+      equalFrequencyEnergyRadiusAudit.retainedWeightLedgerSelectionTarget
+        ?.schema ?? null,
+    retainedWeightLedgerSelectionTargetStatus:
+      equalFrequencyEnergyRadiusAudit.retainedWeightLedgerSelectionTarget
+        ?.status ?? null,
+    retainedWeightLedgerSelectionTargetCurrentProxyPass:
+      equalFrequencyEnergyRadiusAudit.retainedWeightLedgerSelectionTarget
+        ?.currentProxyTargetPass ?? null,
+    retainedWeightLedgerSelectionTargetSourceCandidateCount:
+      equalFrequencyEnergyRadiusAudit.retainedWeightLedgerSelectionTarget
+        ?.sourceCandidateCount ?? null,
+    retainedWeightLedgerSelectionTargetCurrentEvidenceSourceCount:
+      equalFrequencyEnergyRadiusAudit.retainedWeightLedgerSelectionTarget
+        ?.currentEvidenceSourceCount ?? null,
+    retainedWeightLedgerSelectionAccepted:
+      equalFrequencyEnergyRadiusAudit.retainedWeightLedgerSelectionTarget
+        ?.retainedSelectionAccepted ?? null,
+    retainedWeightLedgerSourceAcceptanceAttemptAuditSchema:
+      equalFrequencyEnergyRadiusAudit
+        .retainedWeightLedgerSourceAcceptanceAttemptAudit?.schema ?? null,
+    retainedWeightLedgerSourceAcceptanceAttemptStatus:
+      equalFrequencyEnergyRadiusAudit
+        .retainedWeightLedgerSourceAcceptanceAttemptAudit?.status ?? null,
+    retainedWeightLedgerSourceAcceptanceAttemptCurrentProxyPass:
+      (equalFrequencyEnergyRadiusAudit
+        .retainedWeightLedgerSourceAcceptanceAttemptAudit
+        ?.currentProxySourceAttemptCount ?? 0) > 0,
+    retainedWeightLedgerSourceAttemptRowCount:
+      equalFrequencyEnergyRadiusAudit
+        .retainedWeightLedgerSourceAcceptanceAttemptAudit
+        ?.sourceAttemptRowCount ?? null,
+    retainedWeightLedgerSourceCurrentProxyAttemptCount:
+      equalFrequencyEnergyRadiusAudit
+        .retainedWeightLedgerSourceAcceptanceAttemptAudit
+        ?.currentProxySourceAttemptCount ?? null,
+    retainedWeightLedgerSourceAcceptedCount:
+      equalFrequencyEnergyRadiusAudit
+        .retainedWeightLedgerSourceAcceptanceAttemptAudit
+        ?.acceptedSourceAttemptCount ?? null,
+    retainedWeightLedgerSourceFirstAttemptSourceId:
+      equalFrequencyEnergyRadiusAudit
+        .retainedWeightLedgerSourceAcceptanceAttemptAudit?.firstAttemptSourceId ??
+      null,
+    retainedPhaseBundleHolonomyAuditSchema:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseBundleHolonomyAudit
+        ?.schema ?? null,
+    retainedPhaseBundleHolonomyStatus:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseBundleHolonomyAudit
+        ?.status ?? null,
+    retainedPhaseBundleHolonomyResidualVector:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseBundleHolonomyAudit
+        ?.residualVector ?? null,
+    retainedPhaseBundleHolonomyCurrentProxyPass:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseBundleHolonomyAudit
+        ?.currentProxyPass ?? null,
+    retainedPhaseBundleHolonomyCurrentEvidenceResidualCount:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseBundleHolonomyAudit
+        ?.currentEvidenceResidualCount ?? null,
+    retainedPhaseBundleHolonomyAcceptedResidualCount:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseBundleHolonomyAudit
+        ?.acceptedResidualCount ?? null,
+    retainedPhaseBundleHolonomyFirstBlockingResidualId:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseBundleHolonomyAudit
+        ?.firstBlockingResidualId ?? null,
+    retainedPhaseBundleHolonomyFirstMissingInputs:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseBundleHolonomyAudit
+        ?.firstMissingRetainedInputs ?? null,
+    retainedPhaseBundleHolonomyAccepted:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseBundleHolonomyAudit
+        ?.retainedPhaseBundleHolonomyAccepted ?? null,
+    retainedBinaryToBinaryPhaseHistoryAuditSchema:
+      equalFrequencyEnergyRadiusAudit.retainedBinaryToBinaryPhaseHistoryAudit
+        ?.schema ?? null,
+    retainedBinaryToBinaryPhaseHistoryStatus:
+      equalFrequencyEnergyRadiusAudit.retainedBinaryToBinaryPhaseHistoryAudit
+        ?.status ?? null,
+    retainedBinaryToBinaryPhaseHistoryResidualVector:
+      equalFrequencyEnergyRadiusAudit.retainedBinaryToBinaryPhaseHistoryAudit
+        ?.residualVector ?? null,
+    retainedBinaryToBinaryPhaseHistoryCurrentProxyPass:
+      equalFrequencyEnergyRadiusAudit.retainedBinaryToBinaryPhaseHistoryAudit
+        ?.currentProxyPass ?? null,
+    retainedBinaryToBinaryPhaseHistoryCurrentEvidenceResidualCount:
+      equalFrequencyEnergyRadiusAudit.retainedBinaryToBinaryPhaseHistoryAudit
+        ?.currentEvidenceResidualCount ?? null,
+    retainedBinaryToBinaryPhaseHistoryAcceptedResidualCount:
+      equalFrequencyEnergyRadiusAudit.retainedBinaryToBinaryPhaseHistoryAudit
+        ?.acceptedResidualCount ?? null,
+    retainedBinaryToBinaryPhaseHistoryFirstBlockingResidualId:
+      equalFrequencyEnergyRadiusAudit.retainedBinaryToBinaryPhaseHistoryAudit
+        ?.firstBlockingResidualId ?? null,
+    retainedBinaryToBinaryPhaseHistoryFirstMissingInputs:
+      equalFrequencyEnergyRadiusAudit.retainedBinaryToBinaryPhaseHistoryAudit
+        ?.firstMissingRetainedInputs ?? null,
+    retainedBinaryToBinaryPhaseHistoryAccepted:
+      equalFrequencyEnergyRadiusAudit.retainedBinaryToBinaryPhaseHistoryAudit
+        ?.retainedBinaryToBinaryPhaseHistoryAccepted ?? null,
+    phaseHolonomyUnitClockWeightSourceAuditSchema:
+      equalFrequencyEnergyRadiusAudit.phaseHolonomyUnitClockWeightSourceAudit
+        ?.schema ?? null,
+    phaseHolonomyUnitClockWeightSourceStatus:
+      equalFrequencyEnergyRadiusAudit.phaseHolonomyUnitClockWeightSourceAudit
+        ?.status ?? null,
+    phaseHolonomyUnitClockWeightSourceCurrentProxyPass:
+      equalFrequencyEnergyRadiusAudit.phaseHolonomyUnitClockWeightSourceAudit
+        ?.currentProxyPass ?? null,
+    phaseHolonomyUnitClockWeightSourceCurrentEvidenceResidualCount:
+      equalFrequencyEnergyRadiusAudit.phaseHolonomyUnitClockWeightSourceAudit
+        ?.currentEvidenceResidualCount ?? null,
+    phaseHolonomyUnitClockWeightSourceAcceptedResidualCount:
+      equalFrequencyEnergyRadiusAudit.phaseHolonomyUnitClockWeightSourceAudit
+        ?.acceptedResidualCount ?? null,
+    phaseHolonomyUnitClockWeightSourceFirstBlockingResidualId:
+      equalFrequencyEnergyRadiusAudit.phaseHolonomyUnitClockWeightSourceAudit
+        ?.firstBlockingResidualId ?? null,
+    phaseHolonomyUnitClockWeightSourceFirstMissingInputs:
+      equalFrequencyEnergyRadiusAudit.phaseHolonomyUnitClockWeightSourceAudit
+        ?.firstMissingRetainedInputs ?? null,
+    phaseHolonomyUnitClockWeightSourceRetainedAccepted:
+      equalFrequencyEnergyRadiusAudit.phaseHolonomyUnitClockWeightSourceAudit
+        ?.retainedSourceAccepted ?? null,
     phaseLatticeAuditSchema:
       equalFrequencyEnergyRadiusAudit.phaseLatticeAudit?.schema ?? null,
     phaseLatticeStatus:
@@ -48527,6 +54503,27 @@ function createEqualFrequencyCandidateReviewRow(equalFrequencyEnergyRadiusAudit)
     retainedRowSetBlockingRequirementIds:
       equalFrequencyEnergyRadiusAudit.retainedRowSetScaffold
         ?.blockingRequirementIds ?? null,
+    retainedRowSetIdentityStructuralWitnessAuditSchema:
+      equalFrequencyEnergyRadiusAudit.retainedRowSetIdentityStructuralWitnessAudit
+        ?.schema ?? null,
+    retainedRowSetIdentityStructuralWitnessStatus:
+      equalFrequencyEnergyRadiusAudit.retainedRowSetIdentityStructuralWitnessAudit
+        ?.status ?? null,
+    retainedRowSetIdentityStructuralWitnessSourceCount:
+      equalFrequencyEnergyRadiusAudit.retainedRowSetIdentityStructuralWitnessAudit
+        ?.sourceCount ?? null,
+    retainedRowSetIdentityStructuralWitnessCurrentPass:
+      equalFrequencyEnergyRadiusAudit.retainedRowSetIdentityStructuralWitnessAudit
+        ?.currentStructuralWitnessPass ?? null,
+    retainedRowSetIdentityStructuralWitnessCurrentPopulatedCount:
+      equalFrequencyEnergyRadiusAudit.retainedRowSetIdentityStructuralWitnessAudit
+        ?.currentStructuralWitnessPopulatedCount ?? null,
+    retainedRowSetIdentityStructuralWitnessRetainedPass:
+      equalFrequencyEnergyRadiusAudit.retainedRowSetIdentityStructuralWitnessAudit
+        ?.retainedRowSetIdentityPass ?? false,
+    retainedRowSetIdentityStructuralWitnessFirstMissingInputs:
+      equalFrequencyEnergyRadiusAudit.retainedRowSetIdentityStructuralWitnessAudit
+        ?.firstMissingRetainedIdentityInputs ?? null,
     retainedEventDomainLiftTargetSchema:
       equalFrequencyEnergyRadiusAudit.retainedEventDomainLiftTarget?.schema ?? null,
     retainedEventDomainLiftStatus:
@@ -48562,6 +54559,273 @@ function createEqualFrequencyCandidateReviewRow(equalFrequencyEnergyRadiusAudit)
     retainedEventDomainSelectorFirstRunnableRowCount:
       equalFrequencyEnergyRadiusAudit.retainedEventDomainSelector
         ?.firstRunnableRowCount ?? null,
+    binaryToBinaryPhaseHistoryLiftTargetSchema:
+      equalFrequencyEnergyRadiusAudit.binaryToBinaryPhaseHistoryLiftTarget
+        ?.schema ?? null,
+    binaryToBinaryPhaseHistoryLiftTargetStatus:
+      equalFrequencyEnergyRadiusAudit.binaryToBinaryPhaseHistoryLiftTarget
+        ?.status ?? null,
+    binaryToBinaryPhaseHistoryPairChannelCount:
+      equalFrequencyEnergyRadiusAudit.binaryToBinaryPhaseHistoryLiftTarget
+        ?.pairChannelCount ?? null,
+    binaryToBinaryPhaseHistoryRowCount:
+      equalFrequencyEnergyRadiusAudit.binaryToBinaryPhaseHistoryLiftTarget
+        ?.rowCount ?? null,
+    binaryToBinaryPhaseHistoryCurrentSeedRowCount:
+      equalFrequencyEnergyRadiusAudit.binaryToBinaryPhaseHistoryLiftTarget
+        ?.currentSeedRowCount ?? null,
+    binaryToBinaryPhaseHistoryAcceptedRowCount:
+      equalFrequencyEnergyRadiusAudit.binaryToBinaryPhaseHistoryLiftTarget
+        ?.acceptedRowCount ?? null,
+    binaryToBinaryPhaseHistoryRetainedLiftPass:
+      equalFrequencyEnergyRadiusAudit.binaryToBinaryPhaseHistoryLiftTarget
+        ?.retainedPhaseHistoryLiftPass ?? false,
+    phaseChannelClassificationAuditSchema:
+      equalFrequencyEnergyRadiusAudit.phaseChannelClassificationAudit?.schema ??
+      null,
+    phaseChannelClassificationStatus:
+      equalFrequencyEnergyRadiusAudit.phaseChannelClassificationAudit?.status ??
+      null,
+    phaseChannelClassificationRowCount:
+      equalFrequencyEnergyRadiusAudit.phaseChannelClassificationAudit?.rowCount ??
+      null,
+    phaseChannelIdentityRowCount:
+      equalFrequencyEnergyRadiusAudit.phaseChannelClassificationAudit
+        ?.identityRowCount ?? null,
+    phaseChannelForwardTriadic120RowCount:
+      equalFrequencyEnergyRadiusAudit.phaseChannelClassificationAudit
+        ?.forwardTriadic120RowCount ?? null,
+    phaseChannelReverseTriadic120RowCount:
+      equalFrequencyEnergyRadiusAudit.phaseChannelClassificationAudit
+        ?.reverseTriadic120RowCount ?? null,
+    phaseChannelMiddleToOuterCarrierRowCount:
+      equalFrequencyEnergyRadiusAudit.phaseChannelClassificationAudit
+        ?.middleToOuterCarrierRowCount ?? null,
+    phaseChannelMiddleToOuterCarrierCurrentSeedPass:
+      equalFrequencyEnergyRadiusAudit.phaseChannelClassificationAudit
+        ?.middleToOuterCarrierCurrentSeedPass ?? null,
+    phaseCarrierTransferAlignmentAuditSchema:
+      equalFrequencyEnergyRadiusAudit.phaseCarrierTransferAlignmentAudit
+        ?.schema ?? null,
+    phaseCarrierTransferAlignmentStatus:
+      equalFrequencyEnergyRadiusAudit.phaseCarrierTransferAlignmentAudit
+        ?.status ?? null,
+    phaseCarrierTransferAlignmentCurrentProxyPass:
+      equalFrequencyEnergyRadiusAudit.phaseCarrierTransferAlignmentAudit
+        ?.phaseCarrierTransferAlignmentCurrentProxyPass ?? null,
+    phaseCarrierTransferAlignmentSelectedDirection:
+      equalFrequencyEnergyRadiusAudit.phaseCarrierTransferAlignmentAudit
+        ?.selectedTransferDirection ?? null,
+    phaseCarrierTransferAlignmentSelectedCarrier:
+      equalFrequencyEnergyRadiusAudit.phaseCarrierTransferAlignmentAudit
+        ?.selectedCarrier ?? null,
+    phaseCarrierTransferAlignmentSelectedTransferSignature:
+      equalFrequencyEnergyRadiusAudit.phaseCarrierTransferAlignmentAudit
+        ?.selectedTransferSignature ?? null,
+    phaseCarrierTransferAlignmentCurrentProxyRowCount:
+      equalFrequencyEnergyRadiusAudit.phaseCarrierTransferAlignmentAudit
+        ?.currentProxyAlignmentRowCount ?? null,
+    phaseCarrierTransferAlignmentAcceptedRowCount:
+      equalFrequencyEnergyRadiusAudit.phaseCarrierTransferAlignmentAudit
+        ?.retainedAcceptedAlignmentRowCount ?? null,
+    retainedPhaseHistoryCarrierReadinessAuditSchema:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierReadinessAudit
+        ?.schema ?? null,
+    retainedPhaseHistoryCarrierReadinessStatus:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierReadinessAudit
+        ?.status ?? null,
+    retainedPhaseHistoryCarrierChannelId:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierReadinessAudit
+        ?.carrierChannelId ?? null,
+    retainedPhaseHistoryCarrierCurrentReadinessPass:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierReadinessAudit
+        ?.currentReadinessPass ?? null,
+    retainedPhaseHistoryCarrierCurrentReadinessRowCount:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierReadinessAudit
+        ?.currentReadinessRowCount ?? null,
+    retainedPhaseHistoryCarrierAcceptedRowCount:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierReadinessAudit
+        ?.retainedAcceptedRowCount ?? null,
+    retainedPhaseHistoryCarrierRequirementCount:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierReadinessAudit
+        ?.retainedRequirementCount ?? null,
+    retainedPhaseHistoryCarrierAcceptedRequirementCount:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierReadinessAudit
+        ?.retainedRequirementAcceptedCount ?? null,
+    retainedPhaseHistoryCarrierEventDomainRowModelSchema:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierEventDomainRowModel
+        ?.schema ?? null,
+    retainedPhaseHistoryCarrierEventDomainStatus:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierEventDomainRowModel
+        ?.status ?? null,
+    retainedPhaseHistoryCarrierEventDomainResidualVector:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierEventDomainRowModel
+        ?.residualVector ?? null,
+    retainedPhaseHistoryCarrierEventDomainCurrentTemplatePass:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierEventDomainRowModel
+        ?.currentEventDomainTemplatePass ?? null,
+    retainedPhaseHistoryCarrierEventDomainCurrentTemplatePassCount:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierEventDomainRowModel
+        ?.currentTemplatePassCount ?? null,
+    retainedPhaseHistoryCarrierEventDomainRowCount:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierEventDomainRowModel
+        ?.rowCount ?? null,
+    retainedPhaseHistoryCarrierEventDomainAcceptedRowCount:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierEventDomainRowModel
+        ?.retainedAcceptedRowCount ?? null,
+    retainedPhaseHistoryCarrierEventDomainRequirementCount:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierEventDomainRowModel
+        ?.retainedRequirementCount ?? null,
+    retainedPhaseHistoryCarrierEventDomainAcceptedRequirementCount:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierEventDomainRowModel
+        ?.acceptedRetainedRequirementCount ?? null,
+    retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAuditSchema:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit
+        ?.schema ?? null,
+    retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptStatus:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit
+        ?.status ?? null,
+    retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptPass:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit
+        ?.retainedEventDomainAcceptanceAttemptPass ?? null,
+    retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptCurrentTemplateRowCount:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit
+        ?.currentTemplateAttemptRowCount ?? null,
+    retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAcceptedRowCount:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit
+        ?.acceptedAttemptRowCount ?? null,
+    retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptRequirementCount:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit
+        ?.retainedRequirementCount ?? null,
+    retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAcceptedRequirementCount:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit
+        ?.acceptedRetainedRequirementCount ?? null,
+    retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptFirstRowId:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit
+        ?.firstAttemptRowId ?? null,
+    retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptFirstMissingIds:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit
+        ?.firstAttemptMissingRetainedRequirementIds ?? null,
+    retainedPhaseHistoryCarrierEventIdPopulationAttemptAuditSchema:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit
+        ?.schema ?? null,
+    retainedPhaseHistoryCarrierEventIdPopulationAttemptStatus:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit
+        ?.status ?? null,
+    retainedPhaseHistoryCarrierEventIdPopulationAttemptPass:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit
+        ?.retainedEventIdPopulationAttemptPass ?? null,
+    retainedPhaseHistoryCarrierEventIdPopulationCurrentCandidateRowCount:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit
+        ?.currentEventIdCandidateRowCount ?? null,
+    retainedPhaseHistoryCarrierEventIdPopulationAcceptedPairCount:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit
+        ?.retainedAcceptedEventIdPairCount ?? null,
+    retainedPhaseHistoryCarrierEventIdPopulationRequirementCount:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit
+        ?.retainedEventIdRequirementCount ?? null,
+    retainedPhaseHistoryCarrierEventIdPopulationAcceptedRequirementCount:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit
+        ?.acceptedRetainedEventIdRequirementCount ?? null,
+    retainedPhaseHistoryCarrierEventIdPopulationFirstSourceEventIdCandidate:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit
+        ?.firstAttemptSourceEventIdCandidate ?? null,
+    retainedPhaseHistoryCarrierEventIdPopulationFirstReceiverEventIdCandidate:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit
+        ?.firstAttemptReceiverEventIdCandidate ?? null,
+    retainedPhaseHistoryCarrierEventIdPopulationFirstMissingInputs:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit
+        ?.firstAttemptMissingRetainedEventIdInputs ?? null,
+    retainedPhaseHistoryCarrierEventIdProvenanceAuditSchema:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierEventIdProvenanceAudit
+        ?.schema ?? null,
+    retainedPhaseHistoryCarrierEventIdProvenanceStatus:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierEventIdProvenanceAudit
+        ?.status ?? null,
+    retainedPhaseHistoryCarrierEventIdCurrentProvenancePass:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierEventIdProvenanceAudit
+        ?.currentEventIdProvenancePass ?? null,
+    retainedPhaseHistoryCarrierEventIdProvenancePass:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierEventIdProvenanceAudit
+        ?.retainedEventIdProvenancePass ?? null,
+    retainedPhaseHistoryCarrierEventIdProvenanceCurrentRowCount:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierEventIdProvenanceAudit
+        ?.currentProvenanceRowCount ?? null,
+    retainedPhaseHistoryCarrierEventIdProvenanceAcceptedRowCount:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierEventIdProvenanceAudit
+        ?.retainedAcceptedProvenanceRowCount ?? null,
+    retainedPhaseHistoryCarrierEventIdProvenanceCurrentRequirementCount:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierEventIdProvenanceAudit
+        ?.currentProvenanceRequirementCount ?? null,
+    retainedPhaseHistoryCarrierEventIdProvenanceCurrentPopulatedCount:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierEventIdProvenanceAudit
+        ?.currentProvenancePopulatedCount ?? null,
+    retainedPhaseHistoryCarrierEventIdProvenanceRetainedRequirementCount:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierEventIdProvenanceAudit
+        ?.retainedProvenanceRequirementCount ?? null,
+    retainedPhaseHistoryCarrierEventIdProvenanceAcceptedRequirementCount:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierEventIdProvenanceAudit
+        ?.acceptedRetainedProvenanceCount ?? null,
+    retainedPhaseHistoryCarrierEventIdProvenanceFirstPairCandidate:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierEventIdProvenanceAudit
+        ?.firstAttemptEventIdPairCandidate ?? null,
+    retainedPhaseHistoryCarrierEventIdProvenanceFirstMissingInputs:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierEventIdProvenanceAudit
+        ?.firstAttemptMissingRetainedProvenanceInputs ?? null,
+    retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAuditSchema:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit
+        ?.schema ?? null,
+    retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptStatus:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit
+        ?.status ?? null,
+    retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptPass:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit
+        ?.retainedPointEventOrDomainRuleAttemptPass ?? null,
+    retainedPhaseHistoryCarrierPointEventOrDomainRuleCurrentCandidateRowCount:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit
+        ?.currentRuleCandidateRowCount ?? null,
+    retainedPhaseHistoryCarrierPointEventOrDomainRuleAcceptedCount:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit
+        ?.retainedAcceptedRuleCount ?? null,
+    retainedPhaseHistoryCarrierPointEventOrDomainRuleRequirementCount:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit
+        ?.retainedRuleRequirementCount ?? null,
+    retainedPhaseHistoryCarrierPointEventOrDomainRuleAcceptedRequirementCount:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit
+        ?.acceptedRetainedRuleRequirementCount ?? null,
+    retainedPhaseHistoryCarrierPointEventOrDomainRuleFirstCandidateId:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit
+        ?.firstAttemptSelectedRuleCandidateId ?? null,
+    retainedPhaseHistoryCarrierPointEventOrDomainRuleFirstMissingInputs:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit
+        ?.firstAttemptMissingRetainedRuleInputs ?? null,
+    retainedPhaseHistoryCarrierEventDomainBindingAttemptAuditSchema:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
+        ?.schema ?? null,
+    retainedPhaseHistoryCarrierEventDomainBindingAttemptStatus:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
+        ?.status ?? null,
+    retainedPhaseHistoryCarrierEventDomainBindingAttemptPass:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
+        ?.retainedEventDomainBindingAttemptPass ?? null,
+    retainedPhaseHistoryCarrierEventDomainBindingCurrentCandidateRowCount:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
+        ?.currentBindingCandidateRowCount ?? null,
+    retainedPhaseHistoryCarrierEventDomainBindingAcceptedCount:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
+        ?.retainedAcceptedBindingCount ?? null,
+    retainedPhaseHistoryCarrierEventDomainBindingRequirementCount:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
+        ?.retainedBindingRequirementCount ?? null,
+    retainedPhaseHistoryCarrierEventDomainBindingAcceptedRequirementCount:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
+        ?.acceptedRetainedBindingRequirementCount ?? null,
+    retainedPhaseHistoryCarrierEventDomainBindingFirstCandidateId:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
+        ?.firstAttemptBindingCandidateId ?? null,
+    retainedPhaseHistoryCarrierEventDomainBindingFirstMissingInputs:
+      equalFrequencyEnergyRadiusAudit.retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit
+        ?.firstAttemptMissingRetainedBindingInputs ?? null,
     sameEventTransferLiftDependencyAuditSchema:
       equalFrequencyEnergyRadiusAudit.sameEventTransferLiftDependencyAudit
         ?.schema ?? null,
@@ -49113,6 +55377,118 @@ function printSummary(report, absoluteOutputPath) {
         ].join(" ")
       );
     }
+    const phaseRadiusActionClosureSplitAudit =
+      equalFrequencyAudit.phaseRadiusActionClosureSplitAudit ?? null;
+    if (phaseRadiusActionClosureSplitAudit) {
+      console.log(
+        [
+          "phase-radius/action closure split:",
+          phaseRadiusActionClosureSplitAudit.status,
+          `unitClockTriadic=${phaseRadiusActionClosureSplitAudit.phaseOnlyTriadicExactPass}`,
+          `leverDetune=${phaseRadiusActionClosureSplitAudit.leverArmTriangleDetuningRequired}`,
+          `leverTarget=${formatPhaseTurns(
+            phaseRadiusActionClosureSplitAudit.leverArmAnalyticDetunedTargetPhaseTurns
+          )}`,
+          `leverResidual=${formatNumber(
+            phaseRadiusActionClosureSplitAudit.leverArmAnalyticDetunedTargetResidual
+          )}`,
+          `speedDetune=${phaseRadiusActionClosureSplitAudit.commonOmegaSpeedTriangleDetuningRequired}`,
+          `speedTarget=${formatPhaseTurns(
+            phaseRadiusActionClosureSplitAudit.commonOmegaSpeedAnalyticDetunedTargetPhaseTurns
+          )}`,
+          `speedResidual=${formatNumber(
+            phaseRadiusActionClosureSplitAudit.commonOmegaSpeedAnalyticDetunedTargetResidual
+          )}`,
+          `unitActionOpposition=${phaseRadiusActionClosureSplitAudit.unitInertiaActionDegenerateOppositionPass}`,
+          `targetActionOpposition=${phaseRadiusActionClosureSplitAudit.rootWeightedActionDegenerateOppositionPass}`,
+          `retainedWeights=${phaseRadiusActionClosureSplitAudit.retainedWeightRowsAccepted}`,
+        ].join(" ")
+      );
+    }
+    const phaseProfileWeightLedgerDiscriminator =
+      equalFrequencyAudit.phaseProfileWeightLedgerDiscriminator ?? null;
+    if (phaseProfileWeightLedgerDiscriminator) {
+      console.log(
+        [
+          "phase-profile weight-ledger discriminator:",
+          phaseProfileWeightLedgerDiscriminator.status,
+          `ledgers=${phaseProfileWeightLedgerDiscriminator.ledgerCount}`,
+          `profiles=${phaseProfileWeightLedgerDiscriminator.phaseProfileCount}`,
+          `allLedgersClosed=${phaseProfileWeightLedgerDiscriminator.allLedgersHaveCurrentClosingProfile}`,
+          `singleProfileAll=${!phaseProfileWeightLedgerDiscriminator.noSingleProfileClosesAllCurrentLedgers}`,
+          `retainedWeightLedger=${phaseProfileWeightLedgerDiscriminator.retainedWeightLedgerSelected}`,
+        ].join(" ")
+      );
+    }
+    const retainedWeightLedgerSelectionTarget =
+      equalFrequencyAudit.retainedWeightLedgerSelectionTarget ?? null;
+    if (retainedWeightLedgerSelectionTarget) {
+      console.log(
+        [
+          "retained weight-ledger selection target:",
+          retainedWeightLedgerSelectionTarget.status,
+          `sources=${retainedWeightLedgerSelectionTarget.sourceCandidateCount}`,
+          `currentSources=${retainedWeightLedgerSelectionTarget.currentEvidenceSourceCount}`,
+          `rowSetReady=${retainedWeightLedgerSelectionTarget.sameRetainedRowSetReady}`,
+          `eventDomainReady=${retainedWeightLedgerSelectionTarget.sameEventDomainReady}`,
+          `retainedSelected=${retainedWeightLedgerSelectionTarget.retainedWeightLedgerSelected}`,
+        ].join(" ")
+      );
+    }
+    const retainedWeightLedgerSourceAcceptanceAttemptAudit =
+      equalFrequencyAudit.retainedWeightLedgerSourceAcceptanceAttemptAudit ??
+      null;
+    if (retainedWeightLedgerSourceAcceptanceAttemptAudit) {
+      console.log(
+        [
+          "retained weight-ledger source attempts:",
+          retainedWeightLedgerSourceAcceptanceAttemptAudit.status,
+          `rows=${retainedWeightLedgerSourceAcceptanceAttemptAudit.sourceAttemptRowCount}`,
+          `current=${retainedWeightLedgerSourceAcceptanceAttemptAudit.currentProxySourceAttemptCount}`,
+          `accepted=${retainedWeightLedgerSourceAcceptanceAttemptAudit.acceptedSourceAttemptCount}`,
+          `first=${retainedWeightLedgerSourceAcceptanceAttemptAudit.firstAttemptSourceId}`,
+        ].join(" ")
+      );
+    }
+    const retainedBinaryToBinaryPhaseHistoryAudit =
+      equalFrequencyAudit.retainedBinaryToBinaryPhaseHistoryAudit ?? null;
+    if (retainedBinaryToBinaryPhaseHistoryAudit) {
+      console.log(
+        [
+          "retained binary-to-binary phase history:",
+          retainedBinaryToBinaryPhaseHistoryAudit.status,
+          `current=${retainedBinaryToBinaryPhaseHistoryAudit.currentEvidenceResidualCount}/${retainedBinaryToBinaryPhaseHistoryAudit.residualCount}`,
+          `accepted=${retainedBinaryToBinaryPhaseHistoryAudit.acceptedResidualCount}/${retainedBinaryToBinaryPhaseHistoryAudit.residualCount}`,
+          `first=${retainedBinaryToBinaryPhaseHistoryAudit.firstBlockingResidualId}`,
+        ].join(" ")
+      );
+    }
+    const retainedPhaseBundleHolonomyAudit =
+      equalFrequencyAudit.retainedPhaseBundleHolonomyAudit ?? null;
+    if (retainedPhaseBundleHolonomyAudit) {
+      console.log(
+        [
+          "retained phase-bundle holonomy:",
+          retainedPhaseBundleHolonomyAudit.status,
+          `current=${retainedPhaseBundleHolonomyAudit.currentEvidenceResidualCount}/${retainedPhaseBundleHolonomyAudit.residualCount}`,
+          `accepted=${retainedPhaseBundleHolonomyAudit.acceptedResidualCount}/${retainedPhaseBundleHolonomyAudit.residualCount}`,
+          `first=${retainedPhaseBundleHolonomyAudit.firstBlockingResidualId}`,
+        ].join(" ")
+      );
+    }
+    const phaseHolonomyUnitClockWeightSourceAudit =
+      equalFrequencyAudit.phaseHolonomyUnitClockWeightSourceAudit ?? null;
+    if (phaseHolonomyUnitClockWeightSourceAudit) {
+      console.log(
+        [
+          "phase-holonomy unit-clock W_a source:",
+          phaseHolonomyUnitClockWeightSourceAudit.status,
+          `current=${phaseHolonomyUnitClockWeightSourceAudit.currentEvidenceResidualCount}/${phaseHolonomyUnitClockWeightSourceAudit.residualCount}`,
+          `accepted=${phaseHolonomyUnitClockWeightSourceAudit.acceptedResidualCount}/${phaseHolonomyUnitClockWeightSourceAudit.residualCount}`,
+          `first=${phaseHolonomyUnitClockWeightSourceAudit.firstBlockingResidualId}`,
+        ].join(" ")
+      );
+    }
     const returnPeriodFrequencyAudit =
       equalFrequencyAudit.returnPeriodFrequencyAudit ?? null;
     const planeSectorDiscriminatorAudit =
@@ -49161,6 +55537,22 @@ function printSummary(report, absoluteOutputPath) {
         ].join(" ")
       );
     }
+    const retainedRowSetIdentityStructuralWitnessAudit =
+      equalFrequencyAudit.retainedRowSetIdentityStructuralWitnessAudit ?? null;
+    if (retainedRowSetIdentityStructuralWitnessAudit) {
+      console.log(
+        [
+          "retained row-set identity structural witness:",
+          retainedRowSetIdentityStructuralWitnessAudit.status,
+          `rowSet=${retainedRowSetIdentityStructuralWitnessAudit.retainedRowSetId}`,
+          `current=${retainedRowSetIdentityStructuralWitnessAudit.currentStructuralWitnessPopulatedCount}/${retainedRowSetIdentityStructuralWitnessAudit.sourceCount}`,
+          `rowSetRefs=${retainedRowSetIdentityStructuralWitnessAudit.rowSetIdentityCandidatePassCount}/${retainedRowSetIdentityStructuralWitnessAudit.sourceCount}`,
+          `retained=${retainedRowSetIdentityStructuralWitnessAudit.acceptedRetainedIdentityRequirementCount}/${retainedRowSetIdentityStructuralWitnessAudit.retainedIdentityRequirementCount}`,
+          `firstMissing=${retainedRowSetIdentityStructuralWitnessAudit.firstMissingRetainedIdentityInputs.slice(0, 4).join(",")}`,
+          `accepted=${retainedRowSetIdentityStructuralWitnessAudit.retainedRowSetIdentityPass}`,
+        ].join(" ")
+      );
+    }
     const retainedEventDomainLiftTarget =
       equalFrequencyAudit.retainedEventDomainLiftTarget ?? null;
     if (retainedEventDomainLiftTarget) {
@@ -49192,6 +55584,167 @@ function printSummary(report, absoluteOutputPath) {
         ].join(" ")
       );
     }
+    const binaryToBinaryPhaseHistoryLiftTarget =
+      equalFrequencyAudit.binaryToBinaryPhaseHistoryLiftTarget ?? null;
+    if (binaryToBinaryPhaseHistoryLiftTarget) {
+      console.log(
+        [
+          "binary-to-binary phase/history lift:",
+          binaryToBinaryPhaseHistoryLiftTarget.status,
+          `pairs=${binaryToBinaryPhaseHistoryLiftTarget.pairChannelCount}`,
+          `rows=${binaryToBinaryPhaseHistoryLiftTarget.currentSeedRowCount}/${binaryToBinaryPhaseHistoryLiftTarget.rowCount}`,
+          `accepted=${binaryToBinaryPhaseHistoryLiftTarget.acceptedRowCount}`,
+          `route=${binaryToBinaryPhaseHistoryLiftTarget.selectedEventDomainRoute}`,
+          `eventDomainAccepted=${binaryToBinaryPhaseHistoryLiftTarget.retainedEventDomainAccepted}`,
+        ].join(" ")
+      );
+    }
+    const phaseChannelClassificationAudit =
+      equalFrequencyAudit.phaseChannelClassificationAudit ?? null;
+    if (phaseChannelClassificationAudit) {
+      console.log(
+        [
+          "phase channel classification:",
+          phaseChannelClassificationAudit.status,
+          `rows=${phaseChannelClassificationAudit.currentSeedClassifiedRowCount}/${phaseChannelClassificationAudit.rowCount}`,
+          `identity=${phaseChannelClassificationAudit.identityRowCount}`,
+          `forward120=${phaseChannelClassificationAudit.forwardTriadic120RowCount}`,
+          `reverse120=${phaseChannelClassificationAudit.reverseTriadic120RowCount}`,
+          `middleOuter=${phaseChannelClassificationAudit.middleToOuterCarrierRowCount}`,
+          `accepted=${phaseChannelClassificationAudit.retainedAcceptedClassifiedRowCount}`,
+        ].join(" ")
+      );
+    }
+    const phaseCarrierTransferAlignmentAudit =
+      equalFrequencyAudit.phaseCarrierTransferAlignmentAudit ?? null;
+    if (phaseCarrierTransferAlignmentAudit) {
+      console.log(
+        [
+          "phase carrier transfer alignment:",
+          phaseCarrierTransferAlignmentAudit.status,
+          `carrier=${phaseCarrierTransferAlignmentAudit.selectedCarrierChannelId}`,
+          `rows=${phaseCarrierTransferAlignmentAudit.currentProxyAlignmentRowCount}/${phaseCarrierTransferAlignmentAudit.rowCount}`,
+          `transfer=${phaseCarrierTransferAlignmentAudit.selectedTransferEntryCount}/${phaseCarrierTransferAlignmentAudit.expectedSelectedTransferEntryCount}`,
+          `direction=${phaseCarrierTransferAlignmentAudit.signedMiddleToOuterTransferPass}`,
+          `accepted=${phaseCarrierTransferAlignmentAudit.retainedAcceptedAlignmentRowCount}`,
+        ].join(" ")
+      );
+    }
+    const retainedPhaseHistoryCarrierReadinessAudit =
+      equalFrequencyAudit.retainedPhaseHistoryCarrierReadinessAudit ?? null;
+    if (retainedPhaseHistoryCarrierReadinessAudit) {
+      console.log(
+        [
+          "retained phase-history carrier readiness:",
+          retainedPhaseHistoryCarrierReadinessAudit.status,
+          `carrier=${retainedPhaseHistoryCarrierReadinessAudit.carrierChannelId}`,
+          `rows=${retainedPhaseHistoryCarrierReadinessAudit.currentReadinessRowCount}/${retainedPhaseHistoryCarrierReadinessAudit.rowCount}`,
+          `requirements=${retainedPhaseHistoryCarrierReadinessAudit.retainedRequirementAcceptedCount}/${retainedPhaseHistoryCarrierReadinessAudit.retainedRequirementCount}`,
+          `eventDomainAccepted=${retainedPhaseHistoryCarrierReadinessAudit.retainedEventDomainAccepted}`,
+          `retained=${retainedPhaseHistoryCarrierReadinessAudit.retainedPhaseHistoryCarrierReadinessPass}`,
+        ].join(" ")
+      );
+    }
+    const retainedPhaseHistoryCarrierEventDomainRowModel =
+      equalFrequencyAudit.retainedPhaseHistoryCarrierEventDomainRowModel ??
+      null;
+    if (retainedPhaseHistoryCarrierEventDomainRowModel) {
+      console.log(
+        [
+          "retained phase-history carrier event/domain:",
+          retainedPhaseHistoryCarrierEventDomainRowModel.status,
+          `carrier=${retainedPhaseHistoryCarrierEventDomainRowModel.carrierChannelId}`,
+          `rows=${retainedPhaseHistoryCarrierEventDomainRowModel.currentTemplatePassCount}/${retainedPhaseHistoryCarrierEventDomainRowModel.rowCount}`,
+          `requirements=${retainedPhaseHistoryCarrierEventDomainRowModel.acceptedRetainedRequirementCount}/${retainedPhaseHistoryCarrierEventDomainRowModel.retainedRequirementCount}`,
+          `route=${retainedPhaseHistoryCarrierEventDomainRowModel.selectedEventDomainRoute}`,
+          `residual=${retainedPhaseHistoryCarrierEventDomainRowModel.residualVector}`,
+          `retained=${retainedPhaseHistoryCarrierEventDomainRowModel.retainedEventDomainRowAcceptancePass}`,
+        ].join(" ")
+      );
+    }
+    const retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit =
+      equalFrequencyAudit
+        .retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit ?? null;
+    if (retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit) {
+      console.log(
+        [
+          "retained phase-history carrier acceptance attempt:",
+          retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit.status,
+          `first=${retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit.firstAttemptSourceRowId}`,
+          `rows=${retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit.currentTemplateAttemptRowCount}/${retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit.rowCount}`,
+          `requirements=${retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit.acceptedRetainedRequirementCount}/${retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit.retainedRequirementCount}`,
+          `firstMissing=${retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit.firstAttemptMissingRetainedRequirementIds.join(",")}`,
+          `retained=${retainedPhaseHistoryCarrierEventDomainAcceptanceAttemptAudit.retainedEventDomainAcceptanceAttemptPass}`,
+        ].join(" ")
+      );
+    }
+    const retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit =
+      equalFrequencyAudit
+        .retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit ?? null;
+    if (retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit) {
+      console.log(
+        [
+          "retained phase-history carrier event IDs:",
+          retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit.status,
+          `source=${retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit.firstAttemptSourceEventIdCandidate}`,
+          `receiver=${retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit.firstAttemptReceiverEventIdCandidate}`,
+          `rows=${retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit.currentEventIdCandidateRowCount}/${retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit.rowCount}`,
+          `requirements=${retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit.acceptedRetainedEventIdRequirementCount}/${retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit.retainedEventIdRequirementCount}`,
+          `firstMissing=${retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit.firstAttemptMissingRetainedEventIdInputs.join(",")}`,
+          `retained=${retainedPhaseHistoryCarrierEventIdPopulationAttemptAudit.retainedEventIdPopulationAttemptPass}`,
+        ].join(" ")
+      );
+    }
+    const retainedPhaseHistoryCarrierEventIdProvenanceAudit =
+      equalFrequencyAudit
+        .retainedPhaseHistoryCarrierEventIdProvenanceAudit ?? null;
+    if (retainedPhaseHistoryCarrierEventIdProvenanceAudit) {
+      console.log(
+        [
+          "retained phase-history carrier event-ID provenance:",
+          retainedPhaseHistoryCarrierEventIdProvenanceAudit.status,
+          `pair=${retainedPhaseHistoryCarrierEventIdProvenanceAudit.firstAttemptEventIdPairCandidate}`,
+          `rows=${retainedPhaseHistoryCarrierEventIdProvenanceAudit.currentProvenanceRowCount}/${retainedPhaseHistoryCarrierEventIdProvenanceAudit.rowCount}`,
+          `current=${retainedPhaseHistoryCarrierEventIdProvenanceAudit.currentProvenancePopulatedCount}/${retainedPhaseHistoryCarrierEventIdProvenanceAudit.currentProvenanceRequirementCount}`,
+          `retained=${retainedPhaseHistoryCarrierEventIdProvenanceAudit.acceptedRetainedProvenanceCount}/${retainedPhaseHistoryCarrierEventIdProvenanceAudit.retainedProvenanceRequirementCount}`,
+          `firstMissing=${retainedPhaseHistoryCarrierEventIdProvenanceAudit.firstAttemptMissingRetainedProvenanceInputs.join(",")}`,
+          `accepted=${retainedPhaseHistoryCarrierEventIdProvenanceAudit.retainedEventIdProvenancePass}`,
+        ].join(" ")
+      );
+    }
+    const retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit =
+      equalFrequencyAudit
+        .retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit ??
+      null;
+    if (retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit) {
+      console.log(
+        [
+          "retained phase-history carrier point-event/domain rule:",
+          retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit.status,
+          `rule=${retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit.firstAttemptSelectedRuleCandidateId}`,
+          `rows=${retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit.currentRuleCandidateRowCount}/${retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit.rowCount}`,
+          `requirements=${retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit.acceptedRetainedRuleRequirementCount}/${retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit.retainedRuleRequirementCount}`,
+          `firstMissing=${retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit.firstAttemptMissingRetainedRuleInputs.join(",")}`,
+          `retained=${retainedPhaseHistoryCarrierPointEventOrDomainRuleAttemptAudit.retainedPointEventOrDomainRuleAttemptPass}`,
+        ].join(" ")
+      );
+    }
+    const retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit =
+      equalFrequencyAudit
+        .retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit ?? null;
+    if (retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit) {
+      console.log(
+        [
+          "retained phase-history carrier event/domain binding:",
+          retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit.status,
+          `binding=${retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit.firstAttemptBindingCandidateId}`,
+          `rows=${retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit.currentBindingCandidateRowCount}/${retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit.rowCount}`,
+          `requirements=${retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit.acceptedRetainedBindingRequirementCount}/${retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit.retainedBindingRequirementCount}`,
+          `firstMissing=${retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit.firstAttemptMissingRetainedBindingInputs.join(",")}`,
+          `retained=${retainedPhaseHistoryCarrierEventDomainBindingAttemptAudit.retainedEventDomainBindingAttemptPass}`,
+        ].join(" ")
+      );
+    }
     const sameEventTransferLiftDependencyAudit =
       equalFrequencyAudit.sameEventTransferLiftDependencyAudit ?? null;
     if (sameEventTransferLiftDependencyAudit) {
@@ -49201,6 +55754,7 @@ function printSummary(report, absoluteOutputPath) {
           sameEventTransferLiftDependencyAudit.status,
           `rows=${sameEventTransferLiftDependencyAudit.currentProxyDependencyRowCount}/${sameEventTransferLiftDependencyAudit.rowCount}`,
           `route=${sameEventTransferLiftDependencyAudit.selectedEventDomainRoute}`,
+          `eventRows=${sameEventTransferLiftDependencyAudit.retainedPhaseHistoryCarrierEventDomainCurrentTemplatePassCount}/${sameEventTransferLiftDependencyAudit.retainedPhaseHistoryCarrierEventDomainRowCount}`,
           `eventDomainAccepted=${sameEventTransferLiftDependencyAudit.retainedEventDomainAccepted}`,
           `retained=${sameEventTransferLiftDependencyAudit.retainedTransferLiftAcceptancePass}`,
         ].join(" ")
@@ -49371,6 +55925,15 @@ function assertFileExists(filePath) {
 
 function formatNumber(value) {
   return Number.isFinite(value) ? value.toPrecision(8) : String(value);
+}
+
+function formatPhaseTurns(phaseTurns) {
+  if (!phaseTurns) {
+    return "null";
+  }
+  return LAYER_ROLES.map(
+    (role) => `${role[0]}=${formatNumber(phaseTurns[role])}`
+  ).join(",");
 }
 
 function subtractVectors(left, right) {
