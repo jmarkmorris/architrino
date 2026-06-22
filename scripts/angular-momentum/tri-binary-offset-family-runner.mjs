@@ -51,10 +51,10 @@ const ENDPOINT_LINEAR_SEGMENT_CONVERGENCE_COUNTS = [16, 32, 64, 128, 256];
 const FIXED_RECEIVER_POSITION = { x: 2.5, y: 0, z: 0 };
 const DEFAULT_OUTPUT_PATH =
   ".tmp/angular-momentum-spin/tri-binary-offset-family-solver-report.json";
-const GENERAL_TRI_BINARY_SWARM_GEOMETRY_MODEL =
-  "tri-binary-noether-swarm-velocity-deformation";
+const GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL =
+  "tri-binary-noether-braid-velocity-deformation";
 const DEFORMATION_PROJECTION_CHART_FAMILY =
-  "tri-binary-noether-swarm-deformation-projection-chart-family";
+  "tri-binary-noether-braid-deformation-projection-chart-family";
 const LOW_DRIFT_SPHERICAL_LATITUDE_CHART =
   "spherical-envelope-retained-row-incidence-projection-chart";
 const MOVING_OBLATE_INCIDENCE_CHART =
@@ -63,8 +63,8 @@ const PLANAR_ALIGNMENT_LIMIT_CHART =
   "flattened-limit-effective-lever-arm-projection-chart";
 const CURRENT_EXECUTABLE_GEOMETRY_CHART =
   PLANAR_ALIGNMENT_LIMIT_CHART;
-const RETAINED_TRI_BINARY_SWARM_BRANCH_MODEL =
-  "retained-tri-binary-noether-swarm-deformation-branch";
+const RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL =
+  "retained-tri-binary-noether-braid-deformation-branch";
 
 const args = parseArgs(process.argv.slice(2));
 if (args.help) {
@@ -164,7 +164,7 @@ try {
   });
 
   const report = {
-    schema: "aaa-tri-binary-frequency-candidate-solver-report.v23",
+    schema: "aaa-tri-binary-frequency-candidate-solver-report.v24",
     generatedAt: new Date().toISOString(),
     solverBacked: true,
     claimLevel: "priority-only evidence; not retained-branch certification",
@@ -173,9 +173,9 @@ try {
     frequencyTripletNotation: createFrequencyTripletNotation(),
     layerRoleOrder: LAYER_ROLES,
     solverGeometryPublicContract: createSolverGeometryPublicContract(),
-    triBinaryNoetherSwarmGeometryModel: createTriBinaryNoetherSwarmGeometryModel(),
-    triBinaryNoetherSwarmBranchStateContract:
-      createTriBinaryNoetherSwarmBranchStateContract(),
+    triBinaryNoetherBraidGeometryModel: createTriBinaryNoetherBraidGeometryModel(),
+    triBinaryNoetherBraidBranchStateContract:
+      createTriBinaryNoetherBraidBranchStateContract(),
     solver: {
       apiVersion: SOLVER_APP_BRIDGE_API_VERSION,
       wasmLoaderPath: path.relative(rootDir, wasmLoaderPath),
@@ -246,10 +246,10 @@ function createSolverGeometryPublicContract() {
     rawSearchLayerLabels: GENERIC_TRI_BINARY_LABELS,
     roleAssignedChartOrder: "I:M:O",
     layerRoleOrder: LAYER_ROLES,
-    baseGeometryModel: GENERAL_TRI_BINARY_SWARM_GEOMETRY_MODEL,
-    primaryBranchModel: RETAINED_TRI_BINARY_SWARM_BRANCH_MODEL,
+    baseGeometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    primaryBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
     branchStateContractSchema:
-      createTriBinaryNoetherSwarmBranchStateContract().schema,
+      createTriBinaryNoetherBraidBranchStateContract().schema,
     projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
     currentExecutableChart: CURRENT_EXECUTABLE_GEOMETRY_CHART,
     physicsFacingLeverArmField: "layers[].effectiveLeverArm",
@@ -263,7 +263,7 @@ function createSolverGeometryPublicContract() {
     roleAssignmentPolicy:
       "The retained tri-binary search starts from generic binary labels. I:M:O is the role-assigned chart order used after a branch supplies the inner/middle/outer or fast/hinge/slow role map.",
     branchFirstRule:
-      "The retained tri-binary Noether swarm branch state is the primary object. Frequency triples, phase profiles, effective lever arms, and coupling rows must be evaluated as branch-state data before any projection chart is read.",
+      "The retained tri-binary Noether braid branch state is the primary object. Frequency triples, phase profiles, effective lever arms, and coupling rows must be evaluated as branch-state data before any projection chart is read.",
     deformationFamilyRule:
       "All reduced chart rows must be read as coordinate projections of the same velocity-deformation family: low-drift spherical or near-spherical support with retained angular-momentum/principal-direction rows, moving oblate spheroidal envelope, and flattened alignment limit.",
     frequencyExtractionRule:
@@ -271,23 +271,23 @@ function createSolverGeometryPublicContract() {
     phaseTopologyRule:
       "A 120-degree phase identity is only a phase-row identity until plane normals, phase-bundle holonomy, and a sector discriminator classify the retained branch as coplanar cyclic or near-orthogonal tri-binary.",
     rule:
-      "Read effectiveLeverArm as the speed-row projection of the general tri-binary Noether swarm branch state; read solverGeometry.effectiveLeverArmChartCoordinate only as the flattened-limit chart coordinate used by the current reduced solver.",
+      "Read effectiveLeverArm as the speed-row projection of the general tri-binary Noether braid branch state; read solverGeometry.effectiveLeverArmChartCoordinate only as the flattened-limit chart coordinate used by the current reduced solver.",
     fixedSphereOrbitClaim: false,
     nestedShellRadiusClaim: false,
     compatibility:
-      "Old report consumers that read layers[].radius, layers[].solverGeometry.circularSourceRadius, layers[].solverGeometryRadius, geometryLiftTarget, retainedLiftTarget, or currentExecutableChart as the retained model must migrate; no compatibility shim is emitted in v22 reports.",
+      "Old report consumers that read layers[].radius, layers[].solverGeometry.circularSourceRadius, layers[].solverGeometryRadius, geometryLiftTarget, retainedLiftTarget, or currentExecutableChart as the retained model must migrate; no compatibility shim is emitted in v24 reports.",
   };
 }
 
-function createTriBinaryNoetherSwarmBranchStateContract() {
+function createTriBinaryNoetherBraidBranchStateContract() {
   return {
-    schema: "aaa-tri-binary-noether-swarm-branch-state-contract.v3",
-    model: GENERAL_TRI_BINARY_SWARM_GEOMETRY_MODEL,
-    primaryBranchModel: RETAINED_TRI_BINARY_SWARM_BRANCH_MODEL,
+    schema: "aaa-tri-binary-noether-braid-branch-state-contract.v4",
+    model: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    primaryBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
     primaryObject:
-      "retained tri-binary Noether swarm branch state B_3B(q,v)",
+      "retained tri-binary Noether braid branch state B_3B(q,v)",
     modelingRule:
-      "Every frequency-triplet family is a hypothesis about one retained tri-binary Noether swarm branch. Spherical, oblate, and flattened rows are projections of that branch state, not competing source models.",
+      "Every frequency-triplet family is a hypothesis about one retained tri-binary Noether braid branch. Spherical, oblate, and flattened rows are projections of that branch state, not competing source models.",
     branchStateCoordinates: [
       "generic_binary_labels_B1_B2_B3",
       "frequency_or_action_variables_omega_a_J_a",
@@ -330,19 +330,19 @@ function createTriBinaryNoetherSwarmBranchStateContract() {
     phaseTopologyRule:
       "The planar Z3 identity 1+exp(i2pi/3)+exp(i4pi/3)=0 is a coplanar cyclic-sector test unless a retained plane-normal and holonomy ledger lifts it to the selected tri-binary sector.",
     couplingRule:
-      "Rows for whatever couples to the tri-binary Noether swarm must attach to the same retained event or positive-width retained domain as the branch state, with shared phase, root, wake, momentum, angular-momentum, and energy ledgers.",
+      "Rows for whatever couples to the tri-binary Noether braid must attach to the same retained event or positive-width retained domain as the branch state, with shared phase, root, wake, momentum, angular-momentum, and energy ledgers.",
     retainedBranchClaim: false,
   };
 }
 
-function createTriBinaryNoetherSwarmGeometryModel() {
+function createTriBinaryNoetherBraidGeometryModel() {
   return {
-    schema: "aaa-tri-binary-noether-swarm-velocity-deformation-model.v5",
-    model: GENERAL_TRI_BINARY_SWARM_GEOMETRY_MODEL,
-    primaryBranchModel: RETAINED_TRI_BINARY_SWARM_BRANCH_MODEL,
+    schema: "aaa-tri-binary-noether-braid-velocity-deformation-model.v6",
+    model: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    primaryBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
     branchStateContractSchema:
-      createTriBinaryNoetherSwarmBranchStateContract().schema,
-    primaryObject: "retained tri-binary Noether swarm branch state B_3B(q,v)",
+      createTriBinaryNoetherBraidBranchStateContract().schema,
+    primaryObject: "retained tri-binary Noether braid branch state B_3B(q,v)",
     claimLevel:
       "primary retained branch geometry target; current runner evaluates only a reduced projection chart",
     inputBinaryLabels: ["1", "2", "3"],
@@ -382,27 +382,27 @@ function createTriBinaryNoetherSwarmGeometryModel() {
       "role_assignment_map",
       "coupling_rows_to_external_assemblies",
     ],
-    projectionChartFamily: createTriBinaryNoetherSwarmProjectionChartFamily(),
+    projectionChartFamily: createTriBinaryNoetherBraidProjectionChartFamily(),
     currentExecutableChart: CURRENT_EXECUTABLE_GEOMETRY_CHART,
     chartRole:
-      "currently executable flattened-limit projection view of the retained velocity-deforming tri-binary Noether swarm branch; it populates causal roots, self-hit spans, phase rows, and lever-arm speed projections but is not the retained branch model",
+      "currently executable flattened-limit projection view of the retained velocity-deforming tri-binary Noether braid branch; it populates causal roots, self-hit spans, phase rows, and lever-arm speed projections but is not the retained branch model",
     projectionCharts:
-      createTriBinaryNoetherSwarmProjectionChartFamily().projectionCharts,
+      createTriBinaryNoetherBraidProjectionChartFamily().projectionCharts,
     retainedBranchClaim: false,
   };
 }
 
-function createTriBinaryNoetherSwarmProjectionChartFamily() {
+function createTriBinaryNoetherBraidProjectionChartFamily() {
   return {
-    schema: "aaa-tri-binary-noether-swarm-projection-chart-family.v4",
+    schema: "aaa-tri-binary-noether-braid-projection-chart-family.v5",
     family: DEFORMATION_PROJECTION_CHART_FAMILY,
-    baseGeometryModel: GENERAL_TRI_BINARY_SWARM_GEOMETRY_MODEL,
-    primaryBranchModel: RETAINED_TRI_BINARY_SWARM_BRANCH_MODEL,
+    baseGeometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    primaryBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
     branchStateContractSchema:
-      createTriBinaryNoetherSwarmBranchStateContract().schema,
+      createTriBinaryNoetherBraidBranchStateContract().schema,
     deformationCoordinate: "xi(v)=R_parallel(v)/R_perp(v)",
     governingRule:
-      "The solver must model the retained tri-binary Noether swarm branch state first, then evaluate deformation-regime projection charts as reduced views. No spherical, oblate, or flattened chart is allowed to become the source model by itself.",
+      "The solver must model the retained tri-binary Noether braid branch state first, then evaluate deformation-regime projection charts as reduced views. No spherical, oblate, or flattened chart is allowed to become the source model by itself.",
     projectionCharts: [
       {
         chart: LOW_DRIFT_SPHERICAL_LATITUDE_CHART,
@@ -687,7 +687,7 @@ function createFamilyDefinitions({ integerLockPairs = [] } = {}) {
       phaseProfile,
       rationale:
         phaseProfile.priorityPhaseProfile === true
-          ? "Tests whether a common binary frequency can still support distinct outer, middle, and inner effective lever-arm/speed rows through branch energy and a triadic 120-degree phase profile inside the retained velocity-deforming tri-binary Noether swarm projection family."
+          ? "Tests whether a common binary frequency can still support distinct outer, middle, and inner effective lever-arm/speed rows through branch energy and a triadic 120-degree phase profile inside the retained velocity-deforming tri-binary Noether braid projection family."
           : `Controls the equal-frequency phase hypothesis with ${phaseProfile.label} while keeping frequency and effective lever-arm speed rows fixed.`,
     })),
     {
@@ -741,11 +741,11 @@ function createPolicyDefinitions() {
 
 function createSolverArchitectureSummary() {
   return {
-    schema: "aaa-tri-binary-frequency-runner-architecture.v13",
+    schema: "aaa-tri-binary-frequency-runner-architecture.v14",
     status:
       "retained_branch_state_primary_velocity_deformation_projection_family_policy_family_layers",
     designRule:
-      "New frequency candidates enter as family descriptors and policy descriptors under the primary retained velocity-deforming tri-binary Noether swarm branch-state model; raw search rows are generic B_1:B_2:B_3 rows, I:M:O is emitted only as a role-assigned chart after role assignment, and legacy outer-normalized forms are translation metadata only.",
+      "New frequency candidates enter as family descriptors and policy descriptors under the primary retained velocity-deforming tri-binary Noether braid branch-state model; raw search rows are generic B_1:B_2:B_3 rows, I:M:O is emitted only as a role-assigned chart after role assignment, and legacy outer-normalized forms are translation metadata only.",
     familyLayer:
       "Families declare role-assigned I:M:O indices only as candidate role-map projections, plus search lanes, candidate class, and optional phase profile; equal-frequency families include a priority triadic-120 phase profile plus phase-control profiles, including a weighted-action opposition control surfaced by the finite phase-lattice audit.",
     policyLayer:
@@ -753,15 +753,15 @@ function createSolverArchitectureSummary() {
     layerModel:
       "Layer specs are generated as branch-state projection rows from policy models and family indices before invoking the shared reduced circular-path and self-hit solver calls.",
     geometryModel:
-      "The base geometry model is the retained tri-binary Noether swarm branch state: low-drift spherical or near-spherical support with retained angular-momentum/principal-direction rows, moving oblate spheroidal envelope, and flattened alignment limit. The current executable geometry is one reduced flattened-limit projection view in that deformation family, not the primary model.",
+      "The base geometry model is the retained tri-binary Noether braid branch state: low-drift spherical or near-spherical support with retained angular-momentum/principal-direction rows, moving oblate spheroidal envelope, and flattened alignment limit. The current executable geometry is one reduced flattened-limit projection view in that deformation family, not the primary model.",
     primaryBranchModel:
-      "The retained tri-binary Noether swarm branch state is the object being modeled; projection charts only supply reduced executable views until the full retained branch replay exists.",
-    branchStateContract: createTriBinaryNoetherSwarmBranchStateContract(),
-    projectionChartFamily: createTriBinaryNoetherSwarmProjectionChartFamily(),
+      "The retained tri-binary Noether braid branch state is the object being modeled; projection charts only supply reduced executable views until the full retained branch replay exists.",
+    branchStateContract: createTriBinaryNoetherBraidBranchStateContract(),
+    projectionChartFamily: createTriBinaryNoetherBraidProjectionChartFamily(),
     publicGeometryContract:
       "Report rows emit effectiveLeverArm for physics-facing speed rows and solverGeometry.effectiveLeverArmChartCoordinate for the flattened-limit chart coordinate; ambiguous radius and circular-source public fields are intentionally removed.",
     requiredGeneralCase:
-      "A retained replay must solve the all-layer branch state, velocity deformation from spherical or near-spherical support with retained angular-momentum/principal-direction rows through oblate spheroidal envelope toward flattened limit, phase bundle, causal-root ledger, wake ledger, branch energy/action state, total momentum/angular-momentum ledgers, and coupling rows to whatever interacts with the tri-binary Noether swarm.",
+      "A retained replay must solve the all-layer branch state, velocity deformation from spherical or near-spherical support with retained angular-momentum/principal-direction rows through oblate spheroidal envelope toward flattened limit, phase bundle, causal-root ledger, wake ledger, branch energy/action state, total momentum/angular-momentum ledgers, and coupling rows to whatever interacts with the tri-binary Noether braid.",
     retainedRowSetRule:
       "Specialized candidates such as I:M:O=(f,f,f) must expose a named retained row-set scaffold before acceptance checks. Frequency, deformation, phase, plane-sector, energy/action, wake, coupling, total-momentum, and total-angular-momentum rows cannot be mixed from different retained branch charts.",
     frequencyCertificationLayer:
@@ -792,9 +792,9 @@ function createPolicyCatalog() {
       frequencyModel: "index-proportional",
       speedModel: "fixed-speed-regime",
       phaseModel: "default-offsets",
-      geometryModel: GENERAL_TRI_BINARY_SWARM_GEOMETRY_MODEL,
+      geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
       geometryChart: CURRENT_EXECUTABLE_GEOMETRY_CHART,
-      retainedBranchModel: RETAINED_TRI_BINARY_SWARM_BRANCH_MODEL,
+      retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
       auditRows: ["offset-family-branch-certificate-proxy"],
     },
     {
@@ -806,24 +806,24 @@ function createPolicyCatalog() {
       frequencyModel: "index-proportional",
       speedModel: "index-ratio-to-middle",
       phaseModel: "default-offsets",
-      geometryModel: GENERAL_TRI_BINARY_SWARM_GEOMETRY_MODEL,
+      geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
       geometryChart: CURRENT_EXECUTABLE_GEOMETRY_CHART,
-      retainedBranchModel: RETAINED_TRI_BINARY_SWARM_BRANCH_MODEL,
+      retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
       auditRows: ["offset-family-branch-certificate-proxy"],
     },
     {
       id: "equal-frequency",
       description:
-        "Tests the equal-frequency energy-radius candidate. All three binary angular frequencies are equal, speed rows remain sub-field, field-speed, and super-field through distinct retained effective lever-arm projections inside the velocity-deforming tri-binary Noether swarm, and phase-profile families include the priority 0/120/240 degree triadic profile plus controls.",
+        "Tests the equal-frequency energy-radius candidate. All three binary angular frequencies are equal, speed rows remain sub-field, field-speed, and super-field through distinct retained effective lever-arm projections inside the velocity-deforming tri-binary Noether braid, and phase-profile families include the priority 0/120/240 degree triadic profile plus controls.",
       theoremStatus:
         "priority-only energy-radius-phase probe; not a retained phase-lock or hbar derivation",
       compatibleSearchLanes: ["equal-frequency-energy-radius"],
       frequencyModel: "common-middle-index",
       speedModel: "fixed-speed-regime",
       phaseModel: "family-profile-or-triadic-120",
-      geometryModel: GENERAL_TRI_BINARY_SWARM_GEOMETRY_MODEL,
+      geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
       geometryChart: CURRENT_EXECUTABLE_GEOMETRY_CHART,
-      retainedBranchModel: RETAINED_TRI_BINARY_SWARM_BRANCH_MODEL,
+      retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
       auditRows: [
         "equal_frequency_common_clock",
         "equal_frequency_lever_arm_speed_relation",
@@ -23132,7 +23132,7 @@ function createReportBranchChartProjection(cases, retainedLineagePhaseProbe) {
     populatedRowCounts,
     blockedRowCounts,
     nextCertificateObject:
-      "Retained Noether swarm branch chart with common active-row lineage, phase continuation, torque, wake pullback, vector partition, energy routing, and section-stability rows.",
+      "Retained Noether braid branch chart with common active-row lineage, phase continuation, torque, wake pullback, vector partition, energy routing, and section-stability rows.",
   };
 }
 
@@ -39820,7 +39820,7 @@ function createEqualFrequencyEnergyRadiusAudit(cases) {
       retainedFrequencyPhasePacket,
     });
   return {
-    schema: "aaa-equal-frequency-energy-radius-audit.v23",
+    schema: "aaa-equal-frequency-energy-radius-audit.v24",
     claimLevel:
       "priority-only equal-frequency energy-radius-phase audit; not retained-branch certification or hbar derivation",
     priority: "high",
@@ -39858,14 +39858,14 @@ function createEqualFrequencyEnergyRadiusAudit(cases) {
     retainedFrequencyPhasePacket,
     retainedReplayAcceptanceBlueprint,
     solverGeometryPublicContract: createSolverGeometryPublicContract(),
-    branchStateContract: createTriBinaryNoetherSwarmBranchStateContract(),
-    projectionChartFamily: createTriBinaryNoetherSwarmProjectionChartFamily(),
+    branchStateContract: createTriBinaryNoetherBraidBranchStateContract(),
+    projectionChartFamily: createTriBinaryNoetherBraidProjectionChartFamily(),
     oldOffsetProxyIssue:
       "The legacy self_root_parity_index_proxy checks n_I-n_M=2, so it is not the acceptance score for I:M:O=(f,f,f).",
     executableChartScope:
-      "The current executable rows are evaluated in the flattened-limit projection view of the velocity-deformation projection-chart family. Equal-frequency audit rows interpret the reduced chart coordinate as an effective lever-arm projection of the retained tri-binary Noether swarm branch state, not as a global shell radius or the complete retained geometry.",
+      "The current executable rows are evaluated in the flattened-limit projection view of the velocity-deformation projection-chart family. Equal-frequency audit rows interpret the reduced chart coordinate as an effective lever-arm projection of the retained tri-binary Noether braid branch state, not as a global shell radius or the complete retained geometry.",
     generalTriBinarySwarmGeometryTarget:
-      "A retained tri-binary Noether swarm replay must solve the general branch state and deformation-continuation map first, then declare how each effective lever arm is produced from low-drift spherical-envelope retained-row coordinates, moving oblate envelope, flattened alignment limit, shell-radius map, retained plane incidence, retained energy-radius branch map, or coupling-dependent projection map.",
+      "A retained tri-binary Noether braid replay must solve the general branch state and deformation-continuation map first, then declare how each effective lever arm is produced from low-drift spherical-envelope retained-row coordinates, moving oblate envelope, flattened alignment limit, shell-radius map, retained plane incidence, retained energy-radius branch map, or coupling-dependent projection map.",
     returnPeriodFrequencyTarget:
       "The equal-frequency claim must be certified by retained branch return periods or declared locked harmonics. The current circular chart compares omega_f with speed/effective-lever-arm rows only because those rows are explicitly defined in the chart.",
     phaseTopologySectorTarget:
@@ -39899,11 +39899,11 @@ function createEqualFrequencyRetainedReplayTarget({
     claimLevel:
       "retained replay target for the equal-frequency candidate; not an accepted energy-radius law",
     canonicalFamily: "I:M:O=(f,f,f)",
-    geometryModel: GENERAL_TRI_BINARY_SWARM_GEOMETRY_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
     projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
     currentExecutableChart: CURRENT_EXECUTABLE_GEOMETRY_CHART,
-    branchStateContract: createTriBinaryNoetherSwarmBranchStateContract(),
-    primaryBranchModel: RETAINED_TRI_BINARY_SWARM_BRANCH_MODEL,
+    branchStateContract: createTriBinaryNoetherBraidBranchStateContract(),
+    primaryBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
     roleAssignmentPolicy:
       "Start from generic binary labels (1,2,3). Attach I:M:O only as a retained role map or chart projection, not as a pre-search ordering assumption.",
     retainedBranchState:
@@ -39911,7 +39911,7 @@ function createEqualFrequencyRetainedReplayTarget({
     retainedRowSetTarget: {
       rowSetId: "S_eq",
       claimLevel:
-        "one retained finite branch chart for the same six-body polarity-neutral Noether swarm",
+        "one retained finite branch chart for the same six-body polarity-neutral Noether braid",
       requiredSameRecordRows: [
         "raw_labeled_B_1_B_2_B_3_rows",
         "six_body_polarity_neutral_inventory",
@@ -40186,8 +40186,8 @@ function createEqualFrequencyDeformationRegimeAudit(priorityCaseSummaries) {
     schema: "aaa-equal-frequency-deformation-regime-audit.v2",
     claimLevel:
       "reduced deformation-regime support audit; not retained branch deformation proof",
-    retainedBranchModel: RETAINED_TRI_BINARY_SWARM_BRANCH_MODEL,
-    geometryModel: GENERAL_TRI_BINARY_SWARM_GEOMETRY_MODEL,
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
     projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
     executableProjectionChart: CURRENT_EXECUTABLE_GEOMETRY_CHART,
     auditedCaseCount: rows.length,
@@ -40444,10 +40444,10 @@ function createEqualFrequencyDeformationContinuationAudit(deformationRows) {
     schema: "aaa-equal-frequency-deformation-continuation-audit.v1",
     claimLevel:
       "reduced kinematic branch-state projection-continuation witness; not retained branch dynamics",
-    retainedBranchModel: RETAINED_TRI_BINARY_SWARM_BRANCH_MODEL,
-    geometryModel: GENERAL_TRI_BINARY_SWARM_GEOMETRY_MODEL,
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
     branchStateContractSchema:
-      createTriBinaryNoetherSwarmBranchStateContract().schema,
+      createTriBinaryNoetherBraidBranchStateContract().schema,
     projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
     deformationCoordinate: "xi=R_parallel/R_perp",
     generalContinuationTarget:
@@ -40681,8 +40681,8 @@ function createEqualFrequencyActionLedgerAudit(priorityCaseSummaries) {
     schema: "aaa-equal-frequency-action-ledger-audit.v2",
     claimLevel:
       "reduced circular-path kinetic action-scale proxy; not retained same-event hbar ledger",
-    retainedBranchModel: RETAINED_TRI_BINARY_SWARM_BRANCH_MODEL,
-    geometryModel: GENERAL_TRI_BINARY_SWARM_GEOMETRY_MODEL,
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
     projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
     executableProjectionChart: CURRENT_EXECUTABLE_GEOMETRY_CHART,
     auditedCaseCount: rows.length,
@@ -40994,10 +40994,10 @@ function createEqualFrequencyPhaseDeformationBalanceAudit(caseSummaries) {
     schema: "aaa-equal-frequency-phase-deformation-balance-audit.v2",
     claimLevel:
       "phase/deformation weight-balance proxy; not retained phase row-set identity or momentum closure",
-    retainedBranchModel: RETAINED_TRI_BINARY_SWARM_BRANCH_MODEL,
-    geometryModel: GENERAL_TRI_BINARY_SWARM_GEOMETRY_MODEL,
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
     branchStateContractSchema:
-      createTriBinaryNoetherSwarmBranchStateContract().schema,
+      createTriBinaryNoetherBraidBranchStateContract().schema,
     projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
     balanceEquation:
       "sum_a W_a exp(i phi_a)=0, with W_a supplied by the retained branch momentum/action/coupling ledger",
@@ -41262,8 +41262,8 @@ function createEqualFrequencyPhaseLatticeAudit(priorityCaseSummaries) {
     schema: "aaa-equal-frequency-phase-lattice-audit.v1",
     claimLevel:
       "finite reduced phase-lattice audit; not retained phase-lock or branch-sector selection",
-    retainedBranchModel: RETAINED_TRI_BINARY_SWARM_BRANCH_MODEL,
-    geometryModel: GENERAL_TRI_BINARY_SWARM_GEOMETRY_MODEL,
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
     projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
     currentExecutableChart: CURRENT_EXECUTABLE_GEOMETRY_CHART,
     canonicalFamily: "I:M:O=(f,f,f)",
@@ -41510,10 +41510,10 @@ function createEqualFrequencyReturnPeriodFrequencyAudit(caseSummaries) {
     schema: "aaa-equal-frequency-return-period-frequency-audit.v1",
     claimLevel:
       "reduced-chart return-period identity check; not retained branch frequency certification",
-    retainedBranchModel: RETAINED_TRI_BINARY_SWARM_BRANCH_MODEL,
-    geometryModel: GENERAL_TRI_BINARY_SWARM_GEOMETRY_MODEL,
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
     branchStateContractSchema:
-      createTriBinaryNoetherSwarmBranchStateContract().schema,
+      createTriBinaryNoetherBraidBranchStateContract().schema,
     currentExecutableChart: CURRENT_EXECUTABLE_GEOMETRY_CHART,
     frequencyCertificationEquation:
       "omega_a=2pi/P_a or omega_a=k_a(2pi/P_branch) with declared locked harmonic k_a on the retained history record",
@@ -41634,10 +41634,10 @@ function createEqualFrequencyPlaneSectorDiscriminatorAudit(caseSummaries) {
     schema: "aaa-equal-frequency-plane-sector-discriminator-audit.v1",
     claimLevel:
       "current-chart plane-sector discriminator; not retained plane topology or holonomy certificate",
-    retainedBranchModel: RETAINED_TRI_BINARY_SWARM_BRANCH_MODEL,
-    geometryModel: GENERAL_TRI_BINARY_SWARM_GEOMETRY_MODEL,
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
     branchStateContractSchema:
-      createTriBinaryNoetherSwarmBranchStateContract().schema,
+      createTriBinaryNoetherBraidBranchStateContract().schema,
     currentExecutableChart: CURRENT_EXECUTABLE_GEOMETRY_CHART,
     discriminatorEquation:
       "D_plane=N_I dot (N_M x N_O), paired with phase-bundle holonomy to classify coplanar cyclic versus near-orthogonal tri-binary sectors",
@@ -41661,7 +41661,7 @@ function createEqualFrequencyPlaneSectorDiscriminatorAudit(caseSummaries) {
     interpretation:
       "The sampled flattened-limit chart puts all three phase rows in one plane, so the triadic 120-degree cancellation is classified as a coplanar cyclic Z3 sector in the executable chart. It is not evidence for a near-orthogonal tri-binary sector until retained plane normals or bivectors, phase-bundle holonomy, and D_plane are replayed from the branch state.",
     retainedReplayBurden:
-      "Replay N_a or bivectors, D_plane, and phase-bundle holonomy from the retained tri-binary Noether swarm branch state on the same row set as the frequency, phase, deformation, and angular-momentum ledgers.",
+      "Replay N_a or bivectors, D_plane, and phase-bundle holonomy from the retained tri-binary Noether braid branch state on the same row set as the frequency, phase, deformation, and angular-momentum ledgers.",
     retainedBranchClaim: false,
   };
 }
@@ -41827,8 +41827,8 @@ function createEqualFrequencyRetainedRowSetScaffold({
     schema: "aaa-equal-frequency-retained-row-set-scaffold.v1",
     claimLevel:
       "retained row-set identity scaffold for equal-frequency replay; no retained row-set acceptance",
-    retainedBranchModel: RETAINED_TRI_BINARY_SWARM_BRANCH_MODEL,
-    geometryModel: GENERAL_TRI_BINARY_SWARM_GEOMETRY_MODEL,
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
     projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
     canonicalFamily: "I:M:O=(f,f,f)",
     retainedRowSetId: "S_eq",
@@ -41837,7 +41837,7 @@ function createEqualFrequencyRetainedRowSetScaffold({
     roleAssignmentPolicy:
       "Preserve raw labeled B_1,B_2,B_3 rows first. Attach I:M:O only as a retained role map or quotient-sector projection after the branch chart supplies it.",
     rowSetDefinition:
-      "S_eq is one finite retained branch chart for the same six-body polarity-neutral Noether swarm, including path-history rows, causal-root ledger, wake-tail rows, energy/action rows, momentum and angular-momentum rows, phase data, retained plane-orientation data, response-center data, group-velocity row, and Noether sea record.",
+      "S_eq is one finite retained branch chart for the same six-body polarity-neutral Noether braid, including path-history rows, causal-root ledger, wake-tail rows, energy/action rows, momentum and angular-momentum rows, phase data, retained plane-orientation data, response-center data, group-velocity row, and Noether sea record.",
     requiredRowGroups: [
       {
         groupId: "identity_and_inventory",
@@ -42010,8 +42010,8 @@ function createEqualFrequencyRetainedEventDomainLiftTarget({
     schema: "aaa-equal-frequency-retained-event-domain-lift-target.v1",
     claimLevel:
       "equal-frequency retained event/domain lift target; no accepted retained event or positive-width domain",
-    retainedBranchModel: RETAINED_TRI_BINARY_SWARM_BRANCH_MODEL,
-    geometryModel: GENERAL_TRI_BINARY_SWARM_GEOMETRY_MODEL,
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
     projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
     currentExecutableChart: CURRENT_EXECUTABLE_GEOMETRY_CHART,
     canonicalFamily: "I:M:O=(f,f,f)",
@@ -42020,7 +42020,7 @@ function createEqualFrequencyRetainedEventDomainLiftTarget({
     eventDomainRequirement:
       "S_eq must be evaluated on one accepted retained point event or on a positive-width retained time domain before equal-frequency rows can count as one branch replay.",
     currentChartScope:
-      "The current equal-frequency evidence is fixed-receiver reduced-chart root, phase, lever-arm, frequency, plane-sector, and action-proxy data. It is not binary-to-binary retained history and not a full Noether swarm event/domain replay.",
+      "The current equal-frequency evidence is fixed-receiver reduced-chart root, phase, lever-arm, frequency, plane-sector, and action-proxy data. It is not binary-to-binary retained history and not a full Noether braid event/domain replay.",
     currentProxyPriorityCaseCount: priorityCaseCount,
     currentProxyEvidenceRows,
     currentProxyEvidencePopulatedCount,
@@ -42275,8 +42275,8 @@ function createEqualFrequencyRetainedReplayAcceptanceBlueprint({
     schema: "aaa-equal-frequency-retained-replay-acceptance-blueprint.v5",
     claimLevel:
       "retained replay acceptance residual blueprint; no retained branch acceptance",
-    retainedBranchModel: RETAINED_TRI_BINARY_SWARM_BRANCH_MODEL,
-    geometryModel: GENERAL_TRI_BINARY_SWARM_GEOMETRY_MODEL,
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
     canonicalFamily: "I:M:O=(f,f,f)",
     priorityCaseCount,
     acceptanceResidualVector:
@@ -42469,8 +42469,8 @@ function createEqualFrequencyFirstRetainedPacketTemplate({
     schema: "aaa-equal-frequency-first-retained-packet-template.v2",
     claimLevel:
       "first retained packet row templates for equal-frequency replay; no retained row acceptance",
-    retainedBranchModel: RETAINED_TRI_BINARY_SWARM_BRANCH_MODEL,
-    geometryModel: GENERAL_TRI_BINARY_SWARM_GEOMETRY_MODEL,
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
     canonicalFamily: "I:M:O=(f,f,f)",
     retainedRowSetScaffoldSchema: retainedRowSetScaffold?.schema ?? null,
     retainedRowSetScaffoldStatus: retainedRowSetScaffold?.status ?? null,
@@ -42533,8 +42533,8 @@ function createEqualFrequencyRetainedFrequencyPhasePacket({
     schema: "aaa-equal-frequency-retained-frequency-phase-packet.v1",
     claimLevel:
       "same-row-set frequency and phase-sector packet candidate for equal-frequency replay; current proxy populated, retained acceptance missing",
-    retainedBranchModel: RETAINED_TRI_BINARY_SWARM_BRANCH_MODEL,
-    geometryModel: GENERAL_TRI_BINARY_SWARM_GEOMETRY_MODEL,
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
     projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
     currentExecutableChart: CURRENT_EXECUTABLE_GEOMETRY_CHART,
     canonicalFamily: "I:M:O=(f,f,f)",
@@ -43088,10 +43088,10 @@ function createEqualFrequencyPhaseProfileResponseAggregate(phaseResponses) {
     claimLevel:
       "aggregate fixed-receiver executable-chart response by phase profile; not retained phase selection",
     geometryModel:
-      phaseResponses[0]?.geometryModel ?? GENERAL_TRI_BINARY_SWARM_GEOMETRY_MODEL,
+      phaseResponses[0]?.geometryModel ?? GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
     geometryChart: phaseResponses[0]?.geometryChart ?? CURRENT_EXECUTABLE_GEOMETRY_CHART,
     retainedBranchModel:
-      phaseResponses[0]?.retainedBranchModel ?? RETAINED_TRI_BINARY_SWARM_BRANCH_MODEL,
+      phaseResponses[0]?.retainedBranchModel ?? RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
     caseCount: phaseResponses.length,
     layerMeans: Object.fromEntries(
       LAYER_ROLES.map((role) => [
@@ -43190,9 +43190,9 @@ function createEqualFrequencyPhaseResponseDiscrimination(phaseProfileRanking) {
     schema: "aaa-equal-frequency-phase-response-discrimination.v2",
     claimLevel:
       "phase-profile comparison inside the current executable chart; not retained branch selection",
-    geometryModel: GENERAL_TRI_BINARY_SWARM_GEOMETRY_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
     geometryChart: CURRENT_EXECUTABLE_GEOMETRY_CHART,
-    retainedBranchModel: RETAINED_TRI_BINARY_SWARM_BRANCH_MODEL,
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
     status:
       responseSignatureDistinguished && phaseDeltaMeanDistinguished
         ? "phase_profiles_distinguished_by_root_signature_and_phase_delta_means"
@@ -43207,7 +43207,7 @@ function createEqualFrequencyPhaseResponseDiscrimination(phaseProfileRanking) {
     phaseSpreadMeanRangeByLayer,
     profileRows,
     retainedInterpretation:
-      "Use this to choose the next retained tri-binary Noether swarm replay targets. It cannot by itself accept or reject a phase profile because it is still a fixed-receiver chart response, not binary-to-binary retained row-set identity.",
+      "Use this to choose the next retained tri-binary Noether braid replay targets. It cannot by itself accept or reject a phase profile because it is still a fixed-receiver chart response, not binary-to-binary retained row-set identity.",
     retainedBranchClaim: false,
   };
 }
@@ -43238,7 +43238,7 @@ function createFrequencyTripletSearchSummary(cases) {
     const familyBucket = familyBuckets.get(item.familyId) ?? {
       familyId: item.familyId,
       familyLabel: item.familyLabel,
-      familyCanonicalRelation: item.familyCanonicalRelation,
+      familyRoleAssignedRelation: item.familyRoleAssignedRelation,
       legacyOuterNormalizedRelation: item.legacyOuterNormalizedRelation,
       candidateClass: item.candidateClass,
       integerLock: item.integerLock,
@@ -43299,7 +43299,7 @@ function createFrequencyTripletSearchSummary(cases) {
         caseId: item.caseId,
         familyId: item.familyId,
         familyLabel: item.familyLabel,
-        familyCanonicalRelation: item.familyCanonicalRelation,
+        familyRoleAssignedRelation: item.familyRoleAssignedRelation,
         legacyOuterNormalizedRelation: item.legacyOuterNormalizedRelation,
         candidateClass: item.candidateClass,
         integerLock: item.integerLock,
@@ -43331,7 +43331,7 @@ function createFrequencyTripletSearchSummary(cases) {
     .map((bucket) => ({
       familyId: bucket.familyId,
       familyLabel: bucket.familyLabel,
-      familyCanonicalRelation: bucket.familyCanonicalRelation,
+      familyRoleAssignedRelation: bucket.familyRoleAssignedRelation,
       legacyOuterNormalizedRelation: bucket.legacyOuterNormalizedRelation,
       candidateClass: bucket.candidateClass,
       integerLock: bucket.integerLock,
@@ -43367,10 +43367,11 @@ function createFrequencyTripletSearchSummary(cases) {
     equalFrequencyEnergyRadiusAudit,
   });
   return {
-    schema: "aaa-tri-binary-frequency-triplet-search-summary.v23",
+    schema: "aaa-tri-binary-frequency-triplet-search-summary.v25",
     claimLevel:
-      "candidate search summary over canonical I:M:O frequency triplets; not retained-branch certification",
-    canonicalOrder: "I:M:O",
+      "candidate search summary over generic tri-binary rows with role-assigned I:M:O projections; not retained-branch certification",
+    rawSearchLabels: GENERIC_TRI_BINARY_LABELS,
+    roleAssignedOrder: "I:M:O",
     legacyOuterNormalizedOrder: "f_O:f_M:f_I",
     caseCount: cases.length,
     familyCount: familyBuckets.size,
@@ -43459,23 +43460,24 @@ function createFrequencyTripletCandidateSetReview({
     }),
   ];
   return {
-    schema: "aaa-tri-binary-frequency-triplet-candidate-set-review.v19",
+    schema: "aaa-tri-binary-frequency-triplet-candidate-set-review.v21",
     claimLevel:
-      "canonical I:M:O candidate-set review; not retained branch selection",
-    canonicalOrder: "I:M:O",
+      "generic-row candidate-set review with role-assigned I:M:O projections; not retained branch selection",
+    rawSearchLabels: GENERIC_TRI_BINARY_LABELS,
+    roleAssignedOrder: "I:M:O",
     legacyOrderDisposition:
       "O:M:I appears only as outer-normalized translation metadata; it is not the primary solver order.",
     comparisonAxisReview: createFrequencyTripletComparisonAxisReview(rows),
     rows,
     reviewFinding:
-      "The old offset proxy ranks the middle-hinge family first, but it is not a disposition rule for I:M:O=(f,f,f). Equal frequency is now a separate energy-radius-phase candidate whose retained replay target is the general velocity-deforming tri-binary Noether swarm branch state, with low-drift spherical-envelope, oblate-envelope, and flattened-limit rows only as projection views.",
+      "The old offset proxy ranks the role-assigned middle-hinge family first, but it is not a disposition rule for the raw equal-frequency row with optional I:M:O=(f,f,f) role map. Equal frequency is a separate energy-radius-phase candidate whose retained replay target is the general velocity-deforming tri-binary Noether braid branch state, with low-drift spherical-envelope, oblate-envelope, and flattened-limit rows only as projection views.",
     retainedBranchClaim: false,
   };
 }
 
 function createFrequencyTripletComparisonAxisReview(rows) {
   return {
-    schema: "aaa-tri-binary-frequency-triplet-comparison-axis-review.v1",
+    schema: "aaa-tri-binary-frequency-triplet-comparison-axis-review.v2",
     claimLevel:
       "reduced comparison-axis summary; not a retained branch selector",
     axes: [
@@ -43489,7 +43491,7 @@ function createFrequencyTripletComparisonAxisReview(rows) {
     rows: rows.map((row) => ({
       candidateKey: row.candidateKey,
       reviewRole: row.reviewRole,
-      canonicalRelation: row.canonicalRelation,
+      roleAssignedRelation: row.roleAssignedRelation,
       sampledCaseCount: row.sampledCaseCount,
       frequencyEvidenceStatus: row.frequencyEvidenceStatus ?? null,
       radiusVelocityEvidenceStatus: row.radiusVelocityEvidenceStatus ?? null,
@@ -43506,7 +43508,8 @@ function createEqualFrequencyCandidateReviewRow(equalFrequencyEnergyRadiusAudit)
   return {
     candidateKey: "equal-frequency-energy-radius",
     reviewRole: "priority equal-frequency energy-radius candidate",
-    canonicalRelation: "(I,M,O)=(f,f,f)",
+    rawSearchRelation: "(B_1,B_2,B_3)=(f,f,f)",
+    roleAssignedRelation: "(I,M,O)=(f,f,f)",
     legacyOuterNormalizedRelation: "f_O:f_M:f_I=f:f:f",
     sampledCaseCount: equalFrequencyEnergyRadiusAudit.caseCount,
     priorityPhaseProfileId:
@@ -43762,7 +43765,7 @@ function createEqualFrequencyCandidateReviewRow(equalFrequencyEnergyRadiusAudit)
       equalFrequencyEnergyRadiusAudit.retainedReplayAcceptanceBlueprint
         ?.blockingConditionIds ?? null,
     nextRetainedBurden:
-      "derive same retained row-set identity S_eq, the velocity-deformation branch-continuation map, retained energy-radius/effective-lever-arm law, branch return-period or locked-harmonic frequency certificate, plane-topology sector discriminator, effective inertia or wake/coupling action partition, phase-deformation weight balance, and binary-to-binary phase row-set identity under the general tri-binary Noether swarm geometry",
+      "derive same retained row-set identity S_eq, the velocity-deformation branch-continuation map, retained energy-radius/effective-lever-arm law, branch return-period or locked-harmonic frequency certificate, plane-topology sector discriminator, effective inertia or wake/coupling action partition, phase-deformation weight balance, and binary-to-binary phase row-set identity under the general tri-binary Noether braid geometry",
     retainedBranchClaim: false,
   };
 }
@@ -43791,7 +43794,7 @@ function createFamilyCandidateReviewRow({
   return {
     candidateKey: family.familyId,
     reviewRole,
-    canonicalRelation: family.familyCanonicalRelation,
+    roleAssignedRelation: family.familyRoleAssignedRelation,
     legacyOuterNormalizedRelation: family.legacyOuterNormalizedRelation,
     candidateClass: family.candidateClass,
     sampledCaseCount: family.caseCount,
@@ -43852,7 +43855,7 @@ function createGeneralIntegerLockCandidateReviewRow({ families, ranks }) {
   return {
     candidateKey: "general-integer-lock-controls",
     reviewRole: "finite general m:n integer-lock controls",
-    canonicalRelation: "(I,M,O)=(nf,mf,f) with 1<m<n",
+    roleAssignedRelation: "(I,M,O)=(nf,mf,f) with 1<m<n",
     legacyOuterNormalizedRelation: "f_O:f_M:f_I=f:mf:nf",
     sampledFamilyCount: families.length,
     sampledCaseCount: families.reduce((total, family) => total + family.caseCount, 0),
@@ -43860,7 +43863,7 @@ function createGeneralIntegerLockCandidateReviewRow({ families, ranks }) {
     phaseLockSelfRootParityTargetPassCount,
     bestRankedFamilies: rankedFamilies.slice(0, 5).map(({ family, rank }) => ({
       familyId: family.familyId,
-      canonicalRelation: family.familyCanonicalRelation,
+      roleAssignedRelation: family.familyRoleAssignedRelation,
       integerLock: family.integerLock,
       branchCertificateRank: rank,
       selfRootParityTargetCoverage: family.selfRootParityTargetCoverage,
@@ -43953,7 +43956,7 @@ function printSummary(report, absoluteOutputPath) {
   console.log(`tri-binary offset family solver report: ${relOutputPath}`);
   console.log(`solver-backed cases: ${report.cases.length}`);
   console.log(
-    `frequency triplet families: ${report.frequencyTripletSearch?.familyCount ?? "unknown"} (canonical order I:M:O)`
+    `frequency triplet families: ${report.frequencyTripletSearch?.familyCount ?? "unknown"} (raw B_1:B_2:B_3 rows; role-assigned I:M:O projections)`
   );
   const topBranchCertificateFamily =
     report.frequencyTripletSearch?.bestByBranchCertificate ?? null;
@@ -43962,7 +43965,7 @@ function printSummary(report, absoluteOutputPath) {
       [
         "branch-certificate top family:",
         topBranchCertificateFamily.familyId,
-        topBranchCertificateFamily.familyLabel,
+        `roleAssigned=${topBranchCertificateFamily.familyLabel}`,
         `selfRootParityCoverage=${formatNumber(
           topBranchCertificateFamily.selfRootParityTargetCoverage
         )}`,

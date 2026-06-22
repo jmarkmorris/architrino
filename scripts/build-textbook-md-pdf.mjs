@@ -355,10 +355,24 @@ function buildReadingCopies(tocRoot) {
   return copies;
 }
 
+function listExistingReadingCopyPaths() {
+  const absoluteOutputDir = path.join(rootDir, OUTPUT_DIR);
+  if (!fs.existsSync(absoluteOutputDir)) {
+    return [];
+  }
+  return fs
+    .readdirSync(absoluteOutputDir, { withFileTypes: true })
+    .filter((entry) => entry.isFile() && entry.name.endsWith(".md"))
+    .map((entry) => `${OUTPUT_DIR}/${entry.name}`)
+    .sort((a, b) => a.localeCompare(b));
+}
+
 const toc = readJson(TEXTBOOK_TOC_PATH);
 const copies = toc?.tocRoot ? buildReadingCopies(toc.tocRoot) : new Map();
 const drift = [];
 const wrote = [];
+const removed = [];
+const staleOutputs = listExistingReadingCopyPaths().filter((outputPath) => !copies.has(outputPath));
 
 for (const [outputPath, text] of copies.entries()) {
   const absolutePath = path.join(rootDir, outputPath);
@@ -373,14 +387,28 @@ for (const [outputPath, text] of copies.entries()) {
   }
 }
 
+if (mode === "write") {
+  for (const outputPath of staleOutputs) {
+    fs.rmSync(path.join(rootDir, outputPath), { force: true });
+    removed.push(outputPath);
+  }
+}
+
 console.log(`build-textbook-md-pdf mode: ${mode}`);
 console.log(`- Reading copies: ${copies.size}`);
 if (wrote.length) {
   console.log(`- Wrote reading copies: ${wrote.length}`);
 }
+if (removed.length) {
+  console.log(`- Removed stale reading copies: ${removed.length}`);
+}
 if (mode === "check" && drift.length) {
   console.log("- Drift detected:");
   drift.forEach((outputPath) => console.log(`  - ${outputPath}`));
+}
+if (mode === "check" && staleOutputs.length) {
+  console.log("- Stale generated reading copies detected:");
+  staleOutputs.forEach((outputPath) => console.log(`  - ${outputPath}`));
 }
 if (warnings.length) {
   console.log("\nwarnings:");
@@ -392,6 +420,6 @@ if (errors.length) {
 }
 console.log(`\nsummary: ${errors.length} error(s), ${warnings.length} warning(s)`);
 
-if (errors.length || (mode === "check" && drift.length)) {
+if (errors.length || (mode === "check" && (drift.length || staleOutputs.length))) {
   process.exit(1);
 }

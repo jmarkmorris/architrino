@@ -16,6 +16,10 @@ const CHECKS = [
     args: ["scripts/build-scene-graph.mjs", "--check", "--strict"],
   },
   {
+    name: "Validate generated textbook reading copies",
+    args: ["scripts/build-textbook-md-pdf.mjs", "--check"],
+  },
+  {
     name: "Validate generated iOS textbook package",
     args: ["scripts/export-ios-textbook-package.mjs", "--check", "--strict"],
   },
