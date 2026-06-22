@@ -809,7 +809,7 @@ D_{ij}(s)
 \sum_{t_0\in\mathcal{C}_{ij}(t;s)}
 \operatorname{sign}\!\left(\partial_{t_0}F_{ij}(t_0;s)\right)
 $$
-is locally constant, while the unsigned counts $N_s$ and $M_p$ track the ranks of the same-source and partner-root rows. This is the binary version of the [assembly topological charge](assembly-topological-charge.md): the later tri-binary label $(N_s,M_p,c_1)$ uses the two root-complex integers from this chapter and the phase-bundle Chern data from the resonance-lock chart. A solver that reports only raw root counts loses the signed degree needed to distinguish a true branch fold from a harmless relabeling of rows.
+is locally constant, while the unsigned counts $N_s$ and $M_p$ track the ranks of the same-source and partner-root rows. This is the binary version of the [assembly topological charge](assembly-topological-charge.md): the later tri-binary label $(N_s,M_p,c_1)$ uses the two root-complex integers from this chapter and the phase-return degree data from the resonance-lock chart. A solver that reports only raw root counts loses the signed degree needed to distinguish a true branch fold from a harmless relabeling of rows.
 
 #### Parameter-Free Circular Branch Packet
 

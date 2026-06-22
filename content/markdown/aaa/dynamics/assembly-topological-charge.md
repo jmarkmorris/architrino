@@ -1,6 +1,6 @@
 # Assembly Topological Charge
 
-This chapter gives a first-class home to the candidate topological label of an architrino assembly. The label combines the causal-root ledger of the delayed dynamics with the phase-bundle winding of a resonance-locked nested shell braid. Its purpose is to state what can be computed from a retained branch chart, what is invariant inside a nondegenerate branch domain, and what remains a theorem target before the label can serve as a topological periodic table of assemblies. The general search domain that emits candidate tri-binary branch charts is developed in [Tri-Binary Configuration Space](tri-binary-configuration-space.md).
+This chapter gives a first-class home to the candidate topological label of an architrino assembly. The label combines the causal-root ledger of the delayed dynamics with the phase-return degree data of a resonance-locked nested shell braid. Its purpose is to state what can be computed from a retained branch chart, what is invariant inside a nondegenerate branch domain, and what remains a theorem target before the label can serve as a topological periodic table of assemblies. The general search domain that emits candidate tri-binary branch charts is developed in [Tri-Binary Configuration Space](tri-binary-configuration-space.md).
 
 The compact notation is
 $$
@@ -12,7 +12,7 @@ M_p,\,
 c_1
 \right)
 $$
-where $N_s$ counts active self-hit roots, $M_p$ counts active partner-hit roots, and $c_1$ denotes the phase-bundle winding data of the retained resonance lock. For a tri-binary lock this last entry is usually a pair
+where $N_s$ counts active self-hit roots, $M_p$ counts active partner-hit roots, and $c_1$ denotes the established phase-entry slot of the retained resonance lock. In this chapter that slot means return-map degree data unless a later two-torus curvature chart is explicitly supplied. For a tri-binary lock this last entry is usually a pair
 $$
 c_1=(m,n)\in\mathbb{Z}^2
 $$
@@ -78,9 +78,39 @@ D_p
 $$
 are not extra entries in the compact assembly topological charge, but they are required side data and form the conserved-degree refinement $[\mathfrak B]_{\mathrm{deg}}$. A solver that reports only $N_s$ and $M_p$ has counted roots without proving which opposite-sign pairs can be born, die, or persist under deformation.
 
-The geometric reading is intersection-theoretic. On a lifted finite-memory strip, each connected retained causal-locus component has an oriented intersection number with a generic receiver-time fiber. Summing those oriented intersections in the self and partner sectors gives $D_s$ and $D_p$; summing their absolute values gives $N_s$ and $M_p$. This is the bridge to [Causal Action Functional](causal-action-functional.md#geometrictopological-framework): the same causal-locus components that carry action-counting weight also supply the signed root degrees used by the assembly topological charge.
+Equivalently, each source sector is a $\mathbb{Z}_2$-graded two-term root complex
+$$
+C_{\sigma,\bullet}
+=
+C_{\sigma,+}\oplus C_{\sigma,-},
+\qquad
+\sigma\in\{s,p\}.
+$$
+The unsigned ledgers $N_s$ and $M_p$ are ranks of a chosen presentation. They are useful live-channel counts, but they are not the conserved quantities across fold-pair surgery. The conserved local degree is the Euler characteristic
+$$
+\chi(C_{\sigma,\bullet})
+=
+\dim C_{\sigma,+}-\dim C_{\sigma,-}
+=
+D_\sigma.
+$$
+A generic fold birth adds one positive and one negative generator, so the presentation rank changes by two while $\chi(C_{\sigma,\bullet})$ is unchanged.
 
-The third entry comes from the phase bundle of a resonance-locked tri-binary. Let $\theta^O,\theta^M,\theta^I$ be the outer, middle, and inner phase coordinates on the retained return chart. Exact integer closure over one outer period $T_O$ means
+The geometric reading is intersection-theoretic. On a lifted finite-memory strip, each connected retained causal-locus component has an oriented intersection number with a generic receiver-time fiber. Let $\mathcal L_\sigma$ be the retained causal-locus chain in sector $\sigma\in\{s,p\}$ and let $F_{t_0}$ be a generic receiver-time fiber. Then
+$$
+D_\sigma
+=
+\left\langle[\mathcal L_\sigma],[F_{t_0}]\right\rangle.
+$$
+On a regular one-parameter family,
+$$
+\frac{d}{d\lambda}
+\left\langle[\mathcal L_\sigma(\lambda)],[F_{t_0}]\right\rangle
+=0.
+$$
+Fold-pair births and deaths appear as null-homologous bigons with local contributions $+1-1=0$. Summing oriented intersections in the self and partner sectors gives $D_s$ and $D_p$; summing their absolute values gives $N_s$ and $M_p$. This is the bridge to [Causal Action Functional](causal-action-functional.md#geometrictopological-framework): the same causal-locus components that carry action-counting weight also supply the signed root degrees used by the assembly topological charge.
+
+The third entry comes from the phase-return chart of a resonance-locked tri-binary. Let $\theta^O,\theta^M,\theta^I$ be the outer, middle, and inner phase coordinates on the retained return chart. Exact integer closure over one outer period $T_O$ means
 $$
 \theta_O(t+T_O)=\theta_O(t)+2\pi,
 $$
@@ -95,19 +125,37 @@ $$
 \qquad
 \vartheta_I=d\theta^I-n\,d\theta^O
 $$
-have integer holonomy and become flat on a promoted phase-locked branch. The shorthand
+have integer holonomy and become flat on a promoted phase-locked branch. Let $\rho_O:S^1_O\to\mathfrak B$ be one retained outer return cycle. The shorthand
 $$
-c_1[\theta^O,\theta^M,\theta^I]=(m,n)
+c_1[\theta^O,\theta^M,\theta^I]
+=
+\left(
+\operatorname{deg}(\theta^M\circ\rho_O),\,
+\operatorname{deg}(\theta^I\circ\rho_O)
+\right)
+=(m,n)
 $$
-records this phase-bundle winding data. The dyadic candidate is the outer-normalized case $(m,n)=(2,4)$, equivalently canonical `I:M:O` frequency order $4:2:1$.
+records this phase-return degree data. The dyadic candidate is the outer-normalized case $(m,n)=(2,4)$, equivalently canonical `I:M:O` frequency order $4:2:1$.
 
-The notation $c_1$ is justified only when the phase-bundle construction is part of the retained chart. The base is the outer phase circle $S^1_O=\mathbb{R}/T_O\mathbb{Z}$. The middle and inner phases define two $S^1$ fibers over that base through the return map, with clutching data
+The symbol $c_1$ is retained as the established phase-entry notation, but it should not be read here as a literal first Chern class of principal circle bundles over the outer phase circle. Such bundles over $S^1_O$ are topologically trivial because $H^2(S^1_O;\mathbb{Z})=0$. The current claim is the degree-pair claim
 $$
-\theta^M\mapsto \theta^M+2\pi m,
-\qquad
-\theta^I\mapsto \theta^I+2\pi n.
+(m,n)\in[S^1_O,S^1]\times[S^1_O,S^1]\cong\mathbb{Z}^2,
 $$
-Equivalently, the retained chart carries two circle bundles over $S^1_O$, and $m,n$ are their Euler/Chern winding numbers. Without this bundle-and-return-map construction, $(m,n)$ is only a frequency-ratio report, not a phase-bundle entry of the assembly topological charge.
+with flat relative-phase recurrence on the retained return chart. If a later chart supplies a genuine two-torus curvature form, its first Chern number can be compared with this degree pair. Until then, $c_1=(m,n)$ means return-map degree data, not a curvature integral.
+
+The phase entry is also conditional on the three binary planes remaining independent. If $\hat{\mathbf n}_O,\hat{\mathbf n}_M,\hat{\mathbf n}_I$ are the retained orbital-plane normals, define
+$$
+D_{\mathrm{plane}}
+=
+\det\!\left[
+\hat{\mathbf n}_O\ \hat{\mathbf n}_M\ \hat{\mathbf n}_I
+\right].
+$$
+The degree pair is admissible only when
+$$
+|D_{\mathrm{plane}}|\ge \delta_{\mathrm{plane}}>0.
+$$
+When this floor fails, the three phases no longer supply an independent tri-binary return chart, so $c_1$ must be suspended rather than compared across the degeneracy.
 
 ## Candidate Definition
 
@@ -118,9 +166,9 @@ For a finite-$\eta$ branch chart $\mathfrak B$, the assembly topological charge 
 3. Positive transversality floors away from declared finite caustic transits.
 4. Finite memory depth and positive inactive-root gaps.
 5. A finite local-to-global gluing result for the branch chart, or an explicit finite multistability family.
-6. For a tri-binary, integer phase closure and flat relative-phase connection.
+6. For a tri-binary, integer phase closure, flat relative-phase connection, and a plane-independence floor $|D_{\mathrm{plane}}|\ge\delta_{\mathrm{plane}}>0$.
 7. A return-map stability certificate, such as a Floquet or Conley-style branch certificate, after quotienting only true symmetry directions.
-8. If the middle layer is treated as a caustic-grazing carrier, regulator-stable middle-caustic rows showing that the reported root degrees and phase-bundle entry do not depend on the finite-$\eta$ convention in the promoted limit.
+8. If the middle layer is treated as a caustic-grazing carrier, regulator-stable middle-caustic rows showing that the reported root degrees and phase-return entry do not depend on the finite-$\eta$ convention in the promoted limit.
 
 Under those conditions the compact assembly topological charge is
 $$
@@ -134,13 +182,13 @@ c_1[\theta^O,\theta^M,\theta^I]
 \in
 \mathbb{Z}_{\ge0}\times\mathbb{Z}_{\ge0}\times\mathbb{Z}^2.
 $$
-For a non-tri-binary branch, the partial assembly topological charge $(N_s,M_p)$ may be recorded, but $c_1$ is not assigned until a phase-bundle chart exists.
+For a non-tri-binary branch, the partial assembly topological charge $(N_s,M_p)$ may be recorded, but $c_1$ is not assigned until a phase-return chart exists.
 
 A useful refinement is a branch-preserving chirality label
 $$
 \chi_{\mathrm{fr}}\in\mathbb{Z}_2.
 $$
-This is not part of the base triple until the branch chart supplies a deformation-stable handed marker, such as framed self-linking parity or a certified maximal-curvature-binary circulation sign. It is the natural place to record handedness, but it must not be substituted for the root and phase-bundle data.
+This is not part of the base triple until the branch chart supplies a deformation-stable handed marker, such as framed self-linking parity or a certified maximal-curvature-binary circulation sign. It must be invariant under the same branch-preserving deformations that keep $(N_s,M_p,c_1)$ fixed, and it may flip only at an independent framing wall $\Sigma_{\mathrm{frame}}$ where the nonsingular framing floor fails. It is the natural place to record handedness, but it must not be substituted for the root and phase-return data. The two signs of the maximal-curvature-binary circulation are introduced in [Binary Dynamics](binary-dynamics.md#emergent-properties-and-measurement-standards).
 
 ## Invariance And Allowed Transitions
 
@@ -154,7 +202,19 @@ $$
 $$
 for an ordinary fold-pair event in the corresponding sector.
 
-Cusp or higher singular strata are not automatically governed by the generic fold law. They require a separate regularized normal form before their ledger surgery can be promoted. Likewise, $c_1=(m,n)$ remains fixed under deformation only while the phase connection stays flat and the phase torus returns without monodromy. A loss of resonance lock, a plane-degeneracy transition, or a branch-fold event that changes the return chart can change the phase-bundle entry.
+Cusp or higher singular strata are not automatically governed by the generic fold law. They require a separate regularized normal form before their ledger surgery can be promoted. Likewise, $c_1=(m,n)$ remains fixed under deformation only while the return-map degree pair is unchanged, the relative-phase connection stays flat, and the plane-independence floor remains positive. A loss of resonance lock, a plane-degeneracy transition, or a branch-fold event that changes the return chart can change the phase entry.
+
+Near generic walls the transition stratification is product-like:
+$$
+\Sigma_{\mathrm{charge}}
+=
+\Sigma_{\mathrm{root}}
+\cup
+\Sigma_{\mathrm{phase}}
+\cup
+\Sigma_{\mathrm{plane}},
+$$
+with $\Sigma_{\mathrm{frame}}$ added when $\chi_{\mathrm{fr}}$ is part of the certified report. Away from intersections these are transverse codimension-one walls, so exactly one entry of the compact label or one certified refinement changes. Codimension-two intersections encode simultaneous events, such as a cusp, a root-plus-phase transition, or a plane-plus-phase transition; those require their own normal form before any ledger surgery is inferred.
 
 The transition catalogue therefore has a native form:
 
@@ -163,12 +223,12 @@ The transition catalogue therefore has a native form:
 | Branch-preserving deformation | 0 on the retained chart | No change to $(N_s,M_p,c_1)$ or $(D_s,D_p,c_1)$ | Positive floors, finite memory, stable gluing |
 | Self-root fold | 1 generically | $\Delta N_s=\pm2$, $\Delta D_s=0$ generically | Fold normal form and post-transit chart |
 | Partner-root fold | 1 generically | $\Delta M_p=\pm2$, $\Delta D_p=0$ generically | Fold normal form and post-transit chart |
-| Phase-lock jump | 1 for a resonance crossing | $\Delta c_1\ne0$ | Holonomy change and return-map transition |
-| Plane-degeneracy transition | 1 generically, higher with imposed symmetry | Phase-bundle chart may lose rank before $c_1$ can be compared | Orbital-plane determinant and return-chart continuation |
+| Phase-lock jump | 1 for a resonance crossing | $\Delta c_1\ne0$ | Degree/holonomy change and return-map transition |
+| Plane-degeneracy transition | 1 generically, higher with imposed symmetry | Phase-return chart may lose rank before $c_1$ can be compared | Orbital-plane determinant and return-chart continuation |
 | Framing or chirality flip | 1 or higher, depending on the framing chart | $\Delta\chi_{\mathrm{fr}}\ne0$ | Framed-linking or handedness transition certificate |
 | Cusp or deeper singular stratum | 2 or higher generically | Not inferred from fold law | Singular-stratum chart and regulator-stable transition data |
 
-This is why the triple belongs in one object. The root ledgers describe which delayed causal channels are live, while the phase-bundle entry describes how the multi-layer branch returns to itself. Both are characteristic data of the same retained causal-root sheaf: local root sections, overlap gluing, and phase holonomy must agree before an assembly label is promoted.
+This is why the triple belongs in one object. The root ledgers describe which delayed causal channels are live, while the phase-return entry describes how the multi-layer branch returns to itself. Both are characteristic data of the same retained causal-root sheaf: local root sections, overlap gluing, and phase degree/holonomy must agree before an assembly label is promoted.
 
 ## Role In The Assembly Atlas
 
@@ -188,7 +248,7 @@ together with its stability margins, energy/wake ledger, and gluing status.
 The intended use is constrained:
 
 - $(N_s,M_p)$ records the binding-channel census: self-hit channels, partner-hit channels, and their signed degrees.
-- $c_1=(m,n)$ records the resonance-lock winding of a promoted tri-binary branch.
+- $c_1=(m,n)$ records the resonance-lock return-map degree pair of a promoted tri-binary branch.
 - $\chi_{\mathrm{fr}}$ records handedness only after a framed handed marker is certified.
 - Physical particle identity, generation structure, spin-statistics, exclusion, and Standard Model quantum numbers are downstream mappings, not consequences of the notation alone.
 
@@ -206,8 +266,8 @@ A branch solver should extract the assembly topological charge in this order:
 5. Compute $N_s$, $M_p$, $D_s$, and $D_p$.
 6. Compute the lifted-strip fiber-intersection degrees that realize $D_s$ and $D_p$ whenever the causal-locus chart is available.
 7. Track fold, caustic, cusp, or inactive-gap transition metadata.
-8. For tri-binary branches, compute phase holonomy $(m,n)$ from the returned phase chart and verify that it comes from the phase-bundle return map rather than from frequency ratios alone.
-9. If a middle caustic-grazing carrier is used, test that the signed degrees and phase-bundle entry are stable under the declared $\eta$ refinement.
+8. For tri-binary branches, compute phase degree/holonomy $(m,n)$ from the returned phase chart, verify the floor $|D_{\mathrm{plane}}|\ge\delta_{\mathrm{plane}}>0$, and show that $(m,n)$ comes from the return map rather than from frequency ratios alone.
+9. If a middle caustic-grazing carrier is used, test that the signed degrees and phase-return entry are stable under the declared $\eta$ refinement.
 10. Test gluing and finite continuation cardinality for the local charts.
 11. Test the return-map stability gap off true symmetry directions.
 12. Report $[\mathfrak B]_{\mathrm{top}}$ only after the same retained rows pass these checks.
@@ -221,7 +281,7 @@ The established pieces are local:
 - The delay-map theorem pack in [Master Equation](master-equation.md#delay-map-theorem-pack-formalized) proves signed degree invariance on regular families and the generic opposite-sign fold-pair law.
 - The signed causal-root complex in [Master Equation](master-equation.md#signed-causal-root-complex) supplies the local chain-complex reading of active roots.
 - [Binary Dynamics](binary-dynamics.md#super-field-speed-root-ledgers-and-resonance-lock) supplies the self-hit and partner-hit ledger notation used by $(N_s,M_p)$.
-- [Dyadic Resonance Lock](dyadic-resonance-lock.md#exact-integer-phase-closure) supplies the integer phase-closure data whose winding is recorded as $c_1=(m,n)$.
+- [Dyadic Resonance Lock](dyadic-resonance-lock.md#exact-integer-phase-closure) supplies the integer phase-closure data whose return-map degree pair is recorded as $c_1=(m,n)$.
 - [Effective Lagrangian](effective-lagrangian.md#topological-constraints-and-assembly-stability) uses the same topological sector in the action and mass-gap theorem target.
 
 The open proof burden is global:
@@ -229,8 +289,8 @@ The open proof burden is global:
 - prove that a stable assembly realizes a fixed assembly topological charge over a finite branch domain;
 - prove gluing of the local causal-root charts into a finite labeled continuation family;
 - prove a positive stability gap for the assembly topological charge sector;
-- determine whether the entries are independent or constrained by radial balance, phase flatness, and Noether sea response, starting with the reachable theorem target that $c_1=(m,n)$ constrains the parity or degree pattern of the layerwise self-hit ledger through the lifted-strip fiber-intersection formula;
-- prove that caustic-grazing middle-carrier rows have regulator-stable signed degrees and phase-bundle entries, so the assembly topological charge does not depend on the finite-$\eta$ convention used to regularize the hinge;
+- determine whether the entries are independent or constrained by radial balance, phase flatness, and Noether sea response, starting with the reachable theorem target that for a layer winding $k_a\in\{1,m,n\}$ the layerwise self-hit degree obeys a parity or lower-bound law $D_s^{(a)}\equiv f(k_a)\pmod 2$ derived from the circular self-hit fold-birth sequence and the lifted-strip fiber-intersection formula;
+- prove that caustic-grazing middle-carrier rows have regulator-stable signed degrees and phase-return entries, so the assembly topological charge does not depend on the finite-$\eta$ convention used to regularize the hinge;
 - map any certified sectors to observer-level particle quantum numbers without fitting the labels afterward.
 
 The chapter should therefore be read as the canonical definition and proof target for assembly topological charge, not as the completed topological periodic table.

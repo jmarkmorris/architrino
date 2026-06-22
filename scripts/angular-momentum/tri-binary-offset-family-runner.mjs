@@ -164,7 +164,7 @@ try {
   });
 
   const report = {
-    schema: "aaa-tri-binary-frequency-candidate-solver-report.v35",
+    schema: "aaa-tri-binary-frequency-candidate-solver-report.v38",
     generatedAt: new Date().toISOString(),
     solverBacked: true,
     claimLevel: "priority-only evidence; not retained-branch certification",
@@ -275,7 +275,7 @@ function createSolverGeometryPublicContract() {
     fixedSphereOrbitClaim: false,
     nestedShellRadiusClaim: false,
     compatibility:
-      "Old report consumers that read layers[].radius, layers[].solverGeometry.circularSourceRadius, layers[].solverGeometryRadius, geometryLiftTarget, retainedLiftTarget, or currentExecutableChart as the retained model must migrate; no compatibility shim is emitted in v35 reports.",
+      "Old report consumers that read layers[].radius, layers[].solverGeometry.circularSourceRadius, layers[].solverGeometryRadius, geometryLiftTarget, retainedLiftTarget, or currentExecutableChart as the retained model must migrate; no compatibility shim is emitted in v37 reports.",
   };
 }
 
@@ -39784,6 +39784,13 @@ function createEqualFrequencyEnergyRadiusAudit(cases) {
     createEqualFrequencyWakeCouplingTransferTargetAudit({
       sliceEnergyActionIndependenceAudit,
     });
+  const wakeCouplingTransferPhaseOriginAudit =
+    createEqualFrequencyWakeCouplingTransferPhaseOriginAudit({
+      wakeCouplingTransferTargetAudit,
+      phaseProfileRanking,
+      phaseResponseDiscrimination,
+      phaseLatticeAudit,
+    });
   const actionLedgerAudit =
     createEqualFrequencyActionLedgerAudit(priorityCaseSummaries);
   const energyAngularMomentumClosureAudit =
@@ -39855,7 +39862,7 @@ function createEqualFrequencyEnergyRadiusAudit(cases) {
       retainedFrequencyPhasePacket,
     });
   return {
-    schema: "aaa-equal-frequency-energy-radius-audit.v34",
+    schema: "aaa-equal-frequency-energy-radius-audit.v37",
     claimLevel:
       "priority-only equal-frequency energy-radius-phase audit; not retained-branch certification or hbar derivation",
     priority: "high",
@@ -39888,6 +39895,7 @@ function createEqualFrequencyEnergyRadiusAudit(cases) {
     fieldSpeedHingeSliceSelectionFunctionalAudit,
     sliceEnergyActionIndependenceAudit,
     wakeCouplingTransferTargetAudit,
+    wakeCouplingTransferPhaseOriginAudit,
     actionLedgerAudit,
     energyAngularMomentumClosureAudit,
     phaseDeformationBalanceAudit,
@@ -41400,6 +41408,393 @@ function createEqualFrequencyWakeCouplingTransferTargetAudit({
     retainedReplayBurden:
       "Derive the signed middle-to-outer angular-momentum transfer from retained wake, coupling, recoil, or branch-energy rows on the same retained event or positive-width retained domain. The current audit only states the transfer target implied by the reduced slice action fractions.",
     retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyWakeCouplingTransferPhaseOriginAudit({
+  wakeCouplingTransferTargetAudit,
+  phaseProfileRanking,
+  phaseResponseDiscrimination,
+  phaseLatticeAudit,
+}) {
+  const targetTransferFractions =
+    wakeCouplingTransferTargetAudit?.selectedTransferSignature ?? {};
+  const transferLawScan =
+    wakeCouplingTransferTargetAudit?.transferLawScan ?? null;
+  const pairEqualizationSummary =
+    transferLawScan?.lawSummaries?.find(
+      (summary) =>
+        summary.lawId === "quadratic_middle_outer_pair_equalization"
+    ) ?? null;
+  const triadicProfile =
+    phaseProfileRanking?.find(
+      (profile) => profile.phaseProfileId === "triadic-120"
+    ) ?? null;
+  const triadicPhaseTurns =
+    triadicProfile?.phaseProfile?.phaseTurnsByLayer ?? {};
+  const middleToOuterForwardTurn =
+    Number.isFinite(triadicPhaseTurns.middle) &&
+    Number.isFinite(triadicPhaseTurns.outer)
+      ? normalizeTurn(triadicPhaseTurns.outer - triadicPhaseTurns.middle)
+      : null;
+  const triadicMiddleToOuterOrientationPass =
+    Number.isFinite(middleToOuterForwardTurn) &&
+    Math.abs(middleToOuterForwardTurn - 1 / 3) <= ROOT_TOLERANCE;
+  const triadicProfileResponse =
+    phaseResponseDiscrimination?.profileRows?.find(
+      (row) => row.phaseProfileId === "triadic-120"
+    ) ?? null;
+  const phaseDeltaMeans =
+    triadicProfileResponse?.phaseDeltaMeanByLayer ?? {};
+  const middleOuterPhaseDeltaGap =
+    Number.isFinite(phaseDeltaMeans.middle) &&
+    Number.isFinite(phaseDeltaMeans.outer)
+      ? phaseDeltaMeans.middle - phaseDeltaMeans.outer
+      : null;
+  const phaseDeltaPredictedTransferFractions = {
+    inner: 0,
+    middle: middleOuterPhaseDeltaGap,
+    outer: Number.isFinite(middleOuterPhaseDeltaGap)
+      ? -middleOuterPhaseDeltaGap
+      : null,
+  };
+  const phaseDeltaCandidate = createWakeCouplingTransferOriginCandidate({
+    candidateId: "fixed_receiver_phase_delta_gap",
+    sourceClass: "phase_response_near_diagnostic",
+    formula:
+      "Delta ell_M=mean(delta_phi_M)-mean(delta_phi_O), Delta ell_O=-Delta ell_M",
+    predictedTransferFractions: phaseDeltaPredictedTransferFractions,
+    targetTransferFractions,
+    retainedEligible: false,
+    note:
+      "This uses fixed-receiver phase-at-hit means, so it can only suggest a wake-return or phase-delay direction. It is not binary-to-binary retained phase evidence.",
+  });
+  const directPhaseOnlyCandidate = createWakeCouplingTransferOriginCandidate({
+    candidateId: "triadic_phase_only_orientation",
+    sourceClass: "phase_only_direction_without_magnitude",
+    formula:
+      "phi_I,phi_M,phi_O=(0,1/3,2/3) supplies cyclic order only; no transfer magnitude",
+    predictedTransferFractions: {
+      inner: 0,
+      middle: null,
+      outer: null,
+    },
+    targetTransferFractions,
+    retainedEligible: false,
+    note:
+      "The triadic phase profile gives a middle-to-outer cyclic orientation in the current role map, but phase-only data do not determine the 7/100 magnitude.",
+  });
+  const quadraticActionGapCandidate = createWakeCouplingTransferOriginCandidate({
+    candidateId: "quadratic_unit_inertia_action_gap",
+    sourceClass: "action_fraction_quadratic_gap_exact_current_proxy",
+    formula:
+      "Delta ell_O=-Delta ell_M=(rho_M^2-rho_O^2)/(2 sum_a rho_a^2)",
+    predictedTransferFractions: targetTransferFractions,
+    targetTransferFractions,
+    retainedEligible: false,
+    note:
+      "This is exact on the selected hinge slices through unit-inertia action fractions. It is not yet a retained wake/coupling mechanism.",
+  });
+  const phaseWakeKernelAnsatzAudit =
+    createEqualFrequencyPhaseWakeKernelAnsatzAudit({
+      phaseProfileRanking,
+      transferLawScan,
+      targetTransferFractions,
+    });
+  const targetMagnitude = Number.isFinite(targetTransferFractions.outer)
+    ? Math.abs(targetTransferFractions.outer)
+    : null;
+  const phaseDeltaMagnitude = Number.isFinite(middleOuterPhaseDeltaGap)
+    ? Math.abs(middleOuterPhaseDeltaGap)
+    : null;
+  const phaseDeltaToTargetMagnitudeRatio =
+    Number.isFinite(phaseDeltaMagnitude) &&
+    Number.isFinite(targetMagnitude) &&
+    targetMagnitude > ROOT_TOLERANCE
+      ? phaseDeltaMagnitude / targetMagnitude
+      : null;
+  const phaseDeltaDirectionMatchesTransfer =
+    Number.isFinite(middleOuterPhaseDeltaGap) &&
+    Number.isFinite(targetTransferFractions.middle) &&
+    Math.sign(middleOuterPhaseDeltaGap) ===
+      Math.sign(targetTransferFractions.middle);
+  const rootWeightedActionProfileRowId =
+    phaseLatticeAudit?.rootWeightedActionProfileRowId ?? null;
+  const rootWeightedActionControlIsMiddleOuterOpposition =
+    rootWeightedActionProfileRowId === "phase-lattice-12-i0-m6-o6";
+  const candidateRows = [
+    directPhaseOnlyCandidate,
+    phaseDeltaCandidate,
+    quadraticActionGapCandidate,
+  ];
+  return {
+    schema: "aaa-equal-frequency-wake-coupling-transfer-phase-origin-audit.v3",
+    claimLevel:
+      "current phase/action provenance scan for the wake/coupling transfer target; not retained phase or wake/coupling law acceptance",
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
+    canonicalFamily: "I:M:O=(f,f,f)",
+    sourceWakeCouplingTransferTargetAuditSchema:
+      wakeCouplingTransferTargetAudit?.schema ?? null,
+    sourceWakeCouplingTransferLawScanSchema: transferLawScan?.schema ?? null,
+    sourcePhaseResponseDiscriminationSchema:
+      phaseResponseDiscrimination?.schema ?? null,
+    sourcePhaseLatticeAuditSchema: phaseLatticeAudit?.schema ?? null,
+    selectedTransferSliceIds:
+      wakeCouplingTransferTargetAudit?.selectedTransferSliceIds ?? [],
+    selectedTransferEntryCount:
+      wakeCouplingTransferTargetAudit?.selectedTransferEntryCount ?? 0,
+    targetTransferFractions,
+    triadicPhaseTurns,
+    middleToOuterForwardTurn,
+    triadicMiddleToOuterOrientationPass,
+    phaseDeltaMeans,
+    middleOuterPhaseDeltaGap,
+    phaseDeltaDirectionMatchesTransfer,
+    phaseDeltaToTargetMagnitudeRatio,
+    phaseDeltaCandidateMaxAbsResidual: phaseDeltaCandidate.maxAbsResidual,
+    quadraticActionGapSelectedExactPass:
+      pairEqualizationSummary?.selectedExactPass ?? false,
+    quadraticActionGapExactSelectedCount:
+      pairEqualizationSummary?.exactSelectedPassCount ?? 0,
+    quadraticActionGapExactControlCount:
+      pairEqualizationSummary?.exactControlPassCount ?? 0,
+    rootWeightedActionProfileRowId,
+    rootWeightedActionControlIsMiddleOuterOpposition,
+    phaseWakeKernelAnsatzAudit,
+    candidateRows,
+    retainedPhaseOriginAcceptedCount: 0,
+    status:
+      phaseWakeKernelAnsatzAudit?.priorityProfileExactPass === true &&
+      phaseWakeKernelAnsatzAudit?.exactControlProfileCount === 0
+        ? "phase_oriented_action_gap_ansatz_exact_current_proxy_retained_kernel_missing"
+        : pairEqualizationSummary?.selectedExactPass === true &&
+      phaseDeltaDirectionMatchesTransfer === true &&
+      phaseDeltaCandidate.exactPass !== true
+        ? "action_gap_exact_phase_delta_directional_near_diagnostic_retained_origin_missing"
+        : pairEqualizationSummary?.selectedExactPass === true
+          ? "action_gap_exact_phase_origin_not_independently_supported"
+          : "wake_coupling_transfer_phase_origin_scan_no_exact_current_law",
+    interpretation:
+      "The current data do not let phase-only triadic 120 degrees derive the 7/100 transfer magnitude. The fixed-receiver phase-delta gap has the correct middle-to-outer sign and is numerically close, but it is not exact and is not retained binary-to-binary phase evidence. A finite hybrid ansatz now exists: a triadic-normalized phase sine kernel selects the 120-degree middle-to-outer direction while the quadratic unit-inertia action gap supplies the exact magnitude. This is still a current proxy until a retained wake/coupling kernel derives the same row.",
+    retainedReplayBurden:
+      "Test whether retained binary-to-binary phase rows, wake-return delay, recoil, or coupling rows derive the triadic-normalized phase kernel and the quadratic middle/outer transfer magnitude on S_eq, or reject the phase-origin route.",
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyPhaseWakeKernelAnsatzAudit({
+  phaseProfileRanking,
+  transferLawScan,
+  targetTransferFractions,
+}) {
+  const representativeActionGapCandidate =
+    findRepresentativeTransferLawCandidate({
+      transferLawScan,
+      lawId: "quadratic_middle_outer_pair_equalization",
+    });
+  const actionGapMagnitude = Number.isFinite(
+    representativeActionGapCandidate?.predictedTransferFractions?.outer
+  )
+    ? Math.abs(representativeActionGapCandidate.predictedTransferFractions.outer)
+    : null;
+  const rows = (phaseProfileRanking ?? []).map((profile) =>
+    createEqualFrequencyPhaseWakeKernelAnsatzRow({
+      profile,
+      actionGapMagnitude,
+      targetTransferFractions,
+    })
+  );
+  const priorityRows = rows.filter((row) => row.priorityPhaseProfile === true);
+  const controlRows = rows.filter((row) => row.priorityPhaseProfile !== true);
+  const exactPriorityProfileCount = priorityRows.filter(
+    (row) => row.candidate.exactPass === true
+  ).length;
+  const exactControlProfileCount = controlRows.filter(
+    (row) => row.candidate.exactPass === true
+  ).length;
+  const priorityProfileExactPass =
+    priorityRows.length > 0 && exactPriorityProfileCount === priorityRows.length;
+  const triadic120Row =
+    rows.find((row) => row.phaseProfileId === "triadic-120") ?? null;
+  const phaseCurrentKernelLawScan = createEqualFrequencyPhaseCurrentKernelLawScan({
+    phaseProfileRanking,
+    actionGapMagnitude,
+    targetTransferFractions,
+  });
+  const antisymmetricPhaseCurrentSummary =
+    phaseCurrentKernelLawScan.lawSummaries.find(
+      (summary) => summary.lawId === "antisymmetric_pair_phase_current"
+    ) ?? null;
+  return {
+    schema: "aaa-equal-frequency-phase-wake-kernel-ansatz-audit.v2",
+    claimLevel:
+      "finite phase-oriented wake/coupling ansatz scan; not retained wake/coupling kernel derivation",
+    retainedBranchModel: RETAINED_TRI_BINARY_BRAID_BRANCH_MODEL,
+    geometryModel: GENERAL_TRI_BINARY_BRAID_GEOMETRY_MODEL,
+    projectionChartFamily: DEFORMATION_PROJECTION_CHART_FAMILY,
+    canonicalFamily: "I:M:O=(f,f,f)",
+    sourceTransferLawScanSchema: transferLawScan?.schema ?? null,
+    sourceTransferLawId: "quadratic_middle_outer_pair_equalization",
+    sourceTransferLawCandidateRowId:
+      representativeActionGapCandidate?.rowId ?? null,
+    sourceTransferLawCandidateSliceId:
+      representativeActionGapCandidate?.sliceId ?? null,
+    actionGapMagnitude,
+    phaseKernelFormula:
+      "K_MO(phi)=sin(2pi(phi_O-phi_M))/(sqrt(3)/2)",
+    transferFormula:
+      "Delta ell_I=0, Delta ell_M=-K_MO Delta ell_gap, Delta ell_O=K_MO Delta ell_gap",
+    profileRowCount: rows.length,
+    exactPriorityProfileCount,
+    exactControlProfileCount,
+    priorityProfileExactPass,
+    triadic120KernelValue:
+      triadic120Row?.normalizedTriadicSineKernel ?? null,
+    triadic120ExactPass: triadic120Row?.candidate.exactPass ?? false,
+    phaseCurrentKernelLawScan,
+    bestKernelLawId: phaseCurrentKernelLawScan.bestKernelLawId,
+    antisymmetricPhaseCurrentPriorityExactPass:
+      antisymmetricPhaseCurrentSummary?.priorityExactPass ?? false,
+    antisymmetricPhaseCurrentExactControlCount:
+      antisymmetricPhaseCurrentSummary?.exactControlProfileCount ?? 0,
+    retainedWakeKernelAcceptedCount: 0,
+    rows,
+    status:
+      antisymmetricPhaseCurrentSummary?.priorityExactPass === true &&
+      antisymmetricPhaseCurrentSummary?.exactControlProfileCount === 0
+        ? "antisymmetric_phase_current_kernel_selects_triadic_120_current_proxy_retained_kernel_missing"
+        : priorityProfileExactPass === true && exactControlProfileCount === 0
+          ? "phase_oriented_action_gap_kernel_selects_triadic_120_current_proxy_retained_kernel_missing"
+        : exactPriorityProfileCount > 0
+          ? "phase_oriented_action_gap_kernel_has_priority_hit_but_controls_not_excluded"
+          : rows.length > 0
+            ? "phase_oriented_action_gap_kernel_no_exact_priority_profile"
+            : "phase_oriented_action_gap_kernel_no_phase_profiles",
+    interpretation:
+      "A triadic-normalized antisymmetric pair phase-current kernel can use the 120-degree middle-to-outer phase offset as the sign and selector for the quadratic action-gap magnitude. The kernel law scan separates this current-like sine row from simpler turn-ratio or cosine-defect controls. This is finite current-proxy evidence because the magnitude still comes from the unit-inertia action-gap law.",
+    retainedReplayBurden:
+      "Derive the antisymmetric pair phase-current kernel K_MO=Im(z_O conjugate(z_M))/(sqrt(3)/2) from retained binary-to-binary phase, wake-return delay, recoil, or coupling rows on S_eq and show that the same retained rows supply the quadratic middle/outer action-gap magnitude without target calibration.",
+    retainedBranchClaim: false,
+  };
+}
+
+function createEqualFrequencyPhaseWakeKernelAnsatzRow({
+  profile,
+  actionGapMagnitude,
+  targetTransferFractions,
+}) {
+  const phaseTurns = profile?.phaseProfile?.phaseTurnsByLayer ?? {};
+  const middleOuterPhaseTurn =
+    Number.isFinite(phaseTurns.middle) && Number.isFinite(phaseTurns.outer)
+      ? phaseTurns.outer - phaseTurns.middle
+      : null;
+  const middleOuterForwardTurn = Number.isFinite(middleOuterPhaseTurn)
+    ? normalizeTurn(middleOuterPhaseTurn)
+    : null;
+  const sineKernel = Number.isFinite(middleOuterPhaseTurn)
+    ? Math.sin(CLOSURE_PERIOD * middleOuterPhaseTurn)
+    : null;
+  const triadicSineNorm = Math.sqrt(3) / 2;
+  const normalizedTriadicSineKernel =
+    Number.isFinite(sineKernel) && triadicSineNorm > ROOT_TOLERANCE
+      ? sineKernel / triadicSineNorm
+      : null;
+  const predictedTransfer =
+    Number.isFinite(actionGapMagnitude) &&
+    Number.isFinite(normalizedTriadicSineKernel)
+      ? actionGapMagnitude * normalizedTriadicSineKernel
+      : null;
+  const candidate = createWakeCouplingTransferOriginCandidate({
+    candidateId: `${profile.phaseProfileId}-phase_oriented_action_gap_kernel`,
+    sourceClass: "phase_oriented_action_gap_hybrid_ansatz",
+    formula:
+      "K_MO=sin(2pi(phi_O-phi_M))/(sqrt(3)/2), Delta ell_O=-Delta ell_M=K_MO Delta ell_gap",
+    predictedTransferFractions: {
+      inner: 0,
+      middle: Number.isFinite(predictedTransfer) ? -predictedTransfer : null,
+      outer: predictedTransfer,
+    },
+    targetTransferFractions,
+    retainedEligible: false,
+    note:
+      "This tests whether the phase profile can act as a direction/selector for the current quadratic action-gap magnitude. It is not retained kernel evidence.",
+  });
+  return {
+    phaseProfileId: profile.phaseProfileId,
+    priorityPhaseProfile: profile.priorityPhaseProfile === true,
+    phaseTurns,
+    middleOuterPhaseTurn,
+    middleOuterForwardTurn,
+    sineKernel,
+    normalizedTriadicSineKernel,
+    actionGapMagnitude,
+    candidate,
+  };
+}
+
+function findRepresentativeTransferLawCandidate({ transferLawScan, lawId }) {
+  for (const row of transferLawScan?.rows ?? []) {
+    for (const [sliceId, slice] of Object.entries(row.slices ?? {})) {
+      if (slice.selectedForTransferTarget !== true) {
+        continue;
+      }
+      const candidate = slice.candidateLaws?.find((law) => law.lawId === lawId);
+      if (candidate?.exactPass === true) {
+        return {
+          ...candidate,
+          rowId: row.rowId,
+          caseId: row.caseId,
+          f: row.f,
+          sliceId,
+        };
+      }
+    }
+  }
+  return null;
+}
+
+function createWakeCouplingTransferOriginCandidate({
+  candidateId,
+  sourceClass,
+  formula,
+  predictedTransferFractions,
+  targetTransferFractions,
+  retainedEligible,
+  note,
+}) {
+  const finitePredictionPass = LAYER_ROLES.every(
+    (role) =>
+      Number.isFinite(predictedTransferFractions?.[role]) &&
+      Number.isFinite(targetTransferFractions?.[role])
+  );
+  const residuals = residualRoleWeights({
+    actual: predictedTransferFractions,
+    target: targetTransferFractions,
+  });
+  const maxAbsResidual = finitePredictionPass
+    ? maxFinite(
+        Object.values(residuals).map((value) =>
+          Number.isFinite(value) ? Math.abs(value) : null
+        )
+      )
+    : null;
+  return {
+    candidateId,
+    sourceClass,
+    formula,
+    predictedTransferFractions,
+    targetTransferFractions,
+    residuals,
+    maxAbsResidual,
+    finitePredictionPass,
+    exactPass:
+      finitePredictionPass === true &&
+      Number.isFinite(maxAbsResidual) &&
+      maxAbsResidual <= ROOT_TOLERANCE,
+    retainedEligible: retainedEligible === true,
+    note,
   };
 }
 
@@ -45621,7 +46016,7 @@ function createFrequencyTripletSearchSummary(cases) {
     equalFrequencyEnergyRadiusAudit,
   });
   return {
-    schema: "aaa-tri-binary-frequency-triplet-search-summary.v36",
+    schema: "aaa-tri-binary-frequency-triplet-search-summary.v39",
     claimLevel:
       "candidate search summary over generic tri-binary rows with role-assigned I:M:O projections; not retained-branch certification",
     rawSearchLabels: GENERIC_TRI_BINARY_LABELS,
@@ -45714,7 +46109,7 @@ function createFrequencyTripletCandidateSetReview({
     }),
   ];
   return {
-    schema: "aaa-tri-binary-frequency-triplet-candidate-set-review.v32",
+    schema: "aaa-tri-binary-frequency-triplet-candidate-set-review.v35",
     claimLevel:
       "generic-row candidate-set review with role-assigned I:M:O projections; not retained branch selection",
     rawSearchLabels: GENERIC_TRI_BINARY_LABELS,
@@ -46361,6 +46756,36 @@ function createEqualFrequencyCandidateReviewRow(equalFrequencyEnergyRadiusAudit)
     wakeCouplingTransferPairEqualizationExactControlCount:
       equalFrequencyEnergyRadiusAudit.wakeCouplingTransferTargetAudit
         ?.transferLawScan?.pairEqualizationExactControlCount ?? null,
+    wakeCouplingTransferPhaseOriginAuditSchema:
+      equalFrequencyEnergyRadiusAudit.wakeCouplingTransferPhaseOriginAudit
+        ?.schema ?? null,
+    wakeCouplingTransferPhaseOriginStatus:
+      equalFrequencyEnergyRadiusAudit.wakeCouplingTransferPhaseOriginAudit
+        ?.status ?? null,
+    wakeCouplingTransferPhaseDeltaDirectionMatches:
+      equalFrequencyEnergyRadiusAudit.wakeCouplingTransferPhaseOriginAudit
+        ?.phaseDeltaDirectionMatchesTransfer ?? null,
+    wakeCouplingTransferPhaseDeltaToTargetMagnitudeRatio:
+      equalFrequencyEnergyRadiusAudit.wakeCouplingTransferPhaseOriginAudit
+        ?.phaseDeltaToTargetMagnitudeRatio ?? null,
+    wakeCouplingTransferPhaseDeltaCandidateMaxAbsResidual:
+      equalFrequencyEnergyRadiusAudit.wakeCouplingTransferPhaseOriginAudit
+        ?.phaseDeltaCandidateMaxAbsResidual ?? null,
+    wakeCouplingTransferPhaseWakeKernelAnsatzSchema:
+      equalFrequencyEnergyRadiusAudit.wakeCouplingTransferPhaseOriginAudit
+        ?.phaseWakeKernelAnsatzAudit?.schema ?? null,
+    wakeCouplingTransferPhaseWakeKernelAnsatzStatus:
+      equalFrequencyEnergyRadiusAudit.wakeCouplingTransferPhaseOriginAudit
+        ?.phaseWakeKernelAnsatzAudit?.status ?? null,
+    wakeCouplingTransferPhaseWakeKernelAnsatzPriorityExact:
+      equalFrequencyEnergyRadiusAudit.wakeCouplingTransferPhaseOriginAudit
+        ?.phaseWakeKernelAnsatzAudit?.priorityProfileExactPass ?? null,
+    wakeCouplingTransferPhaseWakeKernelAnsatzControlExactCount:
+      equalFrequencyEnergyRadiusAudit.wakeCouplingTransferPhaseOriginAudit
+        ?.phaseWakeKernelAnsatzAudit?.exactControlProfileCount ?? null,
+    wakeCouplingTransferPhaseWakeKernelAnsatzTriadicKernel:
+      equalFrequencyEnergyRadiusAudit.wakeCouplingTransferPhaseOriginAudit
+        ?.phaseWakeKernelAnsatzAudit?.triadic120KernelValue ?? null,
     actionLedgerAuditSchema:
       equalFrequencyEnergyRadiusAudit.actionLedgerAudit?.schema ?? null,
     actionLedgerStatus:
@@ -46968,6 +47393,34 @@ function printSummary(report, absoluteOutputPath) {
             `pairSelected=${transferLawScan.pairEqualizationExactSelectedCount}`,
             `pairControl=${transferLawScan.pairEqualizationExactControlCount}`,
             `retainedAccepted=${transferLawScan.retainedTransferLawAcceptedCount}`,
+          ].join(" ")
+        );
+      }
+    }
+    const wakeCouplingTransferPhaseOriginAudit =
+      equalFrequencyAudit.wakeCouplingTransferPhaseOriginAudit ?? null;
+    if (wakeCouplingTransferPhaseOriginAudit) {
+      console.log(
+        [
+          "wake/coupling transfer phase-origin:",
+          wakeCouplingTransferPhaseOriginAudit.status,
+          `phaseDeltaDirection=${wakeCouplingTransferPhaseOriginAudit.phaseDeltaDirectionMatchesTransfer}`,
+          `phaseDeltaRatio=${formatNumber(wakeCouplingTransferPhaseOriginAudit.phaseDeltaToTargetMagnitudeRatio)}`,
+          `phaseDeltaResidual=${formatNumber(wakeCouplingTransferPhaseOriginAudit.phaseDeltaCandidateMaxAbsResidual)}`,
+          `retainedAccepted=${wakeCouplingTransferPhaseOriginAudit.retainedPhaseOriginAcceptedCount}`,
+        ].join(" ")
+      );
+      const phaseWakeKernelAnsatzAudit =
+        wakeCouplingTransferPhaseOriginAudit.phaseWakeKernelAnsatzAudit ?? null;
+      if (phaseWakeKernelAnsatzAudit) {
+        console.log(
+          [
+            "phase/wake kernel ansatz:",
+            phaseWakeKernelAnsatzAudit.status,
+            `priorityExact=${phaseWakeKernelAnsatzAudit.priorityProfileExactPass}`,
+            `controlExact=${phaseWakeKernelAnsatzAudit.exactControlProfileCount}`,
+            `triadicKernel=${formatNumber(phaseWakeKernelAnsatzAudit.triadic120KernelValue)}`,
+            `retainedAccepted=${phaseWakeKernelAnsatzAudit.retainedWakeKernelAcceptedCount}`,
           ].join(" ")
         );
       }
