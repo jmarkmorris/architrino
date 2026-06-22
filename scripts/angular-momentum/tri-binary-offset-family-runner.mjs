@@ -741,7 +741,7 @@ function createPolicyDefinitions() {
 
 function createSolverArchitectureSummary() {
   return {
-    schema: "aaa-tri-binary-frequency-runner-architecture.v14",
+    schema: "aaa-tri-binary-frequency-solver-architecture.v15",
     status:
       "retained_branch_state_primary_velocity_deformation_projection_family_policy_family_layers",
     designRule:
