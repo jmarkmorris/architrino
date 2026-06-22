@@ -395,7 +395,7 @@ Held-release follow-up, 2026-05-20: the same breather packet now has an explicit
 - [proper-time-and-time-dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md)
 - [special-relativity-noether-braid](../../../content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md)
 - [emergent-metric](../../../content/markdown/aaa/spacetime/emergent-metric.md)
-- [gr-phenomenology](../../../content/markdown/aaa/spacetime/gr-phenomenology.md)
+- [General Relativity](../../../content/markdown/aaa/spacetime/general-relativity.md)
 - [measurement-ontology](../../../content/markdown/aaa/quantum/measurement-ontology.md)
 - [bell-theorem](../../../content/markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md)
 - [radiation](../../../content/markdown/aaa/reactions/radiation.md)

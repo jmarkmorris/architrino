@@ -6,7 +6,7 @@ This brief is written for advanced undergraduate physics readers, recent physics
 
 The brief deliberately avoids large-scale universe-history claims. That subject adds interpretive pressure from redshift accounting, structure formation, and model comparison. Those topics should not be the first filter for technical evaluation. The more useful first question is narrower: does the proposed microscopic dynamics form a coherent mathematical object, and can stable assembly behavior be derived from it without importing the standard effective structures as hidden assumptions?
 
-For the full internal references, see the foundational ontology in [Foundational Ontology](../../content/markdown/aaa/foundations/ontology.md), the primitive entity definition in [Architrino](../../content/markdown/aaa/foundations/architrino.md), and the detailed law in [Master Equation of Motion](../../content/markdown/aaa/dynamics/master-equation.md).
+For the full internal references, see the foundational ontology in [Ontology](../../content/markdown/aaa/foundations/ontology.md), the primitive entity definition in [Architrino](../../content/markdown/aaa/foundations/architrino.md), and the detailed law in [Master Equation](../../content/markdown/aaa/dynamics/master-equation.md).
 
 ## Core Claim
 

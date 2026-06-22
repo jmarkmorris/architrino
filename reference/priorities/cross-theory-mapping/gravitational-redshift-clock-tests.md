@@ -20,7 +20,7 @@ The mapping target is not "gravity slows time" as ontology. The target is a cloc
 
 ## Canonical $\mathbb{A}\mathbb{A}\mathbb{A}$ Mapping
 
-The canon source for this branch is [Proper Time and Time Dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md), with the weak-field observable checklist in [General Relativity Observables](../../../content/markdown/aaa/spacetime/gr-phenomenology.md). The clock law is an observer-level extraction from assembly dynamics:
+The canon source for this branch is [Proper Time and Time Dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md), with the weak-field observable checklist in [General Relativity](../../../content/markdown/aaa/spacetime/general-relativity.md). The clock law is an observer-level extraction from assembly dynamics:
 
 $$
 \frac{d\tau}{dt}

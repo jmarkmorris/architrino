@@ -9,18 +9,18 @@ A theory bridge is not a neutral encyclopedia entry and it is not the canonical 
 Use this lane for documents that:
 
 - compare an inherited theory or formalism with the $\mathbb{A}\mathbb{A}\mathbb{A}$ stack in detail,
-- need more space or mathematics than [Theory Mapping](../theory-mapping.md) or [Theory Differentials](../theory-differentials.md),
+- need more space or mathematics than [Theory Mapping](theory-mapping.md) or [Theory Differentials](theory-differentials.md),
 - translate equations, observables, and physical interpretation line by line,
 - identify which pieces are recovered, reinterpreted, rejected, or still open,
 - and link back to the canonical domain chapters that own the underlying $\mathbb{A}\mathbb{A}\mathbb{A}$ claims.
 
 Do not use this lane as the primary home for:
 
-- substrate ontology; use [Foundations](../../foundations/ontology.md),
-- assembly definitions; use [Assemblies](../../noether-swarm/noether-swarm.md),
-- dynamical laws; use [Dynamics](../../dynamics/master-equation.md),
-- canonical spacetime mechanism chapters; use [Spacetime](../../spacetime/observer-framework.md),
-- broad historical orientation; use [Philosophy and History](../theory-mapping.md).
+- substrate ontology; use [Foundations](../foundations/ontology.md),
+- assembly definitions; use [Assemblies](../noether-swarm/noether-swarm.md),
+- dynamical laws; use [Dynamics](../dynamics/master-equation.md),
+- canonical spacetime mechanism chapters; use [Spacetime](../spacetime/observer-framework.md),
+- broad historical orientation; use [Philosophy and History](theory-mapping.md).
 
 ## Bridge Pattern
 
@@ -36,16 +36,16 @@ Each mature bridge should include:
 
 ## Current Bridges
 
-- [Bell's Theorem: Traditional Derivation and Architrino Assembly Architecture Response](./bell-theorem.md)
-- [Angular Momentum and Spin](./angular-momentum-and-spin.md)
-- [Measurement Problem and Collapse](./collapse-problem.md)
-- [Entanglement and Nonlocality](./entanglement-nonlocality.md)
-- [Relativistic Scalar Fields and the Klein-Gordon Equation](./klein-gordon-scalar-fields.md)
-- [Pilot-Wave Character](./pilot-wave-character.md)
-- [Mapping the Planck Scale to the Nested Shell Braid Geometry](./planck-scale-nested-shell-swarm-alignment.md)
-- [Quantum Operator Mapping](./quantum-operator-mapping.md)
-- [Return-Cycle Lorentz Quantization](./return-cycle-lorentz-quantization.md)
-- [Special Relativity and Deformable Noether Braids](./special-relativity-noether-swarm.md)
-- [Spacetime Models and the Noether sea](./spacetime-models-and-noether-sea.md)
-- [Superposition Mechanism](./superposition-mechanism.md)
-- [Weak Mixing and CKM](./weak-mixing-ckm.md)
+- [Bell's Theorem: Traditional Derivation and Architrino Assembly Architecture Response](theory-bridges/bell-theorem.md)
+- [Angular Momentum and Spin](theory-bridges/angular-momentum-and-spin.md)
+- [Measurement Problem and Collapse](theory-bridges/collapse-problem.md)
+- [Entanglement and Nonlocality](theory-bridges/entanglement-nonlocality.md)
+- [Relativistic Scalar Fields and the Klein-Gordon Equation](theory-bridges/klein-gordon-scalar-fields.md)
+- [Pilot-Wave Character](theory-bridges/pilot-wave-character.md)
+- [Mapping the Planck Scale to the Nested Shell Braid Geometry](theory-bridges/planck-scale-nested-shell-swarm-alignment.md)
+- [Quantum Operator Mapping](theory-bridges/quantum-operator-mapping.md)
+- [Return-Cycle Lorentz Quantization](theory-bridges/return-cycle-lorentz-quantization.md)
+- [Special Relativity and Deformable Noether Braids](theory-bridges/special-relativity-noether-swarm.md)
+- [Spacetime Models and the Noether sea](theory-bridges/spacetime-models-and-noether-sea.md)
+- [Superposition Mechanism](theory-bridges/superposition-mechanism.md)
+- [Weak Mixing and CKM](theory-bridges/weak-mixing-ckm.md)

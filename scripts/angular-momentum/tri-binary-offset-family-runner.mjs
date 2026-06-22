@@ -164,7 +164,7 @@ try {
   });
 
   const report = {
-    schema: "aaa-tri-binary-frequency-candidate-solver-report.v22",
+    schema: "aaa-tri-binary-frequency-candidate-solver-report.v23",
     generatedAt: new Date().toISOString(),
     solverBacked: true,
     claimLevel: "priority-only evidence; not retained-branch certification",
@@ -223,25 +223,28 @@ function createIntegerLockPairs({ mMax, nMax }) {
 
 function createFrequencyTripletNotation() {
   return {
-    canonicalOrder: "I:M:O",
-    canonicalMeaning: "inner:middle:outer",
-    displayOrder: "I:M:O",
+    rawSearchLabels: "B_1:B_2:B_3",
+    rawSearchMeaning: "generic tri-binary rows before retained role assignment",
+    roleAssignedOrder: "I:M:O",
+    roleAssignedMeaning: "inner:middle:outer after a retained branch supplies the role map",
+    displayOrder: "role-assigned I:M:O",
     compatibility:
-      "Outer-normalized O:M:I forms are legacy translation metadata only; canonical output order is I:M:O.",
+      "Raw search rows are generic B_1:B_2:B_3 rows. I:M:O is a role-assigned chart projection after branch evidence supplies the role map. Outer-normalized O:M:I forms are legacy translation metadata only.",
     legacyOuterNormalized: {
       order: "O:M:I",
       notation: "f_O:f_M:f_I",
       meaning: "outer:middle:inner with the outer frequency normalized first",
       conversion:
-        "If a legacy outer-normalized row is written as f_O:f_M:f_I=a:b:c, the canonical I:M:O triplet is c:b:a.",
+        "If a legacy outer-normalized row is written as f_O:f_M:f_I=a:b:c, the role-assigned I:M:O triplet is c:b:a.",
     },
   };
 }
 
 function createSolverGeometryPublicContract() {
   return {
-    schema: "aaa-tri-binary-solver-geometry-public-contract.v7",
-    canonicalLayerOrder: "I:M:O",
+    schema: "aaa-tri-binary-solver-geometry-public-contract.v8",
+    rawSearchLayerLabels: GENERIC_TRI_BINARY_LABELS,
+    roleAssignedChartOrder: "I:M:O",
     layerRoleOrder: LAYER_ROLES,
     baseGeometryModel: GENERAL_TRI_BINARY_SWARM_GEOMETRY_MODEL,
     primaryBranchModel: RETAINED_TRI_BINARY_SWARM_BRANCH_MODEL,
@@ -437,7 +440,7 @@ function createTriBinaryNoetherSwarmProjectionChartFamily() {
 }
 
 function createFrequencyTriplet(indices) {
-  const canonicalValues = {
+  const roleAssignedValues = {
     inner: indices.inner,
     middle: indices.middle,
     outer: indices.outer,
@@ -448,9 +451,10 @@ function createFrequencyTriplet(indices) {
     inner: indices.inner,
   };
   return {
-    canonicalOrder: "I:M:O",
-    canonicalValues,
-    canonicalLabel: `${indices.inner}:${indices.middle}:${indices.outer}`,
+    rawSearchLabels: GENERIC_TRI_BINARY_LABELS,
+    roleAssignedOrder: "I:M:O",
+    roleAssignedValues,
+    roleAssignedLabel: `${indices.inner}:${indices.middle}:${indices.outer}`,
     legacyOuterNormalized: {
       order: "O:M:I",
       notation: "f_O:f_M:f_I",
@@ -465,7 +469,7 @@ function createFamilies(f, { integerLockPairs = [] } = {}) {
     {
       id: "middle-hinge-offset",
       label: "I:M:O=(f+2,f,f-1)",
-      canonicalRelation: "(I,M,O)=(f+2,f,f-1)",
+      roleAssignedRelation: "(I,M,O)=(f+2,f,f-1)",
       legacyOuterNormalizedRelation: "f_O:f_M:f_I=(f-1):f:(f+2)",
       priorityCandidate: true,
       candidateClass: "middle_hinge_offset",
@@ -480,7 +484,7 @@ function createFamilies(f, { integerLockPairs = [] } = {}) {
     {
       id: "symmetric-control",
       label: "I:M:O=(f+1,f,f-1)",
-      canonicalRelation: "(I,M,O)=(f+1,f,f-1)",
+      roleAssignedRelation: "(I,M,O)=(f+1,f,f-1)",
       legacyOuterNormalizedRelation: "f_O:f_M:f_I=(f-1):f:(f+1)",
       priorityCandidate: false,
       candidateClass: "symmetric_offset_control",
@@ -495,14 +499,14 @@ function createFamilies(f, { integerLockPairs = [] } = {}) {
   families.push({
     id: "dyadic-lock-4-2-1",
     label: "I:M:O=(4f,2f,f)",
-    canonicalRelation: "(I,M,O)=(4f,2f,f)",
+    roleAssignedRelation: "(I,M,O)=(4f,2f,f)",
     legacyOuterNormalizedRelation: "f_O:f_M:f_I=f:2f:4f",
     priorityCandidate: false,
     candidateClass: "dyadic_lock_control",
     searchLanes: ["offset-index-family", "integer-lock-family"],
     integerLock: {
       legacyOuterNormalized: "1:2:4",
-      canonicalTriplet: "4:2:1",
+      roleAssignedTriplet: "4:2:1",
       m: 2,
       n: 4,
     },
@@ -516,14 +520,14 @@ function createFamilies(f, { integerLockPairs = [] } = {}) {
     families.push({
       id: `integer-lock-m${m}-n${n}`,
       label: `I:M:O=(${n}f,${m}f,f)`,
-      canonicalRelation: `(I,M,O)=(${n}f,${m}f,f)`,
+      roleAssignedRelation: `(I,M,O)=(${n}f,${m}f,f)`,
       legacyOuterNormalizedRelation: `f_O:f_M:f_I=f:${m}f:${n}f`,
       priorityCandidate: false,
       candidateClass: "general_integer_lock_control",
       searchLanes: ["offset-index-family", "integer-lock-family"],
       integerLock: {
         legacyOuterNormalized: `1:${m}:${n}`,
-        canonicalTriplet: `${n}:${m}:1`,
+        roleAssignedTriplet: `${n}:${m}:1`,
         m,
         n,
       },
@@ -544,7 +548,7 @@ function createEqualFrequencyPhaseFamilies(f) {
         ? "equal-frequency-energy-radius"
         : `equal-frequency-energy-radius-${phaseProfile.id}`,
     label: `I:M:O=(f,f,f), phase=${phaseProfile.label}`,
-    canonicalRelation: "(I,M,O)=(f,f,f)",
+    roleAssignedRelation: "(I,M,O)=(f,f,f)",
     legacyOuterNormalizedRelation: "f_O:f_M:f_I=f:f:f",
     priorityCandidate: phaseProfile.priorityPhaseProfile === true,
     candidateClass: "equal_frequency_energy_radius_candidate",
@@ -661,7 +665,7 @@ function createFamilyDefinitions({ integerLockPairs = [] } = {}) {
   const definitions = [
     {
       id: "middle-hinge-offset",
-      canonicalRelation: "(I,M,O)=(f+2,f,f-1)",
+      roleAssignedRelation: "(I,M,O)=(f+2,f,f-1)",
       legacyOuterNormalizedRelation: "f_O:f_M:f_I=(f-1):f:(f+2)",
       role: "priority candidate",
       searchLanes: ["offset-index-family"],
@@ -673,7 +677,7 @@ function createFamilyDefinitions({ integerLockPairs = [] } = {}) {
         phaseProfile.id === "triadic-120"
           ? "equal-frequency-energy-radius"
           : `equal-frequency-energy-radius-${phaseProfile.id}`,
-      canonicalRelation: "(I,M,O)=(f,f,f)",
+      roleAssignedRelation: "(I,M,O)=(f,f,f)",
       legacyOuterNormalizedRelation: "f_O:f_M:f_I=f:f:f",
       role:
         phaseProfile.priorityPhaseProfile === true
@@ -688,7 +692,7 @@ function createFamilyDefinitions({ integerLockPairs = [] } = {}) {
     })),
     {
       id: "symmetric-control",
-      canonicalRelation: "(I,M,O)=(f+1,f,f-1)",
+      roleAssignedRelation: "(I,M,O)=(f+1,f,f-1)",
       legacyOuterNormalizedRelation: "f_O:f_M:f_I=(f-1):f:(f+1)",
       role: "control",
       searchLanes: ["offset-index-family"],
@@ -698,7 +702,7 @@ function createFamilyDefinitions({ integerLockPairs = [] } = {}) {
   ];
   definitions.push({
     id: "dyadic-lock-4-2-1",
-    canonicalRelation: "(I,M,O)=(4f,2f,f)",
+    roleAssignedRelation: "(I,M,O)=(4f,2f,f)",
     legacyOuterNormalizedRelation: "f_O:f_M:f_I=f:2f:4f",
     role: "dyadic 4:2:1 control",
     searchLanes: ["offset-index-family", "integer-lock-family"],
@@ -708,12 +712,12 @@ function createFamilyDefinitions({ integerLockPairs = [] } = {}) {
   for (const { m, n } of integerLockPairs) {
     definitions.push({
       id: `integer-lock-m${m}-n${n}`,
-      canonicalRelation: `(I,M,O)=(${n}f,${m}f,f)`,
+      roleAssignedRelation: `(I,M,O)=(${n}f,${m}f,f)`,
       legacyOuterNormalizedRelation: `f_O:f_M:f_I=f:${m}f:${n}f`,
       role: "general 1:m:n integer-lock control",
       searchLanes: ["offset-index-family", "integer-lock-family"],
       rationale:
-        "Samples the broader integer-lock lattice in canonical I:M:O order n:m:1; f_O:f_M:f_I=1:m:n is retained only as legacy translation metadata.",
+        "Samples the broader integer-lock lattice in role-assigned I:M:O order n:m:1; f_O:f_M:f_I=1:m:n is retained only as legacy translation metadata.",
     });
   }
   return definitions;
@@ -737,13 +741,13 @@ function createPolicyDefinitions() {
 
 function createSolverArchitectureSummary() {
   return {
-    schema: "aaa-tri-binary-frequency-runner-architecture.v12",
+    schema: "aaa-tri-binary-frequency-runner-architecture.v13",
     status:
       "retained_branch_state_primary_velocity_deformation_projection_family_policy_family_layers",
     designRule:
-      "New frequency candidates enter as family descriptors and policy descriptors under the primary retained velocity-deforming tri-binary Noether swarm branch-state model; canonical output order is I:M:O after role assignment, while legacy outer-normalized forms are translation metadata only.",
+      "New frequency candidates enter as family descriptors and policy descriptors under the primary retained velocity-deforming tri-binary Noether swarm branch-state model; raw search rows are generic B_1:B_2:B_3 rows, I:M:O is emitted only as a role-assigned chart after role assignment, and legacy outer-normalized forms are translation metadata only.",
     familyLayer:
-      "Families declare canonical I:M:O indices, search lanes, candidate class, and optional phase profile; equal-frequency families include a priority triadic-120 phase profile plus phase-control profiles, including a weighted-action opposition control surfaced by the finite phase-lattice audit.",
+      "Families declare role-assigned I:M:O indices only as candidate role-map projections, plus search lanes, candidate class, and optional phase profile; equal-frequency families include a priority triadic-120 phase profile plus phase-control profiles, including a weighted-action opposition control surfaced by the finite phase-lattice audit.",
     policyLayer:
       "Policies declare compatible search lanes plus frequency, speed, phase, geometry, and audit-row models.",
     layerModel:
@@ -892,7 +896,7 @@ async function runFamilyCase({ client, policy, f, family }) {
     policy,
     familyId: family.id,
     familyLabel: family.label,
-    familyCanonicalRelation: family.canonicalRelation ?? null,
+    familyRoleAssignedRelation: family.roleAssignedRelation ?? null,
     legacyOuterNormalizedRelation: family.legacyOuterNormalizedRelation ?? null,
     candidateClass: family.candidateClass ?? null,
     integerLock: family.integerLock ?? null,
@@ -1455,7 +1459,7 @@ function createBranchChartProjection({ policy, f, family, layers, rowVerdicts })
     f,
     familyId: family.id,
     familyLabel: family.label,
-    familyCanonicalRelation: family.canonicalRelation ?? null,
+    familyRoleAssignedRelation: family.roleAssignedRelation ?? null,
     legacyOuterNormalizedRelation: family.legacyOuterNormalizedRelation ?? null,
     candidateClass: family.candidateClass ?? null,
     integerLock: family.integerLock ?? null,
@@ -1701,7 +1705,7 @@ function createEqualFrequencyProjectionRows({
       mapsTo: ["phase_lock", "triadic_phase"],
       status: phaseSummary.pass ? "triadic_120_profile_pass" : "triadic_120_profile_mismatch",
       evidence:
-        "The equal-frequency candidate is initialized with inner, middle, and outer phases separated by one third of a turn in canonical I:M:O order.",
+        "The equal-frequency candidate is initialized with role-assigned inner, middle, and outer phases separated by one third of a turn; raw search rows remain generic B_1:B_2:B_3 rows until the role map is retained.",
       value: phaseSummary,
       retainedLimitation:
         "A phase-at-epoch profile is only an initial condition until retained root-continuation, geometric phase, and wake-return delay are solved.",
@@ -1815,7 +1819,7 @@ function createEqualFrequencyLeverArmSpeedSummary({ layers, rowVerdicts }) {
     relation:
       "s_layer = rho_layer * omega_f, where rho_layer is the retained effective lever-arm projection",
     required:
-      "canonical I:M:O lever-arm order rho_I > rho_M > rho_O under common omega_f and speed rows s_I > c_f, s_M = c_f, s_O < c_f",
+      "role-assigned I:M:O lever-arm order rho_I > rho_M > rho_O under common omega_f and speed rows s_I > c_f, s_M = c_f, s_O < c_f",
   };
 }
 
@@ -1846,7 +1850,7 @@ function createTriadic120PhaseSummary(layers) {
     forwardSpacings,
     spacingResiduals,
     maxSpacingResidual,
-    required: "canonical I:M:O phase offsets 0, 1/3, 2/3 turns",
+    required: "role-assigned I:M:O phase offsets 0, 1/3, 2/3 turns",
   };
 }
 
@@ -3020,7 +3024,7 @@ function createMinimalBranchTransactionFrequencyCertificate({
     selectedCaseId: selectedCase?.caseId ?? null,
     familyId: selectedCase?.familyId ?? null,
     familyLabel: selectedCase?.familyLabel ?? null,
-    familyCanonicalRelation: selectedCase?.familyCanonicalRelation ?? null,
+    familyRoleAssignedRelation: selectedCase?.familyRoleAssignedRelation ?? null,
     legacyOuterNormalizedRelation:
       selectedCase?.legacyOuterNormalizedRelation ?? null,
     frequencyTriplet: selectedCase?.frequencyTriplet ?? null,
@@ -3037,7 +3041,7 @@ function createMinimalBranchTransactionFrequencyCertificate({
     geometryTransportPass,
     acceptanceBlockers,
     retainedLimitation:
-      "The four-substep weighted frequency is exact for the selected reduced canonical I:M:O=(f+2,f,f-1) middle-hinge branch, but it is only an omega_tx source after the same route has an accepted retained point-event or positive-width retained domain, geometrically continuous branch transport, and same-event energy carrier population.",
+      "The four-substep weighted frequency is exact for the selected reduced role-assigned I:M:O=(f+2,f,f-1) middle-hinge branch, but it is only an omega_tx source after the same route has an accepted retained point-event or positive-width retained domain, geometrically continuous branch transport, and same-event energy carrier population.",
   };
 }
 
@@ -42639,7 +42643,7 @@ function createEqualFrequencyRetainedFrequencyPhasePacketRow({
     f: summary.f,
     phaseProfileId: summary.phaseProfileId,
     phaseProfileRole: summary.phaseProfileRole,
-    roleAssignedCanonicalRelation: "(I,M,O)=(f,f,f)",
+    roleAssignedRelation: "(I,M,O)=(f,f,f)",
     currentProxyPacketPass,
     retainedPacketAcceptancePass,
     sameRetainedEventOrPositiveWidthDomainPass: false,

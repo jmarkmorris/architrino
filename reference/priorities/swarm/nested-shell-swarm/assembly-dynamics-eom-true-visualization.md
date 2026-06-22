@@ -4,7 +4,7 @@ Promotion status: `priority-only`.
 
 Claim level: explanatory visualization scaffold. This packet assumes the master equation of motion is true for the purpose of visualizing assembly dynamics. It does not retain a branch, close a certificate, prove stability, or authorize migration into `content/markdown/aaa`.
 
-Related anchors: [Nested Shell Braid Model Card](nested-shell-swarm-model-card.md), [Nested Shell Braid Reduction Row](nested-shell-swarm-reduction-row.md), [Nested Shell Braid Dynamics](../../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md), and [Master Equation of Motion](../../../../content/markdown/aaa/dynamics/master-equation.md).
+Related anchors: [Nested Shell Braid Model Card](nested-shell-swarm-model-card.md), [Nested Shell Braid Reduction Row](nested-shell-swarm-reduction-row.md), [Nested Shell Braid Dynamics](../../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md), and [Master Equation](../../../../content/markdown/aaa/dynamics/master-equation.md).
 
 ---
 

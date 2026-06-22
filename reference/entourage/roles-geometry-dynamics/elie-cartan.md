@@ -4,7 +4,7 @@
 Turn architrino and tri-binary distributions in a fixed Euclidean void into a mathematically precise **effective metric/connection structure** that reproduces GR phenomenology where required.
 
 **Current theory alignment**:
-- Geometry construction should align with `spacetime/emergent-metric.md`, `spacetime/gr-phenomenology.md`, `spacetime/proper-time-and-time-dilation.md`, `spacetime/noether-sea.md`, and `spacetime/ppn-parameters.md`.
+- Geometry construction should align with `spacetime/emergent-metric.md`, `spacetime/general-relativity.md`, `spacetime/proper-time-and-time-dilation.md`, `spacetime/noether-sea.md`, and `spacetime/ppn-parameters.md`.
 - Micro-to-metric mappings must stay consistent with `dynamics/master-equation.md` and `validation/parameter-ledger.md`.
 - GR-limit and deviation statements should be benchmarked against `validation/validation-protocols.md` and `validation/constraint-ledger.md`.
 

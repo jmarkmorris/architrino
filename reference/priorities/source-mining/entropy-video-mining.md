@@ -7,7 +7,7 @@ This priority-only note tracks the current operator-supplied video batch for ent
 ## Batch Scope
 
 - Primary corpus target: [Entropy and Record Coarse-Graining](../../../content/markdown/aaa/dynamics/entropy.md)
-- Related corpus target: [Kinetic and Potential Energy](../../../content/markdown/aaa/dynamics/energy.md)
+- Related corpus target: [Energy](../../../content/markdown/aaa/dynamics/energy.md)
 - Related corpus target: [Information / Computation](../../../content/markdown/aaa/philosophy-history/information-computation.md)
 - Report posture: keep timestamped source signals, classify what was promoted, and preserve deferred prompts only when a source raises a theory or terminology decision beyond safe scoped edits.
 
