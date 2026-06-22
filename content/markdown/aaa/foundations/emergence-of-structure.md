@@ -15,6 +15,8 @@ The lesson that carries over is narrow: simple deterministic rules can generate 
 
 The useful structural map is topological rather than cellular: a still life is the fixed-point analogue of an equilibrium link, an oscillator is the periodic-orbit analogue of a limit-cycle branch, and a glider is the translation-invariant analogue of a drift bundle in the assembly atlas.
 
+In return-map language, these are three different components of the branch atlas. A still life corresponds to a fixed point with trivial rotation data, an oscillator corresponds to a periodic orbit with rational rotation number on a retained invariant cycle, and a glider corresponds to a covering-space lift of such a periodic orbit. In the co-moving quotient the glider closes like an oscillator; in the Euclidean-void frame its lift returns only after a nonzero deck displacement. This is the precise sense in which a drift bundle is a periodic branch in the quotient whose lift carries nonzero displacement per return.
+
 In $\mathbb{A}\mathbb{A}\mathbb{A}$, architrinos move in continuous space and absolute time. A receiver responds when causal wake surfaces emitted in the past intersect its worldline, so active causal roots are not synchronized by a shared update tick. Each contribution has inverse-square falloff and depends on source and receiver path history, making the effective evolution a nonlinear delay-differential system with formally infinite-range coupling rather than a cellular rule table.
 
 ### Emergence in the Architrino Universe: Continuous Delay Dynamics
@@ -49,6 +51,8 @@ $$
 
 where $X_t(\theta)=X(t+\theta)$ is the path-history segment needed by the delayed equation of motion. The equations $G_\alpha=0$ encode the surrounding context as constraints on which lower-level histories are available, not as independent causes outside the architrino dynamics.
 
+The load-bearing object is therefore the context-to-chart map $c\mapsto\Gamma_{\mathrm{adm}}(c)$. One may regard the allowed context space $\mathfrak C$ as stratified: on an open top stratum, the admitted chart set is locally constant, while codimension-one walls mark contexts where a branch chart opens, closes, or changes regularity. A context change that turns $\mu_c(B_k)=0$ into $\mu_{c'}(B_k)>0$ is then a wall-crossing in $\mathfrak C$, not a second causal law. This places context changes in the same geometric family as root folds and basin separatrices: the active branch topology changes when a retained chart crosses a declared stratum.
+
 Once the admissible history set is fixed, the same setup gives a compact basin-selection measure after the window and measure source are declared. Let $\Pi_{\mathrm{br}}$ be the branch-record map that reads the realized assembly branch at the end of the window. The context-restricted basin for branch $k$ is
 
 $$
@@ -81,6 +85,12 @@ S_{k\ell}(\phi)=0,
 $$
 If no codimension-one separatrix row, equivalent null-boundary proof, or controlled fractal-boundary measure theorem is supplied, $P_c(k)$ remains a diagnostic basin volume rather than a closed branch-weight law.
 
+Local separator smoothness is not by itself enough in an infinite-dimensional or state-dependent delay system. A valid basin chart should also rule out uncontrolled accumulation of separator sheets on the compact return-section region being measured. One useful formulation is local finiteness: for every compact $K$ in the declared return section,
+$$
+\#\{(k,\ell,n):S_{k\ell}^{(n)}\cap K\ne\varnothing\}<\infty
+$$
+after discarding a $\mu_c$-null exceptional set. Here $n$ indexes distinct separator sheets between the same branch pair when the delayed return map creates multiple folds. This condition prevents a countable pile-up of individually smooth sheets from producing a measure-thick or riddled basin boundary. It is the basin analogue of excluding cusp accumulation in a causal-root chart.
+
 Changing $c$ can shift the inferred branch weights $P_c(k)$ by moving basin boundaries, suppressing some causal-root branches, or opening self-hit channels, while the underlying ontology remains the same collection of architrino worldlines and causal wakes.
 
 ### Context Changes and Energy Ledger
@@ -106,6 +116,12 @@ $$
 where $X$ is the local state and path-history record, $I_{\mathsf e}$ is the finite selected channel set, and $Y_{\mathsf e}$ lists outgoing assemblies, radiation or non-photon shedding, recoil targets, Noether sea updates, remnant states, and provenance records. The corresponding energy row is not an independent emergence law. It is a candidate event-ledger closure condition whose wake term must be earned, not presumed.
 
 The row below is a closure template until $E_{\text{wake}}$ has been defined constructively for the declared regularized delay system. Time-translation invariance of a delay equation does not by itself supply a standard Noether energy. The current load-bearing route is the action-boundary or work-integral construction, because it can use the same non-Markovian causal-history rows that generate the force. A local potential reconstruction is a chart-local equivalent only after its crosswalk is stated, and a convergent boundary-flux account is admissible only after the retained branch supplies the needed far-field or exhaustion law, such as the [Receiver-Centered Exhaustion Lemma](absolute-timespace.md#receiver-centered-exhaustion-lemma) in the homogeneous neutral Noether sea case. The routes must be shown equivalent on the retained window before they can be treated as one conserved energy.
+
+When this route closes, $E_{\text{wake}}$ should be read as the Noether charge of the delayed action under absolute-time translation, not as a primitive local energy density placed on one slice. For a memory depth $h$, the charge is expected to be a functional of the retained history segment
+$$
+X_t\in C([-h,0])
+$$
+with boundary and memory-window terms built from the same causal kernel that supplies the force. In simulation, the object to discretize is therefore a path-history functional over the retained memory window, together with its endpoint and boundary increments, rather than a pointwise Hamiltonian density guessed independently of the delayed action.
 
 $$
 \Delta_E(\mathsf e)
@@ -135,6 +151,15 @@ Assemblies enter the chapter as recursive dynamical organizations rather than as
 -   **Recursive step:** More complex assemblies are described in terms of constituent sub-assemblies, nested shielding hierarchy, separated radii and frequencies, and the causal-root ledgers that keep the combined motion closed.
 
 This recursive structure implies that many stable forms can be deconstructed into simpler binary and nested-binary components, provided the branch supplies the required closure, shielding, and provenance records.
+
+The phrase "progressively stronger shielding" is a theorem target, not an automatic consequence of adding layers. A captured layer can in principle reduce external reactivity, leave it unchanged, or expose a new resonance. A useful branch target is therefore a shielding monotone on a declared window,
+$$
+\Sigma_{\mathrm{shield}}(A;W)
+=
+\frac{\Phi_{\mathrm{int}}^{\mathrm{root}}(A;W)}
+{\Phi_{\mathrm{ext}}^{\mathrm{root}}(A;W)+\varepsilon}
+$$
+where $\Phi_{\mathrm{int}}^{\mathrm{root}}$ is the retained internal causal-root flux and $\Phi_{\mathrm{ext}}^{\mathrm{root}}$ is the externally exposed root or wake flux. A capture step $A\to A'$ is shielding-improving only if it decreases external reactivity, or equivalently increases $\Sigma_{\mathrm{shield}}$ under the declared convention, without breaking the energy and provenance ledger. If this monotonicity fails, the assembly atlas should treat the result as a side branch or metastable over-reactive intermediate rather than forcing it into the main bottom-up ladder.
 
 ### Bottom-Up Structural Ladder
 
@@ -223,6 +248,8 @@ $$
 Thus reaching or exceeding $c_f$ somewhere along the intervening history is a necessary condition for a simple nontrivial self-hit root, apart from the degenerate straight field-speed tangent case excluded by the simple-root assumptions, but it is not sufficient. Curvature, acceleration, and branch geometry determine whether the worldline actually intersects its own emitted causal wake. The exact onset condition is root existence plus transversality, not the scalar inequality $\|\mathbf{v}\|>c_f$ alone.
 
 This creates a threshold asymmetry in the system. A small acceleration caused by intersecting a wake can push an architrino into a branch chart where same-source roots become admissible, or where the transversality floor fails and a degenerate causal-root regime must be resolved. The transistor analogy is only pedagogical: a small input changes which channel is available. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the underlying mechanism is not electronics but delayed causal-root selection.
+
+The common geometric pattern is codimension-one transition. Self-hit onset is a fold in the same-source causal-root set, context opening is a wall-crossing in the admitted-chart map $c\mapsto\Gamma_{\mathrm{adm}}(c)$, and basin branching is a separatrix crossing in the return section. In each case an integer or discrete branch label changes only when the retained chart crosses a singular stratum: an active-root count jumps, an admitted branch appears or disappears, or a basin label changes. Emergence is therefore not merely "larger patterns appear"; it is the formation and reorganization of persistent branches across stratified causal-root and basin geometry.
 
 ### Provenance within Emergence
 
