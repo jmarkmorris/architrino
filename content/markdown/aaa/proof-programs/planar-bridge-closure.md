@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This chapter isolates the first higher-dimensional closure problem that can move the dynamics stack forward in a decisive way. The exact delayed law is already stated in [Master Equation of Motion](../dynamics/master-equation.md), and the branch-topology machinery is already formalized in [Causal Action Functional](../dynamics/causal-action-functional.md). What is still missing is a theorem-backed bridge showing that a genuinely planar delayed system admits a controlled section class, local branch regularity, bounded caustic transit, a genuine radial turnaround, and a return map that closes on a controlled envelope.
+This chapter isolates the first higher-dimensional closure problem that can move the dynamics stack forward in a decisive way. The exact delayed law is already stated in [Master Equation](../dynamics/master-equation.md), and the branch-topology machinery is already formalized in [Causal Action Functional](../dynamics/causal-action-functional.md). What is still missing is a theorem-backed bridge showing that a genuinely planar delayed system admits a controlled section class, local branch regularity, bounded caustic transit, a genuine radial turnaround, and a return map that closes on a controlled envelope.
 
 The planar bridge is the first regime where the proof architecture must leave the line while still retaining enough symmetry to remain mathematically tractable. If this bridge closes, it becomes the substrate basis for planar lock, terminal aligned modes, and the horizon-facing chirality questions developed in [Horizon Chirality and Planar Spin](../spacetime/horizon-chirality.md). If it fails, the failure should identify the exact geometric obstruction rather than leaving the whole closure program underdetermined.
 
@@ -10,7 +10,7 @@ The planar bridge is the first regime where the proof architecture must leave th
 
 The present chapter sits between four existing layers:
 
-1. the exact delayed equations in [Master Equation of Motion](../dynamics/master-equation.md),
+1. the exact delayed equations in [Master Equation](../dynamics/master-equation.md),
 2. the topological branch formalism in [Causal Action Functional](../dynamics/causal-action-functional.md),
 3. the reduced return-map architecture in [1D Collinear Breather](./collinear-breather.md),
 4. the higher-dimensional program statement in [Master-Equation Breather Program](./master-equation-breather.md).
@@ -312,7 +312,7 @@ If planar bridge closure fails, those higher-level chapters must become more con
 
 ## Interfaces to Other Chapters
 
-- [Master Equation of Motion](../dynamics/master-equation.md): exact delayed law, root equations, and Jacobian structure.
+- [Master Equation](../dynamics/master-equation.md): exact delayed law, root equations, and Jacobian structure.
 - [Causal Action Functional](../dynamics/causal-action-functional.md): branch labels, coarea reduction, and the Jacobian-null bifurcation criterion.
 - [1D Collinear Breather](./collinear-breather.md): reduced return-map architecture and tame-envelope philosophy.
 - [Master-Equation Breather Program](./master-equation-breather.md): global roadmap that this chapter now instantiates in the first planar regime.

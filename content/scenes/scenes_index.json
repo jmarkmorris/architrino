@@ -937,12 +937,12 @@
     },
     {
       "id": "dynamics__kinetic_and_potential_energy",
-      "name": "Kinetic and Potential Energy",
+      "name": "Energy",
       "path": "content/scenes/dynamics/kinetic_and_potential_energy.json"
     },
     {
       "id": "dynamics__master_equation_of_motion",
-      "name": "Master Equation of Motion",
+      "name": "Master Equation",
       "path": "content/scenes/dynamics/master_equation_of_motion.json"
     },
     {
@@ -972,7 +972,7 @@
     },
     {
       "id": "foundations__foundational_ontology",
-      "name": "Foundational Ontology",
+      "name": "Ontology",
       "path": "content/scenes/foundations/foundational_ontology.json"
     },
     {

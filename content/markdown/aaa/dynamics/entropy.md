@@ -116,7 +116,7 @@ k_B\,\mathcal{H}
 \right)
 $$
 
-This is the entropy of the receiver's inference fiber. The electrino/positrino antipode ambiguity and the surrogate-location recast described in [Master Equation of Motion](master-equation.md#informational-ambiguity-at-the-receiver) are then measure-preserving involutions on $\Gamma_i^{\mathrm{hit}}(t)$ whenever the retained hit record is unchanged by the recast. Measurement uncertainty at this level is therefore a computable fiber multiplicity, not a slogan added after the dynamics.
+This is the entropy of the receiver's inference fiber. The electrino/positrino antipode ambiguity and the surrogate-location recast described in [Master Equation](master-equation.md#informational-ambiguity-at-the-receiver) are then measure-preserving involutions on $\Gamma_i^{\mathrm{hit}}(t)$ whenever the retained hit record is unchanged by the recast. Measurement uncertainty at this level is therefore a computable fiber multiplicity, not a slogan added after the dynamics.
 
 When $\mathcal{H}$ is evaluated as a probability entropy, the restricted measure is normalized on $\Gamma_i^{\mathrm{hit}}(t)$. If the fiber has zero or undefined measure under the declared preparation, the receiver-hit entropy is not licensed for that packet.
 
@@ -441,7 +441,7 @@ $$
 
 for the declared record. The phrase "entropy of the universe" is not a complete claim unless it supplies the measure, window, boundary, and residual terms.
 
-The entropy-arrow theorem target ties this boundary term to wake escapement. Let $\mathcal{E}_{\mathrm{esc}}(W)$ be the wake-escapement set defined in [Kinetic and Potential Energy](energy.md#wake-escapement), and let $\Sigma_{\mathrm{esc}}(\mathcal{E}_{\mathrm{esc}}(W),t)$ be the rate at which retained path-history distinctions leave $W$ on causal wakes that no longer hit a retained receiver. The structural target is
+The entropy-arrow theorem target ties this boundary term to wake escapement. Let $\mathcal{E}_{\mathrm{esc}}(W)$ be the wake-escapement set defined in [Energy](energy.md#wake-escapement), and let $\Sigma_{\mathrm{esc}}(\mathcal{E}_{\mathrm{esc}}(W),t)$ be the rate at which retained path-history distinctions leave $W$ on causal wakes that no longer hit a retained receiver. The structural target is
 
 $$
 \frac{d}{dt}S_{\Pi,W}(t)
@@ -720,6 +720,6 @@ A tenth failure mode is promoting present human or laboratory macrostates into t
 
 ## Interfaces
 
-The energy-side residuals are stated in [Kinetic and Potential Energy](energy.md#entropy-free-energy-and-coarse-residuals). The time-side arrow distinction is stated in [Absolute Time](../foundations/absolute-time.md#time-orientation). Measurement locking is stated in [Measurement Ontology](../quantum/measurement-ontology.md). Computation cost is treated in [Information / Computation](../philosophy-history/information-computation.md#thermodynamic-cost-of-computation). Local-horizon recovery is stated in [Emergent Metric](../spacetime/emergent-metric.md#local-horizon-recovery-target), with the simulation-facing scaffold in [Thermodynamic Residual Protocol](../validation/simulations/thermodynamic-residual.md). The strong-field horizon target is stated in [Black Holes](../spacetime/black-holes.md#horizon-interface), and the dynamics-side label-count target is stated in [Nested Shell Braid Dynamics](../noether-swarm/nested-shell-swarm-dynamics.md#terminal-alignment-label-count-target).
+The energy-side residuals are stated in [Energy](energy.md#entropy-free-energy-and-coarse-residuals). The time-side arrow distinction is stated in [Absolute Time](../foundations/absolute-time.md#time-orientation). Measurement locking is stated in [Measurement Ontology](../quantum/measurement-ontology.md). Computation cost is treated in [Information / Computation](../philosophy-history/information-computation.md#thermodynamic-cost-of-computation). Local-horizon recovery is stated in [Emergent Metric](../spacetime/emergent-metric.md#local-horizon-recovery-target), with the simulation-facing scaffold in [Thermodynamic Residual Protocol](../validation/simulations/thermodynamic-residual.md). The strong-field horizon target is stated in [Black Holes](../spacetime/black-holes.md#horizon-interface), and the dynamics-side label-count target is stated in [Nested Shell Braid Dynamics](../noether-swarm/nested-shell-swarm-dynamics.md#terminal-alignment-label-count-target).
 
 The consolidated rule is simple: entropy is accepted only as a declared projection of retained deterministic histories, and every effective entropy claim must name the record that makes the projection physical.

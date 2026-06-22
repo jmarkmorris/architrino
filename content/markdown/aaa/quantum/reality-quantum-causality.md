@@ -8,7 +8,7 @@ This chapter addresses the quantum branch at the level of ontology and epistemic
 - Explain how deterministic microdynamics yield effective randomness at the operational level.
 - Define minimal dynamical requirements for agency/decision in assemblies.
 - Connect the **Decider** and **Switch** case studies to those requirements.
-- Tie the chapter to [Foundational Ontology](../foundations/ontology.md), [Observer Framework](../spacetime/observer-framework.md), and [Master Equation](../dynamics/master-equation.md).
+- Tie the chapter to [Ontology](../foundations/ontology.md), [Observer Framework](../spacetime/observer-framework.md), and [Master Equation](../dynamics/master-equation.md).
 
 **Scope note:** This chapter states current $\mathbb{A}\mathbb{A}\mathbb{A}$ working claims unless a passage is explicitly labeled as a toy model, phenomenological mapping, or closure target.
 

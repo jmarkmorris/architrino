@@ -1,6 +1,6 @@
 # Dynamics
 
-## Master Equation of Motion
+## Master Equation
 
 This chapter is the canonical statement of the delayed dynamical law used throughout the dynamics branch. It defines what counts as a causal hit, how the receiver-local force law is assembled from path history, and which exact or regularized structures are firm enough to support later work on binaries, nested shell braids, effective geometry, and quantum closure.
 
@@ -1184,7 +1184,7 @@ Therefore the regularized delayed dynamics are locally well-posed, with global e
 
 ##### Finite-Continuation Criterion for Global Comparisons
 
-The well-posedness theorem is the dynamics-side home for global-continuation comparisons used later in [GR Phenomenology](../../../../markdown/aaa/spacetime/gr-phenomenology.md#global-continuation-and-cosmic-censorship-comparison) and [Singularity Resolution](../../../../markdown/aaa/spacetime/singularity-resolution.md#cauchy-horizon-comparison-pressure). It should not be read as a claim that observer records determine a unique global spacetime. Its native claim is narrower: a declared finite history, boundary wake record, and branch chart either determine a finite continuation family or they do not.
+The well-posedness theorem is the dynamics-side home for global-continuation comparisons used later in [General Relativity](../../../../markdown/aaa/spacetime/general-relativity.md#global-continuation-and-cosmic-censorship-comparison) and [Singularity Resolution](../../../../markdown/aaa/spacetime/singularity-resolution.md#cauchy-horizon-comparison-pressure). It should not be read as a claim that observer records determine a unique global spacetime. Its native claim is narrower: a declared finite history, boundary wake record, and branch chart either determine a finite continuation family or they do not.
 
 For a compact subsystem $\Omega$ and window $W=[t_i,t_f]$, let $\mathcal{A}_{\Omega,W}^{(\eta)}$ be the set of branch charts that satisfy the regularized assumptions (W1)-(W5), the bounded active-branch condition, the distance floor, and the root-transversality floor on $W$ using the same finite boundary data $\mathcal{B}_{\partial\Omega}|_W$. The dynamics-side continuation family is
 $$
@@ -3485,7 +3485,7 @@ $$
 $$
 The theorem-level branch claim requires the three residual balances to converge to zero with $\epsilon_{\mathrm{var}}^{(\eta)}(W)\to0$, vanishing declared endpoint or period-cut leakage, stable branch floors, and the same retained row set in the force residuals and in the three wake-history charges. A work-integral reconstruction $U(t)$ or a projected torque increment is only a numerical diagnostic unless it is derived from this same action kernel, endpoint convention, and retained branch chart.
 
-For a finite spatial window, the energy boundary row can be read as the wake-escapement flux defined in [Kinetic and Potential Energy](../../../../markdown/aaa/dynamics/energy.md#wake-escapement). In that notation, a theorem-level conservation packet should be able to rewrite the energy balance in the form
+For a finite spatial window, the energy boundary row can be read as the wake-escapement flux defined in [Energy](../../../../markdown/aaa/dynamics/energy.md#wake-escapement). In that notation, a theorem-level conservation packet should be able to rewrite the energy balance in the form
 $$
 \frac{dE_W}{dt}
 =
@@ -3892,7 +3892,7 @@ where $\mathbf{R}_i^{(\eta)}$ is the Euler residual of the same action and $\mat
 
 ---
 
-## Kinetic and Potential Energy
+## Energy
 
 In $\mathbb{A}\mathbb{A}\mathbb{A}$, energy accounting begins with architrinos and the causal wakes they generate. Architrinos carry primitive kinetic energy through motion and supply potential-energy bookkeeping through delayed interactions; the wake itself is not a standalone substance or vacuum reservoir. A **wake** is the source-dependent causal-isochron record of an architrino's emissions: motion changes its geometry, branch timing, and received potential, not the fact that an emission record exists. The term `wake` is the architrino-native description of what appears as a field at the effective level.
 
@@ -5829,7 +5829,7 @@ Fix a finite retained system over a time window $W=[t_a,t_b]$, a spatial window 
 $$
 \mathfrak{B}(\Gamma,\mathcal{S};h,\eta,\epsilon_c)
 $$
-for the same active causal-root rows used by the [Master Equation of Motion](../../../../markdown/aaa/dynamics/master-equation.md). The retained history at time $t$ is the segment
+for the same active causal-root rows used by the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md). The retained history at time $t$ is the segment
 $$
 X_t
 =
@@ -6034,7 +6034,7 @@ An exact isolated conservation claim requires $\epsilon_E^{(\eta)}\to0$, $\Delta
 
 #### No-Double-Counting Rule
 
-The interaction contribution may be carried by $E_{\text{wake}}$, by an equivalent work-integral reconstruction, or by an explicitly retained near-field decomposition, but not by all of them at once. If a pairwise $U_{\mathrm{int}}$ term is used inside an assembly, the wake-energy term must omit the same near-field content. If a Noether sea update is retained inside $E_{\mathrm{sea},\Omega}$, it must not also appear as an outgoing event-ledger channel. The same rule is used by [Emergence](../../../../markdown/aaa/foundations/emergence.md#transition-thresholds-and-event-ledgers) and [Kinetic and Potential Energy](../../../../markdown/aaa/dynamics/energy.md#energy-conservation-and-exchange).
+The interaction contribution may be carried by $E_{\text{wake}}$, by an equivalent work-integral reconstruction, or by an explicitly retained near-field decomposition, but not by all of them at once. If a pairwise $U_{\mathrm{int}}$ term is used inside an assembly, the wake-energy term must omit the same near-field content. If a Noether sea update is retained inside $E_{\mathrm{sea},\Omega}$, it must not also appear as an outgoing event-ledger channel. The same rule is used by [Emergence](../../../../markdown/aaa/foundations/emergence.md#transition-thresholds-and-event-ledgers) and [Energy](../../../../markdown/aaa/dynamics/energy.md#energy-conservation-and-exchange).
 
 #### Promotion and Failure Conditions
 
@@ -6052,7 +6052,7 @@ The construction fails if conservation is recovered only by changing the energy 
 
 #### Downstream Use
 
-This chapter is the shared energy standard for [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md), [Effective Lagrangian](../../../../markdown/aaa/dynamics/effective-lagrangian.md), [Kinetic and Potential Energy](../../../../markdown/aaa/dynamics/energy.md), [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md), and event-ledger uses in [Emergence](../../../../markdown/aaa/foundations/emergence.md). The [two-body binary closure packet](../../../../markdown/aaa/dynamics/binary-dynamics.md#two-body-closure-packet-theorem-target) must report $\epsilon_E^{(\eta)}(W;\mathfrak{B})$, $\Delta_{\mathrm{E,cross}}^{(\eta)}(W;\mathfrak{B})$, and the lower-bound entry on the same branch chart as its motion, branch-floor, stability, and frequency residuals. Existence and stability are not enough unless the accepted branch also carries a constructive energy ledger.
+This chapter is the shared energy standard for [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md), [Effective Lagrangian](../../../../markdown/aaa/dynamics/effective-lagrangian.md), [Energy](../../../../markdown/aaa/dynamics/energy.md), [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md), and event-ledger uses in [Emergence](../../../../markdown/aaa/foundations/emergence.md). The [two-body binary closure packet](../../../../markdown/aaa/dynamics/binary-dynamics.md#two-body-closure-packet-theorem-target) must report $\epsilon_E^{(\eta)}(W;\mathfrak{B})$, $\Delta_{\mathrm{E,cross}}^{(\eta)}(W;\mathfrak{B})$, and the lower-bound entry on the same branch chart as its motion, branch-floor, stability, and frequency residuals. Existence and stability are not enough unless the accepted branch also carries a constructive energy ledger.
 
 ### Informational Ambiguity
 
@@ -6745,7 +6745,7 @@ k_B\,\mathcal{H}
 \right)
 $$
 
-This is the entropy of the receiver's inference fiber. The electrino/positrino antipode ambiguity and the surrogate-location recast described in [Master Equation of Motion](../../../../markdown/aaa/dynamics/master-equation.md#informational-ambiguity-at-the-receiver) are then measure-preserving involutions on $\Gamma_i^{\mathrm{hit}}(t)$ whenever the retained hit record is unchanged by the recast. Measurement uncertainty at this level is therefore a computable fiber multiplicity, not a slogan added after the dynamics.
+This is the entropy of the receiver's inference fiber. The electrino/positrino antipode ambiguity and the surrogate-location recast described in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#informational-ambiguity-at-the-receiver) are then measure-preserving involutions on $\Gamma_i^{\mathrm{hit}}(t)$ whenever the retained hit record is unchanged by the recast. Measurement uncertainty at this level is therefore a computable fiber multiplicity, not a slogan added after the dynamics.
 
 When $\mathcal{H}$ is evaluated as a probability entropy, the restricted measure is normalized on $\Gamma_i^{\mathrm{hit}}(t)$. If the fiber has zero or undefined measure under the declared preparation, the receiver-hit entropy is not licensed for that packet.
 
@@ -7070,7 +7070,7 @@ $$
 
 for the declared record. The phrase "entropy of the universe" is not a complete claim unless it supplies the measure, window, boundary, and residual terms.
 
-The entropy-arrow theorem target ties this boundary term to wake escapement. Let $\mathcal{E}_{\mathrm{esc}}(W)$ be the wake-escapement set defined in [Kinetic and Potential Energy](../../../../markdown/aaa/dynamics/energy.md#wake-escapement), and let $\Sigma_{\mathrm{esc}}(\mathcal{E}_{\mathrm{esc}}(W),t)$ be the rate at which retained path-history distinctions leave $W$ on causal wakes that no longer hit a retained receiver. The structural target is
+The entropy-arrow theorem target ties this boundary term to wake escapement. Let $\mathcal{E}_{\mathrm{esc}}(W)$ be the wake-escapement set defined in [Energy](../../../../markdown/aaa/dynamics/energy.md#wake-escapement), and let $\Sigma_{\mathrm{esc}}(\mathcal{E}_{\mathrm{esc}}(W),t)$ be the rate at which retained path-history distinctions leave $W$ on causal wakes that no longer hit a retained receiver. The structural target is
 
 $$
 \frac{d}{dt}S_{\Pi,W}(t)
@@ -7349,7 +7349,7 @@ A tenth failure mode is promoting present human or laboratory macrostates into t
 
 ### Interfaces
 
-The energy-side residuals are stated in [Kinetic and Potential Energy](../../../../markdown/aaa/dynamics/energy.md#entropy-free-energy-and-coarse-residuals). The time-side arrow distinction is stated in [Absolute Time](../../../../markdown/aaa/foundations/absolute-time.md#time-orientation). Measurement locking is stated in [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md). Computation cost is treated in [Information / Computation](../../../../markdown/aaa/philosophy-history/information-computation.md#thermodynamic-cost-of-computation). Local-horizon recovery is stated in [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md#local-horizon-recovery-target), with the simulation-facing scaffold in [Thermodynamic Residual Protocol](../../../../markdown/aaa/validation/simulations/thermodynamic-residual.md). The strong-field horizon target is stated in [Black Holes](../../../../markdown/aaa/spacetime/black-holes.md#horizon-interface), and the dynamics-side label-count target is stated in [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md#terminal-alignment-label-count-target).
+The energy-side residuals are stated in [Energy](../../../../markdown/aaa/dynamics/energy.md#entropy-free-energy-and-coarse-residuals). The time-side arrow distinction is stated in [Absolute Time](../../../../markdown/aaa/foundations/absolute-time.md#time-orientation). Measurement locking is stated in [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md). Computation cost is treated in [Information / Computation](../../../../markdown/aaa/philosophy-history/information-computation.md#thermodynamic-cost-of-computation). Local-horizon recovery is stated in [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md#local-horizon-recovery-target), with the simulation-facing scaffold in [Thermodynamic Residual Protocol](../../../../markdown/aaa/validation/simulations/thermodynamic-residual.md). The strong-field horizon target is stated in [Black Holes](../../../../markdown/aaa/spacetime/black-holes.md#horizon-interface), and the dynamics-side label-count target is stated in [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md#terminal-alignment-label-count-target).
 
 The consolidated rule is simple: entropy is accepted only as a declared projection of retained deterministic histories, and every effective entropy claim must name the record that makes the projection physical.
 
@@ -10951,7 +10951,7 @@ $$
 $$
 The scale-only branch law is theorem-grade on $W$ only when this residual tends to zero with the declared branch floors and boundary convention. The broader action-derived dynamics may instead be theorem-grade with nonzero $\mathbf{C}_{ij}^{(\eta)}$ if that term is retained as mechanical recoil and the same action closes the energy, momentum, and angular-momentum ledgers. If neither condition is reported, the local effective Lagrangian remains a fitted chart.
 
-The current status is therefore a conditional theorem schema, not a universal action theorem. The pure scalar $1/r$ action is not a universal exact action for the scale-only Master EOM; it is valid as that derivation only on residual-closed charts. On charts where the interior residual survives, $\mathbf{C}_{ij}^{(\eta)}$ is the strict mechanical recoil (wake-emission resistance) required by a purely delayed action. It is the same bookkeeping channel that balances the positive tangential drive and wake escapement described in [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md#tangential-drive-and-wake-escapement) and [Kinetic and Potential Energy](../../../../markdown/aaa/dynamics/energy.md#wake-escapement).
+The current status is therefore a conditional theorem schema, not a universal action theorem. The pure scalar $1/r$ action is not a universal exact action for the scale-only Master EOM; it is valid as that derivation only on residual-closed charts. On charts where the interior residual survives, $\mathbf{C}_{ij}^{(\eta)}$ is the strict mechanical recoil (wake-emission resistance) required by a purely delayed action. It is the same bookkeeping channel that balances the positive tangential drive and wake escapement described in [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md#tangential-drive-and-wake-escapement) and [Energy](../../../../markdown/aaa/dynamics/energy.md#wake-escapement).
 
 The recoil-inclusive reading also supplies the native seed of effective gauge structure. The scale term is a spatial gradient of the causal scale kernel and coarse-grains into an effective scalar wake potential. The derivative-of-constraint term is different: it differentiates the causal phase function $g_{ij}$ itself. On an effective product chart with coordinates $(t,\mathbf{x})$, write the recoil current schematically as
 
@@ -33662,7 +33662,7 @@ The first doubled-itinerary affine check has a sharper conclusion: the apparent 
 
 #### Purpose
 
-This chapter isolates the first higher-dimensional closure problem that can move the dynamics stack forward in a decisive way. The exact delayed law is already stated in [Master Equation of Motion](../../../../markdown/aaa/dynamics/master-equation.md), and the branch-topology machinery is already formalized in [Causal Action Functional](../../../../markdown/aaa/dynamics/causal-action-functional.md). What is still missing is a theorem-backed bridge showing that a genuinely planar delayed system admits a controlled section class, local branch regularity, bounded caustic transit, a genuine radial turnaround, and a return map that closes on a controlled envelope.
+This chapter isolates the first higher-dimensional closure problem that can move the dynamics stack forward in a decisive way. The exact delayed law is already stated in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md), and the branch-topology machinery is already formalized in [Causal Action Functional](../../../../markdown/aaa/dynamics/causal-action-functional.md). What is still missing is a theorem-backed bridge showing that a genuinely planar delayed system admits a controlled section class, local branch regularity, bounded caustic transit, a genuine radial turnaround, and a return map that closes on a controlled envelope.
 
 The planar bridge is the first regime where the proof architecture must leave the line while still retaining enough symmetry to remain mathematically tractable. If this bridge closes, it becomes the substrate basis for planar lock, terminal aligned modes, and the horizon-facing chirality questions developed in [Horizon Chirality and Planar Spin](../../../../markdown/aaa/spacetime/horizon-chirality.md). If it fails, the failure should identify the exact geometric obstruction rather than leaving the whole closure program underdetermined.
 
@@ -33670,7 +33670,7 @@ The planar bridge is the first regime where the proof architecture must leave th
 
 The present chapter sits between four existing layers:
 
-1. the exact delayed equations in [Master Equation of Motion](../../../../markdown/aaa/dynamics/master-equation.md),
+1. the exact delayed equations in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md),
 2. the topological branch formalism in [Causal Action Functional](../../../../markdown/aaa/dynamics/causal-action-functional.md),
 3. the reduced return-map architecture in [1D Collinear Breather](../../../../markdown/aaa/proof-programs/collinear-breather.md),
 4. the higher-dimensional program statement in [Master-Equation Breather Program](../../../../markdown/aaa/proof-programs/master-equation-breather.md).
@@ -33972,7 +33972,7 @@ If planar bridge closure fails, those higher-level chapters must become more con
 
 #### Interfaces to Other Chapters
 
-- [Master Equation of Motion](../../../../markdown/aaa/dynamics/master-equation.md): exact delayed law, root equations, and Jacobian structure.
+- [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md): exact delayed law, root equations, and Jacobian structure.
 - [Causal Action Functional](../../../../markdown/aaa/dynamics/causal-action-functional.md): branch labels, coarea reduction, and the Jacobian-null bifurcation criterion.
 - [1D Collinear Breather](../../../../markdown/aaa/proof-programs/collinear-breather.md): reduced return-map architecture and tame-envelope philosophy.
 - [Master-Equation Breather Program](../../../../markdown/aaa/proof-programs/master-equation-breather.md): global roadmap that this chapter now instantiates in the first planar regime.

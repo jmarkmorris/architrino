@@ -38,7 +38,7 @@ This chapter addresses the quantum branch at the level of ontology and epistemic
 - Explain how deterministic microdynamics yield effective randomness at the operational level.
 - Define minimal dynamical requirements for agency/decision in assemblies.
 - Connect the **Decider** and **Switch** case studies to those requirements.
-- Tie the chapter to [Foundational Ontology](../../../../markdown/aaa/foundations/ontology.md), [Observer Framework](../../../../markdown/aaa/spacetime/observer-framework.md), and [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md).
+- Tie the chapter to [Ontology](../../../../markdown/aaa/foundations/ontology.md), [Observer Framework](../../../../markdown/aaa/spacetime/observer-framework.md), and [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md).
 
 **Scope note:** This chapter states current $\mathbb{A}\mathbb{A}\mathbb{A}$ working claims unless a passage is explicitly labeled as a toy model, phenomenological mapping, or closure target.
 
@@ -2095,7 +2095,7 @@ At the observer level, $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover those rules
 
 The substrate question is: what assembly geometry makes those two statistical packages appear?
 
-The answer must not erase substrate identity. Individual architrinos remain provenance-bearing entities, as stated in [Absolute Time](../../../../markdown/aaa/foundations/absolute-time.md#provenance-and-identity-through-time), and the exact symmetries of the master equation preserve full histories rather than arbitrary label swaps (see [Master Equation of Motion](../../../../markdown/aaa/dynamics/master-equation.md#fundamental-symmetry-group)). The statistics problem is therefore an effective-state recovery problem: determine when finite observers may quotient inaccessible provenance into antisymmetric or symmetric bookkeeping without treating that quotient as ontic interchangeability.
+The answer must not erase substrate identity. Individual architrinos remain provenance-bearing entities, as stated in [Absolute Time](../../../../markdown/aaa/foundations/absolute-time.md#provenance-and-identity-through-time), and the exact symmetries of the master equation preserve full histories rather than arbitrary label swaps (see [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#fundamental-symmetry-group)). The statistics problem is therefore an effective-state recovery problem: determine when finite observers may quotient inaccessible provenance into antisymmetric or symmetric bookkeeping without treating that quotient as ontic interchangeability.
 
 ### Nested Shell Braid Geometry Basis
 

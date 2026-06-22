@@ -1272,13 +1272,13 @@
     },
     {
       "id": "dynamics__kinetic_and_potential_energy",
-      "name": "Kinetic and Potential Energy",
+      "name": "Energy",
       "path": "content/scenes/dynamics/kinetic_and_potential_energy.json",
       "nodeType": "scene"
     },
     {
       "id": "dynamics__master_equation_of_motion",
-      "name": "Master Equation of Motion",
+      "name": "Master Equation",
       "path": "content/scenes/dynamics/master_equation_of_motion.json",
       "nodeType": "scene"
     },
@@ -1314,7 +1314,7 @@
     },
     {
       "id": "foundations__foundational_ontology",
-      "name": "Foundational Ontology",
+      "name": "Ontology",
       "path": "content/scenes/foundations/foundational_ontology.json",
       "nodeType": "scene"
     },
@@ -2496,7 +2496,7 @@
     },
     {
       "id": "content/markdown/aaa/dynamics/energy.md",
-      "name": "Kinetic and Potential Energy",
+      "name": "Energy",
       "path": "content/markdown/aaa/dynamics/energy.md",
       "nodeType": "markdown_doc"
     },
@@ -2508,7 +2508,7 @@
     },
     {
       "id": "content/markdown/aaa/dynamics/master-equation.md",
-      "name": "Master Equation of Motion",
+      "name": "Master Equation",
       "path": "content/markdown/aaa/dynamics/master-equation.md",
       "nodeType": "markdown_doc"
     },
@@ -2568,7 +2568,7 @@
     },
     {
       "id": "content/markdown/aaa/foundations/ontology.md",
-      "name": "Foundational Ontology",
+      "name": "Ontology",
       "path": "content/markdown/aaa/foundations/ontology.md",
       "nodeType": "markdown_doc"
     },
@@ -2609,9 +2609,9 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/nuclear-atomic/hyde-info.md",
-      "name": "Hyde Periodic Table: Structural Periodicity and Geometric Representation",
-      "path": "content/markdown/aaa/nuclear-atomic/hyde-info.md",
+      "id": "content/markdown/aaa/nuclear-atomic/hyde-periodic-table.md",
+      "name": "Hyde Periodic Table",
+      "path": "content/markdown/aaa/nuclear-atomic/hyde-periodic-table.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -2693,6 +2693,12 @@
       "nodeType": "markdown_doc"
     },
     {
+      "id": "content/markdown/aaa/philosophy-history/theory-bridges.md",
+      "name": "Theory Bridges",
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges.md",
+      "nodeType": "markdown_doc"
+    },
+    {
       "id": "content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md",
       "name": "Angular Momentum and Spin",
       "path": "content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md",
@@ -2738,12 +2744,6 @@
       "id": "content/markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md",
       "name": "Quantum Operator Mapping",
       "path": "content/markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/philosophy-history/theory-bridges/README.md",
-      "name": "Theory Bridges",
-      "path": "content/markdown/aaa/philosophy-history/theory-bridges/README.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -2903,9 +2903,9 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/spacetime/gr-phenomenology.md",
-      "name": "General Relativity Observables",
-      "path": "content/markdown/aaa/spacetime/gr-phenomenology.md",
+      "id": "content/markdown/aaa/spacetime/general-relativity.md",
+      "name": "General Relativity",
+      "path": "content/markdown/aaa/spacetime/general-relativity.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -3826,7 +3826,7 @@
       "nodeId": "scene:content/scenes/dynamics/kinetic_and_potential_energy.json",
       "nodeType": "scene",
       "id": "dynamics__kinetic_and_potential_energy",
-      "name": "Kinetic and Potential Energy",
+      "name": "Energy",
       "path": "content/scenes/dynamics/kinetic_and_potential_energy.json",
       "searchTarget": "content/scenes/dynamics/kinetic_and_potential_energy.json",
       "implicit": false
@@ -3835,7 +3835,7 @@
       "nodeId": "scene:content/scenes/dynamics/master_equation_of_motion.json",
       "nodeType": "scene",
       "id": "dynamics__master_equation_of_motion",
-      "name": "Master Equation of Motion",
+      "name": "Master Equation",
       "path": "content/scenes/dynamics/master_equation_of_motion.json",
       "searchTarget": "content/scenes/dynamics/master_equation_of_motion.json",
       "implicit": false
@@ -4996,7 +4996,7 @@
       "nodeId": "scene:content/scenes/foundations/foundational_ontology.json",
       "nodeType": "scene",
       "id": "foundations__foundational_ontology",
-      "name": "Foundational Ontology",
+      "name": "Ontology",
       "path": "content/scenes/foundations/foundational_ontology.json",
       "searchTarget": "content/scenes/foundations/foundational_ontology.json",
       "implicit": false
@@ -6751,7 +6751,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/dynamics/energy.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/dynamics/energy.md",
-      "name": "Kinetic and Potential Energy",
+      "name": "Energy",
       "path": "content/markdown/aaa/dynamics/energy.md",
       "searchTarget": "content/markdown/aaa/dynamics/energy.md",
       "implicit": false
@@ -6769,7 +6769,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/dynamics/master-equation.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/dynamics/master-equation.md",
-      "name": "Master Equation of Motion",
+      "name": "Master Equation",
       "path": "content/markdown/aaa/dynamics/master-equation.md",
       "searchTarget": "content/markdown/aaa/dynamics/master-equation.md",
       "implicit": false
@@ -6859,7 +6859,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/foundations/ontology.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/foundations/ontology.md",
-      "name": "Foundational Ontology",
+      "name": "Ontology",
       "path": "content/markdown/aaa/foundations/ontology.md",
       "searchTarget": "content/markdown/aaa/foundations/ontology.md",
       "implicit": false
@@ -6919,12 +6919,12 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/nuclear-atomic/hyde-info.md",
+      "nodeId": "markdown_doc:content/markdown/aaa/nuclear-atomic/hyde-periodic-table.md",
       "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/nuclear-atomic/hyde-info.md",
-      "name": "Hyde Periodic Table: Structural Periodicity and Geometric Representation",
-      "path": "content/markdown/aaa/nuclear-atomic/hyde-info.md",
-      "searchTarget": "content/markdown/aaa/nuclear-atomic/hyde-info.md",
+      "id": "content/markdown/aaa/nuclear-atomic/hyde-periodic-table.md",
+      "name": "Hyde Periodic Table",
+      "path": "content/markdown/aaa/nuclear-atomic/hyde-periodic-table.md",
+      "searchTarget": "content/markdown/aaa/nuclear-atomic/hyde-periodic-table.md",
       "implicit": false
     },
     {
@@ -7045,6 +7045,15 @@
       "implicit": false
     },
     {
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/philosophy-history/theory-bridges.md",
+      "name": "Theory Bridges",
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/theory-bridges.md",
+      "implicit": false
+    },
+    {
       "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md",
@@ -7114,15 +7123,6 @@
       "name": "Quantum Operator Mapping",
       "path": "content/markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md",
       "searchTarget": "content/markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/README.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/philosophy-history/theory-bridges/README.md",
-      "name": "Theory Bridges",
-      "path": "content/markdown/aaa/philosophy-history/theory-bridges/README.md",
-      "searchTarget": "content/markdown/aaa/philosophy-history/theory-bridges/README.md",
       "implicit": false
     },
     {
@@ -7360,12 +7360,12 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/spacetime/gr-phenomenology.md",
+      "nodeId": "markdown_doc:content/markdown/aaa/spacetime/general-relativity.md",
       "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/spacetime/gr-phenomenology.md",
-      "name": "General Relativity Observables",
-      "path": "content/markdown/aaa/spacetime/gr-phenomenology.md",
-      "searchTarget": "content/markdown/aaa/spacetime/gr-phenomenology.md",
+      "id": "content/markdown/aaa/spacetime/general-relativity.md",
+      "name": "General Relativity",
+      "path": "content/markdown/aaa/spacetime/general-relativity.md",
+      "searchTarget": "content/markdown/aaa/spacetime/general-relativity.md",
       "implicit": false
     },
     {
@@ -12530,7 +12530,7 @@
     },
     {
       "from": "scene:content/scenes/chemistry/hyde_periodic_table_scene.json",
-      "to": "markdown_doc:content/markdown/aaa/nuclear-atomic/hyde-info.md",
+      "to": "markdown_doc:content/markdown/aaa/nuclear-atomic/hyde-periodic-table.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/chemistry/hyde_periodic_table_scene.json",
       "field": "scene.source.path"
@@ -12901,7 +12901,7 @@
     },
     {
       "from": "scene:content/scenes/philosophy_history/theory_bridges/overview.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/README.md",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/philosophy_history/theory_bridges/overview.json",
       "field": "scene.source.path"
@@ -13111,7 +13111,7 @@
     },
     {
       "from": "scene:content/scenes/spacetime/general_relativity_observables.json",
-      "to": "markdown_doc:content/markdown/aaa/spacetime/gr-phenomenology.md",
+      "to": "markdown_doc:content/markdown/aaa/spacetime/general-relativity.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/spacetime/general_relativity_observables.json",
       "field": "scene.source.path"

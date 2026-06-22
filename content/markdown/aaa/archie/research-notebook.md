@@ -46,7 +46,7 @@ The benchmark side also became more disciplined. The widened emission-shell v0 s
 Relevant files:
 
 - [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md)
-- [Kinetic and Potential Energy](../dynamics/energy.md)
+- [Energy](../dynamics/energy.md)
 - [Nested Shell Braid Dynamics](../noether-swarm/nested-shell-swarm-dynamics.md)
 
 The angular-momentum and spin proof route gained a sharper reduced candidate target around the tri-binary middle-hinge family. The work used canonical `(I,M,O)` frequency-triplet notation to compare the $(f+2,f,f-1)$ middle-hinge family against symmetric, dyadic, and finite integer-lock controls. The point was not to accept a retained branch; it was to narrow the proof burden by making the candidate and its competitors machine-readable.

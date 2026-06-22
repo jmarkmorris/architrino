@@ -28,7 +28,7 @@
         "children": [
           {
             "id": "foundations__foundational_ontology",
-            "title": "Foundational Ontology",
+            "title": "Ontology",
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
             "scenePath": "content/scenes/foundations/foundational_ontology.json",
@@ -789,7 +789,7 @@
         "children": [
           {
             "id": "dynamics__master_equation_of_motion",
-            "title": "Master Equation of Motion",
+            "title": "Master Equation",
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
             "scenePath": "content/scenes/dynamics/master_equation_of_motion.json",
@@ -847,7 +847,7 @@
           },
           {
             "id": "dynamics__kinetic_and_potential_energy",
-            "title": "Kinetic and Potential Energy",
+            "title": "Energy",
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
             "scenePath": "content/scenes/dynamics/kinetic_and_potential_energy.json",
@@ -3633,12 +3633,12 @@
                 "kind": "markdown-view",
                 "sceneType": "Scene-Markdown-View",
                 "scenePath": "content/scenes/spacetime/general_relativity_observables.json",
-                "markdownPath": "content/markdown/aaa/spacetime/gr-phenomenology.md",
+                "markdownPath": "content/markdown/aaa/spacetime/general-relativity.md",
                 "sections": [
                   {
                     "kind": "markdown-section",
                     "title": "Purpose",
-                    "markdownPath": "content/markdown/aaa/spacetime/gr-phenomenology.md",
+                    "markdownPath": "content/markdown/aaa/spacetime/general-relativity.md",
                     "markdownSection": "Purpose",
                     "sectionKey": "purpose",
                     "headingLevel": 2
@@ -3646,7 +3646,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "Core Interpretation",
-                    "markdownPath": "content/markdown/aaa/spacetime/gr-phenomenology.md",
+                    "markdownPath": "content/markdown/aaa/spacetime/general-relativity.md",
                     "markdownSection": "Core Interpretation",
                     "sectionKey": "core interpretation",
                     "headingLevel": 2
@@ -3654,7 +3654,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "Weak-Field Observables That Must Match GR",
-                    "markdownPath": "content/markdown/aaa/spacetime/gr-phenomenology.md",
+                    "markdownPath": "content/markdown/aaa/spacetime/general-relativity.md",
                     "markdownSection": "Weak-Field Observables That Must Match GR",
                     "sectionKey": "weak field observables that must match gr",
                     "headingLevel": 2
@@ -3662,7 +3662,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "Equivalence-Principle Channels",
-                    "markdownPath": "content/markdown/aaa/spacetime/gr-phenomenology.md",
+                    "markdownPath": "content/markdown/aaa/spacetime/general-relativity.md",
                     "markdownSection": "Equivalence-Principle Channels",
                     "sectionKey": "equivalence principle channels",
                     "headingLevel": 2
@@ -3670,7 +3670,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "Preferred-Frame Leakage",
-                    "markdownPath": "content/markdown/aaa/spacetime/gr-phenomenology.md",
+                    "markdownPath": "content/markdown/aaa/spacetime/general-relativity.md",
                     "markdownSection": "Preferred-Frame Leakage",
                     "sectionKey": "preferred frame leakage",
                     "headingLevel": 2
@@ -3678,7 +3678,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "Gravitational-Wave Channel",
-                    "markdownPath": "content/markdown/aaa/spacetime/gr-phenomenology.md",
+                    "markdownPath": "content/markdown/aaa/spacetime/general-relativity.md",
                     "markdownSection": "Gravitational-Wave Channel",
                     "sectionKey": "gravitational wave channel",
                     "headingLevel": 2
@@ -3686,7 +3686,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "Strong-Field Regime",
-                    "markdownPath": "content/markdown/aaa/spacetime/gr-phenomenology.md",
+                    "markdownPath": "content/markdown/aaa/spacetime/general-relativity.md",
                     "markdownSection": "Strong-Field Regime",
                     "sectionKey": "strong field regime",
                     "headingLevel": 2
@@ -3694,7 +3694,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "Closure Targets",
-                    "markdownPath": "content/markdown/aaa/spacetime/gr-phenomenology.md",
+                    "markdownPath": "content/markdown/aaa/spacetime/general-relativity.md",
                     "markdownSection": "Closure Targets",
                     "sectionKey": "closure targets",
                     "headingLevel": 2
@@ -3702,7 +3702,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "Falsification Gate",
-                    "markdownPath": "content/markdown/aaa/spacetime/gr-phenomenology.md",
+                    "markdownPath": "content/markdown/aaa/spacetime/general-relativity.md",
                     "markdownSection": "Falsification Gate",
                     "sectionKey": "falsification gate",
                     "headingLevel": 2
@@ -3710,7 +3710,7 @@
                   {
                     "kind": "markdown-section",
                     "title": "Related Chapters",
-                    "markdownPath": "content/markdown/aaa/spacetime/gr-phenomenology.md",
+                    "markdownPath": "content/markdown/aaa/spacetime/general-relativity.md",
                     "markdownSection": "Related Chapters",
                     "sectionKey": "related chapters",
                     "headingLevel": 2
@@ -5332,7 +5332,7 @@
             "kind": "diagram",
             "sceneType": "Scene-Diagram",
             "scenePath": "content/scenes/chemistry/hyde_periodic_table_scene.json",
-            "markdownPath": "content/markdown/aaa/nuclear-atomic/hyde-info.md"
+            "markdownPath": "content/markdown/aaa/nuclear-atomic/hyde-periodic-table.md"
           },
           {
             "id": "nuclear_atomic__molecular_geometry",
@@ -11125,12 +11125,12 @@
                     "kind": "markdown-view",
                     "sceneType": "Scene-Markdown-View",
                     "scenePath": "content/scenes/philosophy_history/theory_bridges/overview.json",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/README.md",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges.md",
                     "sections": [
                       {
                         "kind": "markdown-section",
                         "title": "Scope",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/README.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges.md",
                         "markdownSection": "Scope",
                         "sectionKey": "scope",
                         "headingLevel": 2
@@ -11138,7 +11138,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Bridge Pattern",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/README.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges.md",
                         "markdownSection": "Bridge Pattern",
                         "sectionKey": "bridge pattern",
                         "headingLevel": 2
@@ -11146,7 +11146,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Current Bridges",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/README.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges.md",
                         "markdownSection": "Current Bridges",
                         "sectionKey": "current bridges",
                         "headingLevel": 2

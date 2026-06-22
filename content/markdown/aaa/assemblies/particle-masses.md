@@ -93,7 +93,7 @@ E_{\text{CM}}
 \gamma_{\text{eff}}M_0c_{\text{eff}}^2
 $$
 
-Here $M_0$ remains the rest/internal invariant of the accepted branch, while $\gamma_{\text{eff}}$ belongs to the moving center-of-mass readout. Thus the theory does not need a velocity-dependent rest mass. It needs a proof that translating assemblies retune their causal-root ledger, shielding, clock channel, and Noether sea response so that the same $\gamma_{\text{eff}}$ controls energy, momentum, clock, and ruler channels. The detailed energy statement is the effective closure test in [Kinetic and Potential Energy](../dynamics/energy.md#effective-energy-momentum-closure), and the clock-side cross-check is in [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md#effective-energy-momentum-closure-test).
+Here $M_0$ remains the rest/internal invariant of the accepted branch, while $\gamma_{\text{eff}}$ belongs to the moving center-of-mass readout. Thus the theory does not need a velocity-dependent rest mass. It needs a proof that translating assemblies retune their causal-root ledger, shielding, clock channel, and Noether sea response so that the same $\gamma_{\text{eff}}$ controls energy, momentum, clock, and ruler channels. The detailed energy statement is the effective closure test in [Energy](../dynamics/energy.md#effective-energy-momentum-closure), and the clock-side cross-check is in [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md#effective-energy-momentum-closure-test).
 
 #### Exposed Inertial-Response Trace
 

@@ -1,11 +1,11 @@
 # Gravitational Waves
 
-This chapter provides a conditional closure chain from the emergent-metric weak-field map to testable gravitational-wave observables. It is one branch of the observational closure stack summarized in [GR Phenomenology](./general-relativity.md) and constrained by [Constraint Ledger](../validation/constraint-ledger.md).
+This chapter provides a conditional closure chain from the emergent-metric weak-field map to testable gravitational-wave observables. It is one branch of the observational closure stack summarized in [General Relativity](./general-relativity.md) and constrained by [Constraint Ledger](../validation/constraint-ledger.md).
 
 Interface chapters:
 - Effective metric map: [Emergent Metric](./emergent-metric.md)
 - PPN closure and refractive weak field: [PPN Parameters](./ppn-parameters.md)
-- Phenomenology summary: [General Relativity Observables](./general-relativity.md)
+- Phenomenology summary: [General Relativity](./general-relativity.md)
 
 ## Weak-Field Setup
 

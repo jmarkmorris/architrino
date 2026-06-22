@@ -1,6 +1,6 @@
 # Relativistic Scalar Fields and the Klein-Gordon Equation
 
-This bridge maps relativistic scalar-field language, especially the Klein-Gordon equation, onto the $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation layer. It is a bridge document, not the canonical owner of scalar collective dynamics. The broad theory entry remains in [Theory Mapping](../theory-mapping.md), while the relevant $\mathbb{A}\mathbb{A}\mathbb{A}$ mechanisms live in [Noether sea](../../spacetime/noether-sea.md), [Particle Masses](../../assemblies/particle-masses.md), [Emergent Metric](../../spacetime/emergent-metric.md), and [Master Equation of Motion](../../dynamics/master-equation.md).
+This bridge maps relativistic scalar-field language, especially the Klein-Gordon equation, onto the $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation layer. It is a bridge document, not the canonical owner of scalar collective dynamics. The broad theory entry remains in [Theory Mapping](../theory-mapping.md), while the relevant $\mathbb{A}\mathbb{A}\mathbb{A}$ mechanisms live in [Noether sea](../../spacetime/noether-sea.md), [Particle Masses](../../assemblies/particle-masses.md), [Emergent Metric](../../spacetime/emergent-metric.md), and [Master Equation](../../dynamics/master-equation.md).
 
 ## Bridge Thesis
 

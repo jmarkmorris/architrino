@@ -1,6 +1,6 @@
 # Spacetime Models and the Noether Sea
 
-This bridge compares inherited mathematical models of space, time, vacuum, aether, and emergent spacetime with the Noether sea implementation layer in $\mathbb{A}\mathbb{A}\mathbb{A}$. It is not the canonical home of the spacetime mechanism. The mechanism remains in [Noether sea](../../spacetime/noether-sea.md), [Emergent Metric](../../spacetime/emergent-metric.md), [Lorentz Kinematics](../../spacetime/lorentz-kinematics.md), [PPN Parameters](../../spacetime/ppn-parameters.md), and [GR Phenomenology](../../spacetime/general-relativity.md).
+This bridge compares inherited mathematical models of space, time, vacuum, aether, and emergent spacetime with the Noether sea implementation layer in $\mathbb{A}\mathbb{A}\mathbb{A}$. It is not the canonical home of the spacetime mechanism. The mechanism remains in [Noether sea](../../spacetime/noether-sea.md), [Emergent Metric](../../spacetime/emergent-metric.md), [Lorentz Kinematics](../../spacetime/lorentz-kinematics.md), [PPN Parameters](../../spacetime/ppn-parameters.md), and [General Relativity](../../spacetime/general-relativity.md).
 
 The purpose is narrower: keep historically important models available as disciplined comparisons without letting their vocabulary become native ontology. Terms such as absolute space, vacuum, aether, elastic medium, analog metric, condensate, and superfluid can help locate a mathematical burden, but none of them replaces `Noether sea`.
 

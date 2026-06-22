@@ -25,7 +25,7 @@ This chapter does not own:
 - the geometry of the dynamic exclusion envelope; see [Nested Shell Braid Geometry](../../noether-swarm/nested-shell-swarm-geometry.md),
 - the proper-time map; see [Proper Time and Time Dilation](../../spacetime/proper-time-and-time-dilation.md),
 - the energy ledger; see [Energy](../../dynamics/energy.md),
-- or the exact delayed law; see [Master Equation of Motion](../../dynamics/master-equation.md).
+- or the exact delayed law; see [Master Equation](../../dynamics/master-equation.md).
 
 ## The Two Stories
 

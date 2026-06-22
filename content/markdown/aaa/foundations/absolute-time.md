@@ -284,7 +284,7 @@ This gives the postulate a hard failure wall. Postulate 1 fails if any accepted 
 
 A critical feature of $\mathbb{A}\mathbb{A}\mathbb{A}$ is that **all interactions are mediated by path history**: the cumulative effect of the causal wake surfaces that reach an architrino from prior emission events.
 
-At time $t$, an architrino at position $\mathbf{x}(t)$ receives wake contributions where its worldline intersects **causal wake surfaces** emitted at all past times $t' < t$; through the [Master Equation of Motion](../dynamics/master-equation.md), those received wakes determine receiver-local acceleration rather than a primitive force. This gives rise to **non-Markovian memory effects**, including the self-hit regime where an architrino interacts with its own past emissions.
+At time $t$, an architrino at position $\mathbf{x}(t)$ receives wake contributions where its worldline intersects **causal wake surfaces** emitted at all past times $t' < t$; through the [Master Equation](../dynamics/master-equation.md), those received wakes determine receiver-local acceleration rather than a primitive force. This gives rise to **non-Markovian memory effects**, including the self-hit regime where an architrino interacts with its own past emissions.
 
 Because $t$ is universal and absolute, the past (all $t' < t$) is unambiguous, and the theory can sum or integrate over admissible delayed contributions. This allows for a mechanistic model of interaction without invoking action-at-a-distance, while still permitting **deterministic multistability** at self-hit thresholds.
 

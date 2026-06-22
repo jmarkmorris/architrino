@@ -18,7 +18,7 @@ Do not use this lane as the primary home for:
 - substrate ontology; use [Foundations](../../../../markdown/aaa/foundations/ontology.md),
 - dynamical laws; use [Dynamics](../../../../markdown/aaa/dynamics/master-equation.md),
 - assembly definitions; use [Assemblies](../../../../markdown/aaa/noether-swarm/noether-swarm.md),
-- detailed equation-by-equation bridges; use [Theory Bridges](../../../../markdown/aaa/philosophy-history/theory-bridges/README.md),
+- detailed equation-by-equation bridges; use [Theory Bridges](../../../../markdown/aaa/philosophy-history/theory-bridges.md),
 - validation gates and parameter tracking; use [Validation](../../../../markdown/aaa/validation/failure-criteria.md).
 
 ### Reading Order
@@ -1948,7 +1948,7 @@ The arrow problem also separates dynamical relaxation from measure-based typical
 
 ### Theory Mapping
 
-This chapter is a comparative reader for the inherited modern-physics stack viewed from a substrate-first architecture. It is meant to orient readers quickly: what each major theory claims, what it explains well, and whether $\mathbb{A}\mathbb{A}\mathbb{A}$ intends to recover it, reinterpret it, or reject its ontology while preserving some effective structure. For the repo's deeper conceptual framing of where inherited theories break or remain useful, compare [Theory Inheritance Discipline](../../../../markdown/aaa/philosophy-history/theory-inheritance-discipline.md), [Theory Differentials](../../../../markdown/aaa/philosophy-history/theory-differentials.md), [Crisis in Physics](../../../../markdown/aaa/philosophy-history/crisis-in-physics.md), [Substance, Structure, and the Plenum of Potential](../../../../markdown/aaa/philosophy-history/substance-structure-and-potential.md), and [Unknowns and Paradoxes](../../../../markdown/aaa/philosophy-history/unknowns-paradoxes.md). For long-form mathematical mappings between inherited frameworks and the $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation layer, see [Theory Bridges](../../../../markdown/aaa/philosophy-history/theory-bridges/README.md).
+This chapter is a comparative reader for the inherited modern-physics stack viewed from a substrate-first architecture. It is meant to orient readers quickly: what each major theory claims, what it explains well, and whether $\mathbb{A}\mathbb{A}\mathbb{A}$ intends to recover it, reinterpret it, or reject its ontology while preserving some effective structure. For the repo's deeper conceptual framing of where inherited theories break or remain useful, compare [Theory Inheritance Discipline](../../../../markdown/aaa/philosophy-history/theory-inheritance-discipline.md), [Theory Differentials](../../../../markdown/aaa/philosophy-history/theory-differentials.md), [Crisis in Physics](../../../../markdown/aaa/philosophy-history/crisis-in-physics.md), [Substance, Structure, and the Plenum of Potential](../../../../markdown/aaa/philosophy-history/substance-structure-and-potential.md), and [Unknowns and Paradoxes](../../../../markdown/aaa/philosophy-history/unknowns-paradoxes.md). For long-form mathematical mappings between inherited frameworks and the $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation layer, see [Theory Bridges](../../../../markdown/aaa/philosophy-history/theory-bridges.md).
 
 The document is organized as a matrix rather than a linear history. The first sections explain the comparison method; the later layers then group theories by assembly, spacetime, cosmology, and epistemic-observation roles.
 
@@ -8087,7 +8087,7 @@ failing to identify the substrate mechanism that produces the result.
 
 The discipline here sits between the broad survey in [Theory Mapping](../../../../markdown/aaa/philosophy-history/theory-mapping.md),
 the classification catalog in [Theory Differentials](../../../../markdown/aaa/philosophy-history/theory-differentials.md),
-and the detailed per-framework mappings in [Theory Bridges](../../../../markdown/aaa/philosophy-history/theory-bridges/README.md).
+and the detailed per-framework mappings in [Theory Bridges](../../../../markdown/aaa/philosophy-history/theory-bridges.md).
 It does not own the substrate ontology, the Master Equation of Motion, assembly
 definitions, validation gates, or parameter ledgers. Its job is to prevent
 inherited concepts from entering the corpus with more authority than they have
@@ -8477,7 +8477,7 @@ catalog. It locates each concept in the comparative stack and the
 $\mathbb{A}\mathbb{A}\mathbb{A}$ stack, names its relation type, and records the
 mapping target.
 
-[Theory Bridges](../../../../markdown/aaa/philosophy-history/theory-bridges/README.md) should remain the detailed bridge
+[Theory Bridges](../../../../markdown/aaa/philosophy-history/theory-bridges.md) should remain the detailed bridge
 lane. A bridge may use this chapter's transfer record to keep its mathematical
 handoff disciplined, but the bridge still has to point back to the domain
 chapters that own the underlying mechanism.
@@ -8519,18 +8519,18 @@ A theory bridge is not a neutral encyclopedia entry and it is not the canonical 
 Use this lane for documents that:
 
 - compare an inherited theory or formalism with the $\mathbb{A}\mathbb{A}\mathbb{A}$ stack in detail,
-- need more space or mathematics than [Theory Mapping](../../../../markdown/aaa/philosophy-history/theory-mapping.md) or [Theory Differentials](../../../../markdown/aaa/philosophy-history/theory-differentials.md),
+- need more space or mathematics than [Theory Mapping](../../../../markdown/aaa/theory-mapping.md) or [Theory Differentials](../../../../markdown/aaa/theory-differentials.md),
 - translate equations, observables, and physical interpretation line by line,
 - identify which pieces are recovered, reinterpreted, rejected, or still open,
 - and link back to the canonical domain chapters that own the underlying $\mathbb{A}\mathbb{A}\mathbb{A}$ claims.
 
 Do not use this lane as the primary home for:
 
-- substrate ontology; use [Foundations](../../../../markdown/aaa/foundations/ontology.md),
-- assembly definitions; use [Assemblies](../../../../markdown/aaa/noether-swarm/noether-swarm.md),
-- dynamical laws; use [Dynamics](../../../../markdown/aaa/dynamics/master-equation.md),
-- canonical spacetime mechanism chapters; use [Spacetime](../../../../markdown/aaa/spacetime/observer-framework.md),
-- broad historical orientation; use [Philosophy and History](../../../../markdown/aaa/philosophy-history/theory-mapping.md).
+- substrate ontology; use [Foundations](../../../../markdown/foundations/ontology.md),
+- assembly definitions; use [Assemblies](../../../../markdown/noether-swarm/noether-swarm.md),
+- dynamical laws; use [Dynamics](../../../../markdown/dynamics/master-equation.md),
+- canonical spacetime mechanism chapters; use [Spacetime](../../../../markdown/spacetime/observer-framework.md),
+- broad historical orientation; use [Philosophy and History](../../../../markdown/aaa/theory-mapping.md).
 
 ##### Bridge Pattern
 
@@ -8546,19 +8546,19 @@ Each mature bridge should include:
 
 ##### Current Bridges
 
-- [Bell's Theorem: Traditional Derivation and Architrino Assembly Architecture Response](../../../../markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md)
-- [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md)
-- [Measurement Problem and Collapse](../../../../markdown/aaa/philosophy-history/theory-bridges/collapse-problem.md)
-- [Entanglement and Nonlocality](../../../../markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md)
-- [Relativistic Scalar Fields and the Klein-Gordon Equation](../../../../markdown/aaa/philosophy-history/theory-bridges/klein-gordon-scalar-fields.md)
-- [Pilot-Wave Character](../../../../markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md)
-- [Mapping the Planck Scale to the Nested Shell Braid Geometry](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md)
-- [Quantum Operator Mapping](../../../../markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md)
-- [Return-Cycle Lorentz Quantization](../../../../markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md)
-- [Special Relativity and Deformable Noether Braids](../../../../markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md)
-- [Spacetime Models and the Noether sea](../../../../markdown/aaa/philosophy-history/theory-bridges/spacetime-models-and-noether-sea.md)
-- [Superposition Mechanism](../../../../markdown/aaa/philosophy-history/theory-bridges/superposition-mechanism.md)
-- [Weak Mixing and CKM](../../../../markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md)
+- [Bell's Theorem: Traditional Derivation and Architrino Assembly Architecture Response](../../../../markdown/aaa/philosophy-history/bell-theorem.md)
+- [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/angular-momentum-and-spin.md)
+- [Measurement Problem and Collapse](../../../../markdown/aaa/philosophy-history/collapse-problem.md)
+- [Entanglement and Nonlocality](../../../../markdown/aaa/philosophy-history/entanglement-nonlocality.md)
+- [Relativistic Scalar Fields and the Klein-Gordon Equation](../../../../markdown/aaa/philosophy-history/klein-gordon-scalar-fields.md)
+- [Pilot-Wave Character](../../../../markdown/aaa/philosophy-history/pilot-wave-character.md)
+- [Mapping the Planck Scale to the Nested Shell Braid Geometry](../../../../markdown/aaa/philosophy-history/planck-scale-nested-shell-swarm-alignment.md)
+- [Quantum Operator Mapping](../../../../markdown/aaa/philosophy-history/quantum-operator-mapping.md)
+- [Return-Cycle Lorentz Quantization](../../../../markdown/aaa/philosophy-history/return-cycle-lorentz-quantization.md)
+- [Special Relativity and Deformable Noether Braids](../../../../markdown/aaa/philosophy-history/special-relativity-noether-swarm.md)
+- [Spacetime Models and the Noether sea](../../../../markdown/aaa/philosophy-history/spacetime-models-and-noether-sea.md)
+- [Superposition Mechanism](../../../../markdown/aaa/philosophy-history/superposition-mechanism.md)
+- [Weak Mixing and CKM](../../../../markdown/aaa/philosophy-history/weak-mixing-ckm.md)
 
 #### Quantum Operator Mapping
 
@@ -9078,7 +9078,7 @@ The result is not that angular momentum and spin are unreal. The result is that 
 
 The related material is best read as an ordered path rather than as a flat list of adjacent chapters:
 
-1. Start with primitive ontology in [Architrino](../../../../markdown/aaa/foundations/architrino.md) and [Foundational Ontology](../../../../markdown/aaa/foundations/ontology.md).
+1. Start with primitive ontology in [Architrino](../../../../markdown/aaa/foundations/architrino.md) and [Ontology](../../../../markdown/aaa/foundations/ontology.md).
 2. Use [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md) and [Causal Action Functional](../../../../markdown/aaa/dynamics/causal-action-functional.md) for delayed conservation and wake-history bookkeeping.
 3. Use [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md) for the nested shell braid mechanics that spin must descend from.
 4. Treat [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md), [Electroweak Bosons](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md), and [Bell's Theorem](../../../../markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md) as downstream tests rather than source derivations.
@@ -14538,7 +14538,7 @@ This chapter does not own:
 - the geometry of the dynamic exclusion envelope; see [Nested Shell Braid Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md),
 - the proper-time map; see [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md),
 - the energy ledger; see [Energy](../../../../markdown/aaa/dynamics/energy.md),
-- or the exact delayed law; see [Master Equation of Motion](../../../../markdown/aaa/dynamics/master-equation.md).
+- or the exact delayed law; see [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md).
 
 ##### The Two Stories
 
@@ -15273,7 +15273,7 @@ If that step succeeds, the result is more than a Lorentz derivation. It is a con
 
 #### Spacetime Models and the Noether Sea
 
-This bridge compares inherited mathematical models of space, time, vacuum, aether, and emergent spacetime with the Noether sea implementation layer in $\mathbb{A}\mathbb{A}\mathbb{A}$. It is not the canonical home of the spacetime mechanism. The mechanism remains in [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md), [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md), [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md), [PPN Parameters](../../../../markdown/aaa/spacetime/ppn-parameters.md), and [GR Phenomenology](../../../../markdown/aaa/spacetime/gr-phenomenology.md).
+This bridge compares inherited mathematical models of space, time, vacuum, aether, and emergent spacetime with the Noether sea implementation layer in $\mathbb{A}\mathbb{A}\mathbb{A}$. It is not the canonical home of the spacetime mechanism. The mechanism remains in [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md), [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md), [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md), [PPN Parameters](../../../../markdown/aaa/spacetime/ppn-parameters.md), and [General Relativity](../../../../markdown/aaa/spacetime/general-relativity.md).
 
 The purpose is narrower: keep historically important models available as disciplined comparisons without letting their vocabulary become native ontology. Terms such as absolute space, vacuum, aether, elastic medium, analog metric, condensate, and superfluid can help locate a mathematical burden, but none of them replaces `Noether sea`.
 
@@ -15615,7 +15615,7 @@ That is why analogy belongs here. Mechanism chapters should inherit the discipli
 
 #### Relativistic Scalar Fields and the Klein-Gordon Equation
 
-This bridge maps relativistic scalar-field language, especially the Klein-Gordon equation, onto the $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation layer. It is a bridge document, not the canonical owner of scalar collective dynamics. The broad theory entry remains in [Theory Mapping](../../../../markdown/aaa/philosophy-history/theory-mapping.md), while the relevant $\mathbb{A}\mathbb{A}\mathbb{A}$ mechanisms live in [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md), [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md), and [Master Equation of Motion](../../../../markdown/aaa/dynamics/master-equation.md).
+This bridge maps relativistic scalar-field language, especially the Klein-Gordon equation, onto the $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation layer. It is a bridge document, not the canonical owner of scalar collective dynamics. The broad theory entry remains in [Theory Mapping](../../../../markdown/aaa/philosophy-history/theory-mapping.md), while the relevant $\mathbb{A}\mathbb{A}\mathbb{A}$ mechanisms live in [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md), [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md), and [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md).
 
 ##### Bridge Thesis
 
@@ -16930,7 +16930,7 @@ General Relativity is powerful because it makes clocks, rulers, light paths, fre
 
 $\mathbb{A}\mathbb{A}\mathbb{A}$ is therefore not an anti-geometric theory. It is a theory with disciplined placement for each geometry it uses. The Euclidean void supplies the fixed spatial metric, causal wakes supply path-history geometry, assemblies carry internal geometry, the Noether sea supplies constitutive response, and Physical Observers reconstruct an effective metric from clocks, rulers, and signal behavior. The critique of modern spacetime ontology is not that it is geometric. The critique is that it promotes one successful effective geometry into final ontology before the generator has been identified.
 
-The technical owners remain [Euclidean Void](../../../../markdown/aaa/foundations/euclidean-void.md), [Foundational Ontology](../../../../markdown/aaa/foundations/ontology.md), [Master Equation of Motion](../../../../markdown/aaa/dynamics/master-equation.md), [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md), [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md), and [Spacetime Models and the Noether sea](../../../../markdown/aaa/philosophy-history/theory-bridges/spacetime-models-and-noether-sea.md). This page supplies the philosophy-facing placement discipline.
+The technical owners remain [Euclidean Void](../../../../markdown/aaa/foundations/euclidean-void.md), [Ontology](../../../../markdown/aaa/foundations/ontology.md), [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md), [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md), [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md), and [Spacetime Models and the Noether sea](../../../../markdown/aaa/philosophy-history/theory-bridges/spacetime-models-and-noether-sea.md). This page supplies the philosophy-facing placement discipline.
 
 ### The Geometry Question
 
@@ -17048,7 +17048,7 @@ This gives the philosophy-history lane a clean answer to the original worry. $\m
 
 ### Overview
 
-This document gives a philosophical orientation for a central $\mathbb{A}\mathbb{A}\mathbb{A}$ distinction: what exists as primitive substance, what exists as causal structure, and what remains only an effective description. It belongs in the philosophy-history lane because it explains the level discipline behind the ontology. The canonical technical owners remain [Foundational Ontology](../../../../markdown/aaa/foundations/ontology.md), [Architrino](../../../../markdown/aaa/foundations/architrino.md), [Euclidean Void](../../../../markdown/aaa/foundations/euclidean-void.md), [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md), and [Master Equation of Motion](../../../../markdown/aaa/dynamics/master-equation.md).
+This document gives a philosophical orientation for a central $\mathbb{A}\mathbb{A}\mathbb{A}$ distinction: what exists as primitive substance, what exists as causal structure, and what remains only an effective description. It belongs in the philosophy-history lane because it explains the level discipline behind the ontology. The canonical technical owners remain [Ontology](../../../../markdown/aaa/foundations/ontology.md), [Architrino](../../../../markdown/aaa/foundations/architrino.md), [Euclidean Void](../../../../markdown/aaa/foundations/euclidean-void.md), [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md), and [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md).
 
 The guiding problem is that modern physics often lets predictive objects carry more ontology than their derivation warrants. A metric, field, vacuum state, wavefunction, mass parameter, or particle label may be indispensable within its regime while still failing to identify the implementation layer that produces the observed behavior. The task here is not to dismiss those formalisms. It is to separate their effective success from the stronger claim that their native objects are the fundamental furniture of reality.
 
@@ -17074,7 +17074,7 @@ The distinction is important because it prevents false demands on the primitive.
 
 The second distinction is between substance and causal structure. If architrinos continuously emit causal wakes, one might ask whether the wake is a second substance filling the void. The canonical answer is no. A causal wake is physically real, but it is not an independent material inventory.
 
-A wake is the causal-isochron residue of architrino emission. It is source-provenanced, path-history dependent, and finite-speed. Its role is to deliver delayed interaction when it intersects a receiver according to the [Master Equation of Motion](../../../../markdown/aaa/dynamics/master-equation.md). It has physical consequence because it can accelerate an architrino at a reception event.
+A wake is the causal-isochron residue of architrino emission. It is source-provenanced, path-history dependent, and finite-speed. Its role is to deliver delayed interaction when it intersects a receiver according to the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md). It has physical consequence because it can accelerate an architrino at a reception event.
 
 Its reality, however, is structural rather than substantive. A wake has no independent identity apart from its source history. It is not a free-standing medium with its own internal constituents. It is not a second material layer added beside architrinos. It is a lawful causal geometry generated by architrino motion and evaluated at later intersections. The practical test is whether any wake state remains to be specified after the source identity, polarity, and path history are fixed. In $\mathbb{A}\mathbb{A}\mathbb{A}$ the answer is no: the wake is physically real as a delayed interaction record, but not autonomous as a separate substance or primitive field.
 

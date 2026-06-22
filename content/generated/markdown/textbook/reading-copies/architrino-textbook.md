@@ -2,7 +2,7 @@
 
 ## Foundations
 
-### Foundational Ontology
+### Ontology
 
 This chapter states the bedrock ontology of $\mathbb{A}\mathbb{A}\mathbb{A}$. It identifies what exists at the substrate level, what emerges from assembly and medium behavior, and which terms must remain level-aware for the rest of the corpus to stay coherent.
 
@@ -746,7 +746,7 @@ This gives the postulate a hard failure wall. Postulate 1 fails if any accepted 
 
 A critical feature of $\mathbb{A}\mathbb{A}\mathbb{A}$ is that **all interactions are mediated by path history**: the cumulative effect of the causal wake surfaces that reach an architrino from prior emission events.
 
-At time $t$, an architrino at position $\mathbf{x}(t)$ receives wake contributions where its worldline intersects **causal wake surfaces** emitted at all past times $t' < t$; through the [Master Equation of Motion](../../../../markdown/aaa/dynamics/master-equation.md), those received wakes determine receiver-local acceleration rather than a primitive force. This gives rise to **non-Markovian memory effects**, including the self-hit regime where an architrino interacts with its own past emissions.
+At time $t$, an architrino at position $\mathbf{x}(t)$ receives wake contributions where its worldline intersects **causal wake surfaces** emitted at all past times $t' < t$; through the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md), those received wakes determine receiver-local acceleration rather than a primitive force. This gives rise to **non-Markovian memory effects**, including the self-hit regime where an architrino interacts with its own past emissions.
 
 Because $t$ is universal and absolute, the past (all $t' < t$) is unambiguous, and the theory can sum or integrate over admissible delayed contributions. This allows for a mechanistic model of interaction without invoking action-at-a-distance, while still permitting **deterministic multistability** at self-hit thresholds.
 
@@ -1758,7 +1758,7 @@ Absolute timespace is the formal product background in which all architrino dyna
 
 This chapter states the substrate-level case for absolute time as the fundamental evolution parameter of the theory. Its purpose is to distinguish the exact absolute-time variable used by the [master equation](../../../../markdown/aaa/dynamics/master-equation.md) from the derived proper time read out by physical clock assemblies, and to show why the framework treats foliation as real structure rather than coordinate gauge.
 
-The teaching sequence is deliberately layered. First comes the ontological claim about absolute time and the Euclidean void. Then comes the dynamical claim about universe-state evolution. Only after those substrate claims are fixed does the chapter introduce proper time, clock-rate extraction, and relativistic observer inferences. It is the argumentative companion to [Foundational Ontology](../../../../markdown/aaa/foundations/ontology.md), [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md), and [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md).
+The teaching sequence is deliberately layered. First comes the ontological claim about absolute time and the Euclidean void. Then comes the dynamical claim about universe-state evolution. Only after those substrate claims are fixed does the chapter introduce proper time, clock-rate extraction, and relativistic observer inferences. It is the argumentative companion to [Ontology](../../../../markdown/aaa/foundations/ontology.md), [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md), and [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md).
 
 #### The Case for Absolute Time ($t$)
 
@@ -2702,7 +2702,7 @@ A $\mathbb{U}_{\text{now}}$ universe-state perspective could, in principle, trac
 
 ## Dynamics
 
-### Master Equation of Motion
+### Master Equation
 
 This chapter is the canonical statement of the delayed dynamical law used throughout the dynamics branch. It defines what counts as a causal hit, how the receiver-local force law is assembled from path history, and which exact or regularized structures are firm enough to support later work on binaries, nested shell braids, effective geometry, and quantum closure.
 
@@ -3886,7 +3886,7 @@ Therefore the regularized delayed dynamics are locally well-posed, with global e
 
 ###### Finite-Continuation Criterion for Global Comparisons
 
-The well-posedness theorem is the dynamics-side home for global-continuation comparisons used later in [GR Phenomenology](../../../../markdown/aaa/spacetime/gr-phenomenology.md#global-continuation-and-cosmic-censorship-comparison) and [Singularity Resolution](../../../../markdown/aaa/spacetime/singularity-resolution.md#cauchy-horizon-comparison-pressure). It should not be read as a claim that observer records determine a unique global spacetime. Its native claim is narrower: a declared finite history, boundary wake record, and branch chart either determine a finite continuation family or they do not.
+The well-posedness theorem is the dynamics-side home for global-continuation comparisons used later in [General Relativity](../../../../markdown/aaa/spacetime/general-relativity.md#global-continuation-and-cosmic-censorship-comparison) and [Singularity Resolution](../../../../markdown/aaa/spacetime/singularity-resolution.md#cauchy-horizon-comparison-pressure). It should not be read as a claim that observer records determine a unique global spacetime. Its native claim is narrower: a declared finite history, boundary wake record, and branch chart either determine a finite continuation family or they do not.
 
 For a compact subsystem $\Omega$ and window $W=[t_i,t_f]$, let $\mathcal{A}_{\Omega,W}^{(\eta)}$ be the set of branch charts that satisfy the regularized assumptions (W1)-(W5), the bounded active-branch condition, the distance floor, and the root-transversality floor on $W$ using the same finite boundary data $\mathcal{B}_{\partial\Omega}|_W$. The dynamics-side continuation family is
 $$
@@ -6187,7 +6187,7 @@ $$
 $$
 The theorem-level branch claim requires the three residual balances to converge to zero with $\epsilon_{\mathrm{var}}^{(\eta)}(W)\to0$, vanishing declared endpoint or period-cut leakage, stable branch floors, and the same retained row set in the force residuals and in the three wake-history charges. A work-integral reconstruction $U(t)$ or a projected torque increment is only a numerical diagnostic unless it is derived from this same action kernel, endpoint convention, and retained branch chart.
 
-For a finite spatial window, the energy boundary row can be read as the wake-escapement flux defined in [Kinetic and Potential Energy](../../../../markdown/aaa/dynamics/energy.md#wake-escapement). In that notation, a theorem-level conservation packet should be able to rewrite the energy balance in the form
+For a finite spatial window, the energy boundary row can be read as the wake-escapement flux defined in [Energy](../../../../markdown/aaa/dynamics/energy.md#wake-escapement). In that notation, a theorem-level conservation packet should be able to rewrite the energy balance in the form
 $$
 \frac{dE_W}{dt}
 =
@@ -6594,7 +6594,7 @@ where $\mathbf{R}_i^{(\eta)}$ is the Euler residual of the same action and $\mat
 
 ---
 
-### Kinetic and Potential Energy
+### Energy
 
 In $\mathbb{A}\mathbb{A}\mathbb{A}$, energy accounting begins with architrinos and the causal wakes they generate. Architrinos carry primitive kinetic energy through motion and supply potential-energy bookkeeping through delayed interactions; the wake itself is not a standalone substance or vacuum reservoir. A **wake** is the source-dependent causal-isochron record of an architrino's emissions: motion changes its geometry, branch timing, and received potential, not the fact that an emission record exists. The term `wake` is the architrino-native description of what appears as a field at the effective level.
 
@@ -8531,7 +8531,7 @@ Fix a finite retained system over a time window $W=[t_a,t_b]$, a spatial window 
 $$
 \mathfrak{B}(\Gamma,\mathcal{S};h,\eta,\epsilon_c)
 $$
-for the same active causal-root rows used by the [Master Equation of Motion](../../../../markdown/aaa/dynamics/master-equation.md). The retained history at time $t$ is the segment
+for the same active causal-root rows used by the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md). The retained history at time $t$ is the segment
 $$
 X_t
 =
@@ -8736,7 +8736,7 @@ An exact isolated conservation claim requires $\epsilon_E^{(\eta)}\to0$, $\Delta
 
 ##### No-Double-Counting Rule
 
-The interaction contribution may be carried by $E_{\text{wake}}$, by an equivalent work-integral reconstruction, or by an explicitly retained near-field decomposition, but not by all of them at once. If a pairwise $U_{\mathrm{int}}$ term is used inside an assembly, the wake-energy term must omit the same near-field content. If a Noether sea update is retained inside $E_{\mathrm{sea},\Omega}$, it must not also appear as an outgoing event-ledger channel. The same rule is used by [Emergence](../../../../markdown/aaa/foundations/emergence.md#transition-thresholds-and-event-ledgers) and [Kinetic and Potential Energy](../../../../markdown/aaa/dynamics/energy.md#energy-conservation-and-exchange).
+The interaction contribution may be carried by $E_{\text{wake}}$, by an equivalent work-integral reconstruction, or by an explicitly retained near-field decomposition, but not by all of them at once. If a pairwise $U_{\mathrm{int}}$ term is used inside an assembly, the wake-energy term must omit the same near-field content. If a Noether sea update is retained inside $E_{\mathrm{sea},\Omega}$, it must not also appear as an outgoing event-ledger channel. The same rule is used by [Emergence](../../../../markdown/aaa/foundations/emergence.md#transition-thresholds-and-event-ledgers) and [Energy](../../../../markdown/aaa/dynamics/energy.md#energy-conservation-and-exchange).
 
 ##### Promotion and Failure Conditions
 
@@ -8754,7 +8754,7 @@ The construction fails if conservation is recovered only by changing the energy 
 
 ##### Downstream Use
 
-This chapter is the shared energy standard for [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md), [Effective Lagrangian](../../../../markdown/aaa/dynamics/effective-lagrangian.md), [Kinetic and Potential Energy](../../../../markdown/aaa/dynamics/energy.md), [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md), and event-ledger uses in [Emergence](../../../../markdown/aaa/foundations/emergence.md). The [two-body binary closure packet](../../../../markdown/aaa/dynamics/binary-dynamics.md#two-body-closure-packet-theorem-target) must report $\epsilon_E^{(\eta)}(W;\mathfrak{B})$, $\Delta_{\mathrm{E,cross}}^{(\eta)}(W;\mathfrak{B})$, and the lower-bound entry on the same branch chart as its motion, branch-floor, stability, and frequency residuals. Existence and stability are not enough unless the accepted branch also carries a constructive energy ledger.
+This chapter is the shared energy standard for [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md), [Effective Lagrangian](../../../../markdown/aaa/dynamics/effective-lagrangian.md), [Energy](../../../../markdown/aaa/dynamics/energy.md), [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md), and event-ledger uses in [Emergence](../../../../markdown/aaa/foundations/emergence.md). The [two-body binary closure packet](../../../../markdown/aaa/dynamics/binary-dynamics.md#two-body-closure-packet-theorem-target) must report $\epsilon_E^{(\eta)}(W;\mathfrak{B})$, $\Delta_{\mathrm{E,cross}}^{(\eta)}(W;\mathfrak{B})$, and the lower-bound entry on the same branch chart as its motion, branch-floor, stability, and frequency residuals. Existence and stability are not enough unless the accepted branch also carries a constructive energy ledger.
 
 #### Informational Ambiguity
 
@@ -9447,7 +9447,7 @@ k_B\,\mathcal{H}
 \right)
 $$
 
-This is the entropy of the receiver's inference fiber. The electrino/positrino antipode ambiguity and the surrogate-location recast described in [Master Equation of Motion](../../../../markdown/aaa/dynamics/master-equation.md#informational-ambiguity-at-the-receiver) are then measure-preserving involutions on $\Gamma_i^{\mathrm{hit}}(t)$ whenever the retained hit record is unchanged by the recast. Measurement uncertainty at this level is therefore a computable fiber multiplicity, not a slogan added after the dynamics.
+This is the entropy of the receiver's inference fiber. The electrino/positrino antipode ambiguity and the surrogate-location recast described in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#informational-ambiguity-at-the-receiver) are then measure-preserving involutions on $\Gamma_i^{\mathrm{hit}}(t)$ whenever the retained hit record is unchanged by the recast. Measurement uncertainty at this level is therefore a computable fiber multiplicity, not a slogan added after the dynamics.
 
 When $\mathcal{H}$ is evaluated as a probability entropy, the restricted measure is normalized on $\Gamma_i^{\mathrm{hit}}(t)$. If the fiber has zero or undefined measure under the declared preparation, the receiver-hit entropy is not licensed for that packet.
 
@@ -9772,7 +9772,7 @@ $$
 
 for the declared record. The phrase "entropy of the universe" is not a complete claim unless it supplies the measure, window, boundary, and residual terms.
 
-The entropy-arrow theorem target ties this boundary term to wake escapement. Let $\mathcal{E}_{\mathrm{esc}}(W)$ be the wake-escapement set defined in [Kinetic and Potential Energy](../../../../markdown/aaa/dynamics/energy.md#wake-escapement), and let $\Sigma_{\mathrm{esc}}(\mathcal{E}_{\mathrm{esc}}(W),t)$ be the rate at which retained path-history distinctions leave $W$ on causal wakes that no longer hit a retained receiver. The structural target is
+The entropy-arrow theorem target ties this boundary term to wake escapement. Let $\mathcal{E}_{\mathrm{esc}}(W)$ be the wake-escapement set defined in [Energy](../../../../markdown/aaa/dynamics/energy.md#wake-escapement), and let $\Sigma_{\mathrm{esc}}(\mathcal{E}_{\mathrm{esc}}(W),t)$ be the rate at which retained path-history distinctions leave $W$ on causal wakes that no longer hit a retained receiver. The structural target is
 
 $$
 \frac{d}{dt}S_{\Pi,W}(t)
@@ -10051,7 +10051,7 @@ A tenth failure mode is promoting present human or laboratory macrostates into t
 
 #### Interfaces
 
-The energy-side residuals are stated in [Kinetic and Potential Energy](../../../../markdown/aaa/dynamics/energy.md#entropy-free-energy-and-coarse-residuals). The time-side arrow distinction is stated in [Absolute Time](../../../../markdown/aaa/foundations/absolute-time.md#time-orientation). Measurement locking is stated in [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md). Computation cost is treated in [Information / Computation](../../../../markdown/aaa/philosophy-history/information-computation.md#thermodynamic-cost-of-computation). Local-horizon recovery is stated in [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md#local-horizon-recovery-target), with the simulation-facing scaffold in [Thermodynamic Residual Protocol](../../../../markdown/aaa/validation/simulations/thermodynamic-residual.md). The strong-field horizon target is stated in [Black Holes](../../../../markdown/aaa/spacetime/black-holes.md#horizon-interface), and the dynamics-side label-count target is stated in [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md#terminal-alignment-label-count-target).
+The energy-side residuals are stated in [Energy](../../../../markdown/aaa/dynamics/energy.md#entropy-free-energy-and-coarse-residuals). The time-side arrow distinction is stated in [Absolute Time](../../../../markdown/aaa/foundations/absolute-time.md#time-orientation). Measurement locking is stated in [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md). Computation cost is treated in [Information / Computation](../../../../markdown/aaa/philosophy-history/information-computation.md#thermodynamic-cost-of-computation). Local-horizon recovery is stated in [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md#local-horizon-recovery-target), with the simulation-facing scaffold in [Thermodynamic Residual Protocol](../../../../markdown/aaa/validation/simulations/thermodynamic-residual.md). The strong-field horizon target is stated in [Black Holes](../../../../markdown/aaa/spacetime/black-holes.md#horizon-interface), and the dynamics-side label-count target is stated in [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md#terminal-alignment-label-count-target).
 
 The consolidated rule is simple: entropy is accepted only as a declared projection of retained deterministic histories, and every effective entropy claim must name the record that makes the projection physical.
 
@@ -13653,7 +13653,7 @@ $$
 $$
 The scale-only branch law is theorem-grade on $W$ only when this residual tends to zero with the declared branch floors and boundary convention. The broader action-derived dynamics may instead be theorem-grade with nonzero $\mathbf{C}_{ij}^{(\eta)}$ if that term is retained as mechanical recoil and the same action closes the energy, momentum, and angular-momentum ledgers. If neither condition is reported, the local effective Lagrangian remains a fitted chart.
 
-The current status is therefore a conditional theorem schema, not a universal action theorem. The pure scalar $1/r$ action is not a universal exact action for the scale-only Master EOM; it is valid as that derivation only on residual-closed charts. On charts where the interior residual survives, $\mathbf{C}_{ij}^{(\eta)}$ is the strict mechanical recoil (wake-emission resistance) required by a purely delayed action. It is the same bookkeeping channel that balances the positive tangential drive and wake escapement described in [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md#tangential-drive-and-wake-escapement) and [Kinetic and Potential Energy](../../../../markdown/aaa/dynamics/energy.md#wake-escapement).
+The current status is therefore a conditional theorem schema, not a universal action theorem. The pure scalar $1/r$ action is not a universal exact action for the scale-only Master EOM; it is valid as that derivation only on residual-closed charts. On charts where the interior residual survives, $\mathbf{C}_{ij}^{(\eta)}$ is the strict mechanical recoil (wake-emission resistance) required by a purely delayed action. It is the same bookkeeping channel that balances the positive tangential drive and wake escapement described in [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md#tangential-drive-and-wake-escapement) and [Energy](../../../../markdown/aaa/dynamics/energy.md#wake-escapement).
 
 The recoil-inclusive reading also supplies the native seed of effective gauge structure. The scale term is a spatial gradient of the causal scale kernel and coarse-grains into an effective scalar wake potential. The derivative-of-constraint term is different: it differentiates the causal phase function $g_{ij}$ itself. On an effective product chart with coordinates $(t,\mathbf{x})$, write the recoil current schematically as
 
@@ -36364,7 +36364,7 @@ The first doubled-itinerary affine check has a sharper conclusion: the apparent 
 
 ##### Purpose
 
-This chapter isolates the first higher-dimensional closure problem that can move the dynamics stack forward in a decisive way. The exact delayed law is already stated in [Master Equation of Motion](../../../../markdown/aaa/dynamics/master-equation.md), and the branch-topology machinery is already formalized in [Causal Action Functional](../../../../markdown/aaa/dynamics/causal-action-functional.md). What is still missing is a theorem-backed bridge showing that a genuinely planar delayed system admits a controlled section class, local branch regularity, bounded caustic transit, a genuine radial turnaround, and a return map that closes on a controlled envelope.
+This chapter isolates the first higher-dimensional closure problem that can move the dynamics stack forward in a decisive way. The exact delayed law is already stated in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md), and the branch-topology machinery is already formalized in [Causal Action Functional](../../../../markdown/aaa/dynamics/causal-action-functional.md). What is still missing is a theorem-backed bridge showing that a genuinely planar delayed system admits a controlled section class, local branch regularity, bounded caustic transit, a genuine radial turnaround, and a return map that closes on a controlled envelope.
 
 The planar bridge is the first regime where the proof architecture must leave the line while still retaining enough symmetry to remain mathematically tractable. If this bridge closes, it becomes the substrate basis for planar lock, terminal aligned modes, and the horizon-facing chirality questions developed in [Horizon Chirality and Planar Spin](../../../../markdown/aaa/spacetime/horizon-chirality.md). If it fails, the failure should identify the exact geometric obstruction rather than leaving the whole closure program underdetermined.
 
@@ -36372,7 +36372,7 @@ The planar bridge is the first regime where the proof architecture must leave th
 
 The present chapter sits between four existing layers:
 
-1. the exact delayed equations in [Master Equation of Motion](../../../../markdown/aaa/dynamics/master-equation.md),
+1. the exact delayed equations in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md),
 2. the topological branch formalism in [Causal Action Functional](../../../../markdown/aaa/dynamics/causal-action-functional.md),
 3. the reduced return-map architecture in [1D Collinear Breather](../../../../markdown/aaa/proof-programs/collinear-breather.md),
 4. the higher-dimensional program statement in [Master-Equation Breather Program](../../../../markdown/aaa/proof-programs/master-equation-breather.md).
@@ -36674,7 +36674,7 @@ If planar bridge closure fails, those higher-level chapters must become more con
 
 ##### Interfaces to Other Chapters
 
-- [Master Equation of Motion](../../../../markdown/aaa/dynamics/master-equation.md): exact delayed law, root equations, and Jacobian structure.
+- [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md): exact delayed law, root equations, and Jacobian structure.
 - [Causal Action Functional](../../../../markdown/aaa/dynamics/causal-action-functional.md): branch labels, coarea reduction, and the Jacobian-null bifurcation criterion.
 - [1D Collinear Breather](../../../../markdown/aaa/proof-programs/collinear-breather.md): reduced return-map architecture and tame-envelope philosophy.
 - [Master-Equation Breather Program](../../../../markdown/aaa/proof-programs/master-equation-breather.md): global roadmap that this chapter now instantiates in the first planar regime.
@@ -46247,12 +46247,12 @@ If that intersection is empty, the effective-metric program is not yet viable.
 
 #### Gravitational Waves
 
-This chapter provides a conditional closure chain from the emergent-metric weak-field map to testable gravitational-wave observables. It is one branch of the observational closure stack summarized in [GR Phenomenology](../../../../markdown/aaa/spacetime/gr-phenomenology.md) and constrained by [Constraint Ledger](../../../../markdown/aaa/validation/constraint-ledger.md).
+This chapter provides a conditional closure chain from the emergent-metric weak-field map to testable gravitational-wave observables. It is one branch of the observational closure stack summarized in [General Relativity](../../../../markdown/aaa/spacetime/general-relativity.md) and constrained by [Constraint Ledger](../../../../markdown/aaa/validation/constraint-ledger.md).
 
 Interface chapters:
 - Effective metric map: [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md)
 - PPN closure and refractive weak field: [PPN Parameters](../../../../markdown/aaa/spacetime/ppn-parameters.md)
-- Phenomenology summary: [General Relativity Observables](../../../../markdown/aaa/spacetime/gr-phenomenology.md)
+- Phenomenology summary: [General Relativity](../../../../markdown/aaa/spacetime/general-relativity.md)
 
 ##### Weak-Field Setup
 
@@ -47398,7 +47398,7 @@ The clearest falsifier would be a precise, multi-probe data set showing that bla
 This chapter centralizes the black-hole ontology and hands specific tasks to adjacent chapters.
 
 - [singularity-resolution.md](../../../../markdown/aaa/spacetime/singularity-resolution.md): canonical horizon alignment condition and singularity replacement language.
-- [gr-phenomenology.md](../../../../markdown/aaa/spacetime/gr-phenomenology.md): weak-field and strong-field observational closure targets.
+- [general-relativity.md](../../../../markdown/aaa/spacetime/general-relativity.md): weak-field and strong-field observational closure targets.
 - [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md): nested shell braid regime map, recycling sketches, and kinematic hypotheses.
 - [Mapping the Planck Scale to the Nested Shell Braid Geometry](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md): Planck-alignment interpretation of terminal horizon locking.
 - [../cosmology/dark-energy.md](../../../../markdown/aaa/cosmology/dark-energy.md): effective dark-energy source terms and late-time expansion history.
@@ -48862,7 +48862,7 @@ E_{\text{CM}}
 \gamma_{\text{eff}}M_0c_{\text{eff}}^2
 $$
 
-Here $M_0$ remains the rest/internal invariant of the accepted branch, while $\gamma_{\text{eff}}$ belongs to the moving center-of-mass readout. Thus the theory does not need a velocity-dependent rest mass. It needs a proof that translating assemblies retune their causal-root ledger, shielding, clock channel, and Noether sea response so that the same $\gamma_{\text{eff}}$ controls energy, momentum, clock, and ruler channels. The detailed energy statement is the effective closure test in [Kinetic and Potential Energy](../../../../markdown/aaa/dynamics/energy.md#effective-energy-momentum-closure), and the clock-side cross-check is in [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md#effective-energy-momentum-closure-test).
+Here $M_0$ remains the rest/internal invariant of the accepted branch, while $\gamma_{\text{eff}}$ belongs to the moving center-of-mass readout. Thus the theory does not need a velocity-dependent rest mass. It needs a proof that translating assemblies retune their causal-root ledger, shielding, clock channel, and Noether sea response so that the same $\gamma_{\text{eff}}$ controls energy, momentum, clock, and ruler channels. The detailed energy statement is the effective closure test in [Energy](../../../../markdown/aaa/dynamics/energy.md#effective-energy-momentum-closure), and the clock-side cross-check is in [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md#effective-energy-momentum-closure-test).
 
 ###### Exposed Inertial-Response Trace
 
@@ -58350,7 +58350,7 @@ This chapter addresses the quantum branch at the level of ontology and epistemic
 - Explain how deterministic microdynamics yield effective randomness at the operational level.
 - Define minimal dynamical requirements for agency/decision in assemblies.
 - Connect the **Decider** and **Switch** case studies to those requirements.
-- Tie the chapter to [Foundational Ontology](../../../../markdown/aaa/foundations/ontology.md), [Observer Framework](../../../../markdown/aaa/spacetime/observer-framework.md), and [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md).
+- Tie the chapter to [Ontology](../../../../markdown/aaa/foundations/ontology.md), [Observer Framework](../../../../markdown/aaa/spacetime/observer-framework.md), and [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md).
 
 **Scope note:** This chapter states current $\mathbb{A}\mathbb{A}\mathbb{A}$ working claims unless a passage is explicitly labeled as a toy model, phenomenological mapping, or closure target.
 
@@ -60407,7 +60407,7 @@ At the observer level, $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover those rules
 
 The substrate question is: what assembly geometry makes those two statistical packages appear?
 
-The answer must not erase substrate identity. Individual architrinos remain provenance-bearing entities, as stated in [Absolute Time](../../../../markdown/aaa/foundations/absolute-time.md#provenance-and-identity-through-time), and the exact symmetries of the master equation preserve full histories rather than arbitrary label swaps (see [Master Equation of Motion](../../../../markdown/aaa/dynamics/master-equation.md#fundamental-symmetry-group)). The statistics problem is therefore an effective-state recovery problem: determine when finite observers may quotient inaccessible provenance into antisymmetric or symmetric bookkeeping without treating that quotient as ontic interchangeability.
+The answer must not erase substrate identity. Individual architrinos remain provenance-bearing entities, as stated in [Absolute Time](../../../../markdown/aaa/foundations/absolute-time.md#provenance-and-identity-through-time), and the exact symmetries of the master equation preserve full histories rather than arbitrary label swaps (see [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#fundamental-symmetry-group)). The statistics problem is therefore an effective-state recovery problem: determine when finite observers may quotient inaccessible provenance into antisymmetric or symmetric bookkeeping without treating that quotient as ontic interchangeability.
 
 #### Nested Shell Braid Geometry Basis
 
@@ -67981,7 +67981,7 @@ The witness empties the target gate when $\mathcal{C}_T\!\mid c=\varnothing$. It
 | Null-result violation | $\mathcal{R}_{\mathrm{null}}(\theta)>0$ for a predicted added channel in a validated comparison regime. | [Known Tensions](../../../../markdown/aaa/validation/known-tensions.md), [Constraint Ledger](../../../../markdown/aaa/validation/constraint-ledger.md) |
 | Missing conservation/provenance field | $\mathcal{L}_{E\mathbf{p}\mathbf{J}}(\mathsf e)$ has an undefined or nonzero required row after all claimed outputs, recoil, medium updates, remnants, polarity / charge, architrino inventory, source identity, emission time, causal-root branch, and branch-Jacobian records are included. | [Reaction Ledger](../../../../markdown/aaa/validation/reaction-ledger.md), [Reaction-Cosmology Provenance Ledger](../../../../markdown/aaa/validation/reaction-cosmology-provenance-ledger.md) |
 | Benchmark-only fitting | A target benchmark in $\mathfrak{B}^{\mathrm{obs}}_S$ is used as an input to $\mathcal{L}_A$, $\Pi_S$, $Q_S$, $\mathcal{R}$, $\{B_i\}$, a branch-chart revision, an equality map, a root-coordinate split, or $\mathcal{M}_{\mathrm{sea}}^{ab}$ rather than as an output of a replayable closure record. | [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md), [Radiation](../../../../markdown/aaa/reactions/radiation.md) |
-| Incompatible effective limits | Two sectors require asymptotic maps whose overlap is empty, for example incompatible weak-field metric limits, photon / radiation limits, blackbody / BBN transport limits, or quantum no-signaling / gravity causal limits. | [Known Tensions](../../../../markdown/aaa/validation/known-tensions.md), [GR Phenomenology](../../../../markdown/aaa/spacetime/gr-phenomenology.md), [Cosmology Ontology](../../../../markdown/aaa/cosmology/cosmology-ontology.md) |
+| Incompatible effective limits | Two sectors require asymptotic maps whose overlap is empty, for example incompatible weak-field metric limits, photon / radiation limits, blackbody / BBN transport limits, or quantum no-signaling / gravity causal limits. | [Known Tensions](../../../../markdown/aaa/validation/known-tensions.md), [General Relativity](../../../../markdown/aaa/spacetime/general-relativity.md), [Cosmology Ontology](../../../../markdown/aaa/cosmology/cosmology-ontology.md) |
 
 #### Preferred-Frame Hiding Stop Condition
 
@@ -68182,8 +68182,8 @@ This page is not a dumping ground for vague uncertainty. Each tension should ide
 | 1 | Weak `V-A` selection rule | The weak interaction must distinguish left-chiral fermions from right-chiral ones. | [quantum-number-mapping.md](../../../../markdown/aaa/assemblies/fermions/quantum-number-mapping.md) gives a geometric lock-out story, and [weak-mixing-ckm.md](../../../../markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md) now identifies this as part of the shared weak-coupling-triad exposure problem, but no operator derivation is complete. | Derive a docking or coupling operator that exposes the weak-coupling triad for left-handed charged-current coupling, hides it for right-handed charged-current coupling, and then reuses the same domain for CKM/PMNS overlap and weak-reaction provenance. | If right-handed neutrino or right-handed charged-fermion coupling to `W` is not strongly suppressed in the same regime, or if the exposure domain must be redefined separately for mixing and provenance, the current weak-sector picture fails. |
 | 1 | Preferred-frame leakage | The ontology has absolute time and a medium, so observer-level Lorentz hiding must be quantitative. | The requirement is clear in [constraint-ledger.md](../../../../markdown/aaa/validation/constraint-ledger.md), and [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md) now states the moving-assembly coefficient targets plus the translating-binary residual test, but the full attractor proof is not complete. | First solve the translating two-body branch and test $T_u/T_0=\gamma_f$ and $L_{\parallel}/L_{\perp}=1/\gamma_f$ on the same causal-root ledger; then show that nested shell braid clocks, rulers, and signal transport suppress measurable preferred-frame effects below current experimental bounds through coupled shape, clock, and two-way anisotropy closure. | Any robust preferred-frame signal above the recorded bounds, a non-Lorentzian binary residual that cannot be traced to a controlled branch feature, or any need to tune clock and ruler coefficients independently falsifies the observer-level spacetime closure. |
 | 1 | Born-rule derivation | Quantum replacement claims are not credible without a basin-measure or equivalent statistical closure. | [wavefunction-ontology.md](../../../../markdown/aaa/quantum/wavefunction-ontology.md) and [measurement-ontology.md](../../../../markdown/aaa/quantum/measurement-ontology.md) fix the ontology; [quantum-operator-mapping.md](../../../../markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md) now states the finite-time invariant-measure, thermodynamic ensemble consistency, and admissible quantization-domain targets, but the derivation is still open. | Derive outcome weights from deterministic basin measures in the same regime that yields the effective wave equation, show that the same finite-window measure projects to the thermodynamic summaries used for apparatus irreversibility, decoherence, and record formation, and restrict effective operators to a physically declared observable domain rather than a global quantization of all classical functions. | If the deterministic closure produces a non-Born weighting in validated regimes, if Born weights and thermodynamic summaries require incompatible measures, or if the operator map requires ad hoc observable-domain changes per benchmark, the current quantum story fails. |
-| 1 | Weak-field GR recovery | Redshift, Shapiro delay, lensing, and orbital tests must come from one constitutive map. | The interface now exists in [gr-phenomenology.md](../../../../markdown/aaa/spacetime/gr-phenomenology.md) and [ppn-parameters.md](../../../../markdown/aaa/spacetime/ppn-parameters.md), but the shared fit is incomplete. | Produce one reusable parameter set for the weak-field metric map. | If different observables require incompatible constitutive coefficients, the emergent-metric program fails. |
-| 2 | Low-energy quantum-gravity EFT recovery | Quantized metric methods are not $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology, but their long-distance effective predictions are fixed by known low-energy degrees of freedom. | [gr-phenomenology.md](../../../../markdown/aaa/spacetime/gr-phenomenology.md) and [emergent-metric.md](../../../../markdown/aaa/spacetime/emergent-metric.md) state the classical weak-field map; they need an explicit observer-level GR-EFT recovery gate. | Recover the standard long-distance quantum correction to the Newtonian potential using the same weak-field constitutive record that supports PPN, redshift, Shapiro delay, lensing, and gravitational-wave speed. | If the calculable low-energy quantum correction requires an independent coefficient set, spacetime closure is incomplete even if the classical observables are matched. |
+| 1 | Weak-field GR recovery | Redshift, Shapiro delay, lensing, and orbital tests must come from one constitutive map. | The interface now exists in [general-relativity.md](../../../../markdown/aaa/spacetime/general-relativity.md) and [ppn-parameters.md](../../../../markdown/aaa/spacetime/ppn-parameters.md), but the shared fit is incomplete. | Produce one reusable parameter set for the weak-field metric map. | If different observables require incompatible constitutive coefficients, the emergent-metric program fails. |
+| 2 | Low-energy quantum-gravity EFT recovery | Quantized metric methods are not $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology, but their long-distance effective predictions are fixed by known low-energy degrees of freedom. | [general-relativity.md](../../../../markdown/aaa/spacetime/general-relativity.md) and [emergent-metric.md](../../../../markdown/aaa/spacetime/emergent-metric.md) state the classical weak-field map; they need an explicit observer-level GR-EFT recovery gate. | Recover the standard long-distance quantum correction to the Newtonian potential using the same weak-field constitutive record that supports PPN, redshift, Shapiro delay, lensing, and gravitational-wave speed. | If the calculable low-energy quantum correction requires an independent coefficient set, spacetime closure is incomplete even if the classical observables are matched. |
 | 2 | Parameter non-closure | Too many symbols remain geometric promises rather than fixed quantities. | [parameter-ledger.md](../../../../markdown/aaa/validation/parameter-ledger.md) now organizes them, but most are still open. | Close $\kappa$, the mass prefactor, the metric constitutive coefficients, and the weak-mixing datum without per-observable retuning. | If the same symbol has to be re-fit independently across chapters, the closure claim weakens sharply. |
 | 2 | Null-result closure for added channels | A unification claim can fail even while matching known positive benchmarks if it predicts extra channels that experiments have not seen. | [failure-criteria.md](../../../../markdown/aaa/validation/failure-criteria.md) now defines $\mathcal{R}_{\mathrm{null}}(\theta)$ for predicted non-baseline channels, but the main sector ledgers have not all routed their null-result bounds through that residual. The concrete comparison cases are mirror matter, superpartners, proton-instability channels, extra gauge bosons, hidden transport modes, sterile or neutral partner branches, and preferred-frame leakage channels. | For every added partner family, unstable baryon channel, extra gauge or transport mode, preferred-frame leakage channel, or other non-baseline output, compute $O_e(\theta)$ and show $O_e(\theta)\le O_e^{\max}$ from the same shared closure record used for the positive benchmarks. A symmetry container that includes the Standard Model as a subcase passes only when the added channels are proven absent, exactly redundant, or below bounds by the same branch record that recovers the observed sector. | If unobserved channels are hidden only by sector-specific masses, thresholds, compactification-like assumptions, or disconnected suppression factors, the framework has reproduced the failure pattern of overextended unification rather than closing it. |
 | 2 | Thermodynamic-gravity closure | If the metric is an emergent equation of state, the repo needs more than constitutive rhetoric. | [emergent-metric.md](../../../../markdown/aaa/spacetime/emergent-metric.md) now states the Noether sea-first picture, defines a local-horizon residual $\mathcal{R}_{\mathrm{thermo}}(\theta)$, and links the proof scaffold to [Thermodynamic Residual Protocol](../../../../markdown/aaa/validation/simulations/thermodynamic-residual.md); [black-holes.md](../../../../markdown/aaa/spacetime/black-holes.md) frames horizon entropy as a block-density count over horizon-compatible reduced Noether braid closure labels. No run has yet driven the residual small from a simulated Noether sea record. | Show that the Noether sea admits an area-scaling entropy channel $S_H=k_B\log\lvert\mathcal{B}_H\rvert$ whose local coefficient is recovered as a block entropy density, a local Rindler/Unruh recovery in the appropriate limit, a Jacobson-style $dQ=T_UdS$ residual for boundary-wake data, Page-curve-compatible information release through horizon-interface channels, and a controlled nonequilibrium regime where distinctive departures are predicted. | If GR-like recovery requires thermodynamic language but the Noether sea cannot supply area scaling, local horizon temperature, a shared stress/entropy/temperature record, Page-curve-compatible information accounting, or a coherent nonequilibrium boundary, the present gravity interpretation loses depth and may be mislocated. |
@@ -68311,7 +68311,7 @@ If that intersection becomes empty after quantitative work is done, the present 
 - [constraint-ledger.md](../../../../markdown/aaa/validation/constraint-ledger.md)
 - [closure-scorecard.md](../../../../markdown/aaa/validation/closure-scorecard.md)
 - [../assemblies/fermions/quantum-number-mapping.md](../../../../markdown/aaa/assemblies/fermions/quantum-number-mapping.md)
-- [../spacetime/gr-phenomenology.md](../../../../markdown/aaa/spacetime/gr-phenomenology.md)
+- [../spacetime/general-relativity.md](../../../../markdown/aaa/spacetime/general-relativity.md)
 - [../quantum/measurement-ontology.md](../../../../markdown/aaa/quantum/measurement-ontology.md)
 
 ### Massive Superposition Gravity
@@ -72831,7 +72831,7 @@ Do not use this lane as the primary home for:
 - substrate ontology; use [Foundations](../../../../markdown/aaa/foundations/ontology.md),
 - dynamical laws; use [Dynamics](../../../../markdown/aaa/dynamics/master-equation.md),
 - assembly definitions; use [Assemblies](../../../../markdown/aaa/noether-swarm/noether-swarm.md),
-- detailed equation-by-equation bridges; use [Theory Bridges](../../../../markdown/aaa/philosophy-history/theory-bridges/README.md),
+- detailed equation-by-equation bridges; use [Theory Bridges](../../../../markdown/aaa/philosophy-history/theory-bridges.md),
 - validation gates and parameter tracking; use [Validation](../../../../markdown/aaa/validation/failure-criteria.md).
 
 #### Reading Order
@@ -74761,7 +74761,7 @@ The arrow problem also separates dynamical relaxation from measure-based typical
 
 #### Theory Mapping
 
-This chapter is a comparative reader for the inherited modern-physics stack viewed from a substrate-first architecture. It is meant to orient readers quickly: what each major theory claims, what it explains well, and whether $\mathbb{A}\mathbb{A}\mathbb{A}$ intends to recover it, reinterpret it, or reject its ontology while preserving some effective structure. For the repo's deeper conceptual framing of where inherited theories break or remain useful, compare [Theory Inheritance Discipline](../../../../markdown/aaa/philosophy-history/theory-inheritance-discipline.md), [Theory Differentials](../../../../markdown/aaa/philosophy-history/theory-differentials.md), [Crisis in Physics](../../../../markdown/aaa/philosophy-history/crisis-in-physics.md), [Substance, Structure, and the Plenum of Potential](../../../../markdown/aaa/philosophy-history/substance-structure-and-potential.md), and [Unknowns and Paradoxes](../../../../markdown/aaa/philosophy-history/unknowns-paradoxes.md). For long-form mathematical mappings between inherited frameworks and the $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation layer, see [Theory Bridges](../../../../markdown/aaa/philosophy-history/theory-bridges/README.md).
+This chapter is a comparative reader for the inherited modern-physics stack viewed from a substrate-first architecture. It is meant to orient readers quickly: what each major theory claims, what it explains well, and whether $\mathbb{A}\mathbb{A}\mathbb{A}$ intends to recover it, reinterpret it, or reject its ontology while preserving some effective structure. For the repo's deeper conceptual framing of where inherited theories break or remain useful, compare [Theory Inheritance Discipline](../../../../markdown/aaa/philosophy-history/theory-inheritance-discipline.md), [Theory Differentials](../../../../markdown/aaa/philosophy-history/theory-differentials.md), [Crisis in Physics](../../../../markdown/aaa/philosophy-history/crisis-in-physics.md), [Substance, Structure, and the Plenum of Potential](../../../../markdown/aaa/philosophy-history/substance-structure-and-potential.md), and [Unknowns and Paradoxes](../../../../markdown/aaa/philosophy-history/unknowns-paradoxes.md). For long-form mathematical mappings between inherited frameworks and the $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation layer, see [Theory Bridges](../../../../markdown/aaa/philosophy-history/theory-bridges.md).
 
 The document is organized as a matrix rather than a linear history. The first sections explain the comparison method; the later layers then group theories by assembly, spacetime, cosmology, and epistemic-observation roles.
 
@@ -80900,7 +80900,7 @@ failing to identify the substrate mechanism that produces the result.
 
 The discipline here sits between the broad survey in [Theory Mapping](../../../../markdown/aaa/philosophy-history/theory-mapping.md),
 the classification catalog in [Theory Differentials](../../../../markdown/aaa/philosophy-history/theory-differentials.md),
-and the detailed per-framework mappings in [Theory Bridges](../../../../markdown/aaa/philosophy-history/theory-bridges/README.md).
+and the detailed per-framework mappings in [Theory Bridges](../../../../markdown/aaa/philosophy-history/theory-bridges.md).
 It does not own the substrate ontology, the Master Equation of Motion, assembly
 definitions, validation gates, or parameter ledgers. Its job is to prevent
 inherited concepts from entering the corpus with more authority than they have
@@ -81290,7 +81290,7 @@ catalog. It locates each concept in the comparative stack and the
 $\mathbb{A}\mathbb{A}\mathbb{A}$ stack, names its relation type, and records the
 mapping target.
 
-[Theory Bridges](../../../../markdown/aaa/philosophy-history/theory-bridges/README.md) should remain the detailed bridge
+[Theory Bridges](../../../../markdown/aaa/philosophy-history/theory-bridges.md) should remain the detailed bridge
 lane. A bridge may use this chapter's transfer record to keep its mathematical
 handoff disciplined, but the bridge still has to point back to the domain
 chapters that own the underlying mechanism.
@@ -81332,18 +81332,18 @@ A theory bridge is not a neutral encyclopedia entry and it is not the canonical 
 Use this lane for documents that:
 
 - compare an inherited theory or formalism with the $\mathbb{A}\mathbb{A}\mathbb{A}$ stack in detail,
-- need more space or mathematics than [Theory Mapping](../../../../markdown/aaa/philosophy-history/theory-mapping.md) or [Theory Differentials](../../../../markdown/aaa/philosophy-history/theory-differentials.md),
+- need more space or mathematics than [Theory Mapping](../../../../markdown/aaa/theory-mapping.md) or [Theory Differentials](../../../../markdown/aaa/theory-differentials.md),
 - translate equations, observables, and physical interpretation line by line,
 - identify which pieces are recovered, reinterpreted, rejected, or still open,
 - and link back to the canonical domain chapters that own the underlying $\mathbb{A}\mathbb{A}\mathbb{A}$ claims.
 
 Do not use this lane as the primary home for:
 
-- substrate ontology; use [Foundations](../../../../markdown/aaa/foundations/ontology.md),
-- assembly definitions; use [Assemblies](../../../../markdown/aaa/noether-swarm/noether-swarm.md),
-- dynamical laws; use [Dynamics](../../../../markdown/aaa/dynamics/master-equation.md),
-- canonical spacetime mechanism chapters; use [Spacetime](../../../../markdown/aaa/spacetime/observer-framework.md),
-- broad historical orientation; use [Philosophy and History](../../../../markdown/aaa/philosophy-history/theory-mapping.md).
+- substrate ontology; use [Foundations](../../../../markdown/foundations/ontology.md),
+- assembly definitions; use [Assemblies](../../../../markdown/noether-swarm/noether-swarm.md),
+- dynamical laws; use [Dynamics](../../../../markdown/dynamics/master-equation.md),
+- canonical spacetime mechanism chapters; use [Spacetime](../../../../markdown/spacetime/observer-framework.md),
+- broad historical orientation; use [Philosophy and History](../../../../markdown/aaa/theory-mapping.md).
 
 ###### Bridge Pattern
 
@@ -81359,19 +81359,19 @@ Each mature bridge should include:
 
 ###### Current Bridges
 
-- [Bell's Theorem: Traditional Derivation and Architrino Assembly Architecture Response](../../../../markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md)
-- [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md)
-- [Measurement Problem and Collapse](../../../../markdown/aaa/philosophy-history/theory-bridges/collapse-problem.md)
-- [Entanglement and Nonlocality](../../../../markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md)
-- [Relativistic Scalar Fields and the Klein-Gordon Equation](../../../../markdown/aaa/philosophy-history/theory-bridges/klein-gordon-scalar-fields.md)
-- [Pilot-Wave Character](../../../../markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md)
-- [Mapping the Planck Scale to the Nested Shell Braid Geometry](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md)
-- [Quantum Operator Mapping](../../../../markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md)
-- [Return-Cycle Lorentz Quantization](../../../../markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md)
-- [Special Relativity and Deformable Noether Braids](../../../../markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md)
-- [Spacetime Models and the Noether sea](../../../../markdown/aaa/philosophy-history/theory-bridges/spacetime-models-and-noether-sea.md)
-- [Superposition Mechanism](../../../../markdown/aaa/philosophy-history/theory-bridges/superposition-mechanism.md)
-- [Weak Mixing and CKM](../../../../markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md)
+- [Bell's Theorem: Traditional Derivation and Architrino Assembly Architecture Response](../../../../markdown/aaa/philosophy-history/bell-theorem.md)
+- [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/angular-momentum-and-spin.md)
+- [Measurement Problem and Collapse](../../../../markdown/aaa/philosophy-history/collapse-problem.md)
+- [Entanglement and Nonlocality](../../../../markdown/aaa/philosophy-history/entanglement-nonlocality.md)
+- [Relativistic Scalar Fields and the Klein-Gordon Equation](../../../../markdown/aaa/philosophy-history/klein-gordon-scalar-fields.md)
+- [Pilot-Wave Character](../../../../markdown/aaa/philosophy-history/pilot-wave-character.md)
+- [Mapping the Planck Scale to the Nested Shell Braid Geometry](../../../../markdown/aaa/philosophy-history/planck-scale-nested-shell-swarm-alignment.md)
+- [Quantum Operator Mapping](../../../../markdown/aaa/philosophy-history/quantum-operator-mapping.md)
+- [Return-Cycle Lorentz Quantization](../../../../markdown/aaa/philosophy-history/return-cycle-lorentz-quantization.md)
+- [Special Relativity and Deformable Noether Braids](../../../../markdown/aaa/philosophy-history/special-relativity-noether-swarm.md)
+- [Spacetime Models and the Noether sea](../../../../markdown/aaa/philosophy-history/spacetime-models-and-noether-sea.md)
+- [Superposition Mechanism](../../../../markdown/aaa/philosophy-history/superposition-mechanism.md)
+- [Weak Mixing and CKM](../../../../markdown/aaa/philosophy-history/weak-mixing-ckm.md)
 
 ##### Quantum Operator Mapping
 
@@ -81891,7 +81891,7 @@ The result is not that angular momentum and spin are unreal. The result is that 
 
 The related material is best read as an ordered path rather than as a flat list of adjacent chapters:
 
-1. Start with primitive ontology in [Architrino](../../../../markdown/aaa/foundations/architrino.md) and [Foundational Ontology](../../../../markdown/aaa/foundations/ontology.md).
+1. Start with primitive ontology in [Architrino](../../../../markdown/aaa/foundations/architrino.md) and [Ontology](../../../../markdown/aaa/foundations/ontology.md).
 2. Use [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md) and [Causal Action Functional](../../../../markdown/aaa/dynamics/causal-action-functional.md) for delayed conservation and wake-history bookkeeping.
 3. Use [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md) for the nested shell braid mechanics that spin must descend from.
 4. Treat [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md), [Electroweak Bosons](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md), and [Bell's Theorem](../../../../markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md) as downstream tests rather than source derivations.
@@ -87351,7 +87351,7 @@ This chapter does not own:
 - the geometry of the dynamic exclusion envelope; see [Nested Shell Braid Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md),
 - the proper-time map; see [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md),
 - the energy ledger; see [Energy](../../../../markdown/aaa/dynamics/energy.md),
-- or the exact delayed law; see [Master Equation of Motion](../../../../markdown/aaa/dynamics/master-equation.md).
+- or the exact delayed law; see [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md).
 
 ###### The Two Stories
 
@@ -88086,7 +88086,7 @@ If that step succeeds, the result is more than a Lorentz derivation. It is a con
 
 ##### Spacetime Models and the Noether Sea
 
-This bridge compares inherited mathematical models of space, time, vacuum, aether, and emergent spacetime with the Noether sea implementation layer in $\mathbb{A}\mathbb{A}\mathbb{A}$. It is not the canonical home of the spacetime mechanism. The mechanism remains in [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md), [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md), [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md), [PPN Parameters](../../../../markdown/aaa/spacetime/ppn-parameters.md), and [GR Phenomenology](../../../../markdown/aaa/spacetime/gr-phenomenology.md).
+This bridge compares inherited mathematical models of space, time, vacuum, aether, and emergent spacetime with the Noether sea implementation layer in $\mathbb{A}\mathbb{A}\mathbb{A}$. It is not the canonical home of the spacetime mechanism. The mechanism remains in [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md), [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md), [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md), [PPN Parameters](../../../../markdown/aaa/spacetime/ppn-parameters.md), and [General Relativity](../../../../markdown/aaa/spacetime/general-relativity.md).
 
 The purpose is narrower: keep historically important models available as disciplined comparisons without letting their vocabulary become native ontology. Terms such as absolute space, vacuum, aether, elastic medium, analog metric, condensate, and superfluid can help locate a mathematical burden, but none of them replaces `Noether sea`.
 
@@ -88428,7 +88428,7 @@ That is why analogy belongs here. Mechanism chapters should inherit the discipli
 
 ##### Relativistic Scalar Fields and the Klein-Gordon Equation
 
-This bridge maps relativistic scalar-field language, especially the Klein-Gordon equation, onto the $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation layer. It is a bridge document, not the canonical owner of scalar collective dynamics. The broad theory entry remains in [Theory Mapping](../../../../markdown/aaa/philosophy-history/theory-mapping.md), while the relevant $\mathbb{A}\mathbb{A}\mathbb{A}$ mechanisms live in [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md), [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md), and [Master Equation of Motion](../../../../markdown/aaa/dynamics/master-equation.md).
+This bridge maps relativistic scalar-field language, especially the Klein-Gordon equation, onto the $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation layer. It is a bridge document, not the canonical owner of scalar collective dynamics. The broad theory entry remains in [Theory Mapping](../../../../markdown/aaa/philosophy-history/theory-mapping.md), while the relevant $\mathbb{A}\mathbb{A}\mathbb{A}$ mechanisms live in [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md), [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md), and [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md).
 
 ###### Bridge Thesis
 
@@ -89743,7 +89743,7 @@ General Relativity is powerful because it makes clocks, rulers, light paths, fre
 
 $\mathbb{A}\mathbb{A}\mathbb{A}$ is therefore not an anti-geometric theory. It is a theory with disciplined placement for each geometry it uses. The Euclidean void supplies the fixed spatial metric, causal wakes supply path-history geometry, assemblies carry internal geometry, the Noether sea supplies constitutive response, and Physical Observers reconstruct an effective metric from clocks, rulers, and signal behavior. The critique of modern spacetime ontology is not that it is geometric. The critique is that it promotes one successful effective geometry into final ontology before the generator has been identified.
 
-The technical owners remain [Euclidean Void](../../../../markdown/aaa/foundations/euclidean-void.md), [Foundational Ontology](../../../../markdown/aaa/foundations/ontology.md), [Master Equation of Motion](../../../../markdown/aaa/dynamics/master-equation.md), [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md), [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md), and [Spacetime Models and the Noether sea](../../../../markdown/aaa/philosophy-history/theory-bridges/spacetime-models-and-noether-sea.md). This page supplies the philosophy-facing placement discipline.
+The technical owners remain [Euclidean Void](../../../../markdown/aaa/foundations/euclidean-void.md), [Ontology](../../../../markdown/aaa/foundations/ontology.md), [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md), [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md), [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md), and [Spacetime Models and the Noether sea](../../../../markdown/aaa/philosophy-history/theory-bridges/spacetime-models-and-noether-sea.md). This page supplies the philosophy-facing placement discipline.
 
 #### The Geometry Question
 
@@ -89861,7 +89861,7 @@ This gives the philosophy-history lane a clean answer to the original worry. $\m
 
 #### Overview
 
-This document gives a philosophical orientation for a central $\mathbb{A}\mathbb{A}\mathbb{A}$ distinction: what exists as primitive substance, what exists as causal structure, and what remains only an effective description. It belongs in the philosophy-history lane because it explains the level discipline behind the ontology. The canonical technical owners remain [Foundational Ontology](../../../../markdown/aaa/foundations/ontology.md), [Architrino](../../../../markdown/aaa/foundations/architrino.md), [Euclidean Void](../../../../markdown/aaa/foundations/euclidean-void.md), [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md), and [Master Equation of Motion](../../../../markdown/aaa/dynamics/master-equation.md).
+This document gives a philosophical orientation for a central $\mathbb{A}\mathbb{A}\mathbb{A}$ distinction: what exists as primitive substance, what exists as causal structure, and what remains only an effective description. It belongs in the philosophy-history lane because it explains the level discipline behind the ontology. The canonical technical owners remain [Ontology](../../../../markdown/aaa/foundations/ontology.md), [Architrino](../../../../markdown/aaa/foundations/architrino.md), [Euclidean Void](../../../../markdown/aaa/foundations/euclidean-void.md), [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md), and [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md).
 
 The guiding problem is that modern physics often lets predictive objects carry more ontology than their derivation warrants. A metric, field, vacuum state, wavefunction, mass parameter, or particle label may be indispensable within its regime while still failing to identify the implementation layer that produces the observed behavior. The task here is not to dismiss those formalisms. It is to separate their effective success from the stronger claim that their native objects are the fundamental furniture of reality.
 
@@ -89887,7 +89887,7 @@ The distinction is important because it prevents false demands on the primitive.
 
 The second distinction is between substance and causal structure. If architrinos continuously emit causal wakes, one might ask whether the wake is a second substance filling the void. The canonical answer is no. A causal wake is physically real, but it is not an independent material inventory.
 
-A wake is the causal-isochron residue of architrino emission. It is source-provenanced, path-history dependent, and finite-speed. Its role is to deliver delayed interaction when it intersects a receiver according to the [Master Equation of Motion](../../../../markdown/aaa/dynamics/master-equation.md). It has physical consequence because it can accelerate an architrino at a reception event.
+A wake is the causal-isochron residue of architrino emission. It is source-provenanced, path-history dependent, and finite-speed. Its role is to deliver delayed interaction when it intersects a receiver according to the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md). It has physical consequence because it can accelerate an architrino at a reception event.
 
 Its reality, however, is structural rather than substantive. A wake has no independent identity apart from its source history. It is not a free-standing medium with its own internal constituents. It is not a second material layer added beside architrinos. It is a lawful causal geometry generated by architrino motion and evaluated at later intersections. The practical test is whether any wake state remains to be specified after the source identity, polarity, and path history are fixed. In $\mathbb{A}\mathbb{A}\mathbb{A}$ the answer is no: the wake is physically real as a delayed interaction record, but not autonomous as a separate substance or primitive field.
 
