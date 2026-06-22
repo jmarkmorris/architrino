@@ -369,7 +369,7 @@ $$
 
 The positive scalar $\kappa_{n,X}$ sets the magnitude while the branch Hessian and readout fix the direction. A replay that improves by choosing $\kappa_n^P$, $\kappa_\lambda^P$, and $\kappa_R^P$ outside this branch-derived form has introduced independent fit knobs. Such a fit is acceptable only as a failure diagnostic: the branch must split, change readout, or supply a different finite Hessian before the pressure row can be interpreted as a Noether sea response.
 
-The finite-branch source-status boundary in [Noether Braid Envelope Hessian Toy Branch](noether-swarm-envelope-hessian-toy-branch.md) also applies here: branch-derived pressure slopes remain blocked when the only upstream artifact is an $A_0$ scanner, Fourier carrier-correction packet, or waveform replay rather than accepted finite-branch Hessian output.
+The finite-branch source-status boundary in [Noether Braid Envelope Hessian Toy Branch](noether-braid-envelope-hessian-toy-branch.md) also applies here: branch-derived pressure slopes remain blocked when the only upstream artifact is an $A_0$ scanner, Fourier carrier-correction packet, or waveform replay rather than accepted finite-branch Hessian output.
 
 ## Contact-Network Contribution
 
@@ -588,4 +588,4 @@ for the density channel, and should reserve $\Delta\ln n_{\max,X}^{\mathrm{obl}}
 
 ## Next Closure Target
 
-[Noether Braid Envelope Hessian Toy Branch](noether-swarm-envelope-hessian-toy-branch.md) supplies the reduced $2\times2$ Hessian calculation for $(\ln R_\perp,\ln\xi)$, including the projected stiffness $k_{\mathrm{env}}^{(V)}$, stability classifier, induced shape response, and executable scanner handoff. The next unresolved step is finite-branch intake: replace the toy Hessian entries with accepted branch output and require the resulting pressure slopes to keep the branch-derived form above while passing density-sign, scalar-feasibility, and null-sector bounds.
+[Noether Braid Envelope Hessian Toy Branch](noether-braid-envelope-hessian-toy-branch.md) supplies the reduced $2\times2$ Hessian calculation for $(\ln R_\perp,\ln\xi)$, including the projected stiffness $k_{\mathrm{env}}^{(V)}$, stability classifier, induced shape response, and executable scanner handoff. The next unresolved step is finite-branch intake: replace the toy Hessian entries with accepted branch output and require the resulting pressure slopes to keep the branch-derived form above while passing density-sign, scalar-feasibility, and null-sector bounds.

@@ -25,8 +25,8 @@ import { getPhotonDiagnosticRows, formatPhotonFixed } from "./PhotonDiagnosticsR
 import {
   drawPhotonElectricFieldPlot,
   drawPhotonPolarizationInset,
-  drawPhotonSwarmStage,
-} from "./PhotonSwarmVisualRuntime.js";
+  drawPhotonBraidStage,
+} from "./PhotonBraidVisualRuntime.js";
 import {
   createSolverAppBridgeClient,
 } from "../../solver/app/SolverAppBridge.mjs";
@@ -805,7 +805,7 @@ export function createPhotonRuntime({
     const displayTime = times.displayTime;
     const snapshot = getCurrentSolverSnapshot();
     scheduleSolverSnapshot(displayTime);
-    drawPhotonSwarmStage(stageCanvas, state, times.modelTime, { windowLike });
+    drawPhotonBraidStage(stageCanvas, state, times.modelTime, { windowLike });
     drawPhotonElectricFieldPlot(electricFieldCanvas, state, displayTime, {
       windowLike,
       plot: snapshot?.plot ?? null,

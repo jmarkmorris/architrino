@@ -1,5 +1,5 @@
 {
-  "schema": "aaa-noether-swarm-envelope-hessian-scan-input/v1",
+  "schema": "aaa-noether-braid-envelope-hessian-scan-input/v1",
   "metadata": {
     "description": "Toy Noether swarm envelope Hessian scanner packet for pressure-row rescue branch certificates."
   },

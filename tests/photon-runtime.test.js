@@ -84,7 +84,7 @@ import {
   computePhotonStageLayout,
   getPhotonFieldPlotSampleCount,
   isPhotonPlotSampleInForwardGap,
-} from "../src/apps/photon/PhotonSwarmVisualRuntime.js";
+} from "../src/apps/photon/PhotonBraidVisualRuntime.js";
 import { createSolverBridgeLoopbackWorker } from "./solver-worker-loopback.mjs";
 
 function assertNear(actual, expected, epsilon = 1e-12) {

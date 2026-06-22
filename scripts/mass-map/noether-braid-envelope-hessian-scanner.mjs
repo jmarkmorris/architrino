@@ -4,7 +4,7 @@ import fs from "node:fs";
 import path from "node:path";
 
 const SCRIPT_DIR = path.dirname(new URL(import.meta.url).pathname);
-const DEFAULT_INPUT_PATH = path.join(SCRIPT_DIR, "noether-swarm-envelope-hessian-scan.mock.json");
+const DEFAULT_INPUT_PATH = path.join(SCRIPT_DIR, "noether-braid-envelope-hessian-scan.mock.json");
 const DEFAULT_TOLERANCE = 1e-9;
 const DEFAULT_READOUT_CANDIDATES = [
   { name: "fixed_core_readout", q_R: 0, q_xi: 0 },
@@ -43,10 +43,10 @@ function parseArgs(argv) {
 }
 
 function printHelp() {
-  console.log(`Usage: node scripts/mass-map/noether-swarm-envelope-hessian-scanner.mjs [options]
+  console.log(`Usage: node scripts/mass-map/noether-braid-envelope-hessian-scanner.mjs [options]
 
 Options:
-  --input PATH  Hessian scan packet. Defaults to scripts/mass-map/noether-swarm-envelope-hessian-scan.mock.json
+  --input PATH  Hessian scan packet. Defaults to scripts/mass-map/noether-braid-envelope-hessian-scan.mock.json
   --out PATH    Write JSON output to a file instead of stdout.
   --pretty      Pretty-print JSON output.
   --require-branch-evidence
@@ -499,8 +499,8 @@ function evaluatePacket(packet, options) {
   const results = scenarios.map((scenario, index) => evaluateScenario(packet, scenario, index, options));
   const candidateResults = results.flatMap((result) => result.candidates);
   return {
-    schema: "aaa-noether-swarm-envelope-hessian-scan-output/v1",
-    input_schema: packet.schema ?? "aaa-noether-swarm-envelope-hessian-scan-input/v1",
+    schema: "aaa-noether-braid-envelope-hessian-scan-output/v1",
+    input_schema: packet.schema ?? "aaa-noether-braid-envelope-hessian-scan-input/v1",
     diagnostics: {
       scenario_count: results.length,
       scenario_pass_count: results.filter((result) => result.status === "pass").length,

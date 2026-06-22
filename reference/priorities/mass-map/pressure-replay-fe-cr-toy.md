@@ -1006,13 +1006,13 @@ For a broader compensated row, the algebraic rescue is not ruled out by Hessian 
 The executable scanner now evaluates this reduction directly:
 
 ```text
-node scripts/mass-map/noether-swarm-envelope-hessian-scanner.mjs --pretty
+node scripts/mass-map/noether-braid-envelope-hessian-scanner.mjs --pretty
 ```
 
 The branch-promotion replay requires finite-branch evidence:
 
 ```text
-node scripts/mass-map/noether-swarm-envelope-hessian-scanner.mjs --require-branch-evidence --pretty
+node scripts/mass-map/noether-braid-envelope-hessian-scanner.mjs --require-branch-evidence --pretty
 ```
 
 The default mock packet reports one rescue witness and one falsification control:
@@ -1121,7 +1121,7 @@ $$
 
 For a same-branch claim, $\mathcal{R}_{\mathrm{slope}}$ must vanish within the declared tolerance. If it does not, the response belongs to a branch split, a changed readout, an ordinary material correction, or a failed Noether sea pressure-row interpretation.
 
-The current finite-branch intake verdict is negative. The compact $A_0$ fold-layer-locked one-period attempt in [A0 Reduced Branch Certificate Packet](a0-reduced-branch-certificate.md) fails direct one-period residual closure and does not compute the quotient monodromy, positive $\Delta_{\mathbf{k}}$, or $\eta$-ladder persistence. Its residual-balance ledger also gives a relation-weight-only no-go with relative residual about `0.755`, so it cannot supply a finite envelope Hessian. The finite-branch intake contract is now recorded in [Noether Braid Envelope Hessian Toy Branch](noether-swarm-envelope-hessian-toy-branch.md): accepted pressure rescue requires emitted branch Hessian entries, accepted-history source fields, a predeclared $R_{\text{core}}$ readout, finite branch-evidence status, and fail-closed scanner semantics. With `--require-branch-evidence`, both default scanner scenarios fail as toy rows rather than accepted branch rows. Therefore the broader compensated family remains optional but unpromoted; nonzero $a_n$, $a_\lambda$, or $a_R$ are not required by the endpoint constraints, and they remain disfavored as independent fit knobs until a finite branch derives the corresponding pressure-side entries.
+The current finite-branch intake verdict is negative. The compact $A_0$ fold-layer-locked one-period attempt in [A0 Reduced Branch Certificate Packet](a0-reduced-branch-certificate.md) fails direct one-period residual closure and does not compute the quotient monodromy, positive $\Delta_{\mathbf{k}}$, or $\eta$-ladder persistence. Its residual-balance ledger also gives a relation-weight-only no-go with relative residual about `0.755`, so it cannot supply a finite envelope Hessian. The finite-branch intake contract is now recorded in [Noether Braid Envelope Hessian Toy Branch](noether-braid-envelope-hessian-toy-branch.md): accepted pressure rescue requires emitted branch Hessian entries, accepted-history source fields, a predeclared $R_{\text{core}}$ readout, finite branch-evidence status, and fail-closed scanner semantics. With `--require-branch-evidence`, both default scanner scenarios fail as toy rows rather than accepted branch rows. Therefore the broader compensated family remains optional but unpromoted; nonzero $a_n$, $a_\lambda$, or $a_R$ are not required by the endpoint constraints, and they remain disfavored as independent fit knobs until a finite branch derives the corresponding pressure-side entries.
 
 Anisotropic pressure terms remain outside this scalar endpoint equation. The replay must keep
 

@@ -28,7 +28,7 @@ Decision 1 (locked): `Xcode` scaffold for v1 lives at `apps/ios/ArchitrinoReader
 7. The v1 content package stores content as chapter-level markdown bundles plus required assets (images, CSS/JS), referenced directly by `textbook_toc.json` paths; there is no monolithic book file requirement in the app runtime.
 8. The v1 Xcode project path is `apps/ios/ArchitrinoReader/ArchitrinoReader.xcodeproj` (project name `ArchitrinoReader`).
 9. Default deployment policy: do not lower the first-release iOS/iPadOS floor if doing so adds compatibility code, layout compromises, or tool friction.
-10. HTML app links (for example `ideal-swarm.html`) in textbook markdown should route to `https://architrino.com/<slug>` in-app via explicit browser handoff rather than failing with missing local assets.
+10. HTML app links (for example `ideal-braid.html`) in textbook markdown should route to `https://architrino.com/<slug>` in-app via explicit browser handoff rather than failing with missing local assets.
 11. v1 rendering path is locked: native SwiftUI shell + local HTML shell (`WKWebView`) + generated per-chapter HTML reading copies, with chapter markdown retained as package fallback/source material.
 12. TOC entries that point to web-app scene nodes (for example `diagram`, `markdown-tree`, `markdown-split`) do not open chapter content in-app. They display a local banner notice and require an explicit Safari handoff action.
 13. Glossary access is provided through an explicit reader action and opens as a bundled in-app reference document when included in the textbook package.

@@ -58,7 +58,7 @@ Recent app work has several reusable design patterns for this app:
 - [Molecule Visualization](../../../molecule.html) provides the best compact app-shell reference: a full canvas, top floating title block, small toolbar, color legend chips, hover label, and compact bottom readout.
 - [MoleculeRuntime.js](../../../src/apps/molecule/MoleculeRuntime.js) has useful viewport-fit logic that keeps the main object clear of the readout. Reuse that idea so moving architrino paths and compact readouts do not collide at different canvas sizes.
 - [IdealBraidRuntime.js](../../../src/apps/ideal-braid/IdealBraidRuntime.js) remains the primary marker and trail grammar reference for architrino motion: glow-backed positrino/electrino markers, layered path ribbons, faded wake layers, and dark full-canvas atmosphere.
-- [PhotonBraidVisualRuntime.js](../../../src/apps/photon/PhotonSwarmVisualRuntime.js) has a useful 2D arc-tail primitive: segmented curved arcs with width and alpha falloff. Adapt that pattern for causal-wake arcs and $1/r$ thinning.
+- [PhotonBraidVisualRuntime.js](../../../src/apps/photon/PhotonBraidVisualRuntime.js) has a useful 2D arc-tail primitive: segmented curved arcs with width and alpha falloff. Adapt that pattern for causal-wake arcs and $1/r$ thinning.
 - Do not import Molecule's dense side preset rail or Ideal Braid's four-corner panel layout into v1. The causal-delay app should keep the canvas-first, low-control direction already selected.
 
 ## V1 Product Direction

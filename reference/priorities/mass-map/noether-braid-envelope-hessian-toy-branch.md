@@ -20,19 +20,19 @@ This priority packet supplies the first reduced Hessian calculation behind the N
 Run the priority-side scanner with:
 
 ```text
-node scripts/mass-map/noether-swarm-envelope-hessian-scanner.mjs --pretty
+node scripts/mass-map/noether-braid-envelope-hessian-scanner.mjs --pretty
 ```
 
 For branch-promotion checks, require finite-branch evidence explicitly:
 
 ```text
-node scripts/mass-map/noether-swarm-envelope-hessian-scanner.mjs --require-branch-evidence --pretty
+node scripts/mass-map/noether-braid-envelope-hessian-scanner.mjs --require-branch-evidence --pretty
 ```
 
 The script consumes:
 
 ```text
-scripts/mass-map/noether-swarm-envelope-hessian-scan.mock.json
+scripts/mass-map/noether-braid-envelope-hessian-scan.mock.json
 ```
 
 and emits one result row per Hessian scenario, with candidate rows for fixed-core, transverse-radius, volume-equivalent, and parallel-radius $R_{\text{core}}$ readouts. It reports $\Delta_H$, $D_H$, $k_{\mathrm{env}}^{(V)}$, $A_H$, $B_H$, the affine residual $c_RA_H+c_\xi B_H-1$, scalar feasibility residuals, $\kappa_n$, branch-evidence status, and the induced $\xi$ residual. The default run evaluates toy algebra. The `--require-branch-evidence` run fails any row whose Hessian entries are not declared as accepted finite-branch output.
@@ -703,8 +703,8 @@ Use the following commands after adding any finite intake packet:
 
 ```text
 git diff --check
-node scripts/mass-map/noether-swarm-envelope-hessian-scanner.mjs --pretty
-node scripts/mass-map/noether-swarm-envelope-hessian-scanner.mjs --require-branch-evidence --pretty
+node scripts/mass-map/noether-braid-envelope-hessian-scanner.mjs --pretty
+node scripts/mass-map/noether-braid-envelope-hessian-scanner.mjs --require-branch-evidence --pretty
 node scripts/validate-content.mjs --check --strict
 ```
 

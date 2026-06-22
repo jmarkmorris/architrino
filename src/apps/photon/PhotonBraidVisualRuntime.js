@@ -482,7 +482,7 @@ export function computePhotonStageLayout(state, cssWidth, cssHeight) {
   };
 }
 
-export function drawPhotonSwarmStage(canvas, state, timeSeconds, options = {}) {
+export function drawPhotonBraidStage(canvas, state, timeSeconds, options = {}) {
   const { windowLike = globalThis.window } = options;
   const ctx = canvas.getContext("2d");
   const { width, height, pixelRatio } = resizeCanvasToDisplaySize(canvas, windowLike);
